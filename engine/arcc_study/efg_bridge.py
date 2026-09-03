@@ -201,6 +201,26 @@ for s in STEPS:
     bars.append(round(after - before, 4))
 END = st['lens_override']
 
+# THE CAPTION UNDER THIS BAR WAS TYPED AND THE BAR WAS COMPUTED [corrected
+# 03-Sep-2026]. STEPS[5]['sub'] read "−3.33 out of window, +4.61 back as cash" and
+# its receipt cited a weighted central of 54.65 -- both true of the edition this
+# bridge was first built for, neither true after the re-strike. The study's own I9
+# invariant is what caught it: it recomputes the printed caption and matches it
+# against the split, and it went FAIL rather than quietly printing stale numbers,
+# which is the invariant doing exactly its job. The caption is now written FROM the
+# split it describes, so it cannot disagree with it again.
+_wc = split['valuation_date']
+for _s in STEPS:
+    if _s['key'] == 'valuation_date':
+        _s['sub'] = "%.2f out of window,\n+%.2f back as cash" % (_wc[0], _wc[1])
+        _s['receipt'] = (
+            "A price is what you pay today. Only the remainder of the current fiscal "
+            "year sits inside the discounted window, so the rest of that year's free "
+            "cash flow leaves it -- and arrives in the bridge as cash already earned. "
+            "This step %s value on net. The %+.2f of accumulated cash is INSIDE the "
+            "answer; it is not owed on top."
+            % ('ADDS' if sum(_wc) > 0 else 'REMOVES', _wc[1]))
+
 # ---- invariants -------------------------------------------------------------
 print('GATE (t) — EFG RECONCILIATION BRIDGE\n')
 tot = sum(bars)
@@ -270,7 +290,12 @@ tally = {v: sum(b for s, b in zip(STEPS, bars) if s['off'] == v) for v in VERDIC
 print('\n  off mark:  ' + '   '.join(f"{v} {tally[v]:+.2f}" for v in
                                      ('EFG', 'TESTAHIL', 'OPEN', 'NEITHER')))
 
-out = dict(start=round(START, 4), end=round(END, 4), market=59.00,
+out = dict(start=round(START, 4), end=round(END, 4),
+           # the comparator is the study's OWN spot; it was typed 59.00 and
+           # survived a re-strike to 77.00 [corrected 03-Sep-2026]
+           market=float(json.load(open(os.path.join(HERE, 'study_numbers.json')))['spot']),
+           published_central=float(END), published_spot=float(
+               json.load(open(os.path.join(HERE, 'study_numbers.json')))['spot']),
            steps=[dict(key=s['key'], label=s['label'], sub=s['sub'], driver=s['driver'],
                        off=s['off'], receipt=s['receipt'], value=b)
                   for s, b in zip(STEPS, bars)])

@@ -1244,7 +1244,7 @@ putf(wsS, 'B14', "=B5*0.50+B6*0.20+B8*0.22+B7*0.08",
      0.50 * LN['values']['DCF (cash flow)'] + 0.20 * LN['values']['Relative multiples']
      + 0.22 * _NORM_DIAG + 0.08 * LN['values']['Asset / replacement cost'], PX)
 wsS.cell(row=14, column=3, value='weights nobody tested; kept visible, not used')
-wsS.cell(row=12, column=1, value='Market price, 6 August 2026')
+wsS.cell(row=12, column=1, value='Market price, %s' % D['meta'].get('spot_date', ''))
 putf(wsS, 'B12', f"={A['spot']}", SPOT, PX, green=True)
 wsS.cell(row=13, column=1, value='Market capitalisation (EGP mn)')
 putf(wsS, 'B13', "=DCF!C45", M['mktcap'], NUM0, green=True)

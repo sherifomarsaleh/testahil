@@ -37,6 +37,16 @@ EXP, LR, GDV = D['experts'], D['lens_ranges'], D['growth_destroys_value']
 BU, UC, KDG, CON = D['bottom_up'], D['unit_calibration'], D['kd_gate'], D['contested']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 SPOT, SH = M['spot'], M['shares_mn']
+# THE DATE BESIDE THE PRICE WAS TYPED AND THE PRICE WAS NOT [corrected 03-Sep-2026].
+# Four places in the delivered files read "latest known close (6 August 2026) | 77.00".
+# The 6 August close was 59.00; 77.00 is the 3 September close. A date typed beside a
+# computed number is the same defect as a number typed beside a computed one, and it
+# is worse here, because it makes a current price look stale and a stale one look
+# current. It is derived from the committed record.
+import datetime as _dt
+SPOT_DATE = M.get('spot_date') or ''
+SPOT_DATE_WORDS = (_dt.date.fromisoformat(SPOT_DATE).strftime('%-d %B %Y')
+                   if SPOT_DATE else 'the latest session')
 YH, YF = H['years'], F['years']
 TAXE = H['tax_eff']
 
@@ -100,7 +110,7 @@ rows.append(['Normalised earnings', n2(LN['diagnostic']['Normalised earnings (di
              sg(LN['diagnostic']['Normalised earnings (diagnostic, not a lens for this class)'] / SPOT - 1), '—'])
 rows.append(['Range across the reads', f'{n2(LN["low"])} – {n2(LN["high"])}', '—',
              f'{sg(LN["low"]/SPOT-1)} to {sg(LN["high"]/SPOT-1)}', '—'])
-rows.append(['Market price, latest known close (6 August 2026)', n2(SPOT), '—', '—', '—'])
+rows.append([f'Market price, latest known close ({SPOT_DATE_WORDS})', n2(SPOT), '—', '—', '—'])
 table(rows, [2.55, 1.35, 0.90, 1.02, 1.18], band_rows={1})
 caption('The cash-flow lens IS the value this study publishes. The others are '
         'cross-checks, shown at the same size so a reader can see where they '
@@ -525,7 +535,7 @@ for lab, v in [('Present value of explicit free cash flow', DCF['sum_pv']),
                ('Equity value', DCF['equity'])]:
     rows.append([lab, n0(v), n2(v / SH)])
 rows.append(['Terminal value as % of enterprise value', pc(DCF['tv_share']), '—'])
-rows.append(['Market price, latest known close (6 August 2026)', '—', n2(SPOT)])
+rows.append([f'Market price, latest known close ({SPOT_DATE_WORDS})', '—', n2(SPOT)])
 rows.append(['Upside / (downside) to this lens', '—', sg(DCF['fv'] / SPOT - 1)])
 table(rows, [3.30, 1.50, 1.50], band_rows={3, 6, 7})
 caption('Table 10 — The bridge. Terminal value as a share of enterprise value is stated '
@@ -595,11 +605,13 @@ P(f'That choice of denominator all but switches the terminal growth rate off, an
   f'rate less growth. Differentiate it and the growth term vanishes: the DIRECTION of the '
   f'lever is a constant of the model, and the hurdle is terminal profit over invested '
   f'capital against the rate over one plus the rate, which is {pc(GDV["hurdle"], 2)}. This '
-  f'company sits at {pc(GDV["n_over_ic"], 2)} — {n0((GDV["n_over_ic"]-GDV["hurdle"])*1e4)} '
-  f'basis points above it. Growth therefore adds value, and adds almost none of it: the '
+  f'company sits at {pc(GDV["n_over_ic"], 2)} — {n0(abs(GDV["n_over_ic"]-GDV["hurdle"])*1e4)} '
+  f'basis points {"above" if GDV["n_over_ic"] > GDV["hurdle"] else "BELOW"} it. Growth '
+  f'therefore {"adds" if GDV["analytic_adds_value"] else "DESTROYS"} value: the '
   f'cash-flow lens is EGP {n2(GDV["fv_at_g3"])} at 3% terminal growth and EGP '
-  f'{n2(GDV["fv_at_g7"])} at 7%, a spread of {pc(GDV["spread_pct"], 1)} across four points '
-  f'of perpetual growth. The practical conclusion is the one that matters: on a '
+  f'{n2(GDV["fv_at_g7"])} at 7%, so four extra points of perpetual growth take the value '
+  f'{"UP" if GDV["fv_at_g7"] > GDV["fv_at_g3"] else "DOWN"} by '
+  f'{pc(abs(GDV["spread_pct"]), 1)}. The practical conclusion is the one that matters: on a '
   f'replacement-cost denominator this plant roughly breaks even on new tonnes, in a market '
   f'carrying {n0(IN["egy_capacity_mt"])}Mt of capacity against {n0(IN["egy_cons_mt"])}Mt of '
   f'consumption, so nothing in this valuation is bought with an assumption about perpetual '
@@ -785,7 +797,12 @@ rows.append(['Probability of touching −10% at any point',
              pc(STK['horizons']['1M']['touch_dn10']), pc(STK['horizons']['3M']['touch_dn10'])])
 table(rows, [3.00, 1.60, 1.60], band_rows={3})
 caption(f'Table 18 — Percentiles in EGP per share, from a 50,000-path simulation anchored '
-        f'on the 6 August 2026 close of EGP {n2(SPOT)}. The drift is the carry — the '
+        f'on the {STK["anchor_date"]} close of EGP {n2(STK["spot"])} — the last session in '
+        f'the price history this map was simulated from, which is EARLIER than the '
+        f'{SPOT_DATE_WORDS} close of EGP {n2(SPOT)} the valuation is struck against. Those '
+        f'are two clocks and they are supposed to be: a fresh price moves the valuation '
+        f'without re-running the simulation. Read every percentile below against EGP '
+        f'{n2(STK["spot"])}. The drift is the carry — the '
         f'risk-free rate less the dividend yield — and nothing else.')
 figure('fig4_fan.png', 6.9, 'Figure 6 — The three-month cone.')
 figure('fig6_dist.png', 6.4, 'Figure 7 — The three-month outcome distribution.')
@@ -813,13 +830,30 @@ _above = sorted([k for k in LN['values'] if LN['values'][k] > SPOT],
 _below = sorted([k for k in LN['values'] if LN['values'][k] <= SPOT],
                 key=lambda k: LN['values'][k])
 _lens_l = lambda ks: ' and '.join([', '.join(ks[:-1]), ks[-1]] if len(ks) > 1 else ks)
+# THIS PARAGRAPH ASSUMED BOTH SIDES WERE OCCUPIED AND RENDERED EMPTY SLOTS WHEN THEY
+# WERE NOT [corrected 03-Sep-2026]. At a spot of 59.00 some lenses sat above and two
+# below, and the sentence was written for that arrangement -- "Some sit ABOVE the
+# market price — {list}, at EGP {values} — and TWO sit below". At 77.00 nothing sits
+# above, so the delivered study read "Some sit ABOVE the market price — , at EGP —
+# and two sit below:" and then listed three. A count typed into prose is a claim
+# about the numbers; it is now derived from them, and each clause appears only when
+# it has something to say.
+_n_word = lambda n: {1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five'}.get(n, str(n))
+_side = lambda ks: '%s, at EGP %s' % (_lens_l(ks),
+                                      ' and EGP '.join(n2(LN['values'][k]) for k in ks))
+if _above and _below:
+    _open = ('%s sit%s ABOVE the market price — %s — and %s below: %s.'
+             % (_n_word(len(_above)).capitalize(), '' if len(_above) > 1 else 's',
+                _side(_above), _n_word(len(_below)), _side(_below)))
+elif _above:
+    _open = ('EVERY lens sits ABOVE the market price: %s.' % _side(_above))
+else:
+    _open = ('EVERY lens sits BELOW the market price: %s. Not one read in this study '
+             'reaches what the shares trade at, which is a stronger statement than any '
+             'single lens makes and is the thing to weigh first.' % _side(_below))
 P(f'The lenses do not agree, and the pattern of their disagreement is the most useful '
-  f'thing in this study. Some sit ABOVE the market price — '
-  f'{_lens_l(_above)}, at EGP ' +
-  ' and EGP '.join(n2(LN['values'][k]) for k in _above) +
-  f' — and two sit below: {_lens_l(_below)}, at EGP ' +
-  ' and EGP '.join(n2(LN['values'][k]) for k in _below) +
-  f'. The split is not assets against earnings. It runs between what the plant can be '
+  f'thing in this study. ' + _open +
+  f' The split is not assets against earnings. It runs between what the plant can be '
   f'expected to EARN or COST from here, which both land above the market, and what the '
   f'market is currently willing to PAY for a pound of Egyptian cement earnings, which is '
   f'what the two multiple-based lenses measure and which lands below. A cement peer group '

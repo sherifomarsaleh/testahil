@@ -393,6 +393,14 @@ jobs:
       - name: Artefact-currency gate
         run: python3 scripts/check_artefact_currency.py
 
+      # and the proof it can go red. Its three headline cases are the three that
+      # provoked the rule, rebuilt as they stood -- including ARCC's efg_bridge.json,
+      # which the gate's OWN FIRST DRAFT could not see, because it carries its answer
+      # under a key the value-key list did not know. A gate that does not catch its
+      # own motivating case is not evidence.
+      - name: Artefact-currency gate — negative control
+        run: python3 scripts/check_artefact_currency_negative_control.py
+
       # and the proof that gate can go red — among its cases is PHDC's own
       # architecture exactly as it shipped. Its first run caught a real
       # inconsistency in the registry itself: a "clean" example using a lens the

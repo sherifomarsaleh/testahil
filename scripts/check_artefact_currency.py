@@ -55,6 +55,12 @@ OUTSTANDING = os.path.join(ENGINE, 'build_depth_audit', 'artefact_outstanding.js
 # stale when the answer has MOVED, not when it has been re-rounded
 TOL = 0.005
 
+# keys that read as a valuation figure. `end` is here because ARCC's efg_bridge.json
+# -- one of the three stale artefacts this rule was adopted on -- carries its answer
+# under that name and nothing else.
+VALUE_KEYS = ('central', 'per_share', 'value_adopted', 'fair', 'end',
+              'value_per_share', 'weighted_central')
+
 # the field an artefact declares its vintage in
 DECL = ('published_central', 'study_central', 'built_against_central')
 DECL_SPOT = ('published_spot', 'study_spot', 'built_against_spot', 'spot_at_build')
@@ -81,9 +87,15 @@ def carries_valuation(obj, depth=0):
     if depth > 6:
         return False
     if isinstance(obj, dict):
+        # A FILE THAT DECLARES ITS VINTAGE IS ALWAYS CHECKED, whatever else it holds.
+        # Without this the gate could only find artefacts whose value key it already
+        # knew, and one of the three that motivated it -- ARCC's efg_bridge.json,
+        # which carries its figure under `end` -- was invisible to the first draft.
+        # A GATE THAT DOES NOT CATCH ITS OWN MOTIVATING CASE IS NOT EVIDENCE.
+        if any(k in obj for k in DECL) or any(k in obj for k in DECL_SPOT):
+            return True
         for k, v in obj.items():
-            if k in ('central', 'per_share', 'value_adopted', 'fair') and \
-               isinstance(v, (int, float)) and not isinstance(v, bool):
+            if k in VALUE_KEYS and isinstance(v, (int, float)) and not isinstance(v, bool):
                 return True
             if carries_valuation(v, depth + 1):
                 return True
