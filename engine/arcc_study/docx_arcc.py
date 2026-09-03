@@ -772,8 +772,13 @@ P(f'Growth in the terminal state has to be paid for, and the choice of what capi
   f'measures the devaluation, not the economics of adding a tonne.')
 P(f'The terminal block is therefore struck on REPLACEMENT-COST invested capital — EGP '
   f'{n0(DCF["ic_repl"])}mn, being {n1(IN["cap_cement_mt"])}Mt at USD {n0(IN["repl_usd_t"])} '
-  f'a tonne. On that basis the return on capital in the terminal year is '
-  f'{pc(TR["roic_repl"])}.')
+  f'a tonne. On that basis the return on capital is {pc(GDV["n_over_ic"], 2)} — the last '
+  f'forecast year\'s operating profit after tax against that capital, both measured at the '
+  f'same date. A figure of {pc(TR["roic_repl"])} appears in the earlier editions of this '
+  f'section and is NOT used here: it divides a profit already grown by one year of terminal '
+  f'growth by a capital base that has not grown, which flatters the return by '
+  f'{n0((TR["roic_repl"]-GDV["n_over_ic"])*1e4)} basis points for no reason other than the '
+  f'mismatch. The lower figure is the one this study tests growth against.')
 P(f'WHAT THE TERMINAL CHARGES, AND WHY IT CHANGED IN THIS EDITION. Earlier revisions derived '
   f'the terminal reinvestment from that return — growth divided by return on capital, which '
   f'came to {pc(TR["rr_repl"])} of terminal profit. Substituting the definitions, that '
@@ -791,7 +796,9 @@ P(f'This edition charges what holding the plant actually costs: capital maintena
   f'depreciation already inside terminal profit. That is the same definition of free cash '
   f'flow the explicit window uses; the earlier terminal used a different one, and a model '
   f'should not carry two. Three implied asset lives previously sat inside this one and '
-  f'disagreed by a factor of nearly three: the terminal\u2019s {n1(1.0/IN["g_term"])} years, '
+  f'disagreed by a factor of '
+  f'{n1((IN["repl_usd_t"]/IN["capex_usd_t_cap"])/(1.0/IN["g_term"]))}: '
+  f'the terminal\u2019s {n1(1.0/IN["g_term"])} years, '
   f'the explicit window\u2019s own capital spending at '
   f'{n1(IN["repl_usd_t"]/IN["capex_usd_t_cap"])} years, and the disclosed '
   f'{n0(TERMREC["inputs"]["useful_life_years"])}. The sourced figure sits between the '
@@ -853,8 +860,10 @@ P(f'The relative lens applies {n1(IN["ev_ebitda_just"])} times to normalised EBI
   f'{pc(1-IN["norm_rev_haircut"], 0)} and a mid-cycle margin of {pc(IN["norm_mgn"])} '
   f'applied to it — and adds net cash at face. The multiple is disclosed as weakly '
   f'anchored: the listed Egyptian peer set is thin, and its published multiples do not '
-  f'reconcile against the market capitalisations printed beside them. That is why this '
-  f'lens carries {pc(IN["w_rel"], 0)} and not more.')
+  f'reconcile against the market capitalisations printed beside them. That weakness is why '
+  f'this lens is published as a CROSS-CHECK beside the answer and is not the answer: a '
+  f'multiple anchored on a peer set this thin cannot carry a valuation, and averaging it '
+  f'into one would import that weakness at whatever weight somebody chose.')
 P(f'The normalised-earnings lens capitalises the same mid-cycle operating profit after tax '
   f'— EGP {n0(LN["nopat_norm"])}mn — at {n1(IN["pe_just"])} times, and again adds cash at '
   f'FACE rather than capitalising it at the operating multiple. Cash is worth cash; '
@@ -864,8 +873,8 @@ P(f'The asset lens values the capacity: {n1(IN["cap_cement_mt"])}Mt at a justifi
   f'{n0(IN["ev_t_just"])} per annual tonne, marked down '
   f'{pc(1-IN["ev_t_just"]/IN["repl_usd_t"], 0)} from a replacement cost of USD '
   f'{n0(IN["repl_usd_t"])}. Against that, the market is paying USD '
-  f'{n1(LN["ev_per_t_spot"])} per annual tonne. This lens carries only '
-  f'{pc(IN["w_asset"], 0)}, and the reason is in the same paragraph as the number: '
+  f'{n1(LN["ev_per_t_spot"])} per annual tonne. This lens is a CROSS-CHECK and not the '
+  f'answer, and the reason is in the same paragraph as the number: '
   f'restarting a mothballed line costs a fraction of building one, and '
   f'{n1(IN["egy_revival_mt"])}Mt of restart capacity is queuing. Replacement cost is a '
   f'ceiling here, not a floor.')

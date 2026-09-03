@@ -2505,6 +2505,44 @@ LESSONS = [
       "A stub convention where the components are themselves pro-rated, in which case the "
       "column foots without the extra row and printing it would be noise."),
 
+    L("L-215", "ALL", None,
+      "WHEN A CONSTRUCTION IS RETIRED, ASSERT ITS INPUTS GONE FROM THE PROSE AS WELL AS FROM "
+      "THE MODEL. A retirement that leaves the workbook clean and the sentences talking is a "
+      "rule half-applied.",
+      "Retiring a construction is a code change, and code changes are checked by code. The "
+      "sentences describing it are typed, so they survive the retirement silently and go on "
+      "telling a reader the model does something it stopped doing.",
+      "ARCC 03-Sep-2026, reading the rendered PDF and then making it arithmetic",
+      "build",
+      "The typed lens blend was retired and the workbook was asserted clean of its four "
+      "weight cells. SIX sentences went on quoting those weights in the present tense — the "
+      "cash-flow lens \'carries half the weight\', the relative lens \'carries 20% and not "
+      "more\', the asset lens \'carries only 8%\', an expert falsifier ending on \'carries "
+      "only 8% of the weight\', and two comparison passages. READING THE PAGES FOUND THREE "
+      "OF THE SIX; a five-line assertion driven off the retired inputs\' own committed "
+      "values found all six in one run, which is the whole argument for making a lesson "
+      "arithmetic. The assertion permits a weight to be NAMED where the sentence places it "
+      "in a superseded edition, because saying what a previous edition did and why this one "
+      "does not is the legitimate use.",
+      "A retirement where the prose genuinely cannot be checked against the retired input, "
+      "for instance one whose value is too common a number to match on."),
+
+    L("L-216", "ALL", None,
+      "A CHECK THAT OPENS A DELIVERED FILE MUST RESOLVE IT BY DATE, NEVER BY STRING SORT.",
+      "Edition filenames carry DD-MM-YYYY, so alphabetical order is not chronological order "
+      "and sorted(...)[-1] silently returns whichever name sorts last.",
+      "ARCC 03-Sep-2026",
+      "build",
+      "The first draft of the retired-weight assertion took sorted(glob(...))[-1] and opened "
+      "the superseded 08-08-2026 edition, because \'08-08-2026\' sorts above \'03-09-2026\'. "
+      "It reported that edition\'s defects as current and would equally have reported a "
+      "clean superseded file as proof that a defective delivered one was fine. This is "
+      "L-066 and L-067 — a check that opens a delivered file by name moves with the "
+      "re-issue — recurring in a new form within a day of being registered, which is "
+      "evidence that the lesson needed to be arithmetic rather than remembered.",
+      "A repository whose delivered filenames sort chronologically as strings, which would "
+      "make the distinction moot."),
+
 ]
 
 

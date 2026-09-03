@@ -46,7 +46,10 @@ superseded 06-08-2026 workbook rather than the delivered one — an empty answer
 costume of a clean one [R-ENF-04]. It is pointed at the delivered file now, and each of
 those five drivers is asserted against what it actually moves.
 """
+import glob
 import json, os
+import re
+import docx
 import openpyxl
 import xlcalc
 
@@ -558,6 +561,44 @@ _left = sorted(l for l in _labels if isinstance(l, str) and l.startswith('Weight
 assert not _left, ('the retired lens weights are still live inputs in the workbook: %s'
                    % _left)
 print('  [OK ] the four retired lens weights carry no live input cell')
+
+# AND THE DOCUMENT MUST NOT CLAIM THEM EITHER. A retirement that leaves the workbook clean
+# and the prose talking is a rule half-applied, and this study shipped three such sentences
+# through every gate: section 1 said the cash-flow lens "carries half the weight", section
+# 1.9 said the relative lens "carries 20% and not more" and the asset lens "carries only
+# 8%". Each was found by a person reading the rendered page. A weight may be NAMED, but
+# only in a sentence that places it in a superseded edition — the one legitimate use, which
+# section 4 makes when it says what a previous edition blended and why this one does not.
+_RETIRED_W = ('w_dcf', 'w_rel', 'w_norm', 'w_asset')
+# BY DATE, NEVER BY STRING SORT. "08-08-2026" sorts above "03-09-2026" alphabetically, so
+# the first draft of this check opened a superseded edition and reported its defects as
+# current — which is L-066/L-067 in this repository, a check that opens a delivered file by
+# name moving with the re-issue, recurring the same day it was registered.
+_DELIVERED = max(glob.glob(os.path.join(HERE, 'ARCC_Valuation_Study_*_public.docx')),
+                 key=lambda f: re.search(r'(\d{2})-(\d{2})-(\d{4})', f).group(3, 2, 1))
+_IN = json.load(open(os.path.join(HERE, 'study_numbers.json')))['inputs']
+_PAST = ('previous', 'previously', 'earlier', 'retired', 'no longer', 'used to', 'was ',
+         'were ', 'prior edition', 'an edition')
+_docp = [p.text for p in docx.Document(_DELIVERED).paragraphs]
+_wclaims = []
+for _k in _RETIRED_W:
+    _e = _IN.get(_k)
+    _v = _e['value'] if isinstance(_e, dict) else _e
+    if _v is None:
+        continue
+    _s = '%d%%' % round(_v * 100)
+    for _t in _docp:
+        if _s not in _t:
+            continue
+        if any(w in _t.lower() for w in _PAST):
+            continue                      # names it as a superseded edition's choice
+        for _m in re.finditer(re.escape(_s), _t):
+            _win = _t[max(0, _m.start() - 90):_m.start()].lower()
+            if 'weight' in _win or 'carries' in _win or 'carry' in _win:
+                _wclaims.append((_k, _t[max(0, _m.start() - 90):_m.end() + 15]))
+assert not _wclaims, ('the delivered study still claims a retired lens weight in the '
+                      'present tense: %s' % _wclaims)
+print('  [OK ] no retired lens weight is claimed in the present tense in the document')
 assert not dead, f'dead inputs: {dead}'
 print(f'\nDRIVER TEST OK — {len(CASES)} driver assertions, every one in the asserted '
       f'direction; 0 dead inputs')
