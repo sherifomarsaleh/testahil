@@ -1823,6 +1823,32 @@ LESSONS = [
       "receives — then it is the headline that is inconsistent with "
       "the alternatives, not the other way round, and the fix runs in "
       "the opposite direction."),
+
+    L("L-071", "ALL", None,
+      "A rule enforced on the record is not enforced on the document.",
+      "It is much easier to check a machine-readable record than the "
+      "report a reader actually opens, so that is where checks get "
+      "written — and the record can be brought into line while the "
+      "document goes on saying the old thing. When a rule governs "
+      "what a reader is TOLD, the check has to read what the reader "
+      "receives.",
+      "method reassessment WS8, lens vocabulary in delivered "
+      "documents, 03-Sep-2026",
+      "self_audit",
+      "[R-LENS-03] retired the typed multi-lens blend and is enforced "
+      "on each study's committed lens record, which was green "
+      "everywhere. Reading the delivered PDFs instead: 6 of 20 "
+      "carried no weighted blend and 14 published a weighted central "
+      "as the study's own answer. ARCC had been RE-ISSUED after the "
+      "rule and its document prints a weighted central of 54.65 "
+      "beside a numbers file carrying 53.46. ADNOCLS, the model "
+      "report every study is opened beside, carried twenty-two such "
+      "assertions — so the exemplar was teaching the retired "
+      "architecture to every study that followed.",
+      "A rule whose whole content IS the record — a provenance field, "
+      "a stamp, an attestation — has nothing in the document to "
+      "check, and reading the document for it would find nothing. The "
+      "test is whether the rule governs what a reader is told."),
 ]
 
 

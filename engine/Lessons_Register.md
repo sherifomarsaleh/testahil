@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**102 lessons**, of which 75 bind on every study, 20 on a class of company, and 7 on a single name.
+**103 lessons**, of which 76 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 18 from self-audits, 35 found while building.
+By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 19 from self-audits, 35 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -778,6 +778,16 @@ When a study prices a choice 'the other way', the two figures have to be built t
 > **What it cost, or how we know.** AMOC's helper for contested choices deducts the minority as a share of ENTERPRISE value and omits provisions, the dividend payable and investments; the delivered bridge deducts a share of EQUITY value and carries all three lines. Same enterprise value, EGP 10.3528 against the delivered EGP 9.9142. Compared against the delivered headline, three of four contested choices clear the 5%-of-value materiality line; compared like for like, one does. A sign test on the first basis would have counted three material judgements where there is one.
 
 > **What would overturn it.** A case where the simpler construction is the one a reader receives — then it is the headline that is inconsistent with the alternatives, not the other way round, and the fix runs in the opposite direction.
+
+### L-071 · A rule enforced on the record is not enforced on the document.
+
+It is much easier to check a machine-readable record than the report a reader actually opens, so that is where checks get written — and the record can be brought into line while the document goes on saying the old thing. When a rule governs what a reader is TOLD, the check has to read what the reader receives.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, method reassessment WS8, lens vocabulary in delivered documents, 03-Sep-2026
+
+> **What it cost, or how we know.** [R-LENS-03] retired the typed multi-lens blend and is enforced on each study's committed lens record, which was green everywhere. Reading the delivered PDFs instead: 6 of 20 carried no weighted blend and 14 published a weighted central as the study's own answer. ARCC had been RE-ISSUED after the rule and its document prints a weighted central of 54.65 beside a numbers file carrying 53.46. ADNOCLS, the model report every study is opened beside, carried twenty-two such assertions — so the exemplar was teaching the retired architecture to every study that followed.
+
+> **What would overturn it.** A rule whose whole content IS the record — a provenance field, a stamp, an attestation — has nothing in the document to check, and reading the document for it would find nothing. The test is whether the rule governs what a reader is told.
 
 ### L-208 · A check that fails by the calendar is not a check.
 
