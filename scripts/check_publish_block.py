@@ -53,7 +53,29 @@ sys.path.insert(0, os.path.join(ROOT, "scripts"))
 
 import check_valuation_gap as gap          # one reader, never a second copy [R-ENF-03]
 
-BLOCK_AT = 0.10        # the instruction's number, both sides
+BLOCK_AT = 0.10        # the instruction's number
+BLOCK_BELOW_ONLY = True
+# ONE-SIDED ON PURPOSE, per instruction 3 September 2026: "If fair value is above
+# the current price then OK. Hold and challenge if the fair value is ONLY below
+# the current price by more than 10%."
+#
+# THE ASYMMETRY IS EVIDENTIAL, NOT DEFERENTIAL. Errors in a discounted cash flow
+# are not symmetric: a stale base year, an over-charged discount rate, a missed
+# revenue line, a real-terms terminal decline, an unread filing, a terminal
+# charging a capital intensity the company has never operated at — every one of
+# them pushes value DOWN. A central far BELOW the price is therefore a
+# high-prior-of-defect region and the price is the only instrument in the room
+# that measures it. A central ABOVE the price is the ordinary shape of finding
+# something cheap, which is what this work is for.
+#
+# WHAT THIS DOES NOT DO, AND THE COST IS STATED RATHER THAN DISCOVERED LATER:
+# an over-optimistic study is no longer HELD. It is still AUDITED — [R-GAP-01]
+# stays two-sided, so a central more than 10% above the price still owes its
+# eight-heading review before the files are staged, and a study that skips it
+# still goes red in CI. The split is deliberate: audit both ways, hold only
+# where the errors run. If a study is ever found badly wrong on the high side,
+# that is the evidence to revisit this clause, and it is written down here so
+# the revisit does not depend on anyone remembering.
                        # TIGHTENED FROM 0.30 TO 0.10 on 3 September 2026, per
                        # instruction: "HOLD every document; blocks anything past
                        # 10% from price". The block now sits ON [R-GAP-01]'s audit
@@ -136,6 +158,46 @@ def _gap_rows(sdir, ticker):
     return px, pxdate, pxsrc, rows
 
 
+def phase1_proven():
+    """(proven, why) — has the method itself been shown to work yet?  [R-GAP-02 clause 3]
+
+    THE SECOND CONDITION, per instruction 3 September 2026: "do not issue the reports
+    before the deviation is sorted AND phase 1 proof the methods is done." Two gates,
+    both binding, and the second one is about the METHOD rather than the name.
+
+    WHY IT IS SEPARATE FROM THE GAP. A study can be brought inside 10% of the price by
+    fixing the one defect that name happened to carry, and that says nothing about
+    whether the method behind it is sound — it is the difference between a passed exam
+    and a marked one. The reassessment's Part E acceptance criteria are the marking, and
+    until they are met a study inside the band is a study that has not been contradicted
+    yet, which is a weaker claim than it looks.
+
+    THE COST IS STATED RATHER THAN DISCOVERED LATER, and it is large: criterion 3 — the
+    valuation calibration's pooled bias interval covering zero — cannot mature before the
+    first vintages resolve, so ON ADOPTION THIS HOLDS EVERY STUDY IN THE BOOK, including
+    the ones already inside the band. That is the instruction read literally and it is
+    not softened here. What it does NOT hold is internal work: rebuilding, auditing,
+    re-issuing to the principal and merging to main all continue. This gate governs
+    ISSUING A REPORT and publishing to the live site, which is what the instruction names.
+
+    Read from the programme's own acceptance record rather than a second copy of it.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "engine", "method_reassessment"))
+    try:
+        import progress
+        items = progress.acceptance()
+    except Exception as e:
+        # AN UNREADABLE ACCEPTANCE RECORD IS NOT A PASSED ONE [R-ENF-04]. If the
+        # programme's own record cannot be read, nothing is proven and nothing issues.
+        return False, "the Phase 1 acceptance record could not be read (%s)" % e
+    open_items = [i for i in items if i.get("state") != "MET"]
+    if not open_items:
+        return True, "Phase 1 acceptance met on all %d criteria" % len(items)
+    return False, ("Phase 1 is not proven — %d of %d acceptance criteria open (%s)"
+                   % (len(open_items), len(items),
+                      "; ".join("#%s %s" % (i["n"], i["text"][:44]) for i in open_items)))
+
+
 def verdict(ticker):
     """(may_publish, reason, rows). An UNREADABLE study may not publish either.
 
@@ -151,13 +213,23 @@ def verdict(ticker):
         return False, "no latest known price — the gap cannot be measured", []
     if not rows:
         return False, "no readable answer to compare against the price", []
-    nearest = min(rows, key=lambda r: abs(r[2]))
-    if abs(nearest[2]) > BLOCK_AT:
+    # THE NEAREST READING DECIDES, and "nearest" means nearest to the price from
+    # the side that is blocked. A two-sided study with one branch at or above the
+    # price is a study whose answer depends on a decision, not one that is too
+    # low: it publishes both branches and the reader sees the decision.
+    # BOTH CONDITIONS BIND, AND THE METHOD ONE IS CHECKED FIRST because it is the
+    # same answer for every name: a book-wide hold is reported once as a book-wide
+    # hold rather than as ninety separate coincidences.
+    proven, why_p = phase1_proven()
+    nearest = max(rows, key=lambda r: r[2]) if BLOCK_BELOW_ONLY else min(
+        rows, key=lambda r: abs(r[2]))
+    breach = (nearest[2] < -BLOCK_AT) if BLOCK_BELOW_ONLY else abs(nearest[2]) > BLOCK_AT
+    if breach:
         if len(rows) > 1:
-            why = ("every branch is more than %.0f%% from the price (nearest %s at "
+            why = ("every branch is more than %.0f%% BELOW the price (highest %s at "
                    "%+.1f%%)" % (BLOCK_AT * 100, nearest[0], nearest[2] * 100))
         else:
-            why = ("the central is %+.1f%% from the price of %.2f (%s), past the "
+            why = ("the central is %+.1f%% below the price of %.2f (%s), past the "
                    "%.0f%% publication limit" % (nearest[2] * 100, px, pxdate,
                                                  BLOCK_AT * 100))
         fn, covered, at = read_dissent(sdir)
@@ -173,9 +245,14 @@ def verdict(ticker):
         if abs(at - nearest[2] * 100) > DISSENT_TOL:
             return False, ("%s — %s argues a gap of %+.1f%%, and the gap is now %+.1f%%"
                            % (why, fn, at, nearest[2] * 100)), rows
+        if not proven:
+            return False, ("%s — and %s" % (why_p, fn)), rows
         return True, ("%+.1f%% from the price, released by %s — an evidenced dissent, "
                       "not an assertion" % (nearest[2] * 100, fn)), rows
-    return True, "nearest reading %s at %+.1f%% of %.2f (%s)" % (
+    if not proven:
+        return False, ("inside the band at %+.1f%% of %.2f (%s), but %s"
+                       % (nearest[2] * 100, px, pxdate, why_p)), rows
+    return True, "%s at %+.1f%% of %.2f (%s)" % (
         nearest[0], nearest[2] * 100, px, pxdate), rows
 
 
@@ -190,7 +267,7 @@ def main(argv):
     names = [os.path.basename(d)[:-6].upper() for d in dirs]
     if want:
         names = [want]
-    blocked, clean, unread = [], [], []
+    blocked, clean, unread, method = [], [], [], []
     for tk in names:
         ok, why, rows = verdict(tk)
         mark = "PUBLISH" if ok else "HELD   "
@@ -204,12 +281,17 @@ def main(argv):
         # cheapest way past this gate [R-ENF-04].
         if ok:
             clean.append(tk)
+        elif "Phase 1 is not proven" in why or "acceptance record could not" in why:
+            method.append(tk)
         elif "publication limit" in why or "every branch" in why:
             blocked.append(tk)
         else:
             unread.append(tk)
-    print("\n%d may publish, %d HELD past the %.0f%% limit, %d unreadable"
-          % (len(clean), len(blocked), BLOCK_AT * 100, len(unread)))
+    print("\n%d may publish, %d HELD on the gap (more than %.0f%% BELOW the price), "
+          "%d HELD on the method, %d unreadable"
+          % (len(clean), len(blocked), BLOCK_AT * 100, len(method), len(unread)))
+    if method:
+        print("  " + phase1_proven()[1])
     if want:
         return 0 if verdict(want)[0] else 1
     return 0
