@@ -600,18 +600,22 @@ caption('Table 16 — the two terminal parameters moved together, cash-flow lens
         'signature of a terminal block where reinvestment funds growth before crediting it. Not '
         'one cell in this grid reaches the market price.')
 
-P('The bear and bull columns of the cash-flow lens are not a single lever moved twice — they '
-  'are FIVE drivers moved together, which is why they are much wider than any single row in '
-  'Table 15. They are joint-worst and joint-best cases and no probability attaches to them.')
+P('The bear and bull columns of the cash-flow lens move only what this company\'s own '
+  'audited filings have printed — the gross margin across its filed span and the tonnage '
+  'across its own — and the macro path does not move with them. A previous edition also '
+  'flexed the exchange-rate path, the cost of capital at both anchors and the terminal '
+  'growth rate; all three carry the same Egyptian inflation, so its bull corner needed '
+  'inflation to be high and low at the same time and its bear corner needed the mirror '
+  'image. The width of a range built that way is a choice of dial settings rather than '
+  'anything the world has shown. No probability attaches to either end.')
 table([['Driver moved', 'Bear', 'Base', 'Bull'],
        *[[SCEN['labels'][k],
-          (pc(SCEN['bear'][k], 1) if k in ('vol_adj', 'gm_shift', 'wacc_shift', 'g')
+          (pc(SCEN['bear'][k], 1) if k in ('vol_adj', 'gm_shift', 'wacc_shift')
            else f"{SCEN['bear'][k]:.2f}x"),
-          ('0.0%' if k in ('vol_adj', 'gm_shift', 'wacc_shift') else
-           (pc(IN['g_term'], 0) if k == 'g' else '1.00x')),
-          (pc(SCEN['bull'][k], 1) if k in ('vol_adj', 'gm_shift', 'wacc_shift', 'g')
+          ('0.0%' if k in ('vol_adj', 'gm_shift', 'wacc_shift') else '1.00x'),
+          (pc(SCEN['bull'][k], 1) if k in ('vol_adj', 'gm_shift', 'wacc_shift')
            else f"{SCEN['bull'][k]:.2f}x")]
-         for k in ('vol_adj', 'gm_shift', 'fx_mult', 'wacc_shift', 'g')],
+         for k in ('vol_adj', 'gm_shift', 'fx_mult', 'wacc_shift')],
        ['RESULTING FAIR VALUE, cash-flow lens', p2(SCEN['bear']['ps']), p2(SCEN['base_ps']),
         p2(SCEN['bull']['ps'])]],
       [3.05, 1.05, 1.05, 1.05], band_rows={6}, size=8.6, left_cols=())

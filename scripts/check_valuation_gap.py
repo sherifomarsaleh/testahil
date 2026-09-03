@@ -171,7 +171,61 @@ def read_branches(sdir):
 # old rather than to pretend a strike-date spot is current. Where no library
 # resolves, the struck spot is used and the record says so; that is a fallback,
 # never a preference.
+# THE LIBRARY IS NOT ALWAYS THE LATEST KNOWN PRICE, AND ON 3 SEPTEMBER 2026 IT WAS
+# FOUR WEEKS BEHIND ONE [added 03-Sep-2026]. The clause above reads the persistent
+# OHLC library, which is right whenever the library is the newest thing the house
+# holds. It was not: the principal supplied ninety dated closes for 2-3 September
+# while every EGX library still ended on 6 August, so this gate reported studies
+# struck on the SUPPLIED prices as diverging from the "latest known" — naming the
+# current answer stale against a comparison a month older than it.
+#
+# That is the [R-ENF-04] species: not a wrong answer, an answer from the wrong
+# source presented with the same confidence. [R-GAP-01 AMENDED] settles which
+# source, and it is not a preference between two files: the supplied prices are a
+# COMMITTED ARTEFACT at engine/prices/SUPPLIED_{DD-MM-YYYY}.json precisely so a
+# session that cannot see a figure quoted in conversation asks the repository
+# instead. So both are read and THE NEWER DATE WINS, whichever it is — a fresh
+# vendor export overtakes a supplied file the same way, with no edit here.
+def supplied_price(ticker):
+    """(price, date, source) from the newest committed SUPPLIED_*.json, else (None, None, why)."""
+    files = sorted(glob.glob(os.path.join(ENGINE, 'prices', 'SUPPLIED_*.json')))
+    if not files:
+        return None, None, 'no supplied price file'
+    best = (None, None, 'ticker not in the supplied prices')
+    for fp in files:                       # oldest first, so the newest file wins
+        try:
+            doc = json.load(open(fp, encoding='utf-8'))
+        except Exception as e:
+            return None, None, 'supplied prices unreadable: %s' % e
+        rows = doc.get('prices') or doc.get('closes') or {}
+        row = rows.get(ticker.upper())
+        if not isinstance(row, dict):
+            continue
+        try:
+            px = float(row['price'])
+        except (KeyError, TypeError, ValueError):
+            continue
+        best = (px, row.get('date') or doc.get('supplied_on'),
+                os.path.relpath(fp, ROOT))
+    return best
+
+
 def latest_known_price(ticker):
+    """(price, date, source): the NEWER of the supplied prices and the OHLC library."""
+    lib = _library_price(ticker)
+    sup = supplied_price(ticker)
+    if sup[0] is not None and lib[0] is not None:
+        return sup if (sup[1] or '') >= (lib[1] or '') else lib
+    if sup[0] is not None:
+        return sup
+    if lib[0] is not None:
+        return lib
+    # neither resolved: report the library's reason, which is the one that names a
+    # missing house artefact rather than a missing hand-off
+    return lib
+
+
+def _library_price(ticker):
     """(price, date, source) from the persistent OHLC library, or (None, None, why)."""
     hits = glob.glob(os.path.join(ENGINE, 'raw_ohlc', '*', '%s.csv' % ticker.upper()))
     if not hits:

@@ -1521,10 +1521,10 @@
   },
   "spot_price": {
    "key": "spot_price",
-   "value": 13.98,
+   "value": 14.41,
    "unit": "EGP",
-   "source": "Exchange close, from the study's own price library",
-   "date": "2026-08-06",
+   "source": "EGCH closing price on the Egyptian Exchange, 3 September 2026. The previous edition was struck on the 6 August close of 13.98",
+   "date": "2026-09-03",
    "layer": "L2",
    "note": ""
   },
@@ -2126,13 +2126,13 @@
    "key": "export_usd_path",
    "value": [
     530.0,
-    500.0,
-    470.0,
-    450.0,
-    440.0
+    530.0,
+    530.0,
+    530.0,
+    530.0
    ],
    "unit": "US$/t",
-   "source": "Constructed: export price path, mean-reverting from the August 2026 quote toward the cash cost of the marginal gas-based producer.",
+   "source": "Held FLAT in nominal dollars at the opening level. No forecast of a traded commodity price is defensible, which is the convention this house applies to the same class of input elsewhere; the previous path fell 17% over five years on a construction nothing sourced.",
    "date": "2026-08-08",
    "layer": "L5",
    "note": ""

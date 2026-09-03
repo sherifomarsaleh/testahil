@@ -1,4 +1,4 @@
-"""EGCH_Valuation_Study_01-09-2026.docx — the MODEL STUDY structure.
+"""EGCH_Valuation_Study_03-09-2026.docx — the MODEL STUDY structure.
 
 Sixteen sections in the model order. No financial numeral is typed in this file: every
 number comes from study_numbers.json, lenses.json, experts.json, strike_result.json,
@@ -61,14 +61,17 @@ box([("What this is.  ",
       "are computed and both are published side by side throughout this document. Neither "
       "is averaged into the other, because the average would be true in neither world."),
      ("How to read the numbers.  ",
-      f"Four lenses give a field, and inside it one weighted central — EGP "
-      f"{E2(LN['central']['base'])} a share on stated weights: cash flow with the programme "
-      f"carried through {PCW(LN['central']['weights']['cashflow'])}, relative multiples "
-      f"{PCW(LN['central']['weights']['relative'])}, normalised earnings "
-      f"{PCW(LN['central']['weights']['normalised'])}, book value "
-      f"{PCW(LN['central']['weights']['book'])}. The central is a reading inside the field, "
-      f"never a point target. Where the lenses disagree, the disagreement is the "
-      f"information — section 4 isolates which assumption drives which gap.")])
+      f"The answer is the cash-flow lens, and on this company it has TWO SIDES: EGP "
+      f"{E2(LN['central']['base'])} a share if the capital programme is carried through and "
+      f"EGP {E2(LN['central']['alternative_framing']['value'])} if it is stopped. Both are "
+      f"published throughout and neither is averaged into the other. The other lenses — "
+      f"relative multiples, normalised earnings and book value — are CROSS-CHECKS printed "
+      f"beside the answer, not weights inside it. A previous edition published a weighted "
+      f"blend of the four at stated weights; the weights were typed and had never been "
+      f"tested, and averaging several methods does not make a number more robust than the "
+      f"best of them — it makes a new method with free parameters nobody checked. Where the "
+      f"lenses disagree, the disagreement is the information, and section 4 isolates which "
+      f"assumption drives which gap.")])
 
 # ---------------------------------------------------------------- HEADLINE ---
 H1("Headline")
@@ -98,14 +101,14 @@ for k in ("cashflow_carry", "cashflow_stopped", "relative", "normalised", "book"
     sp = SP[k]
     rng = (f"{E2(sp['low'])} to {E2(sp['high'])}" if sp['high'] > sp['low'] else "—")
     rows.append([sp['label'], sp['basis'], rng, E2(sp['base']), PC0(sp['vs_spot'])])
-_CW = LN['central']['weights']
-rows.append(["THE FIELD, all four lenses — and the weighted central inside it",
-             f"Low to high across every read above. The central weights the reads: cash flow "
-             f"carried through {PCW(_CW['cashflow'])}, relative {PCW(_CW['relative'])}, "
-             f"normalised {PCW(_CW['normalised'])}, book {PCW(_CW['book'])}. Only the "
-             f"carried-through side of the cash-flow lens enters it — that is the company's "
-             f"stated plan; the stopped reading is the contested judgement, published beside "
-             f"it and never averaged in",
+rows.append(["THE ANSWER — the cash-flow lens, both sides, never averaged",
+             f"The class primary IS the answer and every other read above is a cross-check "
+             f"printed beside it. This one is TWO-SIDED: EGP "
+             f"{E2(LN['central']['base'])} with the capital programme carried through — the "
+             f"company's own stated plan — and EGP "
+             f"{E2(LN['central']['alternative_framing']['value'])} if it is stopped. The "
+             f"judgement is binary, so an average would describe a half-built plant. The "
+             f"range shown is the floor and ceiling of every read, not a weighted extreme",
              f"{E2(LN['synthesis']['low'])} to {E2(LN['synthesis']['high'])}",
              E2(LN['central']['base']), PC0(LN['central']['base'] / SPOT - 1)])
 rows.append(["Market price", "Closing price on the anchor date", "—", E2(SPOT), "—"])
@@ -362,21 +365,21 @@ P(f"The field runs from EGP {E2(LN['synthesis']['low'])} to EGP {E2(LN['synthesi
   f"against EGP {E2(SPOT)}. That is a change from the first issue of this study, which "
   f"used a lower multiple band it could not source, and it is reported rather than "
   f"resisted.")
-P(f"Inside that field the study publishes one weighted central, EGP {E2(LN['central']['base'])} "
-  f"a share, {PCW(abs(LN['central']['base'] / SPOT - 1))} "
-  f"{'below' if LN['central']['base'] < SPOT else 'above'} the traded price. The weights are "
-  f"stated and fixed before the lenses were read: cash flow with the programme carried through "
-  f"{PCW(LN['central']['weights']['cashflow'])}, relative multiples "
-  f"{PCW(LN['central']['weights']['relative'])}, normalised earnings "
-  f"{PCW(LN['central']['weights']['normalised'])}, book value "
-  f"{PCW(LN['central']['weights']['book'])}. The cash-flow lens carries the most because it is "
-  f"the one lens that charges the capital programme against the years in which it is spent; its "
-  f"carried-through side alone enters the weighting because that is the company's own stated "
-  f"plan, and the stopped reading (EGP {E2(LN['cashflow']['stopped'])}) is published beside it "
-  f"as the contested judgement rather than blended in. The relative and normalised lenses are "
-  f"cross-checks at equal weight; book value, which prices what has been paid for rather than "
-  f"what it earns, carries the least. The bear and full readings are the floor and ceiling of the "
-  f"field, never the weighted extremes.")
+P(f"The answer is the cash-flow lens alone: EGP {E2(LN['central']['base'])} a share with the "
+  f"capital programme carried through, {PCW(abs(LN['central']['base'] / SPOT - 1))} "
+  f"{'below' if LN['central']['base'] < SPOT else 'above'} the traded price, and EGP "
+  f"{E2(LN['cashflow']['stopped'])} if the programme is stopped. It is the answer because it is "
+  f"the one lens that charges the capital programme against the years in which it is spent, "
+  f"which on this company is the whole question. The relative, normalised and book reads are "
+  f"CROSS-CHECKS published beside it — book value in particular prices what has been paid for "
+  f"rather than what it earns, and is a disclosed floor rather than a valuation. A previous "
+  f"edition blended all four at stated weights and published the result as the central; the "
+  f"weights were typed, had never cleared any out-of-sample test, and imported every weakness "
+  f"of the weakest read at whatever weight somebody chose. A number produced by averaging "
+  f"several methods is not more robust than the best of them — it is a new method with free "
+  f"parameters nobody tested. The blend is retired and published unused so a reader of the "
+  f"previous edition can see what changed. The bear and full readings are the floor and ceiling "
+  f"of every read, never a weighted extreme.")
 P(f"The ordering is itself informative. The asset-backed and multiple-based lenses sit "
   f"highest because they value what has been built without asking what it earns. The "
   f"cash-flow lens sits lowest because it asks exactly that, and gets an uncomfortable "
@@ -1401,5 +1404,5 @@ box([("Educational analysis.  ", "This document is an independent educational an
      ("No position.  ", "The author holds no position in the subject and receives no "
       "compensation from it or from any party with an interest in it.")])
 
-finalise('EGCH_Valuation_Study_01-09-2026.docx')
-print("wrote EGCH_Valuation_Study_01-09-2026.docx")
+finalise('EGCH_Valuation_Study_03-09-2026.docx')
+print("wrote EGCH_Valuation_Study_03-09-2026.docx")

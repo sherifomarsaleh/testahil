@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**103 lessons**, of which 76 bind on every study, 20 on a class of company, and 7 on a single name.
+**107 lessons**, of which 80 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 19 from self-audits, 35 found while building.
+By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 20 from self-audits, 38 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -788,6 +788,46 @@ It is much easier to check a machine-readable record than the report a reader ac
 > **What it cost, or how we know.** [R-LENS-03] retired the typed multi-lens blend and is enforced on each study's committed lens record, which was green everywhere. Reading the delivered PDFs instead: 6 of 20 carried no weighted blend and 14 published a weighted central as the study's own answer. ARCC had been RE-ISSUED after the rule and its document prints a weighted central of 54.65 beside a numbers file carrying 53.46. ADNOCLS, the model report every study is opened beside, carried twenty-two such assertions — so the exemplar was teaching the retired architecture to every study that followed.
 
 > **What would overturn it.** A rule whose whole content IS the record — a provenance field, a stamp, an attestation — has nothing in the document to check, and reading the document for it would find nothing. The test is whether the rule governs what a reader is told.
+
+### L-072 · A forecast that reverses what the company has just filed is a claim, and it is named, sourced and measured or it is not made.
+
+A model that quietly walks a rate back toward a longer average looks prudent and is not: it is a forecast of reversion that nobody wrote down and nobody can check. Where the forecast opens materially below the latest reviewed period, the mechanism is named from a closed list, the disclosure that establishes it is carried from the filings, and the direction is MEASURED in the company's own like-for-like period pair.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the AMOC, EGCH and ARCC re-strikes of 03-Sep-2026, on the principal's lead
+
+> **What it cost, or how we know.** The rule had been in both governing documents since 07-Aug-2026 and on one day three studies in one market violated it in three costumes, every one lowering the value. AMOC forecast a 9.494% gross margin falling to 8.764% against a filed half of 12.428% — an implied second half of 6.56% — on an unsourced real cost drift of +2.7 points a year that contradicted its own registered principle; worth +19.4% when corrected. EGCH forecast 45.66% falling to 33.02% on one typed array carrying the dollar export price down 17%, source layer 'Constructed'. ARCC opened at 39.03% against a filed peak of 39.25% and told no reader it sat at the top of its own range. [L-048] had been registered after the first occurrence, was correct, and bound nothing.
+
+> **What would overturn it.** A study whose forecast opens materially below its latest reviewed period, names a mechanism from the closed list, carries the disclosure, shows the like-for-like direction agreeing — and is still wrong when the period matures. That would say the mechanism test is satisfiable without being informative.
+
+### L-073 · A driver out of line with the rest of the book usually means our method slipped on this one name, not that the company is unusual.
+
+The strongest test of a contested driver is not whether it can be argued for on its own name — almost any of them can — but whether the same house builds the same class of input the same way everywhere else. Where two studies carry opposite conventions for the same kind of number, one of them is wrong and the disagreement says which question to ask.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EGCH's dollar export price against AMOC's dollar feedstock price, 03-Sep-2026
+
+> **What it cost, or how we know.** EGCH carried a typed dollar output price falling 17% over five years with no marginal cash cost quoted and no institution publishing it, while AMOC — same house, same market, same week — held its dollar commodity price FLAT and registered the reason in as many words: 'no forecast of it is defensible'. Neither study was checked against the other; the inconsistency was invisible from inside either one, and it ran the value-destroying way in the study that had it. Separately, EGCH published the RATING equity-risk-premium basis as its central where [R-COC-01] names the CDS basis by default and both peer Egyptian studies use it — a 13.94% premium against 9.41% for the same sovereign on the same day, again the higher one.
+
+> **What would overturn it.** A case where a name genuinely does deserve a different convention from its book, established from that company's own disclosures rather than from the analyst's judgement. Then the rule is to name the difference, not to conform.
+
+### L-074 · A self-attested string is not a check, however carefully it is worded.
+
+Where a gate reads a sentence a study wrote about itself, the study can write the right sentence and do the wrong thing — and the gate will pass it, repeatedly, with no sign anything is wrong. Where the claim can be reduced to arithmetic, reduce it: commit the number and the ingredients that would reproduce the thing it is claimed not to be, and divide.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, the AMOC relative lens, exposed by the 03-Sep-2026 re-strike
+
+> **What it cost, or how we know.** AMOC's lens record attested 'enterprise value to EBITDA from the company's own history and its regional peers, never a multiple read off the current price' while its code computed (market cap + net debt) / base-year EBITDA re-rated by zero — the traded multiple exactly. assert_lens_design searched the prose for phrases meaning 'from the price', found the reassuring words, and passed it three times. What exposed it was moving the price: the spot rose 48.4% and the lens rose 51.3%, which a lens built on five years of own history cannot do. The gate now requires the adopted multiple and the three numbers that reproduce the traded one, and refuses when they agree to within half a per cent.
+
+> **What would overturn it.** A relative multiple whose circularity ingredients cannot be committed because the metric genuinely has no traded counterpart. Then the arithmetic form is unavailable and the prose test is the only one left — which is an argument for withdrawing the lens, not for trusting the sentence.
+
+### L-075 · A fix that enumerates the keys it knows about is a fix that expires.
+
+Carry-over lists, allow-lists and key-lists written when they were complete go stale the moment anything is added, and they fail silently — the new thing is simply dropped. Invert them wherever the inversion is expressible: carry everything the module does not itself produce, rather than everything somebody remembered.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EGCH's build order, 03-Sep-2026
+
+> **What it cost, or how we know.** compute.py is imported by alternatives.py, which re-runs it and rewrites study_numbers.json. A carry-over had been written for that exact hazard and named ('central', 'fair'), which was complete when written. lenses.py has since added central_two_sided, lens_record, macro_record and bridge_record — the records [R-LENS-03], [R-MACRO-01] and [R-BRIDGE-01] are checked from outside on — and all four were silently dropped on every build. Three repo gates went red at once and the study read, from outside, like one that had never committed a record at all.
+
+> **What would overturn it.** A module where carrying everything unknown is wrong because a stale key must be actively cleared. Then the inversion needs an explicit expiry list, which is the same hazard in the other direction and has to be checked rather than remembered.
 
 ### L-208 · A check that fails by the calendar is not a check.
 

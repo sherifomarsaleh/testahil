@@ -1,0 +1,31 @@
+{
+ "_": "Studies knowingly outstanding against the forecast-anchor gate [R-ANCHOR-01]. Seeded 03-Sep-2026, the day the rule was adopted, from the state of the repository on that day: no study on disk carried a forecast_anchor record, because the record did not exist until this rule. Each is cleared by committing the record — the latest reviewed period, its rate, the first forecast year's rate, and where the forecast opens below it, a named mechanism from the closed list with its disclosure and its like-for-like measurement. It may only ever get SHORTER: run scripts/check_forecast_anchor.py --prune once a study commits one. Adding a name here is a deliberate deferral and needs a reason, not a convenience.",
+ "seeded": "2026-09-03",
+ "why_now": "The rule it enforces has been in both governing documents since 07-Aug-2026 and on 03-Sep-2026 three studies in one market violated it in three different costumes, all in the same direction and all lowering the value: AMOC forecast a gross margin of 9.494% against a filed half of 12.428%, an implied second half of 6.56%; EGCH forecast 45.66% falling to 33.02% on a typed dollar price path nothing sourced; ARCC forecast at the top of its own filed range and told no reader it was doing so. Every one was found by a person reading the numbers. [R-ENF-01] says a rule that can be checked must be checked from outside the thing it governs, and [L-048] was registered after the first occurrence and bound nothing.",
+ "outstanding": [
+  "ADNOCDIST",
+  "ADNOCDRILL",
+  "ADNOCLS",
+  "AIRARABIA",
+  "AMOC",
+  "AMR",
+  "BOROUGE",
+  "DU",
+  "EGCH",
+  "ELEC",
+  "EMPOWER",
+  "FERTIGLOBE",
+  "GBCO",
+  "MODON",
+  "PHAR",
+  "PHDC",
+  "RIYADHCABLE",
+  "SAVOLA",
+  "SCEM",
+  "STC",
+  "SWDY",
+  "TMGH",
+  "XPT"
+ ],
+ "note_on_amoc": "AMOC is listed and it is the reason this rule exists, which is worth stating plainly. Its forecast opens 22% relatively below the latest reviewed period and it CANNOT name a mechanism the filings support: a draft record claiming one_off_in_the_latest_period was written on 03-Sep-2026 and this gate refused it on the like-for-like measurement supplied beside it — cost per unit of revenue in the SAME QUARTER a year apart moved the opposite way to the mechanism claimed. The gate fired on the study whose defect prompted the rule, on its first run, against a record this desk had just written. It is not simply re-anchored because [R-VCAL-01]'s one-lever-at-a-time guard forbids it in this pass: the move is priced at +55% in AMOC's contested judgements and would carry the study from 12.3% below the price to 35.9% above it in one edition. AMOC comes off this list when the base anchor is taken."
+}

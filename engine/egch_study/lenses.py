@@ -45,7 +45,9 @@ eq_open_24 = V('bs_capital_FY2223') + V('bs_reserves_FY2223')
 eq_open_25 = V('bs_capital_FY2324') + V('bs_reserves_FY2324')
 roe_24, roe_25 = und_24 / eq_open_24, und_25 / eq_open_25
 roe_sust = (roe_24 + roe_25) / 2
-ke = D['wacc']['ke_rating']
+# the CDS basis is the house central under [R-COC-01] and this lens was the last
+# thing in the study still reading the rating one [corrected 03-Sep-2026]
+ke = D['wacc']['ke_cds']
 g = V('g_terminal')
 pb_raw = (roe_sust - g) / (ke - g)
 # The sustainable return does not cover even nominal maintenance growth, so the

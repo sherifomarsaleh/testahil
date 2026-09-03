@@ -1,4 +1,4 @@
-"""ARCC_Valuation_Study_02-09-2026_public.docx — TMPV house structure.
+"""ARCC_Valuation_Study_03-09-2026_public.docx — TMPV house structure.
 
 16 headings: 7 top-level sections plus the 9 subsections of section 1, then three
 appendices. Reads study_numbers.json exclusively — no numeral is typed here.
@@ -1188,6 +1188,6 @@ P('Testahil · Independent valuation research · Educational analysis, not inves
   'advice. No rating and no price target is expressed or implied.', size=8.6, italic=True,
   color=GREY)
 
-OUT = 'ARCC_Valuation_Study_02-09-2026_public.docx'
+OUT = 'ARCC_Valuation_Study_03-09-2026_public.docx'
 doc.save(OUT)
 print('wrote', OUT)

@@ -23,14 +23,54 @@ model that got them backwards would still look plausible:
     higher charge is a pure tax shield and lifts present value. In the terminal state capex
     is unchanged, so a permanently higher charge is a business consuming its own asset base.
 """
-import json, os, sys
+import glob, json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import openpyxl
 import xlcalc
 
-wb = openpyxl.load_workbook(os.path.join(HERE, 'AMOC_Valuation_Model_06082026_public.xlsx'))
-AN = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))['anchors']
+# THIS GATE OPENED THE SUPERSEDED WORKBOOK AND IT REFUSES RATHER THAN DOING SO
+# [03-Sep-2026]. It was pinned by name to AMOC_Valuation_Model_06082026_public.xlsx
+# and to the anchors of that edition, two editions behind the delivered file. That
+# is L-067 -- "a check that opens a delivered file by name moves with the
+# re-issue" -- registered after the identical defect was found in two of ARCC's own
+# gates, where re-pointing them made five of 144 driver assertions fail
+# immediately. The digest says in as many words that it will recur at every
+# re-issue, and here it is.
+#
+# It is not silently re-pointed, because it CANNOT be: build_xlsx_v5.py writes
+# xlsx_expected_v5.json, which carries `expected` and no `anchors` block, so the
+# row addresses this test navigates by do not exist for the delivered edition. The
+# honest state is a gate that says what it needs, which is the disposition
+# recalc.py was given when the same defect was found in it.
+#
+# WHAT IS NEEDED: build_xlsx_v5.py emits an `anchors` block of the same shape --
+# dcf, bridge, bs, sum, rn and the forecast column letters -- and this test opens
+# the latest-dated AMOC_Valuation_Model_*.xlsx rather than a name. Registered in
+# engine/build_depth_audit/outstanding.json.
+# THE FILENAME DATE IS DDMMYYYY, SO A LEXICAL SORT PICKS THE WRONG EDITION -- the
+# first draft of this line did exactly that and chose 08082026 over 03092026.
+# Sorted on the date the name actually encodes.
+def _edition_key(path):
+    m = re.search(r'_(\d{2})(\d{2})(\d{4})_', os.path.basename(path))
+    return (m.group(3), m.group(2), m.group(1)) if m else ('', '', '')
+DELIVERED = sorted(glob.glob(os.path.join(HERE, 'AMOC_Valuation_Model_*_public.xlsx')),
+                   key=_edition_key)[-1]
+EXP = os.path.join(HERE, 'xlsx_expected_v5.json')
+_exp = json.load(open(EXP)) if os.path.exists(EXP) else {}
+if 'anchors' not in _exp:
+    raise SystemExit(
+        "driver_test REFUSES rather than reporting on a superseded file.\n"
+        "  delivered workbook : %s\n"
+        "  expectations file  : %s\n"
+        "  missing            : the 'anchors' block (dcf, bridge, bs, sum, rn, cols)\n"
+        "This test navigates by row addresses recorded at build time. The v5 builder\n"
+        "does not record them, so it cannot be re-pointed without that block -- and\n"
+        "pointing it at the 06-08-2026 workbook instead, which is what it did until\n"
+        "today, means reporting clean on a file nobody receives (L-067)."
+        % (os.path.basename(DELIVERED), os.path.basename(EXP)))
+wb = openpyxl.load_workbook(DELIVERED)
+AN = _exp['anchors']
 DC, BR, BS_, SU, RN = AN['dcf'], AN['bridge'], AN['bs'], AN['sum'], AN['rn']
 FCC = AN['cols']['fcst']
 

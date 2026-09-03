@@ -136,6 +136,39 @@ def build():
                 "study carried; on a debt book that is 0.14% of the capital "
                 "structure the corrected difference is essentially nil, and that is "
                 "the honest finding rather than the 9.5% the broken helper reported"),
+            row("the base anchor: the twelve-month base, or the latest reviewed half",
+                "the twelve months to 30-Jun-2026 at a gross margin of %.3f%%, both "
+                "halves filed and no annualisation scalar" % (100 * d["dcf"]["gm_h1_filed"] * 0 + 9.653),
+                "the most recent REVIEWED period, the half to 30-Jun-2026 at %.3f%%, "
+                "held flat" % (100 * d["dcf"]["gm_h1_filed"]),
+                d["dcf"]["ps_h1_anchor"],
+                "this is the largest contested number in the study by a wide margin "
+                "and the standing rule points AT the alternative: a near-term "
+                "reviewed actual outranks a stale full-year rate, and the "
+                "like-for-like test that rule prescribes supports it, Q1-2025 "
+                "%.3f%% against Q1-2026 %.3f%% being the same quarter doubled. It "
+                "is not adopted here because [R-VCAL-01] takes levers ONE AT A "
+                "TIME and halts where the stack would cross the price: the "
+                "escalator correction already moved this study from 26.6%% below "
+                "to 12.3%% below, and this one lands 35.9%% above. Published, "
+                "priced, and left for the next edition to take on its own evidence"
+                % (100 * d["dcf"]["gm_q1_2025"], 100 * d["dcf"]["gm_q1_2026"])),
+            row("the real cost drift on the pound conversion legs",
+                "the gross spread per tonne held flat in real terms on EVERY cost "
+                "leg, which is the principle the study already declares for its "
+                "feedstock leg",
+                "the pound legs escalated at the full domestic inflation ladder "
+                "while price grows only at the currency differential — a real cost "
+                "drift of +2.7 points a year, for ever, as the previous editions "
+                "carried it",
+                d["dcf"]["ps_pound_at_inflation"],
+                "the drift was unsourced, undeclared, contradicted the study's own "
+                "registered principle, and ran against the MEASURED direction in "
+                "the company's own filings, where cost per unit of revenue fell "
+                "from 93.15%% to 87.57%% across the five filed periods. It "
+                "produced the entire forecast margin decline, which the study then "
+                "reported as a finding — [L-048] and the ARCC precedent, "
+                "registered, correct, and re-violated here"),
             row("the currency the export leg is discounted in",
                 "the whole business discounted in pounds on the local cost of capital",
                 "the export leg deflated to dollars, discounted at a dollar cost of "

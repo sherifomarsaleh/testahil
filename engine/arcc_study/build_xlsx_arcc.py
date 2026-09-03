@@ -1,4 +1,4 @@
-"""ARCC_Valuation_Model_02092026_public.xlsx — 16 sheets, formula-first. REVISION 2.
+"""ARCC_Valuation_Model_03092026_public.xlsx — 16 sheets, formula-first. REVISION 2.
 
 Rebuilt on the AUDITED consolidated financial statements for FY2023, FY2024 and FY2025 and
 the reviewed Q1-2026 interim accounts. Revision 1 was built without opening a source
@@ -1424,7 +1424,7 @@ assert not _missing and not _extra, (
     % (_missing, _extra))
 wb._sheets = [wb[n] for n in _WANT]
 assert wb.sheetnames == _WANT, wb.sheetnames
-OUT = os.path.join(HERE, 'ARCC_Valuation_Model_02092026_public.xlsx')
+OUT = os.path.join(HERE, 'ARCC_Valuation_Model_03092026_public.xlsx')
 wb.save(OUT)
 with open(os.path.join(HERE, 'xlsx_expected.json'), 'w') as f:
     json.dump(EXPECT, f, indent=1)

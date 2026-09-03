@@ -219,7 +219,7 @@ I("quota_required_14m", 322000, "tonnes", FS25 + ", auditor's report", "2025-09-
 I("quota_delivered_14m", 147000, "tonnes", FS25 + ", auditor's report", "2025-09-24", "L1")
 
 # ===================================================== L2 — MARKET DATA =======
-I("spot_price", 13.98, "EGP", "Exchange close, from the study's own price library", "2026-08-06", "L2")
+I("spot_price", 14.41, "EGP", "EGCH closing price on the Egyptian Exchange, 3 September 2026. The previous edition was struck on the 6 August close of 13.98", "2026-09-03", "L2")
 I("rf_observed", 0.2300, "ratio", "Egypt ten-year government bond yield, market quote", "2026-08-06", "L2")
 I("sovereign_bond_coupon", 0.23098, "ratio",
   "New EGP 120.9bn treasury bond maturing 21 May 2029, listed coupon — corroborates the yield above",
@@ -441,9 +441,37 @@ for k, vals, unit, src in [
      "Constructed: utilisation path. Audited output ran 586.4kt in FY2022/23 (2% above plate), 521.9kt in "
      "FY2023/24 and 513.4kt in FY2024/25; the path never returns to plate because the summer "
      "gas curtailment is structural."),
-    ("export_usd_path", [530.0, 500.0, 470.0, 450.0, 440.0], "US$/t",
-     "Constructed: export price path, mean-reverting from the August 2026 quote toward the cash cost of the "
-     "marginal gas-based producer."),
+    # A TYPED DOLLAR-PRICE FORECAST IS NOT A DEFENSIBLE DRIVER, AND THIS HOUSE
+    # ALREADY SAYS SO ON ANOTHER NAME [corrected 03-Sep-2026].
+    #
+    # This path fell from US$530 to US$440 a tonne, -17% over five years, on the
+    # reason "mean-reverting toward the cash cost of the marginal gas-based
+    # producer" -- with no marginal cash cost quoted, no institution publishing the
+    # path, and layer "Constructed". Meanwhile the gas input is dollar-linked and
+    # held FLAT in dollars, so the construction was a falling output price against
+    # a flat input price: the entire forecast margin collapse, from 45.7% to 33.0%,
+    # was that one typed array, and it then set a terminal worth 60% of enterprise
+    # value.
+    #
+    # IT WAS ALSO OUT OF LINE WITH THE BOOK, WHICH IS THE TEST THAT MATTERS
+    # ([R-FCAL-01]: a correction must be consistent with how that driver class is
+    # built across the market's book, and a number out of line with the rest of the
+    # book usually means our own method slipped on this one name). AMOC -- same
+    # house, same market, same week -- holds ITS dollar commodity price FLAT and
+    # registers the reason in as many words: "crude is held FLAT in dollars -- no
+    # forecast of it is defensible". Two studies cannot carry opposite conventions
+    # for the same class of input, and the difference here ran the value-destroying
+    # way.
+    #
+    # Held FLAT in nominal dollars at the opening level. Deliberately NOT raised to
+    # the US$545 CME FOB Egypt settlement of 7-Aug-2026: declining to forecast a
+    # fall is not the same as adopting an improvement, and the rule says hold flat.
+    # The bull path below is retained as the published alternative.
+    ("export_usd_path", [530.0, 530.0, 530.0, 530.0, 530.0], "US$/t",
+     "Held FLAT in nominal dollars at the opening level. No forecast of a traded "
+     "commodity price is defensible, which is the convention this house applies to "
+     "the same class of input elsewhere; the previous path fell 17% over five years "
+     "on a construction nothing sourced."),
     ("export_usd_path_bull", [560.0, 545.0, 530.0, 520.0, 515.0], "US$/t",
      "Constructed: upside export price path: urea holds nearer the August 2026 quote."),
     ("usd_egp_path", [round(49.79 * __import__("functools").reduce(lambda a, b: a * b,

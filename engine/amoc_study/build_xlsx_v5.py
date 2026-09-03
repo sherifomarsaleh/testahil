@@ -24,6 +24,10 @@ from openpyxl.utils import get_column_letter
 HERE = os.path.dirname(os.path.abspath(__file__))
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 IN = {k: v['value'] for k, v in D['inputs'].items()}
+# the escalation convention comes from the study's committed record, not from a
+# constant typed here: this builder reads study_numbers.json and nothing else, so
+# a convention it cannot see is a convention it would silently get wrong
+POUND_ON_PRICE = bool(D['dcf']['pound_on_price'])
 SRC = {k: v['source'] for k, v in D['inputs'].items()}
 DAT = {k: v['date'] for k, v in D['inputs'].items()}
 RNG = {k: v['ring'] for k, v in D['inputs'].items()}
@@ -501,11 +505,21 @@ def engine(ws, row0, tag, vol_cell, gm_cell, fx_cell, we_cell, wt_cell, g_cell, 
                  lambda cl, j, rr: '=' + '+'.join(
                      f"{cl}{vrows[k]}*'Segments'!$F${PR[k]}*{cl}{r_px}" for k in LINES),
                  bold=True)
+    # THE WORKBOOK IS A LIVE MODEL AND IT CARRIED THE DEFECT TOO [corrected
+    # 03-Sep-2026]. The salary and other-conversion legs multiplied the INFLATION
+    # index while realised price multiplied the PRICE index -- the same real cost
+    # drift of +2.7 points a year that the study's own compute.py carried, written
+    # out in Excel formulas so a reader recalculating the file would reproduce the
+    # defect faithfully and see nothing wrong. Both now escalate on the same index
+    # the price does, which is the principle raw_pass = 1.0 already declares for
+    # the feedstock leg one term to the left.
+    _pound_cell = r_px if POUND_ON_PRICE else r_inf
     r_cogs = line('Cost of sales', 'cogs', mv['cogs'], NUM0,
                   lambda cl, j, rr: '=' + '+'.join(
                       f"{cl}{vrows[k]}*('Segments'!$D${27+i}*{cl}{r_px}*"
                       f"{L('raw_pass')}+'Segments'!$B${27+i}*"
-                      f"({UB['sal_sh']:.10f}*{cl}{r_inf}+{UB['oth_sh']:.10f}*{cl}{r_inf}"
+                      f"({UB['sal_sh']:.10f}*{cl}{_pound_cell}"
+                      f"+{UB['oth_sh']:.10f}*{cl}{_pound_cell}"
                       f"+{UB['sup_sh']:.10f}*{cl}{r_px}+{UB['dep_sh']:.10f}))"
                       for i, k in enumerate(LINES)))
     r_gp = line('GROSS PROFIT', 'gp', mv['gp'], NUM0,

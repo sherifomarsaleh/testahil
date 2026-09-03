@@ -206,8 +206,8 @@ INP = dict(
     # had been carrying a 6-August close for four weeks while the stock rose 30.5%.
     # The price is an INPUT here, not only a benchmark: market capitalisation sets
     # the market-value equity weight the cost of capital is built on.
-    spot=I(77.00, "Closing price 03-Sep-2026, from the prices supplied by the principal and "
-           "committed at engine/prices/SUPPLIED_03-09-2026.json", "2026-09-03", "Market"),
+    spot=I(77.00, "Closing price on the Egyptian Exchange, 3 September 2026. The previous "
+           "edition was struck on the 6 August close of 59.00", "2026-09-03", "Market"),
     shares_issued=I(378.7397, AFS25 + ", note 20: 378,739,700 ordinary shares authorised, "
                     "issued and fully paid at EGP 2 par, issued capital EGP 757,479,400",
                     "2025-12-31", "Company"),
@@ -2188,8 +2188,8 @@ def _scrub_attestation():
                        'scanned. Build them, run scrub_gate.py, then re-run this '
                        'module — an unmeasured result is not a clean one.')
     r = json.load(open(f))
-    want = {'ARCC_Valuation_Study_02-09-2026_public.docx',
-            'ARCC_Bibliography_02-09-2026.docx'}
+    want = {'ARCC_Valuation_Study_03-09-2026_public.docx',
+            'ARCC_Bibliography_03-09-2026.docx'}
     missing = sorted(want - set(r.get('files', [])))
     if missing:
         return False, ('the scrub covers %s and not %s — a check that opens a '
@@ -2400,6 +2400,31 @@ COC_RECORD = dict(
     ],
 )
 
+
+# ---- [R-ANCHOR-01] THE FORECAST IS ANCHORED ON THE LATEST REVIEWED PERIOD ----
+# ARCC is the CLEAN case that gate had to be able to tell apart from the two
+# broken ones, and telling it apart is what caught a bug in the gate's own
+# tolerance on its first run. The forecast opens at 39.03% against an audited
+# FY2025 of 39.25% -- 0.56% relatively below, well inside the materiality line --
+# so no mechanism is owed and none is claimed.
+#
+# What the record makes visible, and what no sentence in this study previously
+# said, is that the forecast sits AT THE TOP of the company's own filed range:
+# FY2023 22.00%, FY2024 23.15%, FY2025 39.25%, and the forecast holds the peak and
+# improves on it. That is not a defect. It is the single most important thing about
+# the shape of this forecast and it now appears in a record a job outside the study
+# can read.
+FORECAST_ANCHOR = dict(
+    rate_name='EBITDA margin',
+    latest_reviewed_period='FY2025, audited',
+    latest_reviewed_date='2025-12-31',
+    latest_reviewed_rate=float(ebitda_h[-1] / rev_h[-1]),
+    first_forecast_rate=float(ebitda_f[0] / rev_f[0]),
+    note='the forecast opens within a fifth of a point of the best year this company has '
+         'filed, and rises from there. The filed record is FY2023 22.00%, FY2024 23.15%, '
+         'FY2025 39.25%; the bear corner of the published range is that FY2023 margin, so '
+         'the whole of the range is downside and the study says so.')
+
 LENS_RECORD = {
     'class': 'cement and heavy industrial',
     'primary': dict(kind='dcf', value=fv_dcf,
@@ -2533,7 +2558,7 @@ BRIDGE_RECORD = dict(
 OUT = dict(
     central=fv_central, spot=V['spot'],
     macro_record=MACRO_RECORD, cost_of_capital_record=COC_RECORD,
-    lens_record=LENS_RECORD, bridge_record=BRIDGE_RECORD,
+    lens_record=LENS_RECORD, bridge_record=BRIDGE_RECORD, forecast_anchor=FORECAST_ANCHOR,
     # `central` and `spot` sit at the TOP of meta so the repo-level gap gate can
     # read this study's own answer. It could not before: the central lived only
     # under lenses.central, and [R-GAP-01]'s checker reported ARCC as

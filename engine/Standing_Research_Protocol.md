@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-03f — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-03g — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -2726,3 +2726,124 @@ THE GENERAL LESSON, WHICH IS NOT ABOUT COST OF DEBT: WHEN A CHECK FIRES ON WORK 
 END-OF-YEAR ARRIVAL WAS AN ASSUMPTION, NOT THE RULE. The gate tested each cash flow as though it arrived on the last day of its year and flagged ARCC, whose factors are a legitimate mid-period schedule struck part-way through a fiscal year — cumulative discounting of 0.25, 0.94, 1.88, 2.83 and 3.79 years off its valuation date. This rule requires ONE DATE, ONE PRICE OF TIME, which that schedule obeys and which the terminal test is what actually enforces; it nowhere mandates year-end arrival. The defect was never the convention. It was that nobody wrote it down.
 
 A RECORD MAY THEREFORE DECLARE ITS CONVENTION — the cumulative discounting time of every explicit year AND the slice of calendar each forward rate owns, without which the factors do not reproduce, since a first period that is a stub is not a unit-width slice from time zero. The factors are then checked against the declaration. A record that declares nothing still gets the end-of-year test, because accepting any factors at all where none is declared would delete the check rather than generalise it, and a declaration that does not reproduce its own factors fails — it reads as evidence, which is worse than an assumption. Negative-controlled on four conditions plus a clean mid-period schedule that must pass.
+
+## [R-ANCHOR-01] The forecast is anchored on the latest reviewed period, and a decline away from it names its mechanism (3-Sep-2026, per instruction — "the calibration does not fix the current studies for the 90 stocks only. It fixes the way the testahil model thinks and executes fundamental valuations")
+
+**THE RULE THIS ENFORCES IS NOT NEW, AND THAT IS THE ENTIRE POINT.** Both governing
+documents have carried it since 7 August 2026, in these words:
+
+> A NEAR-TERM REVIEWED ACTUAL OUTRANKS A STALE FULL-YEAR RATE: anchor every unit rate on
+> the most recent reviewed period and let it DRIFT only where a named structural mechanism
+> has a MEASURED like-for-like direction in the company's own period pair; hold everything
+> else flat INCLUDING observed improvements.
+
+It was correct. It was registered. On 3 September 2026 **three studies in one market
+violated it in three different costumes, every one of them lowering the value**, and every
+one was found by a person reading the numbers rather than by anything in this repository.
+
+**AMOC.** Forecast gross margin 9.494% falling to 8.764%, against a base year of 9.653% and
+a *filed* first half of 12.428% — an implied second half of **6.56%**, half what the
+company had just reported. The mechanism was an unsourced real cost drift: the pound
+conversion legs escalated at the full domestic inflation ladder (14.5% to 9.5%) while
+realised price grew only at the currency differential (11.7% to 6.8%), **+2.7 points a
+year, compounding for ever**. The study's own registered `raw_pass = 1.0` input said in as
+many words that "the gross SPREAD per tonne is held flat in real terms and the margin
+neither widens nor narrows" — the principle was applied to the feedstock leg and silently
+broken on the conversion leg two lines below it. Worth **+19.4%** when corrected.
+
+**EGCH.** Forecast gross margin 45.66% falling to 33.02% on essentially flat revenue. One
+typed array: `export_usd_path = [530, 500, 470, 450, 440]`, a **−17% dollar output price**
+with no marginal cash cost quoted, no institution publishing it, and the source layer
+recorded as "Constructed" — against a dollar-linked gas input held flat in dollars. It then
+set a terminal worth 60% of enterprise value. What settles it is not judgement but the
+book: **AMOC, same house, same market, same week, holds its dollar commodity price flat and
+registers the reason — "no forecast of it is defensible".** Two studies cannot carry
+opposite conventions for the same class of input.
+
+**ARCC.** The opposite shape, and it is named here because a gate that only catches
+declines would have said nothing about it either. The forecast opened at 39.03% against a
+filed peak of **39.25%** and rose to 40.4% — at the very top of the company's own filed
+range — and *no sentence in the study told a reader so*.
+
+**THE GENERAL LESSON, WHICH IS NOT ABOUT MARGINS: A LESSON THAT BINDS NOTHING IS ADVICE.**
+[L-048] was registered after the first occurrence of exactly this defect, it was correct,
+and it bound nothing — the digest already carried the ARCC precedent verbatim ("the model's
+whole forecast margin decline was a mechanical artifact of the price path being set below a
+single blended cost-inflation index in every year, by construction") while AMOC was
+committing the identical error in another costume. This is [R-MACRO-01]'s own general
+lesson applied one level up, and the remedy is the same one: **where a lesson can be made
+arithmetic, making it arithmetic is the only way it survives.**
+
+### What is adopted
+
+A study commits a **`forecast_anchor` record**: the rate it forecasts, the latest reviewed
+period with its date and its rate, and the first forecast year's rate. Where the forecast
+opens **materially below** the latest reviewed period it must additionally name a
+**mechanism from a CLOSED list**, the **disclosure** that establishes it from the filings,
+and a **LIKE-FOR-LIKE MEASUREMENT** in the company's own period pair giving that mechanism
+a direction.
+
+The list is closed — capitalised interest's own precedent under [R-COC-01 AMENDED] — because
+an open list lets any study opt out by inventing a reason, and *"the rate looked wrong"* is
+not a mechanism. Adding to it is a rule amendment, not a study's decision.
+
+**THE CLAUSE THAT DOES THE WORK IS THE MEASUREMENT, AND IT FIRED ON ITS FIRST RUN AGAINST
+THE DESK THAT WROTE IT.** A study may declare "input costs rising faster than realised
+price" and supply a period pair in which cost per unit of revenue *fell*. AMOC did exactly
+that: a draft record claiming `one_off_in_the_latest_period` was written on adoption day
+and `scripts/check_forecast_anchor.py` refused it on the like-for-like measurement supplied
+beside it — cost per unit of revenue in the **same quarter a year apart** ran 94.947% to
+89.810%, the opposite way to the mechanism claimed. **A mechanism contradicted by the
+company's own filings is not a mechanism; it is the assumption wearing one.**
+
+### The threshold, stated rather than dressed up
+
+**RELATIVE, at 5%** of the latest reviewed rate, with a small absolute floor so a genuinely
+tiny rate does not trip on arithmetic noise. Five per cent is **the materiality line this
+house already applies to a contested judgement** — reused rather than minted, which is the
+only honest kind of justification for a cutoff.
+
+The first draft used an ABSOLUTE 0.002 with the stated reason "the rounding width of a rate
+quoted to two decimal places, doubled". That reason supports 0.0001, not 0.002 — **a number
+chosen and then given a justification, which is the free-parameter offence in better
+clothes** — and its own negative control caught it, firing on ARCC's legitimately clean
+0.22-point gap. The fix was not to widen it. [R-COC-01]'s lesson applies here as written:
+when a check fires on work that is right, widening is a free parameter and moving the work
+corrupts what is measured; the third option is to establish the check is pointed at the
+wrong measurement and re-point it. On the three cases that provoked this rule the relative
+form separates them by wide margins — AMOC 23.6% below, EGCH 27.7% below, ARCC 0.56% below
+— and **no threshold anywhere between 5% and 20% would classify any of them differently**,
+which is the test of whether a cutoff is doing work or merely existing.
+
+### What it does not do
+
+It does **not** require a forecast to equal the latest period. Mean reversion is real and a
+refiner's spread is volatile. It requires the claim to be **named, sourced and measured**.
+
+It does **not** fire on a forecast *above* the latest period. That direction is audited by
+[R-GAP-01]'s two-sided trigger and by [R-ENF-05]'s sign test, and a gate firing both ways
+here would collide with them. The record is nonetheless **printed for every study whether
+or not it fires**, so ARCC's shape — a forecast sitting at the top of its own filed range —
+is visible to a reader rather than merely not-red.
+
+### Enforcement
+
+`scripts/check_forecast_anchor.py`, per [R-ENF-01], from outside the study. Ratcheted per
+[R-ENF-02] (`engine/build_depth_audit/anchor_outstanding.json`, seeded on adoption day with
+every study then on disk, since the record did not exist until this rule; the list may only
+ever SHORTEN). Population-anchored per [R-ENF-04] — a run examining zero studies FAILS, and
+every listed ticker must resolve on disk. Negative-controlled by
+`scripts/check_forecast_anchor_negative_control.py`: eighteen conditions, including **AMOC's
+forecast exactly as it stood**, **AMOC's mechanism contradicted by its own filings**,
+**EGCH's typed price path**, and four clean cases that must stay green — among them
+**ARCC's shape**, which the first draft of the gate wrongly failed.
+
+**AMOC is on the ratchet and the reason is worth recording.** It cannot name a mechanism its
+filings support, and it is not simply re-anchored because [R-VCAL-01]'s promotion guard
+forbids it in one pass: the move is priced at **+55%** in AMOC's own contested judgements
+and would carry the study from 12.3% below the price to 35.9% above it in a single edition.
+The lever is priced, published, and left for the next edition to take on its own evidence
+rather than on this one's momentum.
+
+**READ THE POPULATION LIVE** — `python3 scripts/check_forecast_anchor.py` — never from this
+document.

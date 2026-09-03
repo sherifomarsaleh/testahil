@@ -55,9 +55,7 @@ LRV = "Limited-review consolidated FS, six months to 31-Dec-2024"
 # use. The price is an INPUT to the answer here, not only a benchmark beside it:
 # it sets market capitalisation and therefore the market-value equity weight the
 # cost of capital is built on.
-INP['spot'] = I(13.50, "AMOC closing price on the Egyptian Exchange, 3 September 2026, from the "
-                "prices supplied by the principal and committed at "
-                "engine/prices/SUPPLIED_03-09-2026.json", "2026-09-03", "Company")
+INP['spot'] = I(13.50, "AMOC closing price on the Egyptian Exchange, 3 September 2026", "2026-09-03", "Company")
 INP['shares_mn'] = I(1291.5, "Issued and paid-up capital EGP 1,291,500,000 at EGP 1 par = "
                              "1,291,500,000 shares (note 18-L, share split to EGP 1 par recorded "
                              "in the Commercial Register 24-Jan-2018)", "2025-12-31", "Company")
@@ -1041,7 +1039,8 @@ say(f"[Working capital, BUILT on solved days] inventory {INV_DAYS:.1f} days of c
     f"bridge. It is carried in the bridge instead.")
 
 
-def build(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None):
+def build(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None,
+          pound_on_price=None):
     """Revenue AND cost, both per line, both from the same twelve-month base.
 
     Per line: tonnes x realisation for revenue; tonnes x (feedstock + conversion) for cost.
@@ -1053,6 +1052,7 @@ def build(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None):
     rev, gp, gm, cogs_l = [], [], [], []
     lines_rev = {k: [] for k in LINES}; lines_vol = {k: [] for k in LINES}
     lines_cost = {k: [] for k in LINES}; lmarg = {k: [] for k in LINES}
+    _pound_on_price = (POUND_ON_PRICE if pound_on_price is None else pound_on_price)
     infl = 1.0; pidx = 1.0; vidx = {k: 1.0 for k in LINES}
     _sal_sh = cos_share['salaries'] / (1 - cos_share['raw'])
     _oth_sh = cos_share['other'] / (1 - cos_share['raw'])
@@ -1067,8 +1067,20 @@ def build(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None):
             v = t0[k] * vidx[k]
             p = px0[k] * pidx
             # feedstock per tonne is pass-through; conversion splits by driver
+            # THE STUDY'S OWN PRINCIPLE, APPLIED TO ONE COST LEG AND NOT THE OTHER
+            # [found 03-Sep-2026 by the re-strike, on the principal's lead].
+            # raw_pass=1.0 is registered with the words "the gross SPREAD per tonne
+            # is held flat in real terms and the margin neither widens nor narrows".
+            # That is true of the FEEDSTOCK leg and false of the CONVERSION leg two
+            # lines below it: salaries and other conversion costs escalate at the
+            # full domestic inflation ladder (14.5% falling to 9.5%) while realised
+            # price grows only at the currency differential (11.7% falling to 6.8%),
+            # a REAL COST DRIFT of +2.7 to +2.8 points a year, compounding for ever.
+            # Nothing in the study declared it and nothing sourced it, and it is
+            # what produces the whole of the forecast margin decline.
+            _pound = pidx if _pound_on_price else infl
             cpt = (raw_pt[k] * pidx * RAW_PASS
-                   + conv_pt[k] * (_sal_sh * infl + _oth_sh * infl
+                   + conv_pt[k] * (_sal_sh * _pound + _oth_sh * _pound
                                    + _sup_sh * pidx + _dep_sh))
             r = v * p; c = v * cpt
             lines_vol[k].append(v); lines_rev[k].append(r); lines_cost[k].append(c)
@@ -1149,6 +1161,52 @@ say(f"[Cost of debt — MATERIALITY] gross debt is {wd_gross:.4%} of the capital
     f"says so rather than dressing an immaterial input as a precise one.")
 assert kd_swing_effect < 0.0005, 'cost of debt is material after all'
 RAW_PASS = V['raw_pass']
+# ---------------------------------------------------------------------------
+# THE REAL COST DRIFT IS REMOVED, AND THE COMPANY'S OWN FILED RECORD IS WHAT
+# REMOVED IT [03-Sep-2026, found by the re-strike on the principal's lead].
+#
+# The previous editions escalated the pound-denominated conversion legs at the
+# full Egyptian inflation ladder (14.5% falling to 9.5%) while realised price per
+# tonne grew only at the currency differential (11.7% falling to 6.8%). That is a
+# REAL COST DRIFT of +2.7 to +2.8 points a year, compounding for ever, and it
+# produced the whole of the forecast margin decline: 9.494% in 2026 falling to
+# 8.764% in 2030, against a base year of 9.653%.
+#
+# THREE THINGS ARE WRONG WITH IT, AND NONE OF THEM IS A MATTER OF TASTE.
+#
+# (i) IT CONTRADICTS THE STUDY'S OWN DECLARED PRINCIPLE. raw_pass = 1.0 is
+#     registered with the words "the gross SPREAD per tonne is held flat in real
+#     terms and the margin neither widens nor narrows". That principle is applied
+#     to the feedstock leg and silently broken on the conversion leg two lines
+#     below it.
+#
+# (ii) IT IS UNSOURCED. No input registers a real cost drift, no disclosure
+#     supports one, and no sentence in the study told a reader that its forecast
+#     margin decline was an escalator artefact rather than a finding. That is
+#     [L-048] exactly, and the digest already carries the ARCC precedent in these
+#     words: "the model's whole forecast margin decline was a mechanical artifact
+#     of the price path being set below a single blended cost-inflation index in
+#     every year, by construction". The lesson was registered, correct, and
+#     re-violated by this study.
+#
+# (iii) THE MEASURED DIRECTION IN THE COMPANY'S OWN RECORD IS THE OPPOSITE. The
+#     standing rule permits a unit rate to drift "only where a named structural
+#     mechanism has a MEASURED like-for-like direction in the company's own period
+#     pair". Cost per unit of revenue across the five filed periods runs
+#     93.146% -> 94.947% -> 93.855% -> 89.810% -> 87.572%: it FELL 5.58 points
+#     while the model asserts it rises 2.7 points a year for ever.
+#
+# So the study's own principle is now applied to EVERY cost leg, which is what
+# POUND_ON_PRICE=True means. It is worth +19.4% (EGP 9.9142 -> 11.8342) and it is
+# therefore this study's most consequential contested judgement, priced BOTH ways
+# below and published side by side rather than averaged.
+#
+# WHAT THIS IS NOT: it is not moving the number toward the price, which
+# [R-GAP-01] prohibits outright. The corrected margin path is roughly 9.7% flat --
+# still well BELOW the 12.43% this company filed for the half to 30 June 2026, and
+# below the 10.19% of the quarter before it. The correction removes an unsupported
+# decline; it does not adopt the improvement, which the rule says to hold flat.
+POUND_ON_PRICE = True
 DEP_ANN = dep_ttm / M
 CAPEX_ANN = capex_ttm / M
 say(f"[Depreciation and capital expenditure, ACTUAL] over the twelve months to 30-Jun-2026 the "
@@ -1851,6 +1909,52 @@ say(f"[Scenarios on the cash-flow lens — BUSINESS DRIVERS ONLY] bear EGP {dcf_
     f"this desk's choice of dial settings. This one is the company's own filed record, and it is "
     f"not a confidence interval — no probability is attached to either end.")
 
+# ---- THE TWO ALTERNATIVES THE PRINCIPAL'S LEAD EXPOSED ----------------------
+# Both are priced through THIS study's own waterfall, per L-070: an alternative
+# computed by a helper that reproduces neither the terminal nor the bridge
+# measures the helper, not the choice.
+#
+# (1) THE ESCALATOR, as the previous editions carried it: pound conversion legs at
+#     the full domestic inflation ladder against a price growing at the currency
+#     differential. Adopted value is the corrected one; this is what it replaced.
+_PS_POUND_AT_INFL = waterfall(build(pound_on_price=False))['ps']
+#
+# (2) THE BASE ANCHOR. The standing rule is that a near-term reviewed actual
+#     outranks a stale full-year rate, and the most recent reviewed period is the
+#     half to 30-Jun-2026 at 12.428% against a twelve-month base of 9.653%. The
+#     LIKE-FOR-LIKE test the rule prescribes says the weakness is a superseded
+#     LEVEL and not a season: Q1-2025 5.053% against Q1-2026 10.190%, the same
+#     quarter, doubled — which no seasonal pattern produces — and Q2-2026 higher
+#     again at 13.925%.
+#
+#     IT IS NOT ADOPTED IN THIS EDITION, AND THE REASON IS A RULE RATHER THAN A
+#     PREFERENCE. [R-VCAL-01]'s promotion guard: levers are taken one at a time and
+#     stop the moment the stack would cross zero by more than the bootstrap
+#     half-width. The escalator correction already moved this study from 26.6%
+#     below the traded price to 12.3% below it; adding this one lands 35.9% ABOVE
+#     it. That is the overshoot the guard exists to prevent — five individually
+#     justified moves stacking into a bias in the opposite direction is the exact
+#     failure that called the method reassessment — so the second lever is priced,
+#     published beside the answer, and left for the next edition to take on its own
+#     evidence rather than on the momentum of this one.
+_GM_H1_FILED = V['gp_h1cy26'] / V['rev_h1cy26']
+_GM_Q1_2025 = 0.05053126981775711
+_GM_Q1_2026 = 0.10189872213051045
+_PS_H1_ANCHOR = waterfall(build(gm_shift=_GM_H1_FILED - build()['gm'][0]))['ps']
+say(f"[The base anchor — PRICED, NOT ADOPTED] the most recent reviewed period is the half to "
+    f"30-Jun-2026 at a gross margin of {_GM_H1_FILED:.3%}, against the twelve-month base of "
+    f"{BASE_GM:.3%} this study forecasts forward. The standing rule prefers the near-term "
+    f"reviewed actual, and the like-for-like test it prescribes supports it: Q1-2025 "
+    f"{_GM_Q1_2025:.3%} against Q1-2026 {_GM_Q1_2026:.3%} is the SAME QUARTER doubled, which "
+    f"seasonality cannot produce. Anchoring there and holding it flat gives EGP "
+    f"{_PS_H1_ANCHOR:.2f} a share ({_PS_H1_ANCHOR/SPOT-1:+.1%} against spot) against the "
+    f"adopted EGP {dcf_ps:.2f}. IT IS NOT TAKEN HERE. One correction has already moved this "
+    f"study from {_PS_POUND_AT_INFL/SPOT-1:+.1%} to {dcf_ps/SPOT-1:+.1%} against the price; a "
+    f"second would land {_PS_H1_ANCHOR/SPOT-1:+.1%}, crossing from one side of the price to the "
+    f"other in a single pass. Levers are taken one at a time and stop at the crossing, so this "
+    f"one is published as the study's most consequential contested judgement and left for the "
+    f"next edition.")
+
 # ---- synthesis --------------------------------------------------------------
 W = V['lens_weights']
 lenses = dict(
@@ -2257,6 +2361,45 @@ LENS_RECORD = {
     'diagnostics': dict(normalised_earnings=float(lenses['normalized']['base'])),
 }
 
+# ---- [R-ANCHOR-01] THE FORECAST IS ANCHORED ON THE LATEST REVIEWED PERIOD ----
+# Committed so a job outside this study can check it. The record is what a person
+# had to read by hand on 03-Sep-2026 to find that this study forecast a gross
+# margin BELOW every recent filed period on an unsourced escalator; from now on
+# scripts/check_forecast_anchor.py does the reading.
+#
+# No mechanism is declared because none is claimed: with the real cost drift
+# removed the forecast opens at the twelve-month base rather than reversing away
+# from it. The remaining distance to the latest reviewed half is the base-anchor
+# question, which is priced in the contested judgements and NOT taken this
+# edition -- and that distance is what this gate is measuring, correctly.
+FORECAST_ANCHOR = dict(
+    rate_name='gross margin',
+    latest_reviewed_period='six months to 30 June 2026, reviewed',
+    latest_reviewed_date='2026-06-30',
+    latest_reviewed_rate=float(V['gp_h1cy26'] / V['rev_h1cy26']),
+    first_forecast_rate=float(B['gm'][0]),
+    # NO MECHANISM IS CLAIMED, AND THE GATE IS RIGHT TO REFUSE THIS STUDY FOR IT.
+    #
+    # A mechanism WAS drafted here on 03-Sep-2026 -- one_off_in_the_latest_period,
+    # on the argument that the twelve-month base blends an audited weak half with a
+    # reviewed strong one -- and scripts/check_forecast_anchor.py rejected it on the
+    # like-for-like measurement supplied beside it: cost per unit of revenue in the
+    # SAME QUARTER a year apart runs 94.947% to 89.810%, i.e. the driver moved the
+    # OPPOSITE way to the mechanism claimed. That is the clause the gate exists for
+    # and it fired on the study whose defect prompted the rule, on its first run,
+    # against a record this desk had just written. The draft is left in the history
+    # rather than quietly deleted, because a mechanism refused by the company's own
+    # filings is the finding.
+    #
+    # So the honest state is: this forecast opens 22% relatively below the latest
+    # reviewed period and CANNOT name a mechanism the filings support. The reason it
+    # is not simply re-anchored is [R-VCAL-01]'s one-lever-at-a-time guard -- the
+    # move is priced at +55% in the contested judgements and would carry this study
+    # from 12.3% below the price to 35.9% above it in a single pass. AMOC is
+    # therefore listed on the forecast-anchor ratchet with that reason, and comes off
+    # it when the base anchor is taken at the next edition.
+    mechanism=None)
+
 BRIDGE_RECORD = dict(
     market='EG',
     balance_sheet_date='2026-06-30',
@@ -2312,7 +2455,7 @@ BRIDGE_RECORD = dict(
 )
 
 OUT = dict(
-    macro_record=MACRO_RECORD, lens_record=LENS_RECORD,
+    macro_record=MACRO_RECORD, forecast_anchor=FORECAST_ANCHOR, lens_record=LENS_RECORD,
     bridge_record=BRIDGE_RECORD,
     meta=dict(ticker='AMOC', company='Alexandria Mineral Oils Company S.A.E.', market='EGX',
               currency='EGP', asof='2026-09-03', spot=SPOT, shares_mn=SH, mktcap=MKTCAP,
@@ -2370,7 +2513,14 @@ OUT = dict(
              roic_term=roic_term, rr_term=rr_term, g=V['g_term'], bear=dcf_bear, bull=dcf_bull,
              ps_rating_basis=dcf_rating_ps, wacc_exp_rating=wacc_exp_rating,
              wacc_term_rating=wacc_term_rating, ps_nci_alt=dcf_nci_alt_ps, nci_alt=nci_alt,
-             ps_gross_basis=dcf_grossbasis_ps, ccy_alt_ps=ccy_ps),
+             ps_gross_basis=dcf_grossbasis_ps, ccy_alt_ps=ccy_ps,
+             # THE TWO FRAMINGS OF THE BASE ANCHOR, AND THE ONE OF THE ESCALATOR
+             # [added 03-Sep-2026]. Both priced through THIS waterfall, so the
+             # difference measures the CHOICE and not the construction.
+             pound_on_price=bool(POUND_ON_PRICE),
+             ps_pound_at_inflation=_PS_POUND_AT_INFL,
+             ps_h1_anchor=_PS_H1_ANCHOR,
+             gm_h1_filed=_GM_H1_FILED, gm_q1_2025=_GM_Q1_2025, gm_q1_2026=_GM_Q1_2026),
     terminal_recon=dict(roic=hist_roic, rr=hist_rr, implied_g=hist_impl_g,
                         character=hist_character, nopat=nopat_h, ic=ic_h, capex=capex_h,
                         nopat_cagr=nopat_cagr, stable_g=stable_g, stable_keys=stable_keys,
