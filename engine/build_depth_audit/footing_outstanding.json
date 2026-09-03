@@ -1,0 +1,8 @@
+{
+ "_why": "[R-ENF-02] ratchet for scripts/check_table_footing.py. Seeded 03-Sep-2026 with the 23 studies carrying no footing check; TWENTY-TWO cleared the same day. THE TWO THAT REMAIN HAVE NO DELIVERED DOCUMENTS AT ALL \u2014 STC and XPT ship no .docx, so a footing_check there would examine zero tables and fail its own population assert, which is correct: an empty result is not a clean result [R-ENF-04]. They clear when those studies deliver. MAY ONLY EVER SHORTEN (--prune).",
+ "_adopted": "2026-09-03",
+ "outstanding": [
+  "STC",
+  "XPT"
+ ]
+}

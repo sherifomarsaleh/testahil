@@ -1,0 +1,34 @@
+{
+  "_rule": "R-TERM-01 — a terminal's maintenance capital rests on a DISCLOSED useful life. engine/terminal_value.py refuses one this desk chose (SIGCM clause 1).",
+  "_source": "ADNOC L&S FY2025 annual report, note on property, plant and equipment: 'Depreciation is calculated using the straight-line method to allocate the assets' costs to their residual values over their estimated useful lives as follows'.",
+  "_file": "engine/adnocls_study/AR2025.pdf",
+  "_route": "text layer (pdftotext -layout, 846,805 characters extracted). No OCR needed; the figures foot against the same table in the prior-year report.",
+  "_extracted": "2026-09-03",
+  "lives_years": {
+    "buildings_ports_wharves_land_improvements": [7, 50],
+    "offshore_vessels": [20, 25],
+    "vessels_tankers": [25, 25],
+    "vessels_drybulk_and_containers": [25, 25],
+    "vessels_gas_carriers": [25, 40],
+    "jack_up_barges": [40, 40],
+    "dry_docking_components": [2, 5],
+    "plant": [20, 20],
+    "equipment_and_vehicles": [4, 10],
+    "furniture_fixtures_office_equipment": [4, 5],
+    "investment_properties": [20, 25]
+  },
+  "major_dry_docking_months": 60,
+  "right_of_use_lives_years": {
+    "land_main_mussafah": 19, "land_zmi_mussafah": 30, "land_kizad": 25,
+    "vessels": [1.5, 5]
+  },
+  "review_policy": "estimated useful lives, residual values and depreciation method are reviewed ANNUALLY, with the effect of any change accounted for prospectively.",
+  "adopted_for_terminal": {
+    "years": 25.0,
+    "basis": "the fleet, which is the asset base",
+    "reasoning": "ADNOC L&S is a shipping and logistics group and its terminal capital base is its fleet. Tankers, dry-bulk and containers are disclosed at 25 years exactly; offshore vessels at 20-25 and gas carriers at 25-40 bracket it. Plant is 20. The 50-year figure in the buildings range belongs to ports and land improvements, which are not what a replacement-cost fleet base measures.",
+    "what_would_overturn_it": "a disclosed breakdown of property, plant and equipment BY COST showing the base is dominated by ports and land improvements rather than by vessels; or a later filing revising these lives, which management reviews annually and accounts for prospectively.",
+    "the_finding": "The study's terminal implies a replacement cycle of 1/g = 50 years, because its terminal growth is 2.0%. Against a disclosed fleet life of 25 years it UNDER-CHARGES MAINTENANCE BY EXACTLY 2.00x, worth about -16.6% of enterprise value. THIS IS THE MODEL REPORT — the exemplar every study in this book is written against — and the error runs the OPPOSITE way to the pessimism this reassessment was called over, which is what makes it worth reporting rather than convenient to find.",
+    "sensitivity_ev": {"25": -0.166, "30": -0.111, "40": -0.041, "50": 0.0}
+  }
+}

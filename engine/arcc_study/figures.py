@@ -160,7 +160,12 @@ ax.text(h * 1.015, SPOT - span * 0.055, f'spot {SPOT:.0f}', color=RUST, fontsize
 ax.set_xlim(0, h * 1.09)
 ax.set_xlabel('Trading sessions ahead')
 ax.set_ylabel('EGP per share')
-ax.set_title('Three-month price cone — ILLUSTRATIVE ONLY, this cone is over-wide',
+# NO UNEARNED CALIBRATION VERDICT IN A TITLE. This read 'this cone is over-wide' until
+# 03-Sep-2026, which is a flag [R-CAL-02] publishes only when a two-sided binomial test
+# earns it — and this name's published record carries none. The honest title says what the
+# cone IS.
+ax.set_title('Three-month price cone — illustrative, anchored on the last session of the '
+             'price history rather than on the valuation date',
              fontsize=11, fontweight='bold', loc='left', pad=12)
 ax.legend(frameon=False, loc='upper left', fontsize=9)
 style(ax)
@@ -244,7 +249,11 @@ save(fig, 'fig7_stack.png')
 # ---- F8 sector supply and demand --------------------------------------------
 PS = D['peers']['sector']
 fig, ax = plt.subplots(figsize=(9.0, 3.7), dpi=110)
-cats = ['Nameplate\ncapacity', 'Production\n2025', 'Domestic\nconsumption 2025',
+# THE MIDDLE BAR IS SALES, NOT PRODUCTION. The committed input is named for what it is
+# — 'Egyptian cement and clinker SALES 2025, local plus export' — and the study's own
+# text calls it total sales, while this label called it production. One of the two was
+# wrong and it was the one drawn inside the picture, where no check reaches.
+cats = ['Nameplate\ncapacity', 'Total sales\n2025', 'Domestic\nsales 2025',
         'Dormant capacity\nunder revival']
 vals = [PS['capacity_mt'], PS['production_mt'], PS['consumption_mt'], PS['revival_mt']]
 cols = [GREY, SAGE, CANVAS, RUST]

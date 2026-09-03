@@ -388,8 +388,19 @@ table(is_rows, [1.7] + [0.8] * 8, size=8.0)
 
 H2('A.2  Balance sheet — three years actual')
 bs_rows = [['SAR mn', '2023', '2024', '2025']]
+# THE COLUMN MUST ADD UP FOR A READER. The four asset lines this table breaks out are SAR
+# 146mn, 147mn and 430mn short of the disclosed total in 2023, 2024 and 2025 — the study
+# holds the total and those four lines and no others, so the remainder cannot be NAMED here
+# without the underlying statements. It is printed as what it is: a labelled residual, so a
+# reader can see there are assets outside the four broken out and cannot mistake a missing
+# line for a wrong total. The step up in 2025 is real and is stated in the caption.
+for _y in ('FY23', 'FY24', 'FY25'):
+    HB[_y]['other_assets'] = HB[_y]['assets'] - (HB[_y]['ppe'] + HB[_y]['inv']
+                                                 + HB[_y]['recv'] + HB[_y]['cash'])
 for lbl, key in [('Property, plant & equipment', 'ppe'), ('Inventory', 'inv'), ('Trade & other receivables', 'recv'),
-                 ('Cash & equivalents', 'cash'), ('Total assets', 'assets'), ('Gross borrowings incl. leases', 'debt'),
+                 ('Cash & equivalents', 'cash'),
+                 ('Other assets, not broken out in this table (residual)', 'other_assets'),
+                 ('Total assets', 'assets'), ('Gross borrowings incl. leases', 'debt'),
                  ('Net financial debt', 'nd'), ('Equity attributable', None)]:
     if key is None:
         bs_rows.append(['Equity attributable', sar(HB['FY23']['eqp'], 0),
@@ -397,6 +408,16 @@ for lbl, key in [('Property, plant & equipment', 'ppe'), ('Inventory', 'inv'), (
     else:
         bs_rows.append([lbl, sar(HB['FY23'][key], 0), sar(HB['FY24'][key], 0), sar(HB['FY25'][key], 0)])
 table(bs_rows, [2.6, 1.15, 1.15, 1.15], size=8.6)
+caption(f'Table A2 — The balance sheet as reported, and it foots on the page. This study '
+        f'holds the disclosed total and the four asset lines broken out above; everything '
+        f'else the company reports as an asset is the residual row, which runs SAR '
+        f'{sar(HB["FY23"]["other_assets"], 0)}mn, {sar(HB["FY24"]["other_assets"], 0)}mn and '
+        f'{sar(HB["FY25"]["other_assets"], 0)}mn. IT IS NOT NAMED BECAUSE THIS STUDY DOES '
+        f'NOT HOLD ITS COMPONENTS, and naming them would be an invention rather than a '
+        f'disclosure. The step up in 2025 is real and is the one thing a reader should take '
+        f'from the row: something outside these four lines grew by SAR '
+        f'{sar(HB["FY25"]["other_assets"] - HB["FY24"]["other_assets"], 0)}mn in a single '
+        f'year, which this table cannot explain and which the next edition should.')
 
 H2('A.3  Forecast balance-sheet and cash-flow markers')
 mk_rows = [['SAR mn'] + [y for y in F['years']]]

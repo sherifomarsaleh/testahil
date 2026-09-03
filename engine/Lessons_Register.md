@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**117 lessons**, of which 90 bind on every study, 20 on a class of company, and 7 on a single name.
+**155 lessons**, of which 128 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 44 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 80 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -929,6 +929,166 @@ A correct rule, written down and implemented well in the one place it exists, bi
 
 > **What would overturn it.** A rule whose right implementation is genuinely study-specific — where a shared instrument would have to be so configurable that each study's declaration IS the implementation, at which point the sharing buys nothing but a common vocabulary.
 
+### L-086 · A system of checks has properties no check in it can see.
+
+Each gate can be individually right, individually negative-controlled, and collectively unable to answer the one question that matters about the set: can a new subject walk past all of them? Where a claim about the SYSTEM can be expressed as a test, write the test — it runs over the system rather than inside it, and it fails rather than warns.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the new-study gauntlet, 03-Sep-2026
+
+> **What it cost, or how we know.** Every ratcheted gate in this repository states that the build breaks on a NEW violation, and every one is negative-controlled. Planting an empty study directory and running the set found that four of seventeen stayed green — three legitimately, because they bite on artefacts rather than on the directory, and one on a real hole: check_artefact_currency skipped every two-sided study behind a comment claiming the branches were handled when nothing handled them, and EGCH's contested-judgements artefact sat stale at 1.7854 against a published 2.3109 for a full day.
+
+> **What would overturn it.** A system-level property that turns out to be unfalsifiable in practice — where every way of weakening the system to test the property is so artificial that its failure teaches nothing about the real risk.
+
+### L-087 · A comment asserting a check that does not exist is worse than no comment.
+
+It stops the next reader looking. An absent check invites the question; a comment claiming the check is elsewhere answers it wrongly and closes it. This is the documentation form of a self-attested boolean.
+
+**Applies to:** every study  ·  *Learned from:* found while building, check_artefact_currency, 03-Sep-2026
+
+> **What it cost, or how we know.** The gate skipped any study whose central was not a scalar, with the inline comment 'a two-sided study; handled by its branches'. Nothing in the file handled branches — the word appeared exactly once in it, in that comment. EGCH publishes a two-sided answer and therefore escaped the gate entirely, and its contested_judgements.json was stale by 29% for the whole day the gate reported clean.
+
+> **What would overturn it.** A comment that names the module or function actually performing the check, which is a pointer rather than an assertion and can be verified by following it.
+
+### L-088 · A formula right in real terms and wrong in nominal terms passes every arithmetic check that will ever be written.
+
+Nothing in it is arithmetically wrong, so recalculation, provenance, source discipline and four-field registers all come back clean. Where a quantity carries a unit — real or nominal, this year's money or that year's — the unit is the thing to check, and no amount of care inside the arithmetic will supply it.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-TERM-01], method reassessment, 03-Sep-2026
+
+> **What it cost, or how we know.** ARCC's terminal charged the reinvestment identity rr = g/ROIC with a NOMINAL g whose real component was zero, so it levied g x IC = EGP 3,583.4mn a year for ever, 62.2% of terminal profit, to buy nothing. It survived four revisions, a cell-by-cell recalculation with zero disagreements, a conforming beta attestation, all eight depth-bar standards and a clean external-reader scrub. Correcting it moved the central from EGP 53.21 to 66.53.
+
+> **What would overturn it.** A case where a real/nominal mismatch is caught by an ordinary arithmetic or provenance check rather than by someone asking what unit a quantity is in.
+
+### L-089 · An inflation rate that has quietly become an asset life will not announce itself, because both are just numbers.
+
+Read a perpetual capital charge as a replacement programme and ask how many years it implies. Where the charge is growth times invested capital the answer is one over the growth rate — a fact about the currency rather than about the plant, and one that gets worse the higher inflation goes, which is the exact opposite of prudence.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-TERM-01], method reassessment, 03-Sep-2026
+
+> **What it cost, or how we know.** ARCC's terminal implied replacing its entire replacement-cost asset base every 14.3 years, against 1/g of 14.3 to the decimal. Three implied lives sat inside the one model and disagreed by 2.8x — the terminal's 14.3, the explicit window's own capex at 40.2, and the DISCLOSED 20 from the audited accounting-policies note. The sourced figure sat between the model's own two conventions.
+
+> **What would overturn it.** A company contractually obliged to spend at that rate — a concession condition, a licence commitment or a take-or-pay — in which case the charge is real and the implied life is beside the point.
+
+### L-090 · When a gate fires on work that is right, the answer is almost never to widen it — and that applies to a gate this desk wrote an hour earlier.
+
+Widening a bound is a free parameter and moving the number to satisfy it corrupts the thing being measured. The third option — establish that the check is pointed at the WRONG MEASUREMENT and re-point it — is more work and is the only one that leaves the check stronger than it found it.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-TERM-01] and [R-COC-01], 03-Sep-2026
+
+> **What it cost, or how we know.** terminal_value.py first refused any terminal below NOPAT/W. ARCC's own beta sensitivity grid broke it: TV/floor tends to FCFF(1+g)/NOPAT = 0.658, below one by construction whenever maintenance exceeds book depreciation, so it fired on a sound terminal. AND IT WAS WRONG IN THE SAME WAY AS THE DEFECT IT WAS BUILT TO CATCH — it treated book depreciation as the cash cost of replacement. Re-pointed at the claim that survives: a company is never obliged to spend GROWTH capital.
+
+> **What would overturn it.** A case where widening a bound, rather than re-pointing it, left the check demonstrably stronger.
+
+### L-091 · A hard-coded zero is a defect in mirror image, and it is how a corrected defect comes back.
+
+Writing a quantity as a literal because it happens to be zero today removes the mechanism that makes it non-zero tomorrow. The model and the artefact then disagree about BEHAVIOUR rather than about a value, which no check on levels can see.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-TERM-01], ARCC workbook rebuild, 03-Sep-2026
+
+> **What it cost, or how we know.** The rebuilt workbook wrote terminal REAL growth as a literal 0.0, so bumping the terminal growth cell raised the value while the model lowered it: the workbook said growth was FREE. Every level reconciled — 919 of 919 formula cells reproduced the model — and only the driver test, which perturbs inputs and checks DIRECTIONS, caught it.
+
+> **What would overturn it.** A directional disagreement between a model and its workbook that a level-by-level reconciliation does catch.
+
+### L-092 · A review that reaches a confident wrong conclusion is more dangerous than no review.
+
+It closes the question. The way it happens is not carelessness: the review looks for the error everywhere the arithmetic could be wrong, the arithmetic is not wrong, and it concludes the disagreement must lie outside the model.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-GAP-01] and [R-TERM-01], ARCC, 03-Sep-2026
+
+> **What it cost, or how we know.** ARCC's revision-4 gap review audited a central of 53.21 at -30.9% and concluded in terms that 'the disagreement with the market is therefore not about the business at all', locating the whole gap in a cost of capital the market was applying 816bp below the Egyptian sovereign. The defect was in the terminal, which carried 41% of enterprise value and which the review did not examine. Its own MULTIPLE CROSS-CHECK heading would have shown it: 3.1x forward EBITDA and USD 78 per annual tonne against a replacement cost of USD 130.
+
+> **What would overturn it.** A gap review that reaches a wrong conclusion and is caught by the next reader as quickly as an absent review would have been.
+
+### L-093 · A filing is not read until the notes that bear on the model are read.
+
+Parsing a filing for its statements and treating it as read is the statement-level form of the unread-filing defect. The accounting policies carry useful lives, recognition clocks and definitions that decide constructions the numbers alone cannot settle.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-TERM-01], ARCC, 03-Sep-2026
+
+> **What it cost, or how we know.** ARCC's FY2025 filing had been parsed cell by cell for its statements across four revisions. Its accounting-policies note discloses machinery and equipment at 20 years, and that figure is what the terminal turned on — worth EGP 13.32 a share. The note had never been opened, and the filing carries no text layer at all, so reading it took OCR off the rendered pixels.
+
+> **What would overturn it.** A study where the accounting-policies note bears on no construction in the model — in which case it is not needed, and the record should say so rather than leave the note unopened.
+
+### L-094 · EVERY NOMINAL LINE IS UNDER-FORECAST ON EVERY NAME. That is the house bias, and it is about scale rather than about margin.
+
+Revenue, cost of sales, operating expense, tax, finance income and provisions all come in ABOVE forecast, with the same sign on all five names measured. Nothing about any single line looks careless; what is systematic is that the whole nominal scale of the business is set too low, which is a growth-path error rather than a base-year one.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, engine/valuation_calibration/systemic_bias.py, 03-Sep-2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** Pooled by-driver bias across all five completed runs: revenue -0.316, cost of sales -0.335, operating expense -0.272, tax -1.023, finance income -0.818, provisions -0.656 — every one negative on every name that reports it. At cell level on the two runs that commit cells the error COMPOUNDS with horizon (revenue -0.023 at one year to -0.348 at five), with an intercept near zero, which is the signature of a rate error and not a level error.
+
+> **What would overturn it.** A name whose nominal lines are over-forecast, or a horizon profile that is flat rather than compounding, either of which would move this from a growth-path finding to a base-year one.
+
+### L-094a · A finding measured on whichever names happened to have the data is not a sample of the book, and it will read like one.
+
+The subset was not CHOSEN, which is exactly what makes it feel like a random draw. It is not: whatever determined which runs committed their raw cells may well correlate with the thing being measured, and here it did — the two runs holding cells were both developers.
+
+**Applies to:** every study  ·  *Learned from:* found while building, engine/valuation_calibration/systemic_bias.py, 03-Sep-2026
+
+> **What it cost, or how we know.** The cell-level pool said PROFIT was forecast at +0.8084, x2.24 of actual, too high in 89% of 867 cells, on both names that commit cells — and it was reported as a HOUSE finding. Pooled across all five runs' aggregates it is -0.3424 and only 3 of 12 bottom-line drivers are too high: the two DEVELOPERS forecast profit far too high (PHDC +1.107, TMGH +0.264) and the three INDUSTRIALS far too LOW (AMOC -0.943, EGCH -0.774, ARCC -0.422). The claim was true of the subset and false of the book, and it was corrected within the hour by reading the aggregates the other three DO commit.
+
+> **What would overturn it.** A case where the names holding the richer data are demonstrably unrelated to the quantity under measurement — in which case the subset is a sample and may be treated as one, once that is shown rather than assumed.
+
+### L-095 · A forecast can under-forecast revenue AND under-forecast cost and still be optimistic, because the margin is the difference.
+
+Small errors in the same direction on two large lines do not cancel — they compound into the residual between them. Checking that revenue and cost are each roughly right is not the same as checking the margin, and the margin is what the value rests on.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, engine/valuation_calibration/systemic_bias.py, 03-Sep-2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** Revenue pools at -0.2243 (x0.80 of actual) and cost of sales at -0.1309 (x0.88) — both UNDER-forecast, which reads as conservative on each line taken alone. Because revenue is under-forecast by MORE, the forecast gross margin comes out too wide and gross profit pools at +0.2303. Finance cost at -1.1465 then carries the net line to +0.8084.
+
+> **What would overturn it.** A case where two same-signed line biases of unequal size leave the margin unbiased.
+
+### L-096 · The runs recorded their scores and not their observations, so a question about which LINES are biased could be answered on two names out of five.
+
+This is the amendment about valuation inputs arriving a second time, one layer along. The cells cost nothing to keep; they were simply not asked for, and nobody noticed the missing field until the question arrived.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-FCAL-01 AMENDED], 03-Sep-2026
+
+> **What it cost, or how we know.** AMOC, ARCC and EGCH commit bias, MAE, over-share and bootstrap intervals by driver, horizon and era — and not the per-cell projected-versus-actual pairs those were computed from. PHDC and TMGH commit 403 and 1,856 cells. So the line-level systemic bias analysis rests on two names, and the three that would have told us whether it generalises cannot.
+
+> **What would overturn it.** A pooled statistic from which the underlying cells can be recovered exactly, which would make committing them redundant.
+
+### L-097 · A defect whose direction depends on a market parameter will look like a house bias in whichever market you happen to be looking at.
+
+The complaint can be entirely true and its attribution entirely wrong. Only a census across markets separates the two, and correcting from the direction of the complaint alone gets the sign right on the names that prompted it and wrong everywhere else.
+
+**Applies to:** every study  ·  *Learned from:* found while building, engine/valuation_calibration/terminal_census.py, 03-Sep-2026
+
+> **What it cost, or how we know.** The retired terminal implied a replacement cycle of 1/g, so it over-charged where terminal inflation was high and UNDER-charged where it was low. Across the eleven studies carrying it, the implied life ran from 14.3 years (AMOC, 7% terminal inflation) to 66.7 (ADNOCDIST, 1.5%). Priced on a 30-year asset life, three names RISE and eight FALL, median -5.8% of enterprise value: it raises the Egyptian names the pessimism complaint came from and lowers the Gulf names, whose low terminal inflations bought them a forty- to sixty-seven-year replacement cycle no accounting-policies note supports.
+
+> **What would overturn it.** A market parameter whose variation across the book is too small for the direction of a defect to flip — in which case a one-market diagnosis does generalise.
+
+### L-098 · Rule candidates OUT by arithmetic before naming what is left. A gap review that lists unresolved items without pricing them tells a reader nothing about which one matters.
+
+Every study has open items and their existence is not evidence that they explain anything. Price each at a generous bound: what survives is the answer, and what does not is removed from the reader's attention rather than left to worry them.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EGCH gap review, 03-Sep-2026
+
+> **What it cost, or how we know.** EGCH's review named three unresolved items behind an 88% gap. Priced: the two book-carried non-operating assets are 77% of the equity value and so the most leveraged items in the bridge, yet closing the gap on them alone needs them at 7.8x carrying value — at a generous 2x they move the answer EGP 1.78 against a gap of EGP 12.10. The ANNA programme, which the whole study is architected around as a binary judgement, carries the answer from 2.31 to only 3.06 as its margin runs from 1.93% to 40%. The terminal charge is near value-neutral. All three ruled out; the gap is the cost of capital, and the enterprise value stands at 2.25x terminal EBIT against a market paying 7.13x.
+
+> **What would overturn it.** A review where the unresolved items, priced at generous bounds, DO span the gap — in which case listing them was the right answer and pricing them proves it.
+
+### L-099 · A DELIVERED TABLE MUST FOOT FOR THE READER, NOT ONLY FOR THE MODEL. Where a table prints components and a total, the total must be reproducible from the rows printed.
+
+A recalculation gate reconciles a model TO ITSELF, so a correct model passes however wrong the page is. A per-figure check matches each number against the model and passes when every figure is individually right. The defect lives in the RELATIONSHIP BETWEEN figures, and nothing that inspects figures one at a time can see it.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026, reading the rendered PDF page by page
+
+> **What it cost, or how we know.** Three tables in one delivered study, all after 919 of 919 formula cells reconciled and 533 prose figures matched with none unmatched. Table 3 deducted provisions and credit losses in the model and did not print the line, so a reader adding the printed rows came out EGP 82mn above the printed EBITDA. Table 5 printed four CONTRACTUAL rates and labelled their blend adopted at 13.36% — the printed four weight to 7.89%, and 13.36% reproduces from a local-equivalent column the table did not carry, under a caption reading built in the model from these four lines, not pasted. Table 2 went from cement sold of 3.553Mt to total despatches of 4.854Mt with the export cement tonnage printed nowhere, and clinker is 27% of this company's volume. In all three the model was right and the page could not be reconciled by the reader it was written for.
+
+> **What would overturn it.** A study where every unreconciled total turns out to be a legitimate exception, which would mean the arithmetic form of this check earns nothing beyond what a declaration already states.
+
+### L-100 · MEASURE A PROPOSED GATE ACROSS THE WHOLE BOOK BEFORE SETTING ITS BAR, and let the measurement decide the ARCHITECTURE and not merely the threshold.
+
+A check that fires on one table in seven is the check everyone learns to ignore, and the temptation on seeing that number is to loosen the arithmetic until it is quiet — which destroys the thing being measured. The third option is to keep the arithmetic exact and change WHO declares the exceptions.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the table-footing gate, 03-Sep-2026
+
+> **What it cost, or how we know.** Run book-wide with no declarations the instrument flagged 22.3% of all tables. Two of the three causes were the instrument being WRONG about how tables work — a balance sheet foots over its subtotals rather than its leaf rows (67 tables), and a row labelled Total assets heading a summary balance sheet is a disclosed line item with nothing above it (34 tables) — and both were fixed rather than declared away, taking the rate to 16.5%. The residue is IRREDUCIBLE: a Total equity row listed AMONG line items is structurally indistinguishable from a roll-up, and so is a driver named Blended ARPU in a sensitivity grid. So the arithmetic stayed exact and the study declares its own exceptions with reasons — the prose_figures architecture, reached by measurement rather than by preference. ARCC needed three declarations and each names a real structural fact about its own table.
+
+> **What would overturn it.** A rule set that separates a roll-up from a list of line items by shape alone, which would make the per-study declaration unnecessary rather than merely narrower.
+
 ### L-208 · A check that fails by the calendar is not a check.
 
 If a generated file carries today's date, or an age counted in days, and something compares that file byte for byte, the comparison starts failing at midnight with nothing changed. Everyone learns to ignore it, and then they ignore it on the night it means something. Put the date the CONTENT was sourced in the file, and leave 'how old is that now' to a tool someone runs.
@@ -978,6 +1138,226 @@ Running the checks you remember is not running the checks. The two lists drift t
 > **What it cost, or how we know.** 'Every gate green' was reported here while CI had been red for a day on a step that lives inline in the workflow and was never in the hand-maintained list. The sweep now parses the workflow and runs every step it declares, so a step added to CI is a step it runs.
 
 > **What would overturn it.** Nothing yet. If a workflow ever declares steps that cannot be meaningfully run outside the runner, they are skipped BY NAME and counted, never dropped.
+
+### L-213 · A DIRECTION WORD IS A CLAIM AND IS CHECKED AGAINST THE SIGN BESIDE IT. Compute the word, not only the number.
+
+Every figure-level gate here reconciles NUMBERS. The words around them are typed, and a typed word does not look like a figure — so a correctly computed ratio can sit beside a direction word that says the opposite and no check notices.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026, reading the rendered PDF
+
+> **What it cost, or how we know.** ARCC shipped 'This model forecasts EGP 3,842mn for FY2026, +1.8% below the simple annualisation' — the ratio computed correctly, the word saying the opposite, in the paragraph the study itself calls the sharpest challenge to its forecast. Measured across every delivered document in its latest edition, a regular expression matching a signed percentage against a contradicting direction word within three words finds ONE further instance and no false positives: MODON publishes 'AED 2.50, -12% above the market'. Two innocent constructions fired against the first draft and taught the pattern — a TEMPORAL 'over' (fell -2.4% over the same span) and a RANGE DASH (80-85% above the 2024 average) — so bare 'over' is not in the upward set and a sign preceded by a digit is not a minus.
+
+> **What would overturn it.** A book where this pattern fires on constructions that are correct more often than on ones that are wrong, which would make it a check people learn to ignore.
+
+### L-214 · A PART-YEAR STUB MUST SHOW ITS SCALING FACTOR ON THE PAGE. A column whose components are full-year and whose total is part-year cannot be footed by anyone.
+
+The model is right and the reader is stranded: the arithmetic fails by exactly the stub fraction, with nothing printed to explain it, and the natural inference is that the total is wrong.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026, reading the rendered PDF
+
+> **What it cost, or how we know.** ARCC's cash-flow waterfall printed NOPAT 3,745 plus depreciation 344 less capital expenditure 890 less working capital 108 — which sums to 3,091 — against a printed free cash flow of 1,545, exactly half, because the valuation date is 30 June and only the remaining half-year is discounted. Every other column footed to the last unit. The caption compounded it by stating FIVE months not yet earned and SEVEN already earned, both typed, against a committed stub of 0.500 — six and six. The remaining fraction is now a printed row and the months are computed from the stub.
+
+> **What would overturn it.** A stub convention where the components are themselves pro-rated, in which case the column foots without the extra row and printing it would be noise.
+
+### L-215 · WHEN A CONSTRUCTION IS RETIRED, ASSERT ITS INPUTS GONE FROM THE PROSE AS WELL AS FROM THE MODEL. A retirement that leaves the workbook clean and the sentences talking is a rule half-applied.
+
+Retiring a construction is a code change, and code changes are checked by code. The sentences describing it are typed, so they survive the retirement silently and go on telling a reader the model does something it stopped doing.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026, reading the rendered PDF and then making it arithmetic
+
+> **What it cost, or how we know.** The typed lens blend was retired and the workbook was asserted clean of its four weight cells. SIX sentences went on quoting those weights in the present tense — the cash-flow lens 'carries half the weight', the relative lens 'carries 20% and not more', the asset lens 'carries only 8%', an expert falsifier ending on 'carries only 8% of the weight', and two comparison passages. READING THE PAGES FOUND THREE OF THE SIX; a five-line assertion driven off the retired inputs' own committed values found all six in one run, which is the whole argument for making a lesson arithmetic. The assertion permits a weight to be NAMED where the sentence places it in a superseded edition, because saying what a previous edition did and why this one does not is the legitimate use.
+
+> **What would overturn it.** A retirement where the prose genuinely cannot be checked against the retired input, for instance one whose value is too common a number to match on.
+
+### L-216 · A CHECK THAT OPENS A DELIVERED FILE MUST RESOLVE IT BY DATE, NEVER BY STRING SORT.
+
+Edition filenames carry DD-MM-YYYY, so alphabetical order is not chronological order and sorted(...)[-1] silently returns whichever name sorts last.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026
+
+> **What it cost, or how we know.** The first draft of the retired-weight assertion took sorted(glob(...))[-1] and opened the superseded 08-08-2026 edition, because '08-08-2026' sorts above '03-09-2026'. It reported that edition's defects as current and would equally have reported a clean superseded file as proof that a defective delivered one was fine. This is L-066 and L-067 — a check that opens a delivered file by name moves with the re-issue — recurring in a new form within a day of being registered, which is evidence that the lesson needed to be arithmetic rather than remembered.
+
+> **What would overturn it.** A repository whose delivered filenames sort chronologically as strings, which would make the distinction moot.
+
+### L-217 · A GENERATOR THAT CRASHES LEAVES ITS ARTEFACT EXACTLY AS IT WAS, AND THE DOCUMENT GOES ON PUBLISHING IT. A broken generator is silent in a way a wrong one is not.
+
+Nothing in a build pipeline distinguishes 'this file was not regenerated' from 'this file did not need regenerating'. The artefact keeps its timestamp, keeps its shape, and keeps the numbers of whichever edition last ran successfully.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026, reading the rendered PDF
+
+> **What it cost, or how we know.** scenario_margin.py ended on sum(v[k] * L['weights'][k]), and when the typed lens blend was retired under [R-LENS-03] the weights left the numbers file and the generator began raising KeyError on every run. The delivered study went on publishing that file's LAST SUCCESSFUL output — a base case of 55.40 / 54.65 against a published 66.53, in a table headed 'Central', 29% below a spot the same study elsewhere reports it as 13.6% below. Re-running it then exposed a SECOND defect the crash had been hiding: the harness re-implemented the discounted cash flow rather than calling the model, so it still carried the retired rr = g / ROIC terminal and landed 27% below the study it exists to reproduce, and it dropped other operating income entirely. Its own G3 gate said so the moment it ran. Now it calls the shared terminal builder on the study's own committed terminal record and reproduces 66.53 exactly.
+
+> **What would overturn it.** A build system that fails the whole run when any generator raises, which would make the silence impossible rather than merely detectable.
+
+### L-218 · TEXT DRAWN INSIDE A FIGURE IS INVISIBLE TO EVERY CHECK THAT READS A DOCUMENT. Compute it, because nothing else will catch it.
+
+The prose-figure gate reads a document's text; a chart's annotation is pixels. A number typed into a figure therefore has NO instrument pointed at it at all, which inverts the usual intuition that a chart is somehow less load-bearing than a sentence.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026, reading the rendered PDF
+
+> **What it cost, or how we know.** Figure 4's annotation read 'the whole EGP 15.10 gap is forward-looking' and 'that cash is inside the 54.65' — the superseded edition's gap and central — drawn directly above bars that already ended at 66.53, in a figure whose underlying record was current and declared its vintage correctly. It also claimed two thirds of the gap was capex and a dividend when those two steps together are several times the gap. Every figure in the annotation is now computed from the record the bars are drawn from, so the text and the picture cannot disagree.
+
+> **What would overturn it.** A rendering pipeline that emits figure text into the document's text layer, where the existing prose gate would reach it.
+
+### L-219 · A DISTANCE IS MEASURED FROM THE PRICE ITS SUBJECT WAS COMPUTED ON, NEVER FROM A PRICE OF ANOTHER DATE. Two clocks in one column produce figures that are individually correct and jointly impossible.
+
+The technical read is built on the price library; the study's spot is the latest known market price, and the two can be weeks apart. A percentage that divides one by the other has no meaning and does not announce itself as meaningless.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026, reading the rendered PDF
+
+> **What it cost, or how we know.** ARCC's levels table headed a column 'Distance from spot' and divided every level by a spot of 77.00 struck on 3 September, while the levels themselves come from a library ending 6 August at a close of 59.00 — four weeks and 30.5% earlier. Every resistance and every support printed as a large NEGATIVE, and the 52-WEEK HIGH printed 21.6% BELOW the current price, which is impossible on one clock. The read itself was internally coherent throughout: resistance 1 above its own close, support 1 below it. Distances are now measured from the read's own close with that date in the column heading, and the gap between the two dates is stated in the caption rather than buried inside a percentage.
+
+> **What would overturn it.** A study whose technical read and spot are always struck on the same session, which would make the distinction unnecessary rather than merely invisible.
+
+### L-220 · A WIDENING MADE TO CLEAR A FALSE POSITIVE CAN HIDE A TRUE ONE. Widening a rendering set across two CLOCKS is not the same discipline as widening it across two renderings of one quantity.
+
+The standing rule that a false positive is fixed by widening the set, never by deleting the figure, is right — and it says nothing about which widenings are legitimate. Admitting both a correct and an incorrect anchor makes the check pass on either, which is indistinguishable from not checking.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026
+
+> **What it cost, or how we know.** prose_check declared PF.relative_to(technicals, (read_close, spot)) — both anchors — so the levels table's wrong-clock distances were IN the rendering set and the gate reported 0 unmatched on a table showing the 52-week high below the current price. Narrowed to the read's own close, with the single figure that legitimately spans both clocks — the gap between them, stated in the caption — declared explicitly.
+
+> **What would overturn it.** A quantity genuinely quotable against two different anchors in the same document, where the reader is told which is which at each use.
+
+### L-221 · A CAUTIOUS-SOUNDING VERDICT IS STILL A VERDICT AND IS PUBLISHED ONLY WHERE THE RECORD EARNS IT. Understating in the wrong direction is not a safe error.
+
+A flag that flatters gets checked; a flag that disparages our own work reads as conservative disclosure and is waved through. Both are claims about the world.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026, reading the rendered PDF
+
+> **What it cost, or how we know.** The cone figure was titled 'ILLUSTRATIVE ONLY, this cone is over-wide' and the body said the map was labelled illustrative 'because its own calibration record says it should be'. That name's published record carries NO flag: 41 of 44 resolved three-month forecasts finished inside the 90% band, 93.2% against a 90% target, which the two-sided test does not distinguish from the target, and its width of 1.43x a naive random walk is the ordinary figure for its exchange and is disclosed rather than judged. The study was publishing a flag the record does not earn and attributing it to that record. Replaced with the record's own numbers and a title saying what the cone IS — anchored on the last session of the price history rather than on the valuation date.
+
+> **What would overturn it.** A record that does earn the flag, in which case publishing it is the rule working.
+
+### L-222 · READ THE SITE'S DATA THROUGH A REAL JAVASCRIPT PARSE, IN EVERY PLACE THAT READS IT — not only in the checkers written after the lesson.
+
+A regular expression over a JavaScript object literal returns the FIRST match where the parser takes the LAST, so a duplicated key means the tool inspects the half no reader ever sees.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026
+
+> **What it cost, or how we know.** The standing rule was adopted after a reader — not a check — found a ticker page publishing a support above its own close while both existing gates reported it clean, and one study (EGCH) implements it correctly through node. ARCC's own band-record reader was a regex over data.js the whole time. The rule was right, was written down, and bound in one place, which is the same shape as the prose-figure and sweep-module findings of the same week.
+
+> **What would overturn it.** A data file that is genuinely a flat key-value format with no possibility of a duplicate key, where a regex and a parser cannot disagree.
+
+### L-223 · COUNT HOW MANY PLACES A RULE ACTUALLY BINDS BEFORE BELIEVING IT BINDS. The number is usually smaller than the number of places it applies.
+
+A rule written in prose is obeyed where somebody implemented it and nowhere else, and nothing about the repository shows the difference — every file looks equally compliant until somebody counts.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the site-data reader, 03-Sep-2026
+
+> **What it cost, or how we know.** [R-ENF-03] requires assets/data.js to be read through a real JavaScript parse and was adopted after a reader found a ticker page publishing a support above its own close while both gates reported it clean. Four weeks later, FORTY-FOUR files read the site's data and THIRTEEN still did it by regular expression, including three engine modules and four repository-level scripts. This is the fourth finding of identical shape in one week — the prose-figure check implemented by one study of twenty-four, the sweep register by sixteen of seventeen, the external-reader scrub as a hand-maintained word list per study, and now this. The remedy is the same every time: one shared instrument, and a gate that counts.
+
+> **What would overturn it.** A rule whose implementations are structurally impossible to count, where the honest answer is that it cannot be enforced from outside and must stay prose.
+
+### L-224 · A PROBABILITY AND THE BOUNDARY IT IS MEASURED AGAINST MUST COME FROM THE SAME CLOCK. This is the two-clock error in the one place where it changes what a reader believes will happen.
+
+A distribution simulated from one anchor answers questions about that anchor. Splitting its bands at a different price and keeping its probabilities states the chance of finishing above one number using the distribution of another — and the result looks like an ordinary percentage.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026, reading the rendered PDF
+
+> **What it cost, or how we know.** The probability-zone table drew its boundaries at the latest close of 77.00 and took its probabilities from the simulation's P(above the ANCHOR) of 59.00, so it published a 51% chance of finishing above 77.00 from a distribution whose median is 60.46 and whose 95th percentile is 83.17 — roughly three times the truth, in the one table whose entire purpose is to state probabilities. Every other figure on the page was correct. Boundaries and probabilities now both sit on the anchor, the anchor is named rather than called spot, and the caption states how far the latest close is from it.
+
+> **What would overturn it.** A study whose cone is re-struck at delivery on the same price the valuation uses, where the two clocks coincide and the distinction cannot arise.
+
+### L-225 · A SUMMARY SENTENCE IS A CLAIM AND IS RECOMPUTED, NOT REMEMBERED. Counts and directions in prose go stale exactly like figures, and nothing looks less like a number than a word.
+
+Figure gates match numerals. A sentence saying which lenses sit above the price contains no numeral at all, so it survives every re-strike untouched while the lenses move underneath it.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026, reading the rendered PDF
+
+> **What it cost, or how we know.** One sentence in section 4 said 'the two multiple-based lenses put fair value below the current price and the two forward-looking ones put it above', two paragraphs after the same page stated that EVERY lens sits below the market. Both could not be true; the second was. The same sentence carried a typed 98% restating a computed one, a typed 52-week high and low, a distance computed against spot while the high and low came from a read four weeks earlier, and a duplicated word. It is now computed from the lens values, and it says the uncomfortable thing plainly: no reading in the study supports the price.
+
+> **What would overturn it.** A study where the lens set is fixed and cannot move between editions, making a written count safe.
+
+### L-226 · A CHECK THAT READS A DELIVERED DOCUMENT READS ITS TABLE CELLS TOO. A reader does not distinguish a paragraph from a cell, so a check that does is checking a different document.
+
+python-docx exposes paragraphs and tables as separate collections, so the natural one-line way to get a document's text silently omits every table — which is where the densest and most quotable claims sit.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026
+
+> **What it cost, or how we know.** The check written that morning to stop a retired diagnostic being quoted as the live figure read paragraphs only, and reported clean while the cross-examination TABLE carried 'the terminal return and reinvestment rate this study computes (11.26% ...)' — the retired construction's own number, in the cell whose job is to reject an objection on evidence. This is the PHDC precedent in this repository, where a standing-rule identifier leaked to a reader through a table cell for the same reason. Widened, it caught the defect on its first run.
+
+> **What would overturn it.** A document format where tables are part of the paragraph stream, making the omission impossible rather than merely easy.
+
+### L-227 · READING THE RENDERED PAGES IS NOT A FORMALITY AND NOTHING CURRENTLY REPLACES IT. Budget it per re-issue, and mine each finding for the check that would have caught it.
+
+Every automated gate here points from the page back to the model and asks whether each figure came from it. The defects that survive are the ones that live BETWEEN figures, in the words around them, inside pictures, or in a relationship between two tables — none of which a per-figure check can see.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026
+
+> **What it cost, or how we know.** Reading all 32 pages of one delivered study found roughly forty distinct claim-level defects, in a study that had just passed the recalculation gate, the prose-figure check, the external-reader scrub, the column audit and every repository-level gate. The most serious stated a 51% probability for an outcome the model puts near 15%; several published a superseded edition's numbers; one contradicted its own page two paragraphs later. SIX of the classes were then made arithmetic in the same session and are now in CI — table footing, the sign-word check, the retired-input check, the shared site-data reader, delivered-PDF currency and artefact currency — so the next study cannot repeat them. The residue is the argument for keeping the read.
+
+> **What would overturn it.** A re-issue where the read finds nothing the gates did not, sustained over several studies, which would mean the instruments have caught up with the reader.
+
+### L-228 · RUN A NEW INSTRUMENT OVER THE WHOLE BOOK BEFORE BELIEVING ITS FIRST FINDING. Most of what a fresh check reports is the check being wrong about how the work is shaped.
+
+A gate written from one study's defects encodes that study's table conventions. The book carries several more, each of them ordinary, and each looks like a defect until somebody looks at it.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the table-footing gate, 03-Sep-2026
+
+> **What it cost, or how we know.** Pointed at the five rebuilt studies the gate reported 38 unreconciled totals. FOUR were the instrument, not the book, and all four were fixed rather than declared: a date column parsed as numeric because 'Jan 2026' yields 2026 under any reader that tolerates a prefix; a TOTAL row that is a SUM in one column and a WEIGHTED MEAN in another, which the first draft tried only for labels containing the word 'weighted'; a weighted mean whose band ignored the ROUNDING OF ITS OWN WEIGHT COLUMN, condemning a product table by five units on a band of four; and an 'OF WHICH' breakdown, whose indented sub-items were counted alongside the parent line they decompose, condemning a balance sheet that foots exactly. Each fix made the instrument more right rather than more permissive, and the negative control held at 14/14 through all four.
+
+> **What would overturn it.** A first run whose findings are all real, which would mean the instrument was written from a wide enough sample to begin with.
+
+### L-229 · A RATCHET ENTRY IS EARNED BY A NAMED FINDING, NOT BY SILENCE. Where a study cannot clear a check, write down what it failed on and keep it listed.
+
+The temptation on a stubborn red is to declare the exception and move on; a declaration with a reason that is really 'this one is awkward' is the rubber stamp the whole mechanism exists to prevent.
+
+**Applies to:** every study  ·  *Learned from:* found while building, TMGH 03-Sep-2026
+
+> **What it cost, or how we know.** Four studies were given footing declarations in one pass. Three came off the ratchet with every exception naming a real structural fact — an input register keyed by name, a transposed cost-of-capital table, a blend across products whose weights live in another table, disclosed line items in a summary. The fourth did not: TMGH's as-reported balance sheet is 748 SHORT in its non-current block and 24 short in its current block against the rows it prints, so either the statement carries lines the table omits or the totals are wrong. That is the reader's problem either way, it was not resolved, and the study stays listed with that as its recorded reason.
+
+> **What would overturn it.** A book where every red resolves to a legitimate structural exception, which would mean the instrument is measuring nothing.
+
+### L-230 · A STATEMENT THAT CLOSES AT THE TOP CAN STILL FAIL A READER IN EVERY BLOCK BELOW IT. Check the sub-totals, not only the identity.
+
+Total assets equalling equity plus liabilities is the check every model already runs on itself, and it passes whether or not the printed components of each block add up to their own sub-total. The reader adds the column, not the identity.
+
+**Applies to:** every study  ·  *Learned from:* found while building, TMGH 03-Sep-2026
+
+> **What it cost, or how we know.** TMGH's as-reported balance sheet closed PERFECTLY at the top — non-current plus current is total assets to the pound, and equity plus liabilities is the same figure — so every check that reconciles a model to itself passed it. Below that, the five printed non-current lines came out EGP 748mn short of their own sub-total and the seven current lines EGP 24mn short. The study was not wrong: it HELD every missing figure as a registered input and simply did not print them — intangibles 84.6 plus right-of-use 481.4 plus deferred tax 182.0 is 748.0 to the last hundred thousand, and work in progress is 23.6. A reader adding a column had no way to tell a missing line from a wrong total.
+
+> **What would overturn it.** A presentation that deliberately shows principal lines only and SAYS so, where the residual is labelled rather than absent.
+
+### L-231 · TRIAGE A GATE'S BACKLOG BY HOW CLOSE THE ARITHMETIC COMES, NOT BY THE LABEL. A block that ALMOST foots is a missing line; one that is wildly off is a different kind of row altogether.
+
+Both arrive as the same complaint — a total that does not follow from the rows above it — and reading eighty-seven of them one at a time is how a backlog becomes permanent. The distance separates them in a single pass.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the table-footing port, 03-Sep-2026
+
+> **What it cost, or how we know.** Run across the nineteen studies carrying no footing check, the gate reported 87 unreconciled totals. Sorting each by how close its nearest printed block comes to the stated total split them cleanly: 21 land within six per cent, and every one inspected is the TMGH signature — a summary statement omitting small lines it already holds as registered inputs, closing perfectly at the top and short by half a point to two points in each block below (ADNOCDRILL, AMR, EMPOWER, RIYADHCABLE, EIPICO). The other 66 are far off and are structural: a disclosed line item among its peers, a transposed cost-of-capital table whose weights are a row, a blend across a dimension the column does not carry. Recorded in footing_findings.json rather than resolved, because recording a finding is what stops a backlog from silently becoming a declaration.
+
+> **What would overturn it.** A backlog where the two classes overlap in distance, which would mean the triage is measuring the wrong thing and each case must be read individually.
+
+### L-232 · WHEN A RULE KEEPS BREAKING, SUSPECT THE INSTRUMENT BEFORE THE WILL. Ask what mechanism is behind it and whether that mechanism can physically do the job.
+
+A rule that has been restated three times and broken three times is not a rule anyone disagrees with. Restating it a fourth time is the cheapest response and the one least likely to work; asking what enforces it is the expensive one.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the continuation routine, 03-Sep-2026
+
+> **What it cost, or how we know.** "Do not stop" was adopted, written into the operating protocol, and broken twice in one afternoon, each time by ending a turn on a progress report. The machinery behind it was an hourly cron, and a cron has three properties that make it unable to do this job: it CANNOT FIRE INTO A TURN THAT IS ALREADY RUNNING, so it shortens the gap after a stop and can never prevent one; its floor is SIXTY MINUTES, tested and refused below that; and nothing inside a turn forces a next action. Its own prompt admitted the first — "so that stopping costs an hour rather than half a day" — which describes a backstop. The replacement is SELF-RE-INVOCATION: the last act of a turn that ends with work remaining launches a background task whose EXIT re-invokes the session, caused by the stop rather than by a clock, inside the turn's own control, and costing a minute. The cron is demoted to the archived-session case it can actually serve.
+
+> **What would overturn it.** A rule that keeps breaking while its mechanism demonstrably can do the job, which would mean the diagnosis really is about will and the remedy is elsewhere.
+
+### L-233 · WHERE A TABLE DOES NOT ADD AND THE MISSING LINES ARE NOT HELD, PRINT A LABELLED RESIDUAL. It is not inventing data — it is arithmetic on two figures the study already has — and it is strictly better than a column that does not add.
+
+The instinct on finding a gap that cannot be closed from the sources to hand is to leave it, because naming the missing lines would be an invention. That is right about the naming and wrong about the leaving: a reader facing a column that does not add cannot tell a missing line from a wrong total, and the residual tells them which.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the footing port, 03-Sep-2026
+
+> **What it cost, or how we know.** Five studies came out short against their own disclosed totals. TMGH, ADNOCDRILL and EMPOWER HELD every missing figure as a registered input and were fixed by printing the lines — EMPOWER's eleven of them, with the builder asserting that each residual IS the sum of the specific lines it names, because a residual computed as total-less-printed foots BY CONSTRUCTION and proves nothing. AMR and RIYADHCABLE did NOT hold them, and were fixed by a row labelled 'Other assets, not broken out in this table (residual)' with a caption saying why it is not named. RIYADHCABLE's residual then became a finding in its own right: SAR 146, 147 and 430mn, so something outside the four broken-out lines grew by SAR 283mn in one year, which that table cannot explain and the next edition should.
+
+> **What would overturn it.** A residual so large that labelling it is a way of not investigating it, where the honest answer is to obtain the statements instead.
+
+### L-234 · A NEW GATE'S FALSE-POSITIVE RATE IS A PROPERTY OF THE GATE, AND IT FALLS AS THE GATE LEARNS THE WORK. Measure it, fix the instrument, measure again — never widen a bound to make a number look better.
+
+The first run of any check over an existing book reports mostly its own ignorance of how that book is shaped. Treating that number as a defect rate leads to loosening; treating it as a to-do list of things the instrument does not yet understand leads to a sharper check.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the table-footing port, 03-Sep-2026
+
+> **What it cost, or how we know.** The book-wide advisory fell 22.3% -> 10.5% across SEVEN instrument fixes in one session, and not one of them loosened a tolerance: a balance sheet foots over its SUBTOTALS; a row labelled Total assets HEADING a summary is a line item with nothing above it; a date column parses as numeric because 'Jan 2026' yields 2026; a TOTAL row is a sum in one column and a WEIGHTED MEAN in another; a weighted mean's band must carry the rounding of its own WEIGHT column; an 'OF WHICH' row is a breakdown of the line above and not a peer; a DASH in a total cell is 'not shown' rather than a claim of zero, while a dash in a component is zero; a PERCENTAGE is not a component of a currency total; and an EMPTY cell in a row that carries values elsewhere means 'does not apply here' rather than the end of the block. The negative control held at 14/14 through every one, which is what made the fixes safe to make quickly.
+
+> **What would overturn it.** A fix that lowers the rate by relaxing what counts as reproducible rather than by correcting what the instrument believes about tables.
 
 
 ---

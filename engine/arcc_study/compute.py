@@ -134,6 +134,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
 import macro_path as MP
+# [R-TERM-01] — the terminal comes from the shared builder, never from a local
+# construction. Every study once hand-rolled its own beta and every one was wrong the same
+# way; the terminal census found the same shape in the terminals, so it lives in one place.
+import terminal_value
 
 # THE PRICE AND THE EDITION EACH HAVE ONE DATE, DECLARED ONCE.
 # Four places in the delivered files once read 'latest known close (6 August 2026)'
@@ -322,6 +326,8 @@ INP = dict(
     cos_overhead_fy25=I(641.143208, AFS25 + " — note 5, overhead costs", "2025-12-31", "Company"),
     cos_mfg_dep_fy25=I(254.765548, AFS25 + " — note 5, manufacturing depreciation",
                        "2025-12-31", "Company"),
+    cos_intang_amort_fy25=I(30.681613, AFS25 + " — note 5, amortisation of intangible "
+                            "assets charged to cost of sales", "2025-12-31", "Company"),
     ga_admin_dep_fy25=I(4.324134, AFS25 + " — note 6, administrative depreciation",
                         "2025-12-31", "Company"),
 
@@ -353,9 +359,13 @@ INP = dict(
               "2025-12-31", "Company"),
     ppe_fy25=I(2522.323523, AFS25 + " — property, plant and equipment (net), note 12",
                "2025-12-31", "Company"),
-    auc_fy25=I(391.543753, AFS25 + " — assets under construction, note 13: alternative-fuel "
-               "system for production line 2 EGP 240.235mn, new steel cement silo for line "
-               "1 EGP 146.239mn", "2025-12-31", "Company"),
+    auc_fy25=I(391.543753, AFS25 + " — assets under construction, note 13", "2025-12-31",
+               "Company"),
+    auc_altfuel_fy25=I(240.235369, AFS25 + " — note 13, assets under construction: "
+                       "alternative-fuel system for production line 2", "2025-12-31",
+                       "Company"),
+    auc_silo_fy25=I(146.238521, AFS25 + " — note 13, assets under construction: new steel "
+                    "cement silo for production line 1", "2025-12-31", "Company"),
     intang_fy25=I(106.799617, AFS25 + " — intangible assets (net), note 14: the operating "
                   "licence", "2025-12-31", "Company"),
     inv_fy25=I(1053.646218, AFS25 + " — inventories, note 16: raw materials 282.765, fuel "
@@ -382,6 +392,15 @@ INP = dict(
     # the multiple is COMPUTED from the two figures rather than typed into the note: 950
     # was right and it was a numeral in a justification, which is where this rule reaches
     # too [found by prose_check.py]
+    central_pre_rebuild=I(61.30, "The central published by the edition of this study that "
+                          "PRECEDED the 06-08-2026 bottom-up rebuild, as recorded in that "
+                          "edition's own caveats section and carried unchanged in every "
+                          "edition since. THIS MODEL CANNOT COMPUTE IT — a different model "
+                          "produced it, and the file itself is not retained in the "
+                          "repository — so it is registered as the historical fact it is "
+                          "rather than typed into a builder, which is the same disposition "
+                          "any superseded figure quoted to show what changed must take.",
+                          "2026-08-06", "House"),
     nci=I(0.158005, AFS25 + " — non-controlling interests, note 24: EGP 158,005. Revision 1 "
           "deducted EGP 150mn on inference from the profit statements; the audited figure "
           "is %.0f times smaller and immaterial to the bridge" % (150.0 / 0.158005),
@@ -1431,13 +1450,66 @@ dwc = [(rev_f[i] - prev_rev[i]) * V['wc_pct_drev'] for i in range(5)]
 # is nowhere defended. The cost of building a plant in pounds tracks the pound cost of
 # building it. Rolled at the model's own cost index.
 ic_repl = V['cap_cement_mt'] * V['repl_usd_t'] * V['fx'] * V['cost_infl'][5]
-roic_t = nopat[-1] * (1 + V['g_term']) / ic_repl
 fcff = [nopat[i] + dna_f[i] - capex[i] - dwc[i] for i in range(5)]
 fcff[0] *= REM
 pv = [fcff[i] * df_[i] for i in range(5)]
 sum_pv = float(np.sum(pv))
+
+# ---------------------------------------------------------------------------------------
+# THE TERMINAL, THROUGH THE SHARED BUILDER [R-TERM-01]. Revisions 1-4 built it from the
+# reinvestment identity rr = g/ROIC on replacement-cost capital, which substitutes to
+#
+#       TV = [ NOPAT(1+g) - g . IC ] / (W - g)
+#
+# and therefore charged g x IC = 7% x 51,190.9 = EGP 3,583.4mn EVERY YEAR FOR EVER, 62.2%
+# of terminal profit. Read that charge as a capital-maintenance programme and the implied
+# replacement cycle is IC/(g.IC) = 1/g = 14.3 YEARS. THE IMPLIED ASSET LIFE WAS THE
+# RECIPROCAL OF THE INFLATION RATE. It is not a fact about the asset — at 15% inflation the
+# same construction would have replaced this plant every 6.7 years.
+#
+# The identity is a statement about REAL growth, and this model's terminal real growth is
+# ZERO (macro_record.growth_at_horizon_end is the house terminal inflation exactly). So the
+# charge bought no capacity at all: the model was paying for what inflation supplies free.
+#
+# Nothing in the old arithmetic was wrong, which is why it survived four revisions, a
+# cell-by-cell workbook recalculation and every gate in the repository. It is a
+# SPECIFICATION error, and the terminal carried 41.4% of enterprise value.
+#
+# THREE IMPLIED LIVES SAT INSIDE THIS ONE MODEL and they disagreed by 2.8x: the terminal's
+# 1/g at 14.3 years, the explicit window's own capex at 130.0/3.23 = 40.2 years, and the
+# DISCLOSED 20 years from ARCC's own accounting-policies note (machinery and equipment 20,
+# other installations 20, buildings 10-20 — engine/arcc_study/useful_lives.json, read by OCR
+# because the filing carries no text layer). The sourced figure sits BETWEEN the model's own
+# two conventions, which is the whole argument for sourcing it.
+#
+# The explicit window and the terminal are still allowed to differ, and the reason is
+# economic rather than a fudge: capex_usd_t_cap is ARCC's OWN most recent full-year spend
+# and kiln 2 sits in assets under construction, so a young plant genuinely spends less than
+# replacement depreciation for a while. The terminal is perpetuity, where every asset must
+# be replaced at current cost on its disclosed life. THE STEP AT THE BOUNDARY IS REAL AND IS
+# STATED rather than left implicit.
+_UL = json.load(open(os.path.join(HERE, 'useful_lives.json')))
+_LIFE = float(_UL['adopted_for_terminal']['years'])
+# The working-capital LEVEL this model implies: its own convention is dWC = dRev x
+# wc_pct_drev, and in a steady state dRev = pi x Rev, so the level is Rev x wc_pct_drev.
+_WC_LEVEL = rev_f[-1] * V['wc_pct_drev']
+# Adding one unit of REAL capacity costs one unit of what the whole plant costs to build.
+# That is an identity on the replacement-cost base, not an assumption — and note that it
+# makes the correct charge real_growth x IC. THE CHARGE WAS NEVER THE PROBLEM; THE RATE
+# APPLIED TO IT WAS.
+_TERM = terminal_value.build(terminal_value.TerminalInputs(
+    nopat=float(nopat[-1]), wacc=float(wacc_term), inflation=float(_PI_T),
+    real_growth=0.0, dna_book=float(dna_f[-1]),
+    ic_replacement=float(ic_repl), useful_life_years=_LIFE,
+    useful_life_source=_UL['_source'], maintenance_basis='disclosed_life',
+    working_capital=float(_WC_LEVEL),
+    incremental_capital_per_unit_growth=float(ic_repl)))
+terminal_value.assert_terminal(_TERM.record)
+tv = _TERM.tv
+# Kept for the record, and ONLY for the record: these are the diagnostic of the retired
+# construction, not inputs to the value.
+roic_t = nopat[-1] * (1 + V['g_term']) / ic_repl
 rr_t = V['g_term'] / roic_t
-tv = nopat[-1] * (1 + V['g_term']) * (1 - rr_t) / (wacc_term - V['g_term'])
 # TV is the value at the END of FY2030 of everything from FY2031 on, so it discounts
 # at the end-of-window factor, not at the mid-year factor of the last explicit year.
 df_tv = chain(fwd, REM + 4.0)
@@ -1581,6 +1653,26 @@ say(f"[Counterweight 3 — is the uplift permanent?] the local price factor of "
     f"document says so in those words")
 
 # ==================== 7. SENSITIVITY ========================================
+def _terminal_at(nopat_last, dna_last, wacc_t, g_nominal):
+    """The terminal at an arbitrary rate and nominal growth, through [R-TERM-01].
+
+    A sensitivity grid is quoted in NOMINAL growth because that is what a reader of this
+    study has always been shown. The builder takes REAL growth, so the nominal figure is
+    converted back through the house inflation path — the same identity in the other
+    direction, which cannot disagree with itself. Where that leaves real growth above zero,
+    the capital it needs is charged at the replacement-cost base, so a higher growth rate
+    costs what growth costs. Under the retired construction it did not.
+    """
+    g_real = (1.0 + g_nominal) / (1.0 + _PI_T) - 1.0
+    return terminal_value.build(terminal_value.TerminalInputs(
+        nopat=float(nopat_last), wacc=float(wacc_t), inflation=float(_PI_T),
+        real_growth=float(g_real), dna_book=float(dna_last),
+        ic_replacement=float(ic_repl), useful_life_years=_LIFE,
+        useful_life_source=_UL['_source'], maintenance_basis='disclosed_life',
+        working_capital=float(_WC_LEVEL),
+        incremental_capital_per_unit_growth=float(ic_repl))).tv
+
+
 def reval(nc=None, g=None, we=None, beta_=None, mgn_shift=0.0, capex_mult=1.0,
           dna_shift=0.0, nci=None, kd_=None):
     nc = net_cash if nc is None else nc
@@ -1609,8 +1701,11 @@ def reval(nc=None, g=None, we=None, beta_=None, mgn_shift=0.0, capex_mult=1.0,
     fc = [np_[i] + dn[i] - cx[i] - dwc[i] for i in range(5)]
     fc[0] *= REM
     s = float(np.sum([fc[i] * d_[i] for i in range(5)]))
-    rt = np_[-1] * (1 + g) / ic_repl
-    tvl = np_[-1] * (1 + g) * (1 - g / rt) / (wt - g)
+    # THE SENSITIVITY BLOCK USES THE SAME TERMINAL BUILDER AS THE HEADLINE. Revisions 1-4
+    # re-derived the g x IC terminal here, so every sensitivity and every contested
+    # judgement was quoted against a construction that was consistent with the headline and
+    # consistently wrong. Both now go through [R-TERM-01].
+    tvl = _terminal_at(np_[-1], dn[-1], wt, g)
     # THE TERMINAL VALUE DISCOUNTS AT THE END-OF-WINDOW FACTOR, NOT AT THE LAST
     # EXPLICIT YEAR'S MID-YEAR FACTOR. Revision 4 found this the hard way: with
     # d_[-1] here, reval() returned 57.27 against a headline of 55.21 — every
@@ -1629,7 +1724,7 @@ def reval_two_anchor(we, wt):
     f_ = [we - (we - wt) * gg for gg in glide]
     d_ = factors(f_)
     s = float(np.sum([fcff[i] * d_[i] for i in range(5)]))
-    tvl = nopat[-1] * (1 + V['g_term']) * (1 - rr_t) / (wt - V['g_term'])
+    tvl = _terminal_at(nopat[-1], dna_f[-1], wt, V['g_term'])
     return (s + tvl * chain(f_, REM + 4.0) + net_cash - V['nci_h1_26']) / SH
 
 
@@ -1643,6 +1738,16 @@ SENS = dict(
     wacc_grid=wacc_grid, g_grid=g_grid,
     wacc_g=[[reval(we=x, g=gg) for gg in g_grid] for x in wacc_grid],
     beta_grid=beta_grid, beta=[reval(beta_=b) for b in beta_grid],
+    # THE ANCHORS ARE FIXED ROUND NUMBERS SO STUDIES CAN BE COMPARED, and they therefore do
+    # NOT track any one regression's confidence interval. Until this edition the caption
+    # claimed they spanned it. On this name the own-stock 95% interval reaches BELOW the
+    # lowest anchor, and that is the value-RAISING end, so the claim overstated the coverage
+    # in exactly the direction a reader should be most sceptical of. The interval and the
+    # value at each of its ends are committed here so the caption can state them instead.
+    beta_ci_lo=BETA['own_stock']['beta'] - 1.96 * BETA['own_stock']['se'],
+    beta_ci_hi=BETA['own_stock']['beta'] + 1.96 * BETA['own_stock']['se'],
+    fv_at_ci_lo=reval(beta_=BETA['own_stock']['beta'] - 1.96 * BETA['own_stock']['se']),
+    fv_at_ci_hi=reval(beta_=BETA['own_stock']['beta'] + 1.96 * BETA['own_stock']['se']),
     mgn_grid=mgn_grid, mgn=[reval(mgn_shift=m) for m in mgn_grid],
     wt_grid=[wacc_term - 0.02, wacc_term - 0.01, wacc_term, wacc_term + 0.01,
              wacc_term + 0.02],
@@ -1801,25 +1906,34 @@ say(f"[Terminal growth ceiling] profit compounded {pat_cagr:.0%} a year over FY2
     f"at that rate against {V['egy_gdp_growth']:.0%} nominal economic growth this company "
     f"equals the whole Egyptian economy in {cross_yrs:.0f} years. Terminal growth is held "
     f"at {V['g_term']:.0%}")
-# --- terminal growth: the ANALYTIC sign condition, not the textbook shortcut ----------
-# The terminal block reinvests g/ROIC of terminal NOPAT, and ROIC is itself defined as
-# N*(1+g)/IC on replacement-cost capital. The reinvestment charge therefore collapses to a
-# FIXED g*IC and the whole block reduces to
-#         TV(g) = [ N*(1+g) - g*IC ] / (W - g)
-#         dTV/dg  proportional to  N*(1+W) - IC*W          <- no g in it at all
-# so the direction of the growth lever is a CONSTANT of the model, and the hurdle is
-#         N/IC  vs  W/(1+W)
-# NOT the familiar ROIC vs W. The two differ by exactly (1+g)/(1+W), because ROIC is
-# measured on TERMINAL-YEAR profit while the capital base is measured at the valuation
-# date. Revision 2 sat at N/IC = 8.2% against a 13.6% hurdle and growth destroyed value;
-# the corrected price path lifts terminal NOPAT enough to cross it by about 20bp, so
-# growth now ADDS value — marginally, and the check below verifies the model agrees with
-# its own algebra whichever side of the hurdle it lands on.
-gdv_lhs = nopat[-1] * (1.0 + wacc_term)
+# --- terminal growth: the sign condition, RE-DERIVED for [R-TERM-01] -----------------
+# THE HURDLE IN THIS BLOCK WAS DERIVED FOR THE RETIRED CONSTRUCTION AND HAD TO CHANGE WITH
+# IT. Revisions 1-4 charged a reinvestment of g/ROIC on replacement-cost capital, which
+# collapses to a fixed g*IC, so the block reduced to TV(g) = [N(1+g) - g.IC]/(W-g) and the
+# sign of the growth lever was the constant N(1+W) - IC.W — a hurdle of N/IC against
+# W/(1+W) rather than the familiar ROIC against W. That derivation was correct FOR THAT
+# CONSTRUCTION and it is now wrong, because the construction is gone.
+#
+# Under [R-TERM-01] the terminal charges maintenance at the disclosed life plus the capital
+# that STATED REAL growth needs, at the replacement cost of capacity. So the question is
+# the ordinary one, and it is ordinary because the construction now is:
+#
+#     marginal ROIC  =  NOPAT / IC     (capacity scales the profit and the capital alike)
+#     growth adds value  iff  NOPAT/IC  >  W
+#
+# and the (1+g)/(1+W) wedge is gone with the charge that created it. THE MODEL'S ANSWER
+# DOES NOT CHANGE AND THAT IS WORTH SAYING: N/IC is 10.52% against a terminal rate of
+# 18.34%, so building cement capacity at USD 130 per annual tonne does not clear this
+# company's cost of capital, real growth destroys value, and the model takes zero real
+# growth. THAT IS A FINDING, NOT A DEFECT — and it is why charging ARCC for growth was
+# wrong twice over: it is not growing in real terms, and on these numbers it should not.
+gdv_lhs = nopat[-1]
 gdv_rhs = ic_repl * wacc_term
 GDV = dict(fv_at_g3=reval(g=0.03), fv_at_g7=reval(g=0.07), roic_term=roic_t,
            wacc_term=wacc_term, nopat_term=float(nopat[-1]), ic_replacement=float(ic_repl),
-           n_over_ic=float(nopat[-1] / ic_repl), hurdle=float(wacc_term / (1 + wacc_term)),
+           n_over_ic=float(nopat[-1] / ic_repl), hurdle=float(wacc_term),
+           hurdle_retired=float(wacc_term / (1 + wacc_term)),
+           hurdle_basis='marginal ROIC = NOPAT/IC against the terminal WACC [R-TERM-01]',
            analytic_adds_value=bool(gdv_lhs > gdv_rhs))
 GDV['model_adds_value'] = bool(GDV['fv_at_g7'] > GDV['fv_at_g3'])
 GDV['spread_pct'] = float(GDV['fv_at_g7'] / GDV['fv_at_g3'] - 1.0)
@@ -1830,15 +1944,17 @@ say(f"[Growth and value] terminal return on capital {roic_t:.1%} against termina
     f"points of growth, so the answer "
     f"{'is BARELY sensitive to' if abs(GDV['spread_pct']) < 0.02 else 'DOES rest partly on'}"
     f" the terminal growth rate")
-say(f"[Growth and value — the correct hurdle] the terminal block reduces to "
-    f"[N(1+g) - g.IC]/(W-g), so the sign of the growth lever is the constant "
-    f"N(1+W) - IC.W and the test is N/IC vs W/(1+W), not ROIC vs W. "
-    f"N/IC = {GDV['n_over_ic']:.3%} against a hurdle of {GDV['hurdle']:.3%} -> growth "
+say(f"[Growth and value — the hurdle, re-derived] the retired terminal charged g x IC, so "
+    f"its sign condition was N/IC against W/(1+W) = {GDV['hurdle_retired']:.2%}. "
+    f"[R-TERM-01] charges maintenance at the disclosed {_LIFE:.0f}-year life plus the "
+    f"capital REAL growth needs, so the test is the ordinary one: the marginal return on "
+    f"new capacity N/IC = {GDV['n_over_ic']:.2%} against the terminal rate of "
+    f"{wacc_term:.2%}. Growth "
     f"{'ADDS' if GDV['analytic_adds_value'] else 'DESTROYS'} value by "
-    f"{abs(GDV['n_over_ic']-GDV['hurdle'])*1e4:.0f}bp. Revision 3 read 13.81% against a "
-    f"13.61% hurdle and concluded growth added value by 21bp — but its denominator was in "
-    f"Aug-2026 pounds against a FY2031 numerator, and the currency-vintage error was "
-    f"larger than the margin it was measuring")
+    f"{abs(GDV['n_over_ic'] - wacc_term) * 1e4:.0f}bp — building capacity at USD "
+    f"{V['repl_usd_t']:.0f} per annual tonne does not clear this company's cost of "
+    f"capital, which is why the model takes ZERO real growth and charges no growth capital "
+    f"for it. That is a finding about Egyptian cement economics, not a conservatism")
 
 # ==================== 10. STATEMENTS ========================================
 pbt_f, tax_f, pat_f, cash_b, eq_b, ppe_b, wc_b, div_f, treas_f, ta_b = ([] for _ in range(10))
@@ -1870,28 +1986,31 @@ EXPERTS = [
          low=((V['ev_t_just'] - 15) * V['cap_cement_mt'] * V['fx'] + net_cash - V['nci']) / SH,
          high=((V['ev_t_just'] + 15) * V['cap_cement_mt'] * V['fx'] + net_cash - V['nci']) / SH,
          summary=('Values the plant, not the earnings stream. The audited accounts put '
-                  'net property, plant and equipment at EGP %.0fmn and assets under '
-                  'construction at a further EGP %.0fmn, on a book carried at '
+                  'net property, plant and equipment at EGP %smn and assets under '
+                  'construction at a further EGP %smn, on a book carried at '
                   'pre-devaluation historic cost. Five million tonnes of grey cement '
                   'capacity costs about USD %.0f per annual tonne to build; nobody pays '
                   'that in a market carrying %.0fMt of capacity against %.0fMt of '
                   'consumption, so the justified figure is marked to USD %.0f. Against '
                   'that the market is paying USD %.0f per annual tonne.'
-                  % (V['ppe_fy25'], V['auc_fy25'], V['repl_usd_t'], V['egy_capacity_mt'],
-                     V['egy_cons_mt'], V['ev_t_just'], ev_per_t)),
+                  % (f"{V['ppe_fy25']:,.0f}", f"{V['auc_fy25']:,.0f}", V['repl_usd_t'],
+                     V['egy_capacity_mt'], V['egy_cons_mt'], V['ev_t_just'], ev_per_t)),
          falsifier=('Find an Egyptian line built, bought or restarted below USD %.0f per '
-                    'annual tonne. The 12.6Mt revival programme is the live test and it '
+                    'annual tonne. The %.1fMt revival programme is the live test and it '
                     'runs against this lens: restarting a mothballed kiln costs a fraction '
-                    'of building one, which is why this valuation is a ceiling and carries '
-                    'only %.0f%% of the weight.'
-                    % (V['ev_t_just'], V['w_asset'] * 100))),
+                    'of building one, which is why this valuation is a CEILING and is '
+                    'published as a cross-check rather than as the answer.'
+                    % (V['ev_t_just'], V['egy_revival_mt']))),
     dict(label='Expert 2', method='Mid-cycle earnings-power analyst', central=fv_norm,
          low=(nopat_norm * (V['pe_just'] - 1) + net_cash - V['nci']) / SH,
          high=(nopat_norm * (V['pe_just'] + 1) + net_cash - V['nci']) / SH,
          summary=('Refuses to capitalise a peak, and refuses it on both legs. The audited '
                   'EBITDA margin went %.1f%% to %.1f%% to %.1f%% across FY2023 to FY2025 — '
-                  'the last of those is the best year the Egyptian industry has had in over '
-                  'a decade. The margin is normalised to %.1f%%, the midpoint of the two '
+                  'the last of those is the best of the three audited years this study '
+                  'holds, by a wide margin. (An earlier edition called it the best year the '
+                  'Egyptian INDUSTRY had had in over a decade, which is a claim about the '
+                  'industry that nothing in this study measures.) The margin is normalised '
+                  'to %.1f%%, the midpoint of the two '
                   'most recent audited years, the revenue base is cut %.0f%%, and what is '
                   'left is capitalised at %.0f times with cash added back at face.'
                   % (mgn_h[0] * 100, mgn_h[1] * 100, mgn_h[2] * 100, V['norm_mgn'] * 100,
@@ -1988,6 +2107,52 @@ def chk(cond, msg):
     assert cond, 'ASSERT FAILED: ' + msg
     A.append(msg)
 
+
+for _i in (0, 1, 5):
+    _b = BU[_i]
+    chk(abs(_b['rev'] - _b['c_mat'] - _b['c_tra'] - _b['c_ovh'] - _b['c_prv']
+            - _b['ebitda']) < 1e-6,
+        f"the printed cost stack FOOTS in {['FY2025A', 'FY2026E', None, None, None, 'FY2030E'][_i]}: "
+        f"revenue of EGP {_b['rev']:,.0f}mn less materials and fuel {_b['c_mat']:,.0f}, "
+        f"transportation {_b['c_tra']:,.0f}, overheads {_b['c_ovh']:,.0f} and provisions "
+        f"and credit losses {_b['c_prv']:,.0f} IS the EBITDA of EGP {_b['ebitda']:,.0f}mn "
+        f"the table prints. Until this edition the provisions line was deducted in the "
+        f"model and absent from the table, so a reader adding the printed rows got EGP "
+        f"{_b['rev'] - _b['c_mat'] - _b['c_tra'] - _b['c_ovh']:,.0f}mn and could not "
+        f"reconcile it — the model was right and the page was incomplete, which no "
+        f"recalculation gate can see because it reconciles the model to itself")
+
+for _i in range(5):
+    _scale = REM if _i == 0 else 1.0
+    chk(abs((nopat[_i] + dna_f[_i] - capex[_i] - dwc[_i]) * _scale - fcff[_i]) < 1e-6,
+        f"the printed free-cash-flow build FOOTS in {YRS[_i]}: NOPAT of EGP "
+        f"{nopat[_i]:,.0f}mn plus depreciation {dna_f[_i]:,.0f} less capital expenditure "
+        f"{capex[_i]:,.0f} less the working-capital change {dwc[_i]:,.0f}, times the "
+        f"remaining fraction of the year {_scale:.2f}, IS the free cash flow of "
+        f"{fcff[_i]:,.0f} the table prints. Until this edition that fraction appeared "
+        f"nowhere on the page, so FY2026's components were full-year figures against a "
+        f"part-year cash flow and a reader's arithmetic came out at exactly twice the "
+        f"printed number")
+
+for _i in range(5):
+    chk(abs(ebitda_f[_i] - dna_f[_i] + oth_f[_i] - ebit_f[_i]) < 1e-6,
+        f"the printed cash-flow waterfall FOOTS in {YRS[_i]}: EBITDA of EGP "
+        f"{ebitda_f[_i]:,.0f}mn less depreciation and amortisation of {dna_f[_i]:,.0f} plus "
+        f"other operating income of {oth_f[_i]:,.0f} IS the EBIT of {ebit_f[_i]:,.0f} the "
+        f"table prints. Until this edition other operating income was consumed by the model "
+        f"and printed nowhere, so a reader subtracting the printed depreciation from the "
+        f"printed EBITDA came out {ebitda_f[_i] - dna_f[_i] - ebit_f[_i]:,.0f}mn short of "
+        f"the printed EBIT — the third instance in this study of a line the model uses and "
+        f"the page does not show")
+
+chk(V['auc_altfuel_fy25'] + V['auc_silo_fy25'] <= V['auc_fy25'] + 1e-9,
+    f"the two NAMED assets under construction — the alternative-fuel system for line 2 at "
+    f"EGP {V['auc_altfuel_fy25']:,.3f}mn and the new cement silo for line 1 at EGP "
+    f"{V['auc_silo_fy25']:,.3f}mn — sit INSIDE the disclosed total of EGP "
+    f"{V['auc_fy25']:,.3f}mn, leaving EGP "
+    f"{V['auc_fy25'] - V['auc_altfuel_fy25'] - V['auc_silo_fy25']:,.3f}mn of other "
+    f"construction in progress. Both figures were typed into the document builder until "
+    f"this edition, which is the one place no gate in this repository was looking")
 
 chk(abs(reval() - fv_dcf) < 1e-6,
     f"THE SENSITIVITY FUNCTION REPRODUCES THE HEADLINE when nothing is changed: "
@@ -2106,7 +2271,9 @@ chk(all(df_[i] > df_[i + 1] for i in range(4)), "discount factors decline monoto
 chk(PRIMARY in LENS and fv_central == LENS[PRIMARY],
     "the central IS one lens, not a blend of several: there are no weights left to sum")
 chk(fv_central == LENS[PRIMARY] and min(LENS.values()) <= fv_central <= max(LENS.values()),
-    "the weighted central sits inside the range of the four lenses")
+    "the published central sits inside the range of the lenses — and it is one of them, "
+    "not a weighted point between them; this message said 'the weighted central' for a "
+    "month after the blend was retired")
 chk(eur_share > 0.5, f"the cost-of-debt build is currency-blended: {eur_share:.1%} of the "
                      f"book is euro-denominated and a single-currency shortcut would be wrong")
 say("\n" + "=" * 78)
@@ -2695,7 +2862,8 @@ OUT = dict(
                  nopat=nopat_h, tax_eff=TAXE,
                  volume_mt=[None, None, vol25], price_t=[None, None, BU[0]['price']],
                  utilisation=[None, None, p0['mill_util']]),
-    forecast=dict(years=YRS, revenue=rev_f, ebitda=ebitda_f, dna=dna_f, ebit=ebit_f,
+    forecast=dict(years=YRS, revenue=rev_f, ebitda=ebitda_f, dna=dna_f,
+                  other_income=oth_f, ebit=ebit_f,
                   nopat=nopat, capex=capex, dwc=dwc, fcff=fcff, df=df_, pv=pv,
                   fwd_wacc=fwd, glide=glide, t_mid=t_mid, treasury=treas_f, pbt=pbt_f,
                   tax=tax_f, pat=pat_f, dividends=div_f, cash=cash_b, equity=eq_b,
@@ -2709,6 +2877,11 @@ OUT = dict(
               beta_term=beta_t, ke_term=ke_term, kd_term_at=V['kd_term'] * (1 - TAX),
               wacc_term=wacc_term, ke_raw_retired=V['rf'] + beta_used * V['erp_cds'],
               mktcap=MKTCAP, debt_total=debt_tot, eur_share=eur_share),
+    # [R-TERM-01] — the terminal's own record, committed so the workbook's formulas and any
+    # job outside this study can be held to the construction rather than to its output. A
+    # construction that cannot be read cannot be checked, which is [R-ENF-06] on the artefact
+    # every builder reads.
+    terminal_record=_TERM.record,
     dcf=dict(sum_pv=sum_pv, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share, df_tv=df_tv,
              cash_at_val=V['cash_h1_26'], net_cash=net_cash, nci=V['nci_h1_26'],
                 net_cash_rolled=net_cash_rolled, rollforward_gap=ROLLFWD['gap'],
@@ -2718,8 +2891,19 @@ OUT = dict(
     lenses=dict(values=LENS, primary=PRIMARY, diagnostic=LENS_DIAGNOSTIC,
                 retired_blend={'DCF (cash flow)': 0.50, 'Relative multiples': 0.20,
                                'Normalised earnings': 0.22, 'Asset / replacement cost': 0.08},
-                central=fv_central, low=min(LENS.values()),
-                high=max(LENS.values()), ebitda_norm=eb_norm, nopat_norm=nopat_norm,
+                central=fv_central,
+                # [R-LENS-03]: ONE class primary IS the central; every other lens is a
+                # CROSS-CHECK. low/high spanned ALL the lens values including the primary,
+                # so `high` came out equal to the central and the delivered document told a
+                # reader that "the cross-checks around it span EGP 45.65 to EGP 66.53" —
+                # naming the primary as the top of its own cross-check range. That blurs
+                # exactly the distinction this rule was written to enforce. The cross-check
+                # span now EXCLUDES the primary and is labelled for what it is; the all-lens
+                # span is kept beside it under its own name.
+                low=min(v for k, v in LENS.items() if k != PRIMARY),
+                high=max(v for k, v in LENS.items() if k != PRIMARY),
+                all_low=min(LENS.values()), all_high=max(LENS.values()),
+                ebitda_norm=eb_norm, nopat_norm=nopat_norm,
                 ev_per_t_spot=ev_per_t, ev_asset=ev_asset, ev_spot=ev_spot,
                 bvps=V['eq_fy25'] / SH, roe_fy25=V['pat_fy25'] / V['eq_fy25']),
     lens_ranges=LR, sensitivity=SENS, contested=CONTESTED,

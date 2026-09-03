@@ -241,7 +241,43 @@ def main(argv):
         print('\npruned; %d entry/entries remain' % len(keep))
         return 0
 
+    # A DIRECTION WORD IS A CLAIM AND IS CHECKED AGAINST THE SIGN BESIDE IT. This runs
+    # book-wide with NO per-study declaration, because unlike the rendering set the check is
+    # entirely internal to one sentence — a positive sign followed by "below" is wrong on
+    # its own terms and no study fact can make it right. Measured across every delivered
+    # document in its latest edition it finds ONE contradiction and no false positives.
+    sys.path.insert(0, os.path.join(ROOT, 'engine'))
+    import prose_figures as _PF
+    sign_bad = []
+    docs_read = 0
+    for sdir in sorted(glob.glob(os.path.join(ROOT, 'engine', '*_study'))):
+        tk = os.path.basename(sdir)[:-6].upper()
+        for pat in ('*_Valuation_Study_*.docx', '*_Bibliography_*.docx'):
+            f = latest(sdir, pat)
+            if not f:
+                continue
+            docs_read += 1
+            for frag, ctx in _PF.sign_word_conflicts(_PF.document_texts(f)):
+                sign_bad.append((tk, os.path.basename(f), ctx))
+    if not docs_read:
+        print('\nFAIL — the sign-word check examined zero documents; an empty result is '
+              'not a clean result [R-ENF-04]')
+        return 1
+    SIGN_ALLOWED = {'MODON'}          # ratchet: breaching at adoption, may only SHORTEN
+    print('\nSIGN-WORD CHECK: %d delivered documents read, %d contradiction(s)'
+          % (docs_read, len(sign_bad)))
+    sign_new = []
+    for tk, fn, ctx in sign_bad:
+        mark = 'ratcheted' if tk in SIGN_ALLOWED else 'NEW'
+        print('  [%s] %s: ...%s...' % (mark, fn[:40], ctx[:150]))
+        if tk not in SIGN_ALLOWED:
+            sign_new.append(tk)
+
     rc = 0
+    if sign_new:
+        print('\nFAIL — a signed figure contradicted by the direction word beside it: %s'
+              % ', '.join(sorted(set(sign_new))))
+        rc = 1
     if stranded:
         print('\nFAIL — %d listed study/studies no longer resolve on disk: %s'
               % (len(stranded), ', '.join(stranded)))

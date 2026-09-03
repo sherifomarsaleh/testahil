@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-03q — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-03s — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -2675,6 +2675,49 @@ THE DISCIPLINE FOR A FALSE POSITIVE IS INHERITED VERBATIM AND IS THE WHOLE METHO
 READ THE POPULATION LIVE: python3 scripts/check_prose_figures.py, and --measure for the advisory.
 
 THE GENERAL LESSON, WHICH IS NOT ABOUT PROSE: A RULE THAT ONE STUDY IMPLEMENTS IS A RULE THAT ONE STUDY OBEYS. It had been written down for four weeks, it was correct, it was implemented well in the one place it existed, and everywhere else it bound nothing — which is [R-MACRO-01]'s own general lesson arriving from a different direction: where a rule can be made arithmetic, making it arithmetic is the only way it survives, and making it arithmetic ONCE, in a shared place, is the only way it survives everywhere.
+[R-ENF-01 EXTENDED 03-Sep-2026] EVERY TOTAL A READER SEES IS REPRODUCIBLE FROM THE ROWS PRINTED ABOVE IT
+
+Three defects were found in one delivered study by rendering its PDF and reading it page by page. All three were the same shape — a table printing components and a figure that does not follow from them — and every one sat in a document that had already passed the recalculation gate (919 of 919 formula cells), the prose-figure check (533 figures, none unmatched), the external-reader scrub and the column audit.
+
+* ARCC's Table 3 deducted provisions and credit losses in the model and never printed the line, so a reader adding the printed cost rows came out EGP 82mn above the printed EBITDA. The code comment explaining why provisions sit off the per-tonne stack was correct and had never reached the document.
+* Table 5 printed four CONTRACTUAL rates and labelled their blend "Blended cost of debt, adopted 13.36%". Those four weight to 7.89%. The model was never wrong — it carries each facility at LOCAL-EQUIVALENT cost exactly as [R-COC-01 AMENDED] requires, and 13.36% reproduces from THAT — and the document printed the wrong column, under a caption reading "the blended rate is built in the model from these four lines, not pasted".
+* Table 2 went from cement sold of 3.553Mt to total despatches of 4.854Mt with the export cement tonnage printed nowhere and the clinker tonnage eight rows up. Clinker is 27% of that company's volume and one of the four physical drivers the same page calls physical.
+
+THE REASON EVERY EXISTING GATE WAS BLIND IS EXACT, AND IT IS A PROPERTY OF THOSE GATES RATHER THAN AN OVERSIGHT IN THEM. A recalculation gate reconciles the model TO ITSELF, so a correct model passes however wrong the page is — which is [R-BRIDGE-01]'s lesson (a model that recalculates is not a model that is right) arriving from the reader's side. prose_figures matches each figure against the model's own numbers, and every figure in all three tables was computed and individually correct. THE DEFECT LIVES IN THE RELATIONSHIP BETWEEN FIGURES, WHICH NOTHING THAT INSPECTS FIGURES ONE AT A TIME CAN SEE. The table audit measures column widths. Nothing in this repository was asking whether a reader could add up what was printed.
+
+THE RULE: engine/table_footing.py is the shared instrument. It reads every table in every delivered document, finds rows whose label declares them a total of what sits above (total, sum, subtotal, weighted average, blended), and requires the printed figure to be reproducible from the printed rows — as a sum, or for a weighted label as a weighted mean against a column of the same table. A table rolls up three ways and all three are ordinary: over the rows immediately above; over the LEAF rows, skipping an intermediate subtotal, which is how a balance sheet foots; and over the SUBTOTALS alone, which is the same balance sheet read the other way. TOLERANCE IS DERIVED FROM THE PRINTED ROUNDING AND NEVER CHOSEN — a table printed to k decimals carries a worst-case band of n x 0.5 x 10^-k over n rows, which is arithmetic about the page rather than a free parameter the PROMOTION RULE would forbid.
+
+THE ARCHITECTURE WAS DECIDED BY MEASUREMENT, NOT BY PREFERENCE, AND THE MEASUREMENT CHANGED IT TWICE. Run book-wide with no declarations the first draft flagged 22.3% of all tables. Two of the three causes were THE INSTRUMENT BEING WRONG ABOUT HOW TABLES WORK rather than defects in the book — a balance sheet foots over its subtotals and the draft only tried leaf rows (67 tables), and a row labelled "Total assets" HEADING a summary balance sheet is a DISCLOSED LINE ITEM sitting beside cash, debt and equity, none of which are its components (34 tables). Both were fixed rather than declared away, which is [R-COC-01]'s lesson applied to a gate's own first draft: when a check fires on work that is right, re-point it. That took the rate to 16.5%, and THE RESIDUE IS IRREDUCIBLE — a "Total equity" row listed AMONG line items is structurally indistinguishable from a roll-up, and so is a driver named "Blended ARPU" in a sensitivity grid. A gate firing on one table in seven is the permanently-red check [R-ENF-02] forbids and the check everyone learns to ignore. So the ARITHMETIC STAYS EXACT and each study declares its own exceptions WITH REASONS — the prose_figures architecture, reached by measurement, and a shared instrument beating a good local one for the same reason it did there. ARCC needed three declarations and each names a real structural fact about its own table: a per-tonne figure sitting among EGP-million totals, deliberately, because materials and fuel are driven by CLINKER produced while transportation and overheads are driven by cement despatched and no single per-tonne rate describes them all; a price blended ACROSS PRODUCTS rather than up the column; and a weighted average whose weights are a ROW because that table is transposed.
+
+A FALSE POSITIVE IS FIXED BY DECLARING THE EXCEPTION WITH ITS REASON, NEVER BY DELETING THE TOTAL FROM THE TABLE — inherited verbatim from prose_figures because it is the whole discipline. A total a reader cannot reproduce is indistinguishable from one that is wrong, which is why the reason is the point of the declaration and an empty reason does not count.
+
+THE GATE RUNS THE INSTRUMENT, IT DOES NOT COUNT THE FILE, for the reason the prose gate states: treating a script's existence as conformance would put a green tick on a red result. --measure prints the book-wide advisory and that number is NEVER a threshold, because an UNDECLARED study cannot be told apart from a defective one by it — which is the argument FOR the per-study declaration rather than a substitute for it.
+
+ENFORCED FROM OUTSIDE per [R-ENF-01]: scripts/check_table_footing.py, ratcheted [R-ENF-02] (23 studies with no footing check at adoption, the list may only ever SHORTEN), population-anchored [R-ENF-04] (a run examining zero studies FAILS and every listed ticker must resolve on disk), reading only the LATEST edition of each delivered document because a superseded edition is not delivered. Negative-controlled by scripts/check_table_footing_negative_control.py on 14 conditions — all three ARCC tables EXACTLY as they shipped, a total that is simply wrong, a weighted average reproducible from no column of its own table, and seven clean cases that must NOT fire. ITS OWN FIRST RUN CAUGHT TWO REAL BUGS IN THE INSTRUMENT: a header cell parsing "FY2025" as 2025, which condemned a balance sheet that foots perfectly, and a dash walling off a genuine component block, which made the check skip the very row it exists for. READ THE POPULATION LIVE: python3 scripts/check_table_footing.py, and --measure for the advisory.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT TABLES: A DOCUMENT IS CHECKED AGAINST THE MODEL AND ALMOST NEVER AGAINST THE READER. Every instrument here points from the page back to the model and asks whether each figure came from it. None of them asked the question a reader actually asks, which is whether the numbers on the page add up to each other — and that question needs no access to the model at all. WHERE A DELIVERABLE MAKES A CLAIM THAT CAN BE TESTED USING ONLY WHAT IS PRINTED, TEST IT USING ONLY WHAT IS PRINTED: a check that needs the model to run is a check about the model, and the reader does not have the model.
+
+[R-ENF-07] THE PROPERTY THE WHOLE DESIGN RESTS ON IS TESTED, NOT ASSUMED [ADOPTED 03-Sep-2026]
+
+Every ratcheted gate in this repository says the same thing in its own docstring: knowingly-outstanding work is listed and allowed to fail, and the build breaks on a NEW violation. Every one of them is negative-controlled on its own conditions. NONE of them tests the claim the whole design rests on:
+
+A STUDY DIRECTORY CREATED TOMORROW, WITH NOTHING IN IT, GOES RED EVERYWHERE.
+
+That is a property of the SYSTEM rather than of any gate, so no gate can check it — and it is exactly the claim this method makes about itself: that a study is produced correctly and passes several checks without anyone intervening. It is also the kind of claim that is true by construction right up to the day a ratchet is seeded one entry too generously, or a gate globs a pattern a new directory happens not to match, or a check skips a study whose numbers file will not parse.
+
+scripts/check_new_study_gauntlet.py copies the repository into a sandbox, plants an empty study directory, and runs the set. Each gate must go RED and must NAME the new study.
+
+THE SPLIT IS THE FINDING. A single list of "study gates" conflated two different kinds of check, and four of the first seventeen stayed green on an empty directory for a perfectly good reason: they bite on ARTEFACTS, not on the directory. A study with no delivered documents cannot leak internal vocabulary and cannot publish a retired blend. Demanding that those refuse an empty directory would be a FALSE CLAIM about what they check, so they are tested the way they actually work — by planting a minimal offending artefact and asserting they catch it. Three more are EXCLUDED with their reasons stated, because a name in a list that resolves to the wrong subject is worse than an absence; and an excluded gate that stops existing fails the run too, since the exclusions are claims.
+
+WHAT THE FIRST RUN FOUND, in three classes. One miss was the sandbox's own fault — it excluded a directory a gate legitimately needs, so that gate CRASHED on the absence and went red for the wrong reason, which reads exactly like going red for the right one. Four were the artefact-conditional gates above. And one was a real hole: check_artefact_currency carried THREE silent skips — a study with no numbers file, a study whose numbers file will not parse, and a study whose central is not a number, the last with the comment "a two-sided study; handled by its branches" AND NOTHING HANDLED THE BRANCHES. EGCH publishes a two-sided answer, so it escaped that gate entirely while the comment said it did not, and its contested-judgements artefact sat stale at 1.7854 against a published 2.3109 for the whole day. A COMMENT ASSERTING A CHECK THAT DOES NOT EXIST IS WORSE THAN NO COMMENT, because it stops the next reader looking.
+
+All three are closed. Closing them surfaced ten studies exposing no readable answer at all — and every one of the ten is ALREADY on [R-GAP-01]'s own unreadable list, which that rule seeded on its adoption day with exactly this population. The gate DEFERS to it rather than writing the same fact into a second list, because two records of one thing diverge the moment one of them is pruned, which is the drift [R-DOC-01] closes.
+
+THE GAUNTLET'S OWN FALSIFIER IS A WEAKENED GATE, and the weakening tested is the one that would actually happen: a ratchet seeded with the unknown ticker. That is a one-line edit anybody could make in good faith, and the ratchet's own --prune would then preserve it. Every ratchet is tested individually and then all of them at once.
+
+ITS FIRST TWO DRAFTS PROVED NOTHING, AND THAT IS RECORDED HERE RATHER THAN QUIETLY FIXED. The first tried to blind a gate by inserting an early `continue` with a regex; the regex matched nothing, all three cases reported the gauntlet green, and the green proved only that the gates were unchanged. A later edit then deleted three cases outright and the file reported three of three clean. That is the third and fourth time in one session that a negative control has been caught passing a fixture which never injected its condition — after check_valuation_gap's own control and check_document_structure's case 6. So every mutation now ASSERTS THAT IT LANDED, and the case COUNT is asserted against a declared constant, because a case lost to an edit is a green that proves nothing.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT NEW STUDIES: A SYSTEM OF CHECKS HAS PROPERTIES NO CHECK IN IT CAN SEE. Each gate here was individually right and individually negative-controlled, and the question "can a new name walk past all of them" was answerable by none of them — which is [R-ENF-01] one level up: where a claim about the system can be expressed as a test, the test exists in code, runs over the system rather than inside it, and FAILS rather than warns.
 
 [R-BRIDGE-01] THE ENTERPRISE-TO-EQUITY BRIDGE IS A RECORD, AND IT IS CHECKED FROM OUTSIDE THE STUDY [ADOPTED 02-Sep-2026, method reassessment WS4]
 
@@ -3099,3 +3142,154 @@ rather than on this one's momentum.
 
 **READ THE POPULATION LIVE** — `python3 scripts/check_forecast_anchor.py` — never from this
 document.
+
+### [R-TERM-01] THE TERMINAL IS BUILT ON A DISCLOSED ASSET LIFE, NOT ON THE INFLATION RATE
+*Adopted 03-Sep-2026, method reassessment. The rule the "ridiculous pessimism" turned out to be.*
+
+**The reassessment was called because this house looked ridiculously pessimistic, and the
+outside diagnosis was specific — cost overstated, revenue understated, something wrong in
+the cost of capital. All three were measured against the evidence this process already
+produces, and the answer refined the diagnosis rather than confirming it.**
+
+Pooled across all five fundamental walk-forwards' own scored history, 64 classified drivers:
+revenue comes in **45% above** forecast and cost **39% above** it. Both are UNDER-forecast,
+by nearly the same amount, so the margin is roughly right and the SCALE is systematically
+too low. And the error COMPOUNDS — revenue −0.169 at one year to −0.629 at five, cost −0.103
+to −0.735, with a fitted intercept of +0.043 on cost against a slope of −0.162. **AN
+INTERCEPT NEAR ZERO WITH A LARGE SLOPE IS THE SIGNATURE OF A RATE ERROR AND NOTHING ELSE:
+the base years were right and the paths were wrong.** Held to this method's own bar, 19 of
+80 drivers with an era split change SIGN across eras and are reported rather than corrected
+for [R-FCAL-01]; the finding survives and sharpens on the stable subset (revenue −0.532,
+cost −0.397). Read it live — `python3 engine/valuation_calibration/driver_bias_census.py`.
+
+**Where the compounding rate error actually lives is the terminal, and it is arithmetic
+rather than judgement.** Most studies build the terminal from the reinvestment identity
+`rr = g / ROIC`, which substitutes to
+
+> **TV = [ NOPAT (1+g) − g · IC ] / (W − g)**
+
+so the construction charges **g × IC every year, for ever**. Read that charge as a
+capital-maintenance programme and ask how long it takes to replace the asset base:
+`IC / (g·IC) = 1/g`. **THE IMPLIED ASSET LIFE IS THE RECIPROCAL OF THE INFLATION RATE.** It
+is not a fact about the asset. At 7% terminal inflation it is 14.3 years; at 15% it is 6.7.
+A cement kiln does not get younger because the currency got worse — **and the higher a
+market's inflation, the more brutal the charge, which is the exact opposite of prudence.**
+
+The identity is a statement about **REAL** growth. Where g is nominal and its real component
+is zero — which is what the house macro path returns for every terminal it builds
+[R-MACRO-01] — the charge buys no capacity at all and the model is paying for what inflation
+supplies free. A second, independent error rides with it: the explicit window builds
+`FCFF = NOPAT + D&A − capex − ΔWC` and the terminal never adds D&A back though NOPAT is
+already net of it, so **ONE MODEL CARRIES TWO DEFINITIONS OF FREE CASH FLOW** with the
+terminal holding most of the value.
+
+**Nothing in that arithmetic is wrong, which is why every gate in this repository passed
+it.** On ARCC it survived four revisions, a cell-by-cell workbook recalculation with zero
+disagreements, a conforming beta attestation, all eight depth-bar standards and a clean
+external-reader scrub. It is a SPECIFICATION error, and [R-FCAL-01] already says of that
+class that no correction factor may hide it.
+
+**THE RULE.** `engine/terminal_value.py` is the only sanctioned way to build a terminal, on
+the pattern of `own_stock_beta()` and `cost_of_capital.py` — every study once hand-rolled
+its own beta and every one was wrong the same way. Its contract makes the defect
+**inexpressible** rather than forbidden:
+
+- it takes **REAL** growth and reads inflation from the house macro path, so the nominal
+  rate is DERIVED and a nominal growth assumption cannot arrive at all;
+- FCFF is `NOPAT + D&A_book − maintenance_at_current_cost − real_growth_capex − π·WC`, the
+  same definition the explicit window uses, so the two cannot diverge;
+- maintenance rests on a **DISCLOSED useful life** from the accounting-policies note, and a
+  life this desk chose is not a disclosed life (SIGCM clause 1) — the module REFUSES one
+  with no source;
+- real growth stated with no incremental capital behind it REFUSES, and the message says
+  why: charging `g × IC` implies replacing the whole asset base every `1/g` years;
+- a terminal free cash flow that is not positive REFUSES — a going concern consuming cash
+  for ever is a liquidation and must be valued as one;
+- an implied payout of terminal NOPAT outside [0, 1] REFUSES.
+
+**THE DOMINANCE ARGUMENT, AND A CORRECTION TO ITS FIRST FORM, RECORDED BECAUSE THE
+CORRECTION IS THE INSTRUCTIVE PART.** The module first refused any terminal below
+`NOPAT / W`, on the argument that a company can always decline to invest and pay out
+instead. **THAT FORMULATION WAS WRONG, AND IT WAS WRONG IN THE SAME WAY AS THE DEFECT IT
+WAS BUILT TO CATCH:** it treats BOOK depreciation, struck on historical cost, as if it were
+the cash cost of replacement. NOPAT is net of book D&A, so `NOPAT/W` is the value of
+distributing NOPAT for ever while actually needing current-cost replacement spending several
+times larger — not an available policy, because a company that stops replacing its plant
+does not become a perpetuity, it becomes a liquidation. Nor is "zero NOMINAL growth" a
+choice a board can make: prices are set by the market. It also fails arithmetically at high
+discount rates, where `TV/floor` tends to `FCFF(1+g)/NOPAT`, below one by construction
+whenever maintenance exceeds book D&A — and ARCC's own beta sensitivity grid found it,
+firing on a perfectly sound terminal. Per [R-COC-01]: **when a check fires on work that is
+right, RE-POINT IT, never widen it and never move the number to satisfy it.** What survives
+is narrower and true — **a company is never obliged to spend GROWTH capital** — so the live
+refusal is growth capital charged against a stated real growth of zero. `floor` is still
+returned, now LABELLED for what it is: a NOPAT perpetuity at book depreciation. It earns its
+place because the retired construction fell 34.6% below even that generous reading, which is
+how the defect was found.
+
+**WHAT THE CENSUS FOUND.** `engine/valuation_calibration/terminal_census.py` re-expresses
+every study's committed terminal as the charge it levies. Four of twelve readable studies
+sat below even the generous floor, and two carried the 1/g signature exactly — ARCC at 14.3
+years against `1/g` of 14.3 to the decimal, charging 62.2% of terminal profit for ever
+against a terminal real growth its own record set to zero, and against its own final-year
+explicit capex of 1.76× book depreciation. Nine studies expose no readable terminal at all
+and are NAMED rather than skipped [R-ENF-04]. **READ THE POPULATION LIVE** —
+`python3 scripts/check_terminal_floor.py` — never from a document.
+
+**THE WORKED CASE.** ARCC: central **EGP 53.21 → 66.53**, gap **−30.9% → −13.6%**, on
+maintenance at the **DISCLOSED 20-year life** from its own FY2025 accounting-policies note
+(machinery and equipment 20, other installations 20, buildings 10–20), read by OCR off the
+rendered pixels because the filing carries no text layer — 47 characters across 47 pages —
+with the route recorded and cross-checked against the FY2024 filing carrying the identical
+table. **Three implied asset lives sat inside that one model and disagreed by 2.8×:** the
+terminal's 1/g at 14.3 years, the explicit window's own capex at 40.2, and the disclosed 20.
+**The sourced figure sat BETWEEN the model's own two conventions, which is the whole
+argument for sourcing it.** The explicit window and the terminal may still differ, and the
+reason must be economic rather than a fudge — on ARCC, kiln 2 sits in assets under
+construction, so a young plant genuinely spends less than replacement depreciation for a
+while; the step at the boundary is REAL and is STATED.
+
+**THE GATE CAUGHT THE DESK THAT WROTE IT, FOUR TIMES IN ONE PASS,** and that is the evidence
+for it rather than an embarrassment beside it. A 30-year life this desk had picked itself
+gave 75.55 against the disclosed 20-year life's 66.63 — refusing an unsourced figure was
+worth 13%, and **it moved the answer AWAY from the price, which is the only direction that
+proves the discipline is not fitting.** The workbook's rebuilt terminal referenced capex for
+depreciation and EBIT for revenue, and the recalculation gate said so within the minute. The
+workbook carried real growth as a literal zero, so it said growth was FREE while the model
+charged it — **a hard-coded zero is the retired defect in mirror image and is how it would
+have come back** — and the driver test caught the disagreement. Two depreciation assertions
+genuinely reversed, because the retired terminal never added book depreciation back while
+the explicit window did, so one driver ran in two directions in one model; both were
+RE-DERIVED, not deleted, and the retired hurdle `W/(1+W)` is recorded as retired rather than
+quietly replaced.
+
+**THE SIGN CONDITION IS RE-DERIVED WITH THE CONSTRUCTION.** Under `g × IC` the hurdle was
+`N/IC` against `W/(1+W)`; with the charge gone the wedge goes with it and the test is the
+ordinary marginal one, `N/IC` against `W`. On ARCC the answer does not change and that is
+worth stating: 10.52% against 18.34%, so building cement capacity at USD 130 per annual
+tonne does not clear that company's cost of capital, real growth destroys value, and the
+model takes none. **THAT IS A FINDING ABOUT A MARKET, NOT A CONSERVATISM** — and it is why
+charging ARCC for growth was wrong twice over: it was not growing in real terms, and on
+those numbers it should not.
+
+**ENFORCED FROM OUTSIDE** per [R-ENF-01]: `scripts/check_terminal_floor.py` in CI, ratcheted
+[R-ENF-02] (`terminal_outstanding.json`, which may only ever SHORTEN — ARCC came off it at
+adoption), population-anchored [R-ENF-04] both ways (a run examining zero directories FAILS,
+and a run that READ zero terminals across present directories FAILS, which is the
+distinction an absent answer hides behind), negative-controlled on ten conditions with every
+mutation asserted to have LANDED before the gate runs. **The two ratchet groups excuse two
+different conditions and are NOT interchangeable:** the control's own case 10 asserted a name
+re-filed from `unreadable` to `breaching` should stay green, the gate refused it, and the
+GATE WAS RIGHT — a study that cannot be READ is not excused by an allowance for reading
+badly, and an entry able to travel between groups would let a name escape a real breach by
+being re-filed as merely unreadable. The fixture was replaced with the boundary case, where
+a dominance argument has to be exact.
+
+**THE GENERAL LESSON, WHICH IS NOT ABOUT TERMINALS: A FORMULA THAT IS RIGHT IN REAL TERMS
+AND WRONG IN NOMINAL TERMS PASSES EVERY ARITHMETIC CHECK THAT WILL EVER BE WRITTEN, BECAUSE
+NOTHING IN IT IS ARITHMETICALLY WRONG.** Recalculation, provenance, source discipline and
+four-field registers were all clean on the study that carried it worst. Where a quantity
+carries a unit — real or nominal, this year's money or that year's — **the unit is the thing
+to check**, and no amount of care inside the arithmetic will supply it. The corollary is
+sharper still: an inflation rate that has quietly become an asset life will not announce
+itself, because both are just numbers.

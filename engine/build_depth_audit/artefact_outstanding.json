@@ -3,7 +3,6 @@
  "seeded": "2026-09-03",
  "why_now": "Three studies were re-struck on fresh prices and three independent outside audits returned the same verdict for the same reason: the re-strike reached the valuation and not the paper. AMOC's case_adversarial.json carried a base central of 5.954 against a published 11.834 and was READ by three builders and WRITTEN BY NOTHING — it told a reader on page one that surrendering every contested judgement reached EGP 7.47, below the published central, which is impossible. ARCC's efg_bridge.json carried a weighted central of 54.65 and a falling margin path against Appendix A's rising one. EGCH's diagnostics.json and contested_judgements.json were a full edition behind. Not one was visible to any gate, because every gate reads study_numbers.json and none of these files is in it.",
  "outstanding": [
-  "ARCC",
   "DU",
   "MODON",
   "PHDC",

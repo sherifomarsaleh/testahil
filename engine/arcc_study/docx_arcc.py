@@ -19,6 +19,9 @@ from docx_base import *          # noqa: F401,F403
 from docx_base import (doc, P, H1, H2, rich, bullet, table, figure, box, caption,
                        masthead, INK, GREY, BRASS, GOLD, F_CREAM, F_PANEL, Pt, Inches)
 
+sys.path.insert(0, os.path.join(HERE, '..'))
+import site_data
+
 D = json.load(open('study_numbers.json'))
 _B = json.load(open('beta_result.json'))
 BETA = dict(_B['adopted'], _peer_list=_B['peer_betas_usable'])
@@ -36,18 +39,14 @@ S0 = json.load(open('step0_result.json'))
 # quoting the wrong one. It reads the generated record instead, which is the single
 # source that rule names.
 def _band_record(tk):
-    import re as _re
-    _src = open(os.path.join(HERE, '..', '..', 'assets', 'data.js'), encoding='utf-8').read()
-    _i = _src.find('BANDS')
-    _m = _re.search(r'\b%s\s*:\s*\{([^}]*)\}' % tk, _src[_i:_i + 200000])
-    if not _m:
-        raise SystemExit('no published band record for %s. [R-CAL-02] says what a '
-                         'reader is shown, and this study cannot show it without one.' % tk)
-    _out = {}
-    for _k, _v in _re.findall(r'(\w+)\s*:\s*("[^"]*"|[-\w.]+)', _m.group(1)):
-        _out[_k] = (_v.strip('"') if _v.startswith('"')
-                    else (None if _v == 'null' else float(_v)))
-    return _out
+    """The published band record, through the SHARED reader [R-ENF-03].
+
+    This function matched the record with a regular expression until 03-Sep-2026, and then
+    with its own inline node call. Both were superseded the same day by engine/site_data.py,
+    because eleven files across the book read assets/data.js and NINE did it by regex — a
+    rule implemented in two places is a rule that binds in two places.
+    """
+    return site_data.band_record(tk)
 
 
 BAND = _band_record('ARCC')
@@ -59,6 +58,7 @@ W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sensitivity']
 TR, PE, SHT = D['terminal_reconciliation'], D['peers'], D['share_triangulation']
 EXP, LR, GDV = D['experts'], D['lens_ranges'], D['growth_destroys_value']
 FA = D['forecast_anchor']          # [R-ANCHOR-01]: the record is printed for every study
+TERMREC = D['terminal_record']     # [R-TERM-01]: the terminal's own committed record
 
 BU, UC, KDG, CON = D['bottom_up'], D['unit_calibration'], D['kd_gate'], D['contested']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
@@ -238,9 +238,20 @@ P('Arabian Cement is valued as a single operating company, not as a sum of parts
   'that would need valuing on their own terms. A sum-of-the-parts here would be a sum of '
   'one part, and the discipline it is meant to impose — never blending legs that need '
   'different methods — has nothing to bite on.')
-P('Four lenses are used. A discounted cash-flow model built up from tonnes and costs '
-  'carries half the weight. Relative multiples, normalised earnings power and replacement '
-  'cost carry the rest, and each is reported with the reason its weight is what it is.')
+P(f'Four lenses are read and ONE of them is the answer. A discounted cash-flow model built '
+  f'up from tonnes and costs is the primary for this class, and the figure this study '
+  f'publishes is that lens and nothing else: EGP {n2(LN["central"])}. Relative multiples, '
+  f'normalised earnings power and replacement cost are CROSS-CHECKS, published in the same '
+  f'table so a reader can see where they disagree — they span EGP {n2(LN["low"])} to EGP '
+  f'{n2(LN["high"])} — and none of them is averaged into the answer. There are no weights '
+  f'in this model to report. An earlier edition blended the four at 50/20/22/8 and would '
+  f'have read EGP {n2(D["lens_record"]["retired"]["blend_value"])}; those weights had '
+  f'never cleared any '
+  f'out-of-sample test, and a number produced by averaging several methods is not more '
+  f'robust than the best of them — it is a new method with free parameters nobody tested, '
+  f'importing every weakness of the weakest lens at whatever weight somebody typed. Where '
+  f'several methods disagree the honest thing is to publish the disagreement and say which '
+  f'one the answer is.')
 
 # ---- 1.1 --------------------------------------------------------------------
 H2('1.1  The business, and why the lens follows from it')
@@ -317,12 +328,18 @@ rows.append(['Mill utilisation', pc(UC['util_fy25'])])
 rows.append(['Plus draw from finished-goods stock', f'{n3(IN["cem_stock_draw"][0])}Mt'])
 rows.append(['Cement sold', f'{n3(UC["cem_sold"])}Mt'])
 rows.append(['Cement exported  (DRIVER)', pc(IN['cem_export_share'][0])])
+# THE TOTAL'S THREE COMPONENTS ARE PRINTED AND CONTIGUOUS. Until this edition the export
+# cement tonnage appeared nowhere — only its share — and the clinker tonnage sat eight rows
+# up, so a reader went from cement sold of 3.553Mt to total despatches of 4.854Mt with no
+# printed route between them, and clinker is 27% of the volume.
+rows.append(['Exported as cement', f'{n3(UC["cem_sold"] - UC["vol_local"])}Mt'])
 rows.append(['Local cement', f'{n3(UC["vol_local"])}Mt'])
+rows.append(['Exported as clinker  (from above)', f'{n3(UC["vol_clk_exp"])}Mt'])
 rows.append(['TOTAL DESPATCHES', f'{n3(UC["vol_fy25"])}Mt'])
 rows.append(['Local cement price — DERIVED', f'EGP {n0(UC["price_loc_derived"])}/t'])
 rows.append(['Export cement price — DERIVED', f'USD {n1(UC["price_exp_cem_usd"])}/t'])
 rows.append(['Export clinker price — DERIVED', f'USD {n1(UC["price_exp_clk_usd"])}/t'])
-table(rows, [4.10, 2.00], band_rows={14, 15, 16, 17})
+table(rows, [4.10, 2.00], band_rows={16, 17, 18, 19})
 caption('Table 2 — The plant in tonnes, and the prices that fall out of it. Every FY2025 '
         'physical figure is the company\'s own disclosure. The four '
         'drivers are physical; everything below them is derived. Cement exports of '
@@ -342,20 +359,30 @@ P(f'The cost stack is the printed one. Cost of sales of EGP {n0(H["cogs"][2])}mn
   f'the cost of inventories charged to cost of sales, so it carries fuel, packing and spares '
   f'as well as raw meal — transportation of EGP {n0(IN["cos_transport_fy25"])}mn, overheads '
   f'of EGP {n0(IN["cos_overhead_fy25"])}mn, and depreciation and amortisation of EGP '
-  f'{n0(IN["cos_mfg_dep_fy25"] + 30.681613)}mn. Adding cash administrative expenses, '
+  f'{n0(IN["cos_mfg_dep_fy25"] + IN["cos_intang_amort_fy25"])}mn. Adding cash administrative expenses, '
   f'provisions and credit losses gives a total cash cost of EGP {n0(UC["cash_cost_fy25"])}mn, '
   f'or EGP {n0(UC["cash_cost_t"])} a tonne.')
-rows = [['EGP per tonne of cement', 'FY2025A', 'FY2026E', 'FY2030E']]
-for lab, key in [('Materials and fuel', 'c_mat'), ('Transportation', 'c_tra'),
-                 ('Overheads and administration', 'c_ovh'), ('Total cash cost', 'cc_t'),
-                 ('Blended realised price', 'price')]:
+rows = [['The cost stack and the margin it produces', 'FY2025A', 'FY2026E', 'FY2030E']]
+for lab, key in [('Materials and fuel (EGP mn)', 'c_mat'),
+                 ('Transportation (EGP mn)', 'c_tra'),
+                 ('Overheads and administration (EGP mn)', 'c_ovh'),
+                 ('Provisions and credit losses (EGP mn)', 'c_prv'),
+                 ('Total cash cost (EGP per tonne of cement)', 'cc_t'),
+                 ('Blended realised price (EGP per tonne of cement)', 'price')]:
     rows.append([lab] + [n0(BU[i][key]) for i in (0, 1, 5)])
 rows.append(['Volume (Mt)'] + [n3(BU[i]['vol']) for i in (0, 1, 5)])
 rows.append(['EBITDA (EGP mn)'] + [n0(BU[i]['ebitda']) for i in (0, 1, 5)])
 rows.append(['EBITDA margin'] + [pc(BU[i]['mgn']) for i in (0, 1, 5)])
-table(rows, [2.60, 1.30, 1.30, 1.30], band_rows={4, 7, 8})
-caption('Table 3 — The cost stack per tonne and the margin it produces. EBITDA is an OUTPUT '
-        'of this build, not an input to it.')
+table(rows, [2.60, 1.30, 1.30, 1.30], band_rows={5, 8, 9})
+caption('Table 3 — The cost stack and the margin it produces. EBITDA is an OUTPUT of this '
+        'build, not an input to it, and the table foots: revenue less the four cost lines '
+        'IS the EBITDA printed at the foot. THE FOUR COST LINES ARE TOTALS IN EGP '
+        'MILLIONS, NOT per-tonne rates — materials and fuel are driven by CLINKER '
+        'produced, because the kiln burns the fuel, while transportation and overheads are '
+        'driven by cement despatched, so no single per-tonne figure describes them all. '
+        'Provisions and credit losses are an operating charge above operating profit in '
+        'the audited statements, so they belong in this bridge, but they are not a cost of '
+        'making a tonne and are therefore excluded from the per-tonne cash cost above.')
 figure('fig7_stack.png', 6.9,
        'Figure 2 — Cash cost per tonne against realised price per tonne. The margin is the '
        'gap, and the gap narrows across the forecast.')
@@ -375,8 +402,8 @@ P(f'One physical constraint is worth checking, because the volume forecast is bu
   f'blending would widen that.')
 P(f'The company-specific lever is fuel, and it is now visible in the accounts rather than '
   f'assumed. Assets under construction of EGP {n0(IN["auc_fy25"])}mn include EGP '
-  f'{n0(240.235369)}mn of alternative-fuel capacity for production line 2 and EGP '
-  f'{n0(146.238521)}mn of a new cement silo for line 1, and a EUR 25mn European Bank for '
+  f'{n0(IN["auc_altfuel_fy25"])}mn of alternative-fuel capacity for production line 2 and EGP '
+  f'{n0(IN["auc_silo_fy25"])}mn of a new cement silo for line 1, and a EUR 25mn European Bank for '
   f'Reconstruction and Development facility is drawn against exactly that programme — '
   f'tranche one for alternative-fuel capacity and hydrogen injection on kiln 1, tranche two '
   f'for hydrogen injection on kiln 2. The model carries a saving on the materials-and-fuel '
@@ -391,12 +418,15 @@ P(f'Depreciation and amortisation is disclosed in the cash flow statement: EGP '
   f'revenue, and it is small for a cement plant.')
 P(f'It is small for a reason that matters to the valuation. The plant dates from around '
   f'2010 and the accounts are prepared on a historical-cost basis; the pound has devalued '
-  f'several times since. Net property, plant and equipment is EGP {n0(IN["ppe_fy25"])}mn, '
-  f'which on {n1(IN["cap_cement_mt"])}Mt of capacity is about USD '
-  f'{n0((IN["ppe_fy25"]+IN["auc_fy25"])/IN["cap_cement_mt"]/IN["fx"])} per annual tonne '
-  f'including construction in progress — against a replacement cost of USD '
-  f'{n0(IN["repl_usd_t"])}. The book is carrying the plant at roughly a tenth of what one '
-  f'would cost to build.')
+  f'several times since. Net property, plant and equipment is EGP {n0(IN["ppe_fy25"])}mn '
+  f'and assets under construction a further EGP {n0(IN["auc_fy25"])}mn; the EGP '
+  f'{n0(IN["ppe_fy25"]+IN["auc_fy25"])}mn together, on {n1(IN["cap_cement_mt"])}Mt of '
+  f'capacity, is about USD '
+  f'{n0((IN["ppe_fy25"]+IN["auc_fy25"])/IN["cap_cement_mt"]/IN["fx"])} per annual tonne — '
+  f'against a replacement cost of USD {n0(IN["repl_usd_t"])}. The book is carrying the '
+  f'plant at '
+  f'{pc((IN["ppe_fy25"]+IN["auc_fy25"])/IN["cap_cement_mt"]/IN["fx"]/IN["repl_usd_t"])} of '
+  f'what one would cost to build.')
 rows = [['EGP mn', 'FY2023', 'FY2024', 'FY2025']]
 rows.append(['Depreciation and amortisation'] + [n0(x) for x in H['dna']])
 rows.append(['Capital expenditure'] + [n0(x) for x in H['capex']])
@@ -438,38 +468,54 @@ P(f'The cost of DEBT is the line the audited accounts changed most. During 2025 
   f'injection, and a EUR 3.09mn National Bank of Egypt facility under a KfW '
   f'industrial-pollution programme at six-month Euribor plus 3%. '
   f'{pc(KDG["eur_share"])} of the interest-bearing book is now euro-denominated.')
-rows = [['Facility', 'Balance (EGP mn)', 'Currency', 'Contractual rate']]
+rows = [['Facility', 'Balance (EGP mn)', 'Currency', 'Contractual rate',
+         'Pound-equivalent cost']]
 rows.append(['CIB credit facilities', n0(IN['debt_cib_fy25']), 'EGP',
-             f'corridor + 0.6% = {pc(KDG["kd_cib"], 2)}'])
+             f'corridor + 0.6% = {pc(KDG["kd_cib"], 2)}', pc(KDG['kd_cib'], 2)])
 rows.append(['National Bank of Egypt / KfW', n0(IN['debt_nbe_fy25']), 'EUR',
-             f'Euribor + 3.00% = {pc(KDG["kd_nbe"], 2)}'])
+             f'Euribor + 3.00% = {pc(KDG["kd_nbe"], 2)}',
+             pc(KDG['kd_nbe'] + IN['egp_dep_vs_eur'], 2)])
 rows.append(['European Bank for Reconstruction and Development', n0(IN['debt_ebrd_fy25']),
-             'EUR', f'Euribor + {pc(IN["ebrd_margin"], 2)} = {pc(KDG["kd_ebrd"], 2)}'])
-rows.append(['Lease liabilities', n1(IN['lease_fy25']), 'EGP', '—'])
-rows.append(['Blended cost of debt, adopted', n0(W['debt_total']),
-             f'{pc(KDG["eur_share"], 0)} EUR', pc(KDG['kd_blended'], 2)])
-table(rows, [2.60, 1.20, 1.00, 1.60], band_rows={5})
-caption('Table 5 — The debt book, facility by facility, from the audited borrowings note. '
-        'The blended rate is built in the model from these four lines, not pasted.')
+             'EUR', f'Euribor + {pc(IN["ebrd_margin"], 2)} = {pc(KDG["kd_ebrd"], 2)}',
+             pc(KDG['kd_ebrd'] + IN['egp_dep_vs_eur'], 2)])
+rows.append(['Lease liabilities', n1(IN['lease_fy25']), 'EGP',
+             f'marginal pound rate = {pc(KDG["kd_cib"], 2)}', pc(KDG['kd_cib'], 2)])
+rows.append(['Weighted average', n0(W['debt_total']),
+             f'{pc(KDG["eur_share"], 0)} EUR', pc(KDG['kd_contracted'], 2),
+             pc(KDG['kd_blended'], 2)])
+table(rows, [2.10, 0.95, 0.80, 1.45, 1.20], band_rows={5})
+caption('Table 5 — The debt book, facility by facility, from the audited borrowings note, '
+        'and the rate ADOPTED is the last column. A euro loan is not a cheap loan to a '
+        'company that earns pounds: the contractual coupon has to carry the expected '
+        f'{pc(IN["egp_dep_vs_eur"], 0)} annual pound depreciation against the euro before '
+        'it can be compared with a pound rate or applied to pound cash flows. Both columns '
+        'weight to the figures shown, from these four lines and nothing pasted; the '
+        'contractual weighted average is published beside the adopted one so the reader can '
+        'see the whole of the difference.')
 P(f'Three checks are published rather than asserted, because a contractual rate is not the '
   f'same thing as a rate paid. Interest expense over average interest-bearing debt gives '
   f'{pc(KDG["eff_fy24"], 2)} in FY2024, {pc(KDG["eff_fy25"], 2)} in FY2025 and '
   f'{pc(KDG["eff_q126_annualised"], 2)} annualising the first quarter of 2026. The '
-  f'contractual {pc(KDG["kd_blended"], 2)} sits ABOVE all three, and the gap is not a '
+  f'adopted {pc(KDG["kd_blended"], 2)} sits ABOVE all three, and the gap is not a '
   f'reconciling item to be smoothed: the book re-based mid-year, so the trailing average '
   f'balance is not what carried the interest, and the borrowing that funds an asset still '
   f'under construction has its interest capitalised into that asset rather than expensed. '
-  f'The marginal contractual rate is the right one for a forward-looking discount rate, and '
-  f'the gap is disclosed so the reader can disagree.')
-P(f'One caution belongs next to that number. Adopting the contracted euro rate means the '
-  f'euro debt is NOT compensated for pound depreciation beyond what this study\'s own '
-  f'currency path already assumes. Loading the euro legs with '
-  f'{pc(IN["egp_dep_vs_eur"], 0)} annual pound depreciation under interest parity gives a '
-  f'pound-equivalent cost of debt of {pc(KDG["kd_egp_equivalent"], 2)} — nearly twice the '
-  f'adopted figure. The alternative is computed as a VALUE and not merely described: it is '
-  f'worth {sg(CON[0]["effect"])} of the cash-flow lens, because debt is only '
+  f'A marginal forward-looking rate is the right one for a discount rate, and the gap is '
+  f'disclosed so the reader can disagree.')
+P(f'One caution belongs next to that number, and it runs the other way from the one a '
+  f'reader might expect. The alternative here is the CONTRACTED euro rate — the coupon as '
+  f'written, {pc(KDG["kd_contracted"], 2)} blended — and adopting it would mean the euro '
+  f'debt is NOT compensated for pound depreciation beyond what this study\'s own currency '
+  f'path already assumes. This study does not adopt it. Loading the euro legs with '
+  f'{pc(IN["egp_dep_vs_eur"], 0)} annual pound depreciation under interest parity, which is '
+  f'what a company earning pounds actually bears on a euro loan, is what produces the '
+  f'adopted {pc(KDG["kd_egp_equivalent"], 2)} — '
+  f'{n1(KDG["kd_egp_equivalent"]/KDG["kd_contracted"])} times the contracted figure. The '
+  f'cheaper alternative is computed as a VALUE and not merely described: it is worth '
+  f'{sg(CON[0]["effect"])} of the cash-flow lens, because debt is only '
   f'{pc(W["wd_gross"])} of the capital structure. A large swing in a small weight is still '
-  f'a small effect, and saying so is not the same as dismissing it.')
+  f'a small effect, and saying so is not the same as dismissing it. The adopted rate is the '
+  f'MORE conservative of the two.')
 rows = [['', 'Explicit window', 'Terminal']]
 rows.append(['Risk-free rate', pc(IN['rf'], 2), pc(IN['rf_term'], 2)])
 rows.append(['Less sovereign default spread', f'({pc(IN["sov_spread_cds"], 2)})', '—'])
@@ -544,8 +590,15 @@ P(f'The consequence is large and is published as a value rather than described: 
 rows = [['Beta'] + [n2(b) for b in SN['beta_grid']]]
 rows.append(['Fair value per share (EGP)'] + [n2(x) for x in SN['beta']])
 table(rows, [2.20, 0.98, 0.98, 0.98, 0.98, 0.98])
-caption('Table 8 — Fair value across the fixed comparability anchors, which span the '
-        'regression\'s own confidence interval.')
+caption(f'Table 8 — Fair value across the fixed comparability anchors. These are round '
+        f'numbers held constant so studies can be compared, and they therefore do NOT track '
+        f'any one regression\'s confidence interval — on this name the withdrawn own-stock '
+        f'estimate carries a 95% interval of {n2(SN["beta_ci_lo"])} to '
+        f'{n2(SN["beta_ci_hi"])}, whose LOWER end sits below the lowest anchor here and '
+        f'would put the cash-flow lens at EGP {n2(SN["fv_at_ci_lo"])}. That end is the '
+        f'value-RAISING one, and it is stated rather than left off the table: a wider '
+        f'interval than the anchors show is a fact about how little this regression '
+        f'establishes, not a reason to print a narrower one.')
 
 # ---- 1.6 --------------------------------------------------------------------
 H2('1.6  The cash-flow waterfall')
@@ -553,6 +606,7 @@ rows = [['EGP mn'] + YF]
 for lab, key, fmt in [('Revenue', 'revenue', n0), ('EBITDA', 'ebitda', n0),
                       ('EBITDA margin', 'margin', pc),
                       ('Depreciation and amortisation', 'dna', n0),
+                      ('Plus other operating income', 'other_income', n0),
                       ('EBIT', 'ebit', n0)]:
     rows.append([lab] + [fmt(x) for x in F[key]])
 rows.append([f'Tax rate (effective, {pc(TAXE)})'] + [pc(TAXE) for _ in YF])
@@ -560,14 +614,28 @@ rows.append(['NOPAT  (EBIT × (1 − t))'] + [n0(x) for x in F['nopat']])
 rows.append(['Plus depreciation'] + [n0(x) for x in F['dna']])
 rows.append(['Less capital expenditure'] + [f'({n0(x)})' for x in F['capex']])
 rows.append(['Less change in working capital'] + [f'({n0(x)})' for x in F['dwc']])
+# THE FY2026 COLUMN DID NOT FOOT FOR A READER. Its components are full-year figures and
+# its free cash flow is the remaining part-year only, so the reader's arithmetic came out
+# at twice the printed number with nothing on the page to explain it. The scaling factor is
+# now a printed row.
+_REM = 1.0 - IN['stub_years']
+rows.append(['Remaining fraction of the year'] + [f'{(_REM if i == 0 else 1.0):.2f}'
+                                                  for i in range(5)])
 rows.append(['Free cash flow to the firm'] + [n0(x) for x in F['fcff']])
 rows.append(['Discount factor'] + [f'{x:.4f}' for x in F['df']])
 rows.append(['Present value of FCFF'] + [n0(x) for x in F['pv']])
-table(rows, [2.10, 0.92, 0.92, 0.92, 0.92, 0.92], band_rows={11, 13}, size=8.8)
-caption('Table 9 — The full build from revenue to present value. FY2026 carries only the '
-        'five months not yet earned at the valuation date; the seven already earned are '
-        'rolled into the opening cash balance instead, so the period is counted exactly '
-        'once rather than twice or not at all.')
+table(rows, [2.10, 0.92, 0.92, 0.92, 0.92, 0.92], band_rows={12, 15}, size=8.8)
+caption('Table 9 — The full build from revenue to present value, and every line of it is '
+        'printed so the arithmetic closes on the page: EBITDA less depreciation PLUS other '
+        'operating income is the EBIT shown. That last line is the export subsidy at the '
+        'rate the company disclosed on its FY2025 export revenue, plus the non-subsidy '
+        'remainder escalated; it is a real disclosed income and leaving it out of the '
+        'printed build would have left a reader unable to reconcile the two rows either '
+        f'side of it. FY2026 carries only the '
+        f'{n0(round(_REM * 12))} months not yet earned at the valuation date; the '
+        f'{n0(round(IN["stub_years"] * 12))} already earned are rolled into the opening '
+        f'cash balance instead, '
+        'so the period is counted exactly once rather than twice or not at all.')
 P(f'The effective tax rate of {pc(TAXE)} is DISCLOSED, not inferred: income tax of EGP '
   f'{n0(H["tax"][2])}mn against pre-tax profit of EGP {n0(H["pbt"][2])}mn. The company '
   f'separately states an average effective rate of {pc(IN["eff_rate_disclosed_fy25"], 2)} for '
@@ -627,9 +695,15 @@ P(f'One reconciliation belongs here too, because it is the sharpest challenge to
   f'{n0(IN["rev_q1_26"])}mn, a gross margin of {pc(IN["gp_q1_26"]/IN["rev_q1_26"])} against '
   f'{pc(H["gross_profit"][2]/H["revenue"][2])} for FY2025 as a whole. Four times that '
   f'quarter is EGP {n0(4*IN["pat_q1_26"])}mn. This model forecasts EGP {n0(F["pat"][0])}mn '
-  f'for FY2026, {sg(F["pat"][0]/(4*IN["pat_q1_26"])-1)} below the simple annualisation. '
-  f'Margins were still EXPANDING in the first quarter; the forecast assumes they turn. That '
-  f'is the assumption to attack.')
+  f'for FY2026, {sg(F["pat"][0]/(4*IN["pat_q1_26"])-1)} '
+  f'{"above" if F["pat"][0] > 4*IN["pat_q1_26"] else "below"} the simple annualisation — a '
+  f'direction that is COMPUTED here rather than typed, because the earlier editions of this '
+  f'sentence said "below" beside a positive sign. The margin turn is visible in the two '
+  f'rates rather than in that one: revenue is forecast '
+  f'{sg(F["revenue"][0]/(4*IN["rev_q1_26"])-1)} against four times the quarter while profit '
+  f'is forecast {sg(F["pat"][0]/(4*IN["pat_q1_26"])-1)}, so the model has revenue running '
+  f'well ahead of earnings. Margins were still EXPANDING in the first quarter; the forecast '
+  f'assumes they turn. That is the assumption to attack.')
 
 H2('1.7  The enterprise-to-equity bridge')
 rows = [['', 'EGP mn', 'Per share (EGP)']]
@@ -697,22 +771,47 @@ P(f'Growth in the terminal state has to be paid for, and the choice of what capi
   f'measures the devaluation, not the economics of adding a tonne.')
 P(f'The terminal block is therefore struck on REPLACEMENT-COST invested capital — EGP '
   f'{n0(DCF["ic_repl"])}mn, being {n1(IN["cap_cement_mt"])}Mt at USD {n0(IN["repl_usd_t"])} '
-  f'a tonne. On that basis the terminal return on capital is {pc(TR["roic_repl"])} and the '
-  f'reinvestment rate that {pc(IN["g_term"], 0)} growth requires is {pc(TR["rr_repl"])} of '
-  f'terminal profit.')
-P(f'That choice of denominator all but switches the terminal growth rate off, and the '
-  f'reason is worth setting out because the obvious reading of it is wrong. A terminal '
-  f'return of {pc(TR["roic_repl"])} against a terminal rate of {pc(W["wacc_term"])} looks '
-  f'like the textbook case in which growth destroys value. It is not the right test. '
-  f'Because reinvestment is growth divided by return on capital, and that return is itself '
-  f'terminal profit grown one year over a fixed capital base, the reinvestment charge '
-  f'collapses to a constant — growth multiplied by invested capital — and the whole '
-  f'terminal block reduces to terminal profit grown one year, less that charge, over the '
-  f'rate less growth. Differentiate it and the growth term vanishes: the DIRECTION of the '
-  f'lever is a constant of the model, and the hurdle is terminal profit over invested '
-  f'capital against the rate over one plus the rate, which is {pc(GDV["hurdle"], 2)}. This '
-  f'company sits at {pc(GDV["n_over_ic"], 2)} — {n0(abs(GDV["n_over_ic"]-GDV["hurdle"])*1e4)} '
-  f'basis points {"above" if GDV["n_over_ic"] > GDV["hurdle"] else "BELOW"} it. Growth '
+  f'a tonne. On that basis the return on capital is {pc(GDV["n_over_ic"], 2)} — the last '
+  f'forecast year\'s operating profit after tax against that capital, both measured at the '
+  f'same date. A figure of {pc(TR["roic_repl"])} appears in the earlier editions of this '
+  f'section and is NOT used here: it divides a profit already grown by one year of terminal '
+  f'growth by a capital base that has not grown, which flatters the return by '
+  f'{n0((TR["roic_repl"]-GDV["n_over_ic"])*1e4)} basis points for no reason other than the '
+  f'mismatch. The lower figure is the one this study tests growth against.')
+P(f'WHAT THE TERMINAL CHARGES, AND WHY IT CHANGED IN THIS EDITION. Earlier revisions derived '
+  f'the terminal reinvestment from that return — growth divided by return on capital, which '
+  f'came to {pc(TR["rr_repl"])} of terminal profit. Substituting the definitions, that '
+  f'construction collapses to a fixed charge of growth multiplied by invested capital: EGP '
+  f'{n0(IN["g_term"]*DCF["ic_repl"])}mn a year, for ever. Read as a programme for replacing '
+  f'the plant it implies doing so every {n1(1.0/IN["g_term"])} years — which is one divided '
+  f'by the growth rate, and so a fact about the inflation path rather than about the kiln. '
+  f'The reinvestment identity is a statement about REAL growth, and this model\u2019s '
+  f'terminal real growth is zero, so the charge was buying no capacity at all.')
+P(f'This edition charges what holding the plant actually costs: capital maintenance over the '
+  f'useful life ARCC\u2019s own audited accounts disclose — '
+  f'{n0(TERMREC["inputs"]["useful_life_years"])} years for machinery and equipment and for '
+  f'other installations — which is EGP {n0(TERMREC["maintenance"])}mn a year against '
+  f'replacement cost, plus the working capital that inflation requires, less the book '
+  f'depreciation already inside terminal profit. That is the same definition of free cash '
+  f'flow the explicit window uses; the earlier terminal used a different one, and a model '
+  f'should not carry two. Three implied asset lives previously sat inside this one and '
+  f'disagreed by a factor of '
+  f'{n1((IN["repl_usd_t"]/IN["capex_usd_t_cap"])/(1.0/IN["g_term"]))}: '
+  f'the terminal\u2019s {n1(1.0/IN["g_term"])} years, '
+  f'the explicit window\u2019s own capital spending at '
+  f'{n1(IN["repl_usd_t"]/IN["capex_usd_t_cap"])} years, and the disclosed '
+  f'{n0(TERMREC["inputs"]["useful_life_years"])}. The sourced figure sits between the '
+  f'model\u2019s own two conventions. The explicit window and the terminal may still differ, '
+  f'and here they do for an economic reason: kiln 2 sits in assets under construction, so a '
+  f'young plant genuinely spends less than replacement depreciation for a while, while the '
+  f'terminal is perpetuity, where every asset must be replaced at current cost.')
+P(f'Growth in the terminal is charged at what growth costs — the capital a REAL increase in '
+  f'capacity requires, at the replacement cost of that capacity — and this model takes no '
+  f'real growth, so it charges none for it. Whether it should is the ordinary question: does '
+  f'a new tonne earn more than it costs? Terminal profit over invested capital is '
+  f'{pc(GDV["n_over_ic"], 2)} against a terminal rate of {pc(W["wacc_term"])} — '
+  f'{n0(abs(GDV["n_over_ic"]-W["wacc_term"])*1e4)} basis points '
+  f'{"above" if GDV["n_over_ic"] > W["wacc_term"] else "BELOW"} it. Growth '
   f'therefore {"adds" if GDV["analytic_adds_value"] else "DESTROYS"} value: the '
   f'cash-flow lens is EGP {n2(GDV["fv_at_g3"])} at 3% terminal growth and EGP '
   f'{n2(GDV["fv_at_g7"])} at 7%, so four extra points of perpetual growth take the value '
@@ -760,8 +859,10 @@ P(f'The relative lens applies {n1(IN["ev_ebitda_just"])} times to normalised EBI
   f'{pc(1-IN["norm_rev_haircut"], 0)} and a mid-cycle margin of {pc(IN["norm_mgn"])} '
   f'applied to it — and adds net cash at face. The multiple is disclosed as weakly '
   f'anchored: the listed Egyptian peer set is thin, and its published multiples do not '
-  f'reconcile against the market capitalisations printed beside them. That is why this '
-  f'lens carries {pc(IN["w_rel"], 0)} and not more.')
+  f'reconcile against the market capitalisations printed beside them. That weakness is why '
+  f'this lens is published as a CROSS-CHECK beside the answer and is not the answer: a '
+  f'multiple anchored on a peer set this thin cannot carry a valuation, and averaging it '
+  f'into one would import that weakness at whatever weight somebody chose.')
 P(f'The normalised-earnings lens capitalises the same mid-cycle operating profit after tax '
   f'— EGP {n0(LN["nopat_norm"])}mn — at {n1(IN["pe_just"])} times, and again adds cash at '
   f'FACE rather than capitalising it at the operating multiple. Cash is worth cash; '
@@ -771,8 +872,8 @@ P(f'The asset lens values the capacity: {n1(IN["cap_cement_mt"])}Mt at a justifi
   f'{n0(IN["ev_t_just"])} per annual tonne, marked down '
   f'{pc(1-IN["ev_t_just"]/IN["repl_usd_t"], 0)} from a replacement cost of USD '
   f'{n0(IN["repl_usd_t"])}. Against that, the market is paying USD '
-  f'{n1(LN["ev_per_t_spot"])} per annual tonne. This lens carries only '
-  f'{pc(IN["w_asset"], 0)}, and the reason is in the same paragraph as the number: '
+  f'{n1(LN["ev_per_t_spot"])} per annual tonne. This lens is a CROSS-CHECK and not the '
+  f'answer, and the reason is in the same paragraph as the number: '
   f'restarting a mothballed line costs a fraction of building one, and '
   f'{n1(IN["egy_revival_mt"])}Mt of restart capacity is queuing. Replacement cost is a '
   f'ceiling here, not a floor.')
@@ -839,13 +940,22 @@ caption(f'Table 15 — EBITDA margin, year by year. EFG’s FY2025a margin resta
         f'models classify oppositely — is removed, reproducing our own audited figure '
         f'exactly. The disagreement from FY2026 on is real, not definitional, and it widens '
         f'rather than staying flat.')
-sc_rows = [['Scenario', 'DCF lens', 'Central', 'vs spot']]
+# ONE COLUMN, NOT TWO. With the blend retired the cash-flow lens IS the central, so
+# printing both was the same number twice under two headings.
+sc_rows = [['Scenario', 'Cash-flow lens', 'vs spot']]
 for r in MSC['scenarios']:
-    sc_rows.append([r['name'], n2(r['dcf']), n2(r['central']), sg(r['central']/SPOT-1)])
-table(sc_rows, [3.60, 0.95, 0.95, 0.95], size=8.8)
+    sc_rows.append([r['name'], n2(r['dcf']), sg(r['dcf']/SPOT-1)])
+table(sc_rows, [3.90, 1.20, 1.20], size=8.8)
+_efg_ov = next(r for r in MSC['scenarios'] if r['name'].startswith('EFG margin, OUR'))
+_efg_bv = next(r for r in MSC['scenarios'] if 'EFG volumes' in r['name'])
 caption(f'Table 16 — What EFG’s margin view is worth, held against both volume '
-        f'assumptions. Their margin on OUR volumes clears spot; their margin AND their '
-        f'volumes, taken together, does not.')
+        f'assumptions. Their margin on OUR volumes reaches EGP {n2(_efg_ov["dcf"])}, '
+        f'{sg(_efg_ov["dcf"]/SPOT-1)} against the latest close; their margin AND their '
+        f'volumes together reach EGP {n2(_efg_bv["dcf"])}, {sg(_efg_bv["dcf"]/SPOT-1)}. '
+        f'NEITHER clears the price, and the volume assumption is worth '
+        f'{n2(_efg_ov["dcf"]-_efg_bv["dcf"])} a share between them — several times what the '
+        f'margin disagreement is worth, which is why the volume base carries its own '
+        f'sensitivity in section 1.2.')
 
 # ---- 1.11 -------------------------------------------------------------------
 H2('1.11  What a buyer at EGP ' + n2(SPOT) + ' must believe')
@@ -866,18 +976,35 @@ P(f'Strip out the items resolved above and the honest disagreement left is one t
 # ============================== 2 ============================================
 H1('2  Price structure')
 P(TECH['tech']['summary'])
-rows = [['', 'Level (EGP)', 'Distance from spot']]
+# TWO CLOCKS, AND THE DISTANCES BELONG TO THE READ'S OWN. The levels are computed from a
+# price history ending on the read's own last session; the study's spot is the latest known
+# market price, which can be weeks later. Measuring the levels against SPOT — which this
+# table did until 03-Sep-2026 — makes every resistance and support print as a large
+# negative and shows the 52-WEEK HIGH BELOW the current price, which is impossible on one
+# clock and merely stale on two. The distances are from the read's own close, and the gap
+# between the two dates is stated rather than hidden inside a percentage.
+_TC = TECH['close']
+rows = [['', 'Level (EGP)', f'Distance from the {n2(_TC)} close of {TECH["data_date"]}']]
 for i, r in enumerate(TECH['levels']['res']):
-    rows.append([f'Resistance {i+1}', n2(r), sg(r / SPOT - 1)])
+    rows.append([f'Resistance {i+1}', n2(r), sg(r / _TC - 1)])
 for i, s_ in enumerate(TECH['levels']['sup']):
-    rows.append([f'Support {i+1}', n2(s_), sg(s_ / SPOT - 1)])
-rows.append(['52-week high', n2(TECH['hi_52w']), sg(TECH['hi_52w'] / SPOT - 1)])
-rows.append(['52-week low', n2(TECH['lo_52w']), sg(TECH['lo_52w'] / SPOT - 1)])
+    rows.append([f'Support {i+1}', n2(s_), sg(s_ / _TC - 1)])
+rows.append(['52-week high', n2(TECH['hi_52w']), sg(TECH['hi_52w'] / _TC - 1)])
+rows.append(['52-week low', n2(TECH['lo_52w']), sg(TECH['lo_52w'] / _TC - 1)])
 table(rows, [2.00, 1.50, 1.70])
-caption('Table 17 — Levels are computed from swing structure with a recency weight; '
-        'moving averages, the 52-week extremes and round numbers are admitted as '
-        'candidates but score below real swing points. Resistance 1 and support 1 always '
-        'mean nearest to the close.')
+caption(f'Table 17 — Levels are computed from swing structure with a recency weight; '
+        f'moving averages, the 52-week extremes and round numbers are admitted as '
+        f'candidates but score below real swing points. Resistance 1 and support 1 always '
+        f'mean nearest to the close. THE DATES DIFFER AND THAT MATTERS HERE: this read is '
+        f'built on price history ending {TECH["data_date"]} at EGP {n2(_TC)}, while the '
+        f'latest known market price used everywhere else in this study is EGP {n2(SPOT)} '
+        f'on {D["meta"]["spot_date"]}, '
+        f'{sg(SPOT/_TC-1)} higher. Every distance above is measured from the read\'s own '
+        f'close, because a level drawn on one day\'s history says nothing about a price on '
+        f'another. The whole ladder — the 52-week high included — sits BELOW the current '
+        f'price, so on this evidence the tape has moved clear of every level this structure '
+        f'identified and the read should be treated as describing a market the price has '
+        f'since left.')
 figure('fig3_ma.png', 6.9,
        'Figure 5 — Three years of price with the 50- and 200-day averages.')
 rich([('On the upside: ', {'bold': True}), (TECH['tech']['bull'], {})])
@@ -887,20 +1014,29 @@ P('This section describes the tape and makes no claim about value. The two are c
 
 # ============================== 3 ============================================
 H1('3  A probabilistic price map')
-P('The following is NOT a valuation. It is a distribution of where the share price could '
-  'sit at two horizons, drawn from the price history alone and from nothing in the '
-  'preceding sections. It is included because a single fair-value number tells a reader '
-  'nothing about dispersion, and it is labelled illustrative because its own calibration '
-  'record says it should be.')
+_BR = _band_record('ARCC')
+P(f'The following is NOT a valuation. It is a distribution of where the share price could '
+  f'sit at two horizons, drawn from the price history alone and from nothing in the '
+  f'preceding sections. It is included because a single fair-value number tells a reader '
+  f'nothing about dispersion. Over {n0(_BR["n"])} resolved three-month forecasts this '
+  f'name\'s price finished inside the 90% band {pc(_BR["c90"], 1)} of the time, against a '
+  f'{pc(0.90, 0)} target — a record long enough to read, and one on which nothing further '
+  f'is claimed either way. Its bands run {n2(_BR["width"])} times the width of a naive '
+  f'carry-anchored random walk\'s, which is disclosed rather than judged: on this exchange '
+  f'that is the ordinary figure and a wider band is not automatically a worse one.')
 rows = [['', 'One month', 'Three months']]
 for lab, k in [('5th percentile', 'p5'), ('25th percentile', 'p25'), ('Median', 'p50'),
                ('75th percentile', 'p75'), ('95th percentile', 'p95')]:
     rows.append([lab, n2(STK['horizons']['1M']['pct'][k]), n2(STK['horizons']['3M']['pct'][k])])
-rows.append(['Probability of finishing above the current price',
+# THE ANCHOR IS NAMED, NOT CALLED "THE CURRENT PRICE". These probabilities are measured
+# from the close the simulation was anchored on, which on this edition is four weeks and
+# 30.5% below the latest known market price. A reader seeing "above the current price"
+# reads it against 77.00 and is wrong by the whole of that move.
+rows.append([f'Probability of finishing above the EGP {n2(STK["spot"])} anchor',
              pc(STK['horizons']['1M']['p_above']), pc(STK['horizons']['3M']['p_above'])])
-rows.append(['Probability of touching +10% at any point',
+rows.append([f'Probability of touching +10% of the anchor at any point',
              pc(STK['horizons']['1M']['touch_up10']), pc(STK['horizons']['3M']['touch_up10'])])
-rows.append(['Probability of touching −10% at any point',
+rows.append([f'Probability of touching −10% of the anchor at any point',
              pc(STK['horizons']['1M']['touch_dn10']), pc(STK['horizons']['3M']['touch_dn10'])])
 table(rows, [3.00, 1.60, 1.60], band_rows={3})
 caption(f'Table 18 — Percentiles in EGP per share, from a 50,000-path simulation anchored '
@@ -947,8 +1083,22 @@ for k in list(LN['values']) + ['Normalised earnings']:
     rows.append([k, n2(LR[k]['bear']), n2(LR[k]['base']), n2(LR[k]['bull']), _role,
                  sg(LR[k]['base'] / SPOT - 1)])
 table(rows, [2.00, 1.00, 1.00, 1.00, 0.90, 1.02], band_rows={1})
-caption('Table 19 — Each lens as a range. The disagreement between them is information, '
-        'not noise.')
+_FA = D['forecast_anchor']
+_P = LN['primary']
+caption(f'Table 19 — Each lens as a range. The disagreement between them is information, '
+        f'not noise. THE CASH-FLOW RANGE IS ALMOST ENTIRELY DOWNSIDE, AND THAT IS A CLAIM '
+        f'RATHER THAN AN ACCIDENT: the forecast opens at '
+        f'{pc(_FA["first_forecast_rate"], 2)} against a latest audited '
+        f'{pc(_FA["latest_reviewed_rate"], 2)} — within '
+        f'{n2(abs(_FA["latest_reviewed_rate"] - _FA["first_forecast_rate"]) * 100)} of a '
+        f'point of the best year this company has ever filed — and rises from there to '
+        f'{pc(_FA["forecast_path"][-1], 2)}. There is almost nothing above it left to reach '
+        f'for, which is why the bull corner sits only '
+        f'{sg(LR[_P]["bull"] / LR[_P]["base"] - 1)} above the base while the bear corner, '
+        f'struck on this company\'s own FY2023 margin, sits '
+        f'{sg(LR[_P]["bear"] / LR[_P]["base"] - 1)} below it. A forecast sitting at the top '
+        f'of a filed record is a claim a reader is owed plainly, not one to be inferred from '
+        f'the shape of a range.')
 _above = sorted([k for k in LN['values'] if LN['values'][k] > SPOT],
                 key=lambda k: -LN['values'][k])
 _below = sorted([k for k in LN['values'] if LN['values'][k] <= SPOT],
@@ -997,16 +1147,21 @@ P(f'This edition does not resolve that by weighting. A previous one blended the 
   f'ceiling can read EGP {n2(LN["values"]["Asset / replacement cost"])} off the same '
   f'table and reach the opposite conclusion; the case against doing so is the '
   f'{n1(IN["egy_revival_mt"])}Mt restart programme, and it is a testable one.')
-P(f'Against the technical picture, the two readings are in tension. The share is above its '
-  f'entire moving-average stack on a rising 200-day and {pc(1-TECH["pct_off_high"], 0)} of '
-  f'of its 52-week intraday high — 98% OF that high, and '
-  f'{pc((SPOT-35.01)/(60.40-35.01), 0)} of the way UP the range, which are different '
-  f'statistics and the earlier edition ran them together — while the two multiple-based '
-  f'lenses put fair value below the '
-  f'current price and the two forward-looking ones put it above. Momentum sits with the '
-  f'cash-flow case here rather than against it, and the disagreement that remains is '
-  f'between that case and the multiple the market is prepared to pay. This study takes no '
-  f'view on which resolves first.')
+_nbelow = sum(1 for v in LN['values'].values() if v < SPOT)
+_nlens = len(LN['values'])
+P(f'Against the technical picture, the two readings are in tension, and the tension is '
+  f'entirely one-sided. On the price history the read was built from, the share was above '
+  f'its whole moving-average stack on a rising 200-day and at '
+  f'{pc(1 - TECH["pct_off_high"], 0)} of its 52-week intraday high of EGP '
+  f'{n2(TECH["hi_52w"])}. The latest close of EGP {n2(SPOT)} is '
+  f'{sg(SPOT / TECH["hi_52w"] - 1)} beyond even that high, so the tape has run past every '
+  f'level the structure identified. Against it, '
+  f'{"every one of" if _nbelow == _nlens else "%d of" % _nbelow} this study\'s '
+  f'{n0(_nlens)} valuation lenses sits BELOW the market, the nearest at '
+  f'{sg(max(LN["values"].values()) / SPOT - 1)} — there is no reading here that supports '
+  f'the price, which is a stronger and less comfortable statement than any single lens '
+  f'makes. Momentum is with the market and value is not, and this study takes no view on '
+  f'which resolves first.')
 
 # ============================== 5 ============================================
 H1('5  Catalysts to watch')
@@ -1047,25 +1202,39 @@ H1('6  Reading the probability zones')
 P('The distribution in section 3 is easier to use as zones than as percentiles. The '
   'following divides the three-month outcome space into four bands and states what each '
   'would mean, without predicting which occurs.')
+# THE BOUNDARIES AND THE PROBABILITIES MUST SIT ON THE SAME CLOCK. Until 03-Sep-2026 the
+# boundaries were struck at SPOT while the probabilities were the simulation's own
+# P(above the ANCHOR) — a distribution centred on 60.46 was made to say there was a 51%
+# chance of finishing above 77.00, roughly three times the truth, in the one table whose
+# entire purpose is to state probabilities. The anchor is the clock the simulation runs
+# on, so it is the clock the zones use, and it is named rather than called "spot".
 h3 = STK['horizons']['3M']['pct']
+_ANCH = STK['spot']
 rows = [['Zone', 'Three-month range (EGP)', 'Probability', 'What it would mean']]
 rows.append(['Lower tail', f'below {n2(h3["p5"])}', '5%',
-             'A break of the 48.10 support zone, most plausibly on a faster-than-assumed '
-             'capacity restart'])
-rows.append(['Below spot', f'{n2(h3["p5"])} – {n2(SPOT)}',
+             f'A break of the {n2(TECH["levels"]["sup"][2])} support zone, most plausibly '
+             f'on a faster-than-assumed capacity restart'])
+rows.append([f'Below the {n2(_ANCH)} anchor', f'{n2(h3["p5"])} – {n2(_ANCH)}',
              pc(1 - STK['horizons']['3M']['p_above'] - 0.05, 0),
              'The market converging toward the earnings-based lenses in this study'])
-rows.append(['Above spot', f'{n2(SPOT)} – {n2(h3["p95"])}',
+rows.append([f'Above the {n2(_ANCH)} anchor', f'{n2(_ANCH)} – {n2(h3["p95"])}',
              pc(STK['horizons']['3M']['p_above'] - 0.05, 0),
              'Momentum and the 2026 pricing environment continuing to lead the earnings case'])
 rows.append(['Upper tail', f'above {n2(h3["p95"])}', '5%',
              'A re-rating toward the asset lens, which would require the restart programme '
              'to be abandoned or delayed materially'])
-table(rows, [1.10, 1.55, 0.90, 2.55], size=8.8)
-caption('Table 20 — Zones, not forecasts. The four are exclusive and sum to 100%: each '
-        'tail is carved OUT of the band beside it rather than counted twice. The '
-        'probabilities come from the price map and are subject to the same over-width '
-        'caution as everything else in section 3.')
+table(rows, [1.55, 1.45, 0.90, 2.25], size=8.8)
+caption(f'Table 20 — Zones, not forecasts. The four are exclusive and sum to 100%: each '
+        f'tail is carved OUT of the band beside it rather than counted twice. EVERY '
+        f'BOUNDARY AND EVERY PROBABILITY HERE IS MEASURED FROM THE EGP {n2(_ANCH)} ANCHOR '
+        f'THE SIMULATION WAS RUN ON, not from the EGP {n2(SPOT)} latest close — the two are '
+        f'{sg(SPOT/_ANCH-1)} apart on this edition. Splitting the bands at the latest close '
+        f'while keeping probabilities computed from the anchor would state the chance of '
+        f'finishing above one number using the distribution of another, which is worse than '
+        f'saying nothing. The latest close sits above this cone\'s '
+        f'{n2(h3["p75"])} seventy-fifth percentile, and what a reader should take from that '
+        f'is that the price has moved well beyond the window this simulation was struck in, '
+        f'not that any zone below has become more likely.')
 
 # ============================== 7 ============================================
 H1('7  Caveats and what would change our mind')
@@ -1076,10 +1245,13 @@ for head, body in [
      'superseded. Every historical figure here is read from the consolidated financial '
      'statements signed by Deloitte on 25 February 2026, or from the reviewed interim '
      'accounts of 25 May 2026. Four things it got materially wrong are worth naming, '
-     'because they show where reconstruction fails: minority interests were deducted at '
-     'EGP 150mn against an audited EGP 158,005; the effective tax rate was inferred at '
-     '29.4% against a disclosed 23.8%; the cost of debt was assumed at 21.5% against a '
-     'euro-denominated book paying about 7.5%; and kiln capacity was assumed 14% too low.'),
+     f'because they show where reconstruction fails: minority interests were deducted at '
+     f'EGP 150mn against an audited EGP 158,005 — one hundred and fifty-eight THOUSAND '
+     f'pounds rather than million, a figure {n0(150.0 / IN["nci"])} times smaller; the '
+     f'effective tax rate was inferred at '
+     f'29.4% against a disclosed 23.8%; the cost of debt was assumed at 21.5% against a '
+     f'euro-denominated book paying about 7.5%; and kiln capacity was assumed 14% too '
+     f'low.'),
     ('The model was rebuilt bottom up, and the answer moved a long way. ', f'Four '
      f'reviewers tested the previous edition. Between them they showed that its volume '
      f'came from an assumed price rather than from the plant, that its FY2025 validation '
@@ -1090,8 +1262,12 @@ for head, body in [
      f'medium-term one, that its discount factors applied each year\'s rate one period '
      f'late, that its beta was levered twice, and that ten rows of its income statement '
      f'were labelled one row above their contents. All of that is corrected here. The '
-     f'central fair value moves from EGP 61.30 to EGP {n2(LN["central"])}, and the '
-     f'conclusion moves from a premium over the market to a small discount.'),
+     f'central fair value moves from EGP {n2(IN["central_pre_rebuild"])} to EGP '
+     f'{n2(LN["central"])}, and the '
+     f'conclusion moves from a premium over the market of that day to a discount of '
+     f'{sg(LN["central"] / SPOT - 1)} against the latest close — large enough that this '
+     f'edition carries the gap review its own standing threshold requires, rather than '
+     f'being waved through as a small difference.'),
     ('The expert panel is the model at three parameter values, not three independent '
      'valuations. ', f'A reviewer pointed out that Expert 1\'s central IS the asset lens '
      f'to the pound and Expert 2\'s IS the normalised-earnings lens. That is correct, and '
@@ -1110,14 +1286,16 @@ for head, body in [
      f'published indices. The company discloses despatch volumes in its investor material, '
      f'which would settle it; that material could not be reached from here, and the '
      f'audited statements are image-only scans that carry no volume table.'),
-    ('The cost of debt is contractual, not paid. ', f'The blended '
-     f'{pc(KDG["kd_blended"], 2)} sits above the {pc(KDG["eff_fy25"], 2)} that FY2025 '
-     f'interest over average debt gives and the {pc(KDG["eff_q126_annualised"], 2)} the '
-     f'first quarter of 2026 annualises to, because the book re-based mid-year and interest '
-     f'on assets still under construction is capitalised. Adopting the contracted euro rate '
-     f'also means the euro debt is not compensated for pound depreciation beyond the '
-     f'currency path assumed here; the pound-equivalent alternative is '
-     f'{pc(KDG["kd_egp_equivalent"], 2)} and is worth {sg(CON[0]["effect"])}.'),
+    ('The cost of debt is marginal and pound-equivalent, not the coupon as written. ',
+     f'The adopted {pc(KDG["kd_blended"], 2)} carries the euro legs at the pound cost a '
+     f'company earning pounds actually bears, against a contracted blend of '
+     f'{pc(KDG["kd_contracted"], 2)}. It sits above the {pc(KDG["eff_fy25"], 2)} that '
+     f'FY2025 interest over average debt gives and the '
+     f'{pc(KDG["eff_q126_annualised"], 2)} the first quarter of 2026 annualises to, because '
+     f'the book re-based mid-year and interest on assets still under construction is '
+     f'capitalised. Adopting the contracted rate instead would leave the euro debt '
+     f'uncompensated for pound depreciation beyond the currency path assumed here, and is '
+     f'worth {sg(CON[0]["effect"])}.'),
     ('Half a year has been turned into a whole one, and that is the largest assumption '
      'here. ', f'The forecast starts from the reviewed six months to 30 June 2026 — revenue '
      f'of EGP {n0(IN["rev_h1_26"])}mn at a {pc(IN["gp_h1_26"]/IN["rev_h1_26"])} gross '
@@ -1145,7 +1323,8 @@ for head, body in [
      f'reading that it settles accumulated claims. If a comparable amount arrives again with '
      f'no accumulated-claims explanation, it is recurring and this study understates value.'),
     ('The terminal denominator is a choice. ', f'Return on capital is '
-     f'{pc(TR["history"][2]["roic_book"])} on the audited book and {pc(TR["roic_repl"])} on '
+     f'{pc(TR["history"][2]["roic_book"])} on the audited book and '
+     f'{pc(GDV["n_over_ic"], 2)} on '
      f'replacement cost. The terminal block uses replacement cost, which leaves the plant '
      f'roughly breaking even on new tonnes — {pc(GDV["n_over_ic"], 2)} against a hurdle of '
      f'{pc(GDV["hurdle"], 2)}, so four points of terminal growth are worth '
@@ -1197,6 +1376,11 @@ rows.append(['Depreciation and amortisation'] + [n0(x) for x in H['dna']] +
             [n0(x) for x in F['dna']])
 rows.append(['EBITDA'] + [n0(x) for x in H['ebitda']] + [n0(x) for x in F['ebitda']])
 rows.append(['EBITDA margin'] + [pc(x) for x in H['margin']] + [pc(x) for x in F['margin']])
+# OTHER OPERATING INCOME IS PRINTED, because operating profit is EBITDA less depreciation
+# PLUS this line in every forecast year. Without it the historical columns footed exactly
+# and the forecast columns came out 50 to 62mn short, with nothing on the page to say why.
+rows.append(['Plus other operating income'] + ['—'] * 3 +
+            [n0(x) for x in F['other_income']])
 rows.append(['Net finance and other income'] +
             [n0(H['pbt'][i] - H['ebit'][i]) for i in range(3)] +
             [n0(x) for x in F['treasury']])
@@ -1207,14 +1391,21 @@ rows.append(['Attributable profit'] + [n0(x) for x in H['pat']] + [n0(x) for x i
 rows.append(['Earnings per share (EGP)'] + [n2(x) for x in H['eps']] +
             [n2(x) for x in F['eps']])
 table(rows, [1.52, 0.72, 0.72, 0.72, 0.72, 0.72, 0.72, 0.72, 0.72], size=8.0,
-      band_rows={11})
-caption('Table A1 — Three AUDITED years and five forecast. FY2023-FY2025 revenue, cost of '
-        'sales, administrative expenses, provisions, pre-tax profit, tax, attributable '
-        'profit, earnings per share and depreciation are disclosed figures; operating '
-        'profit, EBITDA and the margins are formulas over them. The published earnings per '
-        'share is struck on distributable profit after the statutory employees\' and '
-        'directors\' share, which is why it differs slightly from profit over the share '
-        'count.')
+      band_rows={12})
+caption(f'Table A1 — Three AUDITED years and five forecast. FY2023-FY2025 revenue, cost of '
+        f'sales, administrative expenses, provisions, pre-tax profit, tax, attributable '
+        f'profit, earnings per share and depreciation are disclosed figures; operating '
+        f'profit, EBITDA and the margins are formulas over them. TWO ROWS CHANGE BASIS '
+        f'BETWEEN THE AUDITED AND FORECAST HALVES AND BOTH ARE STATED RATHER THAN LEFT FOR '
+        f'A READER TO DISCOVER. Operating profit is EBITDA less depreciation in the audited '
+        f'years and EBITDA less depreciation PLUS other operating income in the forecast '
+        f'years, which is why that line is printed. And the audited earnings per share is '
+        f'the PUBLISHED figure, struck on distributable profit after the statutory '
+        f'employees\' and directors\' share — EGP {n2(H["eps"][2])} in FY2025 against EGP '
+        f'{n2(H["pat"][2] / SH)} on profit over the share count — while the forecast years '
+        f'are profit over the share count, since this model does not forecast that '
+        f'statutory appropriation. The step at the boundary is a change of basis, not a '
+        f'change in the business.')
 H2('A.2  Balance sheet — as reported')
 rows = [['EGP mn'] + YH + YF]
 rows.append(['Total assets'] + [n0(x) for x in
@@ -1279,8 +1470,11 @@ H2('B.2  The sector balance, and what it is not')
 P(f'Egypt carries about {n0(IN["egy_capacity_mt"])}Mt of nameplate capacity against roughly '
   f'{n0(IN["egy_cons_mt"])}Mt of domestic consumption and {n0(IN["egy_prod_mt"])}Mt of '
   f'total sales. The balance now closes because it is taken from one disclosure rather '
-  f'than assembled from three: local {n1(IN["egy_cons_mt"])}Mt plus exports '
-  f'{n1(IN["egy_exports_mt"])}Mt equals the {n1(IN["egy_prod_mt"])}Mt total. Earlier '
+  f'than assembled from three: the same page gives local '
+  f'{n1(IN["egy_cons_mt"])}Mt, exports {n1(IN["egy_exports_mt"])}Mt and a total of '
+  f'{n1(IN["egy_prod_mt"])}Mt — the two components add to '
+  f'{n1(IN["egy_cons_mt"] + IN["egy_exports_mt"])}Mt at the one decimal each is published '
+  f'to, and the total is the disclosed figure rather than their sum. Earlier '
   f'editions set a cement-plus-clinker export figure against a cement-only production '
   f'figure and printed a balance that was out by 7.5Mt. The correction matters beyond '
   f'tidiness: {n1(IN["egy_prod_mt"])}Mt of sales against roughly '
@@ -1413,13 +1607,15 @@ rows.append([
 rows.append([
     'Growth is worth having, so a terminal that punishes it is wrong.', 'Expert 2',
     'REJECTED',
-    f'Measured on this company\'s own returns: at the terminal return and reinvestment rate '
-    f'this study computes ({pc(GDV["roic_term"], 2)} against a terminal cost of capital of '
-    f'{pc(GDV["wacc_term"], 2)}, a spread of {pc(GDV["spread_pct"], 2)}), moving terminal '
+    f'Measured on this company\'s own returns. The return on replacement-cost capital is '
+    f'{pc(GDV["n_over_ic"], 2)} against a terminal cost of capital of '
+    f'{pc(GDV["wacc_term"], 2)} — short of it by '
+    f'{n0(abs(GDV["n_over_ic"] - GDV["wacc_term"]) * 1e4)} basis points — so moving terminal '
     f'growth from 3% to 7% takes the value from EGP {n2(GDV["fv_at_g3"])} DOWN to '
-    f'EGP {n2(GDV["fv_at_g7"])} — about {n2(abs(GDV["fv_at_g7"] - GDV["fv_at_g3"]) / 4)} a '
-    f'share for each point of growth, the WRONG way. Growth funded at a return below the '
-    f'cost of capital destroys value, and section 1.8 shows the arithmetic.'])
+    f'EGP {n2(GDV["fv_at_g7"])}, {sg(GDV["spread_pct"])}, about '
+    f'{n2(abs(GDV["fv_at_g7"] - GDV["fv_at_g3"]) / 4)} a share for each point of growth, and '
+    f'the WRONG way. Growth funded at a return below the cost of capital destroys value, and '
+    f'section 1.8 shows the arithmetic.'])
 table(rows, [2.05, 1.05, 1.20, 2.50], size=8.0)
 caption('Table C2 — Cross-examination. Four of the six objections are conceded, which is the '
         'honest count for a study whose forecast sits at its subject\'s best filed year and '

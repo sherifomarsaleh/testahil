@@ -1,0 +1,33 @@
+{
+ "_addition_03-09-2026": "EGCH was added to the signature list AFTER the list was seeded, and the reason is recorded because a ratchet may otherwise only SHORTEN. IT IS NOT NEW DEBT. EGCH has carried this construction all along; the gate could not SEE it, because the study exposes a reinvestment RATE and no return on capital, and the resolver wanted a return. They are the same statement \u2014 rr = g/ROIC \u2014 so the return is now derived and EGCH joins the census. AN INSTRUMENT THAT GETS BETTER AT SEEING MUST BE ABLE TO RECORD WHAT IT NEWLY SEES, or improving it makes the build permanently red, which is the check [R-ENF-02] forbids. That is the ONE circumstance in which this list may take a new entry, and it is stated here rather than left to be inferred from a diff.",
+ "_ratchet": "[R-ENF-02] \u2014 knowingly-outstanding work is listed and allowed to fail; the build breaks on a NEW study carrying the construction. THE LIST MAY ONLY EVER SHORTEN (--prune).",
+ "_reseeded": "2026-09-03. The gate was first pointed at a NOPAT/W floor and the floor was not the test: of the six studies carrying the g x IC construction only two sit below that floor, so it found the defect on one name and would have missed it on four. The failing test is now the 1/g SIGNATURE, which is exact algebra rather than an estimate. The old breaching group is emptied \u2014 removing entries is SHORTENING, the only permitted direction.",
+ "_rule": "R-TERM-01",
+ "_signature": "charge = NOPAT x g/ROIC = g x (NOPAT/ROIC), so cycle = IC/charge = 1/g WHENEVER the construction is the reinvestment identity.",
+ "breaching": {},
+ "signature": {
+  "ADNOCDIST": "terminal built on the reinvestment identity: implied cycle 66.7 years against 1/g of 66.7, charging 6.0% of terminal profit. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue",
+  "ADNOCLS": "terminal built on the reinvestment identity: implied cycle 50.0 years against 1/g of 50.0, charging 18.1% of terminal profit. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue",
+  "AIRARABIA": "terminal built on the reinvestment identity: implied cycle 40.0 years against 1/g of 40.0, charging 17.5% of terminal profit. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue",
+  "AMOC": "terminal built on the reinvestment identity: implied cycle 14.3 years against 1/g of 14.3, charging 23.1% of terminal profit. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue",
+  "AMR": "terminal built on the reinvestment identity: implied cycle 33.3 years against 1/g of 33.3, charging 10.0% of terminal profit. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue",
+  "DU": "terminal built on the reinvestment identity: implied cycle 40.0 years against 1/g of 40.0, charging 9.1% of terminal profit. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue",
+  "EGCH": "terminal built on the reinvestment identity: implied cycle 14.3 years against 1/g of 14.3, charging 38.9% of terminal profit \u2014 the LARGEST charge in the book. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue.",
+  "FERTIGLOBE": "terminal built on the reinvestment identity: implied cycle 50.0 years against 1/g of 50.0, charging 14.8% of terminal profit. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue",
+  "MODON": "terminal built on the reinvestment identity: implied cycle 40.0 years against 1/g of 40.0, charging 29.4% of terminal profit. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue",
+  "RIYADHCABLE": "terminal built on the reinvestment identity: implied cycle 25.0 years against 1/g of 25.0, charging 15.9% of terminal profit. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue",
+  "SAVOLA": "terminal built on the reinvestment identity: implied cycle 40.0 years against 1/g of 40.0, charging 24.8% of terminal profit. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue",
+  "SWDY": "terminal built on the reinvestment identity: implied cycle 20.0 years against 1/g of 20.0, charging 24.5% of terminal profit. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue"
+ },
+ "unreadable": {
+  "ADNOCDRILL": "the terminal exposes no wacc_term",
+  "BOROUGE": "the terminal exposes no wacc_term",
+  "EMPOWER": "the terminal exposes no wacc_term, g",
+  "GBCO": "the terminal exposes no wacc_term",
+  "PHAR": "the terminal exposes no g",
+  "SCEM": "the terminal exposes no g",
+  "STC": "no committed numbers file",
+  "TMGH": "the terminal exposes no tv",
+  "XPT": "no committed numbers file"
+ }
+}

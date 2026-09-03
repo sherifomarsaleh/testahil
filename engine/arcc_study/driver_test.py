@@ -46,7 +46,10 @@ superseded 06-08-2026 workbook rather than the delivered one — an empty answer
 costume of a clean one [R-ENF-04]. It is pointed at the delivered file now, and each of
 those five drivers is asserted against what it actually moves.
 """
+import glob
 import json, os
+import re
+import docx
 import openpyxl
 import xlcalc
 
@@ -251,11 +254,16 @@ CASES = [
     # now adds value. The magnitude is what matters and it is trivial: +0.10% of the DCF
     # per point of terminal growth, +0.5% across the whole 3%-7% range.
     ('Terminal growth rate', 'B', +0.01, 'dcf', (1 if GDV['analytic_adds_value'] else -1),
-     f"the growth lever moves in the direction the terminal algebra requires. Its sign is "
-     f"the constant N(1+W) - IC.W, so THE DIRECTION IS READ FROM THE MODEL rather than "
-     f"typed: N/IC {GDV['n_over_ic']:.2%} against a hurdle of W/(1+W) {GDV['hurdle']:.2%}. "
-     f"Revision 3 hard-typed it, and when the terminal capital was restated into "
-     f"terminal-year pounds the sign reversed and the assertion went stale"),
+     f"the growth lever moves in the direction the terminal economics require, and THE "
+     f"DIRECTION IS READ FROM THE MODEL rather than typed. Under [R-TERM-01] a higher "
+     f"nominal growth rate is a higher REAL growth rate against the house inflation path, "
+     f"and real growth is charged the capital it needs at the replacement cost of capacity "
+     f"— so the test is the ordinary marginal one: N/IC {GDV['n_over_ic']:.2%} against the "
+     f"terminal rate {GDV['wacc_term']:.2%}. Building capacity does not clear the cost of "
+     f"capital, "
+     f"so growth destroys value. Revision 3 hard-typed the sign; revisions 1-4 then read it "
+     f"off the RETIRED hurdle W/(1+W) = {GDV['hurdle_retired']:.2%}, which existed only "
+     f"because the g x IC charge existed, and went stale with it"),
     ('Beta (own-stock weekly regression)', 'B', +0.20, 'dcf', -1,
      'a higher beta must lower the valuation'),
     ('Beta (own-stock weekly regression)', 'B', +0.20, 'beta_term', +1,
@@ -303,12 +311,23 @@ CASES = [
     ('Depreciation as % of revenue', 'C', +0.01, 'dcf', +1,
      'a heavier charge in a MID-window year is worth only its tax shield: it is added back '
      'inside free cash flow and the terminal base year is untouched, so the value RISES'),
-    ('Depreciation as % of revenue', 'F', +0.01, 'dcf', -1,
-     'the same bump in the TERMINAL BASE YEAR runs the other way: year-five NOPAT falls and '
-     'the terminal value falls with it, because capex is set in dollars per tonne and does '
-     'not follow the book charge'),
-    ('Depreciation as % of revenue', 'F', +0.01, 'pv_tv', -1,
-     'and the loss is located in the terminal block, where the decomposition said it would be'),
+    # THIS DIRECTION REVERSED WITH [R-TERM-01] AND THE REVERSAL IS THE POINT. Revisions 1-4
+    # charged the terminal g x IC and never added book depreciation back, although NOPAT is
+    # already net of it — one model with two definitions of free cash flow. So a heavier
+    # book charge in the terminal base year lowered NOPAT and lowered the terminal with it,
+    # which is what the retired assertion asserted, correctly, about a construction that was
+    # wrong. The terminal now adds book depreciation back and charges maintenance at the
+    # DISCLOSED useful life, exactly as the explicit window does, so a heavier book charge
+    # is worth its tax shield in BOTH halves of the model and the value RISES in both.
+    ('Depreciation as % of revenue', 'F', +0.01, 'dcf', +1,
+     'the same bump in the TERMINAL BASE YEAR now runs the SAME way, and that is the '
+     'coherence [R-TERM-01] restored: book depreciation is added back in the terminal too, '
+     'so a heavier charge is worth its tax shield there as well and the value RISES. Under '
+     'the retired construction the terminal never added it back and this lever ran the '
+     'opposite way to the identical lever in the explicit window'),
+    ('Depreciation as % of revenue', 'F', +0.01, 'pv_tv', +1,
+     'and the gain is located in the terminal block, where the decomposition says it should '
+     'be — the same block that used to lose value on the same bump'),
     ('Change in working capital / change in revenue', 'B', +0.05, 'dcf', -1,
      'growth funded in working capital is growth the shareholder does not receive'),
     ('Yield earned on cash', 'C', +0.03, 'cash30', +1,
@@ -542,6 +561,80 @@ _left = sorted(l for l in _labels if isinstance(l, str) and l.startswith('Weight
 assert not _left, ('the retired lens weights are still live inputs in the workbook: %s'
                    % _left)
 print('  [OK ] the four retired lens weights carry no live input cell')
+
+# AND THE DOCUMENT MUST NOT CLAIM THEM EITHER. A retirement that leaves the workbook clean
+# and the prose talking is a rule half-applied, and this study shipped three such sentences
+# through every gate: section 1 said the cash-flow lens "carries half the weight", section
+# 1.9 said the relative lens "carries 20% and not more" and the asset lens "carries only
+# 8%". Each was found by a person reading the rendered page. A weight may be NAMED, but
+# only in a sentence that places it in a superseded edition — the one legitimate use, which
+# section 4 makes when it says what a previous edition blended and why this one does not.
+_RETIRED_W = ('w_dcf', 'w_rel', 'w_norm', 'w_asset')
+# BY DATE, NEVER BY STRING SORT. "08-08-2026" sorts above "03-09-2026" alphabetically, so
+# the first draft of this check opened a superseded edition and reported its defects as
+# current — which is L-066/L-067 in this repository, a check that opens a delivered file by
+# name moving with the re-issue, recurring the same day it was registered.
+_DELIVERED = max(glob.glob(os.path.join(HERE, 'ARCC_Valuation_Study_*_public.docx')),
+                 key=lambda f: re.search(r'(\d{2})-(\d{2})-(\d{4})', f).group(3, 2, 1))
+_IN = json.load(open(os.path.join(HERE, 'study_numbers.json')))['inputs']
+_PAST = ('previous', 'previously', 'earlier', 'retired', 'no longer', 'used to', 'was ',
+         'were ', 'prior edition', 'an edition')
+# PARAGRAPHS AND TABLE CELLS. The first draft read paragraphs only, and missed a retired
+# diagnostic sitting inside a cross-examination TABLE CELL — which is the PHDC precedent in
+# this repository, where a standing-rule identifier leaked to a reader through a table cell
+# for exactly the same reason. A reader does not distinguish the two.
+_doc = docx.Document(_DELIVERED)
+_docp = [p.text for p in _doc.paragraphs]
+for _t in _doc.tables:
+    for _r in _t.rows:
+        _seen = set()
+        for _c in _r.cells:
+            if id(_c._tc) in _seen:
+                continue
+            _seen.add(id(_c._tc))
+            _docp.append(_c.text)
+_wclaims = []
+for _k in _RETIRED_W:
+    _e = _IN.get(_k)
+    _v = _e['value'] if isinstance(_e, dict) else _e
+    if _v is None:
+        continue
+    _s = '%d%%' % round(_v * 100)
+    for _t in _docp:
+        if _s not in _t:
+            continue
+        if any(w in _t.lower() for w in _PAST):
+            continue                      # names it as a superseded edition's choice
+        for _m in re.finditer(re.escape(_s), _t):
+            _win = _t[max(0, _m.start() - 90):_m.start()].lower()
+            if 'weight' in _win or 'carries' in _win or 'carry' in _win:
+                _wclaims.append((_k, _t[max(0, _m.start() - 90):_m.end() + 15]))
+assert not _wclaims, ('the delivered study still claims a retired lens weight in the '
+                      'present tense: %s' % _wclaims)
+print('  [OK ] no retired lens weight is claimed in the present tense in the document')
+
+# THE SAME TEST ON THE RETIRED TERMINAL DIAGNOSTIC, because the shape recurs whenever a
+# construction is replaced. roic_repl divides a profit already grown by one year of terminal
+# growth by a capital base that has NOT grown, so it flatters the terminal return; the model
+# keeps it only as a record of the retired construction and tests growth against
+# n_over_ic. Two sentences went on quoting it as the live figure — one establishing the
+# terminal basis, one in the caveats, both beside the correct number.
+_D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
+_RETIRED_Q = [('the retired terminal return', _D['terminal_reconciliation']['roic_repl'],
+               _D['growth_destroys_value']['n_over_ic'])]
+_qclaims = []
+for _name, _retired, _live in _RETIRED_Q:
+    for _dp in (1, 2):
+        _s = f'{_retired * 100:.{_dp}f}%'
+        if _s == f'{_live * 100:.{_dp}f}%':
+            continue                       # indistinguishable at this precision
+        for _t in _docp:
+            if _s not in _t or any(w in _t.lower() for w in _PAST):
+                continue
+            _qclaims.append((_name, _s, _t[:110]))
+assert not _qclaims, ('the delivered study quotes a RETIRED diagnostic as if it were the '
+                      'live figure: %s' % _qclaims)
+print('  [OK ] no retired terminal diagnostic is quoted as the live figure')
 assert not dead, f'dead inputs: {dead}'
 print(f'\nDRIVER TEST OK — {len(CASES)} driver assertions, every one in the asserted '
       f'direction; 0 dead inputs')

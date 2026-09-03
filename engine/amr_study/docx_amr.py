@@ -823,6 +823,18 @@ r_('Right-of-use assets', H['rou'] + F['rou'])
 rows.append(['Inventories'] + [n(x, 0) for x in H['inventories']] + ['—'] * 5)
 rows.append(['Trade and other receivables'] + [n(x, 0) for x in H['receivables']] + ['—'] * 5)
 r_('Cash and bank deposits', [H['cash'][i] + H['deposits'][i] for i in range(3)] + F['cash'])
+# THE COLUMN MUST ADD UP FOR A READER. The five asset lines this table breaks out are USD
+# 10mn short of the disclosed total in each audited year. This study holds the total and
+# those five lines and no others, so the remainder cannot be NAMED here without the
+# underlying statements — naming it would be an invention rather than a disclosure. It is
+# printed as what it is: a labelled residual, so a reader can see there are assets outside
+# the five broken out and cannot mistake a missing line for a wrong total.
+_oth = [H['total_assets'][i] - (H['ppe'][i] + H['intangibles'][i]
+                                + H['investment_property'][i] + H['rou'][i]
+                                + H['inventories'][i] + H['receivables'][i]
+                                + H['cash'][i] + H['deposits'][i]) for i in range(3)]
+rows.append(['Other assets, not broken out in this table (residual)']
+            + [n(x, 0) for x in _oth] + ['—'] * 5)
 rows.append(['Total assets'] + [n(x, 0) for x in H['total_assets']] + ['—'] * 5)
 rows.append(['Payables, tax and provisions'] + [n(x, 0) for x in H['payables']] + ['—'] * 5)
 r_('Lease liabilities', H['lease_liabilities'] + F['lease_liabilities'])
