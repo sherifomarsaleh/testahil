@@ -303,7 +303,23 @@ tally = {v: sum(b for s, b in zip(STEPS, bars) if s['off'] == v) for v in VERDIC
 print('\n  off mark:  ' + '   '.join(f"{v} {tally[v]:+.2f}" for v in
                                      ('EFG', 'TESTAHIL', 'OPEN', 'NEITHER')))
 
-out = dict(start=round(START, 4), end=round(END, 4),
+# THE REVIEWER'S OWN FIGURES, REGISTERED RATHER THAN LEFT AS PROSE. Two of EFG's numbers
+# are quoted in the delivered document — their flat discount rate and their year-5 discount
+# factor — and this model cannot compute either, because a different model produced them.
+# The prose instrument flagged them as unmatched and it was right to: nothing committed
+# them. Per its own rule, A FALSE POSITIVE IS FIXED BY WIDENING THE RENDERING SET, NEVER BY
+# DELETING THE FIGURE — and where a figure is real and the model cannot produce it, THE
+# MODEL IS WHAT IS MISSING. So they are committed here with their provenance, which also
+# means the sentences that quote them can no longer drift from the chart that draws them.
+REVIEWER = dict(
+    source='EFG Hermes, "Arabian Cement Company — initiation", reconciled 02-Sep-2026',
+    basis='figures produced by a THIRD PARTY\'s model. This study cannot compute them and '
+          'does not adopt them; they are registered so that quoting them is checkable.',
+    flat_wacc=0.2006,          # their single discount rate, applied to every forecast year
+    year5_discount_factor=0.4813,
+)
+
+out = dict(start=round(START, 4), end=round(END, 4), reviewer=REVIEWER,
            # the comparator is the study's OWN spot; it was typed 59.00 and
            # survived a re-strike to 77.00 [corrected 03-Sep-2026]
            market=float(json.load(open(os.path.join(HERE, 'study_numbers.json')))['spot']),

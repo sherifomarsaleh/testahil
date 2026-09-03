@@ -1,6 +1,12 @@
 {
  "start": 69.7549,
  "end": 66.53,
+ "reviewer": {
+  "source": "EFG Hermes, \"Arabian Cement Company \u2014 initiation\", reconciled 02-Sep-2026",
+  "basis": "figures produced by a THIRD PARTY's model. This study cannot compute them and does not adopt them; they are registered so that quoting them is checkable.",
+  "flat_wacc": 0.2006,
+  "year5_discount_factor": 0.4813
+ },
  "market": 77.0,
  "published_central": 66.5300405232932,
  "published_spot": 77.0,

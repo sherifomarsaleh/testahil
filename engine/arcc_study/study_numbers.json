@@ -2283,6 +2283,40 @@
   "debt_total": 1135.108658,
   "eur_share": 0.9109398221152498
  },
+ "terminal_record": {
+  "rule": "R-TERM-01",
+  "inputs": {
+   "nopat": 5385.2074613024915,
+   "wacc": 0.18342102419495454,
+   "inflation": 0.07,
+   "real_growth": 0.0,
+   "dna_book": 643.4437880445657,
+   "ic_replacement": 51190.921145,
+   "useful_life_years": 20.0,
+   "useful_life_source": "ARCC FY2025 consolidated financial statements, note 2 (significant accounting policies), 'The following estimated useful lives are used in the calculation of depreciation', and note 3.2.1 'Useful lives of property, plant and equipment'.",
+   "maintenance_basis": "disclosed_life",
+   "maintenance_capex": null,
+   "working_capital": 2272.087388705894,
+   "incremental_capital_per_unit_growth": 51190.921145,
+   "floor_exemption": "",
+   "floor_exemption_disclosure": ""
+  },
+  "fcff": 3310.059074887645,
+  "tv": 31226.690424184468,
+  "floor": 29359.815675103102,
+  "tv_vs_floor": 0.06358605141599916,
+  "nominal_growth": 0.07000000000000006,
+  "real_growth": 0.0,
+  "maintenance": 2559.54605725,
+  "growth_capex": 0.0,
+  "wc_charge": 159.0461172094126,
+  "dna_addback": 643.4437880445657,
+  "net_capital_charge": 2075.1483864148468,
+  "implied_cycle_years": 24.66855935706871,
+  "one_over_g": 14.285714285714272,
+  "payout_of_nopat": 0.6146576707904691,
+  "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
+ },
  "dcf": {
   "sum_pv": 11276.67558279275,
   "tv": 31226.690424184468,
@@ -2971,7 +3005,7 @@
   "  26. the cost-of-debt build is currency-blended: 91.1% of the book is euro-denominated and a single-currency shortcut would be wrong",
   "==============================================================================",
   "\n[Years 3-5 are RANGES, from this name's own walk-forward] on twenty-five resolved cells the method's revenue error spans x0.49-x2.99 at three years (n=5), x0.81-x4.02 at four (n=4) and x0.91-x3.77 at five (n=3). Total VOLUME at five years spans only x0.90-x1.11, and profit before tax spans x0.51-x46.67 \u2014 tonnage is forecastable at five years and profit is not, which is why the delivered document publishes the far years as ranges and says so",
-  "\n[External-reader scrub] CLEAN \u2014 39 terms scanned across 158,437 characters of delivered text, 0 hits; table column audit clean",
+  "\n[External-reader scrub] CLEAN \u2014 39 terms scanned across 161,001 characters of delivered text, 0 hits; table column audit clean",
   "\n[Gates] assert_ground_up, assert_beta_provenance, assert_sigcm and assert_model_study all called in this study's own code and all passed. Built to standard 2026.09.01"
  ]
 }

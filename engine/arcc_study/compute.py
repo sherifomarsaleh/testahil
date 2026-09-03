@@ -2800,6 +2800,11 @@ OUT = dict(
               beta_term=beta_t, ke_term=ke_term, kd_term_at=V['kd_term'] * (1 - TAX),
               wacc_term=wacc_term, ke_raw_retired=V['rf'] + beta_used * V['erp_cds'],
               mktcap=MKTCAP, debt_total=debt_tot, eur_share=eur_share),
+    # [R-TERM-01] — the terminal's own record, committed so the workbook's formulas and any
+    # job outside this study can be held to the construction rather than to its output. A
+    # construction that cannot be read cannot be checked, which is [R-ENF-06] on the artefact
+    # every builder reads.
+    terminal_record=_TERM.record,
     dcf=dict(sum_pv=sum_pv, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share, df_tv=df_tv,
              cash_at_val=V['cash_h1_26'], net_cash=net_cash, nci=V['nci_h1_26'],
                 net_cash_rolled=net_cash_rolled, rollforward_gap=ROLLFWD['gap'],

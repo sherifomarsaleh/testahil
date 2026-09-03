@@ -44,6 +44,11 @@ MULT = '0.00x'; DF4 = '0.0000'; NUM4 = '#,##0.0000'
 
 M, H, F = D['meta'], D['history'], D['forecast']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sensitivity']
+# [R-TERM-01] — the terminal's committed record. The workbook's terminal formulas are
+# built from it rather than from the retired reinvestment chain, so a change to the
+# construction moves the formulas with it instead of leaving them recomputing an
+# answer the delivered numbers no longer carry.
+_TERMREC = D['terminal_record']
 BU, PE, SHT, TR = D['bottom_up'], D['peers'], D['share_triangulation'], D['terminal_reconciliation']
 UC, KDG, CON = D['unit_calibration'], D['kd_gate'], D['contested']
 CAL = D['calibration']
@@ -630,17 +635,27 @@ for i in range(5):
     putf(wsD, f'{c}19', f"={c}15*{c}18", F['pv'][i], NUM0)
 
 band(wsD, 21, 8); wsD['A21'] = 'TERMINAL BLOCK'
+# THE TERMINAL BLOCK IS REBUILT ON THE MAINTENANCE CONSTRUCTION. Revisions 1-4 chained the
+# terminal from reinvestment = growth / return on capital, which substitutes to a charge of
+# growth x invested capital every year for ever — read as a replacement programme, a cycle
+# of 1/growth = 14.3 years, which is a fact about the inflation rate and not about the
+# plant. The workbook is a LIVE FORMULA MODEL, so the formulas move with the construction:
+# leaving them would recompute the retired answer while the delivered numbers carried the
+# new one, which is precisely what this study's own recalculation gate caught the moment
+# the model changed and the builder did not.
+_TB_LIFE = _TERMREC['inputs']['useful_life_years']
 TB = [('Replacement-cost invested capital, in TERMINAL-year pounds (EGP mn)', 'B22',
        f"={A['capcem']}*{A['repl']}*{A['fx']}*{A['infl5']}", DCF['ic_repl'], NUM0),
       ('Terminal NOPAT  (year 5 NOPAT grown at g)', 'B23', f"=F11*(1+{A['g']})",
        DCF['nopat_term'], NUM0),
-      ('Terminal return on invested capital', 'B24', "=B23/B22", DCF['roic_term'], PCT),
+      ('Memo: return on invested capital at replacement cost', 'B24', "=B23/B22",
+       DCF['roic_term'], PCT),
       ('Memo: FY2025 return on BOOK invested capital', 'B25',
        f"=('Income Statement'!D12*(1-{A['taxe']}))/({A['eq25']}+$C$44)",
        TR['roic_book_fy25'], PCT),
-      ('Reinvestment rate  (g ÷ return on capital)', 'B26', f"={A['g']}/B24",
-       DCF['rr_term'], PCT),
-      ('Terminal value', 'B27', f"=B23*(1-B26)/($C$50-{A['g']})", DCF['tv'], NUM0),
+      ('Memo: reinvestment rate the RETIRED construction charged  (g / return)', 'B26',
+       f"={A['g']}/B24", DCF['rr_term'], PCT),
+      ('Terminal value', 'B27', f"=D26*(1+{A['g']})/($C$50-{A['g']})", DCF['tv'], NUM0),
       ('End-of-window discount factor  (t = 4.417y, not the year-5 mid-point)', 'B29',
        f"=1/((1+B17)^(1-{A['stub']})*(1+C17)*(1+D17)*(1+E17)*(1+F17))",
        DCF['df_tv'], DF4),
@@ -648,6 +663,38 @@ TB = [('Replacement-cost invested capital, in TERMINAL-year pounds (EGP mn)', 'B
 for lab, ad, fm, ex, ft in TB:
     wsD.cell(row=int(ad[1:]), column=1, value=lab)
     putf(wsD, ad, fm, ex, ft)
+
+# THE TERMINAL CAPITAL CHARGE, BUILT LINE BY LINE IN THE BLOCK'S OWN FREE COLUMNS so the
+# row layout below is untouched. Every line is a formula; none is typed. The point of
+# showing it rather than netting it is that the retired construction hid the whole charge
+# inside a single reinvestment rate, where nobody could see that it implied replacing the
+# plant every 14.3 years.
+_MT = [('Capital maintenance at the DISCLOSED %.0f-year useful life  (replacement cost / '
+        'life)' % _TB_LIFE, 22, "=B22/%s" % _TB_LIFE, _TERMREC['maintenance']),
+       # F8 is 'Depreciation and amortisation'; F13 is capex and F9 is EBIT. The first cut
+       # of this block used F13 and F9 and the recalculation gate caught both within the
+       # minute — which is the argument for a workbook whose formulas are checked against
+       # the model rather than eyeballed.
+       ('Book depreciation already inside terminal NOPAT, added back', 23, "=F8",
+        _TERMREC['dna_addback']),
+       ('Inflation on working capital  (terminal inflation x working-capital level)', 24,
+        "=%s*F5*%.8f" % (A['g'], _TERMREC['inputs']['working_capital'] / F['revenue'][-1]),
+        _TERMREC['wc_charge']),
+       # REAL GROWTH IS DERIVED FROM THE NOMINAL GROWTH CELL, NOT TYPED. The first cut of
+       # this block wrote the real rate as a literal 0.0, so the workbook said growth was
+       # FREE: bumping terminal growth raised the value while the model lowered it, and
+       # this study's own driver test caught the disagreement immediately. A growth rate
+       # that costs nothing is the retired defect in mirror image, and a hard-coded zero is
+       # how it would have come back.
+       ('Growth capital  (REAL growth x replacement cost; real growth derives from the '
+        'nominal rate and the house inflation path)', 25,
+        "=((1+%s)/(1+%.8f)-1)*B22" % (A['g'], _TERMREC['inputs']['inflation']),
+        _TERMREC['growth_capex']),
+       ('Terminal free cash flow  (NOPAT + depreciation - maintenance - working capital '
+        '- growth capital)', 26, "=F11+D23-D22-D24-D25", _TERMREC['fcff'])]
+for lab, rw, fm, ex in _MT:
+    wsD.cell(row=rw, column=3, value=lab)
+    putf(wsD, 'D%d' % rw, fm, ex, NUM0)
 
 band(wsD, 30, 8); wsD['A30'] = 'ENTERPRISE TO EQUITY BRIDGE'
 BR = [('Present value of explicit years (FY2026E-FY2030E)', 'B31', "=SUM(B19:F19)",
