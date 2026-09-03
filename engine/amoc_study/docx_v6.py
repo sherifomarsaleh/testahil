@@ -518,16 +518,39 @@ table([['Component', 'Explicit window', 'Terminal', 'Construction'],
        ['COST OF EQUITY', pc(W['ke_exp'], 2), pc(W['ke_term'], 2), ''],
        ['Cost of debt, after tax', pc(W['k_nd_at'], 2), pc(W['kd_term_at'], 2),
         'on NET debt in the explicit window; the company is net cash'],
-       ['Equity weight', pc(W['we_exp'], 2), pc(1 - IN['wd_term'], 2), ''],
-       ['Debt weight', pc(W['wd_exp'], 2), pc(IN['wd_term'], 2),
-        'NEGATIVE in the explicit window — the company holds net cash'],
+       # THE WEIGHTS ACTUALLY IN USE, NOT THE RETIRED ONES. This table printed
+       # we_exp = 120.80% and wd_exp = -20.80% — the weights of the NET-debt
+       # construction this study retired — beside wacc_exp, which is the adopted rate
+       # those weights do not produce: 1.208 x 27.45% - 0.208 x 13.21% is 30.42%, and
+       # the row said 27.45%. A reader multiplying the printed rows got a different
+       # answer from the printed total, in the study's central table.
+       #
+       # The adopted construction values the OPERATIONS at the unlevered rate and adds
+       # the cash once in the bridge [R-BRIDGE-01 (iii)], so the weights that matter are
+       # the GROSS ones, and gross borrowings are a tenth of one per cent of capital at
+       # market value — which is why the operating rate IS the cost of equity to three
+       # decimals. The retired construction keeps its own row, with its own number.
+       ['Equity weight', pc(1 - W['wd_gross'], 2), pc(1 - IN['wd_term'], 2),
+        'on GROSS borrowings: the operations are valued at the unlevered rate and the '
+        'cash is added once, in the bridge'],
+       ['Debt weight', pc(W['wd_gross'], 2), pc(IN['wd_term'], 2),
+        'gross borrowings are a tenth of one per cent of capital at market value'],
        ['WEIGHTED COST OF CAPITAL', pc(W['wacc_exp'], 2), pc(W['wacc_term'], 2),
-        'the negative debt weight RAISES the operating rate above the cost of equity']],
+        'the operating rate; at that debt weight it IS the cost of equity to three '
+        'decimals'],
+       ['— the retired net-debt construction', pc(W['wacc_net_retired'], 2), '—',
+        'weights %s equity and %s debt, which is what a NET-cash weighting produces; '
+        'it is shown because the previous edition used it AND added the cash back at '
+        'face, charging for the same cash twice'
+        % (pc(1 - W['wd_net_retired'], 2), pc(W['wd_net_retired'], 2))]],
       [1.8, 1.05, 0.9, 3.35], band_rows={5, 9}, size=8.5, left_cols=(3,))
-caption('Table 10 — the discount-rate stack. The construction that matters most here is the '
-        'net-cash weighting. A naive model lets a cash pile drag the weighted rate DOWN; this one '
-        f'applies a negative debt weight of {pc(W["wd_exp"], 1)}, which forces the operating rate '
-        f'to {pc(W["wacc_exp"], 1)} — ABOVE the {pc(W["ke_exp"], 1)} cost of equity — correctly '
+caption('Table 10 — the discount-rate stack. The construction that matters most here is what '
+        'the cash is doing. A naive model lets a cash pile drag the weighted rate DOWN; the '
+        f'previous edition went the other way, weighting on NET debt at {pc(W["wd_net_retired"], 1)} '
+        f'and reaching {pc(W["wacc_net_retired"], 1)} — {(W["wacc_net_retired"]-W["ke_exp"])*1e4:,.0f} '
+        f'basis points ABOVE the {pc(W["ke_exp"], 1)} cost of equity — and THEN added the same cash '
+        'back at face in the bridge, which charges for it twice. This edition values the '
+        f'operations at the unlevered rate of {pc(W["wacc_exp"], 2)} and adds the cash once, '
         'isolating and penalising the risk of the pure unlevered operating assets. The unlevering '
         'identity is asserted in the build to recombine exactly.')
 

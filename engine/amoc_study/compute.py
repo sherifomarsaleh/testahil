@@ -2762,6 +2762,14 @@ OUT = dict(
     wacc=dict(rf=V['rf'], rf_star=rf_star, ke_exp=ke_exp, ke_rating_alt=ke_rating_alt,
               ke_raw_retired=ke_raw_retired, kd=V['kd'], kd_at=kd_at, we_exp=we_exp,
               wd_exp=wd_exp, wacc_exp=wacc_exp, wacc_exp_gross=wacc_exp_gross, wd_gross=wd_gross, k_nd_at=k_nd_at, ke_term=ke_term, kd_term=V['kd_term'],
+              # THE RETIRED NET-DEBT CONSTRUCTION, EXPORTED SO IT CAN BE NAMED RATHER
+              # THAN MISLABELLED. Table 10 printed we_exp/wd_exp — the weights of THIS
+              # construction — beside wacc_exp, which is the adopted rate those weights
+              # do not produce (1.208 x 27.45% - 0.208 x 13.21% is 30.42%, not 27.45%),
+              # and its caption then asserted the adopted rate sat 'ABOVE the 27.5%
+              # cost of equity' when the two display identically. The model was right
+              # throughout; the table describing it was a page out of date.
+              wacc_net_retired=_wacc_net_retired, wd_net_retired=_wd_net_retired,
               kd_term_at=kd_term_at, wacc_term=wacc_term, glide_frac=glide_frac,
               kd_path=V['kd_path'], kd_swing_effect=kd_swing_effect, wacc_usd_alt=WACC_USD,
               beta=beta_res),
