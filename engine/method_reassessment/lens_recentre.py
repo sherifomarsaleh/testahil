@@ -107,6 +107,18 @@ def primary_of(d):
     v = _num(prim.get("value"))
     if v is not None:
         return (prim.get("kind") or "primary"), v, "lens_record"
+    # A PRIMARY PUBLISHED AS A RANGE IS NOT A MISSING PRIMARY. TMGH's record
+    # carries a low and a high and says in its own words that the four cases
+    # behind them are never averaged into a headline; reporting that as "no class
+    # primary" reads like a defect where the construction is deliberate, and
+    # [R-LENS-03] positively permits an envelope of present-value reads. The
+    # difference matters because this measurement is about a BLEND, and a study
+    # that refuses to collapse its own cases has no blend to measure.
+    rng = prim.get("range") or {}
+    if _num(rng.get("low")) is not None and _num(rng.get("high")) is not None:
+        return None, None, ("the primary is published as a range (%.2f-%.2f) and "
+                            "the study says its cases are never averaged"
+                            % (_num(rng["low"]), _num(rng["high"])))
 
     lenses = d.get("lenses")
     if isinstance(lenses, dict):
