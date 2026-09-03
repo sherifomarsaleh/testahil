@@ -12,15 +12,25 @@
    0.1828829536189095,
    0.27402902055618733
   ],
-  "solved_on": "this study's own committed free cash flows, its own terminal cash flow recovered from its own terminal value, its own terminal growth and its own bridge — holding every driver at its published value and varying only the discount rate until the model reproduces the traded price",
+  "solved_on": "engine/reverse_read.py, on this study's own committed free cash flows, its own terminal cash flow recovered from its own terminal value, its own terminal growth and its own bridge — holding every driver at its published value and varying only the discount rate until the model reproduces the traded price. The discounting convention was declared by the study.",
   "reading": "At EGP 59.00 the price is paying for a flat 18.25% cost of capital on the same cash flows this study discounts at a schedule equivalent to a flat 19.97%. The study's own explicit-window rate is 27.40% gliding to a terminal 18.29%, so the market and the study disagree by about 172 basis points on the price of time and risk — not on the business. The study's own record names beta as its most consequential contested judgement, worth 9.6% of value, and beta enters through exactly this rate."
  },
  "construction": {
+  "implied_rate_at_price": 0.18251014045091318,
+  "implied_rate_at_study_value": 0.19967273116827255,
   "terminal_cash_flow": 2178.807503443666,
   "terminal_growth": 0.07,
   "terminal_arrives_at_year": 4.5,
   "enterprise_value_at_spot": 21430.182563000002,
   "enterprise_value_in_study": 19353.16546743767,
-  "bridge_delta_equity_less_ev": 686.9966920000006
+  "bridge_delta_equity_less_ev": 686.9966920000006,
+  "discounting_times": [
+   0.25,
+   1.0,
+   2.0,
+   3.0,
+   4.0
+  ],
+  "times_resolved": "declared by the study"
  }
 }

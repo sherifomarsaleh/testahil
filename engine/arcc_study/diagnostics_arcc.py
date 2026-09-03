@@ -37,63 +37,41 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 NUM = os.path.join(HERE, "study_numbers.json")
 
 
-def _ev(r, fcff, t_mid, fcff_term, g, t_tv):
-    """Enterprise value at one flat rate, on the study's own construction."""
-    if r <= g:
-        return float("inf")
-    pv = sum(cf / (1.0 + r) ** t for cf, t in zip(fcff, t_mid))
-    tv = fcff_term / (r - g)
-    return pv + tv / (1.0 + r) ** t_tv
+def _shared():
+    """The reverse read is ONE construction, held in engine/reverse_read.py.
 
-
-def solve(target, fcff, t_mid, fcff_term, g, t_tv, lo=0.0701, hi=2.0):
-    """The flat rate reproducing `target`. Bisection: the function is monotone
-    decreasing in r above g, so there is exactly one root and no starting guess
-    can move the answer."""
-    for _ in range(400):
-        mid = 0.5 * (lo + hi)
-        if _ev(mid, fcff, t_mid, fcff_term, g, t_tv) > target:
-            lo = mid
-        else:
-            hi = mid
-    return 0.5 * (lo + hi)
+    Written per study it would be written differently per study, and a diagnostic
+    that is not comparable across names cannot be pooled into the valuation
+    calibration later. The discounting convention is read from this study's own
+    declared record rather than assumed — ARCC discounts to mid-period points
+    from a valuation date half way through FY2026, AMOC to year ends, and
+    assuming either would put a real error into the answer silently.
+    """
+    import sys
+    sys.path.insert(0, os.path.dirname(HERE))
+    import reverse_read as RR
+    return RR
 
 
 def build():
+    RR = _shared()
     d = json.load(open(NUM, encoding="utf-8"))
-    f, dcf, coc, mac = d["forecast"], d["dcf"], d["cost_of_capital_record"], d["macro_record"]
-    br, meta = d["bridge_record"], d["meta"]
+    f, dcf, coc = d["forecast"], d["dcf"], d["cost_of_capital_record"]
+    mac, br, meta = d["macro_record"], d["bridge_record"], d["meta"]
 
-    fcff = list(f["fcff"])
-    t_mid = list(f["t_mid"])
-    g = float(mac["terminal"]["g_nominal"])
-    wacc_t = float(coc["wacc_terminal"])
+    t_mid, how = RR.resolve_times(coc, f["df"], f["fwd_wacc"])
+    r = RR.read(f["fcff"], t_mid, dcf["tv"], coc["wacc_terminal"],
+                mac["terminal"]["g_nominal"], f["df"][-1], dcf["df_tv"],
+                dcf["ev"], br["equity_value"], br["shares_mn"], meta["spot"])
 
-    # The terminal cash flow the study itself capitalised, recovered from its own
-    # terminal value rather than re-derived: TV = FCFF_term / (wacc_T - g).
-    fcff_term = float(dcf["tv"]) * (wacc_t - g)
-
-    # The date the terminal is brought home on, read off the study's own factors
-    # rather than assumed: df_tv = df_last / (1 + wacc_T) ** dt.
-    dt = (dcf["df_tv"] and (dcf["df_tv"] / f["df"][-1])) or 1.0
-    import math
-    t_tv = t_mid[-1] + math.log(1.0 / dt) / math.log(1.0 + wacc_t)
-
-    # The price's own enterprise value, through the study's own bridge, so that
-    # the two rates are solved against the same construction.
-    shares = float(br["shares_mn"])
-    spot = float(meta["spot"])
-    equity_at_spot = spot * shares
-    bridge_delta = float(br["equity_value"]) - float(dcf["ev"])   # net cash less NCI etc.
-    ev_at_spot = equity_at_spot - bridge_delta
-
-    r_price = solve(ev_at_spot, fcff, t_mid, fcff_term, g, t_tv)
-    r_study = solve(float(dcf["ev"]), fcff, t_mid, fcff_term, g, t_tv)
+    r_price = r["implied_rate_at_price"]
+    r_study = r["implied_rate_at_study_value"]
+    biggest = max(c["effect"] for c in d["contested"])
 
     diag = {
         "ticker": meta["ticker"],
         "as_of": meta.get("asof"),
-        "spot": spot,
+        "spot": float(meta["spot"]),
         "spot_date": meta.get("spot_date"),
         "why_this_file": (
             "The reverse read — what the traded price must believe — is a "
@@ -107,13 +85,14 @@ def build():
                          "on this study's own free cash flows and terminal"),
             "value": r_price,
             "study_value": r_study,
-            "study_value_range": [wacc_t, float(coc["wacc_exp"])],
+            "study_value_range": [coc["wacc_terminal"], coc["wacc_exp"]],
             "solved_on": (
-                "this study's own committed free cash flows, its own terminal cash "
-                "flow recovered from its own terminal value, its own terminal "
-                "growth and its own bridge — holding every driver at its published "
-                "value and varying only the discount rate until the model "
-                "reproduces the traded price"),
+                "engine/reverse_read.py, on this study's own committed free cash "
+                "flows, its own terminal cash flow recovered from its own terminal "
+                "value, its own terminal growth and its own bridge — holding every "
+                "driver at its published value and varying only the discount rate "
+                "until the model reproduces the traded price. The discounting "
+                "convention was %s." % how),
             "reading": (
                 "At EGP %.2f the price is paying for a flat %.2f%% cost of capital "
                 "on the same cash flows this study discounts at a schedule "
@@ -123,19 +102,11 @@ def build():
                 "risk — not on the business. The study's own record names beta as "
                 "its most consequential contested judgement, worth %.1f%% of value, "
                 "and beta enters through exactly this rate."
-                % (spot, 100 * r_price, 100 * r_study,
-                   100 * float(coc["wacc_exp"]), 100 * wacc_t,
-                   10000 * (r_study - r_price),
-                   100 * max(c["effect"] for c in d["contested"]))),
+                % (float(meta["spot"]), 100 * r_price, 100 * r_study,
+                   100 * float(coc["wacc_exp"]), 100 * float(coc["wacc_terminal"]),
+                   10000 * (r_study - r_price), 100 * biggest)),
         },
-        "construction": {
-            "terminal_cash_flow": fcff_term,
-            "terminal_growth": g,
-            "terminal_arrives_at_year": t_tv,
-            "enterprise_value_at_spot": ev_at_spot,
-            "enterprise_value_in_study": float(dcf["ev"]),
-            "bridge_delta_equity_less_ev": bridge_delta,
-        },
+        "construction": dict(r, discounting_times=t_mid, times_resolved=how),
     }
 
     cj = {
@@ -150,6 +121,11 @@ def build():
             "FLAGGED, never failed: a company can genuinely deserve a consistent "
             "read, and a gate that failed on it would push studies to resolve "
             "judgements inconsistently to stay green."),
+        "both_framings_share_a_bridge": (
+            "Every alternative below is computed by this study's own compute.py "
+            "through the same bridge as the adopted figure, so the difference "
+            "between them measures the CHOICE and not the construction — the "
+            "defect found on AMOC the same day and registered as L-070."),
         "judgements": [
             {
                 "name": c["choice"],

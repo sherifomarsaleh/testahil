@@ -2,6 +2,7 @@
  "ticker": "ARCC",
  "as_of": "2026-06-30",
  "why_this_file": "Any single contested choice in a valuation is defensible. What is not is a study that resolves EVERY contested choice the same way and never notices — which is how a lean survives an audit of its steps. Each is recorded with BOTH framings' values, the side adopted and why, and the binomial sign test is printed. A study landing them all one way is FLAGGED, never failed: a company can genuinely deserve a consistent read, and a gate that failed on it would push studies to resolve judgements inconsistently to stay green.",
+ "both_framings_share_a_bridge": "Every alternative below is computed by this study's own compute.py through the same bridge as the adopted figure, so the difference between them measures the CHOICE and not the construction — the defect found on AMOC the same day and registered as L-070.",
  "judgements": [
   {
    "name": "Cost of debt: the POUND-EQUIVALENT cost of a euro debt book (adopted) vs the contracted euro rate",

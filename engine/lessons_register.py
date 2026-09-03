@@ -1799,6 +1799,30 @@ LESSONS = [
       "no reinvestment — in which case a mechanical value on that "
       "name is honest and this caution is too strict there. The test "
       "is arithmetic and available."),
+
+    L("L-070", "ALL", None,
+      "An alternative must go through the same bridge as the number "
+      "it is compared with.",
+      "When a study prices a choice 'the other way', the two figures "
+      "have to be built the same way apart from the choice itself. If "
+      "the alternative runs through an older or simpler bridge, the "
+      "difference between them measures the bridge as much as the "
+      "choice — and it will usually look bigger than it is.",
+      "method reassessment WS8, AMOC output records, 03-Sep-2026",
+      "self_audit",
+      "AMOC's helper for contested choices deducts the minority as a "
+      "share of ENTERPRISE value and omits provisions, the dividend "
+      "payable and investments; the delivered bridge deducts a share "
+      "of EQUITY value and carries all three lines. Same enterprise "
+      "value, EGP 10.3528 against the delivered EGP 9.9142. Compared "
+      "against the delivered headline, three of four contested "
+      "choices clear the 5%-of-value materiality line; compared like "
+      "for like, one does. A sign test on the first basis would have "
+      "counted three material judgements where there is one.",
+      "A case where the simpler construction is the one a reader "
+      "receives — then it is the headline that is inconsistent with "
+      "the alternatives, not the other way round, and the fix runs in "
+      "the opposite direction."),
 ]
 
 

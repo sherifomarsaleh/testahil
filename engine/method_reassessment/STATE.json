@@ -20,8 +20,8 @@
  },
  "phase": "1",
  "current": {
-  "workstream": "WS6 — the valuation calibration",
-  "step": "bridge_inputs.py measures, per name and origin, what each walk-forward commits toward a VALUE. 0 of 55 cells carry a complete bridge with a capex figure; 3 (TMGH 2020-2022) where capex is derivable by identity; 5 more (PHDC 2015-2019) only under a declared substitution — eight cells on two names, both developers. Series (a) is blocked on four named inputs, written up in WHAT_A_MECHANICAL_VALUE_NEEDS_03-09-2026.md with the [R-FCAL-01] amendment it recommends. Share counts: PHDC 5 years footed, TMGH 6 years footed AND corroborated against the run's own committed paid-in capital; ARCC and EGCH OCR in flight.",
+  "workstream": "WS8 — the five on the new standard",
+  "step": "ARCC conforms to [R-ENF-05]: price implies a flat 18.25% against the study's schedule-equivalent 19.97%, 172bp apart; 3 judgements, 2 material, sign test p=0.50. The reverse read is now ONE construction in engine/reverse_read.py so it means the same thing across names, with the discounting convention read from each study's declared record rather than assumed. AMOC is BLOCKED and the reason is a finding: its contested-choice helper deducts the minority off ENTERPRISE value and omits three bridge lines, so its published alternatives sit on a superseded bridge — two of four cross the materiality line on that basis and fall under it like-for-like (L-070, engine/amoc_study/CONTESTED_ALTERNATIVES_STALE_03-09-2026.md). EGCH publishes a two-sided central and needs its own treatment. New gate check_calibration_deliverables.py holds every calibrated name to a report, PDF, workbook, bibliography and QC gate OF ONE EDITION; its first run found TMGH edition 2 shipped with edition 1's QC gate, and that audit is running.",
   "status": "in progress"
  },
  "done": [
@@ -78,16 +78,14 @@
   "DO-NOT-STOP MADE ARITHMETIC: an hourly continuation tick, and Part H now states that a progress report happens INSIDE a turn that continues, never instead of continuing. All four routines recorded in STATE by id."
  ],
  "next": [
-  "amend [R-FCAL-01]: a fundamental walk-forward commits a valuation-input block (cash, interest-bearing debt, PPE, D&A, working-capital lines, share count and par) beside its driver panel — both governing documents, one commit",
+  "AMOC: re-run every contested alternative through the DELIVERED bridge, then its [R-ENF-05] records — a study re-issue, not a note (L-070)",
+  "AMOC: compute.py's prose calls gross-debt weights 'the construction this study rejects' while bridge_record records gross as adopted; the numbers say the bridge record is current, so the prose is what needs correcting",
+  "EGCH: [R-ENF-05] records on a two-sided central — decide which side the reverse read is solved against, or solve both",
+  "TMGH: collect the edition-2 QC gate from the audit and prune the deliverables ratchet",
   "EGCH and ARCC share counts from the OCR now running, footed the same way",
   "TMGH 2023 has no cash cell in its own committed panel — a gap in that run's parse, not in the census probe",
   "the five IMF WEO vintages (2014, 2020-2023) — blocked by an IMF interstitial that defeats curl and a headless browser; an access limit, not a design gap",
-  "WS5 remainder: apply the adopted walk-forward corrections at each study's next edition",
-  "EGCH share counts from the OCR, footed the same way; then EGCH cells at 2013 and 2015-2019.",
-  "ARCC: no filings on disk, so its share counts need a re-fetch of its annual reports before its 2015-2019 statements can be used.",
-  "A class-appropriate mechanical lens for EGCH (fertiliser) under [R-LENS-03] — a DIFFERENT class, not a third attempt at the developer lens.",
-  "The five IMF WEO vintages (2014, 2020-2023): blocked by an interstitial that defeats curl and a headless browser alike. Not a design gap; an access one.",
-  "WS5 remainder: apply the adopted walk-forward corrections at each study's next edition."
+  "WS5 remainder: apply the adopted walk-forward corrections at each study's next edition"
  ],
  "stop_and_ask": [
   "TMGH: two earnings releases could not be re-fetched from the company's own channels (FY2020 release: 502 via proxy on every retry; 1H2021 release: 404). They are not inputs to the delivered numbers — the audited statements for both periods were obtained and verified — so this blocks nothing; recorded for the morning list."

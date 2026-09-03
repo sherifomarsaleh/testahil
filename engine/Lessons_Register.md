@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**101 lessons**, of which 74 bind on every study, 20 on a class of company, and 7 on a single name.
+**102 lessons**, of which 75 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 17 from self-audits, 35 found while building.
+By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 18 from self-audits, 35 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -768,6 +768,16 @@ If the thing you are measuring with leans in the same direction as the thing you
 > **What it cost, or how we know.** The reassessment tests whether this house leans pessimistic. Two mechanical valuation lenses were declared to measure it and both were shaped by what happened to be committed rather than by the class rule: omitting cash UNDERSTATES equity value, omitting capex OVERSTATES it, and omitting working capital does either depending on growth — so a value assembled from whatever a cell carries has a bias whose sign is set by which items that cell is missing. On AMOC, a net-cash company, the omitted cash is most of the answer. The second declaration knew it was a floor and said so; what it did not say is that a floor cannot measure a pessimism lean.
 
 > **What would overturn it.** A demonstration that the omissions are small relative to value on a given name — a company with no debt, no material cash and no reinvestment — in which case a mechanical value on that name is honest and this caution is too strict there. The test is arithmetic and available.
+
+### L-070 · An alternative must go through the same bridge as the number it is compared with.
+
+When a study prices a choice 'the other way', the two figures have to be built the same way apart from the choice itself. If the alternative runs through an older or simpler bridge, the difference between them measures the bridge as much as the choice — and it will usually look bigger than it is.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, method reassessment WS8, AMOC output records, 03-Sep-2026
+
+> **What it cost, or how we know.** AMOC's helper for contested choices deducts the minority as a share of ENTERPRISE value and omits provisions, the dividend payable and investments; the delivered bridge deducts a share of EQUITY value and carries all three lines. Same enterprise value, EGP 10.3528 against the delivered EGP 9.9142. Compared against the delivered headline, three of four contested choices clear the 5%-of-value materiality line; compared like for like, one does. A sign test on the first basis would have counted three material judgements where there is one.
+
+> **What would overturn it.** A case where the simpler construction is the one a reader receives — then it is the headline that is inconsistent with the alternatives, not the other way round, and the fix runs in the opposite direction.
 
 ### L-208 · A check that fails by the calendar is not a check.
 
