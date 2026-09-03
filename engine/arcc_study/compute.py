@@ -379,9 +379,13 @@ INP = dict(
               "2024-12-31", "Company"),
     eq_fy23=I(1754.221659, AFS24 + " — equity attributable to owners, comparative",
               "2023-12-31", "Company"),
+    # the multiple is COMPUTED from the two figures rather than typed into the note: 950
+    # was right and it was a numeral in a justification, which is where this rule reaches
+    # too [found by prose_check.py]
     nci=I(0.158005, AFS25 + " — non-controlling interests, note 24: EGP 158,005. Revision 1 "
           "deducted EGP 150mn on inference from the profit statements; the audited figure "
-          "is 950 times smaller and immaterial to the bridge", "2025-12-31", "Company"),
+          "is %.0f times smaller and immaterial to the bridge" % (150.0 / 0.158005),
+          "2025-12-31", "Company"),
 
     # ---- debt, note 25 ----------------------------------------------------
     debt_cib_fy25=I(99.916937, AFS25 + " — note 25, Commercial International Bank credit "
@@ -711,6 +715,39 @@ INP = dict(
                  "foreign-currency current accounts rather than pound deposits — and the "
                  "path is set above it as the balance is redeployed, then easing",
                  "2026-08-06", "House"),
+    # ---- DISCLOSED FACTS AND SUPERSEDED FIGURES THE STUDY QUOTES, REGISTERED
+    # [added 03-Sep-2026, found by prose_check.py on its first run]. Each of these was
+    # typed into a builder's f-string. Three are DISCLOSED facts about the company's own
+    # debt and tax that this model does not compute; three are figures from a superseded
+    # revision or from a sell-side model, quoted so a reader can see what changed — which a
+    # model cannot compute because a different model produced them. Either way they are
+    # facts, and a fact in this study carries four fields.
+    ebrd_margin=I(0.0435, AFS25 + " note 10, facility schedule — the European Bank for "
+                  "Reconstruction and Development euro facility prices at three-month "
+                  "Euribor plus this margin", "2025-12-31", "Company"),
+    eff_rate_disclosed_fy25=I(0.2333, AFS25 + " note 10.2 — the average effective interest "
+                              "rate the company itself states for 2025, distinct from the "
+                              "rate this study computes from the charge and the balance",
+                              "2025-12-31", "Company"),
+    eff_rate_disclosed_fy24=I(0.2296, AFS24 + " note 10.2 — the same disclosure for 2024",
+                              "2024-12-31", "Company"),
+    eff_rate_disclosed_q126=I(0.2592, Q126 + " — the same disclosure annualised for the "
+                              "first quarter of 2026", "2026-03-31", "Company"),
+    tax_eff_superseded=I(0.2943, "Effective tax rate INFERRED by revision 1 of this study "
+                         "by closing a modelled net finance income, against the 23.82% the "
+                         "filing discloses. Quoted in the source register to show what "
+                         "changed; not an input to anything.", "2026-08-06", "House"),
+    efg_terminal_roic=I(0.0881, "Terminal return on invested capital in the published "
+                        "EFG Hermes model, as reconstructed in the reconciliation of "
+                        "section 1.10. A figure from another party's model, quoted; not an "
+                        "input to anything.", "2026-08-06", "House"),
+    efg_margin_exit=I(0.343, "Terminal EBITDA margin in the published EFG Hermes model, "
+                      "the far end of its 39.3% to 34.3% glide. Another party's figure, "
+                      "quoted; not an input to anything.", "2026-08-06", "House"),
+    efg_unit_cost_growth=I(0.469, "Growth in the cash cost per tonne the EFG Hermes model "
+                           "charges across its forecast window, as reconstructed in "
+                           "section 1.10. Another party's figure, quoted.", "2026-08-06",
+                           "House"),
     tax_eff=I(0.2382, AFS25 + " — income tax of EGP 1,125.468mn over pre-tax profit of EGP "
               "4,725.158mn. Note 10.2 separately discloses an average effective rate of "
               "23.33% (2024: 22.96%); Q1-2026 ran at 25.92%. Revision 1 inferred 29.43% by "
@@ -718,6 +755,18 @@ INP = dict(
               "over-taxed every forecast year by 5.6 points", "2025-12-31", "Company"),
 
     # ---- cost of capital ---------------------------------------------------
+    # the superseded quote and the reviewers' range are FACTS — one about a prior revision
+    # of this study, two about what three reviewers independently reported — and they are
+    # registered rather than typed into this note, which is the same rule one layer in
+    rf_superseded=I(0.2231, "Egypt 10-year local-currency government bond yield as carried "
+                    "by revision 3 of this study, dated 21 July 2026 and therefore sixteen "
+                    "days before the valuation date. Quoted to show what changed; not an "
+                    "input to anything.", "2026-07-21", "House"),
+    rf_reviewer_low=I(0.2288, "Lowest of three independent reviewers' readings of the "
+                      "Egyptian 10-year on 3-5 August 2026.", "2026-08-05", "Country"),
+    rf_reviewer_high=I(0.2298, "Highest of the same three readings. The adopted figure is "
+                       "their midpoint, struck at the valuation date.", "2026-08-05",
+                       "Country"),
     rf=I(0.2295, "Egypt 10-year local-currency government bond yield. Revision 3 carried "
          "22.31% dated 21 July; three independent reviewers put the 10-year at 22.88-22.98% "
          "on 3-5 August, and the curve is inverted above it (1-year near 25.6%). 22.95% is "

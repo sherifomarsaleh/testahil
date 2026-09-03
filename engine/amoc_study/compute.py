@@ -25,7 +25,7 @@ rather than asserted in the narrative:
      profit exceeds standalone profit by only ~4%. Both facts are used, and both are what rule
      out the holding-company lens.
 """
-import sys, os, json
+import math, sys, os, json
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
@@ -301,10 +301,35 @@ INP['div_declared'] = I(258300000.0, "Dividends payable at 30-Jun-2026 (note 11)
 # ---- ownership and counterparty, as disclosed --------------------------------
 INP['nci_share'] = I(30_488_250.0 / 656_428_711.0,
                      "Non-controlling interest as a share of group profit after tax, six months to "
-                     "31-Dec-2025 — DISCLOSED, not inferred. AMOC holds 86.45% of Alexandria Wax "
-                     "Products S.A.E. (note 1-2). The previous edition inferred 3.0% from the gap "
+                     "31-Dec-2025 — DISCLOSED, not inferred. The holding in Alexandria Wax "
+                     "Products S.A.E. is registered separately as awp_stake. The previous edition "
+                     "inferred 3.0% from the gap "
                      "between consolidated and standalone profit; the filing says 4.645%",
                      "2025-12-31", "Company")
+# TYPED IN TWO PLACES AND REGISTERED IN NEITHER [added 03-Sep-2026, found by
+# prose_check.py on its first run]. 86.45% appeared in this source note and again in the
+# study's section 1.1, both hand-typed, while every other disclosed ownership figure in
+# this model carries four fields. A disclosed fact quoted in prose with no registered
+# input is the numeric-traceability rule's own case.
+# TWO FIGURES FROM SUPERSEDED EDITIONS, quoted so a reader of the previous edition can see
+# what changed — and typed, because this model cannot compute a number a different model
+# produced. They are FACTS about a prior edition, so they carry four fields like any other
+# fact rather than sitting in a builder's f-string [found by prose_check.py].
+INP['gm_superseded_annualised'] = I(0.07081,
+    "Base-year gross margin published by the 06-08-2026 edition of this study, which built "
+    "revenue from the six-month product table doubled while annualising cost of sales from "
+    "nine months by four thirds — so it corresponded to no filed period at all. Quoted in "
+    "section 1.2 to show what changed; not an input to anything.", "2026-08-06", "House")
+INP['tv_share_superseded'] = I(0.587,
+    "Terminal value as a share of enterprise value in the 06-08-2026 edition, before the "
+    "terminal return was struck on invested capital at REPLACEMENT cost. Quoted in section "
+    "1.9 to show the direction of the change; not an input to anything.", "2026-08-06",
+    "House")
+INP['awp_stake'] = I(0.8645, "AMOC's holding in Alexandria Wax Products S.A.E. (note 1-2). "
+                             "This is the counterpart of the non-controlling interest above: "
+                             "the 13.55% AMOC does not own is what the minority's share of "
+                             "profit and of the enterprise is struck on.", "2025-12-31",
+                     "Company")
 INP['alexpet_stake'] = I(0.2077, "Alexandria Petroleum Company holds 20.77% of AMOC (note 18, capital "
                                  "structure). The previous edition named the Egyptian General Petroleum "
                                  "Corporation as the 20% shareholder; EGPC is NOT a direct shareholder. "
@@ -2282,6 +2307,41 @@ np.save(os.path.join(HERE, 'fan.npy'), fan)
 # ============================ EMIT ===========================================
 step0 = json.load(open(os.path.join(HERE, 'step0_result.json')))
 strike = json.load(open(os.path.join(HERE, 'strike_result.json')))
+
+# ---- THE LEVEL-TOUCH LADDER, computed here rather than in a builder --------------
+# The reflection principle on a driftless-in-logs approximation, which is what the engine's
+# own stored ladder is built on. The ANCHOR is the cone's, never the study's spot.
+_TOUCH_LEVELS = [11.00, 10.50, 10.00, round(V['spot'], 2), 8.50, 8.00, 7.50,
+                 round(dcf_ps, 2)]
+
+
+def _p_touch(level, h, anchor):
+    from statistics import NormalDist
+    _s = h['sigma_h']
+    if abs(_s) < 1e-9:
+        return 0.0
+    _m = math.log(h['pct']['p50'] / anchor)
+    _b = math.log(level / anchor)
+    N = NormalDist().cdf
+    if _b >= 0.0:
+        return min(1.0, N((_m - _b) / _s) + math.exp(2.0 * _m * _b / (_s ** 2))
+                   * N((-_b - _m) / _s))
+    return min(1.0, N((_b - _m) / _s) + math.exp(2.0 * _m * _b / (_s ** 2))
+               * N((_b + _m) / _s))
+
+
+_TOUCH_P = {}
+for _lv in _TOUCH_LEVELS:
+    _TOUCH_P[f'{_lv:.2f}'] = {
+        _hk: round(_p_touch(_lv, strike['horizons'][_hk], strike['spot']), 6)
+        for _hk in ('1M', '3M')}
+say('[Level-touch ladder] ' + ' · '.join(
+    f"{_lv:.2f}: 1M {_TOUCH_P[f'{_lv:.2f}']['1M']:.1%} / 3M {_TOUCH_P[f'{_lv:.2f}']['3M']:.1%}"
+    for _lv in _TOUCH_LEVELS)
+    + '. Computed on the cone\'s OWN anchor of EGP %.2f, not on the study spot of %.2f — a '
+      'fresh price moves the valuation without re-striking the cone.'
+    % (strike['spot'], V['spot']))
+
 beta_res = json.load(open(os.path.join(HERE, 'beta_result.json')))
 bt5 = json.load(open(os.path.join(HERE, 'backtest_5y.json')))
 
@@ -2637,6 +2697,21 @@ BRIDGE_RECORD = dict(
 )
 
 OUT = dict(
+    # THE LEVEL-TOUCH LADDER'S RUNGS, committed rather than typed into a builder. The
+    # model report requires a level-touch ladder in section 3 and the rungs are a
+    # presentation choice — round numbers spanning the price and the central — so they
+    # are registered here where a reader can see the choice rather than infer it.
+    touch_ladder=dict(
+        levels=_TOUCH_LEVELS,
+        # and the probabilities beside them, so the ladder a reader sees is in the record
+        # rather than recomputed inside a builder. Computed against the cone's OWN anchor:
+        # the percentiles were simulated from the strike's price, and the study is struck on
+        # the latest known one, so mixing them embeds a phantom drift.
+        p=_TOUCH_P,
+        basis='round levels spanning the latest known price and this study\'s central, '
+              'so a reader can read the distribution at prices they recognise. The '
+              'probabilities beside them are computed from the cone\'s own percentiles '
+              'and its own anchor, never from the study spot — those are two clocks.'),
     macro_record=MACRO_RECORD, forecast_anchor=FORECAST_ANCHOR, lens_record=LENS_RECORD,
     bridge_record=BRIDGE_RECORD,
     meta=dict(ticker='AMOC', company='Alexandria Mineral Oils Company S.A.E.', market='EGX',
@@ -2707,6 +2782,11 @@ OUT = dict(
                         character=hist_character, nopat=nopat_h, ic=ic_h, capex=capex_h,
                         nopat_cagr=nopat_cagr, stable_g=stable_g, stable_keys=stable_keys,
                         rr_waterfall=rr_waterfall, g_waterfall=g_waterfall,
+               # the STEP the study quotes in prose. A difference of two committed
+               # numbers is not itself committed, and no rendering set can form one,
+               # so the figure a reader sees is emitted here rather than recomputed
+               # in a builder [numeric traceability].
+               rr_step=rr_term - _rr_2030,
                         ceiling=blend_ceiling, crossover_years=yrs_cross, crossover=cross_candidates, fcst_cagr=fcst_cagr,
                         dom_share_term=dom_share_term),
     lenses=lenses, central=central, span=[lo, hi], spot=SPOT, scen=SCEN,
@@ -2782,6 +2862,12 @@ _src = open(os.path.join(HERE, 'compute.py')).read()
 assert _src.count(_SENTINEL) == 2, "the model-body sentinel is not where the gate expects it"
 _body = _src.split(_SENTINEL)[1]
 NARRATIVE_ONLY = {
+    # figures from SUPERSEDED editions, quoted to show what changed and computed by
+    # nothing in this model because a different model produced them
+    'gm_superseded_annualised', 'tv_share_superseded',
+    # a DISCLOSED ownership fact the study quotes and no formula needs: the minority's
+    # share of profit is registered separately and is what the model actually reads
+    'awp_stake',
     'us_infl',   # read ABOVE the body, to derive the price and currency paths
     'inv_days', 'recv_days', 'pay_days',      # superseded: days are now SOLVED from the filings
     'other_ca', 'dna_pct', 'capex_pct', 'opex_pct', 'tax_eff', 'nci_share', 'ev_ebitda_just',

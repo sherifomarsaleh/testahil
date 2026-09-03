@@ -1,4 +1,51 @@
 {
+ "touch_ladder": {
+  "levels": [
+   11.0,
+   10.5,
+   10.0,
+   13.5,
+   8.5,
+   8.0,
+   7.5,
+   11.4
+  ],
+  "p": {
+   "11.00": {
+    "1M": 0.097371,
+    "3M": 0.36194
+   },
+   "10.50": {
+    "1M": 0.214059,
+    "3M": 0.49704
+   },
+   "10.00": {
+    "1M": 0.417683,
+    "3M": 0.659995
+   },
+   "13.50": {
+    "1M": 0.000465,
+    "3M": 0.049837
+   },
+   "8.50": {
+    "1M": 0.514208,
+    "3M": 0.685673
+   },
+   "8.00": {
+    "1M": 0.224632,
+    "3M": 0.454685
+   },
+   "7.50": {
+    "1M": 0.071011,
+    "3M": 0.269901
+   },
+   "11.40": {
+    "1M": 0.047944,
+    "3M": 0.274704
+   }
+  },
+  "basis": "round levels spanning the latest known price and this study's central, so a reader can read the distribution at prices they recognise. The probabilities beside them are computed from the cone's own percentiles and its own anchor, never from the study spot \u2014 those are two clocks."
+ },
  "macro_record": {
   "market": "EG",
   "path_as_of": "2026-09-02",
@@ -981,7 +1028,25 @@
   },
   "nci_share": {
    "value": 0.04644563756748903,
-   "source": "Non-controlling interest as a share of group profit after tax, six months to 31-Dec-2025 \u2014 DISCLOSED, not inferred. AMOC holds 86.45% of Alexandria Wax Products S.A.E. (note 1-2). The previous edition inferred 3.0% from the gap between consolidated and standalone profit; the filing says 4.645%",
+   "source": "Non-controlling interest as a share of group profit after tax, six months to 31-Dec-2025 \u2014 DISCLOSED, not inferred. The holding in Alexandria Wax Products S.A.E. is registered separately as awp_stake. The previous edition inferred 3.0% from the gap between consolidated and standalone profit; the filing says 4.645%",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "gm_superseded_annualised": {
+   "value": 0.07081,
+   "source": "Base-year gross margin published by the 06-08-2026 edition of this study, which built revenue from the six-month product table doubled while annualising cost of sales from nine months by four thirds \u2014 so it corresponded to no filed period at all. Quoted in section 1.2 to show what changed; not an input to anything.",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "tv_share_superseded": {
+   "value": 0.587,
+   "source": "Terminal value as a share of enterprise value in the 06-08-2026 edition, before the terminal return was struck on invested capital at REPLACEMENT cost. Quoted in section 1.9 to show the direction of the change; not an input to anything.",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "awp_stake": {
+   "value": 0.8645,
+   "source": "AMOC's holding in Alexandria Wax Products S.A.E. (note 1-2). This is the counterpart of the non-controlling interest above: the 13.55% AMOC does not own is what the minority's share of profit and of the enterprise is struck on.",
    "date": "2025-12-31",
    "ring": "Company"
   },
@@ -2374,6 +2439,7 @@
   ],
   "rr_waterfall": 0.4842451389711687,
   "g_waterfall": 0.07838194150093035,
+  "rr_step": 0.14159054922640404,
   "ceiling": 0.15,
   "crossover_years": null,
   "crossover": {
@@ -11887,8 +11953,9 @@
   "[Expert 2 / Expert 3 decomposition \u2014 MEASURED] the gap is +2.98 a share. Discounting Expert 2's OWN cash flows on the weighted rate instead of the cost of equity's glide gives EGP 9.77 against 9.34, so the price of time is worth +0.43 \u2014 14% of it. The BRIDGE is what carries the rest: Expert 3 adds net cash of +2.32 a share at face, while Expert 2 lets the cash reach the holder only through the finance-income line. +0.23 is left over. THE FIRST DRAFT OF THE DIVERGENCE TABLE NAMED THE DISCOUNT RATE AS THE DRIVER; the measurement says it is the bridge, and the table now says so.",
   "[Economic-profit convention] the capital charge is taken on BEGINNING-of-year invested capital, not ending. Charging ending capital would understate economic profit by about 71mn a year.",
   "[Expert panel] Expert 1 EGP 14.50 [10.35-19.67]; Expert 2 EGP 9.34 [0.58-19.86]; Expert 3 EGP 12.32 [0.88-24.62]; panel median EGP 12.32 (-8.8% against spot).",
+  "[Level-touch ladder] 11.00: 1M 9.7% / 3M 36.2% \u00b7 10.50: 1M 21.4% / 3M 49.7% \u00b7 10.00: 1M 41.8% / 3M 66.0% \u00b7 13.50: 1M 0.0% / 3M 5.0% \u00b7 8.50: 1M 51.4% / 3M 68.6% \u00b7 8.00: 1M 22.5% / 3M 45.5% \u00b7 7.50: 1M 7.1% / 3M 27.0% \u00b7 11.40: 1M 4.8% / 3M 27.5%. Computed on the cone's OWN anchor of EGP 9.10, not on the study spot of 13.50 \u2014 a fresh price moves the valuation without re-striking the cone.",
   "[Workbook blocks emitted] 31 complete forecast engines \u2014 the base case and 30 sensitivity grid points \u2014 each with the model's own value for every cell, so the workbook can write all 31 out as live formula chains and an independent evaluator can check each one. The previous edition pasted its sensitivity grids because a whole-model re-run could not be expressed inside a grid; that was 27.6% of the file and three of the pasted rows did not reproduce.",
-  "[Reachability gate \u2014 rewritten] 177 registered inputs. 139 DRIVE the model. 38 are quotation-only and are named here rather than passing silently: alexpet_stake, assets_dec24, assets_jun24, assets_jun25, brent_path, capex_pct, cash_jun25, cash_mar26, cpi, creditors_jun25, crude_hist, debtors_jun25, div_h2_25, div_q1_26, dna_pct, dps, dtax_liab, e1_pe, egpc_balance, egpc_sales, egypt_gdp_nominal, eq_parent_mar26, fx_avg_cy25, fx_hist, inv_jun25, leases, opex_pct, other_ca, pat_h1cy25, pat_h2_24, payables_jun25, policy_rate, ppe_accdep, ppe_jun25, recv_jun25, tax_due, us_infl, world_nominal_growth. The previous gate treated 'appears in a deliverable' as reached and passed while `provisions` (921mn) and `emp_h2_25` (135mn a year) drove nothing at all \u2014 setting the provision to zero moved that valuation by less than a hundredth of a piastre. Both now drive the bridge and the waterfall. `emp_h2_25` stays on this list because the CHARGE is now taken through a rate solved from it rather than through the raw input.",
+  "[Reachability gate \u2014 rewritten] 180 registered inputs. 139 DRIVE the model. 41 are quotation-only and are named here rather than passing silently: alexpet_stake, assets_dec24, assets_jun24, assets_jun25, awp_stake, brent_path, capex_pct, cash_jun25, cash_mar26, cpi, creditors_jun25, crude_hist, debtors_jun25, div_h2_25, div_q1_26, dna_pct, dps, dtax_liab, e1_pe, egpc_balance, egpc_sales, egypt_gdp_nominal, eq_parent_mar26, fx_avg_cy25, fx_hist, gm_superseded_annualised, inv_jun25, leases, opex_pct, other_ca, pat_h1cy25, pat_h2_24, payables_jun25, policy_rate, ppe_accdep, ppe_jun25, recv_jun25, tax_due, tv_share_superseded, us_infl, world_nominal_growth. The previous gate treated 'appears in a deliverable' as reached and passed while `provisions` (921mn) and `emp_h2_25` (135mn a year) drove nothing at all \u2014 setting the provision to zero moved that valuation by less than a hundredth of a piastre. Both now drive the bridge and the waterfall. `emp_h2_25` stays on this list because the CHARGE is now taken through a rate solved from it rather than through the raw input.",
   "[What a buyer at the market price must believe \u2014 SOLVED] holding every other driver at the base case, the cash-flow lens reaches the market price of 13.50 at a gross margin of 10.58% sustained in EVERY forecast year and in perpetuity, against a base year of 9.65%. THE PREVIOUS EDITION PUT THIS AT 12.2% AND CALLED IT 'ABOVE THE BEST SINGLE QUARTER THIS COMPANY HAS EVER FILED'. That was wrong on the record as well as on the arithmetic: AMOC filed a gross margin of 13.84% for the whole year to 30 June 2022 and 13.92% in the quarter to 30 June 2026. The required margin is INSIDE the range this company has actually printed, which is a materially different claim and is the one the study now makes.",
   "[Fundamental walk-forward] LIGHT scope, 9 scoreable cells over five origins FY2021-FY2025. Majority profit was under-forecast in 100% of cells and the method scored -1.128 against assuming last year's profit repeats \u2014 it did NOT beat no change. No correction was adopted. What it changed in this edition is the volume driver, and the far-year bands it licenses are carried into Appendix A rather than a point.",
   "[Gates] beta 0.9080 vs raw_indices/EG/EGX30.csv (conforming=True); ground-up record covers 100% of revenue across 8 lines, all at 'derived' with the cost-disclosure gap stated; SIGCM and the model-report bar both pass. Study stamped to STANDARD_VERSION 2026.09.01."

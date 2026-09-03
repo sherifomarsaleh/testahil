@@ -867,7 +867,7 @@
   },
   "nci": {
    "value": 0.158005,
-   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 non-controlling interests, note 24: EGP 158,005. Revision 1 deducted EGP 150mn on inference from the profit statements; the audited figure is 950 times smaller and immaterial to the bridge",
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 non-controlling interests, note 24: EGP 158,005. Revision 1 deducted EGP 150mn on inference from the profit statements; the audited figure is 949 times smaller and immaterial to the bridge",
    "date": "2025-12-31",
    "ring": "Company"
   },
@@ -1444,11 +1444,77 @@
    "date": "2026-08-06",
    "ring": "House"
   },
+  "ebrd_margin": {
+   "value": 0.0435,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 note 10, facility schedule \u2014 the European Bank for Reconstruction and Development euro facility prices at three-month Euribor plus this margin",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "eff_rate_disclosed_fy25": {
+   "value": 0.2333,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 note 10.2 \u2014 the average effective interest rate the company itself states for 2025, distinct from the rate this study computes from the charge and the balance",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "eff_rate_disclosed_fy24": {
+   "value": 0.2296,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024, Deloitte (Wafik, Ramy & Partners), signed 23 March 2025 note 10.2 \u2014 the same disclosure for 2024",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "eff_rate_disclosed_q126": {
+   "value": 0.2592,
+   "source": "Reviewed condensed consolidated interim financial statements for the three months ended 31 March 2026, Deloitte (Wafik, Ramy & Partners), 25 May 2026 \u2014 the same disclosure annualised for the first quarter of 2026",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "tax_eff_superseded": {
+   "value": 0.2943,
+   "source": "Effective tax rate INFERRED by revision 1 of this study by closing a modelled net finance income, against the 23.82% the filing discloses. Quoted in the source register to show what changed; not an input to anything.",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "efg_terminal_roic": {
+   "value": 0.0881,
+   "source": "Terminal return on invested capital in the published EFG Hermes model, as reconstructed in the reconciliation of section 1.10. A figure from another party's model, quoted; not an input to anything.",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "efg_margin_exit": {
+   "value": 0.343,
+   "source": "Terminal EBITDA margin in the published EFG Hermes model, the far end of its 39.3% to 34.3% glide. Another party's figure, quoted; not an input to anything.",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "efg_unit_cost_growth": {
+   "value": 0.469,
+   "source": "Growth in the cash cost per tonne the EFG Hermes model charges across its forecast window, as reconstructed in section 1.10. Another party's figure, quoted.",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
   "tax_eff": {
    "value": 0.2382,
    "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 income tax of EGP 1,125.468mn over pre-tax profit of EGP 4,725.158mn. Note 10.2 separately discloses an average effective rate of 23.33% (2024: 22.96%); Q1-2026 ran at 25.92%. Revision 1 inferred 29.43% by closing a MODELLED net finance income against disclosed profit, and over-taxed every forecast year by 5.6 points",
    "date": "2025-12-31",
    "ring": "Company"
+  },
+  "rf_superseded": {
+   "value": 0.2231,
+   "source": "Egypt 10-year local-currency government bond yield as carried by revision 3 of this study, dated 21 July 2026 and therefore sixteen days before the valuation date. Quoted to show what changed; not an input to anything.",
+   "date": "2026-07-21",
+   "ring": "House"
+  },
+  "rf_reviewer_low": {
+   "value": 0.2288,
+   "source": "Lowest of three independent reviewers' readings of the Egyptian 10-year on 3-5 August 2026.",
+   "date": "2026-08-05",
+   "ring": "Country"
+  },
+  "rf_reviewer_high": {
+   "value": 0.2298,
+   "source": "Highest of the same three readings. The adopted figure is their midpoint, struck at the valuation date.",
+   "date": "2026-08-05",
+   "ring": "Country"
   },
   "rf": {
    "value": 0.2295,
