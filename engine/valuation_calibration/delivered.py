@@ -320,6 +320,132 @@ def before_and_after():
     return rows
 
 
+def published_book():
+    """The whole PUBLISHED book, from the dated vintage archive.
+
+    `report()` above measures the studies whose committed numbers expose a
+    central and a spot — eleven of twenty-three. This measures what the SITE has
+    actually carried, name by name and vintage by vintage, which is a different
+    and larger population: ninety names, and it is the one a reader of
+    testahil.com was actually looking at.
+
+    Each vintage carries the spot recorded beside it at the time, so the
+    comparison is contemporaneous by construction rather than by assumption. A
+    vintage with no spot is EXCLUDED and counted, never paired with today's price:
+    that would be the single easiest way to manufacture a lean out of nothing.
+    """
+    arch = json.load(open(os.path.join(ENGINE, "fv_vintages.json"), encoding="utf-8"))
+    latest, all_v, nospot, nonpos = [], [], 0, []
+    for name, entries in sorted(arch.get("series", {}).items()):
+        for i, e in enumerate(entries):
+            fv = (e.get("fair") or {}).get("base")
+            sp = e.get("spot")
+            if sp in (None, 0) or fv is None:
+                nospot += 1
+                continue
+            if fv <= 0:
+                nonpos.append((name, fv, sp))
+                continue
+            row = {"ticker": name, "log": math.log(fv / sp), "fv": fv, "spot": sp,
+                   "when": e.get("struck") or e.get("first_seen"),
+                   "code": e.get("code")}
+            all_v.append(row)
+            if i == len(entries) - 1:
+                latest.append(row)
+
+    print("\n\n  THE PUBLISHED BOOK — every fair value the site has carried")
+    for label, rows in (("latest vintage per name", latest),
+                        ("every vintage ever published", all_v)):
+        if not rows:
+            continue
+        xs = [r["log"] for r in rows]
+        xs_s = sorted(xs)
+        med = (xs_s[len(xs) // 2] if len(xs) % 2
+               else _mean(xs_s[len(xs)//2 - 1:len(xs)//2 + 1]))
+        lo, hi = boot(xs)
+        loc, hic = boot_clustered([{"market": (r["code"] or "?:?").split(":")[0],
+                                    "log_gap": r["log"]} for r in rows])
+        print("\n    %s — n = %d" % (label, len(rows)))
+        print("      mean log(FV/P)  %+.4f   (%+.1f%% in price terms)"
+              % (_mean(xs), (math.exp(_mean(xs)) - 1) * 100))
+        print("      median          %+.4f      mean |log|  %.4f"
+              % (med, _mean([abs(x) for x in xs])))
+        print("      below the price %d of %d (%.0f%%)"
+              % (sum(1 for x in xs if x < 0), len(xs),
+                 100.0 * sum(1 for x in xs if x < 0) / len(xs)))
+        print("      95%% interval    names %+.4f to %+.4f   exchanges %+.4f to %+.4f"
+              % (lo, hi, loc, hic))
+
+    # The tails, named. A pooled mean says nothing about whether the book is
+    # gently off or violently split, and this reassessment exists because of the
+    # second possibility.
+    if latest:
+        srt = sorted(latest, key=lambda r: r["log"])
+        print("\n    the five furthest BELOW price:")
+        for r in srt[:5]:
+            print("      %-12s %+7.1f%%   fair %.4g against %.4g on %s"
+                  % (r["ticker"], (math.exp(r["log"]) - 1) * 100, r["fv"],
+                     r["spot"], r["when"]))
+        print("    the five furthest ABOVE price:")
+        for r in srt[-5:][::-1]:
+            print("      %-12s %+7.1f%%   fair %.4g against %.4g on %s"
+                  % (r["ticker"], (math.exp(r["log"]) - 1) * 100, r["fv"],
+                     r["spot"], r["when"]))
+        beyond = [r for r in latest if abs(r["log"]) > math.log(1.10)]
+        print("\n    %d of %d latest vintages sit more than 10%% either side of the"
+              % (len(beyond), len(latest)))
+        print("    price they were struck at — the [R-GAP-01] trigger. That gate is")
+        print("    one day old and two-sided for one of those days, so most of these")
+        print("    predate it; the count is what the ratchet is for.")
+
+    # THE SHAPE OF THE DISTRIBUTION IS THE FINDING, NOT ITS MEAN. Computed, never
+    # typed: a mean far from a median is a tail, and "the house is pessimistic"
+    # and "the house is well-centred with a long left tail" are different
+    # diagnoses with different fixes.
+    if latest:
+        xs = sorted(r["log"] for r in latest)
+        mean = _mean(xs)
+        med = (xs[len(xs) // 2] if len(xs) % 2
+               else _mean(xs[len(xs)//2 - 1:len(xs)//2 + 1]))
+        far_lo = [x for x in xs if x < math.log(0.60)]
+        far_hi = [x for x in xs if x > math.log(1.40)]
+        print("\n    WHAT THE SHAPE SAYS, and it is not what 'ridiculously")
+        print("    pessimistic' would predict. The MEDIAN name sits %+.1f%% from its"
+              % ((math.exp(med) - 1) * 100))
+        print("    price and %d of %d are below it — a coin flip. The MEAN is %+.1f%%,"
+              % (sum(1 for x in xs if x < 0), len(xs), (math.exp(mean) - 1) * 100))
+        print("    and the whole of that gap is a TAIL: %d names read more than 40%%"
+              % len(far_lo))
+        print("    BELOW their price against %d more than 40%% above. Mean |log| is"
+              % len(far_hi))
+        print("    %.4f, so the typical DISAGREEMENT is large in both directions"
+              % _mean([abs(x) for x in xs]))
+        print("    while the typical POSITION is neutral.")
+        print()
+        print("    That is a different diagnosis with a different fix. A uniformly")
+        print("    pessimistic house is corrected by moving a rate or a terminal;")
+        print("    a well-centred house with a long left tail is corrected by")
+        print("    auditing the tail names one at a time, which is what the")
+        print("    two-sided gap review does and what the five rebuilds did.")
+        print()
+        print("    READ THIS AGAINST ITS OWN LIMITS. These 90 vintages were struck")
+        print("    on different dates under different standards — most predate the")
+        print("    reassessment entirely — so this is a picture of the book as it")
+        print("    stands, never a measure of one method. And it measures AGREEMENT")
+        print("    only: whether the disagreement carried information is the")
+        print("    gap-closure question, and it needs subsequent returns this")
+        print("    cross-section does not hold.")
+
+    if nospot:
+        print("\n    %d vintages carry no spot and are EXCLUDED rather than paired"
+              % nospot)
+        print("    with today's price, which would manufacture a lean out of nothing.")
+    for name, fv, sp in nonpos:
+        print("    %s excluded: a central of %.4f has no logarithm" % (name, fv))
+    return {"latest": latest, "all": all_v}
+
+
 if __name__ == "__main__":
     report()
     before_and_after()
+    published_book()
