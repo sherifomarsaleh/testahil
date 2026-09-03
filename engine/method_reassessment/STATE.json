@@ -21,7 +21,7 @@
  "phase": "1",
  "current": {
   "workstream": "WS8 — the five on the new standard, and the gates that read what ships",
-  "step": "[R-ENF-05] output records now conform on ARCC, EGCH, PHDC and TMGH; only AMOC of the five is left and it is blocked by a real defect (its contested alternatives sit on a superseded bridge, L-070). The big find of the day is that [R-LENS-03] is green in every lens RECORD and false in 14 of 20 delivered DOCUMENTS, ADNOCLS the model report among them; a gate now reads the delivered PDF and the model-report skeleton no longer teaches the blend. Measured across the book, the blend put the central below the class primary on 6 of 8 blended studies, median -5.8pp of spot, worst -40.6pp (DU) — the same near-zero-median, fat-tail shape as the delivered book, which is the second independent corroboration that the house was INCONSISTENT rather than uniformly pessimistic.",
+  "step": "PR #339 MERGED to main on green (four checks, 42-step local sweep), so today's rules now bind: [R-FCAL-01 AMENDED] valuation-input block, the three new gates, and the model-report skeleton fix. Main had moved with [R-IND-01] and both lines had independently stamped 2026-09-03c — merged to 2026-09-03e keeping both rule sets. Next: AMOC's re-issue (its contested alternatives sit on a superseded bridge, L-070, now measured exactly), TMGH's re-issue (14 defects in QC_GATE_02-09-2026.md, 4 material, the [R-MACRO-01] one confirmed from its own workbook: 19.8% growth in the last explicit year against a declared 7.00% terminal), and the 14 documents on the lens-vocabulary ratchet with ADNOCLS first because it is the model report.",
   "status": "in progress"
  },
  "done": [
@@ -83,7 +83,8 @@
   "Day 3: check_lens_vocabulary.py reads the DELIVERED PDF — 14 of 20 publish the retired blend; negative control 6/6 + 4 clean; model-report skeleton amended, both documents to rev 2026-09-03d",
   "Day 3: ARCC and EGCH [R-ENF-05] records; engine/reverse_read.py makes the reverse read one construction; the containment check re-pointed (not widened) with case 4b proving it",
   "Day 3: lens_recentre.py — the blend measured across the book",
-  "Day 3: L-068, L-069, L-070, L-071 registered (register at 103)"
+  "Day 3: L-068, L-069, L-070, L-071 registered (register at 103)",
+  "Day 3: PR #339 merged to main on green — the day's rules now bind on the next study, which starts from a fresh clone [R-MERGE-01]"
  ],
  "next": [
   "TMGH edition 2/3 is NOT DELIVERABLE per QC_GATE_02-09-2026.md — 14 defects, 4 material: both documents dated 1 Sep against a 2 Sep edition; the §1.1 bridge does not divide (244,183/2,060.7 = 118.50, the page prints 113.24); §1.5 is the prior edition's prose on this edition's numbers; and [R-MACRO-01] twice, including 19.8% revenue growth in the last explicit year against a declared 7.00% terminal",
