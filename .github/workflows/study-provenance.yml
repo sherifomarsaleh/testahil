@@ -387,3 +387,12 @@ jobs:
 
       - name: Walk-forward actuation gate — negative control
         run: python3 scripts/check_walkforward_actuation_negative_control.py
+
+      - name: Fair-value vintage archive is current with the site
+        run: python3 scripts/check_fv_vintages.py
+
+      - name: Fair-value vintage archive — negative control
+        run: python3 scripts/check_fv_vintages_negative_control.py
+
+      - name: Point-in-time macro archive — negative control
+        run: python3 scripts/check_macro_history_negative_control.py
