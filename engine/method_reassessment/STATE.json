@@ -67,7 +67,8 @@
   "DECISION 4 taken as recommended [R-COC-01 AMENDED, 03-Sep-2026]: the 150bp cost-of-debt bound is RE-POINTED, never switched off. A record may name a mechanism from a CLOSED list (capitalised interest, book re-based in period, facility drawn mid-period), carry the disclosure that establishes it, and supply a CONTRACTUAL ANCHOR from which the adopted rate must REPRODUCE — a harder test than the bound it replaces. Silence is still not an exception. ARCC conforms and is pruned; its anchor reproduces 13.3578% to zero difference from four facility lines. Both documents at 2026-09-03b; negative control 32 conditions.",
   "DECISION 3 taken as recommended: EGCH publishes a TWO-SIDED answer and no single central — -1.06 carried through, +2.82 stopped, against a spot of 13.98 (-107.6% and -79.8%). central is null, central_two_sided carries both branches with the condition that decides them, and fair.base is null with the envelope spanning both. A two-sided answer is READABLE, not missing, and the shared reader says so: the gap gate audits EVERY branch (EGCH's review gained a dated addendum stating both audited centrals), the fair-value register records the branch pair as edition 4, and delivered.py counts it separately from studies that published nothing. All four consumers distinguish two-sided from unreadable.",
   "DECISION 2 taken as recommended: Phase 2 keeps the campaign's market order. Nothing changed; the measured tail order is recorded in ws9_report.py as a report, not a queue re-ordering.",
-  "Built engine/method_reassessment/status.py — one command, everything computed live: clock and budget window, programme state, what is waiting on the principal versus on me, the delivered book's own numbers, every ratchet, the branch's position against main, and the morning list. --gates adds the full CI sweep. Nothing in it is typed, so nothing in it goes stale."
+  "Built engine/method_reassessment/status.py — one command, everything computed live: clock and budget window, programme state, what is waiting on the principal versus on me, the delivered book's own numbers, every ratchet, the branch's position against main, and the morning list. --gates adds the full CI sweep. Nothing in it is typed, so nothing in it goes stale.",
+  "AUTONOMY WIDENED [principal, 03-Sep-2026]: the programme decides for itself and does not stop. Part H amended in the plan and the standing bar restated — what reaches the principal is now about IRREVERSIBILITY AND AUTHORITY (publishing, contradicting their own instruction, data only they hold, irreversible action outside the repo), not about difficulty. Everything else is decided here and reported after. Question slot: 09:00 Cairo Sun-Thu, batched, never blocking."
  ],
  "next": [
   "BLOCKED (morning item 35): sovereign_10y and policy_rate per origin — needs an export from the principal. No origin is usable until both arrive.",
@@ -87,7 +88,7 @@
   "Phase 2 keeps the campaign's market order — principal, 03-Sep-2026."
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-03T06:07:39Z",
+ "updated": "2026-09-03T07:09:38Z",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md — it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",
@@ -104,5 +105,16 @@
   "Items 46-47 appended. [R-VCAL-01] is adopted in both documents and the digest is renamed PROJECT_INSTRUCTIONS_03-09-2026.md at revision 2026-09-03a — its full text is owed to you in chat and comes with this list.",
   "Item 48: WS9 done. The headline is its population — 68 of 90 published fair values have no study directory, so no gate can see them.",
   "Items 49-50 appended during the morning. Item 49 carries a fourth decision: ARCC's cost of debt is 833bp outside the 150bp bound, disclosed rather than smoothed, and I recommend a named exception rather than moving the rate or widening the bound."
- ]
+ ],
+ "autonomy": {
+  "instruction": "principal, 03-Sep-2026: 'Please do not stop at all as agreed. This is an independent program by you and I am not there to answer you. If in a rare exception you need my decision for anything then pause this question at 9AM Sunday to Thursday. However this should be rare as I repeat this should be a project you and your agents should handle on your own as much as possible.'",
+  "what_changed": "Decisions the programme previously held for a reply are now taken here, including MERGING TO MAIN ON GREEN, adopting a rule the plan already names, choosing between defensible constructions, and re-ordering work. Each is recorded in the commit that makes it and reported afterwards rather than asked beforehand.",
+  "what_still_reaches_the_principal": [
+   "publishing to the live site — unchanged, still needs the word 'publish'",
+   "a decision that contradicts a standing instruction of theirs",
+   "data or access only they can supply, where the work cannot route around it",
+   "an irreversible action outside the repository"
+  ],
+  "question_slot": "09:00 Cairo, Sunday to Thursday. Batched into MORNING.md, never blocking, never Friday or Saturday."
+ }
 }
