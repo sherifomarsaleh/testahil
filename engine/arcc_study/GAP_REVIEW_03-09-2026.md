@@ -147,10 +147,13 @@ of capital of 14.79% against an Egyptian sovereign yield of 22.95%, and conclude
 market was discounting Egyptian cement 816bp below its own government. **That reverse read
 was arithmetically correct and its interpretation was wrong**, because it was solved on a
 model whose terminal was mis-specified. Re-solved on the corrected model the price implies a
-flat rate of 16.9% — still below the sovereign, and now a much smaller and more ordinary
-disagreement about a terminal rate rather than an implausible one. **A reverse read is only
-as good as the model it is read backwards through**, and that is a general caution about the
-instrument, not a criticism of this one use of it.
+flat **17.77%** against this study's own schedule equivalent of **19.80%** — a disagreement
+of 203 basis points on the price of time, not 816 below the sovereign. **A reverse read is
+only as good as the model it is read backwards through**, and that is a general caution about
+the instrument, not a criticism of this one use of it. The study's own record names beta as
+its most consequential contested judgement, worth 12.0% of value, and beta enters through
+exactly this rate — so the residual disagreement sits in the one place the study already
+calls contested.
 
 ## 5. TERMINAL
 
@@ -240,7 +243,7 @@ disagreement, priced: the market pays USD 112 per annual tonne and this model pa
 against a replacement cost of USD 130. Under [R-GAP-02] the study remains **HELD** past the
 ten per cent publication limit and no market dissent is filed, because on this evidence none
 is warranted — a reverse read landing on a believable number is evidence *against* a dissent,
-and 16.9% is believable.
+and a 203-basis-point disagreement about the price of time is believable.
 
 *AUDITED CENTRAL: 66.5300* — the figure this review audits, stated so a job outside the study
 can tell whether the review still audits the answer the study publishes.
