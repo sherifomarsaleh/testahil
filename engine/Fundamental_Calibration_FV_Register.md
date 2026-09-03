@@ -20,9 +20,9 @@ Internal record. No rating, no price target, no recommendation — a range and w
 
 | # | name | ccy | scope | old base | new base | base | bear | full | built to → | lessons |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 33 | AMOC | EGP | light | 5.9500 | 11.8342 | +98.9% | -61.2% | +193.1% | (study carries no stamp) → 2026.09.01 | L-072, L-074 |
+| 33 | AMOC | EGP | light | 5.9500 | 11.4012 | +91.6% | -59.1% | +180.6% | (study carries no stamp) → 2026.09.01 | L-082 |
 | 34 | ARCC | EGP | light | 54.6500 | 53.2091 | -2.6% | -77.2% | -12.9% | (study carries no stamp) → 2026.09.01 | L-072 |
-| 35 | EGCH | EGP | full | 3.6400 | 1.7854 / 5.9001 (two-sided) | n/a | n/a | -61.9% | (study carries no stamp) → 2026.09.01 | L-072, L-073, L-075 |
+| 35 | EGCH | EGP | full | 3.6400 | 2.3109 / 6.2591 (two-sided) | n/a | n/a | -59.5% | (study carries no stamp) → 2026.09.01 | L-080 |
 | 36 | PHDC | EGP | full | unrecoverable | 17.8478 | n/a | n/a | n/a | 2026.08.23 → 2026.09.01 | L-073 |
 | 37 | TMGH | EGP | full | 147.1200 | 91.8306 | -37.6% | -23.8% | -35.1% | (study carries no stamp) → 2026.09.01 | — |
 
