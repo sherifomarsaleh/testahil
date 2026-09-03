@@ -49,7 +49,14 @@ assert BAND['flag'] in (None, 'narrow', 'wide')
 LO, HI = D['span']; LOE, HIE = D['span_env']
 YRS = F['years']
 LINES, LBL = UB['lines'], UB['labels']
-PERIODS = ['6M Dec-2024', '3M Mar-2025', '6M Dec-2025', '3M Mar-2026']
+# THE LATEST REVIEWED PERIOD WAS MISSING FROM THIS LIST, AND IT IS THE ONE A READER
+# NEEDS MOST [corrected 03-Sep-2026]. The typed list stopped at 3M Mar-2026 and
+# omitted the six months to 30 June 2026 -- the most recent filed period, at a
+# 12.43% gross margin against a forecast opening at 9.68%. Appendix A is where a
+# reader checks a forecast against the record, and leaving out the one period that
+# raises the question is how the question stayed invisible. Taken from the record
+# rather than typed, so a new filing appears here by arriving.
+PERIODS = list(D['hist_is'].keys())
 
 
 def n0(x): return f"{x:,.0f}"
@@ -310,16 +317,24 @@ P('So the primary lens is free cash flow to the FIRM, discounted, with the three
   'reader wonders whether it was considered.')
 
 H2('1.2  The base year is constructed, and here is the construction')
+# THIS PARAGRAPH CONTRADICTED THE ONE FOUR LINES BELOW IT [corrected 03-Sep-2026].
+# It said "HALF OF THIS BASE YEAR IS A PRESS RELEASE AND NOT A FILING", and §1.2's
+# own next paragraph says "THE HALF IS FILED, AND THE RELEASED GROSS PROFIT WAS
+# RIGHT". Both were true of successive editions and only one is true now: the
+# reviewed statements for the six months to 30 June 2026 are in hand and the model
+# uses the FILED gross profit. The stale sentence survived because it was typed and
+# the correction was written beneath it rather than over it.
 P('The base year is the TWELVE contiguous months to 30 June 2026: the audited transition half '
-  '(July to December 2025) plus the half AMOC disclosed to the Egyptian Exchange on 29-30 July '
-  '2026, one week before this study’s anchor date. No annualisation scalar is applied to '
-  'either half. HALF OF THIS BASE YEAR IS A PRESS RELEASE AND NOT A FILING, and this study says '
-  'so on every page that uses it.')
+  '(July to December 2025) plus the REVIEWED half to 30 June 2026. No annualisation scalar is '
+  'applied to either half and no period is estimated. BOTH HALVES ARE FILED — an earlier '
+  'edition of this study treated the second as a press release and solved its gross profit '
+  'from the profit line; the reviewed statements settle it, and the released figure was right '
+  'to within a fraction of a per cent.')
 table([['Line', 'Audited 6M to Dec-2025', 'Reported 6M to Jun-2026', 'Base year', 'Basis'],
        ['Net sales', n0(IN['rev_h2_25'] / 1e6), n0(IN['rev_h1cy26_rep'] / 1e6), n0(TTM['rev']),
         'both halves as disclosed'],
        ['Gross profit', n0((IN['rev_h2_25'] - IN['cogs_h2_25']) / 1e6), n0(TTM['gp_h1']),
-        n0(TTM['gp']), 'second half SOLVED, see below'],
+        n0(TTM['gp']), 'both halves FILED'],
        ['Gross margin', pc((IN['rev_h2_25'] - IN['cogs_h2_25']) / IN['rev_h2_25'], 2),
         pc(TTM['gp_h1'] * 1e6 / IN['rev_h1cy26_rep'], 2), pc(TTM['gm'], 2), 'output'],
        ['Operating expense', '', '', n0(TTM['ga'] + TTM['mkt'] + TTM['oth'] + TTM['prov']),
@@ -892,10 +907,12 @@ bullet(f'the margin is the thesis and it is administered, not competed. Half a p
        f'{abs(grid_vals("Gross margin, shifted on every forecast year")[1][1] - LN["dcf"]["base"]):.2f} '
        'on the cash-flow lens, and the filed record spans 514 basis points;',
        bold_head='GROSS MARGIN — ')
-bullet('the base year is half press release. Audited half-year statements that restate revenue '
-       'or profit materially would move the whole build — and note the direction: the '
-       'fully-audited nine-month alternative prices the central LOWER, not higher;',
-       bold_head='THE REPORTED HALF — ')
+bullet('the base year averages a strong reviewed half with a weaker audited one. If the '
+       'weakness before 2026 turns out to be a superseded level rather than a season, the '
+       'base is too low and the whole build moves with it — and note the direction, because '
+       'it is the opposite of the usual caveat: anchoring on the latest reviewed half alone '
+       'prices the central HIGHER, not lower, by about half again;',
+       bold_head='THE BASE ANCHOR — ')
 bullet('two exchange disclosures could not be reached from this environment and pull in '
        'OPPOSITE directions — a board capital budget (roughly −12% at face) and a revised '
        'FY2026 profit budget (roughly +17%);', bold_head='THE TWO UNREAD DISCLOSURES — ')
@@ -959,7 +976,8 @@ bullet('THE TEST CHANGED THIS EDITION’S VOLUME ASSUMPTION. The previous editio
 bullet('THE FAR FORECAST YEARS SUPPORT A RANGE AND NEVER A POINT. On its own measured error the '
        'method’s three-year profit forecast spans roughly a fifteen-fold band. That is not a '
        'useful forecast and this study does not pretend otherwise; it is why the fair value here '
-       'is a range, why the terminal block is disclosed as 36% of enterprise value, and why '
+       f'is a range, why the terminal block is disclosed as {pc(DCF["tv_share"], 1)} of '
+       f'enterprise value, and why '
        'Section 1.7 identifies the one thing that would settle the case.')
 bullet('THE TEST ITSELF IS SMALL. Five origins, nine scored forecasts, one company. AMOC '
        'publishes no accounts older than FY2022, so the window could not be lengthened. Nothing '
@@ -1001,19 +1019,46 @@ bullet('THE MARGIN IS ADMINISTERED. A 514-basis-point range across four consecut
 # ============================ APPENDIX A =====================================
 H1('Appendix A  Financial statements')
 H2('A.1  Income statement — four filed periods and a five-year forecast (EGP mn)')
-table([['', *PERIODS, *YRS],
-       ['Net sales', *[n0(HIS[p]['rev']) for p in PERIODS], *[n0(x) for x in F['rev']]],
-       ['Cost of sales', *[n0(HIS[p]['rev'] - HIS[p]['gp']) for p in PERIODS],
-        *[n0(F['rev'][i] - F['gp'][i]) for i in range(5)]],
-       ['Gross profit', *[n0(HIS[p]['gp']) for p in PERIODS], *[n0(x) for x in F['gp']]],
-       ['Gross margin', *[pc(HIS[p]['gm'], 1) for p in PERIODS], *[pc(x, 1) for x in F['gm']]],
-       ['Operating profit', *[n0(HIS[p]['ebit']) for p in PERIODS], *[n0(x) for x in F['ebit']]],
-       ['Net finance income', *['' for _ in PERIODS], *[n0(x) for x in F['interest']]],
-       ['Attributable profit', *['' for _ in PERIODS], *[n0(x) for x in F['np_attr']]]],
-      [1.5, 0.72, 0.72, 0.72, 0.72, 0.66, 0.66, 0.66, 0.66, 0.66], size=7.6)
-caption('Table A.1 — the four filed periods are AS FILED and are of unequal length (two six-month '
-        'periods and two quarters), so they are shown as reported rather than annualised. The '
-        'forecast columns are the model.')
+# SPLIT INTO FILED AND FORECAST [03-Sep-2026]. Adding the missing fifth filed
+# period took this to ten numeric columns, and ten columns of eight-character
+# figures do not fit a seven-inch text block at a readable size -- the table
+# discipline check said so, correctly. Two tables on the same rows read better than
+# one squeezed table, and each can now carry a column wide enough for its content.
+_w = lambda n: [1.55] + [min(0.85, 5.35 / n)] * n
+table([['EGP mn — AS FILED', *PERIODS],
+       ['Net sales', *[n0(HIS[p]['rev']) for p in PERIODS]],
+       ['Cost of sales', *[n0(HIS[p]['rev'] - HIS[p]['gp']) for p in PERIODS]],
+       ['Gross profit', *[n0(HIS[p]['gp']) for p in PERIODS]],
+       ['Gross margin', *[pc(HIS[p]['gm'], 2) for p in PERIODS]]],
+      _w(len(PERIODS)), size=7.9)
+table([['EGP mn — FORECAST', *YRS],
+       ['Net sales', *[n0(x) for x in F['rev']]],
+       ['Cost of sales', *[n0(F['rev'][i] - F['gp'][i]) for i in range(5)]],
+       ['Gross profit', *[n0(x) for x in F['gp']]],
+       ['Gross margin', *[pc(x, 2) for x in F['gm']]],
+       ['Operating profit', *[n0(x) for x in F['ebit']]],
+       ['Net finance income', *[n0(x) for x in F['interest']]],
+       ['Attributable profit', *[n0(x) for x in F['np_attr']]]],
+      _w(5), size=7.9)
+_LATEST_P = PERIODS[-1]
+_LATEST_GM = HIS[_LATEST_P]['gm']
+caption(f'Table A.1 — the {len(PERIODS)} filed periods are AS FILED and are of unequal length '
+        f'(six-month periods and quarters), so they are shown as reported rather than '
+        f'annualised. The forecast columns are the model.')
+P(f'READ THE LAST FILED COLUMN AGAINST THE FIRST FORECAST COLUMN. The most recent filed '
+  f'period, {_LATEST_P}, carries a gross margin of {pc(_LATEST_GM, 2)}; the first forecast '
+  f'year opens at {pc(F["gm"][0], 2)} and the path is held roughly flat from there. THE '
+  f'FORECAST IS THEREFORE BELOW THE LATEST FILED PERIOD, and a reader is entitled to know '
+  f'that without deriving it. The reason is the base year: the model is anchored on the '
+  f'twelve months to 30 June 2026, which averages that half with the weaker one before it '
+  f'({pc(HIS[PERIODS[2]]["gm"], 2)}), rather than on the latest half alone. Whether that '
+  f'weakness is seasonal or a superseded level is this study\u2019s largest contested '
+  f'judgement: the same quarter a year apart runs {pc(HIS[PERIODS[1]]["gm"], 2)} against '
+  f'{pc(HIS[PERIODS[3]]["gm"], 2)}, which no seasonal pattern produces. Anchoring on the '
+  f'latest half and holding it flat gives EGP {p2(DCF["ps_h1_anchor"])} a share against the '
+  f'published EGP {p2(C)}. It is priced here and NOT taken, because corrections are made one '
+  f'at a time and this study has already made one this edition; taking a second would carry '
+  f'it from below the traded price to well above it in a single step.')
 
 H2('A.2  Balance sheet — as filed at 31 December 2025, and the forecast (EGP mn)')
 table([['', 'Filed 31-Dec-2025', *YRS],
