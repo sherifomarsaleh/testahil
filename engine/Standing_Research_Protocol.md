@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-03b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-03c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -1573,6 +1573,79 @@ run exists on disk with no lesson behind it, or when a harvested finding was nev
 on. The study gates (`scripts/check_study_provenance.py`) are unchanged and still bind
 the study this run feeds. THE POPULATION IS ANCHORED OFF THE RUN DIRECTORIES ON DISK per
 [R-ENF-04], so a register that has stopped being fed FAILS rather than reporting clean.
+
+
+### [R-FCAL-01 AMENDED] A run also commits the inputs a VALUE is rebuilt from, not only the drivers (3-Sep-2026, method reassessment WS6)
+
+**A DRIVER PANEL IS NOT A RECORD A VALUE CAN BE REBUILT FROM, AND THE DIFFERENCE WAS
+INVISIBLE UNTIL SOMETHING TRIED.** [R-VCAL-01] grades the fair value itself against
+what happened, and its series (a) rebuilds one at every past origin from what these
+runs commit. Twice a construction was declared for it and twice the binding
+constraint turned out to be the same one, asked too late: **the input was not
+committed.** A cash-flow lens needs capital expenditure and working capital; the
+enterprise-to-equity bridge needs cash and debt; a value cannot meet a price without
+a share count. The lens was being chosen by what happened to be in the repository.
+
+MEASURED RATHER THAN ARGUED (`engine/valuation_calibration/bridge_inputs.py`, which
+reads each run's OWN committed artefacts and names the file that carries each item):
+across the five names then run, **NOT ONE origin carried a complete bridge and a
+capital-expenditure figure**; three carried a bridge where capex was derivable by the
+identity capex = ΔPPE + D&A; five more carried a bridge and no route to capex at all.
+Eight cells, two names, both of one class. Read the census live — never from a
+document, this one included.
+
+**WHAT RULES OUT AN INSTRUMENT BUILT ON WHAT HAPPENS TO BE PRESENT IS THE DIRECTION OF
+WHAT IS MISSING, NOT THE COUNT.** Each omission has a known sign and they do not agree:
+no cash UNDERSTATES equity value, no capex OVERSTATES it, working capital does either
+depending on growth. So the bias varies cell by cell in unknown direction and unknown
+magnitude — which is worse than a large bias, because a floor at least tells you which
+way it points and this cannot be corrected, disclosed as a direction, or reasoned
+around. Where such a bias runs the same way as the hypothesis under test, the
+instrument confirms it BY CONSTRUCTION. On a net-cash company the omitted cash is not
+a rounding error, it is most of the answer.
+
+**THE RULE.** Every fundamental walk-forward commits a VALUATION-INPUT BLOCK beside its
+driver panel, per origin, from the same statements the drivers were built on and under
+the same point-in-time discipline: **cash and equivalents · interest-bearing debt ·
+property, plant and equipment · depreciation and amortisation · the working-capital
+lines · the share count with the par value it was footed against.** Capital expenditure
+is committed where the cash-flow statement discloses it and is otherwise DERIVED by the
+identity above and labelled as derived — an identity is not an assumption, and the
+label is what keeps the two apart.
+
+**FOUR CLAUSES RIDE WITH IT.**
+- **A MISSING ITEM IS RECORDED AS MISSING, NEVER OMITTED.** A line the filings do not
+  disclose is named with the reason, exactly as SIGCM clause 8 already requires of a
+  driver — because a block that quietly carries five of six reads as complete.
+- **THE SHARE COUNT IS FOOTED OR IT IS NOT RECORDED.** Issued capital divided by par
+  must reproduce the count the same document states. Today's count is never carried
+  back to a past origin: counts change on capital increases, and a carried count is
+  fabricated in vintage, plausible on the page, and invisible in the pooled error
+  afterwards. Where the note is a CHRONOLOGY of resolutions rather than a single
+  current-capital sentence, the recital establishes the par value and the identity,
+  and the count is that year's own committed capital divided by that par — the recital
+  stops at the last resolution that CHANGED the capital and cannot see a later treasury
+  movement.
+- **THE ROUTE IS RECORDED.** Text layer or OCR, page and file, on the same footing as
+  the four-field rule for a driver. Arithmetic remains the arbiter for both routes.
+- **IT BINDS FORWARD, NOT BACKWARD.** Runs completed before this amendment are not
+  re-opened for it; they are listed as outstanding and the block is added at each name's
+  next run. A ratchet, per [R-ENF-02] — a rule that made every existing run red would be
+  the permanently-red check that rule forbids.
+
+**WHY IT IS WORTH THE COST, WHICH IS SMALL.** Every one of these items sits on a balance
+sheet or cash-flow statement in filings the run has already opened and parsed cell by
+cell; carrying them out is a copy, not new research. Not carrying them is not a gap in
+a table — it is that **no valuation this house makes can ever be rebuilt at a past
+origin**, and that loss is PERMANENT for any year whose filings are no longer to hand.
+
+**THE GENERAL LESSON, WHICH IS NOT ABOUT VALUATION: WHAT A PROCESS COMMITS DECIDES WHAT
+CAN EVER BE ASKED OF IT LATER, AND NOBODY NOTICES THE MISSING FIELD UNTIL THE QUESTION
+ARRIVES.** The five runs were correct, careful and well evidenced; they simply answered
+the question they were built for and left no trace of the figures beside it. When a
+record is designed, the cheap discipline is to ask what a LATER question would need —
+because a figure not written down at the time is not merely inconvenient afterwards, it
+is gone.
 
 
 ## [R-LESSON-01] Every lesson is registered, explained plainly, and scoped (31-Aug-2026, per instruction — "I want lessons learnt from all the walk forward fundamental training from all stocks to be kept in a register, explained simply and then categorized")
