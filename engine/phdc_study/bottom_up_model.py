@@ -145,7 +145,25 @@ EFFECTIVE_PL_RATE = REG["finance_cost_fy25"] / INTEREST_BEARING
 # instead of extrapolated.
 GM_FY25 = REG["gross_profit_fy25"] / REG["revenue_fy25"]
 GM_1Q26 = REG["gross_profit_1q26"] / REG["revenue_1q26"]
-GM_FORWARD = (GM_FY25 + GM_1Q26) / 2.0
+
+# THE ANCHOR WAS THE AVERAGE OF A STALE FULL YEAR AND THE LATEST REVIEWED PERIOD, WHICH IS
+# SPLITTING THE DIFFERENCE [corrected 03-Sep-2026]. The standing rule is explicit and has
+# been since 07-Aug-2026: A NEAR-TERM REVIEWED ACTUAL OUTRANKS A STALE FULL-YEAR RATE —
+# anchor every unit rate on the most recent reviewed period and hold everything else flat
+# INCLUDING observed improvements. FY2025's 41.16% is the stale full year and 1Q2026's
+# 35.48% is the most recent reviewed period; averaging them to 38.32% takes neither, and
+# the protocol forbids splitting a difference in as many words elsewhere ("if genuinely
+# disputed, default 0 and flag it, never split the difference").
+#
+# The reasoning that produced the average is KEPT because it is right about the thing it
+# was about: the FY2025-to-1Q2026 pair implies cost rising about 9.7% a year faster than
+# price, and compounding that for five years takes gross margin to 7.5% and this company to
+# a loss by 2030 on the strength of one quarterly print. That DRIFT is not carried — a
+# drift needs a named mechanism with a measured like-for-like direction and there is none
+# here. But declining to carry the drift is not a reason to anchor above the latest
+# reviewed level: the level and the trend are two different decisions, and the average
+# conflated them.
+GM_FORWARD = GM_1Q26
 COST_DRIFT = 0.0
 COST_DRIFT_MEASURED = ((1 - GM_1Q26) / (1 - GM_FY25)) - 1.0
 
@@ -185,10 +203,23 @@ def build():
     rev_per = REV_PER_DELIVERED_FY24 * (1 + CPI)
     delivered = REG["revenue_fy25"] / rev_per
     implied_fy25_deliveries = delivered
-    # cost per unit is then anchored on FY2025's OWN cost of revenue over the
-    # same implied deliveries, so the model reproduces the FY2025 margin exactly
-    # cost per unit set so the forward margin is the blend of the two most
-    # recent disclosed margins; it is an output of price and cost, not an input
+    # THREE COMMENTS SAT ABOVE THIS LINE AND TWO OF THEM WERE WRONG [corrected
+    # 03-Sep-2026]. One said cost per unit was anchored on FY2025's own cost of revenue;
+    # one said it was set so the margin equalled a blend of two disclosures; and the line
+    # forty rows below said "margin is the OUTPUT". Only the second described the code, and
+    # its last clause — "it is an output of price and cost, not an input" — was exactly
+    # backwards: the margin was the input and the cost was solved from it.
+    #
+    # WHY THE ARITHMETIC IS NOT REBUILT, stated rather than left as an apparent breach of
+    # the margins-are-outputs rule. That rule fails a margin set as an input "wherever the
+    # filings disclose enough to build cost PER UNIT instead", and here they do not: this
+    # company does not publish a delivered-unit count for any period after FY2024. Every
+    # later count in this model is IMPLIED from revenue divided by price per unit — which
+    # means cost per unit collapses to price per unit times one minus the disclosed margin
+    # BY CONSTRUCTION, whichever way it is written. There is no independent cost-per-unit
+    # to build. So the margin is an input, it is declared as one at the 'derived' level
+    # with the gap named, and what is actually decided here is WHICH disclosed margin
+    # anchors it — see GM_FORWARD above.
     cost_per = rev_per * (1 - GM_FORWARD)
 
     debt = GROSS_DEBT
@@ -208,7 +239,10 @@ def build():
         new_sales = sum(rf[nm]["rows"][i - 1]["sales"] for nm in rf)
         revenue = delivered * rev_per
         cogs = delivered * cost_per
-        gross = revenue - cogs                       # margin is the OUTPUT
+        # NOT an output: cogs is solved from the anchored margin above, because no
+        # delivered-unit count is published after FY2024 and the count in every
+        # later year is implied from revenue over price. Stated where it is done.
+        gross = revenue - cogs
         sga = revenue * sga_ratio
         da = revenue * da_ratio
         ebit = gross - sga - da
