@@ -297,6 +297,40 @@ def read_study(d):
     if 'wacc_term' not in rec:
         pick('wacc_term', 'fwd_wacc', last=True)
 
+    # TWO IDENTITIES BEFORE DECLARING A STUDY UNREADABLE, EACH LABELLED AS DERIVED.
+    # [ADDED 03-Sep-2026.] Nine of twenty-four studies read as unreadable, and inspecting
+    # them one by one showed the census was looking for names rather than for QUANTITIES:
+    # SCEM publishes the reinvestment rate, the return on capital, replacement-cost invested
+    # capital, terminal NOPAT and the terminal value, and simply never writes down g or the
+    # terminal rate — both of which follow from what it does publish, by the identities its
+    # own construction is built on. Deriving them is not guessing: rr = g / ROIC is the very
+    # relation [R-TERM-01] is about, and TV = NOPAT(1-rr)/(W-g) is the formula that produced
+    # the number. What would be guessing is filling a gap with a neighbour's figure, and
+    # that is not done anywhere here. Every derivation records its route, so a reader can
+    # see which cells are read and which are reconstructed.
+    if 'g' not in rec and rec.get('rr_term') is not None and rec.get('roic_term'):
+        rec['g'] = rec['rr_term'] * rec['roic_term']
+        rec['routes']['g'] = 'rr_term x roic_term  [derived: rr = g / ROIC]'
+    if 'wacc_term' not in rec and rec.get('g') is not None \
+            and rec.get('nopat_term') and rec.get('rr_term') is not None and rec.get('tv'):
+        # TV = NOPAT (1 - rr) / (W - g)  =>  W = NOPAT (1 - rr) / TV + g
+        rec['wacc_term'] = rec['nopat_term'] * (1.0 - rec['rr_term']) / rec['tv'] + rec['g']
+        rec['routes']['wacc_term'] = ('nopat_term (1 - rr_term) / tv + g  '
+                                      '[derived from the study\'s own terminal]')
+
+    # A STUDY WITH ONE RATE FOR EVERY YEAR HAS NO TERMINAL RATE, AND THAT IS A FINDING
+    # RATHER THAN AN ABSENCE. GBCO discounts a five-year forecast and a perpetuity alike at
+    # 22.944% and publishes no wacc_term because there is not one to publish — which is
+    # exactly the flat-rate construction [R-COC-01] was adopted to end. Reading that as
+    # "unreadable" filed a defect under ignorance and hid it from the census's own totals.
+    if 'wacc_term' not in rec and rec.get('g') is not None:
+        v, k = _resolve(flat, ('wacc',))
+        if v is not None and 0.0 < v < 1.0:
+            rec['wacc_term'] = v
+            rec['routes']['wacc_term'] = k + '  [FLAT RATE: this study has no terminal rate]'
+            rec['flat_rate'] = ('discounts the explicit window and the perpetuity at the '
+                                'same %.3f%% — the construction [R-COC-01] ends' % (100 * v))
+
     missing = [x for x in ('wacc_term', 'g') if x not in rec]
     if missing:
         rec['unreadable'] = 'the terminal exposes no ' + ', '.join(missing)
@@ -407,6 +441,13 @@ def report():
     print(f'   {len(rows)} study directories · {len(read)} readable · {len(dark)} not\n')
 
     scored = [r for r in read if 'charge' in r]
+    # EVERY DIRECTORY IS ACCOUNTED FOR IN ONE OF THREE BUCKETS, AND THE THREE SUM TO THE
+    # TOTAL. [ADDED 03-Sep-2026.] This printed a "readable" count and then a table of the
+    # SCORED ones, and the difference appeared nowhere: on the run that widened the reader,
+    # 19 read and 15 were tabulated, so GBCO and EMPOWER moved from being named as
+    # unreadable to not being named at all — which is worse, because the first state is a
+    # tracked gap and the second is a silent one. COUNT AGAINST A KNOWN TOTAL [R-ENF-04].
+    gap = [r for r in read if 'charge' not in r]
     print(f"  {'ticker':<12}{'g':>7}{'W':>8}{'charge/NOPAT':>13}{'cycle yrs':>11}{'1/g':>7}"
           f"{'TV vs floor':>13}")
     print('  ' + '-' * 71)
@@ -417,6 +458,26 @@ def report():
               f"{(f'{cyc:.1f}' if cyc else '—'):>11}{r['one_over_g']:>7.1f}"
               f"{r['tv_vs_floor']:>+12.1%}"
               f"{'  BELOW ITS OWN FLOOR' if r.get('below_floor') else ''}")
+
+    if gap:
+        print(f'\n  READ BUT NOT SCORED ({len(gap)}) — the terminal resolves and the charge '
+              f'it levies does not, so these sit in neither table above:')
+        for r in sorted(gap, key=lambda r: r['ticker']):
+            why = []
+            for f in ('nopat_term', 'ic', 'tv'):
+                if r.get(f) is None:
+                    why.append('no ' + f)
+            print(f"    {r['ticker']:<12}{r.get('g', 0):>6.1%} at "
+                  f"{r.get('wacc_term', 0):>7.2%}   {', '.join(why) or 'charge not derivable'}")
+    assert len(scored) + len(gap) + len(dark) == len(rows), (
+        'the three buckets must account for every directory')
+
+    flat = [r for r in read if r.get('flat_rate')]
+    if flat:
+        print(f'\n  ONE RATE FOR EVERY YEAR ({len(flat)}) — no terminal rate exists to '
+              f'read, which is the construction [R-COC-01] ends, not an absence:')
+        for r in sorted(flat, key=lambda r: r['ticker']):
+            print(f"    {r['ticker']:<12}{r['flat_rate']}")
 
     below = [r for r in scored if r.get('below_floor')]
     print(f'\n  BELOW THE FLOOR — a terminal worth less than not investing at all: '
