@@ -20,8 +20,8 @@
  },
  "phase": "1",
  "current": {
-  "workstream": "WS8 — the five on the new standard",
-  "step": "ARCC conforms to [R-ENF-05]: price implies a flat 18.25% against the study's schedule-equivalent 19.97%, 172bp apart; 3 judgements, 2 material, sign test p=0.50. The reverse read is now ONE construction in engine/reverse_read.py so it means the same thing across names, with the discounting convention read from each study's declared record rather than assumed. AMOC is BLOCKED and the reason is a finding: its contested-choice helper deducts the minority off ENTERPRISE value and omits three bridge lines, so its published alternatives sit on a superseded bridge — two of four cross the materiality line on that basis and fall under it like-for-like (L-070, engine/amoc_study/CONTESTED_ALTERNATIVES_STALE_03-09-2026.md). EGCH publishes a two-sided central and needs its own treatment. New gate check_calibration_deliverables.py holds every calibrated name to a report, PDF, workbook, bibliography and QC gate OF ONE EDITION; its first run found TMGH edition 2 shipped with edition 1's QC gate, and that audit is running.",
+  "workstream": "WS8 — the five on the new standard, and the gates that read what ships",
+  "step": "[R-ENF-05] output records now conform on ARCC, EGCH, PHDC and TMGH; only AMOC of the five is left and it is blocked by a real defect (its contested alternatives sit on a superseded bridge, L-070). The big find of the day is that [R-LENS-03] is green in every lens RECORD and false in 14 of 20 delivered DOCUMENTS, ADNOCLS the model report among them; a gate now reads the delivered PDF and the model-report skeleton no longer teaches the blend. Measured across the book, the blend put the central below the class primary on 6 of 8 blended studies, median -5.8pp of spot, worst -40.6pp (DU) — the same near-zero-median, fat-tail shape as the delivered book, which is the second independent corroboration that the house was INCONSISTENT rather than uniformly pessimistic.",
   "status": "in progress"
  },
  "done": [
@@ -75,7 +75,15 @@
   "WS6: PHDC share counts extracted by OCR from the year-end filings and ALL FIVE FOOTED (issued capital / par value reproducing the stated count): 2,172mn in 2015 rising to 3,079mn by 2018 — so carrying today's 2,860mn back would have been wrong by up to 42%, which is why refusing to was not fastidiousness.",
   "WS6: the sealed mechanical lens FAILED on its first run — it read PHDC at two to seven times its traded price at every origin. The run is committed unaltered BEFORE any change, and the lens is superseded on a STANDING RULE rather than on the size of the number: [R-LENS-03] already says normalised earnings is not a developer lens at all, and the sealed lens was exactly that construction on exactly that class. Declaration 2 is a present-value read on the contracted order book with NO terminal value, and it binds itself: THERE IS NO THIRD DECLARATION. It reads -72%, -71%, -56%, -4% across 2016-2019 — a floor, below the price at every origin as a floor should be, closing steadily.",
   "WS6: export_panels.py commits what AMOC, ARCC and EGCH already knew — their as-reported figures lived in a module-level dict and the filings behind it are gitignored. The statements axis went from 33 cells short to 9. Shares is now the binding constraint at 50 of 55.",
-  "DO-NOT-STOP MADE ARITHMETIC: an hourly continuation tick, and Part H now states that a progress report happens INSIDE a turn that continues, never instead of continuing. All four routines recorded in STATE by id."
+  "DO-NOT-STOP MADE ARITHMETIC: an hourly continuation tick, and Part H now states that a progress report happens INSIDE a turn that continues, never instead of continuing. All four routines recorded in STATE by id.",
+  "Day 3: [R-FCAL-01 AMENDED] a run commits a valuation-input block; gate + negative control (13/13) + CI; ratcheted forward",
+  "Day 3: bridge_inputs.py census — 0 of 55 cells carry a complete bridge and a capex figure; series (a) blocked on four named inputs, written up",
+  "Day 3: share counts — TMGH 6 years footed AND corroborated against the run's own committed paid-in capital, catching the FY2025 treasury reduction",
+  "Day 3: check_calibration_deliverables.py (report, PDF, workbook, bibliography, QC gate, all of one edition) — found TMGH edition 2 shipped with edition 1's QC gate; negative control 11/11 + 4 clean; in CI",
+  "Day 3: check_lens_vocabulary.py reads the DELIVERED PDF — 14 of 20 publish the retired blend; negative control 6/6 + 4 clean; model-report skeleton amended, both documents to rev 2026-09-03d",
+  "Day 3: ARCC and EGCH [R-ENF-05] records; engine/reverse_read.py makes the reverse read one construction; the containment check re-pointed (not widened) with case 4b proving it",
+  "Day 3: lens_recentre.py — the blend measured across the book",
+  "Day 3: L-068, L-069, L-070, L-071 registered (register at 103)"
  ],
  "next": [
   "AMOC: re-run every contested alternative through the DELIVERED bridge, then its [R-ENF-05] records — a study re-issue, not a note (L-070)",
