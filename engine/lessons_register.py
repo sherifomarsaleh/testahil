@@ -1628,6 +1628,93 @@ LESSONS = [
       "artefact, where the attestation is the only evidence "
       "available."),
 
+    L("L-208", "ALL", None,
+      "A check that fails by the calendar is not a check.",
+      "If a generated file carries today's date, or an age counted in days, "
+      "and something compares that file byte for byte, the comparison starts "
+      "failing at midnight with nothing changed. Everyone learns to ignore it, "
+      "and then they ignore it on the night it means something. Put the date "
+      "the CONTENT was sourced in the file, and leave 'how old is that now' to "
+      "a tool someone runs.",
+      "Cost-of-capital reference gate, 03-Sep-2026",
+      "self_audit",
+      "engine/Cost_of_Capital_Reference.md is compared byte for byte against "
+      "its generator's output in CI, and the generator stamped it with "
+      "date.today() and with the sovereign quote's age in days. It went red "
+      "every midnight from 02-Sep-2026, and by the time it was found a red "
+      "gate on that branch was already being read as background noise. The "
+      "document now carries the date its paths were sourced; rebuilt under a "
+      "faked 2027-05-17 clock it is byte-identical to today's output.",
+      "A byte-compared artefact whose consumers genuinely need the run date — "
+      "in which case the comparison, not the date, is the thing to change."),
+
+    L("L-209", "ALL", None,
+      "An observed number and an estimated one need different evidence to be "
+      "point-in-time.",
+      "A price, a policy rate, an auction result is fixed the day it happens "
+      "and nobody revises it, so looking it up today is fine. A price index or "
+      "a national account is revised and rebased for years, so today's version "
+      "is NOT what anyone had at the time and using it silently rewrites "
+      "history. The second kind needs the publication that existed then.",
+      "Point-in-time macro archive, 03-Sep-2026",
+      "build",
+      "Across the six origins where both are held, Egypt's inflation as "
+      "published AT the origin and as reported for that same year today differ "
+      "by 4.24 percentage points on average and 7.50 at worst, in both "
+      "directions (2017 +7.50, 2018 -6.46). At those sizes an escalator, the "
+      "currency path derived from it and the terminal all move.",
+      "An observed series that turns out to be revised after the fact — a "
+      "settled or restated market close is exactly that, and this repository "
+      "has already seen one on a metals anchor."),
+
+    L("L-210", "ALL", None,
+      "A mean far from its median is a tail, and a tail is a different problem "
+      "from a bias.",
+      "If the average name is 10% below the market but the middle name is on "
+      "it, the house is not pessimistic — it is inconsistent, and a handful of "
+      "names carry the whole gap. Moving a rate to fix the average would push "
+      "every reasonable name off the market to correct a few that are wrong.",
+      "Delivered-book measurement, 03-Sep-2026",
+      "self_audit",
+      "Across all 90 published fair values against the prices they were struck "
+      "at, the mean is -10.6% and the MEDIAN is -0.3%, with 46 of 90 below the "
+      "price. Ten names read more than 40% below against three more than 40% "
+      "above, and the exchange-clustered interval straddles zero.",
+      "A book whose mean and median agree, where a uniform correction is "
+      "exactly the right instrument."),
+
+    L("L-211", "ALL", None,
+      "A CI step assumes a disposable runner; a working checkout is not one.",
+      "Workflow steps are written knowing the machine gets thrown away, so "
+      "they rebase, reset and auto-commit freely. Running them where the work "
+      "lives does what they say.",
+      "run_ci_gates.py incident, 03-Sep-2026",
+      "self_audit",
+      "A script written to run CI's own steps locally reached a workflow that "
+      "rebases and auto-commits: the checkout was left mid-rebase on a "
+      "detached HEAD, a directory was emptied on disk, and an uncommitted file "
+      "was swept into a commit describing something else. Nothing was lost "
+      "only because every commit was already pushed, which is timing rather "
+      "than design.",
+      "A runner that executes such steps inside a throwaway worktree, where "
+      "the assumption they are written under actually holds."),
+
+    L("L-212", "ALL", None,
+      "A local check sweep must read the list CI runs, not a list somebody "
+      "keeps.",
+      "Running the checks you remember is not running the checks. The two "
+      "lists drift the moment a step is added straight to the workflow, and "
+      "the difference is invisible from the side you are standing on.",
+      "Gate-sweep population, 03-Sep-2026",
+      "self_audit",
+      "'Every gate green' was reported here while CI had been red for a day on "
+      "a step that lives inline in the workflow and was never in the "
+      "hand-maintained list. The sweep now parses the workflow and runs every "
+      "step it declares, so a step added to CI is a step it runs.",
+      "Nothing yet. If a workflow ever declares steps that cannot be "
+      "meaningfully run outside the runner, they are skipped BY NAME and "
+      "counted, never dropped."),
+
     L("L-067", "ALL", None,
       "A gate pointed at a superseded file reports on something "
       "nobody receives.",
@@ -1637,7 +1724,13 @@ LESSONS = [
       "says nothing about what was actually shipped.",
       "AMOC and ARCC delivered-workbook audit, 01-Sep-2026",
       "self_audit",
-      "ARCC's driver_test.py and label_gate.py both opened "
+      "Three further instances have been found since, which is why this is "
+      "filed at ALL and not as one study's mishap: a valuation-gap review "
+      "green-lighted against an answer that had moved from 3.76 to -1.06; the "
+      "fair-value register reporting [ok] while it sat two editions behind the "
+      "study it records; and a vintage archive that would have done the same "
+      "had its gate checked existence. Every one asked whether an artefact "
+      "EXISTED. Originally: ARCC's driver_test.py and label_gate.py both opened "
       "ARCC_Valuation_Model_06082026_public.xlsx while the delivered "
       "file was the 01092026 edition, and both reported clean. Re- "
       "pointed at the delivered file, five of the driver assertions "
