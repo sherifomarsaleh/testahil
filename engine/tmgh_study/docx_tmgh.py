@@ -866,10 +866,20 @@ def appendices(doc):
         ["Deposits and financial assets, non-current",
          money(v(BSH, "deposits_noncurrent") + v(BSH, "fvoci")
                + v(BSH, "associates"))],
+        # THE BLOCK MUST FOOT FOR A READER. These three were registered inputs the table
+        # did not print, so the five printed lines came out EGP 748mn short of the total
+        # above them — exactly intangibles plus right-of-use plus the deferred tax asset,
+        # to the last hundred thousand. Small lines, and a reader adding a column has no
+        # way to tell a missing line from a wrong total.
+        ["Intangibles, right-of-use assets and deferred tax",
+         money(v(BSH, "intangibles") + v(BSH, "right_of_use")
+               + v(BSH, "deferred_tax_asset"))],
         ["Total non-current assets", money(v(BSH, "total_noncurrent_assets"))],
         ["Properties under development",
          money(v(BSH, "properties_under_development"))],
         ["Inventories", money(v(BSH, "inventories"))],
+        # likewise: the current block was EGP 24mn short, which is work in progress
+        ["Work in progress", money(v(BSH, "work_in_progress"))],
         ["Trade and notes receivable", money(v(BSH, "trade_notes_receivable"))],
         ["Notes receivable for undelivered homes", money(v(BSH, "nr_undelivered"))],
         ["Other current assets", money(v(BSH, "other_current_assets"))],
