@@ -2868,6 +2868,29 @@ LESSONS = [
       "A rule that keeps breaking while its mechanism demonstrably can do the job, which "
       "would mean the diagnosis really is about will and the remedy is elsewhere."),
 
+    L("L-233", "ALL", None,
+      "WHERE A TABLE DOES NOT ADD AND THE MISSING LINES ARE NOT HELD, PRINT A LABELLED "
+      "RESIDUAL. It is not inventing data — it is arithmetic on two figures the study "
+      "already has — and it is strictly better than a column that does not add.",
+      "The instinct on finding a gap that cannot be closed from the sources to hand is to "
+      "leave it, because naming the missing lines would be an invention. That is right about "
+      "the naming and wrong about the leaving: a reader facing a column that does not add "
+      "cannot tell a missing line from a wrong total, and the residual tells them which.",
+      "the footing port, 03-Sep-2026",
+      "build",
+      "Five studies came out short against their own disclosed totals. TMGH, ADNOCDRILL and "
+      "EMPOWER HELD every missing figure as a registered input and were fixed by printing "
+      "the lines — EMPOWER\'s eleven of them, with the builder asserting that each residual "
+      "IS the sum of the specific lines it names, because a residual computed as "
+      "total-less-printed foots BY CONSTRUCTION and proves nothing. AMR and RIYADHCABLE did "
+      "NOT hold them, and were fixed by a row labelled \'Other assets, not broken out in "
+      "this table (residual)\' with a caption saying why it is not named. RIYADHCABLE\'s "
+      "residual then became a finding in its own right: SAR 146, 147 and 430mn, so something "
+      "outside the four broken-out lines grew by SAR 283mn in one year, which that table "
+      "cannot explain and the next edition should.",
+      "A residual so large that labelling it is a way of not investigating it, where the "
+      "honest answer is to obtain the statements instead."),
+
 ]
 
 

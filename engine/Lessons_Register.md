@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**153 lessons**, of which 126 bind on every study, 20 on a class of company, and 7 on a single name.
+**154 lessons**, of which 127 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 78 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 79 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1338,6 +1338,16 @@ A rule that has been restated three times and broken three times is not a rule a
 > **What it cost, or how we know.** "Do not stop" was adopted, written into the operating protocol, and broken twice in one afternoon, each time by ending a turn on a progress report. The machinery behind it was an hourly cron, and a cron has three properties that make it unable to do this job: it CANNOT FIRE INTO A TURN THAT IS ALREADY RUNNING, so it shortens the gap after a stop and can never prevent one; its floor is SIXTY MINUTES, tested and refused below that; and nothing inside a turn forces a next action. Its own prompt admitted the first — "so that stopping costs an hour rather than half a day" — which describes a backstop. The replacement is SELF-RE-INVOCATION: the last act of a turn that ends with work remaining launches a background task whose EXIT re-invokes the session, caused by the stop rather than by a clock, inside the turn's own control, and costing a minute. The cron is demoted to the archived-session case it can actually serve.
 
 > **What would overturn it.** A rule that keeps breaking while its mechanism demonstrably can do the job, which would mean the diagnosis really is about will and the remedy is elsewhere.
+
+### L-233 · WHERE A TABLE DOES NOT ADD AND THE MISSING LINES ARE NOT HELD, PRINT A LABELLED RESIDUAL. It is not inventing data — it is arithmetic on two figures the study already has — and it is strictly better than a column that does not add.
+
+The instinct on finding a gap that cannot be closed from the sources to hand is to leave it, because naming the missing lines would be an invention. That is right about the naming and wrong about the leaving: a reader facing a column that does not add cannot tell a missing line from a wrong total, and the residual tells them which.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the footing port, 03-Sep-2026
+
+> **What it cost, or how we know.** Five studies came out short against their own disclosed totals. TMGH, ADNOCDRILL and EMPOWER HELD every missing figure as a registered input and were fixed by printing the lines — EMPOWER's eleven of them, with the builder asserting that each residual IS the sum of the specific lines it names, because a residual computed as total-less-printed foots BY CONSTRUCTION and proves nothing. AMR and RIYADHCABLE did NOT hold them, and were fixed by a row labelled 'Other assets, not broken out in this table (residual)' with a caption saying why it is not named. RIYADHCABLE's residual then became a finding in its own right: SAR 146, 147 and 430mn, so something outside the four broken-out lines grew by SAR 283mn in one year, which that table cannot explain and the next edition should.
+
+> **What would overturn it.** A residual so large that labelling it is a way of not investigating it, where the honest answer is to obtain the statements instead.
 
 
 ---

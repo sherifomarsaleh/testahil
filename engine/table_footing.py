@@ -132,6 +132,13 @@ def check_table(rows, min_components=2):
             continue
         weighted = bool(WEIGHTED_RX.match(label))  # kept: documents the label class
         for j in range(1, len(row)):
+            # A DASH IN THE TOTAL CELL IS "NOT SHOWN", NOT A CLAIM OF ZERO. Dashes are read
+            # as zero inside a component block, because a facility with no stated rate
+            # contributes nothing — but a total printed as a dash makes no assertion at all
+            # and there is nothing to check. Reading it as zero condemned every forecast
+            # column of a table whose forecast totals are deliberately not shown.
+            if (row[j] or '').strip() in ('—', '-', '–', 'n/a', 'N/A', ''):
+                continue
             cell = parse_cell(row[j])
             if cell is None:
                 continue
