@@ -1282,7 +1282,7 @@ say("[Glide] forward cost of capital " + " -> ".join(f"{w:.2%}" for w in fwd) +
 # the scenario engine. They drifted, and a change to the terminal block applied to one and not the
 # other. There is now one function. Everything that reports a per-share number goes through it.
 def waterfall(S, wacc_shift=0.0, g=None, roic_cap=None, nwc_days=None,
-              we=None, wt=None):
+              we=None, wt=None, nci=None):
     """From a build() result to enterprise value and value per share.
 
     Depreciation ROLLS off the asset register instead of being held flat: opening net book plus
@@ -1341,7 +1341,8 @@ def waterfall(S, wacc_shift=0.0, g=None, roic_cap=None, nwc_days=None,
     #   - dividends payable is a declared claim, removed from working capital and carried here
     #   - the equity investment outside the operating enterprise is added at its carrying amount
     _eq_gross = _ev - nd_cy25
-    _eq = (_eq_gross * (1 - NCI_OP) - V['provisions'] / M - V['div_declared'] / M
+    _nci = NCI_OP if nci is None else nci
+    _eq = (_eq_gross * (1 - _nci) - V['provisions'] / M - V['div_declared'] / M
            + V['fvoci'] / M + V['fin_inv'] / M)
     return dict(rev=_rev, gp=_gp, gm=S['gm'], opex=_opex, ebitda=_ebitda, ebit=_ebit,
                 nopat=_nopat, emp=_emp, dna=_dna, capex=_capex, ppe=_ppe_n, ppe_gross=_ppe_g,
@@ -1562,21 +1563,44 @@ wacc_term_rating = (1 - V['wd_term']) * (RF_TERM + V['beta'] * (V['erp_term'] + 
 
 
 def _val_at(we_, wt_, g_=None, nci_=None):
-    g_ = V['g_term'] if g_ is None else g_
-    nci_ = NCI_SHARE if nci_ is None else nci_
-    _fwd = [we_ - (we_ - wt_) * f for f in glide_frac]
-    _df, cc = [], 1.0
-    for w in _fwd:
-        cc /= (1 + w); _df.append(cc)
-    _roic = nopat[-1] * (1 + g_) / ic[-1]
-    _rr = min(g_ / _roic, 0.95)
-    _tv = nopat[-1] * (1 + g_) * (1 - _rr) / max(wt_ - g_, 0.02)
-    _ev = sum(fcff[i] * _df[i] for i in range(5)) + _tv * _df[-1]
-    return (_ev * (1 - nci_) - nd_cy25) / SH
+    """THERE IS ONE COPY OF THE ARITHMETIC, and this is it going through the same
+    waterfall the base case uses.
+
+    THIS FUNCTION WAS A SECOND COPY AND IT HAD DRIFTED — which is the defect this
+    study already diagnosed and cured once, in dcf_scenario's own docstring: *"the
+    previous edition kept one waterfall for the base and another inside this
+    function; they drifted, and a sensitivity row could report a number the model
+    could not reproduce."* The cure was applied to the scenario engine and this
+    function was left behind, still pricing the three contested choices AND every
+    cell of the sensitivity grids.
+
+    Measured before the fix, at the study's OWN adopted rates it returned EGP
+    10.8572 against the delivered EGP 9.9142 — 9.51% apart, from two independent
+    divergences. (i) It re-derived the terminal return from the FORECAST
+    invested-capital series while the delivered terminal is struck on invested
+    capital at REPLACEMENT cost, which is this study's own stated construction and
+    the reason its terminal reinvestment rate is what it is: terminal value
+    17,504.6 against 15,691.4, +11.56%. (ii) It deducted the minority as a share
+    of ENTERPRISE value, which [R-BRIDGE-01] (ii) forbids in as many words, and
+    omitted the provisions, the declared dividend and the non-operating
+    investments the delivered bridge carries.
+
+    Delegating removes both at once, and the assert below is the same one the
+    scenario engine carries: a helper that cannot reproduce the base case is not a
+    helper, it is a second model."""
+    return waterfall(B, g=g_, we=we_, wt=wt_, nci=nci_)['ps']
+
+
+_chk_val = _val_at(wacc_exp, wacc_term)
+assert abs(_chk_val - dcf_ps) < 0.01, (
+    "_val_at does not reproduce the base case: %.4f vs %.4f" % (_chk_val, dcf_ps))
 
 
 dcf_rating_ps = _val_at(wacc_exp_rating, wacc_term_rating)
-nci_alt = 0.06
+# "doubled" on the basis the DELIVERED bridge actually uses — the minority's share
+# of gross EQUITY value, 2.96% — rather than a round 6% that was a doubling of the
+# enterprise-value share the bridge does not use. It still prints as 6%.
+nci_alt = 2 * NCI_OP
 dcf_nci_alt_ps = _val_at(wacc_exp, wacc_term, nci_=nci_alt)
 dcf_grossbasis_ps = _val_at(wacc_exp_gross, wacc_term)
 say(f"[Contested choices, computed] (1) rating-basis cost of capital instead of the CDS basis: "
@@ -1602,7 +1626,16 @@ ev_f_egp = (pv_f_usd + tv_f_usd * df_usd[-1]) * V['fx']
 pv_d = sum(fcff_d[i] * df[i] for i in range(5))
 tv_d = nopat_term * (1 - rr_term) * (1 - exp_frac[-1]) / (wacc_term - V['g_term'])
 ev_ccy = ev_f_egp + pv_d + tv_d * df[-1]
-ccy_ps = (ev_ccy * (1 - NCI_SHARE) - nd_cy25) / SH
+# THE SAME BRIDGE THE ANSWER USES. This line carried the third copy of the
+# superseded construction — minority off ENTERPRISE value, and no provisions,
+# declared dividend or non-operating investments — so the currency alternative was
+# not comparable with the headline it is published against. It cannot delegate to
+# waterfall() because its enterprise value is built on a different clock (the
+# export leg deflated to dollars and discounted at a dollar cost of capital), so
+# the bridge is applied here explicitly, in the same order and on the same lines.
+_ccy_eq_gross = ev_ccy - nd_cy25
+ccy_ps = (_ccy_eq_gross * (1 - NCI_OP) - V['provisions'] / M - V['div_declared'] / M
+          + V['fvoci'] / M + V['fin_inv'] / M) / SH
 say(f"[Currency-of-discounting alternative] the export leg ({exp_frac[-1]:.0%} of cash flow) is "
     f"first DEFLATED to dollars at each year's exchange rate, discounted at a dollar cost of "
     f"capital of {WACC_USD:.2%} with 3.5% terminal growth, and only then translated back at the "

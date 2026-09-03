@@ -20,8 +20,8 @@
  },
  "phase": "1",
  "current": {
-  "workstream": "WS8 — the five on the new standard, and the gates that read what ships",
-  "step": "PR #339 MERGED to main on green (four checks, 42-step local sweep), so today's rules now bind: [R-FCAL-01 AMENDED] valuation-input block, the three new gates, and the model-report skeleton fix. Main had moved with [R-IND-01] and both lines had independently stamped 2026-09-03c — merged to 2026-09-03e keeping both rule sets. Next: AMOC's re-issue (its contested alternatives sit on a superseded bridge, L-070, now measured exactly), TMGH's re-issue (14 defects in QC_GATE_02-09-2026.md, 4 material, the [R-MACRO-01] one confirmed from its own workbook: 19.8% growth in the last explicit year against a declared 7.00% terminal), and the 14 documents on the lens-vocabulary ratchet with ADNOCLS first because it is the model report.",
+  "workstream": "WS8 — AMOC's re-issue, half done",
+  "step": "AMOC's compute.py is FIXED and its output records are written, so all five reassessment names now conform to [R-ENF-05]. _val_at() was a surviving SECOND COPY of the arithmetic — the exact defect this study had already diagnosed and cured in dcf_scenario, whose docstring says so — and it priced the three contested choices AND every cell of the sensitivity grids. It now delegates to waterfall() with the same assert the scenario engine carries. Headline UNCHANGED at 9.9142 and the sensitivity centres now equal it (were 10.8572). On the corrected basis exactly ONE of four contested choices is material (the ERP basis, -19.3%) against three before; sign test p=1.00, no lean. WHAT IS NOT DONE: the delivered documents are now BEHIND the numbers file — the live builders are docx_v6.py and build_xlsx_v5.py, both hardcoding 01-09-2026, so the re-issue is a dated rebuild of both plus the bibliography and a QC gate.",
   "status": "in progress"
  },
  "done": [
@@ -87,9 +87,10 @@
   "Day 3: PR #339 merged to main on green — the day's rules now bind on the next study, which starts from a fresh clone [R-MERGE-01]"
  ],
  "next": [
+  "AMOC re-issue: rebuild the delivered documents on the corrected numbers as a 03-09-2026 edition (docx_v6.py and build_xlsx_v5.py are the live builders; docx_amoc.py is a dead variant that crashes, and there are five document builders in that directory of which one is live — the L-066/L-067 family again)",
+  "TMGH re-issue: 14 defects in QC_GATE_02-09-2026.md, 4 material",
   "TMGH edition 2/3 is NOT DELIVERABLE per QC_GATE_02-09-2026.md — 14 defects, 4 material: both documents dated 1 Sep against a 2 Sep edition; the §1.1 bridge does not divide (244,183/2,060.7 = 118.50, the page prints 113.24); §1.5 is the prior edition's prose on this edition's numbers; and [R-MACRO-01] twice, including 19.8% revenue growth in the last explicit year against a declared 7.00% terminal",
   "assert_reverse_dcf's by-name exemptions (lenses.py, docx_arcc.py) are ad hoc: TMGH puts implied_discount_rate in study_numbers.json, which [R-ENF-05]'s letter forbids, while nothing computes from it — every use is display. Purpose satisfied, device broken; resolve deliberately rather than by widening the check",
-  "AMOC: re-run every contested alternative through the DELIVERED bridge, then its [R-ENF-05] records — a study re-issue, not a note (L-070)",
   "AMOC: compute.py's prose calls gross-debt weights 'the construction this study rejects' while bridge_record records gross as adopted; the numbers say the bridge record is current, so the prose is what needs correcting",
   "EGCH: [R-ENF-05] records on a two-sided central — decide which side the reverse read is solved against, or solve both",
   "EGCH and ARCC share counts from the OCR now running, footed the same way",

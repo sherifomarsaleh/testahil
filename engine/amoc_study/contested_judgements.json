@@ -1,0 +1,40 @@
+{
+ "ticker": "AMOC",
+ "as_of": "2026-08-06",
+ "why_this_file": "Any single contested choice in a valuation is defensible. What is not is a study that resolves EVERY contested choice the same way and never notices. Each is recorded with BOTH framings' values, the side adopted and why, and the binomial sign test is printed.",
+ "both_framings_share_a_bridge": "Every alternative below is computed by THIS study's own waterfall — the replacement-cost terminal and the delivered six-line bridge — so the difference between it and the headline measures the CHOICE and not the construction. Until 03-09-2026 they were priced by a helper that reproduced neither, and on that basis three of the four cleared the 5%-of-value line; on this one, exactly one does. L-070.",
+ "judgements": [
+  {
+   "name": "the equity-risk-premium basis",
+   "adopted": "the CDS basis, the market's own live pricing of the sovereign's credit",
+   "alternative": "the rating basis, an agency judgement updated in steps",
+   "value_adopted": 9.914213424678513,
+   "value_alternative": 8.004285957518482,
+   "why": "both bases are published and one is named central; the swap basis is preferred because it is priced continuously by the market rather than revised in discrete agency steps, and the difference is the largest single contested number in this study"
+  },
+  {
+   "name": "the minority's share",
+   "adopted": "the minority at its share of gross equity value, 2.96%",
+   "alternative": "that share doubled",
+   "value_adopted": 9.914213424678513,
+   "value_alternative": 9.59589499470534,
+   "why": "the share is struck on the subsidiaries' own profit contribution net of the parent's credit interest; doubling it is the sensitivity a reader would ask for and it moves the answer by about three per cent, which is a smaller number than the old helper reported"
+  },
+  {
+   "name": "gross versus net debt weights in the operating rate",
+   "adopted": "gross-borrowing weights, with the cash added once at face in the bridge",
+   "alternative": "net-debt weights",
+   "value_adopted": 9.914213424678513,
+   "value_alternative": 9.915575255615662,
+   "why": "on a net-cash company the net-debt weight goes negative and levers the equity weight above one, which is the construction [R-BRIDGE-01] (iii) forbids and which a previous edition of this study carried; on a debt book that is 0.14% of the capital structure the corrected difference is essentially nil, and that is the honest finding rather than the 9.5% the broken helper reported"
+  },
+  {
+   "name": "the currency the export leg is discounted in",
+   "adopted": "the whole business discounted in pounds on the local cost of capital",
+   "alternative": "the export leg deflated to dollars, discounted at a dollar cost of capital with 3.5% terminal growth, and translated back",
+   "value_adopted": 9.914213424678513,
+   "value_alternative": 10.213915087856426,
+   "why": "a majority-export refiner can be read either way and the two answers differ by three per cent; the pound read is adopted because the cash flows, the tax and the debt are all struck in pounds and a mixed-currency discount would price the same inflation twice"
+  }
+ ]
+}

@@ -2253,13 +2253,13 @@
   "g": 0.07,
   "bear": 4.928361540677973,
   "bull": 16.725283967494786,
-  "ps_rating_basis": 8.798977522343014,
+  "ps_rating_basis": 8.004285957518482,
   "wacc_exp_rating": 0.31912377903070643,
   "wacc_term_rating": 0.21816018580547197,
-  "ps_nci_alt": 10.735877246671679,
-  "nci_alt": 0.06,
-  "ps_gross_basis": 10.858601552796973,
-  "ccy_alt_ps": 10.647303758201296
+  "ps_nci_alt": 9.59589499470534,
+  "nci_alt": 0.05925588644281647,
+  "ps_gross_basis": 9.915575255615662,
+  "ccy_alt_ps": 10.213915087856426
  },
  "terminal_recon": {
   "roic": {
@@ -2459,7 +2459,7 @@
    "base": 10.857171525498854,
    "rng": [
     8.673767792091416,
-    10.647303758201296
+    10.213915087856426
    ],
    "ic0": 4677.069217,
    "pv_ep": 2777.582753166682,
@@ -2528,39 +2528,39 @@
   ],
   "table": [
    [
-    10.802303696967284,
-    11.087561611356374,
-    11.424039147339704,
-    11.826892103861866,
-    12.317910017258297
+    10.175042806075687,
+    10.378200820515831,
+    10.617836969649437,
+    10.904745071511073,
+    11.254443429762746
    ],
    [
-    10.314701182548783,
-    10.546496616177947,
-    10.81648345224571,
-    11.134947904117514,
-    11.516234415886677
+    9.697525707987404,
+    9.856046615026052,
+    10.040685964783165,
+    10.258478321517206,
+    10.519233603624913
    ],
    [
-    9.891063330887183,
-    10.081342010271856,
-    10.300585481992673,
-    10.555952252302369,
-    10.857171525498854
+    9.282486147795886,
+    9.406907235047731,
+    9.55026807406862,
+    9.717249531542851,
+    9.914213424678513
    ],
    [
-    9.519504756667839,
-    9.677064878405083,
-    9.856912909083308,
-    10.064137947408971,
-    10.30550608644261
+    8.91832071956201,
+    9.01633150201875,
+    9.12820655019542,
+    9.257111554374056,
+    9.407255384589323
    ],
    [
-    9.1909140454796,
-    9.32235808236599,
-    9.471167513087625,
-    9.64102701031666,
-    9.83674303061739
+    8.596133939325524,
+    8.673449489427032,
+    8.760979386325127,
+    8.860890959183916,
+    8.976011371883256
    ]
   ]
  },
@@ -2588,76 +2588,76 @@
   ],
   "grid_wacc_g": [
    [
-    10.802303696967284,
-    11.087561611356374,
-    11.424039147339704,
-    11.826892103861866,
-    12.317910017258297
+    10.175042806075687,
+    10.378200820515831,
+    10.617836969649437,
+    10.904745071511073,
+    11.254443429762746
    ],
    [
-    10.314701182548783,
-    10.546496616177947,
-    10.81648345224571,
-    11.134947904117514,
-    11.516234415886677
+    9.697525707987404,
+    9.856046615026052,
+    10.040685964783165,
+    10.258478321517206,
+    10.519233603624913
    ],
    [
-    9.891063330887183,
-    10.081342010271856,
-    10.300585481992673,
-    10.555952252302369,
-    10.857171525498854
+    9.282486147795886,
+    9.406907235047731,
+    9.55026807406862,
+    9.717249531542851,
+    9.914213424678513
    ],
    [
-    9.519504756667839,
-    9.677064878405083,
-    9.856912909083308,
-    10.064137947408971,
-    10.30550608644261
+    8.91832071956201,
+    9.01633150201875,
+    9.12820655019542,
+    9.257111554374056,
+    9.407255384589323
    ],
    [
-    9.1909140454796,
-    9.32235808236599,
-    9.471167513087625,
-    9.64102701031666,
-    9.83674303061739
+    8.596133939325524,
+    8.673449489427032,
+    8.760979386325127,
+    8.860890959183916,
+    8.976011371883256
    ]
   ],
   "grid_exp_term": [
    [
-    12.749556490567187,
-    11.909842874138523,
-    11.219521842012863,
-    10.64170396503999,
-    10.15072964817351
+    11.66310599365644,
+    10.892995279293178,
+    10.259264404544435,
+    9.728258442825533,
+    9.276566783436703
    ],
    [
-    12.530451562791146,
-    11.710057454516178,
-    11.035612341725704,
-    10.471077129320152,
-    9.991383701757783
+    11.455673064133842,
+    10.703288604776795,
+    10.084139897348749,
+    9.565347812607452,
+    9.124041398335033
    ],
    [
-    12.317910017258297,
-    11.516234415886677,
-    10.857171525498854,
-    10.30550608644261,
-    9.83674303061739
+    11.254443429762746,
+    10.519233603624913,
+    9.914213424678513,
+    9.407255384589323,
+    8.976011371883256
    ],
    [
-    12.111675141532654,
-    11.32814103093706,
-    10.683986362913949,
-    10.144794273715613,
-    9.686625047286721
+    11.059174638970122,
+    10.340609843839077,
+    9.749282658052756,
+    9.253793984020893,
+    8.832302405441503
    ],
    [
-    11.911502714675159,
-    11.145555883222025,
-    10.515854165093083,
-    9.988754659773083,
-    9.540856008221166
+    10.869636033665746,
+    10.167207602857024,
+    9.589155087355518,
+    9.104785508803442,
+    8.69274863954121
    ]
   ],
   "beta_grid": [
@@ -11813,8 +11813,8 @@
   "[Terminal value] the terminal return is struck on invested capital at REPLACEMENT cost \u2014 working capital plus the asset base at GROSS cost \u2014 giving 25.4%, against 36.5% on net book. The difference is not cosmetic: this plant is 67.4% written down, the book lens already haircuts return on equity from a reported 33% to 28% for exactly that reason, and using the flattered figure in the terminal block while haircutting it in the book lens would be two views of one asset base. Required reinvestment = growth / return = 7.0% / 25.4% = 27.6%; terminal value 15,691 capitalised at 18.14% and discounted at the YEAR-5 cumulative factor 0.3768, giving a present value of 5,912. TERMINAL VALUE IS 54.4% OF ENTERPRISE VALUE.",
   "[Terminal reinvestment, against the explicit window] the final forecast year reinvests 16.79% of profit; the terminal block reinvests 27.56%. The step is +10.77% and it is disclosed here because it RAISES the terminal block, which carries 54.4% of enterprise value. It is a consequence of the steady-state identity rather than an assumption, but a reader is entitled to see it.",
   "[Bridge \u2014 every disclosed claim carried] enterprise value 10,874 plus net cash 3,002 = 13,876. Less minority interests at 2.963% of the WHOLE enterprise including the cash (411) \u2014 the previous edition charged the minority its share of the operating enterprise and then credited the parent with 100% of the consolidated cash, which is an inconsistency a reader can find in one line. Less the tax-disputes provision 997, a recognised liability the previous edition quoted in its text and NEVER carried into the bridge \u2014 setting it to zero moved that valuation by nothing at all. Less dividends payable 258, a declared claim removed from working capital and carried here. Plus non-operating investments 595 \u2014 the equity stake at fair value through other comprehensive income and the PLEDGED deposits, which are real assets even though they are not free cash and were previously excluded from BOTH the cash line and the bridge. Equity attributable 12,804 = EGP 9.91 a share against a spot of EGP 9.10 (+8.9%).",
-  "[Contested choices, computed] (1) rating-basis cost of capital instead of the CDS basis: explicit 31.91% / terminal 21.82% -> EGP 8.80 (-11.2%). (2) minority share doubled to 6% -> EGP 10.74 (+8.3%). (3) GROSS-debt rather than net-debt weights, the construction this study rejects because it counts the cash pile twice -> EGP 10.86 (+9.5%).",
-  "[Currency-of-discounting alternative] the export leg (9% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a dollar cost of capital of 10.51% with 3.5% terminal growth, and only then translated back at the spot rate. Discounting a pound-denominated cash flow already inflated by the assumed depreciation path directly at a dollar rate would count the currency benefit twice. Result EGP 10.65 a share (+17.0% against spot).",
+  "[Contested choices, computed] (1) rating-basis cost of capital instead of the CDS basis: explicit 31.91% / terminal 21.82% -> EGP 8.00 (-19.3%). (2) minority share doubled to 6% -> EGP 9.60 (-3.2%). (3) GROSS-debt rather than net-debt weights, the construction this study rejects because it counts the cash pile twice -> EGP 9.92 (+0.0%).",
+  "[Currency-of-discounting alternative] the export leg (9% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a dollar cost of capital of 10.51% with 3.5% terminal growth, and only then translated back at the spot rate. Discounting a pound-denominated cash flow already inflated by the assumed depreciation path directly at a dollar rate would count the currency benefit twice. Result EGP 10.21 a share (+12.2% against spot).",
   "[Relative lens \u2014 on the TRAILING metric, multiple DERIVED] the company's own trailing multiple is 2.97x enterprise value to EBITDA \u2014 enterprise value 8,751 over base-year EBITDA 2,951 \u2014 and 7.1x earnings. The justified multiple is DERIVED from it at a +0% re-rating, 2.97x, rather than set by hand. The previous edition stated the trailing multiple as 'around 4.6x' and then set 4.5x, calling that 'holding the name at its own trailing level'; the model's own output disagreed with the stated 4.6x, so the justification did not hold whichever multiple was right. 2.97x on TRAILING EBITDA gives an enterprise value of 8,751 TODAY, carried through the SAME bridge as the cash-flow lens -> EGP 8.32 a share. Nothing here is discounted at the cash-flow lens's rate and nothing is added back from it, so the difference between this lens and the spot price is entirely the BRIDGE: the tax-disputes provision, the declared dividend and the minority's share of the cash. That is what this lens is now for.",
   "[Normalised earnings lens \u2014 separated and discounted] OPERATING earnings only: 2028E operating profit 3,043, taxed at the statutory 22.5%, less the employees' profit share and the minority -> EGP 1.679 a share. At 7.5x that is EGP 12.59 AS AT mid-2028, discounted 2.4 years to the valuation date at the COST OF EQUITY 27.45% (factor 0.5587) = EGP 7.04. Net cash less the provision and the declared dividend is then added at FACE, outside the multiple: EGP 1.35 a share. Total EGP 8.39. The previous edition capitalised 308 of credit interest at an operating multiple \u2014 valuing a bank deposit as though it were the refinery \u2014 and then did not discount the 2028 answer at all, while lens 2 in the same document discounted its forward number. One lens discounted and the other did not; both are now on the valuation date.",
   "[Book lens \u2014 on a rate path consistent with lens 1] justified price-to-book 1.32x = (sustainable return 28.0% less growth 7%) / (cost of equity 22.85% less growth), applied to book value of EGP 4.70 a share -> EGP 6.23. The rate is the present-value-weighted average of the SAME cost-of-equity glide the cash-flow lens uses, 27.45% falling to 18.86%, not the terminal rate alone. Using the terminal rate alone gives 8.33 and using the explicit rate alone gives 4.83; a perpetuity beginning today deserves neither endpoint. Trailing return on average parent equity is 28.9%, and the sustainable rate is struck below it because the asset base is 67.4% written down \u2014 the same haircut now applied to the terminal return in lens 1, so there is one view of the asset base across the model rather than two.",
@@ -11824,7 +11824,7 @@
   "[Sensitivity gate] 5 rows, every one a full re-run through the same waterfall the base case uses. Every grid is sorted, every row returns EGP 9.91 at its own base point, and every row is monotone in the direction theory requires. The previous edition published three rows that failed one or more of these tests and had no gate that could have caught them.",
   "[Expert 2 construction] free cash flow to equity 1,967 -> 1,963 -> 1,957 -> 1,941 -> 1,879; discounted on the cost of EQUITY's own glide (27.5% -> 23.0% -> 21.2% -> 19.8% -> 18.9%) for a present value of 5,373, plus a terminal block of 4,542. No bridge is used: the cash pile reaches the shareholder through the finance income line rather than as a balance-sheet add-back, which is what makes this a genuinely independent second read rather than a re-arrangement of the first.",
   "[Economic-profit convention] the capital charge is taken on BEGINNING-of-year invested capital, not ending. Charging ending capital would understate economic profit by about 84mn a year.",
-  "[Expert panel] Expert 1 EGP 13.34 [9.53-18.10]; Expert 2 EGP 7.68 [6.29-7.37]; Expert 3 EGP 10.86 [8.67-10.65]; panel median EGP 10.86 (+19.3% against spot).",
+  "[Expert panel] Expert 1 EGP 13.34 [9.53-18.10]; Expert 2 EGP 7.68 [6.29-7.37]; Expert 3 EGP 10.86 [8.67-10.21]; panel median EGP 10.86 (+19.3% against spot).",
   "[Workbook blocks emitted] 31 complete forecast engines \u2014 the base case and 30 sensitivity grid points \u2014 each with the model's own value for every cell, so the workbook can write all 31 out as live formula chains and an independent evaluator can check each one. The previous edition pasted its sensitivity grids because a whole-model re-run could not be expressed inside a grid; that was 27.6% of the file and three of the pasted rows did not reproduce.",
   "[Reachability gate \u2014 rewritten] 177 registered inputs. 139 DRIVE the model. 38 are quotation-only and are named here rather than passing silently: alexpet_stake, assets_dec24, assets_jun24, assets_jun25, brent_path, capex_pct, cash_jun25, cash_mar26, cpi, creditors_jun25, crude_hist, debtors_jun25, div_h2_25, div_q1_26, dna_pct, dps, dtax_liab, e1_pe, egpc_balance, egpc_sales, egypt_gdp_nominal, eq_parent_mar26, fx_avg_cy25, fx_hist, inv_jun25, leases, opex_pct, other_ca, pat_h1cy25, pat_h2_24, payables_jun25, policy_rate, ppe_accdep, ppe_jun25, recv_jun25, tax_due, us_infl, world_nominal_growth. The previous gate treated 'appears in a deliverable' as reached and passed while `provisions` (921mn) and `emp_h2_25` (135mn a year) drove nothing at all \u2014 setting the provision to zero moved that valuation by less than a hundredth of a piastre. Both now drive the bridge and the waterfall. `emp_h2_25` stays on this list because the CHARGE is now taken through a rate solved from it rather than through the raw input.",
   "[What a buyer at the market price must believe \u2014 SOLVED] holding every other driver at the base case, the cash-flow lens reaches the market price of 9.10 at a gross margin of 9.31% sustained in EVERY forecast year and in perpetuity, against a base year of 9.65%. THE PREVIOUS EDITION PUT THIS AT 12.2% AND CALLED IT 'ABOVE THE BEST SINGLE QUARTER THIS COMPANY HAS EVER FILED'. That was wrong on the record as well as on the arithmetic: AMOC filed a gross margin of 13.84% for the whole year to 30 June 2022 and 13.92% in the quarter to 30 June 2026. The required margin is INSIDE the range this company has actually printed, which is a materially different claim and is the one the study now makes.",
