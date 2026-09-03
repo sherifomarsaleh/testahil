@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**116 lessons**, of which 89 bind on every study, 20 on a class of company, and 7 on a single name.
+**117 lessons**, of which 90 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 43 found while building.
+By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 44 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -918,6 +918,16 @@ Local checks fail by imagination, not by care. A careful author writes careful a
 > **What it cost, or how we know.** ARCC was the only study in the book that hand-rolled its Step 2A sweep instead of importing engine/research_sweep.py. Its own assertions checked five things — every finding has a source, a date and a model impact; the class is one of four; all four rings appear; ids are unique; driver cross-references resolve — and all five passed. Replaying the same 26 findings through the shared register's validate() produced SEVEN errors, and five were facts the study already held: a company website attempted and refused, an investor presentation cited by page for six drivers, the reviewed half the bridge stands on, and three top-down drivers whose evidenced absence sat in prose inside their own justification.
 
 > **What would overturn it.** A study whose local checks turn out to be a strict superset of the shared instrument's — which would mean the shared module is the weaker one and should adopt the local checks, not the other way round.
+
+### L-085 · A rule that one study implements is a rule that one study obeys.
+
+A correct rule, written down and implemented well in the one place it exists, binds nothing anywhere else. The instinct is to port the implementation study by study; the cost of that is one hand-maintained copy per study, each with its own hole. Make it arithmetic ONCE, in a shared place, and the rule survives everywhere rather than in the place somebody remembered.
+
+**Applies to:** every study  ·  *Learned from:* found while building, prose_check across the book, 03-Sep-2026
+
+> **What it cost, or how we know.** "A number stated in prose must be computed, not typed" had been standing for four weeks and exactly one study of twenty-four implemented a check for it. Measured in one afternoon on three studies that had just been rebuilt and passed every other gate: AMOC published a 514-basis-point margin range whose own five named periods span 737, alongside a summary row that summed five values and divided by four; ARCC shipped a masthead a day stale and a price date a month stale; PHDC carried three comments above one line, two of them wrong. Across the whole book, 373 of 8,824 figures in the delivered documents had no computed counterpart. Shared as engine/prose_figures.py rather than copied twenty-three times, and the first four ports reached zero unmatched across 1,561 figures.
+
+> **What would overturn it.** A rule whose right implementation is genuinely study-specific — where a shared instrument would have to be so configurable that each study's declaration IS the implementation, at which point the sharing buys nothing but a common vocabulary.
 
 ### L-208 · A check that fails by the calendar is not a check.
 

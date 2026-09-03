@@ -433,7 +433,8 @@ P(f'The discount rate is a schedule, not a number. Egypt is in monetary transiti
 P(f'The cost of DEBT is the line the audited accounts changed most. During 2025 the company '
   f'refinanced out of pound working-capital facilities and into euro term debt: a EUR 25mn '
   f'facility from the European Bank for Reconstruction and Development at three-month '
-  f'Euribor plus 4.35%, drawn to EUR 18.5mn to fund alternative-fuel capacity and hydrogen '
+  f'Euribor plus {pc(IN["ebrd_margin"], 2)}, drawn to EUR 18.5mn to fund alternative-fuel '
+  f'capacity and hydrogen '
   f'injection, and a EUR 3.09mn National Bank of Egypt facility under a KfW '
   f'industrial-pollution programme at six-month Euribor plus 3%. '
   f'{pc(KDG["eur_share"])} of the interest-bearing book is now euro-denominated.')
@@ -443,7 +444,7 @@ rows.append(['CIB credit facilities', n0(IN['debt_cib_fy25']), 'EGP',
 rows.append(['National Bank of Egypt / KfW', n0(IN['debt_nbe_fy25']), 'EUR',
              f'Euribor + 3.00% = {pc(KDG["kd_nbe"], 2)}'])
 rows.append(['European Bank for Reconstruction and Development', n0(IN['debt_ebrd_fy25']),
-             'EUR', f'Euribor + 4.35% = {pc(KDG["kd_ebrd"], 2)}'])
+             'EUR', f'Euribor + {pc(IN["ebrd_margin"], 2)} = {pc(KDG["kd_ebrd"], 2)}'])
 rows.append(['Lease liabilities', n1(IN['lease_fy25']), 'EGP', '—'])
 rows.append(['Blended cost of debt, adopted', n0(W['debt_total']),
              f'{pc(KDG["eur_share"], 0)} EUR', pc(KDG['kd_blended'], 2)])
@@ -569,7 +570,8 @@ caption('Table 9 — The full build from revenue to present value. FY2026 carrie
         'once rather than twice or not at all.')
 P(f'The effective tax rate of {pc(TAXE)} is DISCLOSED, not inferred: income tax of EGP '
   f'{n0(H["tax"][2])}mn against pre-tax profit of EGP {n0(H["pbt"][2])}mn. The company '
-  f'separately states an average effective rate of 23.33% for 2025 and 22.96% for 2024, and '
+  f'separately states an average effective rate of {pc(IN["eff_rate_disclosed_fy25"], 2)} for '
+  f'2025 and {pc(IN["eff_rate_disclosed_fy24"], 2)} for 2024, and '
   f'the first quarter of 2026 ran at 25.9%. It sits close to the statutory '
   f'{pc(IN["tax_stat"], 1)} because the deferred-tax movement is small.')
 

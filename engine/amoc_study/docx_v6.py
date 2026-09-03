@@ -246,7 +246,8 @@ P(f'Alexandria Mineral Oils Company is the only refinery listed on the Egyptian 
   f'takes atmospheric residue and distils it into base and special oils, paraffin wax, gas oil, '
   f'naphtha, liquefied petroleum gas and fuel oil. Alexandria Petroleum Company holds 20.77% — '
   f'the previous edition of this study misattributed that stake to the Egyptian General '
-  f'Petroleum Corporation — and AMOC owns 86.45% of Alexandria Wax Products, whose minority is '
+  f'Petroleum Corporation — and AMOC owns {pc(IN["awp_stake"], 2)} of Alexandria Wax '
+  f'Products, whose minority is '
   f'the non-controlling interest carried through this valuation.')
 P(f'The financial year moved from 30 June to 31 December, so the filed record is a six-month '
   f'transition period (July to December 2025, AUDITED by Crowe — Dr A. M. Hegazy & Co, '
@@ -351,7 +352,8 @@ table([['Line', 'Audited 6M to Dec-2025', 'Reported 6M to Jun-2026', 'Base year'
 caption('Table 4 — the base year. Every operating line is struck on the SAME twelve months as '
         'revenue and gross profit. The previous edition built revenue from the six-month product '
         'table doubled while annualising cost of sales from nine months by four thirds, so its '
-        'base-year gross margin of 7.081% corresponded to no filed period at all. One period, '
+        f'base-year gross margin of {pc(IN["gm_superseded_annualised"], 3)} corresponded to no '
+        'filed period at all. One period, '
         'both sides, or the margin is an artefact of the scalars.')
 
 P('THE HALF IS FILED, AND THE RELEASED GROSS PROFIT WAS RIGHT. The reviewed consolidated '
@@ -596,9 +598,10 @@ P(f'Growth equals return times reinvestment is ENFORCED by assertion, not assert
   f'{pc(IN["g_term"], 0)} terminal growth and a {pc(DCF["roic_term"])} return, the terminal block '
   f'reinvests {pc(DCF["rr_term"])} of profit. That is ABOVE the final explicit year’s '
   f'{pc(RT["rr_2030"])}, so the terminal block is funded rather than flattered — a step of '
-  f'{sgn(DCF["rr_term"]-RT["rr_2030"], 2)}, disclosed here because it RAISES nothing and a '
+  f'{sgn(TR["rr_step"], 2)}, disclosed here because it RAISES nothing and a '
   f'reader is entitled to see it either way. Terminal value carries {pc(DCF["tv_share"])} of '
-  f'enterprise value, down from 58.7% in the previous edition, and the fall is a direct '
+  f'enterprise value, down from {pc(IN["tv_share_superseded"], 1)} in the previous edition, '
+  f'and the fall is a direct '
   f'consequence of the replacement-cost basis.')
 
 H2('1.10  Terminal growth, reconciled against the company’s own record')
@@ -841,10 +844,16 @@ caption('Table 20 — the band record, published beside the forecast rather than
         'beside the percentage because a percentage without its count is the number that '
         'misleads. No flag is raised here: on a two-sided test at the 5% level this record is not '
         'distinguishable from a cone that did what it said, and the honest response to the '
-        'ordinary case is to say nothing further. The band is 1.23x the width of a simple '
+        f'ordinary case is to say nothing further. The band is {BAND["width"]:.2f}x the width '
+        'of a simple '
         'no-forecast rule’s — wider, not narrower — and that is disclosed rather than treated as '
         'a fault, because on Egyptian tail risk a wider band is often the truthful one.')
-LEVELS = [11.00, 10.50, 10.00, SPOT, 8.50, 8.00, 7.50, C]
+# SIX PRICE LEVELS WERE TYPED INTO THIS BUILDER [corrected 03-Sep-2026]. Depth-bar
+# standard 3 says every builder reads the committed numbers file exclusively and no
+# financial numeral is typed into one; a ladder rung is a price. They are chosen round
+# numbers spanning spot and the central — a presentation choice, which is legitimate
+# and belongs in the register where a reader can see it chosen.
+LEVELS = list(D['touch_ladder']['levels'])
 
 
 def p_touch(level, h):

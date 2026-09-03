@@ -517,14 +517,14 @@
  },
  {
   "check": "forecast sheet balances, cash conversion holds, 2026",
-  "workbook": -0.0,
+  "workbook": 0.0,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, cash conversion holds, 2026",
-  "workbook": 176253.6456,
-  "study": 176253.6456,
+  "workbook": 174226.335,
+  "study": 174226.335,
   "ok": true
  },
  {
@@ -535,8 +535,8 @@
  },
  {
   "check": "forecast total assets, cash conversion holds, 2027",
-  "workbook": 183280.226,
-  "study": 183280.226,
+  "workbook": 178641.7393,
+  "study": 178641.7393,
   "ok": true
  },
  {
@@ -547,44 +547,44 @@
  },
  {
   "check": "forecast total assets, cash conversion holds, 2028",
-  "workbook": 193385.4107,
-  "study": 193385.4107,
+  "workbook": 185516.5074,
+  "study": 185516.5074,
   "ok": true
  },
  {
   "check": "forecast sheet balances, cash conversion holds, 2029",
-  "workbook": -0.0001,
-  "study": 0.0,
-  "ok": true
- },
- {
-  "check": "forecast total assets, cash conversion holds, 2029",
-  "workbook": 206766.8924,
-  "study": 206766.8924,
-  "ok": true
- },
- {
-  "check": "forecast sheet balances, cash conversion holds, 2030",
   "workbook": 0.0,
   "study": 0.0,
   "ok": true
  },
  {
-  "check": "forecast total assets, cash conversion holds, 2030",
-  "workbook": 223674.3988,
-  "study": 223674.3988,
+  "check": "forecast total assets, cash conversion holds, 2029",
+  "workbook": 195008.5676,
+  "study": 195008.5676,
   "ok": true
  },
  {
-  "check": "forecast sheet balances, cash conversion holds, 2031",
+  "check": "forecast sheet balances, cash conversion holds, 2030",
   "workbook": -0.0,
   "study": 0.0,
   "ok": true
  },
  {
+  "check": "forecast total assets, cash conversion holds, 2030",
+  "workbook": 207317.4165,
+  "study": 207317.4165,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, cash conversion holds, 2031",
+  "workbook": 0.0001,
+  "study": 0.0,
+  "ok": true
+ },
+ {
   "check": "forecast total assets, cash conversion holds, 2031",
-  "workbook": 244383.9558,
-  "study": 244383.9558,
+  "workbook": 222663.5593,
+  "study": 222663.5593,
   "ok": true
  },
  {
@@ -595,68 +595,68 @@
  },
  {
   "check": "forecast total assets, cash conversion holds, 2032",
-  "workbook": 269099.8767,
-  "study": 269099.8767,
+  "workbook": 241210.2129,
+  "study": 241210.2129,
   "ok": true
  },
  {
   "check": "forecast sheet balances, cash conversion holds, 2033",
-  "workbook": -0.0,
+  "workbook": 0.0001,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, cash conversion holds, 2033",
-  "workbook": 297931.8479,
-  "study": 297931.8479,
+  "workbook": 263045.0012,
+  "study": 263045.0012,
   "ok": true
  },
  {
   "check": "forecast sheet balances, cash conversion holds, 2034",
-  "workbook": 0.0,
+  "workbook": -0.0,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, cash conversion holds, 2034",
-  "workbook": 330873.911,
-  "study": 330873.911,
+  "workbook": 288163.1641,
+  "study": 288163.1641,
   "ok": true
  },
  {
   "check": "forecast sheet balances, cash conversion holds, 2035",
-  "workbook": 0.0,
+  "workbook": -0.0,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, cash conversion holds, 2035",
-  "workbook": 367787.3738,
-  "study": 367787.3738,
+  "workbook": 316453.9067,
+  "study": 316453.9067,
   "ok": true
  },
  {
   "check": "forecast sheet balances, cash conversion holds, 2036",
-  "workbook": -0.0,
+  "workbook": 0.0,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, cash conversion holds, 2036",
-  "workbook": 408389.676,
-  "study": 408389.676,
+  "workbook": 347691.5035,
+  "study": 347691.5035,
   "ok": true
  },
  {
   "check": "forecast sheet balances, cash conversion holds, 2037",
-  "workbook": -0.0,
+  "workbook": -0.0001,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, cash conversion holds, 2037",
-  "workbook": 452250.996,
-  "study": 452250.996,
+  "workbook": 381532.5888,
+  "study": 381532.5888,
   "ok": true
  },
  {
@@ -667,20 +667,20 @@
  },
  {
   "check": "forecast total assets, cash conversion holds, 2038",
-  "workbook": 499599.4651,
-  "study": 499599.4651,
+  "workbook": 418159.4067,
+  "study": 418159.4067,
   "ok": true
  },
  {
   "check": "forecast sheet balances, cash conversion holds, 2039",
-  "workbook": 0.0001,
+  "workbook": -0.0001,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, cash conversion holds, 2039",
-  "workbook": 550679.1836,
-  "study": 550679.1836,
+  "workbook": 457766.9584,
+  "study": 457766.9584,
   "ok": true
  },
  {
@@ -691,8 +691,8 @@
  },
  {
   "check": "forecast total assets, cash conversion holds, 2040",
-  "workbook": 605751.339,
-  "study": 605751.339,
+  "workbook": 500563.8955,
+  "study": 500563.8955,
   "ok": true
  },
  {
@@ -883,13 +883,13 @@
  },
  {
   "check": "forecast total assets, the cycle holds, 2026",
-  "workbook": 184560.093,
-  "study": 184560.093,
+  "workbook": 183676.9035,
+  "study": 183676.9035,
   "ok": true
  },
  {
   "check": "forecast sheet balances, the cycle holds, 2027",
-  "workbook": 0.0001,
+  "workbook": 0.0,
   "study": 0.0,
   "ok": true
  },
@@ -913,7 +913,7 @@
  },
  {
   "check": "forecast sheet balances, the cycle holds, 2029",
-  "workbook": -0.0001,
+  "workbook": 0.0,
   "study": 0.0,
   "ok": true
  },
@@ -925,7 +925,7 @@
  },
  {
   "check": "forecast sheet balances, the cycle holds, 2030",
-  "workbook": 0.0,
+  "workbook": -0.0,
   "study": 0.0,
   "ok": true
  },
@@ -937,7 +937,7 @@
  },
  {
   "check": "forecast sheet balances, the cycle holds, 2031",
-  "workbook": -0.0001,
+  "workbook": -0.0,
   "study": 0.0,
   "ok": true
  },
@@ -997,68 +997,68 @@
  },
  {
   "check": "forecast sheet balances, the cycle holds, 2036",
-  "workbook": 0.0001,
+  "workbook": -0.0,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, the cycle holds, 2036",
-  "workbook": 756220.4286,
-  "study": 756220.4286,
+  "workbook": 755795.9731,
+  "study": 755795.9731,
   "ok": true
  },
  {
   "check": "forecast sheet balances, the cycle holds, 2037",
-  "workbook": -0.0,
+  "workbook": -0.0001,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, the cycle holds, 2037",
-  "workbook": 812969.3316,
-  "study": 812969.3316,
+  "workbook": 808179.6021,
+  "study": 808179.6021,
   "ok": true
  },
  {
   "check": "forecast sheet balances, the cycle holds, 2038",
-  "workbook": -0.0,
+  "workbook": -0.0001,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, the cycle holds, 2038",
-  "workbook": 873872.2598,
-  "study": 873872.2598,
+  "workbook": 864411.6871,
+  "study": 864411.6871,
   "ok": true
  },
  {
   "check": "forecast sheet balances, the cycle holds, 2039",
-  "workbook": -0.0,
+  "workbook": -0.0001,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, the cycle holds, 2039",
-  "workbook": 939219.9948,
-  "study": 939219.9948,
+  "workbook": 924761.6199,
+  "study": 924761.6199,
   "ok": true
  },
  {
   "check": "forecast sheet balances, the cycle holds, 2040",
-  "workbook": 0.0001,
+  "workbook": -0.0,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, the cycle holds, 2040",
-  "workbook": 1009323.6732,
-  "study": 1009323.6732,
+  "workbook": 989517.6499,
+  "study": 989517.6499,
   "ok": true
  },
  {
   "check": "forecast operating cash, the cycle holds, 2026",
-  "workbook": -2913.7,
-  "study": -2913.7,
+  "workbook": -3796.8895,
+  "study": -3796.8895,
   "ok": true
  },
  {
@@ -1069,8 +1069,8 @@
  },
  {
   "check": "forecast operating cash, the cycle holds, 2027",
-  "workbook": -14099.2666,
-  "study": -14099.2666,
+  "workbook": -15236.8147,
+  "study": -15236.8147,
   "ok": true
  },
  {
@@ -1081,8 +1081,8 @@
  },
  {
   "check": "forecast operating cash, the cycle holds, 2028",
-  "workbook": -13309.9099,
-  "study": -13309.9099,
+  "workbook": -14717.2276,
+  "study": -14717.2276,
   "ok": true
  },
  {
@@ -1093,8 +1093,8 @@
  },
  {
   "check": "forecast operating cash, the cycle holds, 2029",
-  "workbook": -12542.1386,
-  "study": -12542.1386,
+  "workbook": -14236.549,
+  "study": -14236.549,
   "ok": true
  },
  {
@@ -1105,8 +1105,8 @@
  },
  {
   "check": "forecast operating cash, the cycle holds, 2030",
-  "workbook": -11969.5725,
-  "study": -11969.5725,
+  "workbook": -13972.9587,
+  "study": -13972.9587,
   "ok": true
  },
  {
@@ -1117,8 +1117,8 @@
  },
  {
   "check": "forecast operating cash, the cycle holds, 2031",
-  "workbook": -11398.5068,
-  "study": -11398.5068,
+  "workbook": -13735.0561,
+  "study": -13735.0561,
   "ok": true
  },
  {
@@ -1129,8 +1129,8 @@
  },
  {
   "check": "forecast operating cash, the cycle holds, 2032",
-  "workbook": -10202.7287,
-  "study": -10202.7287,
+  "workbook": -12890.3446,
+  "study": -12890.3446,
   "ok": true
  },
  {
@@ -1141,8 +1141,8 @@
  },
  {
   "check": "forecast operating cash, the cycle holds, 2033",
-  "workbook": -8286.3254,
-  "study": -8286.3254,
+  "workbook": -11334.6194,
+  "study": -11334.6194,
   "ok": true
  },
  {
@@ -1153,8 +1153,8 @@
  },
  {
   "check": "forecast operating cash, the cycle holds, 2034",
-  "workbook": -5580.0317,
-  "study": -5580.0317,
+  "workbook": -8988.4816,
+  "study": -8988.4816,
   "ok": true
  },
  {
@@ -1165,8 +1165,8 @@
  },
  {
   "check": "forecast operating cash, the cycle holds, 2035",
-  "workbook": -2052.633,
-  "study": -2052.633,
+  "workbook": -5809.0856,
+  "study": -5809.0856,
   "ok": true
  },
  {
@@ -1177,8 +1177,8 @@
  },
  {
   "check": "forecast operating cash, the cycle holds, 2036",
-  "workbook": 2278.9985,
-  "study": 2278.9985,
+  "workbook": -1800.6969,
+  "study": -1800.6969,
   "ok": true
  },
  {
@@ -1189,8 +1189,8 @@
  },
  {
   "check": "forecast operating cash, the cycle holds, 2037",
-  "workbook": 7342.6507,
-  "study": 7342.6507,
+  "workbook": 2977.3767,
+  "study": 2977.3767,
   "ok": true
  },
  {
@@ -1201,8 +1201,8 @@
  },
  {
   "check": "forecast operating cash, the cycle holds, 2038",
-  "workbook": 8038.2381,
-  "study": 8038.2381,
+  "workbook": 3367.3949,
+  "study": 3367.3949,
   "ok": true
  },
  {
@@ -1213,8 +1213,8 @@
  },
  {
   "check": "forecast operating cash, the cycle holds, 2039",
-  "workbook": 8782.5166,
-  "study": 8782.5166,
+  "workbook": 3784.7144,
+  "study": 3784.7144,
   "ok": true
  },
  {
@@ -1225,8 +1225,8 @@
  },
  {
   "check": "forecast operating cash, the cycle holds, 2040",
-  "workbook": 9578.8947,
-  "study": 9578.8947,
+  "workbook": 4231.2463,
+  "study": 4231.2463,
   "ok": true
  },
  {

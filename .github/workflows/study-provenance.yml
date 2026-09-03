@@ -53,6 +53,10 @@ on:
       - 'scripts/check_sweep_module.py'
       - 'scripts/check_sweep_module_negative_control.py'
       - 'engine/research_sweep.py'
+      - 'scripts/check_prose_figures.py'
+      - 'scripts/check_prose_figures_negative_control.py'
+      - 'engine/prose_figures.py'
+      - 'engine/build_depth_audit/prose_outstanding.json'
       - 'engine/build_depth_audit/workbook_outstanding.json'
       - 'engine/build_depth_audit/document_outstanding.json'
       - 'engine/build_depth_audit/vocabulary_outstanding.json'
@@ -131,6 +135,10 @@ on:
       - 'scripts/check_sweep_module.py'
       - 'scripts/check_sweep_module_negative_control.py'
       - 'engine/research_sweep.py'
+      - 'scripts/check_prose_figures.py'
+      - 'scripts/check_prose_figures_negative_control.py'
+      - 'engine/prose_figures.py'
+      - 'engine/build_depth_audit/prose_outstanding.json'
       - 'engine/build_depth_audit/workbook_outstanding.json'
       - 'engine/build_depth_audit/document_outstanding.json'
       - 'engine/build_depth_audit/vocabulary_outstanding.json'
@@ -384,6 +392,29 @@ jobs:
       # its own open invariants, which is a gap written down rather than a gap hidden
       - name: Sweep-module gate — negative control
         run: python3 scripts/check_sweep_module_negative_control.py
+
+      # "A NUMBER STATED IN PROSE MUST BE COMPUTED, NOT TYPED" has been standing since
+      # 07-Aug-2026, and exactly one study implemented a check for it. What that cost was
+      # measured in a single afternoon on studies that had just been rebuilt and passed
+      # every other gate: AMOC's "514-basis-point range across four consecutive filed
+      # periods", where the same sentence names five periods whose spread is 737 basis
+      # points; four more typed period counts beside it, one of which summed five values
+      # and divided by four; ARCC's masthead a day stale and its price date a month;
+      # PHDC's three contradictory comments above one line. None is a modelling error and
+      # every one reaches a reader, because a typed word does not look like a figure.
+      #
+      # The mechanism is now SHARED (engine/prose_figures.py) rather than copied — the
+      # L-084 lesson from the same day, on the sweeps — and this gate requires each study
+      # to carry it AND to PASS it. Counting a file's existence would put a green tick on
+      # a red result.
+      - name: Prose-figure gate
+        run: python3 scripts/check_prose_figures.py
+
+      # and the proof it can go red, including the shape that matters most: a study that
+      # CARRIES the instrument while its own check is RED, which a gate testing only for
+      # the file would have reported clean
+      - name: Prose-figure gate — negative control
+        run: python3 scripts/check_prose_figures_negative_control.py
 
       # [R-MACRO-01] one house macro path per market, and every study's growth
       # rates held to it from outside. Five studies carried five inflation rates

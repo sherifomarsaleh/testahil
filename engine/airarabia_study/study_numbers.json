@@ -1260,6 +1260,12 @@
    "date": "2026-08-10",
    "ring": "Industry"
   },
+  "pe_sector_damodaran": {
+   "value": 12.87,
+   "source": "Air transport sector price/earnings for PROFITABLE firms, Damodaran January-2026 industry multiples file. The positive-EBITDA screen on the same row reads 7.58x; the profitable-firms screen is the comparable one for a carrier that earns.",
+   "date": "2026-01-01",
+   "ring": "Industry"
+  },
   "pe_just": {
    "value": 13.0,
    "source": "Justified through-cycle P/E on normalised earnings. Peers: Ryanair 12.6x, easyJet 12.4x, Jazeera ~17.7x computed, Damodaran profitable-airlines 12.87x. 13x reflects a structurally profitable LCC with net cash and a growing equity-accounted network. Bear 10x / bull 16x",
