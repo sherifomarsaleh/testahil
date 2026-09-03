@@ -40,6 +40,7 @@ import glob
 import json
 import os
 import re
+import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -189,6 +190,47 @@ def audit_figure_dates():
     return examined, bad
 
 
+def audit_delivered_pdfs():
+    """The same date rule, applied to THE FILE A READER ACTUALLY RECEIVES.
+
+    THE PDF IS THE DELIVERABLE AND THE WORD FILE IS THE BUILD ARTEFACT — check_delivered_
+    pdf_currency opens with that sentence, and it is why this clause exists. The masthead
+    clause above reads .docx, so a study whose document is rebuilt and whose PDF is not
+    passes with the old date still on the page a reader opens. That is not hypothetical:
+    on 03-Sep-2026 TMGH's masthead was corrected in the .docx and its delivered PDF sat
+    NINETEEN HOURS behind it, showing the date that had just been fixed.
+
+    IT FINDS NO OFFENDER TODAY BEYOND THE FOUR ALREADY RATCHETED, and that is the point of
+    running it: the four .docx offenders are the same four PDFs, so the two artefacts agree,
+    which is what one wants to be able to SAY rather than assume.
+
+    WHITESPACE IS NORMALISED BEFORE THE SEARCH AND THE FIRST DRAFT DID NOT DO IT. A PDF
+    wraps text wherever the column ends, so AMOC's "issued 3 September 2026" renders with
+    the "3" ending one line and "September 2026" beginning the next — and a substring search
+    reported four perfectly correct documents as undated. Two pages are read rather than
+    one, because a study with a COVER PAGE carries its masthead on page 2 and reading one
+    page called those undated too. Both were the instrument being wrong about the object,
+    caught by looking at what it flagged.
+    """
+    examined, bad = 0, {}
+    for f, dt in documents():
+        pdf = os.path.splitext(f)[0] + '.pdf'
+        if not os.path.exists(pdf):
+            continue
+        rel = os.path.relpath(pdf, ROOT)
+        try:
+            t = subprocess.run(['pdftotext', '-f', '1', '-l', '2', '-layout', pdf, '-'],
+                               capture_output=True, text=True, timeout=180).stdout
+        except Exception:                                         # noqa: BLE001
+            continue
+        examined += 1
+        flat = re.sub(r'\s+', ' ', t)
+        if not any(x in flat for x in renderings(dt)):
+            bad[rel] = ('the delivered PDF does not carry its own edition date %s in its '
+                        'first two pages' % dt)
+    return examined, bad
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--prune', action='store_true')
@@ -199,9 +241,24 @@ def main():
     examined, bad = audit()
     fx_examined, fx_bad = audit_figure_dates()
     bad.update(fx_bad)
+    pdf_examined, pdf_bad = audit_delivered_pdfs()
+    # a study already ratcheted on its .docx is not counted twice for the same date
+    _docx_bad = {os.path.splitext(k)[0] for k in bad}
+    bad.update({k: v for k, v in pdf_bad.items()
+                if os.path.splitext(k)[0] not in _docx_bad})
     if not examined:
         print('FAIL — examined zero delivered studies; an empty result is not a clean '
               'result [R-ENF-04]')
+        return 1
+    # THE PDF POPULATION IS ANCHORED SEPARATELY AND FOR A REASON THAT IS NOT PEDANTRY.
+    # audit_delivered_pdfs() swallows an extraction failure per file, so a missing
+    # pdftotext binary makes EVERY pdf skip and the clause reports nothing — which reads
+    # exactly like every PDF carrying its date. That is [R-ENF-04]'s own failure: an
+    # ABSENT answer wearing the costume of a clean one. The book delivers PDFs, so zero
+    # of them is a broken probe, never a clean result.
+    if not pdf_examined:
+        print('FAIL — examined zero delivered PDFs while %d .docx editions exist; the '
+              'extractor did not run [R-ENF-04]' % examined)
         return 1
     stranded = sorted(p for p in allowed
                       if not os.path.exists(os.path.join(ROOT, p)))
@@ -210,8 +267,9 @@ def main():
               % stranded)
         return 1
 
-    print('delivered valuation studies examined: %d;  figure labels dating a price: %d;  '
-          'not carrying the right date: %d' % (examined, fx_examined, len(bad)))
+    print('delivered studies examined: %d (.docx) + %d (.pdf);  figure labels dating a '
+          'price: %d;  not carrying the right date: %d'
+          % (examined, pdf_examined, fx_examined, len(bad)))
     for p in sorted(bad):
         print('  [%s] %-52s %s' % ('ratcheted' if p in allowed else 'NEW',
                                    os.path.basename(p), bad[p]))
