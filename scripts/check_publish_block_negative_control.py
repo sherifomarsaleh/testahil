@@ -64,9 +64,9 @@ def build(tmp, ticker, central, price, dissent=None, two_sided=None):
 
 CASES = [
     # (name, central, price, dissent, two_sided, must_publish)
-    ("inside the band",                 70.0, 77.0, None, None, True),
-    ("just inside the edge",            54.0, 77.0, None, None, True),
-    ("just outside the edge",           53.8, 77.0, None, None, False),
+    ("inside the band",                 74.0, 77.0, None, None, True),
+    ("just inside the edge",            70.0, 77.0, None, None, True),
+    ("just outside the edge",           69.0, 77.0, None, None, False),
     ("far below, no dissent",           53.2, 77.0, None, None, False),
     ("far above, no dissent",          110.0, 77.0, None, None, False),
     ("far below, dissent complete",     44.7, 77.0, DISSENT_OK, None, True),
@@ -76,7 +76,7 @@ CASES = [
      DISSENT_OK.replace("DISSENT_AT_GAP: -42.0%", ""), None, False),
     ("dissent argued at a stale gap",   30.0, 77.0, DISSENT_OK, None, False),
     ("two-sided, both branches far",     0.0, 14.41, None, (1.79, 5.90), False),
-    ("two-sided, one branch inside",     0.0, 14.41, None, (1.79, 12.0), True),
+    ("two-sided, one branch inside",     0.0, 14.41, None, (1.79, 13.5), True),
 ]
 
 

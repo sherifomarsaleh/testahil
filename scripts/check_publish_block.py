@@ -53,7 +53,16 @@ sys.path.insert(0, os.path.join(ROOT, "scripts"))
 
 import check_valuation_gap as gap          # one reader, never a second copy [R-ENF-03]
 
-BLOCK_AT = 0.30        # the instruction's number, both sides
+BLOCK_AT = 0.10        # the instruction's number, both sides
+                       # TIGHTENED FROM 0.30 TO 0.10 on 3 September 2026, per
+                       # instruction: "HOLD every document; blocks anything past
+                       # 10% from price". The block now sits ON [R-GAP-01]'s audit
+                       # trigger rather than above it, which collapses the two-tier
+                       # design deliberately: a gap large enough to be worth
+                       # auditing is a gap large enough to hold the study while the
+                       # audit is written. The cost is stated rather than
+                       # discovered — most of the book is held at this level, and
+                       # that is the intended reading of "HOLD every document".
 
 # THE RELEASE, IN THE PRINCIPAL'S OWN WORDS: a study may publish past the limit
 # "UNLESS YOU HAVE AN IRREFUTABLE EVIDENCE THAT EVERYONE IN THE MARKET IS
