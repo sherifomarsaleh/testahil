@@ -666,3 +666,43 @@ jobs:
 
       - name: Lens architecture in the documents — negative control
         run: python3 scripts/check_lens_vocabulary_negative_control.py
+
+      # [R-TERM-01]. The reinvestment identity rr = g/ROIC collapses to
+      # TV = [NOPAT - g.IC]/(W-g), so it charges g x IC for ever and the implied
+      # replacement cycle is 1/g — the reciprocal of the INFLATION RATE, which is not a
+      # fact about the asset. Nothing in that arithmetic is wrong, so every other gate
+      # here passes it. The floor is a dominance argument with no parameters: a company
+      # can always decline to invest and pay out instead, so TV >= NOPAT/W.
+      - name: Terminal floor — a terminal is never worth less than not investing
+        run: python3 scripts/check_terminal_floor.py
+
+      - name: Terminal floor — negative control
+        run: python3 scripts/check_terminal_floor_negative_control.py
+
+      # VERIFY BY IMPORT, NOT BY PARSE — the standing rule. The shared terminal builder
+      # must actually import, and its refusals must actually refuse.
+      - name: The shared terminal builder imports and refuses what it promises to refuse
+        run: |
+          python3 -c "
+          from engine.terminal_value import TerminalInputs, build, TerminalRefused
+          import sys
+          def refuses(msg, **kw):
+              try:
+                  build(TerminalInputs(**kw)); print('DID NOT REFUSE:', msg); sys.exit(1)
+              except TerminalRefused:
+                  print('refuses:', msg)
+          base = dict(nopat=1000.0, wacc=0.18, inflation=0.07, dna_book=100.0,
+                      ic_replacement=9000.0, useful_life_years=20.0,
+                      useful_life_source='accounting-policies note', working_capital=500.0)
+          # a life this desk chose is not a disclosed life
+          refuses('an unsourced useful life', **dict(base, useful_life_source=''))
+          # real growth with no capital behind it — the g x IC construction
+          refuses('real growth with no incremental capital', **dict(base, real_growth=0.02))
+          # a perpetuity that does not converge
+          refuses('nominal growth above the terminal rate', **dict(base, inflation=0.30))
+          t = build(TerminalInputs(**base))
+          assert abs(t.nominal_growth - 0.07) < 1e-12, 'nominal growth must DERIVE'
+          assert t.growth_capex == 0.0, 'zero real growth must cost zero growth capex'
+          assert t.tv >= t.floor, 'a clean build must clear its own floor'
+          print('terminal_value OK — nominal growth derives, zero real growth is free')
+          "
