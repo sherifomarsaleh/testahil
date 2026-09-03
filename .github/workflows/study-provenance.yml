@@ -140,6 +140,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # The pre-registration gate reads COMMIT ORDER, which a depth-1
+          # checkout cannot answer. It refuses on a shallow clone rather than
+          # reporting clean, so without this the job would be red by
+          # construction — the permanently-red check [R-ENF-02] forbids.
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -396,3 +402,9 @@ jobs:
 
       - name: Point-in-time macro archive — negative control
         run: python3 scripts/check_macro_history_negative_control.py
+
+      - name: Valuation-calibration pre-registration precedes every score
+        run: python3 scripts/check_valuation_calibration.py
+
+      - name: Valuation-calibration pre-registration — negative control
+        run: python3 scripts/check_valuation_calibration_negative_control.py

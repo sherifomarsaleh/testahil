@@ -34,6 +34,29 @@ WORKFLOWS = os.path.join(ROOT, ".github", "workflows")
 CANNOT_RUN_LOCALLY = ("actions/", "deploy", "upload-artifact", "peaceiris",
                       "GITHUB_TOKEN", "gh api", "curl ")
 
+# A CI STEP ASSUMES A DISPOSABLE RUNNER, AND THIS ONE IS NOT DISPOSABLE.
+#
+# The first version of this script had a --all mode that ran every workflow's
+# steps against the live working tree. It got as far as a workflow that rebases
+# and auto-commits before it was stopped: the checkout was left mid-rebase on a
+# detached HEAD, engine/valuation_calibration/ was emptied on disk, and an
+# unrelated auto-refresh commit swept an uncommitted file in under a message that
+# described something else entirely. Nothing was lost — every commit was already
+# on the remote, which is the only reason this is an anecdote rather than an
+# incident — but that was luck about push timing, not a property of the design.
+#
+# So: any step that could mutate the repository is REFUSED rather than run. The
+# list is of VERBS, not of workflows, because a new workflow is written without
+# anyone thinking of this file. --all is gone with it: a runner that executes
+# arbitrary committed shell against a working tree it does not own is a footgun
+# whose safe configuration nobody can remember.
+MUTATES_THE_REPO = (
+    "git commit", "git push", "git rebase", "git merge", "git reset",
+    "git checkout", "git switch", "git cherry-pick", "git apply", "git am",
+    "git clean", "git stash", "git tag", "git branch", "git rm", "git add",
+    "auto_refresh", "publish_site", "rm -rf", "mv ",
+)
+
 
 def steps(path):
     doc = yaml.safe_load(open(path, encoding="utf-8"))
@@ -45,14 +68,11 @@ def steps(path):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("workflow", nargs="?", default="study-provenance.yml")
-    ap.add_argument("--all", action="store_true",
-                    help="every workflow, not just the study gates")
+    ap.add_argument("workflow", nargs="?", default="study-provenance.yml",
+                    help="one workflow file. There is deliberately no --all: see "
+                         "MUTATES_THE_REPO above.")
     a = ap.parse_args()
-
-    files = (sorted(os.path.join(WORKFLOWS, f) for f in os.listdir(WORKFLOWS)
-                    if f.endswith((".yml", ".yaml")))
-             if a.all else [os.path.join(WORKFLOWS, a.workflow)])
+    files = [os.path.join(WORKFLOWS, a.workflow)]
 
     red, green, skipped = [], 0, []
     for f in files:
@@ -61,6 +81,12 @@ def main():
             return 1
         for job, name, script in steps(f):
             label = "%s / %s" % (os.path.basename(f), name)
+            mut = [t for t in MUTATES_THE_REPO if t in script]
+            if mut:
+                skipped.append((label, "REFUSED — would mutate this checkout (%s). "
+                                       "A CI step assumes a disposable runner; "
+                                       "this tree is not one." % ", ".join(mut[:3])))
+                continue
             if any(t in script for t in CANNOT_RUN_LOCALLY):
                 skipped.append((label, "needs the runner (network, token or deploy)"))
                 continue
