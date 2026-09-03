@@ -47,19 +47,45 @@ bridge migration replaced.
 
 Every alternative this study publishes is compared against the headline, and the
 two sit on different bridges — so the comparison measures the bridge as much as
-the judgement. On the delivered basis three of four contested choices look
-material; on a like-for-like basis only one does:
+the judgement.
 
-| contested choice | alternative | vs the headline 9.9142 | vs like-for-like 10.3528 |
+The alternatives can be re-based onto the DELIVERED bridge exactly, because the
+helper's own output inverts to an enterprise value and the delivered bridge is a
+closed-form function of it:
+
+```
+ev_alt      = (ps_helper x shares + net_debt) / (1 - nci_share_enterprise)
+ps_delivered = ((ev_alt - net_debt) x (1 - NCI_OP) - provisions - dividend
+                + investments) / shares
+```
+
+`NCI_OP` is **2.9628%** — the minority's share of gross EQUITY value, recovered
+from the delivered bridge's own lines — against the **4.6446%** share of
+ENTERPRISE value the helper applies. Run on the study's own enterprise value the
+identity returns **EGP 9.9142**, the delivered figure to four decimals, which is
+what makes the re-basing a reconstruction of this study's bridge rather than a
+second opinion about it.
+
+| contested choice | as published | like-for-like on the delivered bridge | vs the headline 9.9142 |
 |---|---:|---:|---:|
-| rating-basis cost of capital, not CDS | 8.7990 | −11.2% | **−15.0%** |
-| minority share doubled to 6% | 10.7359 | +8.3% | +3.7% |
-| gross-debt rather than net-debt weights | 10.8586 | +9.5% | +4.9% |
-| discounting the export leg in dollars | 10.6473 | +7.4% | +2.8% |
+| rating-basis cost of capital, not CDS | 8.7990 | **8.3330** | **−15.9%** |
+| gross-debt rather than net-debt weights | 10.8586 | **10.4289** | **+5.2%** |
+| discounting the export leg in dollars | 10.6473 | **10.2139** | +3.0% |
+| minority share doubled to 6% | 10.7359 | *not computable here* | — |
 
-Two of them cross the 5%-of-value materiality line on the wrong basis and fall
-back under it on the right one. A sign test run on the first column would be
-counting three material judgements where there is one.
+The last row is left blank deliberately. "6%" is a share of ENTERPRISE value in
+the helper's construction, and what it becomes in a bridge that charges the
+minority against gross equity is a judgement about the alternative itself, not an
+arithmetic conversion. Filling it by analogy would be inventing the number this
+note exists to complain about.
+
+**What changes on the correct basis.** As published, three of four choices clear
+the 5%-of-value materiality line. Like-for-like, of the three that convert
+exactly, **two do — one down and one up** — so the sign test on this study is a
+one-all draw rather than the three-nothing it would have read as. The direction of
+the error is not constant either: the rating-basis row gets *larger* on the
+correct bridge (−11.2% to −15.9%) while the currency row falls out of materiality
+altogether (+7.4% to +3.0%). A single correction factor could not have fixed this.
 
 ## What is NOT concluded here
 
