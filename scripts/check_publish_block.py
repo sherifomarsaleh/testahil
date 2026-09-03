@@ -53,7 +53,29 @@ sys.path.insert(0, os.path.join(ROOT, "scripts"))
 
 import check_valuation_gap as gap          # one reader, never a second copy [R-ENF-03]
 
-BLOCK_AT = 0.10        # the instruction's number, both sides
+BLOCK_AT = 0.10        # the instruction's number
+BLOCK_BELOW_ONLY = True
+# ONE-SIDED ON PURPOSE, per instruction 3 September 2026: "If fair value is above
+# the current price then OK. Hold and challenge if the fair value is ONLY below
+# the current price by more than 10%."
+#
+# THE ASYMMETRY IS EVIDENTIAL, NOT DEFERENTIAL. Errors in a discounted cash flow
+# are not symmetric: a stale base year, an over-charged discount rate, a missed
+# revenue line, a real-terms terminal decline, an unread filing, a terminal
+# charging a capital intensity the company has never operated at — every one of
+# them pushes value DOWN. A central far BELOW the price is therefore a
+# high-prior-of-defect region and the price is the only instrument in the room
+# that measures it. A central ABOVE the price is the ordinary shape of finding
+# something cheap, which is what this work is for.
+#
+# WHAT THIS DOES NOT DO, AND THE COST IS STATED RATHER THAN DISCOVERED LATER:
+# an over-optimistic study is no longer HELD. It is still AUDITED — [R-GAP-01]
+# stays two-sided, so a central more than 10% above the price still owes its
+# eight-heading review before the files are staged, and a study that skips it
+# still goes red in CI. The split is deliberate: audit both ways, hold only
+# where the errors run. If a study is ever found badly wrong on the high side,
+# that is the evidence to revisit this clause, and it is written down here so
+# the revisit does not depend on anyone remembering.
                        # TIGHTENED FROM 0.30 TO 0.10 on 3 September 2026, per
                        # instruction: "HOLD every document; blocks anything past
                        # 10% from price". The block now sits ON [R-GAP-01]'s audit
@@ -151,13 +173,19 @@ def verdict(ticker):
         return False, "no latest known price — the gap cannot be measured", []
     if not rows:
         return False, "no readable answer to compare against the price", []
-    nearest = min(rows, key=lambda r: abs(r[2]))
-    if abs(nearest[2]) > BLOCK_AT:
+    # THE NEAREST READING DECIDES, and "nearest" means nearest to the price from
+    # the side that is blocked. A two-sided study with one branch at or above the
+    # price is a study whose answer depends on a decision, not one that is too
+    # low: it publishes both branches and the reader sees the decision.
+    nearest = max(rows, key=lambda r: r[2]) if BLOCK_BELOW_ONLY else min(
+        rows, key=lambda r: abs(r[2]))
+    breach = (nearest[2] < -BLOCK_AT) if BLOCK_BELOW_ONLY else abs(nearest[2]) > BLOCK_AT
+    if breach:
         if len(rows) > 1:
-            why = ("every branch is more than %.0f%% from the price (nearest %s at "
+            why = ("every branch is more than %.0f%% BELOW the price (highest %s at "
                    "%+.1f%%)" % (BLOCK_AT * 100, nearest[0], nearest[2] * 100))
         else:
-            why = ("the central is %+.1f%% from the price of %.2f (%s), past the "
+            why = ("the central is %+.1f%% below the price of %.2f (%s), past the "
                    "%.0f%% publication limit" % (nearest[2] * 100, px, pxdate,
                                                  BLOCK_AT * 100))
         fn, covered, at = read_dissent(sdir)
@@ -175,7 +203,7 @@ def verdict(ticker):
                            % (why, fn, at, nearest[2] * 100)), rows
         return True, ("%+.1f%% from the price, released by %s — an evidenced dissent, "
                       "not an assertion" % (nearest[2] * 100, fn)), rows
-    return True, "nearest reading %s at %+.1f%% of %.2f (%s)" % (
+    return True, "%s at %+.1f%% of %.2f (%s)" % (
         nearest[0], nearest[2] * 100, px, pxdate), rows
 
 
@@ -208,7 +236,7 @@ def main(argv):
             blocked.append(tk)
         else:
             unread.append(tk)
-    print("\n%d may publish, %d HELD past the %.0f%% limit, %d unreadable"
+    print("\n%d may publish, %d HELD more than %.0f%% BELOW the price, %d unreadable"
           % (len(clean), len(blocked), BLOCK_AT * 100, len(unread)))
     if want:
         return 0 if verdict(want)[0] else 1

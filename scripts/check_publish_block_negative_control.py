@@ -66,9 +66,10 @@ CASES = [
     # (name, central, price, dissent, two_sided, must_publish)
     ("inside the band",                 74.0, 77.0, None, None, True),
     ("just inside the edge",            70.0, 77.0, None, None, True),
-    ("just outside the edge",           69.0, 77.0, None, None, False),
+    ("just below the edge",             69.0, 77.0, None, None, False),
+    ("just above the edge",             86.0, 77.0, None, None, True),
     ("far below, no dissent",           53.2, 77.0, None, None, False),
-    ("far above, no dissent",          110.0, 77.0, None, None, False),
+    ("far above, no dissent — OK now", 110.0, 77.0, None, None, True),
     ("far below, dissent complete",     44.7, 77.0, DISSENT_OK, None, True),
     ("dissent missing a heading",       44.7, 77.0,
      DISSENT_OK.replace("## FALSIFIER", "## NOTES"), None, False),
@@ -77,6 +78,7 @@ CASES = [
     ("dissent argued at a stale gap",   30.0, 77.0, DISSENT_OK, None, False),
     ("two-sided, both branches far",     0.0, 14.41, None, (1.79, 5.90), False),
     ("two-sided, one branch inside",     0.0, 14.41, None, (1.79, 13.5), True),
+    ("two-sided, one branch above",      0.0, 14.41, None, (1.79, 20.0), True),
 ]
 
 
