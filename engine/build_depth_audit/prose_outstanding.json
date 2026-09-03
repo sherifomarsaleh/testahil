@@ -3,7 +3,6 @@
   "ADNOCDIST": "no script reconciles the delivered documents' figures against the committed numbers",
   "ADNOCDRILL": "no script reconciles the delivered documents' figures against the committed numbers",
   "ADNOCLS": "no script reconciles the delivered documents' figures against the committed numbers",
-  "AIRARABIA": "no script reconciles the delivered documents' figures against the committed numbers",
   "AMR": "no script reconciles the delivered documents' figures against the committed numbers",
   "BOROUGE": "no script reconciles the delivered documents' figures against the committed numbers",
   "DU": "no script reconciles the delivered documents' figures against the committed numbers",
@@ -18,7 +17,6 @@
   "SCEM": "no script reconciles the delivered documents' figures against the committed numbers",
   "STC": "no script reconciles the delivered documents' figures against the committed numbers",
   "SWDY": "no script reconciles the delivered documents' figures against the committed numbers",
-  "TMGH": "no script reconciles the delivered documents' figures against the committed numbers",
   "XPT": "no script reconciles the delivered documents' figures against the committed numbers"
  },
  "note": "Studies with no prose-figure verification when this gate was adopted (03-Sep-2026). Allowed to fail; the list may only ever get shorter. --prune rewrites it. Run --measure for the advisory unmatched rate per study."

@@ -521,6 +521,14 @@ INP = dict(
                      "Q1-FY27 report), Wizz ~4.75x (FY26 EBITDA 1,318.3), easyJet ~3.5x, "
                      "IndiGo 11.1x, Pegasus ~6.6x (EUR-functional IFRS) -> median 6.5x. "
                      "Bear 5.0x / bull 8.0x", "2026-08-10", "Industry"),
+    # the published sector multiple was typed into this note and into the workbook, and
+    # registered in neither [found by prose_check.py]. It is an external published FACT and
+    # it carries four fields like any other.
+    pe_sector_damodaran=I(12.87, "Air transport sector price/earnings for PROFITABLE firms, "
+                          "Damodaran January-2026 industry multiples file. The "
+                          "positive-EBITDA screen on the same row reads 7.58x; the "
+                          "profitable-firms screen is the comparable one for a carrier that "
+                          "earns.", "2026-01-01", "Industry"),
     pe_just=I(13.0, "Justified through-cycle P/E on normalised earnings. Peers: Ryanair 12.6x, "
               "easyJet 12.4x, Jazeera ~17.7x computed, Damodaran profitable-airlines 12.87x. "
               "13x reflects a structurally profitable LCC with net cash and a growing "
