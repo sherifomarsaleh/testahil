@@ -249,7 +249,11 @@ save(fig, 'fig7_stack.png')
 # ---- F8 sector supply and demand --------------------------------------------
 PS = D['peers']['sector']
 fig, ax = plt.subplots(figsize=(9.0, 3.7), dpi=110)
-cats = ['Nameplate\ncapacity', 'Production\n2025', 'Domestic\nconsumption 2025',
+# THE MIDDLE BAR IS SALES, NOT PRODUCTION. The committed input is named for what it is
+# — 'Egyptian cement and clinker SALES 2025, local plus export' — and the study's own
+# text calls it total sales, while this label called it production. One of the two was
+# wrong and it was the one drawn inside the picture, where no check reaches.
+cats = ['Nameplate\ncapacity', 'Total sales\n2025', 'Domestic\nsales 2025',
         'Dormant capacity\nunder revival']
 vals = [PS['capacity_mt'], PS['production_mt'], PS['consumption_mt'], PS['revival_mt']]
 cols = [GREY, SAGE, CANVAS, RUST]

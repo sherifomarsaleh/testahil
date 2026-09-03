@@ -599,6 +599,29 @@ for _k in _RETIRED_W:
 assert not _wclaims, ('the delivered study still claims a retired lens weight in the '
                       'present tense: %s' % _wclaims)
 print('  [OK ] no retired lens weight is claimed in the present tense in the document')
+
+# THE SAME TEST ON THE RETIRED TERMINAL DIAGNOSTIC, because the shape recurs whenever a
+# construction is replaced. roic_repl divides a profit already grown by one year of terminal
+# growth by a capital base that has NOT grown, so it flatters the terminal return; the model
+# keeps it only as a record of the retired construction and tests growth against
+# n_over_ic. Two sentences went on quoting it as the live figure — one establishing the
+# terminal basis, one in the caveats, both beside the correct number.
+_D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
+_RETIRED_Q = [('the retired terminal return', _D['terminal_reconciliation']['roic_repl'],
+               _D['growth_destroys_value']['n_over_ic'])]
+_qclaims = []
+for _name, _retired, _live in _RETIRED_Q:
+    for _dp in (1, 2):
+        _s = f'{_retired * 100:.{_dp}f}%'
+        if _s == f'{_live * 100:.{_dp}f}%':
+            continue                       # indistinguishable at this precision
+        for _t in _docp:
+            if _s not in _t or any(w in _t.lower() for w in _PAST):
+                continue
+            _qclaims.append((_name, _s, _t[:110]))
+assert not _qclaims, ('the delivered study quotes a RETIRED diagnostic as if it were the '
+                      'live figure: %s' % _qclaims)
+print('  [OK ] no retired terminal diagnostic is quoted as the live figure')
 assert not dead, f'dead inputs: {dead}'
 print(f'\nDRIVER TEST OK — {len(CASES)} driver assertions, every one in the asserted '
       f'direction; 0 dead inputs')
