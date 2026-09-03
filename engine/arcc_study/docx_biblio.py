@@ -1,4 +1,4 @@
-"""ARCC_Bibliography_02-09-2026.docx — a standalone source register.
+"""ARCC_Bibliography_03-09-2026.docx — a standalone source register.
 
 Every figure that reaches the study or the model traces to a row here: what it is, where
 it came from, what kind of source that is, and the date the source itself carries.
@@ -18,6 +18,15 @@ from docx.oxml import OxmlElement
 D = json.load(open('study_numbers.json'))
 SW = json.load(open('sweep_register.json'))
 INP = D['inputs']
+
+
+def pc(x, dp=1):
+    return f"{x*100:.{dp}f}%"
+
+
+def _IV(k):
+    """one registered input's value — the builder reads the record, never a numeral."""
+    return INP[k]['value']
 
 INK = RGBColor(0x1C, 0x3A, 0x36); GREY = RGBColor(0x6E, 0x7B, 0x77)
 WHITE = RGBColor(0xFF, 0xFF, 0xFF)
@@ -132,7 +141,8 @@ P('Every figure in the input register below that carries a Company ring is now r
 P('Four things the reconstructed edition got materially wrong, recorded because they show '
   'where reconstruction fails rather than to dwell on it: non-controlling interests were '
   'deducted at EGP 150mn against an audited EGP 158,005; the effective tax rate was inferred '
-  'at 29.43% against a disclosed 23.82%; the cost of debt was assumed at 21.5% against a '
+  f'at {pc(_IV("tax_eff_superseded"), 2)} against a disclosed {pc(_IV("tax_eff"), 2)}; the cost '
+  'of debt was assumed at 21.5% against a '
   '91%-euro-denominated book contracted at about 7.5%; and kiln capacity was assumed at '
   '3.6Mt against a disclosed 4.2Mt. Three things it got right and are now confirmed: the '
   'share count of 374,867,445, FY2025 operating income of EGP 4,595.82mn to the pound, and '
@@ -275,7 +285,8 @@ DER = [
  (f'The blended cost of debt — {KDG["kd_blended"]:.2%}',
   f'Built facility by facility from the audited borrowings note: the CIB pound facility at '
   f'the corridor rate plus 0.6% ({KDG["kd_cib"]:.2%}), the NBE/KfW euro facility at Euribor '
-  f'plus 3% ({KDG["kd_nbe"]:.2%}) and the EBRD euro facility at Euribor plus 4.35% '
+  f'plus 3% ({KDG["kd_nbe"]:.2%}) and the EBRD euro facility at Euribor plus '
+  f'{pc(_IV("ebrd_margin"), 2)} '
   f'({KDG["kd_ebrd"]:.2%}), weighted by their audited balances. {KDG["eur_share"]:.1%} of the '
   f'book is euro-denominated. Cross-checked against interest expense over average debt: '
   f'{KDG["eff_fy24"]:.2%} in FY2024, {KDG["eff_fy25"]:.2%} in FY2025 and '
@@ -362,6 +373,6 @@ P('')
 P('Testahil · Independent valuation research · Educational analysis, not investment advice.',
   size=8.4, italic=True, color=GREY)
 
-OUT = 'ARCC_Bibliography_02-09-2026.docx'
+OUT = 'ARCC_Bibliography_03-09-2026.docx'
 doc.save(OUT)
 print('wrote', OUT)

@@ -202,12 +202,20 @@ cols_ = [('c_mat', 'Materials and fuel', RUST), ('c_tra', 'Transportation', GOLD
 idx = [0, 1, 5]
 names = ['FY2025 actual', 'FY2026 forecast', 'FY2030 forecast']
 fig, ax = plt.subplots(figsize=(9.6, 4.3), dpi=110)
+# THE COSTS WERE TOTALS AND THE PRICE WAS PER TONNE, ON ONE AXIS LABELLED PER TONNE
+# [corrected 03-Sep-2026]. c_mat, c_tra and c_ovh are EGP MILLIONS for the year — FY2025
+# materials and fuel is 5,698 — and they were stacked against a realised price of 2,565
+# EGP PER TONNE, so the chart read as a company with a cash cost more than twice its price
+# and the "margin" percentage printed on the price bar was the only correct thing on it.
+# The figure's title and axis both say per tonne, and the title was right: the costs are
+# divided by that year's own volume. Nothing about the model changes; the picture does.
 w = 0.34
 for j, k in enumerate(idx):
     b = BU[k]
+    _vol = b['vol']
     bottom = 0.0
     for key, lab, col in cols_:
-        v = b[key]
+        v = b[key] / _vol
         ax.bar(j - w / 2, v, bottom=bottom, width=w, color=col, alpha=0.85,
                edgecolor=BG, linewidth=0.8, label=lab if j == 0 else None)
         ax.text(j - w / 2, bottom + v / 2, f'{v:,.0f}', ha='center', va='center',

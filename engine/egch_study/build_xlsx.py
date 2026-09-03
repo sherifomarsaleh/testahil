@@ -275,10 +275,21 @@ BETAC = drv(r, "Beta", W['beta'], "x",
             f"years against the published EGX30 index (as of {BETA['index_asof']}), R-squared "
             f"{BETA['r2']:.3f}, standard error {BETA['se']:.3f}, 90% interval "
             f"{BETA['ci90'][0]:.2f} to {BETA['ci90'][1]:.2f}", N3); r += 1
-KE_R = r; put(ws, f"A{r}", "Cost of equity, rating basis"); put(ws, f"B{r}", "%")
+# THE CENTRAL BASIS IS THE CDS ONE AND THE WORKBOOK'S LIVE CHAIN NOW USES IT
+# [corrected 03-Sep-2026]. Both bases are published, which [R-COC-01] requires,
+# and until today BOTH were published while every live cell downstream read the
+# RATING row: cost of equity, the year-one cost of capital, the glide, the DCF.
+# The rule names the swap basis as the default -- the market's own live pricing of
+# the sovereign's credit against an agency judgement updated in steps -- and AMOC
+# and ARCC both follow it. This study was the only one that did not.
+RFS_C = r; put(ws, f"A{r}", "Normalised risk-free rate, CDS basis — THE CENTRAL")
+put(ws, f"B{r}", "%"); put(ws, f"C{r}", f"={RF}-{SPRC}", fmt=PC2, expect=W['rf_star_cds'])
+RFSTAR_C = f"'Assumptions'!C{r}"; r += 1
+KE_R = r; put(ws, f"A{r}", "Cost of equity, rating basis — published, not central")
+put(ws, f"B{r}", "%")
 put(ws, f"C{r}", f"={RFSTAR}+{BETAC}*{ERP}", fmt=PC2, expect=W['ke_rating']); r += 1
-put(ws, f"A{r}", "Cost of equity, CDS basis"); put(ws, f"B{r}", "%")
-put(ws, f"C{r}", f"={RF}-{SPRC}+{BETAC}*{ERPC}", fmt=PC2, expect=W['ke_cds']); r += 1
+KE_C = r; put(ws, f"A{r}", "Cost of equity, CDS basis — THE CENTRAL"); put(ws, f"B{r}", "%")
+put(ws, f"C{r}", f"={RFSTAR_C}+{BETAC}*{ERPC}", fmt=PC2, expect=W['ke_cds']); r += 1
 KDL = drv(r, "Cost of debt, local currency", V('kd_local'), "%", src('kd_local'), PC2); r += 1
 KDU = drv(r, "Cost of debt, dollar tranche, in dollars", V('kd_usd_nominal'), "%", src('kd_usd_nominal'), PC2); r += 1
 DEP = drv(r, "Terminal currency wedge (the same identity, at the terminal inflation)", V('expected_depreciation'), "%", src('expected_depreciation'), PC2); r += 1
@@ -295,7 +306,7 @@ TAXR = drv(r, "Tax rate", V('tax_statutory'), "%", src('tax_statutory'), PC1); r
 WE = drv(r, "Equity weight", W['we'], "%", "Market-value equity over market-value equity plus debt", PC1); r += 1
 WD = drv(r, "Debt weight", W['wd'], "%", "One less the equity weight", PC1); r += 1
 W1 = r; put(ws, f"A{r}", "Cost of capital, year one"); put(ws, f"B{r}", "%")
-put(ws, f"C{r}", f"={WE}*'Assumptions'!C{KE_R}+{WD}*{KDBC}*(1-{TAXR})", fmt=PC2,
+put(ws, f"C{r}", f"={WE}*'Assumptions'!C{KE_C}+{WD}*{KDBC}*(1-{TAXR})", fmt=PC2,
     expect=DR['wacc_path'][0]); r += 1
 INFLT = drv(r, "Terminal inflation (the same figure terminal growth is set at)", DR['inflation_lt'], "%", src('inflation_terminal'), PC1); r += 1
 REALLT = drv(r, "Long-run real rate", V('real_rate_lt'), "%", src('real_rate_lt'), PC1); r += 1
@@ -307,7 +318,7 @@ KDTC_R = r; put(ws, f"A{r}", "Terminal cost of debt, local-equivalent"); put(ws,
 put(ws, f"C{r}", f"={PCTL}*{KDL}+(1-{PCTL})*((1+{KDLT})*(1+{DEP})-1)", fmt=PC2, expect=DR['kd_local_equiv_terminal'])
 KDTC = f"'Assumptions'!C{r}"; r += 1
 WT = r; put(ws, f"A{r}", "TERMINAL COST OF CAPITAL"); put(ws, f"B{r}", "%")
-put(ws, f"C{r}", f"={WE}*({RFTC}+{BETAC}*{ERP})+{WD}*{KDTC}*(1-{TAXR})", fmt=PC2,
+put(ws, f"C{r}", f"={WE}*({RFTC}+{BETAC}*{ERPC})+{WD}*{KDTC}*(1-{TAXR})", fmt=PC2,
     expect=DR['wacc_terminal'])
 WTC = f"'Assumptions'!C{r}"; r += 1
 GT = drv(r, "Terminal growth", V('g_terminal'), "%", src('g_terminal'), PC1); r += 1
@@ -581,7 +592,7 @@ for k, c in enumerate(CO):
     # year one reads the Assumptions sheet's own year-one rate; later years glide the risk-free
     # rate and carry the dollar debt on that year's wedge, the same construction the model runs
     _rate = (f"='Assumptions'!C{W1}" if k == 0 else
-             f"={WE}*(({RFSTAR}+({RFTC}-{RFSTAR})*{k}/5)+{BETAC}*{ERP})"
+             f"={WE}*(({RFSTAR_C}+({RFTC}-{RFSTAR_C})*{k}/5)+{BETAC}*{ERPC})"
              f"+{WD}*({PCTL}*{KDL}+(1-{PCTL})*((1+{KDU})*(1+{WEDGE[k]})-1))*(1-{TAXR})")
     put(ws, f"{c}15", _rate, fmt=PC2, expect=DR['wacc_path'][k], link=True)
     df = "=1/(1+B15)" if k == 0 else f"={CO[k-1]}16/(1+{c}15)"
@@ -709,14 +720,20 @@ for lab, fa, fb, va, vb, what in ROWS:
     c = put(ws, f"E{r}", what); c.alignment = Alignment(wrap_text=True, vertical="top")
     ws.row_dimensions[r].height = 28
     r += 1
-put(ws, "A10", "THE FIELD").font = SUB
-put(ws, "A11", "Low (floored at zero — limited liability)")
-put(ws, "B11", "=MAX(0,MIN(B5:B8))", fmt=N2, expect=LN['synthesis']['low'])
-put(ws, "A12", "High")
-put(ws, "B12", "=MAX(B5:C8)", fmt=N2, expect=LN['synthesis']['high'])
-put(ws, "A13", "Spread across the four lenses")
+# THE FIELD IS THE FIVE PUBLISHED READS, WHICH IS WHAT lenses.py NOW COMPUTES
+# [corrected 03-Sep-2026]. These cells still spanned B5:B8 -- the four old lens
+# rows -- and floored the low at zero, which returned 0.00 against a synthesis low
+# of 1.79 because the book row publishes a JUSTIFIED price-to-book that the study
+# itself floors to zero and calls a finding. A field whose floor is a derived
+# multiple of book rather than a published read is not the field.
+put(ws, "A10", "THE FIELD — the range of the published reads, never an average of them").font = SUB
+put(ws, "A11", "Low"); put(ws, "B11", "=MIN(B5,C5,B7,B8)", fmt=N2,
+                           expect=LN['synthesis']['low'])
+put(ws, "A12", "High"); put(ws, "B12", "=MAX(B5,C5,B7,B8)", fmt=N2,
+                            expect=LN['synthesis']['high'])
+put(ws, "A13", "Spread across the published reads")
 put(ws, "B13", "=B12-B11", fmt=N2, expect=LN['synthesis']['high'] - LN['synthesis']['low'])
-put(ws, "A14", "Spot price, 6 August 2026"); put(ws, "B14", SPOT, fmt=N2)
+put(ws, "A14", "Spot price, 3 September 2026"); put(ws, "B14", SPOT, fmt=N2)
 put(ws, "A15", "Shares outstanding"); put(ws, "B15", SHARES, fmt=N0)
 put(ws, "A16", "Market capitalisation (EGP m)")
 put(ws, "B16", "=B14*B15/1000000", fmt=N0, expect=SPOT * SHARES / 1e6)
@@ -734,9 +751,9 @@ put(ws, "A25", "Discount rate implied by the traded price (flat, nominal)")
 put(ws, "B25", DR['implied_wacc_base'], fmt=PC1)
 put(ws, "A26", "Sovereign ten-year yield the same day, for comparison")
 put(ws, "B26", W['rf_observed'], fmt=PC1)
-put(ws, "A28", "Cost of capital on the CDS premium basis, year one")
-put(ws, "B28", f"={WE}*'Assumptions'!C{KE_R+1}+{WD}*{KDBC}*(1-{TAXR})", fmt=PC2,
-    expect=W['wacc_cds'])
+put(ws, "A28", "Cost of capital on the RATING premium basis, year one — the published alternative")
+put(ws, "B28", f"={WE}*'Assumptions'!C{KE_R}+{WD}*{KDBC}*(1-{TAXR})", fmt=PC2,
+    expect=W['wacc_rating'])
 put(ws, "A29", "Both premium bases are published and neither is mixed with the other's "
     "risk-free rate.").font = NOTE
 put(ws, "A27", "Cost of capital built in this model, year one")
@@ -744,20 +761,37 @@ put(ws, "B27", f"='Assumptions'!C{W1}", fmt=PC2, expect=DR['wacc_path'][0])
 para(ws, 31, "Terminal value as a share of enterprise value is reported beside the "
      "cash-flow lens on the DCF sheet, in both columns, because on this company it is the "
      "number that decides the answer.", 9)
-put(ws, "A33", "THE WEIGHTED CENTRAL INSIDE THE FIELD — stated weights, reading the lens cells above").font = SUB
-_CW = LN['central']['weights']
-put(ws, "A34", "Weight: cash flow, programme carried through"); put(ws, "B34", _CW['cashflow'], fmt=PC1)
-put(ws, "A35", "Weight: relative multiples");                 put(ws, "B35", _CW['relative'], fmt=PC1)
-put(ws, "A36", "Weight: normalised earnings power");          put(ws, "B36", _CW['normalised'], fmt=PC1)
-put(ws, "A37", "Weight: book value and sustainable return");  put(ws, "B37", _CW['book'], fmt=PC1)
-put(ws, "A38", "Weighted central (EGP/share)")
-put(ws, "B38", "=B34*B5+B35*B7+B36*B8+B37*B6", fmt=N2, expect=LN['central']['base'])
-put(ws, "A39", "Against spot")
-put(ws, "B39", "=B38/$B$14-1", fmt=PC1, expect=LN['central']['base'] / SPOT - 1)
-put(ws, "A40", "Only the carried-through side of the cash-flow lens enters the weighting (the "
-    "company's stated plan); the stopped reading is the contested judgement above, published "
-    "beside it and never averaged in. Bear and full are the field's floor and ceiling, never "
-    "the weighted extremes.").font = NOTE
+# THE WORKBOOK WAS STILL PUBLISHING THE RETIRED BLEND [corrected 03-Sep-2026].
+# lenses.py stopped producing a weighted central under [R-LENS-03] and moved the
+# weights under `retired_blend`; this sheet went on reading LN['central']['weights']
+# and writing a cell headed THE WEIGHTED CENTRAL. That is the identical defect the
+# lens-vocabulary gate found in fourteen delivered PDFs, in the one artefact that
+# gate cannot read -- and it is why a reader of the delivered EGCH workbook saw a
+# weighted central of about 3.76 while the study's committed record carried a
+# two-sided answer and no central at all.
+#
+# The class primary IS the answer, and on this name the primary is TWO-SIDED, so
+# the sheet publishes both branches and the retired blend beside them, labelled
+# retired and carrying no formula that any other cell reads.
+put(ws, "A33", "THE ANSWER — TWO BRANCHES, PUBLISHED SIDE BY SIDE AND NEVER AVERAGED").font = SUB
+_ALT = LN['central']['alternative_framing']
+_RB = LN['central']['retired_blend']
+put(ws, "A34", "Cash-flow lens — ANNA programme CARRIED THROUGH (EGP/share)")
+put(ws, "B34", "=B5", fmt=N2, expect=LN['central']['base'])
+put(ws, "A35", "Against spot"); put(ws, "B35", "=B34/$B$14-1", fmt=PC1,
+                                    expect=LN['central']['base'] / SPOT - 1)
+put(ws, "A36", "Cash-flow lens — ANNA programme STOPPED (EGP/share)")
+put(ws, "B36", _ALT['value'], fmt=N2)
+put(ws, "A37", "Against spot"); put(ws, "B37", "=B36/$B$14-1", fmt=PC1,
+                                    expect=_ALT['value'] / SPOT - 1)
+put(ws, "A38", "RETIRED — the 45/20/20/15 weighted blend, published unused")
+put(ws, "B38", _RB['value'], fmt=N2)
+put(ws, "A39", "Why it is retired")
+put(ws, "B39", "the weights were typed and had never cleared an out-of-sample test")
+put(ws, "A40", "The judgement is BINARY and its two answers straddle the interesting range, so "
+    "an average would describe a half-built plant — a world nobody is proposing and the "
+    "company is not in. Both branches are published; neither is weighted into the other. "
+    "Bear and full are the field's floor and ceiling.").font = NOTE
 
 # =================================================== 3 Fundamental Valuation ==
 ws = wb.create_sheet("Fundamental Valuation")
@@ -783,7 +817,7 @@ fv(10, "Opening equity FY2024/25 (EGP m)", V('bs_capital_FY2324') + V('bs_reserv
 fv(11, "Return on equity FY2023/24", "=B7/B9", "", PC1, B['roe_FY2324'])
 fv(12, "Return on equity FY2024/25", "=B8/B10", "", PC1, B['roe_FY2425'])
 fv(13, "Sustainable return on equity", "=(B11+B12)/2", "The two-year average on underlying profit", PC1, B['roe_sustainable'])
-fv(14, "Cost of equity", f"='Assumptions'!C{KE_R}", "Built on the Assumptions sheet", PC2, B['ke'])
+fv(14, "Cost of equity", f"='Assumptions'!C{KE_C}", "Built on the Assumptions sheet", PC2, B['ke'])
 fv(15, "Terminal growth", f"={GT}", "", PC1, B['g'])
 fv(16, "Justified price-to-book, before flooring", "=(B13-B15)/(B14-B15)",
    "The sustainable return does not cover even nominal maintenance growth, so this is "
@@ -1177,8 +1211,9 @@ pr(5, "Book value per share (EGP)", f"='Fundamental Valuation'!B6", LN['book']['
 pr(6, "Price to book the market pays", "='Summary'!B16/'Fundamental Valuation'!B5", SPOT * SHARES / 1e6 / eb, "")
 pr(7, "Sustainable return on equity", "='Fundamental Valuation'!B13", LN['book']['roe_sustainable'],
    "Two-year average on underlying profit", PC1)
-pr(8, "Cost of equity", f"='Assumptions'!C{KE_R}", W['ke_rating'], "Built on the Assumptions sheet", PC2)
-pr(9, "The gap the company has to close", f"=B8-B7", W['ke_rating'] - LN['book']['roe_sustainable'],
+pr(8, "Cost of equity", f"='Assumptions'!C{KE_C}", W['ke_cds'],
+   "Built on the Assumptions sheet, on the CDS premium basis", PC2)
+pr(9, "The gap the company has to close", f"=B8-B7", W['ke_cds'] - LN['book']['roe_sustainable'],
    "A company earning below its cost of equity destroys value by growing", PC1)
 pr(10, "Net debt to EBITDA, FY2026/27", f"='DCF'!B41/'DCF'!B6",
    BASE['bridge']['net_debt'] / R[0]['ebitda'], "On the forward year", N1)
@@ -1232,10 +1267,10 @@ import sys as _sys
 _sys.path.insert(0, os.path.join(HERE, '..'))
 from research_protocol import MODEL_STUDY as _MS
 wb._sheets = [wb[n] for n in _MS["excel_sheets"]]
-wb.save(os.path.join(HERE, 'EGCH_Valuation_Model_01092026.xlsx'))
+wb.save(os.path.join(HERE, 'EGCH_Valuation_Model_03092026.xlsx'))
 json.dump(EXPECT, open(os.path.join(HERE, 'xlsx_expected.json'), 'w'), indent=1)
-json.dump({"cost_of_equity": f"C{KE_R}", "wacc_year_one": f"C{W1}",
-           "wacc_terminal": f"C{WT}", "rf_star": f"C{RFS}", "terminal_growth": f"C{r}"},
+json.dump({"cost_of_equity": f"C{KE_C}", "wacc_year_one": f"C{W1}",
+           "wacc_terminal": f"C{WT}", "rf_star": f"C{RFS_C}", "terminal_growth": f"C{r}"},
           open(os.path.join(HERE, 'xlsx_addresses.json'), 'w'), indent=1)
 import sys
 sys.path.insert(0, os.path.join(HERE, '..'))

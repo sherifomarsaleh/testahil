@@ -119,6 +119,17 @@ I("dep_rate_intangible", 0.0475, "per year", FS25 + ", note 5-2", "2025-09-24", 
 I("prod_urea_FY2425", 513385, "tonnes", FS25 + ", auditor's product cost table", "2025-09-24", "L1")
 I("prod_ammonia_FY2425", 318242, "tonnes", FS25 + ", auditor's product cost table", "2025-09-24", "L1")
 I("prod_an_gran_FY2425", 17887, "tonnes", FS25 + ", auditor's product cost table", "2025-09-24", "L1")
+# THE PRODUCT'S NITROGEN GRADE IS PART OF ITS NAME AND IT HAD NO REGISTERED SOURCE
+# [added 03-Sep-2026]. The study's tables label this line "Granulated 33.5% nitrate" and
+# prose_check.py was matching that 33.5% against some other computed value that happened to
+# render the same way. When the house inflation path replaced this study's own, that
+# coincidence broke and the build stopped — which is the checker working: it had been
+# passing a figure it could not actually account for. The grade is a fact about the product,
+# it comes from the same auditor's table as the tonnage beside it, and it now carries the
+# four fields every other number in this study carries.
+I("an_gran_nitrogen_pct", 0.335, "ratio",
+  FS25 + ", auditor's product cost table, where the product is named by its grade "
+  "(granulated ammonium nitrate at 33.5% nitrogen)", "2025-09-24", "L1")
 I("prod_ldan_FY2425", 8171, "tonnes", FS25 + ", auditor's product cost table", "2025-09-24", "L1")
 I("prod_nitric_FY2425", 35590, "tonnes", FS25 + ", auditor's product cost table", "2025-09-24", "L1")
 I("unitcost_urea_FY2425", 7509, "EGP/t", FS25 + ", auditor's product cost table", "2025-09-24", "L1")
@@ -219,7 +230,7 @@ I("quota_required_14m", 322000, "tonnes", FS25 + ", auditor's report", "2025-09-
 I("quota_delivered_14m", 147000, "tonnes", FS25 + ", auditor's report", "2025-09-24", "L1")
 
 # ===================================================== L2 — MARKET DATA =======
-I("spot_price", 13.98, "EGP", "Exchange close, from the study's own price library", "2026-08-06", "L2")
+I("spot_price", 14.41, "EGP", "EGCH closing price on the Egyptian Exchange, 3 September 2026. The previous edition was struck on the 6 August close of 13.98", "2026-09-03", "L2")
 I("rf_observed", 0.2300, "ratio", "Egypt ten-year government bond yield, market quote", "2026-08-06", "L2")
 I("sovereign_bond_coupon", 0.23098, "ratio",
   "New EGP 120.9bn treasury bond maturing 21 May 2029, listed coupon — corroborates the yield above",
@@ -270,9 +281,31 @@ _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)
 import macro_path as _MP
 _HOUSE = _MP.load('EG')
 
+
+def _fiscal_inflation_from_house_path(first_fy_start, n):
+    """The house calendar inflation ladder, mapped onto a 30-June fiscal year.
+
+    A fiscal year beginning 1 July of `y` spans the second half of calendar y and the first
+    half of y+1, so it takes half of each calendar year's published rate. Beyond the
+    ladder's last published year the house terminal is used — never an extrapolation of the
+    study's own, which is the thing [R-MACRO-01] forbids.
+    """
+    lad = dict(zip(_HOUSE.inflation_years, _HOUSE.inflation_path))
+    term = _HOUSE.terminal_inflation
+    out = []
+    for i in range(n):
+        y = first_fy_start + i
+        out.append(0.5 * lad.get(y, term) + 0.5 * lad.get(y + 1, term))
+    return out
+
+
 I("inflation_terminal", _HOUSE.terminal_inflation, "ratio",
-  "The inflation embedded in the TERMINAL discount rate: the central bank's longest-horizon "
-  "published target, 5% (+/-2) for Q4 2028 — the SAME figure terminal growth is set at. "
+  "The inflation embedded in the TERMINAL discount rate, taken from the house macro path and "
+  "NOT typed here — the SAME figure terminal growth is set at, so the two cannot drift apart. "
+  "(This sentence previously described the value as 5%, the central bank's Q4-2028 target, "
+  "while the path supplies 7%: a 7% value carrying a 5% justification, which is exactly the "
+  "kind of unfalsifiable typed rate this series does not permit. The value has always come "
+  "from the path; only the sentence was wrong.) "
   "CORRECTED 1 September 2026: the 08-08-2026 edition built the terminal risk-free rate on the "
   "7% Q4-2026 target while growing the perpetuity at 5%, a perpetual real decline of about 2% a "
   "year that no disclosure supports (the same defect the AMOC review found, L-055). Terminal "
@@ -441,9 +474,37 @@ for k, vals, unit, src in [
      "Constructed: utilisation path. Audited output ran 586.4kt in FY2022/23 (2% above plate), 521.9kt in "
      "FY2023/24 and 513.4kt in FY2024/25; the path never returns to plate because the summer "
      "gas curtailment is structural."),
-    ("export_usd_path", [530.0, 500.0, 470.0, 450.0, 440.0], "US$/t",
-     "Constructed: export price path, mean-reverting from the August 2026 quote toward the cash cost of the "
-     "marginal gas-based producer."),
+    # A TYPED DOLLAR-PRICE FORECAST IS NOT A DEFENSIBLE DRIVER, AND THIS HOUSE
+    # ALREADY SAYS SO ON ANOTHER NAME [corrected 03-Sep-2026].
+    #
+    # This path fell from US$530 to US$440 a tonne, -17% over five years, on the
+    # reason "mean-reverting toward the cash cost of the marginal gas-based
+    # producer" -- with no marginal cash cost quoted, no institution publishing the
+    # path, and layer "Constructed". Meanwhile the gas input is dollar-linked and
+    # held FLAT in dollars, so the construction was a falling output price against
+    # a flat input price: the entire forecast margin collapse, from 45.7% to 33.0%,
+    # was that one typed array, and it then set a terminal worth 60% of enterprise
+    # value.
+    #
+    # IT WAS ALSO OUT OF LINE WITH THE BOOK, WHICH IS THE TEST THAT MATTERS
+    # ([R-FCAL-01]: a correction must be consistent with how that driver class is
+    # built across the market's book, and a number out of line with the rest of the
+    # book usually means our own method slipped on this one name). AMOC -- same
+    # house, same market, same week -- holds ITS dollar commodity price FLAT and
+    # registers the reason in as many words: "crude is held FLAT in dollars -- no
+    # forecast of it is defensible". Two studies cannot carry opposite conventions
+    # for the same class of input, and the difference here ran the value-destroying
+    # way.
+    #
+    # Held FLAT in nominal dollars at the opening level. Deliberately NOT raised to
+    # the US$545 CME FOB Egypt settlement of 7-Aug-2026: declining to forecast a
+    # fall is not the same as adopting an improvement, and the rule says hold flat.
+    # The bull path below is retained as the published alternative.
+    ("export_usd_path", [530.0, 530.0, 530.0, 530.0, 530.0], "US$/t",
+     "Held FLAT in nominal dollars at the opening level. No forecast of a traded "
+     "commodity price is defensible, which is the convention this house applies to "
+     "the same class of input elsewhere; the previous path fell 17% over five years "
+     "on a construction nothing sourced."),
     ("export_usd_path_bull", [560.0, 545.0, 530.0, 520.0, 515.0], "US$/t",
      "Constructed: upside export price path: urea holds nearer the August 2026 quote."),
     ("usd_egp_path", [round(49.79 * __import__("functools").reduce(lambda a, b: a * b,
@@ -468,12 +529,36 @@ for k, vals, unit, src in [
     ("abnormal_gas_path", [150.0, 120.0, 100.0, 90.0, 80.0], "EGP m",
      "Constructed: stoppage and abnormal-gas cost, decaying as supply normalises from the EGP 164.5m charged "
      "in FY2024/25."),
-    ("cpi_path", [0.100, 0.070, 0.060, 0.050, 0.050], "ratio",
-     "Domestic inflation converging from the June 2026 print (14.3%) on the central bank's own "
-     "target ladder: 7% (+/-2) for Q4 2026, which falls in FY2026/27-FY2027/28, and 5% (+/-2) for "
-     "Q4 2028, which falls in FY2028/29, held thereafter. RE-SET 1 September 2026 so that the "
-     "explicit path lands on the terminal inflation rather than stepping down to it at the "
-     "terminal boundary."),
+    # A STUDY MAY NOT CARRY AN INFLATION NUMBER OF ITS OWN [R-MACRO-01], AND THIS ONE DID
+    # [corrected 03-Sep-2026]. Until today this array was typed — 10.0 / 7.0 / 6.0 / 5.0 /
+    # 5.0 — against a house ladder of 16.0 / 12.0 / 9.0 / 7.5 / 7.0 for the same country,
+    # and it terminated at 5% while this study's own committed macro record already carried
+    # the house terminal of 7%. The record conformed and the model did not.
+    #
+    # It was invisible to the gate because of WHERE it sat. check_macro_coherence reads the
+    # study's growth_lines, and this study declared its one line exempt on the true grounds
+    # that its revenue is built from tonnes and dollar prices — while THIS array quietly
+    # drove the purchasing-power wedge (and so the whole currency path, and so both dollar
+    # revenue in pounds and the gas cost) and every domestic cost escalator: other
+    # materials, wages, services, and the terminal tonne's conversion cost. The declared
+    # exemption was about a line that was not doing the work.
+    #
+    # The mapping is ARITHMETIC, not a judgement, and that is why it can be derived rather
+    # than chosen: this company's fiscal year ends 30 June, so FY2026/27 spans the second
+    # half of calendar 2026 and the first half of 2027 and takes half of each calendar
+    # year's house rate. Beyond the ladder's last published year the terminal is used.
+    ("cpi_path", _fiscal_inflation_from_house_path(2026, 5), "ratio",
+     "DERIVED from the single Egyptian inflation path this series uses for every Egyptian "
+     "company it values (as of " + _HOUSE.as_of + "), mapped onto this company's 30 June "
+     "fiscal year end: each fiscal year takes half of each of the two calendar years it "
+     "spans, and beyond the path's last published year its long-run rate. That path is "
+     + " / ".join(f"{y} {r:.1%}" for y, r in zip(_HOUSE.inflation_years,
+                                                 _HOUSE.inflation_path))
+     + ". No number here is chosen for this study: a company cannot be valued in an "
+     "economy the study beside it does not recognise, so no valuation in this series sets "
+     "an inflation rate of its own. Until 3 September 2026 this array read 10.0 / 7.0 / "
+     "6.0 / 5.0 / 5.0 and ended at 5% while the same study already took 7% as the "
+     "long-run rate."),
     ("anna_capex_path", [_RUN_RATE, 3100.0, 3300.0, 3200.0,
                          _REMAINING - (_RUN_RATE + 3100.0 + 3300.0 + 3200.0)], "EGP m",
      "Constructed: project spending path, RE-ANCHORED 9 August 2026 on the observed run rate. The first "
@@ -485,7 +570,14 @@ for k, vals, unit, src in [
     I(k, vals, unit, src, "2026-08-08", "L5")
 
 I("lens_weights", [0.45, 0.20, 0.20, 0.15], "ratio",
-  "Weights of the four lenses in the weighted central this edition publishes inside its field: "
+  "RETIRED — this series no longer averages its methods — and consumed by nothing. It is kept in the register so a reader of "
+  "the 01-09-2026 edition can see what changed, and it is recorded here as retired rather than "
+  "deleted because a number that was published once should stay traceable. THE CENTRAL IS THE "
+  "CLASS PRIMARY -- the cash-flow lens, which on this company is two-sided -- and every other "
+  "lens is a cross-check published beside it, never weighted into it. What follows is the "
+  "description of the retired construction, kept verbatim: "
+  "Weights of the four lenses in the weighted central the 01-09-2026 edition published inside "
+  "its field: "
   "cash flow with the programme carried through 45%, relative multiples 20%, normalised earnings "
   "20%, book value 15%. SET IN THIS EDITION (1 September 2026): the 08-08-2026 edition published "
   "the field alone, with no central and no weights. Basis: the cash-flow lens is the primary lens "
@@ -602,8 +694,8 @@ I("bs_gross_fixed_M9FY2526", 17022.493, "EGP m",
   M9 + ", note 6 fixed assets at cost", "2026-05-20", "L1")
 I("bs_acc_dep_M9FY2526", 3435.300, "EGP m",
   M9 + ", note 6 accumulated depreciation", "2026-05-20", "L1")
-I("spot_price_date", "2026-08-06", "date",
-  "Egyptian Exchange closing session used as the study's anchor date", "2026-08-06", "L2")
+I("spot_price_date", "2026-09-03", "date",
+  "Egyptian Exchange closing session used as the study's anchor date", "2026-09-03", "L2")
 I("beta_ci90_low", 0.7165230052490117, "ratio",
   "The lower bound of the ninety-per-cent confidence interval of the same beta estimate — a "
   "five-year weekly regression of the stock's own returns on the EGX30 (253 weekly observations "

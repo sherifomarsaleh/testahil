@@ -104,7 +104,18 @@ def report():
               % (len(missing_gates), "; ".join(missing_gates)))
 
     print("\n  studies outstanding on at least one gate, worst first")
-    print("  %-12s %-6s %8s   %s" % ("ticker", "gates", "vs price", "outstanding on"))
+    # THE COLUMN SAYS WHICH FAIR VALUE IT MEANS. It is the value the SITE
+    # publishes, from fv_vintages.json, against the spot that value was struck
+    # against — NOT the study's committed central. The two differ by a whole
+    # edition wherever a study has been re-issued and not published: AMOC's
+    # committed central is +8.9% against its spot while the site still carries a
+    # number that reads -34.6%. Labelling this "vs price" invited exactly that
+    # misreading, and the misreading was made.
+    print("  the gap column is the SITE's published fair value against the spot it")
+    print("  was struck against (engine/fv_vintages.json) — not the study's own")
+    print("  committed central, which on a re-issued and unpublished name differs.\n")
+    print("  %-12s %-6s %10s   %s"
+          % ("ticker", "gates", "site vs px", "outstanding on"))
     for tk in sorted(rows, key=lambda t: (-len(rows[t]), t)):
         lg = published.get(tk)
         gap = ("%+7.1f%%" % ((math.exp(lg) - 1) * 100)) if lg is not None else "      —"

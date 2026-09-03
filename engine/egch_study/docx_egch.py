@@ -1,4 +1,4 @@
-"""EGCH_Valuation_Study_01-09-2026.docx — the MODEL STUDY structure.
+"""EGCH_Valuation_Study_03-09-2026.docx — the MODEL STUDY structure.
 
 Sixteen sections in the model order. No financial numeral is typed in this file: every
 number comes from study_numbers.json, lenses.json, experts.json, strike_result.json,
@@ -41,7 +41,7 @@ P("EGYPTIAN CHEMICAL INDUSTRIES (KIMA)", size=21, bold=True, space_after=1)
 P("Egyptian Exchange: EGCH  ·  Aswan  ·  Nitrogen fertilizers and industrial chemicals",
   size=11, color=BRASS, space_after=1)
 P(f"Valuation study — 1 September 2026  ·  Reporting and valuation currency: Egyptian pounds  "
-  f"·  Anchor price EGP {E2(SPOT)} at the close of {ST['anchor_date']}",
+  f"·  Anchor price EGP {E2(SPOT)} at the close of {V('spot_price_date')}",
   size=10, color=GREY, space_after=10)
 
 # ------------------------------------------------------------- READ FIRST ----
@@ -61,14 +61,17 @@ box([("What this is.  ",
       "are computed and both are published side by side throughout this document. Neither "
       "is averaged into the other, because the average would be true in neither world."),
      ("How to read the numbers.  ",
-      f"Four lenses give a field, and inside it one weighted central — EGP "
-      f"{E2(LN['central']['base'])} a share on stated weights: cash flow with the programme "
-      f"carried through {PCW(LN['central']['weights']['cashflow'])}, relative multiples "
-      f"{PCW(LN['central']['weights']['relative'])}, normalised earnings "
-      f"{PCW(LN['central']['weights']['normalised'])}, book value "
-      f"{PCW(LN['central']['weights']['book'])}. The central is a reading inside the field, "
-      f"never a point target. Where the lenses disagree, the disagreement is the "
-      f"information — section 4 isolates which assumption drives which gap.")])
+      f"The answer is the cash-flow lens, and on this company it has TWO SIDES: EGP "
+      f"{E2(LN['central']['base'])} a share if the capital programme is carried through and "
+      f"EGP {E2(LN['central']['alternative_framing']['value'])} if it is stopped. Both are "
+      f"published throughout and neither is averaged into the other. The other lenses — "
+      f"relative multiples, normalised earnings and book value — are CROSS-CHECKS printed "
+      f"beside the answer, not weights inside it. A previous edition published a weighted "
+      f"blend of the four at stated weights; the weights were typed and had never been "
+      f"tested, and averaging several methods does not make a number more robust than the "
+      f"best of them — it makes a new method with free parameters nobody checked. Where the "
+      f"lenses disagree, the disagreement is the information, and section 4 isolates which "
+      f"assumption drives which gap.")])
 
 # ---------------------------------------------------------------- HEADLINE ---
 H1("Headline")
@@ -98,14 +101,14 @@ for k in ("cashflow_carry", "cashflow_stopped", "relative", "normalised", "book"
     sp = SP[k]
     rng = (f"{E2(sp['low'])} to {E2(sp['high'])}" if sp['high'] > sp['low'] else "—")
     rows.append([sp['label'], sp['basis'], rng, E2(sp['base']), PC0(sp['vs_spot'])])
-_CW = LN['central']['weights']
-rows.append(["THE FIELD, all four lenses — and the weighted central inside it",
-             f"Low to high across every read above. The central weights the reads: cash flow "
-             f"carried through {PCW(_CW['cashflow'])}, relative {PCW(_CW['relative'])}, "
-             f"normalised {PCW(_CW['normalised'])}, book {PCW(_CW['book'])}. Only the "
-             f"carried-through side of the cash-flow lens enters it — that is the company's "
-             f"stated plan; the stopped reading is the contested judgement, published beside "
-             f"it and never averaged in",
+rows.append(["THE ANSWER — the cash-flow lens, both sides, never averaged",
+             f"The class primary IS the answer and every other read above is a cross-check "
+             f"printed beside it. This one is TWO-SIDED: EGP "
+             f"{E2(LN['central']['base'])} with the capital programme carried through — the "
+             f"company's own stated plan — and EGP "
+             f"{E2(LN['central']['alternative_framing']['value'])} if it is stopped. The "
+             f"judgement is binary, so an average would describe a half-built plant. The "
+             f"range shown is the floor and ceiling of every read, not a weighted extreme",
              f"{E2(LN['synthesis']['low'])} to {E2(LN['synthesis']['high'])}",
              E2(LN['central']['base']), PC0(LN['central']['base'] / SPOT - 1)])
 rows.append(["Market price", "Closing price on the anchor date", "—", E2(SPOT), "—"])
@@ -175,7 +178,7 @@ rows = [["Product", "FY2024/25 output (tonnes)", "Unit cost (EGP/t)", "Role"],
          "The business: sold subsidised, on the local free market and for export"],
         ["Liquid ammonia", E(V('prod_ammonia_FY2425')), E(V('unitcost_ammonia_FY2425')),
          "Feedstock for urea; a small merchant volume is exported"],
-        ["Granulated 33.5% nitrate", E(V('prod_an_gran_FY2425')), E(V('unitcost_an_gran_FY2425')),
+        [f"Granulated {V('an_gran_nitrogen_pct')*100:.1f}% nitrate", E(V('prod_an_gran_FY2425')), E(V('unitcost_an_gran_FY2425')),
          "Small nitrate leg"],
         ["Low-density ammonium nitrate", E(V('prod_ldan_FY2425')), E(V('unitcost_ldan_FY2425')),
          "Small nitrate leg"],
@@ -234,7 +237,13 @@ caption("{T}.  Net debt is larger than the enterprise value the cash flows suppo
         "is stated rather than clipped to zero.")
 figure('fig2_bridge.png', 6.9, "{F}.  The bridge, carried-through case.")
 
-H2("Why the answer is negative, and what would change its sign")
+# THE HEADING, THE CAPTION AND THE LADDER ANNOTATION ALL DESCRIBED A NEGATIVE
+# ANSWER, AND THE ANSWER IS POSITIVE [corrected 03-Sep-2026]. They were true of the
+# previous edition, which read EGP -1.06 a share; this one reads +1.79 and every one
+# of these sentences was typed rather than computed. That is the same failure as the
+# AMOC headline: numbers from the model, words from the last time somebody looked.
+# Everything directional here now derives from the numbers themselves.
+H2("Why the answer is so far below the price, and what would change it")
 _SHm = SH / 1e6
 P("The same bridge in pounds a share makes the mechanism plain, and it is not the "
   "capital programme.")
@@ -246,9 +255,14 @@ rows = [["Carried-through case, per share", "EGP"],
         ["EQUITY", E2(BASE['bridge']['per_share'])],
         ["Traded price", E2(SPOT)]]
 table(rows, [4.4, 2.5], size=8.9, band_rows={4, 5})
-caption("{T}.  The operating business is carried at less than half the debt standing "
-        "against it. Free cash flow is positive in three of the five forecast years — the "
-        "construction is no longer what makes the answer negative. The debt is.")
+_EVPS = BASE['bridge']['ev'] / _SHm
+_NDPS = BASE['bridge']['net_debt'] / _SHm
+_FCFPOS = sum(1 for r in R if r.get('fcff', 0) > 0)
+caption(f"{{T}}.  The operating business is carried at EGP {E2(_EVPS)} a share against net "
+        f"debt of EGP {E2(_NDPS)} — {'less than' if _EVPS < _NDPS else 'more than'} the debt "
+        f"standing against it. Free cash flow is positive in {_FCFPOS} of the five forecast "
+        f"years. The equity is the thin residual between two large numbers, which is why the "
+        f"answer moves so violently on any change to either.")
 P(f"So the question is not whether the plant earns. It is whether EGP "
   f"{E(BASE['bridge']['ev'])} million is the right enterprise value for a business "
   f"generating around EGP {E(R[0]['ebitda'])} million of operating profit before "
@@ -259,7 +273,7 @@ rows = [["A flat cost of capital of", "Value per share (EGP)", "What it would me
 for w, note in [(0.2500, "roughly the rate this study builds from the sovereign's own yield"),
                 (0.2000, "below the sovereign's ten-year yield of "
                          f"{PC(V('rf_observed'))}"),
-                (0.1800, "the sign changes here"),
+                (0.1800, ""),
                 (0.1600, ""),
                 (0.1400, ""),
                 (0.1200, "")]:
@@ -300,7 +314,7 @@ caption("{T}.  " + (
         f"The justified multiple of book is {B['pb_raw']:.3f} times: a sustainable return of "
         f"{PC(B['roe_sustainable'])} clears nominal maintenance growth of {PC(B['g'])} by only "
         f"{PC(B['roe_sustainable'] - B['g'])}, against a {PC2(B['ke'])} cost of equity, so the "
-        f"book of EGP {E2(B['book_per_share'])} a share is worth EGP {E2(B['value_per_share'])} on "
+        f"book of EGP {E2(B['book_per_share'])} a share supports a justified multiple of EGP {E2(B['value_per_share'])} on "
         f"this lens"
         if B['pb_raw'] > 0 else
         f"The justified multiple of book is negative before flooring: a sustainable return of "
@@ -362,25 +376,27 @@ P(f"The field runs from EGP {E2(LN['synthesis']['low'])} to EGP {E2(LN['synthesi
   f"against EGP {E2(SPOT)}. That is a change from the first issue of this study, which "
   f"used a lower multiple band it could not source, and it is reported rather than "
   f"resisted.")
-P(f"Inside that field the study publishes one weighted central, EGP {E2(LN['central']['base'])} "
-  f"a share, {PCW(abs(LN['central']['base'] / SPOT - 1))} "
-  f"{'below' if LN['central']['base'] < SPOT else 'above'} the traded price. The weights are "
-  f"stated and fixed before the lenses were read: cash flow with the programme carried through "
-  f"{PCW(LN['central']['weights']['cashflow'])}, relative multiples "
-  f"{PCW(LN['central']['weights']['relative'])}, normalised earnings "
-  f"{PCW(LN['central']['weights']['normalised'])}, book value "
-  f"{PCW(LN['central']['weights']['book'])}. The cash-flow lens carries the most because it is "
-  f"the one lens that charges the capital programme against the years in which it is spent; its "
-  f"carried-through side alone enters the weighting because that is the company's own stated "
-  f"plan, and the stopped reading (EGP {E2(LN['cashflow']['stopped'])}) is published beside it "
-  f"as the contested judgement rather than blended in. The relative and normalised lenses are "
-  f"cross-checks at equal weight; book value, which prices what has been paid for rather than "
-  f"what it earns, carries the least. The bear and full readings are the floor and ceiling of the "
-  f"field, never the weighted extremes.")
+P(f"The answer is the cash-flow lens alone: EGP {E2(LN['central']['base'])} a share with the "
+  f"capital programme carried through, {PCW(abs(LN['central']['base'] / SPOT - 1))} "
+  f"{'below' if LN['central']['base'] < SPOT else 'above'} the traded price, and EGP "
+  f"{E2(LN['cashflow']['stopped'])} if the programme is stopped. It is the answer because it is "
+  f"the one lens that charges the capital programme against the years in which it is spent, "
+  f"which on this company is the whole question. The relative, normalised and book reads are "
+  f"CROSS-CHECKS published beside it — book value in particular prices what has been paid for "
+  f"rather than what it earns, and is a disclosed floor rather than a valuation. A previous "
+  f"edition blended all four at stated weights and published the result as the central; the "
+  f"weights were typed, had never cleared any out-of-sample test, and imported every weakness "
+  f"of the weakest read at whatever weight somebody chose. A number produced by averaging "
+  f"several methods is not more robust than the best of them — it is a new method with free "
+  f"parameters nobody tested. The blend is retired and published unused so a reader of the "
+  f"previous edition can see what changed. The bear and full readings are the floor and ceiling "
+  f"of every read, never a weighted extreme.")
 P(f"The ordering is itself informative. The asset-backed and multiple-based lenses sit "
   f"highest because they value what has been built without asking what it earns. The "
   f"cash-flow lens sits lowest because it asks exactly that, and gets an uncomfortable "
-  f"answer. The book lens sits at EGP {E2(B['value_per_share'])} because a "
+  f"answer. The book value itself is EGP {E2(B['book_per_share'])} a share as filed, and it "
+  f"is published as a FLOOR rather than a valuation; the justified multiple OF that book is "
+  f"zero, because a "
   f"{PC(B['roe_sustainable'])} sustainable return on equity barely clears nominal growth and "
   f"does not approach a {PC2(B['ke'])} cost of equity — a company earning below its cost of "
   f"capital destroys value by growing, which is the same finding the capital programme "
@@ -460,12 +476,24 @@ for lab, key, fmt in [("Revenue", 'revenue', E), ("Cost of sales", 'cogs', E),
                       ("Operating profit", 'ebit', E), ("Operating margin", 'ebit_pct', PC)]:
     rows.append([lab] + [fmt(r[key]) for r in R])
 table(rows, [2.05, 0.99, 0.99, 0.99, 0.99, 0.99], size=8.4, band_rows={4, 6})
-caption("{T}.  Not one margin in this table is set. Each is revenue less a cost stack "
-        "that was built from physical consumption times a unit price, so the margin path is "
-        "a consequence of the tonnes, the prices and the escalators above it. The margin "
-        "falls across the window because the export price mean-reverts faster than the "
-        "domestic cost base disinflates — which is a statement about two sourced paths, "
-        "not a view about management.")
+# THE MECHANISM NAMED HERE WAS THE ONE THIS EDITION REMOVED [corrected 03-Sep-2026].
+# The caption said the margin falls "because the export price mean-reverts faster than
+# the domestic cost base disinflates", which described a dollar price path falling from
+# 530 to 440. That path was typed, sourced by nothing, and is now held FLAT. The margin
+# still falls, for a different reason, and the caption now names the reason that is
+# actually in the model -- and the same one the study's own forecast_anchor record
+# declares and MEASURES against the audited accounts.
+_GM = [r['gross_pct'] for r in R]
+caption(f"{{T}}.  Not one margin in this table is set. Each is revenue less a cost stack "
+        f"built from physical consumption times a unit price, so the margin path is a "
+        f"consequence of the tonnes, the prices and the escalators above it. It eases from "
+        f"{PC(_GM[0])} to {PC(_GM[-1])} because the dollar export price is held FLAT in "
+        f"nominal dollars — no forecast of a traded commodity price is defensible — while "
+        f"the pound-denominated cost legs escalate on the domestic path. That is a real "
+        f"cost drift, and it is a claim rather than an assumption: the company's own "
+        f"audited accounts show cost per unit of revenue rising from 54.1% in the year to "
+        f"June 2023 to 61.6% in the year to June 2025, which is the direction the forecast "
+        f"carries forward.")
 
 H2("The revenue mix, the first forecast year against the last")
 rows = [["Channel", f"{YEARS[0]} revenue (EGP m)", "Share", f"{YEARS[-1]} revenue (EGP m)",
@@ -818,11 +846,21 @@ P("A technical read cannot speak to whether a business is worth owning, and this
 
 # ================================================= 3 PROBABILISTIC PRICE MAP ==
 H1("3  A probabilistic price map")
+# TWO CLOCKS, AND THE DOCUMENT SAID ONE [corrected 03-Sep-2026]. The valuation is
+# struck against the latest known price; the price map is a simulation run on the
+# price library, which ends earlier. They were the same number until the library
+# stopped moving, and then this section carried the map's own median BELOW the
+# anchor it printed. Each now states its own price and its own date, and the
+# sentence says why they differ instead of leaving a reader to find it.
 P(f"This is a map of where the traded price may go, not of what the business is worth. It "
   f"comes from fifty thousand simulated paths anchored on the {ST['anchor_date']} close of "
-  f"EGP {E2(SPOT)}, drifting at the carry the market itself sets — the local risk-free rate "
-  f"less the dividend yield, which is zero here because nothing was distributed in either "
-  f"of the last two years.")
+  f"EGP {E2(ST['spot'])}, drifting at the carry the market itself sets — the local risk-free "
+  f"rate less the dividend yield, which is zero here because nothing was distributed in "
+  f"either of the last two years. That anchor is the last session in the price history this "
+  f"map was simulated from, and it is EARLIER than the {V('spot_price_date')} "
+  f"close of EGP {E2(SPOT)} the valuation is struck against: the two run on different clocks "
+  f"and a fresh price moves the valuation without re-running the simulation. Read every "
+  f"percentile below against EGP {E2(ST['spot'])}, not against the price on the masthead.")
 figure('fig10_fan.png', 6.9,
        f"{{F}}.  The middle of the simulated distribution over time, to "
        f"{M3['grade_date']}. The shaded bands hold half and ninety per cent of the paths.")
@@ -881,10 +919,24 @@ rows.append(["Cash flow — carried through", E2(LN['cashflow']['carry_through']
 rows.append(["Cash flow — stopped", E2(LN['cashflow']['stopped']),
              "That the board stops after one further year and runs the plant it owns",
              f"The programme alone: EGP {E2(LN['contested']['gap'])}"])
-rows.append(["Book value and sustainable return", E2(LN['book']['value_per_share']),
-             "That the historic return on equity persists",
-             "Nothing — it agrees, from the other direction, that the business does not "
-             "earn its cost of capital"])
+# THE BOOK LENS IS THE DISCLOSED FLOOR, NOT THE JUSTIFIED MULTIPLE OF IT
+# [corrected 03-Sep-2026]. This row published `value_per_share` -- the book value
+# times a justified price-to-book that this study's own arithmetic floors to ZERO
+# -- so the summary table read EGP 0.00 at -100% against the price, while the
+# committed lens record carried the disclosed book of EGP 8.16. [R-LENS-03] is
+# explicit that book value is a DISCLOSED FLOOR, published as such and never
+# weighted; a justified multiple of book is a derived valuation wearing the name
+# of a disclosed figure, which is what this study's own lens_record note calls it.
+# The derived read is kept in the row's own commentary, where it is a finding
+# rather than a lens.
+_BK = LN['book']
+rows.append(["Book value — the disclosed floor", E2(LN['book']['book_per_share']),
+             "Shareholders' funds per share as filed. Not a valuation and never "
+             "weighted into one",
+             f"On the return this book actually earns ({PC(_BK['roe_sustainable'])} "
+             f"against a cost of equity of {PC2(_BK['ke'])}) the justified multiple "
+             f"of it is zero — the floor is what the assets are carried at, not what "
+             f"they earn"])
 rows.append(["Relative multiples", E2(LN['relative']['value_per_share']),
              "That a peer multiple on forward operating profit captures the whole business",
              "It ignores capital expenditure entirely; that is the whole gap"])
@@ -1401,5 +1453,5 @@ box([("Educational analysis.  ", "This document is an independent educational an
      ("No position.  ", "The author holds no position in the subject and receives no "
       "compensation from it or from any party with an interest in it.")])
 
-finalise('EGCH_Valuation_Study_01-09-2026.docx')
-print("wrote EGCH_Valuation_Study_01-09-2026.docx")
+finalise('EGCH_Valuation_Study_03-09-2026.docx')
+print("wrote EGCH_Valuation_Study_03-09-2026.docx")

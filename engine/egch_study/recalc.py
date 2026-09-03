@@ -15,7 +15,7 @@ import json, os, sys
 import openpyxl, xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-XLSX = os.path.join(HERE, 'EGCH_Valuation_Model_01092026.xlsx')
+XLSX = os.path.join(HERE, 'EGCH_Valuation_Model_03092026.xlsx')
 wb = openpyxl.load_workbook(XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 EXPECT = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))
@@ -70,9 +70,11 @@ checks.append(("cost of capital, year one", cv("DCF", "B15"), D['drivers']['wacc
 ADDR = json.load(open(os.path.join(HERE, 'xlsx_addresses.json')))
 checks.append(("terminal cost of capital", cv("Assumptions", ADDR['wacc_terminal']),
                D['drivers']['wacc_terminal']))
-checks.append(("cost of equity", cv("Assumptions", ADDR['cost_of_equity']), D['wacc']['ke_rating']))
+# the CENTRAL basis is the CDS one [R-COC-01]; this gate was still reconciling
+# against the rating figure after the study moved [corrected 03-Sep-2026]
+checks.append(("cost of equity", cv("Assumptions", ADDR['cost_of_equity']), D['wacc']['ke_cds']))
 checks.append(("normalised risk-free rate", cv("Assumptions", ADDR['rf_star']),
-               D['wacc']['rf_star_rating']))
+               D['wacc']['rf_star_cds']))
 checks.append(("lens 2 value per share", cv("Fundamental Valuation", "B18"),
                LNS['book']['value_per_share']))
 checks.append(("lens 3 value per share", cv("Relative & Normalized", "B12"),

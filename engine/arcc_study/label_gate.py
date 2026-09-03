@@ -14,7 +14,7 @@ os.chdir(HERE)
 D = json.load(open('study_numbers.json'))
 H, F, DCF, UC = D['history'], D['forecast'], D['dcf'], D['unit_calibration']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
-wb = openpyxl.load_workbook('ARCC_Valuation_Model_02092026_public.xlsx')
+wb = openpyxl.load_workbook('ARCC_Valuation_Model_03092026_public.xlsx')
 XP = json.load(open('xlsx_expected.json'))
 
 

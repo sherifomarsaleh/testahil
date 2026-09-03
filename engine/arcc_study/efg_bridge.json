@@ -1,7 +1,9 @@
 {
  "start": 69.7549,
- "end": 54.652,
- "market": 59.0,
+ "end": 53.2091,
+ "market": 77.0,
+ "published_central": 53.209111872995436,
+ "published_spot": 77.0,
  "steps": [
   {
    "key": "date_consistency",
@@ -19,7 +21,7 @@
    "driver": "capex path",
    "off": "EFG",
    "receipt": "EFG's capex sits below their OWN D&A in all three years they tabulate: 308 vs 318, 300 vs 347, 248 vs 378 \u2014 net disinvestment. ARCC actually spent 912 (FY2024) and 799 (FY2025). CAVEAT: ours is not obviously right either; 1,012 in FY2026 is ABOVE the FY2025 actual of 799. The magnitude is arguable, the direction is not.",
-   "value": -7.6241
+   "value": -6.6891
   },
   {
    "key": "operating",
@@ -28,7 +30,7 @@
    "driver": "operating build",
    "off": "OPEN",
    "receipt": "Two errors pointing opposite ways and no referee. Our FY2028 revenue is 15,350 against their 13,792 (+11.3%) because we build tonnes from kiln utilisation 91.7%->93.5%; they have volume FALLING 3%. But our EBITDA margin glides 39.3%->34.3% while Q1-2026 gross margin was 42.9% and widening, which is their side of it.",
-   "value": 2.4353
+   "value": 9.7711
   },
   {
    "key": "terminal",
@@ -37,7 +39,7 @@
    "driver": "terminal block",
    "off": "EFG",
    "receipt": "They grow FY2030 FCF at 2.5% forever with no reinvestment charge. A perpetuity growing at g on returns of ROIC must plough back g/ROIC. At our terminal ROIC of 8.81% that is 56.8% of profit. CAVEAT: the 8.81% rests on replacement capital of 50,481 = 5.0Mt x USD 130/t x 50.30 x 1.544, and the USD 130/t is our least-verified single input.",
-   "value": -2.5149
+   "value": -3.7527
   },
   {
    "key": "discount_rate",
@@ -46,16 +48,16 @@
    "driver": "discount rate",
    "off": "OPEN",
    "receipt": "Their flat 20.06% is applied to FY2026 while the Egyptian 1-year T-bill yields 22.95% \u2014 below the risk-free rate, which is hard to defend. But it is correspondingly too HIGH late: their year-5 factor of 0.4813 is harsher than our 0.4876. The two errors very nearly cancel and the whole bar is EGP 0.16, so neither convention is worth arguing over.",
-   "value": -0.1554
+   "value": -4.7139
   },
   {
    "key": "valuation_date",
    "label": "Valuation date\n1 Jan \u2192 6 Aug",
-   "sub": "\u22123.33 out of window,\n+4.61 back as cash",
+   "sub": "-4.69 out of window,\n+1.37 back as cash",
    "driver": "valuation date",
    "off": "EFG",
-   "receipt": "A price is what you pay today. Only 0.417 of FY2026 remains, so 0.583 of that year's FCFF leaves the discounted window \u2014 and arrives in the bridge as cash already earned. This step ADDS value on net. The +4.61 of accumulated cash is INSIDE the 54.65; it is not owed on top.",
-   "value": 1.28
+   "receipt": "A price is what you pay today. Only the remainder of the current fiscal year sits inside the discounted window, so the rest of that year's free cash flow leaves it -- and arrives in the bridge as cash already earned. This step REMOVES value on net. The +1.37 of accumulated cash is INSIDE the answer; it is not owed on top.",
+   "value": -3.3269
   },
   {
    "key": "balance_sheet",
@@ -68,12 +70,12 @@
   },
   {
    "key": "lenses",
-   "label": "Other three\nlenses",
-   "sub": "50/20/22/8 weights\nand share count",
-   "driver": "lens weighting",
+   "label": "Share count,\nreconciliation",
+   "sub": "374.867 vs 375.0,\nand the full re-run",
+   "driver": "share count and reconciliation",
    "off": "NEITHER",
-   "receipt": "Not an error on either side. They publish a DCF; we weight DCF 50%, multiples 20%, normalised earnings 22%, replacement cost 8%. The three non-DCF lenses land at 48.96 / 52.95 / 68.87 and pull down 0.73 net. The share count (374.867 vs 375.0) is inside that.",
-   "value": -0.7317
+   "receipt": "Not an error on either side, and not a lens weighting: this study's central IS the cash-flow lens, published alongside the other reads rather than averaged with them. Two things sit in this step. The share count (374.867mn against their 375.0mn), and the residual between walking one driver at a time down this bridge and running the whole model at once, which is what the published central is. A previous edition weighted four lenses 50/20/22/8 and this step carried those weights; the weights are retired and so is the description.",
+   "value": -0.0421
   }
  ]
 }

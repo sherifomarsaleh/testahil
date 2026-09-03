@@ -54,7 +54,7 @@ conforming beta produced by the sanctioned routine against `raw_indices/AE/FADGI
 > framings, and the terminal-value share. State plainly if the conclusion changed direction.
 >
 > **7b — Check the answer, not only the chain** [R-GAP-01]. A beta re-issue moves the centre — on FERTIGLB it moved it 21.6% — so a study that did not breach before can breach
-> after. If the rebuilt central lands more than 10% BELOW the latest known price, write
+> after. If the rebuilt central lands more than 10% from the latest known price in EITHER direction (two-sided since 02-Sep-2026), write
 > `GAP_REVIEW_{DD-MM-YYYY}.md` covering all eight headings and clear
 > `python3 scripts/check_valuation_gap.py` before reporting the re-issue done.
 >

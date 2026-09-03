@@ -7,5 +7,34 @@
  "status": "pending",
  "pending_reason": "The dirham is pegged to the dollar, so the glide collapses to flat and today is the terminal; the path still needs a sourced domestic inflation ladder for the cost escalators. Not yet sourced — 28 UAE names are Phase 2 work and none is built against this file yet.",
  "how_to_source": "Fill this file to the shape of EG.json: every level published by a named institution on a named date, or derived here by an identity from numbers that are; a year between two published endpoints is labelled 'interpolated between published endpoints' and never called a forecast. macro_path.load() validates the shape and refuses a file that is internally incoherent.",
- "note": "A PENDING file is deliberate, not an oversight: engine/macro_path.py RAISES on load rather than falling back to a neighbouring market, because an empty answer is not a clean answer [R-ENF-04]. Every calibrated name today is Egyptian."
+ "note": "A PENDING file is deliberate, not an oversight: engine/macro_path.py RAISES on load rather than falling back to a neighbouring market, because an empty answer is not a clean answer [R-ENF-04]. Every calibrated name today is Egyptian.",
+ "sourcing_attempts": {
+  "_": "Logged per SIGCM's primary-source rule, which requires the ATTEMPT and its outcome to be recorded whether it succeeded or not. This is not a partial path and must not be read as one: status stays 'pending' and load() still raises. What it records is WHICH DOOR IS SHUT, so the next session does not spend the same hour finding out.",
+  "date": "2026-09-03",
+  "reachable": [
+   {
+    "source": "World Bank open data API (api.worldbank.org), indicator FP.CPI.TOTL.ZG",
+    "gives": "UAE annual CPI inflation ACTUALS; 2025 = 1.2509%, 2024 = 1.6634%, 2023 = 1.6267%, 2022 = 5.2912%. Series last updated 2026-07-13.",
+    "status": "HTTP 200, machine-readable, already the source PHDC's walk-forward uses for its macro actuals"
+   },
+   {
+    "source": "Statistics Centre Abu Dhabi (scad.gov.ae)",
+    "gives": "an Abu Dhabi consumer price index, monthly",
+    "status": "HTTP 200; note it is the EMIRATE's index, not the federal one"
+   }
+  ],
+  "blocked": [
+   {
+    "source": "Central Bank of the UAE (centralbank.ae) — the Quarterly Economic Review and the Base Rate announcements",
+    "needed_for": "the forward inflation ladder and the policy rate, both primary",
+    "status": "Cloudflare interstitial: the interest-rate endpoint returns 403 with a 'Just a moment...' challenge page and the QER and base-rate PDFs return 404 behind it. curl and a headless Chromium both fail."
+   },
+   {
+    "source": "IMF (imf.org) — the July-2026 staff visit release and the 2025 Article IV country report",
+    "needed_for": "the medium-term inflation projection",
+    "status": "HTTP 403 to curl and ERR_CONNECTION_RESET to headless Chromium — the SAME access limit already recorded against the five WEO vintages the point-in-time macro archive needs. One limit, two consequences."
+   }
+  ],
+  "what_would_unblock_it": "Two documents, either attached by the principal or fetched from an environment that can reach those hosts: the CBUAE Quarterly Economic Review (its inflation forecast table and the Base Rate) and the IMF's latest UAE staff report or Article IV (its medium-term inflation projection). Secondary reporting of both figures is readily available and is NOT used: [R-MACRO-01] requires a level published by a named institution on a named date, and a press summary of a central-bank forecast is neither the institution nor the date."
+ }
 }

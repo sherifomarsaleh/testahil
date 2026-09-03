@@ -92,7 +92,7 @@ CASH_FY25 = 9419.5
 NET_DEBT = GROSS_DEBT - CASH_FY25
 
 SHARES_BN = 2.85992          # ordinary shares outstanding
-SPOT = 15.20                 # EGX close 23-Aug-2026, as carried in assets/data.js
+SPOT = 14.40                 # EGX close 3-Sep-2026 (was 15.20 on 23-Aug)
 MARKET_CAP = SHARES_BN * 1000.0 * SPOT     # EGP mn
 
 
@@ -207,9 +207,15 @@ if __name__ == "__main__":
                           else DAMODARAN_EGYPT["total_erp_rating"]),
             erp_basis=basis, allow_stale_sovereign=True)
         sched[basis] = sc.as_record()
-        if basis == "rating":
+        if basis == "cds":
             print(sc.report())
     out["schedule"] = sched
-    out["cost_of_capital_record"] = sched["rating"]   # this study's CENTRAL basis
+    # [R-COC-01] names the SWAP basis as the house default and this study was the
+    # second one not using it [corrected 03-Sep-2026]. Both bases stay published;
+    # the record now names the one that is actually central, because a record
+    # labelled "rating" while the model discounts on the CDS schedule is worse than
+    # either choice — it reads as evidence.
+    out["cost_of_capital_record"] = sched["cds"]      # this study's CENTRAL basis
+    out["cost_of_capital_record_alt"] = sched["rating"]
     json.dump(out, open(os.path.join(HERE, "wacc_result.json"), "w"), indent=1, default=str)
     print("\nwrote wacc_result.json")

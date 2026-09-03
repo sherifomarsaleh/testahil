@@ -50,9 +50,13 @@ def build(tmp, ticker, central, price, dissent=None, two_sided=None):
     else:
         nums["central"] = central
     json.dump(nums, open(os.path.join(sd, "study_numbers.json"), "w"))
-    json.dump({"as_of": "2026-09-03", "prices": {
+    # THE PRICE COMES FROM THE COMMITTED SUPPLIED ARTEFACT, which is what the
+    # gate reads. A fixture writing a file the gate does not open would be a
+    # negative control proving only that the sandbox was untouched [R-ENF-04].
+    os.makedirs(os.path.join(eng, "prices"), exist_ok=True)
+    json.dump({"supplied_on": "2026-09-03", "prices": {
         ticker.upper(): {"price": price, "date": "2026-09-03", "ccy": "EGP"}}},
-        open(os.path.join(eng, "price_snapshot.json"), "w"))
+        open(os.path.join(eng, "prices", "SUPPLIED_03-09-2026.json"), "w"))
     if dissent is not None:
         open(os.path.join(sd, "MARKET_DISSENT_03-09-2026.md"), "w").write(dissent)
     return eng

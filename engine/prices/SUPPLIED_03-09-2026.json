@@ -1,0 +1,639 @@
+{
+ "_": "Prices supplied by the principal on 3 September 2026, written here because a figure that arrives in a conversation binds nothing: the container is rebuilt from the repository and a session that cannot see it will ask again [R-IND-01]. Source file: Latest_testahil_stocks_prices_392026.xlsx. These are CLOSES on the date each row carries, not all the same day — two EGX names and a few others carry 2 September.",
+ "supplied": "2026-09-03",
+ "by": "the principal",
+ "source_file": "Latest_testahil_stocks_prices_392026.xlsx",
+ "count": 90,
+ "prices": {
+  "ABUK": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Abu Qir Fertilizers",
+   "price": 94.0,
+   "date": "2026-09-03"
+  },
+  "ADIB": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "ADIB-Egypt",
+   "price": 52.05,
+   "date": "2026-09-03"
+  },
+  "AMOC": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Alexandria Mineral Oils",
+   "price": 13.5,
+   "date": "2026-09-03"
+  },
+  "ARCC": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Arabian Cement Co",
+   "price": 77.0,
+   "date": "2026-09-03"
+  },
+  "BTFH": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Beltone Financial Holding",
+   "price": 3.02,
+   "date": "2026-09-03"
+  },
+  "CCAP": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Citadel Capital",
+   "price": 5.9,
+   "date": "2026-09-03"
+  },
+  "CLHO": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Cleopatra Hospital",
+   "price": 17.88,
+   "date": "2026-09-03"
+  },
+  "COMI": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Commercial International Bank (CIB)",
+   "price": 138.98,
+   "date": "2026-09-03"
+  },
+  "DSCW": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Dice Sport & Casual Wear",
+   "price": 2.03,
+   "date": "2026-09-02"
+  },
+  "EFID": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Edita Food Industries",
+   "price": 30.79,
+   "date": "2026-09-03"
+  },
+  "EFIH": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "e-finance for Digital & Financial Investments",
+   "price": 22.97,
+   "date": "2026-09-03"
+  },
+  "EGAL": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Egypt Aluminum",
+   "price": 381.0,
+   "date": "2026-09-03"
+  },
+  "EGCH": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Egyptian Chemical Industries (KIMA)",
+   "price": 14.41,
+   "date": "2026-09-03"
+  },
+  "ELEC": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Electro Cable Egypt",
+   "price": 2.08,
+   "date": "2026-09-03"
+  },
+  "EMFD": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Emaar Misr for Development",
+   "price": 13.8,
+   "date": "2026-09-03"
+  },
+  "ETEL": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Telecom Egypt",
+   "price": 115.0,
+   "date": "2026-09-03"
+  },
+  "FWRY": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Fawry for Banking Technology",
+   "price": 18.95,
+   "date": "2026-09-03"
+  },
+  "GBCO": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "GB Corp",
+   "price": 28.98,
+   "date": "2026-09-03"
+  },
+  "HELI": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Heliopolis Housing",
+   "price": 8.1,
+   "date": "2026-09-03"
+  },
+  "HRHO": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "EFG Holding",
+   "price": 25.7,
+   "date": "2026-09-03"
+  },
+  "ISPH": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Ibnsina Pharma",
+   "price": 12.95,
+   "date": "2026-09-03"
+  },
+  "JUFO": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Juhayna Food Industries",
+   "price": 27.06,
+   "date": "2026-09-03"
+  },
+  "KABO": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "El Nasr Clothing & Textiles (Kabo)",
+   "price": 34.06,
+   "date": "2026-09-03"
+  },
+  "LCSW": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Lecico Egypt",
+   "price": 36.0,
+   "date": "2026-09-02"
+  },
+  "OCDI": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "SODIC",
+   "price": 33.52,
+   "date": "2026-09-02"
+  },
+  "OIH": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Orascom Investment Holding",
+   "price": 2.01,
+   "date": "2026-09-03"
+  },
+  "ORAS": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Orascom Construction",
+   "price": 831.5,
+   "date": "2026-09-03"
+  },
+  "ORHD": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Orascom Development Egypt",
+   "price": 42.0,
+   "date": "2026-09-03"
+  },
+  "ORWE": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Oriental Weavers",
+   "price": 26.76,
+   "date": "2026-09-02"
+  },
+  "PHAR": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Egyptian Int. Pharmaceuticals (EIPICO)",
+   "price": 127.3,
+   "date": "2026-09-03"
+  },
+  "PHDC": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Palm Hills Developments",
+   "price": 14.4,
+   "date": "2026-09-03"
+  },
+  "PRDC": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Pioneers Properties",
+   "price": 9.78,
+   "date": "2026-09-03"
+  },
+  "RAYA": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Raya Holding",
+   "price": 7.15,
+   "date": "2026-09-03"
+  },
+  "RMDA": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Tenth of Ramadan Pharma (Rameda)",
+   "price": 5.91,
+   "date": "2026-09-03"
+  },
+  "SCEM": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Sinai Cement",
+   "price": 100.5,
+   "date": "2026-09-02"
+  },
+  "SWDY": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Elsewedy Electric",
+   "price": 90.5,
+   "date": "2026-09-03"
+  },
+  "TMGH": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "Talaat Moustafa Group",
+   "price": 96.6,
+   "date": "2026-09-02"
+  },
+  "2POINTZERO": {
+   "exchange": "ADX",
+   "currency": "AED",
+   "company": "2PointZero",
+   "price": 2.08,
+   "date": "2026-09-03"
+  },
+  "ADCB": {
+   "exchange": "ADX",
+   "currency": "AED",
+   "company": "Abu Dhabi Commercial Bank",
+   "price": 15.14,
+   "date": "2026-09-03"
+  },
+  "ADIBUAE": {
+   "exchange": "ADX",
+   "currency": "AED",
+   "company": "Abu Dhabi Islamic Bank",
+   "price": 22.66,
+   "date": "2026-09-03"
+  },
+  "ADNOCDIST": {
+   "exchange": "ADX",
+   "currency": "AED",
+   "company": "ADNOC Distribution",
+   "price": 4.02,
+   "date": "2026-09-03"
+  },
+  "ADNOCDRILL": {
+   "exchange": "ADX",
+   "currency": "AED",
+   "company": "ADNOC Drilling",
+   "price": 5.8,
+   "date": "2026-09-03"
+  },
+  "ADNOCGAS": {
+   "exchange": "ADX",
+   "currency": "AED",
+   "company": "ADNOC Gas",
+   "price": 3.2,
+   "date": "2026-09-03"
+  },
+  "ADNOCLS": {
+   "exchange": "ADX",
+   "currency": "AED",
+   "company": "ADNOC Logistics & Services",
+   "price": 6.85,
+   "date": "2026-09-03"
+  },
+  "AGTHIA": {
+   "exchange": "ADX",
+   "currency": "AED",
+   "company": "Agthia Group",
+   "price": 3.29,
+   "date": "2026-09-03"
+  },
+  "ALDAR": {
+   "exchange": "ADX",
+   "currency": "AED",
+   "company": "Aldar Properties",
+   "price": 7.6,
+   "date": "2026-09-03"
+  },
+  "ALPHADHABI": {
+   "exchange": "ADX",
+   "currency": "AED",
+   "company": "Alpha Dhabi Holding",
+   "price": 7.3,
+   "date": "2026-09-03"
+  },
+  "AMR": {
+   "exchange": "ADX",
+   "currency": "AED",
+   "company": "Americana Restaurants",
+   "price": 2.39,
+   "date": "2026-09-03"
+  },
+  "BOROUGE": {
+   "exchange": "ADX",
+   "currency": "AED",
+   "company": "Borouge",
+   "price": 2.35,
+   "date": "2026-09-03"
+  },
+  "BURJEEL": {
+   "exchange": "ADX",
+   "currency": "AED",
+   "company": "Burjeel Holdings",
+   "price": 1.24,
+   "date": "2026-09-03"
+  },
+  "EAND": {
+   "exchange": "ADX",
+   "currency": "AED",
+   "company": "e& (Etisalat)",
+   "price": 21.18,
+   "date": "2026-09-03"
+  },
+  "FAB": {
+   "exchange": "ADX",
+   "currency": "AED",
+   "company": "First Abu Dhabi Bank",
+   "price": 19.4,
+   "date": "2026-09-03"
+  },
+  "FERTIGLB": {
+   "exchange": "ADX",
+   "currency": "AED",
+   "company": "Fertiglobe",
+   "price": 2.67,
+   "date": "2026-09-03"
+  },
+  "IHC": {
+   "exchange": "ADX",
+   "currency": "AED",
+   "company": "International Holding Company",
+   "price": 369.0,
+   "date": "2026-09-03"
+  },
+  "LULU": {
+   "exchange": "ADX",
+   "currency": "AED",
+   "company": "Lulu Retail",
+   "price": 0.94,
+   "date": "2026-09-03"
+  },
+  "MODON": {
+   "exchange": "ADX",
+   "currency": "AED",
+   "company": "Modon Holding",
+   "price": 2.83,
+   "date": "2026-09-03"
+  },
+  "AIRARABIA": {
+   "exchange": "DFM",
+   "currency": "AED",
+   "company": "Air Arabia",
+   "price": 4.97,
+   "date": "2026-09-03"
+  },
+  "DEWA": {
+   "exchange": "DFM",
+   "currency": "AED",
+   "company": "Dubai Electricity & Water Authority",
+   "price": 2.7,
+   "date": "2026-09-03"
+  },
+  "DIB": {
+   "exchange": "DFM",
+   "currency": "AED",
+   "company": "Dubai Islamic Bank",
+   "price": 7.2,
+   "date": "2026-09-03"
+  },
+  "DU": {
+   "exchange": "DFM",
+   "currency": "AED",
+   "company": "Emirates Integrated Telecommunications",
+   "price": 11.36,
+   "date": "2026-09-03"
+  },
+  "EMAAR": {
+   "exchange": "DFM",
+   "currency": "AED",
+   "company": "Emaar Properties",
+   "price": 10.8,
+   "date": "2026-09-03"
+  },
+  "EMAARDEV": {
+   "exchange": "DFM",
+   "currency": "AED",
+   "company": "Emaar Development",
+   "price": 13.38,
+   "date": "2026-09-03"
+  },
+  "EMPOWER": {
+   "exchange": "DFM",
+   "currency": "AED",
+   "company": "Emirates Central Cooling Systems",
+   "price": 1.57,
+   "date": "2026-09-03"
+  },
+  "ENBD": {
+   "exchange": "DFM",
+   "currency": "AED",
+   "company": "Emirates NBD",
+   "price": 30.28,
+   "date": "2026-09-03"
+  },
+  "SALIK": {
+   "exchange": "DFM",
+   "currency": "AED",
+   "company": "Salik Company",
+   "price": 5.4,
+   "date": "2026-09-03"
+  },
+  "ACWA": {
+   "exchange": "Tadawul",
+   "currency": "SAR",
+   "company": "ACWA Power",
+   "price": 192.7,
+   "date": "2026-09-03"
+  },
+  "ALINMA": {
+   "exchange": "Tadawul",
+   "currency": "SAR",
+   "company": "Alinma Bank",
+   "price": 25.0,
+   "date": "2026-09-03"
+  },
+  "ALRAJHI": {
+   "exchange": "Tadawul",
+   "currency": "SAR",
+   "company": "Al Rajhi Bank",
+   "price": 66.2,
+   "date": "2026-09-03"
+  },
+  "ARAMCO": {
+   "exchange": "Tadawul",
+   "currency": "SAR",
+   "company": "Saudi Aramco",
+   "price": 26.02,
+   "date": "2026-09-03"
+  },
+  "ELM": {
+   "exchange": "Tadawul",
+   "currency": "SAR",
+   "company": "Elm Company",
+   "price": 608.5,
+   "date": "2026-09-03"
+  },
+  "EXTRA": {
+   "exchange": "Tadawul",
+   "currency": "SAR",
+   "company": "United Electronics Company",
+   "price": 66.05,
+   "date": "2026-09-03"
+  },
+  "MAADEN": {
+   "exchange": "Tadawul",
+   "currency": "SAR",
+   "company": "Saudi Arabian Mining Company",
+   "price": 65.7,
+   "date": "2026-09-03"
+  },
+  "RIBL": {
+   "exchange": "Tadawul",
+   "currency": "SAR",
+   "company": "Riyad Bank",
+   "price": 20.48,
+   "date": "2026-09-03"
+  },
+  "RIYADHCABLE": {
+   "exchange": "Tadawul",
+   "currency": "SAR",
+   "company": "Riyadh Cables",
+   "price": 104.8,
+   "date": "2026-09-03"
+  },
+  "SABIC": {
+   "exchange": "Tadawul",
+   "currency": "SAR",
+   "company": "Saudi Basic Industries",
+   "price": 81.4,
+   "date": "2026-09-03"
+  },
+  "SAVOLA": {
+   "exchange": "Tadawul",
+   "currency": "SAR",
+   "company": "Savola Group",
+   "price": 30.3,
+   "date": "2026-09-03"
+  },
+  "SNB": {
+   "exchange": "Tadawul",
+   "currency": "SAR",
+   "company": "Saudi National Bank",
+   "price": 42.14,
+   "date": "2026-09-03"
+  },
+  "STC": {
+   "exchange": "Tadawul",
+   "currency": "SAR",
+   "company": "Saudi Telecom Company",
+   "price": 43.86,
+   "date": "2026-09-03"
+  },
+  "IQCD": {
+   "exchange": "QSE",
+   "currency": "QAR",
+   "company": "Industries Qatar",
+   "price": 13.17,
+   "date": "2026-09-03"
+  },
+  "QGTS": {
+   "exchange": "QSE",
+   "currency": "QAR",
+   "company": "Qatar Gas Transport (Nakilat)",
+   "price": 4.85,
+   "date": "2026-09-03"
+  },
+  "QNB": {
+   "exchange": "QSE",
+   "currency": "QAR",
+   "company": "Qatar National Bank",
+   "price": 16.66,
+   "date": "2026-09-02"
+  },
+  "KAKAO": {
+   "exchange": "KRX",
+   "currency": "KRW",
+   "company": "Kakao Corp",
+   "price": 35100.0,
+   "date": "2026-09-03"
+  },
+  "LGES": {
+   "exchange": "KRX",
+   "currency": "KRW",
+   "company": "LG Energy Solution",
+   "price": 364000.0,
+   "date": "2026-09-03"
+  },
+  "SAMSUNG": {
+   "exchange": "KRX",
+   "currency": "KRW",
+   "company": "Samsung Electronics",
+   "price": 250000.0,
+   "date": "2026-09-03"
+  },
+  "INFY": {
+   "exchange": "NSE",
+   "currency": "INR",
+   "company": "Infosys",
+   "price": 1132.5,
+   "date": "2026-09-03"
+  },
+  "RELIANCE": {
+   "exchange": "NSE",
+   "currency": "INR",
+   "company": "Reliance Industries",
+   "price": 1308.8,
+   "date": "2026-09-03"
+  },
+  "TMPV": {
+   "exchange": "NSE",
+   "currency": "INR",
+   "company": "Tata Motors",
+   "price": 310.1,
+   "date": "2026-09-03"
+  },
+  "AAPL": {
+   "exchange": "NASDAQ",
+   "currency": "USD",
+   "company": "Apple Inc.",
+   "price": 325.31,
+   "date": "2026-09-03"
+  },
+  "NVDA": {
+   "exchange": "NASDAQ",
+   "currency": "USD",
+   "company": "NVIDIA Corp",
+   "price": 217.11,
+   "date": "2026-09-03"
+  },
+  "TSLA": {
+   "exchange": "NASDAQ",
+   "currency": "USD",
+   "company": "Tesla Inc.",
+   "price": 367.95,
+   "date": "2026-09-03"
+  }
+ }
+}

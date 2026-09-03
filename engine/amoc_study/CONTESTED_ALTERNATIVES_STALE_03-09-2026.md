@@ -46,46 +46,67 @@ bridge migration replaced.
 ## Why it matters, and it is not cosmetic
 
 Every alternative this study publishes is compared against the headline, and the
-two sit on different bridges — so the comparison measures the bridge as much as
-the judgement.
+two do not come from the same model.
 
-The alternatives can be re-based onto the DELIVERED bridge exactly, because the
-helper's own output inverts to an enterprise value and the delivered bridge is a
-closed-form function of it:
+## CORRECTION — an earlier version of this note got the size of that wrong
 
+The first version of this section re-based the published alternatives onto the
+delivered bridge and printed a "like-for-like" column. **That column is withdrawn.**
+It assumed the helper differed from the delivered model in ONE way — the bridge —
+and it differs in TWO, so re-basing only the bridge does not produce a
+like-for-like figure. The correction is recorded here rather than quietly edited,
+on the same append-only discipline the ledgers keep.
+
+## The two divergences, both measured
+
+Run `_val_at()` at the study's **own** adopted rates — `wacc_exp` 27.4543%,
+`wacc_term` 18.1386%, `g` 7% — and it returns **EGP 10.8572** against the
+delivered **EGP 9.9142**. That is **9.51%**, on identical discount factors
+(verified: the helper's factor chain reproduces `fcst.df` exactly).
+
+**(1) The terminal is struck on a different capital base.** The delivered terminal
+return is computed on invested capital at **REPLACEMENT cost** — working capital
+plus the asset base at gross cost — which is the study's own stated construction
+and the reason its terminal reinvestment rate is what it is. `_val_at()` re-derives
+`roic` from the FORECAST invested-capital series instead:
+
+```python
+_roic = nopat[-1] * (1 + g_) / ic[-1]      # forecast IC, not replacement cost
+_rr   = min(g_ / _roic, 0.95)
+_tv   = nopat[-1] * (1 + g_) * (1 - _rr) / max(wt_ - g_, 0.02)
 ```
-ev_alt      = (ps_helper x shares + net_debt) / (1 - nci_share_enterprise)
-ps_delivered = ((ev_alt - net_debt) x (1 - NCI_OP) - provisions - dividend
-                + investments) / shares
-```
 
-`NCI_OP` is **2.9628%** — the minority's share of gross EQUITY value, recovered
-from the delivered bridge's own lines — against the **4.6446%** share of
-ENTERPRISE value the helper applies. Run on the study's own enterprise value the
-identity returns **EGP 9.9142**, the delivered figure to four decimals, which is
-what makes the re-basing a reconstruction of this study's bridge rather than a
-second opinion about it.
+At the centre that gives a terminal value of **17,504.6** against the delivered
+**15,691.4** — **+11.56%** — and an enterprise value **+6.28%** above the
+delivered one.
 
-| contested choice | as published | like-for-like on the delivered bridge | vs the headline 9.9142 |
-|---|---:|---:|---:|
-| rating-basis cost of capital, not CDS | 8.7990 | **8.3330** | **−15.9%** |
-| gross-debt rather than net-debt weights | 10.8586 | **10.4289** | **+5.2%** |
-| discounting the export leg in dollars | 10.6473 | **10.2139** | +3.0% |
-| minority share doubled to 6% | 10.7359 | *not computable here* | — |
+**(2) The bridge.** `_val_at()` ends `(EV × (1 − nci) − net_debt) / shares`. The
+delivered headline comes from a six-line bridge that also carries provisions
+(−996.9), a dividend payable (−258.3) and investments (+594.8), and that deducts
+the minority as a share of **EQUITY** value (2.9628% of gross equity, 411.1)
+rather than of **ENTERPRISE** value (4.6446%, 505.1). The second is the
+construction [R-BRIDGE-01] (ii) forbids in as many words — *"deducted from EQUITY
+value, NEVER from enterprise value"*.
 
-The last row is left blank deliberately. "6%" is a share of ENTERPRISE value in
-the helper's construction, and what it becomes in a bridge that charges the
-minority against gross equity is a judgement about the alternative itself, not an
-arithmetic conversion. Filling it by analogy would be inventing the number this
-note exists to complain about.
+## Why it is worse than a stale helper: it drives the sensitivity section too
 
-**What changes on the correct basis.** As published, three of four choices clear
-the 5%-of-value materiality line. Like-for-like, of the three that convert
-exactly, **two do — one down and one up** — so the sign test on this study is a
-one-all draw rather than the three-nothing it would have read as. The direction of
-the error is not constant either: the rating-basis row gets *larger* on the
-correct bridge (−11.2% to −15.9%) while the currency row falls out of materiality
-altogether (+7.4% to +3.0%). A single correction factor could not have fixed this.
+`_val_at()` prices the three contested choices **and every cell of §1.9's
+sensitivity grids** (`grid_wacc_g`, `grid_exp_term`, `grid_beta`). The
+at-assumption cell of both two-dimensional grids reads **10.8572** against the
+study's own headline of **9.9142**. A reader who looks at the sensitivity table
+and then at the answer finds them 9.5% apart with nothing explaining it.
+
+The beta grid is the exception and it is instructive: its centre reads exactly
+9.9142, because that row is built by passing the study's own weights and rates
+through and lands on the same point by construction.
+
+## What the fix is, and it is not a patch
+
+`_val_at()` has to reproduce the study's own model at the centre before any
+alternative it prices means anything: the replacement-cost terminal, then the
+delivered bridge. The test is arithmetic and unambiguous — at the adopted rates it
+must return **9.9142**. Until it does, no number this note could compute for the
+alternatives would be worth printing, which is why none is printed here now.
 
 ## What is NOT concluded here
 

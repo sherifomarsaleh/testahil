@@ -46,7 +46,21 @@ on:
       - 'engine/build_depth_audit/gap_outstanding.json'
       - 'scripts/check_workbook_structure.py'
       - 'scripts/check_workbook_structure_negative_control.py'
+      - 'scripts/check_document_structure.py'
+      - 'scripts/check_document_structure_negative_control.py'
+      - 'scripts/check_delivered_vocabulary.py'
+      - 'scripts/check_delivered_vocabulary_negative_control.py'
+      - 'scripts/check_sweep_module.py'
+      - 'scripts/check_sweep_module_negative_control.py'
+      - 'engine/research_sweep.py'
+      - 'scripts/check_prose_figures.py'
+      - 'scripts/check_prose_figures_negative_control.py'
+      - 'engine/prose_figures.py'
+      - 'engine/build_depth_audit/prose_outstanding.json'
       - 'engine/build_depth_audit/workbook_outstanding.json'
+      - 'engine/build_depth_audit/document_outstanding.json'
+      - 'engine/build_depth_audit/vocabulary_outstanding.json'
+      - 'engine/build_depth_audit/sweep_outstanding.json'
       - 'engine/macro_path.py'
       - 'engine/macro_paths/**'
       - 'engine/build_coc_reference.py'
@@ -114,7 +128,21 @@ on:
       - 'engine/build_depth_audit/gap_outstanding.json'
       - 'scripts/check_workbook_structure.py'
       - 'scripts/check_workbook_structure_negative_control.py'
+      - 'scripts/check_document_structure.py'
+      - 'scripts/check_document_structure_negative_control.py'
+      - 'scripts/check_delivered_vocabulary.py'
+      - 'scripts/check_delivered_vocabulary_negative_control.py'
+      - 'scripts/check_sweep_module.py'
+      - 'scripts/check_sweep_module_negative_control.py'
+      - 'engine/research_sweep.py'
+      - 'scripts/check_prose_figures.py'
+      - 'scripts/check_prose_figures_negative_control.py'
+      - 'engine/prose_figures.py'
+      - 'engine/build_depth_audit/prose_outstanding.json'
       - 'engine/build_depth_audit/workbook_outstanding.json'
+      - 'engine/build_depth_audit/document_outstanding.json'
+      - 'engine/build_depth_audit/vocabulary_outstanding.json'
+      - 'engine/build_depth_audit/sweep_outstanding.json'
       - 'engine/macro_path.py'
       - 'engine/macro_paths/**'
       - 'engine/build_coc_reference.py'
@@ -305,6 +333,89 @@ jobs:
       - name: Workbook-structure gate — negative control
         run: python3 scripts/check_workbook_structure_negative_control.py
 
+      # [R-ENF-01] the OTHER half of the same attestation. The workbook gate above closed
+      # structure_matches_model for the .xlsx and left the .docx self-certified — and on
+      # 03-Sep-2026 three outside audits found exactly what that predicts: AMOC's Appendix
+      # C stopped after C.3 (no cross-examination, no three-in-one-room, no divergence
+      # table, all three required by name in depth-bar standard 7) and ARCC shipped with no
+      # Headline, no Company overview, no About and no Disclosure. Both attested
+      # structure_matches_model=True; neither was lying, nobody had counted. The section
+      # list is read off the MODEL REPORT DOCUMENT, never typed here.
+      - name: Document-structure gate
+        run: python3 scripts/check_document_structure.py
+
+      # and the proof it can go red — AMOC's truncated appendix and ARCC's missing front
+      # and back matter exactly as they shipped, a single missing section, a right-sections
+      # -wrong-order document, a document with no headings under either convention (which
+      # must REFUSE, not report every section missing), a vanished study, an emptied
+      # population, and the two records of the standard disagreeing; plus six clean cases,
+      # among them both house heading conventions, numbers written '1.' rather than '1',
+      # 'About this study' for 'About this series', and a study carrying EXTRA sections
+      - name: Document-structure gate — negative control
+        run: python3 scripts/check_document_structure_negative_control.py
+
+      # [R-ENF-01] depth-bar standard 4 is implemented by every study as ITS OWN
+      # hand-maintained list of forbidden words, and on 03-Sep-2026 EGCH's delivered
+      # bibliography shipped "[R-MACRO-01]", "[R-LENS-03]" and "engine/macro_paths/EG.json"
+      # while its own scrub reported 0 hits across 68 patterns. AMOC's scrub, which happens
+      # to carry both shapes, caught the identical sentence the same hour, and a sweep found
+      # three more documents leaking through three different holes. A list of forbidden
+      # words cannot be complete, so a rule identifier and a repository path are matched by
+      # SHAPE, from outside the studies, over all of them.
+      - name: Delivered-vocabulary gate
+        run: python3 scripts/check_delivered_vocabulary.py
+
+      # and the proof it can go red — all four leaks exactly as they shipped, including
+      # PHDC's inside a table cell, plus other shapes of the same defect, a vanished study,
+      # an emptied population and a population with no documents; then four clean cases,
+      # among them ordinary prose using register, gate, step and engine in their everyday
+      # senses, and a bracketed [Note 14] that must NOT read as a rule identifier
+      - name: Delivered-vocabulary gate — negative control
+        run: python3 scripts/check_delivered_vocabulary_negative_control.py
+
+      # [R-ENF-01] CLAUDE.md says of engine/research_sweep.py: "Import this rather than
+      # hand-rolling a study-local sweep script." Sixteen studies do; ARCC did not, and what
+      # its own version checked is the point — five real checks, all five passing, none of
+      # them the module's eight invariants. Replaying the same 26 findings through
+      # SweepRegister.validate() produced SEVEN errors, five of which were facts the study
+      # already held and had written where no checker could point at them: a company website
+      # attempted and REFUSED, an investor presentation cited by page for six drivers, the
+      # reviewed half the bridge stands on, and three top-down drivers whose evidenced
+      # absence sat in prose inside their own justification.
+      - name: Sweep-module gate
+        run: python3 scripts/check_sweep_module.py
+
+      # and the proof it can go red — ARCC's hand-rolled register as it stood, a study that
+      # imports the module for its ENUMS and never calls validate(), no sweep at all, a
+      # register that will not parse, invariant failures the study does not NAME, a vanished
+      # study and an emptied population; plus three clean cases including a study that names
+      # its own open invariants, which is a gap written down rather than a gap hidden
+      - name: Sweep-module gate — negative control
+        run: python3 scripts/check_sweep_module_negative_control.py
+
+      # "A NUMBER STATED IN PROSE MUST BE COMPUTED, NOT TYPED" has been standing since
+      # 07-Aug-2026, and exactly one study implemented a check for it. What that cost was
+      # measured in a single afternoon on studies that had just been rebuilt and passed
+      # every other gate: AMOC's "514-basis-point range across four consecutive filed
+      # periods", where the same sentence names five periods whose spread is 737 basis
+      # points; four more typed period counts beside it, one of which summed five values
+      # and divided by four; ARCC's masthead a day stale and its price date a month;
+      # PHDC's three contradictory comments above one line. None is a modelling error and
+      # every one reaches a reader, because a typed word does not look like a figure.
+      #
+      # The mechanism is now SHARED (engine/prose_figures.py) rather than copied — the
+      # L-084 lesson from the same day, on the sweeps — and this gate requires each study
+      # to carry it AND to PASS it. Counting a file's existence would put a green tick on
+      # a red result.
+      - name: Prose-figure gate
+        run: python3 scripts/check_prose_figures.py
+
+      # and the proof it can go red, including the shape that matters most: a study that
+      # CARRIES the instrument while its own check is RED, which a gate testing only for
+      # the file would have reported clean
+      - name: Prose-figure gate — negative control
+        run: python3 scripts/check_prose_figures_negative_control.py
+
       # [R-MACRO-01] one house macro path per market, and every study's growth
       # rates held to it from outside. Five studies carried five inflation rates
       # for one fiscal year in one country, three sovereign quotes and terminal
@@ -366,6 +477,40 @@ jobs:
       # bar; they were chosen, written down and inherited.
       - name: Lens-architecture gate
         run: python3 scripts/check_lens_design.py
+
+      # [R-ANCHOR-01] the forecast anchor. The rule that a near-term reviewed
+      # actual outranks a stale full-year rate has been in both governing documents
+      # since 07-Aug-2026, and on 03-Sep-2026 three studies in one market violated
+      # it in three costumes, every one lowering the value, every one found by a
+      # person reading the numbers. [L-048] was registered after the first
+      # occurrence and bound nothing.
+      - name: Forecast-anchor gate
+        run: python3 scripts/check_forecast_anchor.py
+
+      # and the proof it can go red -- eighteen conditions including AMOC's forecast
+      # exactly as it stood, AMOC's mechanism contradicted by its own filings, and
+      # EGCH's path, which the opening-year clause alone would have passed. Its
+      # first run caught a bug in the gate's own tolerance.
+      - name: Forecast-anchor gate — negative control
+        run: python3 scripts/check_forecast_anchor_negative_control.py
+
+      # [R-ENF-06] artefact currency. Three outside audits on 03-Sep-2026 returned
+      # NOT DELIVERABLE on three re-struck studies for one reason: the re-strike
+      # reached the valuation and not the paper. AMOC's case_adversarial.json was
+      # read by three builders and written by NOTHING, and told a reader on page one
+      # that conceding every contested charge reached a value BELOW the published
+      # central. No gate could see it, because every gate reads study_numbers.json
+      # and that file is not in it.
+      - name: Artefact-currency gate
+        run: python3 scripts/check_artefact_currency.py
+
+      # and the proof it can go red. Its three headline cases are the three that
+      # provoked the rule, rebuilt as they stood -- including ARCC's efg_bridge.json,
+      # which the gate's OWN FIRST DRAFT could not see, because it carries its answer
+      # under a key the value-key list did not know. A gate that does not catch its
+      # own motivating case is not evidence.
+      - name: Artefact-currency gate — negative control
+        run: python3 scripts/check_artefact_currency_negative_control.py
 
       # and the proof that gate can go red — among its cases is PHDC's own
       # architecture exactly as it shipped. Its first run caught a real

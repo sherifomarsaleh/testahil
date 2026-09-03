@@ -122,7 +122,9 @@ MODEL_STUDY = {
         "7 Caveats and what would change our mind",
         "Appendix A Financial statements (A.1 income statement, 3y historical + 5y forecast; "
         "A.2 balance sheet; A.3 forecast balance sheet and cash-flow markers)",
-        "Appendix B Peer frame, risk register — and the research register",
+        "Appendix B Peer frame, risk register — and the research register "
+        "(B.1 peers and the sector frame; B.2 risk register; B.3 the research "
+        "register — layers, dated, negative results included)",
         "Appendix C Expert panel (C.1-C.3 Expert 1/2/3, cast by method, never persona names; "
         "C.4 cross-examination; C.5 the three in one room; C.6 reading the divergence)",
         "About this series",
@@ -486,6 +488,55 @@ class GrowthLine:
     exempt_reason: Optional[str] = None
 
 
+# The mappings a study may declare for an inflation-class input. CLOSED, for the reason
+# every closed list in this protocol is closed [R-COC-01 AMENDED, R-ANCHOR-01]: an open one
+# lets a study opt out by inventing a mapping, and "our year is different" is not a mapping.
+MACRO_INFLATION_MAPPINGS = {
+    # the house ladder as published, calendar year for calendar year
+    "calendar": "the house ladder as published, year for year",
+    # a fiscal year ending 30 June spans H2 of one calendar year and H1 of the next, so it
+    # takes half of each. Arithmetic, not a judgement -- which is why it is reproducible.
+    "fiscal_june": "a 30-June fiscal year: half of each of the two calendar years it spans",
+    # likewise a 31-March year end: three quarters of the opening calendar year
+    "fiscal_march": "a 31-March fiscal year: three quarters of the opening calendar year",
+    # the terminal held flat, for a line that escalates at the long-run rate only
+    "terminal_flat": "the house terminal inflation, held flat",
+    # A REPORTED FACT, NOT AN ASSUMPTION. A trailing actual used to anchor a base year is a
+    # filed observation with a date, which SIGCM already governs, and holding it to a
+    # forward ladder would be wrong -- the ladder is a forecast and the observation is not.
+    # The loophole this would otherwise open is closed by arithmetic rather than by trust:
+    # an observed entry must be a SCALAR with a date, so a five-year path cannot be
+    # relabelled as an observation.
+    "observed": "a dated reported figure, not a forecast -- must be a single value",
+}
+
+
+def macro_inflation_series(path, mapping: str, n: int,
+                           first_year: Optional[int] = None) -> List[float]:
+    """The house ladder under one of the closed mappings above.
+
+    Beyond the ladder's last published year the house TERMINAL is used, never an
+    extrapolation of the study's own -- extrapolating the study's own is the thing
+    [R-MACRO-01] forbids, and it is how a five-year array quietly invents a sixth number.
+    """
+    lad = dict(zip(path.inflation_years, path.inflation_path))
+    y0 = first_year if first_year is not None else min(path.inflation_years)
+    term = path.terminal_inflation
+
+    def cal(y):
+        return lad.get(y, term)
+
+    if mapping == "calendar":
+        return [cal(y0 + i) for i in range(n)]
+    if mapping == "fiscal_june":
+        return [0.5 * cal(y0 + i) + 0.5 * cal(y0 + i + 1) for i in range(n)]
+    if mapping == "fiscal_march":
+        return [0.75 * cal(y0 + i) + 0.25 * cal(y0 + i + 1) for i in range(n)]
+    if mapping == "terminal_flat":
+        return [term] * n
+    raise AssertionError("unknown inflation mapping %r" % mapping)
+
+
 def assert_macro_coherence(record: dict, market: Optional[str] = None,
                            ticker: str = "?") -> dict:
     """Raise unless every growth rate in a model sits on the house macro path.
@@ -586,6 +637,101 @@ def assert_macro_coherence(record: dict, market: Optional[str] = None,
                 "while depreciating the currency at some other rate is the same "
                 "event counted once and ignored once."
                 % (off[0] + 1, fx[off[0]], want[off[0]]))
+
+    # ---- 6. EVERY INFLATION-CLASS INPUT, NOT ONLY THE DECLARED GROWTH LINES ----
+    # [added 03-Sep-2026 after EGCH]. Checks 1-5 read what a study DECLARES. EGCH declared
+    # its one growth line exempt on grounds that were perfectly true -- its revenue is built
+    # from tonnes and dollar prices, so there is no nominal growth rate on that line to sit
+    # on the ladder -- while an input called cpi_path, nowhere in the record, drove the
+    # purchasing-power wedge (and so the entire currency path, and so both the translation of
+    # dollar revenue into pounds AND the gas cost) and escalated every domestic cost line.
+    # It read 10.0 / 7.0 / 6.0 / 5.0 / 5.0 against a house ladder of 16.0 / 12.0 / 9.0 / 7.5
+    # / 7.0 and terminated at 5% against a house terminal of 7% the same record carried.
+    #
+    # The study's own gap review named it in plain words -- "the study's own Egyptian
+    # inflation path" -- inside the heading whose purpose is to catch it, and passed, because
+    # the number was DERIVED rather than typed and nobody asked derived from what.
+    #
+    # So a study must now DECLARE every inflation-class input it registers, with the mapping
+    # that produces it from the house ladder, and this reproduces each one. The rule is not
+    # "no inflation array" -- a fiscal year straddling two calendar years legitimately needs
+    # its own mapping -- it is that the mapping is stated and reproducible from outside.
+    infl = record.get("inflation_inputs")
+    if infl is None:
+        fails.append(
+            "no inflation_inputs block. A study must name EVERY inflation-class input it "
+            "registers and the mapping that derives it from the house ladder, even if that "
+            "list is empty -- declare it as [] where the model genuinely carries none. "
+            "EGCH's growth lines were all legitimately exempt while an undeclared cpi_path "
+            "drove the currency path and every cost escalator, and both this assertion and "
+            "the study's own gap review passed it.")
+    else:
+        if not isinstance(infl, (list, tuple)):
+            fails.append("inflation_inputs must be a list of {key, mapping, values} entries")
+            infl = []
+        for e in infl:
+            key = (e or {}).get("key") or "?"
+            mapping = (e or {}).get("mapping")
+            vals = (e or {}).get("values")
+            if mapping not in MACRO_INFLATION_MAPPINGS:
+                fails.append(
+                    "inflation input %r declares mapping %r, which is not one of %s. The "
+                    "list is CLOSED for the reason every closed list in this protocol is "
+                    "closed: an open one lets any study opt out by inventing a mapping, and "
+                    "adding one is a rule amendment."
+                    % (key, mapping, ", ".join(sorted(MACRO_INFLATION_MAPPINGS))))
+                continue
+            if mapping == "observed":
+                if isinstance(vals, (list, tuple)):
+                    fails.append(
+                        "inflation input %r is declared 'observed' but carries %d values. An "
+                        "observation is a single dated figure; a per-year array is a "
+                        "forecast, and relabelling one as the other is how a study would "
+                        "opt out of this check."
+                        % (key, len(vals)))
+                elif not (e or {}).get("date"):
+                    fails.append(
+                        "inflation input %r is declared 'observed' with no date. A reported "
+                        "figure without its date is not an observation [SIGCM]." % key)
+                continue
+            if not isinstance(vals, (list, tuple)) or not vals:
+                fails.append("inflation input %r declares no values to check" % key)
+                continue
+            # A BOUNDED, COUNTED, REASONED EXEMPTION FOR LEADING YEARS. ARCC's first
+            # forecast year carries an EVIDENCED company anchor — its own filed price and
+            # cost step — and its years two to five are the house ladder to the basis
+            # point. That is legitimate and the study already reasons it. What is NOT
+            # legitimate is EGCH's shape, where a whole line was exempted and an
+            # undeclared array did the work, so the exemption here is a COUNT of leading
+            # years with a reason, never a blanket.
+            head = int((e or {}).get("exempt_head") or 0)
+            if head:
+                if not (e or {}).get("exempt_reason"):
+                    fails.append(
+                        "inflation input %r exempts its first %d year(s) with no reason. An "
+                        "exemption is a claim and carries its evidence." % (key, head))
+                if head >= len(vals):
+                    fails.append(
+                        "inflation input %r exempts all %d of its years, which is not an "
+                        "exemption but an opt-out. Exempt the leading years an evidenced "
+                        "anchor actually covers." % (key, len(vals)))
+                    continue
+                vals = list(vals)[head:]
+            want = macro_inflation_series(path, mapping, len(vals),
+                                          (e or {}).get("first_year"))
+            off = [i for i, (a, b) in enumerate(zip(vals, want))
+                   if abs(float(a) - b) > MACRO_TOLERANCE]
+            if off:
+                i = off[0]
+                fails.append(
+                    "inflation input %r, year %d (after %d exempted leading year(s)): "
+                    "the study carries %.4f and the house ladder under the declared %r "
+                    "mapping gives %.4f (out by %+.0fbp). A study may not carry an "
+                    "inflation number of its own [R-MACRO-01]; if the mapping is right the "
+                    "array was typed, and if the array is right the mapping is not what "
+                    "the study says it is."
+                    % (key, i + 1, head, float(vals[i]), mapping, want[i],
+                       10000 * (float(vals[i]) - want[i])))
 
     n = record.get("explicit_years")
     gend = record.get("growth_at_horizon_end")
@@ -945,6 +1091,54 @@ def assert_lens_design(record: dict, ticker: str = "?") -> dict:
                     "the relative multiple takes its multiple from the CURRENT PRICE, which "
                     "values the company at what it already trades at. The multiple comes "
                     "from peers or from the company's own history.")
+            # ---- THE STRING WAS THE WHOLE CHECK, AND A STRING IS AN ATTESTATION
+            # [ADDED 03-Sep-2026, found by the AMOC re-strike]. Everything above
+            # this line reads the multiple_source PROSE. AMOC's record said the
+            # multiple came "from the company's own history and its regional
+            # peers, never a multiple read off the current price" while its code
+            # computed ev_trailing = MARKET CAP + net debt and divided by base-year
+            # EBITDA -- the traded multiple exactly, re-rated by zero. The gate
+            # read the sentence, found the reassuring words, and passed. The
+            # re-strike is what exposed it: the lens moved +51% when the price
+            # moved +48%, which is what a lens anchored on the price does and what
+            # a lens anchored on history cannot do.
+            #
+            # So the claim is now ARITHMETIC. A relative multiple commits the
+            # multiple it adopted and the three numbers that would reproduce the
+            # traded one, and the gate divides. A record that supplies no
+            # ingredients has switched the check off rather than passed it --
+            # [R-COC-01]'s lesson, which is why they are REQUIRED and not optional.
+            circ = x.get("circularity") or {}
+            mult = x.get("multiple")
+            if mult is None:
+                fails.append(
+                    "the relative multiple does not commit the MULTIPLE it adopted. A "
+                    "source named in prose is an attestation; the multiple is the thing "
+                    "that can be checked.")
+            need = ("spot", "shares", "net_debt", "metric_value")
+            missing = [k for k in need if circ.get(k) is None]
+            if missing:
+                fails.append(
+                    "the relative multiple commits no circularity check (%s). The traded "
+                    "multiple is (spot x shares + net debt) / the metric, and a lens that "
+                    "cannot be compared with it is one nobody can tell apart from the "
+                    "price." % ", ".join(missing))
+            elif mult is not None:
+                try:
+                    _mv = float(circ["metric_value"])
+                    _traded = (float(circ["spot"]) * float(circ["shares"])
+                               + float(circ["net_debt"])) / _mv
+                except (TypeError, ValueError, ZeroDivisionError):
+                    fails.append("the relative multiple's circularity check does not "
+                                 "compute: its own numbers do not divide.")
+                else:
+                    x["_traded_multiple"] = _traded
+                    if _traded and abs(float(mult) / _traded - 1.0) < 0.005:
+                        fails.append(
+                            "the relative multiple %.4fx IS the traded multiple %.4fx to "
+                            "within half a per cent. Whatever the source says, this lens "
+                            "values the company at what it already trades at, and its only "
+                            "distance from the price is the bridge." % (float(mult), _traded))
         if k == "normalised_earnings":
             basis = (x.get("basis") or "").lower()
             if "real" not in basis and "less growth" not in basis and "ke - g" not in basis:
@@ -1094,6 +1288,7 @@ def assert_reverse_dcf(diag: dict, study_dir: str, ticker: str = "?") -> dict:
     here, whatever the file says.
     """
     import glob as _glob
+    import json as _json
     import os as _os
     import re as _re
 
@@ -1119,7 +1314,7 @@ def assert_reverse_dcf(diag: dict, study_dir: str, ticker: str = "?") -> dict:
         except OSError:
             continue
         if _re.search(r"diagnostics\.json|reverse_dcf|implied_discount|implied_conversion",
-                      txt) and base not in ("lenses.py", "docx_arcc.py"):
+                      txt):
             # a builder that COMPUTES the reverse read is fine; one that reads the
             # file back into the model is not.
             #
@@ -1142,6 +1337,58 @@ def assert_reverse_dcf(diag: dict, study_dir: str, ticker: str = "?") -> dict:
                     continue
                 leaks.append(base)
                 break
+    # THE VALUE ITSELF MUST NOT BE IN THE NUMBERS FILE, which is what the rule
+    # actually says: the reverse read lives outside "the numbers file builders
+    # read". Checking WHICH FILE reads WHAT is a proxy for that, and it needed two
+    # unexplained by-name exemptions (lenses.py, docx_arcc.py) to stop firing on
+    # studies doing the right thing — a study that COMPUTES the read, and a builder
+    # that only DISPLAYS it, are both fine and neither is distinguishable from a
+    # leak by grepping for a filename.
+    #
+    # This is checkable without guessing: take the diagnostic's OWN implied value
+    # and look for it in study_numbers.json. A float carried to full precision does
+    # not appear there by coincidence, so a hit means the quantity solved from the
+    # price is sitting in the file every builder reads — which is the thing
+    # prohibited, whether or not any builder currently computes from it. TMGH is
+    # the case that prompted this: its implied_discount_rate is in lenses.json and
+    # from there in study_numbers.json, and every use of it is display, so the
+    # rule's PURPOSE is met and its DEVICE is broken. The device is what is
+    # checkable, and widening the check to allow "display only" would delete it
+    # rather than sharpen it.
+    val = (d.get("implied") or {}).get("value")
+    nums = _os.path.join(study_dir, "study_numbers.json")
+    if isinstance(val, float) and _os.path.exists(nums):
+        try:
+            _doc = _json.load(open(nums, encoding="utf-8"))
+        except Exception:
+            _doc = None
+
+        def _hunt(node, trail=""):
+            if isinstance(node, dict):
+                for k, v in node.items():
+                    r = _hunt(v, trail + "/" + str(k))
+                    if r:
+                        return r
+            elif isinstance(node, list):
+                for i2, v in enumerate(node[:200]):
+                    r = _hunt(v, trail + "[%d]" % i2)
+                    if r:
+                        return r
+            elif isinstance(node, float) and node == val:
+                return trail
+            return None
+
+        where = _hunt(_doc) if _doc is not None else None
+        if where:
+            fails.append(
+                "the reverse read's own value (%r) is committed in "
+                "study_numbers.json at %s. A quantity solved from the traded price "
+                "must not sit in the numbers file every builder reads, whether or "
+                "not a builder currently computes from it — that is the "
+                "reverse-engineered rate arriving through a side door, and the "
+                "prohibition is worth nothing if the side door is open."
+                % (val, where))
+
     if leaks:
         fails.append(
             "these builders read the diagnostics file: %s. A quantity solved from the "

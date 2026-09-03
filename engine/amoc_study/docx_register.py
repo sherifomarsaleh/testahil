@@ -1,4 +1,4 @@
-"""AMOC_Bibliography_01-09-2026.docx — the companion bibliography document.
+"""AMOC_Bibliography_03-09-2026.docx — the companion bibliography document.
 
 Every input in the model: value, source, date and research layer — emitted directly from
 study_numbers.json (the compute script's own INPUTS block), plus the document bibliography,
@@ -400,5 +400,5 @@ P('The companion workbook was verified on the DELIVERED file rather than on the 
   'in place with the whole workbook re-evaluated to confirm it moves the headline in the '
   'asserted direction.')
 
-doc.save(os.path.join(HERE, 'AMOC_Bibliography_01-09-2026.docx'))
-print('wrote AMOC_Bibliography_01-09-2026.docx')
+doc.save(os.path.join(HERE, 'AMOC_Bibliography_03-09-2026.docx'))
+print('wrote AMOC_Bibliography_03-09-2026.docx')

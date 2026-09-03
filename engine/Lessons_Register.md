@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**103 lessons**, of which 76 bind on every study, 20 on a class of company, and 7 on a single name.
+**117 lessons**, of which 90 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 19 from self-audits, 35 found while building.
+By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 44 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -788,6 +788,146 @@ It is much easier to check a machine-readable record than the report a reader ac
 > **What it cost, or how we know.** [R-LENS-03] retired the typed multi-lens blend and is enforced on each study's committed lens record, which was green everywhere. Reading the delivered PDFs instead: 6 of 20 carried no weighted blend and 14 published a weighted central as the study's own answer. ARCC had been RE-ISSUED after the rule and its document prints a weighted central of 54.65 beside a numbers file carrying 53.46. ADNOCLS, the model report every study is opened beside, carried twenty-two such assertions — so the exemplar was teaching the retired architecture to every study that followed.
 
 > **What would overturn it.** A rule whose whole content IS the record — a provenance field, a stamp, an attestation — has nothing in the document to check, and reading the document for it would find nothing. The test is whether the rule governs what a reader is told.
+
+### L-072 · A forecast that reverses what the company has just filed is a claim, and it is named, sourced and measured or it is not made.
+
+A model that quietly walks a rate back toward a longer average looks prudent and is not: it is a forecast of reversion that nobody wrote down and nobody can check. Where the forecast opens materially below the latest reviewed period, the mechanism is named from a closed list, the disclosure that establishes it is carried from the filings, and the direction is MEASURED in the company's own like-for-like period pair.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the AMOC, EGCH and ARCC re-strikes of 03-Sep-2026, on the principal's lead
+
+> **What it cost, or how we know.** The rule had been in both governing documents since 07-Aug-2026 and on one day three studies in one market violated it in three costumes, every one lowering the value. AMOC forecast a 9.494% gross margin falling to 8.764% against a filed half of 12.428% — an implied second half of 6.56% — on an unsourced real cost drift of +2.7 points a year that contradicted its own registered principle; worth +19.4% when corrected. EGCH forecast 45.66% falling to 33.02% on one typed array carrying the dollar export price down 17%, source layer 'Constructed'. ARCC opened at 39.03% against a filed peak of 39.25% and told no reader it sat at the top of its own range. [L-048] had been registered after the first occurrence, was correct, and bound nothing.
+
+> **What would overturn it.** A study whose forecast opens materially below its latest reviewed period, names a mechanism from the closed list, carries the disclosure, shows the like-for-like direction agreeing — and is still wrong when the period matures. That would say the mechanism test is satisfiable without being informative.
+
+### L-073 · A driver out of line with the rest of the book usually means our method slipped on this one name, not that the company is unusual.
+
+The strongest test of a contested driver is not whether it can be argued for on its own name — almost any of them can — but whether the same house builds the same class of input the same way everywhere else. Where two studies carry opposite conventions for the same kind of number, one of them is wrong and the disagreement says which question to ask.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EGCH's dollar export price against AMOC's dollar feedstock price, 03-Sep-2026
+
+> **What it cost, or how we know.** EGCH carried a typed dollar output price falling 17% over five years with no marginal cash cost quoted and no institution publishing it, while AMOC — same house, same market, same week — held its dollar commodity price FLAT and registered the reason in as many words: 'no forecast of it is defensible'. Neither study was checked against the other; the inconsistency was invisible from inside either one, and it ran the value-destroying way in the study that had it. Separately, EGCH published the RATING equity-risk-premium basis as its central where [R-COC-01] names the CDS basis by default and both peer Egyptian studies use it — a 13.94% premium against 9.41% for the same sovereign on the same day, again the higher one.
+
+> **What would overturn it.** A case where a name genuinely does deserve a different convention from its book, established from that company's own disclosures rather than from the analyst's judgement. Then the rule is to name the difference, not to conform.
+
+### L-074 · A self-attested string is not a check, however carefully it is worded.
+
+Where a gate reads a sentence a study wrote about itself, the study can write the right sentence and do the wrong thing — and the gate will pass it, repeatedly, with no sign anything is wrong. Where the claim can be reduced to arithmetic, reduce it: commit the number and the ingredients that would reproduce the thing it is claimed not to be, and divide.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, the AMOC relative lens, exposed by the 03-Sep-2026 re-strike
+
+> **What it cost, or how we know.** AMOC's lens record attested 'enterprise value to EBITDA from the company's own history and its regional peers, never a multiple read off the current price' while its code computed (market cap + net debt) / base-year EBITDA re-rated by zero — the traded multiple exactly. assert_lens_design searched the prose for phrases meaning 'from the price', found the reassuring words, and passed it three times. What exposed it was moving the price: the spot rose 48.4% and the lens rose 51.3%, which a lens built on five years of own history cannot do. The gate now requires the adopted multiple and the three numbers that reproduce the traded one, and refuses when they agree to within half a per cent.
+
+> **What would overturn it.** A relative multiple whose circularity ingredients cannot be committed because the metric genuinely has no traded counterpart. Then the arithmetic form is unavailable and the prose test is the only one left — which is an argument for withdrawing the lens, not for trusting the sentence.
+
+### L-075 · A fix that enumerates the keys it knows about is a fix that expires.
+
+Carry-over lists, allow-lists and key-lists written when they were complete go stale the moment anything is added, and they fail silently — the new thing is simply dropped. Invert them wherever the inversion is expressible: carry everything the module does not itself produce, rather than everything somebody remembered.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EGCH's build order, 03-Sep-2026
+
+> **What it cost, or how we know.** compute.py is imported by alternatives.py, which re-runs it and rewrites study_numbers.json. A carry-over had been written for that exact hazard and named ('central', 'fair'), which was complete when written. lenses.py has since added central_two_sided, lens_record, macro_record and bridge_record — the records [R-LENS-03], [R-MACRO-01] and [R-BRIDGE-01] are checked from outside on — and all four were silently dropped on every build. Three repo gates went red at once and the study read, from outside, like one that had never committed a record at all.
+
+> **What would overturn it.** A module where carrying everything unknown is wrong because a stale key must be actively cleared. Then the inversion needs an explicit expiry list, which is the same hazard in the other direction and has to be checked rather than remembered.
+
+### L-076 · An artefact every builder reads and nothing writes is a number frozen at the date somebody last typed it.
+
+It will not announce itself, it survives every rebuild, and it wears the appearance of a computed record while being a memory. Where a file feeds a document, ask what WRITES it — and if the answer is nothing, that is the defect, before any question of whether its numbers are right.
+
+**Applies to:** every study  ·  *Learned from:* outside critique, AMOC, ARCC, EGCH and PHDC, four outside audits on 03-Sep-2026
+
+> **What it cost, or how we know.** Three separate artefacts with no generator anywhere in the repository were found in one day. AMOC's case_adversarial.json was read by THREE builders and written by none; it froze at a base central of 5.954 and drove Table 7, Table 18, Figure 4 and the opening paragraph through two editions, telling a reader that conceding every contested charge reached EGP 7.47 — below the published 11.834, which is impossible, because every charge conceded raises the value. PHDC's diagnostics.json was the same shape and froze at a spot of 15.20 through a re-strike to 14.40. ARCC's efg_bridge caption was typed from a superseded model. None was visible to any gate, because every gate reads study_numbers.json and none of these files is in it.
+
+> **What would overturn it.** An artefact with no generator that nonetheless stays current across several editions — which would mean something else is keeping it so, and that thing is the generator by another name.
+
+### L-077 · A default on a key that is never present is not a default. It is a second answer with no label.
+
+A dict lookup with a fallback reads as defensive, and it is — right up to the moment the key is absent EVERY time, when it silently becomes the only code path and nothing says so. Prefer a lookup that raises, or derive the value from something the same output already publishes so the two cannot disagree.
+
+**Applies to:** every study  ·  *Learned from:* outside critique, PHDC's cash-flow waterfall, 03-Sep-2026
+
+> **What it cost, or how we know.** The row headed 'Cost of capital, that year' read w.get('forward_wacc', wacc) on each waterfall row. forward_wacc sits on the CASE, not on a row, so the fallback fired in every column and printed a flat 25.1% above a row of gliding discount factors it cannot produce. Compounding the printed rate gives 0.639 for 2027 against a published 0.656 and 0.039 for 2040 against 0.090 — 2.3 times out by year fifteen, in a table headed 'with nothing collapsed'. The workbook was right throughout. The fix was not a better default: the rate is now DERIVED from the discount factors the same table publishes.
+
+> **What would overturn it.** A case where the fallback is genuinely the intended path for some rows and the named key for others. Then the two paths need different labels in the output, not one silent branch.
+
+### L-078 · A guard that cannot fail is worse than no guard, because it is counted as one.
+
+Before writing an assertion, ask what value of the input would make it raise. If the answer is none, the assertion is decoration standing where a check should be — and it will be trusted by everyone who reads the code afterwards.
+
+**Applies to:** every study  ·  *Learned from:* outside critique, AMOC's probability zones, 03-Sep-2026
+
+> **What it cost, or how we know.** Five zone probabilities were built as consecutive differences of a cumulative distribution and guarded by 'assert the zones sum to one'. CONSECUTIVE DIFFERENCES OF A CUMULATIVE FUNCTION TELESCOPE, so that sum is 1.0 for ANY ordering of the cuts, ascending or not. The cuts were not ascending, two zones were NEGATIVE, and the table shipped -74.6% and -16.0% under a caption promising a genuine partition. The guard had been there the whole time and could never have caught it.
+
+> **What would overturn it.** A guard whose failure condition is unreachable in this code path but reachable in another that shares the function — then it is a real check for the other caller and should say which.
+
+### L-079 · Write a correction OVER the sentence it corrects, not beneath it.
+
+Adding the new statement under the old one leaves a document asserting both, and the reader has no way to tell which is current. It happens because the correction feels safer as an addition — nothing is lost — and that is exactly what makes it dangerous.
+
+**Applies to:** every study  ·  *Learned from:* outside critique, AMOC §1.2, 03-Sep-2026
+
+> **What it cost, or how we know.** One paragraph read 'HALF OF THIS BASE YEAR IS A PRESS RELEASE AND NOT A FILING'; the paragraph four lines below it read 'THE HALF IS FILED, AND THE RELEASED GROSS PROFIT WAS RIGHT'. Both were true of successive editions and only one was true of this one. A table cell in between still gave the basis as 'second half SOLVED' while the model used the filed figure, and the caveat list still called the base year 'half press release' — so the same page carried a superseded claim three times over beside its own correction.
+
+> **What would overturn it.** A document that deliberately publishes both the old and the new reading for a reader of the previous edition — which is legitimate, and is why the retired blend is published labelled RETIRED rather than deleted. The test is whether the old statement is marked as superseded.
+
+### L-080 · A check that reads what a process DECLARES is not checking what the process does.
+
+Every exemption in a gate is a place where the gate stops looking. A TRUE exemption on the WRONG OBJECT is the safest hiding place there is: nobody is lying, the reason survives review, and the work happens somewhere the check does not reach. Where a rule governs a quantity, hold the quantity — holding the study's description of where the quantity lives is one indirection too many.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EGCH cpi_path, 03-Sep-2026
+
+> **What it cost, or how we know.** EGCH declared its one growth line exempt from the house inflation path on grounds that were perfectly true — its revenue is built from tonnes and dollar prices, so no nominal growth rate sat on that line. Meanwhile an input named nowhere in the record, cpi_path = 10.0 / 7.0 / 6.0 / 5.0 / 5.0 against a house ladder of 16.0 / 12.0 / 9.0 / 7.5 / 7.0, drove the purchasing-power wedge and therefore the whole currency path — so both the pound value of dollar revenue and the gas cost — and escalated other materials, wages, services and the terminal tonne's conversion cost. It terminated at 5% while the same record carried the house terminal of 7%. The study's own gap review named it in plain words, 'the study's own Egyptian inflation path', inside the heading whose purpose is to catch it, and passed.
+
+> **What would overturn it.** A gate that holds the declared object and the used object and finds them always identical across a large book — which would mean the indirection is harmless in practice and the extra clause is cost without benefit.
+
+### L-081 · A list of forbidden words cannot be complete; match the shapes that cannot occur innocently.
+
+Where a prohibition can be expressed as a SHAPE rather than a vocabulary, express it as a shape. A word list is maintained by whoever last thought of a word, so every copy of it has a different hole, and the holes are invisible until something falls through one.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EGCH and AMOC bibliographies, 03-Sep-2026
+
+> **What it cost, or how we know.** Depth-bar standard 4 is implemented by each study as its own list of forbidden terms — 39 in ARCC, 68 in EGCH, a different set in AMOC. EGCH's delivered bibliography shipped two standing-rule identifiers and a repository path out of an input register's source field while its own scrub reported ZERO hits across 68 patterns; AMOC's scrub, which happens to carry both shapes, caught the identical sentence the same hour. A sweep of the book found three more delivered documents leaking through three different holes.
+
+> **What would overturn it.** A shape that turns out to occur innocently in a document written for an outside reader — which would mean the shape was the wrong instrument and a word list, with its judgement about ordinary senses, was right after all.
+
+### L-082 · A correction that moves the answer away from the price is not a reason to reconsider the correction.
+
+The temptation runs the other way from the one everyone guards against. A correction that closes a gap feels confirmed by the closing, and one that widens it invites a second look at the correction rather than at the model. Both instincts are the same error: the price is evidence about where to LOOK, never evidence about what the answer is.
+
+**Applies to:** every study  ·  *Learned from:* found while building, AMOC inflation ladder, 03-Sep-2026
+
+> **What it cost, or how we know.** Conforming AMOC's cost ladder to the house path was expected to RAISE the value: the study's own ladder compounded higher, 1.7385 against 1.6288 over five forecast years, so the cost side alone said the value would rise. It fell, EGP 11.83 to 11.40, from -12.3% to -15.5% against the price, because the currency path is derived from the same ladder by purchasing-power parity — a lower ladder means a stronger pound, and on a dollar-linked slate the translation gain lost outweighs the pound costs saved. The direction was not predictable from the sign of the input error.
+
+> **What would overturn it.** A case where re-examining a correction that widened a gap uncovers a real defect in the correction itself — which is why the instinct exists and why the rule is about not letting the DIRECTION be the trigger, rather than about never looking.
+
+### L-083 · A value patched into a generated artefact is lost at the next generation.
+
+The patch works, the gate goes green, and the obligation to move it into the generator becomes a thing somebody has to remember. Nobody does, and the loss surfaces hours or weeks later as a gate failing on work that looked finished.
+
+**Applies to:** every study  ·  *Learned from:* found while building, TMGH range_basis, 03-Sep-2026
+
+> **What it cost, or how we know.** The commit that adopted the range_basis requirement wrote the block straight into engine/tmgh_study/study_numbers.json and never into build_numbers.py. The next honest rebuild of that study — triggered by an unrelated amendment the same day — dropped it, and the lens-design gate went red on a study that had been conforming eight hours earlier. This is L-067's cousin: that one was a check pinned to a filename, this one is a value pinned to a file.
+
+> **What would overturn it.** A generated artefact that legitimately cannot be produced by its generator — a figure only a person can supply — in which case the honest form is an input the generator READS, not a patch to its output.
+
+### L-084 · A process that validates itself validates the list its author thought of.
+
+Local checks fail by imagination, not by care. A careful author writes careful assertions about everything they can think of, and the gap is precisely the set of things they could not — which no amount of further care inside the same process will supply, because what is missing is a list written somewhere else. This is why a shared instrument beats a good local one even when the local one is better written.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC sweep.py, 03-Sep-2026
+
+> **What it cost, or how we know.** ARCC was the only study in the book that hand-rolled its Step 2A sweep instead of importing engine/research_sweep.py. Its own assertions checked five things — every finding has a source, a date and a model impact; the class is one of four; all four rings appear; ids are unique; driver cross-references resolve — and all five passed. Replaying the same 26 findings through the shared register's validate() produced SEVEN errors, and five were facts the study already held: a company website attempted and refused, an investor presentation cited by page for six drivers, the reviewed half the bridge stands on, and three top-down drivers whose evidenced absence sat in prose inside their own justification.
+
+> **What would overturn it.** A study whose local checks turn out to be a strict superset of the shared instrument's — which would mean the shared module is the weaker one and should adopt the local checks, not the other way round.
+
+### L-085 · A rule that one study implements is a rule that one study obeys.
+
+A correct rule, written down and implemented well in the one place it exists, binds nothing anywhere else. The instinct is to port the implementation study by study; the cost of that is one hand-maintained copy per study, each with its own hole. Make it arithmetic ONCE, in a shared place, and the rule survives everywhere rather than in the place somebody remembered.
+
+**Applies to:** every study  ·  *Learned from:* found while building, prose_check across the book, 03-Sep-2026
+
+> **What it cost, or how we know.** "A number stated in prose must be computed, not typed" had been standing for four weeks and exactly one study of twenty-four implemented a check for it. Measured in one afternoon on three studies that had just been rebuilt and passed every other gate: AMOC published a 514-basis-point margin range whose own five named periods span 737, alongside a summary row that summed five values and divided by four; ARCC shipped a masthead a day stale and a price date a month stale; PHDC carried three comments above one line, two of them wrong. Across the whole book, 373 of 8,824 figures in the delivered documents had no computed counterpart. Shared as engine/prose_figures.py rather than copied twenty-three times, and the first four ports reached zero unmatched across 1,561 figures.
+
+> **What would overturn it.** A rule whose right implementation is genuinely study-specific — where a shared instrument would have to be so configurable that each study's declaration IS the implementation, at which point the sharing buys nothing but a common vocabulary.
 
 ### L-208 · A check that fails by the calendar is not a check.
 

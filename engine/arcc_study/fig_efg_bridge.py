@@ -1,4 +1,4 @@
-"""EFG Hermes target price -> Testahil weighted central.
+"""EFG Hermes target price -> the Testahil central (the cash-flow lens).
 
 REVISION 4. This script holds NO valuation constants. Every bar, label, caption and
 verdict is read from efg_bridge.json, which is written by gate (t) — efg_bridge.py — and
@@ -70,7 +70,7 @@ ax.plot([n - 1 + 0.36, n - 0.36], [run, run], color=GREY, lw=0.9, ls=(0, (3, 3))
 ax.add_patch(Rectangle((n - 0.36, 0), 0.72, END, facecolor=GOLD, edgecolor=INK, lw=0.9))
 ax.text(n, END - 3.8, f'{END:.2f}', ha='center', va='top', fontweight='bold', fontsize=11.5,
         color=INK)
-foot(n, 'Testahil\nweighted central', 'four lenses')
+foot(n, 'Testahil\ncentral', 'the cash-flow lens')
 
 ax.axhline(MKT, color=INK, lw=1.15, ls=(0, (5, 3)), zorder=1)
 ax.text(n + 0.30, MKT, f'market\n{MKT:.2f}', va='center', ha='left', fontsize=8.4,

@@ -127,6 +127,59 @@ def main():
             text = strip_html_comments(raw)
         fails += br.scan_text(text, rel)
 
+    # ---- 1b. THE DELIVERED STUDY DOCUMENTS, WHICH THIS GATE NEVER SCANNED ----
+    # [added 03-Sep-2026]. This gate has always read the SITE -- html and js -- and
+    # a delivered study is as public a surface as a web page. ARCC's shipped study
+    # published the retired skill verdict twice and a band flag its own record does
+    # not earn, and nothing here could see either, because the study is a .docx and
+    # this loop reads text files. Each study's own scrub checks INTERNAL-PROCEDURE
+    # vocabulary and knows nothing about verdicts; this one knows about verdicts and
+    # never looked at the study. Between them the surface was uncovered.
+    # ONLY THE DELIVERED EDITION, resolved by the date in its name -- L-067, the
+    # same discipline the workbook-structure and deliverables gates already use. A
+    # superseded edition is a historical artefact nobody receives, and failing on
+    # one is the permanently-red check [R-ENF-02] forbids. The filename date is
+    # DD-MM-YYYY, so it is parsed rather than sorted lexically: a lexical sort puts
+    # 08-08 after 03-09 and would pick the wrong file, which is a mistake this
+    # session has already made once today.
+    def _edition_key(fp):
+        m = re.search(r"(\d{2})-(\d{2})-(\d{4})", os.path.basename(fp))
+        return (m.group(3), m.group(2), m.group(1)) if m else ("", "", "")
+
+    # RATCHETED per [R-ENF-02]: three current editions predate this extension and are
+    # cleared at their own next re-issue. The list may only ever SHORTEN.
+    try:
+        _DOC_RATCHET = set(json.load(open(os.path.join(root, OUTSTANDING),
+                                          encoding="utf-8")).get("documents", []))
+    except Exception:
+        _DOC_RATCHET = set()
+    _doc_outstanding = 0
+    _delivered = []
+    for _sdir in sorted(glob.glob(os.path.join(root, "engine", "*_study"))):
+        _docs = [f for f in glob.glob(os.path.join(_sdir, "*.docx"))
+                 if re.search(r"\d{2}-\d{2}-\d{4}", os.path.basename(f))]
+        if not _docs:
+            continue
+        _latest = max(_edition_key(f) for f in _docs)
+        _delivered += [f for f in _docs if _edition_key(f) == _latest]
+    for path in sorted(_delivered):
+        rel = os.path.relpath(path, root)
+        try:
+            from docx import Document
+            _d = Document(path)
+            _parts = [p_.text for p_ in _d.paragraphs]
+            for _t in _d.tables:
+                for _r in _t.rows:
+                    _parts += [c_.text for c_ in _r.cells]
+            _hits = br.scan_text("\n".join(_parts), rel)
+            if rel.replace(os.sep, "/") in _DOC_RATCHET:
+                _doc_outstanding += len(_hits)          # reported, not failing
+            else:
+                fails += _hits
+        except Exception as e:                       # [R-ENF-04]: an unreadable
+            fails.append("%s: could not be read (%s). An unreadable document is not "
+                         "a clean one." % (rel, e))
+
     # ---- 2. the published record still matches its panel --------------------
     # Compare the block the generator PRODUCES against the block in the file,
     # rather than re-parsing data.js with a regex that mirrors the emitter's
@@ -185,6 +238,10 @@ def main():
           "band record agrees with its panel.")
     if baked:
         n = len(known.get("figures", []))
+        if _doc_outstanding:
+            print(f"  OUTSTANDING (reported, not failing): {_doc_outstanding} verdict "
+                  f"hit(s) in {len(_DOC_RATCHET)} delivered study document(s) that predate "
+                  f"this check — see {OUTSTANDING}.")
         print(f"  OUTSTANDING (reported, not failing): the skill verdict is still baked into "
               f"{n} calibration figure(s) this gate cannot read — see {OUTSTANDING}.")
     return 0

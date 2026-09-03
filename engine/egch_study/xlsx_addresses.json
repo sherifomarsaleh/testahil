@@ -1,7 +1,7 @@
 {
- "cost_of_equity": "C98",
- "wacc_year_one": "C109",
- "wacc_terminal": "C115",
- "rf_star": "C93",
+ "cost_of_equity": "C100",
+ "wacc_year_one": "C110",
+ "wacc_terminal": "C116",
+ "rf_star": "C98",
  "terminal_growth": "C9"
 }

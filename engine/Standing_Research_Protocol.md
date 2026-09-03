@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-03f — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-03o — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -825,6 +825,61 @@ put the bridge on that reviewed balance sheet, so the FY2025 cash, minority and 
 rows no longer move the headline, and the assertions saying they did had never been run against
 the model that shipped. **A check that opens a delivered file by name moves with the re-issue.**
 Both findings are registered as L-066 and L-067 under [R-LESSON-01].
+
+**[AMENDED 03-Sep-2026] The other half of the same attestation: the DELIVERED STUDY
+DOCUMENT.** The 01-Sep amendment above measured `structure_matches_model` off the workbook
+and left the Word document self-certified — half a rule, and the half that was left is the
+half a reader actually reads. Two days later three outside audits found precisely what that
+predicts, in two different studies, both of which attested the field True:
+
+* **AMOC** — Appendix C carried C.1, C.2 and C.3 and then stopped. No cross-examination, no
+  three in one room, no divergence table. Depth-bar standard 7 requires all three **by
+  name**. The study also shipped with no Company overview.
+* **ARCC** — no Headline, no Valuation summary, no Company overview, no About, no Disclosure;
+  Appendix A, B and C present as covers with their sub-parts unnumbered and, in C's case, the
+  same three closing sections missing.
+
+Neither study was lying. Nobody had counted. `scripts/check_document_structure.py` now reads
+the required section list **out of the model report document itself** —
+`engine/model_report/MODEL_REPORT_09-08-2026.docx`, resolved through
+`MODEL_STUDY['model_report_document']` — because CLAUDE.md's instruction is to open that file
+beside the study being written, so it is the standard and a list typed into a checker is a
+copy of it. What is compared is the SECTION MARKER (`1.4`, `Appendix C`, `C.5`, `About this
+series`), never the prose: a study's headings name its own company and its own crux and must
+be free to. What may not vary is whether the section is there.
+
+The derivation is **self-tested against the other record of the same standard**: every marker
+the model report carries must be named in `MODEL_STUDY['word_skeleton']`, and where the two
+disagree the gate REFUSES rather than picking one — because picking one would silently make
+it the standard and nothing would say which. It fired on its first run: the model report
+numbers Appendix B's three parts B.1/B.2/B.3 and the skeleton named them only in prose. The
+skeleton was the record that was behind, and it was corrected rather than the check relaxed.
+
+Two construction findings are recorded because both are the [R-ENF-04] species inside a gate
+written to enforce it. **This book uses two legitimate heading conventions** — bold runs at
+heading size (the model report and the older builders) and Word's real Heading styles
+(`docx_phdc.py`, TMGH) — and a first draft reading only bold runs returned ZERO headings for
+PHDC and TMGH, which it then reported as *missing all 36 sections*: a confident wrong answer
+about two of the most complete documents in the repository. An empty extraction now RAISES
+and is reported as unreadable, because this gate cannot tell a document with no sections from
+a document it cannot read and must never present them as the same fact. And the first draft
+**fired on eight studies that were right**, because they write `1. Fundamental valuation`
+with a trailing period and `About this study` for `About this series` — house rendering
+conventions, not different sections. Per [R-COC-01]'s lesson the matcher was RE-POINTED at
+the section identity rather than widened or waived; the eight went green and the two real
+breaches stayed red.
+
+Same ratchet (`document_outstanding.json`, `--prune`, may only ever SHORTEN — eight entries
+on adoption day), same population anchoring [R-ENF-04], negative-controlled by
+`scripts/check_document_structure_negative_control.py` on sixteen cases: AMOC's truncated
+appendix and ARCC's missing front and back matter exactly as they shipped, a single missing
+section, a right-sections-wrong-order document, a study with no document, a document with no
+readable headings, a vanished study, an emptied population, and the two records of the
+standard disagreeing — plus six CLEAN cases that must stay green, among them both heading
+conventions, both numbering conventions, and a study carrying EXTRA sections beyond the
+model, which is added depth and never a breach. Its own case 6 caught the fixture writing
+bold runs regardless of the style it was asked for, so the condition was never injected and
+its green proved only that the document was untouched.
 
 ### [R-ENF-03] The published technical read is checked from outside, through a real JS parse
 
@@ -2358,6 +2413,89 @@ cheaper than a reader who has to.
 
 ---
 
+### The gap a review audited, not only the central it audited [amended 03-Sep-2026]
+
+**A review audits a DISAGREEMENT, and the disagreement moves even when the answer does not.**
+
+The `AUDITED CENTRAL` marker, added 02-Sep-2026, closed a real hole — a review written for a
+central the study no longer publishes. It does not close this one. A review can audit exactly
+the right central and still have been written against a price four weeks old, and the whole
+point of the eight headings is to interrogate a disagreement: **how large it is is the
+question, not a detail beside it.**
+
+Measured on the day it was named, by the principal: *"the gate checks a review audits the
+current answer, not the current gap — that's why all four pass while every one was written
+for a much smaller disagreement."* PHDC's review audited **17.1517**, precisely what the
+study published, so the gate passed it — while the review was written at **+12.8%** against
+a strike of 15.20, and the day's price of 14.40 made the gap **+19.1%**.
+
+A review therefore states the **gap** it audited as well as the central, and
+`check_valuation_gap.py` compares both. The tolerance is **five percentage points of gap** —
+not a new free parameter but **half the ten-point trigger this rule is stated in**, so a
+review goes stale once the disagreement has moved half the distance that would have
+triggered one from nothing. Anything tighter would fire on a price that simply moved a
+little between build and delivery.
+
+Negative-controlled on PHDC's own case exactly as it stood, plus two clean cases — a review
+stating the gap it actually audited, and a gap that moved less than half the trigger.
+
+## [R-ENF-06] An artefact a builder reads declares the answer it was built against (3-Sep-2026, on three outside audits reaching the same verdict for the same reason)
+
+On 3 September 2026 three studies were re-struck on fresh prices and three independent
+outside auditors returned **NOT DELIVERABLE** on all three, for a reason one of them put in
+a single sentence: **the re-strike reached the valuation and not the paper.**
+
+Every one of those documents was built from a numbers file that had moved, beside a SECOND
+artefact that had not:
+
+- **AMOC** — `case_adversarial.json`, base central **5.954** against a published **11.834**,
+  and it was **read by three builders and written by nothing**. No generator existed
+  anywhere in the repository. It drove Table 7, Table 18, Figure 4 and the opening
+  paragraph, which told a reader that surrendering every contested judgement reached
+  EGP 7.47 — *below* the published central, which is impossible, because every charge
+  conceded raises the value.
+- **ARCC** — `efg_bridge.json`, a weighted central of **54.65** against a market of 59.00,
+  printing a *falling* margin path against Appendix A's *rising* one.
+- **EGCH** — `diagnostics.json` and `contested_judgements.json`, a full edition behind:
+  spot 13.98, answer −1.06/2.82, the rating-basis glide, while the document published the
+  re-solved figures beside them.
+
+**Not one was visible to any gate, and the reason is exact: every gate in this repository
+reads `study_numbers.json`, and none of these files is in it.** A stale artefact is worse
+than a typed numeral in a builder — which the numeric-traceability gate catches — because
+**it has the shape of a computed record.**
+
+### The rule
+
+Any JSON in a study directory that a builder reads and that carries a valuation figure must
+declare, in a field named for the purpose (`published_central`, `published_spot`), the study
+central and spot it was generated against. `scripts/check_artefact_currency.py` compares
+that declaration with what the study publishes now.
+
+It is **the same instrument as [R-GAP-01]'s `AUDITED CENTRAL` marker on a review**, applied
+to generated artefacts, and for the same reason: an artefact cannot be checked for currency
+unless it says what it was current *with*.
+
+### What it deliberately does not do
+
+It does **not** require every figure in an artefact to equal the study's. An adversarial
+case, an alternative construction and a price-cone anchor all legitimately differ, and a
+gate that could not tell those apart would push studies to stop committing them — the
+opposite of what it is for. It requires the artefact to **state its own vintage**. A file
+whose declared vintage matches is current whatever else it holds; a file that declares
+nothing cannot be told from a stale one, and that is the failure this closes.
+
+Ratcheted [R-ENF-02] (`artefact_outstanding.json`; AMOC comes off at adoption because both
+its artefacts now declare — one of them through a generator this rule required somebody to
+write, since it had none at all). Population-anchored [R-ENF-04].
+
+**THE GENERAL LESSON, WHICH IS NOT ABOUT VALUATION: AN ARTEFACT EVERY BUILDER READS AND
+NOTHING WRITES IS A NUMBER FROZEN AT THE DATE SOMEBODY LAST TYPED IT.** It will not announce
+itself, it will survive every rebuild, and it wears the appearance of a computed record
+while being a memory. Where a file is an input to a document, ask what writes it — and if
+the answer is nothing, that is the defect, before any question of whether its numbers are
+right.
+
 ## [R-MERGE-01] A run that ends on a branch has not ended (1-Sep-2026, per instruction — "can you merge the branch to the main automatically in this exercise from now on or at least create a PR to draw my attention, otherwise I will forget")
 
 ### The rule
@@ -2473,6 +2611,71 @@ The file the protocol has referenced since July 2026 is finally written: engine/
 
 THE GENERAL LESSON, WHICH IS NOT ABOUT INFLATION: A LESSON THAT BINDS NOTHING IS ADVICE, AND ADVICE LOSES TO THE NEXT DEADLINE. [L-048] and [L-055] were both registered, both correct, and both re-violated by the studies delivered after them. What changed here is not the finding but its enforcement: the number lives in one place, the identity is computed rather than trusted, and a gate outside the study fails the build. Where a lesson can be made arithmetic, making it arithmetic is the only way it survives.
 
+[R-MACRO-01 AMENDED 03-Sep-2026] EVERY INFLATION-CLASS INPUT, NOT ONLY THE DECLARED GROWTH LINES
+
+The enforcement above reads what a study DECLARES, and EGCH showed that this is not the same as what a study USES. Its one growth line was declared exempt on grounds that were perfectly true — its revenue is built from tonnes and dollar prices, so there is no nominal growth rate on that line to sit on the ladder — while an input called cpi_path, named nowhere in the record, drove the purchasing-power wedge, and therefore the entire currency path, and therefore both the translation of dollar revenue into pounds AND the gas cost; and separately escalated other materials, wages, services and the terminal tonne's conversion cost. It read 10.0 / 7.0 / 6.0 / 5.0 / 5.0 against a house ladder of 16.0 / 12.0 / 9.0 / 7.5 / 7.0 for the same country, and terminated at 5% while the study's own committed record already carried the house terminal of 7%. THE RECORD CONFORMED AND THE MODEL DID NOT, and the declared exemption was about a line that was not doing the work.
+
+The study's own gap review named it in plain words — "the relative purchasing-power identity on the study's own Egyptian inflation path" — inside the heading whose purpose is to catch exactly this, and passed, because the number was DERIVED rather than typed and nobody asked derived from what.
+
+The rule. A study commits an inflation_inputs block naming EVERY inflation-class input it registers, each with the MAPPING that derives it from the house ladder, and assert_macro_coherence() reproduces each one. The block is declared even when it is empty. Four mappings, and the list is CLOSED for the reason every closed list here is closed — an open one lets a study opt out by inventing a mapping, and "our year is different" is not a mapping: calendar (the ladder as published), fiscal_june (half of each of the two calendar years a 30-June fiscal year spans), fiscal_march, and terminal_flat. Beyond the ladder's last published year the house TERMINAL is used, never an extrapolation of the study's own.
+
+Two clauses ride with it, both aimed at the shapes a study would otherwise use to escape. A LEADING-YEAR EXEMPTION IS A COUNT WITH A REASON, NEVER A BLANKET: ARCC's first forecast year carries an evidenced company anchor — its own filed price and cost step — and its years two to five are the house ladder to the basis point, which is legitimate and already reasoned; so exempt_head names how many leading years an evidenced anchor covers and must carry the reason, and exempting every year fails as an opt-out rather than passing as an exemption. And AN "OBSERVED" FIGURE MUST BE A DATED SCALAR: a trailing actual anchoring a base year is a filed fact, not a forecast, and holding it to a forward ladder would be wrong — but a five-year array relabelled as an observation is a forecast in disguise, so the arithmetic closes that door rather than trusting the label.
+
+What it found on its first runs, in three directions. PHDC's bottom_up_model.CPI is the World Bank Egyptian CPI averaged over 2023-25, and it escalates FY2024's revenue per delivered unit one year forward to FY2025 — a HISTORICAL step, which the forward ladder does not govern, but a three-year mean is not the published rate for one of them either; the correct figure is the 2025 print at its own vintage, which engine/macro_history does not yet carry, so it is registered rather than quietly kept. TMGH and ARCC conform. AND AMOC FAILED, ON A LINE ITS OWN RECORD HAD DESCRIBED IN PROSE FOR A DAY — "the registered Egyptian inflation ladder this study was built on, which predates the house path and differs from it year by year", exempted with the reason that rebuilding "belongs in its own pass", which is a statement about convenience, and convenience is not one of the grounds this rule allows.
+
+AMOC WAS CONFORMED RATHER THAN RATCHETED, AND THE DIRECTION WAS THE OPPOSITE OF THE ARITHMETIC'S OWN PREDICTION. The prune refused to grow the outstanding list, correctly — a ratchet spares work predating a standard and may only ever get SHORTER — so the only honest options were to conform the study or leave a permanently red check, which [R-ENF-02] forbids. The study's ladder compounded HIGHER than the house path, 1.7385 against 1.6288 over the five forecast years, so on the cost side conforming should have cut costs and raised the value. It lowered it: EGP 11.83 to 11.40, minus 12.3% to minus 15.5% against the price. The currency path is derived from the same ladder by purchasing-power parity, so a lower ladder means a stronger pound, and on a dollar-linked slate the translation gain lost outweighs the pound costs saved. A CORRECTION THAT MOVES THE ANSWER AWAY FROM THE PRICE IS NOT A REASON TO RECONSIDER THE CORRECTION.
+
+Negative-controlled on 24 conditions, among them EGCH's typed array and AMOC's own ladder exactly as each stood, a mapping invented outside the closed list, leading years exempted with no reason, every year exempted, a five-year path relabelled "observed" and an undated observation — plus clean cases that must stay green, including EGCH's corrected fiscal mapping, ARCC's one-evidenced-year shape, a dated scalar observation beside a forward path, and an empty block. READ THE POPULATION LIVE: python3 scripts/check_macro_coherence.py.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT INFLATION: A CHECK THAT READS WHAT A PROCESS DECLARES IS NOT CHECKING WHAT THE PROCESS DOES. Every exemption in this repository is a place where the gate stops looking, and a TRUE exemption on the WRONG OBJECT is the safest possible hiding place — nobody is lying, the reason survives review, and the work happens somewhere the check does not reach. Where a rule governs a QUANTITY, hold the quantity; holding the study's description of where the quantity lives is one indirection too many.
+
+[R-ENF-01 EXTENDED 03-Sep-2026] DEPTH-BAR STANDARD 4 IS ENFORCED FROM OUTSIDE, BY SHAPE RATHER THAN BY WORD
+
+Every study implements the external-reader scrub as its own hand-maintained list of forbidden words — 39 terms in ARCC, 68 in EGCH, a different set again in AMOC — and on 3 September 2026 EGCH's delivered bibliography was found shipping two standing-rule identifiers and a repository path out of an input register's source field while its own scrub reported ZERO hits across 68 patterns. AMOC's scrub, which happens to carry both shapes, caught the identical sentence in its own bibliography the same hour. A sweep of the book then found three more delivered documents leaking through three different holes: ADNOCDRILL naming two repository files, PHDC a rule identifier inside a table cell, SCEM an engine module.
+
+A LIST OF FORBIDDEN WORDS CANNOT BE COMPLETE. scripts/check_delivered_vocabulary.py matches two things by SHAPE instead, over every delivered document in every study directory at its latest edition: a standing-rule identifier, and a repository path with a file extension. Neither can occur innocently in a document written for an outside reader, which is what makes shape-matching safe here where a word list is not. It does NOT replace the per-study scrubs, which catch procedure NOUNS and need judgement about ordinary senses — register, gate, step. Ratcheted per [R-ENF-02] with two entries at adoption, population-anchored per [R-ENF-04] so that a run examining zero DOCUMENTS fails and not only one examining zero directories, and negative-controlled on 14 conditions including all four leaks exactly as they shipped and four clean cases, among them ordinary prose using register, gate, step and engine in their everyday senses and a bracketed reference that must not read as a rule identifier.
+[R-ENF-01 EXTENDED 03-Sep-2026] THE STEP 2A SWEEP RUNS THROUGH THE SHARED REGISTER, OR IT DOES NOT RUN
+
+CLAUDE.md says of engine/research_sweep.py: "Import this rather than hand-rolling a study-local sweep script." Sixteen studies do. ARCC did not, and what its own version checked is the whole argument for this clause: every finding has a source, a date and a model impact; the class is one of the four; all four rings appear; finding ids are unique; every driver's cross-references resolve. Five real checks, and all five PASSED.
+
+What they are not is the module's eight invariants. Replaying the same twenty-six findings through SweepRegister.validate() produced SEVEN errors, and five of them were facts the study ALREADY HELD, written where no checker could point at them:
+
+* the company's own website had been attempted and REFUSED at the environment proxy — a recorded fact of this study's history, sitting in a prose note and in this protocol's own worked example, and in the register nowhere;
+* the FY2025 investor presentation is cited BY NAME AND BY PAGE for six of the study's drivers — kiln utilisation, both export shares, the stock draw and three national market-balance figures — and appeared in no finding, so the register carried no COMPANY_IR source at all;
+* the reviewed half to 30 June 2026, the balance sheet the whole enterprise-to-equity bridge stands on, was consumed by the model and absent from the register;
+* three TOP_DOWN drivers each stated their evidenced absence in PROSE inside their own justification — "No depreciation line is separately disclosed in any retrievable source", "No capital-expenditure guidance is obtainable", "No interest-income line is separately retrievable" — rather than as the dated negative search the invariant looks for.
+
+All five were closed by moving what the study already held into the register's own form. Two remain — the industry's technology-substitution rate, and any one-off base-resetting transaction — and each is NAMED rather than closed by a rename. THAT IS THE DIFFERENCE A GATE MAKES: it is the same research either way, and only one of the two states makes the gaps visible.
+
+Two temptations were declined and are recorded because both would have looked like fixes. A COMPANY-ring finding on alternative fuels in ARCC's own kilns is a real technology-substitution observation, and mapping it onto the INDUSTRY-ring mandatory category would have closed that coverage check — moving a finding's RING to satisfy a checker is the same offence as renaming its category. And a negative search is a search somebody actually ran: inventing one to clear a coverage check would be worse than the gap it clears.
+
+ENFORCED FROM OUTSIDE per [R-ENF-01]: scripts/check_sweep_module.py requires a sweep script, requires it to IMPORT the shared module, requires it to CALL validate() — a study can import the module for its enums and never run its invariants, which is the declaration-without-execution defect one level up — and, where a register commits its invariant result, requires every failure it reports to be NAMED. Ratcheted per [R-ENF-02] with nine entries at adoption, eight of which have no sweep script at all. Population-anchored [R-ENF-04]. Negative-controlled by scripts/check_sweep_module_negative_control.py on eleven conditions including ARCC's hand-rolled register as it stood and the enums-only import, plus three clean cases; its own case 5 was caught passing a fixture that never injected its condition.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT SWEEPS: A PROCESS THAT VALIDATES ITSELF VALIDATES THE LIST ITS AUTHOR THOUGHT OF. Nothing about ARCC's own assertions was wrong or lazy — they were careful, they were real, and they passed. The five they missed were not oversights of judgement but of imagination, and no amount of care inside the study would have supplied them, because the thing missing was a list written somewhere else. This is why a shared instrument beats a good local one even when the local one is better written.
+[R-ENF-01 EXTENDED 03-Sep-2026] EVERY FIGURE A READER SEES IS RECONCILED AGAINST THE MODEL, BY A SHARED INSTRUMENT
+
+"A NUMBER STATED IN PROSE MUST BE COMPUTED, NOT TYPED" has been a standing rule since 07-Aug-2026 and depth-bar standard 3 forbids a financial numeral in a builder. Exactly ONE study of twenty-four implemented a check for it. What that cost was measured in a single afternoon, on three studies that had just been rebuilt and passed every other gate:
+
+* AMOC published "a 514-basis-point range across four consecutive filed periods" — the same sentence names five periods, whose spread is 737 basis points. Four more typed counts sat beside it, and one of them was not a label but arithmetic: a summary row summing FIVE reinvestment rates and dividing by FOUR, printed as a "Four-period average".
+* ARCC shipped a masthead reading "issued 2 September" on a 3 September edition, a source note quoting the 6 August close beside a 3 September price, a reconciliation bridge still ending on "this study's weighted central — four lenses, weighted" after the blend was retired, and a caption asserting the panel median "sits close to" a central 22% away from it.
+* PHDC carried three comments above one line of its bottom-up model, two of them wrong and one asserting the exact opposite of what the code does.
+
+None of these is a modelling error and every one reaches a reader. They survive because a typed word — "four", "close to", "revision 3" — does not look like a figure, and because every gate around them examines how a number was BUILT rather than what the page says.
+
+THE MECHANISM IS SHARED RATHER THAN COPIED, and that decision is the same lesson twice over in one day. Porting the one existing implementation into twenty-three studies would have produced twenty-three hand-maintained rendering sets with twenty-three different holes — which is L-084, registered the same day on the sweeps, and the lesson [R-ENF-01 EXTENDED] drew that morning from five hand-maintained scrub lists with five different holes. engine/prose_figures.py holds the mechanism; each study declares only what is genuinely its own: which documents a reader receives, and which figures may legitimately be quoted against something other than a model output.
+
+WHAT THE FIRST FOUR PORTS FOUND, none of it previously visible. AMOC: a disclosed 86.45% ownership figure typed in TWO places and registered in neither, while every other ownership figure in that model carries four fields; two figures from superseded editions typed to show what changed, which this model cannot compute because a different model produced them; a terminal reinvestment STEP quoted as the difference of two committed numbers, which is not itself committed; SIX PRICE LEVELS typed into the builder as the level-touch ladder's rungs, with the ladder's probabilities computed at render time and never committed — so the section-3 ladder the model report requires existed only inside a document; and a band width typed as 1.23x two rows below the value it rounds. ARCC: a facility's Euribor margin and three disclosed average effective interest rates typed into builders, and a superseded tax rate, a superseded sovereign yield and two reviewers' readings typed into the REGISTER'S OWN JUSTIFICATION TEXT, where this rule also reaches; and "950 times smaller", correct and typed, now computed from the two figures the register already holds. PHDC and EGCH: clean.
+
+THE GATE RUNS THE INSTRUMENT, IT DOES NOT COUNT THE FILE. Treating a script's existence as conformance would put a green tick on a red result, and that is case 2 of the negative control — the case that matters most. scripts/check_prose_figures.py requires each study to carry the check AND to pass it. Ratcheted per [R-ENF-02] with twenty entries at adoption, population-anchored [R-ENF-04], negative-controlled on nine conditions including a check that crashes and a study whose red check is knowingly on the ratchet and must stay green.
+
+WHAT IS DELIBERATELY NOT A BAR: the gate carries a --measure mode printing the book-wide advisory — 8,824 figures in the delivered documents, 373 unmatched against a GENERIC rendering set, a 4.2% rate spanning 0.0% to 11.9% — and that number is never a threshold. A generic rendering set cannot tell a typed figure from an uncurated one, which is the argument FOR the per-study instrument rather than a substitute for it. Only the author who wrote the sentence can say what a figure may legitimately be quoted against.
+
+THE DISCIPLINE FOR A FALSE POSITIVE IS INHERITED VERBATIM AND IS THE WHOLE METHOD: A FALSE POSITIVE IS FIXED BY WIDENING THE RENDERING SET, NEVER BY DELETING THE FIGURE FROM THE STUDY. Four widenings were taught by false positives on the first runs — ratios against the price (eleven of AMOC's first eighteen unmatched figures), four decimals rather than three (a debt weight printed at four), pairwise ratios among the expert panel, and distances measured against the technical read's own close rather than against spot, because those are two clocks. If a figure is real and the model cannot produce it, the model is what is missing.
+
+READ THE POPULATION LIVE: python3 scripts/check_prose_figures.py, and --measure for the advisory.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT PROSE: A RULE THAT ONE STUDY IMPLEMENTS IS A RULE THAT ONE STUDY OBEYS. It had been written down for four weeks, it was correct, it was implemented well in the one place it existed, and everywhere else it bound nothing — which is [R-MACRO-01]'s own general lesson arriving from a different direction: where a rule can be made arithmetic, making it arithmetic is the only way it survives, and making it arithmetic ONCE, in a shared place, is the only way it survives everywhere.
+
 [R-BRIDGE-01] THE ENTERPRISE-TO-EQUITY BRIDGE IS A RECORD, AND IT IS CHECKED FROM OUTSIDE THE STUDY [ADOPTED 02-Sep-2026, method reassessment WS4]
 
 The failure. Four defects, all of them shipped, none of them visible to any gate this repository had, because every one sat inside a study's own arithmetic — and that arithmetic recalculated perfectly. A recalculation proves the model computes what it says it computes; it says nothing about whether what it computes is the right bridge.
@@ -2542,6 +2745,22 @@ MANDATORY INSIDE THE PROGRAMME, NOT ONLY AT PUBLISH: every re-issue that lands m
 WHAT THE FIRST TWO-SIDED RUN FOUND. DU: a central thirteen per cent ABOVE the spot it was struck at, with no review — invisible to the one-sided rule by construction. It is listed on the ratchet rather than fixed on the night the rule changed, because the list is the honest record of what is outstanding, and it is reviewed when that study is next re-issued.
 
 THE NEGATIVE CONTROL'S OWN CASE IS INVERTED RATHER THAN DELETED. It carried a case asserting that a central far above the price must NOT fire, which was correct evidence for the one-sided rule. That same construction now must go red. Keeping the case and flipping its expectation is the sharpest available evidence that the extension actually took effect; deleting it would have left the change untested in exactly the place it matters.
+
+[R-GAP-01 AMENDED] THE PRICE THE GAP IS MEASURED AGAINST IS THE LATEST KNOWN ONE, AND A STALE SPOT IS ITSELF THE DEFECT [AMENDED 03-Sep-2026, per instruction — "Before you deliver anything check against the latest prices. Use latest prices in the way it is intended to to arrive at a realistic price that takes all circumstances into effect when calculating fair price"]
+
+THE RULE HAS SAID "THE LATEST KNOWN MARKET PRICE" SINCE THE DAY IT WAS ADOPTED, AND THE GATE HAS NEVER READ ONE. `scripts/check_valuation_gap.py` reads each study's own committed spot — the price it was STRUCK at. That is the right question for auditing whether a study was audited before it shipped, and it is not the question the rule asks. A study struck against a price that has since moved a long way is not audited against the world; it is audited against its own past.
+
+MEASURED ON THE DAY THIS WAS ADOPTED, on ninety closes supplied for 2-3 September 2026: TEN of thirteen readable studies breach the ten per cent trigger against the day's price, and THREE OF THEM WERE INSIDE THE BAND WHEN THEY WERE STRUCK — ARCC at −30.6%, AMOC at −26.6% and SAVOLA at −10.1%. AMOC and ARCC were the two re-issued that same day.
+
+THE CAUSE IS NOT A DRIFTING METHOD, IT IS A STALE SPOT. Six of the nineteen studies carrying a readable spot sit more than ten per cent behind the market: AMR by 294%, AMOC by 48% — EGP 9.10 struck on 6 August against EGP 13.50 on 3 September — ARCC by 31%, SCEM by 27%, SAVOLA by 19% and SWDY by 14%. A fair value published against a month-old price is a comparison a reader cannot use, whatever the fair value is worth.
+
+THE RULE. NO STUDY IS DELIVERED AGAINST A STALE PRICE. Before any delivery — a first issue, a re-issue, a re-strike, or the staging of files under the campaign — the central is put against the LATEST KNOWN price, and where the gap exceeds ten per cent either way the eight-heading review runs BEFORE the files are staged. The spot the study publishes is that same latest price and its DATE is stated beside it, so a reader can see what the comparison is against.
+
+WHAT THE PRICE IS FOR, AND IT IS NOT A TARGET. The instruction is to use the latest price "to arrive at a realistic price that takes all circumstances into effect", and that is precisely the evidential reading this rule already carries. A large gap is EVIDENCE that the model may have missed a circumstance the market has priced — a filing not read, a base year that no longer foots, a macro path that contradicts itself, a bridge standing on a superseded balance sheet, a claim typed rather than computed. Those are the eight headings, and they are where the answer is looked for. IT IS NEVER A REASON TO MOVE THE NUMBER TOWARD THE PRICE: a fair value adjusted to meet a quote is the reverse-engineered rate the cost-of-capital procedure prohibits outright, arriving through the front door instead of the side one. The honest output of a review is frequently an unchanged central with a stated reason, and the first worked case of this rule ended exactly that way.
+
+THE PRICES ARE A COMMITTED ARTEFACT, NEVER A FIGURE IN A CONVERSATION. They live at engine/prices/SUPPLIED_{DD-MM-YYYY}.json with the source file, who supplied them and the date each close carries, because the container is rebuilt from the repository and a session that cannot see a supplied figure will ask for it again [R-IND-01]. READ THEM LIVE — `python3 engine/prices/gap_today.py` puts every study's committed central against the most recent supplied file and names both the breaches and the studies whose answer it could not read. Never quote the table from a document; the prices move and the document does not.
+
+WHAT THIS DOES NOT CHANGE. The eight headings, the two-sided trigger, the ratchet, the enforcement and the negative control are all as they were. `check_valuation_gap.py` keeps auditing a study against its own strike price, because that remains the honest test of whether the answer was audited before it shipped; what is added is that the strike price must be current at the moment of delivery, which makes the two questions the same question again.
 
 [R-GAP-02] A STUDY FAR FROM THE PRICE IS A FAIL AND DOES NOT PUBLISH [ADOPTED 03-Sep-2026, per instruction — "DO NOT ISSUE A STUDY THAT DOES NOT SATISFY THE CRITERIA WE SET EARLIER" and "A DIFFERENCE OF 30% LET ALONE 70% FROM THE ACTUAL PRICE IS A FAIL AND THE STUDY SHOULD NOT BE PUBLISHED UNTIL IT IS SORTED"]
 
@@ -2725,3 +2944,158 @@ THE GENERAL LESSON, WHICH IS NOT ABOUT COST OF DEBT: WHEN A CHECK FIRES ON WORK 
 END-OF-YEAR ARRIVAL WAS AN ASSUMPTION, NOT THE RULE. The gate tested each cash flow as though it arrived on the last day of its year and flagged ARCC, whose factors are a legitimate mid-period schedule struck part-way through a fiscal year — cumulative discounting of 0.25, 0.94, 1.88, 2.83 and 3.79 years off its valuation date. This rule requires ONE DATE, ONE PRICE OF TIME, which that schedule obeys and which the terminal test is what actually enforces; it nowhere mandates year-end arrival. The defect was never the convention. It was that nobody wrote it down.
 
 A RECORD MAY THEREFORE DECLARE ITS CONVENTION — the cumulative discounting time of every explicit year AND the slice of calendar each forward rate owns, without which the factors do not reproduce, since a first period that is a stub is not a unit-width slice from time zero. The factors are then checked against the declaration. A record that declares nothing still gets the end-of-year test, because accepting any factors at all where none is declared would delete the check rather than generalise it, and a declaration that does not reproduce its own factors fails — it reads as evidence, which is worse than an assumption. Negative-controlled on four conditions plus a clean mid-period schedule that must pass.
+
+## [R-ANCHOR-01] The forecast is anchored on the latest reviewed period, and a decline away from it names its mechanism (3-Sep-2026, per instruction — "the calibration does not fix the current studies for the 90 stocks only. It fixes the way the testahil model thinks and executes fundamental valuations")
+
+**THE RULE THIS ENFORCES IS NOT NEW, AND THAT IS THE ENTIRE POINT.** Both governing
+documents have carried it since 7 August 2026, in these words:
+
+> A NEAR-TERM REVIEWED ACTUAL OUTRANKS A STALE FULL-YEAR RATE: anchor every unit rate on
+> the most recent reviewed period and let it DRIFT only where a named structural mechanism
+> has a MEASURED like-for-like direction in the company's own period pair; hold everything
+> else flat INCLUDING observed improvements.
+
+It was correct. It was registered. On 3 September 2026 **three studies in one market
+violated it in three different costumes, every one of them lowering the value**, and every
+one was found by a person reading the numbers rather than by anything in this repository.
+
+**AMOC.** Forecast gross margin 9.494% falling to 8.764%, against a base year of 9.653% and
+a *filed* first half of 12.428% — an implied second half of **6.56%**, half what the
+company had just reported. The mechanism was an unsourced real cost drift: the pound
+conversion legs escalated at the full domestic inflation ladder (14.5% to 9.5%) while
+realised price grew only at the currency differential (11.7% to 6.8%), **+2.7 points a
+year, compounding for ever**. The study's own registered `raw_pass = 1.0` input said in as
+many words that "the gross SPREAD per tonne is held flat in real terms and the margin
+neither widens nor narrows" — the principle was applied to the feedstock leg and silently
+broken on the conversion leg two lines below it. Worth **+19.4%** when corrected.
+
+**EGCH.** Forecast gross margin 45.66% falling to 33.02% on essentially flat revenue. One
+typed array: `export_usd_path = [530, 500, 470, 450, 440]`, a **−17% dollar output price**
+with no marginal cash cost quoted, no institution publishing it, and the source layer
+recorded as "Constructed" — against a dollar-linked gas input held flat in dollars. It then
+set a terminal worth 60% of enterprise value. What settles it is not judgement but the
+book: **AMOC, same house, same market, same week, holds its dollar commodity price flat and
+registers the reason — "no forecast of it is defensible".** Two studies cannot carry
+opposite conventions for the same class of input.
+
+**ARCC.** The opposite shape, and it is named here because a gate that only catches
+declines would have said nothing about it either. The forecast opened at 39.03% against a
+filed peak of **39.25%** and rose to 40.4% — at the very top of the company's own filed
+range — and *no sentence in the study told a reader so*.
+
+**THE GENERAL LESSON, WHICH IS NOT ABOUT MARGINS: A LESSON THAT BINDS NOTHING IS ADVICE.**
+[L-048] was registered after the first occurrence of exactly this defect, it was correct,
+and it bound nothing — the digest already carried the ARCC precedent verbatim ("the model's
+whole forecast margin decline was a mechanical artifact of the price path being set below a
+single blended cost-inflation index in every year, by construction") while AMOC was
+committing the identical error in another costume. This is [R-MACRO-01]'s own general
+lesson applied one level up, and the remedy is the same one: **where a lesson can be made
+arithmetic, making it arithmetic is the only way it survives.**
+
+### What is adopted
+
+A study commits a **`forecast_anchor` record**: the rate it forecasts, the latest reviewed
+period with its date and its rate, and the first forecast year's rate. Where the forecast
+opens **materially below** the latest reviewed period it must additionally name a
+**mechanism from a CLOSED list**, the **disclosure** that establishes it from the filings,
+and a **LIKE-FOR-LIKE MEASUREMENT** in the company's own period pair giving that mechanism
+a direction.
+
+The list is closed — capitalised interest's own precedent under [R-COC-01 AMENDED] — because
+an open list lets any study opt out by inventing a reason, and *"the rate looked wrong"* is
+not a mechanism. Adding to it is a rule amendment, not a study's decision.
+
+**THE CLAUSE THAT DOES THE WORK IS THE MEASUREMENT, AND IT FIRED ON ITS FIRST RUN AGAINST
+THE DESK THAT WROTE IT.** A study may declare "input costs rising faster than realised
+price" and supply a period pair in which cost per unit of revenue *fell*. AMOC did exactly
+that: a draft record claiming `one_off_in_the_latest_period` was written on adoption day
+and `scripts/check_forecast_anchor.py` refused it on the like-for-like measurement supplied
+beside it — cost per unit of revenue in the **same quarter a year apart** ran 94.947% to
+89.810%, the opposite way to the mechanism claimed. **A mechanism contradicted by the
+company's own filings is not a mechanism; it is the assumption wearing one.**
+
+### Clause two: the path, not only the opening year
+
+**THIS RULE AS FIRST WRITTEN WOULD NOT HAVE CAUGHT EGCH, AND THAT IS RECORDED HERE RATHER
+THAN DISCOVERED LATER.** EGCH's forecast *opened* at 45.66% against a latest audited year of
+38.39% — seven points **above** it, which the opening-year clause is right not to fire on —
+and then fell to **33.02%**, below every audited year but one, on a typed dollar price path
+nothing sourced. A gate inspecting only the first forecast year sees a forecast opening
+above the record and passes it, while the decline that carries the value sits in years two
+to five.
+
+So the same claim is tested along the whole explicit window: **a rate that declines
+materially from its own opening year is the same claim about the world as one that opens
+below the filed record**, and it is named, sourced and measured on the same terms, at the
+same relative 5%. One rule with two clauses rather than a second rule — a rule restated in
+two places is the drift [R-DOC-01] exists to close.
+
+**The clause immediately found a residual defect in the corrected EGCH and was answered
+rather than argued with.** With the dollar export price held flat the margin still falls
+45.66% → 42.08%, 7.9% relative, because the domestic cost legs are pound-denominated and
+escalate on the Egyptian inflation path while revenue is dollar-linked. That is a real cost
+drift and therefore a claim — so EGCH declares `input_cost_outpacing_price`, carries the
+cost-stack disclosure, and supplies the measurement: cost per unit of revenue in its own
+audited accounts ran **54.059% (FY2022/23) to 61.613% (FY2024/25)**, a rise of 7.55 points.
+**The mechanism and the filings agree**, which is exactly the test AMOC failed on the same
+clause, where the same quarter a year apart moved the opposite way. The clause does not
+forbid a declining forecast; it forbids an undeclared one.
+
+`forecast_path` is deliberately **not** in the required fields: it is being introduced onto
+studies that predate it and the ratchet carries those. A record that carries one is tested
+on it. Negative-controlled on EGCH's path exactly as it shipped, a declining path with no
+mechanism, a path that does not parse, and three clean cases — a flat path, a rising path,
+and **EGCH's corrected path with its mechanism measured and agreeing**, which must stay
+green.
+
+### The threshold, stated rather than dressed up
+
+**RELATIVE, at 5%** of the latest reviewed rate, with a small absolute floor so a genuinely
+tiny rate does not trip on arithmetic noise. Five per cent is **the materiality line this
+house already applies to a contested judgement** — reused rather than minted, which is the
+only honest kind of justification for a cutoff.
+
+The first draft used an ABSOLUTE 0.002 with the stated reason "the rounding width of a rate
+quoted to two decimal places, doubled". That reason supports 0.0001, not 0.002 — **a number
+chosen and then given a justification, which is the free-parameter offence in better
+clothes** — and its own negative control caught it, firing on ARCC's legitimately clean
+0.22-point gap. The fix was not to widen it. [R-COC-01]'s lesson applies here as written:
+when a check fires on work that is right, widening is a free parameter and moving the work
+corrupts what is measured; the third option is to establish the check is pointed at the
+wrong measurement and re-point it. On the three cases that provoked this rule the relative
+form separates them by wide margins — AMOC 23.6% below, EGCH 27.7% below, ARCC 0.56% below
+— and **no threshold anywhere between 5% and 20% would classify any of them differently**,
+which is the test of whether a cutoff is doing work or merely existing.
+
+### What it does not do
+
+It does **not** require a forecast to equal the latest period. Mean reversion is real and a
+refiner's spread is volatile. It requires the claim to be **named, sourced and measured**.
+
+It does **not** fire on a forecast *above* the latest period. That direction is audited by
+[R-GAP-01]'s two-sided trigger and by [R-ENF-05]'s sign test, and a gate firing both ways
+here would collide with them. The record is nonetheless **printed for every study whether
+or not it fires**, so ARCC's shape — a forecast sitting at the top of its own filed range —
+is visible to a reader rather than merely not-red.
+
+### Enforcement
+
+`scripts/check_forecast_anchor.py`, per [R-ENF-01], from outside the study. Ratcheted per
+[R-ENF-02] (`engine/build_depth_audit/anchor_outstanding.json`, seeded on adoption day with
+every study then on disk, since the record did not exist until this rule; the list may only
+ever SHORTEN). Population-anchored per [R-ENF-04] — a run examining zero studies FAILS, and
+every listed ticker must resolve on disk. Negative-controlled by
+`scripts/check_forecast_anchor_negative_control.py`: eighteen conditions, including **AMOC's
+forecast exactly as it stood**, **AMOC's mechanism contradicted by its own filings**,
+**EGCH's typed price path**, and four clean cases that must stay green — among them
+**ARCC's shape**, which the first draft of the gate wrongly failed.
+
+**AMOC is on the ratchet and the reason is worth recording.** It cannot name a mechanism its
+filings support, and it is not simply re-anchored because [R-VCAL-01]'s promotion guard
+forbids it in one pass: the move is priced at **+55%** in AMOC's own contested judgements
+and would carry the study from 12.3% below the price to 35.9% above it in a single edition.
+The lever is priced, published, and left for the next edition to take on its own evidence
+rather than on this one's momentum.
+
+**READ THE POPULATION LIVE** — `python3 scripts/check_forecast_anchor.py` — never from this
+document.

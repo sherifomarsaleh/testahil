@@ -20,7 +20,10 @@ GOOD = {
     "primary": {"kind": "dcf", "value": 14.54},
     "cross_checks": [
         {"kind": "relative_multiple", "value": 11.17,
-         "multiple_source": "the multiples the shares have carried over five years of own history"},
+         "multiple_source": "the multiples the shares have carried over five years of own history",
+         "multiple": 6.20,
+         "circularity": {"spot": 12.40, "shares": 2100.0, "net_debt": 4800.0,
+                         "metric_value": 4900.0}},
         {"kind": "rnav", "value": 12.80,
          "note": "land at cost with a labelled market cross-check, absorption on the "
                  "company's own delivery rate, discounted on the schedule"},
@@ -94,7 +97,9 @@ def main():
         r["cross_checks"] = [
             {"kind": "book_value", "value": 6.56, "weight": 0.15},
             {"kind": "relative_multiple", "value": 11.17, "weight": 0.20,
-             "multiple_source": "own history"},
+             "multiple_source": "own history", "multiple": 6.20,
+             "circularity": {"spot": 12.40, "shares": 2100.0, "net_debt": 4800.0,
+                             "metric_value": 4900.0}},
             {"kind": "normalised_earnings", "value": 5.17, "weight": 0.20,
              "basis": "capitalised at the cost of equity"},
         ]
@@ -131,6 +136,41 @@ def main():
     def m_rnav_unevidenced(r):
         r["primary"] = {"kind": "rnav", "value": 14.54, "substitution_reason": "developer"}
 
+    # ---- the string was the whole check [added 03-Sep-2026, AMOC re-strike] ----
+    # AMOC's relative lens exactly as it shipped on 03-Sep-2026: the multiple is
+    # (market cap + net debt) / base-year EBITDA -- the traded multiple, re-rated
+    # by zero -- while the record says it comes "from the company's own history
+    # and its regional peers, never a multiple read off the current price". The
+    # prose check above reads that sentence, finds the reassuring words and
+    # passes. What exposed it was the re-strike: the lens moved +51% when the
+    # price moved +48%, which is what an anchored-on-price lens does and what an
+    # anchored-on-history lens cannot do.
+    AMOC_EBITDA = 2951.062
+    AMOC_ND = -3001.5
+    AMOC_SH = 1291.5
+    AMOC_SPOT = 13.50
+    AMOC_TRADED = (AMOC_SPOT * AMOC_SH + AMOC_ND) / AMOC_EBITDA
+
+    def m_amoc_relative_as_shipped(r):
+        r["cross_checks"][0] = {
+            "kind": "relative_multiple", "value": 12.589,
+            "multiple_source": "enterprise value to EBITDA from the company's own history "
+                               "and its regional peers, never a multiple read off the "
+                               "current price",
+            "multiple": AMOC_TRADED,
+            "circularity": {"spot": AMOC_SPOT, "shares": AMOC_SH,
+                            "net_debt": AMOC_ND, "metric_value": AMOC_EBITDA}}
+
+    def m_no_circularity_block(r):
+        # the check switched off rather than passed: a source in prose, no numbers
+        r["cross_checks"][0].pop("circularity", None)
+
+    def m_no_multiple(r):
+        r["cross_checks"][0].pop("multiple", None)
+
+    def m_circularity_wont_divide(r):
+        r["cross_checks"][0]["circularity"]["metric_value"] = 0.0
+
     for n, m in (("1 PHDC's architecture as shipped", m_phdc_as_shipped),
                  ("2 a typed weight on a cross-check", m_typed_weights),
                  ("3 central is not the primary", m_central_not_primary),
@@ -140,7 +180,13 @@ def main():
                  ("7 wrong primary for the class", m_wrong_primary),
                  ("8 unregistered class", m_unregistered_class),
                  ("9 envelope invented around the central", m_envelope),
-                 ("10 RNAV primary, disclosure unevidenced", m_rnav_unevidenced)):
+                 ("10 RNAV primary, disclosure unevidenced", m_rnav_unevidenced),
+                 ("10a AMOC's relative lens as shipped -- the traded multiple",
+                  m_amoc_relative_as_shipped),
+                 ("10b no circularity block: the check switched off",
+                  m_no_circularity_block),
+                 ("10c the adopted multiple is not committed", m_no_multiple),
+                 ("10d the circularity numbers do not divide", m_circularity_wont_divide)):
         case(n, broken(m), True, results)
 
     def b_norecord(tmp):
@@ -180,6 +226,26 @@ def main():
                               "the company's own delivery or absorption rate"]}
         put_study(tmp, "NCL", rec); put_list(tmp, [])
     case("clean: RNAV primary, fully evidenced", c_rnav, False, results)
+
+    def c_own_history_multiple(tmp):
+        # THE CASE THIS MUST NOT BREAK: a multiple genuinely from own history,
+        # committed beside the three numbers that reproduce the traded one, and
+        # standing clear of it. A gate that could not tell this from AMOC's
+        # would push studies to hide the ingredients, which is the opposite of
+        # what it measures.
+        rec = json.loads(json.dumps(GOOD))
+        rec["cross_checks"][0] = {
+            "kind": "relative_multiple", "value": 9.80,
+            "multiple_source": "the median enterprise-value-to-EBITDA multiple the "
+                               "company's own shares carried at each of the last five "
+                               "fiscal year ends",
+            "multiple": 4.10,
+            "circularity": {"spot": 12.40, "shares": 2100.0, "net_debt": 4800.0,
+                            "metric_value": 4900.0}}
+        rec["envelope"] = {"low": 9.80, "high": 14.54}
+        put_study(tmp, "NCL", rec); put_list(tmp, [])
+    case("clean: an own-history multiple clear of the traded one",
+         c_own_history_multiple, False, results)
 
     def c_bank(tmp):
         rec = {"class": "bank",

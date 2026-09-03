@@ -150,7 +150,7 @@ MARKET = {
     "shares_outstanding_bn": I(2.85992, "Share capital per FY2025 balance sheet and the "
                                "share count carried on the covered-name record",
                                "2025-12-31", "A", unit="bn shares"),
-    "spot":                  I(15.20, "Egyptian Exchange closing price for PHDC, 23 August 2026",
+    "spot":                  I(14.40, "Egyptian Exchange closing price for PHDC, 3 September 2026. The previous edition was struck on the 23 August close of 15.20; no study in this series is delivered against a stale price, because a fair value published beside a month-old quote is a comparison a reader cannot use",
                                "2026-08-23", "B", unit="EGP/share"),
 }
 

@@ -128,11 +128,20 @@ gave), FY2025 operating income of EGP 4,595.82mn to the pound, total liabilities
 EGP 2,894mn — which turns out to be total CURRENT liabilities, so the derivation was
 right and the rejection was right), and revenue and profit for all three years.
 """
+import datetime as _dt
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
 import macro_path as MP
+
+# THE PRICE AND THE EDITION EACH HAVE ONE DATE, DECLARED ONCE.
+# Four places in the delivered files once read 'latest known close (6 August 2026)'
+# beside a price of 77.00, which was the 3 September close, and the masthead said
+# 'issued 2 September' on a 3 September edition. A date typed beside a computed
+# number is the same defect as a number typed beside a computed one.
+SPOT_DATE = '2026-09-03'      # engine/prices/SUPPLIED_03-09-2026.json
+EDITION_DATE = '2026-09-03'   # the date in the delivered filenames
 
 # ---------------------------------------------------------------------------
 # THE HOUSE MACRO PATH [R-MACRO-01]. Until this edition ARCC carried its own
@@ -202,8 +211,12 @@ IRP = ("FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor re
 # ============================== INPUTS ======================================
 INP = dict(
     # ---- market anchors ---------------------------------------------------
-    spot=I(59.00, "Closing price 06-Aug-2026 from the supplied EGX daily series (open "
-           "58.40, high 59.90, low 58.25)", "2026-08-06", "Market"),
+    # RE-STRUCK ON THE LATEST KNOWN PRICE [R-GAP-01 AMENDED, 03-09-2026]. The study
+    # had been carrying a 6-August close for four weeks while the stock rose 30.5%.
+    # The price is an INPUT here, not only a benchmark: market capitalisation sets
+    # the market-value equity weight the cost of capital is built on.
+    spot=I(77.00, "Closing price on the Egyptian Exchange, 3 September 2026. The previous "
+           "edition was struck on the 6 August close of 59.00", "2026-09-03", "Market"),
     shares_issued=I(378.7397, AFS25 + ", note 20: 378,739,700 ordinary shares authorised, "
                     "issued and fully paid at EGP 2 par, issued capital EGP 757,479,400",
                     "2025-12-31", "Company"),
@@ -366,9 +379,13 @@ INP = dict(
               "2024-12-31", "Company"),
     eq_fy23=I(1754.221659, AFS24 + " — equity attributable to owners, comparative",
               "2023-12-31", "Company"),
+    # the multiple is COMPUTED from the two figures rather than typed into the note: 950
+    # was right and it was a numeral in a justification, which is where this rule reaches
+    # too [found by prose_check.py]
     nci=I(0.158005, AFS25 + " — non-controlling interests, note 24: EGP 158,005. Revision 1 "
           "deducted EGP 150mn on inference from the profit statements; the audited figure "
-          "is 950 times smaller and immaterial to the bridge", "2025-12-31", "Company"),
+          "is %.0f times smaller and immaterial to the bridge" % (150.0 / 0.158005),
+          "2025-12-31", "Company"),
 
     # ---- debt, note 25 ----------------------------------------------------
     debt_cib_fy25=I(99.916937, AFS25 + " — note 25, Commercial International Bank credit "
@@ -698,6 +715,39 @@ INP = dict(
                  "foreign-currency current accounts rather than pound deposits — and the "
                  "path is set above it as the balance is redeployed, then easing",
                  "2026-08-06", "House"),
+    # ---- DISCLOSED FACTS AND SUPERSEDED FIGURES THE STUDY QUOTES, REGISTERED
+    # [added 03-Sep-2026, found by prose_check.py on its first run]. Each of these was
+    # typed into a builder's f-string. Three are DISCLOSED facts about the company's own
+    # debt and tax that this model does not compute; three are figures from a superseded
+    # revision or from a sell-side model, quoted so a reader can see what changed — which a
+    # model cannot compute because a different model produced them. Either way they are
+    # facts, and a fact in this study carries four fields.
+    ebrd_margin=I(0.0435, AFS25 + " note 10, facility schedule — the European Bank for "
+                  "Reconstruction and Development euro facility prices at three-month "
+                  "Euribor plus this margin", "2025-12-31", "Company"),
+    eff_rate_disclosed_fy25=I(0.2333, AFS25 + " note 10.2 — the average effective interest "
+                              "rate the company itself states for 2025, distinct from the "
+                              "rate this study computes from the charge and the balance",
+                              "2025-12-31", "Company"),
+    eff_rate_disclosed_fy24=I(0.2296, AFS24 + " note 10.2 — the same disclosure for 2024",
+                              "2024-12-31", "Company"),
+    eff_rate_disclosed_q126=I(0.2592, Q126 + " — the same disclosure annualised for the "
+                              "first quarter of 2026", "2026-03-31", "Company"),
+    tax_eff_superseded=I(0.2943, "Effective tax rate INFERRED by revision 1 of this study "
+                         "by closing a modelled net finance income, against the 23.82% the "
+                         "filing discloses. Quoted in the source register to show what "
+                         "changed; not an input to anything.", "2026-08-06", "House"),
+    efg_terminal_roic=I(0.0881, "Terminal return on invested capital in the published "
+                        "EFG Hermes model, as reconstructed in the reconciliation of "
+                        "section 1.10. A figure from another party's model, quoted; not an "
+                        "input to anything.", "2026-08-06", "House"),
+    efg_margin_exit=I(0.343, "Terminal EBITDA margin in the published EFG Hermes model, "
+                      "the far end of its 39.3% to 34.3% glide. Another party's figure, "
+                      "quoted; not an input to anything.", "2026-08-06", "House"),
+    efg_unit_cost_growth=I(0.469, "Growth in the cash cost per tonne the EFG Hermes model "
+                           "charges across its forecast window, as reconstructed in "
+                           "section 1.10. Another party's figure, quoted.", "2026-08-06",
+                           "House"),
     tax_eff=I(0.2382, AFS25 + " — income tax of EGP 1,125.468mn over pre-tax profit of EGP "
               "4,725.158mn. Note 10.2 separately discloses an average effective rate of "
               "23.33% (2024: 22.96%); Q1-2026 ran at 25.92%. Revision 1 inferred 29.43% by "
@@ -705,6 +755,18 @@ INP = dict(
               "over-taxed every forecast year by 5.6 points", "2025-12-31", "Company"),
 
     # ---- cost of capital ---------------------------------------------------
+    # the superseded quote and the reviewers' range are FACTS — one about a prior revision
+    # of this study, two about what three reviewers independently reported — and they are
+    # registered rather than typed into this note, which is the same rule one layer in
+    rf_superseded=I(0.2231, "Egypt 10-year local-currency government bond yield as carried "
+                    "by revision 3 of this study, dated 21 July 2026 and therefore sixteen "
+                    "days before the valuation date. Quoted to show what changed; not an "
+                    "input to anything.", "2026-07-21", "House"),
+    rf_reviewer_low=I(0.2288, "Lowest of three independent reviewers' readings of the "
+                      "Egyptian 10-year on 3-5 August 2026.", "2026-08-05", "Country"),
+    rf_reviewer_high=I(0.2298, "Highest of the same three readings. The adopted figure is "
+                       "their midpoint, struck at the valuation date.", "2026-08-05",
+                       "Country"),
     rf=I(0.2295, "Egypt 10-year local-currency government bond yield. Revision 3 carried "
          "22.31% dated 21 July; three independent reviewers put the 10-year at 22.88-22.98% "
          "on 3-5 August, and the curve is inverted above it (1-year near 25.6%). 22.95% is "
@@ -1865,8 +1927,33 @@ EXPERTS = [
 LR = {}
 for k, v in LENS.items():
     LR[k] = dict(bear=v * 0.90, base=v, bull=v * 1.10)
-LR['DCF (cash flow)'] = dict(bear=reval(mgn_shift=-0.02, we=wacc_exp + 0.015), base=fv_dcf,
-                             bull=reval(mgn_shift=0.02, we=wacc_exp - 0.015))
+# ---- THE BEAR AND THE BULL COME OFF THE FILED RECORD [rebuilt 03-Sep-2026] ---
+# the item engine/build_depth_audit/lens_outstanding.json promised at this
+# study's next re-issue, and this is that re-issue.
+#
+# The old corners moved the EBITDA margin by two points AND the discount rate by
+# 150bp, in opposite directions at each end. The discount rate is not this
+# company's to move: under [R-MACRO-01] it is derived from the house macro path,
+# and terminal growth and the terminal risk-free rate both carry the same
+# terminal inflation. So the published width was a choice of dial settings, and
+# its own note called it "never a spread invented around the answer" -- a
+# cautious label attached to the construction it disclaims, which is exactly the
+# habit [R-CAL-02] was written about.
+#
+# What replaces it moves ONE business driver across the span ARCC's own AUDITED
+# accounts have printed: the EBITDA margin, FY2023 22.00% to FY2025 39.25%. The
+# macro path is held completely still.
+#
+# THE RESULT IS DELIBERATELY ASYMMETRIC AND THAT ASYMMETRY IS THE FINDING. The
+# forecast opens at 39.03% -- within a fifth of a point of the best year this
+# company has ever filed -- so there is effectively NO upside left in margin, and
+# the whole of the range is downside. A symmetric +/-2pp band hid that completely.
+_ARCC_MGN_FILED_LOW = 0.2200          # FY2023, audited
+_ARCC_MGN_FILED_HIGH = 0.3925         # FY2025, audited
+_arcc_base_mgn = ebitda_f[0] / rev_f[0]
+LR['DCF (cash flow)'] = dict(
+    bear=reval(mgn_shift=_ARCC_MGN_FILED_LOW - _arcc_base_mgn), base=fv_dcf,
+    bull=reval(mgn_shift=_ARCC_MGN_FILED_HIGH - _arcc_base_mgn))
 # the diagnostic gets a range too, so the comparison table can show it beside
 # the published reads without the document having to invent one
 for k, v in LENS_DIAGNOSTIC.items():
@@ -2159,8 +2246,8 @@ def _scrub_attestation():
                        'scanned. Build them, run scrub_gate.py, then re-run this '
                        'module — an unmeasured result is not a clean one.')
     r = json.load(open(f))
-    want = {'ARCC_Valuation_Study_02-09-2026_public.docx',
-            'ARCC_Bibliography_02-09-2026.docx'}
+    want = {'ARCC_Valuation_Study_03-09-2026_public.docx',
+            'ARCC_Bibliography_03-09-2026.docx'}
     missing = sorted(want - set(r.get('files', [])))
     if missing:
         return False, ('the scrub covers %s and not %s — a check that opens a '
@@ -2213,8 +2300,35 @@ say(f"\n[Gates] assert_ground_up, assert_beta_provenance, assert_sigcm and "
 _PI = list(_MACRO.inflation_path)
 _YRS = list(_MACRO.inflation_years)
 
+_INFL_INPUTS = [
+    # [R-MACRO-01], clause added 03-Sep-2026 after EGCH: every inflation-class INPUT,
+    # not only the declared growth lines. This study's two escalator INDICES are
+    # cumulative, so what is declared here is the per-year rate each implies. The
+    # FIRST forecast year is an EVIDENCED COMPANY ANCHOR in both — the disclosed
+    # Q4-2025 exit price and the reviewed half's cost of sales — and it is exempted by
+    # COUNT with that reason rather than by exempting the line, which is the shape
+    # EGCH used to hide a whole inflation path. From FY2027 both ride the house
+    # calendar ladder to the basis point, which is what makes the margin an OUTPUT.
+    dict(key='cost_infl', mapping='calendar', first_year=2027, exempt_head=1,
+         values=[round(V['cost_infl'][i + 1] / V['cost_infl'][i] - 1, 6)
+                 for i in range(5)],
+         exempt_reason='FY2026 is anchored on the reviewed half\'s own cost of sales, '
+                       'not on an inflation rate; its real growth against the house '
+                       'path is stated in the growth line above',
+         note='FY2027-FY2030 are the house calendar ladder at zero real growth'),
+    dict(key='price_local_path', mapping='calendar', first_year=2027, exempt_head=1,
+         values=[round(V['price_local_path'][i + 1] / V['price_local_path'][i] - 1, 6)
+                 for i in range(5)],
+         exempt_reason='FY2026 is anchored on the disclosed Q4-2025 exit price of '
+                       'EGP 3,118/t; holding that exit flat produces 7.2% and the 8.0% '
+                       'carried is 0.8 points above a no-further-increase path',
+         note='FY2027-FY2030 are the house calendar ladder at zero real growth, the '
+              'SAME path the cost index carries'),
+]
+
 MACRO_RECORD = dict(
     market='EG', path_as_of=_MACRO.as_of,
+    inflation_inputs=_INFL_INPUTS,
     growth_lines=[
         # The anchored year and the path years are separate LINES because they
         # assume different real growth and each has to say so. Folding them into
@@ -2371,13 +2485,57 @@ COC_RECORD = dict(
     ],
 )
 
+
+# ---- [R-ANCHOR-01] THE FORECAST IS ANCHORED ON THE LATEST REVIEWED PERIOD ----
+# ARCC is the CLEAN case that gate had to be able to tell apart from the two
+# broken ones, and telling it apart is what caught a bug in the gate's own
+# tolerance on its first run. The forecast opens at 39.03% against an audited
+# FY2025 of 39.25% -- 0.56% relatively below, well inside the materiality line --
+# so no mechanism is owed and none is claimed.
+#
+# What the record makes visible, and what no sentence in this study previously
+# said, is that the forecast sits AT THE TOP of the company's own filed range:
+# FY2023 22.00%, FY2024 23.15%, FY2025 39.25%, and the forecast holds the peak and
+# improves on it. That is not a defect. It is the single most important thing about
+# the shape of this forecast and it now appears in a record a job outside the study
+# can read.
+FORECAST_ANCHOR = dict(
+    rate_name='EBITDA margin',
+    latest_reviewed_period='FY2025, audited',
+    latest_reviewed_date='2025-12-31',
+    latest_reviewed_rate=float(ebitda_h[-1] / rev_h[-1]),
+    first_forecast_rate=float(ebitda_f[0] / rev_f[0]),
+    # the PATH, per [R-ANCHOR-01] clause two. ARCC's rises rather than falls, which
+    # is the shape neither clause fires on -- and which [R-GAP-01]'s two-sided
+    # trigger and the sign test are what audit.
+    forecast_path=[float(ebitda_f[i] / rev_f[i]) for i in range(len(rev_f))],
+    note='the forecast opens within a fifth of a point of the best year this company has '
+         'filed, and rises from there. The filed record is FY2023 22.00%, FY2024 23.15%, '
+         'FY2025 39.25%; the bear corner of the published range is that FY2023 margin, so '
+         'the whole of the range is downside and the study says so.')
+
 LENS_RECORD = {
     'class': 'cement and heavy industrial',
     'primary': dict(kind='dcf', value=fv_dcf,
                  range=dict(low=LR[PRIMARY]['bear'], high=LR[PRIMARY]['bull']),
-                 range_note='the cash-flow lens across its own crux — the discount '
-                            'rate and the terminal growth moved together — on one '
-                            'clock, never a spread invented around the answer',
+                 range_note='the cash-flow lens with the EBITDA margin flexed across '
+                            'the span ARCC\'s own audited accounts have printed, '
+                            'FY2023 to FY2025, and the macro path held still',
+                 range_basis=dict(
+                     driver='the EBITDA margin, across its own audited span',
+                     low=float(_ARCC_MGN_FILED_LOW), high=float(_ARCC_MGN_FILED_HIGH),
+                     macro_held=True,
+                     evidence='ARCC filed an EBITDA margin of %.2f%% in FY2023, %.2f%% in '
+                              'FY2024 and %.2f%% in FY2025, all audited. The forecast '
+                              'opens at %.2f%%, within a fifth of a point of the best of '
+                              'them, so the bull corner is barely above the central and '
+                              'essentially the whole range is downside — which is the '
+                              'finding, and which the previous symmetric two-point band '
+                              'concealed. The discount rate, terminal growth and the '
+                              'currency path are held at the house macro path and do not '
+                              'move.'
+                              % (_ARCC_MGN_FILED_LOW * 100, 23.15,
+                                 _ARCC_MGN_FILED_HIGH * 100, _arcc_base_mgn * 100)),
                  note='the cash-flow lens on the company\'s own tonnes and prices, '
                       'discounted on the cost-of-capital schedule, with the terminal '
                       'built from the house macro path'),
@@ -2385,11 +2543,31 @@ LENS_RECORD = {
         dict(kind='replacement_cost', value=fv_asset,
              note='USD %.0f per annual tonne of capacity against a market paying '
                   'USD %.1f' % (V['ev_t_just'], ev_per_t)),
+        # THE INGREDIENTS, NOT THE SENTENCE [added 03-Sep-2026]. Until today this
+        # record named its source in prose and the gate read the prose. AMOC's
+        # record used the same reassuring words while its code divided the MARKET
+        # CAP by base-year EBITDA, and passed three times. So the claim is now
+        # arithmetic: the multiple adopted, and the three numbers that reproduce
+        # the traded one, committed side by side for anyone to divide.
+        #
+        # The source line is also corrected downward to what the input register
+        # actually says. 4.50x is a HOUSE figure, disclosed as weakly anchored
+        # against a thin Egyptian peer set of two names, not a multiple measured
+        # off a series. Calling it "from the company's own history and its
+        # regional peers" claimed a provenance the number does not have -- a
+        # smaller version of the same offence, and it goes the same way.
         dict(kind='relative_multiple', value=fv_rel, present_value=False,
-             multiple_source='an EV/EBITDA multiple from the company\'s own history '
-                             'and its regional peers, applied to normalised EBITDA — '
-                             'never a multiple read off the current price, which '
-                             'would value the company at what it already trades at'),
+             multiple=float(V['ev_ebitda_just']),
+             circularity=dict(spot=float(V['spot']), shares=float(SH),
+                              net_debt=float(-net_cash), metric_value=float(eb_norm)),
+             multiple_source='a HOUSE multiple of %.2fx on normalised EBITDA, disclosed '
+                             'as weakly anchored: the Egyptian peer set is two names '
+                             '(Sinai Cement, Misr Beni Suef) and neither publishes an '
+                             'EBITDA series this study could measure a multiple from. '
+                             'It is NOT read off the current price — the traded '
+                             'enterprise value over the same normalised EBITDA is '
+                             'committed beside it in the circularity block, and the '
+                             'two are far apart.' % V['ev_ebitda_just']),
         dict(kind='ev_per_tonne', value=ev_per_t, present_value=False,
              note='the market\'s own implied enterprise value per annual tonne, in '
                   'US dollars, against a replacement cost of USD %.0f'
@@ -2469,7 +2647,7 @@ BRIDGE_RECORD = dict(
 OUT = dict(
     central=fv_central, spot=V['spot'],
     macro_record=MACRO_RECORD, cost_of_capital_record=COC_RECORD,
-    lens_record=LENS_RECORD, bridge_record=BRIDGE_RECORD,
+    lens_record=LENS_RECORD, bridge_record=BRIDGE_RECORD, forecast_anchor=FORECAST_ANCHOR,
     # `central` and `spot` sit at the TOP of meta so the repo-level gap gate can
     # read this study's own answer. It could not before: the central lived only
     # under lenses.central, and [R-GAP-01]'s checker reported ARCC as
@@ -2477,10 +2655,17 @@ OUT = dict(
     # treats as a failure rather than a skip, and rightly.
     meta=dict(ticker='ARCC', company='Arabian Cement Company S.A.E.', market='EGX',
               market_code='EG', currency='EGP',
-              asof='2026-06-30', asof_note='valuation date = the date of the latest '
-              'disclosed balance sheet; the price it is compared against is the latest '
-              'known close, 6 August 2026',
-              spot=V['spot'], spot_date='2026-08-06',
+              # THE PRICE DATE WAS TYPED HERE TOO, AND IT WAS A MONTH STALE
+              # [corrected 03-Sep-2026]. spot_date said 3 September while this note beside
+              # it said 6 August, in the same dict, in the same commit. The note is now
+              # DERIVED from the date the record actually carries, so the two cannot part.
+              asof='2026-06-30',
+              asof_note=('valuation date = the date of the latest disclosed balance sheet; '
+                         'the price it is compared against is the latest known close, '
+                         + _dt.date.fromisoformat(SPOT_DATE).strftime('%-d %B %Y')),
+              spot=V['spot'], spot_date=SPOT_DATE,
+              # the edition this file produces, so no builder types an issue date
+              edition_date=EDITION_DATE,
               central=fv_central, gap_vs_spot=fv_central / V['spot'] - 1.0,
               shares_mn=SH, mktcap=MKTCAP, revision=4,
               standard_version=STD_VERSION,

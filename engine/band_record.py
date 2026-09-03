@@ -160,6 +160,22 @@ BANNED = [
     (r"no single-name edge", "no single-name edge"),
     (r"calibration (?:test |gate )?(?:FAILS?|PASSES?)\b", "calibration PASS/FAIL"),
     (r"skill-validated", "skill-validated"),
+    # THE RETIRED QUANTITY REACHED A READER UNDER A DESCRIPTION RATHER THAN A NAME
+    # [added 03-Sep-2026]. ARCC's delivered study published "Its skill against a
+    # simple random walk is -1.8% — statistically indistinguishable from zero at
+    # every block size tested", twice. That is the verdict [R-CAL-03] retired
+    # outright, and none of the patterns above matches it: they look for the
+    # TOKENS, and this named the quantity in words. A rule that says a measure may
+    # never reach a reader is not enforced by banning the word people happened to
+    # use for it last time.
+    (r"skill\s+(?:against|versus|vs\.?|relative to)\s+(?:a\s+)?"
+     r"(?:simple\s+)?(?:naive\s+)?(?:carry[- ]anchored\s+)?random walk",
+     "the retired skill verdict, described rather than named"),
+    (r"skill\s+(?:score|number|figure|measure)\b", "the retired skill verdict"),
+    (r"\bbeats?\s+(?:a\s+)?(?:simple\s+|naive\s+)?random walk\b",
+     "the retired skill verdict, described rather than named"),
+    (r"(?:better|worse)\s+than\s+(?:a\s+)?(?:simple\s+|naive\s+)?random walk\b",
+     "the retired skill verdict, described rather than named"),
 ]
 # CRPS is a legitimate methodology explanation where the scoring rule is taught,
 # and nowhere else: naming it beside a company is the verdict wearing a hat.
