@@ -57,6 +57,10 @@ on:
       - 'scripts/check_prose_figures_negative_control.py'
       - 'scripts/check_new_study_gauntlet.py'
       - 'scripts/check_new_study_gauntlet_negative_control.py'
+      - 'scripts/check_published_coverage.py'
+      - 'scripts/check_published_coverage_negative_control.py'
+      - 'engine/build_depth_audit/coverage_outstanding.json'
+      - 'assets/data.js'
       - 'engine/prose_figures.py'
       - 'engine/build_depth_audit/prose_outstanding.json'
       - 'engine/build_depth_audit/workbook_outstanding.json'
@@ -141,6 +145,10 @@ on:
       - 'scripts/check_prose_figures_negative_control.py'
       - 'scripts/check_new_study_gauntlet.py'
       - 'scripts/check_new_study_gauntlet_negative_control.py'
+      - 'scripts/check_published_coverage.py'
+      - 'scripts/check_published_coverage_negative_control.py'
+      - 'engine/build_depth_audit/coverage_outstanding.json'
+      - 'assets/data.js'
       - 'engine/prose_figures.py'
       - 'engine/build_depth_audit/prose_outstanding.json'
       - 'engine/build_depth_audit/workbook_outstanding.json'
@@ -442,6 +450,28 @@ jobs:
       # the case count is asserted too.
       - name: New-study gauntlet — negative control
         run: python3 scripts/check_new_study_gauntlet_negative_control.py
+
+      # THE LARGEST BLIND SPOT IN THE SYSTEM, and the gauntlet above cannot see it either:
+      # every construction gate here takes a STUDY DIRECTORY as its subject, so a name with
+      # no study directory is examined by NONE of them. Measured through a real node load of
+      # the site's own data file: 90 published fair values, 22 with a study, 68 without —
+      # the construction gates are SILENT about 76% of what this house publishes, not
+      # passing it.
+      #
+      # The gap was known and written into a status note, which is a number that rots
+      # [R-DOC-02]. This makes it a ratchet: countable, visible, and able to move in one
+      # direction only. It does NOT demand the 68 be studied — that is Phase 2 and no gate
+      # can demand 68 studies — it demands that no NEW fair value reach a reader with
+      # neither a study nor an entry saying it has none.
+      - name: Published-coverage gate
+        run: python3 scripts/check_published_coverage.py
+
+      # and its falsifier, whose first case is the only way this number grows: a new name
+      # published with no study. Plus an absent data.js, one that parses and will not LOAD,
+      # a site publishing no fair value at all, and no study directories — with two clean
+      # cases including an unstudied name that is properly on the ratchet
+      - name: Published-coverage gate — negative control
+        run: python3 scripts/check_published_coverage_negative_control.py
 
       # [R-MACRO-01] one house macro path per market, and every study's growth
       # rates held to it from outside. Five studies carried five inflation rates
