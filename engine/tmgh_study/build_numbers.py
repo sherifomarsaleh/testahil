@@ -93,11 +93,21 @@ def build():
             "refused": wf["refused"],
             "forward_ranges": fr["projection"],
             "guidance_ledger": fr["guidance_ledger"],
+            # a walk-forward that scored nothing is a walk-forward that did not run
+            "_driver_scores_nonempty": bool(scores.get("by_driver")),
+            # THIS COMPREHENSION MATCHED NOTHING AND PRODUCED AN EMPTY DICT, SILENTLY.
+            # It looked for keys shaped "asknown|<driver>|all" at the TOP LEVEL of
+            # scores.json, and this file's top level is by_driver / by_horizon /
+            # macro_split / by_era / sign_cases / detail — the driver keys sit one level
+            # down and are plain names. Nothing raised, because an empty comprehension is
+            # a valid dict; the delivered document then printed the walk-forward results
+            # table with its headers, its caption and NO ROWS, under prose describing what
+            # the testing found. [R-ENF-04]: an empty result is not a clean result, and
+            # here the emptiness reached a reader.
             "driver_scores": {k: {"bias": v["bias"], "mae": v["mae"], "n": v["n"],
                                   "robust": v["robust_sign"],
-                                  "eras": v["by_era"]}
-                              for k, v in scores.items() if k.endswith("|all")
-                              and k.startswith("asknown|")},
+                                  "eras": scores["by_era"].get(k, {})}
+                              for k, v in scores["by_driver"].items()},
         },
     }
 
@@ -291,8 +301,15 @@ def _bridge_record(cases, sh):
 def main():
     d = build()
     # THE ANSWER THE GAP GATE READS. This study deliberately publishes no central — four
-    # cases, never averaged — so the exposed figure is the MEDIAN of the four book-minority
-    # cases, labelled a summary statistic. Written by the builder, never by hand.
+    # cases, never averaged — so the exposed figure is the MEDIAN of the four cases on the
+    # ADOPTED basis, labelled a summary statistic. Written by the builder, never by hand.
+    #
+    # THE COMMENT AND THE NOTE BOTH SAID "book-minority" AND THE CODE ONE LINE BELOW READS
+    # per_share_nci_value_share. The number was right and the two sentences describing it
+    # were wrong, which is the more dangerous way round: a wrong number gets checked and a
+    # wrong description gets believed. The note also asserted that "every case sits below
+    # the price", which two of the four have not done for as long as it has been written.
+    # It is now built from the cases themselves and cannot say either thing again.
     cases = sorted(d["per_share_nci_value_share"].values())
     med = (cases[len(cases) // 2 - 1] + cases[len(cases) // 2]) / 2 if len(cases) % 2 == 0 else cases[len(cases) // 2]
     d["central"] = med
@@ -300,9 +317,13 @@ def main():
     d["spot"] = d["meta"]["spot"]
     d["meta"]["central"] = med
     d["meta"]["gap_vs_spot"] = med / d["spot"] - 1
-    d["meta"]["central_note"] = ("THIS STUDY DELIBERATELY PUBLISHES NO CENTRAL — the four cases are never "
-                                 "averaged. The figure is the median of the four book-minority cases, exposed "
-                                 "only so [R-GAP-01]'s gate can read the answer; every case sits below the price.")
+    _above = sum(1 for c in cases if c > d["spot"])
+    d["meta"]["central_note"] = (
+        "THIS STUDY DELIBERATELY PUBLISHES NO CENTRAL — the four cases are never "
+        "averaged. The figure is the median of the four cases on the adopted "
+        "minority basis (its share of value), exposed only so [R-GAP-01]'s gate can "
+        "read the answer; %d of the four sit above the price and %d below."
+        % (_above, len(cases) - _above))
     p = os.path.join(HERE, "study_numbers.json")
     json.dump(d, open(p, "w"), indent=1)
     print("wrote %s (%d bytes)" % (p, os.path.getsize(p)))

@@ -9,7 +9,7 @@ vocabulary, no file paths, no module names, no house shorthand. Evidence about
 how well the price distribution has held appears in section 3 as plain-language
 sentences with the statistics inline, never as an appendix.
 """
-import datetime, json, os, re, sys
+import datetime, json, math, os, re, sys
 
 from docx import Document
 from docx.shared import Pt, Cm
@@ -40,6 +40,7 @@ LENS, ST, WF = N["lenses"], N["statements"], N["walkforward"]
 CASES = N["valuation_cases"]
 SCHED = N["cost_of_capital_record"]
 PSB, PSP = N["per_share_nci_book"], N["per_share_nci_proportional"]
+PSV = N["per_share_nci_value_share"]      # the ADOPTED basis
 FV = N["fair_value_range"]
 SPOT = M["spot"]
 # THE EDITION DATE IS DERIVED FROM THE FILE THIS DOCUMENT SHIPS AS [ADDED 03-Sep-2026].
@@ -177,13 +178,21 @@ def build(path):
     para(doc, "Run the same model backwards and ask what single flat discount "
               "rate would reproduce the traded price, and the answer is %s to %s. "
               "This study does not use a single rate: it discounts each year at "
-              "its own, starting at %s and settling at %s once the central bank's "
+              "its own, starting at %s on the credit-default-swap premium — the "
+              "rating-based premium runs %s higher in the first year — and settling "
+              "at %s once the central bank's "
               "published path has played out. The comparison is still worth "
               "making, and what it shows is that the market and this study are "
               "closer than the headline rates suggest."
+              # THE GAP BETWEEN THE TWO LADDERS IS COMPUTED, NEVER TYPED. Both are
+              # published cases and the sentence used to quote one as "this study's"
+              # rate without saying which, while the study's flagship waterfall is
+              # built on the other.
               % (pct(LENS["implied_discount_rate"]["recovery"], 1),
                  pct(LENS["implied_discount_rate"]["capacity"], 1),
-                 pct(SCHED["forward_wacc"][0], 2), pct(SCHED["wacc_terminal"], 2)))
+                 pct(SCHED["forward_wacc"][0], 2),
+                 pct(CASES["rating|capacity"]["wacc"] - SCHED["forward_wacc"][0], 2),
+                 pct(SCHED["wacc_terminal"], 2)))
 
     figure(doc, os.path.join(HERE, "fig1_football.png"),
            "Every lens in this study, and the price the market is paying. The "
@@ -292,7 +301,17 @@ def section1(doc):
               "model produces a number that describes none of them. One "
               "projection underlies everything: the same forecast feeds the "
               "value, the statements in Appendix A and the workbook.")
-    c = CASES["rating|capacity"]
+    # THE CASE IS NAMED IN THE CAPTION AND THE NAME IS DERIVED FROM THIS KEY, never
+    # typed. Two of the four published cases are slower-conversion, so "on the
+    # slower-conversion case" identified half of them: a reader who carried the
+    # narrative's 32.37% to this table found a discount factor implying 35.79% and
+    # nothing on the page reconciled the two.
+    WF_CASE = "rating|capacity"
+    c = CASES[WF_CASE]
+    _erp, _conv = WF_CASE.split("|")
+    wf_case_words = ("%s equity risk premium, %s conversion"
+                     % ("rating-based" if _erp == "rating" else "credit-default-swap",
+                        "slower" if _conv == "capacity" else "faster"))
     rows_ = c["rows"][:5]
     yrs = [str(r["year"]) for r in rows_]
     # THE WATERFALL READS DOWN THE PAGE, not across it. Eleven waterfall stages
@@ -325,10 +344,12 @@ def section1(doc):
     tab = [[lab] + [x if isinstance(x, str) else money(x) for x in vals]
            for lab, vals in lines]
     table(doc, ["EGP million"] + yrs, tab, [6.2, 2.0, 2.0, 2.0, 2.0, 2.0],
-          "The first five of the ten explicit years, on the slower-conversion "
-          "case; the full waterfall is in the workbook. The two working-capital "
+          "The first five of the ten explicit years, on the case built on the %s, "
+          "whose first-year rate is %s; the other three cases are in the workbook, "
+          "as is the full ten-year waterfall. The two working-capital "
           "lines are the movement in the positions a developer carries at once — "
-          "money collected ahead of handover, and homes built ahead of handover.")
+          "money collected ahead of handover, and homes built ahead of handover."
+          % (wf_case_words, pct(c["wacc"], 2)))
 
     para(doc, "From enterprise value to what the shareholder owns:")
     br = [["Present value of the explicit ten years", money(c["pv_explicit"])],
@@ -353,11 +374,38 @@ def section1(doc):
           ["Equity attributable to TMG's own shareholders",
            money(c["equity_after_nci_value_share"])],
           ["Shares in issue, million", money(c["shares_mn"], 1)],
-          ["Value per share, EGP", money(c["per_share_nci_book"], 2)]]
+          ["Value per share, EGP", money(c["per_share_nci_value_share"], 2)]]
+    # [R-BRIDGE-01] REQUIRES THE EQUITY TO DIVIDE TO THE STATED PER SHARE, AND THIS
+    # BRIDGE DID NOT. Every line above deducted the minority at its share of value and
+    # reached EGP 244,183mn; the last row then printed per_share_nci_book, EGP 113.24,
+    # where 244,183 / 2,060.7 is 118.50 — the number the summary table publishes for
+    # this same case two pages earlier. A reader following the bridge down arrived 4.4%
+    # BELOW the study's own answer, and no gate could see it: the table-footing
+    # instrument reproduces COLUMN totals and this last step is a division.
+    #
+    # The rule already said the assertion should exist. It did not, so here it is.
+    _ps = c["equity_after_nci_value_share"] / c["shares_mn"]
+    assert abs(_ps - c["per_share_nci_value_share"]) < 0.005, (
+        "the bridge does not divide: %.4f vs %.4f"
+        % (_ps, c["per_share_nci_value_share"]))
+    _lines = (c["pv_explicit"] + c["pv_residual_book"] + c["pv_terminal_recurring"])
+    assert abs(_lines - c["enterprise_value"]) < 1.0, (
+        "the bridge does not foot to enterprise value: %.1f vs %.1f"
+        % (_lines, c["enterprise_value"]))
+    _eq = (c["enterprise_value"] + c["cash_and_deposits"] - c["borrowings"]
+           - c["lease_liabilities"] + c["investment_property"] + c["associates"]
+           + c["fvoci"])
+    assert abs(_eq - c["equity_before_minority"]) < 1.0, (
+        "the bridge does not foot to group equity: %.1f vs %.1f"
+        % (_eq, c["equity_before_minority"]))
     table(doc, ["Bridge from enterprise value to equity", "EGP million"], br,
           [11.0, 5.2],
-          "The slower-conversion case on the rating-based premium. The other "
-          "three cases run the same bridge on their own numbers.")
+          # wf_case_words already names the conversion reading, so a "slower-conversion
+          # case on the …, slower conversion" prefix stutters.
+          "The case built on the %s, with the minority deducted at its share of "
+          "value, which is the basis adopted. The other three cases run the same "
+          "bridge on their own numbers, and the two other minority bases are in the "
+          "summary table." % wf_case_words)
 
     # 1.2 book value
     doc.add_heading("1.2 Book value and the return earned on it", level=2)
@@ -413,12 +461,28 @@ def section1(doc):
     # 1.4 normalised
     doc.add_heading("1.4 Normalised earnings power", level=2)
     ne = LENS["normalised_earnings"]
-    table(doc, ["Year", "Attributable profit as reported",
-                "Revaluation gain at group level", "Cleaned attributable profit"],
-          [[y, money(ne["years"][y]["npat"]), money(ne["years"][y]["reval"]),
-            money(ne["cleaned_attributable_profit"][y])]
-           for y in sorted(ne["years"])], [1.8, 4.6, 4.4, 4.4],
-          "EGP million. The revaluation gains are non-cash and are not forecast; "
+    # THE ROW DID NOT RECONCILE ACROSS AND THE MISSING FACTOR WAS NOWHERE ON THE PAGE.
+    # The gain is disclosed at GROUP level and only the parent's share of it is stripped
+    # from attributable profit, so a reader subtracting the two printed columns got EGP
+    # 5,799mn for 2024 against a printed 8,025mn, with nothing to explain the difference.
+    # The table-footing instrument reproduces COLUMN totals and cannot see a row identity.
+    # The parent's share is now a column of its own, computed from the same figure the
+    # model uses, so the arithmetic is reproducible from what is printed.
+    hdr_ne = ["Year", "Attributable profit as reported",
+              "Revaluation gain at group level", "Parent's share of that gain",
+              "Cleaned attributable profit"]
+    rows_ne = [[y, money(ne["years"][y]["npat"]), money(ne["years"][y]["reval"]),
+                money(ne["years"][y]["npat"] - ne["cleaned_attributable_profit"][y]),
+                money(ne["cleaned_attributable_profit"][y])]
+               for y in sorted(ne["years"])]
+    for _y in sorted(ne["years"]):
+        _share = ne["years"][_y]["npat"] - ne["cleaned_attributable_profit"][_y]
+        assert abs((ne["years"][_y]["npat"] - _share)
+                   - ne["cleaned_attributable_profit"][_y]) < 0.5, _y
+    table(doc, hdr_ne, rows_ne, col_width.fit_widths(hdr_ne, rows_ne, 16.2),
+          "EGP million. The gain is disclosed at group level and only the parent's "
+          "share of it is stripped, which is why the parent's share is smaller than "
+          "the group gain. The revaluation gains are non-cash and are not forecast; "
           "capitalising them would capitalise a valuation opinion rather than a "
           "business.")
     para(doc, "Averaged over the three years, cleaned attributable profit is EGP "
@@ -492,7 +556,7 @@ def section1_drivers(doc):
     sc = WF["driver_scores"]
 
     def row(key, label):
-        s = sc.get("asknown|%s|all" % key)
+        s = sc.get(key)
         if not s:
             return None
         return [label, str(s["n"]),
@@ -505,6 +569,14 @@ def section1_drivers(doc):
                         row("new_sales", "New contracted sales"),
                         row("da", "Depreciation"),
                         row("finance_cost", "Finance cost")) if r]
+    # A RESULTS TABLE WITH NO ROWS SHIPPED FOR A DAY. The lookup above asked for
+    # "asknown|<driver>|all" against a record whose keys are plain driver names, matched
+    # nothing, and produced an empty list — so the delivered page carried this table's
+    # headers and its caption with NOTHING BETWEEN THEM, under prose describing what the
+    # testing had found. Nothing raised: an empty list is a valid table. [R-ENF-04] says
+    # an empty result is not a clean result, and here the emptiness reached a reader.
+    assert len(rows) >= 5, ("the walk-forward results table has %d rows; the scores "
+                            "record has %d drivers" % (len(rows), len(sc)))
     hdr_wf = ["Driver", "Observations", "Average error",
               "Average size of error", "Consistent across the record"]
     table(doc, hdr_wf,
@@ -516,34 +588,59 @@ def section1_drivers(doc):
           "method has tended to forecast low.")
 
     para(doc, "Two findings shaped this study.")
+    # EVERY FIGURE IN THESE TWO BULLETS WAS TYPED. They were also right, which is what
+    # makes typing them dangerous: nothing would have moved them when the record did.
+    # Log errors are converted to the percentages a reader can use.
+    _dr, _ns = sc["dev_revenue"], sc["new_sales"]
     bullets(doc, [
         "Converting a disclosed order book is forecastable. Development revenue "
-        "came back with an average error of about 6% low and a typical error of "
-        "28%, across 35 tests. That is why the valuation is built on the order "
-        "book rather than on a revenue growth rate.",
+        "came back with an average error of about %.0f%% low and a typical error of "
+        "%.0f%%, across %d tests. That is why the valuation is built on the order "
+        "book rather than on a revenue growth rate."
+        % (abs(math.expm1(_dr["bias"])) * 100, math.expm1(_dr["mae"]) * 100, _dr["n"]),
         "Forecasting new sales from population and inflation is not. New "
-        "contracted sales came back about 58% low, consistently, in every part "
+        "contracted sales came back about %.0f%% low, consistently, in every part "
         "of the record. The reason is plain in the company's own numbers: sales "
+        % (abs(math.expm1(_ns["bias"])) * 100) +
         "went from EGP 33 billion in 2022 to EGP 143 billion, then EGP 504 "
         "billion, then EGP 382 billion, on the launches of SouthMed and The "
         "Spine. No demographic anchor can see a launch calendar. This study "
         "therefore does not forecast sales that way; it uses the company's own "
         "disclosed sales and lets them converge on the delivery rate.",
     ])
+    # THE PARAGRAPH MADE THE MISTAKE IT WAS WARNING ABOUT. It divided the FY2025 finance
+    # charge by the borrowings on the 30-JUNE-2026 balance sheet — two different clocks —
+    # and reported "about 44%", a typed figure that reconciles against neither pairing:
+    # 3,936.5 over the 16,493 the same sentence quotes is 23.9%, which is BELOW the
+    # policy peak it was contrasted with, so the argument as printed refuted itself.
+    # The charge is divided here by the borrowings of the year that BORE it, named in
+    # the sentence, which is [R-COC-01]'s own requirement that an effective rate carry a
+    # described denominator.
+    #
+    # THE 27.25% POLICY PEAK IS GONE BECAUSE IT CANNOT BE SOURCED HERE. It was typed in
+    # two places; engine/macro_history/_supplied_EG_rates.json runs to 2023 and the house
+    # macro path carries the CURRENT rate with its MPC date, so nothing in this
+    # repository establishes a March-2024 peak. Under SIGCM a figure this desk cannot
+    # source is a figure it does not print. The comparison that survives is stronger
+    # anyway, because both sides are the study's own committed numbers: the implied rate
+    # against the marginal borrowing rate this model actually charges.
+    _fc = v(IS, "finance_cost_fy25")
+    _debt25 = (v(BSH, "loans_noncurrent_fy25") + v(BSH, "loans_current_fy25")
+               + v(BSH, "credit_facilities_fy25"))
     para(doc, "The same testing found a habit worth naming and NOT correcting. "
               "The method under-forecasts finance cost badly and consistently, "
               "and a correction for it passed every statistical test applied. It "
               "was rejected anyway. TMG's reported finance charge of EGP %s "
-              "million against borrowings of EGP %s million implies a rate of "
-              "about 44%%, against an Egyptian policy rate that peaked near "
-              "27.25%%. The excess is the unwinding of the financing component "
+              "million for 2025, against the EGP %s million of loans, current "
+              "maturities and credit facilities it carried at that year end, "
+              "implies a rate of %s — against the %s this model charges on "
+              "borrowings. The excess is the unwinding of the financing component "
               "the company recognises on its customer contracts, which is not "
               "interest on a loan and is not disclosed separately. Correcting a "
               "figure whose numerator and denominator describe different things "
               "would have hidden that rather than fixed it."
-              % (money(v(IS, "finance_cost_fy25")),
-                 money(v(BSH, "loans_noncurrent") + v(BSH, "loans_current")
-                       + v(BSH, "credit_facilities"))))
+              % (money(_fc), money(_debt25), pct(_fc / _debt25, 1),
+                 pct(W["kd_pretax"], 2)))
 
     # 1.7 the crux
     doc.add_heading("1.7 The crux", level=2)
@@ -579,24 +676,47 @@ def section1_drivers(doc):
               "reading is worth EGP %s a share and the faster one EGP %s. Both "
               "are published, and the gap between them is the study's crux."
               % (pct(SCHED["forward_wacc"][0], 0),
-                 money(PSB["rating|capacity"], 2),
-                 money(PSB["rating|recovery"], 2)))
+                 # the ADOPTED basis, which is what the crux table immediately above
+                 # this sentence publishes; it read the book basis and so contradicted
+                 # its own table by five and twenty pounds a share
+                 money(PSV["rating|capacity"], 2),
+                 money(PSV["rating|recovery"], 2)))
 
     # 1.8 macro and cost of capital
     doc.add_heading("1.8 The cost of capital, priced line by line", level=2)
     ins = W["inputs"]
     dam = ins["damodaran"]
+    # EACH COST OF EQUITY REPRODUCES FROM THE ROWS THIS TABLE PRINTS, on its own basis.
+    for _rf, _erp, _ke in ((W["rf_star_rating"], dam["total_erp_rating"], W["ke_rating"]),
+                           (W["rf_star_cds"], dam["total_erp_cds"], W["ke_cds"])):
+        assert abs(_rf + W["beta_record"]["beta"] * _erp - _ke) < 5e-4, (
+            "the cost of equity does not reproduce: %.4f + %.4f x %.4f != %.4f"
+            % (_rf, W["beta_record"]["beta"], _erp, _ke))
+        assert abs((ins["rf_observed"] - _rf)
+                   - (dam["adj_default_spread"] if _erp == dam["total_erp_rating"]
+                      else dam["sovereign_cds"])) < 5e-4, "the spread stripped is not printed"
     table(doc, ["Input", "Value", "Where it comes from"],
-          [["Egyptian ten-year government bond yield", pct(0.23, 2),
+          [["Egyptian ten-year government bond yield", pct(ins["rf_observed"], 2),
             "market quote dated 6 August 2026, cross-checked against a policy "
             "rate of 19.00%, an overnight lending rate of 20.00% and an "
             "interbank rate of 19.51% at the central bank's August 2026 meeting"],
-           ["Egypt's own default spread", pct(dam["adj_default_spread"], 2),
+           ["Egypt's own default spread, rating basis", pct(dam["adj_default_spread"], 2),
             "the sovereign's own row in the published country-premium file, read "
             "fresh on 1 September 2026"],
-           ["Risk-free rate, normalised", pct(W["rf_star_rating"], 2),
+           ["Risk-free rate, normalised, rating basis", pct(W["rf_star_rating"], 2),
             "the bond yield less that default spread, so country risk is charged "
             "once and not twice"],
+           # THE SWAP BASIS STRIPS A DIFFERENT SPREAD AND THE TABLE DID NOT SAY SO.
+           # [R-COC-01] requires the same basis of default spread to be stripped as
+           # the premium added back, so the swap-basis cost of equity stands on a
+           # normalised risk-free rate of its own. Only the rating pair was printed,
+           # so a reader combining the printed rows got 30.48% where the table states
+           # 33.44% — reproducing from a row the table did not carry.
+           ["Egypt's own default spread, swap basis", pct(dam["sovereign_cds"], 2),
+            "the sovereign credit-default-swap spread from the same file, which is "
+            "what the swap-basis premium is built on"],
+           ["Risk-free rate, normalised, swap basis", pct(W["rf_star_cds"], 2),
+            "the bond yield less THAT spread; the two bases are not mixed"],
            ["Equity risk premium, rating basis", pct(dam["total_erp_rating"], 2),
             "the same published file, Egypt's own row"],
            ["Equity risk premium, swap basis", pct(dam["total_erp_cds"], 2),
@@ -667,9 +787,9 @@ def section1_drivers(doc):
     table(doc, ["Discount rate", "Slower conversion, EGP/share",
                 "Faster conversion, EGP/share", "Against the traded price"],
           [[pct(w, 2),
-            money(grid["%0.4f|capacity" % w]["per_share_nci_book"], 2),
-            money(grid["%0.4f|recovery" % w]["per_share_nci_book"], 2),
-            pct(grid["%0.4f|capacity" % w]["per_share_nci_book"] / SPOT - 1, 0)]
+            money(grid["%0.4f|capacity" % w]["per_share_nci_value_share"], 2),
+            money(grid["%0.4f|recovery" % w]["per_share_nci_value_share"], 2),
+            pct(grid["%0.4f|capacity" % w]["per_share_nci_value_share"] / SPOT - 1, 0)]
            for w in waccs], [3.2, 4.4, 4.4, 4.2],
           "The last column compares the slower reading with the last traded "
           "price of EGP %s." % money(SPOT, 2))
@@ -744,7 +864,8 @@ def sections_2_to_7(doc):
                 "Where it is weakest"],
           [["Cash flow, sum of the parts",
             "the order book, the hotels and the recurring businesses, discounted",
-            "%s – %s" % (money(min(PSB.values()), 2), money(max(PSB.values()), 2)),
+            # the ADOPTED basis, as everywhere else in this document
+            "%s – %s" % (money(min(PSV.values()), 2), money(max(PSV.values()), 2)),
             "wholly dependent on the discount rate and on the conversion period"],
            ["Book value and sustainable return",
             "what the company earns on the capital it holds",
@@ -842,9 +963,13 @@ def sections_2_to_7(doc):
         "the home. From 2025 the Saudi project is recognised as construction "
         "progresses, and it was already more than half of development revenue in "
         "the first half of 2026. Comparisons across that change need care.",
-        "The finance charge is not what it looks like. It implies a rate near "
-        "44% on borrowings against a policy rate that peaked near 27.25%; the "
-        "difference is contract financing that the statements do not separate.",
+        "The finance charge is not what it looks like. It implies a rate of %s "
+        "on the borrowings that carried it, against the %s this model charges; "
+        "the difference is contract financing that the statements do not separate."
+        % (pct(v(IS, "finance_cost_fy25")
+               / (v(BSH, "loans_noncurrent_fy25") + v(BSH, "loans_current_fy25")
+                  + v(BSH, "credit_facilities_fy25")), 1),
+           pct(W["kd_pretax"], 2)),
         "The 2024 comparatives were restated. The company completed the "
         "accounting for its hotel acquisition within the allowed measurement "
         "period, moving 2024 gross profit from EGP %s million to EGP %s million "
