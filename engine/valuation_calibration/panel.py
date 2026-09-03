@@ -76,8 +76,8 @@ def _panel(rundir):
     # panel_annual.json — so the search is by SHAPE (a dict keyed by
     # four-digit years) across the candidates, and the file that answered
     # is recorded so a reader knows which artefact a cell stands on.
-    for fn in ("panel.json", "panel_annual.json", "panel_kpi_verified.json",
-               "bottom_up.json", "fs_parsed.json"):
+    for fn in ("panel.json", "panel_annual.json", "panel_export.json",
+               "panel_kpi_verified.json", "bottom_up.json", "fs_parsed.json"):
         p = os.path.join(rundir, fn)
         if not os.path.exists(p):
             continue
