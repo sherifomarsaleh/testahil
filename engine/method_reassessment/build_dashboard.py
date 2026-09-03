@@ -49,7 +49,7 @@ def build() -> str:
     p1, p2, dd = d["phase1"], d["phase2"], d["dates"]
     b, dv, acc = p1["build"], p1["delivery"], p1["acceptance"]
     met = sum(1 for a in acc if a["state"] == "MET")
-    blocked = next((a for a in acc if a["state"] == "BLOCKED"), None)
+    a3 = next((a for a in acc if a["n"] == 3), None)
     gen = dt.datetime.now(dt.timezone.utc).strftime("%d %B %Y, %H:%M UTC")
 
     # ---- the four measured rows -------------------------------------------------
@@ -68,10 +68,14 @@ def build() -> str:
          "warn" if dv["done"] < dv["total"] else "done"),
         ("Phase 1 — acceptance", "Part E, and its third item is the instrument",
          bar(met, len(acc), "warn"),
-         "NO DATE", "criterion 3 is blocked", "none"),
+         ("INSTRUMENT RUNNING" if a3 and a3["state"] == "RUNNING" else "NO DATE"),
+         ("%d of %d origins live" % (a3.get("origins_usable", 0),
+                                     a3.get("origins_declared", 0))
+          if a3 and a3["state"] == "RUNNING" else "criterion 3 is blocked"),
+         ("warn" if a3 and a3["state"] == "RUNNING" else "none")),
         ("Phase 2 — the other 85 names", "delivered on the current standard",
          bar(p2.get("done", 0), p2.get("total", 0), "warn"),
-         "NO DATE", "held until criterion 3 clears", "none"),
+         "NO DATE", "held until criterion 3 reports", "none"),
     ]
     row_html = "".join(
         '<div class="prow"><div class="prow-id"><h3>%s</h3><p>%s</p></div>%s'
@@ -88,14 +92,15 @@ def build() -> str:
     chain.append(("dated", d["generated"][:10],
                   "the build finishes", "all %d workstream artefacts present; the "
                   "Gantt had this at %s" % (b["total"], dd.get("phase1_planned_end", "?"))))
-    if blocked:
-        chain.append(("undated", "NO DATE",
+    if a3:
+        chain.append(("dated" if a3["state"] == "RUNNING" else "undated",
+                      "RUNNING" if a3["state"] == "RUNNING" else "NO DATE",
                       "criterion 3 — the acceptance instrument",
-                      blocked["waits_on"]))
-        if blocked.get("first_scoreable"):
-            chain.append(("dated-far", blocked["first_scoreable"],
-                          "and its gap-closure half cannot mature before this",
-                          blocked.get("dated_half", "")))
+                      a3["waits_on"]))
+        if a3.get("first_scoreable"):
+            chain.append(("dated-far", a3["first_scoreable"],
+                          "its as-delivered check cannot mature before this",
+                          a3.get("dated_half", "")))
     chain.append(("undated", "NO DATE", "Phase 2 opens",
                   "the plan holds Phase 2 until Phase 1's record shows the method "
                   "unbiased within its confidence interval. Eighty-five studies on an "
@@ -146,6 +151,13 @@ def build() -> str:
            m["done"], m["total"])
         for m in p2.get("markets", []))
 
+    flight = "".join(
+        '<tr><th scope="row"><code>%s</code></th><td class="num">%d</td>'
+        '<td class="num">%s</td><td class="notes">%s</td></tr>'
+        % (e(fb["branch"].replace("origin/", "")), fb["ahead"], e(fb["last"]),
+           e(fb["subject"]))
+        for fb in progress.live_branches()[:6])
+
     commits = " · ".join("%s %d" % (k[5:], v)
                          for k, v in (dd.get("commits_by_day") or {}).items())
 
@@ -153,7 +165,7 @@ def build() -> str:
     for k, v in dict(
         gen=e(gen), rows=row_html, chain=chain_html, scenarios=sc,
         acc=acc_html, five=five, markets=mk,
-        rate_note=e(dd.get("rate_note", "")), commits=e(commits),
+        rate_note=e(dd.get("rate_note", "")), commits=e(commits), flight=flight,
         p2done=p2.get("done", 0), p2total=p2.get("total", 0),
         start=e(dd.get("start", "—")), elapsed=e(dd.get("elapsed_days", "—")),
     ).items():
@@ -285,6 +297,7 @@ tbody th{font-weight:600}
 td.up{color:var(--go)} td.down{color:var(--stop)}
 .notes .flag{display:block;font-family:var(--prose);font-size:13.5px;color:var(--warn)}
 .notes .clear{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+tbody th code{font-family:var(--mono);font-size:12px;font-weight:400}
 
 /* criteria ---------------------------------------------------------------- */
 .crits{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
@@ -351,6 +364,20 @@ footer code{font-family:var(--mono);font-size:13px;background:var(--sunk);
       phase — so it is drawn as an absence rather than as a bar at a number nobody
       measured.</p>
     <ol class="chain">{{chain}}</ol>
+  </section>
+
+  <section>
+    <h2>Work in flight</h2>
+    <p class="intro">The repository is not one line. Several sessions work at once,
+      and a blocker closed on a live branch is closed. This section exists because an
+      earlier build of this page reported an item open that another session had closed
+      hours before — the figures above are now read at the frontier, and each says
+      which branch it came from.</p>
+    <div class="tw"><table>
+      <thead><tr><th>Branch</th><th class="num">Ahead of main</th><th>Last commit</th>
+        <th>Latest</th></tr></thead>
+      <tbody>{{flight}}</tbody>
+    </table></div>
   </section>
 
   <section>

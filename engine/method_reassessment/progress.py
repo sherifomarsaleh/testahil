@@ -82,6 +82,90 @@ def _start_date() -> tuple[str, str]:
     return out.splitlines()[-1], os.path.basename(plans[0])
 
 
+# ---------------------------------------------------------------- the frontier
+#
+# THE ERROR THIS EXISTS TO PREVENT, AND IT IS MINE. On 3 September 2026 this
+# module reported "0 of 11 point-in-time origins usable — an export that has not
+# arrived has no date", and published that on a page. The export HAD arrived, the
+# principal supplied it that morning, six origins were live and the calibration
+# had already produced its first readings. All of it sat on another session's
+# branch, and this module read only the checkout it happened to be standing in.
+#
+# That is [R-ENF-04] with the population one level further out than anyone looked:
+# the tool anchored on "the repository" and the repository is not one line. Several
+# sessions work at once; a blocker closed on a live branch is closed, and a status
+# that reports it open is not cautious, it is wrong — and wrong in the direction
+# that wastes the principal's time asking again for something already given.
+#
+# So the frontier is scanned first, and every blocked item is resolved against the
+# MOST ADVANCED branch that carries it, with the branch named beside the figure.
+BRANCH_SCAN_DAYS = 21
+
+
+def live_branches() -> list:
+    """Branches ahead of origin/main, most recently active first."""
+    out = []
+    raw = git("for-each-ref", "--format=%(refname:short)|%(committerdate:short)",
+              "refs/remotes/origin")
+    cutoff = (dt.date.today() - dt.timedelta(days=BRANCH_SCAN_DAYS)).isoformat()
+    for line in raw.splitlines():
+        if "|" not in line:
+            continue
+        ref, when = line.rsplit("|", 1)
+        if ref in ("origin/main", "origin/HEAD") or when < cutoff:
+            continue
+        ahead = git("rev-list", "--count", "origin/main..%s" % ref)
+        if ahead and ahead != "0":
+            out.append({"branch": ref, "ahead": int(ahead), "last": when,
+                        "subject": git("log", "-1", "--format=%s", ref)[:90]})
+    return sorted(out, key=lambda b: (b["last"], b["ahead"]), reverse=True)
+
+
+def _usable_origins_at(ref: str, market: str = "EG"):
+    """usable_origins() for the archive as it stands on one ref.
+
+    The blob is materialised and macro_history is pointed at it — the module's own
+    requirement logic decides, never a second copy of it here [R-ENF-03].
+    """
+    import shutil, tempfile
+    blob = git("show", "%s:engine/macro_history/%s.json" % (ref, market))
+    if not blob:
+        return None
+    sys.path.insert(0, ENGINE)
+    import macro_history
+    tmp = tempfile.mkdtemp()
+    try:
+        open(os.path.join(tmp, "%s.json" % market), "w", encoding="utf-8").write(blob)
+        keep = macro_history.ARCHIVE_DIR
+        macro_history.ARCHIVE_DIR = tmp
+        try:
+            return {"usable": macro_history.usable_origins(market),
+                    "declared": [int(o["year"]) for o in
+                                 json.loads(blob).get("origins", [])
+                                 if isinstance(o, dict) and "year" in o],
+                    "unsourced": json.loads(blob).get("unsourced", {})}
+        finally:
+            macro_history.ARCHIVE_DIR = keep
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def best_archive(market: str = "EG") -> dict:
+    """The archive at its FRONTIER — the checkout or whichever live branch is ahead."""
+    best, where = None, "this checkout"
+    here = _usable_origins_at("HEAD", market)
+    if here:
+        best = here
+    for b in live_branches():
+        cand = _usable_origins_at(b["branch"], market)
+        if cand and (best is None or len(cand["usable"]) > len(best["usable"])):
+            best, where = cand, b["branch"]
+    if best is None:
+        return {"error": "no macro archive resolves on any live ref"}
+    best["source"] = where
+    return best
+
+
 # ------------------------------------------------------------------ the counting
 def phase1() -> dict:
     """Phase 1, in three components that are never averaged together."""
@@ -175,17 +259,19 @@ def acceptance() -> list:
     ]
     # 3 — the two things it waits on, one dated and one not.
     try:
-        sys.path.insert(0, ENGINE)
-        import macro_history
-        usable = len(macro_history.usable_origins("EG"))
-        declared = len([o for o in (macro_history.load("EG").get("origins") or [])
-                        if isinstance(o, dict)])
-        missing = json.load(open(os.path.join(ENGINE, "macro_history", "EG.json"),
-                                 encoding="utf-8")).get("unsourced", {}).get("fields", [])
-        items[2]["waits_on"] = ("%d of %d point-in-time origins usable; unsourced: %s. "
-                                "AN EXPORT ONLY THE PRINCIPAL CAN SUPPLY, AND AN EXPORT "
-                                "THAT HAS NOT ARRIVED HAS NO DATE."
-                                % (usable, declared, ", ".join(missing) or "none"))
+        arc = best_archive("EG")
+        if "error" in arc:
+            items[2]["waits_on"] = arc["error"]
+        else:
+            n, tot = len(arc["usable"]), len(arc["declared"])
+            miss = arc.get("unsourced", {}).get("fields") or []
+            items[2]["origins_usable"], items[2]["origins_declared"] = n, tot
+            items[2]["archive_source"] = arc["source"]
+            items[2]["state"] = "RUNNING" if n else "BLOCKED"
+            items[2]["waits_on"] = (
+                "%d of %d point-in-time origins usable, read at the frontier (%s)%s"
+                % (n, tot, arc["source"],
+                   "" if not miss else "; still unsourced: %s" % ", ".join(miss)))
     except Exception as e:
         items[2]["waits_on"] = "engine/macro_history could not be read (%s)" % e
     try:
@@ -356,21 +442,30 @@ def report() -> dict:
     print("  weights is a new method with free parameters nobody tested [R-LENS-03],")
     print("  and here the components disagree — which is the status, not a defect in it.")
 
+    flight = live_branches()
+    if flight:
+        print("\nWORK IN FLIGHT — branches ahead of main, most recent first")
+        print("  a blocker closed on a live branch is CLOSED. This section exists because")
+        print("  this module once reported one open that another session had closed hours")
+        print("  earlier, and published it.")
+        for b in flight[:6]:
+            print("  %-52s %3d ahead  %s" % (b["branch"][:52], b["ahead"], b["last"]))
+            print("      %s" % b["subject"])
+
     print("\nWHEN EACH PHASE CAN END")
     if dd.get("start"):
         print("  Phase 1 began       %s (%s), day %d today"
               % (dd["start"], dd["start_source"], dd["elapsed_days"]))
     print("  Phase 1 build       DONE — planned for %s, finished on day %s"
           % (dd.get("phase1_planned_end", "?"), dd.get("elapsed_days", "?")))
-    blocked = [a for a in p1["acceptance"] if a["state"] == "BLOCKED"]
-    if blocked:
-        a = blocked[0]
-        print("  Phase 1 acceptance  NO DATE. Criterion %d: %s" % (a["n"], a["text"]))
-        print("                      %s" % a["waits_on"])
-        if a.get("dated_half"):
-            print("                      %s" % a["dated_half"])
-    print("  Phase 2             NO DATE while criterion 3 has none — the plan holds it")
-    print("                      until Phase 1's record shows the method unbiased, and")
+    a3 = next((a for a in p1["acceptance"] if a["n"] == 3), None)
+    if a3:
+        print("  Phase 1 acceptance  %s. Criterion 3: %s"
+              % ("RUNNING" if a3["state"] == "RUNNING" else "NO DATE", a3["text"]))
+        print("                      %s" % a3["waits_on"])
+        if a3.get("dated_half"):
+            print("                      %s" % a3["dated_half"])
+    print("  Phase 2             held until Phase 1's record shows the method unbiased —")
     print("                      85 studies on an unproven method is the mistake the")
     print("                      campaign just made with five.")
     print("\n  IF PHASE 2 STARTED TODAY, on the plan's own cap scenarios:")
