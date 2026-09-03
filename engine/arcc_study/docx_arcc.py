@@ -239,9 +239,20 @@ P('Arabian Cement is valued as a single operating company, not as a sum of parts
   'that would need valuing on their own terms. A sum-of-the-parts here would be a sum of '
   'one part, and the discipline it is meant to impose — never blending legs that need '
   'different methods — has nothing to bite on.')
-P('Four lenses are used. A discounted cash-flow model built up from tonnes and costs '
-  'carries half the weight. Relative multiples, normalised earnings power and replacement '
-  'cost carry the rest, and each is reported with the reason its weight is what it is.')
+P(f'Four lenses are read and ONE of them is the answer. A discounted cash-flow model built '
+  f'up from tonnes and costs is the primary for this class, and the figure this study '
+  f'publishes is that lens and nothing else: EGP {n2(LN["central"])}. Relative multiples, '
+  f'normalised earnings power and replacement cost are CROSS-CHECKS, published in the same '
+  f'table so a reader can see where they disagree — they span EGP {n2(LN["low"])} to EGP '
+  f'{n2(LN["high"])} — and none of them is averaged into the answer. There are no weights '
+  f'in this model to report. An earlier edition blended the four at 50/20/22/8 and would '
+  f'have read EGP {n2(D["lens_record"]["retired"]["blend_value"])}; those weights had '
+  f'never cleared any '
+  f'out-of-sample test, and a number produced by averaging several methods is not more '
+  f'robust than the best of them — it is a new method with free parameters nobody tested, '
+  f'importing every weakness of the weakest lens at whatever weight somebody typed. Where '
+  f'several methods disagree the honest thing is to publish the disagreement and say which '
+  f'one the answer is.')
 
 # ---- 1.1 --------------------------------------------------------------------
 H2('1.1  The business, and why the lens follows from it')
