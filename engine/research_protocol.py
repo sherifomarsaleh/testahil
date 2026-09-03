@@ -109,7 +109,7 @@ MODEL_STUDY = {
         "Company overview",
         "1 Fundamental valuation (1.1 cash-flow model with the full FCFF waterfall + the "
         "EV-to-equity bridge; 1.2 book value & sustainable return; 1.3 relative multiples; "
-        "1.4 normalised earnings power; 1.5 synthesis — four lenses, one field; 1.6 drivers — "
+        "1.4 normalised earnings power; 1.5 synthesis — the class primary IS the central under [R-LENS-03], the other lenses published beside it as cross-checks and the RANGE of their present-value reads as the envelope; NEVER a weighted blend, and never a set of typed weights; 1.6 drivers — "
         "each disclosed segment grown on its own driver, margins as outputs; 1.7 the crux; "
         "1.8 macro & country — sourced cost of capital, the cost-of-debt evidence table, and "
         "every contested construction priced, not just named; 1.9 sensitivity)",
