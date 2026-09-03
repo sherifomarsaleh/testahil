@@ -1,0 +1,16 @@
+{
+ "ticker": "EGCH",
+ "as_of": "2026-08-06",
+ "why_this_file": "Any single contested choice in a valuation is defensible. What is not is a study that resolves EVERY contested choice the same way and never notices. Each is recorded with BOTH framings' values, the side adopted and why, and the binomial sign test is printed.",
+ "what_this_record_cannot_measure": "This study prices exactly ONE contested construction both ways in its committed numbers, so the sign test below rests on a single observation and is NOT a measurement of this study's lean. Three further constructions are contested and named in the study and none carries a committed per-share value on the other framing: the ANNA terminal margin, where the central takes the LOWER of a built and an assumed figure because a ~66% cash margin on a commodity fertiliser is not credible and the disclosed unit cost is almost certainly partial; the ANNA nameplate, which is DERIVED because no filing states it; and the equity-risk-premium basis, published on the CDS basis with the rating basis beside it. Pricing them is a re-issue, and until then this record says what it does not know rather than counting one judgement as a clean bill.",
+ "judgements": [
+  {
+   "name": "Is the ANNA capital programme carried through, or stopped?",
+   "adopted": "Cash-flow lens, capital programme carried through — the ANNA programme is completed and commissioned as the company is currently doing",
+   "alternative": "Cash-flow lens, capital programme stopped — the programme is halted and the remaining spend is not committed",
+   "value_adopted": -1.0621217844282123,
+   "value_alternative": 2.818216074465918,
+   "why": "the judgement is binary and its two answers straddle zero, so an average describes a half-built plant — a world nobody is proposing and the company is not in. Averaging would also hide the finding: that on the disclosed bank-approved cost and the derived nameplate, the programme does not earn the capital sunk into it, which is why stopping is worth more than finishing. Whether the plant, once built, earns a return above the cost of the capital sunk into it. On the disclosed bank-approved cost and the derived nameplate it does not, which is why stopping is worth more than finishing."
+  }
+ ]
+}
