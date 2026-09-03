@@ -326,6 +326,8 @@ INP = dict(
     cos_overhead_fy25=I(641.143208, AFS25 + " — note 5, overhead costs", "2025-12-31", "Company"),
     cos_mfg_dep_fy25=I(254.765548, AFS25 + " — note 5, manufacturing depreciation",
                        "2025-12-31", "Company"),
+    cos_intang_amort_fy25=I(30.681613, AFS25 + " — note 5, amortisation of intangible "
+                            "assets charged to cost of sales", "2025-12-31", "Company"),
     ga_admin_dep_fy25=I(4.324134, AFS25 + " — note 6, administrative depreciation",
                         "2025-12-31", "Company"),
 
@@ -357,9 +359,13 @@ INP = dict(
               "2025-12-31", "Company"),
     ppe_fy25=I(2522.323523, AFS25 + " — property, plant and equipment (net), note 12",
                "2025-12-31", "Company"),
-    auc_fy25=I(391.543753, AFS25 + " — assets under construction, note 13: alternative-fuel "
-               "system for production line 2 EGP 240.235mn, new steel cement silo for line "
-               "1 EGP 146.239mn", "2025-12-31", "Company"),
+    auc_fy25=I(391.543753, AFS25 + " — assets under construction, note 13", "2025-12-31",
+               "Company"),
+    auc_altfuel_fy25=I(240.235369, AFS25 + " — note 13, assets under construction: "
+                       "alternative-fuel system for production line 2", "2025-12-31",
+                       "Company"),
+    auc_silo_fy25=I(146.238521, AFS25 + " — note 13, assets under construction: new steel "
+                    "cement silo for production line 1", "2025-12-31", "Company"),
     intang_fy25=I(106.799617, AFS25 + " — intangible assets (net), note 14: the operating "
                   "licence", "2025-12-31", "Company"),
     inv_fy25=I(1053.646218, AFS25 + " — inventories, note 16: raw materials 282.765, fuel "
@@ -2079,6 +2085,29 @@ def chk(cond, msg):
     assert cond, 'ASSERT FAILED: ' + msg
     A.append(msg)
 
+
+for _i in (0, 1, 5):
+    _b = BU[_i]
+    chk(abs(_b['rev'] - _b['c_mat'] - _b['c_tra'] - _b['c_ovh'] - _b['c_prv']
+            - _b['ebitda']) < 1e-6,
+        f"the printed cost stack FOOTS in {['FY2025A', 'FY2026E', None, None, None, 'FY2030E'][_i]}: "
+        f"revenue of EGP {_b['rev']:,.0f}mn less materials and fuel {_b['c_mat']:,.0f}, "
+        f"transportation {_b['c_tra']:,.0f}, overheads {_b['c_ovh']:,.0f} and provisions "
+        f"and credit losses {_b['c_prv']:,.0f} IS the EBITDA of EGP {_b['ebitda']:,.0f}mn "
+        f"the table prints. Until this edition the provisions line was deducted in the "
+        f"model and absent from the table, so a reader adding the printed rows got EGP "
+        f"{_b['rev'] - _b['c_mat'] - _b['c_tra'] - _b['c_ovh']:,.0f}mn and could not "
+        f"reconcile it — the model was right and the page was incomplete, which no "
+        f"recalculation gate can see because it reconciles the model to itself")
+
+chk(V['auc_altfuel_fy25'] + V['auc_silo_fy25'] <= V['auc_fy25'] + 1e-9,
+    f"the two NAMED assets under construction — the alternative-fuel system for line 2 at "
+    f"EGP {V['auc_altfuel_fy25']:,.3f}mn and the new cement silo for line 1 at EGP "
+    f"{V['auc_silo_fy25']:,.3f}mn — sit INSIDE the disclosed total of EGP "
+    f"{V['auc_fy25']:,.3f}mn, leaving EGP "
+    f"{V['auc_fy25'] - V['auc_altfuel_fy25'] - V['auc_silo_fy25']:,.3f}mn of other "
+    f"construction in progress. Both figures were typed into the document builder until "
+    f"this edition, which is the one place no gate in this repository was looking")
 
 chk(abs(reval() - fv_dcf) < 1e-6,
     f"THE SENSITIVITY FUNCTION REPRODUCES THE HEADLINE when nothing is changed: "

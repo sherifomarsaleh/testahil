@@ -354,20 +354,30 @@ P(f'The cost stack is the printed one. Cost of sales of EGP {n0(H["cogs"][2])}mn
   f'the cost of inventories charged to cost of sales, so it carries fuel, packing and spares '
   f'as well as raw meal — transportation of EGP {n0(IN["cos_transport_fy25"])}mn, overheads '
   f'of EGP {n0(IN["cos_overhead_fy25"])}mn, and depreciation and amortisation of EGP '
-  f'{n0(IN["cos_mfg_dep_fy25"] + 30.681613)}mn. Adding cash administrative expenses, '
+  f'{n0(IN["cos_mfg_dep_fy25"] + IN["cos_intang_amort_fy25"])}mn. Adding cash administrative expenses, '
   f'provisions and credit losses gives a total cash cost of EGP {n0(UC["cash_cost_fy25"])}mn, '
   f'or EGP {n0(UC["cash_cost_t"])} a tonne.')
-rows = [['EGP per tonne of cement', 'FY2025A', 'FY2026E', 'FY2030E']]
-for lab, key in [('Materials and fuel', 'c_mat'), ('Transportation', 'c_tra'),
-                 ('Overheads and administration', 'c_ovh'), ('Total cash cost', 'cc_t'),
-                 ('Blended realised price', 'price')]:
+rows = [['The cost stack and the margin it produces', 'FY2025A', 'FY2026E', 'FY2030E']]
+for lab, key in [('Materials and fuel (EGP mn)', 'c_mat'),
+                 ('Transportation (EGP mn)', 'c_tra'),
+                 ('Overheads and administration (EGP mn)', 'c_ovh'),
+                 ('Provisions and credit losses (EGP mn)', 'c_prv'),
+                 ('Total cash cost (EGP per tonne of cement)', 'cc_t'),
+                 ('Blended realised price (EGP per tonne of cement)', 'price')]:
     rows.append([lab] + [n0(BU[i][key]) for i in (0, 1, 5)])
 rows.append(['Volume (Mt)'] + [n3(BU[i]['vol']) for i in (0, 1, 5)])
 rows.append(['EBITDA (EGP mn)'] + [n0(BU[i]['ebitda']) for i in (0, 1, 5)])
 rows.append(['EBITDA margin'] + [pc(BU[i]['mgn']) for i in (0, 1, 5)])
-table(rows, [2.60, 1.30, 1.30, 1.30], band_rows={4, 7, 8})
-caption('Table 3 — The cost stack per tonne and the margin it produces. EBITDA is an OUTPUT '
-        'of this build, not an input to it.')
+table(rows, [2.60, 1.30, 1.30, 1.30], band_rows={5, 8, 9})
+caption('Table 3 — The cost stack and the margin it produces. EBITDA is an OUTPUT of this '
+        'build, not an input to it, and the table foots: revenue less the four cost lines '
+        'IS the EBITDA printed at the foot. THE FOUR COST LINES ARE TOTALS IN EGP '
+        'MILLIONS, NOT per-tonne rates — materials and fuel are driven by CLINKER '
+        'produced, because the kiln burns the fuel, while transportation and overheads are '
+        'driven by cement despatched, so no single per-tonne figure describes them all. '
+        'Provisions and credit losses are an operating charge above operating profit in '
+        'the audited statements, so they belong in this bridge, but they are not a cost of '
+        'making a tonne and are therefore excluded from the per-tonne cash cost above.')
 figure('fig7_stack.png', 6.9,
        'Figure 2 — Cash cost per tonne against realised price per tonne. The margin is the '
        'gap, and the gap narrows across the forecast.')
@@ -387,8 +397,8 @@ P(f'One physical constraint is worth checking, because the volume forecast is bu
   f'blending would widen that.')
 P(f'The company-specific lever is fuel, and it is now visible in the accounts rather than '
   f'assumed. Assets under construction of EGP {n0(IN["auc_fy25"])}mn include EGP '
-  f'{n0(240.235369)}mn of alternative-fuel capacity for production line 2 and EGP '
-  f'{n0(146.238521)}mn of a new cement silo for line 1, and a EUR 25mn European Bank for '
+  f'{n0(IN["auc_altfuel_fy25"])}mn of alternative-fuel capacity for production line 2 and EGP '
+  f'{n0(IN["auc_silo_fy25"])}mn of a new cement silo for line 1, and a EUR 25mn European Bank for '
   f'Reconstruction and Development facility is drawn against exactly that programme — '
   f'tranche one for alternative-fuel capacity and hydrogen injection on kiln 1, tranche two '
   f'for hydrogen injection on kiln 2. The model carries a saving on the materials-and-fuel '
