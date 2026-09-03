@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-03e — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-03f — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -2542,6 +2542,23 @@ MANDATORY INSIDE THE PROGRAMME, NOT ONLY AT PUBLISH: every re-issue that lands m
 WHAT THE FIRST TWO-SIDED RUN FOUND. DU: a central thirteen per cent ABOVE the spot it was struck at, with no review — invisible to the one-sided rule by construction. It is listed on the ratchet rather than fixed on the night the rule changed, because the list is the honest record of what is outstanding, and it is reviewed when that study is next re-issued.
 
 THE NEGATIVE CONTROL'S OWN CASE IS INVERTED RATHER THAN DELETED. It carried a case asserting that a central far above the price must NOT fire, which was correct evidence for the one-sided rule. That same construction now must go red. Keeping the case and flipping its expectation is the sharpest available evidence that the extension actually took effect; deleting it would have left the change untested in exactly the place it matters.
+
+[R-GAP-01 AMENDED] THE PRICE THE GAP IS MEASURED AGAINST IS THE LATEST KNOWN ONE, AND A STALE SPOT IS ITSELF THE DEFECT [AMENDED 03-Sep-2026, per instruction — "Before you deliver anything check against the latest prices. Use latest prices in the way it is intended to to arrive at a realistic price that takes all circumstances into effect when calculating fair price"]
+
+THE RULE HAS SAID "THE LATEST KNOWN MARKET PRICE" SINCE THE DAY IT WAS ADOPTED, AND THE GATE HAS NEVER READ ONE. `scripts/check_valuation_gap.py` reads each study's own committed spot — the price it was STRUCK at. That is the right question for auditing whether a study was audited before it shipped, and it is not the question the rule asks. A study struck against a price that has since moved a long way is not audited against the world; it is audited against its own past.
+
+MEASURED ON THE DAY THIS WAS ADOPTED, on ninety closes supplied for 2-3 September 2026: TEN of thirteen readable studies breach the ten per cent trigger against the day's price, and THREE OF THEM WERE INSIDE THE BAND WHEN THEY WERE STRUCK — ARCC at −30.6%, AMOC at −26.6% and SAVOLA at −10.1%. AMOC and ARCC were the two re-issued that same day.
+
+THE CAUSE IS NOT A DRIFTING METHOD, IT IS A STALE SPOT. Six of the nineteen studies carrying a readable spot sit more than ten per cent behind the market: AMR by 294%, AMOC by 48% — EGP 9.10 struck on 6 August against EGP 13.50 on 3 September — ARCC by 31%, SCEM by 27%, SAVOLA by 19% and SWDY by 14%. A fair value published against a month-old price is a comparison a reader cannot use, whatever the fair value is worth.
+
+THE RULE. NO STUDY IS DELIVERED AGAINST A STALE PRICE. Before any delivery — a first issue, a re-issue, a re-strike, or the staging of files under the campaign — the central is put against the LATEST KNOWN price, and where the gap exceeds ten per cent either way the eight-heading review runs BEFORE the files are staged. The spot the study publishes is that same latest price and its DATE is stated beside it, so a reader can see what the comparison is against.
+
+WHAT THE PRICE IS FOR, AND IT IS NOT A TARGET. The instruction is to use the latest price "to arrive at a realistic price that takes all circumstances into effect", and that is precisely the evidential reading this rule already carries. A large gap is EVIDENCE that the model may have missed a circumstance the market has priced — a filing not read, a base year that no longer foots, a macro path that contradicts itself, a bridge standing on a superseded balance sheet, a claim typed rather than computed. Those are the eight headings, and they are where the answer is looked for. IT IS NEVER A REASON TO MOVE THE NUMBER TOWARD THE PRICE: a fair value adjusted to meet a quote is the reverse-engineered rate the cost-of-capital procedure prohibits outright, arriving through the front door instead of the side one. The honest output of a review is frequently an unchanged central with a stated reason, and the first worked case of this rule ended exactly that way.
+
+THE PRICES ARE A COMMITTED ARTEFACT, NEVER A FIGURE IN A CONVERSATION. They live at engine/prices/SUPPLIED_{DD-MM-YYYY}.json with the source file, who supplied them and the date each close carries, because the container is rebuilt from the repository and a session that cannot see a supplied figure will ask for it again [R-IND-01]. READ THEM LIVE — `python3 engine/prices/gap_today.py` puts every study's committed central against the most recent supplied file and names both the breaches and the studies whose answer it could not read. Never quote the table from a document; the prices move and the document does not.
+
+WHAT THIS DOES NOT CHANGE. The eight headings, the two-sided trigger, the ratchet, the enforcement and the negative control are all as they were. `check_valuation_gap.py` keeps auditing a study against its own strike price, because that remains the honest test of whether the answer was audited before it shipped; what is added is that the strike price must be current at the moment of delivery, which makes the two questions the same question again.
+
 
 [R-ENF-05] THE STUDY AUDITS ITS OWN ANSWER: THE REVERSE READ AND THE SIGN TEST [ADOPTED 02-Sep-2026, method reassessment WS7]
 
