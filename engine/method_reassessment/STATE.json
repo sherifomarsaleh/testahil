@@ -19,7 +19,7 @@
   ]
  },
  "phase": "1",
- "current": "READING ONE STUDY'S RENDERED PAGES PRODUCED NINE DEFECTS AND FOUR GATES. PHDC passed every gate in the repository and a reader found: a masthead a day stale; a figure dating a computed price eleven days wrong beside a table giving the right date; an income statement short its depreciation line (EGP 393mn in 2026 rising to 1,039mn); a comparative claim its own grid refutes; a heatmap caption naming a rule the code does not implement, with a free parameter behind it; \"Five gaps\" on page 13 against a computed \"six\" on page 1; an appendix income statement that does not foot to profit before tax; and a NEGATIVE NUMBER PRINTED AS A POSITIVE ONE because a cell was one character too narrow and Word breaks after a hyphen. NONE IS A MODELLING ERROR AND EVERY ONE REACHES A READER. Two gates adopted (edition date in two clauses, 17/17; the figure -date clause), two MEASURED AND DECLINED with the measurement committed (the income-statement chain at 27%, spelled-out counts at 74 of 92 false).",
+ "current": "TMGH'S RENDERED PAGES PRODUCED TWENTY-SEVEN DEFECTS AND ONE GATE, THREE TIMES PHDC'S YIELD, AND THE LARGEST CLASS WAS ONE MISTAKE REPEATED. The study deducts the minority at its share of value and FIVE displays published the book basis: the bridge (last row 113.24 where its own lines divide to 118.50), the crux table whose caption states the adopted basis beside numbers that are not it, the sensitivity grid which did not carry the adopted basis at all, the reverse read (16.6-29.1% becomes 17.4-31.9%), and section 4. Nothing stated a reason anywhere; it was the key written first and copied. Every one passed the numeric-traceability, recalculation and prose-figure gates because each figure was computed and correct \u2014 what was wrong was WHICH of the three it was. The football field omitted the adopted basis too, so neither endpoint of the published headline appeared on the chart drawn to show it, and every bar sat BELOW its own number. A walk-forward results table shipped with no rows at all. A finance-cost sentence divided an FY2025 charge by a June-2026 balance and reported a rate that reconciles against neither pairing, inside a paragraph explaining that very trap. Four artefacts were stale, and measuring why found the cause: 2 of 24 studies have a build entry point.",
  "done": [
   "All seven markets carry a sourced house macro path; 53 names unblocked. Two identities were running where they do not hold (a pegged currency drifting, the dollar depreciating against itself) \u2014 both found by PRINTING a path, not by a gate.",
   "The explicit window's inflation assumption is RULED OUT as the general scale error: perfect foresight of the path removes only 11% of the pooled driver error.",
@@ -67,11 +67,12 @@
   "WS10: five method lessons registered at ALL scope (L-208 a check that fails by the calendar; L-209 observed vs estimated point-in-time evidence; L-210 a mean far from its median is a tail, not a bias; L-211 a CI step assumes a disposable runner; L-212 a local sweep must read CI's own list), each with a falsifier. L-067 WIDENED rather than duplicated \u2014 three further instances of existence-checked-instead-of-currency. 99 lessons, both documents rebuilt."
  ],
  "next": [
-  "Read TMGH, AMOC and EGCH pages the same way. One study yielded nine defects and the classes generalise \u2014 three of the four gates came from PHDC's first two pages.",
-  "Seven wrapped cells across the book are listed in wrapped_cells_OUTSTANDING.md; each gets its fix at that study's next re-issue, and the detector becomes a gate once the list is short enough not to be red on arrival.",
-  "The two declined gates both need the SAME thing \u2014 a per-study declaration mapping a prose claim to the collection or chain it describes, which is the pattern prose_figures and footing_check already use. Building that once would close both.",
-  "Twelve studies still carry the 1/g terminal; three disclosed lives are sourced (AMR 4-20, ADNOCDIST 5-40, ADNOCLS 2-40). The defect's SIGN is set by the currency \u2014 pessimistic in Egypt, optimistic in the Gulf, and 44 of 90 names are Gulf.",
-  "BLOCKED ON THE PRINCIPAL (MORNING.md item 64): ARCC's OHLC library ends 6-Aug at 59.00 against a 3-Sep spot of 77.00; only a fresh export fixes the technical read."
+  "Read AMOC and EGCH pages the same way. PHDC gave nine defects, TMGH twenty-seven; both were passing every gate in the repository when the reading started.",
+  "The column-width gate is adopted and ratcheted at 27 columns across 13 studies, all one shape \u2014 a ten-character ISO date in a register column of about 1.9cm. Each closes at its study's next re-issue by calling col_width.fit_widths().",
+  "Twenty-two studies have no build entry point (engine/build_depth_audit/build_entry_OUTSTANDING.md). The check worth having re-runs each generator and compares, which is affordable per study and not yet book-wide.",
+  "TMGH publishes a 23-August close against a 2-September latest known (engine/build_depth_audit/stale_spot_OUTSTANDING.md). Moving meta.spot alone would leave sections 1 and 3 quoting different last closes, because the cone is anchored on the close it was struck at; re-striking honestly is the roll-forward.",
+  "Six wrapped cells remain in studies not re-issued in this pass.",
+  "Twelve studies still carry the 1/g terminal; three disclosed lives sourced."
  ],
  "stop_and_ask": [
   "TMGH: two earnings releases could not be re-fetched from the company's own channels (FY2020 release: 502 via proxy on every retry; 1H2021 release: 404). They are not inputs to the delivered numbers \u2014 the audited statements for both periods were obtained and verified \u2014 so this blocks nothing; recorded for the morning list."
@@ -87,7 +88,7 @@
   "Phase 2 keeps the campaign's market order \u2014 principal, 03-Sep-2026."
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-03T22:30Z",
+ "updated": "2026-09-03T23:32:03Z",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md \u2014 it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",
