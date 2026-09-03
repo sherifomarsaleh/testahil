@@ -20,9 +20,9 @@
  },
  "phase": "1",
  "current": {
-  "workstream": "WS6/WS9/WS10 — unblocked work complete",
-  "step": "every item on \"next\" now needs the principal: one data export and four decisions.",
-  "status": "awaiting the principal"
+  "workstream": "Phase 1 complete and merged; three decisions implemented",
+  "step": "[R-COC-01] amended, EGCH published two-sided, campaign order confirmed. One item blocks on a data export from the principal; one is mine to schedule.",
+  "status": "blocked on the macro export"
  },
  "done": [
   "plan written, critiqued by panel, committed, published",
@@ -62,15 +62,17 @@
   "GATE: check_protocol_sync.py compared the two documents to each other and never asked whether a rule id CITED IN CODE resolves in either — [R-DOC-01] requires all three populations. R-VCAL-01 was cited in eight files and defined nowhere while the gate reported perfect agreement. Its first run also found R-BETA-01, pre-existing, cited in build_protocol_review.py where the documents carry only R-BETA-04. Ratcheted with reasons; R-VCAL-01 pruned on adoption, R-BETA-01 outstanding and not mine.",
   "WS10: five method lessons registered at ALL scope (L-208 a check that fails by the calendar; L-209 observed vs estimated point-in-time evidence; L-210 a mean far from its median is a tail, not a bias; L-211 a CI step assumes a disposable runner; L-212 a local sweep must read CI's own list), each with a falsifier. L-067 WIDENED rather than duplicated — three further instances of existence-checked-instead-of-currency. 99 lessons, both documents rebuilt.",
   "WS9 done: ws9_report.py reads the gates' own ratchets and reports what the new standard costs the rest of the book. 22 of 90 published fair values have a study directory and 68 do not — nothing for any gate to open, so they are unexamined rather than passing. Nineteen of the 22 are outstanding on 5-6 of 8 checks; the five rebuilt names' remainders are specific (AMOC/EGCH no coc record; ARCC's coc record carries two real defects; PHDC/TMGH the walk-forward alone). Macro, lens and bridge ratchets pruned of AMOC/ARCC/EGCH, which already conformed. Campaign order untouched.",
-  "Daytime 03-Sep: ARCC's discount-factor finding resolved as a RECORDING gap, not a modelling one — a record may now declare its discounting convention (cumulative times AND the calendar each forward rate owns) and the gate reproduces the factors from it; a record declaring nothing still gets the end-of-year test. Five negative-control cases (25/25). ARCC purely additive, central unchanged at 53.4593. Its remaining coc failure is the real one: adopted Kd 833bp from the latest effective rate against a 150bp bound, disclosed not smoothed — a rule question routed to the principal as morning item 49. R-BETA-01 resolved as a FALSE POSITIVE of the new rule-id check (an illustrative example, not a citation); replaced with the protocol's own [R-AREA-NN] notation and the rule-id ratchet is now EMPTY."
+  "Daytime 03-Sep: ARCC's discount-factor finding resolved as a RECORDING gap, not a modelling one — a record may now declare its discounting convention (cumulative times AND the calendar each forward rate owns) and the gate reproduces the factors from it; a record declaring nothing still gets the end-of-year test. Five negative-control cases (25/25). ARCC purely additive, central unchanged at 53.4593. Its remaining coc failure is the real one: adopted Kd 833bp from the latest effective rate against a 150bp bound, disclosed not smoothed — a rule question routed to the principal as morning item 49. R-BETA-01 resolved as a FALSE POSITIVE of the new rule-id check (an illustrative example, not a citation); replaced with the protocol's own [R-AREA-NN] notation and the rule-id ratchet is now EMPTY.",
+  "MERGED on the principal's instruction, 03-Sep-2026: PR #336 -> main as merge commit fac97b78. 57 commits, 214 files. Both governing documents now carry the seven rules ON MAIN, so they bind the next study from a fresh clone — which was the whole argument for merging. The gate job is green on the merge commit and deploy-pages ran green; assets/ is byte-identical between the old and new main, so NOTHING CHANGED ON testahil.com — the fair values moved in the repository, not on the site.",
+  "DECISION 4 taken as recommended [R-COC-01 AMENDED, 03-Sep-2026]: the 150bp cost-of-debt bound is RE-POINTED, never switched off. A record may name a mechanism from a CLOSED list (capitalised interest, book re-based in period, facility drawn mid-period), carry the disclosure that establishes it, and supply a CONTRACTUAL ANCHOR from which the adopted rate must REPRODUCE — a harder test than the bound it replaces. Silence is still not an exception. ARCC conforms and is pruned; its anchor reproduces 13.3578% to zero difference from four facility lines. Both documents at 2026-09-03b; negative control 32 conditions.",
+  "DECISION 3 taken as recommended: EGCH publishes a TWO-SIDED answer and no single central — -1.06 carried through, +2.82 stopped, against a spot of 13.98 (-107.6% and -79.8%). central is null, central_two_sided carries both branches with the condition that decides them, and fair.base is null with the envelope spanning both. A two-sided answer is READABLE, not missing, and the shared reader says so: the gap gate audits EVERY branch (EGCH's review gained a dated addendum stating both audited centrals), the fair-value register records the branch pair as edition 4, and delivered.py counts it separately from studies that published nothing. All four consumers distinguish two-sided from unreadable.",
+  "DECISION 2 taken as recommended: Phase 2 keeps the campaign's market order. Nothing changed; the measured tail order is recorded in ws9_report.py as a report, not a queue re-ordering.",
+  "Built engine/method_reassessment/status.py — one command, everything computed live: clock and budget window, programme state, what is waiting on the principal versus on me, the delivered book's own numbers, every ratchet, the branch's position against main, and the morning list. --gates adds the full CI sweep. Nothing in it is typed, so nothing in it goes stale.",
+  "AUTONOMY WIDENED [principal, 03-Sep-2026]: the programme decides for itself and does not stop. Part H amended in the plan and the standing bar restated — what reaches the principal is now about IRREVERSIBILITY AND AUTHORITY (publishing, contradicting their own instruction, data only they hold, irreversible action outside the repo), not about difficulty. Everything else is decided here and reported after. Question slot: 09:00 Cairo Sun-Thu, batched, never blocking."
  ],
  "next": [
   "BLOCKED (morning item 35): sovereign_10y and policy_rate per origin — needs an export from the principal. No origin is usable until both arrive.",
-  "DECISION (morning item 41): whether Phase 2 follows the measured tail order or the campaign's market order. Default UNCHANGED — the market order stands.",
-  "DECISION (morning item 26): whether the house publishes a negative central at all (EGCH).",
-  "DECISION (morning item 39): merge PR #336. CI green; recommendation is to merge, since a rule on a branch binds nothing.",
-  "WS5 remainder: apply the adopted walk-forward corrections at each study's next edition (item 30)",
-  "DECISION (morning item 49): ARCC's cost of debt sits 833bp outside [R-COC-01]'s 150bp bound, disclosed. Recommended: a named, disclosed exception for a book that re-bases mid-period — a rule change, so it waits."
+  "WS5 remainder: apply the adopted walk-forward corrections at each study's next edition (item 30)"
  ],
  "stop_and_ask": [
   "TMGH: two earnings releases could not be re-fetched from the company's own channels (FY2020 release: 502 via proxy on every retry; 1H2021 release: 404). They are not inputs to the delivered numbers — the audited statements for both periods were obtained and verified — so this blocks nothing; recorded for the morning list."
@@ -79,10 +81,14 @@
  "decisions_taken_under_part_h": [
   "Day-0 publish choice: hold the old numbers (no site change)",
   "Two-sided gap gate adopted as the plan recommends; reversible on a word",
-  "The campaign queue is the finite rebuild queue (prospective under the 13-Jul rule's own wording)"
+  "The campaign queue is the finite rebuild queue (prospective under the 13-Jul rule's own wording)",
+  "Merge of PR #336 to main — instructed by the principal, 03-Sep-2026 ('merge').",
+  "EGCH published as a two-sided answer with no single central — principal, 03-Sep-2026.",
+  "[R-COC-01] amended with a named, evidenced cost-of-debt exception — principal, 03-Sep-2026.",
+  "Phase 2 keeps the campaign's market order — principal, 03-Sep-2026."
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-03T05:11:31Z",
+ "updated": "2026-09-03T07:09:38Z",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md — it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",
@@ -99,5 +105,16 @@
   "Items 46-47 appended. [R-VCAL-01] is adopted in both documents and the digest is renamed PROJECT_INSTRUCTIONS_03-09-2026.md at revision 2026-09-03a — its full text is owed to you in chat and comes with this list.",
   "Item 48: WS9 done. The headline is its population — 68 of 90 published fair values have no study directory, so no gate can see them.",
   "Items 49-50 appended during the morning. Item 49 carries a fourth decision: ARCC's cost of debt is 833bp outside the 150bp bound, disclosed rather than smoothed, and I recommend a named exception rather than moving the rate or widening the bound."
- ]
+ ],
+ "autonomy": {
+  "instruction": "principal, 03-Sep-2026: 'Please do not stop at all as agreed. This is an independent program by you and I am not there to answer you. If in a rare exception you need my decision for anything then pause this question at 9AM Sunday to Thursday. However this should be rare as I repeat this should be a project you and your agents should handle on your own as much as possible.'",
+  "what_changed": "Decisions the programme previously held for a reply are now taken here, including MERGING TO MAIN ON GREEN, adopting a rule the plan already names, choosing between defensible constructions, and re-ordering work. Each is recorded in the commit that makes it and reported afterwards rather than asked beforehand.",
+  "what_still_reaches_the_principal": [
+   "publishing to the live site — unchanged, still needs the word 'publish'",
+   "a decision that contradicts a standing instruction of theirs",
+   "data or access only they can supply, where the work cannot route around it",
+   "an irreversible action outside the repository"
+  ],
+  "question_slot": "09:00 Cairo, Sunday to Thursday. Batched into MORNING.md, never blocking, never Friday or Saturday."
+ }
 }

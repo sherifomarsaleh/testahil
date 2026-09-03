@@ -201,7 +201,7 @@ def phase1() -> dict:
         else:
             atoms_ok += 1
             row["gap"] = central / spot - 1.0
-            fn, _, audited = read_review(sdir)
+            rr = read_review(sdir); fn, audited = rr[0], rr[2]
             tol = max(0.005 * abs(central), 1e-9)
             if abs(row["gap"]) <= 0.10:
                 atoms_ok += 1               # no review owed inside 10% either way
@@ -316,7 +316,7 @@ def acceptance() -> list:
             unreviewed.append("%s unreadable" % tk)
             continue
         if abs(c / sp - 1.0) > 0.10:
-            _, _, aud = read_review(sdir)
+            aud = read_review(sdir)[2]
             if aud is None or abs(aud - c) > max(0.005 * abs(c), 1e-9):
                 unreviewed.append("%s (%+.1f%%)" % (tk, (c / sp - 1) * 100))
         n = man.get(tk)

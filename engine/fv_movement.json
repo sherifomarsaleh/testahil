@@ -324,6 +324,43 @@
       "bear": null,
       "full": -93.4
      }
+    },
+    {
+     "delivered": "2026-09-03",
+     "edition": 4,
+     "fair": {
+      "base": null,
+      "bear": -2.6124650988103313,
+      "branches": [
+       {
+        "label": "Cash-flow lens, capital programme carried through",
+        "value": -1.0621217844282123
+       },
+       {
+        "label": "Cash-flow lens, capital programme stopped",
+        "value": 2.818216074465918
+       }
+      ],
+      "full": 2.818216074465918
+     },
+     "lessons": [
+      "L-064",
+      "L-065",
+      "L-206",
+      "L-207"
+     ],
+     "origins": "FY2012-FY2024, h=1-5, 55 cells",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": null,
+      "full": -81.8
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": -0.0,
+      "full": 176.2
+     }
     }
    ],
    "exchange": "EGX",

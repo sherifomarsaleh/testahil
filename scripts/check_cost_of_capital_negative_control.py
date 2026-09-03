@@ -281,6 +281,86 @@ def main():
     case("CLEAN — a declared mid-period schedule that reproduces, must PASS",
          c_mid, False, results)
 
+    # ---- the re-pointed cost-of-debt check [added 03-Sep-2026] ---------------
+    # A book whose trailing effective rate is structurally unrepresentative may
+    # re-point the 150bp bound at a contractual anchor. That is only safe if every
+    # way of doing it badly FAILS — otherwise "declare an exception" becomes the
+    # way to switch the cost-of-debt check off, which is worse than the bound it
+    # replaces.
+    def _exc(rec, mechanisms=("capitalised_interest",), evidence=None,
+             lines=None, kd=None):
+        ki = rec["kd_integrity"]
+        ki["effective_rates"] = [0.05, 0.05]          # far outside the 150bp bound
+        # the canonical record spells it adopted_kd; ARCC's hand-built one spells it
+        # adopted. The gate reads rec["kd_pretax"], which both carry, so the fixture
+        # takes it from there rather than guessing a key.
+        kd = kd if kd is not None else rec["kd_pretax"]
+        ki["adopted_kd"] = kd
+        rec["kd_pretax"] = kd
+        ki["within_150bp"] = False
+        if mechanisms is not None:
+            ki["effective_rate_not_usable"] = {
+                "mechanisms": list(mechanisms),
+                "evidence": evidence if evidence is not None else (
+                    "note 8 capitalises borrowing costs on assets under "
+                    "construction, so the expensed finance charge is not the "
+                    "full interest incurred in the period"),
+                "event_date": "2025-12-31"}
+        if lines is not None:
+            ki["contractual_anchor"] = {"lines": lines, "reproduces": kd}
+        elif lines is None and mechanisms is not None:
+            ki["contractual_anchor"] = {"lines": [
+                {"name": "term loan", "currency": "EGP", "balance": 100.0,
+                 "rate": kd, "rate_basis": "note 25, corridor + 0.6%"}],
+                "reproduces": kd}
+        return rec
+
+    def b_exc_nomech(tmp):
+        put_study(tmp, "NCC", _exc(json.loads(json.dumps(GOOD)), mechanisms=[]))
+        put_list(tmp, [])
+    case("an unusable-rate exception naming no mechanism", b_exc_nomech, True, results)
+
+    def b_exc_badmech(tmp):
+        put_study(tmp, "NCC", _exc(json.loads(json.dumps(GOOD)),
+                                   mechanisms=["the rate looked low"]))
+        put_list(tmp, [])
+    case("an exception naming an unregistered mechanism", b_exc_badmech, True, results)
+
+    def b_exc_noevidence(tmp):
+        put_study(tmp, "NCC", _exc(json.loads(json.dumps(GOOD)), evidence="see notes"))
+        put_list(tmp, [])
+    case("an exception that names no disclosure", b_exc_noevidence, True, results)
+
+    def b_exc_noanchor(tmp):
+        rec = _exc(json.loads(json.dumps(GOOD)))
+        rec["kd_integrity"].pop("contractual_anchor")
+        put_study(tmp, "NCC", rec); put_list(tmp, [])
+    case("an exception with no contractual anchor — the check switched off",
+         b_exc_noanchor, True, results)
+
+    def b_exc_nореproduce(tmp):
+        rec = json.loads(json.dumps(GOOD))
+        kd = rec["kd_pretax"]
+        put_study(tmp, "NCC", _exc(rec, lines=[
+            {"name": "term loan", "currency": "EGP", "balance": 100.0,
+             "rate": kd + 0.04, "rate_basis": "note 25"}]))
+        put_list(tmp, [])
+    case("an anchor that does not reproduce the rate it justifies",
+         b_exc_nореproduce, True, results)
+
+    def b_exc_nobasis(tmp):
+        rec = json.loads(json.dumps(GOOD))
+        kd = rec["kd_pretax"]
+        put_study(tmp, "NCC", _exc(rec, lines=[
+            {"name": "term loan", "currency": "EGP", "balance": 100.0, "rate": kd}]))
+        put_list(tmp, [])
+    case("an anchor line whose rate has no source", b_exc_nobasis, True, results)
+
+    def c_exc(tmp):
+        put_study(tmp, "NCC", _exc(json.loads(json.dumps(GOOD)))); put_list(tmp, [])
+    case("CLEAN — evidenced exception, anchor reproduces, must PASS",
+         c_exc, False, results)
+
     def c_listed(tmp):
         rec = json.loads(json.dumps(GOOD)); m_flat(rec)
         put_study(tmp, "NCC", rec); put_list(tmp, ["NCC"])

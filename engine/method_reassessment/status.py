@@ -133,6 +133,51 @@ def section(title: str) -> None:
     print("  " + "-" * (len(title) + 2))
 
 
+# ---------------------------------------------------------------- from the other line
+#
+# TWO SESSIONS WROTE A status.py AT THE SAME TIME, and the merge is a merge rather
+# than a choice: these two sections came from the other one, which had them and this
+# one did not. The book() section in particular is the programme's own founding
+# question — every delivered central against the price it was struck at — and
+# discarding it because the surrounding file was mine would have been the parallel-
+# session failure [R-IND-01] was adopted for, running the other way.
+
+def clock():
+    utc = dt.datetime.now(dt.timezone.utc)
+    cairo = utc + dt.timedelta(hours=3)          # EEST; the plan's own offset
+    night = cairo.hour >= 22 or cairo.hour < 8
+    print("  %s Cairo   (%s UTC)" % (cairo.strftime("%a %d %b %Y  %H:%M"),
+                                     utc.strftime("%H:%M")))
+    print("  %s window — %s of the plan"
+          % ("NIGHT" if night else "DAY", "100%" if night else "50%"))
+
+
+def book():
+    """The delivered book's own numbers, computed now."""
+    sys.path.insert(0, os.path.join(ENGINE, "valuation_calibration"))
+    try:
+        import delivered as DEL
+    except Exception as exc:
+        print("  could not read the delivered book (%s: %s)" % (type(exc).__name__, exc))
+        return
+    rows, nonpos, unread, two = DEL.read_book()
+    xs = sorted(r["log_gap"] for r in rows)
+    if not xs:
+        print("  no readable central/spot pairs")
+        return
+    import math
+    mean = sum(xs) / len(xs)
+    med = xs[len(xs) // 2] if len(xs) % 2 else (xs[len(xs)//2-1] + xs[len(xs)//2]) / 2
+    print("  studies with a readable answer   %d" % len(rows))
+    print("  published as two-sided           %d" % len(two))
+    print("  central at or below zero         %d" % len(nonpos))
+    print("  answer not readable              %d" % len(unread))
+    print("  mean fair value vs price   %+.1f%%" % ((math.exp(mean) - 1) * 100))
+    print("  MEDIAN                     %+.1f%%   <- the one that matters"
+          % ((math.exp(med) - 1) * 100))
+    print("  below the price            %d of %d"
+          % (sum(1 for x in xs if x < 0), len(xs)))
+
 # ---------------------------------------------------------------- 1. the branch
 def where_the_work_is() -> None:
     section("WHERE THE WORK IS")
@@ -257,7 +302,7 @@ def the_five() -> None:
             stale.append("%s: no central/spot pair" % tk)
             continue
         gap = central / spot - 1.0
-        fn, covered, audited = read_review(sdir)
+        fn, covered, audited = read_review(sdir)[:3]
         # A review audits an ANSWER, and the answer moves; existence is not currency.
         if fn is None:
             rev = "none" + ("  (>10%, owed)" if abs(gap) > 0.10 else "")
@@ -517,9 +562,13 @@ def main(argv=None) -> int:
           % dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%MZ"))
     print("read from the repository at %s" % ROOT)
 
+    section("THE CLOCK")
+    clock()
     where_the_work_is()
     workstreams()
     the_five()
+    section("THE DELIVERED BOOK — every central against the price it was struck at")
+    book()
     blocked()
     acceptance()
     ratchets()

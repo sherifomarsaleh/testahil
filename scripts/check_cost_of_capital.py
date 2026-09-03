@@ -34,6 +34,23 @@ RECORD_KEYS = ("cost_of_capital_record", "coc_record", "schedule_record")
 TOL = 1e-6
 
 
+# CLOSED ON PURPOSE. Each entry is a disclosed accounting or financing fact that
+# makes a trailing effective rate structurally unrepresentative of what a company
+# pays on the debt it owes — not a judgement that the number looks low. Adding one
+# is a rule amendment, which is the point: an open list would let any study opt out
+# of the cost-of-debt check by inventing a reason.
+KD_ANCHOR_MECHANISMS = {
+    # interest capitalised into assets under construction never reaches the
+    # expensed charge, so the numerator is not the interest actually incurred
+    "capitalised_interest",
+    # the facility mix changed materially inside the measurement period, so an
+    # average balance describes a book that existed for none of it
+    "book_rebased_in_period",
+    # a facility drawn part-way through the period, same arithmetic in miniature
+    "facility_drawn_mid_period",
+}
+
+
 def studies():
     return sorted(glob.glob(os.path.join(ENGINE, "*_study")))
 
@@ -245,13 +262,80 @@ def check_record(rec, ticker):
             # reader of the gate's output can see which studies carry it
             pass
         else:
-            if abs(kd - eff[-1]) > 0.015 + TOL:
-                fails.append("the adopted cost of debt is %.0fbp from the latest independently "
-                             "computed effective rate, beyond the 150bp bound"
-                             % (10000 * abs(kd - eff[-1])))
-            if kd > max(eff) + 0.005 + TOL:
-                fails.append("the adopted cost of debt exceeds the peak effective rate by more "
-                             "than 50bp")
+            # THE TRAILING AVERAGE IS SOMETIMES THE WRONG INSTRUMENT, AND THE
+            # EXCEPTION IS A COMPUTATION RATHER THAN A SENTENCE. Two disclosed
+            # mechanisms make the expensed finance charge smaller than the
+            # interest a company actually incurs on the debt it actually owes:
+            # interest CAPITALISED into assets under construction never reaches
+            # the numerator, and a book that RE-BASED within the period is
+            # described by an average balance that existed for none of it. On
+            # such a book the 150bp bound is not a number the adopted rate should
+            # be dragged toward; it is a check pointed at the wrong measurement.
+            #
+            # So a record may re-point it — never switch it off. It names a
+            # mechanism from a CLOSED list ("the rate looked wrong" is not a
+            # mechanism), carries the disclosure that establishes it, and supplies
+            # a CONTRACTUAL ANCHOR: every facility with its balance and its own
+            # rate, foreign legs at local-equivalent cost. The adopted rate must
+            # then REPRODUCE from those lines. That is a harder test than the one
+            # it replaces, because a weighted average either comes out or it does
+            # not, and it is verifiable from outside the study.
+            exc = ki.get("effective_rate_not_usable") or {}
+            if exc:
+                mechs = exc.get("mechanisms") or []
+                unknown = [m for m in mechs if m not in KD_ANCHOR_MECHANISMS]
+                if not mechs:
+                    fails.append("the effective rate is declared unusable with no mechanism "
+                                 "named. The registered mechanisms are %s; a rate that merely "
+                                 "looks wrong is not one of them."
+                                 % ", ".join(sorted(KD_ANCHOR_MECHANISMS)))
+                elif unknown:
+                    fails.append("the effective rate is declared unusable for %s, which is not "
+                                 "a registered mechanism. The list is closed on purpose: %s"
+                                 % (", ".join(unknown), ", ".join(sorted(KD_ANCHOR_MECHANISMS))))
+                if len((exc.get("evidence") or "").strip()) < 60:
+                    fails.append("the unusable-effective-rate exception names no disclosure. "
+                                 "The mechanism has to be established from the filings, not "
+                                 "asserted.")
+                anchor = ki.get("contractual_anchor") or {}
+                lines = anchor.get("lines") or []
+                if not lines:
+                    fails.append("the effective rate is declared unusable and no contractual "
+                                 "anchor replaces it, which switches the check off rather than "
+                                 "re-pointing it")
+                else:
+                    bad = [l for l in lines
+                           if not isinstance(l, dict)
+                           or not isinstance(l.get("balance"), (int, float))
+                           or not isinstance(l.get("rate"), (int, float))
+                           or not (l.get("rate_basis") or "").strip()]
+                    tot = sum(float(l.get("balance") or 0) for l in lines
+                              if isinstance(l, dict)
+                              and isinstance(l.get("balance"), (int, float)))
+                    if bad:
+                        fails.append("%d contractual-anchor line(s) carry no balance, no rate "
+                                     "or no rate basis. A line whose rate has no source is the "
+                                     "attestation this replaces." % len(bad))
+                    elif tot <= 0:
+                        fails.append("the contractual anchor's balances sum to %.4g" % tot)
+                    else:
+                        blended = sum(float(l["balance"]) * float(l["rate"])
+                                      for l in lines) / tot
+                        if abs(blended - kd) > 1e-6:
+                            fails.append("the contractual anchor blends to %.6f and the "
+                                         "adopted cost of debt is %.6f. An anchor that does "
+                                         "not reproduce the rate it justifies is worse than "
+                                         "none: it reads as arithmetic." % (blended, kd))
+            else:
+                if abs(kd - eff[-1]) > 0.015 + TOL:
+                    fails.append("the adopted cost of debt is %.0fbp from the latest "
+                                 "independently computed effective rate, beyond the 150bp "
+                                 "bound, and no mechanism is declared that would make the "
+                                 "trailing average the wrong instrument"
+                                 % (10000 * abs(kd - eff[-1])))
+                if kd > max(eff) + 0.005 + TOL:
+                    fails.append("the adopted cost of debt exceeds the peak effective rate by "
+                                 "more than 50bp")
         if not ki.get("currency_source"):
             fails.append("the currency composition of the debt book is not sourced")
         if not ki.get("interest_bearing_note"):
