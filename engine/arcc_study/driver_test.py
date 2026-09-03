@@ -579,7 +579,20 @@ _DELIVERED = max(glob.glob(os.path.join(HERE, 'ARCC_Valuation_Study_*_public.doc
 _IN = json.load(open(os.path.join(HERE, 'study_numbers.json')))['inputs']
 _PAST = ('previous', 'previously', 'earlier', 'retired', 'no longer', 'used to', 'was ',
          'were ', 'prior edition', 'an edition')
-_docp = [p.text for p in docx.Document(_DELIVERED).paragraphs]
+# PARAGRAPHS AND TABLE CELLS. The first draft read paragraphs only, and missed a retired
+# diagnostic sitting inside a cross-examination TABLE CELL — which is the PHDC precedent in
+# this repository, where a standing-rule identifier leaked to a reader through a table cell
+# for exactly the same reason. A reader does not distinguish the two.
+_doc = docx.Document(_DELIVERED)
+_docp = [p.text for p in _doc.paragraphs]
+for _t in _doc.tables:
+    for _r in _t.rows:
+        _seen = set()
+        for _c in _r.cells:
+            if id(_c._tc) in _seen:
+                continue
+            _seen.add(id(_c._tc))
+            _docp.append(_c.text)
 _wclaims = []
 for _k in _RETIRED_W:
     _e = _IN.get(_k)

@@ -2271,7 +2271,9 @@ chk(all(df_[i] > df_[i + 1] for i in range(4)), "discount factors decline monoto
 chk(PRIMARY in LENS and fv_central == LENS[PRIMARY],
     "the central IS one lens, not a blend of several: there are no weights left to sum")
 chk(fv_central == LENS[PRIMARY] and min(LENS.values()) <= fv_central <= max(LENS.values()),
-    "the weighted central sits inside the range of the four lenses")
+    "the published central sits inside the range of the lenses — and it is one of them, "
+    "not a weighted point between them; this message said 'the weighted central' for a "
+    "month after the blend was retired")
 chk(eur_share > 0.5, f"the cost-of-debt build is currency-blended: {eur_share:.1%} of the "
                      f"book is euro-denominated and a single-currency shortcut would be wrong")
 say("\n" + "=" * 78)
