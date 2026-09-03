@@ -20,8 +20,8 @@
  },
  "phase": "1",
  "current": {
-  "workstream": "WS8 — AMOC's re-issue, half done",
-  "step": "AMOC's compute.py is FIXED and its output records are written, so all five reassessment names now conform to [R-ENF-05]. _val_at() was a surviving SECOND COPY of the arithmetic — the exact defect this study had already diagnosed and cured in dcf_scenario, whose docstring says so — and it priced the three contested choices AND every cell of the sensitivity grids. It now delegates to waterfall() with the same assert the scenario engine carries. Headline UNCHANGED at 9.9142 and the sensitivity centres now equal it (were 10.8572). On the corrected basis exactly ONE of four contested choices is material (the ERP basis, -19.3%) against three before; sign test p=1.00, no lean. WHAT IS NOT DONE: the delivered documents are now BEHIND the numbers file — the live builders are docx_v6.py and build_xlsx_v5.py, both hardcoding 01-09-2026, so the re-issue is a dated rebuild of both plus the bibliography and a QC gate.",
+  "workstream": "WS8 — AMOC's re-issue, waiting only on its QC gate",
+  "step": "AMOC's 03-09-2026 edition is BUILT and every gate is green except the deliverables one, which correctly reports the missing QC gate; that gate is being written from outside the study. What the re-issue fixed, with the headline unmoved at 9.9142: _val_at() delegated to waterfall() (it was a second copy of the arithmetic with a terminal on the wrong capital base and the superseded bridge, and it priced the sensitivity grids too — their at-assumption cells were 10.8572 and now equal the headline); the workbook's three WEIGHTED CENTRAL cells now read the class primary; recalc.py refused after being found pinned to the nine-sheet 06-08-2026 workbook, and the live gates resolve the edition by pattern. The lens gate now reads WORKBOOKS as well as PDFs and found the same blend in PHDC's model, whose document is clean. assert_reverse_dcf now checks the half of [R-ENF-05] nobody was checking and found four of five studies committing the solved value into their numbers file — ratcheted, purpose met and device broken in all four.",
   "status": "in progress"
  },
  "done": [
@@ -87,7 +87,9 @@
   "Day 3: PR #339 merged to main on green — the day's rules now bind on the next study, which starts from a fresh clone [R-MERGE-01]"
  ],
  "next": [
-  "AMOC re-issue: rebuild the delivered documents on the corrected numbers as a 03-09-2026 edition (docx_v6.py and build_xlsx_v5.py are the live builders; docx_amoc.py is a dead variant that crashes, and there are five document builders in that directory of which one is live — the L-066/L-067 family again)",
+  "collect AMOC's QC gate from the audit, prune the deliverables ratchet, then PR and merge on green",
+  "PHDC: its workbook still computes the retired 45/15/20/20 blend into its central cells while its document is clean — the same fix AMOC just had",
+  "the four studies on the [R-ENF-05] value ratchet (AMOC, EGCH, PHDC, TMGH): move the solved reverse read out of study_numbers.json at each next edition, on ARCC's pattern",
   "TMGH re-issue: 14 defects in QC_GATE_02-09-2026.md, 4 material",
   "TMGH edition 2/3 is NOT DELIVERABLE per QC_GATE_02-09-2026.md — 14 defects, 4 material: both documents dated 1 Sep against a 2 Sep edition; the §1.1 bridge does not divide (244,183/2,060.7 = 118.50, the page prints 113.24); §1.5 is the prior edition's prose on this edition's numbers; and [R-MACRO-01] twice, including 19.8% revenue growth in the last explicit year against a declared 7.00% terminal",
   "assert_reverse_dcf's by-name exemptions (lenses.py, docx_arcc.py) are ad hoc: TMGH puts implied_discount_rate in study_numbers.json, which [R-ENF-05]'s letter forbids, while nothing computes from it — every use is display. Purpose satisfied, device broken; resolve deliberately rather than by widening the check",
