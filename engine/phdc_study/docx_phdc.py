@@ -307,6 +307,12 @@ def _edition_words(fname=EDITION_FILE):
 EDITION_WORDS = _edition_words()
 
 
+def _count_word(n):
+    """A small count in words, from ONE place, so two sentences cannot disagree."""
+    return {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven",
+            8: "eight", 9: "nine", 10: "ten"}.get(n, str(n))
+
+
 def build(path):
     doc = Document()
     for s in doc.sections:
@@ -354,7 +360,7 @@ def build(path):
     para(doc, "The company's own audited statements are the only source used for its "
               "reported history. Where something needed is not disclosed, this study "
               "says so and does not fill the hole. There are %s such gaps and they "
-              "are listed in section 7." % {4: "four", 5: "five", 6: "six", 7: "seven"}.get(len(N["gaps"]), str(len(N["gaps"]))))
+              "are listed in section 7." % _count_word(len(N["gaps"])))
     para(doc, "Information set: everything the company had published as at 2 "
               "September 2026, which ends at its first-quarter 2026 results — the "
               "reviewed statements of 31 March 2026 included. No half-year 2026 "
@@ -1061,8 +1067,16 @@ def _sections_two_to_seven(doc, sp):
               "pass through levels far more often than they settle at them.")
 
     doc.add_heading("7  Caveats and what would change our mind", level=1)
-    para(doc, "Five things are not disclosed by the company and are therefore not in "
-              "this study. Each is named with what would close it.", bold=True)
+    # THE COUNT IS COMPUTED IN BOTH PLACES, AND IT WAS TYPED IN ONE [corrected
+    # 03-Sep-2026]. Section 7 opened "Five things are not disclosed" while the READ FIRST
+    # on page 1 computed the same count from the model and said SIX — a study
+    # contradicting itself twelve pages apart, in the sentence that introduces the list
+    # a reader is about to count. A sixth gap was registered and the typed word stayed.
+    # check_prose_figures could not see it: "Five" is a WORD, and that check matches
+    # numerals.
+    para(doc, "%s things are not disclosed by the company and are therefore not in "
+              "this study. Each is named with what would close it."
+              % _count_word(len(N["gaps"])).capitalize(), bold=True)
     gap_rows = [
         ["Collection schedule", "Down payment, instalment tenor and post-handover "
          "tail are not published. This is the crux; it is measured from outcomes "

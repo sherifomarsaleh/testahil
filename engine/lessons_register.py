@@ -3302,6 +3302,29 @@ LESSONS = [
       "A figure whose caption names a rule the drawing code does not implement, where the "
       "rule as written cannot be made parameter-free."),
 
+    L("L-252", "ALL", None,
+      "A COUNT SPELLED OUT IN WORDS ESCAPES EVERY CHECK THIS HOUSE HAS, AND EVERY STUDY IS "
+      "FULL OF THEM.",
+      "The numeric-traceability rule matches NUMERALS. \'Five\' is a word, so a count "
+      "written that way is invisible to it — and a count is the easiest figure of all to "
+      "leave behind, because it changes when a list changes and nothing connects the two.",
+      "reading PHDC's rendered page 13, 03-Sep-2026",
+      "build",
+      "PHDC's section 7 opened \'Five things are not disclosed by the company\' while the "
+      "READ FIRST twelve pages earlier COMPUTED the same count from the model and said SIX "
+      "— the study contradicting itself in the sentence that introduces the list a reader "
+      "is about to count. A sixth gap had been registered and the typed word stayed. Both "
+      "now come from one helper. Measured across all 31 delivered studies: 775 spelled-out "
+      "counts qualifying a noun, in every study. A general gate was attempted and DECLINED "
+      "— of 92 that looked mappable to a committed collection, 74 disagreed and almost "
+      "every one was the instrument being wrong (a lenses object holding the central and "
+      "two beta-alternates beside the four actual lenses; \'two lenses\' inside a sentence "
+      "about a subset). A count word means something only against a collection somebody has "
+      "NAMED, so this needs the per-study declaration prose_figures and footing_check "
+      "already use.",
+      "A rule that maps a count noun in prose to a committed collection without a per-study "
+      "declaration — which would make the general gate tractable after all."),
+
 ]
 
 

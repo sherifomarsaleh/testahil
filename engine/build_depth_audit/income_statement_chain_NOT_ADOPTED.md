@@ -69,3 +69,41 @@ where this should go next.
 PHDC's table now prints the depreciation line, and the printed rows reconcile to the
 printed operating profit exactly. ARCC's was fixed when it was found. No gate yet stops the
 third one.
+
+---
+
+# A second gate measured and declined the same hour: counts written as words
+
+**The defect that provoked it was real.** PHDC's section 7 opened *"Five things are not
+disclosed by the company"* while the READ FIRST twelve pages earlier computed the same
+count from the model and said **six** — a study contradicting itself, in the sentence that
+introduces the list a reader is about to count. A sixth gap had been registered and the
+typed word stayed. Both are now computed from one helper, so they cannot disagree.
+
+`check_prose_figures` could not see it, and the reason is exact: **"Five" is a word.** That
+check matches numerals, and a count spelled out escapes it entirely.
+
+## Measured
+
+Across all 31 delivered valuation studies: **775 spelled-out counts qualifying a noun** —
+"four lenses", "six gaps", "five origins", "three analysts". Every study carries them. So
+the class is real and book-wide.
+
+Of those, 92 use a noun that looked mappable to a collection the study commits, and 74
+"disagreed" — **and almost every one of those is the instrument being wrong, not the
+document.** ADNOCLS's `lenses` object has seven keys because it holds the central and two
+beta-alternates alongside the four actual lenses; and "two lenses" inside *"the four lenses
+are less independent of one another than four lenses should be"* is a phrase about a
+subset, not a total.
+
+## Declined, for the same reason as the chain check
+
+A count word only means something against a collection somebody has NAMED, and no rule
+maps `lenses` in a sentence to a key in a JSON file. Building it on a guess produces a gate
+that fires four times in five on correct work — the permanently-red check [R-ENF-02]
+forbids.
+
+**The tractable design is the same one this repository already uses twice**: a per-study
+declaration mapping a count phrase to the collection it counts, checked against the model.
+That is what `prose_figures` and `footing_check` do, and it is where both this and the
+income-statement chain should go.

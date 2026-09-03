@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**172 lessons**, of which 145 bind on every study, 20 on a class of company, and 7 on a single name.
+**173 lessons**, of which 146 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 97 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 98 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1528,6 +1528,16 @@ Nothing reconciles a caption against the code that drew the figure. A threshold 
 > **What it cost, or how we know.** The heatmap title read 'bold where the cell BRACKETS the EGP 14.40 close' and the code marked any cell within EGP 1.20 of it — a different rule, and a free parameter with nothing behind it. A single cell cannot bracket a value; a PAIR does. The two rules disagreed visibly on this very grid: the 6.0% row straddles 14.40 between 16.10 and 11.20 and NEITHER cell is within 1.20, so the row a reader most wants marked was left plain, while the 12.0% row — whose whole span sits above the close and brackets nothing — carried a bold cell. Same family as the ARCC heatmap whose title promised bold cells that did not exist. Now the straddling PAIR is bolded, which is what the word means, needs no threshold, and is checkable.
 
 > **What would overturn it.** A figure whose caption names a rule the drawing code does not implement, where the rule as written cannot be made parameter-free.
+
+### L-252 · A COUNT SPELLED OUT IN WORDS ESCAPES EVERY CHECK THIS HOUSE HAS, AND EVERY STUDY IS FULL OF THEM.
+
+The numeric-traceability rule matches NUMERALS. 'Five' is a word, so a count written that way is invisible to it — and a count is the easiest figure of all to leave behind, because it changes when a list changes and nothing connects the two.
+
+**Applies to:** every study  ·  *Learned from:* found while building, reading PHDC's rendered page 13, 03-Sep-2026
+
+> **What it cost, or how we know.** PHDC's section 7 opened 'Five things are not disclosed by the company' while the READ FIRST twelve pages earlier COMPUTED the same count from the model and said SIX — the study contradicting itself in the sentence that introduces the list a reader is about to count. A sixth gap had been registered and the typed word stayed. Both now come from one helper. Measured across all 31 delivered studies: 775 spelled-out counts qualifying a noun, in every study. A general gate was attempted and DECLINED — of 92 that looked mappable to a committed collection, 74 disagreed and almost every one was the instrument being wrong (a lenses object holding the central and two beta-alternates beside the four actual lenses; 'two lenses' inside a sentence about a subset). A count word means something only against a collection somebody has NAMED, so this needs the per-study declaration prose_figures and footing_check already use.
+
+> **What would overturn it.** A rule that maps a count noun in prose to a committed collection without a per-study declaration — which would make the general gate tractable after all.
 
 
 ---
