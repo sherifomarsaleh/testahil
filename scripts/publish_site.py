@@ -48,6 +48,10 @@ API = f"https://api.github.com/repos/{OWNER}/{REPO}"
 
 
 # ---------------------------------------------------------------- plumbing
+sys.path.insert(0, os.path.join(ROOT, "scripts"))
+import check_publish_block as publish_block      # imported, never re-implemented
+
+
 def run(cmd: list[str], *, capture: bool = True, check: bool = True) -> str:
     """Run a command in the repo root. Non-zero exit is fatal unless check=False."""
     p = subprocess.run(cmd, cwd=ROOT, text=True,
@@ -552,6 +556,25 @@ def main() -> None:
 
     if not os.path.exists(os.path.join(ROOT, f"{tk.lower()}.html")):
         die(f"{tk.lower()}.html does not exist — write the page before publishing")
+
+    # [R-GAP-02] — THE FIRST THING, BEFORE ANY WORK IS DONE. A study more than 30%
+    # from the latest known price does not reach the live site until that is sorted
+    # or an evidenced market dissent releases it. This runs ahead of the build
+    # rather than beside the other gates because a name that may not publish should
+    # cost nothing to discover, and because a gate placed later is one somebody
+    # eventually reaches for --ship past.
+    step("0/6", "publication limit [R-GAP-02]")
+    ok, why, rows = publish_block.verdict(tk)
+    for label, v, g in rows:
+        print(f"    {label:<46} {v:10.2f}  {g*100:+7.1f}%")
+    if not ok:
+        die(f"{tk} MAY NOT PUBLISH — {why}.\n"
+            f"  Either close the gap in the study, or file "
+            f"engine/{tk.lower()}_study/MARKET_DISSENT_{{DD-MM-YYYY}}.md carrying "
+            f"MECHANISM, REVERSE READ, WHY NOT CREDIBLE, WHAT WE CHECKED and "
+            f"FALSIFIER, with a DISSENT_AT_GAP line matching the current gap.\n"
+            f"  Run: python3 scripts/check_publish_block.py --ticker {tk}")
+    print(f"    {why}")
 
     print(f"publishing {tk}" + (" (republish)" if a.republish else ""))
     step("1/6", "syncing with origin/main")

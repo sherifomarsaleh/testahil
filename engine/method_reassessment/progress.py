@@ -37,8 +37,11 @@ from __future__ import annotations
 import datetime as dt
 import glob
 import json
-import os
+import shutil
 import subprocess
+import tempfile
+import os
+import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -172,16 +175,23 @@ def phase1() -> dict:
     sys.path.insert(0, HERE)
     from status import WORKSTREAMS          # one list, imported, never a second copy
     sys.path.insert(0, os.path.join(ROOT, "scripts"))
-    from check_valuation_gap import read_answer, read_review, read_branches
+    from check_valuation_gap import (read_answer, read_review, read_branches,
+                                     latest_known_price)
 
     # (a) BUILD — the artefacts each workstream had to produce.
     arts = [a for _, _, _, lst in WORKSTREAMS for a in lst]
     built = [a for a in arts if os.path.exists(os.path.join(ROOT, a))]
 
     # (b) DELIVERY — the five re-issued names, three testable things each: the
-    # answer is readable, the gap review audits the answer the study now
-    # publishes, and the publish queue holds that same answer. Existence is not
-    # currency, and this programme found that shape three times.
+    # answer is READABLE, the gap review audits the answer the study NOW PUBLISHES,
+    # and the DELIVERED DOCUMENTS state that same answer. Existence is not currency,
+    # and this programme found that shape three times.
+    #
+    # The third check used to be whether the publish-queue manifest recorded the
+    # same figure — a label on a staging box that nothing reads. The principal
+    # challenged whether that deserved equal standing with the other two and it did
+    # not: three unlike things are not equal because they are three, which is the
+    # typed-weight mistake [R-LENS-03] retired. The queue label is now a note.
     manifest = {}
     mp = os.path.join(ENGINE, "publish_queue", "MANIFEST.json")
     if os.path.exists(mp):
@@ -192,13 +202,38 @@ def phase1() -> dict:
             manifest = {}
     names, atoms_ok, atoms_all = [], 0, 0
     for tk in REISSUED:
-        sdir = os.path.join(ENGINE, "%s_study" % tk.lower())
+        sdir, at_ref = frontier_study_dir(tk)
         central, spot, _ = read_answer(sdir) if os.path.isdir(sdir) else (None, None, "")
-        row = {"ticker": tk, "central": central, "spot": spot, "issues": []}
+        # THE BOARD SHOWS WHAT THE NAME TRADES AT NOW, NOT WHAT IT TRADED AT WHEN
+        # THE STUDY WAS STRUCK. [R-GAP-01] compares against the LATEST KNOWN price,
+        # the gate was corrected to read it, and this table went on printing the
+        # frozen strike spot — so it showed AMOC at +8.9% while the gate had it at
+        # -26.6%, two surfaces disagreeing about the same name on the same day.
+        # The struck spot is kept beside it, because how far the price has moved
+        # since a study was built is itself the thing a reader wants.
+        live, pxdate, pxsrc = latest_known_price(tk)
+        row = {"ticker": tk, "central": central, "struck_spot": spot, "at_ref": at_ref,
+               "spot": live if live else spot,
+               "price_date": pxdate, "price_source": pxsrc, "issues": []}
+        if live and spot and abs(live - spot) > max(0.005 * spot, 0.005):
+            row["moved_since_strike"] = live / spot - 1.0
+        spot = row["spot"]
         atoms_all += 3
         if central is None and spot and read_branches(sdir):
+            # A TWO-SIDED ANSWER IS A DECISION, NOT A MISSING ONE — but that excuses
+            # only the two checks that ask for a single central. It does NOT excuse
+            # the documents, and awarding all three here reported EGCH as fully
+            # delivered while its report still stated the weighted central the study
+            # had abandoned. A shortcut that skips the one check that would have
+            # failed is not a shortcut.
             row["two_sided"] = True
-            atoms_ok += 3          # a decision taken, not an artefact missing
+            atoms_ok += 2
+            ok_doc, why_doc = documents_current(tk)
+            row["documents"] = why_doc
+            if ok_doc:
+                atoms_ok += 1
+            else:
+                row["issues"].append(why_doc)
         elif central is None or not spot:
             row["issues"].append("no readable central/spot pair")
         else:
@@ -223,14 +258,25 @@ def phase1() -> dict:
                                         else "%.2f" % audited, central))
             else:
                 atoms_ok += 1
-            staged = manifest.get(tk)
-            if staged is None:
-                row["issues"].append("not staged to publish")
-            elif abs(staged - central) > tol:
-                row["issues"].append("publish queue holds %.2f against a committed %.2f"
-                                     % (staged, central))
-            else:
+            ok_doc, why_doc = documents_current(tk)
+            if ok_doc:
                 atoms_ok += 1
+            else:
+                row["issues"].append(why_doc)
+            row["documents"] = why_doc
+            staged = manifest.get(tk)
+            # THE QUEUE LABEL IS A NOTE, NOT A SCORED CHECK, on the principal's
+            # challenge of 3 September: it is a label on a staging box that nothing
+            # reads, and giving it a third of each name's weight inflated the score
+            # with bookkeeping. Reported where it disagrees; never counted.
+            if staged is None:
+                row["queue"] = "not staged"
+            elif abs(staged - central) > tol:
+                row["queue"] = ("the staging queue's label says %.2f against a committed "
+                                "%.2f — a mislabelled box, not a wrong publication"
+                                % (staged, central))
+            else:
+                row["queue"] = "label matches"
         names.append(row)
 
     # (c) ACCEPTANCE — Part E, and its third item is the instrument.
@@ -380,6 +426,198 @@ def _deliverables(sdir: str, ticker: str) -> dict:
         "bibliography": any_of(("bibliograph",), ("sources", ".docx")),
         "workbook": any_of(("valuation_model", ".xlsx")),
     }
+
+
+def frontier_study_dir(tk: str):
+    """The study directory AT ITS FRONTIER — this checkout, or the live branch ahead.
+
+    THE SAME MIXED-POPULATION ERROR, IN THE ONE PLACE IT HAD NOT BEEN FIXED. The
+    documents check was corrected to read the frontier; the answer and the gap
+    review beside it went on being read from this checkout, so the board reported
+    "AMOC gap review audits 8.64, study publishes 9.91" on a day when the frontier
+    carried 11.83 audited against 11.83 committed and the name was clean. A board
+    reading one surface while the gate reads another is the defect this programme
+    has now paid for four times.
+
+    Returns (path, label). The path is this checkout's directory when nothing is
+    ahead of it, and a materialised copy of the freshest ref's otherwise — the
+    files themselves, never a second reader's idea of them [R-ENF-03].
+    """
+    rel = "engine/%s_study" % tk.lower()
+    here = os.path.join(ROOT, rel)
+    best_ref, best_ct = "HEAD", int(git("log", "-1", "--format=%ct", "HEAD", "--", rel) or 0)
+    for b in live_branches():
+        ct = git("log", "-1", "--format=%ct", b["branch"], "--", rel)
+        if ct and int(ct) > best_ct:
+            best_ref, best_ct = b["branch"], int(ct)
+    if best_ref == "HEAD":
+        return here, ""
+    dest = os.path.join(tempfile.gettempdir(), "frontier_%s_%s" % (tk.lower(), best_ct))
+    if not os.path.isdir(dest):
+        os.makedirs(dest, exist_ok=True)
+        tar = os.path.join(dest, "_.tar")
+        rc = subprocess.run(["git", "archive", "--format=tar", "-o", tar, best_ref, rel],
+                            cwd=ROOT, capture_output=True)
+        if rc.returncode != 0:
+            shutil.rmtree(dest, ignore_errors=True)
+            return here, ""
+        subprocess.run(["tar", "-xf", tar, "-C", dest], capture_output=True)
+        os.remove(tar)
+    got = os.path.join(dest, rel)
+    if not os.path.isdir(got):
+        return here, ""
+    return got, " (on %s)" % best_ref.replace("origin/claude/", "")
+
+
+def documents_current(tk: str) -> tuple:
+    """Do the DELIVERED documents state the answer the study publishes?
+
+    THIS REPLACED A BOOKKEEPING CHECK, on the principal's challenge. The third
+    delivery test used to be whether the publish-queue manifest recorded the same
+    figure as the study — a label on a staging box that NOTHING READS. It was given
+    a third of the weight because three was a convenient number, which is the
+    typed-weight mistake [R-LENS-03] retired: three unlike things are not equal
+    because they are three.
+
+    What matters instead is what the principal actually receives. Measured on COMMIT
+    ORDER rather than on prose, because prose defeated three attempts: the newest
+    delivered document must have been built at or after the commit where the study's
+    central LAST CHANGED VALUE. Not "the numbers file changed" — adding a record to
+    it does not stale a document — but the answer itself moving.
+    """
+    sd = os.path.join(ENGINE, "%s_study" % tk.lower())
+    nf = os.path.join(sd, "study_numbers.json")
+    doc = _newest(os.path.join(sd, "%s_Valuation_Study_*.pdf" % tk))
+    if not os.path.exists(nf) or not doc:
+        return False, "no committed numbers file or no delivered report"
+
+    def central_at(sha):
+        """THE ANSWER'S SIGNATURE AT ONE COMMIT, WHATEVER SHAPE THE STUDY PUBLISHES IT IN.
+
+        THIS READ ONLY j["central"] AND IT REPORTED A CURRENT STUDY STALE. TMGH
+        deliberately publishes NO central — its four cases are never averaged — and
+        EGCH publishes a two-sided answer with central set to null. Both returned
+        None at every commit, so "the value never changed" collapsed to the newest
+        commit and any later record addition read as the answer moving. The check
+        was measuring whether it could FIND an answer, not whether the answer moved:
+        an ABSENT reading wearing the costume of a stale one, [R-ENF-04] again, and
+        the third time this file has mixed those two up.
+
+        The signature is therefore every number a reader would see as the answer —
+        the central where there is one, the primary lens's own value and range, the
+        two-sided branches where the study publishes a question instead of a number,
+        and the envelope. Unreadable is returned as its own state, never as a move.
+        """
+        blob = git("show", "%s:%s" % (sha, os.path.relpath(nf, ROOT)))
+        try:
+            j = json.loads(blob)
+        except Exception:
+            return "?"
+        sig = []
+
+        def num(x):
+            return round(float(x), 4) if isinstance(x, (int, float)) else None
+
+        meta = j.get("meta") or {}
+        head = j.get("headline") or {}
+        for src in (j.get("central"), head.get("central"), meta.get("central"), j.get("fair")):
+            if isinstance(src, (int, float)):
+                sig.append(num(src))
+            elif isinstance(src, dict):
+                sig += [num(src.get(k)) for k in ("value", "central", "base", "mid", "bear", "full")]
+        lr = j.get("lens_record") or {}
+        prim = lr.get("primary") or {}
+        if isinstance(prim, dict):
+            sig.append(num(prim.get("value")))
+            rng = prim.get("range") or {}
+            if isinstance(rng, dict):
+                sig += [num(rng.get("low")), num(rng.get("high"))]
+        env = lr.get("envelope") or {}
+        if isinstance(env, dict):
+            sig += [num(env.get("low")), num(env.get("high"))]
+        ts = j.get("central_two_sided") or {}
+        for b in (ts.get("branches") or []):
+            if isinstance(b, dict):
+                sig.append(num(b.get("value")))
+        sig = [v for v in sig if v is not None]
+        return tuple(sig) if sig else None
+
+    # THE ANSWER AND THE DOCUMENT MUST BE READ FROM THE SAME REF. The document was
+    # searched across every live branch while the central's history was read from
+    # this checkout, so a study revalued on another session's branch showed its
+    # document as current against an answer that had already moved past it — ARCC
+    # to 53.21 and AMOC to 11.83 while this reported both clean. Mixed populations,
+    # the same error this file has now made three times in one day.
+    # THE FRESHEST REF, NOT MERELY A DIFFERENT ONE. The first cut took the first
+    # branch whose central DIFFERED from this checkout's — and "differs" is true of
+    # every ANCIENT branch too, where the field did not yet exist. TMGH's answer was
+    # read off a metals roll-forward branch from three weeks ago, came back null at
+    # every commit, and a current study reported stale. Different is not newer:
+    # pick the ref whose newest commit on this file is the most recent, and prefer
+    # this checkout on a tie so a merged answer is not read off a branch copy.
+    rel = os.path.relpath(nf, ROOT)
+    ref_for_answer, newest_touch = "HEAD", int(git("log", "-1", "--format=%ct", "HEAD", "--", rel) or 0)
+    for b in live_branches():
+        ct = git("log", "-1", "--format=%ct", b["branch"], "--", rel)
+        if ct and int(ct) > newest_touch:
+            ref_for_answer, newest_touch = b["branch"], int(ct)
+    hist = git("log", "--format=%H|%ct", ref_for_answer,
+               "--", os.path.relpath(nf, ROOT)).splitlines()
+    prev, moved = None, None
+    for line in hist:                       # newest first
+        sha, ct = line.split("|")
+        val = central_at(sha)
+        if prev is None:
+            prev = (val, ct)
+        elif val != prev[0]:
+            moved = prev
+            break
+        else:
+            prev = (val, ct)
+    moved = moved or prev
+    if not moved:
+        return False, "the central's history could not be read"
+    # AN UNREADABLE ANSWER IS NOT A STALE ANSWER, AND IT IS NOT A CLEAN ONE EITHER
+    # [R-ENF-04]. Where no number resolves at the newest commit the honest report is
+    # that this check could not read the study, named as such — not a verdict on the
+    # document, which this check has no evidence about either way.
+    if prev is not None and prev[0] in (None, "?"):
+        return False, "this check could not read an answer out of the study's numbers file"
+    # AT THE FRONTIER, NOT IN THIS CHECKOUT. A rebuild done by another session
+    # lives on its branch until it merges, and a board that could not see it would
+    # report a document stale hours after it was fixed — the same two-surfaces
+    # disagreement this file was corrected for once already today.
+    best = None
+    for ref in ["HEAD"] + [b["branch"] for b in live_branches()]:
+        for f in git("ls-tree", "-r", "--name-only", ref,
+                     "engine/%s_study/" % tk.lower()).splitlines():
+            m = re.search(r"Valuation_Study_(\d{2})-(\d{2})-(\d{4}).*\.pdf$", f)
+            if not m:
+                continue
+            ct = git("log", "-1", "--format=%ct|%ad", "--date=short", ref, "--", f)
+            if not ct or "|" not in ct:
+                continue
+            sec, day = ct.split("|")
+            if best is None or int(sec) > int(best[0]):
+                best = (sec, day, ref)
+    if best is None:
+        return False, "no delivered report resolves on any live ref"
+    sec, day, ref = best
+    where = "" if ref == "HEAD" else " (on %s)" % ref.replace("origin/claude/", "")
+    if int(sec) >= int(moved[1]):
+        return True, "report built %s%s, after the answer last moved" % (day, where)
+    return False, ("the newest delivered report was built %s and the answer moved after "
+                   "it — it states a superseded number" % day)
+
+
+def _newest(pattern):
+    """The most recent file matching a dated pattern, by the date IN THE NAME."""
+    hits = []
+    for p in glob.glob(pattern):
+        m = re.search(r"(\d{2})[-_]?(\d{2})[-_]?(\d{4})", os.path.basename(p))
+        if m:
+            hits.append(("%s%s%s" % (m.group(3), m.group(2), m.group(1)), p))
+    return max(hits)[1] if hits else None
 
 
 def backtest_coverage() -> dict:

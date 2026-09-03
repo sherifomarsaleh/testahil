@@ -57,29 +57,29 @@ def build() -> str:
 
     # ---- the four measured rows -------------------------------------------------
     rows = [
-        ("Phase 1 — build", "the artefacts the ten workstreams had to produce",
+        ("Phase 1 — the tools", "the modules the method needed, all present",
          bar(b["done"], b["total"]),
          "COMPLETE", "on day %s of a planned %d" % (dd.get("elapsed_days", "?"),
                                                     progress.PHASE1_PLANNED_WEEKS * 7),
          "done"),
-        ("Phase 1 — delivery", "the five re-issued names, three checks each",
+        ("Phase 1 — paperwork", "documents current and reviewed — NOT whether the answer is right",
          bar(dv["done"], dv["total"], "warn" if dv["done"] < dv["total"] else "go"),
          ("%d ARTEFACT%s STALE" % (dv["total"] - dv["done"],
                                     "" if dv["total"] - dv["done"] == 1 else "S")
           if dv["done"] < dv["total"] else "ALL CURRENT"),
          "named below" if dv["done"] < dv["total"] else "nothing outstanding",
          "warn" if dv["done"] < dv["total"] else "done"),
-        ("Phase 1 — acceptance", "Part E, and its third item is the instrument",
+        ("Phase 1 — proof the method works", "the one row that would tell you the answers are right",
          bar(met, len(acc), "warn"),
          ("INSTRUMENT RUNNING" if a3 and a3["state"] == "RUNNING" else "NO DATE"),
          ("%d of %d origins live" % (a3.get("origins_usable", 0),
                                      a3.get("origins_declared", 0))
           if a3 and a3["state"] == "RUNNING" else "criterion 3 is blocked"),
          ("warn" if a3 and a3["state"] == "RUNNING" else "none")),
-        ("Phase 2a — rebuilt", "the other 85 names on the current standard",
+        ("Phase 2a — rebuilt", "a study exists, built to the current method",
          bar(p2a["rebuilt"]["done"], p2a["rebuilt"]["total"], "warn"),
          "BOUNDED BY WORK", "throughput decides", "warn"),
-        ("Phase 2a — backtested", "names carrying a point-in-time record",
+        ("Phase 2a — backtested", "that study has been tested on the company's own history",
          bar(p2a["backtested"]["done"], p2a["backtested"]["total"], "warn"),
          "BOUNDED BY WORK", "%s scored so far" % (", ".join(p2a["backtested"]["names"])
                                                   or "none"), "warn"),
@@ -154,14 +154,20 @@ def build() -> str:
         gcls = "flat"
         if gap is not None:
             gcls = "up" if gap > 0.10 else ("down" if gap < -0.10 else "flat")
+        moved = n.get("moved_since_strike")
         five += ('<tr><th scope="row">%s</th><td class="num">%s</td>'
-                 '<td class="num">%s</td><td class="num %s">%s</td><td class="notes">%s</td></tr>'
+                 '<td class="num">%s<span class="asof">%s</span></td>'
+                 '<td class="num %s">%s</td><td class="notes">%s%s</td></tr>'
                  % (e(n["ticker"]),
-                    "%.2f" % n["central"] if n.get("central") is not None else "—",
+                    "%.2f" % n["central"] if n.get("central") is not None else "two-sided",
                     "%.2f" % n["spot"] if n.get("spot") else "—",
+                    e(n.get("price_date") or ""),
                     gcls, "%+.1f%%" % (gap * 100) if gap is not None else "—",
                     "".join('<span class="flag">%s</span>' % e(i) for i in n["issues"])
-                    or '<span class="clear">current</span>'))
+                    or '<span class="clear">documents current</span>',
+                    "" if moved is None else
+                    '<span class="moved">struck at %.2f — the price has moved %+.1f%% '
+                    'since</span>' % (n["struck_spot"], moved * 100)))
 
     # ---- phase 2 markets --------------------------------------------------------
     mk = "".join(
@@ -179,6 +185,29 @@ def build() -> str:
            e(fb["subject"]))
         for fb in progress.live_branches()[:6])
 
+    MEANING = {
+        "inside": "the market sits inside what we publish — no disagreement to audit",
+        "above": "we are ABOVE the market: we may be over-estimating",
+        "below": "we are BELOW the market: we may be under-estimating",
+    }
+    deviation = ""
+    for n in dv["names"]:
+        g = n.get("gap")
+        if g is None:
+            deviation += ('<tr><th scope="row">%s</th><td class="num">%s</td>'
+                          '<td class="num">%s</td><td class="num">—</td>'
+                          '<td class="notes">%s</td></tr>'
+                          % (e(n["ticker"]), "two-sided",
+                             "%.2f" % n["spot"] if n.get("spot") else "—",
+                             "published as two branches; both sit far below the market"))
+            continue
+        kind = "inside" if abs(g) <= 0.10 else ("above" if g > 0 else "below")
+        deviation += ('<tr><th scope="row">%s</th><td class="num">%.2f</td>'
+                      '<td class="num">%.2f</td><td class="num %s">%+.1f%%</td>'
+                      '<td class="notes">%s</td></tr>'
+                      % (e(n["ticker"]), n["central"], n["spot"],
+                         "up" if g > 0 else "down", g * 100, MEANING[kind]))
+
     commits = " · ".join("%s %d" % (k[5:], v)
                          for k, v in (dd.get("commits_by_day") or {}).items())
 
@@ -187,6 +216,7 @@ def build() -> str:
         gen=e(gen), rows=row_html, chain=chain_html, scenarios=sc,
         acc=acc_html, five=five, markets=mk,
         rate_note=e(dd.get("rate_note", "")), commits=e(commits), flight=flight,
+        deviation=deviation,
         p2done=p2.get("done", 0), p2total=p2.get("total", 0),
         start=e(dd.get("start", "—")), elapsed=e(dd.get("elapsed_days", "—")),
     ).items():
@@ -325,6 +355,8 @@ tbody th{font-weight:600}
 td.up{color:var(--go)} td.down{color:var(--stop)}
 .notes .flag{display:block;font-family:var(--prose);font-size:13.5px;color:var(--warn)}
 .notes .clear{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+.notes .moved{display:block;font-family:var(--prose);font-size:13px;color:var(--ink-3);margin-top:3px}
+.asof{display:block;font-family:var(--mono);font-size:10px;color:var(--ink-3);font-weight:400;margin-top:2px}
 tbody th code{font-family:var(--mono);font-size:12px;font-weight:400}
 
 /* criteria ---------------------------------------------------------------- */
@@ -386,6 +418,28 @@ footer code{font-family:var(--mono);font-size:13px;background:var(--sunk);
   <div class="rows">{{rows}}</div>
 
   <section>
+    <h2>The measure that matters</h2>
+    <p class="intro">Every percentage above is <strong>process hygiene</strong> — does a
+      document exist, is it current, does a review exist. <strong>None of it says a fair
+      value is right.</strong> This does: what each name is worth against what it actually
+      trades at. A programme that scored 100% on the rows above while every name sat far
+      from its market price would have proved nothing, and that is precisely the defect
+      this reassessment was called to fix.</p>
+    <div class="panel">
+      <div class="tw"><table>
+        <thead><tr><th>Name</th><th class="num">Fair value</th><th class="num">Market</th>
+          <th class="num">Deviation</th><th>What it means</th></tr></thead>
+        <tbody>{{deviation}}</tbody>
+      </table></div>
+      <p class="note">Prices are the principal's dated export of 2–3 September 2026.
+      <strong>Four of the five sit outside 10% of the market.</strong> Under [R-GAP-01]
+      each of those is a claim about the world that must be audited before it ships — not
+      because the market is right, but because a large disagreement is where a defect is
+      most likely to be hiding. On AMOC, auditing a 39% discount found six.</p>
+    </div>
+  </section>
+
+  <section>
     <h2>When each phase can end</h2>
     <p class="intro">A completion date is a quantity divided by a rate. The quantity is
       countable; the rate has never been measured, and two of the things this programme
@@ -393,6 +447,68 @@ footer code{font-family:var(--mono);font-size:13px;background:var(--sunk);
       phase — so it is drawn as an absence rather than as a bar at a number nobody
       measured.</p>
     <ol class="chain">{{chain}}</ol>
+  </section>
+
+  <section>
+    <h2>What every row above means</h2>
+    <p class="intro">Five measures of three different things. They are never averaged,
+      because they answer different questions and disagreeing is informative.</p>
+    <div class="panel">
+      <h3>Phase 1 — build</h3>
+      <p class="note"><strong>Are the tools that produce a valuation built?</strong> One house
+      macro path per market instead of each study carrying its own inflation view; a
+      cost-of-capital schedule that glides with the central bank's own easing path instead of
+      one crisis-level rate applied to every year and the perpetuity; one class primary as the
+      central instead of a weighted blend of four lenses; a checked enterprise-to-equity
+      bridge. Ten workstreams, twenty-nine artefacts. <strong>Complete.</strong> It is about
+      the method, not about any company.</p>
+      <h3 style="margin-top:18px">Phase 1 — delivery</h3>
+      <p class="note"><strong>Do the five test names have finished, current documents?</strong>
+      Three checks each. <em>Readable</em> — the study exposes an answer at all, since an
+      unreadable study is unmeasured rather than clean. <em>Reviewed</em> — where the answer
+      sits more than 10% from the market price, a dated eight-heading audit exists and audits
+      the number the study <em>now</em> publishes, not a superseded one. <em>Documents
+      current</em> — the delivered report was built after the last time the answer moved.</p>
+      <p class="note">The third check used to be whether the publish queue's label recorded
+      the same figure. That is a label on a staging box nothing reads, and it does not deserve
+      equal standing with an audit that has found six real defects in a single study — three
+      unlike things are not equal because they happen to be three. It is now reported as a
+      note and never scored.</p>
+      <h3 style="margin-top:18px">Phase 1 — acceptance</h3>
+      <p class="note"><strong>Has the rebuilt method been shown to work?</strong> Six criteria,
+      and the third is the instrument: the valuation calibration must show that the house is
+      not systematically wrong. Five of six hold. The outstanding one is criterion 3, which is
+      running at six of eleven point-in-time origins and needs the rest of its historical
+      archive. <em>The other five criteria are hygiene; this one is the evidence.</em></p>
+      <h3 style="margin-top:18px">Phase 2a — rebuilt</h3>
+      <p class="note"><strong>Does a study exist, built to today's method?</strong> One house
+      macro path, the cost-of-capital schedule rather than a single crisis-level rate, one
+      class primary as the central with the other lenses published beside it, a checked
+      enterprise-to-equity bridge. It produces the four documents. This is the number that
+      answers "have we valued this company properly yet" — and for 85 of the 90 the answer is
+      still no, because most have no study at all.</p>
+      <h3 style="margin-top:18px">Phase 2a — backtested</h3>
+      <p class="note"><strong>Has that method been tested on the company's own history?</strong>
+      Rebuild its fair value at each past year-end using only what was published by that date,
+      and score it: did we agree with the market then, and did our disagreement predict what
+      the price did next. A study tells you what we think a company is worth. The backtest is
+      the only thing that tells you whether our way of arriving at that number has ever been
+      right.</p>
+      <p class="note"><strong>Why rebuilt runs ahead of backtested, and should.</strong> The
+      backtest needs point-in-time inputs for every origin — what the sovereign yield, the
+      policy rate, the inflation print and the risk premium actually were on the day, not
+      today's revised readings. That archive is the binding constraint, not the study count.</p>
+      <h3 style="margin-top:18px">Phase 2b — the live test</h3>
+      <p class="note"><strong>Does the corrected method work going forward, on evidence nobody
+      can tune?</strong> From the day 2a closes, every fair value published is a dated claim
+      graded against what actually happens. It has no bar and no projected date on purpose:
+      2a is bounded by <em>work</em> and finishes faster with more capacity, while 2b is bounded
+      by the <em>calendar</em> — a claim made today cannot be graded until what it claimed has
+      happened, and no amount of effort shortens that.</p>
+      <p class="note"><strong>The one thing none of these rows measures.</strong> Whether a
+      given company's fair value is right. That is what the deviation column in the table above
+      is for, and why four of the five sit outside 10% of their market price today.</p>
+    </div>
   </section>
 
   <section>
@@ -436,12 +552,14 @@ footer code{font-family:var(--mono);font-size:13px;background:var(--sunk);
 
   <section>
     <h2>The five re-issued names</h2>
-    <p class="intro">Each name's own committed central against the spot it was struck at,
-      read through the gap gate's own reader. A flag is an artefact that exists but is no
+    <p class="intro">Each name's own committed central against <strong>the latest price the
+      house holds</strong> — the principal's dated export where it is newer than the price
+      library — not the spot the study was struck at. Those are the same number on the day a
+      study is built and diverge every day after. A flag is an artefact that exists but is no
       longer current — the failure shape this programme found three times, and the reason
       the column is here at all.</p>
     <div class="tw"><table>
-      <thead><tr><th>Name</th><th class="num">Central</th><th class="num">Spot</th>
+      <thead><tr><th>Name</th><th class="num">Central</th><th class="num">Latest price</th>
         <th class="num">vs price</th><th>State</th></tr></thead>
       <tbody>{{five}}</tbody>
     </table></div>
