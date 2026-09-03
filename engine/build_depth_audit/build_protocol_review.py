@@ -105,7 +105,7 @@ PROPOSE = [
   documented exception now in place for the Dubai series, which is held deliberately and says so."""),
 
  ("Give every standing rule an identifier, and check both files carry it",
-  """Tag each rule (<code>[R-BETA-01]</code>, <code>[R-SIGCM-02]</code> and so on) in both documents,
+  """Tag each rule (<code>[R-AREA-NN]</code> &mdash; <code>[R-SIGCM-02]</code> and so on) in both documents,
   cite the tag from the code that enforces it and from the QC gate that reports it, and add a check
   that the two files hold the same set of tags. It makes the hand-sync verifiable, lets a QC gate cite
   the rule it is testing, and gives an amendment one obvious place to land."""),

@@ -133,13 +133,65 @@ def check_record(rec, ticker):
                      "explicit year's cash flow uses %.6f — a %.0f%% premium for relabelling "
                      "the same pound arriving on the same day."
                      % (tdf, df[-1], 100 * (tdf / df[-1] - 1)))
-    if df:
+    # END-OF-YEAR IS A CONVENTION, NOT THE ONLY ONE. This check assumed each cash
+    # flow arrives on the last day of its year, and flagged ARCC — whose factors
+    # are a legitimate mid-period schedule struck a quarter before the first cash
+    # flow (cumulative discounting of 0.25, 0.94, 1.88, 2.83, 3.79 years). The rule
+    # [R-COC-01] cares that one date carries one price of time, which that schedule
+    # obeys and which the terminal check above is what actually tests; it does not
+    # mandate year-end arrival.
+    #
+    # So a record may DECLARE its convention as cumulative times, and the factors
+    # are then checked against what it declared. A record that declares nothing
+    # still gets the end-of-year test, because the alternative — accepting any
+    # factors at all where none is declared — would delete the check rather than
+    # generalise it. What is not allowed is a convention nobody wrote down.
+    conv = rec.get("discounting_convention") or {}
+    times = conv.get("cumulative_years")
+    if df and times:
+        if len(times) != len(df):
+            fails.append("the declared discounting convention lists %d cumulative "
+                         "times against %d discount factors"
+                         % (len(times), len(df)))
+        elif any(b <= a for a, b in zip(times, times[1:])):
+            fails.append("the declared cumulative discounting times do not increase: "
+                         "%s. Time runs one way." % times)
+        else:
+            # Each forward rate owns a slice of calendar. Unit-width slices are the
+            # default; a record whose first period is a stub declares its own edges,
+            # and without them the factors simply do not reproduce.
+            edges = conv.get("rate_edges") or [float(k) for k in range(len(fwd) + 1)]
+            if len(edges) != len(fwd) + 1 or any(b <= a for a, b in zip(edges, edges[1:])):
+                fails.append("the declared rate_edges %s do not describe %d "
+                             "increasing calendar slices" % (edges, len(fwd)))
+                times = []
+            for i, (t, d) in enumerate(zip(times, df)):
+                if t > edges[-1] + 1e-9:
+                    fails.append("the declared cumulative time %.4f at year %d runs "
+                                 "past the explicit window the forward rates cover "
+                                 "(%.4f years)" % (t, i + 1, edges[-1]))
+                    break
+                acc = 1.0
+                for j, w in enumerate(fwd):
+                    span = max(0.0, min(t, edges[j + 1]) - edges[j])
+                    if span > 0:
+                        acc /= (1 + w) ** span
+                if abs(acc - d) > 1e-6:
+                    fails.append("discount factor %d is %.6f and the convention it "
+                                 "declares (%.4f years at the forward path) gives "
+                                 "%.6f. A declared convention that does not "
+                                 "reproduce the factors is worse than none: it "
+                                 "reads as evidence." % (i + 1, d, t, acc))
+                    break
+    elif df:
         cum = 1.0
         for i, w in enumerate(fwd):
             cum /= (1 + w)
             if i < len(df) and abs(cum - df[i]) > 1e-9:
                 fails.append("the discount factors are not the compounded forward rates at "
-                             "year %d" % (i + 1))
+                             "year %d, and the record declares no discounting_convention. "
+                             "A mid-period or stub schedule is legitimate; one nobody wrote "
+                             "down is not readable from outside." % (i + 1))
                 break
 
     # 5. the cost of debt: above its sovereign, and inside the gate

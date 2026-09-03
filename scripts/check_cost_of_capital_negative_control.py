@@ -226,6 +226,61 @@ def main():
         put_study(tmp, "NCC", rec); put_list(tmp, [])
     case("clean: escape used honestly, disclosure named", c_escape, False, results)
 
+    # ---- the declared discounting convention [added 03-Sep-2026] --------------
+    # A record may declare a mid-period or stub schedule instead of end-of-year
+    # arrival. That freedom is only safe if a declaration that does not reproduce
+    # the factors FAILS — otherwise declaring one becomes a way to switch the
+    # check off, which is worse than the assumption it replaced.
+    def _mid(rec, times=None, edges=None, factors=None):
+        fwd = rec["forward_wacc"]
+        edges = edges if edges is not None else [0.0, 0.5] + [0.5 + k for k in range(1, len(fwd))]
+        times = times if times is not None else [0.25] + [float(k) for k in range(1, len(fwd))]
+        def chain(t):
+            a = 1.0
+            for j, w in enumerate(fwd):
+                span = max(0.0, min(t, edges[j + 1]) - edges[j])
+                if span > 0:
+                    a *= (1 + w) ** span
+            return 1.0 / a
+        rec["discount_factors"] = factors or [chain(t) for t in times]
+        rec["terminal_discount_factor"] = rec["discount_factors"][-1]
+        rec["discounting_convention"] = {"kind": "mid_period",
+                                         "cumulative_years": times,
+                                         "rate_edges": edges}
+        return rec
+
+    def b_conv_wrong(tmp):
+        rec = _mid(json.loads(json.dumps(GOOD)))
+        rec["discounting_convention"]["cumulative_years"][2] += 0.4   # says one thing
+        put_study(tmp, "NCC", rec); put_list(tmp, [])
+    case("a declared convention that does not reproduce its own factors",
+         b_conv_wrong, True, results)
+
+    def b_conv_noedges(tmp):
+        rec = _mid(json.loads(json.dumps(GOOD)))
+        rec["discounting_convention"].pop("rate_edges")     # stub schedule, unit edges assumed
+        put_study(tmp, "NCC", rec); put_list(tmp, [])
+    case("a stub schedule whose rate edges are not declared", b_conv_noedges, True, results)
+
+    def b_conv_backwards(tmp):
+        rec = _mid(json.loads(json.dumps(GOOD)))
+        t = rec["discounting_convention"]["cumulative_years"]
+        t[1], t[2] = t[2], t[1]
+        put_study(tmp, "NCC", rec); put_list(tmp, [])
+    case("declared cumulative times that do not increase", b_conv_backwards, True, results)
+
+    def b_conv_past_window(tmp):
+        rec = _mid(json.loads(json.dumps(GOOD)))
+        rec["discounting_convention"]["cumulative_years"][-1] = 99.0
+        put_study(tmp, "NCC", rec); put_list(tmp, [])
+    case("a declared time past the window the forward rates cover",
+         b_conv_past_window, True, results)
+
+    def c_mid(tmp):
+        put_study(tmp, "NCC", _mid(json.loads(json.dumps(GOOD)))); put_list(tmp, [])
+    case("CLEAN — a declared mid-period schedule that reproduces, must PASS",
+         c_mid, False, results)
+
     def c_listed(tmp):
         rec = json.loads(json.dumps(GOOD)); m_flat(rec)
         put_study(tmp, "NCC", rec); put_list(tmp, ["NCC"])

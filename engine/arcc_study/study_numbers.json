@@ -142,6 +142,26 @@
    0.5394618445483106,
    0.4536795603214861
   ],
+  "discounting_convention": {
+   "kind": "mid_period",
+   "cumulative_years": [
+    0.25,
+    1.0,
+    2.0,
+    3.0,
+    4.0
+   ],
+   "rate_edges": [
+    0.0,
+    0.5,
+    1.5,
+    2.5,
+    3.5,
+    4.5
+   ],
+   "stub_years": 0.5,
+   "note": "each year discounted to its own midpoint from a valuation date 0.500 of the way through FY2026, so the first period is a half-stub of 0.2500 years and every later year sits half a year inside its own period. The terminal is brought home on the LAST EXPLICIT factor, not on an end-of-window one."
+  },
   "terminal_discount_factor": 0.4536795603214861,
   "kd_integrity": {
    "currency_source": "note 25 and note 8: 91.1% of the book is euro-denominated (NBE at Euribor + 3.00%, EBRD at Euribor + 4.35%), the remainder pound (CIB at the corridor offer + 0.6%)",

@@ -3,12 +3,11 @@
  "seeded": "2026-09-03",
  "why_each": {
   "R-VCAL-01": "RESOLVED 03-Sep-2026: adopted in both governing documents. Kept here as the record of why it was listed; the list may only shorten and this entry is out of it.",
-  "R-BETA-01": "PRE-EXISTING, and found by this check on its first run. engine/build_depth_audit/build_protocol_review.py cites it; the documents carry R-BETA-04 and no R-BETA-01. Either the rule was renumbered and one citation was left behind, or an identifier was invented at the point of use. Resolve by reading that file rather than by inventing a rule to match the id."
+  "R-BETA-01": "RESOLVED 03-Sep-2026, and it was a FALSE POSITIVE of the check rather than a defect in the documents. It was never a citation: the review page's proposal that rules be tagged illustrated the FORM of an identifier with an invented example, alongside a real one. Replaced with [R-AREA-NN], the placeholder notation the protocol itself uses for exactly this — which is more accurate than the invented example, since the sentence was always about the shape of an id and not about any particular rule. The check cannot distinguish an example from a citation and should not try: 'ignore anything that looks like an example' is unspecifiable and would be a hole. Writing examples in a notation that cannot be mistaken for a real id is the fix."
  },
- "outstanding": [
-  "R-BETA-01"
- ],
+ "outstanding": [],
  "pruned": {
-  "R-VCAL-01": "2026-09-03"
+  "R-VCAL-01": "2026-09-03",
+  "R-BETA-01": "2026-09-03"
  }
 }

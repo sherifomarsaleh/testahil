@@ -2244,6 +2244,32 @@ COC_RECORD = dict(
     weight_debt_terminal=V['wd_term'], wacc_terminal=wacc_term,
     glide_fractions=[float(g) for g in glide], forward_wacc=[float(f) for f in fwd],
     discount_factors=[float(chain(fwd, t)) for t in t_mid],
+    # DECLARE THE CONVENTION, because the factors cannot be read without it. This
+    # study discounts each year's cash flow to its own MIDPOINT, off a valuation
+    # date part-way through FY2026, so the first factor is a half-stub and no
+    # factor is the end-of-year compounding a reader would otherwise assume. The
+    # gate checked the end-of-year form and flagged this schedule; a convention
+    # nobody writes down is not readable from outside, which is the defect — not
+    # the convention. The times are the model's OWN t_mid, never re-derived here.
+    discounting_convention=dict(
+        kind='mid_period',
+        cumulative_years=[float(t) for t in t_mid],
+        # THE EDGES ARE PART OF THE CONVENTION AND WITHOUT THEM THE FACTORS DO NOT
+        # REPRODUCE. Each forward rate owns a slice of calendar, and the first owns
+        # only the stub — a reader who assumes each rate owns a whole year from
+        # t=0 recomputes different factors and concludes the record is wrong. That
+        # is the mistake revision 3 of this study actually made, in the other
+        # direction: it walked the rates in whole-year steps and the final year's
+        # rate never entered any factor at all.
+        rate_edges=[float(e) for e in EDGES],
+        stub_years=float(V['stub_years']),
+        note=('each year discounted to its own midpoint from a valuation date '
+              '%.3f of the way through FY2026, so the first period is a '
+              'half-stub of %.4f years and every later year sits half a year '
+              'inside its own period. The terminal is brought home on the LAST '
+              'EXPLICIT factor, not on an end-of-window one.'
+              % (float(V['stub_years']), float(t_mid[0]))),
+    ),
     terminal_discount_factor=float(chain(fwd, t_mid[-1])),
     kd_integrity=dict(
         currency_source='note 25 and note 8: 91.1% of the book is euro-denominated '
