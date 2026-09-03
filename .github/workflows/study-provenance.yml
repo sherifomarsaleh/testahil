@@ -46,7 +46,10 @@ on:
       - 'engine/build_depth_audit/gap_outstanding.json'
       - 'scripts/check_workbook_structure.py'
       - 'scripts/check_workbook_structure_negative_control.py'
+      - 'scripts/check_document_structure.py'
+      - 'scripts/check_document_structure_negative_control.py'
       - 'engine/build_depth_audit/workbook_outstanding.json'
+      - 'engine/build_depth_audit/document_outstanding.json'
       - 'engine/macro_path.py'
       - 'engine/macro_paths/**'
       - 'engine/build_coc_reference.py'
@@ -114,7 +117,10 @@ on:
       - 'engine/build_depth_audit/gap_outstanding.json'
       - 'scripts/check_workbook_structure.py'
       - 'scripts/check_workbook_structure_negative_control.py'
+      - 'scripts/check_document_structure.py'
+      - 'scripts/check_document_structure_negative_control.py'
       - 'engine/build_depth_audit/workbook_outstanding.json'
+      - 'engine/build_depth_audit/document_outstanding.json'
       - 'engine/macro_path.py'
       - 'engine/macro_paths/**'
       - 'engine/build_coc_reference.py'
@@ -304,6 +310,27 @@ jobs:
       # edition sitting beside a good current one, which must NOT fire)
       - name: Workbook-structure gate — negative control
         run: python3 scripts/check_workbook_structure_negative_control.py
+
+      # [R-ENF-01] the OTHER half of the same attestation. The workbook gate above closed
+      # structure_matches_model for the .xlsx and left the .docx self-certified — and on
+      # 03-Sep-2026 three outside audits found exactly what that predicts: AMOC's Appendix
+      # C stopped after C.3 (no cross-examination, no three-in-one-room, no divergence
+      # table, all three required by name in depth-bar standard 7) and ARCC shipped with no
+      # Headline, no Company overview, no About and no Disclosure. Both attested
+      # structure_matches_model=True; neither was lying, nobody had counted. The section
+      # list is read off the MODEL REPORT DOCUMENT, never typed here.
+      - name: Document-structure gate
+        run: python3 scripts/check_document_structure.py
+
+      # and the proof it can go red — AMOC's truncated appendix and ARCC's missing front
+      # and back matter exactly as they shipped, a single missing section, a right-sections
+      # -wrong-order document, a document with no headings under either convention (which
+      # must REFUSE, not report every section missing), a vanished study, an emptied
+      # population, and the two records of the standard disagreeing; plus six clean cases,
+      # among them both house heading conventions, numbers written '1.' rather than '1',
+      # 'About this study' for 'About this series', and a study carrying EXTRA sections
+      - name: Document-structure gate — negative control
+        run: python3 scripts/check_document_structure_negative_control.py
 
       # [R-MACRO-01] one house macro path per market, and every study's growth
       # rates held to it from outside. Five studies carried five inflation rates

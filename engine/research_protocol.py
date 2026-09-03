@@ -122,7 +122,9 @@ MODEL_STUDY = {
         "7 Caveats and what would change our mind",
         "Appendix A Financial statements (A.1 income statement, 3y historical + 5y forecast; "
         "A.2 balance sheet; A.3 forecast balance sheet and cash-flow markers)",
-        "Appendix B Peer frame, risk register — and the research register",
+        "Appendix B Peer frame, risk register — and the research register "
+        "(B.1 peers and the sector frame; B.2 risk register; B.3 the research "
+        "register — layers, dated, negative results included)",
         "Appendix C Expert panel (C.1-C.3 Expert 1/2/3, cast by method, never persona names; "
         "C.4 cross-examination; C.5 the three in one room; C.6 reading the divergence)",
         "About this series",

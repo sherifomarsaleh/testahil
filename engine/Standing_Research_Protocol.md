@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-03j — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-03k — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -825,6 +825,61 @@ put the bridge on that reviewed balance sheet, so the FY2025 cash, minority and 
 rows no longer move the headline, and the assertions saying they did had never been run against
 the model that shipped. **A check that opens a delivered file by name moves with the re-issue.**
 Both findings are registered as L-066 and L-067 under [R-LESSON-01].
+
+**[AMENDED 03-Sep-2026] The other half of the same attestation: the DELIVERED STUDY
+DOCUMENT.** The 01-Sep amendment above measured `structure_matches_model` off the workbook
+and left the Word document self-certified — half a rule, and the half that was left is the
+half a reader actually reads. Two days later three outside audits found precisely what that
+predicts, in two different studies, both of which attested the field True:
+
+* **AMOC** — Appendix C carried C.1, C.2 and C.3 and then stopped. No cross-examination, no
+  three in one room, no divergence table. Depth-bar standard 7 requires all three **by
+  name**. The study also shipped with no Company overview.
+* **ARCC** — no Headline, no Valuation summary, no Company overview, no About, no Disclosure;
+  Appendix A, B and C present as covers with their sub-parts unnumbered and, in C's case, the
+  same three closing sections missing.
+
+Neither study was lying. Nobody had counted. `scripts/check_document_structure.py` now reads
+the required section list **out of the model report document itself** —
+`engine/model_report/MODEL_REPORT_09-08-2026.docx`, resolved through
+`MODEL_STUDY['model_report_document']` — because CLAUDE.md's instruction is to open that file
+beside the study being written, so it is the standard and a list typed into a checker is a
+copy of it. What is compared is the SECTION MARKER (`1.4`, `Appendix C`, `C.5`, `About this
+series`), never the prose: a study's headings name its own company and its own crux and must
+be free to. What may not vary is whether the section is there.
+
+The derivation is **self-tested against the other record of the same standard**: every marker
+the model report carries must be named in `MODEL_STUDY['word_skeleton']`, and where the two
+disagree the gate REFUSES rather than picking one — because picking one would silently make
+it the standard and nothing would say which. It fired on its first run: the model report
+numbers Appendix B's three parts B.1/B.2/B.3 and the skeleton named them only in prose. The
+skeleton was the record that was behind, and it was corrected rather than the check relaxed.
+
+Two construction findings are recorded because both are the [R-ENF-04] species inside a gate
+written to enforce it. **This book uses two legitimate heading conventions** — bold runs at
+heading size (the model report and the older builders) and Word's real Heading styles
+(`docx_phdc.py`, TMGH) — and a first draft reading only bold runs returned ZERO headings for
+PHDC and TMGH, which it then reported as *missing all 36 sections*: a confident wrong answer
+about two of the most complete documents in the repository. An empty extraction now RAISES
+and is reported as unreadable, because this gate cannot tell a document with no sections from
+a document it cannot read and must never present them as the same fact. And the first draft
+**fired on eight studies that were right**, because they write `1. Fundamental valuation`
+with a trailing period and `About this study` for `About this series` — house rendering
+conventions, not different sections. Per [R-COC-01]'s lesson the matcher was RE-POINTED at
+the section identity rather than widened or waived; the eight went green and the two real
+breaches stayed red.
+
+Same ratchet (`document_outstanding.json`, `--prune`, may only ever SHORTEN — eight entries
+on adoption day), same population anchoring [R-ENF-04], negative-controlled by
+`scripts/check_document_structure_negative_control.py` on sixteen cases: AMOC's truncated
+appendix and ARCC's missing front and back matter exactly as they shipped, a single missing
+section, a right-sections-wrong-order document, a study with no document, a document with no
+readable headings, a vanished study, an emptied population, and the two records of the
+standard disagreeing — plus six CLEAN cases that must stay green, among them both heading
+conventions, both numbering conventions, and a study carrying EXTRA sections beyond the
+model, which is added depth and never a breach. Its own case 6 caught the fixture writing
+bold runs regardless of the style it was asked for, so the condition was never injected and
+its green proved only that the document was untouched.
 
 ### [R-ENF-03] The published technical read is checked from outside, through a real JS parse
 
