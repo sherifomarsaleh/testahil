@@ -140,6 +140,30 @@ def main():
     def m_unparseable_rates(r):
         r["first_forecast_rate"] = "about nine and a half per cent"
 
+    # ---- CLAUSE TWO: THE PATH ---------------------------------------------
+    # EGCH'S PATH EXACTLY AS IT SHIPPED, and it is the case that proves the
+    # opening-year test alone is not enough: the forecast OPENS at 45.66%
+    # against a latest audited year of 38.39% -- seven points ABOVE it, which
+    # clause one is right not to fire on -- and then falls to 33.02%, below
+    # every audited year but one, on a typed dollar price path nothing sourced.
+    # A gate reading only the first forecast year passes this.
+    def m_egch_path_as_shipped(r):
+        r["latest_reviewed_rate"] = 0.38387
+        r["first_forecast_rate"] = 0.45664
+        r["forecast_path"] = [0.45664, 0.42200, 0.38230, 0.35070, 0.33020]
+
+    def m_path_declines_no_mechanism(r):
+        r["forecast_path"] = [0.12428, 0.12000, 0.11500, 0.11000, 0.10500]
+
+    def m_path_unparseable(r):
+        r["forecast_path"] = [0.12428, "a bit less", 0.11]
+
+    for n, m in (("14 EGCH's path as shipped -- opens above, falls below",
+                  m_egch_path_as_shipped),
+                 ("15 a declining path with no mechanism", m_path_declines_no_mechanism),
+                 ("16 a path that does not parse", m_path_unparseable)):
+        case(n, broken(m), True, results)
+
     for n, m in (("1 AMOC as shipped -- 2.93pp below the filed half, no mechanism",
                   m_amoc_as_shipped),
                  ("2 AMOC's mechanism, contradicted by its own filings",
@@ -204,6 +228,42 @@ def main():
         put_study(tmp, "NCL", rec); put_list(tmp, [])
     case("clean: a decline named, sourced and measured the right way",
          c_mechanism_agreeing, False, results)
+
+    def c_path_flat(tmp):
+        # a path held essentially flat must not fire
+        rec = json.loads(json.dumps(GOOD))
+        rec["forecast_path"] = [0.12500, 0.12480, 0.12460, 0.12450, 0.12440]
+        put_study(tmp, "NCL", rec); put_list(tmp, [])
+    case("clean: a path held flat", c_path_flat, False, results)
+
+    def c_path_declines_with_mechanism(tmp):
+        # EGCH's CORRECTED shape: the path still declines 7.9% because domestic
+        # cost legs escalate against a dollar-linked price, and the mechanism is
+        # named, sourced and MEASURED in the right direction from its own audited
+        # accounts (cost per unit of revenue rose 54.059% -> 61.613%)
+        rec = json.loads(json.dumps(GOOD))
+        rec["latest_reviewed_rate"] = 0.38387
+        rec["first_forecast_rate"] = 0.45664
+        rec["forecast_path"] = [0.45664, 0.44900, 0.43930, 0.42970, 0.42080]
+        rec["mechanism"] = {
+            "name": "input_cost_outpacing_price",
+            "disclosure": "pound-denominated cost legs against a dollar-linked "
+                          "export price, both from the audited cost stack",
+            "like_for_like": {
+                "measures": "cost per unit of revenue, audited full years",
+                "period_a": "FY2022/23", "value_a": 0.54059,
+                "period_b": "FY2024/25", "value_b": 0.61613,
+                "higher_is_worse": True},
+        }
+        put_study(tmp, "NCL", rec); put_list(tmp, [])
+    case("clean: EGCH corrected -- path declines, mechanism measured and agreeing",
+         c_path_declines_with_mechanism, False, results)
+
+    def c_path_rises(tmp):
+        rec = json.loads(json.dumps(GOOD))
+        rec["forecast_path"] = [0.12500, 0.12700, 0.12900, 0.13100, 0.13300]
+        put_study(tmp, "NCL", rec); put_list(tmp, [])
+    case("clean: a rising path", c_path_rises, False, results)
 
     def c_listed(tmp):
         rec = json.loads(json.dumps(GOOD)); m_amoc_as_shipped(rec)

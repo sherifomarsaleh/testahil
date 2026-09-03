@@ -2420,6 +2420,10 @@ FORECAST_ANCHOR = dict(
     latest_reviewed_date='2025-12-31',
     latest_reviewed_rate=float(ebitda_h[-1] / rev_h[-1]),
     first_forecast_rate=float(ebitda_f[0] / rev_f[0]),
+    # the PATH, per [R-ANCHOR-01] clause two. ARCC's rises rather than falls, which
+    # is the shape neither clause fires on -- and which [R-GAP-01]'s two-sided
+    # trigger and the sign test are what audit.
+    forecast_path=[float(ebitda_f[i] / rev_f[i]) for i in range(len(rev_f))],
     note='the forecast opens within a fifth of a point of the best year this company has '
          'filed, and rises from there. The filed record is FY2023 22.00%, FY2024 23.15%, '
          'FY2025 39.25%; the bear corner of the published range is that FY2023 margin, so '

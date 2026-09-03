@@ -124,6 +124,8 @@ MECHANISMS = {
 
 REQUIRED = ('latest_reviewed_period', 'latest_reviewed_date', 'latest_reviewed_rate',
             'first_forecast_rate', 'rate_name')
+# forecast_path is not in REQUIRED: it is being introduced onto studies that
+# predate it, and the ratchet carries those. A record that HAS one is tested on it.
 
 
 def _f(x):
@@ -155,7 +157,51 @@ def check(record, ticker='?'):
     r['_gap'] = gap
     tol = max(TOL_ABS, TOL_REL * abs(latest))
     r['_tol'] = tol
+
+    # ---- CLAUSE TWO: THE PATH, NOT ONLY THE OPENING YEAR --------------------
+    # THIS RULE AS FIRST WRITTEN WOULD NOT HAVE CAUGHT EGCH, AND THAT IS RECORDED
+    # HERE RATHER THAN DISCOVERED LATER. EGCH's forecast OPENED at 45.66% against
+    # a latest audited year of 38.39% -- seven points ABOVE it, which clause one
+    # is right not to fire on -- and then fell to 33.02%, below every audited year
+    # but one, on a typed dollar price path nothing sourced. A gate that inspects
+    # only the first forecast year sees a forecast opening above the record and
+    # passes it, while the decline that carries the value sits in years two to
+    # five.
+    #
+    # So the same claim is tested along the whole explicit window: a rate that
+    # DECLINES materially from its own opening year is the same claim about the
+    # world as one that opens below the filed record, and it is named, sourced and
+    # measured on the same terms. One rule, two clauses -- not a second rule,
+    # because a rule restated in two places is the drift [R-DOC-01] closes.
+    #
+    # The path is optional in the record ONLY because it is being introduced onto
+    # studies that predate it; a record that carries one is tested on it, and the
+    # ratchet is what carries the rest.
+    path = r.get('forecast_path') or []
+    r['_path_drop'] = None
+    if len(path) >= 2:
+        try:
+            p0, pmin = float(path[0]), min(float(x) for x in path)
+        except (TypeError, ValueError):
+            fails.append('forecast_path does not parse as numbers')
+        else:
+            if p0:
+                drop = (pmin - p0) / abs(p0)
+                r['_path_drop'] = drop
+                if drop < -TOL_REL and not (r.get('mechanism') or {}).get('name'):
+                    fails.append(
+                        'the forecast rate falls from %.4f to %.4f across the explicit '
+                        'window -- %.1f%% relative -- and names no mechanism. A decline '
+                        'inside the forecast is the same claim about the world as one '
+                        'against the filed record, and this clause exists because the '
+                        'first draft of this rule inspected only the opening year and '
+                        'would have passed EGCH, whose forecast opened seven points '
+                        'ABOVE its latest audited year and then fell below it.'
+                        % (p0, pmin, -100 * drop))
+
     if gap >= -tol:
+        if fails:
+            raise AssertionError('ANCHOR FAIL -- %s:\n  - %s' % (ticker, '\n  - '.join(fails)))
         return r                                   # at or inside the tolerance
 
     mech = r.get('mechanism') or {}

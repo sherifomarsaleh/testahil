@@ -1953,5 +1953,32 @@
   },
   "dividend_deducted": false,
   "dividend_note": "no dividend was declared after the bridge's balance-sheet date."
+ },
+ "forecast_anchor": {
+  "rate_name": "gross margin",
+  "latest_reviewed_period": "FY2024/25, audited",
+  "latest_reviewed_date": "2025-06-30",
+  "latest_reviewed_rate": 0.38387158495925533,
+  "first_forecast_rate": 0.4566362448997238,
+  "forecast_path": [
+   0.4566362448997238,
+   0.4489515632781204,
+   0.43932474108792335,
+   0.42969065778730225,
+   0.4207730442898523
+  ],
+  "mechanism": {
+   "name": "input_cost_outpacing_price",
+   "disclosure": "the cost stack disclosed in the audited statements splits into a dollar-linked gas charge and pound-denominated legs (wages, services, other materials); the export price that carries most of revenue is set in dollars. The pound legs escalate on the Egyptian inflation path and the dollar revenue translates at the derived currency path, and the two are not the same rate.",
+   "like_for_like": {
+    "measures": "cost per unit of revenue, audited full years",
+    "period_a": "FY2022/23",
+    "value_a": 0.54059,
+    "period_b": "FY2024/25",
+    "value_b": 0.61613,
+    "higher_is_worse": true
+   }
+  },
+  "note": "the audited record is FY2022/23 45.94%, FY2023/24 32.71%, FY2024/25 38.39%, and the part-year FY2025/26 estimate is 43.87%. The forecast opens ABOVE the latest audited year and is held roughly flat rather than escalated, because the dollar export price is now held FLAT in nominal dollars -- the convention this house applies to the same class of input elsewhere. The previous edition opened at the same rate and fell to 33.02% on a typed price path nothing sourced."
  }
 }

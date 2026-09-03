@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-03g — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-03h — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -2795,6 +2795,40 @@ and `scripts/check_forecast_anchor.py` refused it on the like-for-like measureme
 beside it — cost per unit of revenue in the **same quarter a year apart** ran 94.947% to
 89.810%, the opposite way to the mechanism claimed. **A mechanism contradicted by the
 company's own filings is not a mechanism; it is the assumption wearing one.**
+
+### Clause two: the path, not only the opening year
+
+**THIS RULE AS FIRST WRITTEN WOULD NOT HAVE CAUGHT EGCH, AND THAT IS RECORDED HERE RATHER
+THAN DISCOVERED LATER.** EGCH's forecast *opened* at 45.66% against a latest audited year of
+38.39% — seven points **above** it, which the opening-year clause is right not to fire on —
+and then fell to **33.02%**, below every audited year but one, on a typed dollar price path
+nothing sourced. A gate inspecting only the first forecast year sees a forecast opening
+above the record and passes it, while the decline that carries the value sits in years two
+to five.
+
+So the same claim is tested along the whole explicit window: **a rate that declines
+materially from its own opening year is the same claim about the world as one that opens
+below the filed record**, and it is named, sourced and measured on the same terms, at the
+same relative 5%. One rule with two clauses rather than a second rule — a rule restated in
+two places is the drift [R-DOC-01] exists to close.
+
+**The clause immediately found a residual defect in the corrected EGCH and was answered
+rather than argued with.** With the dollar export price held flat the margin still falls
+45.66% → 42.08%, 7.9% relative, because the domestic cost legs are pound-denominated and
+escalate on the Egyptian inflation path while revenue is dollar-linked. That is a real cost
+drift and therefore a claim — so EGCH declares `input_cost_outpacing_price`, carries the
+cost-stack disclosure, and supplies the measurement: cost per unit of revenue in its own
+audited accounts ran **54.059% (FY2022/23) to 61.613% (FY2024/25)**, a rise of 7.55 points.
+**The mechanism and the filings agree**, which is exactly the test AMOC failed on the same
+clause, where the same quarter a year apart moved the opposite way. The clause does not
+forbid a declining forecast; it forbids an undeclared one.
+
+`forecast_path` is deliberately **not** in the required fields: it is being introduced onto
+studies that predate it and the ratchet carries those. A record that carries one is tested
+on it. Negative-controlled on EGCH's path exactly as it shipped, a declining path with no
+mechanism, a path that does not parse, and three clean cases — a flat path, a rising path,
+and **EGCH's corrected path with its mechanism measured and agreeing**, which must stay
+green.
 
 ### The threshold, stated rather than dressed up
 

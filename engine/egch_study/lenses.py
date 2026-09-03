@@ -344,6 +344,64 @@ D['lens_record'] = {
 }
 
 _BR = _CASE['bridge'] if _CASE else {}
+# ---- [R-ANCHOR-01] THE FORECAST ANCHOR, PRINTED WHETHER OR NOT IT FIRES ------
+# EGCH is the shape the gate deliberately does NOT fire on, and the record exists
+# so a reader can see that rather than merely not-red. The first forecast year
+# opens at 45.66% against a latest AUDITED year of 38.39% -- nineteen per cent
+# ABOVE it, not below -- which is [R-GAP-01]'s two-sided trigger and [R-ENF-05]'s
+# sign test to audit, not this rule's.
+#
+# It is worth recording what that number was before this edition: the previous
+# forecast opened at the same 45.66% and FELL to 33.02%, below every audited year
+# except FY2023/24, on a typed dollar export price falling 17% that nothing
+# sourced. The opening year was never the problem; the path away from it was, and
+# a record that captured only the opening year would have missed it. That is why
+# the committed record carries the whole path.
+D['forecast_anchor'] = dict(
+    rate_name='gross margin',
+    latest_reviewed_period='FY2024/25, audited',
+    latest_reviewed_date='2025-06-30',
+    latest_reviewed_rate=float(D['hist'][-1]['gross'] / D['hist'][-1]['revenue']),
+    first_forecast_rate=float(D['cases']['base']['rows'][0]['gross']
+                              / D['cases']['base']['rows'][0]['revenue']),
+    forecast_path=[float(r['gross'] / r['revenue']) for r in D['cases']['base']['rows']],
+    # THE PATH CLAUSE OF [R-ANCHOR-01] FIRED ON THIS STUDY AND THE MECHANISM IS
+    # DECLARED RATHER THAN THE DRIVER CHANGED, because unlike AMOC's the
+    # like-for-like measurement in this company's own filings SUPPORTS it.
+    #
+    # With the dollar export price now held flat, the margin still falls 45.66% to
+    # 42.08% across the window -- 7.9% relative -- because the domestic cost legs
+    # (wages, services, other materials) are pound-denominated and escalate on the
+    # Egyptian inflation path while revenue is dollar-linked and translates only at
+    # the derived currency path. That is a real cost drift and it is a CLAIM, so it
+    # is named, sourced and measured on the same terms any other claim is.
+    #
+    # The measurement: cost per unit of revenue in this company's own audited
+    # accounts runs 54.059% (FY2022/23) to 61.613% (FY2024/25) -- it ROSE 7.55
+    # points. The mechanism and the filings agree, which is precisely the test AMOC
+    # failed on the same clause: there a claimed mechanism was refused because the
+    # same quarter a year apart moved the opposite way.
+    mechanism=dict(
+        name='input_cost_outpacing_price',
+        disclosure='the cost stack disclosed in the audited statements splits into a '
+                   'dollar-linked gas charge and pound-denominated legs (wages, '
+                   'services, other materials); the export price that carries most of '
+                   'revenue is set in dollars. The pound legs escalate on the Egyptian '
+                   'inflation path and the dollar revenue translates at the derived '
+                   'currency path, and the two are not the same rate.',
+        like_for_like=dict(
+            measures='cost per unit of revenue, audited full years',
+            period_a='FY2022/23', value_a=0.54059,
+            period_b='FY2024/25', value_b=0.61613,
+            higher_is_worse=True)),
+    note='the audited record is FY2022/23 45.94%, FY2023/24 32.71%, FY2024/25 38.39%, '
+         'and the part-year FY2025/26 estimate is 43.87%. The forecast opens ABOVE the '
+         'latest audited year and is held roughly flat rather than escalated, because '
+         'the dollar export price is now held FLAT in nominal dollars -- the convention '
+         'this house applies to the same class of input elsewhere. The previous edition '
+         'opened at the same rate and fell to 33.02% on a typed price path nothing '
+         'sourced.')
+
 D['bridge_record'] = dict(
     market='EG',
     balance_sheet_date='2026-03-31',

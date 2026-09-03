@@ -346,6 +346,13 @@
   "latest_reviewed_date": "2025-12-31",
   "latest_reviewed_rate": 0.39250174537228566,
   "first_forecast_rate": 0.3902818820901488,
+  "forecast_path": [
+   0.3902818820901488,
+   0.3949474218131671,
+   0.399857666873539,
+   0.4019979231128843,
+   0.40404319683160966
+  ],
   "note": "the forecast opens within a fifth of a point of the best year this company has filed, and rises from there. The filed record is FY2023 22.00%, FY2024 23.15%, FY2025 39.25%; the bear corner of the published range is that FY2023 margin, so the whole of the range is downside and the study says so."
  },
  "meta": {

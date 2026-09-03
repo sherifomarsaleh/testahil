@@ -2378,6 +2378,12 @@ FORECAST_ANCHOR = dict(
     latest_reviewed_date='2026-06-30',
     latest_reviewed_rate=float(V['gp_h1cy26'] / V['rev_h1cy26']),
     first_forecast_rate=float(B['gm'][0]),
+    # the PATH, per [R-ANCHOR-01] clause two: the opening year alone would not have
+    # caught EGCH, whose forecast opened above its filed record and fell below it.
+    # With the real cost drift removed this path is flat-to-rising and the clause
+    # does not fire; before the correction it ran 9.494% down to 8.764% and would
+    # have fired on both clauses at once.
+    forecast_path=[float(x) for x in B['gm']],
     # NO MECHANISM IS CLAIMED, AND THE GATE IS RIGHT TO REFUSE THIS STUDY FOR IT.
     #
     # A mechanism WAS drafted here on 03-Sep-2026 -- one_off_in_the_latest_period,
