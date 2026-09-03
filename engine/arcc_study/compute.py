@@ -128,11 +128,20 @@ gave), FY2025 operating income of EGP 4,595.82mn to the pound, total liabilities
 EGP 2,894mn — which turns out to be total CURRENT liabilities, so the derivation was
 right and the rejection was right), and revenue and profit for all three years.
 """
+import datetime as _dt
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
 import macro_path as MP
+
+# THE PRICE AND THE EDITION EACH HAVE ONE DATE, DECLARED ONCE.
+# Four places in the delivered files once read 'latest known close (6 August 2026)'
+# beside a price of 77.00, which was the 3 September close, and the masthead said
+# 'issued 2 September' on a 3 September edition. A date typed beside a computed
+# number is the same defect as a number typed beside a computed one.
+SPOT_DATE = '2026-09-03'      # engine/prices/SUPPLIED_03-09-2026.json
+EDITION_DATE = '2026-09-03'   # the date in the delivered filenames
 
 # ---------------------------------------------------------------------------
 # THE HOUSE MACRO PATH [R-MACRO-01]. Until this edition ARCC carried its own
@@ -2570,10 +2579,17 @@ OUT = dict(
     # treats as a failure rather than a skip, and rightly.
     meta=dict(ticker='ARCC', company='Arabian Cement Company S.A.E.', market='EGX',
               market_code='EG', currency='EGP',
-              asof='2026-06-30', asof_note='valuation date = the date of the latest '
-              'disclosed balance sheet; the price it is compared against is the latest '
-              'known close, 6 August 2026',
-              spot=V['spot'], spot_date='2026-09-03',
+              # THE PRICE DATE WAS TYPED HERE TOO, AND IT WAS A MONTH STALE
+              # [corrected 03-Sep-2026]. spot_date said 3 September while this note beside
+              # it said 6 August, in the same dict, in the same commit. The note is now
+              # DERIVED from the date the record actually carries, so the two cannot part.
+              asof='2026-06-30',
+              asof_note=('valuation date = the date of the latest disclosed balance sheet; '
+                         'the price it is compared against is the latest known close, '
+                         + _dt.date.fromisoformat(SPOT_DATE).strftime('%-d %B %Y')),
+              spot=V['spot'], spot_date=SPOT_DATE,
+              # the edition this file produces, so no builder types an issue date
+              edition_date=EDITION_DATE,
               central=fv_central, gap_vs_spot=fv_central / V['spot'] - 1.0,
               shares_mn=SH, mktcap=MKTCAP, revision=4,
               standard_version=STD_VERSION,

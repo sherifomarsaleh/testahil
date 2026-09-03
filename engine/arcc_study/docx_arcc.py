@@ -58,6 +58,8 @@ M, H, F = D['meta'], D['history'], D['forecast']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sensitivity']
 TR, PE, SHT = D['terminal_reconciliation'], D['peers'], D['share_triangulation']
 EXP, LR, GDV = D['experts'], D['lens_ranges'], D['growth_destroys_value']
+FA = D['forecast_anchor']          # [R-ANCHOR-01]: the record is printed for every study
+
 BU, UC, KDG, CON = D['bottom_up'], D['unit_calibration'], D['kd_gate'], D['contested']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 SPOT, SH = M['spot'], M['shares_mn']
@@ -86,8 +88,10 @@ def sg(x, dp=1): return f"{x*100:+.{dp}f}%"
 # ============================== COVER ========================================
 masthead()
 P('Arabian Cement Company S.A.E.', size=22, bold=True, space_after=1)
-P('Egyptian Exchange · ARCC · Egyptian pounds · valuation as of 30 June 2026, the date of the latest disclosed balance sheet; issued 2 '
-  'September 2026', size=11, color=GREY, space_after=10)
+EDITION_WORDS = _dt.date.fromisoformat(M['edition_date']).strftime('%-d %B %Y')
+P(f'Egyptian Exchange · ARCC · Egyptian pounds · valuation as of 30 June 2026, the date '
+  f'of the latest disclosed balance sheet; issued {EDITION_WORDS}',
+  size=11, color=GREY, space_after=10)
 rich([(f'One of Egypt\'s largest cement plants, at the top of the best year the industry '
        f'has had in more than a decade — audited profit up '
        f'{pc(IN["pat_fy25"]/IN["pat_fy24"]-1, 0)} in a single year on a '
@@ -119,8 +123,55 @@ _BLEND = (0.50 * LN['values']['DCF (cash flow)']
           + 0.22 * _NORM_DIAG
           + 0.08 * LN['values']['Asset / replacement cost'])
 
-# ---- summary valuation table ------------------------------------------------
-H2('Summary valuation table')
+# ---- headline ---------------------------------------------------------------
+# THREE TOP-LEVEL SECTIONS OF THE MODEL REPORT WERE ABSENT FROM THIS DOCUMENT
+# [added 03-Sep-2026]. The study went straight from its cover box to a summary
+# table, and closed on a one-line footer. Headline, Company overview, About and
+# Disclosure were never written, and structure_matches_model was attested True
+# because nothing outside the study had ever counted the sections.
+H1('Headline')
+_DCFR = LR[LN['primary']]
+P(f'Arabian Cement is worth EGP {n2(LN["central"])} a share on the cash-flow lens this '
+  f'study publishes, against a market price of EGP {n2(SPOT)} on {SPOT_DATE_WORDS} — '
+  f'{sg(LN["central"]/SPOT-1)}. The other reads span EGP {n2(LN["low"])} to '
+  f'EGP {n2(LN["high"])} and are published beside it rather than averaged into it, because '
+  f'they disagree for reasons a reader should see.')
+P(f'The shape of the range matters more than its width, and it is not symmetric. On the '
+  f'primary lens the bear corner is EGP {n2(_DCFR["bear"])} and the bull corner '
+  f'EGP {n2(_DCFR["bull"])} — barely above the central. Both corners move one business '
+  f'driver across the span this company\'s own audited accounts have printed, the EBITDA '
+  f'margin from {pc(H["margin"][0], 2)} in {H["years"][0]} to '
+  f'{pc(H["margin"][-1], 2)} in {H["years"][-1]}, with the macro path held completely '
+  f'still. Essentially the whole range is downside: if the margin reverts to what this '
+  f'company earned in {H["years"][0]} the value is EGP {n2(_DCFR["bear"])}. An earlier edition '
+  f'published a symmetric band of two margin points around the forecast and concealed that '
+  f'completely.')
+P(f'The disagreement with the market is not about the business, and the forecast itself is '
+  f'the evidence. It opens at an EBITDA margin of {pc(FA["first_forecast_rate"], 2)} against '
+  f'{pc(FA["latest_reviewed_rate"], 2)} in {FA["latest_reviewed_period"]} — the best year '
+  f'this company has ever filed — and rises to {pc(FA["forecast_path"][-1], 2)} by the end '
+  f'of the window. There is essentially no operating upside left in it: a reader looking for '
+  f'the cautious assumption that produces this discount will not find one on the margin line. '
+  f'Section 1.11 sets out what a buyer at EGP {n2(SPOT)} has to believe instead, and section '
+  f'1.4 is where that belief has to live.')
+P(f'Three things about the company matter more than anything else in the model. It is one '
+  f'plant — about {n1(IN["cap_cement_mt"])} million tonnes of cement a year in Suez '
+  f'governorate, one product, one country, and no diversification anywhere to absorb a '
+  f'shock. It holds more cash than debt: EGP {n0(IN["cash_h1_26"])}mn against '
+  f'EGP {n0(IN["debt_h1_26"])}mn of interest-bearing borrowings at 30 June 2026, which is '
+  f'why the enterprise-to-equity bridge adds rather than subtracts. And it has just filed '
+  f'the best year the Egyptian industry has had in more than a decade — audited profit up '
+  f'{pc(IN["pat_fy25"]/IN["pat_fy24"]-1, 0)} on a {pc(IN["rev_fy25"]/IN["rev_fy24"]-1)} '
+  f'revenue step — with {n1(IN["egy_revival_mt"])} million tonnes of dormant national '
+  f'capacity queuing to restart inside the forecast window.')
+P(f'What would change the answer is stated in section 7 and not buried: a cost of capital '
+  f'that normalises faster than the central bank\'s published path would raise this value '
+  f'materially, and beta is the input it would arrive through — the study\'s own most '
+  f'consequential contested judgement, worth {sg(CON[1]["effect"])} of value and published '
+  f'both ways rather than averaged.')
+
+# ---- valuation summary ------------------------------------------------------
+H1('Valuation summary — every read at a glance')
 rows = [['Lens', 'Value per share (EGP)', 'Role', 'Versus spot', 'Terminal value % of EV']]
 _PRIM = LN['primary']
 rows.append([_PRIM, n2(LN['values'][_PRIM]), 'the central',
@@ -148,6 +199,35 @@ caption('The cash-flow lens IS the value this study publishes. The others are '
 
 figure('fig1_football.png', 6.9,
        'Figure 1 — Each lens as a range, with its base case marked, against the market price.')
+
+# ---- company overview -------------------------------------------------------
+H1('Company overview')
+P(f'Arabian Cement Company S.A.E. runs two production lines at a single site in Suez '
+  f'governorate with a nameplate capacity of about {n1(IN["cap_cement_mt"])} million tonnes '
+  f'of grey cement a year, roughly {pc(PE["sector"]["share_of_capacity"], 1)} of Egypt\'s '
+  f'nominal capacity. It has been listed on the Egyptian Exchange since May 2014. Every '
+  f'figure about the company in this study is read from its own audited and reviewed '
+  f'accounts; nothing about its reported history comes from a data vendor or a broker.')
+P(f'What it sells is close to a commodity, and that is the first fact the lens follows from. '
+  f'Essentially all revenue is cement and clinker out of one plant, so there are no parts to '
+  f'sum: this is valued as a single operating company. Of the {n1(UC["vol_fy25"])} million '
+  f'tonnes it sold in FY2025, {pc(UC["vol_clk_exp"]/UC["vol_fy25"])} left as raw clinker for '
+  f'export — the lowest-value and highest-carbon thing it ships — and the rest as cement '
+  f'into a domestic market it cannot differentiate itself within.')
+P(f'The balance sheet is the unusual part and it works in the shareholder\'s favour. At 30 '
+  f'June 2026 the company held EGP {n0(IN["cash_h1_26"])}mn of cash against '
+  f'EGP {n0(IN["debt_h1_26"])}mn of interest-bearing debt, so it is net cash. Section 1.7 '
+  f'sets out how that reaches equity value, and section 1.4 why a debt book that changed '
+  f'currency inside the period is measured against its facility notes rather than against a '
+  f'trailing effective rate the accounts cannot produce.')
+P(f'The sector context is what the forecast turns on, and it was corrected in this edition. '
+  f'Egypt sold about {n1(IN["egy_prod_mt"])} million tonnes against roughly '
+  f'{n0(IN["egy_capacity_mt"])} million tonnes of nameplate — a market running near '
+  f'{pc(PE["sector"]["utilisation"], 0)}, which is NOT the structurally slack market earlier '
+  f'editions of this study described. The oversupply risk is prospective: it lives in the '
+  f'{n1(IN["egy_revival_mt"])} million tonne restart programme and in a production quota '
+  f'that was suspended in May 2025 rather than repealed, either of which would meet a market '
+  f'with little spare demand to absorb it.')
 
 # ============================== 1 ============================================
 H1('1  Fundamental valuation')
@@ -716,7 +796,8 @@ rows.append(['START — EFG Hermes target', n2(EFG['start']), '6 Aug 2026, Buy, 
 for s in EFG['steps']:
     rows.append([s['label'].replace('\n', ' '), f'{s["value"]:+.2f}',
                 s['sub'].replace('\n', ' ')])
-rows.append(['END — this study\'s weighted central', n2(EFG['end']), 'four lenses, weighted'])
+rows.append(['END — this study\'s central', n2(EFG['end']),
+             'the cash-flow lens, published alone'])
 table(rows, [2.65, 0.85, 3.00], size=8.8)
 caption(f'Table 14 — The reconciliation bridge. Bars sum to the gap exactly '
         f'({sum(s["value"] for s in EFG["steps"]):+.2f} vs {EFG["end"]-EFG["start"]:+.2f}). '
@@ -1104,7 +1185,7 @@ caption('Table 22 — And the margin sensitivity, which is the largest single sw
 # ============================== APPENDIX A ===================================
 doc.add_page_break()
 H1('Appendix A  Financial statements')
-H2('Income statement')
+H2('A.1  Income statement — three years reported and five forecast')
 rows = [['EGP mn'] + YH + YF]
 rows.append(['Revenue'] + [n0(x) for x in H['revenue']] + [n0(x) for x in F['revenue']])
 rows.append(['Cost of sales'] + [f'({n0(x)})' for x in H['cogs']] + ['—'] * 5)
@@ -1132,7 +1213,7 @@ caption('Table A1 — Three AUDITED years and five forecast. FY2023-FY2025 reven
         'share is struck on distributable profit after the statutory employees\' and '
         'directors\' share, which is why it differs slightly from profit over the share '
         'count.')
-H2('Balance sheet')
+H2('A.2  Balance sheet — as reported')
 rows = [['EGP mn'] + YH + YF]
 rows.append(['Total assets'] + [n0(x) for x in
                                 [IN['ta_fy23'], IN['ta_fy24'], IN['ta_fy25']]] +
@@ -1162,7 +1243,7 @@ table(rows, [1.52, 0.72, 0.72, 0.72, 0.72, 0.72, 0.72, 0.72, 0.72], size=8.0,
 caption('Table A2 — All three historical years are AUDITED. The FY2025 balance sheet closes '
         f'exactly: total assets of EGP {n0(IN["ta_fy25"])}mn less total liabilities of EGP '
         f'{n0(IN["tl_fy25"])}mn equals equity of EGP {n0(IN["eq_fy25"] + IN["nci"])}mn.')
-H2('Cash flow')
+H2('A.3  Forecast cash flow and the working-capital markers')
 rows = [['EGP mn'] + YF]
 for lab, vals in [('Attributable profit', F['pat']),
                   ('Add back depreciation', F['dna']),
@@ -1179,6 +1260,7 @@ caption('Table A3 — Free cash flow to the FIRM excludes treasury income, which
 # ============================== APPENDIX B ===================================
 doc.add_page_break()
 H1('Appendix B  Peer set, sector structure and risks')
+H2('B.1  Peers and the sector frame')
 rows = [['', 'Revenue (EGP mn)', 'Profit (EGP mn)', 'Market cap (EGP mn)',
          'Price / earnings', 'Net margin']]
 for key in ('self', 'scem', 'mbsc'):
@@ -1191,6 +1273,7 @@ caption('Table B1 — Every multiple here is RECOMPUTED from revenue, profit and
         'set do not reconcile against the market capitalisations printed beside them.')
 figure('fig8_sector.png', 6.6,
        'Figure B1 — The Egyptian cement balance. The surplus is the whole sector case.')
+H2('B.2  The sector balance, and what it is not')
 P(f'Egypt carries about {n0(IN["egy_capacity_mt"])}Mt of nameplate capacity against roughly '
   f'{n0(IN["egy_cons_mt"])}Mt of domestic consumption and {n0(IN["egy_prod_mt"])}Mt of '
   f'total sales. The balance now closes because it is taken from one disclosure rather '
@@ -1206,6 +1289,9 @@ P(f'Egypt carries about {n0(IN["egy_capacity_mt"])}Mt of nameplate capacity agai
   f'balance — and the distinction is material to the price path. The abolition of the '
   f'production quota in May 2025 removed the mechanism that had been supporting price into '
   f'that surplus, and the {n1(IN["egy_revival_mt"])}Mt restart programme would add to it.')
+H2('B.3  Risk register')
+P('One entry per risk that could move this valuation by more than a few per cent, each '
+  'stated as a mechanism rather than a worry, and each with the disclosure it rests on.')
 for head, body in [
     ('Price risk. ', f'This is the dominant risk, and the disclosure corrects how it '
      f'should be framed. The Egyptian market is NOT currently slack: it sold '
@@ -1240,14 +1326,15 @@ P('Three independent valuations of the same company, each built by a different m
   'averaged: the disagreement between them is the point.')
 figure('figD1_experts.png', 6.7,
        'Figure C1 — The three panel valuations against the market price.')
-for e in EXP:
-    H2(f'{e["label"]} — {e["method"]}')
+for _i, e in enumerate(EXP, 1):
+    H2(f'C.{_i}  {e["label"]} — {e["method"]}')
     rich([('Valuation: ', {'bold': True}),
           (f'EGP {n2(e["low"])} to EGP {n2(e["high"])}, central EGP {n2(e["central"])} '
            f'({sg(e["central"]/SPOT-1)} against the market price of EGP {n2(SPOT)}).', {})])
     P(e['summary'])
     rich([('What would prove this wrong: ', {'bold': True, 'color': BRASS}),
           (e['falsifier'], {})])
+_PRIMV = LN['values'][LN['primary']]
 rows = [['', 'Low (EGP)', 'Central (EGP)', 'High (EGP)', 'Versus spot']]
 for e in EXP:
     rows.append([f'{e["label"]} — {e["method"]}', n2(e['low']), n2(e['central']),
@@ -1255,14 +1342,183 @@ for e in EXP:
 cen = sorted(x['central'] for x in EXP)
 rows.append(['Panel median', '—', n2(cen[1]), '—', sg(cen[1] / SPOT - 1)])
 table(rows, [2.72, 1.02, 1.15, 1.02, 0.94], band_rows={4})
-caption('Table C1 — The panel. The median sits close to the weighted central of the four '
-        'principal lenses, which is a coincidence of construction rather than a '
-        'confirmation — both are looking at the same company through overlapping methods.')
+# THIS CAPTION ASSERTED THAT THE MEDIAN 'SITS CLOSE TO' THE CENTRAL AND IT DOES NOT
+# [corrected 03-Sep-2026]. It was true of an edition whose central was a weighted blend of
+# four lenses; the blend is retired, the central is the cash-flow lens alone, and the
+# sentence went on standing while the number it described moved 22% away from it. A number
+# stated in prose is computed, never typed — and a RELATION stated in prose is a number.
+_MED = sorted(x['central'] for x in EXP)[1]
+caption(f'Table C1 — The panel. The median of the three, EGP {n2(_MED)}, sits '
+        f'{sg(_MED/_PRIMV-1)} from this study\'s own central of EGP {n2(_PRIMV)} and '
+        f'{sg(_MED/SPOT-1)} from the market price. It is NOT a confirmation of anything: two '
+        f'of the three panel methods are anchored on the same forecast the central uses, and '
+        f'the one that is not — replacement cost — is the highest read in the study. An '
+        f'earlier edition compared this median to a weighted average of four lenses; those '
+        f'weights are retired, and the comparison is now against the published central.')
 
-P('')
+# ---- C.4 --------------------------------------------------------------------
+# CROSS-EXAMINATION, THE THREE IN ONE ROOM AND THE DIVERGENCE TABLE were absent
+# [added 03-Sep-2026]. Depth-bar standard 7 requires all three by name; Appendix C
+# ended after the third expert and a summary table.
+_E = {e['label']: e for e in EXP}
+_C = sorted(EXP, key=lambda e: e['central'])
+_LO, _MD, _HI = _C[0], _C[1], _C[2]
+
+H2('C.4  Cross-examination')
+P('Each expert is put the strongest objection the other two can make, and each objection is '
+  'either conceded or rejected with the arithmetic that settles it. Every figure below comes '
+  'from the three valuations above or from the study\'s own committed record.')
+rows = [['Objection', 'Raised by', 'Answered', 'The arithmetic']]
+rows.append([
+    f'{_E["Expert 1"]["method"]} values a plant nobody is building. The '
+    f'{n1(IN["egy_revival_mt"])}Mt restart programme is the live test and restarting a '
+    f'mothballed kiln costs a fraction of new build.', 'Experts 2 and 3', 'CONCEDED',
+    f'This is Expert 1\'s own stated falsifier, and it is the reason the lens is marked to '
+    f'USD 95 an annual tonne rather than the USD 130 a new line costs. At USD 95 it reads '
+    f'EGP {n2(_E["Expert 1"]["central"])}; the market is paying USD '
+    f'{LN["ev_per_t_spot"]:.1f} an annual tonne at the traded price.'])
+rows.append([
+    'A replacement-cost read says nothing about whether the plant earns its cost of capital.',
+    'Expert 3', 'REJECTED',
+    f'That is what it is for. It is the one read in this study anchored on something other '
+    f'than a forecast, and it is the strongest argument against the central — which is why '
+    f'it is published beside it at EGP {n2(_E["Expert 1"]["central"])} rather than averaged '
+    f'away.'])
+rows.append([
+    f'The forecast that drives the earnings reads opens at '
+    f'{pc(FA["first_forecast_rate"], 2)} against a filed peak of '
+    f'{pc(FA["latest_reviewed_rate"], 2)}, so it has no headroom.', 'Expert 1',
+    'CONCEDED — AND STATED IN THE STUDY',
+    f'It is the point of the range: the bull corner is EGP {n2(LN["high"])}, barely above the '
+    f'central of EGP {n2(_PRIMV)}, while the bear corner is EGP {n2(LN["low"])} on the FY2023 '
+    f'margin this company actually filed. Essentially the whole range is downside, and a '
+    f'symmetric band would have concealed that.'])
+rows.append([
+    'The beta is a peer median, not this company\'s own regression, so the discount rate is '
+    'borrowed.', 'Experts 1 and 2', 'CONCEDED — AND PUBLISHED BOTH WAYS',
+    f'The own-stock regression against the EGX30 returns {CON[1]["alternative"]} on an '
+    f'R-squared of 4.7%, below the usability floor, so tier 1 is not available. On the '
+    f'regression the lens would read EGP {n2(CON[1]["fv_alternative"])} against '
+    f'EGP {n2(CON[1]["fv_adopted"])} — {sg(CON[1]["effect"])}, the study\'s most '
+    f'consequential contested judgement.'])
+rows.append([
+    'Peer betas are used as published, without unlevering and re-levering.', 'Expert 3',
+    'CONCEDED — WITH THE DIRECTION NAMED',
+    'The peers carry borrowings and this company holds net cash, so completing the step '
+    'could only LOWER the beta, lower the rate and RAISE the value. The adopted figure is '
+    'therefore the cautious end of tier 2, and the omission is flagged rather than passed '
+    'over.'])
+rows.append([
+    'Growth is worth having, so a terminal that punishes it is wrong.', 'Expert 2',
+    'REJECTED',
+    f'Measured on this company\'s own returns: at the terminal return and reinvestment rate '
+    f'this study computes ({pc(GDV["roic_term"], 2)} against a terminal cost of capital of '
+    f'{pc(GDV["wacc_term"], 2)}, a spread of {pc(GDV["spread_pct"], 2)}), moving terminal '
+    f'growth from 3% to 7% takes the value from EGP {n2(GDV["fv_at_g3"])} DOWN to '
+    f'EGP {n2(GDV["fv_at_g7"])} — about {n2(abs(GDV["fv_at_g7"] - GDV["fv_at_g3"]) / 4)} a '
+    f'share for each point of growth, the WRONG way. Growth funded at a return below the '
+    f'cost of capital destroys value, and section 1.8 shows the arithmetic.'])
+table(rows, [2.05, 1.05, 1.20, 2.50], size=8.0)
+caption('Table C2 — Cross-examination. Four of the six objections are conceded, which is the '
+        'honest count for a study whose forecast sits at its subject\'s best filed year and '
+        'whose discount rate rests on a borrowed beta. The two rejections each rest on a '
+        'number rather than a preference.')
+
+# ---- C.5 --------------------------------------------------------------------
+H2('C.5  The three in one room')
+P(f'Put in one room the three methods land between EGP {n2(_LO["central"])} and '
+  f'EGP {n2(_HI["central"])}, a spread of {pc(_HI["central"]/_LO["central"]-1)} of the lower '
+  f'number, with a median of EGP {n2(_MD["central"])} against a market price of '
+  f'EGP {n2(SPOT)} — {sg(_MD["central"]/SPOT-1)}. All three sit below the price, and so does '
+  f'the study\'s own central of EGP {n2(_PRIMV)}.')
+P(f'What they agree on is not built in, and that is what makes it worth reading. None of the '
+  f'three sets a macro path of its own — all of them stand on the house inflation, currency '
+  f'and policy path for Egypt, so their disagreement is entirely about how a tonne of cement '
+  f'should be capitalised and never about what the economy is doing. All three also agree '
+  f'that this company is worth less than EGP {n2(SPOT)}, by methods that share no arithmetic: '
+  f'one values the steel and concrete, one the earnings stream, one the cash returned against '
+  f'what the capital costs.')
+P(f'Where they part company is what they are anchored ON. {_HI["label"]} — '
+  f'{_HI["method"].lower()} — is the highest at EGP {n2(_HI["central"])} because it is the '
+  f'only read not anchored on a forecast at all; it asks what the plant would cost to build '
+  f'and marks that down for a market with dormant capacity. The other two are anchored on '
+  f'the same forecast the central uses, and that forecast already sits at this company\'s '
+  f'best filed margin. So the panel\'s spread is largely the difference between valuing an '
+  f'asset and valuing a stream, which is exactly the disagreement a cyclical single-plant '
+  f'producer should produce — and it is why the study publishes the replacement-cost read '
+  f'beside its central rather than inside it.')
+
+# ---- C.6 --------------------------------------------------------------------
+H2('C.6  Reading the divergence')
+P('One row per pair, naming the single assumption that accounts for most of the gap between '
+  'them, and what is left of the gap once that assumption is removed.')
+rows = [['Pair', 'Gap (EGP)', 'Gap %', 'What drives it', 'What is left']]
+_pairs = [
+    (_HI, _MD, 'the anchor itself — one values the plant, the other the stream. There is no '
+               'single parameter to remove, because the two do not share one.', None),
+    (_HI, _LO, 'the same thing, at its widest: an asset value against the most '
+               'forecast-dependent read in the panel.', None),
+    (_MD, _LO, 'both are anchored on the same forecast, so what separates them is how much '
+               'of the value is allowed to sit beyond the explicit window.', None),
+]
+for a, b in [(_HI, _MD), (_HI, _LO), (_MD, _LO)]:
+    why = next(w for x, y, w, _ in _pairs if x is a and y is b)
+    rows.append([f'{a["label"]} vs {b["label"]}', n2(a['central'] - b['central']),
+                 pc(a['central'] / b['central'] - 1), why, 'not decomposed'])
+rows.append([f'Panel median vs the central', n2(_MD['central'] - _PRIMV),
+             pc(abs(_MD['central'] / _PRIMV - 1)),
+             'nothing structural — the central is a cash-flow read and so is one of the three',
+             'not decomposed'])
+table(rows, [1.55, 0.80, 0.65, 2.75, 1.05], size=8.0)
+caption('Table C3 — The divergence. Not one of these gaps reduces to a parameter, and that is '
+        'the finding rather than a gap in the analysis: the panel was cast by METHOD, so two '
+        'members of it do not share an input to vary. Where a pair does share its arithmetic '
+        '— the median against the central — the difference is small and structural. A '
+        'divergence table that decomposed these into parameters would be inventing a common '
+        'model the panel deliberately does not have.')
+
+# ============================== ABOUT ========================================
+doc.add_page_break()
+H1('About this series')
+box([
+    ('WHAT THIS IS.  ',
+     'An independent, educational valuation study. It is NOT investment advice and it '
+     'issues no buy, sell or hold recommendation. It publishes a fair-value range, a '
+     'probability distribution for the price, and the model behind both, and it grades its '
+     'own forecasts publicly when they resolve.'),
+    ('WHAT IT RESTS ON.  ',
+     'The company\'s own audited and reviewed financial statements, read from the filings '
+     'rather than from any vendor\'s summary. Every input carries a value, a source, a date '
+     'and a research layer in the companion source register, and every figure in this '
+     'document is computed by the model rather than typed into the document.'),
+    ('THE COMPANION FILES.  ',
+     f'A workbook that recalculates this study live, and a standalone bibliography listing '
+     f'every registered input with its source, the judgements with what would overturn each '
+     f'one, and the negative results — the things looked for and not found.'),
+    ('WHAT IT DOES NOT DO.  ',
+     'It never states a rating or a price target. Where a figure has two legitimate '
+     'framings, both are published. Where a judgement is contested and worth more than a '
+     'few per cent of the answer, the study computes it both ways and shows the pair '
+     'instead of averaging them into one number nobody can check.'),
+])
+
+H1('Disclosure & Disclaimer')
 P('Testahil · Independent valuation research · Educational analysis, not investment '
-  'advice. No rating and no price target is expressed or implied.', size=8.6, italic=True,
-  color=GREY)
+  'advice. No rating and no price target is expressed or implied.', size=9.2, bold=True)
+P('This document is published for education and discussion. It is not a recommendation, an '
+  'offer, or a solicitation to buy or sell any security, and it takes no account of any '
+  'reader\'s circumstances, objectives or constraints. Nothing in it should be relied on as '
+  'the basis for an investment decision.', size=8.8)
+P('The valuation is a range produced by a stated model from stated inputs, and it will be '
+  'wrong in ways the model cannot see. Section 7 sets out what would change it. Forecasts '
+  'about a single-plant producer in one country are uncertain in ways no range fully '
+  'captures, and past performance — the company\'s or this method\'s — does not predict '
+  'future results.', size=8.8)
+P(f'The price quoted throughout is the latest known close, EGP {n2(SPOT)} on '
+  f'{SPOT_DATE_WORDS}. It moves; the valuation does not move with it. No position is held '
+  f'in this security by the author of this study, and no compensation of any kind has been '
+  f'received from the company, from any holder of its shares, or from anyone with an '
+  f'interest in its price.', size=8.8)
 
 OUT = 'ARCC_Valuation_Study_03-09-2026_public.docx'
 doc.save(OUT)

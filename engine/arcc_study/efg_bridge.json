@@ -70,11 +70,11 @@
   },
   {
    "key": "lenses",
-   "label": "Other three\nlenses",
-   "sub": "50/20/22/8 weights\nand share count",
-   "driver": "lens weighting",
+   "label": "Share count,\nreconciliation",
+   "sub": "374.867 vs 375.0,\nand the full re-run",
+   "driver": "share count and reconciliation",
    "off": "NEITHER",
-   "receipt": "Not an error on either side. They publish a DCF; we weight DCF 50%, multiples 20%, normalised earnings 22%, replacement cost 8%. The three non-DCF lenses land at 48.96 / 52.95 / 68.87 and pull down 0.73 net. The share count (374.867 vs 375.0) is inside that.",
+   "receipt": "Not an error on either side, and not a lens weighting: this study's central IS the cash-flow lens, published alongside the other reads rather than averaged with them. Two things sit in this step. The share count (374.867mn against their 375.0mn), and the residual between walking one driver at a time down this bridge and running the whole model at once, which is what the published central is. A previous edition weighted four lenses 50/20/22/8 and this step carried those weights; the weights are retired and so is the description.",
    "value": -0.0421
   }
  ]

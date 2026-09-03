@@ -173,13 +173,26 @@ STEPS = [
                  "2026'. A buyer on 6 August does not receive it. Their net cash of 3,119 "
                  "is 1,193 ABOVE our post-dividend 1,926 and cannot be a post-dividend "
                  "August figure. INFERRED, not proved: they do not print the date."),
-    dict(key='lenses', driver='lens weighting', touches={'presentation'},
-         label="Other three\nlenses", sub="50/20/22/8 weights\nand share count",
+    # THE BLEND IS RETIRED AND THIS STEP STILL DESCRIBED IT [corrected 03-Sep-2026].
+    # Under [R-LENS-03] the published central IS the cash-flow lens; the 50/20/22/8
+    # weights were dropped at the previous re-issue and the delivered bridge went on
+    # telling a reader that its END point was a weighted average of four lenses, with a
+    # receipt quoting the weights and the 0.73 they used to pull down. The arithmetic was
+    # already right — the step lands on the published central either way — which is
+    # exactly why nobody looked at the words. What the step actually reconciles now is
+    # the share count and the difference between walking one driver at a time and running
+    # the whole model, so it says that.
+    dict(key='lenses', driver='share count and reconciliation', touches={'presentation'},
+         label="Share count,\nreconciliation", sub="374.867 vs 375.0,\nand the full re-run",
          fn=s_lenses, off='NEITHER',
-         receipt="Not an error on either side. They publish a DCF; we weight DCF 50%, "
-                 "multiples 20%, normalised earnings 22%, replacement cost 8%. The three "
-                 "non-DCF lenses land at 48.96 / 52.95 / 68.87 and pull down 0.73 net. "
-                 "The share count (374.867 vs 375.0) is inside that."),
+         receipt="Not an error on either side, and not a lens weighting: this study's "
+                 "central IS the cash-flow lens, published alongside the other reads "
+                 "rather than averaged with them. Two things sit in this step. The share "
+                 "count (374.867mn against their 375.0mn), and the residual between "
+                 "walking one driver at a time down this bridge and running the whole "
+                 "model at once, which is what the published central is. A previous "
+                 "edition weighted four lenses 50/20/22/8 and this step carried those "
+                 "weights; the weights are retired and so is the description."),
 ]
 VERDICTS = {'EFG', 'TESTAHIL', 'OPEN', 'NEITHER'}
 
@@ -285,7 +298,7 @@ if not ok9: fails.append('I9')
 print(f"\n  {'START — EFG Hermes target':46s} {START:7.2f}")
 for s, b in zip(STEPS, bars):
     print(f"  {s['label'].replace(chr(10), ' '):46s} {b:+7.2f}   off: {s['off']}")
-print(f"  {'END — Testahil weighted central':46s} {END:7.2f}")
+print(f"  {'END — Testahil central (the cash-flow lens)':46s} {END:7.2f}")
 tally = {v: sum(b for s, b in zip(STEPS, bars) if s['off'] == v) for v in VERDICTS}
 print('\n  off mark:  ' + '   '.join(f"{v} {tally[v]:+.2f}" for v in
                                      ('EFG', 'TESTAHIL', 'OPEN', 'NEITHER')))

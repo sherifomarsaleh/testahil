@@ -362,9 +362,10 @@
   "market_code": "EG",
   "currency": "EGP",
   "asof": "2026-06-30",
-  "asof_note": "valuation date = the date of the latest disclosed balance sheet; the price it is compared against is the latest known close, 6 August 2026",
+  "asof_note": "valuation date = the date of the latest disclosed balance sheet; the price it is compared against is the latest known close, 3 September 2026",
   "spot": 77.0,
   "spot_date": "2026-09-03",
+  "edition_date": "2026-09-03",
   "central": 53.209111872995436,
   "gap_vs_spot": -0.3089725730779813,
   "shares_mn": 374.86744500000003,
@@ -2870,7 +2871,7 @@
   "  26. the cost-of-debt build is currency-blended: 91.1% of the book is euro-denominated and a single-currency shortcut would be wrong",
   "==============================================================================",
   "\n[Years 3-5 are RANGES, from this name's own walk-forward] on twenty-five resolved cells the method's revenue error spans x0.49-x2.99 at three years (n=5), x0.81-x4.02 at four (n=4) and x0.91-x3.77 at five (n=3). Total VOLUME at five years spans only x0.90-x1.11, and profit before tax spans x0.51-x46.67 \u2014 tonnage is forecastable at five years and profit is not, which is why the delivered document publishes the far years as ranges and says so",
-  "\n[External-reader scrub] CLEAN \u2014 39 terms scanned across 144,245 characters of delivered text, 0 hits; table column audit clean",
+  "\n[External-reader scrub] CLEAN \u2014 39 terms scanned across 157,686 characters of delivered text, 0 hits; table column audit clean",
   "\n[Gates] assert_ground_up, assert_beta_provenance, assert_sigcm and assert_model_study all called in this study's own code and all passed. Built to standard 2026.09.01"
  ]
 }
