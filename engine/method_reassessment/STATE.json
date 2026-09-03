@@ -20,8 +20,8 @@
  },
  "phase": "1",
  "current": {
-  "workstream": "WS6 — the valuation calibration",
-  "step": "archive, delivered-book measurement, tail queue, gate coverage, scorer and pre-registration gate all done. Blocked only on the two observed macro fields.",
+  "workstream": "WS6/WS10",
+  "step": "[R-VCAL-01] adopted; archives, measurements, scorer and gates all in. Blocked only on the two observed macro fields.",
   "status": "in progress"
  },
  "done": [
@@ -57,7 +57,10 @@
   "WS6 FINDING — the founding question answered on the whole published book: mean log(FV/P) -10.6% but MEDIAN -0.3%, 46 of 90 below price, mean |log| 26.5%, exchange-clustered interval straddling zero. The mean is entirely a TAIL of ten names beyond -40%. The house is well-centred with a long left tail, NOT uniformly pessimistic — a different diagnosis with a different fix, and acting on the mean would have pushed every centred name off its price to correct ten. Tail queue produced (16 names) and gate coverage measured: 68 of 90 published fair values have NO study directory, so every construction gate is silent about 76% of the book. The 22 WITH studies average -20.3% and the 68 WITHOUT -7.3%, so the examined names carry the larger discounts — computed rather than assumed, and confounded.",
   "WS6: score.py implements both pre-registered series and REFUSES to score gap closure — the archive starts 11-Jun-2026 and the fundamental lens claims up to one year [R-LENS-02], so the first vintage is scoreable 11-Jun-2027. A 1-3 month score is available and would be the price cone's question wearing this one's label, which is the [R-TCAL-01] first-edition mistake. scripts/check_valuation_calibration.py reads COMMIT TOPOLOGY (merge-base --is-ancestor), not timestamps, and refuses on a shallow clone; the workflow checkout is now fetch-depth: 0. Its negative control caught the gate twice on its first run — same-second commits comparing equal, and its own fixture using add -A.",
   "GATE FIX: engine/Cost_of_Capital_Reference.md is byte-compared in CI and its generator stamped it with today's date and the sovereign quote's AGE IN DAYS, so the gate went red every midnight with nothing changed — the permanently-red check [R-ENF-02] forbids. The document now carries the date its PATHS were sourced; verified byte-identical under a faked 2027 clock. I had reported 'every gate green' while CI was red for a day, because my hand-run sweep used a list I maintained rather than the workflow's own steps.",
-  "INCIDENT, recorded rather than repaired quietly: scripts/run_ci_gates.py --all ran every workflow's steps against the LIVE working tree and reached one that rebases and auto-commits — the checkout was left mid-rebase on a detached HEAD, engine/valuation_calibration/ was emptied on disk, and an uncommitted file was swept into an auto-generated commit describing something else. Nothing lost (all commits were on the remote), which was luck about push timing rather than design. Repo-mutating verbs are now refused by name and --all is deleted; the misleading auto-commit is left in history rather than rewritten."
+  "INCIDENT, recorded rather than repaired quietly: scripts/run_ci_gates.py --all ran every workflow's steps against the LIVE working tree and reached one that rebases and auto-commits — the checkout was left mid-rebase on a detached HEAD, engine/valuation_calibration/ was emptied on disk, and an uncommitted file was swept into an auto-generated commit describing something else. Nothing lost (all commits were on the remote), which was luck about push timing rather than design. Repo-mutating verbs are now refused by name and --all is deleted; the misleading auto-commit is left in history rather than rewritten.",
+  "WS10 [R-VCAL-01] ADOPTED in both governing documents in one commit — the fair value itself is graded against what happened, on a design committed before the data. Digest renamed PROJECT_INSTRUCTIONS_03-09-2026.md per [R-DOC-01] (first edit of a new day), revision letters restarted at 'a', both stamps 2026-09-03a, the digest's self-reference and CLAUDE.md's include line moved in the same commit. Sync gate, text gate and all 34 CI steps green. FULL DIGEST TEXT OWED IN CHAT at the morning delivery.",
+  "GATE: check_protocol_sync.py compared the two documents to each other and never asked whether a rule id CITED IN CODE resolves in either — [R-DOC-01] requires all three populations. R-VCAL-01 was cited in eight files and defined nowhere while the gate reported perfect agreement. Its first run also found R-BETA-01, pre-existing, cited in build_protocol_review.py where the documents carry only R-BETA-04. Ratcheted with reasons; R-VCAL-01 pruned on adoption, R-BETA-01 outstanding and not mine.",
+  "WS10: five method lessons registered at ALL scope (L-208 a check that fails by the calendar; L-209 observed vs estimated point-in-time evidence; L-210 a mean far from its median is a tail, not a bias; L-211 a CI step assumes a disposable runner; L-212 a local sweep must read CI's own list), each with a falsifier. L-067 WIDENED rather than duplicated — three further instances of existence-checked-instead-of-currency. 99 lessons, both documents rebuilt."
  ],
  "next": [
   "BLOCKED (morning item 35): sovereign_10y and policy_rate per origin — needs an export from the principal.",
@@ -77,7 +80,7 @@
   "The campaign queue is the finite rebuild queue (prospective under the 13-Jul rule's own wording)"
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-03T02:57:19Z",
+ "updated": "2026-09-03T03:06:41Z",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md — it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",
@@ -90,6 +93,7 @@
   "Items 40-43 appended. Item 40 is the headline: measured on the whole published book, the MEDIAN name sits 0.3% from its price and the split is 46/90 — the house is well-centred with a long left TAIL, not uniformly pessimistic. Acting on the mean would have been the wrong fix.",
   "Item 41 is the only new decision: whether Phase 2 rebuilds in the measured tail order or the campaign's market order. Nothing changed; the market order stands until you say otherwise, and I think it is the stronger argument.",
   "Item 42: 68 of 90 published fair values have no study directory, so every construction gate is silent about 76% of what the site shows.",
-  "Items 44-45 appended. Item 45 is two failures of mine from last night — a 'gates green' claim made while CI was red, and a script that then rewrote the checkout. Nothing was lost and both are fixed; you should hear them from me."
+  "Items 44-45 appended. Item 45 is two failures of mine from last night — a 'gates green' claim made while CI was red, and a script that then rewrote the checkout. Nothing was lost and both are fixed; you should hear them from me.",
+  "Items 46-47 appended. [R-VCAL-01] is adopted in both documents and the digest is renamed PROJECT_INSTRUCTIONS_03-09-2026.md at revision 2026-09-03a — its full text is owed to you in chat and comes with this list."
  ]
 }
