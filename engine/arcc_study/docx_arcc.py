@@ -1245,10 +1245,13 @@ for head, body in [
      'superseded. Every historical figure here is read from the consolidated financial '
      'statements signed by Deloitte on 25 February 2026, or from the reviewed interim '
      'accounts of 25 May 2026. Four things it got materially wrong are worth naming, '
-     'because they show where reconstruction fails: minority interests were deducted at '
-     'EGP 150mn against an audited EGP 158,005; the effective tax rate was inferred at '
-     '29.4% against a disclosed 23.8%; the cost of debt was assumed at 21.5% against a '
-     'euro-denominated book paying about 7.5%; and kiln capacity was assumed 14% too low.'),
+     f'because they show where reconstruction fails: minority interests were deducted at '
+     f'EGP 150mn against an audited EGP 158,005 — one hundred and fifty-eight THOUSAND '
+     f'pounds rather than million, a figure {n0(150.0 / IN["nci"])} times smaller; the '
+     f'effective tax rate was inferred at '
+     f'29.4% against a disclosed 23.8%; the cost of debt was assumed at 21.5% against a '
+     f'euro-denominated book paying about 7.5%; and kiln capacity was assumed 14% too '
+     f'low.'),
     ('The model was rebuilt bottom up, and the answer moved a long way. ', f'Four '
      f'reviewers tested the previous edition. Between them they showed that its volume '
      f'came from an assumed price rather than from the plant, that its FY2025 validation '
@@ -1259,8 +1262,12 @@ for head, body in [
      f'medium-term one, that its discount factors applied each year\'s rate one period '
      f'late, that its beta was levered twice, and that ten rows of its income statement '
      f'were labelled one row above their contents. All of that is corrected here. The '
-     f'central fair value moves from EGP 61.30 to EGP {n2(LN["central"])}, and the '
-     f'conclusion moves from a premium over the market to a small discount.'),
+     f'central fair value moves from EGP {n2(IN["central_pre_rebuild"])} to EGP '
+     f'{n2(LN["central"])}, and the '
+     f'conclusion moves from a premium over the market of that day to a discount of '
+     f'{sg(LN["central"] / SPOT - 1)} against the latest close — large enough that this '
+     f'edition carries the gap review its own standing threshold requires, rather than '
+     f'being waved through as a small difference.'),
     ('The expert panel is the model at three parameter values, not three independent '
      'valuations. ', f'A reviewer pointed out that Expert 1\'s central IS the asset lens '
      f'to the pound and Expert 2\'s IS the normalised-earnings lens. That is correct, and '
@@ -1316,7 +1323,8 @@ for head, body in [
      f'reading that it settles accumulated claims. If a comparable amount arrives again with '
      f'no accumulated-claims explanation, it is recurring and this study understates value.'),
     ('The terminal denominator is a choice. ', f'Return on capital is '
-     f'{pc(TR["history"][2]["roic_book"])} on the audited book and {pc(TR["roic_repl"])} on '
+     f'{pc(TR["history"][2]["roic_book"])} on the audited book and '
+     f'{pc(GDV["n_over_ic"], 2)} on '
      f'replacement cost. The terminal block uses replacement cost, which leaves the plant '
      f'roughly breaking even on new tonnes — {pc(GDV["n_over_ic"], 2)} against a hurdle of '
      f'{pc(GDV["hurdle"], 2)}, so four points of terminal growth are worth '

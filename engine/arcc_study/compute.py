@@ -392,6 +392,15 @@ INP = dict(
     # the multiple is COMPUTED from the two figures rather than typed into the note: 950
     # was right and it was a numeral in a justification, which is where this rule reaches
     # too [found by prose_check.py]
+    central_pre_rebuild=I(61.30, "The central published by the edition of this study that "
+                          "PRECEDED the 06-08-2026 bottom-up rebuild, as recorded in that "
+                          "edition's own caveats section and carried unchanged in every "
+                          "edition since. THIS MODEL CANNOT COMPUTE IT — a different model "
+                          "produced it, and the file itself is not retained in the "
+                          "repository — so it is registered as the historical fact it is "
+                          "rather than typed into a builder, which is the same disposition "
+                          "any superseded figure quoted to show what changed must take.",
+                          "2026-08-06", "House"),
     nci=I(0.158005, AFS25 + " — non-controlling interests, note 24: EGP 158,005. Revision 1 "
           "deducted EGP 150mn on inference from the profit statements; the audited figure "
           "is %.0f times smaller and immaterial to the bridge" % (150.0 / 0.158005),
