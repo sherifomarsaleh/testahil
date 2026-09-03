@@ -1,0 +1,57 @@
+{
+ "_": "The escalation register [R-IND-01]. Every question that has reached the principal, with the routes actually run before it left the room, the refs actually searched, what was done meanwhile, and the default that fires if no answer comes. scripts/check_escalations.py reads it from outside and RE-CHECKS each open entry against every live ref, so an entry cannot go on asking for something already supplied.",
+ "adopted": "2026-09-03",
+ "entries": [
+  {
+   "key": "EG-sovereign-and-policy-rates-2013-2023",
+   "opened": "2026-09-02",
+   "cls": "missing_data",
+   "question": "The 10-year Egyptian government bond yield and the CBE overnight deposit rate at each year-end 2013-2023, for the point-in-time macro archive [R-VCAL-01].",
+   "routes": [
+    {
+     "route": "cbe.org.eg statistics pages and static PDF paths",
+     "when": "2026-09-03",
+     "outcome": "HTTP 200 with a 269-byte 'Request Rejected' body on every path",
+     "rerun": true
+    },
+    {
+     "route": "FRED / ALFRED CSV endpoints",
+     "when": "2026-09-02",
+     "outcome": "404 bot-protection page for every series id",
+     "rerun": false
+    },
+    {
+     "route": "IMF SDMX dataservices.imf.org",
+     "when": "2026-09-02",
+     "outcome": "host does not resolve; api.imf.org rejects the IFS dataflow",
+     "rerun": false
+    },
+    {
+     "route": "IMF Article IV country reports",
+     "when": "2026-09-02",
+     "outcome": "reachable and read, but the only rate row is a FISCAL-YEAR AVERAGE of a 3-month bill where the house discounts on a 10-year year-end yield. Recording it would be an instrument substitution wearing the right field name.",
+     "rerun": false
+    },
+    {
+     "route": "web.archive.org snapshot of the CBE statistics pages",
+     "when": "2026-09-03",
+     "outcome": "404 — no snapshot held",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 22,
+   "why_only_the_principal": "Both are OBSERVED figures, so this is pure access and not a point-in-time problem. Every free route refuses at the proxy; the principal holds the CBE / Ministry of Finance export.",
+   "done_meanwhile": "The archive's other four required figures were sourced point-in-time (ERP and default spread from the Damodaran vintages published AT each origin, inflation from six IMF WEO editions published before their origins), so the archive was complete except for these two and closed the moment they arrived.",
+   "default_if_no_answer": "Drop every origin that lacks them and shorten the window — never interpolate, never carry a neighbouring year.",
+   "default_date": "2026-09-10",
+   "status": "resolved",
+   "resolved": "2026-09-03",
+   "answer_written_to": "engine/macro_history/EG.json",
+   "resolves_when": {
+    "file": "engine/macro_history/EG.json",
+    "must_contain": "resolved_03_09_2026"
+   },
+   "note": "THE CASE THIS RULE WAS WRITTEN FOR. The principal supplied both series on the morning of 3 September and one supplied figure was found wrong and corrected against the CBE decision record. Six origins went live. Hours later this session ASKED FOR THEM AGAIN, because it read main and the answer was on the calibration session's branch. The gate now re-checks this entry's marker across every live ref on every run, so the same re-ask goes RED instead of reaching the principal."
+  }
+ ]
+}

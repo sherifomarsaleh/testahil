@@ -861,6 +861,18 @@ def _lens_classes_match_register():
 _lens_classes_match_register()
 
 
+# Macro and cost-of-capital dials: moving one of these to manufacture a bear or a
+# bull is the construction [R-MACRO-01] forbids, because they are DERIVED from the
+# house path and share its terminal inflation. Business drivers -- volumes, prices,
+# margins, conversion, absorption, delivery rate -- are the ones a range may move.
+MACRO_DIALS = (
+    "terminal growth", "terminal_growth", "perpetuity growth", "terminal rate",
+    "terminal risk-free", "terminal risk free", "risk-free", "risk free",
+    "inflation", "cost of equity", "cost_of_equity", "cost of capital", "wacc",
+    "discount rate", "discount_rate", "ke", "kd", "exit multiple",
+)
+
+
 def assert_lens_design(record: dict, ticker: str = "?") -> dict:
     """Raise unless the study's lens architecture obeys [R-LENS-03].
 
@@ -971,6 +983,65 @@ def assert_lens_design(record: dict, ticker: str = "?") -> dict:
                          "with no note saying what it is. A midpoint presented as an answer "
                          "is the averaging the dual-framing rule forbids; exposing one for a "
                          "gate to read is fine, and it says so.")
+
+    # ---------------------------------------------------------------- the origin
+    # THE BEAR AND THE BULL ARE CLAIMS AND MUST SAY WHERE THEY CAME FROM
+    # [per instruction, 03-Sep-2026]. Until now this gate checked the envelope's
+    # ARITHMETIC -- that low and high are the min and max of the present-value
+    # reads -- and never asked what was moved to produce them. That is the whole
+    # question. A range produced by flexing a driver across the span the company's
+    # own filings actually show is evidence; a range produced by nudging terminal
+    # growth and the discount rate until the corners look wide enough is a free
+    # parameter wearing a range's clothes, and its width is the analyst's choice
+    # rather than the world's.
+    #
+    # It is also INCOHERENT under [R-MACRO-01]: terminal growth and the terminal
+    # risk-free rate both contain the same terminal inflation, so the bull corner
+    # of a growth-by-discount-rate grid is inflation high and low simultaneously,
+    # and the two corners a study would publish as bear and bull are the two least
+    # coherent cells in it. That is [L-048] and [L-055] rebuilt as a matrix.
+    #
+    # What is NOT prohibited is a framing the protocol itself requires to be
+    # published both ways -- the CDS and rating premium bases of [R-COC-01] are
+    # the standing example, and TMGH's envelope legitimately spans them. Those are
+    # named, not invented, so the record names which rule sanctions them.
+    pr = prim.get("range") or {}
+    if pr:
+        rb = prim.get("range_basis") or {}
+        if not rb:
+            fails.append(
+                "the primary publishes a range -- which is what the study will show as "
+                "its bear and bull -- and no range_basis says where it came from. The "
+                "origin of the range is a claim and is declared: what was moved, "
+                "between which values, on what evidence, and that the macro path "
+                "stood still while it moved.")
+        else:
+            for f in ("driver", "evidence"):
+                if not str(rb.get(f) or "").strip():
+                    fails.append("range_basis names no %s. A range whose origin is not "
+                                 "stated cannot be audited by anyone." % f)
+            for side in ("low", "high"):
+                if rb.get(side) is None:
+                    fails.append("range_basis does not say what value the driver took at "
+                                 "the %s end of the range." % side)
+            sanctioned = str(rb.get("sanctioned_framing") or "").strip()
+            drv = str(rb.get("driver") or "").lower()
+            hits = [t for t in MACRO_DIALS if t in drv]
+            if hits and not sanctioned:
+                fails.append(
+                    "the range is produced by moving %s -- a macro or cost-of-capital "
+                    "dial, not a business driver. Under [R-MACRO-01] terminal growth and "
+                    "the terminal risk-free rate are DERIVED from one house path and both "
+                    "carry the same terminal inflation, so the corners of such a range are "
+                    "internally contradictory and its width is chosen rather than "
+                    "observed. Flex the crux in observable units and hold the macro path "
+                    "fixed, or name the rule that requires the framing to be published "
+                    "both ways." % ", ".join(hits))
+            if rb.get("macro_held") is not True and not sanctioned:
+                fails.append(
+                    "range_basis does not assert that the macro path was held fixed across "
+                    "the range. One inflation, one currency, one price of time -- moving "
+                    "them with the driver is the incoherence [R-MACRO-01] exists to close.")
 
     env = r.get("envelope") or {}
     if env:
