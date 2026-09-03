@@ -712,10 +712,14 @@ jobs:
       # clean while the delivered PDF still carries the previous edition's answer — which
       # is exactly what happened to four studies on 03-Sep-2026, for four hours, with
       # every gate green.
+      # poppler-utils installed as its OWN step so a failure to install is a failure to
+      # install, not a book-wide red from a gate that could not read anything. The gate
+      # itself exits 2 with a message naming the missing tool if it is still absent.
+      - name: Install poppler-utils (pdftotext)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+
       - name: Delivered PDF carries the study's own answer
-        run: |
-          sudo apt-get install -y -qq poppler-utils >/dev/null 2>&1 || true
-          python3 scripts/check_delivered_pdf_currency.py
+        run: python3 scripts/check_delivered_pdf_currency.py
 
       - name: Delivered PDF currency — negative control
         run: python3 scripts/check_delivered_pdf_currency_negative_control.py

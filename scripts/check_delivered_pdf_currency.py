@@ -122,7 +122,29 @@ def headline(pdf, pages=3):
         return ''
 
 
+def require_pdftotext():
+    """The gate cannot examine a PDF without a text extractor, and must say so.
+
+    A missing binary would make every document "yield no text", which this gate would then
+    report as a book-wide failure — a red build whose message points at the studies rather
+    than at the runner. Worse, a caller could be tempted to make that case silent, which
+    turns a broken gate into a passing one. So the absence is detected once and named.
+    """
+    try:
+        r = subprocess.run(['pdftotext', '-v'], capture_output=True, text=True, timeout=30)
+        if r.returncode == 0 or 'pdftotext' in (r.stderr or '') + (r.stdout or ''):
+            return
+    except Exception:
+        pass
+    print('FAIL — pdftotext is not available, so this gate cannot read a single delivered '
+          'PDF. That is a broken TOOL, not a finding about the studies, and it is reported '
+          'as such rather than as a clean run or as a book-wide failure. Install '
+          'poppler-utils.')
+    sys.exit(2)
+
+
 def main(argv):
+    require_pdftotext()
     prune = '--prune' in argv
     rat = json.load(open(RATCHET)) if os.path.exists(RATCHET) else {}
     rat.setdefault('entries', {})
