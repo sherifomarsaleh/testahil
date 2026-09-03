@@ -104,6 +104,8 @@ import re
 from glob import glob
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+_LIVES_F = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'disclosed_lives.json')
+_LIVES = json.load(open(_LIVES_F)) if os.path.exists(_LIVES_F) else {}
 
 # Candidate keys, in preference order. A study is read through the FIRST one present and
 # the census reports which — a resolver that silently guesses is the species of defect
@@ -495,11 +497,18 @@ def implied_lives():
                         .get('inputs', {}).get('useful_life_years'))
             except Exception:
                 disc = None
+        # ...and where a study has NOT yet been rebuilt, the life may still have been
+        # SOURCED — read from its own audited note and registered — which is a different
+        # state from "not sourced" and the one that says the next rebuild can proceed.
+        band = (_LIVES.get('lives') or {}).get(r['ticker'])
+        if disc is None and band:
+            disc = 'sourced %g-%g yrs' % (band['shortest_years'], band['longest_years'])
         print('  {:<12}{:>9.1f}{:>12,.0f}{:>12}{:>12}   {}'.format(
             r['ticker'], 1.0 / r['g'], ch,
             ('{:,.0f}'.format(dna)) if dna else '—',
             ('%.2fx' % ratio) if ratio is not None else '—',
-            ('%.0f yrs' % disc) if disc else 'not sourced'))
+            (('%.0f yrs' % disc) if isinstance(disc, (int, float))
+             else (disc or 'not sourced'))))
     print('\n    1/g IS A FACT ABOUT A CURRENCY, NOT ABOUT AN ASSET: 14.3 years at a 7%')
     print('    terminal inflation and 66.7 at 1.5%, so the same plant is charged four and')
     print('    a half times as hard for being in Egypt rather than the Emirates.')
