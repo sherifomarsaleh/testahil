@@ -1,0 +1,59 @@
+{
+ "ticker": "AMOC",
+ "as_of": "2026-09-03",
+ "spot": 9.1,
+ "why_this_file": "The reverse read — what the traded price must believe — is a DIAGNOSTIC and lives outside the numbers file every builder reads. A quantity solved from a price and then used anywhere in the valuation is the reverse-engineered rate the protocol prohibits outright, arriving through a side door. Nothing in this file is an input to anything.",
+ "filed_gross_margin": {
+  "6M Dec-2024": 0.06854307995628896,
+  "3M Mar-2025": 0.05053126981775711,
+  "6M Dec-2025": 0.06144829834037545,
+  "3M Mar-2026": 0.10189872213051045,
+  "6M Jun-2026": 0.12427806123173554
+ },
+ "filed_note": "The company's OWN reported gross margins, from this study's committed record. They are the reference the implied and forecast figures are read against, and they are not a forecast of anything.",
+ "implied": {
+  "quantity": "the gross margin on refined product, averaged over the explicit window",
+  "value": 0.0872949858009296,
+  "study_value": 0.09137669862796009,
+  "study_value_range": [
+   0.0876432854449227,
+   0.09494347591613096
+  ],
+  "study_first_year": 0.09494347591613096,
+  "solved_on": "this study's own model: the committed revenue, opex, depreciation, effective tax, capex and working-capital paths, the cost-of-capital glide, the value-driver terminal and the six-line bridge all held exactly at their published values, with only the gross-margin path scaled until the model reproduces the traded price. The reconstruction is proved to return the published 9.9142 a share at a scale of 1.0 before any solving begins — a first attempt using a grown last-year free cash flow returned 18,025 against the study's terminal of 15,691 and was refused rather than shipped.",
+  "at_prices": {
+   "struck": {
+    "price": 9.1,
+    "scale": 0.9553309225621165,
+    "avg": 0.0872949858009296,
+    "path": [
+     0.09070243843821148,
+     0.08908409901281032,
+     0.08737588882351059,
+     0.0855841619896427,
+     0.08372834074047292
+    ],
+    "first_year": 0.09070243843821148
+   },
+   "latest_supplied": {
+    "price": 13.43,
+    "scale": 1.1928817899927342,
+    "avg": 0.10900159982294766,
+    "path": [
+     0.11325634349896635,
+     0.11123559070535748,
+     0.10910262004548311,
+     0.10686536564254781,
+     0.10454807922238353
+    ],
+    "first_year": 0.11325634349896635
+   }
+  },
+  "reading": "At the EGP 9.10 this study was struck at, the price is paying for an average gross margin of 8.73% across the explicit window, against the 9.14% the study forecasts. At EGP 13.43 the price is paying for 10.90%. THE COMPANY'S OWN LATEST FILED HALF-YEAR MARGIN IS 12.43% (six months to 30 June 2026), against 9.65% for the prior full year. This study forecasts 9.49% for 2026 itself and a path declining to 8.76% by 2030. So the disagreement is not about the valuation machinery: the market is paying for a margin BETWEEN this study's forecast and the one the company has just reported, and the study assumes a sharp reversion inside a year that is already half filed. Whether that reversion is right is a question about the refining spread, answerable from the second-half accounts, and it is the single thing to check before concluding the market is wrong."
+ },
+ "reconstruction_check": {
+  "published_ps": 9.914213424678513,
+  "rebuilt_ps": 9.914213424678515,
+  "tolerance": 0.001
+ }
+}

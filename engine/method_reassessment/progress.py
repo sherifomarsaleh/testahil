@@ -172,7 +172,7 @@ def phase1() -> dict:
     sys.path.insert(0, HERE)
     from status import WORKSTREAMS          # one list, imported, never a second copy
     sys.path.insert(0, os.path.join(ROOT, "scripts"))
-    from check_valuation_gap import read_answer, read_review
+    from check_valuation_gap import read_answer, read_review, read_branches
 
     # (a) BUILD — the artefacts each workstream had to produce.
     arts = [a for _, _, _, lst in WORKSTREAMS for a in lst]
@@ -196,7 +196,10 @@ def phase1() -> dict:
         central, spot, _ = read_answer(sdir) if os.path.isdir(sdir) else (None, None, "")
         row = {"ticker": tk, "central": central, "spot": spot, "issues": []}
         atoms_all += 3
-        if central is None or not spot:
+        if central is None and spot and read_branches(sdir):
+            row["two_sided"] = True
+            atoms_ok += 3          # a decision taken, not an artefact missing
+        elif central is None or not spot:
             row["issues"].append("no readable central/spot pair")
         else:
             atoms_ok += 1
@@ -288,7 +291,7 @@ def acceptance() -> list:
 
     # 4, 5, 6 are resolved from the five.
     sys.path.insert(0, os.path.join(ROOT, "scripts"))
-    from check_valuation_gap import read_answer
+    from check_valuation_gap import read_answer, read_branches
     gaps = []
     for tk in REISSUED:
         c, s, _ = read_answer(os.path.join(ENGINE, "%s_study" % tk.lower()))
@@ -312,6 +315,8 @@ def acceptance() -> list:
     for tk in REISSUED:
         sdir = os.path.join(ENGINE, "%s_study" % tk.lower())
         c, sp, _ = read_answer(sdir)
+        if c is None and sp and read_branches(sdir):
+            continue               # two-sided by decision; no single central to gate on
         if c is None or not sp:
             unreviewed.append("%s unreadable" % tk)
             continue
