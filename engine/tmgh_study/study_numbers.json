@@ -11,10 +11,10 @@
   "spot_source": "Egyptian Exchange close, 23 August 2026, from the same cleaned price history the probability distribution is fitted to",
   "shares_mn": 2060.6538,
   "market_cap": 201531.94164,
-  "class": "real-estate developer, off-plan \u2014 point-in-time on handover",
+  "class": "real-estate developer, off-plan — point-in-time on handover",
   "central": 91.8305824638648,
   "gap_vs_spot": -0.06103698912203681,
-  "central_note": "THIS STUDY DELIBERATELY PUBLISHES NO CENTRAL \u2014 the four cases are never averaged. The figure is the median of the four book-minority cases, exposed only so [R-GAP-01]'s gate can read the answer; every case sits below the price."
+  "central_note": "THIS STUDY DELIBERATELY PUBLISHES NO CENTRAL — the four cases are never averaged. The figure is the median of the four book-minority cases, exposed only so [R-GAP-01]'s gate can read the answer; every case sits below the price."
  },
  "inputs": {
   "IS": {
@@ -1067,7 +1067,7 @@
    "index_asof": "2026-07-22",
    "index_dq": [],
    "stock_dq": [
-    "dropped 1 rows carrying a non-positive or non-finite OHLC value (2013-05-07) \u2014 vendor fills, not tradeable prices"
+    "dropped 1 rows carrying a non-positive or non-finite OHLC value (2013-05-07) — vendor fills, not tradeable prices"
    ],
    "week_rule": "W-THU",
    "interim_note": null,
@@ -6367,14 +6367,23 @@
     "low": 63.695974064510004,
     "high": 123.02843812737396
    },
-   "note": "four cases: two premium bases x two readings of the crux, on the cost-of-capital SCHEDULE rather than a flat rate. They are never averaged."
+   "note": "four cases: two premium bases x two readings of the crux, on the cost-of-capital SCHEDULE rather than a flat rate. They are never averaged.",
+   "range_basis": {
+    "driver": "two readings of the crux crossed with the two published equity-risk-premium bases — four cases, never averaged",
+    "low": 63.695974064510004,
+    "high": 123.02843812737396,
+    "units": "EGP per share, the four cases' own present values",
+    "evidence": "the four cases this study computes and publishes side by side, per the dual-framing rule; the low and high are the lowest and highest of them.",
+    "macro_held": true,
+    "sanctioned_framing": "[R-COC-01] — both premium bases are published and one is named central. Spanning them is a framing the protocol requires, not a spread invented around the answer."
+   }
   },
   "cross_checks": [
    {
     "kind": "book_value",
     "value": 44.48631788610003,
     "present_value": false,
-    "note": "shareholders' funds attributable to the parent, per share, at 30 June 2026 \u2014 a disclosed floor, published as such and carrying no weight"
+    "note": "shareholders' funds attributable to the parent, per share, at 30 June 2026 — a disclosed floor, published as such and carrying no weight"
    }
   ],
   "retired_lenses": [
@@ -6434,7 +6443,7 @@
    "basis": "value_share",
    "deduction": 35643.377869227406,
    "applied_to": "equity_value",
-   "proxy_source": "the minority's filed share of FY2025 profit after tax (20.98%) \u2014 the company does not disclose the subsidiaries carrying the minority with their own economics, so their value cannot be built directly",
+   "proxy_source": "the minority's filed share of FY2025 profit after tax (20.98%) — the company does not disclose the subsidiaries carrying the minority with their own economics, so their value cannot be built directly",
    "book": 75652.8,
    "profit_share": 0.20976266344357763,
    "proportional": 0.45213466600049246
@@ -6461,7 +6470,7 @@
  "fair_value_range": {
   "low": 63.695974064510004,
   "high": 123.02843812737396,
-  "note": "the envelope of four published cases \u2014 two ERP bases x two readings of the crux \u2014 on the minority framed both ways. It is a range, not a target, and the cases are never averaged"
+  "note": "the envelope of four published cases — two ERP bases x two readings of the crux — on the minority framed both ways. It is a range, not a target, and the cases are never averaged"
  },
  "statements": {
   "reported": {

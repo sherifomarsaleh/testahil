@@ -190,6 +190,95 @@ def main():
         put_study(tmp, "NCL", rec); put_list(tmp, [])
     case("clean: a bank on dividends and residual income", c_bank, False, results)
 
+    # ---- the origin of the bear and the bull [per instruction, 03-Sep-2026] ----
+    # ARCC'S CONSTRUCTION EXACTLY AS IT SHIPPED is the headline case, the way PHDC's
+    # blend is the headline case above: the range built by moving the discount rate
+    # and terminal growth together. Both carry the same terminal inflation under
+    # [R-MACRO-01], so the corners published as bear and bull are the two least
+    # coherent cells in the grid, and its own note calls it "never a spread invented
+    # around the answer" -- a cautious label on the construction it disclaims.
+    RANGE = {"low": 3.76, "high": 44.85}
+
+    def m_range_no_basis(r):
+        r["primary"]["range"] = dict(RANGE)
+        r["primary"].pop("range_basis", None)
+
+    def m_arcc_as_shipped(r):
+        r["primary"]["range"] = dict(RANGE)
+        r["primary"]["range_basis"] = {
+            "driver": "the discount rate and the terminal growth moved together",
+            "low": 47.78, "high": 59.33, "macro_held": True,
+            "evidence": "the cash-flow lens across its own crux, on one clock, never a "
+                        "spread invented around the answer"}
+
+    def m_amoc_as_shipped(r):
+        r["primary"]["range"] = dict(RANGE)
+        r["primary"]["range_basis"] = {
+            "driver": "five simultaneous driver moves - volume, margin, currency, cost "
+                      "of capital and terminal growth",
+            "low": 4.93, "high": 16.73, "macro_held": True,
+            "evidence": "joint-worst and joint-best, not a confidence interval"}
+
+    def m_range_macro_moved(r):
+        r["primary"]["range"] = dict(RANGE)
+        r["primary"]["range_basis"] = {
+            "driver": "cash conversion", "low": 0.039, "high": 0.179,
+            "evidence": "the company's own filed cash-flow statements",
+            "macro_held": False}
+
+    def m_range_no_evidence(r):
+        r["primary"]["range"] = dict(RANGE)
+        r["primary"]["range_basis"] = {
+            "driver": "cash conversion", "low": 0.039, "high": 0.179,
+            "macro_held": True, "evidence": "   "}
+
+    def m_range_no_endpoints(r):
+        r["primary"]["range"] = dict(RANGE)
+        r["primary"]["range_basis"] = {
+            "driver": "cash conversion", "macro_held": True,
+            "evidence": "the company's own filed cash-flow statements"}
+
+    case("range published with no declared origin", broken(m_range_no_basis), True, results)
+    case("ARCC as shipped: discount rate x terminal growth",
+         broken(m_arcc_as_shipped), True, results)
+    case("AMOC as shipped: five moves incl. cost of capital",
+         broken(m_amoc_as_shipped), True, results)
+    case("range where the macro path moved too", broken(m_range_macro_moved), True, results)
+    case("range basis with no evidence", broken(m_range_no_evidence), True, results)
+    case("range basis with no endpoint values", broken(m_range_no_endpoints), True, results)
+
+    # AND THE TWO CLEAN CASES, because a gate that reddens on a legitimate
+    # construction teaches studies to stop publishing ranges at all.
+    def c_business_crux(tmp):
+        rec = json.loads(json.dumps(GOOD))
+        rec["primary"]["range"] = dict(RANGE)
+        rec["primary"]["range_basis"] = {
+            "driver": "cash conversion - the rate at which contracted sales become "
+                      "operating cash",
+            "low": 0.0394, "high": 0.1787, "macro_held": True,
+            "evidence": "the full observed span of that rate in the company's own filed "
+                        "cash-flow statements"}
+        rec["envelope"] = {"low": RANGE["low"], "high": RANGE["high"]}
+        put_study(tmp, "NCL", rec); put_list(tmp, [])
+
+    def c_sanctioned_framing(tmp):
+        rec = json.loads(json.dumps(GOOD))
+        rec["primary"]["range"] = dict(RANGE)
+        rec["primary"]["range_basis"] = {
+            "driver": "two readings of the crux crossed with the two published "
+                      "equity-risk-premium bases",
+            "low": 63.70, "high": 123.03, "macro_held": True,
+            "evidence": "the four cases published side by side",
+            "sanctioned_framing": "[R-COC-01] - both premium bases are published and one "
+                                  "is named central"}
+        rec["envelope"] = {"low": RANGE["low"], "high": RANGE["high"]}
+        put_study(tmp, "NCL", rec); put_list(tmp, [])
+
+    case("clean: range from a business crux on filed evidence",
+         c_business_crux, False, results)
+    case("clean: a framing [R-COC-01] requires both ways",
+         c_sanctioned_framing, False, results)
+
     print("\nNEGATIVE CONTROL — scripts/check_lens_design.py")
     for name, ok, rc, last in results:
         print("  %-40s %-4s exit %d   %s" % (name, "ok" if ok else "MISS", rc, last[:66]))
