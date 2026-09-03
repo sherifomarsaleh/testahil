@@ -1,8 +1,14 @@
 {
  "start": 69.7549,
- "end": 53.2091,
+ "end": 66.53,
+ "reviewer": {
+  "source": "EFG Hermes, \"Arabian Cement Company \u2014 initiation\", reconciled 02-Sep-2026",
+  "basis": "figures produced by a THIRD PARTY's model. This study cannot compute them and does not adopt them; they are registered so that quoting them is checkable.",
+  "flat_wacc": 0.2006,
+  "year5_discount_factor": 0.4813
+ },
  "market": 77.0,
- "published_central": 53.209111872995436,
+ "published_central": 66.5300405232932,
  "published_spot": 77.0,
  "steps": [
   {
@@ -39,7 +45,7 @@
    "driver": "terminal block",
    "off": "EFG",
    "receipt": "They grow FY2030 FCF at 2.5% forever with no reinvestment charge. A perpetuity growing at g on returns of ROIC must plough back g/ROIC. At our terminal ROIC of 8.81% that is 56.8% of profit. CAVEAT: the 8.81% rests on replacement capital of 50,481 = 5.0Mt x USD 130/t x 50.30 x 1.544, and the USD 130/t is our least-verified single input.",
-   "value": -3.7527
+   "value": 11.6704
   },
   {
    "key": "discount_rate",
@@ -48,16 +54,16 @@
    "driver": "discount rate",
    "off": "OPEN",
    "receipt": "Their flat 20.06% is applied to FY2026 while the Egyptian 1-year T-bill yields 22.95% \u2014 below the risk-free rate, which is hard to defend. But it is correspondingly too HIGH late: their year-5 factor of 0.4813 is harsher than our 0.4876. The two errors very nearly cancel and the whole bar is EGP 0.16, so neither convention is worth arguing over.",
-   "value": -4.7139
+   "value": -6.1863
   },
   {
    "key": "valuation_date",
    "label": "Valuation date\n1 Jan \u2192 6 Aug",
-   "sub": "-4.69 out of window,\n+1.37 back as cash",
+   "sub": "-5.33 out of window,\n+1.37 back as cash",
    "driver": "valuation date",
    "off": "EFG",
    "receipt": "A price is what you pay today. Only the remainder of the current fiscal year sits inside the discounted window, so the rest of that year's free cash flow leaves it -- and arrives in the bridge as cash already earned. This step REMOVES value on net. The +1.37 of accumulated cash is INSIDE the answer; it is not owed on top.",
-   "value": -3.3269
+   "value": -3.9614
   },
   {
    "key": "balance_sheet",
@@ -75,7 +81,7 @@
    "driver": "share count and reconciliation",
    "off": "NEITHER",
    "receipt": "Not an error on either side, and not a lens weighting: this study's central IS the cash-flow lens, published alongside the other reads rather than averaged with them. Two things sit in this step. The share count (374.867mn against their 375.0mn), and the residual between walking one driver at a time down this bridge and running the whole model at once, which is what the published central is. A previous edition weighted four lenses 50/20/22/8 and this step carried those weights; the weights are retired and so is the description.",
-   "value": -0.0421
+   "value": -0.0374
   }
  ]
 }

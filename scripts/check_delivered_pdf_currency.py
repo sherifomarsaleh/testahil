@@ -1,0 +1,235 @@
+#!/usr/bin/env python3
+"""[R-ENF-06] applied to the file the reader actually receives — the delivered PDF.
+
+THE PDF IS THE DELIVERABLE AND THE WORD FILE IS THE BUILD ARTEFACT. engine/make_pdf.py
+opens with that sentence. Every other gate in this repository reads the .docx and the
+.xlsx, so a study can be rebuilt, re-checked and reported clean while the PDF a reader
+opens still carries the previous edition's answer.
+
+WHAT PROVOKED IT. On 03-Sep-2026 four studies were rebuilt — ARCC, AMOC, EGCH, PHDC — and
+TWELVE OF THEIR DELIVERED PDFs WERE NOT. ARCC's Word file carried a central of 66.53 while
+its delivered PDF carried the retired 53.21, for four hours, with every gate green. It was
+found by chasing a DIFFERENT gate's ratchet note, which said ARCC would clear on re-issue
+and had not: the sentence keeping it there existed nowhere in the live builder, only in a
+backup one, which is what a stale render looks like from the outside.
+
+WHY THIS CHECKS CONTENT AND NOT TIMESTAMPS. A fresh clone rewrites every mtime, so a
+modification-time comparison reports the whole book clean on the machine where it matters
+most — CI. So the test is the study's OWN committed central: it must appear in the text of
+the delivered PDF, and the central of an EARLIER edition of the same study must not. That is
+the same instrument as check_artefact_currency, pointed at the rendered file instead of at a
+JSON.
+
+WHAT IT DELIBERATELY DOES NOT DO. It does not require every figure in a PDF to match the
+model — a study legitimately quotes superseded numbers to show what changed, and a gate that
+could not tell those apart would push studies to stop explaining themselves. It requires the
+CURRENT central to be present. A document that cannot show its own answer is not a delivered
+document.
+
+RATCHETED per [R-ENF-02], population-anchored per [R-ENF-04]: a run that examined zero PDFs
+FAILS. READ THE POPULATION LIVE — python3 scripts/check_delivered_pdf_currency.py.
+"""
+from __future__ import annotations
+
+import glob
+import json
+import os
+import re
+import subprocess
+import sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.dirname(HERE)
+RATCHET = os.path.join(REPO, 'engine', 'build_depth_audit', 'pdf_outstanding.json')
+
+# The delivered study document, by the date in its own filename. DD-MM-YYYY, so a lexical
+# sort picks the wrong edition — [L-067], and it has bitten this repository before.
+DATED = re.compile(r'(\d{2})[-_]?(\d{2})[-_]?(\d{4})')
+
+
+def _key(path):
+    m = DATED.search(os.path.basename(path))
+    return (m.group(3), m.group(2), m.group(1)) if m else ('0000', '00', '00')
+
+
+def latest_study_doc(d):
+    """The most recent DELIVERED study document in a study directory, by filename date."""
+    cands = [f for f in glob.glob(os.path.join(d, '*.pdf'))
+             if 'Valuation_Study' in os.path.basename(f)
+             or 'Valuation_Report' in os.path.basename(f)]
+    return max(cands, key=_key) if cands else None
+
+
+def central_of(d):
+    """The study's own committed central, and its two-sided branches where it has them."""
+    f = os.path.join(d, 'study_numbers.json')
+    if not os.path.exists(f):
+        return None, []
+    try:
+        n = json.load(open(f))
+    except Exception:
+        return None, []
+    c = n.get('central')
+    if isinstance(c, (int, float)):
+        return float(c), []
+    ts = n.get('central_two_sided')
+    if isinstance(ts, dict) and ts.get('branches'):
+        vals = [b.get('value') for b in ts['branches'] if isinstance(b.get('value'), (int, float))]
+        return (vals[0] if vals else None), [float(v) for v in vals]
+    return None, []
+
+
+def text_of(pdf):
+    try:
+        r = subprocess.run(['pdftotext', '-layout', pdf, '-'],
+                           capture_output=True, text=True, timeout=180)
+        return r.stdout or ''
+    except Exception:
+        return ''
+
+
+def shows(text, value, dps=(0, 1, 2)):
+    """Does the text carry this figure at any of these roundings?"""
+    for dp in dps:
+        f = f'{value:,.{dp}f}'
+        if f in text or f.replace(',', '') in text:
+            return True
+    return False
+
+
+def headline(pdf, pages=3):
+    """The first few pages — masthead, read-first and valuation summary.
+
+    THE REGION IS THE WHOLE DESIGN, and three attempts got there. Searching the WHOLE
+    document for the current central fails in both directions: matching at zero decimals is
+    satisfied by almost any thirty-page document full of figures, and requiring lossless
+    precision is satisfied by almost none, because a committed central carries full float
+    precision (27.24258808463448) while a document renders it rounded. Searching the whole
+    document for a SUPERSEDED central fails too — TMGH's peer table contains the row
+    "2025 80.00 6.98 11.5 39.33 2.03", and 39.33 happens to be one of its own earlier
+    centrals.
+
+    A study leads with its answer. A table cell does not live on the masthead. So the test
+    is whether the OPENING PAGES carry the central the study now publishes, and measured
+    across the book that is exactly right: twelve of thirteen readable studies carry theirs
+    within three pages, at whatever rounding they chose to print.
+    """
+    try:
+        r = subprocess.run(['pdftotext', '-layout', '-f', '1', '-l', str(pages), pdf, '-'],
+                           capture_output=True, text=True, timeout=180)
+        return r.stdout or ''
+    except Exception:
+        return ''
+
+
+def require_pdftotext():
+    """The gate cannot examine a PDF without a text extractor, and must say so.
+
+    A missing binary would make every document "yield no text", which this gate would then
+    report as a book-wide failure — a red build whose message points at the studies rather
+    than at the runner. Worse, a caller could be tempted to make that case silent, which
+    turns a broken gate into a passing one. So the absence is detected once and named.
+    """
+    try:
+        r = subprocess.run(['pdftotext', '-v'], capture_output=True, text=True, timeout=30)
+        if r.returncode == 0 or 'pdftotext' in (r.stderr or '') + (r.stdout or ''):
+            return
+    except Exception:
+        pass
+    print('FAIL — pdftotext is not available, so this gate cannot read a single delivered '
+          'PDF. That is a broken TOOL, not a finding about the studies, and it is reported '
+          'as such rather than as a clean run or as a book-wide failure. Install '
+          'poppler-utils.')
+    sys.exit(2)
+
+
+def main(argv):
+    require_pdftotext()
+    prune = '--prune' in argv
+    rat = json.load(open(RATCHET)) if os.path.exists(RATCHET) else {}
+    rat.setdefault('entries', {})
+
+    dirs = sorted(glob.glob(os.path.join(REPO, 'engine', '*_study')))
+    print('DELIVERED PDF CURRENCY  [R-ENF-06]')
+    print('   the PDF is what the reader gets; every other gate reads the Word file')
+    if not dirs:
+        print('\nFAIL — examined ZERO study directories. An empty result is not a clean one.')
+        return 1
+
+    examined, clean, stale, dark, fail = 0, [], [], [], []
+    for d in dirs:
+        tk = os.path.basename(d)[:-6].upper()
+        pdf = latest_study_doc(d)
+        if pdf is None:
+            dark.append((tk, 'no delivered study PDF'))
+            continue
+        c, branches = central_of(d)
+        if c is None:
+            dark.append((tk, 'study_numbers.json exposes no central'))
+            continue
+        txt = text_of(pdf)
+        examined += 1
+        if not txt.strip():
+            dark.append((tk, f'{os.path.basename(pdf)} yields no text'))
+            continue
+        want = branches or [c]
+        head = headline(pdf)
+        if not head.strip():
+            dark.append((tk, f'{os.path.basename(pdf)} opening pages yield no text'))
+            continue
+        if not any(shows(head, v) for v in want):
+            stale.append((tk, os.path.basename(pdf),
+                          'its opening pages carry none of %s'
+                          % ', '.join(f'{v:,.2f}' for v in want)))
+        else:
+            clean.append(tk)
+
+    if examined == 0:
+        print('\nFAIL — examined ZERO delivered PDFs across %d study directories. That is an '
+              'absent answer wearing the costume of a clean one [R-ENF-04].' % len(dirs))
+        return 1
+
+    print('   %d study directories · %d PDFs read · %d current · %d not showing their own '
+          'answer' % (len(dirs), examined, len(clean), len(stale)))
+
+    print('\n  THE DELIVERED PDF DOES NOT SHOW THE STUDY\'S OWN CENTRAL: %d' % len(stale))
+    for tk, f, miss in sorted(stale):
+        known = tk in rat['entries']
+        print('    %-12s%-46s missing %s%s' % (tk, f[:45], miss,
+                                               '' if known else '   *** NEW ***'))
+        if not known:
+            fail.append('%s: %s does not carry the central its study publishes (%s). The PDF '
+                        'is the deliverable; rebuild it with engine/make_pdf.py.'
+                        % (tk, f, miss))
+
+    print('\n  NOT READABLE: %d' % len(dark))
+    for tk, why in sorted(dark):
+        known = tk in rat['entries']
+        print('    %-12s%s%s' % (tk, why, '' if known else '   *** NEW ***'))
+        if not known:
+            fail.append('%s: %s [R-ENF-04] — an unreadable answer is not a clean one.'
+                        % (tk, why))
+
+    now = {t for t, _, _ in stale} | {t for t, _ in dark}
+    cleared = set(rat['entries']) - now
+    if cleared:
+        print('\n  CLEARED: %s' % ', '.join(sorted(cleared)))
+        if prune:
+            for tk in cleared:
+                rat['entries'].pop(tk, None)
+            json.dump(rat, open(RATCHET, 'w'), indent=1, sort_keys=True)
+            print('  --prune: the list has SHORTENED. It may never grow.')
+        else:
+            print('  run with --prune to shorten the list.')
+
+    if fail:
+        print('\nFAIL — %d:' % len(fail))
+        for m in fail:
+            print('   * %s' % m)
+        return 1
+    print('\nOK — every delivered PDF carries the answer its study publishes.')
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv[1:]))

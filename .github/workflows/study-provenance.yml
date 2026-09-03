@@ -55,6 +55,12 @@ on:
       - 'engine/research_sweep.py'
       - 'scripts/check_prose_figures.py'
       - 'scripts/check_prose_figures_negative_control.py'
+      - 'scripts/check_new_study_gauntlet.py'
+      - 'scripts/check_new_study_gauntlet_negative_control.py'
+      - 'scripts/check_published_coverage.py'
+      - 'scripts/check_published_coverage_negative_control.py'
+      - 'engine/build_depth_audit/coverage_outstanding.json'
+      - 'assets/data.js'
       - 'engine/prose_figures.py'
       - 'engine/build_depth_audit/prose_outstanding.json'
       - 'engine/build_depth_audit/workbook_outstanding.json'
@@ -137,6 +143,12 @@ on:
       - 'engine/research_sweep.py'
       - 'scripts/check_prose_figures.py'
       - 'scripts/check_prose_figures_negative_control.py'
+      - 'scripts/check_new_study_gauntlet.py'
+      - 'scripts/check_new_study_gauntlet_negative_control.py'
+      - 'scripts/check_published_coverage.py'
+      - 'scripts/check_published_coverage_negative_control.py'
+      - 'engine/build_depth_audit/coverage_outstanding.json'
+      - 'assets/data.js'
       - 'engine/prose_figures.py'
       - 'engine/build_depth_audit/prose_outstanding.json'
       - 'engine/build_depth_audit/workbook_outstanding.json'
@@ -416,6 +428,51 @@ jobs:
       - name: Prose-figure gate — negative control
         run: python3 scripts/check_prose_figures_negative_control.py
 
+      # THE PROPERTY THE WHOLE DESIGN RESTS ON, tested rather than assumed: a study
+      # directory created tomorrow with nothing in it goes RED everywhere. That is a
+      # property of the SYSTEM, so no individual gate can check it, and it is exactly the
+      # claim this programme was asked to deliver — a study produced correctly and passing
+      # several checks without anyone intervening. It is also true by construction right up
+      # to the day a ratchet is seeded one entry too generously.
+      #
+      # Twelve DIRECTORY gates must refuse an empty study by name; two ARTEFACT gates are
+      # tested by planting an offender, because a study with no documents cannot leak
+      # vocabulary and demanding it fail would be a false claim; three are excluded with
+      # their reasons, and an excluded gate that stops existing fails too.
+      - name: New-study gauntlet
+        run: python3 scripts/check_new_study_gauntlet.py
+
+      # and its falsifier: a WEAKENED gate must break it. The weakening tested is the one
+      # that would actually happen — a ratchet seeded with the unknown ticker, a one-line
+      # edit anybody could make in good faith and which --prune would then preserve. Its
+      # own first draft tried to blind a gate with a regex that matched nothing and reported
+      # all three cases green, which is why every mutation now asserts that it landed and
+      # the case count is asserted too.
+      - name: New-study gauntlet — negative control
+        run: python3 scripts/check_new_study_gauntlet_negative_control.py
+
+      # THE LARGEST BLIND SPOT IN THE SYSTEM, and the gauntlet above cannot see it either:
+      # every construction gate here takes a STUDY DIRECTORY as its subject, so a name with
+      # no study directory is examined by NONE of them. Measured through a real node load of
+      # the site's own data file: 90 published fair values, 22 with a study, 68 without —
+      # the construction gates are SILENT about 76% of what this house publishes, not
+      # passing it.
+      #
+      # The gap was known and written into a status note, which is a number that rots
+      # [R-DOC-02]. This makes it a ratchet: countable, visible, and able to move in one
+      # direction only. It does NOT demand the 68 be studied — that is Phase 2 and no gate
+      # can demand 68 studies — it demands that no NEW fair value reach a reader with
+      # neither a study nor an entry saying it has none.
+      - name: Published-coverage gate
+        run: python3 scripts/check_published_coverage.py
+
+      # and its falsifier, whose first case is the only way this number grows: a new name
+      # published with no study. Plus an absent data.js, one that parses and will not LOAD,
+      # a site publishing no fair value at all, and no study directories — with two clean
+      # cases including an unstudied name that is properly on the ratchet
+      - name: Published-coverage gate — negative control
+        run: python3 scripts/check_published_coverage_negative_control.py
+
       # [R-MACRO-01] one house macro path per market, and every study's growth
       # rates held to it from outside. Five studies carried five inflation rates
       # for one fiscal year in one country, three sovereign quotes and terminal
@@ -609,3 +666,60 @@ jobs:
 
       - name: Lens architecture in the documents — negative control
         run: python3 scripts/check_lens_vocabulary_negative_control.py
+
+      # [R-TERM-01]. The reinvestment identity rr = g/ROIC collapses to
+      # TV = [NOPAT - g.IC]/(W-g), so it charges g x IC for ever and the implied
+      # replacement cycle is 1/g — the reciprocal of the INFLATION RATE, which is not a
+      # fact about the asset. Nothing in that arithmetic is wrong, so every other gate
+      # here passes it. The floor is a dominance argument with no parameters: a company
+      # can always decline to invest and pay out instead, so TV >= NOPAT/W.
+      - name: Terminal floor — a terminal is never worth less than not investing
+        run: python3 scripts/check_terminal_floor.py
+
+      - name: Terminal floor — negative control
+        run: python3 scripts/check_terminal_floor_negative_control.py
+
+      # VERIFY BY IMPORT, NOT BY PARSE — the standing rule. The shared terminal builder
+      # must actually import, and its refusals must actually refuse.
+      - name: The shared terminal builder imports and refuses what it promises to refuse
+        run: |
+          python3 -c "
+          from engine.terminal_value import TerminalInputs, build, TerminalRefused
+          import sys
+          def refuses(msg, **kw):
+              try:
+                  build(TerminalInputs(**kw)); print('DID NOT REFUSE:', msg); sys.exit(1)
+              except TerminalRefused:
+                  print('refuses:', msg)
+          base = dict(nopat=1000.0, wacc=0.18, inflation=0.07, dna_book=100.0,
+                      ic_replacement=9000.0, useful_life_years=20.0,
+                      useful_life_source='accounting-policies note', working_capital=500.0)
+          # a life this desk chose is not a disclosed life
+          refuses('an unsourced useful life', **dict(base, useful_life_source=''))
+          # real growth with no capital behind it — the g x IC construction
+          refuses('real growth with no incremental capital', **dict(base, real_growth=0.02))
+          # a perpetuity that does not converge
+          refuses('nominal growth above the terminal rate', **dict(base, inflation=0.30))
+          t = build(TerminalInputs(**base))
+          assert abs(t.nominal_growth - 0.07) < 1e-12, 'nominal growth must DERIVE'
+          assert t.growth_capex == 0.0, 'zero real growth must cost zero growth capex'
+          assert t.tv >= t.floor, 'a clean build must clear its own floor'
+          print('terminal_value OK — nominal growth derives, zero real growth is free')
+          "
+
+      # [R-ENF-06] applied to the file the reader actually receives. Every other gate here
+      # reads the .docx and the .xlsx, so a study can be rebuilt, re-checked and reported
+      # clean while the delivered PDF still carries the previous edition's answer — which
+      # is exactly what happened to four studies on 03-Sep-2026, for four hours, with
+      # every gate green.
+      # poppler-utils installed as its OWN step so a failure to install is a failure to
+      # install, not a book-wide red from a gate that could not read anything. The gate
+      # itself exits 2 with a message naming the missing tool if it is still absent.
+      - name: Install poppler-utils (pdftotext)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+
+      - name: Delivered PDF carries the study's own answer
+        run: python3 scripts/check_delivered_pdf_currency.py
+
+      - name: Delivered PDF currency — negative control
+        run: python3 scripts/check_delivered_pdf_currency_negative_control.py

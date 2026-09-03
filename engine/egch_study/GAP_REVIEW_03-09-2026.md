@@ -226,6 +226,42 @@ average of them describes a half-built plant, which is a world nobody is proposi
 | implied enterprise value, EGP mn | 10,041 | 18,216 | **35,121** |
 | price to disclosed book (8.158/share) | 0.22x | 0.72x | **1.77x** |
 
+**AND THE SAME TABLE READ AS AN EARNINGS MULTIPLE, WHICH IS WHERE THE GAP ACTUALLY IS.**
+Against this study's own terminal EBIT of EGP 4,923.2mn:
+
+| | this study | at the market |
+|---|---:|---:|
+| enterprise value / terminal EBIT | **2.25x** | **7.13x** |
+
+**2.3x forward EBIT for a nitrogen producer is not a valuation, it is an artefact. 7.1x is
+ordinary.** That single comparison locates the disagreement better than anything else in this
+review, and it rules out three candidates by arithmetic rather than by argument:
+
+- **It is not the bridge.** Investment property and the portfolio at fair value through other
+  comprehensive income are 77% of the equity value between them, so they are the most
+  leveraged items here — and closing this gap on them alone would need them at **7.8x
+  carrying value**, which nothing supports. At a generous 2x book they move the answer by
+  EGP 1.78 a share against a gap of EGP 12.10.
+- **It is not the ANNA programme.** Holding every other driver exactly as published and
+  moving only the margin ANNA earns — from the 1.93% implied by the derived nameplate and
+  cost pair, up through 40% — carries the answer from EGP 2.31 to EGP 3.06. The binary
+  judgement this study is built around turns out not to be where its value is decided.
+- **It is not the terminal construction.** The reinvestment is priced at a return of 18.0%
+  against a terminal rate of 18.588%, so the charge is very nearly value-neutral; rebuilding
+  it on a maintenance basis moves the answer about 2%.
+
+**It is the cost of capital, and the arithmetic is three lines.** The terminal capitalises at
+(W − g) = 11.588%, worth 5.27x terminal profit; it is then brought home at a discount factor
+of **0.3602**, leaving 1.90x in present value; and the explicit window adds EGP 3,837mn.
+**Two thirds of the terminal is destroyed by the discount factor alone** — which is simply
+what an 18.6% terminal rate does across a five-year window, and that rate follows from an
+Egyptian sovereign yielding 23%.
+
+So the disagreement with the market is real, it is about the price of time in Egypt, and it
+is not resolvable inside this model. What it is NOT is a judgement about this company's
+business, and the three candidates above are ruled out by arithmetic so that a reader does
+not have to take that on trust.
+
 The two cross-checks that are not the cash-flow lens **both sit far above it**:
 
 - **Book value, EGP 8.16 a share** — the disclosed floor, published as such and never

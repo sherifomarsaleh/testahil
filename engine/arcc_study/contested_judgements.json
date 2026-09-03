@@ -8,27 +8,27 @@
    "name": "Cost of debt: the POUND-EQUIVALENT cost of a euro debt book (adopted) vs the contracted euro rate",
    "adopted": "13.36%",
    "alternative": "7.89%",
-   "value_adopted": 53.209111872995436,
-   "value_alternative": 53.2963666782254,
+   "value_adopted": 66.5300405232932,
+   "value_alternative": 66.64442256173977,
    "why": "91% of the book is euro-denominated at Euribor-linked rates. Adopting the contracted rate means that debt is NOT compensated for pound depreciation beyond what this study already assumes; if the pound falls faster, the true pound cost of servicing it is understated by construction. The alternative is computed rather than described — and it is small, because debt is only 4.9% of the capital structure."
   },
   {
    "name": "Beta: same-country peer median (adopted, tier 2) vs the own-stock regression against the EGX30 that is too weak to use: its R-squared of 0.047 leaves the slope indistinguishable from noise",
    "adopted": "0.928",
    "alternative": "0.698",
-   "value_adopted": 53.209111872995436,
-   "value_alternative": 58.493572256593495,
+   "value_adopted": 66.5300405232932,
+   "value_alternative": 74.54390340298886,
    "why": "THIS IS THE STUDY'S MOST CONSEQUENTIAL CONTESTED JUDGEMENT AND IT IS PUBLISHED BOTH WAYS. The only conforming regressor for an EGX listing is the EGX30, and ARCC regressed against it returns an R-squared of 4.7% — below the 5% usability floor, so tier 1 is not available. Revisions 1-3 carried 0.628 from an equal-weight COMPOSITE of the covered Egyptian names, which correlates better with a covered name precisely because it contains one; SIGCM clause 6 calls that a hard fail rather than a tier. The adopted figure is the median equity beta of the Egyptian building-materials and construction peers that do clear the gate. Peer leverage is NOT sourced, so the unlever-and-re-lever step could not be performed; ARCC holds net cash and its peers carry debt, so performing it could only lower the beta and raise the value — the adopted figure is the conservative end of tier 2, and the alternative is shown beside it."
   },
   {
    "name": "Capex: economic maintenance in dollars per tonne (adopted) vs book depreciation",
    "adopted": "USD 3.23/t",
    "alternative": "book depreciation",
-   "value_adopted": 53.209111872995436,
-   "value_alternative": 57.303406084679324,
+   "value_adopted": 66.5300405232932,
+   "value_alternative": 70.62433473497708,
    "why": "Setting capex equal to book depreciation would flatter free cash flow by construction. The adopted treatment is the conservative one and the size of the conservatism is published."
   }
  ],
- "published_central": 53.209111872995436,
+ "published_central": 66.5300405232932,
  "published_spot": 77.0
 }

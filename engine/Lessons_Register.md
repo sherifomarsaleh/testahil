@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**117 lessons**, of which 90 bind on every study, 20 on a class of company, and 7 on a single name.
+**131 lessons**, of which 104 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 44 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 56 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -928,6 +928,146 @@ A correct rule, written down and implemented well in the one place it exists, bi
 > **What it cost, or how we know.** "A number stated in prose must be computed, not typed" had been standing for four weeks and exactly one study of twenty-four implemented a check for it. Measured in one afternoon on three studies that had just been rebuilt and passed every other gate: AMOC published a 514-basis-point margin range whose own five named periods span 737, alongside a summary row that summed five values and divided by four; ARCC shipped a masthead a day stale and a price date a month stale; PHDC carried three comments above one line, two of them wrong. Across the whole book, 373 of 8,824 figures in the delivered documents had no computed counterpart. Shared as engine/prose_figures.py rather than copied twenty-three times, and the first four ports reached zero unmatched across 1,561 figures.
 
 > **What would overturn it.** A rule whose right implementation is genuinely study-specific — where a shared instrument would have to be so configurable that each study's declaration IS the implementation, at which point the sharing buys nothing but a common vocabulary.
+
+### L-086 · A system of checks has properties no check in it can see.
+
+Each gate can be individually right, individually negative-controlled, and collectively unable to answer the one question that matters about the set: can a new subject walk past all of them? Where a claim about the SYSTEM can be expressed as a test, write the test — it runs over the system rather than inside it, and it fails rather than warns.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the new-study gauntlet, 03-Sep-2026
+
+> **What it cost, or how we know.** Every ratcheted gate in this repository states that the build breaks on a NEW violation, and every one is negative-controlled. Planting an empty study directory and running the set found that four of seventeen stayed green — three legitimately, because they bite on artefacts rather than on the directory, and one on a real hole: check_artefact_currency skipped every two-sided study behind a comment claiming the branches were handled when nothing handled them, and EGCH's contested-judgements artefact sat stale at 1.7854 against a published 2.3109 for a full day.
+
+> **What would overturn it.** A system-level property that turns out to be unfalsifiable in practice — where every way of weakening the system to test the property is so artificial that its failure teaches nothing about the real risk.
+
+### L-087 · A comment asserting a check that does not exist is worse than no comment.
+
+It stops the next reader looking. An absent check invites the question; a comment claiming the check is elsewhere answers it wrongly and closes it. This is the documentation form of a self-attested boolean.
+
+**Applies to:** every study  ·  *Learned from:* found while building, check_artefact_currency, 03-Sep-2026
+
+> **What it cost, or how we know.** The gate skipped any study whose central was not a scalar, with the inline comment 'a two-sided study; handled by its branches'. Nothing in the file handled branches — the word appeared exactly once in it, in that comment. EGCH publishes a two-sided answer and therefore escaped the gate entirely, and its contested_judgements.json was stale by 29% for the whole day the gate reported clean.
+
+> **What would overturn it.** A comment that names the module or function actually performing the check, which is a pointer rather than an assertion and can be verified by following it.
+
+### L-088 · A formula right in real terms and wrong in nominal terms passes every arithmetic check that will ever be written.
+
+Nothing in it is arithmetically wrong, so recalculation, provenance, source discipline and four-field registers all come back clean. Where a quantity carries a unit — real or nominal, this year's money or that year's — the unit is the thing to check, and no amount of care inside the arithmetic will supply it.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-TERM-01], method reassessment, 03-Sep-2026
+
+> **What it cost, or how we know.** ARCC's terminal charged the reinvestment identity rr = g/ROIC with a NOMINAL g whose real component was zero, so it levied g x IC = EGP 3,583.4mn a year for ever, 62.2% of terminal profit, to buy nothing. It survived four revisions, a cell-by-cell recalculation with zero disagreements, a conforming beta attestation, all eight depth-bar standards and a clean external-reader scrub. Correcting it moved the central from EGP 53.21 to 66.53.
+
+> **What would overturn it.** A case where a real/nominal mismatch is caught by an ordinary arithmetic or provenance check rather than by someone asking what unit a quantity is in.
+
+### L-089 · An inflation rate that has quietly become an asset life will not announce itself, because both are just numbers.
+
+Read a perpetual capital charge as a replacement programme and ask how many years it implies. Where the charge is growth times invested capital the answer is one over the growth rate — a fact about the currency rather than about the plant, and one that gets worse the higher inflation goes, which is the exact opposite of prudence.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-TERM-01], method reassessment, 03-Sep-2026
+
+> **What it cost, or how we know.** ARCC's terminal implied replacing its entire replacement-cost asset base every 14.3 years, against 1/g of 14.3 to the decimal. Three implied lives sat inside the one model and disagreed by 2.8x — the terminal's 14.3, the explicit window's own capex at 40.2, and the DISCLOSED 20 from the audited accounting-policies note. The sourced figure sat between the model's own two conventions.
+
+> **What would overturn it.** A company contractually obliged to spend at that rate — a concession condition, a licence commitment or a take-or-pay — in which case the charge is real and the implied life is beside the point.
+
+### L-090 · When a gate fires on work that is right, the answer is almost never to widen it — and that applies to a gate this desk wrote an hour earlier.
+
+Widening a bound is a free parameter and moving the number to satisfy it corrupts the thing being measured. The third option — establish that the check is pointed at the WRONG MEASUREMENT and re-point it — is more work and is the only one that leaves the check stronger than it found it.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-TERM-01] and [R-COC-01], 03-Sep-2026
+
+> **What it cost, or how we know.** terminal_value.py first refused any terminal below NOPAT/W. ARCC's own beta sensitivity grid broke it: TV/floor tends to FCFF(1+g)/NOPAT = 0.658, below one by construction whenever maintenance exceeds book depreciation, so it fired on a sound terminal. AND IT WAS WRONG IN THE SAME WAY AS THE DEFECT IT WAS BUILT TO CATCH — it treated book depreciation as the cash cost of replacement. Re-pointed at the claim that survives: a company is never obliged to spend GROWTH capital.
+
+> **What would overturn it.** A case where widening a bound, rather than re-pointing it, left the check demonstrably stronger.
+
+### L-091 · A hard-coded zero is a defect in mirror image, and it is how a corrected defect comes back.
+
+Writing a quantity as a literal because it happens to be zero today removes the mechanism that makes it non-zero tomorrow. The model and the artefact then disagree about BEHAVIOUR rather than about a value, which no check on levels can see.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-TERM-01], ARCC workbook rebuild, 03-Sep-2026
+
+> **What it cost, or how we know.** The rebuilt workbook wrote terminal REAL growth as a literal 0.0, so bumping the terminal growth cell raised the value while the model lowered it: the workbook said growth was FREE. Every level reconciled — 919 of 919 formula cells reproduced the model — and only the driver test, which perturbs inputs and checks DIRECTIONS, caught it.
+
+> **What would overturn it.** A directional disagreement between a model and its workbook that a level-by-level reconciliation does catch.
+
+### L-092 · A review that reaches a confident wrong conclusion is more dangerous than no review.
+
+It closes the question. The way it happens is not carelessness: the review looks for the error everywhere the arithmetic could be wrong, the arithmetic is not wrong, and it concludes the disagreement must lie outside the model.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-GAP-01] and [R-TERM-01], ARCC, 03-Sep-2026
+
+> **What it cost, or how we know.** ARCC's revision-4 gap review audited a central of 53.21 at -30.9% and concluded in terms that 'the disagreement with the market is therefore not about the business at all', locating the whole gap in a cost of capital the market was applying 816bp below the Egyptian sovereign. The defect was in the terminal, which carried 41% of enterprise value and which the review did not examine. Its own MULTIPLE CROSS-CHECK heading would have shown it: 3.1x forward EBITDA and USD 78 per annual tonne against a replacement cost of USD 130.
+
+> **What would overturn it.** A gap review that reaches a wrong conclusion and is caught by the next reader as quickly as an absent review would have been.
+
+### L-093 · A filing is not read until the notes that bear on the model are read.
+
+Parsing a filing for its statements and treating it as read is the statement-level form of the unread-filing defect. The accounting policies carry useful lives, recognition clocks and definitions that decide constructions the numbers alone cannot settle.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-TERM-01], ARCC, 03-Sep-2026
+
+> **What it cost, or how we know.** ARCC's FY2025 filing had been parsed cell by cell for its statements across four revisions. Its accounting-policies note discloses machinery and equipment at 20 years, and that figure is what the terminal turned on — worth EGP 13.32 a share. The note had never been opened, and the filing carries no text layer at all, so reading it took OCR off the rendered pixels.
+
+> **What would overturn it.** A study where the accounting-policies note bears on no construction in the model — in which case it is not needed, and the record should say so rather than leave the note unopened.
+
+### L-094 · EVERY NOMINAL LINE IS UNDER-FORECAST ON EVERY NAME. That is the house bias, and it is about scale rather than about margin.
+
+Revenue, cost of sales, operating expense, tax, finance income and provisions all come in ABOVE forecast, with the same sign on all five names measured. Nothing about any single line looks careless; what is systematic is that the whole nominal scale of the business is set too low, which is a growth-path error rather than a base-year one.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, engine/valuation_calibration/systemic_bias.py, 03-Sep-2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** Pooled by-driver bias across all five completed runs: revenue -0.316, cost of sales -0.335, operating expense -0.272, tax -1.023, finance income -0.818, provisions -0.656 — every one negative on every name that reports it. At cell level on the two runs that commit cells the error COMPOUNDS with horizon (revenue -0.023 at one year to -0.348 at five), with an intercept near zero, which is the signature of a rate error and not a level error.
+
+> **What would overturn it.** A name whose nominal lines are over-forecast, or a horizon profile that is flat rather than compounding, either of which would move this from a growth-path finding to a base-year one.
+
+### L-094a · A finding measured on whichever names happened to have the data is not a sample of the book, and it will read like one.
+
+The subset was not CHOSEN, which is exactly what makes it feel like a random draw. It is not: whatever determined which runs committed their raw cells may well correlate with the thing being measured, and here it did — the two runs holding cells were both developers.
+
+**Applies to:** every study  ·  *Learned from:* found while building, engine/valuation_calibration/systemic_bias.py, 03-Sep-2026
+
+> **What it cost, or how we know.** The cell-level pool said PROFIT was forecast at +0.8084, x2.24 of actual, too high in 89% of 867 cells, on both names that commit cells — and it was reported as a HOUSE finding. Pooled across all five runs' aggregates it is -0.3424 and only 3 of 12 bottom-line drivers are too high: the two DEVELOPERS forecast profit far too high (PHDC +1.107, TMGH +0.264) and the three INDUSTRIALS far too LOW (AMOC -0.943, EGCH -0.774, ARCC -0.422). The claim was true of the subset and false of the book, and it was corrected within the hour by reading the aggregates the other three DO commit.
+
+> **What would overturn it.** A case where the names holding the richer data are demonstrably unrelated to the quantity under measurement — in which case the subset is a sample and may be treated as one, once that is shown rather than assumed.
+
+### L-095 · A forecast can under-forecast revenue AND under-forecast cost and still be optimistic, because the margin is the difference.
+
+Small errors in the same direction on two large lines do not cancel — they compound into the residual between them. Checking that revenue and cost are each roughly right is not the same as checking the margin, and the margin is what the value rests on.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, engine/valuation_calibration/systemic_bias.py, 03-Sep-2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** Revenue pools at -0.2243 (x0.80 of actual) and cost of sales at -0.1309 (x0.88) — both UNDER-forecast, which reads as conservative on each line taken alone. Because revenue is under-forecast by MORE, the forecast gross margin comes out too wide and gross profit pools at +0.2303. Finance cost at -1.1465 then carries the net line to +0.8084.
+
+> **What would overturn it.** A case where two same-signed line biases of unequal size leave the margin unbiased.
+
+### L-096 · The runs recorded their scores and not their observations, so a question about which LINES are biased could be answered on two names out of five.
+
+This is the amendment about valuation inputs arriving a second time, one layer along. The cells cost nothing to keep; they were simply not asked for, and nobody noticed the missing field until the question arrived.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-FCAL-01 AMENDED], 03-Sep-2026
+
+> **What it cost, or how we know.** AMOC, ARCC and EGCH commit bias, MAE, over-share and bootstrap intervals by driver, horizon and era — and not the per-cell projected-versus-actual pairs those were computed from. PHDC and TMGH commit 403 and 1,856 cells. So the line-level systemic bias analysis rests on two names, and the three that would have told us whether it generalises cannot.
+
+> **What would overturn it.** A pooled statistic from which the underlying cells can be recovered exactly, which would make committing them redundant.
+
+### L-097 · A defect whose direction depends on a market parameter will look like a house bias in whichever market you happen to be looking at.
+
+The complaint can be entirely true and its attribution entirely wrong. Only a census across markets separates the two, and correcting from the direction of the complaint alone gets the sign right on the names that prompted it and wrong everywhere else.
+
+**Applies to:** every study  ·  *Learned from:* found while building, engine/valuation_calibration/terminal_census.py, 03-Sep-2026
+
+> **What it cost, or how we know.** The retired terminal implied a replacement cycle of 1/g, so it over-charged where terminal inflation was high and UNDER-charged where it was low. Across the eleven studies carrying it, the implied life ran from 14.3 years (AMOC, 7% terminal inflation) to 66.7 (ADNOCDIST, 1.5%). Priced on a 30-year asset life, three names RISE and eight FALL, median -5.8% of enterprise value: it raises the Egyptian names the pessimism complaint came from and lowers the Gulf names, whose low terminal inflations bought them a forty- to sixty-seven-year replacement cycle no accounting-policies note supports.
+
+> **What would overturn it.** A market parameter whose variation across the book is too small for the direction of a defect to flip — in which case a one-market diagnosis does generalise.
+
+### L-098 · Rule candidates OUT by arithmetic before naming what is left. A gap review that lists unresolved items without pricing them tells a reader nothing about which one matters.
+
+Every study has open items and their existence is not evidence that they explain anything. Price each at a generous bound: what survives is the answer, and what does not is removed from the reader's attention rather than left to worry them.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EGCH gap review, 03-Sep-2026
+
+> **What it cost, or how we know.** EGCH's review named three unresolved items behind an 88% gap. Priced: the two book-carried non-operating assets are 77% of the equity value and so the most leveraged items in the bridge, yet closing the gap on them alone needs them at 7.8x carrying value — at a generous 2x they move the answer EGP 1.78 against a gap of EGP 12.10. The ANNA programme, which the whole study is architected around as a binary judgement, carries the answer from 2.31 to only 3.06 as its margin runs from 1.93% to 40%. The terminal charge is near value-neutral. All three ruled out; the gap is the cost of capital, and the enterprise value stands at 2.25x terminal EBIT against a market paying 7.13x.
+
+> **What would overturn it.** A review where the unresolved items, priced at generous bounds, DO span the gap — in which case listing them was the right answer and pricing them proves it.
 
 ### L-208 · A check that fails by the calendar is not a check.
 

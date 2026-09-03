@@ -251,11 +251,16 @@ CASES = [
     # now adds value. The magnitude is what matters and it is trivial: +0.10% of the DCF
     # per point of terminal growth, +0.5% across the whole 3%-7% range.
     ('Terminal growth rate', 'B', +0.01, 'dcf', (1 if GDV['analytic_adds_value'] else -1),
-     f"the growth lever moves in the direction the terminal algebra requires. Its sign is "
-     f"the constant N(1+W) - IC.W, so THE DIRECTION IS READ FROM THE MODEL rather than "
-     f"typed: N/IC {GDV['n_over_ic']:.2%} against a hurdle of W/(1+W) {GDV['hurdle']:.2%}. "
-     f"Revision 3 hard-typed it, and when the terminal capital was restated into "
-     f"terminal-year pounds the sign reversed and the assertion went stale"),
+     f"the growth lever moves in the direction the terminal economics require, and THE "
+     f"DIRECTION IS READ FROM THE MODEL rather than typed. Under [R-TERM-01] a higher "
+     f"nominal growth rate is a higher REAL growth rate against the house inflation path, "
+     f"and real growth is charged the capital it needs at the replacement cost of capacity "
+     f"— so the test is the ordinary marginal one: N/IC {GDV['n_over_ic']:.2%} against the "
+     f"terminal rate {GDV['wacc_term']:.2%}. Building capacity does not clear the cost of "
+     f"capital, "
+     f"so growth destroys value. Revision 3 hard-typed the sign; revisions 1-4 then read it "
+     f"off the RETIRED hurdle W/(1+W) = {GDV['hurdle_retired']:.2%}, which existed only "
+     f"because the g x IC charge existed, and went stale with it"),
     ('Beta (own-stock weekly regression)', 'B', +0.20, 'dcf', -1,
      'a higher beta must lower the valuation'),
     ('Beta (own-stock weekly regression)', 'B', +0.20, 'beta_term', +1,
@@ -303,12 +308,23 @@ CASES = [
     ('Depreciation as % of revenue', 'C', +0.01, 'dcf', +1,
      'a heavier charge in a MID-window year is worth only its tax shield: it is added back '
      'inside free cash flow and the terminal base year is untouched, so the value RISES'),
-    ('Depreciation as % of revenue', 'F', +0.01, 'dcf', -1,
-     'the same bump in the TERMINAL BASE YEAR runs the other way: year-five NOPAT falls and '
-     'the terminal value falls with it, because capex is set in dollars per tonne and does '
-     'not follow the book charge'),
-    ('Depreciation as % of revenue', 'F', +0.01, 'pv_tv', -1,
-     'and the loss is located in the terminal block, where the decomposition said it would be'),
+    # THIS DIRECTION REVERSED WITH [R-TERM-01] AND THE REVERSAL IS THE POINT. Revisions 1-4
+    # charged the terminal g x IC and never added book depreciation back, although NOPAT is
+    # already net of it — one model with two definitions of free cash flow. So a heavier
+    # book charge in the terminal base year lowered NOPAT and lowered the terminal with it,
+    # which is what the retired assertion asserted, correctly, about a construction that was
+    # wrong. The terminal now adds book depreciation back and charges maintenance at the
+    # DISCLOSED useful life, exactly as the explicit window does, so a heavier book charge
+    # is worth its tax shield in BOTH halves of the model and the value RISES in both.
+    ('Depreciation as % of revenue', 'F', +0.01, 'dcf', +1,
+     'the same bump in the TERMINAL BASE YEAR now runs the SAME way, and that is the '
+     'coherence [R-TERM-01] restored: book depreciation is added back in the terminal too, '
+     'so a heavier charge is worth its tax shield there as well and the value RISES. Under '
+     'the retired construction the terminal never added it back and this lever ran the '
+     'opposite way to the identical lever in the explicit window'),
+    ('Depreciation as % of revenue', 'F', +0.01, 'pv_tv', +1,
+     'and the gain is located in the terminal block, where the decomposition says it should '
+     'be — the same block that used to lose value on the same bump'),
     ('Change in working capital / change in revenue', 'B', +0.05, 'dcf', -1,
      'growth funded in working capital is growth the shareholder does not receive'),
     ('Yield earned on cash', 'C', +0.03, 'cash30', +1,

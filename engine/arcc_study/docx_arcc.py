@@ -59,6 +59,7 @@ W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sensitivity']
 TR, PE, SHT = D['terminal_reconciliation'], D['peers'], D['share_triangulation']
 EXP, LR, GDV = D['experts'], D['lens_ranges'], D['growth_destroys_value']
 FA = D['forecast_anchor']          # [R-ANCHOR-01]: the record is printed for every study
+TERMREC = D['terminal_record']     # [R-TERM-01]: the terminal's own committed record
 
 BU, UC, KDG, CON = D['bottom_up'], D['unit_calibration'], D['kd_gate'], D['contested']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
@@ -238,9 +239,20 @@ P('Arabian Cement is valued as a single operating company, not as a sum of parts
   'that would need valuing on their own terms. A sum-of-the-parts here would be a sum of '
   'one part, and the discipline it is meant to impose — never blending legs that need '
   'different methods — has nothing to bite on.')
-P('Four lenses are used. A discounted cash-flow model built up from tonnes and costs '
-  'carries half the weight. Relative multiples, normalised earnings power and replacement '
-  'cost carry the rest, and each is reported with the reason its weight is what it is.')
+P(f'Four lenses are read and ONE of them is the answer. A discounted cash-flow model built '
+  f'up from tonnes and costs is the primary for this class, and the figure this study '
+  f'publishes is that lens and nothing else: EGP {n2(LN["central"])}. Relative multiples, '
+  f'normalised earnings power and replacement cost are CROSS-CHECKS, published in the same '
+  f'table so a reader can see where they disagree — they span EGP {n2(LN["low"])} to EGP '
+  f'{n2(LN["high"])} — and none of them is averaged into the answer. There are no weights '
+  f'in this model to report. An earlier edition blended the four at 50/20/22/8 and would '
+  f'have read EGP {n2(D["lens_record"]["retired"]["blend_value"])}; those weights had '
+  f'never cleared any '
+  f'out-of-sample test, and a number produced by averaging several methods is not more '
+  f'robust than the best of them — it is a new method with free parameters nobody tested, '
+  f'importing every weakness of the weakest lens at whatever weight somebody typed. Where '
+  f'several methods disagree the honest thing is to publish the disagreement and say which '
+  f'one the answer is.')
 
 # ---- 1.1 --------------------------------------------------------------------
 H2('1.1  The business, and why the lens follows from it')
@@ -697,22 +709,40 @@ P(f'Growth in the terminal state has to be paid for, and the choice of what capi
   f'measures the devaluation, not the economics of adding a tonne.')
 P(f'The terminal block is therefore struck on REPLACEMENT-COST invested capital — EGP '
   f'{n0(DCF["ic_repl"])}mn, being {n1(IN["cap_cement_mt"])}Mt at USD {n0(IN["repl_usd_t"])} '
-  f'a tonne. On that basis the terminal return on capital is {pc(TR["roic_repl"])} and the '
-  f'reinvestment rate that {pc(IN["g_term"], 0)} growth requires is {pc(TR["rr_repl"])} of '
-  f'terminal profit.')
-P(f'That choice of denominator all but switches the terminal growth rate off, and the '
-  f'reason is worth setting out because the obvious reading of it is wrong. A terminal '
-  f'return of {pc(TR["roic_repl"])} against a terminal rate of {pc(W["wacc_term"])} looks '
-  f'like the textbook case in which growth destroys value. It is not the right test. '
-  f'Because reinvestment is growth divided by return on capital, and that return is itself '
-  f'terminal profit grown one year over a fixed capital base, the reinvestment charge '
-  f'collapses to a constant — growth multiplied by invested capital — and the whole '
-  f'terminal block reduces to terminal profit grown one year, less that charge, over the '
-  f'rate less growth. Differentiate it and the growth term vanishes: the DIRECTION of the '
-  f'lever is a constant of the model, and the hurdle is terminal profit over invested '
-  f'capital against the rate over one plus the rate, which is {pc(GDV["hurdle"], 2)}. This '
-  f'company sits at {pc(GDV["n_over_ic"], 2)} — {n0(abs(GDV["n_over_ic"]-GDV["hurdle"])*1e4)} '
-  f'basis points {"above" if GDV["n_over_ic"] > GDV["hurdle"] else "BELOW"} it. Growth '
+  f'a tonne. On that basis the return on capital in the terminal year is '
+  f'{pc(TR["roic_repl"])}.')
+P(f'WHAT THE TERMINAL CHARGES, AND WHY IT CHANGED IN THIS EDITION. Earlier revisions derived '
+  f'the terminal reinvestment from that return — growth divided by return on capital, which '
+  f'came to {pc(TR["rr_repl"])} of terminal profit. Substituting the definitions, that '
+  f'construction collapses to a fixed charge of growth multiplied by invested capital: EGP '
+  f'{n0(IN["g_term"]*DCF["ic_repl"])}mn a year, for ever. Read as a programme for replacing '
+  f'the plant it implies doing so every {n1(1.0/IN["g_term"])} years — which is one divided '
+  f'by the growth rate, and so a fact about the inflation path rather than about the kiln. '
+  f'The reinvestment identity is a statement about REAL growth, and this model\u2019s '
+  f'terminal real growth is zero, so the charge was buying no capacity at all.')
+P(f'This edition charges what holding the plant actually costs: capital maintenance over the '
+  f'useful life ARCC\u2019s own audited accounts disclose — '
+  f'{n0(TERMREC["inputs"]["useful_life_years"])} years for machinery and equipment and for '
+  f'other installations — which is EGP {n0(TERMREC["maintenance"])}mn a year against '
+  f'replacement cost, plus the working capital that inflation requires, less the book '
+  f'depreciation already inside terminal profit. That is the same definition of free cash '
+  f'flow the explicit window uses; the earlier terminal used a different one, and a model '
+  f'should not carry two. Three implied asset lives previously sat inside this one and '
+  f'disagreed by a factor of nearly three: the terminal\u2019s {n1(1.0/IN["g_term"])} years, '
+  f'the explicit window\u2019s own capital spending at '
+  f'{n1(IN["repl_usd_t"]/IN["capex_usd_t_cap"])} years, and the disclosed '
+  f'{n0(TERMREC["inputs"]["useful_life_years"])}. The sourced figure sits between the '
+  f'model\u2019s own two conventions. The explicit window and the terminal may still differ, '
+  f'and here they do for an economic reason: kiln 2 sits in assets under construction, so a '
+  f'young plant genuinely spends less than replacement depreciation for a while, while the '
+  f'terminal is perpetuity, where every asset must be replaced at current cost.')
+P(f'Growth in the terminal is charged at what growth costs — the capital a REAL increase in '
+  f'capacity requires, at the replacement cost of that capacity — and this model takes no '
+  f'real growth, so it charges none for it. Whether it should is the ordinary question: does '
+  f'a new tonne earn more than it costs? Terminal profit over invested capital is '
+  f'{pc(GDV["n_over_ic"], 2)} against a terminal rate of {pc(W["wacc_term"])} — '
+  f'{n0(abs(GDV["n_over_ic"]-W["wacc_term"])*1e4)} basis points '
+  f'{"above" if GDV["n_over_ic"] > W["wacc_term"] else "BELOW"} it. Growth '
   f'therefore {"adds" if GDV["analytic_adds_value"] else "DESTROYS"} value: the '
   f'cash-flow lens is EGP {n2(GDV["fv_at_g3"])} at 3% terminal growth and EGP '
   f'{n2(GDV["fv_at_g7"])} at 7%, so four extra points of perpetual growth take the value '
