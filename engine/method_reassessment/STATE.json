@@ -19,8 +19,12 @@
   ]
  },
  "phase": "1",
- "current": "ALL SEVEN MARKETS NOW CARRY A SOURCED HOUSE MACRO PATH [R-MACRO-01]. At adoption only EG was sourced and six markets declared themselves PENDING and refused on load \u2014 correct, and it meant the rule bound on 12 of 90 names. AE, SA, QA, IN, KR and US are sourced from named institutions on named dates read live today: IMF WEO PCPIPCH for every inflation ladder (flat from each market's own settle year, so NOT ONE STEP IS INTERPOLATED), Damodaran ctryprem read from the ORIGINAL file for spreads/premiums/tax, FRED for US and Asian rates, World Bank for exchange rates. The real-rate convention is DERIVED in all six (FOMC longer-run median + Kim-Wright term premium - long-run US inflation = 1.9751%). 53 names unblocked. Four things were DECLINED rather than filled and each is named in its own file: the UAE has NO CDS in the source ('NA' in both columns), a Saudi ERP disagreement is resolved against the newer citation because the live original says 5.72% and '~4.90%' appears in it nowhere, a Vision-2030 ERP compression is a house view about a reform programme, and QATAR HAS NO PUBLISHED QAR SOVEREIGN CURVE \u2014 its anchor is DERIVED and labelled derived, and the file says plainly that for Qatar alone neither end of the risk-free construction rests on an observed local-currency yield.",
+ "current": "READING THE RENDERED PAGES IS STILL THE MOST PRODUCTIVE INSTRUMENT AND THAT IS THE FINDING. PHDC's first two pages produced two shipped defects and two new gates: a masthead a day stale (the ARCC defect, now a class at three studies) and a figure labelling a computed price with a typed date eleven days wrong, beside a table giving the right one. Measured across 31 delivered studies, SEVEN did not carry their own edition date and TWO \u2014 including ADNOCLS, THE MODEL REPORT \u2014 state it nowhere at all. Root cause in both cases was TYPING: PHDC's builder held the date in three string literals, two disagreeing with the file. Both now derive it. scripts/check_edition_date.py closes the class in two clauses, 17/17 on its control.",
  "done": [
+  "All seven markets carry a sourced house macro path; 53 names unblocked. Two identities were running where they do not hold (a pegged currency drifting, the dollar depreciating against itself) \u2014 both found by PRINTING a path, not by a gate.",
+  "The explicit window's inflation assumption is RULED OUT as the general scale error: perfect foresight of the path removes only 11% of the pooled driver error.",
+  "The terminal census reads 19 of 24 studies, up from 15; SCEM's terminal is 34% below its own floor, the worst in the book and invisible while it counted as unreadable.",
+  "testahil.com was serving two different fair values for AMOC; the gate for it had been wired into nothing since 30-Aug. 21 of 71 gates were in no trigger list.",
   "site-data port complete: every reader of assets/data.js goes through a real parse and every writer proves the parser agrees; ratchet 13 -> 0. Found that 2POINTZERO had never once been checked for a stale fair value, and that the ledger lifecycle invariant standing since 29-Jul-2026 executed nowhere.",
   "DU's four sovereign-basis keys said the opposite of their own sources; renamed, central byte-identical.",
   "Six house macro paths sourced. Two identities were running where they do not hold \u2014 a pegged currency drifting, and the dollar depreciating against itself \u2014 both found by PRINTING a path rather than by any gate, both now guarded and pinned.",
@@ -63,9 +67,10 @@
   "WS10: five method lessons registered at ALL scope (L-208 a check that fails by the calendar; L-209 observed vs estimated point-in-time evidence; L-210 a mean far from its median is a tail, not a bias; L-211 a CI step assumes a disposable runner; L-212 a local sweep must read CI's own list), each with a falsifier. L-067 WIDENED rather than duplicated \u2014 three further instances of existence-checked-instead-of-currency. 99 lessons, both documents rebuilt."
  ],
  "next": [
-  "Nine studies expose NO READABLE TERMINAL (ADNOCDRILL, BOROUGE, EMPOWER, GBCO, PHAR, SCEM, STC, TMGH, XPT). An unreadable answer is not a clean one [R-ENF-04] and the census cannot see 9 of 24. Making them readable turns nine unknowns into nine measurements and is the cheapest remaining breadth.",
-  "Twelve studies still carry the 1/g terminal. ADNOCLS is now measured in full on its ratchet entry (base defect + 3.1-3.7x under-charge + the retired four-lens blend); the other eleven have the signature recorded but not the arithmetic.",
-  "Read the rendered pages of PHDC, TMGH, AMOC and EGCH \u2014 reading ARCC's 32 pages found about forty claim-level defects in a study that had passed every gate.",
+  "Keep reading rendered pages \u2014 PHDC pages 3-26, then TMGH, AMOC, EGCH. Two pages of one study produced two gates; this is the highest-yield instrument in the programme.",
+  "Twelve studies still carry the 1/g terminal. THREE disclosed lives are now sourced and registered (AMR 4-20, ADNOCDIST 5-40, ADNOCLS 2-40) so those three can be rebuilt; the rest need their own accounting-policies note read. Most company IR sites are reachable.",
+  "The terminal defect's SIGN is set by the currency \u2014 pessimistic in Egypt, optimistic in the Gulf, and 44 of 90 names are Gulf. A single-signed correction would make half the book worse.",
+  "Nine studies expose no readable terminal; five remain after the census was widened.",
   "Run the [R-ENF-05] sign test across all five rebuilt names.",
   "BLOCKED ON THE PRINCIPAL (MORNING.md item 64): ARCC's OHLC library ends 6-Aug at 59.00 against a 3-Sep spot of 77.00; only a fresh export fixes the technical read."
  ],
@@ -83,7 +88,7 @@
   "Phase 2 keeps the campaign's market order \u2014 principal, 03-Sep-2026."
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-03T21:20Z",
+ "updated": "2026-09-03T22:05Z",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md \u2014 it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",
