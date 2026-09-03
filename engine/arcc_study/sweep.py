@@ -6,10 +6,37 @@ states what it does to the model. Findings that set a forecast driver must exist
 the driver is set; the driver table at the bottom records which findings each driver
 rests on and whether it is built bottom-up or top-down.
 
+THIS FILE USED TO HAND-ROLL ITS OWN VALIDATION AND IT WAS THE ONLY STUDY IN THE BOOK THAT
+DID [ported 03-Sep-2026]. Sixteen studies import engine/research_sweep.py; this one carried
+its own assertions — every finding has a source, a date and an impact; the class is one of
+four; all four rings appear; ids are unique; driver cross-references resolve. All five are
+real checks and all five pass. What they are not is the module's EIGHT invariants, and the
+three the hand-rolled version had no idea it was missing are the three that matter:
+
+    COVERAGE      every MANDATORY category of every ring closed by a finding or a dated
+                  negative search. This study's categories were its own names, so nothing
+                  was ever held against the mandatory list.
+    PRIMARY ACCESS  the company's own website or investor-relations page attempted and
+                  LOGGED, success or failure, before any secondary source. The attempt was
+                  made and refused at the proxy — that refusal is a recorded fact of this
+                  study's history and it was recorded nowhere a checker could see it.
+    IR COVERAGE   at least one finding sourced COMPANY_IR. An investor-relations
+                  presentation or call is mandatory, not optional, for the volumes, prices
+                  and unit costs no financial statement carries.
+
+That is the composite-beta shape for the third time: a study checking itself against the
+list its author thought of. The register is now built through SweepRegister and validate()
+runs, so what is still uncovered is VISIBLE rather than absent — and three categories are
+still uncovered at this edition, named in UNCOVERED below rather than closed by renaming a
+finding into them.
+
 Written to sweep_register.json, which the bibliography document reads.
 """
-import json, os
+import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, '..'))
+from research_sweep import (SweepRegister, AssetClass, Ring, FindingClass,
+                            SourceType, DriverMode)
 
 REG = "REGULATOR_OFFICIAL"
 PRESS = "REPUTABLE_PRESS"
@@ -307,13 +334,200 @@ DRIVERS = [
          sweep_refs=['F05', 'F15']),
 ]
 
-OUT = dict(ticker='ARCC', asset_class='STOCK', sweep_date='2026-08-06',
+# ============================================================================
+# THE REGISTER, BUILT THROUGH THE SHARED MODULE SO ITS EIGHT INVARIANTS RUN
+# ============================================================================
+# ARCC's own category names are its own; each is mapped onto the MANDATORY category it
+# actually closes. Nothing is renamed INTO a mandatory category it does not close — where
+# this study has no finding, the coverage invariant fires and the gap is named in UNCOVERED
+# below. That is the whole point of running the invariant rather than re-implementing it.
+CATEGORY_MAP = {
+    ('GLOBAL', 'rate cycle and FX regime'): 'rate cycle & USD/FX regime',
+    ('GLOBAL', 'commodity complex (input)'): 'commodity complex (input/output)',
+    ('GLOBAL', 'carbon and trade policy'): 'trade / sanctions / supply chains',
+    ('GLOBAL', 'traded-goods structure'): 'global sector demand',
+    ('COUNTRY', 'sovereign macro'): 'sovereign macro (inflation, policy rate, FX/deval risk)',
+    ('COUNTRY', 'currency'): 'sovereign macro (inflation, policy rate, FX/deval risk)',
+    ('COUNTRY', 'taxation'): 'regulatory environment (regulator, caps, tariffs, tax/subsidy)',
+    ('COUNTRY', 'fiscal policy'): 'fiscal / political events with sector read-through',
+    ('COUNTRY', 'sovereign credit'): 'fiscal / political events with sector read-through',
+    ('INDUSTRY', 'capacity and utilisation'): 'demand drivers & capacity/supply balance',
+    ('INDUSTRY', 'sector structure'): 'demand drivers & capacity/supply balance',
+    ('INDUSTRY', 'demand and price'): 'pricing',
+    ('INDUSTRY', 'supply pipeline'): 'new entrants (named-competitor level)',
+    ('INDUSTRY', 'peer set'): 'competitor capacity / price moves (named)',
+    # ALTERNATIVE FUELS ARE the technology-substitution question for a cement kiln, and it
+    # was tempting to map this finding onto that category. It does not close it: the
+    # mandatory category sits in the INDUSTRY ring and this finding is a COMPANY-ring
+    # observation about ARCC's own kiln. Moving a finding's RING to satisfy a coverage
+    # check is the same offence as renaming its category — the gap is real and is named in
+    # UNCOVERED instead.
+    ('COMPANY', 'decarbonisation and cost position'): 'strategic plans & guidance',
+    ('COMPANY', 'financial history'): 'official financial statements',
+    ('COMPANY', 'balance sheet'): 'regular disclosures',
+    ('COMPANY', 'recent trading'): 'regular disclosures',
+    ('COMPANY', 'ownership'): 'ownership / stake changes (named-transaction rule)',
+    ('COMPANY', 'distributions'): 'management & capital actions',
+    ('COMPANY', 'asset base'): 'strategic plans & guidance',
+}
+SOURCE_MAP = {
+    'REGULATOR_OFFICIAL': SourceType.REGULATOR_OFFICIAL,
+    'REPUTABLE_PRESS': SourceType.REPUTABLE_PRESS,
+    'DATA_AGGREGATOR': SourceType.AGGREGATOR,
+    'AUDITED_FINANCIAL_STATEMENTS': SourceType.COMPANY_OFFICIAL,
+    'INDUSTRY_BODY': SourceType.REPUTABLE_PRESS,
+    'HOUSE_ENGINE': SourceType.PRIMARY_MARKET_DATA,
+}
+CLASS_MAP = {'BLOCKING': FindingClass.B, 'STRUCTURAL': FindingClass.S,
+             'DRIVER_UNLOCK': FindingClass.D, 'COLOR': FindingClass.C}
+# the fiscal period each financial-statement finding is drawn from, so the FS-depth
+# invariant can count DISTINCT years rather than findings
+FISCAL = {'F18': 'FY2024', 'F19': 'FY2025', 'F20': 'FY2025',
+          'F21': 'Q1-2026', 'F22': 'FY2025'}
+
+SWEEP_DATE = '2026-08-06'
+R = SweepRegister('ARCC', AssetClass.STOCK, SWEEP_DATE,
+                  study_year='2026', study_quarters_disclosed=['Q1-2026', 'H1-2026'])
+
+# THE PRIMARY-ACCESS ATTEMPT, LOGGED. It was made and it was refused, and that refusal is a
+# recorded fact of this study's history that lived in a prose note and in the standing
+# protocol's own worked example — but nowhere a checker could see it. Logging a FAILURE is
+# the case the invariant exists to surface, not the case it exists to hide.
+R.record_primary_access('https://arabiancementcompany.com', reachable=False,
+                        attempt_date='2026-08-06',
+                        note='connect_rejected at the environment proxy. The company\'s own '
+                             'site could not be reached from this build, so Company-ring '
+                             'figures rest on the filings themselves as obtained through the '
+                             'exchange and on the audited statements the principal supplied. '
+                             'The attempt and its failure are recorded rather than papered '
+                             'over with an aggregator.')
+
+_FID_MAP = {}
+for _f in FINDINGS:
+    _cat = CATEGORY_MAP.get((_f['ring'], _f['category']), _f['category'])
+    _FID_MAP[_f['fid']] = R.add(
+        Ring[_f['ring']], _cat, CLASS_MAP[_f['klass']], _f['headline'],
+        _f['source_name'], SOURCE_MAP[_f['source_type']], _f['source_date'],
+        detail=_f.get('detail', ''), model_impact=_f.get('model_impact', ''),
+        is_fs_data=_f.get('is_fs_data', False),
+        fiscal_period=FISCAL.get(_f['fid'], ''))
+
+# THE THREE NEGATIVE SEARCHES BEHIND THE TOP-DOWN DRIVERS, REGISTERED.
+# The module refuses a TOP_DOWN driver that cites no negative search — "top-down must be
+# evidenced absence, not convenience" — and all three of this study's top-down drivers
+# already STATED their absence, in prose, inside their own justification: "No depreciation
+# line is separately disclosed in any retrievable source", "No capital-expenditure guidance
+# is obtainable", "No interest-income line is separately retrievable". The evidence existed
+# and was written where no checker could point at it, which is the same defect as the
+# primary-access refusal above one level down. Registering them moves a stated fact into
+# the register's own form; it does not invent one.
+# THE REVIEWED HALF TO 30 JUNE 2026, REGISTERED. The quarter-coverage invariant asks that
+# every period ALREADY DISCLOSED at the sweep date be swept BEFORE the build, and this
+# study's own bridge stands on that reviewed balance sheet — cash and interest-bearing debt
+# at 30 June 2026 are the two lines the enterprise-to-equity bridge turns on, and the half's
+# cost of sales is what settles the base-year cost anchor. The period was consumed by the
+# model and recorded nowhere in the register. Nothing here is new research: every figure is
+# read off the study's own committed numbers file, which reads it off the filing.
+_F_H1 = R.add(
+    Ring.COMPANY, 'official financial statements', FindingClass.D,
+    'Reviewed interim statements for the six months to 30 June 2026: cash and equivalents '
+    'EGP 1,971mn against interest-bearing debt of EGP 1,283mn, so the company is net cash, '
+    'and six-month cost of sales of EGP 3,619mn against which the modelled full-year cash '
+    'cost lands within 2.4%',
+    "the company's reviewed interim financial statements for the six months to 30 June 2026",
+    SourceType.COMPANY_OFFICIAL, '2026-06-30',
+    model_impact='The bridge stands on THIS balance sheet rather than on 31 December 2025 '
+                 '[R-BRIDGE-01], so the net-cash addition and the share count are struck at '
+                 'the latest disclosed date; and the half\'s cost of sales corroborates the '
+                 'FY2026 cash-cost anchor, which is the one forecast year not on the house '
+                 'inflation ladder.',
+    is_fs_data=True, fiscal_period='H1-2026')
+
+# THE INVESTOR PRESENTATION, REGISTERED. The IR-coverage invariant asks for at least one
+# finding sourced COMPANY_IR, and this study's input register cites the FY2025 Investor
+# Presentation by name and by PAGE for at least six drivers — kiln utilisation, the clinker
+# export share, the cement export share, the stock draw, and three of the four national
+# market-balance figures. Not one of them was in this register. The gap was in the register,
+# not in the research, and the whole point of the [R-ENF-01] species is that those two look
+# identical from outside until somebody checks.
+_F_IR = R.add(
+    Ring.COMPANY, 'IR communications (calls, presentations, releases)', FindingClass.D,
+    'FY2025 Investor Presentation, page 5 (sales volumes and production indicators): '
+    'discloses this company\'s kiln utilisation, its clinker and cement export shares and '
+    'its stock draw, and the Egyptian market balance — 53.9Mt domestic sales, 18.6Mt '
+    'exports, 72.6Mt total — which is what closes the national balance from ONE disclosure '
+    'rather than assembling it from three',
+    'FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor relations library',
+    SourceType.COMPANY_IR, '2026-03-31',
+    model_impact='Unlocks the volume build at unit level: utilisation and the two export '
+                 'shares are the primary volume drivers and were INFERRED before this '
+                 'disclosure. It also corrects the sector case — 72.6Mt of sales against '
+                 'about 76Mt of nameplate is a market near 71% utilisation, not the '
+                 'structurally slack market earlier editions of this study described.')
+
+_NEG = {
+    'Depreciation and amortisation': R.add_negative(
+        Ring.COMPANY, 'official financial statements',
+        'a separately disclosed depreciation and amortisation line in any retrievable '
+        'source — the audited statements, the exchange filings and the investor materials '
+        'this study holds; it is triangulated on the balance sheet instead by three '
+        'independent methods',
+        SWEEP_DATE),
+    'Capital expenditure': R.add_negative(
+        Ring.COMPANY, 'strategic plans & guidance',
+        'capital-expenditure guidance from the company — none is obtainable, so capex is '
+        'set at the ECONOMIC maintenance level in dollars per tonne of capacity rather '
+        'than at book depreciation on a historic-cost asset base',
+        SWEEP_DATE),
+    'Treasury income': R.add_negative(
+        Ring.COMPANY, 'regular disclosures',
+        'a separately retrievable interest-income line — none, so treasury income cannot '
+        'be built bottom-up; it is modelled as a yield on the modelled cash balance and '
+        'excluded from free cash flow to the firm entirely',
+        SWEEP_DATE),
+}
+
+for _d in DRIVERS:
+    _refs = [_FID_MAP[r] for r in _d['sweep_refs']]
+    if _d['driver'] in _NEG:
+        _refs.append(_NEG[_d['driver']])
+    R.add_driver(_d['driver'], DriverMode[_d['mode']], _d['justification'], _refs)
+
+ERRORS, WARNINGS = R.validate()
+
+# WHAT IS STILL UNCOVERED, NAMED RATHER THAN CLOSED BY A RENAME. Each of these needs a
+# finding or a DATED NEGATIVE SEARCH, and a negative search is a search somebody actually
+# ran — inventing one to clear a coverage check would be worse than the gap.
+# Keyed on the SUBSTRING that must appear in the invariant's own message, not on the
+# category name: an invariant's wording is not its category, and the first draft of this
+# assertion matched on category and then let an IR-coverage failure through because the
+# message says "COMPANY_IR" where the category says "IR communications".
+UNCOVERED = {
+    'technology substitution':
+        'This study holds a COMPANY-ring finding on alternative fuels — refuse-derived and '
+        'biomass substituting for imported coal in ARCC\'s own kilns — and that is a real '
+        'technology-substitution observation. It is not an INDUSTRY-ring finding, and no '
+        'search of the Egyptian industry\'s substitution rate is recorded. The category '
+        'stays open rather than being closed by moving the finding\'s ring.',
+    'one-off base-resetting transactions':
+        'No search for a one-off base-resetting transaction is recorded. Whether there is '
+        'nothing to find or nothing was looked for cannot be told from this register, '
+        'which is exactly the state the coverage invariant is meant to make visible.',
+}
+
+OUT = dict(ticker='ARCC', asset_class='STOCK', sweep_date=SWEEP_DATE,
            findings=FINDINGS, drivers=DRIVERS,
+           validated_through='engine/research_sweep.py',
+           invariant_errors=ERRORS, invariant_warnings=WARNINGS,
+           uncovered=UNCOVERED,
            qc_line=('26 findings across four rings, 6 blocking-or-driver-unlock in the '
                     'country and industry rings and 6 in the company ring; every forecast '
                     'driver names the findings it rests on and declares whether it is built '
-                    'bottom-up or top-down.'))
+                    'bottom-up or top-down. Built through the shared register so its eight '
+                    'invariants run; %d still fire and each is named.' % len(ERRORS)))
 
+# the hand-rolled assertions are KEPT — all five are real checks and all five pass; what
+# was wrong was that they were the only ones
 counts = {}
 for f in FINDINGS:
     counts[f['ring']] = counts.get(f['ring'], 0) + 1
@@ -325,7 +539,16 @@ assert len(ids) == len(set(ids))
 for d in DRIVERS:
     for r in d['sweep_refs']:
         assert r in ids, (d['driver'], r)
+# and every error the module reports must be NAMED in UNCOVERED — a study may carry a gap,
+# it may not carry a gap nobody wrote down
+for _e in ERRORS:
+    assert any(k in _e for k in UNCOVERED), (
+        'the shared register reports an invariant failure this study does not name: %s' % _e)
 
 json.dump(OUT, open(os.path.join(HERE, 'sweep_register.json'), 'w'), indent=1)
 print(f"wrote sweep_register.json — {len(FINDINGS)} findings {counts}, "
       f"{len(DRIVERS)} drivers, all cross-references resolve")
+print(f"validated through the SHARED register: {len(ERRORS)} invariant error(s), "
+      f"{len(WARNINGS)} warning(s)")
+for _e in ERRORS:
+    print('   still open:', _e[:130])

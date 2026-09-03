@@ -1,0 +1,14 @@
+{
+ "entries": {
+  "ADNOCDRILL": "no sweep script in the study directory",
+  "AMOC": "no sweep script in the study directory",
+  "ELEC": "no sweep script in the study directory",
+  "GBCO": "no sweep script in the study directory",
+  "PHDC": "no sweep script in the study directory",
+  "STC": "no sweep script in the study directory",
+  "SWDY": "no sweep script in the study directory",
+  "TMGH": "no sweep script in the study directory",
+  "XPT": "imports the shared register but commits no sweep_register.json"
+ },
+ "note": "Studies whose Step 2A sweep did not run through engine/research_sweep.py when this gate was adopted (03-Sep-2026) \u2014 most of them have no sweep script at all. Allowed to fail; the list may only ever get shorter."
+}

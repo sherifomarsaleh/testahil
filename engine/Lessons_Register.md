@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**115 lessons**, of which 88 bind on every study, 20 on a class of company, and 7 on a single name.
+**116 lessons**, of which 89 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 42 found while building.
+By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 43 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -908,6 +908,16 @@ The patch works, the gate goes green, and the obligation to move it into the gen
 > **What it cost, or how we know.** The commit that adopted the range_basis requirement wrote the block straight into engine/tmgh_study/study_numbers.json and never into build_numbers.py. The next honest rebuild of that study — triggered by an unrelated amendment the same day — dropped it, and the lens-design gate went red on a study that had been conforming eight hours earlier. This is L-067's cousin: that one was a check pinned to a filename, this one is a value pinned to a file.
 
 > **What would overturn it.** A generated artefact that legitimately cannot be produced by its generator — a figure only a person can supply — in which case the honest form is an input the generator READS, not a patch to its output.
+
+### L-084 · A process that validates itself validates the list its author thought of.
+
+Local checks fail by imagination, not by care. A careful author writes careful assertions about everything they can think of, and the gap is precisely the set of things they could not — which no amount of further care inside the same process will supply, because what is missing is a list written somewhere else. This is why a shared instrument beats a good local one even when the local one is better written.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC sweep.py, 03-Sep-2026
+
+> **What it cost, or how we know.** ARCC was the only study in the book that hand-rolled its Step 2A sweep instead of importing engine/research_sweep.py. Its own assertions checked five things — every finding has a source, a date and a model impact; the class is one of four; all four rings appear; ids are unique; driver cross-references resolve — and all five passed. Replaying the same 26 findings through the shared register's validate() produced SEVEN errors, and five were facts the study already held: a company website attempted and refused, an investor presentation cited by page for six drivers, the reviewed half the bridge stands on, and three top-down drivers whose evidenced absence sat in prose inside their own justification.
+
+> **What would overturn it.** A study whose local checks turn out to be a strict superset of the shared instrument's — which would mean the shared module is the weaker one and should adopt the local checks, not the other way round.
 
 ### L-208 · A check that fails by the calendar is not a check.
 

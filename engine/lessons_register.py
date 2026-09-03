@@ -2128,6 +2128,29 @@ LESSONS = [
       "figure only a person can supply — in which case the honest form is an input the "
       "generator READS, not a patch to its output."),
 
+    L("L-084", "ALL", None,
+      "A process that validates itself validates the list its author thought of.",
+      "Local checks fail by imagination, not by care. A careful author writes careful "
+      "assertions about everything they can think of, and the gap is precisely the set of "
+      "things they could not — which no amount of further care inside the same process "
+      "will supply, because what is missing is a list written somewhere else. This is why "
+      "a shared instrument beats a good local one even when the local one is better "
+      "written.",
+      "ARCC sweep.py, 03-Sep-2026",
+      "build",
+      "ARCC was the only study in the book that hand-rolled its Step 2A sweep instead of "
+      "importing engine/research_sweep.py. Its own assertions checked five things — every "
+      "finding has a source, a date and a model impact; the class is one of four; all four "
+      "rings appear; ids are unique; driver cross-references resolve — and all five passed. "
+      "Replaying the same 26 findings through the shared register's validate() produced "
+      "SEVEN errors, and five were facts the study already held: a company website "
+      "attempted and refused, an investor presentation cited by page for six drivers, the "
+      "reviewed half the bridge stands on, and three top-down drivers whose evidenced "
+      "absence sat in prose inside their own justification.",
+      "A study whose local checks turn out to be a strict superset of the shared "
+      "instrument's — which would mean the shared module is the weaker one and should "
+      "adopt the local checks, not the other way round."),
+
 ]
 
 

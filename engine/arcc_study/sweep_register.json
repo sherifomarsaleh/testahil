@@ -442,5 +442,17 @@
    ]
   }
  ],
- "qc_line": "26 findings across four rings, 6 blocking-or-driver-unlock in the country and industry rings and 6 in the company ring; every forecast driver names the findings it rests on and declares whether it is built bottom-up or top-down."
+ "validated_through": "engine/research_sweep.py",
+ "invariant_errors": [
+  "COVERAGE: INDUSTRY / 'technology substitution' unclosed \u2014 needs a finding or a dated negative search",
+  "COVERAGE: COMPANY / 'one-off base-resetting transactions' unclosed \u2014 needs a finding or a dated negative search"
+ ],
+ "invariant_warnings": [
+  "FS DEPTH: 2 distinct fiscal years ['FY2024', 'FY2025'] \u2014 target is 4; below target but above the floor"
+ ],
+ "uncovered": {
+  "technology substitution": "This study holds a COMPANY-ring finding on alternative fuels \u2014 refuse-derived and biomass substituting for imported coal in ARCC's own kilns \u2014 and that is a real technology-substitution observation. It is not an INDUSTRY-ring finding, and no search of the Egyptian industry's substitution rate is recorded. The category stays open rather than being closed by moving the finding's ring.",
+  "one-off base-resetting transactions": "No search for a one-off base-resetting transaction is recorded. Whether there is nothing to find or nothing was looked for cannot be told from this register, which is exactly the state the coverage invariant is meant to make visible."
+ },
+ "qc_line": "26 findings across four rings, 6 blocking-or-driver-unlock in the country and industry rings and 6 in the company ring; every forecast driver names the findings it rests on and declares whether it is built bottom-up or top-down. Built through the shared register so its eight invariants run; 2 still fire and each is named."
 }
