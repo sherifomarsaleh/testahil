@@ -385,6 +385,15 @@
    "layer": "L1",
    "note": ""
   },
+  "an_gran_nitrogen_pct": {
+   "key": "an_gran_nitrogen_pct",
+   "value": 0.335,
+   "unit": "ratio",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's product cost table, where the product is named by its grade (granulated ammonium nitrate at 33.5% nitrogen)",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
   "prod_ldan_FY2425": {
    "key": "prod_ldan_FY2425",
    "value": 8171,
@@ -2260,14 +2269,14 @@
   "cpi_path": {
    "key": "cpi_path",
    "value": [
-    0.1,
-    0.07,
-    0.06,
-    0.05,
-    0.05
+    0.14,
+    0.105,
+    0.08249999999999999,
+    0.07250000000000001,
+    0.07
    ],
    "unit": "ratio",
-   "source": "Domestic inflation converging from the June 2026 print (14.3%) on the central bank's own target ladder: 7% (+/-2) for Q4 2026, which falls in FY2026/27-FY2027/28, and 5% (+/-2) for Q4 2028, which falls in FY2028/29, held thereafter. RE-SET 1 September 2026 so that the explicit path lands on the terminal inflation rather than stepping down to it at the terminal boundary.",
+   "source": "DERIVED from the house macro path for Egypt (engine/macro_paths/EG.json, as of 2026-09-02), mapped onto this company's 30 June fiscal year end: each fiscal year takes half of each of the two calendar years it spans, and beyond the ladder's last published year the house terminal inflation. The house ladder is 2026 16.0% / 2027 12.0% / 2028 9.0% / 2029 7.5% / 2030 7.0%. No number here is chosen by this study: under [R-MACRO-01] a study may not carry an inflation number of its own, and until 3 September 2026 this array was typed at 10.0 / 7.0 / 6.0 / 5.0 / 5.0 \u2014 terminating at 5% while this study's own macro record already carried the house terminal of 7%.",
    "date": "2026-08-08",
    "layer": "L5",
    "note": ""

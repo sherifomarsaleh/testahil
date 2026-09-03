@@ -74,11 +74,50 @@ The bull path (560 → 515) is retained as the published alternative.
 
 ## 3. MACRO COHERENCE
 
-One path, and it is derived rather than typed. The currency path is built year by year from
-the relative purchasing-power identity on the study's own Egyptian inflation path against
-long-run US inflation — `usd_egp_path` is a computed expression in the register, not an
-array of typed numbers, and the register itself records that the 08-08-2026 edition typed a
-4.5%-a-year path beside a derivation producing a different number in every year.
+**THE THIRD DEFECT, AND THIS REVIEW NAMED IT IN PLAIN WORDS AND PASSED IT
+[found 03-Sep-2026, after this heading was first written].** The sentence below used to read
+"the relative purchasing-power identity on **the study's own Egyptian inflation path**" —
+and [R-MACRO-01] says, in those words, that *a study may not carry an inflation number of
+its own*. The review wrote the breach down, in the heading whose whole purpose is to catch
+it, and read as compliant because the number was DERIVED rather than typed. Derived from
+what was the question nobody asked.
+
+The array was `cpi_path` = 10.0 / 7.0 / 6.0 / 5.0 / 5.0, against a house ladder for the same
+country of 16.0 / 12.0 / 9.0 / 7.5 / 7.0 — and it terminated at 5% while this study's own
+committed macro record already carried the house terminal of **7%**. The record conformed
+and the model did not.
+
+It was invisible to `check_macro_coherence` because of WHERE it sat. That gate reads a
+study's declared `growth_lines`, and this study declared its one line exempt on grounds that
+were perfectly true — its revenue is built from tonnes and dollar prices, so there is no
+nominal growth rate on that line to sit on the ladder. Meanwhile `cpi_path` drove the
+purchasing-power wedge, and therefore the entire currency path, and therefore both the
+translation of dollar revenue into pounds AND the gas cost; and it separately escalated
+every domestic cost — other materials, wages, services, and the terminal tonne's conversion
+cost. **The declared exemption was about a line that was not doing the work.**
+
+Corrected: `cpi_path` is now DERIVED from the house ladder, mapped onto this company's
+30 June fiscal year end by taking half of each of the two calendar years a fiscal year spans
+and the house terminal beyond the ladder's last published year — 14.00 / 10.50 / 8.25 /
+7.25 / 7.00. The mapping is arithmetic, so no number in it is this study's choice.
+
+**WHAT IT WAS WORTH, AND THE DIRECTION IS THE INTERESTING PART: the carried-through branch
+moves from EGP 1.79 to EGP 2.31 and the capital-discipline branch from EGP 5.90 to
+EGP 6.26 — both UP, by 29% and 6%.** A study running a LOWER inflation path than the house
+was not being conservative about costs; it was being optimistic about the CURRENCY. The
+wedge is built from this path, so a low domestic inflation implies a strong pound, and a
+strong pound crushes the pound value of a dollar-priced export book by more than it saves on
+a cost base of which the largest single line is dollar-linked gas. This is [L-048] from an
+angle the lesson does not describe: the defect is not always that costs escalate faster than
+prices, it is that **any inflation the study invents propagates into everything the identity
+touches, and which way it lands is not predictable from the sign of the error.**
+
+One path, and it is now derived from the house path rather than from the study's own. The
+currency path is built year by year from the relative purchasing-power identity on that
+ladder against long-run US inflation — `usd_egp_path` is a computed expression in the
+register, not an array of typed numbers, and the register itself records that the 08-08-2026
+edition typed a 4.5%-a-year path beside a derivation producing a different number in every
+year.
 
 The same identity carries the dollar debt at local-equivalent cost, so the currency
 assumption inside the cost of debt is the same one that sits inside revenue.
@@ -246,9 +285,9 @@ outstanding work and named in the register below.
 
 ---
 
-*AUDITED CENTRAL: 1.7854* — the carried-through branch.
-*AUDITED CENTRAL: 5.9001* — the capital-discipline branch. A two-sided study has two
+*AUDITED CENTRAL: 2.3109* — the carried-through branch.
+*AUDITED CENTRAL: 6.2591* — the capital-discipline branch. A two-sided study has two
 answers, and a review that audits one of them has audited half the study.
 
 
-*AUDITED GAP: -87.6%* — the disagreement this review interrogates, stated so a job outside the study can tell whether the eight headings were asked at the size the study now carries. A review can audit exactly the right central and still have been written against a price four weeks old; the answer standing still is not the same as the disagreement standing still.
+*AUDITED GAP: -84.0%* — the disagreement this review interrogates, stated so a job outside the study can tell whether the eight headings were asked at the size the study now carries. A review can audit exactly the right central and still have been written against a price four weeks old; the answer standing still is not the same as the disagreement standing still.
