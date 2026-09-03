@@ -304,7 +304,7 @@ I("inflation_terminal", _HOUSE.terminal_inflation, "ratio",
   "NOT typed here — the SAME figure terminal growth is set at, so the two cannot drift apart. "
   "(This sentence previously described the value as 5%, the central bank's Q4-2028 target, "
   "while the path supplies 7%: a 7% value carrying a 5% justification, which is exactly the "
-  "kind of unfalsifiable typed rate [R-MACRO-01] exists to stop. The value has always come "
+  "kind of unfalsifiable typed rate this series does not permit. The value has always come "
   "from the path; only the sentence was wrong.) "
   "CORRECTED 1 September 2026: the 08-08-2026 edition built the terminal risk-free rate on the "
   "7% Q4-2026 target while growing the perpetuity at 5%, a perpetual real decline of about 2% a "
@@ -548,16 +548,17 @@ for k, vals, unit, src in [
     # half of calendar 2026 and the first half of 2027 and takes half of each calendar
     # year's house rate. Beyond the ladder's last published year the terminal is used.
     ("cpi_path", _fiscal_inflation_from_house_path(2026, 5), "ratio",
-     "DERIVED from the house macro path for Egypt (engine/macro_paths/EG.json, as of "
-     + _HOUSE.as_of + "), mapped onto this company's 30 June fiscal year end: each fiscal "
-     "year takes half of each of the two calendar years it spans, and beyond the ladder's "
-     "last published year the house terminal inflation. The house ladder is "
+     "DERIVED from the single Egyptian inflation path this series uses for every Egyptian "
+     "company it values (as of " + _HOUSE.as_of + "), mapped onto this company's 30 June "
+     "fiscal year end: each fiscal year takes half of each of the two calendar years it "
+     "spans, and beyond the path's last published year its long-run rate. That path is "
      + " / ".join(f"{y} {r:.1%}" for y, r in zip(_HOUSE.inflation_years,
                                                  _HOUSE.inflation_path))
-     + ". No number here is chosen by this study: under [R-MACRO-01] a study may not carry "
-     "an inflation number of its own, and until 3 September 2026 this array was typed at "
-     "10.0 / 7.0 / 6.0 / 5.0 / 5.0 — terminating at 5% while this study's own macro record "
-     "already carried the house terminal of 7%."),
+     + ". No number here is chosen for this study: a company cannot be valued in an "
+     "economy the study beside it does not recognise, so no valuation in this series sets "
+     "an inflation rate of its own. Until 3 September 2026 this array read 10.0 / 7.0 / "
+     "6.0 / 5.0 / 5.0 and ended at 5% while the same study already took 7% as the "
+     "long-run rate."),
     ("anna_capex_path", [_RUN_RATE, 3100.0, 3300.0, 3200.0,
                          _REMAINING - (_RUN_RATE + 3100.0 + 3300.0 + 3200.0)], "EGP m",
      "Constructed: project spending path, RE-ANCHORED 9 August 2026 on the observed run rate. The first "
@@ -569,7 +570,7 @@ for k, vals, unit, src in [
     I(k, vals, unit, src, "2026-08-08", "L5")
 
 I("lens_weights", [0.45, 0.20, 0.20, 0.15], "ratio",
-  "RETIRED under [R-LENS-03] and consumed by nothing. It is kept in the register so a reader of "
+  "RETIRED — this series no longer averages its methods — and consumed by nothing. It is kept in the register so a reader of "
   "the 01-09-2026 edition can see what changed, and it is recorded here as retired rather than "
   "deleted because a number that was published once should stay traceable. THE CENTRAL IS THE "
   "CLASS PRIMARY -- the cash-flow lens, which on this company is two-sided -- and every other "

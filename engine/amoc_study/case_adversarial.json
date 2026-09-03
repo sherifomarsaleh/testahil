@@ -1,47 +1,47 @@
 {
  "base": {
-  "central": 11.834177643160194,
-  "dcf": 11.834177643160194,
-  "vs_spot": -0.12339424865480042,
+  "central": 11.401172768028045,
+  "dcf": 11.401172768028045,
+  "vs_spot": -0.15546868384977441,
   "vs_published": 0.0
  },
  "no_provision": {
-  "central": 12.606037553342153,
-  "dcf": 12.606037553342153,
-  "vs_spot": -0.06621944049317385,
-  "vs_published": 0.0652229443782324
+  "central": 12.173032678210005,
+  "dcf": 12.173032678210005,
+  "vs_spot": -0.09829387568814785,
+  "vs_published": 0.0677000450643519
  },
  "no_divp": {
-  "central": 12.034177643160193,
-  "dcf": 12.034177643160193,
-  "vs_spot": -0.1085794338399857,
-  "vs_published": 0.01690020261911429
+  "central": 11.601172768028045,
+  "dcf": 11.601172768028045,
+  "vs_spot": -0.1406538690349597,
+  "vs_published": 0.01754205502094064
  },
  "no_emp": {
-  "central": 12.139189491443096,
-  "dcf": 12.139189491443096,
-  "vs_spot": -0.1008007784116225,
-  "vs_published": 0.025773810186058066
+  "central": 11.688802200022653,
+  "dcf": 11.688802200022653,
+  "vs_spot": -0.13416279999832192,
+  "vs_published": 0.02522805660845684
  },
  "terminal_rf_5pct_target": {
-  "central": 11.231995689075443,
-  "dcf": 11.231995689075443,
-  "vs_spot": -0.16800031932774495,
-  "vs_published": -0.05088498518803242
+  "central": 10.86072964435582,
+  "dcf": 10.86072964435582,
+  "vs_spot": -0.1955015078254948,
+  "vs_published": -0.0474024150557365
  },
  "effective_tax": {
-  "central": 11.834177643160194,
-  "dcf": 11.834177643160194,
-  "vs_spot": -0.12339424865480042,
+  "central": 11.401172768028045,
+  "dcf": 11.401172768028045,
+  "vs_spot": -0.15546868384977441,
   "vs_published": 0.0
  },
  "ALL_GIVEBACKS": {
-  "central": 13.182977406361198,
-  "dcf": 13.182977406361198,
-  "vs_spot": -0.023483155084355722,
-  "vs_published": 0.113974946453552
+  "central": 12.736751783820475,
+  "dcf": 12.736751783820475,
+  "vs_spot": -0.05653690490218699,
+  "vs_published": 0.11714400289922389
  },
  "_": "COMPUTED by adversarial.py through the study's own waterfall, not typed. Every case concedes a contested charge, so every one prices ABOVE the published central; that is asserted rather than assumed. The previous file carried a base of 5.954 against a published 11.834 and was written by no script at all.",
- "published_central": 11.834177643160194,
+ "published_central": 11.401172768028045,
  "spot": 13.5
 }

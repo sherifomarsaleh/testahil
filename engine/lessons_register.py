@@ -2047,6 +2047,87 @@ LESSONS = [
       "the retired blend is published labelled RETIRED rather than deleted. The "
       "test is whether the old statement is marked as superseded."),
 
+    L("L-080", "ALL", None,
+      "A check that reads what a process DECLARES is not checking what the process does.",
+      "Every exemption in a gate is a place where the gate stops looking. A TRUE "
+      "exemption on the WRONG OBJECT is the safest hiding place there is: nobody is "
+      "lying, the reason survives review, and the work happens somewhere the check "
+      "does not reach. Where a rule governs a quantity, hold the quantity — holding "
+      "the study's description of where the quantity lives is one indirection too many.",
+      "EGCH cpi_path, 03-Sep-2026",
+      "build",
+      "EGCH declared its one growth line exempt from the house inflation path on "
+      "grounds that were perfectly true — its revenue is built from tonnes and dollar "
+      "prices, so no nominal growth rate sat on that line. Meanwhile an input named "
+      "nowhere in the record, cpi_path = 10.0 / 7.0 / 6.0 / 5.0 / 5.0 against a house "
+      "ladder of 16.0 / 12.0 / 9.0 / 7.5 / 7.0, drove the purchasing-power wedge and "
+      "therefore the whole currency path — so both the pound value of dollar revenue "
+      "and the gas cost — and escalated other materials, wages, services and the "
+      "terminal tonne's conversion cost. It terminated at 5% while the same record "
+      "carried the house terminal of 7%. The study's own gap review named it in plain "
+      "words, 'the study's own Egyptian inflation path', inside the heading whose "
+      "purpose is to catch it, and passed.",
+      "A gate that holds the declared object and the used object and finds them "
+      "always identical across a large book — which would mean the indirection is "
+      "harmless in practice and the extra clause is cost without benefit."),
+
+    L("L-081", "ALL", None,
+      "A list of forbidden words cannot be complete; match the shapes that cannot occur innocently.",
+      "Where a prohibition can be expressed as a SHAPE rather than a vocabulary, express "
+      "it as a shape. A word list is maintained by whoever last thought of a word, so "
+      "every copy of it has a different hole, and the holes are invisible until something "
+      "falls through one.",
+      "EGCH and AMOC bibliographies, 03-Sep-2026",
+      "build",
+      "Depth-bar standard 4 is implemented by each study as its own list of forbidden "
+      "terms — 39 in ARCC, 68 in EGCH, a different set in AMOC. EGCH's delivered "
+      "bibliography shipped two standing-rule identifiers and a repository path out of "
+      "an input register's source field while its own scrub reported ZERO hits across "
+      "68 patterns; AMOC's scrub, which happens to carry both shapes, caught the "
+      "identical sentence the same hour. A sweep of the book found three more delivered "
+      "documents leaking through three different holes.",
+      "A shape that turns out to occur innocently in a document written for an outside "
+      "reader — which would mean the shape was the wrong instrument and a word list, "
+      "with its judgement about ordinary senses, was right after all."),
+
+    L("L-082", "ALL", None,
+      "A correction that moves the answer away from the price is not a reason to reconsider the correction.",
+      "The temptation runs the other way from the one everyone guards against. A "
+      "correction that closes a gap feels confirmed by the closing, and one that widens "
+      "it invites a second look at the correction rather than at the model. Both "
+      "instincts are the same error: the price is evidence about where to LOOK, never "
+      "evidence about what the answer is.",
+      "AMOC inflation ladder, 03-Sep-2026",
+      "build",
+      "Conforming AMOC's cost ladder to the house path was expected to RAISE the value: "
+      "the study's own ladder compounded higher, 1.7385 against 1.6288 over five "
+      "forecast years, so the cost side alone said the value would rise. It fell, EGP "
+      "11.83 to 11.40, from -12.3% to -15.5% against the price, because the currency "
+      "path is derived from the same ladder by purchasing-power parity — a lower ladder "
+      "means a stronger pound, and on a dollar-linked slate the translation gain lost "
+      "outweighs the pound costs saved. The direction was not predictable from the sign "
+      "of the input error.",
+      "A case where re-examining a correction that widened a gap uncovers a real defect "
+      "in the correction itself — which is why the instinct exists and why the rule is "
+      "about not letting the DIRECTION be the trigger, rather than about never looking."),
+
+    L("L-083", "ALL", None,
+      "A value patched into a generated artefact is lost at the next generation.",
+      "The patch works, the gate goes green, and the obligation to move it into the "
+      "generator becomes a thing somebody has to remember. Nobody does, and the loss "
+      "surfaces hours or weeks later as a gate failing on work that looked finished.",
+      "TMGH range_basis, 03-Sep-2026",
+      "build",
+      "The commit that adopted the range_basis requirement wrote the block straight into "
+      "engine/tmgh_study/study_numbers.json and never into build_numbers.py. The next "
+      "honest rebuild of that study — triggered by an unrelated amendment the same day — "
+      "dropped it, and the lens-design gate went red on a study that had been conforming "
+      "eight hours earlier. This is L-067's cousin: that one was a check pinned to a "
+      "filename, this one is a value pinned to a file.",
+      "A generated artefact that legitimately cannot be produced by its generator — a "
+      "figure only a person can supply — in which case the honest form is an input the "
+      "generator READS, not a patch to its output."),
+
 ]
 
 

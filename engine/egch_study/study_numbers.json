@@ -1838,6 +1838,28 @@
     "exempt_reason": "not an escalator: the forecast years are built from tonnes, dollar prices and the derived currency path, each disclosed or identity-derived, so there is no nominal growth rate here to sit on the ladder"
    }
   ],
+  "inflation_inputs": [
+   {
+    "key": "cpi_path",
+    "mapping": "fiscal_june",
+    "first_year": 2026,
+    "values": [
+     0.14,
+     0.105,
+     0.0825,
+     0.0725,
+     0.07
+    ],
+    "note": "the house ladder mapped onto this company's 30 June fiscal year end: each fiscal year takes half of each of the two calendar years it spans, and beyond the ladder's last published year the house terminal. Until 3 September 2026 this array was TYPED at 10.0 / 7.0 / 6.0 / 5.0 / 5.0, terminating at 5% while this record already carried the house terminal of 7%."
+   },
+   {
+    "key": "cpi_latest",
+    "mapping": "observed",
+    "values": 0.143,
+    "date": "2026-06-30",
+    "note": "the June 2026 annual headline print, a reported figure used for context and never as a forecast rate"
+   }
+  ],
   "fx_path": null,
   "fx_note": "the currency path is DERIVED year by year from the relative purchasing-power identity on the house terminal inflation against long-run United States inflation, and the SAME wedge carries the dollar cost of debt, so the two cannot disagree",
   "terminal": {

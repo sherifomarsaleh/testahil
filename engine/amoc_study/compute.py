@@ -343,12 +343,31 @@ INP['us_infl'] = I(0.025, "Long-run United States consumer price inflation, the 
                    "2026-08-06", "Global")
 # line_price_growth and fx_path are now DERIVED from the registered Egyptian inflation path
 # rather than set by hand. They are appended to the register after V is built, below.
-INP['fixed_cost_infl'] = I([1.33, 1.28, 1.12, 1.145, 1.13, 1.115, 1.10, 1.095],
+import macro_path as _MPATH
+_HP = _MPATH.load('EG')          # the house macro path [R-MACRO-01]
+
+# THE FORECAST YEARS WERE THIS STUDY'S OWN LADDER, AND [R-MACRO-01] FORBIDS THAT OUTRIGHT
+# [conformed 03-Sep-2026]. They read 14.5 / 13.0 / 11.5 / 10.0 / 9.5 against a house calendar
+# ladder of 16.0 / 12.0 / 9.0 / 7.5 / 7.0 for the same country and the same years. The record
+# declared the line exempt on the grounds that the study was internally coherent and that
+# rebuilding "belongs in its own pass" — which is a statement about convenience, and
+# convenience is not one of the grounds the rule allows. The historical years stay as printed,
+# because a filed past is not a forecast.
+_HOUSE_LADDER = [_HP.inflation(2026 + _i) for _i in range(5)]
+INP['fixed_cost_infl'] = I([1.33, 1.28, 1.12] + [round(1.0 + _r, 6) for _r in _HOUSE_LADDER],
                            "Cumulative-year Egyptian inflation factors applied to the "
                            "pound-denominated cost legs — salaries inside cost of sales, the "
                            "other line, administrative and marketing expense, and capital "
-                           "expenditure. Historical years as printed, easing toward the central "
-                           "bank's published target thereafter", "2026-08-06", "Country")
+                           "expenditure. The three HISTORICAL years are as printed. The five "
+                           "FORECAST years are the single Egyptian inflation path this series "
+                           "uses for every Egyptian company it values, read from that path "
+                           "rather than set for this study: no valuation here sets an "
+                           "inflation rate of its own, because a company cannot be valued in "
+                           "an economy the study beside it does not recognise. The path is "
+                           "the central bank's published disinflation ladder, and the years "
+                           "between published points are labelled as interpolated where they "
+                           "are",
+                           "2026-09-02", "Country")
 INP['payout_reported'] = I((736_577_469.0 + 602_957_265.0) / (656_428_711.0 + 635_119_535.0),
                            "Dividend payout ratio COMPUTED from the filings: cash dividends "
                            "actually PAID in the audited nine months (736,577,469 in the "
@@ -2352,25 +2371,54 @@ say(f"[Workbook blocks emitted] {_nb} complete forecast engines — the base cas
 # ===========================================================================
 import sys as _sys, os as _os
 _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
-import macro_path as _MPATH
-_HP = _MPATH.load('EG')
+# _MPATH/_HP are loaded near the top of the file, before the input register, because
+# the register now READS the house ladder rather than carrying its own.
 _HYR = list(_HP.inflation_years)
 
 MACRO_RECORD = dict(
     market='EG', path_as_of=_HP.as_of,
+    # [R-MACRO-01], clause added 03-Sep-2026 after EGCH: every inflation-class INPUT,
+    # not only the declared growth lines. THIS RECORD ALREADY SAID IN PROSE, in the
+    # exempt_reason below, that this study runs 'the registered Egyptian inflation
+    # ladder this study was built on, which predates the house path and differs from it
+    # year by year' — and the gate passed it, because a line declared exempt is not
+    # checked. Declaring the array makes the same statement ARITHMETIC, so this study
+    # now fails the clause and is listed on the ratchet with its reason, instead of
+    # reading as coherent while its own record says otherwise. A lesson that binds
+    # nothing is advice.
+    #
+    # IT WAS THEN CONFORMED RATHER THAN RATCHETED, and the reason is that --prune refused
+    # to grow the list: a ratchet spares work predating a standard and may only ever get
+    # SHORTER, so the only honest options were to conform the study or leave a permanently
+    # red check, which [R-ENF-02] forbids. THE DIRECTION WAS NOT WHAT I EXPECTED AND IT IS
+    # RECORDED BECAUSE OF THAT. The study's ladder compounded HIGHER than the house path
+    # (1.7385 against 1.6288 over the five forecast years), so the arithmetic said
+    # conforming would cut fixed costs and RAISE the value. It lowered it: EGP 11.83 ->
+    # 11.40, -12.3% -> -15.5% against the price. The currency path is DERIVED from this
+    # ladder by purchasing-power parity, so a lower ladder means a stronger pound, and on a
+    # dollar-linked slate the lost translation gain outweighs the saved pound costs. A
+    # correction that moves AWAY from the price is not a reason to reconsider it.
+    inflation_inputs=[
+        dict(key='fixed_cost_infl (forecast years)', mapping='calendar',
+             first_year=2026,
+             values=[round(x - 1.0, 6) for x in V['fixed_cost_infl'][3:]],
+             note='the house calendar ladder, read live rather than typed. The currency '
+                  'path and the product price path are both DERIVED from it by '
+                  'purchasing-power parity, so there is one view of the economy inside '
+                  'this model and conforming the ladder moved all three together.'),
+    ],
     growth_lines=[
         dict(name='pound-denominated cost legs',
              years=_HYR, nominal=[round(x, 6) for x in _EG_INFL],
              real=0.0,
-             exempt_reason='the registered Egyptian inflation ladder this study was '
-                           'built on, which predates the house path and differs from '
-                           'it year by year. The study is internally coherent — the '
-                           'currency path and the product price path are both DERIVED '
-                           'from this one ladder by purchasing-power parity, so no '
-                           'second view of the economy exists inside it — and it is '
-                           'listed here rather than silently conformed, because '
-                           'rebuilding the ladder moves every operating number in the '
-                           'model and belongs in its own pass, not in a records pass.'),
+             basis='the house calendar inflation ladder at zero real growth, read live '
+                   'from engine/macro_paths/EG.json. CONFORMED 03-Sep-2026: this line '
+                   'previously carried the study\'s own ladder and was declared exempt on '
+                   'the grounds that the study was internally coherent and that rebuilding '
+                   '"belongs in its own pass" — a statement about convenience, which is not '
+                   'one of the grounds [R-MACRO-01] allows. The currency path and the '
+                   'product price path are both DERIVED from this one ladder by '
+                   'purchasing-power parity, so conforming it moved all three together.'),
         dict(name='realised price per tonne, all lines',
              years=_HYR, nominal=[round(x, 6) for x in _DEPREC], real=0.0,
              exempt_reason='DERIVED, not chosen: crude is held flat in dollars and the '

@@ -128,6 +128,14 @@ def _macro_record():
                                "company's own record, not a price; the class-A correction of "
                                "02-Sep-2026 replaced a 15%-a-year fade with this")},
         ],
+        # [R-MACRO-01], clause added 03-Sep-2026 after EGCH. Every inflation-class INPUT
+        # the model registers, with the mapping that derives it from the house ladder --
+        # declared even when the list is empty, because EGCH's growth lines were all
+        # legitimately exempt while an undeclared cpi_path drove its whole currency path
+        # and every cost escalator. This model carries none: its selling prices and unit
+        # costs escalate on the house path through the growth line above, its sales ladder
+        # is a physical rate, and no separate inflation array exists anywhere in it.
+        "inflation_inputs": [],
         "terminal": {
             "g_nominal": M.TERMINAL_GROWTH,
             "real": M.TERMINAL_REAL_GROWTH,
@@ -166,6 +174,27 @@ def _lens_record(ps_value, lo, hi):
             "note": ("four cases: two premium bases x two readings of the crux, on the "
                      "cost-of-capital SCHEDULE rather than a flat rate. They are never "
                      "averaged."),
+            # THIS BLOCK WAS PATCHED INTO study_numbers.json AND NEVER INTO THIS BUILDER
+            # [restored 03-Sep-2026]. The 03-Sep commit that adopted the range_basis
+            # requirement edited the generated file directly, so the next honest rebuild of
+            # this study dropped it and the lens gate went red — which is L-067's cousin: a
+            # value written into a generated artefact is lost at the next generation, and
+            # the gate is what tells you, some hours later, in another pass. It lives in the
+            # generator now.
+            "range_basis": {
+                "driver": ("two readings of the crux crossed with the two published "
+                           "equity-risk-premium bases — four cases, never averaged"),
+                "low": lo,
+                "high": hi,
+                "units": "EGP per share, the four cases' own present values",
+                "evidence": ("the four cases this study computes and publishes side by "
+                             "side, per the dual-framing rule; the low and high are the "
+                             "lowest and highest of them."),
+                "macro_held": True,
+                "sanctioned_framing": ("both premium bases are published and one is named "
+                                       "central. Spanning them is a framing the method "
+                                       "requires, not a spread invented around the answer."),
+            },
         },
         "cross_checks": [
             {"kind": "book_value", "value": book, "present_value": False,

@@ -1,0 +1,7 @@
+{
+ "entries": {
+  "ADNOCDRILL": "ADNOCDRILL_Bibliography_09-08-2026.docx: engine/adnocdrill_study/beta_reg.py, engine/raw_indices/AE/ADXGENERAL.csv",
+  "SCEM": "SCEM_Bibliography_06-08-2026.docx: engine/market_profiles.py"
+ },
+ "note": "Delivered documents already naming this repository when this gate was adopted (03-Sep-2026). Allowed to fail; the list may only ever get shorter. --prune rewrites it."
+}

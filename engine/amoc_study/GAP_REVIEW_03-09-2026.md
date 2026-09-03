@@ -136,20 +136,35 @@ edition to take on its own evidence rather than on this one's momentum.
 
 ## 3. MACRO COHERENCE
 
-One economy, one path, all three legs derived from it. The study runs on a registered
-Egyptian inflation ladder of 14.5 / 13.0 / 11.5 / 10.0 / 9.5 per cent for 2026–2030, and
-**both** the currency path and the product-price path are DERIVED from that same ladder by
-purchasing-power parity. There is no second view of the economy inside the model: costs do
-not escalate at one inflation while prices are held at another, which is [L-048] and which
-was measured on this company's own history at −0.570 log.
+One economy, one path, all three legs derived from it. **The study now runs on the HOUSE
+Egyptian inflation ladder** — 16.0 / 12.0 / 9.0 / 7.5 / 7.0 per cent for 2026–2030, read
+live from `engine/macro_paths/EG.json` — and **both** the currency path and the
+product-price path are DERIVED from that same ladder by purchasing-power parity. There is no
+second view of the economy inside the model: costs do not escalate at one inflation while
+prices are held at another, which is [L-048] and which was measured on this company's own
+history at −0.570 log.
 
-The recorded divergence, stated rather than hidden: this ladder **predates the house macro
-path** [R-MACRO-01] and differs from it year by year. It is registered as an exemption in
-the study's own `macro_record` with the reason — rebuilding the ladder moves every
-operating number in the model and belongs in its own pass. The study is internally coherent
-on one path; it is not yet on the *house* path. That is a scheduled item, not a defect
-behind this gap, and conforming it would move the answer in an unknown direction rather
-than a helpful one.
+**THIS HEADING WAS WRONG WHEN IT WAS FIRST WRITTEN, AND IT SAID SO IN ITS OWN WORDS
+[corrected 03-Sep-2026].** Until today the study ran a ladder of its own — 14.5 / 13.0 /
+11.5 / 10.0 / 9.5 — and this heading recorded that fact, called it "a scheduled item, not a
+defect", and passed. [R-MACRO-01] says, in those words, that *a study may not carry an
+inflation number of its own.* The exemption registered in the `macro_record` gave as its
+reason that rebuilding "belongs in its own pass" — which is a statement about convenience,
+and convenience is not one of the grounds the rule allows. The gate could not see it because
+the line was declared *exempt*, and an exempt line is not checked; the clause added to
+[R-MACRO-01] on 3 September now requires every inflation-class INPUT to be declared with the
+mapping that derives it from the house ladder, so the same statement is arithmetic and this
+study failed it immediately.
+
+**Conforming it cost EGP 0.43 a share, and the direction was the opposite of the
+arithmetic's own prediction.** The study's ladder compounded *higher* than the house path —
+1.7385 against 1.6288 over the five forecast years — so on the cost side alone conforming
+should have cut costs and raised the value. It lowered it: EGP 11.83 → **11.4012**, −12.3% →
+**−15.5%** against the price. The reason is the derivation this heading opens with: the
+currency path comes from the same ladder by purchasing-power parity, so a lower inflation
+ladder means a *stronger* pound, and on a dollar-linked slate the translation gain lost
+outweighs the pound costs saved. **A correction that moves the answer away from the price is
+not a reason to reconsider the correction**, and it is recorded here rather than absorbed.
 
 ## 4. DISCOUNT RATE
 
@@ -340,9 +355,9 @@ would move every operating number in an unknown direction. Neither is available 
 
 ---
 
-*AUDITED CENTRAL: 11.8342* — the figure this review audits, stated so a job outside the study
+*AUDITED CENTRAL: 11.4012* — the figure this review audits, stated so a job outside the study
 can tell whether the review still describes the answer the study publishes. A review of a
 number the study no longer carries is not a review of this study.
 
 
-*AUDITED GAP: -12.3%* — the disagreement this review interrogates, stated so a job outside the study can tell whether the eight headings were asked at the size the study now carries. A review can audit exactly the right central and still have been written against a price four weeks old; the answer standing still is not the same as the disagreement standing still.
+*AUDITED GAP: -15.5%* — the disagreement this review interrogates, stated so a job outside the study can tell whether the eight headings were asked at the size the study now carries. A review can audit exactly the right central and still have been written against a price four weeks old; the answer standing still is not the same as the disagreement standing still.

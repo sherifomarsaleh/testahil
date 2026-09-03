@@ -488,6 +488,55 @@ class GrowthLine:
     exempt_reason: Optional[str] = None
 
 
+# The mappings a study may declare for an inflation-class input. CLOSED, for the reason
+# every closed list in this protocol is closed [R-COC-01 AMENDED, R-ANCHOR-01]: an open one
+# lets a study opt out by inventing a mapping, and "our year is different" is not a mapping.
+MACRO_INFLATION_MAPPINGS = {
+    # the house ladder as published, calendar year for calendar year
+    "calendar": "the house ladder as published, year for year",
+    # a fiscal year ending 30 June spans H2 of one calendar year and H1 of the next, so it
+    # takes half of each. Arithmetic, not a judgement -- which is why it is reproducible.
+    "fiscal_june": "a 30-June fiscal year: half of each of the two calendar years it spans",
+    # likewise a 31-March year end: three quarters of the opening calendar year
+    "fiscal_march": "a 31-March fiscal year: three quarters of the opening calendar year",
+    # the terminal held flat, for a line that escalates at the long-run rate only
+    "terminal_flat": "the house terminal inflation, held flat",
+    # A REPORTED FACT, NOT AN ASSUMPTION. A trailing actual used to anchor a base year is a
+    # filed observation with a date, which SIGCM already governs, and holding it to a
+    # forward ladder would be wrong -- the ladder is a forecast and the observation is not.
+    # The loophole this would otherwise open is closed by arithmetic rather than by trust:
+    # an observed entry must be a SCALAR with a date, so a five-year path cannot be
+    # relabelled as an observation.
+    "observed": "a dated reported figure, not a forecast -- must be a single value",
+}
+
+
+def macro_inflation_series(path, mapping: str, n: int,
+                           first_year: Optional[int] = None) -> List[float]:
+    """The house ladder under one of the closed mappings above.
+
+    Beyond the ladder's last published year the house TERMINAL is used, never an
+    extrapolation of the study's own -- extrapolating the study's own is the thing
+    [R-MACRO-01] forbids, and it is how a five-year array quietly invents a sixth number.
+    """
+    lad = dict(zip(path.inflation_years, path.inflation_path))
+    y0 = first_year if first_year is not None else min(path.inflation_years)
+    term = path.terminal_inflation
+
+    def cal(y):
+        return lad.get(y, term)
+
+    if mapping == "calendar":
+        return [cal(y0 + i) for i in range(n)]
+    if mapping == "fiscal_june":
+        return [0.5 * cal(y0 + i) + 0.5 * cal(y0 + i + 1) for i in range(n)]
+    if mapping == "fiscal_march":
+        return [0.75 * cal(y0 + i) + 0.25 * cal(y0 + i + 1) for i in range(n)]
+    if mapping == "terminal_flat":
+        return [term] * n
+    raise AssertionError("unknown inflation mapping %r" % mapping)
+
+
 def assert_macro_coherence(record: dict, market: Optional[str] = None,
                            ticker: str = "?") -> dict:
     """Raise unless every growth rate in a model sits on the house macro path.
@@ -588,6 +637,101 @@ def assert_macro_coherence(record: dict, market: Optional[str] = None,
                 "while depreciating the currency at some other rate is the same "
                 "event counted once and ignored once."
                 % (off[0] + 1, fx[off[0]], want[off[0]]))
+
+    # ---- 6. EVERY INFLATION-CLASS INPUT, NOT ONLY THE DECLARED GROWTH LINES ----
+    # [added 03-Sep-2026 after EGCH]. Checks 1-5 read what a study DECLARES. EGCH declared
+    # its one growth line exempt on grounds that were perfectly true -- its revenue is built
+    # from tonnes and dollar prices, so there is no nominal growth rate on that line to sit
+    # on the ladder -- while an input called cpi_path, nowhere in the record, drove the
+    # purchasing-power wedge (and so the entire currency path, and so both the translation of
+    # dollar revenue into pounds AND the gas cost) and escalated every domestic cost line.
+    # It read 10.0 / 7.0 / 6.0 / 5.0 / 5.0 against a house ladder of 16.0 / 12.0 / 9.0 / 7.5
+    # / 7.0 and terminated at 5% against a house terminal of 7% the same record carried.
+    #
+    # The study's own gap review named it in plain words -- "the study's own Egyptian
+    # inflation path" -- inside the heading whose purpose is to catch it, and passed, because
+    # the number was DERIVED rather than typed and nobody asked derived from what.
+    #
+    # So a study must now DECLARE every inflation-class input it registers, with the mapping
+    # that produces it from the house ladder, and this reproduces each one. The rule is not
+    # "no inflation array" -- a fiscal year straddling two calendar years legitimately needs
+    # its own mapping -- it is that the mapping is stated and reproducible from outside.
+    infl = record.get("inflation_inputs")
+    if infl is None:
+        fails.append(
+            "no inflation_inputs block. A study must name EVERY inflation-class input it "
+            "registers and the mapping that derives it from the house ladder, even if that "
+            "list is empty -- declare it as [] where the model genuinely carries none. "
+            "EGCH's growth lines were all legitimately exempt while an undeclared cpi_path "
+            "drove the currency path and every cost escalator, and both this assertion and "
+            "the study's own gap review passed it.")
+    else:
+        if not isinstance(infl, (list, tuple)):
+            fails.append("inflation_inputs must be a list of {key, mapping, values} entries")
+            infl = []
+        for e in infl:
+            key = (e or {}).get("key") or "?"
+            mapping = (e or {}).get("mapping")
+            vals = (e or {}).get("values")
+            if mapping not in MACRO_INFLATION_MAPPINGS:
+                fails.append(
+                    "inflation input %r declares mapping %r, which is not one of %s. The "
+                    "list is CLOSED for the reason every closed list in this protocol is "
+                    "closed: an open one lets any study opt out by inventing a mapping, and "
+                    "adding one is a rule amendment."
+                    % (key, mapping, ", ".join(sorted(MACRO_INFLATION_MAPPINGS))))
+                continue
+            if mapping == "observed":
+                if isinstance(vals, (list, tuple)):
+                    fails.append(
+                        "inflation input %r is declared 'observed' but carries %d values. An "
+                        "observation is a single dated figure; a per-year array is a "
+                        "forecast, and relabelling one as the other is how a study would "
+                        "opt out of this check."
+                        % (key, len(vals)))
+                elif not (e or {}).get("date"):
+                    fails.append(
+                        "inflation input %r is declared 'observed' with no date. A reported "
+                        "figure without its date is not an observation [SIGCM]." % key)
+                continue
+            if not isinstance(vals, (list, tuple)) or not vals:
+                fails.append("inflation input %r declares no values to check" % key)
+                continue
+            # A BOUNDED, COUNTED, REASONED EXEMPTION FOR LEADING YEARS. ARCC's first
+            # forecast year carries an EVIDENCED company anchor — its own filed price and
+            # cost step — and its years two to five are the house ladder to the basis
+            # point. That is legitimate and the study already reasons it. What is NOT
+            # legitimate is EGCH's shape, where a whole line was exempted and an
+            # undeclared array did the work, so the exemption here is a COUNT of leading
+            # years with a reason, never a blanket.
+            head = int((e or {}).get("exempt_head") or 0)
+            if head:
+                if not (e or {}).get("exempt_reason"):
+                    fails.append(
+                        "inflation input %r exempts its first %d year(s) with no reason. An "
+                        "exemption is a claim and carries its evidence." % (key, head))
+                if head >= len(vals):
+                    fails.append(
+                        "inflation input %r exempts all %d of its years, which is not an "
+                        "exemption but an opt-out. Exempt the leading years an evidenced "
+                        "anchor actually covers." % (key, len(vals)))
+                    continue
+                vals = list(vals)[head:]
+            want = macro_inflation_series(path, mapping, len(vals),
+                                          (e or {}).get("first_year"))
+            off = [i for i, (a, b) in enumerate(zip(vals, want))
+                   if abs(float(a) - b) > MACRO_TOLERANCE]
+            if off:
+                i = off[0]
+                fails.append(
+                    "inflation input %r, year %d (after %d exempted leading year(s)): "
+                    "the study carries %.4f and the house ladder under the declared %r "
+                    "mapping gives %.4f (out by %+.0fbp). A study may not carry an "
+                    "inflation number of its own [R-MACRO-01]; if the mapping is right the "
+                    "array was typed, and if the array is right the mapping is not what "
+                    "the study says it is."
+                    % (key, i + 1, head, float(vals[i]), mapping, want[i],
+                       10000 * (float(vals[i]) - want[i])))
 
     n = record.get("explicit_years")
     gend = record.get("growth_at_horizon_end")

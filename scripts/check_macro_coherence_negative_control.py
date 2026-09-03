@@ -51,6 +51,13 @@ GOOD = {
         {"name": "volumes", "years": [2026, 2027], "nominal": [0.05, 0.05],
          "exempt_reason": "a disclosed capacity ladder, not a price"},
     ],
+    # the clause added 03-Sep-2026 after EGCH: every inflation-class INPUT declared, with
+    # the mapping that derives it from the house ladder. A clean record declares the block
+    # even when it is empty.
+    "inflation_inputs": [
+        {"key": "cost_index", "mapping": "calendar", "first_year": 2026,
+         "values": [0.16, 0.12, 0.09, 0.075, 0.07]},
+    ],
     "terminal": {"g_nominal": 0.07, "real": 0.0, "rf": 0.125, "inflation_in_rf": 0.07},
     "explicit_years": 5,
     "growth_at_horizon_end": 0.07,
@@ -176,6 +183,104 @@ def main():
         put_study(tmp, "NCA", rec)
         put_list(tmp, ["NCA"])             # knowingly outstanding: allowed to fail
     case("clean: a listed outstanding study", c_listed, False, results)
+
+    # ---- the inflation-input clause [added 03-Sep-2026 after EGCH] ----------------
+    def m_no_block(tmp):
+        rec = json.loads(json.dumps(GOOD)); rec.pop("inflation_inputs")
+        put_study(tmp, "NCA", rec); put_list(tmp, [])
+    case("EGCH's shape: no inflation_inputs block at all", m_no_block, True, results)
+
+    def m_typed(tmp):
+        """EGCH's array EXACTLY as it shipped, against a declared calendar mapping."""
+        rec = json.loads(json.dumps(GOOD))
+        rec["inflation_inputs"] = [{"key": "cpi_path", "mapping": "calendar",
+                                    "first_year": 2026,
+                                    "values": [0.100, 0.070, 0.060, 0.050, 0.050]}]
+        put_study(tmp, "NCA", rec); put_list(tmp, [])
+    case("EGCH's typed cpi_path, 10/7/6/5/5 against the house 16/12/9/7.5/7",
+         m_typed, True, results)
+
+    def m_amoc(tmp):
+        """AMOC's own ladder as it stood before it was conformed."""
+        rec = json.loads(json.dumps(GOOD))
+        rec["inflation_inputs"] = [{"key": "fixed_cost_infl", "mapping": "calendar",
+                                    "first_year": 2026,
+                                    "values": [0.145, 0.13, 0.115, 0.10, 0.095]}]
+        put_study(tmp, "NCA", rec); put_list(tmp, [])
+    case("AMOC's own ladder, 14.5/13/11.5/10/9.5", m_amoc, True, results)
+
+    def m_bad_mapping(tmp):
+        rec = json.loads(json.dumps(GOOD))
+        rec["inflation_inputs"] = [{"key": "cpi_path", "mapping": "our_own_view",
+                                    "values": [0.10, 0.07, 0.06, 0.05, 0.05]}]
+        put_study(tmp, "NCA", rec); put_list(tmp, [])
+    case("a mapping invented outside the closed list", m_bad_mapping, True, results)
+
+    def m_head_no_reason(tmp):
+        rec = json.loads(json.dumps(GOOD))
+        rec["inflation_inputs"] = [{"key": "cost_index", "mapping": "calendar",
+                                    "first_year": 2027, "exempt_head": 1,
+                                    "values": [0.08, 0.12, 0.09, 0.075, 0.07]}]
+        put_study(tmp, "NCA", rec); put_list(tmp, [])
+    case("leading years exempted with no reason given", m_head_no_reason, True, results)
+
+    def m_head_all(tmp):
+        rec = json.loads(json.dumps(GOOD))
+        rec["inflation_inputs"] = [{"key": "cost_index", "mapping": "calendar",
+                                    "exempt_head": 5, "exempt_reason": "ours",
+                                    "values": [0.30, 0.30, 0.30, 0.30, 0.30]}]
+        put_study(tmp, "NCA", rec); put_list(tmp, [])
+    case("every year exempted — an opt-out wearing an exemption", m_head_all, True, results)
+
+    def m_observed_array(tmp):
+        """The loophole: relabelling a forward path as an observation."""
+        rec = json.loads(json.dumps(GOOD))
+        rec["inflation_inputs"] = [{"key": "cpi_path", "mapping": "observed",
+                                    "date": "2026-06-30",
+                                    "values": [0.10, 0.07, 0.06, 0.05, 0.05]}]
+        put_study(tmp, "NCA", rec); put_list(tmp, [])
+    case("a five-year path relabelled 'observed'", m_observed_array, True, results)
+
+    def m_observed_undated(tmp):
+        rec = json.loads(json.dumps(GOOD))
+        rec["inflation_inputs"] = [{"key": "cpi_latest", "mapping": "observed",
+                                    "values": 0.143}]
+        put_study(tmp, "NCA", rec); put_list(tmp, [])
+    case("an 'observed' figure with no date", m_observed_undated, True, results)
+
+    def c_fiscal(tmp):
+        """EGCH's CORRECTED path: the house ladder on a 30-June fiscal year."""
+        rec = json.loads(json.dumps(GOOD))
+        rec["inflation_inputs"] = [{"key": "cpi_path", "mapping": "fiscal_june",
+                                   "first_year": 2026,
+                                   "values": [0.14, 0.105, 0.0825, 0.0725, 0.07]}]
+        put_study(tmp, "NCA", rec); put_list(tmp, [])
+    case("clean: the house ladder on a 30-June fiscal year (EGCH corrected)",
+         c_fiscal, False, results)
+
+    def c_head(tmp):
+        """ARCC's shape: one evidenced leading year, then the house ladder."""
+        rec = json.loads(json.dumps(GOOD))
+        rec["inflation_inputs"] = [{"key": "cost_infl", "mapping": "calendar",
+                                   "first_year": 2027, "exempt_head": 1,
+                                   "values": [0.115, 0.12, 0.09, 0.075, 0.07],
+                                   "exempt_reason": "FY2026 anchored on the reviewed half's "
+                                                    "own cost of sales"}]
+        put_study(tmp, "NCA", rec); put_list(tmp, [])
+    case("clean: ARCC's shape — one evidenced year, then the ladder", c_head, False, results)
+
+    def c_observed(tmp):
+        rec = json.loads(json.dumps(GOOD))
+        rec["inflation_inputs"].append({"key": "cpi_latest", "mapping": "observed",
+                                        "values": 0.143, "date": "2026-06-30"})
+        put_study(tmp, "NCA", rec); put_list(tmp, [])
+    case("clean: a dated scalar observation beside a forward path", c_observed, False, results)
+
+    def c_empty_block(tmp):
+        rec = json.loads(json.dumps(GOOD)); rec["inflation_inputs"] = []
+        put_study(tmp, "NCA", rec); put_list(tmp, [])
+    case("clean: an empty block — a model that carries no inflation array",
+         c_empty_block, False, results)
 
     def c_real(tmp):
         rec = json.loads(json.dumps(GOOD))

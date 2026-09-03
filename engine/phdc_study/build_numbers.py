@@ -288,6 +288,31 @@ def main():
                                    "because it is limited by what it can build and its order "
                                    "book is finite")},
             ],
+            # [R-MACRO-01], clause added 03-Sep-2026 after EGCH: every inflation-class
+            # INPUT, not only the declared growth lines. THIS STUDY CARRIES ONE AND THE
+            # CLAUSE FOUND IT ON ITS FIRST RUN HERE. bottom_up_model.CPI = 25.20% is the
+            # World Bank Egyptian CPI averaged over 2023-25, and it escalates FY2024's
+            # revenue per delivered unit forward ONE year to FY2025 so the implied FY2025
+            # delivery count can be read off the disclosed revenue.
+            #
+            # It is a HISTORICAL step, so the forward ladder does not govern it — but a
+            # THREE-YEAR MEAN is not the right figure for a one-year step either, and the
+            # right figure is the 2025 print as published at the time. engine/macro_history
+            # holds no sourced Egyptian CPI vintage yet (every origin reports unusable,
+            # deliberately: a revised or rebased figure is fabricated in vintage even when
+            # right in value), so it cannot be supplied here without inventing it.
+            # Registered rather than quietly kept [SIGCM clause 8], and the effect is
+            # bounded: it moves the implied unit COUNT and the price/cost pair together,
+            # against a disclosed FY2025 revenue that does not move at all.
+            "inflation_inputs": [
+                {"key": "bottom_up_model.CPI", "mapping": "observed", "values": 0.2520,
+                 "date": "2025-12-31",
+                 "note": ("World Bank Egyptian CPI, mean of 2023-2025, applied as a "
+                          "one-year escalator across a HISTORICAL step (FY2024 -> FY2025). "
+                          "A mean over three years is not the published rate for one of "
+                          "them; the correct figure is the 2025 print at its own vintage, "
+                          "which engine/macro_history does not yet carry. OUTSTANDING.")},
+            ],
             "terminal": {"g_nominal": V2.TG, "real": V2.TERMINAL_REAL_GROWTH,
                          "rf": V2.SCHEDULES["rating"].rf_terminal,
                          "inflation_in_rf": V2.PATH.terminal_inflation},

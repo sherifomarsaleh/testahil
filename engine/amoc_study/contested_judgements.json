@@ -8,51 +8,51 @@
    "name": "the equity-risk-premium basis",
    "adopted": "the CDS basis, the market's own live pricing of the sovereign's credit",
    "alternative": "the rating basis, an agency judgement updated in steps",
-   "value_adopted": 11.834177643160194,
-   "value_alternative": 9.493303217393624,
+   "value_adopted": 11.401172768028045,
+   "value_alternative": 9.2163803651871,
    "why": "both bases are published and one is named central; the swap basis is preferred because it is priced continuously by the market rather than revised in discrete agency steps, and the difference is the largest single contested number in this study"
   },
   {
    "name": "the minority's share",
    "adopted": "the minority at its share of gross equity value, 2.96%",
    "alternative": "that share doubled",
-   "value_adopted": 11.834177643160194,
-   "value_alternative": 11.457237790141148,
+   "value_adopted": 11.401172768028045,
+   "value_alternative": 11.037453662417574,
    "why": "the share is struck on the subsidiaries' own profit contribution net of the parent's credit interest; doubling it is the sensitivity a reader would ask for and it moves the answer by about three per cent, which is a smaller number than the old helper reported"
   },
   {
    "name": "gross versus net debt weights in the operating rate",
    "adopted": "gross-borrowing weights, with the cash added once at face in the bridge",
    "alternative": "net-debt weights",
-   "value_adopted": 11.834177643160194,
-   "value_alternative": 11.835326337407851,
+   "value_adopted": 11.401172768028045,
+   "value_alternative": 11.40226835582514,
    "why": "on a net-cash company the net-debt weight goes negative and levers the equity weight above one, which is the construction [R-BRIDGE-01] (iii) forbids and which a previous edition of this study carried; on a debt book that is 0.14% of the capital structure the corrected difference is essentially nil, and that is the honest finding rather than the 9.5% the broken helper reported"
   },
   {
    "name": "the base anchor: the twelve-month base, or the latest reviewed half",
    "adopted": "the twelve months to 30-Jun-2026 at a gross margin of 9.653%, both halves filed and no annualisation scalar",
    "alternative": "the most recent REVIEWED period, the half to 30-Jun-2026 at 12.428%, held flat",
-   "value_adopted": 11.834177643160194,
-   "value_alternative": 18.348362814028707,
+   "value_adopted": 11.401172768028045,
+   "value_alternative": 17.617712491127705,
    "why": "this is the largest contested number in the study by a wide margin and the standing rule points AT the alternative: a near-term reviewed actual outranks a stale full-year rate, and the like-for-like test that rule prescribes supports it, Q1-2025 5.053% against Q1-2026 10.190% being the same quarter doubled. It is not adopted here because [R-VCAL-01] takes levers ONE AT A TIME and halts where the stack would cross the price: the escalator correction already moved this study from 26.6% below to 12.3% below, and this one lands 35.9% above. Published, priced, and left for the next edition to take on its own evidence"
   },
   {
    "name": "the real cost drift on the pound conversion legs",
    "adopted": "the gross spread per tonne held flat in real terms on EVERY cost leg, which is the principle the study already declares for its feedstock leg",
    "alternative": "the pound legs escalated at the full domestic inflation ladder while price grows only at the currency differential — a real cost drift of +2.7 points a year, for ever, as the previous editions carried it",
-   "value_adopted": 11.834177643160194,
-   "value_alternative": 9.914213424678513,
+   "value_adopted": 11.401172768028045,
+   "value_alternative": 9.585468285314068,
    "why": "the drift was unsourced, undeclared, contradicted the study's own registered principle, and ran against the MEASURED direction in the company's own filings, where cost per unit of revenue fell from 93.15%% to 87.57%% across the five filed periods. It produced the entire forecast margin decline, which the study then reported as a finding — [L-048] and the ARCC precedent, registered, correct, and re-violated here"
   },
   {
    "name": "the currency the export leg is discounted in",
    "adopted": "the whole business discounted in pounds on the local cost of capital",
    "alternative": "the export leg deflated to dollars, discounted at a dollar cost of capital with 3.5% terminal growth, and translated back",
-   "value_adopted": 11.834177643160194,
-   "value_alternative": 12.225110944343598,
+   "value_adopted": 11.401172768028045,
+   "value_alternative": 11.824868006072489,
    "why": "a majority-export refiner can be read either way and the two answers differ by three per cent; the pound read is adopted because the cash flows, the tax and the debt are all struck in pounds and a mixed-currency discount would price the same inflation twice"
   }
  ],
- "published_central": 11.834177643160194,
+ "published_central": 11.401172768028045,
  "published_spot": 13.5
 }
