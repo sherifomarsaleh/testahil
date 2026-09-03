@@ -31,8 +31,16 @@ WORKFLOWS = os.path.join(ROOT, ".github", "workflows")
 # Steps that cannot run outside the runner (they need the network, a token, or a
 # deploy target). Skipped LOUDLY and counted, because a silent skip is how a
 # runner like this starts reporting on less than it claims.
+# A step that writes to a runner-provided file handle, or that interpolates a
+# ${{ }} expression the runner resolves before bash ever sees it, CANNOT run here
+# — not "fails here", cannot run. monthly-backup.yml reported two RED steps on
+# `GITHUB_OUTPUT: unbound variable` and a `${{ steps.build.outputs.date }}` that
+# bash read as a bad substitution; both are this runner's absence, not a defect
+# in the repository, and a red that means "not applicable" is the permanently-red
+# check [R-ENF-02] forbids. They are skipped LOUDLY, like every other skip.
 CANNOT_RUN_LOCALLY = ("actions/", "deploy", "upload-artifact", "peaceiris",
-                      "GITHUB_TOKEN", "gh api", "curl ")
+                      "GITHUB_TOKEN", "gh api", "curl ",
+                      "${{", "GITHUB_OUTPUT", "GITHUB_ENV", "GITHUB_STEP_SUMMARY")
 
 # A CI STEP ASSUMES A DISPOSABLE RUNNER, AND THIS ONE IS NOT DISPOSABLE.
 #
@@ -63,7 +71,7 @@ def steps(path):
     for jobname, job in (doc.get("jobs") or {}).items():
         for st in (job.get("steps") or []):
             if "run" in st:
-                yield jobname, st.get("name") or "(unnamed)", st["run"]
+                yield jobname, st.get("name") or "(unnamed)", st["run"], st.get("if")
 
 
 def main():
@@ -79,8 +87,20 @@ def main():
         if not os.path.exists(f):
             print("FAIL — no such workflow: %s" % f)
             return 1
-        for job, name, script in steps(f):
+        for job, name, script, cond in steps(f):
             label = "%s / %s" % (os.path.basename(f), name)
+            # A CONDITIONAL STEP IS NOT UNCONDITIONALLY PART OF THE RUN, and this
+            # runner cannot evaluate GitHub's expression language. Running one
+            # anyway grades a branch CI would not have taken: testahil-calibration's
+            # two failure handlers (`if: ...exit_code != '0'`) both end in `exit 1`,
+            # so they reported RED on a repository with no error file to their name,
+            # while deploy-pages' retry sleeps reported GREEN and inflated the count.
+            # Every gate in these workflows is unconditional; the conditional ones
+            # are failure handlers and retry pauses. Skipped LOUDLY, never evaluated.
+            if cond is not None:
+                skipped.append((label, "conditional (if: %s) — not evaluable outside "
+                                       "the runner" % str(cond)[:60]))
+                continue
             mut = [t for t in MUTATES_THE_REPO if t in script]
             if mut:
                 skipped.append((label, "REFUSED — would mutate this checkout (%s). "
@@ -111,6 +131,13 @@ def main():
         print("\nCI would be red. This ran CI's OWN step list, so a green sweep of "
               "the check scripts alone is not the same claim.")
         return 1
+    if green == 0:
+        # [R-ENF-04]: an empty result is not a clean result. A workflow whose every
+        # step is runner-only ran NOTHING here, and saying "every step passes" of a
+        # population of zero is the absent answer wearing the costume of a clean one.
+        print("\nNOTHING RAN — every step is runner-only, so this workflow is "
+              "UNCHECKED here, not green.")
+        return 0
     print("\nOK — every locally-runnable CI step passes.")
     return 0
 
