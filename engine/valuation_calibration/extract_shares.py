@@ -147,3 +147,98 @@ def main(argv):
 
 if __name__ == "__main__":
     raise SystemExit(main(sys.argv[1:]))
+
+
+# ---------------------------------------------------------------------------
+# Parsing the note into a number that FOOTS
+# ---------------------------------------------------------------------------
+# The sentence these filings actually use is:
+#   "issued and paid in capital amounts to EGP 4 344 640 000 representing
+#    2 172 320 000 shares with a par value of EGP 2 per share"
+# Three numbers, one identity: capital / par = shares. That identity is the whole
+# check. OCR misreads digits in ways that look entirely plausible — a 3 for an 8,
+# a lost separator — and the only thing that catches it is arithmetic the document
+# supplies itself.
+#
+# The note also RECITES the company's capital history, one board resolution per
+# paragraph, going back years. Those recitals are not the current count and must
+# not be read as one, which is why the parser anchors on the CURRENT-capital
+# sentence ("issued and paid in/up capital amounts to") and never on a bare
+# "representing N shares" anywhere on the page.
+
+CURRENT_CAP = re.compile(
+    r"issued\s+and\s+paid[\s\-]*(?:in|up)?\s+capital[^0-9]{0,40}"
+    r"([\d][\d\s,\.]{6,})\s*(?:representing|,)?\s*([\d][\d\s,\.]{6,})?\s*shares?"
+    r"[^0-9]{0,60}?par\s+value[^0-9]{0,20}([\d][\d\s,\.]{0,12})",
+    re.I | re.S)
+
+
+def _n(s):
+    if s is None:
+        return None
+    s = re.sub(r"[^\d.]", "", s.replace(" ", ""))
+    s = s.rstrip(".")
+    try:
+        return float(s)
+    except ValueError:
+        return None
+
+
+def parse_note(text):
+    """(shares, capital, par, how) from the CURRENT-capital sentence, or Nones."""
+    flat = re.sub(r"\s+", " ", text)
+    m = CURRENT_CAP.search(flat)
+    if not m:
+        return None, None, None, "no current-capital sentence on the page"
+    cap, sh, par = _n(m.group(1)), _n(m.group(2)), _n(m.group(3))
+    if not (cap and sh and par):
+        return None, None, None, "the sentence is there and a number in it did not read"
+    return sh, cap, par, "issued-and-paid-in-capital sentence"
+
+
+def foots(shares, capital, par, tol=1e-6):
+    """capital / par must reproduce the stated share count. No tolerance worth the
+    name: these are exact figures in the document and a mismatch is an OCR error,
+    not a rounding one."""
+    if not (shares and capital and par):
+        return False, "a figure is missing"
+    implied = capital / par
+    if abs(implied - shares) <= max(tol * shares, 1.0):
+        return True, "capital %.0f / par %.4g = %.0f, matching the stated count" % (
+            capital, par, implied)
+    return False, ("capital %.0f / par %.4g = %.0f against a stated %.0f — the "
+                   "document does not foot against itself, so this is an OCR "
+                   "misread and the year is dropped"
+                   % (capital, par, implied, shares))
+
+
+def parse_all(ticker="PHDC"):
+    p = os.path.join(HERE, "_shares_ocr_%s.json" % ticker.lower())
+    src = json.load(open(p, encoding="utf-8"))
+    out = {"ticker": ticker, "shares_mn": {}, "dropped": {},
+           "rule": ("recorded only where issued capital divided by par value "
+                    "reproduces the share count the same document states")}
+    for y, rec in sorted(src.get("read", {}).items()):
+        best = None
+        for pg, txt in rec["text"].items():
+            sh, cap, par, how = parse_note(txt)
+            ok, why = foots(sh, cap, par)
+            if ok:
+                best = {"shares_mn": sh / 1e6, "issued_capital": cap, "par_value": par,
+                        "page": int(pg), "file": rec["file"], "check": why,
+                        "how": how}
+                break
+            if best is None:
+                best = {"failed": why or how, "page": int(pg), "file": rec["file"]}
+        if best and "shares_mn" in best:
+            out["shares_mn"][y] = best
+            print("  %s  %10.2f mn shares   (%s, p%d)"
+                  % (y, best["shares_mn"], best["file"][:34], best["page"]))
+        else:
+            out["dropped"][y] = best or {"failed": "no note text"}
+            print("  %s  DROPPED — %s" % (y, (best or {}).get("failed", "?")[:90]))
+    q = os.path.join(HERE, "shares_%s.json" % ticker.lower())
+    json.dump(out, open(q, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    print("\nwrote %s — %d year(s) footed, %d dropped"
+          % (os.path.basename(q), len(out["shares_mn"]), len(out["dropped"])))
+    return out

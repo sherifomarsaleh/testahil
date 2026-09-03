@@ -40,6 +40,26 @@ sys.path.insert(0, ENGINE)
 
 import macro_history as MH  # noqa: E402
 
+
+def _shares():
+    """Point-in-time share counts, per name, from the committed OCR records."""
+    out = {}
+    for p in sorted(glob.glob(os.path.join(HERE, "shares_*.json"))):
+        try:
+            d = json.load(open(p, encoding="utf-8"))
+        except Exception:
+            continue
+        tk = (d.get("ticker") or "").upper()
+        if not tk:
+            continue
+        out[tk] = {y: rec.get("shares_mn")
+                   for y, rec in (d.get("shares_mn") or {}).items()
+                   if rec.get("shares_mn")}
+    return out
+
+
+SHARES = _shares()
+
 OHLC = os.path.join(ENGINE, "raw_ohlc")
 
 
@@ -135,8 +155,12 @@ def build(market="EG"):
             # vintage, invisible afterwards, and the exact error the macro
             # archive was built to refuse. It is read from the panel where the
             # panel has it and is otherwise missing.
-            sh = None
-            if y in panel:
+            # First the committed share record, which is the point-in-time count
+            # read off that year's own filing and footed against it. Only if it
+            # has nothing for this year does the panel look inside the run's own
+            # artefacts — and today's count is never a fallback.
+            sh = SHARES.get(tk, {}).get(str(y))
+            if sh is None and y in panel:
                 rec = panel[y]
                 cell = rec.get("cells") if isinstance(rec, dict) else None
                 for src in (rec, cell):
