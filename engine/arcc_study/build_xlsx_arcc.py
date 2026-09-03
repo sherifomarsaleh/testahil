@@ -111,7 +111,12 @@ def note(ws, row, text, w=10):
 
 # ============ 1 READ FIRST ====================================================
 ws = sheet('READ FIRST')
-title(ws, 'Testahil — Arabian Cement Company S.A.E. (EGX: ARCC) — revision 3', None, 9)
+# THE REVISION WAS TYPED AND THE STUDY WAS ON A LATER ONE [corrected 03-Sep-2026].
+# The workbook's own front sheet said 'revision 3' while study_numbers.json's meta
+# carried revision 4 — the same defect as a typed date beside a computed price, and it
+# tells a reader they are holding a superseded file when they are not.
+title(ws, f'Testahil — Arabian Cement Company S.A.E. (EGX: ARCC) — revision '
+          f'{M["revision"]}', None, 9)
 LINES = [
  'Companion model · Independent Valuation Study · Educational analysis · Not investment advice', '',
  'REVISION 3 CORRECTS THE PRICE PATH, WHICH THE AUDITED RECORD DISPROVED. Revision 2 rebuilt every company',
