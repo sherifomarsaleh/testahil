@@ -1740,7 +1740,66 @@ LESSONS = [
       "longer move the headline and the assertions that said they did "
       "had never run against the model that shipped.",
       "A build that writes to one filename per study, so there is no "
-      "superseded edition for a check to open."),]
+      "superseded edition for a check to open."),
+    L("L-068", "ALL", None,
+      "What a process commits decides what can ever be asked of it "
+      "later.",
+      "A record answers the question it was built for. Anything else "
+      "you later want to know has to have been written down at the "
+      "time, and if it was not, it is usually gone rather than merely "
+      "inconvenient. When you design what a piece of work leaves "
+      "behind, spend a moment asking what a DIFFERENT question would "
+      "need from it.",
+      "method reassessment WS6, valuation-input census, 03-Sep-2026",
+      "self_audit",
+      "Five fundamental walk-forwards each scored their drivers "
+      "properly and committed an income statement. When the valuation "
+      "calibration came to rebuild a fair value at a past origin, a "
+      "census of what they actually carry found NOT ONE of 55 name- "
+      "origin cells with a complete enterprise-to-equity bridge and a "
+      "capital-expenditure figure: cash on 25% of cells, debt on 60%, "
+      "working capital on 27%, a footed share count on 16%, capex on "
+      "none. Three cells (TMGH 2020-2022) allow capex to be derived "
+      "by the identity capex = dPPE + D&A; five more (PHDC 2015-2019) "
+      "carry the bridge and no route to capex at all. Every missing "
+      "item sits on a balance sheet or cash-flow statement in filings "
+      "those runs had already opened and parsed cell by cell, so "
+      "carrying them out would have been a copy rather than new "
+      "research.",
+      "A run that commits the block and then finds nobody ever asks "
+      "for it — if several names carry cash, debt, capex and a share "
+      "count through a full cycle and no later question needs them, "
+      "the cost was real and the benefit was not, and the block "
+      "should shrink to what was used."),
+
+    L("L-069", "ALL", None,
+      "An instrument whose bias points the same way as the hypothesis "
+      "cannot test it.",
+      "If the thing you are measuring with leans in the same "
+      "direction as the thing you are trying to prove, a confirming "
+      "answer means nothing — the instrument would have produced it "
+      "whatever the truth was. Worse than a big known bias is one "
+      "that changes direction from case to case, because that cannot "
+      "be corrected, disclosed as a direction, or reasoned around.",
+      "method reassessment WS6, valuation-input census, 03-Sep-2026",
+      "self_audit",
+      "The reassessment tests whether this house leans pessimistic. "
+      "Two mechanical valuation lenses were declared to measure it "
+      "and both were shaped by what happened to be committed rather "
+      "than by the class rule: omitting cash UNDERSTATES equity "
+      "value, omitting capex OVERSTATES it, and omitting working "
+      "capital does either depending on growth — so a value assembled "
+      "from whatever a cell carries has a bias whose sign is set by "
+      "which items that cell is missing. On AMOC, a net-cash company, "
+      "the omitted cash is most of the answer. The second declaration "
+      "knew it was a floor and said so; what it did not say is that a "
+      "floor cannot measure a pessimism lean.",
+      "A demonstration that the omissions are small relative to value "
+      "on a given name — a company with no debt, no material cash and "
+      "no reinvestment — in which case a mechanical value on that "
+      "name is honest and this caution is too strict there. The test "
+      "is arithmetic and available."),
+]
 
 
 def assert_lessons_register():
