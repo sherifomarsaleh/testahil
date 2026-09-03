@@ -79,3 +79,44 @@ Questions and deliveries that arose overnight, each with the evidence and the re
 
     The CPI series I can get freely is the World Bank's *current* reading of those years, not the print available at each origin. I have recorded it under its own field name so that it explicitly does **not** satisfy the point-in-time requirement, and every origin still reports unusable. A revised or rebased figure is fabricated in vintage even when it is right in value, and that is the quietest possible way to break this archive — right number, wrong date, invisible afterwards. Closing it needs the CBE bulletin or CAPMAS release of each year, alongside the sovereign yield and policy rate.
 
+
+33. **The macro archive's inflation is now sourced, point-in-time, and the drift is large.** Six IMF World Economic Outlook editions published *before* their origins are in (Oct 2013, Oct 2015, Oct 2016, Apr 2017, Oct 2018, Oct 2019), each recorded with the checksum of the file it was read from. They give more than the origin year's inflation: they give the **forward path an analyst standing there actually had**, which today's series cannot supply at any price.
+
+    The measurement that justifies the whole exercise, computed on the archive's own numbers rather than asserted: the inflation figure published *at* each origin and the figure today's series reports for that same year differ by **4.24 percentage points on average and 7.50 at worst, in both directions** (2017 +7.50, 2018 −6.46). A rebuild quietly using the modern series would feed the discounted cash flow an inflation rate several points from the one the origin had — in every escalator, in the currency path derived from them, and in the terminal.
+
+    Underneath that sits a distinction I had to make explicit before the archive could be built at all, and I think it is right: **an observed figure and an estimated one need different evidence.** A market close or a central-bank rate is fixed at its date and nobody revises it, so today's database is a legitimate route to it. A price index is revised and rebased for years, so it is refused without naming the publication that existed at the origin. A figure filed in the wrong class is right in value, wrong in date, and invisible afterwards. The archive now requires the class on every figure and the vintage on every estimated one, and refuses all eleven ways I could think to break it.
+
+34. **A refusal earned its keep the hour it was written.** The archive now refuses any figure published *after* the origin it is filed under unless the record says why a study struck there could have had it — deliberately with no grace period in days, since a cutoff would be a free parameter nobody measured. It immediately caught the 2015 country-risk vintage: the archived file carries "Updated July 1, 2016", a **mid-year re-publication six months after its origin**, and the January-2016 original is not held. It may embed first-half-2016 information. That origin is now marked compromised rather than used as though it were clean.
+
+35. **Two fields I cannot source, and this is the one thing I would ask you for.** The 10-year Egyptian government bond yield and the CBE overnight deposit rate, at each year-end 2013–2023. Both are *observed* figures, so this is a pure access problem and not a point-in-time one. Every route is recorded in the file with its outcome: **cbe.org.eg refuses at the proxy on every path** — the statistics pages and the static PDF paths alike, the same refusal I hit on the Q2-2026 Monetary Policy Report; FRED returns bot-protection; the IMF's data service host does not resolve; the market aggregators render by JavaScript.
+
+    The IMF country reports *are* reachable and I read them — but their treasury-bill row is a **fiscal-year average of a 3-month bill** where the house discounts on a 10-year year-end yield, and recording that as the sovereign yield would be an instrument substitution wearing the right field name, which is exactly the error the archive exists to prevent. So every origin reports unusable, which is the archive working rather than failing.
+
+    **What closes it:** a CBE or Ministry of Finance export of those two series at each year-end — the same shape of file you already send for prices — or a dated market-data export of the 10-year yield. Five minutes of your access is worth more than another night of mine.
+
+36. **The measurement nobody had taken — and it does not say what the framing expected.** The reassessment was called because the house looked systematically pessimistic. That is a claim about `log(fair value ÷ price)` across the delivered book, and nobody had ever computed it. It is now computed, through the gap gate's own reader rather than a second one.
+
+    On the eleven studies whose answer is readable and positive, the mean sits at **−5.8% against price**, with a 95% interval of −15.6% to +5.6% once the resampling respects that eleven names in three markets on nearly one date are not eleven independent observations.
+
+    The before-and-after on the five rebuilt names is the more interesting number, and it is not the one I expected:
+
+    | | before | after |
+    |---|---|---|
+    | mean log(FV/P) | −0.0310 | −0.0253 |
+    | mean **\|**log(FV/P)**\|** | 0.3033 | **0.0824** |
+
+    The lean barely moved. **The dispersion fell by a factor of 3.7.** Before the rebuilds the five names spanned −74% to +50% against their own prices; after, the log-defined ones span −9% to +13% (that range excludes EGCH, whose −108% is the widest disagreement in the book and falls out only because a negative central has no logarithm — I have named it rather than letting the tighter range flatter the result).
+
+    So the house was not uniformly pessimistic. **It was inconsistent** — reading one company far below the price and another far above it — and one macro path, one primary lens, a checked bridge and a cost-of-capital ladder are aimed at exactly that. I want to be plain about what this does not say: agreeing with the market is not being right, it is being ordinary, and a method tuned toward agreement would score well here while knowing nothing. Whether the disagreement carried information is the gap-closure question, and a cross-section holding no subsequent returns cannot answer it at any sample size.
+
+37. **Twelve of twenty-three studies cannot be measured at all.** Their committed numbers expose no central-and-spot pair, so they are not clean, merely unmeasured. The gap gate already carries them on its ratchet. Worth knowing that the figures in item 36 cover slightly under half the delivered book.
+
+38. **The fair-value register was recording a superseded answer, and its own check reported `[ok]`.** EGCH's latest recorded edition sat at 3.76 while the delivered study published −1.06 — a 129% movement of the very quantity the register exists to track, invisible to the thing tracking it. The check asked whether a ticker had *some* recorded fair value, never whether it was the *current* one.
+
+    That is the third instance this session of one failure shape: an artefact checked for **existence** rather than **currency** — the gap gate green-lighting a review written for a superseded answer, ARCC's own gates opening a superseded workbook, and now this. The check now compares every record against the study's own committed central, and an unreadable answer fails rather than passing quietly. EGCH edition 3 is registered.
+
+39. **The branch is now a pull request — [#336](https://github.com/sherifomarsaleh/testahil/pull/336) — and I have not merged it.** Forty commits: six standing rules, their gates, eight negative controls, five studies re-issued. All thirteen gates and all eight negative controls green, campaign queue and fair-value register green.
+
+    **The recommendation is to merge it, and the reason is not tidiness.** A rule that sits on a branch binds nothing: the next study starts from a fresh clone of `main`, and `main` carries none of this. That is [R-MERGE-01]'s own argument and it applies here at programme scale rather than at one name's. I have opened the PR unprompted as that rule requires but stopped short of merging, because the rule's merge half is written for a campaign name and this is forty commits rewriting both governing documents — a decision I would rather you took at a glance than have me take while you slept.
+
+    Merging moves `fair{}` in the repository, not on testahil.com. **Nothing publishes to the live site**, and nothing will without the word.
