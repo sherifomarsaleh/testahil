@@ -1094,6 +1094,7 @@ def assert_reverse_dcf(diag: dict, study_dir: str, ticker: str = "?") -> dict:
     here, whatever the file says.
     """
     import glob as _glob
+    import json as _json
     import os as _os
     import re as _re
 
@@ -1119,7 +1120,7 @@ def assert_reverse_dcf(diag: dict, study_dir: str, ticker: str = "?") -> dict:
         except OSError:
             continue
         if _re.search(r"diagnostics\.json|reverse_dcf|implied_discount|implied_conversion",
-                      txt) and base not in ("lenses.py", "docx_arcc.py"):
+                      txt):
             # a builder that COMPUTES the reverse read is fine; one that reads the
             # file back into the model is not.
             #
@@ -1142,6 +1143,58 @@ def assert_reverse_dcf(diag: dict, study_dir: str, ticker: str = "?") -> dict:
                     continue
                 leaks.append(base)
                 break
+    # THE VALUE ITSELF MUST NOT BE IN THE NUMBERS FILE, which is what the rule
+    # actually says: the reverse read lives outside "the numbers file builders
+    # read". Checking WHICH FILE reads WHAT is a proxy for that, and it needed two
+    # unexplained by-name exemptions (lenses.py, docx_arcc.py) to stop firing on
+    # studies doing the right thing — a study that COMPUTES the read, and a builder
+    # that only DISPLAYS it, are both fine and neither is distinguishable from a
+    # leak by grepping for a filename.
+    #
+    # This is checkable without guessing: take the diagnostic's OWN implied value
+    # and look for it in study_numbers.json. A float carried to full precision does
+    # not appear there by coincidence, so a hit means the quantity solved from the
+    # price is sitting in the file every builder reads — which is the thing
+    # prohibited, whether or not any builder currently computes from it. TMGH is
+    # the case that prompted this: its implied_discount_rate is in lenses.json and
+    # from there in study_numbers.json, and every use of it is display, so the
+    # rule's PURPOSE is met and its DEVICE is broken. The device is what is
+    # checkable, and widening the check to allow "display only" would delete it
+    # rather than sharpen it.
+    val = (d.get("implied") or {}).get("value")
+    nums = _os.path.join(study_dir, "study_numbers.json")
+    if isinstance(val, float) and _os.path.exists(nums):
+        try:
+            _doc = _json.load(open(nums, encoding="utf-8"))
+        except Exception:
+            _doc = None
+
+        def _hunt(node, trail=""):
+            if isinstance(node, dict):
+                for k, v in node.items():
+                    r = _hunt(v, trail + "/" + str(k))
+                    if r:
+                        return r
+            elif isinstance(node, list):
+                for i2, v in enumerate(node[:200]):
+                    r = _hunt(v, trail + "[%d]" % i2)
+                    if r:
+                        return r
+            elif isinstance(node, float) and node == val:
+                return trail
+            return None
+
+        where = _hunt(_doc) if _doc is not None else None
+        if where:
+            fails.append(
+                "the reverse read's own value (%r) is committed in "
+                "study_numbers.json at %s. A quantity solved from the traded price "
+                "must not sit in the numbers file every builder reads, whether or "
+                "not a builder currently computes from it — that is the "
+                "reverse-engineered rate arriving through a side door, and the "
+                "prohibition is worth nothing if the side door is open."
+                % (val, where))
+
     if leaks:
         fails.append(
             "these builders read the diagnostics file: %s. A quantity solved from the "
