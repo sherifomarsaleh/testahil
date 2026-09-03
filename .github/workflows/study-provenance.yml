@@ -757,6 +757,15 @@ jobs:
       - name: Edition date — negative control
         run: python3 scripts/check_edition_date_negative_control.py
 
+      # A column one character too narrow wraps, and Word breaks after a hyphen: a
+      # negative prints as a bare dash with its digits beneath, a date as "2025-12-"
+      # with a bare "31". Every other instrument here checks how a number was BUILT.
+      - name: Column widths — every figure a reader sees fits its own column
+        run: python3 scripts/check_column_widths.py
+
+      - name: Column widths — negative control
+        run: python3 scripts/check_column_widths_negative_control.py
+
       # [R-GAP-02]'s GATE runs at PUBLISH time, as step 0 of publish_site.py, and that is
       # deliberate: it blocks a future act rather than condemning a past one, so a CI job
       # asserting that no held study exists would be red on every branch that holds one.

@@ -31,18 +31,26 @@ and silently dividing the shortfall among its columns is how every one of these 
 was produced in the first place.
 """
 import json
+import re
 import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 MEASURED = os.path.join(HERE, 'lab', 'col_width', 'measured_thresholds.json')
 MEASURED_BOLD = os.path.join(HERE, 'lab', 'col_width',
                              'measured_thresholds_bold.json')
+MEASURED_7P5 = os.path.join(HERE, 'lab', 'col_width',
+                            'measured_thresholds_7p5pt.json')
+BASE_PT = 8.5         # the size the per-character figures were measured at
+GRID = 0.05           # the experiment's step, and therefore its resolution
 
 # cm per character in the delivered font at the delivered table size (Georgia 8.5pt as
 # authored; the renderer substitutes, and these are measured on what the renderer draws).
 PAD = 0.35            # cell padding, both sides, plus the grid rule
 DIGIT = 0.20
 COMMA = 0.10          # also the period and the hyphen/minus
+PAREN = 0.13          # measured: "(16,493)" needs 1.70, which the comma figure missed
+                      # by 0.05 — a bracketed negative is the house's own convention for
+                      # a deduction, so it is the one shape that must not be underestimated
 PERCENT = 0.30
 LETTER = 0.18         # conservative: the fitted average is 0.167 and the widest
                       # measured word implies 0.171
@@ -57,7 +65,9 @@ BOLD = 1.13
 def _char_cm(c):
     if c.isdigit():
         return DIGIT
-    if c in ',.-–−()':
+    if c in '()':
+        return PAREN
+    if c in ',.-–−':
         return COMMA
     if c == '%':
         return PERCENT
@@ -66,13 +76,21 @@ def _char_cm(c):
     return LETTER
 
 
-def token_cm(tok, bold=False):
-    """The width a single unbreakable token needs, padding included."""
-    ink = sum(_char_cm(c) for c in str(tok))
+def token_cm(tok, bold=False, size=BASE_PT):
+    """The width a single unbreakable token needs, padding included.
+
+    THE INK SCALES WITH POINT SIZE AND THE PADDING DOES NOT — cell margins are fixed. The
+    first draft had no size term at all and judged an input register set at 7.5pt by
+    figures measured at 8.5, which is a tenth of a centimetre on a ten-character date and
+    exactly the margin these columns are decided by. Measured at 7.5pt on four tokens the
+    ink ratio runs 0.875 to 0.889 against a nominal 7.5/8.5 = 0.882, so the scaling is
+    linear inside the experiment's own 0.05cm resolution.
+    """
+    ink = sum(_char_cm(c) for c in str(tok)) * (float(size) / BASE_PT)
     return round(PAD + ink * (BOLD if bold else 1.0), 4)
 
 
-def required_cm(text, bold=False):
+def required_cm(text, bold=False, size=BASE_PT):
     """The width a cell needs so that it breaks only at spaces.
 
     A cell may wrap — "Profit attributable to TMG's shareholders" over three lines reads
@@ -80,25 +98,25 @@ def required_cm(text, bold=False):
     by the widest token, never by the whole string.
     """
     toks = str(text).split()
-    return max((token_cm(t, bold) for t in toks), default=PAD)
+    return max((token_cm(t, bold, size) for t in toks), default=PAD)
 
 
-def column_minimums(headers, rows):
+def column_minimums(headers, rows, size=BASE_PT):
     """The minimum width of every column, header included.
 
     The header is a cell like any other and is frequently the widest token in its column —
     "Discount" over cells reading "35.79%" is what rendered as "Discou nt rate".
     """
     n = len(headers)
-    mins = [required_cm(h, bold=True) for h in headers]     # the header row is bold
+    mins = [required_cm(h, bold=True, size=size) for h in headers]   # headers are bold
     for r in rows:
         for i, v in enumerate(r[:n]):
-            mins[i] = max(mins[i], required_cm(v))
+            mins[i] = max(mins[i], required_cm(v, size=size))
     return mins
 
 
 def fit_widths(headers, rows, total_cm=16.2, generous=None, equal_from=None,
-               margin_cm=0.05):
+               margin_cm=GRID, size=BASE_PT):
     """Widths that clear every cell, with the slack given where it reads best.
 
     RAISES rather than returning a table that cannot fit. Squeezing is the defect.
@@ -109,11 +127,12 @@ def fit_widths(headers, rows, total_cm=16.2, generous=None, equal_from=None,
     width for all the years and the remainder to the label.
     """
     # THE MARGIN IS THE MEASUREMENT'S OWN RESOLUTION, NOT A CHOSEN NUMBER. The thresholds
-    # were found on a 0.05cm grid, and the per-character model extrapolates from them to
-    # strings that were never measured; one grid step covers a model error smaller than
-    # the experiment could have detected. It is not a fudge factor and must not be raised
+    # were found on a 0.05cm grid, so the true threshold of a measured token lies within
+    # one step below its measured value, and the per-character model extrapolates from
+    # them to strings that were never measured; one grid step covers a model error smaller
+    # than the experiment could have detected. It is not a fudge factor and must not be raised
     # to make a table fit — a table that needs more room needs fewer columns.
-    mins = [m + margin_cm for m in column_minimums(headers, rows)]
+    mins = [m + margin_cm for m in column_minimums(headers, rows, size)]
     if equal_from is not None and equal_from < len(mins):
         w = max(mins[equal_from:])
         mins = mins[:equal_from] + [w] * (len(mins) - equal_from)
@@ -137,29 +156,86 @@ def fit_widths(headers, rows, total_cm=16.2, generous=None, equal_from=None,
     return [round(x, 2) for x in out]
 
 
-def audit(headers, rows, widths):
-    """(column, declared, needed) for every column too narrow for its own content."""
-    mins = column_minimums(headers, rows)
+# A BROKEN WORD IS UGLY; A BROKEN FIGURE IS WRONG, AND ONLY THE SECOND IS CHECKED.
+# Measured over every delivered document, 15.6% of tables carried a column narrower than
+# its widest token — and the measurement is sound, because the model reproduces the
+# thresholds exactly and the predicted breaks are on the page (PHDC's input register
+# prints every date as "2025-12-" with "31" on the line beneath). But a source column
+# holding a URL needs 26.89cm on a 16.79cm page: THAT TOKEN CANNOT FIT ANY COLUMN, and
+# demanding it would be a false claim about what a table can do, which is the
+# permanently-red check [R-ENF-02] forbids.
+#
+# The line is drawn where the CONSEQUENCE changes. A word broken across two lines is a
+# typographic nuisance a reader reassembles without noticing. A FIGURE broken across two
+# lines changes what the reader reads: a negative loses its sign, a date loses its day, a
+# rate loses its percent sign and reads as a bare number. So the audit considers only
+# tokens that carry data, and fit_widths still sizes for everything a builder can fit.
+_DATA_TOKEN = re.compile(r'^[(\[]?[-–−+]?[\d][\d,.\-/:%)\]]*$')
+
+
+def is_data_token(tok):
+    """A token whose meaning changes if it breaks: a number, a rate, a date, a bracket."""
+    t = str(tok).strip()
+    return bool(t) and bool(_DATA_TOKEN.match(t)) and any(c.isdigit() for c in t)
+
+
+def audit(headers, rows, widths, data_only=True, size=BASE_PT, tol=0.0):
+    """(column, declared, needed) for every column too narrow for a token it must not break.
+
+    data_only=False asks the stricter question — whether ANY token fits — which is the
+    right question for a builder sizing its own table and the wrong one for a gate.
+
+    THE TOLERANCE DEFAULTS TO ZERO, AND THE REASON IS A MEASUREMENT RATHER THAN A
+    PREFERENCE. It was first set to one grid step, on the sound epistemic ground that a
+    column short by less than the experiment could resolve is a column the model cannot
+    judge. That is true and it is the wrong policy: PHDC's register column sits 0.039cm
+    under, inside one step, AND ITS PAGE DEMONSTRABLY WRAPS — "2025-12-" with a bare "31"
+    on the line beneath, in the field a reader of a provenance register checks first. The
+    tolerance hid a defect that had been verified on the page.
+    The costs are not symmetric. A false positive widens a column that did not need it and
+    costs white space; a false negative ships a figure that changes as it is read. So the
+    uncertainty is spent on the side that costs less, and it is spent in fit_widths, where
+    a builder adds a step of headroom while sizing.
+    """
+    n = len(headers)
+    mins = [PAD] * n
+    for r in [headers] + list(rows):
+        bold = r is headers
+        for i, v in enumerate(r[:n]):
+            for tok in str(v).split():
+                if data_only and not is_data_token(tok):
+                    continue
+                mins[i] = max(mins[i], token_cm(tok, bold, size))
     return [(headers[i], widths[i], mins[i])
             for i in range(min(len(widths), len(mins)))
-            if widths[i] + 1e-9 < mins[i]]
+            if widths[i] + tol + 1e-9 < mins[i]]
 
 
 def _self_check():
     """The constants must still reproduce the measurements that produced them.
 
-    NEVER BELOW: a prediction under a measured threshold is a column that will wrap, which
-    is the whole defect. Above is allowed and is the intended direction.
+    A MEASURED THRESHOLD IS AN UPPER BOUND, NOT THE THRESHOLD. The experiment walks a
+    0.05cm grid and reports the smallest step at which a token stopped splitting, so the
+    true threshold lies in (measured - GRID, measured]. A prediction anywhere in that
+    interval is consistent with the experiment; one BELOW it is not, and that is what this
+    asserts. Demanding the model reproduce the grid value exactly would be demanding a
+    precision the experiment does not have — the first version did, and failed on a
+    0.012cm discrepancy at 7.5pt that is a quarter of one grid step.
+
+    The engineering answer to the residual uncertainty is not a tighter model but the
+    margin fit_widths already adds, which is exactly one grid step.
     """
     if not os.path.exists(MEASURED):
         return
     bad = []
-    for path, is_bold in ((MEASURED, False), (MEASURED_BOLD, True)):
+    for path, is_bold, sz in ((MEASURED, False, BASE_PT), (MEASURED_BOLD, True, BASE_PT),
+                              (MEASURED_7P5, False, 7.5)):
         if not os.path.exists(path):
             continue
         for t, v in json.load(open(path)).items():
-            if v is not None and token_cm(t, is_bold) + 1e-9 < v:
-                bad.append((t, 'bold' if is_bold else 'plain', v, token_cm(t, is_bold)))
+            if v is not None and token_cm(t, is_bold, sz) + GRID + 1e-9 < v:
+                bad.append((t, '%s %gpt' % ('bold' if is_bold else 'plain', sz), v,
+                            token_cm(t, is_bold, sz)))
     assert not bad, ('col_width constants no longer clear their own measurements: %s'
                      % bad)
 

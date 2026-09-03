@@ -1,0 +1,38 @@
+{
+ "_why": "[R-ENF-02] ratchet for scripts/check_column_widths.py. Columns narrower than a data token they print, in documents delivered before the measured width instrument existed (03-Sep-2026). MAY ONLY EVER SHORTEN (--prune). Each closes at its study's next re-issue, by sizing the table with col_width.fit_widths() rather than by eye.",
+ "_adopted": "2026-09-03",
+ "outstanding": {
+  "engine/adnocdist_study/ADNOCDIST_Valuation_Study_09-08-2026.docx::As of": "declared 1.83cm, needs 1.83cm for its widest figure",
+  "engine/adnocdrill_study/ADNOCDRILL_Bibliography_09-08-2026.docx::Value": "declared 2.29cm, needs 2.33cm for its widest figure",
+  "engine/adnocdrill_study/ADNOCDRILL_Valuation_Study_09-08-2026.docx::Share": "declared 1.57cm, needs 1.62cm for its widest figure",
+  "engine/airarabia_study/AIRARABIA_Bibliography_09-08-2026.docx::Date": "declared 1.83cm, needs 1.94cm for its widest figure",
+  "engine/amr_study/AMR_Bibliography_09-08-2026.docx::Date": "declared 2.03cm, needs 2.15cm for its widest figure",
+  "engine/amr_study/AMR_Valuation_Study_09-08-2026_public.docx::Date": "declared 1.78cm, needs 1.83cm for its widest figure",
+  "engine/arcc_study/ARCC_Bibliography_03-09-2026.docx::#": "declared 0.76cm, needs 0.84cm for its widest figure",
+  "engine/fertiglobe_study/Fertiglobe_Bibliography_09-08-2026.docx::Date": "declared 1.90cm, needs 1.94cm for its widest figure",
+  "engine/modon_study/MODON_Valuation_Study_10-08-2026_public.docx::Date": "declared 1.90cm, needs 1.94cm for its widest figure",
+  "engine/phar_study/EIPICO_Bibliography_09-08-2026.docx::0-10%": "declared 1.35cm, needs 1.35cm for its widest figure",
+  "engine/phar_study/EIPICO_Bibliography_09-08-2026.docx::10-20%": "declared 1.35cm, needs 1.55cm for its widest figure",
+  "engine/phar_study/EIPICO_Bibliography_09-08-2026.docx::20-30%": "declared 1.35cm, needs 1.55cm for its widest figure",
+  "engine/phar_study/EIPICO_Bibliography_09-08-2026.docx::30-40%": "declared 1.35cm, needs 1.55cm for its widest figure",
+  "engine/phar_study/EIPICO_Bibliography_09-08-2026.docx::40-50%": "declared 1.35cm, needs 1.55cm for its widest figure",
+  "engine/phar_study/EIPICO_Bibliography_09-08-2026.docx::50-60%": "declared 1.35cm, needs 1.55cm for its widest figure",
+  "engine/phar_study/EIPICO_Bibliography_09-08-2026.docx::60-70%": "declared 1.35cm, needs 1.55cm for its widest figure",
+  "engine/phar_study/EIPICO_Bibliography_09-08-2026.docx::70-80%": "declared 1.35cm, needs 1.55cm for its widest figure",
+  "engine/phar_study/EIPICO_Bibliography_09-08-2026.docx::80-90%": "declared 1.35cm, needs 1.55cm for its widest figure",
+  "engine/phar_study/EIPICO_Bibliography_09-08-2026.docx::90-100%": "declared 1.35cm, needs 1.75cm for its widest figure",
+  "engine/phar_study/EIPICO_Bibliography_09-08-2026.docx::Date": "declared 1.68cm, needs 1.83cm for its widest figure",
+  "engine/phdc_study/PHDC_Bibliography_03-09-2026.docx::Date": "declared 1.90cm, needs 1.94cm for its widest figure",
+  "engine/phdc_study/PHDC_Bibliography_03-09-2026.docx::Value": "declared 2.10cm, needs 2.29cm for its widest figure",
+  "engine/phdc_study/PHDC_Valuation_Study_03-09-2026.docx::2035": "declared 1.81cm, needs 1.95cm for its widest figure",
+  "engine/phdc_study/PHDC_Valuation_Study_03-09-2026.docx::2040": "declared 1.81cm, needs 1.95cm for its widest figure",
+  "engine/riyadhcable_study/RIYADHCABLE_Bibliography_18-08-2026.docx::Date": "declared 1.78cm, needs 1.83cm for its widest figure",
+  "engine/savola_study/SAVOLA_Bibliography_19-08-2026.docx::Date": "declared 1.90cm, needs 1.94cm for its widest figure",
+  "engine/swdy_study/SWDY_Bibliography_05-08-2026.docx::Date": "declared 1.83cm, needs 1.94cm for its widest figure"
+ },
+ "_seeded": "03-Sep-2026: the initial population, measured at adoption. These are columns in documents delivered BEFORE the measured width instrument existed. Overwhelmingly one shape repeated: a ten-character ISO date in an input register sized around 1.8-1.9cm, where it needs 1.94cm at 7.5pt and 2.15 at 8.5. TMGH's was fixed in the same pass rather than listed, because that study was being re-issued anyway.",
+ "_examined_at_adoption": {
+  "documents": 43,
+  "tables": 979
+ }
+}

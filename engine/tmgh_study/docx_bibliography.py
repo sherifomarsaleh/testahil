@@ -14,6 +14,8 @@ from docx.shared import Cm
 HERE = os.path.dirname(os.path.abspath(__file__))
 ENGINE = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(HERE, ".."))
+import col_width                                                       # noqa: E402
 from docx_helpers import (INK, MUTED, ACCENT, money, pct, style, para, bullets,
                           table, scrub, column_audit)
 
@@ -82,8 +84,15 @@ def build(path):
                          money(e["value"], 2 if abs(e["value"]) < 100 else 0),
                          e.get("unit", ""), e["date"], e["tier"],
                          (e.get("note") or "")[:150]])
-        table(doc, ["Input", "Value", "Unit", "As at", "Reliability", "Note"],
-              rows, [4.0, 2.0, 1.9, 1.9, 1.4, 4.8], size=7.5)
+        # THE DATE COLUMN PRINTED "2025-12-" WITH A BARE "31" ON THE LINE BENEATH, on
+        # every row of this register, in the field a reader of a provenance table checks
+        # first. At 7.5pt a ten-character ISO date needs 1.95cm and the column had 1.90.
+        # Sized from the cells at the size they are actually set in; the note column,
+        # which holds prose and may wrap, absorbs the difference.
+        hdr_reg = ["Input", "Value", "Unit", "As at", "Reliability", "Note"]
+        table(doc, hdr_reg, rows,
+              col_width.fit_widths(hdr_reg, rows, 16.0, generous=5, size=7.5),
+              size=7.5)
 
     doc.add_heading("Country-level inputs", level=2)
     ins = W["inputs"]
