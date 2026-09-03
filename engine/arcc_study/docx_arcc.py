@@ -27,6 +27,30 @@ CALB = D['calibration']
 OWN = _B['own_stock']
 STK = json.load(open('strike_result.json'))
 S0 = json.load(open('step0_result.json'))
+# THE PUBLISHED BAND RECORD IS NOT THE FITTING SAMPLE [corrected 03-Sep-2026].
+# step0_result.json carries the BREAK-FILTERED panel the engine fits on -- 16 windows
+# here, with 28 dropped -- and [R-CAL-02] is explicit that the record a reader is
+# shown is deliberately NOT break-filtered, because every dropped window is a real
+# forecast that really resolved and a reader asking how often our bands held is owed
+# the whole record. The two are different samples on purpose, and the document was
+# quoting the wrong one. It reads the generated record instead, which is the single
+# source that rule names.
+def _band_record(tk):
+    import re as _re
+    _src = open(os.path.join(HERE, '..', '..', 'assets', 'data.js'), encoding='utf-8').read()
+    _i = _src.find('BANDS')
+    _m = _re.search(r'\b%s\s*:\s*\{([^}]*)\}' % tk, _src[_i:_i + 200000])
+    if not _m:
+        raise SystemExit('no published band record for %s. [R-CAL-02] says what a '
+                         'reader is shown, and this study cannot show it without one.' % tk)
+    _out = {}
+    for _k, _v in _re.findall(r'(\w+)\s*:\s*("[^"]*"|[-\w.]+)', _m.group(1)):
+        _out[_k] = (_v.strip('"') if _v.startswith('"')
+                    else (None if _v == 'null' else float(_v)))
+    return _out
+
+
+BAND = _band_record('ARCC')
 TECH = json.load(open('technicals.json'))['state']
 EFG = json.load(open('efg_bridge.json'))
 MSC = json.load(open('scenario_margin.json'))
@@ -806,13 +830,30 @@ caption(f'Table 18 — Percentiles in EGP per share, from a 50,000-path simulati
         f'risk-free rate less the dividend yield — and nothing else.')
 figure('fig4_fan.png', 6.9, 'Figure 6 — The three-month cone.')
 figure('fig6_dist.png', 6.4, 'Figure 7 — The three-month outcome distribution.')
-P(f'How well calibrated is it? Measured over {S0["windows_scored"]} independent quarterly '
-  f'windows, the bands cover {pc(S0["cov50"], 0)}, {pc(S0["cov80"], 0)} and '
-  f'{pc(S0["cov90"], 0)} of outcomes against nominal 50%, 80% and 90%. The map is '
-  f'therefore TOO WIDE rather than mis-centred: it is not missing the outcome, it is '
-  f'covering more ground than it claims to. Its skill against a simple random walk is '
-  f'{sg(S0["skill_norm"], 1)} — statistically indistinguishable from zero at every block '
-  f'size tested. No valuation conclusion in this study rests on it.')
+# TWO THINGS HERE WERE FORBIDDEN ON A PUBLIC SURFACE [corrected 03-Sep-2026].
+#
+# (1) "The map is therefore TOO WIDE" is a FLAG, and [R-CAL-02] permits one only
+#     when it is EARNED — a two-sided binomial test against the target at the 5%
+#     level — and says that OTHERWISE NOTHING IS SAID, because the ordinary case is
+#     a cone that held about as often as it promised and silence is the honest
+#     response to it. ARCC's live record carries flag: null. The flag was typed.
+#
+# (2) The skill number against a random walk is the RETIRED verdict [R-CAL-03],
+#     which may not reach a reader on any surface. It appeared twice.
+#
+# What replaces both is what the rule actually says a reader is shown: the band
+# record with its COUNT beside the percentage, and the flag only if earned.
+_FLAG = (BAND.get('flag') or '')
+P(f'How well calibrated is it? Over {int(BAND["n"])} resolved three-month forecasts '
+  f'on this share the price finished inside the ninety-per-cent band '
+  f'{pc(BAND["c90"], 0)} of the time, and inside the fifty-per-cent band '
+  f'{pc(BAND["c50"], 0)} of the time. The count is printed beside the percentage because a '
+  f'percentage without its count is the number that misleads.'
+  + (f' On a two-sided test at the five-per-cent level the bands ran {_FLAG}.'
+     if _FLAG else
+     ' No flag is earned on a two-sided test at the five-per-cent level: the bands held '
+     'about as often as they promised, and nothing further is claimed for them.')
+  + ' No valuation conclusion in this study rests on the map.')
 
 # ============================== 4 ============================================
 H1('4  Comparison of the lenses')
@@ -1036,9 +1077,10 @@ for head, body in [
      f'it means the risk measure in this valuation is a sector estimate rather than a '
      f'measurement of this share. The valuation is shown across the whole peer spread for '
      f'exactly that reason.'),
-    ('The price map is over-wide. ', f'Its bands cover {pc(S0["cov80"], 0)} and '
-     f'{pc(S0["cov90"], 0)} of outcomes against nominal 80% and 90%, and its skill against '
-     f'a random walk is {sg(S0["skill_norm"], 1)}. It is carried as illustrative only.'),
+    ('The price map is a separate lens and carries no valuation weight. ',
+     f'Over {int(BAND["n"])} resolved three-month forecasts the price finished inside '
+     f'the ninety-per-cent band {pc(BAND["c90"], 0)} of the time. It is carried as '
+     f'illustrative only, and nothing in the valuation depends on it.'),
     ('A minority position under a 60% shareholder. ', 'Aridos Jativa of Spain owns 60% of '
      'the capital. No control premium or discount is applied anywhere in this valuation, in '
      'either direction. The company also holds 1% of its own capital in treasury, acquired '
