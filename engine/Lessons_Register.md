@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**125 lessons**, of which 98 bind on every study, 20 on a class of company, and 7 on a single name.
+**128 lessons**, of which 101 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 52 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 53 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1008,6 +1008,36 @@ Parsing a filing for its statements and treating it as read is the statement-lev
 > **What it cost, or how we know.** ARCC's FY2025 filing had been parsed cell by cell for its statements across four revisions. Its accounting-policies note discloses machinery and equipment at 20 years, and that figure is what the terminal turned on — worth EGP 13.32 a share. The note had never been opened, and the filing carries no text layer at all, so reading it took OCR off the rendered pixels.
 
 > **What would overturn it.** A study where the accounting-policies note bears on no construction in the model — in which case it is not needed, and the record should say so rather than leave the note unopened.
+
+### L-094 · This house forecasts profit at about twice what companies report, and its valuations still come out below the market. Those two facts locate the pessimism away from the forecasts.
+
+The projected-versus-actual record says the forecasts lean OPTIMISTIC. So a fair value that lands below the market despite an optimistic profit line is not a cautious forecast — it is a valuation construction consuming the optimism and more. Look at the machinery, not the drivers.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, engine/valuation_calibration/systemic_bias.py, 03-Sep-2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** On 867 committed projected-versus-actual cells, PROFIT pools at +0.8084 in log terms — x2.24 of actual — too high in 89% of cells, on both names (PHDC +1.107, 60 of 62; TMGH +0.264, 25 of 34). It is FLAT across horizons (+0.859 at one year, +0.719 at five), so a level error rather than a rate error, and it does NOT change sign between eras. Gross profit is the same shape at +0.2303. Eight of the ten lines measured DO change sign across eras and are reported rather than corrected for; these two do not.
+
+> **What would overturn it.** A third and fourth name committing cells whose profit bias is near zero or negative, which would make this a two-name developer finding rather than a house one. Both names carrying cells are Egyptian real-estate developers.
+
+### L-095 · A forecast can under-forecast revenue AND under-forecast cost and still be optimistic, because the margin is the difference.
+
+Small errors in the same direction on two large lines do not cancel — they compound into the residual between them. Checking that revenue and cost are each roughly right is not the same as checking the margin, and the margin is what the value rests on.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, engine/valuation_calibration/systemic_bias.py, 03-Sep-2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** Revenue pools at -0.2243 (x0.80 of actual) and cost of sales at -0.1309 (x0.88) — both UNDER-forecast, which reads as conservative on each line taken alone. Because revenue is under-forecast by MORE, the forecast gross margin comes out too wide and gross profit pools at +0.2303. Finance cost at -1.1465 then carries the net line to +0.8084.
+
+> **What would overturn it.** A case where two same-signed line biases of unequal size leave the margin unbiased.
+
+### L-096 · The runs recorded their scores and not their observations, so a question about which LINES are biased could be answered on two names out of five.
+
+This is the amendment about valuation inputs arriving a second time, one layer along. The cells cost nothing to keep; they were simply not asked for, and nobody noticed the missing field until the question arrived.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-FCAL-01 AMENDED], 03-Sep-2026
+
+> **What it cost, or how we know.** AMOC, ARCC and EGCH commit bias, MAE, over-share and bootstrap intervals by driver, horizon and era — and not the per-cell projected-versus-actual pairs those were computed from. PHDC and TMGH commit 403 and 1,856 cells. So the line-level systemic bias analysis rests on two names, and the three that would have told us whether it generalises cannot.
+
+> **What would overturn it.** A pooled statistic from which the underlying cells can be recovered exactly, which would make committing them redundant.
 
 ### L-208 · A check that fails by the calendar is not a check.
 
