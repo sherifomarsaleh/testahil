@@ -38,6 +38,43 @@ That is a dominance argument, not a judgement: it has no parameters, so there is
 in it to tune. A terminal below its own floor is dominated by a policy the company can
 choose unilaterally, and the study has published the worse of two worlds.
 
+THE DIRECTION OF THE DEFECT IS SET BY THE MARKET'S INFLATION RATE, AND THAT EXPLAINS THE
+WHOLE PHENOMENON THIS REASSESSMENT WAS CALLED OVER.
+
+The implied life is 1/g, so it is SHORT where terminal inflation is high and LONG where it
+is low. A real industrial asset life sits somewhere near 20-40 years. So one construction
+over-charges in a high-inflation market and UNDER-charges in a low-inflation one, and the
+same formula is pessimistic in Cairo and generous in Abu Dhabi:
+
+  ticker           g   implied life   charge   EV at L=20   EV at L=30   EV at L=40
+  AMOC          7.0%      14.3 y      23.1%       +4.8%        +8.8%       +10.8%
+  SWDY          5.0%      20.0 y      24.5%        0.0%        +9.2%       +13.8%
+  RIYADHCABLE   4.0%      25.0 y      15.9%       -3.8%        +2.5%        +5.7%
+  AMR           3.0%      33.3 y      10.0%       -5.5%        -0.9%        +1.4%
+  AIRARABIA     2.5%      40.0 y      17.5%      -20.2%        -6.7%         0.0%
+  DU            2.5%      40.0 y       9.1%       -8.4%        -2.8%         0.0%
+  MODON         2.5%      40.0 y      29.4%      -28.6%        -9.5%         0.0%
+  SAVOLA        2.5%      40.0 y      24.8%      -26.2%        -8.7%         0.0%
+  ADNOCLS       2.0%      50.0 y      18.1%      -24.9%       -11.1%        -4.1%
+  FERTIGLOBE    2.0%      50.0 y      14.8%      -14.4%        -6.4%        -2.4%
+  ADNOCDIST     1.5%      66.7 y       6.0%      -11.2%        -5.8%        -3.2%
+
+CORRECTING THIS PROPERLY WOULD LOWER MOST OF THE BOOK. At a 30-year life three of eleven
+names rise and eight fall, median -5.8%. It raises the EGYPTIAN names — which is exactly
+where the pessimism complaint came from — and lowers the Gulf names, whose 1.5% to 2.5%
+terminal inflations bought them a forty- to sixty-seven-year replacement cycle nobody ever
+argued for and no accounting-policies note supports.
+
+A CORRECTION THAT MOVES MOST OF THE BOOK DOWN IS NOT A REASON TO RECONSIDER THE CORRECTION.
+It is the reason this census had to exist before anything was fixed: measured one name at a
+time, from the direction of the complaint, the obvious move was to loosen the terminal
+everywhere. Measured across the book, that would have been right on two names and wrong on
+eight, and it would have looked like progress on both counts because nobody was comparing.
+
+THE GENERAL LESSON: A DEFECT WHOSE DIRECTION DEPENDS ON A MARKET PARAMETER WILL LOOK LIKE A
+HOUSE BIAS IN WHICHEVER MARKET YOU HAPPEN TO BE LOOKING AT. The complaint was true, its
+attribution was not, and only the census could tell the two apart.
+
 READING THIS OUTPUT. It measures; it does not correct. Every figure is resolved from each
 study's OWN committed numbers file and the census RECORDS THE KEY THAT ANSWERED, so a
 study whose terminal cannot be read comes back UNREADABLE rather than clean — an empty

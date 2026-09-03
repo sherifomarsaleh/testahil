@@ -2361,8 +2361,26 @@ LESSONS = [
       "generalises cannot.",
       "A pooled statistic from which the underlying cells can be recovered exactly, which "
       "would make committing them redundant."),
-
+    L("L-097", "ALL", None,
+      "A defect whose direction depends on a market parameter will look like a house bias in "
+      "whichever market you happen to be looking at.",
+      "The complaint can be entirely true and its attribution entirely wrong. Only a census "
+      "across markets separates the two, and correcting from the direction of the complaint "
+      "alone gets the sign right on the names that prompted it and wrong everywhere else.",
+      "engine/valuation_calibration/terminal_census.py, 03-Sep-2026",
+      "build",
+      "The retired terminal implied a replacement cycle of 1/g, so it over-charged where "
+      "terminal inflation was high and UNDER-charged where it was low. Across the eleven "
+      "studies carrying it, the implied life ran from 14.3 years (AMOC, 7% terminal "
+      "inflation) to 66.7 (ADNOCDIST, 1.5%). Priced on a 30-year asset life, three names "
+      "RISE and eight FALL, median -5.8% of enterprise value: it raises the Egyptian names "
+      "the pessimism complaint came from and lowers the Gulf names, whose low terminal "
+      "inflations bought them a forty- to sixty-seven-year replacement cycle no "
+      "accounting-policies note supports.",
+      "A market parameter whose variation across the book is too small for the direction of "
+      "a defect to flip — in which case a one-market diagnosis does generalise."),
 ]
+
 
 
 

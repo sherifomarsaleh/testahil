@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**128 lessons**, of which 101 bind on every study, 20 on a class of company, and 7 on a single name.
+**129 lessons**, of which 102 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 53 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 54 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1038,6 +1038,16 @@ This is the amendment about valuation inputs arriving a second time, one layer a
 > **What it cost, or how we know.** AMOC, ARCC and EGCH commit bias, MAE, over-share and bootstrap intervals by driver, horizon and era — and not the per-cell projected-versus-actual pairs those were computed from. PHDC and TMGH commit 403 and 1,856 cells. So the line-level systemic bias analysis rests on two names, and the three that would have told us whether it generalises cannot.
 
 > **What would overturn it.** A pooled statistic from which the underlying cells can be recovered exactly, which would make committing them redundant.
+
+### L-097 · A defect whose direction depends on a market parameter will look like a house bias in whichever market you happen to be looking at.
+
+The complaint can be entirely true and its attribution entirely wrong. Only a census across markets separates the two, and correcting from the direction of the complaint alone gets the sign right on the names that prompted it and wrong everywhere else.
+
+**Applies to:** every study  ·  *Learned from:* found while building, engine/valuation_calibration/terminal_census.py, 03-Sep-2026
+
+> **What it cost, or how we know.** The retired terminal implied a replacement cycle of 1/g, so it over-charged where terminal inflation was high and UNDER-charged where it was low. Across the eleven studies carrying it, the implied life ran from 14.3 years (AMOC, 7% terminal inflation) to 66.7 (ADNOCDIST, 1.5%). Priced on a 30-year asset life, three names RISE and eight FALL, median -5.8% of enterprise value: it raises the Egyptian names the pessimism complaint came from and lowers the Gulf names, whose low terminal inflations bought them a forty- to sixty-seven-year replacement cycle no accounting-policies note supports.
+
+> **What would overturn it.** A market parameter whose variation across the book is too small for the direction of a defect to flip — in which case a one-market diagnosis does generalise.
 
 ### L-208 · A check that fails by the calendar is not a check.
 
