@@ -240,10 +240,19 @@ def read_study(d):
     # and watching the resolver find a substitute in a sensitivity table, which read as a
     # perfectly clean result. AN ABSENT ANSWER WEARING THE COSTUME OF A CLEAN ONE, one more
     # time, in the resolver rather than in the gate.
+    # THE PATH MUST NAME A TERMINAL, in its container OR in its leaf. The first cut asked
+    # only about the container and refused cases.A.terminal_value and
+    # framings.normalisation.terminal_value — two studies whose leaf names the terminal as
+    # plainly as any container could. That is a false positive of this reader's own making,
+    # and [R-COC-01]'s rule applies to it: RE-POINT the test, never widen it arbitrarily.
+    # What is still refused is a BARE `tv` outside any terminal container, because `tv`
+    # alone is ambiguous and a sensitivity row carries one.
     _segs = tvk.split('.')
-    if not any(x.startswith('dcf') or x == 'terminal' for x in _segs):
-        rec['unreadable'] = ('the only terminal value on offer is %s, which is not in a '
-                             'terminal block' % tvk)
+    _leaf = _segs[-1]
+    if not (any(x.startswith('dcf') or x == 'terminal' for x in _segs)
+            or _leaf.startswith('terminal_value')):
+        rec['unreadable'] = ('the only terminal value on offer is %s, whose path names no '
+                             'terminal in either its container or its leaf' % tvk)
         return rec
     rec['tv'], rec['routes']['tv'] = tv, tvk
     frame = _frame_of(tvk)
