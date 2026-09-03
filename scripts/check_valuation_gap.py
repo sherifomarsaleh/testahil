@@ -171,7 +171,50 @@ def read_branches(sdir):
 # old rather than to pretend a strike-date spot is current. Where no library
 # resolves, the struck spot is used and the record says so; that is a fallback,
 # never a preference.
+# RESOLVED AT CALL TIME, NOT AT IMPORT. The negative control swaps gate.ENGINE for
+# a sandbox and expects the gate to examine only what is in it; a snapshot path
+# frozen at import kept pointing at the real one, so two isolated fixtures were
+# silently priced off live market data and two clean cases went red. A constant
+# that ignores the very variable the harness rebinds is not isolation.
+def _snapshot_path():
+    return os.path.join(ENGINE, 'price_snapshot.json')
+
+
+def _snapshot():
+    """A DATED PRICE EXPORT SUPPLIED BY THE PRINCIPAL, newer than the libraries.
+
+    This is a price, not a price history, and the difference decides what it may
+    be used for. [R-GAP-01] asks only "what is it worth against what it trades
+    at", which one dated close answers. The calibration panels, the cones and
+    Step 0.0 need a SERIES and this is not one, so it is deliberately NOT written
+    into engine/raw_ohlc/: a single close pushed into a library would enter every
+    fit as though it were an export.
+    """
+    path = _snapshot_path()
+    if not os.path.exists(path):
+        return {}
+    try:
+        return json.load(open(path, encoding='utf-8')).get('prices') or {}
+    except Exception:
+        return {}
+
+
 def latest_known_price(ticker):
+    """(price, date, source) — the newest dated price the house holds.
+
+    The supplied snapshot wins over the library where it is NEWER, and loses
+    where it is not; whichever is used is named, with its date, so a reader can
+    see which instrument the gap was measured on.
+    """
+    snap = _snapshot().get(ticker.upper())
+    lib_px, lib_date, lib_src = _library_price(ticker)
+    if snap:
+        if lib_date is None or snap.get('date', '') >= lib_date:
+            return float(snap['price']), snap['date'], 'engine/price_snapshot.json'
+    return lib_px, lib_date, lib_src
+
+
+def _library_price(ticker):
     """(price, date, source) from the persistent OHLC library, or (None, None, why)."""
     hits = glob.glob(os.path.join(ENGINE, 'raw_ohlc', '*', '%s.csv' % ticker.upper()))
     if not hits:
@@ -452,14 +495,6 @@ def main(argv):
               % (len(d['breach_no_review']), len(d['unreadable'])))
         return 0
 
-    if new_fail:
-        print('\nFAIL — %d new violation(s):' % len(new_fail))
-        for m in new_fail:
-            print('   ' + m)
-        print('\nA fair value far from the traded price, in EITHER direction, is the case '
-              'where the market is telling you something the model may have missed. Write '
-              'the review, or fix what it would have found.')
-        return 1
     # THE PRICE BASIS IS ALWAYS STATED, NEVER ONLY WHEN IT DIVERGES. The gate now
     # reads the price library, and on the calibrated names the library AGREES with
     # every struck spot — because each study was struck on its library's last row.
@@ -469,7 +504,7 @@ def main(argv):
     # comparison in silence, which is the staleness this reading was changed to end.
     if price_basis:
         print('\n  PRICE BASIS — [R-GAP-01] compares against the LATEST KNOWN price:')
-        print('    %d of %d studies compared against their own OHLC library'
+        print('    %d of %d studies compared against the newest dated price the house holds'
               % (len(price_basis), len(sdirs)))
         for t, d in sorted(price_basis, key=lambda x: x[1])[:6]:
             print('      %-12s last close %s' % (t, d))
@@ -480,6 +515,14 @@ def main(argv):
         for n in price_notes:
             print('    %s' % n)
 
+    if new_fail:
+        print('\nFAIL — %d new violation(s):' % len(new_fail))
+        for m in new_fail:
+            print('   ' + m)
+        print('\nA fair value far from the traded price, in EITHER direction, is the case '
+              'where the market is telling you something the model may have missed. Write '
+              'the review, or fix what it would have found.')
+        return 1
     print('\nOK — no new violations.')
     return 0
 

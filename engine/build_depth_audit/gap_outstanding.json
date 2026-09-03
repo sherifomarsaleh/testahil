@@ -3,9 +3,11 @@
  "seeded": "2026-09-01",
  "breach_no_review": [
   "AIRARABIA",
+  "AMOC",
   "DU",
   "FERTIGLOBE",
   "MODON",
+  "SAVOLA",
   "SWDY"
  ],
  "unreadable": [
@@ -26,7 +28,8 @@
  "exempt": {
   "XPT": "metals study - no issuer, no equity fair value of this shape"
  },
- "note_on_two_sided": "DU was added on 02-Sep-2026 when [R-GAP-01] became two-sided. Its central sits 13.0% ABOVE the spot it was struck at, which the one-sided rule could not see at all \u2014 the gate's first two-sided run found it. It is listed rather than fixed tonight because the list is the honest record of what is outstanding, and because DU is not one of the five calibrated names; it is reviewed when that study is next re-issued.",
+ "note_on_two_sided": "DU was added on 02-Sep-2026 when [R-GAP-01] became two-sided. Its central sits 13.0% ABOVE the spot it was struck at, which the one-sided rule could not see at all — the gate's first two-sided run found it. It is listed rather than fixed tonight because the list is the honest record of what is outstanding, and because DU is not one of the five calibrated names; it is reviewed when that study is next re-issued.",
  "review_central_unstated": [],
- "note_on_review_central": "Added 02-Sep-2026. A review audits an ANSWER and the answer moves: EGCH's central went from 3.76 to -1.06 that day while its review, written for 3.76, sat unchanged in the directory and this gate passed the study \u2014 it checked that a review EXISTED and covered the eight headings, never that it audited the number the study now publishes. Reviews now state 'AUDITED CENTRAL: <x>' and the gate compares. This list is empty because every current review was marked in the same commit; a name belongs here only as a deliberate deferral, and the list may only ever get SHORTER."
+ "note_on_review_central": "Added 02-Sep-2026. A review audits an ANSWER and the answer moves: EGCH's central went from 3.76 to -1.06 that day while its review, written for 3.76, sat unchanged in the directory and this gate passed the study — it checked that a review EXISTED and covered the eight headings, never that it audited the number the study now publishes. Reviews now state 'AUDITED CENTRAL: <x>' and the gate compares. This list is empty because every current review was marked in the same commit; a name belongs here only as a deliberate deferral, and the list may only ever get SHORTER.",
+ "why": "  [03-Sep-2026] The gate now compares against the LATEST KNOWN price — the principal's dated export of 3 September where it is newer than the OHLC library — instead of the spot each study froze at strike, which is what [R-GAP-01] said all along. Two studies breach on that basis and are listed: AMOC, 26.6% below a 13.50 close, whose review audits 8.6417 while the study publishes 9.9142 — a review of a number the study no longer carries; and SAVOLA, 10.1% below, with no review at all. NEITHER IS PASSING. Both are owed an eight-heading review at the live price and are listed so the build is not permanently red while that is written, per [R-ENF-02]. Note also what the list does NOT capture and a reader should: ARCC and PHDC pass here because their reviews audit the centrals the studies still publish, but those reviews were written at gaps of -9.4% and +12.8% and the live gaps are -30.6% and +19.1%. The gate checks that a review audits the current ANSWER; it does not yet check that it audited the current GAP."
 }

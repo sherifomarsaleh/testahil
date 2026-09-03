@@ -1,0 +1,637 @@
+{
+ "_": "dated price snapshot supplied by the principal",
+ "source": "487f19c7-Latest_testahil_stocks_prices_392026.xlsx",
+ "as_of": "2026-09-03",
+ "prices": {
+  "ABUK": {
+   "price": 94.0,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Abu Qir Fertilizers"
+  },
+  "ADIB": {
+   "price": 52.05,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "ADIB-Egypt"
+  },
+  "AMOC": {
+   "price": 13.5,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Alexandria Mineral Oils"
+  },
+  "ARCC": {
+   "price": 77.0,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Arabian Cement Co"
+  },
+  "BTFH": {
+   "price": 3.02,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Beltone Financial Holding"
+  },
+  "CCAP": {
+   "price": 5.9,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Citadel Capital"
+  },
+  "CLHO": {
+   "price": 17.88,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Cleopatra Hospital"
+  },
+  "COMI": {
+   "price": 138.98,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Commercial International Bank (CIB)"
+  },
+  "DSCW": {
+   "price": 2.03,
+   "date": "2026-09-02",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Dice Sport & Casual Wear"
+  },
+  "EFID": {
+   "price": 30.79,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Edita Food Industries"
+  },
+  "EFIH": {
+   "price": 22.97,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "e-finance for Digital & Financial Investments"
+  },
+  "EGAL": {
+   "price": 381.0,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Egypt Aluminum"
+  },
+  "EGCH": {
+   "price": 14.41,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Egyptian Chemical Industries (KIMA)"
+  },
+  "ELEC": {
+   "price": 2.08,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Electro Cable Egypt"
+  },
+  "EMFD": {
+   "price": 13.8,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Emaar Misr for Development"
+  },
+  "ETEL": {
+   "price": 115.0,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Telecom Egypt"
+  },
+  "FWRY": {
+   "price": 18.95,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Fawry for Banking Technology"
+  },
+  "GBCO": {
+   "price": 28.98,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "GB Corp"
+  },
+  "HELI": {
+   "price": 8.1,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Heliopolis Housing"
+  },
+  "HRHO": {
+   "price": 25.7,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "EFG Holding"
+  },
+  "ISPH": {
+   "price": 12.95,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Ibnsina Pharma"
+  },
+  "JUFO": {
+   "price": 27.06,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Juhayna Food Industries"
+  },
+  "KABO": {
+   "price": 34.06,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "El Nasr Clothing & Textiles (Kabo)"
+  },
+  "LCSW": {
+   "price": 36.0,
+   "date": "2026-09-02",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Lecico Egypt"
+  },
+  "OCDI": {
+   "price": 33.52,
+   "date": "2026-09-02",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "SODIC"
+  },
+  "OIH": {
+   "price": 2.01,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Orascom Investment Holding"
+  },
+  "ORAS": {
+   "price": 831.5,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Orascom Construction"
+  },
+  "ORHD": {
+   "price": 42.0,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Orascom Development Egypt"
+  },
+  "ORWE": {
+   "price": 26.76,
+   "date": "2026-09-02",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Oriental Weavers"
+  },
+  "PHAR": {
+   "price": 127.3,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Egyptian Int. Pharmaceuticals (EIPICO)"
+  },
+  "PHDC": {
+   "price": 14.4,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Palm Hills Developments"
+  },
+  "PRDC": {
+   "price": 9.78,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Pioneers Properties"
+  },
+  "RAYA": {
+   "price": 7.15,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Raya Holding"
+  },
+  "RMDA": {
+   "price": 5.91,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Tenth of Ramadan Pharma (Rameda)"
+  },
+  "SCEM": {
+   "price": 100.5,
+   "date": "2026-09-02",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Sinai Cement"
+  },
+  "SWDY": {
+   "price": 90.5,
+   "date": "2026-09-03",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Elsewedy Electric"
+  },
+  "TMGH": {
+   "price": 96.6,
+   "date": "2026-09-02",
+   "ccy": "EGP",
+   "exchange": "EGX",
+   "name": "Talaat Moustafa Group"
+  },
+  "2POINTZERO": {
+   "price": 2.08,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "ADX",
+   "name": "2PointZero"
+  },
+  "ADCB": {
+   "price": 15.14,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "ADX",
+   "name": "Abu Dhabi Commercial Bank"
+  },
+  "ADIBUAE": {
+   "price": 22.66,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "ADX",
+   "name": "Abu Dhabi Islamic Bank"
+  },
+  "ADNOCDIST": {
+   "price": 4.02,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "ADX",
+   "name": "ADNOC Distribution"
+  },
+  "ADNOCDRILL": {
+   "price": 5.8,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "ADX",
+   "name": "ADNOC Drilling"
+  },
+  "ADNOCGAS": {
+   "price": 3.2,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "ADX",
+   "name": "ADNOC Gas"
+  },
+  "ADNOCLS": {
+   "price": 6.85,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "ADX",
+   "name": "ADNOC Logistics & Services"
+  },
+  "AGTHIA": {
+   "price": 3.29,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "ADX",
+   "name": "Agthia Group"
+  },
+  "ALDAR": {
+   "price": 7.6,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "ADX",
+   "name": "Aldar Properties"
+  },
+  "ALPHADHABI": {
+   "price": 7.3,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "ADX",
+   "name": "Alpha Dhabi Holding"
+  },
+  "AMR": {
+   "price": 2.39,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "ADX",
+   "name": "Americana Restaurants"
+  },
+  "BOROUGE": {
+   "price": 2.35,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "ADX",
+   "name": "Borouge"
+  },
+  "BURJEEL": {
+   "price": 1.24,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "ADX",
+   "name": "Burjeel Holdings"
+  },
+  "EAND": {
+   "price": 21.18,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "ADX",
+   "name": "e& (Etisalat)"
+  },
+  "FAB": {
+   "price": 19.4,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "ADX",
+   "name": "First Abu Dhabi Bank"
+  },
+  "FERTIGLB": {
+   "price": 2.67,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "ADX",
+   "name": "Fertiglobe"
+  },
+  "IHC": {
+   "price": 369.0,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "ADX",
+   "name": "International Holding Company"
+  },
+  "LULU": {
+   "price": 0.94,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "ADX",
+   "name": "Lulu Retail"
+  },
+  "MODON": {
+   "price": 2.83,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "ADX",
+   "name": "Modon Holding"
+  },
+  "AIRARABIA": {
+   "price": 4.97,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "DFM",
+   "name": "Air Arabia"
+  },
+  "DEWA": {
+   "price": 2.7,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "DFM",
+   "name": "Dubai Electricity & Water Authority"
+  },
+  "DIB": {
+   "price": 7.2,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "DFM",
+   "name": "Dubai Islamic Bank"
+  },
+  "DU": {
+   "price": 11.36,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "DFM",
+   "name": "Emirates Integrated Telecommunications"
+  },
+  "EMAAR": {
+   "price": 10.8,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "DFM",
+   "name": "Emaar Properties"
+  },
+  "EMAARDEV": {
+   "price": 13.38,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "DFM",
+   "name": "Emaar Development"
+  },
+  "EMPOWER": {
+   "price": 1.57,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "DFM",
+   "name": "Emirates Central Cooling Systems"
+  },
+  "ENBD": {
+   "price": 30.28,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "DFM",
+   "name": "Emirates NBD"
+  },
+  "SALIK": {
+   "price": 5.4,
+   "date": "2026-09-03",
+   "ccy": "AED",
+   "exchange": "DFM",
+   "name": "Salik Company"
+  },
+  "ACWA": {
+   "price": 192.7,
+   "date": "2026-09-03",
+   "ccy": "SAR",
+   "exchange": "Tadawul",
+   "name": "ACWA Power"
+  },
+  "ALINMA": {
+   "price": 25.0,
+   "date": "2026-09-03",
+   "ccy": "SAR",
+   "exchange": "Tadawul",
+   "name": "Alinma Bank"
+  },
+  "ALRAJHI": {
+   "price": 66.2,
+   "date": "2026-09-03",
+   "ccy": "SAR",
+   "exchange": "Tadawul",
+   "name": "Al Rajhi Bank"
+  },
+  "ARAMCO": {
+   "price": 26.02,
+   "date": "2026-09-03",
+   "ccy": "SAR",
+   "exchange": "Tadawul",
+   "name": "Saudi Aramco"
+  },
+  "ELM": {
+   "price": 608.5,
+   "date": "2026-09-03",
+   "ccy": "SAR",
+   "exchange": "Tadawul",
+   "name": "Elm Company"
+  },
+  "EXTRA": {
+   "price": 66.05,
+   "date": "2026-09-03",
+   "ccy": "SAR",
+   "exchange": "Tadawul",
+   "name": "United Electronics Company"
+  },
+  "MAADEN": {
+   "price": 65.7,
+   "date": "2026-09-03",
+   "ccy": "SAR",
+   "exchange": "Tadawul",
+   "name": "Saudi Arabian Mining Company"
+  },
+  "RIBL": {
+   "price": 20.48,
+   "date": "2026-09-03",
+   "ccy": "SAR",
+   "exchange": "Tadawul",
+   "name": "Riyad Bank"
+  },
+  "RIYADHCABLE": {
+   "price": 104.8,
+   "date": "2026-09-03",
+   "ccy": "SAR",
+   "exchange": "Tadawul",
+   "name": "Riyadh Cables"
+  },
+  "SABIC": {
+   "price": 81.4,
+   "date": "2026-09-03",
+   "ccy": "SAR",
+   "exchange": "Tadawul",
+   "name": "Saudi Basic Industries"
+  },
+  "SAVOLA": {
+   "price": 30.3,
+   "date": "2026-09-03",
+   "ccy": "SAR",
+   "exchange": "Tadawul",
+   "name": "Savola Group"
+  },
+  "SNB": {
+   "price": 42.14,
+   "date": "2026-09-03",
+   "ccy": "SAR",
+   "exchange": "Tadawul",
+   "name": "Saudi National Bank"
+  },
+  "STC": {
+   "price": 43.86,
+   "date": "2026-09-03",
+   "ccy": "SAR",
+   "exchange": "Tadawul",
+   "name": "Saudi Telecom Company"
+  },
+  "IQCD": {
+   "price": 13.17,
+   "date": "2026-09-03",
+   "ccy": "QAR",
+   "exchange": "QSE",
+   "name": "Industries Qatar"
+  },
+  "QGTS": {
+   "price": 4.85,
+   "date": "2026-09-03",
+   "ccy": "QAR",
+   "exchange": "QSE",
+   "name": "Qatar Gas Transport (Nakilat)"
+  },
+  "QNB": {
+   "price": 16.66,
+   "date": "2026-09-02",
+   "ccy": "QAR",
+   "exchange": "QSE",
+   "name": "Qatar National Bank"
+  },
+  "KAKAO": {
+   "price": 35100.0,
+   "date": "2026-09-03",
+   "ccy": "KRW",
+   "exchange": "KRX",
+   "name": "Kakao Corp"
+  },
+  "LGES": {
+   "price": 364000.0,
+   "date": "2026-09-03",
+   "ccy": "KRW",
+   "exchange": "KRX",
+   "name": "LG Energy Solution"
+  },
+  "SAMSUNG": {
+   "price": 250000.0,
+   "date": "2026-09-03",
+   "ccy": "KRW",
+   "exchange": "KRX",
+   "name": "Samsung Electronics"
+  },
+  "INFY": {
+   "price": 1132.5,
+   "date": "2026-09-03",
+   "ccy": "INR",
+   "exchange": "NSE",
+   "name": "Infosys"
+  },
+  "RELIANCE": {
+   "price": 1308.8,
+   "date": "2026-09-03",
+   "ccy": "INR",
+   "exchange": "NSE",
+   "name": "Reliance Industries"
+  },
+  "TMPV": {
+   "price": 310.1,
+   "date": "2026-09-03",
+   "ccy": "INR",
+   "exchange": "NSE",
+   "name": "Tata Motors"
+  },
+  "AAPL": {
+   "price": 325.31,
+   "date": "2026-09-03",
+   "ccy": "USD",
+   "exchange": "NASDAQ",
+   "name": "Apple Inc."
+  },
+  "NVDA": {
+   "price": 217.11,
+   "date": "2026-09-03",
+   "ccy": "USD",
+   "exchange": "NASDAQ",
+   "name": "NVIDIA Corp"
+  },
+  "TSLA": {
+   "price": 367.95,
+   "date": "2026-09-03",
+   "ccy": "USD",
+   "exchange": "NASDAQ",
+   "name": "Tesla Inc."
+  }
+ }
+}
