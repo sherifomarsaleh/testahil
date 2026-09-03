@@ -977,18 +977,35 @@ P(f'Strip out the items resolved above and the honest disagreement left is one t
 # ============================== 2 ============================================
 H1('2  Price structure')
 P(TECH['tech']['summary'])
-rows = [['', 'Level (EGP)', 'Distance from spot']]
+# TWO CLOCKS, AND THE DISTANCES BELONG TO THE READ'S OWN. The levels are computed from a
+# price history ending on the read's own last session; the study's spot is the latest known
+# market price, which can be weeks later. Measuring the levels against SPOT — which this
+# table did until 03-Sep-2026 — makes every resistance and support print as a large
+# negative and shows the 52-WEEK HIGH BELOW the current price, which is impossible on one
+# clock and merely stale on two. The distances are from the read's own close, and the gap
+# between the two dates is stated rather than hidden inside a percentage.
+_TC = TECH['close']
+rows = [['', 'Level (EGP)', f'Distance from the {n2(_TC)} close of {TECH["data_date"]}']]
 for i, r in enumerate(TECH['levels']['res']):
-    rows.append([f'Resistance {i+1}', n2(r), sg(r / SPOT - 1)])
+    rows.append([f'Resistance {i+1}', n2(r), sg(r / _TC - 1)])
 for i, s_ in enumerate(TECH['levels']['sup']):
-    rows.append([f'Support {i+1}', n2(s_), sg(s_ / SPOT - 1)])
-rows.append(['52-week high', n2(TECH['hi_52w']), sg(TECH['hi_52w'] / SPOT - 1)])
-rows.append(['52-week low', n2(TECH['lo_52w']), sg(TECH['lo_52w'] / SPOT - 1)])
+    rows.append([f'Support {i+1}', n2(s_), sg(s_ / _TC - 1)])
+rows.append(['52-week high', n2(TECH['hi_52w']), sg(TECH['hi_52w'] / _TC - 1)])
+rows.append(['52-week low', n2(TECH['lo_52w']), sg(TECH['lo_52w'] / _TC - 1)])
 table(rows, [2.00, 1.50, 1.70])
-caption('Table 17 — Levels are computed from swing structure with a recency weight; '
-        'moving averages, the 52-week extremes and round numbers are admitted as '
-        'candidates but score below real swing points. Resistance 1 and support 1 always '
-        'mean nearest to the close.')
+caption(f'Table 17 — Levels are computed from swing structure with a recency weight; '
+        f'moving averages, the 52-week extremes and round numbers are admitted as '
+        f'candidates but score below real swing points. Resistance 1 and support 1 always '
+        f'mean nearest to the close. THE DATES DIFFER AND THAT MATTERS HERE: this read is '
+        f'built on price history ending {TECH["data_date"]} at EGP {n2(_TC)}, while the '
+        f'latest known market price used everywhere else in this study is EGP {n2(SPOT)} '
+        f'on {D["meta"]["spot_date"]}, '
+        f'{sg(SPOT/_TC-1)} higher. Every distance above is measured from the read\'s own '
+        f'close, because a level drawn on one day\'s history says nothing about a price on '
+        f'another. The whole ladder — the 52-week high included — sits BELOW the current '
+        f'price, so on this evidence the tape has moved clear of every level this structure '
+        f'identified and the read should be treated as describing a market the price has '
+        f'since left.')
 figure('fig3_ma.png', 6.9,
        'Figure 5 — Three years of price with the 50- and 200-day averages.')
 rich([('On the upside: ', {'bold': True}), (TECH['tech']['bull'], {})])

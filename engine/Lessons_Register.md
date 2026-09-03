@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**139 lessons**, of which 112 bind on every study, 20 on a class of company, and 7 on a single name.
+**141 lessons**, of which 114 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 64 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 66 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1198,6 +1198,26 @@ The prose-figure gate reads a document's text; a chart's annotation is pixels. A
 > **What it cost, or how we know.** Figure 4's annotation read 'the whole EGP 15.10 gap is forward-looking' and 'that cash is inside the 54.65' — the superseded edition's gap and central — drawn directly above bars that already ended at 66.53, in a figure whose underlying record was current and declared its vintage correctly. It also claimed two thirds of the gap was capex and a dividend when those two steps together are several times the gap. Every figure in the annotation is now computed from the record the bars are drawn from, so the text and the picture cannot disagree.
 
 > **What would overturn it.** A rendering pipeline that emits figure text into the document's text layer, where the existing prose gate would reach it.
+
+### L-219 · A DISTANCE IS MEASURED FROM THE PRICE ITS SUBJECT WAS COMPUTED ON, NEVER FROM A PRICE OF ANOTHER DATE. Two clocks in one column produce figures that are individually correct and jointly impossible.
+
+The technical read is built on the price library; the study's spot is the latest known market price, and the two can be weeks apart. A percentage that divides one by the other has no meaning and does not announce itself as meaningless.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026, reading the rendered PDF
+
+> **What it cost, or how we know.** ARCC's levels table headed a column 'Distance from spot' and divided every level by a spot of 77.00 struck on 3 September, while the levels themselves come from a library ending 6 August at a close of 59.00 — four weeks and 30.5% earlier. Every resistance and every support printed as a large NEGATIVE, and the 52-WEEK HIGH printed 21.6% BELOW the current price, which is impossible on one clock. The read itself was internally coherent throughout: resistance 1 above its own close, support 1 below it. Distances are now measured from the read's own close with that date in the column heading, and the gap between the two dates is stated in the caption rather than buried inside a percentage.
+
+> **What would overturn it.** A study whose technical read and spot are always struck on the same session, which would make the distinction unnecessary rather than merely invisible.
+
+### L-220 · A WIDENING MADE TO CLEAR A FALSE POSITIVE CAN HIDE A TRUE ONE. Widening a rendering set across two CLOCKS is not the same discipline as widening it across two renderings of one quantity.
+
+The standing rule that a false positive is fixed by widening the set, never by deleting the figure, is right — and it says nothing about which widenings are legitimate. Admitting both a correct and an incorrect anchor makes the check pass on either, which is indistinguishable from not checking.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026
+
+> **What it cost, or how we know.** prose_check declared PF.relative_to(technicals, (read_close, spot)) — both anchors — so the levels table's wrong-clock distances were IN the rendering set and the gate reported 0 unmatched on a table showing the 52-week high below the current price. Narrowed to the read's own close, with the single figure that legitimately spans both clocks — the gap between them, stated in the caption — declared explicitly.
+
+> **What would overturn it.** A quantity genuinely quotable against two different anchors in the same document, where the reader is told which is which at each use.
 
 
 ---

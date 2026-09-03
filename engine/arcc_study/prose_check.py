@@ -28,10 +28,20 @@ vals = PF.numbers_from(HERE)
 # every lens, expert and scenario is quoted as a DISTANCE from the price
 vals += PF.ratios_against(PF.numbers_from(HERE, files=['study_numbers.json']),
                           (SN['meta'].get('spot'),))
+# THE TECHNICAL READ IS MEASURED AGAINST ITS OWN CLOSE AND NOT AGAINST SPOT, and the
+# difference is not academic here. This widening once admitted BOTH, which is what let the
+# levels table publish every resistance and support — and the 52-WEEK HIGH — as a large
+# negative distance from a spot struck four weeks and 30.5% later, with prose_figures
+# reporting zero unmatched because the wrong-clock figure was in the rendering set. A
+# WIDENING MADE TO CLEAR A FALSE POSITIVE CAN HIDE A TRUE ONE, and the discipline that says
+# a false positive is fixed by widening the set does not license widening it across two
+# clocks: the levels belong to the read's date, full stop.
 _tech = json.load(open('technicals.json')) if os.path.exists('technicals.json') else {}
 _tclose = (_tech.get('close') if isinstance(_tech, dict) else None) or SN['meta'].get('spot')
-vals += PF.relative_to(PF.numbers_from(HERE, files=['technicals.json']),
-                       (_tclose, SN['meta'].get('spot')))
+vals += PF.relative_to(PF.numbers_from(HERE, files=['technicals.json']), (_tclose,))
+# the ONE figure that legitimately spans both clocks is the gap between them, stated in the
+# levels caption precisely so a reader is told the read predates the price
+vals += PF.relative_to([SN['meta']['spot']], (_tclose,))
 
 # A SPREAD BETWEEN TWO COMMITTED VALUES is not itself committed, and section C.5 quotes the
 # panel's spread as one — "a spread of 32.1% of the lower number". Every pairwise ratio of
