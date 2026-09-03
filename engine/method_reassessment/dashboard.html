@@ -1,0 +1,268 @@
+<title>Reassessment Progress Board</title>
+<!-- GitHub Pages serves the whole repository, so this file IS a served page and
+     carries the site's tab chrome like every other one. check_page_integrity.py
+     said so and it was right: the first instinct was to exempt it as "an artifact
+     source, not a site page", which would have asserted something false about the
+     deployment in order to quiet a gate. On the published Artifact this link
+     resolves to nothing and the tab icon comes from the publish call, which costs
+     nothing; on testahil.com it resolves. -->
+<link rel="icon" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#f6f8f5; --surface:#ffffff; --sunk:#eef1ed;
+  --ink:#141a18; --ink-2:#3d4a45; --ink-3:#6d7c76;
+  --rule:#dde3de; --rule-2:#c9d2cb;
+  --go:#1f6f5c; --go-soft:#d8e8e2;
+  --warn:#a8621b; --warn-soft:#f2e4d4;
+  --stop:#9d3729; --stop-soft:#f2ddd9;
+  --ui:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --prose:'Newsreader',Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0e1312; --surface:#161d1b; --sunk:#1c2422;
+    --ink:#e6ece9; --ink-2:#b3c0ba; --ink-3:#84968e;
+    --rule:#26302d; --rule-2:#35423e;
+    --go:#5cbfa4; --go-soft:#1a3630;
+    --warn:#dd9b52; --warn-soft:#3a2c1a;
+    --stop:#e0806f; --stop-soft:#3a211c;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0e1312; --surface:#161d1b; --sunk:#1c2422;
+  --ink:#e6ece9; --ink-2:#b3c0ba; --ink-3:#84968e;
+  --rule:#26302d; --rule-2:#35423e;
+  --go:#5cbfa4; --go-soft:#1a3630;
+  --warn:#dd9b52; --warn-soft:#3a2c1a;
+  --stop:#e0806f; --stop-soft:#3a211c;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--ui);
+  font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1060px;margin:0 auto;padding:44px 26px 90px}
+h1,h2,h3,h4{margin:0;text-wrap:balance;font-weight:600;letter-spacing:-.012em}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3)}
+
+/* masthead ---------------------------------------------------------------- */
+.mast{border-bottom:2px solid var(--ink);padding-bottom:20px}
+.mast h1{font-size:clamp(30px,4.4vw,46px);line-height:1.04;margin:10px 0 12px}
+.mast .lede{font-family:var(--prose);font-size:18px;line-height:1.5;
+  color:var(--ink-2);max-width:64ch}
+.mast .meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:16px;
+  font-family:var(--mono);font-size:11.5px;color:var(--ink-3)}
+.mast .meta b{color:var(--ink-2);font-weight:500}
+
+/* progress rows ----------------------------------------------------------- */
+.rows{margin-top:8px}
+.prow{display:grid;grid-template-columns:minmax(210px,1.15fr) minmax(200px,1.5fr) minmax(150px,.85fr);
+  gap:20px 26px;align-items:center;padding:22px 0;border-bottom:1px solid var(--rule)}
+.prow-id h3{font-size:17px}
+.prow-id p{font-family:var(--prose);font-size:14.5px;color:var(--ink-3);margin-top:3px}
+.meter{display:flex;align-items:center;gap:14px}
+.meter-track{flex:1;height:9px;background:var(--sunk);border-radius:1px;overflow:hidden}
+.meter-fill{height:100%;background:var(--go)}
+.meter-fill.warn{background:var(--warn)}
+.meter-read{display:flex;flex-direction:column;min-width:74px}
+.pct{font-size:23px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1}
+.pct .sym{font-size:13px;font-weight:500;color:var(--ink-3);margin-left:1px}
+.frac{font-family:var(--mono);font-size:11px;color:var(--ink-3);margin-top:3px}
+.verdict{display:flex;flex-direction:column;gap:3px;padding-left:16px;
+  border-left:3px solid var(--rule-2)}
+.verdict.done{border-left-color:var(--go)}
+.verdict.warn{border-left-color:var(--warn)}
+.verdict.none{border-left-color:var(--warn);background:
+  repeating-linear-gradient(135deg,transparent 0 6px,var(--warn-soft) 6px 7px)}
+.v-main{font-family:var(--mono);font-size:12px;letter-spacing:.06em;font-weight:500}
+.verdict.none .v-main{color:var(--warn)}
+.verdict.done .v-main{color:var(--go)}
+.v-sub{font-family:var(--prose);font-size:13.5px;color:var(--ink-3);line-height:1.35}
+
+/* section scaffolding ----------------------------------------------------- */
+section{margin-top:52px}
+section > h2{font-size:22px;margin-bottom:6px}
+section > .intro{font-family:var(--prose);font-size:16px;color:var(--ink-2);
+  max-width:66ch;margin-bottom:22px}
+
+/* dependency chain -------------------------------------------------------- */
+.chain{list-style:none;margin:0;padding:0;position:relative}
+.chain:before{content:"";position:absolute;left:124px;top:12px;bottom:12px;
+  width:1px;background:var(--rule-2)}
+.node{display:grid;grid-template-columns:112px 1fr;gap:0 40px;padding:14px 0;
+  position:relative}
+.node-when{font-family:var(--mono);font-size:12px;text-align:right;padding-top:2px;
+  color:var(--ink-2);font-variant-numeric:tabular-nums}
+.node:after{content:"";position:absolute;left:120px;top:19px;width:9px;height:9px;
+  border-radius:50%;background:var(--go);border:2px solid var(--ground)}
+.node.undated:after{background:var(--warn)}
+.node.dated-far:after{background:var(--ground);border:2px solid var(--warn)}
+.node.undated .node-when{color:var(--warn);font-weight:500;letter-spacing:.05em}
+.node.dated-far .node-when{color:var(--warn)}
+.node-body h4{font-size:16px}
+.node-body p{font-family:var(--prose);font-size:15px;color:var(--ink-2);
+  margin-top:4px;max-width:62ch}
+
+/* panels ------------------------------------------------------------------ */
+.panel{background:var(--surface);border:1px solid var(--rule);padding:24px 26px}
+.panel h3{font-size:16px;margin-bottom:4px}
+.panel .note{font-family:var(--prose);font-size:14.5px;color:var(--ink-3);
+  max-width:66ch;margin-top:14px}
+
+/* tables ------------------------------------------------------------------ */
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{text-align:left;padding:10px 14px 10px 0;border-bottom:1px solid var(--rule);
+  vertical-align:top}
+thead th{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;
+  border-bottom:1px solid var(--rule-2)}
+tbody th{font-weight:600}
+.num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.num.strong{font-weight:600}
+td.up{color:var(--go)} td.down{color:var(--stop)}
+.notes .flag{display:block;font-family:var(--prose);font-size:13.5px;color:var(--warn)}
+.notes .clear{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+tbody th code{font-family:var(--mono);font-size:12px;font-weight:400}
+
+/* criteria ---------------------------------------------------------------- */
+.crits{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.crit{display:grid;grid-template-columns:84px 1fr;gap:18px;padding:14px 0;
+  border-bottom:1px solid var(--rule)}
+.crit h4{font-size:15.5px;font-weight:500}
+.crit p{font-family:var(--prose);font-size:14.5px;color:var(--ink-2);margin-top:4px;
+  max-width:70ch}
+.crit p.deep{color:var(--ink-3);margin-top:6px}
+.chip{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;padding:3px 0;
+  text-align:center;height:fit-content;border:1px solid currentColor}
+.chip.ok{color:var(--go);background:var(--go-soft)}
+.chip.no{color:var(--stop);background:var(--stop-soft)}
+.chip.block{color:var(--warn);background:var(--warn-soft)}
+
+/* markets ----------------------------------------------------------------- */
+.mkts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+.mkts li{display:grid;grid-template-columns:190px 1fr 70px;gap:16px;align-items:center}
+.mk-name{font-size:14.5px}
+.mk-bar{height:7px;background:var(--sunk);display:block;border-radius:1px;overflow:hidden}
+.mk-bar span{display:block;height:100%;background:var(--go)}
+.mk-num{font-family:var(--mono);font-size:12px;color:var(--ink-3);text-align:right;
+  font-variant-numeric:tabular-nums}
+
+/* footer ------------------------------------------------------------------ */
+footer{margin-top:60px;padding-top:22px;border-top:2px solid var(--ink);
+  font-family:var(--prose);font-size:15px;color:var(--ink-2);max-width:70ch}
+footer code{font-family:var(--mono);font-size:13px;background:var(--sunk);
+  padding:2px 6px;color:var(--ink)}
+@media (max-width:760px){
+  .prow{grid-template-columns:1fr;gap:14px}
+  .verdict{border-left:none;border-top:3px solid var(--rule-2);padding:12px 0 0}
+  .verdict.done{border-top-color:var(--go)} .verdict.warn,.verdict.none{border-top-color:var(--warn)}
+  .chain:before{left:6px} .node{grid-template-columns:1fr;gap:6px;padding-left:30px}
+  .node-when{text-align:left} .node:after{left:2px}
+  .crit{grid-template-columns:1fr;gap:8px} .chip{width:84px}
+  .mkts li{grid-template-columns:1fr 60px} .mk-bar{grid-column:1/-1}
+}
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow">TESTAHIL &nbsp;·&nbsp; standing research protocol</div>
+    <h1>Fundamental method reassessment</h1>
+    <p class="lede">Three stages. Phase&nbsp;1 rebuilds the method. Phase&nbsp;2a backtests it
+      across all ninety names — bounded by <em>work</em>. Phase&nbsp;2b grades what it claims
+      from that point forward against what actually happens — bounded by the
+      <em>calendar</em>, and no amount of capacity shortens it. Every figure below is counted
+      from the repository when this page is built; none of it is typed.</p>
+    <div class="meta">
+      <span>built <b>03 September 2026, 09:18 UTC</b></span>
+      <span>phase 1 opened <b>2026-09-02</b></span>
+      <span>day <b>2</b></span>
+      <span>commits <b>09-02 28 · 09-03 31</b></span>
+    </div>
+  </header>
+
+  <div class="rows"><div class="prow"><div class="prow-id"><h3>Phase 1 — build</h3><p>the artefacts the ten workstreams had to produce</p></div><div class="meter"><div class="meter-track"><div class="meter-fill go" style="width:100%"></div></div><div class="meter-read"><span class="pct">100<span class="sym">%</span></span><span class="frac">29 of 29</span></div></div><div class="verdict done"><span class="v-main">COMPLETE</span><span class="v-sub">on day 2 of a planned 21</span></div></div><div class="prow"><div class="prow-id"><h3>Phase 1 — delivery</h3><p>the five re-issued names, three checks each</p></div><div class="meter"><div class="meter-track"><div class="meter-fill warn" style="width:73%"></div></div><div class="meter-read"><span class="pct">73<span class="sym">%</span></span><span class="frac">11 of 15</span></div></div><div class="verdict warn"><span class="v-main">4 ARTEFACTS STALE</span><span class="v-sub">named below</span></div></div><div class="prow"><div class="prow-id"><h3>Phase 1 — acceptance</h3><p>Part E, and its third item is the instrument</p></div><div class="meter"><div class="meter-track"><div class="meter-fill warn" style="width:50%"></div></div><div class="meter-read"><span class="pct">50<span class="sym">%</span></span><span class="frac">3 of 6</span></div></div><div class="verdict warn"><span class="v-main">INSTRUMENT RUNNING</span><span class="v-sub">6 of 11 origins live</span></div></div><div class="prow"><div class="prow-id"><h3>Phase 2a — rebuilt</h3><p>the other 85 names on the current standard</p></div><div class="meter"><div class="meter-track"><div class="meter-fill warn" style="width:6%"></div></div><div class="meter-read"><span class="pct">6<span class="sym">%</span></span><span class="frac">5 of 90</span></div></div><div class="verdict warn"><span class="v-main">BOUNDED BY WORK</span><span class="v-sub">throughput decides</span></div></div><div class="prow"><div class="prow-id"><h3>Phase 2a — backtested</h3><p>names carrying a point-in-time record</p></div><div class="meter"><div class="meter-track"><div class="meter-fill warn" style="width:1%"></div></div><div class="meter-read"><span class="pct">1<span class="sym">%</span></span><span class="frac">1 of 90</span></div></div><div class="verdict warn"><span class="v-main">BOUNDED BY WORK</span><span class="v-sub">PHDC scored so far</span></div></div><div class="prow"><div class="prow-id"><h3>Phase 2b — the live test</h3><p>claims struck after 2a closes, graded on what happens</p></div><div class="meter"><div class="meter-track"></div><div class="meter-read"><span class="pct">—</span><span class="frac">not started</span></div></div><div class="verdict none"><span class="v-main">BOUNDED BY THE CALENDAR</span><span class="v-sub">no work shortens it</span></div></div></div>
+
+  <section>
+    <h2>When each phase can end</h2>
+    <p class="intro">A completion date is a quantity divided by a rate. The quantity is
+      countable; the rate has never been measured, and two of the things this programme
+      waits on are not rates at all. Where a dependency has no date, neither does the
+      phase — so it is drawn as an absence rather than as a bar at a number nobody
+      measured.</p>
+    <ol class="chain"><li class="node dated"><span class="node-when">2026-09-02</span><div class="node-body"><h4>Phase 1 opens</h4><p>the commit that introduced the plan — measured from git, not carried in a document</p></div></li><li class="node dated"><span class="node-when">2026-09-03</span><div class="node-body"><h4>the build finishes</h4><p>all 29 workstream artefacts present; the Gantt had this at 2026-09-23</p></div></li><li class="node dated"><span class="node-when">RUNNING</span><div class="node-body"><h4>criterion 3 — the acceptance instrument</h4><p>6 of 11 point-in-time origins usable, read at the frontier (origin/claude/arcc-fundamental-calibration-ebhtjk); still unsourced: cpi_annual (5 origins)</p></div></li><li class="node dated-far"><span class="node-when">2027-06-11</span><div class="node-body"><h4>its as-delivered check cannot mature before this</h4><p>the gap-closure half cannot mature before 2027-06-11 (281 days) — the archive starts at the first published vintage and the fundamental lens is graded on its own clock [R-LENS-02]</p></div></li><li class="node undated"><span class="node-when">BY WORK</span><div class="node-body"><h4>Phase 2a — the backtest across the book</h4><p>ninety rebuilds and ninety backtests; throughput decides when it closes. Held until Phase 1&#x27;s record shows the method unbiased, because eighty-five studies on an unproven method is the mistake the campaign just made with five. 1 of 90 names carry a point-in-time record so far.</p></div></li><li class="node undated"><span class="node-when">BY CALENDAR</span><div class="node-body"><h4>Phase 2b — the live test, going forward</h4><p>grades only claims struck AFTER 2a closes, on the fundamental lens&#x27;s own clock (up to one year [R-LENS-02]). It cannot complete earlier than roughly one year after 2a closes — a MATURITY date, never a throughput estimate. No amount of capacity shortens it, and projecting it from a work rate would be a number nobody can know.</p></div></li></ol>
+  </section>
+
+  <section>
+    <h2>Work in flight</h2>
+    <p class="intro">The repository is not one line. Several sessions work at once,
+      and a blocker closed on a live branch is closed. This section exists because an
+      earlier build of this page reported an item open that another session had closed
+      hours before — the figures above are now read at the frontier, and each says
+      which branch it came from.</p>
+    <div class="tw"><table>
+      <thead><tr><th>Branch</th><th class="num">Ahead of main</th><th>Last commit</th>
+        <th>Latest</th></tr></thead>
+      <tbody><tr><th scope="row"><code>claude/method-reassessment-status-ngehpw</code></th><td class="num">9</td><td class="num">2026-09-03</td><td class="notes">The dashboard is a served page, and carries the site&#x27;s tab chrome</td></tr><tr><th scope="row"><code>claude/arcc-fundamental-calibration-ebhtjk</code></th><td class="num">6</td><td class="num">2026-09-03</td><td class="notes">The calibration first real reading: an order-book floor at four origins</td></tr><tr><th scope="row"><code>claude/ksa-metals-rollforward-publish-kjzq98</code></th><td class="num">123</td><td class="num">2026-09-01</td><td class="notes">Roll forward ACWA on the 31-Aug-2026 close and republish (KSA monthly metronome)</td></tr><tr><th scope="row"><code>claude/roll-forward-metals-publish-7k6p45</code></th><td class="num">119</td><td class="num">2026-09-01</td><td class="notes">Republish 2POINTZERO to the website</td></tr><tr><th scope="row"><code>claude/technical-analysis-calibration-o2ytim</code></th><td class="num">118</td><td class="num">2026-09-01</td><td class="notes">Study prompt: retire the CRPS gate item, add the calibration elements</td></tr><tr><th scope="row"><code>claude/roll-forward-qatar-metals-vobiax</code></th><td class="num">14</td><td class="num">2026-09-01</td><td class="notes">Merge origin/main into the IQCD roll-forward</td></tr></tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>If Phase 2a started today</h2>
+    <p class="intro">The plan's own cap scenarios for the build-and-backtest work,
+      anchored on the measured start date. These are not a forecast — they are three
+      arithmetic consequences of three assumptions, and the assumption has never been
+      tested. <strong>They do not apply to 2b at all</strong>: 2b is bounded by the
+      calendar, so a work rate cannot project it.</p>
+    <div class="panel">
+      <div class="tw"><table>
+        <thead><tr><th>Half-windows / week</th><th>Assumption</th>
+          <th class="num">2a would close</th></tr></thead>
+        <tbody><tr><td class="num">7</td><td>if the weekly cap allows seven half-windows</td><td class="num strong">2026-11-04</td></tr><tr><td class="num">5</td><td>the base case the Gantt is drawn at</td><td class="num strong">2026-12-02</td></tr><tr><td class="num">3</td><td>if it allows only three</td><td class="num strong">2027-01-20</td></tr></tbody>
+      </table></div>
+      <p class="note">STATE.json carries weekly_cap_window_equivalents=None and measured.window_equivalents_used=[] — THE RATE EVERY DATE BELOW DIVIDES BY HAS NEVER BEEN MEASURED, so these are the plan&#x27;s own scenarios anchored on the measured start, never a forecast.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Acceptance — Part E</h2>
+    <p class="intro">The programme is complete when these hold and are printed by the
+      gates rather than attested. Item 3 is the instrument; the rest are its
+      surroundings.</p>
+    <ul class="crits"><li class="crit"><span class="chip ok">MET</span><div><h4>1 &nbsp;construction gates green in CI with negative controls</h4><p>re-checked by status.py --gates and by CI on every push</p></div></li><li class="crit"><span class="chip ok">MET</span><div><h4>2 &nbsp;forward drivers inside each name&#x27;s own walk-forward record</h4><p>the walk-forward actuation gate, green in CI</p></div></li><li class="crit"><span class="chip no">RUNNING</span><div><h4>3 &nbsp;the valuation calibration&#x27;s pooled bias CI includes zero — THE ACCEPTANCE INSTRUMENT</h4><p>6 of 11 point-in-time origins usable, read at the frontier (origin/claude/arcc-fundamental-calibration-ebhtjk); still unsourced: cpi_annual (5 origins)</p><p class="deep">the gap-closure half cannot mature before 2027-06-11 (281 days) — the archive starts at the first published vintage and the fundamental lens is graded on its own clock [R-LENS-02]</p></div></li><li class="crit"><span class="chip ok">MET</span><div><h4>4 &nbsp;graded prediction: median |central/price - 1| inside 15%</h4><p>median is 9.4% across 4 names against a stated 15%; matching the price is Part E&#x27;s explicit NON-criterion</p></div></li><li class="crit"><span class="chip no">NOT MET</span><div><h4>5 &nbsp;the two-sided gap gate fires on nothing, or every firing carries a complete review</h4><p>no current review on: EGCH unreadable</p></div></li><li class="crit"><span class="chip no">NOT MET</span><div><h4>6 &nbsp;the publish queue holds the files per name on the new standard</h4><p>AMOC staged at 8.64 against a committed 9.91</p></div></li></ul>
+  </section>
+
+  <section>
+    <h2>The five re-issued names</h2>
+    <p class="intro">Each name's own committed central against the spot it was struck at,
+      read through the gap gate's own reader. A flag is an artefact that exists but is no
+      longer current — the failure shape this programme found three times, and the reason
+      the column is here at all.</p>
+    <div class="tw"><table>
+      <thead><tr><th>Name</th><th class="num">Central</th><th class="num">Spot</th>
+        <th class="num">vs price</th><th>State</th></tr></thead>
+      <tbody><tr><th scope="row">TMGH</th><td class="num">91.83</td><td class="num">97.80</td><td class="num flat">-6.1%</td><td class="notes"><span class="clear">current</span></td></tr><tr><th scope="row">PHDC</th><td class="num">17.15</td><td class="num">15.20</td><td class="num up">+12.8%</td><td class="notes"><span class="clear">current</span></td></tr><tr><th scope="row">ARCC</th><td class="num">53.46</td><td class="num">59.00</td><td class="num flat">-9.4%</td><td class="notes"><span class="clear">current</span></td></tr><tr><th scope="row">EGCH</th><td class="num">—</td><td class="num">13.98</td><td class="num flat">—</td><td class="notes"><span class="flag">no readable central/spot pair</span></td></tr><tr><th scope="row">AMOC</th><td class="num">9.91</td><td class="num">9.10</td><td class="num flat">+8.9%</td><td class="notes"><span class="flag">gap review audits 8.64 against a committed 9.91 — not owed inside 10%, but stale where it sits</span><span class="flag">publish queue holds 8.64 against a committed 9.91</span></td></tr></tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>Phase 2a — 5 of 90 names rebuilt</h2>
+    <p class="intro">Read live from the campaign queue, which refuses rather than
+      returning a short list. Market order is fixed and there is a hard stop after Egypt
+      to ask whether the corrected method generalises before the UAE begins.</p>
+    <ul class="mkts"><li><span class="mk-name">Egypt / EGX</span><span class="mk-bar"><span style="width:14%"></span></span><span class="mk-num">5 / 37</span></li><li><span class="mk-name">UAE / ADX + DFM</span><span class="mk-bar"><span style="width:0%"></span></span><span class="mk-num">0 / 28</span></li><li><span class="mk-name">Saudi Arabia / Tadawul</span><span class="mk-bar"><span style="width:0%"></span></span><span class="mk-num">0 / 13</span></li><li><span class="mk-name">Qatar / QSE</span><span class="mk-bar"><span style="width:0%"></span></span><span class="mk-num">0 / 3</span></li><li><span class="mk-name">India / NSE</span><span class="mk-bar"><span style="width:0%"></span></span><span class="mk-num">0 / 3</span></li><li><span class="mk-name">Korea / KRX</span><span class="mk-bar"><span style="width:0%"></span></span><span class="mk-num">0 / 3</span></li><li><span class="mk-name">United States / NASDAQ</span><span class="mk-bar"><span style="width:0%"></span></span><span class="mk-num">0 / 3</span></li></ul>
+  </section>
+
+  <footer>
+    <p>Regenerate with <code>python3 engine/method_reassessment/build_dashboard.py</code>,
+    or read the same figures in a terminal with
+    <code>python3 engine/method_reassessment/progress.py</code>. The programme's
+    narrative — what happened each night, with the evidence and a recommended answer on
+    each item — is <code>engine/method_reassessment/MORNING.md</code>. Nothing on this
+    page has been published to testahil.com; the site still carries the
+    pre-reassessment numbers.</p>
+  </footer>
+</div>
