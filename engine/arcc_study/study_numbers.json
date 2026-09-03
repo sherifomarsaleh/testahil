@@ -2875,7 +2875,7 @@
    "central": 65.56850166596888,
    "low": 55.50509925181686,
    "high": 75.6322137842618,
-   "summary": "Values the plant, not the earnings stream. The audited accounts put net property, plant and equipment at EGP 2522mn and assets under construction at a further EGP 392mn, on a book carried at pre-devaluation historic cost. Five million tonnes of grey cement capacity costs about USD 130 per annual tonne to build; nobody pays that in a market carrying 76Mt of capacity against 54Mt of consumption, so the justified figure is marked to USD 95. Against that the market is paying USD 112 per annual tonne.",
+   "summary": "Values the plant, not the earnings stream. The audited accounts put net property, plant and equipment at EGP 2,522mn and assets under construction at a further EGP 392mn, on a book carried at pre-devaluation historic cost. Five million tonnes of grey cement capacity costs about USD 130 per annual tonne to build; nobody pays that in a market carrying 76Mt of capacity against 54Mt of consumption, so the justified figure is marked to USD 95. Against that the market is paying USD 112 per annual tonne.",
    "falsifier": "Find an Egyptian line built, bought or restarted below USD 95 per annual tonne. The 12.6Mt revival programme is the live test and it runs against this lens: restarting a mothballed kiln costs a fraction of building one, which is why this valuation is a CEILING and is published as a cross-check rather than as the answer."
   },
   {
@@ -2884,7 +2884,7 @@
    "central": 49.64070804322712,
    "low": 42.81113874339273,
    "high": 56.47058704720239,
-   "summary": "Refuses to capitalise a peak, and refuses it on both legs. The audited EBITDA margin went 22.0% to 23.1% to 39.3% across FY2023 to FY2025 \u2014 the last of those is the best year the Egyptian industry has had in over a decade. The margin is normalised to 31.2%, the midpoint of the two most recent audited years, the revenue base is cut 6%, and what is left is capitalised at 7 times with cash added back at face.",
+   "summary": "Refuses to capitalise a peak, and refuses it on both legs. The audited EBITDA margin went 22.0% to 23.1% to 39.3% across FY2023 to FY2025 \u2014 the last of those is the best of the three audited years this study holds, by a wide margin. (An earlier edition called it the best year the Egyptian INDUSTRY had had in over a decade, which is a claim about the industry that nothing in this study measures.) The margin is normalised to 31.2%, the midpoint of the two most recent audited years, the revenue base is cut 6%, and what is left is capitalised at 7 times with cash added back at face.",
    "falsifier": "Two consecutive years of realised prices above EGP 4,200 a tonne WITH the revival proceeding would prove the mid-cycle base too low. Equally, the first quarter of 2026 already ran a 42.9% gross margin against 40.6% for FY2025 as a whole \u2014 if that holds for the year, this lens is too cautious."
   },
   {
@@ -3070,7 +3070,7 @@
   "  40. the cost-of-debt build is currency-blended: 91.1% of the book is euro-denominated and a single-currency shortcut would be wrong",
   "==============================================================================",
   "\n[Years 3-5 are RANGES, from this name's own walk-forward] on twenty-five resolved cells the method's revenue error spans x0.49-x2.99 at three years (n=5), x0.81-x4.02 at four (n=4) and x0.91-x3.77 at five (n=3). Total VOLUME at five years spans only x0.90-x1.11, and profit before tax spans x0.51-x46.67 \u2014 tonnage is forecastable at five years and profit is not, which is why the delivered document publishes the far years as ranges and says so",
-  "\n[External-reader scrub] CLEAN \u2014 39 terms scanned across 171,310 characters of delivered text, 0 hits; table column audit clean",
+  "\n[External-reader scrub] CLEAN \u2014 39 terms scanned across 171,460 characters of delivered text, 0 hits; table column audit clean",
   "\n[Gates] assert_ground_up, assert_beta_provenance, assert_sigcm and assert_model_study all called in this study's own code and all passed. Built to standard 2026.09.01"
  ]
 }

@@ -1986,15 +1986,15 @@ EXPERTS = [
          low=((V['ev_t_just'] - 15) * V['cap_cement_mt'] * V['fx'] + net_cash - V['nci']) / SH,
          high=((V['ev_t_just'] + 15) * V['cap_cement_mt'] * V['fx'] + net_cash - V['nci']) / SH,
          summary=('Values the plant, not the earnings stream. The audited accounts put '
-                  'net property, plant and equipment at EGP %.0fmn and assets under '
-                  'construction at a further EGP %.0fmn, on a book carried at '
+                  'net property, plant and equipment at EGP %smn and assets under '
+                  'construction at a further EGP %smn, on a book carried at '
                   'pre-devaluation historic cost. Five million tonnes of grey cement '
                   'capacity costs about USD %.0f per annual tonne to build; nobody pays '
                   'that in a market carrying %.0fMt of capacity against %.0fMt of '
                   'consumption, so the justified figure is marked to USD %.0f. Against '
                   'that the market is paying USD %.0f per annual tonne.'
-                  % (V['ppe_fy25'], V['auc_fy25'], V['repl_usd_t'], V['egy_capacity_mt'],
-                     V['egy_cons_mt'], V['ev_t_just'], ev_per_t)),
+                  % (f"{V['ppe_fy25']:,.0f}", f"{V['auc_fy25']:,.0f}", V['repl_usd_t'],
+                     V['egy_capacity_mt'], V['egy_cons_mt'], V['ev_t_just'], ev_per_t)),
          falsifier=('Find an Egyptian line built, bought or restarted below USD %.0f per '
                     'annual tonne. The %.1fMt revival programme is the live test and it '
                     'runs against this lens: restarting a mothballed kiln costs a fraction '
@@ -2006,8 +2006,11 @@ EXPERTS = [
          high=(nopat_norm * (V['pe_just'] + 1) + net_cash - V['nci']) / SH,
          summary=('Refuses to capitalise a peak, and refuses it on both legs. The audited '
                   'EBITDA margin went %.1f%% to %.1f%% to %.1f%% across FY2023 to FY2025 — '
-                  'the last of those is the best year the Egyptian industry has had in over '
-                  'a decade. The margin is normalised to %.1f%%, the midpoint of the two '
+                  'the last of those is the best of the three audited years this study '
+                  'holds, by a wide margin. (An earlier edition called it the best year the '
+                  'Egyptian INDUSTRY had had in over a decade, which is a claim about the '
+                  'industry that nothing in this study measures.) The margin is normalised '
+                  'to %.1f%%, the midpoint of the two '
                   'most recent audited years, the revenue base is cut %.0f%%, and what is '
                   'left is capitalised at %.0f times with cash added back at face.'
                   % (mgn_h[0] * 100, mgn_h[1] * 100, mgn_h[2] * 100, V['norm_mgn'] * 100,
