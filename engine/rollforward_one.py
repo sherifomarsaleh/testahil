@@ -177,6 +177,7 @@ def ledger_instrument(key: str) -> str:
     return LEDGER_ALIAS.get(key, key)
 
 DATA_JS = os.path.join(ROOT, 'assets', 'data.js')
+import site_data                                             # noqa: E402
 
 
 def insert_rows(src: str, rows, header: str) -> str:
@@ -661,6 +662,24 @@ def run(market: str, series: str, key: str, today: str,
 
     if write:
         open(DATA_JS, 'w', encoding='utf-8').write(out)
+        # VERIFIED BY THE PARSER, NOT BY A SYNTAX CHECK [R-ENF-03]. `node --check` catches
+        # the stitch point this module's own docstring names — a missing comma before an
+        # appended row — and it does NOT catch a duplicated key, which is valid JavaScript
+        # and leaves the parser reading the other one. That is the defect the rule was
+        # adopted on. The entry's published cone is asserted to be what this strike meant
+        # to write, and the LEDGER's lifecycle invariant is asserted after the append,
+        # which the protocol has required since 29-Jul-2026 and which executed nowhere.
+        h1v, h3v = r['horizons']['1M'], r['horizons']['3M']
+        want = {'spot': float(fmt_spot(spot)),
+                'dist': {t: {'label': h['label'], 'resolve': h['grade_date'],
+                             **{q: float(fmt_price(h['pct'][q], spot))
+                                for q in ('p5', 'p25', 'p50', 'p75', 'p95')}}
+                         for t, h in (('t20', h1v), ('t60', h3v))}}
+        obj = 'TICKERS' if key in site_data.read_object('TICKERS', DATA_JS) else 'METALS'
+        site_data.assert_written(obj, key, want, DATA_JS)
+        pairs = site_data.assert_ledger_lifecycle(DATA_JS)
+        print(f'  verified through a real parse; lifecycle invariant holds '
+              f'across {pairs} (instrument, horizon) pairs')
         print(f'  wrote {DATA_JS} (+{len(rows)} ledger rows)')
     else:
         print('  DRY RUN — nothing written')

@@ -60,6 +60,28 @@ OK_RX = re.compile(r'(import\s+site_data|from\s+site_data|site_data\.|'
 # the construction the rule names
 REGEX_RX = re.compile(r're\.(search|findall|finditer|match)\s*\(')
 
+# A WRITER IS A DIFFERENT OBLIGATION, AND HOLDING IT TO THE READER'S ONE WAS THE CHECK
+# POINTED AT THE WRONG MEASUREMENT [RE-POINTED 03-Sep-2026, per R-COC-01]. Three files
+# WRITE assets/data.js, and each does assert-guarded string surgery — CORRECTLY, because a
+# JSON round-trip would destroy the file's formatting and the prose comments a reader of
+# the repository depends on. Forbidding a regex there would forbid the only sound way to
+# do the job, so those three sat on the ratchet as a debt that could never be paid, which
+# is the permanently-red check [R-ENF-02] forbids wearing a different hat.
+#
+# What a writer owes is not "read through the parse" but "prove the PARSER agrees with
+# what you wrote", and that is where the real hole was. Every writer verified with
+# `node --check`. A DUPLICATED KEY IS VALID JAVASCRIPT: node --check passes it, the parser
+# takes the LAST and a regex takes the FIRST — which is the exact defect [R-ENF-03] was
+# adopted on, a page publishing a support ABOVE its own close while both gates read the
+# half the reader never saw. Demonstrated on a real copy of data.js in the negative
+# control, not asserted. So a writer must call site_data.assert_written(), and one that
+# appends LEDGER rows must also assert the lifecycle invariant the protocol has required
+# since 29-Jul-2026 and which executed in no writer at all.
+WRITES_RX = re.compile(r'open\(\s*DATA_JS\s*,\s*[\'"]w')
+VERIFIES_RX = re.compile(r'site_data\.assert_written\s*\(')
+LEDGER_RX = re.compile(r'insert_ledger\s*\(|insert_rows\s*\(')
+LIFECYCLE_RX = re.compile(r'site_data\.assert_ledger_lifecycle\s*\(')
+
 
 def files():
     out = []
@@ -73,8 +95,7 @@ def audit():
     examined, bad = 0, []
     for f in files():
         rel = os.path.relpath(f, ROOT)
-        if rel in ('engine/site_data.py', 'scripts/check_site_data_reader.py',
-                   'scripts/check_site_data_reader_negative_control.py'):
+        if rel in ('engine/site_data.py', 'scripts/check_site_data_reader.py'):
             continue
         try:
             src = open(f, encoding='utf-8').read()
@@ -83,6 +104,26 @@ def audit():
         if not READS_RX.search(src):
             continue
         examined += 1
+        # A NEGATIVE CONTROL PLANTS A BROKEN FILE ON PURPOSE, so requiring it to verify
+        # that the file it deliberately corrupted parses to what it meant is incoherent —
+        # the corruption IS what it meant, and a check firing there fires on work that is
+        # right [R-COC-01]. THE EXEMPTION IS SCOPED TO THE WRITER CLAUSE IT WAS WRITTEN
+        # FOR AND NOTHING ELSE. A first draft skipped these files entirely, which is an
+        # exemption wider than its own reason: it also stopped checking whether a control
+        # READS data.js by regular expression, where no argument excuses it, and it
+        # removed five files from the population so the count fell 31 -> 26 for a reason
+        # that had nothing to do with reading. A TRUE EXEMPTION ON THE WRONG OBJECT is
+        # the safest hiding place there is — nobody is lying, the reason survives review,
+        # and the work happens where the check does not reach.
+        is_control = os.path.basename(rel).endswith('_negative_control.py')
+        if WRITES_RX.search(src) and not is_control:
+            # a writer is judged on whether it verifies, not on how it edits
+            if not VERIFIES_RX.search(src):
+                bad.append('%s (writes data.js and never asserts the parser agrees)' % rel)
+            elif LEDGER_RX.search(src) and not LIFECYCLE_RX.search(src):
+                bad.append('%s (appends LEDGER rows without asserting the lifecycle '
+                           'invariant)' % rel)
+            continue
         if OK_RX.search(src):
             continue
         if REGEX_RX.search(src):

@@ -117,6 +117,23 @@ def main():
       if(!Object.keys(BAND_MARKETS).length) throw new Error('BAND_MARKETS empty');
       console.log('data.js loads — '+Object.keys(BANDS).length+' records');
     """], check=True)
+    # ...AND EVERY RECORD'S VALUES, THROUGH THE SHARED READER [R-ENF-03]. The load-assert
+    # above proves the file loads and that no ledger name lacks a record; it says nothing
+    # about what any record CONTAINS, and a block emitted twice is valid JavaScript that
+    # `node --check` passes while the parser reads the other one — with the count and the
+    # coverage check identical either way. These records are the ONE calibration figure a
+    # reader is shown [R-CAL-02], so a stale or shadowed one reaches the page directly.
+    sys.path.insert(0, os.path.join(ROOT_DIR, "engine"))
+    import site_data
+    for n, r in resolved.items():
+        site_data.assert_written("BANDS", n, {
+            "mkt": r.market, "n": r.n, "hits": r.hits,
+            "c50": round(r.cov50, 4), "c80": round(r.cov80, 4),
+            "c90": None if r.cov90 is None else round(r.cov90, 4),
+            "width": round(r.width, 3), "strength": r.strength,
+            "flag": r.flag}, DATA_JS)
+    print(f"every one of {len(resolved)} band records re-read through a real parse "
+          f"and equal to what was emitted")
     print(f"wrote {DATA_JS}")
 
 

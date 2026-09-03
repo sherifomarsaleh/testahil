@@ -135,11 +135,11 @@ def build_block():
                      f'in90: {r["in90"]}, through: "{r["through"]}"}},')
     lines.append("};")
     lines.append(MARK_B)
-    return "\n".join(lines), total
+    return "\n".join(lines), total, recs
 
 
 def main(check: bool = False):
-    block, total = build_block()
+    block, total, records = build_block()
 
     src = open(DATA_JS).read()
     if check:
@@ -176,8 +176,19 @@ def main(check: bool = False):
          DATA_JS], capture_output=True, text=True, check=True)
     chk = json.loads(out.stdout)
     assert chk["tickers"] == total and chk["calib"] == total and not chk["missing"], chk
+    # ...AND THE VALUES, NOT ONLY THE COUNT. The load-assert above counts records against
+    # a known total [R-ENF-04] and says nothing about what any record CONTAINS: a block
+    # emitted twice — valid JavaScript, which `node --check` passes — leaves the parser
+    # reading the other one with the count identical either way. Through the shared reader
+    # per [R-ENF-03], because a second local implementation of the same read is how a rule
+    # comes to bind in the two places somebody wrote it.
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import site_data
+    for code, rec in list(records.items()):
+        site_data.assert_written("CALIB", code, rec, DATA_JS)
     print(f"CALIB written and verified: {chk['calib']} records for "
-          f"{chk['tickers']} TICKERS entries, 0 missing (counted against total {total})")
+          f"{chk['tickers']} TICKERS entries, 0 missing (counted against total {total}); "
+          f"every record re-read through a real parse and equal to what was emitted")
 
 
 if __name__ == "__main__":
