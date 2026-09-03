@@ -41,6 +41,7 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 DAM = json.load(open(os.path.join(HERE, "_extract_damodaran_egypt.json"), encoding="utf-8"))
 WEO = json.load(open(os.path.join(HERE, "_extract_weo_egypt.json"), encoding="utf-8"))
+SUP = json.load(open(os.path.join(HERE, "_supplied_EG_rates.json"), encoding="utf-8"))
 
 ORIGINS = list(range(2013, 2024))
 
@@ -172,9 +173,46 @@ def build():
                 forward_path={k: round(v / 100.0, 6) for k, v in fwd.items()},
                 end_of_period_same_vintage=(round(float(eop[str(y)]) / 100.0, 6)
                                             if str(y) in eop else None))
+        # ---- policy rate: supplied as a lead, recorded as verified ----------
+        pr = (SUP["policy_rate"]["origins"] or {}).get(str(y))
+        if pr:
+            figs["policy_rate"] = figure(
+                float(pr["value"]),
+                "%s  [Supplied by the principal 03-Sep-2026 as a lead and CHECKED "
+                "against the decision record before recording; the value here is "
+                "the verified one.%s]"
+                % (pr["source"],
+                   "  THE SUPPLIED VALUE WAS WRONG and is corrected: " +
+                   pr["why_the_supplied_value_is_wrong"]
+                   if pr.get("supplied_was_wrong") else ""),
+                "%d-12-31" % y, "Country", "observed",
+                verified=pr["verified"],
+                supplied_value=pr.get("supplied"),
+                corroborated=True,
+                instrument=SUP["policy_rate"]["instrument"])
+
+        # ---- the ten-year yield: recorded, and its weakness recorded with it --
+        yv = (SUP["sovereign_10y"]["origins"] or {}).get(str(y))
+        if yv is not None:
+            figs["sovereign_10y"] = figure(
+                float(yv),
+                "Supplied by the principal 03-Sep-2026, from an AI-generated "
+                "summary table with no per-figure publisher. UNCORROBORATED: no "
+                "second source for an Egyptian ten-year yield is reachable from "
+                "here, and the policy-rate column of the SAME table was wrong on "
+                "one origin in eleven in a way that looked entirely plausible. "
+                "Recorded because the principal instructed it; flagged because "
+                "recording it as equal evidence to a checked figure would hide "
+                "the one weakness this archive exists to make visible.",
+                "%d-12-31" % y, "Market", "observed",
+                corroborated=False,
+                instrument=SUP["sovereign_10y"]["instrument"])
+
         origins.append({
             "year": y,
             "point_in_time_compromised": compromised or None,
+            "uncorroborated_figures": sorted(
+                k for k, v in figs.items() if v.get("corroborated") is False) or None,
             "figures": figs,
         })
     return origins
@@ -198,55 +236,26 @@ def carry_current_vintage_cpi(prev_path):
 
 
 UNSOURCED = {
-    "fields": ["sovereign_10y", "policy_rate"],
-    "why_it_matters": (
-        "Both are REQUIRED by macro_history.REQUIRED, so no origin is usable "
-        "until they are present. They are also the two the house method leans on "
-        "hardest: rf* is the local 10-year government yield less this sovereign's "
-        "own default spread, and the cost-of-capital glide [R-COC-01] takes its "
-        "shape from the policy-rate path."),
-    "revision_class_if_sourced": (
-        "OBSERVED, both of them. A market close and an administered rate are fixed "
-        "at their dates and are not revised, so unlike the price index they do NOT "
-        "need a vintage publication — a dated quote read today is the same number "
-        "the origin saw. That is why these two are a SOURCING problem and not a "
-        "point-in-time one."),
-    "routes_tried_and_the_outcome": [
-        "Central Bank of Egypt (cbe.org.eg) — the primary source for both the "
-        "overnight deposit rate and the treasury yield curve. REFUSED at the "
-        "proxy on every path tried: the HTML statistics pages return 'The "
-        "requested URL was rejected', and the static PDF paths (annual reports, "
-        "monetary policy reports) return a 269-byte rejection page rather than a "
-        "document. This is the same refusal seen earlier in the session for the "
-        "Q2-2026 Monetary Policy Report, so it is the host and not the path.",
-        "FRED / ALFRED (fred.stlouisfed.org) — the IMF IFS interest-rate series "
-        "for Egypt are carried there. The CSV endpoint returns a 404 bot-"
-        "protection page for every series id tried.",
-        "IMF SDMX (dataservices.imf.org) — host does not resolve. The replacement "
-        "api.imf.org rejects the IFS dataflow.",
-        "IMF country reports (imf.org) — REACHABLE, and the Egypt Article IV and "
-        "programme reports were downloaded successfully. They carry the policy "
-        "rate in prose with decision dates, and a 'Treasury bill rate, 3 month "
-        "(average, in percent)' row in the selected-indicators table. Neither is "
-        "the figure this archive needs: the T-bill row is a FISCAL-YEAR AVERAGE "
-        "straddling the origin, not a year-end observation, and it is a 3-month "
-        "bill where the house discounts on a 10-year yield. Recording it as "
-        "sovereign_10y would be an instrument substitution wearing the right "
-        "field name, which is exactly the class of error this archive exists to "
-        "prevent.",
-        "Egypt Ministry of Finance (mof.gov.eg) and the market aggregators "
-        "(worldgovernmentbonds, investing.com) — reachable but rendered by "
-        "JavaScript, so no series is retrievable without a browser.",
-    ],
+    "fields": ["cpi_annual (5 origins)"],
+    "resolved_03_09_2026": (
+        "policy_rate and sovereign_10y, both supplied by the principal on "
+        "03-Sep-2026 — see _supplied_EG_rates.json for what was supplied, what "
+        "was verified against the CBE decision record, and the one supplied "
+        "figure that was WRONG and is corrected here. The policy rate is "
+        "corroborated origin by origin; the ten-year yield is NOT, and every "
+        "origin says so."),
+    "what_remains": (
+        "The point-in-time CPI vintage for 2014 and 2020-2023. The IMF World "
+        "Economic Outlook editions for those years could not be retrieved from "
+        "here — the October 2014 file returns an interstitial page and the "
+        "2020-2023 editions sit behind a path this environment cannot resolve. "
+        "Six origins (2013, 2015, 2016, 2017, 2018, 2019) are usable without "
+        "them, which is the archive doing its job: a thin record shows up as "
+        "fewer origins rather than as a full-looking one built on filled cells."),
     "what_would_close_it": (
-        "Either (a) a CBE or Ministry of Finance export of the overnight deposit "
-        "rate and the 10-year EGP government bond yield at each year-end 2013-"
-        "2023 — the same shape of file the principal already supplies for OHLC, "
-        "and the natural ask; or (b) a dated market-data export of the 10-year "
-        "yield, which is tier 'Market' and is consistent with the house's own "
-        "current quote, itself a market quote. Until one arrives the archive "
-        "reports every origin unusable, which is the archive working: the "
-        "calibration shortens rather than running on filled-in cells."),
+        "The IMF WEO database file for October 2014 and for October 2020 through "
+        "October 2023, downloadable from imf.org's WEO database pages. Each one "
+        "adds exactly one origin, and the calibration lengthens by that much."),
 }
 
 
