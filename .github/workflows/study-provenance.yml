@@ -706,3 +706,16 @@ jobs:
           assert t.tv >= t.floor, 'a clean build must clear its own floor'
           print('terminal_value OK — nominal growth derives, zero real growth is free')
           "
+
+      # [R-ENF-06] applied to the file the reader actually receives. Every other gate here
+      # reads the .docx and the .xlsx, so a study can be rebuilt, re-checked and reported
+      # clean while the delivered PDF still carries the previous edition's answer — which
+      # is exactly what happened to four studies on 03-Sep-2026, for four hours, with
+      # every gate green.
+      - name: Delivered PDF carries the study's own answer
+        run: |
+          sudo apt-get install -y -qq poppler-utils >/dev/null 2>&1 || true
+          python3 scripts/check_delivered_pdf_currency.py
+
+      - name: Delivered PDF currency — negative control
+        run: python3 scripts/check_delivered_pdf_currency_negative_control.py
