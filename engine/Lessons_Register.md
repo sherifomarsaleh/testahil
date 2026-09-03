@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**154 lessons**, of which 127 bind on every study, 20 on a class of company, and 7 on a single name.
+**155 lessons**, of which 128 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 79 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 80 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1348,6 +1348,16 @@ The instinct on finding a gap that cannot be closed from the sources to hand is 
 > **What it cost, or how we know.** Five studies came out short against their own disclosed totals. TMGH, ADNOCDRILL and EMPOWER HELD every missing figure as a registered input and were fixed by printing the lines — EMPOWER's eleven of them, with the builder asserting that each residual IS the sum of the specific lines it names, because a residual computed as total-less-printed foots BY CONSTRUCTION and proves nothing. AMR and RIYADHCABLE did NOT hold them, and were fixed by a row labelled 'Other assets, not broken out in this table (residual)' with a caption saying why it is not named. RIYADHCABLE's residual then became a finding in its own right: SAR 146, 147 and 430mn, so something outside the four broken-out lines grew by SAR 283mn in one year, which that table cannot explain and the next edition should.
 
 > **What would overturn it.** A residual so large that labelling it is a way of not investigating it, where the honest answer is to obtain the statements instead.
+
+### L-234 · A NEW GATE'S FALSE-POSITIVE RATE IS A PROPERTY OF THE GATE, AND IT FALLS AS THE GATE LEARNS THE WORK. Measure it, fix the instrument, measure again — never widen a bound to make a number look better.
+
+The first run of any check over an existing book reports mostly its own ignorance of how that book is shaped. Treating that number as a defect rate leads to loosening; treating it as a to-do list of things the instrument does not yet understand leads to a sharper check.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the table-footing port, 03-Sep-2026
+
+> **What it cost, or how we know.** The book-wide advisory fell 22.3% -> 10.5% across SEVEN instrument fixes in one session, and not one of them loosened a tolerance: a balance sheet foots over its SUBTOTALS; a row labelled Total assets HEADING a summary is a line item with nothing above it; a date column parses as numeric because 'Jan 2026' yields 2026; a TOTAL row is a sum in one column and a WEIGHTED MEAN in another; a weighted mean's band must carry the rounding of its own WEIGHT column; an 'OF WHICH' row is a breakdown of the line above and not a peer; a DASH in a total cell is 'not shown' rather than a claim of zero, while a dash in a component is zero; a PERCENTAGE is not a component of a currency total; and an EMPTY cell in a row that carries values elsewhere means 'does not apply here' rather than the end of the block. The negative control held at 14/14 through every one, which is what made the fixes safe to make quickly.
+
+> **What would overturn it.** A fix that lowers the rate by relaxing what counts as reproducible rather than by correcting what the instrument believes about tables.
 
 
 ---

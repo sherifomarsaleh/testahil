@@ -79,7 +79,7 @@ def parse_cell(text):
     # nothing and skip the very row the check exists for — the negative control caught it
     # by replaying that table exactly as it shipped.
     if t in ('—', '-', '–', 'n/a', 'N/A', 'nil', '0'):
-        return 0.0, 0
+        return 0.0, 0, False
     m = _NUM_RX.match(t)
     if not m:
         return None
@@ -99,7 +99,7 @@ def parse_cell(text):
     # and was fixed by never walking into row 0; a date column needs this as well.
     if (not m.group(2)) and ',' not in t and 1900 <= v <= 2100 and float(v).is_integer():
         return None
-    return (-v if neg else v), len(m.group(2) or '')
+    return (-v if neg else v), len(m.group(2) or ''), t.rstrip().endswith('%')
 
 
 def grid(tbl):
@@ -142,7 +142,7 @@ def check_table(rows, min_components=2):
             cell = parse_cell(row[j])
             if cell is None:
                 continue
-            total, dp = cell
+            total, dp, tot_pct = cell
             band = 0.5 * 10 ** -dp if dp else 0.5
             ok = False
             # walk contiguous numeric rows upward from directly above
@@ -158,7 +158,25 @@ def check_table(rows, min_components=2):
                     continue
                 c = parse_cell(rows[k][j]) if j < len(rows[k]) else None
                 if c is None:
+                    # AN EMPTY CELL IN A ROW THAT CARRIES VALUES ELSEWHERE IS "DOES NOT
+                    # APPLY HERE", NOT THE END OF THE BLOCK. A bridge printing "terminal
+                    # value as a percentage" in its currency column and nothing in its
+                    # per-share column is ordinary, and breaking on that blank cut the
+                    # per-share walk in half. A row blank in EVERY column is a genuine
+                    # separator and still ends the walk.
+                    if (not (rows[k][j] if j < len(rows[k]) else '').strip()
+                            and any(parse_cell(rows[k][x]) is not None
+                                    for x in range(1, len(rows[k])) if x != j)):
+                        k -= 1
+                        continue
                     break
+                # A PERCENTAGE IS NOT A COMPONENT OF A CURRENCY TOTAL. A bridge that prints
+                # "terminal value as a percentage of enterprise value" between its core
+                # value and its add-backs is ordinary, and summing that 74 alongside EGP
+                # millions condemned a bridge that foots to the unit.
+                if c[2] and not tot_pct:
+                    k -= 1
+                    continue
                 comps.insert(0, (k, c[0]))
                 k -= 1
                 if len(comps) < min_components:

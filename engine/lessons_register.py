@@ -2891,6 +2891,30 @@ LESSONS = [
       "A residual so large that labelling it is a way of not investigating it, where the "
       "honest answer is to obtain the statements instead."),
 
+    L("L-234", "ALL", None,
+      "A NEW GATE'S FALSE-POSITIVE RATE IS A PROPERTY OF THE GATE, AND IT FALLS AS THE GATE "
+      "LEARNS THE WORK. Measure it, fix the instrument, measure again — never widen a bound "
+      "to make a number look better.",
+      "The first run of any check over an existing book reports mostly its own ignorance of "
+      "how that book is shaped. Treating that number as a defect rate leads to loosening; "
+      "treating it as a to-do list of things the instrument does not yet understand leads to "
+      "a sharper check.",
+      "the table-footing port, 03-Sep-2026",
+      "build",
+      "The book-wide advisory fell 22.3% -> 10.5% across SEVEN instrument fixes in one "
+      "session, and not one of them loosened a tolerance: a balance sheet foots over its "
+      "SUBTOTALS; a row labelled Total assets HEADING a summary is a line item with nothing "
+      "above it; a date column parses as numeric because \'Jan 2026\' yields 2026; a TOTAL "
+      "row is a sum in one column and a WEIGHTED MEAN in another; a weighted mean\'s band "
+      "must carry the rounding of its own WEIGHT column; an \'OF WHICH\' row is a breakdown "
+      "of the line above and not a peer; a DASH in a total cell is \'not shown\' rather than "
+      "a claim of zero, while a dash in a component is zero; a PERCENTAGE is not a component "
+      "of a currency total; and an EMPTY cell in a row that carries values elsewhere means "
+      "\'does not apply here\' rather than the end of the block. The negative control held at "
+      "14/14 through every one, which is what made the fixes safe to make quickly.",
+      "A fix that lowers the rate by relaxing what counts as reproducible rather than by "
+      "correcting what the instrument believes about tables."),
+
 ]
 
 
