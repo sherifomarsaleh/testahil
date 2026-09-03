@@ -3186,6 +3186,34 @@ LESSONS = [
       "A pegged-market name whose disclosed useful life turns out to exceed 1/g — which "
       "would mean the under-charge is not general to low-inflation markets."),
 
+    L("L-247", "ALL", None,
+      "A DATE IS A FIGURE A READER SEES, AND THE RULE THAT A FIGURE MUST BE COMPUTED RATHER "
+      "THAN TYPED APPLIES TO IT.",
+      "Dates escape the numeric-traceability discipline because they do not look like "
+      "numbers: no gate that reconciles figures against a model inspects them, no "
+      "recalculation touches them, and a stale one reads as a fact rather than as an error. "
+      "They are also typed in several places at once, which guarantees they will disagree.",
+      "reading PHDC's rendered pages, 03-Sep-2026",
+      "build",
+      "ARCC shipped a masthead a day stale and it was recorded as one study's defect. "
+      "Reading PHDC's pages the same way found the identical thing — a 3 September edition "
+      "whose masthead reads 'edition of 2 September 2026' — which made it a CLASS, and "
+      "closing the class rather than the instance is what [R-ENF-01] requires. Measured "
+      "across 31 delivered valuation studies, SEVEN do not carry their own edition date in "
+      "their masthead, in three shapes: stated and WRONG (PHDC, TMGH, both a day stale), "
+      "stated NOWHERE IN THE DOCUMENT AT ALL (ADNOCLS and SAVOLA — and ADNOCLS is THE MODEL "
+      "REPORT, so a reader receives the exemplar every other study is written against with "
+      "nothing on it saying when it was struck), and buried in the body (DU at paragraph "
+      "74 inside a licence sentence, GBCO at 167 in an expert-log note, RIYADHCABLE at 119 "
+      "in the disclaimer). THE ROOT CAUSE WAS TYPING: PHDC's builder carried the date in "
+      "THREE separate string literals — masthead, disclosure, output filename — and two of "
+      "the three said 2 September while the file said 3 September; TMGH's carried two that "
+      "disagreed. Both now derive it from the file the document ships as, so they cannot "
+      "disagree, and the rebuilds changed two paragraphs and one paragraph respectively — "
+      "nothing but the date moved.",
+      "A delivered document whose date is derived from one source and is still wrong — "
+      "which would mean the derivation, not the typing, is the defect."),
+
 ]
 
 

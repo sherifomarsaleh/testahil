@@ -34,7 +34,26 @@ SCHED = N["cost_of_capital_record"]
 PSB, PSP = N["per_share_nci_book"], N["per_share_nci_proportional"]
 FV = N["fair_value_range"]
 SPOT = M["spot"]
-DATE = "1 September 2026"
+# THE EDITION DATE IS DERIVED FROM THE FILE THIS DOCUMENT SHIPS AS [ADDED 03-Sep-2026].
+# It was typed here and typed again in the output filename, and the two disagreed: DATE
+# read "1 September 2026" while the file shipped as 02-09-2026. Nothing was wrong with the
+# study; a person had to remember two strings and remembered one. A date is a figure a
+# reader sees, so the standing rule applies to it — COMPUTED, NOT TYPED.
+EDITION_FILE = "TMGH_Valuation_Study_02-09-2026.docx"
+
+
+def _edition_words(fname=EDITION_FILE):
+    """'2 September 2026' from the filename this document ships as. One source, one date."""
+    import datetime as _dt
+    import re as _re
+    m = _re.search(r"(\d{2})-(\d{2})-(\d{4})", fname)
+    if not m:
+        raise ValueError("cannot read an edition date out of %r" % fname)
+    d = _dt.date(int(m.group(3)), int(m.group(2)), int(m.group(1)))
+    return "%d %s %d" % (d.day, d.strftime("%B"), d.year)
+
+
+DATE = _edition_words()
 
 
 import sys as _sys
@@ -1071,7 +1090,7 @@ def main():
     section1_drivers(doc)
     sections_2_to_7(doc)
     appendices(doc)
-    out = os.path.join(HERE, "TMGH_Valuation_Study_02-09-2026.docx")
+    out = os.path.join(HERE, EDITION_FILE)
     doc.save(out)
     hits, chars = scrub(out)
     bad = column_audit(out)

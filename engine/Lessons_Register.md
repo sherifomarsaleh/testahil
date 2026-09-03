@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**167 lessons**, of which 140 bind on every study, 20 on a class of company, and 7 on a single name.
+**168 lessons**, of which 141 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 92 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 93 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1478,6 +1478,16 @@ A defect with a single name — 'the model is too pessimistic' — invites a cor
 > **What it cost, or how we know.** The retired charge is g x IC, so the implied replacement cycle is 1/g — 14.3 years at a 7% terminal inflation and 66.7 at 1.5%. THE SAME PLANT IS CHARGED FOUR AND A HALF TIMES AS HARD FOR BEING IN EGYPT RATHER THAN THE EMIRATES. Measured across the readable book: SEVEN OF THIRTEEN terminals charge LESS than their own book depreciation — AMR 0.12x, DU 0.14x, SAVOLA 0.21x, AIRARABIA 0.23x, FERTIGLOBE 0.26x, ADNOCDIST 0.31x, ADNOCLS 0.32x — and every one of them is in a pegged low-inflation market. Those terminals are OVER-valued, not under. The six charging more than book depreciation are AMOC, ARCC, MODON, SCEM, RIYADHCABLE and SWDY, and the worked correction on ARCC raised its value while the measured correction on ADNOCLS would LOWER it. Since 44 of the 90 covered names are Gulf, the defect is optimistic on most of the book.
 
 > **What would overturn it.** A pegged-market name whose disclosed useful life turns out to exceed 1/g — which would mean the under-charge is not general to low-inflation markets.
+
+### L-247 · A DATE IS A FIGURE A READER SEES, AND THE RULE THAT A FIGURE MUST BE COMPUTED RATHER THAN TYPED APPLIES TO IT.
+
+Dates escape the numeric-traceability discipline because they do not look like numbers: no gate that reconciles figures against a model inspects them, no recalculation touches them, and a stale one reads as a fact rather than as an error. They are also typed in several places at once, which guarantees they will disagree.
+
+**Applies to:** every study  ·  *Learned from:* found while building, reading PHDC's rendered pages, 03-Sep-2026
+
+> **What it cost, or how we know.** ARCC shipped a masthead a day stale and it was recorded as one study's defect. Reading PHDC's pages the same way found the identical thing — a 3 September edition whose masthead reads 'edition of 2 September 2026' — which made it a CLASS, and closing the class rather than the instance is what [R-ENF-01] requires. Measured across 31 delivered valuation studies, SEVEN do not carry their own edition date in their masthead, in three shapes: stated and WRONG (PHDC, TMGH, both a day stale), stated NOWHERE IN THE DOCUMENT AT ALL (ADNOCLS and SAVOLA — and ADNOCLS is THE MODEL REPORT, so a reader receives the exemplar every other study is written against with nothing on it saying when it was struck), and buried in the body (DU at paragraph 74 inside a licence sentence, GBCO at 167 in an expert-log note, RIYADHCABLE at 119 in the disclaimer). THE ROOT CAUSE WAS TYPING: PHDC's builder carried the date in THREE separate string literals — masthead, disclosure, output filename — and two of the three said 2 September while the file said 3 September; TMGH's carried two that disagreed. Both now derive it from the file the document ships as, so they cannot disagree, and the rebuilds changed two paragraphs and one paragraph respectively — nothing but the date moved.
+
+> **What would overturn it.** A delivered document whose date is derived from one source and is still wrong — which would mean the derivation, not the typing, is the defect.
 
 
 ---

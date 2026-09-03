@@ -743,6 +743,20 @@ jobs:
       - name: Terminal floor — negative control
         run: python3 scripts/check_terminal_floor_negative_control.py
 
+      # A DELIVERED DOCUMENT STATES ITS OWN EDITION DATE, AND STATES THE RIGHT ONE. Found
+      # by READING the rendered pages: ARCC shipped a masthead a day stale and that was
+      # recorded as one study's defect; reading PHDC the same way found the identical
+      # thing, which made it a class. Measured across 31 delivered studies, SEVEN did not
+      # carry their own edition date — two stated it and got it wrong, TWO (including the
+      # MODEL REPORT) stated it nowhere at all, and three buried it in the body. A date is
+      # a figure a reader sees, and it was TYPED in two or three separate string literals
+      # per builder; it is now derived from the file the document ships as.
+      - name: Every delivered study states its own edition date
+        run: python3 scripts/check_edition_date.py
+
+      - name: Edition date — negative control
+        run: python3 scripts/check_edition_date_negative_control.py
+
       # [R-GAP-02]'s GATE runs at PUBLISH time, as step 0 of publish_site.py, and that is
       # deliberate: it blocks a future act rather than condemning a past one, so a CI job
       # asserting that no held study exists would be red on every branch that holds one.

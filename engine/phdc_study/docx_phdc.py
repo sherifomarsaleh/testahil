@@ -282,6 +282,31 @@ def column_audit(doc_path):
 
 
 # ===========================================================================
+# ---------------------------------------------------------------------------------------
+# THE EDITION DATE IS DERIVED FROM THE FILE THIS DOCUMENT SHIPS AS, IN ONE PLACE.
+# [ADDED 03-Sep-2026.] It was typed in THREE separate string literals — the masthead, the
+# disclosure and the output filename — and two of the three said 2 September while the file
+# said 3 September. Nothing was wrong with the study; a person had to remember to update
+# three strings and updated one. That is the standing rule "A NUMBER STATED IN PROSE MUST
+# BE COMPUTED, NOT TYPED" applied to a date, which is a figure a reader sees like any
+# other, and it is why a masthead goes stale while every gate reports the document clean.
+EDITION_FILE = "PHDC_Valuation_Study_03-09-2026.docx"
+
+
+def _edition_words(fname=EDITION_FILE):
+    """'3 September 2026' from the filename this document ships as. One source, one date."""
+    import datetime as _dt
+    import re as _re
+    m = _re.search(r"(\d{2})-(\d{2})-(\d{4})", fname)
+    if not m:
+        raise ValueError("cannot read an edition date out of %r" % fname)
+    d = _dt.date(int(m.group(3)), int(m.group(2)), int(m.group(1)))
+    return "%d %s %d" % (d.day, d.strftime("%B"), d.year)
+
+
+EDITION_WORDS = _edition_words()
+
+
 def build(path):
     doc = Document()
     for s in doc.sections:
@@ -295,7 +320,8 @@ def build(path):
     # --- 1 Masthead + READ FIRST -------------------------------------------
     para(doc, "PALM HILLS DEVELOPMENTS", size=20, bold=True, color=ACCENT,
          space_after=2)
-    para(doc, "Egyptian Exchange · PHDC · Egyptian pounds · edition of 2 September 2026",
+    para(doc, "Egyptian Exchange · PHDC · Egyptian pounds · edition of %s"
+         % EDITION_WORDS,
          size=10, color=MUTED, space_after=14)
     doc.add_heading("READ FIRST", level=2)
     para(doc, "This is a valuation study, not advice. It carries no rating, no "
@@ -1503,13 +1529,13 @@ def _appendices(doc, sp, base):
               "assumptions produce large changes in the result, as section 1.9 shows "
               "directly. Past price behaviour does not predict future returns. "
               "Readers must reach their own conclusions and should take professional "
-              "advice before acting. Edition of 2 September 2026; information set ends "
+              "advice before acting. Edition of %s; information set ends " % EDITION_WORDS +
               "at the company's first-quarter 2026 results.",
          size=8.5, color=MUTED)
 
 
 if __name__ == "__main__":
-    out = os.path.join(HERE, "PHDC_Valuation_Study_03-09-2026.docx")
+    out = os.path.join(HERE, EDITION_FILE)
     doc = build(out)
     doc.save(out)
     hits, chars = scrub(out)
