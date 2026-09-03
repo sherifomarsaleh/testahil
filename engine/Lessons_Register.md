@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**131 lessons**, of which 104 bind on every study, 20 on a class of company, and 7 on a single name.
+**133 lessons**, of which 106 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 56 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 58 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1068,6 +1068,26 @@ Every study has open items and their existence is not evidence that they explain
 > **What it cost, or how we know.** EGCH's review named three unresolved items behind an 88% gap. Priced: the two book-carried non-operating assets are 77% of the equity value and so the most leveraged items in the bridge, yet closing the gap on them alone needs them at 7.8x carrying value — at a generous 2x they move the answer EGP 1.78 against a gap of EGP 12.10. The ANNA programme, which the whole study is architected around as a binary judgement, carries the answer from 2.31 to only 3.06 as its margin runs from 1.93% to 40%. The terminal charge is near value-neutral. All three ruled out; the gap is the cost of capital, and the enterprise value stands at 2.25x terminal EBIT against a market paying 7.13x.
 
 > **What would overturn it.** A review where the unresolved items, priced at generous bounds, DO span the gap — in which case listing them was the right answer and pricing them proves it.
+
+### L-099 · A DELIVERED TABLE MUST FOOT FOR THE READER, NOT ONLY FOR THE MODEL. Where a table prints components and a total, the total must be reproducible from the rows printed.
+
+A recalculation gate reconciles a model TO ITSELF, so a correct model passes however wrong the page is. A per-figure check matches each number against the model and passes when every figure is individually right. The defect lives in the RELATIONSHIP BETWEEN figures, and nothing that inspects figures one at a time can see it.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC 03-Sep-2026, reading the rendered PDF page by page
+
+> **What it cost, or how we know.** Three tables in one delivered study, all after 919 of 919 formula cells reconciled and 533 prose figures matched with none unmatched. Table 3 deducted provisions and credit losses in the model and did not print the line, so a reader adding the printed rows came out EGP 82mn above the printed EBITDA. Table 5 printed four CONTRACTUAL rates and labelled their blend adopted at 13.36% — the printed four weight to 7.89%, and 13.36% reproduces from a local-equivalent column the table did not carry, under a caption reading built in the model from these four lines, not pasted. Table 2 went from cement sold of 3.553Mt to total despatches of 4.854Mt with the export cement tonnage printed nowhere, and clinker is 27% of this company's volume. In all three the model was right and the page could not be reconciled by the reader it was written for.
+
+> **What would overturn it.** A study where every unreconciled total turns out to be a legitimate exception, which would mean the arithmetic form of this check earns nothing beyond what a declaration already states.
+
+### L-100 · MEASURE A PROPOSED GATE ACROSS THE WHOLE BOOK BEFORE SETTING ITS BAR, and let the measurement decide the ARCHITECTURE and not merely the threshold.
+
+A check that fires on one table in seven is the check everyone learns to ignore, and the temptation on seeing that number is to loosen the arithmetic until it is quiet — which destroys the thing being measured. The third option is to keep the arithmetic exact and change WHO declares the exceptions.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the table-footing gate, 03-Sep-2026
+
+> **What it cost, or how we know.** Run book-wide with no declarations the instrument flagged 22.3% of all tables. Two of the three causes were the instrument being WRONG about how tables work — a balance sheet foots over its subtotals rather than its leaf rows (67 tables), and a row labelled Total assets heading a summary balance sheet is a disclosed line item with nothing above it (34 tables) — and both were fixed rather than declared away, taking the rate to 16.5%. The residue is IRREDUCIBLE: a Total equity row listed AMONG line items is structurally indistinguishable from a roll-up, and so is a driver named Blended ARPU in a sensitivity grid. So the arithmetic stayed exact and the study declares its own exceptions with reasons — the prose_figures architecture, reached by measurement rather than by preference. ARCC needed three declarations and each names a real structural fact about its own table.
+
+> **What would overturn it.** A rule set that separates a roll-up from a list of line items by shape alone, which would make the per-study declaration unnecessary rather than merely narrower.
 
 ### L-208 · A check that fails by the calendar is not a check.
 

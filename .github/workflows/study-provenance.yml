@@ -55,6 +55,9 @@ on:
       - 'engine/research_sweep.py'
       - 'scripts/check_prose_figures.py'
       - 'scripts/check_prose_figures_negative_control.py'
+      - 'scripts/check_table_footing.py'
+      - 'scripts/check_table_footing_negative_control.py'
+      - 'engine/table_footing.py'
       - 'scripts/check_new_study_gauntlet.py'
       - 'scripts/check_new_study_gauntlet_negative_control.py'
       - 'scripts/check_published_coverage.py'
@@ -143,6 +146,9 @@ on:
       - 'engine/research_sweep.py'
       - 'scripts/check_prose_figures.py'
       - 'scripts/check_prose_figures_negative_control.py'
+      - 'scripts/check_table_footing.py'
+      - 'scripts/check_table_footing_negative_control.py'
+      - 'engine/table_footing.py'
       - 'scripts/check_new_study_gauntlet.py'
       - 'scripts/check_new_study_gauntlet_negative_control.py'
       - 'scripts/check_published_coverage.py'
@@ -427,6 +433,25 @@ jobs:
       # the file would have reported clean
       - name: Prose-figure gate — negative control
         run: python3 scripts/check_prose_figures_negative_control.py
+
+      # EVERY TOTAL A READER SEES IS REPRODUCIBLE FROM THE ROWS PRINTED ABOVE IT.
+      # Three defects were found in ARCC on 03-Sep-2026 by rendering the delivered PDF and
+      # reading it page by page, all the same shape — a table printing components and a
+      # figure that does not follow from them — in a document that had already passed the
+      # recalculation gate, the prose-figure check, the scrub and the column audit. The
+      # reason every one of those was blind is exact rather than an oversight in them:
+      # recalculation reconciles the model TO ITSELF so a correct model passes however
+      # wrong the page is, and prose_figures matches each figure individually while the
+      # defect lives in the RELATIONSHIP BETWEEN figures. Nothing here was asking whether
+      # a reader could add up what was printed.
+      - name: Table-footing gate
+        run: python3 scripts/check_table_footing.py
+
+      # and the proof it can go red, on all three ARCC tables EXACTLY as they shipped —
+      # plus the clean cases that caught two real bugs in the instrument's own first draft
+      # (a header cell parsing 'FY2025' as 2025, and a dash walling off a component block)
+      - name: Table-footing gate — negative control
+        run: python3 scripts/check_table_footing_negative_control.py
 
       # THE PROPERTY THE WHOLE DESIGN RESTS ON, tested rather than assumed: a study
       # directory created tomorrow with nothing in it goes RED everywhere. That is a
