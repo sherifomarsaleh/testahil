@@ -5,13 +5,13 @@
  "why_this_file": "The reverse read — what the traded price must believe — is a DIAGNOSTIC and lives outside the numbers file every builder reads. A quantity solved from a price and then used anywhere in the valuation is the reverse-engineered rate the protocol prohibits outright, arriving through a side door. Nothing here is an input to anything; it is written OUT of what compute.py already committed.",
  "implied": {
   "quantity": "the gross margin sustained in every forecast year AND in perpetuity that reproduces the traded price",
-  "value": 0.10355855194894102,
+  "value": 0.10579793896150971,
   "study_value": 0.09653412625014321,
   "study_value_range": [
-   0.10355855194894102,
+   0.10579793896150971,
    0.1384
   ],
   "solved_on": "compute.py's own solve, holding every other driver at its base case and moving only the gross margin until the cash-flow lens reaches the market price",
-  "reading": "At EGP 13.50 the price is paying for a gross margin of 10.36% held in every forecast year and in perpetuity, against a base year of 9.65% — 70 basis points ABOVE it. That is INSIDE the range this company has actually printed: it filed 13.84% for the full year to 30 June 2022 and 13.92% in the quarter to 30 June 2026. So the market is not pricing something the business has never done; it is pricing a margin above the base year and below the best the company has filed, and the study's answer of EGP 11.83 is -12.3% against the price."
+  "reading": "At EGP 13.50 the price is paying for a gross margin of 10.58% held in every forecast year and in perpetuity, against a base year of 9.65% — 93 basis points ABOVE it. That is INSIDE the range this company has actually printed: it filed 13.84% for the full year to 30 June 2022 and 13.92% in the quarter to 30 June 2026. So the market is not pricing something the business has never done; it is pricing a margin above the base year and below the best the company has filed, and the study's answer of EGP 11.40 is -15.5% against the price."
  }
 }

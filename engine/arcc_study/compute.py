@@ -2251,8 +2251,35 @@ say(f"\n[Gates] assert_ground_up, assert_beta_provenance, assert_sigcm and "
 _PI = list(_MACRO.inflation_path)
 _YRS = list(_MACRO.inflation_years)
 
+_INFL_INPUTS = [
+    # [R-MACRO-01], clause added 03-Sep-2026 after EGCH: every inflation-class INPUT,
+    # not only the declared growth lines. This study's two escalator INDICES are
+    # cumulative, so what is declared here is the per-year rate each implies. The
+    # FIRST forecast year is an EVIDENCED COMPANY ANCHOR in both — the disclosed
+    # Q4-2025 exit price and the reviewed half's cost of sales — and it is exempted by
+    # COUNT with that reason rather than by exempting the line, which is the shape
+    # EGCH used to hide a whole inflation path. From FY2027 both ride the house
+    # calendar ladder to the basis point, which is what makes the margin an OUTPUT.
+    dict(key='cost_infl', mapping='calendar', first_year=2027, exempt_head=1,
+         values=[round(V['cost_infl'][i + 1] / V['cost_infl'][i] - 1, 6)
+                 for i in range(5)],
+         exempt_reason='FY2026 is anchored on the reviewed half\'s own cost of sales, '
+                       'not on an inflation rate; its real growth against the house '
+                       'path is stated in the growth line above',
+         note='FY2027-FY2030 are the house calendar ladder at zero real growth'),
+    dict(key='price_local_path', mapping='calendar', first_year=2027, exempt_head=1,
+         values=[round(V['price_local_path'][i + 1] / V['price_local_path'][i] - 1, 6)
+                 for i in range(5)],
+         exempt_reason='FY2026 is anchored on the disclosed Q4-2025 exit price of '
+                       'EGP 3,118/t; holding that exit flat produces 7.2% and the 8.0% '
+                       'carried is 0.8 points above a no-further-increase path',
+         note='FY2027-FY2030 are the house calendar ladder at zero real growth, the '
+              'SAME path the cost index carries'),
+]
+
 MACRO_RECORD = dict(
     market='EG', path_as_of=_MACRO.as_of,
+    inflation_inputs=_INFL_INPUTS,
     growth_lines=[
         # The anchored year and the path years are separate LINES because they
         # assume different real growth and each has to say so. Folding them into

@@ -10,12 +10,12 @@
    "Relative multiples"
   ],
   "four_lenses": true,
-  "inputs": "297 inputs, all four-field complete",
-  "scrub": "68 patterns, 0 hits",
+  "inputs": "298 inputs, all four-field complete",
+  "scrub": "73 patterns, 0 hits",
   "figures": "15 figures, 0 with transparency",
   "tables": "56 tables, 0 problems",
   "builders": "4 builders, 0 typed numerals",
-  "contested": "EGP 4.11 a share between the two sides"
+  "contested": "EGP 3.95 a share between the two sides"
  },
  "passed": true,
  "beta": {
@@ -28,12 +28,12 @@
   "ticker": "EGCH",
   "lines": 5,
   "share_by_level": {
-   "unit": 0.7440692809426528,
-   "derived": 0.2435525226301467,
-   "segment": 0.012378196427200576,
+   "unit": 0.7470974569827978,
+   "derived": 0.24091006069013293,
+   "segment": 0.011992482327069181,
    "topdown": 0
   },
-  "unit_share": 0.7440692809426528,
+  "unit_share": 0.7470974569827978,
   "standard_version": "2026.09.01"
  }
 }

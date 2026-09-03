@@ -504,7 +504,7 @@
   },
   "spot": {
    "value": 14.4,
-   "source": "Egyptian Exchange closing price for PHDC, 3 September 2026. The previous edition was struck on the 23 August close of 15.20; [R-GAP-01 AMENDED] delivers no study against a stale price",
+   "source": "Egyptian Exchange closing price for PHDC, 3 September 2026. The previous edition was struck on the 23 August close of 15.20; no study in this series is delivered against a stale price, because a fair value published beside a month-old quote is a comparison a reader cannot use",
    "date": "2026-08-23",
    "tier": "B",
    "unit": "EGP/share"
@@ -4009,6 +4009,15 @@
      0.0
     ],
     "exempt_reason": "a physical handover rate, not a price: the company's own disclosed 15% run, faded to nothing over ten years because it is limited by what it can build and its order book is finite"
+   }
+  ],
+  "inflation_inputs": [
+   {
+    "key": "bottom_up_model.CPI",
+    "mapping": "observed",
+    "values": 0.252,
+    "date": "2025-12-31",
+    "note": "World Bank Egyptian CPI, mean of 2023-2025, applied as a one-year escalator across a HISTORICAL step (FY2024 -> FY2025). A mean over three years is not the published rate for one of them; the correct figure is the 2025 print at its own vintage, which engine/macro_history does not yet carry. OUTSTANDING."
    }
   ],
   "terminal": {

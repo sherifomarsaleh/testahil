@@ -119,6 +119,17 @@ I("dep_rate_intangible", 0.0475, "per year", FS25 + ", note 5-2", "2025-09-24", 
 I("prod_urea_FY2425", 513385, "tonnes", FS25 + ", auditor's product cost table", "2025-09-24", "L1")
 I("prod_ammonia_FY2425", 318242, "tonnes", FS25 + ", auditor's product cost table", "2025-09-24", "L1")
 I("prod_an_gran_FY2425", 17887, "tonnes", FS25 + ", auditor's product cost table", "2025-09-24", "L1")
+# THE PRODUCT'S NITROGEN GRADE IS PART OF ITS NAME AND IT HAD NO REGISTERED SOURCE
+# [added 03-Sep-2026]. The study's tables label this line "Granulated 33.5% nitrate" and
+# prose_check.py was matching that 33.5% against some other computed value that happened to
+# render the same way. When the house inflation path replaced this study's own, that
+# coincidence broke and the build stopped — which is the checker working: it had been
+# passing a figure it could not actually account for. The grade is a fact about the product,
+# it comes from the same auditor's table as the tonnage beside it, and it now carries the
+# four fields every other number in this study carries.
+I("an_gran_nitrogen_pct", 0.335, "ratio",
+  FS25 + ", auditor's product cost table, where the product is named by its grade "
+  "(granulated ammonium nitrate at 33.5% nitrogen)", "2025-09-24", "L1")
 I("prod_ldan_FY2425", 8171, "tonnes", FS25 + ", auditor's product cost table", "2025-09-24", "L1")
 I("prod_nitric_FY2425", 35590, "tonnes", FS25 + ", auditor's product cost table", "2025-09-24", "L1")
 I("unitcost_urea_FY2425", 7509, "EGP/t", FS25 + ", auditor's product cost table", "2025-09-24", "L1")
@@ -270,12 +281,30 @@ _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)
 import macro_path as _MP
 _HOUSE = _MP.load('EG')
 
+
+def _fiscal_inflation_from_house_path(first_fy_start, n):
+    """The house calendar inflation ladder, mapped onto a 30-June fiscal year.
+
+    A fiscal year beginning 1 July of `y` spans the second half of calendar y and the first
+    half of y+1, so it takes half of each calendar year's published rate. Beyond the
+    ladder's last published year the house terminal is used — never an extrapolation of the
+    study's own, which is the thing [R-MACRO-01] forbids.
+    """
+    lad = dict(zip(_HOUSE.inflation_years, _HOUSE.inflation_path))
+    term = _HOUSE.terminal_inflation
+    out = []
+    for i in range(n):
+        y = first_fy_start + i
+        out.append(0.5 * lad.get(y, term) + 0.5 * lad.get(y + 1, term))
+    return out
+
+
 I("inflation_terminal", _HOUSE.terminal_inflation, "ratio",
   "The inflation embedded in the TERMINAL discount rate, taken from the house macro path and "
   "NOT typed here — the SAME figure terminal growth is set at, so the two cannot drift apart. "
   "(This sentence previously described the value as 5%, the central bank's Q4-2028 target, "
   "while the path supplies 7%: a 7% value carrying a 5% justification, which is exactly the "
-  "kind of unfalsifiable typed rate [R-MACRO-01] exists to stop. The value has always come "
+  "kind of unfalsifiable typed rate this series does not permit. The value has always come "
   "from the path; only the sentence was wrong.) "
   "CORRECTED 1 September 2026: the 08-08-2026 edition built the terminal risk-free rate on the "
   "7% Q4-2026 target while growing the perpetuity at 5%, a perpetual real decline of about 2% a "
@@ -500,12 +529,36 @@ for k, vals, unit, src in [
     ("abnormal_gas_path", [150.0, 120.0, 100.0, 90.0, 80.0], "EGP m",
      "Constructed: stoppage and abnormal-gas cost, decaying as supply normalises from the EGP 164.5m charged "
      "in FY2024/25."),
-    ("cpi_path", [0.100, 0.070, 0.060, 0.050, 0.050], "ratio",
-     "Domestic inflation converging from the June 2026 print (14.3%) on the central bank's own "
-     "target ladder: 7% (+/-2) for Q4 2026, which falls in FY2026/27-FY2027/28, and 5% (+/-2) for "
-     "Q4 2028, which falls in FY2028/29, held thereafter. RE-SET 1 September 2026 so that the "
-     "explicit path lands on the terminal inflation rather than stepping down to it at the "
-     "terminal boundary."),
+    # A STUDY MAY NOT CARRY AN INFLATION NUMBER OF ITS OWN [R-MACRO-01], AND THIS ONE DID
+    # [corrected 03-Sep-2026]. Until today this array was typed — 10.0 / 7.0 / 6.0 / 5.0 /
+    # 5.0 — against a house ladder of 16.0 / 12.0 / 9.0 / 7.5 / 7.0 for the same country,
+    # and it terminated at 5% while this study's own committed macro record already carried
+    # the house terminal of 7%. The record conformed and the model did not.
+    #
+    # It was invisible to the gate because of WHERE it sat. check_macro_coherence reads the
+    # study's growth_lines, and this study declared its one line exempt on the true grounds
+    # that its revenue is built from tonnes and dollar prices — while THIS array quietly
+    # drove the purchasing-power wedge (and so the whole currency path, and so both dollar
+    # revenue in pounds and the gas cost) and every domestic cost escalator: other
+    # materials, wages, services, and the terminal tonne's conversion cost. The declared
+    # exemption was about a line that was not doing the work.
+    #
+    # The mapping is ARITHMETIC, not a judgement, and that is why it can be derived rather
+    # than chosen: this company's fiscal year ends 30 June, so FY2026/27 spans the second
+    # half of calendar 2026 and the first half of 2027 and takes half of each calendar
+    # year's house rate. Beyond the ladder's last published year the terminal is used.
+    ("cpi_path", _fiscal_inflation_from_house_path(2026, 5), "ratio",
+     "DERIVED from the single Egyptian inflation path this series uses for every Egyptian "
+     "company it values (as of " + _HOUSE.as_of + "), mapped onto this company's 30 June "
+     "fiscal year end: each fiscal year takes half of each of the two calendar years it "
+     "spans, and beyond the path's last published year its long-run rate. That path is "
+     + " / ".join(f"{y} {r:.1%}" for y, r in zip(_HOUSE.inflation_years,
+                                                 _HOUSE.inflation_path))
+     + ". No number here is chosen for this study: a company cannot be valued in an "
+     "economy the study beside it does not recognise, so no valuation in this series sets "
+     "an inflation rate of its own. Until 3 September 2026 this array read 10.0 / 7.0 / "
+     "6.0 / 5.0 / 5.0 and ended at 5% while the same study already took 7% as the "
+     "long-run rate."),
     ("anna_capex_path", [_RUN_RATE, 3100.0, 3300.0, 3200.0,
                          _REMAINING - (_RUN_RATE + 3100.0 + 3300.0 + 3200.0)], "EGP m",
      "Constructed: project spending path, RE-ANCHORED 9 August 2026 on the observed run rate. The first "
@@ -517,7 +570,7 @@ for k, vals, unit, src in [
     I(k, vals, unit, src, "2026-08-08", "L5")
 
 I("lens_weights", [0.45, 0.20, 0.20, 0.15], "ratio",
-  "RETIRED under [R-LENS-03] and consumed by nothing. It is kept in the register so a reader of "
+  "RETIRED — this series no longer averages its methods — and consumed by nothing. It is kept in the register so a reader of "
   "the 01-09-2026 edition can see what changed, and it is recorded here as retired rather than "
   "deleted because a number that was published once should stay traceable. THE CENTRAL IS THE "
   "CLASS PRIMARY -- the cash-flow lens, which on this company is two-sided -- and every other "

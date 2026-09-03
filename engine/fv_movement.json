@@ -146,6 +146,30 @@
       "bear": -67.8,
       "full": 49.3
      }
+    },
+    {
+     "delivered": "2026-09-03",
+     "edition": 6,
+     "fair": {
+      "base": 11.401172768028045,
+      "bear": 1.6732033650468485,
+      "full": 23.90485159462365
+     },
+     "lessons": [
+      "L-082"
+     ],
+     "origins": "",
+     "scope": "light",
+     "vs_baseline_pct": {
+      "base": 91.6,
+      "bear": -59.1,
+      "full": 180.6
+     },
+     "vs_previous_pct": {
+      "base": -3.7,
+      "bear": 5.4,
+      "full": -4.3
+     }
     }
    ],
    "exchange": "EGX",
@@ -469,6 +493,40 @@
       "base": null,
       "bear": -100.0,
       "full": 109.4
+     }
+    },
+    {
+     "delivered": "2026-09-03",
+     "edition": 6,
+     "fair": {
+      "base": null,
+      "bear": 0.30199380842181717,
+      "branches": [
+       {
+        "label": "Cash-flow lens, capital programme carried through",
+        "value": 2.3109
+       },
+       {
+        "label": "Cash-flow lens, capital programme stopped",
+        "value": 6.259070497380644
+       }
+      ],
+      "full": 6.259070497380644
+     },
+     "lessons": [
+      "L-080"
+     ],
+     "origins": "",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": null,
+      "full": -59.5
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": -45418.9,
+      "full": 6.1
      }
     }
    ],

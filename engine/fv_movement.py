@@ -432,9 +432,27 @@ def main(argv):
         # it. Without it the only way to record a past edition is to bypass this
         # CLI and call record() directly, and a register written two ways is a
         # register that will eventually disagree with itself.
+        # --branches exists because record() has supported a two-sided answer since
+        # EGCH's edition 5 and this CLI did not, so that edition had to be written by
+        # calling record() directly — which is exactly what the note above says not to
+        # do. A register written two ways is a register that will eventually disagree
+        # with itself, and it took one afternoon: the next honest re-record of that name
+        # through the CLI produced a single base the currency check then refused.
+        # Format: --branches "label=value;label=value"
+        _br = None
+        if '--branches' in a:
+            _br = []
+            for _part in opt('--branches', '').split(';'):
+                if not _part.strip():
+                    continue
+                _lbl, _, _v = _part.rpartition('=')
+                if not _lbl:
+                    raise SystemExit('FATAL: --branches wants "label=value;label=value"; '
+                                     'got %r' % _part)
+                _br.append({'label': _lbl.strip(), 'value': float(_v)})
         return record(a[0].upper(), opt('--bear'), opt('--base'), opt('--full'),
                       opt('--scope', 'full'), opt('--origins', ''), lessons,
-                      when=opt('--when'))
+                      when=opt('--when'), branches=_br)
     if cmd == 'build':
         return build()
     if cmd == 'check':

@@ -385,6 +385,15 @@
    "layer": "L1",
    "note": ""
   },
+  "an_gran_nitrogen_pct": {
+   "key": "an_gran_nitrogen_pct",
+   "value": 0.335,
+   "unit": "ratio",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's product cost table, where the product is named by its grade (granulated ammonium nitrate at 33.5% nitrogen)",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
   "prod_ldan_FY2425": {
    "key": "prod_ldan_FY2425",
    "value": 8171,
@@ -1670,7 +1679,7 @@
    "key": "inflation_terminal",
    "value": 0.07,
    "unit": "ratio",
-   "source": "The inflation embedded in the TERMINAL discount rate, taken from the house macro path and NOT typed here \u2014 the SAME figure terminal growth is set at, so the two cannot drift apart. (This sentence previously described the value as 5%, the central bank's Q4-2028 target, while the path supplies 7%: a 7% value carrying a 5% justification, which is exactly the kind of unfalsifiable typed rate [R-MACRO-01] exists to stop. The value has always come from the path; only the sentence was wrong.) CORRECTED 1 September 2026: the 08-08-2026 edition built the terminal risk-free rate on the 7% Q4-2026 target while growing the perpetuity at 5%, a perpetual real decline of about 2% a year that no disclosure supports (the same defect the AMOC review found, L-055). Terminal growth, the terminal risk-free rate and the terminal currency wedge now share one inflation.",
+   "source": "The inflation embedded in the TERMINAL discount rate, taken from the house macro path and NOT typed here \u2014 the SAME figure terminal growth is set at, so the two cannot drift apart. (This sentence previously described the value as 5%, the central bank's Q4-2028 target, while the path supplies 7%: a 7% value carrying a 5% justification, which is exactly the kind of unfalsifiable typed rate this series does not permit. The value has always come from the path; only the sentence was wrong.) CORRECTED 1 September 2026: the 08-08-2026 edition built the terminal risk-free rate on the 7% Q4-2026 target while growing the perpetuity at 5%, a perpetual real decline of about 2% a year that no disclosure supports (the same defect the AMOC review found, L-055). Terminal growth, the terminal risk-free rate and the terminal currency wedge now share one inflation.",
    "date": "2026-09-01",
    "layer": "L3",
    "note": ""
@@ -2260,14 +2269,14 @@
   "cpi_path": {
    "key": "cpi_path",
    "value": [
-    0.1,
-    0.07,
-    0.06,
-    0.05,
-    0.05
+    0.14,
+    0.105,
+    0.08249999999999999,
+    0.07250000000000001,
+    0.07
    ],
    "unit": "ratio",
-   "source": "Domestic inflation converging from the June 2026 print (14.3%) on the central bank's own target ladder: 7% (+/-2) for Q4 2026, which falls in FY2026/27-FY2027/28, and 5% (+/-2) for Q4 2028, which falls in FY2028/29, held thereafter. RE-SET 1 September 2026 so that the explicit path lands on the terminal inflation rather than stepping down to it at the terminal boundary.",
+   "source": "DERIVED from the single Egyptian inflation path this series uses for every Egyptian company it values (as of 2026-09-02), mapped onto this company's 30 June fiscal year end: each fiscal year takes half of each of the two calendar years it spans, and beyond the path's last published year its long-run rate. That path is 2026 16.0% / 2027 12.0% / 2028 9.0% / 2029 7.5% / 2030 7.0%. No number here is chosen for this study: a company cannot be valued in an economy the study beside it does not recognise, so no valuation in this series sets an inflation rate of its own. Until 3 September 2026 this array read 10.0 / 7.0 / 6.0 / 5.0 / 5.0 and ended at 5% while the same study already took 7% as the long-run rate.",
    "date": "2026-08-08",
    "layer": "L5",
    "note": ""
@@ -2296,7 +2305,7 @@
     0.15
    ],
    "unit": "ratio",
-   "source": "RETIRED under [R-LENS-03] and consumed by nothing. It is kept in the register so a reader of the 01-09-2026 edition can see what changed, and it is recorded here as retired rather than deleted because a number that was published once should stay traceable. THE CENTRAL IS THE CLASS PRIMARY -- the cash-flow lens, which on this company is two-sided -- and every other lens is a cross-check published beside it, never weighted into it. What follows is the description of the retired construction, kept verbatim: Weights of the four lenses in the weighted central the 01-09-2026 edition published inside its field: cash flow with the programme carried through 45%, relative multiples 20%, normalised earnings 20%, book value 15%. SET IN THIS EDITION (1 September 2026): the 08-08-2026 edition published the field alone, with no central and no weights. Basis: the cash-flow lens is the primary lens and the only one that charges the capital programme, so it carries the largest weight; its carried-through side enters because that is the company's own stated plan, and the stopped side is published beside it as the contested judgement, never averaged in; the relative and normalised lenses are cross-checks at equal weight; book value, which prices what has been paid for rather than what it earns, the least. The bear and full readings are the low and high of the field across every lens, never the weighted extremes.",
+   "source": "RETIRED \u2014 this series no longer averages its methods \u2014 and consumed by nothing. It is kept in the register so a reader of the 01-09-2026 edition can see what changed, and it is recorded here as retired rather than deleted because a number that was published once should stay traceable. THE CENTRAL IS THE CLASS PRIMARY -- the cash-flow lens, which on this company is two-sided -- and every other lens is a cross-check published beside it, never weighted into it. What follows is the description of the retired construction, kept verbatim: Weights of the four lenses in the weighted central the 01-09-2026 edition published inside its field: cash flow with the programme carried through 45%, relative multiples 20%, normalised earnings 20%, book value 15%. SET IN THIS EDITION (1 September 2026): the 08-08-2026 edition published the field alone, with no central and no weights. Basis: the cash-flow lens is the primary lens and the only one that charges the capital programme, so it carries the largest weight; its carried-through side enters because that is the company's own stated plan, and the stopped side is published beside it as the contested judgement, never averaged in; the relative and normalised lenses are cross-checks at equal weight; book value, which prices what has been paid for rather than what it earns, the least. The bear and full readings are the low and high of the field across every lens, never the weighted extremes.",
    "date": "2026-09-01",
    "layer": "L5",
    "note": ""

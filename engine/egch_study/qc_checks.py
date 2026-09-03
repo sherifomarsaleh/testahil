@@ -46,6 +46,19 @@ PATTERNS = [
     r"\bwacc_result\b", r"\bforward_ranges\b", r"\bscores\.json\b", r"\bdiagnostics\.json\b",
     r"\bcorrections_log\b", r"\blessons_register\b", r"\bpanel\.py\b", r"\bcompute\.py\b",
     r"\buniformity test\b", r"\bp-value\b",
+    # ADDED 03-Sep-2026: THIS LIST NAMED FIFTY-EIGHT THINGS AND NOT THE TWO MOST OBVIOUS.
+    # The delivered bibliography was shipping three standing-rule identifiers and a
+    # repository path — "[R-MACRO-01]", "[R-LENS-03]", "engine/macro_paths/EG.json" —
+    # straight out of an input register's source field, and this scrub reported 0 hits
+    # across 68 patterns because it was enumerating procedure NOUNS and no pattern
+    # matched the shape of an identifier or a path. AMOC's scrub carries both and caught
+    # the identical sentence in its own bibliography the same hour.
+    #
+    # A list of forbidden words cannot be complete, so these two are matched by SHAPE:
+    # any [R-AREA-NN] identifier, and any engine/ or scripts/ path with a file extension.
+    # Neither can occur innocently in a document written for an outside reader.
+    r"\[r-[a-z]+-\d+", r"\b(?:engine|scripts)/[a-z0-9_./-]+\.(?:py|json|md|csv|js)\b",
+    r"\bmacro_paths\b", r"\blessons\.py\b", r"\bmacro_path\b",
 ]
 scrub_hits = []
 for f in DOCS:

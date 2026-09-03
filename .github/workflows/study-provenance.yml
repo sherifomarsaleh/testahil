@@ -48,8 +48,15 @@ on:
       - 'scripts/check_workbook_structure_negative_control.py'
       - 'scripts/check_document_structure.py'
       - 'scripts/check_document_structure_negative_control.py'
+      - 'scripts/check_delivered_vocabulary.py'
+      - 'scripts/check_delivered_vocabulary_negative_control.py'
+      - 'scripts/check_sweep_module.py'
+      - 'scripts/check_sweep_module_negative_control.py'
+      - 'engine/research_sweep.py'
       - 'engine/build_depth_audit/workbook_outstanding.json'
       - 'engine/build_depth_audit/document_outstanding.json'
+      - 'engine/build_depth_audit/vocabulary_outstanding.json'
+      - 'engine/build_depth_audit/sweep_outstanding.json'
       - 'engine/macro_path.py'
       - 'engine/macro_paths/**'
       - 'engine/build_coc_reference.py'
@@ -119,8 +126,15 @@ on:
       - 'scripts/check_workbook_structure_negative_control.py'
       - 'scripts/check_document_structure.py'
       - 'scripts/check_document_structure_negative_control.py'
+      - 'scripts/check_delivered_vocabulary.py'
+      - 'scripts/check_delivered_vocabulary_negative_control.py'
+      - 'scripts/check_sweep_module.py'
+      - 'scripts/check_sweep_module_negative_control.py'
+      - 'engine/research_sweep.py'
       - 'engine/build_depth_audit/workbook_outstanding.json'
       - 'engine/build_depth_audit/document_outstanding.json'
+      - 'engine/build_depth_audit/vocabulary_outstanding.json'
+      - 'engine/build_depth_audit/sweep_outstanding.json'
       - 'engine/macro_path.py'
       - 'engine/macro_paths/**'
       - 'engine/build_coc_reference.py'
@@ -331,6 +345,45 @@ jobs:
       # 'About this study' for 'About this series', and a study carrying EXTRA sections
       - name: Document-structure gate — negative control
         run: python3 scripts/check_document_structure_negative_control.py
+
+      # [R-ENF-01] depth-bar standard 4 is implemented by every study as ITS OWN
+      # hand-maintained list of forbidden words, and on 03-Sep-2026 EGCH's delivered
+      # bibliography shipped "[R-MACRO-01]", "[R-LENS-03]" and "engine/macro_paths/EG.json"
+      # while its own scrub reported 0 hits across 68 patterns. AMOC's scrub, which happens
+      # to carry both shapes, caught the identical sentence the same hour, and a sweep found
+      # three more documents leaking through three different holes. A list of forbidden
+      # words cannot be complete, so a rule identifier and a repository path are matched by
+      # SHAPE, from outside the studies, over all of them.
+      - name: Delivered-vocabulary gate
+        run: python3 scripts/check_delivered_vocabulary.py
+
+      # and the proof it can go red — all four leaks exactly as they shipped, including
+      # PHDC's inside a table cell, plus other shapes of the same defect, a vanished study,
+      # an emptied population and a population with no documents; then four clean cases,
+      # among them ordinary prose using register, gate, step and engine in their everyday
+      # senses, and a bracketed [Note 14] that must NOT read as a rule identifier
+      - name: Delivered-vocabulary gate — negative control
+        run: python3 scripts/check_delivered_vocabulary_negative_control.py
+
+      # [R-ENF-01] CLAUDE.md says of engine/research_sweep.py: "Import this rather than
+      # hand-rolling a study-local sweep script." Sixteen studies do; ARCC did not, and what
+      # its own version checked is the point — five real checks, all five passing, none of
+      # them the module's eight invariants. Replaying the same 26 findings through
+      # SweepRegister.validate() produced SEVEN errors, five of which were facts the study
+      # already held and had written where no checker could point at them: a company website
+      # attempted and REFUSED, an investor presentation cited by page for six drivers, the
+      # reviewed half the bridge stands on, and three top-down drivers whose evidenced
+      # absence sat in prose inside their own justification.
+      - name: Sweep-module gate
+        run: python3 scripts/check_sweep_module.py
+
+      # and the proof it can go red — ARCC's hand-rolled register as it stood, a study that
+      # imports the module for its ENUMS and never calls validate(), no sweep at all, a
+      # register that will not parse, invariant failures the study does not NAME, a vanished
+      # study and an emptied population; plus three clean cases including a study that names
+      # its own open invariants, which is a gap written down rather than a gap hidden
+      - name: Sweep-module gate — negative control
+        run: python3 scripts/check_sweep_module_negative_control.py
 
       # [R-MACRO-01] one house macro path per market, and every study's growth
       # rates held to it from outside. Five studies carried five inflation rates

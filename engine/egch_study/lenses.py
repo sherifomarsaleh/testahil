@@ -278,6 +278,26 @@ D['macro_record'] = dict(
                            'each disclosed or identity-derived, so there is no '
                            'nominal growth rate here to sit on the ladder'),
     ],
+    # [R-MACRO-01], clause added 03-Sep-2026 — AND THIS STUDY IS WHY. Every growth line
+    # above is legitimately exempt (the forecast is built from tonnes and dollar prices),
+    # and an UNDECLARED cpi_path drove the purchasing-power wedge — so the whole currency
+    # path, so both the translation of dollar revenue into pounds and the gas cost — and
+    # escalated other materials, wages, services and the terminal tonne's conversion cost.
+    # The exemption was true and the array was invisible. It is declared here.
+    inflation_inputs=[
+        dict(key='cpi_path', mapping='fiscal_june', first_year=2026,
+             values=[round(x, 6) for x in V('cpi_path')],
+             note='the house ladder mapped onto this company\'s 30 June fiscal year end: '
+                  'each fiscal year takes half of each of the two calendar years it spans, '
+                  'and beyond the ladder\'s last published year the house terminal. Until '
+                  '3 September 2026 this array was TYPED at 10.0 / 7.0 / 6.0 / 5.0 / 5.0, '
+                  'terminating at 5% while this record already carried the house terminal '
+                  'of 7%.'),
+        dict(key='cpi_latest', mapping='observed', values=V('cpi_latest'),
+             date='2026-06-30',
+             note='the June 2026 annual headline print, a reported figure used for context '
+                  'and never as a forecast rate'),
+    ],
     fx_path=None,
     fx_note='the currency path is DERIVED year by year from the relative '
             'purchasing-power identity on the house terminal inflation against '

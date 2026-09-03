@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**111 lessons**, of which 84 bind on every study, 20 on a class of company, and 7 on a single name.
+**116 lessons**, of which 89 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 38 found while building.
+By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 43 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -868,6 +868,56 @@ Adding the new statement under the old one leaves a document asserting both, and
 > **What it cost, or how we know.** One paragraph read 'HALF OF THIS BASE YEAR IS A PRESS RELEASE AND NOT A FILING'; the paragraph four lines below it read 'THE HALF IS FILED, AND THE RELEASED GROSS PROFIT WAS RIGHT'. Both were true of successive editions and only one was true of this one. A table cell in between still gave the basis as 'second half SOLVED' while the model used the filed figure, and the caveat list still called the base year 'half press release' — so the same page carried a superseded claim three times over beside its own correction.
 
 > **What would overturn it.** A document that deliberately publishes both the old and the new reading for a reader of the previous edition — which is legitimate, and is why the retired blend is published labelled RETIRED rather than deleted. The test is whether the old statement is marked as superseded.
+
+### L-080 · A check that reads what a process DECLARES is not checking what the process does.
+
+Every exemption in a gate is a place where the gate stops looking. A TRUE exemption on the WRONG OBJECT is the safest hiding place there is: nobody is lying, the reason survives review, and the work happens somewhere the check does not reach. Where a rule governs a quantity, hold the quantity — holding the study's description of where the quantity lives is one indirection too many.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EGCH cpi_path, 03-Sep-2026
+
+> **What it cost, or how we know.** EGCH declared its one growth line exempt from the house inflation path on grounds that were perfectly true — its revenue is built from tonnes and dollar prices, so no nominal growth rate sat on that line. Meanwhile an input named nowhere in the record, cpi_path = 10.0 / 7.0 / 6.0 / 5.0 / 5.0 against a house ladder of 16.0 / 12.0 / 9.0 / 7.5 / 7.0, drove the purchasing-power wedge and therefore the whole currency path — so both the pound value of dollar revenue and the gas cost — and escalated other materials, wages, services and the terminal tonne's conversion cost. It terminated at 5% while the same record carried the house terminal of 7%. The study's own gap review named it in plain words, 'the study's own Egyptian inflation path', inside the heading whose purpose is to catch it, and passed.
+
+> **What would overturn it.** A gate that holds the declared object and the used object and finds them always identical across a large book — which would mean the indirection is harmless in practice and the extra clause is cost without benefit.
+
+### L-081 · A list of forbidden words cannot be complete; match the shapes that cannot occur innocently.
+
+Where a prohibition can be expressed as a SHAPE rather than a vocabulary, express it as a shape. A word list is maintained by whoever last thought of a word, so every copy of it has a different hole, and the holes are invisible until something falls through one.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EGCH and AMOC bibliographies, 03-Sep-2026
+
+> **What it cost, or how we know.** Depth-bar standard 4 is implemented by each study as its own list of forbidden terms — 39 in ARCC, 68 in EGCH, a different set in AMOC. EGCH's delivered bibliography shipped two standing-rule identifiers and a repository path out of an input register's source field while its own scrub reported ZERO hits across 68 patterns; AMOC's scrub, which happens to carry both shapes, caught the identical sentence the same hour. A sweep of the book found three more delivered documents leaking through three different holes.
+
+> **What would overturn it.** A shape that turns out to occur innocently in a document written for an outside reader — which would mean the shape was the wrong instrument and a word list, with its judgement about ordinary senses, was right after all.
+
+### L-082 · A correction that moves the answer away from the price is not a reason to reconsider the correction.
+
+The temptation runs the other way from the one everyone guards against. A correction that closes a gap feels confirmed by the closing, and one that widens it invites a second look at the correction rather than at the model. Both instincts are the same error: the price is evidence about where to LOOK, never evidence about what the answer is.
+
+**Applies to:** every study  ·  *Learned from:* found while building, AMOC inflation ladder, 03-Sep-2026
+
+> **What it cost, or how we know.** Conforming AMOC's cost ladder to the house path was expected to RAISE the value: the study's own ladder compounded higher, 1.7385 against 1.6288 over five forecast years, so the cost side alone said the value would rise. It fell, EGP 11.83 to 11.40, from -12.3% to -15.5% against the price, because the currency path is derived from the same ladder by purchasing-power parity — a lower ladder means a stronger pound, and on a dollar-linked slate the translation gain lost outweighs the pound costs saved. The direction was not predictable from the sign of the input error.
+
+> **What would overturn it.** A case where re-examining a correction that widened a gap uncovers a real defect in the correction itself — which is why the instinct exists and why the rule is about not letting the DIRECTION be the trigger, rather than about never looking.
+
+### L-083 · A value patched into a generated artefact is lost at the next generation.
+
+The patch works, the gate goes green, and the obligation to move it into the generator becomes a thing somebody has to remember. Nobody does, and the loss surfaces hours or weeks later as a gate failing on work that looked finished.
+
+**Applies to:** every study  ·  *Learned from:* found while building, TMGH range_basis, 03-Sep-2026
+
+> **What it cost, or how we know.** The commit that adopted the range_basis requirement wrote the block straight into engine/tmgh_study/study_numbers.json and never into build_numbers.py. The next honest rebuild of that study — triggered by an unrelated amendment the same day — dropped it, and the lens-design gate went red on a study that had been conforming eight hours earlier. This is L-067's cousin: that one was a check pinned to a filename, this one is a value pinned to a file.
+
+> **What would overturn it.** A generated artefact that legitimately cannot be produced by its generator — a figure only a person can supply — in which case the honest form is an input the generator READS, not a patch to its output.
+
+### L-084 · A process that validates itself validates the list its author thought of.
+
+Local checks fail by imagination, not by care. A careful author writes careful assertions about everything they can think of, and the gap is precisely the set of things they could not — which no amount of further care inside the same process will supply, because what is missing is a list written somewhere else. This is why a shared instrument beats a good local one even when the local one is better written.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ARCC sweep.py, 03-Sep-2026
+
+> **What it cost, or how we know.** ARCC was the only study in the book that hand-rolled its Step 2A sweep instead of importing engine/research_sweep.py. Its own assertions checked five things — every finding has a source, a date and a model impact; the class is one of four; all four rings appear; ids are unique; driver cross-references resolve — and all five passed. Replaying the same 26 findings through the shared register's validate() produced SEVEN errors, and five were facts the study already held: a company website attempted and refused, an investor presentation cited by page for six drivers, the reviewed half the bridge stands on, and three top-down drivers whose evidenced absence sat in prose inside their own justification.
+
+> **What would overturn it.** A study whose local checks turn out to be a strict superset of the shared instrument's — which would mean the shared module is the weaker one and should adopt the local checks, not the other way round.
 
 ### L-208 · A check that fails by the calendar is not a check.
 

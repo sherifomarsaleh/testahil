@@ -1,5 +1,5 @@
 {
- "baseline": 1.7853774538680922,
+ "baseline": 2.310891559889441,
  "capex": {
   "history": [
    {
@@ -41,7 +41,7 @@
   "pre_project_pooled": 0.011156990270541007,
   "replacement_rate": 0.0610485267386962,
   "house_standard": 0.03,
-  "house_standard_value": 1.4591503996162163,
+  "house_standard_value": 1.968267115657804,
   "run_rate": 2598.845948,
   "forecast_path": [
    2598.845948,
@@ -55,14 +55,14 @@
   "machinery_dep_rate": 0.0395,
   "implied_asset_life": 25.31645569620253
  },
- "baseline_halt": 5.900148689005042,
+ "baseline_halt": 6.259070497380644,
  "spot": 14.41,
  "alternatives": [
   {
    "key": "premium_basis",
    "made": "Country risk priced off the sovereign's credit rating",
    "alt": "Priced off the sovereign's traded default swap instead, which is the narrower of the two spreads",
-   "value": 1.7853774538680922,
+   "value": 2.310891559889441,
    "why": "The rating basis is the wider spread and therefore the more conservative equity premium. Both are published in full in section 1.8 and neither is ever mixed with the other's risk-free rate.",
    "delta": 0.0
   },
@@ -70,95 +70,95 @@
    "key": "glide",
    "made": "A cost of capital that glides from its spot build to a terminal rate made from its own long-run components",
    "alt": "One flat spot rate applied to every explicit year and to the perpetuity",
-   "value": 0.36701581414458784,
+   "value": 0.5729787587400788,
    "why": "A spot rate carries today's inflation print into a perpetuity growing at the central bank's target. That is a units mismatch, and on a company whose value sits in its terminal year it would be the largest single error in the study.",
-   "delta": -1.4183616397235044
+   "delta": -1.737912801149362
   },
   {
    "key": "terminal_growth",
    "made": "Terminal growth at the central bank's medium-term inflation target",
    "alt": "Two percentage points below it, which is negative real maintenance growth",
-   "value": 1.681839374144488,
+   "value": 2.1995294516086776,
    "why": "Nominal maintenance growth with no real growth is the neutral assumption for a single plant at steady state. Below inflation implies the asset shrinks in real terms every year forever, which the maintenance capital expenditure in the model is sized to prevent.",
-   "delta": -0.10353807972360429
+   "delta": -0.1113621082807632
   },
   {
    "key": "cost_of_debt_floor",
-   "made": "The cost of debt at the company's own disclosed rates \u2014 19.4% on the local facility, 11.7% in dollars on the project loan carried at local-equivalent cost on the derived currency path, 20.0% in year one gliding to 13.9% at the terminal",
+   "made": "The cost of debt at the company's own disclosed rates \u2014 19.4% on the local facility, 11.7% in dollars on the project loan carried at local-equivalent cost on the derived currency path, 24.4% in year one gliding to 13.9% at the terminal",
    "alt": "Every leg floored at the 23.00% sovereign ten-year yield \u2014 the company's own facilities print no spread above the policy rate, so no spread is added",
-   "value": 0.9828446765320163,
-   "why": "A same-currency corporate cannot normally borrow below its sovereign, and the local facility does (its dollar leg sits below the normalised risk-free rate in 3 of the five explicit years). The disclosed rates are what the company actually pays on state-bank facilities and are used as disclosed; the floored construction is published beside them, not averaged in.",
-   "delta": -0.8025327773360759
+   "value": 1.5353259762745513,
+   "why": "A same-currency corporate cannot normally borrow below its sovereign, and the local facility does (its dollar leg sits below the normalised risk-free rate in 0 of the five explicit years). The disclosed rates are what the company actually pays on state-bank facilities and are used as disclosed; the floored construction is published beside them, not averaged in.",
+   "delta": -0.7755655836148896
   },
   {
    "key": "beta",
    "made": "Beta from the five-year weekly regression of the share against the published EGX30 index",
    "alt": "The lower bound of that regression's own 90% confidence interval",
-   "value": 2.859085724910241,
+   "value": 3.4987131525287887,
    "why": "The regression passes all three conditions of the usability test, so the point estimate is adopted; the interval is wide because the share is thinly traded, and the lower bound is priced here rather than argued away.",
-   "delta": 1.0737082710421488
+   "delta": 1.1878215926393478
   },
   {
    "key": "gas",
    "made": "Gas at the realised price the company's own loss disclosure implies",
    "alt": "The contract formula price in the operating agreement, which is higher",
-   "value": -0.1265904861401076,
+   "value": 0.24608345086233946,
    "why": "The realised price is what the company actually paid on its own numbers. The contract price is carried as the downside case rather than as the central assumption, because a company that has been paying less than its contract for three years is evidence, not an exception.",
-   "delta": -1.9119679400082
+   "delta": -2.0648081090271013
   },
   {
    "key": "utilisation",
    "made": "The new complex earning at half its derived nameplate in the terminal year",
    "alt": "Seventy per cent, which is what a well-run nitrate line achieves",
-   "value": 2.015514431643158,
+   "value": 2.564332955202137,
    "why": "Half is the observed record of the existing plant against its own plate under the same gas constraint. Assuming the new line does better than the old one on the same feedstock would need evidence no filing provides.",
-   "delta": 0.23013697777506592
+   "delta": 0.2534413953126964
   },
   {
    "key": "maintenance_capex",
    "made": "Maintenance capital expenditure at the company's own observed pre-project rate of 1.12% of revenue",
    "alt": "Replacement-rate maintenance: gross fixed assets at the disclosed 3.95% machinery depreciation rate, or 6.11% of revenue",
-   "value": 0.9216105075155367,
+   "value": 1.403708461239366,
    "why": "The observed rate is what this company has actually paid to keep this plant running in the two years when it was not building anything. The replacement-rate framing is the honest upper bound \u2014 a plant cannot spend a fifth of its depreciation forever \u2014 and it is carried as the downside case rather than averaged into the central.",
-   "delta": -0.8637669463525555
+   "delta": -0.9071830986500748
   },
   {
    "key": "terminal_reinvestment",
    "made": "Terminal reinvestment of 38.9% of operating profit after tax, from growth over an 18% return on capital",
    "alt": "23.3%, from a 30% return on capital \u2014 the rate a newly completed plant earns on incremental capital while it is still filling",
-   "value": 2.624416745702623,
+   "value": 3.2395892661109142,
    "why": "Eighteen per cent is the conservative reading and is kept, but it is an assumption rather than a disclosure, and on a plant that has just been rebuilt it charges a heavy ongoing reinvestment against a terminal year that needs no further building. It is the single largest unsourced input left in the model and is flagged as such.",
-   "delta": 0.8390392918345306
+   "delta": 0.9286977062214734
   },
   {
    "key": "project_profile",
    "made": "Project spending anchored on the observed run rate: the nine-month actual extended to a full year",
    "alt": "The faster profile the first issue of this study used, opening at EGP 3,000m",
-   "value": 1.5525973821844588,
+   "value": 2.079574021395053,
    "why": "The company has never spent EGP 3,000m in a year on this project. The observed rate is a disclosed, dated figure and the total still completes the approved cost inside the forecast window.",
-   "delta": -0.23278007168363346
+   "delta": -0.23131753849438796
   }
  ],
  "spans": {
   "cashflow_carry": {
    "label": "Cash flow \u2014 programme carried through",
-   "basis": "Five-year free cash flow to the firm on a cost of capital gliding from 24.6% to 18.6%, terminal growth 7.0%",
-   "bear": -0.0006663750534725712,
-   "base": 1.7853774538680922,
-   "bull": 1.9248325671659838,
-   "low": -0.0006663750534725712,
-   "high": 1.9248325671659838,
-   "vs_spot": -0.8761014952208125
+   "basis": "Five-year free cash flow to the firm on a cost of capital gliding from 25.8% to 18.6%, terminal growth 7.0%",
+   "bear": 0.30199380842181717,
+   "base": 2.310891559889441,
+   "bull": 2.449439441595668,
+   "low": 0.30199380842181717,
+   "high": 2.449439441595668,
+   "vs_spot": -0.8396327855732518
   },
   "cashflow_stopped": {
    "label": "Cash flow \u2014 programme stopped",
    "basis": "The same model with the capital programme wound down in the first forecast year and the plant run as it stands",
-   "bear": 3.9881807489968404,
-   "base": 5.900148689005042,
-   "bull": 5.964535290412019,
-   "low": 3.9881807489968404,
-   "high": 5.964535290412019,
-   "vs_spot": -0.5905517911863261
+   "bear": 4.194262388353539,
+   "base": 6.259070497380644,
+   "bull": 6.326693409813887,
+   "low": 4.194262388353539,
+   "high": 6.326693409813887,
+   "vs_spot": -0.5656439627077972
   },
   "book": {
    "label": "Book value and sustainable return",
@@ -173,12 +173,12 @@
   "relative": {
    "label": "Relative multiples",
    "basis": "Forward operating profit before depreciation at 6.0x to 9.9x, the Egyptian industrial range, with 8.0x central",
-   "bear": 10.876945182278353,
-   "base": 15.474444319299197,
-   "bull": 20.071943456320042,
-   "low": 10.876945182278353,
-   "high": 20.071943456320042,
-   "vs_spot": 0.07386844686323357
+   "bear": 11.264331408147813,
+   "base": 15.987731068576231,
+   "bull": 20.711130729004648,
+   "low": 11.264331408147813,
+   "high": 20.711130729004648,
+   "vs_spot": 0.10948862377350665
   },
   "normalised": {
    "label": "Normalised earnings power",
@@ -204,10 +204,10 @@
   "capital_per_tonne": 77051.7727272727,
   "market_cap": 28626.60337559,
   "pct_market_cap": 0.7105861541836084,
-  "terminal_ebit": -51.97833195171938,
+  "terminal_ebit": 51.48088609216893,
   "terminal_util": 0.5,
-  "return_on_cost": -0.0019803296004330877,
-  "gap_to_wacc": -0.18786073172622036
+  "return_on_cost": 0.0019613773423807195,
+  "gap_to_wacc": -0.18391902478340655
  },
  "cycle_hist": [
   {
@@ -241,33 +241,33 @@
  "cycle_fwd": [
   {
    "year": "FY2026/27",
-   "wc": 2211.588344747749,
-   "dwc": -857.835655252251,
-   "wc_pct_rev": 0.1955391067671073
+   "wc": 2281.242315345062,
+   "dwc": -788.1816846549382,
+   "wc_pct_rev": 0.19541255821812883
   },
   {
    "year": "FY2027/28",
-   "wc": 2358.9872221638498,
-   "dwc": 147.39887741610073,
-   "wc_pct_rev": 0.19726712674772726
+   "wc": 2501.0662607719833,
+   "dwc": 219.82394542692145,
+   "wc_pct_rev": 0.1970408999605225
   },
   {
    "year": "FY2028/29",
-   "wc": 2494.3276305230393,
-   "dwc": 135.3404083591895,
-   "wc_pct_rev": 0.1994318671902941
+   "wc": 2690.7344672083345,
+   "dwc": 189.66820643635128,
+   "wc_pct_rev": 0.19912644748545738
   },
   {
    "year": "FY2029/30",
-   "wc": 2617.916116040833,
-   "dwc": 123.58848551779374,
-   "wc_pct_rev": 0.20159824040628116
+   "wc": 2872.6657917831867,
+   "dwc": 181.93132457485217,
+   "wc_pct_rev": 0.20120722309838596
   },
   {
    "year": "FY2030/31",
-   "wc": 2743.8904281764026,
-   "dwc": 125.97431213556956,
-   "wc_pct_rev": 0.20360350426258958
+   "wc": 3056.069679857385,
+   "dwc": 183.40388807419822,
+   "wc_pct_rev": 0.2031507617648155
   }
  ]
 }
