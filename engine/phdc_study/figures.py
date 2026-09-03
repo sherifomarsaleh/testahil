@@ -142,6 +142,22 @@ def fig2_sensitivity(waccs, cfos, grid, spot):
     ax.set_yticklabels(["%.1f%%" % (c * 100) for c in cfos])
     ax.set_xlabel("WACC")
     ax.set_ylabel("cash conversion (CFO / revenue)")
+    # BOLD THE PAIR THAT ACTUALLY BRACKETS THE CLOSE [corrected 03-Sep-2026].
+    # The title said "bold where the cell brackets the close" and the code marked any cell
+    # within EGP 1.20 of it — a DIFFERENT RULE, and a free parameter with nothing behind
+    # it. A single cell cannot bracket a value; a PAIR does, which is what the word means
+    # and what a reader looking for the close needs to find. On this grid the two rules
+    # disagree visibly: the 6.0% row straddles 14.40 between 16.10 and 11.20 and neither
+    # cell is within 1.20, so the row a reader most wants marked was the one left plain,
+    # while the 12.0% row — whose whole span sits ABOVE the close and brackets nothing —
+    # carried a bold cell. Same family as the ARCC heatmap whose title promised bold cells
+    # that did not exist.
+    _bold = set()
+    for i in range(g.shape[0]):
+        for j in range(g.shape[1] - 1):
+            if (g[i, j] - spot) * (g[i, j + 1] - spot) < 0:
+                _bold.add((i, j))
+                _bold.add((i, j + 1))
     for i in range(g.shape[0]):
         for j in range(g.shape[1]):
             v = g[i, j]
@@ -151,8 +167,8 @@ def fig2_sensitivity(waccs, cfos, grid, spot):
             lum = 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]
             ax.text(j, i, "%.2f" % v, ha="center", va="center", fontsize=8.5,
                     color=INK if lum > 0.55 else "#FFFFFF",
-                    fontweight="bold" if abs(v - spot) < 1.2 else "normal")
-    ax.set_title("Fair value per share (EGP) — bold where the cell brackets the "
+                    fontweight="bold" if (i, j) in _bold else "normal")
+    ax.set_title("Fair value per share (EGP) — bold where a row brackets the "
                  "EGP %.2f close" % spot, fontsize=10.5, pad=12, loc="left")
     ax.grid(False)
     cb = fig.colorbar(im, ax=ax, pad=0.02)

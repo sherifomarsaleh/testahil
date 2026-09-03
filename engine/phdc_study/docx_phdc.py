@@ -897,11 +897,30 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               "capitalised into work in progress." % money(v("finance_cost_fy25")))
 
     doc.add_heading("1.9  Sensitivity", level=2)
+    # A CLAIM COMPUTED FROM THE GRID BENEATH IT, NOT TYPED ABOVE IT [corrected
+    # 03-Sep-2026]. This read "moving the discount rate by the whole 800 basis points of
+    # the 11 June 2026 edition's error changes value by LESS than moving cash conversion
+    # from one observed year to another", and its own table says otherwise: 800bp on the
+    # three-year-mean row runs 37.40 to 10.24, a move of 27.16, against 11.71 for
+    # conversion from 2023-25 to the mean and 22.44 from the mean to 2024. The sentence
+    # was wrong in the direction stated, and it sat directly above the numbers refuting
+    # it. Computed now, so it cannot disagree with the grid it describes.
+    _mid = min(range(len(SENS["waccs"])),
+               key=lambda k: abs(SENS["waccs"][k] - N["cost_of_capital_record"]["wacc_exp"]))
+    _row = min(range(len(SENS["cfos"])), key=lambda k: abs(SENS["cfos"][k] - 0.087))
+    _dr = abs(SENS["grid"][_row][0] - SENS["grid"][_row][-1])
+    _steps = [abs(SENS["grid"][b][_mid] - SENS["grid"][a][_mid])
+              for a, b in ((0, _row), (_row, len(SENS["cfos"]) - 1))]
+    _span = abs(SENS["grid"][-1][_mid] - SENS["grid"][0][_mid])
     para(doc, "The table below prices the crux against the discount rate. Read it "
-              "down a column rather than across a row: moving the discount rate by "
-              "the whole 800 basis points of the 11 June 2026 edition's error changes "
-              "value by less than moving cash conversion from one observed year to "
-              "another.")
+              "down a column rather than across a row. Moving the discount rate across "
+              "the whole 800 basis points of the 11 June 2026 edition's error is worth "
+              "EGP %.2f a share on the three-year-mean row — MORE than either single "
+              "step between observed conversion years (EGP %.2f and EGP %.2f), and less "
+              "than the full observed range of conversion itself, which is worth EGP "
+              "%.2f. The crux is the conversion rate, but only across its whole observed "
+              "spread; one year to the next moves value less than the discount rate does."
+              % (_dr, _steps[0], _steps[1], _span))
     hdr = ["Cash conversion"] + [pct(w, 2) for w in SENS["waccs"]]
     rows = []
     for i, c in enumerate(SENS["cfos"]):

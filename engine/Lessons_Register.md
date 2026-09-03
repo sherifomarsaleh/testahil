@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**170 lessons**, of which 143 bind on every study, 20 on a class of company, and 7 on a single name.
+**172 lessons**, of which 145 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 95 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 97 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1508,6 +1508,26 @@ A footing check keyed on the word 'total' is blind to the commonest table in thi
 > **What it cost, or how we know.** PHDC's forecast income statement printed Revenue, Cost of revenue, Gross profit, Overheads and Operating profit, and gross less overheads came out EGP 393mn ABOVE the printed operating profit in 2026, rising to 1,039mn by 2031. The model computes EBIT as gross less overheads less DEPRECIATION and the table never printed the depreciation row. Every figure in it was individually correct and the defect lived in the RELATIONSHIP between them — the same shape as ARCC's Table 3, which deducted provisions and credit losses and never printed the line. TWO STUDIES, ONE DEFECT, FOUND BOTH TIMES BY A PERSON READING. A chain check was built and MEASURED across 1,051 tables and 277 subtotal rows: 53% did not reproduce against revenue, 27% against the previous subtotal — an income statement is a CHAIN, and re-pointing it halved the rate without touching a tolerance. It was still one table in four, which is the permanently-red check [R-ENF-02] forbids, so IT WAS NOT ADOPTED and the measurement is recorded so the next attempt starts from it.
 
 > **What would overturn it.** A discriminator that tells a currency component from a volume or per-unit row without relying on label words — which is what the residue of that measurement turns on.
+
+### L-250 · A COMPARATIVE CLAIM IS A CLAIM ABOUT THE TABLE BENEATH IT, AND IT IS THE ONE KIND OF SENTENCE A READER CAN FALSIFY WITHOUT LEAVING THE PAGE.
+
+'X moves the answer more than Y' reads as a summary rather than as an assertion, so nobody checks it — and every number it depends on is printed directly below. A figure check reconciles each cell against the model and never asks whether the sentence above them is true of the cells together.
+
+**Applies to:** every study  ·  *Learned from:* found while building, reading PHDC's rendered page 10, 03-Sep-2026
+
+> **What it cost, or how we know.** The sensitivity section said 'moving the discount rate by the whole 800 basis points of the 11 June 2026 edition's error changes value by LESS than moving cash conversion from one observed year to another', immediately above the grid that refutes it: 800bp on the three-year-mean row runs 37.40 to 10.24, a move of EGP 27.16 a share, against 11.71 for conversion from 2023-25 to the mean and 22.44 from the mean to 2024. Wrong in the direction stated. Replaced with a sentence COMPUTED from the grid, which also says something truer and more useful — the crux is the conversion rate, but only across its whole observed spread (34.15); one year to the next moves value less than the discount rate does.
+
+> **What would overturn it.** A comparative claim that survives being recomputed from the table it describes — which is what computing it rather than typing it now guarantees.
+
+### L-251 · A CAPTION THAT NAMES A RULE IS ASSERTING THE PICTURE FOLLOWS IT, AND A PICTURE IS WHERE A FREE PARAMETER HIDES BEST.
+
+Nothing reconciles a caption against the code that drew the figure. A threshold chosen to make a chart look right is invisible to every gate this house has, because no number it produces is ever printed.
+
+**Applies to:** every study  ·  *Learned from:* found while building, reading PHDC's rendered page 10, 03-Sep-2026
+
+> **What it cost, or how we know.** The heatmap title read 'bold where the cell BRACKETS the EGP 14.40 close' and the code marked any cell within EGP 1.20 of it — a different rule, and a free parameter with nothing behind it. A single cell cannot bracket a value; a PAIR does. The two rules disagreed visibly on this very grid: the 6.0% row straddles 14.40 between 16.10 and 11.20 and NEITHER cell is within 1.20, so the row a reader most wants marked was left plain, while the 12.0% row — whose whole span sits above the close and brackets nothing — carried a bold cell. Same family as the ARCC heatmap whose title promised bold cells that did not exist. Now the straddling PAIR is bolded, which is what the word means, needs no threshold, and is checkable.
+
+> **What would overturn it.** A figure whose caption names a rule the drawing code does not implement, where the rule as written cannot be made parameter-free.
 
 
 ---
