@@ -896,5 +896,15 @@
     "verdict": "probably structural \u2014 a line item or a blend"
    }
   ]
+ },
+ "_resolved_since": {
+  "ADNOCDRILL": "FIXED 03-Sep-2026. The forecast liability block was ~USD 32mn short in every forecast year because ACQUISITION LIABILITIES sit inside the model's forecast total_liabilities and were printed nowhere; the audited years footed because their total is struck as assets less equity rather than as an explicit sum. The line is printed, both halves foot, and the study now carries a footing_check with two narrow structural declarations.",
+  "TMGH": "FIXED 03-Sep-2026. Intangibles, right-of-use and deferred tax (748.0 exactly) and work in progress (23.6) were registered inputs the balance sheet did not print."
+ },
+ "_unresolved": {
+  "AMR": "REAL AND NOT FIXABLE FROM HERE. The printed asset lines sum to USD 10.4mn short of the disclosed total in FY2023 and similarly in FY2024-25. Unlike TMGH and ADNOCDRILL, THE STUDY DOES NOT HOLD THE MISSING LINE: no registered input matches the residual, so it is an asset line the study never captured. SIGCM clause 1 forbids inventing it and this desk does not hold AMR's filings. Stays on the ratchet; clears when that study is next re-issued with its statements to hand.",
+  "EMPOWER": "Total assets short by 1.0-1.8% across four periods \u2014 the same shape. Not yet traced to a held input; treat as AMR until it is.",
+  "RIYADHCABLE": "Total assets short by 2.5-5.9% across three periods \u2014 the largest residual found. Not yet traced to a held input.",
+  "EIPICO (PHAR)": "Total enterprise value short by 0.4%. Smallest of the five and the only one not on a balance sheet."
  }
 }

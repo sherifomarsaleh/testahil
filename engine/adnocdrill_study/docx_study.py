@@ -1062,6 +1062,13 @@ bsrow('Trade and other payables', lambda h: h['payables'], 'payables')
 bsrow('Due to related parties', lambda h: h['due_to_rp'], 'due_to_rp')
 bsrow("Employees' end of service benefits", lambda h: h['eosb'], 'eosb')
 bsrow('Income tax payable', lambda h: h['tax_payable'], 'tax_payable')
+# THE FORECAST BLOCK MUST FOOT FOR A READER. Acquisition liabilities are inside the
+# forecast total_liabilities and were printed nowhere, so the five printed liability lines
+# came out ~32 short of the total above them in every forecast year while the audited years
+# footed exactly — the audited total is struck as assets less equity and the forecast total
+# as the explicit sum, so only the forecast columns showed it. The line is printed now.
+rows.append(['Acquisition liabilities'] + ['—'] * 3 +
+            [mn(r['balance_sheet']['acquisition_liabilities']) for r in RA])
 rows.append(['Total liabilities'] +
             [mn(H[str(y)]['total_assets'] - H[str(y)]['equity']) for y in (2023, 2024, 2025)] +
             [mn(r['balance_sheet']['total_liabilities']) for r in RA])
