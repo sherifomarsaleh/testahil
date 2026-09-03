@@ -342,6 +342,94 @@ def report_aggregates():
     return rows
 
 
+
+
+# The bottom-line drivers, by name. Assigned by hand: a profit line is not identifiable
+# from its name alone across five different chart-of-accounts conventions.
+PROFIT_DRIVERS = {
+    'AMOC': ['npat', 'pbt', 'majority', 'operating_profit'],
+    'ARCC': ['pat', 'pbt', 'majority'],
+    'EGCH': ['net', 'pbt'],
+    'PHDC': ['is.npat_mi', 'is.npbt'],
+    'TMGH': ['net_profit'],
+}
+
+
+def report_remedies():
+    """Per name: is the profit bias real, and is it a LEVEL error or a RATE error?
+
+    THIS IS THE ACTIONABLE FORM AND THE TWO QUESTIONS ARE SEPARATE. Era stability decides
+    whether there is a bias at all [R-FCAL-01]; the horizon profile decides what to do about
+    it, and the two remedies are not interchangeable. A LEVEL error is flat across horizons
+    and is fixed at the base year [R-ANCHOR-01]. A RATE error grows with the horizon and is
+    fixed in the growth path — re-anchoring a base year to cure one moves today's number and
+    leaves the model to fail identically next year, which is what [R-FCAL-01] means when it
+    says a correction is honest only when the model is right and reality is awkward.
+    """
+    print('\n' + '=' * 78)
+    print('THE PROFIT BIAS, PER NAME: is it real, and what is the remedy?')
+    print('   POSITIVE = forecast too high. Era stability decides whether it is a bias;')
+    print('   the horizon slope decides whether the remedy is the base year or the path.')
+    print()
+    print('  %-8s%9s%11s%11s   %s' % ('name', 'pooled', 'era', 'slope/yr', 'remedy'))
+    print('  ' + '-' * 74)
+    for tk, drvs in PROFIT_DRIVERS.items():
+        f = os.path.join(REPO, 'engine', f'{tk.lower()}_walkforward', 'scores.json')
+        if not os.path.exists(f):
+            continue
+        j = json.load(open(f))
+        bd, be, bh = (j.get('by_driver') or {}, j.get('by_era') or {},
+                      j.get('by_horizon') or {})
+        pooled, flips, slopes = [], False, []
+        for d in drvs:
+            b = (bd.get(d) or {}).get('bias')
+            if b is not None:
+                pooled.append(b)
+            e = be.get(d)
+            if isinstance(e, dict):
+                per = [(v.get('bias') if isinstance(v, dict) else None) for v in e.values()]
+                per = [x for x in per if x is not None]
+                if len({1 if x > 0 else -1 for x in per}) > 1:
+                    flips = True
+            per_h = bh.get(d)
+            if isinstance(per_h, dict):
+                pts = []
+                for h, v in per_h.items():
+                    if not str(h).isdigit() or not isinstance(v, dict):
+                        continue
+                    sm = v.get('summary')
+                    bb = (sm if isinstance(sm, dict) else v).get('bias')
+                    if bb is not None:
+                        pts.append((int(h), bb))
+                sl = _slope(pts)
+                if sl is not None:
+                    slopes.append(sl)
+        if not pooled:
+            continue
+        pm = st.mean(pooled)
+        sl = st.mean(slopes) if slopes else None
+        era = 'SIGN FLIPS' if flips else 'stable'
+        if flips:
+            remedy = 'REPORT ONLY — a bias that changes sign is not a bias'
+        elif sl is None:
+            remedy = 'no horizon profile committed'
+        elif abs(sl) > 0.05:
+            remedy = ('RATE error -> the growth PATH. Profit growth %s by ~%.0f%% a year'
+                      % ('under' if sl < 0 else 'over', 100 * (pow(2.718281828, abs(sl)) - 1)))
+        else:
+            remedy = ('LEVEL error -> the BASE YEAR [R-ANCHOR-01], %s by %.0f%%'
+                      % ('too low' if pm < 0 else 'too high',
+                         100 * abs(pow(2.718281828, pm) - 1)))
+        print('  %-8s%+9.3f%11s%s   %s'
+              % (tk, pm, era, ('%+11.3f' % sl) if sl is not None else '%11s' % '—', remedy))
+    print()
+    print('  THE TWO CLASSES RUN OPPOSITE WAYS AND BOTH SURVIVE THE ERA BAR. The industrials')
+    print('  under-forecast profit and the developers over-forecast it, so there is no single')
+    print('  house correction here — which is exactly why a pooled number across the five')
+    print('  would have been true of none of them.')
+
+
 if __name__ == '__main__':
     report()
     report_aggregates()
+    report_remedies()
