@@ -44,6 +44,19 @@ NUM = re.compile(r"-?\d[\d,\.]{2,}")
 
 
 def year_of(name):
+    """The fiscal year a filing REPORTS ON, as the calendar year it ends in.
+
+    Two conventions live in this repository and they are not interchangeable.
+    PHDC closes on 31 December, so "4Q17" and "31 Dec 2023" mean what they say.
+    EGCH closes on 30 JUNE, and its reports are named FY2015-16 — that document
+    reports the year ending 30 June 2016 and is the latest annual statement an
+    analyst had at the 31-Dec-2016 origin. Returning 2015 for it would silently
+    hand a later origin an earlier year's equity note.
+    """
+    m = re.search(r"FY\s*((?:19|20)\d{2})\s*[-/]\s*(\d{2,4})", name, re.I)
+    if m:
+        end = m.group(2)
+        return int(end) if len(end) == 4 else 2000 + int(end)
     m = re.search(r"(?:31\s*Dec[^0-9]{0,12}|4Q\s*)((?:19|20)?\d{2})", name, re.I)
     if not m:
         return None

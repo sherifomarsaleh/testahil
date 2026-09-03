@@ -20,8 +20,8 @@
  },
  "phase": "1",
  "current": {
-  "workstream": "WS6 — closing the share-count gap",
-  "step": "extract_shares.py OCRs the year-end filings already on disk (the PDFs are scans; pdftotext returns 40 characters) and searches from the back for the equity and per-share notes. Running on PHDC 2015-2019, the five origins where a year-end filing exists AND the macro archive is usable. TMGH has no year-end filing on disk before 2021, so it cannot be closed from what is held.",
+  "workstream": "WS6 — closing the share-count constraint",
+  "step": "PHDC done (5 origins, all footed). EGCH OCR running over its annual reports, whose June fiscal year the extractor now handles — FY2015-16 reports the year ending 30-Jun-2016 and is what the 31-Dec-2016 origin actually had. ARCC has no filings on disk. The five IMF WEO vintages remain blocked by an IMF interstitial that defeats curl AND a headless browser.",
   "status": "in progress"
  },
  "done": [
@@ -71,13 +71,17 @@
   "AUTONOMY WIDENED [principal, 03-Sep-2026]: the programme decides for itself and does not stop. Part H amended in the plan and the standing bar restated — what reaches the principal is now about IRREVERSIBILITY AND AUTHORITY (publishing, contradicting their own instruction, data only they hold, irreversible action outside the repo), not about difficulty. Everything else is decided here and reported after. Question slot: 09:00 Cairo Sun-Thu, batched, never blocking.",
   "PR #337 MERGED to main (b480de21) under the widened autonomy — [R-COC-01] amended, EGCH two-sided, campaign order kept, the calibration panel and the live status command.",
   "Routines rewritten for the new autonomy: the wake (08:00/22:00 Cairo) and the fresh-session safety net now say DO NOT STOP AND DO NOT ASK, decide for yourself including merging on green, and correct the safety net's wrong line that called a merge to main a publish. A new routine holds the question slot at 09:00 Cairo Sun-Thu, whose prompt says silence is the correct output on most days.",
-  "WS6: the mechanical lens DECLARED AND SEALED before any value was computed (beta 1.00, real terminal growth zero, horizons and macro mode fixed, an origin missing any input dropped rather than floored). Then the panel was made LENS-AWARE and twelve ready cells became ZERO: no origin has a SHARE COUNT. A model equity value cannot meet a share price without one and today's count is not a substitute — that is fabricated in vintage, the same error the macro archive refuses. Three defined pieces of work now stand between the calibration and its first score: share counts (55 cells), committed as-reported panels for AMOC/ARCC/EGCH (33), five IMF WEO vintages (25)."
+  "WS6: the mechanical lens DECLARED AND SEALED before any value was computed (beta 1.00, real terminal growth zero, horizons and macro mode fixed, an origin missing any input dropped rather than floored). Then the panel was made LENS-AWARE and twelve ready cells became ZERO: no origin has a SHARE COUNT. A model equity value cannot meet a share price without one and today's count is not a substitute — that is fabricated in vintage, the same error the macro archive refuses. Three defined pieces of work now stand between the calibration and its first score: share counts (55 cells), committed as-reported panels for AMOC/ARCC/EGCH (33), five IMF WEO vintages (25).",
+  "WS6: PHDC share counts extracted by OCR from the year-end filings and ALL FIVE FOOTED (issued capital / par value reproducing the stated count): 2,172mn in 2015 rising to 3,079mn by 2018 — so carrying today's 2,860mn back would have been wrong by up to 42%, which is why refusing to was not fastidiousness.",
+  "WS6: the sealed mechanical lens FAILED on its first run — it read PHDC at two to seven times its traded price at every origin. The run is committed unaltered BEFORE any change, and the lens is superseded on a STANDING RULE rather than on the size of the number: [R-LENS-03] already says normalised earnings is not a developer lens at all, and the sealed lens was exactly that construction on exactly that class. Declaration 2 is a present-value read on the contracted order book with NO terminal value, and it binds itself: THERE IS NO THIRD DECLARATION. It reads -72%, -71%, -56%, -4% across 2016-2019 — a floor, below the price at every origin as a floor should be, closing steadily.",
+  "WS6: export_panels.py commits what AMOC, ARCC and EGCH already knew — their as-reported figures lived in a module-level dict and the filings behind it are gitignored. The statements axis went from 33 cells short to 9. Shares is now the binding constraint at 50 of 55.",
+  "DO-NOT-STOP MADE ARITHMETIC: an hourly continuation tick, and Part H now states that a progress report happens INSIDE a turn that continues, never instead of continuing. All four routines recorded in STATE by id."
  ],
  "next": [
-  "Parse the OCR'd notes into share counts, requiring issued capital / par value to FOOT against the weighted-average count; a year that does not foot is dropped, never recorded with a caveat.",
-  "Then the first mechanical fair values: PHDC at up to five origins, scored as log(FV/P) against the close at each.",
-  "AMOC, ARCC and EGCH: commit a year-keyed as-reported panel from their runs, which unblocks 33 cells.",
-  "The five IMF WEO vintages (2014, 2020-2023) — one origin each.",
+  "EGCH share counts from the OCR, footed the same way; then EGCH cells at 2013 and 2015-2019.",
+  "ARCC: no filings on disk, so its share counts need a re-fetch of its annual reports before its 2015-2019 statements can be used.",
+  "A class-appropriate mechanical lens for EGCH (fertiliser) under [R-LENS-03] — a DIFFERENT class, not a third attempt at the developer lens.",
+  "The five IMF WEO vintages (2014, 2020-2023): blocked by an interstitial that defeats curl and a headless browser alike. Not a design gap; an access one.",
   "WS5 remainder: apply the adopted walk-forward corrections at each study's next edition."
  ],
  "stop_and_ask": [
@@ -94,7 +98,7 @@
   "Phase 2 keeps the campaign's market order — principal, 03-Sep-2026."
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-03T08:08:38Z",
+ "updated": "2026-09-03T08:17:27Z",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md — it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",
