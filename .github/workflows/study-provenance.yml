@@ -408,3 +408,9 @@ jobs:
 
       - name: Valuation-calibration pre-registration — negative control
         run: python3 scripts/check_valuation_calibration_negative_control.py
+
+      - name: Valuation-input block committed by every walk-forward
+        run: python3 scripts/check_valuation_inputs.py
+
+      - name: Valuation-input block — negative control
+        run: python3 scripts/check_valuation_inputs_negative_control.py
