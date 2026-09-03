@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**148 lessons**, of which 121 bind on every study, 20 on a class of company, and 7 on a single name.
+**150 lessons**, of which 123 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 73 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 75 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1288,6 +1288,26 @@ Every automated gate here points from the page back to the model and asks whethe
 > **What it cost, or how we know.** Reading all 32 pages of one delivered study found roughly forty distinct claim-level defects, in a study that had just passed the recalculation gate, the prose-figure check, the external-reader scrub, the column audit and every repository-level gate. The most serious stated a 51% probability for an outcome the model puts near 15%; several published a superseded edition's numbers; one contradicted its own page two paragraphs later. SIX of the classes were then made arithmetic in the same session and are now in CI — table footing, the sign-word check, the retired-input check, the shared site-data reader, delivered-PDF currency and artefact currency — so the next study cannot repeat them. The residue is the argument for keeping the read.
 
 > **What would overturn it.** A re-issue where the read finds nothing the gates did not, sustained over several studies, which would mean the instruments have caught up with the reader.
+
+### L-228 · RUN A NEW INSTRUMENT OVER THE WHOLE BOOK BEFORE BELIEVING ITS FIRST FINDING. Most of what a fresh check reports is the check being wrong about how the work is shaped.
+
+A gate written from one study's defects encodes that study's table conventions. The book carries several more, each of them ordinary, and each looks like a defect until somebody looks at it.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the table-footing gate, 03-Sep-2026
+
+> **What it cost, or how we know.** Pointed at the five rebuilt studies the gate reported 38 unreconciled totals. FOUR were the instrument, not the book, and all four were fixed rather than declared: a date column parsed as numeric because 'Jan 2026' yields 2026 under any reader that tolerates a prefix; a TOTAL row that is a SUM in one column and a WEIGHTED MEAN in another, which the first draft tried only for labels containing the word 'weighted'; a weighted mean whose band ignored the ROUNDING OF ITS OWN WEIGHT COLUMN, condemning a product table by five units on a band of four; and an 'OF WHICH' breakdown, whose indented sub-items were counted alongside the parent line they decompose, condemning a balance sheet that foots exactly. Each fix made the instrument more right rather than more permissive, and the negative control held at 14/14 through all four.
+
+> **What would overturn it.** A first run whose findings are all real, which would mean the instrument was written from a wide enough sample to begin with.
+
+### L-229 · A RATCHET ENTRY IS EARNED BY A NAMED FINDING, NOT BY SILENCE. Where a study cannot clear a check, write down what it failed on and keep it listed.
+
+The temptation on a stubborn red is to declare the exception and move on; a declaration with a reason that is really 'this one is awkward' is the rubber stamp the whole mechanism exists to prevent.
+
+**Applies to:** every study  ·  *Learned from:* found while building, TMGH 03-Sep-2026
+
+> **What it cost, or how we know.** Four studies were given footing declarations in one pass. Three came off the ratchet with every exception naming a real structural fact — an input register keyed by name, a transposed cost-of-capital table, a blend across products whose weights live in another table, disclosed line items in a summary. The fourth did not: TMGH's as-reported balance sheet is 748 SHORT in its non-current block and 24 short in its current block against the rows it prints, so either the statement carries lines the table omits or the totals are wrong. That is the reader's problem either way, it was not resolved, and the study stays listed with that as its recorded reason.
+
+> **What would overturn it.** A book where every red resolves to a legitimate structural exception, which would mean the instrument is measuring nothing.
 
 
 ---
