@@ -2720,6 +2720,47 @@ LESSONS = [
       "A study where the lens set is fixed and cannot move between editions, making a "
       "written count safe."),
 
+    L("L-226", "ALL", None,
+      "A CHECK THAT READS A DELIVERED DOCUMENT READS ITS TABLE CELLS TOO. A reader does not "
+      "distinguish a paragraph from a cell, so a check that does is checking a different "
+      "document.",
+      "python-docx exposes paragraphs and tables as separate collections, so the natural "
+      "one-line way to get a document\'s text silently omits every table — which is where "
+      "the densest and most quotable claims sit.",
+      "ARCC 03-Sep-2026",
+      "build",
+      "The check written that morning to stop a retired diagnostic being quoted as the live "
+      "figure read paragraphs only, and reported clean while the cross-examination TABLE "
+      "carried \'the terminal return and reinvestment rate this study computes (11.26% ...)\' "
+      "— the retired construction\'s own number, in the cell whose job is to reject an "
+      "objection on evidence. This is the PHDC precedent in this repository, where a "
+      "standing-rule identifier leaked to a reader through a table cell for the same reason. "
+      "Widened, it caught the defect on its first run.",
+      "A document format where tables are part of the paragraph stream, making the omission "
+      "impossible rather than merely easy."),
+
+    L("L-227", "ALL", None,
+      "READING THE RENDERED PAGES IS NOT A FORMALITY AND NOTHING CURRENTLY REPLACES IT. "
+      "Budget it per re-issue, and mine each finding for the check that would have caught it.",
+      "Every automated gate here points from the page back to the model and asks whether "
+      "each figure came from it. The defects that survive are the ones that live BETWEEN "
+      "figures, in the words around them, inside pictures, or in a relationship between two "
+      "tables — none of which a per-figure check can see.",
+      "ARCC 03-Sep-2026",
+      "build",
+      "Reading all 32 pages of one delivered study found roughly forty distinct "
+      "claim-level defects, in a study that had just passed the recalculation gate, the "
+      "prose-figure check, the external-reader scrub, the column audit and every "
+      "repository-level gate. The most serious stated a 51% probability for an outcome the "
+      "model puts near 15%; several published a superseded edition\'s numbers; one "
+      "contradicted its own page two paragraphs later. SIX of the classes were then made "
+      "arithmetic in the same session and are now in CI — table footing, the sign-word "
+      "check, the retired-input check, the shared site-data reader, delivered-PDF currency "
+      "and artefact currency — so the next study cannot repeat them. The residue is the "
+      "argument for keeping the read.",
+      "A re-issue where the read finds nothing the gates did not, sustained over several "
+      "studies, which would mean the instruments have caught up with the reader."),
+
 ]
 
 
