@@ -53,17 +53,32 @@ WHAT A TERMINAL COSTS, correctly. In a nominal steady state holding physical cap
   * working capital grows with the price level, so pi x WC is a real cash cost of inflation
     and IS charged.
 
-THE FLOOR, which needs no opinion and cannot be tuned because it has no parameters. A
-company can always decline to invest beyond maintenance and pay the rest out. So
+THE DOMINANCE ARGUMENT, AND A CORRECTION TO ITS FIRST FORM. This module first refused any
+terminal below NOPAT_last / W, on the argument that a company can always decline to invest
+and pay out instead. THAT FORMULATION WAS WRONG, AND IT WAS WRONG IN THE SAME WAY AS THE
+DEFECT IT WAS BUILT TO CATCH: it treats BOOK depreciation — struck on historical cost — as
+if it were the cash cost of replacing the asset. NOPAT is net of book D&A, so NOPAT/W is
+the value of distributing NOPAT for ever while actually needing current-cost replacement
+spending several times larger. That is not an available policy: a company that stops
+replacing its plant does not become a perpetuity, it becomes a liquidation. Nor is "zero
+NOMINAL growth" a choice a board can make — prices are set by the market.
 
-    TV  >=  NOPAT_last / W
+It also fails arithmetically at high discount rates, where TV/floor tends to
+FCFF(1+g)/NOPAT, a ratio BELOW ONE by construction whenever maintenance exceeds book D&A.
+ARCC's own beta sensitivity grid found it: at a high beta the test fired on a perfectly
+sound terminal. Under [R-COC-01]'s rule — when a check fires on work that is right, RE-POINT
+IT, never widen it and never move the number to satisfy it — the test was re-pointed.
 
-A terminal below that is dominated by a policy the company can choose unilaterally, and a
-study publishing it has chosen the worse of two worlds. This is a dominance argument, not a
-judgement. It is returned beside every answer, always, and `assert_terminal()` refuses a
-record that sits below it without a DISCLOSED CONTRACTUAL OBLIGATION to keep spending — a
-concession, a licence condition or a take-or-pay, named and sourced, because that is the
-only circumstance in which the no-investment option is genuinely unavailable.
+WHAT SURVIVES IS NARROWER AND IS ACTUALLY TRUE: a company is never obliged to spend GROWTH
+capital. So a terminal may not charge growth capital beyond what its STATED REAL growth
+requires. That is enforced structurally rather than by comparison — `real_growth` is what
+the caller supplies, growth capex is computed from it, and zero real growth costs exactly
+zero. The construction that charges g x IC cannot be expressed at all.
+
+`floor` is still returned and is still worth reading, but it is now LABELLED FOR WHAT IT IS:
+the value of a NOPAT perpetuity with maintenance at book depreciation. It is not a bound the
+builder enforces. It earns its place because ARCC's retired construction fell 34.6% below
+even that generous reading, which is how the defect was found.
 
 VERIFY BY IMPORT, NOT BY PARSE — this module is checked by importing it, like every other
 shared module in this engine.
@@ -193,21 +208,13 @@ def build(i: TerminalInputs) -> Terminal:
             f'implied payout of terminal NOPAT is {payout:.1%}, outside [0, 1]: the '
             f'terminal distributes more than it earns')
 
-    tv    = fcff * (1.0 + g) / (i.wacc - g)
+    tv = fcff * (1.0 + g) / (i.wacc - g)
+    # The NOPAT perpetuity at BOOK depreciation. A DIAGNOSTIC, not a bound — see the
+    # docstring: it assumes a maintenance charge the company does not actually face, so it
+    # is not an available policy and cannot dominate anything. Reported because the
+    # retired g x IC construction fell below even this generous reading.
     floor = i.nopat / i.wacc
     below = tv < floor
-    if below and i.floor_exemption not in FLOOR_EXEMPTIONS:
-        raise TerminalRefused(
-            f'terminal of {tv:,.1f} sits BELOW its own floor of {floor:,.1f} '
-            f'({tv/floor - 1:+.1%}). A company can always decline to invest and pay out '
-            f'instead, so this terminal is dominated by a policy it can choose '
-            f'unilaterally. Publishing it chooses the worse of two worlds. To sit below the '
-            f'floor a record must name a DISCLOSED obligation to keep spending, one of '
-            f'{FLOOR_EXEMPTIONS}, with the disclosure that establishes it.')
-    if below and not i.floor_exemption_disclosure:
-        raise TerminalRefused(
-            f'floor exemption {i.floor_exemption!r} carries no disclosure. An obligation '
-            f'asserted is not an obligation.')
 
     charge = maint + growth_capex + wc_charge - i.dna_book
     cycle  = (i.ic_replacement / charge) if (i.ic_replacement and charge > 0) else None
@@ -234,11 +241,6 @@ def assert_terminal(record: dict) -> None:
     for k in ('tv', 'floor', 'nominal_growth', 'real_growth', 'net_capital_charge'):
         if k not in record:
             raise TerminalRefused(f'terminal record is missing {k}')
-    tv, floor = float(record['tv']), float(record['floor'])
-    if tv < floor and record.get('floor_exemption') not in FLOOR_EXEMPTIONS:
-        raise TerminalRefused(
-            f'terminal {tv:,.1f} is below its floor {floor:,.1f} ({tv/floor-1:+.1%}) with '
-            f'no disclosed obligation to keep spending')
     g, gr = float(record['nominal_growth']), float(record['real_growth'])
     infl = (record.get('inputs') or {}).get('inflation')
     if infl is not None:
@@ -249,6 +251,15 @@ def assert_terminal(record: dict) -> None:
                 f'stated real growth {gr:.6f} (would be {want:.6f}). A nominal rate that '
                 f'does not derive is a typed rate, and nobody can tell whether it meant '
                 f'inflation plus one point or inflation minus three.')
+    # THE DOMINANCE TEST THAT SURVIVES: growth capital charged beyond what stated real
+    # growth requires. A company is never obliged to spend it.
+    gc = record.get('growth_capex')
+    if gc is not None and gr == 0.0 and float(gc) > 0.0:
+        raise TerminalRefused(
+            f'growth capital of {float(gc):,.1f} is charged against a STATED REAL GROWTH of '
+            f'zero. A company is never obliged to spend growth capital, so this terminal is '
+            f'dominated by declining it. This is the g x IC construction: it charges the '
+            f'nominal rate against the whole capital base and buys no capacity at all.')
     cyc, oog = record.get('implied_cycle_years'), record.get('one_over_g')
     if cyc and oog and abs(cyc / oog - 1.0) < 0.02:
         raise TerminalRefused(

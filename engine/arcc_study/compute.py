@@ -134,6 +134,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
 import macro_path as MP
+# [R-TERM-01] — the terminal comes from the shared builder, never from a local
+# construction. Every study once hand-rolled its own beta and every one was wrong the same
+# way; the terminal census found the same shape in the terminals, so it lives in one place.
+import terminal_value
 
 # THE PRICE AND THE EDITION EACH HAVE ONE DATE, DECLARED ONCE.
 # Four places in the delivered files once read 'latest known close (6 August 2026)'
@@ -1431,13 +1435,66 @@ dwc = [(rev_f[i] - prev_rev[i]) * V['wc_pct_drev'] for i in range(5)]
 # is nowhere defended. The cost of building a plant in pounds tracks the pound cost of
 # building it. Rolled at the model's own cost index.
 ic_repl = V['cap_cement_mt'] * V['repl_usd_t'] * V['fx'] * V['cost_infl'][5]
-roic_t = nopat[-1] * (1 + V['g_term']) / ic_repl
 fcff = [nopat[i] + dna_f[i] - capex[i] - dwc[i] for i in range(5)]
 fcff[0] *= REM
 pv = [fcff[i] * df_[i] for i in range(5)]
 sum_pv = float(np.sum(pv))
+
+# ---------------------------------------------------------------------------------------
+# THE TERMINAL, THROUGH THE SHARED BUILDER [R-TERM-01]. Revisions 1-4 built it from the
+# reinvestment identity rr = g/ROIC on replacement-cost capital, which substitutes to
+#
+#       TV = [ NOPAT(1+g) - g . IC ] / (W - g)
+#
+# and therefore charged g x IC = 7% x 51,190.9 = EGP 3,583.4mn EVERY YEAR FOR EVER, 62.2%
+# of terminal profit. Read that charge as a capital-maintenance programme and the implied
+# replacement cycle is IC/(g.IC) = 1/g = 14.3 YEARS. THE IMPLIED ASSET LIFE WAS THE
+# RECIPROCAL OF THE INFLATION RATE. It is not a fact about the asset — at 15% inflation the
+# same construction would have replaced this plant every 6.7 years.
+#
+# The identity is a statement about REAL growth, and this model's terminal real growth is
+# ZERO (macro_record.growth_at_horizon_end is the house terminal inflation exactly). So the
+# charge bought no capacity at all: the model was paying for what inflation supplies free.
+#
+# Nothing in the old arithmetic was wrong, which is why it survived four revisions, a
+# cell-by-cell workbook recalculation and every gate in the repository. It is a
+# SPECIFICATION error, and the terminal carried 41.4% of enterprise value.
+#
+# THREE IMPLIED LIVES SAT INSIDE THIS ONE MODEL and they disagreed by 2.8x: the terminal's
+# 1/g at 14.3 years, the explicit window's own capex at 130.0/3.23 = 40.2 years, and the
+# DISCLOSED 20 years from ARCC's own accounting-policies note (machinery and equipment 20,
+# other installations 20, buildings 10-20 — engine/arcc_study/useful_lives.json, read by OCR
+# because the filing carries no text layer). The sourced figure sits BETWEEN the model's own
+# two conventions, which is the whole argument for sourcing it.
+#
+# The explicit window and the terminal are still allowed to differ, and the reason is
+# economic rather than a fudge: capex_usd_t_cap is ARCC's OWN most recent full-year spend
+# and kiln 2 sits in assets under construction, so a young plant genuinely spends less than
+# replacement depreciation for a while. The terminal is perpetuity, where every asset must
+# be replaced at current cost on its disclosed life. THE STEP AT THE BOUNDARY IS REAL AND IS
+# STATED rather than left implicit.
+_UL = json.load(open(os.path.join(HERE, 'useful_lives.json')))
+_LIFE = float(_UL['adopted_for_terminal']['years'])
+# The working-capital LEVEL this model implies: its own convention is dWC = dRev x
+# wc_pct_drev, and in a steady state dRev = pi x Rev, so the level is Rev x wc_pct_drev.
+_WC_LEVEL = rev_f[-1] * V['wc_pct_drev']
+# Adding one unit of REAL capacity costs one unit of what the whole plant costs to build.
+# That is an identity on the replacement-cost base, not an assumption — and note that it
+# makes the correct charge real_growth x IC. THE CHARGE WAS NEVER THE PROBLEM; THE RATE
+# APPLIED TO IT WAS.
+_TERM = terminal_value.build(terminal_value.TerminalInputs(
+    nopat=float(nopat[-1]), wacc=float(wacc_term), inflation=float(_PI_T),
+    real_growth=0.0, dna_book=float(dna_f[-1]),
+    ic_replacement=float(ic_repl), useful_life_years=_LIFE,
+    useful_life_source=_UL['_source'], maintenance_basis='disclosed_life',
+    working_capital=float(_WC_LEVEL),
+    incremental_capital_per_unit_growth=float(ic_repl)))
+terminal_value.assert_terminal(_TERM.record)
+tv = _TERM.tv
+# Kept for the record, and ONLY for the record: these are the diagnostic of the retired
+# construction, not inputs to the value.
+roic_t = nopat[-1] * (1 + V['g_term']) / ic_repl
 rr_t = V['g_term'] / roic_t
-tv = nopat[-1] * (1 + V['g_term']) * (1 - rr_t) / (wacc_term - V['g_term'])
 # TV is the value at the END of FY2030 of everything from FY2031 on, so it discounts
 # at the end-of-window factor, not at the mid-year factor of the last explicit year.
 df_tv = chain(fwd, REM + 4.0)
@@ -1581,6 +1638,26 @@ say(f"[Counterweight 3 — is the uplift permanent?] the local price factor of "
     f"document says so in those words")
 
 # ==================== 7. SENSITIVITY ========================================
+def _terminal_at(nopat_last, dna_last, wacc_t, g_nominal):
+    """The terminal at an arbitrary rate and nominal growth, through [R-TERM-01].
+
+    A sensitivity grid is quoted in NOMINAL growth because that is what a reader of this
+    study has always been shown. The builder takes REAL growth, so the nominal figure is
+    converted back through the house inflation path — the same identity in the other
+    direction, which cannot disagree with itself. Where that leaves real growth above zero,
+    the capital it needs is charged at the replacement-cost base, so a higher growth rate
+    costs what growth costs. Under the retired construction it did not.
+    """
+    g_real = (1.0 + g_nominal) / (1.0 + _PI_T) - 1.0
+    return terminal_value.build(terminal_value.TerminalInputs(
+        nopat=float(nopat_last), wacc=float(wacc_t), inflation=float(_PI_T),
+        real_growth=float(g_real), dna_book=float(dna_last),
+        ic_replacement=float(ic_repl), useful_life_years=_LIFE,
+        useful_life_source=_UL['_source'], maintenance_basis='disclosed_life',
+        working_capital=float(_WC_LEVEL),
+        incremental_capital_per_unit_growth=float(ic_repl))).tv
+
+
 def reval(nc=None, g=None, we=None, beta_=None, mgn_shift=0.0, capex_mult=1.0,
           dna_shift=0.0, nci=None, kd_=None):
     nc = net_cash if nc is None else nc
@@ -1609,8 +1686,11 @@ def reval(nc=None, g=None, we=None, beta_=None, mgn_shift=0.0, capex_mult=1.0,
     fc = [np_[i] + dn[i] - cx[i] - dwc[i] for i in range(5)]
     fc[0] *= REM
     s = float(np.sum([fc[i] * d_[i] for i in range(5)]))
-    rt = np_[-1] * (1 + g) / ic_repl
-    tvl = np_[-1] * (1 + g) * (1 - g / rt) / (wt - g)
+    # THE SENSITIVITY BLOCK USES THE SAME TERMINAL BUILDER AS THE HEADLINE. Revisions 1-4
+    # re-derived the g x IC terminal here, so every sensitivity and every contested
+    # judgement was quoted against a construction that was consistent with the headline and
+    # consistently wrong. Both now go through [R-TERM-01].
+    tvl = _terminal_at(np_[-1], dn[-1], wt, g)
     # THE TERMINAL VALUE DISCOUNTS AT THE END-OF-WINDOW FACTOR, NOT AT THE LAST
     # EXPLICIT YEAR'S MID-YEAR FACTOR. Revision 4 found this the hard way: with
     # d_[-1] here, reval() returned 57.27 against a headline of 55.21 — every
@@ -1629,7 +1709,7 @@ def reval_two_anchor(we, wt):
     f_ = [we - (we - wt) * gg for gg in glide]
     d_ = factors(f_)
     s = float(np.sum([fcff[i] * d_[i] for i in range(5)]))
-    tvl = nopat[-1] * (1 + V['g_term']) * (1 - rr_t) / (wt - V['g_term'])
+    tvl = _terminal_at(nopat[-1], dna_f[-1], wt, V['g_term'])
     return (s + tvl * chain(f_, REM + 4.0) + net_cash - V['nci_h1_26']) / SH
 
 
@@ -1801,25 +1881,34 @@ say(f"[Terminal growth ceiling] profit compounded {pat_cagr:.0%} a year over FY2
     f"at that rate against {V['egy_gdp_growth']:.0%} nominal economic growth this company "
     f"equals the whole Egyptian economy in {cross_yrs:.0f} years. Terminal growth is held "
     f"at {V['g_term']:.0%}")
-# --- terminal growth: the ANALYTIC sign condition, not the textbook shortcut ----------
-# The terminal block reinvests g/ROIC of terminal NOPAT, and ROIC is itself defined as
-# N*(1+g)/IC on replacement-cost capital. The reinvestment charge therefore collapses to a
-# FIXED g*IC and the whole block reduces to
-#         TV(g) = [ N*(1+g) - g*IC ] / (W - g)
-#         dTV/dg  proportional to  N*(1+W) - IC*W          <- no g in it at all
-# so the direction of the growth lever is a CONSTANT of the model, and the hurdle is
-#         N/IC  vs  W/(1+W)
-# NOT the familiar ROIC vs W. The two differ by exactly (1+g)/(1+W), because ROIC is
-# measured on TERMINAL-YEAR profit while the capital base is measured at the valuation
-# date. Revision 2 sat at N/IC = 8.2% against a 13.6% hurdle and growth destroyed value;
-# the corrected price path lifts terminal NOPAT enough to cross it by about 20bp, so
-# growth now ADDS value — marginally, and the check below verifies the model agrees with
-# its own algebra whichever side of the hurdle it lands on.
-gdv_lhs = nopat[-1] * (1.0 + wacc_term)
+# --- terminal growth: the sign condition, RE-DERIVED for [R-TERM-01] -----------------
+# THE HURDLE IN THIS BLOCK WAS DERIVED FOR THE RETIRED CONSTRUCTION AND HAD TO CHANGE WITH
+# IT. Revisions 1-4 charged a reinvestment of g/ROIC on replacement-cost capital, which
+# collapses to a fixed g*IC, so the block reduced to TV(g) = [N(1+g) - g.IC]/(W-g) and the
+# sign of the growth lever was the constant N(1+W) - IC.W — a hurdle of N/IC against
+# W/(1+W) rather than the familiar ROIC against W. That derivation was correct FOR THAT
+# CONSTRUCTION and it is now wrong, because the construction is gone.
+#
+# Under [R-TERM-01] the terminal charges maintenance at the disclosed life plus the capital
+# that STATED REAL growth needs, at the replacement cost of capacity. So the question is
+# the ordinary one, and it is ordinary because the construction now is:
+#
+#     marginal ROIC  =  NOPAT / IC     (capacity scales the profit and the capital alike)
+#     growth adds value  iff  NOPAT/IC  >  W
+#
+# and the (1+g)/(1+W) wedge is gone with the charge that created it. THE MODEL'S ANSWER
+# DOES NOT CHANGE AND THAT IS WORTH SAYING: N/IC is 10.52% against a terminal rate of
+# 18.34%, so building cement capacity at USD 130 per annual tonne does not clear this
+# company's cost of capital, real growth destroys value, and the model takes zero real
+# growth. THAT IS A FINDING, NOT A DEFECT — and it is why charging ARCC for growth was
+# wrong twice over: it is not growing in real terms, and on these numbers it should not.
+gdv_lhs = nopat[-1]
 gdv_rhs = ic_repl * wacc_term
 GDV = dict(fv_at_g3=reval(g=0.03), fv_at_g7=reval(g=0.07), roic_term=roic_t,
            wacc_term=wacc_term, nopat_term=float(nopat[-1]), ic_replacement=float(ic_repl),
-           n_over_ic=float(nopat[-1] / ic_repl), hurdle=float(wacc_term / (1 + wacc_term)),
+           n_over_ic=float(nopat[-1] / ic_repl), hurdle=float(wacc_term),
+           hurdle_retired=float(wacc_term / (1 + wacc_term)),
+           hurdle_basis='marginal ROIC = NOPAT/IC against the terminal WACC [R-TERM-01]',
            analytic_adds_value=bool(gdv_lhs > gdv_rhs))
 GDV['model_adds_value'] = bool(GDV['fv_at_g7'] > GDV['fv_at_g3'])
 GDV['spread_pct'] = float(GDV['fv_at_g7'] / GDV['fv_at_g3'] - 1.0)
@@ -1830,15 +1919,17 @@ say(f"[Growth and value] terminal return on capital {roic_t:.1%} against termina
     f"points of growth, so the answer "
     f"{'is BARELY sensitive to' if abs(GDV['spread_pct']) < 0.02 else 'DOES rest partly on'}"
     f" the terminal growth rate")
-say(f"[Growth and value — the correct hurdle] the terminal block reduces to "
-    f"[N(1+g) - g.IC]/(W-g), so the sign of the growth lever is the constant "
-    f"N(1+W) - IC.W and the test is N/IC vs W/(1+W), not ROIC vs W. "
-    f"N/IC = {GDV['n_over_ic']:.3%} against a hurdle of {GDV['hurdle']:.3%} -> growth "
+say(f"[Growth and value — the hurdle, re-derived] the retired terminal charged g x IC, so "
+    f"its sign condition was N/IC against W/(1+W) = {GDV['hurdle_retired']:.2%}. "
+    f"[R-TERM-01] charges maintenance at the disclosed {_LIFE:.0f}-year life plus the "
+    f"capital REAL growth needs, so the test is the ordinary one: the marginal return on "
+    f"new capacity N/IC = {GDV['n_over_ic']:.2%} against the terminal rate of "
+    f"{wacc_term:.2%}. Growth "
     f"{'ADDS' if GDV['analytic_adds_value'] else 'DESTROYS'} value by "
-    f"{abs(GDV['n_over_ic']-GDV['hurdle'])*1e4:.0f}bp. Revision 3 read 13.81% against a "
-    f"13.61% hurdle and concluded growth added value by 21bp — but its denominator was in "
-    f"Aug-2026 pounds against a FY2031 numerator, and the currency-vintage error was "
-    f"larger than the margin it was measuring")
+    f"{abs(GDV['n_over_ic'] - wacc_term) * 1e4:.0f}bp — building capacity at USD "
+    f"{V['repl_usd_t']:.0f} per annual tonne does not clear this company's cost of "
+    f"capital, which is why the model takes ZERO real growth and charges no growth capital "
+    f"for it. That is a finding about Egyptian cement economics, not a conservatism")
 
 # ==================== 10. STATEMENTS ========================================
 pbt_f, tax_f, pat_f, cash_b, eq_b, ppe_b, wc_b, div_f, treas_f, ta_b = ([] for _ in range(10))
