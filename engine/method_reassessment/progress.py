@@ -327,10 +327,17 @@ def acceptance() -> list:
         if base is None or abs(base - c) > max(0.005 * abs(c), 1e-9):
             staged_issues.append("%s staged at %s against a committed %.2f"
                                  % (tk, base, c))
-        files = [k for k in ("report", "workbook", "bibliography", "docx") if n.get(k)]
-        if len(files) < 4:
-            staged_issues.append("%s stages %d file(s), Part E asks for four"
-                                 % (tk, len(files)))
+        # WHAT PART E ASKS IS THAT THE FOUR FILES EXIST AND WERE READ, and the first
+        # version of this check asked the manifest instead — which lists two per name
+        # by its own stated design (report PDF + workbook), so it reported NOT MET on
+        # every name while all four files sat on disk. A check that models one
+        # artefact and reports on another is the [R-ENF-03] species; the population
+        # here is the STUDY DIRECTORY, not the queue.
+        have = _deliverables(sdir, tk)
+        missing = [k for k, v in have.items() if not v]
+        if missing:
+            staged_issues.append("%s: no %s in engine/%s_study/"
+                                 % (tk, ", ".join(missing), tk.lower()))
     items[4]["state"] = "MET" if not unreviewed else "NOT MET"
     items[4]["waits_on"] = ("every firing carries a current review"
                             if not unreviewed else
@@ -346,6 +353,28 @@ def acceptance() -> list:
                                 "matching the price is Part E's explicit NON-criterion"
                                 % (med * 100, len(gaps)))
     return items
+
+
+def _deliverables(sdir: str, ticker: str) -> dict:
+    """The four files Part E asks for, found on disk rather than in a manifest.
+
+    Matched on shape, not on an exact filename, because the studies name the
+    bibliography two ways — PHDC ships PHDC_Bibliography_*, TMGH ships
+    TMGH_Sources_* — and a check that knew only one of them would report a real
+    file missing.
+    """
+    names = [os.path.basename(f) for f in glob.glob(os.path.join(sdir, "*"))]
+    low = [n.lower() for n in names]
+
+    def any_of(*preds):
+        return any(all(p in n for p in pred) if isinstance(pred, tuple) else pred in n
+                   for n in low for pred in preds)
+    return {
+        "study docx": any_of(("valuation_study", ".docx")),
+        "study PDF": any_of(("valuation_study", ".pdf")),
+        "bibliography": any_of(("bibliograph",), ("sources", ".docx")),
+        "workbook": any_of(("valuation_model", ".xlsx")),
+    }
 
 
 def backtest_coverage() -> dict:
