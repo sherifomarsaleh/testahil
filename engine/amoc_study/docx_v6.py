@@ -57,6 +57,10 @@ LINES, LBL = UB['lines'], UB['labels']
 # raises the question is how the question stayed invisible. Taken from the record
 # rather than typed, so a new filing appears here by arriving.
 PERIODS = list(D['hist_is'].keys())
+# a COUNT stated in prose is a number, so it is computed like one — three captions and a
+# heading typed 'four' after the reviewed half to 30 June 2026 made the filed set five,
+# and one of them divided a five-period sum by four
+_WORD = {1: 'One', 2: 'Two', 3: 'Three', 4: 'Four', 5: 'Five', 6: 'Six'}
 
 
 def n0(x): return f"{x:,.0f}"
@@ -386,7 +390,7 @@ table([['Period', 'Net sales', 'Gross profit', 'Gross margin', 'Operating profit
        *[[p, n0(HIS[p]['rev']), n0(HIS[p]['gp']), pc(HIS[p]['gm'], 2), n0(HIS[p]['ebit'])]
          for p in PERIODS]],
       [1.7, 1.25, 1.25, 1.15, 1.35], size=9.0)
-caption('Table 6 — the filed margin record. Four consecutively filed periods; the margin ranges '
+caption(f'Table 6 — the filed margin record. {_WORD.get(len(PERIODS), str(len(PERIODS)))} consecutively filed periods; the margin ranges '
         f'{pc(min(HIS[p]["gm"] for p in PERIODS), 2)} to '
         f'{pc(max(HIS[p]["gm"] for p in PERIODS), 2)}, a spread of '
         f'{(max(HIS[p]["gm"] for p in PERIODS)-min(HIS[p]["gm"] for p in PERIODS))*1e4:.0f} basis '
@@ -598,20 +602,32 @@ P(f'Growth equals return times reinvestment is ENFORCED by assertion, not assert
   f'consequence of the replacement-cost basis.')
 
 H2('1.10  Terminal growth, reconciled against the company’s own record')
+# THE PERIOD COUNT WAS TYPED IN THREE PLACES AND THE AVERAGE DIVIDED BY A CONSTANT
+# [corrected 03-Sep-2026]. PERIODS is read from the committed record and became FIVE when the
+# reviewed half to 30 June 2026 was added to the filed set; the summary row went on summing
+# five values and dividing by four, and the caption went on saying "TWO of the four filed
+# periods". A count stated in prose is a number, and the rule against typing numbers into a
+# builder covers it — the average is now over len(PERIODS) and the counts are computed.
+_NP = len(PERIODS)
+_N_POS = sum(1 for p in PERIODS if TR['rr'][p] > 0)
 table([['Period', 'Return on invested capital', 'Reinvestment rate', 'Implied steady-state growth'],
        *[[p, pc(TR['roic'][p]), pc(TR['rr'][p]), pc(TR['implied_g'][p], 2)] for p in PERIODS],
-       ['Four-period average', '', pc(sum(TR['rr'][p] for p in PERIODS) / 4),
-        pc(sum(TR['implied_g'][p] for p in PERIODS) / 4, 2)]],
-      [1.9, 1.75, 1.4, 1.85], band_rows={5}, size=8.8)
-caption('Table 14 — the reinvestment record. TWO of the four filed periods show POSITIVE '
-        'reinvestment and the four-period average implied growth is positive. The previous '
+       [f'{_WORD.get(_NP, str(_NP))}-period average', '',
+        pc(sum(TR['rr'][p] for p in PERIODS) / _NP),
+        pc(sum(TR['implied_g'][p] for p in PERIODS) / _NP, 2)]],
+      [1.9, 1.75, 1.4, 1.85], band_rows={_NP + 1}, size=8.8)
+caption(f'Table 14 — the reinvestment record. {_WORD.get(_N_POS, str(_N_POS)).upper()} of the {_NP} '
+        f'filed periods show POSITIVE reinvestment and the {_NP}-period average implied '
+        f'growth is '
+        f'{"positive" if sum(TR["implied_g"][p] for p in PERIODS) > 0 else "negative"}. '
+        'The previous '
         'edition of this study stated in three separate places that reinvestment was "negative in '
         'every audited period" and that the identity implied a negative steady-state rate; its '
         'own table, printed on the facing page, said otherwise. Two outside reviewers then built '
         'a "shrinking asset base" argument on that incorrect sentence rather than on the correct '
         'table. The sentence is withdrawn.')
 P(f'Against that record the adopted {pc(IN["g_term"], 0)} is generous, and the study says so. The '
-  f'reinvestment waterfall itself implies {pc(TR["g_waterfall"], 2)}; the four-period average '
+  f'reinvestment waterfall itself implies {pc(TR["g_waterfall"], 2)}; the {_NP}-period average '
   f'implies far less. The terminal growth sensitivity in section 1.11 shows why the choice barely '
   f'matters here: because the reinvestment identity FUNDS growth before crediting it, the value '
   f'moves only from EGP {p2(grid_vals("Terminal growth")[0][1])} at 3% to '
@@ -1011,14 +1027,17 @@ bullet('THE RISK-FREE RATE COULD NOT BE RE-VERIFIED. The 22.31% ten-year yield i
        'place the rate between 22.6% and 23.0%. At the top of that range the central falls about '
        'half a percent — the case does not turn on it, but the citation is weak and is corrected '
        'to say so.')
-bullet('THE MARGIN IS ADMINISTERED. A 514-basis-point range across four consecutive filed '
-       'periods, set by a feedstock relationship with a 20.77% shareholder, is not a market '
+_GM_SPREAD_BP = (max(HIS[p]['gm'] for p in PERIODS) - min(HIS[p]['gm'] for p in PERIODS)) * 1e4
+bullet(f'THE MARGIN IS ADMINISTERED. A {_GM_SPREAD_BP:.0f}-basis-point range across '
+       f'{_WORD.get(len(PERIODS), str(len(PERIODS))).lower()} consecutive filed '
+       f'periods, set by a feedstock relationship with a {pc(IN["alexpet_stake"], 2)} '
+       'shareholder, is not a market '
        'signal. It is the single largest uncertainty in the valuation and it cuts both ways — '
        'which is precisely why the case in section 1.13 is constructed to survive it.')
 
 # ============================ APPENDIX A =====================================
 H1('Appendix A  Financial statements')
-H2('A.1  Income statement — four filed periods and a five-year forecast (EGP mn)')
+H2(f'A.1  Income statement — {_WORD.get(len(PERIODS), str(len(PERIODS))).lower()} filed periods and a five-year forecast (EGP mn)')
 # SPLIT INTO FILED AND FORECAST [03-Sep-2026]. Adding the missing fifth filed
 # period took this to ten numeric columns, and ten columns of eight-character
 # figures do not fit a seven-inch text block at a readable size -- the table
