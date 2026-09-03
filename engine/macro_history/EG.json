@@ -4,6 +4,281 @@
  "currency": "EGP",
  "target_span": "2013-2023 year-ends, the span the pre-registration of 03-Sep-2026 fixes",
  "rule": "A VINTAGE IS SOURCED OR IT DOES NOT EXIST. Four fields on every figure \u2014 value, source, date, tier. No interpolation between years, no carrying a neighbouring year forward, no 'approximately'. An origin whose figures are not all sourced is DROPPED by the calibration and its window shortened, which the pre-registration fixes in advance precisely so that a thin archive shows up as fewer origins rather than as a fuller-looking record built on filled-in cells.",
- "status": "ASSEMBLY NOT STARTED. This file is the schema and the rule, committed before any figure, so that every figure added later arrives under a standard rather than setting one. Origins are added ONE AT A TIME as their four figures are read off their own documents \u2014 CBE monetary policy statements and the treasury auction record for the policy rate and the sovereign yield, CAPMAS or the CBE bulletin for the CPI print, and the Damodaran country-premium vintage of that year for the equity risk premium. Read engine/macro_history.py report() for what is usable, never this note.",
- "origins": []
+ "status": "ASSEMBLY IN PROGRESS. The equity risk premium and the sovereign default spread are sourced for every origin 2013-2023 from the Damodaran archived vintages \u2014 the premium PUBLISHED at each origin, not today's reading of that year. Still to source, one origin at a time: sovereign_10y, cpi_annual and policy_rate. No origin is USABLE until all four are present, and engine/macro_history.py report() is the only place to read which are. Never this note.",
+ "origins": [
+  {
+   "year": 2013,
+   "moody_rating_at_vintage": "Caa1",
+   "figures": {
+    "erp": {
+     "value": 0.1625,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem13.xls (Updated January 1, 2014), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. RATING BASIS: this vintage publishes no CDS figure for Egypt, so the central basis for this origin is the rating one and is labelled as such rather than silently substituted.",
+     "date": "2013-12-31",
+     "tier": "Global",
+     "basis": "rating"
+    },
+    "default_spread": {
+     "value": 0.075,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem13.xls (Updated January 1, 2014), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
+     "date": "2013-12-31",
+     "tier": "Global"
+    }
+   }
+  },
+  {
+   "year": 2014,
+   "moody_rating_at_vintage": "Caa1",
+   "figures": {
+    "erp": {
+     "value": 0.10631,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem14.xls (Updated January 1, 2015), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Total equity risk premium on the CDS basis, which [R-COC-01] names CENTRAL.",
+     "date": "2014-12-31",
+     "tier": "Global",
+     "basis": "cds"
+    },
+    "erp_rating_basis": {
+     "value": 0.17,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem14.xls (Updated January 1, 2015), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating basis, published beside the central as the sensitivity.",
+     "date": "2014-12-31",
+     "tier": "Global"
+    },
+    "default_spread": {
+     "value": 0.075,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem14.xls (Updated January 1, 2015), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
+     "date": "2014-12-31",
+     "tier": "Global"
+    }
+   }
+  },
+  {
+   "year": 2015,
+   "moody_rating_at_vintage": "B3",
+   "figures": {
+    "erp": {
+     "value": 0.1318,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem15.xls (Updated July 1, 2016), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Total equity risk premium on the CDS basis, which [R-COC-01] names CENTRAL.",
+     "date": "2015-12-31",
+     "tier": "Global",
+     "basis": "cds"
+    },
+    "erp_rating_basis": {
+     "value": 0.16456,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem15.xls (Updated July 1, 2016), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating basis, published beside the central as the sensitivity.",
+     "date": "2015-12-31",
+     "tier": "Global"
+    },
+    "default_spread": {
+     "value": 0.0729,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem15.xls (Updated July 1, 2016), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
+     "date": "2015-12-31",
+     "tier": "Global"
+    }
+   }
+  },
+  {
+   "year": 2016,
+   "moody_rating_at_vintage": "B3",
+   "figures": {
+    "erp": {
+     "value": 0.110794,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem16.xls (Updated January 5, 2017), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Total equity risk premium on the CDS basis, which [R-COC-01] names CENTRAL.",
+     "date": "2016-12-31",
+     "tier": "Global",
+     "basis": "cds"
+    },
+    "erp_rating_basis": {
+     "value": 0.14936,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem16.xls (Updated January 5, 2017), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating basis, published beside the central as the sensitivity.",
+     "date": "2016-12-31",
+     "tier": "Global"
+    },
+    "default_spread": {
+     "value": 0.075143,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem16.xls (Updated January 5, 2017), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
+     "date": "2016-12-31",
+     "tier": "Global"
+    }
+   }
+  },
+  {
+   "year": 2017,
+   "moody_rating_at_vintage": "B3",
+   "figures": {
+    "erp": {
+     "value": 0.089926,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem17.xls (Updated January 1, 2018), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Total equity risk premium on the CDS basis, which [R-COC-01] names CENTRAL.",
+     "date": "2017-12-31",
+     "tier": "Global",
+     "basis": "cds"
+    },
+    "erp_rating_basis": {
+     "value": 0.125786,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem17.xls (Updated January 1, 2018), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating basis, published beside the central as the sensitivity.",
+     "date": "2017-12-31",
+     "tier": "Global"
+    },
+    "default_spread": {
+     "value": 0.066694,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem17.xls (Updated January 1, 2018), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
+     "date": "2017-12-31",
+     "tier": "Global"
+    }
+   }
+  },
+  {
+   "year": 2018,
+   "moody_rating_at_vintage": "B3",
+   "figures": {
+    "erp": {
+     "value": 0.112247,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem18.xls (Updated January 1, 2019), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Total equity risk premium on the CDS basis, which [R-COC-01] names CENTRAL.",
+     "date": "2018-12-31",
+     "tier": "Global",
+     "basis": "cds"
+    },
+    "erp_rating_basis": {
+     "value": 0.14988,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem18.xls (Updated January 1, 2019), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating basis, published beside the central as the sensitivity.",
+     "date": "2018-12-31",
+     "tier": "Global"
+    },
+    "default_spread": {
+     "value": 0.073394,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem18.xls (Updated January 1, 2019), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
+     "date": "2018-12-31",
+     "tier": "Global"
+    }
+   }
+  },
+  {
+   "year": 2019,
+   "moody_rating_at_vintage": "B2",
+   "figures": {
+    "erp": {
+     "value": 0.092224,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem19.xls (Updated January 1, 2020), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Total equity risk premium on the CDS basis, which [R-COC-01] names CENTRAL. NOTE: this file carries a STALE 'Date of update' cell reading 2015-12-31 beside its own 'Updated' line reading Updated January 1, 2020; the 'Updated' line is used and the conflict is recorded rather than resolved away.",
+     "date": "2019-12-31",
+     "tier": "Global",
+     "basis": "cds"
+    },
+    "erp_rating_basis": {
+     "value": 0.106274,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem19.xls (Updated January 1, 2020), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating basis, published beside the central as the sensitivity.",
+     "date": "2019-12-31",
+     "tier": "Global"
+    },
+    "default_spread": {
+     "value": 0.046011,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem19.xls (Updated January 1, 2020), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
+     "date": "2019-12-31",
+     "tier": "Global"
+    }
+   }
+  },
+  {
+   "year": 2020,
+   "moody_rating_at_vintage": "B2",
+   "figures": {
+    "erp": {
+     "value": 0.089393,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem20.xls (Updated January 1, 2021), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Total equity risk premium on the CDS basis, which [R-COC-01] names CENTRAL. NOTE: this file carries a STALE 'Date of update' cell reading 2016-12-31 beside its own 'Updated' line reading Updated January 1, 2021; the 'Updated' line is used and the conflict is recorded rather than resolved away.",
+     "date": "2020-12-31",
+     "tier": "Global",
+     "basis": "cds"
+    },
+    "erp_rating_basis": {
+     "value": 0.100497,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem20.xls (Updated January 1, 2021), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating basis, published beside the central as the sensitivity.",
+     "date": "2020-12-31",
+     "tier": "Global"
+    },
+    "default_spread": {
+     "value": 0.048632,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem20.xls (Updated January 1, 2021), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
+     "date": "2020-12-31",
+     "tier": "Global"
+    }
+   }
+  },
+  {
+   "year": 2021,
+   "moody_rating_at_vintage": "B2",
+   "figures": {
+    "erp": {
+     "value": 0.106905,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem21.xlsx (Updated January 1, 2022), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Total equity risk premium on the CDS basis, which [R-COC-01] names CENTRAL.",
+     "date": "2021-12-31",
+     "tier": "Global",
+     "basis": "cds"
+    },
+    "erp_rating_basis": {
+     "value": 0.096822,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem21.xlsx (Updated January 1, 2022), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating basis, published beside the central as the sensitivity.",
+     "date": "2021-12-31",
+     "tier": "Global"
+    },
+    "default_spread": {
+     "value": 0.046824,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem21.xlsx (Updated January 1, 2022), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
+     "date": "2021-12-31",
+     "tier": "Global"
+    }
+   }
+  },
+  {
+   "year": 2022,
+   "moody_rating_at_vintage": "B2",
+   "figures": {
+    "erp": {
+     "value": 0.167877,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem22.xlsx (Date of update: 2023-01-01), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Total equity risk premium on the CDS basis, which [R-COC-01] names CENTRAL.",
+     "date": "2022-12-31",
+     "tier": "Global",
+     "basis": "cds"
+    },
+    "erp_rating_basis": {
+     "value": 0.154338,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem22.xlsx (Date of update: 2023-01-01), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating basis, published beside the central as the sensitivity.",
+     "date": "2022-12-31",
+     "tier": "Global"
+    },
+    "default_spread": {
+     "value": 0.067302,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem22.xlsx (Date of update: 2023-01-01), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
+     "date": "2022-12-31",
+     "tier": "Global"
+    }
+   }
+  },
+  {
+   "year": 2023,
+   "moody_rating_at_vintage": "Caa1",
+   "figures": {
+    "erp": {
+     "value": 0.174203,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem23.xlsx (Date of update: 2024-01-01), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Total equity risk premium on the CDS basis, which [R-COC-01] names CENTRAL.",
+     "date": "2023-12-31",
+     "tier": "Global",
+     "basis": "cds"
+    },
+    "erp_rating_basis": {
+     "value": 0.155667,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem23.xlsx (Date of update: 2024-01-01), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating basis, published beside the central as the sensitivity.",
+     "date": "2023-12-31",
+     "tier": "Global"
+    },
+    "default_spread": {
+     "value": 0.081693,
+     "source": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived vintage ctryprem23.xlsx (Date of update: 2024-01-01), sheet 'ERPs by country', Egypt row. Downloaded 03-Sep-2026 from pages.stern.nyu.edu/~adamodar/pc/archives/. THE VINTAGE IS THE POINT: this is the premium that was PUBLISHED and available at the origin, not today's reading of that year. Rating-based default spread.",
+     "date": "2023-12-31",
+     "tier": "Global"
+    }
+   }
+  }
+ ],
+ "sources_used": {
+  "erp_and_default_spread": "Damodaran, NYU Stern, 'Risk Premiums for Other Markets', archived by year at pages.stern.nyu.edu/~adamodar/pc/archives/. The filename convention ctryprem{YY} = the vintage published 1 January {YY+1} is CONFIRMED by each file's own 'Updated' line, not assumed: 2013->Jan 2014 through 2024->Jan 2025, with one exception recorded below.",
+  "vintage_exception": "ctryprem15.xls carries 'Updated July 1, 2016' \u2014 a mid-year re-publication rather than the usual 1 January. Recorded as it stands.",
+  "stale_cell_trap": "ctryprem19.xls and ctryprem20.xls each carry a STALE 'Date of update' cell (2015-12-31 and 2016-12-31) beside a correct 'Updated January 1, 2020/2021' line. A first extraction pass read the stale cell and would have misdated two vintages by four years. Both stamps are recorded per origin and the conflict is stated in the source string."
+ }
 }

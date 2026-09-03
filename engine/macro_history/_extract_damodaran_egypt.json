@@ -1,0 +1,122 @@
+{
+ "2013": {
+  "file": "ctryprem13.xls",
+  "stamp_updated_text": "Updated January 1, 2014",
+  "stamp_date_of_update_cell": null,
+  "moody_rating": "Caa1",
+  "default_spread_rating": 0.075,
+  "erp_rating": 0.16249999999999998,
+  "cds_spread_net_of_us": null,
+  "erp_cds": null
+ },
+ "2014": {
+  "file": "ctryprem14.xls",
+  "stamp_updated_text": "Updated January 1, 2015",
+  "stamp_date_of_update_cell": null,
+  "moody_rating": "Caa1",
+  "default_spread_rating": 0.075,
+  "erp_rating": 0.16999999999999998,
+  "cds_spread_net_of_us": 0.03254,
+  "erp_cds": 0.10631
+ },
+ "2015": {
+  "file": "ctryprem15.xls",
+  "stamp_updated_text": "Updated July 1, 2016",
+  "stamp_date_of_update_cell": null,
+  "moody_rating": "B3",
+  "default_spread_rating": 0.0729,
+  "erp_rating": 0.16455999999999998,
+  "cds_spread_net_of_us": 0.0495,
+  "erp_cds": 0.1318
+ },
+ "2016": {
+  "file": "ctryprem16.xls",
+  "stamp_updated_text": "Updated January 5, 2017",
+  "stamp_date_of_update_cell": null,
+  "moody_rating": "B3",
+  "default_spread_rating": 0.07514262,
+  "erp_rating": 0.14936009595142002,
+  "cds_spread_net_of_us": 0.043800000000000006,
+  "erp_cds": 0.11079421080436372
+ },
+ "2017": {
+  "file": "ctryprem17.xls",
+  "stamp_updated_text": "Updated January 1, 2018",
+  "stamp_date_of_update_cell": null,
+  "moody_rating": "B3",
+  "default_spread_rating": 0.06669422609810723,
+  "erp_rating": 0.12578594284614886,
+  "cds_spread_net_of_us": 0.0348,
+  "erp_cds": 0.08992648760939799
+ },
+ "2018": {
+  "file": "ctryprem18.xls",
+  "stamp_updated_text": "Updated January 1, 2019",
+  "stamp_date_of_update_cell": null,
+  "moody_rating": "B3",
+  "default_spread_rating": 0.07339420851590846,
+  "erp_rating": 0.14988044717206947,
+  "cds_spread_net_of_us": 0.0428,
+  "erp_cds": 0.11224724856494687
+ },
+ "2019": {
+  "file": "ctryprem19.xls",
+  "stamp_updated_text": "Updated January 1, 2020",
+  "stamp_date_of_update_cell": "2015-12-31",
+  "moody_rating": "B2",
+  "default_spread_rating": 0.04601146197702424,
+  "erp_rating": 0.10627429688710818,
+  "cds_spread_net_of_us": 0.0341,
+  "erp_cds": 0.09222374956863053
+ },
+ "2020": {
+  "file": "ctryprem20.xls",
+  "stamp_updated_text": "Updated January 1, 2021",
+  "stamp_date_of_update_cell": "2016-12-31",
+  "moody_rating": "B2",
+  "default_spread_rating": 0.04863241433363595,
+  "erp_rating": 0.10049739542691996,
+  "cds_spread_net_of_us": 0.038500000000000006,
+  "erp_cds": 0.08939304659356004
+ },
+ "2021": {
+  "file": "ctryprem21.xlsx",
+  "stamp_updated_text": "Updated January 1, 2022",
+  "stamp_date_of_update_cell": "2022-01-01",
+  "moody_rating": "B2",
+  "default_spread_rating": 0.04682442905179406,
+  "erp_rating": 0.09682199543927605,
+  "cds_spread_net_of_us": 0.0555,
+  "erp_cds": 0.10690523387138012
+ },
+ "2022": {
+  "file": "ctryprem22.xlsx",
+  "stamp_updated_text": null,
+  "stamp_date_of_update_cell": "2023-01-01",
+  "moody_rating": "B2",
+  "default_spread_rating": 0.06730183486238533,
+  "erp_rating": 0.15433762382750893,
+  "cds_spread_net_of_us": 0.07690000000000001,
+  "erp_cds": 0.16787703167771678
+ },
+ "2023": {
+  "file": "ctryprem23.xlsx",
+  "stamp_updated_text": null,
+  "stamp_date_of_update_cell": "2024-01-01",
+  "moody_rating": "Caa1",
+  "default_spread_rating": 0.08169250144640053,
+  "erp_rating": 0.15566724789468733,
+  "cds_spread_net_of_us": 0.0955,
+  "erp_cds": 0.17420298054912975
+ },
+ "2024": {
+  "file": "ctryprem24.xlsx",
+  "stamp_updated_text": null,
+  "stamp_date_of_update_cell": "2025-01-01",
+  "moody_rating": "Caa1",
+  "default_spread_rating": 0.07426591040581865,
+  "erp_rating": 0.14337315511953655,
+  "cds_spread_net_of_us": 0.0594,
+  "erp_cds": 0.12334137270543363
+ }
+}
