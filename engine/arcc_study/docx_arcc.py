@@ -1376,6 +1376,11 @@ rows.append(['Depreciation and amortisation'] + [n0(x) for x in H['dna']] +
             [n0(x) for x in F['dna']])
 rows.append(['EBITDA'] + [n0(x) for x in H['ebitda']] + [n0(x) for x in F['ebitda']])
 rows.append(['EBITDA margin'] + [pc(x) for x in H['margin']] + [pc(x) for x in F['margin']])
+# OTHER OPERATING INCOME IS PRINTED, because operating profit is EBITDA less depreciation
+# PLUS this line in every forecast year. Without it the historical columns footed exactly
+# and the forecast columns came out 50 to 62mn short, with nothing on the page to say why.
+rows.append(['Plus other operating income'] + ['—'] * 3 +
+            [n0(x) for x in F['other_income']])
 rows.append(['Net finance and other income'] +
             [n0(H['pbt'][i] - H['ebit'][i]) for i in range(3)] +
             [n0(x) for x in F['treasury']])
@@ -1386,14 +1391,21 @@ rows.append(['Attributable profit'] + [n0(x) for x in H['pat']] + [n0(x) for x i
 rows.append(['Earnings per share (EGP)'] + [n2(x) for x in H['eps']] +
             [n2(x) for x in F['eps']])
 table(rows, [1.52, 0.72, 0.72, 0.72, 0.72, 0.72, 0.72, 0.72, 0.72], size=8.0,
-      band_rows={11})
-caption('Table A1 — Three AUDITED years and five forecast. FY2023-FY2025 revenue, cost of '
-        'sales, administrative expenses, provisions, pre-tax profit, tax, attributable '
-        'profit, earnings per share and depreciation are disclosed figures; operating '
-        'profit, EBITDA and the margins are formulas over them. The published earnings per '
-        'share is struck on distributable profit after the statutory employees\' and '
-        'directors\' share, which is why it differs slightly from profit over the share '
-        'count.')
+      band_rows={12})
+caption(f'Table A1 — Three AUDITED years and five forecast. FY2023-FY2025 revenue, cost of '
+        f'sales, administrative expenses, provisions, pre-tax profit, tax, attributable '
+        f'profit, earnings per share and depreciation are disclosed figures; operating '
+        f'profit, EBITDA and the margins are formulas over them. TWO ROWS CHANGE BASIS '
+        f'BETWEEN THE AUDITED AND FORECAST HALVES AND BOTH ARE STATED RATHER THAN LEFT FOR '
+        f'A READER TO DISCOVER. Operating profit is EBITDA less depreciation in the audited '
+        f'years and EBITDA less depreciation PLUS other operating income in the forecast '
+        f'years, which is why that line is printed. And the audited earnings per share is '
+        f'the PUBLISHED figure, struck on distributable profit after the statutory '
+        f'employees\' and directors\' share — EGP {n2(H["eps"][2])} in FY2025 against EGP '
+        f'{n2(H["pat"][2] / SH)} on profit over the share count — while the forecast years '
+        f'are profit over the share count, since this model does not forecast that '
+        f'statutory appropriation. The step at the boundary is a change of basis, not a '
+        f'change in the business.')
 H2('A.2  Balance sheet — as reported')
 rows = [['EGP mn'] + YH + YF]
 rows.append(['Total assets'] + [n0(x) for x in
@@ -1458,8 +1470,11 @@ H2('B.2  The sector balance, and what it is not')
 P(f'Egypt carries about {n0(IN["egy_capacity_mt"])}Mt of nameplate capacity against roughly '
   f'{n0(IN["egy_cons_mt"])}Mt of domestic consumption and {n0(IN["egy_prod_mt"])}Mt of '
   f'total sales. The balance now closes because it is taken from one disclosure rather '
-  f'than assembled from three: local {n1(IN["egy_cons_mt"])}Mt plus exports '
-  f'{n1(IN["egy_exports_mt"])}Mt equals the {n1(IN["egy_prod_mt"])}Mt total. Earlier '
+  f'than assembled from three: the same page gives local '
+  f'{n1(IN["egy_cons_mt"])}Mt, exports {n1(IN["egy_exports_mt"])}Mt and a total of '
+  f'{n1(IN["egy_prod_mt"])}Mt — the two components add to '
+  f'{n1(IN["egy_cons_mt"] + IN["egy_exports_mt"])}Mt at the one decimal each is published '
+  f'to, and the total is the disclosed figure rather than their sum. Earlier '
   f'editions set a cement-plus-clinker export figure against a cement-only production '
   f'figure and printed a balance that was out by 7.5Mt. The correction matters beyond '
   f'tidiness: {n1(IN["egy_prod_mt"])}Mt of sales against roughly '
