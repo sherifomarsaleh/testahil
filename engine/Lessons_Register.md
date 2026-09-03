@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**119 lessons**, of which 92 bind on every study, 20 on a class of company, and 7 on a single name.
+**125 lessons**, of which 98 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 46 found while building.
+By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 52 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -948,6 +948,66 @@ It stops the next reader looking. An absent check invites the question; a commen
 > **What it cost, or how we know.** The gate skipped any study whose central was not a scalar, with the inline comment 'a two-sided study; handled by its branches'. Nothing in the file handled branches — the word appeared exactly once in it, in that comment. EGCH publishes a two-sided answer and therefore escaped the gate entirely, and its contested_judgements.json was stale by 29% for the whole day the gate reported clean.
 
 > **What would overturn it.** A comment that names the module or function actually performing the check, which is a pointer rather than an assertion and can be verified by following it.
+
+### L-088 · A formula right in real terms and wrong in nominal terms passes every arithmetic check that will ever be written.
+
+Nothing in it is arithmetically wrong, so recalculation, provenance, source discipline and four-field registers all come back clean. Where a quantity carries a unit — real or nominal, this year's money or that year's — the unit is the thing to check, and no amount of care inside the arithmetic will supply it.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-TERM-01], method reassessment, 03-Sep-2026
+
+> **What it cost, or how we know.** ARCC's terminal charged the reinvestment identity rr = g/ROIC with a NOMINAL g whose real component was zero, so it levied g x IC = EGP 3,583.4mn a year for ever, 62.2% of terminal profit, to buy nothing. It survived four revisions, a cell-by-cell recalculation with zero disagreements, a conforming beta attestation, all eight depth-bar standards and a clean external-reader scrub. Correcting it moved the central from EGP 53.21 to 66.53.
+
+> **What would overturn it.** A case where a real/nominal mismatch is caught by an ordinary arithmetic or provenance check rather than by someone asking what unit a quantity is in.
+
+### L-089 · An inflation rate that has quietly become an asset life will not announce itself, because both are just numbers.
+
+Read a perpetual capital charge as a replacement programme and ask how many years it implies. Where the charge is growth times invested capital the answer is one over the growth rate — a fact about the currency rather than about the plant, and one that gets worse the higher inflation goes, which is the exact opposite of prudence.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-TERM-01], method reassessment, 03-Sep-2026
+
+> **What it cost, or how we know.** ARCC's terminal implied replacing its entire replacement-cost asset base every 14.3 years, against 1/g of 14.3 to the decimal. Three implied lives sat inside the one model and disagreed by 2.8x — the terminal's 14.3, the explicit window's own capex at 40.2, and the DISCLOSED 20 from the audited accounting-policies note. The sourced figure sat between the model's own two conventions.
+
+> **What would overturn it.** A company contractually obliged to spend at that rate — a concession condition, a licence commitment or a take-or-pay — in which case the charge is real and the implied life is beside the point.
+
+### L-090 · When a gate fires on work that is right, the answer is almost never to widen it — and that applies to a gate this desk wrote an hour earlier.
+
+Widening a bound is a free parameter and moving the number to satisfy it corrupts the thing being measured. The third option — establish that the check is pointed at the WRONG MEASUREMENT and re-point it — is more work and is the only one that leaves the check stronger than it found it.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-TERM-01] and [R-COC-01], 03-Sep-2026
+
+> **What it cost, or how we know.** terminal_value.py first refused any terminal below NOPAT/W. ARCC's own beta sensitivity grid broke it: TV/floor tends to FCFF(1+g)/NOPAT = 0.658, below one by construction whenever maintenance exceeds book depreciation, so it fired on a sound terminal. AND IT WAS WRONG IN THE SAME WAY AS THE DEFECT IT WAS BUILT TO CATCH — it treated book depreciation as the cash cost of replacement. Re-pointed at the claim that survives: a company is never obliged to spend GROWTH capital.
+
+> **What would overturn it.** A case where widening a bound, rather than re-pointing it, left the check demonstrably stronger.
+
+### L-091 · A hard-coded zero is a defect in mirror image, and it is how a corrected defect comes back.
+
+Writing a quantity as a literal because it happens to be zero today removes the mechanism that makes it non-zero tomorrow. The model and the artefact then disagree about BEHAVIOUR rather than about a value, which no check on levels can see.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-TERM-01], ARCC workbook rebuild, 03-Sep-2026
+
+> **What it cost, or how we know.** The rebuilt workbook wrote terminal REAL growth as a literal 0.0, so bumping the terminal growth cell raised the value while the model lowered it: the workbook said growth was FREE. Every level reconciled — 919 of 919 formula cells reproduced the model — and only the driver test, which perturbs inputs and checks DIRECTIONS, caught it.
+
+> **What would overturn it.** A directional disagreement between a model and its workbook that a level-by-level reconciliation does catch.
+
+### L-092 · A review that reaches a confident wrong conclusion is more dangerous than no review.
+
+It closes the question. The way it happens is not carelessness: the review looks for the error everywhere the arithmetic could be wrong, the arithmetic is not wrong, and it concludes the disagreement must lie outside the model.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-GAP-01] and [R-TERM-01], ARCC, 03-Sep-2026
+
+> **What it cost, or how we know.** ARCC's revision-4 gap review audited a central of 53.21 at -30.9% and concluded in terms that 'the disagreement with the market is therefore not about the business at all', locating the whole gap in a cost of capital the market was applying 816bp below the Egyptian sovereign. The defect was in the terminal, which carried 41% of enterprise value and which the review did not examine. Its own MULTIPLE CROSS-CHECK heading would have shown it: 3.1x forward EBITDA and USD 78 per annual tonne against a replacement cost of USD 130.
+
+> **What would overturn it.** A gap review that reaches a wrong conclusion and is caught by the next reader as quickly as an absent review would have been.
+
+### L-093 · A filing is not read until the notes that bear on the model are read.
+
+Parsing a filing for its statements and treating it as read is the statement-level form of the unread-filing defect. The accounting policies carry useful lives, recognition clocks and definitions that decide constructions the numbers alone cannot settle.
+
+**Applies to:** every study  ·  *Learned from:* found while building, [R-TERM-01], ARCC, 03-Sep-2026
+
+> **What it cost, or how we know.** ARCC's FY2025 filing had been parsed cell by cell for its statements across four revisions. Its accounting-policies note discloses machinery and equipment at 20 years, and that figure is what the terminal turned on — worth EGP 13.32 a share. The note had never been opened, and the filing carries no text layer at all, so reading it took OCR off the rendered pixels.
+
+> **What would overturn it.** A study where the accounting-policies note bears on no construction in the model — in which case it is not needed, and the record should say so rather than leave the note unopened.
 
 ### L-208 · A check that fails by the calendar is not a check.
 
