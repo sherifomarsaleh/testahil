@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**117 lessons**, of which 90 bind on every study, 20 on a class of company, and 7 on a single name.
+**119 lessons**, of which 92 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 44 found while building.
+By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 46 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -928,6 +928,26 @@ A correct rule, written down and implemented well in the one place it exists, bi
 > **What it cost, or how we know.** "A number stated in prose must be computed, not typed" had been standing for four weeks and exactly one study of twenty-four implemented a check for it. Measured in one afternoon on three studies that had just been rebuilt and passed every other gate: AMOC published a 514-basis-point margin range whose own five named periods span 737, alongside a summary row that summed five values and divided by four; ARCC shipped a masthead a day stale and a price date a month stale; PHDC carried three comments above one line, two of them wrong. Across the whole book, 373 of 8,824 figures in the delivered documents had no computed counterpart. Shared as engine/prose_figures.py rather than copied twenty-three times, and the first four ports reached zero unmatched across 1,561 figures.
 
 > **What would overturn it.** A rule whose right implementation is genuinely study-specific — where a shared instrument would have to be so configurable that each study's declaration IS the implementation, at which point the sharing buys nothing but a common vocabulary.
+
+### L-086 · A system of checks has properties no check in it can see.
+
+Each gate can be individually right, individually negative-controlled, and collectively unable to answer the one question that matters about the set: can a new subject walk past all of them? Where a claim about the SYSTEM can be expressed as a test, write the test — it runs over the system rather than inside it, and it fails rather than warns.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the new-study gauntlet, 03-Sep-2026
+
+> **What it cost, or how we know.** Every ratcheted gate in this repository states that the build breaks on a NEW violation, and every one is negative-controlled. Planting an empty study directory and running the set found that four of seventeen stayed green — three legitimately, because they bite on artefacts rather than on the directory, and one on a real hole: check_artefact_currency skipped every two-sided study behind a comment claiming the branches were handled when nothing handled them, and EGCH's contested-judgements artefact sat stale at 1.7854 against a published 2.3109 for a full day.
+
+> **What would overturn it.** A system-level property that turns out to be unfalsifiable in practice — where every way of weakening the system to test the property is so artificial that its failure teaches nothing about the real risk.
+
+### L-087 · A comment asserting a check that does not exist is worse than no comment.
+
+It stops the next reader looking. An absent check invites the question; a comment claiming the check is elsewhere answers it wrongly and closes it. This is the documentation form of a self-attested boolean.
+
+**Applies to:** every study  ·  *Learned from:* found while building, check_artefact_currency, 03-Sep-2026
+
+> **What it cost, or how we know.** The gate skipped any study whose central was not a scalar, with the inline comment 'a two-sided study; handled by its branches'. Nothing in the file handled branches — the word appeared exactly once in it, in that comment. EGCH publishes a two-sided answer and therefore escaped the gate entirely, and its contested_judgements.json was stale by 29% for the whole day the gate reported clean.
+
+> **What would overturn it.** A comment that names the module or function actually performing the check, which is a pointer rather than an assertion and can be verified by following it.
 
 ### L-208 · A check that fails by the calendar is not a check.
 

@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-03n — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-03o — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -2675,6 +2675,27 @@ THE DISCIPLINE FOR A FALSE POSITIVE IS INHERITED VERBATIM AND IS THE WHOLE METHO
 READ THE POPULATION LIVE: python3 scripts/check_prose_figures.py, and --measure for the advisory.
 
 THE GENERAL LESSON, WHICH IS NOT ABOUT PROSE: A RULE THAT ONE STUDY IMPLEMENTS IS A RULE THAT ONE STUDY OBEYS. It had been written down for four weeks, it was correct, it was implemented well in the one place it existed, and everywhere else it bound nothing — which is [R-MACRO-01]'s own general lesson arriving from a different direction: where a rule can be made arithmetic, making it arithmetic is the only way it survives, and making it arithmetic ONCE, in a shared place, is the only way it survives everywhere.
+[R-ENF-07] THE PROPERTY THE WHOLE DESIGN RESTS ON IS TESTED, NOT ASSUMED [ADOPTED 03-Sep-2026]
+
+Every ratcheted gate in this repository says the same thing in its own docstring: knowingly-outstanding work is listed and allowed to fail, and the build breaks on a NEW violation. Every one of them is negative-controlled on its own conditions. NONE of them tests the claim the whole design rests on:
+
+A STUDY DIRECTORY CREATED TOMORROW, WITH NOTHING IN IT, GOES RED EVERYWHERE.
+
+That is a property of the SYSTEM rather than of any gate, so no gate can check it — and it is exactly the claim this method makes about itself: that a study is produced correctly and passes several checks without anyone intervening. It is also the kind of claim that is true by construction right up to the day a ratchet is seeded one entry too generously, or a gate globs a pattern a new directory happens not to match, or a check skips a study whose numbers file will not parse.
+
+scripts/check_new_study_gauntlet.py copies the repository into a sandbox, plants an empty study directory, and runs the set. Each gate must go RED and must NAME the new study.
+
+THE SPLIT IS THE FINDING. A single list of "study gates" conflated two different kinds of check, and four of the first seventeen stayed green on an empty directory for a perfectly good reason: they bite on ARTEFACTS, not on the directory. A study with no delivered documents cannot leak internal vocabulary and cannot publish a retired blend. Demanding that those refuse an empty directory would be a FALSE CLAIM about what they check, so they are tested the way they actually work — by planting a minimal offending artefact and asserting they catch it. Three more are EXCLUDED with their reasons stated, because a name in a list that resolves to the wrong subject is worse than an absence; and an excluded gate that stops existing fails the run too, since the exclusions are claims.
+
+WHAT THE FIRST RUN FOUND, in three classes. One miss was the sandbox's own fault — it excluded a directory a gate legitimately needs, so that gate CRASHED on the absence and went red for the wrong reason, which reads exactly like going red for the right one. Four were the artefact-conditional gates above. And one was a real hole: check_artefact_currency carried THREE silent skips — a study with no numbers file, a study whose numbers file will not parse, and a study whose central is not a number, the last with the comment "a two-sided study; handled by its branches" AND NOTHING HANDLED THE BRANCHES. EGCH publishes a two-sided answer, so it escaped that gate entirely while the comment said it did not, and its contested-judgements artefact sat stale at 1.7854 against a published 2.3109 for the whole day. A COMMENT ASSERTING A CHECK THAT DOES NOT EXIST IS WORSE THAN NO COMMENT, because it stops the next reader looking.
+
+All three are closed. Closing them surfaced ten studies exposing no readable answer at all — and every one of the ten is ALREADY on [R-GAP-01]'s own unreadable list, which that rule seeded on its adoption day with exactly this population. The gate DEFERS to it rather than writing the same fact into a second list, because two records of one thing diverge the moment one of them is pruned, which is the drift [R-DOC-01] closes.
+
+THE GAUNTLET'S OWN FALSIFIER IS A WEAKENED GATE, and the weakening tested is the one that would actually happen: a ratchet seeded with the unknown ticker. That is a one-line edit anybody could make in good faith, and the ratchet's own --prune would then preserve it. Every ratchet is tested individually and then all of them at once.
+
+ITS FIRST TWO DRAFTS PROVED NOTHING, AND THAT IS RECORDED HERE RATHER THAN QUIETLY FIXED. The first tried to blind a gate by inserting an early `continue` with a regex; the regex matched nothing, all three cases reported the gauntlet green, and the green proved only that the gates were unchanged. A later edit then deleted three cases outright and the file reported three of three clean. That is the third and fourth time in one session that a negative control has been caught passing a fixture which never injected its condition — after check_valuation_gap's own control and check_document_structure's case 6. So every mutation now ASSERTS THAT IT LANDED, and the case COUNT is asserted against a declared constant, because a case lost to an edit is a green that proves nothing.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT NEW STUDIES: A SYSTEM OF CHECKS HAS PROPERTIES NO CHECK IN IT CAN SEE. Each gate here was individually right and individually negative-controlled, and the question "can a new name walk past all of them" was answerable by none of them — which is [R-ENF-01] one level up: where a claim about the system can be expressed as a test, the test exists in code, runs over the system rather than inside it, and FAILS rather than warns.
 
 [R-BRIDGE-01] THE ENTERPRISE-TO-EQUITY BRIDGE IS A RECORD, AND IT IS CHECKED FROM OUTSIDE THE STUDY [ADOPTED 02-Sep-2026, method reassessment WS4]
 

@@ -2174,6 +2174,41 @@ LESSONS = [
       "instrument would have to be so configurable that each study's declaration IS the "
       "implementation, at which point the sharing buys nothing but a common vocabulary."),
 
+    L("L-086", "ALL", None,
+      "A system of checks has properties no check in it can see.",
+      "Each gate can be individually right, individually negative-controlled, and "
+      "collectively unable to answer the one question that matters about the set: can a "
+      "new subject walk past all of them? Where a claim about the SYSTEM can be expressed "
+      "as a test, write the test — it runs over the system rather than inside it, and it "
+      "fails rather than warns.",
+      "the new-study gauntlet, 03-Sep-2026",
+      "build",
+      "Every ratcheted gate in this repository states that the build breaks on a NEW "
+      "violation, and every one is negative-controlled. Planting an empty study directory "
+      "and running the set found that four of seventeen stayed green — three legitimately, "
+      "because they bite on artefacts rather than on the directory, and one on a real hole: "
+      "check_artefact_currency skipped every two-sided study behind a comment claiming the "
+      "branches were handled when nothing handled them, and EGCH's contested-judgements "
+      "artefact sat stale at 1.7854 against a published 2.3109 for a full day.",
+      "A system-level property that turns out to be unfalsifiable in practice — where "
+      "every way of weakening the system to test the property is so artificial that its "
+      "failure teaches nothing about the real risk."),
+
+    L("L-087", "ALL", None,
+      "A comment asserting a check that does not exist is worse than no comment.",
+      "It stops the next reader looking. An absent check invites the question; a comment "
+      "claiming the check is elsewhere answers it wrongly and closes it. This is the "
+      "documentation form of a self-attested boolean.",
+      "check_artefact_currency, 03-Sep-2026",
+      "build",
+      "The gate skipped any study whose central was not a scalar, with the inline comment "
+      "'a two-sided study; handled by its branches'. Nothing in the file handled branches — "
+      "the word appeared exactly once in it, in that comment. EGCH publishes a two-sided "
+      "answer and therefore escaped the gate entirely, and its contested_judgements.json "
+      "was stale by 29% for the whole day the gate reported clean.",
+      "A comment that names the module or function actually performing the check, which is "
+      "a pointer rather than an assertion and can be verified by following it."),
+
 ]
 
 

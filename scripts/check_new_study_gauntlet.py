@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """A NEW STUDY MUST CLEAR EVERY GATE, AND THIS PROVES IT RATHER THAN ASSERTING IT.
 
+[R-ENF-07]
+
 WHY THIS EXISTS
     The point of a ratcheted gate is that knowingly-outstanding work is listed and allowed
     to fail while the build breaks on a NEW violation. Every gate in this repository says

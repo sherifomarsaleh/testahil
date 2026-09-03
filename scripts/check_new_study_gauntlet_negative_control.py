@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Negative control for scripts/check_new_study_gauntlet.py.
+"""Negative control for scripts/check_new_study_gauntlet.py.  [R-ENF-07]
 
 The gauntlet asserts a property of the whole system — that a new study directory is refused
 everywhere — so its own falsifier is a WEAKENED GATE. This weakens one gate at a time, in a

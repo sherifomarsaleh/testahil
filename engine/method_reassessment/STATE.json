@@ -20,9 +20,9 @@
  },
  "phase": "1",
  "current": {
-  "workstream": "Phase 1: the gates read the DELIVERED FILE and the USED QUANTITY, and the instruments are SHARED",
-  "step": "PR #341 and #342 merged; a third is ready. FIVE closures of one class today, all [R-ENF-01] turned on a gate's own blind spot, and the last two closed the SAME meta-defect from opposite ends: a rule implemented once is a rule obeyed once. (1) the DELIVERED DOCUMENT's shape read off the model report — 8 of 24 conforming to 20, and the derivation REFUSED on its first run because the two records of the standard disagreed; (2) the USED QUANTITY — [R-MACRO-01] now requires an inflation_inputs block with a CLOSED mapping, and AMOC was CONFORMED rather than ratcheted, moving the answer AWAY from the price; (3) SHAPE NOT WORD — five scrub lists, five holes, four documents naming this repository; (4) THE SHARED SWEEP — ARCC's hand-rolled register passed all five of its own checks and missed seven, five of them facts the study already held; (5) THE SHARED PROSE CHECK — one study of twenty-four implemented the four-week-old rule against typing a number in prose, and 373 of 8,824 figures in the delivered book had no computed counterpart. The first four ports reached ZERO across 1,561 figures and found, among others, a disclosed ownership figure typed twice and registered nowhere, six price levels typed into a builder as a ladder's rungs, and three disclosed interest rates typed into the register's own justification text.",
-  "status": "in progress — five new gates, four rule amendments, two PRs merged, a third ready"
+  "workstream": "Phase 1: the gates read the delivered file and the used quantity, the instruments are SHARED, and the SYSTEM is tested as a system",
+  "step": "Three PRs merged; a fourth ready. SIX closures of one class today. The last one is a level up from the rest: [R-ENF-07], the new-study gauntlet — every ratcheted gate says the build breaks on a NEW violation and every one is negative-controlled, and NONE could answer whether a study directory created tomorrow with nothing in it goes red everywhere. It does now, 14 of 14, and getting there found one real hole: check_artefact_currency skipped every two-sided study behind a comment claiming the branches were handled when nothing handled them, so EGCH's contested_judgements.json sat stale at 1.7854 against a published 2.3109 for the whole day the gate reported clean. The gauntlet's own first two drafts proved nothing — a mutation that never landed, then an edit that deleted three cases — so every mutation now asserts it landed and the case count is asserted against a constant.",
+  "status": "in progress — six new gates, five rule amendments, three PRs merged, a fourth ready"
  },
  "done": [
   "plan written, critiqued by panel, committed, published",
@@ -101,17 +101,21 @@
   "Day 3: ARCC's sweep ported to the shared register; its Figure 7 had stacked EGP MILLIONS against EGP PER TONNE on an axis labelled per tonne, showing a cash cost more than twice the selling price; workbook front sheet said revision 3 against a meta of 4.",
   "Day 3: PHDC's forward margin anchored on the latest reviewed period rather than an average of it and a stale full year. Reported FY2026 profit -24.9%, earnings cross-check 11.17 -> 8.39, PUBLISHED CENTRAL unmoved because the class primary is a cash-conversion DCF — which is worth a reader knowing.",
   "Day 3: engine/prose_figures.py + check_prose_figures.py + 9-case negative control. The mechanism SHARED rather than copied (L-084's lesson, same day). Four ports at zero unmatched across 1,561 figures; twenty studies ratcheted; --measure prints the book-wide 4.2% as an advisory, never a bar.",
-  "Day 3: L-085 registered — a rule that one study implements is a rule that one study obeys. Both governing documents at revision 2026-09-03n."
+  "Day 3: L-085 registered — a rule that one study implements is a rule that one study obeys. Both governing documents at revision 2026-09-03n.",
+  "PR #343 MERGED — the sweep-module gate and the shared prose instrument now bind from a fresh clone.",
+  "Day 3: [R-ENF-07] check_new_study_gauntlet.py + 7-case negative control. 14 of 14 gates refuse an empty study directory. THE SPLIT IS THE FINDING: twelve DIRECTORY gates must refuse an empty directory, two ARTEFACT gates bite only on artefacts and are tested by planting an offender, three are EXCLUDED with reasons — and an excluded gate that stops existing fails too.",
+  "Day 3: check_artefact_currency's three silent skips closed (no numbers file, unparseable numbers file, non-scalar central). The third carried a comment claiming two-sided studies were 'handled by its branches' and NOTHING handled them; EGCH escaped the gate entirely and its artefact was stale by 29%. Ten studies exposing no readable answer defer to [R-GAP-01]'s own unreadable list rather than being written into a second one.",
+  "Day 3: L-086 and L-087 registered (119 lessons). Both governing documents at revision 2026-09-03o."
  ],
  "next": [
-  "Open the third PR and merge on green per [R-MERGE-01]",
-  "Port prose_check.py to the twenty studies on prose_outstanding.json, one per re-issue. Each port is where that study's typed figures surface, and the four done so far found a defect apiece.",
-  "ARCC's two NAMED sweep gaps: the Egyptian industry's technology-substitution rate, and any one-off base-resetting transaction. Both need a real search — a negative search is a search somebody actually ran.",
-  "PHDC: the 2025 Egyptian CPI print at its own vintage, needed to close its inflation_inputs entry. engine/macro_history carries no sourced CPI vintage and a revised figure is fabricated in vintage even when right in value.",
-  "AMOC: two experts' falsifiers are absent; the +55% base-anchor judgement returns 0 hits in all three delivered files though the record prices it.",
-  "The ratchets, every one of which may only SHORTEN: 4 document, 2 vocabulary, 9 sweep, 20 prose, 21 anchor, 5 artefact",
-  "AMOC's base re-anchor at +55%, third in the one-lever queue behind the pound-on-price correction and the inflation ladder",
-  "SAVOLA at -10.1%; and the 68 published fair values with NO study directory, where every construction gate is silent about 76% of the book"
+  "Open the fourth PR and merge on green per [R-MERGE-01]",
+  "Port prose_check.py's remaining 142 named items, one study per re-issue — the list is engine/build_depth_audit/prose_findings_03-09-2026.md and almost every item is a DISCLOSED fact quoted in prose and never registered, so each is a copy rather than new research",
+  "ARCC's two NAMED sweep gaps: the Egyptian industry's technology-substitution rate, and any one-off base-resetting transaction. A negative search is a search somebody actually ran.",
+  "PHDC: the 2025 Egyptian CPI print at its own vintage, to close its inflation_inputs entry",
+  "AMOC: two experts' falsifiers are absent; the +55% base-anchor judgement returns 0 hits in all three delivered files though the record prices it",
+  "The ratchets, every one of which may only SHORTEN: 4 document, 2 vocabulary, 9 sweep, 18 prose, 21 anchor, 5 artefact",
+  "AMOC's base re-anchor at +55%, third in the one-lever queue",
+  "SAVOLA at -10.1%; and the 68 published fair values with NO study directory, where every construction gate is silent about 76% of the book — the largest remaining blind spot in the system, and the gauntlet does not see it either because a name with no study directory has nothing for a study gate to examine"
  ],
  "stop_and_ask": [
   "TMGH: two earnings releases could not be re-fetched from the company's own channels (FY2020 release: 502 via proxy on every retry; 1H2021 release: 404). They are not inputs to the delivered numbers — the audited statements for both periods were obtained and verified — so this blocks nothing; recorded for the morning list."
