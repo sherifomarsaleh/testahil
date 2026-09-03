@@ -2543,6 +2543,122 @@ LESSONS = [
       "A repository whose delivered filenames sort chronologically as strings, which would "
       "make the distinction moot."),
 
+    L("L-217", "ALL", None,
+      "A GENERATOR THAT CRASHES LEAVES ITS ARTEFACT EXACTLY AS IT WAS, AND THE DOCUMENT GOES "
+      "ON PUBLISHING IT. A broken generator is silent in a way a wrong one is not.",
+      "Nothing in a build pipeline distinguishes \'this file was not regenerated\' from "
+      "\'this file did not need regenerating\'. The artefact keeps its timestamp, keeps its "
+      "shape, and keeps the numbers of whichever edition last ran successfully.",
+      "ARCC 03-Sep-2026, reading the rendered PDF",
+      "build",
+      "scenario_margin.py ended on sum(v[k] * L[\'weights\'][k]), and when the typed lens "
+      "blend was retired under [R-LENS-03] the weights left the numbers file and the "
+      "generator began raising KeyError on every run. The delivered study went on publishing "
+      "that file\'s LAST SUCCESSFUL output — a base case of 55.40 / 54.65 against a published "
+      "66.53, in a table headed \'Central\', 29% below a spot the same study elsewhere "
+      "reports it as 13.6% below. Re-running it then exposed a SECOND defect the crash had "
+      "been hiding: the harness re-implemented the discounted cash flow rather than calling "
+      "the model, so it still carried the retired rr = g / ROIC terminal and landed 27% "
+      "below the study it exists to reproduce, and it dropped other operating income "
+      "entirely. Its own G3 gate said so the moment it ran. Now it calls the shared terminal "
+      "builder on the study\'s own committed terminal record and reproduces 66.53 exactly.",
+      "A build system that fails the whole run when any generator raises, which would make "
+      "the silence impossible rather than merely detectable."),
+
+    L("L-218", "ALL", None,
+      "TEXT DRAWN INSIDE A FIGURE IS INVISIBLE TO EVERY CHECK THAT READS A DOCUMENT. Compute "
+      "it, because nothing else will catch it.",
+      "The prose-figure gate reads a document\'s text; a chart\'s annotation is pixels. A "
+      "number typed into a figure therefore has NO instrument pointed at it at all, which "
+      "inverts the usual intuition that a chart is somehow less load-bearing than a "
+      "sentence.",
+      "ARCC 03-Sep-2026, reading the rendered PDF",
+      "build",
+      "Figure 4\'s annotation read \'the whole EGP 15.10 gap is forward-looking\' and \'that "
+      "cash is inside the 54.65\' — the superseded edition\'s gap and central — drawn "
+      "directly above bars that already ended at 66.53, in a figure whose underlying record "
+      "was current and declared its vintage correctly. It also claimed two thirds of the gap "
+      "was capex and a dividend when those two steps together are several times the gap. "
+      "Every figure in the annotation is now computed from the record the bars are drawn "
+      "from, so the text and the picture cannot disagree.",
+      "A rendering pipeline that emits figure text into the document\'s text layer, where "
+      "the existing prose gate would reach it."),
+
+    L("L-219", "ALL", None,
+      "A DISTANCE IS MEASURED FROM THE PRICE ITS SUBJECT WAS COMPUTED ON, NEVER FROM A PRICE "
+      "OF ANOTHER DATE. Two clocks in one column produce figures that are individually "
+      "correct and jointly impossible.",
+      "The technical read is built on the price library; the study\'s spot is the latest "
+      "known market price, and the two can be weeks apart. A percentage that divides one by "
+      "the other has no meaning and does not announce itself as meaningless.",
+      "ARCC 03-Sep-2026, reading the rendered PDF",
+      "build",
+      "ARCC\'s levels table headed a column \'Distance from spot\' and divided every level by "
+      "a spot of 77.00 struck on 3 September, while the levels themselves come from a "
+      "library ending 6 August at a close of 59.00 — four weeks and 30.5% earlier. Every "
+      "resistance and every support printed as a large NEGATIVE, and the 52-WEEK HIGH "
+      "printed 21.6% BELOW the current price, which is impossible on one clock. The read "
+      "itself was internally coherent throughout: resistance 1 above its own close, support "
+      "1 below it. Distances are now measured from the read\'s own close with that date in "
+      "the column heading, and the gap between the two dates is stated in the caption rather "
+      "than buried inside a percentage.",
+      "A study whose technical read and spot are always struck on the same session, which "
+      "would make the distinction unnecessary rather than merely invisible."),
+
+    L("L-220", "ALL", None,
+      "A WIDENING MADE TO CLEAR A FALSE POSITIVE CAN HIDE A TRUE ONE. Widening a rendering "
+      "set across two CLOCKS is not the same discipline as widening it across two renderings "
+      "of one quantity.",
+      "The standing rule that a false positive is fixed by widening the set, never by "
+      "deleting the figure, is right — and it says nothing about which widenings are "
+      "legitimate. Admitting both a correct and an incorrect anchor makes the check pass on "
+      "either, which is indistinguishable from not checking.",
+      "ARCC 03-Sep-2026",
+      "build",
+      "prose_check declared PF.relative_to(technicals, (read_close, spot)) — both anchors — "
+      "so the levels table\'s wrong-clock distances were IN the rendering set and the gate "
+      "reported 0 unmatched on a table showing the 52-week high below the current price. "
+      "Narrowed to the read\'s own close, with the single figure that legitimately spans "
+      "both clocks — the gap between them, stated in the caption — declared explicitly.",
+      "A quantity genuinely quotable against two different anchors in the same document, "
+      "where the reader is told which is which at each use."),
+
+    L("L-221", "ALL", None,
+      "A CAUTIOUS-SOUNDING VERDICT IS STILL A VERDICT AND IS PUBLISHED ONLY WHERE THE RECORD "
+      "EARNS IT. Understating in the wrong direction is not a safe error.",
+      "A flag that flatters gets checked; a flag that disparages our own work reads as "
+      "conservative disclosure and is waved through. Both are claims about the world.",
+      "ARCC 03-Sep-2026, reading the rendered PDF",
+      "build",
+      "The cone figure was titled \'ILLUSTRATIVE ONLY, this cone is over-wide\' and the body "
+      "said the map was labelled illustrative \'because its own calibration record says it "
+      "should be\'. That name\'s published record carries NO flag: 41 of 44 resolved "
+      "three-month forecasts finished inside the 90% band, 93.2% against a 90% target, "
+      "which the two-sided test does not distinguish from the target, and its width of "
+      "1.43x a naive random walk is the ordinary figure for its exchange and is disclosed "
+      "rather than judged. The study was publishing a flag the record does not earn and "
+      "attributing it to that record. Replaced with the record\'s own numbers and a title "
+      "saying what the cone IS — anchored on the last session of the price history rather "
+      "than on the valuation date.",
+      "A record that does earn the flag, in which case publishing it is the rule working."),
+
+    L("L-222", "ALL", None,
+      "READ THE SITE\'S DATA THROUGH A REAL JAVASCRIPT PARSE, IN EVERY PLACE THAT READS IT — "
+      "not only in the checkers written after the lesson.",
+      "A regular expression over a JavaScript object literal returns the FIRST match where "
+      "the parser takes the LAST, so a duplicated key means the tool inspects the half no "
+      "reader ever sees.",
+      "ARCC 03-Sep-2026",
+      "build",
+      "The standing rule was adopted after a reader — not a check — found a ticker page "
+      "publishing a support above its own close while both existing gates reported it "
+      "clean, and one study (EGCH) implements it correctly through node. ARCC\'s own "
+      "band-record reader was a regex over data.js the whole time. The rule was right, was "
+      "written down, and bound in one place, which is the same shape as the prose-figure "
+      "and sweep-module findings of the same week.",
+      "A data file that is genuinely a flat key-value format with no possibility of a "
+      "duplicate key, where a regex and a parser cannot disagree."),
+
 ]
 
 

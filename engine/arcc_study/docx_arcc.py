@@ -36,18 +36,29 @@ S0 = json.load(open('step0_result.json'))
 # quoting the wrong one. It reads the generated record instead, which is the single
 # source that rule names.
 def _band_record(tk):
-    import re as _re
-    _src = open(os.path.join(HERE, '..', '..', 'assets', 'data.js'), encoding='utf-8').read()
-    _i = _src.find('BANDS')
-    _m = _re.search(r'\b%s\s*:\s*\{([^}]*)\}' % tk, _src[_i:_i + 200000])
-    if not _m:
+    """Read through a REAL JavaScript parse, never a regex over the file [R-ENF-03].
+
+    This function matched the record with a regular expression until 03-Sep-2026. That is
+    the exact construction the standing rule names: re.search returns the FIRST match and a
+    JavaScript object literal takes the LAST, so a duplicated key means the tool inspects
+    the half the reader never sees — which is how a ticker page once published a support
+    above its own close while both gates reported it clean. EGCH's band_record.py already
+    did this correctly; this study did not, and a shared discipline implemented in one
+    place is a discipline that binds in one place.
+    """
+    import subprocess
+    _p = os.path.join(HERE, '..', '..', 'assets', 'data.js')
+    _js = ("const fs=require('fs');const vm=require('vm');"
+           "const src=fs.readFileSync(%r,'utf8');const ctx=vm.createContext({});"
+           "vm.runInContext(src+';globalThis.__B=BANDS;',ctx);"
+           "const b=ctx.__B[%r];if(!b)throw new Error('no BANDS entry');"
+           "console.log(JSON.stringify(b));" % (_p, tk))
+    _r = subprocess.run(['node', '-e', _js], capture_output=True, text=True)
+    if _r.returncode != 0:
         raise SystemExit('no published band record for %s. [R-CAL-02] says what a '
-                         'reader is shown, and this study cannot show it without one.' % tk)
-    _out = {}
-    for _k, _v in _re.findall(r'(\w+)\s*:\s*("[^"]*"|[-\w.]+)', _m.group(1)):
-        _out[_k] = (_v.strip('"') if _v.startswith('"')
-                    else (None if _v == 'null' else float(_v)))
-    return _out
+                         'reader is shown, and this study cannot show it without one. '
+                         '%s' % (tk, _r.stderr.strip()[:200]))
+    return json.loads(_r.stdout)
 
 
 BAND = _band_record('ARCC')
@@ -941,13 +952,22 @@ caption(f'Table 15 — EBITDA margin, year by year. EFG’s FY2025a margin resta
         f'models classify oppositely — is removed, reproducing our own audited figure '
         f'exactly. The disagreement from FY2026 on is real, not definitional, and it widens '
         f'rather than staying flat.')
-sc_rows = [['Scenario', 'DCF lens', 'Central', 'vs spot']]
+# ONE COLUMN, NOT TWO. With the blend retired the cash-flow lens IS the central, so
+# printing both was the same number twice under two headings.
+sc_rows = [['Scenario', 'Cash-flow lens', 'vs spot']]
 for r in MSC['scenarios']:
-    sc_rows.append([r['name'], n2(r['dcf']), n2(r['central']), sg(r['central']/SPOT-1)])
-table(sc_rows, [3.60, 0.95, 0.95, 0.95], size=8.8)
+    sc_rows.append([r['name'], n2(r['dcf']), sg(r['dcf']/SPOT-1)])
+table(sc_rows, [3.90, 1.20, 1.20], size=8.8)
+_efg_ov = next(r for r in MSC['scenarios'] if r['name'].startswith('EFG margin, OUR'))
+_efg_bv = next(r for r in MSC['scenarios'] if 'EFG volumes' in r['name'])
 caption(f'Table 16 — What EFG’s margin view is worth, held against both volume '
-        f'assumptions. Their margin on OUR volumes clears spot; their margin AND their '
-        f'volumes, taken together, does not.')
+        f'assumptions. Their margin on OUR volumes reaches EGP {n2(_efg_ov["dcf"])}, '
+        f'{sg(_efg_ov["dcf"]/SPOT-1)} against the latest close; their margin AND their '
+        f'volumes together reach EGP {n2(_efg_bv["dcf"])}, {sg(_efg_bv["dcf"]/SPOT-1)}. '
+        f'NEITHER clears the price, and the volume assumption is worth '
+        f'{n2(_efg_ov["dcf"]-_efg_bv["dcf"])} a share between them — several times what the '
+        f'margin disagreement is worth, which is why the volume base carries its own '
+        f'sensitivity in section 1.2.')
 
 # ---- 1.11 -------------------------------------------------------------------
 H2('1.11  What a buyer at EGP ' + n2(SPOT) + ' must believe')
@@ -968,18 +988,35 @@ P(f'Strip out the items resolved above and the honest disagreement left is one t
 # ============================== 2 ============================================
 H1('2  Price structure')
 P(TECH['tech']['summary'])
-rows = [['', 'Level (EGP)', 'Distance from spot']]
+# TWO CLOCKS, AND THE DISTANCES BELONG TO THE READ'S OWN. The levels are computed from a
+# price history ending on the read's own last session; the study's spot is the latest known
+# market price, which can be weeks later. Measuring the levels against SPOT — which this
+# table did until 03-Sep-2026 — makes every resistance and support print as a large
+# negative and shows the 52-WEEK HIGH BELOW the current price, which is impossible on one
+# clock and merely stale on two. The distances are from the read's own close, and the gap
+# between the two dates is stated rather than hidden inside a percentage.
+_TC = TECH['close']
+rows = [['', 'Level (EGP)', f'Distance from the {n2(_TC)} close of {TECH["data_date"]}']]
 for i, r in enumerate(TECH['levels']['res']):
-    rows.append([f'Resistance {i+1}', n2(r), sg(r / SPOT - 1)])
+    rows.append([f'Resistance {i+1}', n2(r), sg(r / _TC - 1)])
 for i, s_ in enumerate(TECH['levels']['sup']):
-    rows.append([f'Support {i+1}', n2(s_), sg(s_ / SPOT - 1)])
-rows.append(['52-week high', n2(TECH['hi_52w']), sg(TECH['hi_52w'] / SPOT - 1)])
-rows.append(['52-week low', n2(TECH['lo_52w']), sg(TECH['lo_52w'] / SPOT - 1)])
+    rows.append([f'Support {i+1}', n2(s_), sg(s_ / _TC - 1)])
+rows.append(['52-week high', n2(TECH['hi_52w']), sg(TECH['hi_52w'] / _TC - 1)])
+rows.append(['52-week low', n2(TECH['lo_52w']), sg(TECH['lo_52w'] / _TC - 1)])
 table(rows, [2.00, 1.50, 1.70])
-caption('Table 17 — Levels are computed from swing structure with a recency weight; '
-        'moving averages, the 52-week extremes and round numbers are admitted as '
-        'candidates but score below real swing points. Resistance 1 and support 1 always '
-        'mean nearest to the close.')
+caption(f'Table 17 — Levels are computed from swing structure with a recency weight; '
+        f'moving averages, the 52-week extremes and round numbers are admitted as '
+        f'candidates but score below real swing points. Resistance 1 and support 1 always '
+        f'mean nearest to the close. THE DATES DIFFER AND THAT MATTERS HERE: this read is '
+        f'built on price history ending {TECH["data_date"]} at EGP {n2(_TC)}, while the '
+        f'latest known market price used everywhere else in this study is EGP {n2(SPOT)} '
+        f'on {D["meta"]["spot_date"]}, '
+        f'{sg(SPOT/_TC-1)} higher. Every distance above is measured from the read\'s own '
+        f'close, because a level drawn on one day\'s history says nothing about a price on '
+        f'another. The whole ladder — the 52-week high included — sits BELOW the current '
+        f'price, so on this evidence the tape has moved clear of every level this structure '
+        f'identified and the read should be treated as describing a market the price has '
+        f'since left.')
 figure('fig3_ma.png', 6.9,
        'Figure 5 — Three years of price with the 50- and 200-day averages.')
 rich([('On the upside: ', {'bold': True}), (TECH['tech']['bull'], {})])
@@ -989,20 +1026,29 @@ P('This section describes the tape and makes no claim about value. The two are c
 
 # ============================== 3 ============================================
 H1('3  A probabilistic price map')
-P('The following is NOT a valuation. It is a distribution of where the share price could '
-  'sit at two horizons, drawn from the price history alone and from nothing in the '
-  'preceding sections. It is included because a single fair-value number tells a reader '
-  'nothing about dispersion, and it is labelled illustrative because its own calibration '
-  'record says it should be.')
+_BR = _band_record('ARCC')
+P(f'The following is NOT a valuation. It is a distribution of where the share price could '
+  f'sit at two horizons, drawn from the price history alone and from nothing in the '
+  f'preceding sections. It is included because a single fair-value number tells a reader '
+  f'nothing about dispersion. Over {n0(_BR["n"])} resolved three-month forecasts this '
+  f'name\'s price finished inside the 90% band {pc(_BR["c90"], 1)} of the time, against a '
+  f'{pc(0.90, 0)} target — a record long enough to read, and one on which nothing further '
+  f'is claimed either way. Its bands run {n2(_BR["width"])} times the width of a naive '
+  f'carry-anchored random walk\'s, which is disclosed rather than judged: on this exchange '
+  f'that is the ordinary figure and a wider band is not automatically a worse one.')
 rows = [['', 'One month', 'Three months']]
 for lab, k in [('5th percentile', 'p5'), ('25th percentile', 'p25'), ('Median', 'p50'),
                ('75th percentile', 'p75'), ('95th percentile', 'p95')]:
     rows.append([lab, n2(STK['horizons']['1M']['pct'][k]), n2(STK['horizons']['3M']['pct'][k])])
-rows.append(['Probability of finishing above the current price',
+# THE ANCHOR IS NAMED, NOT CALLED "THE CURRENT PRICE". These probabilities are measured
+# from the close the simulation was anchored on, which on this edition is four weeks and
+# 30.5% below the latest known market price. A reader seeing "above the current price"
+# reads it against 77.00 and is wrong by the whole of that move.
+rows.append([f'Probability of finishing above the EGP {n2(STK["spot"])} anchor',
              pc(STK['horizons']['1M']['p_above']), pc(STK['horizons']['3M']['p_above'])])
-rows.append(['Probability of touching +10% at any point',
+rows.append([f'Probability of touching +10% of the anchor at any point',
              pc(STK['horizons']['1M']['touch_up10']), pc(STK['horizons']['3M']['touch_up10'])])
-rows.append(['Probability of touching −10% at any point',
+rows.append([f'Probability of touching −10% of the anchor at any point',
              pc(STK['horizons']['1M']['touch_dn10']), pc(STK['horizons']['3M']['touch_dn10'])])
 table(rows, [3.00, 1.60, 1.60], band_rows={3})
 caption(f'Table 18 — Percentiles in EGP per share, from a 50,000-path simulation anchored '

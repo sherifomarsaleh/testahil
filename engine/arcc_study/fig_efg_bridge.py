@@ -83,10 +83,23 @@ for sp in ('top', 'right', 'bottom'):
     ax.spines[sp].set_visible(False)
 ax.set_title('From the EFG Hermes target price to the Testahil central',
              fontsize=14.5, fontweight='bold', loc='left', pad=64)
+# EVERY FIGURE IN THIS ANNOTATION IS COMPUTED FROM efg_bridge.json. It was typed until
+# 03-Sep-2026 and carried the SUPERSEDED edition's numbers — "the whole EGP 15.10 gap"
+# and "that cash is inside the 54.65" — against bars that already ended at this edition's
+# central, and a claim that two thirds of the gap was capex and a dividend when those two
+# steps together are several times the gap. Text drawn INSIDE an image is invisible to
+# every check in this repository: the prose-figure gate reads the document's text, not its
+# pictures. So the rule that a number stated in prose must be computed rather than typed
+# applies with more force here, not less.
+_V = {st['key']: float(st['value']) for st in STEPS}
+_gap = float(B['start']) - float(B['end'])
+_cd = _V['capex'] + _V['balance_sheet']
 ax.text(0.0, 1.008,
-        'Both models reproduce FY2025 to the pound, so the whole EGP 15.10 gap is forward-looking. Each bar replaces exactly ONE driver and\n'
-        'flows it through the discounted window AND the cash bridge, so nothing is counted twice. Two thirds of the gap is capex and a dividend\n'
-        'that has already been paid. Valuing to TODAY rather than to 1 January ADDS EGP 1.28 — that cash is inside the 54.65, not owed on top.',
+        'Both models reproduce FY2025 to the pound, so the whole EGP %.2f gap is forward-looking. Each bar replaces exactly ONE driver and\n'
+        'flows it through the discounted window AND the cash bridge, so nothing is counted twice. Capex and a dividend already paid are\n'
+        'worth EGP %.2f between them, %s the whole gap. Moving the valuation date to today is worth EGP %.2f — that cash is inside the %.2f.'
+        % (_gap, _cd, ('most of' if abs(_cd) < abs(_gap) else 'several times'),
+           _V['valuation_date'], float(B['end'])),
         transform=ax.transAxes, fontsize=9.0, color=GREY, ha='left', va='bottom', linespacing=1.6)
 
 out = os.path.join(HERE, 'fig_efg_bridge.png')
