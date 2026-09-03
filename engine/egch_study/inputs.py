@@ -271,8 +271,12 @@ import macro_path as _MP
 _HOUSE = _MP.load('EG')
 
 I("inflation_terminal", _HOUSE.terminal_inflation, "ratio",
-  "The inflation embedded in the TERMINAL discount rate: the central bank's longest-horizon "
-  "published target, 5% (+/-2) for Q4 2028 — the SAME figure terminal growth is set at. "
+  "The inflation embedded in the TERMINAL discount rate, taken from the house macro path and "
+  "NOT typed here — the SAME figure terminal growth is set at, so the two cannot drift apart. "
+  "(This sentence previously described the value as 5%, the central bank's Q4-2028 target, "
+  "while the path supplies 7%: a 7% value carrying a 5% justification, which is exactly the "
+  "kind of unfalsifiable typed rate [R-MACRO-01] exists to stop. The value has always come "
+  "from the path; only the sentence was wrong.) "
   "CORRECTED 1 September 2026: the 08-08-2026 edition built the terminal risk-free rate on the "
   "7% Q4-2026 target while growing the perpetuity at 5%, a perpetual real decline of about 2% a "
   "year that no disclosure supports (the same defect the AMOC review found, L-055). Terminal "
@@ -513,7 +517,14 @@ for k, vals, unit, src in [
     I(k, vals, unit, src, "2026-08-08", "L5")
 
 I("lens_weights", [0.45, 0.20, 0.20, 0.15], "ratio",
-  "Weights of the four lenses in the weighted central this edition publishes inside its field: "
+  "RETIRED under [R-LENS-03] and consumed by nothing. It is kept in the register so a reader of "
+  "the 01-09-2026 edition can see what changed, and it is recorded here as retired rather than "
+  "deleted because a number that was published once should stay traceable. THE CENTRAL IS THE "
+  "CLASS PRIMARY -- the cash-flow lens, which on this company is two-sided -- and every other "
+  "lens is a cross-check published beside it, never weighted into it. What follows is the "
+  "description of the retired construction, kept verbatim: "
+  "Weights of the four lenses in the weighted central the 01-09-2026 edition published inside "
+  "its field: "
   "cash flow with the programme carried through 45%, relative multiples 20%, normalised earnings "
   "20%, book value 15%. SET IN THIS EDITION (1 September 2026): the 08-08-2026 edition published "
   "the field alone, with no central and no weights. Basis: the cash-flow lens is the primary lens "
@@ -630,8 +641,8 @@ I("bs_gross_fixed_M9FY2526", 17022.493, "EGP m",
   M9 + ", note 6 fixed assets at cost", "2026-05-20", "L1")
 I("bs_acc_dep_M9FY2526", 3435.300, "EGP m",
   M9 + ", note 6 accumulated depreciation", "2026-05-20", "L1")
-I("spot_price_date", "2026-08-06", "date",
-  "Egyptian Exchange closing session used as the study's anchor date", "2026-08-06", "L2")
+I("spot_price_date", "2026-09-03", "date",
+  "Egyptian Exchange closing session used as the study's anchor date", "2026-09-03", "L2")
 I("beta_ci90_low", 0.7165230052490117, "ratio",
   "The lower bound of the ninety-per-cent confidence interval of the same beta estimate — a "
   "five-year weekly regression of the stock's own returns on the EGX30 (253 weekly observations "

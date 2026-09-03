@@ -97,12 +97,30 @@ def cdf3m(x):
     return 0.5
 
 
-CUTS = [C, 7.50, SPOT, 11.00]
+# THE ZONE CUTS MUST ASCEND, AND THE GUARD THAT WAS HERE COULD NOT SEE THAT THEY
+# DID NOT [corrected 03-Sep-2026]. The list was written [C, 7.50, SPOT, 11.00] --
+# the central first, then a low level, then spot, then a level below spot -- and
+# once the central moved to 11.83 the sequence read 11.83, 7.50, 13.50, 11.00.
+# Differences of a decreasing cumulative distribution are NEGATIVE, so the table
+# published probabilities of -74.6% and -16.0% under a caption promising a
+# partition.
+#
+# The assert could not catch it: consecutive differences of a cumulative function
+# TELESCOPE, so the sum is 1.0 for any ordering whatever, ascending or not. It is
+# a check that cannot fail, which is the [R-ENF-04] species -- a green light that
+# examined nothing. Both are fixed: the cuts are SORTED, and the guard now tests
+# what actually matters, which is that no zone is negative.
+_CUTSET = (C, 7.50, SPOT, 11.00)
+CUTS = sorted(_CUTSET)
 ZP = [cdf3m(CUTS[0])]
 for i in range(len(CUTS) - 1):
     ZP.append(cdf3m(CUTS[i + 1]) - cdf3m(CUTS[i]))
 ZP.append(1 - cdf3m(CUTS[-1]))
 assert abs(sum(ZP) - 1.0) < 1e-9, f'probability zones do not sum to one: {sum(ZP)}'
+assert all(z >= -1e-9 for z in ZP), (
+    'a probability zone is NEGATIVE: %s at cuts %s. Consecutive differences of a '
+    'cumulative distribution telescope, so the sum-to-one assert above is 1.0 for '
+    'any ordering and cannot see this.' % ([round(z, 4) for z in ZP], CUTS))
 
 # ============================ FRONT MATTER ===================================
 masthead()
@@ -731,10 +749,24 @@ P(f'The price series runs from {S0["series_first"]} to {S0["series_last"]} — '
   f'{pc(S0["flat_frac"], 1)} of sessions closed unchanged.')
 
 H1('3  Where the price could trade')
+# TWO CLOCKS, AND THE SECTION SAID ONE [added 03-Sep-2026]. The cone was simulated
+# from the price library's last session; the valuation is struck against the latest
+# known price. They were the same number until the library stopped moving. Stating
+# both, and which one every figure below is measured against, is the whole fix --
+# the probabilities themselves are now computed against the cone's own anchor.
 P(f'A calibrated Monte-Carlo cone, carry-anchored YZ-HAR-t, 50,000 paths, seed 42, '
   f'ν = {S0["nu"]}, width calibration {S0["width_cal"]}. The drift is the CARRY — '
   f'ln(1+risk-free) less ln(1+dividend yield) — and NO part of it comes from the valuation, so '
   f'the cone can and does sit above a fair value well below it.')
+P(f'READ THIS SECTION AGAINST EGP {p2(STK["spot"])}, NOT AGAINST THE PRICE ON THE '
+  f'MASTHEAD. The cone was simulated from the closing price of '
+  f'{STK["anchor_date"]}, which is the last session in the price history it was '
+  f'built on; the valuation is struck against the {IN.get("spot_date", "later")} '
+  f'close of EGP {p2(SPOT)}. Those are two different clocks and they are supposed '
+  f'to be: a fresh price moves the valuation without re-running the simulation, and '
+  f'a fresh price history moves the simulation without re-striking the valuation. '
+  f'Every percentile and every probability in this section is measured against EGP '
+  f'{p2(STK["spot"])}.')
 table([['Horizon', 'p5', 'p25', 'median', 'p75', 'p95', 'P(above today)', 'Grade date'],
        ['1 month', *[p2(H1M['pct'][k]) for k in ('p5', 'p25', 'p50', 'p75', 'p95')],
         pc(H1M['p_above']), H1M['grade_date']],
@@ -772,9 +804,18 @@ def p_touch(level, h):
     """Probability the path TOUCHES a level, from the published percentiles and the anchor
     volatility — the reflection principle on a driftless-in-logs approximation, which is what
     the engine's own stored ladder is built on."""
+    # THE CONE HAS ITS OWN ANCHOR AND THIS FUNCTION WAS USING THE STUDY'S SPOT
+    # [corrected 03-Sep-2026]. The percentiles in h were simulated from the strike's
+    # anchor of EGP 9.10 on 6 August; SPOT is the 3-September close of 13.50. Mixing
+    # them embedded a one-month log drift of -0.3866 -- a 32% fall -- against the
+    # engine's own drift of +0.79%, and printed "EGP 11.83 -> 99.5%" beside the
+    # words THIS STUDY'S FAIR VALUE. The two are different clocks: a fresh price
+    # moves the valuation without re-striking the cone. Every probability here is
+    # now computed against the anchor the cone was actually simulated from.
+    _anchor = STK['spot']
     s_ = h['sigma_h']
-    m = math.log(h['pct']['p50'] / SPOT)
-    b = math.log(level / SPOT)
+    m = math.log(h['pct']['p50'] / _anchor)
+    b = math.log(level / _anchor)
     if abs(s_) < 1e-9:
         return 0.0
     from statistics import NormalDist
@@ -850,14 +891,21 @@ bullet(f'the state petroleum complex is both the dominant customer and the feeds
        f'business.', bold_head='THE COUNTERPARTY — ')
 
 H1('6  Probability zones')
-table([['Zone', 'Probability, 3 months'],
-       [f'Below fair value (under EGP {p2(C)})', pc(ZP[0])],
-       [f'EGP {p2(C)} to {p2(7.50)}', pc(ZP[1])],
-       [f'EGP {p2(7.50)} to {p2(SPOT)}', pc(ZP[2])],
-       [f'EGP {p2(SPOT)} to {p2(11.00)}', pc(ZP[3])],
-       [f'Above EGP {p2(11.00)}', pc(ZP[4])],
-       ['TOTAL', pc(sum(ZP))]],
-      [4.2, 1.9], band_rows={6}, size=9.0)
+# THE LABELS ARE BUILT FROM THE SORTED CUTS, NOT TYPED IN THE ORDER SOMEBODY
+# EXPECTED THEM [corrected 03-Sep-2026]. They previously named the bands in the
+# order the unsorted list happened to carry, so each label described a different
+# interval from the probability printed beside it -- which is how two negative
+# figures shipped under a caption promising a partition.
+_zn = lambda x: ('fair value' if x is C or abs(x - C) < 1e-6 else
+                 'the traded price' if x is SPOT or abs(x - SPOT) < 1e-6 else None)
+_lab = lambda x: (f'EGP {p2(x)} ({_zn(x)})' if _zn(x) else f'EGP {p2(x)}')
+_rows = [['Zone', 'Probability, 3 months'],
+         [f'Below {_lab(CUTS[0])}', pc(ZP[0])]]
+for _i in range(len(CUTS) - 1):
+    _rows.append([f'{_lab(CUTS[_i])} to {_lab(CUTS[_i + 1])}', pc(ZP[_i + 1])])
+_rows.append([f'Above {_lab(CUTS[-1])}', pc(ZP[-1])])
+_rows.append(['TOTAL', pc(sum(ZP))])
+table(_rows, [4.2, 1.9], band_rows={len(_rows) - 1}, size=9.0)
 caption('Table 24 — a genuine partition: the bands tile the line, none overlaps, and the total is '
         'asserted to be 100% in the build. The previous edition published five zones summing to '
         '103.4%, with one band written descending and nested inside the band above it, so every '

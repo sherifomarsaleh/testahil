@@ -25,12 +25,6 @@
    "note": "ordinary sense: a step-change"
   },
   {
-   "file": "AMOC_Bibliography_03-09-2026.docx",
-   "pattern": "\\bengine\\b",
-   "hits": 1,
-   "note": "ordinary sense: the cash-flow engine of the workbook"
-  },
-  {
    "file": "AMOC_Valuation_Study_03-09-2026_public.docx",
    "pattern": "\\bregister\\b",
    "hits": 2,

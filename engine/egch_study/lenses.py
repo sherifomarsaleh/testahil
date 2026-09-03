@@ -302,8 +302,23 @@ D['lens_record'] = {
     'primary': dict(
         kind='dcf', value=float(L['central']['base']),
         range=dict(low=float(L['central']['bear']), high=float(L['central']['bull'])),
-        range_note='the cash-flow lens across its own downside and upside on one '
-                   'clock, the programme carried through in both',
+        range_note='the cash-flow lens across the dollar export price, from the '
+                   'flat-at-opening path the base case holds to the higher path the '
+                   'upside case holds, with the programme carried through in both '
+                   'and the macro path held still',
+        range_basis=dict(
+            driver='the dollar export price per tonne of urea',
+            low=float(D['drivers']['export_usd_path'][0]), high=float(D['drivers']['export_usd_path_bull'][0]),
+            units='US$ per tonne, f.o.b. Egypt',
+            macro_held=True,
+            evidence='the base case holds the price FLAT in nominal dollars at the '
+                     'opening level, because no forecast of a traded commodity price is '
+                     'defensible and that is the convention this house applies to the '
+                     'same class of input elsewhere; the upside case holds it nearer the '
+                     'CME FOB Egypt settlement of 7 August 2026. Both are levels the '
+                     'market has actually printed, not a chosen percentage band, and '
+                     'the currency path, the cost of capital and terminal growth are '
+                     'held at the house macro path across both.'),
         note='the cash-flow lens on the company\'s own tonnes, dollar prices and '
              'disclosed capital programme, discounted on the glide. THE CONTESTED '
              'JUDGEMENT IS BINARY AND IT STRADDLES ZERO: carried through the lens '
@@ -311,8 +326,19 @@ D['lens_record'] = {
              'side and never averaged.'
              % (L['cashflow']['carry_through'], L['cashflow']['stopped'])),
     'cross_checks': [
+        # THE INGREDIENTS, NOT THE SENTENCE [added 03-Sep-2026]. AMOC's record used
+        # these same reassuring words while its code divided the MARKET CAP by
+        # base-year EBITDA, and passed three times, so the claim is arithmetic
+        # everywhere now: the adopted multiple beside the three numbers that
+        # reproduce the traded one. 7.95x adopted against a traded 8.25x -- close,
+        # which is worth seeing rather than hiding, and clear of the half-per-cent
+        # refusal band.
         dict(kind='relative_multiple', value=float(L['relative']['value_per_share']),
              present_value=False,
+             multiple=float(L['relative']['mult_mid']),
+             circularity=dict(spot=float(D['spot']), shares=float(SHARES) / 1e6,
+                              net_debt=float(CASES['base']['bridge']['net_debt']),
+                              metric_value=float(L['relative']['ebitda_fwd'])),
              multiple_source='forward EBITDA times a multiple from the company\'s '
                              'own history and its regional peers, never one read '
                              'off the current price'),

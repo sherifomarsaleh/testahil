@@ -1793,7 +1793,7 @@
   ]
  },
  "spot": 14.41,
- "spot_date": "2026-08-06",
+ "spot_date": "2026-09-03",
  "central": null,
  "fair": {
   "bear": -0.0006663750534725712,
@@ -1873,7 +1873,15 @@
     "low": -0.0006663750534725712,
     "high": 1.9248325671659838
    },
-   "range_note": "the cash-flow lens across its own downside and upside on one clock, the programme carried through in both",
+   "range_note": "the cash-flow lens across the dollar export price, from the flat-at-opening path the base case holds to the higher path the upside case holds, with the programme carried through in both and the macro path held still",
+   "range_basis": {
+    "driver": "the dollar export price per tonne of urea",
+    "low": 530.0,
+    "high": 560.0,
+    "units": "US$ per tonne, f.o.b. Egypt",
+    "macro_held": true,
+    "evidence": "the base case holds the price FLAT in nominal dollars at the opening level, because no forecast of a traded commodity price is defensible and that is the convention this house applies to the same class of input elsewhere; the upside case holds it nearer the CME FOB Egypt settlement of 7 August 2026. Both are levels the market has actually printed, not a chosen percentage band, and the currency path, the cost of capital and terminal growth are held at the house macro path across both."
+   },
    "note": "the cash-flow lens on the company's own tonnes, dollar prices and disclosed capital programme, discounted on the glide. THE CONTESTED JUDGEMENT IS BINARY AND IT STRADDLES ZERO: carried through the lens reads 1.79, stopped it reads 5.90, and the two are published side by side and never averaged."
   },
   "cross_checks": [
@@ -1881,6 +1889,13 @@
     "kind": "relative_multiple",
     "value": 15.474444319299197,
     "present_value": false,
+    "multiple": 7.95,
+    "circularity": {
+     "spot": 14.41,
+     "shares": 1986.578999,
+     "net_debt": 10032.483,
+     "metric_value": 4683.741145398068
+    },
     "multiple_source": "forward EBITDA times a multiple from the company's own history and its regional peers, never one read off the current price"
    },
    {
