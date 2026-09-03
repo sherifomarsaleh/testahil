@@ -49,7 +49,15 @@ AUD = "Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Cro
 REV = "Reviewed consolidated FS, three months to 31-Mar-2026"
 LRV = "Limited-review consolidated FS, six months to 31-Dec-2024"
 
-INP['spot'] = I(9.10, "AMOC closing price on the Egyptian Exchange, 6 August 2026", "2026-08-06", "Company")
+# RE-STRUCK ON THE LATEST KNOWN PRICE [R-GAP-01 AMENDED, 03-09-2026]. The study
+# had been carrying a 6-August close for four weeks while the stock rose 48%, and
+# a fair value published against a month-old price is a comparison a reader cannot
+# use. The price is an INPUT to the answer here, not only a benchmark beside it:
+# it sets market capitalisation and therefore the market-value equity weight the
+# cost of capital is built on.
+INP['spot'] = I(13.50, "AMOC closing price on the Egyptian Exchange, 3 September 2026, from the "
+                "prices supplied by the principal and committed at "
+                "engine/prices/SUPPLIED_03-09-2026.json", "2026-09-03", "Company")
 INP['shares_mn'] = I(1291.5, "Issued and paid-up capital EGP 1,291,500,000 at EGP 1 par = "
                              "1,291,500,000 shares (note 18-L, share split to EGP 1 par recorded "
                              "in the Commercial Register 24-Jan-2018)", "2025-12-31", "Company")
@@ -1776,9 +1784,49 @@ def dcf_scenario(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0,
 
 _chk = dcf_scenario()
 assert abs(_chk - dcf_ps) < 0.01, f"scenario engine does not reproduce the base: {_chk} vs {dcf_ps}"
+# ---- THE BEAR AND THE BULL COME OFF THE FILED RECORD, NOT OFF THE DIALS ------
+# [rebuilt 03-Sep-2026; the item engine/build_depth_audit/lens_outstanding.json
+# promised at this study's next re-issue]
+#
+# The previous corners moved FIVE things at once: volume, gross margin, the
+# CURRENCY PATH, the COST OF CAPITAL at both anchors, and TERMINAL GROWTH. Three
+# of those five are macro, and under [R-MACRO-01] all three are the same
+# assumption wearing different hats -- the currency path is relative
+# purchasing-power parity on the house inflation path, the terminal risk-free
+# rate is terminal inflation plus the real-rate convention, and terminal growth
+# is terminal inflation plus a stated real growth. So the old bull corner asked
+# for a WEAKER pound (helping an exporter's translated revenue) alongside a LOWER
+# cost of capital and HIGHER terminal growth, which needs Egyptian inflation to
+# be high and low simultaneously. The bear corner asked for the mirror image. The
+# two published ends were the two least coherent cells in the grid, and their
+# width was this desk's choice of dial settings rather than anything the world
+# had shown.
+#
+# What replaces them moves only what this company's OWN AUDITED FILINGS have
+# actually printed, and holds the macro path exactly still:
+#
+#   GROSS MARGIN, across the filed span. The low is 5.053%, the quarter to
+#   31-Mar-2025 -- the worst margin in the audited record this study holds. The
+#   high is 13.84%, the full year to 30-Jun-2022, the best FULL YEAR on that
+#   record; the best QUARTER is 13.92% and is deliberately not used, because a
+#   forecast margin is sustained for five years and a quarter is not a year.
+#   Base year 9.65%.
+#
+#   VOLUME, across the filed span. -4.5 percentage points a year carries the base
+#   year's tonnage back to the FIVE-YEAR MEAN by year five, which is where the
+#   audited record actually sits; +3.0 is the run-rate the last two filed periods
+#   show. Both were already evidence-based and both are kept.
+#
+# The macro path does not move: fx_mult stays 1.00, wacc_shift 0.00, and terminal
+# growth stays at the house terminal. The range is therefore ENTIRELY a business
+# range, which is the only kind that says anything.
+GM_FILED_LOW = 0.05053          # quarter to 31-Mar-2025, the worst in the audited record
+_GM_FILED_HIGH = 0.1384         # full year to 30-Jun-2022, the best full year filed
 SCEN = dict(
-    bear=dict(vol_adj=-0.045, gm_shift=-0.010, fx_mult=0.97, wacc_shift=+0.02, g=0.03),
-    bull=dict(vol_adj=+0.030, gm_shift=+0.010, fx_mult=1.03, wacc_shift=-0.02, g=0.06))
+    bear=dict(vol_adj=-0.045, gm_shift=GM_FILED_LOW - BASE_GM,
+              fx_mult=1.0, wacc_shift=0.0),
+    bull=dict(vol_adj=+0.030, gm_shift=_GM_FILED_HIGH - BASE_GM,
+              fx_mult=1.0, wacc_shift=0.0))
 dcf_bear = dcf_scenario(**SCEN['bear'])
 dcf_bull = dcf_scenario(**SCEN['bull'])
 SCEN['bear']['ps'], SCEN['bull']['ps'], SCEN['base_ps'] = dcf_bear, dcf_bull, dcf_ps
@@ -1788,19 +1836,20 @@ SCEN['labels'] = dict(
     fx_mult='Exchange-rate path, as a multiple of the assumed path',
     wacc_shift='Cost of capital, shifted at BOTH the explicit and terminal anchors',
     g='Terminal growth rate')
-say(f"[Scenarios on the cash-flow lens] bear EGP {dcf_bear:.2f} / base EGP {dcf_ps:.2f} / bull "
-    f"EGP {dcf_bull:.2f}. The scenarios are FIVE simultaneous driver moves, not a single lever: "
-    f"volume growth {SCEN['bear']['vol_adj']:+.1%} / {SCEN['bull']['vol_adj']:+.1%} a year against "
-    f"a FLAT base path — the bear leg carries the base year back toward the five-year mean "
-    f"tonnage by year five, which is where the audited record actually sits — gross margin "
-    f"{SCEN['bear']['gm_shift']:+.1%} / "
-    f"{SCEN['bull']['gm_shift']:+.1%}, the exchange-rate path "
-    f"{SCEN['bear']['fx_mult']-1:+.0%} / {SCEN['bull']['fx_mult']-1:+.0%}, the cost of capital "
-    f"{SCEN['bear']['wacc_shift']:+.0%} / {SCEN['bull']['wacc_shift']:+.0%} at both anchors, and "
-    f"terminal growth {SCEN['bear']['g']:.0%} / {SCEN['bull']['g']:.0%}. Because all five move "
-    f"together and in the same direction, the bear and bull ends are JOINT-worst and JOINT-best "
-    f"cases and are much wider than any single-driver row in the sensitivity table; they are not "
-    f"a confidence interval and no probability is attached to them.")
+say(f"[Scenarios on the cash-flow lens — BUSINESS DRIVERS ONLY] bear EGP {dcf_bear:.2f} / base "
+    f"EGP {dcf_ps:.2f} / bull EGP {dcf_bull:.2f}. TWO drivers move and both move across the span "
+    f"this company's own audited filings have actually printed: gross margin from "
+    f"{GM_FILED_LOW:.2%} — the quarter to 31 March 2025, the worst in the record — to "
+    f"{_GM_FILED_HIGH:.2%}, the full year to 30 June 2022 and the best FULL YEAR filed, against a "
+    f"base year of {BASE_GM:.2%}; and volume {SCEN['bear']['vol_adj']:+.1%} / "
+    f"{SCEN['bull']['vol_adj']:+.1%} a year against a flat base path, where the bear leg carries "
+    f"the base year's tonnage back to the five-year mean by year five, which is where the audited "
+    f"record sits. THE MACRO PATH DOES NOT MOVE. The previous edition also flexed the currency "
+    f"path, the cost of capital at both anchors and terminal growth; all three carry the same "
+    f"Egyptian inflation, so the old bull corner needed inflation high and low at the same time "
+    f"and the old bear corner needed the mirror image. The width of a range built that way is "
+    f"this desk's choice of dial settings. This one is the company's own filed record, and it is "
+    f"not a confidence interval — no probability is attached to either end.")
 
 # ---- synthesis --------------------------------------------------------------
 W = V['lens_weights']
@@ -2119,19 +2168,79 @@ LENS_RECORD = {
     'primary': dict(kind='dcf', value=float(lenses['dcf']['base']),
                     range=dict(low=float(lenses['dcf']['bear']),
                                high=float(lenses['dcf']['bull'])),
-                    range_note='the cash-flow lens across five simultaneous driver '
-                               'moves — volume, margin, currency, cost of capital and '
-                               'terminal growth — so the ends are joint-worst and '
-                               'joint-best, not a confidence interval',
+                    range_note='the cash-flow lens with gross margin and volume each '
+                               'flexed across the span this company\'s own audited '
+                               'filings have printed, and the macro path held still. '
+                               'Not a confidence interval and no probability is '
+                               'attached to either end',
+                    range_basis=dict(
+                        driver='gross margin, and tonnage, each across its own filed span',
+                        low=float(GM_FILED_LOW), high=float(_GM_FILED_HIGH),
+                        macro_held=True,
+                        evidence='gross margin from %.3f%% — the quarter to 31 March 2025, '
+                                 'the worst in the audited record this study holds — to '
+                                 '%.2f%%, the full year to 30 June 2022 and the best FULL '
+                                 'YEAR filed, against a base year of %.2f%%. The best '
+                                 'single QUARTER on the record is 13.92%% and is '
+                                 'deliberately not used: a forecast margin is sustained '
+                                 'for five years and a quarter is not a year. Tonnage '
+                                 '%+.1f%% / %+.1f%% a year against a flat base path, the '
+                                 'bear leg carrying the base year back to the FIVE-YEAR '
+                                 'MEAN by year five, which is where the audited record '
+                                 'sits. The currency path, the cost of capital at both '
+                                 'anchors and terminal growth are all held at the house '
+                                 'macro path and do not move.'
+                                 % (GM_FILED_LOW * 100, _GM_FILED_HIGH * 100,
+                                    BASE_GM * 100, SCEN['bear']['vol_adj'] * 100,
+                                    SCEN['bull']['vol_adj'] * 100)),
                     note='the cash-flow lens on the company\'s own tonnes and the '
                          'spread between two disclosed numbers, discounted on the '
                          'glide with the terminal norm-built'),
     'cross_checks': [
+        # THIS RECORD SAID THE OPPOSITE OF WHAT THE CODE DID, AND SAID IT FOR
+        # THREE EDITIONS [corrected 03-Sep-2026, found by the re-strike]. It
+        # attested "enterprise value to EBITDA from the company's own history and
+        # its regional peers, never a multiple read off the current price". Twelve
+        # hundred lines above, ev_trailing is MARKET CAP plus net debt and the
+        # justified multiple is that divided by base-year EBITDA, re-rated by
+        # zero: the traded multiple exactly. The lens's whole distance from the
+        # share price was the bridge, and the code comment said so in as many
+        # words while the record denied it. [R-LENS-03]'s gate read the sentence,
+        # found the reassuring words, and passed it three times.
+        #
+        # What exposed it was moving the price: on 03-Sep-2026 the spot went from
+        # 9.10 to 13.50, +48%, and this lens went from 8.32 to 12.59, +51%. A lens
+        # built on five years of own history cannot do that. A lens built on
+        # today's price cannot do anything else.
+        #
+        # IT IS WITHDRAWN RATHER THAN REBUILT, and the reason is a measurement
+        # rather than a preference: an own-history EV/EBITDA needs this company's
+        # net debt and share count at each past year end, and AMOC's own
+        # walk-forward panel carries PPE at 2021-2023 and NOTHING ELSE --
+        # engine/valuation_calibration/bridge_inputs.py prints the census. That is
+        # precisely the gap [R-FCAL-01 AMENDED] was adopted to close, and AMOC is
+        # on its outstanding list. Inventing the multiple from a peer set nobody
+        # sourced would be the same offence in the other direction, so under SIGCM
+        # clause 8 the lens stops rather than guesses. It returns when AMOC's next
+        # walk-forward run commits the valuation-input block.
         dict(kind='relative_multiple', value=float(lenses['relative']['base']),
              present_value=False,
-             multiple_source='enterprise value to EBITDA from the company\'s own '
-                             'history and its regional peers, never a multiple read '
-                             'off the current price'),
+             withdrawn=True,
+             multiple_source='THE CURRENT PRICE. The multiple is the company\'s own '
+                             'traded enterprise value over base-year EBITDA, re-rated '
+                             'by zero, so this lens values the company at what it '
+                             'already trades at and its only distance from the share '
+                             'price is the bridge. It is published as a DIAGNOSTIC of '
+                             'what the market is paying, never as a valuation.',
+             multiple=float(JUST_MULT),
+             circularity=dict(spot=float(SPOT), shares=float(SH),
+                              net_debt=float(nd_cy25), metric_value=float(ebitda_cy25)),
+             cannot_rebuild='an own-history enterprise-value multiple needs net debt and '
+                            'the share count at each past year end. AMOC\'s committed '
+                            'record carries PPE at 2021-2023 and neither of those at any '
+                            'origin (engine/valuation_calibration/bridge_inputs.py). The '
+                            'valuation-input block [R-FCAL-01 AMENDED] is outstanding on '
+                            'this name and the lens returns with it.'),
         dict(kind='book_value', value=float(lenses['book']['base']),
              present_value=False,
              note='published as a DISCLOSED FLOOR and never weighted'),
@@ -2206,7 +2315,7 @@ OUT = dict(
     macro_record=MACRO_RECORD, lens_record=LENS_RECORD,
     bridge_record=BRIDGE_RECORD,
     meta=dict(ticker='AMOC', company='Alexandria Mineral Oils Company S.A.E.', market='EGX',
-              currency='EGP', asof='2026-08-06', spot=SPOT, shares_mn=SH, mktcap=MKTCAP,
+              currency='EGP', asof='2026-09-03', spot=SPOT, shares_mn=SH, mktcap=MKTCAP,
               ev_trailing=ev_trailing, klass='downstream petroleum operating company',
               sector='Oil & gas refining and marketing — lubricant base oils and waxes',
               fy_note='financial year moved from 30 June to 31 December'),

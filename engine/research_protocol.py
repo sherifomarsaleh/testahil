@@ -945,6 +945,54 @@ def assert_lens_design(record: dict, ticker: str = "?") -> dict:
                     "the relative multiple takes its multiple from the CURRENT PRICE, which "
                     "values the company at what it already trades at. The multiple comes "
                     "from peers or from the company's own history.")
+            # ---- THE STRING WAS THE WHOLE CHECK, AND A STRING IS AN ATTESTATION
+            # [ADDED 03-Sep-2026, found by the AMOC re-strike]. Everything above
+            # this line reads the multiple_source PROSE. AMOC's record said the
+            # multiple came "from the company's own history and its regional
+            # peers, never a multiple read off the current price" while its code
+            # computed ev_trailing = MARKET CAP + net debt and divided by base-year
+            # EBITDA -- the traded multiple exactly, re-rated by zero. The gate
+            # read the sentence, found the reassuring words, and passed. The
+            # re-strike is what exposed it: the lens moved +51% when the price
+            # moved +48%, which is what a lens anchored on the price does and what
+            # a lens anchored on history cannot do.
+            #
+            # So the claim is now ARITHMETIC. A relative multiple commits the
+            # multiple it adopted and the three numbers that would reproduce the
+            # traded one, and the gate divides. A record that supplies no
+            # ingredients has switched the check off rather than passed it --
+            # [R-COC-01]'s lesson, which is why they are REQUIRED and not optional.
+            circ = x.get("circularity") or {}
+            mult = x.get("multiple")
+            if mult is None:
+                fails.append(
+                    "the relative multiple does not commit the MULTIPLE it adopted. A "
+                    "source named in prose is an attestation; the multiple is the thing "
+                    "that can be checked.")
+            need = ("spot", "shares", "net_debt", "metric_value")
+            missing = [k for k in need if circ.get(k) is None]
+            if missing:
+                fails.append(
+                    "the relative multiple commits no circularity check (%s). The traded "
+                    "multiple is (spot x shares + net debt) / the metric, and a lens that "
+                    "cannot be compared with it is one nobody can tell apart from the "
+                    "price." % ", ".join(missing))
+            elif mult is not None:
+                try:
+                    _mv = float(circ["metric_value"])
+                    _traded = (float(circ["spot"]) * float(circ["shares"])
+                               + float(circ["net_debt"])) / _mv
+                except (TypeError, ValueError, ZeroDivisionError):
+                    fails.append("the relative multiple's circularity check does not "
+                                 "compute: its own numbers do not divide.")
+                else:
+                    x["_traded_multiple"] = _traded
+                    if _traded and abs(float(mult) / _traded - 1.0) < 0.005:
+                        fails.append(
+                            "the relative multiple %.4fx IS the traded multiple %.4fx to "
+                            "within half a per cent. Whatever the source says, this lens "
+                            "values the company at what it already trades at, and its only "
+                            "distance from the price is the bridge." % (float(mult), _traded))
         if k == "normalised_earnings":
             basis = (x.get("basis") or "").lower()
             if "real" not in basis and "less growth" not in basis and "ke - g" not in basis:

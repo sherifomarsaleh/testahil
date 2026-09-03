@@ -59,18 +59,32 @@ def build():
                 "compute.py's own solve, holding every other driver at its base "
                 "case and moving only the gross margin until the cash-flow lens "
                 "reaches the market price"),
+            # THE DIRECTION WORDS ARE COMPUTED, NOT TYPED [03-Sep-2026].
+            # This sentence read "a gap of -151 basis points ... it is pricing a
+            # little LESS than the base year" on a required margin of 11.17%
+            # against a base of 9.65%, which is 151bp MORE. Both halves were true
+            # of the 9.10 strike and neither survived the price moving to 13.50 --
+            # the numbers came from the solve and the words came from the last
+            # time somebody looked. That is the same failure as the Headline this
+            # study shipped in August, and it is why [R-GAP-01] heading 7 exists.
+            # Everything directional below now derives from the sign of the shift.
             "reading": (
                 "At EGP %.2f the price is paying for a gross margin of %.2f%% held "
                 "in every forecast year and in perpetuity, against a base year of "
-                "%.2f%% — a gap of %.0f basis points. That is INSIDE the range this "
+                "%.2f%% — %.0f basis points %s. That is INSIDE the range this "
                 "company has actually printed: it filed %.2f%% for the full year to "
                 "30 June 2022 and %.2f%% in the quarter to 30 June 2026. So the "
                 "market is not pricing something the business has never done; it is "
-                "pricing a little less than the base year, and the study's answer "
-                "of EGP %.2f is %+.1f%% against the price."
+                "pricing a margin %s the base year and %s the best the company has "
+                "filed, and the study's answer of EGP %.2f is %+.1f%% against the "
+                "price."
                 % (spot, 100 * gm["level"], 100 * gm["base"],
-                   -10000 * gm["shift"], 100 * gm["filed_max_year"],
-                   100 * gm["filed_max_quarter"], ps, 100 * (ps / spot - 1))),
+                   abs(10000 * gm["shift"]),
+                   "ABOVE it" if gm["shift"] > 0 else "BELOW it",
+                   100 * gm["filed_max_year"], 100 * gm["filed_max_quarter"],
+                   "above" if gm["shift"] > 0 else "below",
+                   "below" if gm["level"] < gm["filed_max_year"] else "above",
+                   ps, 100 * (ps / spot - 1))),
         },
     }
 

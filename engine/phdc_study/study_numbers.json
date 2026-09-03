@@ -16,7 +16,7 @@
   "spot_date": "close 23 Aug 2026",
   "central": 17.151687534730655,
   "gap_vs_spot": 0.12840049570596412,
-  "central_note": "the cash-flow lens — the class primary — which IS the central under the lens architecture of 02-Sep-2026. The cross-checks are published beside it and define the range; nothing is averaged. Written by the builder, never by hand."
+  "central_note": "the cash-flow lens \u2014 the class primary \u2014 which IS the central under the lens architecture of 02-Sep-2026. The cross-checks are published beside it and define the range; nothing is averaged. Written by the builder, never by hand."
  },
  "registry": {
   "revenue_fy25": {
@@ -112,7 +112,7 @@
   },
   "cfo_fy24": {
    "value": 4854.8,
-   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (statement of cash flows, comparative) — NOTE this RESTATES the EGP 3,131.9mn the FY2024 results release reported for the same year; the filing is used",
+   "source": "PHD consolidated financial statements FY2025 (31 Dec 2025), via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (statement of cash flows, comparative) \u2014 NOTE this RESTATES the EGP 3,131.9mn the FY2024 results release reported for the same year; the filing is used",
    "date": "2024-12-31",
    "tier": "A",
    "unit": "EGP mn"
@@ -385,7 +385,7 @@
   },
   "backlog_1q26": {
    "value": 263000.0,
-   "source": "PHD 1Q2026 earnings release, 20 May 2026, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter — \"the company's backlog of units sold and not yet delivered reached EGP263 billion up from EGP190 billion in 1Q2025\"",
+   "source": "PHD 1Q2026 earnings release, 20 May 2026, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 \"the company's backlog of units sold and not yet delivered reached EGP263 billion up from EGP190 billion in 1Q2025\"",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
@@ -406,7 +406,7 @@
   },
   "new_sales_1q26": {
    "value": 52000.0,
-   "source": "PHD 1Q2026 earnings release, 20 May 2026, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter — \"New sales recorded EGP 52 billion in 1Q2026\"",
+   "source": "PHD 1Q2026 earnings release, 20 May 2026, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 \"New sales recorded EGP 52 billion in 1Q2026\"",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
@@ -420,7 +420,7 @@
   },
   "vdlc_launch_1q26": {
    "value": 24000.0,
-   "source": "PHD 1Q2026 earnings release, 20 May 2026, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter — \"the company launched its strategic land plot Village de La Capitale in New administrative Capital with total sales of EGP24 billion\"",
+   "source": "PHD 1Q2026 earnings release, 20 May 2026, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 \"the company launched its strategic land plot Village de La Capitale in New administrative Capital with total sales of EGP24 billion\"",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
@@ -434,14 +434,14 @@
   },
   "gross_profit_1q26": {
    "value": 3300.0,
-   "source": "PHD 1Q2026 earnings release, 20 May 2026, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter — margin 35% versus 44% in 1Q2025",
+   "source": "PHD 1Q2026 earnings release, 20 May 2026, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 margin 35% versus 44% in 1Q2025",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "revenue_1q26_yoy": {
    "value": 0.11,
-   "source": "PHD 1Q2026 earnings release, 20 May 2026, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter — \"Revenue reached EGP 9.3 billion in 1Q2026, up 11% YoY\"",
+   "source": "PHD 1Q2026 earnings release, 20 May 2026, via https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter \u2014 \"Revenue reached EGP 9.3 billion in 1Q2026, up 11% YoY\"",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "YoY"
@@ -455,7 +455,7 @@
   },
   "construction_fy24": {
    "value": 8500.0,
-   "source": "PHD FY2024 earnings release — \"The Company spent EGP8.5 billion on construction activities during FY2024\"",
+   "source": "PHD FY2024 earnings release \u2014 \"The Company spent EGP8.5 billion on construction activities during FY2024\"",
    "date": "2024-12-31",
    "tier": "A",
    "unit": "EGP mn"
@@ -476,7 +476,7 @@
   },
   "land_bank_sqm_mn": {
    "value": 33.0,
-   "source": "PHD FY2024 earnings release — land bank \"spreading over 33 million square meters\"",
+   "source": "PHD FY2024 earnings release \u2014 land bank \"spreading over 33 million square meters\"",
    "date": "2024-12-31",
    "tier": "A",
    "unit": "mn sqm"
@@ -511,231 +511,231 @@
   },
   "investments_assoc_1q26": {
    "value": 3838.697211,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "subordinated_loan_assoc_1q26": {
    "value": 34.333473,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "investment_property_1q26": {
    "value": 1020.474869,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "fixed_assets_1q26": {
    "value": 4529.193596,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "projects_under_construction_1q26": {
    "value": 199.402883,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "advance_pmts_investments_1q26": {
    "value": 26.864852,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "deferred_tax_asset_1q26": {
    "value": 101.538888,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "right_of_use_assets_1q26": {
    "value": 176.631325,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "notes_recv_lt_1q26": {
    "value": 51821.999636,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "notes_recv_lt_undel_1q26": {
    "value": 1365.932476,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "total_noncurrent_assets_1q26": {
    "value": 63115.069209,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "work_in_progress_1q26": {
    "value": 21337.803436,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "accounts_receivable_1q26": {
    "value": 30481.010262,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "debtors_other_1q26": {
    "value": 13969.625898,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "suppliers_advances_1q26": {
    "value": 10269.246011,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "due_from_related_1q26": {
    "value": 341.675917,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "fin_inv_amortised_1q26": {
    "value": 11369.182823,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "inv_fair_value_1q26": {
    "value": 182.032512,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "notes_recv_st_1q26": {
    "value": 16923.419501,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "notes_recv_st_undel_1q26": {
    "value": 864.82171,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "cash_1q26": {
    "value": 9125.128163,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "total_current_assets_1q26": {
    "value": 114863.946233,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "total_assets_1q26": {
    "value": 177979.015442,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "equity_parent_1q26": {
    "value": 18955.743038,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "nci_equity_1q26": {
    "value": 1432.670535,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "total_equity_1q26": {
    "value": 20388.413573,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "loans_long_term_1q26": {
    "value": 10198.959572,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "notes_payable_long_term_1q26": {
    "value": 4752.461459,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "land_purchase_liab_lt_1q26": {
    "value": 47.134742,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "residents_association_lt_1q26": {
    "value": 30842.958515,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "lease_liabilities_lt_1q26": {
    "value": 104.462501,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "deferred_tax_liab_1q26": {
    "value": 41.710061,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "joint_shares_lt_1q26": {
    "value": 3509.735099,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn",
@@ -743,140 +743,140 @@
   },
   "total_noncurrent_liabs_1q26": {
    "value": 49497.421949,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "banks_credit_balances_1q26": {
    "value": 1205.910651,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "credit_facilities_1q26": {
    "value": 11938.707216,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "current_portion_st_loans_1q26": {
    "value": 686.930276,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "notes_payable_short_term_1q26": {
    "value": 3418.46931,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "advances_customers_1q26": {
    "value": 72867.831592,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "deferred_revenue_1q26": {
    "value": 345.848528,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "checks_undelivered_1q26": {
    "value": 2230.754186,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "lease_liabilities_st_1q26": {
    "value": 63.945856,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "land_purchase_liab_st_1q26": {
    "value": 29.612533,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "due_to_related_1q26": {
    "value": 29.91971,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "joint_shares_st_1q26": {
    "value": 2765.679779,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "creditors_other_1q26": {
    "value": 4650.067405,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "suppliers_1q26": {
    "value": 5340.090248,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "investments_purchase_liab_1q26": {
    "value": 20.717553,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "provisions_1q26": {
    "value": 179.540158,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "income_tax_payable_1q26": {
    "value": 2319.154919,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "total_current_liabs_1q26": {
    "value": 108093.17992,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "total_liabilities_1q26": {
    "value": 157590.601869,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "net_profit_3m_1q26": {
    "value": 1205.253089,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn",
@@ -979,231 +979,231 @@
  "balance_sheet_1q26": {
   "investments_assoc": {
    "value": 3838.697211,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "subordinated_loan_assoc": {
    "value": 34.333473,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "investment_property": {
    "value": 1020.474869,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "fixed_assets": {
    "value": 4529.193596,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "projects_under_construction": {
    "value": 199.402883,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "advance_pmts_investments": {
    "value": 26.864852,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "deferred_tax_asset": {
    "value": 101.538888,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "right_of_use_assets": {
    "value": 176.631325,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "notes_recv_lt": {
    "value": 51821.999636,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "notes_recv_lt_undel": {
    "value": 1365.932476,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "total_noncurrent_assets": {
    "value": 63115.069209,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "work_in_progress": {
    "value": 21337.803436,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "accounts_receivable": {
    "value": 30481.010262,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "debtors_other": {
    "value": 13969.625898,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "suppliers_advances": {
    "value": 10269.246011,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "due_from_related": {
    "value": 341.675917,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "fin_inv_amortised": {
    "value": 11369.182823,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "inv_fair_value": {
    "value": 182.032512,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "notes_recv_st": {
    "value": 16923.419501,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "notes_recv_st_undel": {
    "value": 864.82171,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "cash": {
    "value": 9125.128163,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "total_current_assets": {
    "value": 114863.946233,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "total_assets": {
    "value": 177979.015442,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "equity_parent": {
    "value": 18955.743038,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "nci_equity": {
    "value": 1432.670535,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "total_equity": {
    "value": 20388.413573,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "loans_long_term": {
    "value": 10198.959572,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "notes_payable_long_term": {
    "value": 4752.461459,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "land_purchase_liab_lt": {
    "value": 47.134742,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "residents_association_lt": {
    "value": 30842.958515,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "lease_liabilities_lt": {
    "value": 104.462501,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "deferred_tax_liab": {
    "value": 41.710061,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "joint_shares_lt": {
    "value": 3509.735099,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn",
@@ -1211,140 +1211,140 @@
   },
   "total_noncurrent_liabs": {
    "value": 49497.421949,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "banks_credit_balances": {
    "value": 1205.910651,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "credit_facilities": {
    "value": 11938.707216,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "current_portion_st_loans": {
    "value": 686.930276,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "notes_payable_short_term": {
    "value": 3418.46931,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "advances_customers": {
    "value": 72867.831592,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "deferred_revenue": {
    "value": 345.848528,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "checks_undelivered": {
    "value": 2230.754186,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "lease_liabilities_st": {
    "value": 63.945856,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "land_purchase_liab_st": {
    "value": 29.612533,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "due_to_related": {
    "value": 29.91971,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "joint_shares_st": {
    "value": 2765.679779,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "creditors_other": {
    "value": 4650.067405,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "suppliers": {
    "value": 5340.090248,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "investments_purchase_liab": {
    "value": 20.717553,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "provisions": {
    "value": 179.540158,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "income_tax_payable": {
    "value": 2319.154919,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "total_current_liabs": {
    "value": 108093.17992,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "total_liabilities": {
    "value": 157590.601869,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn"
   },
   "net_profit_3m": {
    "value": 1205.253089,
-   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), page 4 'CONSOLIDATED FINANCIAL POSITION', downloaded 01-Sep-2026 from the company's own result centre https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter (PHD Consolidated FS Q1 2026 (English).pdf). The document is a scan with no text layer; figures were read by OCR off the rendered pixels at 300dpi and every one is held to the statement's own arithmetic below \u2014 ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
    "date": "2026-03-31",
    "tier": "A",
    "unit": "EGP mn",
@@ -1718,7 +1718,7 @@
   "fy25_comparative": 17837.2
  },
  "gaps": {
-  "cash_flow_statement_detail": "The FY2025 cash-flow statement is published in its three totals only (operating EGP 1,424.2mn, investing EGP -4,031.7mn, financing EGP 5,628.8mn); no line-by-line statement is posted. Working capital on the two audited balance sheets rose EGP 20,084.7mn in 2025 while net profit plus depreciation less operating cash implies a rise of EGP 3,146.2mn — a wedge of EGP 16,938.5mn, 46.8% of revenue, which CANNOT be decomposed from what is disclosed and is therefore not decomposed. It is why the projection is published in two framings rather than one. Closed by: the full FY2025 cash-flow statement.",
+  "cash_flow_statement_detail": "The FY2025 cash-flow statement is published in its three totals only (operating EGP 1,424.2mn, investing EGP -4,031.7mn, financing EGP 5,628.8mn); no line-by-line statement is posted. Working capital on the two audited balance sheets rose EGP 20,084.7mn in 2025 while net profit plus depreciation less operating cash implies a rise of EGP 3,146.2mn \u2014 a wedge of EGP 16,938.5mn, 46.8% of revenue, which CANNOT be decomposed from what is disclosed and is therefore not decomposed. It is why the projection is published in two framings rather than one. Closed by: the full FY2025 cash-flow statement.",
   "fy2025_results_release": "PHD has published FY2025 consolidated statements but NO FY2025 full-year results release. The release is where units sold, new sales, deliveries and construction spend are disclosed, so FY2025 has audited financials and NO operating drivers. Closed by: the FY2025 release, or the company confirming the figures directly.",
   "h1_2026_results": "As at this build date (30-Aug-2026) no 2Q/H1-2026 statements or release are posted to the result centre; the newest disclosure of any kind is 1Q2026 (posted 25-Jun-2026). The study's information set therefore ends at 1Q2026. Closed by: the H1-2026 filing.",
   "securitisation_pricing": "The EGP 2.015bn securitisation of 4-Feb-2026 discloses tranche sizes, tenors and national-scale ratings but NO coupon on any tranche, so the company's own marginal cost of debt cannot be read. Closed by: the offering circular or a disclosed coupon.",
@@ -1769,7 +1769,7 @@
   "rf_observed": 0.23,
   "rf_source": "Egypt 10-year EGP government bond yield 23.00%, market quote dated 6-Aug-2026 (investing.com), the same sourced quote this repository's EGCH edition carries. Cross-checks recorded there: an EGP 120.9bn treasury bond maturing May-2029 listed at a 23.098% coupon, and secondary T-bill yields of 24.86% (3M) to 25.52% (12M). FLAGGED: the quote is 24 days old at this build date. It must be refreshed before the study is issued externally, and section 1.9 prices the sensitivity of fair value to it.",
   "kd_pretax_local": 0.255,
-  "kd_source": "MARGINAL, forward-looking, in the cash-flow currency. The company's own latest issue — the EGP 2.015bn securitisation closed 4-Feb-2026 under its EGP 30bn programme, tranches of 13/36/60/84 months rated AA+/AA/A+/A- (national scale) — is the correct anchor, but NO COUPON IS DISCLOSED for any tranche, so it cannot be used. Kd is therefore built as the sovereign 10-year (23.00%) plus a 250bp corporate credit spread, which places it above the sovereign as the method requires. THE 250bp SPREAD IS THIS BUILD'S ONE UNSOURCED COST-OF-CAPITAL INPUT and is flagged as such; it is sensitised in section 1.9. The FY2025 accounting rate is deliberately NOT used: finance cost of EGP 3,347.5mn on mean gross debt of EGP 26,740.6mn implies 12.5%, far below the sovereign, because much of the balance (notes payable to land sellers, customer-facing balances) is non-interest-bearing and part of the charge is capitalised into work in progress. A historical or capitalisation rate is not a marginal rate.",
+  "kd_source": "MARGINAL, forward-looking, in the cash-flow currency. The company's own latest issue \u2014 the EGP 2.015bn securitisation closed 4-Feb-2026 under its EGP 30bn programme, tranches of 13/36/60/84 months rated AA+/AA/A+/A- (national scale) \u2014 is the correct anchor, but NO COUPON IS DISCLOSED for any tranche, so it cannot be used. Kd is therefore built as the sovereign 10-year (23.00%) plus a 250bp corporate credit spread, which places it above the sovereign as the method requires. THE 250bp SPREAD IS THIS BUILD'S ONE UNSOURCED COST-OF-CAPITAL INPUT and is flagged as such; it is sensitised in section 1.9. The FY2025 accounting rate is deliberately NOT used: finance cost of EGP 3,347.5mn on mean gross debt of EGP 26,740.6mn implies 12.5%, far below the sovereign, because much of the balance (notes payable to land sellers, customer-facing balances) is non-interest-bearing and part of the charge is capitalised into work in progress. A historical or capitalisation rate is not a marginal rate.",
   "gross_debt": 33552.7,
   "cash": 9419.5,
   "net_debt": 24133.199999999997,
@@ -1868,7 +1868,7 @@
      "effective_rate_periods": [],
      "effective_rate_unavailable": "Part of the interest PHD incurs is capitalised into properties under development rather than expensed, and the statements do not disclose the capitalised amount separately. Interest incurred over average interest-bearing debt therefore cannot be computed from what the company discloses: the P&L charge over the bank and loan lines gives 13.91%, which understates the true borrowing rate by a large multiple and would be the wrong number to hold the adopted rate against. The adopted rate rests on the sovereign plus a stated 250 basis-point corporate spread, and this is a limitation of the study rather than a solved input.",
      "currency_source": "all eight borrowing lines on the balance sheet are EGP; no foreign-currency tranche is disclosed",
-     "interest_bearing_note": "the bank and loan lines only — notes payable to land sellers and customer balances bear no interest",
+     "interest_bearing_note": "the bank and loan lines only \u2014 notes payable to land sellers and customer balances bear no interest",
      "pct_local_currency": 1.0,
      "limitation": "the independent effective-rate check could not be performed on this company's disclosure; the adopted rate rests on the sovereign plus a stated corporate spread and this is a limitation of the study, recorded rather than passed over"
     },
@@ -1965,7 +1965,7 @@
      "effective_rate_periods": [],
      "effective_rate_unavailable": "Part of the interest PHD incurs is capitalised into properties under development rather than expensed, and the statements do not disclose the capitalised amount separately. Interest incurred over average interest-bearing debt therefore cannot be computed from what the company discloses: the P&L charge over the bank and loan lines gives 13.91%, which understates the true borrowing rate by a large multiple and would be the wrong number to hold the adopted rate against. The adopted rate rests on the sovereign plus a stated 250 basis-point corporate spread, and this is a limitation of the study rather than a solved input.",
      "currency_source": "all eight borrowing lines on the balance sheet are EGP; no foreign-currency tranche is disclosed",
-     "interest_bearing_note": "the bank and loan lines only — notes payable to land sellers and customer balances bear no interest",
+     "interest_bearing_note": "the bank and loan lines only \u2014 notes payable to land sellers and customer balances bear no interest",
      "pct_local_currency": 1.0,
      "limitation": "the independent effective-rate check could not be performed on this company's disclosure; the adopted rate rests on the sovereign plus a stated corporate spread and this is a limitation of the study, recorded rather than passed over"
     },
@@ -2063,7 +2063,7 @@
     "effective_rate_periods": [],
     "effective_rate_unavailable": "Part of the interest PHD incurs is capitalised into properties under development rather than expensed, and the statements do not disclose the capitalised amount separately. Interest incurred over average interest-bearing debt therefore cannot be computed from what the company discloses: the P&L charge over the bank and loan lines gives 13.91%, which understates the true borrowing rate by a large multiple and would be the wrong number to hold the adopted rate against. The adopted rate rests on the sovereign plus a stated 250 basis-point corporate spread, and this is a limitation of the study rather than a solved input.",
     "currency_source": "all eight borrowing lines on the balance sheet are EGP; no foreign-currency tranche is disclosed",
-    "interest_bearing_note": "the bank and loan lines only — notes payable to land sellers and customer balances bear no interest",
+    "interest_bearing_note": "the bank and loan lines only \u2014 notes payable to land sellers and customer balances bear no interest",
     "pct_local_currency": 1.0,
     "limitation": "the independent effective-rate check could not be performed on this company's disclosure; the adopted rate rests on the sovereign plus a stated corporate spread and this is a limitation of the study, recorded rather than passed over"
    },
@@ -3683,7 +3683,7 @@
   "market": "EG",
   "balance_sheet_date": "2026-03-31",
   "latest_disclosed_date": "2026-03-31",
-  "latest_disclosed_source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), downloaded 01-Sep-2026 from the company's own result centre; registered line by line in bs_1q2026.json and accepted only because its own subtotals foot. The company had published no later statement at this edition's date — the half-year 2026 filing was not out.",
+  "latest_disclosed_source": "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached), downloaded 01-Sep-2026 from the company's own result centre; registered line by line in bs_1q2026.json and accepted only because its own subtotals foot. The company had published no later statement at this edition's date \u2014 the half-year 2026 filing was not out.",
   "lines": [
    {
     "label": "Present value of the explicit 15 years",
@@ -3714,7 +3714,7 @@
    "basis": "value_share",
    "deduction": 2410.394278140808,
    "applied_to": "equity_value",
-   "proxy_source": "the minority's filed share of FY2025 profit after tax (EGP 207.2mn of 4,423.8mn) — the company does not disclose the subsidiaries carrying the minority with their own economics, so their value cannot be built directly",
+   "proxy_source": "the minority's filed share of FY2025 profit after tax (EGP 207.2mn of 4,423.8mn) \u2014 the company does not disclose the subsidiaries carrying the minority with their own economics, so their value cannot be built directly",
    "book": 1432.670535,
    "profit_share": 0.0468375604683756,
    "proportional": 0.07026885784273373
@@ -3753,7 +3753,7 @@
    null
   ],
   [
-   "Book value of equity — a disclosed floor",
+   "Book value of equity \u2014 a disclosed floor",
    5.965260823449609,
    6.628067581610676,
    8.61648785609388,
@@ -3788,22 +3788,29 @@
     "low": 3.755443744315099,
     "high": 44.85093344462599
    },
-   "range_note": "the cash-flow lens across the full observed range of the crux — cash conversion — with the whole schedule shifted rather than flattened",
+   "range_note": "the cash-flow lens across the full observed range of the crux \u2014 cash conversion \u2014 with the whole schedule shifted rather than flattened",
    "note": "the cash-flow lens on the company's own units and prices, discounted on the cost-of-capital schedule over a window that runs until growth has converged on the terminal",
    "range_basis": {
-    "driver": "cash conversion — the rate at which contracted sales become operating cash",
+    "driver": "cash conversion \u2014 the rate at which contracted sales become operating cash",
     "low": 0.039375934839767424,
     "high": 0.17870012846326283,
     "units": "fraction of contracted sales converting to operating cash in the year",
     "evidence": "the full observed span of that rate in the company's own filed cash-flow statements, recorded in this study's diagnostics as study_value_range against a forecast of 0.0871. Not a chosen percentage band: the low and the high are values this company has actually printed.",
     "macro_held": true,
-    "macro_note": "one inflation path, one currency path, one cost-of-capital schedule across all three reads — the schedule is shifted whole rather than flattened, so no read discounts a year at a rate another read does not recognise."
+    "macro_note": "one inflation path, one currency path, one cost-of-capital schedule across all three reads \u2014 the schedule is shifted whole rather than flattened, so no read discounts a year at a rate another read does not recognise."
    }
   },
   "cross_checks": [
    {
     "kind": "relative_multiple",
     "value": 11.169369191271084,
+    "multiple": 9.0,
+    "circularity": {
+     "spot": 15.2,
+     "shares": 2859.9199999999996,
+     "net_debt": 0.0,
+     "metric_value": 3549.2780374999993
+    },
     "multiple_source": "the multiples PHDC's own shares have carried over five years of its own history, 6x to 14x trailing earnings"
    },
    {
@@ -3997,7 +4004,7 @@
    "effective_rate_periods": [],
    "effective_rate_unavailable": "Part of the interest PHD incurs is capitalised into properties under development rather than expensed, and the statements do not disclose the capitalised amount separately. Interest incurred over average interest-bearing debt therefore cannot be computed from what the company discloses: the P&L charge over the bank and loan lines gives 13.91%, which understates the true borrowing rate by a large multiple and would be the wrong number to hold the adopted rate against. The adopted rate rests on the sovereign plus a stated 250 basis-point corporate spread, and this is a limitation of the study rather than a solved input.",
    "currency_source": "all eight borrowing lines on the balance sheet are EGP; no foreign-currency tranche is disclosed",
-   "interest_bearing_note": "the bank and loan lines only — notes payable to land sellers and customer balances bear no interest",
+   "interest_bearing_note": "the bank and loan lines only \u2014 notes payable to land sellers and customer balances bear no interest",
    "pct_local_currency": 1.0,
    "limitation": "the independent effective-rate check could not be performed on this company's disclosure; the adopted rate rests on the sovereign plus a stated corporate spread and this is a limitation of the study, recorded rather than passed over"
   },

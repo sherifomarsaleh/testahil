@@ -9,7 +9,7 @@
    "adopted": "the CDS basis, the market's own live pricing of the sovereign's credit",
    "alternative": "the rating basis, an agency judgement updated in steps",
    "value_adopted": 9.914213424678513,
-   "value_alternative": 8.004285957518482,
+   "value_alternative": 8.11110309723921,
    "why": "both bases are published and one is named central; the swap basis is preferred because it is priced continuously by the market rather than revised in discrete agency steps, and the difference is the largest single contested number in this study"
   },
   {
@@ -25,7 +25,7 @@
    "adopted": "gross-borrowing weights, with the cash added once at face in the bridge",
    "alternative": "net-debt weights",
    "value_adopted": 9.914213424678513,
-   "value_alternative": 9.915575255615662,
+   "value_alternative": 9.915131791921535,
    "why": "on a net-cash company the net-debt weight goes negative and levers the equity weight above one, which is the construction [R-BRIDGE-01] (iii) forbids and which a previous edition of this study carried; on a debt book that is 0.14% of the capital structure the corrected difference is essentially nil, and that is the honest finding rather than the 9.5% the broken helper reported"
   },
   {

@@ -190,9 +190,51 @@ def main():
                                        "shifted rather than flattened"),
                         "note": ("the cash-flow lens on the company's own units and prices, "
                                  "discounted on the cost-of-capital schedule over a window "
-                                 "that runs until growth has converged on the terminal")},
+                                 "that runs until growth has converged on the terminal"),
+                        # THIS BLOCK WAS PATCHED INTO study_numbers.json AND NOT INTO
+                        # THE THING THAT WRITES IT [folded back 03-Sep-2026]. The
+                        # committed artefact carried a range_basis; this generator did
+                        # not emit one, so the first honest rebuild dropped it and the
+                        # lens gate went red on a study that had been conforming. The
+                        # standing rule is that post-delivery corrections fold back
+                        # into the build scripts and not just the delivered file, and
+                        # this is what it looks like when they do not: the correction
+                        # survives exactly until somebody re-runs the builder.
+                        "range_basis": {
+                            "driver": ("cash conversion — the rate at which contracted "
+                                       "sales become operating cash"),
+                            "low": 0.039375934839767424,
+                            "high": 0.17870012846326283,
+                            "units": ("fraction of contracted sales converting to "
+                                      "operating cash in the year"),
+                            "evidence": (
+                                "the full observed span of that rate in the company's own "
+                                "filed cash-flow statements, recorded in this study's "
+                                "diagnostics as study_value_range against a forecast of "
+                                "0.0871. Not a chosen percentage band: the low and the "
+                                "high are values this company has actually printed."),
+                            "macro_held": True,
+                            "macro_note": (
+                                "one inflation path, one currency path, one cost-of-capital "
+                                "schedule across all three reads — the schedule is shifted "
+                                "whole rather than flattened, so no read discounts a year "
+                                "at a rate another read does not recognise."),
+                        }},
             "cross_checks": [
+                # THE INGREDIENTS, NOT THE SENTENCE [added 03-Sep-2026]. This
+                # lens was already non-circular -- 9x FY2026E earnings, from the
+                # 6x-14x band PHDC's own shares have carried -- but the gate that
+                # said so was reading this prose. AMOC's record used the same
+                # reassuring words while its code divided the MARKET CAP by
+                # base-year EBITDA, so the claim is now arithmetic everywhere.
+                # net_debt is 0 because this is an EQUITY multiple: the comparator
+                # is the traded price-to-earnings ratio on the same earnings.
                 {"kind": "relative_multiple", "value": V2.lenses()["relative"]["base"],
+                 "multiple": 9.0,
+                 "circularity": {"spot": 15.20,
+                                 "shares": float(V2.SHARES),
+                                 "net_debt": 0.0,
+                                 "metric_value": float(V2.ROWS[0]["npat"])},
                  "multiple_source": ("the multiples PHDC's own shares have carried over five "
                                      "years of its own history, 6x to 14x trailing earnings")},
                 {"kind": "book_value", "value": V2.lenses()["book"], "present_value": False,
