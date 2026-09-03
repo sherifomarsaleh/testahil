@@ -136,7 +136,14 @@ def ratchets():
         except Exception:
             rows.append((os.path.basename(p), "UNREADABLE"))
             continue
-        n = sum(len(v) for v in d.values() if isinstance(v, list))
+        # Count LISTS AND DICTS both. The ratchets do not share a shape — most
+        # carry a list of tickers, the valuation-input one carries a mapping of
+        # ticker to reason — and a counter that saw only lists reported the
+        # dict-shaped one as "0 outstanding" while it held five. An empty result
+        # is not a clean result [R-ENF-04], and a status line that under-reports
+        # a ratchet is exactly the silence these ratchets exist to break.
+        n = sum(len(v) for k, v in d.items()
+                if isinstance(v, (list, dict)) and not str(k).startswith("_"))
         rows.append((os.path.basename(p).replace("_outstanding.json", ""), n))
     for name, n in rows:
         print("  %-26s %s" % (name, ("%d outstanding" % n) if isinstance(n, int) else n))
