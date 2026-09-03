@@ -40,6 +40,7 @@ import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 F, DCF, W, L = D['forecast'], D['dcf'], D['wacc'], D['lenses']
+TR = D['terminal_record']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 SH_E, SH_O = 375.0, D['meta']['shares_mn']
 REM = 1.0 - IN['stub_years']
@@ -144,13 +145,25 @@ STEPS = [
                  "margin glides 39.3%->34.3% while Q1-2026 gross margin was 42.9% and "
                  "widening, which is their side of it."),
     dict(key='terminal', driver='terminal block', touches={'terminal'},
-         label="Terminal\nblock", sub="growth must fund\nitself: 56.8% back in",
+         label="Terminal\nblock", sub="capital maintained\nover its disclosed life",
          fn=s_terminal, off='EFG',
-         receipt="They grow FY2030 FCF at 2.5% forever with no reinvestment charge. A "
-                 "perpetuity growing at g on returns of ROIC must plough back g/ROIC. At "
-                 "our terminal ROIC of 8.81% that is 56.8% of profit. CAVEAT: the 8.81% "
-                 "rests on replacement capital of 50,481 = 5.0Mt x USD 130/t x 50.30 x "
-                 "1.544, and the USD 130/t is our least-verified single input."),
+         # THE ARGUMENT AGAINST EFG WAS THE CONSTRUCTION THIS EDITION RETIRED. It read:
+         # "a perpetuity growing at g on returns of ROIC must plough back g/ROIC. At our
+         # terminal ROIC of 8.81% that is 56.8% of profit" — the reinvestment identity,
+         # which substitutes to a fixed charge of g x IC for ever and an implied asset life
+         # of one over the growth rate. This study stopped using it this morning, and a
+         # receipt is not exempt from a retirement the model has made.
+         receipt="They grow FY2030 free cash flow at %.1f%% for ever with no charge for "
+                 "keeping the plant standing. A perpetuity has to maintain its own capital: "
+                 "on replacement-cost capital of EGP %s and the %.0f-year machinery life "
+                 "ARCC's own audited accounting-policies note discloses, that maintenance "
+                 "is EGP %s a year, against book depreciation of EGP %s already inside "
+                 "terminal profit. CAVEAT: the USD %.0f per annual tonne behind that capital "
+                 "base is this model's least-verified single input."
+                 % (E_G * 100, f"{TR['inputs']['ic_replacement']:,.0f}",
+                    TR['inputs']['useful_life_years'],
+                    f"{TR['inputs']['ic_replacement'] / TR['inputs']['useful_life_years']:,.0f}",
+                    f"{TR['inputs']['dna_book']:,.0f}", IN['repl_usd_t'])),
     dict(key='discount_rate', driver='discount rate', touches={'window', 'terminal'},
          label="Discount\nrate", sub="their flat 20.06%\nvs our 24.5%→14.5%",
          fn=s_discount_rate, off='OPEN',

@@ -149,9 +149,13 @@ tbl = []
 for i, y in enumerate(YRS):
     gap = E_MGN_OURS[i + 1] - BASE[i]
     tag = ' EXT' if EXT[i + 1] else ''
-    tbl.append(dict(year=y, testahil=round(BASE[i], 4), efg_published=round(E_MGN_PUB[i + 1], 4),
-                    efg_our_definition=round(E_MGN_OURS[i + 1], 4), gap_pt=round(gap * 100, 2),
-                    testahil_revenue=round(F['revenue'][i], 1), efg_revenue=round(E_REV[i + 1], 1),
+    # NO PRE-ROUNDING IN THE RECORD, ONLY AT THE RENDER. Rounding a margin to four places
+    # here put FY2025a at exactly 0.3925, a half-way value that then rounded DOWN to 39.2%
+    # in the table while the unrounded 0.392502 rounded UP to 39.3% in the caption beside
+    # it — the same number printed two ways on one page, caused entirely by rounding twice.
+    tbl.append(dict(year=y, testahil=float(BASE[i]), efg_published=float(E_MGN_PUB[i + 1]),
+                    efg_our_definition=float(E_MGN_OURS[i + 1]), gap_pt=float(gap * 100),
+                    testahil_revenue=float(F['revenue'][i]), efg_revenue=float(E_REV[i + 1]),
                     extended=EXT[i + 1]))
     print(f"  {y:10s} {BASE[i]:9.2%} {E_MGN_PUB[i+1]:10.2%} {E_MGN_OURS[i+1]:11.2%} "
           f"{gap*100:+7.2f}pt   {F['revenue'][i]:13,.0f} {E_REV[i+1]:9,.0f}{tag}")
@@ -172,9 +176,9 @@ rows = []
 for name, mgn, nm, rm in SC:
     fv, rr = dcf(mgn, rm)
     v, c = lenses(fv, nm)
-    rows.append(dict(name=name, dcf=round(fv, 2), central=round(c, 2), reinvest=round(rr, 4),
-                     mgn_path=[round(m, 4) for m in mgn],
-                     rev_mult=rm and [round(x, 4) for x in rm], norm_mgn=round(nm, 4)))
+    rows.append(dict(name=name, dcf=float(fv), central=float(c), reinvest=float(rr),
+                     mgn_path=[float(m) for m in mgn],
+                     rev_mult=rm and [float(x) for x in rm], norm_mgn=float(nm)))
     print(f"  {name:46s} {fv:8.2f} {c:9.2f} {c/IN['spot']-1:+8.1%} {rr:7.1%}")
 
 up, _ = dcf([m + 0.01 for m in BASE])
@@ -187,7 +191,7 @@ print(f"    -5.0% on the revenue path, every year  DCF {dn-b_dcf:+.2f}   "
 
 json.dump(dict(published_central=float(L['central']), published_spot=float(IN['spot']),
                wedge_pct=WEDGE_PCT, wedge_egp=WEDGE, margin_table=tbl, scenarios=rows,
-               fy25a=dict(testahil=round(H['margin'][2], 4), efg_published=round(E_MGN_PUB[0], 4),
-                         efg_our_definition=round(E_MGN_OURS[0], 4))),
+               fy25a=dict(testahil=float(H['margin'][2]), efg_published=float(E_MGN_PUB[0]),
+                         efg_our_definition=float(E_MGN_OURS[0]))),
           open(os.path.join(HERE, 'scenario_margin.json'), 'w'), indent=1)
 print('\n  wrote scenario_margin.json')

@@ -41,10 +41,10 @@
   {
    "key": "terminal",
    "label": "Terminal\nblock",
-   "sub": "growth must fund\nitself: 56.8% back in",
+   "sub": "capital maintained\nover its disclosed life",
    "driver": "terminal block",
    "off": "EFG",
-   "receipt": "They grow FY2030 FCF at 2.5% forever with no reinvestment charge. A perpetuity growing at g on returns of ROIC must plough back g/ROIC. At our terminal ROIC of 8.81% that is 56.8% of profit. CAVEAT: the 8.81% rests on replacement capital of 50,481 = 5.0Mt x USD 130/t x 50.30 x 1.544, and the USD 130/t is our least-verified single input.",
+   "receipt": "They grow FY2030 free cash flow at 2.5% for ever with no charge for keeping the plant standing. A perpetuity has to maintain its own capital: on replacement-cost capital of EGP 51,191 and the 20-year machinery life ARCC's own audited accounting-policies note discloses, that maintenance is EGP 2,560 a year, against book depreciation of EGP 643 already inside terminal profit. CAVEAT: the USD 130 per annual tonne behind that capital base is this model's least-verified single input.",
    "value": 11.6704
   },
   {
