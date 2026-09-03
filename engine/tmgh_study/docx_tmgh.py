@@ -20,7 +20,15 @@ ENGINE = os.path.dirname(HERE)
 ROOT = os.path.dirname(ENGINE)
 sys.path.insert(0, HERE)
 from docx_helpers import (INK, MUTED, ACCENT, money, pct, style, para, bullets,
-                          table, figure, scrub, column_audit)
+                          table, figure, scrub, column_audit,
+                          assert_columns_fit)
+
+sys.path.insert(0, os.path.join(HERE, ".."))
+import col_width                                                       # noqa: E402
+
+HDR_SUMMARY = ["Case", "Discount rate", "Enterprise value",
+               "Equity value (adopted)", "Per share, minority at value share",
+               "Per share, at book", "Per share, pro rata"]
 
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
 EX = json.load(open(os.path.join(HERE, "experts.json")))
@@ -179,8 +187,11 @@ def build(path):
 
     figure(doc, os.path.join(HERE, "fig1_football.png"),
            "Every lens in this study, and the price the market is paying. The "
-           "four dark bars are the cases this study publishes; the lighter bars "
-           "are the cross-checks.")
+           "four dark bars are the cases this study publishes: each spans the "
+           "three bases on which the minority interest can be deducted, and "
+           "each is labelled with the basis adopted followed by that span, so "
+           "the figure the label reads is the figure the summary table "
+           "carries. The lighter bars are the cross-checks.")
 
     # --- 3. Valuation summary ---------------------------------------------
     doc.add_heading("Valuation summary", level=1)
@@ -196,10 +207,13 @@ def build(path):
             money(CASES[k]["equity_after_nci_value_share"]),
             money(CASES[k]["per_share_nci_value_share"], 2),
             money(PSB[k], 2), money(PSP[k], 2)])
-    table(doc, ["Case", "Discount rate", "Enterprise value",
-                "Equity value (adopted)", "Per share, minority at value share",
-                "Per share, at book", "Per share, pro rata"],
-          rows, [3.4, 1.7, 2.3, 2.3, 2.6, 2.0, 2.0],
+    table(doc, HDR_SUMMARY,
+          # 1.7cm broke "Discount" mid-word and the header rendered "Discou nt
+          # rate". A first hand fix widened that column and narrowed "Case" to
+          # 3.0cm, which needs 3.61 for "Credit-default-swap" — the same error
+          # again, minutes later, which is the argument for sizing from the cells
+          # rather than from the eye.
+          rows, col_width.fit_widths(HDR_SUMMARY, rows, 16.3),
           "All values in EGP million except per-share figures, which are in EGP. "
           "The four cases are published side by side and never averaged.")
 
@@ -491,9 +505,12 @@ def section1_drivers(doc):
                         row("new_sales", "New contracted sales"),
                         row("da", "Depreciation"),
                         row("finance_cost", "Finance cost")) if r]
-    table(doc, ["Driver", "Observations", "Average error",
-                "Average size of error", "Consistent across the record"],
-          rows, [4.0, 2.4, 2.6, 3.2, 4.0],
+    hdr_wf = ["Driver", "Observations", "Average error",
+              "Average size of error", "Consistent across the record"]
+    table(doc, hdr_wf,
+          # the HEADER is the widest token in its own column here — "Observations"
+          # needs 2.51cm and had 2.40, so the header itself broke mid-word.
+          rows, col_width.fit_widths(hdr_wf, rows, 16.2),
           "Errors are in natural logarithms, so −0.06 means the forecast came in "
           "about 6% below the outcome. A negative average error means this "
           "method has tended to forecast low.")
@@ -616,11 +633,16 @@ def section1_drivers(doc):
             "bank's published easing calendar rather than a second assumption of "
             "this study's own"]],
           [4.4, 2.6, 9.2])
-    table(doc, ["Year"] + [str(i + 1) for i in range(len(SCHED["forward_wacc"]))],
-          [["Cost of capital"] + [pct(w, 1) for w in SCHED["forward_wacc"]],
-           ["A pound arriving then is worth"]
-           + [money(d, 3) for d in SCHED["discount_factors"]]],
-          [3.6, 1.28, 1.28, 1.28, 1.28, 1.28, 1.28, 1.28, 1.28, 1.28, 1.28])
+    hdr_lad = ["Year"] + [str(i + 1) for i in range(len(SCHED["forward_wacc"]))]
+    rows_lad = [["Cost of capital"] + [pct(w, 1) for w in SCHED["forward_wacc"]],
+                ["A pound arriving then is worth"]
+                + [money(d, 3) for d in SCHED["discount_factors"]]]
+    # AT 1.28cm EVERY ONE OF THE TEN RATE CELLS ORPHANED ITS PERCENT SIGN: the delivered
+    # page printed "32.4" with a bare "%" on the line beneath, ten times across one row.
+    # A percent sign is 0.30cm and "32.4%" needs 1.35. The orphan detector that found the
+    # other wrapped cells in this book scans for a stray DIGIT and could not see it.
+    table(doc, hdr_lad, rows_lad,
+          col_width.fit_widths(hdr_lad, rows_lad, 16.79, generous=0, equal_from=1))
     para(doc, "The terminal value is brought home on the same factor as the last "
               "year's cash flow, %s. The common alternative — discounting the "
               "forecast years at one rate and the terminal value at a lower one — "
@@ -866,7 +888,13 @@ def appendices(doc):
                  money(rep["2024"]["attributable_profit"] / M["shares_mn"], 2),
                  money(rep["2025"]["attributable_profit"] / M["shares_mn"], 2)]
                 + [money(f["eps"], 2) for f in fwd])
-    table(doc, hdr, rows, [4.4, 1.55, 1.55, 1.55, 1.55, 1.55, 1.55, 1.55, 1.55],
+    table(doc, hdr, rows,
+          # SIZED FROM THE CELLS, NOT BY FEEL. At 1.55cm the 2030 column could not hold
+          # "102,747" and the delivered page printed "102,74" with a lone "7" beneath it.
+          # col_width holds the measured per-character widths; equal_from ties the year
+          # columns to one width, because a year grid whose last column is a tenth wider
+          # than its neighbour is a table a reader notices.
+          col_width.fit_widths(hdr, rows, 16.8, generous=0, equal_from=1),
           "Reported figures are as first reported. Projected figures are the "
           "slower-conversion case.")
     para(doc, "The third to fifth projected years carry ranges, because at that "
@@ -985,10 +1013,13 @@ def appendices(doc):
     doc.add_page_break()
     doc.add_heading("Appendix B — competitors, risks and open questions", level=1)
     doc.add_heading("B.1 Competitors", level=2)
-    table(doc, ["Company", "Last close, EGP", "As at", "Why it is a comparator"],
-          [[p["name"], money(p["close"], 2) if p.get("close") else "–",
-            p.get("as_of", ""), p["why"]] for p in PE["egypt"]],
-          [4.6, 2.2, 2.0, 7.0])
+    hdr_pe = ["Company", "Last close, EGP", "As at", "Why it is a comparator"]
+    rows_pe = [[p["name"], money(p["close"], 2) if p.get("close") else "–",
+                p.get("as_of", ""), p["why"]] for p in PE["egypt"]]
+    # "As at" carried an ISO date, ten characters, in a 2.0cm column that needs 2.15.
+    # The slack goes to the prose column, which is the one that reads better for it.
+    table(doc, hdr_pe, rows_pe,
+          col_width.fit_widths(hdr_pe, rows_pe, 16.79, generous=3))
     table(doc, ["Company", "Country", "Why it is a comparator"],
           [[p["name"], p["country"], p["why"]] for p in PE["outside_country"]],
           [4.6, 2.2, 9.0],
@@ -1094,10 +1125,16 @@ def main():
     doc.save(out)
     hits, chars = scrub(out)
     bad = column_audit(out)
+    # THE COLUMN AUDIT MEASURES A TABLE ON AVERAGE AND CANNOT SEE ONE CELL. It reports
+    # whether a column is starved or bloated across the table, which is a different
+    # question from whether the widest cell in it fits — and the widest cell is the one
+    # that wraps mid-number.
+    n_tables = assert_columns_fit()
     print("wrote %s (%.0f KB, %d characters of text)"
           % (os.path.basename(out), os.path.getsize(out) / 1024.0, chars))
     print("external-reader scrub: %d hits %s" % (len(hits), hits or ""))
-    print("table audit: %d problems" % len(bad))
+    print("table audit: %d problems;  %d tables clear their own widest cell"
+          % (len(bad), n_tables))
     for b in bad[:10]:
         print("   table %s: %s" % b)
     return out

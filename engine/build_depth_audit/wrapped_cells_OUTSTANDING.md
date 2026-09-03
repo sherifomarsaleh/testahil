@@ -23,7 +23,33 @@ CELL, one character wider than its neighbours. An average cannot see one row.
 | ARCC 03-09 | `National Bank of Egypt / KfW 146` | `5.49%` |
 | EMPOWER 09-08 | `NOPAT at 9% / at 15% —` | `1,061 1,172 1,252 1,325` |
 | FERTIGLOBE 09-08 | `Four-year aggregate cash rate` | `2025` |
-| TMGH 02-09 | `Development revenue 21,579 24,518` | `7` |
+
+**TMGH's is closed, and closing it found two more in the same document that the
+pdftotext detector could not see** — a "Discount rate" header breaking mid-word, and the
+whole ten-cell cost-of-capital row printing `32.4` with a bare `%` on the line beneath.
+**The detector scans for a stray DIGIT.** A percent sign orphans the same way and reads as
+a rate ten times too small, or as no rate at all.
+
+## The instrument that replaced the eye
+
+`engine/col_width.py` sizes a column from its own cells, on per-character widths MEASURED
+in the delivered font at the delivered size (`engine/lab/col_width/measure.py` builds a
+document of single-token cells across a 0.05cm grid, renders it, and reads back the width
+at which each token stops splitting). Digits reproduce exactly; letters are conservative
+by design, because a column wider than it needs costs white space and a column narrower
+than it needs changes a printed figure.
+
+**It caught its author twice inside ten minutes.** A hand fix to the summary table widened
+the `Discount` column and narrowed `Case` to 3.0cm, which needs 3.61 for
+"Credit-default-swap" — the same error again. Then the sized header still printed
+`Discoun`, because **a header cell is bold and bold is wider**: the model was right about
+the string and wrong about the face it is set in. Bold was measured on seven tokens and
+needs 1.077x to 1.121x the ink of the same token plain.
+
+`docx_helpers.table()` now records every table it builds and `assert_columns_fit()` runs
+the audit over all of them at the end of the build, so this is caught before a PDF exists
+rather than by reading one. On TMGH it found three tables, two of which no page-side
+detector had reported.
 
 ## What was fixed and what was learned
 
@@ -38,7 +64,7 @@ correct and offers no break, and it is **wider** than a hyphen, so every cell in
 then wrapped mid-number. Per [R-COC-01], when a fix makes the thing worse the diagnosis was
 wrong.
 
-## The remaining seven
+## The remaining six
 
 Each is in a study that is **not being re-issued in this pass**, and rebuilding a delivered
 document to move a column is not a change worth making on its own — it would produce a new

@@ -50,16 +50,38 @@ def _clean(ax):
 
 
 def fig1_football(n, path):
-    """The four published cases, the other lenses, and the traded price."""
+    """The four published cases, the other lenses, and the traded price.
+
+    THE PICTURE PLOTTED TWO BASES AND OMITTED THE ADOPTED ONE. The bar for each case ran
+    from the book minority deduction to the pro-rata one and left out the value-share
+    deduction, which is the basis this study ADOPTS and the basis its headline range and
+    its summary table are stated on. Every number in the figure was computed and correct;
+    what was wrong was WHICH THREE OF THE NINE the figure chose.
+
+    THE COST WAS NOT COSMETIC AND IT RAN ONE WAY. The headline states EGP 63.70 to 123.03;
+    the picture spanned 43.89 to 118.97, so neither endpoint of the study's own answer
+    appeared on the chart drawn to show it, and EVERY dark bar sat BELOW its own adopted
+    number — the faster-conversion case reading 44 against a published 63.70. A reader
+    comparing the figure with the traded price saw a study materially more pessimistic than
+    the one it is. That is the shape this whole reassessment is about, arriving through a
+    picture rather than a model.
+
+    NOTHING BELOW CHANGES A NUMBER. The bar now spans all three bases [R-BRIDGE-01 (ii)
+    publishes book, profit share and proportional beside the adopted one "so a reader sees
+    the choice and not only its result"] and a tick marks the adopted value, which is what
+    the label reads.
+    """
     ps_b, ps_p = n["per_share_nci_book"], n["per_share_nci_proportional"]
+    ps_v = n["per_share_nci_value_share"]
     lens = n["lenses"]
-    bars = []
+    bars, adopted = [], {}
     for k in ("rating|capacity", "rating|recovery", "cds|capacity", "cds|recovery"):
-        lo, hi = sorted((ps_b[k], ps_p[k]))
+        three = (ps_b[k], ps_p[k], ps_v[k])
         label = ("%s ERP, %s conversion"
                  % ("rating" if k.startswith("rating") else "CDS",
                     "slower" if k.endswith("capacity") else "faster"))
-        bars.append((label, lo, hi))
+        bars.append((label, min(three), max(three)))
+        adopted[len(bars) - 1] = ps_v[k]
     b = lens["book_and_sustainable_return"]["cases"]
     vals = [v["value_per_share"] for v in b.values() if v["value_per_share"]]
     bars.append(("book value and sustainable return", min(vals), max(vals)))
@@ -75,7 +97,17 @@ def fig1_football(n, path):
     for i, (lab, lo, hi) in zip(ys, bars):
         ax.plot([lo, hi], [i, i], lw=9, solid_capstyle="butt",
                 color=ACCENT if i < 4 else MUTED)
-        ax.text(hi + 2.5, i, "%.0f–%.0f" % (lo, hi), va="center", fontsize=8.5)
+        if i in adopted:
+            # A WHITE TICK WAS DRAWN HERE FIRST AND THE CAPTION NAMED IT, and on this
+            # study's numbers the adopted basis is the TOP of all four ranges, so the
+            # tick fell on the end of every bar and was invisible against the ground.
+            # A caption naming something a reader cannot see is the same defect as a
+            # caption naming a rule the picture does not follow. The label carries the
+            # adopted figure and the span, which needs no marker and cannot go invisible.
+            ax.text(hi + 2.5, i, "%.0f (%.0f–%.0f)" % (adopted[i], lo, hi),
+                    va="center", fontsize=8.5)
+        else:
+            ax.text(hi + 2.5, i, "%.0f–%.0f" % (lo, hi), va="center", fontsize=8.5)
     ax.axvline(n["meta"]["spot"], color=ACCENT2, lw=1.6, ls="--")
     # the y-axis is inverted, so the TOP of the plot is -0.6, not len(bars).
     # Placing it at the bottom ran the label straight through the x tick labels.
