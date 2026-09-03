@@ -237,7 +237,7 @@ figure(os.path.join(HERE, 'fig1_football.png'), 6.9,
        'Figure 1 — the football field. The price (red dashed) is shown against every lens base '
        'and against the cash-flow lens\u2019s own bear-to-bull range.')
 
-H1('The company')
+H1('Company overview')
 P(f'Alexandria Mineral Oils Company is the only refinery listed on the Egyptian Exchange. It '
   f'takes atmospheric residue and distils it into base and special oils, paraffin wax, gas oil, '
   f'naphtha, liquefied petroleum gas and fuel oil. Alexandria Petroleum Company holds 20.77% — '
@@ -1160,7 +1160,7 @@ P('Three independent methods, cast by approach rather than by personality, each 
   'audited inputs and each free to disagree with the primary lens.')
 E1, E2, E3 = EXP['e1'], EXP['e2'], EXP['e3']
 
-H2(f'Expert 1 — {E1["method_short"]}')
+H2(f'C.1  Expert 1 — {E1["method_short"]}')
 P(f'Takes {E1["year"]} operating profit, adds the finance income the cash pile actually earns, '
   f'taxes the sum, strikes the minority, and applies a justified multiple struck BELOW the '
   f'primary lens deliberately — this is an independent opinion, not a restatement of it.')
@@ -1177,7 +1177,7 @@ caption(f'Table C.1 — Expert 1. Range EGP {p2(E1["rng"][0])} to {p2(E1["rng"][
         f'{pc(E1["base"]/SPOT-1)} against the market price. Note that it is an undiscounted '
         f'{E1["year"]} number, which is why it sits above the primary lens.')
 
-H2(f'Expert 2 — {E2["method_short"]}')
+H2(f'C.2  Expert 2 — {E2["method_short"]}')
 P('Discounts cash flow to the EQUITY holder rather than to the firm: free cash flow to the firm '
   'less after-tax finance costs plus after-tax finance income, discounted at the COST OF EQUITY '
   'on its own glide rather than at the weighted rate. It is the cleanest independent check on '
@@ -1202,7 +1202,7 @@ caption(f'Table C.2 — Expert 2. Range EGP {p2(E2["rng"][0])} to {p2(E2["rng"][
         f'{pc(E2["ke_path"][0], 1)} to {pc(E2["ke_path"][-1], 1)} is punished harder in the '
         f'near years than an unlevered claim on the weighted rate.')
 
-H2(f'Expert 3 — {E3["method_short"]}')
+H2(f'C.3  Expert 3 — {E3["method_short"]}')
 P('Values the business as invested capital plus the present value of the ECONOMIC PROFIT it '
   'earns above its cost of capital, rather than as a stream of cash. Arithmetically it must '
   'reconcile to the primary lens on the same inputs — that is the point of including it. Where '
@@ -1226,8 +1226,145 @@ caption(f'Table C.3 — Expert 3. Range EGP {p2(E3["rng"][0])} to {p2(E3["rng"][
         f'question here; the question is how much spread {pc(TTM["gm"])} of gross margin can '
         f'support.')
 
-for key, name in []:
-    e = EXP[key]
+# ---- C.4  cross-examination ------------------------------------------------
+H2('C.4  Cross-examination')
+P('Each expert is put the strongest objection the other two can make to their number, and each '
+  'objection is either CONCEDED or REJECTED with the arithmetic that settles it. Nothing here '
+  'is rhetorical: every figure in the table is computed from the three constructions above.')
+
+# Expert 1 is an UNDISCOUNTED forward number. Bringing it to the valuation date on the same
+# factor the normalised lens uses is the single largest correction anyone in the room can make.
+_e1_pv = E1['base'] * NRM['df']
+_e2_tv_share = E2['pv_tv'] / (E2['pv'] + E2['pv_tv'])
+_e3_tv_share = E3['pv_ep_term'] / E3['ev']
+_e3_cap_share = E3['ic0'] / E3['ev']
+
+table([['Objection', 'Raised by', 'Answered', 'The arithmetic'],
+       [f'Expert 1 values {E1["year"]} earnings and never brings them back to the valuation '
+        f'date.', 'Experts 2 and 3', 'CONCEDED',
+        f'Discounted {NRM["yrs"]:.1f} years at the cost of equity, Expert 1 is worth '
+        f'EGP {_e1_pv:.2f}, not {p2(E1["base"])} — below Expert 3 and above Expert 2.'],
+       [f'Expert 1 applies {E1["pe"]:.1f}x when this company trades at '
+        f'{REL["pe_trailing"]:.1f}x its own trailing earnings.', 'Expert 3', 'REJECTED',
+        f'{E1["pe"]:.1f}x is struck BELOW the trailing multiple deliberately. Using the '
+        f'traded multiple would value the company at what it already costs, which the '
+        f'relative lens is separately forbidden from doing.'],
+       ['Expert 2 carries no bridge at all, so the tax-disputes provision and the declared '
+        'dividend never reach the shareholder.', 'Expert 1', 'CONCEDED IN PART',
+        f'Both are deducted: EGP {n0(BR["prov"] + BR["divp"])}mn, or '
+        f'EGP {(BR["prov"] + BR["divp"]) / SH:.2f} a share. What is NOT added back is the '
+        f'cash itself — it reaches the holder through finance income instead, which is what '
+        f'keeps this read independent of the primary lens.'],
+       [f'Expert 2 puts {pc(_e2_tv_share)} of its value beyond year five.', 'Expert 3',
+        'REJECTED',
+        f'The primary lens puts {pc(DCF["tv_share"])} there on the same horizon. A terminal '
+        f'block this size is a property of a five-year window on a company still recovering, '
+        f'not of this expert\'s choices.'],
+       [f'Expert 3 must reconcile to the primary lens by construction, so it is not an '
+        f'independent read.', 'Experts 1 and 2', 'CONCEDED — AND THAT IS WHY IT IS HERE',
+        f'It is included to make the SPLIT visible: {pc(_e3_cap_share)} of its enterprise '
+        f'value is capital already in the ground and {pc(_e3_tv_share)} is economic profit '
+        f'beyond year five. Neither of the other two shows that.'],
+       ['Expert 3 charges the cost of capital on opening invested capital, which flatters '
+        'economic profit in a growing year.', 'Expert 2', 'REJECTED',
+        'Opening capital is the capital the year had available to earn on. Charging closing '
+        'capital would charge for assets bought with the year\'s own cash flow.']],
+      [2.15, 0.95, 1.15, 2.55], size=8.0, left_cols=(0, 1, 2, 3))
+caption('Table C.4 — cross-examination. Two of the six objections are conceded outright and one '
+        'in part; the three rejections each rest on a number rather than a preference. The '
+        'largest single correction in the room is the first one, and it is the reason the panel '
+        'median is not simply the highest of the three.')
+
+# ---- C.5  the three in one room --------------------------------------------
+H2('C.5  The three in one room')
+_lo3 = min(EXP[k]['base'] for k in ('e1', 'e2', 'e3'))
+_hi3 = max(EXP[k]['base'] for k in ('e1', 'e2', 'e3'))
+_below = sum(1 for k in ('e1', 'e2', 'e3') if EXP[k]['base'] < SPOT)
+P(f'Put in one room the three methods land between EGP {p2(_lo3)} and EGP {p2(_hi3)}, a spread '
+  f'of {pc(_hi3 / _lo3 - 1)} of the lower number, with a median of EGP {p2(D["panel_centre"])} '
+  f'against a market price of EGP {p2(SPOT)} — {pc(D["panel_centre"] / SPOT - 1)}. '
+  f'{"All three" if _below == 3 else ("Two of the three" if _below == 2 else "One of the three")} '
+  f'sit below the price.')
+P('Where they agree is more informative than where they differ, because the agreement is not '
+  'built in. All three are struck on the same audited base year and the same house macro path, '
+  'and none of them is allowed to set an inflation rate of its own — so the disagreement between '
+  'them is entirely about how a peso of operating profit should be capitalised, never about what '
+  'the economy is doing. All three also agree on the one thing that matters most for this name: '
+  f'the company earns a positive return over its cost of capital in every forecast year — '
+  f'Expert 3 measures the spread at {pc(E3["spread"][0], 1)} rising to '
+  f'{pc(E3["spread"][-1], 1)} — and is still not worth the market price on any of the three '
+  'constructions.')
+P(f'Where they part company is the treatment of TIME. Expert 1 states a value at '
+  f'{E1["year"]} and does not discount it; Expert 2 discounts an equity claim on the cost of '
+  f'equity\'s own glide, which is the harshest treatment of the near years available; Expert 3 '
+  f'discounts at the weighted rate and separates capital already in place from the return earned '
+  f'on it. Bring Expert 1 back to the valuation date and the three collapse into a band of '
+  f'EGP {p2(min(_e1_pv, E2["base"], E3["base"]))} to '
+  f'EGP {p2(max(_e1_pv, E2["base"], E3["base"]))} — narrower than the spread as published, '
+  'which says that most of the visible disagreement in this panel is a disagreement about the '
+  'valuation date rather than about the company.')
+
+# ---- C.6  reading the divergence -------------------------------------------
+H2('C.6  Reading the divergence')
+P('One row per pair, isolating the single assumption that accounts for most of the gap between '
+  'them. The last column is what is LEFT of the gap once that assumption is removed — the honest '
+  'measure of how much the two methods really disagree. Where removing it takes the pair past '
+  'each other rather than together, the cell says so: an assumption can over-explain a gap, and '
+  'that is worth more to a reader than a tidy number.')
+# The residual is what the NAMED driver does not account for, so it is only printed where
+# the driver can actually be removed and the two constructions re-compared. Where it cannot,
+# the cell says so: a residual printed equal to the whole gap would assert that the named
+# driver explains nothing, which contradicts the column it sits in.
+def _resid(a, b, a_adj):
+    """What is left of the gap once the named driver is removed — and a WORD where removing
+    it takes the pair past each other.
+
+    The first draft printed the bare absolute residual and produced a cell reading 4.48
+    against a gap of 2.04, which looks like an arithmetic error and is in fact a real and
+    interesting fact: bringing Expert 1 back to the valuation date does not close the gap to
+    Expert 3, it CROSSES it. A number that needs a sentence gets the sentence."""
+    before, after = a - b, a_adj - b
+    if before * after < 0:
+        return '%.2f — overshoots' % abs(after)
+    return '%.2f' % abs(after)
+
+
+_pairs = [
+    ('Expert 1 vs Expert 2', E1['base'], E2['base'],
+     'the valuation date — Expert 1 is an undiscounted forward number',
+     _resid(E1['base'], E2['base'], _e1_pv)),
+    ('Expert 1 vs Expert 3', E1['base'], E3['base'],
+     'the valuation date, again — which here CROSSES rather than closes: discounted, '
+     'Expert 1 falls below Expert 3',
+     _resid(E1['base'], E3['base'], _e1_pv)),
+    ('Expert 2 vs Expert 3', E2['base'], E3['base'],
+     f'the BRIDGE — Expert 3 adds net cash of {EXP["e2e3"]["cash"]:+.2f} a share at face, '
+     f'Expert 2 takes it through finance income only. The discount rate, measured by '
+     f're-running Expert 2 on the weighted rate, is worth only '
+     f'{EXP["e2e3"]["rate"]:+.2f}',
+     f'{abs(EXP["e2e3"]["resid"]):.2f}'),
+    ('Panel median vs the primary lens', D['panel_centre'], D['central'],
+     'nothing structural — the primary lens is one of the same constructions',
+     'not decomposed'),
+]
+table([['Pair', 'Gap, EGP', 'Gap, %', 'What drives it', 'Left after removing it'],
+       *[[nm, f'{abs(a - b):.2f}', pc(abs(a - b) / min(a, b)), why, res]
+         for nm, a, b, why, res in _pairs]],
+      [1.45, 0.60, 0.55, 2.45, 1.85], size=8.0, left_cols=(0, 3, 4))
+caption(f'Table C.6 — the divergence. The two largest gaps in the panel are both explained by '
+        f'ONE thing, and it is not an assumption about the business: Expert 1 states a value at '
+        f'{E1["year"]} while the other two state one today. The third row is measured the same '
+        f'way, and the measurement OVERTURNED the label this table first carried. Discounting '
+        f'Expert 2\'s own cash flows on the WEIGHTED rate rather than the cost of equity\'s '
+        f'glide gives EGP {p2(E2["ps_at_wacc"])} — so the price of time is worth only '
+        f'EGP {abs(EXP["e2e3"]["rate"]):.2f} of a {abs(EXP["e2e3"]["gap"]):.2f} gap, about '
+        f'{abs(EXP["e2e3"]["rate"]/EXP["e2e3"]["gap"]):.0%} of it. What carries the rest is the '
+        f'BRIDGE: Expert 3 adds the net cash at face and Expert 2 does not. '
+        f'The last row carries no residual because there is no single driver to remove: '
+        f'the median IS one of these three constructions and the primary lens is a fourth read '
+        f'of the same statements.')
+
+H2('C.7  The panel at a glance')
 table([['Expert', 'Method', 'Central', 'Range', 'vs price'],
        *[[k.upper(), EXP[k]['method_short'], p2(EXP[k]['base']),
           f"{p2(EXP[k]['rng'][0])}–{p2(EXP[k]['rng'][1])}", pc(EXP[k]['base'] / SPOT - 1)]
@@ -1235,9 +1372,11 @@ table([['Expert', 'Method', 'Central', 'Range', 'vs price'],
        ['PANEL', 'median of the three', p2(D['panel_centre']), '',
         pc(D['panel_centre'] / SPOT - 1)]],
       [0.85, 2.6, 0.85, 1.2, 0.9], band_rows={4}, size=8.7, left_cols=(1,))
-caption('Table C.4 — the panel. The three methods disagree with each other by more than any of '
-        'them disagrees with the primary lens, which is the honest reading of a company whose '
-        'margin is administered. All three land below the market price.')
+caption('Table C.7 — the panel. Each range is that expert\'s OWN method re-run at the two '
+        'filed-evidence corners the primary lens publishes — the worst gross margin in the '
+        'audited record and the best full year — so the panel and the envelope are read on one '
+        'clock. Earlier editions typed these bands beside the methods, and two of them had gone '
+        'stale enough to publish a central outside its own range.')
 
 # ============================ ABOUT ==========================================
 H1('About this study')

@@ -2459,8 +2459,8 @@
    "method_short": "free cash flow to equity, discounted",
    "base": 9.411962220113438,
    "rng": [
-    7.532191562452721,
-    9.000504378660715
+    0.4786115146165742,
+    20.43153661494311
    ],
    "fcff": 2261.6673561294588,
    "fcfe": [
@@ -2487,14 +2487,21 @@
     0.36975799093659295
    ],
    "pv": 6005.362716281653,
-   "pv_tv": 6150.186490994851
+   "pv_tv": 6150.186490994851,
+   "ps_at_wacc": 9.84746141497378
+  },
+  "e2e3": {
+   "gap": 3.331898275310344,
+   "rate": 0.43549919486034305,
+   "cash": 2.3240745768486257,
+   "resid": 0.5723245036013753
   },
   "e3": {
    "method_short": "cash returns against the cost of capital",
    "base": 12.743860495423782,
    "rng": [
-    9.736109289663611,
-    12.225110944343598
+    0.7608040049400874,
+    25.669555319487756
    ],
    "ic0": 4677.069217,
    "pv_ep": 3445.645378800586,
@@ -2537,6 +2544,9 @@
   "np": 2426.007000322297,
   "eps": 1.8784413475201678,
   "pe": 7.5,
+  "df": 0.5586623225181012,
+  "yrs": 2.4,
+  "ke": 0.2745428,
   "year": "2028E"
  },
  "book": {
@@ -11859,8 +11869,9 @@
   "[Synthesis] the central is the CASH-FLOW LENS at EGP 11.83, not a blend; cross-checks span EGP 1.59 - 24.97; spot EGP 13.50 (-12.3% to the central). The retired 45/20/20/15 blend of the same lenses would read EGP 10.62 and is published beside the answer, unused.",
   "[Sensitivity gate] 5 rows, every one a full re-run through the same waterfall the base case uses. Every grid is sorted, every row returns EGP 11.83 at its own base point, and every row is monotone in the direction theory requires. The previous edition published three rows that failed one or more of these tests and had no gate that could have caught them.",
   "[Expert 2 construction] free cash flow to equity 2,037 -> 2,118 -> 2,212 -> 2,308 -> 2,374; discounted on the cost of EQUITY's own glide (27.5% -> 23.0% -> 21.2% -> 19.8% -> 18.9%) for a present value of 6,005, plus a terminal block of 6,150. No bridge is used: the cash pile reaches the shareholder through the finance income line rather than as a balance-sheet add-back, which is what makes this a genuinely independent second read rather than a re-arrangement of the first.",
+  "[Expert 2 / Expert 3 decomposition \u2014 MEASURED] the gap is +3.33 a share. Discounting Expert 2's OWN cash flows on the weighted rate instead of the cost of equity's glide gives EGP 9.85 against 9.41, so the price of time is worth +0.44 \u2014 13% of it. The BRIDGE is what carries the rest: Expert 3 adds net cash of +2.32 a share at face, while Expert 2 lets the cash reach the holder only through the finance-income line. +0.57 is left over. THE FIRST DRAFT OF THE DIVERGENCE TABLE NAMED THE DISCOUNT RATE AS THE DRIVER; the measurement says it is the bridge, and the table now says so.",
   "[Economic-profit convention] the capital charge is taken on BEGINNING-of-year invested capital, not ending. Charging ending capital would understate economic profit by about 84mn a year.",
-  "[Expert panel] Expert 1 EGP 14.78 [10.56-20.06]; Expert 2 EGP 9.41 [7.53-9.00]; Expert 3 EGP 12.74 [9.74-12.23]; panel median EGP 12.74 (-5.6% against spot).",
+  "[Expert panel] Expert 1 EGP 14.78 [10.56-20.06]; Expert 2 EGP 9.41 [0.48-20.43]; Expert 3 EGP 12.74 [0.76-25.67]; panel median EGP 12.74 (-5.6% against spot).",
   "[Workbook blocks emitted] 31 complete forecast engines \u2014 the base case and 30 sensitivity grid points \u2014 each with the model's own value for every cell, so the workbook can write all 31 out as live formula chains and an independent evaluator can check each one. The previous edition pasted its sensitivity grids because a whole-model re-run could not be expressed inside a grid; that was 27.6% of the file and three of the pasted rows did not reproduce.",
   "[Reachability gate \u2014 rewritten] 177 registered inputs. 139 DRIVE the model. 38 are quotation-only and are named here rather than passing silently: alexpet_stake, assets_dec24, assets_jun24, assets_jun25, brent_path, capex_pct, cash_jun25, cash_mar26, cpi, creditors_jun25, crude_hist, debtors_jun25, div_h2_25, div_q1_26, dna_pct, dps, dtax_liab, e1_pe, egpc_balance, egpc_sales, egypt_gdp_nominal, eq_parent_mar26, fx_avg_cy25, fx_hist, inv_jun25, leases, opex_pct, other_ca, pat_h1cy25, pat_h2_24, payables_jun25, policy_rate, ppe_accdep, ppe_jun25, recv_jun25, tax_due, us_infl, world_nominal_growth. The previous gate treated 'appears in a deliverable' as reached and passed while `provisions` (921mn) and `emp_h2_25` (135mn a year) drove nothing at all \u2014 setting the provision to zero moved that valuation by less than a hundredth of a piastre. Both now drive the bridge and the waterfall. `emp_h2_25` stays on this list because the CHARGE is now taken through a rate solved from it rather than through the raw input.",
   "[What a buyer at the market price must believe \u2014 SOLVED] holding every other driver at the base case, the cash-flow lens reaches the market price of 13.50 at a gross margin of 10.36% sustained in EVERY forecast year and in perpetuity, against a base year of 9.65%. THE PREVIOUS EDITION PUT THIS AT 12.2% AND CALLED IT 'ABOVE THE BEST SINGLE QUARTER THIS COMPANY HAS EVER FILED'. That was wrong on the record as well as on the arithmetic: AMOC filed a gross margin of 13.84% for the whole year to 30 June 2022 and 13.92% in the quarter to 30 June 2026. The required margin is INSIDE the range this company has actually printed, which is a materially different claim and is the one the study now makes.",

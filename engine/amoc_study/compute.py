@@ -1455,6 +1455,28 @@ say(f"[Free cash flow to the firm] " + " -> ".join(f"{f:,.0f}" for f in fcff) +
 # ---- one roll-forward, consumed everywhere ---------------------------------
 NCI_SHARE = V['nci_share']
 PAYOUT = V['payout_reported']
+def roll_forward(ebit_, fcff_):
+    """The balance-sheet roll-forward, as ONE implementation.
+
+    It was inline and therefore available only to the base case, which is why the expert
+    panel's ranges could not be re-run on a scenario and were typed instead. Same reasoning
+    as the single waterfall above: a second copy drifts, and the copy that drifts is the one
+    nobody is looking at."""
+    interest_, np_, div_, eq_, nd_, cash_ = [], [], [], [], [], []
+    _nd, _eq = nd_cy25, eqp_cy25
+    for i in range(5):
+        _cash = debt_b - _nd
+        _int = V['cash_yield_path'][i] * max(_cash, 0.0) - V['kd_path'][i] * debt_b
+        _pbt = ebit_[i] + _int
+        _npa = _pbt * (1 - TAX) * (1 - NCI_SHARE)
+        _div = PAYOUT * _npa
+        _eq += _npa - _div
+        _nd = _nd - (fcff_[i] + _int * (1 - TAX)) + _div
+        interest_.append(_int); np_.append(_npa); div_.append(_div)
+        eq_.append(_eq); nd_.append(_nd); cash_.append(debt_b - _nd)
+    return interest_, np_, div_, eq_, nd_, cash_
+
+
 interest_path, np_fc, div_fc, eq_fc, nd_fc, cash_fc = [], [], [], [], [], []
 _nd, _eq = nd_cy25, eqp_cy25
 for i in range(5):
@@ -1840,6 +1862,23 @@ def dcf_scenario(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0,
                      we=_we, wt=_wt)['ps']
 
 
+def scenario_full(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0,
+                  wacc_shift=0.0, g=None, nwc_days=None):
+    """The same run as dcf_scenario, returning the WHOLE waterfall rather than one number.
+
+    The expert panel needs a scenario's own cash flows and invested capital, not just its
+    value per share, so that each expert's range can be its own method re-run at the two
+    filed-evidence corners instead of a band typed beside it. Two typed bands had already
+    gone stale and published a central OUTSIDE its own range: Expert 2's high used a
+    terminal growth of 6% against a house terminal of 7%, so the 'high' was lower than the
+    base, and its low carried a Gordon denominator written (ke_term + 0.03 - 0.03), which
+    is ke_term — a subtraction that cancels itself and looks like it is doing something.
+    Expert 3's high was the currency-alternative per-share number from a different
+    construction entirely. Both are replaced by re-runs through this function."""
+    S = build(vol_adj=vol_adj, price_mult=price_mult, fx_mult=fx_mult, gm_shift=gm_shift)
+    return waterfall(S, wacc_shift=wacc_shift, g=g, nwc_days=nwc_days)
+
+
 _chk = dcf_scenario()
 assert abs(_chk - dcf_ps) < 0.01, f"scenario engine does not reproduce the base: {_chk} vs {dcf_ps}"
 # ---- THE BEAR AND THE BULL COME OFF THE FILED RECORD, NOT OFF THE DIALS ------
@@ -2089,8 +2128,44 @@ e2_ke = ke_term
 e2_fcff = float(np.mean(fcff[2:]))
 e2_fin_at = interest_path[3] * (1 - TAX)
 e2_base = (e2_pv + e2_pv_tv) / SH
-e2_lo = (e2_pv + e2_fcfe[-1] * 1.03 * (1 - rr_term) / (ke_term + 0.03 - 0.03) * e2_df[-1]) / SH
-e2_hi = (e2_pv + e2_fcfe[-1] * 1.06 * (1 - rr_term) / (ke_term - 0.06) * e2_df[-1]) / SH
+
+
+
+def e2_on(W_):
+    """Expert 2's construction, re-run on any scenario's own waterfall.
+
+    Free cash flow to the EQUITY holder, discounted on the cost of equity's own glide. The
+    terminal block uses THE HOUSE TERMINAL GROWTH — the same one the primary lens uses —
+    because under [R-MACRO-01] terminal growth is terminal inflation plus a stated real
+    growth and is not a dial an expert may turn on its own."""
+    _int, _, _, _, _, _ = roll_forward(W_['ebit'], W_['fcff'])
+    _fcfe = [(W_['fcff'][i] + _int[i] * (1 - TAX)) * (1 - NCI_SHARE) for i in range(5)]
+    _pv = sum(_fcfe[i] * e2_df[i] for i in range(5))
+    _tv = _fcfe[-1] * (1 + V['g_term']) * (1 - W_['rr_term']) / (ke_term - V['g_term'])
+    return _fcfe, _pv, _tv * e2_df[-1], (_pv + _tv * e2_df[-1]) / SH
+
+
+# THE PANEL IS RE-RUN AT THE FILED CORNERS, NOT BANDED BY HAND.
+# What was here published a central OUTSIDE its own stated range, in a table a reader sees:
+# the 'high' used a terminal growth of 6% against the house terminal of 7%, so it came out
+# BELOW the base, and the 'low' carried the denominator (ke_term + 0.03 - 0.03), which is
+# ke_term — a Gordon formula with the growth term cancelled against itself, arithmetically
+# wrong and written so that it looks deliberate. Both were typed beside the method rather
+# than produced by it, which is why neither moved when the house macro path moved the
+# terminal. Expert 2 is now its own construction re-run on the SAME two filed-evidence
+# corners the primary lens publishes, so the panel and the envelope are read on one clock.
+_W_BEAR = scenario_full(vol_adj=SCEN['bear']['vol_adj'], gm_shift=SCEN['bear']['gm_shift'])
+_W_BULL = scenario_full(vol_adj=SCEN['bull']['vol_adj'], gm_shift=SCEN['bull']['gm_shift'])
+e2_lo = e2_on(_W_BEAR)[3]
+e2_hi = e2_on(_W_BULL)[3]
+
+# Expert 2's own cash flows discounted on the WEIGHTED rate instead of the cost of equity's
+# glide. This is the ONE number that decomposes the Expert 2 / Expert 3 gap: everything else
+# about the two constructions is held still, so what is left is the price of time. Computed
+# here rather than in a builder, because a figure quoted in prose is computed, never typed.
+e2_ps_at_wacc = (sum(e2_fcfe[i] * df[i] for i in range(5))
+                 + e2_fcfe[-1] * (1 + V['g_term']) * (1 - rr_term)
+                 / (wacc_term - V['g_term']) * df[-1]) / SH
 say(f"[Expert 2 construction] free cash flow to equity " +
     " -> ".join(f"{x:,.0f}" for x in e2_fcfe) + f"; discounted on the cost of EQUITY's own glide "
     f"(" + " -> ".join(f"{k:.1%}" for k in e2_ke_path) + f") for a present value of "
@@ -2106,8 +2181,45 @@ ep_term = nopat[-1] * (1 + V['g_term']) - wacc_term * ic[-1]
 pv_ep_term = ep_term / (wacc_term - V['g_term']) * df[-1]
 e3_ev = ic_cy25 + pv_ep + pv_ep_term
 e3_base = (e3_ev * (1 - NCI_SHARE) - nd_cy25) / SH
-e3_lo = ((ic_cy25 + pv_ep * 0.6 + pv_ep_term * 0.55) * (1 - NCI_SHARE) - nd_cy25) / SH
-e3_hi = ccy_ps
+
+
+def e3_on(W_):
+    """Expert 3's construction — invested capital plus the present value of economic profit
+    — re-run on any scenario's own waterfall, on the same corners as Expert 2."""
+    _ic_beg = [ic_cy25] + W_['ic'][:-1]
+    _ep = [W_['nopat'][i] - W_['fwd_wacc'][i] * _ic_beg[i] for i in range(5)]
+    _pv_ep = sum(_ep[i] * W_['df'][i] for i in range(5))
+    _ep_t = W_['nopat'][-1] * (1 + V['g_term']) - wacc_term * W_['ic'][-1]
+    _pv_ep_t = _ep_t / (wacc_term - V['g_term']) * W_['df'][-1]
+    _ev = ic_cy25 + _pv_ep + _pv_ep_t
+    return _ev, (_ev * (1 - NCI_SHARE) - nd_cy25) / SH
+
+
+# The old 'high' here was ccy_ps — the CURRENCY-ALTERNATIVE per-share number, produced by a
+# different construction for a different purpose and borrowed as this method's upper bound.
+# It sat BELOW the base, so this table too published a central outside its own range.
+e3_lo = e3_on(_W_BEAR)[1]
+e3_hi = e3_on(_W_BULL)[1]
+
+# WHAT ACTUALLY DRIVES THE EXPERT 2 / EXPERT 3 GAP, measured rather than asserted. The first
+# draft of Appendix C labelled this row 'the discount rate' on the reasonable-sounding grounds
+# that one expert discounts at the cost of equity and the other at the weighted rate. The
+# measurement refutes it: the rate is worth less than a seventh of the gap. A mechanism
+# contradicted by the arithmetic is not a mechanism, it is the assumption wearing one
+# [R-ANCHOR-01], so the label follows the measurement and not the other way round.
+e2e3_gap = e3_base - e2_base
+e2e3_rate = e2_ps_at_wacc - e2_base
+e2e3_cash = (-nd_cy25) / SH                       # Expert 3 adds net cash at face; Expert 2 does not
+e2e3_resid = e2e3_gap - e2e3_rate - e2e3_cash
+say(f"[Expert 2 / Expert 3 decomposition — MEASURED] the gap is {e2e3_gap:+.2f} a share. "
+    f"Discounting Expert 2's OWN cash flows on the weighted rate instead of the cost of "
+    f"equity's glide gives EGP {e2_ps_at_wacc:.2f} against {e2_base:.2f}, so the price of time "
+    f"is worth {e2e3_rate:+.2f} — {abs(e2e3_rate/e2e3_gap):.0%} of it. The BRIDGE is what "
+    f"carries the rest: Expert 3 adds net cash of {e2e3_cash:+.2f} a share at face, while "
+    f"Expert 2 lets the cash reach the holder only through the finance-income line. "
+    f"{e2e3_resid:+.2f} is left over. THE FIRST DRAFT OF THE DIVERGENCE TABLE NAMED THE "
+    f"DISCOUNT RATE AS THE DRIVER; the measurement says it is the bridge, and the table now "
+    f"says so.")
 say(f"[Economic-profit convention] the capital charge is taken on BEGINNING-of-year invested "
     f"capital, not ending. Charging ending capital would understate economic profit by about "
     f"{sum((ic[i]-ic_beg[i])*fwd[i] for i in range(5))/5:,.0f}mn a year.")
@@ -2117,11 +2229,27 @@ experts = dict(
             year=YRS[e1_i]),
     e2=dict(method_short='free cash flow to equity, discounted', base=e2_base,
             rng=[e2_lo, e2_hi], fcff=e2_fcff, fcfe=e2_fcfe, ke=e2_ke, fin_at=e2_fin_at,
-            ke_path=e2_ke_path, df=e2_df, pv=e2_pv, pv_tv=e2_pv_tv),
+            ke_path=e2_ke_path, df=e2_df, pv=e2_pv, pv_tv=e2_pv_tv,
+            ps_at_wacc=e2_ps_at_wacc),
+    # the measured decomposition of the Expert 2 / Expert 3 gap, so the divergence table
+    # names what the arithmetic names rather than what sounds plausible
+    e2e3=dict(gap=e2e3_gap, rate=e2e3_rate, cash=e2e3_cash, resid=e2e3_resid),
     e3=dict(method_short='cash returns against the cost of capital', base=e3_base,
             rng=[e3_lo, e3_hi], ic0=ic_cy25, pv_ep=pv_ep, pv_ep_term=pv_ep_term, ev=e3_ev,
             ep=ep_, spread=[roic[i] - fwd[i] for i in range(5)]),
 )
+# A table that publishes a central outside its own stated range contradicts itself in front
+# of the reader, and no gate in this repository could see it because every one of them was
+# checking how the number was BUILT. This is the [R-GAP-01] discipline applied to the panel:
+# look at the answer.
+for _k, _b, _l, _h in (('Expert 1', e1_base, e1_lo, e1_hi),
+                       ('Expert 2', e2_base, e2_lo, e2_hi),
+                       ('Expert 3', e3_base, e3_lo, e3_hi)):
+    assert _l <= _b <= _h, (
+        f"{_k} publishes a central of EGP {_b:.2f} OUTSIDE its own stated range "
+        f"[{_l:.2f}, {_h:.2f}]. A range is what the method produces at its corners, never a "
+        f"band typed beside it.")
+
 panel_centre = float(sorted([e1_base, e2_base, e3_base])[1])
 say(f"[Expert panel] Expert 1 EGP {e1_base:.2f} [{e1_lo:.2f}-{e1_hi:.2f}]; Expert 2 EGP "
     f"{e2_base:.2f} [{e2_lo:.2f}-{e2_hi:.2f}]; Expert 3 EGP {e3_base:.2f} [{e3_lo:.2f}-"
@@ -2540,6 +2668,9 @@ OUT = dict(
              just_mult=JUST_MULT, year=YRS[REL_I]),
     norm=dict(rev=norm_rev, ebitda=norm_ebitda, ebit=norm_ebit, dna=dna[NORM_I],
               interest=norm_interest, np=norm_np, eps=norm_eps, pe=V['pe_just'],
+              # the factor and the years it spans, so the expert appendix can bring a forward
+              # number back to the valuation date without a numeral being typed into a builder
+              df=norm_df, yrs=NORM_YRS, ke=ke_exp,
               year=YRS[NORM_I]),
     book=dict(bvps=bvps, pb_just=pb_just, roe_sust=V['roe_sust'], roe_trailing=roe_trailing,
               ke_term=ke_term),
