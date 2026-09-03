@@ -198,6 +198,14 @@ def build() -> str:
 
 
 TEMPLATE = """<title>Reassessment Progress Board</title>
+<!-- GitHub Pages serves the whole repository, so this file IS a served page and
+     carries the site's tab chrome like every other one. check_page_integrity.py
+     said so and it was right: the first instinct was to exempt it as "an artifact
+     source, not a site page", which would have asserted something false about the
+     deployment in order to quiet a gate. On the published Artifact this link
+     resolves to nothing and the tab icon comes from the publish call, which costs
+     nothing; on testahil.com it resolves. -->
+<link rel="icon" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
