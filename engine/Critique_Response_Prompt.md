@@ -130,7 +130,7 @@ discovery is part of the deliverable, not a distraction from it.
 
 ### 9b. Re-check the answer against the price  [R-GAP-01]
 
-Implementing findings moves the number, so a study that did not breach before the response can breach after it. If the restruck central lands more than 10% BELOW the latest known market price, the response is not finished until `GAP_REVIEW_{DD-MM-YYYY}.md` covers all eight headings and `python3 scripts/check_valuation_gap.py` is clean. This applies to a self-audit exactly as it does to an outside critique — a self-audit that only re-checks the work it did will keep missing the work it never did.
+Implementing findings moves the number, so a study that did not breach before the response can breach after it. If the restruck central lands more than 10% from the latest known market price in EITHER direction (the rule became two-sided on 02-Sep-2026), the response is not finished until `GAP_REVIEW_{DD-MM-YYYY}.md` covers all eight headings and `python3 scripts/check_valuation_gap.py` is clean. This applies to a self-audit exactly as it does to an outside critique — a self-audit that only re-checks the work it did will keep missing the work it never did.
 
 ### 10. Calibration, not capitulation
 

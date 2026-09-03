@@ -46,6 +46,34 @@ Build the workbook formula-first:
 - **If a driver test fails, the first hypothesis is that the expectation is wrong, not the model.** Decompose the mechanism and report what actually happens before changing anything.
 - **A workbook that has to disclaim its own Assumptions sheet has failed.** Only state the live-driver claim on READ FIRST once the driver test passes.
 
+**The forecast is anchored on the latest reviewed period, and the record says so [R-ANCHOR-01,
+ADDED 03-Sep-2026].** A near-term reviewed actual outranks a stale full-year rate. Anchor every unit
+rate on the most recent reviewed period; hold everything else flat, **including observed
+improvements**; and let a rate drift only where a named structural mechanism has a **measured**
+like-for-like direction in the company's own period pair.
+
+Commit a `forecast_anchor` record in the study's numbers file — the rate forecast, the latest
+reviewed period with its date and rate, the first forecast year's rate, and the whole forecast path.
+Where the forecast opens materially below the latest reviewed period, **or declines materially
+across the explicit window**, name a mechanism from the closed list, carry the disclosure that
+establishes it from the filings, and supply the like-for-like measurement that gives it a direction.
+`scripts/check_forecast_anchor.py` fails a new study directory that carries neither a record nor a
+deliberate ratchet entry, so this is not optional and not something to come back to.
+
+Two traps, both of which shipped in delivered studies on the day this rule was adopted and both of
+which lowered the value:
+
+- **One escalator per driver class, and the price and cost legs must sit on the same clock.**
+  Escalating pound-denominated cost legs at domestic inflation while a dollar-linked price grows
+  only at the currency differential is a real cost drift compounding for ever. It produces a margin
+  decline the study then reports as a finding. If you assert a real cost drift, it is a *claim*:
+  name it, source it, and measure its direction in the company's own filings.
+- **A typed commodity-price path is not a driver.** "Constructed: mean-reverting toward the marginal
+  producer's cash cost", with no cash cost quoted and no institution publishing the path, is an
+  assumption wearing a forecast's clothes. Hold a traded commodity price FLAT unless a source says
+  otherwise — and check what the rest of the book does with the same class of input, because **a
+  driver out of line with the book usually means our method slipped on this one name.**
+
 **Final QC gate.** Run as the last step before presenting the report and Excel. Before delivering, confirm every item below; fix and re-run anything that fails, then deliver.
 
 (a) Study structure, content, format AND research depth exactly match the MODEL REPORT (ADNOCLS_Valuation_Study_09-08-2026, `engine/adnocls_study/`) — including the standalone bibliography document and every depth-bar standard in `MODEL_STUDY_DEPTH`
@@ -97,7 +125,9 @@ company genuinely discloses only one prior year).
 
 (r) **Every formula cell reproduces the model, and drivers propagate.** Evidence, both run on the delivered file: "N of N formula cells reproduce the model, 0 unresolvable, 0 unchecked"; and the per-driver table showing each input perturbed in place moves the headline in the asserted direction, with zero dead inputs.
 
-(s) **[R-GAP-01] If the central fair value lands more than 10% BELOW the latest known market price, the study is not finished.** Write `GAP_REVIEW_{DD-MM-YYYY}.md` in the study's own directory covering all eight headings — LATEST FILINGS · BASE YEAR · MACRO COHERENCE · DISCOUNT RATE · TERMINAL · BALANCE SHEET · CLAIMS AGAINST THE RECORD · MULTIPLE CROSS-CHECK — and clear `python3 scripts/check_valuation_gap.py`. The answer does not have to change; it has to be audited. Errors in a DCF are not symmetric — nearly all of them push value DOWN — so a large discount is where the defects are, and every gate above checks the PROCESS while none of them looks at the ANSWER. Worked precedent: `engine/amoc_study/GAP_REVIEW_01-09-2026.md`.
+(s0) **[R-ANCHOR-01] The `forecast_anchor` record is committed and `python3 scripts/check_forecast_anchor.py` is clean** — the latest reviewed period, its rate, the first forecast year's rate and the whole path; and where the forecast opens materially below that period or declines materially across the window, a mechanism from the closed list with its disclosure and its like-for-like measurement. A gate that fails a new study carrying neither a record nor a deliberate ratchet entry.
+
+(s) **[R-GAP-01] If the central fair value lands more than 10% from the latest known market price in EITHER direction, the study is not finished.** (Two-sided since 02-Sep-2026: a gate that can only fire one way teaches the work to drift the other, while looking rigorous. And the price is the LATEST KNOWN one, per the 03-Sep-2026 amendment — a study audited against a month-old quote is audited against its own past.) Write `GAP_REVIEW_{DD-MM-YYYY}.md` in the study's own directory covering all eight headings — LATEST FILINGS · BASE YEAR · MACRO COHERENCE · DISCOUNT RATE · TERMINAL · BALANCE SHEET · CLAIMS AGAINST THE RECORD · MULTIPLE CROSS-CHECK — and clear `python3 scripts/check_valuation_gap.py`. The answer does not have to change; it has to be audited. Errors in a DCF are not symmetric — nearly all of them push value DOWN — so a large discount is where the defects are, and every gate above checks the PROCESS while none of them looks at the ANSWER. Worked precedent: `engine/amoc_study/GAP_REVIEW_01-09-2026.md`.
 
 Do NOT publish — publishing is a separate, explicitly-requested step. (The old token gate is retired: once I say "publish", go all the way to merged-and-deployed without stopping to ask. See `Publish_Protocol.md`.)
 
