@@ -340,3 +340,35 @@ reserves for a person rather than for a build script.
 ---
 
 *AUDITED CENTRAL: -1.0621* — the figure this review audits, stated so a job outside the study can tell whether the review still describes the answer the study publishes. A review of a number the study no longer carries is not a review of this study.
+
+---
+
+## Addendum, 3 September 2026 — the answer is now two-sided, and this review audits both branches
+
+The decision this review referred rather than settled has been taken by the principal: **the
+study publishes both branches and no single central figure.** Carried through the cash-flow
+lens reads EGP −1.06 a share; stopped it reads EGP +2.82. Against a spot of EGP 13.98 those
+are −107.6% and −79.8%, so **both branches are outside the band and both are audited here.**
+
+Nothing in the eight headings above changes, and it is worth saying why rather than leaving
+it implied: **the two branches share everything the eight headings examine.** They are built
+on the same filings, the same base year, the same house macro path, the same cost-of-capital
+schedule, the same terminal construction and the same balance sheet, and they are read off the
+same disclosed record. They differ in exactly one input — whether the remaining ANNA programme
+spend is committed — which is the contested judgement itself. An audit of the construction is
+therefore an audit of both readings; what the two-sided presentation adds is that the reader is
+no longer handed an average of them.
+
+The finding the branches disagree about is the study's own: on the disclosed bank-approved cost
+and the derived nameplate, the programme does not earn the capital sunk into it, which is why
+stopping is worth more than finishing. Publishing a single number between the two would have
+described a half-built plant — a world nobody is proposing and the company is not in — and
+would have hidden that finding behind an average.
+
+*AUDITED CENTRAL: -1.0621* — the carried-through branch.
+
+*AUDITED CENTRAL: 2.8182* — the stopped branch.
+
+Both figures are stated so a job outside the study can tell whether this review still describes
+what the study publishes. A two-sided answer is audited on every branch: a review naming one of
+two answers has audited half the study.

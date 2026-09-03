@@ -118,14 +118,21 @@ def snapshot(ticker, when=None, unrecoverable=None):
 
 
 def _pct(new, old):
-    """Movement per leg. A leg whose old value is exactly zero has no percentage
-    movement -- EGCH's frozen bear was 0.00 -- so that leg is None rather than a
-    division that raises or a fabricated figure. The other legs still report."""
-    return {k: (None if old[k] == 0 else round(100.0 * (new[k] - old[k]) / old[k], 1))
+    """Movement per leg.
+
+    A leg whose old value is exactly zero has no percentage movement -- EGCH's
+    frozen bear was 0.00 -- so that leg is None rather than a division that raises
+    or a fabricated figure. A leg that is None on EITHER side is None for the same
+    reason: a two-sided edition has no base, and the honest report of a movement
+    from a number to no-number is that there isn't one, not a zero.
+    """
+    return {k: (None if (old.get(k) in (None, 0) or new.get(k) is None)
+                else round(100.0 * (new[k] - old[k]) / old[k], 1))
             for k in LEGS}
 
 
-def record(ticker, bear, base, full, scope, origins, lessons, when=None):
+def record(ticker, bear, base, full, scope, origins, lessons, when=None,
+           branches=None):
     """Append this run's delivered fair value beside the frozen baseline."""
     if scope not in SCOPES:
         raise SystemExit('FATAL: scope must be one of %s.' % ', '.join(SCOPES))
@@ -137,8 +144,26 @@ def record(ticker, bear, base, full, scope, origins, lessons, when=None):
                          'cannot be computed at all.' % ticker)
     e = d['entries'][ticker]
     prev = e['editions'][-1]['fair'] if e['editions'] else e['baseline']['fair']
-    new = {'bear': float(bear), 'base': float(base), 'full': float(full)}
-    if not new['bear'] <= new['base'] <= new['full']:
+    # A TWO-SIDED STUDY HAS NO BASE, and that is an answer rather than a gap: its
+    # contested judgement is binary, so a number in the middle describes a world
+    # nobody is proposing. Such an entry carries base=None and its branches, and
+    # the ordering check applies to the envelope it does have.
+    two_sided = base is None
+    new = {'bear': float(bear),
+           'base': (None if two_sided else float(base)),
+           'full': float(full)}
+    if two_sided:
+        if not branches:
+            raise SystemExit('FATAL: %s records no base and no branches. A study '
+                             'with no single central publishes the branches it has '
+                             'instead; recording neither is a gap, not an answer.'
+                             % ticker)
+        new['branches'] = [{'label': b['label'], 'value': float(b['value'])}
+                           for b in branches]
+        if not new['bear'] <= new['full']:
+            raise SystemExit('FATAL: %s fair envelope is not ordered bear <= full '
+                             '(%s).' % (ticker, new))
+    elif not new['bear'] <= new['base'] <= new['full']:
         raise SystemExit('FATAL: %s fair range is not ordered bear <= base <= '
                          'full (%s). A range that crosses itself is an input '
                          'error, not a finding.' % (ticker, new))
@@ -160,13 +185,27 @@ def record(ticker, bear, base, full, scope, origins, lessons, when=None):
               % (ticker, ed['edition'], new['base'], e['baseline']['unrecoverable']))
     else:
         m = ed['vs_baseline_pct']
-        f = lambda v: 'n/a (old leg was 0)' if v is None else '%+.1f%%' % v
+        # WHY a leg is n/a matters: "the old leg was zero" and "this edition has
+        # no base at all" are different facts and printing one for the other
+        # tells the reader something untrue about the answer.
+        def f(v, leg=None):
+            if v is not None:
+                return '%+.1f%%' % v
+            if leg == 'base' and new.get('base') is None:
+                return 'n/a (two-sided: no single base)'
+            return 'n/a (old leg was 0)'
         print('%s edition %d recorded: base %s -> %s (%s vs baseline); '
               'bear %s, full %s; lessons %s'
               % (ticker, ed['edition'], base0['base'], new['base'],
-                 f(m['base']), f(m['bear']), f(m['full']),
+                 f(m['base'], 'base'), f(m['bear']), f(m['full']),
                  ', '.join(sorted(lessons)) or '(none)'))
     return 0
+
+
+def _branchtext(ed):
+    """What a two-sided edition prints where a base would go."""
+    br = (ed.get('fair') or {}).get('branches') or []
+    return ' / '.join('%.4f' % float(b['value']) for b in br) + ' (two-sided)'
 
 
 def _money(v):
@@ -240,7 +279,8 @@ def build():
             L.append('| %d | %s | %s | %s | %s | %s | %s | %s | %s | %s → %s | %s |'
                      % (q['position'], q['ticker'], e['ccy'] or '', ed['scope'],
                         _money(b['fair']['base']) if b['fair'] else 'unrecoverable',
-                        _money(ed['fair']['base']),
+                        (_branchtext(ed) if ed['fair'].get('base') is None
+                         else _money(ed['fair']['base'])),
                         _fmt(mv, 'base'), _fmt(mv, 'bear'), _fmt(mv, 'full'),
                         b['built_to'], current, ', '.join(ed['lessons']) or '—'))
     L.append('')
@@ -304,6 +344,7 @@ def check():
         _gg = _ilu.module_from_spec(_sp)
         _sp.loader.exec_module(_gg)
         read_answer = _gg.read_answer
+        globals()['_gg'] = _gg
     except Exception as exc:                              # pragma: no cover
         fails.append('could not load the study answer reader (%s: %s), so the '
                      'currency of these records went unchecked — which is not the '
@@ -320,13 +361,35 @@ def check():
                 continue
             central, spot, route = read_answer(sdir)
             if central is None:
+                branches = _gg.read_branches(sdir) if hasattr(_gg, 'read_branches') else []
+                if branches:
+                    rec_b = eds[-1].get('fair', {}).get('branches')
+                    if not rec_b:
+                        fails.append('%s: the delivered study publishes a TWO-SIDED '
+                                     'answer (%s) and the register records a single '
+                                     'base. Register the new edition in the shape the '
+                                     'study now publishes.'
+                                     % (tk, ', '.join('%s %.4f' % (b['label'][:28],
+                                                                   b['value'])
+                                                      for b in branches)))
+                    else:
+                        want = sorted(round(float(b['value']), 4) for b in branches)
+                        got = sorted(round(float(b['value']), 4) for b in rec_b)
+                        if want != got:
+                            fails.append('%s: the register records branches %s and the '
+                                         'study publishes %s.' % (tk, got, want))
+                    continue
                 fails.append("%s: the delivered study's central cannot be read "
                              '(%s), so whether this register is current cannot be '
                              'established. An unreadable answer is not a clean '
                              'answer.' % (tk, route))
                 continue
             recorded = (eds[-1].get('fair') or {}).get('base')
-            if recorded is None:
+            if recorded is None and (eds[-1].get('fair') or {}).get('branches'):
+                fails.append('%s: the register records a TWO-SIDED edition while the '
+                             'study publishes a single central of %.4f. The register '
+                             'is behind the study it records.' % (tk, central))
+            elif recorded is None:
                 fails.append('%s: the latest edition records no base fair value' % tk)
             elif round(float(recorded), 4) != round(float(central), 4):
                 stale.append((tk, float(recorded), float(central),

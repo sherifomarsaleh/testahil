@@ -88,10 +88,19 @@ def ticker_of(d):
 
 def read_book():
     """Every study's delivered central and the spot it was struck at."""
-    rows, unreadable, nonpositive = [], [], []
+    rows, unreadable, nonpositive, two_sided = [], [], [], []
     for d in studies():
         tk = ticker_of(d)
         central, spot, route = read_answer(d)
+        if central is None and spot:
+            br = _gap.read_branches(d)
+            if br:
+                # A TWO-SIDED ANSWER IS NOT A MISSING ONE. It is excluded from a
+                # pooled log(FV/P) because there is no single FV to take the log
+                # of, and it is counted and named here rather than filed with the
+                # studies that published nothing — those are different states.
+                two_sided.append((tk, spot, br))
+                continue
         if central is None or not spot:
             unreadable.append((tk, route))
             continue
@@ -104,7 +113,7 @@ def read_book():
         else:
             rec["log_gap"] = math.log(central / spot)
             rows.append(rec)
-    return rows, nonpositive, unreadable
+    return rows, nonpositive, unreadable, two_sided
 
 
 def _mean(xs):
@@ -152,7 +161,7 @@ def boot_clustered(rows, draws=DRAWS, seed=SEED):
 
 
 def report():
-    rows, nonpositive, unreadable = read_book()
+    rows, nonpositive, unreadable, two_sided = read_book()
     print("delivered fair values against the prices they were struck at")
     print("  [R-VCAL-01] series (b) — a cross-section, NOT the calibration's verdict\n")
     print("  %-12s %-4s %10s %10s %9s %8s" %
@@ -197,6 +206,16 @@ def report():
         print("  most pessimistic readings in the book — so the pooled number above")
         print("  UNDERSTATES the house lean by however much they are worth.")
 
+    if two_sided:
+        print("\n  PUBLISHED AS TWO-SIDED, so there is no single FV to take a log of")
+        print("  (%d) — excluded from the pooled figure and named, because a study" % len(two_sided))
+        print("  that published two answers is not a study that published none:")
+        for tk, sp, br in two_sided:
+            print("    %-12s spot %.4g" % (tk, sp))
+            for b in br:
+                print("        %-52s %8.4f  (%+.1f%%)"
+                      % (b["label"][:52], b["value"], (b["value"] / sp - 1) * 100))
+
     if unreadable:
         print("\n  answer not readable from the committed numbers (%d) — not clean,"
               % len(unreadable))
@@ -205,6 +224,7 @@ def report():
             print("    %-12s %s" % (tk, why))
 
     return {"rows": rows, "nonpositive": nonpositive, "unreadable": unreadable,
+            "two_sided": two_sided,
             "mean": _mean(xs), "median": med, "n": len(xs),
             "markets": markets, "ci_names": (lo_n, hi_n), "ci_markets": (lo_c, hi_c)}
 

@@ -100,6 +100,11 @@ REQUIRED_SECTIONS = {
 }
 REVIEW_GLOB = 'GAP_REVIEW_*.md'
 
+# The route string a two-sided answer returns. A sentinel rather than a bare None,
+# because "this study published two named branches and no average" and "this study
+# published nothing" must never read the same to a caller.
+TWO_SIDED = '%s publishes a TWO-SIDED answer: %d named branches, no single central'
+
 
 def _num(x):
     if isinstance(x, (int, float)):
@@ -111,6 +116,40 @@ def _num(x):
     return None
 
 
+def read_branches(sdir):
+    """The named branches of a TWO-SIDED answer, or [].
+
+    A study whose contested judgement is BINARY and straddles a decision may
+    publish both branches and no single figure — EGCH is the worked case: carried
+    through the cash-flow lens reads about -1.06 and stopped about +2.82, and a
+    number in between describes a world in which the capital programme is half
+    built. The dual-framing rule already forbids averaging such a pair; this is
+    the further step of not printing an average at all.
+
+    A two-sided answer is READABLE, not missing. Every consumer of read_answer()
+    gets an explicit "no single central, N branches" rather than the silence a
+    study with no answer produces, because those are different states and reading
+    one as the other is how a real answer gets filed as a gap.
+    """
+    for fn in ("study_numbers.json", "numbers.json"):
+        p = os.path.join(sdir, fn)
+        if not os.path.exists(p):
+            continue
+        try:
+            j = json.load(open(p, encoding="utf-8"))
+        except Exception:
+            return []
+        ts = j.get("central_two_sided") or {}
+        out = []
+        for b in (ts.get("branches") or []):
+            v = _num(b.get("value"))
+            if v is not None and (b.get("label") or "").strip():
+                out.append({"label": b["label"], "value": v,
+                            "condition": b.get("condition") or ""})
+        return out
+    return []
+
+
 def read_answer(sdir):
     """The study's own central fair value and the spot it was struck at.
 
@@ -118,6 +157,11 @@ def read_answer(sdir):
     studies in this repository actually use rather than one canonical schema — and returns
     the ROUTE it took, because a number found by a fallback is not the same evidence as one
     found where it belongs.
+
+    A TWO-SIDED study returns central None with a route that SAYS SO, and its
+    branches come from read_branches(). Callers must distinguish that from an
+    unreadable study: one has published an answer this repository's scalar shape
+    cannot hold, the other has published nothing.
     """
     for fn in ('study_numbers.json', 'numbers.json'):
         p = os.path.join(sdir, fn)
@@ -132,6 +176,9 @@ def read_answer(sdir):
         spot = _num(j.get('spot')) or _num(meta.get('spot'))
         if central is not None and spot:
             return central, spot, fn
+        branches = read_branches(sdir)
+        if branches and spot:
+            return None, spot, TWO_SIDED % (fn, len(branches))
         return None, None, '%s carries no central/spot pair' % fn
     return None, None, 'no committed numbers file'
 
@@ -140,11 +187,12 @@ def read_review(sdir):
     """The most recent gap review in a study directory, and the headings it covers."""
     hits = sorted(glob.glob(os.path.join(sdir, REVIEW_GLOB)))
     if not hits:
-        return None, [], None
+        return None, [], None, []
     raw = open(hits[-1], encoding='utf-8').read()
     txt = raw.upper()
     covered = [k for k in REQUIRED_SECTIONS if k in txt]
-    return os.path.basename(hits[-1]), covered, _audited_central(raw)
+    return (os.path.basename(hits[-1]), covered, _audited_central(raw),
+            _audited_centrals(raw))
 
 
 # A REVIEW AUDITS AN ANSWER, AND THE ANSWER MOVES. On 2 September 2026 EGCH's
@@ -165,14 +213,24 @@ AUDIT_TOL = 0.005          # half a per cent of the central, not a round number:
                            # it has been re-rounded
 
 
+def _audited_centrals(raw):
+    """EVERY audited-central line in a review, not just the first.
+
+    A two-sided study has two answers, and a review that audits one of them has
+    audited half the study. findall rather than search for exactly that reason.
+    """
+    out = []
+    for m in AUDITED_RX.finditer(raw):
+        try:
+            out.append(float(m.group(1).replace(',', '')))
+        except ValueError:
+            continue
+    return out
+
+
 def _audited_central(raw):
-    m = AUDITED_RX.search(raw)
-    if not m:
-        return None
-    try:
-        return float(m.group(1).replace(',', ''))
-    except ValueError:
-        return None
+    vals = _audited_centrals(raw)
+    return vals[0] if vals else None
 
 
 def load_outstanding():
@@ -203,6 +261,48 @@ def main(argv):
     for sdir in sdirs:
         tk = os.path.basename(sdir).replace('_study', '').upper()
         central, spot, route = read_answer(sdir)
+        if central is None and spot:
+            branches = read_branches(sdir)
+            if branches:
+                # A TWO-SIDED ANSWER IS AUDITED ON EVERY BRANCH. Publishing two
+                # numbers instead of one is not a way to publish two unaudited
+                # numbers: each branch outside the band needs the review to exist,
+                # to cover the headings, and to state THAT branch as an audited
+                # central. A review naming one of two answers has audited half the
+                # study.
+                out = [b for b in branches
+                       if not (GAP_LIMIT <= b["value"] / spot - 1.0 <= GAP_LIMIT_ABOVE)]
+                if not out:
+                    ok.append((tk, 0.0))
+                    continue
+                review, covered, _a, audited_all = read_review(sdir)
+                missing = [k for k in REQUIRED_SECTIONS if k not in covered]
+                unaudited = [b for b in out
+                             if not any(abs(a - b["value"])
+                                        <= max(AUDIT_TOL * abs(b["value"]), 0.005)
+                                        for a in audited_all)]
+                if review and not missing and not unaudited:
+                    reviewed.append((tk, min(b["value"] / spot - 1.0 for b in out),
+                                     review, audited_all[0] if audited_all else None))
+                    continue
+                breaches.append((tk, min(b["value"] / spot - 1.0 for b in out),
+                                 review, missing, None, bool(unaudited)))
+                if tk not in known_breach and tk not in known_unstated:
+                    if not review:
+                        why = 'no gap review in the study directory'
+                    elif missing:
+                        why = ('the review %s does not cover %s'
+                               % (review, ', '.join(missing)))
+                    else:
+                        why = ('the review %s states no audited central for %s. A '
+                               'two-sided answer is audited on EVERY branch; a review '
+                               'naming one of two answers has audited half the study.'
+                               % (review, '; '.join('%s (%.4f)' % (b["label"], b["value"])
+                                                    for b in unaudited)))
+                    new_fail.append('%s: publishes %d branches and no single central, '
+                                    '%d of them outside the band, and %s.'
+                                    % (tk, len(branches), len(out), why))
+                continue
         if central is None:
             unreadable.append((tk, route))
             if tk not in known_unreadable:
@@ -215,7 +315,7 @@ def main(argv):
             ok.append((tk, gap))
             continue
         side = 'below' if gap < 0 else 'above'
-        review, covered, audited = read_review(sdir)
+        review, covered, audited, audited_all = read_review(sdir)
         missing = [k for k in REQUIRED_SECTIONS if k not in covered]
         if review and not missing and audited is None and tk not in known_unstated:
             new_fail.append('%s: the review %s states no AUDITED CENTRAL, so nothing '
@@ -259,7 +359,11 @@ def main(argv):
         for tk, gap, rv, missing, aud, stale in breaches:
             state = ('no review' if not rv
                      else ('missing: ' + ', '.join(missing)) if missing
-                     else ('STALE — audits %.4f' % aud) if stale
+                     else ('STALE — audits %.4f' % aud) if (stale and aud is not None)
+                     # a two-sided study reaches here with no single audited
+                     # number: the branch it fails on is the one the review
+                     # never names, which the failure line above spells out
+                     else 'a branch with no audited central stated' if stale
                      else 'no audited central stated')
             print('   %-12s %+6.1f%%  %s' % (tk, 100 * gap, state))
     if unreadable:
