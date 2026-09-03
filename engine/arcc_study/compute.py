@@ -1987,11 +1987,11 @@ EXPERTS = [
                   % (V['ppe_fy25'], V['auc_fy25'], V['repl_usd_t'], V['egy_capacity_mt'],
                      V['egy_cons_mt'], V['ev_t_just'], ev_per_t)),
          falsifier=('Find an Egyptian line built, bought or restarted below USD %.0f per '
-                    'annual tonne. The 12.6Mt revival programme is the live test and it '
+                    'annual tonne. The %.1fMt revival programme is the live test and it '
                     'runs against this lens: restarting a mothballed kiln costs a fraction '
-                    'of building one, which is why this valuation is a ceiling and carries '
-                    'only %.0f%% of the weight.'
-                    % (V['ev_t_just'], V['w_asset'] * 100))),
+                    'of building one, which is why this valuation is a CEILING and is '
+                    'published as a cross-check rather than as the answer.'
+                    % (V['ev_t_just'], V['egy_revival_mt']))),
     dict(label='Expert 2', method='Mid-cycle earnings-power analyst', central=fv_norm,
          low=(nopat_norm * (V['pe_just'] - 1) + net_cash - V['nci']) / SH,
          high=(nopat_norm * (V['pe_just'] + 1) + net_cash - V['nci']) / SH,
