@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**181 lessons**, of which 154 bind on every study, 20 on a class of company, and 7 on a single name.
+**182 lessons**, of which 155 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 106 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 107 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1618,6 +1618,16 @@ A file that reads a price library and writes a summary is correct on the day it 
 > **What it cost, or how we know.** TMGH's delivered peer table published Emaar Misr at 11.53 as at 28 July, SODIC at 27.48 as at 27 July and Orascom at 40.16 as at 27 July, while THIS REPOSITORY'S OWN committed libraries held 13.70, 31.01 and 41.50 at 1 September — the first 18.8% higher. The generator does nothing but read the last row of each library and had simply not been re-run. No valuation number moves, because this study deliberately tabulates no peer multiples; what moves is a table of prices a reader takes as current. It is [R-ENF-06]'s shape with the staleness on the INPUT side, and the standing library-staleness rule's shape too: a fact that moves by the calendar must not be remembered by something that moves only when edited.
 
 > **What would overturn it.** A peer table deliberately frozen at a stated date for a stated reason, which the document would then have to say.
+
+### L-261 · A FILE SOMETHING WRITES, WHEN NOTHING MAKES IT RUN, IS AS FROZEN AS ONE NOTHING WRITES AT ALL — AND HARDER TO SEE, BECAUSE IT HAS A GENERATOR.
+
+[R-ENF-06] asks what writes an artefact a builder reads, and a reassuring answer closes the question. But a generator that exists and is not run produces exactly the same stale number, and the study looks better arranged while it happens.
+
+**Applies to:** every study  ·  *Learned from:* found while building, rebuilding TMGH, 03-Sep-2026
+
+> **What it cost, or how we know.** Four artefacts went stale in one afternoon on a study already conforming to [R-ENF-06]: statements.json two days behind the model, peers.json five weeks behind THIS REPOSITORY'S OWN price libraries, experts.json quoting a reverse read that had since been corrected, and a note added to a generator that never reached the page because the script writing its file was not re-run after the edit. None was carelessness about a number; each was the ordinary consequence of a pipeline whose steps a person has to remember. MEASURED ACROSS THE BOOK, 2 OF 24 STUDIES HAVE A SINGLE BUILD ENTRY POINT, and the other twenty-two carry 7 to 32 scripts each that must be run in the right order from memory. The fix is not to remember harder: an entry point declares the dependency order explicitly and ends with the checks, so a build that produced a stale artefact cannot also report clean.
+
+> **What would overturn it.** A study whose scripts are genuinely independent, where an order does not exist to be got wrong.
 
 
 ---

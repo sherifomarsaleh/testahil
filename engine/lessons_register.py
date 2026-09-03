@@ -3502,6 +3502,28 @@ LESSONS = [
       "A peer table deliberately frozen at a stated date for a stated reason, which the "
       "document would then have to say."),
 
+    L("L-261", "ALL", None,
+      "A FILE SOMETHING WRITES, WHEN NOTHING MAKES IT RUN, IS AS FROZEN AS ONE NOTHING "
+      "WRITES AT ALL \u2014 AND HARDER TO SEE, BECAUSE IT HAS A GENERATOR.",
+      "[R-ENF-06] asks what writes an artefact a builder reads, and a reassuring answer "
+      "closes the question. But a generator that exists and is not run produces exactly "
+      "the same stale number, and the study looks better arranged while it happens.",
+      "rebuilding TMGH, 03-Sep-2026",
+      "build",
+      "Four artefacts went stale in one afternoon on a study already conforming to "
+      "[R-ENF-06]: statements.json two days behind the model, peers.json five weeks behind "
+      "THIS REPOSITORY'S OWN price libraries, experts.json quoting a reverse read that had "
+      "since been corrected, and a note added to a generator that never reached the page "
+      "because the script writing its file was not re-run after the edit. None was "
+      "carelessness about a number; each was the ordinary consequence of a pipeline whose "
+      "steps a person has to remember. MEASURED ACROSS THE BOOK, 2 OF 24 STUDIES HAVE A "
+      "SINGLE BUILD ENTRY POINT, and the other twenty-two carry 7 to 32 scripts each that "
+      "must be run in the right order from memory. The fix is not to remember harder: an "
+      "entry point declares the dependency order explicitly and ends with the checks, so a "
+      "build that produced a stale artefact cannot also report clean.",
+      "A study whose scripts are genuinely independent, where an order does not exist to "
+      "be got wrong."),
+
 ]
 
 
