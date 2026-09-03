@@ -42,12 +42,28 @@ READING THIS OUTPUT. It measures; it does not correct. Every figure is resolved 
 study's OWN committed numbers file and the census RECORDS THE KEY THAT ANSWERED, so a
 study whose terminal cannot be read comes back UNREADABLE rather than clean — an empty
 result is not a clean result [R-ENF-04]. Nothing here is an input to any study.
+
+RESOLUTION IS FRAME-COHERENT, AND THE FIRST VERSION WAS NOT. Several studies publish two
+or more framings of the same company — dcf_A and dcf_B, a base case and a scenario, a
+tax-regime pair. The first resolver took each field from whichever container answered
+first, and on FERTIGLOBE it read the terminal value and terminal rate from FRAME A and the
+last explicit NOPAT from FRAME B. THE RESULT WAS A PLAUSIBLE NUMBER AND A FABRICATED
+BREACH: a floor of 8,174 against frame A's real 5,347, reported as 30.7% below its own
+floor when the study sits 6.0% above it.
+
+So a terminal is now read from ONE container. Whichever holds the terminal value fixes the
+frame, every other field is sought there first, and a field that had to be found elsewhere
+is RECORDED with the container it came from so the mixing is visible rather than silent.
+That is the same defect this whole rule is about, one level up: A CHECK POINTED AT THE
+WRONG MEASUREMENT PRODUCES A CONFIDENT WRONG ANSWER, and it was found by asking whether a
+study the census condemned actually deserved it.
 """
 from __future__ import annotations
 
 import json
 import math
 import os
+import re
 from glob import glob
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -69,6 +85,7 @@ CAND = {
     'ic':        ('ic_repl', 'ic_replacement', 'ic_terminal', 'ic_T', 'invested_capital',
                   'ic_replacement_cost'),
     'rr_term':   ('rr_term', 'rr_T', 'rr_repl', 'reinvest'),
+    'roic_term': ('roic_term', 'roic_T', 'roic_terminal', 'terminal_roc'),
     'df_tv':     ('df_tv', 'dftv'),
     'equity':    ('equity', 'eq_val', 'eq_attr', 'eq'),
     'fv':        ('fv', 'ps', 'per_share', 'fv_aed'),
@@ -120,6 +137,12 @@ def _resolve(flat, names, prefer=DCF_HOLDERS):
 
 def _last_explicit(flat, field):
     """The last explicit-window value of a forecast row (forecast.nopat[-1] and kin)."""
+    if not isinstance(field, str):          # a candidate tuple: try each in order
+        for f in field:
+            v, k = _last_explicit(flat, f)
+            if v is not None:
+                return v, k
+        return None, None
     idx = [(int(k.split('[')[-1].rstrip(']')), k) for k in flat
            if k.split('[')[0].split('.')[-1] == field and k.endswith(']')]
     if not idx:
@@ -128,11 +151,33 @@ def _last_explicit(flat, field):
     return flat[idx[-1][1]], idx[-1][1]
 
 
+def _frame_of(key):
+    """The container a resolved key sits in — everything before its final segment."""
+    return key.rsplit('.', 1)[0] if '.' in key else ''
+
+
+# A study's frame identity is not one container. FERTIGLOBE keys its terminal under dcf_A,
+# its forecast rows under frame_A and its bridge under bridge_A; PHDC uses cases.base and
+# cases.low_conversion. So the FRAME TAG is what has to match, not the container name.
+_TAG_RX = re.compile(r'(?:^|[._])(A|B|C|base|bull|bear|low_conversion|high_conversion|'
+                     r'base_ct|base_dmtt|ct|dmtt|frame_A|frame_B|normalisation|prolonged)'
+                     r'(?:$|[._\[])')
+
+
+def _tag_of(key):
+    """The frame tag a key belongs to, or '' where it belongs to none."""
+    m = _TAG_RX.search(_frame_of(key))
+    if not m:
+        return ''
+    t = m.group(1)
+    return t[-1] if t in ('frame_A', 'frame_B') else t
+
+
 def read_study(d):
-    """One study's terminal, or a stated reason it cannot be read."""
+    """One study's terminal, read from ONE frame, or a stated reason it cannot be read."""
     tk = os.path.basename(d)[:-6].upper()
     f = os.path.join(d, 'study_numbers.json')
-    rec = {'ticker': tk, 'dir': os.path.relpath(d, REPO), 'routes': {}}
+    rec = {'ticker': tk, 'dir': os.path.relpath(d, REPO), 'routes': {}, 'off_frame': []}
     if not os.path.exists(f):
         rec['unreadable'] = 'no committed numbers file'
         return rec
@@ -142,23 +187,70 @@ def read_study(d):
         rec['unreadable'] = f'numbers file will not parse: {e}'
         return rec
     flat = _flat(n)
-    for name, cands in CAND.items():
-        v, k = _resolve(flat, cands)
-        if v is not None:
-            rec[name] = v
-            rec['routes'][name] = k
-    for field in ('nopat', 'dna', 'capex', 'dwc', 'fcff'):
-        v, k = _last_explicit(flat, field)
-        if v is not None:
-            rec[f'{field}_last'] = v
-            rec['routes'][f'{field}_last'] = k
-    # the terminal WACC often lives only in a forecast row of forward rates
-    if 'wacc_term' not in rec:
-        v, k = _last_explicit(flat, 'fwd_wacc')
-        if v is not None:
-            rec['wacc_term'], rec['routes']['wacc_term'] = v, k
 
-    missing = [x for x in ('tv', 'wacc_term', 'g') if x not in rec]
+    # THE TERMINAL VALUE FIXES THE FRAME. Everything else is sought inside it first, and
+    # anything found outside it is recorded rather than silently mixed in.
+    tv, tvk = _resolve(flat, CAND['tv'])
+    if tv is None:
+        rec['unreadable'] = 'the terminal exposes no tv'
+        return rec
+    # THE TERMINAL VALUE MUST COME FROM A TERMINAL, not from wherever a key called `tv`
+    # happens to sit. Measured across the book, every legitimate route carries either a
+    # segment beginning `dcf` or a segment `terminal`: dcf.tv, dcf_A.tv, dcf.frame_A.tv,
+    # cases.base.terminal.tv, statements.dcf_a.terminal_value. A sensitivity row carries
+    # neither — and the negative control caught this by removing a study's real terminal
+    # and watching the resolver find a substitute in a sensitivity table, which read as a
+    # perfectly clean result. AN ABSENT ANSWER WEARING THE COSTUME OF A CLEAN ONE, one more
+    # time, in the resolver rather than in the gate.
+    _segs = tvk.split('.')
+    if not any(x.startswith('dcf') or x == 'terminal' for x in _segs):
+        rec['unreadable'] = ('the only terminal value on offer is %s, which is not in a '
+                             'terminal block' % tvk)
+        return rec
+    rec['tv'], rec['routes']['tv'] = tv, tvk
+    frame = _frame_of(tvk)
+    tag = _tag_of(tvk)
+    rec['frame'] = frame or '(top level)'
+    rec['frame_tag'] = tag or '(none)'
+    # In-frame means SAME TAG, not same container — a two-framing study spreads one frame
+    # across a dcf_X, a frame_X and a bridge_X, and reading across them is exactly the
+    # mixing that manufactured FERTIGLOBE's breach.
+    if tag:
+        inframe = {k: v for k, v in flat.items() if _tag_of(k) == tag}
+    elif frame:
+        inframe = {k: v for k, v in flat.items() if _frame_of(k) == frame}
+    else:
+        inframe = {}
+
+    def pick(name, cands, last=False):
+        getter = _last_explicit if last else None
+        if inframe:
+            if last:
+                v, k = _last_explicit(inframe, cands)
+            else:
+                v, k = _resolve(inframe, cands, prefer=())
+            if v is not None:
+                rec[name], rec['routes'][name] = v, k
+                return
+        if last:
+            v, k = _last_explicit(flat, cands)
+        else:
+            v, k = _resolve(flat, cands)
+        if v is not None:
+            rec[name], rec['routes'][name] = v, k
+            other = _tag_of(k)
+            if tag and other and other != tag:
+                rec['off_frame'].append(f'{name} <- {k}  (frame {other}, not {tag})')
+
+    for name, cands in CAND.items():
+        if name != 'tv':
+            pick(name, cands)
+    for field in ('nopat', 'dna', 'capex', 'dwc', 'fcff'):
+        pick(f'{field}_last', field, last=True)
+    if 'wacc_term' not in rec:
+        pick('wacc_term', 'fwd_wacc', last=True)
+
+    missing = [x for x in ('wacc_term', 'g') if x not in rec]
     if missing:
         rec['unreadable'] = 'the terminal exposes no ' + ', '.join(missing)
         return rec
@@ -180,8 +272,23 @@ def read_study(d):
     if N is not None and N > 0:
         rec['charge'] = N - rec['fcff_term_implied']
         rec['charge_share_of_nopat'] = rec['charge'] / N
-        if rec.get('ic') and rec['charge'] > 0:
+        # THE CYCLE IS COMPUTED ON THE CAPITAL BASE THE CHARGE ACTUALLY USES, which the
+        # study's own terminal ROIC defines: IC = NOPAT / ROIC. Dividing by whichever ic_*
+        # field happened to be present measures a different base and gives a cycle that is
+        # neither 1/g nor anything else — FERTIGLOBE came out at 97 years against a real 50,
+        # because its terminal ROIC is not its replacement-cost ROIC.
+        #
+        # And the algebra is exact: charge = NOPAT x g/ROIC = g x (NOPAT/ROIC), so
+        # cycle = IC/charge = 1/g WHENEVER the construction is the reinvestment identity.
+        # That makes this a clean detector rather than an estimate.
+        roic = rec.get('rr_term') and rec.get('charge') and None
+        if rec.get('roic_term') and rec['charge'] > 0:
+            rec['ic_implied'] = N / rec['roic_term']
+            rec['implied_cycle_years'] = rec['ic_implied'] / rec['charge']
+        elif rec.get('ic') and rec['charge'] > 0:
             rec['implied_cycle_years'] = rec['ic'] / rec['charge']
+            rec['cycle_basis_note'] = ('computed on a committed ic_* field, not on the base '
+                                       'the charge uses — the study exposes no terminal ROIC')
         rec['one_over_g'] = 1.0 / g if g > 0 else math.inf
         # the floor: zero nominal growth, maintenance at book D&A, full payout
         base = rec.get('nopat_last', N / (1.0 + g))

@@ -54,26 +54,35 @@ def ratchet(root):
 # The mutations. Each returns a short description of what it did, and RAISES if it did
 # not actually land.
 # --------------------------------------------------------------------------------------
-def _new_breach(root):
-    """A study comfortably above its floor is pushed below it. The one that matters."""
-    f = numbers(root, 'DU')
+def _new_signature(root):
+    """A study OFF the ratchet is made to carry the 1/g construction. The one that matters.
+
+    ARCC is the only readable study whose terminal is not built on the identity, so it is
+    the only name that can newly acquire it. Its charge is put back onto g x IC by setting
+    its terminal value to what that construction yields.
+    """
+    f = numbers(root, 'ARCC')
     d = json.load(open(f))
-    before = d['dcf']['tv']
-    d['dcf']['tv'] = before * 0.30
+    dcf = d['dcf']
+    N = d['forecast']['nopat'][-1] * (1 + d['macro_record']['growth_at_horizon_end'])
+    g = d['macro_record']['growth_at_horizon_end']
+    W = d['forecast']['fwd_wacc'][-1]
+    before = dcf['tv']
+    dcf['tv'] = (N - g * dcf['ic_repl']) / (W - g)      # the retired construction, exactly
     json.dump(d, open(f, 'w'), indent=1)
-    assert json.load(open(f))['dcf']['tv'] != before, 'mutation did not land'
-    return 'DU terminal cut to 30%% of itself (was %.1f)' % before
+    assert abs(json.load(open(f))['dcf']['tv'] - before) > 1.0, 'mutation did not land'
+    return 'ARCC terminal put back on g x IC (%.1f -> %.1f)' % (before, dcf['tv'])
 
 
-def _arcc_off_ratchet(root):
-    """ARCC's real breach, with its allowance removed."""
+def _signature_off_ratchet(root):
+    """A real 1/g construction with its allowance removed. The live condition."""
     f = ratchet(root)
     d = json.load(open(f))
-    assert 'ARCC' in d['breaching'], 'fixture assumed ARCC was on the ratchet'
-    d['breaching'].pop('ARCC')
+    assert 'AMOC' in d['signature'], 'fixture assumed AMOC was on the signature ratchet'
+    d['signature'].pop('AMOC')
     json.dump(d, open(f, 'w'), indent=1)
-    assert 'ARCC' not in json.load(open(f))['breaching'], 'mutation did not land'
-    return 'ARCC removed from the breaching ratchet'
+    assert 'AMOC' not in json.load(open(f))['signature'], 'mutation did not land'
+    return 'AMOC removed from the signature ratchet'
 
 
 def _newly_unreadable(root):
@@ -135,15 +144,22 @@ def _clean_untouched(root):
     return 'nothing changed'
 
 
-def _clean_above_floor(root):
-    """A terminal moved comfortably ABOVE its floor must NOT fire."""
-    f = numbers(root, 'DU')
+def _clean_below_floor(root):
+    """A terminal pushed BELOW the NOPAT/W figure must NOT fire — the floor is a diagnostic.
+
+    This case is the INVERSE of the one it replaced, and keeping it inverted rather than
+    deleting it is the sharpest available evidence the re-pointing took effect. The floor was
+    the failing test and is now printed as a diagnostic: it assumes a maintenance charge the
+    company does not face, so it is not an available policy, and measured across the book it
+    does not separate the class — four studies carrying the construction sit above it.
+    """
+    f = numbers(root, 'ARCC')
     d = json.load(open(f))
     before = d['dcf']['tv']
-    d['dcf']['tv'] = before * 1.40
+    d['dcf']['tv'] = before * 0.55          # well under NOPAT/W, and not a 1/g cycle
     json.dump(d, open(f, 'w'), indent=1)
-    assert json.load(open(f))['dcf']['tv'] > before, 'mutation did not land'
-    return 'DU terminal raised 40%% — further above its floor, must stay green'
+    assert json.load(open(f))['dcf']['tv'] < before, 'mutation did not land'
+    return 'ARCC terminal cut to 55%% — below the NOPAT/W diagnostic, must stay green'
 
 
 def _clean_at_the_floor(root):
@@ -177,15 +193,17 @@ def _clean_at_the_floor(root):
 
 
 CASES = [
-    ('THE ONE THAT MATTERS — a study newly below its own floor', _new_breach, 'red'),
-    ('a real breach with its ratchet allowance removed', _arcc_off_ratchet, 'red'),
+    ('THE ONE THAT MATTERS — a study newly carrying the 1/g construction',
+     _new_signature, 'red'),
+    ('a real 1/g construction with its allowance removed', _signature_off_ratchet, 'red'),
     ('a terminal that stopped being readable [R-ENF-04]', _newly_unreadable, 'red'),
     ('the ratchet lists a ticker with no study on disk [R-ENF-04]', _ratchet_grew, 'red'),
     ('no study directories at all [R-ENF-04]', _empty_population, 'red'),
     ('directories present, every terminal dark [R-ENF-04]', _all_terminals_dark, 'red'),
     ('terminal growth at or above the terminal rate', _growth_above_rate, 'red'),
     ('CLEAN — the repository as it stands', _clean_untouched, 'green'),
-    ('CLEAN — a terminal moved FURTHER ABOVE its floor', _clean_above_floor, 'green'),
+    ('CLEAN — a terminal BELOW the NOPAT/W diagnostic (inverted on purpose)',
+     _clean_below_floor, 'green'),
     ('CLEAN — a terminal sitting EXACTLY on its floor', _clean_at_the_floor, 'green'),
 ]
 
