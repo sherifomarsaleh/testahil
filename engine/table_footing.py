@@ -49,6 +49,13 @@ reader cannot reproduce is indistinguishable from one that is wrong.
 """
 import re
 
+# AN "OF WHICH" ROW IS A BREAKDOWN OF THE LINE ABOVE IT, NOT A COMPONENT BESIDE IT.
+# Counting both double-counts the sub-item and condemns a balance sheet that foots exactly:
+# PHDC's prints non-current assets, four "of which" lines, current assets and a total that
+# IS their sum over the two parent lines. A third table shape the first draft did not know,
+# found the same way as the other two — by running it over the book and looking.
+SUBITEM_RX = re.compile(r'^\s*(of which|o/w|thereof|which includes)\b', re.I)
+
 TOTAL_RX = re.compile(
     r'^\s*(total\b|totals\b|sum\b|subtotal\b|weighted average\b|blended\b|'
     r'net\s+(?:total|sum)\b)', re.I)
@@ -85,6 +92,13 @@ def parse_cell(text):
         v = float(raw)
     except ValueError:
         return None
+    # A BARE FOUR-DIGIT YEAR IS A DATE, NOT A FIGURE. "Jan 2026" and "FY2025" both parse as
+    # numbers under any reader that tolerates a prefix, and a date COLUMN then reads as a
+    # numeric one — which condemned an input register whose "as of" column happens to sit
+    # beside a row labelled "Total equity risk premium". The header bug had the same cause
+    # and was fixed by never walking into row 0; a date column needs this as well.
+    if (not m.group(2)) and ',' not in t and 1900 <= v <= 2100 and float(v).is_integer():
+        return None
     return (-v if neg else v), len(m.group(2) or '')
 
 
@@ -116,7 +130,7 @@ def check_table(rows, min_components=2):
         label = (row[0] if row else '') or ''
         if not TOTAL_RX.match(label):
             continue
-        weighted = bool(WEIGHTED_RX.match(label))
+        weighted = bool(WEIGHTED_RX.match(label))  # kept: documents the label class
         for j in range(1, len(row)):
             cell = parse_cell(row[j])
             if cell is None:
@@ -131,6 +145,10 @@ def check_table(rows, min_components=2):
             # four-digit component and condemns a table that foots perfectly. The negative
             # control caught this on a legitimate balance sheet.
             while k >= 1:
+                _lab = (rows[k][0] if rows[k] else '') or ''
+                if SUBITEM_RX.match(_lab):
+                    k -= 1                    # a breakdown of the line above, not a peer
+                    continue
                 c = parse_cell(rows[k][j]) if j < len(rows[k]) else None
                 if c is None:
                     break
@@ -160,7 +178,14 @@ def check_table(rows, min_components=2):
                         break
                 if ok:
                     break
-                if weighted:
+                # A WEIGHTED MEAN IS TRIED FOR ANY TOTAL LABEL, NOT ONLY A "WEIGHTED" ONE.
+                # A row labelled TOTAL is legitimately a SUM in one column and a weighted
+                # MEAN in another of the same table: AMOC's product table totals tonnes and
+                # value down their columns and carries a blended realisation per tonne
+                # beside them, under one "TOTAL". Restricting the mean to labels containing
+                # the word "weighted" was this instrument assuming tables label their own
+                # arithmetic, which they do not.
+                if True:
                     for cand in (comps, leaf):
                         if len(cand) < min_components:
                             continue
@@ -175,7 +200,16 @@ def check_table(rows, min_components=2):
                             if abs(tw) < 1e-12:
                                 continue
                             wm = sum(x[0] * v for x, (_, v) in zip(ws, cand)) / tw
-                            if _close(wm, total, band * (len(cand) + 1)):
+                            # THE WEIGHT COLUMN'S OWN ROUNDING PROPAGATES INTO THE MEAN.
+                            # Ignoring it condemned a product table whose tonnages print to
+                            # three decimals against realisations in whole pounds: the mean
+                            # came out five units from the printed figure on a band of four.
+                            # A weighted mean quoted against rounded weights cannot be
+                            # pinned tighter than the weights allow, which is arithmetic
+                            # about the page rather than a loosened threshold.
+                            wdp = max(x[1] for x in ws)
+                            wband = abs(total) * 0.5 * 10 ** -wdp * len(cand) / abs(tw)
+                            if _close(wm, total, band * (len(cand) + 1) + wband):
                                 ok = True
                                 break
                         if ok:
