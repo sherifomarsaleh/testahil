@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**165 lessons**, of which 138 bind on every study, 20 on a class of company, and 7 on a single name.
+**167 lessons**, of which 140 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 90 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 92 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1458,6 +1458,26 @@ Where a bias compounds with the horizon there is usually more than one rate it c
 > **What it cost, or how we know.** Two rates could carry a compounding scale error: the inflation path the explicit window escalates on, and the terminal construction. Handing the model the true inflation path at every origin removes 11% of the pooled driver error and leaves 89% standing, which RULES THE EXPLICIT WINDOW'S ESCALATOR OUT as the general cause and is evidence FOR the terminal attribution rather than against it. What the inflation path does explain is concentrated and legible: pound-denominated cost and revenue lines on names whose currency moved a long way, which is a fact about one economy and two companies rather than a property of the method.
 
 > **What would overturn it.** A third rate — a demand path, a margin glide — that removes more of the residual than the terminal construction does when it is tested the same way.
+
+### L-245 · TWO CORRECTIONS TO ONE FORMULA ARE NOT TWO INDEPENDENT CORRECTIONS WHEN THEY SIT ON DIFFERENT BASES. Pricing one with the other left at its old value gives a number that is neither construction, and it looks perfectly reasonable.
+
+The temptation is strong precisely where one half is cheap and the other is not: the cheap half gets priced, the expensive half gets deferred, and the interim figure is quoted as a lower bound when it is not a bound at all.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the terminal census, 03-Sep-2026
+
+> **What it cost, or how we know.** [R-TERM-01] names two errors in the retired terminal: the charge, whose implied replacement cycle is 1/g rather than a fact about the asset, and a terminal that never adds book depreciation back though NOPAT is already net of it. Correcting the first needs a life sourced from each company's own accounting-policies note — real research, one name at a time. The second appears to need nothing, so a first draft priced it alone across thirteen terminals and reported the pooled terminal rising 69.6%. IT IS WRONG. g x IC is a NET investment figure — the new capital needed to grow at g — so a construction charging it has already netted depreciation, and adding book D&A on top double-counts; the corrected construction charges maintenance GROSS at replacement cost, which is exactly why it must add book D&A back first. Checked against the one worked case rather than reasoned about: on ARCC the add-back-alone gives 2,445.3 against the module's own 3,310.1, 26% short. What the census prints instead is the one inference that needs no sourced life AND ONLY RUNS ONE WAY — a terminal charging less than its own book depreciation cannot be maintaining the asset base, because book depreciation is struck on historical cost and replacement costs more.
+
+> **What would overturn it.** A decomposition of the terminal into two charges that are on the same basis, where each half can be priced with the other held.
+
+### L-246 · THE TERMINAL DEFECT IS PESSIMISTIC IN EGYPT AND OPTIMISTIC IN THE GULF, AND THE SIGN IS SET BY THE CURRENCY RATHER THAN BY THE COMPANY.
+
+A defect with a single name — 'the model is too pessimistic' — invites a correction with a single sign, and a correction with a single sign applied to a book that splits both ways makes half of it worse. The evidence for the diagnosis came almost entirely from Egyptian names, where the sign happens to be negative.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the terminal census, 03-Sep-2026
+
+> **What it cost, or how we know.** The retired charge is g x IC, so the implied replacement cycle is 1/g — 14.3 years at a 7% terminal inflation and 66.7 at 1.5%. THE SAME PLANT IS CHARGED FOUR AND A HALF TIMES AS HARD FOR BEING IN EGYPT RATHER THAN THE EMIRATES. Measured across the readable book: SEVEN OF THIRTEEN terminals charge LESS than their own book depreciation — AMR 0.12x, DU 0.14x, SAVOLA 0.21x, AIRARABIA 0.23x, FERTIGLOBE 0.26x, ADNOCDIST 0.31x, ADNOCLS 0.32x — and every one of them is in a pegged low-inflation market. Those terminals are OVER-valued, not under. The six charging more than book depreciation are AMOC, ARCC, MODON, SCEM, RIYADHCABLE and SWDY, and the worked correction on ARCC raised its value while the measured correction on ADNOCLS would LOWER it. Since 44 of the 90 covered names are Gulf, the defect is optimistic on most of the book.
+
+> **What would overturn it.** A pegged-market name whose disclosed useful life turns out to exceed 1/g — which would mean the under-charge is not general to low-inflation markets.
 
 
 ---

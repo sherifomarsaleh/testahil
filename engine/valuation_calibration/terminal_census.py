@@ -432,6 +432,89 @@ def _fv_at(rec, tv_new):
     return (rec['equity'] + (tv_new - rec['tv']) * rec['df_tv']) / sh
 
 
+def implied_lives():
+    """EVERY IMPLIED ASSET LIFE A MODEL CARRIES, PRINTED SIDE BY SIDE. No pricing claim.
+
+    A model states an asset life in three places without ever writing one down, and
+    [R-TERM-01]'s worked case found the three disagreeing by 2.8x inside one document:
+
+      the TERMINAL charge      g x IC gives a replacement cycle of 1/g
+      the EXPLICIT window      its own terminal-year capex against the same IC
+      the ACCOUNTING POLICIES  the company's own disclosed useful life
+
+    Only the third is a fact about the asset. This prints the first two for every readable
+    terminal, because both come from figures a study already publishes; the third has to be
+    sourced from that company's own note, one name at a time, and is quoted here only where
+    a study has committed it.
+
+    WHY THIS FUNCTION DOES NOT PRICE THE CORRECTION, AND THE REASON IS THE INTERESTING PART.
+    [R-TERM-01] names TWO errors — the charge, and a terminal that never adds book D&A back
+    though NOPAT is already net of it — and it is tempting to price the SECOND alone,
+    because it needs nothing sourced: add book D&A to the published terminal and see what
+    moves. A first draft of this module did exactly that and reported the pooled terminal
+    rising 69.6%. IT IS WRONG, AND IT IS WRONG IN A WAY THAT LOOKS LIKE ARITHMETIC.
+
+    g x IC IS A NET INVESTMENT FIGURE — the new capital needed to grow at g — so a
+    construction charging it has ALREADY netted depreciation, and adding book D&A on top
+    double-counts. The corrected construction charges maintenance GROSS, at replacement
+    cost over a disclosed life, which is why it must add book D&A back first. The two
+    charges are on different bases and the halves do not separate. Checked against the one
+    worked case rather than reasoned about: on ARCC the add-back-alone gives 2,445.3
+    against the module's own 3,310.1, 26% short.
+
+    THE GENERAL POINT, WHICH IS NOT ABOUT DEPRECIATION: two corrections to one formula are
+    not two independent corrections when they sit on different bases. Pricing one of them
+    with the other left at its old value produces a number that is neither the old
+    construction nor the new one, and it will look perfectly reasonable.
+    """
+    rows = [r for r in census() if 'charge' in r and r.get('g')]
+    if not rows:
+        raise SystemExit('no readable terminal exposes a charge — an empty result is not a '
+                         'clean result [R-ENF-04]')
+    print('\n  WHAT EACH TERMINAL CHARGES, AGAINST WHAT ITS OWN ACCOUNTS DEPRECIATE')
+    print('  {:<12}{:>9}{:>12}{:>12}{:>12}   {}'.format(
+        'ticker', '1/g', 'charge', 'book D&A', 'charge/D&A', 'disclosed life'))
+    print('  ' + '-' * 76)
+    under = []
+    for r in sorted(rows, key=lambda r: r['ticker']):
+        dna, ch = r.get('dna_last'), r['charge']
+        ratio = (ch / dna) if dna else None
+        if ratio is not None and ratio < 1.0:
+            under.append(r['ticker'])
+        # THE DISCLOSED LIFE IS READ FROM THE STUDY'S OWN FILE, not from the census
+        # record, because a study that has been rebuilt through terminal_value.py commits
+        # it under terminal_record.inputs and the census's flat resolver never looks there.
+        # ARCC read 'not sourced' on the first run while carrying a 20-year life quoted to
+        # its own audited note — the census reporting a gap that had already been closed.
+        disc = None
+        _nf = os.path.join(REPO, 'engine', '%s_study' % r['ticker'].lower(),
+                           'study_numbers.json')
+        if os.path.exists(_nf):
+            try:
+                disc = ((json.load(open(_nf)).get('terminal_record') or {})
+                        .get('inputs', {}).get('useful_life_years'))
+            except Exception:
+                disc = None
+        print('  {:<12}{:>9.1f}{:>12,.0f}{:>12}{:>12}   {}'.format(
+            r['ticker'], 1.0 / r['g'], ch,
+            ('{:,.0f}'.format(dna)) if dna else '—',
+            ('%.2fx' % ratio) if ratio is not None else '—',
+            ('%.0f yrs' % disc) if disc else 'not sourced'))
+    print('\n    1/g IS A FACT ABOUT A CURRENCY, NOT ABOUT AN ASSET: 14.3 years at a 7%')
+    print('    terminal inflation and 66.7 at 1.5%, so the same plant is charged four and')
+    print('    a half times as hard for being in Egypt rather than the Emirates.')
+    print()
+    print('    THE ONE INFERENCE THAT NEEDS NO SOURCED LIFE, AND IT ONLY RUNS ONE WAY: a')
+    print('    terminal charging LESS than its own book depreciation cannot be maintaining')
+    print('    the asset base, because book depreciation is struck on HISTORICAL cost and')
+    print('    replacing the asset costs more than that. It says nothing about a terminal')
+    print('    charging more — that one needs the disclosed life. On this book %d of %d'
+          % (len(under), len([r for r in rows if r.get('dna_last')])))
+    print('    terminals charge less than their own book depreciation: %s.'
+          % ', '.join(under))
+    return rows
+
+
 def report():
     rows = census()
     read = [r for r in rows if 'unreadable' not in r]
@@ -505,3 +588,4 @@ def report():
 
 if __name__ == '__main__':
     report()
+    implied_lives()
