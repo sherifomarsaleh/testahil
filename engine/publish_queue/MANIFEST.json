@@ -7,9 +7,9 @@
    "report": "engine/amoc_study/AMOC_Valuation_Study_01-09-2026_public.pdf",
    "workbook": "engine/amoc_study/AMOC_Valuation_Model_01092026_public.xlsx",
    "fair": {
-    "base": 8.64,
-    "bear": 5.53,
-    "full": 12.48
+    "base": 9.9142,
+    "bear": 4.9284,
+    "full": 16.7253
    },
    "report_bytes": 846551,
    "workbook_bytes": 133282
@@ -31,9 +31,19 @@
    "report": "engine/egch_study/EGCH_Valuation_Study_01-09-2026.pdf",
    "workbook": "engine/egch_study/EGCH_Valuation_Model_01092026.xlsx",
    "fair": {
-    "base": 3.76,
-    "bear": 0.0,
-    "full": 15.47
+    "base": null,
+    "bear": -2.6124650988103313,
+    "branches": [
+     {
+      "label": "Cash-flow lens, capital programme carried through",
+      "value": -1.0621217844282123
+     },
+     {
+      "label": "Cash-flow lens, capital programme stopped",
+      "value": 2.818216074465918
+     }
+    ],
+    "full": 2.818216074465918
    },
    "report_bytes": 1643818,
    "workbook_bytes": 46425

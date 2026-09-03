@@ -52,6 +52,43 @@
     "must_contain": "resolved_03_09_2026"
    },
    "note": "THE CASE THIS RULE WAS WRITTEN FOR. The principal supplied both series on the morning of 3 September and one supplied figure was found wrong and corrected against the CBE decision record. Six origins went live. Hours later this session ASKED FOR THEM AGAIN, because it read main and the answer was on the calibration session's branch. The gate now re-checks this entry's marker across every live ref on every run, so the same re-ask goes RED instead of reaching the principal."
+  },
+  {
+   "key": "EGX-ohlc-refresh-arcc-amoc-egch",
+   "opened": "2026-09-03",
+   "cls": "missing_data",
+   "question": "A fresh OHLC export for the EGX names whose libraries stop at 6 August 2026 — ARCC, AMOC, EGCH and the others listed by the gap gate's price basis. Without it the house's LATEST KNOWN price is four weeks old and [R-GAP-01] cannot audit a gap it cannot see.",
+   "routes": [
+    {
+     "route": "the persistent library itself, engine/raw_ohlc/EG/*.csv, read newest-first",
+     "when": "2026-09-03",
+     "outcome": "ARCC, AMOC and EGCH stop at 06-08-2026; TMGH and PHDC reach 23-08-2026. Confirmed by reading the files, not a manifest.",
+     "rerun": true
+    },
+    {
+     "route": "the principal's own figures, supplied in chat 03-09-2026",
+     "when": "2026-09-03",
+     "outcome": "ARCC 76.81 and AMOC 13.43 at 01-09, against library closes of 59.00 and 9.10 — moves of +30.2% and +47.6% the library never saw. Recorded as evidence of the gap, NOT written into the library: a price typed from a chat message is not a vendor export and would enter a calibration panel as one.",
+     "rerun": false
+    },
+    {
+     "route": "every free web route to EGX closes, as recorded for the CBE series",
+     "when": "2026-09-03",
+     "outcome": "the same proxy refusals; and a price series assembled from a rendered page is not the vendor format the libraries and Step 0.0 expect.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 22,
+   "why_only_the_principal": "The OHLC libraries are supplied by the principal's own vendor export and always have been; this is the same shape of file they already send. No route available here produces one.",
+   "done_meanwhile": "The gap gate was re-pointed at the latest known price per its own rule text rather than at the spot each study froze at strike, and it now prints the age of the library it compared against, so a stale comparison reports as stale instead of passing in silence. The finding on ARCC and AMOC is recorded with its arithmetic.",
+   "default_if_no_answer": "Continue on the 6-August library and state its date wherever a gap is quoted; do NOT type the supplied prices into the library, and do not audit ARCC or AMOC at a price the house cannot date.",
+   "default_date": "2026-09-10",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/raw_ohlc/EG/ARCC.csv",
+    "must_contain": "09/01/2026"
+   },
+   "resolves_when_note": "the 1 September 2026 session, the date the principal's own quoted price carries. The first marker written here was '/2026', which the file already contained — the gate refused it immediately, which is the clause this register exists for working on the person writing the register."
   }
  ]
 }

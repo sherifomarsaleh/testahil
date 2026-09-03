@@ -150,6 +150,54 @@ def read_branches(sdir):
     return []
 
 
+
+# ---------------------------------------------------------------- latest known price
+#
+# [R-GAP-01] SAYS "THE LATEST KNOWN MARKET PRICE" AND THIS GATE WAS READING THE SPOT
+# THE STUDY RECORDED AT STRIKE. Those are the same number on the day a study is
+# built and diverge every day after, so a study struck on a stale library passed
+# this gate forever — and the staler the library, the more certainly it passed.
+#
+# Measured on 3 September 2026, on prices the principal supplied: ARCC was struck
+# at 59.00 on 6 August and had traded to 76.81, AMOC struck at 9.10 and traded to
+# 13.43. Against their struck spots the gate read -9.4% and +8.9% and stayed
+# silent; against the market it was asked to compare with, they are -30.4% and
+# -26.2%, both deep in the high-prior-of-defect region this rule exists to audit.
+# The gate was not wrong about its arithmetic. It was reading the wrong price.
+#
+# The house's own price source is the persistent OHLC library, so that is what is
+# read, newest row first, and THE DATE IS PRINTED BESIDE THE FIGURE — a library
+# four weeks old still yields a stale comparison, and the honest fix is to say how
+# old rather than to pretend a strike-date spot is current. Where no library
+# resolves, the struck spot is used and the record says so; that is a fallback,
+# never a preference.
+def latest_known_price(ticker):
+    """(price, date, source) from the persistent OHLC library, or (None, None, why)."""
+    hits = glob.glob(os.path.join(ENGINE, 'raw_ohlc', '*', '%s.csv' % ticker.upper()))
+    if not hits:
+        return None, None, 'no OHLC library for %s' % ticker
+    try:
+        with open(hits[0], encoding='utf-8', errors='replace') as fh:
+            rows = [l for l in fh.read().splitlines() if l.strip()]
+    except Exception as e:
+        return None, None, 'library unreadable: %s' % e
+    # the libraries are written newest-first; the header, if any, is not a date
+    for line in rows:
+        cells = [c.strip().strip('"') for c in line.split(',')]
+        if len(cells) < 2:
+            continue
+        m = re.match(r'^(\d{2})/(\d{2})/(\d{4})$', cells[0])
+        if not m:
+            continue
+        try:
+            px = float(cells[1].replace(',', ''))
+        except ValueError:
+            continue
+        return px, '%s-%s-%s' % (m.group(3), m.group(1), m.group(2)), os.path.relpath(
+            hits[0], ROOT)
+    return None, None, 'no dated row found in %s' % os.path.basename(hits[0])
+
+
 def read_answer(sdir):
     """The study's own central fair value and the spot it was struck at.
 
@@ -258,9 +306,27 @@ def main(argv):
                         'without pruning the list; neither is a pass.'
                         % (len(vanished), ', '.join(vanished)))
 
+    price_notes, price_basis = [], []
     for sdir in sdirs:
         tk = os.path.basename(sdir).replace('_study', '').upper()
         central, spot, route = read_answer(sdir)
+        # [R-GAP-01] compares against THE LATEST KNOWN MARKET PRICE. Prefer the
+        # house's own price library over the spot the study froze at strike; fall
+        # back to the struck spot only where no library resolves, and say which was
+        # used and how old it is, because a comparison against a four-week-old close
+        # is a weaker claim than one against today's and must not read the same.
+        if spot:
+            live, pxdate, pxsrc = latest_known_price(tk)
+            if live:
+                price_basis.append((tk, pxdate))
+                if abs(live - spot) > max(0.005 * spot, 0.005):
+                    price_notes.append('%s: struck at %.2f, latest known %.2f (%s)'
+                                       % (tk, spot, live, pxdate))
+                spot = live
+            else:
+                price_notes.append('%s: no price library (%s) — compared against the '
+                                   'struck spot, which is a fallback and not the rule'
+                                   % (tk, pxsrc))
         if central is None and spot:
             branches = read_branches(sdir)
             if branches:
@@ -394,6 +460,26 @@ def main(argv):
               'where the market is telling you something the model may have missed. Write '
               'the review, or fix what it would have found.')
         return 1
+    # THE PRICE BASIS IS ALWAYS STATED, NEVER ONLY WHEN IT DIVERGES. The gate now
+    # reads the price library, and on the calibrated names the library AGREES with
+    # every struck spot — because each study was struck on its library's last row.
+    # That is not the comparison being current: it means the house's own LATEST
+    # KNOWN price is as old as the library, and how old is exactly what a reader
+    # has to be told. A basis printed only on divergence would report a four-week-old
+    # comparison in silence, which is the staleness this reading was changed to end.
+    if price_basis:
+        print('\n  PRICE BASIS — [R-GAP-01] compares against the LATEST KNOWN price:')
+        print('    %d of %d studies compared against their own OHLC library'
+              % (len(price_basis), len(sdirs)))
+        for t, d in sorted(price_basis, key=lambda x: x[1])[:6]:
+            print('      %-12s last close %s' % (t, d))
+        print('    a library that has stopped is a stale comparison, not a passing one;'
+              '\n    only a fresh export moves it.')
+    if price_notes:
+        print('\n  where the struck spot and the latest known price DIVERGE:')
+        for n in price_notes:
+            print('    %s' % n)
+
     print('\nOK — no new violations.')
     return 0
 
