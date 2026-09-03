@@ -517,6 +517,16 @@ def _section_one(doc, sp, base, low, high, cds, prior):
         ["Gross profit", pick(BU["rows"], lambda x: "{:,.0f}".format(x["gross"]))],
         ["Gross margin (output)", pick(BU["rows"], lambda x: "%.1f%%" % (100*x["gross_margin"]))],
         ["Overheads", pick(BU["rows"], lambda x: "{:,.0f}".format(x["sga"]))],
+        # THE LINE THE MODEL DEDUCTS AND THE TABLE DID NOT PRINT [added 03-Sep-2026].
+        # Operating profit is gross - overheads - depreciation, and only the first two
+        # were printed: a reader adding the rows came out EGP 393mn above the printed
+        # operating profit in 2026, rising to 1,039mn by 2031. The figures were each
+        # individually correct and the defect lived in the RELATIONSHIP between them,
+        # which nothing inspecting figures one at a time can see — the same shape as
+        # ARCC's Table 3, which deducted provisions and credit losses and never printed
+        # the line. Found by reading the rendered page and adding the column up.
+        ["Depreciation and amortisation",
+         pick(BU["rows"], lambda x: "{:,.0f}".format(x["da"]))],
         ["Operating profit", pick(BU["rows"], lambda x: "{:,.0f}".format(x["ebit"]))],
         ["Finance cost", pick(BU["rows"], lambda x: "{:,.0f}".format(x["interest"]))],
         ["Profit before tax", pick(BU["rows"], lambda x: "{:,.0f}".format(x["npbt"]))],

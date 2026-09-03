@@ -3235,6 +3235,32 @@ LESSONS = [
       "A pipeline where the delivered document rebuilds its own figures, so a change to the "
       "drawing code cannot fail to reach the page."),
 
+    L("L-249", "ALL", None,
+      "AN INCOME STATEMENT'S SUBTOTALS ARE ROLL-UPS A READER ADDS UP, AND NOT ONE OF THEM "
+      "IS LABELLED AS A TOTAL.",
+      "A footing check keyed on the word 'total' is blind to the commonest table in this "
+      "house. Gross profit, operating profit, profit before tax and profit for the year are "
+      "every bit as much sums of the rows above them as a balance-sheet total is, and a "
+      "reader adds them up the same way — they just never say so.",
+      "reading PHDC's rendered page 4, 03-Sep-2026",
+      "build",
+      "PHDC's forecast income statement printed Revenue, Cost of revenue, Gross profit, "
+      "Overheads and Operating profit, and gross less overheads came out EGP 393mn ABOVE "
+      "the printed operating profit in 2026, rising to 1,039mn by 2031. The model computes "
+      "EBIT as gross less overheads less DEPRECIATION and the table never printed the "
+      "depreciation row. Every figure in it was individually correct and the defect lived "
+      "in the RELATIONSHIP between them — the same shape as ARCC's Table 3, which deducted "
+      "provisions and credit losses and never printed the line. TWO STUDIES, ONE DEFECT, "
+      "FOUND BOTH TIMES BY A PERSON READING. A chain check was built and MEASURED across "
+      "1,051 tables and 277 subtotal rows: 53% did not reproduce against revenue, 27% "
+      "against the previous subtotal — an income statement is a CHAIN, and re-pointing it "
+      "halved the rate without touching a tolerance. It was still one table in four, which "
+      "is the permanently-red check [R-ENF-02] forbids, so IT WAS NOT ADOPTED and the "
+      "measurement is recorded so the next attempt starts from it.",
+      "A discriminator that tells a currency component from a volume or per-unit row "
+      "without relying on label words — which is what the residue of that measurement turns "
+      "on."),
+
 ]
 
 
