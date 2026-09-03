@@ -57,19 +57,19 @@ def build() -> str:
 
     # ---- the four measured rows -------------------------------------------------
     rows = [
-        ("Phase 1 — build", "the artefacts the ten workstreams had to produce",
+        ("Phase 1 — the tools", "the modules the method needed, all present",
          bar(b["done"], b["total"]),
          "COMPLETE", "on day %s of a planned %d" % (dd.get("elapsed_days", "?"),
                                                     progress.PHASE1_PLANNED_WEEKS * 7),
          "done"),
-        ("Phase 1 — delivery", "the five test names: readable, reviewed, documents current",
+        ("Phase 1 — paperwork", "documents current and reviewed — NOT whether the answer is right",
          bar(dv["done"], dv["total"], "warn" if dv["done"] < dv["total"] else "go"),
          ("%d ARTEFACT%s STALE" % (dv["total"] - dv["done"],
                                     "" if dv["total"] - dv["done"] == 1 else "S")
           if dv["done"] < dv["total"] else "ALL CURRENT"),
          "named below" if dv["done"] < dv["total"] else "nothing outstanding",
          "warn" if dv["done"] < dv["total"] else "done"),
-        ("Phase 1 — acceptance", "Part E, and its third item is the instrument",
+        ("Phase 1 — proof the method works", "the one row that would tell you the answers are right",
          bar(met, len(acc), "warn"),
          ("INSTRUMENT RUNNING" if a3 and a3["state"] == "RUNNING" else "NO DATE"),
          ("%d of %d origins live" % (a3.get("origins_usable", 0),
@@ -185,6 +185,29 @@ def build() -> str:
            e(fb["subject"]))
         for fb in progress.live_branches()[:6])
 
+    MEANING = {
+        "inside": "the market sits inside what we publish — no disagreement to audit",
+        "above": "we are ABOVE the market: we may be over-estimating",
+        "below": "we are BELOW the market: we may be under-estimating",
+    }
+    deviation = ""
+    for n in dv["names"]:
+        g = n.get("gap")
+        if g is None:
+            deviation += ('<tr><th scope="row">%s</th><td class="num">%s</td>'
+                          '<td class="num">%s</td><td class="num">—</td>'
+                          '<td class="notes">%s</td></tr>'
+                          % (e(n["ticker"]), "two-sided",
+                             "%.2f" % n["spot"] if n.get("spot") else "—",
+                             "published as two branches; both sit far below the market"))
+            continue
+        kind = "inside" if abs(g) <= 0.10 else ("above" if g > 0 else "below")
+        deviation += ('<tr><th scope="row">%s</th><td class="num">%.2f</td>'
+                      '<td class="num">%.2f</td><td class="num %s">%+.1f%%</td>'
+                      '<td class="notes">%s</td></tr>'
+                      % (e(n["ticker"]), n["central"], n["spot"],
+                         "up" if g > 0 else "down", g * 100, MEANING[kind]))
+
     commits = " · ".join("%s %d" % (k[5:], v)
                          for k, v in (dd.get("commits_by_day") or {}).items())
 
@@ -193,6 +216,7 @@ def build() -> str:
         gen=e(gen), rows=row_html, chain=chain_html, scenarios=sc,
         acc=acc_html, five=five, markets=mk,
         rate_note=e(dd.get("rate_note", "")), commits=e(commits), flight=flight,
+        deviation=deviation,
         p2done=p2.get("done", 0), p2total=p2.get("total", 0),
         start=e(dd.get("start", "—")), elapsed=e(dd.get("elapsed_days", "—")),
     ).items():
@@ -392,6 +416,28 @@ footer code{font-family:var(--mono);font-size:13px;background:var(--sunk);
   </header>
 
   <div class="rows">{{rows}}</div>
+
+  <section>
+    <h2>The measure that matters</h2>
+    <p class="intro">Every percentage above is <strong>process hygiene</strong> — does a
+      document exist, is it current, does a review exist. <strong>None of it says a fair
+      value is right.</strong> This does: what each name is worth against what it actually
+      trades at. A programme that scored 100% on the rows above while every name sat far
+      from its market price would have proved nothing, and that is precisely the defect
+      this reassessment was called to fix.</p>
+    <div class="panel">
+      <div class="tw"><table>
+        <thead><tr><th>Name</th><th class="num">Fair value</th><th class="num">Market</th>
+          <th class="num">Deviation</th><th>What it means</th></tr></thead>
+        <tbody>{{deviation}}</tbody>
+      </table></div>
+      <p class="note">Prices are the principal's dated export of 2–3 September 2026.
+      <strong>Four of the five sit outside 10% of the market.</strong> Under [R-GAP-01]
+      each of those is a claim about the world that must be audited before it ships — not
+      because the market is right, but because a large disagreement is where a defect is
+      most likely to be hiding. On AMOC, auditing a 39% discount found six.</p>
+    </div>
+  </section>
 
   <section>
     <h2>When each phase can end</h2>
