@@ -19,6 +19,9 @@ from docx_base import *          # noqa: F401,F403
 from docx_base import (doc, P, H1, H2, rich, bullet, table, figure, box, caption,
                        masthead, INK, GREY, BRASS, GOLD, F_CREAM, F_PANEL, Pt, Inches)
 
+sys.path.insert(0, os.path.join(HERE, '..'))
+import site_data
+
 D = json.load(open('study_numbers.json'))
 _B = json.load(open('beta_result.json'))
 BETA = dict(_B['adopted'], _peer_list=_B['peer_betas_usable'])
@@ -36,29 +39,14 @@ S0 = json.load(open('step0_result.json'))
 # quoting the wrong one. It reads the generated record instead, which is the single
 # source that rule names.
 def _band_record(tk):
-    """Read through a REAL JavaScript parse, never a regex over the file [R-ENF-03].
+    """The published band record, through the SHARED reader [R-ENF-03].
 
-    This function matched the record with a regular expression until 03-Sep-2026. That is
-    the exact construction the standing rule names: re.search returns the FIRST match and a
-    JavaScript object literal takes the LAST, so a duplicated key means the tool inspects
-    the half the reader never sees — which is how a ticker page once published a support
-    above its own close while both gates reported it clean. EGCH's band_record.py already
-    did this correctly; this study did not, and a shared discipline implemented in one
-    place is a discipline that binds in one place.
+    This function matched the record with a regular expression until 03-Sep-2026, and then
+    with its own inline node call. Both were superseded the same day by engine/site_data.py,
+    because eleven files across the book read assets/data.js and NINE did it by regex — a
+    rule implemented in two places is a rule that binds in two places.
     """
-    import subprocess
-    _p = os.path.join(HERE, '..', '..', 'assets', 'data.js')
-    _js = ("const fs=require('fs');const vm=require('vm');"
-           "const src=fs.readFileSync(%r,'utf8');const ctx=vm.createContext({});"
-           "vm.runInContext(src+';globalThis.__B=BANDS;',ctx);"
-           "const b=ctx.__B[%r];if(!b)throw new Error('no BANDS entry');"
-           "console.log(JSON.stringify(b));" % (_p, tk))
-    _r = subprocess.run(['node', '-e', _js], capture_output=True, text=True)
-    if _r.returncode != 0:
-        raise SystemExit('no published band record for %s. [R-CAL-02] says what a '
-                         'reader is shown, and this study cannot show it without one. '
-                         '%s' % (tk, _r.stderr.strip()[:200]))
-    return json.loads(_r.stdout)
+    return site_data.band_record(tk)
 
 
 BAND = _band_record('ARCC')
@@ -1095,8 +1083,22 @@ for k in list(LN['values']) + ['Normalised earnings']:
     rows.append([k, n2(LR[k]['bear']), n2(LR[k]['base']), n2(LR[k]['bull']), _role,
                  sg(LR[k]['base'] / SPOT - 1)])
 table(rows, [2.00, 1.00, 1.00, 1.00, 0.90, 1.02], band_rows={1})
-caption('Table 19 — Each lens as a range. The disagreement between them is information, '
-        'not noise.')
+_FA = D['forecast_anchor']
+_P = LN['primary']
+caption(f'Table 19 — Each lens as a range. The disagreement between them is information, '
+        f'not noise. THE CASH-FLOW RANGE IS ALMOST ENTIRELY DOWNSIDE, AND THAT IS A CLAIM '
+        f'RATHER THAN AN ACCIDENT: the forecast opens at '
+        f'{pc(_FA["first_forecast_rate"], 2)} against a latest audited '
+        f'{pc(_FA["latest_reviewed_rate"], 2)} — within '
+        f'{n2(abs(_FA["latest_reviewed_rate"] - _FA["first_forecast_rate"]) * 100)} of a '
+        f'point of the best year this company has ever filed — and rises from there to '
+        f'{pc(_FA["forecast_path"][-1], 2)}. There is almost nothing above it left to reach '
+        f'for, which is why the bull corner sits only '
+        f'{sg(LR[_P]["bull"] / LR[_P]["base"] - 1)} above the base while the bear corner, '
+        f'struck on this company\'s own FY2023 margin, sits '
+        f'{sg(LR[_P]["bear"] / LR[_P]["base"] - 1)} below it. A forecast sitting at the top '
+        f'of a filed record is a claim a reader is owed plainly, not one to be inferred from '
+        f'the shape of a range.')
 _above = sorted([k for k in LN['values'] if LN['values'][k] > SPOT],
                 key=lambda k: -LN['values'][k])
 _below = sorted([k for k in LN['values'] if LN['values'][k] <= SPOT],
@@ -1145,16 +1147,21 @@ P(f'This edition does not resolve that by weighting. A previous one blended the 
   f'ceiling can read EGP {n2(LN["values"]["Asset / replacement cost"])} off the same '
   f'table and reach the opposite conclusion; the case against doing so is the '
   f'{n1(IN["egy_revival_mt"])}Mt restart programme, and it is a testable one.')
-P(f'Against the technical picture, the two readings are in tension. The share is above its '
-  f'entire moving-average stack on a rising 200-day and {pc(1-TECH["pct_off_high"], 0)} of '
-  f'of its 52-week intraday high — 98% OF that high, and '
-  f'{pc((SPOT-35.01)/(60.40-35.01), 0)} of the way UP the range, which are different '
-  f'statistics and the earlier edition ran them together — while the two multiple-based '
-  f'lenses put fair value below the '
-  f'current price and the two forward-looking ones put it above. Momentum sits with the '
-  f'cash-flow case here rather than against it, and the disagreement that remains is '
-  f'between that case and the multiple the market is prepared to pay. This study takes no '
-  f'view on which resolves first.')
+_nbelow = sum(1 for v in LN['values'].values() if v < SPOT)
+_nlens = len(LN['values'])
+P(f'Against the technical picture, the two readings are in tension, and the tension is '
+  f'entirely one-sided. On the price history the read was built from, the share was above '
+  f'its whole moving-average stack on a rising 200-day and at '
+  f'{pc(1 - TECH["pct_off_high"], 0)} of its 52-week intraday high of EGP '
+  f'{n2(TECH["hi_52w"])}. The latest close of EGP {n2(SPOT)} is '
+  f'{sg(SPOT / TECH["hi_52w"] - 1)} beyond even that high, so the tape has run past every '
+  f'level the structure identified. Against it, '
+  f'{"every one of" if _nbelow == _nlens else "%d of" % _nbelow} this study\'s '
+  f'{n0(_nlens)} valuation lenses sits BELOW the market, the nearest at '
+  f'{sg(max(LN["values"].values()) / SPOT - 1)} — there is no reading here that supports '
+  f'the price, which is a stronger and less comfortable statement than any single lens '
+  f'makes. Momentum is with the market and value is not, and this study takes no view on '
+  f'which resolves first.')
 
 # ============================== 5 ============================================
 H1('5  Catalysts to watch')
@@ -1195,25 +1202,39 @@ H1('6  Reading the probability zones')
 P('The distribution in section 3 is easier to use as zones than as percentiles. The '
   'following divides the three-month outcome space into four bands and states what each '
   'would mean, without predicting which occurs.')
+# THE BOUNDARIES AND THE PROBABILITIES MUST SIT ON THE SAME CLOCK. Until 03-Sep-2026 the
+# boundaries were struck at SPOT while the probabilities were the simulation's own
+# P(above the ANCHOR) — a distribution centred on 60.46 was made to say there was a 51%
+# chance of finishing above 77.00, roughly three times the truth, in the one table whose
+# entire purpose is to state probabilities. The anchor is the clock the simulation runs
+# on, so it is the clock the zones use, and it is named rather than called "spot".
 h3 = STK['horizons']['3M']['pct']
+_ANCH = STK['spot']
 rows = [['Zone', 'Three-month range (EGP)', 'Probability', 'What it would mean']]
 rows.append(['Lower tail', f'below {n2(h3["p5"])}', '5%',
-             'A break of the 48.10 support zone, most plausibly on a faster-than-assumed '
-             'capacity restart'])
-rows.append(['Below spot', f'{n2(h3["p5"])} – {n2(SPOT)}',
+             f'A break of the {n2(TECH["levels"]["sup"][2])} support zone, most plausibly '
+             f'on a faster-than-assumed capacity restart'])
+rows.append([f'Below the {n2(_ANCH)} anchor', f'{n2(h3["p5"])} – {n2(_ANCH)}',
              pc(1 - STK['horizons']['3M']['p_above'] - 0.05, 0),
              'The market converging toward the earnings-based lenses in this study'])
-rows.append(['Above spot', f'{n2(SPOT)} – {n2(h3["p95"])}',
+rows.append([f'Above the {n2(_ANCH)} anchor', f'{n2(_ANCH)} – {n2(h3["p95"])}',
              pc(STK['horizons']['3M']['p_above'] - 0.05, 0),
              'Momentum and the 2026 pricing environment continuing to lead the earnings case'])
 rows.append(['Upper tail', f'above {n2(h3["p95"])}', '5%',
              'A re-rating toward the asset lens, which would require the restart programme '
              'to be abandoned or delayed materially'])
-table(rows, [1.10, 1.55, 0.90, 2.55], size=8.8)
-caption('Table 20 — Zones, not forecasts. The four are exclusive and sum to 100%: each '
-        'tail is carved OUT of the band beside it rather than counted twice. The '
-        'probabilities come from the price map and are subject to the same over-width '
-        'caution as everything else in section 3.')
+table(rows, [1.55, 1.45, 0.90, 2.25], size=8.8)
+caption(f'Table 20 — Zones, not forecasts. The four are exclusive and sum to 100%: each '
+        f'tail is carved OUT of the band beside it rather than counted twice. EVERY '
+        f'BOUNDARY AND EVERY PROBABILITY HERE IS MEASURED FROM THE EGP {n2(_ANCH)} ANCHOR '
+        f'THE SIMULATION WAS RUN ON, not from the EGP {n2(SPOT)} latest close — the two are '
+        f'{sg(SPOT/_ANCH-1)} apart on this edition. Splitting the bands at the latest close '
+        f'while keeping probabilities computed from the anchor would state the chance of '
+        f'finishing above one number using the distribution of another, which is worse than '
+        f'saying nothing. The latest close sits above this cone\'s '
+        f'{n2(h3["p75"])} seventy-fifth percentile, and what a reader should take from that '
+        f'is that the price has moved well beyond the window this simulation was struck in, '
+        f'not that any zone below has become more likely.')
 
 # ============================== 7 ============================================
 H1('7  Caveats and what would change our mind')

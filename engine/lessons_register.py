@@ -2659,6 +2659,67 @@ LESSONS = [
       "A data file that is genuinely a flat key-value format with no possibility of a "
       "duplicate key, where a regex and a parser cannot disagree."),
 
+    L("L-223", "ALL", None,
+      "COUNT HOW MANY PLACES A RULE ACTUALLY BINDS BEFORE BELIEVING IT BINDS. The number is "
+      "usually smaller than the number of places it applies.",
+      "A rule written in prose is obeyed where somebody implemented it and nowhere else, and "
+      "nothing about the repository shows the difference — every file looks equally "
+      "compliant until somebody counts.",
+      "the site-data reader, 03-Sep-2026",
+      "build",
+      "[R-ENF-03] requires assets/data.js to be read through a real JavaScript parse and was "
+      "adopted after a reader found a ticker page publishing a support above its own close "
+      "while both gates reported it clean. Four weeks later, FORTY-FOUR files read the "
+      "site\'s data and THIRTEEN still did it by regular expression, including three engine "
+      "modules and four repository-level scripts. This is the fourth finding of identical "
+      "shape in one week — the prose-figure check implemented by one study of twenty-four, "
+      "the sweep register by sixteen of seventeen, the external-reader scrub as a "
+      "hand-maintained word list per study, and now this. The remedy is the same every "
+      "time: one shared instrument, and a gate that counts.",
+      "A rule whose implementations are structurally impossible to count, where the honest "
+      "answer is that it cannot be enforced from outside and must stay prose."),
+
+    L("L-224", "ALL", None,
+      "A PROBABILITY AND THE BOUNDARY IT IS MEASURED AGAINST MUST COME FROM THE SAME CLOCK. "
+      "This is the two-clock error in the one place where it changes what a reader believes "
+      "will happen.",
+      "A distribution simulated from one anchor answers questions about that anchor. Splitting "
+      "its bands at a different price and keeping its probabilities states the chance of "
+      "finishing above one number using the distribution of another — and the result looks "
+      "like an ordinary percentage.",
+      "ARCC 03-Sep-2026, reading the rendered PDF",
+      "build",
+      "The probability-zone table drew its boundaries at the latest close of 77.00 and took "
+      "its probabilities from the simulation\'s P(above the ANCHOR) of 59.00, so it "
+      "published a 51% chance of finishing above 77.00 from a distribution whose median is "
+      "60.46 and whose 95th percentile is 83.17 — roughly three times the truth, in the one "
+      "table whose entire purpose is to state probabilities. Every other figure on the page "
+      "was correct. Boundaries and probabilities now both sit on the anchor, the anchor is "
+      "named rather than called spot, and the caption states how far the latest close is "
+      "from it.",
+      "A study whose cone is re-struck at delivery on the same price the valuation uses, "
+      "where the two clocks coincide and the distinction cannot arise."),
+
+    L("L-225", "ALL", None,
+      "A SUMMARY SENTENCE IS A CLAIM AND IS RECOMPUTED, NOT REMEMBERED. Counts and directions "
+      "in prose go stale exactly like figures, and nothing looks less like a number than a "
+      "word.",
+      "Figure gates match numerals. A sentence saying which lenses sit above the price "
+      "contains no numeral at all, so it survives every re-strike untouched while the "
+      "lenses move underneath it.",
+      "ARCC 03-Sep-2026, reading the rendered PDF",
+      "build",
+      "One sentence in section 4 said \'the two multiple-based lenses put fair value below "
+      "the current price and the two forward-looking ones put it above\', two paragraphs "
+      "after the same page stated that EVERY lens sits below the market. Both could not be "
+      "true; the second was. The same sentence carried a typed 98% restating a computed "
+      "one, a typed 52-week high and low, a distance computed against spot while the high "
+      "and low came from a read four weeks earlier, and a duplicated word. It is now "
+      "computed from the lens values, and it says the uncomfortable thing plainly: no "
+      "reading in the study supports the price.",
+      "A study where the lens set is fixed and cannot move between editions, making a "
+      "written count safe."),
+
 ]
 
 

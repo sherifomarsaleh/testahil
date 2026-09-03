@@ -58,6 +58,9 @@ on:
       - 'scripts/check_table_footing.py'
       - 'scripts/check_table_footing_negative_control.py'
       - 'engine/table_footing.py'
+      - 'engine/site_data.py'
+      - 'scripts/check_site_data_reader.py'
+      - 'scripts/check_site_data_reader_negative_control.py'
       - 'scripts/check_new_study_gauntlet.py'
       - 'scripts/check_new_study_gauntlet_negative_control.py'
       - 'scripts/check_published_coverage.py'
@@ -149,6 +152,9 @@ on:
       - 'scripts/check_table_footing.py'
       - 'scripts/check_table_footing_negative_control.py'
       - 'engine/table_footing.py'
+      - 'engine/site_data.py'
+      - 'scripts/check_site_data_reader.py'
+      - 'scripts/check_site_data_reader_negative_control.py'
       - 'scripts/check_new_study_gauntlet.py'
       - 'scripts/check_new_study_gauntlet_negative_control.py'
       - 'scripts/check_published_coverage.py'
@@ -452,6 +458,23 @@ jobs:
       # (a header cell parsing 'FY2025' as 2025, and a dash walling off a component block)
       - name: Table-footing gate — negative control
         run: python3 scripts/check_table_footing_negative_control.py
+
+      # [R-ENF-03] assets/data.js is read through a REAL JavaScript parse, EVERYWHERE.
+      # The rule was adopted four weeks earlier, after a reader — not a check — found a
+      # ticker page publishing a support above its own close while both gates reported it
+      # clean: they used regular expressions, re.search returns the FIRST match, a
+      # JavaScript object literal takes the LAST, and the entry declared its levels twice.
+      # Measured on 03-Sep-2026: forty-four files read the site's data and THIRTEEN did it
+      # by regex. engine/site_data.py is the shared reader.
+      - name: Site-data reader gate
+        run: python3 scripts/check_site_data_reader.py
+
+      # and the proof it can go red, plus the clean cases that caught a real gap in its
+      # own first draft: a file using the SHARED reader never mentions data.js, so a
+      # population keyed on that string alone counted the offenders and none of the
+      # compliant files — and would have refused once the last offender was fixed
+      - name: Site-data reader gate — negative control
+        run: python3 scripts/check_site_data_reader_negative_control.py
 
       # THE PROPERTY THE WHOLE DESIGN RESTS ON, tested rather than assumed: a study
       # directory created tomorrow with nothing in it goes RED everywhere. That is a
