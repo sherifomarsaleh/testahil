@@ -62,7 +62,7 @@ def build() -> str:
          "COMPLETE", "on day %s of a planned %d" % (dd.get("elapsed_days", "?"),
                                                     progress.PHASE1_PLANNED_WEEKS * 7),
          "done"),
-        ("Phase 1 — delivery", "the five re-issued names, three checks each",
+        ("Phase 1 — delivery", "the five test names: readable, reviewed, documents current",
          bar(dv["done"], dv["total"], "warn" if dv["done"] < dv["total"] else "go"),
          ("%d ARTEFACT%s STALE" % (dv["total"] - dv["done"],
                                     "" if dv["total"] - dv["done"] == 1 else "S")
@@ -418,10 +418,16 @@ footer code{font-family:var(--mono);font-size:13px;background:var(--sunk);
       the method, not about any company.</p>
       <h3 style="margin-top:18px">Phase 1 — delivery</h3>
       <p class="note"><strong>Do the five test names have finished, current documents?</strong>
-      Three checks each: the study exposes a readable answer, its gap review audits the answer
-      the study actually publishes rather than a superseded one, and the publish queue holds
-      that same answer. Fifteen of fifteen. This is a currency check — it catches a document
-      or a queue still stating last week's number, which happened three times.</p>
+      Three checks each. <em>Readable</em> — the study exposes an answer at all, since an
+      unreadable study is unmeasured rather than clean. <em>Reviewed</em> — where the answer
+      sits more than 10% from the market price, a dated eight-heading audit exists and audits
+      the number the study <em>now</em> publishes, not a superseded one. <em>Documents
+      current</em> — the delivered report was built after the last time the answer moved.</p>
+      <p class="note">The third check used to be whether the publish queue's label recorded
+      the same figure. That is a label on a staging box nothing reads, and it does not deserve
+      equal standing with an audit that has found six real defects in a single study — three
+      unlike things are not equal because they happen to be three. It is now reported as a
+      note and never scored.</p>
       <h3 style="margin-top:18px">Phase 1 — acceptance</h3>
       <p class="note"><strong>Has the rebuilt method been shown to work?</strong> Six criteria,
       and the third is the instrument: the valuation calibration must show that the house is

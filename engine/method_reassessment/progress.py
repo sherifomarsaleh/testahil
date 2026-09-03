@@ -38,6 +38,7 @@ import datetime as dt
 import glob
 import json
 import os
+import re
 import subprocess
 import sys
 
@@ -180,9 +181,15 @@ def phase1() -> dict:
     built = [a for a in arts if os.path.exists(os.path.join(ROOT, a))]
 
     # (b) DELIVERY — the five re-issued names, three testable things each: the
-    # answer is readable, the gap review audits the answer the study now
-    # publishes, and the publish queue holds that same answer. Existence is not
-    # currency, and this programme found that shape three times.
+    # answer is READABLE, the gap review audits the answer the study NOW PUBLISHES,
+    # and the DELIVERED DOCUMENTS state that same answer. Existence is not currency,
+    # and this programme found that shape three times.
+    #
+    # The third check used to be whether the publish-queue manifest recorded the
+    # same figure — a label on a staging box that nothing reads. The principal
+    # challenged whether that deserved equal standing with the other two and it did
+    # not: three unlike things are not equal because they are three, which is the
+    # typed-weight mistake [R-LENS-03] retired. The queue label is now a note.
     manifest = {}
     mp = os.path.join(ENGINE, "publish_queue", "MANIFEST.json")
     if os.path.exists(mp):
@@ -211,8 +218,20 @@ def phase1() -> dict:
         spot = row["spot"]
         atoms_all += 3
         if central is None and spot and read_branches(sdir):
+            # A TWO-SIDED ANSWER IS A DECISION, NOT A MISSING ONE — but that excuses
+            # only the two checks that ask for a single central. It does NOT excuse
+            # the documents, and awarding all three here reported EGCH as fully
+            # delivered while its report still stated the weighted central the study
+            # had abandoned. A shortcut that skips the one check that would have
+            # failed is not a shortcut.
             row["two_sided"] = True
-            atoms_ok += 3          # a decision taken, not an artefact missing
+            atoms_ok += 2
+            ok_doc, why_doc = documents_current(tk)
+            row["documents"] = why_doc
+            if ok_doc:
+                atoms_ok += 1
+            else:
+                row["issues"].append(why_doc)
         elif central is None or not spot:
             row["issues"].append("no readable central/spot pair")
         else:
@@ -237,14 +256,25 @@ def phase1() -> dict:
                                         else "%.2f" % audited, central))
             else:
                 atoms_ok += 1
-            staged = manifest.get(tk)
-            if staged is None:
-                row["issues"].append("not staged to publish")
-            elif abs(staged - central) > tol:
-                row["issues"].append("publish queue holds %.2f against a committed %.2f"
-                                     % (staged, central))
-            else:
+            ok_doc, why_doc = documents_current(tk)
+            if ok_doc:
                 atoms_ok += 1
+            else:
+                row["issues"].append(why_doc)
+            row["documents"] = why_doc
+            staged = manifest.get(tk)
+            # THE QUEUE LABEL IS A NOTE, NOT A SCORED CHECK, on the principal's
+            # challenge of 3 September: it is a label on a staging box that nothing
+            # reads, and giving it a third of each name's weight inflated the score
+            # with bookkeeping. Reported where it disagrees; never counted.
+            if staged is None:
+                row["queue"] = "not staged"
+            elif abs(staged - central) > tol:
+                row["queue"] = ("the staging queue's label says %.2f against a committed "
+                                "%.2f — a mislabelled box, not a wrong publication"
+                                % (staged, central))
+            else:
+                row["queue"] = "label matches"
         names.append(row)
 
     # (c) ACCEPTANCE — Part E, and its third item is the instrument.
@@ -394,6 +424,96 @@ def _deliverables(sdir: str, ticker: str) -> dict:
         "bibliography": any_of(("bibliograph",), ("sources", ".docx")),
         "workbook": any_of(("valuation_model", ".xlsx")),
     }
+
+
+def documents_current(tk: str) -> tuple:
+    """Do the DELIVERED documents state the answer the study publishes?
+
+    THIS REPLACED A BOOKKEEPING CHECK, on the principal's challenge. The third
+    delivery test used to be whether the publish-queue manifest recorded the same
+    figure as the study — a label on a staging box that NOTHING READS. It was given
+    a third of the weight because three was a convenient number, which is the
+    typed-weight mistake [R-LENS-03] retired: three unlike things are not equal
+    because they are three.
+
+    What matters instead is what the principal actually receives. Measured on COMMIT
+    ORDER rather than on prose, because prose defeated three attempts: the newest
+    delivered document must have been built at or after the commit where the study's
+    central LAST CHANGED VALUE. Not "the numbers file changed" — adding a record to
+    it does not stale a document — but the answer itself moving.
+    """
+    sd = os.path.join(ENGINE, "%s_study" % tk.lower())
+    nf = os.path.join(sd, "study_numbers.json")
+    doc = _newest(os.path.join(sd, "%s_Valuation_Study_*.pdf" % tk))
+    if not os.path.exists(nf) or not doc:
+        return False, "no committed numbers file or no delivered report"
+
+    def central_at(sha):
+        blob = git("show", "%s:%s" % (sha, os.path.relpath(nf, ROOT)))
+        try:
+            j = json.loads(blob)
+        except Exception:
+            return "?"
+        meta = j.get("meta") or {}
+        for src in (j.get("central"), j.get("fair"), meta.get("central")):
+            if isinstance(src, (int, float)):
+                return round(float(src), 4)
+            if isinstance(src, dict):
+                for k in ("value", "central", "base", "mid"):
+                    if isinstance(src.get(k), (int, float)):
+                        return round(float(src[k]), 4)
+        return None
+
+    hist = git("log", "--format=%H|%ct", "--", os.path.relpath(nf, ROOT)).splitlines()
+    prev, moved = None, None
+    for line in hist:                       # newest first
+        sha, ct = line.split("|")
+        val = central_at(sha)
+        if prev is None:
+            prev = (val, ct)
+        elif val != prev[0]:
+            moved = prev
+            break
+        else:
+            prev = (val, ct)
+    moved = moved or prev
+    if not moved:
+        return False, "the central's history could not be read"
+    # AT THE FRONTIER, NOT IN THIS CHECKOUT. A rebuild done by another session
+    # lives on its branch until it merges, and a board that could not see it would
+    # report a document stale hours after it was fixed — the same two-surfaces
+    # disagreement this file was corrected for once already today.
+    best = None
+    for ref in ["HEAD"] + [b["branch"] for b in live_branches()]:
+        for f in git("ls-tree", "-r", "--name-only", ref,
+                     "engine/%s_study/" % tk.lower()).splitlines():
+            m = re.search(r"Valuation_Study_(\d{2})-(\d{2})-(\d{4}).*\.pdf$", f)
+            if not m:
+                continue
+            ct = git("log", "-1", "--format=%ct|%ad", "--date=short", ref, "--", f)
+            if not ct or "|" not in ct:
+                continue
+            sec, day = ct.split("|")
+            if best is None or int(sec) > int(best[0]):
+                best = (sec, day, ref)
+    if best is None:
+        return False, "no delivered report resolves on any live ref"
+    sec, day, ref = best
+    where = "" if ref == "HEAD" else " (on %s)" % ref.replace("origin/claude/", "")
+    if int(sec) >= int(moved[1]):
+        return True, "report built %s%s, after the answer last moved" % (day, where)
+    return False, ("the newest delivered report was built %s and the answer moved after "
+                   "it — it states a superseded number" % day)
+
+
+def _newest(pattern):
+    """The most recent file matching a dated pattern, by the date IN THE NAME."""
+    hits = []
+    for p in glob.glob(pattern):
+        m = re.search(r"(\d{2})[-_]?(\d{2})[-_]?(\d{4})", os.path.basename(p))
+        if m:
+            hits.append(("%s%s%s" % (m.group(3), m.group(2), m.group(1)), p))
+    return max(hits)[1] if hits else None
 
 
 def backtest_coverage() -> dict:
