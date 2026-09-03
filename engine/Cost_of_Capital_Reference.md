@@ -2,7 +2,7 @@
 
 **GENERATED from `engine/macro_paths/*.json` by `engine/build_coc_reference.py`. Never hand-edited.** Every figure below resolves from a committed macro path at build time; a number whose source has moved fails the build rather than printing stale. To change a figure, change the path file and re-run this.
 
-Rebuilt 2026-09-02. Read the live state, never this file from memory — it is regenerated whenever a path is re-sourced.
+Sourced 2026-08-20. Read the live state with `python3 engine/macro_path.py`, never this file from memory — it is regenerated whenever a path is re-sourced.
 
 
 ## What is held
@@ -46,7 +46,7 @@ Latest print: **14.90%** (July 2026, annual headline). Target: **7.0% ± 2.0pp**
 | | Value | As of |
 |---|---:|---|
 | Policy rate | 19.00% | 2026-08-20 |
-| Sovereign 10-year | 23.00% | 2026-08-06 (27 days old) |
+| Sovereign 10-year | 23.00% | 2026-08-06 |
 | Default spread, rating basis | 6.37% | |
 | Default spread, swap basis | 3.41% | |
 | Terminal cost of debt | 15.00% | long-run corporate norm |

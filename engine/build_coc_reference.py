@@ -20,6 +20,27 @@ import macro_path as MP                                          # noqa: E402
 OUT = os.path.join(HERE, "Cost_of_Capital_Reference.md")
 
 
+def _sourced_on():
+    """The latest as-of date across every sourced path — a property of the CONTENT.
+
+    Deliberately derived from the paths rather than from the clock, so this file
+    changes when the data changes and at no other time.
+    """
+    dates = []
+    for m in MP.MARKETS:
+        try:
+            p = MP.load(m)
+        except Exception:
+            continue
+        raw = getattr(p, "raw", {}) or {}
+        for d in (getattr(p, "sovereign_asof", None),
+                  ((raw.get("policy_rate") or {}).get("current") or {}).get("date"),
+                  ((raw.get("inflation") or {}).get("latest") or {}).get("date")):
+            if d:
+                dates.append(str(d))
+    return max(dates) if dates else "an undated path — which should not be possible"
+
+
 def main():
     L = []
     w = L.append
@@ -28,8 +49,22 @@ def main():
       "Never hand-edited.** Every figure below resolves from a committed macro path at "
       "build time; a number whose source has moved fails the build rather than printing "
       "stale. To change a figure, change the path file and re-run this.\n")
-    w("Rebuilt %s. Read the live state, never this file from memory — it is regenerated "
-      "whenever a path is re-sourced.\n" % dt.date.today().isoformat())
+    # NOT dt.date.today(). This file is compared BYTE-FOR-BYTE against its
+    # generator's output in CI, so any run-date stamp makes the gate go red at
+    # the next midnight without a single line of the repository having changed —
+    # the permanently-red check [R-ENF-02] forbids, failing by the calendar
+    # rather than by a defect. It did exactly that from 02-Sep-2026, and the
+    # signal that a gate had gone red was already being read as background noise
+    # by the time it was caught.
+    #
+    # The document's date is the date the PATHS were sourced, which is a fact
+    # about its content and moves only when the content does. A reader who wants
+    # to know how stale that is asks the live tool, not a generated file: a
+    # document that states a fact which moves must not be the thing that
+    # remembers it — the same rule the as-of stamps and the band record obey.
+    w("Sourced %s. Read the live state with `python3 engine/macro_path.py`, never "
+      "this file from memory — it is regenerated whenever a path is re-sourced.\n"
+      % _sourced_on())
     w("\n## What is held\n")
     w("| Market | State | Regime | Currency |")
     w("|---|---|---|---|")
@@ -67,8 +102,11 @@ def main():
         w("|---|---:|---|")
         w("| Policy rate | %.2f%% | %s |"
           % (100 * p.policy_rate, p.raw["policy_rate"]["current"]["date"]))
-        w("| Sovereign 10-year | %.2f%% | %s (%d days old) |"
-          % (100 * p.sovereign_10y, p.sovereign_asof, p.sovereign_age_days()))
+        # The as-of date, never an age in days: an age is measured against today
+        # and rots nightly inside a byte-compared artefact. Staleness against the
+        # 14-day refusal is a LIVE question and macro_path.py answers it.
+        w("| Sovereign 10-year | %.2f%% | %s |"
+          % (100 * p.sovereign_10y, p.sovereign_asof))
         w("| Default spread, rating basis | %.2f%% | |" % (100 * p.default_spread("rating")))
         w("| Default spread, swap basis | %.2f%% | |" % (100 * p.default_spread("cds")))
         w("| Terminal cost of debt | %.2f%% | long-run corporate norm |" % (100 * p.kd_terminal))
