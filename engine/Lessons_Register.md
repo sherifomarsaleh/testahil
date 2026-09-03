@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**107 lessons**, of which 80 bind on every study, 20 on a class of company, and 7 on a single name.
+**111 lessons**, of which 84 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 20 from self-audits, 38 found while building.
+By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 38 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -828,6 +828,46 @@ Carry-over lists, allow-lists and key-lists written when they were complete go s
 > **What it cost, or how we know.** compute.py is imported by alternatives.py, which re-runs it and rewrites study_numbers.json. A carry-over had been written for that exact hazard and named ('central', 'fair'), which was complete when written. lenses.py has since added central_two_sided, lens_record, macro_record and bridge_record — the records [R-LENS-03], [R-MACRO-01] and [R-BRIDGE-01] are checked from outside on — and all four were silently dropped on every build. Three repo gates went red at once and the study read, from outside, like one that had never committed a record at all.
 
 > **What would overturn it.** A module where carrying everything unknown is wrong because a stale key must be actively cleared. Then the inversion needs an explicit expiry list, which is the same hazard in the other direction and has to be checked rather than remembered.
+
+### L-076 · An artefact every builder reads and nothing writes is a number frozen at the date somebody last typed it.
+
+It will not announce itself, it survives every rebuild, and it wears the appearance of a computed record while being a memory. Where a file feeds a document, ask what WRITES it — and if the answer is nothing, that is the defect, before any question of whether its numbers are right.
+
+**Applies to:** every study  ·  *Learned from:* outside critique, AMOC, ARCC, EGCH and PHDC, four outside audits on 03-Sep-2026
+
+> **What it cost, or how we know.** Three separate artefacts with no generator anywhere in the repository were found in one day. AMOC's case_adversarial.json was read by THREE builders and written by none; it froze at a base central of 5.954 and drove Table 7, Table 18, Figure 4 and the opening paragraph through two editions, telling a reader that conceding every contested charge reached EGP 7.47 — below the published 11.834, which is impossible, because every charge conceded raises the value. PHDC's diagnostics.json was the same shape and froze at a spot of 15.20 through a re-strike to 14.40. ARCC's efg_bridge caption was typed from a superseded model. None was visible to any gate, because every gate reads study_numbers.json and none of these files is in it.
+
+> **What would overturn it.** An artefact with no generator that nonetheless stays current across several editions — which would mean something else is keeping it so, and that thing is the generator by another name.
+
+### L-077 · A default on a key that is never present is not a default. It is a second answer with no label.
+
+A dict lookup with a fallback reads as defensive, and it is — right up to the moment the key is absent EVERY time, when it silently becomes the only code path and nothing says so. Prefer a lookup that raises, or derive the value from something the same output already publishes so the two cannot disagree.
+
+**Applies to:** every study  ·  *Learned from:* outside critique, PHDC's cash-flow waterfall, 03-Sep-2026
+
+> **What it cost, or how we know.** The row headed 'Cost of capital, that year' read w.get('forward_wacc', wacc) on each waterfall row. forward_wacc sits on the CASE, not on a row, so the fallback fired in every column and printed a flat 25.1% above a row of gliding discount factors it cannot produce. Compounding the printed rate gives 0.639 for 2027 against a published 0.656 and 0.039 for 2040 against 0.090 — 2.3 times out by year fifteen, in a table headed 'with nothing collapsed'. The workbook was right throughout. The fix was not a better default: the rate is now DERIVED from the discount factors the same table publishes.
+
+> **What would overturn it.** A case where the fallback is genuinely the intended path for some rows and the named key for others. Then the two paths need different labels in the output, not one silent branch.
+
+### L-078 · A guard that cannot fail is worse than no guard, because it is counted as one.
+
+Before writing an assertion, ask what value of the input would make it raise. If the answer is none, the assertion is decoration standing where a check should be — and it will be trusted by everyone who reads the code afterwards.
+
+**Applies to:** every study  ·  *Learned from:* outside critique, AMOC's probability zones, 03-Sep-2026
+
+> **What it cost, or how we know.** Five zone probabilities were built as consecutive differences of a cumulative distribution and guarded by 'assert the zones sum to one'. CONSECUTIVE DIFFERENCES OF A CUMULATIVE FUNCTION TELESCOPE, so that sum is 1.0 for ANY ordering of the cuts, ascending or not. The cuts were not ascending, two zones were NEGATIVE, and the table shipped -74.6% and -16.0% under a caption promising a genuine partition. The guard had been there the whole time and could never have caught it.
+
+> **What would overturn it.** A guard whose failure condition is unreachable in this code path but reachable in another that shares the function — then it is a real check for the other caller and should say which.
+
+### L-079 · Write a correction OVER the sentence it corrects, not beneath it.
+
+Adding the new statement under the old one leaves a document asserting both, and the reader has no way to tell which is current. It happens because the correction feels safer as an addition — nothing is lost — and that is exactly what makes it dangerous.
+
+**Applies to:** every study  ·  *Learned from:* outside critique, AMOC §1.2, 03-Sep-2026
+
+> **What it cost, or how we know.** One paragraph read 'HALF OF THIS BASE YEAR IS A PRESS RELEASE AND NOT A FILING'; the paragraph four lines below it read 'THE HALF IS FILED, AND THE RELEASED GROSS PROFIT WAS RIGHT'. Both were true of successive editions and only one was true of this one. A table cell in between still gave the basis as 'second half SOLVED' while the model used the filed figure, and the caveat list still called the base year 'half press release' — so the same page carried a superseded claim three times over beside its own correction.
+
+> **What would overturn it.** A document that deliberately publishes both the old and the new reading for a reader of the previous edition — which is legitimate, and is why the retired blend is published labelled RETIRED rather than deleted. The test is whether the old statement is marked as superseded.
 
 ### L-208 · A check that fails by the calendar is not a check.
 
