@@ -21,6 +21,7 @@ HOW
     binds only what has been tagged.
 """
 import os
+import json
 import re
 import sys
 
@@ -36,6 +37,11 @@ DIGEST = _digests[0]
 CODE_DIRS = [os.path.join(ROOT, 'engine'), os.path.join(ROOT, 'scripts')]
 
 RULE_ID = re.compile(r'\[(R-[A-Z]{2,6}-\d{2})[,\]]')
+
+# Ratcheted per [R-ENF-02]: an id already cited in code before this check existed
+# is allowed to fail while its rule is written up, and the list may only SHORTEN.
+ORPHAN_FILE = os.path.join(ROOT, 'engine', 'build_depth_audit',
+                           'rule_id_outstanding.json')
 
 
 def ids_in(path):
@@ -108,7 +114,62 @@ def main():
         print('\nBoth files must carry the same standing rules. Amend them in the SAME '
               'commit — that is the rule this check exists to enforce.')
         return 1
-    print('\nOK — the two governing documents carry the same tagged rules.')
+
+    # A THIRD POPULATION, WHICH THIS GATE HAD NEVER LOOKED AT. It compared the two
+    # documents to each other and printed, for information, which rules the code
+    # enforces — but never asked the reverse question: is there a [R-...] id
+    # CITED IN CODE that resolves in neither document? [R-DOC-01] already requires
+    # an identifier to appear in the full protocol, in the digest AND in the code
+    # that enforces it; two of those three were checked.
+    #
+    # It was not hypothetical. On 03-Sep-2026 [R-VCAL-01] was cited in eight files
+    # — a module docstring, a pre-registration, two gates — and existed in neither
+    # governing document, while this check reported the documents in perfect
+    # agreement. A rule id that resolves nowhere reads to every later session as
+    # settled law, and nothing was looking.
+    orphans = {rid: where for rid, where in sorted(code.items())
+               if rid not in full and rid not in digest}
+    known = set()
+    if os.path.exists(ORPHAN_FILE):
+        try:
+            known = set(json.load(open(ORPHAN_FILE, encoding='utf-8'))
+                        .get('outstanding', []))
+        except Exception as exc:
+            print('FAIL — the orphan ratchet list will not parse (%s)' % exc)
+            return 1
+    vanished = sorted(known - set(orphans))
+    new_orphans = {r: w for r, w in orphans.items() if r not in known}
+
+    if orphans:
+        print('\nrule ids cited in code and present in NEITHER document: %d '
+              '(%d allowed on the ratchet)'
+              % (len(orphans), len(orphans) - len(new_orphans)))
+        for rid, where in orphans.items():
+            print('   %-14s %s%s' % (rid, ', '.join(sorted(set(where))[:3]),
+                                     '   [outstanding]' if rid in known else ''))
+    if vanished:
+        print('\nFAIL — the ratchet lists %s, which is cited nowhere in code. The '
+              'list may only ever SHORTEN, and an entry that no longer resolves is '
+              'not a shortening, it is a stale list. Prune it.' % ', '.join(vanished))
+        return 1
+    if new_orphans:
+        print('\nFAIL — a rule id is cited in code and defined in neither governing '
+              'document: %s. Adopt it in BOTH documents in one commit, or stop '
+              'citing an identifier that resolves nowhere — to a later session an '
+              'unresolvable [R-...] reads exactly like settled law.'
+              % ', '.join(sorted(new_orphans)))
+        return 1
+
+    if orphans:
+        # Say what is actually true. "Every id resolves" would be false while two
+        # sit on the ratchet, and a green line that overstates itself is how a
+        # ratchet quietly becomes a permanent exemption.
+        print('\nOK — the two governing documents carry the same tagged rules. %d '
+              'id(s) still resolve nowhere and are allowed on the ratchet; the '
+              'list may only shorten.' % len(orphans))
+    else:
+        print('\nOK — the two governing documents carry the same tagged rules, and '
+              'every rule id cited in code resolves.')
     return 0
 
 

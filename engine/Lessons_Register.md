@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**92 lessons**, of which 65 bind on every study, 20 on a class of company, and 7 on a single name.
+**99 lessons**, of which 72 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 9 from self-audits, 34 found while building.
+By how they were learned: 37 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 10 from outside critiques, 15 from self-audits, 35 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -728,6 +728,76 @@ Tax by formula at the statutory rate is the right rule for a regime, but a compa
 > **What it cost, or how we know.** Average miss 1.500 as known, 2.028 with perfect foresight of inflation — the macro share is only -35.2%.
 
 > **What would overturn it.** A run on a company whose current tax at every origin equals the statutory rate on profit before tax, where the formula's error is inside the other drivers' noise.
+
+### L-066 · A checklist a study fills in about itself measures its opinion of the work, not the work.
+
+Where a standard can be read off the delivered file, read it off the delivered file. An attestation is only worth what an outside reader could not otherwise see; anything a script can measure directly should be measured directly, and the attestation kept for the judgements that genuinely cannot be.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, AMOC and ARCC delivered-workbook audit, 01-Sep-2026
+
+> **What it cost, or how we know.** AMOC's compute.py set structure_matches_model=True and assert_model_study() passed on that boolean, while the delivered workbook carried SEVEN sheets against the model report's sixteen. Every other gate that could see the file was examining its contents: the recalculation reconciled 5,775 formula cells with zero disagreements, the external-reader scrub was clean and table discipline reported zero problems across both documents. None of them was looking at its shape. Reading the sheet list off the .xlsx from outside found it in one line.
+
+> **What would overturn it.** A standard that cannot be expressed as a test of the delivered artefact, where the attestation is the only evidence available.
+
+### L-067 · A gate pointed at a superseded file reports on something nobody receives.
+
+When a study is re-issued, every check that opens the delivered file by name has to move with it. A check left pointing at the previous edition keeps passing, and its green says nothing about what was actually shipped.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, AMOC and ARCC delivered-workbook audit, 01-Sep-2026
+
+> **What it cost, or how we know.** Three further instances have been found since, which is why this is filed at ALL and not as one study's mishap: a valuation-gap review green-lighted against an answer that had moved from 3.76 to -1.06; the fair-value register reporting [ok] while it sat two editions behind the study it records; and a vintage archive that would have done the same had its gate checked existence. Every one asked whether an artefact EXISTED. Originally: ARCC's driver_test.py and label_gate.py both opened ARCC_Valuation_Model_06082026_public.xlsx while the delivered file was the 01092026 edition, and both reported clean. Re- pointed at the delivered file, five of the driver assertions failed at once: revision 4 had moved the valuation date to 30 June 2026 and put the bridge on that reviewed balance sheet, so the FY2025 cash, minority and declared-dividend rows no longer move the headline and the assertions that said they did had never run against the model that shipped.
+
+> **What would overturn it.** A build that writes to one filename per study, so there is no superseded edition for a check to open.
+
+### L-208 · A check that fails by the calendar is not a check.
+
+If a generated file carries today's date, or an age counted in days, and something compares that file byte for byte, the comparison starts failing at midnight with nothing changed. Everyone learns to ignore it, and then they ignore it on the night it means something. Put the date the CONTENT was sourced in the file, and leave 'how old is that now' to a tool someone runs.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, Cost-of-capital reference gate, 03-Sep-2026
+
+> **What it cost, or how we know.** engine/Cost_of_Capital_Reference.md is compared byte for byte against its generator's output in CI, and the generator stamped it with date.today() and with the sovereign quote's age in days. It went red every midnight from 02-Sep-2026, and by the time it was found a red gate on that branch was already being read as background noise. The document now carries the date its paths were sourced; rebuilt under a faked 2027-05-17 clock it is byte-identical to today's output.
+
+> **What would overturn it.** A byte-compared artefact whose consumers genuinely need the run date — in which case the comparison, not the date, is the thing to change.
+
+### L-209 · An observed number and an estimated one need different evidence to be point-in-time.
+
+A price, a policy rate, an auction result is fixed the day it happens and nobody revises it, so looking it up today is fine. A price index or a national account is revised and rebased for years, so today's version is NOT what anyone had at the time and using it silently rewrites history. The second kind needs the publication that existed then.
+
+**Applies to:** every study  ·  *Learned from:* found while building, Point-in-time macro archive, 03-Sep-2026
+
+> **What it cost, or how we know.** Across the six origins where both are held, Egypt's inflation as published AT the origin and as reported for that same year today differ by 4.24 percentage points on average and 7.50 at worst, in both directions (2017 +7.50, 2018 -6.46). At those sizes an escalator, the currency path derived from it and the terminal all move.
+
+> **What would overturn it.** An observed series that turns out to be revised after the fact — a settled or restated market close is exactly that, and this repository has already seen one on a metals anchor.
+
+### L-210 · A mean far from its median is a tail, and a tail is a different problem from a bias.
+
+If the average name is 10% below the market but the middle name is on it, the house is not pessimistic — it is inconsistent, and a handful of names carry the whole gap. Moving a rate to fix the average would push every reasonable name off the market to correct a few that are wrong.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, Delivered-book measurement, 03-Sep-2026
+
+> **What it cost, or how we know.** Across all 90 published fair values against the prices they were struck at, the mean is -10.6% and the MEDIAN is -0.3%, with 46 of 90 below the price. Ten names read more than 40% below against three more than 40% above, and the exchange-clustered interval straddles zero.
+
+> **What would overturn it.** A book whose mean and median agree, where a uniform correction is exactly the right instrument.
+
+### L-211 · A CI step assumes a disposable runner; a working checkout is not one.
+
+Workflow steps are written knowing the machine gets thrown away, so they rebase, reset and auto-commit freely. Running them where the work lives does what they say.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, run_ci_gates.py incident, 03-Sep-2026
+
+> **What it cost, or how we know.** A script written to run CI's own steps locally reached a workflow that rebases and auto-commits: the checkout was left mid-rebase on a detached HEAD, a directory was emptied on disk, and an uncommitted file was swept into a commit describing something else. Nothing was lost only because every commit was already pushed, which is timing rather than design.
+
+> **What would overturn it.** A runner that executes such steps inside a throwaway worktree, where the assumption they are written under actually holds.
+
+### L-212 · A local check sweep must read the list CI runs, not a list somebody keeps.
+
+Running the checks you remember is not running the checks. The two lists drift the moment a step is added straight to the workflow, and the difference is invisible from the side you are standing on.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, Gate-sweep population, 03-Sep-2026
+
+> **What it cost, or how we know.** 'Every gate green' was reported here while CI had been red for a day on a step that lives inline in the workflow and was never in the hand-maintained list. The sweep now parses the workflow and runs every step it declares, so a step added to CI is a step it runs.
+
+> **What would overturn it.** Nothing yet. If a workflow ever declares steps that cannot be meaningfully run outside the runner, they are skipped BY NAME and counted, never dropped.
 
 
 ---

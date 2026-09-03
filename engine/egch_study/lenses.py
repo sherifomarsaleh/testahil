@@ -127,7 +127,7 @@ L['normalised'] = dict(
 field = {
     "Cash flow — programme carried through": L['cashflow']['carry_through'],
     "Cash flow — programme stopped": L['cashflow']['stopped'],
-    "Book value and sustainable return": L['book']['value_per_share'],
+    "Book value, disclosed (a floor, never weighted)": L['book']['book_per_share'],
     "Relative multiples": L['relative']['value_per_share'],
     "Normalised earnings power": L['normalised']['value_per_share'],
 }
@@ -141,16 +141,50 @@ L['synthesis'] = dict(
     note=("The two cash-flow readings are the contested judgement and are never averaged. "
           "The other three lenses are shown against both."),
 )
-# ---------------- THE PUBLISHED CENTRAL: four lenses, stated weights ----------------
-_w = V('lens_weights')
+# ---------------- THE PUBLISHED CENTRAL: ONE LENS [R-LENS-03] ----------------
+# The typed 45/20/20/15 blend is retired. It was chosen, written down and
+# inherited, and it had never cleared any out-of-sample test. Averaging four
+# methods does not make a number more robust than the best of them; it makes a
+# FIFTH method with free parameters nobody tested, and here it did something
+# worse than that. Two of the four readings it weighted are not valuations of
+# this company at all:
+#
+#   NORMALISED EARNINGS is not a permitted lens for this class and is dropped.
+#   It capitalises a mid-cycle margin at a fixed multiple on a company whose own
+#   cash-flow model says the capital programme does not earn its cost of
+#   capital. It carried a fifth of the weight and read EGP 4.29.
+#
+#   THE BOOK LENS WAS NOT BOOK VALUE. It published EGP 0.00 — a JUSTIFIED
+#   price-to-book of zero, because sustainable return on equity (6.9%) sits below
+#   the cost of equity (31.0%). That is a derived valuation wearing the name of a
+#   disclosed figure, and it was weighted at 15%. The rule says book value is a
+#   DISCLOSED FLOOR, published as such and never weighted: the disclosed floor is
+#   EGP 8.16 a share of book equity. Both numbers are published below and neither
+#   is weighted into the answer.
+#
+# THE PRIMARY IS THE CASH-FLOW LENS, AND IT HAS TWO VALUES ON PURPOSE. Whether
+# the ANNA programme is carried through or stopped is this study's contested
+# judgement, and the dual-framing rule forbids averaging it. The base case is
+# CARRIED THROUGH, because that is what the company is doing; stopped is
+# published beside it at every point.
+_w = V('lens_weights')          # kept only to print what the retired blend read
+_RETIRED_BLEND = (_w[0] * L['cashflow']['carry_through'] + _w[1] * L['relative']['value_per_share']
+                  + _w[2] * L['normalised']['value_per_share'] + _w[3] * L['book']['value_per_share'])
 L['central'] = dict(
-    name="Weighted central",
-    weights=dict(cashflow=_w[0], relative=_w[1], normalised=_w[2], book=_w[3]),
-    base=(_w[0] * L['cashflow']['carry_through'] + _w[1] * L['relative']['value_per_share']
-          + _w[2] * L['normalised']['value_per_share'] + _w[3] * L['book']['value_per_share']),
-    bear=L['synthesis']['low'], bull=L['synthesis']['high'],
-    note=("The central is the weighted cash-flow (carried-through), relative, normalised and book "
-          "readings; bear and full are the floor and ceiling of the field across every lens."),
+    name="Cash-flow lens, programme carried through",
+    primary='dcf',
+    base=L['cashflow']['carry_through'],
+    alternative_framing=dict(label="Cash-flow lens, programme stopped",
+                             value=L['cashflow']['stopped']),
+    bear=L['cashflow']['downside'], bull=L['cashflow']['upside'],
+    retired_blend=dict(weights=dict(cashflow=_w[0], relative=_w[1],
+                                    normalised=_w[2], book=_w[3]),
+                       value=_RETIRED_BLEND),
+    note=("The central is the cash-flow lens on the company's own tonnes, prices and "
+          "disclosed capital programme, carried through. It is not a blend. The relative "
+          "multiple is published beside it as a cross-check, the disclosed book value as a "
+          "floor, and normalised earnings as a diagnostic this class does not weight. The "
+          "retired blend of all four read EGP %.2f." % _RETIRED_BLEND),
 )
 L['contested'] = dict(
     question="Is the ANNA capital programme carried through, or stopped?",
@@ -169,6 +203,137 @@ json.dump(L, open(os.path.join(HERE, 'lenses.json'), 'w'), indent=1, default=flo
 D['central'] = float(L['central']['base'])
 D['spot'] = float(SPOT)
 D['fair'] = dict(bear=float(L['central']['bear']), base=float(L['central']['base']), full=float(L['central']['bull']))
+
+# ===========================================================================
+# THE THREE CONSTRUCTION RECORDS this study owed [R-MACRO-01, R-LENS-03,
+# R-BRIDGE-01]. Each is a set of CHOICES written down so a job outside the
+# study can check them, because the number they produce cannot be checked by
+# recomputing it.
+# ===========================================================================
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+import macro_path as _MPATH
+_P = _MPATH.load('EG')
+_PI = list(_P.inflation_path)
+_YR = list(_P.inflation_years)
+_CASE = D['cases']['base'] if isinstance(D.get('cases'), dict) else None
+
+D['macro_record'] = dict(
+    market='EG', path_as_of=_P.as_of,
+    growth_lines=[
+        dict(name='terminal maintenance growth',
+             years=_YR, nominal=[V('g_terminal')] * len(_YR), real=0.0,
+             exempt_reason='not an escalator: the forecast years are built from '
+                           'tonnes, dollar prices and the derived currency path, '
+                           'each disclosed or identity-derived, so there is no '
+                           'nominal growth rate here to sit on the ladder'),
+    ],
+    fx_path=None,
+    fx_note='the currency path is DERIVED year by year from the relative '
+            'purchasing-power identity on the house terminal inflation against '
+            'long-run United States inflation, and the SAME wedge carries the '
+            'dollar cost of debt, so the two cannot disagree',
+    terminal=dict(g_nominal=V('g_terminal'), real=0.0,
+                  rf=_P.terminal_rf, inflation_in_rf=_P.terminal_inflation),
+    explicit_years=5,
+    growth_at_horizon_end=V('g_terminal'),
+    note='THE HOUSE PATH OVERRULES AN ARGUMENT THIS STUDY MADE WELL. The 9 August '
+         '2026 edition moved terminal inflation to 5% after an external critique, '
+         'reasoning that a perpetuity takes the longest-horizon published target '
+         'there is. The house path takes 7% on a later reading of the same bank: '
+         'its August 2026 guidance puts the return to the 7% BAND in the second '
+         'half of 2027 and forecasts no 5% undershoot. Both are defensible; five '
+         'studies each picking one is not. The change costs this study EGP 0.28 a '
+         'share and the cost is stated rather than absorbed.',
+)
+
+D['lens_record'] = {
+    'class': 'petrochemical',
+    'primary': dict(
+        kind='dcf', value=float(L['central']['base']),
+        range=dict(low=float(L['central']['bear']), high=float(L['central']['bull'])),
+        range_note='the cash-flow lens across its own downside and upside on one '
+                   'clock, the programme carried through in both',
+        note='the cash-flow lens on the company\'s own tonnes, dollar prices and '
+             'disclosed capital programme, discounted on the glide. THE CONTESTED '
+             'JUDGEMENT IS BINARY AND IT STRADDLES ZERO: carried through the lens '
+             'reads %.2f, stopped it reads %.2f, and the two are published side by '
+             'side and never averaged.'
+             % (L['cashflow']['carry_through'], L['cashflow']['stopped'])),
+    'cross_checks': [
+        dict(kind='relative_multiple', value=float(L['relative']['value_per_share']),
+             present_value=False,
+             multiple_source='forward EBITDA times a multiple from the company\'s '
+                             'own history and its regional peers, never one read '
+                             'off the current price'),
+        dict(kind='book_value', value=float(L['book']['book_per_share']),
+             present_value=False,
+             note='the DISCLOSED book equity per share, published as a floor and '
+                  'never weighted. The retired blend weighted a JUSTIFIED '
+                  'price-to-book of zero at 15%% under this name — a derived '
+                  'valuation wearing the name of a disclosed figure. The justified '
+                  'multiple is %.2fx and is kept as a diagnostic: it says the '
+                  'company does not earn its cost of equity, which is a finding, '
+                  'not a book value.' % L['book']['pb_justified']),
+    ],
+    'retired': dict(
+        blend=L['central']['retired_blend']['weights'],
+        blend_value=float(L['central']['retired_blend']['value']),
+        why='the weights were typed and had never cleared an out-of-sample test, '
+            'and here the blend did something worse than average: it mixed a '
+            'negative cash-flow read with three positive ones and published a '
+            'positive number, so a reader saw EGP %.2f and never learned that the '
+            'study\'s own primary lens was below zero.'
+            % L['central']['retired_blend']['value'],
+    ),
+    'diagnostics': dict(
+        normalised_earnings=float(L['normalised']['value_per_share']),
+        justified_price_to_book=float(L['book']['pb_justified']),
+        book_value_floor=float(L['book']['book_per_share']),
+    ),
+}
+
+_BR = _CASE['bridge'] if _CASE else {}
+D['bridge_record'] = dict(
+    market='EG',
+    balance_sheet_date='2026-03-31',
+    latest_disclosed_date='2026-03-31',
+    latest_disclosed_source='the reviewed interim statements for the nine months '
+                            'ended 31 March 2026 (limited review dated 20 May '
+                            '2026), read from the rendered pages and registered in '
+                            'this study\'s sweep. No later filing exists: the '
+                            'annual for the year to 30 June 2026 is filed in '
+                            'September or October on the company\'s own pattern.',
+    register='sweep_register.json',
+    lines=[
+        dict(label='Enterprise value', value=float(_BR.get('ev', 0.0))),
+        dict(label='plus cash, 31 March 2026', value=float(_BR.get('cash', 0.0))),
+        dict(label='less borrowings, 31 March 2026', value=-float(_BR.get('debt', 0.0))),
+        dict(label='plus investments at fair value through other comprehensive income',
+             value=float(_BR.get('fvoci', 0.0))),
+        dict(label='plus investment property', value=float(_BR.get('inv_prop', 0.0))),
+    ],
+    equity_value=float(_BR.get('equity', 0.0)),
+    shares_mn=float(_BR.get('shares', 0.0)) / 1e6,
+    per_share=float(_BR.get('per_share', 0.0)),
+    cash=dict(treatment='added_at_face', weights_basis='gross'),
+    cash_charged_once=True,
+    cash_note='the operations are discounted at a rate weighted on gross debt and '
+              'the cash is added once, at face, in the bridge.',
+    nci=dict(basis='none_disclosed',
+             evidence='the reviewed statements to 31 March 2026 show no '
+                      'non-controlling interest on the face of the balance sheet '
+                      'and none in the equity note; the company\'s subsidiaries '
+                      'are wholly owned.'),
+    associates=dict(basis='book',
+                    note='investments at fair value through other comprehensive '
+                         'income and investment property are carried at their '
+                         'disclosed balance-sheet amounts; neither is a listed '
+                         'associate with a market quote.'),
+    dividend_deducted=False,
+    dividend_note='no dividend was declared after the bridge\'s balance-sheet date.',
+)
+
 json.dump(D, open(os.path.join(HERE, 'study_numbers.json'), 'w'), indent=1, default=float)
 print(f"{'lens':46s} {'value/share':>12s}")
 for k, v in field.items():

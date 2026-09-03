@@ -1,4 +1,4 @@
-"""ARCC_Bibliography_01-09-2026.docx — a standalone source register.
+"""ARCC_Bibliography_02-09-2026.docx — a standalone source register.
 
 Every figure that reaches the study or the model traces to a row here: what it is, where
 it came from, what kind of source that is, and the date the source itself carries.
@@ -362,6 +362,6 @@ P('')
 P('Testahil · Independent valuation research · Educational analysis, not investment advice.',
   size=8.4, italic=True, color=GREY)
 
-OUT = 'ARCC_Bibliography_01-09-2026.docx'
+OUT = 'ARCC_Bibliography_02-09-2026.docx'
 doc.save(OUT)
 print('wrote', OUT)

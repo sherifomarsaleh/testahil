@@ -190,7 +190,12 @@ def project(framing):
     return out
 
 
-def waterfall(rows, wacc, framing):
+def _discounter(sched):
+    import cost_of_capital as COC
+    return COC.Discounter(sched)
+
+
+def waterfall(rows, sched, framing):
     """Operating profit to a present value, every line shown.
 
     Framing B reproduces valuation_v2.dcf() exactly and is asserted against it:
@@ -206,7 +211,7 @@ def waterfall(rows, wacc, framing):
             fcff = s["cfo"] + s["interest"] * (1 - TAX) - s["capex"]
         else:
             fcff = nopat + s["da"] - s["capex"] - s["d_wc"]
-        df = 1.0 / (1 + wacc) ** i
+        df = _discounter(sched).factor(i)
         pv += fcff * df
         out.append({"year": s["year"], "revenue": s["revenue"],
                     "ebit": s["ebit"], "tax_on_ebit": s["ebit"] * TAX,
@@ -217,7 +222,7 @@ def waterfall(rows, wacc, framing):
     return out, pv
 
 
-def terminal(rows, wacc, tg, framing):
+def terminal(rows, sched, tg, framing):
     """A growing-perpetuity terminal value, and ONLY where one is legitimate.
 
     A perpetuity formula applied to a negative flow returns a large negative
@@ -235,23 +240,32 @@ def terminal(rows, wacc, tg, framing):
                 - last["d_wc"])
     if tail <= 0:
         return tail, None, None
-    tv = tail * (1 + tg) / (wacc - tg)
-    return tail, tv, tv / (1 + wacc) ** len(rows)
+    # capitalised at the TERMINAL rate and brought home on the window's own
+    # factor -- one date, one price of time [R-COC-01]
+    dc = _discounter(sched)
+    pv_tv = tail * dc.perpetuity_factor(tg)
+    tv = pv_tv / dc.factor(len(rows))
+    return tail, tv, pv_tv
 
 
-def bridge(rows, wacc, tg, framing):
-    wf, pv = waterfall(rows, wacc, framing)
-    tail, tv, pv_tv = terminal(rows, wacc, tg, framing)
+def bridge(rows, sched, tg, framing):
+    wf, pv = waterfall(rows, sched, framing)
+    tail, tv, pv_tv = terminal(rows, sched, tg, framing)
     valuable = pv_tv is not None
     ev = (pv + pv_tv) if valuable else None
-    eq = (ev - BU.NET_DEBT + REG["investments_assoc"]
-          + REG["investment_property"]) if valuable else None
+    # the same bridge as valuation_v2: latest disclosed sheet, minority at its
+    # share of value
+    eq_gross = (ev - BU.NET_DEBT_BRIDGE + BU.BS_BRIDGE["investments_assoc"]
+                + BU.BS_BRIDGE["investment_property"]) if valuable else None
+    nci = (eq_gross * BU.NCI_VALUE_SHARE) if valuable else None
+    eq = (eq_gross - nci) if valuable else None
     return {"waterfall": wf, "pv_explicit": pv, "terminal_flow": tail,
             "terminal_value": tv, "pv_terminal": pv_tv, "ev": ev,
-            "net_debt": BU.NET_DEBT, "equity": eq,
+            "net_debt": BU.NET_DEBT_BRIDGE, "net_debt_date": BU.BRIDGE_BS_DATE,
+            "equity_before_nci": eq_gross, "nci_deduction": nci, "equity": eq,
             "per_share": (eq / SHARES) if valuable else None,
             "terminal_share": (pv_tv / ev) if valuable and ev else None,
-            "wacc": wacc, "terminal_growth": tg, "framing": framing,
+            "wacc": sched.wacc_exp, "wacc_terminal": sched.wacc_terminal, "terminal_growth": tg, "framing": framing,
             "yields_a_value": valuable,
             "funding_required": rows[-1]["drawn_cum"],
             "funding_interest": rows[-1]["unmodelled_interest"],
@@ -279,7 +293,7 @@ N = ("%11.0f", 1.0); P = ("%10.1f%%", 100.0); D = ("%11.2f", 1.0)
 def report():
     st = build()
     A, B = st["cycle"], st["conversion"]
-    wr = W["wacc_rating"]
+    wr = V.SCHEDULES["rating"]
     tg = 0.12
 
     print("THE TWO AUDITED SHEETS, AND WHAT THEY DISAGREE ABOUT")
@@ -403,7 +417,7 @@ def report():
         if br["yields_a_value"]:
             print("\nBRIDGE TO VALUE PER SHARE (%s)" % tag)
             for lbl, v, f in (
-                    ("Present value of the explicit five years",
+                    ("Present value of the explicit %d years" % len(ROWS),
                      br["pv_explicit"], "%14.0f"),
                     ("Year-five free cash flow", br["terminal_flow"], "%14.0f"),
                     ("Terminal value at %.0f%% growth" % (100 * tg),
@@ -435,7 +449,7 @@ def report():
             print("  is taken and no value per share is published from this "
                   "framing. What it")
             print("  measures instead is what the growth would cost to fund:")
-            print("  %-46s%14.0f" % ("Present value of the explicit five years",
+            print("  %-46s%14.0f" % ("Present value of the explicit %d years" % len(ROWS),
                                      br["pv_explicit"]))
             print("  %-46s%14.0f" % ("New borrowing required by 2030",
                                      br["funding_required"]))
@@ -464,11 +478,11 @@ def verify():
                   + r["other_assets"])
             assert abs(ta - r["total_assets"]) < 1e-6, r["year"]
         out.append(("total assets is the sum of its own lines, framing %s"
-                    % tag, True, "all five years"))
+                    % tag, True, "all %d years" % len(ROWS)))
     # Framing B must reproduce the published discounted cash flow exactly
     import valuation_v2 as V
-    pub = V.dcf(V.lenses()["cfo"]["mid"], W["wacc_rating"])
-    mine = bridge(st["conversion"], W["wacc_rating"], V.TG, "conversion")
+    pub = V.dcf(V.lenses()["cfo"]["mid"], V.SCHEDULES["rating"])
+    mine = bridge(st["conversion"], V.SCHEDULES["rating"], V.TG, "conversion")
     for k in ("pv_explicit", "pv_terminal", "ev", "equity", "per_share"):
         d = abs(pub[k] - mine[k])
         out.append(("framing B reproduces the published DCF: %s" % k,
@@ -488,7 +502,7 @@ if __name__ == "__main__":
     for name, passed, note in verify():
         ok &= bool(passed)
         print("  [%s] %-56s %s" % ("PASS" if passed else "FAIL", name, note))
-    wr = W["wacc_rating"]
+    wr = V.SCHEDULES["rating"]
     payload = {
         "cycle_measured": {"dso_fy25": DSO25, "dso_fy24": DSO24,
                            "dio_fy25": DIO25, "dio_fy24": DIO24,

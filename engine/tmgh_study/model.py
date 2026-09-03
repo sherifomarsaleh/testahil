@@ -26,6 +26,7 @@ import json, math, os, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.dirname(HERE))    # engine/, for the house macro path
 import inputs as IN
 
 TAX = 0.225
@@ -53,8 +54,18 @@ SEASONAL = 2.9078     # FY2025 development revenue over its own first half
 REPLENISHMENT_SALES = 300000.0  # normalised annual contracted sales, below the
                       # 1H2026 annualised run rate of EGP 438bn and the FY2025
                       # EGP 382bn, and far below FY2024's launch-year EGP 504bn
-SALES_FADE = 0.85     # replenishment sales converge on the delivery rate;
-                      # 300bn fading at 15% a year reaches about 59bn by 2035
+SALES_FADE = 1.15     # [CLASS-A CORRECTION, 02-Sep-2026 — applied from the study's own
+                      # GAP_REVIEW_01-09-2026 heading 3.] The 01-Sep edition faded
+                      # replenishment sales 15% a year NOMINAL (0.85), which at the
+                      # ~14.6% inflation inside this study's own terminal rate is about
+                      # -26% a year REAL — a -91% real decline by 2035 with no precedent
+                      # in the 2011-2025 record, and never disclosed as a real-terms
+                      # assumption. The convergence-on-deliveries argument is a REAL
+                      # quantity argument; the series is nominal. Restated FLAT IN REAL
+                      # TERMS: +15% nominal a year, the review's own figure (76.51 on the
+                      # capacity case at the unchanged rate). The order-book guard below
+                      # still caps recognised revenue at what has been sold. Replaced by
+                      # the house macro path when [R-MACRO-01] lands.
 HOSP_GROWTH = 0.20
 OTHER_GROWTH = 0.22
 HOSP_CAPEX_RATIO = 0.10
@@ -65,7 +76,17 @@ PUD_COVER_YEARS = 4.0   # work in progress against a year's cost of sales; TMG
 PUD_ADJUST_YEARS = 4    # how fast the stock is moved toward that cover
 DA_RATE_ON_PPE = 0.012          # the group's own charge against gross PP&E
 DEPOSIT_YIELD = 0.20            # below the policy rate, on a mixed deposit book
-TERMINAL_GROWTH = 0.15
+# [R-MACRO-01] Terminal growth is NOT a number this study chooses. It is the
+# house path's terminal inflation plus a STATED real growth, and the real growth
+# here is zero: the recurring legs — a hotel and a shopping centre — are assumed
+# to hold their real size for ever and grow with nothing but prices. The 02-Sep
+# and earlier editions carried 15%, which against the ~22% terminal discount rate
+# this study's own schedule now produces would be 8pp of real growth in
+# perpetuity that nothing disclosed supports [L-055].
+import macro_path as _MP
+_PATH = _MP.load("EG")
+TERMINAL_REAL_GROWTH = 0.0
+TERMINAL_GROWTH = _PATH.terminal_growth(TERMINAL_REAL_GROWTH)
 PAYOUT = 0.30                   # of attributable profit, at the company's own
                                 # recent distribution behaviour
 

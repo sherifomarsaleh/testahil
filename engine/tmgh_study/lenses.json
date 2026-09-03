@@ -197,16 +197,16 @@
    "ticker": "EMFD",
    "name": "Emaar Misr for Development",
    "market": "EG",
-   "close": 11.53,
-   "as_of": "2026-07-28",
+   "close": 13.7,
+   "as_of": "2026-09-01",
    "source": "engine/raw_ohlc/EG/EMFD.csv"
   },
   {
    "ticker": "OCDI",
    "name": "Sixth of October Development & Investment (SODIC)",
    "market": "EG",
-   "close": 27.48,
-   "as_of": "2026-07-27",
+   "close": 31.01,
+   "as_of": "2026-09-01",
    "source": "engine/raw_ohlc/EG/OCDI.csv"
   },
   {
@@ -229,8 +229,8 @@
    "ticker": "ORHD",
    "name": "Orascom Development Egypt",
    "market": "EG",
-   "close": 40.16,
-   "as_of": "2026-07-27",
+   "close": 41.5,
+   "as_of": "2026-09-01",
    "source": "engine/raw_ohlc/EG/ORHD.csv"
   }
  ],
@@ -264,118 +264,132 @@
  },
  "sensitivity": {
   "wacc_grid": {
-   "0.1800|capacity": {
-    "wacc": 0.18,
+   "0.2437|capacity": {
+    "wacc": 0.2437485685188716,
+    "shift": -0.08,
     "mode": "capacity",
-    "per_share_nci_book": 195.37547272048374,
-    "per_share_nci_proportional": 127.15323315502202,
-    "enterprise_value": 390960.1102882612
+    "per_share_nci_book": 211.95934597484995,
+    "per_share_nci_proportional": 136.23896241453085,
+    "enterprise_value": 425133.73172858934
    },
-   "0.1800|recovery": {
-    "wacc": 0.18,
+   "0.2437|recovery": {
+    "wacc": 0.2437485685188716,
+    "shift": -0.08,
     "mode": "recovery",
-    "per_share_nci_book": 144.65633402848,
-    "per_share_nci_proportional": 99.36597529536003,
-    "enterprise_value": 286445.5244098567
+    "per_share_nci_book": 122.12654827237574,
+    "per_share_nci_proportional": 87.02268669715464,
+    "enterprise_value": 240019.43577835453
    },
-   "0.2200|capacity": {
-    "wacc": 0.22,
+   "0.2837|capacity": {
+    "wacc": 0.28374856851887165,
+    "shift": -0.04,
     "mode": "capacity",
-    "per_share_nci_book": 107.56093731799736,
-    "per_share_nci_proportional": 79.04269338672724,
-    "enterprise_value": 210004.7542158931
+    "per_share_nci_book": 152.3943501597619,
+    "per_share_nci_proportional": 103.60536608761838,
+    "enterprise_value": 302390.896755244
    },
-   "0.2200|recovery": {
-    "wacc": 0.22,
+   "0.2837|recovery": {
+    "wacc": 0.28374856851887165,
+    "shift": -0.04,
     "mode": "recovery",
-    "per_share_nci_book": 61.557816699096215,
-    "per_share_nci_proportional": 53.83917834383333,
-    "enterprise_value": 115208.24890069608
+    "per_share_nci_book": 70.10034183574056,
+    "per_share_nci_proportional": 58.51933173102017,
+    "enterprise_value": 132811.43578511776
    },
-   "0.2600|capacity": {
-    "wacc": 0.26,
+   "0.3037|capacity": {
+    "wacc": 0.3037485685188716,
+    "shift": -0.02,
     "mode": "capacity",
-    "per_share_nci_book": 80.14561888690895,
-    "per_share_nci_proportional": 64.02279079777614,
-    "enterprise_value": 153511.2741126607
+    "per_share_nci_book": 133.70278908954637,
+    "per_share_nci_proportional": 93.36490773891256,
+    "enterprise_value": 263874.0604079723
    },
-   "0.2600|recovery": {
-    "wacc": 0.26,
+   "0.3037|recovery": {
+    "wacc": 0.3037485685188716,
+    "shift": -0.02,
     "mode": "recovery",
-    "per_share_nci_book": 39.01394934194048,
-    "per_share_nci_proportional": 41.4881749245646,
-    "enterprise_value": 68753.14296447717
-   },
-   "0.3000|capacity": {
-    "wacc": 0.3,
-    "mode": "capacity",
-    "per_share_nci_book": 65.63699362659911,
-    "per_share_nci_proportional": 56.074017973662784,
-    "enterprise_value": 123614.02033722725
-   },
-   "0.3000|recovery": {
-    "wacc": 0.3,
-    "mode": "recovery",
-    "per_share_nci_book": 29.083061898298503,
-    "per_share_nci_proportional": 36.04738595834218,
-    "enterprise_value": 48289.02201636403
+    "per_share_nci_book": 55.886966647442286,
+    "per_share_nci_proportional": 50.732316186222825,
+    "enterprise_value": 103522.5901925252
    },
    "0.3237|capacity": {
-    "wacc": 0.3237,
+    "wacc": 0.3237485685188716,
+    "shift": 0.0,
     "mode": "capacity",
-    "per_share_nci_book": 59.68128664954667,
-    "per_share_nci_proportional": 52.81109258147676,
-    "enterprise_value": 111341.37012327764
+    "per_share_nci_book": 118.97241993803047,
+    "per_share_nci_proportional": 85.29464912378126,
+    "enterprise_value": 233519.8692404983
    },
    "0.3237|recovery": {
-    "wacc": 0.3237,
+    "wacc": 0.3237485685188716,
+    "shift": 0.0,
     "mode": "recovery",
-    "per_share_nci_book": 25.626854775966965,
-    "per_share_nci_proportional": 34.15384988889454,
-    "enterprise_value": 41166.97567614447
+    "per_share_nci_book": 45.74742866171763,
+    "per_share_nci_proportional": 45.17721482107309,
+    "enterprise_value": 82628.51271199735
    },
-   "0.3579|capacity": {
-    "wacc": 0.3579,
+   "0.3437|capacity": {
+    "wacc": 0.34374856851887164,
+    "shift": 0.02,
     "mode": "capacity",
-    "per_share_nci_book": 53.051266992360226,
-    "per_share_nci_proportional": 49.17873464756901,
-    "enterprise_value": 97679.19492262167
+    "per_share_nci_book": 107.03130263777832,
+    "per_share_nci_proportional": 78.75252490575132,
+    "enterprise_value": 208913.360499488
    },
-   "0.3579|recovery": {
-    "wacc": 0.3579,
+   "0.3437|recovery": {
+    "wacc": 0.34374856851887164,
+    "shift": 0.02,
     "mode": "recovery",
-    "per_share_nci_book": 22.297899884599985,
-    "per_share_nci_proportional": 32.33003090546647,
-    "enterprise_value": 34307.152129220514
+    "per_share_nci_book": 38.35305553607058,
+    "per_share_nci_proportional": 41.12609411887349,
+    "enterprise_value": 67391.26963201487
    },
-   "0.4000|capacity": {
-    "wacc": 0.4,
+   "0.3637|capacity": {
+    "wacc": 0.3637485685188716,
+    "shift": 0.04,
     "mode": "capacity",
-    "per_share_nci_book": 46.92942906943123,
-    "per_share_nci_proportional": 45.82479186923266,
-    "enterprise_value": 85064.20634375393
+    "per_share_nci_book": 97.14815921409972,
+    "per_share_nci_proportional": 73.33789323297259,
+    "enterprise_value": 188547.62344753963
    },
-   "0.4000|recovery": {
-    "wacc": 0.4,
+   "0.3637|recovery": {
+    "wacc": 0.3637485685188716,
+    "shift": 0.04,
     "mode": "recovery",
-    "per_share_nci_book": 19.75271103450331,
-    "per_share_nci_proportional": 30.93561016601644,
-    "enterprise_value": 29062.399053551177
+    "per_share_nci_book": 32.8732712141484,
+    "per_share_nci_proportional": 38.12391025109833,
+    "enterprise_value": 56099.33124586551
+   },
+   "0.4037|capacity": {
+    "wacc": 0.40374856851887164,
+    "shift": 0.08,
+    "mode": "capacity",
+    "per_share_nci_book": 81.75426375262785,
+    "per_share_nci_proportional": 64.90411155441981,
+    "enterprise_value": 156826.13426805483
+   },
+   "0.4037|recovery": {
+    "wacc": 0.40374856851887164,
+    "shift": 0.08,
+    "mode": "recovery",
+    "per_share_nci_book": 25.64354362310214,
+    "per_share_nci_proportional": 34.16299312970432,
+    "enterprise_value": 41201.36561241119
    }
   },
   "conversion_years_grid": {
-   "8": 14.82779888043417,
-   "10": 31.919344509366613,
-   "12": 44.007080880715684,
-   "14": 53.045527467810885,
-   "16": 60.06333889357035,
-   "20": 70.27885274962011
+   "8": 37.36344227330636,
+   "10": 70.22115890128019,
+   "12": 94.4729254177726,
+   "14": 113.23921923759244,
+   "16": 128.24447006371497,
+   "20": 150.79632295396488
   }
  },
  "implied_discount_rate": {
-  "capacity": 0.230888996245817,
-  "recovery": 0.19434626592683724
+  "capacity": 0.29052463245332627,
+  "recovery": 0.1656407888144581
  },
  "spot": 97.8,
- "spot_source": "EGX close 23 August 2026, engine/raw_ohlc/EG/TMGH.csv \u2014 the same cleaned series the price engine runs on"
+ "spot_source": "Egyptian Exchange close, 23 August 2026, from the same cleaned price history the probability distribution is fitted to"
 }

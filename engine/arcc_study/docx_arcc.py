@@ -1,4 +1,4 @@
-"""ARCC_Valuation_Study_01-09-2026_public.docx — TMPV house structure.
+"""ARCC_Valuation_Study_02-09-2026_public.docx — TMPV house structure.
 
 16 headings: 7 top-level sections plus the 9 subsections of section 1, then three
 appendices. Reads study_numbers.json exclusively — no numeral is typed here.
@@ -52,7 +52,7 @@ def sg(x, dp=1): return f"{x*100:+.{dp}f}%"
 # ============================== COVER ========================================
 masthead()
 P('Arabian Cement Company S.A.E.', size=22, bold=True, space_after=1)
-P('Egyptian Exchange · ARCC · Egyptian pounds · valuation as of 30 June 2026, the date of the latest disclosed balance sheet; issued 1 '
+P('Egyptian Exchange · ARCC · Egyptian pounds · valuation as of 30 June 2026, the date of the latest disclosed balance sheet; issued 2 '
   'September 2026', size=11, color=GREY, space_after=10)
 rich([(f'One of Egypt\'s largest cement plants, at the top of the best year the industry '
        f'has had in more than a decade — audited profit up '
@@ -71,25 +71,46 @@ box([('What this is. ', 'An independent valuation of Arabian Cement Company, an 
       f'{n0(IN["cash_h1_26"])}mn against interest-bearing debt of EGP '
       f'{n0(IN["debt_h1_26"])}mn at 30 June 2026. Every figure in this study is read from '
       f'the company\'s own audited and reviewed accounts.'),
-     ('Where the value lands. ', f'Four lenses put the shares between EGP {n2(LN["low"])} '
-      f'and EGP {n2(LN["high"])}, weighting to a central EGP {n2(LN["central"])} against a '
+     ('Where the value lands. ', f'The cash-flow lens — the value this study '
+      f'publishes — reads EGP {n2(LN["central"])}, and the cross-checks around it span '
+      f'EGP {n2(LN["low"])} to EGP {n2(LN["high"])}, against a '
       f'market price of EGP {n2(SPOT)} — {sg(LN["central"]/SPOT-1)}.')])
+
+# The retired blend, computed once so the document can quote what was dropped
+# without any builder retyping a number: the 50/20/22/8 weights this edition
+# stopped using, applied to the reads this edition publishes.
+_NORM_DIAG = LN['diagnostic']['Normalised earnings (diagnostic, not a lens for this class)']
+_BLEND = (0.50 * LN['values']['DCF (cash flow)']
+          + 0.20 * LN['values']['Relative multiples']
+          + 0.22 * _NORM_DIAG
+          + 0.08 * LN['values']['Asset / replacement cost'])
 
 # ---- summary valuation table ------------------------------------------------
 H2('Summary valuation table')
-rows = [['Lens', 'Value per share (EGP)', 'Weight', 'Versus spot', 'Terminal value % of EV']]
-for k in LN['weights']:
-    rows.append([k, n2(LN['values'][k]), pc(LN['weights'][k], 0),
-                 sg(LN['values'][k] / SPOT - 1),
-                 pc(DCF['tv_share']) if k == 'DCF (cash flow)' else '—'])
-rows.append(['Weighted central fair value', n2(LN['central']), '100%',
-             sg(LN['central'] / SPOT - 1), '—'])
-rows.append(['Range across the four lenses', f'{n2(LN["low"])} – {n2(LN["high"])}', '—',
+rows = [['Lens', 'Value per share (EGP)', 'Role', 'Versus spot', 'Terminal value % of EV']]
+_PRIM = LN['primary']
+rows.append([_PRIM, n2(LN['values'][_PRIM]), 'the central',
+             sg(LN['values'][_PRIM] / SPOT - 1), pc(DCF['tv_share'])])
+for k in LN['values']:
+    if k == _PRIM:
+        continue
+    rows.append([k, n2(LN['values'][k]), 'cross-check',
+                 sg(LN['values'][k] / SPOT - 1), '—'])
+rows.append(['Normalised earnings', n2(LN['diagnostic']['Normalised earnings (diagnostic, not a lens for this class)']), 'diagnostic only',
+             sg(LN['diagnostic']['Normalised earnings (diagnostic, not a lens for this class)'] / SPOT - 1), '—'])
+rows.append(['Range across the reads', f'{n2(LN["low"])} – {n2(LN["high"])}', '—',
              f'{sg(LN["low"]/SPOT-1)} to {sg(LN["high"]/SPOT-1)}', '—'])
 rows.append(['Market price, latest known close (6 August 2026)', n2(SPOT), '—', '—', '—'])
-table(rows, [2.55, 1.35, 0.72, 1.02, 1.36], band_rows={5})
-caption('Terminal value as a percentage of enterprise value is shown beside the cash-flow '
-        'lens, and again in the enterprise-to-equity bridge in section 1.7.')
+table(rows, [2.55, 1.35, 0.90, 1.02, 1.18], band_rows={1})
+caption('The cash-flow lens IS the value this study publishes. The others are '
+        'cross-checks, shown at the same size so a reader can see where they '
+        'disagree with it rather than an average that hides the disagreement. A '
+        'previous edition blended all four at fixed weights of 50, 20, 22 and 8 per '
+        'cent and published EGP ' + n2(_BLEND) + '; those weights were '
+        'chosen rather than tested, and averaging four methods makes a fifth one '
+        'nobody has checked. Normalised earnings is shown as a diagnostic and is not '
+        'a valuation of this company: it capitalises a mid-cycle margin at a nominal '
+        'rate, and section 1.7 shows growth destroying value here.')
 
 figure('fig1_football.png', 6.9,
        'Figure 1 — Each lens as a range, with its base case marked, against the market price.')
@@ -778,12 +799,13 @@ P(f'How well calibrated is it? Measured over {S0["windows_scored"]} independent 
 
 # ============================== 4 ============================================
 H1('4  Comparison of the lenses')
-rows = [['Lens', 'Bear (EGP)', 'Base (EGP)', 'Bull (EGP)', 'Weight', 'Versus spot']]
-for k in list(LN['weights']) + ['Weighted central']:
-    w = pc(LN['weights'][k], 0) if k in LN['weights'] else '100%'
-    rows.append([k, n2(LR[k]['bear']), n2(LR[k]['base']), n2(LR[k]['bull']), w,
+rows = [['Lens', 'Bear (EGP)', 'Base (EGP)', 'Bull (EGP)', 'Role', 'Versus spot']]
+for k in list(LN['values']) + ['Normalised earnings']:
+    _role = ('the central' if k == LN['primary']
+             else ('diagnostic only' if k == 'Normalised earnings' else 'cross-check'))
+    rows.append([k, n2(LR[k]['bear']), n2(LR[k]['base']), n2(LR[k]['bull']), _role,
                  sg(LR[k]['base'] / SPOT - 1)])
-table(rows, [2.00, 1.00, 1.00, 1.00, 0.72, 1.02], band_rows={5})
+table(rows, [2.00, 1.00, 1.00, 1.00, 0.90, 1.02], band_rows={1})
 caption('Table 19 — Each lens as a range. The disagreement between them is information, '
         'not noise.')
 _above = sorted([k for k in LN['values'] if LN['values'][k] > SPOT],
@@ -791,8 +813,8 @@ _above = sorted([k for k in LN['values'] if LN['values'][k] > SPOT],
 _below = sorted([k for k in LN['values'] if LN['values'][k] <= SPOT],
                 key=lambda k: LN['values'][k])
 _lens_l = lambda ks: ' and '.join([', '.join(ks[:-1]), ks[-1]] if len(ks) > 1 else ks)
-P(f'The four lenses do not agree, and the pattern of their disagreement is the most useful '
-  f'thing in this study. Two of them sit ABOVE the market price — '
+P(f'The lenses do not agree, and the pattern of their disagreement is the most useful '
+  f'thing in this study. Some sit ABOVE the market price — '
   f'{_lens_l(_above)}, at EGP ' +
   ' and EGP '.join(n2(LN['values'][k]) for k in _above) +
   f' — and two sit below: {_lens_l(_below)}, at EGP ' +
@@ -805,13 +827,18 @@ P(f'The four lenses do not agree, and the pattern of their disagreement is the m
   f'whose policy rate has '
   f'a two in front of it is not obviously mispricing anything; it is discounting the same '
   f'restart programme this study discounts, only harder and sooner.')
-P(f'The weighting resolves that in favour of earnings, at '
-  f'{pc(IN["w_dcf"], 0)}/{pc(IN["w_rel"], 0)}/{pc(IN["w_norm"], 0)}/{pc(IN["w_asset"], 0)}, '
-  f'and gives a central EGP {n2(LN["central"])} against EGP {n2(SPOT)} — '
-  f'{sg(LN["central"]/SPOT-1)}. A reader who believes replacement cost is a floor rather '
-  f'than a ceiling would weight the asset lens far more and reach the opposite conclusion. '
-  f'The case against doing so is the {n1(IN["egy_revival_mt"])}Mt restart programme, and '
-  f'it is a testable one.')
+P(f'This edition does not resolve that by weighting. A previous one blended the four '
+  f'readings at {pc(IN["w_dcf"], 0)}/{pc(IN["w_rel"], 0)}/{pc(IN["w_norm"], 0)}/'
+  f'{pc(IN["w_asset"], 0)} and published the average, EGP {n2(_BLEND)}; '
+  f'but those weights were chosen rather than tested, and an average of four methods is '
+  f'a fifth method nobody has checked, carrying every weakness of the weakest at whatever '
+  f'weight somebody typed. The value published here is the cash-flow lens alone, EGP '
+  f'{n2(LN["central"])} against EGP {n2(SPOT)} — {sg(LN["central"]/SPOT-1)} — and the '
+  f'other readings are printed beside it so the disagreement is visible rather than '
+  f'averaged away. A reader who believes replacement cost is a floor rather than a '
+  f'ceiling can read EGP {n2(LN["values"]["Asset / replacement cost"])} off the same '
+  f'table and reach the opposite conclusion; the case against doing so is the '
+  f'{n1(IN["egy_revival_mt"])}Mt restart programme, and it is a testable one.')
 P(f'Against the technical picture, the two readings are in tension. The share is above its '
   f'entire moving-average stack on a rising 200-day and {pc(1-TECH["pct_off_high"], 0)} of '
   f'of its 52-week intraday high — 98% OF that high, and '
@@ -1161,6 +1188,6 @@ P('Testahil · Independent valuation research · Educational analysis, not inves
   'advice. No rating and no price target is expressed or implied.', size=8.6, italic=True,
   color=GREY)
 
-OUT = 'ARCC_Valuation_Study_01-09-2026_public.docx'
+OUT = 'ARCC_Valuation_Study_02-09-2026_public.docx'
 doc.save(OUT)
 print('wrote', OUT)

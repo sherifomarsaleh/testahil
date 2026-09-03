@@ -1,92 +1,224 @@
 [
  {
   "check": "enterprise value",
-  "workbook": 61999.5,
-  "study": 61999.4753,
+  "workbook": 69848.4,
+  "study": 69848.3951,
   "ok": true
  },
  {
-  "check": "equity value",
-  "workbook": 42510.4,
-  "study": 42510.3753,
+  "check": "equity value before minority interests",
+  "workbook": 51462.8534,
+  "study": 51462.8485,
+  "ok": true
+ },
+ {
+  "check": "minority interests at their share of value",
+  "workbook": -2410.3945,
+  "study": -2410.3943,
+  "ok": true
+ },
+ {
+  "check": "equity value attributable to shareholders",
+  "workbook": 49052.4589,
+  "study": 49052.4542,
   "ok": true
  },
  {
   "check": "value per share",
-  "workbook": 14.8642,
-  "study": 14.8642,
+  "workbook": 17.1517,
+  "study": 17.1517,
   "ok": true
  },
  {
   "check": "terminal share of enterprise value",
-  "workbook": 0.6285,
-  "study": 0.6285,
+  "workbook": 0.308,
+  "study": 0.308,
   "ok": true
  },
  {
   "check": "bridge sheet agrees with the valuation sheet on value per share",
-  "workbook": 14.8642,
-  "study": 14.8642,
+  "workbook": 17.1517,
+  "study": 17.1517,
   "ok": true
  },
  {
   "check": "DCF units delivered 2026",
-  "workbook": 1885.5495,
-  "study": 1885.5495,
+  "workbook": 2035.0931,
+  "study": 2035.0931,
   "ok": true
  },
  {
   "check": "DCF units delivered 2027",
-  "workbook": 2168.3819,
-  "study": 2168.3819,
+  "workbook": 2340.3571,
+  "study": 2340.3571,
   "ok": true
  },
  {
   "check": "DCF units delivered 2028",
-  "workbook": 2493.6392,
-  "study": 2493.6392,
+  "workbook": 2656.3053,
+  "study": 2656.3053,
   "ok": true
  },
  {
   "check": "DCF units delivered 2029",
-  "workbook": 2867.6851,
-  "study": 2867.6851,
+  "workbook": 2975.0619,
+  "study": 2975.0619,
   "ok": true
  },
  {
   "check": "DCF units delivered 2030",
-  "workbook": 3297.8379,
-  "study": 3297.8379,
+  "workbook": 3287.4434,
+  "study": 3287.4434,
+  "ok": true
+ },
+ {
+  "check": "DCF units delivered 2031",
+  "workbook": 3583.3133,
+  "study": 3583.3133,
+  "ok": true
+ },
+ {
+  "check": "DCF units delivered 2032",
+  "workbook": 3852.0618,
+  "study": 3852.0618,
+  "ok": true
+ },
+ {
+  "check": "DCF units delivered 2033",
+  "workbook": 4083.1855,
+  "study": 4083.1855,
+  "ok": true
+ },
+ {
+  "check": "DCF units delivered 2034",
+  "workbook": 4266.9289,
+  "study": 4266.9289,
+  "ok": true
+ },
+ {
+  "check": "DCF units delivered 2035",
+  "workbook": 4394.9367,
+  "study": 4394.9367,
+  "ok": true
+ },
+ {
+  "check": "DCF units delivered 2036",
+  "workbook": 4460.8608,
+  "study": 4460.8608,
+  "ok": true
+ },
+ {
+  "check": "DCF units delivered 2037",
+  "workbook": 4460.8608,
+  "study": 4460.8608,
+  "ok": true
+ },
+ {
+  "check": "DCF units delivered 2038",
+  "workbook": 4460.8608,
+  "study": 4460.8608,
+  "ok": true
+ },
+ {
+  "check": "DCF units delivered 2039",
+  "workbook": 4460.8608,
+  "study": 4460.8608,
+  "ok": true
+ },
+ {
+  "check": "DCF units delivered 2040",
+  "workbook": 4460.8608,
+  "study": 4460.8608,
   "ok": true
  },
  {
   "check": "DCF revenue per delivered unit 2026",
-  "workbook": 21.2924,
-  "study": 21.2924,
+  "workbook": 19.7278,
+  "study": 19.7278,
   "ok": true
  },
  {
   "check": "DCF revenue per delivered unit 2027",
-  "workbook": 26.6581,
-  "study": 26.6581,
+  "workbook": 22.0951,
+  "study": 22.0951,
   "ok": true
  },
  {
   "check": "DCF revenue per delivered unit 2028",
-  "workbook": 33.376,
-  "study": 33.376,
+  "workbook": 24.0837,
+  "study": 24.0837,
   "ok": true
  },
  {
   "check": "DCF revenue per delivered unit 2029",
-  "workbook": 41.7867,
-  "study": 41.7867,
+  "workbook": 25.89,
+  "study": 25.89,
   "ok": true
  },
  {
   "check": "DCF revenue per delivered unit 2030",
-  "workbook": 52.317,
-  "study": 52.317,
+  "workbook": 27.7023,
+  "study": 27.7023,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue per delivered unit 2031",
+  "workbook": 29.6414,
+  "study": 29.6414,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue per delivered unit 2032",
+  "workbook": 31.7163,
+  "study": 31.7163,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue per delivered unit 2033",
+  "workbook": 33.9365,
+  "study": 33.9365,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue per delivered unit 2034",
+  "workbook": 36.312,
+  "study": 36.312,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue per delivered unit 2035",
+  "workbook": 38.8539,
+  "study": 38.8539,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue per delivered unit 2036",
+  "workbook": 41.5737,
+  "study": 41.5737,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue per delivered unit 2037",
+  "workbook": 44.4838,
+  "study": 44.4838,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue per delivered unit 2038",
+  "workbook": 47.5977,
+  "study": 47.5977,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue per delivered unit 2039",
+  "workbook": 50.9295,
+  "study": 50.9295,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue per delivered unit 2040",
+  "workbook": 54.4946,
+  "study": 54.4946,
   "ok": true
  },
  {
@@ -97,26 +229,86 @@
  },
  {
   "check": "DCF revenue 2027",
-  "workbook": 57804.9795,
-  "study": 57804.9795,
+  "workbook": 51710.5248,
+  "study": 51710.5248,
   "ok": true
  },
  {
   "check": "DCF revenue 2028",
-  "workbook": 83227.6095,
-  "study": 83227.6095,
+  "workbook": 63973.6758,
+  "study": 63973.6758,
   "ok": true
  },
  {
   "check": "DCF revenue 2029",
-  "workbook": 119831.1122,
-  "study": 119831.1122,
+  "workbook": 77024.3056,
+  "study": 77024.3056,
   "ok": true
  },
  {
   "check": "DCF revenue 2030",
-  "workbook": 172532.8354,
-  "study": 172532.8354,
+  "workbook": 91069.6878,
+  "study": 91069.6878,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue 2031",
+  "workbook": 106214.5769,
+  "study": 106214.5769,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue 2032",
+  "workbook": 122173.317,
+  "study": 122173.317,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue 2033",
+  "workbook": 138568.9762,
+  "study": 138568.9762,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue 2034",
+  "workbook": 154940.9007,
+  "study": 154940.9007,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue 2035",
+  "workbook": 170760.3667,
+  "study": 170760.3667,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue 2036",
+  "workbook": 185454.2962,
+  "study": 185454.2962,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue 2037",
+  "workbook": 198436.097,
+  "study": 198436.097,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue 2038",
+  "workbook": 212326.6238,
+  "study": 212326.6238,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue 2039",
+  "workbook": 227189.4874,
+  "study": 227189.4874,
+  "ok": true
+ },
+ {
+  "check": "DCF revenue 2040",
+  "workbook": 243092.7515,
+  "study": 243092.7515,
   "ok": true
  },
  {
@@ -127,68 +319,188 @@
  },
  {
   "check": "DCF present value 2026",
-  "workbook": 4507.8617,
+  "workbook": 4507.862,
   "study": 4507.8716,
   "ok": true
  },
  {
   "check": "DCF free cash flow 2027",
-  "workbook": 7053.1817,
-  "study": 7053.1942,
+  "workbook": 6583.076,
+  "study": 6583.0885,
   "ok": true
  },
  {
   "check": "DCF present value 2027",
-  "workbook": 4425.0914,
-  "study": 4425.0992,
+  "workbook": 4250.2122,
+  "study": 4250.2203,
   "ok": true
  },
  {
   "check": "DCF free cash flow 2028",
-  "workbook": 9014.1979,
-  "study": 9014.2104,
+  "workbook": 7529.0142,
+  "study": 7529.0267,
   "ok": true
  },
  {
   "check": "DCF present value 2028",
-  "workbook": 4479.534,
-  "study": 4479.5403,
+  "workbook": 4056.5061,
+  "study": 4056.5115,
   "ok": true
  },
  {
   "check": "DCF free cash flow 2029",
-  "workbook": 11837.669,
-  "study": 11837.6815,
+  "workbook": 8535.6959,
+  "study": 8535.7084,
   "ok": true
  },
  {
   "check": "DCF present value 2029",
-  "workbook": 4659.513,
-  "study": 4659.5179,
+  "workbook": 3907.603,
+  "study": 3907.6059,
   "ok": true
  },
  {
   "check": "DCF free cash flow 2030",
-  "workbook": 15902.9028,
-  "study": 15902.9153,
+  "workbook": 9619.1095,
+  "study": 9619.122,
   "ok": true
  },
  {
   "check": "DCF present value 2030",
-  "workbook": 4958.1461,
-  "study": 4958.15,
+  "workbook": 3787.564,
+  "study": 3787.5655,
+  "ok": true
+ },
+ {
+  "check": "DCF free cash flow 2031",
+  "workbook": 10787.3353,
+  "study": 10787.3478,
+  "ok": true
+ },
+ {
+  "check": "DCF present value 2031",
+  "workbook": 3653.3637,
+  "study": 3653.3639,
+  "ok": true
+ },
+ {
+  "check": "DCF free cash flow 2032",
+  "workbook": 12018.3388,
+  "study": 12018.3513,
+  "ok": true
+ },
+ {
+  "check": "DCF present value 2032",
+  "workbook": 3500.8766,
+  "study": 3500.8757,
+  "ok": true
+ },
+ {
+  "check": "DCF free cash flow 2033",
+  "workbook": 13283.0449,
+  "study": 13283.0574,
+  "ok": true
+ },
+ {
+  "check": "DCF present value 2033",
+  "workbook": 3328.0023,
+  "study": 3328.0005,
+  "ok": true
+ },
+ {
+  "check": "DCF free cash flow 2034",
+  "workbook": 14545.9201,
+  "study": 14545.9326,
+  "ok": true
+ },
+ {
+  "check": "DCF present value 2034",
+  "workbook": 3134.5903,
+  "study": 3134.5878,
+  "ok": true
+ },
+ {
+  "check": "DCF free cash flow 2035",
+  "workbook": 15766.1805,
+  "study": 15766.193,
+  "ok": true
+ },
+ {
+  "check": "DCF present value 2035",
+  "workbook": 2922.2657,
+  "study": 2922.2626,
+  "ok": true
+ },
+ {
+  "check": "DCF free cash flow 2036",
+  "workbook": 16899.6208,
+  "study": 16899.6333,
+  "ok": true
+ },
+ {
+  "check": "DCF present value 2036",
+  "workbook": 2694.1625,
+  "study": 2694.159,
+  "ok": true
+ },
+ {
+  "check": "DCF free cash flow 2037",
+  "workbook": 17900.9932,
+  "study": 17901.0057,
+  "ok": true
+ },
+ {
+  "check": "DCF present value 2037",
+  "workbook": 2454.5822,
+  "study": 2454.5784,
+  "ok": true
+ },
+ {
+  "check": "DCF free cash flow 2038",
+  "workbook": 18972.4618,
+  "study": 18972.4743,
+  "ok": true
+ },
+ {
+  "check": "DCF present value 2038",
+  "workbook": 2237.5758,
+  "study": 2237.5718,
+  "ok": true
+ },
+ {
+  "check": "DCF free cash flow 2039",
+  "workbook": 20118.9331,
+  "study": 20118.9456,
+  "ok": true
+ },
+ {
+  "check": "DCF present value 2039",
+  "workbook": 2040.8573,
+  "study": 2040.8532,
+  "ok": true
+ },
+ {
+  "check": "DCF free cash flow 2040",
+  "workbook": 21345.6574,
+  "study": 21345.6699,
+  "ok": true
+ },
+ {
+  "check": "DCF present value 2040",
+  "workbook": 1862.3909,
+  "study": 1862.3868,
   "ok": true
  },
  {
   "check": "DCF sheet's explicit-period total",
-  "workbook": 23030.1463,
-  "study": 23030.179,
+  "workbook": 48338.4147,
+  "study": 48338.4144,
   "ok": true
  },
  {
   "check": "DCF sheet's enterprise value",
-  "workbook": 61999.4463,
-  "study": 61999.4753,
+  "workbook": 69848.4147,
+  "study": 69848.3951,
   "ok": true
  },
  {
@@ -217,50 +529,170 @@
  },
  {
   "check": "forecast sheet balances, cash conversion holds, 2027",
-  "workbook": 0.0,
+  "workbook": -0.0,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, cash conversion holds, 2027",
-  "workbook": 184810.2092,
-  "study": 184810.2092,
+  "workbook": 183280.226,
+  "study": 183280.226,
   "ok": true
  },
  {
   "check": "forecast sheet balances, cash conversion holds, 2028",
-  "workbook": -0.0,
-  "study": 0.0,
-  "ok": true
- },
- {
-  "check": "forecast total assets, cash conversion holds, 2028",
-  "workbook": 199749.0001,
-  "study": 199749.0001,
-  "ok": true
- },
- {
-  "check": "forecast sheet balances, cash conversion holds, 2029",
-  "workbook": -0.0,
-  "study": 0.0,
-  "ok": true
- },
- {
-  "check": "forecast total assets, cash conversion holds, 2029",
-  "workbook": 223876.9219,
-  "study": 223876.9219,
-  "ok": true
- },
- {
-  "check": "forecast sheet balances, cash conversion holds, 2030",
   "workbook": -0.0001,
   "study": 0.0,
   "ok": true
  },
  {
+  "check": "forecast total assets, cash conversion holds, 2028",
+  "workbook": 193385.4107,
+  "study": 193385.4107,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, cash conversion holds, 2029",
+  "workbook": -0.0001,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, cash conversion holds, 2029",
+  "workbook": 206766.8924,
+  "study": 206766.8924,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, cash conversion holds, 2030",
+  "workbook": 0.0,
+  "study": 0.0,
+  "ok": true
+ },
+ {
   "check": "forecast total assets, cash conversion holds, 2030",
-  "workbook": 261235.3543,
-  "study": 261235.3543,
+  "workbook": 223674.3988,
+  "study": 223674.3988,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, cash conversion holds, 2031",
+  "workbook": -0.0,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, cash conversion holds, 2031",
+  "workbook": 244383.9558,
+  "study": 244383.9558,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, cash conversion holds, 2032",
+  "workbook": 0.0,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, cash conversion holds, 2032",
+  "workbook": 269099.8767,
+  "study": 269099.8767,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, cash conversion holds, 2033",
+  "workbook": -0.0,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, cash conversion holds, 2033",
+  "workbook": 297931.8479,
+  "study": 297931.8479,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, cash conversion holds, 2034",
+  "workbook": 0.0,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, cash conversion holds, 2034",
+  "workbook": 330873.911,
+  "study": 330873.911,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, cash conversion holds, 2035",
+  "workbook": 0.0,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, cash conversion holds, 2035",
+  "workbook": 367787.3738,
+  "study": 367787.3738,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, cash conversion holds, 2036",
+  "workbook": -0.0,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, cash conversion holds, 2036",
+  "workbook": 408389.676,
+  "study": 408389.676,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, cash conversion holds, 2037",
+  "workbook": -0.0,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, cash conversion holds, 2037",
+  "workbook": 452250.996,
+  "study": 452250.996,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, cash conversion holds, 2038",
+  "workbook": -0.0,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, cash conversion holds, 2038",
+  "workbook": 499599.4651,
+  "study": 499599.4651,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, cash conversion holds, 2039",
+  "workbook": 0.0001,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, cash conversion holds, 2039",
+  "workbook": 550679.1836,
+  "study": 550679.1836,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, cash conversion holds, 2040",
+  "workbook": 0.0001,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, cash conversion holds, 2040",
+  "workbook": 605751.339,
+  "study": 605751.339,
   "ok": true
  },
  {
@@ -277,8 +709,8 @@
  },
  {
   "check": "forecast operating cash, cash conversion holds, 2027",
-  "workbook": 5036.9315,
-  "study": 5036.9315,
+  "workbook": 4505.8812,
+  "study": 4505.8812,
   "ok": true
  },
  {
@@ -289,8 +721,8 @@
  },
  {
   "check": "forecast operating cash, cash conversion holds, 2028",
-  "workbook": 7252.174,
-  "study": 7252.174,
+  "workbook": 5574.451,
+  "study": 5574.451,
   "ok": true
  },
  {
@@ -301,8 +733,8 @@
  },
  {
   "check": "forecast operating cash, cash conversion holds, 2029",
-  "workbook": 10441.6802,
-  "study": 10441.6802,
+  "workbook": 6711.639,
+  "study": 6711.639,
   "ok": true
  },
  {
@@ -313,12 +745,132 @@
  },
  {
   "check": "forecast operating cash, cash conversion holds, 2030",
-  "workbook": 15033.9311,
-  "study": 15033.9311,
+  "workbook": 7935.5064,
+  "study": 7935.5064,
   "ok": true
  },
  {
   "check": "closing cash never negative, cash conversion holds, 2030",
+  "workbook": 1.0,
+  "study": 1.0,
+  "ok": true
+ },
+ {
+  "check": "forecast operating cash, cash conversion holds, 2031",
+  "workbook": 9255.1811,
+  "study": 9255.1811,
+  "ok": true
+ },
+ {
+  "check": "closing cash never negative, cash conversion holds, 2031",
+  "workbook": 1.0,
+  "study": 1.0,
+  "ok": true
+ },
+ {
+  "check": "forecast operating cash, cash conversion holds, 2032",
+  "workbook": 10645.772,
+  "study": 10645.772,
+  "ok": true
+ },
+ {
+  "check": "closing cash never negative, cash conversion holds, 2032",
+  "workbook": 1.0,
+  "study": 1.0,
+  "ok": true
+ },
+ {
+  "check": "forecast operating cash, cash conversion holds, 2033",
+  "workbook": 12074.4346,
+  "study": 12074.4346,
+  "ok": true
+ },
+ {
+  "check": "closing cash never negative, cash conversion holds, 2033",
+  "workbook": 1.0,
+  "study": 1.0,
+  "ok": true
+ },
+ {
+  "check": "forecast operating cash, cash conversion holds, 2034",
+  "workbook": 13501.0291,
+  "study": 13501.0291,
+  "ok": true
+ },
+ {
+  "check": "closing cash never negative, cash conversion holds, 2034",
+  "workbook": 1.0,
+  "study": 1.0,
+  "ok": true
+ },
+ {
+  "check": "forecast operating cash, cash conversion holds, 2035",
+  "workbook": 14879.4841,
+  "study": 14879.4841,
+  "ok": true
+ },
+ {
+  "check": "closing cash never negative, cash conversion holds, 2035",
+  "workbook": 1.0,
+  "study": 1.0,
+  "ok": true
+ },
+ {
+  "check": "forecast operating cash, cash conversion holds, 2036",
+  "workbook": 16159.8638,
+  "study": 16159.8638,
+  "ok": true
+ },
+ {
+  "check": "closing cash never negative, cash conversion holds, 2036",
+  "workbook": 1.0,
+  "study": 1.0,
+  "ok": true
+ },
+ {
+  "check": "forecast operating cash, cash conversion holds, 2037",
+  "workbook": 17291.0542,
+  "study": 17291.0542,
+  "ok": true
+ },
+ {
+  "check": "closing cash never negative, cash conversion holds, 2037",
+  "workbook": 1.0,
+  "study": 1.0,
+  "ok": true
+ },
+ {
+  "check": "forecast operating cash, cash conversion holds, 2038",
+  "workbook": 18501.428,
+  "study": 18501.428,
+  "ok": true
+ },
+ {
+  "check": "closing cash never negative, cash conversion holds, 2038",
+  "workbook": 1.0,
+  "study": 1.0,
+  "ok": true
+ },
+ {
+  "check": "forecast operating cash, cash conversion holds, 2039",
+  "workbook": 19796.528,
+  "study": 19796.528,
+  "ok": true
+ },
+ {
+  "check": "closing cash never negative, cash conversion holds, 2039",
+  "workbook": 1.0,
+  "study": 1.0,
+  "ok": true
+ },
+ {
+  "check": "forecast operating cash, cash conversion holds, 2040",
+  "workbook": 21182.2849,
+  "study": 21182.2849,
+  "ok": true
+ },
+ {
+  "check": "closing cash never negative, cash conversion holds, 2040",
   "workbook": 1.0,
   "study": 1.0,
   "ok": true
@@ -337,26 +889,26 @@
  },
  {
   "check": "forecast sheet balances, the cycle holds, 2027",
-  "workbook": -0.0001,
+  "workbook": 0.0001,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, the cycle holds, 2027",
-  "workbook": 250662.1661,
-  "study": 250662.1661,
+  "workbook": 226555.4955,
+  "study": 226555.4955,
   "ok": true
  },
  {
   "check": "forecast sheet balances, the cycle holds, 2028",
-  "workbook": -0.0,
+  "workbook": -0.0001,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, the cycle holds, 2028",
-  "workbook": 351234.3831,
-  "study": 351234.3831,
+  "workbook": 275073.9273,
+  "study": 275073.9273,
   "ok": true
  },
  {
@@ -367,8 +919,8 @@
  },
  {
   "check": "forecast total assets, the cycle holds, 2029",
-  "workbook": 496038.261,
-  "study": 496038.261,
+  "workbook": 326709.9491,
+  "study": 326709.9491,
   "ok": true
  },
  {
@@ -379,8 +931,128 @@
  },
  {
   "check": "forecast total assets, the cycle holds, 2030",
-  "workbook": 704526.8845,
-  "study": 704526.8845,
+  "workbook": 382283.6066,
+  "study": 382283.6066,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, the cycle holds, 2031",
+  "workbook": -0.0001,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, the cycle holds, 2031",
+  "workbook": 442209.4775,
+  "study": 442209.4775,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, the cycle holds, 2032",
+  "workbook": 0.0,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, the cycle holds, 2032",
+  "workbook": 505357.8907,
+  "study": 505357.8907,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, the cycle holds, 2033",
+  "workbook": -0.0,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, the cycle holds, 2033",
+  "workbook": 570238.0675,
+  "study": 570238.0675,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, the cycle holds, 2034",
+  "workbook": 0.0,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, the cycle holds, 2034",
+  "workbook": 635027.9851,
+  "study": 635027.9851,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, the cycle holds, 2035",
+  "workbook": -0.0,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, the cycle holds, 2035",
+  "workbook": 697636.2659,
+  "study": 697636.2659,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, the cycle holds, 2036",
+  "workbook": 0.0001,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, the cycle holds, 2036",
+  "workbook": 756220.4286,
+  "study": 756220.4286,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, the cycle holds, 2037",
+  "workbook": -0.0,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, the cycle holds, 2037",
+  "workbook": 812969.3316,
+  "study": 812969.3316,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, the cycle holds, 2038",
+  "workbook": -0.0,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, the cycle holds, 2038",
+  "workbook": 873872.2598,
+  "study": 873872.2598,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, the cycle holds, 2039",
+  "workbook": -0.0,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, the cycle holds, 2039",
+  "workbook": 939219.9948,
+  "study": 939219.9948,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, the cycle holds, 2040",
+  "workbook": 0.0001,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, the cycle holds, 2040",
+  "workbook": 1009323.6732,
+  "study": 1009323.6732,
   "ok": true
  },
  {
@@ -397,8 +1069,8 @@
  },
  {
   "check": "forecast operating cash, the cycle holds, 2027",
-  "workbook": -23608.4569,
-  "study": -23608.4569,
+  "workbook": -14099.2666,
+  "study": -14099.2666,
   "ok": true
  },
  {
@@ -409,8 +1081,8 @@
  },
  {
   "check": "forecast operating cash, the cycle holds, 2028",
-  "workbook": -32850.4776,
-  "study": -32850.4776,
+  "workbook": -13309.9099,
+  "study": -13309.9099,
   "ok": true
  },
  {
@@ -421,8 +1093,8 @@
  },
  {
   "check": "forecast operating cash, the cycle holds, 2029",
-  "workbook": -46157.139,
-  "study": -46157.139,
+  "workbook": -12542.1386,
+  "study": -12542.1386,
   "ok": true
  },
  {
@@ -433,12 +1105,132 @@
  },
  {
   "check": "forecast operating cash, the cycle holds, 2030",
-  "workbook": -65316.07,
-  "study": -65316.07,
+  "workbook": -11969.5725,
+  "study": -11969.5725,
   "ok": true
  },
  {
   "check": "closing cash never negative, the cycle holds, 2030",
+  "workbook": 1.0,
+  "study": 1.0,
+  "ok": true
+ },
+ {
+  "check": "forecast operating cash, the cycle holds, 2031",
+  "workbook": -11398.5068,
+  "study": -11398.5068,
+  "ok": true
+ },
+ {
+  "check": "closing cash never negative, the cycle holds, 2031",
+  "workbook": 1.0,
+  "study": 1.0,
+  "ok": true
+ },
+ {
+  "check": "forecast operating cash, the cycle holds, 2032",
+  "workbook": -10202.7287,
+  "study": -10202.7287,
+  "ok": true
+ },
+ {
+  "check": "closing cash never negative, the cycle holds, 2032",
+  "workbook": 1.0,
+  "study": 1.0,
+  "ok": true
+ },
+ {
+  "check": "forecast operating cash, the cycle holds, 2033",
+  "workbook": -8286.3254,
+  "study": -8286.3254,
+  "ok": true
+ },
+ {
+  "check": "closing cash never negative, the cycle holds, 2033",
+  "workbook": 1.0,
+  "study": 1.0,
+  "ok": true
+ },
+ {
+  "check": "forecast operating cash, the cycle holds, 2034",
+  "workbook": -5580.0317,
+  "study": -5580.0317,
+  "ok": true
+ },
+ {
+  "check": "closing cash never negative, the cycle holds, 2034",
+  "workbook": 1.0,
+  "study": 1.0,
+  "ok": true
+ },
+ {
+  "check": "forecast operating cash, the cycle holds, 2035",
+  "workbook": -2052.633,
+  "study": -2052.633,
+  "ok": true
+ },
+ {
+  "check": "closing cash never negative, the cycle holds, 2035",
+  "workbook": 1.0,
+  "study": 1.0,
+  "ok": true
+ },
+ {
+  "check": "forecast operating cash, the cycle holds, 2036",
+  "workbook": 2278.9985,
+  "study": 2278.9985,
+  "ok": true
+ },
+ {
+  "check": "closing cash never negative, the cycle holds, 2036",
+  "workbook": 1.0,
+  "study": 1.0,
+  "ok": true
+ },
+ {
+  "check": "forecast operating cash, the cycle holds, 2037",
+  "workbook": 7342.6507,
+  "study": 7342.6507,
+  "ok": true
+ },
+ {
+  "check": "closing cash never negative, the cycle holds, 2037",
+  "workbook": 1.0,
+  "study": 1.0,
+  "ok": true
+ },
+ {
+  "check": "forecast operating cash, the cycle holds, 2038",
+  "workbook": 8038.2381,
+  "study": 8038.2381,
+  "ok": true
+ },
+ {
+  "check": "closing cash never negative, the cycle holds, 2038",
+  "workbook": 1.0,
+  "study": 1.0,
+  "ok": true
+ },
+ {
+  "check": "forecast operating cash, the cycle holds, 2039",
+  "workbook": 8782.5166,
+  "study": 8782.5166,
+  "ok": true
+ },
+ {
+  "check": "closing cash never negative, the cycle holds, 2039",
+  "workbook": 1.0,
+  "study": 1.0,
+  "ok": true
+ },
+ {
+  "check": "forecast operating cash, the cycle holds, 2040",
+  "workbook": 9578.8947,
+  "study": 9578.8947,
+  "ok": true
+ },
+ {
+  "check": "closing cash never negative, the cycle holds, 2040",
   "workbook": 1.0,
   "study": 1.0,
   "ok": true
@@ -451,38 +1243,98 @@
  },
  {
   "check": "free cash flow discounted, 2027",
-  "workbook": 7053.1942,
-  "study": 7053.1942,
+  "workbook": 6583.0885,
+  "study": 6583.0885,
   "ok": true
  },
  {
   "check": "free cash flow discounted, 2028",
-  "workbook": 9014.2104,
-  "study": 9014.2104,
+  "workbook": 7529.0267,
+  "study": 7529.0267,
   "ok": true
  },
  {
   "check": "free cash flow discounted, 2029",
-  "workbook": 11837.6815,
-  "study": 11837.6815,
+  "workbook": 8535.7084,
+  "study": 8535.7084,
   "ok": true
  },
  {
   "check": "free cash flow discounted, 2030",
-  "workbook": 15902.9153,
-  "study": 15902.9153,
+  "workbook": 9619.122,
+  "study": 9619.122,
+  "ok": true
+ },
+ {
+  "check": "free cash flow discounted, 2031",
+  "workbook": 10787.3478,
+  "study": 10787.3478,
+  "ok": true
+ },
+ {
+  "check": "free cash flow discounted, 2032",
+  "workbook": 12018.3513,
+  "study": 12018.3513,
+  "ok": true
+ },
+ {
+  "check": "free cash flow discounted, 2033",
+  "workbook": 13283.0574,
+  "study": 13283.0574,
+  "ok": true
+ },
+ {
+  "check": "free cash flow discounted, 2034",
+  "workbook": 14545.9326,
+  "study": 14545.9326,
+  "ok": true
+ },
+ {
+  "check": "free cash flow discounted, 2035",
+  "workbook": 15766.193,
+  "study": 15766.193,
+  "ok": true
+ },
+ {
+  "check": "free cash flow discounted, 2036",
+  "workbook": 16899.6333,
+  "study": 16899.6333,
+  "ok": true
+ },
+ {
+  "check": "free cash flow discounted, 2037",
+  "workbook": 17901.0057,
+  "study": 17901.0057,
+  "ok": true
+ },
+ {
+  "check": "free cash flow discounted, 2038",
+  "workbook": 18972.4743,
+  "study": 18972.4743,
+  "ok": true
+ },
+ {
+  "check": "free cash flow discounted, 2039",
+  "workbook": 20118.9456,
+  "study": 20118.9456,
+  "ok": true
+ },
+ {
+  "check": "free cash flow discounted, 2040",
+  "workbook": 21345.6699,
+  "study": 21345.6699,
   "ok": true
  },
  {
   "check": "present values sum to the explicit-period figure",
-  "workbook": 23030.179,
-  "study": 23030.179,
+  "workbook": 48338.4144,
+  "study": 48338.4144,
   "ok": true
  },
  {
   "check": "the study's discounted cash flow is the one in the statements",
-  "workbook": 14.8642,
-  "study": 14.8642,
+  "workbook": 17.1517,
+  "study": 17.1517,
   "ok": true
  },
  {
@@ -499,12 +1351,18 @@
  },
  {
   "check": "assumption B13",
-  "workbook": 24133.2,
-  "study": 24133.2,
+  "workbook": 23244.7187,
+  "study": 23244.7187,
   "ok": true
  },
  {
   "check": "assumption B16",
+  "workbook": 0.0468,
+  "study": 0.0468,
+  "ok": true
+ },
+ {
+  "check": "assumption B17",
   "workbook": 2859.92,
   "study": 2859.92,
   "ok": true

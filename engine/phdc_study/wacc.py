@@ -163,5 +163,53 @@ if __name__ == "__main__":
         "wacc_rating": r.wacc_rating, "wacc_cds": r.wacc_cds,
         "warnings": r.warnings,
     }
+    # [R-COC-01] the SCHEDULE, from the one module. The flat rates above stay as the
+    # explicit-window anchors and as the audit trail of the earlier editions; what the
+    # valuation discounts on is the ladder.
+    import cost_of_capital as COC
+    KD_UNAVAILABLE = (
+        "Part of the interest PHD incurs is capitalised into properties under development "
+        "rather than expensed, and the statements do not disclose the capitalised amount "
+        "separately. Interest incurred over average interest-bearing debt therefore cannot "
+        "be computed from what the company discloses: the P&L charge over the bank and loan "
+        "lines gives 13.91%, which understates the true borrowing rate by a large multiple "
+        "and would be the wrong number to hold the adopted rate against. The adopted rate "
+        "rests on the sovereign plus a stated 250 basis-point corporate spread, and this is "
+        "a limitation of the study rather than a solved input.")
+    sched = {}
+    for basis in ("cds", "rating"):
+        sc = COC.schedule(
+            "EG",
+            COC.BetaRecord(beta=beta["beta"], tier=1,
+                           source=("own-stock weekly regression against EGX30 through "
+                                   "beta_regression.own_stock_beta"),
+                           r2=beta.get("r2"), se=beta.get("se"), n=beta.get("n"),
+                           index_file=beta.get("index_file"),
+                           index_asof=beta.get("index_asof"),
+                           conforming=beta.get("conforming", True)),
+            COC.DebtBook(gross_debt=GROSS_DEBT, pct_local_currency=1.0,
+                         currency_source=("all eight borrowing lines on the balance sheet "
+                                          "are EGP; no foreign-currency tranche is disclosed"),
+                         kd_local_pretax=KD_LOCAL, kd_source=KD_SOURCE,
+                         interest_bearing_note=("the bank and loan lines only — notes payable "
+                                                "to land sellers and customer balances bear "
+                                                "no interest"),
+                         effective_rate_unavailable=KD_UNAVAILABLE),
+            market_cap=MARKET_CAP,
+            tax_rate=DAMODARAN_EGYPT["corporate_tax_rate"],
+            # the explicit window is FIFTEEN years, not five: it runs until the
+            # growth path has converged on the terminal, and the schedule must
+            # cover every year the model discounts. Years past the policy path's
+            # own horizon sit at the terminal rate, which is the honest
+            # completion — nothing is extrapolated beyond the easing calendar.
+            years=15,
+            erp_explicit=(DAMODARAN_EGYPT["total_erp_cds"] if basis == "cds"
+                          else DAMODARAN_EGYPT["total_erp_rating"]),
+            erp_basis=basis, allow_stale_sovereign=True)
+        sched[basis] = sc.as_record()
+        if basis == "rating":
+            print(sc.report())
+    out["schedule"] = sched
+    out["cost_of_capital_record"] = sched["rating"]   # this study's CENTRAL basis
     json.dump(out, open(os.path.join(HERE, "wacc_result.json"), "w"), indent=1, default=str)
     print("\nwrote wacc_result.json")

@@ -334,7 +334,7 @@
    "category": "price behaviour",
    "klass": "STRUCTURAL",
    "headline": "The supplied series runs 2,957 sessions from 18 May 2014 to 6 August 2026 with no placeholder rows, no unadjusted corporate action and a largest single-session move of 18.2% against the exchange's 20% daily limit; the share closes unchanged on 12.2% of sessions against an Egyptian library median of 9.0%",
-   "source_name": "House data-quality gate over the supplied series",
+   "source_name": "House data-quality screen over the supplied series",
    "source_type": "HOUSE_ENGINE",
    "source_date": "2026-08-06",
    "detail": "",

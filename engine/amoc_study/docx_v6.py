@@ -1123,7 +1123,8 @@ box([
      'input carries a value, a source, a date and a research ring in the companion source '
      'register.'),
     ('THE COMPANION FILES.  ',
-     f'The workbook recalculates this entire study live: {n0(CENSUS["formulas"])} formulas '
+     f'The workbook recalculates this entire study live across sixteen sheets: '
+     f'{n0(CENSUS["formulas"])} formulas '
      f'against {n0(CENSUS["pasted"])} pasted filing values ({pc(CENSUS["share"], 1)} live), with '
      'all thirty sensitivity grid points written out as complete formula engines and every '
      'formula cell verified against the model by an independent evaluator — 0 unresolvable, 0 '

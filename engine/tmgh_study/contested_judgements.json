@@ -1,0 +1,38 @@
+{
+ "ticker": "TMGH",
+ "as_of": "2026-09-02",
+ "judgements": [
+  {
+   "name": "how fast the order book converts",
+   "adopted": "published BOTH ways, never averaged",
+   "alternative": "a single central reading",
+   "value_adopted": 123.02843812737396,
+   "value_alternative": 65.16331605181323,
+   "why": "the company does not disclose a delivery schedule, so neither reading can be settled from what it publishes; both are published and the study takes no side"
+  },
+  {
+   "name": "minority interests",
+   "adopted": "their share of value, proxied by the filed profit share",
+   "alternative": "at book",
+   "value_adopted": 123.02843812737396,
+   "value_alternative": 118.97241993803047,
+   "why": "the model capitalises all of the subsidiaries' cash flow, so the minority's claim is worth its share of that value and not what it historically cost"
+  },
+  {
+   "name": "equity risk premium basis",
+   "adopted": "the swap basis",
+   "alternative": "the credit-rating basis",
+   "value_adopted": 123.02843812737396,
+   "value_alternative": 118.49784887591638,
+   "why": "the market's own live pricing of the sovereign's credit, against an agency judgement updated in steps; both are published"
+  },
+  {
+   "name": "terminal growth",
+   "adopted": "inflation only, zero real, on the house macro path",
+   "alternative": "the 15% the earlier editions carried",
+   "value_adopted": 123.02843812737396,
+   "value_alternative": 98.17,
+   "why": "15% nominal growth in perpetuity against a terminal rate embedding 7% inflation is eight points of real growth a year for ever, which nothing disclosed supports"
+  }
+ ]
+}

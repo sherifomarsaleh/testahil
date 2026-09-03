@@ -1,0 +1,90 @@
+{
+ "market": "EG",
+ "currency": "EGP",
+ "as_of": "2026-09-02",
+ "regime": "transition",
+ "regime_note": "The policy rate sits far above its own long-run level and the central bank publishes a disinflation path, so the cost-of-capital glide applies here [Standing_Research_Protocol, 13-Jul r3 SCOPE]. Contrast the pegged markets, where today is already the terminal.",
+ "inflation": {
+  "latest": {
+   "value": 0.149,
+   "period": "July 2026, annual headline",
+   "source": "Central Bank of Egypt, Monetary Policy Committee statement of 20 August 2026: annual headline inflation 14.9% in July 2026 against 14.3% in June; core 14.7% against 14.3%; monthly headline and core both 0.0% in July.",
+   "date": "2026-07-31",
+   "tier": "Country"
+  },
+  "path": [
+   {"year": 2026, "value": 0.160, "basis": "CBE baseline, average annual headline"},
+   {"year": 2027, "value": 0.120, "basis": "CBE baseline, average annual headline"},
+   {"year": 2028, "value": 0.090, "basis": "interpolated on the CBE's own stated glide from the 2027 baseline to the Q4-2028 target band midpoint, no year outside the published endpoints"},
+   {"year": 2029, "value": 0.075, "basis": "interpolated, as 2028"},
+   {"year": 2030, "value": 0.070, "basis": "the target band midpoint in force, held"}
+  ],
+  "path_source": "Central Bank of Egypt Q1-2026 Monetary Policy Report as reported 11 May 2026: baseline average annual headline inflation 16.0% in 2026 and 12.0% in 2027 (alternative scenario, conflict persisting to end-2026: 17.0% and 13.0%, single digits in H2-2027). The 2028-2030 steps are a straight glide between the published 2027 baseline and the target midpoint; they are INTERPOLATION BETWEEN PUBLISHED ENDPOINTS and are labelled as such, never presented as a central-bank forecast.",
+  "target": {
+   "value": 0.07,
+   "band": 0.02,
+   "horizon": "Q4 2026",
+   "source": "CBE inflation target 7% (+/-2pp) for Q4 2026; the bank states inflation will remain ABOVE the band in Q4 2026 and expects a return to it in the second half of 2027.",
+   "date": "2026-08-20"
+  },
+  "terminal": {
+   "value": 0.07,
+   "source": "The target band midpoint IN FORCE at the terminal horizon. The 5% (+/-2pp) figure once quoted for Q4 2028 is NOT used: the bank's own August 2026 guidance puts the return to the 7% band in the second half of 2027, so a terminal built on 5% would assume an undershoot the bank does not forecast. AMOC's edition of 06-Aug-2026 made exactly this correction and it is inherited here rather than re-litigated.",
+   "date": "2026-08-20"
+  }
+ },
+ "policy_rate": {
+  "current": {
+   "overnight_deposit": 0.19,
+   "overnight_lending": 0.20,
+   "main_operation": 0.195,
+   "discount": 0.195,
+   "source": "Central Bank of Egypt Monetary Policy Committee, 20 August 2026 — rates held for a fourth consecutive meeting.",
+   "date": "2026-08-20"
+  },
+  "path": [0.190, 0.165, 0.145, 0.130, 0.120],
+  "path_basis": "Overnight deposit rate, 2026-2030, gliding with the published inflation path at an approximately constant real policy rate. It is the SHAPE input for the cost-of-capital glide and for the cost-of-debt path; it is not a second free parameter and no valuation input is set from it independently."
+ },
+ "sovereign": {
+  "yield_10y": {
+   "value": 0.23,
+   "source": "Egypt 10-year EGP government bond yield, market quote 6 August 2026, the quote already registered and used by the PHDC and EGCH cost-of-capital records. RE-SOURCE BEFORE ANY NEW STRIKE: this is the input the 14-day staleness rule bites on.",
+   "date": "2026-08-06",
+   "tier": "Country"
+  },
+  "default_spread_rating": 0.0637,
+  "default_spread_cds": 0.0341,
+  "spread_source": "Damodaran country risk file, Egypt row, as registered by the studies' own cost-of-capital records (rating basis 6.37%, credit-default-swap basis 3.41%). Both bases are carried; which one is CENTRAL is a cost-of-capital decision, not a macro one."
+ },
+ "fx": {
+  "spot": {
+   "value": 50.25,
+   "pair": "USD/EGP",
+   "source": "USD/EGP 50.25, quote of 6 August 2026 as registered in the AMOC cost-of-capital record; the pound closed 50.30/50.40 on 4 August 2026 and its 52-week range is 46.64-54.86, so the currency is not range-bound.",
+   "date": "2026-08-06"
+  },
+  "average_2025": 48.7,
+  "derivation": "The forward currency path is DERIVED from this path's own inflation ladder against long-run United States inflation by relative purchasing-power parity, never set by hand. A study that escalates costs at Egyptian inflation while depreciating the pound at a third of the differential is running two views of one economy [L-048]."
+ },
+ "us_inflation_lt": {
+  "value": 0.025,
+  "source": "Long-run United States consumer price inflation, the foreign leg of the purchasing-power-parity relation. Registered at 2.5% by AMOC (06-Aug-2026) and at 2.4% by EGCH; 2.5% is adopted for the house path and the 10bp difference is immaterial to any derived figure at this precision.",
+  "date": "2026-08-06"
+ },
+ "cost_of_debt_norm": {
+  "terminal": 0.15,
+  "range": [0.14, 0.16],
+  "source": "The long-run Egyptian corporate-borrowing norm, 14-16%, midpoint 15% absent a name-specific reason to deviate [Standing_Research_Protocol 13-Jul r2, clause 4].",
+  "date": "2026-08-06"
+ },
+ "real_rate_convention": {
+  "value": 0.055,
+  "source": "The standard emerging-market terminal real risk-free convention (~5.5pp). The terminal NOMINAL risk-free rate is DERIVED as this plus the inflation target in force, so the single most terminal-value-sensitive number in a model cannot be typed.",
+  "date": "2026-08-06"
+ },
+ "erp_terminal": {
+  "value": 0.07,
+  "source": "Terminal equity risk premium, normalised below the currently elevated crisis-era level toward the rating-class norm; never held flat into perpetuity.",
+  "date": "2026-08-06"
+ }
+}

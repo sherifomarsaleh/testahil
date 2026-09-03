@@ -133,14 +133,14 @@ def build(path):
                N["model_parameters"]["RECOVERY_YEARS"]),
             "a published delivery schedule by project"],
            ["How the minority interest is deducted",
-            "both ways — at book value and proportionally — on every case",
+            "at its share of value, proxied by the filed profit share (adopted); at book and pro rata shown beside it",
             "a disclosure of TMG's economic share of each project company"],
            ["Which equity risk premium to use",
             "both, published side by side",
             "nothing; the two measures are genuinely different questions"],
            ["Whether to extrapolate the current sales rate",
             "no. TMG sold about ten times what it delivered in 2025, and that is "
-            "not a steady state; sales are faded toward the delivery rate",
+            "not a steady state; sales are held flat in real terms, not extrapolated",
             "sustained sales at the current rate alongside deliveries rising to "
             "meet them"],
            ["Whether to correct the finance-cost forecast",
@@ -235,7 +235,7 @@ def build(path):
 
 def main():
     doc = build(None)
-    out = os.path.join(HERE, "TMGH_Sources_01-09-2026.docx")
+    out = os.path.join(HERE, "TMGH_Sources_02-09-2026.docx")
     doc.save(out)
     hits, chars = scrub(out)
     bad = column_audit(out)

@@ -1,0 +1,11 @@
+{
+ "market": "QA",
+ "country": "Qatar",
+ "currency": "QAR",
+ "as_of": null,
+ "regime": "pegged",
+ "status": "pending",
+ "pending_reason": "As AE: pegged, terminal today, inflation ladder not yet sourced. 3 Qatari names, all Phase 2.",
+ "how_to_source": "Fill this file to the shape of EG.json: every level published by a named institution on a named date, or derived here by an identity from numbers that are; a year between two published endpoints is labelled 'interpolated between published endpoints' and never called a forecast. macro_path.load() validates the shape and refuses a file that is internally incoherent.",
+ "note": "A PENDING file is deliberate, not an oversight: engine/macro_path.py RAISES on load rather than falling back to a neighbouring market, because an empty answer is not a clean answer [R-ENF-04]. Every calibrated name today is Egyptian."
+}

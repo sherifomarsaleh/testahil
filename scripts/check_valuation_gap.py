@@ -27,7 +27,7 @@ WHY THIS EXISTS
 WHAT IT CHECKS, per study directory under engine/*_study/
     1. the study's own committed numbers resolve to a central fair value and the spot it
        was struck against — a study whose answer cannot be read is NOT clean [R-ENF-04]
-    2. where the central sits more than GAP_LIMIT below that spot, a dated gap review
+    2. where the central sits more than GAP_LIMIT below OR GAP_LIMIT_ABOVE above that spot, a dated gap review
        exists in the study directory
     3. that review actually covers the required headings, so it cannot be a rubber stamp
 
@@ -51,6 +51,7 @@ USAGE
     python3 scripts/check_valuation_gap.py --prune  # drop the now-passing entries
 """
 import glob
+import re
 import json
 import os
 import re
@@ -60,11 +61,29 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENGINE = os.path.join(ROOT, 'engine')
 OUTSTANDING = os.path.join(ENGINE, 'build_depth_audit', 'gap_outstanding.json')
 
-# The trigger, per instruction of 1 September 2026: a central fair value more than ten per
-# cent BELOW the latest known market price. ONE-SIDED ON PURPOSE — see the protocol. The
-# reverse case (a valuation far above the price) is NOT covered here, and its absence is a
-# decision on the record rather than an oversight.
+# The trigger. As instructed on 1 September 2026: a central fair value more than ten per
+# cent BELOW the latest known market price. TWO-SIDED FROM 2 September 2026 [R-GAP-01
+# amended, method reassessment WS7]: the same ten per cent ABOVE the price fires the same
+# eight-heading review.
+#
+# Why the extension. The one-sidedness was on the record as a decision, and its stated cost
+# was that an over-optimistic study would get no automatic audit and that nothing else
+# supplied one. The method reassessment then measured what the one-sided defence had cost:
+# because only the downside was audited, every correction the house made ran the same way,
+# and the lean survived inside a process that looked rigorous. A gate that can only fire in
+# one direction teaches the work to drift in the other.
+#
+# The trigger stays EVIDENTIAL rather than deferential, in both directions. A large gap
+# either way is a high-prior-of-defect region, and the price is the only instrument in the
+# room that measures it. The rule does not say the answer must change: a genuine 39%
+# discount and a genuine 39% premium are both legitimate conclusions, and this project
+# publishes ranges precisely because prices are sometimes wrong. It says the answer is
+# AUDITED before it ships.
+#
+# The threshold is the instruction's own and is not dressed up as a derivation. What is
+# defensible is the shape: a review costs an hour and a shipped error costs the study.
 GAP_LIMIT = -0.10
+GAP_LIMIT_ABOVE = 0.10
 
 # What a review must cover. These are not invented headings: each one names a defect that
 # was actually present in the AMOC study the day this rule was adopted, and each was
@@ -121,20 +140,50 @@ def read_review(sdir):
     """The most recent gap review in a study directory, and the headings it covers."""
     hits = sorted(glob.glob(os.path.join(sdir, REVIEW_GLOB)))
     if not hits:
-        return None, []
-    txt = open(hits[-1], encoding='utf-8').read().upper()
+        return None, [], None
+    raw = open(hits[-1], encoding='utf-8').read()
+    txt = raw.upper()
     covered = [k for k in REQUIRED_SECTIONS if k in txt]
-    return os.path.basename(hits[-1]), covered
+    return os.path.basename(hits[-1]), covered, _audited_central(raw)
+
+
+# A REVIEW AUDITS AN ANSWER, AND THE ANSWER MOVES. On 2 September 2026 EGCH's
+# central went from 3.76 to -1.06 while its review — written for 3.76 — sat in
+# the directory unchanged, and this gate passed the study, because it checked
+# that a review EXISTED and covered the eight headings and never that it audited
+# the number the study now publishes. A check that green-lights a stale artefact
+# is reporting on something nobody receives, which is the same species as a gate
+# opening a superseded workbook.
+#
+# The review therefore states the central it audited, on its own line, and this
+# gate compares. The marker is deliberately plain text a person writing a review
+# will produce anyway.
+AUDITED_RX = re.compile(
+    r'AUDITED[ _]CENTRAL\s*[:=]\s*(-?[0-9][0-9,]*\.?[0-9]*)', re.I)
+AUDIT_TOL = 0.005          # half a per cent of the central, not a round number:
+                           # a review is stale when the answer has MOVED, not when
+                           # it has been re-rounded
+
+
+def _audited_central(raw):
+    m = AUDITED_RX.search(raw)
+    if not m:
+        return None
+    try:
+        return float(m.group(1).replace(',', ''))
+    except ValueError:
+        return None
 
 
 def load_outstanding():
     d = json.load(open(OUTSTANDING, encoding='utf-8'))
-    return d, set(d.get('breach_no_review', [])), set(d.get('unreadable', []))
+    return (d, set(d.get('breach_no_review', [])), set(d.get('unreadable', [])),
+            set(d.get('review_central_unstated', [])))
 
 
 def main(argv):
     prune = '--prune' in argv
-    d, known_breach, known_unreadable = load_outstanding()
+    d, known_breach, known_unreadable, known_unstated = load_outstanding()
 
     sdirs = sorted(glob.glob(os.path.join(ENGINE, '*_study')))
     ok, breaches, unreadable, reviewed, new_fail = [], [], [], [], []
@@ -162,34 +211,56 @@ def main(argv):
                                 'is not a study that passed.' % (tk, route))
             continue
         gap = central / spot - 1.0
-        if gap >= GAP_LIMIT:
+        if GAP_LIMIT <= gap <= GAP_LIMIT_ABOVE:
             ok.append((tk, gap))
             continue
-        review, covered = read_review(sdir)
+        side = 'below' if gap < 0 else 'above'
+        review, covered, audited = read_review(sdir)
         missing = [k for k in REQUIRED_SECTIONS if k not in covered]
-        if review and not missing:
-            reviewed.append((tk, gap, review))
+        if review and not missing and audited is None and tk not in known_unstated:
+            new_fail.append('%s: the review %s states no AUDITED CENTRAL, so nothing '
+                            'can tell whether it audits the answer the study now '
+                            'publishes.' % (tk, review))
+        stale = (audited is not None
+                 and abs(audited - central) > max(AUDIT_TOL * abs(central), 0.005))
+        if review and not missing and not stale:
+            reviewed.append((tk, gap, review, audited))
             continue
-        breaches.append((tk, gap, review, missing))
-        if tk not in known_breach:
-            why = ('no gap review in the study directory' if not review
-                   else 'the review %s does not cover %s' % (review, ', '.join(missing)))
-            new_fail.append('%s: central is %.1f%% below the spot it was struck at, and %s.'
-                            % (tk, 100 * gap, why))
+        breaches.append((tk, gap, review, missing, audited, stale))
+        if tk not in known_breach and tk not in known_unstated:
+            if not review:
+                why = 'no gap review in the study directory'
+            elif missing:
+                why = 'the review %s does not cover %s' % (review, ', '.join(missing))
+            elif stale:
+                why = ('the review %s audits a central of %.4f while the study now '
+                       'publishes %.4f. A review of a number the study no longer '
+                       'carries is not a review of this study.'
+                       % (review, audited, central))
+            else:
+                why = 'the review %s states no audited central' % review
+            new_fail.append('%s: central is %.1f%% %s the spot it was struck at, and %s.'
+                            % (tk, abs(100 * gap), side, why))
 
     print('study directories: %d   readable: %d   reviewed: %d   breaching: %d   unreadable: %d'
           % (len(sdirs), len(ok) + len(reviewed) + len(breaches), len(reviewed),
              len(breaches), len(unreadable)))
-    print('trigger: central more than %.0f%% below the spot it was struck at\n' % (-100 * GAP_LIMIT))
+    print('trigger: central more than %.0f%% BELOW or %.0f%% ABOVE the spot it was struck at\n'
+          % (-100 * GAP_LIMIT, 100 * GAP_LIMIT_ABOVE))
 
     if reviewed:
-        print('BELOW THE LINE, AND REVIEWED (%d):' % len(reviewed))
-        for tk, gap, rv in reviewed:
-            print('   %-12s %+6.1f%%  %s' % (tk, 100 * gap, rv))
+        print('OUTSIDE THE BAND, AND REVIEWED (%d):' % len(reviewed))
+        for tk, gap, rv, aud in reviewed:
+            print('   %-12s %+6.1f%%  %s%s'
+                  % (tk, 100 * gap, rv,
+                     '' if aud is None else '  (audits %.4f)' % aud))
     if breaches:
-        print('\nBELOW THE LINE, NOT REVIEWED (%d):' % len(breaches))
-        for tk, gap, rv, missing in breaches:
-            state = 'no review' if not rv else 'missing: ' + ', '.join(missing)
+        print('\nOUTSIDE THE BAND, NOT REVIEWED (%d):' % len(breaches))
+        for tk, gap, rv, missing, aud, stale in breaches:
+            state = ('no review' if not rv
+                     else ('missing: ' + ', '.join(missing)) if missing
+                     else ('STALE — audits %.4f' % aud) if stale
+                     else 'no audited central stated')
             print('   %-12s %+6.1f%%  %s' % (tk, 100 * gap, state))
     if unreadable:
         print('\nANSWER NOT READABLE (%d) — tracked, because an unreadable answer is not a '
@@ -197,14 +268,14 @@ def main(argv):
         for tk, why in unreadable:
             print('   %-12s %s' % (tk, why))
 
-    now_passing = sorted(({tk for tk, _, _, _ in breaches} ^ known_breach) & known_breach) + \
+    now_passing = sorted(({b[0] for b in breaches} ^ known_breach) & known_breach) + \
         sorted(({tk for tk, _ in unreadable} ^ known_unreadable) & known_unreadable)
     if now_passing:
         print('\nNOW PASSING — remove from the list (%d): %s'
               % (len(now_passing), ', '.join(now_passing)))
 
     if prune:
-        d['breach_no_review'] = sorted({tk for tk, _, _, _ in breaches} & known_breach)
+        d['breach_no_review'] = sorted({b[0] for b in breaches} & known_breach)
         d['unreadable'] = sorted({tk for tk, _ in unreadable} & known_unreadable)
         json.dump(d, open(OUTSTANDING, 'w'), indent=1)
         print('\npruned; %d breach + %d unreadable remain'
@@ -215,9 +286,9 @@ def main(argv):
         print('\nFAIL — %d new violation(s):' % len(new_fail))
         for m in new_fail:
             print('   ' + m)
-        print('\nA fair value far below the traded price is the case where the market is '
-              'telling you something the model may have missed. Write the review, or fix '
-              'what it would have found.')
+        print('\nA fair value far from the traded price, in EITHER direction, is the case '
+              'where the market is telling you something the model may have missed. Write '
+              'the review, or fix what it would have found.')
         return 1
     print('\nOK — no new violations.')
     return 0

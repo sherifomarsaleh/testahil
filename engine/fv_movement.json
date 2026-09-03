@@ -75,6 +75,28 @@
       "bear": 52.1,
       "full": 50.6
      }
+    },
+    {
+     "delivered": "2026-09-02",
+     "edition": 3,
+     "fair": {
+      "base": 9.9142,
+      "bear": 4.9284,
+      "full": 16.7253
+     },
+     "lessons": [],
+     "origins": "re-issue 02-Sep-2026 on the new standard: cost of debt rebuilt above the sovereign (22.00% was 31bp BELOW Egypt's own 22.31%, forbidden outright, and the new cost-of-capital gate found it in the one study that had implemented the rest of that procedure); the typed 45/20/20/15 lens blend retired so the cash-flow lens is the central; normalised earnings dropped as a lens for this class; the three construction records added",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 66.6,
+      "bear": 20.5,
+      "full": 96.3
+     },
+     "vs_previous_pct": {
+      "base": 14.7,
+      "bear": -10.9,
+      "full": 34.0
+     }
     }
    ],
    "exchange": "EGX",
@@ -177,6 +199,28 @@
       "bear": 0.6,
       "full": 0.1
      }
+    },
+    {
+     "delivered": "2026-09-02",
+     "edition": 4,
+     "fair": {
+      "base": 53.4593,
+      "bear": 47.7778,
+      "full": 59.3294
+     },
+     "lessons": [],
+     "origins": "FY2016-FY2025 h=1-5; re-issue 02-Sep-2026 on the new standard: house macro path for prices, costs and currency; terminal anchors derived (rf 10.50->12.50, g 5->7); the typed 50/20/22/8 lens blend retired so the cash-flow lens is the central; normalised earnings dropped as a lens for this class; the four construction records and a real external-reader scrub added",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -2.2,
+      "bear": -3.5,
+      "full": -3.9
+     },
+     "vs_previous_pct": {
+      "base": -1.2,
+      "bear": -2.0,
+      "full": -0.3
+     }
     }
    ],
    "exchange": "EGX",
@@ -253,6 +297,33 @@
       "bear": null,
       "full": 0.0
      }
+    },
+    {
+     "delivered": "2026-09-02",
+     "edition": 3,
+     "fair": {
+      "base": -1.0621217844282123,
+      "bear": -2.6124650988103313,
+      "full": 1.0205331101493433
+     },
+     "lessons": [
+      "L-064",
+      "L-065",
+      "L-206",
+      "L-207"
+     ],
+     "origins": "FY2012-FY2024, h=1-5, 55 cells",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -129.2,
+      "bear": null,
+      "full": -93.4
+     },
+     "vs_previous_pct": {
+      "base": -128.2,
+      "bear": null,
+      "full": -93.4
+     }
     }
    ],
    "exchange": "EGX",
@@ -273,12 +344,21 @@
    "ccy": "EGP",
    "editions": [
     {
+     "corrected": {
+      "on": "2026-09-01",
+      "was": {
+       "base": 15.89,
+       "bear": 7.62,
+       "full": 24.92
+      },
+      "why": "WRONG NUMBER RECORDED. The figure entered here was 7.62/15.89/24.92, which is what assets/data.js was carrying \u2014 the PRE-campaign range \u2014 not what the delivered study produced. PHDC's own study_numbers.json lens_weighted, and the delivered document's own headline, are 4.60/10.94/23.33. Because this name's baseline is unrecoverable the register had nothing to check the entry against, so it recorded the live number as the run's output and reported a zero movement for a rebuild that in fact cut the range by 31%. Found by OPENING the staged PDF instead of trusting the manifest."
+     },
      "delivered": "2026-09-01",
      "edition": 1,
      "fair": {
-      "base": 15.89,
-      "bear": 7.62,
-      "full": 24.92
+      "base": 10.9412,
+      "bear": 4.5998,
+      "full": 23.3342
      },
      "lessons": [
       "L-028",
@@ -290,6 +370,42 @@
      "scope": "full",
      "vs_baseline_pct": null,
      "vs_previous_pct": null
+    },
+    {
+     "delivered": "2026-09-02",
+     "edition": 2,
+     "fair": {
+      "base": 11.4478,
+      "bear": 5.223,
+      "full": 23.5404
+     },
+     "lessons": [],
+     "origins": "FY2016-FY2025 h=1-5 (10 origins); interim class-A edition 02-Sep-2026: bridge, book lens and debt stack on the 31-Mar-2026 reviewed balance sheet, minority at its share of value, normalised earnings at ke less growth \u2014 the three corrections of GAP_REVIEW_01-09-2026; discount rate and lens weights unchanged",
+     "scope": "full",
+     "vs_baseline_pct": null,
+     "vs_previous_pct": {
+      "base": 4.6,
+      "bear": 13.5,
+      "full": 0.9
+     }
+    },
+    {
+     "delivered": "2026-09-02",
+     "edition": 3,
+     "fair": {
+      "base": 17.1517,
+      "bear": 3.7554,
+      "full": 44.8509
+     },
+     "lessons": [],
+     "origins": "FY2016-FY2025 h=1-5; edition 3 of 02-Sep-2026 \u2014 WS8 re-issue on the four modules: the cost-of-capital SCHEDULE, the house macro path (prices 16%->7%, terminal growth 7% inflation-only replacing 12%), the explicit window extended to 15 years so growth converges on the terminal, and the lens architecture (the cash-flow lens IS the central; the typed 45/15/20/20 blend retired, normalised earnings dropped as a developer lens)",
+     "scope": "full",
+     "vs_baseline_pct": null,
+     "vs_previous_pct": {
+      "base": 49.8,
+      "bear": -28.1,
+      "full": 90.5
+     }
     }
    ],
    "exchange": "EGX",
@@ -341,6 +457,50 @@
       "base": -73.3,
       "bear": -73.3,
       "full": -68.5
+     }
+    },
+    {
+     "delivered": "2026-09-02",
+     "edition": 2,
+     "fair": {
+      "base": 69.92,
+      "bear": 47.1,
+      "full": 98.17
+     },
+     "lessons": [],
+     "origins": "FY2021-FY2025 h=1-5, 15 cells; interim class-A edition 02-Sep-2026: flat-real contracted sales + minority at value share, applied from GAP_REVIEW_01-09-2026",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -52.5,
+      "bear": -43.7,
+      "full": -48.2
+     },
+     "vs_previous_pct": {
+      "base": 77.8,
+      "bear": 111.3,
+      "full": 64.5
+     }
+    },
+    {
+     "delivered": "2026-09-02",
+     "edition": 3,
+     "fair": {
+      "base": 91.8306,
+      "bear": 63.696,
+      "full": 123.0284
+     },
+     "lessons": [],
+     "origins": "FY2021-FY2025 h=1-5; edition 3 of 02-Sep-2026 \u2014 WS8 re-issue on the four new modules: the cost-of-capital SCHEDULE replacing a flat 32.37%, terminal growth on the house macro path (7%, inflation only, replacing 15%), the lens architecture (one primary published as a range), and the bridge standard",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -37.6,
+      "bear": -23.8,
+      "full": -35.1
+     },
+     "vs_previous_pct": {
+      "base": 31.3,
+      "bear": 35.2,
+      "full": 25.3
      }
     }
    ],

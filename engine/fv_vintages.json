@@ -1,0 +1,1638 @@
+{
+ "_": "A dated archive of every fair value this house has published. GENERATED for the reconstructed half by engine/valuation_calibration/fv_vintages.py; the RECORDED half is written at publication and is never regenerated. Read this rather than walking git history: assets/data.js carries one undated fair{} per name, so the question 'what did we say this was worth in March' has no other answer.",
+ "series": {
+  "ADNOCDRILL": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 3.46,
+     "base": 4.92,
+     "full": 6.21
+    },
+    "spot": 5.94,
+    "spot_date": "close 07 Aug 2026",
+    "code": "ADX:ADNOCDRILL",
+    "first_seen": "2026-08-17",
+    "first_seen_commit": "d57a8ce8",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ADNOCDIST": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 3.36,
+     "base": 4.41,
+     "full": 5.17
+    },
+    "spot": 4.07,
+    "spot_date": "close 07 Aug 2026",
+    "code": "ADX:ADNOCDIST",
+    "first_seen": "2026-08-17",
+    "first_seen_commit": "37811183",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ADNOCLS": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 5.02,
+     "base": 7.05,
+     "full": 10.8
+    },
+    "spot": 6.16,
+    "spot_date": "close 07 Aug 2026",
+    "code": "ADX:ADNOCLS",
+    "first_seen": "2026-08-17",
+    "first_seen_commit": "685ecd32",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "SAVOLA": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 10.75,
+     "base": 27.24,
+     "full": 39.51
+    },
+    "spot": 25.4,
+    "spot_date": "close 18 Aug 2026",
+    "code": "TADAWUL:2050",
+    "first_seen": "2026-08-19",
+    "first_seen_commit": "0fa7a0ce",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "RIYADHCABLE": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 64.28,
+     "base": 109.35,
+     "full": 197.76
+    },
+    "spot": 104.9,
+    "spot_date": "close 18 Aug 2026",
+    "code": "TADAWUL:4142",
+    "first_seen": "2026-08-19",
+    "first_seen_commit": "9e8e9c8d",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "BOROUGE": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 1.3,
+     "base": 1.48,
+     "full": 2.55
+    },
+    "spot": 2.4,
+    "spot_date": "close 07 Aug 2026",
+    "code": "ADX:BOROUGE",
+    "first_seen": "2026-08-17",
+    "first_seen_commit": "f63073f6",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "DU": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 9.74,
+     "base": 13.9,
+     "full": 20.28
+    },
+    "spot": 12.3,
+    "spot_date": "close 07 Aug 2026",
+    "code": "DFM:DU",
+    "first_seen": "2026-08-17",
+    "first_seen_commit": "b604100b",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "EMPOWER": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 1.45,
+     "base": 1.84,
+     "full": 2.15
+    },
+    "spot": 1.5,
+    "spot_date": "close 07 Aug 2026",
+    "code": "DFM:EMPOWER",
+    "first_seen": "2026-08-17",
+    "first_seen_commit": "32a47aaa",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "AIRARABIA": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 2.01,
+     "base": 4.17,
+     "full": 6.97
+    },
+    "spot": 5.24,
+    "spot_date": "close 07 Aug 2026",
+    "code": "DFM:AIRARABIA",
+    "first_seen": "2026-08-17",
+    "first_seen_commit": "11240e15",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "FERTIGLB": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 1.27,
+     "base": 2.15,
+     "full": 2.79
+    },
+    "spot": 2.54,
+    "spot_date": "close 07 Aug 2026",
+    "code": "ADX:FERTIGLB",
+    "first_seen": "2026-08-17",
+    "first_seen_commit": "45c38b5d",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "AMR": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 1.5,
+     "base": 2.19,
+     "full": 3.44
+    },
+    "spot": 2.23,
+    "spot_date": "close 7 Aug 2026",
+    "code": "ADX:AMR",
+    "first_seen": "2026-08-10",
+    "first_seen_commit": "df244b1e",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   },
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 1.48,
+     "base": 2.15,
+     "full": 3.33
+    },
+    "spot": 2.23,
+    "spot_date": "close 07 Aug 2026",
+    "code": "ADX:AMR",
+    "first_seen": "2026-08-17",
+    "first_seen_commit": "95e184de",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "MODON": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 1.03,
+     "base": 3.38,
+     "full": 6.31
+    },
+    "spot": 2.83,
+    "spot_date": "close 7 Aug 2026",
+    "code": "ADX:MODON",
+    "first_seen": "2026-08-10",
+    "first_seen_commit": "d10c87bf",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   },
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 1.03,
+     "base": 2.5,
+     "full": 4.13
+    },
+    "spot": 2.83,
+    "spot_date": "close 07 Aug 2026",
+    "code": "ADX:MODON",
+    "first_seen": "2026-08-17",
+    "first_seen_commit": "d77a12c8",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "PHAR": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 58.04,
+     "base": 61.21,
+     "full": 73.03
+    },
+    "spot": 130.05,
+    "spot_date": "close 6 Aug 2026",
+    "code": "EGX:PHAR",
+    "first_seen": "2026-08-09",
+    "first_seen_commit": "a70b8296",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "EGCH": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 0,
+     "base": 3.64,
+     "full": 15.47
+    },
+    "spot": 13.98,
+    "spot_date": "close 6 Aug 2026",
+    "code": "EGX:EGCH",
+    "first_seen": "2026-08-09",
+    "first_seen_commit": "0a16980e",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "SCEM": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 46.84,
+     "base": 53.12,
+     "full": 59.1
+    },
+    "spot": 79,
+    "spot_date": "close 6 Aug 2026",
+    "code": "EGX:SCEM",
+    "first_seen": "2026-08-06",
+    "first_seen_commit": "817479e0",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ARCC": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 49.53,
+     "base": 54.65,
+     "full": 61.71
+    },
+    "spot": 59,
+    "spot_date": "close 6 Aug 2026",
+    "code": "EGX:ARCC",
+    "first_seen": "2026-08-07",
+    "first_seen_commit": "28d91c29",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "AMOC": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 3.83,
+     "base": 9.38,
+     "full": 18.12
+    },
+    "spot": 9.1,
+    "spot_date": "close 6 Aug 2026",
+    "code": "EGX:AMOC",
+    "first_seen": "2026-08-06",
+    "first_seen_commit": "e152c552",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   },
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 4.09,
+     "base": 5.95,
+     "full": 8.52
+    },
+    "spot": 9.1,
+    "spot_date": "close 6 Aug 2026",
+    "code": "EGX:AMOC",
+    "first_seen": "2026-08-08",
+    "first_seen_commit": "66df1c84",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   },
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 5.53,
+     "base": 8.64,
+     "full": 12.48
+    },
+    "spot": 9.1,
+    "spot_date": "close 6 Aug 2026",
+    "code": "EGX:AMOC",
+    "first_seen": "2026-09-01",
+    "first_seen_commit": "e68ba639",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   },
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 4.09,
+     "base": 5.95,
+     "full": 8.52
+    },
+    "spot": 9.1,
+    "spot_date": "close 6 Aug 2026",
+    "code": "EGX:AMOC",
+    "first_seen": "2026-09-01",
+    "first_seen_commit": "0c5c0a03",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "SWDY": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 33.77,
+     "base": 74.52,
+     "full": 154.5
+    },
+    "spot": 105.2,
+    "spot_date": "close 5 Aug 2026",
+    "code": "EGX:SWDY",
+    "first_seen": "2026-08-06",
+    "first_seen_commit": "d5477211",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   },
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 19.95,
+     "base": 69.73,
+     "full": 138.73
+    },
+    "spot": 105.2,
+    "spot_date": "close 5 Aug 2026",
+    "code": "EGX:SWDY",
+    "first_seen": "2026-08-07",
+    "first_seen_commit": "f437ca0b",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ELEC": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 0.18,
+     "base": 0.34,
+     "full": 0.95
+    },
+    "spot": 2.19,
+    "spot_date": "close 5 Aug 2026",
+    "code": "EGX:ELEC",
+    "first_seen": "2026-08-05",
+    "first_seen_commit": "5fd790e7",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "CLHO": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 6.51,
+     "base": 9.21,
+     "full": 11.05
+    },
+    "spot": 17.71,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:CLHO",
+    "first_seen": "2026-07-13",
+    "first_seen_commit": "20fe2bd1",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "RMDA": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 2.11,
+     "base": 2.77,
+     "full": 3.48
+    },
+    "spot": 6.35,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:RMDA",
+    "first_seen": "2026-07-13",
+    "first_seen_commit": "e7e9cd7c",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "DEWA": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 2.18,
+     "base": 3.32,
+     "full": 4.92
+    },
+    "spot": 2.7,
+    "spot_date": "close 21 Aug 2026",
+    "code": "DFM:DEWA",
+    "first_seen": "2026-07-12",
+    "first_seen_commit": "9e2f7f94",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "LULU": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 0.78,
+     "base": 1.28,
+     "full": 1.74
+    },
+    "spot": 0.945,
+    "spot_date": "close 27 Aug 2026",
+    "code": "ADX:LULU",
+    "first_seen": "2026-07-12",
+    "first_seen_commit": "c11a58e3",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "BURJEEL": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 1.14,
+     "base": 1.85,
+     "full": 2.35
+    },
+    "spot": 1.25,
+    "spot_date": "close 21 Aug 2026",
+    "code": "ADX:BURJEEL",
+    "first_seen": "2026-07-12",
+    "first_seen_commit": "236e58d1",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "SALIK": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 3.32,
+     "base": 4.62,
+     "full": 7.05
+    },
+    "spot": 5.37,
+    "spot_date": "close 27 Aug 2026",
+    "code": "DFM:SALIK",
+    "first_seen": "2026-07-12",
+    "first_seen_commit": "79089c88",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "DIB": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 8.14,
+     "base": 10.18,
+     "full": 11.2
+    },
+    "spot": 7.4,
+    "spot_date": "close 21 Aug 2026",
+    "code": "DFM:DIB",
+    "first_seen": "2026-07-11",
+    "first_seen_commit": "0a49185a",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "2POINTZERO": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 1.55,
+     "base": 1.91,
+     "full": 2.27
+    },
+    "spot": 2.08,
+    "spot_date": "close 31 Aug 2026",
+    "code": "ADX:2POINTZERO",
+    "first_seen": "2026-07-11",
+    "first_seen_commit": "f35d4558",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "EAND": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 17.61,
+     "base": 22.72,
+     "full": 28.75
+    },
+    "spot": 21.56,
+    "spot_date": "close 21 Aug 2026",
+    "code": "ADX:EAND",
+    "first_seen": "2026-07-11",
+    "first_seen_commit": "f8d511e1",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ADCB": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 14.3,
+     "base": 19.7,
+     "full": 23.3
+    },
+    "spot": 15.32,
+    "spot_date": "close 21 Aug 2026",
+    "code": "ADX:ADCB",
+    "first_seen": "2026-07-10",
+    "first_seen_commit": "9364d3cc",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ELM": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 530,
+     "base": 620,
+     "full": 720
+    },
+    "spot": 636.5,
+    "spot_date": "close 31 Aug 2026",
+    "code": "TADAWUL:7203",
+    "first_seen": "2026-07-10",
+    "first_seen_commit": "529707f6",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ALPHADHABI": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 6.08,
+     "base": 7.3,
+     "full": 8.82
+    },
+    "spot": 8.22,
+    "spot_date": "close 03 Jul 2026 — pre the 7–8 Jul war re-escalation, flagged in the study",
+    "code": "ADX:ALPHADHABI",
+    "first_seen": "2026-07-10",
+    "first_seen_commit": "58e52a09",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   },
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 5.95,
+     "base": 7.13,
+     "full": 8.63
+    },
+    "spot": 7.47,
+    "spot_date": "close 21 Aug 2026",
+    "code": "ADX:ALPHADHABI",
+    "first_seen": "2026-07-11",
+    "first_seen_commit": "0f819c80",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "EXTRA": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 66,
+     "base": 81,
+     "full": 92
+    },
+    "spot": 65.25,
+    "spot_date": "close 31 Aug 2026",
+    "code": "TADAWUL:4003",
+    "first_seen": "2026-07-10",
+    "first_seen_commit": "94aa32e4",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ALINMA": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 19.9,
+     "base": 27.32,
+     "full": 31.23
+    },
+    "spot": 25.72,
+    "spot_date": "close 31 Aug 2026",
+    "code": "TADAWUL:1150",
+    "first_seen": "2026-07-09",
+    "first_seen_commit": "e0477457",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "GBCO": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 18.8,
+     "base": 30.2,
+     "full": 45.1
+    },
+    "spot": 31.25,
+    "spot_date": "close 7 Jul 2026",
+    "code": "EGX:GBCO",
+    "first_seen": "2026-07-08",
+    "first_seen_commit": "4db2c0f0",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   },
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 24.1,
+     "base": 37.3,
+     "full": 53.9
+    },
+    "spot": 31.25,
+    "spot_date": "close 7 Jul 2026",
+    "code": "EGX:GBCO",
+    "first_seen": "2026-07-08",
+    "first_seen_commit": "c7ff7bbc",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   },
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 23.8,
+     "base": 37,
+     "full": 53.5
+    },
+    "spot": 31.25,
+    "spot_date": "close 7 Jul 2026",
+    "code": "EGX:GBCO",
+    "first_seen": "2026-07-08",
+    "first_seen_commit": "6ebc58f0",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   },
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 23.3,
+     "base": 35.7,
+     "full": 51
+    },
+    "spot": 29.51,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:GBCO",
+    "first_seen": "2026-07-09",
+    "first_seen_commit": "86dd6a71",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "EMAARDEV": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 12.88,
+     "base": 17.29,
+     "full": 22.76
+    },
+    "spot": 12.76,
+    "spot_date": "close 27 Aug 2026",
+    "code": "DFM:EMAARDEV",
+    "first_seen": "2026-07-08",
+    "first_seen_commit": "d2d3a886",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ISPH": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 12.85,
+     "base": 17.78,
+     "full": 22.68
+    },
+    "spot": 13.22,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:ISPH",
+    "first_seen": "2026-07-07",
+    "first_seen_commit": "9957e1cb",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "RELIANCE": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 1112,
+     "base": 1395,
+     "full": 1719
+    },
+    "spot": 1307,
+    "spot_date": "close 01 Sep 2026",
+    "code": "NSE:RELIANCE",
+    "first_seen": "2026-07-06",
+    "first_seen_commit": "a7aeae56",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "NVDA": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 147,
+     "base": 204,
+     "full": 287
+    },
+    "spot": 220.78,
+    "spot_date": "close 31 Aug 2026",
+    "code": "NASDAQ:NVDA",
+    "first_seen": "2026-07-06",
+    "first_seen_commit": "f03af844",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "KABO": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 1.42,
+     "base": 2.39,
+     "full": 3.52
+    },
+    "spot": 9.12,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:KABO",
+    "first_seen": "2026-07-06",
+    "first_seen_commit": "f4a37e8f",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "IQCD": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 6.9,
+     "base": 10.9,
+     "full": 15
+    },
+    "spot": 9.96,
+    "spot_date": "close 01 Sep 2026",
+    "code": "QSE:IQCD",
+    "first_seen": "2026-07-05",
+    "first_seen_commit": "30214293",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "RAYA": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 4.77,
+     "base": 5.56,
+     "full": 8.22
+    },
+    "spot": 7.07,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:RAYA",
+    "first_seen": "2026-07-03",
+    "first_seen_commit": "0de4a060",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "EFIH": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 10.2,
+     "base": 14.16,
+     "full": 23.6
+    },
+    "spot": 24.65,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:EFIH",
+    "first_seen": "2026-07-03",
+    "first_seen_commit": "1355cdc8",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "JUFO": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 22,
+     "base": 26,
+     "full": 33
+    },
+    "spot": 26.88,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:JUFO",
+    "first_seen": "2026-07-03",
+    "first_seen_commit": "92662f7d",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "EGAL": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 183,
+     "base": 250,
+     "full": 358
+    },
+    "spot": 330,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:EGAL",
+    "first_seen": "2026-07-03",
+    "first_seen_commit": "20f13493",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "EFID": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 16.41,
+     "base": 27.68,
+     "full": 42.78
+    },
+    "spot": 33.2,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:EFID",
+    "first_seen": "2026-07-03",
+    "first_seen_commit": "e0ddc31f",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "BTFH": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 1.89,
+     "base": 2.88,
+     "full": 4.13
+    },
+    "spot": 3.01,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:BTFH",
+    "first_seen": "2026-07-03",
+    "first_seen_commit": "eabe5077",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ETEL": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 82,
+     "base": 118,
+     "full": 160
+    },
+    "spot": 118.49,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:ETEL",
+    "first_seen": "2026-07-03",
+    "first_seen_commit": "16e0202a",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "FWRY": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 11.5,
+     "base": 14.7,
+     "full": 20.3
+    },
+    "spot": 19.2,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:FWRY",
+    "first_seen": "2026-07-02",
+    "first_seen_commit": "4746b4b4",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ABUK": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 50,
+     "base": 60,
+     "full": 72
+    },
+    "spot": 76.59,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:ABUK",
+    "first_seen": "2026-07-02",
+    "first_seen_commit": "4746b4b4",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ADIB": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 31.6,
+     "base": 54.3,
+     "full": 95.3
+    },
+    "spot": 54.4,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:ADIB",
+    "first_seen": "2026-07-03",
+    "first_seen_commit": "53b77e76",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ADIBUAE": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 17.9,
+     "base": 21.2,
+     "full": 23.5
+    },
+    "spot": 21.76,
+    "spot_date": "close 03 Jul 2026",
+    "code": "ADX:ADIB",
+    "first_seen": "2026-07-11",
+    "first_seen_commit": "80e3e0fe",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   },
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 17.73,
+     "base": 21.23,
+     "full": 24.63
+    },
+    "spot": 23.34,
+    "spot_date": "close 21 Aug 2026",
+    "code": "ADX:ADIB",
+    "first_seen": "2026-07-19",
+    "first_seen_commit": "b8920908",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "HRHO": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 23,
+     "base": 27.7,
+     "full": 33.6
+    },
+    "spot": 26.32,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:HRHO",
+    "first_seen": "2026-07-02",
+    "first_seen_commit": "4746b4b4",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ORWE": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 16.7,
+     "base": 20.9,
+     "full": 29.7
+    },
+    "spot": 26,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:ORWE",
+    "first_seen": "2026-07-02",
+    "first_seen_commit": "4746b4b4",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "LCSW": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 26,
+     "base": 37,
+     "full": 51
+    },
+    "spot": 34.66,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:LCSW",
+    "first_seen": "2026-07-06",
+    "first_seen_commit": "9531cc07",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "DSCW": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 0.59,
+     "base": 0.88,
+     "full": 1.29
+    },
+    "spot": 1.94,
+    "spot_date": "close 19 Jul 2026",
+    "code": "EGX:DSCW",
+    "first_seen": "2026-07-19",
+    "first_seen_commit": "f424f386",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   },
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 0.59,
+     "base": 0.88,
+     "full": 1.2
+    },
+    "spot": 1.96,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:DSCW",
+    "first_seen": "2026-07-20",
+    "first_seen_commit": "e7771672",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "PHDC": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 7.62,
+     "base": 15.89,
+     "full": 24.92
+    },
+    "spot": 15.2,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:PHDC",
+    "first_seen": "2026-06-11",
+    "first_seen_commit": "b48e615b",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "TMGH": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 83.6,
+     "base": 147.12,
+     "full": 189.6
+    },
+    "spot": 97.8,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:TMGH",
+    "first_seen": "2026-06-15",
+    "first_seen_commit": "6aa13a4b",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "EMFD": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 13.71,
+     "base": 19.84,
+     "full": 23.43
+    },
+    "spot": 13.7,
+    "spot_date": "close 01 Sep 2026",
+    "code": "EGX:EMFD",
+    "first_seen": "2026-06-19",
+    "first_seen_commit": "557ab049",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "OCDI": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 16.72,
+     "base": 26.43,
+     "full": 30.77
+    },
+    "spot": 31.01,
+    "spot_date": "close 01 Sep 2026",
+    "code": "EGX:OCDI",
+    "first_seen": "2026-06-24",
+    "first_seen_commit": "0bce3698",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ORHD": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 22.5,
+     "base": 53.79,
+     "full": 70.52
+    },
+    "spot": 41.5,
+    "spot_date": "close 01 Sep 2026",
+    "code": "EGX:ORHD",
+    "first_seen": "2026-06-25",
+    "first_seen_commit": "3f562e7b",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "COMI": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 90.86,
+     "base": 123.3,
+     "full": 169.7
+    },
+    "spot": 139,
+    "spot_date": "close 01 Sep 2026",
+    "code": "EGX:COMI",
+    "first_seen": "2026-06-29",
+    "first_seen_commit": "1404ea21",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "SAMSUNG": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 214800,
+     "base": 296502,
+     "full": 410754
+    },
+    "spot": 261000,
+    "spot_date": "close 01 Sep 2026",
+    "code": "KRX:005930",
+    "first_seen": "2026-06-27",
+    "first_seen_commit": "e4b97dbd",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "KAKAO": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 24517,
+     "base": 34258,
+     "full": 46401
+    },
+    "spot": 36500,
+    "spot_date": "close 01 Sep 2026",
+    "code": "KRX:035720",
+    "first_seen": "2026-06-28",
+    "first_seen_commit": "0dbe6630",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "LGES": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 150000,
+     "base": 248000,
+     "full": 415000
+    },
+    "spot": 367000,
+    "spot_date": "close 01 Sep 2026",
+    "code": "KRX:373220",
+    "first_seen": "2026-06-28",
+    "first_seen_commit": "b85f1c11",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "TMPV": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 236,
+     "base": 378,
+     "full": 579
+    },
+    "spot": 310.6,
+    "spot_date": "close 01 Sep 2026",
+    "code": "NSE:TMPV",
+    "first_seen": "2026-06-30",
+    "first_seen_commit": "2c8eebe7",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "INFY": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 995,
+     "base": 1242,
+     "full": 1556
+    },
+    "spot": 1154,
+    "spot_date": "close 01 Sep 2026",
+    "code": "NSE:INFY",
+    "first_seen": "2026-07-06",
+    "first_seen_commit": "d6959351",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ALDAR": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 7.95,
+     "base": 10.18,
+     "full": 11.77
+    },
+    "spot": 7.7,
+    "spot_date": "close 21 Aug 2026",
+    "code": "ADX:ALDAR",
+    "first_seen": "2026-07-08",
+    "first_seen_commit": "66e874c2",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "EMAAR": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 11.08,
+     "base": 14.8,
+     "full": 18.75
+    },
+    "spot": 11,
+    "spot_date": "close 27 Aug 2026",
+    "code": "DFM:EMAAR",
+    "first_seen": "2026-07-01",
+    "first_seen_commit": "02945b74",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "CCAP": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 3.296,
+     "base": 5.89,
+     "full": 8.601
+    },
+    "spot": 5.78,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:CCAP",
+    "first_seen": "2026-06-30",
+    "first_seen_commit": "d54646d3",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "OIH": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 0.53,
+     "base": 0.78,
+     "full": 1.7
+    },
+    "spot": 1.88,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:OIH",
+    "first_seen": "2026-07-03",
+    "first_seen_commit": "1fd5c7f8",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ORAS": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 740,
+     "base": 928,
+     "full": 1272
+    },
+    "spot": 782.25,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:ORAS",
+    "first_seen": "2026-06-30",
+    "first_seen_commit": "727165ae",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ARAMCO": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 20,
+     "base": 25.04,
+     "full": 31
+    },
+    "spot": 26.06,
+    "spot_date": "close 31 Aug 2026",
+    "code": "TADAWUL:2222",
+    "first_seen": "2026-07-01",
+    "first_seen_commit": "e07417ae",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "SABIC": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 43,
+     "base": 55.5,
+     "full": 66
+    },
+    "spot": 50.1,
+    "spot_date": "close 01 Sep 2026",
+    "code": "TADAWUL:2010",
+    "first_seen": "2026-07-07",
+    "first_seen_commit": "b1e0546d",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "MAADEN": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 27,
+     "base": 42,
+     "full": 57
+    },
+    "spot": 66.1,
+    "spot_date": "close 31 Aug 2026",
+    "code": "TADAWUL:1211",
+    "first_seen": "2026-07-05",
+    "first_seen_commit": "eecae6a6",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ADNOCGAS": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 3.3,
+     "base": 3.79,
+     "full": 4.6
+    },
+    "spot": 3.3,
+    "spot_date": "close 21 Aug 2026",
+    "code": "ADX:ADNOCGAS",
+    "first_seen": "2026-07-04",
+    "first_seen_commit": "d153b13b",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ALRAJHI": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 58,
+     "base": 70,
+     "full": 80
+    },
+    "spot": 67.45,
+    "spot_date": "close 31 Aug 2026",
+    "code": "TADAWUL:1120",
+    "first_seen": "2026-07-04",
+    "first_seen_commit": "603911af",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "STC": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 36.2,
+     "base": 47.11,
+     "full": 59.1
+    },
+    "spot": 44.72,
+    "spot_date": "close 31 Aug 2026",
+    "code": "TADAWUL:7010",
+    "first_seen": "2026-07-09",
+    "first_seen_commit": "898a8de7",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "RIBL": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 20.85,
+     "base": 26.61,
+     "full": 33.24
+    },
+    "spot": 20.9,
+    "spot_date": "close 31 Aug 2026",
+    "code": "TADAWUL:1010",
+    "first_seen": "2026-07-09",
+    "first_seen_commit": "d18ad318",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "SNB": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 36,
+     "base": 45,
+     "full": 55
+    },
+    "spot": 43.3,
+    "spot_date": "close 31 Aug 2026",
+    "code": "TADAWUL:1180",
+    "first_seen": "2026-07-04",
+    "first_seen_commit": "872a32b9",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ENBD": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 25,
+     "base": 32.3,
+     "full": 43.2
+    },
+    "spot": 31,
+    "spot_date": "close 27 Aug 2026",
+    "code": "DFM:EMIRATESNBD",
+    "first_seen": "2026-07-05",
+    "first_seen_commit": "552be294",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "QNB": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 14,
+     "base": 18.76,
+     "full": 28.5
+    },
+    "spot": 17.15,
+    "spot_date": "close 05 Aug 2026",
+    "code": "QSE:QNBK",
+    "first_seen": "2026-07-05",
+    "first_seen_commit": "74908a06",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "QGTS": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 2.71,
+     "base": 4.29,
+     "full": 6.4
+    },
+    "spot": 4.31,
+    "spot_date": "close 01 Sep 2026",
+    "code": "QSE:QGTS",
+    "first_seen": "2026-07-05",
+    "first_seen_commit": "4a79bb2b",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "FAB": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 17.1,
+     "base": 19.9,
+     "full": 22.4
+    },
+    "spot": 19.64,
+    "spot_date": "close 27 Aug 2026",
+    "code": "ADX:FAB",
+    "first_seen": "2026-07-05",
+    "first_seen_commit": "4a5435b2",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "ACWA": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 129,
+     "base": 195,
+     "full": 299
+    },
+    "spot": 191.9,
+    "spot_date": "close 31 Aug 2026",
+    "code": "TADAWUL:2082",
+    "first_seen": "2026-07-05",
+    "first_seen_commit": "34cea09d",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "AGTHIA": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 3.05,
+     "base": 4.37,
+     "full": 6.09
+    },
+    "spot": 3.35,
+    "spot_date": "close 21 Aug 2026",
+    "code": "ADX:AGTHIA",
+    "first_seen": "2026-07-08",
+    "first_seen_commit": "8ef1bccb",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "AAPL": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 182,
+     "base": 208,
+     "full": 244
+    },
+    "spot": 325.71,
+    "spot_date": "close 01 Sep 2026",
+    "code": "NASDAQ:AAPL",
+    "first_seen": "2026-07-06",
+    "first_seen_commit": "6bbcf663",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "TSLA": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 103,
+     "base": 174,
+     "full": 337
+    },
+    "spot": 420.6,
+    "spot_date": "close 30 Jun 2026",
+    "code": "NASDAQ:TSLA",
+    "first_seen": "2026-07-01",
+    "first_seen_commit": "46d9aa16",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   },
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 105,
+     "base": 254,
+     "full": 350
+    },
+    "spot": 357.9,
+    "spot_date": "close 01 Sep 2026",
+    "code": "NASDAQ:TSLA",
+    "first_seen": "2026-07-01",
+    "first_seen_commit": "04326c6d",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "IHC": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 78,
+     "base": 104.5,
+     "full": 150
+    },
+    "spot": 372,
+    "spot_date": "close 31 Aug 2026",
+    "code": "ADX:IHC",
+    "first_seen": "2026-07-04",
+    "first_seen_commit": "63bab7ad",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "HELI": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 5.2,
+     "base": 8.4,
+     "full": 11.82
+    },
+    "spot": 7.75,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:HELI",
+    "first_seen": "2026-07-03",
+    "first_seen_commit": "a575569c",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ],
+  "PRDC": [
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 5.92,
+     "base": 8.23,
+     "full": 11.51
+    },
+    "spot": 9.69,
+    "spot_date": "close 23 Aug 2026",
+    "code": "EGX:PRDC",
+    "first_seen": "2026-07-06",
+    "first_seen_commit": "60fd8707",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   }
+  ]
+ },
+ "reconstruction": {
+  "ref": "0af341f7cb36fa9049acbe5ddf8a9960aba25f94",
+  "ref_meaning": "first-parent history of the published line. A branch's fair value is not a vintage: only what main carried ever reached a reader.",
+  "revisions_walked": 286,
+  "names_seen": 90,
+  "earliest": "2026-06-11",
+  "latest": "2026-09-01",
+  "parse_failures": [],
+  "clone_depth_warning": "The reconstruction can only see as far back as this clone's history. A SHALLOW clone silently yields a shorter archive that looks complete, so the walked-revision count and the earliest date are recorded here and any consumer reads them rather than assuming a span.",
+  "shallow_clone": false
+ }
+}

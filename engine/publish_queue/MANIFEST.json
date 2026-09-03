@@ -11,20 +11,20 @@
     "bear": 5.53,
     "full": 12.48
    },
-   "report_bytes": 846538,
-   "workbook_bytes": 117897
+   "report_bytes": 846551,
+   "workbook_bytes": 133282
   },
   {
    "ticker": "ARCC",
-   "report": "engine/arcc_study/ARCC_Valuation_Study_01-09-2026_public.pdf",
-   "workbook": "engine/arcc_study/ARCC_Valuation_Model_01092026_public.xlsx",
+   "report": "engine/arcc_study/ARCC_Valuation_Study_02-09-2026_public.pdf",
+   "workbook": "engine/arcc_study/ARCC_Valuation_Model_02092026_public.xlsx",
    "fair": {
-    "base": 54.1,
-    "bear": 48.75,
-    "full": 59.53
+    "base": 53.4593,
+    "bear": 47.7778,
+    "full": 59.3294
    },
-   "report_bytes": 1259817,
-   "workbook_bytes": 48847
+   "report_bytes": 1256483,
+   "workbook_bytes": 48875
   },
   {
    "ticker": "EGCH",
@@ -40,27 +40,27 @@
   },
   {
    "ticker": "PHDC",
-   "report": "engine/phdc_study/PHDC_Valuation_Study_30-08-2026.pdf",
-   "workbook": "engine/phdc_study/PHDC_Valuation_Model_30082026.xlsx",
+   "report": "engine/phdc_study/PHDC_Valuation_Study_02-09-2026.pdf",
+   "workbook": "engine/phdc_study/PHDC_Valuation_Model_02092026.xlsx",
    "fair": {
-    "base": 15.89,
-    "bear": 7.62,
-    "full": 24.92
+    "base": 17.1517,
+    "bear": 3.7554,
+    "full": 44.8509
    },
-   "report_bytes": 1001305,
-   "workbook_bytes": 29501
+   "report_bytes": 1103206,
+   "workbook_bytes": 37441
   },
   {
    "ticker": "TMGH",
-   "report": "engine/tmgh_study/TMGH_Valuation_Study_01-09-2026.pdf",
-   "workbook": "engine/tmgh_study/TMGH_Valuation_Model_01092026.xlsx",
+   "report": "engine/tmgh_study/TMGH_Valuation_Study_02-09-2026.pdf",
+   "workbook": "engine/tmgh_study/TMGH_Valuation_Model_02092026.xlsx",
    "fair": {
-    "base": 39.333,
-    "bear": 22.295,
-    "full": 59.67
+    "base": 91.8306,
+    "bear": 63.696,
+    "full": 123.0284
    },
-   "report_bytes": 768388,
-   "workbook_bytes": 28198
+   "report_bytes": 771128,
+   "workbook_bytes": 28420
   }
  ]
 }

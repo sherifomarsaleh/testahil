@@ -37,3 +37,6 @@ engine/airarabia_study/sources/
 # one. A hash plus a public URL proves more than a committed binary does. The extracted
 # .txt the build actually reads IS committed. See engine/borouge_study/src/README.md.
 engine/borouge_study/src/*.pdf
+
+# Day-0 refetch: primary documents re-fetched and sha256-verified against the walk-forward registers stay on disk for the session; the verified url+sha record is engine/method_reassessment/refetch_log.json. The base-year and latest-interim statements each study stands on are committed under the study directories explicitly.
+engine/*_walkforward/filings/

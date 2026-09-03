@@ -1,0 +1,17 @@
+{
+ "ticker": "PHDC",
+ "as_of": "2026-09-02",
+ "spot": 15.2,
+ "why_this_file": "The reverse read \u2014 what the traded price must believe \u2014 is a DIAGNOSTIC and lives outside the numbers file every builder reads. A quantity solved from a price and then used anywhere in the valuation is the reverse-engineered rate the protocol prohibits outright, arriving through a side door. Nothing in this file is an input to anything.",
+ "implied": {
+  "quantity": "the rate at which contracted sales become operating cash",
+  "value": 0.0789249941432775,
+  "study_value": 0.08713663734609707,
+  "study_value_range": [
+   0.039375934839767424,
+   0.17870012846326283
+  ],
+  "solved_on": "this study's own model, holding every driver at its published value and the cost-of-capital schedule fixed, and varying only cash conversion until the model reproduces the traded price",
+  "reading": "At EGP 15.20 the price is paying for 7.89% of revenue reaching operating cash. The company has published three cash-flow statements and they show 4.3%, 17.9% and 3.9%; the study carries their mean, 8.71%. The market is therefore paying for something inside the company's own observed range and a little below its average \u2014 which is a narrower disagreement than the headline gap suggests."
+ }
+}

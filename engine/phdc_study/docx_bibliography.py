@@ -46,9 +46,14 @@ LAYER = {
     "units_": "Company — operating", "revenue_1q26": "Company — operating",
     "shares_": "Market", "spot": "Market",
 }
+# every line of the 31 March 2026 reviewed sheet is registered with a _1q26 suffix
+LAYER_1Q26 = "Company — balance sheet, 31 March 2026 (reviewed)"
 
 
 def layer_of(key):
+    if key.endswith("_1q26") and not key.startswith(("revenue_", "gross_profit_", "npat_",
+                                                    "backlog_", "new_sales_", "vdlc_")):
+        return LAYER_1Q26
     for pre, lab in sorted(LAYER.items(), key=lambda kv: -len(kv[0])):
         if key.startswith(pre):
             return lab
@@ -64,7 +69,7 @@ def build(path):
 
     para(doc, "PALM HILLS DEVELOPMENTS", size=18, bold=True, color=ACCENT,
          space_after=2)
-    para(doc, "Sources, inputs and judgements · edition of 30 August 2026",
+    para(doc, "Sources, inputs and judgements · edition of 2 September 2026",
          size=10.5, color=MUTED, space_after=14)
     para(doc, "This document accompanies the valuation study. It lists every "
               "document the study was built on, every input with its value, its "
@@ -81,8 +86,11 @@ def build(path):
             "Palm Hills Developments", "prior-year balance sheet and cash flow"],
            ["Consolidated financial statements", "FY2023",
             "Palm Hills Developments", "revenue and gross profit"],
-           ["Consolidated financial statements", "1Q2026",
-            "Palm Hills Developments", "the most recent reported quarter"],
+           ["Consolidated financial statements (reviewed)", "1Q2026 — 31 March 2026",
+            "Palm Hills Developments", "the most recent reported quarter, and the "
+            "balance sheet the bridge, the book value and the borrowings stand on "
+            "(a scan; figures read off the rendered pages and held to the "
+            "statement's own subtotals)"],
            ["Results release", "1Q2026", "Palm Hills Developments",
             "order book, new sales, the land-plot launch"],
            ["Results release", "FY2024", "Palm Hills Developments",
@@ -125,9 +133,10 @@ def build(path):
     table(doc, ["Judgement", "What was decided", "What would overturn it"],
           [["Discount rate",
             "Cost of capital rebuilt bottom-up at %s on the rating basis and %s on "
-            "the swap basis, replacing the previous edition's %s."
+            "the swap basis, replacing the 11 June 2026 edition's %s; unchanged in "
+            "this edition."
             % ("{:.2%}".format(W["wacc_rating"]), "{:.2%}".format(W["wacc_cds"]),
-               "{:.0%}".format(D["prior_edition_wacc"])),
+               "{:.0%}".format(D["edition_11jun_wacc"])),
             "A sustained fall in the Egyptian sovereign yield, or evidence that "
             "the company borrows materially below sovereign plus 250 basis points."],
            ["Cash conversion is the crux",
@@ -145,9 +154,34 @@ def build(path):
             "Evidence that the company recognises cost on handover for a material "
             "part of its book."],
            ["Per-project economics are not used",
-            "The previous edition's project price and cost table is not disclosed "
+            "The 11 June 2026 edition's project price and cost table is not disclosed "
             "by the company and is not reused.",
             "Project-level disclosure of unit mix, area, price and cost."],
+           ["The bridge stands on the latest disclosed balance sheet",
+            "Net debt, associates, investment property and book equity are taken "
+            "from the reviewed statement of 31 March 2026 (net debt EGP %s million "
+            "against %s million at 31 December 2025); the projected statements keep "
+            "the audited full year 2025 as their base."
+            % ("{:,.1f}".format(D["net_debt_bridge"]), "{:,.1f}".format(D["net_debt"])),
+            "A later balance sheet — the half-year 2026 statements, once published."],
+           ["Minority interests deducted at their share of value",
+            "The cash-flow model capitalises all of the subsidiaries' cash flow, so "
+            "the minority's claim comes out at its share of the resulting value, "
+            "proxied by its filed share of 2025 profit after tax (%s), applied to "
+            "equity value. At book it would be EGP %s million (%s of equity); on the "
+            "three-year mean profit share, %s. Both are shown as reference."
+            % ("{:.2%}".format(D["nci_value_share"]), "{:,.1f}".format(D["nci_book_1q26"]),
+               "{:.1%}".format(D["nci_book_share_1q26"]), "{:.2%}".format(D["nci_profit_share_3y"])),
+            "Disclosure of the subsidiaries that carry the minority with their own "
+            "economics, which would let the minority be valued directly."],
+           ["Normalised earnings capitalised at cost of equity less growth",
+            "Earnings power is E divided by (cost of equity less the %s terminal "
+            "growth the cash-flow model carries), not E divided by the cost of "
+            "equity alone: in a currency whose discount rate embeds Egyptian "
+            "inflation, zero nominal growth is a perpetual real decline."
+            % "{:.1%}".format(N["lens_detail"]["normalised_inputs"]["growth_netted"]),
+            "Evidence that the company's real earnings are in secular decline, which "
+            "would make the zero-growth form the right one."],
            ["Peer multiples are not published",
             "Only measures obtainable for every peer on the same basis are shown.",
             "Consistent, obtainable peer financial statements."]],
@@ -203,7 +237,7 @@ def build(path):
 
 
 if __name__ == "__main__":
-    out = os.path.join(HERE, "PHDC_Bibliography_30-08-2026.docx")
+    out = os.path.join(HERE, "PHDC_Bibliography_02-09-2026.docx")
     build(out).save(out)
     hits, chars = scrub(out)
     bad = column_audit(out)

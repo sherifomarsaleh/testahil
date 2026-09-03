@@ -86,6 +86,19 @@ def bullet(text, bold_head=None):
 
 def table(rows, widths, header=True, first_col_bold=False, size=9.3, header_fill=F_PANEL,
           align_right_from=1, band_rows=None):
+    # NO TABLE MAY BE WIDER THAN THE TEXT FRAME. The widths are typed per table in
+    # inches and four of them summed past the 7.00in frame — by about a tenth of
+    # an inch each, which no reader would call a defect and which nonetheless
+    # runs the last column into the margin. They are scaled to fit here rather
+    # than re-typed one at a time, so a table added later cannot reintroduce the
+    # same overflow. Under-wide tables are left alone: a narrow table is a
+    # choice, a table off the page is not.
+    _frame_in = (doc.sections[0].page_width.inches
+                 - doc.sections[0].left_margin.inches
+                 - doc.sections[0].right_margin.inches)
+    _total = sum(widths)
+    if _total > _frame_in:
+        widths = [w * _frame_in / _total for w in widths]
     t = doc.add_table(rows=len(rows), cols=len(widths))
     t.alignment = WD_TABLE_ALIGNMENT.CENTER
     cell_margins(t); borders(t)

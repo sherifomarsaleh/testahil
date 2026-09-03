@@ -11,7 +11,7 @@ This file holds RULES, not numbers — it never goes stale and is never overridd
 """
 
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import List, Optional
 
 # --- The eight binding clauses (verbatim intent, enforceable) ---------------------------------
 SIGCM_CLAUSES = {
@@ -458,6 +458,666 @@ def assert_ground_up(lines, ticker: str = "?", tolerance: float = 0.01) -> dict:
     by = {k: sum(l.share_of_revenue for l in lines if l.level == k) for k in GROUND_UP_LEVELS}
     return {"ticker": ticker, "lines": len(lines), "share_by_level": by,
             "unit_share": by["unit"], "standard_version": STANDARD_VERSION}
+
+
+MACRO_TOLERANCE = 0.0005        # 5bp: below the precision any of these numbers is stated to
+HORIZON_CONVERGENCE = 0.02      # the explicit window runs until growth is within 2pp of terminal
+
+
+@dataclass
+class GrowthLine:
+    """One growth rate in a model, stored the only way it can be checked.
+
+    A nominal rate typed into a model is unfalsifiable: nobody can tell whether
+    12% was meant as inflation plus one point of real growth or as inflation
+    minus three. Stored as (real, inflation-path id) it recomputes, and the two
+    lessons this exists to enforce become arithmetic instead of advice:
+    [L-048] a scenario whose macro inputs cannot all be true at once invents its
+    own bias, and [L-055] terminal growth and the terminal discount rate must
+    agree about inflation.
+    """
+    name: str
+    years: List[int]
+    nominal: List[float]
+    real: float = 0.0
+    basis: str = "inflation + stated real"
+    # a line the path deliberately does not drive -- a volume ladder, a
+    # contracted price, a regulated tariff -- says so and is exempted BY NAME
+    exempt_reason: Optional[str] = None
+
+
+def assert_macro_coherence(record: dict, market: Optional[str] = None,
+                           ticker: str = "?") -> dict:
+    """Raise unless every growth rate in a model sits on the house macro path.
+
+    `record` is the study's own committed macro record:
+        market, path_as_of, growth_lines (GrowthLine or dicts), terminal
+        {g_nominal, real, rf, inflation_in_rf}, optional fx_path, and
+        explicit_years with growth_at_horizon_end.
+
+    Checks, each of which has a named failure behind it:
+      1. every non-exempt nominal rate recomputes to (1+inflation)(1+real)-1 on
+         the path's own ladder                                        [L-048]
+      2. terminal growth = terminal inflation + a STATED real growth, and the
+         inflation inside the terminal risk-free rate is that same number
+                                                                      [L-055]
+      3. the currency path, where the model has one, is the derived
+         purchasing-power path and not a hand-set one                 [L-048]
+      4. the explicit window runs until growth is within 2pp of terminal --
+         a five-year window on a name compounding at 44% nominal, capitalised
+         at a normalised terminal rate, puts 75-87% of value in the terminal
+         and is the second half of the PHDC swing
+      5. the path the study used is the path on disk, by as-of date
+    """
+    import macro_path as MP
+
+    mkt = (market or record.get("market") or "").upper()
+    path = MP.load(mkt)
+    fails = []
+
+    if record.get("path_as_of") and record["path_as_of"] != path.as_of:
+        fails.append(
+            "the study was built against the %s macro path as of %s; the path on "
+            "disk is as of %s. Re-run the study or say in it which vintage it "
+            "stands on -- a model quoting a path it did not use is the stale-copy "
+            "defect [R-DOC-01] in another costume."
+            % (mkt, record["path_as_of"], path.as_of))
+
+    lines = []
+    for g in record.get("growth_lines", []):
+        lines.append(g if isinstance(g, GrowthLine) else GrowthLine(**g))
+    if not lines:
+        fails.append("no growth lines recorded. A model with no recorded growth "
+                     "rates is not coherent by default; it is unchecked.")
+    for g in lines:
+        if g.exempt_reason:
+            continue
+        if len(g.years) != len(g.nominal):
+            fails.append("%s: %d years against %d rates" % (g.name, len(g.years), len(g.nominal)))
+            continue
+        for y, nom in zip(g.years, g.nominal):
+            want = (1.0 + path.inflation(y)) * (1.0 + g.real) - 1.0
+            if abs(nom - want) > MACRO_TOLERANCE:
+                fails.append(
+                    "%s in %d is %.4f; the path's inflation of %.4f with the stated "
+                    "real growth of %+.4f gives %.4f (out by %+.0fbp). Either the "
+                    "real growth is not what the model says it is, or the rate was "
+                    "typed."
+                    % (g.name, y, nom, path.inflation(y), g.real, want,
+                       10000 * (nom - want)))
+
+    t = record.get("terminal") or {}
+    if not t:
+        fails.append("no terminal block recorded")
+    else:
+        want_g = path.terminal_growth(t.get("real", 0.0))
+        if abs(t.get("g_nominal", 0.0) - want_g) > MACRO_TOLERANCE:
+            fails.append(
+                "terminal growth %.4f against terminal inflation %.4f plus the "
+                "stated real growth %+.4f = %.4f. A terminal growth below the "
+                "inflation inside its own discount rate is a perpetual real "
+                "decline; it may be assumed, but it must be STATED as the real "
+                "number it is."
+                % (t.get("g_nominal", 0.0), path.terminal_inflation,
+                   t.get("real", 0.0), want_g))
+        if "inflation_in_rf" in t and abs(t["inflation_in_rf"] - path.terminal_inflation) > MACRO_TOLERANCE:
+            fails.append(
+                "the terminal discount rate embeds inflation of %.4f while the "
+                "path's terminal inflation is %.4f. One economy, one inflation."
+                % (t["inflation_in_rf"], path.terminal_inflation))
+        if "rf" in t and abs(t["rf"] - path.terminal_rf) > MACRO_TOLERANCE:
+            fails.append(
+                "terminal risk-free %.4f against the derived %.4f (terminal "
+                "inflation %.4f + the real-rate convention %.4f). The terminal "
+                "risk-free rate is DERIVED; a quoted one is the lever the "
+                "protocol prohibits outright."
+                % (t["rf"], path.terminal_rf, path.terminal_inflation,
+                   path.real_rate_convention))
+
+    fx = record.get("fx_path")
+    if fx:
+        base = record.get("fx_base")
+        want = path.fx_path(len(fx), base=base)
+        off = [i for i, (a, b) in enumerate(zip(fx, want)) if abs(a - b) > max(0.01, 0.002 * b)]
+        if off:
+            fails.append(
+                "the currency path is not the derived purchasing-power path: year "
+                "%d has %.4f against %.4f. Escalating costs at domestic inflation "
+                "while depreciating the currency at some other rate is the same "
+                "event counted once and ignored once."
+                % (off[0] + 1, fx[off[0]], want[off[0]]))
+
+    n = record.get("explicit_years")
+    gend = record.get("growth_at_horizon_end")
+    if n is not None and gend is not None and t:
+        gap = abs(gend - t.get("g_nominal", 0.0))
+        if gap > HORIZON_CONVERGENCE:
+            fails.append(
+                "the explicit window ends with growth at %.2f%% against a terminal "
+                "of %.2f%% -- %.1fpp apart. The window must run until the two are "
+                "within %.0fpp, or the terminal capitalises a growth rate the model "
+                "never reached and takes most of the value with it."
+                % (100 * gend, 100 * t.get("g_nominal", 0.0), 100 * gap,
+                   100 * HORIZON_CONVERGENCE))
+
+    if fails:
+        raise AssertionError(
+            "MACRO COHERENCE FAIL -- %s (%s):\n  - %s" % (ticker, mkt, "\n  - ".join(fails)))
+    return {"ticker": ticker, "market": mkt, "path_as_of": path.as_of,
+            "growth_lines": len(lines),
+            "exempt_lines": sum(1 for g in lines if g.exempt_reason),
+            "terminal_growth": (record.get("terminal") or {}).get("g_nominal"),
+            "terminal_inflation": path.terminal_inflation,
+            "terminal_rf_derived": path.terminal_rf,
+            "standard_version": STANDARD_VERSION}
+
+
+NCI_BASES = {
+    "subsidiary": "the subsidiaries carrying the minority, valued on their own disclosed "
+                  "economics, and the minority percentage of that deducted -- the standard",
+    "value_share": "the minority's share of EQUITY value, proxied where the subsidiaries are "
+                   "not separately disclosed; the proxy and its source must be named",
+    "none_disclosed": "the company has no minority interests -- must be evidenced, not assumed",
+}
+
+ASSOCIATE_BASES = ("market", "book", "none")
+CASH_TREATMENTS = ("added_at_face", "inside_the_flow", "none")
+WEIGHT_BASES = ("gross", "net", "not_applicable")
+
+
+def assert_bridge(record: dict, ticker: str = "?") -> dict:
+    """Raise unless the enterprise-to-equity bridge obeys the standing rules.  [R-BRIDGE-01]
+
+    Four defects this closes, each of which shipped:
+
+      THE BRIDGE STOOD ON A STALE SHEET. PHDC's bridge stood on 31-Dec-2025
+      while a reviewed 31-Mar-2026 balance sheet sat on the company's own
+      archive, in the same document set the study had already drawn its
+      first-quarter income figures from. AMOC's did the same. The bridge stands
+      on the LATEST DISCLOSED sheet, and the record must name the register that
+      establishes what "latest" is -- a name with neither a sweep register nor
+      an investor-relations register is a FAIL, not a skip [R-ENF-04].
+
+      THE MINORITY CAME OUT AT BOOK, OR NOT AT ALL. The model capitalises 100%
+      of the subsidiaries' cash flow, so the minority's claim is worth its share
+      of that VALUE, not what it historically cost. CLHO deducted book and
+      overstated parent equity by roughly a third of the minority; PHDC deducted
+      nothing at all while dividing by parent shares. Book is published as a
+      reference framing and is never the adopted basis.
+
+      THE CASH WAS CHARGED FOR TWICE. AMOC discounted its operations at a
+      net-debt-weighted rate -- which, on a net-cash company, levers the equity
+      weight above one and puts the operating rate above the cost of equity --
+      and then added the same cash back at face in the bridge. A reader may
+      value the whole firm at a blended rate and add nothing, or value the
+      operations at the operating rate and add the cash. Not both.
+
+      THE ARITHMETIC WAS NOT CHECKED. The lines are asserted to sum to the
+      equity value, and the equity value to divide to the per-share figure.
+    """
+    fails = []
+    r = record or {}
+
+    bs = r.get("balance_sheet_date")
+    latest = r.get("latest_disclosed_date")
+    src = r.get("latest_disclosed_source")
+    if not bs:
+        fails.append("no balance-sheet date recorded: the bridge does not say which sheet it stands on")
+    if not latest or not src:
+        fails.append(
+            "the record does not establish what the LATEST disclosed balance sheet is "
+            "(need latest_disclosed_date and latest_disclosed_source naming the sweep or "
+            "investor-relations register). A study with neither register cannot claim to "
+            "stand on the latest sheet, and an unestablished answer is not a clean one.")
+    elif bs and bs != latest:
+        fails.append(
+            "the bridge stands on the %s balance sheet while the latest disclosed is %s "
+            "(%s). A filing on the company's own archive that nobody opened is the "
+            "defect this rule exists for." % (bs, latest, str(src)[:120]))
+
+    nci = r.get("nci") or {}
+    basis = nci.get("basis")
+    if basis not in NCI_BASES:
+        fails.append("minority-interest basis %r is not one of %s"
+                     % (basis, ", ".join(sorted(NCI_BASES))))
+    elif basis == "none_disclosed":
+        if not nci.get("evidence"):
+            fails.append("the record claims there are no minority interests but cites no "
+                         "evidence. Absence is evidenced, never assumed.")
+    else:
+        if nci.get("deduction") in (None, 0) and not nci.get("zero_reason"):
+            fails.append("a minority basis is named but nothing is deducted, and no reason "
+                         "is given. The 30-Aug-2026 PHDC edition deducted nothing while "
+                         "dividing by parent shares.")
+        for alt in ("book", "profit_share", "proportional"):
+            if alt not in nci:
+                fails.append("the %s reference framing for the minority is not published. "
+                             "The adopted basis is published beside the alternatives so a "
+                             "reader can see the choice, not just its result." % alt)
+        if basis == "value_share" and not nci.get("proxy_source"):
+            fails.append("the value-share basis is a PROXY where the minority's subsidiaries "
+                         "are not separately disclosed; the proxy and its source must be named.")
+        if nci.get("applied_to") == "enterprise_value":
+            fails.append("the minority is deducted from ENTERPRISE value. That applies an "
+                         "equity share to an enterprise number and hands the minority a share "
+                         "of growth assets it does not own.")
+
+    cash = r.get("cash") or {}
+    treat = cash.get("treatment")
+    wb = cash.get("weights_basis")
+    if treat not in CASH_TREATMENTS:
+        fails.append("cash treatment %r is not one of %s" % (treat, ", ".join(CASH_TREATMENTS)))
+    if wb not in WEIGHT_BASES:
+        fails.append("discount-rate weights basis %r is not one of %s"
+                     % (wb, ", ".join(WEIGHT_BASES)))
+    if treat == "added_at_face" and wb == "net":
+        fails.append(
+            "cash is added at face in the bridge AND netted inside the discount-rate "
+            "weights. That is the same cash charged twice -- once by discounting the "
+            "operations as though holding a deposit made them riskier, and once by "
+            "counting the deposit at par.")
+
+    assoc = r.get("associates") or {}
+    if assoc.get("basis") not in ASSOCIATE_BASES:
+        fails.append("associates basis %r is not one of %s"
+                     % (assoc.get("basis"), ", ".join(ASSOCIATE_BASES)))
+    elif assoc.get("basis") == "book" and assoc.get("listed") and not assoc.get("book_reason"):
+        fails.append("a LISTED associate is carried at book with no reason given; where a "
+                     "market price exists it is the evidence.")
+
+    div = r.get("dividend") or {}
+    if div.get("deducted"):
+        if not div.get("declared_date") or not bs:
+            fails.append("a dividend is deducted with no declaration date to test against "
+                         "the balance-sheet date")
+        elif div["declared_date"] <= bs:
+            fails.append(
+                "a dividend declared %s is deducted from a bridge standing on the %s "
+                "balance sheet -- it is already out of the equity it is being deducted "
+                "from, so it comes out twice." % (div["declared_date"], bs))
+
+    lines = r.get("lines") or []
+    eq = r.get("equity_value")
+    sh = r.get("shares_mn")
+    ps = r.get("per_share")
+    if lines and eq is not None:
+        tot = sum(float(l.get("value", 0.0)) for l in lines)
+        if abs(tot - float(eq)) > max(1.0, 0.0005 * abs(float(eq))):
+            fails.append("the bridge lines sum to %.1f against a stated equity value of "
+                         "%.1f. A bridge that does not foot is not a bridge." % (tot, eq))
+    if eq is not None and sh and ps is not None:
+        if abs(float(eq) / float(sh) - float(ps)) > max(0.01, 0.001 * abs(float(ps))):
+            fails.append("equity value %.1f over %.1f shares is %.4f, not the stated %.4f"
+                         % (eq, sh, float(eq) / float(sh), ps))
+
+    if fails:
+        raise AssertionError(
+            "BRIDGE FAIL -- %s:\n  - %s" % (ticker, "\n  - ".join(fails)))
+    return {"ticker": ticker, "balance_sheet_date": bs,
+            "nci_basis": basis, "nci_deduction": nci.get("deduction"),
+            "cash_treatment": treat, "weights_basis": wb,
+            "lines": len(lines), "per_share": ps,
+            "standard_version": STANDARD_VERSION}
+
+
+# --------------------------------------------------------------------------
+# LENS ARCHITECTURE v2  [R-LENS-03]
+#
+# The failure. PHDC's central was a weighted blend of four lenses at typed
+# weights -- 45% discounted cash flow, 15% book value, 20% an earnings multiple,
+# 20% normalised earnings power -- and three of the four value a developer on
+# its REPORTED ACCOUNTING EARNINGS AND HISTORICAL-COST BOOK. For a company whose
+# value sits in an undelivered order book carried at historical cost in a
+# currency that has lost most of its value since 2022, those three measure a
+# floor and not a value. The cash-flow lens landed within 2.2% of the market
+# price; the blend landed 28% below it. Nothing in the study was wrong except
+# the architecture, and the weights had never cleared any out-of-sample bar --
+# they were chosen, written down, and inherited.
+#
+# What is adopted. ONE class primary is the central. The other lenses are
+# CROSS-CHECKS: published in the same table, defining the bear/full envelope as
+# the range of PRESENT-VALUE reads, never averaged into the answer. Whether any
+# blend beats the primary alone is a question for the valuation calibration to
+# answer out of sample [R-VCAL-01]; until it does, the typed blend is retired,
+# because it never cleared the bar it was always required to clear.
+#
+# The registry is keyed on lessons_register.CLASSES BY IMPORT. A second taxonomy
+# for the same companies is how two registers drift apart, and this repository
+# has already paid for that once.
+LENS_KINDS = {
+    "dcf":          "a present-value discounted cash flow on the study's own drivers",
+    "rnav":         "a PRESENT-VALUE net asset value: land at cost with a labelled market "
+                    "cross-check, absorption on the company's own delivery rate, discounted "
+                    "on the cost-of-capital schedule -- never a gross NAV",
+    "sotp":         "disciplined sum of the parts, each part on its own present-value lens",
+    "ddm":          "dividend discount model",
+    "residual_income": "residual income on the same clock as the book it starts from",
+    "ev_ebitda_own_history": "enterprise value to EBITDA on the company's OWN history",
+    "ev_per_tonne": "enterprise value per tonne of capacity, on transactions or own history",
+    "replacement_cost": "what the assets would cost to build, at today's prices",
+    "relative_multiple": "forward earnings times a multiple from peers or own history -- "
+                         "never from the current price, which is circular",
+    "normalised_earnings": "mid-cycle earnings capitalised Fisher-consistently, at a real "
+                           "rate against real earnings or at a nominal rate net of growth",
+    "book_value":   "a DISCLOSED FLOOR, published as such -- not a lens and never weighted",
+}
+
+# class -> (primary, permitted cross-checks). The primary is the central.
+# NORMALISED EARNINGS IS NOT A DEVELOPER LENS, and its absence from the two
+# developer rows is deliberate rather than an oversight. A developer recognising
+# revenue on handover reports earnings that are an accident of which project
+# completed in which year; capitalising a mid-cycle figure treats that schedule
+# as if it were a steady state. It was PHDC's worst read at EGP 5.17 a share
+# against a cash-flow lens of 14.86, and it carried a fifth of the weight.
+LENS_REGISTRY = {
+    "real-estate developer, off-plan, percentage-of-completion":
+        ("dcf", ("rnav", "relative_multiple", "book_value")),
+    "real-estate developer, off-plan, point-in-time on handover":
+        ("dcf", ("rnav", "relative_multiple", "book_value")),
+    "telecom operator":
+        ("dcf", ("ev_ebitda_own_history", "relative_multiple", "book_value")),
+    "cement and heavy industrial":
+        ("dcf", ("ev_per_tonne", "replacement_cost", "relative_multiple", "book_value")),
+    "petrochemical":
+        ("dcf", ("ev_ebitda_own_history", "replacement_cost", "relative_multiple", "book_value")),
+    "refiner, commodity pass-through on a thin spread":
+        ("dcf", ("ev_ebitda_own_history", "replacement_cost", "relative_multiple", "book_value")),
+    "airline":
+        ("dcf", ("ev_ebitda_own_history", "relative_multiple", "book_value")),
+    "bank":
+        ("ddm", ("residual_income", "relative_multiple", "book_value")),
+    "holding company":
+        ("sotp", ("relative_multiple", "book_value")),
+    "commodity and metals":
+        ("dcf", ("replacement_cost", "relative_multiple", "book_value")),
+}
+
+# RNAV may be a class PRIMARY only where the disclosure supports it. Where land
+# value per square metre is an undisclosed gap, the primary stays the discounted
+# cash flow and RNAV is a cross-check -- SIGCM clause 8, stop rather than invent.
+RNAV_PRIMARY_REQUIRES = (
+    "disclosed land area by project",
+    "a sourced land value per unit of area, or a transaction that establishes one",
+    "the company's own delivery or absorption rate",
+)
+
+
+def _lens_classes_match_register():
+    """The registry is keyed on the lessons register's classes, by import."""
+    try:
+        import lessons_register as LR
+    except Exception:                                        # noqa: BLE001
+        return                                               # checked in CI, not here
+    missing = sorted(set(LR.CLASSES) - set(LENS_REGISTRY))
+    extra = sorted(set(LENS_REGISTRY) - set(LR.CLASSES))
+    if missing or extra:
+        raise AssertionError(
+            "LENS REGISTRY FAIL -- the registry and the lessons register disagree about "
+            "the classes. Missing from the registry: %s. Not a registered class: %s. "
+            "A second taxonomy for the same companies is how two registers drift apart."
+            % (missing or "none", extra or "none"))
+
+
+_lens_classes_match_register()
+
+
+def assert_lens_design(record: dict, ticker: str = "?") -> dict:
+    """Raise unless the study's lens architecture obeys [R-LENS-03].
+
+    `record`: class, primary {kind, value}, cross_checks [{kind, value, note}],
+    envelope {low, high}, central, and for each lens whatever its own clause
+    needs -- a relative multiple's source, a normalised-earnings basis, the
+    RNAV's disclosure evidence.
+    """
+    fails = []
+    r = record or {}
+    cls = r.get("class")
+    if cls not in LENS_REGISTRY:
+        fails.append("class %r is not registered. The lens architecture is decided by "
+                     "class, so an unregistered class has no primary." % cls)
+        raise AssertionError("LENS FAIL -- %s:\n  - %s" % (ticker, "\n  - ".join(fails)))
+
+    want_primary, permitted = LENS_REGISTRY[cls]
+    # the class's own primary is always an acceptable lens for that class,
+    # whichever role it plays: where RNAV substitutes as the primary on a
+    # developer, the cash-flow lens becomes a cross-check and must be permitted
+    permitted = tuple(permitted) + (want_primary,)
+    prim = r.get("primary") or {}
+    if prim.get("kind") != want_primary:
+        # a class primary may be substituted only with a stated reason, and never
+        # for a lens the class does not permit at all
+        if prim.get("kind") not in permitted or not prim.get("substitution_reason"):
+            fails.append(
+                "the primary lens is %r; the registry gives %r for this class. A "
+                "substitution is permitted only from the class's own cross-checks and "
+                "only with a stated reason." % (prim.get("kind"), want_primary))
+    if prim.get("kind") == "rnav":
+        have = set(prim.get("disclosure_evidence") or [])
+        missing = [k for k in RNAV_PRIMARY_REQUIRES if k not in have]
+        if missing:
+            fails.append(
+                "RNAV is the primary but the disclosure it needs is not evidenced: %s. "
+                "Where land value per unit of area is an undisclosed gap the primary "
+                "stays the cash-flow lens and RNAV is a cross-check." % "; ".join(missing))
+    if prim.get("value") is None and not (prim.get("range") or {}):
+        fails.append("the primary lens carries neither a value nor a published range")
+    pr = prim.get("range") or {}
+    if pr and not (pr.get("low") is not None and pr.get("high") is not None
+                   and float(pr["low"]) <= float(pr["high"])):
+        fails.append("the primary's published range is not an ordered low/high pair")
+
+    seen = []
+    for x in (r.get("cross_checks") or []):
+        k = x.get("kind")
+        seen.append(k)
+        if k not in LENS_KINDS:
+            fails.append("cross-check %r is not a registered lens kind" % k)
+            continue
+        if k not in permitted:
+            fails.append("cross-check %r is not permitted for this class" % k)
+        if k == "relative_multiple":
+            src = (x.get("multiple_source") or "").lower()
+            # look for the multiple being TAKEN from the price, not for the words
+            # appearing at all -- a source that says "never the current price" is
+            # doing the right thing, and a check that cannot tell the difference
+            # is one people learn to write around
+            circular = any(t in src for t in (
+                "from the current price", "from the price", "from spot",
+                "implied by the current price", "implied by the price",
+                "at the current price", "the multiple the shares trade at",
+                "today's multiple", "the market's own multiple"))
+            if not src:
+                fails.append("the relative multiple names no source for its multiple")
+            elif circular:
+                fails.append(
+                    "the relative multiple takes its multiple from the CURRENT PRICE, which "
+                    "values the company at what it already trades at. The multiple comes "
+                    "from peers or from the company's own history.")
+        if k == "normalised_earnings":
+            basis = (x.get("basis") or "").lower()
+            if "real" not in basis and "less growth" not in basis and "ke - g" not in basis:
+                fails.append(
+                    "normalised earnings is capitalised at a nominal rate with no growth "
+                    "netted and no real-terms basis stated. In a currency whose discount "
+                    "rate embeds inflation that is a perpetual real decline, not prudence.")
+        if k == "book_value" and x.get("weight"):
+            fails.append("book value carries a weight. It is a disclosed floor, published "
+                         "as such, and is never weighted into a central.")
+
+    # the defect this rule exists for: a typed blend
+    weights = [x.get("weight") for x in (r.get("cross_checks") or []) if x.get("weight")]
+    if prim.get("weight") or weights:
+        fails.append(
+            "the lenses carry weights. The central is the class primary; the cross-checks "
+            "are published beside it and define the envelope. A typed weight is a free "
+            "parameter that has never cleared an out-of-sample test, and the blend it "
+            "produced put PHDC 28% below a market its own cash-flow lens sat within 2.2% of.")
+
+    central = r.get("central")
+    if central is not None and prim.get("value") is not None:
+        if abs(float(central) - float(prim["value"])) > max(0.01, 0.001 * abs(float(central))):
+            fails.append("the published central %.4f is not the primary lens's %.4f. The "
+                         "central IS the primary." % (central, prim["value"]))
+    elif central is not None and (prim.get("range") or {}):
+        # a primary published as a range: the exposed figure must sit inside it and
+        # must say what it is, because a midpoint presented as an answer is the
+        # averaging the dual-framing rule forbids
+        pr = prim["range"]
+        if not (float(pr["low"]) <= float(central) <= float(pr["high"])):
+            fails.append("the exposed central %.4f sits outside the primary's own published "
+                         "range %.4f to %.4f" % (central, pr["low"], pr["high"]))
+        if not r.get("central_note"):
+            fails.append("the primary is published as a range and a single figure is exposed "
+                         "with no note saying what it is. A midpoint presented as an answer "
+                         "is the averaging the dual-framing rule forbids; exposing one for a "
+                         "gate to read is fine, and it says so.")
+
+    env = r.get("envelope") or {}
+    if env:
+        # A primary computed BOTH WAYS on a contested judgement publishes a RANGE
+        # rather than a point -- the dual-framing rule, which forbids averaging the
+        # two framings into one number. Where it does, the range is part of the
+        # envelope on the same footing as any other present-value read.
+        pv = [prim.get("value")]
+        pr = prim.get("range") or {}
+        pv += [pr.get("low"), pr.get("high")]
+        pv += [x.get("value") for x in (r.get("cross_checks") or [])
+               if x.get("kind") != "book_value" and x.get("value") is not None
+               and x.get("present_value", True)]
+        pv = [float(v) for v in pv if v is not None]
+        if pv:
+            lo, hi = min(pv), max(pv)
+            for side, got, want in (("low", env.get("low"), lo), ("high", env.get("high"), hi)):
+                if got is not None and abs(float(got) - want) > max(0.01, 0.002 * abs(want)):
+                    fails.append(
+                        "the envelope's %s is %.4f against %.4f, the %s of the "
+                        "present-value lenses. The envelope is the RANGE of the "
+                        "present-value reads on one clock, not an average and not a "
+                        "spread invented around the central."
+                        % (side, float(got), want, side))
+
+    if fails:
+        raise AssertionError("LENS FAIL -- %s (%s):\n  - %s"
+                             % (ticker, cls, "\n  - ".join(fails)))
+    return {"ticker": ticker, "class": cls, "primary": prim.get("kind"),
+            "central": central, "cross_checks": seen,
+            "standard_version": STANDARD_VERSION}
+
+
+def assert_reverse_dcf(diag: dict, study_dir: str, ticker: str = "?") -> dict:
+    """Raise unless the study publishes what the PRICE must believe, and keeps it out
+    of the model.  [R-ENF-05]
+
+    The instrument. Every study states what IT believes; almost none states what
+    the market believes, and the two are the same model read backwards. A reverse
+    DCF -- the growth, margin, conversion or discount rate the traded price
+    implies under the study's own drivers -- turns a disagreement into a
+    measurable one: not "we are 28% below" but "the price is paying for a
+    conversion rate of 7.9% and we forecast 8.7%".
+
+    THE HARD PART IS KEEPING IT OUT OF THE MODEL. A rate solved from a price and
+    then used anywhere in a valuation is the reverse-engineered terminal the
+    protocol prohibits outright, arriving through a side door. So the diagnostic
+    lives in its own file, and this assert checks that NO BUILDER IMPORTS IT: a
+    study whose cost-of-capital or forecast code reads the diagnostics file fails
+    here, whatever the file says.
+    """
+    import glob as _glob
+    import os as _os
+    import re as _re
+
+    fails = []
+    d = diag or {}
+    if not d.get("implied"):
+        fails.append("no implied quantity recorded. The reverse read names the ONE "
+                     "quantity the price is paying for, solved on the study's own model.")
+    for k in ("quantity", "value", "study_value", "solved_on"):
+        if k not in (d.get("implied") or {}):
+            fails.append("the implied record carries no %s" % k)
+    if d.get("spot") is None:
+        fails.append("no spot recorded: a reverse read with no price is not one")
+
+    # the containment check: no builder may import the diagnostics
+    leaks = []
+    for f in sorted(_glob.glob(_os.path.join(study_dir, "*.py"))):
+        base = _os.path.basename(f)
+        if base.startswith(("diagnostic", "gap_review", "recalc", "gate_check")):
+            continue
+        try:
+            txt = open(f, encoding="utf-8", errors="ignore").read()
+        except OSError:
+            continue
+        if _re.search(r"diagnostics\.json|reverse_dcf|implied_discount|implied_conversion",
+                      txt) and base not in ("lenses.py", "docx_arcc.py"):
+            # a builder that COMPUTES the reverse read is fine; one that reads the
+            # file back into the model is not
+            if "diagnostics.json" in txt:
+                leaks.append(base)
+    if leaks:
+        fails.append(
+            "these builders read the diagnostics file: %s. A quantity solved from the "
+            "traded price must never re-enter the model — that is the "
+            "reverse-engineered rate the protocol prohibits, arriving through a side "
+            "door." % ", ".join(leaks))
+
+    if fails:
+        raise AssertionError("REVERSE-DCF FAIL -- %s:\n  - %s" % (ticker, "\n  - ".join(fails)))
+    imp = d["implied"]
+    return {"ticker": ticker, "quantity": imp["quantity"], "implied": imp["value"],
+             "study": imp["study_value"], "spot": d["spot"],
+             "standard_version": STANDARD_VERSION}
+
+
+def assert_contested_judgements(record: dict, ticker: str = "?",
+                                threshold: float = 0.05) -> dict:
+    """Raise unless every judgement worth more than `threshold` of value is recorded
+    both ways, and report the SIGN TEST on which way they were resolved.
+
+    The instrument against the selection lean. Any single choice in a valuation is
+    defensible; what is not defensible is a study that resolves EVERY contested
+    choice in the same direction and never notices. This records each one with
+    both framings' values and the side adopted, and prints a binomial sign test:
+    a study that lands them all one way at p < 0.05 is flagged, not failed —
+    the flag is information, and a company can genuinely deserve a consistent
+    read. What it may not do is go unmeasured.
+    """
+    fails = []
+    items = (record or {}).get("judgements") or []
+    if not items:
+        fails.append("no contested judgements recorded. A valuation with no contested "
+                     "judgement is a valuation nobody looked at hard enough.")
+    signs = []
+    for j in items:
+        for k in ("name", "adopted", "alternative", "value_adopted", "value_alternative"):
+            if k not in j:
+                fails.append("judgement %r carries no %s" % (j.get("name", "?"), k))
+                break
+        else:
+            va, vb = float(j["value_adopted"]), float(j["value_alternative"])
+            base = abs(vb) or 1.0
+            j["_material"] = abs(va - vb) / base >= threshold
+            if j["_material"]:
+                signs.append(1 if va > vb else (-1 if va < vb else 0))
+            if not j.get("why"):
+                fails.append("judgement %r says which side was adopted but not why"
+                             % j.get("name", "?"))
+    if fails:
+        raise AssertionError("CONTESTED-JUDGEMENT FAIL -- %s:\n  - %s"
+                             % (ticker, "\n  - ".join(fails)))
+
+    n = len([s for s in signs if s])
+    k = len([s for s in signs if s > 0])
+    p = None
+    if n:
+        from math import comb
+        tail = sum(comb(n, i) for i in range(max(k, n - k), n + 1)) / float(2 ** n)
+        p = min(1.0, 2 * tail)
+    return {"ticker": ticker, "judgements": len(items), "material": n,
+            "resolved_upward": k, "sign_test_p": p,
+            "flag": bool(p is not None and p < 0.05 and n >= 3),
+            "note": ("a study that resolves every material contested judgement the same "
+                     "way is not necessarily wrong, and it is always worth knowing"),
+            "standard_version": STANDARD_VERSION}
 
 
 def assert_gates_called(study_dir: str) -> None:

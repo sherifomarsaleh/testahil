@@ -1,4 +1,4 @@
-"""ARCC_Valuation_Model_01092026_public.xlsx — 16 sheets, formula-first. REVISION 2.
+"""ARCC_Valuation_Model_02092026_public.xlsx — 16 sheets, formula-first. REVISION 2.
 
 Rebuilt on the AUDITED consolidated financial statements for FY2023, FY2024 and FY2025 and
 the reviewed Q1-2026 interim accounts. Revision 1 was built without opening a source
@@ -385,10 +385,12 @@ inp('Justified EV/EBITDA', 'eveb', IN['ev_ebitda_just'], MULT)
 inp('Justified price/earnings', 'pej', IN['pe_just'], MULT)
 inp('Mid-cycle EBITDA margin', 'nmgn', IN['norm_mgn'], PCT)
 inp('Normalised revenue haircut', 'nhc', IN['norm_rev_haircut'], PCT)
-inp('Weight — cash-flow lens', 'wdcf', IN['w_dcf'], PCT)
-inp('Weight — relative lens', 'wrel', IN['w_rel'], PCT)
-inp('Weight — normalised lens', 'wnorm', IN['w_norm'], PCT)
-inp('Weight — asset lens', 'wasset', IN['w_asset'], PCT)
+# THE FOUR LENS WEIGHTS ARE GONE FROM THE LIVE ASSUMPTIONS. They drove the
+# central until this edition and they now drive nothing: the cash-flow lens IS
+# the central and the others are cross-checks published beside it. Leaving them
+# on a sheet a reader can type into would be a control that looks live and
+# changes no answer, which is worse than no control at all. The retired blend
+# and what it read are printed once on the Summary sheet.
 
 sect('SECTOR AND PEERS')
 inp('Egyptian nameplate capacity', 'egcap', IN['egy_capacity_mt'], NUM1, 'Mt')
@@ -407,7 +409,7 @@ note(wsA, R[0] + 1, 'Every cell on this sheet is BLUE — an input. Nothing here
 note(wsA, R[0] + 2, 'Everything on every other sheet that can be derived from these is a formula.')
 
 # ============ 3 UNIT BUILD ====================================================
-wsU = sheet('Unit Build')
+wsU = sheet('Segments')
 title(wsU, 'Unit build — the PLANT drives the tonnes, and the prices come OUT',
       'Revision 3 assumed a price and divided revenue by it. That made the FY2025 check an '
       'identity that could not fail. Here the drivers are physical and all three realised '
@@ -588,12 +590,12 @@ for j, lab in enumerate(ROWS):
     wsD.cell(row=5 + j, column=1, value=lab)
 for i in range(5):
     c = DC[i]
-    putf(wsD, f'{c}5', f"='Unit Build'!{BUC[i+1]}63", F['revenue'][i], NUM0, green=True)
-    putf(wsD, f'{c}7', f"='Unit Build'!{BUC[i+1]}71", F['ebitda'][i], NUM0, green=True)
+    putf(wsD, f'{c}5', f"='Segments'!{BUC[i+1]}63", F['revenue'][i], NUM0, green=True)
+    putf(wsD, f'{c}7', f"='Segments'!{BUC[i+1]}71", F['ebitda'][i], NUM0, green=True)
     putf(wsD, f'{c}6', f"={c}7/{c}5", F['margin'][i], PCT)
     putf(wsD, f'{c}8', f"={c}5*{A[f'dnap{i}']}*{A['wfdep']}", F['dna'][i], NUM0)
-    putf(wsD, f'{c}9', f"={c}7-{c}8+{A['subr']}*'Unit Build'!{BUC[i+1]}60"
-         f"+{A['subr']}*'Unit Build'!{BUC[i+1]}61+{A['othres']}*{A[f'infl{i+1}']}",
+    putf(wsD, f'{c}9', f"={c}7-{c}8+{A['subr']}*'Segments'!{BUC[i+1]}60"
+         f"+{A['subr']}*'Segments'!{BUC[i+1]}61+{A['othres']}*{A[f'infl{i+1}']}",
          F['ebit'][i], NUM0)
     putf(wsD, f'{c}10', f"={A['taxe']}", TAXE, PCT, green=True)
     putf(wsD, f'{c}11', f"={c}9*(1-{c}10)", F['nopat'][i], NUM0)
@@ -736,7 +738,7 @@ note(wsD, 69, 'The glide on row 16 is derived from the POUND cost-of-debt path: 
 note(wsD, 70, 'on pound cash flows, so the pound easing calendar sets its slope while the euro book sets its level.')
 
 # ============ 5 EV BRIDGE =====================================================
-wsB = sheet('EV Bridge')
+wsB = sheet('SOTP Bridge')
 title(wsB, 'Enterprise value to equity bridge', None, 6, 56, 16)
 hdr(wsB, 4, ['', 'EGP mn', 'Per share (EGP)'])
 BRW = [('Present value of explicit free cash flow', "=DCF!B31", DCF['sum_pv']),
@@ -823,7 +825,7 @@ for i in range(5):
     # EBIT carries other operating income here too — the export subsidy at its
     # DISCLOSED FY2025 rate plus the non-subsidy remainder. Leaving it out of one
     # sheet and not another is how a workbook comes to hold two models.
-    _oi = (f"{A['subr']}*'Unit Build'!{BUC[i+1]}60+{A['subr']}*'Unit Build'!{BUC[i+1]}61"
+    _oi = (f"{A['subr']}*'Segments'!{BUC[i+1]}60+{A['subr']}*'Segments'!{BUC[i+1]}61"
            f"+{A['othres']}*{A[f'infl{i+1}']}")
     putf(wsI, f'{c}11', f"={c}14-{c}13+{_oi}", F['ebit'][i], NUM0, bold=True)
     putf(wsI, f'{c}12', f"={c}11", F['ebit'][i], NUM0)
@@ -1031,9 +1033,9 @@ for i, c in enumerate(allc):
          nd_all[i] / eb_all[i], MULT)
 for i in range(3, 8):
     c = allc[i]
-    putf(wsR, f'{c}9', f"='Income Statement'!{c}14/'Unit Build'!{BUC[i-2]}55",
+    putf(wsR, f'{c}9', f"='Income Statement'!{c}14/'Segments'!{BUC[i-2]}55",
          eb_all[i] / F['volume_mt'][i - 3], NUM0)
-putf(wsR, 'D9', "='Income Statement'!D14/'Unit Build'!B55", H['ebitda'][2] / BU[0]['vol'], NUM0)
+putf(wsR, 'D9', "='Income Statement'!D14/'Segments'!B55", H['ebitda'][2] / BU[0]['vol'], NUM0)
 
 band(wsR, 13, 10); wsR['A13'] = 'RECONCILIATIONS AGAINST THE AUDITED ACCOUNTS'
 REC = [('Shares issued (audited note 20)', 'B14', f"={A['shiss']}", IN['shares_issued'], NUM4),
@@ -1114,7 +1116,7 @@ NLN = [('Justified price / earnings', 'B26', f"={A['pej']}", IN['pe_just'], MULT
        ('Less non-controlling interests', 'B29', "=DCF!B41", -IN['nci_h1_26'], NUM4),
        ('Equity value', 'B30', "=B27+B28+B29",
         LN['nopat_norm'] * IN['pe_just'] + DCF['net_cash'] - IN['nci_h1_26'], NUM0),
-       ('Value per share (EGP)', 'B31', "=B30/DCF!$B$43", LN['values']['Normalised earnings'], PX)]
+       ('Value per share (EGP)', 'B31', "=B30/DCF!$B$43", LN['diagnostic']['Normalised earnings (diagnostic, not a lens for this class)'], PX)]
 for lab, ad, fm, ex, ft in NLN:
     wsN.cell(row=int(ad[1:]), column=1, value=lab)
     putf(wsN, ad, fm, ex, ft, bold=(ad == 'B31'), green=(ad in ('B28', 'B29')))
@@ -1204,34 +1206,44 @@ note(wsFV, 46, 'for. That single choice is the most consequential judgement in t
 wsS = sheet('Summary')
 title(wsS, 'Summary valuation table', 'Every value linked live from its own sheet.',
       7, 42, 18)
-hdr(wsS, 4, ['Lens', 'Value per share (EGP)', 'Weight', 'Weighted contribution',
-             'Versus spot', 'Terminal value % of EV'])
-LK = [('DCF (cash flow)', "=DCF!B44", A['wdcf'], "=DCF!B34"),
-      ('Relative multiples', "='Relative & Normalized'!B23", A['wrel'], None),
-      ('Normalised earnings', "='Relative & Normalized'!B31", A['wnorm'], None),
-      ('Asset / replacement cost', "='Fundamental Valuation'!B13", A['wasset'], None)]
-for j, (name, fm, wkey, tvfm) in enumerate(LK):
+# ONE PRIMARY, THE REST CROSS-CHECKS. The weight column is gone because there
+# are no weights left: the central IS the cash-flow lens. The retired blend is
+# printed once, below, so a reader can see what was dropped and what it read.
+hdr(wsS, 4, ['Lens', 'Value per share (EGP)', 'Role', 'Versus spot',
+             'Terminal value % of EV'])
+LK = [('DCF (cash flow)', "=DCF!B44", 'PRIMARY — the central', "=DCF!B34"),
+      ('Relative multiples', "='Relative & Normalized'!B23", 'cross-check', None),
+      ('Asset / replacement cost', "='Fundamental Valuation'!B13", 'cross-check', None)]
+for j, (name, fm, role, tvfm) in enumerate(LK):
     r = 5 + j
     wsS.cell(row=r, column=1, value=name)
     putf(wsS, f'B{r}', fm, LN['values'][name], PX, green=True, bold=True)
-    putf(wsS, f'C{r}', f"={wkey}", LN['weights'][name], PCT, green=True)
-    putf(wsS, f'D{r}', f"=B{r}*C{r}", LN['values'][name] * LN['weights'][name], PX)
-    putf(wsS, f'E{r}', f"=B{r}/{A['spot']}-1", LN['values'][name] / SPOT - 1, PCT)
+    wsS.cell(row=r, column=3, value=role)
+    putf(wsS, f'D{r}', f"=B{r}/{A['spot']}-1", LN['values'][name] / SPOT - 1, PCT)
     if tvfm:
-        putf(wsS, f'F{r}', tvfm, DCF['tv_share'], PCT, green=True, bold=True)
+        putf(wsS, f'E{r}', tvfm, DCF['tv_share'], PCT, green=True, bold=True)
     else:
-        wsS.cell(row=r, column=6, value='—')
-wsS.cell(row=9, column=1, value='WEIGHTED CENTRAL FAIR VALUE')
-putf(wsS, 'B9', "=SUMPRODUCT(B5:B8,C5:C8)", LN['central'], PX, bold=True)
-putf(wsS, 'C9', "=SUM(C5:C8)", 1.0, PCT, bold=True)
-putf(wsS, 'D9', "=SUM(D5:D8)", LN['central'], PX, bold=True)
-putf(wsS, 'E9', f"=B9/{A['spot']}-1", LN['central'] / SPOT - 1, PCT, bold=True)
-wsS.cell(row=10, column=1, value='Lowest lens')
-putf(wsS, 'B10', "=MIN(B5:B8)", LN['low'], PX)
-putf(wsS, 'E10', f"=B10/{A['spot']}-1", LN['low'] / SPOT - 1, PCT)
-wsS.cell(row=11, column=1, value='Highest lens')
-putf(wsS, 'B11', "=MAX(B5:B8)", LN['high'], PX)
-putf(wsS, 'E11', f"=B11/{A['spot']}-1", LN['high'] / SPOT - 1, PCT)
+        wsS.cell(row=r, column=5, value='—')
+_NORM_DIAG = LN['diagnostic']['Normalised earnings (diagnostic, not a lens for this class)']
+wsS.cell(row=8, column=1, value='Normalised earnings')
+putf(wsS, 'B8', "='Relative & Normalized'!B31", _NORM_DIAG, PX, green=True)
+wsS.cell(row=8, column=3, value='DIAGNOSTIC — not a lens for this class, reaches no published number')
+putf(wsS, 'D8', f"=B8/{A['spot']}-1", _NORM_DIAG / SPOT - 1, PCT)
+wsS.cell(row=9, column=1, value='CENTRAL FAIR VALUE — the cash-flow lens, not a blend')
+putf(wsS, 'B9', "=B5", LN['central'], PX, bold=True)
+putf(wsS, 'D9', f"=B9/{A['spot']}-1", LN['central'] / SPOT - 1, PCT, bold=True)
+wsS.cell(row=10, column=1, value='Lowest read of the three')
+putf(wsS, 'B10', "=MIN(B5:B7)", LN['low'], PX)
+putf(wsS, 'D10', f"=B10/{A['spot']}-1", LN['low'] / SPOT - 1, PCT)
+wsS.cell(row=11, column=1, value='Highest read of the three')
+putf(wsS, 'B11', "=MAX(B5:B7)", LN['high'], PX)
+putf(wsS, 'D11', f"=B11/{A['spot']}-1", LN['high'] / SPOT - 1, PCT)
+wsS.cell(row=14, column=1, value='RETIRED: the 50/20/22/8 blend this edition dropped')
+_RB = LN['retired_blend']
+putf(wsS, 'B14', "=B5*0.50+B6*0.20+B8*0.22+B7*0.08",
+     0.50 * LN['values']['DCF (cash flow)'] + 0.20 * LN['values']['Relative multiples']
+     + 0.22 * _NORM_DIAG + 0.08 * LN['values']['Asset / replacement cost'], PX)
+wsS.cell(row=14, column=3, value='weights nobody tested; kept visible, not used')
 wsS.cell(row=12, column=1, value='Market price, 6 August 2026')
 putf(wsS, 'B12', f"={A['spot']}", SPOT, PX, green=True)
 wsS.cell(row=13, column=1, value='Market capitalisation (EGP mn)')
@@ -1390,7 +1402,7 @@ SEC = [('Nameplate capacity (Mt)', 'B13', f"={A['egcap']}", PE['sector']['capaci
        ('Revival capacity as a share of consumption', 'B20', "=B17/B15",
         PE['sector']['revival_pct_of_consumption'], PCT),
        ('The subject\'s own volume as a share of national production', 'B21',
-        "='Unit Build'!B18/B14", UC['vol_fy25'] / IN['egy_prod_mt'], PCT)]
+        "='Segments'!B18/B14", UC['vol_fy25'] / IN['egy_prod_mt'], PCT)]
 for lab, ad, fm, ex, ft in SEC:
     wsP.cell(row=int(ad[1:]), column=1, value=lab)
     putf(wsP, ad, fm, ex, ft, green=(int(ad[1:]) <= 17))
@@ -1398,7 +1410,21 @@ note(wsP, 23, 'Every multiple here is RECOMPUTED from revenue, profit and market
 note(wsP, 24, 'quoted, because the published multiples for this peer set do not reconcile.')
 
 # ============ SAVE ============================================================
-OUT = os.path.join(HERE, 'ARCC_Valuation_Model_01092026_public.xlsx')
+# The sheet list IS the model report's, in its order, asserted against the protocol
+# module rather than a copy typed here. A study attesting structure_matches_model on
+# itself is not a check [R-ENF-01] — that boolean was True on a seven-sheet workbook.
+import sys as _sys
+_sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import research_protocol as _RP                                        # noqa: E402
+_WANT = list(_RP.MODEL_STUDY['excel_sheets'])
+_missing = [x for x in _WANT if x not in wb.sheetnames]
+_extra = [x for x in wb.sheetnames if x not in _WANT]
+assert not _missing and not _extra, (
+    'workbook does not match the model-report sheet list — missing %s, unexpected %s'
+    % (_missing, _extra))
+wb._sheets = [wb[n] for n in _WANT]
+assert wb.sheetnames == _WANT, wb.sheetnames
+OUT = os.path.join(HERE, 'ARCC_Valuation_Model_02092026_public.xlsx')
 wb.save(OUT)
 with open(os.path.join(HERE, 'xlsx_expected.json'), 'w') as f:
     json.dump(EXPECT, f, indent=1)

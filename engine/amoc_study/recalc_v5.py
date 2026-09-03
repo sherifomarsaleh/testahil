@@ -73,19 +73,19 @@ def chk(name, got, want, tol=0.005):
 
 
 ps_row = None
-for coord, val in EXPECT.get('Forecast', {}).items():
+for coord, val in EXPECT.get('DCF', {}).items():
     pass
-chk('weighted central, Lenses!B15', g('Lenses', 'B15'), D['central'])
-chk('DCF lens, Lenses!B10', g('Lenses', 'B10'), D['lenses']['dcf']['base'])
-chk('relative lens, Lenses!C11', g('Lenses', 'C11'), D['lenses']['relative']['base'])
-chk('normalised lens, Lenses!D12', g('Lenses', 'D12'), D['lenses']['normalized']['base'])
-chk('book lens, Lenses!E13', g('Lenses', 'E13'), D['lenses']['book']['base'])
-chk('base-year revenue, Base Year!B19', g('Base Year', 'B19'), D['ttm']['rev'], 1.0)
-chk('base-year gross margin, Base Year!B22', g('Base Year', 'B22'), D['ttm']['gm'], 1e-6)
-chk('per-line cost foots, Product and Cost!B36', g('Product and Cost', 'B36'), 0.0, 1e-3)
-chk('inventory days, Base Year!B44', g('Base Year', 'B44'), D['rates']['inv_days'], 1e-4)
-chk('minority rate, Base Year!B41', g('Base Year', 'B41'), D['rates']['nci_op'], 1e-6)
-chk('released-GP overstatement, Base Year!B17', g('Base Year', 'B17'), D['ttm']['ct3'], 1e-6)
+chk('weighted central, Fundamental Valuation!B15', g('Fundamental Valuation', 'B15'), D['central'])
+chk('DCF lens, Fundamental Valuation!B10', g('Fundamental Valuation', 'B10'), D['lenses']['dcf']['base'])
+chk('relative lens, Fundamental Valuation!C11', g('Fundamental Valuation', 'C11'), D['lenses']['relative']['base'])
+chk('normalised lens, Fundamental Valuation!D12', g('Fundamental Valuation', 'D12'), D['lenses']['normalized']['base'])
+chk('book lens, Fundamental Valuation!E13', g('Fundamental Valuation', 'E13'), D['lenses']['book']['base'])
+chk('base-year revenue, Income Statement!B19', g('Income Statement', 'B19'), D['ttm']['rev'], 1.0)
+chk('base-year gross margin, Income Statement!B22', g('Income Statement', 'B22'), D['ttm']['gm'], 1e-6)
+chk('per-line cost foots, Segments!B36', g('Segments', 'B36'), 0.0, 1e-3)
+chk('inventory days, Income Statement!B44', g('Income Statement', 'B44'), D['rates']['inv_days'], 1e-4)
+chk('minority rate, Income Statement!B41', g('Income Statement', 'B41'), D['rates']['nci_op'], 1e-6)
+chk('released-GP overstatement, Income Statement!B17', g('Income Statement', 'B17'), D['ttm']['ct3'], 1e-6)
 
 print('\nGATE 3  headline reconciliations')
 for nm, got, want, ok in checks:

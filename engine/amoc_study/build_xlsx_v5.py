@@ -281,7 +281,7 @@ def L(k):
 
 
 # ================= BASE YEAR — the coherence test, in formulas ================
-wsB = sheet('Base Year', 56)
+wsB = sheet('Income Statement', 56)
 title(wsB, 'Base year — twelve contiguous months to 30 June 2026',
       'The gross profit of the reported half is NOT taken as released. It is solved from the '
       "release's own profit line, and the released figure is shown beside it with the profit it "
@@ -371,7 +371,7 @@ putf(wsB, 'B46', f"=({L('payables')}+{L('creditors')}-{L('div_declared')})/10^6/
 
 
 # ================= PRODUCT AND COST — eight lines, both sides =================
-wsP = sheet('Product and Cost', 40)
+wsP = sheet('Segments', 40)
 title(wsP, 'The eight disclosed product lines — revenue AND cost, per line',
       'Note 14-A gives tonnes and value per line. Note 15-A gives the cost stack for the company '
       'and NOT by line, so conversion is allocated on the registered processing-intensity '
@@ -398,12 +398,12 @@ put(wsP, 'A15', 'Revenue at the disclosed realisations, twelve months as filed')
 putf(wsP, 'B15', '=SUMPRODUCT(E6:E13,D6:D13)',
      sum(UB['t0'][k] * IN['prod_v'][k] / IN['prod_t'][k] for k in LINES), NUM0)
 put(wsP, 'A16', 'REALISATION INDEX — solved so the base year foots', bold=True)
-putf(wsP, 'B16', "='Base Year'!B19/B15", UB['px_index'], NUM3, bold=True)
+putf(wsP, 'B16', "='Income Statement'!B19/B15", UB['px_index'], NUM3, bold=True)
 putf(wsP, 'F14', '=SUMPRODUCT(E6:E13,F6:F13)', TTM['rev'], NUM0, bold=True)
 
 put(wsP, 'A18', 'COST ALLOCATION', bold=True); band(wsP, 18)
 put(wsP, 'A19', 'Cost of sales, base year')
-putf(wsP, 'B19', "='Base Year'!B21", TTM['cogs'], NUM0)
+putf(wsP, 'B19', "='Income Statement'!B21", TTM['cogs'], NUM0)
 put(wsP, 'A20', 'Feedstock share of cost (note 15-A)')
 putf(wsP, 'B20',
      f"={L('cos_ttm_raw')}/({L('cos_ttm_raw')}+{L('cos_ttm_salaries')}+{L('cos_ttm_other')}+"
@@ -442,7 +442,7 @@ for i, k in enumerate(LINES):
 put(wsP, 'A35', 'Cost of sales rebuilt from the per-line allocation', bold=True)
 putf(wsP, 'B35', '=SUMPRODUCT(E6:E13,E27:E34)', TTM['cogs'], NUM0, bold=True)
 put(wsP, 'A36', 'must equal the base-year cost of sales — difference')
-putf(wsP, 'B36', "=B35-'Base Year'!B21", 0.0, NUM3, bold=True)
+putf(wsP, 'B36', "=B35-'Income Statement'!B21", 0.0, NUM3, bold=True)
 note(wsP, 38,
      'Row 36 is the footing test: the eight per-line costs must rebuild the disclosed cost of '
      'sales exactly. Feedstock allocated flat per tonne would make fuel oil sell below the cost '
@@ -453,8 +453,8 @@ note(wsP, 38,
 
 
 # ================= THE ENGINE, and every scenario written out again ===========
-wsF = sheet('Forecast', 42)
-title(wsF, 'Forecast engine — eight lines by five years, all formulas',
+wsF = sheet('DCF', 42)
+title(wsF, 'Discounted cash flow — the forecast engine — eight lines by five years, all formulas',
       'This is the block the Sensitivity sheet replicates twenty-five times, once per grid '
       'point, so that every sensitivity cell in this workbook is a live re-run rather than a '
       'pasted number.')
@@ -491,7 +491,7 @@ def engine(ws, row0, tag, vol_cell, gm_cell, fx_cell, we_cell, wt_cell, g_cell, 
     for k in LINES:
         vrows[k] = line(f'  Volume — {LBL[k]}, mn t', f'v_{k}', mv['vol'][k], NUM3,
                         lambda cl, j, rr, k=k: (
-                            f"='Product and Cost'!E{PR[k]}*(1+{L('lvg_'+k+'_0')}+{vol_cell})"
+                            f"='Segments'!E{PR[k]}*(1+{L('lvg_'+k+'_0')}+{vol_cell})"
                             if j == 0 else
                             f"={UC[j-1]}{rr}*(1+{L('lvg_'+k+'_'+str(j))}+{vol_cell})"))
     r_vt = line('Total volume, mn t', 'vt', mv['vtot'], NUM3,
@@ -499,12 +499,12 @@ def engine(ws, row0, tag, vol_cell, gm_cell, fx_cell, we_cell, wt_cell, g_cell, 
     # revenue and cost, per line, summed
     r_rev = line('REVENUE', 'rev', mv['rev'], NUM0,
                  lambda cl, j, rr: '=' + '+'.join(
-                     f"{cl}{vrows[k]}*'Product and Cost'!$F${PR[k]}*{cl}{r_px}" for k in LINES),
+                     f"{cl}{vrows[k]}*'Segments'!$F${PR[k]}*{cl}{r_px}" for k in LINES),
                  bold=True)
     r_cogs = line('Cost of sales', 'cogs', mv['cogs'], NUM0,
                   lambda cl, j, rr: '=' + '+'.join(
-                      f"{cl}{vrows[k]}*('Product and Cost'!$D${27+i}*{cl}{r_px}*"
-                      f"{L('raw_pass')}+'Product and Cost'!$B${27+i}*"
+                      f"{cl}{vrows[k]}*('Segments'!$D${27+i}*{cl}{r_px}*"
+                      f"{L('raw_pass')}+'Segments'!$B${27+i}*"
                       f"({UB['sal_sh']:.10f}*{cl}{r_inf}+{UB['oth_sh']:.10f}*{cl}{r_inf}"
                       f"+{UB['sup_sh']:.10f}*{cl}{r_px}+{UB['dep_sh']:.10f}))"
                       for i, k in enumerate(LINES)))
@@ -515,16 +515,16 @@ def engine(ws, row0, tag, vol_cell, gm_cell, fx_cell, we_cell, wt_cell, g_cell, 
     # operating expense: three lines on three drivers, plus the charge never taken
     r_opex = line('Operating expense', 'opex', mv['opex'], NUM0,
                   lambda cl, j, rr: (
-                      f"=('Base Year'!$B$28*{cl}{r_inf})"
-                      f"+('Base Year'!$B$29*{cl}{r_inf}*{cl}{r_vt}/'Product and Cost'!$E$14)"
-                      f"+('Base Year'!$B$30*{cl}{r_inf})+('Base Year'!$B$31*{cl}{r_inf})"))
+                      f"=('Income Statement'!$B$28*{cl}{r_inf})"
+                      f"+('Income Statement'!$B$29*{cl}{r_inf}*{cl}{r_vt}/'Segments'!$E$14)"
+                      f"+('Income Statement'!$B$30*{cl}{r_inf})+('Income Statement'!$B$31*{cl}{r_inf})"))
     r_ebitda = line('EBITDA', 'ebitda', mv['ebitda'], NUM0,
                     lambda cl, j, rr: f"={cl}{r_gp}-{cl}{r_opex}", bold=True)
     # capex and depreciation off the asset register
     r_capex = line('Capital expenditure — maintenance + growth', 'capex', mv['capex'], NUM0,
                    lambda cl, j, rr: (
-                       f"='Base Year'!$B$43*{cl}{r_inf}+MAX({cl}{r_vt}-"
-                       + (f"'Product and Cost'!$E$14" if j == 0 else f"{UC[j-1]}{r_vt}")
+                       f"='Income Statement'!$B$43*{cl}{r_inf}+MAX({cl}{r_vt}-"
+                       + (f"'Segments'!$E$14" if j == 0 else f"{UC[j-1]}{r_vt}")
                        + f",0)*{RT['cap_intensity']:.6f}*{cl}{r_inf}"))
     r_gross = line('Fixed assets at cost, closing', 'gross', mv['gross'], NUM0,
                    lambda cl, j, rr: (
@@ -532,8 +532,8 @@ def engine(ws, row0, tag, vol_cell, gm_cell, fx_cell, we_cell, wt_cell, g_cell, 
                        else f"={UC[j-1]}{rr}+{cl}{r_capex}"))
     r_dna = line('Depreciation — rolls off the asset register', 'dna', mv['dna'], NUM0,
                  lambda cl, j, rr: (
-                     f"=({L('ppe_gross')}+{L('puc')})/10^6/'Base Year'!$B$42" if j == 0
-                     else f"={UC[j-1]}{r_gross}/'Base Year'!$B$42"))
+                     f"=({L('ppe_gross')}+{L('puc')})/10^6/'Income Statement'!$B$42" if j == 0
+                     else f"={UC[j-1]}{r_gross}/'Income Statement'!$B$42"))
     r_ppe = line('Fixed assets, net book, closing', 'ppe', mv['ppe'], NUM0,
                  lambda cl, j, rr: (
                      f"=({L('ppe_net')}+{L('puc')})/10^6+{cl}{r_capex}-{cl}{r_dna}" if j == 0
@@ -543,19 +543,19 @@ def engine(ws, row0, tag, vol_cell, gm_cell, fx_cell, we_cell, wt_cell, g_cell, 
     r_nop0 = line('NOPAT before the profit share', 'nop0', mv['nop0'], NUM0,
                   lambda cl, j, rr: f"={cl}{r_ebit}*(1-{L('tax_stat')})")
     r_emp = line("  less employees' profit share and board bonuses", 'emp', mv['emp'], NUM0,
-                 lambda cl, j, rr: f"=MAX({cl}{r_nop0},0)*'Base Year'!$B$40")
+                 lambda cl, j, rr: f"=MAX({cl}{r_nop0},0)*'Income Statement'!$B$40")
     r_nopat = line('NOPAT', 'nopat', mv['nopat'], NUM0,
                    lambda cl, j, rr: f"={cl}{r_nop0}-{cl}{r_emp}", bold=True)
     r_nwc = line('Net working capital — on days', 'nwc', mv['nwc'], NUM0,
                  lambda cl, j, rr: (
-                     f"='Base Year'!$B$44*{wc_cell}/365*{cl}{r_cogs}"
-                     f"+'Base Year'!$B$45*{wc_cell}/365*{cl}{r_rev}"
-                     f"-'Base Year'!$B$46*{wc_cell}/365*{cl}{r_cogs}"))
+                     f"='Income Statement'!$B$44*{wc_cell}/365*{cl}{r_cogs}"
+                     f"+'Income Statement'!$B$45*{wc_cell}/365*{cl}{r_rev}"
+                     f"-'Income Statement'!$B$46*{wc_cell}/365*{cl}{r_cogs}"))
     r_dnwc = line('  change in working capital', 'dnwc', mv['dnwc'], NUM0,
                   lambda cl, j, rr: (
-                      f"={cl}{r_nwc}-('Base Year'!$B$44/365*'Base Year'!$B$21"
-                      f"+'Base Year'!$B$45/365*'Base Year'!$B$19"
-                      f"-'Base Year'!$B$46/365*'Base Year'!$B$21)" if j == 0
+                      f"={cl}{r_nwc}-('Income Statement'!$B$44/365*'Income Statement'!$B$21"
+                      f"+'Income Statement'!$B$45/365*'Income Statement'!$B$19"
+                      f"-'Income Statement'!$B$46/365*'Income Statement'!$B$21)" if j == 0
                       else f"={cl}{r_nwc}-{UC[j-1]}{r_nwc}"))
     r_fcff = line('FREE CASH FLOW TO THE FIRM', 'fcff', mv['fcff'], NUM0,
                   lambda cl, j, rr: f"={cl}{r_nopat}+{cl}{r_dna}-{cl}{r_capex}-{cl}{r_dnwc}",
@@ -591,7 +591,7 @@ def engine(ws, row0, tag, vol_cell, gm_cell, fx_cell, we_cell, wt_cell, g_cell, 
     put(ws, f'A{rt+7}', 'Enterprise value including cash')
     putf(ws, f'B{rt+7}', f"=B{rt+5}+B{rt+6}", mv['eq_gross'], NUM0)
     put(ws, f'A{rt+8}', 'less minority — on the WHOLE enterprise, cash included')
-    putf(ws, f'B{rt+8}', f"=B{rt+7}*'Base Year'!$B$41", mv['nci'], NUM0)
+    putf(ws, f'B{rt+8}', f"=B{rt+7}*'Income Statement'!$B$41", mv['nci'], NUM0)
     put(ws, f'A{rt+9}', 'less the tax-disputes provision')
     putf(ws, f'B{rt+9}', f"={L('provisions')}/10^6", mv['prov'], NUM0)
     put(ws, f'A{rt+10}', 'less dividends payable — declared, out of working capital')
@@ -678,13 +678,13 @@ for gname, cells, pts in D['blocks']['grids']:
         lr = ROWS_S[key]
         lev = {c: f'$B${lr}' for c, _, _ in pt['levers']}
         rws = engine(wsS, rr, f'{gname} — {pt["label"]}',
-                     lev.get('B', '$B$6') if 'B' in lev else f'Forecast!$B$6',
-                     f'$C${lr}' if pt['has_gm'] else 'Forecast!$B$7',
-                     f'$D${lr}' if pt['has_fx'] else 'Forecast!$B$8',
-                     f'$F${lr}' if pt['has_we'] else 'Forecast!$B$14',
-                     f'$G${lr}' if pt['has_wt'] else 'Forecast!$B$17',
+                     lev.get('B', '$B$6') if 'B' in lev else f'DCF!$B$6',
+                     f'$C${lr}' if pt['has_gm'] else 'DCF!$B$7',
+                     f'$D${lr}' if pt['has_fx'] else 'DCF!$B$8',
+                     f'$F${lr}' if pt['has_we'] else 'DCF!$B$14',
+                     f'$G${lr}' if pt['has_wt'] else 'DCF!$B$17',
                      f'$H${lr}' if pt['has_g'] else L('g_term'),
-                     f'$E${lr}' if pt['has_wc'] else 'Forecast!$B$9',
+                     f'$E${lr}' if pt['has_wc'] else 'DCF!$B$9',
                      D['blocks']['scen'][key])
         SUM_PS[key] = rws['ps']
         rr = rws['ps'] + 3
@@ -704,19 +704,19 @@ for gname, cells, pts in D['blocks']['grids']:
     for pi, pt in enumerate(pts):
         if pt.get('is_base'):
             key = f'{gname}|{pi}'
-            putf(wsS, f'J{ROWS_S[key]}', f"=B{SUM_PS[key]}-Forecast!B{BASE_ROWS['ps']}", 0.0,
+            putf(wsS, f'J{ROWS_S[key]}', f"=B{SUM_PS[key]}-DCF!B{BASE_ROWS['ps']}", 0.0,
                  '0.0000')
 
 # ================= LENSES ====================================================
-wsL = sheet('Lenses', 46)
+wsL = sheet('Fundamental Valuation', 46)
 title(wsL, 'Four lenses, one bridge, one valuation date',
       'Lens 2 is on the TRAILING metric so it borrows no discount factor from lens 1. Lens 3 is '
       'forward-dated and is therefore DISCOUNTED to the valuation date at the cost of equity, '
       'with net cash added at face outside the multiple. Lens 4 uses the same cost-of-equity '
       'glide lens 1 uses. All formulas.', 7)
 put(wsL, 'A5', 'Base-year EBITDA')
-putf(wsL, 'B5', "='Base Year'!B20-'Base Year'!B28-'Base Year'!B29-'Base Year'!B30-'Base Year'!B31"
-                "+'Base Year'!B32", BASE['ebitda_cy25'], NUM0)
+putf(wsL, 'B5', "='Income Statement'!B20-'Income Statement'!B28-'Income Statement'!B29-'Income Statement'!B30-'Income Statement'!B31"
+                "+'Income Statement'!B32", BASE['ebitda_cy25'], NUM0)
 put(wsL, 'A6', 'Enterprise value at spot')
 putf(wsL, 'B6', f"={L('spot')}*{L('shares_mn')}+({L('debt_lt')}+{L('debt_st')}-{L('cash')})/10^6",
      REL['ev_trailing'] if 'ev_trailing' in REL else SPOT * SH + DCF['nd'], NUM0)
@@ -726,20 +726,20 @@ put(wsL, 'A8', 'Justified multiple = trailing x (1 + re-rating)')
 putf(wsL, 'B8', f"=B7*(1+{L('rel_rerating')})", RT['just_mult'], MULT, bold=True)
 
 put(wsL, 'A10', 'LENS 1 — discounted cash flow', bold=True); band(wsL, 10, 7)
-putf(wsL, 'B10', f"=Forecast!B{BASE_ROWS['ps']}", LN['dcf']['base'], PX, bold=True, green=True)
+putf(wsL, 'B10', f"=DCF!B{BASE_ROWS['ps']}", LN['dcf']['base'], PX, bold=True, green=True)
 put(wsL, 'A11', 'LENS 2 — relative multiples, on the trailing metric', bold=True)
 putf(wsL, 'B11',
-     f"=(B8*B5-({L('debt_lt')}+{L('debt_st')}-{L('cash')})/10^6)*(1-'Base Year'!B41)"
+     f"=(B8*B5-({L('debt_lt')}+{L('debt_st')}-{L('cash')})/10^6)*(1-'Income Statement'!B41)"
      f"-({L('provisions')}+{L('div_declared')}-{L('fvoci')}-{L('fin_inv')})/10^6",
      LN['relative']['base'] * SH, NUM0)
 putf(wsL, 'C11', f"=B11/{L('shares_mn')}", LN['relative']['base'], PX, bold=True)
 put(wsL, 'A12', 'LENS 3 — normalised earnings power, DISCOUNTED', bold=True)
-putf(wsL, 'B12', f"=Forecast!E{BASE_ROWS['ebit']}", F['ebit'][2], NUM0)
+putf(wsL, 'B12', f"=DCF!E{BASE_ROWS['ebit']}", F['ebit'][2], NUM0)
 putf(wsL, 'C12',
-     f"=B12*(1-{L('tax_stat')})*(1-'Base Year'!B40)*(1-'Base Year'!B41)/{L('shares_mn')}",
+     f"=B12*(1-{L('tax_stat')})*(1-'Income Statement'!B40)*(1-'Income Statement'!B41)/{L('shares_mn')}",
      NRM['eps'], NUM3)
 putf(wsL, 'D12',
-     f"=C12*{L('pe_just')}/(1+Forecast!B10)^{RT['norm_yrs']}"
+     f"=C12*{L('pe_just')}/(1+DCF!B10)^{RT['norm_yrs']}"
      f"+(({L('cash')}-{L('debt_lt')}-{L('debt_st')}-{L('provisions')}-{L('div_declared')})/10^6)"
      f"/{L('shares_mn')}", LN['normalized']['base'], PX, bold=True)
 put(wsL, 'A13', 'LENS 4 — book value and sustainable return', bold=True)
@@ -760,6 +760,452 @@ note(wsL, 18,
      'minimum and maximum across the four lenses — both of which came from the cash-flow lens '
      'alone — so the word "weighted" applied to the centre and not to the ends, and the '
      'published spread was about two and a half times too wide.')
+
+
+# =============================================================================
+# THE MODEL-REPORT SHEET LIST. The 01-09-2026 edition shipped seven sheets
+# against the sixteen the model report requires, while compute.py attested
+# structure_matches_model=True — a self-set boolean that nothing outside the
+# study ever checked, which is the [R-ENF-01] failure exactly. The nine sheets
+# below close it. Every cell here is a formula pointing at the sheets above:
+# a summary that stores its own copy of a number is the [L-016] defect.
+# =============================================================================
+RT_ = BASE_ROWS['ev'] - 5          # first row of the terminal-and-bridge block on DCF
+BR_ = {'pv_explicit': RT_, 'roic': RT_ + 1, 'rr': RT_ + 2, 'tv': RT_ + 3,
+       'pv_tv': RT_ + 4, 'ev': RT_ + 5, 'netcash': RT_ + 6, 'ev_cash': RT_ + 7,
+       'nci': RT_ + 8, 'prov': RT_ + 9, 'divp': RT_ + 10, 'inv': RT_ + 11,
+       'eq': RT_ + 12, 'ps': RT_ + 13}
+FVS = "'Fundamental Valuation'"
+ISS = "'Income Statement'"
+SEG = "'Segments'"
+
+
+def _row(ws, r, label, ref, val, fmt=NUM0, bold=False, green=False, indent=False):
+    put(ws, f'A{r}', ('    ' if indent else '') + label, bold=bold)
+    putf(ws, f'B{r}', ref, val, fmt, bold=bold, green=green)
+
+
+def _years(ws, r, label, colref, vals, fmt=NUM0, bold=False):
+    """One line across the five forecast columns, pointing at the DCF engine."""
+    put(ws, f'A{r}', label, bold=bold)
+    for j, cl in enumerate(UC):
+        putf(ws, f'{cl}{r}', colref(cl, j), vals[j], fmt, bold=bold)
+
+
+# ================= SUMMARY ===================================================
+wsSU = sheet('Summary', 52)
+title(wsSU, 'Summary — the answer, and every lens behind it',
+      'Nothing on this sheet is typed. Every figure points at the sheet that computed it, so a '
+      'driver changed on Assumptions moves this page too.', 6)
+hdr(wsSU, 5, ['', 'Bear', 'Base', 'Bull', 'Weight'])
+LNK = [('Discounted cash flow', 'dcf', f"={FVS}!B10"),
+       ('Relative multiples', 'relative', f"={FVS}!C11"),
+       ('Normalised earnings power', 'normalized', f"={FVS}!D12"),
+       ('Book value and sustainable return', 'book', f"={FVS}!E13")]
+r = 6
+for lab, key, baseref in LNK:
+    put(wsSU, f'A{r}', lab)
+    put(wsSU, f'B{r}', LN[key]['bear'], BLUE, PX, paste=True)
+    putf(wsSU, f'C{r}', baseref, LN[key]['base'], PX, green=True)
+    put(wsSU, f'D{r}', LN[key]['bull'], BLUE, PX, paste=True)
+    putf(wsSU, f'E{r}', f"={L('w_' + key)}", LN[key]['w'], PCT)
+    r += 1
+band(wsSU, r, 6)
+put(wsSU, f'A{r}', 'WEIGHTED CENTRAL', bold=True)
+for cl, k in (('B', 'bear'), ('C', 'base'), ('D', 'bull')):
+    putf(wsSU, f'{cl}{r}',
+         '=' + '+'.join(f"{cl}{6 + i}*$E${6 + i}" for i in range(4)),
+         LN['central'][k], PX, bold=True, green=True)
+CEN_R = r
+r += 2
+_row(wsSU, r, 'Market price at the valuation date', f"={L('spot')}", SPOT, PX); r += 1
+_row(wsSU, r, 'Central against price', f"=C{CEN_R}/B{r - 1}-1", D['central'] / SPOT - 1, PCT,
+     bold=True); r += 1
+_row(wsSU, r, 'Shares in issue, millions', f"={L('shares_mn')}", SH, NUM1); r += 1
+_row(wsSU, r, 'Market capitalisation at the valuation date', f"=B{r - 1}*{L('spot')}",
+     SH * SPOT, NUM0); r += 2
+band(wsSU, r, 6); put(wsSU, f'A{r}', 'WHERE THE VALUE SITS', bold=True); r += 1
+_row(wsSU, r, 'Present value of the explicit five years', f"=DCF!B{BR_['pv_explicit']}",
+     DCF['pv_explicit']); r += 1
+_row(wsSU, r, 'Present value of the terminal block', f"=DCF!B{BR_['pv_tv']}", DCF['pv_tv']); r += 1
+_row(wsSU, r, 'Terminal share of enterprise value',
+     f"=B{r - 1}/(B{r - 2}+B{r - 1})", DCF['tv_share'], PCT); r += 1
+_row(wsSU, r, 'Net cash added in the bridge', f"=DCF!B{BR_['netcash']}", -DCF['nd']); r += 2
+note(wsSU, r,
+     'The bear and bull columns of each lens are the blue cells here and the only pasted figures '
+     'on the sheet: each is a complete re-run of the model at that scenario, computed in '
+     'compute.py and reproduced in formulas on the Sensitivity sheet. The weighted row is a live '
+     'formula across them, because the defect being closed was a sheet that labelled a row '
+     'weighted and then took the minimum and maximum across four lenses.')
+
+# ================= SOTP BRIDGE ===============================================
+wsSB = sheet('SOTP Bridge', 62)
+title(wsSB, 'Enterprise value to equity — every step',
+      'AMOC is a single operating company: one refinery, eight product lines off one crude '
+      'slate, no stakes to sum. There are no parts to break out, so this sheet is the full '
+      'enterprise-to-equity walk rather than a sum of pieces, and it says so rather than '
+      'inventing segments to fill the shape.', 5)
+r = 5
+for lab, key, mv, bold in [
+        ('Present value of the explicit window', 'pv_explicit', DCF['pv_explicit'], False),
+        ('Terminal value', 'tv', DCF['tv'], False),
+        ('Present value of the terminal block', 'pv_tv', DCF['pv_tv'], False),
+        ('ENTERPRISE VALUE', 'ev', DCF['ev'], True),
+        ('plus net cash', 'netcash', -DCF['nd'], False),
+        ('Enterprise value including cash', 'ev_cash', BR['eq_gross'], False),
+        ('less minority interest, on the whole enterprise', 'nci', BR['nci'], False),
+        ('less the tax-disputes provision', 'prov', BR['prov'], False),
+        ('less dividends declared and payable', 'divp', BR['divp'], False),
+        ('plus non-operating investments and pledged deposits', 'inv', BR['inv'], False),
+        ('EQUITY ATTRIBUTABLE TO THE PARENT', 'eq', BR['eq'], True)]:
+    _row(wsSB, r, lab, f"=DCF!B{BR_[key]}", mv, NUM0, bold=bold, green=True)
+    r += 1
+_row(wsSB, r, 'VALUE PER SHARE, EGP', f"=B{r - 1}/{L('shares_mn')}", BR['ps'], PX, bold=True)
+PS_SB = r
+r += 2
+band(wsSB, r, 5); put(wsSB, f'A{r}', 'THE SAME WALK, PER SHARE', bold=True); r += 1
+for lab, key, mv in [('Enterprise value', 'ev', DCF['ev']),
+                     ('Net cash', 'netcash', -DCF['nd']),
+                     ('Minority interest', 'nci', -BR['nci']),
+                     ('Provisions, dividends payable and investments', None,
+                      BR['inv'] - BR['prov'] - BR['divp'])]:
+    if key:
+        _row(wsSB, r, lab, f"=DCF!B{BR_[key]}/{L('shares_mn')}"
+             + ('*-1' if key == 'nci' else ''), mv / SH, PX)
+    else:
+        _row(wsSB, r, lab,
+             f"=(DCF!B{BR_['inv']}-DCF!B{BR_['prov']}-DCF!B{BR_['divp']})/{L('shares_mn')}",
+             mv / SH, PX)
+    r += 1
+_row(wsSB, r, 'VALUE PER SHARE, EGP', f"=SUM(B{r - 4}:B{r - 1})", BR['ps'], PX, bold=True)
+r += 2
+note(wsSB, r,
+     'The minority is taken on the WHOLE enterprise, cash included, because the subsidiary that '
+     'carries it holds its share of the cash as well as of the plant. Taking it on the operating '
+     'enterprise alone and then adding the group cash at face would credit the parent with cash '
+     'it does not wholly own.')
+
+# ================= RELATIVE & NORMALIZED =====================================
+wsRN = sheet('Relative & Normalized', 60)
+title(wsRN, 'Lens 2 and lens 3, in full',
+      'Lens 2 is struck on the TRAILING metric so it borrows no discount factor from the '
+      'cash-flow lens. Lens 3 is forward-dated and is therefore discounted back to the '
+      'valuation date, with net cash added at face outside the multiple.', 5)
+r = 5
+band(wsRN, r, 5); put(wsRN, f'A{r}', 'LENS 2 — RELATIVE MULTIPLES', bold=True); r += 1
+_row(wsRN, r, 'Base-year EBITDA', f"={FVS}!B5", BASE['ebitda_cy25']); r += 1
+_row(wsRN, r, 'Enterprise value at the market price', f"={FVS}!B6",
+     SPOT * SH + DCF['nd']); r += 1
+_row(wsRN, r, "The company's own trailing enterprise value / EBITDA", f"={FVS}!B7",
+     RT['just_mult'], MULT); r += 1
+_row(wsRN, r, 'Re-rating applied', f"={L('rel_rerating')}", IN['rel_rerating'], PCT); r += 1
+_row(wsRN, r, 'Justified multiple', f"={FVS}!B8", RT['just_mult'], MULT, bold=True); r += 1
+_row(wsRN, r, 'Equity on that multiple', f"={FVS}!B11", LN['relative']['base'] * SH); r += 1
+_row(wsRN, r, 'LENS 2, EGP PER SHARE', f"={FVS}!C11", LN['relative']['base'], PX,
+     bold=True, green=True); r += 2
+band(wsRN, r, 5); put(wsRN, f'A{r}', 'LENS 3 — NORMALISED EARNINGS POWER', bold=True); r += 1
+_row(wsRN, r, f"Normalised EBIT, {NRM['year']}", f"={FVS}!B12", F['ebit'][2]); r += 1
+_row(wsRN, r, 'Normalised earnings per share', f"={FVS}!C12", NRM['eps'], NUM3); r += 1
+_row(wsRN, r, 'Justified price / earnings', f"={L('pe_just')}", IN['pe_just'], MULT); r += 1
+_row(wsRN, r, 'Discounted back at the explicit cost of equity',
+     f"=(1+DCF!B10)^{RT['norm_yrs']}", (1 + W['ke_exp']) ** RT['norm_yrs'], NUM3); r += 1
+_row(wsRN, r, 'LENS 3, EGP PER SHARE', f"={FVS}!D12", LN['normalized']['base'], PX,
+     bold=True, green=True); r += 2
+band(wsRN, r, 5); put(wsRN, f'A{r}', 'LENS 4 — BOOK VALUE AND SUSTAINABLE RETURN', bold=True)
+r += 1
+_row(wsRN, r, 'Book value per share attributable to the parent', f"={FVS}!B13",
+     BK['bvps'], PX); r += 1
+_row(wsRN, r, 'Sustainable return on equity', f"={L('roe_sust')}", IN['roe_sust'], PCT); r += 1
+_row(wsRN, r, 'Cost of equity used', f"={FVS}!C13", RT['ke_blend'], PCT2); r += 1
+_row(wsRN, r, 'Justified price / book', f"={FVS}!D13", BK['pb_just'], MULT); r += 1
+_row(wsRN, r, 'LENS 4, EGP PER SHARE', f"={FVS}!E13", LN['book']['base'], PX,
+     bold=True, green=True)
+
+# ================= BALANCE SHEET =============================================
+wsBS = sheet('Balance Sheet', 58)
+title(wsBS, 'Balance sheet — as filed, and the lines the forecast projects',
+      'The filed column is the blue class: figures read off the statement. Everything to the '
+      'right is projected from the working-capital days and the asset register on the Income '
+      'Statement sheet, through the same engine the cash flow runs on.', 7)
+hdr(wsBS, 5, ['EGP mn', 'As filed'] + YRS)
+r = 6
+BSL = [('Fixed assets at cost', f"=({L('ppe_gross')}+{L('puc')})/10^6",
+        (IN['ppe_gross'] + IN['puc']) / 1e6,
+        lambda cl, j: f"=DCF!{cl}{BASE_ROWS['gross']}", F.get('gross', D['blocks']['base']['gross'])),
+       ('Accumulated depreciation', f"=-({L('ppe_gross')}-{L('ppe_net')})/10^6",
+        -(IN['ppe_gross'] - IN['ppe_net']) / 1e6, None, None),
+       ('Fixed assets, net book', f"=({L('ppe_net')}+{L('puc')})/10^6",
+        (IN['ppe_net'] + IN['puc']) / 1e6,
+        lambda cl, j: f"=DCF!{cl}{BASE_ROWS['ppe']}", D['blocks']['base']['ppe']),
+       ('Inventory', f"={L('inventory')}/10^6", IN['inventory'] / 1e6, None, None),
+       ('Trade and other receivables', f"=({L('recv')}+{L('debtors')})/10^6",
+        (IN['recv'] + IN['debtors']) / 1e6, None, None),
+       ('Cash and bank', f"={L('cash')}/10^6", IN['cash'] / 1e6, None, None),
+       ('Financial investments and pledged deposits', f"=({L('fvoci')}+{L('fin_inv')})/10^6",
+        (IN['fvoci'] + IN['fin_inv']) / 1e6, None, None),
+       ('Trade and other payables', f"=-({L('payables')}+{L('creditors')})/10^6",
+        -(IN['payables'] + IN['creditors']) / 1e6, None, None),
+       ('Dividends declared and payable', f"=-{L('div_declared')}/10^6",
+        -IN['div_declared'] / 1e6, None, None),
+       ('Borrowings', f"=-({L('debt_lt')}+{L('debt_st')})/10^6",
+        -(IN['debt_lt'] + IN['debt_st']) / 1e6, None, None),
+       ('Provisions', f"=-{L('provisions')}/10^6", -IN['provisions'] / 1e6, None, None)]
+for lab, ref, mv, colf, cvals in BSL:
+    put(wsBS, f'A{r}', lab)
+    putf(wsBS, f'B{r}', ref, mv, NUM0)
+    if colf:
+        for j, cl in enumerate(UC):
+            putf(wsBS, f'{cl}{r}', colf(cl, j), cvals[j], NUM0)
+    r += 1
+band(wsBS, r, 7)
+put(wsBS, f'A{r}', 'Equity attributable to the parent, as filed', bold=True)
+putf(wsBS, f'B{r}', f"={L('eq_parent')}/10^6", IN['eq_parent'] / 1e6, NUM0, bold=True)
+r += 1
+put(wsBS, f'A{r}', 'Minority interest, as filed')
+putf(wsBS, f'B{r}', f"={L('eq_nci')}/10^6", IN['eq_nci'] / 1e6, NUM0)
+r += 2
+band(wsBS, r, 7)
+put(wsBS, f'A{r}', 'PROJECTED WORKING CAPITAL AND INVESTED CAPITAL', bold=True); r += 1
+_years(wsBS, r, 'Net working capital — on the filed days',
+       lambda cl, j: f"=DCF!{cl}{BASE_ROWS['nwc']}", D['blocks']['base']['nwc']); r += 1
+_years(wsBS, r, '    change in the year',
+       lambda cl, j: f"=DCF!{cl}{BASE_ROWS['dnwc']}", D['blocks']['base']['dnwc']); r += 1
+_years(wsBS, r, 'Invested capital at replacement cost',
+       lambda cl, j: f"=DCF!{cl}{BASE_ROWS['ic']}", D['blocks']['base']['icr'], NUM0, True)
+r += 2
+note(wsBS, r,
+     'Working capital is projected on inventory, receivable and payable DAYS solved off the '
+     'filed balance sheet, with dividends declared removed from payables first — leaving them in '
+     'would have the company financing itself out of a distribution it has already committed to '
+     'pay.')
+
+# ================= CASH FLOW =================================================
+wsCF = sheet('Cash Flow', 58)
+title(wsCF, 'Free cash flow to the firm — the full waterfall, year by year',
+      'This is the flow the discounted cash flow discounts, taken line by line from the engine '
+      'on the DCF sheet. It stops at present value, not at free cash flow.', 7)
+hdr(wsCF, 5, ['EGP mn'] + YRS)
+r = 6
+for lab, key, fmt, bold in [
+        ('Revenue', 'rev', NUM0, False), ('Cost of sales', 'cogs', NUM0, False),
+        ('GROSS PROFIT', 'gp', NUM0, True), ('Operating expense', 'opex', NUM0, False),
+        ('EBITDA', 'ebitda', NUM0, True), ('Depreciation', 'dna', NUM0, False),
+        ('EBIT', 'ebit', NUM0, True),
+        ('NOPAT before the profit share', 'nop0', NUM0, False),
+        ("Employees' profit share and board bonuses", 'emp', NUM0, False),
+        ('NOPAT', 'nopat', NUM0, True),
+        ('add back depreciation', 'dna', NUM0, False),
+        ('less capital expenditure', 'capex', NUM0, False),
+        ('less the change in working capital', 'dnwc', NUM0, False),
+        ('FREE CASH FLOW TO THE FIRM', 'fcff', NUM0, True),
+        ('Forward cost of capital', 'wacc', PCT2, False),
+        ('Cumulative discount factor', 'df', '0.00000', False),
+        ('PRESENT VALUE', 'pv', NUM0, True)]:
+    _years(wsCF, r, lab, (lambda k: lambda cl, j: f"=DCF!{cl}{BASE_ROWS[k]}")(key),
+           D['blocks']['base'][{'wacc': 'fwd'}.get(key, key)], fmt, bold)
+    r += 1
+r += 1
+band(wsCF, r, 7)
+_row(wsCF, r, 'PV of the explicit window', f"=DCF!B{BR_['pv_explicit']}",
+     DCF['pv_explicit'], NUM0, bold=True); r += 1
+_row(wsCF, r, 'PV of the terminal block', f"=DCF!B{BR_['pv_tv']}", DCF['pv_tv'], NUM0, bold=True)
+r += 2
+note(wsCF, r,
+     'Two lines are shown as they are computed rather than as a conventional waterfall would '
+     'order them: tax is struck on EBIT at the statutory rate before the profit share, and the '
+     "employees' share is then taken off the taxed figure, which is the order the company's own "
+     'statements follow.')
+
+# ================= SUMMARY FINANCIALS ========================================
+wsSF = sheet('Summary Financials', 58)
+title(wsSF, 'Summary financials — the base year and the five forecast years',
+      'The base column is the twelve months to 30 June 2026 built on the Income Statement '
+      'sheet; the five forecast columns are the engine. Margins are outputs of the volume, '
+      'price and cost-per-unit build, never inputs.', 7)
+hdr(wsSF, 5, ['EGP mn', 'Base year'] + YRS)
+r = 6
+SFL = [('Revenue', 'rev', f"={ISS}!B19", TTM['rev'], NUM0),
+       ('Gross profit', 'gp', f"={ISS}!B20", TTM['gp'], NUM0),
+       ('Gross margin', 'gm', f"={ISS}!B22", TTM['gm'], PCT2),
+       ('EBITDA', 'ebitda', f"={FVS}!B5", BASE['ebitda_cy25'], NUM0),
+       ('EBIT', 'ebit', f"={FVS}!B5-{ISS}!B32", BASE['ebitda_cy25'] - TTM['dep'], NUM0),
+       ('NOPAT', 'nopat', None, None, NUM0),
+       ('Capital expenditure', 'capex', f"={ISS}!B33", TTM['capex'], NUM0),
+       ('Free cash flow to the firm', 'fcff', None, None, NUM0)]
+for lab, key, bref, bval, fmt in SFL:
+    put(wsSF, f'A{r}', lab, bold=(key in ('rev', 'ebitda', 'fcff')))
+    if bref:
+        putf(wsSF, f'B{r}', bref, bval, fmt)
+    for j, cl in enumerate(UC):
+        putf(wsSF, f'{cl}{r}', f"=DCF!{cl}{BASE_ROWS[key]}",
+             D['blocks']['base'][key][j], fmt, bold=(key in ('rev', 'ebitda', 'fcff')))
+    r += 1
+r += 1
+band(wsSF, r, 7); put(wsSF, f'A{r}', 'PER TONNE, EGP — the unit the plant actually runs on',
+                      bold=True); r += 1
+_years(wsSF, r, 'Volume, million tonnes',
+       lambda cl, j: f"=DCF!{cl}{BASE_ROWS['vt']}", D['blocks']['base']['vtot'], NUM3); r += 1
+_years(wsSF, r, 'Revenue per tonne',
+       lambda cl, j: f"=DCF!{cl}{BASE_ROWS['rev']}/DCF!{cl}{BASE_ROWS['vt']}",
+       [D['blocks']['base']['rev'][j] / D['blocks']['base']['vtot'][j] for j in range(NY)],
+       NUM0); r += 1
+_years(wsSF, r, 'Gross profit per tonne',
+       lambda cl, j: f"=DCF!{cl}{BASE_ROWS['gp']}/DCF!{cl}{BASE_ROWS['vt']}",
+       [D['blocks']['base']['gp'][j] / D['blocks']['base']['vtot'][j] for j in range(NY)],
+       NUM0); r += 1
+_years(wsSF, r, 'EBITDA per tonne',
+       lambda cl, j: f"=DCF!{cl}{BASE_ROWS['ebitda']}/DCF!{cl}{BASE_ROWS['vt']}",
+       [D['blocks']['base']['ebitda'][j] / D['blocks']['base']['vtot'][j] for j in range(NY)],
+       NUM0)
+
+# ================= MONTE CARLO ===============================================
+wsMC = sheet('Monte Carlo', 58)
+ST, S0 = D['strike'], D['step0']
+title(wsMC, 'The price distribution, and how often its bands have held',
+      'This is the price engine, not the valuation: an independent lens, shown beside the '
+      'fundamental answer and never fed into it. The percentiles are produced by the engine and '
+      'are read in here, like a figure off a filing.', 6)
+r = 5
+_row(wsMC, r, 'Anchor date', f'="{ST["anchor_date"]}"', 0, None) if False else None
+put(wsMC, f'A{r}', 'Anchor date'); put(wsMC, f'B{r}', ST['anchor_date'], BLUE, paste=True); r += 1
+put(wsMC, f'A{r}', 'Anchor price, EGP'); put(wsMC, f'B{r}', ST['spot'], BLUE, PX, paste=True)
+r += 1
+put(wsMC, f'A{r}', 'Live risk-free used by the engine')
+put(wsMC, f'B{r}', ST['rf_live'], BLUE, PCT2, paste=True); r += 1
+put(wsMC, f'A{r}', 'Dividend yield used by the engine')
+put(wsMC, f'B{r}', ST['q_annual'], BLUE, PCT2, paste=True); r += 1
+put(wsMC, f'A{r}', 'Tail parameter and width calibration (per-market fit)')
+put(wsMC, f'B{r}', ST['nu'], BLUE, NUM1, paste=True)
+put(wsMC, f'C{r}', ST['width_cal'], BLUE, NUM3, paste=True); r += 1
+put(wsMC, f'A{r}', 'Per-name width overlay applied')
+put(wsMC, f'B{r}', ST['width_overlay_mult'], BLUE, NUM3, paste=True); r += 2
+band(wsMC, r, 6); put(wsMC, f'A{r}', 'THE DISTRIBUTION, EGP PER SHARE', bold=True); r += 1
+hdr(wsMC, r, ['Horizon', 'p5', 'p25', 'p50', 'p75', 'p95']); r += 1
+for hk in ['1M', '3M']:
+    h = ST['horizons'].get(hk)
+    if not h:
+        continue
+    put(wsMC, f'A{r}', f"{hk} — grade date {h['grade_date']}")
+    for i, q in enumerate(['p5', 'p25', 'p50', 'p75', 'p95']):
+        put(wsMC, f'{get_column_letter(2 + i)}{r}', h['pct'][q], BLUE, PX, paste=True)
+    r += 1
+r += 1
+band(wsMC, r, 6); put(wsMC, f'A{r}', 'HOW OFTEN THE BANDS HAVE HELD, ON THIS NAME', bold=True)
+r += 1
+for lab, v, fmt in [('Resolved three-month windows scored', S0['windows_scored'], NUM0),
+                    ('First origin', S0['first_origin'], None),
+                    ('Last origin', S0['last_origin'], None),
+                    ('Inside the 50 per cent band', S0['cov50'], PCT),
+                    ('Inside the 80 per cent band', S0['cov80'], PCT),
+                    ('Inside the 90 per cent band', S0['cov90'], PCT),
+                    ('Mean probability-integral transform (0.5 is centred)',
+                     S0['pit_mean'], NUM3)]:
+    put(wsMC, f'A{r}', lab)
+    put(wsMC, f'B{r}', v, BLUE, fmt, paste=True)
+    r += 1
+r += 1
+note(wsMC, r,
+     'These bands are a record of what happened, not a forecast of the fundamental value. The '
+     'fundamental study, this price distribution and the technical read are independent lenses: '
+     'no output of one is an input to another, and they are shown side by side so that agreement '
+     'between them is information rather than an echo.')
+
+# ================= PER-SHARE & RATIOS ========================================
+wsPR = sheet('Per-Share & Ratios', 58)
+title(wsPR, 'Per share, and the multiples the answer implies',
+      'What the weighted central and the market price each imply, on the same base-year '
+      'figures. Every cell is a formula off the Summary and Income Statement sheets.', 6)
+r = 5
+_row(wsPR, r, 'Weighted central, EGP', f"=Summary!C{CEN_R}", D['central'], PX, bold=True,
+     green=True); r += 1
+_row(wsPR, r, 'Market price, EGP', f"={L('spot')}", SPOT, PX); r += 1
+_row(wsPR, r, 'Book value per share, EGP', f"={FVS}!B13", BK['bvps'], PX); r += 1
+_row(wsPR, r, 'Base-year revenue per share, EGP',
+     f"={ISS}!B19/{L('shares_mn')}", TTM['rev'] / SH, PX); r += 1
+_row(wsPR, r, 'Base-year EBITDA per share, EGP',
+     f"={FVS}!B5/{L('shares_mn')}", BASE['ebitda_cy25'] / SH, PX); r += 1
+_row(wsPR, r, 'Dividend declared and payable, per share, EGP',
+     f"={L('div_declared')}/10^6/{L('shares_mn')}",
+     IN['div_declared'] / 1e6 / SH, PX); r += 2
+band(wsPR, r, 6); hdr(wsPR, r, ['Multiple', 'At the central', 'At the market price']); r += 1
+MULTS = [('Price / book', f"=B$5/{FVS}!B13", f"={L('spot')}/{FVS}!B13",
+          D['central'] / BK['bvps'], SPOT / BK['bvps'], MULT),
+         ('Enterprise value / base-year EBITDA',
+          f"=(B$5*{L('shares_mn')}+({L('debt_lt')}+{L('debt_st')}-{L('cash')})/10^6)/{FVS}!B5",
+          f"={FVS}!B6/{FVS}!B5",
+          (D['central'] * SH + DCF['nd']) / BASE['ebitda_cy25'],
+          (SPOT * SH + DCF['nd']) / BASE['ebitda_cy25'], MULT),
+         ('Enterprise value / base-year revenue',
+          f"=(B$5*{L('shares_mn')}+({L('debt_lt')}+{L('debt_st')}-{L('cash')})/10^6)/{ISS}!B19",
+          f"={FVS}!B6/{ISS}!B19",
+          (D['central'] * SH + DCF['nd']) / TTM['rev'],
+          (SPOT * SH + DCF['nd']) / TTM['rev'], MULT),
+         ('Yield on the dividend already declared and payable',
+          f"={L('div_declared')}/10^6/{L('shares_mn')}/B$5",
+          f"={L('div_declared')}/10^6/{L('shares_mn')}/{L('spot')}",
+          IN['div_declared'] / 1e6 / SH / D['central'],
+          IN['div_declared'] / 1e6 / SH / SPOT, PCT)]
+for lab, fa, fb, va, vb, fmt in MULTS:
+    put(wsPR, f'A{r}', lab)
+    putf(wsPR, f'B{r}', fa, va, fmt)
+    putf(wsPR, f'C{r}', fb, vb, fmt)
+    r += 1
+r += 1
+band(wsPR, r, 6); put(wsPR, f'A{r}', 'RETURNS', bold=True); r += 1
+_row(wsPR, r, 'Trailing return on equity', f"={L('roe_sust')}", IN['roe_sust'], PCT); r += 1
+_row(wsPR, r, 'Terminal return on invested capital, at replacement cost',
+     f"=DCF!B{BR_['roic']}", DCF['roic_term'], PCT2); r += 1
+_row(wsPR, r, 'Required reinvestment rate in the terminal year',
+     f"=DCF!B{BR_['rr']}", DCF['rr_term'], PCT2); r += 1
+_row(wsPR, r, 'Terminal growth', f"={L('g_term')}", IN['g_term'], PCT2)
+
+# ================= PEER & SECTOR =============================================
+wsPS = sheet('Peer & Sector', 58)
+title(wsPS, 'Sector context — a refiner and lubricant base-oil producer',
+      'The comparator basis is the company\'s OWN traded multiple and a stated re-rating, not a '
+      'peer set: no Egyptian listed refiner discloses a comparable base-oil split, and importing '
+      'a foreign multiple into an EGP valuation would price a different cost of capital. That is '
+      'a gap and it is named as one rather than filled.', 7)
+r = 5
+hdr(wsPS, r, ['Comparator basis', 'Multiple', 'Applied to (EGP mn)', 'Implied EGP/share']); r += 1
+for lab, mref, mv in [
+        ("The company's own trailing enterprise value / EBITDA", f"={FVS}!B7", RT['just_mult']),
+        ('Justified multiple, after the stated re-rating', f"={FVS}!B8", RT['just_mult'])]:
+    put(wsPS, f'A{r}', lab)
+    putf(wsPS, f'B{r}', mref, mv, MULT)
+    putf(wsPS, f'C{r}', f"={FVS}!B5", BASE['ebitda_cy25'], NUM0)
+    putf(wsPS, f'D{r}',
+         f"=(B{r}*C{r}-({L('debt_lt')}+{L('debt_st')}-{L('cash')})/10^6)"
+         f"*(1-{ISS}!B41)/{L('shares_mn')}",
+         (mv * BASE['ebitda_cy25'] - DCF['nd']) * (1 - RT['nci_op']) / SH, PX)
+    r += 1
+r += 1
+band(wsPS, r, 7)
+put(wsPS, f'A{r}', 'WHAT ACTUALLY DRIVES A PROCESSOR', bold=True); r += 1
+hdr(wsPS, r, ['Indicator'] + YRS); r += 1
+_years(wsPS, r, 'Throughput, million tonnes',
+       lambda cl, j: f"=DCF!{cl}{BASE_ROWS['vt']}", D['blocks']['base']['vtot'], NUM3); r += 1
+_years(wsPS, r, 'Gross profit per tonne, EGP',
+       lambda cl, j: f"=DCF!{cl}{BASE_ROWS['gp']}/DCF!{cl}{BASE_ROWS['vt']}",
+       [D['blocks']['base']['gp'][j] / D['blocks']['base']['vtot'][j] for j in range(NY)],
+       NUM0); r += 1
+_years(wsPS, r, 'EBITDA per tonne, EGP',
+       lambda cl, j: f"=DCF!{cl}{BASE_ROWS['ebitda']}/DCF!{cl}{BASE_ROWS['vt']}",
+       [D['blocks']['base']['ebitda'][j] / D['blocks']['base']['vtot'][j] for j in range(NY)],
+       NUM0); r += 1
+_years(wsPS, r, 'Gross margin',
+       lambda cl, j: f"=DCF!{cl}{BASE_ROWS['gm']}", D['blocks']['base']['gm'], PCT2); r += 1
+_years(wsPS, r, 'Capital expenditure as a share of revenue',
+       lambda cl, j: f"=DCF!{cl}{BASE_ROWS['capex']}/DCF!{cl}{BASE_ROWS['rev']}",
+       [D['blocks']['base']['capex'][j] / D['blocks']['base']['rev'][j] for j in range(NY)],
+       PCT2); r += 2
+note(wsPS, r,
+     'The crude slate is bought from a single counterparty at a disclosed formula and the refined '
+     'product is sold into a market whose price is set outside the company, so what a reader can '
+     'actually compare across the sector is the spread per tonne and how much of the plant is '
+     'running — not a price/earnings ratio struck on a different tax regime and a different '
+     'currency.')
+
 
 # ================= READ FIRST ================================================
 wsR = sheet('READ FIRST', 100)
@@ -809,12 +1255,29 @@ for a, b in LINES_R:
     wsR.row_dimensions[rr].height = max(14, 12 * (len(a) // 95 + 1))
     rr += 1
 
-wb.move_sheet('READ FIRST', offset=-len(wb.sheetnames) + 1)
+# --- the sheet list IS the model report's, in its order, asserted here -------
+# compute.py used to attest structure_matches_model=True while the file shipped
+# seven sheets. A boolean the study sets on itself is not a check [R-ENF-01], so
+# the order is imposed here and the list is asserted against the protocol module
+# rather than against a copy of it typed into this file.
+import sys as _sys
+_sys.path.insert(0, os.path.dirname(os.path.dirname(HERE)))
+_sys.path.insert(0, os.path.dirname(HERE))
+import research_protocol as _RP                                        # noqa: E402
+WANT = list(_RP.MODEL_STUDY['excel_sheets'])
+have = set(wb.sheetnames)
+missing, extra = [x for x in WANT if x not in have], [x for x in wb.sheetnames if x not in WANT]
+assert not missing and not extra, (
+    'workbook does not match the model-report sheet list — missing %s, unexpected %s'
+    % (missing, extra))
+wb._sheets = [wb[n] for n in WANT]
+assert wb.sheetnames == WANT, wb.sheetnames
 OUT = os.path.join(HERE, 'AMOC_Valuation_Model_01092026_public.xlsx')
 wb.save(OUT)
 json.dump({'expected': EXPECT, 'n_formula': NFORM[0], 'n_pasted': NPASTE[0]},
           open(os.path.join(HERE, 'xlsx_expected_v5.json'), 'w'), indent=1)
-print(f"{OUT}\n  formula cells {NFORM[0]}  pasted {NPASTE[0]}  "
+print(f"{OUT}\n  sheets {len(wb.sheetnames)} — matches the model report\n"
+      f"  formula cells {NFORM[0]}  pasted {NPASTE[0]}  "
       f"formula share {NFORM[0]/(NFORM[0]+NPASTE[0]):.1%}")
 
 # The document quotes these counts. A number stated in prose must be COMPUTED, not typed,

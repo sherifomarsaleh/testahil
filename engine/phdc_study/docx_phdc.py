@@ -46,6 +46,34 @@ def v(key):
     return REG[key]["value"]
 
 
+# The forecast window now runs fifteen years, because it must run until growth
+# has converged on the terminal. Fifteen columns do not fit a page, so the wide
+# forecast tables show the first five years and then every fifth — the shape of
+# the path, without pretending the table is the model. The workbook carries every
+# year.
+def display_years(rows):
+    """Indices of the years a wide table shows: the first five, then every fifth."""
+    n = len(rows)
+    idx = list(range(min(5, n)))
+    idx += [i for i in range(5, n) if (i + 1) % 5 == 0]
+    return idx
+
+
+def pick(rows, fmt):
+    """Format one row of a wide table on the displayed years only."""
+    return [fmt(rows[i]) for i in display_years(rows)]
+
+
+def wide_widths(rows, label_cm=4.6, total_cm=16.2):
+    n = len(display_years(rows))
+    return [label_cm] + [round((total_cm - label_cm) / n, 2)] * n
+
+
+def q(key):
+    """A line of the 31 March 2026 reviewed balance sheet — what the bridge stands on."""
+    return N["balance_sheet_1q26"][key]["value"]
+
+
 def money(x, dp=0):
     return "{:,.{dp}f}".format(x, dp=dp)
 
@@ -248,33 +276,53 @@ def build(path):
     # --- 1 Masthead + READ FIRST -------------------------------------------
     para(doc, "PALM HILLS DEVELOPMENTS", size=20, bold=True, color=ACCENT,
          space_after=2)
-    para(doc, "Egyptian Exchange · PHDC · Egyptian pounds · edition of 30 August 2026",
+    para(doc, "Egyptian Exchange · PHDC · Egyptian pounds · edition of 2 September 2026",
          size=10, color=MUTED, space_after=14)
     doc.add_heading("READ FIRST", level=2)
     para(doc, "This is a valuation study, not advice. It carries no rating, no "
               "recommendation and no price target. What it publishes is a range of "
               "value and the reasoning behind it, so that a reader can disagree with "
               "the reasoning rather than with a number.")
-    para(doc, "It supersedes the edition of 11 June 2026. Two things in that edition "
-              "were wrong and are corrected here, and both are set out plainly in "
-              "section 1.8 rather than buried: the discount rate was below Egypt's "
-              "own government bond yield, and the project-level price and cost table "
-              "it valued the company on is not disclosed by the company anywhere.")
+    para(doc, "It supersedes the edition of 30 August 2026, and it changes three "
+              "things in it, each found by a review of that edition against the "
+              "company's filings on 1 September 2026 and each set out where it "
+              "applies. First, the bridge from enterprise value to equity, the book "
+              "value and the borrowings now stand on the balance sheet of 31 March "
+              "2026 — reviewed, and posted to the company's own result centre with "
+              "the first-quarter results the earlier edition already used — rather "
+              "than on 31 December 2025 (section 1.1, Appendix A.2). Second, "
+              "minority shareholders in subsidiaries are now deducted at their share "
+              "of value; the earlier edition deducted nothing for them (section 1.1). "
+              "Third, normalised earnings are capitalised at the cost of equity less "
+              "the same growth the cash-flow model carries, where the earlier edition "
+              "capitalised them at the cost of equity alone — which in a currency "
+              "whose discount rate embeds Egyptian inflation assumes a perpetual "
+              "decline in real terms that nothing in the company's record supports "
+              "(section 1.4). The discount rate, the forecast and the lens weights "
+              "are unchanged. The central figure moves from EGP %.2f to EGP %.2f a "
+              "share." % (prior["base"], LW["base"]))
+    para(doc, "Two things in the edition of 11 June 2026 were wrong and remain "
+              "corrected, and both are set out plainly in section 1.8 rather than "
+              "buried: its discount rate was below Egypt's own government bond "
+              "yield, and the project-level price and cost table it valued the "
+              "company on is not disclosed by the company anywhere.")
     para(doc, "The company's own audited statements are the only source used for its "
               "reported history. Where something needed is not disclosed, this study "
-              "says so and does not fill the hole. There are five such gaps and they "
-              "are listed in section 7.")
-    para(doc, "Information set: everything the company had published as at 30 August "
-              "2026, which ends at its first-quarter 2026 results. No half-year 2026 "
+              "says so and does not fill the hole. There are %s such gaps and they "
+              "are listed in section 7." % {4: "four", 5: "five", 6: "six", 7: "seven"}.get(len(N["gaps"]), str(len(N["gaps"]))))
+    para(doc, "Information set: everything the company had published as at 2 "
+              "September 2026, which ends at its first-quarter 2026 results — the "
+              "reviewed statements of 31 March 2026 included. No half-year 2026 "
               "figures had been released at that date.", size=9, italic=True,
          color=MUTED)
 
     # --- 2 Headline ---------------------------------------------------------
     doc.add_heading("Headline", level=1)
     para(doc, "Palm Hills is worth EGP %.2f a share on a base case built from the "
-              "company's own units and prices, in a range of EGP %.2f to EGP %.2f. "
+              "company's own units and prices, in a range of EGP %.2f to EGP %.2f "
+              "across the full observed range of the one thing that decides it. "
               "The shares trade at EGP %.2f."
-              % (LW["base"], LW["bear"], LW["full"], sp), size=11.5, bold=True)
+              % (N["central"], LW["bear"], LW["full"], sp), size=11.5, bold=True)
     bullets(doc, [
         "The forecast is built from units and prices the company itself "
         "discloses: %s units sold across three regions at EGP %.2f to %.2f million "
@@ -286,11 +334,12 @@ def build(path):
            max(d["asp_base"] for d in BU["regions"].values()),
            "{:,.0f}".format(BU["rows"][0]["units_delivered"]),
            BU["rows"][0]["rev_per_unit"]),
-        "The discount rate in the previous edition was %s. Egypt's ten-year "
-        "government bond yields %s. Rebuilt from the ground up, the company's cost "
-        "of capital is %s."
-        % (pct(D["prior_edition_wacc"], 2), pct(W["rf_observed"], 2),
-           pct(W["wacc_rating"], 2)),
+        "The company's cost of capital, built from the ground up, is %s against "
+        "an Egyptian ten-year government bond yield of %s. The edition of 11 June "
+        "2026 discounted at %s, below the sovereign; that was corrected on 30 "
+        "August 2026 and the rate is unchanged here."
+        % (pct(W["wacc_rating"], 2), pct(W["rf_observed"], 2),
+           pct(D["edition_11jun_wacc"], 2)),
         "Value turns on how quickly contracted sales become cash. Over the three "
         "years the company has published a cash-flow statement, operating cash was "
         "%s, %s and %s of revenue. At the low end the shares are worth EGP %.2f; at "
@@ -309,27 +358,28 @@ def build(path):
 
     # --- 3 Valuation summary ------------------------------------------------
     doc.add_heading("Valuation summary — every read at a glance", level=1)
-    table(doc, ["Lens", "Bear", "Base", "Full value", "Weight"],
-          [[r[0], "%.2f" % r[1], "%.2f" % r[2], "%.2f" % r[3], "%.0f%%" % (r[4]*100)]
-           for r in LENS]
-          + [["Weighted central", "%.2f" % LW["bear"], "%.2f" % LW["base"],
-              "%.2f" % LW["full"], "100%"],
-             ["Market price, 23 Aug 2026", "", "%.2f" % sp, "", ""],
-             ["vs the weighted central", "%+.0f%%" % (100*(sp/LW["bear"]-1)),
-              "%+.0f%%" % (100*(sp/LW["base"]-1)),
-              "%+.0f%%" % (100*(sp/LW["full"]-1)), ""]],
-          [5.6, 2.6, 2.6, 2.6, 2.0],
-          "EGP per share. Weights are stated in advance and are the same across "
-          "the three columns. The discounted cash flow carries the most weight "
-          "because it is the only lens built from the company's own units and "
-          "prices; book value carries the least because it is a floor, not a "
-          "value.")
+    LR = N["lens_record"]
+    table(doc, ["Lens", "Low", "Central", "High", "Role"],
+          [[r[0], "%.2f" % r[1], "%.2f" % r[2], "%.2f" % r[3],
+            "the central" if i == 0 else "cross-check"]
+           for i, r in enumerate(LENS)]
+          + [["Market price, 23 Aug 2026", "", "%.2f" % sp, "", ""],
+             ["vs the central", "", "%+.0f%%" % (100 * (sp / LR["central"] - 1)), "", ""]],
+          [5.6, 2.6, 2.6, 2.6, 2.4],
+          "EGP per share. The cash-flow lens is the central because it is the only "
+          "one built from the company's own units and prices; the others are "
+          "cross-checks, published so that a reader can see where they disagree. "
+          "They are NOT averaged into the central. An earlier edition blended all "
+          "four at fixed weights, and because three of the four value a developer "
+          "on its reported earnings and its historical-cost book — a floor for a "
+          "company whose worth sits in an undelivered order book — the blend read "
+          "as a value when it was measuring a floor.")
     figure(doc, "fig1_football.png",
            "Figure 1 — each bar is one observed rate of cash conversion; the bar "
            "spans the discount rate from four points below the rebuilt cost of "
            "capital to four points above, and the white tick marks the value at "
            "the rebuilt rate itself. Shown against the closing price and the "
-           "previous edition's central figure.")
+           "30 August 2026 edition's central figure.")
 
     # --- 4 Company overview -------------------------------------------------
     doc.add_heading("Company overview", level=1)
@@ -397,33 +447,33 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               "different clocks, and it systematically overstates profit. Gross "
               "margin here is an output of price against cost, never an input.")
     def _r(key, fmt="%,.0f", scale=1.0):
-        return [("{:,.0f}".format(x[key]*scale) if "f" not in fmt
-                 else fmt % (x[key]*scale)) for x in BU["rows"]]
-    yrs = [str(x["year"]) for x in BU["rows"]]
+        return pick(BU["rows"], lambda x: ("{:,.0f}".format(x[key]*scale) if "f" not in fmt
+                 else fmt % (x[key]*scale)))
+    yrs = pick(BU["rows"], lambda x: str(x["year"]))
     body = [
-        ["Units sold", ["{:,.0f}".format(x["units_sold"]) for x in BU["rows"]]],
-        ["New sales (EGP mn)", ["{:,.0f}".format(x["new_sales"]) for x in BU["rows"]]],
-        ["Units delivered", ["{:,.0f}".format(x["units_delivered"]) for x in BU["rows"]]],
+        ["Units sold", pick(BU["rows"], lambda x: "{:,.0f}".format(x["units_sold"]))],
+        ["New sales (EGP mn)", pick(BU["rows"], lambda x: "{:,.0f}".format(x["new_sales"]))],
+        ["Units delivered", pick(BU["rows"], lambda x: "{:,.0f}".format(x["units_delivered"]))],
         ["Revenue per delivered unit (EGP mn)",
-         ["%.2f" % x["rev_per_unit"] for x in BU["rows"]]],
-        ["Revenue", ["{:,.0f}".format(x["revenue"]) for x in BU["rows"]]],
+         pick(BU["rows"], lambda x: "%.2f" % x["rev_per_unit"])],
+        ["Revenue", pick(BU["rows"], lambda x: "{:,.0f}".format(x["revenue"]))],
         ["Cost per delivered unit (EGP mn)",
-         ["%.2f" % x["cost_per_unit"] for x in BU["rows"]]],
-        ["Cost of revenue", ["{:,.0f}".format(x["cogs"]) for x in BU["rows"]]],
-        ["Gross profit", ["{:,.0f}".format(x["gross"]) for x in BU["rows"]]],
-        ["Gross margin (output)", ["%.1f%%" % (100*x["gross_margin"]) for x in BU["rows"]]],
-        ["Overheads", ["{:,.0f}".format(x["sga"]) for x in BU["rows"]]],
-        ["Operating profit", ["{:,.0f}".format(x["ebit"]) for x in BU["rows"]]],
-        ["Finance cost", ["{:,.0f}".format(x["interest"]) for x in BU["rows"]]],
-        ["Profit before tax", ["{:,.0f}".format(x["npbt"]) for x in BU["rows"]]],
-        ["Tax rate", ["%.1f%%" % (100*x["tax_rate"]) for x in BU["rows"]]],
-        ["Net profit", ["{:,.0f}".format(x["npat"]) for x in BU["rows"]]],
-        ["Earnings per share (EGP)", ["%.2f" % x["eps"] for x in BU["rows"]]],
-        ["Order book, closing", ["{:,.0f}".format(x["backlog"]) for x in BU["rows"]]],
+         pick(BU["rows"], lambda x: "%.2f" % x["cost_per_unit"])],
+        ["Cost of revenue", pick(BU["rows"], lambda x: "{:,.0f}".format(x["cogs"]))],
+        ["Gross profit", pick(BU["rows"], lambda x: "{:,.0f}".format(x["gross"]))],
+        ["Gross margin (output)", pick(BU["rows"], lambda x: "%.1f%%" % (100*x["gross_margin"]))],
+        ["Overheads", pick(BU["rows"], lambda x: "{:,.0f}".format(x["sga"]))],
+        ["Operating profit", pick(BU["rows"], lambda x: "{:,.0f}".format(x["ebit"]))],
+        ["Finance cost", pick(BU["rows"], lambda x: "{:,.0f}".format(x["interest"]))],
+        ["Profit before tax", pick(BU["rows"], lambda x: "{:,.0f}".format(x["npbt"]))],
+        ["Tax rate", pick(BU["rows"], lambda x: "%.1f%%" % (100*x["tax_rate"]))],
+        ["Net profit", pick(BU["rows"], lambda x: "{:,.0f}".format(x["npat"]))],
+        ["Earnings per share (EGP)", pick(BU["rows"], lambda x: "%.2f" % x["eps"])],
+        ["Order book, closing", pick(BU["rows"], lambda x: "{:,.0f}".format(x["backlog"]))],
     ]
     table(doc, ["EGP mn unless stated"] + yrs,
           [[lbl] + vals for lbl, vals in body],
-          [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
+          wide_widths(BU["rows"]),
           "Every line follows from the two engines above. Gross margin is what "
           "price per unit and cost per unit leave behind, not an assumption.")
     a = BU["anchors"]
@@ -468,28 +518,30 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               "table below runs every step from operating profit to a present "
               "value, year by year, with nothing collapsed.")
     wf = ST["dcf_b"]["waterfall"]
-    wy = [str(w["year"]) for w in wf]
+    wy = pick(wf, lambda w: str(w["year"]))
     def _w(key, fmt="{:,.0f}"):
-        return [fmt.format(w[key]) for w in wf]
+        return pick(wf, lambda w: fmt.format(w[key]))
     table(doc, ["EGP million"] + wy,
           [["Operating profit"] + _w("ebit"),
            ["Cash from operations"] + _w("cfo"),
            ["  as a share of revenue"]
-           + ["%.1f%%" % (100 * w["cfo"] / w["revenue"]) for w in wf],
+           + pick(wf, lambda w: "%.1f%%" % (100 * w["cfo"] / w["revenue"])),
            ["plus finance cost, after tax"] + _w("interest_addback"),
            ["less capital expenditure"] + _w("capex"),
            ["Free cash flow to the firm"] + _w("fcff"),
-           ["Discount factor at %.2f%%" % (100 * ST["dcf_b"]["wacc"])]
-           + ["%.3f" % w["discount_factor"] for w in wf],
+           ["Cost of capital, that year"]
+           + pick(wf, lambda w: "%.1f%%" % (100 * w.get("forward_wacc", ST["dcf_b"]["wacc"]))),
+           ["Discount factor"] + pick(wf, lambda w: "%.3f" % w["discount_factor"]),
            ["Present value"] + _w("pv")],
-          [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
+          wide_widths(BU["rows"]),
           "The finance charge is added back after tax because the discount rate "
           "already carries the cost of debt; leaving it in the cash flow would "
           "charge for the same thing twice. Capital expenditure is maintenance "
           "only, at one per cent of revenue: for this company the building "
           "itself is inventory, and it is already inside operating cash.")
     table(doc, ["Bridge from enterprise value to equity, base case", "EGP mn"],
-          [[lbl, "{:,.1f}".format(val)] for lbl, val in BRIDGE],
+          [[lbl, ("{:,.2f}" if lbl.startswith("Value per share") else "{:,.1f}").format(val)]
+           for lbl, val in BRIDGE],
           [10.6, 5.6],
           "The terminal value is %.0f per cent of enterprise value, which is high "
           "and is one reason the range is published rather than a point."
@@ -540,15 +592,18 @@ def _section_one(doc, sp, base, low, high, cds, prior):
           "are what funds the building in the meantime.")
 
     doc.add_heading("1.2  Book value and sustainable return", level=2)
-    para(doc, "Shareholders' funds were EGP %s million at the end of 2025, or EGP "
-              "%.2f a share, against a market price of EGP %.2f — the shares change "
-              "hands at about %.1f times book. Profit after tax and minority "
-              "interest of EGP %s million on average shareholders' funds gives a "
-              "return on equity of roughly %s. Against a cost of equity of %s, the "
-              "company is not currently earning its cost of capital on book, which "
-              "is why book value sits well below every cash-flow read in this study "
-              "rather than acting as a floor."
-              % (money(v("total_equity")), D["book_equity_per_share"], sp,
+    para(doc, "Shareholders' funds attributable to the parent were EGP %s million "
+              "at 31 March 2026, or EGP %.2f a share, against a market price of EGP "
+              "%.2f — the shares change hands at about %.1f times book. The earlier "
+              "edition divided total equity, minority interests included, by the "
+              "parent's shares; this one puts the numerator on the same footing as "
+              "the share count, and on the latest disclosed sheet. Profit after tax "
+              "and minority interest of EGP %s million in 2025 on average "
+              "shareholders' funds gives a return on equity of roughly %s. Against a "
+              "cost of equity of %s, the company is not currently earning its cost of "
+              "capital on book, which is why book value sits well below every "
+              "cash-flow read in this study rather than acting as a floor."
+              % (money(q("equity_parent")), D["book_equity_per_share"], sp,
                  sp / D["book_equity_per_share"], money(v("npat_mi_fy25")),
                  pct(v("npat_mi_fy25") / ((v("total_equity")
                       + N["balance_sheet_subtotals"]["2024"]["total_equity"]["value"]) / 2)),
@@ -576,32 +631,53 @@ def _section_one(doc, sp, base, low, high, cds, prior):
                  pct(D["sga_ratio_fy25"]), money(v("cfo_fy25")),
                  money(v("revenue_fy25")), money(v("cfo_fy24")),
                  money(v("revenue_fy24"))))
+    NI = N["lens_detail"]["normalised_inputs"]
+    para(doc, "Normalised earnings of EGP %s million — the average of the last two "
+              "years' revenue carried one year forward at inflation, at the 2025 "
+              "net margin of %s — would capitalise at the cost of equity of %s less "
+              "growth to about EGP %.2f a share, and at the cost of equity alone, "
+              "as an earlier edition did, to EGP %.2f. Neither figure is published "
+              "as a lens here, and the reason is not the arithmetic. This company "
+              "recognises revenue when a project completes, so its reported earnings "
+              "in any year are an accident of which project happened to complete: "
+              "capitalising a mid-cycle figure treats that schedule as though it "
+              "were a steady state. The working is kept as a diagnostic in the "
+              "workbook and it claims nothing."
+              % (money(NI["norm_earn"]), pct(NI["norm_margin"], 1), pct(NI["ke"], 2),
+                 N["lens_detail"].get("normalised_base",
+                                      NI["norm_earn"] / (NI["ke"] - NI["growth_netted"])
+                                      / N["derived"]["shares_mn"]),
+                 NI["as_30aug_edition_e_over_ke"]))
 
     doc.add_heading("1.5  Synthesis — the lenses in one field", level=2)
-    para(doc, "The four lenses disagree, and the disagreement is the information. "
-              "The discounted cash flow is the widest because it carries the crux; "
-              "book value is the narrowest because it is arithmetic on a reported "
-              "balance sheet. Normalised earnings power is the most severe: at a "
-              "%s cost of equity, a company earning a %s net margin does not "
-              "capitalise to much."
-              % (pct(W["ke_rating"], 1),
-                 pct(v("npat_mi_fy25") / v("revenue_fy25"), 1)))
-    table(doc, ["Lens", "Bear", "Base", "Full value", "Weight", "What moves it"],
-          [[LENS[0][0], "%.2f" % LENS[0][1], "%.2f" % LENS[0][2],
-            "%.2f" % LENS[0][3], "45%", "cash conversion, then the discount rate"],
-           [LENS[1][0], "%.2f" % LENS[1][1], "%.2f" % LENS[1][2],
-            "%.2f" % LENS[1][3], "15%", "nothing — it is a reported figure"],
-           [LENS[2][0], "%.2f" % LENS[2][1], "%.2f" % LENS[2][2],
-            "%.2f" % LENS[2][3], "20%", "the multiple the shares have historically "
-            "carried, 6x to 14x"],
-           [LENS[3][0], "%.2f" % LENS[3][1], "%.2f" % LENS[3][2],
-            "%.2f" % LENS[3][3], "20%", "the cost of equity"],
-           ["Weighted central", "%.2f" % LW["bear"], "%.2f" % LW["base"],
-            "%.2f" % LW["full"], "100%", ""]],
-          [4.2, 2.0, 2.0, 2.2, 1.6, 4.4],
-          "EGP per share, against a close of EGP %.2f. The weights are stated "
-          "before the numbers are read and are identical across the three "
-          "columns." % sp)
+    para(doc, "The lenses disagree, and the disagreement is the information — but "
+              "one of them is the answer and the others are checks on it. The "
+              "cash-flow lens is the central: it is the only one built from the "
+              "company's own units and prices, and it is the only one that values "
+              "an order book the company has sold but not yet handed over. The "
+              "multiple on its own trading history sits at EGP %.2f and book value "
+              "at EGP %.2f, and both are lower for the same reason: they measure "
+              "what has been reported, and what has been reported does not yet "
+              "include a backlog carried at historical cost in a currency that has "
+              "lost most of its value since 2022. That is a floor, and it is "
+              "published as one."
+              % (N["lenses"][1][2], N["lenses"][2][2]))
+    MOVES = ["cash conversion, then the cost of capital",
+             "the multiple the shares have historically carried, 6x to 14x",
+             "nothing — it is a reported figure"]
+    table(doc, ["Lens", "Low", "Central", "High", "Role", "What moves it"],
+          [[LENS[i][0], "%.2f" % LENS[i][1], "%.2f" % LENS[i][2], "%.2f" % LENS[i][3],
+            "the central" if i == 0 else "cross-check", MOVES[i]]
+           for i in range(len(LENS))],
+          [4.2, 1.8, 1.8, 1.8, 1.8, 4.4],
+          "EGP per share, against a close of EGP %.2f. The cash-flow lens is the "
+          "central and the others are cross-checks; they are not averaged. "
+          "Normalised earnings power, which an earlier edition carried at a fifth "
+          "of the weight, is not published as a lens here at all: a developer that "
+          "recognises revenue when a project completes reports earnings that are an "
+          "accident of which project completed in which year, and capitalising a "
+          "mid-cycle figure treats that schedule as a steady state. The working is "
+          "kept in the workbook as a diagnostic and claims nothing." % sp)
 
     doc.add_heading("1.6  Drivers — units and prices, by region", level=2)
     para(doc, "This is what the forecast is built from. For each operating region "
@@ -641,7 +717,7 @@ def _section_one(doc, sp, base, low, high, cds, prior):
                  max(d["asp_base"] for d in BU["regions"].values())))
     para(doc, "What is NOT disclosed, and therefore not used: unit mix, average "
               "unit size, price per square metre and construction cost per square "
-              "metre, for any project. The previous edition carried a full table of "
+              "metre, for any project. The edition of 11 June 2026 carried a full table of "
               "those figures across fifteen named projects. None of it is published "
               "by the company. It is not reused here, and the forecast is built at "
               "the finest level the disclosure actually supports.")
@@ -652,7 +728,7 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               "Hills sells off plan on long instalment terms, so a sale signed today "
               "produces cash over several years on a schedule the company does not "
               "publish — no down-payment percentage, no instalment tenor, no "
-              "post-handover tail. The previous edition assumed all three. This "
+              "post-handover tail. The edition of 11 June 2026 assumed all three. This "
               "edition measures the outcome instead, from the three years in which "
               "the company has published a cash-flow statement.")
     table(doc, ["Year", "Cash from operations (EGP mn)", "Revenue (EGP mn)",
@@ -674,13 +750,13 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               % (pct(D["cfo_lo"]), pct(D["cfo_hi"])))
 
     doc.add_heading("1.8  Macro, country risk and the cost of capital", level=2)
-    para(doc, "The previous edition discounted at %s. Egypt's ten-year government "
+    para(doc, "The edition of 11 June 2026 discounted at %s. Egypt's ten-year government "
               "bond yields %s. A discount rate below the sovereign yield prices this "
               "company as safer than the government that taxes it, which cannot be "
               "right, and it is not a real-versus-nominal mismatch: that edition "
               "escalated selling prices at 14 per cent a year, so its cash flows "
               "were in nominal pounds throughout."
-              % (pct(D["prior_edition_wacc"], 0), pct(W["rf_observed"], 2)),
+              % (pct(D["edition_11jun_wacc"], 0), pct(W["rf_observed"], 2)),
          bold=False)
     table(doc, ["Cost of capital", "On the credit-rating basis",
                 "On the credit-default-swap basis"],
@@ -735,7 +811,7 @@ def _section_one(doc, sp, base, low, high, cds, prior):
     doc.add_heading("1.9  Sensitivity", level=2)
     para(doc, "The table below prices the crux against the discount rate. Read it "
               "down a column rather than across a row: moving the discount rate by "
-              "the whole 800 basis points of the previous edition's error changes "
+              "the whole 800 basis points of the 11 June 2026 edition's error changes "
               "value by less than moving cash conversion from one observed year to "
               "another.")
     hdr = ["Cash conversion"] + [pct(w, 2) for w in SENS["waccs"]]
@@ -964,9 +1040,9 @@ def _appendices(doc, sp, base):
                  N["fy24_cogs_basis"]["fy25_comparative"]
                  - N["fy24_cogs_basis"]["as_reported"]))
     FA, FB = ST["framing_a"], ST["framing_b"]
-    fy = [str(r["year"]) for r in FB]
+    fy = pick(FB, lambda r: str(r["year"]))
     def _f(rows, key, fmt="{:,.0f}", sign=1):
-        return [fmt.format(sign * r[key]) for r in rows]
+        return pick(rows, lambda r: fmt.format(sign * r[key]))
     table(doc, ["Forecast, EGP million"] + fy,
           [["Units delivered"] + _f(FB, "units_delivered"),
            ["Revenue per delivered unit"] + _f(FB, "rev_per_unit", "{:,.2f}"),
@@ -975,7 +1051,7 @@ def _appendices(doc, sp, base):
            ["Cost of revenue"] + _f(FB, "cogs", "{:,.0f}", -1),
            ["Gross profit"] + _f(FB, "gross"),
            ["Gross margin"]
-           + ["%.1f%%" % (100 * r["gross_margin"]) for r in FB],
+           + pick(FB, lambda r: "%.1f%%" % (100 * r["gross_margin"])),
            ["Overheads"] + _f(FB, "sga", "{:,.0f}", -1),
            ["Depreciation and amortisation"] + _f(FB, "da", "{:,.0f}", -1),
            ["Operating profit"] + _f(FB, "ebit"),
@@ -984,7 +1060,7 @@ def _appendices(doc, sp, base):
            ["Tax"] + _f(FB, "tax", "{:,.0f}", -1),
            ["Net profit"] + _f(FB, "npat"),
            ["Earnings per share (EGP)"] + _f(FB, "eps", "{:,.2f}")],
-          [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
+          wide_widths(BU["rows"]),
           "Five forecast years. Gross margin is what price per unit and cost "
           "per unit leave behind, never an input. Years three to five should be "
           "read against the range in section 1.9, not as points.")
@@ -992,20 +1068,22 @@ def _appendices(doc, sp, base):
     doc.add_heading("A.2  Balance sheet", level=2)
     SB, B24 = N["balance_sheet_subtotals"], N["balance_sheet_fy24"]
     def _b(key):
-        return [money(SB[y][key]["value"], 1) for y in ("2025", "2024")]
+        return [money(q(key), 1)] + [money(SB[y][key]["value"], 1) for y in ("2025", "2024")]
     def _bl(key):
-        return [money(v(key), 1), money(B24[key]["value"], 1)]
-    table(doc, ["EGP million, as reported", "2025", "2024"],
+        return [money(q(key), 1), money(v(key), 1), money(B24[key]["value"], 1)]
+    table(doc, ["EGP million, as reported", "31 Mar 2026 (reviewed)", "2025", "2024"],
           [["Non-current assets"] + _b("total_noncurrent_assets"),
            ["  of which notes receivable, long term"]
-           + [money(v("notes_recv_lt") + v("notes_recv_lt_undel"), 1),
+           + [money(q("notes_recv_lt") + q("notes_recv_lt_undel"), 1),
+              money(v("notes_recv_lt") + v("notes_recv_lt_undel"), 1),
               money(B24["notes_recv_lt"]["value"]
                     + B24["notes_recv_lt_undel"]["value"], 1)],
            ["Current assets"] + _b("total_current_assets"),
            ["  of which work in progress"] + _bl("work_in_progress"),
            ["  of which trade receivables"] + _bl("accounts_receivable"),
            ["  of which notes receivable, short term"]
-           + [money(v("notes_recv_st") + v("notes_recv_st_undel"), 1),
+           + [money(q("notes_recv_st") + q("notes_recv_st_undel"), 1),
+              money(v("notes_recv_st") + v("notes_recv_st_undel"), 1),
               money(B24["notes_recv_st"]["value"]
                     + B24["notes_recv_st_undel"]["value"], 1)],
            ["  of which cash"] + _bl("cash"),
@@ -1016,11 +1094,18 @@ def _appendices(doc, sp, base):
            ["Non-current liabilities"] + _b("total_noncurrent_liabs"),
            ["Total liabilities"] + _b("total_liabilities"),
            ["Shareholders' funds"] + _b("total_equity"),
+           ["  of which attributable to the parent"]
+           + [money(q("equity_parent"), 1), money(v("equity_parent"), 1), "n/a"],
+           ["  of which minority interests"]
+           + [money(q("nci_equity"), 1), money(v("nci_equity"), 1), "n/a"],
            ["Total equity and liabilities"] + _b("total_assets")],
-          [7.4, 4.4, 4.4],
-          "As reported. Total assets equal total liabilities plus "
-          "shareholders' funds in both years, and each subtotal reconciles to "
-          "its components.")
+          [6.2, 3.6, 3.2, 3.2],
+          "As reported. Total assets equal total liabilities plus shareholders' "
+          "funds on all three dates, and each subtotal reconciles to its "
+          "components. The March 2026 column is the reviewed interim statement "
+          "and is the sheet the bridge, the book value and the borrowings stand "
+          "on; the split of shareholders' funds is not carried in the 2024 "
+          "comparative column the study holds.")
 
     doc.add_heading("A.3  Forecast balance sheet and cash flow", level=2)
     wg = ST["wedge"]
@@ -1078,7 +1163,7 @@ def _appendices(doc, sp, base):
                ["Shareholders' funds"] + _f(rows, "equity"),
                ["Total liabilities and equity"]
                + _f(rows, "total_liabs_and_equity")],
-              [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
+              wide_widths(BU["rows"]),
               "Assets equal liabilities plus shareholders' funds in every "
               "year, to the same tenth of a million the audited 2025 sheet "
               "itself foots to.")
@@ -1089,25 +1174,25 @@ def _appendices(doc, sp, base):
                + _f(rows, "d_wc", "{:,.0f}", -1),
                ["Cash from operations"] + _f(rows, "cfo"),
                ["  as a share of revenue"]
-               + ["%.1f%%" % (100 * r["cash_conversion"]) for r in rows],
+               + pick(rows, lambda r: "%.1f%%" % (100 * r["cash_conversion"])),
                ["Capital expenditure"] + _f(rows, "cfi"),
                ["New borrowing drawn"] + _f(rows, "drawn"),
                ["Closing cash"] + _f(rows, "cash")],
-              [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
+              wide_widths(BU["rows"]),
               None)
         table(doc, ["The cycle this implies"] + fy,
               [["Collection period, days"]
-               + ["%.0f" % r["dso"] for r in rows],
+               + pick(rows, lambda r: "%.0f" % r["dso"]),
                ["Work in progress, days of cost"]
-               + ["%.0f" % r["dio"] for r in rows],
+               + pick(rows, lambda r: "%.0f" % r["dio"]),
                ["Suppliers, days of cost"]
-               + ["%.0f" % r["dpo"] for r in rows],
+               + pick(rows, lambda r: "%.0f" % r["dpo"]),
                ["Customer advances, share of the order book"]
-               + ["%.1f%%" % (100 * r["adv_of_backlog"]) for r in rows],
+               + pick(rows, lambda r: "%.1f%%" % (100 * r["adv_of_backlog"])),
                ["Net working capital"] + _f(rows, "net_wc"),
                ["  as a multiple of revenue"]
-               + ["%.2f" % r["nwc_over_revenue"] for r in rows]],
-              [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
+               + pick(rows, lambda r: "%.2f" % r["nwc_over_revenue"])],
+              wide_widths(BU["rows"]),
               ("The collection period falls from %.0f days to %.0f over five "
                "years. That is what this reading requires, and it is a large "
                "improvement to take on trust — which is exactly why the other "
@@ -1150,18 +1235,16 @@ def _appendices(doc, sp, base):
             d = ST["dcf_b"]
             table(doc, ["Free cash flow to the firm, EGP million"] + fy,
                   [["Cash from operations"]
-                   + ["{:,.0f}".format(w["cfo"]) for w in d["waterfall"]],
+                   + pick(d["waterfall"], lambda w: "{:,.0f}".format(w["cfo"])),
                    ["plus finance cost, after tax"]
-                   + ["{:,.0f}".format(w["interest_addback"])
-                      for w in d["waterfall"]],
+                   + pick(d["waterfall"], lambda w: "{:,.0f}".format(w["interest_addback"])),
                    ["less capital expenditure"]
-                   + ["{:,.0f}".format(-w["capex"]) for w in d["waterfall"]],
+                   + pick(d["waterfall"], lambda w: "{:,.0f}".format(-w["capex"])),
                    ["Free cash flow to the firm"]
-                   + ["{:,.0f}".format(w["fcff"]) for w in d["waterfall"]],
-                   ["Present value at %.2f per cent"
-                    % (100 * d["wacc"])]
-                   + ["{:,.0f}".format(w["pv"]) for w in d["waterfall"]]],
-                  [6.2, 2.2, 2.2, 2.2, 2.2, 2.2],
+                   + pick(d["waterfall"], lambda w: "{:,.0f}".format(w["fcff"])),
+                   ["Present value, on the schedule"]
+                   + pick(d["waterfall"], lambda w: "{:,.0f}".format(w["pv"]))],
+                  wide_widths(BU["rows"]),
                   "These are the figures discounted in section 1.1, shown "
                   "again here beside the statements they come out of.")
 
@@ -1230,13 +1313,16 @@ def _appendices(doc, sp, base):
               "stable conversion of profit to cash. When it fails: businesses where "
               "that conversion is the unknown — which is exactly this one.")
     table(doc, ["Working", "EGP mn"],
-          [["Present value of ten explicit years", money(base["pv_explicit"])],
-           ["Present value beyond year ten", money(base["pv_terminal"])],
+          [["Present value of five explicit years", money(base["pv_explicit"])],
+           ["Present value beyond year five", money(base["pv_terminal"])],
            ["Enterprise value", money(base["ev"])],
-           ["less net debt", "(%s)" % money(D["net_debt"])],
-           ["plus associates and investment property",
-            money(v("investments_assoc") + v("investment_property"))],
-           ["Equity", money(base["equity"])],
+           ["less net debt, 31 March 2026", "(%s)" % money(D["net_debt_bridge"])],
+           ["plus associates and investment property, 31 March 2026",
+            money(q("investments_assoc") + q("investment_property"))],
+           ["Equity before minority interests", money(base["equity_before_nci"])],
+           ["less minority interests at their share of value",
+            "(%s)" % money(base["nci_deduction"])],
+           ["Equity attributable to shareholders", money(base["equity"])],
            ["Per share (EGP)", "%.2f" % base["per_share"]]],
           [9.0, 5.0])
     para(doc, "Named sensitivity: a move in cash conversion from %s to %s takes the "
@@ -1254,23 +1340,24 @@ def _appendices(doc, sp, base):
               "receivables, less what it owes. Earnings are an accident of timing. "
               "When it works: asset-heavy businesses in distress or in wind-down. "
               "When it fails: going concerns whose value is in execution.")
-    table(doc, ["Working", "EGP mn"],
-          [["Work in progress", money(v("work_in_progress"))],
+    table(doc, ["Working, on the reviewed balance sheet of 31 March 2026", "EGP mn"],
+          [["Work in progress", money(q("work_in_progress"))],
            ["Receivables, trade and instalment",
-            money(v("accounts_receivable") + v("notes_recv_st")
-                  + v("notes_recv_lt") + v("notes_recv_st_undel")
-                  + v("notes_recv_lt_undel"))],
-           ["Cash", money(v("cash"))],
+            money(q("accounts_receivable") + q("notes_recv_st")
+                  + q("notes_recv_lt") + q("notes_recv_st_undel")
+                  + q("notes_recv_lt_undel"))],
+           ["Cash", money(q("cash"))],
            ["Investments and investment property",
-            money(v("investments_assoc") + v("investment_property"))],
+            money(q("investments_assoc") + q("investment_property"))],
            ["less advances from customers",
-            "(%s)" % money(v("advances_customers"))],
-           ["less gross borrowings", "(%s)" % money(D["gross_debt"], 1)],
+            "(%s)" % money(q("advances_customers"))],
+           ["less gross borrowings", "(%s)" % money(D["gross_debt_bridge"], 1)],
            ["less other liabilities, balancing",
-            "(%s)" % money(v("total_liabilities") - v("advances_customers")
-                           - D["gross_debt"], 1)],
-           ["Shareholders' funds as reported", money(v("total_equity"))],
-           ["Per share (EGP)", "%.2f" % D["book_equity_per_share"]]],
+            "(%s)" % money(q("total_liabilities") - q("advances_customers")
+                           - D["gross_debt_bridge"], 1)],
+           ["Shareholders' funds as reported", money(q("total_equity"))],
+           ["  of which attributable to the parent", money(q("equity_parent"))],
+           ["Per share, parent (EGP)", "%.2f" % D["book_equity_per_share"]]],
           [9.0, 5.0])
     para(doc, "Named sensitivity: the instalment receivable book is carried at face "
               "value less unwinding discount. A 10 per cent write-down of that book "
@@ -1278,10 +1365,10 @@ def _appendices(doc, sp, base):
               "Falsifier: evidence of material cancellations or receivable "
               "impairment would confirm this reading and invalidate the cash-flow "
               "one."
-              % (money(0.10 * (v("accounts_receivable") + v("notes_recv_st")
-                               + v("notes_recv_lt"))),
-                 0.10 * (v("accounts_receivable") + v("notes_recv_st")
-                         + v("notes_recv_lt")) / D["shares_mn"]))
+              % (money(0.10 * (q("accounts_receivable") + q("notes_recv_st")
+                               + q("notes_recv_lt"))),
+                 0.10 * (q("accounts_receivable") + q("notes_recv_st")
+                         + q("notes_recv_lt")) / D["shares_mn"]))
 
     doc.add_heading("C.3  Expert 3 — the market-implied analyst", level=2)
     para(doc, "Worldview: do not value the company; ask what the price already "
@@ -1364,13 +1451,13 @@ def _appendices(doc, sp, base):
               "assumptions produce large changes in the result, as section 1.9 shows "
               "directly. Past price behaviour does not predict future returns. "
               "Readers must reach their own conclusions and should take professional "
-              "advice before acting. Edition of 30 August 2026; information set ends "
+              "advice before acting. Edition of 2 September 2026; information set ends "
               "at the company's first-quarter 2026 results.",
          size=8.5, color=MUTED)
 
 
 if __name__ == "__main__":
-    out = os.path.join(HERE, "PHDC_Valuation_Study_30-08-2026.docx")
+    out = os.path.join(HERE, "PHDC_Valuation_Study_02-09-2026.docx")
     doc = build(out)
     doc.save(out)
     hits, chars = scrub(out)

@@ -1,0 +1,2756 @@
+{
+ "started": "2026-09-02T18:59:53Z",
+ "results": [
+  {
+   "ticker": "PHDC",
+   "name": "1Q15 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/806d2631-8e77-47da-b84d-1d146a54be9d/1Q15%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+   "sha256_expected": "9e6ec203c24352636930932d3cfd333c76ff48216ec3ae678acff8e7be92415f",
+   "status": "ok",
+   "bytes": 543282,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 1Q2015 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/6616849a-851c-40f6-9468-0807da77db3a/Palm%20Hills%20Developments%20-%201Q2015%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "a10afb8d54d59d48998a24c280f869d57c995bbc1f1dbd12b24efed2deb140a3",
+   "status": "ok",
+   "bytes": 438350,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "2Q15 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/f66d8379-86f9-456e-a81b-4ede16a9946f/2Q15%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+   "sha256_expected": "b8b9e501a8c0f16c2f34b22f4b6f42c946543e71f6f0623ba73e233f8a519e37",
+   "status": "ok",
+   "bytes": 3491920,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 2Q2015 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/93475523-f4a3-4bda-9839-2ab0438a13c5/Palm%20Hills%20Developments%20-%202Q2015%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "9fadf33cdd6732ccec081d61a6fd576cbbd21d8526b2da53a7935b1e37e56a73",
+   "status": "ok",
+   "bytes": 708266,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "3Q15 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/75ed5eed-7881-41a3-a1ae-413e997d5ce7/3Q15%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+   "sha256_expected": "83dd266ad239466b93f27b1567b291285410d3f0a4a1b195064674b3fb1c346e",
+   "status": "ok",
+   "bytes": 705169,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 3Q2015 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/977d60c3-1bb8-4d2a-b1bf-e05bea7e64a0/Palm%20Hills%20Developments%20-%203Q2015%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "46a292f32488e168ab4fca0063793fb035b1e1d8da5939e236203de111a40141",
+   "status": "ok",
+   "bytes": 469673,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "4Q15 - Consolidated - Egyptian GAAP - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/9b365fa6-9f15-47ae-a922-e70924d73fd7/4Q15%20-%20Consolidated%20-%20Egyptian%20GAAP%20-%20English.pdf",
+   "sha256_expected": "10a170cc4047fad5a9751df218d84b99ffb1f3b8c698f435184ef1d9919bfde8",
+   "status": "ok",
+   "bytes": 831052,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 4Q2015 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/84fd4a0b-901a-4ba4-975d-d55ef6a5557c/Palm%20Hills%20Developments%20-%204Q2015%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "312e94b2fdf625869e263bcbca24140cfaeb1bd50262d40e5729b7f56f3a8199",
+   "status": "ok",
+   "bytes": 470409,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "1Q16 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/b72dfc33-8a11-4a6e-909d-0384016e5690/1Q16%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+   "sha256_expected": "043866380b3f220d3f7ea0e88b3fa8d07049d60c72302006903a634040b86927",
+   "status": "ok",
+   "bytes": 861152,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 1Q2016 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/f04868b9-bfcb-4ae1-b949-8f84fa8bfd0d/Palm%20Hills%20Developments%20-%201Q2016%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "ce2e2e440d893e0695b25360dea43c4c625c2a576e5ce8820a0d74ba5acfdeaf",
+   "status": "ok",
+   "bytes": 440757,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 2Q2016 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/eb80e918-b95c-4556-b64d-79636048404d/Palm%20Hills%20Developments%20-%202Q2016%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "6594eb2561198ba2ac0510196a4f702b6b8c7548087153213cc888cdabbe9d8e",
+   "status": "ok",
+   "bytes": 638369,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "3Q16 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/92f1fa22-b0b3-4e0b-9a46-d2ff400da938/3Q16%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+   "sha256_expected": "a54a7fbdafeb8ec66d8cc33489612e1796104b592cf105a2c0fa6c221a65a38d",
+   "status": "ok",
+   "bytes": 721028,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 3Q2016 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/8532abfd-592b-4573-b6e0-a2e94aedecdc/Palm%20Hills%20Developments%20-%203Q2016%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "3ff76a8a8a997d9735e14d2249349c71731ea1d33bb6393bcd0ad8482962f8c8",
+   "status": "ok",
+   "bytes": 616248,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "4Q16 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/7b329ef5-34f6-4749-aef1-1520541c3874/4Q16%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+   "sha256_expected": "3ed5fe400e0b764bc710dca94ef8e3573fa350ee3ef90be5eacad631bb6c9957",
+   "status": "ok",
+   "bytes": 636787,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 4Q2016 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/5ec0e644-4214-4bc0-b993-71d8761c4177/Palm%20Hills%20Developments%20-%204Q2016%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "0da01bd9f5d0e88f8a04cc144bd99f7c1425babb2044d0b9d9625fbed85b2d09",
+   "status": "ok",
+   "bytes": 620410,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "1Q17 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/87558c0b-a0b1-4e34-8ea8-a8b5f6e2d6ae/1Q17%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+   "sha256_expected": "ef1f3420d0c2deb69567f34fc624fc0996979f5eea64bc11110674e15b6d8753",
+   "status": "ok",
+   "bytes": 1039491,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 1Q2017 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/ce04ad2d-e27e-4c33-86b1-2a9852afd7a2/Palm%20Hills%20Developments%20-%201Q2017%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "d1496003550f0d283e7be96d1d4c21a057cff363e344826f205e67f13a1cb08e",
+   "status": "ok",
+   "bytes": 507728,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "1Q17 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/8e2a04aa-992d-4a3f-99da-7bea988b2505/1Q17%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+   "sha256_expected": "ef1f3420d0c2deb69567f34fc624fc0996979f5eea64bc11110674e15b6d8753",
+   "status": "ok",
+   "bytes": 1039491,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 2Q2017 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/8f337963-e685-490f-a5f4-5301719909e1/Palm%20Hills%20Developments%20-%202Q2017%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "26a6a1425f10f5ecca45598f555ed8c0298058b315f11af5d39b3a49ae2dbf5b",
+   "status": "ok",
+   "bytes": 787726,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "3Q17 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/2f15ad36-4aae-48bf-b94f-e01505271022/3Q17%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+   "sha256_expected": "7b8013939e1c52beb9263a7c9bee6477369b08eeb82549f6ea4fd840d2e2f4df",
+   "status": "ok",
+   "bytes": 796828,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 3Q2017 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/94ccdef8-ea3d-4544-a3f0-567e6662b6e5/Palm%20Hills%20Developments%20-%203Q2017%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "8bee8a9744b50aedbf89ec7f8340d05cb33be11c7614dbd1db0c5d368ae44b0f",
+   "status": "ok",
+   "bytes": 555224,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "4Q17 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/b2dfea9e-0604-48ab-bee2-021392f0f228/4Q17%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+   "sha256_expected": "1f3e557b15fe86e0e336585cc91c947c14da3199b40dd7ffe1263cd575f4d786",
+   "status": "ok",
+   "bytes": 1300666,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 4Q2017 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/21ddb93a-f764-4872-98c8-a0a7ed5b8e3a/Palm%20Hills%20Developments%20-%204Q2017%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "1b14f3fb73206237f789f77281a219dcbc0b639af77fa75492cc049d10d9baf6",
+   "status": "ok",
+   "bytes": 482396,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "1Q18 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/199a0763-9eff-40a8-ad76-5dbef2ad2ab7/1Q18%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+   "sha256_expected": "01e731c11a1fe6d6b914ccd81064b07ca3e870456453b7dc6b60c9e864422468",
+   "status": "ok",
+   "bytes": 995781,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 1Q2018 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/101d8a90-f4ac-4846-b1bb-d688323964eb/Palm%20Hills%20Developments%20-%201Q2018%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "01dc4b0018634166d75a22bcfd00afedf5b4fe7a0f3a5d6680af31e40491783a",
+   "status": "ok",
+   "bytes": 458814,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "2Q18 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/182a5c56-7e82-4768-8ae1-f838068995a6/2Q18%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+   "sha256_expected": "1038f6ec83d67d55ed2dd40ef98e66afaecc3398fe24c4e8478da3ad094ae331",
+   "status": "ok",
+   "bytes": 1486597,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 2Q2018 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/62fb5ca2-bacd-41b8-81ab-9a5824d221c5/Palm%20Hills%20Developments%20-%202Q2018%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "c1dd162fac1b787c61d6d6db66c2416cd76fa7292973a32a467d639319da5f68",
+   "status": "ok",
+   "bytes": 345292,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "3Q18 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/50d6ea7b-f3b9-4180-828f-a16e2a1decc9/3Q18%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+   "sha256_expected": "029d85a62ecf4fa3c9310ad33afb84d1fc5f445393550a740878c556e703c241",
+   "status": "ok",
+   "bytes": 1107257,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 3Q2018 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/4b9ad586-58e8-4e35-a471-c1483ca4a1d9/Palm%20Hills%20Developments%20-%203Q2018%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "4af4abede3a560d8f9fff839649e33c6fc8ce48edf4d49dff7d91f2eca2a3466",
+   "status": "ok",
+   "bytes": 346041,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "4Q18 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/9e8e44b6-3e77-4a88-bde8-af6c13018179/4Q18%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+   "sha256_expected": "c463458a87b3c01d48ea8417dcd0efabd80f864f518eabf466c93feceef3357c",
+   "status": "ok",
+   "bytes": 1357478,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 4Q2018 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/d5952553-5b65-426c-b913-4654274abd89/Palm%20Hills%20Developments%20-%204Q2018%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "1fe676b696a1272aff8908bdb10450340e2ddd00ee57cc37a51bbeece1f2e689",
+   "status": "ok",
+   "bytes": 479191,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "PHD - Consolidated Financial Statements - 1Q 2019.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/6977f19c-b6e3-47d3-922e-d1b336434421/PHD%20-%20Consolidated%20Financial%20Statements%20-%201Q%202019.pdf",
+   "sha256_expected": "236ab7eb6a71e4cd3f0c8b364b755fee34e1b0e009d4446e77e8298f449902f4",
+   "status": "ok",
+   "bytes": 1092353,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 1Q2019 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/23e463da-d461-4950-b63e-00ca9d9336fc/Palm%20Hills%20Developments%20-%201Q2019%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "e4b367143a13fda37c33ce5b094444355485f4bfabe8ceb109477b3f0188efa0",
+   "status": "ok",
+   "bytes": 444085,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "2Q19 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/5c62ca21-e064-4d1b-ab25-85e0b98e042a/2Q19%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+   "sha256_expected": "e2ca388709b4dea169be032974ace86a7a48c3906ceccd441a40e083949d22f3",
+   "status": "ok",
+   "bytes": 1030908,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 2Q2019 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/a3da59e2-163d-4409-9b30-9fdc644be23d/Palm%20Hills%20Developments%20-%202Q2019%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "129d74c423fd88982c2179f0364619e3676a14ef2103c8856d6aa543328c50ca",
+   "status": "ok",
+   "bytes": 472291,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "PHD - Consolidated Financial Statements - 3Q 2019.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/9d7c190d-997b-4570-bef8-d1afc00acea1/PHD%20-%20Consolidated%20Financial%20Statements%20-%203Q%202019.pdf",
+   "sha256_expected": "9ad67e71ed4d29871e1fefce67cc081af5445ed6dfe6e35df809da7413edc2ef",
+   "status": "ok",
+   "bytes": 708757,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 3Q2019 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/7f1782b3-ff0c-47c4-9268-23c6da7783db/Palm%20Hills%20Developments%20-%203Q2019%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "c5312799f5cfe2edf82819aba4a714f83992acff9c94930e29f48589ac1c10df",
+   "status": "ok",
+   "bytes": 465476,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "4Q19 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/20e0a73f-71f4-429c-b17a-1929d3a14ed8/4Q19%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+   "sha256_expected": "0efd92571c164b52f0f3f0a6aacd8637961f16d1e99d49bcb029abaf4e197e98",
+   "status": "ok",
+   "bytes": 1286741,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 4Q2019 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/3c2483ba-5b01-440c-906a-8b3526403212/Palm%20Hills%20Developments%20-%204Q2019%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "2221d1680107fad8d833b40e6b7008ef8daa98185f0020a879cae7e53b96ad72",
+   "status": "ok",
+   "bytes": 340610,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "1Q20 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/2562bf89-51ef-476b-ae47-9d1293da8288/1Q20%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+   "sha256_expected": "66ef2939bc7b945de1f4726285e2253569f47a25f10cfe19f62e2c6733d7ea06",
+   "status": "ok",
+   "bytes": 1145562,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 1Q2020 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/f8694b1e-9db2-446c-9dfc-48de962144c3/Palm%20Hills%20Developments%20-%201Q2020%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "cf4362902ba5f7cd792c293a70bd1f6aeb95e3a253f88f271e03b59816817eee",
+   "status": "ok",
+   "bytes": 314817,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "2Q20 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/0f2e0e47-57db-45eb-9ee4-a849409ba56d/2Q20%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+   "sha256_expected": "d74487e0c63412c89b6a6da512672aa9d0dabde410be0468f9930fbc0f9b74f4",
+   "status": "ok",
+   "bytes": 1167423,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 2Q2020 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/0bf690e3-7adf-48cf-93fc-50c26c02b26f/Palm%20Hills%20Developments%20-%202Q2020%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "b9272ee63961e9e926eef1c1928aacdb4f677d7ce46a70e6820d4178b1bab8b9",
+   "status": "ok",
+   "bytes": 343296,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "PHD - Consolidated Financial Statementa - 3Q 2020 - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/99a080e7-bb5a-49d7-a793-0709f1077295/PHD%20-%20Consolidated%20Financial%20Statementa%20-%203Q%202020%20-%20English.pdf",
+   "sha256_expected": "4aba4bf341844cfd221e863149d114192820387306d15a745960024fac2705c5",
+   "status": "ok",
+   "bytes": 1139220,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 3Q2020 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/d335ca28-f335-479e-ae55-2acd74b3aef3/Palm%20Hills%20Developments%20-%203Q2020%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "0834c8a85279b1ceeb47b96997d58f1665fb4b2dc70e81ce7075ea83b7318015",
+   "status": "ok",
+   "bytes": 338257,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "4Q20 - Consolidated Financials - Egyptian GAAP - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/ca62f887-454e-427c-8454-50f7b8bf6dab/4Q20%20-%20Consolidated%20Financials%20-%20Egyptian%20GAAP%20-%20English.pdf",
+   "sha256_expected": "31dc49c95d91cb627fadca62b5e9b798524d9e39d014b79414806c467355f2ef",
+   "status": "ok",
+   "bytes": 2084997,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 4Q2020 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/aaf71146-4a3e-4760-bddc-01ce4f89acd6/Palm%20Hills%20Developments%20-%204Q2020%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "af3c14b625f6d8e98975e7e894d185312e003d62ee6910734867b5f54636faa5",
+   "status": "ok",
+   "bytes": 322134,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "PHD - Consolidated Financial Stataements - 1Q 2021 - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/105d0a18-743b-4ebf-9792-97680ae2bb10/PHD%20-%20Consolidated%20Financial%20Stataements%20-%201Q%202021%20-%20English.pdf",
+   "sha256_expected": "00b63ff1dcd5c60a9aa8421a2ab46a44e63a749325143c369b4f91e07861fcee",
+   "status": "ok",
+   "bytes": 1016495,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments -1Q2021 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/72f8e2c8-d7b6-49bb-8a0a-7655961d7319/Palm%20Hills%20Developments%20-1Q2021%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "b997ce9c3703149c45e6cef8efe813d58132b552634f46a6be2748f4ea44a1a1",
+   "status": "ok",
+   "bytes": 308907,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "PHD - Consolidated Financial Statements - 2Q 2021 - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/b494d8d0-c039-4720-8817-a9b48dedf2cb/PHD%20-%20Consolidated%20Financial%20Statements%20-%202Q%202021%20-%20English.pdf",
+   "sha256_expected": "cdce8987fff6e509ea0d2fc0faa47eb58416d12d6b5529641b74e4a20d228a92",
+   "status": "ok",
+   "bytes": 1068538,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 2Q2021 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/6673c8c1-1b95-4275-9e11-2277d46f9ff6/Palm%20Hills%20Developments%20-%202Q2021%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "5c89cb75dad65cf2f5786f668a3d8f2f9ec953637ee0be0faf8a97729b3fb923",
+   "status": "ok",
+   "bytes": 324239,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "PHD - Consolidated Financial Statements - 3Q 2021 - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/c6f66132-fd72-4198-bdaf-bb3c0ab1a135/PHD%20-%20Consolidated%20Financial%20Statements%20-%203Q%202021%20-%20English.pdf",
+   "sha256_expected": "13b231d28b269fb157d9a8b2c29e2f5b855ba98b3db2875536a9c895a8ca7b3f",
+   "status": "ok",
+   "bytes": 1545364,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 3Q2021 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/be473736-6977-4772-9570-be636c439ad4/Palm%20Hills%20Developments%20-%203Q2021%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "93d22097c6abcf33d9adcfb10fa99a7f358505d328011483f1a3b3931350c476",
+   "status": "ok",
+   "bytes": 327120,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "PHD - Consolidated Financial Statements - 4Q  2021 - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/805b040f-6d33-4fbf-bb55-da34a2f9b26c/PHD%20-%20Consolidated%20Financial%20Statements%20-%204Q%20%202021%20-%20English.pdf",
+   "sha256_expected": "a3780a02e39cf83012483d51eb4baa4fdcefe637e19b067f7b428b0b1372d5c3",
+   "status": "ok",
+   "bytes": 2250087,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 4Q2021 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/e7d5bb4c-94e7-403e-a285-63e2d9eed706/Palm%20Hills%20Developments%20-%204Q2021%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "c88b2a21b22cfea5d692cec802f18819976a192783d2d8bdd5ae119f0301bb85",
+   "status": "ok",
+   "bytes": 286381,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "1Q15 - Standalone Financials - Egyptian GAAP.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/9b225e11-82b9-4d75-8434-7d301926aa89/1Q15%20-%20Standalone%20Financials%20-%20Egyptian%20GAAP.pdf",
+   "sha256_expected": "a11a54416b10c0070619fb5dc0c28067219a3b3181ba906089fae188bdf25652",
+   "status": "ok",
+   "bytes": 1471289,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 1Q2022 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/e213d1af-0813-4165-883f-fd30e04959bf/Palm%20Hills%20Developments%20-%201Q2022%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "643972a014138fefbfeeab829c8c93dba608398ceb28630c476bd200b59a94a5",
+   "status": "ok",
+   "bytes": 291000,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "1Q15 - Standalone Financials - Egyptian GAAP.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/9b225e11-82b9-4d75-8434-7d301926aa89/1Q15%20-%20Standalone%20Financials%20-%20Egyptian%20GAAP.pdf",
+   "sha256_expected": "a11a54416b10c0070619fb5dc0c28067219a3b3181ba906089fae188bdf25652",
+   "status": "ok",
+   "bytes": 1471289,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments - 2Q2022 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/5b1c9c1f-8f71-4525-99dc-613fa8ba4fe7/Palm%20Hills%20Developments%20-%202Q2022%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "223147e7639172fba79431ff4cd45e73ad7c5c54b253a55d76fcd21da721ef59",
+   "status": "ok",
+   "bytes": 292464,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "PHD - Consolidated Financial Statements - 2Q2022.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/f1671c5a-da1f-42a7-bf87-fca06e911644/PHD%20-%20Consolidated%20Financial%20Statements%20-%202Q2022.pdf",
+   "sha256_expected": "792a1457164b82ad44b889817d1672b3a8016d2bf86a3791dab2d9db5ca8b89e",
+   "status": "ok",
+   "bytes": 2245560,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "1Q15 - Standalone Financials - Egyptian GAAP.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/9b225e11-82b9-4d75-8434-7d301926aa89/1Q15%20-%20Standalone%20Financials%20-%20Egyptian%20GAAP.pdf",
+   "sha256_expected": "a11a54416b10c0070619fb5dc0c28067219a3b3181ba906089fae188bdf25652",
+   "status": "ok",
+   "bytes": 1471289,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "\u0628\u0627\u0644\u0645 \u0647\u064a\u0644\u0632 \u0644\u0644\u062a\u0639\u0645\u064a\u0631 - \u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 - 31 \u062f\u064a\u0633\u0645\u0628\u0631 2022.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/86ddbea0-c98e-4248-90ee-87235153551a/%D8%A8%D8%A7%D9%84%D9%85%20%D9%87%D9%8A%D9%84%D8%B2%20%D9%84%D9%84%D8%AA%D8%B9%D9%85%D9%8A%D8%B1%20-%20%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%A6%D9%85%20%D8%A7%D9%84%D9%85%D8%A7%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D8%AC%D9%85%D8%B9%D8%A9%20-%2031%20%D8%AF%D9%8A%D8%B3%D9%85%D8%A8%D8%B1%202022.pdf",
+   "sha256_expected": "a24a0ced84775bed585bbc60e80687c9a40c30d16c36e0968e384dbcaa7002f6",
+   "status": "ok",
+   "bytes": 3162098,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "4Q2022 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/692c503e-2096-43a2-a81f-e81c62c03726/4Q2022%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "55f8622012006da89810fad954e9ce4ddbd9c43c6b458d141c5d76d4d558bf95",
+   "status": "ok",
+   "bytes": 283376,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "\u0628\u0627\u0644\u0645 \u0647\u064a\u0644\u0632 \u0644\u0644\u062a\u0639\u0645\u064a\u0631 - \u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 -31 \u0645\u0627\u0631\u0633 2023.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/69da8473-f776-4f19-bf81-72dcb3879f3f/%D8%A8%D8%A7%D9%84%D9%85%20%D9%87%D9%8A%D9%84%D8%B2%20%D9%84%D9%84%D8%AA%D8%B9%D9%85%D9%8A%D8%B1%20-%20%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%A6%D9%85%20%D8%A7%D9%84%D9%85%D8%A7%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D8%AC%D9%85%D8%B9%D8%A9%20-31%20%D9%85%D8%A7%D8%B1%D8%B3%202023.pdf",
+   "sha256_expected": "e6609773cd9720198886ba5422cfbc3d6f2223110efaccf341198d9cf79831c8",
+   "status": "ok",
+   "bytes": 4127612,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "1Q2023 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/e21455a9-c6e7-48bf-9ac4-793fae80e97a/1Q2023%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "b9b5c0cebb95442b35c7023ff2fee8961f9ad25f5215ada3a3141288d9b5cde5",
+   "status": "ok",
+   "bytes": 276674,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "PHD - Consolidated Financials - 30.6.2023 - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/6d4a39a8-185d-4a38-94ce-1b7181063779/PHD%20-%20Consolidated%20Financials%20-%2030.6.2023%20-%20English.pdf",
+   "sha256_expected": "ed0c2190d6f5e7eccd1df31780866fa3121f0185b53e3df0488360487b63ed1f",
+   "status": "ok",
+   "bytes": 2465531,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "2Q2023 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/86b27c6d-7d91-4166-9803-68f2251d7a26/2Q2023%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "f132cf49751c52944c4555b7c752cf007dfaa7d6a0b6e3097af04ec7c0c082e4",
+   "status": "ok",
+   "bytes": 298743,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "\u0628\u0627\u0644\u0645 \u0647\u064a\u0644\u0632 \u0644\u0644\u062a\u0639\u0645\u064a\u0631-\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/ff38ef0d-8a7e-4c9d-978a-75def5757410/%D8%A8%D8%A7%D9%84%D9%85%20%D9%87%D9%8A%D9%84%D8%B2%20%D9%84%D9%84%D8%AA%D8%B9%D9%85%D9%8A%D8%B1-%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%A6%D9%85%20%D8%A7%D9%84%D9%85%D8%A7%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D8%AC%D9%85%D8%B9%D8%A9.pdf",
+   "sha256_expected": "33a7e133b50cf8a5f40f9d4465c743b4cd40bb130ceee076be019b48bb774bed",
+   "status": "ok",
+   "bytes": 3384675,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "9M2023 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/6e971eda-881a-4ec4-93eb-bc11e4aaab0e/9M2023%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "268c6c40322cf7d5a89920421fbcd5c6c39373238cebca19c117d62b47f55375",
+   "status": "ok",
+   "bytes": 458751,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments-Consolidated Financials - 31 December 2023.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/138a39c9-3d65-41e1-bb46-aaa9aa8f7952/Palm%20Hills%20Developments-Consolidated%20Financials%20-%2031%20December%202023.pdf",
+   "sha256_expected": "1112a14f12c1b89fde52dcb4336f4a965ad89eb0e64bf1ea50d4a224fbe57158",
+   "status": "ok",
+   "bytes": 2526788,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "FY2023 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/ddb024c6-94a9-4926-b2de-4a99e57a0486/FY2023%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "7ea8a9c64877fbe11557f04c9dd667e434c4b8f8f5e9350f566f25ce4ebe00d0",
+   "status": "ok",
+   "bytes": 279759,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "PHD Consolidated FS Q1, 2024 English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/ad1a106c-1051-49c1-90b7-0d33328bcd52/PHD%20Consolidated%20FS%20Q1%2C%202024%20English.pdf",
+   "sha256_expected": "9427c6766fc971b5aac7a3d0051bb415e295f02c9a82997ff2a0a67635be8e0f",
+   "status": "ok",
+   "bytes": 3053344,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "1Q2024 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/96c0604a-7afe-43b1-8bff-d542b4f0e382/1Q2024%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "117edf8c56202d1b99c43a772e890cfa4a9887ed70c19a5dfdb174fcd22ba234",
+   "status": "ok",
+   "bytes": 247680,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "PHD Consolidated FS Q2, 2024 English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/e6dcf0ea-eb54-4672-bc4b-667e303ca613/PHD%20Consolidated%20FS%20Q2%2C%202024%20English.pdf",
+   "sha256_expected": "febb394307efa8b2b23802649aea172262d5cd50a8543da9969657b9c3562126",
+   "status": "ok",
+   "bytes": 4681064,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "PHD - 2Q2024 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/5ef1123d-813e-43d8-8e44-79910e2b6cbe/PHD%20-%202Q2024%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "c36dcfc2c2464c4701c9eb215b0dcabcca1e4910517df86ec86046a2b6585ba6",
+   "status": "ok",
+   "bytes": 245277,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "PHD Consolidated FS Q3, 2024 English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/4bea2274-189e-4b1d-a459-a0f8456f67e1/PHD%20Consolidated%20FS%20Q3%2C%202024%20English.pdf",
+   "sha256_expected": "af0dae92dcc554b06f3e4708ac437202a1af2387a5b9402f21cdc380ff413c7d",
+   "status": "ok",
+   "bytes": 2626643,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "3Q2024 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/3023304b-0298-4a24-8f2e-27ffa9dd3c4f/3Q2024%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "c56f13349a5a44a5996bf8edd3902878ca0c737fb2700ae64b6dca7ed6c8b231",
+   "status": "ok",
+   "bytes": 265711,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills FS Cons 31Dec 2024.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/ea8b27c3-ac05-4d8a-b98c-49cc146d7dd6/Palm%20Hills%20FS%20Cons%2031Dec%202024.pdf",
+   "sha256_expected": "db2e28a574fa0ff8af1efb8f5ebb9087532840f700ece7af980147a23b224335",
+   "status": "ok",
+   "bytes": 2679883,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "4Q2024 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/bc32848a-9f38-4661-8e05-a5ef94377210/4Q2024%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "248b168da03290f8f58c75efe45a8524759222a2b5478c5f55f126aa83c2173d",
+   "status": "ok",
+   "bytes": 269055,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "PHD Consolidated FS Q1 2025 (English).pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/07b0fb36-4542-4c20-bc1d-2eace10ea388/PHD%20Consolidated%20FS%20Q1%202025%20%28English%29.pdf",
+   "sha256_expected": "5b521f2432daf03ecb94cf47272aa4b58489a439208ec033ca02f757c3cbb001",
+   "status": "ok",
+   "bytes": 4115404,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills - 1Q2025 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/a4aefd41-c1cb-49c5-9c90-fc6ddecdd04d/Palm%20Hills%20-%201Q2025%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "ec1e5cf4bb56fa1915a50dffbb9c434533a39c02b730c0243293a52313628ca0",
+   "status": "ok",
+   "bytes": 255335,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "PHD - 1H2025 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/20c6df1c-1f94-4a2b-87a0-b7bb54c6b6a0/PHD%20-%201H2025%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "b4bc5062ab57fa77fc8a67437a16053850811b63c6d875c732de35ff6420fa13",
+   "status": "ok",
+   "bytes": 331942,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "PHD Consolidated FS Q2 2025 (English).pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/687aa550-5e1f-46e2-b896-da0d9341e4cc/PHD%20Consolidated%20FS%20Q2%202025%20%28English%29.pdf",
+   "sha256_expected": "554e97352bfc43c0af7125169eb90c7637794756b92536c63a99b2b524d8ffc8",
+   "status": "ok",
+   "bytes": 3838699,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "BoD 13Nov.25_ENG Financials Consolidated.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/89509bb2-ce31-4d76-bd07-975b494ca0e3/BoD%2013Nov.25_ENG%20Financials%20Consolidated.pdf",
+   "sha256_expected": "3b3f59a0b0537a8bc5c7af39bf16d733431357f9e80db5e2bb46302680320e09",
+   "status": "ok",
+   "bytes": 2440230,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "3Q2025 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/02dca288-cffa-4e5a-9310-c99e9c354206/3Q2025%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "9ec3cd062d3706eac97b4b76399964c31143c926e7fb796d028ee5a43829e5b8",
+   "status": "ok",
+   "bytes": 320535,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "ConsolidatedFinancials-Eng.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/192727da-8dfc-4aab-ad51-a5da89d260e1/ConsolidatedFinancials-Eng.pdf",
+   "sha256_expected": "72fc0ed5d947f7ccd1304211a1cd693e40e47cf7175ba94087fa84b1336fdd3b",
+   "status": "ok",
+   "bytes": 2555712,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "PHD Consolidated FS Q1 2026 (English).pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/324b2511-f38d-4e6a-9a5c-9faecfdcaca9/PHD%20Consolidated%20FS%20Q1%202026%20%28English%29.pdf",
+   "sha256_expected": "bdd9c4b3ea0feaebff20f2367476593baeb6b0e58ff86a8b29481b02c08b56bc",
+   "status": "ok",
+   "bytes": 4290530,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "PHDC",
+   "name": "PHD - 1Q2026 Earnings Release - English.pdf",
+   "url": "https://assets-us-01.kc-usercontent.com:443/9d7970fc-dc69-001d-cf10-ddbde8cd2225/b1990606-ca86-47bc-ac75-552741415edf/PHD%20-%201Q2026%20Earnings%20Release%20-%20English.pdf",
+   "sha256_expected": "4d3ec78d03d259a83c5e1bac35d8710f046a928d830619aa8ff1741a693c4e1d",
+   "status": "ok",
+   "bytes": 317632,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Annual report of the Board of Directors FY2023.pdf",
+   "url": "https://talaatmoustafa.com/upload/Annual%20report%20of%20the%20Board%20of%20Directors%20FY2023.pdf",
+   "sha256_expected": "a32af3ef18a3c45fc966e86fdbf9096169e0605d2a1b026ac895e9dfae82b24e",
+   "status": "ok",
+   "bytes": 664956,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Annual report of the Board of Directors FY2024.pdf",
+   "url": "https://talaatmoustafa.com/upload/Annual%20report%20of%20the%20Board%20of%20Directors%20FY2024.pdf",
+   "sha256_expected": "c5e2f796180ec00ae946f55c96c0e64508060274c5ae0043d1d9d52aa2d6d4b2",
+   "status": "ok",
+   "bytes": 808911,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Executive Management Report for the financial period ended 31 dec 2024.pdf",
+   "url": "https://talaatmoustafa.com/upload/Executive%20Management%20Report%20for%20the%20financial%20period%20ended%2031%20dec%202024.pdf",
+   "sha256_expected": "2d9b07c1c53efd5d42e5ceb1c260e0a9c4bc8bc9d29f928d54b9468f1c0df7e0",
+   "status": "ok",
+   "bytes": 2994127,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Executive management report on the Group's Business results for the financial period ended 31 March 2024.pdf",
+   "url": "https://talaatmoustafa.com/upload/Executive%20management%20report%20on%20the%20Group's%20Business%20results%20for%20the%20financial%20period%20ended%2031%20March%202024.pdf",
+   "sha256_expected": "f40eede4e6ca76abb7218f3e08698094b3835b08307324c2e424adbd7564cb26",
+   "status": "ok",
+   "bytes": 1320313,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Executive managment report for the financial year ended 31 December 2025.pdf",
+   "url": "https://talaatmoustafa.com/upload/Executive%20managment%20report%20for%20the%20financial%20year%20ended%2031%20December%202025.pdf",
+   "sha256_expected": "4128edd50d3a1f306a099650a2d69e31109a45e937601a628ff2356090895ab2",
+   "status": "ok",
+   "bytes": 5624219,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Cons. FS 30 June 2026 - English.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Cons.%20FS%2030%20June%202026%20-%20English.pdf",
+   "sha256_expected": "cf7ae78ee67d12870879579a1cddf4c2c35d401fc3738aeec950c8826042bdb3",
+   "status": "ok",
+   "bytes": 2855785,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Consilidated financial statments for thr period ended  31 March 2024.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Consilidated%20financial%20statments%20for%20thr%20period%20ended%20%2031%20March%202024.pdf",
+   "sha256_expected": "458c431a4e43aa70ce48396c6d12f377f3334cd3bfefc3b9bb2918d542c9ccd2",
+   "status": "ok",
+   "bytes": 2441833,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Conso  FS 31 December 2024-English.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Conso%20%20FS%2031%20December%202024-English.pdf",
+   "sha256_expected": "96e9d07d21c33da54e86f59db234de7b8f8d4f012f9871d9f9d4122dac1c2552",
+   "status": "ok",
+   "bytes": 2898340,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Conso FS 30 June 2025 - English.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Conso%20FS%2030%20June%202025%20-%20English.pdf",
+   "sha256_expected": "8fce3967271fcddb98364ec43d98d1caed0af7e96f68106031f38ba9a7683585",
+   "status": "ok",
+   "bytes": 2232944,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Consolidated FS 31 Dec. 2023.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Consolidated%20FS%2031%20Dec.%202023.pdf",
+   "sha256_expected": "cd9b3b46e7c966c53c9c9094dbd128f66f004d105b6a204ef459b8f6d2ab39b6",
+   "status": "ok",
+   "bytes": 1228185,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Consolidated Financials as of  30 Sep. 2023.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Consolidated%20Financials%20as%20of%20%2030%20Sep.%202023.pdf",
+   "sha256_expected": "3346e2f6ca9855d7b37551980160f5c6fb6ccd08e7a5bc1500565e1d75aafea3",
+   "status": "ok",
+   "bytes": 2254426,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Consolidated financial statements as of  30 September 2025 - English version.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Consolidated%20financial%20statements%20as%20of%20%2030%20September%202025%20-%20English%20version.pdf",
+   "sha256_expected": "73aaac6f53bd01bd6dce9c2379ad2214aac5930994b65b062e9f433e7c8983da",
+   "status": "ok",
+   "bytes": 2056958,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Consolidated financial statements for thr period ended  30 June 2024-.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Consolidated%20financial%20statements%20for%20thr%20period%20ended%20%2030%20June%202024-.pdf",
+   "sha256_expected": "e414d812e78fef0815caeaf8be18fd5eacf7b855a5f5caaff5c917a7e4b09754",
+   "status": "ok",
+   "bytes": 2666443,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Consolidated financial statements for thr period ended  30 September 2024.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Consolidated%20financial%20statements%20for%20thr%20period%20ended%20%2030%20September%202024.pdf",
+   "sha256_expected": "b18758d00be6f5ac69b6070665b0a10163ce28ecd80dc7ce11bea123d1f1dea2",
+   "status": "ok",
+   "bytes": 1915042,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Consolidated financials as of 31 March 2026 - English version..pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Consolidated%20financials%20as%20of%2031%20March%202026%20-%20English%20version..pdf",
+   "sha256_expected": "7379c633f952ed765a301e1ded879a09b32d76542a6995716762e9a672c9bfdd",
+   "status": "ok",
+   "bytes": 2076514,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding Consilidated  financials as of  31 Mar 2025- English version.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%20Consilidated%20%20financials%20as%20of%20%2031%20Mar%202025-%20English%20version.pdf",
+   "sha256_expected": "24b6a803f9f8750ccf451728b9327dbf623d1eed8ab814e89c1060e1ab383fac",
+   "status": "ok",
+   "bytes": 2138794,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding FY2020 earnings release.pdf",
+   "url": "https://ir.talaatmoustafa.com/upload/TMG%20Holding%20FY2020%20earnings%20release.pdf",
+   "sha256_expected": "dc84233893446106ee0725eacc08fa4a43231a3c22c48043b9c726f81edc5b6c",
+   "status": "FETCH FAILED",
+   "bytes": 0,
+   "kept": false,
+   "error": "URLError: <urlopen error Tunnel connection failed: 502 Bad Gateway>"
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Annual Report 2007.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Annual%20Report%202007.pdf",
+   "sha256_expected": "acf7bfe9065b76278668f38fa347dac4a1075fcec0515e514e06a2e269bcc4c2",
+   "status": "ok",
+   "bytes": 5677633,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Annual Report 2008.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Annual%20Report%202008.pdf",
+   "sha256_expected": "475fb5df7c27e308a0409acbcb41d7fd5ceb9560ef8aa4e91603cf4e07e8000b",
+   "status": "ok",
+   "bytes": 9271603,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Annual Report 2009.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Annual%20Report%202009.pdf",
+   "sha256_expected": "ce873c4a9f0c8d7b40edcc39905fb83b0f2d73b58562b57444162e14a89e1cbb",
+   "status": "ok",
+   "bytes": 10988684,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "3Q08 Earning Release - final.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/3Q08%20Earning%20Release%20-%20final.pdf",
+   "sha256_expected": "c7e3f4175de88fe03e762b531d3004c626077ba367eb8be06295f3780bf1f26b",
+   "status": "ok",
+   "bytes": 616375,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Earnings Release 2007.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/Earnings%20Release%202007.pdf",
+   "sha256_expected": "c41a7ae5c9f1a257394949c59ea79499d0130cc87d0e9bb3ab9d61351f806623",
+   "status": "ok",
+   "bytes": 597924,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG 1Q2010 ER.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%201Q2010%20ER.pdf",
+   "sha256_expected": "aeb6dca040beddef80078c58f38d25ffcca594c30e18ade2aab5e18ee17ab3c9",
+   "status": "ok",
+   "bytes": 1394314,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG 1Q2011 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%201Q2011%20Earning%20Release.pdf",
+   "sha256_expected": "bd9e5a15a1614c0551d2cc4033f1cc8cba83b32ec24e42cee52b0617c794761c",
+   "status": "ok",
+   "bytes": 970505,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG 2Q2010 ER.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%202Q2010%20ER.pdf",
+   "sha256_expected": "2b2b6f0684679c5ba38252e9dad0079bea12b4c241cd0c03bc79d44a30ccfd86",
+   "status": "ok",
+   "bytes": 790913,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG 3Q2010 ER.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%203Q2010%20ER.pdf",
+   "sha256_expected": "c79d607c237f499318fb9905f3f9a6dacdc637d5f9ebef0f0dd611b166dc9021",
+   "status": "ok",
+   "bytes": 1005142,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG ER FY 08 .pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20ER%20FY%2008%20.pdf",
+   "sha256_expected": "3ea812cff7714b2390da2b5d7865bcc54fe55efa4ee09b5d2c7897538ecbed9e",
+   "status": "ok",
+   "bytes": 1242551,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG FY-Q4-2009 ER.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY-Q4-2009%20ER.pdf",
+   "sha256_expected": "08bbe7345a441f38b39dde435c1653484b20a8cdd96a941e6d04f100f038af82",
+   "status": "ok",
+   "bytes": 479992,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG FY2010 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20FY2010%20Earning%20Release.pdf",
+   "sha256_expected": "12265eef609036c994befcc3acd217051cf715aeb74e321fd613a3d00132d826",
+   "status": "ok",
+   "bytes": 1865153,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG First Quarter 2012 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20First%20Quarter%202012%20Earning%20Release.pdf",
+   "sha256_expected": "43b5d380fa6de5861c84d466ed71c6f05a7716ce0f1f2e14d75eba14ac3071dc",
+   "status": "ok",
+   "bytes": 2016503,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG First Quarter 2016 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20First%20Quarter%202016%20Earning%20Release.pdf",
+   "sha256_expected": "71f432648acb4974083d1d813bc4d25d63be30844a4cdcc67dc5134c47a6a0e7",
+   "status": "ok",
+   "bytes": 1087750,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG First half and second quarter 2012 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20First%20half%20and%20second%20quarter%202012%20Earning%20Release.pdf",
+   "sha256_expected": "c4945352645e6779fb5afa4f5e698f0286738d820b2c95f735089357a3c6eb17",
+   "status": "ok",
+   "bytes": 2137366,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding Earning Release for 1H 2011.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20Holding%20Earning%20Release%20for%201H%202011.pdf",
+   "sha256_expected": "8310cdaae2f1ba7b810cc33f739448cee81c643aedc8d1ba8b17ee39de966eac",
+   "status": "ok",
+   "bytes": 1017582,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding Earning Release for the financial year ending December 31,2011.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20Holding%20Earning%20Release%20for%20the%20financial%20year%20ending%20December%2031,2011.pdf",
+   "sha256_expected": "fbc93e0aa9ff71be9b3a7b6ea0884911cc7eac0d99dfcc2b30b207768717c168",
+   "status": "ok",
+   "bytes": 414708,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding Full Year and Fourth Quarter ending December 31, 2015.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20Holding%20Full%20Year%20and%20Fourth%20Quarter%20ending%20December%2031,%202015.pdf",
+   "sha256_expected": "50b62f5f0e2dae3e675ebc2368808ef22071e2f33cbb88351d9cd15ecec0a3b3",
+   "status": "ok",
+   "bytes": 2682009,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding Second Quarter 2013 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20Holding%20Second%20Quarter%202013%20Earning%20Release.pdf",
+   "sha256_expected": "b3637a76df1124994a53fa4936555aaeb7d34926c2deb21249e47e06f7f33b45",
+   "status": "ok",
+   "bytes": 1470432,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding Second Quarter 2014 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20Holding%20Second%20Quarter%202014%20Earning%20Release.pdf",
+   "sha256_expected": "d36cbdb182f53151e9f38b00520ed00218e5e4fcde3821c88275b6aa91609c87",
+   "status": "ok",
+   "bytes": 1249635,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding Second Quarter 2015 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20Holding%20Second%20Quarter%202015%20Earning%20Release.pdf",
+   "sha256_expected": "4c2393822931bd366cdf3a753979acc0678840ecb18b091690baf7ed2812b19b",
+   "status": "ok",
+   "bytes": 2054833,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding Second Quarter 2016 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20Holding%20Second%20Quarter%202016%20Earning%20Release.pdf",
+   "sha256_expected": "57853331cbc031e533a8a141f3f325d9fe0b8faa678c1c8b66a1f6d8308f957b",
+   "status": "ok",
+   "bytes": 981245,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding first quarter 2013 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20Holding%20first%20quarter%202013%20Earning%20Release.pdf",
+   "sha256_expected": "3f7d0c7f727da1c38fd77af74e4c6bf0bca9c92b0d9d82553174f6d9cf8877fe",
+   "status": "ok",
+   "bytes": 4627925,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding full year and fourth quarter ending December 31, 2012 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20Holding%20full%20year%20and%20fourth%20quarter%20ending%20December%2031,%202012%20Earning%20Release.pdf",
+   "sha256_expected": "f40f140c10f23823b7a1dab086591713f24b39948220ad7941c43350203039e7",
+   "status": "ok",
+   "bytes": 5896259,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Nine Months and Third Quarter 2016 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20Nine%20Months%20and%20Third%20Quarter%202016%20Earning%20Release.pdf",
+   "sha256_expected": "6f5cfede37a6bee99272181524917e69cd0854b740643e9c62055bd5b36e1eec",
+   "status": "ok",
+   "bytes": 1640468,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Q1-2009 ER.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20Q1-2009%20ER.pdf",
+   "sha256_expected": "3c0016f93fdd2a47a1f1d685c8caa7961d412cad29f523927be6621b734a4d25",
+   "status": "ok",
+   "bytes": 1041945,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG first quarter 2014 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20first%20quarter%202014%20Earning%20Release.pdf",
+   "sha256_expected": "aa56c0a3d93dbf44e41a8597a4b23c673183a30fe44f62dfeda8913ea2b203e9",
+   "status": "ok",
+   "bytes": 1467518,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG first quarter 2015 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20first%20quarter%202015%20Earning%20Release.pdf",
+   "sha256_expected": "3740105b1f8064cf242ff0176b305657581248e20f395f7c78a5aa588daaf746",
+   "status": "ok",
+   "bytes": 2132064,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG full year and fourth quarter 2013 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20full%20year%20and%20fourth%20quarter%202013%20Earning%20Release.pdf",
+   "sha256_expected": "8cca075c7c81f0e3d991359b2b497f29fcd0352925393c15b4d09b831da1a628",
+   "status": "ok",
+   "bytes": 885750,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG full year and fourth quarter 2014 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20full%20year%20and%20fourth%20quarter%202014%20Earning%20Release.pdf",
+   "sha256_expected": "bf96090a43eefd5345581f6bed6be16b8ae634031e7aa643d1f9b37fba05a087",
+   "status": "ok",
+   "bytes": 937852,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG nine months and third quarter 2012 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20nine%20months%20and%20third%20quarter%202012%20Earning%20Release.pdf",
+   "sha256_expected": "4cf2b8f043b120b68cac54b74eaf954550429180b9bc6e7d3305f509c261cc42",
+   "status": "ok",
+   "bytes": 5258329,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG nine months and third quarter 2013 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20nine%20months%20and%20third%20quarter%202013%20Earning%20Release.pdf",
+   "sha256_expected": "4fc03430efbdac7a44f12fcd6e1674e253bb427c1170becaf578f743e4258700",
+   "status": "ok",
+   "bytes": 3026080,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG nine months and third quarter 2014 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20nine%20months%20and%20third%20quarter%202014%20Earning%20Release.pdf",
+   "sha256_expected": "4d5907267f43405067f4add32d9dab606caac3b9aac2af902109f7545fce20ab",
+   "status": "ok",
+   "bytes": 1012582,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG nine months and third quarter 2015 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Earning/TMG%20nine%20months%20and%20third%20quarter%202015%20Earning%20Release.pdf",
+   "sha256_expected": "ed8689c0b9e6d2bdab06893fe1bfdb793f4096e4112a5a1e7be4b9590152f6d1",
+   "status": "ok",
+   "bytes": 2249953,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "IR PRESENTATION - SEPTEMBER 2022.pdf",
+   "url": "https://talaatmoustafa.com/Upload/IR%20PRESENTATION%20-%20SEPTEMBER%202022.pdf",
+   "sha256_expected": "42a3c59ac08a0b3893687a706d4eb99bcbeb8b04a2a0ff291d8310a4afa8cc85",
+   "status": "ok",
+   "bytes": 7159869,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "IR PRESENTATION 9M2022 - NOV2022.pdf",
+   "url": "https://talaatmoustafa.com/Upload/IR%20PRESENTATION%209M2022%20-%20NOV2022.pdf",
+   "sha256_expected": "388c416382e46a8f1e1ed339a6df6e1bb5d483faf4fc16c33ab1f4191089049a",
+   "status": "ok",
+   "bytes": 3526773,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Investor presentation - Feb 2022.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Investor%20presentation%20-%20Feb%202022.pdf",
+   "sha256_expected": "a28072f127c1edf7297b0498a6c3dccc192bf7fa208e9a0cd3d381bb12d13878",
+   "status": "ok",
+   "bytes": 6926738,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding market update - July 2021.pdf",
+   "url": "https://talaatmoustafa.com/Upload/TMG%20Holding%20market%20update%20-%20July%202021.pdf",
+   "sha256_expected": "6e974ee88ae01980b66541f2e53802b1ad89106de0efd88a12740ae5e0174a7a",
+   "status": "ok",
+   "bytes": 184422,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG INVESTOR PRESENTATION  - DEC 2018.pdf",
+   "url": "https://talaatmoustafa.com/Upload/TMG%20INVESTOR%20PRESENTATION%20%20-%20DEC%202018.pdf",
+   "sha256_expected": "45d8d76814385ee67b029b3e9726b1397acc62b7c5ff8e00df1a8affd395fdf6",
+   "status": "ok",
+   "bytes": 3401157,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG INVESTOR PRESENTATION  - JAN 2019.pdf",
+   "url": "https://talaatmoustafa.com/Upload/TMG%20INVESTOR%20PRESENTATION%20%20-%20JAN%202019.pdf",
+   "sha256_expected": "262288b5613445ad3593b782a8d1996d088139b8b8dd4e51658224d6303b3dcf",
+   "status": "ok",
+   "bytes": 3398123,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG INVESTOR PRESENTATION (ENGLISH) [SD] - DECEMBER 2019.pdf",
+   "url": "https://talaatmoustafa.com/Upload/TMG%20INVESTOR%20PRESENTATION%20(ENGLISH)%20%5BSD%5D%20-%20DECEMBER%202019.pdf",
+   "sha256_expected": "a97bf6c1fccf734391d8b18f780a046f6d372a37f3f8d733947d1e0aff4bbceb",
+   "status": "ok",
+   "bytes": 4623381,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG INVESTOR PRESENTATION (ENGLISH) [SD] - SEPTEMBER 2019.pdf",
+   "url": "https://talaatmoustafa.com/Upload/TMG%20INVESTOR%20PRESENTATION%20(ENGLISH)%20%5BSD%5D%20-%20SEPTEMBER%202019.pdf",
+   "sha256_expected": "283bbcc947cf5680a11cddb2e334e49eeb48b7fe89ba615fb3036c3a53d9fbeb",
+   "status": "ok",
+   "bytes": 9293822,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG INVESTOR PRESENTATION (ENGLISH) - MARCH 2019.pdf",
+   "url": "https://talaatmoustafa.com/Upload/TMG%20INVESTOR%20PRESENTATION%20(ENGLISH)%20-%20MARCH%202019.pdf",
+   "sha256_expected": "9058bc9a36195ebc22aae2c716864d7b36c7ab307facff3777184dbbe2bf2f75",
+   "status": "ok",
+   "bytes": 2431610,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG INVESTOR PRESENTATION (ENGLISH).pdf",
+   "url": "https://talaatmoustafa.com/Upload/TMG%20INVESTOR%20PRESENTATION%20(ENGLISH).pdf",
+   "sha256_expected": "420b7d0a56a5c6e39ff9b7d295d22ac782a1369bd5cb901ef7312287f3f71651",
+   "status": "ok",
+   "bytes": 2144902,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG IR PRESENTATION (ENGLISH) - MARCH 2021.pdf",
+   "url": "https://talaatmoustafa.com/Upload/TMG%20IR%20PRESENTATION%20(ENGLISH)%20-%20MARCH%202021.pdf",
+   "sha256_expected": "3244afb95ac5776053c8c848839f699e85066d0f89b84b45207bfceda5a673db",
+   "status": "ok",
+   "bytes": 14591538,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG IR PRESENTATION (ENGLISH) - NOVEMBER 2021.pdf",
+   "url": "https://talaatmoustafa.com/Upload/TMG%20IR%20PRESENTATION%20(ENGLISH)%20-%20NOVEMBER%202021.pdf",
+   "sha256_expected": "0124dfc0ce3677964c41d974b93b8d423610e74741a06a293a606166221e34f4",
+   "status": "ok",
+   "bytes": 3944270,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG IR PRESENTATION (ENGLISH) - SEPTEMBER 2020 [LIGHT].pdf",
+   "url": "https://talaatmoustafa.com/Upload/TMG%20IR%20PRESENTATION%20(ENGLISH)%20-%20SEPTEMBER%202020%20%5BLIGHT%5D.pdf",
+   "sha256_expected": "4abe7f833a9969bbae98e12072e5e518f205dd12fccb2c5c9d02fa4ae3c11379",
+   "status": "ok",
+   "bytes": 22625199,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Nine Months and Third Quarter 2017 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/Upload/TMG%20Nine%20Months%20and%20Third%20Quarter%202017%20Earning%20Release.pdf",
+   "sha256_expected": "647d7582e3e9100e9fa79b5147156f8deccc31724180faf1fc65a20ce1e90215",
+   "status": "ok",
+   "bytes": 2278453,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMGH IR Presentation FY2022 - March 2023.pdf",
+   "url": "https://talaatmoustafa.com/Upload/TMGH%20IR%20Presentation%20FY2022%20-%20March%202023.pdf",
+   "sha256_expected": "e066b8a11e589220cb75563bd4accd9de5415ee5796fc98fb41a9a61be71b9a6",
+   "status": "ok",
+   "bytes": 6093258,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0647 31-3-2016.pdf",
+   "url": "https://talaatmoustafa.com/Upload/%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%A6%D9%85%20%D8%A7%D9%84%D9%85%D8%A7%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D8%AC%D9%85%D8%B9%D9%87%2031-3-2016.pdf",
+   "sha256_expected": "81d9a9f7b339c0284c5cc353c6e63882095c34816cb5a1e8c0d458a35b8ffbb2",
+   "status": "ok",
+   "bytes": 1123281,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "3042498c-f2a6-49bb-a950-d4eec516d639_TMG  first quarter 2017 Earning Release.pdf",
+   "url": "https://talaatmoustafa.com/upload/3042498c-f2a6-49bb-a950-d4eec516d639_TMG%20%20first%20quarter%202017%20Earning%20Release.pdf",
+   "sha256_expected": "eb14c8d98c56aad102d3f3be03ab848049a771b965c90c3c83259c0696695adb",
+   "status": "ok",
+   "bytes": 2866960,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Eng V - TMG Consolidated FS 31 March 2023.pdf",
+   "url": "https://talaatmoustafa.com/upload/Eng%20V%20-%20TMG%20Consolidated%20FS%2031%20March%202023.pdf",
+   "sha256_expected": "55d75d072a6fb4ccd531480403c2889a1bb1e602c74e4a52d85862b5b16ccb9a",
+   "status": "ok",
+   "bytes": 2431351,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Eng version- TMG Consolidated FS 31 March 2021 Signed.pdf",
+   "url": "https://talaatmoustafa.com/upload/Eng%20version-%20TMG%20Consolidated%20FS%2031%20March%202021%20Signed.pdf",
+   "sha256_expected": "8878e378bbabfa8b2528bd70c9d79376dcd3ce9179b67969e4c8cddef4f794a5",
+   "status": "ok",
+   "bytes": 1003095,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Eng- TMG Consolidated FS 30 September 2021.pdf",
+   "url": "https://talaatmoustafa.com/upload/Eng-%20TMG%20Consolidated%20FS%2030%20September%202021.pdf",
+   "sha256_expected": "32b5d83cd796b0ec39ec2187c9a58771943538b938a10ce99798c89633233eea",
+   "status": "ok",
+   "bytes": 1012514,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Eng- TMG Consolidated FS 31 December 2022.pdf",
+   "url": "https://talaatmoustafa.com/upload/Eng-%20TMG%20Consolidated%20FS%2031%20December%202022.pdf",
+   "sha256_expected": "b9ffd71768d4e706fa9cbd15f442a8052e82fab2850fd875344fb9b761100624",
+   "status": "ok",
+   "bytes": 2899378,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Executive Management Report on the Group's Business Results for the Financial Period Ended 30-6-2023-.pdf",
+   "url": "https://talaatmoustafa.com/upload/Executive%20Management%20Report%20on%20the%20Group's%20Business%20Results%20for%20the%20Financial%20Period%20Ended%2030-6-2023-.pdf",
+   "sha256_expected": "71cde269bd6a5b51b2ff6c65f729588f68009fadca81db34805ad95e0f6298dc",
+   "status": "ok",
+   "bytes": 499488,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Market update - 10 September 2023.pdf",
+   "url": "https://talaatmoustafa.com/upload/Market%20update%20-%2010%20September%202023.pdf",
+   "sha256_expected": "49cb9d0f33308aecd3576cf606a998be9dea001cb8676418614aa9378431049e",
+   "status": "ok",
+   "bytes": 141437,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Conso  FSs 31 December 2021 Final.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Conso%20%20FSs%2031%20December%202021%20Final.pdf",
+   "sha256_expected": "7021f6203a5666600cefb5715c6daacbf5a16dbdcee96334ffa3db3feffad75d",
+   "status": "ok",
+   "bytes": 2552200,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Consolidated Eng. FS 30 Jun. 2022 (V2).pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Consolidated%20Eng.%20FS%2030%20Jun.%202022%20(V2).pdf",
+   "sha256_expected": "186326e70cb7a158d33c628ac920a1df27fa9d43226d67a63a658a7d756d5ec3",
+   "status": "ok",
+   "bytes": 2234886,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Consolidated Eng. FS 30 Sep. 2022-DokL-SRaouf.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Consolidated%20Eng.%20FS%2030%20Sep.%202022-DokL-SRaouf.pdf",
+   "sha256_expected": "b0e5384d29804173a3b2c7f78a6b6cc0d58749b0d2651adea113c2abfddb0d0a",
+   "status": "ok",
+   "bytes": 2485869,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Consolidated F S 9-2020.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Consolidated%20F%20S%209-2020.pdf",
+   "sha256_expected": "1d376974156470d872854e9f7da6c0592c19a51bfd96f98d275b8c9241006bdd",
+   "status": "ok",
+   "bytes": 893553,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Consolidated FS 12-2020 _ Final _ Eng.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Consolidated%20FS%2012-2020%20_%20Final%20_%20Eng.pdf",
+   "sha256_expected": "c5fb537287b33b2b41e9a84743906fc769c88f12b8c6aa47638ff2396f111a24",
+   "status": "ok",
+   "bytes": 1020923,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Consolidated english FS 30 June 2023.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Consolidated%20english%20FS%2030%20June%202023.pdf",
+   "sha256_expected": "b83a6eb9a28f716914fa784b7b572628099523ce7f5e8c5b3dea6e3f638fb725",
+   "status": "ok",
+   "bytes": 2177899,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 1H2018 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%201H2018%20earnings%20release.pdf",
+   "sha256_expected": "812d0deda19f1f92273126abb4eaa9793d0b1b110cc92ad18caa0ed8879ea084",
+   "status": "ok",
+   "bytes": 211708,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 1H2019 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%201H2019%20earnings%20release.pdf",
+   "sha256_expected": "2299523cee289fbdbfc3d0b98ec8fa44c307fead770f43b6848df6811bfd25a3",
+   "status": "ok",
+   "bytes": 374600,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 1H2020 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%201H2020%20earnings%20release.pdf",
+   "sha256_expected": "5826f703b6cf1e804bf10f00bd0e99be12fb3fc8656294554752ce800ed97512",
+   "status": "ok",
+   "bytes": 335223,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 1H2022 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%201H2022%20earnings%20release.pdf",
+   "sha256_expected": "09cdec590a66ef9be7b43b5f63b170cd9822550a6c3fb70ec143e96524e4239c",
+   "status": "ok",
+   "bytes": 284627,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 1H2023 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%201H2023%20earnings%20release.pdf",
+   "sha256_expected": "572a3d8ad8a3e75ff289128e7a41515d86852f06786392f5a530421a7773e788",
+   "status": "ok",
+   "bytes": 270236,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 1Q2018 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%201Q2018%20earnings%20release.pdf",
+   "sha256_expected": "99d6966906ad7cb15c695c11b5641e09b2829e49b4a6130eea94c1278f4db8ea",
+   "status": "ok",
+   "bytes": 207420,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 1Q2019 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%201Q2019%20earnings%20release.pdf",
+   "sha256_expected": "f86c2c0559e977399ca855303db89be8eea1e23441dc57c509e36b87fccc2845",
+   "status": "ok",
+   "bytes": 228299,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 1Q2020 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%201Q2020%20earnings%20release.pdf",
+   "sha256_expected": "2557ec2080343a5051dfbc19acb43cfe77d2f12ec3f931c38f6d023a81954fad",
+   "status": "ok",
+   "bytes": 416042,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 1Q2021 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%201Q2021%20earnings%20release.pdf",
+   "sha256_expected": "9527b563b9548b9dc4c8ea3bb85600cd024a11c0bb8c51363dac0c37b0fa74a7",
+   "status": "ok",
+   "bytes": 292991,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 1Q2022 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%201Q2022%20earnings%20release.pdf",
+   "sha256_expected": "a263aef1834dd8d863e1a97d4c242e5530acd0e4a2aebeb7ee16d625830f4bc7",
+   "status": "ok",
+   "bytes": 303236,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 1Q2023 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%201Q2023%20earnings%20release.pdf",
+   "sha256_expected": "de362899c10c2ae3039bc6ca0f18ff4f1e66d11b4b93d1a8a5726b69b7718e2e",
+   "status": "ok",
+   "bytes": 272435,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 9M2018 earnings release[6].pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%209M2018%20earnings%20release%5B6%5D.pdf",
+   "sha256_expected": "84aa1aca874693c991d372dd571bd2911831414740a14c92dbc355721a5a3813",
+   "status": "ok",
+   "bytes": 246763,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 9M2019 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%209M2019%20earnings%20release.pdf",
+   "sha256_expected": "cec325a783208dbba6ec448846f620090cebfab0da9ece671f2e3a5d9d9452ef",
+   "status": "ok",
+   "bytes": 254766,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 9M2020 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%209M2020%20earnings%20release.pdf",
+   "sha256_expected": "98cb57b1f5c1c6428b990b8d1f24401b55b6360cb713fd679b0ecdc4ef7f5db7",
+   "status": "ok",
+   "bytes": 334652,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 9M2021 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%209M2021%20earnings%20release.pdf",
+   "sha256_expected": "66077511693390855a62f976e4117536da91da4dc960c101b46dd88291dad47b",
+   "status": "ok",
+   "bytes": 329847,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 9M2022 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%209M2022%20earnings%20release.pdf",
+   "sha256_expected": "aff26c64422f9072aac1898d78996be7373a32a4f096080748a097abf6d7316f",
+   "status": "ok",
+   "bytes": 279474,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding FY2018 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%20FY2018%20earnings%20release.pdf",
+   "sha256_expected": "fddb3a5e557223502d6268727b7345c7e75c612a1aaa81fcbad9eeb441841f49",
+   "status": "ok",
+   "bytes": 246519,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding FY2019 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%20FY2019%20earnings%20release.pdf",
+   "sha256_expected": "a60154c6e780f5ae70bac83591181db5f183088d36e6381966b24f890a959f07",
+   "status": "ok",
+   "bytes": 296894,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding FY2021 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%20FY2021%20earnings%20release.pdf",
+   "sha256_expected": "23f953fbfd32e1a0aaa3c3409d6d341b0e3394cf1332d79c2394c2cb01a40b7f",
+   "status": "ok",
+   "bytes": 292555,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding FY2022 Earnings Release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%20FY2022%20Earnings%20Release.pdf",
+   "sha256_expected": "cc7ac76cb35803c4be581cd7c810e75e5e2d922cffaed46083e6d5cb6073d3fc",
+   "status": "ok",
+   "bytes": 280069,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding Full Year and Fourth Quarter ending December 31, 2016.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%20Full%20Year%20and%20Fourth%20Quarter%20ending%20December%2031,%202016.pdf",
+   "sha256_expected": "b3a48d694d45140cedcc8ca2bf435d99ea569bf2e5b4549446273639ace923de",
+   "status": "ok",
+   "bytes": 4406130,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding consilidated financials 31-3-2020 .pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%20consilidated%20financials%2031-3-2020%20.pdf",
+   "sha256_expected": "cb9bbd5f805e37587b08799acf9a0b4a8a18136b05ebe8bd6f144f0edf361e4b",
+   "status": "ok (retry: published href)",
+   "bytes": 1516641,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding market update [9 April 2020].pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%20market%20update%20%5B9%20April%202020%5D.pdf",
+   "sha256_expected": "cf98b0f350ba28589784bb8db81297352a1dd843ea1db0b67128e9b71853e4a0",
+   "status": "ok",
+   "bytes": 696547,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding market update [August 2020][1].pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%20market%20update%20%5BAugust%202020%5D%5B1%5D.pdf",
+   "sha256_expected": "3e6d36d04d98e1f9969524c4f5a4a0acfd5c3e63c44fe548b899767dc6900631",
+   "status": "ok",
+   "bytes": 100008,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding market update - 18 Jan 2021[5].pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%20market%20update%20-%2018%20Jan%202021%5B5%5D.pdf",
+   "sha256_expected": "0e2cc114f32f24c70dd921203e511821cbf7ffaf7b61d4ce9da3a7d8c7dae9a1",
+   "status": "ok",
+   "bytes": 94108,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding market update on FY2019 sales [6 January 2020].pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%20market%20update%20on%20FY2019%20sales%20%5B6%20January%202020%5D.pdf",
+   "sha256_expected": "4cf3c1d305ae0ce3417afa7f8c77b68b760a14136da04854a179939ecb034bed",
+   "status": "ok",
+   "bytes": 79570,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMGH FS 2020 Q2 CONSOLIDATED EN.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMGH%20FS%202020%20Q2%20CONSOLIDATED%20EN.pdf",
+   "sha256_expected": "31e45f14e950fafb18a0d67d486fc1f33bead9da2c8737ad2dff3fa77866fb62",
+   "status": "ok",
+   "bytes": 1423408,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMGH FS 2021 Q2 CONSOLIDATED EN.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMGH%20FS%202021%20Q2%20CONSOLIDATED%20EN.pdf",
+   "sha256_expected": "8d545fe9e9126d24d279394b749ffa3bdffc3e04372ae55a9b3480a9eea90c98",
+   "status": "ok (retry: published href)",
+   "bytes": 1025693,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMGH FY2022 sales disclosure.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMGH%20FY2022%20sales%20disclosure.pdf",
+   "sha256_expected": "a9f046178d5adc6cea0a4edf1fe4f6dca4796d3596cd4ce23737d2e6df66afa8",
+   "status": "ok",
+   "bytes": 250162,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMGH market update 2 January 2019[24].pdf",
+   "url": "https://talaatmoustafa.com/upload/TMGH%20market%20update%202%20January%202019%5B24%5D.pdf",
+   "sha256_expected": "507fa790b793b59b7e97da2ea01e3890d6f6283851f0cd0f9436887474a07cb8",
+   "status": "ok (retry: published href)",
+   "bytes": 69876,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMGH market update 29 May 2018[1].pdf",
+   "url": "https://talaatmoustafa.com/upload/TMGH%20market%20update%2029%20May%202018%5B1%5D.pdf",
+   "sha256_expected": "d2de5ee3ed075e1433c0f7e04adb7edbf113726c68aa44d894cd5c4a68df84a7",
+   "status": "ok",
+   "bytes": 63965,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 1H2021 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/upload/TMG%20Holding%201H2021%20earnings%20release.pdf",
+   "sha256_expected": "a4864ad5f70adb935998dbeea382d95fea49d2df80c8c5271a12b9592aa18073",
+   "status": "FETCH FAILED",
+   "bytes": 0,
+   "kept": false,
+   "error": "HTTPError: HTTP Error 404: Not Found"
+  },
+  {
+   "ticker": "TMGH",
+   "name": "\u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u062c\u0645\u0639\u0629 \u0641\u0649 31-3-2022.pdf",
+   "url": "https://talaatmoustafa.com/upload/%D8%A7%D9%84%D9%82%D9%88%D8%A7%D8%A6%D9%85%20%D8%A7%D9%84%D9%85%D8%A7%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D8%AC%D9%85%D8%B9%D8%A9%20%D9%81%D9%89%2031-3-2022.pdf",
+   "sha256_expected": "ed4226dbc1e962d719c751f5283e236071e66f05664c24d2540c8abbd7c2ec43",
+   "status": "ok",
+   "bytes": 1494926,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding - Market Update 20 December 2023.pdf",
+   "url": "https://talaatmoustafa.com/Upload/TMG%20Holding%20-%20Market%20Update%2020%20December%202023.pdf",
+   "sha256_expected": "7c43d919264a7fed53146135b5b0815fba48d3c5e5abd9a55a8129fa980339ac",
+   "status": "ok (retry: published href)",
+   "bytes": 206522,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Talaat Moustafa Group Holding Presentation. August 2023.pdf",
+   "url": "https://talaatmoustafa.com/Upload/Talaat%20Moustafa%20Group%20Holding%20Presentation.%20August%202023.pdf",
+   "sha256_expected": "41421455c297ed30cd47a3ee3afa6f413812fd45a5ed7f018a34135c63104a4c",
+   "status": "ok (retry: published href)",
+   "bytes": 6309576,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Annual report on climate changes disclosures for the year 2025.pdf",
+   "url": "https://talaatmoustafa.com/upload/Annual%20report%20on%20climate%20changes%20disclosures%20for%20the%20year%202025.pdf",
+   "sha256_expected": "0bfbd3b3546e1cfa82f27ff2f47b843642505e1a8cff57fe760c0fd0641efe27",
+   "status": "ok (retry: published href)",
+   "bytes": 506862,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Annual report on environmental and societal disclosures related to sustainability for the year 2023.pdf",
+   "url": "https://talaatmoustafa.com/upload/Annual%20report%20on%20environmental%20and%20societal%20disclosures%20related%20to%20sustainability%20for%20the%20year%202023.pdf",
+   "sha256_expected": "851a284c115127dbd7dbc02d9ad155c05d7b79428828dae3b5ae23a3db8f1924",
+   "status": "ok (retry: published href)",
+   "bytes": 1135342,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Annual report on environmental and societal disclosures related to sustainability for the year 2025.pdf",
+   "url": "https://talaatmoustafa.com/upload/Annual%20report%20on%20environmental%20and%20societal%20disclosures%20related%20to%20sustainability%20for%20the%20year%202025.pdf",
+   "sha256_expected": "325f2ef9e670658bee3016e0eab873794256c992cc5c38a3b287c4c709e5179d",
+   "status": "ok",
+   "bytes": 885943,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Consolidated financial statements for the year ended 31-12-2025-English.pdf",
+   "url": "https://talaatmoustafa.com/upload/Consolidated%20financial%20statements%20for%20the%20year%20ended%2031-12-2025-English.pdf",
+   "sha256_expected": "ed00bddbfba3fe68dee4d8ef58f987bc1c0751fe8b835dad1f09e9c1b953f71e",
+   "status": "ok",
+   "bytes": 2672842,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Disclosure statment on Market update January 2024.pdf",
+   "url": "https://talaatmoustafa.com/upload/Disclosure%20statment%20on%20Market%20update%20January%202024.pdf",
+   "sha256_expected": "635b95bfda92011c92ac1afa92068dd33af3f0d91c9930a6244f67e785c47f5e",
+   "status": "ok",
+   "bytes": 1206434,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Earnings release report for the financial period ended 30 June 2026.pdf",
+   "url": "https://talaatmoustafa.com/upload/Earnings%20release%20report%20for%20the%20financial%20period%20ended%2030%20June%202026.pdf",
+   "sha256_expected": "ec461c451e524ed27beb9ee60745da1ee574b0f9b1f9ebd5f3edfa719fde6bba",
+   "status": "ok",
+   "bytes": 9485553,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Executive Management Report for the financial period ended 30 September 2024.pdf",
+   "url": "https://talaatmoustafa.com/upload/Executive%20Management%20Report%20for%20the%20financial%20period%20ended%2030%20September%202024.pdf",
+   "sha256_expected": "b39ede477e8ac6c43b25eb368441ba99e7419213ccc1738dd8481770342a716f",
+   "status": "ok",
+   "bytes": 2760047,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "IR PRESENTATION 20250406.pdf",
+   "url": "https://talaatmoustafa.com/upload/IR%20PRESENTATION%2020250406.pdf",
+   "sha256_expected": "50298fef51d8418e75a13e998b75607a5e6a8c304381261d3a7bfae4ecfc870d",
+   "status": "ok",
+   "bytes": 3202433,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 1H2024 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%201H2024%20earnings%20release.pdf",
+   "sha256_expected": "68c9d639342de5ca6b1affb672da1950a00198803da25da1e951f68d2fabd7c5",
+   "status": "ok",
+   "bytes": 288275,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 1Q24 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%201Q24%20earnings%20release.pdf",
+   "sha256_expected": "336f234e0a21fd00af06cccb611c38921a66d8ca20dd44a09781ce9d3f7b2f2b",
+   "status": "ok",
+   "bytes": 246693,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 1Q25 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%201Q25%20earnings%20release.pdf",
+   "sha256_expected": "fb187d660e82986ab812cbe592368c2a1e4cbd56a33911fc97b9135d51cb9654",
+   "status": "ok",
+   "bytes": 293423,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 1Q26 ER - EN.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%201Q26%20ER%20-%20EN.pdf",
+   "sha256_expected": "24fa7e8da55d7352baac78ff69b91f38dca1cc5df30433fa2eb0aede2f8233da",
+   "status": "ok",
+   "bytes": 1370564,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 3Q24 earnings release 20241118.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%203Q24%20earnings%20release%2020241118.pdf",
+   "sha256_expected": "0734aaf84d07780f8963287302239c9f388d453aea114f4b9750fec1d4cd130a",
+   "status": "ok",
+   "bytes": 288660,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 4Q23 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%204Q23%20earnings%20release.pdf",
+   "sha256_expected": "6cdad109c9fe76a6c754bac39d9c6367ab6907d620fd39fb74ca8550706e2f91",
+   "status": "ok",
+   "bytes": 270770,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 9M2023 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%209M2023%20earnings%20release.pdf",
+   "sha256_expected": "efe53172c714317283b7eed4d70cc3943dead2959cf33b6201ceecb0fc28d6e0",
+   "status": "ok",
+   "bytes": 267395,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding 9M25 earnings release.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%209M25%20earnings%20release.pdf",
+   "sha256_expected": "59d6ca7e4fe922e447366d96926501d857262e73b606f847236d8f1789688b2f",
+   "status": "ok",
+   "bytes": 308210,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding FY24 earnings release vFINAL.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%20FY24%20earnings%20release%20vFINAL.pdf",
+   "sha256_expected": "556714cbdddabdd52f0a76ea1dc4c2a8e613691345fee1cd9fd65d39b6984f7b",
+   "status": "ok",
+   "bytes": 301172,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding FY25 ER - EN.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%20FY25%20ER%20-%20EN.pdf",
+   "sha256_expected": "3cd49fca02c677253e2cd6d14a8d841bb321072f2feeec3c5d591c3f8091f4df",
+   "status": "ok (retry: published href)",
+   "bytes": 1689181,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMG Holding First Half Ending June 30, 2025 Earning Release. August 2025.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMG%20Holding%20First%20Half%20Ending%20June%2030,%202025%20Earning%20Release.%20August%202025.pdf",
+   "sha256_expected": "0f31d036105ae0f7a4b6aad8026b966aff5c0e58a505144cee70be3dc28a682f",
+   "status": "ok",
+   "bytes": 307327,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMGH IR Presentation FY2023.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMGH%20IR%20Presentation%20FY2023.pdf",
+   "sha256_expected": "f64ed334f07044c72023eca4d8250575ab8f7f5d1f34783442fed378cba1793e",
+   "status": "ok",
+   "bytes": 1843982,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "TMGH IR presentation September 2024.pdf",
+   "url": "https://talaatmoustafa.com/upload/TMGH%20IR%20presentation%20September%202024.pdf",
+   "sha256_expected": "d858f57db8ea0cee638fcbd7ad27f7dafb755cc7518652ff8d51473741d86ed1",
+   "status": "ok",
+   "bytes": 2819965,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Talaat Moustafa Group Holding Presentation. June 2024.pdf",
+   "url": "https://talaatmoustafa.com/upload/Talaat%20Moustafa%20Group%20Holding%20Presentation.%20June%202024.pdf",
+   "sha256_expected": "3d07fbb48ced96070adceed62382ad3edf0ad24184e564f0beec32f001c6ed86",
+   "status": "ok",
+   "bytes": 1348778,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "TMGH",
+   "name": "Talaat Moustafa Group Holding Presentation. November 2023.pdf",
+   "url": "https://talaatmoustafa.com/upload/Talaat%20Moustafa%20Group%20Holding%20Presentation.%20November%202023.pdf",
+   "sha256_expected": "e3dd1da942a1e61f0e9d32a5609c05a904538e8275413e02409d6c0c83da5344",
+   "status": "ok",
+   "bytes": 6464905,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "84-6a266d73282361780903283.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/84-6a266d73282361780903283.pdf",
+   "sha256_expected": "99cd3940e86d18609b6e44a6f05d74c38db011e353ac3c3228381e0791f275d5",
+   "status": "ok",
+   "bytes": 9714487,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "85-6a266dbc224ae1780903356.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/85-6a266dbc224ae1780903356.pdf",
+   "sha256_expected": "ed240b6c102e650fa21b6271ba7076405c3f7e921b003fb32cedba65ea912c47",
+   "status": "ok",
+   "bytes": 2798253,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "93-6a8425a18c8e71787045281.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/93-6a8425a18c8e71787045281.pdf",
+   "sha256_expected": "8c527d3e8b16401fda8c63cca7f75146f7cb6318496a2a12eedc76d64f33ed5b",
+   "status": "ok",
+   "bytes": 6962869,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "94-6a842664d99861787045476.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/94-6a842664d99861787045476.pdf",
+   "sha256_expected": "01b896f540204c1ac0cf785cbc4464f80f414dba88e6aa3220c30956a424ff6c",
+   "status": "ok",
+   "bytes": 8787319,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "71-6829b20fe97531747563023.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/71-6829b20fe97531747563023.pdf",
+   "sha256_expected": "4788bd599676b9d6fd37b391d1af5fd9ff2eb185831019f8b7ef75d35c8f1763",
+   "status": "ok",
+   "bytes": 3328504,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "73-6829b3fd977ea1747563517.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/73-6829b3fd977ea1747563517.pdf",
+   "sha256_expected": "f79ea047cd434ceac487d93b45c8a1350e8d0dfbafa93060f4cf7ef2bd351bf0",
+   "status": "ok",
+   "bytes": 3927508,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "74-68a2dfafd04651755504559.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/74-68a2dfafd04651755504559.pdf",
+   "sha256_expected": "86644727bf942bec67136c458c00819ab5d36cfbba0f965ff0c6b6ee65634f68",
+   "status": "ok",
+   "bytes": 3589473,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "75-68a2dffc298e01755504636.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/75-68a2dffc298e01755504636.pdf",
+   "sha256_expected": "381ef178d15f96d98dcd22b26f52b48d3750a16b5d7911011cd4613899bef0ba",
+   "status": "ok",
+   "bytes": 4507172,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "81-699ad06083a8d1771753568.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/81-699ad06083a8d1771753568.pdf",
+   "sha256_expected": "e1de57cdee5086b7908f68a72a127cbb4cca638554d8279c1082fd63e28621d2",
+   "status": "ok",
+   "bytes": 2378405,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "82-699ad12b0d8d61771753771.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/82-699ad12b0d8d61771753771.pdf",
+   "sha256_expected": "fd9d61c669e3cba2782bb245afc27b1e3cf66dec0f5d6c7035648d11c915c4ef",
+   "status": "ok",
+   "bytes": 2468891,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "1-66e9834e57b561726579534.pdf",
+   "url": "https://amoceg.com/reports/media/annual/1-66e9834e57b561726579534.pdf",
+   "sha256_expected": "d76f0d2e10cecfab8a175df284cccd1fd58790e0b43de475c9fc1833cb17f93a",
+   "status": "ok",
+   "bytes": 4744942,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "34-69ca3d39553ba1774861625.pdf",
+   "url": "https://amoceg.com/reports/investor/generalAssembly/34-69ca3d39553ba1774861625.pdf",
+   "sha256_expected": "64c5e62ddda732c36590683f5485c8c4a8a6f4992d4d9caccc0ced684a636205",
+   "status": "ok",
+   "bytes": 784792,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "35-69ca3d737e15f1774861683.pdf",
+   "url": "https://amoceg.com/reports/investor/generalAssembly/35-69ca3d737e15f1774861683.pdf",
+   "sha256_expected": "3b00a702802f973a11172ef84aeedbfd09d1e43b86304cfc8278880f512ddd6d",
+   "status": "ok",
+   "bytes": 474530,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "31-68da28e1651521759127777.pdf",
+   "url": "https://amoceg.com/reports/investor/generalAssembly/31-68da28e1651521759127777.pdf",
+   "sha256_expected": "ecab3a67224dd3a774dbca3b4708ce6846e8c5282ac7a050e2ead85152b288d7",
+   "status": "ok",
+   "bytes": 922683,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "32-68da31c71e7b41759130055.pdf",
+   "url": "https://amoceg.com/reports/investor/generalAssembly/32-68da31c71e7b41759130055.pdf",
+   "sha256_expected": "48ee615e6032e9519b62a140d040c4e9f48ac2d06a6fd503ea5428930f2b72e2",
+   "status": "ok",
+   "bytes": 486478,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "28-66f121c43f3721727078852.pdf",
+   "url": "https://amoceg.com/reports/investor/generalAssembly/28-66f121c43f3721727078852.pdf",
+   "sha256_expected": "5a55c044b4d93617ef572f85e64288ba77ff8a449786e958319236a6c7ecc084",
+   "status": "ok",
+   "bytes": 1125470,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "20-6628b8f12ced81713944817.pdf",
+   "url": "https://amoceg.com/reports/investor/generalAssembly/20-6628b8f12ced81713944817.pdf",
+   "sha256_expected": "0b599be1fbbca1b40b39facb09e42ef7cec242f8b8a28e223b3cff7f96f3212b",
+   "status": "ok",
+   "bytes": 663610,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "3-64185343f09651679315779.pdf",
+   "url": "https://amoceg.com/reports/investor/irPresentation/3-64185343f09651679315779.pdf",
+   "sha256_expected": "7af44733167f63e13a0f1444ab76073f06bca8e83df32f812bc8c2551e96bc99",
+   "status": "ok",
+   "bytes": 1756070,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "19-69240c8d2ebf01763970189.pdf",
+   "url": "https://amoceg.com/reports/investor/sustainability/19-69240c8d2ebf01763970189.pdf",
+   "sha256_expected": "30c11ad64b99895fe367d248c5dceebaa6708ecc4050236d29dee8f3f2b54936",
+   "status": "ok",
+   "bytes": 4160475,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "17-68b010be067611756369086.pdf",
+   "url": "https://amoceg.com/reports/investor/sustainability/17-68b010be067611756369086.pdf",
+   "sha256_expected": "471bc2952ac6294add97e2af9ca421ad23c2be2cc6931f70f8549643c6b71ddb",
+   "status": "ok",
+   "bytes": 2665823,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "sustainabilty2021.pdf",
+   "url": "https://amoceg.com/reports/investor/sustainability/sustainabilty2021.pdf",
+   "sha256_expected": "8849c3e65695a6dd38e536fd23e6ce2ba0bdf6bbc2033dfb21121f3dfb751e99",
+   "status": "ok",
+   "bytes": 3589801,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "sustainability2020.pdf",
+   "url": "https://amoceg.com/reports/investor/sustainability/sustainability2020.pdf",
+   "sha256_expected": "e5c2b8f1a4d1f18ceb5f5e15336a075afbc5f3ca9937f69ea23d8a87bcd1640a",
+   "status": "ok",
+   "bytes": 9434977,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "18-68b0120c379561756369420.pdf",
+   "url": "https://amoceg.com/reports/investor/sustainability/18-68b0120c379561756369420.pdf",
+   "sha256_expected": "d9c600233e27a0e226866fdb51c813e696f3d020bdb083ebc9069de536e98803",
+   "status": "ok",
+   "bytes": 4188032,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "86-6a266e186d3581780903448.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/86-6a266e186d3581780903448.pdf",
+   "sha256_expected": "9f059d797a67be315f106698a19fffc083d477a8586ae95177ef085fdf821ec6",
+   "status": "ok",
+   "bytes": 8192941,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "87-6a266e78b86651780903544.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/87-6a266e78b86651780903544.pdf",
+   "sha256_expected": "70c7377f0ae1ca833853c79a9c0b2e638a4560d271f4a9a45b433d3d5f61fcdd",
+   "status": "ok",
+   "bytes": 5743266,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "95-6a8427e9d627c1787045865.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/95-6a8427e9d627c1787045865.pdf",
+   "sha256_expected": "256ec628bc2e2a7976e07af3dbd33482b711e0d783acc0c48795b7885d064a4e",
+   "status": "ok",
+   "bytes": 6634308,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "96-6a842f450863c1787047749.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/96-6a842f450863c1787047749.pdf",
+   "sha256_expected": "f366e1ef520472daa5faeba3e0eb80c90a2c39935044ad4f8e0cda9252ce2cb8",
+   "status": "ok",
+   "bytes": 5883967,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "69-6829b154eb9f71747562836.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/69-6829b154eb9f71747562836.pdf",
+   "sha256_expected": "92614d6e34b94a96e57d8697e59f81d4eed739e9dfa40a808a309763f0b9910f",
+   "status": "ok",
+   "bytes": 3002495,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "70-6829b184801481747562884.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/70-6829b184801481747562884.pdf",
+   "sha256_expected": "8a71b84d9a5709a000ba1892fea1f7c37cf8cd1b015ccf47bc3a96e4f1cf4244",
+   "status": "ok",
+   "bytes": 3856790,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "76-68a2e0437ee331755504707.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/76-68a2e0437ee331755504707.pdf",
+   "sha256_expected": "bae79d8f9274865976eb6168dd6801c19a20a4f92a1b55eae4c15bc282a943ec",
+   "status": "ok",
+   "bytes": 4007177,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "77-68a2e07a3ff1f1755504762.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/77-68a2e07a3ff1f1755504762.pdf",
+   "sha256_expected": "3c37c7038fc6782f64d1a9181cbb65c214849d812fd60820e55341b581da4d45",
+   "status": "ok",
+   "bytes": 3254966,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "79-6943ba2f4553d1766046255.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/79-6943ba2f4553d1766046255.pdf",
+   "sha256_expected": "ca41e4f0f88d9b93401802c955e17b7eaa0e82451a1af65e0a1bc7320cf32cb9",
+   "status": "ok",
+   "bytes": 2736621,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "80-699ad090a76971771753616.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/80-699ad090a76971771753616.pdf",
+   "sha256_expected": "87182dd172ba558770033557d8af6d2cf9c254cbb8a9b16dae67fe8d3e844b91",
+   "status": "ok",
+   "bytes": 3347687,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "83-699ad1c0327a21771753920.pdf",
+   "url": "https://amoceg.com/reports/investor/financialStatement/83-699ad1c0327a21771753920.pdf",
+   "sha256_expected": "bde257cc3c0e4e2b2b145d17973bb38da65f84e12c079120d52c625c43d85b2c",
+   "status": "ok",
+   "bytes": 2811812,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "3-68dcff3b53c341759313723.pdf",
+   "url": "https://amoceg.com/reports/media/annual/3-68dcff3b53c341759313723.pdf",
+   "sha256_expected": "55afc53a7258c72a08eadbfd83dc713547f9985ab835503521a4d3a767578555",
+   "status": "ok",
+   "bytes": 1951857,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "AMOC",
+   "name": "2-66eabe82c3a971726660226.pdf",
+   "url": "https://amoceg.com/reports/media/annual/2-66eabe82c3a971726660226.pdf",
+   "sha256_expected": "93a6ee36f318b967ba9b9b4ac859882fa0c58e79459dcbcd671e8248e6844e7e",
+   "status": "ok",
+   "bytes": 4218149,
+   "kept": false,
+   "error": ""
+  },
+  {
+   "ticker": "EGCH",
+   "name": "EGCH_FY2020-21_Annual.pdf",
+   "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2021/%D9%83%D9%8A%D9%85%D8%A7%2010-11-2021.PDF",
+   "sha256_expected": "44caa4f5162275f6435dbdf358abf6c6ce03bcdb4070f7412b8c7763148890f2",
+   "status": "ok",
+   "bytes": 8788814,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "EGCH",
+   "name": "EGCH_FY2019-20_Annual.pdf",
+   "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2020/%D9%83%D9%8A%D9%85%D8%A7%20-12-11-2020.pdf",
+   "sha256_expected": "89f28a1dfefc0a7cc09f50980c39fd928b7191fb69bc30a1f216783dad92cab1",
+   "status": "ok",
+   "bytes": 5450388,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "EGCH",
+   "name": "EGCH_FY2018-19_Annual.pdf",
+   "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2019/%28%D9%83%D9%8A%D9%85%D8%A7%29%20%D9%81%D9%89%2030-6-2019.PDF",
+   "sha256_expected": "ac37123385a05e58b5e555f1373e3b7f02cbdf44ad0fe5c3113a7edda4067441",
+   "status": "ok",
+   "bytes": 2866756,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "EGCH",
+   "name": "EGCH_FY2017-18_Annual.pdf",
+   "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2018/%D9%83%D9%8A%D9%85%D8%A7%20%D9%82%D9%88%D8%A7%D8%A6%D9%85%2002-09-2018.pdf",
+   "sha256_expected": "8b7fb18a7c209ae6984dbeca0f690d17a418fd1b68e93830a086f6d300302b7e",
+   "status": "ok",
+   "bytes": 10279347,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "EGCH",
+   "name": "EGCH_FY2015-16_Annual.pdf",
+   "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2016/%D8%A7%D9%84%D8%B5%D9%86%D8%A7%D8%B9%D8%A7%D8%AA%201%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.pdf",
+   "sha256_expected": "e2bab8bb4ee7bc736c262911dbfda74c1f4e0e6a93019afe70d2c18c14c1f5c0",
+   "status": "ok",
+   "bytes": 50492401,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "EGCH",
+   "name": "EGCH_FY2013-14_Annual.pdf",
+   "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2014/kimayearly614.pdf",
+   "sha256_expected": "5e06390ffbc80e159952a5a7e1da8c4dfc98af6ce1540ed215f776d83105fc94",
+   "status": "ok",
+   "bytes": 2254718,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "EGCH",
+   "name": "EGCH_FY2012-13_Annual.pdf",
+   "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2013/%D9%83%D9%8A%D9%85%D8%A712ydv.pdf",
+   "sha256_expected": "4cc947b587dcbfa3c227dd2dfd8ae1b7b932d3d32fd3098c10dcc2fc157f3730",
+   "status": "ok",
+   "bytes": 5067515,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "EGCH",
+   "name": "EGCH_FY2010-11_Annual.pdf",
+   "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2011/kimaaa2010-2011.pdf",
+   "sha256_expected": "e4b3b71c9fe31de67e8c5cf5ff73ac0bd448e3b0579e13ee3c51217159702cea",
+   "status": "ok",
+   "bytes": 591788,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "EGCH",
+   "name": "EGCH_FY2009-10_Annual.pdf",
+   "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2010/kema2010.pdf",
+   "sha256_expected": "f45d0dacd53b2e35704785e7a11a8ef65e5190b71a578e85b02746cefd5c4021",
+   "status": "ok",
+   "bytes": 304033,
+   "kept": true,
+   "error": ""
+  },
+  {
+   "ticker": "EGCH",
+   "name": "EGCH_FY2008-09_Annual.pdf",
+   "url": "https://www.mistnews.com/mistsat/companies/mezanyat/2009/kma1.pdf",
+   "sha256_expected": "bb4c84d6fdc7141e237f3b95836a5a288195f68934d722557998f8c63018dce8",
+   "status": "ok",
+   "bytes": 1134971,
+   "kept": true,
+   "error": ""
+  }
+ ],
+ "summary": {
+  "PHDC": {
+   "records": 88,
+   "ok": 88,
+   "hash_mismatch": 0,
+   "fetch_failed": 0,
+   "kept_on_disk": 44
+  },
+  "TMGH": {
+   "records": 138,
+   "ok": 128,
+   "hash_mismatch": 0,
+   "fetch_failed": 2,
+   "kept_on_disk": 25
+  },
+  "AMOC": {
+   "records": 36,
+   "ok": 36,
+   "hash_mismatch": 0,
+   "fetch_failed": 0,
+   "kept_on_disk": 5
+  },
+  "EGCH": {
+   "records": 10,
+   "ok": 10,
+   "hash_mismatch": 0,
+   "fetch_failed": 0,
+   "kept_on_disk": 10
+  }
+ },
+ "finished": "2026-09-02T19:04:38Z"
+}

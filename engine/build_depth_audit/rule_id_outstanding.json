@@ -1,0 +1,13 @@
+{
+ "_": "Rule identifiers CITED IN CODE that resolve in neither governing document. Ratcheted per [R-ENF-02]: these were already in the tree when scripts/check_protocol_sync.py first looked for them, so they are allowed to fail while their rules are written up or their citations removed. THE LIST MAY ONLY EVER SHORTEN, and an entry that stops being cited anywhere FAILS rather than lingering — a stale allow-list is not a shortening.",
+ "seeded": "2026-09-03",
+ "why_each": {
+  "R-VCAL-01": "RESOLVED 03-Sep-2026: adopted in both governing documents. Kept here as the record of why it was listed; the list may only shorten and this entry is out of it.",
+  "R-BETA-01": "RESOLVED 03-Sep-2026, and it was a FALSE POSITIVE of the check rather than a defect in the documents. It was never a citation: the review page's proposal that rules be tagged illustrated the FORM of an identifier with an invented example, alongside a real one. Replaced with [R-AREA-NN], the placeholder notation the protocol itself uses for exactly this — which is more accurate than the invented example, since the sentence was always about the shape of an id and not about any particular rule. The check cannot distinguish an example from a citation and should not try: 'ignore anything that looks like an example' is unspecifiable and would be a hole. Writing examples in a notation that cannot be mistaken for a real id is the fix."
+ },
+ "outstanding": [],
+ "pruned": {
+  "R-VCAL-01": "2026-09-03",
+  "R-BETA-01": "2026-09-03"
+ }
+}

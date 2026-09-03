@@ -303,3 +303,7 @@ calibrated together.
 capacity, and this study's cost of equity of 28.28% rests on a beta borrowed from peers
 because the share's own history cannot carry one. Both of those are stated in the delivered
 document in the reader's own words.
+
+---
+
+*AUDITED CENTRAL: 53.4593* — the figure this review audits, stated so a job outside the study can tell whether the review still describes the answer the study publishes. A review of a number the study no longer carries is not a review of this study.

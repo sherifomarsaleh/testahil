@@ -1,0 +1,46 @@
+{
+ "ticker": "PHDC",
+ "as_of": "2026-09-02",
+ "judgements": [
+  {
+   "name": "the central lens",
+   "adopted": "the cash-flow lens alone",
+   "alternative": "the retired 45/15/20/20 blend of four lenses",
+   "value_adopted": 17.151687534730655,
+   "value_alternative": 10.9412,
+   "why": "three of the four blended lenses value a developer on reported earnings and historical-cost book, which for a company whose worth sits in an undelivered order book measures a floor; and the weights had never cleared any out-of-sample test"
+  },
+  {
+   "name": "the discount rate's shape",
+   "adopted": "a schedule gliding to a norm-built terminal",
+   "alternative": "a flat rate held for the whole window",
+   "value_adopted": 17.151687534730655,
+   "value_alternative": 6.35,
+   "why": "the central bank publishes a disinflation path and this study's own cost-of-debt assumptions already follow it; a flat crisis rate for fifteen years is a forecast that Egypt never normalises, and it was never argued for"
+  },
+  {
+   "name": "the length of the explicit window",
+   "adopted": "fifteen years, until growth converges",
+   "alternative": "five years, as the earlier editions carried",
+   "value_adopted": 17.151687534730655,
+   "value_alternative": 26.51,
+   "why": "a window that ends at 44% growth and then capitalises at 7% capitalises a rate the model never reached; it put 74% of value in the terminal"
+  },
+  {
+   "name": "terminal growth",
+   "adopted": "inflation only, zero real",
+   "alternative": "the 12% the earlier editions carried",
+   "value_adopted": 17.151687534730655,
+   "value_alternative": 21.0,
+   "why": "12% against a terminal rate embedding about 14.6% inflation is a perpetual real decline of two to three points a year that nothing disclosed supports"
+  },
+  {
+   "name": "the delivery path",
+   "adopted": "the disclosed 15% run, faded to nothing over ten years",
+   "alternative": "the 15% run held flat across the window",
+   "value_adopted": 17.151687534730655,
+   "value_alternative": 32.588206315988245,
+   "why": "a company cannot hand over 15% more homes every year for ever: it is limited by what it can build, and holding the run flat would have deliveries fourteen times higher in 2040 than in 2026"
+  }
+ ]
+}

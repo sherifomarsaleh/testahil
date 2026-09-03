@@ -16,8 +16,10 @@ import valuation as VAL
 import bottom_up_model as BU
 import valuation_v2 as V2
 import statements as ST
+import research_protocol as RP
 
 IN.assert_balance_sheet_foots()
+BS26_FOOT = IN.assert_balance_sheet_1q26_foots()
 
 
 def main():
@@ -34,23 +36,36 @@ def main():
     waccs, grid = V2.sensitivity()
     cfos = [CF["lo"], 0.060, CF["mid"], 0.120, CF["hi"]]
     gv = [row for _c, row in grid]
-    base = V2.run(CF["mid"], W["wacc_rating"])
-    base_cds = V2.run(CF["mid"], W["wacc_cds"])
-    low = V2.run(CF["lo"], W["wacc_rating"])
-    high = V2.run(CF["hi"], W["wacc_rating"])
-    implied = V2.implied_conversion(V2.SPOT, W["wacc_rating"])
+    S = V2.SCHEDULES["rating"]
+    base = V2.run(CF["mid"], S)
+    base_cds = V2.run(CF["mid"], V2.SCHEDULES["cds"])
+    low = V2.run(CF["lo"], S)
+    high = V2.run(CF["hi"], S)
+    implied = V2.implied_conversion(V2.SPOT, S)
 
     gross_debt = sum(r["value"] for r in IN.DEBT_FY25.values())
     out = {
         "meta": {
             "ticker": "PHDC", "name": "Palm Hills Developments",
             "exchange": "EGX", "market": "EG", "currency": "EGP",
-            "edition": "2026-08-30", "prior_edition": "2026-06-11",
+            "edition": "2026-09-02", "prior_edition": "2026-08-30",
+            "edition_note": ("interim edition applying the three corrections of the "
+                             "01-Sep-2026 valuation review: bridge, book lens and debt "
+                             "stack on the 31-Mar-2026 reviewed balance sheet; minority "
+                             "interests deducted at their share of value; normalised "
+                             "earnings capitalised at cost of equity less growth. The "
+                             "discount rate and the lens weights are unchanged."),
             "base_year": 2025, "information_set_ends": "1Q2026",
+            "bridge_balance_sheet": IN.BRIDGE_BS_DATE,
+            "standard_version": RP.STANDARD_VERSION,
+            "spot": 15.20, "spot_date": "close 23 Aug 2026",
         },
-        "registry": {k: v for g in (IN.ACTUALS, IN.BALANCE_SHEET_FY25, IN.DEBT_FY25,
-                                    IN.OPERATING, IN.MARKET) for k, v in g.items()},
+        "registry": {**{k: v for g in (IN.ACTUALS, IN.BALANCE_SHEET_FY25, IN.DEBT_FY25,
+                                       IN.OPERATING, IN.MARKET) for k, v in g.items()},
+                     **{k + "_1q26": v for k, v in IN.BALANCE_SHEET_1Q26.items()}},
         "balance_sheet_fy24": IN.BALANCE_SHEET_FY24,
+        "balance_sheet_1q26": IN.BALANCE_SHEET_1Q26,
+        "balance_sheet_1q26_foot": BS26_FOOT,
         "balance_sheet_subtotals": IN.BALANCE_SHEET_SUBTOTALS,
         "historical_is": IN.HISTORICAL_IS,
         "fy24_cogs_basis": {"as_reported": IN.FY24_COGS_AS_REPORTED,
@@ -58,10 +73,21 @@ def main():
         "gaps": IN.GAPS,
         "wacc": W,
         "derived": {
-            "gross_debt": gross_debt,
-            "net_debt": gross_debt - VAL.V["cash"],
+            "gross_debt": gross_debt,                       # FY2025, the projection's base year
+            "net_debt": gross_debt - VAL.V["cash"],         # FY2025, for the projected statements
+            "gross_debt_bridge": BU.GROSS_DEBT_BRIDGE,      # 31-Mar-2026, what the bridge deducts
+            "cash_bridge": BU.BS_BRIDGE["cash"],
+            "net_debt_bridge": BU.NET_DEBT_BRIDGE,
+            "bridge_balance_sheet": BU.BRIDGE_BS_DATE,
+            "nci_value_share": BU.NCI_VALUE_SHARE,
+            "nci_profit_share_3y": BU.NCI_PROFIT_SHARE_3Y,
+            "nci_book_1q26": BU.NCI_BOOK_1Q26,
+            "nci_book_share_1q26": BU.NCI_BOOK_SHARE_1Q26,
+            "nci_basis": BU.NCI_BASIS,
             "shares_mn": VAL.SHARES_MN,
-            "book_equity_per_share": VAL.V["total_equity"] / VAL.SHARES_MN,
+            "book_equity_per_share": BU.BS_BRIDGE["equity_parent"] / VAL.SHARES_MN,
+            "book_equity_per_share_basis": "equity attributable to the parent, 31 March 2026, over parent shares",
+            "book_equity_per_share_30aug_edition": VAL.V["total_equity"] / VAL.SHARES_MN,
             "gross_margin_fy25": VAL.GM_FY25,
             "gross_margin_1q26": VAL.GM_1Q26,
             "sga_ratio_fy25": VAL.SGA_RATIO,
@@ -70,8 +96,9 @@ def main():
             "cpi_trailing3": VAL.CPI3,
             "target_backlog_multiple": VAL.TARGET_BACKLOG_MULT,
             "market_implied_cash_conversion": implied,
-            "prior_edition_wacc": 0.18,
-            "prior_edition_fair": {"bear": 7.62, "base": 15.89, "full": 24.92},
+            "edition_11jun_wacc": 0.18,      # the 11-Jun-2026 edition's typed rate, kept for the narrative
+            "prior_edition_fair": {"bear": 4.5998, "base": 10.9412, "full": 23.3342},   # 30-Aug-2026 edition
+            "prior_edition_lenses": {"dcf_base": 14.86, "book": 6.56, "nep_base": 5.17},
         },
         "cases": {"low_conversion": low, "base": base,
                   "base_cds_erp": base_cds, "high_conversion": high},
@@ -104,8 +131,117 @@ def main():
             "rows": BU.build()["rows"],
             "anchors": BU.build()["anchors"],
         },
+        # [R-BRIDGE-01] the bridge as a RECORD, so the standing rules are checked
+        # from outside the study rather than trusted inside it
+        "bridge_record": {
+            "market": "EG",
+            "balance_sheet_date": IN.BRIDGE_BS_DATE,
+            "latest_disclosed_date": IN.BRIDGE_BS_DATE,
+            "latest_disclosed_source": (
+                "PHD consolidated financial statements for the three months ended 31 March 2026 "
+                "(limited review report attached), downloaded 01-Sep-2026 from the company's own "
+                "result centre; registered line by line in bs_1q2026.json and accepted only "
+                "because its own subtotals foot. The company had published no later statement at "
+                "this edition's date — the half-year 2026 filing was not out."),
+            # the ADDITIVE lines only: the waterfall's own components, not the
+            # subtotals it prints beside them, so the record foots by construction
+            "lines": [{"label": lbl, "value": val} for lbl, val in
+                      V2.bridge(V2.lenses()["dcf"]["base"])
+                      if lbl.startswith(("Present value", "less", "plus"))],
+            "nci": {
+                "basis": "value_share",
+                "deduction": V2.lenses()["dcf"]["base"]["nci_deduction"],
+                "applied_to": "equity_value",
+                "proxy_source": (
+                    "the minority's filed share of FY2025 profit after tax "
+                    "(EGP 207.2mn of 4,423.8mn) — the company does not disclose the "
+                    "subsidiaries carrying the minority with their own economics, so their "
+                    "value cannot be built directly"),
+                "book": BU.NCI_BOOK_1Q26,
+                "profit_share": BU.NCI_VALUE_SHARE,
+                "proportional": BU.NCI_BOOK_SHARE_1Q26,
+            },
+            "cash": {
+                "treatment": "inside_the_flow",
+                "weights_basis": "gross",
+                "note": ("Cash is inside net debt, which is deducted once; the discount-rate "
+                         "weights stand on GROSS debt, so no balance is netted twice. The "
+                         "company is net DEBT, so the net-cash pathology cannot arise here."),
+            },
+            "associates": {"basis": "book", "listed": False,
+                           "note": "no associate of this company is separately listed"},
+            "dividend": {"deducted": False,
+                         "note": "the company has not paid a cash dividend"},
+            "equity_value": V2.lenses()["dcf"]["base"]["equity"],
+            "shares_mn": VAL.SHARES_MN,
+            "per_share": V2.lenses()["dcf"]["base"]["per_share"],
+        },
         "lenses": V2.lenses()["rows"],
         "lens_weighted": V2.lenses()["weighted"],
+        "lens_detail": {k: V2.lenses()[k] for k in ("normalised_inputs", "book_reference")},
+        # [R-LENS-03] the architecture as a record the outside gate reads
+        "lens_record": {
+            "class": "real-estate developer, off-plan, percentage-of-completion",
+            "primary": {"kind": "dcf", "value": V2.lenses()["primary"]["value"],
+                        "range": {"low": V2.lenses()["rows"][0][1],
+                                  "high": V2.lenses()["rows"][0][3]},
+                        "range_note": ("the cash-flow lens across the full observed range of "
+                                       "the crux — cash conversion — with the whole schedule "
+                                       "shifted rather than flattened"),
+                        "note": ("the cash-flow lens on the company's own units and prices, "
+                                 "discounted on the cost-of-capital schedule over a window "
+                                 "that runs until growth has converged on the terminal")},
+            "cross_checks": [
+                {"kind": "relative_multiple", "value": V2.lenses()["relative"]["base"],
+                 "multiple_source": ("the multiples PHDC's own shares have carried over five "
+                                     "years of its own history, 6x to 14x trailing earnings")},
+                {"kind": "book_value", "value": V2.lenses()["book"], "present_value": False,
+                 "note": ("shareholders' funds attributable to the parent at 31 March 2026, "
+                          "per share: a disclosed floor, published as such and carrying no "
+                          "weight")},
+            ],
+            "retired_lenses": [
+                {"kind": "normalised_earnings",
+                 "why": ("not a lens for this class. A developer recognising revenue on "
+                         "completion reports earnings that are an accident of which project "
+                         "completed in which year, and capitalising a mid-cycle figure treats "
+                         "that schedule as a steady state. It was this study's lowest read and "
+                         "carried a fifth of the retired blend's weight; the working is kept "
+                         "as a disclosed diagnostic and carries no value claim.")},
+            ],
+            "envelope": V2.lenses()["envelope"],
+            "central": V2.lenses()["primary"]["value"],
+        },
+        # [R-MACRO-01] every growth rate, stored so it recomputes
+        "macro_record": {
+            "market": "EG",
+            "path_as_of": V2.PATH.as_of,
+            "growth_lines": [
+                {"name": "selling price and cost per delivered unit",
+                 "years": [r["year"] for r in BU.build()["rows"]],
+                 "nominal": [round(BU.price_growth(r["year"]), 6)
+                             for r in BU.build()["rows"]],
+                 "real": 0.0,
+                 "basis": ("the house inflation path, zero real: price and cost escalate "
+                           "together so the margin is an OUTPUT")},
+                {"name": "units delivered",
+                 "years": [r["year"] for r in BU.build()["rows"]],
+                 "nominal": [round(BU.delivery_growth(i), 6)
+                             for i in range(1, len(BU.build()["rows"]) + 1)],
+                 "exempt_reason": ("a physical handover rate, not a price: the company's own "
+                                   "disclosed 15% run, faded to nothing over ten years "
+                                   "because it is limited by what it can build and its order "
+                                   "book is finite")},
+            ],
+            "terminal": {"g_nominal": V2.TG, "real": V2.TERMINAL_REAL_GROWTH,
+                         "rf": V2.SCHEDULES["rating"].rf_terminal,
+                         "inflation_in_rf": V2.PATH.terminal_inflation},
+            "explicit_years": len(BU.build()["rows"]),
+            "growth_at_horizon_end": round(
+                BU.build()["rows"][-1]["revenue"] / BU.build()["rows"][-2]["revenue"] - 1, 6),
+        },
+        # [R-COC-01] the schedule, on this study's CENTRAL basis
+        "cost_of_capital_record": W["cost_of_capital_record"],
         "bridge": [list(x) for x in V2.bridge(V2.lenses()["dcf"]["base"])],
         "ranged_revenue": V2.ranged_revenue(),
         "dcf_cases": {k: {kk: vv for kk, vv in v.items()}
@@ -132,9 +268,9 @@ def main():
                                 "low": ST.CONV_LO, "high": ST.CONV_HI},
             "framing_a": ST.project("cycle"),
             "framing_b": ST.project("conversion"),
-            "dcf_a": ST.bridge(ST.project("cycle"), W["wacc_rating"], V2.TG,
+            "dcf_a": ST.bridge(ST.project("cycle"), S, V2.TG,
                                "cycle"),
-            "dcf_b": ST.bridge(ST.project("conversion"), W["wacc_rating"],
+            "dcf_b": ST.bridge(ST.project("conversion"), S,
                                V2.TG, "conversion"),
             "capex_ratio": ST.CAPEX_RATIO, "dividend": ST.DIVIDEND,
             "min_cash": ST.MIN_CASH, "other_assets": ST.OTHER_ASSETS,
@@ -153,6 +289,16 @@ def main():
             "bridge_residual_all_drivers_correct": 0.130,
         },
     }
+    # [R-LENS-03] the central IS the class primary, not a blend of lenses
+    out["central"] = out["lens_record"]["primary"]["value"]
+    out["standard_version"] = RP.STANDARD_VERSION   # read by campaign_queue.py; never typed
+    out["spot"] = 15.20
+    out["meta"]["central"] = out["central"]
+    out["meta"]["gap_vs_spot"] = out["central"] / out["spot"] - 1
+    out["meta"]["central_note"] = (
+        "the cash-flow lens — the class primary — which IS the central under the lens "
+        "architecture of 02-Sep-2026. The cross-checks are published beside it and define "
+        "the range; nothing is averaged. Written by the builder, never by hand.")
     json.dump(out, open(os.path.join(HERE, "study_numbers.json"), "w"),
               indent=1, default=str)
     n = sum(1 for _ in json.dumps(out))
