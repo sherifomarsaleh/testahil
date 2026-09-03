@@ -30,7 +30,7 @@
   "Day 0: main merged into the branch (EGCH in), six conflicts resolved, digest renamed PROJECT_INSTRUCTIONS_02-09-2026.md rev 2026-09-02a, fourteen gates green",
   "Day 0: primary documents re-fetched and sha256-verified against the committed registers — PHDC 88/88, AMOC 36/36, EGCH 10/10, TMGH 136/138 (two earnings releases unrecoverable: FY2020 release 502 at the proxy, 1H2021 release 404 at the company's archive) — statements kept under engine/*_walkforward/filings/ (gitignored)",
   "Day 0: standard_version + central/spot stamps in phdc and tmgh build_numbers.py; PHDC gate re-run so the campaign queue reads 2026.09.01",
-  "Day 1-2: TMGH class-A interim edition 2 (02-09-2026): sales held flat in real terms (SALES_FADE 1.15) and minority deducted at its share of value; central 69.92 vs spot 97.80 (-28.5%, was -60%); 16 sheets, 85 recalcs 0 mismatches, scrub 0, QC gate clean; fv_movement edition 2; publish queue carries the 02-09 files",
+  "Day 1-2: TMGH re-issued (02-09-2026): sales held flat in real terms (SALES_FADE 1.15) and minority deducted at its share of value. THE FIGURES THIS ENTRY ORIGINALLY CARRIED WERE STALE AND ARE CORRECTED HERE against the committed numbers file: the delivered central is 91.83 against a spot of 97.80, -6.10% — not 69.92 / -28.5%, which belonged to an earlier edition; and fv_movement records the delivered files as edition 3, not the class-A interim. Found by the QC audit of that edition, which was briefed from this entry and checked it against the artefacts instead of repeating it.",
   "Plan Gantt rebuilt as a data-driven table (markdown, page, Word) after the principal reported the block-character chart rendering wrong; docx builder committed",
   "Day 1-2: PHDC class-A interim edition 2 (02-09-2026): bridge/book/debt on the 31-Mar-2026 reviewed sheet, minority at its share of value, normalised earnings at ke less growth; central 11.45 vs spot 15.20 (-24.7%, was -28.0%); 16 sheets, 88 recalcs 0 mismatches, scrub 0, gate clean; fv_movement edition 2; publish queue re-staged",
   "WS2 [R-MACRO-01] done: engine/macro_path.py + macro_paths/{7}.json (EG sourced, six pending and refusing), assert_macro_coherence, check_macro_coherence + negative control (12/12), Cost_of_Capital_Reference.md generated, CI wired, both governing documents amended to rev 2026-09-02b. The house path reproduces AMOC's corrected terminal exactly.",
@@ -86,10 +86,11 @@
   "Day 3: L-068, L-069, L-070, L-071 registered (register at 103)"
  ],
  "next": [
+  "TMGH edition 2/3 is NOT DELIVERABLE per QC_GATE_02-09-2026.md — 14 defects, 4 material: both documents dated 1 Sep against a 2 Sep edition; the §1.1 bridge does not divide (244,183/2,060.7 = 118.50, the page prints 113.24); §1.5 is the prior edition's prose on this edition's numbers; and [R-MACRO-01] twice, including 19.8% revenue growth in the last explicit year against a declared 7.00% terminal",
+  "assert_reverse_dcf's by-name exemptions (lenses.py, docx_arcc.py) are ad hoc: TMGH puts implied_discount_rate in study_numbers.json, which [R-ENF-05]'s letter forbids, while nothing computes from it — every use is display. Purpose satisfied, device broken; resolve deliberately rather than by widening the check",
   "AMOC: re-run every contested alternative through the DELIVERED bridge, then its [R-ENF-05] records — a study re-issue, not a note (L-070)",
   "AMOC: compute.py's prose calls gross-debt weights 'the construction this study rejects' while bridge_record records gross as adopted; the numbers say the bridge record is current, so the prose is what needs correcting",
   "EGCH: [R-ENF-05] records on a two-sided central — decide which side the reverse read is solved against, or solve both",
-  "TMGH: collect the edition-2 QC gate from the audit and prune the deliverables ratchet",
   "EGCH and ARCC share counts from the OCR now running, footed the same way",
   "TMGH 2023 has no cash cell in its own committed panel — a gap in that run's parse, not in the census probe",
   "the five IMF WEO vintages (2014, 2020-2023) — blocked by an IMF interstitial that defeats curl and a headless browser; an access limit, not a design gap",
