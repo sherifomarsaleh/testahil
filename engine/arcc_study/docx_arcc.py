@@ -413,12 +413,15 @@ P(f'Depreciation and amortisation is disclosed in the cash flow statement: EGP '
   f'revenue, and it is small for a cement plant.')
 P(f'It is small for a reason that matters to the valuation. The plant dates from around '
   f'2010 and the accounts are prepared on a historical-cost basis; the pound has devalued '
-  f'several times since. Net property, plant and equipment is EGP {n0(IN["ppe_fy25"])}mn, '
-  f'which on {n1(IN["cap_cement_mt"])}Mt of capacity is about USD '
-  f'{n0((IN["ppe_fy25"]+IN["auc_fy25"])/IN["cap_cement_mt"]/IN["fx"])} per annual tonne '
-  f'including construction in progress — against a replacement cost of USD '
-  f'{n0(IN["repl_usd_t"])}. The book is carrying the plant at roughly a tenth of what one '
-  f'would cost to build.')
+  f'several times since. Net property, plant and equipment is EGP {n0(IN["ppe_fy25"])}mn '
+  f'and assets under construction a further EGP {n0(IN["auc_fy25"])}mn; the EGP '
+  f'{n0(IN["ppe_fy25"]+IN["auc_fy25"])}mn together, on {n1(IN["cap_cement_mt"])}Mt of '
+  f'capacity, is about USD '
+  f'{n0((IN["ppe_fy25"]+IN["auc_fy25"])/IN["cap_cement_mt"]/IN["fx"])} per annual tonne — '
+  f'against a replacement cost of USD {n0(IN["repl_usd_t"])}. The book is carrying the '
+  f'plant at '
+  f'{pc((IN["ppe_fy25"]+IN["auc_fy25"])/IN["cap_cement_mt"]/IN["fx"]/IN["repl_usd_t"])} of '
+  f'what one would cost to build.')
 rows = [['EGP mn', 'FY2023', 'FY2024', 'FY2025']]
 rows.append(['Depreciation and amortisation'] + [n0(x) for x in H['dna']])
 rows.append(['Capital expenditure'] + [n0(x) for x in H['capex']])
@@ -460,38 +463,54 @@ P(f'The cost of DEBT is the line the audited accounts changed most. During 2025 
   f'injection, and a EUR 3.09mn National Bank of Egypt facility under a KfW '
   f'industrial-pollution programme at six-month Euribor plus 3%. '
   f'{pc(KDG["eur_share"])} of the interest-bearing book is now euro-denominated.')
-rows = [['Facility', 'Balance (EGP mn)', 'Currency', 'Contractual rate']]
+rows = [['Facility', 'Balance (EGP mn)', 'Currency', 'Contractual rate',
+         'Pound-equivalent cost']]
 rows.append(['CIB credit facilities', n0(IN['debt_cib_fy25']), 'EGP',
-             f'corridor + 0.6% = {pc(KDG["kd_cib"], 2)}'])
+             f'corridor + 0.6% = {pc(KDG["kd_cib"], 2)}', pc(KDG['kd_cib'], 2)])
 rows.append(['National Bank of Egypt / KfW', n0(IN['debt_nbe_fy25']), 'EUR',
-             f'Euribor + 3.00% = {pc(KDG["kd_nbe"], 2)}'])
+             f'Euribor + 3.00% = {pc(KDG["kd_nbe"], 2)}',
+             pc(KDG['kd_nbe'] + IN['egp_dep_vs_eur'], 2)])
 rows.append(['European Bank for Reconstruction and Development', n0(IN['debt_ebrd_fy25']),
-             'EUR', f'Euribor + {pc(IN["ebrd_margin"], 2)} = {pc(KDG["kd_ebrd"], 2)}'])
-rows.append(['Lease liabilities', n1(IN['lease_fy25']), 'EGP', '—'])
-rows.append(['Blended cost of debt, adopted', n0(W['debt_total']),
-             f'{pc(KDG["eur_share"], 0)} EUR', pc(KDG['kd_blended'], 2)])
-table(rows, [2.60, 1.20, 1.00, 1.60], band_rows={5})
-caption('Table 5 — The debt book, facility by facility, from the audited borrowings note. '
-        'The blended rate is built in the model from these four lines, not pasted.')
+             'EUR', f'Euribor + {pc(IN["ebrd_margin"], 2)} = {pc(KDG["kd_ebrd"], 2)}',
+             pc(KDG['kd_ebrd'] + IN['egp_dep_vs_eur'], 2)])
+rows.append(['Lease liabilities', n1(IN['lease_fy25']), 'EGP',
+             f'marginal pound rate = {pc(KDG["kd_cib"], 2)}', pc(KDG['kd_cib'], 2)])
+rows.append(['Weighted average', n0(W['debt_total']),
+             f'{pc(KDG["eur_share"], 0)} EUR', pc(KDG['kd_contracted'], 2),
+             pc(KDG['kd_blended'], 2)])
+table(rows, [2.10, 0.95, 0.80, 1.45, 1.20], band_rows={5})
+caption('Table 5 — The debt book, facility by facility, from the audited borrowings note, '
+        'and the rate ADOPTED is the last column. A euro loan is not a cheap loan to a '
+        'company that earns pounds: the contractual coupon has to carry the expected '
+        f'{pc(IN["egp_dep_vs_eur"], 0)} annual pound depreciation against the euro before '
+        'it can be compared with a pound rate or applied to pound cash flows. Both columns '
+        'weight to the figures shown, from these four lines and nothing pasted; the '
+        'contractual weighted average is published beside the adopted one so the reader can '
+        'see the whole of the difference.')
 P(f'Three checks are published rather than asserted, because a contractual rate is not the '
   f'same thing as a rate paid. Interest expense over average interest-bearing debt gives '
   f'{pc(KDG["eff_fy24"], 2)} in FY2024, {pc(KDG["eff_fy25"], 2)} in FY2025 and '
   f'{pc(KDG["eff_q126_annualised"], 2)} annualising the first quarter of 2026. The '
-  f'contractual {pc(KDG["kd_blended"], 2)} sits ABOVE all three, and the gap is not a '
+  f'adopted {pc(KDG["kd_blended"], 2)} sits ABOVE all three, and the gap is not a '
   f'reconciling item to be smoothed: the book re-based mid-year, so the trailing average '
   f'balance is not what carried the interest, and the borrowing that funds an asset still '
   f'under construction has its interest capitalised into that asset rather than expensed. '
-  f'The marginal contractual rate is the right one for a forward-looking discount rate, and '
-  f'the gap is disclosed so the reader can disagree.')
-P(f'One caution belongs next to that number. Adopting the contracted euro rate means the '
-  f'euro debt is NOT compensated for pound depreciation beyond what this study\'s own '
-  f'currency path already assumes. Loading the euro legs with '
-  f'{pc(IN["egp_dep_vs_eur"], 0)} annual pound depreciation under interest parity gives a '
-  f'pound-equivalent cost of debt of {pc(KDG["kd_egp_equivalent"], 2)} — nearly twice the '
-  f'adopted figure. The alternative is computed as a VALUE and not merely described: it is '
-  f'worth {sg(CON[0]["effect"])} of the cash-flow lens, because debt is only '
+  f'A marginal forward-looking rate is the right one for a discount rate, and the gap is '
+  f'disclosed so the reader can disagree.')
+P(f'One caution belongs next to that number, and it runs the other way from the one a '
+  f'reader might expect. The alternative here is the CONTRACTED euro rate — the coupon as '
+  f'written, {pc(KDG["kd_contracted"], 2)} blended — and adopting it would mean the euro '
+  f'debt is NOT compensated for pound depreciation beyond what this study\'s own currency '
+  f'path already assumes. This study does not adopt it. Loading the euro legs with '
+  f'{pc(IN["egp_dep_vs_eur"], 0)} annual pound depreciation under interest parity, which is '
+  f'what a company earning pounds actually bears on a euro loan, is what produces the '
+  f'adopted {pc(KDG["kd_egp_equivalent"], 2)} — '
+  f'{n1(KDG["kd_egp_equivalent"]/KDG["kd_contracted"])} times the contracted figure. The '
+  f'cheaper alternative is computed as a VALUE and not merely described: it is worth '
+  f'{sg(CON[0]["effect"])} of the cash-flow lens, because debt is only '
   f'{pc(W["wd_gross"])} of the capital structure. A large swing in a small weight is still '
-  f'a small effect, and saying so is not the same as dismissing it.')
+  f'a small effect, and saying so is not the same as dismissing it. The adopted rate is the '
+  f'MORE conservative of the two.')
 rows = [['', 'Explicit window', 'Terminal']]
 rows.append(['Risk-free rate', pc(IN['rf'], 2), pc(IN['rf_term'], 2)])
 rows.append(['Less sovereign default spread', f'({pc(IN["sov_spread_cds"], 2)})', '—'])
@@ -1150,14 +1169,16 @@ for head, body in [
      f'published indices. The company discloses despatch volumes in its investor material, '
      f'which would settle it; that material could not be reached from here, and the '
      f'audited statements are image-only scans that carry no volume table.'),
-    ('The cost of debt is contractual, not paid. ', f'The blended '
-     f'{pc(KDG["kd_blended"], 2)} sits above the {pc(KDG["eff_fy25"], 2)} that FY2025 '
-     f'interest over average debt gives and the {pc(KDG["eff_q126_annualised"], 2)} the '
-     f'first quarter of 2026 annualises to, because the book re-based mid-year and interest '
-     f'on assets still under construction is capitalised. Adopting the contracted euro rate '
-     f'also means the euro debt is not compensated for pound depreciation beyond the '
-     f'currency path assumed here; the pound-equivalent alternative is '
-     f'{pc(KDG["kd_egp_equivalent"], 2)} and is worth {sg(CON[0]["effect"])}.'),
+    ('The cost of debt is marginal and pound-equivalent, not the coupon as written. ',
+     f'The adopted {pc(KDG["kd_blended"], 2)} carries the euro legs at the pound cost a '
+     f'company earning pounds actually bears, against a contracted blend of '
+     f'{pc(KDG["kd_contracted"], 2)}. It sits above the {pc(KDG["eff_fy25"], 2)} that '
+     f'FY2025 interest over average debt gives and the '
+     f'{pc(KDG["eff_q126_annualised"], 2)} the first quarter of 2026 annualises to, because '
+     f'the book re-based mid-year and interest on assets still under construction is '
+     f'capitalised. Adopting the contracted rate instead would leave the euro debt '
+     f'uncompensated for pound depreciation beyond the currency path assumed here, and is '
+     f'worth {sg(CON[0]["effect"])}.'),
     ('Half a year has been turned into a whole one, and that is the largest assumption '
      'here. ', f'The forecast starts from the reviewed six months to 30 June 2026 — revenue '
      f'of EGP {n0(IN["rev_h1_26"])}mn at a {pc(IN["gp_h1_26"]/IN["rev_h1_26"])} gross '
