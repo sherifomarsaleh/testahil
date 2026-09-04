@@ -92,12 +92,16 @@ P('The one thing that could have made this a two-legged valuation has already be
 
 box([('One thing to fix in your head before reading the history. ',
       f'Profit after tax of EGP {n0(H["pat"][1])} million in FY2024 on revenue of EGP '
-      f'{n0(H["revenue"][1])} million is a 48% net margin. No cement plant earns that from '
+      f'{n0(H["revenue"][1])} million is a '
+      f'{pc(H["pat"][1] / H["revenue"][1], 0)} net margin. No cement plant earns that from '
       f'making cement. That year contains the Sinai White disposal gain of roughly EGP '
-      f'{n0(DISP["gain"])} million. Strip it and underlying FY2024 profit was EGP '
+      f'{n0(DISP["gain"])} million and treasury income of EGP {n0(H["treasury"][1])} '
+      f'million. THE UNDERLYING FIGURE IS NOT THE REPORTED PROFIT LESS THE GAIN: it is '
+      f'operating profit of EGP {n0(H["ebit"][1])} million plus that treasury income, '
+      f"taxed at the effective {pc(IN['tax_eff'], 1)}, which is EGP "
       f'{n0(DISP["underlying_fy24_pat"])} million — so FY2025 profit '
-      f'{sg(H["pat"][2]/DISP["underlying_fy24_pat"]-1, 0)} rather than falling 25% as the '
-      'headline comparison suggests.')])
+      f'{sg(H["pat"][2]/DISP["underlying_fy24_pat"]-1, 0)} rather than '
+      f'{sg(H["pat"][2]/H["pat"][1]-1, 0)} as the headline comparison suggests.')])
 
 figure('fig7_bridge.png', 6.7,
        'Figure 2 — Profit after tax across three years, and what FY2024 actually contained.')
