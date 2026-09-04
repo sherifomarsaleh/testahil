@@ -1,0 +1,348 @@
+{
+ "source": {
+  "FY2025": {
+   "file": "filings/SCC-AFS-E-1225.pdf",
+   "kind": "audited",
+   "period_end": "2025-12-31",
+   "auditor": "Medhat Ghaly / Albert Edward",
+   "route": "OCR off the rendered pixels; the filing carries a 37-byte text layer across 37 pages"
+  },
+  "FY2024": {
+   "file": "filings/SCC-AFS-E-1224.pdf",
+   "kind": "audited",
+   "period_end": "2024-12-31",
+   "auditor": "Medhat Ghaly / Albert Edward",
+   "route": "OCR off the rendered pixels"
+  },
+  "Q1_2026": {
+   "file": "filings/SCC-AFS-E-0326.pdf",
+   "kind": "reviewed",
+   "period_end": "2026-03-31",
+   "auditor": "Medhat Ghaly, report dated 11 May 2026",
+   "route": "OCR off the rendered pixels"
+  }
+ },
+ "income_statement": {
+  "FY2023": {
+   "sales": 4285470153,
+   "cogs": 3364587755,
+   "gross": 920882398,
+   "selling": 556987405,
+   "ga": 162657891,
+   "finance": 275591963,
+   "provisions": 4910710,
+   "total_expenses": 1000147969,
+   "operating": -79265571,
+   "pbt": -110108976,
+   "pat": -117581612,
+   "eps": -0.88,
+   "page": "FY2024 filing, page 3, comparative column"
+  },
+  "FY2024": {
+   "sales": 6428011851,
+   "cogs": 3775018888,
+   "gross": 2652992963,
+   "selling": 765354606,
+   "ga": 355437994,
+   "finance": 194386055,
+   "provisions": 37487827,
+   "total_expenses": 1352666482,
+   "operating": 1300326481,
+   "pbt": 3150036485,
+   "pat": 3072361811,
+   "eps": 23.09,
+   "page": "FY2024 filing, page 3"
+  },
+  "FY2025": {
+   "sales": 9089149688,
+   "cogs": 4632038855,
+   "gross": 4457110833,
+   "selling": 791121463,
+   "ga": 361535405,
+   "finance": 28517057,
+   "provisions": -28192283,
+   "total_expenses": 1152981642,
+   "operating": 3304129191,
+   "pbt": 3358865272,
+   "pat": 2284539004,
+   "eps": 10.29,
+   "page": "FY2025 filing, page 3"
+  },
+  "Q1_2026": {
+   "sales": 2135463626,
+   "cogs": 969246686,
+   "gross": 1166216940,
+   "selling": 184954169,
+   "ga": 99574502,
+   "finance": 3075771,
+   "provisions": 35224391,
+   "total_expenses": 322828833,
+   "operating": 843388107,
+   "pbt": 1531029452,
+   "pat": 1114478954,
+   "eps": 4.27,
+   "page": "Q1-2026 filing, page 3"
+  },
+  "Q1_2025": {
+   "sales": 2016196812,
+   "cogs": 1115434502,
+   "gross": 900762310,
+   "selling": 189852789,
+   "ga": 62054388,
+   "finance": 11806633,
+   "provisions": 32487104,
+   "total_expenses": 296200914,
+   "operating": 604561396,
+   "pbt": 639671508,
+   "pat": 194252006,
+   "eps": 1.46,
+   "page": "Q1-2026 filing, page 3, comparative column"
+  }
+ },
+ "dna": {
+  "FY2023": {
+   "depreciation": 87210904,
+   "amortisation": 19023,
+   "page": "FY2024 filing, page 6, comparative column"
+  },
+  "FY2024": {
+   "depreciation": 88786811,
+   "amortisation": 1963206,
+   "page": "FY2024 filing, page 6"
+  },
+  "FY2025": {
+   "depreciation": 99209674,
+   "amortisation": 23349222,
+   "page": "FY2025 filing, page 6; depreciation agrees with note 4 and amortisation with note 5"
+  }
+ },
+ "capex": {
+  "FY2023": {
+   "fixed_assets": 43041892,
+   "cwip": 77785335,
+   "page": "FY2024 filing, page 6, comparative column"
+  },
+  "FY2024": {
+   "fixed_assets": 320960258,
+   "cwip": 205447467,
+   "page": "FY2024 filing, page 6"
+  },
+  "FY2025": {
+   "fixed_assets": 339330933,
+   "cwip": -76933449,
+   "page": "FY2025 filing, page 6; the construction line is a RELEASE in FY2025, CWIP falling from 344.6mn to 267.7mn"
+  }
+ },
+ "balance_sheet": {
+  "FY2024": {
+   "fixed_assets": 1026166835,
+   "intangibles": 162269152,
+   "cwip": 344607261,
+   "fin_inv_affiliates": 25039500,
+   "fvoci": 65010,
+   "deferred_tax_asset": 145689339,
+   "total_non_current": 1703837098,
+   "inventories": 1049449935,
+   "debtors": 223320195,
+   "due_from_affiliates": 4170523,
+   "sundry_debtors": 77574168,
+   "other_debit": 599285115,
+   "cash": 1890505077,
+   "cash_blocked": 147466100,
+   "total_current": 3991771113,
+   "total_assets": 5695608211,
+   "capital": 1330658670,
+   "paid_under_increase": 1277466100,
+   "legal_reserve": 227163603,
+   "general_reserve": 29359411,
+   "retained": -2201209864,
+   "profit_for_year": 3072361812,
+   "equity": 3735799732,
+   "deferred_tax_liability": 0,
+   "lease_lt": 141240526,
+   "total_lt": 141240526,
+   "due_to_affiliates": 0,
+   "lease_st": 8717155,
+   "provisions": 121722580,
+   "st_loans_affiliates": 427905191,
+   "suppliers": 599922969,
+   "other_credit": 660300058,
+   "total_current_liab": 1818567953,
+   "total_liabilities": 1959808479,
+   "page": "FY2025 filing, page 2, comparative column"
+  },
+  "FY2025": {
+   "fixed_assets": 1265871591,
+   "intangibles": 138919931,
+   "cwip": 267673812,
+   "fin_inv_affiliates": 25039500,
+   "fvoci": 65010,
+   "deferred_tax_asset": 0,
+   "total_non_current": 1697569844,
+   "inventories": 876191093,
+   "debtors": 243390012,
+   "due_from_affiliates": 7806,
+   "sundry_debtors": 137574616,
+   "other_debit": 577635635,
+   "cash": 4762348666,
+   "cash_blocked": 0,
+   "total_current": 6597147828,
+   "total_assets": 8294717672,
+   "capital": 2608124770,
+   "paid_under_increase": 0,
+   "legal_reserve": 227163603,
+   "general_reserve": 29359411,
+   "retained": 871151948,
+   "profit_for_year": 2284539004,
+   "equity": 6020338736,
+   "deferred_tax_liability": 126684552,
+   "lease_lt": 111742265,
+   "total_lt": 238426817,
+   "due_to_affiliates": 20772778,
+   "lease_st": 25823623,
+   "provisions": 102403549,
+   "st_loans_affiliates": 0,
+   "suppliers": 652572902,
+   "other_credit": 1234379267,
+   "total_current_liab": 2035952119,
+   "total_liabilities": 2274378936,
+   "page": "FY2025 filing, page 2"
+  },
+  "Q1_2026": {
+   "fixed_assets": 1238709175,
+   "intangibles": 133082625,
+   "cwip": 517594972,
+   "fin_inv_affiliates": 25039500,
+   "fvoci": 65010,
+   "deferred_tax_asset": 0,
+   "total_non_current": 1914491282,
+   "inventories": 1010545613,
+   "debtors": 86358603,
+   "due_from_affiliates": 7806,
+   "sundry_debtors": 373407065,
+   "other_debit": 463766965,
+   "cash": 5801981716,
+   "cash_blocked": 0,
+   "total_current": 7736067768,
+   "total_assets": 9650559050,
+   "capital": 2608124770,
+   "paid_under_increase": 0,
+   "legal_reserve": 227163603,
+   "general_reserve": 29359411,
+   "retained": 3155690951,
+   "profit_for_year": 1114478954,
+   "equity": 7134817689,
+   "deferred_tax_liability": 295514623,
+   "lease_lt": 137620919,
+   "total_lt": 433135542,
+   "due_to_affiliates": 27953288,
+   "lease_st": 15089045,
+   "provisions": 102559424,
+   "st_loans_affiliates": 0,
+   "suppliers": 458406613,
+   "other_credit": 1478597449,
+   "total_current_liab": 2082605819,
+   "total_liabilities": 2515741361,
+   "page": "Q1-2026 filing, page 2"
+  }
+ },
+ "fixed_assets_fy2025": {
+  "buildings_utilities": {
+   "cost": 834757411,
+   "acc_dep": 298821711,
+   "dep_year": 19398364,
+   "rate_low": 0.02,
+   "rate_high": 0.025
+  },
+  "machinery_equipment": {
+   "cost": 2182615926,
+   "acc_dep": 1492350013,
+   "dep_year": 73240388,
+   "rate_low": 0.05,
+   "rate_high": 0.05
+  },
+  "motor_vehicles": {
+   "cost": 37425653,
+   "acc_dep": 23542358,
+   "dep_year": 1023883,
+   "rate_low": 0.2,
+   "rate_high": 0.2
+  },
+  "tools": {
+   "cost": 42816197,
+   "acc_dep": 34819519,
+   "dep_year": 1138979,
+   "rate_low": 0.2,
+   "rate_high": 0.2
+  },
+  "furniture_office": {
+   "cost": 43239967,
+   "acc_dep": 25449962,
+   "dep_year": 4408060,
+   "rate_low": 0.1,
+   "rate_high": 0.25
+  }
+ },
+ "fixed_assets_totals": {
+  "cost": 3140855154,
+  "acc_dep": 1874983563,
+  "dep_year": 99209674,
+  "nbv": 1265871591,
+  "fully_depreciated_in_use": 379375977
+ },
+ "disclosed_lives_note": "Note 3/2, Fixed assets and depreciation, audited statements for the year ended 31 December 2025, printed page 8: 'Depreciation is calculated on the basis of the straight-line method ... based on the estimated useful life of fixed assets and consistent with preceeding year, at the following rates: Buildings & Utilities 2% - 2.5%; Machinery 5%; Motor Vehicles 20%; Tools 20%; Furniture & Office equipment 10%-25%.' The FY2024 filing carries the identical table at printed page 9, which is the cross-check [R-TERM-01] requires.",
+ "corporate": {
+  "term_note": "Note 1, Activities: 'The company's term is twenty-five years, ending on 4/9/2032'. A disclosed finite term on a company valued as a perpetuity, recorded because it is disclosed; Egyptian company terms are routinely extended and no non-renewal is disclosed.",
+  "par_value": 10.0,
+  "shares_from_capital": 260.812477,
+  "shares_pre_increase": 133.065867,
+  "shares_wavg_fy2025": 222.01545228377068,
+  "shares_note": "Issued capital of EGP 2,608,124,770 over a par of EGP 10 gives 260,812,477 shares at 31-Dec-2025 and at 31-Mar-2026, and that count reproduces the reviewed quarter's printed EPS of 4.27. FY2025's printed EPS of 10.29 is struck on a weighted-average count of about 222.0mn, because the EGP 1,277,466,100 paid under capital increase converted during the year; FY2024 EPS of 23.09 reproduces exactly on the pre-increase 133,065,867. The count used for value per share is the CLOSING one."
+ },
+ "derived": {
+  "FY2023": {
+   "dna": 87.229927,
+   "ebit": 196.326392,
+   "ebitda": 283.556319,
+   "gross_margin": 0.2148848002955628,
+   "ebitda_margin": 0.06616691025172565,
+   "capex": 120.827227
+  },
+  "FY2024": {
+   "dna": 90.750017,
+   "ebit": 1494.712536,
+   "ebitda": 1585.462553,
+   "gross_margin": 0.4127237199457366,
+   "ebitda_margin": 0.24664897790338564,
+   "capex": 526.407725
+  },
+  "FY2025": {
+   "dna": 122.558896,
+   "ebit": 3332.646248,
+   "ebitda": 3455.205144,
+   "gross_margin": 0.4903770964279007,
+   "ebitda_margin": 0.3801461371641567,
+   "capex": 262.397484
+  },
+  "Q1_2025": {
+   "gross_margin": 0.44676308614260424,
+   "ebit": 616.368029
+  },
+  "Q1_2026": {
+   "gross_margin": 0.5461188501648587,
+   "ebit": 846.463878
+  },
+  "latest_sheet": {
+   "date": "2026-03-31",
+   "kind": "reviewed",
+   "cash": 5801.981716,
+   "interest_bearing_debt": 152.709964,
+   "net_cash": 5649.271752,
+   "equity": 7134.817689,
+   "note": "the company carries NO bank borrowings at either date; the whole of its interest-bearing debt is lease liabilities under EAS 49"
+  },
+  "weighted_disclosed_life_years": 25.916808856920643,
+  "machinery_life_years": 20.0,
+  "capex_to_book_dna_fy25": 2.1409909240696816
+ }
+}
