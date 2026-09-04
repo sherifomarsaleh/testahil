@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**212 lessons**, of which 183 bind on every study, 22 on a class of company, and 7 on a single name.
+**213 lessons**, of which 184 bind on every study, 22 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 137 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 138 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1908,6 +1908,16 @@ A blend looks like caution and behaves like camouflage. Where the primary lens d
 > **What it cost, or how we know.** One study's four lenses span a factor of 2.1: the declared PRIMARY cash-flow lens reads 18.89 against a market price of 11.36, +66.3%, while the relative and normalised lenses read 8.86 and 8.87, about -22%, and book reads 14.12. The published central is a typed 45/25/20/10 blend of them at 13.90, +22.4%. THE GAP GATE THEREFORE SEES +22% WHERE THE STUDY'S OWN PRIMARY LENS SAYS +66%, and the publication block, one-sided below the price, sees nothing at all. The direction is the OPPOSITE of the case that retired the blend, where a blend landed 28% below a market the cash-flow lens agreed with to within 2.2% — same mechanism, opposite direction, which is the point. It also fits the pooled valuation calibration's own diagnosis: a mean a tenth below the price with a median sitting on it is what masking produces, not what a bias produces.
 
 > **What would overturn it.** A blend whose weights have cleared an out-of-sample test, or evidence that the spread between lenses on a name is small enough that the choice cannot move the published gap by more than the gate's own tolerance.
+
+### L-292 · THE SEARCH THAT GETS SKIPPED IS THE CHEAP ONE, because the expensive one is what FEELS like diligence. An absence asserted after thorough work is still an absence asserted, and the thoroughness is what makes nobody check it.
+
+The register already says an empty probe is a probe that did not run [L-015, L-274, L-287]. Those are about a tool coming back with nothing. This is about the search never being run at all, while a HARDER search next to it was run carefully — which is worse, because the careful work is visible, it is real, and it buys the conclusion a credibility that nothing in it earned. Nobody re-checks a claim that arrives with four years of filings behind it.
+
+**Applies to:** every study  ·  *Learned from:* found while building, Three occurrences in one session, 04-Sep-2026
+
+> **What it cost, or how we know.** Three times in one day, each time the skipped search was the cheaper one. (1) A vessel price was declared not held after reading four years of PDF filings and an impairment note; two transacted prices were sitting in that study's own JSON input register, which was never opened. (2) The instrument reporting the book's blockers made the same assertion mechanically, reporting a capital base MISSING on twelve names while only ever looking for the assembled base and never for the per-unit price every corrected study built one from. (3) A note said the lens registry carried no telecom row and that a class decision was therefore needed; the registry is a dict of eleven lines and it carries one, and reading it made the finding SHARPER rather than softer — the lens carrying a fifth of that study's weight is not permitted for its class at all. In every case the expensive search was done properly and the cheap one was not.
+
+> **What would overturn it.** A case where an absence asserted after thorough expensive work turns out to have been checked cheaply first and the cheap check is what was wrong. The remedy this suggests is arithmetic rather than resolve: a record stating not held / not disclosed / cannot be obtained names the routes actually run, which is what [R-IND-01] already demands of an escalation and does not yet demand of a record.
 
 
 ---

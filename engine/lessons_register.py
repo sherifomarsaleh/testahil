@@ -4158,6 +4158,36 @@ LESSONS = [
       "spread between lenses on a name is small enough that the choice cannot move the "
       "published gap by more than the gate's own tolerance."),
 
+    L("L-292", "ALL", None,
+      "THE SEARCH THAT GETS SKIPPED IS THE CHEAP ONE, because the expensive one is what "
+      "FEELS like diligence. An absence asserted after thorough work is still an absence "
+      "asserted, and the thoroughness is what makes nobody check it.",
+      "The register already says an empty probe is a probe that did not run [L-015, "
+      "L-274, L-287]. Those are about a tool coming back with nothing. This is about the "
+      "search never being run at all, while a HARDER search next to it was run carefully — "
+      "which is worse, because the careful work is visible, it is real, and it buys the "
+      "conclusion a credibility that nothing in it earned. Nobody re-checks a claim that "
+      "arrives with four years of filings behind it.",
+      "Three occurrences in one session, 04-Sep-2026",
+      "build",
+      "Three times in one day, each time the skipped search was the cheaper one. (1) A "
+      "vessel price was declared not held after reading four years of PDF filings and an "
+      "impairment note; two transacted prices were sitting in that study's own JSON input "
+      "register, which was never opened. (2) The instrument reporting the book's blockers "
+      "made the same assertion mechanically, reporting a capital base MISSING on twelve "
+      "names while only ever looking for the assembled base and never for the per-unit "
+      "price every corrected study built one from. (3) A note said the lens registry "
+      "carried no telecom row and that a class decision was therefore needed; the registry "
+      "is a dict of eleven lines and it carries one, and reading it made the finding "
+      "SHARPER rather than softer — the lens carrying a fifth of that study's weight is "
+      "not permitted for its class at all. In every case the expensive search was done "
+      "properly and the cheap one was not.",
+      "A case where an absence asserted after thorough expensive work turns out to have "
+      "been checked cheaply first and the cheap check is what was wrong. The remedy this "
+      "suggests is arithmetic rather than resolve: a record stating not held / not "
+      "disclosed / cannot be obtained names the routes actually run, which is what "
+      "[R-IND-01] already demands of an escalation and does not yet demand of a record."),
+
 ]
 
 
