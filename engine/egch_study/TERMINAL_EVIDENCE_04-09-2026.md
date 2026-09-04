@@ -115,7 +115,68 @@ where it leaves the answer.
 3,815 of profit and driving the equity negative. The difference between a refusal and a
 +42% correction is one number, and it was sitting in the accounts.
 
-## 6. Why the rebuild has not shipped in this pass
+**AND IT BUILDS ON ALL FOUR OF THIS STUDY'S CASES, not just the one quoted.** That was worth
+testing before committing to the rebuild, because a case with a thinner profit and the same
+asset base is where a maintenance charge refuses:
+
+| case | terminal profit | book D&A | maintenance | terminal cash flow | payout | terminal | vs retired |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| base | 3,815 | 2,338 | 3,160 | 2,764 | 72.4% | 25,524 | +26.8% |
+| bull | 3,794 | 2,338 | 3,160 | 2,745 | 72.3% | 25,342 | +26.7% |
+| bear | 2,829 | 1,535 | 2,074 | 2,061 | 72.8% | 19,027 | +27.5% |
+| halt | 4,175 | 1,019 | 1,377 | 3,588 | 85.9% | 33,129 | +50.5% |
+
+No refusals; every payout sits inside [0, 1]. **The halt case gains most and that is
+coherent rather than odd:** a board that does not build the complex carries no project
+depreciation, so its profit is higher and its asset base smaller — and the sanctioned
+construction charges maintenance on the base rather than, as the retired one did, a
+reinvestment rate scaled to profit. A company with less plant to keep intact should be
+charged less for keeping it intact.
+
+## 6. The study already says this, in its own delivered words
+
+This is not a defect found from outside. The delivered document's own cost-of-capital
+section carries it:
+
+> *"The terminal reinvestment rate is now the largest unsourced input left in the model. It
+> is set by terminal growth over an assumed 18% return on invested capital, which charges
+> 38.9% of terminal operating profit after tax back into the business every year for ever —
+> **on a plant that has just been rebuilt and needs no further building.** … The conservative
+> reading is kept and the alternative is priced."*
+
+The diagnosis is exact and it is the study's own. What follows it is the move this
+programme keeps finding: **priced, named, and kept because it looked conservative.** It is
+the same shape as EMPOWER's terminal declared blocked, RIYADHCABLE's review ruling out its
+own correction, and EMPOWER's measured age withdrawn — and it is the largest single item in
+the most-disagreeing study in the book.
+
+The paragraph will need rewriting in the rebuild, and it is worth quoting here because it
+answers the obvious objection in advance: nobody has to be persuaded that this charge is
+wrong on this company. It was written down as wrong, and then kept.
+
+**AND THE STUDY'S OWN PRICE FOR THE CORRECTION LANDS WHERE THE SANCTIONED CONSTRUCTION
+DOES**, which is the strongest corroboration available and was not looked for. Its
+`alternatives.json` prices the reinvestment framing it declined — an 18% terminal return
+raised to the 30% "a newly completed line earns while it is still filling":
+
+| | per share |
+|---|---:|
+| published | 2.3109 |
+| the study's own priced alternative, on a raised return on capital | **3.2396** |
+| the sanctioned construction, on a measured-age maintenance charge | **3.2905** |
+| the two agree to | **1.6%** |
+
+**Two entirely different routes to the same place.** One raises an assumed return on
+capital inside the retired identity; the other throws the identity away and charges what
+keeping the plant intact costs on the age the accounts measure. They were built
+independently, months apart, and they differ by a percent and a half.
+
+This is worth contrasting with the two other cases in this programme where a study priced a
+correction it declined: RIYADHCABLE's review predicted −16.2% and the build gave +1.97%, and
+DU's predicted +5.6% against a built −2.6% — both wrong in sign. **Here the study's estimate
+was right, and what it got wrong was the decision to keep the number anyway.**
+
+## 7. Why the rebuild has not shipped in this pass
 
 Fixing this inside the study would mean either bypassing the sanctioned construction or
 feeding it a life it does not have, and a study quietly using a different escalator would be
