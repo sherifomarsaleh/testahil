@@ -52,7 +52,11 @@ def read(overrides=None):
                 nd30=bk.cell_value('Balance Sheet', 'I16'),
                 bear=bk.cell_value('Sensitivity', f"C{SN['bear_ps']}"),
                 bull=bk.cell_value('Sensitivity', f"C{SN['bull_ps']}"),
-                eflh25=bk.cell_value('Segments', 'C30'))
+                eflh25=bk.cell_value('Segments', 'C30'),
+                # the terminal's own lines, so a driver whose effect on the answer nearly
+                # cancels can still be asserted on the line it unambiguously moves
+                t_maint=bk.cell_value('DCF', 'C96'),
+                t_fcff=bk.cell_value('DCF', 'C99'))
 
 base = read()
 print('base:  ' + ' · '.join(f'{k} {v:,.4f}' for k, v in base.items()))
@@ -73,10 +77,23 @@ CASES = [
      'a dearer debt book raises the discount rate and the finance charge'),
     ('Corporate tax rate (headline framing)', 'C', +0.03, 'central', -1,
      'a higher tax rate cuts NOPAT throughout and must lower the valuation'),
-    ('Growth, FY2031-FY2040 window (stage one)', 'C', +0.005, 'central', +1,
-     'with returns above the cost of capital, growth adds value'),
-    ('Growth beyond FY2040 (stage two, perpetuity)', 'C', +0.002, 'central', +1,
-     'the long-run fade rate adds value the same way while returns clear the rate'),
+    # Growth is DERIVED from a real rate and the house inflation, so both are exercised.
+    # Real growth widens the perpetuity and costs the capital this company's own balance
+    # sheet says a unit of demand needs; inflation widens it too but escalates the cost of
+    # replacing the plant against it, so its direction is asserted on the line it moves
+    # unambiguously rather than on an answer where the two nearly cancel.
+    ('REAL growth, FY2031-FY2040 window (stage one)', 'C', +0.005, 'central', +1,
+     'real growth adds value once it is charged only for the capital another unit of '
+     'demand actually needs, rather than for rebuilding the whole plant every 1/g years'),
+    ('REAL growth beyond FY2040 (stage two) — NEGATIVE', 'C', +0.002, 'central', +1,
+     'a shallower real decline in the perpetuity is worth more than a steeper one'),
+    ('Terminal inflation — UAE house macro path', 'C', +0.005, 't_maint', -1,
+     'a higher terminal inflation escalates the cost of replacing the plant over half its '
+     'life, so the maintenance charge (a negative row) must grow'),
+    ('Weighted asset life, DERIVED from notes 5, 6 and 7 (years)', 'C', +5.0, 't_fcff', -1,
+     'on this basis the life sets the average VINTAGE of the plant rather than the '
+     'replacement frequency: a longer life means the assets carried were bought further '
+     'back, so replacing them today costs more against the depreciation already booked'),
     ('New connections by year (k RT)', 'B', +50.0, 'central', +1,
      'each added RT earns regulated per-RT revenue worth a multiple of its capex'),
     ('Consumption per-RT recovery level from FY2027 (share of FY2025)', 'C', +0.03,

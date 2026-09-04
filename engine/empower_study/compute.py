@@ -37,6 +37,8 @@ def I(value, source, date, ring):
     return dict(value=value, source=source, date=date, ring=ring)
 
 TH = 1e-3   # AED'000 -> AED mn
+FS25 = ("Audited consolidated financial statements for the year ended 31 December 2025, "
+        "signed 9 February 2026, obtained from the company's own investor-relations page")
 
 INP = dict(
     # ---- anchors ---------------------------------------------------------
@@ -238,13 +240,82 @@ INP = dict(
               "sovereign as a same-currency corporate must (2024 comparison: 5.993%; "
               "spot 3M EIBOR 3.66% + implied margin ~0.9-1.3%)", "2026-02-09",
               "Company"),
-    g_term=I(0.025, "Terminal growth: long-run UAE nominal-GDP-consistent 2.5% under a "
-             "flat regulated tariff — bounded by Dubai build-out saturation "
-             "(connected 1.7m of ~2.0m RT contracted; sensitised 1.5-3.5%)",
-             "2026-08-09", "House"),
+    g1_real=I(0.0049019607843137254,
+              "Stage-one REAL growth, and it is the RESIDUE of a volume assumption rather "
+              "than a rate anybody set: this company's tariff is REGULATED AND NOT "
+              "INDEXED, so nominal revenue growth IS volume growth. The previous edition "
+              "typed 2.5% nominal as the Dubai build-out rate (connected 1.7m of ~2.0m RT "
+              "contracted), and on the house terminal inflation of 2.0% that is +0.49% "
+              "real. STORING IT THIS WAY MOVES NO NUMBER HERE, which is the point worth "
+              "recording: on a frozen-tariff business a typed nominal rate carries a "
+              "meaning it does not carry elsewhere, and the storage rule makes that "
+              "visible instead of leaving a reader to compute it",
+              "2026-08-09", "House"),
+    g2_real=I(-0.004901960784313725,
+              "Stage-two REAL growth, and it is NEGATIVE — written down as the real number "
+              "it is rather than left inside a nominal 1.5%. The previous edition set "
+              "stage two at 1.5% nominal for 'long-run densification with about zero real "
+              "tariff growth', and against 2.0% inflation that is a real DECLINE of 0.49% "
+              "a year for ever. Under a tariff the regulator does not index, a business "
+              "whose volume grows more slowly than prices shrinks in real terms by "
+              "construction, and this rate says so",
+              "2026-08-09", "House"),
+    asset_life_years=I((10929327.0 - 432364.0 - 495858.0 + 22649.0 + 12157.0 * 30.0)
+                       / (352199.0 + 5361.0 + 12157.0),
+                       FS25 + ", notes 5, 6 and 7, DERIVED BY IDENTITY from those notes' "
+                       "own cost and charge columns and LABELLED as derived, and READ BY "
+                       "OCR OFF THE RENDERED PIXELS because the filing carries no usable "
+                       "text layer (85 bytes across 85 pages) and its property note is "
+                       "printed landscape, so the page was rotated before it could be "
+                       "read. ARITHMETIC IS THE ARBITER AND THE EXTRACTION FOOTS FOUR "
+                       "WAYS: the cost columns sum to the printed total of 10,929,327; the "
+                       "accumulated-depreciation columns to 3,734,337; cost less "
+                       "accumulated reproduces the balance sheet's 7,194,990; and the "
+                       "year's charge of 352,199 splits to the 341,696 in cost of sales "
+                       "and 10,503 in general and administrative expenses the notes state "
+                       "separately. Property, plant and equipment 10,001,105 (total less "
+                       "land, which is never depreciated, and less capital work in "
+                       "progress, whose accumulated column is impairment rather than "
+                       "depreciation) over 352,199 gives 28.40 years; right-of-use 22,649 "
+                       "over 5,361 gives 4.22; intangibles are DISCLOSED at 30 years "
+                       "outright and their gross cost follows from the flat charge. "
+                       "Blended, 28.10 years, cross-checked at 27.88 on FY2024's own "
+                       "columns. The right-of-use figure does NOT match the 15-year "
+                       "equipment lease the note names, and the note explains why rather "
+                       "than contradicting it: the book is 19,997 of buildings against "
+                       "2,652 of equipment, and the buildings are a head office and "
+                       "labour accommodation on ONE-YEAR terms",
+                       "2026-02-09", "Company"),
+    accum_dep_fy25=I((3734337.0 - 18013.0 + 20771.0) / 1000.0,
+                     FS25 + ", notes 5 and 6: accumulated depreciation at 31-Dec-2025 "
+                     "across the depreciable classes, less the capital-work-in-progress "
+                     "column which is impairment rather than depreciation. AED mn",
+                     "2026-02-09", "Company"),
+    dep_charge_fy25=I((352199.0 + 5361.0 + 12157.0) / 1000.0,
+                      FS25 + ", notes 5, 6 and 7: the year's own depreciation and "
+                      "amortisation charge on those classes. AED mn",
+                      "2026-02-09", "Company"),
 )
 
 V = {k: v['value'] for k, v in INP.items()}
+
+# ---- the house macro path supplies the inflation; this study may not carry one --
+import macro_path as MP                                                    # noqa: E402
+# aliased TERMVAL, not TV: 'tv' here is the terminal VALUE
+import terminal_value as TERMVAL                                           # noqa: E402
+_AE = MP.load('AE')
+PI_TERM = (_AE.raw['inflation']['terminal'] or {})['value']
+V['g_term'] = (1.0 + PI_TERM) * (1.0 + V['g1_real']) - 1.0
+V['g_term2'] = (1.0 + PI_TERM) * (1.0 + V['g2_real']) - 1.0
+INP['g_term_derived'] = I(V['g_term'], "DERIVED, never typed: (1 + terminal inflation "
+                          "%.4f from the house UAE macro path) x (1 + stage-one real "
+                          "growth %.4f) - 1. It reproduces the previous edition's typed "
+                          "2.50%% to the basis point, because under a tariff the regulator "
+                          "does not index a nominal rate IS a volume assumption."
+                          % (PI_TERM, V['g1_real']), _AE.as_of, "House")
+INP['g_term2_derived'] = I(V['g_term2'], "DERIVED: the same identity on the stage-two real "
+                           "rate, reproducing the previous edition's typed 1.50%%. A real "
+                           "DECLINE, stated as one.", _AE.as_of, "House")
 
 # ===================== HISTORICAL PANEL (audited) ============================
 YRS_H = ['FY23', 'FY24', 'FY25']
@@ -479,15 +550,64 @@ def dcf(rev, eb, dna, capex, dnwc, tax, wacc, label, ppe_d=None, nwc_d=None):
     # build-out window, volume-only under the RD10 no-indexation tariff regime;
     # stage 2 perpetuity at g2 = 1.5% (long-run densification with ~zero real
     # tariff growth). Reinvestment is ROIC-consistent in each stage.
-    g1, g2 = V['g_term'], 0.015
+    g1, g2 = V['g_term'], V['g_term2']
     rr1, rr2 = g1 / roic_term, g2 / roic_term
     rr_term = rr1
-    tv = 0.0
+    # THE RETIRED FORM, kept on a few lines so the change is legible and priced
+    # [R-TERM-01]. Both stages charged reinvestment as g / return on capital, which is
+    # arithmetically the same as rebuilding the entire capital base every 1/g years —
+    # fifty in stage one and sixty-seven in stage two, both facts about the dirham's peg
+    # to the dollar rather than about a chilled-water plant this company's own notes turn
+    # over in 28.1 years.
+    tv_retired = 0.0
     nop_k = nopat['FY30']
     for k in range(1, 11):
         nop_k = nop_k * (1 + g1)
-        tv += nop_k * (1 - rr1) / (1 + wacc) ** k
-    tv += (nop_k * (1 + g2) * (1 - rr2) / (wacc - g2)) / (1 + wacc) ** 10
+        tv_retired += nop_k * (1 - rr1) / (1 + wacc) ** k
+    tv_retired += (nop_k * (1 + g2) * (1 - rr2) / (wacc - g2)) / (1 + wacc) ** 10
+
+    # THE CAPITAL ONE UNIT OF REAL GROWTH NEEDS, AND THE OBVIOUS DERIVATION IS REJECTED
+    # WITH ITS NUMBER. The marginal reading used on the other names in this programme —
+    # the change in invested capital over the change in revenue across the explicit
+    # window, at terminal revenue — comes out NEGATIVE here, because over these five years
+    # the existing plant is written down faster than capex replaces it and the working
+    # capital is negative and growing more so. A negative capital requirement would CREDIT
+    # this company for growing, which is not something a chilled-water network can do:
+    # another unit of demand needs another plant. So the requirement is the intensity the
+    # business already runs at — one per cent of real growth costs one per cent of the
+    # invested capital it operates on — which is derivable from the model's own terminal
+    # figures rather than invented.
+    inc_cap_marginal = (((ic_term - (ppe_d['FY26'] + nwc_d['FY26']))
+                         / (rev['FY30'] - rev['FY26'])) * rev['FY30'])
+    inc_cap = ic_term
+
+    def _stage(nopat0, dna0, wc0, g_nom, real, inc):
+        return TERMVAL.build(TERMVAL.TerminalInputs(
+            nopat=nopat0 * (1 + g_nom), wacc=wacc, inflation=PI_TERM, real_growth=real,
+            dna_book=dna0 * (1 + g_nom),
+            useful_life_years=V['asset_life_years'],
+            useful_life_source=INP['asset_life_years']['source'],
+            maintenance_basis='book_dna_escalated',
+            working_capital=wc0 * (1 + g_nom),
+            incremental_capital_per_unit_growth=inc))
+
+    # STAGE ONE, FY31-FY40: ten more years of ORDINARY cash flow rather than a terminal.
+    # The module builds the first of them on the sanctioned definition — profit after tax,
+    # add back the book charge, deduct what replacing the plant costs at today's prices,
+    # deduct the capital real growth consumes, deduct inflation on the working capital —
+    # and the remaining nine grow with it, so every year of the fade rests on the same
+    # construction as the perpetuity that follows it.
+    t1 = _stage(nopat['FY30'], dna['FY30'], nwc_d['FY30'], g1, V['g1_real'], inc_cap)
+    stage1_pv = sum(t1.fcff * (1 + g1) ** (k - 1) / (1 + wacc) ** k for k in range(1, 11))
+    # STAGE TWO, the perpetuity from FY41, on a real rate that is NEGATIVE. Real growth is
+    # charged NO capital release here and the reason is stated rather than assumed: a
+    # district-cooling network shrinking half a point a year in real terms does not sell
+    # off half a point of plant, it earns less on the plant it has, so crediting it for
+    # capital it never recovers would pay this company for its own decline.
+    grow10 = (1 + g1) ** 10
+    t2 = _stage(nopat['FY30'] * grow10, dna['FY30'] * grow10, nwc_d['FY30'] * grow10,
+                g2, V['g2_real'], 0.0)
+    tv = stage1_pv + t2.tv / (1 + wacc) ** 10
     pv_tv = tv * df_['FY30']
     ev = pv_explicit + pv_tv
     # EV -> equity bridge (30-Jun-2026 reviewed BS), receivables at book:
@@ -499,6 +619,9 @@ def dcf(rev, eb, dna, capex, dnwc, tax, wacc, label, ppe_d=None, nwc_d=None):
     ps = eq_attr / V['shares_mn']
     return dict(label=label, ebit=ebit, nopat=nopat, fcff=fcff, df=df_, pv=pv,
                 pv_explicit=pv_explicit, roic_term=roic_term, rr_term=rr_term,
+                tv_retired=tv_retired, stage1_pv=stage1_pv, inc_cap=inc_cap,
+                inc_cap_marginal=inc_cap_marginal,
+                terminal_stage1=t1.record, terminal_stage2=t2.record,
                 tv=tv, pv_tv=pv_tv, tv_share=pv_tv / ev, ev=ev,
                 nci_val=nci_val, eq_attr=eq_attr, ps=ps)
 
@@ -660,7 +783,11 @@ D_bull = dcf(rev_bull, eb_bull, dna_bull, capex_bull, dnwc_bull, V['tax_ct'],
 bear, bull = D_bear['ps'], D_bull['ps']
 
 # ====================== SENSITIVITY GRIDS ====================================
-g_grid = [0.0, 0.010, 0.020, 0.025, 0.030]
+# The base rung is the DERIVED terminal growth rather than a typed 0.025 that happened to
+# equal it: the two agree to fifteen decimal places today and would silently separate the
+# moment the real rate or the house inflation moved, leaving a grid whose own base cell is
+# not the base [L-306].
+g_grid = [0.0, 0.010, 0.020, V['g_term'], 0.030]
 wacc_grid = [WACC['rating_ct'] - 0.01, WACC['rating_ct'] - 0.005, WACC['rating_ct'],
              WACC['rating_ct'] + 0.005, WACC['rating_ct'] + 0.01]
 sens_wg = []
@@ -867,6 +994,28 @@ out = dict(
                          'describes a company that pays 12%, which no rule provides for; '
                          'and the consumption question is a fact about the world that '
                          'will resolve one way, not a distribution to be integrated over.'),
+    # FIGURES THE DELIVERED DOCUMENTS COMPUTE FROM COMMITTED SOURCE QUOTES, committed here
+    # so the shared prose instrument can reconcile them. Each is real, sourced and derived
+    # by the builder from a quote this study already holds — a sovereign auction print
+    # pulled out of the curve evidence, the two operating margins the shock paragraph
+    # compares, and the interim quarterly margins the bibliography cites from the deck.
+    # They were reported unmatched because they existed only inside a builder's regex, and
+    # the fix for a real figure the instrument cannot see is to make it visible, never to
+    # delete the sentence.
+    document_figures=dict(
+        sukuk_feb33_yield=0.0413,
+        op_margin_fy25=(hist_is['FY25']['ebitda'] - V['intco_fy25'] - V['rental_fy25']
+                        - V['ecl_fy25']) / V['rev_fy25'],
+        op_margin_fy26e=eb_b['FY26'] / rev_b['FY26'],
+        op_margin_fy27e=eb_b['FY27'] / rev_b['FY27'],
+        h1_26_q1_ebitda_margin=0.568,
+        h1_26_q2_ebitda_margin=0.467,
+        # the peer table's own margins, computed from the two disclosed lines beside them
+        # rather than left as a ratio only the builder can see
+        peer_tabreed_ebitda_margin=(
+            json.load(open(os.path.join(HERE, 'sweep_external.json')))
+            ['peers_relative_multiples']['TABREED']['fy2025']['ebitda_aed_m'] / 2456.0),
+        own_ebitda_margin_fy25=hist_is['FY25']['ebitda'] / hist_is['FY25']['rev']),
     sens_wg=dict(g_grid=g_grid, wacc_grid=wacc_grid, table=sens_wg),
     crux=dict(levels=crux_levels, rows=crux_rows,
               persist_ps_ct=D_pers_ct['ps'], persist_ps_dmtt=D_pers_dmtt['ps']),

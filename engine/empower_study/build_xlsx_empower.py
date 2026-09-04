@@ -58,7 +58,12 @@ CEN, SNW, CRUX, STK, S0 = D['central'], D['sens_wg'], D['crux'], D['strike'], D[
 SCEN = D['scenarios']
 SPOT, SH = M['spot'], M['shares_mn']
 TAX, TAXD = IN['tax_ct'], IN['tax_dmtt']
-G = IN['g_term']
+G = IN['g_term_derived']
+G2 = IN['g_term2_derived']
+G1_REAL, G2_REAL = IN['g1_real'], IN['g2_real']
+PI_T = B_CT['terminal_stage1']['inputs']['inflation']
+LIFE = IN['asset_life_years']
+INC_CAP = B_CT['inc_cap']
 YF = D['fcst']['years']                          # FY26..FY30
 YFL = ['FY2026E', 'FY2027E', 'FY2028E', 'FY2029E', 'FY2030E']
 YHL = ['FY2023', 'FY2024', 'FY2025']
@@ -85,7 +90,6 @@ BRIDGE_ADD = RECV + IN['invprop_jun26'] + IN['fvtpl_jun26'] + IN['fvoci_jun26']
 T0 = -math.log(B_CT['df']['FY26']) / math.log(1 + W['rating_ct'])             # 0.5 stub
 BETA_DFM = (W['constructions']['ke_dfm'] - W['rf_star_rating']) / IN['erp_rating']
 WACC_CT = W['rating_ct']
-G2 = 0.015          # stage-two terminal growth (long-run densification) — verified below
 CPRT, CAPRT = U['cons_per_rt25'], U['cap_per_rt25']
 EW, NWC_RATIO, NWC25 = U['ew_ratio'], U['nwc_ratio'], U['nwc25']
 SHOCK = U['crux_shock']
@@ -96,17 +100,47 @@ assert abs(IC_TERM - (F['ppe']['FY30'] + F['nwc']['FY30'])) < 1e-6
 assert abs(T0 - 0.5) < 1e-9 and abs(BETA_DFM - 0.652) < 1e-9
 
 
-def two_stage_tv(nopat30, roic, wacc, g1=G, g2=G2):
-    """Closed-form of the model's FY31-40 + perpetuity terminal (mirrors compute)."""
-    q = (1 + g1) / (1 + wacc)
-    rr1, rr2 = g1 / roic, g2 / roic
-    s1 = nopat30 * (1 - rr1) * q * (1 - q ** 10) / (1 - q)
-    nop10 = nopat30 * (1 + g1) ** 10
-    s2 = nop10 * (1 + g2) * (1 - rr2) / ((wacc - g2) * (1 + wacc) ** 10)
-    return s1, nop10, s2, s1 + s2
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+import terminal_value as TERMVAL                                            # noqa: E402
 
-_s1, _n10, _s2, _tv = two_stage_tv(B_CT['nopat']['FY30'], B_CT['roic_term'], WACC_CT)
-assert abs(_tv - B_CT['tv']) < 1e-6 * B_CT['tv'], 'stage-two growth fails to reproduce TV'
+
+def _sanctioned_fcff(nopat30, dna30, wc30, wacc, inc, g1=None, g2=None):
+    """The two stages' free cash flow, through the same module the model uses.
+
+    Every parallel re-run in this workbook — the crux columns, the second tax framing,
+    the bear case and the upside — rebuilds its own cash flows this way, so the retired
+    reinvestment identity cannot survive in a grid nobody reads the arithmetic of.
+    """
+    g1 = G if g1 is None else g1
+    g2 = G2 if g2 is None else g2
+
+    def stage(n0, d0, w0, g_nom, real, i_):
+        return TERMVAL.build(TERMVAL.TerminalInputs(
+            nopat=n0 * (1 + g_nom), wacc=wacc, inflation=PI_T, real_growth=real,
+            dna_book=d0 * (1 + g_nom), useful_life_years=LIFE,
+            useful_life_source=SRC['asset_life_years'],
+            maintenance_basis='book_dna_escalated',
+            working_capital=w0 * (1 + g_nom),
+            incremental_capital_per_unit_growth=i_))
+    t1 = stage(nopat30, dna30, wc30, g1, G1_REAL, inc)
+    g10 = (1 + g1) ** 10
+    t2 = stage(nopat30 * g10, dna30 * g10, wc30 * g10, g2, G2_REAL, 0.0)
+    return t1.fcff, t2.fcff
+
+
+def two_stage_tv(fcff1, fcff2, wacc, g1=None, g2=None):
+    """The discounting of those two flows, which is arithmetic and nothing else."""
+    g1 = G if g1 is None else g1
+    g2 = G2 if g2 is None else g2
+    q = (1 + g1) / (1 + wacc)
+    s1 = fcff1 / (1 + wacc) * (1 - q ** 10) / (1 - q)
+    s2 = fcff2 * (1 + g2) / ((wacc - g2) * (1 + wacc) ** 10)
+    return s1, s2, s1 + s2
+
+_F1, _F2 = B_CT['terminal_stage1']['fcff'], B_CT['terminal_stage2']['fcff']
+_s1, _s2, _tv = two_stage_tv(_F1, _F2, WACC_CT)
+assert abs(_tv - B_CT['tv']) < 1e-6 * B_CT['tv'], 'the two stages fail to reproduce TV'
 
 # physical decomposition (H1-2026 deck facts)
 H1_RTH = 1174.0     # m RTh cooling delivered H1-2026, deck p4 — pasted external fact
@@ -465,10 +499,29 @@ block('Cost of capital', [
      'retained as a comparison; the primary beta regresses against the FTSE ADX General '
      'Index'),
     ('kd', 'Marginal cost of debt', IN['kd_marg'], PCT2, SRC['kd_marg']),
-    ('g', 'Growth, FY2031-FY2040 window (stage one)', G, PCT, SRC['g_term']),
-    ('g2', 'Growth beyond FY2040 (stage two, perpetuity)', G2, PCT,
-     'Long-run densification with ~zero real tariff growth under the RD10 no-indexation '
-     'regime — the fade the Dubai-2040 build-out window decays to'),
+    ('pi_t', 'Terminal inflation — UAE house macro path', PI_T, PCT2,
+     'The house long-run inflation for this market; this study carries no inflation '
+     'number of its own'),
+    ('g1r', 'REAL growth, FY2031-FY2040 window (stage one)', G1_REAL, PCT2,
+     SRC['g1_real']),
+    ('g2r', 'REAL growth beyond FY2040 (stage two) — NEGATIVE', G2_REAL, PCT2,
+     SRC['g2_real']),
+    ('life', 'Weighted asset life, DERIVED from notes 5, 6 and 7 (years)', LIFE, NUM1,
+     SRC['asset_life_years']),
+    ('inccap', 'Invested capital per unit of real growth (AED mn)', INC_CAP, NUM1,
+     'One per cent of real growth costs one per cent of the invested capital the business '
+     'operates on. The marginal reading across the explicit window is NEGATIVE here, '
+     'because the plant is written down faster than capex replaces it over those five '
+     'years, and a negative capital requirement would credit this company for growing'),
+    ('g', 'Growth, FY2031-FY2040 window — (1+inflation)(1+real)-1',
+     lambda: f'=(1+$C${A["pi_t"]})*(1+$C${A["g1r"]})-1', PCT,
+     'DERIVED from the two rows above, never typed. It reproduces the previous edition\'s '
+     '2.50% to the basis point, because under a tariff the regulator does not index a '
+     'nominal growth rate IS a volume assumption', G),
+    ('g2', 'Growth beyond FY2040 — the same identity on the stage-two real rate',
+     lambda: f'=(1+$C${A["pi_t"]})*(1+$C${A["g2r"]})-1', PCT,
+     'DERIVED. Reproduces the previous edition\'s 1.50%, and makes visible that it is a '
+     'real DECLINE of half a point a year', G2),
     ('t_stub', 'Stub period — 30-Jun-2026 anchor to end-FY2026 (years)', T0, '0.0',
      'The bridge is struck on the 30-Jun-2026 reviewed balance sheet, so the cash-flow '
      'clock starts there too: FY2026 contributes its second half only and later year-ends '
@@ -739,23 +792,32 @@ note(ws, 22, 'The bridge and the cash-flow clock share the same 30-Jun-2026 date
 
 put(ws, 'A23', 'TERMINAL VALUE — TWO-STAGE, REINVESTMENT-CONSISTENT (9% framing)',
     bold=True, fmt=None)
+# ROWS 24-39 KEEP THEIR POSITIONS DELIBERATELY: a dozen formulas on four other sheets
+# name C25, C27, C29, C31, C36, C38 and C39 by address, and inserting the terminal
+# waterfall into this block would move every one of them silently [L-300]. The waterfall
+# is built once at rows 93-110 and summarised here; the parallel re-runs below need only
+# the two free-cash-flow figures, not a waterfall each.
 tv_rows = [
     ('Net working capital, FY2030', f'={a("nwc_ratio")}*F5', F['nwc']['FY30'], NUM1),
     ('Terminal invested capital (plant + net working capital only)', '=F11+C24', IC_TERM,
      NUM1),
-    ('Terminal return on invested capital', '=F14/C25', B_CT['roic_term'], PCT),
+    ('Terminal return on invested capital (published; the terminal no longer uses it)',
+     '=F14/C25', B_CT['roic_term'], PCT),
     ('Stage-one growth, FY2031-40 (Dubai 2040 build-out window)', f'={a("g")}', G, PCT),
-    ('Stage-one reinvestment rate (growth / return on capital)', '=C27/C26',
-     B_CT['rr_term'], PCT),
-    ('Stage-two growth beyond FY2040 (long-run densification)', f'={a("g2")}', G2, PCT),
-    ('Stage-two reinvestment rate', '=C29/C26', G2 / B_CT['roic_term'], PCT),
+    ('Stage-one free cash flow, FY2031 — the waterfall is at rows 93-101', '=C99',
+     _F1, NUM1),
+    ('Stage-two growth beyond FY2040 (densification; a REAL decline)', f'={a("g2")}',
+     G2, PCT),
+    ('Stage-two free cash flow, FY2041 — the waterfall is at rows 102-110', '=C108',
+     _F2, NUM1),
     ('Growth/discount ratio, stage one', '=(1+C27)/(1+$C$56)',
      (1 + G) / (1 + WACC_CT), DF4),
-    ('Value of the FY2031-40 window (at FY2030)', '=F14*(1-C28)*C31*(1-C31^10)/(1-C31)',
+    ('Value of the FY2031-40 window (at FY2030)', '=C28/(1+$C$56)*(1-C31^10)/(1-C31)',
      _s1, NUM1),
-    ('NOPAT in FY2040 (year ten)', '=F14*(1+C27)^10', _n10, NUM1),
+    ('Stage-one free cash flow as a share of terminal profit', '=C28/(F14*(1+C27))',
+     _F1 / (B_CT['nopat']['FY30'] * (1 + G)), PCT),
     ('Value beyond FY2040 (perpetuity, discounted to FY2030)',
-     '=C33*(1+C29)*(1-C30)/(($C$56-C29)*(1+$C$56)^10)', _s2, NUM1),
+     '=C30*(1+C29)/(($C$56-C29)*(1+$C$56)^10)', _s2, NUM1),
     ('Terminal value at FY2030 (both stages)', '=C32+C34', B_CT['tv'], NUM1),
     ('Present value of the terminal value', '=C35*F20', B_CT['pv_tv'], NUM1),
     ('Present value of the five forecast years', '=SUM(B21:F21)', B_CT['pv_explicit'], NUM1),
@@ -824,9 +886,64 @@ note(ws, 58, 'Both premium bases strip the SAME basis of sovereign default sprea
      'and discount at the same rate — they differ only in after-tax operating profit. '
      'There is no discount-rate glide: the AED curve is flat and both facilities float.')
 
+# ---- THE TERMINAL, LINE BY LINE — built once, both stages, both tax framings --------
+T1C, T2C = B_CT['terminal_stage1'], B_CT['terminal_stage2']
+T1D, T2D = B_DM['terminal_stage1'], B_DM['terminal_stage2']
+put(ws, 'A92', 'THE TERMINAL, LINE BY LINE — capital maintained at replacement cost over '
+    'the asset life the depreciation notes themselves imply', bold=True, fmt=None)
+put(ws, 'A93', 'The retired construction grew terminal profit and deducted a reinvestment '
+    'rate set by the growth rate over the return on capital, which is arithmetically the '
+    'same as rebuilding the whole capital base every 1/g years — fifty in stage one and '
+    'sixty-seven in stage two, both facts about the dirham\'s peg to the dollar rather '
+    'than about a chilled-water plant this company\'s own notes turn over in 28.1 years. '
+    'Column C is the 9% framing and column G the 15%; they differ only in tax.',
+    fmt=None).font = SUB
+
+
+def _wf(row0, tag, TC, TD, n30c, n30d, d30, w30, g_nom, real, inc):
+    rows = [
+        ('%s — operating profit after tax, grown one year' % tag,
+         (f'={n30c:.6f}*(1+{g_nom:.10f})', TC['inputs']['nopat']),
+         (f'={n30d:.6f}*(1+{g_nom:.10f})', TD['inputs']['nopat'])),
+        ('%s — plus the book depreciation and amortisation charge, grown' % tag,
+         (f'={d30:.6f}*(1+{g_nom:.10f})', TC['inputs']['dna_book']),
+         (f'={d30:.6f}*(1+{g_nom:.10f})', TD['inputs']['dna_book'])),
+        ('%s — less capital maintenance at replacement cost, that charge escalated over '
+         'half the derived life' % tag,
+         (f'=-C{row0+1}*(1+{a("pi_t")})^({a("life")}/2)', -TC['maintenance']),
+         (f'=-G{row0+1}*(1+{a("pi_t")})^({a("life")}/2)', -TD['maintenance'])),
+        ('%s — less the capital real growth consumes' % tag,
+         (f'=-{real:.10f}*{inc:.6f}', -TC['growth_capex']),
+         (f'=-{real:.10f}*{inc:.6f}', -TD['growth_capex'])),
+        ('%s — less inflation on working capital (a CREDIT here: this company is funded '
+         'by its own customers)' % tag,
+         (f'=-{a("pi_t")}*{w30:.6f}*(1+{g_nom:.10f})', -TC['wc_charge']),
+         (f'=-{a("pi_t")}*{w30:.6f}*(1+{g_nom:.10f})', -TD['wc_charge'])),
+        ('%s — FREE CASH FLOW' % tag,
+         (f'=SUM(C{row0}:C{row0+4})', TC['fcff']),
+         (f'=SUM(G{row0}:G{row0+4})', TD['fcff'])),
+    ]
+    r_ = row0
+    for lab, (fc, xc), (fd, xd) in rows:
+        put(ws, f'A{r_}', lab, fmt=None)
+        putf(ws, f'C{r_}', fc, xc, NUM1, bold=(r_ == row0 + 5))
+        putf(ws, f'G{r_}', fd, xd, NUM1, bold=(r_ == row0 + 5))
+        r_ += 1
+
+
+_n30c, _n30d = B_CT['nopat']['FY30'], B_DM['nopat']['FY30']
+_d30, _w30 = F['dna']['FY30'], F['nwc']['FY30']
+_wf(94, 'Stage one, FY2031', T1C, T1D, _n30c, _n30d, _d30, _w30, G, G1_REAL, INC_CAP)
+_g10 = (1 + G) ** 10
+_wf(103, 'Stage two, FY2041', T2C, T2D, _n30c * _g10, _n30d * _g10, _d30 * _g10,
+    _w30 * _g10, G2, G2_REAL, 0.0)
+put(ws, 'A111', 'Memo — the no-growth perpetuity at book depreciation, a diagnostic and '
+    'not a bound', fmt=None)
+putf(ws, 'C111', '=F14*(1+C27)/$C$56', T1C['floor'], NUM1)
+
 # ---- 15% parallel framing ---------------------------------------------------------
-rr2_dm = G2 / B_DM['roic_term']
-s1_dm, n10_dm, s2_dm, tv_dm = two_stage_tv(B_DM['nopat']['FY30'], B_DM['roic_term'], WACC_CT)
+_F1D, _F2D = T1D['fcff'], T2D['fcff']
+s1_dm, s2_dm, tv_dm = two_stage_tv(_F1D, _F2D, WACC_CT)
 assert abs(tv_dm - B_DM['tv']) < 1e-6 * B_DM['tv']
 put(ws, 'A61', 'PARALLEL FRAMING — 15% TOP-UP TAX (same cash-flow build and discount '
     'rate, own tax)', bold=True, fmt=None)
@@ -844,13 +961,17 @@ for i in range(1, 5):
 dm_scal = [
     ('Present value of the five forecast years (15%)', '=SUM(B64:F64)',
      B_DM['pv_explicit'], NUM1),
-    ('Terminal return on invested capital (15%)', '=F62/C25', B_DM['roic_term'], PCT),
-    ('Stage-one reinvestment rate (15%)', '=C27/C66', B_DM['rr_term'], PCT),
-    ('Stage-two reinvestment rate (15%)', '=C29/C66', rr2_dm, PCT),
-    ('Value of the FY2031-40 window (15%)', '=F62*(1-C67)*C31*(1-C31^10)/(1-C31)',
+    ('Terminal return on invested capital (15%; published, no longer used)',
+     '=F62/C25', B_DM['roic_term'], PCT),
+    ('Stage-one free cash flow at 15% — the waterfall is at rows 94-99', '=G99',
+     _F1D, NUM1),
+    ('Stage-two free cash flow at 15% — the waterfall is at rows 103-108', '=G108',
+     _F2D, NUM1),
+    ('Value of the FY2031-40 window (15%)', '=C67/(1+$C$56)*(1-C31^10)/(1-C31)',
      s1_dm, NUM1),
-    ('NOPAT in FY2040 (15%)', '=F62*(1+C27)^10', n10_dm, NUM1),
-    ('Value beyond FY2040 (15%)', '=C70*(1+C29)*(1-C68)/(($C$56-C29)*(1+$C$56)^10)',
+    ('Stage-one free cash flow as a share of terminal profit (15%)',
+     '=C67/(F62*(1+C27))', _F1D / (B_DM['nopat']['FY30'] * (1 + G)), PCT),
+    ('Value beyond FY2040 (15%)', '=C68*(1+C29)/(($C$56-C29)*(1+$C$56)^10)',
      s2_dm, NUM1),
     ('Terminal value at FY2030 (15%)', '=C69+C71', B_DM['tv'], NUM1),
     ('Present value of the terminal value (15%)', '=C72*F20', B_DM['pv_tv'], NUM1),
@@ -867,8 +988,8 @@ putf(ws, 'C75', "='SOTP Bridge'!D14", B_DM['ps'], PX, bold=True, green=True)
 
 # ---- CDS premium basis ------------------------------------------------------------
 q_cds = (1 + G) / (1 + W['cds_ct'])
-s1_c, n10_c, s2_c, tv_c = two_stage_tv(B_CT['nopat']['FY30'], B_CT['roic_term'],
-                                       W['cds_ct'])
+_F1C_CDS, _F2C_CDS = _sanctioned_fcff(_n30c, _d30, _w30, W['cds_ct'], INC_CAP)
+s1_c, s2_c, tv_c = two_stage_tv(_F1C_CDS, _F2C_CDS, W['cds_ct'])
 assert abs(tv_c - B_CDS['tv']) < 1e-6 * B_CDS['tv']
 put(ws, 'A77', 'ALTERNATIVE PREMIUM BASIS — CDS (same cash flows, CDS-basis rate)',
     bold=True, fmt=None)
@@ -880,23 +1001,25 @@ cds_scal = [
     ('Present value of the five forecast years (CDS basis)', '=SUM(B78:F78)',
      B_CDS['pv_explicit'], NUM1),
     ('Growth/discount ratio, stage one (CDS basis)', '=(1+C27)/(1+$D$56)', q_cds, DF4),
-    ('Value of the FY2031-40 window (CDS basis)', '=F14*(1-C28)*C80*(1-C80^10)/(1-C80)',
+    ('Stage-one free cash flow at the CDS-basis rate (its own maintenance charge)',
+     f'={_F1C_CDS:.6f}', _F1C_CDS, NUM1),
+    ('Value of the FY2031-40 window (CDS basis)', '=C81/(1+$D$56)*(1-C80^10)/(1-C80)',
      s1_c, NUM1),
-    ('Value beyond FY2040 (CDS basis)', '=C33*(1+C29)*(1-C30)/(($D$56-C29)*(1+$D$56)^10)',
-     s2_c, NUM1),
-    ('Terminal value (CDS basis)', '=C81+C82', B_CDS['tv'], NUM1),
-    ('Present value of the terminal value (CDS basis)', '=C83/(1+$D$56)^F19',
+    ('Value beyond FY2040 (CDS basis)', f'={_F2C_CDS:.6f}*(1+C29)'
+     '/(($D$56-C29)*(1+$D$56)^10)', s2_c, NUM1),
+    ('Terminal value (CDS basis)', '=C82+C83', B_CDS['tv'], NUM1),
+    ('Present value of the terminal value (CDS basis)', '=C84/(1+$D$56)^F19',
      B_CDS['pv_tv'], NUM1),
-    ('Enterprise value (CDS basis)', '=C79+C84', B_CDS['ev'], NUM1),
+    ('Enterprise value (CDS basis)', '=C79+C85', B_CDS['ev'], NUM1),
 ]
 r = 79
 for lab, fml, xp, fmt in cds_scal:
     put(ws, f'A{r}', lab, fmt=None)
     putf(ws, f'C{r}', fml, xp, fmt, bold=('Enterprise' in lab))
     r += 1
-EV_CDS_ROW = 85
-put(ws, 'A86', 'Fair value per share (CDS basis) — from the bridge', fmt=None)
-putf(ws, 'C86', "='SOTP Bridge'!E14", B_CDS['ps'], PX, green=True)
+EV_CDS_ROW = 86
+put(ws, 'A87', 'Fair value per share (CDS basis) — from the bridge', fmt=None)
+putf(ws, 'C87', "='SOTP Bridge'!E14", B_CDS['ps'], PX, green=True)
 
 # ---- WACC constructions — all priced, all LIVE ------------------------------------
 CON = W['constructions']
@@ -986,7 +1109,7 @@ putf(ws, 'C15', f'={a("nci_pat")}/{a("pat_fy25")}', NCI_FR, PCT2)
 put(ws, 'A16', 'Terminal value as a share of enterprise value', fmt=None)
 putf(ws, 'C16', '=DCF!C39', B_CT['tv_share'], PCT, green=True)
 putf(ws, 'D16', f'=DCF!C73/DCF!C{EV_DM_ROW}', B_DM['tv_share'], PCT, green=True)
-putf(ws, 'E16', f'=DCF!C84/DCF!C{EV_CDS_ROW}', B_CDS['tv_share'], PCT, green=True)
+putf(ws, 'E16', f'=DCF!C85/DCF!C{EV_CDS_ROW}', B_CDS['tv_share'], PCT, green=True)
 note(ws, 18, 'The bridge is struck on the 30-Jun-2026 reviewed balance sheet — the same '
      'date the cash-flow clock starts. The related-party acquisition receivables enter '
      'at book (their interest is outside operating profit and they are outside terminal '
@@ -1698,12 +1821,14 @@ def crux_col(lvl):
         pv.append(fc * B_CT['df'][YF[i]] * (T0 if i == 0 else 1.0))
     nop30 = (eb[4] - DNA5[4]) * (1 - TAX)
     roic = nop30 / (PPE30 + NWC_RATIO * rev[4])
-    s1, n10, s2, tv = two_stage_tv(nop30, roic, WACC_CT)
+    f1, f2 = _sanctioned_fcff(nop30, DNA5[4], NWC_RATIO * rev[4], WACC_CT,
+                              PPE30 + NWC_RATIO * rev[4])
+    s1, s2, tv = two_stage_tv(f1, f2, WACC_CT)
     pvtv = tv * B_CT['df']['FY30']
     ev = sum(pv) + pvtv
     ps = (ev - NET_DEBT + BRIDGE_ADD) * (1 - NCI_FR) / SH
     return dict(rev=rev, eb=eb, fcff=fcff, pv=pv, nop30=nop30, roic=roic, s1=s1,
-                n10=n10, s2=s2, tv=tv, pvtv=pvtv, ev=ev, ps=ps,
+                f1=f1, f2=f2, s2=s2, tv=tv, pvtv=pvtv, ev=ev, ps=ps,
                 pvex=sum(pv))
 
 CRUX_M = [crux_col(l) for l in CRUX['levels']]
@@ -1714,7 +1839,9 @@ f15 = [P94['fcff'][i] - (P94['eb'][i] - DNA5[i]) * (TAXD - TAX) for i in range(5
 p15 = [f15[i] * B_CT['df'][YF[i]] * (T0 if i == 0 else 1.0) for i in range(5)]
 nop30_15 = P94['nop30'] * (1 - TAXD) / (1 - TAX)
 roic15_p = nop30_15 / (PPE30 + NWC_RATIO * P94['rev'][4])
-s1_p15, n10_p15, s2_p15, tv_p15 = two_stage_tv(nop30_15, roic15_p, WACC_CT)
+f1_p15, f2_p15 = _sanctioned_fcff(nop30_15, DNA5[4], NWC_RATIO * P94['rev'][4], WACC_CT,
+                                  PPE30 + NWC_RATIO * P94['rev'][4])
+s1_p15, s2_p15, tv_p15 = two_stage_tv(f1_p15, f2_p15, WACC_CT)
 pvtv_p15 = tv_p15 * B_CT['df']['FY30']
 ev_p15 = sum(p15) + pvtv_p15
 ps_p15 = (ev_p15 - NET_DEBT + BRIDGE_ADD) * (1 - NCI_FR) / SH
@@ -1747,11 +1874,13 @@ def scen_mirror(scen_key, dcf_key, tax):
     pv = [DD['pv'][y] for y in YF]
     nop30 = DD['nopat']['FY30']
     roic = DD['roic_term']
-    s1, n10, s2, tv = two_stage_tv(nop30, roic, wacc)
+    f1, f2 = _sanctioned_fcff(nop30, dna[4], NWC_RATIO * rev[4], wacc,
+                              nop30 / DD['roic_term'])
+    s1, s2, tv = two_stage_tv(f1, f2, wacc)
     assert abs(tv - DD['tv']) < 1e-6 * DD['tv']
     return dict(adds=adds, ye=ye, avg=avg, open=open_, capex=capex, dna=dna, close=close,
                 rev=rev, eb=eb, dnwc=dnwc, fcff=fcff, pv=pv, wacc=wacc, nop30=nop30,
-                roic=roic, s1=s1, n10=n10, s2=s2, tv=tv, pvtv=DD['pv_tv'],
+                roic=roic, s1=s1, f1=f1, f2=f2, s2=s2, tv=tv, pvtv=DD['pv_tv'],
                 pvex=DD['pv_explicit'], ev=DD['ev'], ps=DD['ps'])
 
 BEARM = scen_mirror('bear', 'bear', TAXD)
@@ -1850,18 +1979,17 @@ crux_tail = [
      lambda L, m: (f'=SUM({L}{S_PV0}:{L}{S_PV0+4})', m['pvex']), NUM1),
     (S_NOP30, 'NOPAT FY2030E',
      lambda L, m: (f'=({L}{S_EB0+4}-DCF!$F$12)*(1-{a("tax_ct")})', m['nop30']), NUM1),
-    (S_ROIC, 'Terminal return on capital',
-     lambda L, m: (f'={L}{S_NOP30}/(DCF!$F$11+{a("nwc_ratio")}*{L}{S_REV0+4})',
-                   m['roic']), PCT),
+    (S_ROIC, 'Stage-one free cash flow, FY2031 (the waterfall is on the DCF sheet)',
+     lambda L, m: (f'={m["f1"]:.6f}', m['f1']), NUM1),
     (S_Q, 'Growth/discount ratio',
      lambda L, m: (f'=(1+{a("g")})/(1+DCF!$C$56)', (1 + G) / (1 + WACC_CT)), DF4),
     (S_S1, 'Value of the FY2031-40 window',
-     lambda L, m: (f'={L}{S_NOP30}*(1-{a("g")}/{L}{S_ROIC})*{L}{S_Q}*(1-{L}{S_Q}^10)'
-                   f'/(1-{L}{S_Q})', m['s1']), NUM1),
-    (S_NOP10, 'NOPAT in FY2040',
-     lambda L, m: (f'={L}{S_NOP30}*(1+{a("g")})^10', m['n10']), NUM1),
+     lambda L, m: (f'={L}{S_ROIC}/(1+DCF!$C$56)*(1-{L}{S_Q}^10)/(1-{L}{S_Q})',
+                   m['s1']), NUM1),
+    (S_NOP10, 'Stage-two free cash flow, FY2041',
+     lambda L, m: (f'={m["f2"]:.6f}', m['f2']), NUM1),
     (S_S2, 'Value beyond FY2040',
-     lambda L, m: (f'={L}{S_NOP10}*(1+{a("g2")})*(1-{a("g2")}/{L}{S_ROIC})'
+     lambda L, m: (f'={L}{S_NOP10}*(1+{a("g2")})'
                    f'/((DCF!$C$56-{a("g2")})*(1+DCF!$C$56)^10)', m['s2']), NUM1),
     (S_TV, 'Terminal value at FY2030',
      lambda L, m: (f'={L}{S_S1}+{L}{S_S2}', m['tv']), NUM1),
@@ -1900,15 +2028,15 @@ tail15 = [
      sum(p15), NUM1),
     (S_NOP30_15, 'NOPAT FY2030E (15%)',
      f'=C{S_NOP30}*(1-{a("tax_dmtt")})/(1-{a("tax_ct")})', nop30_15, NUM1),
-    (S_ROIC15, 'Terminal return on capital (15%)',
-     f'=C{S_NOP30_15}/(DCF!$F$11+{a("nwc_ratio")}*C{S_REV0+4})', roic15_p, PCT),
+    (S_ROIC15, 'Stage-one free cash flow at 15% (the waterfall is on the DCF sheet)',
+     f'={f1_p15:.6f}', f1_p15, NUM1),
     (S_S1_15, 'Value of the FY2031-40 window (15%)',
-     f'=C{S_NOP30_15}*(1-{a("g")}/C{S_ROIC15})*C{S_Q}*(1-C{S_Q}^10)/(1-C{S_Q})',
+     f'=C{S_ROIC15}/(1+DCF!$C$56)*(1-C{S_Q}^10)/(1-C{S_Q})',
      s1_p15, NUM1),
-    (S_NOP10_15, 'NOPAT in FY2040 (15%)', f'=C{S_NOP30_15}*(1+{a("g")})^10', n10_p15,
+    (S_NOP10_15, 'Stage-two free cash flow at 15%', f'={f2_p15:.6f}', f2_p15,
      NUM1),
     (S_S2_15, 'Value beyond FY2040 (15%)',
-     f'=C{S_NOP10_15}*(1+{a("g2")})*(1-{a("g2")}/C{S_ROIC15})'
+     f'=C{S_NOP10_15}*(1+{a("g2")})'
      f'/((DCF!$C$56-{a("g2")})*(1+DCF!$C$56)^10)', s2_p15, NUM1),
     (S_TV15, 'Terminal value at FY2030 (15%)', f'=C{S_S1_15}+C{S_S2_15}', tv_p15, NUM1),
     (S_PVTV15, 'Present value of the terminal (15%)',
@@ -1980,16 +2108,17 @@ def scen_block(MM, adds_row, ye_row, avg_row, rev_row, eb_row, open_row,
          NUM1),
         (tail0 + 1, 'NOPAT FY2030E', f'=(F{eb_row}-F{dna_row})*(1-{tax_ref})',
          MM['nop30'], NUM1),
-        (tail0 + 2, 'Terminal return on capital',
-         f'=C{tail0+1}/(F{close_row}+{a("nwc_ratio")}*F{rev_row})', MM['roic'], PCT),
+        (tail0 + 2, 'Stage-one free cash flow, FY2031 (the waterfall is on the DCF sheet)',
+         f'={MM["f1"]:.6f}', MM['f1'], NUM1),
         (tail0 + 3, 'Growth/discount ratio', f'=(1+{a("g")})/(1+{wacc_ref})',
          (1 + G) / (1 + MM['wacc']), DF4),
         (tail0 + 4, 'Value of the FY2031-40 window',
-         f'=C{tail0+1}*(1-{a("g")}/C{tail0+2})*C{tail0+3}*(1-C{tail0+3}^10)/(1-C{tail0+3})',
+         f'=C{tail0+2}/(1+{wacc_ref})*(1-C{tail0+3}^10)/(1-C{tail0+3})',
          MM['s1'], NUM1),
-        (tail0 + 5, 'NOPAT in FY2040', f'=C{tail0+1}*(1+{a("g")})^10', MM['n10'], NUM1),
+        (tail0 + 5, 'Stage-two free cash flow, FY2041', f'={MM["f2"]:.6f}', MM['f2'],
+         NUM1),
         (tail0 + 6, 'Value beyond FY2040',
-         f'=C{tail0+5}*(1+{a("g2")})*(1-{a("g2")}/C{tail0+2})'
+         f'=C{tail0+5}*(1+{a("g2")})'
          f'/(({wacc_ref}-{a("g2")})*(1+{wacc_ref})^10)', MM['s2'], NUM1),
         (tail0 + 7, 'Terminal value at FY2030', f'=C{tail0+4}+C{tail0+6}', MM['tv'], NUM1),
         (tail0 + 8, 'Present value of the terminal',
@@ -2003,6 +2132,22 @@ def scen_block(MM, adds_row, ye_row, avg_row, rev_row, eb_row, open_row,
         put(ws, f'A{row_}', rl, fmt=None)
         putf(ws, f'C{row_}', fml, xp, fmt, bold=(row_ == tail0 + 10))
     band(ws, tail0 + 10, 6)
+
+def _con_wacc(k):
+    return {'base_gross_wacc': CON['gross'], 'base_carry_wacc': CON['carry'],
+            'base_dfm_beta': CON['dfm_beta']}[k]
+
+
+def _con_tv(k, part):
+    """Each WACC construction rebuilds its OWN terminal cash flows at its OWN rate: the
+    maintenance charge does not move with the discount rate but the perpetuity does, and
+    a column that borrowed the primary's flows would be a different model wearing this
+    one's numbers."""
+    w = _con_wacc(k)
+    f1, f2 = _sanctioned_fcff(B_CT['nopat']['FY30'], F['dna']['FY30'], F['nwc']['FY30'],
+                              w, INC_CAP)
+    return two_stage_tv(f1, f2, w)[part], f1, f2
+
 
 put(ws, 'A74', 'BEAR — LIVE: re-escalation (per-RT falls a further 6% from FY2027 and '
     'never recovers, connections halve, 15% top-up tax, +100bp on the cost of equity)',
@@ -2053,19 +2198,13 @@ con_tail = [
                                    'base_carry_wacc': CON['carry'],
                                    'base_dfm_beta': CON['dfm_beta']}[k])), DF4),
     (S_C_S1, 'Value of the FY2031-40 window',
-     lambda c, k: (f'=DCF!$F$14*(1-DCF!$C$28)*{c}{S_C_Q}*(1-{c}{S_C_Q}^10)'
-                   f'/(1-{c}{S_C_Q})',
-                   two_stage_tv(B_CT['nopat']['FY30'], B_CT['roic_term'],
-                                {'base_gross_wacc': CON['gross'],
-                                 'base_carry_wacc': CON['carry'],
-                                 'base_dfm_beta': CON['dfm_beta']}[k])[0]), NUM1),
+     lambda c, k: (f'={_con_tv(k, 1)[1]:.6f}/(1+{c}{S_C_WACC})'
+                   f'*(1-{c}{S_C_Q}^10)/(1-{c}{S_C_Q})',
+                   _con_tv(k, 0)[0]), NUM1),
     (S_C_S2, 'Value beyond FY2040',
-     lambda c, k: (f'=DCF!$C$33*(1+{a("g2")})*(1-DCF!$C$30)'
+     lambda c, k: (f'={_con_tv(k, 2)[2]:.6f}*(1+{a("g2")})'
                    f'/(({c}{S_C_WACC}-{a("g2")})*(1+{c}{S_C_WACC})^10)',
-                   two_stage_tv(B_CT['nopat']['FY30'], B_CT['roic_term'],
-                                {'base_gross_wacc': CON['gross'],
-                                 'base_carry_wacc': CON['carry'],
-                                 'base_dfm_beta': CON['dfm_beta']}[k])[2]), NUM1),
+                   _con_tv(k, 1)[0]), NUM1),
     (S_C_TV, 'Terminal value at FY2030',
      lambda c, k: (f'={c}{S_C_S1}+{c}{S_C_S2}', DC[k]['tv']), NUM1),
     (S_C_PVTV, 'Present value of the terminal',

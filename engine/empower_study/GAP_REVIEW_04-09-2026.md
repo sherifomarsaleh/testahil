@@ -3,15 +3,15 @@
 **A TWO-SIDED ANSWER: four named branches and no single figure. Every one is audited
 here, because a review that audits one branch of a two-sided study has audited half of it.**
 
-**AUDITED CENTRAL: 1.8388** — consumption recovers, taxed at the 9% corporate rate.
-**AUDITED CENTRAL: 1.8095** — consumption continues at its current pace, 9% corporate rate.
-**AUDITED CENTRAL: 1.7247** — consumption recovers, taxed at the 15% top-up rate.
-**AUDITED CENTRAL: 1.6971** — consumption continues at its current pace, 15% top-up rate.
+**AUDITED CENTRAL: 1.8523** — consumption recovers, taxed at the 9% corporate rate.
+**AUDITED CENTRAL: 1.8227** — consumption continues at its current pace, 9% corporate rate.
+**AUDITED CENTRAL: 1.7377** — consumption recovers, taxed at the 15% top-up rate.
+**AUDITED CENTRAL: 1.7098** — consumption continues at its current pace, 15% top-up rate.
 
-**AUDITED GAP: +17.1%** on the widest branch against the latest known price, AED 1.57
+**AUDITED GAP: +18.0%** on the widest branch against the latest known price, AED 1.57
 (3 September 2026, supplied and committed), which is also the price this edition is struck
-at. The four branches read +17.1% / +15.3% / +9.9% / +8.1%, and two of them sit more than
-10% above the price.
+at. The four branches read +18.0% / +16.1% / +10.7% / +8.9%, and three of them sit more
+than 10% above the price.
 
 This fires the ABOVE-price half of the audit trigger, which carries no publication block —
 the block is one-sided below the price. Nothing holds this study on the gap, so this review
@@ -53,17 +53,25 @@ print and sits within 4% of it, which the study asserts rather than asserts.
 
 ## 3. MACRO COHERENCE
 
-**This heading finds something and this edition does not fix it.** The terminal growth
-rates are typed nominals — 2.5% for the FY2031-40 window and 1.5% beyond it — and the
-study carries no macro record, so nothing holds them to the house path.
+**This heading finds something, this edition fixes it, and the fix moves no number — which
+is the interesting part.** The terminal growth rates were typed nominals, 2.5% for the
+FY2031-40 window and 1.5% beyond it, and this study committed no macro record.
 
-The arithmetic is in `TERMINAL_EVIDENCE_04-09-2026.md` and its conclusion is unusual and
-worth stating here: **storing them properly would move no number on this name.** This
-company's tariff is regulated and NOT indexed, so nominal revenue growth is volume growth,
-and 2.5% on 2.0% house inflation is +0.49% real while 1.5% is −0.49% real. Both reproduce
-exactly. What storage would change is what a reader can see — that stage two assumes the
-business shrinks in real terms for ever, which the study's own phrase "about zero real
-tariff growth" describes without naming.
+Both are now stored as REAL rates on the house UAE path and the nominals derived. They
+reproduce to the basis point, and the reason is structural rather than lucky: **this
+company's tariff is regulated and NOT indexed**, so nominal revenue growth IS volume
+growth, and 2.5% on 2.0% house inflation is +0.49% real while 1.5% is **−0.49% real**.
+
+So the storage rule buys no correction here. What it buys is a reader who can see that
+stage two assumes this business **shrinks in real terms for ever** — which the study
+describes in the words "about zero real tariff growth" without ever naming the rate. On
+every other name in this programme the same rule moved the answer; on this one it changes
+only what can be seen, and that is worth recording rather than passing over.
+
+The study still commits no full macro record, so its cost escalators are not held to the
+path by anything, and it remains on that ratchet.
+
+**Found and fixed; worth nothing in value and something in legibility.**
 
 ## 4. DISCOUNT RATE
 
@@ -77,21 +85,55 @@ choosing one silently. Country risk enters once.
 
 ## 5. TERMINAL
 
-**The terminal carries 78.0% of enterprise value**, and it is built on the construction this
-house has retired: two stages, each charging reinvestment as growth over the return on
-capital, which implies rebuilding the whole capital base every fifty years in stage one and
-every sixty-seven in stage two, against a base the company's own notes turn over in **28.1
-years**.
+**The terminal carries 78.3% of enterprise value**, and this edition rebuilds it. The
+published construction was two stages — ten years then a perpetuity — each charging
+reinvestment as growth over the return on capital, which is arithmetically the same as
+rebuilding the whole capital base every 1/g years: **fifty years in stage one and
+sixty-seven in stage two**, both facts about the dirham's peg to the dollar rather than
+about a chilled-water plant.
 
-**The evidence to correct it is now gathered and the correction is not made in this
-edition.** The reason is recorded in full rather than implied: the model change was built
-and run — worth about +1.5% on the terminal and +0.5% on the answer — and the workbook
-stopped it. This study publishes four parallel live models on one sheet, each rebuilding
-the terminal in live formulas on a fixed row map, and the sanctioned construction needs six
-more rows per block; inserting them moves addresses a dozen formulas on four other sheets
-name directly. Doing that carelessly would have been worse than not doing it.
+**The asset life is DERIVED by identity and the statements had to be read off the pixels.**
+The FY2025 audited statements were fetched from the company's own investor-relations page.
+They carry no usable text layer — 85 bytes across 85 pages — and the property note is
+printed landscape, so the page was rotated before it could be read at all. **Arithmetic is
+the arbiter and the extraction foots four ways:** the cost columns sum to the printed
+10,929,327; the accumulated-depreciation columns to 3,734,337; cost less accumulated
+reproduces the balance sheet's 7,194,990; and the year's charge of 352,199 splits to the
+341,696 in cost of sales and 10,503 in general and administrative expenses the notes state
+separately.
 
-**Found, priced, and outstanding: worth about +0.5%, so it does not close this gap.**
+| | gross cost (AED 000) | charge | implied life |
+|---|---|---|---|
+| Property, plant and equipment (note 5) | 10,001,105 | 352,199 | 28.40 y |
+| Right-of-use assets (note 6) | 22,649 | 5,361 | 4.22 y |
+| Intangibles (note 7) | 364,710 | 12,157 | 30.00 y (disclosed) |
+| **Blended** | **10,388,464** | **369,717** | **28.10 y** |
+
+Cross-checked at 27.88 years on FY2024's own columns. The policy note gives ranges by
+class — plant, equipment and machinery 2 to 30, buildings 25 — and no weighting, so no
+single figure can be read off it. The right-of-use figure of 4.22 does not match the
+15-year equipment lease the note names, and the note explains that rather than
+contradicting it: the book is 19,997 of buildings against 2,652 of equipment, and the
+buildings are a head office and labour accommodation on one-year terms.
+
+Rebuilt through the sanctioned module, both stages, the terminal comes out **25,030 against
+a retired 24,650, +1.5%**, and the answer +0.7%.
+
+**One derivation was rejected with its number, and the reason matters more than the
+figure.** The capital a unit of real growth consumes has been taken across this programme
+as the marginal invested capital per unit of revenue across the explicit window. Here that
+computes to about **minus 388**, because over these five years the plant is written down
+faster than capex replaces it and the working capital is negative and growing more so.
+Passed through, it would have **credited this company for growing** — which is not
+something a chilled-water network can do: another unit of demand needs another plant. The
+figure used instead is the intensity the business already runs at.
+
+**The base is YOUNGER than uniform, which is the first name in this programme where the
+second reading runs that way.** Accumulated depreciation over the same charge is 10.11
+years against the 14.05 that half of a 28.10-year life implies, so the derived life is the
+heavier of the two readings and therefore the conservative one.
+
+**Found and fixed: worth +0.7%, which does not close this gap and widens it slightly.**
 
 ## 6. BALANCE SHEET
 
@@ -131,25 +173,35 @@ already two-sided.
 
 ## VERDICT
 
-**The answer is not changed, and this review's most useful output is that the study is now
-visible to the instruments at all.**
+**The answer moves by half a per cent and this review's most useful output is that the study
+is now visible to the instruments at all.**
 
-Three headings found something:
+Four headings found something, and three are now fixed:
 
 - the study was **unreadable** to the answer-side check, and the branches are now published
-  in the shared form — which is what made this review owed;
-- the **terminal** carries the retired construction on 78% of enterprise value, and the
-  evidence to rebuild it is now gathered, priced at about +0.5%, and set down with the
-  reason it was not spent;
+  in the shared form — which is what made this review owed. Nothing about the valuation
+  changed and everything about whether it could be checked did;
+- the **terminal** carried the retired construction on 78% of enterprise value, and is
+  rebuilt on an asset life derived by identity from three notes that had to be read by OCR
+  off the rendered pixels. Worth +0.7%;
+- the **growth rates** were typed nominals and are now stored as real rates on the house
+  path. Worth nothing in value, because a regulated unindexed tariff makes a nominal rate a
+  volume assumption — and something in legibility, because a reader can now see that stage
+  two assumes a real decline for ever;
 - the **multiple cross-check** puts three of the four lenses below the traded price, and the
-  published central is a typed blend of all four — an architecture this house retired.
+  published central is a typed 50/20/15/15 blend of all four. That architecture is retired
+  house-wide and is NOT fixed here: retiring it would take the answer to the cash-flow lens
+  alone at AED 2.13, further from the price rather than closer, and it belongs in its own
+  pass on a study whose answer is already two-sided.
 
-None of the three closes a +17% gap, and two of them would widen it. **That is itself the
-finding:** where a study sits above the price and its own known defects would push it higher
-still, the disagreement is not in the places this review can see.
+None of the four closes an eighteen per cent gap, and three of them would widen it. **That
+is itself the finding:** where a study sits above the price and its own known defects push
+it higher still, the disagreement is not in the places this review can see.
 
 **The number is not moved toward the price.** What this edition changes is that the answer
-can now be seen, measured and argued with.
+can be seen, measured and argued with — and that the terminal beneath it now charges what
+replacing this company's plant actually costs rather than what its currency's inflation
+rate happens to imply.
 
 EMPOWER remains held from publication: the method has not cleared its Phase 1 acceptance
 criteria.
