@@ -66,84 +66,106 @@ def _latest_price(ticker):
         return (None, None, 'price reader unavailable: %s' % e)
 
 
-def _life_band(ticker, lives):
-    """(shortest, longest, source) DISCLOSED, or (None, None, None). Never one figure.
+def _life_band(ticker, _lives=None):
+    """(shortest, longest, source) DISCLOSED — the CENSUS's resolver [R-ENF-03].
 
-    THE BAND IS NOT COLLAPSED HERE AND THAT IS THE HOUSE'S OWN RULE, stated in
-    disclosed_lives.json before this file existed: a policy note gives a range per
-    asset class, and picking one number out of it is this desk choosing the life
-    under cover of a citation. The weighted life a terminal actually needs comes
-    from the property, plant and equipment note's own composition, which is a
-    further sourcing step.
+    A FIRST DRAFT OF THIS FILE READ ONLY disclosed_lives.json AND REPRODUCED A FALSE
+    NEGATIVE THE CENSUS HAD ALREADY PAID FOR. A study rebuilt through
+    terminal_value.py COMMITS its life under terminal_record.inputs, so ARCC — whose
+    20-year life is quoted to its own audited note and is [R-TERM-01]'s worked case —
+    came back NO LIFE here while the census printed it correctly two files away. The
+    census carried the two-source logic inline and had recorded the lesson in a
+    comment; copying it would have been the same defect a third time.
 
-    A first draft of this file priced `longest_years` alone and called the result a
-    floor. Directionally that is true — a longer life charges less maintenance — but
-    the quantity is the longest life of ANY asset class, which on a fleet is a
-    jack-up barge at 40 years while the vessels the value sits in run 25. THAT IS
-    STILL CHOOSING A LIFE, with a label on it. So both ends are built and both are
-    printed, and where they disagree about the answer the disclosure does not
-    determine it yet.
+    So it is a shared function now and both callers use it. WHERE A CHECK FIRES ON
+    WORK THAT IS RIGHT, RE-POINT IT [R-COC-01] — and where the re-pointing is a
+    second implementation of one claim, extract it instead.
+
+    A committed single life comes back as (life, life) so both ends of the band
+    coincide: a study that has already collapsed the band under gate is not asked to
+    re-open it, while a name whose life is only SOURCED is priced at both ends.
     """
-    e = lives.get('lives', {}).get(ticker)
-    if not e:
-        return None, None, None
-    return e.get('shortest_years'), e.get('longest_years'), e.get('source')
+    lo, hi, src = TC.disclosed_life(ticker)
+    if lo is None:
+        return None, None
+    return (lo, lo if hi is None else hi), src
+
+
+def committed_terminal(ticker):
+    """A study's own committed terminal_record, or None."""
+    f = os.path.join(REPO, 'engine', '%s_study' % ticker.lower(), 'study_numbers.json')
+    if not os.path.exists(f):
+        return None
+    try:
+        return json.load(open(f, encoding='utf-8')).get('terminal_record')
+    except Exception:                                                # noqa: BLE001
+        return None
+
+
+# WHAT A CORRECTION NEEDS THAT THE RETIRED CONSTRUCTION NEVER COMMITTED. The retired
+# terminal is one line — g x IC — so a study carrying it publishes neither the capital
+# base at REPLACEMENT cost nor the working capital the corrected charge acts on, and
+# usually not the disclosed life either. Naming them individually is the point: "cannot
+# be priced" is a conclusion, and this is the evidence for it.
+NEEDS = ('ic_replacement', 'working_capital', 'useful_life_years')
 
 
 def price_one(rec, lives):
-    """(status, detail, fv_new) for one census record."""
+    """(status, detail, fv) for one census record.
+
+    THE INSTRUMENT REPRODUCES BEFORE IT PREDICTS. A study already rebuilt through
+    terminal_value.py commits every input it used, so rebuilding from that record must
+    return the fair value the study publishes — and if it does not, this file is wrong
+    rather than the study. That check is the whole reason the ALREADY CORRECTED branch
+    exists: without a case where the answer is known in advance, a pricing report is a
+    column of numbers nobody can falsify.
+
+    A FIRST DRAFT DID PREDICT WITHOUT REPRODUCING and was wrong by 8.4% on exactly that
+    name. It rebuilt from the census record with working capital passed as zero and the
+    capital base taken from the flat resolver, and reported the difference as though it
+    were the correction. The move was the instrument's own simplifications.
+    """
     tk = rec['ticker']
     if 'unreadable' in rec:
         return 'UNREADABLE', rec['unreadable'], None
+
+    tr = committed_terminal(tk)
+    if tr and tr.get('inputs'):
+        ins = dict(tr['inputs'])
+        try:
+            built = TV.build(TV.TerminalInputs(**ins))
+        except Exception as e:                                       # noqa: BLE001
+            return ('RECORD WILL NOT REBUILD',
+                    'its own committed inputs no longer build: %s' % e, None)
+        tv_new = getattr(built, 'tv', None)
+        fv = _fv_at(rec, tv_new) if tv_new is not None else None
+        if fv is None:
+            return 'ALREADY CORRECTED', 'rebuilt, but the record exposes no fair value', None
+        drift = abs(fv / rec['fv'] - 1.0) if rec.get('fv') else None
+        if drift is not None and drift > 5e-4:
+            return ('RECORD DISAGREES WITH THE STUDY',
+                    'rebuilding its own committed inputs gives %.4f against a published '
+                    '%.4f (%.2f%%) — one of the two has moved' % (fv, rec['fv'],
+                                                                  drift * 100), None)
+        return ('ALREADY CORRECTED',
+                'rebuilt from its own committed inputs and reproduces %.4f exactly'
+                % rec['fv'], None)
+
     if rec.get('implied_cycle_years') is None:
         return 'NOT THE RETIRED SHAPE', 'no reinvestment charge to correct', None
 
-    lo, hi, src = _life_band(tk, lives)
-    if lo is None or hi is None:
-        return ('NO LIFE',
-                'no disclosed useful life on file — the accounting-policies note of '
-                'this company\'s own audited statements is what unblocks it '
-                '(SIGCM clause 1)', None)
-
-    need = ('nopat_term', 'wacc_term', 'g', 'ic', 'dna_last')
-    missing = [k for k in need if rec.get(k) is None]
-    if missing:
-        return 'INPUTS SHORT', 'the terminal exposes no ' + ', '.join(missing), None
-
-    try:
-        import macro_path as MP
-        infl = MP.load(_market_of(tk)).terminal_inflation
-    except Exception:                                                # noqa: BLE001
-        # The nominal growth the study itself used IS its terminal inflation wherever
-        # real growth is zero, which is what the house path returns for every terminal
-        # it builds [R-MACRO-01]. Where the path will not resolve, that identity is the
-        # honest fallback and it is LABELLED rather than silently assumed.
-        infl = rec['g']
-
-    out = {}
-    for label, life in (('shortest', lo), ('longest', hi)):
-        try:
-            t_ = TV.build(TV.TerminalInputs(
-                nopat=rec['nopat_term'], wacc=rec['wacc_term'],
-                inflation=infl, real_growth=0.0,
-                dna_book=rec['dna_last'],
-                ic_replacement=rec['ic'], useful_life_years=float(life),
-                useful_life_source=src or 'disclosed_lives.json',
-                maintenance_basis='disclosed_life',
-                working_capital=0.0))
-        except Exception as e:                                       # noqa: BLE001
-            out[label] = ('refused', '%dy: %s' % (life, e))
-            continue
-        out[label] = ('ok', _fv_at(rec, getattr(t_, 'tv', None)))
-
-    if all(v[0] == 'refused' for v in out.values()):
-        return ('REFUSED',
-                'at BOTH ends of the disclosed band — %s; %s'
-                % (out['shortest'][1], out['longest'][1]), None)
-    vals = [v[1] for v in out.values() if v[0] == 'ok' and v[1] is not None]
-    if not vals:
-        return 'REFUSED', 'the module returned no terminal at either end', None
-    return 'PRICED', ('band %dy-%dy' % (lo, hi)), (min(vals), max(vals))
+    band, src = _life_band(tk)
+    have = {'useful_life_years': band[0] if band else None,
+            'ic_replacement': None,        # the retired construction commits BOOK capital
+            'working_capital': None}
+    missing = [k for k in NEEDS if have.get(k) is None]
+    named = (missing[0] if len(missing) == 1
+             else ' and '.join([', '.join(missing[:-1]), missing[-1]]))
+    return ('CANNOT BE PRICED',
+            'the correction needs %s, and this study commits %s; the retired '
+            'construction is one line and never had to'
+            % (named, 'neither' if len(missing) == 2 else
+               ('it not at all' if len(missing) == 1 else 'none of them')), None)
 
 
 def _market_of(ticker):
@@ -167,89 +189,65 @@ def _fv_at(rec, tv_new):
 
 
 def report():
-    lives = json.load(open(LIVES, encoding='utf-8')) if os.path.exists(LIVES) else {}
     rows = TC.census()
     if not rows:
         print('FAIL — the census returned zero studies; an empty result is not a clean '
               'result [R-ENF-04]')
         return 1
 
-    print('WHAT CORRECTING THE RETIRED TERMINAL IS WORTH, AND WHICH WAY IT RUNS')
+    print('CAN THE RETIRED TERMINAL BE CORRECTED FROM WHAT EACH STUDY PUBLISHES?')
     print('   [R-TERM-01 CLAUSE TWO] · %d study directories read' % len(rows))
     print()
-    print('  ticker       old fv    corrected fv        move        spot    old gap  '
-          '  new gap   toward?')
-    print('  ' + '-' * 96)
 
-    priced, other = [], []
-    for rec in sorted(rows, key=lambda r: r['ticker']):
-        st, why, fv = price_one(rec, lives)
-        if st != 'PRICED' or fv is None:
-            other.append((rec['ticker'], st, why))
-            continue
-        lo_fv, hi_fv = fv
-        old = rec['fv']
-        spot, _date, _src = _latest_price(rec['ticker'])
-        if not spot:
-            other.append((rec['ticker'], 'NO PRICE',
-                          'corrected to %.2f-%.2f from %.2f, but no latest known price'
-                          % (lo_fv, hi_fv, old)))
-            continue
-        g_old = old / spot - 1.0
-        g_lo, g_hi = lo_fv / spot - 1.0, hi_fv / spot - 1.0
-        # TOWARD only if BOTH ends of the disclosed band close the gap. Where the band
-        # straddles, the disclosure does not decide it and the row says so.
-        if abs(g_lo) < abs(g_old) and abs(g_hi) < abs(g_old):
-            toward = 'TOWARD'
-        elif abs(g_lo) > abs(g_old) and abs(g_hi) > abs(g_old):
-            toward = 'AWAY'
-        else:
-            toward = 'BAND STRADDLES'
-        priced.append((rec['ticker'], old, lo_fv, hi_fv, spot, g_old, g_lo, g_hi,
-                       toward, why))
-        print('  %-10s %7.2f  %7.2f-%-7.2f  %+6.1f%%/%+6.1f%%  %7.2f  %+7.1f%%  '
-              '%+6.1f%%/%+6.1f%%  %s'
-              % (rec['ticker'], old, lo_fv, hi_fv,
-                 (lo_fv / old - 1) * 100, (hi_fv / old - 1) * 100, spot,
-                 g_old * 100, g_lo * 100, g_hi * 100, toward))
-
-    if not priced:
-        print('  NONE. Not one terminal in the book can be corrected today, and that is '
-              'the finding rather than')
-        print('  a gap in this report: the correction needs a DISCLOSED useful life per '
-              'name and almost none is')
-        print('  on file. See below for which reason applies to which name.')
-
-    print()
-    print('  NOT PRICED, and each one counted rather than skipped [R-ENF-04]:')
     from collections import Counter
-    for tk, st, why in other:
-        print('    %-12s %-22s %s' % (tk, st, why[:104]))
-    print()
-    print('    ' + ' · '.join('%s %d' % (k, v) for k, v in
-                              sorted(Counter(s for _, s, _ in other).items())))
+    buckets = {}
+    for rec in sorted(rows, key=lambda r: r['ticker']):
+        st, why, _fv = price_one(rec, None)
+        buckets.setdefault(st, []).append((rec['ticker'], why))
 
-    if priced:
-        away = [r for r in priced if r[8] == 'AWAY']
+    order = ['ALREADY CORRECTED', 'RECORD DISAGREES WITH THE STUDY',
+             'RECORD WILL NOT REBUILD', 'CANNOT BE PRICED',
+             'NOT THE RETIRED SHAPE', 'UNREADABLE']
+    for st in order + [k for k in buckets if k not in order]:
+        if st not in buckets:
+            continue
+        print('  %s (%d)' % (st, len(buckets[st])))
+        for tk, why in buckets[st]:
+            print('    %-12s %s' % (tk, why[:118]))
         print()
-        print('  %d of %d priced names move AWAY from the price at BOTH ends of their '
-              'own disclosed band.' % (len(away), len(priced)))
-        for r in away:
-            print('    %-12s %+.1f%% -> %+.1f%%/%+.1f%% against %.2f'
-                  % (r[0], r[5] * 100, r[6] * 100, r[7] * 100, r[4]))
-        print('  On those the terminal is NOT where the pessimism is [R-TERM-01 CLAUSE '
-              'TWO], and the eight')
-        print('  headings [R-GAP-01] should look elsewhere.')
 
+    bad = len(buckets.get('RECORD DISAGREES WITH THE STUDY', [])) + \
+        len(buckets.get('RECORD WILL NOT REBUILD', []))
+    ok = len(buckets.get('ALREADY CORRECTED', []))
+    cant = len(buckets.get('CANNOT BE PRICED', []))
+
+    print('  THE ANSWER, AND IT IS NOT A TABLE OF MOVES.')
+    print('  %d name(s) are already on the corrected construction and rebuild to their '
+          'own published' % ok)
+    print('  fair value exactly — which is what makes this instrument falsifiable rather '
+          'than a column')
+    print('  of numbers. %d carry the retired construction and CANNOT be priced from what '
+          'they publish:' % cant)
+    print('  the retired terminal is one line, g x IC, so it never had to commit the '
+          'replacement-cost')
+    print('  capital base, the working capital the corrected charge acts on, or the '
+          'disclosed life.')
     print()
-    print('  THE BAND IS THE DISCLOSURE\'S, NOT THIS DESK\'S. Both ends are built '
-          'because a policy note gives a')
-    print('  range per asset class and picking one figure out of it is choosing a life '
-          'under cover of a')
-    print('  citation. The weighted life a terminal actually needs comes from the '
-          'property, plant and')
-    print('  equipment note\'s own composition — a further sourcing step, not done '
-          'here.')
+    print('  SO THE NEXT WORK IS SOURCING, NOT MODELLING. Each of those names needs its '
+          'own audited')
+    print('  accounting-policies note and its own balance sheet read again — and A LIFE '
+          'THIS DESK CHOSE IS')
+    print('  NOT A DISCLOSED LIFE (SIGCM clause 1), so nothing here is assumed and every '
+          'name is COUNTED')
+    print('  rather than skipped: a report listing only the priceable ones would read as '
+          'though the book')
+    print('  had been measured.')
+
+    if bad:
+        print()
+        print('  FAIL — %d record(s) no longer agree with the study they belong to '
+              '[R-ENF-06].' % bad)
+        return 1
     return 0
 
 

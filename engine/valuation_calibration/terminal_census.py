@@ -426,6 +426,46 @@ def census():
     return [read_study(d) for d in sorted(glob(os.path.join(REPO, 'engine', '*_study')))]
 
 
+def disclosed_life(ticker):
+    """THE DISCLOSED USEFUL LIFE FOR A NAME, FROM BOTH PLACES THAT CARRY IT.
+
+    Two sources, and reading only one produces a false negative that has already
+    happened once: ARCC read "not sourced" on this census's first run while carrying
+    a 20-year life quoted to its own audited note, because a study rebuilt through
+    terminal_value.py commits the life under terminal_record.inputs and the flat
+    resolver never looks there.
+
+    Returns one of:
+      (life, None, source)      a study has COMMITTED a single life to its own record
+      (lo, hi, source)          a life is SOURCED into disclosed_lives.json as the
+                                band its policy note actually discloses, not yet
+                                collapsed — that is a different state from committed,
+                                and the one that says the next rebuild can proceed
+      (None, None, None)        genuinely not sourced
+
+    THE BAND IS NOT COLLAPSED HERE. A policy note gives a range per asset class and
+    picking one figure out of it is this desk choosing a life under cover of a
+    citation, which [R-TERM-01] refuses outright (SIGCM clause 1). The weighted life
+    a terminal needs comes from the property, plant and equipment note's own
+    composition — a further sourcing step, and the caller is told which state it has.
+    """
+    nf = os.path.join(REPO, 'engine', '%s_study' % ticker.lower(), 'study_numbers.json')
+    if os.path.exists(nf):
+        try:
+            rec = (json.load(open(nf)).get('terminal_record') or {}).get('inputs', {})
+            v = rec.get('useful_life_years')
+            if isinstance(v, (int, float)) and v > 0:
+                return float(v), None, (rec.get('useful_life_source')
+                                        or 'the study\'s own committed terminal record')
+        except Exception:                                            # noqa: BLE001
+            pass
+    band = (_LIVES.get('lives') or {}).get(ticker)
+    if band and band.get('shortest_years') and band.get('longest_years'):
+        return (float(band['shortest_years']), float(band['longest_years']),
+                band.get('source') or 'disclosed_lives.json')
+    return None, None, None
+
+
 def _fv_at(rec, tv_new):
     """What the study's own fair value becomes at a different terminal, all else equal.
 
@@ -500,21 +540,13 @@ def implied_lives():
         # it under terminal_record.inputs and the census's flat resolver never looks there.
         # ARCC read 'not sourced' on the first run while carrying a 20-year life quoted to
         # its own audited note — the census reporting a gap that had already been closed.
-        disc = None
-        _nf = os.path.join(REPO, 'engine', '%s_study' % r['ticker'].lower(),
-                           'study_numbers.json')
-        if os.path.exists(_nf):
-            try:
-                disc = ((json.load(open(_nf)).get('terminal_record') or {})
-                        .get('inputs', {}).get('useful_life_years'))
-            except Exception:
-                disc = None
-        # ...and where a study has NOT yet been rebuilt, the life may still have been
-        # SOURCED — read from its own audited note and registered — which is a different
-        # state from "not sourced" and the one that says the next rebuild can proceed.
-        band = (_LIVES.get('lives') or {}).get(r['ticker'])
-        if disc is None and band:
-            disc = 'sourced %g-%g yrs' % (band['shortest_years'], band['longest_years'])
+        lo_l, hi_l, _src = disclosed_life(r['ticker'])
+        if lo_l is None:
+            disc = None
+        elif hi_l is None:
+            disc = lo_l                       # a study has committed one life
+        else:
+            disc = 'sourced %g-%g yrs' % (lo_l, hi_l)
         print('  {:<12}{:>9.1f}{:>12,.0f}{:>12}{:>12}   {}'.format(
             r['ticker'], 1.0 / r['g'], ch,
             ('{:,.0f}'.format(dna)) if dna else '—',
