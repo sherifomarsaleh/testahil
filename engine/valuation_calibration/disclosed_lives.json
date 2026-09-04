@@ -313,6 +313,63 @@
    "years_are_derived_not_disclosed": "THE COMPANY DISCLOSES RATES; THE YEARS BESIDE THEM ARE 100/rate AND ARE LABELLED DERIVED. An identity is not an assumption, and the label is what keeps the two apart — the same discipline [R-FCAL-01 AMENDED] applies to capex derived by ΔPPE + D&A.",
    "cells_not_read": "Three cells in the buildings row are NOT recorded because their digits could not be read with confidence even from the rendered page: an entry for the cinema and cafeteria building, one for iron and steel buildings that appears to be a range, and the furniture and fittings row, which falls on a page boundary in the crop. They are named here rather than guessed — a figure this desk cannot read is a figure this desk does not use (SIGCM clause 8), and none of the three is a production asset the terminal turns on.",
    "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE and here it is very wide — 5 to 50 years — because the table mixes a residential building at 2% with passenger cars at 20%. The weighted life a terminal needs comes from this company's own property, plant and equipment composition; on a fertiliser producer the classes that carry the value are the plants at 6% (buildings) and 3.95% to 9.5% (machinery), i.e. roughly 10 to 25 years, and establishing that weighting is a further sourcing step not done here."
+  },
+  "AIRARABIA": {
+   "classes": [
+    {
+     "asset_class": "Buildings",
+     "years": [
+      15,
+      20
+     ]
+    },
+    {
+     "asset_class": "Aircrafts",
+     "years": [
+      20,
+      20
+     ],
+     "note": "raised from 15 to 20 years with effect from 1 October 2024; residual values reduced from 20% to a range of 7% to 8% of original cost"
+    },
+    {
+     "asset_class": "Aircraft engines",
+     "years": [
+      20,
+      20
+     ]
+    },
+    {
+     "asset_class": "Aircraft rotables and equipment",
+     "years": [
+      3,
+      10
+     ]
+    },
+    {
+     "asset_class": "Airport equipment",
+     "years": [
+      3,
+      15
+     ]
+    },
+    {
+     "asset_class": "Other property and equipment including engine driven pumps",
+     "years": [
+      3,
+      5
+     ]
+    }
+   ],
+   "longest_years": 20,
+   "shortest_years": 3,
+   "land_not_depreciated": true,
+   "source": "Air Arabia PJSC and its subsidiaries, consolidated financial statements for the year ended 31 December 2025, note 4 material accounting policies, property and equipment: 'The useful lives are applied, as follows'. Land granted by the Government of Sharjah is not depreciated, 'as it is deemed to have an infinite life'. Residual values and the 2024 reassessment are from note 5, property and equipment.",
+   "file": "engine/airarabia_study/sources/FS_FY2025.pdf",
+   "route": "Text layer via pdftotext -layout, 246KB extracted.",
+   "cross_check": "THE TABLE PRINTS ITS OWN COMPARATIVE COLUMN — 2025 beside 2024 — and every class is identical in both, which is the cross-check inside one document. The FY2024 statements committed beside it carry no text layer (65 bytes) and were not needed.",
+   "an_apparent_contradiction_resolved": "The FY2025 policy note opens 'During the year, the Group changed the estimated useful life applied to certain assets ... refer Note 5', while the table it introduces shows NO change between 2025 and 2024. Note 5 settles it: the reassessment was 'during the year ended 31 December 2024', effective 1 October 2024 — aircraft lives raised from 15 to 20 years, residual values cut from 20% to 7-8% of original cost, quantified at AED 29.3mn on net assets and AED 26.7mn on net profit. THE OPENING SENTENCE IS PRIOR-YEAR PROSE CARRIED FORWARD IN THE COMPANY'S OWN FILING. It is recorded because a reader who stopped at that sentence would date a change to the wrong year, and because a disclosure that contradicts its own table is the shape this house is supposed to notice — it is theirs and not ours, and the resolution is theirs too.",
+   "why_this_name_matters_here": "AIRARABIA is one of the seven terminals charging LESS than their own book depreciation and one of the three doing it while sitting more than 10% BELOW the price. Its retired terminal implies a replacement cycle of 1/g = 40 years against a DISCLOSED aircraft life of 20 — it charges roughly half the maintenance the disclosure implies, on the asset class that carries essentially all the value. Correcting it moves the value DOWN and therefore AWAY from the price, which is [R-TERM-01 CLAUSE TWO]'s point and the side of the correction this house has never measured.",
+   "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE, though this one is unusually well determined: an airline's value sits in aircraft and engines, both disclosed at a single 20 years rather than a band. The weighting is still a further sourcing step, and the 7-8% residual belongs in it — maintenance at replacement cost over 20 years against a 7-8% residual is not the same charge as over 15 against 20%."
   }
  }
 }

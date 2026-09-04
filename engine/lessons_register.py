@@ -3995,6 +3995,25 @@ LESSONS = [
       "A verifier whose artefact is regenerated on every read, where there is no "
       "written-down copy to go stale."),
 
+    L("L-285", "ALL", None,
+      "BEFORE FETCHING A DOCUMENT, LOOK FOR IT ON DISK. A repository that has been "
+      "sourcing filings for months is the first place to search, not the last.",
+      "Sourcing feels like an outward activity, so the instinct on needing a filing is "
+      "to go and get it. But work already done leaves files behind, and those files "
+      "answer the question at no cost and with provenance somebody has already "
+      "checked. Reaching outward first is not thoroughness; it is a search that "
+      "skipped its own shelf.",
+      "Sourcing disclosed useful lives, 04-Sep-2026",
+      "build",
+      "Twice in one session. A company's annual reports for four years sat in its own "
+      "study directory, unopened, while the census reported its life 'not sourced'. An "
+      "hour later a second company was recorded as needing another route because its "
+      "website does not resolve from this environment — and eleven of its filings, "
+      "including five years of audited statements, were already committed. Both were "
+      "read from disk in minutes once anybody looked.",
+      "A repository that does not retain source documents, where the shelf really is "
+      "empty and the only route is outward."),
+
 ]
 
 

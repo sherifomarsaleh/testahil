@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**205 lessons**, of which 176 bind on every study, 22 on a class of company, and 7 on a single name.
+**206 lessons**, of which 177 bind on every study, 22 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 130 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 131 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1838,6 +1838,16 @@ A verifier that rebuilds the answer from the current inputs and prints that is a
 > **What it cost, or how we know.** build_publish_queue.py --check printed 'publish queue OK' and exited 0 on a manifest recording ARCC as staged at 53.4593 while the study committed 66.53, one full re-issue behind — and the same for three more names. Pointed at the committed file it caught all four immediately, including one the programme's own acceptance record could not see because that name publishes a two-sided answer with no scalar central.
 
 > **What would overturn it.** A verifier whose artefact is regenerated on every read, where there is no written-down copy to go stale.
+
+### L-285 · BEFORE FETCHING A DOCUMENT, LOOK FOR IT ON DISK. A repository that has been sourcing filings for months is the first place to search, not the last.
+
+Sourcing feels like an outward activity, so the instinct on needing a filing is to go and get it. But work already done leaves files behind, and those files answer the question at no cost and with provenance somebody has already checked. Reaching outward first is not thoroughness; it is a search that skipped its own shelf.
+
+**Applies to:** every study  ·  *Learned from:* found while building, Sourcing disclosed useful lives, 04-Sep-2026
+
+> **What it cost, or how we know.** Twice in one session. A company's annual reports for four years sat in its own study directory, unopened, while the census reported its life 'not sourced'. An hour later a second company was recorded as needing another route because its website does not resolve from this environment — and eleven of its filings, including five years of audited statements, were already committed. Both were read from disk in minutes once anybody looked.
+
+> **What would overturn it.** A repository that does not retain source documents, where the shelf really is empty and the only route is outward.
 
 
 ---
