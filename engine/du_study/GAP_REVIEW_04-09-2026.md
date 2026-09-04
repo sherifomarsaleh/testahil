@@ -1,29 +1,56 @@
 # DU — gap review, 4 September 2026
 
-**AUDITED CENTRAL: 18.8909** — the cash-flow lens, AED per share.
-**AUDITED GAP: +66.3%** against the latest known price, AED 11.36 (3 September 2026,
-`engine/prices/SUPPLIED_03-09-2026.json`). Against the price this study was struck at,
-AED 12.30 (7 August 2026), the gap is +53.6%.
+**AUDITED CENTRAL: 16.8563** — the cash-flow lens, AED per share.
+**AUDITED GAP: +48.4%** against the latest known price, AED 11.36 (3 September 2026,
+supplied and committed), which is also the price this edition is struck at.
 
-This fires the ABOVE-price half of the audit trigger. Under [R-GAP-02] as amended that
-half carries **no publication block** — the block is one-sided below the price, because
-the errors in a discounted cash flow are not symmetric and a large discount is the
-high-prior-of-defect region. So nothing holds this study, and this review is the only
-instrument standing here. It is written on that basis, and the rule's own stated cost —
-"an over-optimistic study is no longer HELD" — has a live instance in it.
+This fires the ABOVE-price half of the audit trigger. That half carries **no publication
+block** — the block is one-sided below the price, because the errors in a discounted cash
+flow are not symmetric and a large discount is the high-prior-of-defect region. So nothing
+holds this study on the gap, and this review is the only instrument standing here. It is
+written on that basis, and the rule's own stated cost — "an over-optimistic study is no
+longer held" — has a live instance in it.
 
-## What this review found, before the headings
+*This edition supersedes the one written earlier the same day at a central of 18.8909 and
+a gap of +66.3%. The rebuild moved the gap eighteen percentage points, more than three
+times the tolerance a review is allowed before it is stale.*
 
-**Every heading either found nothing or pointed at the same single number, and the one
-correction the review produced moves the answer FURTHER from the price.**
+## What this rebuild found, and where the earlier edition was wrong
 
-That last part matters and is recorded rather than smoothed. The terminal-value census
-flagged DU as the most extreme under-charger in the book — a capital charge of 9.1% of
-terminal profit, an implied replacement cycle of 40 years, a terminal 56.5% above its own
-floor. Rebuilt through the sanctioned module on a life derived from du's own audited
-notes, the terminal comes out **5.6% higher**, and the fair value with it: 18.89 → 19.80,
-+66.3% → +74.3%. A correction that moves the answer away from the price is not a reason to
-reconsider the correction.
+**The earlier edition of this review estimated the terminal rebuild and got its SIGN
+wrong.** It priced the correction at +5.6% on the terminal and +4.8% on the fair value,
+taking the answer to AED 19.80 and the gap to +74.3%, and it drew the general conclusion
+that "nobody may predict which way a rebuild moves a value before running it". That
+conclusion stands. The estimate did not: built, the terminal comes out **2.6% LOWER**, and
+the reason is the one line the estimate did not carry.
+
+**The lease renewal.** This study removed its explicit-window lease-replacement charge on
+the stated reasoning that "terminal reinvestment (g/ROIC) maintains it" — a renewal cycle
+of 1/g, fifty years at the derived growth rate, against a lease term the company discloses
+at **10.1 years**. Retiring the construction removes that side effect, so the renewal has
+to be put back explicitly or the terminal receives a store, office and technical-site
+estate rent-free for ever. It is put back by letting the right-of-use book enter the
+blended asset life at its own derived 10.24 years, and by adding back and escalating the
+full depreciation charge rather than the owned part alone.
+
+**AN ESTIMATE OF A CONSTRUCTION IS NOT THE CONSTRUCTION.** The estimate was made carefully
+and its arithmetic was sound; it simply valued a terminal nobody had yet built, and the
+thing that changed the sign was a line that only appears when you build it.
+
+Three levers, and the largest is not the one anybody would expect:
+
+| Lever | Rule | Before | After | Move |
+|---|---|---|---|---|
+| terminal growth stored as a real rate on the house path | macro coherence | 18.8909 | 17.1542 | −9.2% |
+| terminal through the sanctioned module on a derived, validated life | terminal construction | 17.1542 | 16.7705 | −2.2% |
+| re-struck on the latest known price | this rule | 16.7705 | 16.8563 | +0.5% |
+
+**The growth STORAGE moved this name four times as much as the construction rebuild**,
+which is the reverse of the usual reading that the terminal formula is the big correction.
+Under the retired identity the growth charge is g × invested capital, so cutting the growth
+rate is worth whatever the growth was worth — and here the terminal return on capital
+(27.4%) sits far above the terminal cost of capital (6.2%), so growth was highly
+accretive and taking half a point out of it costs a great deal.
 
 ---
 
@@ -76,8 +103,8 @@ this review, is derived on the identical construction so the series is like-for-
 ## MACRO COHERENCE
 
 The dirham is hard-pegged, so the UAE imports United States monetary policy and the house
-path returns a flat cost-of-capital schedule by construction of the peg. Terminal
-inflation on the house path is 2.0%.
+path returns a flat cost-of-capital schedule by construction of the peg. Terminal inflation
+on the house path is 2.0%.
 
 The study's escalators sit on it. The three pure-inflation lines — staff, administration
 and other operating cost — each escalate at exactly 2.0%. The lines that differ each carry
@@ -86,18 +113,29 @@ mobile interconnect at −1.5% against a measured −4.1%, commission at +3.0% a
 measured +3.0%, network at +3.0%, fixed capacity and devices held flat against measured
 improvements that are stopped rather than projected.
 
-Terminal growth is 2.5% nominal against terminal inflation of 2.0% — a stated real growth
-of **+0.49%**, positive and small. This is not the real-terms perpetual decline that
-[L-055] names; it is its opposite, and it is coherent with the terminal discount rate.
+**This heading is where the largest correction landed.** The previous edition typed a
+terminal growth of 2.50% nominal and argued it as population growth plus inflation minus
+price erosion — two real forces pointing opposite ways, with a number on neither. The
++0.49% real that 2.50% implies against 2.0% inflation was therefore nobody's estimate; it
+was the residue of typing the nominal figure. Terminal growth is now stored as a **real
+rate of zero** on the house 2.0%, and the nominal is derived.
+
+**The company itself discloses the same figure, and that is the strongest evidence here.**
+Note 9's goodwill impairment test uses a terminal growth rate of **2%**, "determined based
+on management's estimate of the long-term cash flow growth rate, consistent with the
+assumption that a market participant would make". So this is not a house default overriding
+a company view: it is the house path and the company's own audited disclosure agreeing
+against a rate this desk had typed.
 
 The terminal risk-free rate the study uses, 4.30%, sits 32bp above the house-derived
-terminal AED risk-free of 3.98% (2.0% terminal inflation plus the 1.9751% real-rate
-convention). The difference is small and runs against the study's own answer.
+terminal AED risk-free of 3.98%. The difference is small and runs against the study's own
+answer. Whether a pegged market should derive a terminal risk-free rate at all is an open
+question across every UAE name and is registered rather than settled here.
 
-The study carries no machine-readable macro record, so this coherence is established by
-reading rather than by assertion, and DU remains on that ratchet.
+The study carries no machine-readable macro record, so the rest of this coherence is
+established by reading rather than by assertion, and DU remains on that ratchet.
 
-**Nothing found.**
+**Found: the terminal growth rate, worth −9.2%.**
 
 ## DISCOUNT RATE
 
@@ -146,19 +184,20 @@ price, which is prohibited outright.
 
 ## TERMINAL
 
-The terminal carries **83.4%** of enterprise value, so any error here is most of the
-answer. Two things were checked.
+The terminal carries **81.4%** of enterprise value, so any error here is most of the
+answer. Three things were checked.
 
-**Convergence.** The explicit window ends at 3.68% revenue growth against a 2.50% terminal
-— a gap of 1.18 percentage points, inside the two-point requirement. The model does not
+**Convergence.** The explicit window ends at 3.68% revenue growth against a 2.00% terminal
+— a gap of 1.68 percentage points, inside the two-point requirement. The model does not
 capitalise a rate it never reached.
 
-**The construction.** The published terminal uses the reinvestment identity `rr = g/ROIC`,
+**The construction.** The published terminal used the reinvestment identity `rr = g/ROIC`,
 which charges `g × IC` every year for ever and therefore implies a replacement cycle of
-`1/g` = **40 years**. That is a fact about the inflation rate and not about the asset.
+`1/g` = **50 years** at the derived growth rate. That is a fact about the dirham's peg to
+the dollar and not about a mobile network.
 
-The asset life was derived by identity from du's own audited notes — gross cost excluding
-capital work in progress over the year's own charge — and nothing about it was chosen:
+**The asset life, derived by identity from du's own audited notes** — gross cost over the
+year's own charge, excluding capital work in progress because no note depreciates it:
 
 | | gross cost (AED 000) | charge | implied life |
 |---|---|---|---|
@@ -167,38 +206,36 @@ capital work in progress over the year's own charge — and nothing about it was
 | Right-of-use assets (note 7) | 3,726,888 | 364,063 | 10.24 y |
 | **Blended** | **35,843,531** | **2,146,363** | **16.70 y** |
 
-The route validates itself on a disclosed figure: the right-of-use component derives 10.24
-years against the **10.1-year average lease term note 7 discloses directly** — 1.4% apart.
+**The route validates itself against a directly disclosed figure**, which is the strongest
+evidence available for a derived quantity: the right-of-use component derives 10.24 years
+against the **10.1-year average lease term note 7 states outright** — 1.4% apart. The
+prior year's own columns give a blended 15.96 on the same identity.
 
-So the terminal charges maintenance on a 40-year cycle for an asset base the company's own
-accounts turn over in 16.7. Rebuilt through the sanctioned module — maintenance at
-replacement cost on the derived life, book depreciation added back, growth capital charged
-only for the stated real growth, inflation on working capital charged (a release here,
-because working capital is negative):
+So the published terminal charged maintenance on a fifty-year cycle for an asset base the
+company's own accounts turn over in 16.7, and it charged the lease estate on that same
+fifty-year cycle against a ten-year disclosed term. Rebuilt through the sanctioned module:
 
 | | published | rebuilt |
 |---|---|---|
-| Terminal value | 96,247.7 | **101,639.2** (+5.6%) |
-| Enterprise value | 85,008.8 | 88,982.0 |
-| Fair value per share | 18.89 | **19.80** (+4.8%) |
-| Gap to AED 11.36 | +66.3% | **+74.3%** |
+| Terminal value | 85,963.6 | **83,691.4** (−2.6%) |
+| Terminal free cash flow | — | 3,424.9, or 88.5% of terminal profit |
+| Capital maintenance at replacement cost | — | 3,107.7 against a book charge of 2,634.1 |
+| Inflation on working capital | — | a CREDIT of 26.5, because this company collects before it pays |
 
-**The correction raises the value.** That is the opposite of what the census ratio
-suggested, and it is the second name on which that has happened. The reason is exact and is
-[L-289]: the two figures are not like for like. The retired construction charges `g × IC`
-*net*, on an implied capital base, with maintenance assumed equal to depreciation and
-cancelled out; the sanctioned one charges maintenance *gross* at replacement cost and adds
-book depreciation back. Under a 2% peg the wedge between replacement cost and book
-depreciation is only about 8%, so the gross-for-gross swap is nearly free while the
-retired growth charge disappears entirely. **The ratio is a flag, not an inference, and
-nobody may predict which way a rebuild moves a value before running it.**
+Both figures above are struck at the derived 2.0% growth, so the terminal column isolates
+the construction and not the growth rate.
 
-**Found, and it widens the gap.** A defect was also found in what the retired construction
-licensed: the study removed its explicit-window lease-replacement capex on the stated
-reasoning that *"terminal reinvestment (g/ROIC) maintains it"* — a charge implying a
-40-year renewal cycle against a disclosed 10.1-year lease term. The retirement's own
-justification rested on the construction this rule retires. The sanctioned terminal
-charges lease renewal inside the blended life, which closes it.
+**The one real judgement left is the life, and it is sensitised rather than asserted.**
+Reading the same notes the other way — accumulated depreciation over the same charge —
+says the base has already taken 11.49 years of depreciation against the 8.35 the
+escalation formula assumes, which the formula would reach at a life of 22.97 years. That
+reading is worth AED 16.03 a share against the base's 16.86, and it is published beside
+the answer rather than averaged into it. Across the whole grid, from 10.7 to 22.7 years,
+the cash-flow lens moves from 17.60 to 16.07 — about 9% end to end, on a terminal carrying
+four fifths of the value.
+
+**Found: the construction, worth −2.2%, and the earlier estimate of this same correction
+was wrong in sign.**
 
 ## BALANCE SHEET
 
@@ -270,21 +307,25 @@ from the grid, not typed.
 
 This is the strongest evidence against the premium in the review, and it is stated as such.
 
-| | at the fair value of 18.89 | at the price of 11.36 | peer / own benchmark |
+| | at the fair value of 16.86 | at the price of 11.36 | peer / own benchmark |
 |---|---|---|---|
-| P/E, FY2025 earnings | 29.5x | 17.7x | — |
-| P/E, trailing twelve months | **27.7x** | 16.7x | **12.9x** justified, derived from Mobily's own filings |
-| EV/EBITDA, trailing twelve months | **11.1x** | 6.6x | **7.56x**, du's own trailing |
-| Dividend yield, FY2026E | **3.69%** | 6.13% | **4.89%** peer benchmark |
+| P/E, FY2025 earnings | 26.3x | 17.8x | — |
+| P/E, trailing twelve months | **26.3x** | 17.7x | **12.9x** justified, derived from Mobily's own filings |
+| EV/EBITDA, trailing twelve months | **10.3x** | 7.0x | **7.0x**, du's own trailing |
+| Dividend yield, FY2026E | **4.13%** | 6.13% | **4.89%** peer benchmark |
 
-At its fair value du would trade at more than **twice** the earnings multiple the study
-itself derived from the closest structural analogue's audited filings, and would yield
-less than three-quarters of the peer benchmark, on a business with five-sixths of its value
-in a terminal.
+At its fair value du would trade at roughly **twice** the earnings multiple the study
+itself derived from the closest structural analogue's audited filings, and would yield less
+than the peer benchmark, on a business with four fifths of its value in a terminal.
 
-The two readings reconcile exactly, and the reconciliation is the finding: a 27x earnings
-multiple *is* a 6.17% discount rate on a slowly growing annuity — `1/(0.0617 − 0.025)` =
-27.2x. **The multiple and the discount rate are the same disagreement stated twice.**
+The two readings reconcile exactly, and the reconciliation is the finding: a 26x earnings
+multiple *is* a 6.17% discount rate on a slowly growing annuity — `1/(0.0617 − 0.020)` =
+24.0x, and the small remainder is the growth still left in the explicit window. **The
+multiple and the discount rate are the same disagreement stated twice.**
+
+The rebuild narrowed this gap without closing it: at the previous edition's 18.89 the
+earnings multiple was 27.7x and the yield 3.69%, so the two levers moved this heading in
+the right direction and it still reads against the answer.
 
 **Found: the same single parameter, from the other side.**
 
@@ -292,31 +333,36 @@ multiple *is* a 6.17% discount rate on a slowly growing annuity — `1/(0.0617 �
 
 ## Verdict
 
-The answer does not change, and the reasons are stated rather than asserted.
+The answer changes, and it changes because two rules bound that had not been applied here
+— not because this review argued the study down toward the price.
 
-Six of the eight headings found nothing: the filings are all read and the most recent
-period is consumed, the base year foots to the thousand, the macro path is coherent and
-the terminal implies real *growth* rather than real decline, the bridge stands on a sheet
-that matches its own valuation date, and the two claims that could have been wrong were
-recomputed. One heading found a typed superlative, which is now computed, bounded and
-true. One heading — the terminal — found a real construction defect whose correction
-**widens** the gap by eight points.
+Five of the eight headings found nothing: the filings are all read and the most recent
+period is consumed, the base year foots to the thousand, the bridge stands on a sheet that
+matches its own valuation date, the two claims that could have been wrong were recomputed,
+and one typed superlative is now computed, bounded and true.
 
-The remaining two findings are the same finding: the entire disagreement is the discount
-rate, and the multiple cross-check is that rate restated as a multiple. The parameter is
-measured rather than chosen — five years of du's own weekly returns, 256 observations,
-precisely estimated, with both alternative regressors pointing lower and a shrinkage toward
-this market's own measured prior worth half a per cent.
+Three headings found something:
 
-**What a reader should weigh, and it is not resolved here.** The price is paying for a beta
-of 1.08, which is this market's median and an ordinary telecom number; du's own returns say
-0.49 with a standard error of 0.08. One of those is a fact about a company's measured
+- **macro coherence**, the largest by far: a typed nominal terminal growth whose real
+  component was nobody's estimate, corrected to a real zero on the house path — and
+  corroborated by the company's own goodwill note, which discloses a 2% terminal growth
+  rate. Worth −9.2%.
+- **the terminal**, a construction charging a fifty-year replacement cycle on an asset base
+  its own notes turn over in 16.7 years, and a lease estate on that same cycle against a
+  ten-year disclosed term. Worth −2.2%. The earlier edition of this review estimated this
+  same correction at +5.6% and had the sign wrong.
+- **the multiple cross-check**, which reads against the answer at 26x earnings and is the
+  discount rate restated.
+
+**The remaining disagreement is still one parameter.** The price is paying for a beta of
+about 1.08, this market's median and an ordinary telecom number; du's own returns say 0.49
+with a standard error of 0.08. One of those is a fact about a company's measured
 co-movement and the other is a fact about what a market charges. The study's own crux
-already prices the closest available proxy for that disagreement both ways — hold today's
+prices the closest available proxy for that disagreement both ways — hold today's
 enterprise multiple into perpetuity instead of the one the measured rate implies and the
-same cash flows are worth **AED 14.81** rather than 18.89, a judgement worth AED 4.08 a
-share that is published side by side and never averaged. Even at 14.81 the premium to the
-latest price is +30.4%.
+same cash flows are worth **AED 13.89** rather than 16.86, a judgement worth AED 2.97 a
+share, published side by side and never averaged. Even at 13.89 the premium to the latest
+price is +22.3%.
 
 **The number is not moved toward the price.** A fair value adjusted to meet a quote is the
 reverse-engineered rate this method prohibits outright, arriving through the front door

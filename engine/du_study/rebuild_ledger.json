@@ -1,0 +1,67 @@
+{
+ "ticker": "DU",
+ "started_at": "2026-09-04",
+ "start_value": 18.890899,
+ "start_spot": 12.3,
+ "start_gap": 0.5358454471544716,
+ "audit_after": "all three levers: the growth storage and the terminal rebuild are one pass on this name because the growth rate feeds the terminal, and the re-strike only settles which price the answer is compared against \u2014 a look taken between them would audit a state the study never publishes",
+ "levers": [
+  {
+   "name": "terminal growth stored as a real rate on the house UAE path",
+   "rule": "R-MACRO-01",
+   "before": 18.890899,
+   "after": 17.154235,
+   "why": "the previous edition typed a nominal 2.50% and argued it as 'population-plus-inflation minus price erosion' \u2014 which names TWO real forces pointing opposite ways and puts a number on NEITHER, so the +0.49% real that 2.50% implies against 2.0% inflation was never anybody's estimate; it was the residue of typing the nominal",
+   "evidence": "engine/macro_paths/AE.json gives a 2.0% terminal, and THE COMPANY ITSELF DISCLOSES THE SAME FIGURE: note 9's goodwill impairment test uses a terminal growth rate of 2%, 'determined based on management's estimate of the long-term cash flow growth rate, consistent with the assumption that a market participant would make'. So this lever is not a house default overriding a company view \u2014 it is the house path and the company's own audited disclosure agreeing, against a rate this desk had typed. Real growth is also now CHARGED for the capital it consumes, which this model prices at AED 10,430mn per unit",
+   "move": -0.09193125218656883
+  },
+  {
+   "name": "terminal built through the sanctioned module on a blended life DERIVED by identity and validated against a disclosed lease term",
+   "rule": "R-TERM-01",
+   "before": 17.154235,
+   "after": 16.770533,
+   "why": "the retired reinvestment identity implied a replacement cycle of 1/g \u2014 50 years at the derived 2.0% \u2014 which is a fact about the dirham's peg and not about a mobile network, and it supplied the perpetual LEASE renewal only as a side effect, on that same 50-year cycle against a lease term the company discloses at 10.1 years",
+   "evidence": "notes 6, 7 and 8 give ranges per class and no weighting, so gross cost over the year's own charge supplies one: property 18.55 years, intangibles 14.59, right-of-use 10.24, blended 16.70, cross-checked at 15.96 on FY2024's columns. THE ROUTE VALIDATES ITSELF: the right-of-use component derives 10.24 against the 10.1 note 7 states directly, 1.4% apart. Maintenance AED 3,108mn against a book charge of AED 2,634mn; the working-capital line is a CREDIT because this company collects before it pays",
+   "move": -0.022367770990662006
+  },
+  {
+   "name": "re-struck on the latest known price",
+   "rule": "R-GAP-01",
+   "before": 16.770533,
+   "after": 16.856282,
+   "why": "the study stood on the 7-August close of 12.30 while the stock had fallen to 11.36. A fair value published against a price four weeks old is a comparison a reader cannot use",
+   "evidence": "DFM close of 3 September 2026, from the price file supplied that day; the anchor moves with it from 219 to 246 days, and the longer roll at the cost of equity slightly outweighs the lower market capitalisation's effect on the weights",
+   "move": 0.005113075416267376
+  }
+ ],
+ "value": 16.856282,
+ "note": "THE SAME LEVER THAT RAISED MODON'S VALUE BY 1.6% LOWERED DU'S BY 9.2%, AND THE SIGN IS SET BY ONE SPREAD. Under the retired identity the growth charge is g x invested capital, so cutting g is worth whatever the growth was worth: on MODON the terminal return (8.5%) sat BELOW the terminal cost of capital (11.9%), growth destroyed value, and less of it was worth more; on DU the terminal return (27.4%) sits far ABOVE the terminal cost of capital (6.2%), growth was highly accretive, and cutting it costs a great deal. NOBODY COULD HAVE PREDICTED EITHER SIGN FROM THE RULE ALONE. Note also which lever did the work here: the construction rebuild moved this name 2.2% while the growth STORAGE moved it 9.2%, the reverse of the usual reading that the terminal formula is the big correction. AND AN ESTIMATE OF A CONSTRUCTION IS NOT THE CONSTRUCTION: this review's first edition, written before the rebuild, priced the terminal correction at +5.6% and the fair value at 19.80; built, with the lease renewal charged inside the blended life rather than left to a side effect, the terminal is 2.6% LOWER and the fair value 16.86.",
+ "cumulative_move": -0.10770355608804005,
+ "rules": {
+  "R-MACRO-01": {
+   "levers": [
+    "terminal growth stored as a real rate on the house UAE path"
+   ],
+   "first_before": 18.890899,
+   "last_after": 17.154235,
+   "move": -0.09193125218656883
+  },
+  "R-TERM-01": {
+   "levers": [
+    "terminal built through the sanctioned module on a blended life DERIVED by identity and validated against a disclosed lease term"
+   ],
+   "first_before": 17.154235,
+   "last_after": 16.770533,
+   "move": -0.022367770990662006
+  },
+  "R-GAP-01": {
+   "levers": [
+    "re-struck on the latest known price"
+   ],
+   "first_before": 16.770533,
+   "last_after": 16.856282,
+   "move": 0.005113075416267376
+  }
+ },
+ "distinct_rules": 3
+}

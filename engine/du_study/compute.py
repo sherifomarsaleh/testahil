@@ -79,12 +79,19 @@ _X125, _X126, _D_FIXED = _lfl(2140.263 - 1826.774, 2382.608 - 2079.325, _F125, _
 
 INP = dict(
     # ---- anchors --------------------------------------------------------
-    spot=I(12.30, "Uploaded DFM daily price history for DU, last close 07-Aug-2026", "2026-08-07",
+    spot=I(11.36, "DFM close for DU, 3 September 2026, from the price file the principal "
+           "supplied that day and committed to the repository. THE STUDY IS RE-STRUCK ON "
+           "IT because no study is delivered against a stale price: the prior edition "
+           "stood on the 7-August close of 12.30, and the stock has since fallen 7.6%, "
+           "which widens rather than closes this study's disagreement with the market",
+           "2026-09-03",
            "Market"),
     shares_mn=I(4532.905989, "Share capital note 27, audited FY2025 consolidated FS: "
                 "4,532,905,989 shares of AED 1 each, authorised, issued and fully paid, "
                 "unchanged across FY2023-FY2025 and both 2026 interims", "2026-02-09", "Company"),
-    anchor_days=I(219.0, "31-Dec-2025 valuation date to the 07-Aug-2026 price anchor", "2026-08-07",
+    anchor_days=I(246.0, "31-Dec-2025 valuation date to the 3-Sep-2026 price anchor "
+                  "(246 days), twenty-seven days longer than the prior edition's because "
+                  "the anchor moved with the price it is compared against", "2026-09-03",
                   "House"),
     div_between=I(0.66, "Dividends whose EX-DATE falls between the 31-Dec-2025 valuation date and "
                   "the 07-Aug-2026 anchor, and which are therefore no longer in the share price: "
@@ -702,10 +709,48 @@ INP = dict(
                          "it drives nothing in this model: it is committed because the "
                          "company overview states it to a reader",
                          "2025-12-31", "Company"),
-    g_term=I(0.025, "Terminal nominal AED growth 2.5%: below the IMF's UAE long-run nominal GDP "
-             "growth (~4%: real ~4% + CPI ~2% per WEO Apr-2026) and consistent with a mature "
-             "duopoly telecom growing at population-plus-inflation minus price erosion",
-             "2026-08-09", "Country/House"),
+    g_term_real=I(0.0, "Terminal REAL growth of ZERO, the house default for a real rate "
+                  "nobody has quantified. The previous edition typed a nominal 2.5% and "
+                  "argued it as 'population-plus-inflation minus price erosion' — which "
+                  "names TWO real forces pointing opposite ways and puts a number on "
+                  "NEITHER, so the +0.49% real that a 2.5% nominal implies against 2.0% "
+                  "inflation was never anybody's estimate; it was the residue of typing "
+                  "the nominal figure. Real growth is now CHARGED for the capital it "
+                  "consumes, which this model's own forecast prices at AED 10,430mn per "
+                  "unit of real growth, so half a point of it is worth AED 52mn a year "
+                  "for ever. Assuming it away is the conservative reading and the "
+                  "sensitivity publishes the alternative rather than burying it",
+                  "2026-08-09", "Country/House"),
+    asset_life_years=I((28616356.0 + 3500287.0 + 3726888.0)
+                       / (1542393.0 + 239907.0 + 364063.0),
+                       AR25 + ", notes 6, 7 and 8, DERIVED BY IDENTITY from those notes' "
+                       "own cost and charge columns and LABELLED as derived: the gross "
+                       "cost of every depreciable class over the year's own charge. "
+                       "Property, plant and equipment 28,616,356 over 1,542,393 gives "
+                       "18.55 years; intangibles 3,500,287 over 239,907 gives 14.59; "
+                       "right-of-use assets 3,726,888 over 364,063 gives 10.24; blended, "
+                       "16.70. Capital work in progress is excluded from the property and "
+                       "intangible notes because neither depreciates it. THE ROUTE "
+                       "VALIDATES ITSELF AGAINST A DIRECTLY DISCLOSED FIGURE: the "
+                       "right-of-use component derives 10.24 years against the 10.1 years "
+                       "note 7 states as the average lease term, 1.4% apart — the "
+                       "strongest available evidence that gross cost over charge measures "
+                       "what it is being asked to measure. The policy note gives RANGES "
+                       "per class (buildings 10-25, plant and equipment 3-25, furniture "
+                       "and fixtures 3-5, motor vehicles 4-5, software 5-10) and no "
+                       "weighting, so no single figure can be read off it. CROSS-CHECKED "
+                       "at 15.96 years on FY2024's own columns, and the route is clean "
+                       "because no note carries business-combination additions and each "
+                       "discloses impairment separately from the charge",
+                       "2026-02-09", "Company"),
+    accum_dep_owned_fy25=I((22440927.0 + 2211493.0) / 1000.0,
+                       AR25 + ", notes 6, 7 and 8: accumulated depreciation and "
+                       "amortisation at 31-Dec-2025 across the same depreciable classes. "
+                       "AED mn", "2026-02-09", "Company"),
+    dep_charge_owned_fy25=I((1782300.0 + 364063.0) / 1000.0,
+                       AR25 + ", notes 6, 7 and 8: the year's own depreciation and "
+                       "amortisation charge on those classes, excluding the separately "
+                       "disclosed impairment. AED mn", "2026-02-09", "Company"),
 )
 
 # The WACC block is completed from live-sourced records (Damodaran UAE row,
@@ -749,6 +794,18 @@ if _ovr:
                                  'with no override set.'))
 
 V = {k: rec['value'] for k, rec in INP.items()}
+
+# ---- the house macro path supplies the inflation; this study may not carry one --
+import macro_path as MP                                                    # noqa: E402
+# aliased TERMVAL, not TV: this file's tv is the terminal VALUE
+import terminal_value as TERMVAL                                           # noqa: E402
+_AE = MP.load('AE')
+PI_TERM = (_AE.raw['inflation']['terminal'] or {})['value']
+V['g_term'] = (1.0 + PI_TERM) * (1.0 + V['g_term_real']) - 1.0
+INP['g_term_derived'] = I(V['g_term'], "DERIVED, never typed: (1 + terminal inflation "
+                          "%.4f from the house UAE macro path) x (1 + stated real growth "
+                          "%.4f) - 1. The previous edition typed 2.50%%."
+                          % (PI_TERM, V['g_term_real']), _AE.as_of, "House")
 LOG = []
 def say(s):
     LOG.append(s); print(s)
@@ -1365,9 +1422,50 @@ ic = [ppe_path[i] + rou_path[i] + int_path[i] + V['goodwill_fy25'] + nwc_fc[i]
 roic = [nopat[i] / ((ic[i] + ([ic_fy25] + ic)[i]) / 2) for i in range(5)]
 roic_term = nopat[-1] * (1 + V['g_term']) / ic[-1]
 rr_term = min(V['g_term'] / roic_term, 0.95)
-tv = nopat[-1] * (1 + V['g_term']) * (1 - rr_term) / (wacc_term - V['g_term'])
-say(f"[Terminal] ROIC(term) {roic_term:.1%}; reinvestment = g/ROIC = {rr_term:.1%} of NOPAT; "
-    f"TV {tv:,.0f} at g {V['g_term']:.1%} / WACC(term) {wacc_term:.2%}")
+# THE RETIRED FORM, kept on one line so the change is legible and priced [R-TERM-01].
+tv_retired = nopat[-1] * (1 + V['g_term']) * (1 - rr_term) / (wacc_term - V['g_term'])
+
+# The capital one unit of REAL growth actually needs: this model's own marginal invested
+# capital per unit of revenue across the explicit window, at terminal revenue.
+INC_CAP = ((ic[-1] - ic[0]) / (rev[-1] - rev[0])) * rev[-1]
+# THE FULL CHARGE IS ADDED BACK AND THE LEASE RENEWAL IS CHARGED INSIDE THE BLENDED LIFE.
+# The explicit window adds back total depreciation and charges no lease-replacement capex,
+# because the lease liability is DEBT in the bridge and charging renewal there would bill
+# the EXISTING obligation twice. That argument does not survive into perpetuity: a one-off
+# deduction of today's liability cannot cover renewals for ever, and the retired
+# construction supplied that renewal only as a side effect of charging g x invested
+# capital — on a 1/g cycle of 50 years against a lease term the company discloses at 10.1.
+# A lease is an asset with a life like any other here, so it enters the blended life at its
+# own derived 10.24 years and its book charge is escalated to current cost like the rest.
+DNA_OWNED = dna[-1]
+
+
+def _terminal_at(g_nom, life=None, nopat_last=None, dna_last=None, wc_last=None,
+                 inc_cap=None, wacc_t=None):
+    """Every terminal in this file goes through the sanctioned module — base, scenario and
+    sensitivity point alike — so the retired construction cannot survive in a grid nobody
+    reads the arithmetic of."""
+    return TERMVAL.build(TERMVAL.TerminalInputs(
+        nopat=(nopat[-1] if nopat_last is None else nopat_last) * (1 + g_nom),
+        wacc=wacc_term if wacc_t is None else wacc_t,
+        inflation=PI_TERM, real_growth=(1.0 + g_nom) / (1.0 + PI_TERM) - 1.0,
+        dna_book=(DNA_OWNED if dna_last is None else dna_last) * (1 + g_nom),
+        useful_life_years=V['asset_life_years'] if life is None else life,
+        useful_life_source=INP['asset_life_years']['source'],
+        maintenance_basis='book_dna_escalated',
+        working_capital=(nwc_fc[-1] if wc_last is None else wc_last) * (1 + g_nom),
+        incremental_capital_per_unit_growth=INC_CAP if inc_cap is None else inc_cap))
+
+
+TERMINAL = _terminal_at(V['g_term'])
+tv = TERMINAL.tv
+say(f"[Terminal] life {V['asset_life_years']:.2f}y derived; maintenance "
+    f"{TERMINAL.maintenance:,.0f} against owned book charge {TERMINAL.dna_addback:,.0f}; "
+    f"working-capital line {TERMINAL.wc_charge:,.0f} (a CREDIT — this company collects "
+    f"before it pays); terminal FCFF {TERMINAL.fcff:,.0f} = "
+    f"{TERMINAL.fcff / (nopat[-1] * (1 + V['g_term'])):.1%} of terminal profit; TV "
+    f"{tv:,.0f} against the retired {tv_retired:,.0f} ({tv / tv_retired - 1:+.1%}) at g "
+    f"{V['g_term']:.2%} / WACC(term) {wacc_term:.2%}")
 
 # ---- DCF and the EV -> equity bridge ------------------------------------------
 pv = [fcff[i] * df[i] for i in range(5)]
@@ -1522,9 +1620,13 @@ def dcf_scenario(arpu_mult=1.0, subs_shift=0.0, dc_mult=1.0, opex_shift=0.0,
     for w in _fwd:
         cc /= (1 + w); _df.append(cc)
     _ic5 = _ppe[-1] + rou_path[-1] + ii_ + V['goodwill_fy25'] + _nwc[-1]
-    _roic = _nopat[-1] * (1 + g) / _ic5
-    _rr = min(g / _roic, 0.95)
-    _tv = _nopat[-1] * (1 + g) * (1 - _rr) / max(_wt - g, 0.015)
+    _ic0 = _ppe[0] + rou_path[0] + V['goodwill_fy25'] + _nwc[0]
+    _inc = ((_ic5 - _ic0) / (_rev[-1] - _rev[0])) * _rev[-1]
+    try:
+        _tv = _terminal_at(g, nopat_last=_nopat[-1], dna_last=_dna[-1],
+                           wc_last=_nwc[-1], inc_cap=_inc, wacc_t=max(_wt, g + 0.015)).tv
+    except TERMVAL.TerminalRefused:
+        return float('nan')
     _ev = sum(_f[i] * _df[i] for i in range(5)) + _tv * _df[-1]
     return ((_ev - LEASE + NETCASH + INVEST) / SH) * ROLL - V['div_between']
 
@@ -1700,13 +1802,25 @@ capex_grid = [0.85, 0.925, 1.00, 1.10, 1.20]
 grid_capex = [dcf_scenario(capex_mult=m) for m in capex_grid]
 nwc_grid = [-0.10, -0.085, nwc_pct, -0.050, -0.030]
 grid_nwc = [dcf_scenario(nwc=p) for p in nwc_grid]
-roic_grid = [0.18, 0.22, roic_term, 0.30, 0.34]
-def dcf_roic(r_):
-    _rr = min(V['g_term'] / r_, 0.95)
-    _tv = nopat[-1] * (1 + V['g_term']) * (1 - _rr) / (wacc_term - V['g_term'])
+# THE TERMINAL SENSITIVITY IS NOW THE ASSET LIFE, because that is what the terminal
+# actually turns on. The retired grid moved the terminal return on capital, which the
+# sanctioned construction does not use at all — publishing it would have been a lever a
+# reader could not pull. The rungs are DERIVED from the base so the grid cannot drift off
+# its own centre, and the widest is close to the second reading of the same notes:
+# accumulated depreciation over the year's charge says the base has taken 12.59 years,
+# which the module's half-the-life formula would reach at a life of 25.18.
+_LIFE = V['asset_life_years']
+life_grid = [round(_LIFE + k * 3.0, 2) for k in (-2, -1, 0, 1, 2)]
+def dcf_life(l_):
+    try:
+        _tv = _terminal_at(V['g_term'], life=l_).tv
+    except TERMVAL.TerminalRefused:
+        return float('nan')
     _ev = pv_explicit + _tv * df[-1]
     return ((_ev - LEASE + NETCASH + INVEST) / SH) * ROLL - V['div_between']
-grid_roic = [dcf_roic(r_) for r_ in roic_grid]
+grid_life = [dcf_life(l_) for l_ in life_grid]
+LIFE_VARIANT = 2.0 * (V['accum_dep_owned_fy25'] / V['dep_charge_owned_fy25'])
+PS_LIFE_VARIANT = dcf_life(LIFE_VARIANT)
 dcf_opex_1pp = dcf_scenario(opex_shift=+0.01)   # +1pp of revenue in the cost stack
 dcf_tax_per_pp = (grid_tax[0] - grid_tax[4]) / ((tax_grid[4] - tax_grid[0]) * 100)
 
@@ -1993,7 +2107,72 @@ OUT = dict(
              rou_repl_retired=rou_repl_retired),
     terminal_recon=dict(roic_term=roic_term, rr=rr_term,
                         nopat=dict(FY25=(V['pbt_fy25'] - netfin_fy25) * (1 - TAX)),
-                        roic_path=roic),
+                        roic_path=roic,
+                        note='the terminal return and the reinvestment rate are published '
+                             'because the RETIRED construction rested on them and a reader '
+                             'comparing editions is owed the pair; they no longer build '
+                             'anything.'),
+    terminal_record=dict(
+        construction='engine/terminal_value.py [R-TERM-01]',
+        retired_construction=dict(
+            form='NOPAT(1+g)(1 - g/ROIC)/(W-g)', tv=tv_retired,
+            implied_cycle_years=1.0 / V['g_term'],
+            why_retired="the reinvestment identity charges g x invested capital every year "
+                        "for ever, so the implied replacement cycle is 1/g — 50 years at "
+                        "the derived 2.0% and 40 at the previous edition's typed 2.5%, "
+                        "both facts about the dirham's peg to the dollar rather than about "
+                        "a mobile network. Notes 6 and 8 say the depreciable owned base "
+                        "turns over in 17.91 years. It also supplied the perpetual LEASE "
+                        "renewal only as a side effect, which is why the corrected "
+                        "construction has to put that renewal back explicitly."),
+        inputs=dict(nopat=nopat[-1] * (1 + V['g_term']), wacc=wacc_term, inflation=PI_TERM,
+                    real_growth=V['g_term_real'], nominal_growth=V['g_term'],
+                    dna_book=DNA_OWNED * (1 + V['g_term']),
+                    dna_basis=('THE FULL charge — property, intangibles and right-of-use '
+                               'alike — escalated over half the BLENDED life. The explicit '
+                               'window adds back total depreciation and charges no '
+                               'lease-replacement capital, because the lease liability is '
+                               'DEBT in the bridge and charging renewal there would bill '
+                               'the existing obligation twice. In perpetuity that argument '
+                               'fails — a one-off deduction cannot cover renewals for ever '
+                               '— and the retired construction supplied that renewal only '
+                               'as a side effect, on a 50-year cycle against a lease term '
+                               'the company discloses at 10.1 years. A lease is an asset '
+                               'with a life like any other here, so it enters the blended '
+                               'life at its own derived 10.24 years.'),
+                    useful_life_years=V['asset_life_years'],
+                    useful_life_source=INP['asset_life_years']['source'],
+                    maintenance_basis='book_dna_escalated',
+                    maintenance_basis_reason=(
+                        "'disclosed_life' divides REPLACEMENT-COST invested capital by the "
+                        "life and this model commits no replacement-cost capital base: the "
+                        "notes give gross HISTORICAL cost on a base 70% depreciated. "
+                        "Escalating the model's own book charge over half the derived life "
+                        "uses only figures that exist."),
+                    working_capital=nwc_fc[-1] * (1 + V['g_term']),
+                    working_capital_note=('NEGATIVE for this company, so the inflation line '
+                                          'is a CREDIT rather than a charge: a telecom '
+                                          'collects from its subscribers before it pays its '
+                                          'suppliers, and inflation makes that float worth '
+                                          'more each year.'),
+                    incremental_capital_per_unit_growth=INC_CAP),
+        outputs=dict(fcff=TERMINAL.fcff, tv=TERMINAL.tv, floor=TERMINAL.floor,
+                     maintenance=TERMINAL.maintenance, growth_capex=TERMINAL.growth_capex,
+                     wc_charge=TERMINAL.wc_charge, dna_addback=TERMINAL.dna_addback,
+                     implied_cycle_years=TERMINAL.implied_cycle_years,
+                     below_floor=TERMINAL.below_floor),
+        record=TERMINAL.record,
+        derived_life=dict(
+            years=V['asset_life_years'], cross_check_fy2024=15.96,
+            direct_average_age=V['accum_dep_owned_fy25'] / V['dep_charge_owned_fy25'],
+            basis="notes 6, 7 and 8: gross cost of every depreciable class over the year's "
+                  "own charge, validated against the 10.1-year average lease term "
+                  "note 7 discloses directly",
+            note="the module's formula assumes an average age of half the life; the second "
+                 "identity — accumulated depreciation over the same charge — measures that "
+                 "age directly, and where it reads higher the base charge is the lighter of "
+                 "the two readings."),
+        moved=dict(tv_before=tv_retired, tv_after=tv, pct=tv / tv_retired - 1.0)),
     lenses=lenses, central=central, span=[lo, hi], spot=SPOT,
     retired_blend_value=RETIRED_BLEND_VALUE,
     lens_record=dict(**{'class': 'telecom operator'},
@@ -2075,7 +2254,8 @@ OUT = dict(
               dcf_mix_exhaust=dcf_mix_exhaust,
               subs_grid=subs_grid, grid_subs=grid_subs, mg_grid=mg_grid,
               grid_margin=grid_margin, capex_grid=capex_grid, grid_capex=grid_capex,
-              nwc_grid=nwc_grid, grid_nwc=grid_nwc, roic_grid=roic_grid, grid_roic=grid_roic,
+              nwc_grid=nwc_grid, grid_nwc=grid_nwc, life_grid=life_grid, grid_life=grid_life,
+              life_variant_years=LIFE_VARIANT, ps_life_variant=PS_LIFE_VARIANT,
               dcf_opex_1pp=dcf_opex_1pp, dcf_tax_per_pp=dcf_tax_per_pp),
     step0=step0, strike=strike, backtest=bt5,
     # ---------------------------------------------------------------------------------

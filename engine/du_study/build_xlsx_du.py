@@ -41,6 +41,8 @@ EXP, REL, NRM, BK = D['experts'], D['rel'], D['norm'], D['book']
 SEG, S0, STK, BU = D['seg_fy25'], D['step0'], D['strike'], D['bottomup']
 UC = D['unitcost']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
+TRC = D['terminal_record']
+TRI, TRO = TRC['inputs'], TRC['outputs']
 SPOT, SH = M['spot'], M['shares_mn']
 SEGS = ['mobile', 'fixed', 'wholesale', 'ict']
 TAX = IN['tax_eff']
@@ -265,7 +267,7 @@ KEY = [('Shares outstanding (mn)', 'SHARES', SH, NUM0),
        ('FY2025 net profit (AED mn)', "='Income Statement'!D18", HI['FY25']['np'], NUM0),
        ('Cost of capital — explicit window', '=DCF!C47', W['wacc_exp'], PCT),
        ('Cost of capital — terminal', '=DCF!C54', W['wacc_term'], PCT),
-       ('Terminal growth', '=DCF!C24', IN['g_term'], PCT)]
+       ('Terminal growth', '=DCF!C24', TRI['nominal_growth'], PCT)]
 SUMMARY_KEY_START = r + 1
 
 # ============ 3 FUNDAMENTAL VALUATION =========================================
@@ -478,7 +480,14 @@ block('Cost of capital', [
     ('erp_term', 'Terminal equity risk premium', IN['erp_term'], PCT),
     ('kd_term', 'Terminal cost of debt', IN['kd_term'], PCT),
     ('wd_term', 'Terminal debt weight', IN['wd_term'], PCT),
-    ('g_term', 'Terminal growth', IN['g_term'], PCT)])
+    ('greal', 'Terminal REAL growth (stated, not derived)', IN['g_term_real'], PCT),
+    ('pit', 'Terminal inflation — UAE house macro path', TRI['inflation'], PCT),
+    ('life', 'Weighted asset life, DERIVED from notes 6 and 8 (gross cost of the '
+     'depreciable owned base over the year\'s own charge)', IN['asset_life_years'], NUM1),
+    ('g_term', 'Terminal growth = (1+inflation)(1+real growth) − 1', None, PCT)])
+# derived, once, so every lens that needs a nominal terminal growth links to the same cell
+putf(ws, f'C{A["g_term"]}', f'=(1+$C${A["pit"]})*(1+$C${A["greal"]})-1',
+     TRI['nominal_growth'], PCT)
 block('Balance-sheet and bridge anchors', [
     ('lease', 'Lease liabilities at FY2025 (AED mn, audited — the only debt-like item)',
      IN['lease_fy25'], NUM0),
@@ -921,16 +930,23 @@ wf(17, 'Discount factor', lambda i: (f'=1/(1+{CD[i]}16)' if i == 0
 wf(18, 'Present value of FCFF', lambda i: f'={CD[i]}15*{CD[i]}17', F['pv'], bd=True)
 
 put(ws, 'A20', 'TERMINAL VALUE, BRIDGE AND THE ANCHOR ROLL', bold=True, fmt=None)
-nopat_grown = F['nopat'][-1] * (1 + IN['g_term'])
+nopat_grown = F['nopat'][-1] * (1 + TRI['nominal_growth'])
+# THE TERMINAL WATERFALL IS BUILT IN A BLOCK OF ITS OWN AT ROWS 70-77 AND SUMMARISED HERE.
+# Rows 21-32 keep their positions deliberately: a dozen formulas on five other sheets name
+# C24, C26, C27, C28, C29, C30, C32, C40, C50, C54 and C62 by address, and inserting four
+# rows into this block to hold the waterfall would move every one of them silently [L-300].
 tv_block = [
-    ('Terminal-year NOPAT grown one year (AED mn)', '=F10*(1+C24)', nopat_grown, NUM0),
-    ('Terminal return on invested capital', "=F10*(1+C24)/'Summary Financials'!I13",
-     DCF['roic_term'], PCT),
-    ('Required reinvestment rate (g / return on capital)', '=C24/C22', DCF['rr_term'], PCT),
-    ('Terminal growth', f'={a("g_term")}', IN['g_term'], PCT),
+    ('Terminal-year operating profit after tax, grown one year (AED mn)',
+     '=F10*(1+C24)', nopat_grown, NUM0),
+    ('Terminal free cash flow — built line by line at rows 70-77 (AED mn)', '=C77',
+     TRO['fcff'], NUM0),
+    ('Terminal free cash flow as a share of terminal profit', '=C22/C21',
+     TRO['fcff'] / TRI['nopat'], PCT),
+    ('Terminal growth — (1+inflation)(1+real growth)−1, both at rows 70-71',
+     '=(1+C70)*(1+C71)-1', TRI['nominal_growth'], PCT),
     ('Terminal cost of capital', '=C54', W['wacc_term'], PCT),
-    ('Terminal value — terminal-year NOPAT C21 x (1−C23), capitalised (AED mn)',
-     '=C21*(1-C23)/(C25-C24)', DCF['tv'], NUM0),
+    ('Terminal value — terminal free cash flow C22 grown one year, capitalised (AED mn)',
+     '=C22*(1+C24)/(C25-C24)', DCF['tv'], NUM0),
     ('Present value of the five forecast years (AED mn)', '=SUM(B18:F18)', DCF['pv_explicit'],
      NUM0),
     ('Present value of the terminal value (AED mn)', '=C26*F17', DCF['pv_tv'], NUM0),
@@ -998,6 +1014,41 @@ putf(ws, 'C62', f'=(1+C40)^({a("anchor_days")}/365)', DCF['roll'], DF4)
 put(ws, 'A63', 'Fair value per share at the 07-Aug-2026 anchor (AED)', fmt=None)
 putf(ws, 'C63', f'=C32*C62-{a("div_between")}', DCF['ps'], PX, bold=True)
 band(ws, 63, 4)
+put(ws, 'A66', 'THE TERMINAL, LINE BY LINE — capital maintained at replacement cost over '
+    'the asset life the depreciation notes themselves imply', bold=True, fmt=None)
+put(ws, 'A67', 'The retired construction grew terminal profit and deducted a reinvestment '
+    'rate set by the growth rate over the return on capital, which is arithmetically the '
+    'same as rebuilding the whole capital base every 1/g years — a fact about the dirham\'s '
+    'peg to the dollar rather than about a mobile network. The asset life below is DERIVED '
+    'from notes 6 and 8: the gross cost of the depreciable owned base over the year\'s own '
+    'charge.', fmt=None).font = SUB
+_tw = [('Terminal inflation — UAE house macro path', f'={a("pit")}', TRI['inflation'], PCT),
+       ('Terminal REAL growth (stated)', f'={a("greal")}', IN['g_term_real'], PCT),
+       ('Weighted asset life, derived from notes 6 and 8 (years)', f'={a("life")}',
+        IN['asset_life_years'], NUM1),
+       ('Terminal operating profit after tax (from row 21)', '=C21', TRI['nopat'], NUM0),
+       ('Plus owned depreciation and amortisation, grown one year — the right-of-use '
+        'charge is neither added back nor charged, which is a lease renewed at its own '
+        'current cost', f'={TRI["dna_book"] / (1 + TRI["nominal_growth"]):.6f}*(1+C24)',
+        TRI['dna_book'], NUM0),
+       ('Less capital maintenance at replacement cost — that charge escalated over half '
+        'the derived life', '=-C74*(1+C70)^(C72/2)', -TRO['maintenance'], NUM0),
+       ('Less capital for real growth, and less inflation on working capital (a CREDIT '
+        'here: this company collects before it pays)',
+        f'=-C71*{TRI["incremental_capital_per_unit_growth"]:.6f}'
+        f'-C70*{TRI["working_capital"]:.6f}',
+        -TRO['growth_capex'] - TRO['wc_charge'], NUM0),
+       ('Terminal free cash flow', '=SUM(C73:C76)', TRO['fcff'], NUM0)]
+_r = 70
+for lab, fml, xp, fmt in _tw:
+    put(ws, f'A{_r}', lab, fmt=None)
+    putf(ws, f'C{_r}', fml, xp, fmt, bold=(_r == 77),
+         green=fml.startswith('=Assumptions'))
+    _r += 1
+put(ws, 'A78', 'Memo — the no-growth perpetuity at book depreciation, a diagnostic and not '
+    'a bound', fmt=None)
+putf(ws, 'C78', '=C21/C25', TRO['floor'], NUM0)
+
 put(ws, 'A64', 'The bridge on row 32 is dated 31-Dec-2025 (the audited balance-sheet date it '
     'nets leases and cash at). Row 63 rolls it to the anchor at the cost of equity, net of the '
     'AED 0.40 final FY2025 dividend paid 28-Apr-2026. Every lens on every sheet is rolled the '
@@ -1384,7 +1435,8 @@ for lab, grid, vals, gfmt in [
          SN['grid_drift'], '{:+.1%}'),
         ('Capex path multiplier', SN['capex_grid'], SN['grid_capex'], '{:.3f}x'),
         ('Working capital / revenue', SN['nwc_grid'], SN['grid_nwc'], '{:.1%}'),
-        ('Terminal return on invested capital', SN['roic_grid'], SN['grid_roic'], '{:.1%}'),
+        ('Asset life, years — derived from the depreciation notes',
+         SN['life_grid'], SN['grid_life'], '{:.1f}'),
         ('Terminal growth (at base cost of capital)', SN['g_grid'], SN['grid_wacc_g'][2],
          '{:.1%}')]:
     put(ws, f'A{r}', f"{lab}  ({' / '.join(gfmt.format(g) for g in grid)})", fmt=None)

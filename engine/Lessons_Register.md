@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**233 lessons**, of which 201 bind on every study, 25 on a class of company, and 7 on a single name.
+**237 lessons**, of which 205 bind on every study, 25 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 158 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 162 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2088,6 +2088,46 @@ SAVOLA's own gate script asserted the reference set equals a hard-coded three na
 > **What it cost, or how we know.** gate_check.py line asserting set(REFERENCE_SET) == {three names typed out}; red from 19-Aug-2026 to 4-Sep-2026, seventeen days, through a delivered edition and a full critique response.
 
 > **What would overturn it.** A case where the local copy is the POINT — a gate whose job is to detect that the shared module changed, written deliberately with its own copy and a stated review date.
+
+### L-313 · An estimate of a construction is not the construction, and it can be wrong in SIGN
+
+This study's own gap review, written hours before the rebuild, priced the terminal correction at +5.6% on the terminal and +4.8% on the fair value, and drew from that the general conclusion that nobody may predict which way a rebuild moves a value before running it. The conclusion was right and the estimate was wrong in sign: built, the terminal came out 2.6% LOWER. The estimate was careful, its arithmetic sound, and it valued a terminal nobody had yet built — what changed the sign was a line that only appears once you build it, the perpetual LEASE renewal the retired construction had been supplying as a side effect. AN ESTIMATE MADE TO DECIDE WHETHER A REBUILD IS WORTH DOING IS NOT EVIDENCE ABOUT WHAT THE REBUILD WILL FIND, and quoting it as though it were is how a study ships a number nobody computed. This is L-289 one level up: there the cheap PROXY for a calculation pointed the wrong way, here the cheap ESTIMATE of a calculation did.
+
+**Applies to:** every study  ·  *Learned from:* found while building, DU terminal rebuild and re-strike, 4 September 2026
+
+> **What it cost, or how we know.** GAP_REVIEW_04-09-2026.md first edition: terminal 96,247.7 -> 101,639.2 (+5.6%), fair value 18.89 -> 19.80. Built at the same growth rate the estimate used, the sanctioned terminal is 94,588.9 against a retired 96,247.7 (-1.7%); at the corrected growth rate, 83,691.4 against 85,963.6 (-2.6%).
+
+> **What would overturn it.** A house practice of building the correction before estimating it, which would make the estimate redundant rather than wrong — the lesson is about quoting an unbuilt estimate, not about making one.
+
+### L-314 · Retiring a construction removes whatever it was silently paying for, and the bill has to be put back explicitly
+
+DU had deliberately removed its explicit-window lease- replacement charge, on the stated reasoning that the terminal's reinvestment rate maintained the lease estate instead. That reasoning was recorded in a comment in the model and it was true of the construction then in place. Retiring that construction removed the payment along with it, and nothing in the rule that retired it said so — a terminal that simply drops g x invested capital gives this company a store, office and technical-site estate rent-free for ever. WHEN A CONSTRUCTION IS RETIRED, SEARCH THE MODEL FOR WHAT WAS JUSTIFIED BY IT, not only for where it was computed: a side effect somebody relied on is invisible at the site of the change and lives wherever the relying comment was written.
+
+**Applies to:** every study  ·  *Learned from:* found while building, DU terminal rebuild and re-strike, 4 September 2026
+
+> **What it cost, or how we know.** compute.py's own comment: 'Perpetual renewal IS charged in the terminal: terminal invested capital includes the right-of-use asset and terminal reinvestment (g/ROIC) maintains it.' That renewal ran on a 1/g cycle of fifty years against a lease term note 7 discloses at 10.1 years. Putting it back — the right- of-use book entering the blended life at its own derived 10.24 years — is what turned the estimated +5.6% into a measured -2.6%.
+
+> **What would overturn it.** A retirement where the side effect is itself the defect, so removing it is the correction rather than a debt to be repaid.
+
+### L-315 · A derived quantity that reproduces a directly disclosed one is the strongest evidence a derivation can carry
+
+The asset life for DU's terminal is derived by identity from three notes' own cost and charge columns, because the policy note gives class ranges and no weighting. The derivation could have been asserted and left there. Instead one of its three components lands on a figure the company states outright: the right-of-use line derives 10.24 years against the 10.1-year average lease term note 7 discloses in a sentence, 1.4% apart. That agreement is not a check on the lease line alone — it is evidence that gross cost over the year's charge MEASURES WHAT IT IS BEING ASKED TO MEASURE, which is the assumption the other two components rest on and which no amount of internal consistency could establish. WHERE A DERIVATION HAS A COMPONENT THE FILINGS ALSO STATE DIRECTLY, COMPUTE IT ANYWAY AND PUBLISH THE COMPARISON.
+
+**Applies to:** every study  ·  *Learned from:* found while building, DU terminal rebuild and re-strike, 4 September 2026
+
+> **What it cost, or how we know.** notes 6, 7 and 8: property 28,616,356 over 1,542,393 = 18.55 years; intangibles 3,500,287 over 239,907 = 14.59; right-of- use 3,726,888 over 364,063 = 10.24 against a disclosed 10.1; blended 16.70, cross-checked at 15.96 on FY2024's own columns.
+
+> **What would overturn it.** A component whose derived and disclosed readings diverge materially, which would say the identity measures something other than what the disclosure means — and would be a finding rather than a failure of this practice.
+
+### L-316 · The sign of the growth-storage lever is set by the spread between the terminal return and the terminal cost of capital, and it runs both ways in one book
+
+Storing terminal growth as a real rate on the house path cut MODON's growth from 2.5% to 2.0% and RAISED its value by 1.6%; the identical lever on DU cut the same 2.5% to the same 2.0% and LOWERED its value by 9.2%. The mechanism is exact rather than mysterious: under the retired reinvestment identity the growth charge is g x invested capital, so removing growth is worth whatever the growth was worth, and that is decided by the spread between the terminal return on capital and the terminal cost of capital. MODON's terminal return (8.5%) sat BELOW its cost of capital (11.9%), so growth destroyed value and less of it was worth more; DU's (27.4%) sits far ABOVE its cost of capital (6.2%), so growth was highly accretive and taking half a point out cost a great deal. A HOUSE-WIDE CORRECTION WHOSE SIGN VARIES BY NAME CANNOT BE READ AS A DIRECTION, and reporting the book-wide average of such a lever would describe neither name.
+
+**Applies to:** every study  ·  *Learned from:* found while building, DU terminal rebuild and re-strike, 4 September 2026
+
+> **What it cost, or how we know.** MODON 3.5423 -> 3.5983 (+1.6%) at a terminal return of 8.50% against a terminal cost of capital of 11.92%; DU 18.8909 -> 17.1542 (-9.2%) at 27.42% against 6.17%. Same lever, same rate change, opposite sign.
+
+> **What would overturn it.** A name where the sign does not follow that spread, which would say something other than the reinvestment identity is driving the growth charge.
 
 
 ---

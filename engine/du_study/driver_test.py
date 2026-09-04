@@ -37,15 +37,33 @@ def read(overrides=None):
                 nc30=bk.cell_value('Balance Sheet', 'I15'),
                 relative=bk.cell_value('Relative & Normalized', 'C11'),
                 book=bk.cell_value('Relative & Normalized', 'C35'),
-                bvps=bk.cell_value('Relative & Normalized', 'C30'))
+                bvps=bk.cell_value('Relative & Normalized', 'C30'),
+                # the terminal's own lines, so a driver whose effect on the answer nearly
+                # cancels can still be asserted on the line it unambiguously moves
+                t_maint=bk.cell_value('DCF', 'C75'),
+                t_fcff=bk.cell_value('DCF', 'C77'))
 
 base = read()
 print('base:  ' + ' · '.join(f'{k} {v:,.4f}' for k, v in base.items()))
 
 # label, cell column, bump, the headline it must move, the required direction
 CASES = [
-    ('Terminal growth', 'C', +0.005, 'dcf', +1,
-     'a higher terminal growth rate must raise the discounted cash flow'),
+    # The growth rate is DERIVED from two rows, so both are exercised. Real growth widens
+    # the perpetuity and costs the capital this model's own forecast spends per unit of
+    # revenue; inflation widens it too but escalates the replacement cost of the asset
+    # base against it, so its direction is asserted on the line it moves unambiguously.
+    ('Terminal REAL growth (stated, not derived)', 'C', +0.005, 'dcf', +1,
+     'real growth must raise the discounted cash flow once it is charged only for the '
+     'capital the forecast actually spends, rather than for rebuilding the whole capital '
+     'base every 1/g years'),
+    ('Terminal inflation — UAE house macro path', 'C', +0.005, 't_maint', -1,
+     'a higher terminal inflation escalates the cost of replacing the asset base over '
+     'half its life, so the maintenance charge (a negative row) must grow'),
+    ('Weighted asset life, DERIVED from notes 6 and 8 (gross cost of the depreciable '
+     'owned base over the year\'s own charge)', 'C', +5.0, 't_fcff', -1,
+     'on this basis the life sets the average VINTAGE of the base rather than the '
+     'replacement frequency: a longer life means the assets carried were bought further '
+     'back, so replacing them today costs more against the depreciation already booked'),
     ('Beta (DU weekly vs FTSE ADX General, 5y)', 'C', +0.20, 'dcf', -1,
      'a higher beta raises the cost of equity and must lower the valuation'),
     ('Terminal risk-free rate', 'C', +0.01, 'dcf', -1,
