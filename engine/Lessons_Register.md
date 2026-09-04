@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**241 lessons**, of which 209 bind on every study, 25 on a class of company, and 7 on a single name.
+**246 lessons**, of which 214 bind on every study, 25 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 166 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 171 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2168,6 +2168,56 @@ EMPOWER's terminal rebuild was built, run and priced in the model in under an ho
 > **What it cost, or how we know.** compute.py routed through the sanctioned module: terminal 24,650 -> 25,030 (+1.5%), central 1.8388 -> 1.8523 (+0.7%), asset life 28.0984 years derived from the FY2025 property, plant and equipment note. build_xlsx_empower.py: the waterfall built once at DCF rows 92-111 in columns C and G; the crux, 15%, bear and upside blocks each re-run through _sanctioned_fcff() into two rows the retired construction had vacated. Row map S_PVEX..S_PS = range(40,51) unchanged, xlsx_expected.json re-asserted, recalc and driver_test clean. The superseded assessment is kept, marked as superseded, in engine/empower_study/TERMINAL_EVIDENCE_04-09-2026.md.
 
 > **What would overturn it.** A rebuild where the minimum change genuinely does require the rows — a builder whose parallel blocks are themselves what a reader is asked to follow, so the derivation cannot be shown once and referenced.
+
+### L-321 · A review that declares a correction impossible is making a claim, and it gets measured like every other claim
+
+RIYADHCABLE's own gap review, written that morning, examined the terminal, found it on the retired reinvestment identity, and concluded that the correction could not be made honestly. It gave two reasons, argued carefully, both TRUE, and NEITHER CONCLUSION FOLLOWED. First, that the asset life could not be derived: the identity returns 61.9 years for a plant line the company depreciates over 20 to 30, so 'the derivation is not usable on this issuer'. The observation is exact and the inference is wrong — the identity does not return the ACCOUNTING life and is not trying to; it returns the ECONOMIC replacement cycle, and it runs longer for a reason disclosed in the same note, that SAR 841.7mn of cost, 29% of the depreciable base, is fully depreciated AND STILL IN USE. Second, that the growth correction was coupled to the construction one, because zeroing the terminal real growth would leave the last explicit year growing 6.2% against a 2.0% terminal. True of ZEROING it — and the rule requires a stated real growth to be WRITTEN DOWN, not zeroed, so storing the existing 4% nominal as +1.96% real reproduces it to the basis point and moves nothing. Both corrections shipped the same day, worth +2.0%. THE PATTERN IS THE SECOND ONE IN A SINGLE DAY [L-320] AND IT IS THE MORE DANGEROUS OF THE TWO SHAPES: a 'registered, priced, deliberately not applied' finding reads as the method at its most disciplined — it names the defect, prices it, and declines to fit — which is exactly why nobody re-opens it.
+
+**Applies to:** every study  ·  *Learned from:* found while building, RIYADHCABLE terminal rebuild, 4 September 2026
+
+> **What it cost, or how we know.** The prior GAP_REVIEW_04-09-2026.md priced the correction at -16.2% and did not apply it; the built correction came out +1.97%, opposite in sign and a fifth of the size, because it had been priced as 'zero the growth' rather than as 'store the growth and rebuild the terminal'. Central 127.9054 -> 130.4249. The derivation validates on the one leg this issuer discloses a single life for: software at 14.43 years derived against a stated 15, 3.8% apart.
+
+> **What would overturn it.** A review that declines a correction, is re-tested, and turns out to have been right — which would make the discipline of re-testing cheap rather than necessary.
+
+### L-322 · Gross cost over the year's charge returns the ECONOMIC replacement cycle, not the accounting life, and the gap between them is itself disclosed
+
+The identity used to derive a weighted asset life keeps coming out LONGER than the lives the accounting-policies note discloses, and that has twice been read as the identity failing. It is not: under a stable base, assets older than their accounting life are still in the gross cost and charge nothing, so the ratio recovers the life over which the base actually turns over. That is the quantity a maintenance charge needs — how much must be spent each year to keep the plant intact — and using the accounting life instead would charge for replacing plant that is demonstrably still running. THE COMPANIES SAY SO THEMSELVES: the disclosure 'assets with a cost of X, fully depreciated but still in use' is the direct evidence, and it is a standard note. Two independent cross-checks make the derivation auditable rather than merely arguable: run the identity on a leg where a SINGLE life is disclosed and see whether it reproduces it, and compare the prior year's columns. Where a company discloses only RANGES, the identity is not a way around the disclosure — it is the weighting the disclosure does not give, and it is labelled derived.
+
+**Applies to:** every study  ·  *Learned from:* found while building, RIYADHCABLE terminal rebuild, 4 September 2026
+
+> **What it cost, or how we know.** Note 9 gross cost less land and assets under construction 2,903,588,021 over a charge of 76,616,111 = 37.90 years, against disclosed ranges of 20-30 for plant; note 9 also discloses SAR 841.7mn of cost, 29.0% of the depreciable base, fully depreciated and still in use. Software: 80,879,539 over 5,603,548 = 14.43 years against a DISCLOSED 15. Blended across notes 9, 10 and 13: 35.7565 years, the three charges summing to 85,395,637, which is exactly the depreciation and amortisation the model carries.
+
+> **What would overturn it.** A company with no fully-depreciated-still-in-use disclosure and a young base, where the identity should return something at or below the disclosed life and a longer answer would mean the reasoning here is wrong.
+
+### L-323 · Under the sanctioned terminal, book depreciation stops being only an add-back and becomes the BASE of the replacement charge, so its sign in the model reverses
+
+Every DCF in this house has treated depreciation as a non-cash add-back: more of it raises free cash flow, and the driver test asserted that direction. Under the sanctioned terminal on a book-depreciation-escalated maintenance basis that is no longer the whole story — a unit more of book depreciation adds a unit to terminal cash flow AND charges (1+inflation)^(life/2) units of maintenance at current cost, which on a long-lived base is more than one. Where the terminal carries most of the value the net is NEGATIVE: a business that depreciates its plant harder is one whose plant costs more to keep intact, which is the correct reading and one the retired construction could not express at all, because its terminal ignored depreciation entirely. THE DRIVER TEST IS WHERE THIS SURFACES, and the discipline is to re-derive the expected sign rather than to flip it: an assertion whose direction was re-pointed without a reason recorded is an assertion that has been switched off.
+
+**Applies to:** every study  ·  *Learned from:* found while building, RIYADHCABLE terminal rebuild, 4 September 2026
+
+> **What it cost, or how we know.** Depreciation and amortisation over revenue +0.5pp moved the cash-flow lens -0.47 SAR/share where it previously raised it; the maintenance escalator is 1.4248 on a derived 35.76-year life and the terminal is 81.4% of enterprise value. The same pass re-derived the asset-life driver's sign for the same reason: the life enters as the AGE of the base, not as a divisor, so lengthening it while holding the charge fixed says the plant is older and costs more to replace.
+
+> **What would overturn it.** A maintenance basis of replacement cost divided by the life, where the life IS a divisor and both signs run the other way — which is why the basis a study adopts is recorded rather than assumed.
+
+### L-324 · Where a base is older than half its own life, the sanctioned maintenance charge is the LIGHTER of two defensible readings, and the direction is disclosed rather than corrected
+
+The construction escalates book depreciation over HALF the useful life, as a proxy for the age of the average asset. That proxy is exact only on a base with uniform vintages, and the actual age is measurable from the same note: accumulated depreciation over the year's charge. Where the two disagree the disagreement is information about which way the terminal errs, and it is not symmetric across the book — on one name the base came out YOUNGER than uniform, making the sanctioned charge the conservative one, and on the next it came out OLDER, making it the generous one. NEITHER IS FIXED INSIDE THE STUDY: replacing the shared construction's own proxy one name at a time is a rule change made in the wrong place, and a study that quietly used a different escalator would be outside the sanctioned construction while appearing to be inside it. What a study owes is the MEASUREMENT and the PRICE of the alternative, so a reader can see that the conservatism is a property of the construction rather than a choice anyone made.
+
+**Applies to:** every study  ·  *Learned from:* found while building, RIYADHCABLE terminal rebuild, 4 September 2026
+
+> **What it cost, or how we know.** Accumulated depreciation 1,775,547,325 over a charge of 76,616,111 = 23.17 years of average age, against the 17.88 that half a 35.76-year life implies — the base is 5.30 years older than uniform, which is the same fact as the fully-depreciated-and-still-in-use disclosure seen from the other side. On the measured age the escalator is 1.5824 rather than 1.4248, maintenance +11.0%, and the answer falls 1.33% to 128.69. Recorded in the gap review, not applied.
+
+> **What would overturn it.** A measurement showing the half-life proxy is unbiased across a book of names rather than name-specific, which would make the disclosure unnecessary — or enough names running one way to justify amending the shared construction, which is the honest route to changing it.
+
+### L-325 · The row map existed and three checks in the same study read past it — a published address is only worth what reads it
+
+A workbook builder here already wrote the rows it had put the headline figures on into its own expected-values file. Three checks in the same directory — the recalculation gate, the driver test and the QC gate — each hard-coded those addresses instead, and all three silently pointed at the wrong rows the moment the terminal gained a waterfall. The recalculation gate reported an enterprise value of -88 and a terminal share of 1,313.75, which is loud; the DRIVER TEST reported a base of -62.74 and then declared FOURTEEN drivers dead, which reads exactly like a broken model rather than a broken address; and the QC GATE printed a PASS with a cell reference that no longer meant anything, which is the dangerous one. THE LESSON IS NOT 'publish the row map' — it WAS published, in the same directory, by the same build. It is that publishing an address does nothing until something reads it, and that the check most likely to keep hard-coding is the one that only PRINTS, because nothing it says has to reconcile with anything.
+
+**Applies to:** every study  ·  *Learned from:* found while building, RIYADHCABLE terminal rebuild, 4 September 2026
+
+> **What it cost, or how we know.** xlsx_expected.json already carried anchors for ev, tv_share and dcf_ps; recalc.py named DCF!C41/C42/C51, driver_test.py named DCF!C51 and qc_gate.py named DCF!C42, all three beside it. The same QC gate typed '555 of 555 formula cells' against an actual 551 and '18 drivers' against 20, and named SWDY as the pattern this study follows three weeks after SWDY was removed from the reference set outright. All repointed to read what the build publishes, and the gate now asserts the reference set no longer contains the name it was quoting.
+
+> **What would overturn it.** A study whose builder does NOT publish a row map, where the honest fix is to make it publish one rather than to read a map that is not there.
 
 
 ---

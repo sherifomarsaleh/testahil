@@ -15,6 +15,10 @@ M, HI, HB, F = D['meta'], D['hist_is'], D['hist_bs'], D['fcst']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sens']
 REL, NRM, BKL, EXPP = D['rel'], D['norm'], D['book'], D['experts']
 SEG, S0, STK, BT, TR = D['seg_fy25'], D['step0'], D['strike'], D['backtest'], D['terminal_recon']
+DER, TRM = D['derived'], D['terminal_record']
+import sys                                                        # noqa: E402
+sys.path.insert(0, os.path.join(HERE, '..'))
+import table_residual as TRES                                     # noqa: E402
 RETV = D['retired_blend_value']
 RETW = D['lens_record']['retired']['blend']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
@@ -165,6 +169,29 @@ rich([('Sum of the present values of the five explicit years is SAR ', {}),
       ('; the present value of the terminal value is SAR ', {}), (f'{sar(DCF["pv_tv"],0)}mn', {'bold': True}),
       (f' ({pct(DCF["tv_share"],0)} of enterprise value); together the enterprise value is SAR ', {}),
       (f'{sar(DCF["ev"],0)}mn', {'bold': True, 'color': BRASS}), ('.', {})], size=9.6)
+tw = [['Building the terminal year (SAR mn)', ''],
+      ['Terminal-year operating profit after tax', sar(DCF['nopat_term'], 0)],
+      ['Plus depreciation and amortisation charged inside it', sar(TRM['dna_addback'], 0)],
+      ['Less capital maintenance, at what replacement costs today', sar(-TRM['maintenance'], 0)],
+      ['Less the capital that real growth needs', sar(-TRM['growth_capex'], 0)],
+      ['Less inflation on working capital', sar(-TRM['wc_charge'], 0)],
+      ['Terminal free cash flow', sar(TRM['fcff'], 0)],
+      ['Capitalised at the terminal cost of capital less growth', sar(DCF['tv'], 0)]]
+TRES.signed_column(
+    [DCF['nopat_term'], TRM['dna_addback'], -TRM['maintenance'],
+     -TRM['growth_capex'], -TRM['wc_charge']],
+    TRM['fcff'], dp=0, what='RIYADHCABLE terminal-year free cash flow')
+table(tw, [4.6, 1.4], band_rows={6, 7}, size=9.2, align_right_from=1)
+caption(
+    f'How the terminal year is built. Profit after tax is already net of book depreciation, so that '
+    f'charge is added back and the CASH cost of keeping the plant intact is charged instead — the '
+    f'book charge escalated over half the {IN["asset_life_years"]:.1f}-year life the company\u2019s own '
+    f'notes imply, which is SAR {sar(TRM["maintenance"],0)}mn against a book charge of '
+    f'SAR {sar(TRM["dna_addback"],0)}mn. Growth capital is charged only for the '
+    f'{pct(TRM["real_growth"],2)} of REAL growth the forecast claims; inflation alone buys no capacity '
+    f'and is not charged as though it did. What is left, SAR {sar(TRM["fcff"],0)}mn, is '
+    f'{pct(TRM["fcff"]/DCF["nopat_term"],0)} of terminal profit.')
+
 br = [['Enterprise value to equity (SAR mn)', ''],
       ['Enterprise value', sar(DCF['ev'], 0)],
       [f'   of which terminal value ({pct(DCF["tv_share"],0)} of EV)', sar(DCF['pv_tv'], 0)],
@@ -183,7 +210,7 @@ P(f'Equity attributable to shareholders was SAR {sar(F["eqp_fy25"]/1000,2)}bn at
   f'{sar(BKL["bvps"],2)} per share. Trailing return on average equity is about {pct(BKL["roe_trailing"],0)} — '
   f'very high, but flattered by the 2024–25 metal tailwind and a large receivables book. We take a '
   f'sustainable return of {pct(IN["roe_sust"],0)}. Capitalised against a terminal cost of equity of '
-  f'{pct(W["ke_term"],1)} and {pct(IN["g_term"],0)} growth, that supports a justified price-to-book of '
+  f'{pct(W["ke_term"],1)} and {pct(DER["g_term"],0)} growth, that supports a justified price-to-book of '
   f'{BKL["pb_just"]:.1f}x and a value of SAR {sar(LN["book"]["base"],0)} per share.')
 
 H2('1.3  Relative multiples')
@@ -482,7 +509,7 @@ H2('C.2  Expert 2 — owner cash earnings')
 P(f'Worldview: an owner earns the free cash flow after real reinvestment; capitalise mid-cycle owner cash at the '
   f'cost of equity. Works for a cash-generative business; fails if reinvestment is understated. Mid-cycle free '
   f'cash flow to the firm of SAR {sar(E["e2"]["fcff"],0)}mn, less after-tax interest, is owner cash of about SAR '
-  f'{sar(E["e2"]["fcfe"],0)}mn; grown at {pct(IN["g_term"],0)} and capitalised at {pct(E["e2"]["ke"],1)} gives SAR '
+  f'{sar(E["e2"]["fcfe"],0)}mn; grown at {pct(DER["g_term"],0)} and capitalised at {pct(E["e2"]["ke"],1)} gives SAR '
   f'{sar(E["e2"]["base"],0)} (range SAR {sar(E["e2"]["rng"][0],0)}–{sar(E["e2"]["rng"][1],0)}). Falsifier: '
   f'free cash conversion staying below half of earnings.')
 H2('C.3  Expert 3 — cash returns versus the cost of capital')
@@ -501,7 +528,9 @@ bullet(' Expert 2’s reinvestment is challenged as too light — rejected: cape
        'revenue with the plant largely built, and the model still charges working-capital investment.',
        'On reinvestment:')
 bullet(' Expert 3’s durability of returns is challenged — conceded that the low-30s% return on capital will '
-       'fade, which is why the terminal return on capital is struck near 25% and terminal growth at 4%.',
+       'fade. The terminal no longer rests on that return at all: it charges what keeping the plant '
+       'intact actually costs, on the life the company\u2019s own notes imply, and charges capital for '
+       'real growth only.',
        'On durability:')
 H2('C.5  The three in one room')
 P(f'The three methods land at SAR {sar(E["e1"]["base"],0)}, SAR {sar(E["e2"]["base"],0)} and SAR '
