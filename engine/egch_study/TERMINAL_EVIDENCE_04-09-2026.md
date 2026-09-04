@@ -176,7 +176,37 @@ correction it declined: RIYADHCABLE's review predicted −16.2% and the build ga
 DU's predicted +5.6% against a built −2.6% — both wrong in sign. **Here the study's estimate
 was right, and what it got wrong was the decision to keep the number anyway.**
 
-## 7. Why the rebuild has not shipped in this pass
+## 7. What the rebuild will NOT fix, and the gap review will have to say so
+
+Corrected, this study reads 3.2905 against a traded 14.41 — **still 77% below the price**,
+so it stays held and its eight-heading review still has to explain a very large
+disagreement. Two things about that are worth writing down before the rebuild, because they
+change what the review should be looking at.
+
+**The equity gap overstates the modelling gap, because the equity is a thin sliver.** Net
+debt is EGP 10,032mn against an enterprise value of 11,085mn, so almost all of the
+enterprise value is spoken for before equity gets any:
+
+| | EGP mn |
+|---|---:|
+| study enterprise value | 11,085 |
+| price-implied enterprise value | 38,659 |
+| **the enterprise disagreement** | **3.5x** |
+| the equity disagreement | 6.2x |
+
+**So the honest statement of the disagreement is 3.5x on enterprise value, not 6.2x on
+equity** — leverage does the rest, and it does it in both directions. It is also why the
+terminal correction is worth +42% on equity for +26.8% on the terminal: the same gearing.
+
+**And it means the terminal is not where the remaining gap can live.** After the correction
+the enterprise value is 16,569mn against a price-implied 38,659mn. Closing that on the
+terminal alone would need a terminal several times larger again, which no maintenance
+assumption reaches. **Whatever else is wrong here — or whatever the market believes that
+this model does not — it is in the operating build, the capital programme's returns, or the
+price the market puts on the balance sheet, not in the terminal charge.** The review should
+be pointed there rather than re-litigating the terminal it will just have corrected.
+
+## 8. Why the rebuild has not shipped in this pass
 
 Fixing this inside the study would mean either bypassing the sanctioned construction or
 feeding it a life it does not have, and a study quietly using a different escalator would be
