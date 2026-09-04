@@ -117,45 +117,58 @@ At zero real growth the cash-flow lens moves **+39.3%**, and the gap to the pric
 (−3,798), because a firm shrinking in real terms releases capital — arithmetically
 consistent, and evidence that a real decline is an assumption rather than a prudence.
 
-## 3b — THE FORECAST OPENS 20.6% BELOW A MARGIN THE COMPANY HAS ALREADY PRINTED
+## 3b — The forecast opens 5.2% below the latest reviewed period — CORRECTED
 
-This is the largest single finding and it was invisible at strike, because the half that
-falsifies the forecast was issued six days after it.
+**This section was written wrong and is corrected here rather than quietly rewritten.**
+The first version claimed the forecast opened 20.6% below a margin the company had already
+printed, comparing the study's forecast series against a GROSS-profit margin computed from
+the reviewed half. It is not a gross-profit series. The study registers the note-16
+**segment profit** row — gross profit less selling and distribution expenses — under a key
+named `gp`, and FY2025 segment profit of 21,016.4 for cables is 11,707.2 + 9,309.2 from
+that row, against a gross profit of 25,197.5 on the row above it. Comparing the two is
+[L-289] exactly: a ratio between two quantities defined differently is not evidence about
+either. It computes, it looks like a measurement, and it points the wrong way.
 
-The study forecasts a group gross margin of **12.80% in FY2026 rising to 14.26% by FY2030**.
-The reviewed half-year to 30 June 2026 printed **16.12%** — above the study's own terminal
-year, in the first half of the first forecast year. From note 16 of the reviewed
-statements, aggregating the segment × geography columns (they foot to consolidated revenue
-and gross profit exactly):
+On the correct basis, and comparing **half to half** rather than a half to a full year —
+because FY2025's 12.18% sits well below H1-2025's 14.06%, so this company's halves are not
+alike and a half-against-year comparison is a second basis error waiting to happen:
 
-| segment | revenue H1-2026 | gross profit | margin | FY2025 margin | change |
-|---|---:|---:|---:|---:|---:|
-| Cables and accessories | 96,495.2 | 14,018.8 | 14.53% | 13.49% | +1.04pp |
-| Constructions and infrastructure | 43,831.3 | 5,118.9 | **11.68%** | 6.45% | **+5.23pp** |
-| Electrical products and digital | 22,989.3 | 7,195.6 | **31.30%** | 22.17% | **+9.13pp** |
-| **Group** | **163,315.7** | **26,333.3** | **16.12%** | 12.27% | **+3.85pp** |
+| segment | FY2023 | FY2024 | FY2025 | H1-2025 | H1-2026 | forecast FY2026E |
+|---|---:|---:|---:|---:|---:|---:|
+| Cables and accessories | 19.48% | 18.11% | 13.49% | 14.54% | **12.49%** | 14.00% |
+| Constructions and infrastructure | 11.62% | 11.44% | 6.45% | 9.06% | **11.59%** | 6.80% |
+| Electrical products and digital | 25.44% | 26.58% | 22.17% | 23.46% | **24.91%** | 22.00% |
+| **Group** | | | 12.18% | 14.06% | **13.92%** | 12.80% |
 
-Every segment improved and the contracting arm — the low-margin leg that drags the group —
-nearly doubled its margin.
+The forecast rates applied to the H1-2026 revenue mix give **13.19%** against a realised
+**13.92%** — the forecast opens **5.2% below** the latest reviewed period, mix held
+constant so that mix is not doing the work. That is just past [R-ANCHOR-01]'s relative 5%
+threshold rather than four times it.
 
-[R-ANCHOR-01] is exact about this: *a near-term reviewed actual outranks a stale full-year
-rate*, and a forecast opening materially below the latest reviewed period must name a
-mechanism from the closed list, carry the disclosure that establishes it, and supply a
-like-for-like measurement giving that mechanism a direction. At 12.80% against 16.12% the
-opening year is **20.6% below** the latest reviewed period — four times the rule's relative
-5% threshold — and the study names nothing, because at the strike date there was nothing to
-name.
+**The composition is the interesting part and it is genuinely mixed.** Cables, 59% of
+revenue, is forecast ABOVE what it has just delivered — 14.00% against a realised 12.49%,
+with the margin FALLING year on year from 14.54%. The contracting arm went the other way
+and hard: 9.06% to 11.59%, against a forecast of 6.80%. So this is not a study that is
+uniformly too pessimistic on margin; it is a study whose margin forecast is wrong in both
+directions at once, and the group effect is the small residual of two large offsetting
+errors.
 
-Indicatively: 16.12% on the study's own FY2026 revenue of 370,029.5 is about EGP 12.3bn of
-additional gross profit in year one alone. That is larger than the terminal correction, and
-it runs the same way.
+That matters for the re-issue in a way the wrong version would have obscured: re-anchoring
+on the reviewed half **raises** the contracting leg and **lowers** cables, and anybody who
+had taken the first reading at face value would have raised all three.
 
-**What must NOT be done with it.** A single half is not a permanent margin, and the
-contracting leg's improvement in particular may be project mix rather than a re-rating of
-the book. The re-issue anchors on the reviewed half and lets the rate DRIFT only where a
-named mechanism has a measured like-for-like direction in the company's own period pair —
-which is the same discipline that forbids projecting the improvement, and equally forbids
-ignoring it.
+**What must NOT be done with it.** One half is not a permanent margin, and the contracting
+leg's improvement in particular may be project mix rather than a re-rating of the book. The
+re-issue anchors on the reviewed half and lets each rate DRIFT only where a named mechanism
+has a measured like-for-like direction in the company's own period pair — the discipline
+that forbids projecting the improvement forbids ignoring it equally, and here it must be
+applied to a fall as well as to two rises.
+
+**And a defect in the study that this exposed, worth its own line:** the key is named `gp`
+and holds segment profit. Nothing in the register says which row it is, and the study's own
+prose calls it both things. That naming is what made the wrong comparison easy to reach —
+it is the source-field defect of [L-290] in another costume, where the value is right and
+the label is not.
 
 ## 4 — Still to measure, and not measured here
 
@@ -215,10 +228,22 @@ Roughly: 56.08 × 0.88 × 1.39 ≈ 68.6 before the margin re-anchoring and befor
 step is rebuilt on the real chain.
 
 **What the shape of these findings says, and it is the point of the gap gate.** SWDY's
-primary lens sits 46.7% below the market. Three of the four measured corrections run
-TOWARD the price and one runs away from it, and none of them was found by looking at the
-price — they were found by asking the eight headings' questions of a study whose answer
-was surprising. A stale base year, a terminal in real decline and an unread half all push
-value DOWN, which is precisely why [R-GAP-01] calls a large discount a high-prior-of-defect
-region. The employees' share is the counter-example that keeps this honest: it was found
-in the same pass, it is worth −12%, and it is recorded first.
+primary lens sits 46.7% below the market. None of these corrections was found by looking at
+the price — they were found by asking the eight headings' questions of a study whose answer
+was surprising, which is precisely why [R-GAP-01] calls a large discount a
+high-prior-of-defect region.
+
+But they do not all run one way, and the honest tally after the correction above is:
+
+| finding | direction | size |
+|---|---|---|
+| The terminal in real decline, on the retired construction | toward the price | about **+39%** |
+| The employees' statutory share, never charged | away from the price | about **−12%** |
+| The margin re-anchoring on the reviewed half | toward the price, slightly | about **+5%**, and mixed by segment |
+| Net debt up EGP 8.8bn over the half | away from the price | about **−4 a share** |
+
+Two of four run away from the price, and the largest single correction is arithmetic
+mandated by two standing rules rather than a judgement. **The first version of section 3b
+put the margin finding at four times its true size and in a direction that was uniform when
+it is not** — which is the strongest argument in this document for measuring rather than
+reading a shape, and it is left in the record for that reason.
