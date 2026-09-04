@@ -78,6 +78,8 @@ on:
       - 'engine/table_residual.py'
       - 'scripts/check_sign_convention.py'
       - 'scripts/check_sign_convention_negative_control.py'
+      - 'scripts/check_exemplar_debt.py'
+      - 'scripts/check_exemplar_debt_negative_control.py'
       - 'engine/table_footing.py'
       - 'engine/site_data.py'
       - 'scripts/check_site_data_reader.py'
@@ -177,6 +179,8 @@ on:
       - 'engine/table_residual.py'
       - 'scripts/check_sign_convention.py'
       - 'scripts/check_sign_convention_negative_control.py'
+      - 'scripts/check_exemplar_debt.py'
+      - 'scripts/check_exemplar_debt_negative_control.py'
       - 'engine/table_footing.py'
       - 'engine/site_data.py'
       - 'scripts/check_site_data_reader.py'
@@ -523,6 +527,24 @@ jobs:
       # wrongly flagged and that was fixed by re-pointing rather than widening
       - name: Sign-convention gate — negative control
         run: python3 scripts/check_sign_convention_negative_control.py
+
+      # THE EXEMPLAR IS HELD TO THE STANDARD THE EXEMPLAR DEFINES. CLAUDE.md says to open
+      # the model report beside the study being written, which is the mechanism by which
+      # this house's standards propagate — a new study is built by MATCHING it, not by
+      # reading twenty rules and hoping. Measured on 04-Sep-2026 the exemplar was
+      # outstanding on EIGHT ratchets at once, including the lens-design rule (so it still
+      # publishes a typed four-lens blend) and the valuation-gap gate, where it is listed
+      # UNREADABLE. None of those entries is itself wrong — that is what ratchets are for —
+      # but nothing was counting them on THIS study, and a construction the exemplar
+      # carries propagates to every study written after it looking exactly like the house
+      # standard. The gate does not demand the debt be zero; it demands it not GROW.
+      - name: Exemplar-debt gate
+        run: python3 scripts/check_exemplar_debt.py
+
+      # and the proof it can go red, including the case that matters: a standard adopted
+      # tomorrow whose ratchet names the exemplar
+      - name: Exemplar-debt gate — negative control
+        run: python3 scripts/check_exemplar_debt_negative_control.py
 
       # [R-ENF-03] assets/data.js is read through a REAL JavaScript parse, EVERYWHERE.
       # The rule was adopted four weeks earlier, after a reader — not a check — found a

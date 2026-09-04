@@ -1,0 +1,14 @@
+{
+ "rule": "R-ENF-01 / the exemplar is held to the standard it defines",
+ "note": "Standards the model report is outstanding on. It may only ever SHORTEN: a new standard is either MET by the exemplar or the entry is added here deliberately, in the commit that adopts it.",
+ "outstanding": [
+  "ADNOCLS:anchor_outstanding.json:outstanding",
+  "ADNOCLS:bridge_outstanding.json:outstanding",
+  "ADNOCLS:coc_outstanding.json:outstanding",
+  "ADNOCLS:gap_outstanding.json:unreadable",
+  "ADNOCLS:lens_outstanding.json:outstanding",
+  "ADNOCLS:macro_outstanding.json:outstanding",
+  "ADNOCLS:output_outstanding.json:outstanding",
+  "ADNOCLS:outstanding.json:outstanding"
+ ]
+}

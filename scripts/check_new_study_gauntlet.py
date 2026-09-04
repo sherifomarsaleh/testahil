@@ -159,6 +159,16 @@ EXCLUDED = {
                               'unreadable and HOLDS it, which is the rule working; '
                               'demanding a nonzero exit would contradict the rule',
     'check_new_study_gauntlet.py': 'this file',
+    'check_exemplar_debt.py': 'its subject is the model report and the ratchets naming '
+                              'it; a new empty study directory is not the exemplar and '
+                              'there is correctly nothing for it to refuse',
+    'check_lessons_register.py': 'anchors on the WALK-FORWARD run directories and the '
+                                 'lessons behind them, not on study directories',
+    'check_protocol_text.py': 'reads the two governing documents; it names study '
+                              'directories only to check that what they claim exists '
+                              'does exist',
+    'check_walkforward_actuation.py': 'anchors on walk-forward runs, not on study '
+                                      'directories',
 }
 
 
@@ -183,7 +193,12 @@ def study_scoped_gates(repo):
             src = open(path, encoding='utf-8').read()
         except OSError:
             continue
-        if '*_study' in src:
+        # ANY script that RESOLVES a study directory, not only one that globs the literal
+        # pattern. Five gates construct the path instead — "engine/%s_study" % ticker —
+        # and the first draft of this clause could not see them, which is the same
+        # under-detection it exists to close, one level down. A comment about "the study"
+        # carries no underscore, so this stays exact rather than becoming a word search.
+        if '_study' in src:
             out.add(name)
     return out
 
