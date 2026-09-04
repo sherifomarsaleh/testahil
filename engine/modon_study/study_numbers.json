@@ -722,43 +722,53 @@
    "bear": 2.643232316556594,
    "base": 3.542281748960128,
    "bull": 4.1337524764574205,
-   "w": 0.4
+   "w": null
   },
   "relative": {
    "name": "Relative multiples",
    "bear": 1.3845590585725382,
    "base": 2.1953896277577245,
    "bull": 2.371020797978342,
-   "w": 0.2
+   "w": null
   },
   "normalized": {
    "name": "Normalised earnings power",
    "bear": 1.0308987135928862,
    "base": 1.4604398442565887,
    "bull": 1.8040727487875508,
-   "w": 0.2
+   "w": null,
+   "note": "RETIRED for this class: normalised earnings power is not a developer lens, and it is removed rather than re-weighted. Computed and shown so the move is visible."
   },
   "book": {
    "name": "Book value and sustainable return",
    "bear": 1.041253958654325,
    "base": 1.735423264423875,
    "bull": 2.4295925701934253,
-   "w": 0.2
+   "w": null,
+   "note": "a disclosed FLOOR, published as such and never weighted"
   },
   "central": {
-   "name": "Weighted central",
-   "bear": 1.0308987135928862,
-   "base": 2.4951632468716887,
+   "name": "Cash-flow lens (the central)",
+   "bear": 2.643232316556594,
+   "base": 3.542281748960128,
    "bull": 4.1337524764574205,
-   "w": 1.0
+   "w": null
+  },
+  "retired_blend": {
+   "name": "RETIRED 40/20/20/20 blend, published unused",
+   "bear": null,
+   "base": 2.4951632468716887,
+   "bull": null,
+   "w": 0.0
   }
  },
- "central": 2.4951632468716887,
+ "central": 3.542281748960128,
  "span": [
-  1.0308987135928862,
+  2.643232316556594,
   4.1337524764574205
  ],
  "spot": 2.83,
+ "retired_blend_value": 2.4951632468716887,
  "sens": {
   "g_grid": [
    0.015,
@@ -954,6 +964,71 @@
   }
  },
  "panel_centre": 2.478745616179524,
+ "lens_record": {
+  "class": "real-estate developer, off-plan, percentage-of-completion",
+  "class_evidence": "the study models development revenue as a disclosed backlog converting at a steady rate anchored on the pace recognised in the half; the accounting-policy note is not held in this directory, and both developer rows give the same lens design, so the architecture does not turn on it",
+  "primary": {
+   "kind": "dcf",
+   "two_sided": false,
+   "value": 3.542281748960128,
+   "range": {
+    "low": 2.643232316556594,
+    "high": 4.1337524764574205
+   },
+   "range_note": "the cash-flow lens under the run-off and bull paths of the SAME model, on one clock -- not the widest spread across four methods",
+   "range_basis": {
+    "driver": "the development sales trajectory, this study's central contested judgement",
+    "low": 2.643232316556594,
+    "high": 4.1337524764574205,
+    "units": "AED per share, the present-value read under each path",
+    "macro_held": true,
+    "evidence": "the run-off path is retained as a STRESS rather than a central: this study's own note records that the H1-2026 disclosure falsified it as a live central path"
+   }
+  },
+  "cross_checks": [
+   {
+    "kind": "rnav",
+    "value": 4.058071128115847,
+    "present_value": true,
+    "note": "asset net asset value, promoted from the expert appendix where it was computed but not shown beside the other lenses"
+   },
+   {
+    "kind": "relative_multiple",
+    "value": 2.1953896277577245,
+    "present_value": false,
+    "multiple": 7.5,
+    "multiple_source": "a justified earnings multiple set against the named developer peer set and this company's own history, never one read off the current price",
+    "circularity": {
+     "spot": 2.83,
+     "shares": 16347.08,
+     "net_debt": -2761.5550000000003,
+     "metric_value": 4785.094650150099
+    },
+    "note": "forward attributable earnings on a peer-anchored multiple; the traded multiple on the same metric is published beside it so a reader can see this lens is not the price wearing a multiple"
+   },
+   {
+    "kind": "book_value",
+    "value": 1.735423264423875,
+    "present_value": false,
+    "floor": true,
+    "note": "a disclosed FLOOR, published as such and never weighted"
+   }
+  ],
+  "retired": {
+   "blend": {
+    "dcf": 0.4,
+    "relative": 0.2,
+    "normalized": 0.2,
+    "book": 0.2
+   },
+   "blend_value": 2.4951632468716887,
+   "why": "the weights were typed and had never cleared an out-of-sample test, and they were not a view about method at all: their own registered justification says the three market lenses at 60% are how float and governance friction is priced and that a 30% haircut on top would double-count it. The arithmetic agrees to within half a point -- they cost 29.6% of the cash-flow lens -- so a discount worth a third of the value sat where a reader had to reverse-engineer it out of four weights. The blend also FLIPPED THE SIGN of this study's disagreement with the market and published 2.4952, BELOW the run-off path at 2.6432 that this study says its own filings falsified.",
+   "normalised_removed": {
+    "value": 1.4604398442565887,
+    "why": "normalised earnings power is deliberately absent from both developer rows of the registry, because a developer recognising revenue against completion reports earnings that are an accident of which project completed in which year. Removed rather than re-weighted; computed and shown so the move is visible."
+   }
+  }
+ },
  "terminal_recon": {
   "roic_fy25_clean": 0.06134848228063011,
   "roic_path": [

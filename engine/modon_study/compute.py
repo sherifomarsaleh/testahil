@@ -1062,14 +1062,57 @@ lens = dict(
               base=book_ps,
               bull=bvps * (0.095 - g_term) / (ke - g_term) * roll, w=w['book']),
 )
-central = sum(lens[k]['base'] * lens[k]['w'] for k in lens)
-lo = min(lens[k]['bear'] for k in lens)
-hi = max(lens[k]['bull'] for k in lens)
-lens['central'] = dict(name='Weighted central', bear=lo, base=central, bull=hi, w=1.0)
+# ---------------------------------------------------------------------------
+# [R-LENS-03] ONE CLASS PRIMARY IS THE CENTRAL; THE OTHERS ARE CROSS-CHECKS.
+# ---------------------------------------------------------------------------
+# WHAT THE RETIRED BLEND DID HERE, measured rather than described. The four
+# weights moved the answer from the cash-flow lens's 3.5423 to 2.4952 — and
+# they FLIPPED THE SIGN of this study's disagreement with the market, from a
+# quarter above the price to a tenth below it. Worse, 2.4952 sits BELOW the
+# run-off path at 2.6432, which this study's own contested-judgement note says
+# the H1-2026 disclosure falsified as a live central. No path anybody chose was
+# that low; it is where four weights happened to land.
+#
+# AND THE WEIGHTS WERE NOT A VIEW ABOUT METHOD. Their own registered
+# justification says the three market lenses at 60% are "how float/governance
+# friction is priced", and that a 30% haircut on top "would double-count it" —
+# so they were carrying a valuation adjustment, and the arithmetic agrees to
+# within half a point: 29.6% against that stated 30%. A discount worth a third
+# of the value belongs where a reader can see it and disagree with it, not
+# reverse-engineered out of four weights.
+#
+# NORMALISED EARNINGS IS REMOVED RATHER THAN RE-WEIGHTED. It is deliberately
+# absent from both developer rows of the registry, because a developer
+# recognising revenue against completion reports earnings that are an accident
+# of which project completed in which year. It read 1.4604 against a cash-flow
+# 3.5423 and carried a fifth of the weight — the same lens, at the same weight,
+# on the same class, as the case that retired the blend.
+RETIRED_BLEND_W = dict(w)
+RETIRED_BLEND_VALUE = sum(lens[k]['base'] * lens[k]['w'] for k in lens)
+for _k in lens:
+    lens[_k]['w'] = None
+lens['normalized']['note'] = (
+    'RETIRED for this class: normalised earnings power is not a developer lens, '
+    'and it is removed rather than re-weighted. Computed and shown so the move '
+    'is visible.')
+lens['book']['note'] = 'a disclosed FLOOR, published as such and never weighted'
+
+# The central IS the cash-flow lens, and the envelope is the range of that
+# lens's own present-value reads on one clock -- the run-off and bull paths of
+# the SAME model, not the widest spread across four different methods.
+central = lens['dcf']['base']
+lo, hi = lens['dcf']['bear'], lens['dcf']['bull']
+lens['central'] = dict(name='Cash-flow lens (the central)', bear=lo, base=central,
+                       bull=hi, w=None)
+lens['retired_blend'] = dict(
+    name='RETIRED %d/%d/%d/%d blend, published unused' % tuple(
+        round(100 * RETIRED_BLEND_W[k]) for k in ('dcf', 'relative', 'normalized', 'book')),
+    bear=None, base=RETIRED_BLEND_VALUE, bull=None, w=0.0)
 D['lenses'] = lens
 D['central'] = central
 D['span'] = [lo, hi]
 D['spot'] = spot
+D['retired_blend_value'] = RETIRED_BLEND_VALUE
 
 # ---- sensitivity (rebuilt on the base convention: explicit and terminal
 # rates move TOGETHER by the same shift, preserving the terminal-weight step) ---
@@ -1197,6 +1240,86 @@ e3 = dict(method_short='peer-multiple convergence', base=e3_ps,
           pe=e3_pe, npa26=fy26_npa)
 D['experts'] = dict(e1=e1, e2=e2, e3=e3)
 D['panel_centre'] = sorted([e1_ps, e2_ps, e3_ps])[1]
+
+# ---------------------------------------------------------------------------
+# THE LENS RECORD [R-LENS-03]
+# ---------------------------------------------------------------------------
+# THE ASSET NAV WAS ALREADY COMPUTED AND WAS IN THE WRONG PLACE. The registry's
+# developer rows require an RNAV cross-check beside the cash-flow primary, and
+# this study had one all along -- at 4.06, inside the expert appendix, where no
+# reader comparing lenses would meet it. It is promoted to the lens panel here
+# rather than recomputed, which is why the figure is the appendix's own.
+#
+# THE CLASS: both developer rows of the registry read dcf primary with the same
+# three cross-checks, so the choice between percentage-of-completion and
+# point-in-time on handover DOES NOT CHANGE THE ARCHITECTURE and is not made on
+# thin evidence here. It is recorded as percentage-of-completion on this
+# study's own modelling -- development revenue converts a disclosed backlog at
+# a steady rate anchored on the pace recognised in the half, which is what a
+# completion basis produces and a handover basis does not -- and the accounting
+# policy note itself is not in this directory, so the basis is flagged for
+# confirmation from the filing at the next full pass.
+lens_record = dict(**{'class': 'real-estate developer, off-plan, percentage-of-completion'},
+    class_evidence=(
+        'the study models development revenue as a disclosed backlog converting at a '
+        'steady rate anchored on the pace recognised in the half; the accounting-policy '
+        'note is not held in this directory, and both developer rows give the same lens '
+        'design, so the architecture does not turn on it'),
+    primary=dict(
+        kind='dcf', two_sided=False, value=float(central),
+        range={'low': float(lo), 'high': float(hi)},
+        range_note=('the cash-flow lens under the run-off and bull paths of the SAME '
+                    'model, on one clock -- not the widest spread across four methods'),
+        range_basis=dict(
+            driver='the development sales trajectory, this study\'s central contested '
+                   'judgement',
+            low=float(lo), high=float(hi),
+            units='AED per share, the present-value read under each path',
+            macro_held=True,
+            evidence=('the run-off path is retained as a STRESS rather than a central: '
+                      'this study\'s own note records that the H1-2026 disclosure '
+                      'falsified it as a live central path'))),
+    cross_checks=[
+        dict(kind='rnav', value=float(e1_ps), present_value=True,
+             note=('asset net asset value, promoted from the expert appendix where it '
+                   'was computed but not shown beside the other lenses')),
+        dict(kind='relative_multiple', value=float(rel_base), present_value=False,
+             multiple=float(pe_just),
+             multiple_source=('a justified earnings multiple set against the named '
+                              'developer peer set and this company\'s own history, '
+                              'never one read off the current price'),
+             circularity=dict(spot=float(spot), shares=float(shares_mn),
+                              net_debt=float(-D['netcash']['strict']),
+                              metric_value=float(fy26_npa)),
+             note=('forward attributable earnings on a peer-anchored multiple; the '
+                   'traded multiple on the same metric is published beside it so a '
+                   'reader can see this lens is not the price wearing a multiple')),
+        dict(kind='book_value', value=float(book_ps), present_value=False,
+             floor=True,
+             note=('a disclosed FLOOR, published as such and never weighted')),
+    ],
+    retired=dict(
+        blend=dict(RETIRED_BLEND_W),
+        blend_value=float(RETIRED_BLEND_VALUE),
+        why=('the weights were typed and had never cleared an out-of-sample test, and '
+             'they were not a view about method at all: their own registered '
+             'justification says the three market lenses at 60%% are how float and '
+             'governance friction is priced and that a 30%% haircut on top would '
+             'double-count it. The arithmetic agrees to within half a point -- they cost '
+             '%.1f%% of the cash-flow lens -- so a discount worth a third of the value '
+             'sat where a reader had to reverse-engineer it out of four weights. The '
+             'blend also FLIPPED THE SIGN of this study\'s disagreement with the market '
+             'and published %.4f, BELOW the run-off path at %.4f that this study says '
+             'its own filings falsified.'
+             % (100 * (1 - RETIRED_BLEND_VALUE / central), RETIRED_BLEND_VALUE, lo)),
+        normalised_removed=dict(
+            value=float(norm_ps),
+            why=('normalised earnings power is deliberately absent from both developer '
+                 'rows of the registry, because a developer recognising revenue against '
+                 'completion reports earnings that are an accident of which project '
+                 'completed in which year. Removed rather than re-weighted; computed and '
+                 'shown so the move is visible.'))))
+D['lens_record'] = lens_record
 
 D['terminal_recon'] = dict(
     roic_fy25_clean=ebit25_clean * (1 - tax_f)

@@ -14,6 +14,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 wb = openpyxl.load_workbook(os.path.join(HERE, 'MODON_Valuation_Model_10082026_public.xlsx'))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))
 AD = XP['anchors']['dcf']
+ANCH = XP['anchors']
 A = {}
 for row in wb['Assumptions'].iter_rows(min_col=1, max_col=1):
     c = row[0]
@@ -28,7 +29,10 @@ def row_of(label):
 def read(overrides=None):
     bk = xlcalc.Book(wb, overrides)
     return dict(dcf=bk.cell_value('DCF', f"C{AD['ps']}"),
-                central=bk.cell_value('Summary', 'C9'),
+                central=bk.cell_value('Summary', ANCH['summary_central']),
+                rel_lens=bk.cell_value('Summary', 'C6'),
+                norm_lens=bk.cell_value('Summary', 'C7'),
+                book_lens=bk.cell_value('Summary', 'C8'),
                 pv_expl=bk.cell_value('DCF', f"C{AD['pex']}"),
                 tv=bk.cell_value('DCF', f"C{AD['tv']}"),
                 wacc=bk.cell_value('DCF', f"C{AD['wacc']}"),
@@ -86,12 +90,15 @@ CASES = [
      'a larger contracted backlog must raise development revenue and the valuation'),
     ('Days from the 30-Jun-2026 valuation date to the 7-Aug anchor', 'C', +100.0, 'dcf', +1,
      'a later anchor accretes more value at the cost of equity'),
-    ('Justified price/earnings (FY2026E attributable)', 'C', +1.0, 'central', +1,
-     'a higher justified multiple must raise the relative lens and the central'),
-    ('Through-cycle price/earnings', 'C', +1.0, 'central', +1,
-     'a higher through-cycle multiple must raise the normalised lens'),
-    ('Sustainable return on equity', 'C', +0.02, 'central', +1,
-     'a higher sustainable return must raise the book lens and the central'),
+    ('Justified price/earnings (FY2026E attributable)', 'C', +1.0, 'rel_lens', +1,
+     'a higher justified multiple must raise the relative CROSS-CHECK — which sits '
+     'beside the answer and is no longer weighted into it'),
+    ('Through-cycle price/earnings', 'C', +1.0, 'norm_lens', +1,
+     'a higher through-cycle multiple must raise the normalised read — which this '
+     'class does not publish as a lens and which is no longer in the answer'),
+    ('Sustainable return on equity', 'C', +0.02, 'book_lens', +1,
+     'a higher sustainable return must raise the book FLOOR, which is published '
+     'beside the answer and never weighted into it'),
     ('Gross debt path incl. related-party loan (AED mn)', 'G', +2000.0, 'nd30', +1,
      'drawing more debt must leave more net debt at the end of the forecast'),
     ('NCI share of profit', 'C', +0.05, 'np27', -1,

@@ -229,10 +229,6 @@ r_nmar   = arow('Through-cycle net margin on revenue', IN['norm_margin'], PCT)
 r_rbase  = arow('Recurring-legs revenue base, FY2025 (AED mn, disclosed)', IN['recurring_base'], NUM0)
 r_npe    = arow('Through-cycle price/earnings', IN['norm_pe'], MULT)
 r_roes   = arow('Sustainable return on equity', IN['roe_sust'], PCT)
-r_wdcf   = arow('Weight — discounted cash flow', IN['lens_weights']['dcf'], PCT)
-r_wrel   = arow('Weight — relative', IN['lens_weights']['relative'], PCT)
-r_wnorm  = arow('Weight — normalised', IN['lens_weights']['normalized'], PCT)
-r_wbook  = arow('Weight — book', IN['lens_weights']['book'], PCT)
 band(aws, _r, 8); put(aws, f'A{_r}', 'Scenario driver vectors (engine re-run inputs, published for '
      'reproducibility — the pasted scenario outputs use exactly these)', bold=True, fmt=None); _r += 1
 r_snsr   = arow('scenario: run-off new development sales', IN['new_sales_runoff'], NUM0)
@@ -604,9 +600,20 @@ BEAR_SRC = {'normalized': "='Relative & Normalized'!E28", 'book': "='Relative & 
             'relative': "='Relative & Normalized'!C12"}
 BULL_SRC = {'normalized': "='Relative & Normalized'!F28", 'book': "='Relative & Normalized'!F36",
             'relative': "='Relative & Normalized'!D12"}
-WROW = {'dcf': r_wdcf, 'relative': r_wrel, 'normalized': r_wnorm, 'book': r_wbook}
+LK = ['dcf', 'relative', 'normalized', 'book']
+RETW = D['lens_record']['retired']['blend']
+# every row whose G column compares a lens against the traded price, filled as the
+# table is written and patched once the spot row is known -- the addresses used to be
+# typed and one added row moved all of them
+GROW = []
+ROLE = {
+    'dcf': 'THE CENTRAL — the class primary',
+    'relative': 'cross-check',
+    'normalized': 'REMOVED — not a lens this class publishes',
+    'book': 'a disclosed floor, never weighted',
+}
 r = 5
-for k in ['dcf', 'relative', 'normalized', 'book']:
+for k in LK:
     l = LN[k]
     put(ws, f'A{r}', l['name'], fmt=None)
     if k in BEAR_SRC:
@@ -618,19 +625,25 @@ for k in ['dcf', 'relative', 'normalized', 'book']:
         putf(ws, f'D{r}', BULL_SRC[k], l['bull'], PX, green=True)
     else:
         put(ws, f'D{r}', l['bull'], BLUE, PX)
-    putf(ws, f'E{r}', f"={av(WROW[k])}", l['w'], PCT, green=True)
-    putf(ws, f'F{r}', f'=C{r}*E{r}', l['base'] * l['w'], PX)
-    putf(ws, f'G{r}', f'=C{r}/$C$14-1', l['base'] / SPOT - 1, PCT)
+    put(ws, f'E{r}', ROLE[k], fmt=None)
+    GROW.append((r, l['base']))
     r += 1
 band(ws, r, 7)
-LK = ['dcf', 'relative', 'normalized', 'book']
-put(ws, f'A{r}', 'Weighted central', bold=True, fmt=None)
-putf(ws, f'B{r}', '=MIN(B5:B8)', min(LN[k]['bear'] for k in LK), PX, bold=True)
-putf(ws, f'C{r}', '=SUM(F5:F8)', D['central'], PX, bold=True)
-putf(ws, f'D{r}', '=MAX(D5:D8)', max(LN[k]['bull'] for k in LK), PX, bold=True)
-putf(ws, f'E{r}', '=SUM(E5:E8)', 1.0, PCT, bold=True)
-putf(ws, f'G{r}', f'=C{r}/$C$14-1', D['central'] / SPOT - 1, PCT, bold=True)
-assert r == 9
+put(ws, f'A{r}', 'THE CENTRAL — the cash-flow lens, not an average', bold=True, fmt=None)
+putf(ws, f'B{r}', '=B5', LN['dcf']['bear'], PX, bold=True)
+putf(ws, f'C{r}', '=C5', D['central'], PX, bold=True)
+putf(ws, f'D{r}', '=D5', LN['dcf']['bull'], PX, bold=True)
+put(ws, f'E{r}', 'the class primary', fmt=None)
+CENTRAL_ROW = r
+ANCH['summary_central'] = 'C%d' % r
+GROW.append((r, D['central']))
+r += 1
+put(ws, f'A{r}', 'NOT AVERAGED — the retired blend, published unused', bold=True, fmt=None)
+putf(ws, f'C{r}', '=%s' % '+'.join('C%d*%g' % (5 + i, RETW[k])
+                                   for i, k in enumerate(LK)),
+     D['retired_blend_value'], PX)
+put(ws, f'E{r}', 'retired 02-Sep-2026', fmt=None)
+GROW.append((r, D['retired_blend_value']))
 r += 2
 put(ws, f'A{r}', 'The contested judgement: DCF base vs run-off stress', fmt=None)
 putf(ws, f'C{r}', f"=DCF!C{ANCH['dcf']['ps']}", DCF['ps'], PX, green=True)
@@ -638,7 +651,7 @@ put(ws, f'D{r}', CJ['runoff_ps'], BLUE, PX)
 r += 1
 put(ws, f'A{r}', 'Terminal value share of DCF enterprise value', fmt=None)
 putf(ws, f'C{r}', f"=DCF!C{ANCH['dcf']['tvs']}", DCF['tv_share'], PCT, green=True)
-assert r == 12
+ANCH['summary_tvs'] = 'C%d' % r
 r += 1
 put(ws, f'A{r}', 'Expert panel median', fmt=None)
 put(ws, f'C{r}', D['panel_centre'], BLUE, PX)
@@ -646,13 +659,20 @@ r += 1
 band(ws, r, 7)
 put(ws, f'A{r}', 'Market price (anchor, 7-Aug-2026)', bold=True, fmt=None)
 putf(ws, f'C{r}', f"={av(r_spot)}", SPOT, PX, bold=True, green=True)
-assert r == 14
-ANCH['summary_mktcap'] = 'C17'
+# THE SPOT ROW IS KNOWN ONLY NOW, so every lens-versus-price comparison above is
+# written here rather than against a typed address. ANCH carried 'C17' as a literal
+# and that too moved when the table grew by a row.
+SPOT_ROW = r
+ANCH['summary_spot'] = 'C%d' % r
+for _row, _val in GROW:
+    putf(ws, f'G{_row}', f'=C{_row}/$C${SPOT_ROW}-1', _val / SPOT - 1, PCT,
+         bold=(_row == CENTRAL_ROW))
 r += 2
 hdr(ws, r, ['Key figure', 'Value'])
 r += 1
 put(ws, f'A{r}', 'Market capitalisation (AED mn)', fmt=None)
 putf(ws, f'C{r}', f"={av(r_spot)}*{av(r_sh)}", M['mktcap'], NUM0)
+ANCH['summary_mktcap'] = 'C%d' % r
 r += 1
 for label, fml, xp, fmt in [
     ('Net cash, strict basis (all cash − all debt, 30-Jun-2026)',
@@ -1187,6 +1207,9 @@ with open(os.path.join(HERE, 'xlsx_expected.json'), 'w') as f:
                                 seg_fcst_rev=ANCH['seg_fcst_rev'],
                                 seg_fcst_gp=ANCH['seg_fcst_gp'],
                                 summary_mktcap=ANCH['summary_mktcap'],
+                                summary_spot=ANCH['summary_spot'],
+                                summary_central=ANCH['summary_central'],
+                                summary_tvs=ANCH['summary_tvs'],
                                 sotp_eq=ANCH['sotp_eq'],
                                 nci_row=r_ncirow)), f, indent=1)
 nform = sum(len(v) for v in EXPECT.values())
