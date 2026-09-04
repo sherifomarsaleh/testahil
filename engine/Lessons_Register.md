@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**200 lessons**, of which 171 bind on every study, 22 on a class of company, and 7 on a single name.
+**204 lessons**, of which 175 bind on every study, 22 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 125 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 129 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1788,6 +1788,46 @@ Running every scripts/check_*.py and excluding the ones ending _negative_control
 > **What it cost, or how we know.** A hand-rolled sweep of 44 gates reported 0 red while the CI step list reported one: the exemplar-debt negative control, excluded by the sweep's own pattern. This is the same defect scripts/run_ci_gates.py was written for on 3 September 2026, when a by-hand sweep reported green against a CI that had been red for a day — anchor the population somewhere else. The remedy is to run that script rather than a pattern, and it is cheap.
 
 > **What would overturn it.** Nothing. The controls are part of the suite; a sweep that omits them is measuring something narrower and should say which.
+
+### L-280 · A DEFECT MEASURED ONLY WHERE IT HURTS LOOKS LIKE A BIAS WITH A DIRECTION. Measure it where it should run the other way before correcting it anywhere.
+
+The retired terminal charges the growth rate against invested capital every year for ever, so the replacement cycle it implies is one divided by that rate — a fact about the CURRENCY and not about the asset. In a high-inflation market that is 14 years and it starves a 25-year plant; in a pegged one it is fifty years and it buys half the maintenance a 25-year ship needs. Same identity, opposite sign. Correcting it raises value in one market and LOWERS it in the other, and a house that had only ever measured the painful side would read a correction with a single sign as obviously right.
+
+**Applies to:** every study  ·  *Learned from:* found while building, The terminal census across the delivered book, 03/04-Sep-2026
+
+> **What it cost, or how we know.** Seven of thirteen readable terminals charge LESS than their own book depreciation, which cannot be maintaining an asset base because book depreciation is struck on historical cost and replacement costs more — and every one of the seven is in a pegged low-inflation market. The worked correction on a high-inflation name RAISED its value; the measured correction on the exemplar would LOWER it. Three of the eight names held below the price are also names whose terminal under-charges, so on those the correction moves the answer AWAY from the price and the pessimism is somewhere else. Read the current split live from the census; the names move at every rebuild.
+
+> **What would overturn it.** A market where the correction runs the same way as in every other, which would make this a bias rather than a sign change. Or a disclosed asset life that happens to equal one divided by the terminal inflation rate, which would mean the identity was measuring the asset after all.
+
+### L-281 · A LOCAL CI RUNNER INHERITS THE DEVELOPER'S ENVIRONMENT AND CI DOES NOT, so green locally is not evidence about CI.
+
+Running the pipeline's own step list on this machine looks like the strongest possible pre-flight check, and for logic it is. For anything that depends on a TOOL being present it is worthless in the reassuring direction: the local machine has accumulated every tool anybody ever needed, and the build machine starts from a manifest somebody has to remember to update.
+
+**Applies to:** every study  ·  *Learned from:* found while building, The gate sweep of 04-Sep-2026 against the CI run of the same commit
+
+> **What it cost, or how we know.** The local sweep reported 89 steps green. CI failed the same commit: poppler-utils was installed 320 lines below the step that needed it, and matplotlib was never installed at all, so every one of 27 figure scripts failed to import. Both tools were present locally, so neither gate could have gone red here however carefully the sweep was run.
+
+> **What would overturn it.** A local runner that builds its own environment from the workflow's manifest rather than using the machine's, which would make the two comparable again.
+
+### L-282 · A GATE THAT CANNOT RUN HAS REFUSED NOTHING, AND MUST NOT BE COUNTED AS PERMISSIVE. Give a broken tool its own exit code and its own words.
+
+When a check fails there are two very different repairs: fix the thing being checked, or fix the machine the check runs on. A runner that lumps them together sends every reader to the first one, and the second is invisible until somebody reads the log three times.
+
+**Applies to:** every study  ·  *Learned from:* found while building, The new-study gauntlet in CI, 04-Sep-2026
+
+> **What it cost, or how we know.** The gauntlet reported 3 gates did not refuse a new study. All three had refused nothing because a tool they needed was absent, and each said so in its own output while the summary line said the opposite. That is the gauntlet's own first-run finding arriving a second time — a gate red for the wrong reason reads exactly like one red for the right reason. Exit 2 now means the tool is missing, and the run still fails, under a heading that points at the environment.
+
+> **What would overturn it.** A failure mode where the repair really is the same either way, which would make the distinction ceremony.
+
+### L-283 · AN ID SCHEME THAT ENCODES A PROPERTY STOPS ENCODING IT AND NOTHING ANNOUNCES THE MOMENT IT DID.
+
+Numbering a register so the number tells you the kind of entry is convenient until the blocks fill. Then somebody allocates past the boundary, quite reasonably, and from that day the number means nothing while every comment still says it does — and the code that does the allocating is the last thing to find out.
+
+**Applies to:** every study  ·  *Learned from:* found while building, The lessons register's own id minter, 04-Sep-2026
+
+> **What it cost, or how we know.** The minter's docstring read 0xx for one scope, 1xx for another, 2xx for the third, and allocated inside a 99-wide window per scope. The first block had long since overflowed into the others, so the window arithmetic would have minted an id already in use. It never got that far: it CRASHED on a suffixed id — a correction inserted in place in an append-only register, legitimate under that convention and unreadable by int() — so the sanctioned path for appending any harvested lesson raised before it reached the register. Now counted against the whole register, which is the rule this house already holds for every other population.
+
+> **What would overturn it.** A register where the scope really is recoverable from the id, which would make the blocks load-bearing rather than decorative.
 
 
 ---

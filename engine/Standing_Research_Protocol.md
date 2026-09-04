@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-04g — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-04h — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -3354,3 +3354,73 @@ carries a unit — real or nominal, this year's money or that year's — **the u
 to check**, and no amount of care inside the arithmetic will supply it. The corollary is
 sharper still: an inflation rate that has quietly become an asset life will not announce
 itself, because both are just numbers.
+
+
+### [R-TERM-01 CLAUSE TWO] The defect's direction reverses with the market's terminal inflation
+
+*Amended 04-Sep-2026, on the exemplar's own refusal.*
+
+The clause above says that the higher a market's inflation, the more brutal the charge —
+**which is the exact opposite of prudence**. True, one-sided, and read by a pegged-market
+study as an assurance that its own terminal errs safe. **It does not.**
+
+`1/g` runs the other way below the ladder. At a pegged 2% terminal it charges **fifty
+years** against a twenty-five-year ship and buys half the maintenance the asset needs. The
+same identity that starves a kiln flatters a fleet, and **the correction that raised every
+high-inflation value LOWERS the pegged ones.**
+
+Every correction this house had made when the rule was written came from one market, which
+is why nobody saw the other side. The reassessment's founding complaint was pessimism; the
+evidence for it was drawn from the market where this defect *is* pessimistic. **A finding
+measured on one side of a sign change is not a finding about the sign**, and a single-signed
+correction applied to a book that splits both ways makes half of it worse.
+
+**The inference that needs no sourced life, and it only runs one way.** A terminal charging
+LESS than its own *book* depreciation cannot be maintaining the asset base, because book
+depreciation is struck on historical cost and replacement costs more than that. It says
+nothing about a terminal charging *more* — that one needs the disclosed life.
+
+**The two instruments can point opposite ways on one name, and that is information rather
+than a conflict.** Where a study sits below the price under [R-GAP-01] *and* its terminal
+under-charges, correcting the terminal moves the answer **away** from the price. That says
+the pessimism on that name is somewhere else, and the eight headings should go looking for
+it there rather than treating the terminal as the culprit.
+
+**Read the census live** — `python3 engine/valuation_calibration/terminal_census.py`. Never
+from this document: which side a name sits on moves at every rebuild.
+
+### What the exemplar's own refusal added
+
+It is a **disclosure problem**, not a parameter to tune. Maintenance at the disclosed
+25-year vessel life came to *less* than the model's own book depreciation, so terminal free
+cash flow exceeded terminal profit and the implied payout reached 117% — a going concern
+distributing more than it earns, for ever, which `terminal_value.build()` refuses outright
+and is right to.
+
+The two figures disagree because **they are not measuring the same thing**. Dry-docking
+components are written off over two to five years. Dry-docking *is* maintenance, capitalised
+and amortised fast, so a terminal charging only hull replacement while adding back all book
+depreciation would be adding back the amortisation of a cost it never charged. The filings
+do not split the vessel line by component, so the life that would do it cannot be derived —
+and **a life this desk chose is not a disclosed life**. None was chosen: stop and inform per
+SIGCM clause 8, and the name stays on the ratchet **with its reason** rather than being
+conformed on an invented figure.
+
+### A wrong number was built and thrown away before it shipped, and the reason is the more useful half
+
+The second error this rule names — a terminal that never adds book D&A back though NOPAT is
+already net of it — looks free to fix. So a first draft added book D&A across every terminal
+and reported the pooled figure rising sharply.
+
+**`g × IC` is a NET investment figure.** A construction charging it has already netted
+depreciation, so adding book D&A on top double-counts; the corrected construction charges
+maintenance **gross at replacement cost**, which is precisely why *it* must add book D&A
+back first. Checked against the one worked case rather than reasoned about, the
+add-back-alone answer came 26% short of the module's own.
+
+**THE GENERAL LESSON, WHICH IS NOT ABOUT TERMINALS** [L-280]**: a defect measured only where
+it hurts looks like a bias with a direction.** Correcting it everywhere then reads as a
+systematic loosening, and the house cannot tell its own correction from its own drift —
+which is exactly what [R-VCAL-01]'s promotion guard exists to stop, and why that guard is
+symmetric. **Where a correction has only ever been applied in one market, the first question
+is what it does in another.**
