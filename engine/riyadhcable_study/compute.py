@@ -848,21 +848,58 @@ say(f"[Book lens] book value per share SAR {bvps:.2f}; justified P/B {pb_just:.2
     f"Trailing ROE {roe_trailing:.1%}.")
 
 # ---- synthesis --------------------------------------------------------------
-W = V['lens_weights']
+# ---- synthesis: ONE CLASS PRIMARY IS THE CENTRAL [R-LENS-03] -------------------
+# The typed 45/20/20/15 blend is RETIRED. On this name it pulled the answer DOWN toward
+# the price rather than away from it — the blend reads +4.3% against the market where the
+# cash-flow lens reads +22.0%, so a reader saw a fifth of the disagreement this study
+# holds, and saw it as agreement.
+#
+# THE CLASS IS 'cement and heavy industrial' AND THAT WAS A DECISION, not a default. This
+# issuer has a turnkey high-voltage projects arm, which is what earns a group its own
+# class where the contracting leg carries a different lens — but here that leg is 2.2% of
+# revenue against 97.6% cables and wires, so nothing about the lens set changes and filing
+# it under a contracting class would be the superstition the register warns against. The
+# three class lessons on this row were read before deciding and all three bind: commodity
+# inputs escalate on their own path (copper here, fuel there), haulage follows the tonne
+# despatched, and an old plant's recent capex is not its maintenance requirement.
+#
+# Normalised earnings power is NOT among this class's permitted cross-checks. It is
+# computed and shown so that its removal is visible rather than silent.
+RETIRED_BLEND_W = V['lens_weights']
 lenses = dict(
-    dcf=dict(name='Discounted cash flow (primary)', bear=dcf_bear, base=dcf_ps, bull=dcf_bull, w=W['dcf']),
-    relative=dict(name='Relative multiples', bear=rel_bear, base=rel_ps, bull=rel_bull, w=W['relative']),
-    normalized=dict(name='Normalised earnings power', bear=norm_bear, base=norm_ps, bull=norm_bull,
-                    w=W['normalized']),
-    book=dict(name='Book value and sustainable return', bear=book_bear, base=book_ps, bull=book_bull,
-              w=W['book']),
+    dcf=dict(name='Discounted cash flow (the answer)', bear=dcf_bear, base=dcf_ps,
+             bull=dcf_bull, w=None),
+    relative=dict(name='Relative multiples', bear=rel_bear, base=rel_ps, bull=rel_bull,
+                  w=None),
+    normalized=dict(name='Normalised earnings power', bear=norm_bear, base=norm_ps,
+                    bull=norm_bull, w=None,
+                    note='RETIRED for this class: not among the cross-checks this class '
+                         'permits. Removed rather than re-weighted, and computed and shown '
+                         'so the move is visible.'),
+    book=dict(name='Book value and sustainable return', bear=book_bear, base=book_ps,
+              bull=book_bull, w=None,
+              note='a disclosed FLOOR, published as such and never weighted'),
 )
-central = sum(l['base'] * l['w'] for l in lenses.values())
-lo = min(l['bear'] for l in lenses.values())
-hi = max(l['bull'] for l in lenses.values())
-lenses['central'] = dict(name='Weighted central', bear=lo, base=central, bull=hi, w=1.0)
-say(f"[Synthesis] weighted central SAR {central:.2f}; full span {lo:.2f} - {hi:.2f}; spot {SPOT:.2f} "
+RETIRED_BLEND_VALUE = sum(lenses[k]['base'] * RETIRED_BLEND_W[k] for k in RETIRED_BLEND_W)
+central = dcf_ps                      # THE CLASS PRIMARY IS THE CENTRAL
+lo, hi = dcf_bear, dcf_bull           # its OWN bear and bull, on one clock
+span_lo = min(l['bear'] for l in lenses.values())
+span_hi = max(l['bull'] for l in lenses.values())
+lenses['central'] = dict(name='Cash-flow lens (the central)', bear=lo, base=central,
+                         bull=hi, w=None)
+lenses['retired_blend'] = dict(name='RETIRED 45/20/20/15 blend, published unused',
+                               bear=None, base=RETIRED_BLEND_VALUE, bull=None, w=0.0)
+say(f"[Synthesis] THE CENTRAL IS THE CLASS PRIMARY: the cash-flow lens at SAR {central:.2f}, "
+    f"with its own bear-to-bull range of {lo:.2f} - {hi:.2f} on one clock. Cross-checks are "
+    f"published beside it at their own values (relative {rel_ps:.2f}, book floor "
+    f"{book_ps:.2f}); the span across all of them, {span_lo:.2f} - {span_hi:.2f}, is a "
+    f"spread between METHODS and not a range around the answer. Spot {SPOT:.2f} "
     f"({central/SPOT-1:+.0%} to the central).")
+say(f"[Retired blend, published unused] the 45/20/20/15 weights give SAR "
+    f"{RETIRED_BLEND_VALUE:.2f}, {RETIRED_BLEND_VALUE/SPOT-1:+.1%} against the price where "
+    f"the cash-flow lens reads {central/SPOT-1:+.1%}. The blend did not merely shrink this "
+    f"study's disagreement with the market — it very nearly erased it, showing a reader "
+    f"agreement where the study's own method holds a fifth above.")
 assert 0.30 <= central / SPOT <= 3.0, f"central/spot {central/SPOT:.2f} outside plausibility band"
 
 # ---- sensitivity grids ------------------------------------------------------
@@ -966,6 +1003,17 @@ strike = json.load(open(os.path.join(HERE, 'strike_result.json')))
 beta_res = json.load(open(os.path.join(HERE, 'beta_result.json')))
 backtest = json.load(open(os.path.join(HERE, 'backtest_5y.json')))
 
+# Segment gross profit must foot to the consolidated figure and each segment's margin
+# must be economically possible. Asserted here because nothing downstream reads it, so no
+# document and no gate would notice if it went wrong again.
+_seg_gp = {k: V['seg_rev_fy25'][k] - V['seg_cost_fy25'][k] for k in V['seg_rev_fy25']}
+assert abs(sum(_seg_gp.values()) - V['gp_fy25']) < 1.0, (
+    'segment gross profit sums to %.3f against a consolidated %.3f'
+    % (sum(_seg_gp.values()), V['gp_fy25']))
+for _k, _v in _seg_gp.items():
+    _m = _v / V['seg_rev_fy25'][_k]
+    assert 0.0 < _m < 1.0, f'segment {_k} gross margin of {_m:.1%} is not possible'
+
 OUT = dict(
     meta=dict(ticker='RIYADHCABLE', tadawul_code='4142',
               company='Riyadh Cables Group Company', market='TADAWUL', currency='SAR',
@@ -1003,7 +1051,17 @@ OUT = dict(
               ppe_fy25=V['ppe_fy25'], eqp_fy25=V['eqp_fy25'], nwc_fy25=nwc_fy25, nd_fy25=nd_fy25,
               debt_fy25=V['debt_fy25'], nopat_fy25=nopat_fy25, ic_fy25=ic_fy25, dna_fy25=V['dna_fy25']),
     seg_fy25=dict(rev=V['seg_rev_fy25'], cost=V['seg_cost_fy25'],
-                  gp={k: V['seg_rev_fy25'][k] + V['seg_cost_fy25'][k] * -1 * 0 - (-V['seg_cost_fy25'][k])
+                  # gross profit is revenue LESS cost. This read
+                  #     rev + cost * -1 * 0 - (-cost)
+                  # which evaluates to rev + cost — a mangled double negative that made
+                  # every segment's "gross profit" larger than its revenue (cables 19,130.9
+                  # against revenue of 10,414.2, an implied margin of 184%). NOTHING READ
+                  # IT: the builders take seg_fy25's rev and geo and never its gp, so the
+                  # figure reached no document and no gate. A committed output that
+                  # nothing consumes is checked by nothing at all — the prose-figure gate
+                  # holds a document's figures against the model, and a model value that
+                  # reaches no document has no such counterparty.
+                  gp={k: V['seg_rev_fy25'][k] - V['seg_cost_fy25'][k]
                       for k in V['seg_rev_fy25']},
                   names=dict(cables='Cables and wires', hv='High-voltage cables (turnkey projects)',
                              other='Other (telephone cables & services)'),
@@ -1024,6 +1082,64 @@ OUT = dict(
     terminal_recon=dict(roic_term=roic_term, rr_term=rr_term, ceiling=blend_ceiling,
                         hist_roic25=hist_roic25, nopat_fy25=nopat_fy25),
     lenses=lenses, central=central, span=[lo, hi], spot=SPOT,
+    retired_blend_value=RETIRED_BLEND_VALUE,
+    lens_record=dict(**{'class': 'cement and heavy industrial'},
+        primary=dict(
+            kind='dcf', two_sided=False, value=float(central),
+            range={'low': float(lo), 'high': float(hi)},
+            range_note=('the cash-flow lens under its own bear and bull scenarios on one '
+                        'clock, not the widest spread across four methods'),
+            range_basis=dict(
+                driver='the copper pass-through, the conversion spread per tonne and the '
+                       'volume path the cable plant is built on',
+                low=float(lo), high=float(hi),
+                units='SAR per share, the present-value read under each scenario',
+                macro_held=True,
+                evidence='both scenarios are re-runs of the same unit-economics build with '
+                         'the cost of capital and terminal growth held still')),
+        cross_checks=[
+            dict(kind='relative_multiple', value=float(lenses['relative']['base']),
+                 present_value=False, multiple=float(V['ev_ebitda_just']),
+                 multiple_source=('a justified enterprise multiple set against named listed '
+                                  'cable peers and this company\'s own history, never one '
+                                  'read off the current price'),
+                 circularity=dict(spot=float(SPOT), shares=float(SH),
+                                  net_debt=float(nd_fy25),
+                                  metric_value=float(ebitda[1])),
+                 note='forward EBITDA on a peer-anchored enterprise multiple'),
+            dict(kind='book_value', value=float(lenses['book']['base']),
+                 present_value=False, floor=True,
+                 note='a disclosed FLOOR, published as such and never weighted'),
+        ],
+        cross_checks_not_built=[
+            dict(kind='ev_per_tonne',
+                 why=('this class permits an enterprise value per tonne of capacity and this '
+                      'study does not publish one. It HAS the unit economics — the model is '
+                      'built on conductor tonnes and a conversion spread per tonne — but a '
+                      'per-tonne enterprise multiple needs COMPARABLE transactions or listed '
+                      'peers stated per tonne of cable capacity, and none of the named peers '
+                      'discloses capacity on a basis that can be compared. Building one on '
+                      'this issuer\'s own capacity alone would be a restatement of the DCF '
+                      'rather than a cross-check. Named here rather than left absent.')),
+            dict(kind='replacement_cost',
+                 why=('a cable plant is not traded in a liquid international secondhand '
+                      'market the way a vessel is, so replacement cost here is an industry '
+                      'rule of thumb rather than an observed price — the same limitation '
+                      'this class carries for a kiln. It is not published as a cross-check '
+                      'because a rule of thumb dressed as a lens is worse than an absent '
+                      'one.')),
+        ],
+        retired=dict(
+            blend=dict(RETIRED_BLEND_W),
+            blend_value=float(RETIRED_BLEND_VALUE),
+            why=('the weights were typed and had never cleared an out-of-sample test. Here '
+                 'the blend did not merely shrink this study\'s disagreement with the '
+                 'market, it very nearly ERASED it: %+.1f%% against the price where the '
+                 'cash-flow lens reads %+.1f%%, so a reader saw agreement where the study '
+                 'holds a fifth above. Normalised earnings power, which this class does not '
+                 'permit, read %.2f and carried a fifth of the weight.'
+                 % (100*(RETIRED_BLEND_VALUE/SPOT-1), 100*(central/SPOT-1), norm_ps))),
+    ),
     experts=experts, panel_centre=panel_centre,
     rel=dict(ebitda_mid=ebitda_mid, ev_rel_fwd=ev_rel_fwd, pv_interim=pv[0] + pv[1],
              ev_ebitda_trailing=ev_ebitda_trailing, pe_trailing=pe_trailing, just_mult=V['ev_ebitda_just']),

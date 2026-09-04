@@ -15,6 +15,8 @@ M, HI, HB, F = D['meta'], D['hist_is'], D['hist_bs'], D['fcst']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sens']
 REL, NRM, BKL, EXPP = D['rel'], D['norm'], D['book'], D['experts']
 SEG, S0, STK, BT, TR = D['seg_fy25'], D['step0'], D['strike'], D['backtest'], D['terminal_recon']
+RETV = D['retired_blend_value']
+RETW = D['lens_record']['retired']['blend']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 SPOT, SH = M['spot'], M['shares_mn']
 H3 = STK['horizons']['3M']; H1H = STK['horizons']['1M']
@@ -33,7 +35,7 @@ masthead()
 P('Riyadh Cables Group Company', size=22, bold=True, space_after=1)
 P('Tadawul: 4142  ·  Capital Goods — Electrical Equipment (wire & cable)  ·  Saudi Arabia',
   size=11, color=GREY, space_after=8)
-rich([('Fair-value range (weighted central) ', {'bold': True}),
+rich([('Fair-value range — the cash-flow lens, not an average ', {'bold': True}),
       (f'SAR {sar(LN["central"]["base"],0)} per share', {'bold': True, 'color': BRASS, 'size': 13}),
       (f'   ·   full span SAR {sar(D["span"][0],0)}–{sar(D["span"][1],0)}   ·   spot SAR {sar(SPOT,2)} '
        f'({pct(LN["central"]["base"]/SPOT-1,0)} to the central)', {'color': INK})], size=11, space_after=8)
@@ -78,14 +80,21 @@ figure(os.path.join(HERE, 'fig1_football.png'), 6.9,
 
 # ============ 3 VALUATION SUMMARY — every read at a glance =====================
 H1('Valuation summary — every read at a glance')
-rows = [['Lens', 'Bear', 'Base', 'Bull', 'Weight', 'vs spot']]
+rows = [['Lens', 'Bear', 'Base', 'Bull', 'Role', 'vs price']]
+ROLE = {'dcf': 'THE ANSWER', 'relative': 'cross-check',
+        'normalized': 'not published for this class',
+        'book': 'a floor, never weighted'}
 for k in ['dcf', 'relative', 'normalized', 'book']:
     l = LN[k]
-    rows.append([l['name'], sar(l['bear'], 0), sar(l['base'], 0), sar(l['bull'], 0), pct(l['w'], 0),
+    rows.append([l['name'], sar(l['bear'], 0), sar(l['base'], 0), sar(l['bull'], 0), ROLE[k],
                  pct(l['base'] / SPOT - 1, 0)])
-rows.append(['Weighted central', sar(LN['central']['bear'], 0), sar(LN['central']['base'], 0),
-             sar(LN['central']['bull'], 0), '100%', pct(LN['central']['base'] / SPOT - 1, 0)])
-rows.append(['Expert panel median', '', sar(D['panel_centre'], 0), '', '', pct(D['panel_centre'] / SPOT - 1, 0)])
+rows.append(['THE CENTRAL — the cash-flow lens, not an average',
+             sar(LN['central']['bear'], 0), sar(LN['central']['base'], 0),
+             sar(LN['central']['bull'], 0), 'the class primary',
+             pct(LN['central']['base'] / SPOT - 1, 0)])
+rows.append(['NOT AVERAGED — the retired blend, published unused', '', sar(RETV, 0), '',
+             'retired', pct(RETV / SPOT - 1, 0)])
+rows.append(['Expert panel median', '', sar(D['panel_centre'], 0), '', 'cross-read', pct(D['panel_centre'] / SPOT - 1, 0)])
 rows.append(['Market price (anchor)', '', sar(SPOT, 2), '', '', '—'])
 table(rows, [1.9, 0.85, 0.85, 0.85, 0.8, 0.95], band_rows={5}, size=9.4)
 rich([('Terminal value as a share of the discounted-cash-flow enterprise value: ', {}),
@@ -198,7 +207,7 @@ P(f'The four lenses span SAR {sar(min(LN[k]["base"] for k in ["dcf","relative","
   f'{sar(max(LN[k]["base"] for k in ["dcf","relative","normalized","book"]),0)}. We weight the discounted cash '
   f'flow most (45%) because the company’s cash flows are directly modelled from a disclosed cost structure; '
   f'the relative and earnings-power lenses each 20%; and book value least (15%), because book understates a '
-  f'business earning a return on equity near {pct(BKL["roe_trailing"],0)}. The weighted central is SAR '
+  f'business earning a return on equity near {pct(BKL["roe_trailing"],0)}. The central is SAR '
   f'{sar(LN["central"]["base"],0)}.')
 
 H2('1.6  The drivers — each segment on its own driver, margin as an output')
@@ -320,7 +329,7 @@ P(f'The lenses disagree by design, and the disagreement is informative. The intr
   f'{sar(LN["normalized"]["base"],0)}) and book value (SAR {sar(LN["book"]["base"],0)}) sit between. Read '
   f'together, the market price sits below the cash-flow lens and above the earnings-power, book and exit-'
   f'multiple lenses; the reading depends entirely on how much weight one puts on the intrinsic economics '
-  f'versus the exit multiple. The weighted central of SAR {sar(LN["central"]["base"],0)} is '
+  f'versus the exit multiple. The central of SAR {sar(LN["central"]["base"],0)} is '
   f'{pct(LN["central"]["base"]/SPOT-1,0)} above the market price.')
 
 # ============ 9 SECTION 5 CATALYSTS ==========================================

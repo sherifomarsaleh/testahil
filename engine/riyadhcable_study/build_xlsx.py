@@ -193,10 +193,9 @@ a_section('Lens inputs')
 a_scalar('Justified EV/EBITDA', IN['ev_ebitda_just'], MULT)
 a_scalar('Justified price/earnings', IN['pe_just'], MULT)
 a_scalar('Sustainable return on equity', IN['roe_sust'])
-a_scalar('Weight — discounted cash flow', 0.45, PCT)
-a_scalar('Weight — relative', 0.20, PCT)
-a_scalar('Weight — normalised', 0.20, PCT)
-a_scalar('Weight — book', 0.15, PCT)
+# The four lens-weight rows that stood here went with the blend. Removed rather than
+# zeroed: a weight of zero is still a weight, and four zeros read as a scheme somebody
+# switched off rather than one that no longer exists.
 a_section('Anchor roll')
 a_scalar('Days to the anchor', IN['anchor_days'], NUM0)
 a_scalar('FY2025 dividend per share paid in window', IN['div_window'], PX)
@@ -690,7 +689,7 @@ ANCH['rel'] = dict(relbase=row_relbase, relbounds=row_relbounds, normbase=row_no
 wsf = sheet('Fundamental Valuation')
 title(wsf, 'Fundamental valuation — four lenses, one field', 'Every base value links live to its '
       'source sheet', 7, awidth=48, cwidth=13)
-hdr(wsf, 4, ['Lens', 'Bear', 'Base', 'Bull', 'Weight', 'Contribution', 'vs spot'])
+hdr(wsf, 4, ['Lens', 'Bear', 'Base', 'Bull', 'Role', '', 'vs price'])
 LSRC = {'dcf': f'=DCF!C{row_ps}', 'relative': f"='Relative & Normalized'!C{ANCH['rel']['relbase']}",
         'normalized': f"='Relative & Normalized'!C{ANCH['rel']['normbase']}",
         'book': f"='Relative & Normalized'!C{ANCH['rel']['bookbase']}"}
@@ -700,8 +699,11 @@ BEARSRC = {'relative': f"='Relative & Normalized'!C{ANCH['rel']['relbounds']}",
 BULLSRC = {'relative': f"='Relative & Normalized'!D{ANCH['rel']['relbounds']}",
            'normalized': f"='Relative & Normalized'!D{ANCH['rel']['normbase']+1}",
            'book': f"='Relative & Normalized'!D{ANCH['rel']['bookbase']+1}"}
-WKEY = {'dcf': 'Weight — discounted cash flow', 'relative': 'Weight — relative',
-        'normalized': 'Weight — normalised', 'book': 'Weight — book'}
+LK = ['dcf', 'relative', 'normalized', 'book']
+RETW = D['lens_record']['retired']['blend']
+ROLE = {'dcf': 'THE CENTRAL — the class primary', 'relative': 'cross-check',
+        'normalized': 'REMOVED — not a lens this class publishes',
+        'book': 'a disclosed floor, never weighted'}
 rr = 5
 row_lens0 = rr
 for k in ['dcf', 'relative', 'normalized', 'book']:
@@ -713,27 +715,46 @@ for k in ['dcf', 'relative', 'normalized', 'book']:
         putf(wsf, f'B{rr}', BEARSRC[k], LN[k]['bear'], PX, green=True)
         putf(wsf, f'D{rr}', BULLSRC[k], LN[k]['bull'], PX, green=True)
     putf(wsf, f'C{rr}', LSRC[k], LN[k]['base'], PX, green=True)
-    putf(wsf, f'E{rr}', f'={AC(WKEY[k])}', LN[k]['w'], PCT, green=True)
-    putf(wsf, f'F{rr}', f'=C{rr}*E{rr}', LN[k]['base'] * LN[k]['w'], PX)
+    put(wsf, f'E{rr}', ROLE[k], fmt=None)
     putf(wsf, f'G{rr}', f'=C{rr}/{AC("Spot price (SAR)")}-1', LN[k]['base'] / SPOT - 1, PCT)
     rr += 1
 band(wsf, rr, 7)
 row_cent = rr
-put(wsf, f'A{rr}', 'Weighted central', bold=True, fmt=None)
-putf(wsf, f'B{rr}', f'=MIN(B{row_lens0}:B{row_lens0+3})', min(LN[k]['bear'] for k in ['dcf', 'relative', 'normalized', 'book']), PX, bold=True)
-putf(wsf, f'C{rr}', f'=SUM(F{row_lens0}:F{row_lens0+3})', D['central'], PX, bold=True)
-putf(wsf, f'D{rr}', f'=MAX(D{row_lens0}:D{row_lens0+3})', max(LN[k]['bull'] for k in ['dcf', 'relative', 'normalized', 'book']), PX, bold=True)
-putf(wsf, f'E{rr}', f'=SUM(E{row_lens0}:E{row_lens0+3})', 1.0, PCT, bold=True)
+# THE WEIGHT AND CONTRIBUTION COLUMNS WENT WITH THE BLEND, and a role column replaces them.
+put(wsf, f'A{rr}', 'THE CENTRAL — the cash-flow lens, not an average', bold=True, fmt=None)
+putf(wsf, f'B{rr}', f'=B{row_lens0}', LN['dcf']['bear'], PX, bold=True)
+putf(wsf, f'C{rr}', f'=C{row_lens0}', D['central'], PX, bold=True)
+putf(wsf, f'D{rr}', f'=D{row_lens0}', LN['dcf']['bull'], PX, bold=True)
+put(wsf, f'E{rr}', 'the class primary', fmt=None)
 putf(wsf, f'G{rr}', f'=C{rr}/{AC("Spot price (SAR)")}-1', D['central'] / SPOT - 1, PCT, bold=True)
+rr += 1
+put(wsf, f'A{rr}', 'NOT AVERAGED — the retired 45/20/20/15 blend, published unused',
+    bold=True, fmt=None)
+putf(wsf, f'C{rr}', '=' + '+'.join('C%d*%g' % (row_lens0 + i, RETW[k])
+                                   for i, k in enumerate(LK)),
+     D['retired_blend_value'], PX)
+put(wsf, f'E{rr}', 'retired 04-Sep-2026', fmt=None)
+putf(wsf, f'G{rr}', f'=C{rr}/{AC("Spot price (SAR)")}-1',
+     D['retired_blend_value'] / SPOT - 1, PCT)
+rr += 1
+put(wsf, f'A{rr}', 'Span across the lenses (min/max) — a spread between METHODS, not a '
+                   'range around the answer', fmt=None)
+putf(wsf, f'B{rr}', f'=MIN(B{row_lens0}:B{row_lens0+3})', min(LN[k]['bear'] for k in LK), PX)
+putf(wsf, f'D{rr}', f'=MAX(D{row_lens0}:D{row_lens0+3})', max(LN[k]['bull'] for k in LK), PX)
 rr += 2
 put(wsf, f'A{rr}', 'Expert panel median (whole-model — pasted)', fmt=None)
+row_panel = rr                 # anchored, never reached by an offset from the central
 put(wsf, f'C{rr}', D['panel_centre'], BLUE, PX); rr += 1
 put(wsf, f'A{rr}', 'Market price (anchor)', fmt=None); putf(wsf, f'C{rr}', f'={AC("Spot price (SAR)")}', SPOT, PX, green=True); rr += 2
 band(wsf, rr, 7); put(wsf, f'A{rr}', 'Central contested judgement — sustained gross margin, both ways', bold=True, fmt=None); rr += 1
 put(wsf, f'A{rr}', 'H1-2026 anchor (15.26%) — DCF value', fmt=None); putf(wsf, f'C{rr}', f'=DCF!C{row_ps}', DCF['spread_base'], PX, green=True); rr += 1
 put(wsf, f'A{rr}', 'FY2025-peak framing (16.0%) — DCF value (pasted re-run)', fmt=None); put(wsf, f'C{rr}', DCF['spread_bull'], BLUE, PX); rr += 1
 put(wsf, f'A{rr}', 'Further-compression framing (14.5%) — DCF value (pasted re-run)', fmt=None); put(wsf, f'C{rr}', DCF['spread_bear'], BLUE, PX); rr += 1
-ANCH['fund'] = dict(cent=row_cent, lens0=row_lens0)
+# Anchored by NAME rather than reached by an offset. The Summary sheet used to find
+# the panel median at cent+2; retiring the blend added two rows between them and the
+# reference silently landed on an empty cell — L-067, and the recalculation gate
+# caught it within the minute.
+ANCH['fund'] = dict(cent=row_cent, lens0=row_lens0, panel=row_panel)
 
 # =========================================================================
 # SOTP BRIDGE — EV to equity, with terminal-value share visible (gate p)
@@ -891,7 +912,7 @@ wsu = sheet('Summary')
 title(wsu, f"Testahil — Riyadh Cables Group Company (Tadawul: 4142)", 'Independent valuation study · '
       'educational · not investment advice', 7, awidth=44, cwidth=14)
 rr = 4
-hdr(wsu, rr, ['Lens', 'Bear', 'Base', 'Bull', 'Weight', '', 'vs spot']); rr += 1
+hdr(wsu, rr, ['Lens', 'Bear', 'Base', 'Bull', 'Role', '', 'vs price']); rr += 1
 row_su0 = rr
 for k in ['dcf', 'relative', 'normalized', 'book']:
     li = ANCH['fund']['lens0'] + ['dcf', 'relative', 'normalized', 'book'].index(k)
@@ -899,15 +920,15 @@ for k in ['dcf', 'relative', 'normalized', 'book']:
     putf(wsu, f'B{rr}', f"='Fundamental Valuation'!B{li}", LN[k]['bear'], PX, green=True)
     putf(wsu, f'C{rr}', f"='Fundamental Valuation'!C{li}", LN[k]['base'], PX, green=True)
     putf(wsu, f'D{rr}', f"='Fundamental Valuation'!D{li}", LN[k]['bull'], PX, green=True)
-    putf(wsu, f'E{rr}', f"='Fundamental Valuation'!E{li}", LN[k]['w'], PCT, green=True)
+    put(wsu, f'E{rr}', ROLE[k], fmt=None)
     putf(wsu, f'G{rr}', f'=C{rr}/{AC("Spot price (SAR)")}-1', LN[k]['base'] / SPOT - 1, PCT)
     rr += 1
 band(wsu, rr, 7)
-put(wsu, f'A{rr}', 'Weighted central', bold=True, fmt=None)
+put(wsu, f'A{rr}', 'THE CENTRAL — the cash-flow lens, not an average', bold=True, fmt=None)
 putf(wsu, f'C{rr}', f"='Fundamental Valuation'!C{ANCH['fund']['cent']}", D['central'], PX, bold=True, green=True)
 putf(wsu, f'G{rr}', f'=C{rr}/{AC("Spot price (SAR)")}-1', D['central'] / SPOT - 1, PCT, bold=True); rr += 1
 put(wsu, f'A{rr}', 'Terminal value as % of DCF EV', fmt=None); putf(wsu, f'C{rr}', f'=DCF!C{row_tvshare}', DCF['tv_share'], PCT, green=True); rr += 1
-put(wsu, f'A{rr}', 'Expert panel median', fmt=None); putf(wsu, f'C{rr}', f"='Fundamental Valuation'!C{ANCH['fund']['cent']+2}", D['panel_centre'], PX, green=True); rr += 1
+put(wsu, f'A{rr}', 'Expert panel median', fmt=None); putf(wsu, f'C{rr}', f"='Fundamental Valuation'!C{ANCH['fund']['panel']}", D['panel_centre'], PX, green=True); rr += 1
 band(wsu, rr, 7); put(wsu, f'A{rr}', 'Market price (anchor)', bold=True, fmt=None); putf(wsu, f'C{rr}', f'={AC("Spot price (SAR)")}', SPOT, PX, bold=True, green=True); rr += 1
 ANCH['summary_mktcap'] = f'C{rr}'
 put(wsu, f'A{rr}', 'Market capitalisation (SAR mn)', fmt=None); putf(wsu, f'C{rr}', f'={AC("Spot price (SAR)")}*{AC("Shares outstanding (mn)")}', MKTCAP, NUM0, green=True); rr += 1

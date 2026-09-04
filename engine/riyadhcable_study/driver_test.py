@@ -29,6 +29,9 @@ def read(overrides=None):
     bk = xlcalc.Book(wb, overrides)
     return dict(dcf=bk.cell_value('DCF', 'C51'),
                 central=bk.cell_value('Fundamental Valuation', 'C9'),
+                relative=bk.cell_value('Fundamental Valuation', 'C6'),
+                normalized=bk.cell_value('Fundamental Valuation', 'C7'),
+                book=bk.cell_value('Fundamental Valuation', 'C8'),
                 wacc=bk.cell_value('DCF', 'C10'),
                 wacc_term=bk.cell_value('DCF', 'C13'),
                 ebitda26=bk.cell_value('Segments', 'C17'),
@@ -46,9 +49,16 @@ CASES = [
     ('Cost of debt, marginal pre-tax', 'C', +0.03, 'wacc', +1, 'higher cost of debt raises the WACC'),
     ('Terminal net-debt weight', 'C', +0.10, 'wacc_term', -1, 'more cheap after-tax debt lowers terminal WACC'),
     ('Effective zakat and income tax rate', 'C', +0.05, 'dcf', -1, 'higher tax lowers NOPAT and the DCF'),
-    ('Justified EV/EBITDA', 'C', +1.0, 'central', +1, 'a higher justified multiple raises the central'),
-    ('Justified price/earnings', 'C', +1.0, 'central', +1, 'a higher justified P/E raises the central'),
-    ('Sustainable return on equity', 'C', +0.03, 'central', +1, 'a higher sustainable return raises the book lens'),
+    # These three drive CROSS-CHECKS, not the answer. Under the retired blend they reached
+    # the published central through a weight and the test asserted exactly that; they must
+    # now move their own lens and leave the central alone. The isolation sweep below is the
+    # stronger claim — not that the weight is small, but that there is none.
+    ('Justified EV/EBITDA', 'C', +1.0, 'relative', +1,
+     'a higher justified multiple raises the relative cross-check'),
+    ('Justified price/earnings', 'C', +1.0, 'normalized', +1,
+     'a higher justified P/E raises the normalised-earnings read'),
+    ('Sustainable return on equity', 'C', +0.03, 'book', +1,
+     'a higher sustainable return raises the book floor'),
     ('Sustained gross margin (H1-2026 anchor)', 'C', +0.01, 'dcf', +1, 'a higher sustained margin raises the DCF'),
     ('Net financial debt at FY2025 (SAR mn, disclosed)', 'C', +2000.0, 'dcf', -1, 'more net debt leaves less for equity'),
     ('Forecast dividend payout ratio', 'C', +0.20, 'nd30', +1, 'paying out more leaves more net debt at the end'),
@@ -100,6 +110,28 @@ for label, rr in sorted(A.items(), key=lambda kv: kv[1]):
     if all(abs(out[k] - base[k]) < 1e-9 for k in base):
         dead.append(label)
 print('  inputs that changed nothing:', dead if dead else 'none — every remaining driver reprices the model')
+
+# ---------------------------------------------------------------------------------
+# ISOLATION SWEEP — the claim the retired blend made impossible to test. With one lens as
+# the answer, a cross-check driver must move its own lens and move the central by EXACTLY
+# zero. A near-zero tolerance would be a free parameter; a weight of nothing is not a
+# small weight.
+ISOLATED = [('Justified EV/EBITDA', +1.0, 'relative'),
+            ('Justified price/earnings', +1.0, 'normalized'),
+            ('Sustainable return on equity', +0.03, 'book')]
+print('\nISOLATION SWEEP — a cross-check driver must move its own lens and NOT the answer')
+iso = []
+for label, bump, lens in ISOLATED:
+    rr = A[label]
+    out = read({('Assumptions', f'C{rr}'): wb['Assumptions'][f'C{rr}'].value + bump})
+    dc, dd = out['central'] - base['central'], out['dcf'] - base['dcf']
+    own = out[lens] - base[lens]
+    ok = dc == 0.0 and dd == 0.0 and abs(own) > 1e-9
+    if not ok:
+        iso.append((label, dc, dd, own))
+    print(f"  [{'OK ' if ok else 'BAD'}] {label}: own lens {own:+.4f} · central {dc:+.10f} · "
+          f"cash-flow lens {dd:+.10f}")
+assert not iso, f'cross-check drivers that reach the answer: {iso}'
 
 assert not fails, f'{len(fails)} drivers failed to move the model correctly: {fails}'
 assert not dead, f'dead inputs: {dead}'

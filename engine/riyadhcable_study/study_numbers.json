@@ -1196,9 +1196,9 @@
    "other": 12.04734
   },
   "gp": {
-   "cables": 19130.898799000002,
-   "hv": 442.338117,
-   "other": 40.641753
+   "cables": 1697.4425370000008,
+   "hv": 19.34024500000001,
+   "other": 16.547072999999997
   },
   "names": {
    "cables": "Cables and wires",
@@ -1395,47 +1395,121 @@
  },
  "lenses": {
   "dcf": {
-   "name": "Discounted cash flow (primary)",
+   "name": "Discounted cash flow (the answer)",
    "bear": 80.84906676286525,
    "base": 127.90542457756496,
    "bull": 197.7603327814774,
-   "w": 0.45
+   "w": null
   },
   "relative": {
    "name": "Relative multiples",
    "bear": 69.1673075684282,
    "base": 86.3570978508756,
    "bull": 99.24944056271111,
-   "w": 0.2
+   "w": null
   },
   "normalized": {
    "name": "Normalised earnings power",
    "bear": 77.61550434834118,
    "base": 101.57515565284353,
    "bull": 125.5348069573459,
-   "w": 0.2
+   "w": null,
+   "note": "RETIRED for this class: not among the cross-checks this class permits. Removed rather than re-weighted, and computed and shown so the move is visible."
   },
   "book": {
    "name": "Book value and sustainable return",
    "bear": 64.28485494530243,
    "base": 94.68361880083455,
    "bull": 106.80032115093888,
-   "w": 0.15
+   "w": null,
+   "note": "a disclosed FLOOR, published as such and never weighted"
   },
   "central": {
-   "name": "Weighted central",
-   "bear": 64.28485494530243,
-   "base": 109.34643458077326,
+   "name": "Cash-flow lens (the central)",
+   "bear": 80.84906676286525,
+   "base": 127.90542457756496,
    "bull": 197.7603327814774,
-   "w": 1.0
+   "w": null
+  },
+  "retired_blend": {
+   "name": "RETIRED 45/20/20/15 blend, published unused",
+   "bear": null,
+   "base": 109.34643458077326,
+   "bull": null,
+   "w": 0.0
   }
  },
- "central": 109.34643458077326,
+ "central": 127.90542457756496,
  "span": [
-  64.28485494530243,
+  80.84906676286525,
   197.7603327814774
  ],
  "spot": 104.8,
+ "retired_blend_value": 109.34643458077326,
+ "lens_record": {
+  "class": "cement and heavy industrial",
+  "primary": {
+   "kind": "dcf",
+   "two_sided": false,
+   "value": 127.90542457756496,
+   "range": {
+    "low": 80.84906676286525,
+    "high": 197.7603327814774
+   },
+   "range_note": "the cash-flow lens under its own bear and bull scenarios on one clock, not the widest spread across four methods",
+   "range_basis": {
+    "driver": "the copper pass-through, the conversion spread per tonne and the volume path the cable plant is built on",
+    "low": 80.84906676286525,
+    "high": 197.7603327814774,
+    "units": "SAR per share, the present-value read under each scenario",
+    "macro_held": true,
+    "evidence": "both scenarios are re-runs of the same unit-economics build with the cost of capital and terminal growth held still"
+   }
+  },
+  "cross_checks": [
+   {
+    "kind": "relative_multiple",
+    "value": 86.3570978508756,
+    "present_value": false,
+    "multiple": 9.5,
+    "multiple_source": "a justified enterprise multiple set against named listed cable peers and this company's own history, never one read off the current price",
+    "circularity": {
+     "spot": 104.8,
+     "shares": 149.7175,
+     "net_debt": 385.17320800000005,
+     "metric_value": 1470.5320189217548
+    },
+    "note": "forward EBITDA on a peer-anchored enterprise multiple"
+   },
+   {
+    "kind": "book_value",
+    "value": 94.68361880083455,
+    "present_value": false,
+    "floor": true,
+    "note": "a disclosed FLOOR, published as such and never weighted"
+   }
+  ],
+  "cross_checks_not_built": [
+   {
+    "kind": "ev_per_tonne",
+    "why": "this class permits an enterprise value per tonne of capacity and this study does not publish one. It HAS the unit economics \u2014 the model is built on conductor tonnes and a conversion spread per tonne \u2014 but a per-tonne enterprise multiple needs COMPARABLE transactions or listed peers stated per tonne of cable capacity, and none of the named peers discloses capacity on a basis that can be compared. Building one on this issuer's own capacity alone would be a restatement of the DCF rather than a cross-check. Named here rather than left absent."
+   },
+   {
+    "kind": "replacement_cost",
+    "why": "a cable plant is not traded in a liquid international secondhand market the way a vessel is, so replacement cost here is an industry rule of thumb rather than an observed price \u2014 the same limitation this class carries for a kiln. It is not published as a cross-check because a rule of thumb dressed as a lens is worse than an absent one."
+   }
+  ],
+  "retired": {
+   "blend": {
+    "dcf": 0.45,
+    "relative": 0.2,
+    "normalized": 0.2,
+    "book": 0.15
+   },
+   "blend_value": 109.34643458077326,
+   "why": "the weights were typed and had never cleared an out-of-sample test. Here the blend did not merely shrink this study's disagreement with the market, it very nearly ERASED it: +4.3% against the price where the cash-flow lens reads +22.0%, so a reader saw agreement where the study holds a fifth above. Normalised earnings power, which this class does not permit, read 101.58 and carried a fifth of the weight."
+  }
+ },
  "experts": {
   "e1": {
    "method_short": "earnings power",
@@ -2101,7 +2175,8 @@
   "[Relative lens] 9.5x on FY2027E EBITDA 1,471 discounted at the year-2 factor plus interim free cash flow -> SAR 86.36/share. Trailing EV/EBITDA 11.9x, trailing P/E 14.5x.",
   "[Normalised lens] mid-cycle EBITDA margin 11.91% (FY2028E) on FY2026E revenue 11,499 -> normalised EPS 7.50 x 13.0 = SAR 101.58/share.",
   "[Book lens] book value per share SAR 21.68; justified P/B 4.20x = (sustainable ROE 28% - g 4%)/(terminal Ke 9.72% - g) -> SAR 94.68. Trailing ROE 36.8%.",
-  "[Synthesis] weighted central SAR 109.35; full span 64.28 - 197.76; spot 104.80 (+4% to the central).",
+  "[Synthesis] THE CENTRAL IS THE CLASS PRIMARY: the cash-flow lens at SAR 127.91, with its own bear-to-bull range of 80.85 - 197.76 on one clock. Cross-checks are published beside it at their own values (relative 86.36, book floor 94.68); the span across all of them, 64.28 - 197.76, is a spread between METHODS and not a range around the answer. Spot 104.80 (+22% to the central).",
+  "[Retired blend, published unused] the 45/20/20/15 weights give SAR 109.35, +4.3% against the price where the cash-flow lens reads +22.0%. The blend did not merely shrink this study's disagreement with the market \u2014 it very nearly erased it, showing a reader agreement where the study's own method holds a fifth above.",
   "[Expert panel] Expert 1 119.60 [91.48-147.71]; Expert 2 134.77 [91.96-165.39]; Expert 3 125.98 [92.22-144.81]; panel median 125.98 (+20% vs spot)."
  ]
 }
