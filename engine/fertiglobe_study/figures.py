@@ -46,7 +46,13 @@ d = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 strike = json.load(open(os.path.join(HERE, 'strike_result.json')))
 
 SPOT = d['spot']
-CENTRAL = d['central']
+# THE ANSWER IS TWO-SIDED, SO THERE IS NO SINGLE CENTRAL TO DRAW [R-LENS-03]. This
+# figure used to shade a +/-5% band around a blended central and label it "central
+# value". That number was the mean of the two framings below it and neither framing
+# asserted it, so the band drew confidence around a point nobody held. Both branches
+# are marked instead, and the envelope between them is the answer's own width.
+CENTRAL = d['central']                       # None on a two-sided study
+BRANCHES = (d.get('central_two_sided') or {}).get('branches') or []
 SPAN = d['span']
 CUR = d['meta']['listing_currency']
 PS = f'{CUR} per share'
@@ -96,33 +102,36 @@ assert abs(rel_ps(rel['mult']) - rel['ps_aed']) < 1e-9, 'relative-lens bridge do
 peer_mults = [p['ev_ebitda'] for p in rel['peers']]
 rel_lo, rel_hi = rel_ps(min(peer_mults)), rel_ps(max(peer_mults))
 
+# THE PRIMARY FIRST AND THE CROSS-CHECKS BENEATH IT, which is the reading order
+# [R-LENS-03] gives: one class primary IS the answer and the others stand beside it.
+# The weights are gone because there are none; the normalised-earnings lens is gone
+# because this class does not permit it and its multiple was typed.
 rows = [
-    dict(label='Cash-flow model\nweight {:.0f}%\nboth price paths'.format(L['dcf']['weight'] * 100),
-         lo=bA['ps_aed'], hi=bB['ps_aed'], base=L['dcf']['value'], kind='range', col=GOLD),
-    dict(label='Relative multiples\nweight {:.0f}%\npeer multiple range'.format(L['relative']['weight'] * 100),
-         lo=rel_lo, hi=rel_hi, base=L['relative']['value'], kind='range', col=SAGE),
-    dict(label='Normalised\nearnings power\nweight {:.0f}%'.format(L['normalized']['weight'] * 100),
-         lo=None, hi=None, base=L['normalized']['value'], kind='point', col=SAGE),
-    dict(label='Book value and\nsustainable return\nweight {:.0f}%'.format(L['book']['weight'] * 100),
-         lo=None, hi=None, base=L['book']['value'], kind='point', col=SAGE),
+    dict(label='Cash-flow model\nTHE ANSWER\nboth price paths',
+         lo=bA['ps_aed'], hi=bB['ps_aed'], base=None, kind='range', col=GOLD),
     dict(label='Price path A\nmarginal-cost anchor',
          lo=min(bA['ps_aed'], bA_cds['ps_aed']), hi=max(bA['ps_aed'], bA_cds['ps_aed']),
          base=bA['ps_aed'], kind='range', col=SLATE),
     dict(label='Price path B\nstructurally tight\nmarket',
          lo=min(bB['ps_aed'], bB_cds['ps_aed']), hi=max(bB['ps_aed'], bB_cds['ps_aed']),
          base=bB['ps_aed'], kind='range', col=SLATE),
+    dict(label='Relative multiples\ncross-check\npeer multiple range',
+         lo=rel_lo, hi=rel_hi, base=L['relative']['value'], kind='range', col=SAGE),
+    dict(label='Book value and\nsustainable return\nDISCLOSED FLOOR',
+         lo=None, hi=None, base=L['book']['value'], kind='point', col=SAGE),
 ]
 
 fig, ax = plt.subplots(figsize=(W, 4.7), dpi=DPI)
-vals = [r['base'] for r in rows] + [r['lo'] for r in rows if r['lo'] is not None] \
-    + [r['hi'] for r in rows if r['hi'] is not None] + [SPOT, CENTRAL] + list(SPAN)
+vals = [r['base'] for r in rows if r['base'] is not None] \
+    + [r['lo'] for r in rows if r['lo'] is not None] \
+    + [r['hi'] for r in rows if r['hi'] is not None] + [SPOT] + list(SPAN)
 xmin, xmax = min(vals), max(vals)
 rng = xmax - xmin
 x0, x1 = xmin - 0.12 * rng, xmax + 0.34 * rng
 
 ax.axvspan(SPAN[0], SPAN[1], color=SAGE, alpha=0.13, zorder=0)
-ax.axvspan(CENTRAL * 0.95, CENTRAL * 1.05, color=GOLD, alpha=0.20, zorder=1)
-ax.axvline(CENTRAL, color=BRASS, lw=1.5, ls='--', zorder=3)
+for _b in BRANCHES:                       # both answers, neither averaged
+    ax.axvline(_b['value'], color=BRASS, lw=1.5, ls='--', zorder=3)
 ax.axvline(SPOT, color=INK, lw=1.7, zorder=3)
 
 n = len(rows)
@@ -131,7 +140,9 @@ for i, r in enumerate(rows):
     if r['kind'] == 'range':
         ax.barh(y, r['hi'] - r['lo'], left=r['lo'], height=0.44, color=r['col'],
                 alpha=0.45, edgecolor=r['col'], linewidth=1.1, zorder=4)
-        ax.plot([r['base'], r['base']], [y - 0.22, y + 0.22], color=BRASS, lw=3.0, zorder=5)
+        if r['base'] is not None:
+            ax.plot([r['base'], r['base']], [y - 0.22, y + 0.22], color=BRASS, lw=3.0,
+                    zorder=5)
         xt = r['hi']
         sub = f"{r['lo']:.2f}–{r['hi']:.2f}"
     else:
@@ -139,7 +150,9 @@ for i, r in enumerate(rows):
                 markeredgecolor=BRASS, zorder=5)
         xt = r['base']
         sub = None
-    ax.text(xt + 0.022 * rng, y + (0.09 if sub else 0.0), f"{r['base']:.2f}", va='center',
+    _lab = (f"{r['base']:.2f}" if r['base'] is not None
+            else f"{r['lo']:.2f} or {r['hi']:.2f}")
+    ax.text(xt + 0.022 * rng, y + (0.09 if sub else 0.0), _lab, va='center',
             ha='left', fontsize=8.6, color=INK, fontweight='bold')
     if sub:
         ax.text(xt + 0.022 * rng, y - 0.24, sub, va='center', ha='left', fontsize=6.6,
@@ -147,8 +160,10 @@ for i, r in enumerate(rows):
 
 ax.text(SPOT - 0.014 * rng, -0.62, f'market price {SPOT:.2f}', color=INK, fontsize=7.4,
         ha='right', va='center')
-ax.text(CENTRAL + 0.016 * rng, -0.98, f'central value {CENTRAL:.2f}', color=BRASS,
-        fontsize=7.4, ha='left', va='center')
+ax.text(SPAN[0] + 0.016 * rng, -0.98,
+        'the answer depends on the price path: '
+        + ' or '.join(f"{b['value']:.2f}" for b in BRANCHES),
+        color=BRASS, fontsize=7.4, ha='left', va='center')
 
 ax.set_yticks(range(n))
 ax.set_yticklabels([r['label'] for r in rows][::-1], fontsize=7.2, linespacing=1.30)
@@ -156,7 +171,7 @@ ax.set_xlabel(f'Fair value ({PS})')
 ax.set_xlim(x0, x1)
 ax.set_ylim(-1.35, n - 0.35)
 ax.set_title('Fertiglobe — what each valuation method says the shares are worth\n'
-             'bar = a range, diamond = a single estimate, brass tick = the method’s own figure',
+             'bar = a range, diamond = a single estimate, dashed lines = the two answers',
              fontsize=9.0, pad=8)
 ax.grid(axis='y', visible=False)
 style(ax)

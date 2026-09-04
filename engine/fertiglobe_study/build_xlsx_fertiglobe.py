@@ -139,7 +139,9 @@ EV_MID = (DA['ev'] + DB['ev']) / 2.0
 # expert panel
 E1_MULT = EXPS['e1']['ev'] / REL['ebitda_mid']
 DCF_PS = D['dcf_ps_aed']
-CENTRAL = D['central']
+CENTRAL = D['central']                     # None: the answer is two-sided
+BR = D['central_two_sided']['branches']
+BR_A, BR_B = BR[0]['value'], BR[1]['value']
 
 # ---------------------------------------------------------------------------
 # workbook scaffolding
@@ -385,16 +387,17 @@ block('Terminal block and the bridge to equity', [
     ('g', 'Terminal growth', G, PCT),
     ('roic_sec', 'Long-run return on capital for merchant nitrogen', DA['roic_sector'], PCT),
     ('repl_t', 'Replacement cost of installed capacity ($ per tonne)', REPL_T, NUM0),
+    # DERIVED FROM THE COMPANY'S OWN NOTE 7, not chosen: depreciable cost over the
+    # year's depreciation charge. The disclosed bands (10-50, 5-30, 3-10) cannot be
+    # collapsed to one figure without picking a number out of them.
+    ('life_yrs', 'Composite asset life, derived (years)',
+     DA['terminal_record']['inputs']['useful_life_years'], NUM1),
     ('nci', 'Minority share of group profit', NCI, PCT),
     ('nci_bv', 'Minority interests at book value ($m)', IN['eqnci_fy25'], NUM1),
     ('payout', 'Dividend payout ratio in the forecast', PAYOUT, PCT)])
 block('Lens inputs', [
     ('mult', 'Justified enterprise value / EBITDA', REL['mult'], MULT),
     ('pe', 'Justified price / earnings', NRM['pe'], MULT),
-    ('w_dcf', 'Weight — discounted cash flow', LN['dcf']['weight'], PCT),
-    ('w_rel', 'Weight — relative multiples', LN['relative']['weight'], PCT),
-    ('w_norm', 'Weight — normalised earnings power', LN['normalized']['weight'], PCT),
-    ('w_book', 'Weight — book value', LN['book']['weight'], PCT),
     ('eb_h1', 'Adjusted EBITDA, first half 2026 ($m)', IN['adj_ebitda_h1_26'], NUM1),
     ('np_h1', 'Profit to owners, first half 2026 ($m)', IN['npown_h1_26'], NUM1)])
 note(ws, f'A{r}', 'Every input above is sourced and dated in the study bibliography. The green rows '
@@ -732,17 +735,41 @@ trow('rs', 'Return on capital — long-run sector', f'={a("roic_sec")}', f'={a("
 trow('rt', 'Terminal return on capital (the average of the three above)',
      f'=AVERAGE(C{TB["rb"]}:C{TB["rs"]})', f'=AVERAGE(D{TB["rb"]}:D{TB["rs"]})',
      DA['roic_term'], DB['roic_term'], PCT, bold=True)
-trow('g', 'Terminal growth', f'={a("g")}', f'={a("g")}', G, G, PCT, green=True)
-trow('rein', 'Reinvestment rate (growth divided by the return on capital)',
-     f'=C{TB["g"]}/C{TB["rt"]}', f'=D{TB["g"]}/D{TB["rt"]}', DA['rr_term'], DB['rr_term'], PCT)
-trow('ngr', 'Terminal-year profit after tax grown one year',
-     f'=C{TB["nopat30"]}*(1+C{TB["g"]})', f'=D{TB["nopat30"]}*(1+D{TB["g"]})',
-     DA['nopat_term'], DB['nopat_term'], NUM1)
+trow('g', 'Terminal growth (house inflation plus a stated real growth of zero)',
+     f'={a("g")}', f'={a("g")}', G, G, PCT, green=True)
+# THE TERMINAL, AS THE SANCTIONED BUILDER COMPUTES IT — and the sheet shows every
+# line rather than one formula, because a reader following a terminal is following
+# the most consequential arithmetic in the model.
+#
+# The retired row was tv = NOPAT(1+g)(1 - g/ROIC)/(W-g). That charges g x IC every
+# year for ever and so implies a replacement cycle of 1/g — fifty years at a 2%
+# terminal, which is a fact about the dirham's peg rather than about a plant. The
+# reinvestment-rate and grown-profit rows go with it; both existed only to serve
+# that construction.
+TRA, TRB = DA['terminal_record'], DB['terminal_record']
+trow('life', 'Composite asset life, derived from note 7 (cost / annual depreciation)',
+     f'={a("life_yrs")}', f'={a("life_yrs")}',
+     TRA['inputs']['useful_life_years'], TRB['inputs']['useful_life_years'],
+     NUM1, green=True)
+trow('mnt', 'Capital maintenance at replacement cost (invested capital / that life)',
+     f'=C{TB["icr"]}/C{TB["life"]}', f'=D{TB["icr"]}/D{TB["life"]}',
+     TRA['maintenance'], TRB['maintenance'], NUM1)
+trow('dab', 'Add back book depreciation (profit after tax is already net of it)',
+     f'=F{RA_["dna"]}', f'=F{RB_["dna"]}',
+     TRA['dna_addback'], TRB['dna_addback'], NUM1)
+trow('wcc', 'Inflation on working capital',
+     f'=C{TB["g"]}*C{TB["nwc30"]}', f'=D{TB["g"]}*D{TB["nwc30"]}',
+     TRA['wc_charge'], TRB['wc_charge'], NUM1)
+trow('fcf', 'Terminal free cash flow',
+     f'=C{TB["nopat30"]}+C{TB["dab"]}-C{TB["mnt"]}-C{TB["wcc"]}',
+     f'=D{TB["nopat30"]}+D{TB["dab"]}-D{TB["mnt"]}-D{TB["wcc"]}',
+     TRA['fcff'], TRB['fcff'], NUM1)
 trow('wt', 'Terminal cost of capital', f'=$C${{WT}}', f'=$C${{WT}}',
      W['wacc_term_rating'], W['wacc_term_rating'], PCT2)
 trow('tv', 'Terminal value',
-     f'=C{TB["ngr"]}*(1-C{TB["rein"]})/(C{TB["wt"]}-C{TB["g"]})',
-     f'=D{TB["ngr"]}*(1-D{TB["rein"]})/(D{TB["wt"]}-D{TB["g"]})', DA['tv'], DB['tv'], bold=True)
+     f'=C{TB["fcf"]}*(1+C{TB["g"]})/(C{TB["wt"]}-C{TB["g"]})',
+     f'=D{TB["fcf"]}*(1+D{TB["g"]})/(D{TB["wt"]}-D{TB["g"]})', DA['tv'], DB['tv'],
+     bold=True)
 trow('pve', 'Present value of the five explicit years', f'=SUM(B{RA_["pv"]}:F{RA_["pv"]})',
      f'=SUM(B{RB_["pv"]}:F{RB_["pv"]})', DA['pv_explicit'], DB['pv_explicit'])
 trow('pvt', 'Present value of the terminal value', f'=C{TB["tv"]}*F{RA_["df"]}',
@@ -1194,8 +1221,13 @@ brow('psa', 'Value per share (AED)', f'=B{BRG["psu"]}*{a("fx")}', f'=C{BRG["psu"
 brow('tvs', 'Terminal value as a share of enterprise value', f'=B{BRG["pvt"]}/B{BRG["ev"]}',
      f'=C{BRG["pvt"]}/C{BRG["ev"]}', DA['tv_share'], DB['tv_share'], PCT, bold=True)
 r += 1
-put(ws, f'A{r}', 'The cash-flow lens — the average of the two framings (AED per share)', bold=True,
-    fmt=None)
+# THE SAME NUMBER TWO OTHER SHEETS CALL 'NOT AVERAGED' WAS LABELLED HERE AS THE LENS
+# ITSELF, in bold, two rows under the branches it averages. One workbook cannot say
+# the answer is two-sided on one sheet and hand a reader the midpoint as the answer
+# on another; the number is kept, because showing what the retired construction gave
+# is how the move stays visible, and the label now says which of the two it is.
+put(ws, f'A{r}', 'NOT AVERAGED — the midpoint of the two framings, which neither supports '
+    '(AED per share)', bold=True, fmt=None)
 putf(ws, f'B{r}', f'=AVERAGE(B{BRG["psa"]}:C{BRG["psa"]})', DCF_PS, PX, bold=True)
 BRG['dcf_ps'] = r
 band(ws, r, 6); r += 2
@@ -1698,42 +1730,47 @@ note(ws, f'A{r}', 'The two Gulf names trade where they do because of who owns th
 
 # ============ 3 FUNDAMENTAL VALUATION (filled) =============================
 ws = wb['Fundamental Valuation']
-hdr(ws, 4, ['Lens', 'AED per share', 'Weight', 'Contribution', 'Against the market price'])
+hdr(ws, 4, ['Lens', 'AED per share', 'Role', 'Against the market price', ''])
 FV = {}
 r = 5
+# THE ANSWER IS THE CASH-FLOW LENS AND IT HAS TWO READINGS. The weight and
+# contribution columns are gone with the blend they served: a weight column on a
+# sheet with no weighting is a column of blanks pretending to be a method.
 for key, lab, src, val in [
-        ('dcf', 'Discounted cash flow — the average of the two framings',
-         f"='SOTP Bridge'!B{BRG['dcf_ps']}", LN['dcf']['value']),
-        ('rel', 'Relative multiples — mid-cycle EBITDA on a peer-anchored multiple',
-         f"='Relative & Normalized'!C{RN['ps']}", LN['relative']['value']),
-        ('norm', 'Normalised earnings power — mid-cycle earnings on a justified multiple',
-         f"='Relative & Normalized'!C{RN['nps']}", LN['normalized']['value']),
-        ('book', 'Book value marked to the sustainable return on that equity',
-         f"='Relative & Normalized'!C{RN['bps']}", LN['book']['value'])]:
+        ('dcf_a', 'Cash flow — framing A, normalisation to a marginal-cost anchor',
+         f"='SOTP Bridge'!B{BRG['psa']}", BR_A),
+        ('dcf_b', 'Cash flow — framing B, the current tightness persists',
+         f"='SOTP Bridge'!C{BRG['psa']}", BR_B)]:
     put(ws, f'A{r}', lab, fmt=None)
     putf(ws, f'B{r}', src, val, PX, green=True)
-    wk = LN[{'dcf': 'dcf', 'rel': 'relative', 'norm': 'normalized', 'book': 'book'}[key]]['weight']
-    putf(ws, f'C{r}', f'={a("w_" + key if key != "norm" else "w_norm")}', wk, PCT, green=True)
-    putf(ws, f'D{r}', f'=B{r}*C{r}', val * wk, PX)
-    putf(ws, f'E{r}', f'=B{r}/{a("spot")}-1', val / SPOT - 1, PCT)
+    put(ws, f'C{r}', 'THE ANSWER', fmt=None)
+    putf(ws, f'D{r}', f'=B{r}/{a("spot")}-1', val / SPOT - 1, PCT)
+    FV[key] = r
+    r += 1
+for key, lab, src, val, role in [
+        ('rel', 'Relative multiples — mid-cycle EBITDA on a peer-anchored multiple',
+         f"='Relative & Normalized'!C{RN['ps']}", LN['relative']['value'], 'Cross-check'),
+        ('book', 'Book value marked to the sustainable return on that equity',
+         f"='Relative & Normalized'!C{RN['bps']}", LN['book']['value'], 'Floor')]:
+    put(ws, f'A{r}', lab, fmt=None)
+    putf(ws, f'B{r}', src, val, PX, green=True)
+    put(ws, f'C{r}', role, fmt=None)
+    putf(ws, f'D{r}', f'=B{r}/{a("spot")}-1', val / SPOT - 1, PCT)
     FV[key] = r
     r += 1
 band(ws, r, 5)
-put(ws, f'A{r}', 'Weighted central value', bold=True, fmt=None)
-putf(ws, f'B{r}', f'=SUM(D{FV["dcf"]}:D{FV["book"]})', CENTRAL, PX, bold=True)
-putf(ws, f'C{r}', f'=SUM(C{FV["dcf"]}:C{FV["book"]})', 1.0, PCT, bold=True)
-putf(ws, f'E{r}', f'=B{r}/{a("spot")}-1', CENTRAL / SPOT - 1, PCT, bold=True)
-FV['central'] = r
+put(ws, f'A{r}', 'NOT AVERAGED — the midpoint is a number neither framing supports',
+    bold=True, fmt=None)
+putf(ws, f'B{r}', f"=AVERAGE(B{FV['dcf_a']}:B{FV['dcf_b']})", (BR_A + BR_B) / 2.0, PX)
+put(ws, f'C{r}', 'shown only to be refused', fmt=None)
+FV['midpoint'] = r
 r += 1
-put(ws, f'A{r}', 'Lowest of the four lenses and the two framings', fmt=None)
 _span_lo, _span_hi = D['span']
-putf(ws, f'B{r}', f"=MIN(MIN(B{FV['dcf']}:B{FV['book']}),'SOTP Bridge'!B{BRG['psa']},"
-     f"'SOTP Bridge'!C{BRG['psa']})", _span_lo, PX)
-FV['lo'] = r; r += 1
-put(ws, f'A{r}', 'Highest of the four lenses and the two framings', fmt=None)
-putf(ws, f'B{r}', f"=MAX(MAX(B{FV['dcf']}:B{FV['book']}),'SOTP Bridge'!B{BRG['psa']},"
-     f"'SOTP Bridge'!C{BRG['psa']})", _span_hi, PX)
-FV['hi'] = r; r += 2
+put(ws, f'A{r}', 'The envelope — the two present-value reads', fmt=None)
+putf(ws, f'B{r}', f"=MIN(B{FV['dcf_a']}:B{FV['dcf_b']})", _span_lo, PX)
+putf(ws, f'C{r}', f"=MAX(B{FV['dcf_a']}:B{FV['dcf_b']})", _span_hi, PX)
+FV['lo'] = FV['hi'] = r
+r += 2
 band(ws, r, 5)
 put(ws, f'A{r}', 'THE CONTESTED JUDGEMENT — COMPUTED BOTH WAYS, PUBLISHED SIDE BY SIDE',
     bold=True, fmt=None)
@@ -1755,8 +1792,8 @@ for lab, fa, fb, va, vb, fmt in [
     putf(ws, f'B{r}', fa, va, fmt, green=True)
     putf(ws, f'C{r}', fb, vb, fmt, green=True)
     r += 1
-put(ws, f'A{r}', 'The cash-flow lens is their average, never one of them', fmt=None)
-putf(ws, f'B{r}', f"='SOTP Bridge'!B{BRG['dcf_ps']}", DCF_PS, PX, bold=True, green=True)
+put(ws, f'A{r}', 'NEITHER IS AVERAGED INTO THE OTHER — both are the answer', bold=True,
+    fmt=None)
 r += 2
 band(ws, r, 5)
 put(ws, f'A{r}', 'THE PANEL — THREE METHODS, WORKED SEPARATELY', bold=True, fmt=None)
@@ -1772,7 +1809,7 @@ put(ws, f'A{r}', 'Discounted cash flow with an explicit gas pass-through', fmt=N
 putf(ws, f'B{r}', f'={a("pt_slope")}', _SLOPE, B3, green=True)
 putf(ws, f'C{r}', f"='SOTP Bridge'!B{BRG['ev']}", DA['ev'], NUM0, green=True)
 putf(ws, f'D{r}', f"='SOTP Bridge'!B{BRG['psa']}", BA['ps_aed'], PX, green=True)
-E2 = r; r += 1
+E2 = r; FV['panel_dcf'] = r; r += 1
 put(ws, f'A{r}', 'Replacement cost of installed nitrogen capacity', fmt=None)
 putf(ws, f'B{r}', f'={a("repl_t")}', REPL_T, NUM0, green=True)
 putf(ws, f'C{r}', f'=({a("cap_urea")}+{a("cap_nh3")})*B{r}/1000', EXPS['e3']['ev'], NUM0)
@@ -1790,33 +1827,34 @@ note(ws, f'A{r}', 'The three do not agree, and the disagreement is the point: th
 
 # ============ 2 SUMMARY (filled) ===========================================
 ws = wb['Summary']
-hdr(ws, 4, ['Lens', 'AED per share', 'Weight', 'Contribution', 'Against the market price',
-            'Terminal value share'])
+hdr(ws, 4, ['Lens', 'AED per share', 'Role', 'Against the market price',
+            'Terminal value share', ''])
 r = 5
-for key, lab in [('dcf', 'Discounted cash flow'), ('rel', 'Relative multiples'),
-                 ('norm', 'Normalised earnings power'), ('book', 'Book value')]:
-    lk = {'dcf': 'dcf', 'rel': 'relative', 'norm': 'normalized', 'book': 'book'}[key]
+# THE SUMMARY MIRRORS THE VALUATION SHEET, so the weight and contribution columns go
+# here too. A summary that still totalled weights would be the only place in this
+# workbook where the retired construction survived.
+for key, lab, val, role in [
+        ('dcf_a', 'Cash flow — framing A, marginal-cost anchor', BR_A, 'THE ANSWER'),
+        ('dcf_b', 'Cash flow — framing B, tightness persists', BR_B, 'THE ANSWER'),
+        ('rel', 'Relative multiples', LN['relative']['value'], 'Cross-check'),
+        ('book', 'Book value', LN['book']['value'], 'Floor')]:
     put(ws, f'A{r}', lab, fmt=None)
-    putf(ws, f'B{r}', f"='Fundamental Valuation'!B{FV[key]}", LN[lk]['value'], PX, green=True)
-    putf(ws, f'C{r}', f"='Fundamental Valuation'!C{FV[key]}", LN[lk]['weight'], PCT, green=True)
-    putf(ws, f'D{r}', f'=B{r}*C{r}', LN[lk]['value'] * LN[lk]['weight'], PX)
-    putf(ws, f'E{r}', f'=B{r}/$B${{SPOTROW}}-1', LN[lk]['value'] / SPOT - 1, PCT)
-    if key == 'dcf':
-        putf(ws, f'F{r}', f"=('SOTP Bridge'!B{BRG['tvs']}+'SOTP Bridge'!C{BRG['tvs']})/2",
-             (DA['tv_share'] + DB['tv_share']) / 2, PCT, green=True)
+    putf(ws, f'B{r}', f"='Fundamental Valuation'!B{FV[key]}", val, PX, green=True)
+    put(ws, f'C{r}', role, fmt=None)
+    putf(ws, f'D{r}', f'=B{r}/$B${{SPOTROW}}-1', val / SPOT - 1, PCT)
+    if key == 'dcf_a':
+        putf(ws, f'E{r}', f"='SOTP Bridge'!B{BRG['tvs']}", DA['tv_share'], PCT, green=True)
+    if key == 'dcf_b':
+        putf(ws, f'E{r}', f"='SOTP Bridge'!C{BRG['tvs']}", DB['tv_share'], PCT, green=True)
     r += 1
 band(ws, r, 6)
-put(ws, f'A{r}', 'Weighted central value', bold=True, fmt=None)
-putf(ws, f'B{r}', f'=SUM(D5:D{r-1})', CENTRAL, PX, bold=True)
-putf(ws, f'C{r}', f'=SUM(C5:C{r-1})', 1.0, PCT, bold=True)
-putf(ws, f'E{r}', f'=B{r}/$B${{SPOTROW}}-1', CENTRAL / SPOT - 1, PCT, bold=True)
-SUM_CENTRAL = r
+put(ws, f'A{r}', 'NOT AVERAGED — the midpoint neither framing supports', bold=True, fmt=None)
+putf(ws, f'B{r}', f"='Fundamental Valuation'!B{FV['midpoint']}", (BR_A + BR_B) / 2.0, PX)
+SUM_MIDPOINT = r
 r += 1
-put(ws, f'A{r}', 'Lowest of the four lenses and the two framings', fmt=None)
+put(ws, f'A{r}', 'The envelope — the two present-value reads', fmt=None)
 putf(ws, f'B{r}', f"='Fundamental Valuation'!B{FV['lo']}", _span_lo, PX, green=True)
-r += 1
-put(ws, f'A{r}', 'Highest of the four lenses and the two framings', fmt=None)
-putf(ws, f'B{r}', f"='Fundamental Valuation'!B{FV['hi']}", _span_hi, PX, green=True)
+putf(ws, f'C{r}', f"='Fundamental Valuation'!C{FV['hi']}", _span_hi, PX, green=True)
 r += 1
 put(ws, f'A{r}', 'Median of the three panel methods', fmt=None)
 putf(ws, f'B{r}', f"='Fundamental Valuation'!D{FV['panel']}",
@@ -1848,12 +1886,32 @@ for lab, fml, val, fmt in [
 r += 1
 note(ws, f'A{r}', 'Values are model outputs shown as a range and a weighted central figure. They '
      'are not a recommendation and not a target.')
-for row in range(5, SUM_CENTRAL + 1):
-    c = ws[f'E{row}']
-    if isinstance(c.value, str):
-        c.value = c.value.replace('{SPOTROW}', str(SPOTROW))
-ANCH.update(summary_central=f'B{SUM_CENTRAL}', summary_spot=f'B{SPOTROW}',
-            fv_central=f'B{FV["central"]}', bridge_dcf_ps=f'B{BRG["dcf_ps"]}',
+# THE PLACEHOLDER IS SUBSTITUTED WHEREVER IT WAS WRITTEN, not in one column. The
+# gap column moved from E to D when the weight and contribution columns went, and a
+# loop hard-coded to E left four live formulas carrying a literal {SPOTROW}.
+for row in range(5, SUM_MIDPOINT + 1):
+    for col in ('B', 'C', 'D', 'E', 'F'):
+        c = ws[f'{col}{row}']
+        if isinstance(c.value, str) and '{SPOTROW}' in c.value:
+            c.value = c.value.replace('{SPOTROW}', str(SPOTROW))
+ANCH.update(summary_midpoint_refused=f'B{SUM_MIDPOINT}', summary_spot=f'B{SPOTROW}',
+            # THE ANSWER IS TWO CELLS, NOT ONE. fv_central pointed at a weighted
+            # central that no longer exists; a single anchor cannot address a
+            # two-sided answer and inventing one would put the midpoint back.
+            fv_branch_a=f'B{FV["dcf_a"]}', fv_branch_b=f'B{FV["dcf_b"]}',
+            fv_midpoint_refused=f'B{FV["midpoint"]}',
+            # EVERY ROW A CHECK READS IS PUBLISHED AS AN ANCHOR. The recalculation
+            # used hard-coded addresses for these and the rebuild moved all of them —
+            # a check that opens a cell by address moves with the re-issue, so it
+            # reads what the builder says rather than what somebody counted.
+            fv_rel=f'B{FV["rel"]}', fv_book=f'B{FV["book"]}',
+            fv_env_lo=f'B{FV["lo"]}', fv_env_hi=f'C{FV["hi"]}',
+            panel_dcf=f'D{FV["panel_dcf"]}',
+            dcf_tv_a=f'C{TB["tv"]}', dcf_fcf_a=f'C{TB["fcf"]}',
+            dcf_mnt_a=f'C{TB["mnt"]}',
+            dcf_pve_a=f'C{TB["pve"]}', dcf_pvt_a=f'C{TB["pvt"]}',
+            dcf_roic_term_a=f'C{TB["rt"]}',
+            bridge_dcf_ps=f'B{BRG["dcf_ps"]}',
             bridge_psa_a=f'B{BRG["psa"]}', bridge_psa_b=f'C{BRG["psa"]}',
             bridge_tvs_a=f'B{BRG["tvs"]}', dcf_tvs_a=f'C{TB["tvs"]}',
             dcf_ev_a=f'C{TB["ev"]}', dcf_ev_b=f'D{TB["ev"]}',

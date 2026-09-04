@@ -81,8 +81,10 @@ RN = 'Relative & Normalized'
 checks = [
     ('DCF enterprise value — framing A', g('DCF', ANCH['dcf_ev_a']), DA['ev'], 1.0),
     ('DCF enterprise value — framing B', g('DCF', ANCH['dcf_ev_b']), DB['ev'], 1.0),
-    ('DCF present value of the explicit years — A', g('DCF', 'C57'), DA['pv_explicit'], 1.0),
-    ('DCF present value of the terminal value — A', g('DCF', 'C58'), DA['pv_tv'], 1.0),
+    ('DCF present value of the explicit years — A', g('DCF', ANCH['dcf_pve_a']),
+     DA['pv_explicit'], 1.0),
+    ('DCF present value of the terminal value — A', g('DCF', ANCH['dcf_pvt_a']),
+     DA['pv_tv'], 1.0),
     ('DCF terminal value share — A', g('DCF', ANCH['dcf_tvs_a']), DA['tv_share'], 0.002),
     ('DCF cost of capital, explicit window', g('DCF', ANCH['dcf_wacc']),
      W['wacc_rating'], 0.0002),
@@ -90,9 +92,23 @@ checks = [
      W['wacc_term_rating'], 0.0002),
     ('DCF forecast tax rate', g('DCF', ANCH['dcf_tax']), D['tax_rate'], 0.0005),
     ('DCF terminal return on capital — A (in-sheet average of three bases)',
-     g('DCF', 'C51'), DA['roic_term'], 0.001),
-    ('DCF terminal reinvestment rate — A', g('DCF', 'C53'), DA['rr_term'], 0.001),
-    ('DCF terminal value — A', g('DCF', 'C56'), DA['tv'], 1.0),
+     g('DCF', ANCH['dcf_roic_term_a']), DA['roic_term'], 0.001),
+    # THE REINVESTMENT-RATE CHECK IS DELETED RATHER THAN RE-POINTED. Its row went
+    # with the retired terminal: rr = g/ROIC existed only to serve
+    # TV = NOPAT(1+g)(1-rr)/(W-g), and the sheet no longer carries the line. The
+    # model still computes rr_term beside tv_retired as the record of what the
+    # retired construction gave, and that is a diagnostic rather than a cell a
+    # reader is shown, so nothing in the workbook is left unchecked by removing it.
+    # THESE WERE HARD-CODED CELL ADDRESSES AND THE TERMINAL BLOCK GREW BY THREE ROWS
+    # WHEN IT WAS REBUILT, so every one of them silently moved to a neighbouring line.
+    # That is L-067 — a check that opens a cell by address moves with the re-issue —
+    # and the fix is to read the anchors the builder publishes rather than to
+    # re-count the rows by hand.
+    ('DCF terminal value — A', g('DCF', ANCH['dcf_tv_a']), DA['tv'], 1.0),
+    ('DCF terminal free cash flow — A', g('DCF', ANCH['dcf_fcf_a']),
+     DA['terminal_record']['fcff'], 1.0),
+    ('DCF terminal maintenance at replacement cost — A', g('DCF', ANCH['dcf_mnt_a']),
+     DA['terminal_record']['maintenance'], 1.0),
     ('Bridge enterprise value — A', g(BR, 'B7'), BA['ev'], 1.0),
     ('Bridge equity attributable — A', g(BR, 'B11'), BA['eq_attr'], 1.0),
     ('Bridge value per share (AED) — A', g(BR, ANCH['bridge_psa_a']), BA['ps_aed'], 0.02),
@@ -100,22 +116,36 @@ checks = [
     ('Bridge terminal value share — A', g(BR, ANCH['bridge_tvs_a']), BA['tv_share'], 0.002),
     ('Bridge value per share, minorities at book — A',
      g(BR, ANCH['bridge_psb_a']), BAK['ps_aed'], 0.02),
-    ('Cash-flow lens — the average of the two framings',
-     g(BR, ANCH['bridge_dcf_ps']), D['dcf_ps_aed'], 0.02),
-    ('Fundamental — cash-flow lens', g(FV, 'B5'), LN['dcf']['value'], 0.02),
-    ('Fundamental — relative lens', g(FV, 'B6'), LN['relative']['value'], 0.02),
-    ('Fundamental — normalised lens', g(FV, 'B7'), LN['normalized']['value'], 0.02),
-    ('Fundamental — book lens', g(FV, 'B8'), LN['book']['value'], 0.02),
-    ('Fundamental — weighted central', g(FV, ANCH['fv_central']), D['central'], 0.02),
-    ('Fundamental — lowest of the lenses and framings', g(FV, 'B10'), D['span'][0], 0.02),
-    ('Fundamental — highest of the lenses and framings', g(FV, 'B11'), D['span'][1], 0.02),
+    # NOT AN AVERAGE ANY MORE — the bridge publishes each framing and the study
+    # publishes both. This row used to check the mean of the two against the model's
+    # own mean, which reconciled perfectly and asserted a construction now retired.
+    ('Bridge — framing A equals branch A', g(BR, ANCH['bridge_psa_a']),
+     D['central_two_sided']['branches'][0]['value'], 0.02),
+    ('Fundamental — relative cross-check', g(FV, ANCH['fv_rel']),
+     LN['relative']['value'], 0.02),
+    ('Fundamental — book floor', g(FV, ANCH['fv_book']), LN['book']['value'], 0.02),
+    # TWO ROWS, BECAUSE THE ANSWER IS TWO NUMBERS. This checked a single 'weighted
+    # central' against D['central'], which is now None on a two-sided study — and a
+    # recalculation row comparing against None would have silently passed or
+    # crashed, neither of which is a check.
+    ('Fundamental — framing A', g(FV, ANCH['fv_branch_a']),
+     D['central_two_sided']['branches'][0]['value'], 0.02),
+    ('Fundamental — framing B', g(FV, ANCH['fv_branch_b']),
+     D['central_two_sided']['branches'][1]['value'], 0.02),
+    ('Fundamental — the envelope, low', g(FV, ANCH['fv_env_lo']), D['span'][0], 0.02),
+    ('Fundamental — the envelope, high', g(FV, ANCH['fv_env_hi']), D['span'][1], 0.02),
     # The panel's three methods are worked in AED per share; the cash-flow method must be the
     # bridge's own framing-A answer, and the panel centre must be their live median.
-    ('Panel — the cash-flow method equals the bridge', g(FV, 'D24'), BA['ps_aed'], 0.005),
+    ('Panel — the cash-flow method equals the bridge',
+     g(FV, ANCH['panel_dcf']), BA['ps_aed'], 0.005),
     ('Panel — median of the three methods', g(FV, ANCH['panel_median']),
      sorted(g(FV, f'D{r}') for r in (23, 24, 25))[1], 0.005),
-    ('Summary weighted central', g('Summary', ANCH['summary_central']), D['central'], 0.02),
-    ('Summary lens weights sum to one', g('Summary', 'C9'), 1.0, 0.0005),
+    # The Summary's own refused midpoint, checked as a midpoint rather than as an
+    # answer: the workbook PRINTS it under a label that refuses it, so it still has
+    # to reconcile — a number shown to be rejected is still a number on the page.
+    ('Summary — the midpoint it refuses', g('Summary', ANCH['summary_midpoint_refused']),
+     (D['central_two_sided']['branches'][0]['value']
+      + D['central_two_sided']['branches'][1]['value']) / 2.0, 0.02),
     ('Summary market price (AED)', g('Summary', ANCH['summary_spot']), D['spot'], 0.005),
     ('Relative lens implied value', g(RN, ANCH['rel_ps']), D['rel']['ps_aed'], 0.02),
     ('Normalised lens implied value', g(RN, ANCH['norm_ps']), D['norm']['ps_aed'], 0.02),

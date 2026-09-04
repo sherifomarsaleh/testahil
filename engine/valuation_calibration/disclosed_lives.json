@@ -147,7 +147,75 @@
    "file": "engine/adnocls_study/FS_FY2025.pdf",
    "route": "already committed as a four-field input in the study's own register",
    "read_on": "2026-09-03",
-   "against_the_terminal": "this study's terminal implies 50.0 years (1/g at g=2.0%) against a 25-year tanker life, so it UNDER-charges by 2x on the headline class — and its invested-capital base is NET BOOK ppe plus working capital plus goodwill, which is not a replacement-cost base at all, so the life is the second thing to fix there rather than the first."
+   "against_the_terminal": "this study's terminal implies 50.0 years (1/g at g=2.0%) against a 25-year tanker life, so it UNDER-charges by 2x on the headline class — and its invested-capital base is NET BOOK ppe plus working capital plus goodwill, which is not a replacement-cost base at all, so the life is the second thing to fix there rather than the first.",
+   "dry_docking_life": {
+    "years": 5.0,
+    "source": "the same accounting-policies note, under 'Dry docking': \"Major dry docking is capitalised when incurred and is depreciated over the period until the next major dry dock which is normally 60 months.\" The class table gives only the 2-5 year band; this sentence gives the figure, and the earlier reading took the band and stopped.",
+    "route": "text layer, FY2025 accounting policies, confirmed identical in FY2022, FY2023 and FY2024"
+   },
+   "why_the_terminal_refused": "MEASURED 04-Sep-2026, and it sharpens the earlier stop rather than repeating it. The rebuild computed maintenance as the WHOLE gross base at 25 years — 303,803 against book property depreciation of 385,487, i.e. 78.8% of it — so terminal free cash flow exceeded terminal profit and the module refused. THE 25-YEAR LIFE IS DISCLOSED FOR TANKERS, NOT FOR THE BASE. Applying one class's life to every class is the life-this-desk-chose error wearing a citation, and it is what produced the refusal.",
+   "what_the_disclosure_does_support": "The gross cost IS disclosed by class and every class has its own disclosed life, so only the vessel line mixes two — hulls at 25 years and dry-docking components at 5 — and only that line is unsplit. The other four classes are 315,131 of 7,595,070 (4.1%), and their depreciation is bounded by their own disclosed ranges to between 23,993 (longest lives) and 61,785 (shortest). Subtracting from the 385,487 the company reports across notes 5 and 6 leaves the vessel line depreciating 323,702 to 361,494, and solving (V-x)/25 + x/5 for that BOUNDS THE DRY-DOCKING COMPONENT TO 2.79%-6.04% OF THE VESSEL LINE. That is arithmetic on the disclosure, not a choice.",
+   "the_next_step_is_named": "Maintenance at the disclosed lives on the GROSS base equals book depreciation on that base by construction, straight-line — which is why the honest charge is near 385,487 rather than 303,803, and why the refusal reverses at any point inside the bound above. WHAT REMAINS is the step from historical to CURRENT cost, and the gap there is NARROWER THAN THIS ENTRY FIRST SAID — see the correction below.",
+   "exemplar_note": "This is the model report [R-ENF-01 EXTENDED 04-Sep], so its terminal is inherited by every study built by opening it. Its terminal currently sits 7.5% BELOW its own NOPAT floor, and the correction indicated above RAISES it — which is stated here because L-289 forbids reading the direction off the census, and because a correction moving an exemplar's value up is exactly the kind nobody chases.",
+   "CORRECTION_the_price_input_is_partly_held": "AN EARLIER VERSION OF THIS ENTRY SAID BROKER-QUOTED VESSEL PRICES ARE NOT HELD AND NAMED THEM AS THE MISSING INPUT. That was written after reading four years of filings and the impairment note, and WITHOUT READING THE STUDY'S OWN INPUT REGISTER, where two observed vessel prices already sit: a 2017-built very large crude carrier SOLD in January 2026 for USD 111.0mn against a carrying value of USD 83.0mn (vessel_sale_price / vessel_sale_book, from the FY2025 earnings release), and ELEVEN VESSELS ACQUIRED for about USD 1.3bn announced 7 August 2026 (acq_2026_cost — six very large crude carriers and five gas carriers, two of them newbuildings). Both are transacted prices, not quotes. [R-IND-01]'s own lesson, landing on the desk that was about to escalate: the ladder says OPEN THE ARTEFACT, and the register is an artefact this search skipped.",
+   "what_is_actually_still_missing": "The fleet composition IS held by class — owned tankers HS 2, MR 16, LR1 9, LR2 17, VLCC 8 at FY2026 — so a capacity-times-price base is constructible in shape, the same shape ARCC and Fertiglobe use. WHAT IS NOT HELD is a per-class replacement price for the classes other than the very large crude carrier: MR, LR1, LR2 and handysize, plus the gas and offshore fleets. The sale price is a NINE-YEAR-OLD ship's secondhand value and the acquisition is a blend across two classes with two newbuildings inside it, so neither is a newbuild price per class and neither may be spread across the fleet. THAT is the gap, and it is one research step rather than an absent market.",
+   "replacement_price_search_04-09-2026": {
+    "why": "the route was run rather than left as a named gap, so the next pass starts from what it returned instead of repeating it",
+    "what_came_back": {
+     "_grading": "THREE TIERS, AND THEY ARE NOT INTERCHANGEABLE. A price READ FROM THE PRIMARY RELEASE of a named party on a named date is evidence; a market commentary is weaker; a figure of an older vintage is weaker again. Every entry says which it is, because presenting them as equals is the defect L-289 was registered about.",
+     "verified_newbuilding_contracts": [
+      {
+       "klass": "MR",
+       "usd_mn_per_vessel": 45.0,
+       "source": "Scorpio Tankers, announcement of 6 November 2025 — four newbuildings at Jingjiang Nanyang Shipbuilding, delivering Q2/Q3 2026 and Q1/Q2 2027",
+       "scrubber": "not stated"
+      },
+      {
+       "klass": "LR2",
+       "usd_mn_per_vessel": 70.8,
+       "source": "Scorpio Tankers, announcement of 16 December 2025 — two newbuildings at Dalian Shipbuilding Industry, delivering Q3 2027",
+       "scrubber": "yes"
+      },
+      {
+       "klass": "VLCC",
+       "usd_mn_per_vessel": 136.0,
+       "source": "Frontline, announcement of 8 January 2026 — NINE latest-generation ECO VLCC newbuilding contracts acquired for an aggregate USD 1,224.0mn, six at Hengli and three at Dalian, seven delivering from Q3 2026 and the last two in 2027. The per-vessel figure is the aggregate over nine and is arithmetic on the released total, not a separately stated price",
+       "scrubber": "yes"
+      },
+      {
+       "klass": "VLGC (90,000 cbm)",
+       "usd_mn_per_vessel": 115.0,
+       "source": "Dorian LPG, announcement of 23 June 2026 — one 90,000 cbm VLGC at HD Hyundai for July 2029 delivery, stated as \"approximately $115 million\"",
+       "scrubber": "n/a"
+      }
+     ],
+     "verified_secondhand_reference_points": [
+      {
+       "klass": "VLCC, 2015-16 built",
+       "usd_mn_per_vessel": 103.9,
+       "source": "Frontline, same 8 January 2026 release — eight vessels sold for a stated USD 831.5mn; the per-vessel figure is arithmetic on that total"
+      },
+      {
+       "klass": "VLGC, 2014-15 built",
+       "usd_mn_per_vessel": 85.3,
+       "source": "Dorian LPG, same 23 June 2026 release — three vessels for \"aggregate proceeds of approximately $256 million\"; individual prices are NOT disclosed, so the per-vessel figure is an average and not a price"
+      }
+     ],
+     "commentary_only_weaker": [
+      {
+       "klass": "VLCC",
+       "note": "newbuilding contract about USD 130mn, a five-year-old about USD 151mn, a twenty-year-old about USD 71.1mn — Breakwave Advisors, \"Tanker 1H 2026\", 2 September 2026. Consistent with the verified Frontline figure, which is why it is kept as corroboration rather than as evidence"
+      },
+      {
+       "klass": "offshore",
+       "note": "PSV about USD 53.6mn at 4,500 dwt, a medium PSV about USD 29.1mn at 3,200 dwt, a large anchor-handling tug supply about USD 63.6mn, a 100m construction support vessel about USD 87.8mn — trade coverage, and the figures carry a 2024 vintage rather than 2026. Too weak to build on and recorded so the next pass does not re-run the same search"
+      }
+     ],
+     "not_found": "LR1 (9 owned) and HANDYSIZE (2) have no price from any tier, and JACK-UP BARGES have none either. NEGATIVE SEARCHES ACTUALLY RUN on 4 September 2026: the LR1 / Panamax search returned no 2026 transaction from a named party — the closest was a Panamax shipyard valuation of about USD 61.5mn dated September 2024 — and the jack-up search returned brokerage listings rather than a contracted price. Both point at broker services this desk does not hold. Recorded because a negative search is a search somebody RAN, and inventing one to clear a coverage check is worse than the gap it clears."
+    },
+    "what_is_still_missing": "Four of the fleet's main classes now have a verified contracted price and two more have a verified secondhand reference, which is enough to see the shape of a base and NOT enough to build one: LR1 and handysize are unpriced among the tankers, and the offshore fleet rests on 2024 trade figures. A base built on the priced classes with the rest inferred is this desk choosing, which is exactly what the disclosed-life rule forbids in the neighbouring quantity.",
+    "NOT_INPUTS": "NONE OF THE ABOVE IS COMMITTED AS A STUDY INPUT and it must not be read as one. A peer's contracted newbuild price is INDUSTRY-ring evidence and is exactly what SIGCM clause 5 puts competitors in the study for, the same way the cement studies cite an industry band for replacement cost per tonne of capacity — but it enters through the study's OWN sweep, as a four-field input naming the release and its date, and that is the rebuild's work. ONE FIGURE HERE IS VERIFIED AGAINST ITS PRIMARY RELEASE AND TWO ARE NOT, and the difference is written down rather than smoothed over."
+   }
   },
   "SAVOLA": {
    "classes": [
@@ -229,7 +297,25 @@
    "sha256": "cbb8fdb171154dbe9adac7a0675271b53050d40fd58dfa5595d5ad4b0ff20b8f",
    "route": "Text layer via pdftotext -layout, 1.39MB extracted. The report is the integrated annual report and carries the audited consolidated financial statements inside it, which is where this note sits.",
    "cross_check": "NOT YET CROSS-CHECKED AGAINST A SECOND YEAR, and that is recorded rather than left to be assumed from the other entries here. Unlike SAVOLA's, this note does not describe its own table as covering the comparative year, so the one-document check SAVOLA's gave is not available; a prior-year annual report would supply it and was not fetched in this pass. The lives are usable and this is what is known about them.",
-   "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE. The weighted life a terminal needs is derived at rebuild from this company's own property, plant and equipment note composition — a further sourcing step, not done here."
+   "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE. The weighted life a terminal needs is derived at rebuild from this company's own property, plant and equipment note composition — a further sourcing step, not done here.",
+   "weighted_life_derived": {
+    "years": 22.04,
+    "identity": "depreciable cost / the year's depreciation charge",
+    "arithmetic": {
+     "ppe_cost_total_31_12_2025": 6197.4,
+     "less_under_construction": 190.4,
+     "less_land_not_depreciated": 22.2,
+     "depreciable_cost": 5984.8,
+     "depreciation_2025": 271.6,
+     "years": 22.04,
+     "units": "USD millions"
+    },
+    "source": "Fertiglobe plc, 2025 Annual Report, note 7 property, plant and equipment — the cost and accumulated-depreciation table at 31 December 2025, and the 'Depreciation and impairment' movement row for the year.",
+    "why_derived_and_not_chosen": "THE DISCLOSED BANDS CANNOT BE COLLAPSED WITHOUT CHOOSING. Buildings 10-50, plant and equipment 5-30, fixtures 3-10: any single figure taken from those is this desk picking a life, which [R-TERM-01] refuses outright. What the note ALSO discloses is the composition at COST and the year's charge, and their ratio is an IDENTITY rather than an assumption — the composite life the company's own accounts are actually running. It is LABELLED derived, on the same footing as capex derived by dPPE + D&A and EGCH's years derived from disclosed rates.",
+    "the_impairment_caveat_and_why_it_does_not_bite": "The movement row is labelled 'Depreciation and impairment', so in a year carrying an impairment the ratio would understate the life. This report states at note 12 that 'no impairments were required for the year ended 31 December 2025', so the row is pure depreciation and the identity is exact. IN A YEAR WITH AN IMPAIRMENT THIS DERIVATION WOULD NOT BE AVAILABLE, and that is a property of the disclosure rather than of the method.",
+    "coherence_check": "The derived 22.04 years sits INSIDE the disclosed plant-and-equipment band of 5-30, and plant and equipment is 94.6% of the depreciable cost base — so the figure the arithmetic produces and the class that dominates the base agree. That is the check that makes a derived life usable rather than merely arithmetic.",
+    "against_the_retired_terminal": "The retired terminal charges g x IC, so it implies a replacement cycle of 1/g = 50.0 years at this study's 2% terminal — 2.27 TIMES the life this company's own accounts depreciate its assets over. That is the [R-TERM-01 CLAUSE TWO] direction reversal measured on one name with its own numbers: in a pegged market the identity does not starve the asset base, it flatters it, and correcting it moves the value DOWN."
+   }
   },
   "EGCH": {
    "disclosure_is_rates_not_lives": true,

@@ -37,7 +37,8 @@ _spot = SN['spot']
 vals = PF.numbers_from(HERE)
 # every lens, expert and scenario is quoted as a DISTANCE from the price, and a ratio of
 # two committed numbers is not itself committed
-vals += PF.ratios_against(PF.numbers_from(HERE, files=['study_numbers.json']), (_spot,))
+_QUOTED = PF.numbers_from(HERE, files=['study_numbers.json', 'strike_result.json'])
+vals += PF.ratios_against(_QUOTED, (_spot,))
 # and the reads are quoted against each other
 _PANEL = [v for v in PF.numbers_from(HERE, files=['study_numbers.json']) if _spot and 0 < v < _spot * 5]
 vals += PF.ratios_against([_spot] if _spot else [], _PANEL)

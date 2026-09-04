@@ -4014,6 +4014,180 @@ LESSONS = [
       "A repository that does not retain source documents, where the shelf really is "
       "empty and the only route is outward."),
 
+    L("L-286", "ALL", None,
+      "WHEN A FIX IS BLOCKED, CHECK WHETHER THE THING IT WOULD IMPROVE IS ITSELF "
+      "RETIRED. A correction inside a construction nobody stands behind is not a "
+      "measurement.",
+      "Work naturally proceeds inwards: find what the fix needs, source it, apply it. "
+      "That order never asks whether the OUTPUT the fix moves is still one the house "
+      "publishes. If it is not, every hour spent sourcing inputs buys a number in a "
+      "currency that has been withdrawn — and the effort feels productive throughout, "
+      "because each individual step succeeds.",
+      "Pricing the terminal correction across the book, 04-Sep-2026",
+      "build",
+      "An inventory established which inputs each of thirteen studies was missing and "
+      "four asset lives were sourced to close the gaps. The first name to have every "
+      "input resolve turned out to publish a central that is a typed weighted blend of "
+      "four lenses — the architecture retired two days earlier as a new method with "
+      "free parameters nobody tested. Eleven of the thirteen are in that state. The "
+      "correction is therefore measured when a name is RE-ISSUED, architecture and "
+      "terminal and inputs together, which is exactly what the two already-corrected "
+      "names show: both were re-issued wholesale.",
+      "A defect whose correction is genuinely separable from the construction around "
+      "it, where fixing it in place leaves a number the house still stands behind."),
+
+    L("L-287", "ALL", None,
+      "A NAME THAT DOES NOT RESOLVE IS NOT A NAME THAT HAS NO DATA. Check the alias "
+      "before believing an absence.",
+      "When a lookup returns nothing, the natural reading is that the thing is "
+      "missing. But a lookup is a name plus a table, and either can be wrong. A "
+      "single mismatched identifier makes a record invisible while every count, "
+      "every gate and every summary reports cleanly around it — because nothing is "
+      "broken, one row is simply never asked for.",
+      "The valuation-gap gate's price reader, 04-Sep-2026",
+      "build",
+      "One study reported 'no latest known price — the gap cannot be measured' for "
+      "as long as the gate had existed, so the audit that fires on a large gap had "
+      "never fired on it. Its price was in the supplied file the whole time, under "
+      "its real ticker, four characters different from its study directory's name. "
+      "Resolved, it sits 19.6% below the price. The alias map already existed in "
+      "another module, with the reason written beside it — the gate simply did not "
+      "import it.",
+      "A population where identifiers are generated from one source and cannot "
+      "diverge, so a name either exists or genuinely has no data."),
+
+    L("L-288", "ALL", None,
+      "AVERAGING TWO FRAMINGS OF A CONTESTED JUDGEMENT MANUFACTURES A DISAGREEMENT "
+      "THAT NEITHER FRAMING HOLDS.",
+      "When a study cannot settle a question, taking the middle looks like modesty. "
+      "It is not: the midpoint is a position no reading of the evidence actually "
+      "supports, and it hides the one thing a reader needs, which is that the answer "
+      "turns on a decision somebody has to make. Published side by side, the two "
+      "readings show the reader what the argument is about. Averaged, they produce a "
+      "confident-looking number that is nobody's view.",
+      "Fertiglobe's dual framing, read 04-Sep-2026",
+      "build",
+      "One study's cash-flow lens is the straight mean of two framings of its central "
+      "contested judgement about its market. Against the latest known price the first "
+      "framing sits 34.2% below and the second 1.8% below — one says the market is "
+      "badly wrong and the other that it is right. Their mean sits 19.6% below, which "
+      "is a disagreement with the market that NEITHER framing asserts, and it is the "
+      "number the study publishes. Under the two-sided rule a study is held only if "
+      "every branch breaches the limit, so the averaging also changes the study's own "
+      "publication status.",
+      "A contested judgement whose framings differ by little enough that the midpoint "
+      "is inside both readings, where averaging costs a reader nothing."),
+
+    L("L-289", "ALL", None,
+      "A RATIO BETWEEN TWO QUANTITIES DEFINED DIFFERENTLY IS NOT EVIDENCE ABOUT "
+      "EITHER. A cheap proxy is a hypothesis until the real calculation has been run "
+      "on one case.",
+      "When the real calculation is expensive, a ratio that sorts the book looks "
+      "irresistible: it computes on everything, it ranks, it separates names into "
+      "groups, and it feels like a measurement. What it cannot tell you is whether "
+      "its numerator and denominator are the same KIND of quantity — and if they are "
+      "not, it will rank confidently and point the wrong way.",
+      "The terminal census's under-charging column, corrected 04-Sep-2026",
+      "build",
+      "A column comparing each terminal's capital charge with its own book "
+      "depreciation was read as showing which terminals under-charge and are "
+      "therefore over-valued, and that reading went into a standing rule the same "
+      "morning. The first name actually rebuilt read 0.26x on that column and its "
+      "corrected terminal came out about 5% HIGHER. The retired charge is a NET "
+      "growth charge on an implied capital base with maintenance assumed equal to "
+      "depreciation and cancelled out; book depreciation is a GROSS charge on the "
+      "historical base; and the corrected construction charges maintenance gross and "
+      "adds book depreciation back. Three different definitions, one ratio.",
+      "A proxy whose numerator and denominator are shown to be the same kind of "
+      "quantity, where the ranking and the real calculation agree on a sample."),
+
+    L("L-290", "ALL", None,
+      "A SOURCE FIELD IS CHECKED FOR PRESENCE, NEVER FOR WHETHER THE NAMED DOCUMENT "
+      "CARRIES THE FIGURE. Rebinding the variable that holds a source rewrites the "
+      "provenance of every input registered after it, and nothing fails.",
+      "Every gate here asks whether an input has its four fields. None can ask "
+      "whether the document named in the third field is the one the number came out "
+      "of, because a source is a string and any string satisfies the check. That "
+      "makes the source the one field in the register that can be silently wrong "
+      "while everything else reports clean — and the failure is invisible in exactly "
+      "the way a wrong VALUE is not, because a wrong value usually breaks an "
+      "arithmetic check somewhere downstream and a wrong source breaks nothing at "
+      "all.",
+      "FERTIGLOBE, found while building its cost-of-capital record, 04-Sep-2026",
+      "build",
+      "A new source constant naming note 15 of the annual report was assigned to the "
+      "name FS25, which sixty lines earlier already held the FY2025 financial "
+      "statements. Twelve inputs registered after that line — three debt tranches, "
+      "three facility spreads, the rejected capitalisation rate and five "
+      "non-current-asset geography figures — were re-sourced to a note that carries "
+      "none of them. No value moved. The four-field assertion passed on all 208 "
+      "inputs, the recalculation reconciled 1,084 of 1,084 formula cells, every "
+      "document gate was green, and the bibliography printed the wrong document "
+      "beside each of the twelve. It shipped in two pushed commits and was found "
+      "only because the next piece of work happened to read those same inputs and "
+      "recognised a source that could not be right.",
+      "A check that holds each input's source against where the figure actually came "
+      "from — or, short of that, the mechanical half: refusing a source constant "
+      "that is rebound after any input has been registered against it, which would "
+      "have caught this one."),
+
+    L("L-291", "ALL", None,
+      "A TYPED BLEND ACROSS METHODS DOES NOT BIAS AN ANSWER, IT MASKS ONE — and it masks "
+      "in whichever direction happens to be convenient, which is why a house running them "
+      "reads as inconsistent rather than as wrong in a fixed direction.",
+      "A blend looks like caution and behaves like camouflage. Where the primary lens "
+      "disagrees violently with the market, the weaker lenses pull the published number "
+      "back toward it and the disagreement never surfaces; where the primary AGREES, the "
+      "weaker lenses push it away and manufacture one. Either way a reader is shown a "
+      "number no lens asserts, and the SIZE of the real disagreement — the thing a gap "
+      "gate exists to measure — is the first casualty.",
+      "DU, found while reading the gap list, 04-Sep-2026",
+      "build",
+      "One study's four lenses span a factor of 2.1: the declared PRIMARY cash-flow lens "
+      "reads 18.89 against a market price of 11.36, +66.3%, while the relative and "
+      "normalised lenses read 8.86 and 8.87, about -22%, and book reads 14.12. The "
+      "published central is a typed 45/25/20/10 blend of them at 13.90, +22.4%. THE GAP "
+      "GATE THEREFORE SEES +22% WHERE THE STUDY'S OWN PRIMARY LENS SAYS +66%, and the "
+      "publication block, one-sided below the price, sees nothing at all. The direction is "
+      "the OPPOSITE of the case that retired the blend, where a blend landed 28% below a "
+      "market the cash-flow lens agreed with to within 2.2% — same mechanism, opposite "
+      "direction, which is the point. It also fits the pooled valuation calibration's own "
+      "diagnosis: a mean a tenth below the price with a median sitting on it is what "
+      "masking produces, not what a bias produces.",
+      "A blend whose weights have cleared an out-of-sample test, or evidence that the "
+      "spread between lenses on a name is small enough that the choice cannot move the "
+      "published gap by more than the gate's own tolerance."),
+
+    L("L-292", "ALL", None,
+      "THE SEARCH THAT GETS SKIPPED IS THE CHEAP ONE, because the expensive one is what "
+      "FEELS like diligence. An absence asserted after thorough work is still an absence "
+      "asserted, and the thoroughness is what makes nobody check it.",
+      "The register already says an empty probe is a probe that did not run [L-015, "
+      "L-274, L-287]. Those are about a tool coming back with nothing. This is about the "
+      "search never being run at all, while a HARDER search next to it was run carefully — "
+      "which is worse, because the careful work is visible, it is real, and it buys the "
+      "conclusion a credibility that nothing in it earned. Nobody re-checks a claim that "
+      "arrives with four years of filings behind it.",
+      "Three occurrences in one session, 04-Sep-2026",
+      "build",
+      "Three times in one day, each time the skipped search was the cheaper one. (1) A "
+      "vessel price was declared not held after reading four years of PDF filings and an "
+      "impairment note; two transacted prices were sitting in that study's own JSON input "
+      "register, which was never opened. (2) The instrument reporting the book's blockers "
+      "made the same assertion mechanically, reporting a capital base MISSING on twelve "
+      "names while only ever looking for the assembled base and never for the per-unit "
+      "price every corrected study built one from. (3) A note said the lens registry "
+      "carried no telecom row and that a class decision was therefore needed; the registry "
+      "is a dict of eleven lines and it carries one, and reading it made the finding "
+      "SHARPER rather than softer — the lens carrying a fifth of that study's weight is "
+      "not permitted for its class at all. In every case the expensive search was done "
+      "properly and the cheap one was not.",
+      "A case where an absence asserted after thorough expensive work turns out to have "
+      "been checked cheaply first and the cheap check is what was wrong. The remedy this "
+      "suggests is arithmetic rather than resolve: a record stating not held / not "
+      "disclosed / cannot be obtained names the routes actually run, which is what "
+      "[R-IND-01] already demands of an escalation and does not yet demand of a record."),
+
 ]
 
 

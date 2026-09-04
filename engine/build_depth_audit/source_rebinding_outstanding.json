@@ -1,0 +1,6 @@
+{
+ "_": "Ratcheted [R-ENF-02]: a study listed here rebinds a source constant after registering inputs against it and is allowed to fail; the build breaks on a NEW one, and this list may only ever SHORTEN (--prune).",
+ "seeded": "2026-09-04",
+ "why_now": "L-290. The one instance this gate was written for was found and corrected in the same pass, so the list is EMPTY at adoption. That is the honest state and not an oversight: a ratchet exists to spare work that predates a standard, and there is none here. The gate is negative-controlled on the defect exactly as it shipped, which is the evidence that an empty list means clean rather than blind.",
+ "outstanding": []
+}
