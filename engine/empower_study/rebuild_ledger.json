@@ -1,0 +1,33 @@
+{
+ "ticker": "EMPOWER",
+ "started_at": "2026-09-04",
+ "start_value": 1.8432206448492996,
+ "start_spot": 1.5,
+ "start_gap": 0.22881376323286637,
+ "audit_after": "the re-strike, which is the only lever that moves a number here \u2014 the readable-answer change moves none, and the terminal rebuild is gathered and not spent, with its reason in TERMINAL_EVIDENCE_04-09-2026.md",
+ "levers": [
+  {
+   "name": "re-struck on the latest known price, and the two-sided answer published in the shared form",
+   "rule": "R-GAP-01",
+   "before": 1.8432206448492996,
+   "after": 1.8388,
+   "why": "the study stood on the 7-August close of 1.50 while the stock had risen to 1.57. Separately and more consequentially, it published four named branches under keys only its own builder knew, so every instrument that looks for a central found none and recorded the study as UNREADABLE \u2014 which is how a +17% answer escaped the one check that examines the answer rather than the process",
+   "evidence": "DFM close of 3 September 2026, from the price file supplied that day. The branches now publish in the shared two-sided form, and the moment they did, an eight-heading review became owed and was written; the widest branch reads +17.1% against the price and two of the four breach the trigger",
+   "move": -0.0023983264627881473
+  }
+ ],
+ "value": 1.8388,
+ "note": "ONE LEVER, AND THE ONE THAT MATTERS MOVED NO NUMBER. Making the answer readable changed nothing about the valuation and everything about whether it could be checked: this study had been carrying a +17% disagreement with the market that no gate could see, because its four branches were published under private keys. AN UNREADABLE ANSWER IS NOT A CLEAN ANSWER, and the cost of that is measured here rather than argued \u2014 one study, invisible to the answer-side check, for as long as it has existed. The terminal rebuild is NOT in this ledger and the reason is in the study's own evidence file: the model change was built and priced at about +0.5%, and the workbook stopped it, because this study publishes four parallel live models on one sheet whose fixed row map cannot absorb six more rows per block without moving addresses a dozen formulas on four other sheets name directly.",
+ "cumulative_move": -0.0023983264627881473,
+ "rules": {
+  "R-GAP-01": {
+   "levers": [
+    "re-struck on the latest known price, and the two-sided answer published in the shared form"
+   ],
+   "first_before": 1.8432206448492996,
+   "last_after": 1.8388,
+   "move": -0.0023983264627881473
+  }
+ },
+ "distinct_rules": 1
+}
