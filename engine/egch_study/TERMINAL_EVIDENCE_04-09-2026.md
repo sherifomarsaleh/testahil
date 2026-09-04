@@ -178,6 +178,17 @@ was right, and what it got wrong was the decision to keep the number anyway.**
 
 ## 7. What the rebuild will NOT fix, and the gap review will have to say so
 
+**This study is TWO-SIDED and both branches move**, which matters because a two-sided answer
+is held only if *every* branch sits more than ten per cent below the price:
+
+| branch | published | corrected | move | gap now |
+|---|---:|---:|---:|---:|
+| capital programme carried through | 2.3109 | **3.2905** | +42.4% | −77.2% |
+| capital programme stopped | 6.2591 | **8.2737** | +32.2% | −42.6% |
+
+Both remain far below the traded 14.41, so **EGCH stays held either way** — the correction
+does not change its publication status, and it was not made in the hope that it would.
+
 Corrected, this study reads 3.2905 against a traded 14.41 — **still 77% below the price**,
 so it stays held and its eight-heading review still has to explain a very large
 disagreement. Two things about that are worth writing down before the rebuild, because they
