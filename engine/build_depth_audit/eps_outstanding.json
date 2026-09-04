@@ -1,0 +1,9 @@
+{
+ "outstanding": [
+  "ADNOCDIST"
+ ],
+ "note": "Studies whose committed attributable profit and share count do not reproduce their own registered reported EPS, with nothing naming the difference, when this gate was adopted (04-Sep-2026). Allowed to fail; the list may only ever get shorter. --prune rewrites it. A study registering no reported EPS is listed as UNREADABLE in the run output rather than ratcheted, because that state is what made the original defect invisible and it is counted every run.",
+ "reasons": {
+  "ADNOCDIST": "A STABLE 1.85% gap in BOTH years measured — FY2024 0.19778 computed against 0.194 reported, FY2025 0.22808 against 0.224 — on a share count that does not move, so it is neither rounding nor a weighted average. Something stands between this profit and ordinary shareholders in both years and the register does not name it. Resolving it needs the filings re-read, which is a re-issue rather than a fix, so it is listed with its reason rather than left to make the build permanently red [R-ENF-02]."
+ }
+}

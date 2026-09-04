@@ -90,6 +90,16 @@ CLASSES = (
     "bank",
     "holding company",
     "commodity and metals",
+    # A vertically integrated generic and branded pharmaceutical manufacturer takes
+    # THE SAME LENS SET as an operating manufacturer with no observable asset market,
+    # and [R-LENS-03] is explicit that a class is added when a different lens carries
+    # the weight rather than when the industry differs — so the lens row is deliberately
+    # identical to the telecom and airline rows. What earns the separate class is the
+    # LESSONS taxonomy this tuple keys: a finding about registered-price ceilings, an
+    # active-ingredient import bill or a biosimilars approval cycle is not evidence
+    # about an airline, and filing it under one would be the superstition this register
+    # warns about. Two classes may share a lens set; they may not share a lesson set.
+    "pharmaceutical manufacturer, generic and branded",
     # TMGH is off-plan with a large backlog and long payment plans like the
     # class above, but it recognises revenue when the customer takes control of
     # the home, not as construction progresses. [L-102] makes the recognition
@@ -118,6 +128,26 @@ CLASSES = (
     # lessons under "cement and heavy industrial" because both are capital-intensive would
     # be the superstition this register warns about.
     "marine logistics and shipping, chartered fleet on global day rates",
+    # SWDY manufactures cables and electrical products AND builds turnkey
+    # infrastructure, and the two halves are not the same business under one
+    # roof — they sit on materially different CONTRACT STRUCTURES. A cable is
+    # made and sold into a market at a price the market sets, so its margin
+    # moves with copper and with capacity; a turnkey project is a multi-year
+    # contract whose revenue is recognised as work completes and whose margin
+    # is an accident of which projects reach their profitable phases in which
+    # period. Measured on this issuer's own halves the two legs moved in
+    # OPPOSITE directions at once — cables 14.54% to 12.49% while contracting
+    # went 9.06% to 11.59% — so a single blended margin path describes neither.
+    #
+    # WHAT MAKES IT A CLASS RATHER THAN AN INDUSTRY, which is the test this
+    # register applies [R-LENS-03]: a different lens carries weight. A
+    # disciplined sum of the parts is a real cross-check here, because the legs
+    # would be valued differently by anyone buying them separately — exactly
+    # the argument the shipping row makes for its own SOTP entry. And
+    # NORMALISED EARNINGS POWER IS EXCLUDED, for the reason the developer rows
+    # exclude it: a contractor's reported earnings are an accident of
+    # completion timing, so normalising them normalises noise.
+    "diversified industrial with a contracting arm",
 )
 
 
@@ -4187,6 +4217,297 @@ LESSONS = [
       "suggests is arithmetic rather than resolve: a record stating not held / not "
       "disclosed / cannot be obtained names the routes actually run, which is what "
       "[R-IND-01] already demands of an escalation and does not yet demand of a record."),
+
+    L("L-293", "ALL", None,
+      "A TOOL THAT CAN SILENTLY REPLACE THE ANSWER EVENTUALLY DOES, and the run it leaves "
+      "behind is INTERNALLY COHERENT — which is what makes it invisible, because every "
+      "check downstream reconciles the file to itself.",
+      "A study carried an override harness so an audit finding could be priced on the real "
+      "chain rather than on a re-implementation, which is the right discipline [R-ENF-03]. "
+      "It wrote the overridden run straight over the committed numbers file. Nothing was "
+      "corrupt in the ordinary sense: it was a complete, correct run of the model, "
+      "answering a different question. The four-field register was complete, the workbook "
+      "reconciled every formula cell AGAINST THAT FILE, and the document builders rendered "
+      "it faithfully. Worse, the beta RECORD still reported the registered value, because "
+      "a record is written from the input's own metadata rather than from the value the "
+      "model used — so the file asserted a beta the run had not used.",
+      "DU, 04-Sep-2026",
+      "build",
+      "The committed study_numbers.json held a fair value of 12.29999994 against a market "
+      "price of 12.30 — the solved answer of the last bisection step, not the study. It was "
+      "caught only because a figure printed for an unrelated purpose was one somebody "
+      "recognised; no gate in the repository could see it, and there was no provenance to "
+      "read, since an overridden run records no trace of having been overridden. Closed "
+      "structurally rather than by resolve: an overridden run now writes BESIDE the "
+      "committed file by default, so forgetting the flag cannot corrupt the study, and "
+      "scripts/check_harness_outputs.py refuses both a committed file carrying an override "
+      "block and a harness whose output name does not depend on the override being set.",
+      "A harness whose overridden output genuinely must occupy the committed path — none "
+      "is known, and the safe default costs nothing. If one appears, the honest form is a "
+      "provenance block the file carries about itself, which the gate already reads."),
+
+    L("L-295", "CLASS", "diversified industrial with a contracting arm",
+      "A GROUP WHOSE LEGS SIT ON DIFFERENT CONTRACT STRUCTURES CANNOT BE FORECAST ON ONE "
+      "MARGIN PATH — the legs move in opposite directions at the same time, so a blended "
+      "path describes neither of them.",
+      "A cable is manufactured and sold into a market at a price the market sets, so its "
+      "margin moves with the input commodity and with capacity. A turnkey project is a "
+      "multi-year contract whose revenue is recognised as work completes and whose margin "
+      "is an accident of which phases reach profitability in which period. They are not "
+      "the same business under one roof, and a group margin built by blending them hides "
+      "both. Build each leg on its own driver and re-anchor each on the latest reviewed "
+      "period SEPARATELY.",
+      "SWDY, 04-Sep-2026",
+      "build",
+      "Measured on the issuer's own comparable halves, the two legs moved in OPPOSITE "
+      "directions at once: cables 14.54% to 12.49% while contracting went 9.06% to 11.59%, "
+      "with electrical products up 23.46% to 24.91%. The group margin barely moved — 14.14% "
+      "to 13.92% — so a group-level reading would have reported nothing happening while "
+      "the two legs it is made of diverged by nearly five points between them. The first "
+      "edition forecast a uniform partial recovery in all three, which was above what "
+      "cables had just delivered and well below what contracting had.",
+      "A group whose legs are found to co-move closely enough that one path describes both "
+      "— which would be evidence the legs are not on different contract structures after "
+      "all, and therefore that this is not a separate class."),
+
+    L("L-296", "CLASS", "diversified industrial with a contracting arm",
+      "NORMALISED EARNINGS POWER IS NOT A LENS FOR A GROUP WITH A CONTRACTING ARM, for the "
+      "reason it is not one for a developer: the earnings being normalised are an accident "
+      "of completion timing.",
+      "Normalising earnings assumes there is a mid-cycle level to normalise TO. Where a "
+      "quarter of revenue comes from multi-year contracts recognised as work completes, "
+      "the reported earnings of any given year say more about which projects finished than "
+      "about what the business earns through a cycle, so normalising them normalises noise "
+      "and calls it a mid-cycle.",
+      "SWDY, 04-Sep-2026",
+      "build",
+      "The lens read EGP 109.52 against a cash-flow lens of 55.48 — nearly double — and "
+      "carried a fifth of a typed blend, which is what pulled the published central to "
+      "71.20 and showed a reader about two thirds of the disagreement this study holds. "
+      "It is the same lens, at the same weight, in the same class of defect as the case "
+      "that retired the blend on a developer.",
+      "A contracting group whose reported earnings are shown to be stable enough through a "
+      "cycle that a normalised figure means something — which the disclosure would have to "
+      "support with a completion profile no issuer in this book currently publishes."),
+
+    L("L-294", "ALL", None,
+      "A VALUATION ENDS BY DIVIDING BY A SHARE COUNT, AND NOTHING WAS CHECKING WHETHER THE "
+      "NUMBER BEING DIVIDED IS WHAT SHAREHOLDERS ACTUALLY RECEIVE. Every gate examines how "
+      "the equity value was BUILT; the last arithmetic step had none.",
+      "Egyptian company law gives employees a share of distributable profits. It is an "
+      "APPROPRIATION of profit rather than an operating cost, so a company discloses it "
+      "BELOW profit attributable to owners, in the earnings-per-share note — which means it "
+      "appears in no line of the income statement and NO COST DRIVER CAN EVER CAPTURE IT, "
+      "however carefully the cost stack is built from unit economics. The mechanism is not "
+      "Egyptian and not unusual: anywhere the EPS numerator differs from attributable "
+      "profit there is a claim ahead of ordinary shareholders — a statutory profit share, a "
+      "preference dividend, a participating instrument, a perpetual coupon, an ESOP "
+      "allocation.",
+      "SWDY, 04-Sep-2026",
+      "build",
+      "The study registered attributable profit of EGP 17,330.245mn AND the company's own "
+      "reported EPS of 7.13, both correctly sourced to the audited statements, four fields "
+      "each. 17,330.245 / 2,140.778 shares = 8.095. The 12.0% between them was the "
+      "employees' share, disclosed in the EPS note and running 11.6%, 12.0% and 13.0% of "
+      "attributable profit across FY2024, FY2025 and H1-2026. The word 'employee' occurred "
+      "nowhere in the study's committed numbers, and the valuation divided the full parent "
+      "equity value by the full share count. Measured across the book, TWENTY-ONE of "
+      "twenty-four studies register no reported EPS at all, so nothing could have "
+      "reconciled it even in principle — which is why the gate counts that state as "
+      "UNREADABLE rather than clean. Closed by scripts/check_eps_reconciliation.py, which "
+      "holds one identity and requires any gap to be NAMED, never explained away.",
+      "A company whose reported EPS numerator legitimately differs from attributable "
+      "profit for a reason that is NOT a claim on shareholders — a weighted-average share "
+      "count in a year of issuance is the obvious case. That is why the gate asks for the "
+      "difference to be named rather than to be zero, and why a named difference valued at "
+      "zero with a reason passes."),
+
+    L("L-297", "ALL", None,
+      "A MUTATION-LANDED CHECK THAT ASSERTS A KEY IS PRESENT CANNOT TELL \"I PUT IT THERE\" "
+      "FROM \"IT WAS ALREADY THERE\", so it reports landed while injecting nothing — which "
+      "is the exact state [R-ENF-04] exists to catch, inside the instrument built to catch "
+      "it.",
+      "A negative control reproducing a defect in a LIVE study is only injecting a "
+      "condition while that study still carries it. Correct the study — which is the whole "
+      "point of finding the defect — and the fixture goes on setting a key that is now "
+      "already there, its landed-check passes, and the case tests the corrected study "
+      "instead of the defect. The safe version of the same shape is one whose absence is "
+      "GUARANTEED BY THE GREEN BASELINE: asserting a key was added is sound where the "
+      "baseline could not be green if the key were present, and unsound where it could. "
+      "So a fixture reproducing a live condition asserts THE CONDITION — is the quantity "
+      "outside tolerance, is the record absent — never the key it wrote.",
+      "check_eps_reconciliation_negative_control.py, 04-Sep-2026",
+      "build",
+      "Case 1 injected SWDY\'s unexplained EPS gap by writing the reported EPS. The SAME "
+      "PULL REQUEST corrected SWDY, so its committed file already carried both that EPS and "
+      "the reconciliation record naming the gap; the fixture wrote a key that was present, "
+      "reported landed, and the gate correctly stayed green on a study with nothing wrong "
+      "with it. Case 2, which must be GREEN, passed for the same reason and therefore "
+      "proved nothing at all — a case that cannot fail is the more dangerous half, because "
+      "it never announces itself. Re-pointed at the condition rather than widened "
+      "[R-COC-01]: all ten conditions now assert the state the gate reads.",
+      "A landed-check asserting a key\'s presence whose absence the green baseline does "
+      "genuinely guarantee — those are sound and this lesson does not touch them."),
+
+    L("L-298", "ALL", None,
+      "A SOURCING CLAIM IS A CLAIM ABOUT THE WORLD AND IT ROTS LIKE ANY OTHER, but nothing "
+      "re-tests it, because it reads as a fact about the study rather than a fact about a "
+      "server.",
+      "\"The proxy blocked the company website\" is true on the day it is written and "
+      "becomes a standing justification for every figure sourced around it. Nobody re-runs "
+      "it, because it looks like part of the study\'s history rather than a live "
+      "condition. TWO OPPOSITE FAILURES LOOK IDENTICAL IN THE RECORD and separate only "
+      "when the probe is run again: in one the documents were on the company\'s own site "
+      "the whole time and nobody looked; in the other the site lists an archive it does "
+      "not serve, so no amount of trying would ever have worked. The reason decides what "
+      "happens next — one says try again, the other says stop trying and ask — so getting "
+      "it wrong wastes the effort in the wrong direction.",
+      "ELEC, 04-Sep-2026",
+      "build",
+      "ELEC is the one study the source-integrity gate reports in plain breach, on 11 dated "
+      "historicals from data vendors and press, justified by a recorded proxy block. Re-run "
+      "a month later: the site returns 200 on every page, publishes an index of some sixty "
+      "audited statements one click from the homepage — and serves none of them, every "
+      "upload after August 2020 returning 404 while a 2020 asset in the same tree returns "
+      "200, with the legacy host that held the older ones no longer resolving in DNS. The "
+      "documents are genuinely unobtainable and the recorded reason was still wrong. The "
+      "mirror case is SCEM, where the statements sat on the company\'s own website while "
+      "the study used Global Cement and an aggregator\'s carry of S&P Global.",
+      "A sourcing failure that is re-tested and comes back identical — which is the point: "
+      "the lesson asks for the re-test, not for a particular answer."),
+
+    L("L-299", "ALL", None,
+      "THE UNREADABLE BUCKET IS NOT NEUTRAL — IT IS WHERE THE WORST CASES GO. [R-ENF-04] "
+      "says an absent answer is not a clean one; this is the sharper half, that absence is "
+      "CORRELATED WITH SEVERITY, so a census reporting \"11 readable, 11 not\" is not "
+      "reporting a random half.",
+      "A study broken enough to be unreadable by one instrument is usually broken in the "
+      "ways that instrument measures, because the same missing structure causes both. So "
+      "the readable population is a FAVOURABLE sample of the book and every figure "
+      "measured across it understates the problem — which is the opposite of how an "
+      "unreadable list is normally read, as a coverage nuisance to be closed later.",
+      "terminal_growth_census.py / ELEC, 04-Sep-2026",
+      "build",
+      "The terminal-growth census re-expressed every study\'s terminal growth as its real "
+      "rate and found two names assuming a real rate away from zero without stating it, "
+      "PHAR at -1.87% and RIYADHCABLE at +1.96%. ELEC assumes THE SAME -1.87% on a "
+      "terminal that also carries the retired g x IC construction, a terminal return on "
+      "capital 583bp below its own cost of capital, and an invested-capital base resting "
+      "on a typed 0.05-of-revenue constant — and the census could not see any of it, "
+      "because ELEC\'s numbers file carries no meta block at all, so its market resolved "
+      "to nothing and it landed in the unreadable bucket. THE WORST INSTANCE OF THE THING "
+      "BEING MEASURED WAS INVISIBLE TO THE INSTRUMENT MEASURING IT, and the reason it was "
+      "invisible is a symptom of the same neglect.",
+      "A census whose unreadable entries, once opened, turn out no worse than its readable "
+      "ones — which would make the bucket a coverage problem rather than a sampling one."),
+
+    L("L-300", "ALL", None,
+      "A BUILDER THAT OTHER FILES READ BY CELL ADDRESS MUST PUBLISH WHERE ITS ROWS "
+      "LANDED. Only the builder knows; every other file carries a guess that was true "
+      "once.",
+      "Insert a row into a workbook and every check naming a cell below it goes on "
+      "reading confidently from the wrong one. Nothing errors — the cells exist and hold "
+      "numbers — so the failure arrives as a CONFIDENT WRONG ANSWER rather than a crash, "
+      "and it arrives dressed as a finding about the model. The fix is not care: it is "
+      "that the builder writes its row map beside the workbook and the checks resolve "
+      "through it, so the map has one author and moving a row moves everything that "
+      "reads it.",
+      "AIRARABIA, 04-Sep-2026",
+      "build",
+      "Rebuilding a terminal block on the sanctioned construction inserted five rows. "
+      "Five other sheets referenced the discounting sheet by address, and so did both "
+      "study-local checks: the recalculation gate reported 25 formula cells disagreeing "
+      "with the model, every one of them the CHECK looking one row too high, while the "
+      "workbook itself was correct and had asserted all 663 of its own formulas against "
+      "recorded expectations. It is [L-067] for the third time in one session — a check "
+      "that names a cell by address moves with the re-issue — and the first two fixes "
+      "were both re-pointings of the individual reference.",
+      "A workbook nothing else reads by address, where the map is a cost with no "
+      "benefit. The moment a second file names a cell, it applies."),
+
+    L("L-301", "ALL", None,
+      "A CHECK THAT READS A FIELD NAME CAN ACCUSE AS EASILY AS IT CAN MISS, AND A FALSE "
+      "ACCUSATION IS THE MORE EXPENSIVE ERROR, because the author fixes something that "
+      "was not broken.",
+      "[R-MACRO-01 AMENDED] records this from one side: a check reading what a process "
+      "DECLARES is not checking what it DOES, so work hides where the check does not "
+      "reach. The other side is that the same check can fire on a study doing exactly "
+      "the right thing and SAYING SO — and the natural remedy, deleting the honest "
+      "sentence, makes the record worse while turning the check green. Where a check "
+      "reads prose, its MESSAGE must distinguish the two failures it can produce; where "
+      "it reads a key, the key must be named for what it holds.",
+      "terminal_growth_census.py and AIRARABIA, 04-Sep-2026",
+      "build",
+      "Three instances in one afternoon. A terminal-growth census asked only whether a "
+      "REAL-GROWTH INPUT KEY existed and printed 'not stated' for every study without "
+      "one — false of a study whose own justification said 'about 0.5pp real' in as many "
+      "words; re-pointed to three states, because a SILENT study owes a disclosure and a "
+      "PROSE-ONLY one owes the arithmetic moved into its register. A lens-design gate "
+      "matched macro dials against a driver field that named them only to say they were "
+      "HELD; a regex cutting the text at a holding word was tried and BACKED OUT (the "
+      "dial usually precedes the verb), and what shipped instead was a sharper message "
+      "naming the field the sentence belongs in. And an artefact-currency gate refused a "
+      "row map because a field called 'central' held the integer 8 — correct on the name "
+      "it was given, and a naming defect before it was a gate problem.",
+      "A check whose false positives are as cheap to resolve as its true positives — "
+      "where firing on correct work costs only a glance, the message matters less."),
+
+    L("L-302", "CLASS", "pharmaceutical manufacturer, generic and branded",
+      "A GENERIC MANUFACTURER THAT EXPORTS CAN STILL BE NET SHORT HARD CURRENCY, and the "
+      "export line is what hides it: a weaker local currency reads as a tailwind on the "
+      "revenue page while the active-ingredient bill it also raises is larger.",
+      "Active pharmaceutical ingredients are imported and priced in dollars almost "
+      "everywhere outside the few countries that make them, so the DOLLAR-LINKED COST "
+      "reaches deep into cost of sales while the dollar-linked REVENUE is only the export "
+      "book. Compare the two directly before assuming a devaluation helps: hard-currency "
+      "revenue as a share of total against the imported share of cost of sales times the "
+      "cost ratio. Where the second is larger the currency path is a first-order value "
+      "driver running the OPPOSITE way to the intuition, and a study that understates "
+      "depreciation flatters the value rather than depressing it.",
+      "PHAR (EIPICO), 04-Sep-2026",
+      "build",
+      "Exports are 33% of forecast revenue and the company\'s own description of its "
+      "inputs is that raw materials are predominantly imported active ingredients, "
+      "against cost of sales at 61% of revenue. Conforming the currency path to the "
+      "house purchasing-power derivation — 21% weaker by FY2030 than the edition it "
+      "replaced — took roughly a quarter off the valuation, in the direction an exporter "
+      "is not expected to move. The previous edition escalated domestic costs at "
+      "Egyptian inflation while depreciating the pound at about a third of the "
+      "differential, which flattered the value twice over.",
+      "A manufacturer of this class whose imported-input share of cost of sales, times "
+      "its cost ratio, is SMALLER than its hard-currency revenue share — where it is, the "
+      "ordinary exporter intuition holds and this lesson does not apply."),
+
+    L("L-303", "ALL", None,
+      "CONFORMING A STUDY TO A RULE MADE IT INVISIBLE TO THE INSTRUMENT THAT MEASURES "
+      "THAT RULE, because the instrument read the shape the DEFECT takes and the "
+      "correction changes the shape.",
+      "A census looks for a quantity where studies keep it, and studies keep it there "
+      "BECAUSE THEY HAVE NOT BEEN CORRECTED YET. Fix one and the quantity moves — into a "
+      "derived block, into a record, under a frame — and the census reports the "
+      "conforming study as UNREADABLE. The direction of the error is the dangerous part: "
+      "the instrument's readable population drifts toward the names still carrying the "
+      "defect, so the measured rate looks WORSE than the book while the unreadable "
+      "bucket quietly fills with the successes. It is [L-299] inverted — there the "
+      "bucket collected the worst cases, here it collects the best — and both say the "
+      "same thing, that an unreadable bucket is never a random sample.",
+      "terminal_growth_census.py, 04-Sep-2026",
+      "build",
+      "The census read a study's terminal growth from `dcf.g` or from a `g_term` input. "
+      "A study that does the RIGHT thing under the house macro path stores a REAL rate "
+      "and DERIVES the nominal, so it carries no `g_term` at all — and the first study "
+      "corrected that way promptly vanished from the census that had found the defect. "
+      "Re-pointed to read four places in order, including a two-sided study's frames, "
+      "the readable population went from 10 of 24 to 15, and NINE of those turned out to "
+      "be already conforming at exactly zero real growth. THE BOOK WAS IN BETTER SHAPE "
+      "THAN THE INSTRUMENT SAID, which is the less common direction and no more "
+      "comfortable. A second re-pointing in the same pass: a market written as 'AE "
+      "(Dubai Financial Market)' resolved ambiguously because 'IN' is a substring of "
+      "'FINANCIAL' — refusing ambiguity was right and two-letter codes matching inside "
+      "words is not ambiguity, it is a bad matcher.",
+      "A census whose readable population does not change when a study is corrected — "
+      "which is what a measurement keyed on a quantity rather than on its storage looks "
+      "like, and is what this one now aims at."),
 
 ]
 

@@ -30,6 +30,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
 
+import terminal_value as TV          # [R-TERM-01] — verified by import, not by parse
+import macro_path as MP              # [R-MACRO-01] — the house path, never a typed rate
+
 # the beta regressions (adopted + alternative benchmark) are needed while the cost of
 # capital is built, not only at emit time
 beta_res_pre = json.load(open(os.path.join(HERE, 'beta_result.json')))
@@ -48,7 +51,12 @@ Q126 = ("Q1-2026 condensed consolidated interim financial information, limited r
 
 INP = dict(
     # ---- anchors --------------------------------------------------------
-    spot=I(5.24, "Uploaded DFM daily price history, last close 07-Aug-2026", "2026-08-07", "Market"),
+    spot=I(4.97, "Dubai Financial Market close, 3 September 2026 — the latest price "
+           "available when this edition was struck. A valuation compared against a "
+           "month-old quote is measured against the past rather than the market, so this "
+           "edition re-strikes on the current close and moves the valuation date with it. "
+           "The previous edition was struck at AED 5.24 on 7 August 2026.",
+           "2026-09-03", "Market"),
     shares_mn=I(4666.700, "Share capital note 18, " + FS25 + ": 4,666,700 thousand shares of "
                 "AED 1 each, authorised, issued and fully paid, unchanged since FY2022",
                 "2026-02-13", "Company"),
@@ -507,10 +515,33 @@ INP = dict(
     wd_term=I(0.10, "Terminal debt weight D/(D+E) on a GROSS basis, ~today's 10.2% gross "
               "weight held: the airline runs structurally net-cash but carries secured "
               "aircraft debt and IFRS-16 leases permanently", "2026-08-09", "House"),
-    g_term=I(0.025, "Terminal growth 2.5%, AED-nominal against a 4.0% terminal risk-free that "
-             "embeds ~2% inflation — about 0.5pp real, for a carrier whose home market "
-             "(Sharjah 19.5mn airport pax +13.9% in 2025) is still structurally growing. "
-             "Sensitised 1.5-3.5%", "2026-08-09", "House"),
+    g_term_real=I(0.0049, "Terminal growth of 0.49pp a year ABOVE inflation, in perpetuity, "
+                  "for a carrier whose home market — Sharjah, 19.5mn airport passengers, "
+                  "+13.9% in 2025 — is still structurally growing. The assumption is "
+                  "stated in real terms and the nominal rate is computed from it against "
+                  "the 2.0% long-run inflation this valuation uses throughout: a growth "
+                  "rate quoted only in nominal terms cannot be checked, because nobody "
+                  "reading 2.5% can tell whether it means inflation plus half a point or "
+                  "inflation minus one. The previous edition quoted the nominal figure. "
+                  "Sensitised across 1.5-3.5% nominal.", "2026-08-09", "House"),
+    asset_life_weighted=I(17.84, "Weighted useful life of the depreciable asset base, "
+                          "derived from the FY2025 consolidated financial statements' own "
+                          "composition: the disclosed class lives in note 4 (aircraft and "
+                          "aircraft engines 20 years, buildings 15-20, aircraft rotables "
+                          "3-10, airport equipment 3-15, other 3-5) weighted by the GROSS "
+                          "carrying amounts in note 5, at each range's longest disclosed "
+                          "end. Aircraft and engines are 87.4% of the AED 11,457mn "
+                          "depreciable base at a single disclosed 20 years, so the band is "
+                          "narrow: 14.55 years if every range is taken at its shortest end, "
+                          "17.84 at its longest. Land (AED 89mn) and capital "
+                          "work-in-progress (AED 452mn) are excluded because neither is "
+                          "depreciated, and the note foots to its stated AED 11,999mn "
+                          "total. Note 5 also records that with effect from 1-Oct-2024 the "
+                          "aircraft life was raised from 15 to 20 years and residual values "
+                          "cut from 20% to 7-8% of original cost, so the 20 years is the "
+                          "current estimate rather than a legacy one. Text layer via "
+                          "pdftotext -layout; the two years' tables cross-check.",
+                          "2026-02-13", "Company"),
 
     # ---- lens inputs -------------------------------------------------------
     ev_ebitda_just=I(6.5, "Justified EV/EBITDA on mid-cycle FY2027E EBITDA EXCLUDING the "
@@ -548,8 +579,8 @@ INP = dict(
                    "DCF primary for an operating airline with a disclosed unit history; "
                    "relative and normalised secondary; book least — an airline's book equity "
                    "understates a slot/brand/JV franchise", "2026-08-09", "House"),
-    anchor_days=I(219, "Days from the DCF construction date (31-Dec-2025, the audited "
-                  "balance-sheet date) to the anchor 7-Aug-2026. All lens values are rolled "
+    anchor_days=I(246, "Days from the DCF construction date (31-Dec-2025, the audited "
+                  "balance-sheet date) to the anchor 3-Sep-2026. All lens values are rolled "
                   "to the anchor at the cost of equity, net of the AED 0.30 FY2025 dividend "
                   "paid inside the window", "2026-08-09", "House"),
 )
@@ -560,6 +591,20 @@ for k, rec in INP.items():
     assert rec['source'] and rec['date'] and rec['ring'], f"INPUT {k} missing provenance"
 
 V = {k: rec['value'] for k, rec in INP.items()}
+
+# ---- [R-MACRO-01]: the terminal NOMINAL growth is DERIVED, never typed ------------
+# The house path owns the inflation; this study owns the REAL rate and nothing else.
+# Deriving it is what makes the assumption falsifiable — a reader can now see that
+# 2.5% is inflation plus half a point rather than inflation minus one, which is the
+# distinction a typed nominal rate destroys.
+_AE_PATH = MP.load('AE')
+PI_TERM = (_AE_PATH.raw['inflation']['terminal'] or {})['value']
+V['g_term'] = (1.0 + PI_TERM) * (1.0 + V['g_term_real']) - 1.0
+assert abs(V['g_term'] - 0.025) < 5e-5, (
+    "the derived terminal nominal growth is %.6f; the prior edition published 2.5%% and "
+    "this rebuild changes the STORAGE of that rate, not the rate. A move here means the "
+    "house terminal inflation for AE has changed and the study must say so." % V['g_term'])
+
 V['fuel_per_pax'] = [V['fuel_intensity'] * p for p in V['jet_eff_base']]
 V['fuel_per_pax_alt'] = [V['fuel_intensity'] * p for p in V['jet_eff_alt']]
 FL = V['fleet_cons']
@@ -859,18 +904,74 @@ say(f"[Invested capital] FY2025: fleet assets (PP&E + right-of-use + pre-deliver
     f"{fleet_assets_fy25:,.0f} + intangibles {V['intang_fy25']:,.0f} + working capital "
     f"{nwc_fy25:,.0f} = {ic_fy25:,.0f}; ROIC {roic_fy25:.1%}. Terminal ROIC (NOPAT(n+1)/"
     f"IC(n)) {roic_term:.1%}.")
+# ---- terminal value, through the ONLY sanctioned construction [R-TERM-01] ---------
+# THE RETIRED FORM, kept in one line so the change is legible and the diagnostic below
+# can price it: tv = NOPAT(1+g)(1 - g/ROIC)/(W-g). Substituting rr = g/ROIC charges
+# g x IC every year for ever, so the implied replacement cycle is IC/(g.IC) = 1/g — a
+# fact about the CURRENCY and not about the asset. At this study's 2.5% that is FORTY
+# YEARS against a weighted useful life the company's own accounts disclose at 17.84.
+# It is the PEGGED-MARKET side of the defect [R-TERM-01 CLAUSE TWO]: 1/g runs long here
+# and UNDER-charges maintenance, where in a high-inflation market it runs short and
+# starves the asset. Which way correcting it moves the value is MEASURED, never read off
+# that ratio [R-TERM-01 CLAUSE TWO CORRECTED].
 rr_term = V['g_term'] / roic_term
 nopat_term = nopat[-1] * (1 + V['g_term'])
-tv = nopat_term * (1 - rr_term) / (wacc_term - V['g_term'])
+tv_retired = nopat_term * (1 - rr_term) / (wacc_term - V['g_term'])
+
+# The capital one unit of REAL growth actually needs: the model's own marginal invested
+# capital per unit of revenue across the explicit window, at terminal revenue. Taken from
+# the forecast rather than assumed, so it moves when the fleet plan moves.
+_inc_cap = ((ic[-1] - ic[0]) / (rev[-1] - rev[0])) * rev[-1]
+
+_terminal = TV.build(TV.TerminalInputs(
+    nopat=nopat_term,
+    wacc=wacc_term,
+    inflation=PI_TERM,
+    real_growth=V['g_term_real'],
+    dna_book=dna[-1] * (1 + V['g_term']),
+    useful_life_years=V['asset_life_weighted'],
+    useful_life_source=INP['asset_life_weighted']['source'],
+    # THE BASIS IS THE CROSS-CHECK ONE AND THE REASON IS STRUCTURAL, NOT CONVENIENCE.
+    # 'disclosed_life' divides REPLACEMENT-COST invested capital by the disclosed life,
+    # and this model commits no replacement-cost capital base: note 5 gives GROSS
+    # HISTORICAL cost on a fleet 54.2% depreciated, and rolling that forward through five
+    # years of the model's own capex at mixed vintages is a construction this desk would
+    # be making, not a disclosure it would be reading (SIGCM clause 1). Escalating the
+    # model's own book depreciation over half the DISCLOSED life is the same idea using
+    # only figures that exist: book D&A is struck on assets averaging half a life old.
+    maintenance_basis='book_dna_escalated',
+    working_capital=nwc[-1] * (1 + V['g_term']),
+    incremental_capital_per_unit_growth=_inc_cap))
+
+tv = _terminal.tv
 pv_tv = tv * df[-1]
 ev = pv_explicit + pv_tv
 tv_share = pv_tv / ev
-say(f"[Terminal value] reinvestment g/ROIC = {rr_term:.1%}; terminal NOPAT {nopat_term:,.0f}; "
-    f"TV {tv:,.0f} at terminal WACC {wacc_term:.2%} minus g {V['g_term']:.1%}, discounted at "
-    f"the year-5 factor {df[-1]:.4f} -> PV {pv_tv:,.0f}. Terminal value is {tv_share:.0%} of "
-    f"operating enterprise value — HIGH, because the explicit window carries the fleet "
-    f"build-out's capex while its revenue tail sits beyond FY2030; said plainly, not hidden.")
-assert abs(roic_term * rr_term - V['g_term']) < 1e-9, "terminal g != ROIC x RR"
+say(f"[Terminal value — [R-TERM-01]] terminal NOPAT {nopat_term:,.0f}; add back book "
+    f"depreciation {_terminal.dna_addback:,.0f}; charge maintenance at current cost "
+    f"{_terminal.maintenance:,.0f} (book depreciation escalated at {PI_TERM:.1%} over half "
+    f"the disclosed weighted life of {V['asset_life_weighted']:.2f} years); charge "
+    f"{_terminal.growth_capex:,.0f} of growth capital for {V['g_term_real']:.2%} REAL "
+    f"growth; working capital contributes {-_terminal.wc_charge:,.0f} because an airline "
+    f"collects fares before it flies and its working capital is negative. Terminal free "
+    f"cash flow {_terminal.fcff:,.0f}; TV {tv:,.0f} at a terminal WACC of {wacc_term:.2%} "
+    f"less derived nominal growth of {V['g_term']:.2%}, discounted at the year-5 factor "
+    f"{df[-1]:.4f} -> PV {pv_tv:,.0f}, {tv_share:.0%} of operating enterprise value. "
+    f"THE TERMINAL SHARE IS HIGH AND IT IS THE FLEET PLAN, NOT A TRICK: the explicit "
+    f"window carries {sum(capex):,.0f} of fleet capex against {sum(dna):,.0f} of "
+    f"depreciation, so its free cash flow is suppressed by an expansion whose revenue "
+    f"arrives after FY2030. Said plainly, not hidden.")
+say(f"[Terminal — what the correction did] the retired reinvestment-identity form "
+    f"(g/ROIC = {rr_term:.1%} of terminal profit) gave TV {tv_retired:,.0f}; the "
+    f"sanctioned construction gives {tv:,.0f}, {tv/tv_retired-1:+.1%}. The retired form's "
+    f"implied replacement cycle is 1/g = {1/V['g_term']:.1f} years against the "
+    f"{V['asset_life_weighted']:.2f} the accounts disclose — it charged maintenance over a "
+    f"life more than twice the asset's, which is the pegged-market direction of the "
+    f"defect. It moved the value UP, and that could not have been read off the ratio: the "
+    f"two charges are not like for like (one is a NET charge on an IMPLIED capital base, "
+    f"the other GROSS at replacement cost with book depreciation added back), so the sign "
+    f"is measured per name and never predicted.")
+assert _terminal.record['payout_of_nopat'] <= 1.0, "terminal pays out more than it earns"
 
 # ---- EV -> equity bridge: THE CONTESTED JUDGEMENT BOTH WAYS ------------------
 non_op = (V['fvoci_fy25'] + V['invprop_fy25'] + V['nil_fy25'])
@@ -958,9 +1059,25 @@ def dcf_scenario(pax_mult=1.0, fare_mult=1.0, fuel_mult=1.0, cost_shift=0.0,
     _ppe, pp = [], fleet_assets_fy25
     for i in range(5):
         pp += _capex[i] + leased_gross[i] * capex_mult - dna[i]; _ppe.append(pp)
-    _roic = _nopat[-1] * (1 + g) / (_nwc[-1] + _ppe[-1] + V['intang_fy25'])
-    _rr = min(g / max(_roic, 1e-6), 0.95)
-    _tv = _nopat[-1] * (1 + g) * (1 - _rr) / max(_wt - g, 0.02)
+    # The terminal is built through the sanctioned module here TOO. A sensitivity grid
+    # that keeps the retired construction grades a model the study no longer publishes,
+    # and this study's own base assert is what caught it. A scenario states its growth
+    # as a NOMINAL rate because that is what a reader varies; it is converted to the
+    # REAL rate against the same house inflation, so the module derives back exactly the
+    # nominal that was asked for and nothing is typed twice.
+    _ic_T = _nwc[-1] + _ppe[-1] + V['intang_fy25']
+    _ic_0 = _nwc[0] + _ppe[0] + V['intang_fy25']
+    _inc = ((_ic_T - _ic_0) / (_rev[-1] - _rev[0])) * _rev[-1] if _rev[-1] != _rev[0] \
+        else _inc_cap
+    _tv = TV.build(TV.TerminalInputs(
+        nopat=_nopat[-1] * (1 + g), wacc=max(_wt, g + 0.02), inflation=PI_TERM,
+        real_growth=(1.0 + g) / (1.0 + PI_TERM) - 1.0,
+        dna_book=dna[-1] * (1 + g),
+        useful_life_years=V['asset_life_weighted'],
+        useful_life_source=INP['asset_life_weighted']['source'],
+        maintenance_basis='book_dna_escalated',
+        working_capital=_nwc[-1] * (1 + g),
+        incremental_capital_per_unit_growth=_inc)).tv
     _ev = sum(_f[i] * _df[i] for i in range(5)) + _tv * _df[-1]
     return to_anchor_split(_ev, jv_val, roll=roll_at(ke_from_wacc(_we)))
 
@@ -972,10 +1089,41 @@ say(f"[Fuel framing both ways] BASE (EIA July-2026 STEO path, relief in 2027): A
     f"{dcf_ps_iata:.2f} — {dcf_ps_iata-dcf_ps:+.2f}/share. Both published; the workbook "
     f"carries the base and the alternative side by side.")
 
-dcf_bear = dcf_scenario(pax_mult=0.94, fare_mult=0.97, use_alt_fuel=True, wacc_shift=+0.01,
-                        g=0.015, capex_mult=1.15)
-dcf_bull = dcf_scenario(pax_mult=1.05, fare_mult=1.03, wacc_shift=-0.01, g=0.035,
-                        capex_mult=0.90, jv_val=jv_cap)
+# THE SCENARIO TERMINALS ARE STATED AS REAL RATES, AND THE BEAR ONE MOVED [R-MACRO-01].
+# The prior edition typed 1.5% nominal for the bear case. Against the house terminal
+# inflation of 2.0% that is -0.49% REAL: a claim that this airline CONTRACTS in real
+# terms for ever, which is a far stronger statement than "growth stops" and which no
+# sentence in the study argued for. It was invisible while the rate was typed nominal,
+# and the retired terminal construction hid it a second time — g/ROIC produces a
+# positive reinvestment charge whatever the sign of the real rate, and a min(.., 0.95)
+# clamp swallowed what was left. The sanctioned construction refused the cell outright,
+# because a permanently shrinking business RELEASES capital and the terminal then
+# distributes more than it earns for ever. The bear case is now zero real growth —
+# growth stops — and the bull is the same +1.47% real it always was, now stated.
+# THE ENVELOPE IS FLEXED IN OBSERVABLE BUSINESS UNITS AND THE MACRO PATH IS HELD.
+# The prior edition's bear and bull each moved the cost of capital a point AND the
+# terminal growth rate, on top of the business drivers. Under [R-MACRO-01] the terminal
+# growth and the terminal risk-free rate are DERIVED from one house path and carry the
+# same terminal inflation, so a corner that moves one without the other is internally
+# contradictory and the width of the range is CHOSEN rather than observed. The study's
+# own lens gate refused it in those words. The corners now move only what this business
+# can actually do differently — passengers, fares, the fuel path, the fleet capex bill —
+# and the cost of capital and the terminal growth stay on the house path in every corner.
+# The rate sensitivities are unchanged and are published as their own grids, where a
+# reader can see what a point of discount rate is worth without it being folded into the
+# envelope.
+_g_nom = lambda gr: (1.0 + PI_TERM) * (1.0 + gr) - 1.0
+dcf_bear = dcf_scenario(pax_mult=0.94, fare_mult=0.97, use_alt_fuel=True, capex_mult=1.15)
+dcf_bull = dcf_scenario(pax_mult=1.05, fare_mult=1.03, capex_mult=0.90, jv_val=jv_cap)
+say(f"[Envelope — business drivers only, macro held] bear {dcf_bear:.2f} (passengers -6%, "
+    f"fares -3%, the IATA high-fuel path, fleet capex +15%) / base {dcf_ps:.2f} / bull "
+    f"{dcf_bull:.2f} (passengers +5%, fares +3%, capex -10%, the JV network capitalised). "
+    f"Every corner discounts on the same house cost-of-capital path and the same derived "
+    f"terminal growth of {V['g_term']:.2%} ({V['g_term_real']:+.2%} real). The prior "
+    f"edition also moved the cost of capital a point either way and the terminal growth "
+    f"to 1.5%/3.5% — and 1.50% nominal is {(1.015/(1+PI_TERM)-1):+.2%} REAL, a permanent "
+    f"real contraction of this airline that nothing in the study argues for and that was "
+    f"invisible while the rate was typed nominal.")
 say(f"[DCF scenarios] bear {dcf_bear:.2f} / base {dcf_ps:.2f} / bull {dcf_bull:.2f} "
     f"(the bull adopts the JV-capitalised framing; the bear the IATA fuel path)")
 
@@ -1038,32 +1186,49 @@ say(f"[Book lens] justified P/B {pb_just:.2f}x = ({V['roe_sust']:.0%} - {V['g_te
     f"({ke_term:.2%} - {V['g_term']:.1%}) on BVPS {bvps:.2f} -> AED {book_ps:.2f}/share. "
     f"Trailing ROE {roe_trailing:.1%}.")
 
-# ---- synthesis ----------------------------------------------------------------
-W = V['lens_weights']
+# ---- synthesis: ONE CLASS PRIMARY IS THE CENTRAL [R-LENS-03] --------------------
+# THE TYPED FOUR-LENS BLEND IS RETIRED. It weighted 45/20/20/15 across a cash-flow lens,
+# a peer multiple, a normalised-earnings figure and book value, and those weights had
+# never cleared any out-of-sample test — chosen, written down, inherited, which is how a
+# free parameter survives in a house that forbids them everywhere else.
+#
+# TWO THINGS CHANGE AND THE SECOND IS THE LARGER. First, the DCF alone is the answer.
+# Second, NORMALISED EARNINGS POWER IS NOT A PERMITTED LENS FOR AN AIRLINE and it carried
+# a fifth of the weight: the registry gives this class a cash-flow primary with an
+# own-history enterprise multiple, a relative multiple and book beside it, for the reason
+# it excludes the lens from developers — an airline's reported earnings in any one year
+# are an accident of the fuel curve, the fleet delivery schedule and the load factor, so
+# normalising them normalises a cycle rather than a level. It read 3.43 against a
+# cash-flow 4.82 and pulled the published central down by about a tenth.
+central = dcf_ps
+lo, hi = dcf_bear, dcf_bull       # the primary's OWN scenarios, on one clock
 lenses = dict(
-    dcf=dict(name='Discounted cash flow (primary)', bear=dcf_bear, base=dcf_ps,
-             bull=dcf_bull, w=W['dcf']),
-    relative=dict(name='Relative multiples', bear=rel_bear, base=rel_ps, bull=rel_bull,
-                  w=W['relative']),
-    normalized=dict(name='Normalised earnings power', bear=norm_bear, base=norm_ps,
-                    bull=norm_bull, w=W['normalized']),
-    book=dict(name='Book value and sustainable return', bear=book_bear, base=book_ps,
-              bull=book_bull, w=W['book']),
+    dcf=dict(name='Discounted cash flow (the central)', bear=dcf_bear, base=dcf_ps,
+             bull=dcf_bull, w=1.0, role='primary'),
+    relative=dict(name='Relative multiples (cross-check)', bear=rel_bear, base=rel_ps,
+                  bull=rel_bull, w=0.0, role='cross_check'),
+    book=dict(name='Book value and sustainable return (cross-check, a floor)',
+              bear=book_bear, base=book_ps, bull=book_bull, w=0.0, role='cross_check'),
 )
-central = sum(l['base'] * l['w'] for l in lenses.values())
-lo_w = sum(l['bear'] * l['w'] for l in lenses.values())     # the range, weighted like the base
-hi_w = sum(l['bull'] * l['w'] for l in lenses.values())
-lo = min(l['bear'] for l in lenses.values())                # widest single-lens span, labelled
-hi = max(l['bull'] for l in lenses.values())
-lenses['central'] = dict(name='Weighted central', bear=lo_w, base=central, bull=hi_w, w=1.0)
-say(f"[Range — weighted after critique] the published bear/bull are now weighted the same "
-    f"way as the base: {lo_w:.2f} - {hi_w:.2f}; the widest single-lens span "
-    f"({lo:.2f} - {hi:.2f}, the DCF scenarios) is shown separately and labelled as such.")
-central_jvcap = central + W['dcf'] * (dcf_ps_jvcap - dcf_ps)
-say(f"[Synthesis] weighted central AED {central:.2f}; full span {lo:.2f} - {hi:.2f}; spot "
-    f"{SPOT:.2f} ({central/SPOT-1:+.0%} to the central). On the JV-capitalised framing the "
-    f"central becomes {central_jvcap:.2f} ({central_jvcap/SPOT-1:+.0%}) — both stated, "
-    f"never averaged.")
+lenses['central'] = dict(name='Central — the cash-flow lens', bear=lo, base=central,
+                         bull=hi, w=1.0, role='primary')
+say(f"[Synthesis — [R-LENS-03]] the central is the class primary and nothing else: the "
+    f"cash-flow lens at AED {central:.2f} against a spot of {SPOT:.2f} "
+    f"({central/SPOT-1:+.1%}). The envelope {lo:.2f} - {hi:.2f} is that same lens under "
+    f"its own bear and bull, on one clock — never a spread across methods. Cross-checks "
+    f"published beside it and never averaged in: relative multiples "
+    f"AED {rel_ps:.2f}, book value AED {book_ps:.2f} (a disclosed FLOOR). The retired "
+    f"blend read AED {0.45*dcf_ps + 0.20*rel_ps + 0.20*norm_ps + 0.15*book_ps:.2f}, "
+    f"{(0.45*dcf_ps + 0.20*rel_ps + 0.20*norm_ps + 0.15*book_ps)/central-1:+.1%} against "
+    f"the primary — it was showing a reader about four fifths of the disagreement this "
+    f"study actually holds with the market.")
+say(f"[Normalised earnings — computed, published as an observation, NOT a lens] "
+    f"AED {norm_ps:.2f}. It is retained in the record because it was built and deleting a "
+    f"computed figure to satisfy a rule is the wrong direction, and it is excluded from "
+    f"the lens set because the registry does not permit it for this class.")
+central_jvcap = dcf_ps_jvcap
+say(f"[JV framing] on the alternative JV-capitalised framing the central becomes "
+    f"{central_jvcap:.2f} ({central_jvcap/SPOT-1:+.1%}) — both stated, never averaged.")
 assert 0.20 <= central / SPOT <= 3.0, f"central/spot {central/SPOT:.2f} outside plausibility"
 
 # ---- sensitivity grids ---------------------------------------------------------
@@ -1075,8 +1240,21 @@ def dcf_at(we_, wt_, g_):
     _df, cc = [], 1.0
     for w in _fwd:
         cc /= (1 + w); _df.append(cc)
-    _rr = min(g_ / roic_term, 0.95)
-    _tv = nopat[-1] * (1 + g_) * (1 - _rr) / max(wt_ - g_, 0.02)
+    # Built through the sanctioned module, exactly as the headline is. A GRID CELL THE
+    # CONSTRUCTION REFUSES IS NOT A VALUE: printing one would publish a terminal the
+    # house forbids, so the cell comes back as None and the table says so.
+    try:
+        _tv = TV.build(TV.TerminalInputs(
+            nopat=nopat[-1] * (1 + g_), wacc=max(wt_, g_ + 0.02), inflation=PI_TERM,
+            real_growth=(1.0 + g_) / (1.0 + PI_TERM) - 1.0,
+            dna_book=dna[-1] * (1 + g_),
+            useful_life_years=V['asset_life_weighted'],
+            useful_life_source=INP['asset_life_weighted']['source'],
+            maintenance_basis='book_dna_escalated',
+            working_capital=nwc[-1] * (1 + g_),
+            incremental_capital_per_unit_growth=_inc_cap)).tv
+    except TV.TerminalRefused:
+        return None
     _ev = sum(fcff[i] * _df[i] for i in range(5)) + _tv * _df[-1]
     # SPLIT roll, at the cost of equity implied by the perturbed rate — the same
     # convention as the headline. (Defect found 17-Aug-2026: these grids were still on
@@ -1270,11 +1448,111 @@ OUT = dict(
              scenario_vectors=dict(
                  high_fuel=dict(use_alt_fuel=True),
                  bear=dict(pax_mult=0.94, fare_mult=0.97, use_alt_fuel=True,
-                           wacc_shift=+0.01, g=0.015, capex_mult=1.15),
-                 bull=dict(pax_mult=1.05, fare_mult=1.03, wacc_shift=-0.01, g=0.035,
-                           capex_mult=0.90, jv_val='15x profit share'))),
+                           capex_mult=1.15, macro_held=True),
+                 bull=dict(pax_mult=1.05, fare_mult=1.03, capex_mult=0.90,
+                           jv_val='15x profit share', macro_held=True))),
+    terminal_record=dict(
+        construction='engine/terminal_value.py [R-TERM-01]',
+        retired_construction=dict(
+            form='NOPAT(1+g)(1 - g/ROIC)/(W-g)', tv=tv_retired,
+            implied_cycle_years=1.0 / V['g_term'],
+            why_retired="the reinvestment identity charges g x IC every year for ever, so "
+                        "the implied replacement cycle is 1/g — a fact about the currency "
+                        "and not about the asset. At a 2.5% terminal that is 40.0 years "
+                        "against a weighted useful life this company's own accounts "
+                        "disclose at 17.84."),
+        inputs=dict(nopat=nopat_term, wacc=wacc_term, inflation=PI_TERM,
+                    real_growth=V['g_term_real'], nominal_growth=V['g_term'],
+                    dna_book=dna[-1] * (1 + V['g_term']),
+                    useful_life_years=V['asset_life_weighted'],
+                    useful_life_source=INP['asset_life_weighted']['source'],
+                    maintenance_basis='book_dna_escalated',
+                    maintenance_basis_reason=(
+                        "Maintenance could be struck as replacement-cost capital divided "
+                        "by the disclosed life, and this model holds no replacement-cost "
+                        "capital figure: the property note gives GROSS HISTORICAL cost on "
+                        "a base 54.2% depreciated, and rolling that forward through five "
+                        "years of forecast capital spending at mixed vintages would be a "
+                        "construction of ours rather than a figure the company discloses. "
+                        "Escalating the model's own book depreciation over half the "
+                        "disclosed life uses only figures that exist."),
+                    working_capital=nwc[-1] * (1 + V['g_term']),
+                    incremental_capital_per_unit_growth=_inc_cap),
+        outputs=dict(fcff=_terminal.fcff, tv=_terminal.tv, floor=_terminal.floor,
+                     maintenance=_terminal.maintenance,
+                     growth_capex=_terminal.growth_capex,
+                     wc_charge=_terminal.wc_charge, dna_addback=_terminal.dna_addback,
+                     implied_cycle_years=_terminal.implied_cycle_years,
+                     below_floor=_terminal.below_floor),
+        record=_terminal.record,
+        moved=dict(tv_before=tv_retired, tv_after=tv, pct=tv / tv_retired - 1.0)),
+    lens_record=dict(**{'class': 'airline'},
+        primary=dict(kind='dcf', two_sided=False, value=dcf_ps,
+                     range=dict(low=dcf_bear, high=dcf_bull),
+                     range_note="the cash-flow lens under its own bear and bull on one "
+                                "clock, not the widest spread across four methods",
+                     range_basis=dict(
+                         driver="passenger volume, fare, the fuel path and the fleet "
+                                "capex programme — observable business units only",
+                         low=dcf_bear, high=dcf_bull,
+                         units="AED per share, the present-value read under each scenario",
+                         macro_held=True,
+                         evidence="both corners re-run the same unit build through "
+                                  "dcf_scenario(), which calls the sanctioned terminal "
+                                  "module on the scenario's own terminal-year quantities, "
+                                  "so a corner cannot run a construction the base does "
+                                  "not. Every corner discounts on the same house "
+                                  "cost-of-capital path and the same derived terminal "
+                                  "growth: the prior edition also moved the discount rate "
+                                  "a point either way and the terminal growth to 1.5% and "
+                                  "3.5%, which makes the corners internally "
+                                  "contradictory — 1.5% nominal against a 2.0% "
+                                  "house terminal inflation is a permanent REAL "
+                                  "contraction of this airline. The rate sensitivities "
+                                  "are unchanged and published as their own grids, where "
+                                  "a reader sees what a point of discount rate is worth "
+                                  "without it being folded into the envelope.")),
+        cross_checks=[
+            dict(kind='relative_multiple', value=rel_ps, present_value=False,
+                 multiple=V['ev_ebitda_just'],
+                 multiple_source="the median forward enterprise multiple of five listed "
+                                 "low-cost carriers rebuilt from their own primary "
+                                 "filings, never one read off this company's own current "
+                                 "price",
+                 circularity=dict(spot=SPOT, shares=SH, net_debt=nd_fy25,
+                                  metric_value=ebitda_mid),
+                 note="mid-cycle FY2027E EBITDA excluding the fee stream, on the same "
+                      "basis the peer multiples are computed on, with the fee stream "
+                      "valued separately"),
+            dict(kind='book_value', value=book_ps, present_value=False, floor=True,
+                 note="a disclosed FLOOR, published as such and never weighted")],
+        cross_checks_not_built=[
+            dict(kind='ev_ebitda_own_history',
+                 why="this class permits an enterprise multiple on the company's OWN "
+                     "history and this study does not publish one. Its relative lens is "
+                     "PEER-anchored, a different construction; an own-history multiple "
+                     "needs a series of past enterprise values against past EBITDA on a "
+                     "consistent fee basis, which the fee/other-income restatements across "
+                     "FY2022-25 make a research step rather than a lookup. Named rather "
+                     "than quietly absent.")],
+        lenses_excluded=[
+            dict(kind='normalized_earnings', value=norm_ps, bear=norm_bear,
+                 bull=norm_bull,
+                 why="not a permitted lens for this class. An airline's reported earnings "
+                     "in any one year are an accident of the fuel curve, the fleet "
+                     "delivery schedule and the load factor, so normalising them "
+                     "normalises a cycle rather than a level — the same reason the "
+                     "registry excludes it from developers. It carried a fifth of the "
+                     f"retired blend and read AED {norm_ps:.2f} against a cash-flow "
+                     f"AED {dcf_ps:.2f}.")],
+        envelope=dict(low=dcf_bear, high=dcf_bull), central=central,
+        retired_blend=dict(
+            weights=dict(dcf=0.45, relative=0.20, normalized=0.20, book=0.15),
+            value=0.45 * dcf_ps + 0.20 * rel_ps + 0.20 * norm_ps + 0.15 * book_ps,
+            why_retired="typed weights that had never cleared an out-of-sample test, and "
+                        "one of the four lenses is not permitted for this class at all")),
     lenses=lenses, central=central, central_jvcap=central_jvcap,
-    span=[lo_w, hi_w], span_widest=[lo, hi], spot=SPOT,
+    span=[lo, hi], span_widest=[lo, hi], spot=SPOT,
     fuel_defer_q=fuel_defer_q,
     experts=experts, panel_centre=panel_centre,
     sens_wg=dict(g_grid=g_grid, wacc_grid=wt_grid, table=grid_wacc_g),

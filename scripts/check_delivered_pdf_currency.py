@@ -224,10 +224,26 @@ def main(argv):
         if not head.strip():
             dark.append((tk, f'{os.path.basename(pdf)} opening pages yield no text'))
             continue
-        if not any(shows(head, v) for v in want):
+        # EVERY BRANCH, NOT ANY BRANCH. A two-sided study publishes two answers and a
+        # document showing one of them is HALF CURRENT — which is the gap gate's own
+        # rule three files away ("a review naming one of two answers has audited half
+        # the study") and was not this one's. It cost a real miss the day it was
+        # written: a study rebuilt from two branches of 58.04 and 73.03 to 36.64 and
+        # 54.24 passed, because 36.64 happened to appear in the stale document's
+        # opening pages while the headline still read 58.04. `any` over a set of
+        # answers asks whether the paper carries SOMETHING the model believes; the
+        # question is whether it carries what the model PUBLISHES.
+        missing = [v for v in want if not shows(head, v)]
+        if missing:
             stale.append((tk, os.path.basename(pdf),
-                          'its opening pages carry none of %s'
-                          % ', '.join(f'{v:,.2f}' for v in want)))
+                          ('its opening pages carry none of %s'
+                           if len(missing) == len(want) else
+                           'it publishes %d branches and its opening pages carry only '
+                           'some of them; missing %s')
+                          % (', '.join(f'{v:,.2f}' for v in
+                                       (want if len(missing) == len(want) else missing))
+                             if len(missing) == len(want) else
+                             (len(want), ', '.join(f'{v:,.2f}' for v in missing)))))
         else:
             clean.append(tk)
 

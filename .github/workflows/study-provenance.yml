@@ -84,6 +84,10 @@ on:
       - 'scripts/check_source_integrity_negative_control.py'
       - 'scripts/check_source_rebinding.py'
       - 'scripts/check_source_rebinding_negative_control.py'
+      - 'scripts/check_harness_outputs.py'
+      - 'scripts/check_harness_outputs_negative_control.py'
+      - 'scripts/check_eps_reconciliation.py'
+      - 'scripts/check_eps_reconciliation_negative_control.py'
       - 'engine/source_integrity.py'
       - 'engine/table_footing.py'
       - 'engine/site_data.py'
@@ -190,6 +194,10 @@ on:
       - 'scripts/check_source_integrity_negative_control.py'
       - 'scripts/check_source_rebinding.py'
       - 'scripts/check_source_rebinding_negative_control.py'
+      - 'scripts/check_harness_outputs.py'
+      - 'scripts/check_harness_outputs_negative_control.py'
+      - 'scripts/check_eps_reconciliation.py'
+      - 'scripts/check_eps_reconciliation_negative_control.py'
       - 'engine/source_integrity.py'
       - 'engine/table_footing.py'
       - 'engine/site_data.py'
@@ -613,6 +621,41 @@ jobs:
       - name: Source-constant rebinding gate — negative control
         run: python3 scripts/check_source_rebinding_negative_control.py
 
+      # A COMMITTED NUMBERS FILE THAT IS A PRICING-HARNESS RUN [L-293]. Three studies
+      # carry an override harness so a critique finding can be priced on the real chain
+      # rather than on a re-implementation. One wrote its overridden run straight over the
+      # committed study_numbers.json, and the file it left behind was internally coherent
+      # in every block — a complete, correct run of the model answering a different
+      # question — with the beta RECORD still reporting the registered value, because a
+      # record is written from the input's metadata rather than from the value the model
+      # used. Nothing downstream could see it; it was found because a figure printed for
+      # another purpose was one somebody recognised, which is not a control. The gate
+      # refuses a committed file carrying an override block, and refuses a harness whose
+      # output name does not depend on whether the override was set.
+      - name: Pricing-harness output gate
+        run: python3 scripts/check_harness_outputs.py
+
+      - name: Pricing-harness output gate — negative control
+        run: python3 scripts/check_harness_outputs_negative_control.py
+
+      # WHAT STANDS BETWEEN PROFIT AND SHAREHOLDERS [L-294]. A valuation ends by dividing
+      # an equity value by a share count; every gate here checks how that equity value was
+      # BUILT and none asked whether the number being divided is what shareholders receive.
+      # Egyptian law gives employees a share of distributable profits, disclosed BELOW
+      # attributable profit — an appropriation, not a cost, so it appears in no line of the
+      # income statement and no cost driver can capture it. One study registered
+      # attributable profit of 17,330.245 AND its reported EPS of 7.13, both correctly
+      # sourced; 17,330.245/2,140.778 = 8.095, and the 12% between them was the employees'
+      # share. Nothing reconciled them. The gate holds one identity — profit over shares
+      # reproduces the reported EPS, to the rounding the EPS is printed at — and requires
+      # any gap to be NAMED. A study registering no reported EPS is UNREADABLE rather than
+      # clean: that state is what made the defect invisible.
+      - name: Earnings-per-share reconciliation gate
+        run: python3 scripts/check_eps_reconciliation.py
+
+      - name: Earnings-per-share reconciliation gate — negative control
+        run: python3 scripts/check_eps_reconciliation_negative_control.py
+
       # [R-ENF-03] assets/data.js is read through a REAL JavaScript parse, EVERYWHERE.
       # The rule was adopted four weeks earlier, after a reader — not a check — found a
       # ticker page publishing a support above its own close while both gates reported it
@@ -979,3 +1022,14 @@ jobs:
 
       - name: Delivered PDF currency — negative control
         run: python3 scripts/check_delivered_pdf_currency_negative_control.py
+
+      # [R-REBUILD-01] — a rebuilt study records the ROUTE it took, not only where it
+      # arrived. The promotion guard governs levers promoted from the calibration; a
+      # rebuild applies rules that already bind and was governed by nothing, which is
+      # how six required corrections stacked on one name without anyone watching the
+      # running total.
+      - name: Rebuild ledgers walk from their start to their answer
+        run: python3 scripts/check_rebuild_ledger.py
+
+      - name: Rebuild ledger — negative control
+        run: python3 scripts/check_rebuild_ledger_negative_control.py

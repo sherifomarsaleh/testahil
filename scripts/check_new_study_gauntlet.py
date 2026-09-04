@@ -61,6 +61,7 @@ BUILDER_STUB = "import json\nd = json.load(open('diagnostics.json'))\n"
 # the checks a new name cannot walk past by simply not producing something.
 DIRECTORY_GATES = [
     'check_study_provenance.py',
+    'check_rebuild_ledger.py',
     'check_workbook_structure.py',
     'check_document_structure.py',
     'check_sweep_module.py',
@@ -133,6 +134,24 @@ ARTEFACT_GATES = {
         'a builder-read JSON carrying a central and declaring no vintage',
         lambda: {'diagnostics.json': ('json', {'central': 12.34, 'note': 'no declaration'}),
                  'build_it.py': ('py', BUILDER_STUB)}),
+    'check_eps_reconciliation.py': (
+        'a committed numbers file whose profit over shares does not reproduce the '
+        'reported earnings per share, with nothing naming the difference',
+        lambda: {'study_numbers.json': ('json', {
+            'meta': {'shares_mn': 1000.0},
+            'inputs': {
+                'npa_fy25': {'value': 8000.0, 'source': 'audited FY2025 statements',
+                             'date': '2026-02-01', 'ring': 'Company'},
+                'eps_fy25': {'value': 7.00, 'source': 'audited FY2025 statements',
+                             'date': '2026-02-01', 'ring': 'Company'}}})}),
+    'check_harness_outputs.py': (
+        'a pricing harness that can write the committed numbers file on the override path',
+        lambda: {'compute.py': ('py',
+                                'import json, os\n'
+                                "BETA_OVERRIDE = os.environ.get('BETA_OVERRIDE')\n"
+                                'beta = float(BETA_OVERRIDE) if BETA_OVERRIDE else 0.488\n'
+                                "json.dump({'beta': beta}, "
+                                "open('study_numbers.json', 'w'))\n")}),
     'check_source_rebinding.py': (
         'a source constant rebound after inputs were registered against it',
         lambda: {'compute.py': ('py',

@@ -37,6 +37,10 @@ W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sens']
 EXP, REL, NRM, BK = D['experts'], D['rel'], D['norm'], D['book']
 BU, S0, STK = D['bottomup'], D['step0'], D['strike']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
+TERMINAL_RECORD = D['terminal_record']
+NORM_EX = D['lens_record']['lenses_excluded'][0]
+LN_EXCLUDED_NORM = NORM_EX['value']
+RETIRED_BLEND = D['lens_record']['retired_blend']['value']
 SPOT, SH = M['spot'], M['shares_mn']
 TAX = IN['tax_eff']
 NCI_SH = DCF['nci_share']
@@ -233,7 +237,18 @@ SCALARS = [
     ('Marginal cost of debt', IN['kd'], PCT2),
     ('Terminal cost of debt', IN['kd_term'], PCT2),
     ('Terminal debt weight', IN['wd_term'], PCT),
-    ('Terminal growth', IN['g_term'], PCT),
+    # [R-MACRO-01]: the REAL rate is what this study assumes; the NOMINAL is derived
+    # from the house terminal inflation, and the derivation is a LIVE FORMULA two rows
+    # below so a reader watches the multiplication rather than being told its answer.
+    # That is the whole reason the storage changed — a typed nominal rate cannot be told
+    # from inflation minus a point.
+    ('Terminal real growth (this study assumes only this)', IN['g_term_real'], PCT2),
+    ('Terminal inflation (house macro path, AE — this study may not carry its own)',
+     TERMINAL_RECORD['inputs']['inflation'], PCT2),
+    ('Terminal growth', D['dcf']['g'], PCT2),
+    ('Weighted useful life of the depreciable asset base (years, from the FY2025 '
+     'accounting-policy note weighted by the property note\'s own gross cost)',
+     IN['asset_life_weighted'], NUM2),
     ('Joint-venture capitalisation multiple', IN['jv_pe'], MULT),
     ('Justified EV/EBITDA', IN['ev_ebitda_just'], MULT),
     ('Justified price/earnings', IN['pe_just'], MULT),
@@ -241,7 +256,7 @@ SCALARS = [
     ('Spot price (AED)', SPOT, PX),
     ('Shares outstanding (mn)', SH, NUM0),
     ('FY2025 dividend per share (AED, approved 12 March 2026)', IN['dps_fy25'], PX),
-    ('Days from 31-Dec-2025 to the 7-Aug-2026 anchor', IN['anchor_days'], NUM0),
+    ('Days from 31-Dec-2025 to the 3-Sep-2026 anchor', IN['anchor_days'], NUM0),
     ('Fuel intensity (AED per passenger per USD/bbl of effective jet price)', IN['fuel_intensity'], '0.000'),
     ('Right-of-use value per leased aircraft (AED mn)', FLC['ac_rou'], NUM0),
     ('Loan drawn per owned aircraft (AED mn)', FLC['loan_per_owned'], NUM0),
@@ -508,45 +523,92 @@ for j, cc in enumerate(CD):
 put(wsD, 'A47', 'Invested capital (fleet + intangibles + working capital)', fmt=None)
 for j, cc in enumerate(CD):
     putf(wsD, f'{cc}47', f"={cc}46+{AR('Intangible assets (AED mn, audited)')}+{cc}40", F['ic'][j], NUM0)
+# ROWS OTHER SHEETS POINT AT, NAMED ONCE. Five sheets reference the DCF sheet by cell
+# address; inserting rows into the terminal block re-points every one of them silently,
+# which is exactly what happened when this edition rebuilt the terminal. Naming them
+# here and ASSERTING each when the row is written means the next insertion breaks the
+# build instead of the workbook.
+R_EV, R_TVSHARE, R_ROLL_KE, R_ROLL_CASH = 59, 60, 66, 68
+D_EV, D_TVSHARE = 'DCF!C%d' % R_EV, 'DCF!C%d' % R_TVSHARE
+D_ROLL_KE, D_ROLL_CASH = 'DCF!C%d' % R_ROLL_KE, 'DCF!C%d' % R_ROLL_CASH
 put(wsD, 'A49', 'Terminal block', bold=True, fmt=None)
-putf(wsD, 'C50', f"=F37*(1+{AR('Terminal growth')})", F['nopat'][4] * (1 + IN['g_term']), NUM1)
+# THE TERMINAL, BUILT AS [R-TERM-01] REQUIRES AND NOT ON THE REINVESTMENT IDENTITY.
+# The retired form was tv = NOPAT(1+g)(1 - g/ROIC)/(W-g); substituting rr = g/ROIC
+# charges g x IC every year for ever, so the implied replacement cycle is 1/g — 40.0
+# years here, against a weighted useful life this company's own accounts disclose at
+# 17.84. Every row below is a live formula, so a reader following the labels reaches the
+# figure the page prints: free cash flow is NOPAT plus book depreciation, less
+# maintenance at CURRENT cost, less the capital real growth needs, less inflation on
+# working capital.
+_TR = TERMINAL_RECORD['outputs']
+_L_PI = ('Terminal inflation (house macro path, AE — this study may not carry its own)')
+_L_LIFE = ("Weighted useful life of the depreciable asset base (years, from the FY2025 "
+           "accounting-policy note weighted by the property note's own gross cost)")
+putf(wsD, 'C50', f"=F37*(1+{AR('Terminal growth')})", TERMINAL_RECORD['inputs']['nopat'],
+     NUM1)
 put(wsD, 'A50', 'Terminal NOPAT (FY2031E)', fmt=None)
-putf(wsD, 'C51', '=C50/F47', DCF['roic_term'], PCT2)
-put(wsD, 'A51', 'Terminal return on invested capital', fmt=None)
-putf(wsD, 'C52', f"={AR('Terminal growth')}/C51", DCF['rr_term'], PCT2)
-put(wsD, 'A52', 'Reinvestment rate = growth / return on capital', fmt=None)
-putf(wsD, 'C53', f"=C50*(1-C52)/(C24-{AR('Terminal growth')})", DCF['tv'], NUM0)
-put(wsD, 'A53', 'Terminal value', fmt=None)
-putf(wsD, 'C54', '=C53*F30', DCF['pv_tv'], NUM0)
-put(wsD, 'A54', 'PV of terminal value', fmt=None)
-putf(wsD, 'C55', '=SUM(B44:F44)', DCF['pv_explicit'], NUM0)
-put(wsD, 'A55', 'PV of explicit years', fmt=None)
-putf(wsD, 'C56', '=C54+C55', DCF['ev'], NUM0, bold=True)
-put(wsD, 'A56', 'Enterprise value of the airline', bold=True, fmt=None)
-putf(wsD, 'C57', '=C54/C56', DCF['tv_share'], PCT, bold=True)
-put(wsD, 'A57', 'Terminal value share of enterprise value', bold=True, fmt=None)
-putf(wsD, 'C59', "='SOTP Bridge'!C13", DCF['eq_attr'], NUM0, green=True)
-put(wsD, 'A59', 'Equity attributable (from the SOTP Bridge)', fmt=None)
-putf(wsD, 'C60', f"=C59/{AR('Shares outstanding (mn)')}", DCF['ps_dec'], PX)
-put(wsD, 'A60', 'Per share at 31-Dec-2025', fmt=None)
-putf(wsD, 'C61', f"=(1+C10)^({AR('Days from 31-Dec-2025 to the 7-Aug-2026 anchor')}/365)",
+putf(wsD, 'C51', f"=F35*(1+{AR('Terminal growth')})",
+     TERMINAL_RECORD['inputs']['dna_book'], NUM1)
+put(wsD, 'A51', 'Plus book depreciation (NOPAT is already net of it)', fmt=None)
+putf(wsD, 'C52', f"=-C51*(1+{AR(_L_PI)})^({AR(_L_LIFE)}/2)", -_TR['maintenance'], NUM1)
+put(wsD, 'A52', 'Less maintenance at current cost (book depreciation escalated over half '
+                'the disclosed life)', fmt=None)
+putf(wsD, 'C53', f"=-{AR('Terminal real growth (this study assumes only this)')}*"
+                 f"{_TR['growth_capex'] / max(TERMINAL_RECORD['inputs']['real_growth'], 1e-12):.6f}",
+     -_TR['growth_capex'], NUM1)
+put(wsD, 'A53', 'Less capital behind real growth', fmt=None)
+putf(wsD, 'C54', f"=-{AR(_L_PI)}*{TERMINAL_RECORD['inputs']['working_capital']:.6f}",
+     -_TR['wc_charge'], NUM1)
+put(wsD, 'A54', 'Less inflation on working capital — NEGATIVE here, because an airline is '
+                'paid before it flies and its working capital is a source of cash',
+    fmt=None)
+putf(wsD, 'C55', '=SUM(C50:C54)', _TR['fcff'], NUM1, bold=True)
+put(wsD, 'A55', 'Terminal free cash flow to the firm', bold=True, fmt=None)
+putf(wsD, 'C56', f"=C55*(1+{AR('Terminal growth')})/(C24-{AR('Terminal growth')})",
+     DCF['tv'], NUM0)
+put(wsD, 'A56', 'Terminal value — the free cash flow above, grown one year and '
+                'capitalised', fmt=None)
+putf(wsD, 'C57', '=C56*F30', DCF['pv_tv'], NUM0)
+put(wsD, 'A57', 'PV of terminal value', fmt=None)
+putf(wsD, 'C58', '=SUM(B44:F44)', DCF['pv_explicit'], NUM0)
+put(wsD, 'A58', 'PV of explicit years', fmt=None)
+assert R_EV == 59, 'enterprise value is named row %d and is being written to 59' % R_EV
+putf(wsD, 'C59', '=C57+C58', DCF['ev'], NUM0, bold=True)
+put(wsD, 'A59', 'Enterprise value of the airline', bold=True, fmt=None)
+assert R_TVSHARE == 60, 'the terminal share is named row %d, written to 60' % R_TVSHARE
+putf(wsD, 'C60', '=C57/C59', DCF['tv_share'], PCT, bold=True)
+put(wsD, 'A60', 'Terminal value share of enterprise value', bold=True, fmt=None)
+putf(wsD, 'C61', '=C50/C24', TERMINAL_RECORD['outputs']['floor'], NUM0)
+put(wsD, 'A61', 'Memo: the no-growth perpetuity floor at book depreciation', fmt=None)
+putf(wsD, 'C62', '=%.6f' % TERMINAL_RECORD['retired_construction']['tv'],
+     TERMINAL_RECORD['retired_construction']['tv'], NUM0)
+put(wsD, 'A62', 'Memo: the retired reinvestment-identity terminal, printed so the change '
+                'this edition made is visible rather than described', fmt=None)
+putf(wsD, 'C64', "='SOTP Bridge'!C13", DCF['eq_attr'], NUM0, green=True)
+put(wsD, 'A64', 'Equity attributable (from the SOTP Bridge)', fmt=None)
+putf(wsD, 'C65', f"=C64/{AR('Shares outstanding (mn)')}", DCF['ps_dec'], PX)
+put(wsD, 'A65', 'Per share at 31-Dec-2025', fmt=None)
+assert R_ROLL_KE == 66, 'the Ke accretion factor is named row %d, written to 66' % R_ROLL_KE
+putf(wsD, 'C66', f"=(1+C10)^({AR('Days from 31-Dec-2025 to the 3-Sep-2026 anchor')}/365)",
      DCF['roll'], DF4)
-put(wsD, 'A61', 'Anchor accretion factor (at the cost of equity)', fmt=None)
-putf(wsD, 'C62', f"=C60*C61-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
+put(wsD, 'A66', 'Anchor accretion factor (at the cost of equity)', fmt=None)
+putf(wsD, 'C67', f"=C65*C66-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
      DCF['ps_dec'] * DCF['roll'] - IN['dps_fy25'], PX)
-put(wsD, 'A62', 'Per share, whole equity rolled at Ke (single-rate view)', fmt=None)
-putf(wsD, 'C63', f"=(1+{ARP('Deposit yield path', 0)})^({AR('Days from 31-Dec-2025 to the 7-Aug-2026 anchor')}/365)",
+put(wsD, 'A67', 'Per share, whole equity rolled at Ke (single-rate view)', fmt=None)
+assert R_ROLL_CASH == 68, ('the cash accretion factor is named row %d, written to 68'
+                           % R_ROLL_CASH)
+putf(wsD, 'C68', f"=(1+{ARP('Deposit yield path', 0)})^({AR('Days from 31-Dec-2025 to the 3-Sep-2026 anchor')}/365)",
      ROLLC, DF4)
-put(wsD, 'A63', 'Cash-leg accretion factor (deposit yield)', fmt=None)
-putf(wsD, 'C64', "='SOTP Bridge'!C15", DCF['ps'], PX, bold=True, green=True)
-put(wsD, 'A64', 'Fair value per share at the anchor (split roll — the published figure)', bold=True, fmt=None)
+put(wsD, 'A68', 'Cash-leg accretion factor (deposit yield)', fmt=None)
+putf(wsD, 'C69', "='SOTP Bridge'!C15", DCF['ps'], PX, bold=True, green=True)
+put(wsD, 'A69', 'Fair value per share at the anchor (split roll — the published figure)', bold=True, fmt=None)
 
 # ============ 5 SOTP BRIDGE ====================================================
 wsB = sheet('SOTP Bridge')
 title(wsB, 'SOTP / EV-to-equity bridge — both JV framings', 'The joint-venture network is the contested judgement: both framings shown, never averaged.',
       7, awidth=56, cwidth=14)
 hdr(wsB, 4, ['Bridge — base framing (JV at audited carrying value)', '', 'AED mn'])
-putf(wsB, 'C5', '=DCF!C56', DCF['ev'], NUM0, green=True)
+putf(wsB, 'C5', f'={D_EV}', DCF['ev'], NUM0, green=True)
 put(wsB, 'A5', 'Enterprise value of the airline (DCF)', fmt=None)
 putf(wsB, 'C6', f"={AR('Cash and fixed deposits, FY2025 (AED mn, audited)')}-{AR('Gross debt, FY2025 (AED mn, audited)')}",
      -nd25, NUM0)
@@ -564,7 +626,7 @@ putf(wsB, 'C13', '=C9-C11', DCF['eq_attr'], NUM0, bold=True)
 put(wsB, 'A13', 'Equity attributable to shareholders', bold=True, fmt=None)
 putf(wsB, 'C14', f"=C13/{AR('Shares outstanding (mn)')}", DCF['ps_dec'], PX)
 put(wsB, 'A14', 'Per share at 31-Dec-2025', fmt=None)
-putf(wsB, 'C15', f"=(C5*DCF!C61+(C6+C7+C8)*DCF!C63-C11)/{AR('Shares outstanding (mn)')}"
+putf(wsB, 'C15', f"=(C5*{D_ROLL_KE}+(C6+C7+C8)*{D_ROLL_CASH}-C11)/{AR('Shares outstanding (mn)')}"
      f"-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
      DCF['ps'], PX, bold=True)
 put(wsB, 'A15', 'Per share at the anchor — operating equity rolled at the cost of equity, '
@@ -575,7 +637,7 @@ putf(wsB, 'C18', f"={AR('Joint-venture capitalisation multiple')}*{AR('Share of 
 put(wsB, 'A18', 'JV network capitalised (multiple x FY2025 profit share)', fmt=None)
 putf(wsB, 'C19', '=C5+C6+C7+C18-C11', DCF['ev'] - nd25 + nonop25 + jv_cap - NCIB, NUM0)
 put(wsB, 'A19', 'Equity attributable on this framing', fmt=None)
-putf(wsB, 'C20', f"=(C5*DCF!C61+(C6+C7+C18)*DCF!C63-C11)/{AR('Shares outstanding (mn)')}"
+putf(wsB, 'C20', f"=(C5*{D_ROLL_KE}+(C6+C7+C18)*{D_ROLL_CASH}-C11)/{AR('Shares outstanding (mn)')}"
      f"-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
      DCF['ps_jvcap'], PX, bold=True)
 put(wsB, 'A20', 'Per share at the anchor — JV capitalised', bold=True, fmt=None)
@@ -594,23 +656,28 @@ put(wsB, 'A28', 'The JV network: Air Arabia Abu Dhabi (49%), Air Arabia Egypt (4
 
 # ============ 3 FUNDAMENTAL VALUATION =========================================
 wsF = sheet('Fundamental Valuation')
-title(wsF, 'Fundamental valuation — the four lenses and the alternatives', None, 6, awidth=56, cwidth=14)
+title(wsF, 'Fundamental valuation — the central and the cross-checks beside it', None, 6,
+      awidth=56, cwidth=14)
 hdr(wsF, 4, ['Lens', 'Basis', 'AED per share'])
 putf(wsF, 'C5', "='SOTP Bridge'!C15", DCF['ps'], PX, green=True, bold=True)
-put(wsF, 'A5', 'Discounted cash flow (primary)', fmt=None)
+put(wsF, 'A5', 'Discounted cash flow — THE CENTRAL', fmt=None)
 put(wsF, 'B5', 'FCFF, glide-discounted, JV at carrying value', fmt=None)
 putf(wsF, 'C6', "='Relative & Normalized'!C11", LN['relative']['base'], PX, green=True)
-put(wsF, 'A6', 'Relative multiples', fmt=None)
+put(wsF, 'A6', 'Relative multiples — cross-check', fmt=None)
 put(wsF, 'B6', f"{IN['ev_ebitda_just']:.1f}x FY2027E EBITDA, discounted", fmt=None)
-putf(wsF, 'C7', "='Relative & Normalized'!C29", LN['normalized']['base'], PX, green=True)
-put(wsF, 'A7', 'Normalised earnings power', fmt=None)
-put(wsF, 'B7', f"{IN['pe_just']:.0f}x mid-cycle EPS at current scale", fmt=None)
-putf(wsF, 'C8', "='Relative & Normalized'!C37", LN['book']['base'], PX, green=True)
-put(wsF, 'A8', 'Book value and sustainable return', fmt=None)
-put(wsF, 'B8', 'Justified price-to-book on FY2025 equity', fmt=None)
+putf(wsF, 'C7', "='Relative & Normalized'!C37", LN['book']['base'], PX, green=True)
+put(wsF, 'A7', 'Book value and sustainable return — cross-check, a disclosed floor',
+    fmt=None)
+put(wsF, 'B7', 'Justified price-to-book on FY2025 equity', fmt=None)
+putf(wsF, 'C8', "='Relative & Normalized'!C29", LN_EXCLUDED_NORM, PX, green=True)
+put(wsF, 'A8', 'Normalised earnings power — COMPUTED AND EXCLUDED', fmt=None)
+put(wsF, 'B8', f"{IN['pe_just']:.0f}x mid-cycle EPS; not a permitted lens for an airline, "
+               f"whose reported earnings in any one year are an accident of the fuel "
+               f"curve, the delivery schedule and the load factor", fmt=None, wrap=True)
 band(wsF, 10, 6)
-putf(wsF, 'C10', "=Summary!C9", D['central'], PX, bold=True)
-put(wsF, 'A10', 'Weighted central', bold=True, fmt=None)
+putf(wsF, 'C10', '=C5', D['central'], PX, bold=True)
+put(wsF, 'A10', 'Central — one lens, not an average of four', bold=True,
+    fmt=None)
 hdr(wsF, 12, ['Alternative readings (whole-model re-runs unless linked)', '', 'AED per share'])
 putf(wsF, 'C13', "='SOTP Bridge'!C20", DCF['ps_jvcap'], PX, green=True)
 put(wsF, 'A13', 'DCF with the JV network capitalised (the contested judgement, other framing)', fmt=None)
@@ -629,19 +696,19 @@ TAXR = AR('Tax rate')
 E1_EPS = (f"(('Segments'!D30*'Segments'!D14+'Segments'!D28-{ARP('Depreciation & amortisation (AED mn)', 2)}"
           f"+('Cash Flow'!D13-'Cash Flow'!D14)+'Income Statement'!G15)*(1-{TAXR})*(1-{NCIR})/{SHR})")
 put(wsF, 'A19', 'Expert 1 — earnings power at a justified multiple (live formula)', fmt=None)
-putf(wsF, 'C19', f"=13*{E1_EPS}*DCF!C61-{DPSR}", EXP['e1']['base'], PX)
-putf(wsF, 'D19', f"=10*{E1_EPS}*DCF!C61-{DPSR}", EXP['e1']['rng'][0], PX)
-putf(wsF, 'E19', f"=16*{E1_EPS}*DCF!C61-{DPSR}", EXP['e1']['rng'][1], PX)
+putf(wsF, 'C19', f"=13*{E1_EPS}*{D_ROLL_KE}-{DPSR}", EXP['e1']['base'], PX)
+putf(wsF, 'D19', f"=10*{E1_EPS}*{D_ROLL_KE}-{DPSR}", EXP['e1']['rng'][0], PX)
+putf(wsF, 'E19', f"=16*{E1_EPS}*{D_ROLL_KE}-{DPSR}", EXP['e1']['rng'][1], PX)
 # Expert 2 — LIVE: owner cash earnings capitalised at the terminal rate, half net cash
 E2_FCFE = (f"((AVERAGE('Cash Flow'!D9:F9)+('Cash Flow'!E13-'Cash Flow'!E14)*(1-{TAXR})"
            f"+'Income Statement'!H15*(1-{TAXR})*0.4)*(1-{NCIR}))")
 E2_HALFCASH = (f"0.5*({AR('Cash and fixed deposits, FY2025 (AED mn, audited)')}-{AR('Gross debt, FY2025 (AED mn, audited)')})")
 put(wsF, 'A20', 'Expert 2 — owner cash earnings capitalised (live formula)', fmt=None)
-putf(wsF, 'C20', f"=({E2_FCFE}*(1+{AR('Terminal growth')})/(DCF!C21-{AR('Terminal growth')})+{E2_HALFCASH})/{SHR}*DCF!C61-{DPSR}",
+putf(wsF, 'C20', f"=({E2_FCFE}*(1+{AR('Terminal growth')})/(DCF!C21-{AR('Terminal growth')})+{E2_HALFCASH})/{SHR}*{D_ROLL_KE}-{DPSR}",
      EXP['e2']['base'], PX)
-putf(wsF, 'D20', f"={E2_FCFE}*1.015/(0.5*(DCF!C10+DCF!C21)-0.015)/{SHR}*DCF!C61-{DPSR}",
+putf(wsF, 'D20', f"={E2_FCFE}*1.015/(0.5*(DCF!C10+DCF!C21)-0.015)/{SHR}*{D_ROLL_KE}-{DPSR}",
      EXP['e2']['rng'][0], PX)
-putf(wsF, 'E20', f"=({E2_FCFE}*1.035/(DCF!C21-0.035)+2*{E2_HALFCASH})/{SHR}*DCF!C61-{DPSR}",
+putf(wsF, 'E20', f"=({E2_FCFE}*1.035/(DCF!C21-0.035)+2*{E2_HALFCASH})/{SHR}*{D_ROLL_KE}-{DPSR}",
      EXP['e2']['rng'][1], PX)
 # Expert 3 — economic-profit legs stay whole-model outputs (their PV chain lives in the
 # study's Appendix C table line by line); pasted, named as such
@@ -658,18 +725,23 @@ put(wsF, 'A25', 'Columns D and E carry each expert\'s own low and high. The spot
 wsU = sheet('Summary')
 title(wsU, 'Summary — valuation at a glance', 'All values link live to their source sheets', 7,
       awidth=48, cwidth=14)
-hdr(wsU, 4, ['Lens', 'Bear', 'Base', 'Bull', 'Weight', 'Contribution', 'vs spot'])
+# [R-LENS-03]: ONE CLASS PRIMARY IS THE CENTRAL. There is no weight column any more
+# because there are no weights: the cash-flow lens IS the answer and the others sit
+# beside it as cross-checks a reader compares against, never averages into. The retired
+# blend is printed at the foot so the change this edition made is visible on the page
+# rather than only described.
+hdr(wsU, 4, ['Lens', 'Bear', 'Base', 'Bull', 'Role', '', 'vs spot'])
 r = 5
 LSRC = {'dcf': "='Fundamental Valuation'!C5", 'relative': "='Relative & Normalized'!C11",
-        'normalized': "='Relative & Normalized'!C29", 'book': "='Relative & Normalized'!C37"}
-BSRC = {'relative': "='Relative & Normalized'!C12", 'normalized': "='Relative & Normalized'!C31",
-        'book': "='Relative & Normalized'!C39"}
-USRC = {'relative': "='Relative & Normalized'!C13", 'normalized': "='Relative & Normalized'!C32",
-        'book': "='Relative & Normalized'!C40"}
-WLBL = {'dcf': 'Weight — discounted cash flow', 'relative': 'Weight — relative',
-        'normalized': 'Weight — normalised', 'book': 'Weight — book'}
-for k in ['dcf', 'relative', 'normalized', 'book']:
+        'book': "='Relative & Normalized'!C37"}
+BSRC = {'relative': "='Relative & Normalized'!C12", 'book': "='Relative & Normalized'!C39"}
+USRC = {'relative': "='Relative & Normalized'!C13", 'book': "='Relative & Normalized'!C40"}
+ROLE = {'dcf': 'THE CENTRAL', 'relative': 'cross-check', 'book': 'cross-check (a floor)'}
+LKEYS = [k for k in ('dcf', 'relative', 'book') if k in LN]
+ROW_OF = {}
+for k in LKEYS:
     l = LN[k]
+    ROW_OF[k] = r
     put(wsU, f'A{r}', l['name'], fmt=None)
     if k in BSRC:
         putf(wsU, f'B{r}', BSRC[k], l['bear'], PX, green=True)
@@ -680,28 +752,35 @@ for k in ['dcf', 'relative', 'normalized', 'book']:
         putf(wsU, f'D{r}', USRC[k], l['bull'], PX, green=True)
     else:
         put(wsU, f'D{r}', l['bull'], BLUE, PX)
-    putf(wsU, f'E{r}', f"={AR(WLBL[k])}", l['w'], PCT, green=True)
-    putf(wsU, f'F{r}', f'=C{r}*E{r}', l['base'] * l['w'], PX)
+    put(wsU, f'E{r}', ROLE[k], fmt=None)
     putf(wsU, f'G{r}', f'=C{r}/$C$16-1', l['base'] / SPOT - 1, PCT)
     r += 1
-band(wsU, 9, 7)
-putf(wsU, 'B9', '=B5*E5+B6*E6+B7*E7+B8*E8', LN['central']['bear'], PX, bold=True)
-putf(wsU, 'C9', '=SUM(F5:F8)', D['central'], PX, bold=True)
-putf(wsU, 'D9', '=D5*E5+D6*E6+D7*E7+D8*E8', LN['central']['bull'], PX, bold=True)
-putf(wsU, 'E9', '=SUM(E5:E8)', 1.0, PCT, bold=True)
-putf(wsU, 'G9', '=C9/$C$16-1', D['central'] / SPOT - 1, PCT, bold=True)
-put(wsU, 'A9', 'Weighted central (range weighted like the base)', bold=True, fmt=None)
-putf(wsU, 'B15', '=MIN(B5:B8)', D['span_widest'][0], PX)
-putf(wsU, 'D15', '=MAX(D5:D8)', D['span_widest'][1], PX)
-put(wsU, 'A15', 'Widest single-lens span (the DCF scenarios) — labelled, not the weighted range', fmt=None)
-putf(wsU, 'C10', "='SOTP Bridge'!C20", DCF['ps_jvcap'], PX, green=True)
-putf(wsU, 'G10', '=C10/$C$16-1', DCF['ps_jvcap'] / SPOT - 1, PCT)
-put(wsU, 'A10', 'DCF — JV network capitalised (contested judgement, other framing)', fmt=None)
-putf(wsU, 'C11', '=C9+' + AR('Weight — discounted cash flow') + "*('SOTP Bridge'!C20-'Fundamental Valuation'!C5)",
-     D['central_jvcap'], PX)
-putf(wsU, 'G11', '=C11/$C$16-1', D['central_jvcap'] / SPOT - 1, PCT)
-put(wsU, 'A11', 'Weighted central on that framing', fmt=None)
-putf(wsU, 'C12', '=DCF!C57', DCF['tv_share'], PCT, green=True)
+_RD = ROW_OF['dcf']
+band(wsU, r, 7)
+putf(wsU, f'B{r}', f'=B{_RD}', LN['central']['bear'], PX, bold=True)
+putf(wsU, f'C{r}', f'=C{_RD}', D['central'], PX, bold=True)
+putf(wsU, f'D{r}', f'=D{_RD}', LN['central']['bull'], PX, bold=True)
+put(wsU, f'E{r}', 'the class primary, unweighted', fmt=None)
+putf(wsU, f'G{r}', f'=C{r}/$C$16-1', D['central'] / SPOT - 1, PCT, bold=True)
+put(wsU, f'A{r}', 'Central — the cash-flow lens, and the envelope is its own bear and '
+                  'bull on one clock', bold=True, fmt=None)
+_RC = r
+r += 1
+putf(wsU, f'C{r}', "='SOTP Bridge'!C20", DCF['ps_jvcap'], PX, green=True)
+putf(wsU, f'G{r}', f'=C{r}/$C$16-1', DCF['ps_jvcap'] / SPOT - 1, PCT)
+put(wsU, f'A{r}', 'The same lens on the other framing of the contested joint-venture '
+                  'judgement (both stated, never averaged)', fmt=None)
+r += 1
+putf(wsU, f'C{r}', "='Relative & Normalized'!C29", LN_EXCLUDED_NORM, PX, green=True)
+put(wsU, f'A{r}', 'Normalised earnings power — COMPUTED AND EXCLUDED: not a permitted '
+                  'lens for an airline, whose reported earnings in any year are an '
+                  'accident of the fuel curve and the delivery schedule', fmt=None)
+r += 1
+putf(wsU, f'C{r}', f"=0.45*C{ROW_OF['dcf']}+0.20*C{ROW_OF['relative']}"
+                   f"+0.20*C{_RC + 2}+0.15*C{ROW_OF['book']}", RETIRED_BLEND, PX)
+put(wsU, f'A{r}', 'Memo: the retired 45/20/20/15 weighted blend this edition replaced, '
+                  'printed so the change is visible', fmt=None)
+putf(wsU, 'C12', f'={D_TVSHARE}', DCF['tv_share'], PCT, green=True)
 put(wsU, 'A12', 'Terminal value share of DCF enterprise value', fmt=None)
 putf(wsU, 'C13', "='Fundamental Valuation'!C23", D['panel_centre'], PX, green=True)
 putf(wsU, 'G13', '=C13/$C$16-1', D['panel_centre'] / SPOT - 1, PCT)
@@ -721,7 +800,8 @@ KEY = [('Shares outstanding (mn)', f"={AR('Shares outstanding (mn)')}", SH, NUM0
        ('FY2025 attributable profit (AED mn)', "='Income Statement'!D20", HI['FY25']['npa'], NUM0),
        ('Cost of capital — explicit window', '=DCF!C17', W['wacc_exp'], PCT2),
        ('Cost of capital — terminal', '=DCF!C24', W['wacc_term'], PCT2),
-       ('Terminal growth', f"={AR('Terminal growth')}", IN['g_term'], PCT)]
+       ('Terminal growth (derived from the house inflation and this study\'s real rate)',
+        f"={AR('Terminal growth')}", D['dcf']['g'], PCT)]
 r = 19
 for lbl, fm, ex, fmt in KEY:
     put(wsU, f'A{r}', lbl, fmt=None)
@@ -944,8 +1024,8 @@ BRIDGE_CASH = (f"({AR('Cash and fixed deposits, FY2025 (AED mn, audited)')}"
                f"+{AR('Non-operating assets (investments + investment property + net investment in lease, AED mn)')}"
                f"+{AR('JV and associates at carrying value (AED mn, audited)')})")
 def rel_formula(mult_ref):
-    return (f"=((C5*{mult_ref}+C7)*C9+C10)*DCF!C61/{AR('Shares outstanding (mn)')}"
-            f"+({BRIDGE_CASH}*DCF!C63-{AR('Minority interests at carrying value (AED mn, audited)')})"
+    return (f"=((C5*{mult_ref}+C7)*C9+C10)*{D_ROLL_KE}/{AR('Shares outstanding (mn)')}"
+            f"+({BRIDGE_CASH}*{D_ROLL_CASH}-{AR('Minority interests at carrying value (AED mn, audited)')})"
             f"/{AR('Shares outstanding (mn)')}"
             f"-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}")
 putf(wsR, 'C11', rel_formula('C6'), LN['relative']['base'], PX, bold=True)
@@ -981,32 +1061,32 @@ put(wsR, 'A27', 'JV share EXCLUDED from the multiplied base (enters at book belo
 putf(wsR, 'C28', f"=(C25+C26)*(1-{AR('Tax rate')})*(1-{AR('Minority share of profit')})/{AR('Shares outstanding (mn)')}",
      NRM['eps'], '0.000')
 put(wsR, 'A28', 'Normalised earnings per share (ex-JV)', fmt=None)
-NORM_TAIL = (f"*C28*DCF!C61+{AR('JV and associates at carrying value (AED mn, audited)')}"
-             f"/{AR('Shares outstanding (mn)')}*DCF!C63"
+NORM_TAIL = (f"*C28*{D_ROLL_KE}+{AR('JV and associates at carrying value (AED mn, audited)')}"
+             f"/{AR('Shares outstanding (mn)')}*{D_ROLL_CASH}"
              f"-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}")
 putf(wsR, 'C29', f"={AR('Justified price/earnings')}{NORM_TAIL}",
-     LN['normalized']['base'], PX, bold=True)
-put(wsR, 'A29', 'Normalised value per share at the anchor', bold=True, fmt=None)
-putf(wsR, 'C31', f"={AR('Normalised lens — bear P/E')}{NORM_TAIL}", LN['normalized']['bear'], PX)
+     LN_EXCLUDED_NORM, PX, bold=True)
+put(wsR, 'A29', 'Normalised value per share at the anchor — COMPUTED AND EXCLUDED. An airline\'s reported earnings in any one year are an accident of the fuel curve, the delivery schedule and the load factor, so a normalised figure normalises a cycle rather than a level. It is shown because it was calculated, and it does not enter the valuation.', bold=True, fmt=None, wrap=True)
+putf(wsR, 'C31', f"={AR('Normalised lens — bear P/E')}{NORM_TAIL}", NORM_EX['bear'], PX)
 put(wsR, 'A31', 'Bear (10x)', fmt=None)
-putf(wsR, 'C32', f"={AR('Normalised lens — bull P/E')}{NORM_TAIL}", LN['normalized']['bull'], PX)
+putf(wsR, 'C32', f"={AR('Normalised lens — bull P/E')}{NORM_TAIL}", NORM_EX['bull'], PX)
 put(wsR, 'A32', 'Bull (16x)', fmt=None)
 hdr(wsR, 35, ['Book value and sustainable return', '', 'Value'])
 putf(wsR, 'C36', f"={AR('Equity attributable to owners, FY2025 (AED mn, audited)')}/{AR('Shares outstanding (mn)')}",
      BK['bvps'], PX)
 put(wsR, 'A36', 'Book value per share (FY2025, audited)', fmt=None)
-putf(wsR, 'C37', f"=(({AR('Sustainable return on equity')}-{AR('Terminal growth')})/(DCF!C21-{AR('Terminal growth')}))*C36*DCF!C61-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
+putf(wsR, 'C37', f"=(({AR('Sustainable return on equity')}-{AR('Terminal growth')})/(DCF!C21-{AR('Terminal growth')}))*C36*{D_ROLL_KE}-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
      LN['book']['base'], PX, bold=True)
 put(wsR, 'A37', 'Justified price-to-book value per share at the anchor', bold=True, fmt=None)
 putf(wsR, 'C38', f"=({AR('Sustainable return on equity')}-{AR('Terminal growth')})/(DCF!C21-{AR('Terminal growth')})",
      BK['pb_just'], MULT)
 put(wsR, 'A38', 'Justified P/B multiple', fmt=None)
-putf(wsR, 'C39', f"=(({AR('Sustainable return on equity')}-0.02-0.015)/(0.5*(DCF!C10+DCF!C21)-0.015))*C36*DCF!C61-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
+putf(wsR, 'C39', f"=(({AR('Sustainable return on equity')}-0.02-0.015)/(0.5*(DCF!C10+DCF!C21)-0.015))*C36*{D_ROLL_KE}-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
      LN['book']['bear'], PX)
 put(wsR, 'A41', 'The bear leg holds the same Gordon identity as base and bull: '
     '(ROE_bear - g_bear)/(k_bear - g_bear).', fmt=None, wrap=True)
 put(wsR, 'A39', 'Bear construction', fmt=None)
-putf(wsR, 'C40', f"=(({AR('Sustainable return on equity')}+0.02-{AR('Terminal growth')})/(DCF!C21-{AR('Terminal growth')}))*C36*DCF!C61-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
+putf(wsR, 'C40', f"=(({AR('Sustainable return on equity')}+0.02-{AR('Terminal growth')})/(DCF!C21-{AR('Terminal growth')}))*C36*{D_ROLL_KE}-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
      LN['book']['bull'], PX)
 put(wsR, 'A40', 'Bull construction', fmt=None)
 
@@ -1251,6 +1331,38 @@ ORDER = ['READ FIRST', 'Summary', 'Fundamental Valuation', 'Assumptions', 'SOTP 
 wb._sheets = [wb[n] for n in ORDER]
 assert wb.sheetnames == ORDER and len(ORDER) == 16
 OUT = os.path.join(HERE, 'AIRARABIA_Valuation_Model_09082026_public.xlsx')
+# THE ROW MAP IS PUBLISHED, BECAUSE FIVE FILES READ THIS WORKBOOK BY CELL ADDRESS.
+# Rebuilding the terminal block inserted five rows and silently re-pointed recalc.py at
+# the wrong figures — 25 "disagreements" that were the CHECK looking in the wrong place,
+# not the model being wrong ([L-067], a check that names a cell by address moves with
+# the re-issue). The builder is the only thing that knows where a row landed, so it
+# writes the map and the checks resolve through it instead of carrying their own copy.
+# EVERY KEY ENDS _row, because these are ROW NUMBERS and nothing else. The first draft
+# named two of them 'central', and check_artefact_currency read a row number as a
+# valuation figure and refused the file — correctly, on the name it was given. A field
+# called 'central' holding the integer 8 is a naming defect before it is a gate problem.
+# The vintage is declared for the reason that gate exists: a row map is valid only for
+# the workbook edition that produced it, and a stale one is exactly the [L-067] failure
+# it was built to prevent.
+ROW_MAP = {
+    'published_central': D['central'], 'published_spot': SPOT,
+    'built_from': os.path.basename(OUT),
+    'DCF': {'enterprise_value': R_EV, 'terminal_value_share': R_TVSHARE,
+            'roll_ke': R_ROLL_KE, 'roll_cash': R_ROLL_CASH,
+            'terminal_nopat': 50, 'dna_addback': 51, 'maintenance': 52,
+            'growth_capex': 53, 'wc_charge': 54, 'terminal_fcff': 55,
+            'terminal_value': 56, 'pv_terminal': 57, 'pv_explicit': 58,
+            'floor_memo': 61, 'retired_terminal_memo': 62,
+            'equity_attributable': 64, 'per_share_dec': 65,
+            'roll_ke_row': R_ROLL_KE, 'per_share_ke_single': 67,
+            'per_share_anchor': 69},
+    'Fundamental Valuation': {'dcf': 5, 'relative': 6, 'book': 7,
+                              'normalised_excluded': 8, 'central_row': 10},
+    'Summary': {'central_row': _RC, 'jv_framing': _RC + 1,
+                'normalised_excluded': _RC + 2, 'retired_blend': _RC + 3},
+}
+json.dump(ROW_MAP, open(os.path.join(HERE, 'workbook_rows.json'), 'w'), indent=1)
+
 wb.save(OUT)
 nf = sum(len(v) for v in EXPECT.values())
 with open(os.path.join(HERE, 'xlsx_expected.json'), 'w') as f:

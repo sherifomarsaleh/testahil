@@ -16,6 +16,8 @@ _BT = json.load(open(os.path.join(HERE, 'backtest_5y.json')))
 BT5, BT5F = _BT['five_year'], _BT['full']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 SPOT, SH = M['spot'], M['shares_mn']
+RETW = D['lens_record']['retired']['blend']
+RETV = D['lens_record']['retired']['blend_value']
 YRS = F['years']
 H3M = STK['horizons']['3M']; H1M = STK['horizons']['1M']
 
@@ -120,12 +122,16 @@ rows = [['Read', 'Basis', 'Range (EGP/share)', 'Central', 'vs spot'],
          f"at a sustainable return on equity of {pc(BK['roe_sust'])}",
          f"{p2(LN['book']['bear'])} – {p2(LN['book']['bull'])}", p2(LN['book']['base']),
          sgn(LN['book']['base']/SPOT-1,0)],
-        ['Weighted central',
-         f"DCF {pc(IN['lens_weights']['dcf'],0)} · relative {pc(IN['lens_weights']['relative'],0)} · "
-         f"normalised {pc(IN['lens_weights']['normalized'],0)} · book {pc(IN['lens_weights']['book'],0)}",
+        ['THE CENTRAL — the cash-flow lens, not an average',
+         'one class primary IS the central; the lenses above are cross-checks published '
+         'at their own values, and the book lens is a disclosed floor that is never weighted',
          f"{p2(D['span'][0])} – {p2(D['span'][1])}", p2(D['central']), sgn(D['central']/SPOT-1,0)],
+        ['NOT AVERAGED — the retired blend, published unused',
+         f"the retired weights: DCF {pc(RETW['dcf'],0)} · relative {pc(RETW['relative'],0)} · "
+         f"normalised {pc(RETW['normalized'],0)} · book {pc(RETW['book'],0)}",
+         '—', p2(RETV), sgn(RETV/SPOT-1,0)],
         ['Market price', 'closing price on the anchor date', '—', p2(SPOT), '—'],
-        ['ALTERNATIVE READINGS — not included in the weighted central above', '', '', '', ''],
+        ['ALTERNATIVE READINGS — separate questions, never averaged into the central', '', '', '', ''],
         ['Currency of discounting',
          f"the same cash flows with the hard-currency leg discounted at {pc(W['wacc_usd_alt'])} "
          f"instead of the Egyptian rate — a different view of country risk, not a fifth lens",
@@ -140,11 +146,12 @@ rows = [['Read', 'Basis', 'Range (EGP/share)', 'Central', 'vs spot'],
 table(rows, [1.30, 2.75, 1.15, 0.72, 0.63], band_rows={5, 7}, size=8.6)
 caption(f"The alternative readings are shown so that each genuinely contested choice carries a "
         f"number the reader can see, rather than being averaged silently into the headline. They "
-        f"are deliberately excluded from the weighted central because each answers a different "
+        f"are deliberately excluded from the central because each answers a different "
         f"question — which currency's cost of capital applies, which column of a risk table to "
         f"use, how to sequence one line of the bridge — and blending them would hide the "
         f"disagreement instead of showing it. Ranges are bear-to-bull within each lens; "
-        f"the central is the weighted base. Terminal "
+        f"THE CENTRAL IS THE CASH-FLOW LENS ITSELF and its range is that same lens under its "
+        f"own two scenarios on one clock, not a spread across four methods. Terminal "
         f"value is {pc(DCF['tv_share'],0)} of the discounted-cash-flow enterprise value — a high "
         f"share, disclosed here and again in the bridge, and the reason the terminal assumptions "
         f"are stress-tested in section 1.9.")
@@ -388,7 +395,7 @@ P(f"The question this lens asks is what the group earns at its CURRENT scale in 
   f"{n0(NRM['rev'])}mn. An earlier revision applied the multiple to FY2028-SCALE earnings with no "
   f"time value, injecting two years of undiscounted growth into a present-day lens; an external "
   f"review flagged it correctly and the construction was restated, worth about EGP 4.9 per share "
-  f"on the weighted central.")
+  f"on the cash-flow lens.")
 rows = [['Step', 'EGP mn'],
         ['Current-scale (FY2026E) revenue', n0(NRM['rev'])],
         [f"Mid-cycle EBITDA margin ({NRM['margin_year']}) at {pc(NRM['margin'])}", n0(NRM['ebitda'])],
@@ -414,25 +421,35 @@ caption(f"Bear {p2(LN['normalized']['bear'])} at 7.0× and bull {p2(LN['normaliz
         f"compresses what any stream of earnings is worth.")
 
 # ---- 1.5 synthesis -----------------------------------------------------------
-H2('1.5  Synthesis — four lenses, one field')
+H2('1.5  Synthesis — one lens is the answer, the rest are cross-checks')
 figure(os.path.join(HERE, 'fig1_football.png'), 6.9,
-       f"Figure 1 — the four lenses and the weighted central against the market price of "
+       f"Figure 1 — the four lenses against the market price of "
        f"{p2(SPOT)}. Each bar is that lens's bear-to-bull span; the brass tick is its base case.")
-rows = [['Lens', 'Bear', 'Base', 'Bull', 'Weight', 'Contribution']]
+rows = [['Lens', 'Bear', 'Base', 'Bull', 'Role', 'vs price']]
+ROLE = {'dcf': 'THE ANSWER', 'relative': 'cross-check',
+        'normalized': 'not published for this class',
+        'book': 'a floor, never weighted'}
 for k in ['dcf', 'relative', 'normalized', 'book']:
     l = LN[k]
-    rows.append([l['name'], p2(l['bear']), p2(l['base']), p2(l['bull']), pc(l['w'], 0),
-                 p2(l['base'] * l['w'])])
-rows.append(['Weighted central', p2(D['span'][0]), p2(D['central']), p2(D['span'][1]), '100%',
-             p2(D['central'])])
+    rows.append([l['name'], p2(l['bear']), p2(l['base']), p2(l['bull']), ROLE[k],
+                 sgn(l['base']/SPOT-1, 0)])
+rows.append(['THE CENTRAL — the cash-flow lens, not an average',
+             p2(D['span'][0]), p2(D['central']), p2(D['span'][1]), 'the class primary',
+             sgn(D['central']/SPOT-1, 0)])
+rows.append(['NOT AVERAGED — the retired blend, published unused',
+             '', p2(RETV), '', 'retired', sgn(RETV/SPOT-1, 0)])
 table(rows, [2.35, 0.86, 0.86, 0.86, 0.83, 1.14], size=8.6, band_rows={5})
 P(f"The four lenses do not agree, and the disagreement is informative rather than embarrassing. "
   f"The two lenses that look at earnings — relative multiples and normalised earnings power — land "
   f"near or slightly above the market price. The two that discount cash or capital at an Egyptian "
   f"cost of capital land well below it. This is the same disagreement in two forms: a multiple "
   f"imported from a market with a low cost of capital implicitly assumes a low cost of capital, "
-  f"and a discounted model applied with an Egyptian one does not. The weighted central of EGP "
-  f"{p2(D['central'])} sits between them.")
+  f"and a discounted model applied with an Egyptian one does not. THE CENTRAL DOES NOT SIT "
+  f"BETWEEN THEM: it is the cash-flow lens itself at EGP {p2(D['central'])}, and the "
+  f"market-anchored reads are published beside it at their own values so a reader can judge "
+  f"the disagreement rather than receive a number in which it has already been settled by a "
+  f"weight. An earlier edition did settle it that way and reported EGP {p2(RETV)}, "
+  f"{sgn(RETV/SPOT-1,0)} against the price where this study holds {sgn(D['central']/SPOT-1,0)}.")
 
 # ---- 1.6 drivers -------------------------------------------------------------
 H2('1.6  The drivers — the three disclosed segments, each grown on its own driver')
@@ -499,7 +516,7 @@ caption(f"Copper is held near the current market level rather than forecast — 
         f"in the build. The capex and D&A paths are shown because they are live free-cash-flow "
         f"drivers, not footnotes: capex tapers from the FY2025 peak of 4.7% as the 2024-25 "
         f"capacity programme completes (it ran 3.1% in FY2023 and 3.7% in FY2024); holding it at "
-        f"the FY2025 peak instead would cost roughly EGP 1.8 on the weighted central.")
+        f"the FY2025 peak instead would cost roughly EGP 1.8 on the cash-flow lens.")
 
 H2('What the build produces — margins as outputs')
 rows = [['EGP mn'] + YRS,
@@ -628,7 +645,7 @@ rows = [['Component', 'Explicit window', 'Terminal', 'Source and construction'],
          'net debt against market capitalisation for the explicit window; a normalised 15% for '
          'the terminal — REVISED from 25% after review showed the old weight contradicted the '
          'model\'s own forecast deleveraging in the direction that flattered the valuation; '
-         'worth about -2.4 on the weighted central'],
+         'worth about -2.4 on the cash-flow lens'],
         ['Cost of capital', pc(W['wacc_exp']), pc(W['wacc_term']), '']]
 table(rows, [1.60, 0.92, 0.80, 3.68], size=8.2, band_rows={8, 12})
 caption("Discounting is end-of-year discrete (each year's flow at its full-year factor) — the "
@@ -710,7 +727,7 @@ rows = [['Choice made', 'The alternative', 'Fair value on the alternative', 'Why
          'said so here'],
         [f"Forecast effective tax rate {pc(IN['tax_eff'])}",
          f"Egypt's statutory 22.5%, or FY2025's actual effective 22.57%",
-         'roughly +1.8 on the weighted central (+2.5%)',
+         'roughly +1.8 on the cash-flow lens (+2.5%)',
          'Audited effective rates ran 31.3% (FY2023), 30.1% (FY2024), 22.6% (FY2025) and 25.75% '
          '(Q1-2026); no statutory-vs-effective reconciliation is disclosed, and the group pays '
          'tax in 15+ jurisdictions plus revenue-basis Free-Zone entities. 24.5% sits between the '
@@ -1234,7 +1251,7 @@ P(f"Three valuation approaches are run against the same disclosed facts by three
   f"lens's current-scale earnings at 9.0× — which is why the two land {p2(EXP['e1']['base'])} and "
   f"{p2(LN['normalized']['base'])} respectively. The divergence is the persona doing what it "
   f"says (no time-value discipline), it is disclosed, and only the section-1.4 construction "
-  f"enters the weighted central.")
+  f"enters the central.")
 
 E1, E2, E3 = EXP['e1'], EXP['e2'], EXP['e3']
 H2('C.1  Expert 1 — earnings power: mid-cycle earnings at a justified multiple')
@@ -1382,7 +1399,7 @@ P(f"The panel spans EGP {p2(min(E1['base'],E2['base'],E3['base']))} to "
   f"it. Expert 3 values the spread between returns and the cost of capital "
   f"and finds that the answer depends entirely on which cost of capital applies. The panel median "
   f"of {p2(D['panel_centre'])} sits {sgn(D['panel_centre']/SPOT-1,0)} against the market price and "
-  f"{sgn(D['panel_centre']/D['central']-1,0)} against the study's own weighted central of "
+  f"{sgn(D['panel_centre']/D['central']-1,0)} against the study's own central of "
   f"{p2(D['central'])} — a real gap, stated at its size rather than smoothed, and driven by the "
   f"panel's harsher cash and returns legs outvoting its generous earnings leg.")
 

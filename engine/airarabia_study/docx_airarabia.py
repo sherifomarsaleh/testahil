@@ -22,6 +22,16 @@ SPOT, SH = M['spot'], M['shares_mn']
 H1_, H3_ = STK['horizons']['1M'], STK['horizons']['3M']
 YF = F['years']
 CEN = D['central']
+LR = D['lens_record']
+NORM_EX = LR['lenses_excluded'][0]
+NORM_EX_WHY = ('not a permitted lens for an airline: its reported earnings in any one '
+               'year are an accident of the fuel curve, the delivery schedule and the '
+               'load factor, so normalising them normalises a cycle rather than a level')
+BLEND = LR['retired_blend']['value']
+# [R-MACRO-01]: the study stores a REAL rate; the nominal is DERIVED, so every
+# sentence quoting 'terminal growth' quotes the derived figure and not a typed one.
+G_TERM = D['dcf']['g']
+G_TERM_REAL = D['terminal_record']['inputs']['real_growth']
 
 def pct(x, dp=1): return f'{x*100:.{dp}f}%'
 def mn(x): return f'{x:,.0f}'
@@ -78,21 +88,26 @@ P(f"Over the next three months the price map assigns a 50% band of AED {H3_['pct
 
 # ============================== VALUATION SUMMARY =============================
 H1('Valuation summary — every read at a glance')
-rows = [['Lens', 'Bear', 'Base', 'Bull', 'Weight', 'vs spot']]
-for k, extra in [('dcf', f" · terminal value {pct(DCF['tv_share'],0)} of EV"), ('relative', ''),
-                 ('normalized', ''), ('book', '')]:
+rows = [['Lens', 'Bear', 'Base', 'Bull', 'Role', 'vs spot']]
+for k, extra in [('dcf', f" · terminal value {pct(DCF['tv_share'],0)} of EV"),
+                 ('relative', ''), ('book', '')]:
     l = LN[k]
     rows.append([l['name'] + extra, px(l['bear']), px(l['base']), px(l['bull']),
-                 pct(l['w'], 0), f"{l['base']/SPOT-1:+.0%}"])
-rows.append(['Weighted central (range weighted like the base)', px(LN['central']['bear']),
-             px(CEN), px(LN['central']['bull']), '100%', f'{CEN/SPOT-1:+.0%}'])
-rows.append(['Widest single-lens span (DCF scenarios; labelled, not a weighted range)',
-             px(D['span_widest'][0]), '—', px(D['span_widest'][1]), '—', '—'])
-table(rows, [2.65, 0.75, 0.75, 0.75, 0.75, 0.85], band_rows={5})
+                 'THE CENTRAL' if k == 'dcf' else 'cross-check',
+                 f"{l['base']/SPOT-1:+.0%}"])
+rows.append(['Central — the cash-flow lens, with the envelope its own bear and bull',
+             px(LN['central']['bear']), px(CEN), px(LN['central']['bull']),
+             'unweighted', f'{CEN/SPOT-1:+.0%}'])
+rows.append([f"Normalised earnings power — computed and excluded, {NORM_EX_WHY}",
+             px(NORM_EX['bear']), px(NORM_EX['value']), px(NORM_EX['bull']),
+             'excluded', f"{NORM_EX['value']/SPOT-1:+.0%}"])
+rows.append(['Memo — the retired weighted blend this edition replaced', '—',
+             px(BLEND), '—', 'retired', f'{BLEND/SPOT-1:+.0%}'])
+table(rows, [2.65, 0.75, 0.75, 0.75, 0.75, 0.85], band_rows={4})
 rows = [['Alternative framings (never averaged into the central)', 'AED/share', 'vs spot'],
         ['DCF with the JV network capitalised at '
          f"{IN['jv_pe']:.0f}x its profit share", px(DCF['ps_jvcap']), f"{DCF['ps_jvcap']/SPOT-1:+.0%}"],
-        ['Weighted central on that framing', px(D['central_jvcap']), f"{D['central_jvcap']/SPOT-1:+.0%}"],
+
         ['DCF on the high-fuel alternative (association path held)', px(DCF['ps_iata_fuel']),
          f"{DCF['ps_iata_fuel']/SPOT-1:+.0%}"],
         ['Expert panel median', px(D['panel_centre']), f"{D['panel_centre']/SPOT-1:+.0%}"],
@@ -169,7 +184,7 @@ caption(f"The FY2026 free cash flow is negative (AED {mn(F['fcff'][0])}mn) and t
         f"neutral financing and charge nothing — is worth about +0.09/share and is noted, not adopted.")
 rows = [['Enterprise value → equity', 'AED mn'],
         ['PV of explicit years FY2026–30', mn(DCF['pv_explicit'])],
-        [f"PV of terminal value (growth {pct(IN['g_term'])}, terminal cost of capital "
+        [f"PV of terminal value (growth {pct(G_TERM)}, terminal cost of capital "
          f"{pct(W['wacc_term'],2)}, reinvestment = g / return on capital = {pct(DCF['rr_term'])})",
          mn(DCF['pv_tv'])],
         ['Enterprise value of the airline', mn(DCF['ev'])],
@@ -191,7 +206,7 @@ P(f"Audited FY2025 book value is AED {px(BKL['bvps'])} per share. The trailing r
   f"attributable equity is {pct(BKL['roe_trailing'])}; the study strikes the SUSTAINABLE return at "
   f"{pct(IN['roe_sust'],0)} — below the record year, because FY2025 carried a yield tailwind from "
   f"constrained regional capacity. A justified price-to-book of ({pct(IN['roe_sust'],0)} − "
-  f"{pct(IN['g_term'])}) / ({pct(W['ke_term'],2)} − {pct(IN['g_term'])}) = "
+  f"{pct(G_TERM)}) / ({pct(W['ke_term'],2)} − {pct(G_TERM)}) = "
   f"{BKL['pb_just']:.2f}× values the share at AED {px(LN['book']['base'])} at the anchor "
   f"(bear {px(LN['book']['bear'])} / bull {px(LN['book']['bull'])} — all three legs on the same "
   f"Gordon identity, (ROE − g) / (k − g), after critique caught the bear leg abandoning it).")
@@ -215,8 +230,8 @@ P(f"Applying the mid-cycle EBITDA margin ({pct(NRM['margin'])}, the FY2028E midd
   f"external critique correctly showed that multiplying JV earnings at {IN['pe_just']:.0f}× silently "
   f"averaged the two JV framings inside the base central — gives normalised earnings of AED "
   f"{NRM['eps']:.3f} per share; at {IN['pe_just']:.0f}× plus the JV network at BOOK that is AED "
-  f"{px(LN['normalized']['base'])} (bear {px(LN['normalized']['bear'])} at 10×, bull "
-  f"{px(LN['normalized']['bull'])} at 16×). The base-framing central now carries the JV at carrying "
+  f"{px(NORM_EX['value'])} (bear {px(NORM_EX['bear'])} at 10×, bull "
+  f"{px(NORM_EX['bull'])} at 16×). The base-framing central now carries the JV at carrying "
   f"value in every lens.")
 H2('1.5  Synthesis — four lenses, one field')
 figure('fig1_football.png', 6.9,
@@ -460,8 +475,8 @@ rows = [['Lens', 'What it sees', 'What it misses'],
         ['Book', 'audited equity and a sustainable return', 'slots, brand and the ventures — none on '
          'the balance sheet at economic value']]
 table(rows, [1.35, 3.00, 2.65], size=8.6)
-P(f"All four lens bases sit between AED {px(min(LN[k]['base'] for k in ('dcf','relative','normalized','book')))} "
-  f"and AED {px(max(LN[k]['base'] for k in ('dcf','relative','normalized','book')))} — a tight cluster "
+P(f"The three lens bases sit between AED {px(min(LN[k]['base'] for k in ('dcf','relative','book')))} "
+  f"and AED {px(max(LN[k]['base'] for k in ('dcf','relative','book')))} — a cluster "
   f"{abs(CEN/SPOT-1)*100:.0f}% below the market price. The market, in other words, is already paying "
   f"for the JV-capitalised framing plus some of the order book's post-2030 tail. That is not "
   f"irrational; it is simply not conservative, and this study's job is to show exactly which "
@@ -700,9 +715,9 @@ rows = [['Line', 'Value'],
         ['plus 40% of the JV profit share, after tax (the cash-remitted part, AED mn)',
          mn(F['assoc'][3] * (1 - IN['tax_eff']) * 0.4)],
         ['Owner cash earnings (AED mn)', mn(E2['fcfe'])],
-        [f"Grown one year at {pct(IN['g_term'])} and capitalised at {pct(E2['ke'],2)} − "
-         f"{pct(IN['g_term'])}, plus half the net cash (haircut for permanence)",
-         mn(E2['fcfe'] * 1.025 / (E2['ke'] - IN['g_term']) + 0.5 * -HB['FY25']['nd'])],
+        [f"Grown one year at {pct(G_TERM)} and capitalised at {pct(E2['ke'],2)} − "
+         f"{pct(G_TERM)}, plus half the net cash (haircut for permanence)",
+         mn(E2['fcfe'] * 1.025 / (E2['ke'] - G_TERM) + 0.5 * -HB['FY25']['nd'])],
         [f"Per share, × anchor accretion {DCF['roll']:.4f}, less the 30-fils dividend",
          px(E2['base'])],
         ['Range (tighter rate + full cash / wider rate, no cash)',
@@ -775,7 +790,7 @@ rows = [['Assumption', 'Expert 1', 'Expert 2', 'Expert 3', 'Drives'],
          'the whole panel-vs-market gap'],
         ['Net cash', 'implicitly in the multiple', 'half credited', 'fully in the bridge',
          'E2 vs E3 gap'],
-        ['Terminal growth', 'in the multiple', pct(IN['g_term']), pct(IN['g_term']),
+        ['Terminal growth', 'in the multiple', pct(G_TERM), pct(G_TERM),
          'small between panellists']]
 table(rows, [1.55, 1.35, 1.40, 1.30, 1.40], size=8.4)
 

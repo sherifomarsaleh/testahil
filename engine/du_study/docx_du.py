@@ -25,9 +25,11 @@ BT = D['backtest']; BT5, BTF = BT['production'], BT['full']   # production = the
 SPOT, SH = M['spot'], M['shares_mn']
 CEN, LO_, HI_ = D['central'], D['span'][0], D['span'][1]
 H1M, H3M = STK['horizons']['1M'], STK['horizons']['3M']
-_W = {k: LN[k]['w'] for k in ('dcf', 'relative', 'normalized', 'book')}
-WBEAR_H = sum(LN[k]['bear'] * _W[k] for k in _W)
-WBULL_H = sum(LN[k]['bull'] * _W[k] for k in _W)
+RETW = D['lens_record']['retired']['blend']
+RETV = D['lens_record']['retired']['blend_value']
+MR = D['margin_record']
+WBEAR_H, WBULL_H = LO_, HI_
+RNAV_NOT_BUILT = D['lens_record'].get('cross_checks_not_built') or []
 SEGS = ['mobile', 'fixed', 'wholesale', 'ict']
 TAXA = IN['tax_eff']
 # trailing-twelve-month basis, so both framings of du's own multiples can be shown (the
@@ -81,12 +83,12 @@ box([
   f"(Mobile, Fixed, Wholesale, ICT), FY2025 revenue AED {n0(HI['FY25']['rev'])}mn and an "
   f"EBITDA margin of {pc(HI['FY25']['ebitda']/HI['FY25']['rev'])} — with ZERO drawn debt in "
   'every year studied and a dividend paid out of essentially all of profit.'),
- ('The valuation. ', f'Weighted central AED {p2(CEN)} per share against a spot of '
-  f'AED {p2(SPOT)} ({sgn(CEN/SPOT-1,0)}), inside a weighted bear-to-bull range of AED '
-  f'{p2(WBEAR_H)} to {p2(WBULL_H)} and a wider span across the four lenses of AED {p2(LO_)} to '
-  f'AED {p2(HI_)}. The cash-flow lens alone reads AED {p2(DCF["ps"])}; the market-anchored '
-  f'relative lens reads AED {p2(LN["relative"]["base"])}. That gap is the study\'s honest '
-  'tension, and section 4 explains rather than hides it.'),
+ ('The valuation. ', f'Central AED {p2(CEN)} per share against a spot of '
+  f'AED {p2(SPOT)} ({sgn(CEN/SPOT-1,0)}), inside a bear-to-bull range of AED '
+  f'{p2(LO_)} to {p2(HI_)}. That central IS the cash-flow lens, not an average of several: '
+  f'the other lenses are published beside it as cross-checks at their own values, and the '
+  f'market-anchored relative lens reads AED {p2(LN["relative"]["base"])}. That gap is the '
+  f'study\'s honest tension, and section 4 explains rather than dissolves it.'),
  ('The contested judgement. ', 'What required return does this business deserve? On du\'s own '
   f'measured beta the cash-flow lens reads AED {p2(DCF["ps"])} — but the terminal that implies '
   f'values du at {DCF["tv_implied_mult"]:.1f}x forward EBITDA in perpetuity, against the '
@@ -110,31 +112,46 @@ box([
 
 # =========================== VALUATION SUMMARY ===============================
 H2('Valuation summary — every read at a glance')
-rows = [['Lens', 'Bear', 'Base', 'Bull', 'Weight', 'vs spot']]
-for k, nm in [('dcf', 'Discounted cash flow (primary)'), ('relative', 'Relative multiples'),
-              ('normalized', 'Normalised earnings power'), ('book', 'Book value & sustainable return')]:
+rows = [['Lens', 'Bear', 'Base', 'Bull', 'Role', 'vs price']]
+ROLE = {'dcf': 'THE ANSWER', 'relative': 'cross-check',
+        'normalized': 'not published for this class',
+        'book': 'a floor, never weighted'}
+for k, nm in [('dcf', 'Discounted cash flow (the answer)'),
+              ('relative', 'Relative multiples'),
+              ('normalized', 'Normalised earnings power'),
+              ('book', 'Book value & sustainable return')]:
     l = LN[k]
-    rows.append([nm, p2(l['bear']), p2(l['base']), p2(l['bull']), pc(l['w'], 0),
+    rows.append([nm, p2(l['bear']), p2(l['base']), p2(l['bull']), ROLE[k],
                  sgn(l['base']/SPOT-1, 0)])
-W_ = {k: LN[k]['w'] for k in ('dcf', 'relative', 'normalized', 'book')}
-WBEAR = sum(LN[k]['bear'] * W_[k] for k in W_); WBULL = sum(LN[k]['bull'] * W_[k] for k in W_)
-rows.append(['Weighted central', p2(WBEAR), p2(CEN), p2(WBULL), '100%', sgn(CEN/SPOT-1, 0)])
-rows.append(['Span across lenses (min/max, not weighted)', p2(LO_), '', p2(HI_), '—', ''])
+rows.append(['THE CENTRAL — the cash-flow lens, not an average',
+             p2(LN['central']['bear']), p2(CEN), p2(LN['central']['bull']),
+             'the class primary', sgn(CEN/SPOT-1, 0)])
+rows.append(['NOT AVERAGED — the retired 45/25/20/10 blend, published unused',
+             '', p2(RETV), '', 'retired', sgn(RETV/SPOT-1, 0)])
 rows.append(['Contested judgement, other way — no terminal re-rating',
-             '', p2(DCF['ps_mkt_term']), '', '—', sgn(DCF['ps_mkt_term']/SPOT-1, 0)])
-rows.append(['Expert panel median (Appendix C)', '', p2(D['panel_centre']), '', '—',
+             '', p2(DCF['ps_mkt_term']), '', 'both ways, never averaged',
+             sgn(DCF['ps_mkt_term']/SPOT-1, 0)])
+rows.append(['Expert panel median (Appendix C)', '', p2(D['panel_centre']), '', 'cross-read',
              sgn(D['panel_centre']/SPOT-1, 0)])
 rows.append([f"DCF terminal value share of enterprise value: {pc(DCF['tv_share'],0)}",
              '', '', '', '', ''])
-table(rows, [2.55, 0.85, 0.85, 0.85, 0.75, 0.85], band_rows={5}, size=8.8)
-caption(f'{T()} — the valuation summary. Weighted central AED {p2(CEN)}, with its bear and bull '
-        f'columns weighted on the same 45/25/20/10 basis; the row beneath shows the wider '
-        f'min/max span across lenses, which is NOT a weighted figure. Every lens value is dated '
-        f'at the {M["asof"]} anchor, net of the AED {p2(IN["div_between"])} of dividends whose '
-        f'ex-dates fall between the 31-Dec-2025 valuation date and that anchor (the 0.40 final, '
-        f'paid 28-Apr-2026, and the 0.26 interim, ex 31-Jul-2026). The terminal value is '
-        f'{pc(DCF["tv_share"],0)} of the DCF enterprise value, and the terminal it implies is '
-        f'priced explicitly in section 1.7 rather than left as a caveat.')
+rows.append([f"Market price ({M['asof']})", '', p2(SPOT), '', '', ''])
+table(rows, [2.55, 0.82, 0.82, 0.82, 0.86, 0.81], band_rows={5}, size=8.8)
+caption(f'{T()} — the valuation summary. The central is the cash-flow lens itself, AED '
+        f'{p2(CEN)}, and its bear and bull columns are that same lens under its own two paths '
+        f'on one clock — NOT an envelope of four methods and NOT a weighted average of them. '
+        f'The other lenses are cross-checks, published at their own values so a reader sees the '
+        f'disagreement rather than a number in which it has been dissolved; the book lens is a '
+        f'disclosed floor and is never weighted, and normalised earnings power is not among '
+        f'this class\'s permitted cross-checks and is shown only so its removal is visible. '
+        f'The retired blend of AED {p2(RETV)} is printed for the same reason and feeds nothing. '
+        f'Every lens value is dated at the {M["asof"]} anchor, net of the AED '
+        f'{p2(IN["div_between"])} of dividends whose ex-dates fall between the 31-Dec-2025 '
+        f'valuation date and that anchor (the 0.40 final, paid 28-Apr-2026, and the 0.26 '
+        f'interim, ex 31-Jul-2026). The terminal value is {pc(DCF["tv_share"],0)} of the DCF '
+        f'enterprise value, and the terminal it implies is priced explicitly in section 1.7 '
+        f'rather than left as a caveat.')
+
 figure(os.path.join(HERE, 'fig1_football.png'), 7.0,
        f'{FG()} — the valuation football field: bear-to-bull span per lens, brass tick = base, '
        'dark line = spot.')
@@ -183,9 +200,18 @@ P(f"The quarter this study is struck in: a regional war that began in February 2
 
 # =========================== 1 FUNDAMENTAL VALUATION =========================
 H1('1  Fundamental valuation')
-P('Four lenses, weighted into one field: the discounted cash flow carries '
-  f"{pc(LN['dcf']['w'],0)}, relative multiples {pc(LN['relative']['w'],0)}, normalised "
-  f"earnings power {pc(LN['normalized']['w'],0)} and the book lens {pc(LN['book']['w'],0)}.")
+P('One lens carries the answer and the rest are cross-checks. For an integrated telecom '
+  'operator the primary is the discounted cash flow: the company is a licence and a network '
+  'generating a distributable cash stream, so the value is the present value of that stream '
+  'and nothing else measures it directly. Relative multiples are published beside it as a '
+  'cross-check, the book lens as a disclosed floor that is never weighted, and normalised '
+  'earnings power is shown but is NOT among this class\'s permitted cross-checks — it is '
+  'computed here only so that its removal from the answer is visible rather than silent. '
+  'The four are never averaged: an earlier edition of this study published a 45/25/20/10 '
+  'weighted blend, and what those weights concealed was the SIZE of this study\'s '
+  f'disagreement with the market rather than its direction — the blend read '
+  f'{sgn(RETV/SPOT-1,0)} against the price where the cash-flow lens reads '
+  f'{sgn(CEN/SPOT-1,0)}, so a reader saw about a quarter of the disagreement actually held.')
 
 H2('1.1  The cash-flow model — the primary lens, with the full waterfall')
 P('The model builds five explicit years from the four disclosed segments (section 1.6), '
@@ -271,8 +297,8 @@ P(f"Book value per share is AED {p2(BK['bvps'])} (audited FY2025 equity of AED "
   f"{BK['pb_just']:.2f}×, i.e. AED {p2(LN['book']['base'])} per share at the anchor. The "
   'multiple looks extreme against industrial norms; it is what the arithmetic of a small '
   'equity base and a low required return produces, and the honest caveat is that it is the '
-  'lens MOST exposed to the low regression beta discussed in section 1.8 — which is why it '
-  f"carries only a {pc(LN['book']['w'],0)} weight.")
+  'lens MOST exposed to the low regression beta discussed in section 1.8 — which is one '
+  'reason it is published as a disclosed floor and carries no weight in the answer at all.')
 
 H2('1.3  Relative multiples')
 P(f"du trades at {REL['pe_trailing']:.1f}× its FY2025 earnings and "
@@ -324,19 +350,31 @@ P('The lens strips the cycle: the mid-cycle EBITDA margin (the middle forecast y
   f"anchor: AED {p2(LN['normalized']['base'])} [12× → {p2(LN['normalized']['bear'])}; 18.5× → "
   f"{p2(LN['normalized']['bull'])}]. It reads within a few fils of the relative lens, and that "
   'is worth being blunt about rather than presenting as corroboration: du\'s current year IS '
-  'close to mid-cycle — the war knocked the top line, not the margin, and the first half of 2026 '
-  'printed the best margin in the company\'s history — so normalising changes the earnings base '
-  'by less than a fil. The two market-anchored lenses are therefore ONE reading of one multiple '
-  f"against one earnings number, carrying {pc(LN['relative']['w']+LN['normalized']['w'],0)} of the "
-  'weighted central between them, not two independent reads. The synthesis in 1.5 and the '
-  'comparison in section 4 should be read on that basis.')
+  f'close to mid-cycle — the war knocked the top line, not the margin, and the half-year to '
+  f'30 June 2026 printed an EBITDA margin of {pc(MR["best_margin"])}, the highest of any '
+  f'period from {MR["window"]}, with the four full years in that window rising in every one '
+  f'of them ({" then ".join(pc(x["margin"]) for x in MR["periods"] if x["period"].startswith("FY"))}) '
+  f'— so normalising changes the earnings base by less than a fil. The two market-anchored lenses are therefore ONE reading of one multiple '
+  'against one earnings number, not two independent reads — which is one reason neither is '
+  f"the answer here, and why an earlier edition that gave the pair "
+  f"{pc(RETW['relative']+RETW['normalized'],0)} of a weighted central between them was "
+  'counting one reading twice. The synthesis in 1.5 and the comparison in '
+  'section 4 should be read on that basis.')
 
-H2('1.5  Synthesis — four lenses, one field')
-P(f"Weighted central: AED {p2(CEN)} ({sgn(CEN/SPOT-1,0)} to spot), full span AED {p2(LO_)} to "
-  f"AED {p2(HI_)}. The DCF ({pc(LN['dcf']['w'],0)} weight) reads {sgn(LN['dcf']['base']/SPOT-1,0)} "
-  'above the market; the two market-anchored lenses read roughly at the market. Section 4 '
-  'takes that disagreement seriously — it is a statement about the discount rate, not about '
-  'the forecast.', space_after=10)
+H2('1.5  Synthesis — one lens is the answer, the rest are cross-checks')
+P(f"The central is AED {p2(CEN)} ({sgn(CEN/SPOT-1,0)} to spot) and it is the cash-flow lens "
+  f"itself. Its range, AED {p2(LO_)} to AED {p2(HI_)}, is that same lens under its own bear "
+  f"and bull paths on one clock — the present-value reads of one method, not the spread "
+  f"between four different ones. The cross-checks are published at their own values and "
+  f"disagree: the two market-anchored lenses read roughly at the market, the book floor at "
+  f"AED {p2(LN['book']['base'])}. Section 4 takes that disagreement seriously — it is a "
+  f"statement about the discount rate, not about the forecast — and the disagreement is "
+  f"shown rather than averaged away, because a number produced by averaging several methods "
+  f"is not more robust than the best of them: it is a new method with weights nobody tested, "
+  f"and it imports every weakness of the weakest lens at whatever weight somebody typed. "
+  f"Here the arithmetic of that is exact and is why the blend was retired: the retired "
+  f"45/25/20/10 central of AED {p2(RETV)} read {sgn(RETV/SPOT-1,0)} against the price where "
+  f"the answer reads {sgn(CEN/SPOT-1,0)}.", space_after=10)
 
 # =========================== 1.6 DRIVERS =====================================
 H2('1.6  The drivers — each disclosed segment grown on its own driver')
@@ -556,8 +594,8 @@ rows = [['', 'Framing 1 — the measured return', 'Framing 2 — the market\'s r
          f"{DCF['tv_implied_mult']:.2f}x forward EBITDA",
          f"{DCF['ev_ebitda_now']:.2f}x — no re-rating"],
         ['Cash-flow fair value at the anchor', p2(DCF['ps']), p2(DCF['ps_mkt_term'])],
-        ['Weighted central on the same lens set', p2(CEN),
-         p2(CEN - LN['dcf']['w'] * (DCF['ps'] - DCF['ps_mkt_term']))],
+        ['THE CENTRAL — which IS the cash-flow lens, not a blend of it', p2(CEN),
+         p2(DCF['ps_mkt_term'])],
         ['The judgement is worth', f"AED {p2(DCF['ps'] - DCF['ps_mkt_term'])} per share on the "
          f"cash-flow lens", '']]
 table(rows, [1.95, 2.55, 2.50], size=8.8)
@@ -885,20 +923,25 @@ P('What would close the gap from each side. The DCF is right and the market re-r
   f"{p2(DCF['ps_framing_b'])}); the measured beta understates the true risk of a "
   'single-market, single-licence operator (beta 0.80 alone takes the DCF to AED '
   f"{p2(SN['grid_beta'][4])}); or terminal reinvestment needs are heavier than "
-  f"{pc(DCF['rr_term'])} of profit. The weighted central of AED {p2(CEN)} embodies exactly "
-  'this balance: it leans toward the cash flows but pays the market-anchored lenses the '
-  f"{pc(LN['relative']['w']+LN['normalized']['w'],0)} respect their discipline has earned — while "
-  'noting, as 1.4 does, that those two lenses are one reading of one multiple, not two.')
-P('Those weights are a house judgement, and an external review was right to ask what they are '
-  f"worth. If the market-anchored family carried {pc(SN['cc10']['family']*0.5555,0)} of the "
-  f"weight instead of {pc(SN['cc10']['family'],0)}, the central would read AED "
-  f"{p2(SN['cc10']['to_dcf'])} were the freed weight given to the cash-flow lens and AED "
-  f"{p2(SN['cc10']['to_book'])} were it given to the book lens — up to "
-  f"{p2(max(abs(SN['cc10']['to_dcf']-CEN), abs(SN['cc10']['to_book']-CEN)))} a share, and "
-  f"{p2(abs(SN['cc10']['to_dcf']-SN['cc10']['to_book']))} between the two destinations. The "
-  'weights are NOT changed — the same scheme is applied to every operating company this house '
-  'covers, and re-tuning it for one name is how a standard stops being one — but the alternatives '
-  'are published here rather than described as immaterial, because they plainly are not.')
+  f"{pc(DCF['rr_term'])} of profit. The central of AED {p2(CEN)} does NOT split the difference: "
+  'it is the cash-flow lens, published with the cross-checks that disagree with it printed '
+  'beside it at their own values, so a reader can judge the disagreement instead of receiving '
+  'a number in which it has already been settled by a weight. An earlier edition of this study '
+  f"did settle it that way and reported AED {p2(RETV)}, {sgn(RETV/SPOT-1,0)} against the price "
+  f"rather than the {sgn(CEN/SPOT-1,0)} this study actually holds — and the two market-anchored "
+  f"lenses that carried {pc(RETW['relative']+RETW['normalized'],0)} of that blend are, as 1.4 "
+  'shows, one reading of one multiple, not two.')
+P('An external review asked what those weights were worth, and it was right to. Priced against '
+  f"the blend this study published at the time, AED {p2(RETV)}: moving the market-anchored "
+  f"family from {pc(SN['cc10']['family'],0)} down to a quarter and giving the freed weight to "
+  f"the cash-flow lens read AED {p2(SN['cc10']['to_dcf'])}, and giving it to the book lens read "
+  f"AED {p2(SN['cc10']['to_book'])} — up to "
+  f"{p2(max(abs(SN['cc10']['to_dcf']-RETV), abs(SN['cc10']['to_book']-RETV)))} a share, and "
+  f"{p2(abs(SN['cc10']['to_dcf']-SN['cc10']['to_book']))} between the two destinations. Not "
+  'immaterial, and the answer was not to choose the weights better. The scheme is gone: the '
+  f"cash-flow lens IS the central at AED {p2(CEN)} and the other lenses are published beside "
+  'it at their own values, so there is no weight left to set. The arithmetic above is kept as '
+  'the record of what the retired construction did.')
 figure(os.path.join(HERE, 'figD1_experts.png'), 7.0,
        f'{FG()} — the expert panel\'s three independent reads (Appendix C), against spot.')
 
@@ -951,8 +994,10 @@ for head, body in [
      'noise. Nothing in this band changes any conclusion in this study.'),
     (f"Above AED {p2(H3M['pct']['p75'])}: ",
      'the market starting to pay for the recovery and the regime extension before they are '
-     'printed; at the cone\'s top the share would still sit below the cash-flow lens but at '
-     'the weighted central.')]:
+     f"printed. Even at the cone's top, AED {p2(H3M['pct']['p95'])}, the share would still "
+     f"sit {sgn(H3M['pct']['p95']/CEN-1,0)} against this study's central and only just above "
+     f"the book floor of AED {p2(LN['book']['base'])} — three months of price movement does "
+     'not settle a disagreement of this size either way.')]:
     bullet(body, bold_head=head)
 P('The cone is honest about its own limits: for this share its bands have historically run '
   'wider than needed (section 3), so the outer zones are conservative.', space_after=10)
@@ -1128,7 +1173,7 @@ rows = [['Risk', 'Mechanism', 'Where it is priced'],
         ['Payout sustainability', 'near-total payout + capex peak drains liquidity',
          'the cash walk in A.3; the undrawn facility is the backstop'],
         ['Concentration', 'one market, one regulator, one licence',
-         'the weight given to market-anchored lenses in the synthesis']]
+         'the cross-checks published beside the central in the summary table']]
 table(rows, [1.85, 2.60, 2.55], size=8.6)
 H2('B.3  The research register — layers, dated, negative results included')
 P('The full input register — every input with value, source and date, grouped by research '
@@ -1269,9 +1314,10 @@ rows = [['Gap', 'Driver of the gap', 'Worth (AED/share)'],
         [f"Expert 2 ({p2(E2['base'])}) vs Expert 3 ({p2(E3['base'])})",
          'payout-as-perpetuity vs capital-charged spread — small, because at ~100% payout '
          'the dividend nearly IS the economic profit', p2(abs(E2['base'] - E3['base']))],
-        [f"Panel median vs the study's weighted central ({p2(CEN)})",
-         'the synthesis deliberately weights the market-anchored lenses the panel\'s '
-         'cash-flow majority does not', p2(abs(D['panel_centre'] - CEN))]]
+        [f"Panel median vs the study's central ({p2(CEN)})",
+         'both are cash-flow reads; the panel median sits a little below because two of its '
+         'three members set the terminal on a market multiple rather than on the measured '
+         'cost of capital', p2(abs(D['panel_centre'] - CEN))]]
 table(rows, [2.30, 3.35, 1.35], size=8.6)
 caption('Table C1 — the divergence table: which assumption drives which gap.', space_after=10) \
     if False else caption('Table C1 — the divergence table: which assumption drives which gap.')

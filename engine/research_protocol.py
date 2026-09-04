@@ -10,6 +10,8 @@ HARD FAIL and MUST NOT be issued.
 This file holds RULES, not numbers — it never goes stale and is never overridden by a fit.
 """
 
+import re
+
 from dataclasses import dataclass, field
 from typing import List, Optional
 
@@ -970,6 +972,16 @@ LENS_REGISTRY = {
         ("dcf", ("ev_ebitda_own_history", "replacement_cost", "relative_multiple", "book_value")),
     "airline":
         ("dcf", ("ev_ebitda_own_history", "relative_multiple", "book_value")),
+    # DELIBERATELY THE SAME ROW AS THE AIRLINE AND TELECOM ONES. A vertically integrated
+    # generic and branded manufacturer is valued on its cash flows with an own-history
+    # enterprise multiple, a peer multiple and book beside them; nothing about the
+    # industry gives a DIFFERENT lens the weight, which is the only ground [R-LENS-03]
+    # allows for adding a class here. The class exists because lessons_register.CLASSES
+    # keys the LESSON taxonomy, where a finding about registered price ceilings or an
+    # active-ingredient import bill is not evidence about an airline. Two classes may
+    # share a lens set; they may not share a lesson set.
+    "pharmaceutical manufacturer, generic and branded":
+        ("dcf", ("ev_ebitda_own_history", "relative_multiple", "book_value")),
     "bank":
         ("ddm", ("residual_income", "relative_multiple", "book_value")),
     "holding company":
@@ -993,6 +1005,19 @@ LENS_REGISTRY = {
     "marine logistics and shipping, chartered fleet on global day rates":
         ("dcf", ("replacement_cost", "ev_ebitda_own_history", "relative_multiple",
                  "sotp", "book_value")),
+    # A diversified industrial whose legs sit on different CONTRACT STRUCTURES: a cable
+    # is made and sold into a market at a price the market sets, a turnkey project is a
+    # multi-year contract whose margin turns on which phases complete when. DCF primary,
+    # with a disciplined sum of the parts earning a place beside the usual cross-checks
+    # because the legs would be valued differently by anyone buying them apart — the same
+    # argument the shipping row above makes for its own SOTP entry, and not merely that
+    # the industry differs. Replacement cost is NOT here: a cable plant cannot be sold
+    # abroad the way a vessel can, so replacement cost is an industry rule of thumb rather
+    # than an observed price. NORMALISED EARNINGS POWER IS DELIBERATELY ABSENT, on the two
+    # developer rows' reasoning: a contractor's reported earnings are an accident of
+    # completion timing, so normalising them normalises noise.
+    "diversified industrial with a contracting arm":
+        ("dcf", ("ev_ebitda_own_history", "relative_multiple", "sotp", "book_value")),
 }
 
 # RNAV may be a class PRIMARY only where the disclosure supports it. Where land
@@ -1236,6 +1261,15 @@ def assert_lens_design(record: dict, ticker: str = "?") -> dict:
                     fails.append("range_basis does not say what value the driver took at "
                                  "the %s end of the range." % side)
             sanctioned = str(rb.get("sanctioned_framing") or "").strip()
+            # `driver` NAMES WHAT MOVED, and nothing else. A study that also writes
+            # here which dials stood still trips this check while doing exactly the
+            # right thing -- so the MESSAGE says which of the two mistakes it is. A
+            # regex that cut the text at a holding word was tried and backed out: the
+            # dial usually precedes the verb ("the cost of capital ... is held"), so it
+            # caught one phrasing and not the common one, and a check that half-works on
+            # prose is worse than one whose message tells the author where the sentence
+            # belongs. The structured assertion that the macro stood still is
+            # macro_held, checked immediately below.
             drv = str(rb.get("driver") or "").lower()
             hits = [t for t in MACRO_DIALS if t in drv]
             if hits and not sanctioned:
@@ -1247,7 +1281,10 @@ def assert_lens_design(record: dict, ticker: str = "?") -> dict:
                     "internally contradictory and its width is chosen rather than "
                     "observed. Flex the crux in observable units and hold the macro path "
                     "fixed, or name the rule that requires the framing to be published "
-                    "both ways." % ", ".join(hits))
+                    "both ways. IF THE MACRO PATH WAS HELD AND THIS FIELD SAYS SO, the "
+                    "sentence is in the wrong field: `driver` names what MOVED, the "
+                    "structured assertion is macro_held, and the explanation belongs in "
+                    "`evidence`." % ", ".join(hits))
             if rb.get("macro_held") is not True and not sanctioned:
                 fails.append(
                     "range_basis does not assert that the macro path was held fixed across "

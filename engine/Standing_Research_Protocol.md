@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-04i — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-04j — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -3470,3 +3470,63 @@ moves a value before running it.
 > points the other way. **Where a cheap proxy is adopted because the real calculation is
 > expensive, the proxy is a hypothesis until the real calculation has been run on at least one
 > case.**
+
+
+[R-REBUILD-01] A REBUILT STUDY RECORDS THE ROUTE IT TOOK, NOT ONLY WHERE IT ARRIVED
+[ADOPTED 04-Sep-2026, on a rebuild that ran six corrections and looked at the total once].
+
+[R-VCAL-01]'s promotion guard is explicit about stacking — one lever at a time, in an
+order fixed in advance, promoted only while the pooled bias moves TOWARD zero and halted
+the moment it would cross, and it names the failure it exists to stop: "the guard against
+stacking five individually-justified moves into an overshoot, the exact failure that
+called this reassessment". IT GOVERNS LEVERS PROMOTED FROM THE VALUATION CALIBRATION.
+
+A REBUILD IS THE SAME SHAPE AND WAS GOVERNED BY NOTHING, for a reason that is a fact
+about how the rule was read rather than about anybody's care: a rebuild applies rules
+that ALREADY BIND rather than levers seeking promotion, so nobody read the guard as
+covering it. On 04-Sep-2026 PHAR took SIX corrections in an afternoon — the sanctioned
+terminal on a disclosed asset life, terminal growth stored as a real rate, the house
+inflation ladder, a currency path derived from it, a terminal risk-free rate derived from
+it, and the retired lens blend — and moved from 55% below the market price to 71% below
+it, passing through +45% on the way. EVERY CORRECTION WAS REQUIRED BY A STANDING RULE AND
+EVERY ONE WAS RIGHT. The running total was looked at once, at the end.
+
+THE RULE: a study whose committed answer has moved since its delivered edition carries a
+REBUILD LEDGER — engine/rebuild_ledger.py, committed as rebuild_ledger.json in the study's
+own directory — recording the levers IN THE ORDER APPLIED, each with the answer before and
+after, each naming THE RULE IT SERVES, and an audit point declared IN ADVANCE.
+
+THE GROUPING IS THE POINT AND IT IS NOT BOOKKEEPING: SEVERAL LEVERS SERVING ONE RULE ARE
+ONE PIECE OF EVIDENCE, NOT SEVERAL. Three of PHAR's six levers were the house macro path
+in three places — the inflation ladder, the currency derived from it, the terminal
+risk-free derived from it — and between them they took 56% off a value the terminal
+correction had just raised by 45%. Read as six independent corrections that is a
+landslide; read as TWO RULES PULLING OPPOSITE WAYS it is a contest, which is what it was,
+and the second reading is the one a reader can act on. A decomposition that lists levers
+where rules are at work invites reading coincidences into a single correction.
+
+WHAT IT DELIBERATELY DOES NOT DO, AND THE NEGATIVE CONTROL PROTECTS IT: IT SETS NO
+THRESHOLD AND BLOCKS NOTHING. A large cumulative move is not evidence of error — a study
+wrong in six ways moves a long way when all six are fixed, and that is the process
+working. A cutoff here would be the free parameter the PROMOTION RULE forbids. What is
+forbidden is the move being INVISIBLE. [R-GAP-01] already audits the ANSWER; this records
+the ROUTE, and the two ask different questions: whether the destination is credible, and
+whether anybody watched the journey. The control carries a case that DOUBLES the largest
+move in the book and must stay GREEN.
+
+ENFORCED FROM OUTSIDE per [R-ENF-01]: scripts/check_rebuild_ledger.py refuses a ledger
+that cannot be WALKED — a lever that does not start where the last one ended, a lever
+naming no rule, a published answer the last lever does not reach, a sequence with no
+declared audit point — ratcheted [R-ENF-02] at the 22 studies whose delivered editions
+predate the rule, population-anchored [R-ENF-04] BOTH WAYS (a run examining zero study
+directories fails, and so does one that read zero ledgers across studies that are
+present). Negative-controlled on nine conditions including all four ways a ledger breaks
+and the large-move clean case. READ THE POPULATION LIVE — python3
+scripts/check_rebuild_ledger.py — never from this block.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT REBUILDS: A GUARD WRITTEN FOR ONE PROCESS DOES NOT
+COVER THE PROCESS BESIDE IT JUST BECAUSE THE FAILURE IS IDENTICAL. The promotion guard
+describes this failure exactly and was not read as binding here, because the levers
+arrived by a different door — already-adopted rules rather than candidates for adoption.
+Where a guard names a FAILURE MODE rather than a procedure, ask which other procedures
+can produce it.

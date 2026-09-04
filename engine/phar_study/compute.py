@@ -26,6 +26,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
 
+import terminal_value as TV          # [R-TERM-01] — verified by import, not by parse
+import macro_path as MP              # [R-MACRO-01] — the house path, never a typed rate
+
 MN = 1e6   # every monetary figure below is in EGP millions unless named otherwise
 
 
@@ -51,10 +54,39 @@ BOARD25 = ("Board of Directors' report for FY2025, published inside the 2025 Ann
 IRDECK = ("Company investor presentation, published on the corporate website "
           "(eipico.com.eg -> Company Profile / EIPICO Presentation)")
 
+# ---- [R-MACRO-01]: the house path owns the economy; this study owns no rate of its own
+_EG = MP.load('EG')
+_HOUSE_CPI = list(_EG.inflation_path[:5])
+_US_LT = _EG.raw['us_inflation_lt']['value']
+_FX_SPOT = _EG.raw['fx']['spot']['value']
+# relative purchasing-power parity, year by year, off the OBSERVED spot. FY2026 is that
+# spot: a dated scalar for a year already two-thirds elapsed is a filed fact, not a
+# forecast, and [R-MACRO-01 AMENDED] allows a leading-year anchor as a COUNT WITH A
+# REASON rather than a blanket. FY2027 onward compound the derived differential.
+# THE HOUSE PATH'S OWN DERIVATION, called rather than re-implemented [R-ENF-03]. A
+# first draft anchored FY2026 AT the observed spot and compounded from FY2027, on the
+# reasoning that a calendar year two-thirds elapsed is closer to a filed fact than to a
+# forecast. The house derivation does not admit that and there is no exemption mechanism
+# for a currency path, so the study CONFORMS and the tension is registered rather than
+# resolved by inventing an anchor: applying a full year of purchasing-power depreciation
+# to a quote taken eight months INTO that year puts the FY2026 average at 56.87 while
+# the same path's own spot reads 50.25 on 6 August 2026, which would need roughly 70 by
+# December. That is a property of the house path's FIRST YEAR and it will reach every
+# Egyptian study that commits a currency path; it is recorded in this study's macro note
+# for the pass that owns the house path, and it is not this study's to fix.
+_HOUSE_FX = [round(x, 4) for x in _EG.fx_path(5)]
+# TERMINAL RISK-FREE = terminal inflation + the real-rate convention, derived so it
+# cannot disagree with the inflation the rest of the model runs on.
+_HOUSE_RF_TERM = round(_EG.terminal_inflation
+                       + _EG.raw['real_rate_convention']['value'], 6)
+
 INP = dict(
     # ---- market anchors -------------------------------------------------
-    spot=I(130.05, "Last close of the uploaded EGX daily price history for the company's listed "
-           "ordinary shares", "2026-08-06", "Market"),
+    spot=I(127.30, "Egyptian Exchange close, 3 September 2026 — the latest price available "
+           "when this edition was struck. A valuation compared against a month-old quote "
+           "is measured against the past rather than the market, so this edition "
+           "re-strikes on the current close. The previous edition was struck at EGP "
+           "130.05 on 6 August 2026.", "2026-09-03", "Market"),
     shares_mn=I(168.755750, "Issued and fully paid capital note (13): EGP 1,687,557,500 divided "
                 "into 168,755,750 shares of EGP 10 par value, following the July-2025 issue of "
                 "20 million new shares approved by the exchange's listing committee on 23 July "
@@ -410,14 +442,17 @@ INP = dict(
                                "dollars at the balance-sheet date — bank balances 10.510 plus "
                                "receivables 40.068 less creditor banks 51.118, in millions of "
                                "US dollars", "2026-03-01", "Company"),
-    fx_path=I([50.5, 52.5, 54.3, 56.0, 57.7],
-              "Egyptian pound per US dollar, FY2026E-FY2030E period averages. Built from the "
-              "inflation differential rather than asserted: the pound averaged 47.74 in 2024 and "
-              "49.48 in 2025 (a 3.6% move) while consumer inflation ran far above the United "
-              "States', so the real exchange rate appreciated. The path assumes that reverses "
-              "only partially, at roughly 4% a year narrowing to 3% as domestic inflation "
-              "converges on the central bank's stated 5% medium-term target", "2026-08-09",
-              "House"),
+    fx_path=I(_HOUSE_FX,
+              "Egyptian pound per US dollar, FY2026E-FY2030E period averages, DERIVED by "
+              "relative purchasing-power parity from the house inflation path above "
+              "against long-run United States inflation of 2.5% — never hand-set, because "
+              "escalating costs at domestic inflation while holding the currency still is "
+              "one event counted once and ignored once. The path compounds from the "
+              "quote of 50.25 to the dollar on 6 August 2026. The previous edition ended "
+              "the window at 57.7 against the 69.7 the "
+              "differential produces — it escalated domestic costs at Egyptian inflation "
+              "while depreciating the pound at roughly a third of the gap, which is two "
+              "views of one economy inside one model.", "2026-09-03", "House"),
 
     # ---- forecast drivers: volume ------------------------------------------
     dom_pack_growth=I([0.055, 0.080, 0.075, 0.065, 0.055],
@@ -484,10 +519,19 @@ INP = dict(
                  "inflation for the near term because the subsidy-reform programme resets "
                  "industrial electricity and gas tariffs on its own schedule; a domestic "
                  "consumer-price proxy would understate it", "2026-08-09", "House"),
-    esc_domestic_cpi=I([0.12, 0.10, 0.085, 0.07, 0.06],
-                       "Egyptian consumer price inflation path, applied only to genuinely "
-                       "domestic service and consumable lines. Converges on the central bank's "
-                       "stated 5-7% medium-term target band", "2026-08-09", "House"),
+    esc_domestic_cpi=I(_HOUSE_CPI,
+                       "Egyptian consumer price inflation, FY2026E-FY2030E, applied to "
+                       "genuinely domestic service and consumable lines. THIS IS THE HOUSE "
+                       "PATH AND NOT THIS STUDY'S OWN: 16.0 / 12.0 / 9.0 / 7.5 / 7.0, the "
+                       "central bank's own published baseline for 2026 and 2027 and its "
+                       "stated glide to the target band thereafter. The previous edition "
+                       "carried 12.0 / 10.0 / 8.5 / 7.0 / 6.0 — a path that compounds 7.3% "
+                       "lower over the window and terminates a point below the long-run "
+                       "rate this same valuation uses in its terminal value. A company "
+                       "cannot be valued in an economy the study beside it does not "
+                       "recognise, and the divergence was invisible because the number was "
+                       "derived rather than typed and nobody asked derived from what.",
+                       "2026-09-03", "House"),
 
     # ---- forecast drivers: operating expenses, capital, working capital -----
     mkt_pct=I([0.104, 0.102, 0.100, 0.099, 0.098],
@@ -792,9 +836,16 @@ INP = dict(
               "its own endpoints, so the levels cancel and only the SHAPE enters. The earlier "
               "edition described it as a cost-of-debt path, which it is not",
               "2026-08-09", "House"),
-    rf_term=I(0.105, "Terminal risk-free rate, built from norms rather than extrapolated: the "
-              "central bank's stated medium-term inflation target of 5% plus the standard "
-              "5.5-point emerging-market real-rate convention", "2026-08-09", "House"),
+    rf_term=I(_HOUSE_RF_TERM, "Terminal risk-free rate, DERIVED and never quoted: the "
+              "long-run inflation this valuation carries throughout, 7.0%, plus the "
+              "standard 5.5-point emerging-market real-rate convention. The previous "
+              "edition used 10.5%, built the same way but on a 5% inflation assumption "
+              "that appears nowhere else in the model — the same valuation escalated "
+              "costs on one long-run rate and discounted the terminal on another, two "
+              "points apart. THE DERIVATION IS WHAT MAKES IT CHECKABLE: the single most "
+              "terminal-value-sensitive number in the model cannot be typed, and it "
+              "cannot disagree with the inflation the rest of the model uses because it "
+              "is computed from it.", "2026-09-03", "House"),
     erp_term=I(0.070, "Terminal equity risk premium, normalised below today's crisis-era level "
                "toward the rating-class norm; never held flat into perpetuity", "2026-08-09",
                "House"),
@@ -812,11 +863,32 @@ INP = dict(
                     "market-value net-debt weight (the weighting basis a weighted average cost "
                     "of capital requires), 'book' takes the forecast terminal book weight. Both "
                     "are computed below and both are published", "2026-08-09", "House"),
-    g_term=I(0.05, "Terminal growth, 5% — an Egyptian-pound NOMINAL rate struck against a "
-             "terminal risk-free rate that itself embeds 5% inflation, so the base case assumes "
-             "approximately zero real terminal growth. Deliberately conservative for a company "
-             "with a third of its revenue in hard currency and a biosimilars plant just "
-             "entering service. Sensitised 3-7%", "2026-08-09", "House"),
+    g_term_real=I(0.0, "Terminal REAL growth of zero: the business is assumed to hold its "
+                  "scale in real terms in perpetuity, with the nominal rate computed from "
+                  "the long-run Egyptian inflation this valuation uses throughout. The "
+                  "previous edition typed 5% nominal and justified it as 'approximately "
+                  "zero real terminal growth' — WHICH IT WAS NOT. Against the 7% long-run "
+                  "inflation this valuation carries elsewhere, 5% nominal is a real "
+                  "DECLINE of 1.87% a year, for ever, for a company with a third of its "
+                  "revenue in hard currency and a biosimilars plant just entering service. "
+                  "Nothing in the study argued for a perpetual contraction; the sentence "
+                  "asserted the opposite of what the arithmetic did, and a rate quoted "
+                  "only in nominal terms is where that hides. Sensitised 3-7% nominal.",
+                  "2026-08-09", "House"),
+    asset_life_weighted=I(13.80, "Weighted useful life of the depreciable asset base, "
+                          "derived from the FY2024 audited consolidated statements' own "
+                          "composition: the estimated lives in note 3.1 — buildings and "
+                          "structures 50 years, production and service machines 15, means "
+                          "of transportation and tools 5, office furniture and equipment "
+                          "10, land not depreciated — weighted by the gross cost by class "
+                          "in note 4.1 at 31 December 2024. Every life the company "
+                          "discloses is a single figure rather than a band, so the "
+                          "weighting is unambiguous. The depreciable base of EGP "
+                          "2,701,916,171 foots to the note's stated total of "
+                          "2,785,102,203 once land of 83,186,032 is excluded. Annual "
+                          "depreciation rates add rather than lives, so the weighted life "
+                          "is the reciprocal of the weighted rate.", "2024-12-31",
+                          "Company"),
     roic_term_source=I('model_fy2030', "Terminal return on invested capital is no longer an "
                        "input. The earlier edition asserted 20% while the model's own FY2030E "
                        "return on invested capital was 16.36% — a 364 basis-point step up, "
@@ -854,6 +926,12 @@ INP = dict(
                  "2026-08-11", "House"),
 
     # ---- relative lens ------------------------------------------------------
+    peer_ke=I(0.10, "Cost of equity faced by the struck reference companies — a listed "
+              "Saudi Arabian generics manufacturer and larger international generic "
+              "manufacturers, all of them in hard-currency or pegged economies. It is the "
+              "ONE difference the peer multiple is adjusted for, and it is registered "
+              "rather than typed inside the adjustment so a reader can see what the "
+              "adjustment is made of.", "2026-08-09", "House"),
     peer_pe_regional=I(21.35, "A STRUCK REFERENCE, not a median of a disclosed peer set — the "
                        "earlier edition called it a 'peer median', which it was not, because "
                        "only two reference points are disclosed. Those two are: a listed Saudi "
@@ -884,6 +962,16 @@ INP = dict(
 )
 
 V = {k: v['value'] for k, v in INP.items()}
+
+# ---- [R-MACRO-01]: the terminal NOMINAL growth is DERIVED, never typed ------------
+# The house path owns the inflation; this study owns the REAL rate and nothing else.
+# The previous edition typed 5% nominal and described it as "approximately zero real",
+# which against the house terminal of 7% is a real DECLINE of 1.87% a year in
+# perpetuity — the sentence asserted the opposite of what the number did, and neither
+# a reader nor a checker could see it while the rate was quoted in nominal terms.
+_EG_PATH = MP.load('EG')
+PI_TERM = (_EG_PATH.raw['inflation']['terminal'] or {})['value']
+V['g_term'] = (1.0 + PI_TERM) * (1.0 + V['g_term_real']) - 1.0
 # --- audit hook: re-run the whole model with one input replaced, for pricing a finding ---
 _ovr = os.environ.get('PHAR_OVERRIDE')
 if _ovr:
@@ -1262,6 +1350,10 @@ say(f"  CONSEQUENCE, STATED RATHER THAN HIDDEN: on this funded book the finance 
 
 # ---- terminal return on invested capital: computed, never asserted -------------
 ic_fy30 = ppe[-1] + cip[-1] + wc[-1] + V['intang_fy25']
+# the FIRST forecast year's invested capital, so the capital behind one unit of REAL
+# growth is a MARGINAL quantity — a difference across the window, from which any
+# common starting level correctly cancels
+ic_fy26 = ppe[0] + cip[0] + wc[0] + V['intang_fy25']
 
 # ============================ COST OF CAPITAL =================================
 rf_star = V['rf'] - V['sov_spread_cds']
@@ -1375,9 +1467,36 @@ def run_dcf(ebit, ebitda, label):
     pv_sum = sum(pv)
     roic_fy30 = nopat[-1] / ic_fy30
     nopat_term = nopat[-1] * (1 + V['g_term']) - term_dep_catchup * (1 - TAX_FCFF)
+    # THE RETIRED FORM, kept in one line so the change is legible and priced: the
+    # reinvestment identity rr = g/ROIC charges g x IC every year for ever, so the
+    # implied replacement cycle is 1/g — a fact about the growth rate rather than about
+    # the asset. At the previous edition's 5% that was 20.0 years against a weighted
+    # useful life this company's own accounts disclose at 13.80; at the derived 7% it is
+    # 14.3. THE DIRECTION IS SET BY THE TYPED GROWTH RATE AND NOT BY THE MARKET: a
+    # terminal at zero real growth has 1/g = 1/inflation and runs SHORT in a
+    # high-inflation economy, which is what [R-TERM-01 CLAUSE TWO] reasons from; this
+    # study typed a rate BELOW inflation and so ran long in exactly the market the
+    # clause says should run short.
     reinv_rate = V['g_term'] / roic_fy30
-    fcff_term = nopat_term * (1 - reinv_rate)
-    tv = fcff_term / (wacc_term - V['g_term'])
+    tv_retired = nopat_term * (1 - reinv_rate) / (wacc_term - V['g_term'])
+    _inc_cap = ((ic_fy30 - ic_fy26) / (revenue[-1] - revenue[0])) * revenue[-1]
+    _terminal = TV.build(TV.TerminalInputs(
+        nopat=nopat_term, wacc=wacc_term, inflation=PI_TERM,
+        real_growth=V['g_term_real'],
+        dna_book=dna[-1] * (1 + V['g_term']),
+        useful_life_years=V['asset_life_weighted'],
+        useful_life_source=INP['asset_life_weighted']['source'],
+        # The cross-check basis, and the reason is structural rather than convenience:
+        # dividing REPLACEMENT-COST invested capital by the disclosed life needs a
+        # replacement-cost capital base, and this model commits none — the property note
+        # gives GROSS HISTORICAL cost on a base 64% depreciated, and rolling it forward
+        # through five years of forecast capital spending at mixed vintages would be a
+        # construction of ours rather than a figure the company discloses.
+        maintenance_basis='book_dna_escalated',
+        working_capital=wc[-1] * (1 + V['g_term']),
+        incremental_capital_per_unit_growth=_inc_cap))
+    fcff_term = _terminal.fcff
+    tv = _terminal.tv
     pv_tv = tv * df[-1]
     ev_core = pv_sum + pv_tv
     assoc_earnings = V['assoc_norm'] * V['assoc_multiple']
@@ -1388,13 +1507,37 @@ def run_dcf(ebit, ebitda, label):
     return dict(label=label, ebitda=ebitda, ebit=ebit, nopat=nopat, fcff=fcff, pv=pv,
                 pv_sum=pv_sum, nopat_term=nopat_term, reinvest_rate=reinv_rate,
                 roic_term=roic_fy30, term_dep_catchup=term_dep_catchup,
-                fcff_term=fcff_term, tv=tv, pv_tv=pv_tv, ev_core=ev_core,
+                fcff_term=fcff_term, tv=tv, tv_retired=tv_retired,
+                terminal_record=dict(inputs=dict(
+                    nopat=nopat_term, wacc=wacc_term, inflation=PI_TERM,
+                    real_growth=V['g_term_real'], nominal_growth=V['g_term'],
+                    dna_book=dna[-1] * (1 + V['g_term']),
+                    useful_life_years=V['asset_life_weighted'],
+                    useful_life_source=INP['asset_life_weighted']['source'],
+                    maintenance_basis='book_dna_escalated',
+                    working_capital=wc[-1] * (1 + V['g_term']),
+                    incremental_capital_per_unit_growth=_inc_cap),
+                    outputs=dict(fcff=_terminal.fcff, tv=_terminal.tv,
+                                 floor=_terminal.floor,
+                                 maintenance=_terminal.maintenance,
+                                 growth_capex=_terminal.growth_capex,
+                                 wc_charge=_terminal.wc_charge,
+                                 dna_addback=_terminal.dna_addback,
+                                 implied_cycle_years=_terminal.implied_cycle_years,
+                                 below_floor=_terminal.below_floor),
+                    record=_terminal.record,
+                    retired_construction=dict(
+                        form='NOPAT_term(1 - g/ROIC)/(W-g)', tv=tv_retired,
+                        implied_cycle_years=1.0 / V['g_term'])),
+                pv_tv=pv_tv, ev_core=ev_core,
                 tv_share=pv_tv / ev_core, assoc_value=assoc_value,
                 assoc_earnings_value=assoc_earnings,
                 arab_api_cost=V['arab_api_cost'], ev_total=ev_total,
                 net_debt=net_debt, nci=V['nci_bridge'], equity=equity, per_share=ps,
                 tv_share_total=pv_tv / ev_total)
 
+
+_inc_cap_base = ((ic_fy30 - ic_fy26) / (revenue[-1] - revenue[0])) * revenue[-1]
 
 dcf_A = run_dcf(ebit_A, ebitda_A, 'Frame A — provision charge permanent at 5.25% of revenue')
 dcf_B = run_dcf(ebit_B, ebitda_B, 'Frame B — provision charge normalising to 2.5% of revenue')
@@ -1507,7 +1650,15 @@ eps_fwd = (eps_26_A + eps_26_B) / 2
 peer_pe_struck = (V['peer_pe_hi'] + V['peer_pe_lo']) / 2
 assert abs(peer_pe_struck - V['peer_pe_regional']) < 1e-9, \
     'the struck peer reference does not equal the midpoint of its two observations'
-peer_adj_pe = peer_pe_struck * (0.10 - 0.05) / (ke_term - V['g_term'])
+# THE GROWTH IN THE NUMERATOR IS THE SAME GROWTH AS IN THE DENOMINATOR, and it was a
+# TYPED 0.05 — the terminal growth of a previous edition, left behind when that rate
+# became derived. The adjustment re-prices a peer multiple at THIS company's cost of
+# equity and nothing else, so a different growth on the two sides would be re-pricing
+# the growth as well and calling it a cost-of-equity adjustment. The workbook had it
+# right and the model had it stale, which is the direction that normally runs the other
+# way and is why the recalculation gate is worth having in both directions.
+peer_adj_pe = (peer_pe_struck * (V['peer_ke'] - V['g_term'])
+               / (ke_term - V['g_term']))
 # PERIOD-MATCHED. A TRAILING multiple multiplies TRAILING earnings; a FORWARD multiple
 # multiplies FORWARD earnings. The earlier edition applied all three legs to FY2026E earnings,
 # including the two built from trailing multiples — and because FY2026E earnings are BELOW
@@ -1590,28 +1741,44 @@ W_DCF = V['w_dcf']
 
 
 def weighted_centre(dcf_ps):
+    """THE RETIRED BLEND, kept in one function so the change is legible and priced."""
     return W_DCF * dcf_ps + sum(l['value'] * l['weight'] for l in shared_lenses)
 
 
-centre_A = weighted_centre(dcf_A['per_share'])
-centre_B = weighted_centre(dcf_B['per_share'])
-lenses_A = [dict(name='Discounted cash flow — Frame A', value=dcf_A['per_share'],
-                 weight=W_DCF)] + shared_lenses
-lenses_B = [dict(name='Discounted cash flow — Frame B', value=dcf_B['per_share'],
-                 weight=W_DCF)] + shared_lenses
-assert abs(sum(l['weight'] for l in lenses_A) - 1.0) < 1e-12, 'weights do not sum to one'
+# [R-LENS-03]: ONE CLASS PRIMARY IS THE CENTRAL, AND THIS STUDY HAS TWO OF THEM because
+# it publishes two frames rather than averaging them. Each frame's centre is now its OWN
+# cash-flow read, and the three other lenses are cross-checks published beside both.
+# The typed 50/20/15/15 weights had never cleared an out-of-sample test — chosen, written
+# down, inherited — and they pulled BOTH frames toward the same three shared numbers,
+# which is the opposite of what a two-sided answer is for: the whole point is that the
+# contested judgement moves the answer, and blending it against three readings that do
+# not depend on it damps exactly the disagreement the reader is being shown.
+blend_A = weighted_centre(dcf_A['per_share'])
+blend_B = weighted_centre(dcf_B['per_share'])
+centre_A = dcf_A['per_share']
+centre_B = dcf_B['per_share']
+lenses_A = [dict(name='Discounted cash flow — Frame A (THE CENTRE)',
+                 value=dcf_A['per_share'], weight=1.0, role='primary')] + \
+    [dict(l, weight=0.0, role='cross_check') for l in shared_lenses]
+lenses_B = [dict(name='Discounted cash flow — Frame B (THE CENTRE)',
+                 value=dcf_B['per_share'], weight=1.0, role='primary')] + \
+    [dict(l, weight=0.0, role='cross_check') for l in shared_lenses]
 vals = [dcf_A['per_share'], dcf_B['per_share'], book_ps, rel_ps, norm_ps]
 fair_bear, fair_bull = min(vals), max(vals)
 say('')
-say(f"[Synthesis] TWO centres, not one. The three lenses that do not turn on the contested "
-    f"judgement are " +
+say(f"[Synthesis — one lens per frame, not a blend] the centre of each frame IS its own "
+    f"cash-flow read: Frame A {centre_A:,.2f}, Frame B {centre_B:,.2f}, against a "
+    f"{V['spot']:,.2f} market price ({centre_A/V['spot']-1:+.1%} and "
+    f"{centre_B/V['spot']-1:+.1%}). The three lenses that do not turn on the contested "
+    f"judgement are published beside both and averaged into neither: " +
     ' · '.join(f"{l['name']} {l['value']:,.2f}" for l in shared_lenses) +
-    f". Carrying them beside Frame A gives a weighted centre of {centre_A:,.2f}; beside Frame B, "
-    f"{centre_B:,.2f}. The two frames are NOT averaged into a single number — that is the "
-    f"study's standing rule and the earlier edition's single centre of 66.57 broke it, because "
-    f"weighting both frames at a quarter each is a straight average of them. The field across "
-    f"all five readings runs {fair_bear:,.2f} to {fair_bull:,.2f} against a {V['spot']:,.2f} "
-    f"market price.")
+    f". The retired 50/20/15/15 blend read {blend_A:,.2f} and {blend_B:,.2f} — it pulled "
+    f"BOTH frames toward the same three shared numbers, which damps precisely the "
+    f"disagreement a two-sided answer exists to show, and its weights had never cleared "
+    f"an out-of-sample test. NORMALISED EARNINGS POWER, at {norm_ps:,.2f}, is computed "
+    f"and published and is NOT one of the lenses: the registry does not permit it for "
+    f"this class. The field across all five readings runs {fair_bear:,.2f} to "
+    f"{fair_bull:,.2f}.")
 
 # ============================ SENSITIVITY =====================================
 # The ramp the reverse valuation puts the incremental revenue on. PUBLISHED, because the
@@ -1710,7 +1877,24 @@ def dcf_at(wacc_shift=0.0, g=None, beta_override=None, prov_pct=None, fx_scale=1
     roic_ = ebit_[-1] * (1 - TAX_FCFF) / ic_
     nt = (ebit_[-1] * (1 - TAX_FCFF) * (1 + g)
           - cip_close_ * dr_rate * (1 - TAX_FCFF))
-    tv_ = nt * (1 - g / roic_) / (wt - g)
+    # The terminal is built through the sanctioned module here too. A sensitivity grid
+    # that keeps the retired construction grades a model the study no longer publishes,
+    # and this study's own base assert is what caught it. A scenario states its growth
+    # as a NOMINAL rate because that is what a reader varies; it is converted to the
+    # REAL rate against the same house inflation, so the module derives back exactly the
+    # nominal that was asked for and no rate is typed twice.
+    try:
+        tv_ = TV.build(TV.TerminalInputs(
+            nopat=nt, wacc=max(wt, g + 0.02), inflation=PI_TERM,
+            real_growth=(1.0 + g) / (1.0 + PI_TERM) - 1.0,
+            dna_book=dna_[-1] * (1 + g),
+            useful_life_years=V['asset_life_weighted'],
+            useful_life_source=INP['asset_life_weighted']['source'],
+            maintenance_basis='book_dna_escalated',
+            working_capital=wc_[-1] * (1 + g),
+            incremental_capital_per_unit_growth=_inc_cap_base)).tv
+    except TV.TerminalRefused:
+        return float('nan')
     ev_ = (pvs + tv_ * d_[-1] + V['assoc_norm'] * V['assoc_multiple'] + V['arab_api_cost']
            + V['afs_fy25'])
     return (ev_ - net_debt - V['nci_bridge']) / V['shares_mn']
@@ -1855,8 +2039,170 @@ OUT = dict(
               crp_rating=V['crp_rating'], crp_cds=V['crp_cds'],
               beta_regression=beta_res),
     dcf=dict(frame_A=dcf_A, frame_B=dcf_B),
+    # A TWO-SIDED ANSWER IN THE SHAPE EVERY GATE READS. This study publishes two named
+    # branches and no average — which is right, and was INVISIBLE: the gap gate, the
+    # publish block and the blend census all resolve a study's answer through a top-level
+    # central, found none, and reported PHAR unreadable rather than breaching. An
+    # unreadable study is held either way, so nothing shipped wrongly; what was lost is
+    # that the number nobody could read was 34% below the market, which is exactly the
+    # region [R-GAP-01] exists to audit.
+    # [R-MACRO-01 AMENDED]: every INFLATION-CLASS input, named with the mapping that
+    # derives it from the house ladder, declared even when empty. The rule's own lesson
+    # is that a check reading what a study DECLARES is not checking what it USES — and
+    # this study is the case in point: its declared growth lines were fine while an
+    # input named nowhere in the record, the domestic consumer-price path, drove the
+    # cost stack AND the purchasing-power wedge and therefore the whole currency path.
+    # DERIVED QUANTITIES, committed where a builder can read them. They are NOT inputs
+    # and do not belong in the four-field register — a register is for figures with a
+    # source and a date, and a derived rate's provenance is the derivation. Builders
+    # read them from here so no document re-derives one differently.
+    derived=dict(
+        g_term=V['g_term'], g_term_real=V['g_term_real'], pi_term=PI_TERM,
+        rf_term=V['rf_term'],
+        note='the terminal nominal growth and the terminal risk-free rate are both '
+             'computed from the house long-run inflation of %.1f%% — the growth as '
+             '(1+inflation)(1+real)-1 at %.2f%% real, the risk-free as inflation plus '
+             'the %.1f-point real-rate convention. Neither can be typed, so neither can '
+             'disagree with the inflation the rest of the model uses.'
+             % (100 * PI_TERM, 100 * V['g_term_real'],
+                100 * _EG.raw['real_rate_convention']['value'])),
+    macro_record=dict(
+        market='EG', path_as_of=_EG.as_of, explicit_years=[2026, 2027, 2028, 2029, 2030],
+        inflation_inputs=[
+            dict(key='esc_domestic_cpi', mapping='calendar', first_year=2026,
+                 exempt_head=0, values=list(V['esc_domestic_cpi']),
+                 note='the house calendar ladder exactly, at zero real: this study '
+                      'carries no inflation rate of its own'),
+        ],
+        # the gate compares this list against its own derived purchasing-power path, so
+        # it is the LIST and the metadata sits beside it rather than wrapping it
+        # NO fx_base: the house path's own default base is the 2025 period average it
+        # registers, and passing the August spot instead makes the check derive from
+        # a different anchor than the study built on — the two must be the same
+        # object or the comparison is between two constructions rather than one.
+        fx_path=list(V['fx_path']),
+        fx_path_note=dict(
+            mapping='calendar', first_year=2026,
+            exempt_head=0,
+            registered_tension='The derivation compounds a full year of purchasing-power '
+                               'depreciation onto a quote taken EIGHT MONTHS INTO that '
+                               'year, so the FY2026 average comes out at 56.87 while the '
+                               'same house path reads 50.25 on 6 August 2026 — which '
+                               'would need roughly 70 by December. The study CONFORMS '
+                               'rather than inventing an anchor, and this is registered '
+                               'as a property of the house path\'s first year that will '
+                               'reach every Egyptian study committing a currency path.',
+            derivation='relative purchasing-power parity on the house inflation ladder '
+                       'against long-run United States inflation of %.1f%%, compounded '
+                       'year by year from that anchor' % (100 * _US_LT)),
+        terminal=dict(g_nominal=V['g_term'], real=V['g_term_real'], rf=V['rf_term'],
+                      inflation_in_rf=PI_TERM, inflation=PI_TERM,
+                      real_growth=V['g_term_real'], nominal_growth=V['g_term'],
+                      note='zero real growth: the business holds its scale in real terms '
+                           'in perpetuity, and the nominal rate is DERIVED from the house '
+                           'terminal inflation rather than typed. The previous edition '
+                           'typed 5% nominal and described it as "approximately zero real "'
+                           'terminal growth", which against a 7% long-run rate is a real '
+                           'DECLINE of 1.87% a year, in perpetuity, that nothing in the '
+                           'study argued for'),
+        growth_lines=[
+            dict(name='domestic service and consumable cost escalation',
+                 years=[2026, 2027, 2028, 2029, 2030],
+                 nominal=list(V['esc_domestic_cpi']), real=0.0,
+                 basis='the house ladder at zero real growth'),
+        ],
+        note=('The active-ingredient escalation of %.1f%% and the export price growth of '
+              '%.1f%% are quoted in US DOLLARS and are not inflation-class inputs on this '
+              'path: they escalate a hard-currency price and reach the pound only through '
+              'the derived currency path above, which is where this ladder governs them.'
+              % (100 * V['esc_materials_usd'], 100 * V['exp_price_usd_growth'][0])),
+    ),
+    central_two_sided=dict(
+        why="the provision charge is the study's single most consequential contested "
+            "judgement and the two readings of it are published side by side, never "
+            "averaged: averaging them would state a number neither branch supports.",
+        branches=[
+            dict(label='Frame A — provision charge permanent at 5.25% of revenue',
+                 value=centre_A,
+                 condition="the elevated receivable-provision charge of the last two "
+                           "years is the new normal"),
+            dict(label='Frame B — provision charge normalising to 2.5% of revenue',
+                 value=centre_B,
+                 condition="the charge reverts toward the level the company ran before "
+                           "the currency devaluation"),
+        ]),
+    spot=V['spot'], spot_date=INP['spot']['date'],
+    lens_record=dict(**{'class': 'pharmaceutical manufacturer, generic and branded'},
+        primary=dict(kind='dcf', two_sided=True, value=None,
+                     range=dict(low=min(centre_A, centre_B),
+                                high=max(centre_A, centre_B)),
+                     range_note="the two published frames of the contested provision "
+                                "judgement, each its own present-value read on one "
+                                "clock — not a spread across methods and not a spread "
+                                "invented around a point",
+                     range_basis=dict(
+                         driver="the receivable-provision charge as a share of revenue, "
+                                "5.25% against 2.5%",
+                         low=min(centre_A, centre_B), high=max(centre_A, centre_B),
+                         units="EGP per share, the present-value read under each frame",
+                         macro_held=True,
+                         evidence="both frames re-run the same unit build with only the "
+                                  "provision charge changed; the cost of capital, the "
+                                  "inflation path, the derived terminal growth and the "
+                                  "terminal construction are identical in both, so the "
+                                  "spread is the judgement and nothing else")),
+        cross_checks=[
+            dict(kind='relative_multiple', value=rel_ps, present_value=False,
+                 # THE ADOPTED MULTIPLE IS THE MEAN OF THE THREE LEGS, and it is
+                 # committed rather than described: a source named in prose is an
+                 # attestation, and the multiple is the thing that can be checked.
+                 multiple=sum(m for _, m, _ in tri) / len(tri),
+                 multiple_legs=[dict(basis=b, multiple=float(m), value=float(v))
+                                for b, m, v in tri],
+                 # The circularity check: what multiple the TRADED price implies on the
+                 # same metric, so a reader can see the lens is not the price wearing a
+                 # different label. Trailing attributable profit on the count in issue.
+                 circularity=dict(spot=V['spot'], shares=V['shares_mn'],
+                                  net_debt=net_debt,
+                                  metric_value=V['np_fy25']),
+                 multiple_source="three multiples applied to the earnings of their own "
+                                 "periods — one justified by this model's own economics, "
+                                 "one the company's own four-year mean of year-end close "
+                                 "over audited attributable profit, and one struck "
+                                 "reference adjusted for the cost-of-equity difference; "
+                                 "never a multiple read off the current price",
+                 note="the peers behind the third leg are not named and their financials "
+                      "are not published, so that leg cannot be rebuilt from peer "
+                      "filings — a stated limitation of the leg"),
+            dict(kind='book_value', value=book_ps, present_value=False, floor=True,
+                 note="a disclosed FLOOR on a justified price-to-book, published as such "
+                      "and never weighted")],
+        cross_checks_not_built=[
+            dict(kind='ev_ebitda_own_history',
+                 why="this class permits an enterprise multiple on the company's own "
+                     "history and this study publishes an EARNINGS multiple on its own "
+                     "history instead. The enterprise version needs a series of past "
+                     "enterprise values, which needs past net debt at each year end on a "
+                     "consistent definition across a period spanning two devaluations. "
+                     "Named rather than quietly absent.")],
+        lenses_excluded=[
+            dict(kind='normalized_earnings', value=norm_ps,
+                 why="not a permitted lens for any class in the registry. It is computed "
+                     "and published as an observation; it does not enter either centre.")],
+        envelope=dict(low=min(centre_A, centre_B), high=max(centre_A, centre_B)),
+        central=None,
+        retired_blend=dict(
+            weights=dict(dcf=W_DCF, book=V['w_book'], relative=V['w_rel'],
+                         normalized=V['w_norm']),
+            value_frame_A=blend_A, value_frame_B=blend_B,
+            why_retired="typed weights that had never cleared an out-of-sample test, one "
+                        "of the four lenses is not permitted for any class, and blending "
+                        "each frame against three readings that do NOT depend on the "
+                        "contested judgement damps precisely the disagreement a two-sided "
+                        "answer exists to show")),
     lenses=dict(items_A=lenses_A, items_B=lenses_B, shared=shared_lenses, w_dcf=W_DCF,
                 centre_A=centre_A, centre_B=centre_B,
+                blend_A=blend_A, blend_B=blend_B,
                 fair_bear=fair_bear, fair_bull=fair_bull,
                 book_ps=book_ps, bv_ps=bv_ps, just_pb=just_pb, roe_sust=roe_sust,
                 roe_fy24=roe_fy24, roe_fy25=roe_fy25,

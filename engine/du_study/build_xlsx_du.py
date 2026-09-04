@@ -175,15 +175,30 @@ ws.column_dimensions['A'].width = 112
 ws = sheet('Summary')
 title(ws, 'Summary — valuation at a glance', 'All values link live to their source sheets', 7,
       awidth=44, cwidth=15)
-hdr(ws, 4, ['Lens', 'Bear', 'Base', 'Bull', 'Weight', 'Contribution', 'vs spot'])
+hdr(ws, 4, ['Lens', 'Bear', 'Base', 'Bull', 'Role', '', 'vs price'])
 LENS_SRC = {'dcf': '=DCF!C63', 'relative': "='Relative & Normalized'!C11",
             'normalized': "='Relative & Normalized'!C27", 'book': "='Relative & Normalized'!C35"}
 BEAR_SRC = {'relative': "='Relative & Normalized'!C12",
             'normalized': "='Relative & Normalized'!E27", 'book': "='Relative & Normalized'!E35"}
 BULL_SRC = {'relative': "='Relative & Normalized'!D12",
             'normalized': "='Relative & Normalized'!F27", 'book': "='Relative & Normalized'!F35"}
+LK = ['dcf', 'relative', 'normalized', 'book']
+RETW = D['lens_record']['retired']['blend']
+# The 'vs price' column divides by the market price, which sits at the FOOT of this block —
+# below the rows that reference it — so its address is computed here from the layout and
+# ASSERTED when the row is actually written. Retiring the blend added a row, and every
+# absolute reference left behind silently re-pointed at the expert-panel median instead of
+# the price: a formula naming a cell by address moves with the re-issue, and only an
+# assertion notices when it does not.
+SPOT_ROW = 5 + len(LK) + 6
+# THE WEIGHT AND CONTRIBUTION COLUMNS WENT WITH THE BLEND, and a role column replaces
+# them: which lens is the answer, which sit beside it, and which this class does not
+# publish at all.
+ROLE = {'dcf': 'THE CENTRAL — the class primary', 'relative': 'cross-check',
+        'normalized': 'REMOVED — not a lens this class publishes',
+        'book': 'a disclosed floor, never weighted'}
 r = 5
-for k in ['dcf', 'relative', 'normalized', 'book']:
+for k in LK:
     l = LN[k]
     put(ws, f'A{r}', l['name'], fmt=None)
     if k in BEAR_SRC:
@@ -195,43 +210,50 @@ for k in ['dcf', 'relative', 'normalized', 'book']:
         putf(ws, f'D{r}', BULL_SRC[k], l['bull'], PX, green=True)
     else:
         put(ws, f'D{r}', l['bull'], BLUE, PX)
-    put(ws, f'E{r}', l['w'], BLUE, PCT)
-    putf(ws, f'F{r}', f'=C{r}*E{r}', l['base'] * l['w'], PX)
-    putf(ws, f'G{r}', f'=C{r}/$C$14-1', l['base'] / SPOT - 1, PCT)
+    put(ws, f'E{r}', ROLE[k], fmt=None)
+    putf(ws, f'G{r}', f'=C{r}/$C${SPOT_ROW}-1', l['base'] / SPOT - 1, PCT)
     r += 1
 band(ws, r, 7)
-LK = ['dcf', 'relative', 'normalized', 'book']
-# CORRECTED 17-Aug-2026: the bear and bull cells on this row are now WEIGHTED on the same
-# 45/25/20/10 basis as the base. They previously held MIN/MAX across lenses under a "Weighted"
-# label, which overstated the published range in both directions.
-_WB = sum(LN[k]['bear'] * LN[k]['w'] for k in LK)
-_WU = sum(LN[k]['bull'] * LN[k]['w'] for k in LK)
-put(ws, f'A{r}', 'Weighted central', bold=True, fmt=None)
-putf(ws, f'B{r}', '=B5*E5+B6*E6+B7*E7+B8*E8', _WB, PX, bold=True)
-putf(ws, f'C{r}', '=SUM(F5:F8)', D['central'], PX, bold=True)
-putf(ws, f'D{r}', '=D5*E5+D6*E6+D7*E7+D8*E8', _WU, PX, bold=True)
-putf(ws, f'E{r}', '=SUM(E5:E8)', 1.0, PCT, bold=True)
-putf(ws, f'G{r}', f'=C{r}/$C$14-1', D['central'] / SPOT - 1, PCT, bold=True)
+put(ws, f'A{r}', 'THE CENTRAL — the cash-flow lens, not an average', bold=True, fmt=None)
+ANCH['summary_central'] = f'C{r}'
+putf(ws, f'B{r}', '=B5', LN['dcf']['bear'], PX, bold=True)
+putf(ws, f'C{r}', '=C5', D['central'], PX, bold=True)
+putf(ws, f'D{r}', '=D5', LN['dcf']['bull'], PX, bold=True)
+put(ws, f'E{r}', 'the class primary', fmt=None)
+putf(ws, f'G{r}', f'=C{r}/$C${SPOT_ROW}-1', D['central'] / SPOT - 1, PCT, bold=True)
 r += 1
-put(ws, f'A{r}', 'Span across lenses (min/max — NOT weighted)', fmt=None)
+put(ws, f'A{r}', 'NOT AVERAGED — the retired blend, published unused', bold=True, fmt=None)
+putf(ws, f'C{r}', '=' + '+'.join('C%d*%g' % (5 + i, RETW[k]) for i, k in enumerate(LK)),
+     D['retired_blend_value'], PX)
+put(ws, f'E{r}', 'retired 02-Sep-2026', fmt=None)
+putf(ws, f'G{r}', f'=C{r}/$C${SPOT_ROW}-1', D['retired_blend_value'] / SPOT - 1, PCT)
+r += 1
+put(ws, f'A{r}', 'Span across the lenses (min/max) — a spread between METHODS, not a range '
+                 'around the answer', fmt=None)
 putf(ws, f'B{r}', '=MIN(B5:B8)', min(LN[k]['bear'] for k in LK), PX)
 putf(ws, f'D{r}', '=MAX(D5:D8)', max(LN[k]['bull'] for k in LK), PX)
 r += 1
 put(ws, f'A{r}', "Contested judgement, other way — no terminal re-rating (Framing 2)", fmt=None)
 SUMMARY_ALT_ROW = r   # resolved after the Fundamental Valuation rows are known
+ANCH['summary_alt'] = f'C{r}'
 put(ws, f'C{r}', DCF['ps_mkt_term'], BLUE, PX)
-putf(ws, f'G{r}', f'=C{r}/$C$14-1', DCF['ps_mkt_term'] / SPOT - 1, PCT)
+putf(ws, f'G{r}', f'=C{r}/$C${SPOT_ROW}-1', DCF['ps_mkt_term'] / SPOT - 1, PCT)
 r += 1                                             # r = 12
 put(ws, f'A{r}', 'Terminal value share of DCF enterprise value', fmt=None)
+ANCH['summary_tv_share'] = f'C{r}'
 putf(ws, f'C{r}', '=DCF!C29', DCF['tv_share'], PCT, green=True)
 r += 1                                             # r = 13
 put(ws, f'A{r}', 'Expert panel median', fmt=None)
+ANCH['summary_panel'] = f'C{r}'
 putf(ws, f'C{r}', "='Fundamental Valuation'!C27", D['panel_centre'], PX, green=True)
-putf(ws, f'G{r}', f'=C{r}/$C$14-1', D['panel_centre'] / SPOT - 1, PCT)
+putf(ws, f'G{r}', f'=C{r}/$C${SPOT_ROW}-1', D['panel_centre'] / SPOT - 1, PCT)
 r += 1
 band(ws, r, 7)
+ANCH['summary_spot'] = f'C{r}'
+assert r == SPOT_ROW, (f'market price landed on row {r}, not the row {SPOT_ROW} that every '
+                       f'"vs price" formula on this sheet divides by')
 put(ws, f'A{r}', 'Market price (anchor)', bold=True, fmt=None)
-put(ws, f'C{r}', SPOT, BLUE, PX, bold=True)     # row 14
+put(ws, f'C{r}', SPOT, BLUE, PX, bold=True)
 r += 2
 hdr(ws, r, ['Key figure', 'Value'])
 KEY = [('Shares outstanding (mn)', 'SHARES', SH, NUM0),
@@ -273,8 +295,12 @@ for a_, b_, c_, xp in rows:
         put(ws, f'C{r}', c_, BLUE, PX)
     r += 1
 r += 1
-band(ws, r, 3); put(ws, f'A{r}', 'Weighted central', bold=True, fmt=None)
-putf(ws, f'C{r}', '=Summary!C9', D['central'], PX, bold=True, green=True)   # row 12
+band(ws, r, 3)
+put(ws, f'A{r}', 'THE CENTRAL — the cash-flow lens itself, not an average of the four',
+    bold=True, fmt=None)
+ANCH['fv_central'] = f'C{r}'
+putf(ws, f'C{r}', f"=Summary!{ANCH['summary_central']}", D['central'], PX, bold=True,
+     green=True)
 r += 2
 put(ws, f'A{r}', 'THE CONTESTED JUDGEMENT — THE REQUIRED RETURN, BOTH WAYS', bold=True,
     fmt=None); r += 1
@@ -470,11 +496,12 @@ block('Balance-sheet and bridge anchors', [
 block('Lens inputs', [
     ('pe_just', 'Justified price/earnings (GCC telecom peer median)', IN['pe_just'], MULT),
     ('yield_peer', 'Peer benchmark dividend yield', IN['div_yield_peer'], PCT),
-    ('roe_sust', 'Sustainable return on equity', IN['roe_sust'], PCT),
-    ('w_dcf', 'Weight — discounted cash flow', IN['lens_weights']['dcf'], PCT),
-    ('w_rel', 'Weight — relative', IN['lens_weights']['relative'], PCT),
-    ('w_norm', 'Weight — normalised', IN['lens_weights']['normalized'], PCT),
-    ('w_book', 'Weight — book', IN['lens_weights']['book'], PCT)])
+    ('roe_sust', 'Sustainable return on equity', IN['roe_sust'], PCT)])
+# The four lens-weight rows that stood here went with the blend. They are REMOVED rather
+# than zeroed: a weight of zero is still a weight, and a reader opening this sheet would
+# reasonably read four zeros as a scheme somebody had switched off rather than one that no
+# longer exists. The retired weights are published once, in the Summary's own retired row,
+# where they are labelled as retired.
 
 # now that the Assumptions addresses exist, finish the Summary key-figure block
 ws = wb['Summary']
@@ -484,7 +511,7 @@ for lab, fml, val, fmt in KEY:
     if fml == 'SHARES':
         fml = f'={a("shares")}'
     elif fml == 'MKTCAP':
-        fml = f'=$C$14*C{SHARES_ROW}'
+        fml = f'=$C${SPOT_ROW}*C{SHARES_ROW}'
     elif fml == 'LEASE':
         fml = f'={a("lease")}'
     elif fml == 'NETCASH':
@@ -1306,7 +1333,7 @@ hdr(ws, r, ['Engine setting', 'Value']); r += 1
 for lab, v, fmt, green in [('Simulated paths', 50000, NUM0, False),
                            ('Annualised volatility (3-month anchor)',
                             STK['horizons']['3M']['anchor_vol_ann'], PCT, False),
-                           ('Spot price (AED)', '=Summary!C14', PX, True),
+                           ('Spot price (AED)', f'=Summary!C{SPOT_ROW}', PX, True),
                            ('Anchor date', STK['anchor_date'], None, False)]:
     put(ws, f'A{r}', lab, fmt=None)
     if green:

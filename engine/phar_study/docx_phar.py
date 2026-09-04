@@ -22,6 +22,8 @@ CE = D['cost_exposure']
 BETAJ = json.load(open(os.path.join(HERE, 'beta_result.json')))
 XBJ = json.load(open(os.path.join(HERE, 'beta_ex_subject_price.json')))
 V = {k: v['value'] for k, v in D['inputs'].items()}
+# derived rates, committed by the model so no document re-derives one differently
+DERIVED = D['derived']
 TECH = json.load(open(os.path.join(HERE, 'technicals.json')))
 STRIKE = json.load(open(os.path.join(HERE, 'strike_result.json')))
 BT = CAL['backtest']
@@ -166,15 +168,20 @@ for it in LN['items_A'][:1] + LN['items_B'][:1] + LN['shared']:
     else:
         note = f"three-year average margin {pc(LN['norm_margin'])}"
     rows.append([it['name'], n2(it['value']), pc(it['value'] / SPOT - 1, 0), note])
-rows.append(['WEIGHTED CENTRE — Frame A', n2(LN['centre_A']),
-             pc(LN['centre_A'] / SPOT - 1, 0),
-             'Frame A at 50% weight beside the three lenses that do not turn on the judgement'])
-rows.append(['WEIGHTED CENTRE — Frame B', n2(LN['centre_B']),
-             pc(LN['centre_B'] / SPOT - 1, 0),
-             'The same three lenses beside Frame B. The two centres are NEVER averaged'])
+rows.append(['CENTRE — Frame A', n2(LN['centre_A']), pc(LN['centre_A'] / SPOT - 1, 0),
+             'The cash-flow read on Frame A, unweighted. The other lenses are published '
+             'beside it and averaged into none of it'])
+rows.append(['CENTRE — Frame B', n2(LN['centre_B']), pc(LN['centre_B'] / SPOT - 1, 0),
+             'The cash-flow read on Frame B. The two centres are NEVER averaged'])
+rows.append(['Memo — the weighted blend this edition replaced (Frame A / Frame B)',
+             f"{n2(LN['blend_A'])} / {n2(LN['blend_B'])}", '',
+             'Printed so the change is visible. Its weights were never tested out of '
+             'sample, and on a two-sided answer a blend pulls both frames toward the same '
+             'three shared readings — damping exactly the disagreement two frames exist '
+             'to show'])
 rows.append(['Field low to field high', f"{n2(LN['fair_bear'])} – {n2(LN['fair_bull'])}", '',
              'The spread between the readings IS the uncertainty'])
-rows.append(['Market price', n2(SPOT), '', 'Close of 6 August 2026'])
+rows.append(['Market price', n2(SPOT), '', f"Close of {M['spot_date'] if 'spot_date' in M else '3 September 2026'}"])
 table(rows, [2.35, 1.05, 0.85, 2.75], band_rows={6, 7, 9}, size=9.0)
 caption(f'Table {tnum()} — the summary valuation table. TWO centres, never one: the contested '
         f'judgement is carried both ways and weighting both frames inside a single number '
@@ -347,7 +354,7 @@ rows = [['Multiple', 'Times', 'EGP / share', 'Where it comes from']]
 _WHY = {
     'Justified forward multiple from this model, on FY2026E earnings':
         f"a FORWARD multiple on FORWARD earnings of EGP {n2(LN['eps_fwd'])}. Retention must "
-        f"equal growth {pc(V['g_term'], 0)} over sustainable return {pc(LN['roe_sust'])}, so "
+        f"equal growth {pc(DERIVED['g_term'], 0)} over sustainable return {pc(LN['roe_sust'])}, so "
         f"payout is {pc(LN['payout_implied'], 0)}",
     "The company's own four-year mean multiple, on trailing earnings":
         f"a TRAILING multiple on TRAILING earnings of EGP {n2(LN['eps_ttm'])} — year-end "
@@ -382,7 +389,7 @@ P(f'FY2025 was the best operating year in the company\'s history: a {pc(H["FY202
   f'revenue, financing it at that year\'s cost of debt, taxing it at {pc(V["tax_eff_fwd"])} '
   f'and adding the normalised associate contribution gives EGP {n2(LN["norm_pat_ps"])} a '
   f'share of sustainable earnings. Capitalised at the PERPETUAL cost of equity of '
-  f'{pc(W["ke_term"], 2)} less {pc(V["g_term"], 0)} growth, on the '
+  f'{pc(W["ke_term"], 2)} less {pc(DERIVED["g_term"], 0)} growth, on the '
   f'{pc(LN["payout_implied"], 0)} payout that growth rate permits, that is EGP '
   f'{n2(LN["norm_ps"])} a share. Using today\'s crisis-level cost of equity of '
   f'{pc(W["ke"], 2)} in a perpetuity would be a category error: a steady-state multiple takes '
@@ -1267,7 +1274,7 @@ rows = [['Working', 'EGP million'],
         ['Present value of five years of free cash flow', n0(A['pv_sum'])],
         ['Terminal free cash flow', n0(A['fcff_term'])],
         ['Terminal discount rate less growth',
-         f"{pc(W['wacc_term'], 2)} − {pc(V['g_term'], 0)} = {pc(W['wacc_term'] - V['g_term'], 2)}"],
+         f"{pc(W['wacc_term'], 2)} − {pc(DERIVED['g_term'], 0)} = {pc(W['wacc_term'] - DERIVED['g_term'], 2)}"],
         ['Terminal value', n0(A['tv'])],
         ['Present value of the terminal value', n0(A['pv_tv'])],
         ['Core enterprise value', n0(A['ev_core'])],
@@ -1297,15 +1304,15 @@ rows = [['Working', 'Value'],
         ['Return on average equity, FY2025', pc(LN['roe_fy25'])],
         ['Sustainable return on equity', pc(LN['roe_sust'])],
         ['Perpetual cost of equity', pc(W['ke_term'], 2)],
-        ['Growth', pc(V['g_term'], 0)],
+        ['Growth', pc(DERIVED['g_term'], 0)],
         ['Justified multiple of book = (return − growth) / (cost of equity − growth)',
          f"{n2(LN['just_pb'])}x"],
         ['Value per share (EGP)', n2(LN['book_ps'])]]
 table(rows, [4.6, 1.7], band_rows={9, 10}, size=8.8)
 P(f'Named sensitivity: the sustainable return. If it settles at 20% rather than '
   f'{pc(LN["roe_sust"])}, the justified multiple falls to '
-  f'{n2((0.20 - V["g_term"]) / (W["ke_term"] - V["g_term"]))} times and the value to EGP '
-  f'{n2((0.20 - V["g_term"]) / (W["ke_term"] - V["g_term"]) * LN["bv_ps"])} a share.')
+  f'{n2((0.20 - DERIVED["g_term"]) / (W["ke_term"] - DERIVED["g_term"]))} times and the value to EGP '
+  f'{n2((0.20 - DERIVED["g_term"]) / (W["ke_term"] - DERIVED["g_term"]) * LN["bv_ps"])} a share.')
 P(f'Falsifier: "If return on average equity falls below 18% in either FY2026 or FY2027, the '
   f'{pc(LN["roe_sust"])} I am capitalising is a peak, not a level, and my multiple is too '
   f'high."')

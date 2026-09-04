@@ -89,6 +89,61 @@
     "must_contain": "09/01/2026"
    },
    "resolves_when_note": "the 1 September 2026 session, the date the principal's own quoted price carries. The first marker written here was '/2026', which the file already contained — the gate refused it immediately, which is the clause this register exists for working on the person writing the register."
+  },
+  {
+   "key": "ELEC-primary-financial-statements",
+   "opened": "2026-09-04",
+   "cls": "missing_data",
+   "question": "Electro Cable Egypt (EGX: ELEC) audited financial statements — FY2023, FY2024 and every disclosed 2025 period (Q1, H1, 9M), consolidated where issued and standalone otherwise. The company's own website LISTS all of them and SERVES none of them; without them SIGCM clause 1 blocks this study outright, because its entire income statement and balance sheet currently rest on data vendors and press.",
+   "routes": [
+    {
+     "route": "the company's own website, www.ececables.com — homepage, investor-relations, shareholder-structure and the financial-statements index",
+     "when": "2026-09-04",
+     "outcome": "HTTP 200 on every page. THE STUDY'S RECORDED REASON ('the egress proxy blocked the company website') IS FALSE as of today and was re-tested rather than believed [R-ENF-04]. The index lists ~60 audited statements.",
+     "rerun": true
+    },
+    {
+     "route": "every statement PDF the index links, and the same URLs as the WordPress media API returns them",
+     "when": "2026-09-04",
+     "outcome": "HTTP 404 on all of them. Not an encoding problem: a non-Arabic PDF in the same tree 404s too, while a 2020-vintage asset in that tree returns 200 — so the host serves the path and not the files. Everything uploaded after August 2020 is listed and unserved.",
+     "rerun": true
+    },
+    {
+     "route": "the legacy host ece.allmediaegypt.com, which carries the 2015-2020 statements",
+     "when": "2026-09-04",
+     "outcome": "DNS does not resolve. Dead.",
+     "rerun": false
+    },
+    {
+     "route": "a real browser (Chromium via Playwright) against the same pages, in case the index or the files were rendered rather than served",
+     "when": "2026-09-04",
+     "outcome": "the tunnel resets before navigation; curl reaches the same pages fine, so the browser adds nothing here and the 404s are the origin's, not a rendering problem.",
+     "rerun": true
+    },
+    {
+     "route": "the EGX disclosure portal — www.egx.com.eg, disclosure.egx.com.eg, mist.com.eg",
+     "when": "2026-09-04",
+     "outcome": "tunnel closed mid-exchange on nine attempts across three hosts. The proxy's own status endpoint records data received before the close, so it is a relay failure rather than a policy denial. Reported, not routed around.",
+     "rerun": true
+    },
+    {
+     "route": "every live ref of this repository, for a filing committed on another branch",
+     "when": "2026-09-04",
+     "outcome": "only the research note exists on any ref; no ELEC filing anywhere.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 22,
+   "why_only_the_principal": "Pure access, and every free route is exhausted: the issuer publishes an index it does not serve, its old host is gone, and the exchange is unreachable through the relay. The principal has supplied primary filings before when a company site refused (the ARCC precedent, which this protocol records as the rule working rather than failing).",
+   "done_meanwhile": "ELEC's committed numbers were audited as far as vendor data allows and the findings written to engine/elec_study/SOURCE_BLOCK_04-09-2026.md: the retired g x IC terminal (return on capital 583bp BELOW its own cost of capital, 54.5% of profit reinvested at that spread), a terminal growth rate that is -1.87% real and stated nowhere, and terminal invested capital resting on a typed 0.05-of-revenue constant. Each is priced. The study stays HELD and no delivered figure was moved, because moving one would build further on the base that is the problem.",
+   "default_if_no_answer": "WITHDRAW ELEC FROM COVERAGE rather than re-issue it on aggregator data. A study nobody can source is not a study with a wide range; it is not a study. Withdrawal removes the name from the book and leaves the directory with this record in it.",
+   "default_date": "2026-10-04",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/elec_study/PRIMARY_SOURCES.md",
+    "must_contain": "AUDITED STATEMENTS RECEIVED"
+   },
+   "note": "The correction this entry carries is not that the documents are unobtainable — they are — but that the RECORDED REASON was wrong for a month, and a wrong reason is actionable in the wrong direction: 'the proxy blocked it' invites trying again, 'the issuer does not serve its own archive' does not."
   }
  ]
 }
