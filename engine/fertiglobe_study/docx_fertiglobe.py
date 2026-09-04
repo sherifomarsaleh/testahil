@@ -3,6 +3,9 @@
 Reads study_numbers.json exclusively. No financial numeral is typed here.
 Run from inside engine/fertiglobe_study/.
 """
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+from table_residual import signed_column   # the shared check, not hand-rolled
 import json, os
 from docx_base import *          # noqa — doc, P, H1, H2, table, box, figure, caption, rich, bullet
 from docx.shared import Pt, Inches, RGBColor
@@ -219,10 +222,19 @@ for lbl, key in [('Revenue', 'rev'), ('EBITDA', 'ebitda'),
 rows.append(['EBITDA margin'] + [pct(v) for v in A['ebitda_margin']])
 rows.append([f"Tax at {pct(D['tax_rate'])}"] + [usd(A['ebit'][i] - A['nopat'][i]) for i in range(5)])
 rows.append(['NOPAT (EBIT after tax)'] + [usd(v) for v in A['nopat']])
-rows.append(['add back depreciation and amortisation'] + [usd(v) for v in A['dna']])
-rows.append(['less capital expenditure'] + [usd(-v) for v in A['capex']])
-rows.append(['less increase in working capital'] + [usd(-v) for v in A['dnwc']])
+# ONE SIGN CONVENTION, AND THE OPERATOR WORDS COME OFF WITH IT. These rows already
+# printed the SIGNED CASH EFFECT while their labels read "less", so a reader was
+# told to subtract a negative — and the working-capital row, positive in a year it
+# releases, sat under the same word as a genuine deduction. The sign does the work.
+rows.append(['depreciation and amortisation added back'] + [usd(v) for v in A['dna']])
+rows.append(['capital expenditure'] + [usd(-v) for v in A['capex']])
+rows.append(['change in working capital — a release adds, a build subtracts']
+            + [usd(-v) for v in A['dnwc']])
 rows.append(['Free cash flow to the firm'] + [usd(v) for v in A['fcff']])
+for _i in range(len(A['fcff'])):
+    signed_column([A['nopat'][_i], A['dna'][_i], -A['capex'][_i], -A['dnwc'][_i]],
+                  A['fcff'][_i], dp=0,
+                  what='the cash-flow waterfall, year %d' % (_i + 1))
 rows.append(['Discount factor'] + [f"{v:.4f}" for v in dA['df']])
 rows.append(['Present value of free cash flow'] + [usd(v) for v in dA['pv']])
 table(rows, [2.3] + [0.94] * 5, first_col_bold=True, size=8.6,

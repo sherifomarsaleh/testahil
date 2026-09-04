@@ -27,13 +27,13 @@ for lab, v in [('P/E 15.5 -> 14.0 (median of my own stated set, CC#4)', 14.0),
     price(lab, inputs={'pe_just': v})
 # --- sovereign netting / rf basis (CC#2, CW#4, GT#2)
 price('same-basis market spread 25bp + ERP 4.66 (my published basis 2)',
-      inputs={'sov_spread_rating':0.0025,'erp_rating':0.0466,'erp_term':0.0466})
+      inputs={'sov_spread_market_observed':0.0025,'erp_market_basis':0.0466,'erp_term':0.0466})
 price('same-basis market spread 4bp + ERP 4.29 (CC#2 fix)',
-      inputs={'sov_spread_rating':0.0004,'erp_rating':0.0429,'erp_term':0.0429})
+      inputs={'sov_spread_market_observed':0.0004,'erp_market_basis':0.0429,'erp_term':0.0429})
 price('rf* floored at matched-tenor UST 4.32% (no-arb floor)',
-      inputs={'sov_spread_rating':0.0016})
+      inputs={'sov_spread_market_observed':0.0016})
 price('GT#2 fix: rf 4.69% UN-netted + full 4.87 ERP (double-counts CRP)',
-      inputs={'rf':0.0469,'sov_spread_rating':0.0,'rf_term':0.0469})
+      inputs={'rf':0.0469,'sov_spread_market_observed':0.0,'rf_term':0.0469})
 price('CW#6: longest AED tenor Feb-2033 3.779% (terminal rf pulled to 3.70)',
       inputs={'rf':0.03779,'rf_term':0.037,'rf_path':[0.03779,0.0376,0.0374,0.0372,0.037]})
 # --- staff cost (CC#11) : my own arithmetic error

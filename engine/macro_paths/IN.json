@@ -2,10 +2,125 @@
  "market": "IN",
  "country": "India",
  "currency": "INR",
- "as_of": null,
- "regime": "transition",
- "status": "pending",
- "pending_reason": "The Reserve Bank of India publishes a 4% (+/-2pp) target and a forward path; neither is sourced here yet. 3 Indian names, all Phase 2.",
- "how_to_source": "Fill this file to the shape of EG.json: every level published by a named institution on a named date, or derived here by an identity from numbers that are; a year between two published endpoints is labelled 'interpolated between published endpoints' and never called a forecast. macro_path.load() validates the shape and refuses a file that is internally incoherent.",
- "note": "A PENDING file is deliberate, not an oversight: engine/macro_path.py RAISES on load rather than falling back to a neighbouring market, because an empty answer is not a clean answer [R-ENF-04]. Every calibrated name today is Egyptian."
+ "as_of": "2026-09-03",
+ "regime": "mature",
+ "regime_note": "Inflation sits at the Reserve Bank of India's published 4 percent target and the call rate is near its own long-run level, so the glide has nothing to travel and cost_of_capital.py returns a FLAT schedule for any regime other than 'transition'. INDIA IS NOT A LOW-INFLATION ECONOMY AND THE REGIME LABEL DOES NOT SAY IT IS: 'mature' here means the policy rate is AT its long-run level, not that the level is low. The terminal inflation of 4% is double the pegged markets' and every escalator carries it.",
+ "inflation": {
+  "latest": {
+   "value": 0.021,
+   "period": "2025, annual average consumer prices",
+   "source": "International Monetary Fund, World Economic Outlook database, series PCPIPCH (inflation, average consumer prices, annual percent change), India (IND), read live from the IMF datamapper API on 3 September 2026.",
+   "date": "2025-12-31",
+   "tier": "Country"
+  },
+  "path": [
+   {
+    "year": 2026,
+    "value": 0.047,
+    "basis": "IMF World Economic Outlook projection"
+   },
+   {
+    "year": 2027,
+    "value": 0.04,
+    "basis": "IMF World Economic Outlook projection"
+   },
+   {
+    "year": 2028,
+    "value": 0.04,
+    "basis": "IMF World Economic Outlook projection"
+   },
+   {
+    "year": 2029,
+    "value": 0.04,
+    "basis": "IMF World Economic Outlook projection"
+   },
+   {
+    "year": 2030,
+    "value": 0.04,
+    "basis": "IMF World Economic Outlook projection"
+   }
+  ],
+  "path_source": "International Monetary Fund, World Economic Outlook database, series PCPIPCH (inflation, average consumer prices, annual percent change), India (IND), read live from the IMF datamapper API on 3 September 2026. The series runs to 2031 and prints 4.0% flat from 2027 onward; no step here is interpolated. The 2025 print of 2.1% is an unusually low actual against a 4% target and the IMF's own 2026 projection of 4.7% is a rebound to and through it \u2014 recorded rather than smoothed.",
+  "target": {
+   "value": 0.04,
+   "band": 0.02,
+   "horizon": "long run",
+   "source": "The Reserve Bank of India's published flexible inflation target: 4 percent on the consumer price index with a tolerance band of +/- 2 percentage points. An EXPLICIT target with an EXPLICIT band, which is why the band here is the central bank's own rather than a dispersion computed from projections as in the pegged markets.",
+   "date": "2026-09-03"
+  },
+  "terminal": {
+   "value": 0.04,
+   "source": "The Reserve Bank's target midpoint, which is also the IMF's own published figure for 2027 through 2031.",
+   "date": "2026-09-03"
+  }
+ },
+ "policy_rate": {
+  "current": {
+   "headline": "call_rate",
+   "call_rate": 0.055,
+   "source": "Federal Reserve Economic Data (FRED), series IRSTCI01INM156N (immediate rates, call money / interbank rate), 5.50% for June 2026, read live 3 September 2026.",
+   "date": "2026-06-01"
+  },
+  "path": [
+   0.055,
+   0.055,
+   0.055,
+   0.055,
+   0.055
+  ],
+  "path_basis": "FLAT AT THE OBSERVED CALL RATE. The regime is 'mature', so the glide's scope is nil and a shaped path would do no work while implying a rate call nothing here sources. The Reserve Bank publishes no forward rate path; inventing a glide to fill the field would be the free parameter the promotion rule forbids."
+ },
+ "sovereign": {
+  "yield_10y": {
+   "value": 0.0689,
+   "source": "Federal Reserve Economic Data (FRED), series INDIRLTLT01STM (long-term government bond yields, 10-year), 6.89% for June 2026, read live 3 September 2026.",
+   "date": "2026-06-01",
+   "tier": "Country"
+  },
+  "default_spread_rating": 0.0187,
+  "default_spread_market": 0.0066,
+  "spread_source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. India row: Moody's Baa3; adjusted default spread 1.87% (rating basis); credit-default-swap spread 0.66% (market basis); country risk premium 2.85%; total ERP 7.08% on the rating basis and 5.23% on the CDS basis. THE TWO BASES DIVERGE FAR MORE HERE THAN IN ANY OTHER MARKET ON THIS BOOK \u2014 121bp of spread and 185bp of ERP \u2014 because a Baa3 rating and a 66bp CDS are two quite different readings of the same sovereign. Which is central is a cost-of-capital decision and it MATTERS here in a way it does not for an Aa2 name; both are carried and a study must say which it used and why.",
+  "damodaran_date": "2026-01-05"
+ },
+ "erp_market": 0.0523,
+ "erp_rating": 0.0708,
+ "erp_source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. India row, total equity risk premium 7.08% (rating) and 5.23% (market/CDS).",
+ "corporate_tax_rate": {
+  "value": 0.3,
+  "source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. India row, 30.00%.",
+  "date": "2026-01-05"
+ },
+ "fx": {
+  "spot": {
+   "value": 87.1584483507393,
+   "pair": "USD/INR",
+   "source": "World Bank series PA.NUS.FCRF (official exchange rate, LCU per US$, period average), India, 2025 = 87.158, read live 3 September 2026.",
+   "date": "2025-12-31"
+  },
+  "derivation": "The forward currency path is DERIVED from this path's own inflation ladder against long-run United States inflation by relative purchasing-power parity, never set by hand. On a 4.0% domestic terminal against a 2.2% foreign one the rupee depreciates about 1.8% a year in the long run, and a study that escalates rupee costs at 4% while holding the currency still is running two views of one economy [L-048]."
+ },
+ "us_inflation_lt": {
+  "value": 0.022,
+  "source": "Long-run United States CPI inflation 2.2%, the IMF's own published figure for 2029-2031, the foreign leg of the purchasing-power parity relation.",
+  "date": "2026-09-03"
+ },
+ "cost_of_debt_norm": {
+  "terminal": 0.08,
+  "range": [
+   0.075,
+   0.085
+  ],
+  "source": "The long-run Indian investment-grade corporate borrowing norm, taken as the derived terminal risk-free rate of 5.975% plus a 150-250bp spread, midpoint 8.00%. NO INDIAN NAME IN THIS BOOK HAS HAD ITS FACILITY NOTE READ, so this rests on no in-house sourced Kd and is the floor of last resort: the first Indian study to reach the three-assert Kd gate replaces it with its own note.",
+  "date": "2026-09-03"
+ },
+ "real_rate_convention": {
+  "value": 0.019751,
+  "source": "DERIVED, NEVER QUOTED. the FOMC's own longer-run median federal funds projection (3.1%, Summary of Economic Projections of 17 June 2026, FRED FEDTARMDLR) plus the ten-year term premium (0.8751%, Kim-Wright, FRED THREEFYTP10, 28 August 2026) less long-run US inflation (2.2%) = 1.9751%. THE COMMON-REAL-RATE ASSUMPTION IS WEAKER HERE THAN IN KOREA AND IT IS SAID SO: India's observed ten-year of 6.89% less a 4.0% terminal inflation is a 2.89% real rate, 91bp ABOVE this convention, against Korea's 21bp. The gap is what a partially open capital account and a Baa3 rating look like, so the derived terminal INR risk-free of 4.0% + 1.9751% = 5.9751% sits about 92bp below the live ten-year. That is a real normalisation rather than a rounding, and the first Indian study to use this path should say whether it accepts it.",
+  "date": "2026-09-03"
+ },
+ "erp_terminal": {
+  "value": 0.0708,
+  "source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. Terminal equity risk premium held at the RATING-basis Indian ERP of 7.08%, the more conservative of the two bases, and NOT converged: a Baa3 sovereign's country premium narrowing is a house view about a rating upgrade and nothing here sources one.",
+  "date": "2026-01-05"
+ }
 }

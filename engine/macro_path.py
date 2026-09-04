@@ -151,6 +151,31 @@ class MacroPath:
         hand: doing so is the second half of [L-048], and on AMOC it was worth
         a manufactured margin decline across the whole forecast.
         """
+        # A PEGGED CURRENCY DOES NOT DRIFT, AND THE IDENTITY DOES NOT KNOW THAT.
+        # [FIXED 03-Sep-2026, on the AE path's first print.] Relative purchasing-power
+        # parity describes a currency free to move. Applied to a hard peg it manufactures
+        # exactly the drift the peg forbids: the first AE print returned a dirham sliding
+        # 3.6725 -> 3.65 over five years, off a 0.5pp inflation differential that a fixed
+        # nominal rate absorbs as a REAL appreciation and never as a nominal depreciation.
+        # Nothing in the file was wrong — its own fx.derivation note says the path is the
+        # peg — and the derivation ran anyway, because it was written for the one market
+        # then sourced and applied unconditionally to the next. A study reading this for a
+        # UAE name would have escalated its dollar revenue against a depreciating dirham
+        # and called it derived: a claim that the peg breaks, made silently, by arithmetic.
+        # A study that genuinely means to model a break must argue it as one, and it cannot
+        # get it from here.
+        if self.regime == "pegged":
+            return [0.0] * n
+        # ...AND A CURRENCY CANNOT MOVE AGAINST ITSELF. The United States path is quoted in
+        # dollars, which is the numeraire every other path measures against, so the
+        # identity here compares US inflation with US inflation and returns the ladder's
+        # own deviation from its long-run figure — a dollar "depreciating" 0.98% against
+        # the dollar in 2026. Harmless-looking, and it is the peg defect again in a second
+        # costume: a relation written for the market that needed it, running unconditionally
+        # on one that does not.
+        if self.raw["fx"]["spot"].get("pair") in ("USD/USD", None) \
+                or self.currency == "USD":
+            return [0.0] * n
         y0 = start_year or self.inflation_years[0]
         f = self.us_inflation_lt
         return [(1.0 + self.inflation(y0 + i)) / (1.0 + f) - 1.0 for i in range(n)]
@@ -168,8 +193,26 @@ class MacroPath:
     # ---- rates -------------------------------------------------------------
     @property
     def policy_rate(self) -> float:
-        return self.raw["policy_rate"]["current"].get(
-            "overnight_deposit", self.raw["policy_rate"]["current"].get("main_operation"))
+        """The headline policy rate, whatever THIS central bank calls it.
+
+        The first draft looked for "overnight_deposit" and then "main_operation", which are
+        the names the CENTRAL BANK OF EGYPT uses, because Egypt was the first market
+        sourced. It returned None for any market whose policy rate has another name, and
+        None then multiplied by 100 — a crash, which is the benign outcome; the dangerous
+        one would have been a fallback. Under a hard peg the anchor is the pegged-to
+        country's rate: the UAE's is the Federal Reserve's target range, and renaming a
+        federal funds target to "main_operation" so the accessor finds it would be a key
+        that lies about its content — the defect found the same day in a study's own
+        register. So the FILE names its own anchor and this reads what it names.
+        """
+        cur = self.raw["policy_rate"]["current"]
+        if cur.get("headline"):
+            if cur["headline"] not in cur:
+                raise MacroPathError(
+                    "%s: policy_rate.current names %r as its headline rate and does not "
+                    "carry it" % (self.market, cur["headline"]))
+            return cur[cur["headline"]]
+        return cur.get("overnight_deposit", cur.get("main_operation"))
 
     @property
     def policy_path(self) -> List[float]:
@@ -189,8 +232,22 @@ class MacroPath:
         return (d1 - d0).days
 
     def default_spread(self, basis: str) -> float:
-        if basis not in ("rating", "cds"):
-            raise MacroPathError("basis must be 'rating' or 'cds', not %r" % basis)
+        """The sovereign default spread on one of the two bases.
+
+        THE BASES ARE 'rating' AND 'market', AND THE SECOND WAS CALLED 'cds'
+        [RENAMED 03-Sep-2026]. A credit-default-swap quote is ONE market
+        instrument, and it is the one Egypt happens to have. THE UAE HAS NO CDS
+        SERIES AT ALL — an existing study registers "NA for UAE" in as many
+        words — and its market basis is the spread its own federal Treasury bond
+        prices at over the comparable US Treasury. Filling a field named `cds`
+        with a bond spread is the defect found the same hour in a study's own
+        register, where four sovereign keys said the opposite of their own
+        sources: the arithmetic and the document were right and the KEY lied,
+        and a key is what another tool reads. The general name is what is
+        stored; which instrument supplied it is what the source field says.
+        """
+        if basis not in ("rating", "market"):
+            raise MacroPathError("basis must be 'rating' or 'market', not %r" % basis)
         return self.raw["sovereign"]["default_spread_%s" % basis]
 
     @property
@@ -335,7 +392,7 @@ def _validate(d: dict, m: str) -> None:
               "real_rate_convention", "erp_terminal"):
         if k not in d:
             raise MacroPathError("%s: the path carries no %s" % (m, k))
-    for basis in ("rating", "cds"):
+    for basis in ("rating", "market"):
         if "default_spread_%s" % basis not in d["sovereign"]:
             raise MacroPathError("%s: no %s-basis default spread. Both bases are "
                                  "carried; the choice of central basis is a "
@@ -372,8 +429,8 @@ def report(market: Optional[str] = None) -> int:
         if p.sovereign_age_days() > SOVEREIGN_STALE_DAYS:
             print("      STALE beyond %d days — re-source before any new strike"
                   % SOVEREIGN_STALE_DAYS)
-        print("  default spread         rating %.2f%%  cds %.2f%%"
-              % (100 * p.default_spread("rating"), 100 * p.default_spread("cds")))
+        print("  default spread         rating %.2f%%  market %.2f%%"
+              % (100 * p.default_spread("rating"), 100 * p.default_spread("market")))
         print("  currency               %.4f spot as of %s; derived depreciation "
               % (p.fx_spot, p.raw["fx"]["spot"]["date"])
               + " -> ".join("%.2f%%" % (100 * d) for d in p.depreciation_path(n)))

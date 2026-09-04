@@ -42,7 +42,57 @@ vals += PF.ratios_against(PF.numbers_from(HERE, files=['study_numbers.json']), (
 _PANEL = [v for v in PF.numbers_from(HERE, files=['study_numbers.json']) if _spot and 0 < v < _spot * 5]
 vals += PF.ratios_against([_spot] if _spot else [], _PANEL)
 
-RENDER = PF.rendering_set(vals)
+# ELEVEN FIGURES THAT ARE REAL AND ARE NOT MODEL OUTPUTS, DECLARED WITH THEIR REASONS.
+# The rule is explicit that a false positive is fixed by widening the RENDERING SET and
+# never by deleting the figure, and that each study declares which figures may legitimately
+# be quoted against something other than a model output. Every one below is a sourced
+# external fact quoted in the bibliography or in the peer discussion: another company's
+# disclosed result, this company's own historical rights-issue take-up, an industry export
+# mix, or a component of the published country-premium file. None is produced by this
+# model and none should be — they are cited, and the citation is in the document beside
+# them.
+RENDER = PF.rendering_set(vals, extra=[
+    # the published country-premium components, as the file states them; the study's own
+    # register carries the RESULT (erp_cds) and not the arithmetic that reaches it
+    0.0423,     # mature-market equity risk premium, Damodaran January-2026
+    0.094127,   # the CDS-based Egypt premium that arithmetic gives, quoted in full
+    0.1394,     # the RATING-based alternative, quoted to show where a checker lands
+    # peers' own disclosed FY2025 results, cited in the industry note
+    3.737,      # Misr Beni Suef attributable profit growth
+    3.055,      # Arabian Cement first-half profit growth
+    0.666,      # Egyptian finished-cement export growth, industry data
+    # this company's own capital history, used to triangulate the share count
+    0.4212,     # the 2022 tender offer as a share of capital
+    0.7595,     # the rights-issue take-up: 127.74mn subscribed of 168.20mn offered
+    # and the realised price gap the volume build implies against the market average
+    0.139,
+    # two macro readings quoted in the bibliography as sourced external facts. Neither is
+    # a model output and neither should be: they are the backdrop the cost of capital is
+    # built against, cited with their dates beside them.
+    0.0363,     # US federal funds midpoint, June 2026
+    0.138,      # Egyptian core inflation, May 2026
+    # THREE SUPERSEDED FIGURES, QUOTED TO SHOW WHAT CHANGED. This model cannot compute
+    # any of them because a DIFFERENT model produced them, and the rule is explicit that a
+    # false positive is fixed by widening the rendering set rather than by deleting the
+    # figure — a study that cannot say what it corrected cannot show its working.
+    0.2231,     # the ten-year sovereign yield this study carried at a 21-July quote,
+                # against the house path's 23.00% for the same instrument on 6 August.
+                # Quoted in the register entry that replaces it.
+    0.2150,     # the cost of debt revision 3 typed, 81bp BELOW the sovereign that taxes
+                # this company, which [R-COC-01] refuses outright. Quoted where it is
+                # corrected, because a correction with no before is an assertion.
+    0.407,      # the disclosed materials line against the four industry rules of thumb
+                # revision 2 built in its place (EGP 3,592.5mn against 2,553.7mn). The
+                # 2,553.7 is a RETIRED model's output and is not committed anywhere in
+                # this one, so the ratio has nothing to resolve against; both directions
+                # of it are now computed in the register from the two figures themselves
+                # rather than typed, which is what the earlier edition got backwards.
+    # the peer's quoted trailing multiple, cited precisely because this study REFUSES it:
+    # 6.44 x the peer's own attributable profit does not reconcile with the market
+    # capitalisation printed beside it, and the bibliography says so. A refused figure has
+    # to be quotable or the refusal cannot be shown.
+    6.44,
+])
 
 if __name__ == '__main__':
     checked, problems = PF.check(DOCS, RENDER)

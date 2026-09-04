@@ -169,6 +169,11 @@ def sensitivity():
     government that taxes it. It is on the grid so a reader can see exactly what
     the change of method is worth, not because it is defensible.
     """
+    # EVERY PER-SHARE HERE IS THE ADOPTED BASIS [corrected 03-Sep-2026]. The three
+    # sensitivity constructions, the football field and the bridge all published
+    # per_share_nci_book while this study DEDUCTS THE MINORITY AT ITS SHARE OF VALUE,
+    # which is what its summary table, its headline range and [R-BRIDGE-01] all say.
+    # Nothing stated a reason; it was simply the key that got written first and copied.
     sh = _v(IN.KPI, "shares_outstanding")
     grid = {}
     # The rate sensitivity shifts the WHOLE SCHEDULE, keeping its shape. Replacing
@@ -183,6 +188,7 @@ def sensitivity():
             s = VAL.sotp(mode, sched)
             grid["%0.4f|%s" % (wacc, mode)] = {
                 "wacc": wacc, "shift": delta, "mode": mode,
+                "per_share_nci_value_share": s["per_share_nci_value_share"],
                 "per_share_nci_book": s["per_share_nci_book"],
                 "per_share_nci_proportional": s["per_share_nci_proportional"],
                 "enterprise_value": s["enterprise_value"]}
@@ -192,7 +198,7 @@ def sensitivity():
     for n in (8, 10, 12, 14, 16, 20):
         M.CAPACITY_YEARS = n
         s = VAL.sotp("capacity", VAL.SCHEDULES["rating"])
-        conv[str(n)] = s["per_share_nci_book"]
+        conv[str(n)] = s["per_share_nci_value_share"]
     M.CAPACITY_YEARS = base
     return {"wacc_grid": grid, "conversion_years_grid": conv}
 
@@ -215,7 +221,7 @@ def implied_discount_rate(spot):
             mid = (lo + hi) / 2
             flat = COC.flat_schedule(mid, VAL.SCHEDULES["cds"].years,
                                      why="the reverse question in section 1.7")
-            ps = VAL.sotp(mode, flat)["per_share_nci_book"]
+            ps = VAL.sotp(mode, flat)["per_share_nci_value_share"]
             if ps > spot:
                 lo = mid
             else:
@@ -269,7 +275,8 @@ def main():
         r = out["sensitivity"]["wacc_grid"][k.replace("|capacity", "|recovery")]
         print("%+7.0fbp %9.2f%% %12.2f %12.2f"
               % (10000 * c["shift"], 100 * c["wacc"],
-                 c["per_share_nci_book"], r["per_share_nci_book"]))
+                 c["per_share_nci_value_share"],
+                 r["per_share_nci_value_share"]))
     print("\n=== sensitivity: value per share against the conversion period ===")
     for k, v in out["sensitivity"]["conversion_years_grid"].items():
         print("   %2s years  %8.2f" % (k, v))

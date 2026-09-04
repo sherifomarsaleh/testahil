@@ -11,27 +11,27 @@
   "date": "2026-08-06",
   "ring": "Country"
  },
- "sov_spread_rating": {
+ "sov_spread_market_observed": {
   "value": 0.0004,
-  "source": "PRIMARY BASIS (changed 17-Aug-2026): UAE sovereign default spread 4bp, MARKET-OBSERVED on the very instrument this model uses as its risk-free rate. The UAE MoF/WAM auction release records the January-2031 AED T-Bond pricing at 4.48% at a 4bp spread above the comparable US Treasury (read from the release, not quoted verbatim - the sentence is malformed in the original). The prior edition netted Damodaran's RATING-based 42bp instead, which drove rf* to 4.06% - roughly 26bp BELOW the matched-tenor US Treasury. A synthetic default-free dirham rate cannot sit below the default-free dollar rate under a hard peg, and that no-arbitrage test is now asserted in code. The rating basis (42bp with the 4.87% ERP, Ke 6.44%) is retained and published as the alternative construction per the both-bases rule; it is NOT averaged in. Note a floor applied to the rating basis was considered and REJECTED as incoherent: it would net a market spread while adding back a rating-based country premium, the exact same-basis violation the method exists to prevent",
+  "source": "[KEY RENAMED 03-Sep-2026] This entry was keyed \"sov_spread_rating\", which said the OPPOSITE of its own source: the 17-Aug-2026 switch of primary basis swapped which construction was adopted and left the key names behind. The arithmetic and the delivered document were both correct throughout (rf* strips 4bp and the adopted ERP is the market basis, so country risk enters exactly once); only the key lied, and a key is what any other tool reads. PRIMARY BASIS (changed 17-Aug-2026): UAE sovereign default spread 4bp, MARKET-OBSERVED on the very instrument this model uses as its risk-free rate. The UAE MoF/WAM auction release records the January-2031 AED T-Bond pricing at 4.48% at a 4bp spread above the comparable US Treasury (read from the release, not quoted verbatim - the sentence is malformed in the original). The prior edition netted Damodaran's RATING-based 42bp instead, which drove rf* to 4.06% - roughly 26bp BELOW the matched-tenor US Treasury. A synthetic default-free dirham rate cannot sit below the default-free dollar rate under a hard peg, and that no-arbitrage test is now asserted in code. The rating basis (42bp with the 4.87% ERP, Ke 6.44%) is retained and published as the alternative construction per the both-bases rule; it is NOT averaged in. Note a floor applied to the rating basis was considered and REJECTED as incoherent: it would net a market spread while adding back a rating-based country premium, the exact same-basis violation the method exists to prevent",
   "date": "2026-07-30",
   "ring": "Country"
  },
- "erp_rating": {
+ "erp_market_basis": {
   "value": 0.0429,
-  "source": "PRIMARY BASIS (changed 17-Aug-2026): UAE total equity risk premium 4.29% on the MARKET-spread basis = Damodaran's 4.23% mature-market base (Jan-2026) + a country risk premium of 6bp, scaled off the 4bp market default spread using Damodaran's own CRP/spread multiple (0.64/0.42 = 1.524). Paired with the 4bp netting above so the same basis is stripped as is added back. ALTERNATIVE PUBLISHED: the rating basis, 4.87% = 4.23% + 0.64% CRP (Aa2), paired with the 42bp netting -> Ke 6.44%. A third variant using the live implied US premium (4.28% + 0.06% = 4.34%) is disclosed for completeness. All three sit within 10bp of one another on Ke, which is what the same-basis rule is for",
+  "source": "[KEY RENAMED 03-Sep-2026] This entry was keyed \"erp_rating\", which said the OPPOSITE of its own source: the 17-Aug-2026 switch of primary basis swapped which construction was adopted and left the key names behind. The arithmetic and the delivered document were both correct throughout (rf* strips 4bp and the adopted ERP is the market basis, so country risk enters exactly once); only the key lied, and a key is what any other tool reads. PRIMARY BASIS (changed 17-Aug-2026): UAE total equity risk premium 4.29% on the MARKET-spread basis = Damodaran's 4.23% mature-market base (Jan-2026) + a country risk premium of 6bp, scaled off the 4bp market default spread using Damodaran's own CRP/spread multiple (0.64/0.42 = 1.524). Paired with the 4bp netting above so the same basis is stripped as is added back. ALTERNATIVE PUBLISHED: the rating basis, 4.87% = 4.23% + 0.64% CRP (Aa2), paired with the 42bp netting -> Ke 6.44%. A third variant using the live implied US premium (4.28% + 0.06% = 4.34%) is disclosed for completeness. All three sit within 10bp of one another on Ke, which is what the same-basis rule is for",
   "date": "2026-08-01",
   "ring": "Country"
  },
- "sov_spread_mkt": {
+ "sov_spread_damodaran_rating": {
   "value": 0.0042,
-  "source": "The RATING-basis default spread, now carried as the ALTERNATIVE construction (it was primary before 17-Aug-2026): Damodaran ctryprem (05-Jan-2026), UAE row, Moody's Aa2, rating-based adjusted default spread 0.42%, paired with the 4.87% rating ERP",
+  "source": "[KEY RENAMED 03-Sep-2026] This entry was keyed \"sov_spread_mkt\", which said the OPPOSITE of its own source: the 17-Aug-2026 switch of primary basis swapped which construction was adopted and left the key names behind. The arithmetic and the delivered document were both correct throughout (rf* strips 4bp and the adopted ERP is the market basis, so country risk enters exactly once); only the key lied, and a key is what any other tool reads. The RATING-basis default spread, now carried as the ALTERNATIVE construction (it was primary before 17-Aug-2026): Damodaran ctryprem (05-Jan-2026), UAE row, Moody's Aa2, rating-based adjusted default spread 0.42%, paired with the 4.87% rating ERP",
   "date": "2026-01-05",
   "ring": "Country"
  },
- "erp_mkt": {
+ "erp_rating_basis": {
   "value": 0.0487,
-  "source": "The RATING-basis total ERP, now the ALTERNATIVE: 4.87% = 4.23% mature + 0.64% CRP (Aa2), Damodaran 05-Jan-2026. Same-basis pair with the 0.42% rating spread",
+  "source": "[KEY RENAMED 03-Sep-2026] This entry was keyed \"erp_mkt\", which said the OPPOSITE of its own source: the 17-Aug-2026 switch of primary basis swapped which construction was adopted and left the key names behind. The arithmetic and the delivered document were both correct throughout (rf* strips 4bp and the adopted ERP is the market basis, so country risk enters exactly once); only the key lied, and a key is what any other tool reads. The RATING-basis total ERP, now the ALTERNATIVE: 4.87% = 4.23% mature + 0.64% CRP (Aa2), Damodaran 05-Jan-2026. Same-basis pair with the 0.42% rating spread",
   "date": "2026-01-05",
   "ring": "Country"
  },

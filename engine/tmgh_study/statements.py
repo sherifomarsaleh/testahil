@@ -91,8 +91,25 @@ def build():
 
 
 def main():
+    """Print the statements. IT NO LONGER WRITES A FILE, AND THAT IS THE FIX.
+
+    It used to dump statements.json beside the study. Nothing read it — build_numbers.py
+    imports this module and calls build(), so the live path never touches the file — and
+    it sat two days stale while the model moved, carrying a 2030 development revenue of
+    76,350 against the 102,747 the delivered document prints, a 35% divergence.
+
+    IT WAS NOT HARMLESS. Sizing a table needed the widest cell in that row, and the first
+    attempt read this file, got 76,350, concluded the column was wide enough, and was
+    wrong — the page had been printing "102,74" with a lone "7" beneath it for two days.
+
+    [R-ENF-06] says an artefact a builder reads must declare the answer it was built
+    against, and its general lesson is to ask what WRITES a file when a builder reads it.
+    THE MIRROR CASE IS THIS ONE: a file that something WRITES and nothing reads is a
+    number frozen at the moment somebody last ran the script, with no consumer to notice
+    and no vintage to check. The cheapest fix for a file with no consumer is not to
+    declare its vintage; it is not to write it.
+    """
     out = build()
-    json.dump(out, open(os.path.join(HERE, "statements.json"), "w"), indent=1)
     print("A.1 income statement — reported and projected (capacity reading)\n")
     rep = out["reported"]
     print("%-24s %10s %10s %10s | %s"

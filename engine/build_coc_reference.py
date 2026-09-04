@@ -108,7 +108,7 @@ def main():
         w("| Sovereign 10-year | %.2f%% | %s |"
           % (100 * p.sovereign_10y, p.sovereign_asof))
         w("| Default spread, rating basis | %.2f%% | |" % (100 * p.default_spread("rating")))
-        w("| Default spread, swap basis | %.2f%% | |" % (100 * p.default_spread("cds")))
+        w("| Default spread, market basis | %.2f%% | |" % (100 * p.default_spread("market")))
         w("| Terminal cost of debt | %.2f%% | long-run corporate norm |" % (100 * p.kd_terminal))
         w("| Terminal equity risk premium | %.2f%% | normalised |" % (100 * p.erp_terminal))
         w("\n**Policy-rate path** (the SHAPE input for the cost-of-capital glide, never a "

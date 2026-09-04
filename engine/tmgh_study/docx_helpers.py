@@ -72,8 +72,20 @@ def bullets(doc, items, size=10):
         p.paragraph_format.space_after = Pt(3)
 
 
+TABLES = []          # every table built, for the column-width audit below
+
+
 def table(doc, headers, rows, widths, caption=None, size=8.5):
-    """Fixed layout with an explicit GRID — the thing the renderer reads."""
+    """Fixed layout with an explicit GRID — the thing the renderer reads.
+
+    EVERY TABLE IS RECORDED SO ITS COLUMNS CAN BE AUDITED AGAINST THEIR OWN CELLS. A column
+    a character too narrow wraps, Word breaks after a hyphen, and a negative number prints
+    as a bare dash with its digits on the line beneath — the sign of a printed figure
+    changing from a typographic cause. The widths are chosen by hand here, so the check is
+    that the hand was right: engine/col_width.py holds the measured per-character widths
+    and assert_columns_fit() below runs it over everything this document built.
+    """
+    TABLES.append((list(headers), [list(r) for r in rows], list(widths)))
     t = doc.add_table(rows=1, cols=len(headers))
     t.style = "Table Grid"
     t.alignment = WD_TABLE_ALIGNMENT.CENTER
@@ -181,3 +193,22 @@ def column_audit(doc_path):
                            "cell widths: grid %s vs cells %s"
                         % ([round(x, 2) for x in gw], [round(x, 2) for x in cm])))
     return bad
+
+
+def assert_columns_fit():
+    """Every column clears its own widest unbreakable token, or the build stops.
+
+    Run at the END of the build, over every table the document actually produced — not over
+    a list somebody maintains, which is the shape that lets one table drift.
+    """
+    import sys
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+    import col_width
+    bad = []
+    for headers, rows, widths in TABLES:
+        for col, declared, needed in col_width.audit(headers, rows, widths):
+            bad.append('  %-42s declared %.2fcm, needs %.2fcm'
+                       % (str(col)[:42], declared, needed))
+    assert not bad, ('columns too narrow for their own cells — a cell that wraps '
+                     'mid-number changes the figure a reader sees:\n' + '\n'.join(bad))
+    return len(TABLES)

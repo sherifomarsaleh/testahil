@@ -17,12 +17,13 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-XLSX = os.path.join(HERE, 'SCEM_Valuation_Model_06082026_public.xlsx')
+XLSX = os.path.join(HERE, 'SCEM_Valuation_Model_04092026_public.xlsx')
 wb = openpyxl.load_workbook(XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))
 EXPECT = XP['expected']
 DCF, LN, W, H, F = D['dcf'], D['lenses'], D['wacc'], D['history'], D['forecast']
+LR = D['lens_record']            # [R-LENS-03] the primary and its cross-checks
 M = D['meta']
 SH, SPOT = M['shares_mn'], M['spot']
 
@@ -76,7 +77,13 @@ checks = [
     ('DCF equity value', ('DCF', 'B37'), DCF['equity'], 1.0),
     ('DCF fair value per share', ('DCF', 'B39'), DCF['fv'], 0.02),
     ('DCF terminal return on invested capital', ('DCF', 'B24'), DCF['roic_term'], 0.0005),
-    ('DCF reinvestment rate', ('DCF', 'B25'), DCF['rr_term'], 0.0005),
+    # B25 IS THE MAINTENANCE CHARGE, NOT A RATE. It held the retired reinvestment
+    # identity's rate until [R-TERM-01] replaced that construction, and this row kept
+    # pointing at the address rather than at the quantity — the [L-067] shape, and it
+    # passed for an edition because 958.83 and 0.1923 were compared with a RELATIVE
+    # tolerance that a 4,900x gap sails through in neither direction anybody read.
+    ('DCF terminal maintenance at current cost', ('DCF', 'B25'),
+     DCF['term_maintenance'], 0.0005),
     ('Cost of equity — explicit', ('DCF', 'C45'), W['ke_exp'], 0.0002),
     ('WACC — explicit window', ('DCF', 'C46'), W['wacc_exp'], 0.0002),
     ('WACC — terminal', ('DCF', 'C53'), W['wacc_term'], 0.0002),
@@ -84,16 +91,26 @@ checks = [
     ('Bridge enterprise value', ('EV Bridge', 'B7'), DCF['ev'], 1.0),
     ('Bridge equity value', ('EV Bridge', 'B9'), DCF['equity'], 1.0),
     ('Bridge terminal value share', ('EV Bridge', 'B11'), DCF['tv_share'], 0.001),
-    ('Fundamental — DCF lens', ('Fundamental Valuation', 'B5'), LN['values']['DCF (cash flow)'], 0.02),
-    ('Fundamental — relative lens', ('Fundamental Valuation', 'B6'),
+    # [R-LENS-03] the value column moved to C when the Weight column was retired, and the
+    # central is now the PRIMARY cell rather than a SUM of weighted lenses.
+    ('Fundamental — primary (cash flow)', ('Fundamental Valuation', 'C5'),
+     LN['values']['DCF (cash flow)'], 0.02),
+    ('Fundamental — relative cross-check', ('Fundamental Valuation', 'C6'),
      LN['values']['Relative multiples'], 0.02),
-    ('Fundamental — normalised lens', ('Fundamental Valuation', 'B7'),
-     LN['values']['Normalised earnings'], 0.02),
-    ('Fundamental — asset lens', ('Fundamental Valuation', 'B8'),
+    ('Fundamental — replacement-cost cross-check', ('Fundamental Valuation', 'C7'),
      LN['values']['Asset / replacement cost'], 0.02),
-    ('Fundamental — weighted central', ('Fundamental Valuation', 'D10'), LN['central'], 0.02),
-    ('Fundamental — terminal value share', ('Fundamental Valuation', 'B16'), DCF['tv_share'], 0.001),
-    ('Summary — weighted central', ('Summary', 'B17'), LN['central'], 0.02),
+    ('Fundamental — disclosed book floor', ('Fundamental Valuation', 'C8'),
+     LN['values']['Book value (disclosed floor)'], 0.02),
+    ('Fundamental — retired normalised lens', ('Fundamental Valuation', 'C10'),
+     LR['retired']['normalised_earnings']['value'], 0.02),
+    ('Fundamental — central IS the primary', ('Fundamental Valuation', 'C12'),
+     LN['central'], 0.02),
+    ('Fundamental — envelope floor', ('Fundamental Valuation', 'C13'),
+     LR['envelope']['low'], 0.02),
+    ('Fundamental — retired blend, memo', ('Fundamental Valuation', 'C15'),
+     LR['retired']['blend_value'], 0.02),
+    ('Fundamental — terminal value share', ('Fundamental Valuation', 'C16'), DCF['tv_share'], 0.001),
+    ('Summary — central', ('Summary', 'C17'), LN['central'], 0.02),
     ('Summary — terminal value share beside the DCF lens', ('Summary', 'E13'), DCF['tv_share'], 0.001),
     ('Summary — terminal value share in the cost-of-capital block', ('Summary', 'B27'),
      DCF['tv_share'], 0.001),
@@ -115,8 +132,9 @@ checks = [
     ('Cash flow FY2026E free cash flow to the firm', ('Cash Flow', 'E11'), F['fcff'][0], 1.0),
     ('Relative lens implied value', ('Relative & Normalized', 'B15'),
      LN['values']['Relative multiples'], 0.02),
-    ('Normalised lens implied value', ('Relative & Normalized', 'B26'),
-     LN['values']['Normalised earnings'], 0.02),
+    ('Normalised lens implied value — retired, still recalculated',
+     ('Relative & Normalized', 'B26'),
+     LR['retired']['normalised_earnings']['value'], 0.02),
     ('Asset lens implied value', ('Relative & Normalized', 'B38'),
      LN['values']['Asset / replacement cost'], 0.02),
     ('Asset lens EV per tonne at spot', ('Relative & Normalized', 'B31'), LN['ev_per_t_spot'], 0.5),

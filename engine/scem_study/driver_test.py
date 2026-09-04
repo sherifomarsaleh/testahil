@@ -25,7 +25,7 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-wb = openpyxl.load_workbook(os.path.join(HERE, 'SCEM_Valuation_Model_06082026_public.xlsx'))
+wb = openpyxl.load_workbook(os.path.join(HERE, 'SCEM_Valuation_Model_04092026_public.xlsx'))
 A = {}
 for row in wb['Assumptions'].iter_rows(min_col=1, max_col=1):
     c = row[0]
@@ -42,7 +42,11 @@ def row_of(label):
 def read(overrides=None):
     bk = xlcalc.Book(wb, overrides)
     return dict(dcf=bk.cell_value('DCF', 'B39'),
-                central=bk.cell_value('Fundamental Valuation', 'D10'),
+                # [R-LENS-03] the central moved from a SUM of weighted lenses at D10 to
+                # the primary lens at C12 when the blend was retired. A probe that opens
+                # a cell by address moves with the sheet [L-067] — and this one did not,
+                # so it read an empty cell as 0.0 and every case that touched it passed.
+                central=bk.cell_value('Fundamental Valuation', 'C12'),
                 pv_expl=bk.cell_value('DCF', 'B30'),
                 tv=bk.cell_value('DCF', 'B26'),
                 ebitda26=bk.cell_value('Unit Build', 'C34'),
@@ -58,6 +62,14 @@ def read(overrides=None):
                 cash30=bk.cell_value('Balance Sheet', 'I7'),
                 netcash=bk.cell_value('DCF', 'B36'),
                 asset_lens=bk.cell_value('Relative & Normalized', 'B38'),
+                # the filed historicals reach a reader through the statements, so they
+                # are probed there — an input feeding only a printed line is not dead,
+                # it is simply not covered until somebody points a probe at it
+                rev23=bk.cell_value('Income Statement', 'B5'),
+                rev24=bk.cell_value('Income Statement', 'C5'),
+                pat25=bk.cell_value('Income Statement', 'D14'),
+                treas25=bk.cell_value('Income Statement', 'D10'),
+                ppe26=bk.cell_value('Balance Sheet', 'E5'),
                 rel_lens=bk.cell_value('Relative & Normalized', 'B15'),
                 norm_lens=bk.cell_value('Relative & Normalized', 'B26'),
                 roic=bk.cell_value('DCF', 'B24'),
@@ -74,30 +86,50 @@ def read(overrides=None):
 
 
 base = read()
+# A HEADLINE THAT READS ZERO OR NOTHING IS A PROBE THAT DID NOT RUN [R-ENF-04]. Every
+# quantity below is a price, a rate or a cash flow and none of them is legitimately zero;
+# reading one as 0.0 means the cell moved and the probe is now pointed at blank space,
+# which is exactly what happened when the lens sheet was rebuilt and which passed every
+# case silently because a relative move against a zero base is zero.
+_blank = sorted(k for k, v in base.items() if v is None or abs(float(v)) < 1e-12)
+assert not _blank, ('headline probes reading nothing — the cells moved and the test is '
+                    'pointed at blank space: %s' % _blank)
 print('base: ' + ' · '.join(f'{k} {v:,.4f}' for k, v in base.items()))
 
 CASES = [
     # ---- THE COST STACK — testable only because EBITDA is now an output --------
-    ('Specific thermal energy', 'B', +0.30, 'ebitda26', -1,
-     'more heat per tonne of clinker must cost more and cut EBITDA'),
-    ('Delivered fuel cost', 'B', +1.00, 'ebitda26', -1,
-     'a dearer fuel must cut EBITDA'),
-    ('Specific electrical energy', 'B', +10.0, 'ebitda26', -1,
-     'more kWh per tonne must cut EBITDA'),
-    ('Industrial electricity tariff', 'B', +0.50, 'ebitda26', -1,
-     'a dearer tariff must cut EBITDA'),
-    ('Raw materials & quarrying', 'B', +30.0, 'var_t26', +1,
-     'a dearer raw-material bill must raise variable cost per tonne'),
-    ('Packaging', 'B', +20.0, 'ebitda26', -1,
-     'dearer bags must cut EBITDA'),
-    ('Bagged share of despatches', 'B', +0.10, 'ebitda26', -1,
-     'more bagged product carries more packaging cost'),
-    ('Distribution & selling', 'B', +50.0, 'ebitda26', -1,
+    # THE STACK IS NOW THE COMPANY'S OWN DISCLOSED LINES, so the drivers tested are the
+    # ones that exist. Revision 2's four industry rules of thumb are gone and with them
+    # the eight assertions about heat rates and bag prices — replaced rather than dropped:
+    # every disclosed line is tested, and the estimated split inside the materials line is
+    # tested too, because it is the one part of the stack the accounts do not evidence.
+    ('Materials, fuel, power, packing (note 24)', 'B', +200.0, 'ebitda26', -1,
+     'a dearer materials, fuel and power bill must cut EBITDA'),
+    ('Materials, fuel, power, packing (note 24)', 'B', +200.0, 'var_t26', +1,
+     'and it must raise variable cost per tonne'),
+    ('Transport, loading and export (notes 24, 25)', 'B', +100.0, 'ebitda26', -1,
      'dearer freight must cut EBITDA'),
-    ('Fixed cash cost', 'B', +2.00, 'ebitda26', -1,
+    ('Fixed cash cost (the rest of notes 24, 25, 26)', 'B', +200.0, 'ebitda26', -1,
      'a heavier fixed block must cut EBITDA'),
-    ('Fixed cash cost', 'B', +2.00, 'dcf', -1,
+    ('Fixed cash cost (the rest of notes 24, 25, 26)', 'B', +200.0, 'dcf', -1,
      'and it must carry through to the valuation'),
+    # THE SIGN HERE IS NOT THE OBVIOUS ONE AND THE FIRST DRAFT GOT IT WRONG. A larger
+    # dollar-linked share is cheaper whenever DOMESTIC inflation runs ahead of the pound's
+    # slide, which is what the house macro path says it does: the pound moves 5.4% in
+    # FY2026 against a domestic cost path that moves further. So the test asserts what the
+    # escalators actually imply, not what "dollar-linked" sounds like it should imply.
+    ('Dollar-linked share of the materials line', 'B', +0.20, 'ebitda26', +1,
+     'a larger dollar-linked share is CHEAPER while domestic cost inflation runs ahead '
+     'of the currency, which is what the house path says'),
+    ('Weighted depreciation rate (note 3/2 on note 4)', 'B', +0.01, 'dcf', -1,
+     'a faster disclosed depreciation rate means a shorter life, a heavier terminal '
+     'maintenance charge, and a lower value'),
+    ('Capex run rate (cash-flow statements)', 'B', +100.0, 'dcf', -1,
+     'more capital spending is less free cash flow — which only became TRUE of this '
+     'model when the explicit window was put on the same waterfall as the terminal; '
+     'before that, raising capex by EGP 100mn a year moved the value by 0.12%'),
+    ('Cash, reviewed sheet 31-Mar-2026', 'B', +500.0, 'dcf', +1,
+     'more cash on the latest disclosed sheet is more value per share'),
     # ---- THE PHYSICAL BUILD -----------------------------------------------------
     ('Kiln clinker capacity', 'B', +0.30, 'cement26', +1,
      'more kiln capacity at the same utilisation must make more cement'),
@@ -119,9 +151,15 @@ CASES = [
     ('Local cost inflation index', 'C', +0.10, 'ebitda26', -1,
      'inflating the EGP cost lines must cut EBITDA'),
     # ---- COST OF CAPITAL --------------------------------------------------------
-    ('Terminal growth', 'B', +0.01, 'dcf', -1,
-     'terminal return on capital sits BELOW the terminal cost of capital, so growth must '
-     'be bought with reinvestment that earns less than it costs'),
+    # RE-DERIVED WITH THE CONSTRUCTION, not deleted. Revision 2 asserted that terminal
+    # growth DESTROYS value here, because the reinvestment identity charged g x invested
+    # capital to buy it and the terminal return sat below the terminal cost of capital.
+    # [R-TERM-01] retires that identity: real growth is zero and g is inflation, which
+    # buys no capacity and costs no capital, so it moves the perpetuity denominator and
+    # nothing else. The sign reverses and the reason is the whole of that rule.
+    ('Terminal growth', 'B', +0.01, 'dcf', +1,
+     'with real growth at zero, g is the inflation the perpetuity is discounted against, '
+     'so a higher g raises the terminal — the retired identity charged for it instead'),
     ('Beta', 'B', +0.20, 'dcf', -1, 'a higher beta must lower the valuation'),
     ('Beta', 'B', +0.20, 'beta_term', +1,
      'and it must re-lever through Hamada into the terminal beta'),
@@ -144,22 +182,40 @@ CASES = [
     ('Elapsed fraction of FY2026 at valuation', 'B', +0.10, 'netcash', +1,
      'more of FY2026 already earned means more cash at the valuation date'),
     # ---- BALANCE SHEET AND BRIDGE ----------------------------------------------
-    ('FY2025 cash (REPORTED)', 'B', +1000.0, 'dcf', +1,
-     'more cash flows straight through the bridge'),
+    # THE BRIDGE STANDS ON THE REVIEWED 31-MARCH-2026 SHEET [R-BRIDGE-01], so the
+    # 31-December-2025 cash no longer reaches it and the test moves to the sheet that does.
+    ('Cash, reviewed sheet 31-Mar-2026', 'B', +1000.0, 'dcf', +1,
+     'more cash on the latest disclosed sheet flows straight through the bridge'),
     ('Non-controlling interests', 'B', +500.0, 'dcf', -1,
      'minorities own part of the enterprise and must be deducted'),
-    ('Gross debt', 'B', +2000.0, 'dcf', -1, 'more debt leaves less for shareholders'),
+    ('Lease liabilities, 31-Mar-2026', 'B', +2000.0, 'dcf', -1,
+     'more debt on the latest disclosed sheet leaves less for shareholders'),
     ('Shares outstanding', 'B', +20.0, 'dcf', -1,
      'the same equity across more shares must lower the value per share'),
     ('Dividend payout ratio', 'B', +0.20, 'cash30', -1,
      'paying more out must leave less cash at the end of the forecast'),
     # ---- HISTORICAL CLOSURE -----------------------------------------------------
-    ('Effective tax rate (historical closure)', 'B', +0.05, 'ebitda25_derived', +1,
-     'a higher effective rate means MORE pre-tax profit stood behind the same disclosed '
-     'profit after tax, so the derived FY2025 EBITDA rises'),
-    ('FY2023 treasury income', 'B', +100.0, 'ebitda23', -1,
-     'FY2023 EBIT is the disclosed loss LESS treasury income, so more treasury income '
-     'means a worse underlying year'),
+    # THESE TWO TESTED A CLOSURE THAT NO LONGER EXISTS. Revision 2 derived FY2025 EBITDA
+    # by grossing a press profit figure at an effective tax rate and subtracting an
+    # estimated treasury income; both are now read off the audited statements, so neither
+    # input reaches a number any more. Replaced by tests on the filed lines themselves.
+    # column D is FY2025 on these three-year rows; B is FY2023
+    ('EBIT (operating profit plus the finance charge inside it)', 'D', +100.0,
+     'ebitda25_derived', +1,
+     'the filed operating profit feeds FY2025 EBITDA directly, with nothing solved'),
+    ('Depreciation & amortisation', 'D', +50.0, 'ebitda25_derived', +1,
+     'and so does the filed depreciation charge, because EBITDA is EBIT plus it'),
+    ('FY2023 revenue', 'B', +100.0, 'rev23', +1,
+     'the filed FY2023 revenue is what the statements print'),
+    ('FY2024 revenue', 'B', +100.0, 'rev24', +1,
+     'and so is FY2024'),
+    ('FY2025 profit after tax', 'B', +100.0, 'pat25', +1,
+     'the filed profit after tax is printed, not derived'),
+    ('Interest and investment income', 'D', +50.0, 'treas25', +1,
+     'the filed interest income is printed beside it'),
+    ('Operating assets at 31-Dec-2024 (fixed assets net, intangibles, CWIP)', 'B',
+     +500.0, 'ppe26', +1,
+     'the filed opening asset base rolls forward through the projected balance sheet'),
     ('FY2023 weighted-average shares', 'B', +20.0, 'eps23', +1,
      'FY2023 was a LOSS, so spreading it over more shares makes the per-share loss smaller'),
     ('FY2025 weighted-average shares', 'B', +20.0, 'bvps', -1,
@@ -173,8 +229,13 @@ CASES = [
      'a smaller haircut leaves a bigger normalised base'),
     ('Replacement cost of capacity', 'B', +20.0, 'roic', -1,
      'more invested capital against the same terminal profit must lower the return on it'),
-    ('Weight — asset', 'B', +0.05, 'central', +1,
-     'the asset lens is the highest of the four, so weighting it more lifts the central'),
+    # THE WEIGHT DRIVERS ARE GONE, NOT MOVED. [R-LENS-03] retired the typed blend, so
+    # there is no weight to bump: the central is the primary lens and nothing else
+    # reaches it. What replaces this case is the envelope's own floor, which IS a
+    # published figure and must move when the margin that produces it moves.
+    ('Envelope floor — the primary at the filed margin floor', 'B', +5.0, 'central', 0,
+     'the envelope floor is published beside the central and does NOT feed it: bumping '
+     'it must leave the central untouched, which is the whole claim of the retirement'),
 ]
 
 fails, rows = [], []
@@ -184,9 +245,14 @@ for label, col, bump, key, sign, why in CASES:
     out = read({('Assumptions', f'{col}{r}'): cur + bump})
     delta = out[key] - base[key]
     rel = delta / abs(base[key]) if base[key] else 0.0
-    ok = (delta * sign > 0) and abs(rel) > 1e-9
+    # A SIGN OF ZERO IS A CLAIM THAT THE DRIVER DOES NOT REACH THE HEADLINE, and it is
+    # tested as strictly as a directional one: after the blend was retired, "the envelope
+    # floor does not feed the central" is exactly the property a reader needs, and a
+    # driver test that could only assert movement could not state it.
+    ok = ((abs(rel) < 1e-9) if sign == 0 else
+          ((delta * sign > 0) and abs(rel) > 1e-9))
     rows.append(dict(driver=label, col=col, bump=bump, headline=key, base=base[key],
-                     bumped=out[key], rel=rel, direction=('up' if sign > 0 else 'down'),
+                     bumped=out[key], rel=rel, direction=('up' if sign > 0 else ('down' if sign < 0 else 'unmoved')),
                      passed=bool(ok), why=why))
     print(f"  [{'OK ' if ok else 'BAD'}] {label} [{col}] {bump:+g} -> {key} "
           f"{base[key]:,.3f} -> {out[key]:,.3f} ({rel:+.3%})")
@@ -197,6 +263,18 @@ for label, col, bump, key, sign, why in CASES:
 DEAD_OK = {
     'Spot price',                 # what fair value is COMPARED with, not an input to it
     'Vicat tender offer price',   # a disclosed reference the model deliberately consumes nowhere
+    # [R-LENS-03] THE RETIRED BLEND IS SHOWN AND REACHES NOTHING, WHICH IS THE POINT.
+    # It is printed so a reader can see what the previous architecture would have said;
+    # a figure that fed the central would mean the blend had not actually been retired.
+    'MEMO — the retired four-lens blend',
+    # [R-COC-01] THE GLIDE'S FRACTIONS ARE THE POLICY-RATE PATH'S, NOT THE DEBT
+    # LADDER'S. The cost-of-debt path used to shape the discount schedule and now
+    # shapes nothing: the explicit WACC takes the first year's rate and the terminal
+    # takes the terminal rate, and the years between are a disclosure about the
+    # company's borrowing costs rather than a driver of its value. It is printed
+    # because a reader is owed it, and it is declared here because a driver test
+    # that could not tell a memo from a broken link would be worth nothing.
+    'Cost-of-debt path',
 }
 print('\nDEAD-INPUT SWEEP — every remaining driver is bumped and must move something')
 dead = []

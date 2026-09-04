@@ -1,0 +1,19 @@
+{
+ "rule": "R-ENF-01 / waterfall assertions",
+ "note": "Studies printing a table that instructs a reader whose builder does not run engine/table_residual.waterfall(). May only ever SHORTEN. Each closes at its study's next re-issue.",
+ "outstanding": [
+  "ADNOCDRILL",
+  "AMOC",
+  "AMR",
+  "ARCC",
+  "ELEC",
+  "EMPOWER",
+  "GBCO",
+  "MODON",
+  "PHAR",
+  "PHDC",
+  "RIYADHCABLE",
+  "SAVOLA",
+  "SWDY"
+ ]
+}

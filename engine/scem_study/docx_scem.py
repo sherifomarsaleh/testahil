@@ -1,4 +1,4 @@
-"""SCEM_Valuation_Study_06-08-2026_public.docx — TMPV house structure.
+"""SCEM_Valuation_Study_04-09-2026_public.docx — TMPV house structure.
 
 16 headings: 7 top-level sections plus the 9 subsections of section 1, then three
 appendices. Reads study_numbers.json exclusively — no numeral is typed here.
@@ -10,7 +10,10 @@ import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(HERE, '..'))   # the shared instruments live in engine/
 from docx_base import *          # noqa: F401,F403
+import table_residual as TRES        # the shared waterfall check, not hand-rolled
+from table_residual import waterfall                              # noqa: F401
 from docx_base import (doc, P, H1, H2, rich, bullet, table, figure, box, caption,
                        masthead, INK, GREY, BRASS, GOLD, F_CREAM, F_PANEL, Pt, Inches)
 
@@ -18,10 +21,42 @@ D = json.load(open('study_numbers.json'))
 BETA = json.load(open('beta_result.json'))
 STK = json.load(open('strike_result.json'))
 S0 = json.load(open('step0_result.json'))
+# [R-CAL-02] WHAT A READER IS SHOWN IS THE BAND RECORD, generated from the committed
+# panels and read here rather than re-derived: how many resolved three-month forecasts
+# this name's history holds, how often the price finished inside the band, the count
+# always printed beside the percentage, and a flag ONLY when a two-sided binomial test
+# earns one. The skill verdict is retired outright and reaches no reader, by its name or
+# by a description of it.
+def _band_record(tk):
+    """This name's published band record, read from the site's own generated block.
+
+    Handed to node and read off the OBJECT the page renders [R-ENF-03], never matched out
+    of the text with a regular expression: a JavaScript object literal takes the LAST
+    declaration of a duplicated key and re.search takes the FIRST, and that difference has
+    already put a support level above its own close on a live page.
+    """
+    import subprocess
+    root = os.path.abspath(os.path.join(HERE, '..', '..'))
+    js = ("const fs=require('fs');"
+          "const src=fs.readFileSync(%r,'utf8');"
+          "eval(src.replace(/^\\s*(const|var|let)\\s+/gm,'globalThis.'));"
+          "process.stdout.write(JSON.stringify(globalThis.BANDS[%r]));"
+          % (os.path.join(root, 'assets', 'data.js'), tk))
+    out = subprocess.run(['node', '-e', js], capture_output=True, text=True, check=True)
+    rec = json.loads(out.stdout)
+    assert rec and rec.get('n'), 'no published band record for %s' % tk
+    return rec
+
+
+BAND = _band_record('SCEM')
 M, H, F = D['meta'], D['history'], D['forecast']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sensitivity']
 TR, PE, SHT, DISP = D['terminal_reconciliation'], D['peers'], D['share_triangulation'], D['disposal']
 EXP, LR, GDV = D['experts'], D['lens_ranges'], D['growth_destroys_value']
+LREC = D['lens_record']        # [R-LENS-03] the primary and its cross-checks
+MACRO = D['macro_live']        # [R-MACRO-01] the house path's own figures
+LKEYS = ['DCF (cash flow)', 'Relative multiples',
+         'Asset / replacement cost', 'Book value (disclosed floor)']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 SPOT, SH = M['spot'], M['shares_mn']
 YH, YF = ['FY2023', 'FY2024', 'FY2025'], F['years']
@@ -37,9 +72,10 @@ def sg(x, dp=1): return f"{x*100:+.{dp}f}%"
 # ============================== COVER ========================================
 masthead()
 P('Sinai Cement Company S.A.E.', size=22, bold=True, space_after=1)
-P('Egyptian Exchange · SCEM · Egyptian pounds · 6 August 2026', size=11, color=GREY,
+P('Egyptian Exchange · SCEM · Egyptian pounds · issued 4 September 2026, struck on the closing price of 2 September 2026', size=11, color=GREY,
   space_after=10)
-rich([('A single-plant cement producer, sitting on net cash worth 37% of its market '
+rich([(f'A single-plant cement producer, sitting on net cash worth '
+       f'{pc(D["dcf"]["net_cash"] / (SPOT * SH), 0)} of its market '
        'capitalisation, at the top of the best year the Egyptian cement industry has had '
        'since 2008 — and with 12.6 million tonnes of dormant capacity queuing to restart '
        'inside the forecast window.', {'size': 12})], space_after=10)
@@ -50,27 +86,44 @@ box([('What this is. ', 'An independent valuation of Sinai Cement, an educationa
      ('The company in one line. ', 'Two cement lines at El Hassana in North Sinai, about '
       '3.8 million tonnes a year of capacity, 77.6% owned by the French Vicat group, with '
       'a 22.4% free float and essentially no debt.'),
-     ('Where the value lands. ', f'Four lenses put the shares between EGP {n2(LN["low"])} '
-      f'and EGP {n2(LN["high"])}, weighting to a central EGP {n2(LN["central"])} against a '
-      f'market price of EGP {n2(SPOT)} — {sg(LN["central"]/SPOT-1)}.')])
+     ('Where the value lands. ',
+      f'The cash-flow lens is the answer: EGP {n2(LN["central"])} a share against a market '
+      f'price of EGP {n2(SPOT)}, {sg(LN["central"]/SPOT-1)}. Flexing the operating margin '
+      f'down to the lowest the company has ever filed takes it to EGP '
+      f'{n2(LREC["primary"]["range"]["low"])}, and the forecast opens above the best year '
+      f'it has filed, so essentially the whole of that range is downside. The other lenses '
+      f'are published beside it rather than averaged into it: replacement cost EGP '
+      f'{n2(LN["values"]["Asset / replacement cost"])}, an enterprise multiple EGP '
+      f'{n2(LN["values"]["Relative multiples"])}, and a disclosed book floor of EGP '
+      f'{n2(LN["values"]["Book value (disclosed floor)"])}.')])
 
 # ---- summary valuation table (gate item i) ----------------------------------
 H2('Summary valuation table')
-rows = [['Lens', 'Value per share (EGP)', 'Weight', 'Versus spot', 'Terminal value % of EV']]
-for k in LN['weights']:
-    rows.append([k, n2(LN['values'][k]), pc(LN['weights'][k], 0),
+ROLE = {'DCF (cash flow)': 'PRIMARY — this is the central',
+        'Relative multiples': 'cross-check',
+        'Asset / replacement cost': 'cross-check',
+        'Book value (disclosed floor)': 'disclosed floor, never weighted'}
+rows = [['Lens', 'Value per share (EGP)', 'Role', 'Versus spot', 'Terminal value % of EV']]
+for k in LKEYS:
+    rows.append([k, n2(LN['values'][k]), ROLE[k],
                  sg(LN['values'][k] / SPOT - 1),
                  pc(DCF['tv_share']) if k == 'DCF (cash flow)' else '—'])
-rows.append(['Weighted central fair value', n2(LN['central']), '100%',
+rows.append(['Central fair value', n2(LN['central']), 'the primary lens, not a blend',
              sg(LN['central'] / SPOT - 1), '—'])
-rows.append(['Range across the four lenses', f'{n2(LN["low"])} – {n2(LN["high"])}', '—',
-             f'{sg(LN["low"]/SPOT-1)} to {sg(LN["high"]/SPOT-1)}', '—'])
-rows.append(['Market price, 6 August 2026', n2(SPOT), '—', '—', '—'])
+_pr = LREC['primary']['range']
+rows.append(['Range on the primary lens',
+             f'{n2(_pr["low"])} – {n2(_pr["high"])}',
+             'the operating margin across its own filed span',
+             f'{sg(_pr["low"]/SPOT-1)} to {sg(_pr["high"]/SPOT-1)}', '—'])
+rows.append(['Market price, 2 September 2026', n2(SPOT), '—', '—', '—'])
 rows.append(['Vicat tender offer, July 2025 (reference only)', n2(IN['mto_price']), '—',
              sg(IN['mto_price'] / SPOT - 1), '—'])
 table(rows, [2.55, 1.35, 0.72, 1.02, 1.36], band_rows={5})
-caption('Terminal value as a percentage of enterprise value is shown beside the cash-flow '
-        'lens, and again in the enterprise-to-equity bridge in section 1.1.')
+caption('The central IS the cash-flow lens. The other reads are cross-checks published '
+        'beside it and are not averaged into it: where several methods disagree the '
+        'disagreement is the output, and a weighted blend of them is a new method with '
+        'weights nobody has tested. Terminal value as a percentage of enterprise value is '
+        'shown beside the cash-flow lens, and again in the bridge in section 1.1.')
 
 figure('fig1_football.png', 6.9,
        'Figure 1 — Each lens as a range, with its base case marked, against the market price.')
@@ -92,28 +145,51 @@ P('The one thing that could have made this a two-legged valuation has already be
 
 box([('One thing to fix in your head before reading the history. ',
       f'Profit after tax of EGP {n0(H["pat"][1])} million in FY2024 on revenue of EGP '
-      f'{n0(H["revenue"][1])} million is a 48% net margin. No cement plant earns that from '
+      f'{n0(H["revenue"][1])} million is a '
+      f'{pc(H["pat"][1] / H["revenue"][1], 0)} net margin. No cement plant earns that from '
       f'making cement. That year contains the Sinai White disposal gain of roughly EGP '
-      f'{n0(DISP["gain"])} million. Strip it and underlying FY2024 profit was EGP '
+      f'{n0(DISP["gain"])} million and treasury income of EGP {n0(H["treasury"][1])} '
+      f'million. THE UNDERLYING FIGURE IS NOT THE REPORTED PROFIT LESS THE GAIN: it is '
+      f'operating profit of EGP {n0(H["ebit"][1])} million plus that treasury income, '
+      f"taxed at the effective {pc(IN['tax_eff'], 1)}, which is EGP "
       f'{n0(DISP["underlying_fy24_pat"])} million — so FY2025 profit '
-      f'{sg(H["pat"][2]/DISP["underlying_fy24_pat"]-1, 0)} rather than falling 25% as the '
-      'headline comparison suggests.')])
+      f'{sg(H["pat"][2]/DISP["underlying_fy24_pat"]-1, 0)} rather than '
+      f'{sg(H["pat"][2]/H["pat"][1]-1, 0)} as the headline comparison suggests.')])
 
 figure('fig7_bridge.png', 6.7,
        'Figure 2 — Profit after tax across three years, and what FY2024 actually contained.')
 
 # ---- 1.1 --------------------------------------------------------------------
 H2('1.1  The cash-flow model — the primary lens, with the full waterfall')
-P('The discounted cash-flow model is the primary lens and carries 45% of the weight. It '
-  'runs on a volume-and-price build off one plant, discounts each year at that year\'s own '
-  'cost of capital, and capitalises a terminal value at a separately built terminal rate.')
+P('The discounted cash-flow model is the primary lens, and for this company it IS the '
+  'answer rather than a share of one. It runs on a volume-and-price build off one plant, '
+  'discounts each year at that year\'s own cost of capital, and capitalises a terminal '
+  'value at a separately built terminal rate. An earlier edition averaged it with three '
+  'other reads at weights that were typed rather than tested — and two of those three '
+  'value a cement plant off reported accounting earnings and historical-cost book, which '
+  'for an asset commissioned in 1997 and carried through a five-fold devaluation measures '
+  'the accounting rather than the plant.')
+# THE PRINTED WATERFALL WAS NOT THE MODEL'S WATERFALL. It ran NOPAT, plus depreciation,
+# less capital expenditure, less the change in working capital, to free cash flow — and the
+# model computes free cash flow as NOPAT LESS REINVESTMENT, with the first year scaled to
+# the unearned part of it. So three of the four lines between NOPAT and the answer fed
+# nothing, the two that do were not printed at all, and a reader adding the column got EGP
+# 1,829mn in year one against a printed 799. Under a caption reading "the FULL waterfall...
+# every line is a live formula in the companion model".
+#
+# Those three lines are real and are not deleted: they drive the projected balance sheet —
+# property, working capital and cash — and they are shown for what they are, below the
+# answer rather than inside it. This is the ARCC Table 3 shape at its worst: every figure
+# individually correct, and the relationship between them not the model's.
+_STUB = 1.0 - IN['stub_years']
 rows = [['EGP million'] + YF]
 for lab, key, f in [('Revenue', 'revenue', n0), ('EBITDA', 'ebitda', n0),
                     ('EBITDA margin', None, None), ('Depreciation & amortisation', 'dna', n0),
                     ('EBIT', 'ebit', n0), ('NOPAT  (EBIT × (1 − t))', 'nopat', n0),
-                    ('Plus depreciation & amortisation', 'dna', n0),
-                    ('Less capital expenditure', 'capex', n0),
-                    ('Less change in working capital', 'dwc', n0),
+                    ('Depreciation and amortisation added back', 'dna', n0),
+                    ('Capital expenditure', 'capex', lambda x: '(' + n0(x) + ')'),
+                    ('Change in working capital', 'dwc',
+                     lambda x: ('(' + n0(x) + ')') if x > 0 else n0(-x)),
                     ('Free cash flow to the firm', 'fcff', n0),
                     ('Discount factor', 'df', lambda x: f'{x:.4f}'),
                     ('Present value of free cash flow', 'pv', n0)]:
@@ -121,13 +197,52 @@ for lab, key, f in [('Revenue', 'revenue', n0), ('EBITDA', 'ebitda', n0),
         rows.append([lab] + [pc(F['ebitda'][i] / F['revenue'][i]) for i in range(5)])
     else:
         rows.append([lab] + [f(F[key][i]) for i in range(5)])
-table(rows, [2.25, 0.94, 0.94, 0.94, 0.94, 0.94], band_rows={10, 12})
-caption('Table 1 — The full waterfall from revenue to the present value of free cash flow '
-        'to the firm. Every line is a live formula in the companion model.')
+table(rows, [2.25, 0.94, 0.94, 0.94, 0.94, 0.94], band_rows={8, 10})
+# THE FIRST YEAR FOOTS ONLY WITH THE STUB NAMED, so the caption names it and the build
+# asserts every year reproduces from the rows printed above it.
+for _i in range(5):
+    waterfall(
+        F['nopat'][_i],
+        [('Plus depreciation and amortisation', F['dna'][_i]),
+         ('Less capital expenditure', F['capex'][_i]),
+         ('Less change in working capital', F['dwc'][_i])],
+        F['fcff'][_i], dp=0, what='Table 1, %s' % YF[_i],
+        # THE FIRST YEAR IS THE ONE LINE A READER CANNOT ADD UP AND THE CAPTION SAYS SO:
+        # only the unearned part of FY2026 is a future receipt. Declared with its reason
+        # rather than silently tolerated, which is what the helper's own refusal is for.
+        extra=(-(F['nopat'][_i] + F['dna'][_i] - F['capex'][_i] - F['dwc'][_i])
+               * (1.0 - _STUB)) if _i == 0 else 0.0,
+        why=('only the part of %s still unearned at the valuation date is a future '
+             'receipt; the caption names the fraction' % YF[0]) if _i == 0 else '')
+# The stub is quoted to the precision a reader NEEDS, not to a round one: at 42% the two
+# printed rows give 804 against a printed 799, so the caption naming the scaling would not
+# have let anyone reproduce it. Tested on the PRINTED strings, which is what the reader has.
+_STUB_TXT = pc(_STUB, 1)
+_rd = lambda t: float(t.replace(',', '').rstrip('%'))
+# the stub scales the WHOLE first-year waterfall, not NOPAT alone, so the reader's own
+# arithmetic runs down the column and then applies the fraction the caption names
+_yr1 = (_rd(n0(F['nopat'][0])) + _rd(n0(F['dna'][0])) - _rd(n0(F['capex'][0]))
+        - _rd(n0(F['dwc'][0])))
+assert abs(round(_yr1 * _rd(_STUB_TXT) / 100.0) - _rd(n0(F['fcff'][0]))) <= 2.0, (
+    'the printed stub does not reproduce the printed first-year cash flow')
+caption(f'Table 1 — From revenue to the present value of free cash flow to the firm. Free '
+        f'cash flow is NOPAT plus book depreciation, less the capital actually spent and '
+        f'the working capital the growth absorbs — the SAME waterfall the terminal uses, '
+        f'so the two windows cannot mean different things by the same words. The '
+        f'first year is scaled to the {_STUB_TXT} of {YF[0]} still unearned at the '
+        f'valuation date — that is the only line a reader cannot add up from the two above '
+        f'it. Every line is a live formula in the companion model.')
+P('Capital expenditure is the company\'s own run rate from its cash-flow statements — '
+  'EGP 121 million in FY2023, 526 million in FY2024 and 262 million in FY2025 — escalated '
+  'with domestic costs, and depreciation is the rate its own accounting-policies note '
+  'discloses applied to the asset base that capital spending builds. An earlier edition '
+  'charged depreciation at 4.6% of revenue falling to 4.2%, against a company that filed '
+  '1.35%.', size=9.5, italic=True, color=GREY)
 
-P('The discount rate is not one number. Egypt\'s cost of capital today reflects a policy '
-  'rate of 19.50% and a ten-year government yield of 22.31%, neither of which the central '
-  'bank itself expects to persist — its own published medium-term inflation target is 5%. '
+P(f'The discount rate is not one number. Egypt\'s cost of capital today reflects a policy '
+  f'rate of {pc(MACRO["policy_rate"], 2)} and a ten-year government yield of '
+  f'{pc(IN["rf"], 2)}, neither of which the central bank itself expects to persist — its '
+  f'own published target is {pc(MACRO["terminal_inflation"], 0)}. '
   'Applying today\'s rate to a perpetuity would assert that Egypt never normalises. Each '
   'forecast year is therefore discounted at its own forward rate, sliding from the '
   'explicit-window cost of capital to the terminal one, and the terminal value is '
@@ -148,12 +263,33 @@ for lab, v in [('Present value of the explicit five years', DCF['sum_pv']),
     rows.append([lab, n0(v), n2(v / SH)])
 rows.append(['Terminal value as a percentage of enterprise value', pc(DCF['tv_share']), '—'])
 rows.append(['Plus net cash', n0(DCF['net_cash']), n2(DCF['net_cash'] / SH)])
+# THE MINORITY WAS DEDUCTED IN THE MODEL AND PRINTED NOWHERE, so a reader adding the
+# printed column reached 11,547 against a printed 11,426 — the line, not the arithmetic,
+# was missing. It is printed now, and the bridge is asserted to foot from its own rows.
+rows.append(['Less non-controlling interests in the subsidiaries',
+             '(' + n0(IN['nci']) + ')', '(' + n2(IN['nci'] / SH) + ')'])
 rows.append(['Equity value', n0(DCF['equity']), n2(DCF['fv'])])
 rows.append(['Market price', '—', n2(SPOT)])
-table(rows, [3.55, 1.65, 1.55], band_rows={4, 6})
-caption('Table 3 — The bridge. Net cash is ADDED, because this company holds more cash '
-        'than debt. Terminal value is 41% of enterprise value — a modest share, and '
-        'deliberately so; the next section explains why.')
+table(rows, [3.55, 1.65, 1.55], band_rows={4, 7})
+waterfall(DCF['ev'],
+          [('Plus net cash', DCF['net_cash']),
+           ('Less non-controlling interests', IN['nci'])],
+          DCF['equity'], dp=0, what='Table 3, the bridge')
+waterfall(DCF['sum_pv'], [('Plus the present value of the terminal value', DCF['pv_tv'])],
+          DCF['ev'], dp=0, what='Table 3, enterprise value')
+# THE CAPTION TYPED 41% AGAINST A COMPUTED 49.2% PRINTED TWO ROWS ABOVE IT. Read from
+# the record. The minority basis is named because the deduction is now visible; the
+# alternative a reviewer proposed is priced here rather than asserted away, since at
+# EGP 2,008mn it is worth more than a sixth of the answer.
+_nci_alt = 2008.0
+caption(f'Table 3 — The bridge. Net cash is ADDED, because this company holds more cash '
+        f'than debt, and the minority is deducted from EQUITY value rather than from '
+        f'enterprise value, on the share of profit the subsidiaries actually earn. A '
+        f'reviewer proposed EGP {n0(_nci_alt)} million instead, {pc(_nci_alt / DCF["ev"], 0)} '
+        f'of enterprise value; on that reading the shares are worth EGP '
+        f'{n2((DCF["ev"] + DCF["net_cash"] - _nci_alt) / SH)} rather than '
+        f'EGP {n2(DCF["fv"])}, and the reasoning behind the adopted figure is in the input '
+        f'register. Terminal value is {pc(DCF["tv_share"], 0)} of enterprise value.')
 
 H2('The terminal value, and the judgement that decides it')
 P('The single most consequential judgement here is what return the company earns on '
@@ -177,6 +313,27 @@ box([('And this is why growth does not help. ',
       'of a mature plant in an oversupplied market. This company creates value by '
       'harvesting and distributing, not by growing.')])
 
+# EVERY LENS TABLE ENDED ON AN ANSWER A READER COULD NOT REACH FROM THE ROWS ABOVE IT.
+# All three carried an enterprise or earnings figure and then jumped straight to value per
+# share, so the net cash, the minority and the share count — every one of which the model
+# uses — were printed nowhere: on the normalised lens a reader dividing the printed
+# earnings by the printed share count reached EGP 39.66 against a printed 58.10. The tail
+# is the bridge's own three lines, and the build asserts the printed answer reproduces
+# from the rows printed above it.
+def lens_tail(rows, ev_or_earn, answer, first_label):
+    rows.append([first_label, n0(ev_or_earn)])
+    rows.append(['Plus net cash (EGP mn)', n0(DCF['net_cash'])])
+    rows.append(['Less non-controlling interests (EGP mn)', '(' + n0(IN['nci']) + ')'])
+    rows.append([f'Divided by shares in issue ({n1(SH)} million)', ''])
+    rows.append(['Implied value per share (EGP)', n2(answer)])
+    waterfall(ev_or_earn,
+              [('Plus net cash', DCF['net_cash']),
+               ('Less non-controlling interests', IN['nci']),
+               ('Divided by shares in issue', SH)],
+              answer, dp=2, what=first_label)
+    return rows
+
+
 # ---- 1.2 --------------------------------------------------------------------
 H2('1.2  The asset lens — enterprise value per tonne against replacement cost')
 P('For cement, the sector\'s own yardstick is enterprise value per annual tonne of '
@@ -190,10 +347,11 @@ for lab, v in [('Enterprise value at the market price (EGP mn)', n0(SPOT * SH - 
                ('Enterprise value per tonne, at market (USD/t)', n1(LN['ev_per_t_spot'])),
                ('Replacement cost of new capacity (USD/t)', n0(IN['repl_usd_t'])),
                ('Discount to replacement cost', pc(LN['ev_per_t_spot'] / IN['repl_usd_t'] - 1)),
-               ('Justified enterprise value per tonne (USD/t)', n0(IN['ev_t_just'])),
-               ('Implied value per share (EGP)', n2(LN['values']['Asset / replacement cost']))]:
+               ('Justified enterprise value per tonne (USD/t)', n0(IN['ev_t_just']))]:
     rows.append([lab, v])
-table(rows, [4.45, 2.30], band_rows={7})
+lens_tail(rows, LN['ev_asset'], LN['values']['Asset / replacement cost'],
+          f'Implied enterprise value at EGP {n1(IN["fx"])} to the dollar (EGP mn)')
+table(rows, [4.45, 2.30], band_rows={11})
 caption('Table 5 — The asset lens. The justified figure sits below replacement cost '
         'because nobody pays build cost for capacity in a market with a structural surplus.')
 P('This is the most generous of the four lenses, and the reason is instructive rather than '
@@ -214,15 +372,24 @@ P('The named Egyptian comparator is Misr Beni Suef Cement, which posted the same
   'sector event, not a company event, which is why the multiple here is applied to '
   'normalised rather than trailing earnings.')
 rows = [['', 'Value']]
+# THE HAIRCUT WAS APPLIED IN THE MODEL AND PRINTED NOWHERE, so a reader multiplying the
+# printed revenue by the printed margin reached 2,527 against a printed 2,325. It is the
+# line that makes this lens a normalisation rather than half of one, and it is now visible.
 for lab, v in [('FY2025 revenue (EGP mn)', n0(H['revenue'][2])),
+               (f'Haircut to a mid-cycle revenue base',
+                pc(IN['norm_rev_haircut'] - 1)),
+               ('Mid-cycle revenue base (EGP mn)',
+                n0(H['revenue'][2] * IN['norm_rev_haircut'])),
                ('Mid-cycle EBITDA margin', pc(IN['norm_mgn'])),
                ('Normalised EBITDA (EGP mn)', n0(LN['ebitda_norm'])),
                ('Justified EV/EBITDA', f"{IN['ev_ebitda_just']:.1f}x"),
-               ('Implied enterprise value (EGP mn)', n0(LN['ebitda_norm'] * IN['ev_ebitda_just'])),
-               ('Plus net cash (EGP mn)', n0(DCF['net_cash'])),
-               ('Implied value per share (EGP)', n2(LN['values']['Relative multiples']))]:
+               ]:
     rows.append([lab, v])
-table(rows, [4.45, 2.30], band_rows={7})
+lens_tail(rows, LN['ebitda_norm'] * IN['ev_ebitda_just'],
+          LN['values']['Relative multiples'], 'Implied enterprise value (EGP mn)')
+assert abs(H['revenue'][2] * IN['norm_rev_haircut'] * IN['norm_mgn']
+           - LN['ebitda_norm']) < 1.0, 'normalised EBITDA does not foot from its own rows'
+table(rows, [4.45, 2.30], band_rows={11})
 caption('Table 6 — The relative lens, struck at the peer\'s own EBITDA multiple with no '
         'premium for net cash, which the bridge adds separately.')
 
@@ -235,38 +402,67 @@ P('2025 was the first year since 2008 that Egypt\'s cement supply and demand bal
   'those is a cyclical high, not a plateau.')
 rows = [['', 'Value']]
 for lab, v in [('Normalised EBITDA (EGP mn)', n0(LN['ebitda_norm'])),
-               ('Less depreciation & amortisation (EGP mn)', n0(-H['dna'][2])),
-               ('Normalised NOPAT (EGP mn)', n0(LN['nopat_norm'])),
-               ('Plus after-tax treasury income (EGP mn)',
-                n0(LN['earn_norm'] - LN['nopat_norm'])),
-               ('Normalised earnings (EGP mn)', n0(LN['earn_norm'])),
-               ('Justified price/earnings', f"{IN['pe_just']:.1f}x"),
-               ('Implied value per share (EGP)', n2(LN['values']['Normalised earnings']))]:
+               ('Less depreciation & amortisation (EGP mn)',
+                '(' + n0(H['dna'][2]) + ')'),
+               (f'Less tax at the statutory {pc(IN["tax_stat"], 1)} (EGP mn)',
+                '(' + n0((LN['ebitda_norm'] - H['dna'][2]) * IN['tax_stat']) + ')'),
+               ('Normalised NOPAT — the earnings capitalised (EGP mn)',
+                n0(LN['nopat_norm'])),
+               ('Treasury income on the cash pile, DELIBERATELY EXCLUDED', 'nil'),
+               ('Justified price/earnings', f"{IN['pe_just']:.1f}x")]:
     rows.append([lab, v])
-table(rows, [4.45, 2.30], band_rows={7})
-caption('Table 7 — Normalised earnings power, on a mid-cycle margin struck between the '
-        'FY2024 outturn and the FY2025 peak.')
+lens_tail(rows, LN['earn_norm'] * IN['pe_just'],
+          LREC['retired']['normalised_earnings']['value'], 'Capitalised earnings (EGP mn)')
+table(rows, [4.45, 2.30], band_rows={11})
+caption('Table 7 — Normalised earnings power. THIS READ IS RETIRED AS A LENS FOR THIS '
+        'company and is shown for the record rather than carried into the answer: on a '
+        'single-asset plant whose margin is an output of how hard the kilns run against a '
+        'fixed cost stack, there is no mid-cycle earnings level the cash-flow lens does '
+        'not already carry. It rests on a mid-cycle margin struck between the '
+        'FY2024 outturn and the FY2025 peak. The income the cash pile earns is left out of '
+        'the capitalised figure on purpose: the cash itself is added at face below, and '
+        'capitalising its income as well would pay for the same asset twice.')
 
 # ---- 1.5 --------------------------------------------------------------------
-H2('1.5  Synthesis — four lenses, one field')
-P('The four lenses do not agree, and the spread between them is the honest output rather '
-  'than a problem to be smoothed. The cash-flow and normalised-earnings lenses, which both '
-  'ask what the business earns, land in the middle fifties. The relative lens lands in the '
-  'mid sixties. The asset lens, which asks only what the plant is worth, lands near ninety. '
-  'The market price of EGP 79.00 sits between the earnings answers and the asset answer.')
-rows = [['Lens', 'Bear', 'Base', 'Bull', 'Weight', 'What it is measuring']]
+H2('1.5  Synthesis — one answer, and the reads that disagree with it')
+P(f'The lenses do not agree, and the disagreement is PUBLISHED rather than smoothed. The '
+  f'cash-flow lens is the answer for this class of company, at EGP {n2(LN["central"])}. '
+  f'The replacement-cost read, which asks only what the plant itself is worth, lands at '
+  f'EGP {n2(LN["values"]["Asset / replacement cost"])}. The enterprise multiple lands at '
+  f'EGP {n2(LN["values"]["Relative multiples"])} and is the weakest of them, because the '
+  f'Egyptian listed peer set is two names and neither publishes an EBITDA series this '
+  f'study could measure a multiple from. Book value is a disclosed floor at EGP '
+  f'{n2(LN["values"]["Book value (disclosed floor)"])} and is never weighted into '
+  f'anything. The market price of EGP {n2(SPOT)} sits between the multiple and the '
+  f'cash-flow answer.')
+P('An earlier edition averaged four reads at typed weights and published the average. '
+  f'That blend would read EGP {n2(LREC["retired"]["blend_value"])} here. It is retired: '
+  'weights that were chosen, written down and inherited are free parameters that have '
+  'never cleared an out-of-sample test, and a number produced by averaging several '
+  'methods is not more robust than the best of them — it is a new method, importing every '
+  'weakness of the weakest lens at whatever weight somebody typed. A normalised-earnings '
+  f'read (EGP {n2(LREC["retired"]["normalised_earnings"]["value"])}) carried '
+  f'{pc(LREC["retired"]["blend"]["Normalised earnings"], 0)} of that blend and is dropped '
+  'entirely: on a single-asset plant whose margin is an output of how hard the kilns run, '
+  'there is no mid-cycle earnings level the cash-flow lens does not already carry.')
+rows = [['Lens', 'Bear', 'Base', 'Bull', 'Role', 'What it is measuring']]
 WHAT = {'DCF (cash flow)': 'What the cash flows are worth, discounted',
-        'Relative multiples': 'What the market pays peers for the same EBITDA',
-        'Normalised earnings': 'What the business earns through the cycle',
-        'Asset / replacement cost': 'What the plant itself is worth'}
-for k in LN['weights']:
+        'Relative multiples': 'What an enterprise multiple pays for the same EBITDA',
+        'Asset / replacement cost': 'What the plant itself is worth',
+        'Book value (disclosed floor)': 'What the accounts carry the plant at'}
+for k in LKEYS:
     rows.append([k, n2(LR[k]['bear']), n2(LR[k]['base']), n2(LR[k]['bull']),
-                 pc(LN['weights'][k], 0), WHAT[k]])
-rows.append(['Weighted central', n2(LR['Weighted central']['bear']), n2(LN['central']),
-             n2(LR['Weighted central']['bull']), '100%', 'The blend'])
-table(rows, [1.62, 0.72, 0.72, 0.72, 0.62, 2.55], band_rows={5})
-caption('Table 8 — The four lenses side by side. Weighting is applied to the base cases; '
-        'the ranges are shown so the reader can weight them differently.')
+                 ROLE[k], WHAT[k]])
+rows.append(['MEMO — the retired four-lens blend', '—',
+             n2(LREC['retired']['blend_value']), '—', 'retired',
+             'What the previous architecture would have printed'])
+table(rows, [1.62, 0.72, 0.72, 0.72, 0.78, 2.39], band_rows={1})
+caption('Table 8 — The lenses side by side. NOTHING IS WEIGHTED: the cash-flow read is the '
+        'central and the others are cross-checks. Its bear corner flexes the operating '
+        'margin down to the lowest the company has filed and holds the macro path still; '
+        'its bull corner is the base case, because the forecast already opens above the '
+        'best margin the company has ever filed and this driver has no upside left '
+        'against its own record.')
 
 # ---- 1.6 --------------------------------------------------------------------
 H2('1.6  The drivers — a bottom-up build from kilns and tonnes')
@@ -288,14 +484,20 @@ caption('Table 9 — The volume and price chain. The clinker factor of '
         'the plant register, which publishes both capacities — 2.57Mt of kiln clinker '
         'against 3.80Mt of grinding — so it is observed rather than assumed.')
 rows = [['EGP per tonne of cement', 'FY2025A'] + YF]
-for lab, k in [('Thermal fuel', 'c_fuel'), ('Electrical power', 'c_pow'),
-               ('Raw materials & quarrying', 'c_raw'), ('Packaging', 'c_pack'),
-               ('Distribution & selling', 'c_dist'), ('Total variable cost', 'var_t')]:
+for lab, k in [('Materials, fuel, power and packing', 'c_mat'),
+               ('Transport, loading and export costs', 'c_dist'),
+               ('Total variable cost', 'var_t')]:
     rows.append([lab] + [n0(b[k]) for b in BUD])
-table(rows, [1.70, 0.84, 0.84, 0.84, 0.84, 0.84, 0.84], size=8.8, band_rows={6})
-caption('Table 10 — The cost stack. Every line is a physical or market quantity: heat per '
-        'tonne of clinker times the delivered fuel price; kilowatt-hours per tonne times '
-        'the industrial tariff; and so on.')
+table(rows, [1.70, 0.84, 0.84, 0.84, 0.84, 0.84, 0.84], size=8.8, band_rows={3})
+caption('Table 10 — The cost stack, on the two lines the company itself discloses. The '
+        'first is note 24 of the audited accounts, "Raw materials, Supplies, fuel, power, '
+        'packing sacks"; the second is note 25\'s transport and export costs together with '
+        'note 24\'s own loading charge. THE ACCOUNTS DO NOT SPLIT THE FIRST LINE FURTHER, '
+        'so neither does this model: an earlier edition built it from four industry rules '
+        f'of thumb that came to {pc(1 - 2553.7/3592.5, 0)} less than the figure the company '
+        'filed. The dollar-linked share of that line is estimated at '
+        f'{pc(IN["materials_usd_share"], 0)} and is the one part of this table the accounts '
+        'do not evidence; it is sensitised in section 1.9.')
 rows = [['EGP million', 'FY2025A'] + YF]
 for lab, k in [('Revenue', 'rev'), ('Variable cost', 'var'), ('Fixed cost', 'fixed'),
                ('EBITDA — an OUTPUT', 'ebitda')]:
@@ -351,7 +553,8 @@ figure('fig8_sector.png', 6.6,
 
 # ---- 1.8 --------------------------------------------------------------------
 H2('1.8  Macro and country — rates, the pound, and the sourced cost of capital')
-P('The cost of equity starts from the Egyptian ten-year government yield of 22.31%. That '
+P(f'The cost of equity starts from the Egyptian ten-year government yield of '
+  f'{pc(IN["rf"], 2)}. That '
   'yield is high largely because of Egypt\'s own sovereign default risk, so charging a '
   'country equity premium on top of it without adjustment would count that risk twice. The '
   'sovereign default spread is therefore netted out of the risk-free rate before the '
@@ -424,7 +627,7 @@ caption('Table 14 — Margin sensitivity. Each two-point change in the EBITDA ma
 
 # ============================== 2 ============================================
 H1('2  Technical and price structure')
-P(f'The shares closed at EGP {n2(SPOT)} on 6 August 2026. The price history is long and '
+P(f'The shares closed at EGP {n2(SPOT)} on 2 September 2026. The price history is long and '
   f'unusually eventful: EGP 3.62 at the 2021 low, still under EGP 10 through 2023, then a '
   f'run to EGP 45 in 2024, EGP 75 in 2025 and a 2026 high of EGP 87.99. Over the five '
   f'years to date the shares have risen more than tenfold.')
@@ -442,14 +645,18 @@ P('Two structural features matter more than any level. The first is liquidity: t
 # ============================== 3 ============================================
 H1('3  A probabilistic price map')
 box([('Read this before the chart. ',
-      'The distribution below is ILLUSTRATIVE ONLY and is materially too wide. Measured '
-      'against a random-walk benchmark over the last five years, this security\'s '
-      f'distribution scores {sg(S0["skill_norm"])} — worse than the benchmark, not better '
-      f'— and covers {pc(S0["cov50"], 0)} of outcomes inside a band meant to hold 50%. The '
-      'cause is diagnosed and specific: on a security that does not trade every session, '
-      'the benchmark\'s own volatility estimate collapses during quiet stretches, and the '
-      'band drawn here stays wide enough for the jumps that follow. It should not be read '
-      'with the confidence attached to a liquid name.')])
+      f'Over {BAND["n"]} resolved three-month forecasts on this security the price '
+      f'finished inside the 90% band {pc(BAND["c90"], 0)} of the time, and inside the '
+      f'middle 50% band {pc(BAND["c50"], 0)} of the time. The wide band is doing what it '
+      f'promises; the middle band has been catching rather more than half, so the map '
+      f'below is better read as a rough guide to where the price could plausibly be than '
+      f'as a fine probability statement. The band this map draws runs about '
+      f'{BAND["width"]:.2f} times as wide as a simple carry-anchored benchmark\'s, which '
+      f'is what real Egyptian tail risk costs and is published rather than tuned away. '
+      f'The cause of the extra width on THIS name is specific: it prints an unchanged '
+      f'close on {pc(S0["flat_frac"], 0)} of sessions, and on a security that does not '
+      f'trade every session a volatility estimate collapses during quiet stretches and '
+      f'the band stays wide enough for the jumps that follow.')])
 figure('fig4_fan.png', 6.9, 'Figure 6 — The three-month cone. Illustrative only.')
 rows = [['Horizon', '5th', '25th', 'Median', '75th', '95th', 'Above spot']]
 for tag in ('1M', '3M'):
@@ -463,24 +670,34 @@ figure('fig6_dist.png', 6.4, 'Figure 7 — The three-month outcome distribution.
 
 # ============================== 4 ============================================
 H1('4  Comparison of the lenses')
-P('Set against each other, the four lenses describe a company whose plant is worth more '
-  'than its cash flows justify. That is the ordinary condition of a good asset in a bad '
-  'market, and it is worth saying plainly rather than resolving by arithmetic.')
-rows = [['Lens', 'Value (EGP)', 'Versus spot', 'What would have to be true for it to be right']]
-rows.append(['Discounted cash flow', n2(LN['values']['DCF (cash flow)']),
-             sg(LN['values']['DCF (cash flow)'] / SPOT - 1),
-             'Prices normalise in real terms as dormant capacity restarts'])
-rows.append(['Relative multiples', n2(LN['values']['Relative multiples']),
-             sg(LN['values']['Relative multiples'] / SPOT - 1),
-             'Peers stay near 5x EBITDA and the mid-cycle margin holds'])
-rows.append(['Normalised earnings', n2(LN['values']['Normalised earnings']),
-             sg(LN['values']['Normalised earnings'] / SPOT - 1),
-             '2025 was a cyclical peak, not a new operating level'])
-rows.append(['Asset / replacement cost', n2(LN['values']['Asset / replacement cost']),
-             sg(LN['values']['Asset / replacement cost'] / SPOT - 1),
-             'Capacity is scarce enough that build cost anchors value'])
-table(rows, [1.62, 0.98, 0.85, 3.30])
-caption('Table 16 — What each lens is betting on.')
+P('Set against each other the reads describe a company whose cash flows, on the operating '
+  'improvement its own filings have already printed, are worth more than either the plant '
+  'or an enterprise multiple would pay for. Each is stated with the condition that has to '
+  'hold for it to be the right one, so a reader who rejects a condition can see '
+  'immediately which answer goes with it.')
+rows = [['Lens', 'Role', 'Value (EGP)', 'Versus spot',
+         'What would have to be true for it to be right']]
+COND = {
+    'DCF (cash flow)':
+        'Utilisation keeps climbing toward 79% and the real price spread per tonne holds',
+    'Relative multiples':
+        'An enterprise multiple near 4x on a normalised margin is what this asset is worth',
+    'Asset / replacement cost':
+        'Capacity is scarce enough that build cost, not cash flow, anchors value',
+    'Book value (disclosed floor)':
+        'Nothing — it is a floor, and a 1997 plant carried through a five-fold devaluation '
+        'is worth more than its historic cost whatever else is true',
+}
+for k in LKEYS:
+    rows.append([k, ROLE[k], n2(LN['values'][k]), sg(LN['values'][k] / SPOT - 1), COND[k]])
+rows.append(['MEMO — normalised earnings, retired for this class', 'retired',
+             n2(LREC['retired']['normalised_earnings']['value']),
+             sg(LREC['retired']['normalised_earnings']['value'] / SPOT - 1),
+             'FY2025 was a cyclical peak rather than a new operating level — a claim the '
+             'cash-flow lens tests directly through utilisation and price'])
+table(rows, [1.50, 0.92, 0.78, 0.72, 2.83])
+caption('Table 16 — What each lens is betting on. The cash-flow read is the answer and the '
+        'others are cross-checks; none of them is weighted into it.')
 
 # ============================== 5 ============================================
 H1('5  Catalysts to watch')
@@ -491,9 +708,15 @@ for head, body in [
     ('The first post-quota pricing year. ', 'FY2026 realised prices are the first clean '
      'read of what an unregulated Egyptian cement market clears at. Published estimates '
      'point to EGP 3,600–3,620 a tonne on about 1% demand growth.'),
-    ('A dividend declaration. ', 'The company has no dividend on record, yet the balance '
-     'sheet arithmetic implies a substantial FY2025 distribution. A declared payout would '
-     'resolve the largest single uncertainty in the equity bridge.'),
+    ('A dividend declaration. ', 'The company has no dividend on record and its own '
+     'statements confirm it twice over, to the pound: equity of EGP 3,735.80 million at '
+     '31 December 2024 plus the year\'s profit of 2,284.54 million is exactly the filed '
+     '6,020.34 million, and that plus the reviewed quarter\'s 1,114.48 million is exactly '
+     'the filed 7,134.82 million at 31 March 2026. Nothing has been distributed. An '
+     'earlier edition read a substantial distribution out of balance-sheet arithmetic and '
+     'called it the largest single uncertainty in the bridge; it was reading a figure it '
+     'had not taken from the statements. What remains genuinely open is whether the cash '
+     'is ever returned, and a first declaration would answer it.'),
     ('Vicat\'s intentions for the float. ', 'The 2025 mandatory offer at EGP 41.00 lapsed '
      'well below the market. Any renewed approach, or a move to delist, changes the '
      'minority shareholder\'s position entirely.'),
@@ -511,18 +734,20 @@ P('The distribution in section 3 is too wide to support fine probability stateme
   'the honest way to use it is as a rough map of where the price could plausibly be, not '
   'as a calibrated forecast. Read against the fundamental work, three zones are worth '
   'naming.')
+_ASSET = LN['values']['Asset / replacement cost']
 rows = [['Zone', 'Range (EGP)', 'What it would mean']]
-rows.append(['Below the earnings lenses', f'under {n2(LN["values"]["Normalised earnings"])}',
-             'The market has come to agree that 2025 was a peak and that new supply '
-             'compresses margins from here'])
-rows.append(['Between the earnings and asset lenses',
-             f'{n2(LN["values"]["Normalised earnings"])} – '
-             f'{n2(LN["values"]["Asset / replacement cost"])}',
-             'Where the price sits today: the plant is valued above its cash flows but '
-             'below its build cost'])
-rows.append(['Above the asset lens', f'over {n2(LN["values"]["Asset / replacement cost"])}',
-             'The market is paying replacement cost or more for capacity in a market that '
-             'has a structural surplus of it'])
+rows.append(['Below the replacement-cost read', f'under {n2(_ASSET)}',
+             'The plant is valued below what it would cost to build. Where the price sits '
+             'today, and the condition for it is that the operating improvement the '
+             'company has already filed does not hold'])
+rows.append(['Between replacement cost and the cash-flow read',
+             f'{n2(_ASSET)} – {n2(LN["central"])}',
+             'The market has come to price the utilisation and margin the filings '
+             'already show, but not the whole of the forecast path'])
+rows.append(['Above the cash-flow read', f'over {n2(LN["central"])}',
+             'The market is paying for more than this study forecasts — a faster '
+             'utilisation ramp, a wider real spread per tonne, or a lower cost of capital '
+             'than the central bank\'s own easing path implies'])
 table(rows, [2.05, 1.45, 3.25])
 caption('Table 17 — Zones read against the fundamental work rather than against the '
         'simulated distribution.')
@@ -574,10 +799,13 @@ for head, body in [
      'pre-devaluation pounds is small. A different carrying value shifts the split between '
      'the FY2024 disposal gain and FY2024 treasury income, but not the FY2025 or forecast '
      'figures.'),
-    ('The price distribution is not calibrated for this security. ',
-     'Measured over five years it scores worse than a random walk and is materially too '
-     'wide. It is published with that stated, and it carries no weight in the fundamental '
-     'valuation.'),
+    ('The price map is wider than the market average, and it says so. ',
+     f'Over {BAND["n"]} resolved three-month forecasts the 90% band held '
+     f'{pc(BAND["c90"], 0)} of the time and the middle band {pc(BAND["c50"], 0)}, so the '
+     f'wide band does what it promises and the middle one has been generous. The band runs '
+     f'about {BAND["width"]:.2f} times as wide as a simple carry-anchored benchmark, which '
+     f'is what this market\'s tail risk costs. It carries no weight in the fundamental '
+     f'valuation and is not an input to it.'),
     ('Concentration of control. ',
      'Vicat holds 77.6%. A minority shareholder in an Egyptian company with a float of '
      '22.4% has limited influence over dividend policy, related-party terms or the timing '
@@ -736,6 +964,6 @@ P('Testahil · Independent valuation research · Educational analysis, not inves
   'advice. No rating and no price target is expressed or implied.', size=8.6, italic=True,
   color=GREY)
 
-OUT = 'SCEM_Valuation_Study_06-08-2026_public.docx'
+OUT = 'SCEM_Valuation_Study_04-09-2026_public.docx'
 doc.save(OUT)
 print('wrote', OUT)

@@ -33,6 +33,8 @@ import market_profiles as MP                              # noqa: E402
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 DATA_JS = os.path.join(ROOT, 'assets', 'data.js')
+sys.path.insert(0, HERE)
+import site_data                                             # noqa: E402
 
 # ticker key on the site -> (profile code, series name in raw_ohlc)
 EXCHANGE_MARKET = {'EGX': 'EG', 'ADX': 'AE', 'DFM': 'AE', 'TADAWUL': 'SA'}
@@ -189,7 +191,7 @@ def build(write: bool = False):
 
     # ---- rewrite each ticker block, from the bottom up so offsets hold
     blocks = ticker_blocks(src)
-    edits = []
+    edits, verify = [], []
     for key, mkt, series, r in report:
         a, b = blocks[key]
         blk = src[a:b]
@@ -236,6 +238,18 @@ def build(write: bool = False):
                          f'\n    touch: [ {comment}\n      {cells}\n    ]',
                          new, count=1, flags=re.S)
         edits.append((a, b, new))
+        # WHAT THE PARSER MUST RETURN AFTER THIS TEXT EDIT [R-ENF-03]. Captured here, at
+        # the point the values are known, and asserted after the file is written: a text
+        # edit can leave an entry declaring `dist` or `spot` twice, which is valid
+        # JavaScript, passes `node --check`, and leaves the parser reading the other one.
+        verify.append((key, {
+            'spot': float(fmt_price(spot, spot)),
+            'dist': {'t20': {'label': h1['label'], 'resolve': h1['grade_date'],
+                             **{k: float(fmt_price(h1['pct'][k], spot))
+                                for k in ('p5', 'p25', 'p50', 'p75', 'p95')}},
+                     't60': {'label': h3['label'], 'resolve': h3['grade_date'],
+                             **{k: float(fmt_price(h3['pct'][k], spot))
+                                for k in ('p5', 'p25', 'p50', 'p75', 'p95')}}}}))
 
         # ---- ledger rows
         prof = MP.PROFILES[mkt]
@@ -289,6 +303,17 @@ def build(write: bool = False):
 
     if write:
         open(DATA_JS, 'w').write(src)
+        bad = []
+        for key, want in verify:
+            try:
+                site_data.assert_written('TICKERS', key, want, DATA_JS)
+            except RuntimeError as e:
+                bad.append(str(e))
+        if bad:
+            raise SystemExit('\n\n'.join(bad))
+        pairs = site_data.assert_ledger_lifecycle(DATA_JS)
+        print(f'verified through a real parse: {len(verify)} entr(ies); lifecycle '
+              f'invariant holds across {pairs} (instrument, horizon) pairs')
         json.dump(ledger_rows, open(os.path.join(HERE, 'rollforward_ledger.json'), 'w'),
                   indent=1, default=str)
         print(f"wrote {DATA_JS} and {len(ledger_rows)} ledger rows")

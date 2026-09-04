@@ -118,10 +118,29 @@ def main(argv):
            if r.get('implied_cycle_years') and r.get('one_over_g')
            and abs(r['implied_cycle_years'] / r['one_over_g'] - 1.0) < 0.02]
     clean = [r for r in scored if r not in sig]
+    moved = []
     print('\n  CARRYING THE 1/g CONSTRUCTION: %d of %d' % (len(sig), len(scored)))
     for r in sorted(sig, key=lambda r: r['one_over_g']):
         tk = r['ticker']
-        known = tk in rat['signature']
+        # A NAME THAT WAS ON THE UNREADABLE LIST AND HAS BECOME READABLE IS ALREADY
+        # RATCHETED, AND THE DIRECTION OF THE MOVE IS THE WHOLE ARGUMENT [ADDED
+        # 03-Sep-2026]. The two groups are deliberately NOT interchangeable and this
+        # control's own case 10 proves it: re-filing a BREACHING study as UNREADABLE
+        # hides a known defect behind an absence, which is the cheapest route past any
+        # gate [R-ENF-04]. The reverse move hides nothing. When the census learned to read
+        # SCEM and BOROUGE — by deriving g from the reinvestment rate and the return they
+        # already publish, and by recognising that a study with ONE rate for every year has
+        # no terminal rate to expose — both turned out to carry the 1/g construction they
+        # had carried all along. Nothing about either study changed; what changed is that
+        # the instrument can now see them, and SCEM's terminal is 34% below its own floor,
+        # the worst in the book, which was invisible while it counted as unreadable.
+        # Failing that as a NEW violation would punish the census for learning to read and
+        # would make widening a reader more expensive than leaving studies dark — the exact
+        # incentive [R-ENF-04] exists to remove. So the allowance TRAVELS one way only, and
+        # the entry is rewritten into the group that now describes it.
+        known = tk in rat['signature'] or tk in rat['unreadable']
+        if tk not in rat['signature'] and tk in rat['unreadable']:
+            moved.append(tk)
         print('    %-12s implied cycle %6.1f years against 1/g of %5.1f   '
               'charge %5.1f%% of terminal profit%s'
               % (tk, r['implied_cycle_years'], r['one_over_g'],
@@ -172,11 +191,30 @@ def main(argv):
     # ---- the ratchet may only SHORTEN ------------------------------------------------
     now_sig = {r['ticker'] for r in sig}
     now_dark = {r['ticker'] for r in dark}
-    cleared = (set(rat['signature']) - now_sig) | (set(rat['unreadable']) - now_dark) \
-        | set(rat['breaching'])
+    if moved:
+        print('\n  BECAME READABLE AND WERE ALREADY RATCHETED (%d): %s'
+              % (len(moved), ', '.join(sorted(moved))))
+        print('    the allowance moves from `unreadable` to `signature` — the defect was '
+              'always there and the census could not see it. The reverse move stays '
+              'refused: a known breach re-filed as unreadable is the escape hatch.')
+    # A NAME THAT MOVED GROUPS HAS NOT CLEARED, AND SAYING SO IS NOT A DETAIL: it is no
+    # longer in `now_dark`, so the plain arithmetic below reads it as cleared, --prune
+    # would DROP it, and the very next run would fail it as a NEW violation — a ratchet
+    # that empties itself and then goes red is worse than one that never shortened.
+    cleared = ((set(rat['signature']) - now_sig)
+               | (set(rat['unreadable']) - now_dark - now_sig)
+               | set(rat['breaching']))
     if cleared:
         print('\n  CLEARED since the list was written: %s' % ', '.join(sorted(cleared)))
         if prune:
+            for tk in moved:
+                rat['signature'][tk] = (
+                    'terminal built on the reinvestment identity: implied cycle equals 1/g. '
+                    'MOVED FROM `unreadable` 03-Sep-2026 — it was always breaching and the '
+                    'census could not read it; the allowance travels this way and never '
+                    'the other. Gets engine/terminal_value.py and a DISCLOSED useful life '
+                    'at its next re-issue.')
+                rat['unreadable'].pop(tk, None)
             for tk in cleared:
                 rat['breaching'].pop(tk, None)
                 rat['signature'].pop(tk, None)

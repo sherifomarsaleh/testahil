@@ -336,8 +336,10 @@ checks = [
     ('Handysize 2025 blend, the same scaling', g('Segments', f"B{SG['blend0']}"),
      FL['blend_fy25']['hs'], 0.5),
     # ---- the cost of debt, labelled for what each figure is -------------------
-    ('Cost of debt — the balance-weighted construction alone',
-     g('DCF', f"C{DF_['kdbal']}"), WACC['kd_balance_weighted'], 0.00005),
+    ('Cost of debt — MEMORANDUM, the retired average of three constructions',
+     g('DCF', f"C{DF_['kdbal']}"), WACC['kd_retired_average'], 0.00005),
+    ('Cost of debt ADOPTED — the balance-weighted construction',
+     g('DCF', f"C{DF_['kd']}"), WACC['kd'], 0.00005),
     # ---- the earnings multiple on both bases ----------------------------------
     ('Blended forward price/earnings', g('Peer & Sector', f"C{ROWS['Peer & Sector']['pe']}"),
      REL['blend_pe'], 0.0005),

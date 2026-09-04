@@ -14,7 +14,7 @@
   "class": "real-estate developer, off-plan \u2014 point-in-time on handover",
   "central": 91.8305824638648,
   "gap_vs_spot": -0.06103698912203681,
-  "central_note": "THIS STUDY DELIBERATELY PUBLISHES NO CENTRAL \u2014 the four cases are never averaged. The figure is the median of the four book-minority cases, exposed only so [R-GAP-01]'s gate can read the answer; every case sits below the price."
+  "central_note": "THIS STUDY DELIBERATELY PUBLISHES NO CENTRAL \u2014 the four cases are never averaged. The figure is the median of the four cases on the adopted minority basis (its share of value), exposed only so [R-GAP-01]'s gate can read the answer; 2 of the four sit above the price and 2 below."
  },
  "inputs": {
   "IS": {
@@ -1103,7 +1103,7 @@
     "default_spread": 0.0341,
     "rf_star": 0.19590000000000002,
     "erp": 0.0941,
-    "erp_basis": "cds",
+    "erp_basis": "market",
     "beta": 1.4717523730674444,
     "ke_exp": 0.33439189830564653,
     "kd_pretax": 0.255,
@@ -1179,9 +1179,9 @@
     },
     "disclosures": [
      "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
-     "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the cds basis, and the premium added back is on the same basis.",
+     "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
      "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-     "DISCLOSED STALENESS: the sovereign quote is 27 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+     "DISCLOSED STALENESS: the sovereign quote is 28 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
     ]
    },
    "rating": {
@@ -1262,7 +1262,7 @@
      "pct_local_currency": 1.0
     },
     "sensitivity": {
-     "other_basis": "cds",
+     "other_basis": "market",
      "other_default_spread": 0.0341,
      "rf_star_other_basis": 0.19590000000000002
     },
@@ -1270,7 +1270,7 @@
      "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
      "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (6.37%) on the rating basis, and the premium added back is on the same basis.",
      "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-     "DISCLOSED STALENESS: the sovereign quote is 27 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+     "DISCLOSED STALENESS: the sovereign quote is 28 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
     ]
    }
   },
@@ -1282,7 +1282,7 @@
    "default_spread": 0.0341,
    "rf_star": 0.19590000000000002,
    "erp": 0.0941,
-   "erp_basis": "cds",
+   "erp_basis": "market",
    "beta": 1.4717523730674444,
    "ke_exp": 0.33439189830564653,
    "kd_pretax": 0.255,
@@ -1358,9 +1358,9 @@
    },
    "disclosures": [
     "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
-    "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the cds basis, and the premium added back is on the same basis.",
+    "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
     "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-    "DISCLOSED STALENESS: the sovereign quote is 27 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+    "DISCLOSED STALENESS: the sovereign quote is 28 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
    ]
   }
  },
@@ -6226,7 +6226,7 @@
   "default_spread": 0.0341,
   "rf_star": 0.19590000000000002,
   "erp": 0.0941,
-  "erp_basis": "cds",
+  "erp_basis": "market",
   "beta": 1.4717523730674444,
   "ke_exp": 0.33439189830564653,
   "kd_pretax": 0.255,
@@ -6302,9 +6302,9 @@
   },
   "disclosures": [
    "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
-   "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the cds basis, and the premium added back is on the same basis.",
+   "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
    "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-   "DISCLOSED STALENESS: the sovereign quote is 27 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+   "DISCLOSED STALENESS: the sovereign quote is 28 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
   ]
  },
  "macro_record": {
@@ -8435,6 +8435,7 @@
      "wacc": 0.2437485685188716,
      "shift": -0.08,
      "mode": "capacity",
+     "per_share_nci_value_share": 196.51017889327923,
      "per_share_nci_book": 211.95934597484995,
      "per_share_nci_proportional": 136.23896241453085,
      "enterprise_value": 425133.73172858934
@@ -8443,6 +8444,7 @@
      "wacc": 0.2437485685188716,
      "shift": -0.08,
      "mode": "recovery",
+     "per_share_nci_value_share": 125.52094810146411,
      "per_share_nci_book": 122.12654827237574,
      "per_share_nci_proportional": 87.02268669715464,
      "enterprise_value": 240019.43577835453
@@ -8451,6 +8453,7 @@
      "wacc": 0.28374856851887165,
      "shift": -0.04,
      "mode": "capacity",
+     "per_share_nci_value_share": 149.43969524836962,
      "per_share_nci_book": 152.3943501597619,
      "per_share_nci_proportional": 103.60536608761838,
      "enterprise_value": 302390.896755244
@@ -8459,6 +8462,7 @@
      "wacc": 0.28374856851887165,
      "shift": -0.04,
      "mode": "recovery",
+     "per_share_nci_value_share": 84.40789729584293,
      "per_share_nci_book": 70.10034183574056,
      "per_share_nci_proportional": 58.51933173102017,
      "enterprise_value": 132811.43578511776
@@ -8467,6 +8471,7 @@
      "wacc": 0.3037485685188716,
      "shift": -0.02,
      "mode": "capacity",
+     "per_share_nci_value_share": 134.66892581216078,
      "per_share_nci_book": 133.70278908954637,
      "per_share_nci_proportional": 93.36490773891256,
      "enterprise_value": 263874.0604079723
@@ -8475,6 +8480,7 @@
      "wacc": 0.3037485685188716,
      "shift": -0.02,
      "mode": "recovery",
+     "per_share_nci_value_share": 73.17595754356496,
      "per_share_nci_book": 55.886966647442286,
      "per_share_nci_proportional": 50.732316186222825,
      "enterprise_value": 103522.5901925252
@@ -8483,6 +8489,7 @@
      "wacc": 0.3237485685188716,
      "shift": 0.0,
      "mode": "capacity",
+     "per_share_nci_value_share": 123.02843812737396,
      "per_share_nci_book": 118.97241993803047,
      "per_share_nci_proportional": 85.29464912378126,
      "enterprise_value": 233519.8692404983
@@ -8491,6 +8498,7 @@
      "wacc": 0.3237485685188716,
      "shift": 0.0,
      "mode": "recovery",
+     "per_share_nci_value_share": 65.16331605181323,
      "per_share_nci_book": 45.74742866171763,
      "per_share_nci_proportional": 45.17721482107309,
      "enterprise_value": 82628.51271199735
@@ -8499,6 +8507,7 @@
      "wacc": 0.34374856851887164,
      "shift": 0.02,
      "mode": "capacity",
+     "per_share_nci_value_share": 113.59212139651488,
      "per_share_nci_book": 107.03130263777832,
      "per_share_nci_proportional": 78.75252490575132,
      "enterprise_value": 208913.360499488
@@ -8507,6 +8516,7 @@
      "wacc": 0.34374856851887164,
      "shift": 0.02,
      "mode": "recovery",
+     "per_share_nci_value_share": 59.320006327497524,
      "per_share_nci_book": 38.35305553607058,
      "per_share_nci_proportional": 41.12609411887349,
      "enterprise_value": 67391.26963201487
@@ -8515,6 +8525,7 @@
      "wacc": 0.3637485685188716,
      "shift": 0.04,
      "mode": "capacity",
+     "per_share_nci_value_share": 105.78209246058199,
      "per_share_nci_book": 97.14815921409972,
      "per_share_nci_proportional": 73.33789323297259,
      "enterprise_value": 188547.62344753963
@@ -8523,6 +8534,7 @@
      "wacc": 0.3637485685188716,
      "shift": 0.04,
      "mode": "recovery",
+     "per_share_nci_value_share": 54.98967616003811,
      "per_share_nci_book": 32.8732712141484,
      "per_share_nci_proportional": 38.12391025109833,
      "enterprise_value": 56099.33124586551
@@ -8531,6 +8543,7 @@
      "wacc": 0.40374856851887164,
      "shift": 0.08,
      "mode": "capacity",
+     "per_share_nci_value_share": 93.61726151188044,
      "per_share_nci_book": 81.75426375262785,
      "per_share_nci_proportional": 64.90411155441981,
      "enterprise_value": 156826.13426805483
@@ -8539,23 +8552,24 @@
      "wacc": 0.40374856851887164,
      "shift": 0.08,
      "mode": "recovery",
+     "per_share_nci_value_share": 49.27647548446123,
      "per_share_nci_book": 25.64354362310214,
      "per_share_nci_proportional": 34.16299312970432,
      "enterprise_value": 41201.36561241119
     }
    },
    "conversion_years_grid": {
-    "8": 37.36344227330636,
-    "10": 70.22115890128019,
-    "12": 94.4729254177726,
-    "14": 113.23921923759244,
-    "16": 128.24447006371497,
-    "20": 150.79632295396488
+    "8": 58.53797697850982,
+    "10": 84.50337145192553,
+    "12": 103.6680228307067,
+    "14": 118.49784887591638,
+    "16": 130.35555832311252,
+    "20": 148.17687448551584
    }
   },
   "implied_discount_rate": {
-   "capacity": 0.29052463245332627,
-   "recovery": 0.1656407888144581
+   "capacity": 0.31870568093506824,
+   "recovery": 0.1744219434346233
   },
   "spot": 97.8,
   "spot_source": "Egyptian Exchange close, 23 August 2026, from the same cleaned price history the probability distribution is fitted to"
@@ -8991,7 +9005,249 @@
    "n_gradeable": 2,
    "n_published": 3
   },
-  "driver_scores": {}
+  "_driver_scores_nonempty": true,
+  "driver_scores": {
+   "new_sales": {
+    "bias": -0.8768,
+    "mae": 1.022,
+    "n": 33,
+    "robust": true,
+    "eras": {
+     "E2 post-float": {
+      "n": 14,
+      "bias": -0.2746
+     },
+     "E3 devaluation": {
+      "n": 19,
+      "bias": -1.3206
+     }
+    }
+   },
+   "dev_revenue": {
+    "bias": -0.0555,
+    "mae": 0.276,
+    "n": 35,
+    "robust": false,
+    "eras": {
+     "E2 post-float": {
+      "n": 16,
+      "bias": -0.0925
+     },
+     "E3 devaluation": {
+      "n": 19,
+      "bias": -0.0243
+     }
+    }
+   },
+   "dev_cost": {
+    "bias": -0.1046,
+    "mae": 0.2885,
+    "n": 35,
+    "robust": false,
+    "eras": {
+     "E2 post-float": {
+      "n": 16,
+      "bias": -0.0848
+     },
+     "E3 devaluation": {
+      "n": 19,
+      "bias": -0.1213
+     }
+    }
+   },
+   "recurring_revenue": {
+    "bias": -0.1124,
+    "mae": 0.6978,
+    "n": 40,
+    "robust": false,
+    "eras": {
+     "E2 post-float": {
+      "n": 20,
+      "bias": 0.1778
+     },
+     "E3 devaluation": {
+      "n": 20,
+      "bias": -0.4026
+     }
+    }
+   },
+   "recurring_cost": {
+    "bias": -0.044,
+    "mae": 0.6103,
+    "n": 40,
+    "robust": false,
+    "eras": {
+     "E2 post-float": {
+      "n": 20,
+      "bias": 0.1692
+     },
+     "E3 devaluation": {
+      "n": 20,
+      "bias": -0.2572
+     }
+    }
+   },
+   "total_revenue": {
+    "bias": -0.0901,
+    "mae": 0.3651,
+    "n": 35,
+    "robust": false,
+    "eras": {
+     "E2 post-float": {
+      "n": 16,
+      "bias": -0.04
+     },
+     "E3 devaluation": {
+      "n": 19,
+      "bias": -0.1323
+     }
+    }
+   },
+   "gross_profit": {
+    "bias": -0.0791,
+    "mae": 0.4212,
+    "n": 35,
+    "robust": false,
+    "eras": {
+     "E2 post-float": {
+      "n": 16,
+      "bias": -0.0543
+     },
+     "E3 devaluation": {
+      "n": 19,
+      "bias": -0.0999
+     }
+    }
+   },
+   "sga": {
+    "bias": -0.1074,
+    "mae": 0.4575,
+    "n": 16,
+    "robust": false,
+    "eras": {
+     "E2 post-float": {
+      "n": 2,
+      "bias": 0.3254
+     },
+     "E3 devaluation": {
+      "n": 14,
+      "bias": -0.1693
+     }
+    }
+   },
+   "da": {
+    "bias": -0.2531,
+    "mae": 0.4352,
+    "n": 30,
+    "robust": true,
+    "eras": {
+     "E2 post-float": {
+      "n": 10,
+      "bias": -0.3589
+     },
+     "E3 devaluation": {
+      "n": 20,
+      "bias": -0.2002
+     }
+    }
+   },
+   "finance_cost": {
+    "bias": -1.2237,
+    "mae": 1.2237,
+    "n": 30,
+    "robust": true,
+    "eras": {
+     "E2 post-float": {
+      "n": 10,
+      "bias": -1.1163
+     },
+     "E3 devaluation": {
+      "n": 20,
+      "bias": -1.2774
+     }
+    }
+   },
+   "net_profit": {
+    "bias": 0.2638,
+    "mae": 0.6772,
+    "n": 34,
+    "robust": false,
+    "eras": {
+     "E2 post-float": {
+      "n": 15,
+      "bias": 0.5775
+     },
+     "E3 devaluation": {
+      "n": 19,
+      "bias": 0.0162
+     }
+    }
+   },
+   "customer_advances": {
+    "bias": 0.2295,
+    "mae": 0.6272,
+    "n": 11,
+    "robust": false,
+    "eras": {
+     "E2 post-float": {
+      "n": 6,
+      "bias": 0.597
+     },
+     "E3 devaluation": {
+      "n": 5,
+      "bias": -0.2114
+     }
+    }
+   },
+   "development_properties": {
+    "bias": -0.5276,
+    "mae": 0.5276,
+    "n": 25,
+    "robust": true,
+    "eras": {
+     "E2 post-float": {
+      "n": 6,
+      "bias": -0.3201
+     },
+     "E3 devaluation": {
+      "n": 19,
+      "bias": -0.5931
+     }
+    }
+   },
+   "backlog": {
+    "bias": -0.2838,
+    "mae": 0.441,
+    "n": 35,
+    "robust": true,
+    "eras": {
+     "E2 post-float": {
+      "n": 16,
+      "bias": -0.1182
+     },
+     "E3 devaluation": {
+      "n": 19,
+      "bias": -0.4233
+     }
+    }
+   },
+   "ppe": {
+    "bias": -0.4586,
+    "mae": 0.8082,
+    "n": 30,
+    "robust": false,
+    "eras": {
+     "E2 post-float": {
+      "n": 10,
+      "bias": 0.0355
+     },
+     "E3 devaluation": {
+      "n": 20,
+      "bias": -0.7056
+     }
+    }
+   }
+  }
  },
  "central": 91.8305824638648,
  "standard_version": "2026.09.01",

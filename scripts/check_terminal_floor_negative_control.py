@@ -22,7 +22,7 @@ import sys
 import tempfile
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-EXPECTED_CASES = 10
+EXPECTED_CASES = 12
 
 
 def sandbox(tmp):
@@ -192,6 +192,65 @@ def _clean_at_the_floor(root):
     return 'DU terminal set EXACTLY to its floor of %.1f' % r['floor']
 
 
+def _moves_unreadable_to_signature(root):
+    """A study on `unreadable` that BECOMES READABLE and carries 1/g must stay GREEN.
+
+    THE ALLOWANCE TRAVELS ONE WAY AND THE DIRECTION IS THE WHOLE ARGUMENT. When the census
+    learned to derive g from a reinvestment rate and a return a study already publishes,
+    SCEM and BOROUGE stopped being unreadable and turned out to carry the 1/g construction
+    they had carried all along — SCEM's terminal 34% below its own floor, the worst in the
+    book and invisible until then. Failing that as a NEW violation would punish the census
+    for learning to read and make widening a reader more expensive than leaving studies
+    dark, which is the exact incentive [R-ENF-04] exists to remove.
+
+    The fixture re-files a name currently on `signature` back onto `unreadable` WITHOUT
+    touching the study, so the gate meets a breaching study whose only allowance is an
+    unreadable one — the shape the move produces.
+    """
+    f = os.path.join(root, 'engine', 'build_depth_audit', 'terminal_outstanding.json')
+    d = json.load(open(f))
+    tk = sorted(d['signature'])[0]
+    d['unreadable'][tk] = d['signature'].pop(tk)
+    json.dump(d, open(f, 'w'), indent=1)
+    after = json.load(open(f))
+    assert tk in after['unreadable'] and tk not in after['signature'], 'mutation did not land'
+    return '%s re-filed onto `unreadable` while still breaching — must stay GREEN' % tk
+
+
+def _breaching_hidden_as_unreadable(root):
+    """...AND THE REVERSE MOVE STAYS REFUSED, which is what makes the first one safe.
+
+    A study whose terminal is genuinely unreadable, listed ONLY under `signature`, must
+    still fail: an entry able to travel that way lets a name escape a real breach by being
+    re-filed as merely unreadable, which is the cheapest route past any gate [R-ENF-04].
+    The fixture breaks a study's terminal so it cannot be read AND files its allowance in
+    the wrong group.
+    """
+    f = numbers(root, 'AMOC')
+    d = json.load(open(f))
+    for k in ('tv', 'terminal_value', 'tv_value'):
+        d['dcf'].pop(k, None)
+    json.dump(d, open(f, 'w'), indent=1)
+    r = os.path.join(root, 'engine', 'build_depth_audit', 'terminal_outstanding.json')
+    rat = json.load(open(r))
+    rat['unreadable'].pop('AMOC', None)
+    rat['signature']['AMOC'] = 'filed in the WRONG group on purpose'
+    json.dump(rat, open(r, 'w'), indent=1)
+    # ASSERT THE CONDITION, NOT THE EDIT. The first draft removed the terminal RATE and
+    # asserted only that the key was gone from the file — and the census resolved a rate
+    # from another route, so the study stayed readable and the case passed for a reason
+    # that had nothing to do with what it tests. An empty result is not a clean result
+    # [R-ENF-04] and neither is a mutation that did not produce the state it names.
+    import sys as _s
+    _s.path.insert(0, root)
+    for m in [k for k in list(_s.modules) if 'terminal_census' in k or 'valuation_calib' in k]:
+        _s.modules.pop(m, None)
+    from engine.valuation_calibration.terminal_census import read_study
+    rr = read_study(os.path.join(root, 'engine', 'amoc_study'))
+    assert 'unreadable' in rr, 'mutation did not land: AMOC still reads (%s)' % sorted(rr)[:6]
+    return 'AMOC made unreadable with its allowance filed under `signature` — must go RED'
+
+
 CASES = [
     ('THE ONE THAT MATTERS — a study newly carrying the 1/g construction',
      _new_signature, 'red'),
@@ -205,6 +264,10 @@ CASES = [
     ('CLEAN — a terminal BELOW the NOPAT/W diagnostic (inverted on purpose)',
      _clean_below_floor, 'green'),
     ('CLEAN — a terminal sitting EXACTLY on its floor', _clean_at_the_floor, 'green'),
+    ('CLEAN — the allowance travels `unreadable` -> `signature` when a study becomes '
+     'readable', _moves_unreadable_to_signature, 'green'),
+    ('...and NOT the other way: a breach hidden behind an unreadable allowance',
+     _breaching_hidden_as_unreadable, 'red'),
 ]
 
 

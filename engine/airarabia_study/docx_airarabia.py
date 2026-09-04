@@ -1,6 +1,9 @@
 """AIRARABIA_Valuation_Study_09-08-2026_public.docx — 16 sections in the house
 skeleton, operating-company lens set. Every numeral is read from
 study_numbers.json (or the technical/backtest JSONs) — none is typed here."""
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+from table_residual import signed_column   # the shared check, not hand-rolled
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
@@ -131,13 +134,21 @@ P('Revenue is built from passengers times per-passenger rates; the cost stack is
   'every line of it is a live formula in the companion workbook.')
 rows = [['AED mn'] + [y for y in YF]]
 for lbl, arr in [('Revenue', F['rev']), ('EBITDA (incl. fees and other income)', F['ebitda_incl']),
-                 ('less depreciation & amortisation', F['dna']),
+                 # ONE SIGN CONVENTION. These rows printed POSITIVE MAGNITUDES under
+                 # "less" while the working-capital line printed a SIGNED value under
+                 # the same word, so a reader could not tell whether to take the number
+                 # off or add its sign — and in the years working capital releases, the
+                 # two readings differ by twice the figure. Every row is now the signed
+                 # cash effect and the words come off.
+                 ('depreciation & amortisation', [-x for x in F['dna']]),
                  ('EBIT', F['ebit_incl']),
                  (f"NOPAT (EBIT × (1 − {pct(IN['tax_eff'],0)}))", F['nopat']),
-                 ('add back depreciation & amortisation', F['dna']),
-                 ('less owned capex + pre-delivery payments', F['capex']),
-                 ('less leased-fleet additions (gross right-of-use value)', F['leased_gross']),
-                 ('less change in working capital', F['dnwc']),
+                 ('depreciation & amortisation added back', F['dna']),
+                 ('owned capex + pre-delivery payments', [-x for x in F['capex']]),
+                 ('leased-fleet additions (gross right-of-use value)',
+                  [-x for x in F['leased_gross']]),
+                 ('change in working capital — a release adds, a build subtracts',
+                  [-x for x in F['dnwc']]),
                  ('Free cash flow to the firm', F['fcff']),
                  ('Discount factor (glide-compounded)', None),
                  ('PV of FCFF', F['pv'])]:
@@ -145,6 +156,11 @@ for lbl, arr in [('Revenue', F['rev']), ('EBITDA (incl. fees and other income)',
         rows.append([lbl] + [f"{x:.4f}" for x in F['df']])
     else:
         rows.append([lbl] + [mn(x) for x in arr])
+for _i in range(len(F['fcff'])):
+    signed_column([F['nopat'][_i], F['dna'][_i], -F['capex'][_i],
+                   -F['leased_gross'][_i], -F['dnwc'][_i]],
+                  F['fcff'][_i], dp=0,
+                  what='the cash-flow waterfall, year %d' % (_i + 1))
 table(rows, [2.55, 0.89, 0.89, 0.89, 0.89, 0.89], band_rows={10, 12})
 caption(f"The FY2026 free cash flow is negative (AED {mn(F['fcff'][0])}mn) and the window is lean "
         f"throughout: after external critique, the ~9 leased aircraft the plan adds are charged at their "

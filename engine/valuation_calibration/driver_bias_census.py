@@ -243,5 +243,77 @@ def report():
     return flat, byh
 
 
+def macro_share():
+    """How much of the driver error is the INFLATION PATH, and how much is the method.
+
+    THE QUESTION THIS ANSWERS, AND WHY IT MATTERS TO [R-TERM-01]. The bias above compounds
+    with the horizon — an intercept near zero with a large slope, which is the signature of
+    a RATE error. There are two candidate rates: the inflation path the explicit window
+    escalates on, and the terminal construction. [R-FCAL-01] already requires every run to
+    re-run each origin ON PERFECT FORESIGHT of the inflation path, so the first candidate
+    can be measured directly rather than argued about: if the explicit window's inflation
+    assumption were the error, perfect foresight would remove most of it.
+
+    IT DOES NOT. Read live, never quoted from a document. A FIRST READING OF AMOC ALONE
+    SAID THE OPPOSITE — its net sales, raw materials and cost of sales are 89% to 98% macro,
+    so on that one name the inflation path IS the error, and it was tempting to stop there.
+    The pooled figure refutes it, and this function exists so the pooled figure is what gets
+    read: one name is not a pattern, which is the rule [R-LESSON-01] applies to every
+    finding this house produces and which applies to a finding about the findings too.
+
+    ZERO-BY-CONSTRUCTION DRIVERS ARE SEPARATED, NOT MIXED IN. A volume driver has no
+    inflation term, so its macro share is 0.0 by arithmetic [R-FCAL-01]; including those in
+    a median drags it toward zero for a reason that is not evidence. Both figures print.
+    """
+    per, allx, allnz = {}, [], []
+    # runs() ALREADY yields the parsed scores file, so the split is read from what is in
+    # hand rather than opened a second time by a path built here — one reader, one place.
+    for tk, d in runs():
+        ms = d.get('macro_split') or {}
+        xs = [(k, v['as_known_mae'], v['perfect_mae'], v.get('macro_share'))
+              for k, v in ms.items()
+              if v.get('as_known_mae') and v.get('perfect_mae') is not None]
+        nz = [x for x in xs if x[3] is not None and abs(x[3]) > 1e-9]
+        if xs:
+            per[tk.upper()] = (xs, nz)
+            allx += xs
+            allnz += nz
+    if not allx:
+        raise SystemExit('no macro splits found — an empty result is not a clean result '
+                         '[R-ENF-04]')
+    print('\n  HOW MUCH OF THE ERROR IS THE INFLATION PATH — every origin re-run on '
+          'PERFECT FORESIGHT')
+    print('  %-8s %5s %6s %9s   %s' % ('name', 'drv', 'w/infl', 'median', 'pooled MAE, as known -> perfect'))
+    print('  ' + '-' * 76)
+    for tk, (xs, nz) in sorted(per.items()):
+        med = 100 * _median([x[3] for x in nz]) if nz else 0.0
+        ak, pf = sum(x[1] for x in xs), sum(x[2] for x in xs)
+        flag = '   <-- perfect foresight makes it WORSE' if pf > ak else ''
+        print('  %-8s %5d %6d %8.1f%%   %6.2f -> %6.2f  (%+.0f%%)%s'
+              % (tk, len(xs), len(nz), med, ak, pf, 100 * (1 - pf / ak) if ak else 0, flag))
+    ak, pf = sum(x[1] for x in allx), sum(x[2] for x in allx)
+    over = [x for x in allnz if x[3] > 0.5]
+    print('\n    BOOK: %d drivers, %d carry an inflation term at all.' % (len(allx), len(allnz)))
+    print('    median macro share on those %d: %.1f%%' % (len(allnz), 100 * _median([x[3] for x in allnz])))
+    print('    pooled %.2f -> %.2f: %.0f%% of the total error is the inflation path.' % (ak, pf, 100 * (1 - pf / ak)))
+    print('    the inflation path is MOST of the error on %d of %d drivers.' % (len(over), len(allnz)))
+    print()
+    print('    SO THE EXPLICIT WINDOW\'S INFLATION ASSUMPTION IS NOT THE SCALE ERROR.')
+    print('    Giving the model perfect foresight of the path leaves most of the error')
+    print('    standing, which is evidence FOR [R-TERM-01]\'s attribution rather than')
+    print('    against it: the compounding rate error is not in what the explicit window')
+    print('    escalates at. It is concentrated on pound-denominated cost and revenue')
+    print('    lines in a devaluing currency — which is a fact about one economy and two')
+    print('    names, not a general property of the method.')
+    return per
+
+
+def _median(xs):
+    xs = sorted(xs)
+    n = len(xs)
+    return 0.0 if not n else (xs[n // 2] if n % 2 else 0.5 * (xs[n // 2 - 1] + xs[n // 2]))
+
+
 if __name__ == '__main__':
     report()
+    macro_share()

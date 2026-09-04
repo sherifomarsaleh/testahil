@@ -2,10 +2,126 @@
  "market": "SA",
  "country": "Saudi Arabia",
  "currency": "SAR",
- "as_of": null,
+ "as_of": "2026-09-03",
  "regime": "pegged",
- "status": "pending",
- "pending_reason": "As AE: pegged, terminal today, but the domestic inflation ladder for escalators is not yet sourced. 13 Saudi names, all Phase 2.",
- "how_to_source": "Fill this file to the shape of EG.json: every level published by a named institution on a named date, or derived here by an identity from numbers that are; a year between two published endpoints is labelled 'interpolated between published endpoints' and never called a forecast. macro_path.load() validates the shape and refuses a file that is internally incoherent.",
- "note": "A PENDING file is deliberate, not an oversight: engine/macro_path.py RAISES on load rather than falling back to a neighbouring market, because an empty answer is not a clean answer [R-ENF-04]. Every calibrated name today is Egyptian."
+ "regime_note": "The riyal is pegged to the dollar at 3.75, so Saudi Arabia imports United States monetary policy \u2014 SAMA's repo rate tracks the Fed \u2014 and TODAY IS ALREADY THE TERMINAL: the cost-of-capital glide does not apply and cost_of_capital.py returns a FLAT schedule by construction of the peg. What the peg does not supply is a domestic inflation ladder, which the cost escalators need.",
+ "inflation": {
+  "latest": {
+   "value": 0.02,
+   "period": "2025, annual average consumer prices",
+   "source": "International Monetary Fund, World Economic Outlook database, series PCPIPCH (inflation, average consumer prices, annual percent change), Saudi Arabia (SAU), read live from the IMF datamapper API on 3 September 2026.",
+   "date": "2025-12-31",
+   "tier": "Country"
+  },
+  "path": [
+   {
+    "year": 2026,
+    "value": 0.023,
+    "basis": "IMF World Economic Outlook projection"
+   },
+   {
+    "year": 2027,
+    "value": 0.021,
+    "basis": "IMF World Economic Outlook projection"
+   },
+   {
+    "year": 2028,
+    "value": 0.02,
+    "basis": "IMF World Economic Outlook projection"
+   },
+   {
+    "year": 2029,
+    "value": 0.02,
+    "basis": "IMF World Economic Outlook projection"
+   },
+   {
+    "year": 2030,
+    "value": 0.02,
+    "basis": "IMF World Economic Outlook projection"
+   }
+  ],
+  "path_source": "International Monetary Fund, World Economic Outlook database, series PCPIPCH (inflation, average consumer prices, annual percent change), Saudi Arabia (SAU), read live from the IMF datamapper API on 3 September 2026. The series runs to 2031 and prints 2.0% flat from 2028 onward, so NO STEP HERE IS INTERPOLATED \u2014 every year is published.",
+  "target": {
+   "value": 0.02,
+   "band": 0.005,
+   "horizon": "long run",
+   "source": "SAUDI ARABIA PUBLISHES NO INFLATION TARGET AND THIS FILE DOES NOT INVENT ONE. Under a hard peg the anchor is the one the currency is pegged to: the Federal Reserve's 2 percent longer-run objective. The 0.5pp band is the dispersion of the IMF's own published Saudi projections about that anchor over 2026-2031.",
+   "date": "2026-09-03"
+  },
+  "terminal": {
+   "value": 0.02,
+   "source": "The IMF's own published Saudi figure for every year from 2028 to 2031, held; it coincides with the Federal Reserve's longer-run objective, which is what a hard peg should produce.",
+   "date": "2026-09-03"
+  }
+ },
+ "policy_rate": {
+  "current": {
+   "headline": "fed_funds_target_upper",
+   "fed_funds_target_upper": 0.0375,
+   "fed_funds_effective": 0.0363,
+   "source": "SAMA's policy rate tracks the Fed by construction of the peg, so the policy ANCHOR for this market is the United States policy rate. Federal Reserve H.15 via FRED, DFEDTARU 3.75% and DFF 3.63%, read live 3 September 2026.",
+   "date": "2026-09-03"
+  },
+  "path": [
+   0.0375,
+   0.0345,
+   0.0325,
+   0.031,
+   0.031
+  ],
+  "path_basis": "A glide from the live 3.75% target upper limit to the FOMC's own longer-run median federal funds projection of 3.1% (Summary of Economic Projections, 17 June 2026, FRED FEDTARMDLR), reached by 2029 and held. Both endpoints published; the two years between are a straight line and are the only interpolated figures here. Under the peg the glide's SCOPE is nil: this market is already terminal."
+ },
+ "sovereign": {
+  "yield_10y": {
+   "value": 0.0552,
+   "source": "PUBLISHED SAR sovereign curve: FTSE Saudi Government Bond Index (SAGBI) factsheet of 31 July 2026, 7-10 year maturity bucket, yield to maturity 5.52%. Registered by the SAVOLA study and independently re-derived by RIYADHCABLE after an external audit (5.50% on the 10-year local-currency sukuk), so two studies agree to 2bp on separate routes.",
+   "date": "2026-07-31",
+   "tier": "Country"
+  },
+  "default_spread_rating": 0.0051,
+  "default_spread_market": 0.0098,
+  "spread_source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. Saudi Arabia row: Moody's Aa3; adjusted default spread 0.51% (rating basis); credit-default-swap spread 0.98% (market basis); country risk premium 0.78%; total equity risk premium 5.01% on the rating basis and 5.72% on the CDS basis. THE LIVE FILE IS THE JANUARY-2026 VINTAGE and that is stated rather than implied: two Saudi studies cite a JULY-2026 vintage carrying 0.48% and 4.94%, which is an archived mid-year file and not what the original now serves. This path carries the ORIGINAL FILE AS IT STANDS, which is what the standing rule requires ('looked up FRESH in the ORIGINAL ctryprem file for that specific sovereign'). A DISAGREEMENT BETWEEN TWO STUDIES IS RESOLVED HERE RATHER THAN LEFT: SAVOLA registers a market-basis ERP of 5.72% and RIYADHCABLE '~4.90%'. The live file says 5.72% to the basis point and 4.90% appears in it nowhere, so SAVOLA's figure is adopted and RIYADHCABLE's is recorded as unreproducible against the original.",
+  "damodaran_date": "2026-01-05"
+ },
+ "erp_market": 0.0572,
+ "erp_rating": 0.0501,
+ "erp_source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. Total equity risk premium, both bases, Saudi Arabia row: 5.01% on the rating basis (mature-market base plus the 0.78% Aa3 country premium) and 5.72% on the market/CDS basis. THE SAME BASIS IS STRIPPED FROM THE RISK-FREE RATE AS IS ADDED BACK HERE, which is the double-count this construction exists to prevent.",
+ "corporate_tax_rate": {
+  "value": 0.2,
+  "source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. Saudi Arabia row, corporate tax rate 20.00%.",
+  "date": "2026-01-05"
+ },
+ "fx": {
+  "spot": {
+   "value": 3.75,
+   "pair": "USD/SAR",
+   "source": "The riyal has been pegged to the United States dollar at 3.75 since 1986. World Bank series PA.NUS.FCRF (official exchange rate, LCU per US$, period average), Saudi Arabia, 2024 and 2025 both 3.75, read live 3 September 2026.",
+   "date": "2025-12-31"
+  },
+  "derivation": "THE CURRENCY PATH IS THE PEG. Egypt's path derives its currency from its own inflation ladder by relative purchasing-power parity because the pound floats; applying that identity here would manufacture a drift the peg forbids, and macro_path.depreciation_path() returns zeros for a pegged regime for exactly that reason. A study that depreciates the riyal is making a claim about the peg breaking and must argue it as one."
+ },
+ "us_inflation_lt": {
+  "value": 0.022,
+  "source": "Long-run United States consumer price inflation 2.2%, the IMF World Economic Outlook's own published United States figure for 2029, 2030 and 2031 (PCPIPCH, USA), read live 3 September 2026.",
+  "date": "2026-09-03"
+ },
+ "cost_of_debt_norm": {
+  "terminal": 0.055,
+  "range": [
+   0.054,
+   0.0575
+  ],
+  "source": "The long-run Saudi corporate borrowing norm, 5.40-5.75%, midpoint 5.50%, from the terminal and marginal costs of debt this house has already sourced from the two Saudi names' own facility notes: RIYADHCABLE terminal 5.50% (marginal 5.90%) and SAVOLA blended SAR 5.74% (loans 5.88%, leases 5.86%, other 5.50%). A name with a facility note of its own uses that note; the norm is the floor of last resort and never a substitute for the three-assert Kd gate.",
+  "date": "2026-09-03"
+ },
+ "real_rate_convention": {
+  "value": 0.019751,
+  "source": "DERIVED, NEVER QUOTED. Under the peg the SAR real rate is the USD real rate: the FOMC's own longer-run median federal funds projection (3.1%, Summary of Economic Projections of 17 June 2026, FRED FEDTARMDLR) plus the ten-year term premium (0.8751%, Kim-Wright, FRED THREEFYTP10, 28 August 2026) less long-run US inflation (2.2%, IMF WEO above) = 1.9751%. CROSS-CHECK, NOT AN INPUT: the observed ten-year TIPS real yield is 2.45% (FRED DFII10, 2 September 2026), a spot price carrying today's cyclical position, 48bp above this long-run construction. The derived terminal SAR risk-free rate is 2.0% + 1.9751% = 3.9751% against a live 5.52% index yield: a normalisation, not a rate call, and the 154bp gap is larger than the UAE's because the SAR curve prints well above the AED one.",
+  "date": "2026-09-03"
+ },
+ "erp_terminal": {
+  "value": 0.0501,
+  "source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. Terminal equity risk premium held at the RATING-basis Saudi ERP of 5.01% rather than compressed. RIYADHCABLE registers 4.70%, 'a mild compression of the current 4.94% as the country risk premium narrows with Vision-2030'; that is a HOUSE VIEW ABOUT A REFORM PROGRAMME and this path does not carry one \u2014 a terminal premium below the sovereign's own published premium has to be argued, and the argument is not in the sourced record. Recorded so the declined figure is named rather than absent.",
+  "date": "2026-01-05"
+ }
 }

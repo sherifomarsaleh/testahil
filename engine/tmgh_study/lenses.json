@@ -268,6 +268,7 @@
     "wacc": 0.2437485685188716,
     "shift": -0.08,
     "mode": "capacity",
+    "per_share_nci_value_share": 196.51017889327923,
     "per_share_nci_book": 211.95934597484995,
     "per_share_nci_proportional": 136.23896241453085,
     "enterprise_value": 425133.73172858934
@@ -276,6 +277,7 @@
     "wacc": 0.2437485685188716,
     "shift": -0.08,
     "mode": "recovery",
+    "per_share_nci_value_share": 125.52094810146411,
     "per_share_nci_book": 122.12654827237574,
     "per_share_nci_proportional": 87.02268669715464,
     "enterprise_value": 240019.43577835453
@@ -284,6 +286,7 @@
     "wacc": 0.28374856851887165,
     "shift": -0.04,
     "mode": "capacity",
+    "per_share_nci_value_share": 149.43969524836962,
     "per_share_nci_book": 152.3943501597619,
     "per_share_nci_proportional": 103.60536608761838,
     "enterprise_value": 302390.896755244
@@ -292,6 +295,7 @@
     "wacc": 0.28374856851887165,
     "shift": -0.04,
     "mode": "recovery",
+    "per_share_nci_value_share": 84.40789729584293,
     "per_share_nci_book": 70.10034183574056,
     "per_share_nci_proportional": 58.51933173102017,
     "enterprise_value": 132811.43578511776
@@ -300,6 +304,7 @@
     "wacc": 0.3037485685188716,
     "shift": -0.02,
     "mode": "capacity",
+    "per_share_nci_value_share": 134.66892581216078,
     "per_share_nci_book": 133.70278908954637,
     "per_share_nci_proportional": 93.36490773891256,
     "enterprise_value": 263874.0604079723
@@ -308,6 +313,7 @@
     "wacc": 0.3037485685188716,
     "shift": -0.02,
     "mode": "recovery",
+    "per_share_nci_value_share": 73.17595754356496,
     "per_share_nci_book": 55.886966647442286,
     "per_share_nci_proportional": 50.732316186222825,
     "enterprise_value": 103522.5901925252
@@ -316,6 +322,7 @@
     "wacc": 0.3237485685188716,
     "shift": 0.0,
     "mode": "capacity",
+    "per_share_nci_value_share": 123.02843812737396,
     "per_share_nci_book": 118.97241993803047,
     "per_share_nci_proportional": 85.29464912378126,
     "enterprise_value": 233519.8692404983
@@ -324,6 +331,7 @@
     "wacc": 0.3237485685188716,
     "shift": 0.0,
     "mode": "recovery",
+    "per_share_nci_value_share": 65.16331605181323,
     "per_share_nci_book": 45.74742866171763,
     "per_share_nci_proportional": 45.17721482107309,
     "enterprise_value": 82628.51271199735
@@ -332,6 +340,7 @@
     "wacc": 0.34374856851887164,
     "shift": 0.02,
     "mode": "capacity",
+    "per_share_nci_value_share": 113.59212139651488,
     "per_share_nci_book": 107.03130263777832,
     "per_share_nci_proportional": 78.75252490575132,
     "enterprise_value": 208913.360499488
@@ -340,6 +349,7 @@
     "wacc": 0.34374856851887164,
     "shift": 0.02,
     "mode": "recovery",
+    "per_share_nci_value_share": 59.320006327497524,
     "per_share_nci_book": 38.35305553607058,
     "per_share_nci_proportional": 41.12609411887349,
     "enterprise_value": 67391.26963201487
@@ -348,6 +358,7 @@
     "wacc": 0.3637485685188716,
     "shift": 0.04,
     "mode": "capacity",
+    "per_share_nci_value_share": 105.78209246058199,
     "per_share_nci_book": 97.14815921409972,
     "per_share_nci_proportional": 73.33789323297259,
     "enterprise_value": 188547.62344753963
@@ -356,6 +367,7 @@
     "wacc": 0.3637485685188716,
     "shift": 0.04,
     "mode": "recovery",
+    "per_share_nci_value_share": 54.98967616003811,
     "per_share_nci_book": 32.8732712141484,
     "per_share_nci_proportional": 38.12391025109833,
     "enterprise_value": 56099.33124586551
@@ -364,6 +376,7 @@
     "wacc": 0.40374856851887164,
     "shift": 0.08,
     "mode": "capacity",
+    "per_share_nci_value_share": 93.61726151188044,
     "per_share_nci_book": 81.75426375262785,
     "per_share_nci_proportional": 64.90411155441981,
     "enterprise_value": 156826.13426805483
@@ -372,23 +385,24 @@
     "wacc": 0.40374856851887164,
     "shift": 0.08,
     "mode": "recovery",
+    "per_share_nci_value_share": 49.27647548446123,
     "per_share_nci_book": 25.64354362310214,
     "per_share_nci_proportional": 34.16299312970432,
     "enterprise_value": 41201.36561241119
    }
   },
   "conversion_years_grid": {
-   "8": 37.36344227330636,
-   "10": 70.22115890128019,
-   "12": 94.4729254177726,
-   "14": 113.23921923759244,
-   "16": 128.24447006371497,
-   "20": 150.79632295396488
+   "8": 58.53797697850982,
+   "10": 84.50337145192553,
+   "12": 103.6680228307067,
+   "14": 118.49784887591638,
+   "16": 130.35555832311252,
+   "20": 148.17687448551584
   }
  },
  "implied_discount_rate": {
-  "capacity": 0.29052463245332627,
-  "recovery": 0.1656407888144581
+  "capacity": 0.31870568093506824,
+  "recovery": 0.1744219434346233
  },
  "spot": 97.8,
  "spot_source": "Egyptian Exchange close, 23 August 2026, from the same cleaned price history the probability distribution is fitted to"

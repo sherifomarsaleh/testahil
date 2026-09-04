@@ -27,6 +27,14 @@ def sandbox():
     os.makedirs(os.path.join(tmp, "engine", "build_depth_audit"))
     os.makedirs(os.path.join(tmp, "scripts"))
     shutil.copy(os.path.join(ROOT, GATE), os.path.join(tmp, GATE))
+    # THE SANDBOX CARRIES WHAT THE GATE ACTUALLY NEEDS. This gate imports the
+    # valuation-gap gate's answer reader rather than re-implementing it [R-ENF-03],
+    # and a sandbox without it makes every case go red for the WRONG reason — which
+    # reads exactly like going red for the right one, and is how a negative control
+    # stops being evidence. The gauntlet learned this the same way.
+    for dep in ("check_valuation_gap.py",):
+        shutil.copy(os.path.join(ROOT, "scripts", dep),
+                    os.path.join(tmp, "scripts", dep))
     return tmp
 
 
@@ -160,7 +168,11 @@ def main():
         d = os.path.join(tmp, "engine", "ncl_study")
         os.makedirs(d, exist_ok=True)
         json.dump({"central": None, "spot": 14.41,
-                   "central_two_sided": {"branches": [{"value": 1.79}, {"value": 5.90}]}},
+                   "central_two_sided": {"branches": [
+                       {"label": "carried through", "value": 1.79,
+                        "condition": "the programme is completed"},
+                       {"label": "stopped", "value": 5.90,
+                        "condition": "the programme is halted"}]}},
                   open(os.path.join(d, "study_numbers.json"), "w"), indent=1)
         json.dump({"base": {"central": 1.79}},
                   open(os.path.join(d, "thing.json"), "w"), indent=1)
@@ -174,7 +186,11 @@ def main():
         d = os.path.join(tmp, "engine", "ncl_study")
         os.makedirs(d, exist_ok=True)
         json.dump({"central": None, "spot": 14.41,
-                   "central_two_sided": {"branches": [{"value": 1.79}, {"value": 5.90}]}},
+                   "central_two_sided": {"branches": [
+                       {"label": "carried through", "value": 1.79,
+                        "condition": "the programme is completed"},
+                       {"label": "stopped", "value": 5.90,
+                        "condition": "the programme is halted"}]}},
                   open(os.path.join(d, "study_numbers.json"), "w"), indent=1)
         json.dump({"base": {"central": 1.79}, "published_central": 1.79,
                    "published_spot": 14.41},

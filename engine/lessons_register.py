@@ -107,6 +107,17 @@ CLASSES = (
     # business's lessons under "petrochemical" would be the superstition this
     # register warns about — the two react to the same shock in opposite ways.
     "refiner, commodity pass-through on a thin spread",
+    # ADNOCLS earns vessel-days times day rates set in a GLOBAL charter market in US
+    # dollars, and owns assets that trade in a liquid international secondhand market at
+    # broker-quoted prices. Both halves of that are different from every asset-heavy class
+    # above. A cement plant's price is set in a domestic market behind freight protection
+    # and its kiln cannot be sold to a buyer in another country; a charter rate can halve
+    # in a year and a vessel can. So the two react to the same shock in opposite ways, and
+    # the lens that carries the weight is different: replacement cost is an industry rule
+    # of thumb for a kiln and an OBSERVABLE PRICE for a ship. Filing a shipping company's
+    # lessons under "cement and heavy industrial" because both are capital-intensive would
+    # be the superstition this register warns about.
+    "marine logistics and shipping, chartered fleet on global day rates",
 )
 
 
@@ -131,6 +142,8 @@ def L(id, scope, applies_to, headline, plain, source, origin, evidence,
 
 
 DEV = "real-estate developer, off-plan, percentage-of-completion"
+CEM = "cement and heavy industrial"
+SHIP = "marine logistics and shipping, chartered fleet on global day rates"
 
 LESSONS = [
 
@@ -2914,6 +2927,1054 @@ LESSONS = [
       "14/14 through every one, which is what made the fixes safe to make quickly.",
       "A fix that lowers the rate by relaxing what counts as reproducible rather than by "
       "correcting what the instrument believes about tables."),
+
+    L("L-235", "ALL", None,
+      "A CHECK'S POPULATION PREDICATE IS PART OF THE CHECK, AND KEYING IT ON A WORD RATHER "
+      "THAN ON THE QUANTITY PUTS INNOCENT WORK ON THE RATCHET — WHERE IT WILL LATER EXCUSE "
+      "THE REAL THING.",
+      "A ratchet entry is an allowance. An allowance standing over a file that never "
+      "committed the offence is not merely untidy: it is a standing permission that "
+      "activates the day that file does commit it, silently, because the gate will read the "
+      "name off the list and move on.",
+      "the site-data reader port, 03-Sep-2026",
+      "build",
+      "The gate for [R-ENF-03] keyed its population on the STRING 'data.js' appearing "
+      "anywhere in a file, and three of the thirteen files it ratcheted never open the file "
+      "at all: two carry the word inside an external-reader SCRUB WORD LIST — the internal "
+      "vocabulary a delivered document may not contain — and one names the path in a prose "
+      "comment, while each separately uses a regular expression for something else "
+      "entirely. Re-pointed at a PATH CONSTRUCTION per [R-COC-01], the population fell 44 "
+      "-> 31 and the ratchet 13 -> 10, and the negative control gained the distinction that "
+      "matters: green-because-EXCLUDED is not green-because-compliant, and an exit code "
+      "cannot tell them apart, so the population COUNT is compared with and without each "
+      "file.",
+      "A population predicate that is broader than the rule and where the extra members are "
+      "shown to be harmless — which would mean the ratchet's allowances cost nothing."),
+
+    L("L-236", "ALL", None,
+      "A SYNTAX CHECK IS NOT A SEMANTIC CHECK, AND THE GAP BETWEEN THEM IS EXACTLY WHERE A "
+      "DUPLICATED KEY LIVES.",
+      "'It parses' feels like verification and is a much weaker claim than it sounds. A "
+      "file can be perfectly well-formed and still not mean what its author wrote, and the "
+      "form most likely to survive every check is the one that is legal in the language.",
+      "the site-data writer port, 03-Sep-2026",
+      "build",
+      "Every tool that writes assets/data.js edits it as TEXT — correctly, since a JSON "
+      "round-trip would destroy the file's formatting and its prose comments — and each "
+      "verified with `node --check`. Demonstrated on a real copy of the file rather than "
+      "asserted: plant a second `levels` key on one entry and `node --check` PASSES, the "
+      "parser returns the SECOND, and a regular expression returns the FIRST. That is not a "
+      "hypothetical shape; it is the exact defect [R-ENF-03] was adopted on, a ticker page "
+      "publishing a support ABOVE its own close while both gates read the half the reader "
+      "never saw. The write path could have produced that file again and nothing would have "
+      "said so.",
+      "A writer whose post-write verification is shown to catch a shadowed field without "
+      "loading the file — which would mean the syntax check was sufficient after all."),
+
+    L("L-237", "ALL", None,
+      "A READER AND A WRITER OWE DIFFERENT THINGS TO THE SAME RULE, AND HOLDING ONE TO THE "
+      "OTHER'S OBLIGATION MANUFACTURES A DEBT THAT CAN NEVER BE PAID.",
+      "A ratchet entry that cannot in principle be cleared is a permanently-red check "
+      "[R-ENF-02] forbids, wearing a different hat — and it is worse than an obviously red "
+      "one, because it looks like a backlog somebody will get to.",
+      "the site-data writer port, 03-Sep-2026",
+      "build",
+      "Three files WRITE data.js by string surgery, which is the only sound way to preserve "
+      "its formatting, so 'read it through a parse' forbids the job rather than the "
+      "defect. Re-pointed at what a writer actually owes — proof that the PARSER agrees "
+      "with what it wrote — the clause immediately surfaced FOUR MORE writers the string "
+      "predicate had never counted, one of them a CONE writer with no post-write check of "
+      "any kind, not even `node --check`; two more counted their records against a known "
+      "total and never looked at a VALUE, which a block emitted twice leaves identical "
+      "either way. The ratchet went 13 -> 0.",
+      "A writer for which no verification is expressible, which would mean the obligation "
+      "is unmeetable rather than merely different."),
+
+    L("L-238", "ALL", None,
+      "AN EXEMPTION WIDER THAN ITS OWN REASON IS THE SAFEST HIDING PLACE THERE IS.",
+      "Nobody is lying, the reason survives review, and the work simply happens where the "
+      "check no longer reaches. This is [R-MACRO-01]'s finding — a TRUE exemption on the "
+      "WRONG OBJECT — arriving again in a different area within a day, which is what makes "
+      "it a house rule rather than an anecdote.",
+      "the site-data reader port, 03-Sep-2026",
+      "build",
+      "A negative control plants a broken data.js on purpose, so requiring it to verify "
+      "that the file it deliberately corrupted parses to what it meant is incoherent — a "
+      "real exemption with a real reason. The first draft implemented it by skipping "
+      "*_negative_control.py ENTIRELY, which also stopped checking whether a control READS "
+      "data.js by regular expression, where nothing excuses it, and shrank the population "
+      "from 31 to 26 for a reason that had nothing to do with reading. Scoped to the writer "
+      "clause it was written for, and asserted in BOTH directions: a control that writes "
+      "without verifying passes, a control that reads by regex still fails.",
+      "An exemption whose scope cannot be narrowed to its reason without losing the reason "
+      "— which would mean the two genuinely coincide."),
+
+    L("L-239", "ALL", None,
+      "A RULE OF THE FORM 'AFTER ANY X, ASSERT Y' BINDS NOTHING UNTIL SOMETHING THAT DOES "
+      "X CALLS Y.",
+      "It is the most convincing kind of dead rule, because it names its own trigger and "
+      "therefore reads as though it executes. The place to look is not the rule but the "
+      "code that performs X.",
+      "the site-data writer port, 03-Sep-2026",
+      "build",
+      "'After ANY ledger write, assert the lifecycle invariant' has been standing since "
+      "29-Jul-2026. NEITHER writer that appends ledger rows checked it; it lived in the "
+      "protocol and in whatever the operator remembered. Measured before it was asserted, "
+      "per [R-ENF-02]: 0 violations across 187 (instrument, horizon) pairs, so it passes "
+      "today rather than arriving red. And the invariant is NOT 'one open row per name' — "
+      "steady state is four, because a fresh three-month strike demotes the prior cone to "
+      "an aging tail; 114 pairs carry one open row and 73 carry two and every one is "
+      "correct. What may never happen is two open rows sharing the LATEST anchor.",
+      "A written trigger of this shape that turns out to be executed by every performer of "
+      "X without anyone having wired it — which would mean prose triggers do bind."),
+
+    L("L-240", "ALL", None,
+      "THE BASE A RATE IS APPLIED TO IS AS MUCH A SPECIFICATION AS THE RATE, AND A BASE "
+      "BUILT FROM WHATEVER THE BALANCE SHEET HAPPENS TO CARRY IS NOT A SPECIFICATION AT ALL.",
+      "A reinvestment or maintenance charge is rate x base. Every argument this house has "
+      "had about terminals has been about the RATE — the implied asset life, the growth "
+      "assumption — while the base went unexamined because it looked like arithmetic "
+      "somebody had already done.",
+      "the ADNOCLS terminal, measured 03-Sep-2026",
+      "build",
+      "THE MODEL REPORT — the document every other study is written against — computes its "
+      "terminal invested capital as NET BOOK property, plant and equipment plus working "
+      "capital plus intangibles plus goodwill, and divides the growth rate into it. Two of "
+      "those three additions are not replaced by capital expenditure at all: a maintenance "
+      "programme does not buy back goodwill, and working capital is charged separately as "
+      "inflation x working capital in the corrected construction, so including it in the "
+      "base charges for it twice. The first is NET BOOK rather than replacement cost, which "
+      "is the very distinction the corrected terminal exists to draw. Measured: the model "
+      "levies 228,793 a year for ever; book depreciation on the same assets alone is "
+      "612,111, which is 2.7x the charge and is itself struck on historical cost; on the "
+      "disclosed 25-year life applied to gross cost the charge should be 3.1x to 3.7x what "
+      "is levied. The shared terminal module REFUSES these inputs outright — implied payout "
+      "120.2% of terminal profit — and that refusal is the module reporting that the BASE "
+      "is wrong rather than the life.",
+      "A study whose invested-capital base is demonstrably at replacement cost and still "
+      "produces a maintenance charge far below its own book depreciation."),
+
+    L("L-241", "ALL", None,
+      "AN IDENTITY IS WRITTEN FOR THE CASE IN FRONT OF YOU AND THEN RUNS ON EVERY CASE "
+      "AFTER IT. GUARD IT BY THE CONDITION IT ASSUMES, NOT BY THE MARKET IT WAS WRITTEN FOR.",
+      "An identity carries its assumptions silently — that is what makes it an identity — "
+      "so when the assumption stops holding there is no error, only a plausible number. It "
+      "will not announce itself and no gate about provenance, arithmetic or sourcing can "
+      "see it, because nothing about it is unsourced or miscalculated.",
+      "sourcing six house macro paths, 03-Sep-2026",
+      "build",
+      "Relative purchasing-power parity was written for Egypt, the first market sourced, "
+      "and ran unconditionally on every market added after. On a HARD PEG it manufactures "
+      "exactly the drift the peg forbids: the first UAE print returned a dirham sliding "
+      "3.6725 to 3.65 over five years off a 0.5pp inflation differential that a fixed "
+      "nominal rate absorbs as a REAL appreciation. A study reading it would have escalated "
+      "dollar revenue against a depreciating dirham and called it derived — a claim that "
+      "the peg breaks, made silently, by arithmetic. The same relation on the UNITED STATES "
+      "path compared the dollar with itself and returned a 0.98% depreciation of the dollar "
+      "against the dollar. Both were found by PRINTING a newly sourced path, not by any "
+      "gate. Both are now guarded by regime and by numeraire and pinned in the negative "
+      "control on all seven markets in both directions.",
+      "A currency identity that produces the right answer under a regime it does not assume "
+      "— which would mean the guard is unnecessary rather than merely quiet."),
+
+    L("L-242", "ALL", None,
+      "A GATE THAT NOTHING RUNS IS A FILE. WIRING IT IN IS PART OF WRITING IT, NOT A "
+      "FOLLOW-UP.",
+      "A written gate feels finished — it has a docstring, a negative control, a name "
+      "somebody can cite — and every property that makes it convincing is present whether "
+      "or not anything ever executes it. It is [R-CAL-03]'s decorative test in a sharper "
+      "form: not a check that never rejects anything, but a check that never RUNS.",
+      "the legacy-assets gate, found unwired 03-Sep-2026",
+      "build",
+      "scripts/check_legacy_assets_sync.py was written on 30-Aug-2026 for a real shipped "
+      "defect and was invoked by NO workflow. Run by hand four days later it went RED, and "
+      "what it found was live: on 1 September the AMOC fair value was reverted in "
+      "assets/data.js to its pre-calibration figure, because the standing instruction is "
+      "that nothing from the calibration campaign goes live one name at a time. The revert "
+      "reached assets/ and not the legacy mirror — and legacy/ holds the ONLY working "
+      "copies of the ledger, picker, trade and portfolio pages, which read their own "
+      "data.js. For two days testahil.com served 5.53/8.64/12.48 on /legacy/ and "
+      "4.09/5.95/8.52 on the new information architecture: TWO DIFFERENT FAIR VALUES FOR "
+      "ONE COMPANY ON ONE DAY, with the public ledger showing the campaign number that was "
+      "not supposed to be there. Confirmed by fetching both URLs from the live site before "
+      "fixing it, rather than inferred from the repository. Separately measured the same "
+      "hour: TWENTY-ONE of seventy-one gates were in no workflow's TRIGGER list, so "
+      "editing a gate ran nothing — the one file whose correctness every other check "
+      "depends on was the one file CI did not watch.",
+      "A gate whose value does not depend on being run — which would mean it is "
+      "documentation, and should be filed as such."),
+
+    L("L-243", "ALL", None,
+      "WHEN A MEASUREMENT ON ONE NAME EXPLAINS EVERYTHING, THAT IS THE MOMENT TO POOL IT, "
+      "NOT THE MOMENT TO CONCLUDE.",
+      "A single name that answers the question cleanly is more persuasive than a pooled "
+      "figure that answers it partly, and it is persuasive in the wrong direction: the "
+      "cleanliness is what should make it suspect. This is [R-LESSON-01]'s one-observation "
+      "rule turned on a finding ABOUT the findings, where it is easiest to forget.",
+      "the macro-share measurement, 03-Sep-2026",
+      "build",
+      "The driver census shows a bias that COMPOUNDS with the horizon — an intercept near "
+      "zero with a large slope, the signature of a rate error. [R-FCAL-01] already requires "
+      "every origin to be re-run on PERFECT FORESIGHT of the inflation path, so the "
+      "explicit window's own escalator can be tested directly. On AMOC it answered "
+      "completely: net sales 89.2% macro, raw materials 97.6%, cost of sales 97.3% — the "
+      "revenue error collapsing from 0.5701 to 0.0617 and the cost error from 0.6273 to "
+      "0.0153 once the model is told the true path. That is a whole diagnosis from one "
+      "name, and it is wrong as a general claim. Pooled across five names and 64 drivers "
+      "carrying an inflation term the median macro share is 19.9%, the inflation path is "
+      "most of the error on 10 of 64, and the total falls only 64.88 to 57.78 — 11%. EGCH "
+      "goes the OTHER WAY: perfect foresight of inflation makes its forecast 13% WORSE, "
+      "because its revenue is dollar tonnes at dollar prices and its errors are not in the "
+      "pound at all. The pooled figure is now printed by the census beside the per-name "
+      "ones so the one-name reading cannot be the one that gets read.",
+      "A pooled macro share that rises toward AMOC's as more names are run — which would "
+      "make the inflation path a general explanation after all."),
+
+    L("L-244", "ALL", None,
+      "A RATE ERROR THAT SURVIVES PERFECT FORESIGHT OF THE RATE IS SOMEWHERE ELSE.",
+      "Where a bias compounds with the horizon there is usually more than one rate it could "
+      "live in, and the candidates are rarely tested against each other — the first "
+      "plausible one gets the blame. Ruling one out is worth as much as finding one.",
+      "the macro-share measurement, 03-Sep-2026",
+      "build",
+      "Two rates could carry a compounding scale error: the inflation path the explicit "
+      "window escalates on, and the terminal construction. Handing the model the true "
+      "inflation path at every origin removes 11% of the pooled driver error and leaves "
+      "89% standing, which RULES THE EXPLICIT WINDOW'S ESCALATOR OUT as the general cause "
+      "and is evidence FOR the terminal attribution rather than against it. What the "
+      "inflation path does explain is concentrated and legible: pound-denominated cost and "
+      "revenue lines on names whose currency moved a long way, which is a fact about one "
+      "economy and two companies rather than a property of the method.",
+      "A third rate — a demand path, a margin glide — that removes more of the residual "
+      "than the terminal construction does when it is tested the same way."),
+
+    L("L-245", "ALL", None,
+      "TWO CORRECTIONS TO ONE FORMULA ARE NOT TWO INDEPENDENT CORRECTIONS WHEN THEY SIT ON "
+      "DIFFERENT BASES. Pricing one with the other left at its old value gives a number "
+      "that is neither construction, and it looks perfectly reasonable.",
+      "The temptation is strong precisely where one half is cheap and the other is not: "
+      "the cheap half gets priced, the expensive half gets deferred, and the interim "
+      "figure is quoted as a lower bound when it is not a bound at all.",
+      "the terminal census, 03-Sep-2026",
+      "build",
+      "[R-TERM-01] names two errors in the retired terminal: the charge, whose implied "
+      "replacement cycle is 1/g rather than a fact about the asset, and a terminal that "
+      "never adds book depreciation back though NOPAT is already net of it. Correcting the "
+      "first needs a life sourced from each company's own accounting-policies note — real "
+      "research, one name at a time. The second appears to need nothing, so a first draft "
+      "priced it alone across thirteen terminals and reported the pooled terminal rising "
+      "69.6%. IT IS WRONG. g x IC is a NET investment figure — the new capital needed to "
+      "grow at g — so a construction charging it has already netted depreciation, and "
+      "adding book D&A on top double-counts; the corrected construction charges maintenance "
+      "GROSS at replacement cost, which is exactly why it must add book D&A back first. "
+      "Checked against the one worked case rather than reasoned about: on ARCC the "
+      "add-back-alone gives 2,445.3 against the module's own 3,310.1, 26% short. What the "
+      "census prints instead is the one inference that needs no sourced life AND ONLY RUNS "
+      "ONE WAY — a terminal charging less than its own book depreciation cannot be "
+      "maintaining the asset base, because book depreciation is struck on historical cost "
+      "and replacement costs more.",
+      "A decomposition of the terminal into two charges that are on the same basis, where "
+      "each half can be priced with the other held."),
+
+    L("L-246", "ALL", None,
+      "THE TERMINAL DEFECT IS PESSIMISTIC IN EGYPT AND OPTIMISTIC IN THE GULF, AND THE SIGN "
+      "IS SET BY THE CURRENCY RATHER THAN BY THE COMPANY.",
+      "A defect with a single name — 'the model is too pessimistic' — invites a correction "
+      "with a single sign, and a correction with a single sign applied to a book that "
+      "splits both ways makes half of it worse. The evidence for the diagnosis came almost "
+      "entirely from Egyptian names, where the sign happens to be negative.",
+      "the terminal census, 03-Sep-2026",
+      "build",
+      "The retired charge is g x IC, so the implied replacement cycle is 1/g — 14.3 years "
+      "at a 7% terminal inflation and 66.7 at 1.5%. THE SAME PLANT IS CHARGED FOUR AND A "
+      "HALF TIMES AS HARD FOR BEING IN EGYPT RATHER THAN THE EMIRATES. Measured across the "
+      "readable book: SEVEN OF THIRTEEN terminals charge LESS than their own book "
+      "depreciation — AMR 0.12x, DU 0.14x, SAVOLA 0.21x, AIRARABIA 0.23x, FERTIGLOBE 0.26x, "
+      "ADNOCDIST 0.31x, ADNOCLS 0.32x — and every one of them is in a pegged low-inflation "
+      "market. Those terminals are OVER-valued, not under. The six charging more than book "
+      "depreciation are AMOC, ARCC, MODON, SCEM, RIYADHCABLE and SWDY, and the worked "
+      "correction on ARCC raised its value while the measured correction on ADNOCLS would "
+      "LOWER it. Since 44 of the 90 covered names are Gulf, the defect is optimistic on "
+      "most of the book.",
+      "A pegged-market name whose disclosed useful life turns out to exceed 1/g — which "
+      "would mean the under-charge is not general to low-inflation markets."),
+
+    L("L-247", "ALL", None,
+      "A DATE IS A FIGURE A READER SEES, AND THE RULE THAT A FIGURE MUST BE COMPUTED RATHER "
+      "THAN TYPED APPLIES TO IT.",
+      "Dates escape the numeric-traceability discipline because they do not look like "
+      "numbers: no gate that reconciles figures against a model inspects them, no "
+      "recalculation touches them, and a stale one reads as a fact rather than as an error. "
+      "They are also typed in several places at once, which guarantees they will disagree.",
+      "reading PHDC's rendered pages, 03-Sep-2026",
+      "build",
+      "ARCC shipped a masthead a day stale and it was recorded as one study's defect. "
+      "Reading PHDC's pages the same way found the identical thing — a 3 September edition "
+      "whose masthead reads 'edition of 2 September 2026' — which made it a CLASS, and "
+      "closing the class rather than the instance is what [R-ENF-01] requires. Measured "
+      "across 31 delivered valuation studies, SEVEN do not carry their own edition date in "
+      "their masthead, in three shapes: stated and WRONG (PHDC, TMGH, both a day stale), "
+      "stated NOWHERE IN THE DOCUMENT AT ALL (ADNOCLS and SAVOLA — and ADNOCLS is THE MODEL "
+      "REPORT, so a reader receives the exemplar every other study is written against with "
+      "nothing on it saying when it was struck), and buried in the body (DU at paragraph "
+      "74 inside a licence sentence, GBCO at 167 in an expert-log note, RIYADHCABLE at 119 "
+      "in the disclaimer). THE ROOT CAUSE WAS TYPING: PHDC's builder carried the date in "
+      "THREE separate string literals — masthead, disclosure, output filename — and two of "
+      "the three said 2 September while the file said 3 September; TMGH's carried two that "
+      "disagreed. Both now derive it from the file the document ships as, so they cannot "
+      "disagree, and the rebuilds changed two paragraphs and one paragraph respectively — "
+      "nothing but the date moved.",
+      "A delivered document whose date is derived from one source and is still wrong — "
+      "which would mean the derivation, not the typing, is the defect."),
+
+    L("L-248", "ALL", None,
+      "A SCRIPT THAT RUNS CLEAN AND WRITES NOTHING IS THE MOST CONVINCING FALSE CONFIRMATION "
+      "THERE IS, BECAUSE IT LOOKS EXACTLY LIKE THE WORK SUCCEEDING.",
+      "An exit code of zero is not evidence that anything happened. This is [R-ENF-04]'s "
+      "empty-result rule pointed at your own hands rather than at a gate: the check that "
+      "the fix landed has to be the ARTEFACT, not the command.",
+      "correcting a figure label, 03-Sep-2026",
+      "build",
+      "A study's figure label typed a date beside a computed price and got it eleven days "
+      "wrong. The fix went into figures.py, figures.py was run, it exited 0 and printed "
+      "nothing — and the fix had not landed, because that module defines drawing functions "
+      "and has NO main block, so running it as a script does nothing at all. The images are "
+      "built by a separate build_figures.py that calls those functions, and the document "
+      "embeds the images by filename without rebuilding them, so a change to the drawing "
+      "code reaches a reader through TWO steps that nothing enforces. It was caught only by "
+      "rendering the page again and looking at it, where the old date was still printed. "
+      "The delivered document had been rebuilt in between and reported CLEAN by its own "
+      "scrub and column audit, because both inspect text and the defect was inside a PNG.",
+      "A pipeline where the delivered document rebuilds its own figures, so a change to the "
+      "drawing code cannot fail to reach the page."),
+
+    L("L-249", "ALL", None,
+      "AN INCOME STATEMENT'S SUBTOTALS ARE ROLL-UPS A READER ADDS UP, AND NOT ONE OF THEM "
+      "IS LABELLED AS A TOTAL.",
+      "A footing check keyed on the word 'total' is blind to the commonest table in this "
+      "house. Gross profit, operating profit, profit before tax and profit for the year are "
+      "every bit as much sums of the rows above them as a balance-sheet total is, and a "
+      "reader adds them up the same way — they just never say so.",
+      "reading PHDC's rendered page 4, 03-Sep-2026",
+      "build",
+      "PHDC's forecast income statement printed Revenue, Cost of revenue, Gross profit, "
+      "Overheads and Operating profit, and gross less overheads came out EGP 393mn ABOVE "
+      "the printed operating profit in 2026, rising to 1,039mn by 2031. The model computes "
+      "EBIT as gross less overheads less DEPRECIATION and the table never printed the "
+      "depreciation row. Every figure in it was individually correct and the defect lived "
+      "in the RELATIONSHIP between them — the same shape as ARCC's Table 3, which deducted "
+      "provisions and credit losses and never printed the line. TWO STUDIES, ONE DEFECT, "
+      "FOUND BOTH TIMES BY A PERSON READING. A chain check was built and MEASURED across "
+      "1,051 tables and 277 subtotal rows: 53% did not reproduce against revenue, 27% "
+      "against the previous subtotal — an income statement is a CHAIN, and re-pointing it "
+      "halved the rate without touching a tolerance. It was still one table in four, which "
+      "is the permanently-red check [R-ENF-02] forbids, so IT WAS NOT ADOPTED and the "
+      "measurement is recorded so the next attempt starts from it.",
+      "A discriminator that tells a currency component from a volume or per-unit row "
+      "without relying on label words — which is what the residue of that measurement turns "
+      "on."),
+
+    L("L-250", "ALL", None,
+      "A COMPARATIVE CLAIM IS A CLAIM ABOUT THE TABLE BENEATH IT, AND IT IS THE ONE KIND OF "
+      "SENTENCE A READER CAN FALSIFY WITHOUT LEAVING THE PAGE.",
+      "\'X moves the answer more than Y\' reads as a summary rather than as an assertion, so "
+      "nobody checks it — and every number it depends on is printed directly below. A "
+      "figure check reconciles each cell against the model and never asks whether the "
+      "sentence above them is true of the cells together.",
+      "reading PHDC's rendered page 10, 03-Sep-2026",
+      "build",
+      "The sensitivity section said \'moving the discount rate by the whole 800 basis "
+      "points of the 11 June 2026 edition\'s error changes value by LESS than moving cash "
+      "conversion from one observed year to another\', immediately above the grid that "
+      "refutes it: 800bp on the three-year-mean row runs 37.40 to 10.24, a move of EGP "
+      "27.16 a share, against 11.71 for conversion from 2023-25 to the mean and 22.44 from "
+      "the mean to 2024. Wrong in the direction stated. Replaced with a sentence COMPUTED "
+      "from the grid, which also says something truer and more useful — the crux is the "
+      "conversion rate, but only across its whole observed spread (34.15); one year to the "
+      "next moves value less than the discount rate does.",
+      "A comparative claim that survives being recomputed from the table it describes — "
+      "which is what computing it rather than typing it now guarantees."),
+
+    L("L-251", "ALL", None,
+      "A CAPTION THAT NAMES A RULE IS ASSERTING THE PICTURE FOLLOWS IT, AND A PICTURE IS "
+      "WHERE A FREE PARAMETER HIDES BEST.",
+      "Nothing reconciles a caption against the code that drew the figure. A threshold "
+      "chosen to make a chart look right is invisible to every gate this house has, "
+      "because no number it produces is ever printed.",
+      "reading PHDC's rendered page 10, 03-Sep-2026",
+      "build",
+      "The heatmap title read \'bold where the cell BRACKETS the EGP 14.40 close\' and the "
+      "code marked any cell within EGP 1.20 of it — a different rule, and a free parameter "
+      "with nothing behind it. A single cell cannot bracket a value; a PAIR does. The two "
+      "rules disagreed visibly on this very grid: the 6.0% row straddles 14.40 between "
+      "16.10 and 11.20 and NEITHER cell is within 1.20, so the row a reader most wants "
+      "marked was left plain, while the 12.0% row — whose whole span sits above the close "
+      "and brackets nothing — carried a bold cell. Same family as the ARCC heatmap whose "
+      "title promised bold cells that did not exist. Now the straddling PAIR is bolded, "
+      "which is what the word means, needs no threshold, and is checkable.",
+      "A figure whose caption names a rule the drawing code does not implement, where the "
+      "rule as written cannot be made parameter-free."),
+
+    L("L-252", "ALL", None,
+      "A COUNT SPELLED OUT IN WORDS ESCAPES EVERY CHECK THIS HOUSE HAS, AND EVERY STUDY IS "
+      "FULL OF THEM.",
+      "The numeric-traceability rule matches NUMERALS. \'Five\' is a word, so a count "
+      "written that way is invisible to it — and a count is the easiest figure of all to "
+      "leave behind, because it changes when a list changes and nothing connects the two.",
+      "reading PHDC's rendered page 13, 03-Sep-2026",
+      "build",
+      "PHDC's section 7 opened \'Five things are not disclosed by the company\' while the "
+      "READ FIRST twelve pages earlier COMPUTED the same count from the model and said SIX "
+      "— the study contradicting itself in the sentence that introduces the list a reader "
+      "is about to count. A sixth gap had been registered and the typed word stayed. Both "
+      "now come from one helper. Measured across all 31 delivered studies: 775 spelled-out "
+      "counts qualifying a noun, in every study. A general gate was attempted and DECLINED "
+      "— of 92 that looked mappable to a committed collection, 74 disagreed and almost "
+      "every one was the instrument being wrong (a lenses object holding the central and "
+      "two beta-alternates beside the four actual lenses; \'two lenses\' inside a sentence "
+      "about a subset). A count word means something only against a collection somebody has "
+      "NAMED, so this needs the per-study declaration prose_figures and footing_check "
+      "already use.",
+      "A rule that maps a count noun in prose to a committed collection without a per-study "
+      "declaration — which would make the general gate tractable after all."),
+
+    L("L-253", "ALL", None,
+      "A COLUMN AUDIT CANNOT SEE ONE ROW, BECAUSE AN AVERAGE CANNOT: A SINGLE CELL ONE "
+      "CHARACTER TOO WIDE WRAPS AFTER ITS MINUS SIGN AND PRINTS A NEGATIVE NUMBER AS A "
+      "POSITIVE ONE.",
+      "Table-discipline checks measure whether a column is starved or bloated, which is a "
+      "property of the column as a whole. The defect here is a property of ONE CELL, and it "
+      "changes a figure's SIGN as a reader reads it — the worst possible outcome from a "
+      "purely typographic cause.",
+      "reading PHDC's rendered appendix, 03-Sep-2026",
+      "build",
+      "The label column took 4.6cm of 16.2cm, leaving 1.66cm for each of seven years, and "
+      "\'-110,168\' is eight characters — one too many. Word breaks a line after a hyphen, "
+      "so the 2035 and 2040 cost-of-revenue cells rendered as a BARE DASH with 110,168 on "
+      "the line beneath, which a reader takes for a positive number or for a dash meaning "
+      "\'not applicable\'. The column audit reported the table CLEAN and was right by its "
+      "own lights: the column is not starved on average, and one row is a single character "
+      "wider than every other. THE FIRST FIX MADE IT WORSE AND THAT IS THE USEFUL PART — "
+      "U+2212 MINUS SIGN is typographically correct and does not offer a break, but it is "
+      "WIDER than a hyphen, so every cell in the row then wrapped mid-number. The character "
+      "was never the problem. Per [R-COC-01], when a fix makes the thing worse the "
+      "diagnosis was wrong: the column was too narrow for its content, and the fix is to "
+      "widen it.",
+      "A wrapped cell whose cause is genuinely the character rather than the width — which "
+      "would mean the substitution was right and the measurement of it was wrong."),
+
+    L("L-254", "ALL", None,
+      "WHERE A STUDY COMPUTES A QUANTITY ON SEVERAL BASES AND ADOPTS ONE, EVERY PUBLISHED "
+      "FIGURE MUST BE ASSERTED TO COME FROM THE ADOPTED ONE: THE WRONG KEY IS SILENT, "
+      "REPRODUCES PERFECTLY, AND READS AS CORRECT.",
+      "A study that offers a reader two or three ways of measuring the same thing has to "
+      "pick one to answer with. Nothing in the code marks which key is the answer, so a "
+      "display that reaches for a neighbouring one produces a number that is individually "
+      "right, recalculates to the last cell, and is not the study's answer.",
+      "reading TMGH's rendered pages, 03-Sep-2026",
+      "build",
+      "TMGH deducts the minority at its share of value \u2014 its summary table says so, its "
+      "headline range is stated on it, and [R-BRIDGE-01] requires it \u2014 and FIVE separate "
+      "displays published the BOOK basis instead: the enterprise-to-equity bridge, whose "
+      "lines summed to EGP 244,183mn and whose last row printed 113.24 where 244,183 / "
+      "2,060.7 is 118.50; the crux table, whose own caption states 'with the minority "
+      "deducted at its share of value' beside numbers that were not; the discount-rate "
+      "sensitivity grid, which did not carry the adopted basis at all; the reverse read, "
+      "which solved what the traded price implies against a per-share the study does not "
+      "publish; and the comparison of the lenses. NOTHING STATED A REASON ANYWHERE \u2014 it "
+      "was the key that got written first and copied. Every figure passed the numeric-"
+      "traceability gate, the recalculation gate and the prose-figure check, because each "
+      "was computed and correct; what was wrong was WHICH of the three it was. The bridge "
+      "case is the sharpest: [R-BRIDGE-01] already required the equity to divide to the "
+      "stated per share, and the assertion existed in the rule and in no code.",
+      "A study where the several bases are genuinely interchangeable for the purpose in "
+      "hand, so that reading a neighbouring key changes nothing a reader would act on."),
+
+    L("L-255", "ALL", None,
+      "A LOOKUP THAT MATCHES NOTHING BUILDS A TABLE WITH HEADERS AND NO ROWS, AND NOTHING "
+      "RAISES, BECAUSE AN EMPTY COLLECTION IS A VALID TABLE.",
+      "Code that filters a record into display rows returns an empty list when the "
+      "record's keys have moved. The build succeeds, the document is written, and the page "
+      "carries a heading, a table frame and a caption with nothing between them.",
+      "reading TMGH's rendered pages, 03-Sep-2026",
+      "build",
+      "TMGH's walk-forward results table asked for keys shaped 'asknown|<driver>|all' "
+      "against a scores record whose keys are plain driver names \u2014 a schema borrowed from "
+      "another study's file \u2014 matched nothing, and produced an empty list. The delivered "
+      "page carried the table's headers and its caption under prose reading 'each driver "
+      "scored against what the company actually reported. The results decided which of the "
+      "model's habits were corrected'. The record was fine: fifteen drivers, thirty to "
+      "forty observations each. The same silence had emptied the record itself one level "
+      "up, where the numbers builder iterated the file's TOP-LEVEL keys looking for the "
+      "same shape. [R-ENF-04] names this exactly \u2014 an empty result is not a clean result "
+      "\u2014 and here the emptiness reached a reader. The fix is an assertion on the row "
+      "count, not a corrected key: the corrected key would work until the schema moves "
+      "again.",
+      "A table legitimately empty on some editions, where a floor on the row count would "
+      "be the false claim instead."),
+
+    L("L-256", "ALL", None,
+      "A RATIO QUOTED IN PROSE MUST DIVIDE A NUMERATOR BY A DENOMINATOR OF THE SAME PERIOD, "
+      "AND A PARAGRAPH CAN MAKE THE MISTAKE IT IS WARNING ABOUT.",
+      "Where a sentence gives a reader both operands and the result, the three have to "
+      "agree. Where they do not, the sentence refutes itself in front of the reader.",
+      "reading TMGH's rendered pages, 03-Sep-2026",
+      "build",
+      "The paragraph explaining why a finance-cost correction was REFUSED \u2014 on the ground "
+      "that the reported charge and the borrowings describe different things \u2014 divided the "
+      "FY2025 charge by the borrowings on the 30-JUNE-2026 balance sheet and reported "
+      "'about 44%'. That figure reconciles against neither pairing: 3,936.5 over the 16,493 "
+      "the same sentence quotes is 23.9%, which is BELOW the policy peak it was being "
+      "contrasted with, so the argument as printed refuted itself; and against the "
+      "borrowings of the year that BORE the charge it is 33.4%. The correct figure supports "
+      "the argument and the printed one destroyed it. This is [R-FCAL-01] trap (i) \u2014 the "
+      "interest denominator \u2014 occurring in a paragraph written to explain that very trap.",
+      "A ratio whose operands genuinely belong to different periods for a stated reason, "
+      "with the mismatch named rather than silent."),
+
+    L("L-257", "ALL", None,
+      "A FILE SOMETHING WRITES AND NOTHING READS IS A NUMBER FROZEN AT THE MOMENT SOMEBODY "
+      "LAST RAN THE SCRIPT \u2014 THE MIRROR OF [R-ENF-06], AND IT HAS NO VINTAGE TO CHECK.",
+      "[R-ENF-06] asks what WRITES a file that a builder reads. The same question the other "
+      "way round is worth asking: a file with no consumer has nobody to notice when it goes "
+      "stale, and it sits in the study directory looking exactly like a computed record.",
+      "reading TMGH's rendered pages, 03-Sep-2026",
+      "build",
+      "TMGH's statements.json was written by its statements module's main() and read by "
+      "nothing \u2014 the numbers builder imports the module and calls build(), so the live "
+      "path never touches the file. It sat two days stale, giving 2030 development revenue "
+      "of 76,350 against the 102,747 the delivered document prints, a 35% divergence. IT "
+      "WAS NOT HARMLESS: sizing a table column needed the widest cell in that row, the "
+      "first attempt read this file, got 76,350, concluded the column was wide enough, and "
+      "was wrong \u2014 the page had been printing '102,74' with a lone '7' beneath it for two "
+      "days. The cheapest fix for a file with no consumer is not to declare its vintage; it "
+      "is not to write it.",
+      "A written-and-unread file that is genuinely an evidence record rather than a derived "
+      "one \u2014 a critique register or a raw download, where freezing is the point."),
+
+    L("L-258", "ALL", None,
+      "A COLUMN MUST CLEAR ITS WIDEST TOKEN, HEADER INCLUDED, AND A HEADER IS BOLD, WHICH "
+      "IS TWELVE PER CENT WIDER ON THE INK.",
+      "L-253 established that a column must clear its widest cell. Two further things were "
+      "learned by getting it wrong twice more inside ten minutes: the widest cell is "
+      "frequently the HEADER, and the header is set bold, which no plain-text measurement "
+      "sees.",
+      "reading TMGH's rendered pages, 03-Sep-2026",
+      "build",
+      "A 'Discount rate' header rendered 'Discou nt rate' at 1.7cm. A hand fix widened that "
+      "column and narrowed 'Case' to 3.0cm, which needs 3.61 for 'Credit-default-swap' "
+      "\u2014 the same error again, minutes later. The column was then sized from measured "
+      "per-character widths and STILL printed 'Discoun', because the measurement had been "
+      "taken on plain cells: bold needs 1.077x to 1.121x the ink of the same token plain, "
+      "measured on seven tokens. The model was right about the string and wrong about the "
+      "FACE IT IS SET IN. The shared width module now holds both measurements and asserts "
+      "its constants still clear them at import; a percent sign is 0.30cm, which is why an "
+      "entire ten-cell cost-of-capital row printed '32.4' with a bare '%' beneath it while "
+      "the orphan detector \u2014 which scans for a stray DIGIT \u2014 reported the document clean.",
+      "A renderer whose metrics differ enough from the measured ones that the constants "
+      "stop clearing their own experiment, which the module's import assertion would say."),
+
+    L("L-259", "ALL", None,
+      "A RELATIVE GLOB RUN FROM THE WRONG DIRECTORY MATCHES NOTHING AND REPORTS CLEAN, AND "
+      "IT IS THE COMMONEST WAY [R-ENF-04]'s FAILURE ACTUALLY HAPPENS HERE.",
+      "A sweep written as engine/*_study/*.json is correct from the repository root and "
+      "matches nothing from anywhere else. The result is not an error: it is a confident "
+      "zero, printed in the same words a genuinely clean run would print.",
+      "sweeping for stale peer prices, 03-Sep-2026",
+      "build",
+      "A sweep for artefacts older than the repository's own price libraries reported "
+      "'0 stale' and was believed. Counting what it had EXAMINED returned zero rows across "
+      "zero studies: the working directory was inside a study, so the glob resolved under "
+      "that directory and matched no file at all. Re-run from the root it examined 25 rows "
+      "and found the real case. THIS HAPPENED WITHIN THE HOUR OF REGISTERING L-255, which "
+      "is the same failure one level up, and twice more in the same session on other "
+      "commands. The habit that catches it is cheap and is the only thing that does: "
+      "ASSERT THE POPULATION BEFORE READING THE RESULT \u2014 a sweep prints what it "
+      "examined, and zero examined is a failure rather than a finding. Absolute paths help "
+      "and are not sufficient, because the next probe will be written in a hurry too.",
+      "A sweep whose population is genuinely empty for a stated reason, where the assertion "
+      "would be the false claim instead."),
+
+    L("L-260", "ALL", None,
+      "AN ARTEFACT BUILT FROM A COMMITTED LIBRARY GOES STALE SILENTLY, BECAUSE THE LIBRARY "
+      "MOVES BY THE CALENDAR AND THE ARTEFACT MOVES ONLY WHEN SOMEBODY RE-RUNS IT.",
+      "A file that reads a price library and writes a summary is correct on the day it is "
+      "written and drifts every day after. Nothing about it looks stale: it carries dates, "
+      "sources and tiers, and every figure in it was right when it was taken.",
+      "reading TMGH's rendered pages, 03-Sep-2026",
+      "build",
+      "TMGH's delivered peer table published Emaar Misr at 11.53 as at 28 July, SODIC at "
+      "27.48 as at 27 July and Orascom at 40.16 as at 27 July, while THIS REPOSITORY'S OWN "
+      "committed libraries held 13.70, 31.01 and 41.50 at 1 September \u2014 the first "
+      "18.8% higher. The generator does nothing but read the last row of each library and "
+      "had simply not been re-run. No valuation number moves, because this study "
+      "deliberately tabulates no peer multiples; what moves is a table of prices a reader "
+      "takes as current. It is [R-ENF-06]'s shape with the staleness on the INPUT side, and "
+      "the standing library-staleness rule's shape too: a fact that moves by the calendar "
+      "must not be remembered by something that moves only when edited.",
+      "A peer table deliberately frozen at a stated date for a stated reason, which the "
+      "document would then have to say."),
+
+    L("L-261", "ALL", None,
+      "A FILE SOMETHING WRITES, WHEN NOTHING MAKES IT RUN, IS AS FROZEN AS ONE NOTHING "
+      "WRITES AT ALL \u2014 AND HARDER TO SEE, BECAUSE IT HAS A GENERATOR.",
+      "[R-ENF-06] asks what writes an artefact a builder reads, and a reassuring answer "
+      "closes the question. But a generator that exists and is not run produces exactly "
+      "the same stale number, and the study looks better arranged while it happens.",
+      "rebuilding TMGH, 03-Sep-2026",
+      "build",
+      "Four artefacts went stale in one afternoon on a study already conforming to "
+      "[R-ENF-06]: statements.json two days behind the model, peers.json five weeks behind "
+      "THIS REPOSITORY'S OWN price libraries, experts.json quoting a reverse read that had "
+      "since been corrected, and a note added to a generator that never reached the page "
+      "because the script writing its file was not re-run after the edit. None was "
+      "carelessness about a number; each was the ordinary consequence of a pipeline whose "
+      "steps a person has to remember. MEASURED ACROSS THE BOOK, 2 OF 24 STUDIES HAVE A "
+      "SINGLE BUILD ENTRY POINT, and the other twenty-two carry 7 to 32 scripts each that "
+      "must be run in the right order from memory. The fix is not to remember harder: an "
+      "entry point declares the dependency order explicitly and ends with the checks, so a "
+      "build that produced a stale artefact cannot also report clean.",
+      "A study whose scripts are genuinely independent, where an order does not exist to "
+      "be got wrong."),
+
+    L("L-262", "ALL", None,
+      "A PRICED ALTERNATIVE THAT RE-RUNS THE BASE CASE SCORES ZERO BY CONSTRUCTION, AND A "
+      "ZERO DELTA IS THE ONE ANSWER NOBODY CHECKS.",
+      "A table that prices each contested choice by re-running the model with that choice "
+      "moved is only as good as the move. Where the alternative is set to what the base "
+      "case already uses, the re-run returns the base case, the delta is exactly zero, and "
+      "the row reports that the choice does not matter.",
+      "reading EGCH's rendered pages, 03-Sep-2026",
+      "build",
+      "The FIRST row of EGCH's contested-constructions table priced 'country risk off the "
+      "sovereign's credit rating' against the traded default swap and scored +0.00. The "
+      "study's base case already uses the swap basis \u2014 rf_star_spot IS rf_star_cds and the "
+      "published rate IS wacc_cds \u2014 so the alternative re-ran the base case. The labels "
+      "were reversed with it: the study CHOOSES the swap basis and the alternative is the "
+      "rating basis. Priced correctly the choice is worth EGP 1.26 against a base of 2.31, "
+      "a delta of \u22121.05 and the THIRD largest of the ten, in a table whose entire purpose "
+      "is to show what each choice is worth. Nothing could catch it: the figure was "
+      "computed, the model re-ran, the arithmetic was exact. A NON-ZERO delta invites a "
+      "reader to check it; a zero one says there is nothing to look at.",
+      "An alternative that genuinely coincides with the base case for a stated reason, "
+      "where the row would have to say so rather than print a bare zero."),
+
+    L("L-263", "ALL", None,
+      "A TABLE WITH TWO BASIS COLUMNS MUST PRODUCE TWO ANSWERS, AND A DERIVED ROW IDENTICAL "
+      "IN BOTH WHILE ITS INPUTS DIFFER IS READING ONE COLUMN TWICE.",
+      "Where a table sets out the same construction on two bases side by side, the rows "
+      "that are INPUTS may legitimately be identical \u2014 a beta, a cost of debt, a set of "
+      "weights \u2014 but a row DERIVED from rows that differ cannot be.",
+      "reading EGCH's rendered pages, 03-Sep-2026",
+      "build",
+      "EGCH's cost-of-capital table set out the rating and swap bases in two columns whose "
+      "costs of equity differ (30.99% against 29.28%), and printed 25.76% for the cost of "
+      "capital in BOTH \u2014 because the rating cell read wacc_path[0], which IS the published "
+      "rate and IS the swap basis. The rating figure reproduces from its own rows as 66.2% "
+      "x 30.99% + 33.8% x 18.86% = 26.88%, and the printed one does not. The note beneath "
+      "compounded it, saying the rating basis was carried 'as the more conservative' when "
+      "the study carries the swap basis and that basis is 113 basis points LOWER. The "
+      "table-footing instrument could not see it: the row is a weighted mean whose weights "
+      "are a ROW formatted as a combined string, not a column it can read.",
+      "A derived row that genuinely coincides across two bases, which would need saying."),
+
+    L("L-264", "ALL", None,
+      "A TABLE THAT NAMES ITS OPERATIONS IN WORDS IS GIVING A READER INSTRUCTIONS, AND "
+      "FOLLOWING THEM MUST ARRIVE WHERE THE PAGE SAYS.",
+      "\"Plus net cash\", \"Less depreciation and amortisation\", \"Add back the "
+      "impairment\" are instructions, not labels. A reader will carry them out. Where a "
+      "line the model uses is not printed, the reader arrives somewhere the page does "
+      "not \u2014 and nothing about the page looks wrong, because every figure on it is "
+      "correct.",
+      "reading SCEM's rendered pages, 04-Sep-2026",
+      "build",
+      "Five tables in one study, in a document that had passed table_footing, "
+      "prose_figures, the recalculation gate, the scrub and the column audit. The "
+      "enterprise-to-equity bridge printed \"Enterprise value 6,617\", \"Plus net cash "
+      "4,930\", \"Equity value 11,426\" while deducting EGP 120mn of minority in the "
+      "model and printing no line for it. The cash-flow waterfall printed depreciation, "
+      "capital expenditure and working capital between NOPAT and free cash flow \u2014 "
+      "three lines that feed only the balance-sheet projection \u2014 while the model "
+      "builds free cash flow as NOPAT less reinvestment, so a reader adding the column "
+      "reached 1,829 in year one against a printed 799. Three lenses jumped from an "
+      "enterprise figure straight to value per share: dividing the printed earnings by "
+      "the printed share count gives 39.66 against a printed 58.10.",
+      "A delivered waterfall whose printed rows reach its printed answer while a line "
+      "the model uses is still missing, which would mean the arithmetic closes by "
+      "coincidence."),
+
+    L("L-265", "ALL", None,
+      "WHERE A PAGE CANNOT SAY ENOUGH FOR A CHECK TO BE SOUND, MOVE THE CHECK TO WHOEVER "
+      "KNOWS \u2014 DO NOT WEAKEN IT UNTIL IT PASSES.",
+      "A check firing on work that is right has three possible answers and only one is "
+      "honest. Widening its tolerance is a free parameter. Changing the work to satisfy "
+      "it corrupts what is being measured. The third is to ask what the check is "
+      "actually measuring, and point it at something that can be reproduced.",
+      "building the waterfall instrument, 04-Sep-2026",
+      "build",
+      "The page-side reading of a waterfall was built first and measured twice over the "
+      "whole book: 42.4% of all 979 tables on the first design, whose matches were "
+      "coincidence against a pool of several thousand committed numbers, and 30.7% of "
+      "the 127 tables carrying an operator row on the second, after two further "
+      "re-pointings that were each the instrument being wrong about how tables work. The "
+      "residue is irreducible because a statement mixes labelled and unlabelled steps: "
+      "an income statement runs Revenue, EBITDA, margin, depreciation, \"Plus other "
+      "operating income\", EBIT, and EBIT is EBITDA LESS that depreciation PLUS that "
+      "income \u2014 the page performs the subtraction and never says so. The check "
+      "moved to the builder, which knows the anchor because it put it there.",
+      "A page-side reading that reaches an honest rate on this book, which would mean "
+      "the ambiguity is in the implementation rather than in what a page can state."),
+
+    L("L-266", "ALL", None,
+      "AN EXCEPTION TO A CHECK IS DECLARED WITH A REASON OR IT IS THE CHECK SWITCHED "
+      "OFF.",
+      "Every instrument in this house lets a study declare a legitimate exception. The "
+      "reason is not decoration on the declaration \u2014 it IS the declaration, because "
+      "an exception with no reason is indistinguishable from a defect somebody waved "
+      "through, and nobody can tell the two apart afterwards.",
+      "building the waterfall instrument, 04-Sep-2026",
+      "build",
+      "waterfall() accepts a figure the table does not print and REFUSES when no reason "
+      "is supplied with it, which is [R-COC-01 AMENDED]'s closed-mechanism clause and "
+      "table_footing's own declaration rule arriving at the same place from three "
+      "directions. Its first use is the one line in the study that a reader genuinely "
+      "cannot add up \u2014 a first forecast year scaled to the part of the year still "
+      "unearned at the valuation date \u2014 which the caption already named and which "
+      "is now declared to the instrument in the same words.",
+      "An exception class where the reason is genuinely mechanical and stating it adds "
+      "nothing, which would need to be shown rather than asserted."),
+
+    L("L-267", "ALL", None,
+      "A TABLE USES ONE SIGN CONVENTION FOR ITS DEDUCTIONS, AND A LABEL SAYING \"LESS\" "
+      "OVER A FIGURE THE MODEL ADDS IS WRONG WHATEVER THE ARITHMETIC DOES.",
+      "A deduction can be printed in parentheses, as a signed negative, or as a bare "
+      "magnitude. Any one of the three is clear. Two of them in one table means a reader "
+      "does not know whether to take the magnitude off or add the sign \u2014 and the "
+      "same row printing 855 in one year and -4,550 in the next, under one label, is "
+      "something nobody can read correctly.",
+      "measuring the delivered documents, 04-Sep-2026",
+      "build",
+      "Nine of the 100 tables in the book that carry a deduction row print two "
+      "conventions at once, and in every one of the nine the row breaking the convention "
+      "is a working-capital line the model ADDS while its label says \"Less\". One "
+      "prints \"(2,650)\", \"(360)\", \"(792)\", \"(1,012)\" and then \"440\", so "
+      "a reader following the labels reaches 3,488 against a printed 4,368 \u2014 twenty "
+      "per cent of that year's cash flow. Three of the nine switch convention between "
+      "adjacent years in a single row. The semantic defect beneath it is the real one: "
+      "\"Less INCREASE in working capital\" over a release states the opposite of what "
+      "happened.",
+      "A table whose two conventions are two different quantities rather than two "
+      "readings of one \u2014 a rate beside its amount, which the check already "
+      "distinguishes and which is why it distinguishes them."),
+
+    L("L-268", "ALL", None,
+      "COMPUTE THE WHOLE NEW FILE BEFORE OPENING ANYTHING FOR WRITING \u2014 AN OPEN IN "
+      "WRITE MODE TRUNCATES BEFORE THE EXPRESSION BESIDE IT IS EVALUATED.",
+      "open(path, 'w').write(f(text)) evaluates the open FIRST. If f() then raises, the "
+      "file is already empty and the exception looks like nothing happened. Build the "
+      "new text in full, and only then open the file.",
+      "truncating a study builder to zero bytes, 04-Sep-2026",
+      "build",
+      "A patch script applying the same edit to six builders wrote "
+      "io.open(p,'w').write(add_import(s)); on the second file add_import raised because "
+      "that builder has no sys.path preamble, and the traceback was the only sign that "
+      "the file had already been emptied \u2014 1,023 lines gone, recovered from git "
+      "because it happened to be committed. Nothing about the error message mentioned "
+      "the file.",
+      "A write path where the truncation genuinely cannot precede the failure, such as "
+      "writing to a temporary file and renaming it, which is the stronger form of this "
+      "same discipline."),
+
+    L("L-269", "ALL", None,
+      "A TEMPLATE IS AN UNWRITTEN RULE WITH NOBODY CHECKING IT, AND IT TRANSMITS EVERY "
+      "PROPERTY IT HAPPENS TO HAVE.",
+      "Where a process propagates by imitation \u2014 open this document beside the one "
+      "you are writing \u2014 the thing imitated IS the standard, whatever the documents "
+      "say. It carries not the rules somebody remembered to write down but everything the "
+      "template contains, including the constructions later rules retired.",
+      "measuring the model report against the ratchets, 04-Sep-2026",
+      "build",
+      "The exemplar every study in this house is modelled on was outstanding on EIGHT "
+      "ratchets at once \u2014 among them lens design, so it still publishes the typed "
+      "four-lens blend that rule retired, and the valuation gap, where it is listed "
+      "UNREADABLE, meaning that gate cannot recover a central and a spot from the "
+      "document every other study is copied from. Not one of those entries was wrong; "
+      "that is what a ratchet is for. Nothing was counting them on THIS study, and a "
+      "ratchet entry on the exemplar is a debt every study written afterwards owes "
+      "without anybody deciding to take it on.",
+      "A house whose studies are written from the rules rather than from a template, "
+      "where the exemplar's own state would stop propagating."),
+
+    L("L-270", "ALL", None,
+      "THE OLDEST RULES ARE THE LEAST CHECKED, BECAUSE THEY PREDATE THE MACHINERY.",
+      "A rule adopted before there was any way to enforce it does not acquire enforcement "
+      "by being important. It acquires it when somebody goes back and asks which of the "
+      "old rules are still running on trust.",
+      "auditing SIGCM clause 1 from outside, 04-Sep-2026",
+      "build",
+      "SIGCM clause 1 \u2014 historicals from the company's own filings, never a vendor "
+      "or press \u2014 predates every enforcement rule in the standing protocol, was "
+      "never in doubt, and was checked only by a boolean each study set on itself. Two "
+      "delivered studies were in plain breach. One took its revenue, profit and balance "
+      "sheet from trade press and an aggregator while its audited statements sat on the "
+      "company's own website, six PDFs one click from the homepage: equity EGP 6,020.3mn "
+      "filed against 5,240.0mn used, cash 4,762.3mn against 3,850.0mn, depreciation "
+      "122.5mn against 418.1mn \u2014 every error understating the company.",
+      "An old rule found to have been enforced all along by something nobody had "
+      "noticed, which would mean the audit should look for the enforcement before "
+      "assuming its absence."),
+
+    L("L-271", "ALL", None,
+      "TRY THE COMPANY'S OWN WEBSITE. IT IS USUALLY THERE.",
+      "Before any aggregator, before any press report, before concluding a filing cannot "
+      "be obtained: fetch the company's own site and list its links. The rule has said so "
+      "since August 2026 and the cost of not doing it is measured in whole studies.",
+      "fetching SCEM's audited statements, 04-Sep-2026",
+      "build",
+      "Sinai Cement's homepage carries six audited financial statements as direct PDF "
+      "links \u2014 FY2022 through FY2025 and the reviewed Q1-2026 \u2014 with no "
+      "authentication and no investor-relations portal to navigate. The study valuing the "
+      "company had used trade press and an aggregator for every historical, and its sweep "
+      "register logs no attempt on the site either way, which the primary-source rule "
+      "requires even when the attempt fails.",
+      "A company whose site genuinely carries nothing, where the attempt is logged as a "
+      "failure and the escalation ladder runs \u2014 which is the rule working, not a "
+      "counter-example to it."),
+
+
+    L("L-272", "ALL", None,
+      "A CONSTRUCTION THAT IS ONLY HARMLESS BECAUSE THE INPUT IS SMALL IS STILL WRONG.",
+      "It is tempting to leave a defect alone when it moves the answer by a basis point. "
+      "The next study to copy the construction may not have a small input, and it will "
+      "copy the defect with the shape rather than with the number.",
+      "the SCEM rebuild, 04-Sep-2026",
+      "build",
+      "Three defects on one study each moved the answer by well under one per cent and "
+      "each was a real error of construction: a cost of debt 81 basis points BELOW the "
+      "sovereign that taxes the company on a book that is 0.5 per cent of capital; a "
+      "Hamada re-levering applied to an already-levered beta; and a terminal beta the "
+      "workbook computed one way and the model another. The same cost-of-debt error was "
+      "found on AMOC where it was equally immaterial, and the reason given there for "
+      "fixing it is the reason here: a rule obeyed only when it is expensive is not a "
+      "rule.",
+      "A construction whose defect is bounded by arithmetic rather than by the size of "
+      "the input \u2014 where the shape itself cannot go wrong at any input."),
+
+    L("L-273", "ALL", None,
+      "A SENSITIVITY GRID MUST REPRODUCE THE ANSWER AT ITS OWN CENTRE.",
+      "A sensitivity is the base case with one driver moved. If the unmoved cell does "
+      "not reproduce the published figure, the grid is answering a different question "
+      "from the study, and every cell in it looks perfectly reasonable while it does.",
+      "the SCEM rebuild, 04-Sep-2026",
+      "build",
+      "SCEM's grid ran the explicit window on the RETIRED reinvestment identity while the "
+      "base case ran the sanctioned waterfall, so its zero-shift cell read EGP 109.82 "
+      "against a published 128.80, fifteen per cent apart. Its own code comment recorded "
+      "that the TERMINAL had been re-pointed at the sanctioned module and the explicit "
+      "window had been left behind. Nothing noticed because no assertion tied the grid to "
+      "its own centre; three one-line asserts now do, and they are the whole fix.",
+      "A grid that deliberately answers a different question \u2014 an alternative "
+      "construction published as such \u2014 which is then not a sensitivity and is not "
+      "labelled as one."),
+
+    L("L-274", "ALL", None,
+      "A PROBE THAT READS ZERO IS A PROBE THAT DID NOT RUN.",
+      "When a check reads a cell by address and the sheet moves, it does not fail. It "
+      "reads blank space as zero, and every comparison against a zero base comes out at "
+      "zero difference, which reads as a pass.",
+      "the SCEM rebuild, 04-Sep-2026",
+      "build",
+      "Retiring a typed lens blend moved the central from a SUM of weighted lenses at "
+      "D10 to the primary lens at C12. The driver test kept opening D10, read 0.000, and "
+      "reported all 51 drivers passing. A recalculation row pointed at a cell that had "
+      "become the maintenance charge compared 958.83 against 0.1923 and passed a relative "
+      "tolerance in neither direction anybody read. Both are the same shape as L-067 and "
+      "both were caught by asserting that no headline probe may read nothing.",
+      "A quantity that is legitimately zero, which none of a price, a rate or a cash flow "
+      "in a valuation is \u2014 where one exists, the assertion names it rather than "
+      "being relaxed."),
+
+    L("L-275", "CLASS", CEM,
+      "AN OLD PLANT'S RECENT CAPEX IS NOT ITS MAINTENANCE REQUIREMENT.",
+      "A company that has been spending a third of what replacing its plant at today's "
+      "prices would cost is deferring, not economising \u2014 and a forecast cannot "
+      "spend that little AND run the kilns harder every year. Those are two assumptions "
+      "that cannot both be true.",
+      "the SCEM rebuild, 04-Sep-2026",
+      "build",
+      "Sinai Cement's own cash-flow statements average EGP 303.2mn a year of capital "
+      "spending against a current-cost maintenance requirement of EGP 958.8mn on the "
+      "disclosed life \u2014 3.2x apart, on a plant whose note 4 shows 59.7 per cent of "
+      "cost written down, machinery 68.4 per cent, and EGP 379.4mn fully depreciated AND "
+      "STILL IN USE. Replacement cost is 7.9x the book cost because the plant was built "
+      "in pre-devaluation pounds. Charging the recent run rate flat while utilisation "
+      "climbs from 71.0 to 79.1 per cent was worth EGP 5.16 a share, against the value.",
+      "A genuinely young plant, where net book value is a large fraction of cost and the "
+      "gap between recent spend and replacement maintenance is the ordinary under-spend "
+      "of an asset not yet needing renewal."),
+
+
+    L("L-276", "ALL", None,
+      "THE 1/g TERMINAL DEFECT POINTS THE OTHER WAY IN A LOW-INFLATION MARKET.",
+      "Building a terminal on the reinvestment identity makes the implied asset life the "
+      "reciprocal of the growth rate. Everyone here learned that as a rule that CHARGES "
+      "TOO MUCH, because it was found on high-inflation names. In a pegged two per cent "
+      "economy the same arithmetic makes every asset last fifty years and charges far too "
+      "little. Which way it bites is a fact about the currency, not about the asset.",
+      "the ADNOCLS re-issue, 04-Sep-2026",
+      "build",
+      "The construction charges g x IC every year for ever, so the implied replacement "
+      "cycle is 1/g. At Egypt's 7 per cent terminal that is 14.3 years against a "
+      "disclosed 25-year cement plant, and the correction RAISED value on ARCC and SCEM. "
+      "At the dirham's pegged 2 per cent it is 50 years against a disclosed 25-year ship, "
+      "and the correction LOWERS it. Of the thirteen studies carrying the construction, "
+      "the implied cycles run from 14.3 years to 66.7 — every one of them the reciprocal "
+      "of that market's terminal inflation and none of them a fact about the assets.",
+      "A market whose terminal inflation happens to coincide with its assets' disclosed "
+      "life, where the defect is invisible because the two agree by accident."),
+
+    L("L-277", "CLASS", SHIP,
+      "A FLEET'S DISCLOSED HULL LIFE IS NOT ITS MAINTENANCE LIFE.",
+      "Shipping accounts state a hull life of twenty-five years or so, and the company's "
+      "own realised depreciation runs far above what that implies. The gap is not an "
+      "error: dry-docking is capitalised and written off over two to five years, and "
+      "dry-docking IS maintenance. A terminal that charges hull replacement while adding "
+      "back all book depreciation adds back the amortisation of a cost it never charged.",
+      "the ADNOCLS re-issue, 04-Sep-2026",
+      "build",
+      "Rebuilding ADNOCLS's terminal on the sanctioned module at the disclosed 25-year "
+      "vessel life produced an implied payout of 117 per cent of terminal profit — a "
+      "going concern distributing more than it earns for ever — and the module refused "
+      "it. The study's own input register already carried the reason, that dry-docking "
+      "components are written off over two to five years. The disclosure splits neither "
+      "the vessel line by type nor the charge by component, so the life that would "
+      "reconcile the two cannot be derived from the filings and none was invented.",
+      "A fleet operator whose statements disclose the dry-docking component separately, "
+      "where the hull cycle and the maintenance charge can be built apart and the "
+      "reconciliation is arithmetic rather than an open question."),
+
+
+    L("L-278", "ALL", None,
+      "A NEGATIVE CONTROL THAT NAMES A LIVE RATCHET ENTRY HAS AN EXPIRY DATE ON IT.",
+      "A ratchet may only ever shorten. So a control case built by reaching into a live "
+      "ratchet and moving whichever entry it was written around stops being constructible "
+      "the day that entry is cleared — and then it fails for a reason that has nothing to "
+      "do with the property it tests, which reads exactly like failing for the right one. "
+      "Plant the starting state; do not assume it.",
+      "clearing the exemplar's last ratchet entries, 04-Sep-2026",
+      "build",
+      "Three controls broke this way in one day. The delivered-PDF control removed a named "
+      "study from a ratchet to prove the gate then fires, and that study had just been "
+      "pruned off it. Two cases of the exemplar-debt control did the same: one needed "
+      "ADNOCLS on the gap gate's unreadable list to move it, and one needed it on the "
+      "macro ratchet to remove it, and the morning's work had cleared both. Each now "
+      "either reads the entry off the list at run time or plants its own, and asserts the "
+      "mutation landed either way.",
+      "A control whose case genuinely requires a specific historical entry — where the "
+      "case is about that entry rather than about the property, and should say so."),
+
+    L("L-279", "ALL", None,
+      "A GATE SWEEP THAT SKIPS THE NEGATIVE CONTROLS IS A DIFFERENT POPULATION FROM CI.",
+      "Running every scripts/check_*.py and excluding the ones ending "
+      "_negative_control feels like running the gates, because it is where the gates "
+      "live. CI runs both. A sweep built from a pattern the operator chose reports on the "
+      "population the operator chose.",
+      "the ADNOCLS re-issue, 04-Sep-2026",
+      "build",
+      "A hand-rolled sweep of 44 gates reported 0 red while the CI step list reported one: "
+      "the exemplar-debt negative control, excluded by the sweep's own pattern. This is "
+      "the same defect scripts/run_ci_gates.py was written for on 3 September 2026, when a "
+      "by-hand sweep reported green against a CI that had been red for a day — anchor the "
+      "population somewhere else. The remedy is to run that script rather than a pattern, "
+      "and it is cheap.",
+      "Nothing. The controls are part of the suite; a sweep that omits them is measuring "
+      "something narrower and should say which."),
+
+    L("L-280", "ALL", None,
+      "A DEFECT MEASURED ONLY WHERE IT HURTS LOOKS LIKE A BIAS WITH A DIRECTION. "
+      "Measure it where it should run the other way before correcting it anywhere.",
+      "The retired terminal charges the growth rate against invested capital every "
+      "year for ever, so the replacement cycle it implies is one divided by that rate "
+      "— a fact about the CURRENCY and not about the asset. In a high-inflation market "
+      "that is 14 years and it starves a 25-year plant; in a pegged one it is fifty "
+      "years and it buys half the maintenance a 25-year ship needs. Same identity, "
+      "opposite sign. Correcting it raises value in one market and LOWERS it in the "
+      "other, and a house that had only ever measured the painful side would read a "
+      "correction with a single sign as obviously right.",
+      "The terminal census across the delivered book, 03/04-Sep-2026",
+      "build",
+      "Seven of thirteen readable terminals charge LESS than their own book "
+      "depreciation, which cannot be maintaining an asset base because book "
+      "depreciation is struck on historical cost and replacement costs more — and "
+      "every one of the seven is in a pegged low-inflation market. The worked "
+      "correction on a high-inflation name RAISED its value; the measured correction "
+      "on the exemplar would LOWER it. Three of the eight names held below the price "
+      "are also names whose terminal under-charges, so on those the correction moves "
+      "the answer AWAY from the price and the pessimism is somewhere else. Read the "
+      "current split live from the census; the names move at every rebuild.",
+      "A market where the correction runs the same way as in every other, which would "
+      "make this a bias rather than a sign change. Or a disclosed asset life that "
+      "happens to equal one divided by the terminal inflation rate, which would mean "
+      "the identity was measuring the asset after all."),
+
+    L("L-281", "ALL", None,
+      "A LOCAL CI RUNNER INHERITS THE DEVELOPER'S ENVIRONMENT AND CI DOES NOT, so "
+      "green locally is not evidence about CI.",
+      "Running the pipeline's own step list on this machine looks like the strongest "
+      "possible pre-flight check, and for logic it is. For anything that depends on a "
+      "TOOL being present it is worthless in the reassuring direction: the local "
+      "machine has accumulated every tool anybody ever needed, and the build machine "
+      "starts from a manifest somebody has to remember to update.",
+      "The gate sweep of 04-Sep-2026 against the CI run of the same commit",
+      "build",
+      "The local sweep reported 89 steps green. CI failed the same commit: "
+      "poppler-utils was installed 320 lines below the step that needed it, and "
+      "matplotlib was never installed at all, so every one of 27 figure scripts "
+      "failed to import. Both tools were present locally, so neither gate could have "
+      "gone red here however carefully the sweep was run.",
+      "A local runner that builds its own environment from the workflow's manifest "
+      "rather than using the machine's, which would make the two comparable again."),
+
+    L("L-282", "ALL", None,
+      "A GATE THAT CANNOT RUN HAS REFUSED NOTHING, AND MUST NOT BE COUNTED AS "
+      "PERMISSIVE. Give a broken tool its own exit code and its own words.",
+      "When a check fails there are two very different repairs: fix the thing being "
+      "checked, or fix the machine the check runs on. A runner that lumps them "
+      "together sends every reader to the first one, and the second is invisible "
+      "until somebody reads the log three times.",
+      "The new-study gauntlet in CI, 04-Sep-2026",
+      "build",
+      "The gauntlet reported 3 gates did not refuse a new study. All three had "
+      "refused nothing because a tool they needed was absent, and each said so in its "
+      "own output while the summary line said the opposite. That is the gauntlet's own "
+      "first-run finding arriving a second time — a gate red for the wrong reason "
+      "reads exactly like one red for the right reason. Exit 2 now means the tool is "
+      "missing, and the run still fails, under a heading that points at the "
+      "environment.",
+      "A failure mode where the repair really is the same either way, which would make "
+      "the distinction ceremony."),
+
+    L("L-283", "ALL", None,
+      "AN ID SCHEME THAT ENCODES A PROPERTY STOPS ENCODING IT AND NOTHING ANNOUNCES "
+      "THE MOMENT IT DID.",
+      "Numbering a register so the number tells you the kind of entry is convenient "
+      "until the blocks fill. Then somebody allocates past the boundary, quite "
+      "reasonably, and from that day the number means nothing while every comment "
+      "still says it does — and the code that does the allocating is the last thing to "
+      "find out.",
+      "The lessons register's own id minter, 04-Sep-2026",
+      "build",
+      "The minter's docstring read 0xx for one scope, 1xx for another, 2xx for the "
+      "third, and allocated inside a 99-wide window per scope. The first block had "
+      "long since overflowed into the others, so the window arithmetic would have "
+      "minted an id already in use. It never got that far: it CRASHED on a suffixed "
+      "id — a correction inserted in place in an append-only register, legitimate "
+      "under that convention and unreadable by int() — so the sanctioned path for "
+      "appending any harvested lesson raised before it reached the register. Now "
+      "counted against the whole register, which is the rule this house already holds "
+      "for every other population.",
+      "A register where the scope really is recoverable from the id, which would make "
+      "the blocks load-bearing rather than decorative."),
 
 ]
 

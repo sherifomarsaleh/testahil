@@ -32,11 +32,33 @@ SRC = os.path.join(HERE, "lessons_register.py")
 
 
 def _next_id(scope):
-    """Ids are blocked by scope: 0xx ALL, 1xx CLASS, 2xx STOCK."""
-    base = {"ALL": 0, "CLASS": 100, "STOCK": 200}[scope]
-    used = [int(x["id"].split("-")[1]) for x in LR.LESSONS
-            if base < int(x["id"].split("-")[1]) <= base + 99]
-    return "L-%03d" % ((max(used) if used else base) + 1)
+    """The next free id, counted against the WHOLE register.
+
+    THE SCOPE-BLOCKED SCHEME THIS FUNCTION USED TO IMPLEMENT HAS LAPSED, and it is
+    recorded as lapsed rather than quietly restored. It read "0xx ALL, 1xx CLASS,
+    2xx STOCK" and allocated inside a 99-wide window per scope. Measured 04-Sep-2026:
+    ALL runs to L-279 and CLASS to L-277, so the blocks overlap and an id no longer
+    says anything about a scope. Nothing reads scope from an id — lessons.py filters
+    on the scope FIELD — so the blocks were decorative, and the window arithmetic had
+    become actively wrong: it would have minted an id already in the register.
+
+    IT ALSO CRASHED OUTRIGHT. L-094a is a correction inserted in place in an
+    append-only register, a legitimate id under that convention, and int() cannot
+    read it — so the sanctioned path for appending ANY harvested lesson raised
+    ValueError before it reached the register. The whole harvest-and-judge loop
+    [R-LESSON-01] ends here, and it had been unable to run.
+
+    COUNT AGAINST A KNOWN TOTAL, which is the rule this repository already holds for
+    every population: the next id is one past the highest in the register, whatever
+    its scope, and a suffixed id counts as its leading number.
+    """
+    if scope not in ("ALL", "CLASS", "STOCK"):
+        raise SystemExit("unknown scope %r" % (scope,))
+    used = [int(re.match(r"L-(\d+)", x["id"]).group(1)) for x in LR.LESSONS]
+    if not used:
+        raise SystemExit("the register is empty; an empty population is not a clean "
+                         "one [R-ENF-04] — refusing to mint an id from nothing")
+    return "L-%03d" % (max(used) + 1)
 
 
 def _py(s):

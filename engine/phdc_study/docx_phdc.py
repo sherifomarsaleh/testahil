@@ -83,7 +83,26 @@ def pick(rows, fmt):
     return [fmt(rows[i]) for i in display_years(rows)]
 
 
-def wide_widths(rows, label_cm=4.6, total_cm=16.2):
+def wide_widths(rows, label_cm=3.5, total_cm=16.2):
+    """Column widths for a seven-year table, sized on the WIDEST CELL rather than by feel.
+
+    THE LABEL COLUMN WAS 4.6cm AND IT COST A NUMBER [corrected 03-Sep-2026]. That left
+    1.66cm for each year, and "-110,168" — eight characters — does not fit it in Georgia at
+    this size. Word breaks a line after a hyphen, so the 2035 and 2040 cost-of-revenue
+    cells rendered as a bare "-" with "110,168" on the line beneath: a figure a reader
+    takes for a positive number, or for a dash meaning "not applicable".
+
+    The column audit called the table CLEAN, and correctly by its own lights — the column
+    is not starved ON AVERAGE. One row is a single character wider than every other, and
+    an average cannot see one row.
+
+    A NON-BREAKING MINUS WAS TRIED FIRST AND MADE IT WORSE, which is worth recording: U+2212
+    is typographically correct and is WIDER than a hyphen, so every cell in the row then
+    wrapped mid-number ("-25,90" / "2"). The character was never the problem. Per
+    [R-COC-01], when a fix makes the thing worse the diagnosis was wrong: the column is too
+    narrow for its content, and the fix is to widen it. The label column loses 0.6cm, which
+    it can afford — its longest label already wraps to two lines by design.
+    """
     n = len(display_years(rows))
     return [label_cm] + [round((total_cm - label_cm) / n, 2)] * n
 
@@ -282,6 +301,52 @@ def column_audit(doc_path):
 
 
 # ===========================================================================
+# ---------------------------------------------------------------------------------------
+# THE EDITION DATE IS DERIVED FROM THE FILE THIS DOCUMENT SHIPS AS, IN ONE PLACE.
+# [ADDED 03-Sep-2026.] It was typed in THREE separate string literals — the masthead, the
+# disclosure and the output filename — and two of the three said 2 September while the file
+# said 3 September. Nothing was wrong with the study; a person had to remember to update
+# three strings and updated one. That is the standing rule "A NUMBER STATED IN PROSE MUST
+# BE COMPUTED, NOT TYPED" applied to a date, which is a figure a reader sees like any
+# other, and it is why a masthead goes stale while every gate reports the document clean.
+EDITION_FILE = "PHDC_Valuation_Study_03-09-2026.docx"
+
+
+def _edition_words(fname=EDITION_FILE):
+    """'3 September 2026' from the filename this document ships as. One source, one date."""
+    import datetime as _dt
+    import re as _re
+    m = _re.search(r"(\d{2})-(\d{2})-(\d{4})", fname)
+    if not m:
+        raise ValueError("cannot read an edition date out of %r" % fname)
+    d = _dt.date(int(m.group(3)), int(m.group(2)), int(m.group(1)))
+    return "%d %s %d" % (d.day, d.strftime("%B"), d.year)
+
+
+EDITION_WORDS = _edition_words()
+
+
+def _residual_is(H, years):
+    """Reported profit before tax less what the printed rows above it come to.
+
+    Computed, never typed, and never presented as a named line: it is the gap between the
+    rows this study's record holds and the profit before tax the company reported.
+    """
+    out = []
+    for y in years:
+        def g(k):
+            return (H[y].get(k) or {}).get("value", 0.0)
+        built = g("gross_profit") - g("sga") - g("da") - g("finance_cost")
+        out.append(money(g("npbt") - built, 1))
+    return out
+
+
+def _count_word(n):
+    """A small count in words, from ONE place, so two sentences cannot disagree."""
+    return {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven",
+            8: "eight", 9: "nine", 10: "ten"}.get(n, str(n))
+
+
 def build(path):
     doc = Document()
     for s in doc.sections:
@@ -295,7 +360,8 @@ def build(path):
     # --- 1 Masthead + READ FIRST -------------------------------------------
     para(doc, "PALM HILLS DEVELOPMENTS", size=20, bold=True, color=ACCENT,
          space_after=2)
-    para(doc, "Egyptian Exchange · PHDC · Egyptian pounds · edition of 2 September 2026",
+    para(doc, "Egyptian Exchange · PHDC · Egyptian pounds · edition of %s"
+         % EDITION_WORDS,
          size=10, color=MUTED, space_after=14)
     doc.add_heading("READ FIRST", level=2)
     para(doc, "This is a valuation study, not advice. It carries no rating, no "
@@ -328,7 +394,7 @@ def build(path):
     para(doc, "The company's own audited statements are the only source used for its "
               "reported history. Where something needed is not disclosed, this study "
               "says so and does not fill the hole. There are %s such gaps and they "
-              "are listed in section 7." % {4: "four", 5: "five", 6: "six", 7: "seven"}.get(len(N["gaps"]), str(len(N["gaps"]))))
+              "are listed in section 7." % _count_word(len(N["gaps"])))
     para(doc, "Information set: everything the company had published as at 2 "
               "September 2026, which ends at its first-quarter 2026 results — the "
               "reviewed statements of 31 March 2026 included. No half-year 2026 "
@@ -491,6 +557,16 @@ def _section_one(doc, sp, base, low, high, cds, prior):
         ["Gross profit", pick(BU["rows"], lambda x: "{:,.0f}".format(x["gross"]))],
         ["Gross margin (output)", pick(BU["rows"], lambda x: "%.1f%%" % (100*x["gross_margin"]))],
         ["Overheads", pick(BU["rows"], lambda x: "{:,.0f}".format(x["sga"]))],
+        # THE LINE THE MODEL DEDUCTS AND THE TABLE DID NOT PRINT [added 03-Sep-2026].
+        # Operating profit is gross - overheads - depreciation, and only the first two
+        # were printed: a reader adding the rows came out EGP 393mn above the printed
+        # operating profit in 2026, rising to 1,039mn by 2031. The figures were each
+        # individually correct and the defect lived in the RELATIONSHIP between them,
+        # which nothing inspecting figures one at a time can see — the same shape as
+        # ARCC's Table 3, which deducted provisions and credit losses and never printed
+        # the line. Found by reading the rendered page and adding the column up.
+        ["Depreciation and amortisation",
+         pick(BU["rows"], lambda x: "{:,.0f}".format(x["da"]))],
         ["Operating profit", pick(BU["rows"], lambda x: "{:,.0f}".format(x["ebit"]))],
         ["Finance cost", pick(BU["rows"], lambda x: "{:,.0f}".format(x["interest"]))],
         ["Profit before tax", pick(BU["rows"], lambda x: "{:,.0f}".format(x["npbt"]))],
@@ -861,11 +937,30 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               "capitalised into work in progress." % money(v("finance_cost_fy25")))
 
     doc.add_heading("1.9  Sensitivity", level=2)
+    # A CLAIM COMPUTED FROM THE GRID BENEATH IT, NOT TYPED ABOVE IT [corrected
+    # 03-Sep-2026]. This read "moving the discount rate by the whole 800 basis points of
+    # the 11 June 2026 edition's error changes value by LESS than moving cash conversion
+    # from one observed year to another", and its own table says otherwise: 800bp on the
+    # three-year-mean row runs 37.40 to 10.24, a move of 27.16, against 11.71 for
+    # conversion from 2023-25 to the mean and 22.44 from the mean to 2024. The sentence
+    # was wrong in the direction stated, and it sat directly above the numbers refuting
+    # it. Computed now, so it cannot disagree with the grid it describes.
+    _mid = min(range(len(SENS["waccs"])),
+               key=lambda k: abs(SENS["waccs"][k] - N["cost_of_capital_record"]["wacc_exp"]))
+    _row = min(range(len(SENS["cfos"])), key=lambda k: abs(SENS["cfos"][k] - 0.087))
+    _dr = abs(SENS["grid"][_row][0] - SENS["grid"][_row][-1])
+    _steps = [abs(SENS["grid"][b][_mid] - SENS["grid"][a][_mid])
+              for a, b in ((0, _row), (_row, len(SENS["cfos"]) - 1))]
+    _span = abs(SENS["grid"][-1][_mid] - SENS["grid"][0][_mid])
     para(doc, "The table below prices the crux against the discount rate. Read it "
-              "down a column rather than across a row: moving the discount rate by "
-              "the whole 800 basis points of the 11 June 2026 edition's error changes "
-              "value by less than moving cash conversion from one observed year to "
-              "another.")
+              "down a column rather than across a row. Moving the discount rate across "
+              "the whole 800 basis points of the 11 June 2026 edition's error is worth "
+              "EGP %.2f a share on the three-year-mean row — MORE than either single "
+              "step between observed conversion years (EGP %.2f and EGP %.2f), and less "
+              "than the full observed range of conversion itself, which is worth EGP "
+              "%.2f. The crux is the conversion rate, but only across its whole observed "
+              "spread; one year to the next moves value less than the discount rate does."
+              % (_dr, _steps[0], _steps[1], _span))
     hdr = ["Cash conversion"] + [pct(w, 2) for w in SENS["waccs"]]
     rows = []
     for i, c in enumerate(SENS["cfos"]):
@@ -1006,8 +1101,16 @@ def _sections_two_to_seven(doc, sp):
               "pass through levels far more often than they settle at them.")
 
     doc.add_heading("7  Caveats and what would change our mind", level=1)
-    para(doc, "Five things are not disclosed by the company and are therefore not in "
-              "this study. Each is named with what would close it.", bold=True)
+    # THE COUNT IS COMPUTED IN BOTH PLACES, AND IT WAS TYPED IN ONE [corrected
+    # 03-Sep-2026]. Section 7 opened "Five things are not disclosed" while the READ FIRST
+    # on page 1 computed the same count from the model and said SIX — a study
+    # contradicting itself twelve pages apart, in the sentence that introduces the list
+    # a reader is about to count. A sixth gap was registered and the typed word stayed.
+    # check_prose_figures could not see it: "Five" is a WORD, and that check matches
+    # numerals.
+    para(doc, "%s things are not disclosed by the company and are therefore not in "
+              "this study. Each is named with what would close it."
+              % _count_word(len(N["gaps"])).capitalize(), bold=True)
     gap_rows = [
         ["Collection schedule", "Down payment, instalment tenor and post-handover "
          "tail are not published. This is the crux; it is measured from outcomes "
@@ -1069,6 +1172,21 @@ def _appendices(doc, sp, base):
            ["Overheads"] + _h("sga", -1),
            ["Depreciation and amortisation"] + _h("da", -1),
            ["Finance cost"] + _h("finance_cost", -1),
+           # THE COLUMN DID NOT ADD UP AND NOTHING SAID SO [added 03-Sep-2026].
+           # Gross profit less overheads less depreciation less finance cost misses
+           # reported profit before tax by -967.8 in 2023, +977.6 in 2024 and +1,430.3 in
+           # 2025 — the 2023 finance-cost cell is BLANK because this study's committed
+           # record carries no such figure, and the other two years are short an income
+           # line the record does not hold separately. A reader adding the column finds a
+           # hole and no explanation, which is the ARCC Table 3 shape.
+           #
+           # IT IS A RESIDUAL AND IS LABELLED ONE. This study holds NO source filings on
+           # disk, so the missing lines cannot be sourced and are NOT invented (SIGCM
+           # clause 1). A residual computed as the total less what is printed foots by
+           # construction and proves nothing about what it contains — so it says what it
+           # is, and the caption says the record does not carry these lines separately.
+           ["Other income and items the record does not hold separately (residual)"]
+           + _residual_is(H, hy),
            ["Profit before tax"] + _h("npbt"),
            ["Tax"] + _h("tax_total", -1),
            ["Profit after tax"] + _h("npat_pre_nci"),
@@ -1078,7 +1196,13 @@ def _appendices(doc, sp, base):
           "Three years, each as that year's own audited statements reported "
           "it. Revenue less cost of revenue less the cash discount foots to "
           "reported gross profit in all three years, and profit before tax "
-          "less tax less minority interest foots to the attributable figure.")
+          "less tax less minority interest foots to the attributable figure. "
+          "The residual line is what the printed rows leave over against "
+          "reported profit before tax: this study holds no source filings of "
+          "its own, so the items inside it are not separated here and are not "
+          "guessed at. It is negative in 2023 because no finance cost for that "
+          "year is in the record at all, and positive in 2024 and 2025 because "
+          "an income line the company reports is not held separately.")
     para(doc, "One presentational difference is worth naming rather than "
               "smoothing. Cost of revenue for 2024 is EGP %s million as the "
               "company reported it that year and EGP %s million in the "
@@ -1503,13 +1627,13 @@ def _appendices(doc, sp, base):
               "assumptions produce large changes in the result, as section 1.9 shows "
               "directly. Past price behaviour does not predict future returns. "
               "Readers must reach their own conclusions and should take professional "
-              "advice before acting. Edition of 2 September 2026; information set ends "
+              "advice before acting. Edition of %s; information set ends " % EDITION_WORDS +
               "at the company's first-quarter 2026 results.",
          size=8.5, color=MUTED)
 
 
 if __name__ == "__main__":
-    out = os.path.join(HERE, "PHDC_Valuation_Study_03-09-2026.docx")
+    out = os.path.join(HERE, EDITION_FILE)
     doc = build(out)
     doc.save(out)
     hits, chars = scrub(out)

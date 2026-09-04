@@ -4017,7 +4017,7 @@
     "mapping": "observed",
     "values": 0.252,
     "date": "2025-12-31",
-    "note": "World Bank Egyptian CPI, mean of 2023-2025, applied as a one-year escalator across a HISTORICAL step (FY2024 -> FY2025). A mean over three years is not the published rate for one of them; the correct figure is the 2025 print at its own vintage, which engine/macro_history does not yet carry. OUTSTANDING."
+    "note": "World Bank Egyptian CPI, mean of 2023-2025, applied as a one-year escalator across a HISTORICAL step (FY2024 -> FY2025). A mean over three years is not the published rate for one of them; the correct figure is the 2025 print at its own vintage, which engine/macro_history does not yet carry. OUTSTANDING. PRICED 03-Sep-2026 so the open item carries its own size rather than only its reason: this escalator moves the NORMALISED-EARNINGS CROSS-CHECK and nothing else, and across every candidate figure the lens spans EGP 6.17 to 7.09 a share against 6.66 as built \u2014 at the IMF's current-vintage Egyptian CPI for 2025 (20.4%) it is 6.41, -3.8%; at 2024's 33.3% it is 7.09; on the house forward ladder for 2026 (16.0%) it is 6.17. The central is the cash-flow lens at 17.85 and is untouched by any of them. IT STAYS OUTSTANDING: the figures above are CURRENT-VINTAGE prints and [R-VCAL-01] refuses a revised estimate without naming the publication that existed at the origin, so none of them is the point-in-time number this note asks for \u2014 they bound the item, they do not close it."
    }
   ],
   "terminal": {

@@ -37,12 +37,100 @@ RATCHET = os.path.join(ROOT, 'engine', 'build_depth_audit', 'sitedata_outstandin
 # — and once every offender is fixed the gate would examine ZERO and refuse. The negative
 # control caught exactly that: three of its cases failed on an empty population rather than
 # on the condition each was written to test.
-READS_RX = re.compile(r'data\.js|site_data')
+#
+# THE PREDICATE IS A PATH CONSTRUCTION, NOT THE WORD [RE-POINTED 03-Sep-2026]. The first
+# draft keyed the population on the STRING "data.js" appearing anywhere, and three of the
+# thirteen files it ratcheted never open the file at all: two carry "data.js" inside an
+# external-reader SCRUB WORD LIST — the list of internal vocabulary a delivered document
+# may not contain — and one names it in a prose comment, while each separately uses a
+# regular expression for something else entirely (matching a scrub word against a
+# paragraph, parsing a date out of a filename). Their work was right and the check fired
+# on it. Per [R-COC-01] the answer is to RE-POINT the check at the quantity it means,
+# never to widen it and never to change the work to satisfy it: a file reads the site's
+# data if it RESOLVES THE PATH to it, or if it goes through the shared reader. Naming the
+# file in a sentence is not reading it. The cost of the wrong predicate was not cosmetic —
+# a ratchet entry standing over innocent work is an entry that would silently EXCUSE that
+# file the day it did start parsing data.js by hand.
+READS_RX = re.compile(r"""['\"]assets['\"]\s*[,/]\s*['\"]data\.js['\"]"""
+                      r"""|['\"][^'\"]*assets/data\.js['\"]"""
+                      r"""|import\s+site_data|from\s+site_data\b|site_data\.""")
 # a real parse: either through the shared reader, or by evaluating the file in node
 OK_RX = re.compile(r'(import\s+site_data|from\s+site_data|site_data\.|'
                    r'runInContext|vm\.createContext)')
 # the construction the rule names
 REGEX_RX = re.compile(r're\.(search|findall|finditer|match)\s*\(')
+
+
+def code_only(src):
+    """The source with every string LITERAL emptied, so a mention is not a use.
+
+    [R-COC-01] RE-POINT, NEVER WIDEN. This gate fired on check_new_study_gauntlet.py,
+    which is right: that file PLANTS a study script reading data.js by regular
+    expression, as the fixture proving THIS gate catches one. The offending text sits
+    inside a string it writes to a sandbox and never executes. Skipping the file by name
+    would be a hand-maintained exemption list, which is the construction this repository
+    keeps paying for; skipping every file that mentions the pattern would delete the
+    check. The discriminator is structural and free: parse the file and blank out what is
+    INSIDE its string literals, span by span. `re.search(` survives, because the call is
+    code and only its argument is a literal; a whole planted script does not, because all
+    of it is a value.
+
+    THE FIRST DRAFT BLANKED WHOLE LINES and its own negative control caught it: a real
+    reader writes re.search(r'levels', src) on ONE line, so blanking the line removed the
+    call with the pattern and four conditions went green that must go red. Columns, not
+    lines.
+
+    An unparseable file is returned UNCHANGED rather than exempted — it is then judged on
+    its raw text exactly as before, because a file this cannot read is not a file this may
+    excuse [R-ENF-04].
+    """
+    import ast as _ast
+    try:
+        tree = _ast.parse(src)
+    except SyntaxError:
+        return src
+    lines = src.splitlines(True)
+    edits = []
+    for node in _ast.walk(tree):
+        if not (isinstance(node, _ast.Constant) and isinstance(node.value, str)):
+            continue
+        lo, hi = getattr(node, 'lineno', 0), getattr(node, 'end_lineno', 0)
+        c0, c1 = getattr(node, 'col_offset', 0), getattr(node, 'end_col_offset', 0)
+        if lo and hi:
+            edits.append((lo, c0, hi, c1))
+    for lo, c0, hi, c1 in edits:
+        for n in range(lo, min(hi, len(lines)) + 1):
+            if n - 1 >= len(lines):
+                continue
+            line = lines[n - 1]
+            a = c0 if n == lo else 0
+            b = c1 if n == hi else len(line.rstrip('\n'))
+            a, b = max(0, min(a, len(line))), max(0, min(b, len(line)))
+            if b > a:
+                lines[n - 1] = line[:a] + ' ' * (b - a) + line[b:]
+    return ''.join(lines)
+
+# A WRITER IS A DIFFERENT OBLIGATION, AND HOLDING IT TO THE READER'S ONE WAS THE CHECK
+# POINTED AT THE WRONG MEASUREMENT [RE-POINTED 03-Sep-2026, per R-COC-01]. Three files
+# WRITE assets/data.js, and each does assert-guarded string surgery — CORRECTLY, because a
+# JSON round-trip would destroy the file's formatting and the prose comments a reader of
+# the repository depends on. Forbidding a regex there would forbid the only sound way to
+# do the job, so those three sat on the ratchet as a debt that could never be paid, which
+# is the permanently-red check [R-ENF-02] forbids wearing a different hat.
+#
+# What a writer owes is not "read through the parse" but "prove the PARSER agrees with
+# what you wrote", and that is where the real hole was. Every writer verified with
+# `node --check`. A DUPLICATED KEY IS VALID JAVASCRIPT: node --check passes it, the parser
+# takes the LAST and a regex takes the FIRST — which is the exact defect [R-ENF-03] was
+# adopted on, a page publishing a support ABOVE its own close while both gates read the
+# half the reader never saw. Demonstrated on a real copy of data.js in the negative
+# control, not asserted. So a writer must call site_data.assert_written(), and one that
+# appends LEDGER rows must also assert the lifecycle invariant the protocol has required
+# since 29-Jul-2026 and which executed in no writer at all.
+WRITES_RX = re.compile(r'open\(\s*DATA_JS\s*,\s*[\'"]w')
+VERIFIES_RX = re.compile(r'site_data\.assert_written\s*\(')
+LEDGER_RX = re.compile(r'insert_ledger\s*\(|insert_rows\s*\(')
+LIFECYCLE_RX = re.compile(r'site_data\.assert_ledger_lifecycle\s*\(')
 
 
 def files():
@@ -57,8 +145,7 @@ def audit():
     examined, bad = 0, []
     for f in files():
         rel = os.path.relpath(f, ROOT)
-        if rel in ('engine/site_data.py', 'scripts/check_site_data_reader.py',
-                   'scripts/check_site_data_reader_negative_control.py'):
+        if rel in ('engine/site_data.py', 'scripts/check_site_data_reader.py'):
             continue
         try:
             src = open(f, encoding='utf-8').read()
@@ -67,9 +154,29 @@ def audit():
         if not READS_RX.search(src):
             continue
         examined += 1
+        # A NEGATIVE CONTROL PLANTS A BROKEN FILE ON PURPOSE, so requiring it to verify
+        # that the file it deliberately corrupted parses to what it meant is incoherent —
+        # the corruption IS what it meant, and a check firing there fires on work that is
+        # right [R-COC-01]. THE EXEMPTION IS SCOPED TO THE WRITER CLAUSE IT WAS WRITTEN
+        # FOR AND NOTHING ELSE. A first draft skipped these files entirely, which is an
+        # exemption wider than its own reason: it also stopped checking whether a control
+        # READS data.js by regular expression, where no argument excuses it, and it
+        # removed five files from the population so the count fell 31 -> 26 for a reason
+        # that had nothing to do with reading. A TRUE EXEMPTION ON THE WRONG OBJECT is
+        # the safest hiding place there is — nobody is lying, the reason survives review,
+        # and the work happens where the check does not reach.
+        is_control = os.path.basename(rel).endswith('_negative_control.py')
+        if WRITES_RX.search(src) and not is_control:
+            # a writer is judged on whether it verifies, not on how it edits
+            if not VERIFIES_RX.search(src):
+                bad.append('%s (writes data.js and never asserts the parser agrees)' % rel)
+            elif LEDGER_RX.search(src) and not LIFECYCLE_RX.search(src):
+                bad.append('%s (appends LEDGER rows without asserting the lifecycle '
+                           'invariant)' % rel)
+            continue
         if OK_RX.search(src):
             continue
-        if REGEX_RX.search(src):
+        if REGEX_RX.search(code_only(src)):
             bad.append(rel)
     return examined, bad
 

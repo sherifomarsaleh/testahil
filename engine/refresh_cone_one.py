@@ -43,9 +43,11 @@ import pandas as pd                                          # noqa: E402
 
 from strike_cohorts import strike                             # noqa: E402
 from rollforward_one import restrike_entry, report_strike     # noqa: E402
-from apply_rollforward import ticker_blocks, bump_site_updated  # noqa: E402
+from apply_rollforward import (ticker_blocks, bump_site_updated,       # noqa: E402
+                               fmt_price, fmt_spot)
 
 DATA_JS = os.path.join(ROOT, 'assets', 'data.js')
+import site_data                                             # noqa: E402
 
 
 def _ledger(src: str) -> str:
@@ -80,7 +82,29 @@ def run(market: str, series: str, key: str, today: str,
     print('  fair{}, slider constants, levels/tech/asof, files: untouched')
 
     if write:
+        ledger_before = site_data.read_list('LEDGER', DATA_JS)
         open(DATA_JS, 'w', encoding='utf-8').write(out)
+        # VERIFIED BY THE PARSER [R-ENF-03]. This module had NO post-write check of any
+        # kind — not even `node --check` — and it is a cone writer, which is the thing a
+        # reader is shown. Its pre-write LEDGER comparison is a TEXT comparison of the
+        # string it is about to write; that cannot see a duplicated key, which is valid
+        # JavaScript and leaves the parser taking the other one.
+        h1v, h3v = r['horizons']['1M'], r['horizons']['3M']
+        site_data.assert_written(
+            'TICKERS', key,
+            {'spot': float(fmt_spot(r['spot'])),
+             'dist': {t: {'label': h['label'], 'resolve': h['grade_date'],
+                          **{q: float(fmt_price(h['pct'][q], r['spot']))
+                             for q in ('p5', 'p25', 'p50', 'p75', 'p95')}}
+                      for t, h in (('t20', h1v), ('t60', h3v))}}, DATA_JS)
+        # the defining property of a mid-cycle pass, now checked against the PARSED
+        # ledger rather than against the text that was about to be written
+        if site_data.read_list('LEDGER', DATA_JS) != ledger_before:
+            raise SystemExit('LEDGER changed on disk — a mid-cycle refresh must never '
+                             'strike a cohort.')
+        site_data.assert_ledger_lifecycle(DATA_JS)
+        print('  verified through a real parse; LEDGER unchanged and the lifecycle '
+              'invariant holds')
         print(f'  wrote {DATA_JS}')
     else:
         print('  DRY RUN — nothing written')

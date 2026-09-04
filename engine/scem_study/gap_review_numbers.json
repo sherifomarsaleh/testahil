@@ -1,0 +1,109 @@
+{
+ "published_central": 123.27165156625448,
+ "published_spot": 100.5,
+ "why_this_file": "Every figure the eight-heading gap review quotes, resolved from study_numbers.json rather than typed. The review is an audit of an answer, so an audit quoting a stale figure audits nothing.",
+ "central": 123.27165156625448,
+ "spot": 100.5,
+ "spot_date": "2026-09-02",
+ "gap": 0.2265835976741739,
+ "net_cash": 6555.135133835882,
+ "net_cash_per_share": 25.13351818607927,
+ "net_cash_share_of_answer": 0.2038872511785147,
+ "net_cash_share_mktcap": 0.2500847580704405,
+ "ev_fair": 25715.64965503988,
+ "ev_mkt": 19776.51880466412,
+ "ev_ebitda_fair_25": 7.442582591570685,
+ "ev_ebitda_mkt_25": 5.72368874797673,
+ "ev_ebitda_fair_26": 6.309767494301835,
+ "ev_ebitda_mkt_26": 4.852501771413059,
+ "pe_fair_25": 14.0732045863883,
+ "pe_mkt_25": 11.473498107323186,
+ "pe_fair_26": 8.561576839986165,
+ "pe_mkt_26": 6.980019018858946,
+ "just_evebitda": 4.2,
+ "margins": [
+  0.38631244935799847,
+  0.38928126530787177,
+  0.392375964132078,
+  0.395219662421367,
+  0.3983246434151634
+ ],
+ "filed_margins": [
+  0.06616691025172565,
+  0.24664897790338564,
+  0.38014613716415674
+ ],
+ "filed_margin_25": 0.38014613716415674,
+ "utilisation_filed": [
+  0.5324623717757567,
+  0.627208774954628,
+  0.71
+ ],
+ "utilisation_forecast": [
+  0.717,
+  0.735,
+  0.753,
+  0.772,
+  0.791
+ ],
+ "tv_share": 0.6649276342265025,
+ "life": 25.889297364469527,
+ "term_fcff": 4297.276595464135,
+ "term_floor": 26266.138755719847,
+ "term_maintenance": 958.8325110000001,
+ "capex": [
+  351.72476,
+  606.8775979728001,
+  893.6075765727043,
+  1210.1474642066855,
+  1561.843458449554
+ ],
+ "maintenance_at_current_cost": 958.8325110000001,
+ "wacc_exp": 0.2895969690413578,
+ "wacc_term": 0.18982919506576718,
+ "wd_exp": 0.00522087139223936,
+ "lens": {
+  "DCF (cash flow)": 123.27165156625448,
+  "Relative multiples": 62.10832856546192,
+  "Asset / replacement cost": 94.22626331575341,
+  "Book value (disclosed floor)": 27.118642954954954
+ },
+ "primary": 123.27165156625448,
+ "envelope": [
+  23.62014366636873,
+  123.27165156625448
+ ],
+ "retired_blend_value": 95.96108438513127,
+ "contested": [
+  {
+   "choice": "kiln utilisation through the forecast",
+   "effect": 0.11423447629709851,
+   "adopted_value": 123.27165156625448,
+   "alternative_value": 109.18977900730499
+  },
+  {
+   "choice": "the depreciable life behind the terminal maintenance charge",
+   "effect": 0.05146026786159656,
+   "adopted_value": 123.27165156625448,
+   "alternative_value": 116.92805935691362
+  },
+  {
+   "choice": "replacement cost per annual tonne of cement capacity",
+   "effect": 0.013442969163287565,
+   "adopted_value": 123.27165156625448,
+   "alternative_value": 124.92878857696716
+  },
+  {
+   "choice": "the explicit window's capital charge",
+   "effect": 0.03835382839508389,
+   "adopted_value": 123.27165156625448,
+   "alternative_value": 127.99959133640517
+  },
+  {
+   "choice": "the adopted beta",
+   "effect": 0.08273231709923014,
+   "adopted_value": 123.27165156625448,
+   "alternative_value": 133.47020093297965
+  }
+ ]
+}

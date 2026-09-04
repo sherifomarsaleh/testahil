@@ -83,14 +83,28 @@ def _pdf_emptied(root):
 
 
 def _off_ratchet(root):
-    """A real outstanding entry with its allowance removed."""
+    """A real outstanding entry with its allowance removed.
+
+    THE ENTRY IS READ FROM THE RATCHET, NEVER NAMED. This fixture named SCEM, and when
+    SCEM was brought onto the standard and pruned off the list the case stopped being
+    constructible — the mutation did not land, the control went red, and it went red for
+    a reason that has nothing to do with the gate it exists to test. A ratchet may only
+    ever SHORTEN, so a control that names one of its entries is a control with an expiry
+    date on it. Whichever entry is first is as good a fixture as any, and there is always
+    one while the list is non-empty; when the list finally empties this raises with a
+    message saying so, which is the honest state and not a failure to work around.
+    """
     f = ratchet(root)
     d = json.load(open(f))
-    assert 'SCEM' in d['entries'], 'fixture assumed SCEM was on the ratchet'
-    d['entries'].pop('SCEM')
+    names = sorted(d['entries'])
+    assert names, ('the ratchet is empty, so no real outstanding entry exists to remove. '
+                   'That is the list having done its job, not a broken fixture — retire '
+                   'this case when it happens.')
+    tk = names[0]
+    d['entries'].pop(tk)
     json.dump(d, open(f, 'w'), indent=1)
-    assert 'SCEM' not in json.load(open(f))['entries'], 'mutation did not land'
-    return 'SCEM removed from the ratchet'
+    assert tk not in json.load(open(f))['entries'], 'mutation did not land'
+    return '%s removed from the ratchet' % tk
 
 
 def _empty_population(root):

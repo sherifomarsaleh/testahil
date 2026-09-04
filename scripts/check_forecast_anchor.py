@@ -310,6 +310,23 @@ def main(argv):
                   % (tk, str(rec['rate_name'])[:26], rec['latest_reviewed_rate'],
                      rec['first_forecast_rate'], 100 * g, flag))
         print()
+    # A RATCHET ALLOWS A KNOWN FAILURE; IT DOES NOT HIDE WHAT THE FAILURE IS.
+    # [R-ENF-02] exists so work predating a standard is listed rather than making the
+    # build permanently red — and this gate was swallowing the REASON along with the
+    # verdict, so a ratcheted study whose record was malformed looked identical to one
+    # that simply has no record. Two studies were in that state on 4 September 2026, both
+    # carrying records written that same day, both believed to conform, and neither
+    # readable: nothing in the output said so and nothing could have. Printing the reason
+    # costs a line and is the only way anyone knows what to fix.
+    oldbad = [(t, w) for t, w in bad if t in known]
+    if oldbad:
+        print('  RECORD PRESENT BUT NOT READABLE (%d) - allowed on the ratchet, and the '
+              'reason is printed because a ratchet is not a place to hide one:'
+              % len(oldbad))
+        for tk, why in oldbad:
+            print('   %-12s %s' % (tk, why.split('\n')[1].strip()[:150]
+                                   if '\n' in why else why[:150]))
+        print()
     newbad = [(t, w) for t, w in bad + missing if t not in known]
     if missing:
         print('  NO RECORD (%d):' % len(missing))

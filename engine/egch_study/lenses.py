@@ -80,7 +80,17 @@ L['relative'] = dict(
     value_low=per_share_from_ev(lo * ebitda_fwd),
     value_per_share=per_share_from_ev(mid * ebitda_fwd),
     value_high=per_share_from_ev(hi * ebitda_fwd),
+    # TWO MULTIPLES PUT SIDE BY SIDE MUST SIT ON THE SAME DEFINITION OF ENTERPRISE VALUE.
+    # implied_at_market puts the traded equity plus net debt over operating EBITDA and
+    # stops there, so its numerator CARRIES the listed stakes and the investment property
+    # while its denominator is the operating business alone. implied_at_model uses the
+    # bridge's own enterprise value, which excludes that stack — per_share_from_ev above
+    # adds it back separately. The document printed the two beside each other as though
+    # they were comparable: 8.0x against 2.3x, where the like-for-like traded figure is
+    # 7.3x. The mismatched one is kept and labelled, because it is what an equity buyer
+    # pays for everything, and the comparable one is added for the comparison.
     implied_at_market=(SPOT * SHARES / 1e6 + NET_DEBT) / ebitda_fwd,
+    implied_at_market_ex_nonop=(SPOT * SHARES / 1e6 + NET_DEBT - NONOP) / ebitda_fwd,
     implied_at_model=CASES['base']['bridge']['ev'] / ebitda_fwd,
 )
 

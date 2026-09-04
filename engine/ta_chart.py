@@ -51,6 +51,7 @@ import numpy as np                                          # noqa: E402
 import pandas as pd                                         # noqa: E402
 
 import technicals as TA                                     # noqa: E402
+import site_data                                             # noqa: E402
 from apply_technicals import scope, top_level_blocks         # noqa: E402
 
 # ---- the contract (do not change without changing app.js in the same commit)
@@ -204,6 +205,9 @@ def apply(write: bool = False, only=None):
     todo = scope(data, only)
     blocks = {**top_level_blocks(data, 'const TICKERS = {'),
               **top_level_blocks(data, 'const METALS = {')}
+    # The BLOCK OFFSETS above are still used to decide SCOPE — which keys exist — but the
+    # VALUES this module draws are read through the shared parser.
+    published = {**site_data.read_object('TICKERS'), **site_data.read_object('METALS')}
     files = [os.path.join(ROOT, f) for f in sorted(os.listdir(ROOT))
              if f.endswith('.html')]
     # THE CUTOVER MOVED THE CHART-CARRYING PAGES (30-Aug-2026). The new IA put a
@@ -247,14 +251,17 @@ def apply(write: bool = False, only=None):
         if not key_pages:
             skipped.append((key, 'no page binds this key'))
             continue
-        a, b = blocks[key]
-        blk = data[a:b]
-        m = re.search(r'levels:\s*\{\s*res:\[([^\]]*)\],\s*sup:\[([^\]]*)\]',
-                      blk)
+        # THE LEVELS COME FROM A REAL PARSE [R-ENF-03], not from a regex over the entry's
+        # source text. This is the very defect the rule was adopted on: a page published a
+        # support ABOVE its own close because the entry declared `levels` TWICE, re.search
+        # took the FIRST and the browser took the LAST — so every tool inspected the half
+        # the reader never saw, and this module DRAWS those levels onto the chart.
+        ent = published.get(key) or {}
+        lv = ent.get('levels') or {}
         levels = None
-        if m:
-            levels = {'res': [float(x) for x in m.group(1).split(',') if x.strip()],
-                      'sup': [float(x) for x in m.group(2).split(',') if x.strip()]}
+        if lv.get('res') is not None and lv.get('sup') is not None:
+            levels = {'res': [float(x) for x in lv['res']],
+                      'sup': [float(x) for x in lv['sup']]}
         try:
             svg, cap, meta = build_svg(market, series, levels)
         except Exception as e:                                # noqa: BLE001

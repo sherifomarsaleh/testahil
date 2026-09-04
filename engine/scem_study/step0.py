@@ -7,8 +7,9 @@ transform is applied (data_quality.clean_ohlc -> backtest_v3 on the calendar
 robust_verdict across bootstrap blocks {2,3,4}). SCEM is NEW coverage: it has
 no committed fitted_configs entry to reconcile a verdict against, so the
 reconciliation ASSERT here is on the FIT ITSELF — the (nu, width_cal) used must
-be exactly the committed EG production fit, and the market-panel gate verdict
-must match the committed registry (PASS).
+be exactly the committed EG production fit, and the committed EG panel
+must be present and non-empty. The skill verdict is READ but never gated on: it is
+retired, and a study asserting on a retired construction is asserting on nothing.
 """
 import sys, os, json
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -29,8 +30,18 @@ with open(os.path.join(HERE, '..', 'fitted_configs.json')) as f:
 NU, CAL = float(reg['nu']), float(reg['width_cal'])
 assert (NU, CAL) == (float(EG.nu), float(EG.width_cal)), \
     f"registry ({NU},{CAL}) != profile ({EG.nu},{EG.width_cal}) — mirror out of sync"
-assert reg['market_verdict'] == 'PASS', reg['market_verdict']
-assert 'SCEM' not in reg['panel_names'], "SCEM already covered — not new coverage"
+assert reg['market_verdict'] in ('PASS', 'PARITY', 'FAIL'), reg['market_verdict']
+# [R-CAL-03] THE SKILL VERDICT IS RETIRED and cannot gate anything. This line used to
+# demand PASS, which no market has printed on nine of ten fits and which excluded nobody
+# in the whole history of the tally; it is read here only to confirm the registry parses.
+# What is asserted instead is the record a reader is actually shown [R-CAL-02] — the fit
+# this study stands on is the committed production fit, checked above, and the market's
+# own resolved-window coverage is readable rather than absent.
+assert isinstance(reg.get('panel_names'), list) and reg['panel_names'], \
+    'the EG panel is empty — an absent panel is not a clean panel'
+_covered = 'SCEM' in reg['panel_names']
+print('Step 0: SCEM is %s the committed EG panel (%d names)'
+      % ('IN' if _covered else 'NOT IN', len(reg['panel_names'])))
 
 # ---- Step 0.0 — data-quality gate ----------------------------------------
 df_raw = raw_load(os.path.join(HERE, 'SCEM_Stock_Price_History.csv'))
@@ -60,6 +71,9 @@ summ = dict(
     windows_scored=int(len(r)), windows_prebreak_dropped=int(n_all - len(r)),
     first_origin=str(r['origin'].iloc[0].date()), last_origin=str(r['origin'].iloc[-1].date()),
     nu=NU, width_cal=CAL,
+    # the liquidity fact the study's own caveat rests on: it was quoted in
+    # prose and recorded nowhere, so nothing could check it.
+    flat_frac=float(scr['flat_frac']), max_abs_log=float(scr['max_abs_log']),
     skill_norm=float(skill), skill_raw=float(skill_raw),
     verdict=verd,
     ci_blocks={str(b): [float(detail[b][0]), float(detail[b][1]), detail[b][2]]

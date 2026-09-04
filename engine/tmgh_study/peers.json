@@ -5,8 +5,8 @@
    "name": "Emaar Misr for Development",
    "market": "EG",
    "why": "off-plan developer, comparable payment plans and handover clock",
-   "close": 11.53,
-   "as_of": "2026-07-28",
+   "close": 13.7,
+   "as_of": "2026-09-01",
    "source": "engine/raw_ohlc/EG/EMFD.csv",
    "tier": "A (this repository's own committed price library)"
   },
@@ -15,8 +15,8 @@
    "name": "Sixth of October Development & Investment (SODIC)",
    "market": "EG",
    "why": "integrated-community developer, similar product mix",
-   "close": 27.48,
-   "as_of": "2026-07-27",
+   "close": 31.01,
+   "as_of": "2026-09-01",
    "source": "engine/raw_ohlc/EG/OCDI.csv",
    "tier": "A (this repository's own committed price library)"
   },
@@ -45,8 +45,8 @@
    "name": "Orascom Development Egypt",
    "market": "EG",
    "why": "developer with a substantial hospitality leg \u2014 the nearest listed analogue for TMG's three-segment shape",
-   "close": 40.16,
-   "as_of": "2026-07-27",
+   "close": 41.5,
+   "as_of": "2026-09-01",
    "source": "engine/raw_ohlc/EG/ORHD.csv",
    "tier": "A (this repository's own committed price library)"
   }

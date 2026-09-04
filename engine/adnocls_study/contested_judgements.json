@@ -1,0 +1,50 @@
+{
+ "ticker": "ADNOCLS",
+ "as_of": "2026-08-09",
+ "published_central": 5.605378969448954,
+ "published_spot": 6.16,
+ "why_this_file": "Any single contested choice in a valuation is defensible. What is not is a study that resolves EVERY contested choice the same way and never notices \u2014 which is how a lean survives an audit of its steps. Each is recorded with BOTH framings' values, the side adopted and why, and the binomial sign test is printed. A study landing them all one way is FLAGGED, never failed: a company can genuinely deserve a consistent read, and a gate that failed on it would push studies to resolve judgements inconsistently to stay green.",
+ "both_framings_share_a_bridge": "Every alternative below is computed by this study's own dcf() \u2014 the same function that produces the published figure \u2014 through the same bridge, so the difference between them measures the CHOICE and not the construction.",
+ "judgements": [
+  {
+   "name": "how the market is measured for the beta regression",
+   "adopted": "the published index of the exchange this company is listed on",
+   "alternative": "an equal-weight composite of the same exchange's names",
+   "value_adopted": 5.605378969448954,
+   "value_alternative": 8.018135758598335,
+   "why": "THE SINGLE LARGEST JUDGEMENT IN THIS STUDY, and the beta rule decides it rather than a preference: the regressor is the published index of the exchange the stock is listed on, and a constituent composite is a coverage artefact rather than a market. The two differ because a published index is weighted by size and is dominated by the same large-capitalisation group this company belongs to, while an equal-weight composite gives the exchange's smallest names the same say as its largest. The alternative is published rather than buried because a difference of this size is a fact about index construction that a reader is entitled to see."
+  },
+  {
+   "name": "the charter-rate path through the forecast",
+   "adopted": "reversion toward the mid-cycle rate",
+   "alternative": "today's strength sustained, the company's own guidance path",
+   "value_adopted": 5.605378969448954,
+   "value_alternative": 6.967913574676671,
+   "why": "an independent one-year time charter fixed in early 2026 priced a very large crude carrier well below the spot rate of the moment, and a crude tanker order book near a quarter of the trading fleet is the supply reason why. A forward market that will not pay spot for a year of time is saying it does not expect spot to hold. GUIDANCE IS SCORED AND NEVER CONSUMED, so the sustained path is published as the alternative rather than adopted."
+  },
+  {
+   "name": "how the perpetual capital securities are deducted",
+   "adopted": "at carrying value",
+   "alternative": "at the present value of their perpetual coupon",
+   "value_adopted": 5.605378969448954,
+   "value_alternative": 6.022436875325126,
+   "why": "the securities rank ahead of the ordinary shares whichever way they are classified, so they are deducted in both framings and only the AMOUNT is contested. Carrying value is what the balance sheet states; the present value of the coupon is what the claim is worth at the terminal cost of capital. Both are published and the deduction is weighted in the cost of capital in both."
+  },
+  {
+   "name": "the tax relief on shipping earnings",
+   "adopted": "the reliefs as currently legislated and disclosed",
+   "alternative": "the whole group taxed at the 9 per cent statutory rate",
+   "value_adopted": 5.605378969448954,
+   "value_alternative": 5.114650357299365,
+   "why": "most of the shipping income is relieved under the regime as it stands. The alternative is the downside case for a global minimum tax reaching those earnings, and it is a scenario about the law rather than about the business \u2014 which is why the sensitivity centred on it does NOT reproduce the base case and says so in its own docstring."
+  },
+  {
+   "name": "the day-rate anchor the reversion path converges to",
+   "adopted": "the mid-cycle average as computed",
+   "alternative": "that anchor 10 per cent lower",
+   "value_adopted": 5.605378969448954,
+   "value_alternative": 5.151200767706382,
+   "why": "the anchor is the single quantity the whole reversion path hangs on, and a ten per cent move in it is well inside the span the disclosed quarterly rates have printed."
+  }
+ ]
+}

@@ -5,6 +5,8 @@ import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 os.chdir(HERE)
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+from table_residual import signed_column   # the shared check, not hand-rolled
 exec(open(os.path.join(HERE, 'docx_base.py')).read())
 
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
@@ -192,19 +194,29 @@ P('The model builds five explicit years from the four disclosed segments (sectio
   'year\'s free cash flow at its own forward cost of capital. The full waterfall — every line '
   'of it a live formula in the companion workbook:')
 rows = [['AED mn'] + F['years']]
+# ONE SIGN CONVENTION, AND THE OPERATOR WORDS COME OFF WITH IT. These rows already
+# printed the SIGNED CASH EFFECT while their labels read "less", so "less -2,572"
+# told a reader to add 2,572 — and the working-capital row, positive in a year it
+# releases, sat under the same word as a genuine deduction. The sign does the work.
 for lab, series in [('Revenue', F['rev']), ('EBITDA', F['ebitda']),
-                    ('less depreciation & amortisation', [-x for x in F['dna']]),
+                    ('depreciation & amortisation', [-x for x in F['dna']]),
                     ('EBIT', F['ebit']),
                     (f'NOPAT — EBIT × (1 − {pc(TAXA)})', F['nopat']),
-                    ('add back depreciation & amortisation', F['dna']),
-                    ('less capital expenditure', [-x for x in F['capex']]),
-                    ('less lease replacement', [-x for x in F['rou_repl']]),
-                    ('less change in working capital', [-x for x in F['dnwc']]),
+                    ('depreciation & amortisation added back', F['dna']),
+                    ('capital expenditure', [-x for x in F['capex']]),
+                    # negating a zero prints "-0", which reads as a defect and is not one
+                    ('lease replacement', [-x if x else 0.0 for x in F['rou_repl']]),
+                    ('change in working capital — a release adds, a build subtracts',
+                     [-x for x in F['dnwc']]),
                     ('Free cash flow to the firm', F['fcff']),
                     ('discount factor (glide)', F['df']),
                     ('PV of FCFF', F['pv'])]:
     fmt = p2 if lab.startswith('discount') else n0
     rows.append([lab] + [fmt(x) for x in series])
+for _i in range(len(F['fcff'])):
+    signed_column([F['nopat'][_i], F['dna'][_i], -F['capex'][_i],
+                   -F['rou_repl'][_i], -F['dnwc'][_i]], F['fcff'][_i], dp=0,
+                  what='the cash-flow waterfall, year %d' % (_i + 1))
 table(rows, [2.30, 0.94, 0.94, 0.94, 0.94, 0.94], band_rows={2, 4, 10, 12}, size=8.8)
 caption(f'{T()} — the FCFF waterfall. EBITDA margin holds near {pc(F["ebitda_margin"][0])} '
         '(an OUTPUT of the segment build, not an input); capital intensity glides from '
@@ -603,13 +615,13 @@ rows = [['Component', 'Value', 'Source basis'],
         ['Risk-free rate (Jan-2031 AED T-bond, the longest liquid AED tenor)', pc(IN['rf'],2),
          'UAE MoF/WAM auction release, 30-Jul-2026'],
         ['less UAE sovereign default spread — MARKET-observed on this very bond',
-         pc(IN['sov_spread_rating'],2), 'UAE MoF/WAM auction release: +4bp over UST'],
+         pc(IN['sov_spread_market_observed'],2), 'UAE MoF/WAM auction release: +4bp over UST'],
         ['Risk-free net of the sovereign spread', pc(W['rf_star'],2),
          f"country risk enters ONCE, via the premium; and this clears the "
          f"{pc(IN['ust_matched'],2)} matched-tenor Treasury floor"],
         ['Beta — DU weekly vs the FTSE ADX General Index, 5 years',
          f"{IN['beta']:.3f}", 'own regression; details below'],
-        ['Equity risk premium (UAE total, same market basis)', pc(IN['erp_rating'],2),
+        ['Equity risk premium (UAE total, same market basis)', pc(IN['erp_market_basis'],2),
          'Damodaran mature 4.23% + a 6bp country premium scaled off the same 4bp'],
         ['Cost of equity', pc(W['ke_exp'],2), 'build, not assumption'],
         ['Marginal cost of debt (AED sovereign + GCC telecom spread)', pc(IN['kd'],2),
@@ -664,8 +676,8 @@ rows = [['Contested construction', 'Base', 'Alternative', 'Worth (AED/share)'],
          pc(IN['rf'],2), pc(IN['rf_alt_long'],2),
          f"{p2(DCF['ps_rf_long'])} vs {p2(DCF['ps'])} ({p2(DCF['ps_rf_long']-DCF['ps'])})"],
         ['Sovereign basis: market-observed 4bp (primary) vs the ratings table 42bp',
-         f"spread {pc(IN['sov_spread_rating'],2)}, ERP {pc(IN['erp_rating'],2)}",
-         f"spread {pc(IN['sov_spread_mkt'],2)}, ERP {pc(IN['erp_mkt'],2)}",
+         f"spread {pc(IN['sov_spread_market_observed'],2)}, ERP {pc(IN['erp_market_basis'],2)}",
+         f"spread {pc(IN['sov_spread_damodaran_rating'],2)}, ERP {pc(IN['erp_rating_basis'],2)}",
          f"cost of capital {pc(W['wacc_exp'],2)} vs {pc(W['wacc_exp_mkt'],2)}; the ratings basis "
          f"breaches the matched-tenor Treasury floor"],
         ['Beta: regression vs the sector-implied prior',

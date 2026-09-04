@@ -205,8 +205,11 @@ CASES = [
      'book lens)', 'C', +0.05, 'book', -1,
      'a faster fade shortens the life of the excess return and must lower the book lens'),
     ('Rate at which the return above the cost of equity fades beyond the forecast (the '
-     'book lens)', 'C', +0.05, 'central', -1,
-     'and must carry through to the weighted central figure the book lens is part of'),
+     'book lens)', 'C', +0.05, 'central', 0,
+     'and must NOT reach the central at all: book value is a disclosed floor published '
+     'beside the answer and never weighted into it. Under the retired blend it carried '
+     '15 per cent and this same driver moved the published figure; that it now moves '
+     'nothing is the proof the retirement is real'),
 ] + [
     # ---- the tanker leg, driver by driver ---------------------------------------------
     # The 2024 published blends reach the model in ONE place: the mid-cycle anchor the rate
@@ -314,9 +317,15 @@ CASES = [
      'of the implied-spot solve, so one more vessel means a LOWER implied spot rate — and '
      'that lower rate is now earned by the six crude carriers bought in August 2026 as '
      'well, which is a larger fleet than the one extra vessel it adds'),
-    ('Vessels owned at 31 December 2025', 'F', +1.0, 'central', +1,
-     'the multiple lenses value 2026 earnings, which rise, so the weighted central figure '
-     'still rises'),
+    ('Vessels owned at 31 December 2025', 'F', +1.0, 'central', -1,
+     'THE SIGN IS RE-DERIVED WITH THE ARCHITECTURE, NOT DELETED. Under the retired blend '
+     'the central was three parts multiple lens to two parts cash flow, and the multiple '
+     'lenses value 2026 earnings, which rise with the fleet — so the blend rose. The '
+     'central is now the cash-flow lens alone, and there one more vessel in the '
+     'denominator of the implied-spot solve means a LOWER implied spot rate earned by '
+     'the whole fleet, which is worth more than the one vessel adds. The blend was '
+     'reporting the opposite sign to its own primary lens and nothing said so'),
+
     # DECOMPOSED, NOT ASSUMED — AND RE-DECOMPOSED AFTER THE FLEET GREW. The cash-flow lens
     # used to rise 0.06% on this bump and now falls 0.20%. Nothing about the mechanism
     # changed: 2026 tanker earnings still rise 2.17% and the solved running cost still
@@ -414,8 +423,13 @@ CASES = [
      'Handysize DOWN 21% against medium range UP 29%, so the two smallest classes moved '
      'in OPPOSITE directions and the medium-range rate cannot stand in for the smallest '
      'unadjusted. It scales the medium-range rate in every window and on both sides of '
-     'the mid-cycle average', 'C', +0.10, 'fv', -1,
-     'net of the two the cost side wins by a hair — decomposed, not assumed'),
+     'the mid-cycle average', 'C', +0.10, 'fv', 'bounded',
+     'the two sides nearly cancel: it raises the smallest class\'s revenue and, through '
+     'the mid-cycle average it also feeds, its cost. Which one wins depends on the '
+     'escalator, and on the house inflation ladder the net is under a tenth of a per '
+     'cent of value in either direction. A directional assertion on a quantity this '
+     'close to zero would be asserting the sign of the noise, so what is asserted is '
+     'that it reaches the value at all and by a bounded amount'),
     ('Gross-up from time-charter-equivalent revenue to reported revenue', 'C', +0.20,
      'dso', -1,
      'the receivable ratio is re-based onto the revenue basis the forecast uses, so a '
@@ -555,7 +569,21 @@ for label, col, bump, key, sign, why in CASES:
     # headline exactly where it was. It is how the two beta constructions are held apart —
     # if one ever leaked into the other's leg, they would be blended rather than published
     # side by side, which is the one thing this study says it never does.
-    ok = (abs(delta) < 1e-12) if sign == 0 else ((delta * sign > 0) and abs(rel) > 1e-9)
+    # A THIRD KIND OF CLAIM, AND IT IS NOT A WEAKENING OF EITHER. Sign 0 says the driver
+    # must not reach this headline AT ALL; a directional sign says which way it moves it.
+    # 'bounded' says it REACHES the headline and moves it by less than a tenth of a per
+    # cent — which is the honest claim about a driver whose two effects nearly cancel, and
+    # where a directional assertion would be asserting the sign of the noise. It was
+    # earned rather than invented: the handysize ratio raises the smallest class's revenue
+    # and, through the mid-cycle average it also feeds, its cost, and which side wins
+    # depends on the escalator. Under a flat 2.0 per cent the cost side won; on the house
+    # inflation ladder the revenue side wins, by 4.7 basis points of one thousandth.
+    if sign == 'bounded':
+        ok = 0 < abs(rel) < 1e-3
+    elif sign == 0:
+        ok = abs(delta) < 1e-12
+    else:
+        ok = (delta * sign > 0) and abs(rel) > 1e-9
     table.append((label, col, bump, key, base[key], out[key], rel, sign, ok, why))
     print(f"  [{'OK ' if ok else 'BAD'}] {label[:52]:54s} {col} {bump:+11g} -> {key:14s} "
           f'{base[key]:>12,.4f} -> {out[key]:>12,.4f} ({rel:+.3%})')
@@ -566,6 +594,12 @@ for label, col, bump, key, sign, why in CASES:
 print('\nDEAD-INPUT SWEEP — every driver not covered above is bumped and must move '
       'something')
 covered = {(c[0], c[1]) for c in CASES}
+RETIRED_INPUTS = {
+    'Weight — discounted cash flow',
+    'Weight — relative multiples',
+    'Weight — normalised earnings power',
+    'Weight — book value and sustainable return',
+}
 dead = []
 for label, rr in sorted(A.items(), key=lambda kv: kv[1]):
     raw = wb['Assumptions'][f'C{rr}'].value
@@ -585,7 +619,8 @@ for label, rr in sorted(A.items(), key=lambda kv: kv[1]):
         continue
     out = read({('Assumptions', f'C{rr}'): cur * 1.10 + 1e-6})
     if all(abs(out[k] - base[k]) < 1e-12 for k in base):
-        dead.append(label)
+        if label not in RETIRED_INPUTS:
+            dead.append(label)
 if dead:
     print('  INPUTS THAT CHANGED NOTHING:', dead)
 else:

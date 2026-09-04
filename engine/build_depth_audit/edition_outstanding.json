@@ -1,0 +1,13 @@
+{
+ "_why": "[R-ENF-02] ratchet for scripts/check_edition_date.py. Delivered valuation studies that did not carry their own edition date in their masthead when the check was adopted (03-Sep-2026). Each gets it at its next re-issue. MAY ONLY EVER SHORTEN (--prune).",
+ "_found_by": "Reading the rendered pages, not by any gate. ARCC's stale masthead was recorded as one study's defect; reading PHDC the same way found the identical thing, which made it a class.",
+ "_adopted": "2026-09-03",
+ "_examined_at_adoption": 31,
+ "outstanding": {
+  "engine/adnocls_study/ADNOCLS_Valuation_Study_09-08-2026_public.docx": "the masthead states '16 on 2026' and the file is dated 2026-08-09",
+  "engine/du_study/DU_Valuation_Study_09-08-2026_public.docx": "the edition date 2026-08-09 appears only at paragraph 74, not in the masthead",
+  "engine/gbco_study/GBCO_Valuation_Study_08-07-2026_public.docx": "the edition date 2026-07-08 appears only at paragraph 167, not in the masthead",
+  "engine/riyadhcable_study/RIYADHCABLE_Valuation_Study_18-08-2026_public.docx": "the edition date 2026-08-18 appears only at paragraph 119, not in the masthead",
+  "engine/savola_study/SAVOLA_Valuation_Study_19-08-2026_public.docx": "the edition date 2026-08-19 appears NOWHERE in the document"
+ }
+}

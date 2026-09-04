@@ -8,6 +8,8 @@ import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+from table_residual import signed_column, waterfall   # the shared check, not hand-rolled
 exec(open('docx_base.py').read())
 from inputs import V
 
@@ -37,10 +39,21 @@ PCW = lambda x: f"{x*100:.0f}%"          # unsigned: weights, shares, distances 
 M3 = ST['horizons']['3M']; M1 = ST['horizons']['1M']
 
 masthead()
+import datetime as _dt
+# ONE PLACE THE EDITION IS NAMED, read by the masthead and by the save.
+EDITION_FILE = 'EGCH_Valuation_Study_03-09-2026.docx'
+
 P("EGYPTIAN CHEMICAL INDUSTRIES (KIMA)", size=21, bold=True, space_after=1)
 P("Egyptian Exchange: EGCH  ·  Aswan  ·  Nitrogen fertilizers and industrial chemicals",
   size=11, color=BRASS, space_after=1)
-P(f"Valuation study — 1 September 2026  ·  Reporting and valuation currency: Egyptian pounds  "
+# THE EDITION DATE WAS TYPED AND WENT STALE. This read "1 September 2026" on the
+# 03-09-2026 edition, and check_edition_date passed it: that gate asks whether the
+# edition date appears in the masthead, and the ANCHOR PRICE line beside this one carries
+# 2026-09-03, which is a perfectly good rendering of it. The gate saw the right date next
+# to the wrong one. A date this study can compute is a date it must not type.
+_EDITION = _dt.datetime.strptime(EDITION_FILE.split('_')[-1][:10], '%d-%m-%Y').date()
+P(f"Valuation study — {_EDITION.day} {_EDITION.strftime('%B %Y')}  ·  Reporting and "
+  f"valuation currency: Egyptian pounds  "
   f"·  Anchor price EGP {E2(SPOT)} at the close of {V('spot_price_date')}",
   size=10, color=GREY, space_after=10)
 
@@ -202,10 +215,20 @@ for lab, k in [("Revenue", 'revenue'), ("EBITDA", 'ebitda'),
                ("Depreciation and amortisation", 'dep'), ("EBIT", 'ebit'),
                ("NOPAT — EBIT after tax", 'nopat')]:
     rows.append([lab] + [E(r[k]) for r in R])
-rows.append(["Add back depreciation"] + [E(r['dep']) for r in R])
-rows.append(["Less capital expenditure"] + [E(-r['capex']) for r in R])
-rows.append(["Less change in working capital"] + [E(-r['dwc']) for r in R])
+# ONE SIGN CONVENTION, AND THE OPERATOR WORDS COME OFF WITH IT. Every one of these rows
+# already printed the SIGNED CASH EFFECT — capital expenditure as -2,729, and the working
+# capital movement as +788 in a year it releases — under labels reading "Less". "Less
+# -2,729" tells a reader to add 2,729, and in the next year the same row prints -220 under
+# the same word. The sign does the work here, exactly as it does in the top half of every
+# statement in this study, so the words go and the build asserts the column sums.
+rows.append(["Depreciation added back"] + [E(r['dep']) for r in R])
+rows.append(["Capital expenditure"] + [E(-r['capex']) for r in R])
+rows.append(["Change in working capital — a release adds, a build subtracts"]
+            + [E(-r['dwc']) for r in R])
 rows.append(["FREE CASH FLOW TO THE FIRM"] + [E(r['fcff']) for r in R])
+for _i, _r in enumerate(R):
+    signed_column([_r['nopat'], _r['dep'], -_r['capex'], -_r['dwc']], _r['fcff'], dp=0,
+                  what='the cash-flow waterfall, year %d' % (_i + 1))
 rows.append(["Discount rate from the glide"] + [PC2(w) for w in DR['wacc_path']])
 rows.append(["Discount factor"] + [f"{r['df']:.4f}" for r in R])
 rows.append(["PRESENT VALUE OF FREE CASH FLOW"] + [E(r['pv']) for r in R])
@@ -232,9 +255,17 @@ rows.append(["EQUITY VALUE", E(BASE['bridge']['equity']), E(HALT['bridge']['equi
 rows.append(["VALUE PER SHARE (EGP)", E2(BASE['bridge']['per_share']),
              E2(HALT['bridge']['per_share'])])
 table(rows, [3.0, 1.95, 1.95], size=8.9, band_rows={3, 4, 8, 9})
-caption("{T}.  Net debt is larger than the enterprise value the cash flows support in "
-        "the carried-through column. That is why the equity value there is negative, and it "
-        "is stated rather than clipped to zero.")
+# THE CAPTION DESCRIBED AN EARLIER EDITION'S NUMBERS AND ITS OWN TABLE REFUTED IT. It
+# said net debt was LARGER than the enterprise value and that the equity was therefore
+# NEGATIVE, three rows under a table showing an enterprise value of EGP 11,085mn against
+# net debt of EGP 10,032mn and an equity of +4,591mn. It is computed now, from the same
+# two figures the table prints, so it cannot describe a bridge this study is not showing.
+_ev, _nd = BASE['bridge']['ev'], abs(BASE['bridge']['net_debt'])
+caption("{T}.  Net debt of EGP %s million stands against an enterprise value of EGP %s "
+        "million that the cash flows support, so the equity in the carried-through column "
+        "is the %s residual between two large numbers — which is why it moves so violently "
+        "on any change to either. It is stated rather than clipped."
+        % (E(_nd), E(_ev), 'thin' if _ev - _nd < 0.25 * _ev else 'narrow'))
 figure('fig2_bridge.png', 6.9, "{F}.  The bridge, carried-through case.")
 
 # THE HEADING, THE CAPTION AND THE LADDER ANNOTATION ALL DESCRIBED A NEGATIVE
@@ -280,13 +311,22 @@ for w, note in [(0.2500, "roughly the rate this study builds from the sovereign'
     rows.append([PC(w), E2(FLAT[f"{w:.4f}"]), note])
 rows.append([PC(DR['implied_wacc_base']), E2(SPOT),
              "the rate the traded price itself implies"])
-table(rows, [1.5, 1.8, 3.6], size=8.5, band_rows={3, 7}, text_cols=(2,))
-caption(f"{{T}}.  Every row is a full re-run. The sign of the answer turns at about "
-        f"eighteen per cent — five points below what Egypt's own government pays to borrow "
-        f"for ten years. Reaching the traded price needs about "
+# THE CAPTION AND THE BANDED ROW BOTH DESCRIBED A MODEL THIS STUDY NO LONGER PUBLISHES.
+# It said "the sign of the answer turns at about eighteen per cent" and banded that row,
+# under a table whose every value is POSITIVE — 0.75 at 25% rising to 12.57 at 12%. There
+# is no sign change anywhere in it. That sentence and the 18% band belong to an earlier
+# edition whose equity went negative at high rates, the same edition the bridge caption
+# above was still describing. The band now marks the row that is actually the point, and
+# the caption is computed from the ladder's own ends.
+_lo_w, _hi_w = min(FLAT, key=float), max(FLAT, key=float)
+table(rows, [1.5, 1.8, 3.6], size=8.5, band_rows={7}, text_cols=(2,))
+caption(f"{{T}}.  Every row is a full re-run. The answer stays positive across the whole "
+        f"ladder and rises from EGP {E2(FLAT[_hi_w])} at {PC(float(_hi_w))} to EGP "
+        f"{E2(FLAT[_lo_w])} at {PC(float(_lo_w))}; what moves is how far below the price "
+        f"it sits. Reaching the traded price needs about "
         f"{PC(DR['implied_wacc_base'])}, which is {PC(V('rf_observed') - DR['implied_wacc_base'])} "
-        f"below the sovereign. That, and not the capital programme, is the disagreement "
-        f"between this study and the market.")
+        f"below what Egypt's own government pays to borrow for ten years. That, and not "
+        f"the capital programme, is the disagreement between this study and the market.")
 
 H2("1.2  Book value and sustainable return — the asset lens")
 B = LN['book']
@@ -331,11 +371,30 @@ P(f"Egyptian industrial businesses have generally changed hands between {E1(RL['
   f"{E(RL['ev_mid'])} million and, after the debt and the non-operating stack, EGP "
   f"{E2(RL['value_per_share'])} a share — a range of EGP {E2(RL['value_low'])} to EGP "
   f"{E2(RL['value_high'])} across the band.")
-P(f"The two numbers worth putting side by side are these: at the traded price the shares "
-  f"change hands at {E1(RL['implied_at_market'])} times that same forward EBITDA, while the "
-  f"cash-flow lens values them at {E1(RL['implied_at_model'])} times. One is above the "
-  f"Egyptian industrial band and the other below it. That is the whole disagreement in a "
-  f"single number, and it is reported rather than resolved.", bold=True)
+# TWO DEFECTS IN ONE SENTENCE, AND THE SECOND WAS THE SENTENCE CONTRADICTING ITSELF.
+# It compared the traded multiple with the model's while the two sat on DIFFERENT
+# definitions of enterprise value — the traded numerator carried the listed stakes and the
+# investment property, which the model's excludes and the bridge adds back separately — so
+# the like-for-like figure is 7.3x, not 8.0x. And it then said "one is above the Egyptian
+# industrial band and the other below it" when 8.0 sits INSIDE a band of 6.0 to 9.9. The
+# comparison is now like-for-like and the band relation is COMPUTED, not asserted; the
+# corrected reading is the more interesting one, because the market is paying a multiple
+# squarely inside the range and the cash-flow lens is paying a third of it.
+def _vs_band(m):
+    return ('above' if m > RL['mult_high'] else
+            'below' if m < RL['mult_low'] else 'inside')
+_mk, _md = RL['implied_at_market_ex_nonop'], RL['implied_at_model']
+P(f"The two numbers worth putting side by side are these: at the traded price the "
+  f"operating business changes hands at {E1(_mk)} times that same forward EBITDA, while "
+  f"the cash-flow lens values it at {E1(_md)} times — both measured on the enterprise "
+  f"value this study bridges from, with the listed stakes and the investment property "
+  f"taken out of each. One sits {_vs_band(_mk)} the Egyptian industrial band and the "
+  f"other {_vs_band(_md)} it. That is the whole disagreement in a single number, and it "
+  f"is reported rather than resolved.", bold=True)
+P(f"Buying the equity at the traded price buys the stakes and the property too, and on "
+  f"that whole-company basis the multiple is {E1(RL['implied_at_market'])} times. It is "
+  f"the larger number and it is not the comparable one, which is why the sentence above "
+  f"uses the operating figure.", size=9.5, italic=True, color=GREY)
 P("This lens gives the highest of the four answers, and the reason matters. A multiple of "
   "forward operating profit never asks what the capital programme does to cash: it values "
   "the plant as though the money being spent on the new complex were not being spent. That "
@@ -669,8 +728,27 @@ rows = [["Component", "Rating basis", "CDS basis", "Source"],
          f"currency wedge of {PC(WC['fx_wedge_path'][0])}"],
         ["Weights, equity and debt", f"{PC(WC['we'])} / {PC(WC['wd'])}",
          f"{PC(WC['we'])} / {PC(WC['wd'])}", "Market-value equity, never book"],
-        ["Cost of capital, year one", PC2(DR['wacc_path'][0]), PC2(WC['wacc_cds']),
-         "The rating basis is carried into the valuation as the more conservative"]]
+        # THE RATING COLUMN PRINTED THE CDS NUMBER AND THE NOTE NAMED THE WRONG BASIS AND
+        # THE WRONG DIRECTION. It read wacc_path[0], which IS the published rate and is the
+        # CDS basis — so both columns showed 25.76% and neither could be reproduced from
+        # the rating rows above it: 66.2% x 30.99% + 33.8% x 18.86% is 26.88%. The note
+        # then said "the rating basis is carried into the valuation as the more
+        # conservative", and the study carries the CDS basis, which is the LOWER of the two
+        # and therefore the LESS conservative. Carrying it is right — [R-COC-01] names the
+        # swap basis as central by default, being the market's own live pricing of the
+        # sovereign's credit against an agency judgement updated in steps — and the note
+        # said none of that. Each column now shows its own basis and the note is computed.
+        ["Cost of capital, year one", PC2(WC['wacc_rating']), PC2(WC['wacc_cds']),
+         "The swap basis is carried into the valuation, as the market's own live pricing "
+         "of the sovereign's credit against a rating judgement updated in steps. It is "
+         # A DIFFERENCE OF TWO RATES IS BASIS POINTS, NOT A PERCENTAGE. Printing it as
+         # "1.13%" beside two rates in per cent invites a reader to take it as a
+         # proportional difference, which it is not; the two framings differ by a factor
+         # of twenty here.
+         f"{(WC['wacc_rating'] - WC['wacc_cds']) * 1e4:,.0f} basis points BELOW the "
+         "rating basis, so the "
+         "choice is not the conservative one and is not made on that ground; section 1.9 "
+         "prices what the other basis is worth"]]
 table(rows, [1.85, 1.05, 1.05, 2.95], size=8.5, band_rows={3, 6, 9}, text_cols=(3,))
 caption("{T}.  The cost of capital, built rather than assumed, on both premium bases.")
 H2("The cost of debt — three pieces of evidence, not an assumption")
@@ -868,11 +946,20 @@ H2("Percentile map (Egyptian pounds a share)")
 rows = [["Percentile", f"One month, to {M1['grade_date']}", f"Three months, to {M3['grade_date']}"]]
 for p in ('p5', 'p25', 'p50', 'p75', 'p95'):
     rows.append([p.upper().replace('P', 'Percentile '), E2(M1['pct'][p]), E2(M3['pct'][p])])
-rows.append(["Probability the price ends above today's", PC(M1['p_above']), PC(M3['p_above'])])
+# "TODAY'S" IS AMBIGUOUS AND WAS THE WRONG PRICE. The probability is the share of paths
+# finishing above the price the cone was STRUCK at, which is the close of 2026-08-06, not
+# the valuation anchor a month later; a reader taking "today's" for the masthead price got
+# a figure measured against something else. The row now names the price and its date.
+_SK = json.load(open(os.path.join(HERE, 'strike_result.json')))
+rows.append(["Probability the price ends above EGP %s, the close it was struck at on %s"
+             % (E2(_SK['spot']), _SK['anchor_date']),
+             PC(M1['p_above']), PC(M3['p_above'])])
 table(rows, [2.4, 2.25, 2.25], size=8.9, band_rows={6})
 caption("{T}.  The map says where the price may end. It is not a forecast of where it "
         "will end, and the probability in the last row is the share of paths finishing "
-        "above the anchor, not a claim about direction.")
+        "above the anchor, not a claim about direction. THE ANCHOR IS NOT THE VALUATION "
+        "PRICE: the cone is struck on the price history and the valuation on the latest "
+        "close, and they are a month apart here — two clocks, both dated, never mixed.")
 figure('fig12_dist1m.png', 6.6,
        f"{{F}}.  The shape of the distribution at one month, to {M1['grade_date']}.")
 figure('fig13_dist3m.png', 6.6,
@@ -1453,5 +1540,5 @@ box([("Educational analysis.  ", "This document is an independent educational an
      ("No position.  ", "The author holds no position in the subject and receives no "
       "compensation from it or from any party with an interest in it.")])
 
-finalise('EGCH_Valuation_Study_03-09-2026.docx')
-print("wrote EGCH_Valuation_Study_03-09-2026.docx")
+finalise(EDITION_FILE)
+print('wrote ' + EDITION_FILE)

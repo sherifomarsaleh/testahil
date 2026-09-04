@@ -38,6 +38,7 @@ sys.path.insert(0, HERE)
 import technicals as TA                                    # noqa: E402
 
 DATA_JS = os.path.join(ROOT, 'assets', 'data.js')
+import site_data                                             # noqa: E402
 RAW = os.path.join(HERE, 'raw_ohlc')
 
 # exchange prefix on the site's `code` field -> raw_ohlc market folder
@@ -437,6 +438,26 @@ def run(write=False, only=None, computed_on=None):
 
     if write:
         open(DATA_JS, 'w', encoding='utf-8').write(src)
+        # THE WRITE IS VERIFIED BY THE PARSER, NOT BY A SYNTAX CHECK [R-ENF-03]. This
+        # module edits data.js as TEXT — correctly, because a JSON round-trip would
+        # destroy the file's formatting and its prose comments — and a text edit can
+        # leave an entry declaring `levels` TWICE. That file is valid JavaScript, passes
+        # `node --check`, and the parser then takes the OTHER one, which is the precise
+        # defect this rule was adopted on: a page published a support ABOVE its own close
+        # while every gate reported it clean. So what is asserted here is not "does it
+        # parse" but "does the PARSER return what this pass meant to write".
+        published = site_data.read_object('TICKERS', DATA_JS)
+        bad = []
+        for r in report:
+            try:
+                site_data.assert_written(
+                    'TICKERS' if r['key'] in published else 'METALS', r['key'],
+                    {'levels': r['levels'], 'tech': r['tech']}, DATA_JS)
+            except RuntimeError as e:
+                bad.append(str(e))
+        if bad:
+            raise SystemExit('\n\n'.join(bad))
+        print(f'verified through a real parse: {len(report)} entr(ies)')
         json.dump(report, open(os.path.join(HERE, 'technicals_report.json'), 'w'),
                   indent=1)
         print(f'wrote {DATA_JS}')

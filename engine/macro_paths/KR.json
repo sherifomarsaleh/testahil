@@ -1,11 +1,127 @@
 {
  "market": "KR",
- "country": "Korea",
+ "country": "Korea, Republic of",
  "currency": "KRW",
- "as_of": null,
+ "as_of": "2026-09-03",
  "regime": "mature",
- "status": "pending",
- "pending_reason": "The Bank of Korea's 2% target and its forward path are not sourced here yet. 3 Korean names, all Phase 2.",
- "how_to_source": "Fill this file to the shape of EG.json: every level published by a named institution on a named date, or derived here by an identity from numbers that are; a year between two published endpoints is labelled 'interpolated between published endpoints' and never called a forecast. macro_path.load() validates the shape and refuses a file that is internally incoherent.",
- "note": "A PENDING file is deliberate, not an oversight: engine/macro_path.py RAISES on load rather than falling back to a neighbouring market, because an empty answer is not a clean answer [R-ENF-04]. Every calibrated name today is Egyptian."
+ "regime_note": "Inflation is at the Bank of Korea's published 2 percent target and the call rate sits near its own long-run level, so the cost-of-capital glide has nothing to travel and cost_of_capital.py returns a FLAT schedule for any regime other than 'transition'. The won floats, so unlike the pegged markets the CURRENCY path is derived rather than fixed.",
+ "inflation": {
+  "latest": {
+   "value": 0.021,
+   "period": "2025, annual average consumer prices",
+   "source": "International Monetary Fund, World Economic Outlook database, series PCPIPCH (inflation, average consumer prices, annual percent change), Korea (KOR), read live from the IMF datamapper API on 3 September 2026.",
+   "date": "2025-12-31",
+   "tier": "Country"
+  },
+  "path": [
+   {
+    "year": 2026,
+    "value": 0.025,
+    "basis": "IMF World Economic Outlook projection"
+   },
+   {
+    "year": 2027,
+    "value": 0.019,
+    "basis": "IMF World Economic Outlook projection"
+   },
+   {
+    "year": 2028,
+    "value": 0.02,
+    "basis": "IMF World Economic Outlook projection"
+   },
+   {
+    "year": 2029,
+    "value": 0.02,
+    "basis": "IMF World Economic Outlook projection"
+   },
+   {
+    "year": 2030,
+    "value": 0.02,
+    "basis": "IMF World Economic Outlook projection"
+   }
+  ],
+  "path_source": "International Monetary Fund, World Economic Outlook database, series PCPIPCH (inflation, average consumer prices, annual percent change), Korea (KOR), read live from the IMF datamapper API on 3 September 2026. The series runs to 2031 and prints 2.0% flat from 2028 onward; no step here is interpolated.",
+  "target": {
+   "value": 0.02,
+   "band": 0.005,
+   "horizon": "long run",
+   "source": "The Bank of Korea's published inflation target, 2 percent on the consumer price index \u2014 an EXPLICIT target set by the central bank, unlike the pegged markets where the anchor has to be imported. The 0.5pp band is the dispersion of the IMF's own published Korean projections about it over 2026-2031 (2.5%, then 1.9%, then 2.0% held).",
+   "date": "2026-09-03"
+  },
+  "terminal": {
+   "value": 0.02,
+   "source": "The Bank of Korea's 2 percent target, which is also the IMF's own published figure for 2028 through 2031 \u2014 the two agree, which is a coherence check rather than a second assumption.",
+   "date": "2026-09-03"
+  }
+ },
+ "policy_rate": {
+  "current": {
+   "headline": "call_rate",
+   "call_rate": 0.02537,
+   "interbank_3m": 0.0291,
+   "source": "Federal Reserve Economic Data (FRED), series IRSTCI01KRM156N (immediate rates, call money / interbank rate) 2.537% and IR3TIB01KRM156N (3-month interbank) 2.91%, both June 2026, read live 3 September 2026.",
+   "date": "2026-06-01"
+  },
+  "path": [
+   0.02537,
+   0.02537,
+   0.02537,
+   0.02537,
+   0.02537
+  ],
+  "path_basis": "FLAT AT THE OBSERVED CALL RATE, and that is a statement rather than a placeholder: this market's regime is 'mature', so the glide's scope is nil and a shaped path would do no work while implying a rate call nothing here sources. The Bank of Korea publishes no dot plot; inventing a glide to fill the field would be the free parameter the promotion rule forbids."
+ },
+ "sovereign": {
+  "yield_10y": {
+   "value": 0.04181,
+   "source": "Federal Reserve Economic Data (FRED), series IRLTLT01KRM156N (long-term government bond yields, 10-year), 4.181% for June 2026, read live 3 September 2026.",
+   "date": "2026-06-01",
+   "tier": "Country"
+  },
+  "default_spread_rating": 0.0042,
+  "default_spread_market": 0.002,
+  "spread_source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. Korea row: Moody's Aa2; adjusted default spread 0.42% (rating basis); credit-default-swap spread 0.20% (market basis); country risk premium 0.64%; total ERP 4.87% on the rating basis and 4.53% on the CDS basis.",
+  "damodaran_date": "2026-01-05"
+ },
+ "erp_market": 0.0453,
+ "erp_rating": 0.0487,
+ "erp_source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. Korea row, total equity risk premium 4.87% (rating) and 4.53% (market/CDS).",
+ "corporate_tax_rate": {
+  "value": 0.264,
+  "source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. Korea row, 26.40%.",
+  "date": "2026-01-05"
+ },
+ "fx": {
+  "spot": {
+   "value": 1422.44083333333,
+   "pair": "USD/KRW",
+   "source": "World Bank series PA.NUS.FCRF (official exchange rate, LCU per US$, period average), Korea, 2025 = 1422.44, read live 3 September 2026.",
+   "date": "2025-12-31"
+  },
+  "derivation": "The forward currency path is DERIVED from this path's own inflation ladder against long-run United States inflation by relative purchasing-power parity, never set by hand. A study that escalates costs at domestic inflation while holding the currency still is running two views of one economy [L-048]."
+ },
+ "us_inflation_lt": {
+  "value": 0.022,
+  "source": "Long-run United States CPI inflation 2.2%, the IMF's own published figure for 2029-2031, the foreign leg of the purchasing-power parity relation.",
+  "date": "2026-09-03"
+ },
+ "cost_of_debt_norm": {
+  "terminal": 0.045,
+  "range": [
+   0.042,
+   0.049
+  ],
+  "source": "The long-run Korean investment-grade corporate borrowing norm, taken as the derived terminal risk-free rate of 3.975% plus a 25-90bp spread, midpoint 4.50%. NO KOREAN NAME IN THIS BOOK HAS HAD ITS FACILITY NOTE READ, so this rests on no in-house sourced Kd and is the floor of last resort: the first Korean study to reach the three-assert Kd gate replaces it with its own note.",
+  "date": "2026-09-03"
+ },
+ "real_rate_convention": {
+  "value": 0.019751,
+  "source": "DERIVED, NEVER QUOTED. the FOMC's own longer-run median federal funds projection (3.1%, Summary of Economic Projections of 17 June 2026, FRED FEDTARMDLR) plus the ten-year term premium (0.8751%, Kim-Wright, FRED THREEFYTP10, 28 August 2026) less long-run US inflation (2.2%) = 1.9751%. THE UNITED STATES REAL RATE IS USED FOR A FLOATING CURRENCY AND THAT IS AN ASSUMPTION, NOT AN IDENTITY: it says the long-run real rate is common across open capital markets, which is the textbook position and is what the observed Korean curve supports here \u2014 4.181% nominal less 2.0% terminal inflation is a 2.18% real rate, 21bp from this convention. That agreement is a cross-check, not the source. The derived terminal KRW risk-free rate is 2.0% + 1.9751% = 3.9751% against a live 4.181%.",
+  "date": "2026-09-03"
+ },
+ "erp_terminal": {
+  "value": 0.0487,
+  "source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. Terminal equity risk premium held at the rating-basis Korean ERP of 4.87%; no convergence is assumed for an Aa2 sovereign.",
+  "date": "2026-01-05"
+ }
 }

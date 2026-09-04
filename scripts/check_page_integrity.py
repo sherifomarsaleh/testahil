@@ -78,6 +78,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO / "engine"))
+import site_data  # noqa: E402
 
 # Non-ticker pages: tools, stubs, and indexes that don't carry the five-lens
 # ticker template and so are exempt from checks 1/2/4. Checks 3/5 still apply
@@ -301,12 +303,33 @@ def check_duplicate_rows(pages: dict[str, Path]) -> list[str]:
 
 
 def load_fair_base(data_js: str) -> dict[str, float]:
-    out = {}
-    for m in re.finditer(
-        r"\n  ([A-Z0-9_]+): \{(.{0,2000}?)fair:\s*\{\s*bear:\s*([\d.]+),\s*base:\s*([\d.]+),\s*full:\s*([\d.]+)",
-        data_js, re.S,
-    ):
-        out[m.group(1)] = float(m.group(4))
+    """{key: fair.base} for every published entry, through a real parse [R-ENF-03].
+
+    WHAT THE REGEX MISSED, MEASURED. The pattern this replaced matched `\n  KEY: {` with
+    KEY as [A-Z0-9_]+ — UNQUOTED — and then hunted for `fair:` inside a bounded 2,000-byte
+    window. A JavaScript identifier cannot begin with a digit, so "2POINTZERO" MUST be
+    quoted in the source, and the pattern never matched it: that page has never once been
+    checked for a stale fair value, silently, while the gate reported clean. This repo's
+    own protocol names that exact string as the reason to COUNT AGAINST A KNOWN TOTAL
+    rather than trust a tool's "0 skipped", and the rule was written before this gate was.
+
+    The bounded window is the second defect in the same line: an entry whose `fair` block
+    sits more than 2,000 bytes after its key is skipped with no error, so the population
+    depends on how much prose an entry happens to carry.
+
+    Against the live file: 92 values by regex, 90 in TICKERS plus 3 in METALS by parse —
+    2POINTZERO recovered, and every value the two agree on identical.
+
+    The argument is unused now and kept only so the caller's shape does not change; the
+    parser reads the file itself, which is the point.
+    """
+    del data_js
+    out: dict[str, float] = {}
+    for obj in ("TICKERS", "METALS"):
+        for k, v in site_data.read_object(obj).items():
+            f = v.get("fair") if isinstance(v, dict) else None
+            if isinstance(f, dict) and f.get("base") is not None:
+                out[k] = float(f["base"])
     return out
 
 

@@ -8,14 +8,15 @@
    "ring": "GLOBAL",
    "category": "rate cycle & USD/FX regime",
    "klass": "STRUCTURAL",
-   "headline": "Global easing cycle underway; Fed funds midpoint 3.63% (Jun-2026), which sets the backdrop against which Egypt's own 19.50% policy rate normalises",
-   "source_name": "US Federal Reserve policy history (house FED_SCHEDULE, engine/market_profiles.py)",
+   "headline": "Global easing cycle underway; Fed funds midpoint 3.63% (Jun-2026), which sets the backdrop against which Egypt's own 19.00% policy rate normalises",
+   "source_name": "US Federal Reserve, Federal Open Market Committee policy decisions and the published target range history",
    "source_type": "REGULATOR_OFFICIAL",
    "source_date": "2026-06-18",
    "detail": "",
    "url": "",
    "model_impact": "Anchors the terminal risk-free rate build and the direction of the Kd glide: a falling global rate path is a necessary (not sufficient) condition for the EGP cost-of-debt path assumed in the WACC glide.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   },
   {
    "fid": "F02",
@@ -29,7 +30,8 @@
    "detail": "",
    "url": "",
    "model_impact": "Sets the EBITDA-margin glide DOWN from the FY2025 peak: energy reform is a structural cost headwind that does not reverse with the cycle.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   },
   {
    "fid": "F03",
@@ -43,7 +45,8 @@
    "detail": "",
    "url": "",
    "model_impact": "",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   },
   {
    "fid": "F04",
@@ -57,7 +60,8 @@
    "detail": "",
    "url": "",
    "model_impact": "Supports a higher realised price per tonne than a clinker-weighted mix would give; carried in the realised-price driver rather than as a separate export volume leg.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   },
   {
    "fid": "F05",
@@ -71,7 +75,8 @@
    "detail": "",
    "url": "",
    "model_impact": "Explicit-window risk-free rate = 19.50%. Terminal rf is norm-built off the CBE's OWN stated medium-term target (7%) plus the standard EM real-rate convention (~5.5pp) = 12.5% -- never a historical average.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   },
   {
    "fid": "F06",
@@ -85,7 +90,8 @@
    "detail": "",
    "url": "",
    "model_impact": "Netted OUT of the local-currency risk-free rate in the Ke build so the sovereign default premium is not charged twice (protocol Ke item 3), and used as the country ERP add-on.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   },
   {
    "fid": "F07",
@@ -99,7 +105,8 @@
    "detail": "",
    "url": "",
    "model_impact": "BASE CHANGER. Removes the volume cap that held FY2021-24 utilisation down, and simultaneously removes the price floor the cartel-substitute provided. Drives BOTH the volume-recovery driver UP and the realised- price driver DOWN across the forecast window.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   },
   {
    "fid": "F08",
@@ -113,7 +120,8 @@
    "detail": "",
    "url": "",
    "model_impact": "",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   },
   {
    "fid": "F09",
@@ -127,7 +135,8 @@
    "detail": "",
    "url": "",
    "model_impact": "Sets domestic demand growth in the explicit window; the forecast uses the conservative published 2026 estimate (~1%) rather than the 5-8% optimistic case, and sensitises the difference.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   },
   {
    "fid": "F10",
@@ -141,7 +150,8 @@
    "detail": "",
    "url": "",
    "model_impact": "BASE CHANGER. Establishes FY2025 as a CYCLICAL PEAK, not a new plateau. The normalised-earnings lens is anchored on this, and the explicit window glides margin down from the FY2025 peak rather than holding it.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   },
   {
    "fid": "F11",
@@ -155,7 +165,8 @@
    "detail": "",
    "url": "",
    "model_impact": "The single largest downside driver. Sets the realised-price decline in FY2027-28 and is the mechanism behind the bear case in the sensitivity grid; also caps the terminal margin.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   },
   {
    "fid": "F12",
@@ -169,7 +180,8 @@
    "detail": "",
    "url": "",
    "model_impact": "DRIVER UNLOCK: converts revenue from a top-down growth rate to a bottom-up volume x realised-price unit build. Sets the FY2026 price level directly and the decay path thereafter.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   },
   {
    "fid": "F13",
@@ -183,7 +195,8 @@
    "detail": "",
    "url": "",
    "model_impact": "",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   },
   {
    "fid": "F14",
@@ -197,7 +210,8 @@
    "detail": "",
    "url": "",
    "model_impact": "Sets the relative-multiple lens peer set and confirms the sector-wide (not company-specific) character of the 2025 earnings peak -- which is why the multiple lens is applied to NORMALISED, not trailing, earnings.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   },
   {
    "fid": "F15",
@@ -211,7 +225,8 @@
    "detail": "",
    "url": "",
    "model_impact": "BASE CHANGER, and the key to the whole history. The FY2024 disposal gain is why FY2024 net profit (EGP 3.07bn) is 48% of revenue and why FY2025 profit 'fell' 25% on a 41% revenue rise. FY2024 is excluded as a normalisation base; the gain is stripped to derive underlying FY2024. It also removes the ONLY non-cement earning leg, which is what makes the single operating-company lens correct rather than a two-leg sum.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   },
   {
    "fid": "F16",
@@ -225,7 +240,8 @@
    "detail": "",
    "url": "",
    "model_impact": "Fixes the free float at 22.4% and the share count at 260,788,678 by back-solving the offer (cross-checked against issued capital). The EGP 41 offer price is a disclosed reference point far BELOW the EGP 79.00 spot and is reported as an overhang, never as a fair value.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   },
   {
    "fid": "F17",
@@ -239,7 +255,8 @@
    "detail": "",
    "url": "",
    "model_impact": "DRIVER UNLOCK: resolves the share count, which three aggregators report wrongly at 141.46m. Also explains the IAS-33 restatement of FY2023 EPS to -0.88 (unrestated -1.31 on the pre-issue 92.61m shares).",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   },
   {
    "fid": "F18",
@@ -253,7 +270,8 @@
    "detail": "PRIMARY SOURCE NOT RETRIEVABLE: the audited statements at sinaicement.com/wp-content/uploads/2025/05/SCC-AFS-E-1224.pdf were refused by this environment's egress policy. Provenance is press reporting of the company's own EGX filing, one step removed from the audited print.",
    "url": "",
    "model_impact": "The disclosed history the model is built on. Revenue and net profit are carried as printed; every line between them is DERIVED and labelled.",
-   "is_fs_data": true
+   "is_fs_data": true,
+   "fiscal_period": ""
   },
   {
    "fid": "F19",
@@ -267,7 +285,8 @@
    "detail": "",
    "url": "",
    "model_impact": "Fixes the capital structure: net cash, so the WACC is ~all-equity and the EV->equity bridge ADDS net cash. Treasury income is excluded from FCFF to avoid double-counting the cash.",
-   "is_fs_data": true
+   "is_fs_data": true,
+   "fiscal_period": ""
   },
   {
    "fid": "F20",
@@ -281,7 +300,8 @@
    "detail": "",
    "url": "",
    "model_impact": "",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   },
   {
    "fid": "F21",
@@ -295,7 +315,8 @@
    "detail": "",
    "url": "",
    "model_impact": "",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   },
   {
    "fid": "F22",
@@ -309,7 +330,8 @@
    "detail": "",
    "url": "",
    "model_impact": "",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   },
   {
    "fid": "F23",
@@ -323,7 +345,8 @@
    "detail": "",
    "url": "",
    "model_impact": "",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "fiscal_period": ""
   }
  ],
  "drivers": [
@@ -393,5 +416,8 @@
    ]
   }
  ],
- "qc_line": "QC(m) \u2014 Information Sweep [SCEM, 2026-08-06]: FAIL (2 errors) \u2014 4/4 rings, 23 findings (3 B \u00b7 7 S \u00b7 6 D \u00b7 4 C \u00b7 3 NEG), driver gate 7 rows (5 bottom-up / 2 top-down)"
+ "primary_access": [],
+ "study_year": "",
+ "study_quarters_disclosed": [],
+ "qc_line": "QC(m) \u2014 Information Sweep [SCEM, 2026-08-06]: FAIL (5 errors) \u2014 4/4 rings, 23 findings (3 B \u00b7 7 S \u00b7 6 D \u00b7 4 C \u00b7 3 NEG), driver gate 7 rows (5 bottom-up / 2 top-down) | primary access: NOT ATTEMPTED (0) | FS years: 0 [] | IR findings: 0"
 }

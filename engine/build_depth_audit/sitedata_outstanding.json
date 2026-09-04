@@ -1,20 +1,8 @@
 {
  "_why": "[R-ENF-02] ratchet for scripts/check_site_data_reader.py. Files reading assets/data.js by regular expression when the shared reader was adopted (03-Sep-2026). The rule [R-ENF-03] predates this list by four weeks and bound in the two places somebody had implemented it. MAY ONLY EVER SHORTEN (--prune).",
  "_adopted": "2026-09-03",
- "_examined_at_adoption": 44,
- "outstanding": [
-  "engine/apply_rollforward.py",
-  "engine/apply_technicals.py",
-  "engine/metal_backtest.py",
-  "engine/phdc_study/docx_phdc.py",
-  "engine/rollforward_one.py",
-  "engine/ta_chart.py",
-  "engine/tmgh_study/docx_helpers.py",
-  "engine/tmgh_study/docx_tmgh.py",
-  "engine/tmgh_study/figures.py",
-  "scripts/build_publish_queue.py",
-  "scripts/check_data_freshness.py",
-  "scripts/check_page_integrity.py",
-  "scripts/og_card.py"
- ]
+ "outstanding": [],
+ "_repointed": "03-Sep-2026: the gate's population keyed on the STRING \"data.js\" and so listed three files that never open it \u2014 two carrying the word inside an external-reader scrub list and one in a prose comment. Re-pointed at a PATH CONSTRUCTION per [R-COC-01] and the three removed; the population fell 44 -> 31 because the word appears in prose far more often than the file is read.",
+ "_examined_at_repointing": 32,
+ "_repointed_twice": "03-Sep-2026: a WRITER cannot read data.js through a parse and still write it \u2014 string surgery is the only sound way to preserve the file's formatting and its prose comments \u2014 so holding the three writers to the reader's rule made them a debt that could never be paid, which is the permanently-red check [R-ENF-02] forbids. The clause was re-pointed at what a writer actually owes: proof that the PARSER agrees with what it wrote. That surfaced FOUR MORE writers the string predicate never counted, one of them (refresh_cone_one.py, a cone writer) with no post-write check of any kind, not even node --check."
 }

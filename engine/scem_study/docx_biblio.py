@@ -1,13 +1,15 @@
-"""SCEM_Bibliography_06-08-2026.docx — a standalone source register.
+"""SCEM_Bibliography_04-09-2026.docx — a standalone source register.
 
 Every figure that reaches the study or the model traces to a row here: what it is, where
 it came from, what kind of source that is, and the date the source itself carries.
 Reads study_numbers.json and the sweep register — no numeral is typed here.
 """
-import json, os, sys
+import json
+import re, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(HERE, '..'))
 from docx import Document
 from docx.shared import Pt, Inches, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -137,10 +139,19 @@ def fmt(v):
     return f'{v:,}' if isinstance(v, int) else str(v)
 
 
+# THE REGISTER KEEPS ITS PROVENANCE; THE DELIVERED DOCUMENT DOES NOT PRINT IT.
+# The stripper lived here first and is now engine/outward_source.py, imported rather
+# than copied: one hand-maintained stripper per study is one hole per study, which is
+# [L-084] and the scrub-list finding of the same morning. A rule that one study
+# implements is a rule that one study obeys.
+from outward_source import outward                                  # noqa: E402
+
+
+
 items = sorted(INP.items(), key=lambda kv: (RING_ORDER.get(kv[1]['ring'], 9), kv[0]))
 for i, (k, v) in enumerate(items, 1):
-    rows.append([str(i), k, fmt(v['value']), v['ring'], v['source'], v['date']])
-table(rows, [0.30, 1.70, 0.92, 0.74, 4.98, 0.84], size=7.4)
+    rows.append([str(i), k, fmt(v['value']), v['ring'], outward(v['source']), v['date']])
+table(rows, [0.36, 1.70, 0.92, 0.74, 4.92, 0.84], size=7.4)
 
 # ---------------------------------------------------- source catalogue
 doc.add_page_break()
@@ -283,6 +294,6 @@ P('')
 P('Testahil · Independent valuation research · Educational analysis, not investment advice.',
   size=8.4, italic=True, color=GREY)
 
-OUT = 'SCEM_Bibliography_06-08-2026.docx'
+OUT = 'SCEM_Bibliography_04-09-2026.docx'
 doc.save(OUT)
 print('wrote', OUT)

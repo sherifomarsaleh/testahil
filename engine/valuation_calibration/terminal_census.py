@@ -104,6 +104,8 @@ import re
 from glob import glob
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+_LIVES_F = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'disclosed_lives.json')
+_LIVES = json.load(open(_LIVES_F)) if os.path.exists(_LIVES_F) else {}
 
 # Candidate keys, in preference order. A study is read through the FIRST one present and
 # the census reports which — a resolver that silently guesses is the species of defect
@@ -297,6 +299,40 @@ def read_study(d):
     if 'wacc_term' not in rec:
         pick('wacc_term', 'fwd_wacc', last=True)
 
+    # TWO IDENTITIES BEFORE DECLARING A STUDY UNREADABLE, EACH LABELLED AS DERIVED.
+    # [ADDED 03-Sep-2026.] Nine of twenty-four studies read as unreadable, and inspecting
+    # them one by one showed the census was looking for names rather than for QUANTITIES:
+    # SCEM publishes the reinvestment rate, the return on capital, replacement-cost invested
+    # capital, terminal NOPAT and the terminal value, and simply never writes down g or the
+    # terminal rate — both of which follow from what it does publish, by the identities its
+    # own construction is built on. Deriving them is not guessing: rr = g / ROIC is the very
+    # relation [R-TERM-01] is about, and TV = NOPAT(1-rr)/(W-g) is the formula that produced
+    # the number. What would be guessing is filling a gap with a neighbour's figure, and
+    # that is not done anywhere here. Every derivation records its route, so a reader can
+    # see which cells are read and which are reconstructed.
+    if 'g' not in rec and rec.get('rr_term') is not None and rec.get('roic_term'):
+        rec['g'] = rec['rr_term'] * rec['roic_term']
+        rec['routes']['g'] = 'rr_term x roic_term  [derived: rr = g / ROIC]'
+    if 'wacc_term' not in rec and rec.get('g') is not None \
+            and rec.get('nopat_term') and rec.get('rr_term') is not None and rec.get('tv'):
+        # TV = NOPAT (1 - rr) / (W - g)  =>  W = NOPAT (1 - rr) / TV + g
+        rec['wacc_term'] = rec['nopat_term'] * (1.0 - rec['rr_term']) / rec['tv'] + rec['g']
+        rec['routes']['wacc_term'] = ('nopat_term (1 - rr_term) / tv + g  '
+                                      '[derived from the study\'s own terminal]')
+
+    # A STUDY WITH ONE RATE FOR EVERY YEAR HAS NO TERMINAL RATE, AND THAT IS A FINDING
+    # RATHER THAN AN ABSENCE. GBCO discounts a five-year forecast and a perpetuity alike at
+    # 22.944% and publishes no wacc_term because there is not one to publish — which is
+    # exactly the flat-rate construction [R-COC-01] was adopted to end. Reading that as
+    # "unreadable" filed a defect under ignorance and hid it from the census's own totals.
+    if 'wacc_term' not in rec and rec.get('g') is not None:
+        v, k = _resolve(flat, ('wacc',))
+        if v is not None and 0.0 < v < 1.0:
+            rec['wacc_term'] = v
+            rec['routes']['wacc_term'] = k + '  [FLAT RATE: this study has no terminal rate]'
+            rec['flat_rate'] = ('discounts the explicit window and the perpetuity at the '
+                                'same %.3f%% — the construction [R-COC-01] ends' % (100 * v))
+
     missing = [x for x in ('wacc_term', 'g') if x not in rec]
     if missing:
         rec['unreadable'] = 'the terminal exposes no ' + ', '.join(missing)
@@ -390,12 +426,146 @@ def census():
     return [read_study(d) for d in sorted(glob(os.path.join(REPO, 'engine', '*_study')))]
 
 
+def disclosed_life(ticker):
+    """THE DISCLOSED USEFUL LIFE FOR A NAME, FROM BOTH PLACES THAT CARRY IT.
+
+    Two sources, and reading only one produces a false negative that has already
+    happened once: ARCC read "not sourced" on this census's first run while carrying
+    a 20-year life quoted to its own audited note, because a study rebuilt through
+    terminal_value.py commits the life under terminal_record.inputs and the flat
+    resolver never looks there.
+
+    Returns one of:
+      (life, None, source)      a study has COMMITTED a single life to its own record
+      (lo, hi, source)          a life is SOURCED into disclosed_lives.json as the
+                                band its policy note actually discloses, not yet
+                                collapsed — that is a different state from committed,
+                                and the one that says the next rebuild can proceed
+      (None, None, None)        genuinely not sourced
+
+    THE BAND IS NOT COLLAPSED HERE. A policy note gives a range per asset class and
+    picking one figure out of it is this desk choosing a life under cover of a
+    citation, which [R-TERM-01] refuses outright (SIGCM clause 1). The weighted life
+    a terminal needs comes from the property, plant and equipment note's own
+    composition — a further sourcing step, and the caller is told which state it has.
+    """
+    nf = os.path.join(REPO, 'engine', '%s_study' % ticker.lower(), 'study_numbers.json')
+    if os.path.exists(nf):
+        try:
+            rec = (json.load(open(nf)).get('terminal_record') or {}).get('inputs', {})
+            v = rec.get('useful_life_years')
+            if isinstance(v, (int, float)) and v > 0:
+                return float(v), None, (rec.get('useful_life_source')
+                                        or 'the study\'s own committed terminal record')
+        except Exception:                                            # noqa: BLE001
+            pass
+    band = (_LIVES.get('lives') or {}).get(ticker)
+    if band and band.get('shortest_years') and band.get('longest_years'):
+        return (float(band['shortest_years']), float(band['longest_years']),
+                band.get('source') or 'disclosed_lives.json')
+    return None, None, None
+
+
 def _fv_at(rec, tv_new):
-    """What the study's own fair value becomes at a different terminal, all else equal."""
-    if not all(k in rec for k in ('df_tv', 'equity', 'fv')) or not rec['fv']:
-        return None
-    sh = rec['equity'] / rec['fv']
-    return (rec['equity'] + (tv_new - rec['tv']) * rec['df_tv']) / sh
+    """What the study's own fair value becomes at a different terminal, all else equal.
+
+    THIS HELPER COULD NEVER FIRE AND NOTHING SAID SO. It required a `df_tv` key that
+    read_study does not set and never has, so it returned None for every record in
+    the book — a function that looks like an instrument and answers nothing, which
+    is [R-ENF-04]'s own shape one level down: an absent answer wearing the costume
+    of a clean one. Found 04-Sep-2026 by a caller that wanted it.
+
+    The factor is exactly pv_tv / tv and is DERIVED rather than demanded. A record
+    exposing a terminal and its present value already carries it; requiring a third
+    key nobody writes is asking the record to repeat itself.
+    """
+    for k in ('tv', 'pv_tv', 'equity', 'fv'):
+        if not rec.get(k):
+            return None
+    df = rec['pv_tv'] / rec['tv']
+    return (rec['equity'] + (tv_new - rec['tv']) * df) / (rec['equity'] / rec['fv'])
+
+
+def implied_lives():
+    """EVERY IMPLIED ASSET LIFE A MODEL CARRIES, PRINTED SIDE BY SIDE. No pricing claim.
+
+    A model states an asset life in three places without ever writing one down, and
+    [R-TERM-01]'s worked case found the three disagreeing by 2.8x inside one document:
+
+      the TERMINAL charge      g x IC gives a replacement cycle of 1/g
+      the EXPLICIT window      its own terminal-year capex against the same IC
+      the ACCOUNTING POLICIES  the company's own disclosed useful life
+
+    Only the third is a fact about the asset. This prints the first two for every readable
+    terminal, because both come from figures a study already publishes; the third has to be
+    sourced from that company's own note, one name at a time, and is quoted here only where
+    a study has committed it.
+
+    WHY THIS FUNCTION DOES NOT PRICE THE CORRECTION, AND THE REASON IS THE INTERESTING PART.
+    [R-TERM-01] names TWO errors — the charge, and a terminal that never adds book D&A back
+    though NOPAT is already net of it — and it is tempting to price the SECOND alone,
+    because it needs nothing sourced: add book D&A to the published terminal and see what
+    moves. A first draft of this module did exactly that and reported the pooled terminal
+    rising 69.6%. IT IS WRONG, AND IT IS WRONG IN A WAY THAT LOOKS LIKE ARITHMETIC.
+
+    g x IC IS A NET INVESTMENT FIGURE — the new capital needed to grow at g — so a
+    construction charging it has ALREADY netted depreciation, and adding book D&A on top
+    double-counts. The corrected construction charges maintenance GROSS, at replacement
+    cost over a disclosed life, which is why it must add book D&A back first. The two
+    charges are on different bases and the halves do not separate. Checked against the one
+    worked case rather than reasoned about: on ARCC the add-back-alone gives 2,445.3
+    against the module's own 3,310.1, 26% short.
+
+    THE GENERAL POINT, WHICH IS NOT ABOUT DEPRECIATION: two corrections to one formula are
+    not two independent corrections when they sit on different bases. Pricing one of them
+    with the other left at its old value produces a number that is neither the old
+    construction nor the new one, and it will look perfectly reasonable.
+    """
+    rows = [r for r in census() if 'charge' in r and r.get('g')]
+    if not rows:
+        raise SystemExit('no readable terminal exposes a charge — an empty result is not a '
+                         'clean result [R-ENF-04]')
+    print('\n  WHAT EACH TERMINAL CHARGES, AGAINST WHAT ITS OWN ACCOUNTS DEPRECIATE')
+    print('  {:<12}{:>9}{:>12}{:>12}{:>12}   {}'.format(
+        'ticker', '1/g', 'charge', 'book D&A', 'charge/D&A', 'disclosed life'))
+    print('  ' + '-' * 76)
+    under = []
+    for r in sorted(rows, key=lambda r: r['ticker']):
+        dna, ch = r.get('dna_last'), r['charge']
+        ratio = (ch / dna) if dna else None
+        if ratio is not None and ratio < 1.0:
+            under.append(r['ticker'])
+        # THE DISCLOSED LIFE IS READ FROM THE STUDY'S OWN FILE, not from the census
+        # record, because a study that has been rebuilt through terminal_value.py commits
+        # it under terminal_record.inputs and the census's flat resolver never looks there.
+        # ARCC read 'not sourced' on the first run while carrying a 20-year life quoted to
+        # its own audited note — the census reporting a gap that had already been closed.
+        lo_l, hi_l, _src = disclosed_life(r['ticker'])
+        if lo_l is None:
+            disc = None
+        elif hi_l is None:
+            disc = lo_l                       # a study has committed one life
+        else:
+            disc = 'sourced %g-%g yrs' % (lo_l, hi_l)
+        print('  {:<12}{:>9.1f}{:>12,.0f}{:>12}{:>12}   {}'.format(
+            r['ticker'], 1.0 / r['g'], ch,
+            ('{:,.0f}'.format(dna)) if dna else '—',
+            ('%.2fx' % ratio) if ratio is not None else '—',
+            (('%.0f yrs' % disc) if isinstance(disc, (int, float))
+             else (disc or 'not sourced'))))
+    print('\n    1/g IS A FACT ABOUT A CURRENCY, NOT ABOUT AN ASSET: 14.3 years at a 7%')
+    print('    terminal inflation and 66.7 at 1.5%, so the same plant is charged four and')
+    print('    a half times as hard for being in Egypt rather than the Emirates.')
+    print()
+    print('    THE ONE INFERENCE THAT NEEDS NO SOURCED LIFE, AND IT ONLY RUNS ONE WAY: a')
+    print('    terminal charging LESS than its own book depreciation cannot be maintaining')
+    print('    the asset base, because book depreciation is struck on HISTORICAL cost and')
+    print('    replacing the asset costs more than that. It says nothing about a terminal')
+    print('    charging more — that one needs the disclosed life. On this book %d of %d'
+          % (len(under), len([r for r in rows if r.get('dna_last')])))
+    print('    terminals charge less than their own book depreciation: %s.'
+          % ', '.join(under))
+    return rows
 
 
 def report():
@@ -407,6 +577,13 @@ def report():
     print(f'   {len(rows)} study directories · {len(read)} readable · {len(dark)} not\n')
 
     scored = [r for r in read if 'charge' in r]
+    # EVERY DIRECTORY IS ACCOUNTED FOR IN ONE OF THREE BUCKETS, AND THE THREE SUM TO THE
+    # TOTAL. [ADDED 03-Sep-2026.] This printed a "readable" count and then a table of the
+    # SCORED ones, and the difference appeared nowhere: on the run that widened the reader,
+    # 19 read and 15 were tabulated, so GBCO and EMPOWER moved from being named as
+    # unreadable to not being named at all — which is worse, because the first state is a
+    # tracked gap and the second is a silent one. COUNT AGAINST A KNOWN TOTAL [R-ENF-04].
+    gap = [r for r in read if 'charge' not in r]
     print(f"  {'ticker':<12}{'g':>7}{'W':>8}{'charge/NOPAT':>13}{'cycle yrs':>11}{'1/g':>7}"
           f"{'TV vs floor':>13}")
     print('  ' + '-' * 71)
@@ -417,6 +594,26 @@ def report():
               f"{(f'{cyc:.1f}' if cyc else '—'):>11}{r['one_over_g']:>7.1f}"
               f"{r['tv_vs_floor']:>+12.1%}"
               f"{'  BELOW ITS OWN FLOOR' if r.get('below_floor') else ''}")
+
+    if gap:
+        print(f'\n  READ BUT NOT SCORED ({len(gap)}) — the terminal resolves and the charge '
+              f'it levies does not, so these sit in neither table above:')
+        for r in sorted(gap, key=lambda r: r['ticker']):
+            why = []
+            for f in ('nopat_term', 'ic', 'tv'):
+                if r.get(f) is None:
+                    why.append('no ' + f)
+            print(f"    {r['ticker']:<12}{r.get('g', 0):>6.1%} at "
+                  f"{r.get('wacc_term', 0):>7.2%}   {', '.join(why) or 'charge not derivable'}")
+    assert len(scored) + len(gap) + len(dark) == len(rows), (
+        'the three buckets must account for every directory')
+
+    flat = [r for r in read if r.get('flat_rate')]
+    if flat:
+        print(f'\n  ONE RATE FOR EVERY YEAR ({len(flat)}) — no terminal rate exists to '
+              f'read, which is the construction [R-COC-01] ends, not an absence:')
+        for r in sorted(flat, key=lambda r: r['ticker']):
+            print(f"    {r['ticker']:<12}{r['flat_rate']}")
 
     below = [r for r in scored if r.get('below_floor')]
     print(f'\n  BELOW THE FLOOR — a terminal worth less than not investing at all: '
@@ -444,3 +641,4 @@ def report():
 
 if __name__ == '__main__':
     report()
+    implied_lives()

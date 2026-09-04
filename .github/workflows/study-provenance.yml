@@ -16,6 +16,22 @@ name: Study provenance gate
 on:
   push:
     paths:
+      # ------------------------------------------------------------------------------
+      # THREE GLOBS, BECAUSE A HAND-MAINTAINED TRIGGER LIST IS THE SAME DEFECT ONE LEVEL
+      # UP [ADDED 03-Sep-2026]. The enumeration below is real and stays — it documents
+      # what each gate governs and a reader can follow it — but it had to be extended by
+      # hand every time a gate was added, and it was not: measured on 03-Sep-2026,
+      # TWENTY-ONE of seventy-one gates were in no workflow's path list, among them
+      # [R-TERM-01]'s check_terminal_floor.py, [R-IND-01]'s check_escalations.py,
+      # [R-ANCHOR-01]'s check_forecast_anchor.py, [R-VCAL-01]'s
+      # check_valuation_calibration.py and [R-ENF-06]'s check_artefact_currency.py. So a
+      # change to a GATE ITSELF ran nothing: the one file whose correctness every other
+      # check depends on was the one file CI did not watch. That is [R-ENF-01] applied to
+      # the enforcement rather than to the work — a rule that can be checked must be
+      # checked from OUTSIDE the thing it governs, and a gate is a thing.
+      - 'scripts/check_*.py'
+      - 'engine/*.py'
+      - 'engine/build_depth_audit/*.json'
       - 'engine/**_study/**'
       - 'engine/research_protocol.py'
       - 'engine/wacc_builder.py'
@@ -57,6 +73,16 @@ on:
       - 'scripts/check_prose_figures_negative_control.py'
       - 'scripts/check_table_footing.py'
       - 'scripts/check_table_footing_negative_control.py'
+      - 'scripts/check_waterfall_assertions.py'
+      - 'scripts/check_waterfall_assertions_negative_control.py'
+      - 'engine/table_residual.py'
+      - 'scripts/check_sign_convention.py'
+      - 'scripts/check_sign_convention_negative_control.py'
+      - 'scripts/check_exemplar_debt.py'
+      - 'scripts/check_exemplar_debt_negative_control.py'
+      - 'scripts/check_source_integrity.py'
+      - 'scripts/check_source_integrity_negative_control.py'
+      - 'engine/source_integrity.py'
       - 'engine/table_footing.py'
       - 'engine/site_data.py'
       - 'scripts/check_site_data_reader.py'
@@ -151,6 +177,16 @@ on:
       - 'scripts/check_prose_figures_negative_control.py'
       - 'scripts/check_table_footing.py'
       - 'scripts/check_table_footing_negative_control.py'
+      - 'scripts/check_waterfall_assertions.py'
+      - 'scripts/check_waterfall_assertions_negative_control.py'
+      - 'engine/table_residual.py'
+      - 'scripts/check_sign_convention.py'
+      - 'scripts/check_sign_convention_negative_control.py'
+      - 'scripts/check_exemplar_debt.py'
+      - 'scripts/check_exemplar_debt_negative_control.py'
+      - 'scripts/check_source_integrity.py'
+      - 'scripts/check_source_integrity_negative_control.py'
+      - 'engine/source_integrity.py'
       - 'engine/table_footing.py'
       - 'engine/site_data.py'
       - 'scripts/check_site_data_reader.py'
@@ -232,8 +268,28 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      # EVERY TOOL A GATE NEEDS IS INSTALLED BEFORE ANY GATE RUNS, and the reason is
+      # measured rather than tidy. poppler-utils used to be installed 320 lines below,
+      # beside the one step that reads a PDF — which was true of that step and false of
+      # the new-study gauntlet, because the gauntlet RUNS THE OTHER GATES and reached two
+      # PDF readers before the tool existed. matplotlib was never installed at all, so
+      # every one of the figure scripts check_figure_axes exists to run failed to import
+      # and the gate correctly refused an empty result [R-ENF-04].
+      #
+      # BOTH READ AS A GATE BEING PERMISSIVE AND NEITHER WAS: the gauntlet reported
+      # "3 gate(s) did not refuse the new study" when what had happened is that three
+      # gates could not run. That is the gauntlet's own first-run finding arriving a
+      # second time — a gate red for the WRONG reason reads exactly like one red for the
+      # right reason — and it is why the exit-2 tool contract below now separates them.
+      #
+      # It also cost a local run its meaning: scripts/run_ci_gates.py reported 89 green
+      # against a CI that had neither tool, because the local container has both. A
+      # LOCAL RUNNER INHERITS THE DEVELOPER'S ENVIRONMENT AND CI DOES NOT.
       - name: Install engine deps
-        run: pip install numpy pandas scipy python-docx openpyxl
+        run: pip install numpy pandas scipy python-docx openpyxl matplotlib
+
+      - name: Install poppler-utils (pdftotext)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
 
       # VERIFY BY IMPORT, NOT BY PARSE. nu=Gaussian parsed cleanly and only died at
       # import, and that bug reached main while a regex check reported the file intact.
@@ -458,6 +514,81 @@ jobs:
       # (a header cell parsing 'FY2025' as 2025, and a dash walling off a component block)
       - name: Table-footing gate — negative control
         run: python3 scripts/check_table_footing_negative_control.py
+
+      # A WATERFALL A READER IS ASKED TO FOLLOW MUST REACH THE ANSWER IT PRINTS.
+      # table_footing tests rows whose LABEL DECLARES A TOTAL, and a waterfall never says
+      # "total" — it says "Plus net cash", "Less depreciation and amortisation", "Add back
+      # the impairment", which is the page giving a reader instructions in its own voice.
+      # Five such tables were found in one study on 04-Sep-2026, every one having passed
+      # table_footing, prose_figures, the recalculation gate, the scrub and the column
+      # audit, because every figure in all of them was computed and individually correct.
+      #
+      # THE CHECK IS ON THE BUILDER RATHER THAN ON THE PAGE, and that was measured rather
+      # than assumed: the page-side reading was built first and flags 30.7% of the tables
+      # that carry an operator row, because a statement mixes labelled and unlabelled steps
+      # and the page cannot say which is which. engine/table_residual.py carries the
+      # measurement in full. The builder knows the anchor because it put it there.
+      - name: Waterfall-assertion gate
+        run: python3 scripts/check_waterfall_assertions.py
+
+      # and the proof it can go red — the bridge and the cash-flow waterfall EXACTLY as
+      # they shipped, a builder that imports the module and never runs its assertion, and
+      # a half-unit of printed rounding that must NOT fire
+      - name: Waterfall-assertion gate — negative control
+        run: python3 scripts/check_waterfall_assertions_negative_control.py
+
+      # ONE SIGN CONVENTION PER TABLE, SO A DEDUCTION CAN ONLY BE READ ONE WAY. A table
+      # printing "(2,650)", "(360)", "(792)" and then "440" under four rows that all begin
+      # "Less" has told a reader two different things with the same word — and in every one
+      # of the nine tables that did it, the row breaking the convention was a working-
+      # capital line the model ADDS. A reader following the labels came out 880 low on a
+      # 4,368 cash flow. Unlike the waterfall check this one CAN read the page, because
+      # whether a figure is bracketed, signed or bare is a property of the page and of
+      # nothing else — no anchor, no model, no pool of committed numbers.
+      - name: Sign-convention gate
+        run: python3 scripts/check_sign_convention.py
+
+      # and the proof it can go red, on all three shapes exactly as they shipped — plus
+      # seven clean cases, among them the rate-beside-its-amount row that the first draft
+      # wrongly flagged and that was fixed by re-pointing rather than widening
+      - name: Sign-convention gate — negative control
+        run: python3 scripts/check_sign_convention_negative_control.py
+
+      # THE EXEMPLAR IS HELD TO THE STANDARD THE EXEMPLAR DEFINES. CLAUDE.md says to open
+      # the model report beside the study being written, which is the mechanism by which
+      # this house's standards propagate — a new study is built by MATCHING it, not by
+      # reading twenty rules and hoping. Measured on 04-Sep-2026 the exemplar was
+      # outstanding on EIGHT ratchets at once, including the lens-design rule (so it still
+      # publishes a typed four-lens blend) and the valuation-gap gate, where it is listed
+      # UNREADABLE. None of those entries is itself wrong — that is what ratchets are for —
+      # but nothing was counting them on THIS study, and a construction the exemplar
+      # carries propagates to every study written after it looking exactly like the house
+      # standard. The gate does not demand the debt be zero; it demands it not GROW.
+      - name: Exemplar-debt gate
+        run: python3 scripts/check_exemplar_debt.py
+
+      # and the proof it can go red, including the case that matters: a standard adopted
+      # tomorrow whose ratchet names the exemplar
+      - name: Exemplar-debt gate — negative control
+        run: python3 scripts/check_exemplar_debt_negative_control.py
+
+      # SIGCM CLAUSE 1 IS CHECKED FROM OUTSIDE, NOT ATTESTED FROM INSIDE. It has been a HARD
+      # GATE since July 2026 — historicals from the company's own filings, never a data
+      # vendor or press-as-a-numbers-source — and what was checking it was a boolean the
+      # study set on itself, which is the composite-beta shape [R-ENF-01] closed everywhere
+      # else. Two delivered studies were found in plain breach on 04-Sep-2026. One was
+      # measured against the filings it should have used: equity EGP 6,020.3mn filed
+      # against 5,240.0mn used, cash 4,762.3mn against 3,850.0mn, depreciation 122.5mn
+      # against 418.1mn — every error understating the company, and the audited statements
+      # were six PDFs on its own website, one click from the homepage.
+      - name: Source-integrity gate
+        run: python3 scripts/check_source_integrity.py
+
+      # and the proof it can go red — plus six clean cases, which carry as much weight
+      # here: three earlier drafts fired on 156 and then 83 items across sixteen studies,
+      # all of them work that was right, and each was fixed by re-pointing the check
+      - name: Source-integrity gate — negative control
+        run: python3 scripts/check_source_integrity_negative_control.py
 
       # [R-ENF-03] assets/data.js is read through a REAL JavaScript parse, EVERYWHERE.
       # The rule was adopted four weeks earlier, after a reader — not a check — found a
@@ -727,6 +858,50 @@ jobs:
       - name: Terminal floor — negative control
         run: python3 scripts/check_terminal_floor_negative_control.py
 
+      # A DELIVERED DOCUMENT STATES ITS OWN EDITION DATE, AND STATES THE RIGHT ONE. Found
+      # by READING the rendered pages: ARCC shipped a masthead a day stale and that was
+      # recorded as one study's defect; reading PHDC the same way found the identical
+      # thing, which made it a class. Measured across 31 delivered studies, SEVEN did not
+      # carry their own edition date — two stated it and got it wrong, TWO (including the
+      # MODEL REPORT) stated it nowhere at all, and three buried it in the body. A date is
+      # a figure a reader sees, and it was TYPED in two or three separate string literals
+      # per builder; it is now derived from the file the document ships as.
+      - name: Every delivered study states its own edition date
+        run: python3 scripts/check_edition_date.py
+
+      - name: Edition date — negative control
+        run: python3 scripts/check_edition_date_negative_control.py
+
+      # A column one character too narrow wraps, and Word breaks after a hyphen: a
+      # negative prints as a bare dash with its digits beneath, a date as "2025-12-"
+      # with a bare "31". Every other instrument here checks how a number was BUILT.
+      - name: Column widths — every figure a reader sees fits its own column
+        run: python3 scripts/check_column_widths.py
+
+      - name: Column widths — negative control
+        run: python3 scripts/check_column_widths_negative_control.py
+
+      # A figure that draws its price line outside its own axis loses the line silently,
+      # and clipped bars all render the same length. Every other instrument here reads a
+      # document, a workbook or a number; this defect lives in a PNG.
+      - name: Figure axes — nothing drawn outside the axis it is drawn on
+        run: python3 scripts/check_figure_axes.py
+
+      - name: Figure axes — negative control
+        run: python3 scripts/check_figure_axes_negative_control.py
+
+      # [R-GAP-02]'s GATE runs at PUBLISH time, as step 0 of publish_site.py, and that is
+      # deliberate: it blocks a future act rather than condemning a past one, so a CI job
+      # asserting that no held study exists would be red on every branch that holds one.
+      # ITS NEGATIVE CONTROL IS A DIFFERENT THING and was running NOWHERE — measured
+      # 03-Sep-2026, the only control in the repository invoked by no workflow at all. A
+      # control nobody runs is not evidence, which is the whole argument for having one:
+      # "a check nobody has seen fail is not evidence" [R-CAL-02]. It is self-contained
+      # and sandboxed, so it costs nothing to run here and proves the publish block still
+      # refuses what it claims to.
+      - name: The publish block still refuses what it claims to — negative control
+        run: python3 scripts/check_publish_block_negative_control.py
+
       # VERIFY BY IMPORT, NOT BY PARSE — the standing rule. The shared terminal builder
       # must actually import, and its refusals must actually refuse.
       - name: The shared terminal builder imports and refuses what it promises to refuse
@@ -760,12 +935,6 @@ jobs:
       # clean while the delivered PDF still carries the previous edition's answer — which
       # is exactly what happened to four studies on 03-Sep-2026, for four hours, with
       # every gate green.
-      # poppler-utils installed as its OWN step so a failure to install is a failure to
-      # install, not a book-wide red from a gate that could not read anything. The gate
-      # itself exits 2 with a message naming the missing tool if it is still absent.
-      - name: Install poppler-utils (pdftotext)
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
-
       - name: Delivered PDF carries the study's own answer
         run: python3 scripts/check_delivered_pdf_currency.py
 

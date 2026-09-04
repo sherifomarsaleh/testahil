@@ -8,6 +8,9 @@ NO FINANCIAL NUMERAL IS TYPED IN THIS FILE. Every number is an f-string interpol
 lookup into study_numbers.json, technicals.json, strike_result.json, beta_result.json or
 the research record.
 """
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+from table_residual import signed_column   # the shared check, not hand-rolled
 import json, os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -449,9 +452,19 @@ rows.append(['Tax rate applied to EBIT'] + [pc(A['tax_rate'], 2)] * NY)
 rows.append(['NOPAT = EBIT x (1 − tax rate)'] + [n0(x) for x in A['nopat']])
 rows.append(['Add back depreciation and amortisation'] + [n0(x) for x in A['dna']])
 rows.append(['Less capital expenditure'] + [paren(x) for x in A['capex']])
-rows.append(['Less increase in working capital'] +
+# ONE SIGN CONVENTION, AND THE OPERATOR WORD COMES OFF THE ROW THAT BREAKS IT. This
+# table prints deductions in parentheses, which is unambiguous — and the working-
+# capital line printed a bare positive in a year it RELEASES, under a label reading
+# "Less increase in working capital", which states the opposite of what happened.
+# A reader following the labels came out a year's release too low. The brackets stay;
+# the word goes, and the build asserts the column reaches the printed answer.
+rows.append(['Movement in working capital — a release adds, a build subtracts'] +
             [paren(x) if x >= 0 else n0(-x) for x in A['delta_nwc']])
 rows.append(['Free cash flow to the firm'] + [n0(x) for x in A['fcff']])
+for _i in range(len(A['fcff'])):
+    signed_column([A['nopat'][_i], A['dna'][_i], -A['capex'][_i], -A['delta_nwc'][_i]],
+                  A['fcff'][_i], dp=0,
+                  what='the cash-flow waterfall, year %d' % (_i + 1))
 rows.append(['Discount rate'] + [pc(x, 2) for x in W['disc_rate']])
 rows.append(['Discount factor'] + [n2(x) for x in A['df']])
 rows.append(['PRESENT VALUE of free cash flow'] + [n0(x) for x in A['pv']])

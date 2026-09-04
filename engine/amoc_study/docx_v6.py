@@ -237,9 +237,19 @@ caption('Table 1 — the lenses. ONE CLASS PRIMARY IS THE CENTRAL: the cash-flow
         'workbook beside the answer, unused: three of the four value a refiner on reported '
         'earnings and historical-cost book, and averaging them imports every weakness of the '
         'weakest at a weight nobody tested out of sample.')
+# THE CAPTION DESCRIBED A FIGURE THIS STUDY NO LONGER PUBLISHES. It promised a price
+# shown in red dashed against every lens base — and the file it captioned had been
+# overwritten by a SUPERSEDED generator carrying the retired 45/20/20/15 weights in its
+# row labels, a WEIGHTED RANGE bar at a central of 11.83 the study had stopped
+# publishing, and a hardcoded x-axis of 2 to 11 against a spot of 13.50 — so the
+# price line it drew fell outside the axis and was clipped away silently while the
+# caption said it was there. Two generators wrote the same filename; the older ran last.
 figure(os.path.join(HERE, 'fig1_football.png'), 6.9,
-       'Figure 1 — the football field. The price (red dashed) is shown against every lens base '
-       'and against the cash-flow lens\u2019s own bear-to-bull range.')
+       'Figure 1 — the answer and the reads held beside it. The cash-flow lens is the '
+       'answer and carries its own bear-to-bull span; the relative multiple is drawn as '
+       'a point because it is withdrawn, book value as a disclosed floor, and normalised '
+       'earnings as a diagnostic this class does not value on. The vertical line is the '
+       'traded price.')
 
 H1('Company overview')
 P(f'Alexandria Mineral Oils Company is the only refinery listed on the Egyptian Exchange. It '
@@ -508,16 +518,39 @@ table([['Component', 'Explicit window', 'Terminal', 'Construction'],
        ['COST OF EQUITY', pc(W['ke_exp'], 2), pc(W['ke_term'], 2), ''],
        ['Cost of debt, after tax', pc(W['k_nd_at'], 2), pc(W['kd_term_at'], 2),
         'on NET debt in the explicit window; the company is net cash'],
-       ['Equity weight', pc(W['we_exp'], 2), pc(1 - IN['wd_term'], 2), ''],
-       ['Debt weight', pc(W['wd_exp'], 2), pc(IN['wd_term'], 2),
-        'NEGATIVE in the explicit window — the company holds net cash'],
+       # THE WEIGHTS ACTUALLY IN USE, NOT THE RETIRED ONES. This table printed
+       # we_exp = 120.80% and wd_exp = -20.80% — the weights of the NET-debt
+       # construction this study retired — beside wacc_exp, which is the adopted rate
+       # those weights do not produce: 1.208 x 27.45% - 0.208 x 13.21% is 30.42%, and
+       # the row said 27.45%. A reader multiplying the printed rows got a different
+       # answer from the printed total, in the study's central table.
+       #
+       # The adopted construction values the OPERATIONS at the unlevered rate and adds
+       # the cash once in the bridge [R-BRIDGE-01 (iii)], so the weights that matter are
+       # the GROSS ones, and gross borrowings are a tenth of one per cent of capital at
+       # market value — which is why the operating rate IS the cost of equity to three
+       # decimals. The retired construction keeps its own row, with its own number.
+       ['Equity weight', pc(1 - W['wd_gross'], 2), pc(1 - IN['wd_term'], 2),
+        'on GROSS borrowings: the operations are valued at the unlevered rate and the '
+        'cash is added once, in the bridge'],
+       ['Debt weight', pc(W['wd_gross'], 2), pc(IN['wd_term'], 2),
+        'gross borrowings are a tenth of one per cent of capital at market value'],
        ['WEIGHTED COST OF CAPITAL', pc(W['wacc_exp'], 2), pc(W['wacc_term'], 2),
-        'the negative debt weight RAISES the operating rate above the cost of equity']],
+        'the operating rate; at that debt weight it IS the cost of equity to three '
+        'decimals'],
+       ['— the retired net-debt construction', pc(W['wacc_net_retired'], 2), '—',
+        'weights %s equity and %s debt, which is what a NET-cash weighting produces; '
+        'it is shown because the previous edition used it AND added the cash back at '
+        'face, charging for the same cash twice'
+        % (pc(1 - W['wd_net_retired'], 2), pc(W['wd_net_retired'], 2))]],
       [1.8, 1.05, 0.9, 3.35], band_rows={5, 9}, size=8.5, left_cols=(3,))
-caption('Table 10 — the discount-rate stack. The construction that matters most here is the '
-        'net-cash weighting. A naive model lets a cash pile drag the weighted rate DOWN; this one '
-        f'applies a negative debt weight of {pc(W["wd_exp"], 1)}, which forces the operating rate '
-        f'to {pc(W["wacc_exp"], 1)} — ABOVE the {pc(W["ke_exp"], 1)} cost of equity — correctly '
+caption('Table 10 — the discount-rate stack. The construction that matters most here is what '
+        'the cash is doing. A naive model lets a cash pile drag the weighted rate DOWN; the '
+        f'previous edition went the other way, weighting on NET debt at {pc(W["wd_net_retired"], 1)} '
+        f'and reaching {pc(W["wacc_net_retired"], 1)} — {(W["wacc_net_retired"]-W["ke_exp"])*1e4:,.0f} '
+        f'basis points ABOVE the {pc(W["ke_exp"], 1)} cost of equity — and THEN added the same cash '
+        'back at face in the bridge, which charges for it twice. This edition values the '
+        f'operations at the unlevered rate of {pc(W["wacc_exp"], 2)} and adds the cash once, '
         'isolating and penalising the risk of the pure unlevered operating assets. The unlevering '
         'identity is asserted in the build to recombine exactly.')
 
@@ -817,7 +850,12 @@ P(f'READ THIS SECTION AGAINST EGP {p2(STK["spot"])}, NOT AGAINST THE PRICE ON TH
   f'a fresh price history moves the simulation without re-striking the valuation. '
   f'Every percentile and every probability in this section is measured against EGP '
   f'{p2(STK["spot"])}.')
-table([['Horizon', 'p5', 'p25', 'median', 'p75', 'p95', 'P(above today)', 'Grade date'],
+# "TODAY" IS THE WRONG PRICE AND THIS SECTION SAYS SO IN CAPITALS FOUR LINES ABOVE.
+# The probability is the share of paths finishing above the price the cone was STRUCK
+# at, which is the 2026-08-06 close, not the masthead's later one. ARCC's edition of
+# the same week names the price in this header; this one said "today".
+table([['Horizon', 'p5', 'p25', 'median', 'p75', 'p95',
+        'P(above %.2f)' % STK['spot'], 'Grade date'],
        ['1 month', *[p2(H1M['pct'][k]) for k in ('p5', 'p25', 'p50', 'p75', 'p95')],
         pc(H1M['p_above']), H1M['grade_date']],
        ['3 months', *[p2(H3M['pct'][k]) for k in ('p5', 'p25', 'p50', 'p75', 'p95')],

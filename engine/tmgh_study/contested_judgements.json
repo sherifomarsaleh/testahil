@@ -1,6 +1,8 @@
 {
  "ticker": "TMGH",
  "as_of": "2026-09-02",
+ "published_central": 91.8305824638648,
+ "published_spot": 97.8,
  "judgements": [
   {
    "name": "how fast the order book converts",
@@ -16,7 +18,7 @@
    "alternative": "at book",
    "value_adopted": 123.02843812737396,
    "value_alternative": 118.97241993803047,
-   "why": "the model capitalises all of the subsidiaries' cash flow, so the minority's claim is worth its share of that value and not what it historically cost"
+   "why": "the model capitalises 100% of subsidiary cash flow, so the minority's claim is worth its share of THAT value rather than its historical cost [R-BRIDGE-01]; book is published beside it as the more punitive read"
   },
   {
    "name": "equity risk premium basis",
@@ -24,7 +26,7 @@
    "alternative": "the credit-rating basis",
    "value_adopted": 123.02843812737396,
    "value_alternative": 118.49784887591638,
-   "why": "the market's own live pricing of the sovereign's credit, against an agency judgement updated in steps; both are published"
+   "why": "the swap basis is the market's own live pricing of the sovereign's credit against an agency judgement updated in steps; both are published and neither is averaged into the other"
   },
   {
    "name": "terminal growth",

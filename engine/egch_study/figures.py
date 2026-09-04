@@ -29,6 +29,36 @@ plt.rcParams.update({'figure.facecolor': BG, 'axes.facecolor': BG,
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 GRIDJ = json.load(open(os.path.join(HERE, 'sensitivity_grid.json')))
 SPOT, DR, YEARS = D['spot'], D['drivers'], D['years']
+
+# THE CONE'S ANCHOR IS NOT THE VALUATION'S SPOT, AND THE CONE FIGURES LABELLED IT AS ONE.
+# The probability cone was struck on the close of 2026-08-06 at EGP 13.98; the valuation is
+# anchored on 2026-09-03 at EGP 14.41. Both are correct and they are DIFFERENT CLOCKS — the
+# study says so in section 2, which states its own close and its own date. But the
+# distribution figures drew their anchor line at 14.41 and labelled it "anchor", while the
+# distribution behind it was centred on 13.98 and the table's "probability the price ends
+# above today's" was measured against 13.98 too. A reader saw a median of 14.19 sitting
+# BELOW a line labelled anchor, beside a 56.7% chance of finishing above it, which cannot
+# both be true. Three things disagreed and only the label was wrong.
+_STRIKE = json.load(open(os.path.join(HERE, 'strike_result.json')))
+CONE_ANCHOR = _STRIKE['spot']
+CONE_ANCHOR_DATE = _STRIKE['anchor_date']
+
+
+def _spot_date_words():
+    """'3 September 2026' from this study's OWN committed spot date. One source, one date."""
+    import datetime as _dt
+    _s = str((D.get('meta') or {}).get('spot_date') or D.get('spot_date') or '')
+    _s = _s.replace('close ', '').strip()
+    for _f in ('%Y-%m-%d', '%d %b %Y', '%d %B %Y'):
+        try:
+            _d = _dt.datetime.strptime(_s, _f).date()
+            return '%d %s %d' % (_d.day, _d.strftime('%B'), _d.year)
+        except ValueError:
+            pass
+    raise ValueError('cannot read a spot date out of %r' % _s)
+
+
+SPOT_DATE_WORDS = _spot_date_words()
 CASES = D['cases']
 df, _ = clean_ohlc(load_ohlc(os.path.join(HERE, 'EGCH_Stock_Price_History.csv')),
                   'EGCH', verbose=False, market='EG')
@@ -225,7 +255,11 @@ d5 = df[df['Date'] >= df['Date'].max() - np.timedelta64(365 * 5, 'D')]
 ax.plot(d5['Date'], d5['Price'], color=CANVAS, lw=1.3)
 ax.axhline(SPOT, color=GOLD, lw=1.2, ls='--')
 ax.text(d5['Date'].iloc[int(len(d5) * 0.03)], SPOT + 0.5,
-        f"6 August 2026 close, EGP {SPOT:,.2f}", fontsize=9, color=BRASS, fontweight='bold')
+        # DERIVED, NOT TYPED [FIXED 03-Sep-2026]: this read "6 August 2026" against the
+        # study's own committed spot_date of 2026-09-03 — twenty-eight days stale, on a
+        # figure whose price is computed from that very spot.
+        f"{SPOT_DATE_WORDS} close, EGP {SPOT:,.2f}", fontsize=9, color=BRASS,
+        fontweight='bold')
 ax.set_ylabel('Share price (Egyptian pounds)')
 ax.set_title('Five years of the traded price', pad=12, fontsize=11.5)
 style(ax)
@@ -310,12 +344,13 @@ for tag, fn, out in [('one month', 'paths_1M.npy', 'fig12_dist1m.png'),
     # that recomputes its own quantiles will disagree with the table beside it in the
     # second decimal, and it did
     med = hz['pct']['p50']
-    ax.axvline(SPOT, color=CANVAS, lw=1.7)
+    ax.axvline(CONE_ANCHOR, color=CANVAS, lw=1.7)
     ax.axvline(med, color=RUST, lw=1.7, ls='--')
     yl = ax.get_ylim()[1]
     ax.set_ylim(0, yl * 1.22)                    # headroom so no label sits on a bar
     yl = ax.get_ylim()[1]
-    ax.text(SPOT, yl * 0.99, f"anchor {SPOT:,.2f} ", color=CANVAS, fontsize=8.6,
+    ax.text(CONE_ANCHOR, yl * 0.99, f"anchor {CONE_ANCHOR:,.2f} ", color=CANVAS,
+            fontsize=8.6,
             ha='right', va='top', fontweight='bold')
     ax.text(med, yl * 0.90, f" median {med:,.2f}", color=RUST, fontsize=8.6,
             ha='left', va='top', fontweight='bold')
@@ -379,8 +414,8 @@ for lo, hi, col, lab in [(5, 95, '#E6EDEB', '90% of simulated paths'),
     ax.fill_between(steps, np.percentile(p3, lo, axis=0), np.percentile(p3, hi, axis=0),
                     color=col, linewidth=0, label=lab)
 ax.plot(steps, np.percentile(p3, 50, axis=0), color=BRASS, lw=1.6, label='Median path')
-ax.axhline(SPOT, color=GOLD, lw=1.1, ls='--')
-ax.text(-len(hist) + 3, SPOT + 0.55, f"anchor EGP {SPOT:,.2f}", fontsize=8.8,
+ax.axhline(CONE_ANCHOR, color=GOLD, lw=1.1, ls='--')
+ax.text(-len(hist) + 3, CONE_ANCHOR + 0.55, f"anchor EGP {CONE_ANCHOR:,.2f}", fontsize=8.8,
         color=BRASS, fontweight='bold')
 for p, v in ST['horizons']['3M']['pct'].items():
     ax.text(p3.shape[1] + 1.5, v, f"{p.upper()}  {v:,.2f}", fontsize=8.4, color=INK,

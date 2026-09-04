@@ -1,10 +1,35 @@
-"""Figures for the 08-08-2026 study. Every number is read from study_numbers.json /
-case_adversarial.json — nothing is retyped."""
+"""Figures for AMOC. THIS FILE WRITES FOUR OF THE FIVE FIGURES THE DELIVERED STUDY USES —
+fig3_bridge, fig4_adversarial, fig5_spread and fig6_cone — and it is current, not superseded.
+
+THE NAME SAYS v5 AND THE NAME IS MISLEADING, WHICH COST AN HOUR AND IS RECORDED HERE SO IT
+DOES NOT AGAIN. It also used to write fig1_football, and so does figures.py; the two
+collided on that one filename and this one ran last, so the delivered study carried ITS
+football field: the retired 45/20/20/15 blend weights in the row labels, a WEIGHTED RANGE
+bar at a central of 11.83 the study had stopped publishing, and a hardcoded x-axis of 2 to
+11 against a spot of 13.50, so the price line fell outside the axis and was clipped away
+silently while the caption said the price was shown.
+
+The first diagnosis was that this whole file was superseded, and it was WRONG: figures.py
+writes nine figures of which the delivered document embeds exactly one, and this file writes
+four of the other four. Reading the filename instead of reading what the builder embeds is
+how that happened. THE FIX IS THE COLLISION, NOT THE FILE: the fig1 block is gone from here
+and figures.py owns it, so the two can both run in any order and neither can overwrite the
+other.
+
+Every number is read from study_numbers.json / case_adversarial.json — nothing is retyped.
+"""
+import datetime as _dt
 import json
 import os
 
+import sys as _sys
+_sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 import matplotlib
 matplotlib.use('Agg')
+# A FIGURE MAY NOT DRAW SOMETHING OUTSIDE ITS OWN AXIS AND SAY NOTHING. This wraps
+# savefig, so every figure below is checked; it caught a hardcoded x-axis that clipped
+# seven bars to the same length and threw away the price line the caption relies on.
+import figure_guard                                                   # noqa: F401,E402
 import matplotlib.pyplot as plt          # noqa: E402
 import numpy as np                       # noqa: E402
 
@@ -17,25 +42,10 @@ L = D['lenses']; SPOT = D['spot']; C = D['central']
 plt.rcParams.update({'font.size': 9, 'axes.edgecolor': GREY, 'text.color': INK,
                      'axes.labelcolor': INK, 'xtick.color': INK, 'ytick.color': INK})
 
-# ---- fig 1: football field ---------------------------------------------------
-fig, ax = plt.subplots(figsize=(7.4, 3.1))
-names = ['Discounted cash flow (45%)', 'Relative multiples (20%)',
-         'Normalised earnings (20%)', 'Book value (15%)', 'WEIGHTED RANGE']
-keys = ['dcf', 'relative', 'normalized', 'book']
-for i, k in enumerate(keys):
-    ax.barh(i, L[k]['bull'] - L[k]['bear'], left=L[k]['bear'], height=0.5,
-            color=PANEL, edgecolor=INK, lw=0.8)
-    ax.plot(L[k]['base'], i, 'D', color=INK, ms=6)
-lo, hi = D['span']
-ax.barh(4, hi - lo, left=lo, height=0.5, color=GOLD, edgecolor=INK, lw=1.0, alpha=0.85)
-ax.plot(C, 4, 'D', color=INK, ms=7)
-ax.axvline(SPOT, color=RED, lw=1.4, ls='--')
-ax.text(SPOT + 0.06, 4.38, f'spot {SPOT:.2f}', color=RED, fontsize=8.5)
-ax.text(C, 4.38, f'central {C:.2f}', ha='right', fontsize=8.5)
-ax.set_yticks(range(5)); ax.set_yticklabels(names, fontsize=8.5)
-ax.set_xlabel('EGP per share'); ax.set_xlim(2, 11)
-ax.spines[['top', 'right', 'left']].set_visible(False)
-fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig1_football.png'), dpi=170)
+# ---- fig 1 lives in figures.py -------------------------------------------------
+# It was written here too, and this file ran last. Two generators, one filename,
+# and the older picture won. Removed rather than renamed: a second football field
+# under another name would still be a second answer to the same question.
 
 # ---- fig 2: the margin record vs what a buyer at spot must believe -----------
 fig, ax = plt.subplots(figsize=(7.4, 3.0))
@@ -86,7 +96,11 @@ for i, (lab, v) in enumerate(steps):
     cum += v; xs.append(lab)
 ax.bar(len(steps), cum, color=GOLD, edgecolor=INK, lw=1.0)
 ax.text(len(steps), cum + 0.12, f'{cum:.2f}', ha='center', fontsize=8.5, fontweight='bold')
-ax.axhline(SPOT, color=RED, lw=1.2, ls='--'); ax.text(5.6, SPOT + 0.1, f'spot {SPOT:.2f}', color=RED, fontsize=8)
+ax.axhline(SPOT, color=RED, lw=1.2, ls='--')
+# the label sat 0.1 above the line on a 0-14 axis, which put it ON the line; it now clears
+# it and carries the panel colour behind it
+ax.text(5.6, SPOT + 0.34, f'spot {SPOT:.2f}', color=RED, fontsize=8,
+        bbox=dict(boxstyle='square,pad=0.1', fc='white', ec='none'))
 ax.set_xticks(range(len(steps) + 1)); ax.set_xticklabels(xs + ['EQUITY\nper share'], fontsize=7.4)
 ax.set_ylabel('EGP per share'); ax.spines[['top', 'right']].set_visible(False)
 fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig3_bridge.png'), dpi=170)
@@ -103,11 +117,23 @@ adv = [('Published central', ADV['base']['central'], GOLD),
 ys = np.arange(len(adv))
 for i, (lab, v, col) in enumerate(adv):
     ax.barh(i, v, color=col, edgecolor=INK, lw=0.9)
-    ax.text(v + 0.07, i, f'{v:.2f}  ({v/SPOT-1:+.0%})', va='center', fontsize=8)
-ax.axvline(SPOT, color=RED, lw=1.4, ls='--')
+    # the labels sit past the spot line now that the axis reaches it, so they carry a
+    # background and the line goes behind them
+    ax.text(v + 0.07, i, f'{v:.2f}  ({v/SPOT-1:+.0%})', va='center', fontsize=8, zorder=4,
+            bbox=dict(boxstyle='square,pad=0.1', fc='white', ec='none'))
+ax.axvline(SPOT, color=RED, lw=1.4, ls='--', zorder=1)
 ax.text(SPOT - 0.05, -0.65, f'spot {SPOT:.2f}', color=RED, fontsize=8.5, ha='right')
 ax.set_yticks(ys); ax.set_yticklabels([a[0] for a in adv], fontsize=8.3)
-ax.invert_yaxis(); ax.set_xlim(0, 10.4); ax.set_xlabel('Weighted central, EGP per share')
+ax.invert_yaxis()
+# THE LIMIT WAS HARDCODED AT 10.4 AND EVERY BAR HERE IS WORTH MORE THAN THAT. The values
+# run 10.86 to 12.74 against a spot of 13.50, so every bar was clipped at the axis edge and
+# they ALL RENDERED THE SAME LENGTH — 11.40 indistinguishable from 12.74 — while the spot
+# line the caption's whole argument rests on ("not all of them together reaches the price")
+# was drawn outside the axis and thrown away. A hardcoded axis limit is a number that stops
+# being true the moment the model moves, and it fails SILENTLY: nothing raises, the picture
+# renders, and it is wrong in a way only a reader looking at it can see.
+ax.set_xlim(0, max(max(v for _, v, _c in adv), SPOT) * 1.10)
+ax.set_xlabel('Weighted central, EGP per share')
 ax.spines[['top', 'right', 'left']].set_visible(False)
 fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig4_adversarial.png'), dpi=170)
 
@@ -130,17 +156,33 @@ fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig5_spread.png'), dpi=170)
 # ---- fig 6: the price cone ---------------------------------------------------
 fig, ax = plt.subplots(figsize=(7.4, 2.8))
 STK = D['strike']
+# THE FAN STARTS WHERE THE CONE WAS STRUCK, NOT WHERE THE SHARE TRADES TODAY. Every
+# percentile line began at SPOT — the valuation's 13.50, struck on 2026-09-03 — and
+# converged on percentiles simulated from the 2026-08-06 close of 9.10, under an x-axis
+# tick reading "anchor 06-Aug-26". So the cone visibly began 48% above the price it was
+# actually anchored at, at a point the chart labelled the anchor. Section 3 of this study
+# says in capitals "READ THIS SECTION AGAINST EGP 9.10, NOT AGAINST THE PRICE ON THE
+# MASTHEAD", and the picture beneath it did the opposite.
+ANCHOR = STK['spot']
 h1, h3 = STK['horizons']['1M'], STK['horizons']['3M']
 xs = [0, 1, 3]
 for q in ['p5', 'p25', 'p50', 'p75', 'p95']:
-    ys = [SPOT, h1['pct'][q], h3['pct'][q]]
+    ys = [ANCHOR, h1['pct'][q], h3['pct'][q]]
     ax.plot(xs, ys, color=INK, lw=0.9 if q != 'p50' else 1.6,
             ls='-' if q == 'p50' else ':')
     ax.text(3.05, ys[-1], f"{q} {ys[-1]:.2f}", fontsize=7.6, va='center')
-ax.fill_between(xs, [SPOT, h1['pct']['p5'], h3['pct']['p5']],
-                [SPOT, h1['pct']['p95'], h3['pct']['p95']], color=PANEL, alpha=0.6)
+ax.fill_between(xs, [ANCHOR, h1['pct']['p5'], h3['pct']['p5']],
+                [ANCHOR, h1['pct']['p95'], h3['pct']['p95']], color=PANEL, alpha=0.6)
 ax.axhline(C, color=GOLD, lw=1.4); ax.text(0.05, C - 0.32, f'fair value {C:.2f}', color='#896F36', fontsize=8)
-ax.set_xticks(xs); ax.set_xticklabels(['anchor\n06-Aug-26', '1 month', '3 months'], fontsize=8)
+ax.set_xticks(xs)
+# THE ANCHOR DATE WAS TYPED. It is read from the strike record now, so a re-strike moves
+# the label with the number rather than leaving the two to drift apart.
+_ad = _dt.datetime.strptime(STK['anchor_date'], '%Y-%m-%d').strftime('%d-%b-%y')
+ax.set_xticklabels([f'anchor {ANCHOR:.2f}\n{_ad}', '1 month', '3 months'], fontsize=8)
+# and the price the study is struck against, marked as the SEPARATE thing it is
+ax.axhline(SPOT, color=RED, lw=1.0, ls=':')
+ax.text(3.05, SPOT, f'  price {SPOT:.2f}', color=RED, fontsize=7.6, va='center',
+        bbox=dict(boxstyle='square,pad=0.1', fc='white', ec='none'), zorder=4)
 ax.set_ylabel('EGP'); ax.set_xlim(-0.1, 3.7)
 ax.spines[['top', 'right']].set_visible(False)
 fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig6_cone.png'), dpi=170)
