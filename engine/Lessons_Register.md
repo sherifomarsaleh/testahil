@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**188 lessons**, of which 161 bind on every study, 20 on a class of company, and 7 on a single name.
+**189 lessons**, of which 162 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 113 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 114 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1688,6 +1688,16 @@ A deduction can be printed in parentheses, as a signed negative, or as a bare ma
 > **What it cost, or how we know.** Nine of the 100 tables in the book that carry a deduction row print two conventions at once, and in every one of the nine the row breaking the convention is a working-capital line the model ADDS while its label says "Less". One prints "(2,650)", "(360)", "(792)", "(1,012)" and then "440", so a reader following the labels reaches 3,488 against a printed 4,368 — twenty per cent of that year's cash flow. Three of the nine switch convention between adjacent years in a single row. The semantic defect beneath it is the real one: "Less INCREASE in working capital" over a release states the opposite of what happened.
 
 > **What would overturn it.** A table whose two conventions are two different quantities rather than two readings of one — a rate beside its amount, which the check already distinguishes and which is why it distinguishes them.
+
+### L-268 · COMPUTE THE WHOLE NEW FILE BEFORE OPENING ANYTHING FOR WRITING — AN OPEN IN WRITE MODE TRUNCATES BEFORE THE EXPRESSION BESIDE IT IS EVALUATED.
+
+open(path, 'w').write(f(text)) evaluates the open FIRST. If f() then raises, the file is already empty and the exception looks like nothing happened. Build the new text in full, and only then open the file.
+
+**Applies to:** every study  ·  *Learned from:* found while building, truncating a study builder to zero bytes, 04-Sep-2026
+
+> **What it cost, or how we know.** A patch script applying the same edit to six builders wrote io.open(p,'w').write(add_import(s)); on the second file add_import raised because that builder has no sys.path preamble, and the traceback was the only sign that the file had already been emptied — 1,023 lines gone, recovered from git because it happened to be committed. Nothing about the error message mentioned the file.
+
+> **What would overturn it.** A write path where the truncation genuinely cannot precede the failure, such as writing to a temporary file and renaming it, which is the stronger form of this same discipline.
 
 
 ---

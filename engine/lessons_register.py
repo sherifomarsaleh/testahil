@@ -3654,6 +3654,24 @@ LESSONS = [
       "readings of one \u2014 a rate beside its amount, which the check already "
       "distinguishes and which is why it distinguishes them."),
 
+    L("L-268", "ALL", None,
+      "COMPUTE THE WHOLE NEW FILE BEFORE OPENING ANYTHING FOR WRITING \u2014 AN OPEN IN "
+      "WRITE MODE TRUNCATES BEFORE THE EXPRESSION BESIDE IT IS EVALUATED.",
+      "open(path, 'w').write(f(text)) evaluates the open FIRST. If f() then raises, the "
+      "file is already empty and the exception looks like nothing happened. Build the "
+      "new text in full, and only then open the file.",
+      "truncating a study builder to zero bytes, 04-Sep-2026",
+      "build",
+      "A patch script applying the same edit to six builders wrote "
+      "io.open(p,'w').write(add_import(s)); on the second file add_import raised because "
+      "that builder has no sys.path preamble, and the traceback was the only sign that "
+      "the file had already been emptied \u2014 1,023 lines gone, recovered from git "
+      "because it happened to be committed. Nothing about the error message mentioned "
+      "the file.",
+      "A write path where the truncation genuinely cannot precede the failure, such as "
+      "writing to a temporary file and renaming it, which is the stronger form of this "
+      "same discipline."),
+
 ]
 
 
