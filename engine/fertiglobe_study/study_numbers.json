@@ -3070,6 +3070,217 @@
    "panel_windows": 261
   }
  },
+ "macro_record": {
+  "market": "AE",
+  "path_as_of": "2026-09-03",
+  "inflation_inputs": [],
+  "growth_lines": [
+   {
+    "name": "Framing A \u2014 urea and ammonia benchmarks, US dollars per tonne",
+    "years": [
+     2026,
+     2027,
+     2028,
+     2029,
+     2030
+    ],
+    "nominal": [
+     0.0,
+     -0.18644067796610164,
+     -0.08333333333333337,
+     -0.011363636363636354,
+     0.0
+    ],
+    "real": 0.0,
+    "basis": "a nitrogen benchmark quoted in US dollars, set by global supply and the marginal cost of the swing producer",
+    "exempt_reason": "NOT A RATE ON THIS MARKET LADDER. The path is a commodity benchmark in dollars, not a dirham price escalated by dirham inflation, and it is the study's central contested judgement \u2014 which is why it is published as two framings rather than as one number with a growth rate attached. It flattens in the later years because no forecast of a nitrogen price five years out is defensible, and a flat nominal dollar path is stated here as the assumption it is."
+   },
+   {
+    "name": "Framing B \u2014 urea and ammonia benchmarks, US dollars per tonne",
+    "years": [
+     2026,
+     2027,
+     2028,
+     2029,
+     2030
+    ],
+    "nominal": [
+     0.0,
+     -0.05084745762711862,
+     -0.017857142857142905,
+     0.0,
+     0.009090909090909038
+    ],
+    "real": 0.0,
+    "basis": "a nitrogen benchmark quoted in US dollars, set by global supply and the marginal cost of the swing producer",
+    "exempt_reason": "NOT A RATE ON THIS MARKET LADDER. The path is a commodity benchmark in dollars, not a dirham price escalated by dirham inflation, and it is the study's central contested judgement \u2014 which is why it is published as two framings rather than as one number with a growth rate attached. It flattens in the later years because no forecast of a nitrogen price five years out is defensible, and a flat nominal dollar path is stated here as the assumption it is."
+   },
+   {
+    "name": "Third-party traded price, US dollars per tonne",
+    "years": [
+     2026,
+     2027,
+     2028,
+     2029,
+     2030
+    ],
+    "nominal": [
+     0.0,
+     -0.1333333333333333,
+     -0.05769230769230771,
+     0.0,
+     0.004081632653061273
+    ],
+    "real": 0.0,
+    "basis": "a nitrogen benchmark quoted in US dollars, set by global supply and the marginal cost of the swing producer",
+    "exempt_reason": "NOT A RATE ON THIS MARKET LADDER. The path is a commodity benchmark in dollars, not a dirham price escalated by dirham inflation, and it is the study's central contested judgement \u2014 which is why it is published as two framings rather than as one number with a growth rate attached. It flattens in the later years because no forecast of a nitrogen price five years out is defensible, and a flat nominal dollar path is stated here as the assumption it is."
+   },
+   {
+    "name": "Cost per tonne",
+    "years": [
+     2026,
+     2027,
+     2028,
+     2029,
+     2030
+    ],
+    "nominal": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "real": 0.0,
+    "basis": "regressed on the realised product price across the three reported periods",
+    "exempt_reason": "THERE IS NO ESCALATOR TO CHECK. Cost per tonne is a fitted function of the realised price at a measured pass-through, so it carries no inflation term at all; escalating it separately would count the price move twice."
+   },
+   {
+    "name": "Terminal working-capital charge",
+    "years": [
+     2030
+    ],
+    "nominal": [
+     0.02
+    ],
+    "real": 0.0,
+    "basis": "the house terminal inflation applied to the terminal working-capital balance, taken from the path by the sanctioned terminal builder"
+   }
+  ],
+  "terminal": {
+   "g_nominal": 0.020000000000000018,
+   "real": 0.0,
+   "rf": 0.047299999999999995
+  },
+  "fx_path": [
+   3.6725,
+   3.6725,
+   3.6725,
+   3.6725,
+   3.6725
+  ],
+  "fx_base": 3.6725,
+  "explicit_years": 5,
+  "growth_at_horizon_end": 0.013669200559377037,
+  "terminal_rf_derived_by_the_path": 0.039751
+ },
+ "bridge_record": {
+  "market": "AE",
+  "balance_sheet_date": "2026-06-30",
+  "latest_disclosed_date": "2026-06-30",
+  "latest_disclosed_source": "Fertiglobe plc, Condensed Consolidated Interim Financial Statements, six months ended 30-Jun-2026, reviewed, together with Fertiglobe Q2 2026 Results MD&A Report (28-Jul-2026) \u2014 both registered in this study's sweep register. No later balance sheet exists: the third quarter had not closed at the price date.",
+  "register": "sweep_register.json",
+  "nci": {
+   "basis": "value_share",
+   "proxy_source": "the minority's disclosed share of group profit (note 15 of the annual report and the FY2025 statements), used as the proxy for its share of equity value because the two subsidiaries' own enterprise values are not separately disclosed",
+   "deduction": 1451.3308730909891,
+   "applied_to": "equity_value",
+   "book": 443.3,
+   "profit_share": 0.263,
+   "proportional": 1451.3308730909891,
+   "note": "The ownership percentages are 49.01% of Sorfert and 25.0% of Egypt Basic Industries; the minority takes 26.3% of group profit, which is the figure used, because those two are the most profitable assets in the group and an ownership-weighted deduction would understate the claim."
+  },
+  "cash": {
+   "treatment": "none",
+   "weights_basis": "net",
+   "note": "There is no separate cash line: the bridge deducts NET debt, so cash is inside that figure rather than added back at face. The company is net DEBT, not net cash, so the equity weight stays below one and the operating rate below the cost of equity \u2014 the inversion this clause exists for cannot arise here.",
+   "finding_for_the_cost_of_capital_pass": {
+    "wacc_on_net_weights": 0.11897018221623164,
+    "wacc_on_gross_weights": 0.10848255991410902
+   }
+  },
+  "associates": {
+   "basis": "none",
+   "listed": false,
+   "evidence": "No associates or joint ventures are carried: the FY2025 balance sheet has no investment in associates line, and the group consolidates Sorfert and Egypt Basic Industries with minorities rather than equity-accounting them."
+  },
+  "dividend": {
+   "deducted": false,
+   "note": "No dividend is deducted. The interim distribution declared with the first-half results is already out of the 30 June equity the bridge stands on."
+  },
+  "lines": [
+   {
+    "label": "Enterprise value of the operations, framing A",
+    "value": 6139.568338749008
+   },
+   {
+    "label": "less net debt at 30 June 2026",
+    "value": -621.2
+   },
+   {
+    "label": "less non-controlling interests at their share of equity value",
+    "value": -1451.3308730909891
+   }
+  ],
+  "equity_value": 4067.037465658019,
+  "shares_mn": 8249.6,
+  "per_share": 0.4929981412017575,
+  "per_share_currency": "USD",
+  "other_framing": {
+   "label": "B",
+   "equity_value": 6030.556634393553,
+   "per_share": 0.7310120047509641
+  }
+ },
+ "forecast_anchor": {
+  "rate_name": "EBITDA margin on the own-produced segment, framing A",
+  "latest_reviewed_period": "H1 2026, reviewed (six months ended 30 June 2026)",
+  "latest_reviewed_date": "2026-06-30",
+  "latest_reviewed_rate": 0.4443331246086412,
+  "latest_reviewed_source": "Fertiglobe plc, Condensed Consolidated Interim Financial Statements, six months ended 30-Jun-2026 \u2014 own-produced segment EBITDA over own-produced segment revenue, both as reported in the segment note",
+  "first_forecast_rate": 0.44308269750515333,
+  "forecast_path": [
+   0.44308269750515333,
+   0.4298127881225738,
+   0.4216059825624595,
+   0.4204705288948218,
+   0.42046845149474804
+  ],
+  "mechanism": {
+   "name": "input_cost_outpacing_price",
+   "disclosure": "The cost stack is disclosed by nature in the FY2025 statements and the gas and feedstock line is product-linked under the Egyptian and Algerian contracts. Cost per tonne is regressed on the realised product price across the three reported periods and moves with about half of every incremental dollar, so on a falling-price path the cost base gives back less than the price does and the margin compresses. The pass-through is measured, not assumed, and its slope is published with its fit.",
+   "like_for_like": {
+    "period_a": "FY2023",
+    "period_b": "FY2024",
+    "measures": "cost of sales per unit of revenue, as filed",
+    "value_a": 0.6473801837596226,
+    "value_b": 0.7529862631893292,
+    "higher_is_worse": true,
+    "note": "The pair is chosen because it is the one in the filed record where the realised price FELL, which is what framing A forecasts; revenue went from 2,416.2 to 2,009.2 and cost per unit of revenue rose with it. The opposite pair runs the opposite way and is published beside it rather than left out: FY2024 into FY2025, revenue up, cost per unit of revenue down from 0.752986 to 0.686850. A relationship that only held in one direction would not be one."
+   }
+  },
+  "other_framing": {
+   "label": "B \u2014 structurally tight market",
+   "forecast_path": [
+    0.44308269750515333,
+    0.4426698781583484,
+    0.4412640499290251,
+    0.4412620011956024,
+    0.44196770107148964
+   ],
+   "note": "Framing B holds the price near the reviewed level, so its margin is essentially flat across the window and owes no mechanism. The two framings are the study's central contested judgement and are published side by side rather than averaged."
+  }
+ },
  "assert_log": [
   "Abu Dhabi's equity risk premium is its own default spread scaled by the same lambda as the others (1.524)",
   "Egypt's equity risk premium is its own default spread scaled by the same lambda as the others (1.524)",
