@@ -135,6 +135,24 @@ routing this study's own `terminal()` through the module, the workbook, the docu
 gap review and the ledger — on a study whose filings are scanned Arabic and whose central is
 two-sided across four branches. It is the next pass, and it is a build rather than research.
 
+**And the workbook was MEASURED rather than assessed from its shape**, which is the mistake
+made once already this week and is not worth making twice. Its terminal block is a fixed row
+map — `BLK` at rows 21 to 28 of the DCF sheet, two columns — and a fixed row map is exactly
+what looked like a blocker on another name and was not. The arithmetic:
+
+| | rows |
+|---|---:|
+| the sanctioned waterfall needs: book D&A, maintenance, inflation on working capital | +3 |
+| row 26 is freed — it holds the retired reinvestment rate, which goes | −1 |
+| **net rows needed** | **2** |
+| free rows between the block's last row (28) and the next content (33) | **4** |
+
+Growth capital is not a row here because this terminal's real growth is **zero**, so the
+charge is zero by construction rather than by omission. **Nothing below has to move and no
+address shifts.** The rest of the surface is small too: `reinv_rate`, `roc_terminal` and
+`fcff_T` appear in only two files, `compute.py` and `build_xlsx.py`, and in the workbook only
+at three lines.
+
 **What is NOT the reason:** this was a missing measurement, now obtained, in a shared
 module. It is not an obstacle assessed from the shape of the change — the terminal was
 actually built, run and priced, and the number it produced is what sent the enquiry back to
