@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**198 lessons**, of which 169 bind on every study, 22 on a class of company, and 7 on a single name.
+**200 lessons**, of which 171 bind on every study, 22 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 123 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 125 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1768,6 +1768,26 @@ Building a terminal on the reinvestment identity makes the implied asset life th
 > **What it cost, or how we know.** The construction charges g x IC every year for ever, so the implied replacement cycle is 1/g. At Egypt's 7 per cent terminal that is 14.3 years against a disclosed 25-year cement plant, and the correction RAISED value on ARCC and SCEM. At the dirham's pegged 2 per cent it is 50 years against a disclosed 25-year ship, and the correction LOWERS it. Of the thirteen studies carrying the construction, the implied cycles run from 14.3 years to 66.7 — every one of them the reciprocal of that market's terminal inflation and none of them a fact about the assets.
 
 > **What would overturn it.** A market whose terminal inflation happens to coincide with its assets' disclosed life, where the defect is invisible because the two agree by accident.
+
+### L-278 · A NEGATIVE CONTROL THAT NAMES A LIVE RATCHET ENTRY HAS AN EXPIRY DATE ON IT.
+
+A ratchet may only ever shorten. So a control case built by reaching into a live ratchet and moving whichever entry it was written around stops being constructible the day that entry is cleared — and then it fails for a reason that has nothing to do with the property it tests, which reads exactly like failing for the right one. Plant the starting state; do not assume it.
+
+**Applies to:** every study  ·  *Learned from:* found while building, clearing the exemplar's last ratchet entries, 04-Sep-2026
+
+> **What it cost, or how we know.** Three controls broke this way in one day. The delivered-PDF control removed a named study from a ratchet to prove the gate then fires, and that study had just been pruned off it. Two cases of the exemplar-debt control did the same: one needed ADNOCLS on the gap gate's unreadable list to move it, and one needed it on the macro ratchet to remove it, and the morning's work had cleared both. Each now either reads the entry off the list at run time or plants its own, and asserts the mutation landed either way.
+
+> **What would overturn it.** A control whose case genuinely requires a specific historical entry — where the case is about that entry rather than about the property, and should say so.
+
+### L-279 · A GATE SWEEP THAT SKIPS THE NEGATIVE CONTROLS IS A DIFFERENT POPULATION FROM CI.
+
+Running every scripts/check_*.py and excluding the ones ending _negative_control feels like running the gates, because it is where the gates live. CI runs both. A sweep built from a pattern the operator chose reports on the population the operator chose.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the ADNOCLS re-issue, 04-Sep-2026
+
+> **What it cost, or how we know.** A hand-rolled sweep of 44 gates reported 0 red while the CI step list reported one: the exemplar-debt negative control, excluded by the sweep's own pattern. This is the same defect scripts/run_ci_gates.py was written for on 3 September 2026, when a by-hand sweep reported green against a CI that had been red for a day — anchor the population somewhere else. The remedy is to run that script rather than a pattern, and it is cheap.
+
+> **What would overturn it.** Nothing. The controls are part of the suite; a sweep that omits them is measuring something narrower and should say which.
 
 
 ---

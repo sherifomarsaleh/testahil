@@ -44,14 +44,33 @@ def a_new_standard_the_exemplar_misses(dst):
 
 
 def the_exemplar_moves_between_lists(dst):
-    """UNREADABLE to BREACHING on the same ratchet is a change, not nothing."""
+    """UNREADABLE to BREACHING on the same ratchet is a change, not nothing.
+
+    THE FIXTURE PLANTS ITS OWN STARTING STATE RATHER THAN ASSUMING ONE. This case read
+    the live ratchet and required ADNOCLS to be sitting on the unreadable list, which it
+    was on the day the case was written and is not any more — the exemplar's answer was
+    made readable on 4 September 2026 and every entry it held was cleared. The case then
+    failed for a reason that has nothing to do with the property it tests, which reads
+    exactly like failing for the right one. A ratchet may only ever SHORTEN, so any
+    control that names one of its entries has an expiry date on it; this one plants the
+    entry, moves it, and asserts BOTH steps landed.
+    """
     p = os.path.join(dst, 'engine', 'build_depth_audit', 'gap_outstanding.json')
     d = json.load(open(p))
-    assert any(str(x).upper() == 'ADNOCLS' for x in d.get('unreadable', [])), \
-        'fixture never injected: ADNOCLS was not on the unreadable list'
+    d.setdefault('unreadable', [])
+    if not any(str(x).upper() == 'ADNOCLS' for x in d['unreadable']):
+        d['unreadable'].append('ADNOCLS')
+    json.dump(d, open(p, 'w'), indent=1)
+    d = json.load(open(p))
+    assert any(str(x).upper() == 'ADNOCLS' for x in d['unreadable']), \
+        'fixture never injected: ADNOCLS is not on the unreadable list to move from'
     d['unreadable'] = [x for x in d['unreadable'] if str(x).upper() != 'ADNOCLS']
     d.setdefault('outstanding', []).append('ADNOCLS')
     json.dump(d, open(p, 'w'), indent=1)
+    d = json.load(open(p))
+    assert 'ADNOCLS' in d['outstanding'] and not any(
+        str(x).upper() == 'ADNOCLS' for x in d.get('unreadable', [])), \
+        'the move did not land: the exemplar must leave one list and join the other'
     return 'gap_outstanding.json:outstanding'
 
 
@@ -73,13 +92,24 @@ def the_exemplar_is_not_a_study(dst):
 
 
 def a_debt_that_shortens(dst):
-    """Removing the exemplar from a ratchet must stay GREEN — the list may SHORTEN."""
+    """Removing the exemplar from a ratchet must stay GREEN — the list may SHORTEN.
+
+    PLANTS ITS OWN STARTING STATE, for the reason the move-between-lists case above
+    does: naming a live ratchet entry gives a control an expiry date, and this one
+    expired the day the exemplar came off the macro ratchet.
+    """
     p = os.path.join(dst, 'engine', 'build_depth_audit', 'macro_outstanding.json')
     d = json.load(open(p))
+    if not any(str(x).upper() == 'ADNOCLS' for x in d['outstanding']):
+        d['outstanding'].append('ADNOCLS')
+        json.dump(d, open(p, 'w'), indent=1)
+        d = json.load(open(p))
     assert any(str(x).upper() == 'ADNOCLS' for x in d['outstanding']), \
-        'fixture never injected: ADNOCLS was not on the macro ratchet'
+        'fixture never injected: ADNOCLS is not on the macro ratchet to remove'
     d['outstanding'] = [x for x in d['outstanding'] if str(x).upper() != 'ADNOCLS']
     json.dump(d, open(p, 'w'), indent=1)
+    assert not any(str(x).upper() == 'ADNOCLS'
+                   for x in json.load(open(p))['outstanding']), 'the removal did not land'
     return 'one fewer'
 
 

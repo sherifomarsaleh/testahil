@@ -3853,6 +3853,43 @@ LESSONS = [
       "where the hull cycle and the maintenance charge can be built apart and the "
       "reconciliation is arithmetic rather than an open question."),
 
+
+    L("L-278", "ALL", None,
+      "A NEGATIVE CONTROL THAT NAMES A LIVE RATCHET ENTRY HAS AN EXPIRY DATE ON IT.",
+      "A ratchet may only ever shorten. So a control case built by reaching into a live "
+      "ratchet and moving whichever entry it was written around stops being constructible "
+      "the day that entry is cleared — and then it fails for a reason that has nothing to "
+      "do with the property it tests, which reads exactly like failing for the right one. "
+      "Plant the starting state; do not assume it.",
+      "clearing the exemplar's last ratchet entries, 04-Sep-2026",
+      "build",
+      "Three controls broke this way in one day. The delivered-PDF control removed a named "
+      "study from a ratchet to prove the gate then fires, and that study had just been "
+      "pruned off it. Two cases of the exemplar-debt control did the same: one needed "
+      "ADNOCLS on the gap gate's unreadable list to move it, and one needed it on the "
+      "macro ratchet to remove it, and the morning's work had cleared both. Each now "
+      "either reads the entry off the list at run time or plants its own, and asserts the "
+      "mutation landed either way.",
+      "A control whose case genuinely requires a specific historical entry — where the "
+      "case is about that entry rather than about the property, and should say so."),
+
+    L("L-279", "ALL", None,
+      "A GATE SWEEP THAT SKIPS THE NEGATIVE CONTROLS IS A DIFFERENT POPULATION FROM CI.",
+      "Running every scripts/check_*.py and excluding the ones ending "
+      "_negative_control feels like running the gates, because it is where the gates "
+      "live. CI runs both. A sweep built from a pattern the operator chose reports on the "
+      "population the operator chose.",
+      "the ADNOCLS re-issue, 04-Sep-2026",
+      "build",
+      "A hand-rolled sweep of 44 gates reported 0 red while the CI step list reported one: "
+      "the exemplar-debt negative control, excluded by the sweep's own pattern. This is "
+      "the same defect scripts/run_ci_gates.py was written for on 3 September 2026, when a "
+      "by-hand sweep reported green against a CI that had been red for a day — anchor the "
+      "population somewhere else. The remedy is to run that script rather than a pattern, "
+      "and it is cheap.",
+      "Nothing. The controls are part of the suite; a sweep that omits them is measuring "
+      "something narrower and should say which."),
+
 ]
 
 
