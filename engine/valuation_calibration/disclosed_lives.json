@@ -229,7 +229,25 @@
    "sha256": "cbb8fdb171154dbe9adac7a0675271b53050d40fd58dfa5595d5ad4b0ff20b8f",
    "route": "Text layer via pdftotext -layout, 1.39MB extracted. The report is the integrated annual report and carries the audited consolidated financial statements inside it, which is where this note sits.",
    "cross_check": "NOT YET CROSS-CHECKED AGAINST A SECOND YEAR, and that is recorded rather than left to be assumed from the other entries here. Unlike SAVOLA's, this note does not describe its own table as covering the comparative year, so the one-document check SAVOLA's gave is not available; a prior-year annual report would supply it and was not fetched in this pass. The lives are usable and this is what is known about them.",
-   "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE. The weighted life a terminal needs is derived at rebuild from this company's own property, plant and equipment note composition — a further sourcing step, not done here."
+   "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE. The weighted life a terminal needs is derived at rebuild from this company's own property, plant and equipment note composition — a further sourcing step, not done here.",
+   "weighted_life_derived": {
+    "years": 22.04,
+    "identity": "depreciable cost / the year's depreciation charge",
+    "arithmetic": {
+     "ppe_cost_total_31_12_2025": 6197.4,
+     "less_under_construction": 190.4,
+     "less_land_not_depreciated": 22.2,
+     "depreciable_cost": 5984.8,
+     "depreciation_2025": 271.6,
+     "years": 22.04,
+     "units": "USD millions"
+    },
+    "source": "Fertiglobe plc, 2025 Annual Report, note 7 property, plant and equipment — the cost and accumulated-depreciation table at 31 December 2025, and the 'Depreciation and impairment' movement row for the year.",
+    "why_derived_and_not_chosen": "THE DISCLOSED BANDS CANNOT BE COLLAPSED WITHOUT CHOOSING. Buildings 10-50, plant and equipment 5-30, fixtures 3-10: any single figure taken from those is this desk picking a life, which [R-TERM-01] refuses outright. What the note ALSO discloses is the composition at COST and the year's charge, and their ratio is an IDENTITY rather than an assumption — the composite life the company's own accounts are actually running. It is LABELLED derived, on the same footing as capex derived by dPPE + D&A and EGCH's years derived from disclosed rates.",
+    "the_impairment_caveat_and_why_it_does_not_bite": "The movement row is labelled 'Depreciation and impairment', so in a year carrying an impairment the ratio would understate the life. This report states at note 12 that 'no impairments were required for the year ended 31 December 2025', so the row is pure depreciation and the identity is exact. IN A YEAR WITH AN IMPAIRMENT THIS DERIVATION WOULD NOT BE AVAILABLE, and that is a property of the disclosure rather than of the method.",
+    "coherence_check": "The derived 22.04 years sits INSIDE the disclosed plant-and-equipment band of 5-30, and plant and equipment is 94.6% of the depreciable cost base — so the figure the arithmetic produces and the class that dominates the base agree. That is the check that makes a derived life usable rather than merely arithmetic.",
+    "against_the_retired_terminal": "The retired terminal charges g x IC, so it implies a replacement cycle of 1/g = 50.0 years at this study's 2% terminal — 2.27 TIMES the life this company's own accounts depreciate its assets over. That is the [R-TERM-01 CLAUSE TWO] direction reversal measured on one name with its own numbers: in a pegged market the identity does not starve the asset base, it flatters it, and correcting it moves the value DOWN."
+   }
   },
   "EGCH": {
    "disclosure_is_rates_not_lives": true,
