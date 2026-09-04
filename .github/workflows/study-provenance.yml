@@ -82,6 +82,8 @@ on:
       - 'scripts/check_exemplar_debt_negative_control.py'
       - 'scripts/check_source_integrity.py'
       - 'scripts/check_source_integrity_negative_control.py'
+      - 'scripts/check_source_rebinding.py'
+      - 'scripts/check_source_rebinding_negative_control.py'
       - 'engine/source_integrity.py'
       - 'engine/table_footing.py'
       - 'engine/site_data.py'
@@ -186,6 +188,8 @@ on:
       - 'scripts/check_exemplar_debt_negative_control.py'
       - 'scripts/check_source_integrity.py'
       - 'scripts/check_source_integrity_negative_control.py'
+      - 'scripts/check_source_rebinding.py'
+      - 'scripts/check_source_rebinding_negative_control.py'
       - 'engine/source_integrity.py'
       - 'engine/table_footing.py'
       - 'engine/site_data.py'
@@ -589,6 +593,25 @@ jobs:
       # all of them work that was right, and each was fixed by re-pointing the check
       - name: Source-integrity gate — negative control
         run: python3 scripts/check_source_integrity_negative_control.py
+
+      # [L-290] A SOURCE IS A STRING AND EVERY GATE HERE CHECKS ONLY THAT ONE EXISTS. A
+      # study assigned a new source constant to a name sixty lines after that name already
+      # held a different document; twelve inputs registered afterwards were re-sourced to a
+      # note carrying none of them. No value moved, so the four-field assertion passed on
+      # all 208 inputs, the workbook reconciled 1,084 of 1,084 cells, every document gate
+      # was green — and the bibliography printed the wrong document beside each of the
+      # twelve. This checks the MECHANICAL half, which needs no judgement: a name read by a
+      # registration call and then reassigned is a source whose meaning changed under the
+      # inputs already standing on it.
+      - name: Source-constant rebinding gate
+        run: python3 scripts/check_source_rebinding.py
+
+      # and the proof it can go red. It went green on its first run because the one
+      # instance had already been fixed, so the defect is reinjected exactly as it shipped
+      # — with five clean shapes beside it, because a gate firing on a constant assigned
+      # once and read many times would be the permanently-red check [R-ENF-02] forbids.
+      - name: Source-constant rebinding gate — negative control
+        run: python3 scripts/check_source_rebinding_negative_control.py
 
       # [R-ENF-03] assets/data.js is read through a REAL JavaScript parse, EVERYWHERE.
       # The rule was adopted four weeks earlier, after a reader — not a check — found a

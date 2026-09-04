@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**210 lessons**, of which 181 bind on every study, 22 on a class of company, and 7 on a single name.
+**211 lessons**, of which 182 bind on every study, 22 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 135 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 136 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1888,6 +1888,16 @@ When the real calculation is expensive, a ratio that sorts the book looks irresi
 > **What it cost, or how we know.** A column comparing each terminal's capital charge with its own book depreciation was read as showing which terminals under-charge and are therefore over-valued, and that reading went into a standing rule the same morning. The first name actually rebuilt read 0.26x on that column and its corrected terminal came out about 5% HIGHER. The retired charge is a NET growth charge on an implied capital base with maintenance assumed equal to depreciation and cancelled out; book depreciation is a GROSS charge on the historical base; and the corrected construction charges maintenance gross and adds book depreciation back. Three different definitions, one ratio.
 
 > **What would overturn it.** A proxy whose numerator and denominator are shown to be the same kind of quantity, where the ranking and the real calculation agree on a sample.
+
+### L-290 · A SOURCE FIELD IS CHECKED FOR PRESENCE, NEVER FOR WHETHER THE NAMED DOCUMENT CARRIES THE FIGURE. Rebinding the variable that holds a source rewrites the provenance of every input registered after it, and nothing fails.
+
+Every gate here asks whether an input has its four fields. None can ask whether the document named in the third field is the one the number came out of, because a source is a string and any string satisfies the check. That makes the source the one field in the register that can be silently wrong while everything else reports clean — and the failure is invisible in exactly the way a wrong VALUE is not, because a wrong value usually breaks an arithmetic check somewhere downstream and a wrong source breaks nothing at all.
+
+**Applies to:** every study  ·  *Learned from:* found while building, FERTIGLOBE, found while building its cost-of-capital record, 04-Sep-2026
+
+> **What it cost, or how we know.** A new source constant naming note 15 of the annual report was assigned to the name FS25, which sixty lines earlier already held the FY2025 financial statements. Twelve inputs registered after that line — three debt tranches, three facility spreads, the rejected capitalisation rate and five non-current-asset geography figures — were re-sourced to a note that carries none of them. No value moved. The four-field assertion passed on all 208 inputs, the recalculation reconciled 1,084 of 1,084 formula cells, every document gate was green, and the bibliography printed the wrong document beside each of the twelve. It shipped in two pushed commits and was found only because the next piece of work happened to read those same inputs and recognised a source that could not be right.
+
+> **What would overturn it.** A check that holds each input's source against where the figure actually came from — or, short of that, the mechanical half: refusing a source constant that is rebound after any input has been registered against it, which would have caught this one.
 
 
 ---

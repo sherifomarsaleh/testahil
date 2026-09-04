@@ -273,9 +273,9 @@ inp('sofr', 0.0365, "Secured Overnight Financing Rate, New York Fed", '2026-08-0
 AD_CDS = inp('ad_cds', 0.0046, DAM + " — Abu Dhabi sovereign CDS", '2026-08-09', 'COUNTRY')
 AD_ADS = inp('ad_ads', 0.0042, DAM + " — Abu Dhabi adjusted default spread (Moody's Aa2)",
              '2026-08-09', 'COUNTRY')
-FS25 = 'Fertiglobe plc, Annual Report 2025, note 15 (non-controlling interests)'
-inp('nci_pct_sorfert', 0.4901, FS25 + " — Sorfert Algeria SpA", '2025-12-31', 'COMPANY')
-inp('nci_pct_ebic', 0.2500, FS25 + " — Egyptian Basic Industries Corporation", '2025-12-31',
+AR25_N15 = 'Fertiglobe plc, Annual Report 2025, note 15 (non-controlling interests)'
+inp('nci_pct_sorfert', 0.4901, AR25_N15 + " — Sorfert Algeria SpA", '2025-12-31', 'COMPANY')
+inp('nci_pct_ebic', 0.2500, AR25_N15 + " — Egyptian Basic Industries Corporation", '2025-12-31',
     'COMPANY')
 inp('ad_erp', 0.0487, DAM + " — Abu Dhabi equity risk premium, rating basis", '2026-08-09', 'COUNTRY')
 inp('ad_erp_cds', 0.0493, DAM + " — Abu Dhabi equity risk premium, CDS basis", '2026-08-09', 'COUNTRY')

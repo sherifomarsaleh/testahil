@@ -4101,6 +4101,36 @@ LESSONS = [
       "A proxy whose numerator and denominator are shown to be the same kind of "
       "quantity, where the ranking and the real calculation agree on a sample."),
 
+    L("L-290", "ALL", None,
+      "A SOURCE FIELD IS CHECKED FOR PRESENCE, NEVER FOR WHETHER THE NAMED DOCUMENT "
+      "CARRIES THE FIGURE. Rebinding the variable that holds a source rewrites the "
+      "provenance of every input registered after it, and nothing fails.",
+      "Every gate here asks whether an input has its four fields. None can ask "
+      "whether the document named in the third field is the one the number came out "
+      "of, because a source is a string and any string satisfies the check. That "
+      "makes the source the one field in the register that can be silently wrong "
+      "while everything else reports clean — and the failure is invisible in exactly "
+      "the way a wrong VALUE is not, because a wrong value usually breaks an "
+      "arithmetic check somewhere downstream and a wrong source breaks nothing at "
+      "all.",
+      "FERTIGLOBE, found while building its cost-of-capital record, 04-Sep-2026",
+      "build",
+      "A new source constant naming note 15 of the annual report was assigned to the "
+      "name FS25, which sixty lines earlier already held the FY2025 financial "
+      "statements. Twelve inputs registered after that line — three debt tranches, "
+      "three facility spreads, the rejected capitalisation rate and five "
+      "non-current-asset geography figures — were re-sourced to a note that carries "
+      "none of them. No value moved. The four-field assertion passed on all 208 "
+      "inputs, the recalculation reconciled 1,084 of 1,084 formula cells, every "
+      "document gate was green, and the bibliography printed the wrong document "
+      "beside each of the twelve. It shipped in two pushed commits and was found "
+      "only because the next piece of work happened to read those same inputs and "
+      "recognised a source that could not be right.",
+      "A check that holds each input's source against where the figure actually came "
+      "from — or, short of that, the mechanical half: refusing a source constant "
+      "that is rebound after any input has been registered against it, which would "
+      "have caught this one."),
+
 ]
 
 

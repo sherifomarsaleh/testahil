@@ -133,6 +133,13 @@ ARTEFACT_GATES = {
         'a builder-read JSON carrying a central and declaring no vintage',
         lambda: {'diagnostics.json': ('json', {'central': 12.34, 'note': 'no declaration'}),
                  'build_it.py': ('py', BUILDER_STUB)}),
+    'check_source_rebinding.py': (
+        'a source constant rebound after inputs were registered against it',
+        lambda: {'compute.py': ('py',
+                                'FS25 = "Consolidated Financial Statements FY2025"\n'
+                                "inp('a', 1.0, FS25, '2025-12-31', 'COMPANY')\n"
+                                'FS25 = "Annual Report 2025, note 15"\n'
+                                "inp('b', 2.0, FS25, '2025-12-31', 'COMPANY')\n")}),
 }
 
 # NOT IN EITHER SET, and each with the reason, because a name in a list that resolves to
