@@ -13,7 +13,11 @@ The study's single most consequential contested judgement — whether the FY2025
 development sales surge persists (base: normalising but sustained launches) or
 mean-reverts to backlog run-off — is computed BOTH WAYS and published side by
 side, never averaged into one number."""
-import json, os, math
+import json, os, math, sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+import terminal_value as TV          # [R-TERM-01] — verified by import, not by parse
+import macro_path as MP              # [R-MACRO-01] — the house path, never a typed rate
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, 'study_numbers.json')
@@ -671,6 +675,11 @@ for t in range(NY):
     nwc_f.append(nwc); dnwc_f.append(nwc - nprev)
     rprev, iprev, pprev, nprev = recv, invv, pay, nwc
 fcff_f = [nopat_f[t] + dna_f[t] - capex_f[t] - dnwc_f[t] for t in range(NY)]
+# Invested capital, needed by the terminal below as well as by the returns table further
+# down; computed once here so the two cannot drift apart.
+ic30 = bs30_eqp + bs30_nci + bs30_debt - bs30_cash_total
+ic_f_pre = [ic30 + sum(capex_f[:t + 1]) - sum(dna_f[:t + 1]) + sum(dnwc_f[:t + 1])
+            for t in range(NY)]
 
 # =============================================================================
 # COST OF CAPITAL v3 — beta is now TIER 1: the own-stock regression against the
@@ -767,7 +776,36 @@ mktcap = spot * shares_mn
 we = mktcap / (mktcap + bs30_debt)
 wd = bs30_debt / (mktcap + bs30_debt)
 wacc = we * ke + wd * kd_at
-g_term = inp('g_term', 0.025, 'Terminal growth 2.5%', '2026-08-09', 'House')
+_AE = MP.load('AE')
+PI_TERM = (_AE.raw['inflation']['terminal'] or {})['value']
+g_term_real = inp(
+    'g_term_real', 0.0,
+    "Terminal REAL growth of ZERO: the business is assumed to hold its scale in real "
+    "terms in perpetuity, and the nominal rate is computed from the long-run inflation "
+    "this valuation uses throughout. The previous edition typed 2.50% nominal and its "
+    "entire justification was the words 'Terminal growth 2.5%' — against a 2.0% "
+    "long-run rate that is real growth of half a point a year, for ever, which nothing "
+    "in the study argued for. A growth rate quoted only in nominal terms cannot be "
+    "checked: nobody reading 2.5% can tell whether it means inflation plus half a point "
+    "or inflation minus one.", '2026-09-04', 'House')
+g_term = (1.0 + PI_TERM) * (1.0 + g_term_real) - 1.0
+asset_life_years = inp(
+    'asset_life_years', 50.0,
+    "The LONGEST useful life the company discloses — buildings, from the property, plant "
+    "and equipment accounting policy in the FY2025 consolidated statements, which gives "
+    "plant 40 years, buildings 2 to 50, machinery and equipment 3 to 4, vehicles 3 to 5, "
+    "office and computer equipment 2 to 5, furniture and fixtures 2 to 5, leasehold "
+    "improvements the lower of the lease term or 10, and other assets 5. A WEIGHTED life "
+    "CANNOT be derived here and none is invented: the note's own columns combine land "
+    "with buildings (73% of gross cost, and land is not depreciated at all) and plant "
+    "with machinery (a more than tenfold spread), and the charge-implied route is closed "
+    "by AED 832mn of assets acquired through business combinations during the year. So "
+    "the LONGEST disclosed life is taken DELIBERATELY, because it produces the LARGEST "
+    "maintenance charge and therefore the LOWEST terminal of any life in the note — and "
+    "the whole disclosed range is published beside it: every life from 2 to 50 years "
+    "puts the terminal between 15.6% and 23.9% above the one this edition replaces and "
+    "above the no-growth floor, so the DIRECTION of the correction is certain across the "
+    "entire range and only its size is not.", '2026-02-18', 'Company')
 roic_term = inp('roic_term', 0.085, 'Terminal ROIC 8.5% — deliberately BELOW the '
                 'model\'s own forecast path (which reaches ~15% by FY2030E as '
                 'invested capital shrinks while NOPAT grows): a mean-reversion '
@@ -829,7 +867,54 @@ df_l = [(1 + wacc) ** -x for x in T_EXP]
 pv_l = [fcff_f[t] * df_l[t] for t in range(NY)]
 pv_explicit = sum(pv_l)
 nopat_term = nopat_f[-1] * (1 + g_term)
-tv = nopat_term * (1 - rr_term) / (wacc_term - g_term)
+# THE RETIRED FORM, kept in one line so the change is legible and priced. Substituting
+# rr = g/ROIC charges g x IC every year for ever, so the implied replacement cycle is
+# 1/g — a fact about the growth rate rather than about the asset. THIS STUDY'S TERMINAL
+# WAS THE ONLY ONE IN THE BOOK WORTH LESS THAN NOT INVESTING AT ALL: 10.7% below its own
+# no-growth perpetuity, which is what that construction does when it charges more for
+# growth than the growth is worth.
+tv_retired = nopat_term * (1 - rr_term) / (wacc_term - g_term)
+# The capital one unit of REAL growth actually needs: this model's own marginal invested
+# capital per unit of revenue across the explicit window, at terminal revenue. Read off
+# the forecast rather than assumed, and the first forecast year is taken at its FULL-YEAR
+# total (the model's own h1 + stub) so the ratio is not flattered by a part-year
+# denominator. It is INERT at the central, where real growth is zero; it binds in the
+# sensitivity grid, which is exactly where a free-growth assumption would hide.
+_inc_cap = ((ic_f_pre[-1] - ic_f_pre[0]) / (rev_f[-1] - fy26_rev_total)) * rev_f[-1]
+_terminal = TV.build(TV.TerminalInputs(
+    nopat=nopat_term, wacc=wacc_term, inflation=PI_TERM, real_growth=g_term_real,
+    dna_book=dna_f[-1] * (1 + g_term),
+    useful_life_years=asset_life_years,
+    useful_life_source=INP['asset_life_years']['source'],
+    maintenance_basis='book_dna_escalated',
+    # A DEVELOPER CARRIES A LARGE POSITIVE WORKING CAPITAL, so inflation on it is a real
+    # CHARGE rather than the credit a business paid before it delivers receives. Omitting
+    # it would have flattered this terminal by about 8 points.
+    working_capital=nwc_f[-1] * (1 + g_term),
+    incremental_capital_per_unit_growth=_inc_cap))
+tv = _terminal.tv
+
+
+def _variant_terminal(nopat_t, wacc_t, g_nom, dna_last, nwc_last):
+    """The terminal for a scenario or a sensitivity point, through the same module as
+    the central [R-TERM-01]. Every variant goes this way so a grid cannot quietly keep
+    the retired construction the base no longer uses — which is how the defect would
+    come back, in the one place nobody reads the arithmetic. A point the module REFUSES
+    returns nan and is printed as unavailable; it is never rebuilt another way."""
+    try:
+        return TV.build(TV.TerminalInputs(
+            nopat=nopat_t, wacc=wacc_t, inflation=PI_TERM,
+            real_growth=(1.0 + g_nom) / (1.0 + PI_TERM) - 1.0,
+            dna_book=dna_last * (1 + g_nom),
+            useful_life_years=asset_life_years,
+            useful_life_source=INP['asset_life_years']['source'],
+            maintenance_basis='book_dna_escalated',
+            working_capital=nwc_last * (1 + g_nom),
+            incremental_capital_per_unit_growth=_inc_cap)).tv
+    except TV.TerminalRefused:
+        return float('nan')
+
+
 pv_tv = tv * df_l[-1]
 ev = pv_explicit + pv_tv
 tv_share = pv_tv / ev
@@ -907,7 +992,7 @@ def dcf_variant(ns, rm, conv=conv_path, ke_add=0.0, dso=None, nwc_add=0.0):
         fcffs.append(eb * (1 - tax_f) + da - capex_f[t] - dn + nwc_add)
         ebits.append(eb); revs.append(rv)
     wt_x = (1 - wd_term) * ke_x + wd_term * kd * (1 - tax_f)
-    tvv = ebits[-1] * (1 - tax_f) * (1 + g_term) * (1 - rr_term) / (wt_x - g_term)
+    tvv = _variant_terminal(ebits[-1] * (1 - tax_f) * (1 + g_term), wt_x, g_term, da, nwc)
     evv = sum(f * d for f, d in zip(fcffs, dfx)) + tvv * dfx[-1]
     eqv = evv + h1_avail_cash - bs30_debt - bs30_lease + bs30_assoc + bs30_finass
     eqv_attr = eqv - max(bs30_nci, 0.02 * (eqv - bs30_nci))
@@ -940,9 +1025,7 @@ egy = dcf_variant(new_sales, red_margin,
 D['egy_stress'] = dict(ke=ke + beta * fgn_share * (egy_crp - 0.0064),
                        ps=egy['ps'], fgn_share=fgn_share)
 
-ic30 = bs30_eqp + bs30_nci + bs30_debt - bs30_cash_total
-ic_f = [ic30 + sum(capex_f[:t + 1]) - sum(dna_f[:t + 1]) + sum(dnwc_f[:t + 1])
-        for t in range(NY)]
+ic_f = ic_f_pre
 roic_f = [nopat_f[t] / YRFRAC[t] / ((ic_f[t] + (ic30 if t == 0 else ic_f[t - 1])) / 2)
           for t in range(NY)]
 
@@ -1188,8 +1271,7 @@ def dcf_shift(w_add=0.0, g_x=None, beta_x=None, margin_shift=0.0, conv_shift=0.0
         iprev2, nprev2 = invv, nwc
         fcffs.append(eb * (1 - tax_f) + da - capex_f[t] - dn + nwc_add)
         ebits.append(eb)
-    rrx = gx / roic_term
-    tvx = ebits[-1] * (1 - tax_f) * (1 + gx) * (1 - rrx) / max(wt_x - gx, 0.005)
+    tvx = _variant_terminal(ebits[-1] * (1 - tax_f) * (1 + gx), wt_x, gx, da, nwc)
     evx = sum(f * d for f, d in zip(fcffs, dfx)) + tvx * dfx[-1]
     eqx = evx + h1_avail_cash - bs30_debt - bs30_lease + bs30_assoc + bs30_finass
     eqx_attr = eqx - max(bs30_nci, 0.02 * (eqx - bs30_nci))
@@ -1198,7 +1280,11 @@ def dcf_shift(w_add=0.0, g_x=None, beta_x=None, margin_shift=0.0, conv_shift=0.0
 
 A(abs(dcf_shift() - ps) < 0.02, 'sensitivity engine reproduces the base at the '
   'unshifted point (grid convention fixed at revision 2)')
-g_grid = [0.015, 0.02, 0.025, 0.03, 0.035]
+# DERIVED from the terminal growth rather than typed, so the grid cannot drift off its
+# own centre the way it just did: g_term moved from a typed 2.5% to a derived 2.0% and a
+# typed grid left the base sitting in column two under a caption calling column three the
+# base. A grid whose centre is not the base is a table that misleads a reader.
+g_grid = [round(g_term + k * 0.005, 6) for k in (-2, -1, 0, 1, 2)]
 w_grid = [-0.01, -0.005, 0.0, 0.005, 0.01]
 sens_wg = [[dcf_shift(w_add=wx, g_x=gx) for gx in g_grid] for wx in w_grid]
 _bse = _BR['se']
@@ -1362,10 +1448,53 @@ D['terminal_recon'] = dict(
     roic_fy25_clean=ebit25_clean * (1 - tax_f)
     / (eqp25 + nci25 + debt25 - cash25),
     roic_path=roic_f, roic_term=roic_term, rr_term=rr_term,
-    note='terminal 8.5% sits between the FY2025 clean achieved 6.1% and the '
-         'model\'s own forward path (peaking ~15% as capital releases); the '
-         'step-down from the path is a deliberate mean-reversion margin of '
-         'safety, stated and sensitised')
+    note='the terminal return and reinvestment rate are published because the '
+         'RETIRED construction rested on them and a reader comparing editions is '
+         'owed the pair; they no longer build anything. The terminal is now the '
+         'sanctioned one: maintenance at replacement cost over the longest life '
+         'the company discloses, book depreciation added back, inflation charged '
+         'on the working capital a developer carries, and no growth capital '
+         'because the real growth taken is zero.')
+
+D['terminal_record'] = dict(
+    construction='engine/terminal_value.py [R-TERM-01]',
+    retired_construction=dict(
+        form='NOPAT(1+g)(1 - g/ROIC)/(W-g)', tv=tv_retired,
+        implied_cycle_years=1.0 / g_term,
+        why_retired='the reinvestment identity charges g x IC every year for ever, so '
+                    'the implied replacement cycle is 1/g — a fact about the currency '
+                    'and not about the asset. At a 2.0% terminal that is 50.0 years. '
+                    'THIS STUDY CARRIED THE ONLY TERMINAL IN THE BOOK WORTH LESS THAN '
+                    'NOT INVESTING AT ALL — 10.7% below its own no-growth perpetuity — '
+                    'which is what that construction does on a pegged currency when it '
+                    'charges more for growth than the growth is worth.'),
+    inputs=dict(nopat=nopat_term, wacc=wacc_term, inflation=PI_TERM,
+                real_growth=g_term_real, nominal_growth=g_term,
+                dna_book=dna_f[-1] * (1 + g_term),
+                useful_life_years=asset_life_years,
+                useful_life_source=INP['asset_life_years']['source'],
+                maintenance_basis='book_dna_escalated',
+                maintenance_basis_reason=(
+                    "'disclosed_life' divides REPLACEMENT-COST invested capital by the "
+                    "disclosed life and this model commits no replacement-cost capital "
+                    "base: the property note gives historical cost across a portfolio of "
+                    "very mixed vintages, and rolling it forward through the forecast "
+                    "would be a construction of ours rather than a figure the company "
+                    "discloses (SIGCM clause 1). Escalating the model's own book "
+                    "depreciation over half the disclosed life uses only figures that "
+                    "exist, and the life taken is the LONGEST the company discloses, "
+                    "which charges the LEAST maintenance and so is the conservative "
+                    "choice against a correction that raises the value."),
+                working_capital=nwc_f[-1] * (1 + g_term),
+                incremental_capital_per_unit_growth=_inc_cap),
+    outputs=dict(fcff=_terminal.fcff, tv=_terminal.tv, floor=_terminal.floor,
+                 maintenance=_terminal.maintenance,
+                 growth_capex=_terminal.growth_capex,
+                 wc_charge=_terminal.wc_charge, dna_addback=_terminal.dna_addback,
+                 implied_cycle_years=_terminal.implied_cycle_years,
+                 below_floor=_terminal.below_floor),
+    record=_terminal.record,
+    moved=dict(tv_before=tv_retired, tv_after=tv, pct=tv / tv_retired - 1.0))
 
 # ---- external results --------------------------------------------------------
 with open(os.path.join(HERE, 'step0_result.json')) as f:

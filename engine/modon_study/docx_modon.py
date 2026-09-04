@@ -8,6 +8,8 @@ exec(open(os.path.join(HERE, 'docx_base.py')).read())
 
 M, HI, HB, F = D['meta'], D['hist_is'], D['hist_bs'], D['fcst']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sens']
+TRC = D['terminal_record']
+TRI, TRO = TRC['inputs'], TRC['outputs']
 EXPD, REL, NRM, BKL = D['experts'], D['rel'], D['norm'], D['book']
 SEG, S0, STK, CJ = D['seg_fy25'], D['step0'], D['strike'], D['contested']
 TECH, H1D, UN, HA = D['tech'], D['h1'], D['units'], D['h1_anchors']
@@ -239,18 +241,35 @@ wcrows = [['Working-capital components (AED mn)'] + YRS,
           ['Net working capital'] + [n0(v) for v in F['nwc']],
           ['Δ working capital (+ = absorption)'] + [n0(v) for v in F['dnwc']]]
 table(wcrows, [2.35, 0.93, 0.93, 0.93, 0.93, 0.93], band_rows={5}, size=8.6)
-P(f'Terminal block. Terminal growth {pc(DCF["g"], 1)}; terminal return on capital '
-  f'{pc(IN["roic_term"], 1)} — deliberately below the model\'s own forecast path (which '
-  f'reaches ~{pc(F["roic"][-1], 0)} by FY2030E as capital releases while profit grows) and '
-  f'above the FY2025 clean achieved {pc(D["terminal_recon"]["roic_fy25_clean"], 1)}, a stated '
-  f'mean-reversion margin of safety. Reinvestment = g/ROIC = {pc(DCF["rr_term"])}, derived. '
-  f'The terminal debt weight is no longer assumed: it is DERIVED from the model\'s own '
+P(f'Terminal block. Growth beyond the forecast is stated as a REAL rate and the headline '
+  f'rate is derived from it: real growth of {pc(TRI["real_growth"], 1)} on the '
+  f'{pc(TRI["inflation"], 1)} long-run inflation this economy is expected to run gives a '
+  f'nominal {pc(TRI["nominal_growth"], 1)}. Stating it the other way round — typing a '
+  f'nominal figure — hides whether the company is assumed to grow faster than prices or '
+  f'more slowly than them, and here the assumption is neither: the business is assumed to '
+  f'hold its real size for ever.')
+P(f'What the terminal charges for is capital MAINTENANCE, at what replacement actually '
+  f'costs. Terminal operating profit after tax is AED {n0(TRI["nopat"])}mn; book '
+  f'depreciation of AED {n0(TRI["dna_book"])}mn is added back because that profit is '
+  f'already struck after it, and against it the model charges AED {n0(TRO["maintenance"])}mn '
+  f'— the same depreciation escalated over half the {n0(TRI["useful_life_years"])}-year '
+  f'life the company discloses for its longest-lived assets, which is what replacing them '
+  f'costs in the money of the day rather than the money they were bought with. Inflation '
+  f'on the working capital this business carries takes a further AED '
+  f'{n0(TRO["wc_charge"])}mn, and real growth is charged nothing because none is assumed. '
+  f'That leaves AED {n0(TRO["fcff"])}mn of free cash flow, {pc(TRO["fcff"] / TRI["nopat"])} '
+  f'of terminal profit.')
+P(f'The terminal debt weight is not assumed either: it is derived from the model\'s own '
   f'FY2030E balance sheet ({pc(W["wd_term"], 1)}), which puts the terminal rate at '
-  f'{pc(W["wacc_term"], 2)} — ABOVE the explicit-window rate, where the first edition had it '
-  f'below. Terminal value AED {n0(DCF["tv"])}mn, worth AED {n0(DCF["pv_tv"])}mn today — '
+  f'{pc(W["wacc_term"], 2)} — above the explicit-window rate, where the first edition had '
+  f'it below. Terminal value AED {n0(DCF["tv"])}mn, worth AED {n0(DCF["pv_tv"])}mn today — '
   f'{pc(DCF["tv_share"])} of enterprise value, a share the reader should see and judge; the '
-  f'working-capital absorption in the explicit years pushes it up, and section 1.9 prices the '
-  f'terminal-return case both ways.')
+  f'working-capital absorption in the explicit years pushes it up. A useful marker beside '
+  f'it: a business that simply held its profit flat for ever, charging only the '
+  f'depreciation its books already record, would be worth AED {n0(TRO["floor"])}mn, so the '
+  f'terminal here sits {pc(abs(TRO["tv"] / TRO["floor"] - 1), 1)} '
+  f'{"above" if TRO["tv"] > TRO["floor"] else "below"} that marker. Section 1.9 prices the '
+  f'terminal assumptions both ways.')
 br = [['Enterprise value → equity per share (30-Jun-2026)', 'AED mn'],
       ['PV of explicit periods', n0(DCF['pv_explicit'])],
       ['PV of terminal value', n0(DCF['pv_tv'])],
@@ -285,7 +304,8 @@ P(f'Attributable equity at 30 June 2026 is AED {n0(HA["eqp"])}mn — AED {px(BKL
   f'it sits between the mechanical clean figure and the model\'s own forecast path '
   f'({pc(F["roic"][1], 1)} rising), and the first edition\'s conflation of the two — flagged '
   f'by the audits — is withdrawn. Justified price-to-book = ({pc(IN["roe_sust"], 1)} − '
-  f'{pc(IN["g_term"], 1)}) / ({pc(W["ke_exp"], 2)} − {pc(IN["g_term"], 1)}) = '
+  f'{pc(TRI["nominal_growth"], 1)}) / ({pc(W["ke_exp"], 2)} − '
+  f'{pc(TRI["nominal_growth"], 1)}) = '
   f'{BKL["pb_just"]:.2f}x, worth AED {px(BKL["base"])} per share rolled to the anchor — this '
   f'lens is now struck on the same date as the others.')
 
@@ -479,15 +499,17 @@ P(f'Priced stress readings: charging the {pc(IN["fgn_share"], 0)} of revenue ear
 
 H2('1.9 · Sensitivity')
 figure('fig2_sens.png', 6.4, f'Figure 2 — DCF fair value across cost-of-equity shifts and '
-       f'terminal growth. Rebuilt so the centre cell equals the base case (the first edition\'s '
-       f'grid used a different terminal convention from its own base — an audit finding). Read '
-       f'the rows left to right: MORE terminal growth now SUBTRACTS value. That is not an error '
-       f'— at revision 3 the terminal cost of capital ({pc(W["wacc_term"], 1)}) sits above the '
-       f'terminal return on capital ({pc(IN["roic_term"], 1)}), so profit reinvested in the '
-       f'terminal block earns less than it costs, and growing it faster destroys value. At '
-       f'revision 2 the two were within a fifth of a point of each other and the same rows were '
-       f'nearly flat. The gradient inverted because beta rose, not because the business '
-       f'changed.')
+       f'terminal growth. The centre cell equals the base case, and the grid is built around '
+       f'whatever the base growth is rather than around a fixed set of rates, so it cannot '
+       f'drift off its own centre when the assumption moves. Read the rows left to right: '
+       f'more terminal growth ADDS value, by AED {SN["table"][2][3] - SN["table"][2][2]:.2f} '
+       f'a share for each half point. Earlier editions of this study showed the opposite, '
+       f'and the reversal is worth a sentence: they charged growth by assuming the whole '
+       f'capital base had to be rebuilt every {1 / TRI["nominal_growth"]:.0f} years, which '
+       f'is a fact about the inflation rate and not about a building, and at this company\'s '
+       f'assumed returns that charge cost more than the growth was worth. The terminal now '
+       f'charges what replacing the assets actually costs and what growth actually consumes, '
+       f'and growth pays for itself again.')
 sens_rows = [['One-way strip (DCF per share)', '−2', '−1', 'base', '+1', '+2'],
              [f'Beta {SN["beta_grid"][0]:.2f} → {SN["beta_grid"][-1]:.2f} '
               f'(base {IN["beta"]:.2f}, steps of one standard error)']
@@ -634,11 +656,14 @@ bullet(f' Beta is the input this valuation is most exposed to. It is now regress
        f'from about AED {SN["grid_beta"][-1]:.2f} to AED {SN["grid_beta"][0]:.2f}. A reader who '
        f'believes the low end believes a materially higher value; the study adopts the measured '
        f'centre, not the convenient end.', 'Beta.')
-bullet(f' {pc(DCF["tv_share"])} of the DCF\'s enterprise value is terminal. At the terminal '
-       f'return of {pc(IN["roic_term"], 1)} the block assumes the land bank converts to '
-       f'recognised profit; at FY2025\'s clean achieved '
-       f'{pc(D["terminal_recon"]["roic_fy25_clean"], 1)} the terminal value falls by roughly a '
-       f'sixth and the DCF by about a tenth.', 'Terminal weight.')
+bullet(f' {pc(DCF["tv_share"])} of the DCF\'s enterprise value sits beyond the forecast '
+       f'window, so what the terminal charges for replacing the asset base matters a great '
+       f'deal. That charge rests on the {n0(TRI["useful_life_years"])}-year life the company '
+       f'discloses for its longest-lived assets, which is the most cautious reading of its '
+       f'own note: the older the assets carried, the more replacing them costs against the '
+       f'depreciation already booked. Reading the life at 25 years instead would raise the '
+       f'cash-flow lens by about 3%, and at 20 by about 3.4% — the assumption is disclosed '
+       f'and its whole plausible range is worth a few per cent, not a third.', 'Terminal weight.')
 bullet(' The probability map is fitted to a market panel more liquid than MODON\'s float; '
        'thin trading can gap.', 'Liquidity.')
 

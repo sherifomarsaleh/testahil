@@ -35,12 +35,19 @@ def read(overrides=None):
                 book_lens=bk.cell_value('Summary', 'C8'),
                 pv_expl=bk.cell_value('DCF', f"C{AD['pex']}"),
                 tv=bk.cell_value('DCF', f"C{AD['tv']}"),
+                # The terminal's own lines, so a driver whose effect on the answer nearly
+                # cancels can still be asserted on the quantity it unambiguously moves.
+                # Asserting a near-coin-flip sign would be a test that passes by luck.
+                t_maint=bk.cell_value('DCF', f"C{AD['tmaint']}"),
+                t_fcff=bk.cell_value('DCF', f"C{AD['tfcff']}"),
                 wacc=bk.cell_value('DCF', f"C{AD['wacc']}"),
                 wacc_term=bk.cell_value('DCF', f"C{AD['wt']}"),
                 nd30=bk.cell_value('Balance Sheet', 'J13'),
                 np27=bk.cell_value('Income Statement', 'G17'))
 
 base = read()
+base_ic_x2 = 2.0 * wb['Assumptions'][
+    f"C{row_of('Invested capital per unit of real growth, at terminal revenue (AED mn)')}"].value
 print('base:  ' + ' · '.join(f'{k} {v:,.4f}' for k, v in base.items()))
 
 CASES = [
@@ -53,9 +60,25 @@ CASES = [
     # under a changed premise, not a regression — the expectation was re-derived first,
     # exactly as the standing rule requires, and the study's own figure caption was
     # corrected in the same pass.
-    ('Terminal growth', 'C', +0.005, 'dcf', -1,
-     'terminal ROIC 8.5% now sits BELOW the terminal WACC 11.92%, so growth reinvested '
-     'at a sub-WACC return must SUBTRACT value'),
+    # THE SIGN FLIPPED BACK WITH THE CONSTRUCTION, AND THAT IS THE POINT. Under the
+    # retired reinvestment identity a terminal ROIC of 8.5% below a terminal WACC of
+    # 11.92% made growth SUBTRACT value — growth was charged g x IC whatever it cost to
+    # buy. The sanctioned terminal charges real growth the capital this model's own
+    # forecast actually spends per unit of revenue, which here is far less than g x IC,
+    # so real growth adds value again. The expectation was re-derived before the case was
+    # rewritten, never adjusted to whatever the model returned.
+    ('Terminal REAL growth (stated, not derived)', 'C', +0.005, 'dcf', +1,
+     'real growth widens the perpetuity and costs the capital this model actually spends '
+     'per unit of revenue — 12,501 AED mn per unit of real growth, against the 1/g charge '
+     'the retired construction levied'),
+    # Inflation moves TWO lines that nearly cancel in the answer: it widens the growth
+    # rate and it escalates the replacement cost of the asset base. Asserting a direction
+    # on the answer would be asserting a sign that lands at +0.9% and could flip on a
+    # small parameter change, so the case is pointed at the line inflation moves
+    # UNAMBIGUOUSLY [R-COC-01: when a check fires on work that is right, re-point it].
+    ('Terminal inflation — UAE house macro path', 'C', +0.005, 't_maint', -1,
+     'a higher terminal inflation escalates the cost of replacing the asset base over '
+     'half its disclosed life, so the maintenance charge (a negative row) must grow'),
     ('Beta (own-stock regression vs the published FTSE ADX General index)', 'C', +0.20, 'dcf', -1,
      'a higher beta raises the cost of equity and must lower the valuation'),
     ('AED government bond yield (Jan-2031 T-Bond auction)', 'C', +0.01, 'dcf', -1,
@@ -64,8 +87,12 @@ CASES = [
      'a costlier debt leg must raise the blended cost of capital'),
     ('Effective tax rate (DMTT floor + foreign uplift)', 'C', +0.05, 'dcf', -1,
      'a higher tax rate must lower NOPAT and the valuation'),
-    ('Terminal return on invested capital', 'C', +0.01, 'dcf', +1,
-     'higher terminal returns mean less reinvestment per unit of growth'),
+    ('Longest useful life the company discloses (years)', 'C', +5.0, 't_fcff', -1,
+     'under this basis the life sets the AVERAGE VINTAGE of the asset base, not the '
+     'replacement frequency: a longer life means the assets carried were bought further '
+     'back, so replacing them today costs more relative to the depreciation the books '
+     'already charge. Taking the LONGEST disclosed life is therefore the conservative '
+     'choice on this basis, not the flattering one'),
     ('New development sales (AED mn)', 'D', +3000.0, 'dcf', +1,
      'more FY2027 sales grow the backlog and later-year revenue'),
     ('Development gross margin', 'D', +0.02, 'dcf', +1,
@@ -166,6 +193,30 @@ for label, r in sorted(A.items(), key=lambda kv: kv[1]):
             scenario_dead.append(label)
     elif not moved:
         dead.append(label)
+
+# ---- THE ONE-AT-A-TIME SWEEP CANNOT SEE A JOINTLY LIVE PAIR ----------------------
+# 'Invested capital per unit of real growth' is in the live chain and inert at the base,
+# because it is multiplied by a stated REAL growth of zero. Bumping it alone therefore
+# moves nothing, and a one-at-a-time sweep reports it dead — which would be true of the
+# base point and false of the model. Declaring it dead-by-design would be an exemption
+# on the wrong object, so it is MEASURED instead: bumped alongside a non-zero real
+# growth, where it must bite. If it ever stops biting there, the growth charge has come
+# out of the model and this fails, which is what the sweep is for.
+_JOINT = 'Invested capital per unit of real growth, at terminal revenue (AED mn)'
+if _JOINT in dead:
+    _rg, _ric = row_of('Terminal REAL growth (stated, not derived)'), row_of(_JOINT)
+    _with_g = read({('Assumptions', f'C{_rg}'): 0.005})
+    _both = read({('Assumptions', f'C{_rg}'): 0.005,
+                  ('Assumptions', f'C{_ric}'): base_ic_x2})
+    _mv = _both['tv'] / _with_g['tv'] - 1.0
+    assert _mv < -1e-6, ('the growth-capital driver is inert even at a non-zero real '
+                         'growth: real growth is not being charged for capital at all')
+    print('  JOINT PROBE — growth capital per unit of real growth, at real growth '
+          '+0.5pp: doubling it moves the terminal %.2f%% (%.0f -> %.0f). Inert at the '
+          'base only because the stated real growth is zero.'
+          % (100 * _mv, _with_g['tv'], _both['tv']))
+    dead.remove(_JOINT)
+
 if dead:
     print('  live inputs that changed nothing:', dead)
 else:

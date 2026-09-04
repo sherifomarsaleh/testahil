@@ -4509,6 +4509,165 @@ LESSONS = [
       "which is what a measurement keyed on a quantity rather than on its storage looks "
       "like, and is what this one now aims at."),
 
+
+    L("L-304", "ALL", None,
+      "Where no single disclosed figure applies, take the most "
+      "conservative disclosed one and publish the range — never "
+      "invent a weighted figure and never leave the correction unmade",
+      "Modon's terminal needed a disclosed asset life and the company "
+      "discloses EIGHT, from two years to fifty, in a note whose own "
+      "columns combine land with buildings (73% of gross cost, land "
+      "not depreciated) and plant at forty years with machinery at "
+      "three to four. No weighted life can be derived from it, and "
+      "the charge-implied route is closed by AED 832mn of assets "
+      "acquired through business combinations in the year. An earlier "
+      "pass recorded the correction as BLOCKED on that basis and left "
+      "the name on the ratchet, which was honest and was not the only "
+      "honest option. The route taken instead has three parts and "
+      "each is necessary: take the disclosed extreme that is most "
+      "conservative for the calculation in hand (here the LONGEST "
+      "life, because on this basis it charges the MOST maintenance "
+      "and gives the LOWEST terminal); publish the WHOLE disclosed "
+      "range beside it; and state what the range does to the "
+      "decision. Every life from two to fifty years put the terminal "
+      "between 15.6% and 23.9% above the one it replaced and above "
+      "the no-growth marker, so the DIRECTION of the correction was "
+      "certain across the entire disclosure and only its size was "
+      "not.",
+      "MODON terminal rebuild, 4 September 2026",
+      "build",
+      "FY2025 property, plant and equipment accounting policy: plant "
+      "40 years, buildings 2 to 50, machinery and equipment 3 to 4, "
+      "vehicles 3 to 5, office and computer equipment 2 to 5, "
+      "furniture and fixtures 2 to 5, leasehold improvements the "
+      "lower of the lease term or 10, other assets 5. Terminal value "
+      "at each life: 2y 77,743 · 5y 77,487 · 20y 76,085 · 50y 72,573, "
+      "against a published 62,758 and a no-growth marker of 69,916 — "
+      "nine points measured, every one above both.",
+      "A case where the disclosed range STRADDLES the decision — the "
+      "correction points one way at one end of the disclosure and the "
+      "other way at the other. There this route gives no answer at "
+      "all and the honest move is to stop and say so, exactly as the "
+      "blocked pass did."),
+
+    L("L-305", "ALL", None,
+      "A model in which LESS growth is worth MORE is charging for "
+      "growth at a price nobody set",
+      "Storing Modon's terminal growth as a real rate on the house "
+      "path cut it from a typed 2.5% to a derived 2.0% — and RAISED "
+      "the value by 1.6%, which no reader would predict and which is "
+      "the sharpest evidence available that the construction "
+      "underneath was wrong rather than merely cautious. The reason "
+      "is arithmetic: the retired reinvestment identity charges "
+      "growth at g times invested capital, and where the terminal "
+      "return sits below the terminal cost of capital (8.5% against "
+      "11.92% here) every unit of growth is bought at a destroying "
+      "spread. A negative growth gradient CAN be legitimate — a "
+      "company contractually committed to reinvesting below its cost "
+      "of capital really is worth less for growing — so the sign "
+      "alone is not the finding. The finding is that when the "
+      "gradient is negative, the first question is whether the growth "
+      "CHARGE is a forecast anybody made or a by-product of the "
+      "formula, because g times invested capital is nobody's estimate "
+      "of what growth costs.",
+      "MODON terminal rebuild, 4 September 2026",
+      "build",
+      "Lever 1 (growth stored as real): 3.5423 to 3.5983, +1.6%, with "
+      "the retired terminal construction unchanged. Lever 2 (terminal "
+      "through the sanctioned module): 3.5983 to 3.9119, +8.7%. After "
+      "the rebuild the sensitivity gradient turns the right way up — "
+      "half a point of extra terminal growth is worth +0.15 a share "
+      "instead of subtracting value — and the delivered figure "
+      "caption asserting the opposite was withdrawn in the same pass.",
+      "A terminal whose negative growth gradient survives being "
+      "rebuilt on a maintenance charge taken from disclosure — i.e. "
+      "the company genuinely destroys value by growing, on a charge "
+      "somebody actually forecast rather than one the identity "
+      "manufactured."),
+
+    L("L-306", "ALL", None,
+      "A sensitivity grid with typed rungs drifts off its own centre "
+      "the moment the base moves, and the caption keeps calling the "
+      "middle column the base",
+      "Modon's terminal-growth sensitivity was a typed ladder of five "
+      "rates centred on 2.5%. The rebuild moved the base to 2.0%, the "
+      "assertion that the grid reproduces the base at its unshifted "
+      "point still passed — because that assertion re-runs the model "
+      "at the BASE parameters rather than reading the middle cell — "
+      "and the grid's centre column silently became a different "
+      "scenario from the answer, under a caption calling it the base. "
+      "Nothing in the study was wrong except that one number moved "
+      "and another did not. Build a grid's rungs FROM the base it is "
+      "centred on, so the two cannot separate; and note that the "
+      "assertion which looked like it covered this did not, because "
+      "it tested the engine rather than the table.",
+      "MODON terminal rebuild, 4 September 2026",
+      "build",
+      "g_grid was [1.5, 2.0, 2.5, 3.0, 3.5]% against a base that had "
+      "become 2.0%; the base sat in column two while Figure 2's "
+      "caption described column three. Rebuilt as base plus or minus "
+      "one and two half-points, the centre cell is 3.91 and equals "
+      "the published central exactly.",
+      "A grid deliberately anchored on external reference points — a "
+      "peer set's rates, a regulator's bands — where the centre is "
+      "not meant to be the base and the caption says which it is."),
+
+    L("L-307", "ALL", None,
+      "A one-at-a-time dead-input sweep cannot see a jointly live "
+      "pair, and declaring the pair dead-by-design is an exemption on "
+      "the wrong object",
+      "The capital a unit of real growth consumes is in Modon's live "
+      "formula chain and moved nothing when bumped, because it "
+      "multiplies a stated real growth of zero. A sweep that bumps "
+      "one driver at a time reported it dead — which is true of the "
+      "base point and false of the model. Declaring it dead-by-design "
+      "would have been an exemption written about the wrong thing, "
+      "the shape that hides work where a check cannot reach it. It is "
+      "MEASURED instead: bumped alongside a non-zero real growth, "
+      "where it must bite, and it does. The general form is that a "
+      "driver inert at the base is not a dead driver, and the cheap "
+      "way to tell them apart is a joint probe rather than a note.",
+      "MODON terminal rebuild, 4 September 2026",
+      "build",
+      "Joint probe: at a real growth of +0.5pp, doubling the capital- "
+      "per-unit-of-growth driver moves the terminal -0.89% (76,634 to "
+      "75,953). Bumped alone at the base it moves nothing, because "
+      "the stated real growth is zero.",
+      "A jointly live pair for which no joint probe can be "
+      "constructed — where the second driver cannot be given a non- "
+      "zero value inside any state the model admits. There the honest "
+      "record is the declaration, with that impossibility stated."),
+
+    L("L-308", "ALL", None,
+      "A hyphen between two percentages is a range separator, and a "
+      "figure mis-signed by a tokeniser will find a coincidental "
+      "match and hold it for weeks",
+      "The shared prose-figure instrument read the disclosed tax "
+      "range '9%-23.5%' as nine per cent and MINUS 23.5 per cent, "
+      "then hunted that negative against several thousand committed "
+      "numbers until it landed on one — and it did, so the study read "
+      "clean. It went red the day the figure it had coincidentally "
+      "matched stopped existing, which is a month after the defect "
+      "entered and in a pass that had nothing to do with tax. The "
+      "instrument was fixed rather than the study: a sign is refused "
+      "where it sits immediately after a percent sign. The general "
+      "lesson is the one this house keeps relearning from the other "
+      "direction — with a large pool of committed numbers, a spurious "
+      "match is not unlikely, it is expected, so a tokeniser that can "
+      "produce a figure the document does not contain will eventually "
+      "certify one.",
+      "MODON terminal rebuild, 4 September 2026",
+      "build",
+      "engine/prose_figures.py NUM regex, three lookbehinds added. "
+      "Book-wide advisory unchanged at 8,868 figures and 343 "
+      "unmatched, so no other study was relying on a mis-signed "
+      "range; MODON goes from one unmatched to zero across 369 "
+      "figures, and the count is unchanged because the range now "
+      "tokenises as two positive figures rather than one positive and "
+      "one negative.",
+      "A house document convention in which a leading hyphen "
+      "immediately after a percent sign genuinely denotes a negative "
+      "figure, which would make the lookbehind drop a real number."),
 ]
 
 
