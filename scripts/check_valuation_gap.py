@@ -210,8 +210,51 @@ def supplied_price(ticker):
     return best
 
 
+_ALIAS_CACHE = None
+
+
+def _resolve_ticker(ticker):
+    """A study directory stem is not always its ticker. IMPORTED, never re-declared.
+
+    engine/campaign_queue.py has carried STUDY_ALIAS = {'FERTIGLOBE': 'FERTIGLB'}
+    and STUDY_NOT_IN_QUEUE = {'XPT': ...} since the campaign was written, with the
+    reason stated: a silent mismatch would put a rebuilt name in the wrong tier and
+    nobody would see it. THIS GATE DID NOT IMPORT THEM and keyed on the directory
+    stem, so it reported FERTIGLOBE as having 'no latest known price' while that
+    price sat in the supplied file under its real ticker — which means the gap on
+    that study has never been measured and [R-GAP-01]'s audit has never fired on it.
+
+    A SECOND COPY WOULD BE TWO CLAIMS WEARING ONE NAME [R-ENF-03], and the protocol
+    already names this exact class: ledger names are not panel filenames, records
+    are keyed through an EXPLICIT asserted alias, never inferred from a filename.
+    So the map is imported and the import failing is a failure, not a fallback.
+    """
+    global _ALIAS_CACHE
+    if _ALIAS_CACHE is None:
+        # RESOLVED BESIDE THIS FILE, NOT THROUGH ENGINE. The alias map is a property
+        # of the REPOSITORY; ENGINE is repointed at a temp directory by this gate's
+        # own negative control, which substitutes a study population and has no
+        # reason to carry a module about ticker names. Reading it through ENGINE
+        # made the control crash on an absence and go red for the WRONG reason —
+        # which reads exactly like going red for the right one, and is the finding
+        # the new-study gauntlet recorded on its own first run.
+        import importlib.util
+        here = os.path.dirname(os.path.abspath(__file__))
+        path = os.path.join(os.path.dirname(here), 'engine', 'campaign_queue.py')
+        spec = importlib.util.spec_from_file_location('_cq', path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)          # a missing map is a FAILURE, never a
+        _ALIAS_CACHE = (mod.STUDY_ALIAS,      # silent fallback to the raw ticker:
+                        mod.STUDY_NOT_IN_QUEUE)   # that is the mismatch it prevents
+    alias, not_in_queue = _ALIAS_CACHE
+    return alias.get(ticker.upper(), ticker.upper()), not_in_queue
+
+
 def latest_known_price(ticker):
     """(price, date, source): the NEWER of the supplied prices and the OHLC library."""
+    ticker, not_in_queue = _resolve_ticker(ticker)
+    if ticker in not_in_queue:
+        return None, None, ('%s — %s' % (ticker, not_in_queue[ticker]))
     lib = _library_price(ticker)
     sup = supplied_price(ticker)
     if sup[0] is not None and lib[0] is not None:

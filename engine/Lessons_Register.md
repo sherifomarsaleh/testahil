@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**207 lessons**, of which 178 bind on every study, 22 on a class of company, and 7 on a single name.
+**208 lessons**, of which 179 bind on every study, 22 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 132 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 133 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1858,6 +1858,16 @@ Work naturally proceeds inwards: find what the fix needs, source it, apply it. T
 > **What it cost, or how we know.** An inventory established which inputs each of thirteen studies was missing and four asset lives were sourced to close the gaps. The first name to have every input resolve turned out to publish a central that is a typed weighted blend of four lenses — the architecture retired two days earlier as a new method with free parameters nobody tested. Eleven of the thirteen are in that state. The correction is therefore measured when a name is RE-ISSUED, architecture and terminal and inputs together, which is exactly what the two already-corrected names show: both were re-issued wholesale.
 
 > **What would overturn it.** A defect whose correction is genuinely separable from the construction around it, where fixing it in place leaves a number the house still stands behind.
+
+### L-287 · A NAME THAT DOES NOT RESOLVE IS NOT A NAME THAT HAS NO DATA. Check the alias before believing an absence.
+
+When a lookup returns nothing, the natural reading is that the thing is missing. But a lookup is a name plus a table, and either can be wrong. A single mismatched identifier makes a record invisible while every count, every gate and every summary reports cleanly around it — because nothing is broken, one row is simply never asked for.
+
+**Applies to:** every study  ·  *Learned from:* found while building, The valuation-gap gate's price reader, 04-Sep-2026
+
+> **What it cost, or how we know.** One study reported 'no latest known price — the gap cannot be measured' for as long as the gate had existed, so the audit that fires on a large gap had never fired on it. Its price was in the supplied file the whole time, under its real ticker, four characters different from its study directory's name. Resolved, it sits 19.6% below the price. The alias map already existed in another module, with the reason written beside it — the gate simply did not import it.
+
+> **What would overturn it.** A population where identifiers are generated from one source and cannot diverge, so a name either exists or genuinely has no data.
 
 
 ---

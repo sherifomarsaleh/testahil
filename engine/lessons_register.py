@@ -4036,6 +4036,26 @@ LESSONS = [
       "A defect whose correction is genuinely separable from the construction around "
       "it, where fixing it in place leaves a number the house still stands behind."),
 
+    L("L-287", "ALL", None,
+      "A NAME THAT DOES NOT RESOLVE IS NOT A NAME THAT HAS NO DATA. Check the alias "
+      "before believing an absence.",
+      "When a lookup returns nothing, the natural reading is that the thing is "
+      "missing. But a lookup is a name plus a table, and either can be wrong. A "
+      "single mismatched identifier makes a record invisible while every count, "
+      "every gate and every summary reports cleanly around it — because nothing is "
+      "broken, one row is simply never asked for.",
+      "The valuation-gap gate's price reader, 04-Sep-2026",
+      "build",
+      "One study reported 'no latest known price — the gap cannot be measured' for "
+      "as long as the gate had existed, so the audit that fires on a large gap had "
+      "never fired on it. Its price was in the supplied file the whole time, under "
+      "its real ticker, four characters different from its study directory's name. "
+      "Resolved, it sits 19.6% below the price. The alias map already existed in "
+      "another module, with the reason written beside it — the gate simply did not "
+      "import it.",
+      "A population where identifiers are generated from one source and cannot "
+      "diverge, so a name either exists or genuinely has no data."),
+
 ]
 
 
