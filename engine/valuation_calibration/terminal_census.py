@@ -427,11 +427,23 @@ def census():
 
 
 def _fv_at(rec, tv_new):
-    """What the study's own fair value becomes at a different terminal, all else equal."""
-    if not all(k in rec for k in ('df_tv', 'equity', 'fv')) or not rec['fv']:
-        return None
-    sh = rec['equity'] / rec['fv']
-    return (rec['equity'] + (tv_new - rec['tv']) * rec['df_tv']) / sh
+    """What the study's own fair value becomes at a different terminal, all else equal.
+
+    THIS HELPER COULD NEVER FIRE AND NOTHING SAID SO. It required a `df_tv` key that
+    read_study does not set and never has, so it returned None for every record in
+    the book — a function that looks like an instrument and answers nothing, which
+    is [R-ENF-04]'s own shape one level down: an absent answer wearing the costume
+    of a clean one. Found 04-Sep-2026 by a caller that wanted it.
+
+    The factor is exactly pv_tv / tv and is DERIVED rather than demanded. A record
+    exposing a terminal and its present value already carries it; requiring a third
+    key nobody writes is asking the record to repeat itself.
+    """
+    for k in ('tv', 'pv_tv', 'equity', 'fv'):
+        if not rec.get(k):
+            return None
+    df = rec['pv_tv'] / rec['tv']
+    return (rec['equity'] + (tv_new - rec['tv']) * df) / (rec['equity'] / rec['fv'])
 
 
 def implied_lives():
