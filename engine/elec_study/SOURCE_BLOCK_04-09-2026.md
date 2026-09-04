@@ -130,3 +130,31 @@ replacing it. The primary documents are registered as escalation `ELEC-primary-f
 with the routes above and a default that fires on 2026-10-04: **if the filings have not
 arrived by then, ELEC is withdrawn from coverage rather than re-issued on aggregator
 data** — a study nobody can source is not a study with a wide range, it is not a study.
+
+## A measurement attempted and abandoned, recorded because it would have looked like evidence
+
+L-299 says the unreadable bucket is where the worst cases go. That is a testable claim,
+and the obvious cheap test is to count how many ratchets each study sits on and compare
+the four studies with no `meta` block against the rest. It was run. **It gives 8.5
+against 6.6, it points the right way, and it is not evidence, so it is not quoted.**
+
+Two reasons, and the second is the one that matters:
+
+* **The harvest was wrong in both directions.** It counted studies listed as
+  *conforming at adoption* as though they were outstanding, and it missed real entries
+  — ADNOCLS greps into three ratchet files and the harvest scored it zero. Either error
+  alone would move the comparison.
+* **The ratchet count is an AGE measure wearing a severity label.** A ratchet lists work
+  that predates a standard, so a study accumulates entries by being old and sheds them
+  by being rebuilt. SCEM sits on one entry while in plain breach of SIGCM clause 1;
+  ADNOCLS, the exemplar, was outstanding on eight ratchets this morning and is the
+  document every other study is modelled on. The number measures conformance work done,
+  not defects present.
+
+This is [L-289] again — a ratio between two quantities defined differently is not
+evidence about either — arriving one day later in a different costume, and it computed
+cleanly and sorted the book plausibly both times. **L-299's evidence is therefore the
+ELEC case alone**: a single decisive instance, where the worst terminal in the book was
+invisible to the census built to find exactly that defect. One instance is not a rate,
+and the register says so rather than borrowing a number that would have made it look
+like one.
