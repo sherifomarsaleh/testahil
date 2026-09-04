@@ -1445,15 +1445,19 @@ def _terminal_at(g_nom, life=None, nopat_last=None, dna_last=None, wc_last=None,
     """Every terminal in this file goes through the sanctioned module — base, scenario and
     sensitivity point alike — so the retired construction cannot survive in a grid nobody
     reads the arithmetic of."""
+    # EVERY FIGURE HANDED IN IS THE LAST EXPLICIT YEAR'S. The module grows the free cash flow
+    # once itself — tv = fcff (1+g)/(w-g) values the terminal at the END of that year, which is
+    # where it is discounted — so figures already grown by (1+g) overstate it by exactly (1+g).
+    # They were, until 4 September 2026.
     return TERMVAL.build(TERMVAL.TerminalInputs(
-        nopat=(nopat[-1] if nopat_last is None else nopat_last) * (1 + g_nom),
+        nopat=(nopat[-1] if nopat_last is None else nopat_last),
         wacc=wacc_term if wacc_t is None else wacc_t,
         inflation=PI_TERM, real_growth=(1.0 + g_nom) / (1.0 + PI_TERM) - 1.0,
-        dna_book=(DNA_OWNED if dna_last is None else dna_last) * (1 + g_nom),
+        dna_book=(DNA_OWNED if dna_last is None else dna_last),
         useful_life_years=V['asset_life_years'] if life is None else life,
         useful_life_source=INP['asset_life_years']['source'],
         maintenance_basis='book_dna_escalated',
-        working_capital=(nwc_fc[-1] if wc_last is None else wc_last) * (1 + g_nom),
+        working_capital=(nwc_fc[-1] if wc_last is None else wc_last),
         incremental_capital_per_unit_growth=INC_CAP if inc_cap is None else inc_cap))
 
 
@@ -2125,9 +2129,9 @@ OUT = dict(
                         "turns over in 17.91 years. It also supplied the perpetual LEASE "
                         "renewal only as a side effect, which is why the corrected "
                         "construction has to put that renewal back explicitly."),
-        inputs=dict(nopat=nopat[-1] * (1 + V['g_term']), wacc=wacc_term, inflation=PI_TERM,
+        inputs=dict(nopat=nopat[-1], wacc=wacc_term, inflation=PI_TERM,
                     real_growth=V['g_term_real'], nominal_growth=V['g_term'],
-                    dna_book=DNA_OWNED * (1 + V['g_term']),
+                    dna_book=DNA_OWNED,
                     dna_basis=('THE FULL charge — property, intangibles and right-of-use '
                                'alike — escalated over half the BLENDED life. The explicit '
                                'window adds back total depreciation and charges no '
@@ -2149,7 +2153,7 @@ OUT = dict(
                         "notes give gross HISTORICAL cost on a base 70% depreciated. "
                         "Escalating the model's own book charge over half the derived life "
                         "uses only figures that exist."),
-                    working_capital=nwc_fc[-1] * (1 + V['g_term']),
+                    working_capital=nwc_fc[-1],
                     working_capital_note=('NEGATIVE for this company, so the inflation line '
                                           'is a CREDIT rather than a charge: a telecom '
                                           'collects from its subscribers before it pays its '

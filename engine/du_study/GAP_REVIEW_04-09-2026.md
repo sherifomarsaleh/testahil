@@ -1,7 +1,7 @@
 # DU — gap review, 4 September 2026
 
-**AUDITED CENTRAL: 16.8563** — the cash-flow lens, AED per share.
-**AUDITED GAP: +48.4%** against the latest known price, AED 11.36 (3 September 2026,
+**AUDITED CENTRAL: 16.5778** — the cash-flow lens, AED per share.
+**AUDITED GAP: +45.9%** against the latest known price, AED 11.36 (3 September 2026,
 supplied and committed), which is also the price this edition is struck at.
 
 This fires the ABOVE-price half of the audit trigger. That half carries **no publication
