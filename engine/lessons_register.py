@@ -4312,6 +4312,33 @@ LESSONS = [
       "difference to be named rather than to be zero, and why a named difference valued at "
       "zero with a reason passes."),
 
+    L("L-297", "ALL", None,
+      "A MUTATION-LANDED CHECK THAT ASSERTS A KEY IS PRESENT CANNOT TELL \"I PUT IT THERE\" "
+      "FROM \"IT WAS ALREADY THERE\", so it reports landed while injecting nothing — which "
+      "is the exact state [R-ENF-04] exists to catch, inside the instrument built to catch "
+      "it.",
+      "A negative control reproducing a defect in a LIVE study is only injecting a "
+      "condition while that study still carries it. Correct the study — which is the whole "
+      "point of finding the defect — and the fixture goes on setting a key that is now "
+      "already there, its landed-check passes, and the case tests the corrected study "
+      "instead of the defect. The safe version of the same shape is one whose absence is "
+      "GUARANTEED BY THE GREEN BASELINE: asserting a key was added is sound where the "
+      "baseline could not be green if the key were present, and unsound where it could. "
+      "So a fixture reproducing a live condition asserts THE CONDITION — is the quantity "
+      "outside tolerance, is the record absent — never the key it wrote.",
+      "check_eps_reconciliation_negative_control.py, 04-Sep-2026",
+      "build",
+      "Case 1 injected SWDY\'s unexplained EPS gap by writing the reported EPS. The SAME "
+      "PULL REQUEST corrected SWDY, so its committed file already carried both that EPS and "
+      "the reconciliation record naming the gap; the fixture wrote a key that was present, "
+      "reported landed, and the gate correctly stayed green on a study with nothing wrong "
+      "with it. Case 2, which must be GREEN, passed for the same reason and therefore "
+      "proved nothing at all — a case that cannot fail is the more dangerous half, because "
+      "it never announces itself. Re-pointed at the condition rather than widened "
+      "[R-COC-01]: all ten conditions now assert the state the gate reads.",
+      "A landed-check asserting a key\'s presence whose absence the green baseline does "
+      "genuinely guarantee — those are sound and this lesson does not touch them."),
+
 ]
 
 

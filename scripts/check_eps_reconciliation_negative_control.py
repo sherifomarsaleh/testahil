@@ -50,6 +50,31 @@ def put(d, tk, **kv):
     json.dump(D, open(p, 'w'), indent=1, default=float)
 
 
+def gap_state(d, tk):
+    """What the gate itself would see on this study, computed the same way.
+
+    A LANDED-CHECK THAT ASSERTS A KEY IS PRESENT CANNOT TELL "I PUT IT THERE" FROM "IT
+    WAS ALREADY THERE". Case 1 below reproduces a defect in a LIVE study, and the moment
+    that study was corrected the fixture went on reporting landed while injecting
+    nothing — the key it asserted was the corrected study's own. So every fixture that
+    reproduces a live condition asserts the CONDITION, not the key: is there a readable
+    EPS, is the gap outside the printed rounding, and does a record name it.
+    """
+    D = json.load(open(nf(d, tk)))
+    ins = D.get('inputs', {})
+    eps = ins.get('eps_fy25', {}).get('value')
+    npa = ins.get('npa_fy25', {}).get('value')
+    sh = D.get('meta', {}).get('shares_mn') or ins.get('shares_mn', {}).get('value')
+    if not eps or not npa or not sh:
+        return None
+    dec = len((('%r' % eps).split('.') + [''])[1])
+    tol = max(0.5 * 10 ** -dec, abs(eps) * 1e-3)
+    rec = D.get('eps_reconciliation') or {}
+    return {'gap': npa / sh - eps, 'beyond_rounding': abs(npa / sh - eps) > tol,
+            'named': bool(rec.get('difference') and rec.get('what')),
+            'declared': bool(rec)}
+
+
 CASES = []
 
 
@@ -64,9 +89,11 @@ I = lambda v, s: {'value': v, 'source': s, 'date': '2026-02-01', 'ring': 'Compan
 # 17,330.245 / 2,140.778 = 8.095 against a reported 7.13. The employees' statutory
 # share, 12.0% of attributable profit, standing between profit and shareholders.
 def c1(d):
-    put(d, 'swdy', inputs={'eps_fy25': I(7.13, 'audited FY2025 statements, note 39')})
+    put(d, 'swdy', inputs={'eps_fy25': I(7.13, 'audited FY2025 statements, note 39')},
+        eps_reconciliation=None)
 case("SWDY's own figures: 8.095 computed against a reported 7.13",
-     c1, True, lambda d: 'eps_fy25' in json.load(open(nf(d, 'swdy')))['inputs'])
+     c1, True, lambda d: (gap_state(d, 'swdy') or {}).get('beyond_rounding')
+                         and not (gap_state(d, 'swdy') or {}).get('declared'))
 
 
 # --- 2: the same gap, NAMED — must pass ------------------------------------------
@@ -76,8 +103,8 @@ def c2(d):
                             'difference': 2073.104844,
                             'charged_in_the_valuation': True})
 case('the same gap with an eps_reconciliation record naming it',
-     c2, False, lambda d: (json.load(open(nf(d, 'swdy'))).get('eps_reconciliation') or {})
-                          .get('difference') is not None)
+     c2, False, lambda d: (gap_state(d, 'swdy') or {}).get('beyond_rounding')
+                          and (gap_state(d, 'swdy') or {}).get('named'))
 
 
 # --- 3: a record that declares the gap and NAMES NOTHING must still fail ----------
@@ -85,7 +112,9 @@ def c3(d):
     put(d, 'swdy', inputs={'eps_fy25': I(7.13, 'audited FY2025 statements, note 39')},
         eps_reconciliation={'difference': 2073.104844})
 case('a record carrying a number and no explanation — declaration without content',
-     c3, True, lambda d: 'what' not in (json.load(open(nf(d, 'swdy'))).get('eps_reconciliation') or {}))
+     c3, True, lambda d: (gap_state(d, 'swdy') or {}).get('beyond_rounding')
+                         and (gap_state(d, 'swdy') or {}).get('declared')
+                         and not (gap_state(d, 'swdy') or {}).get('named'))
 
 
 # --- 4: a unit mismatch is UNREADABLE, not a reconciliation gap -------------------
