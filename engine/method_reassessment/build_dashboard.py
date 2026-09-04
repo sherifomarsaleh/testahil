@@ -185,6 +185,13 @@ def build() -> str:
            e(fb["subject"]))
         for fb in progress.live_branches()[:6])
 
+    # THE BOARD READS THE GATE, IT DOES NOT RESTATE THE RULE. A dashboard carrying
+    # its own copy of a threshold is a second implementation that drifts the day the
+    # rule moves — which it did twice on 3 September, 30% to 10% and then two-sided
+    # to one-sided. It imports the gate instead [R-ENF-03].
+    sys.path.insert(0, os.path.join(progress.ROOT, "scripts"))
+    import check_publish_block as blk
+
     MEANING = {
         "inside": "the market sits inside what we publish — no disagreement to audit",
         "above": "we are ABOVE the market: we may be over-estimating",
@@ -194,19 +201,26 @@ def build() -> str:
     for n in dv["names"]:
         g = n.get("gap")
         if g is None:
+            ok, why, _ = blk.verdict(n["ticker"])
             deviation += ('<tr><th scope="row">%s</th><td class="num">%s</td>'
                           '<td class="num">%s</td><td class="num">—</td>'
+                          '<td class="num"><b class="%s">%s</b></td>'
                           '<td class="notes">%s</td></tr>'
                           % (e(n["ticker"]), "two-sided",
                              "%.2f" % n["spot"] if n.get("spot") else "—",
-                             "published as two branches; both sit far below the market"))
+                             "up" if ok else "down", "clear" if ok else "HELD",
+                             e(why)))
             continue
         kind = "inside" if abs(g) <= 0.10 else ("above" if g > 0 else "below")
+        ok, why, _ = blk.verdict(n["ticker"])
         deviation += ('<tr><th scope="row">%s</th><td class="num">%.2f</td>'
                       '<td class="num">%.2f</td><td class="num %s">%+.1f%%</td>'
+                      '<td class="num"><b class="%s">%s</b></td>'
                       '<td class="notes">%s</td></tr>'
                       % (e(n["ticker"]), n["central"], n["spot"],
-                         "up" if g > 0 else "down", g * 100, MEANING[kind]))
+                         "up" if g > 0 else "down", g * 100,
+                         "up" if ok else "down", "clear" if ok else "HELD",
+                         MEANING[kind]))
 
     commits = " · ".join("%s %d" % (k[5:], v)
                          for k, v in (dd.get("commits_by_day") or {}).items())
@@ -428,14 +442,24 @@ footer code{font-family:var(--mono);font-size:13px;background:var(--sunk);
     <div class="panel">
       <div class="tw"><table>
         <thead><tr><th>Name</th><th class="num">Fair value</th><th class="num">Market</th>
-          <th class="num">Deviation</th><th>What it means</th></tr></thead>
+          <th class="num">Deviation</th><th class="num">Publishes?</th>
+          <th>What it means</th></tr></thead>
         <tbody>{{deviation}}</tbody>
       </table></div>
-      <p class="note">Prices are the principal's dated export of 2–3 September 2026.
-      <strong>Four of the five sit outside 10% of the market.</strong> Under [R-GAP-01]
-      each of those is a claim about the world that must be audited before it ships — not
+      <p class="note">Prices are the principal's dated export of 2–3 September 2026, and
+      the <strong>Publishes?</strong> column is read from the gate itself rather than
+      restated here. Under <b>[R-GAP-02]</b>, adopted 3 September, a study more than
+      <strong>10% BELOW</strong> the market is <strong>HELD</strong> — it does not issue
+      and it does not publish — until the gap is sorted or an evidenced market dissent
+      releases it. Above the market it publishes: errors in a discounted cash flow are
+      not symmetric, and almost all of them push value down, so below-market is where
+      the defects live.</p>
+      <p class="note">The audit is still two-sided. Under [R-GAP-01] a central more than
+      10% either side owes an eight-heading review before its files are staged — not
       because the market is right, but because a large disagreement is where a defect is
-      most likely to be hiding. On AMOC, auditing a 39% discount found six.</p>
+      most likely to be hiding. On AMOC, auditing a 39% discount found six; on ARCC it
+      found a terminal earning 11.26% on capital against a cost of 18.34%, on a company
+      whose own filed accounts show 44%, 44% and 61%.</p>
     </div>
   </section>
 
