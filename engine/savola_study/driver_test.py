@@ -38,7 +38,10 @@ def read(overrides=None):
                     ('ebitda26', 'seg_geb_b'), ('pvexp', 'dcf_pvexp'),
                     ('wacc', 'dcf_wacc'), ('wacccds', 'dcf_wacccds'),
                     ('cash30', 'bs_cash_i'), ('roic26', 'sf_roic_c'),
-                    ('eps26', 'is_eps_e')]:
+                    ('eps26', 'is_eps_e'),
+                    # the terminal's own lines, so a driver whose effect on the answer
+                    # nearly cancels can still be asserted on what it unambiguously moves
+                    ('maintT', 'dcf_maintT'), ('fcffT', 'dcf_fcffT')]:
         if akey is None:
             out[k] = bk.cell_value('Summary', 'C9')
         else:
@@ -51,8 +54,23 @@ print('base:  ' + ' · '.join(f'{k} {v:,.4f}' for k, v in base.items()))
 
 # label, cell column ('C' scalar or 'PATH'), bump, headline, required direction, why
 CASES = [
-    ('Terminal growth', 'C', +0.005, 'dcf', +1,
-     'a higher terminal growth rate must raise the discounted cash flow'),
+    # The growth rate is now DERIVED from two rows, so both are exercised. Real growth
+    # widens the perpetuity and costs the capital this model's own forecast spends per
+    # unit of revenue; inflation widens it too but escalates the replacement cost of the
+    # asset base against it, so its net effect on the answer is small and its direction
+    # is asserted on the line it moves UNAMBIGUOUSLY rather than on the answer.
+    ('Terminal REAL growth (stated, not derived)', 'C', +0.005, 'dcf', +1,
+     'real growth must raise the discounted cash flow once it is charged only for the '
+     'capital the forecast actually spends, rather than for rebuilding the whole capital '
+     'base every 1/g years'),
+    ('Terminal inflation — Saudi house macro path', 'C', +0.005, 'maintT', -1,
+     'a higher terminal inflation escalates the cost of replacing the asset base over '
+     'half its life, so the maintenance charge (a negative row) must grow'),
+    ('Weighted asset life, DERIVED from note 6 (gross cost of the depreciable base over '
+     'the year\'s own depreciation charge)', 'C', +5.0, 'fcffT', -1,
+     'on this basis the life sets the average VINTAGE of the base rather than the '
+     'replacement frequency: a longer life means the assets carried were bought further '
+     'back, so replacing them today costs more against the depreciation already booked'),
     ('Beta (SAVOLA weekly vs TASI, 5y, Dimson)', 'C', +0.20, 'dcf', -1,
      'a higher beta raises the cost of equity and must lower the valuation'),
     ('Risk-free rate: PUBLISHED SAR sovereign curve, FTSE SAGBI 7-10y YTM '
@@ -197,11 +215,11 @@ DEAD_OK = {
     # Almarai is quoted in the peer table but deliberately excluded from both multiple
     # legs (dairy-platform premium); the exclusion is stated on the lens sheet
     'Peer P/E — Almarai (settled 18-Aug close)',
-    # the 10.5% terminal-return VARIANT is display-only by design: the base terminal
-    # return is COMPUTED on the DCF sheet from the model's own invested capital, and
-    # the variant fair value is a whole-model engine re-run (pasted, stated)
-    'Terminal return on capital — 10.5% UPSIDE VARIANT (the base is COMPUTED as '
-    'year-5 NOPAT on year-5 opening invested capital, on the DCF sheet)',
+    # the asset-life DOWNSIDE VARIANT is display-only by design: it is a whole-model
+    # engine re-run at the heavier of note 6's two readings, pasted and stated. The BASE
+    # life above is live and is exercised as a driver.
+    'Downside variant — twice the directly measured average age (accumulated '
+    'depreciation over the same charge)',
     # Expert 1's Herfy carve-out inputs feed the expert appendix, whose values are
     # whole-model engine outputs on the Fundamental Valuation sheet (pasted, stated)
     'Herfy non-current liabilities (note 20; Expert-1 carve-out)',

@@ -37,7 +37,13 @@ import engine.market_profiles as market_profiles  # noqa: E402
 sa = market_profiles.PROFILES["SA"]
 print(f"SA profile live: nu={sa.nu}, width_cal={sa.width_cal}, "
       f"signal_active={sa.signal_active}, width_overlay_active={getattr(sa, 'width_overlay_active', False)}")
-assert set(REFERENCE_SET) == {"SWDY", "ADCB", "ALPHADHABI"}
+# THE SET IS IMPORTED, NOT SPELLED. This line carried a hard-coded copy naming SWDY,
+# which ADNOCLS displaced on 19 August 2026 under the one-in-one-out rule — so this gate
+# has been red every day since, on a fact about the standard rather than about this study,
+# and a check that is always red is one nobody reads. What it exists to prove is that the
+# set is CLOSED at three names, which the module asserts at import; restating the members
+# here only guarantees a second copy to go stale [L-067].
+assert len(REFERENCE_SET) == 3, REFERENCE_SET
 
 # ---------------------------------------------------------------- 2. four-field completeness
 SN = json.load(open(os.path.join(HERE, "study_numbers.json")))

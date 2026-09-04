@@ -12,6 +12,7 @@ D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))
 EXPECT, ANCH = XP['expected'], XP['anchors']
 DCF, LN, HI, HB, F = D['dcf'], D['lenses'], D['hist_is'], D['hist_bs'], D['fcst']
+TRI, TRO = D['terminal_record']['inputs'], D['terminal_record']['outputs']
 W, REL, NRM, BK = D['wacc'], D['rel'], D['norm'], D['book']
 HA = D['h1_anchors']
 SH = D['meta']['shares_mn']
@@ -68,7 +69,19 @@ checks = [
     ('DCF cost of capital — explicit', g('DCF', f"C{AD['wacc']}"), W['wacc_exp'], 0.0002),
     ('DCF cost of capital — terminal', g('DCF', f"C{AD['wt']}"), W['wacc_term'], 0.0002),
     ('DCF cost of equity (beta 1.03)', g('DCF', f"C{AD['ke']}"), W['ke_exp'], 0.0002),
-    ('DCF reinvestment rate = g/ROIC', g('DCF', f"C{AD['rr']}"), DCF['rr_term'], 0.001),
+    # THE TERMINAL, LINE BY LINE. The reinvestment-rate check that stood here graded the
+    # RETIRED construction; it was removed with the construction rather than left pointing
+    # at a cell that no longer exists, which is how a check ends up grading nothing [L-067].
+    ('DCF terminal growth (derived, not typed)', g('DCF', f"C{AD['gt']}"),
+     TRI['nominal_growth'], 0.0002),
+    ('DCF terminal book D&A added back', g('DCF', f"C{AD['tdna']}"), TRI['dna_book'], 1.0),
+    ('DCF terminal capital maintenance at replacement cost',
+     g('DCF', f"C{AD['tmaint']}"), -TRO['maintenance'], 1.0),
+    ('DCF terminal growth capital', g('DCF', f"C{AD['tgcap']}"), -TRO['growth_capex'], 0.5),
+    ('DCF terminal inflation on working capital', g('DCF', f"C{AD['twc']}"),
+     -TRO['wc_charge'], 1.0),
+    ('DCF terminal free cash flow', g('DCF', f"C{AD['tfcff']}"), TRO['fcff'], 1.0),
+    ('DCF terminal value', g('DCF', f"C{AD['tv']}"), DCF['tv'], 1.0),
     ('DCF NCI capitalised', g('DCF', f"C{ANCH['nci_row']}"), -DCF['nci_val'], 1.0),
     ('Bridge equity attributable', g('SOTP Bridge', f"C{ANCH['sotp_eq']}"), DCF['eq_attr'], 1.0),
     ('Bridge segment weights sum to EV',

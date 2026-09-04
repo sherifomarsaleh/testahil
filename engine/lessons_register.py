@@ -4509,6 +4509,285 @@ LESSONS = [
       "which is what a measurement keyed on a quantity rather than on its storage looks "
       "like, and is what this one now aims at."),
 
+
+    L("L-304", "ALL", None,
+      "Where no single disclosed figure applies, take the most "
+      "conservative disclosed one and publish the range — never "
+      "invent a weighted figure and never leave the correction unmade",
+      "Modon's terminal needed a disclosed asset life and the company "
+      "discloses EIGHT, from two years to fifty, in a note whose own "
+      "columns combine land with buildings (73% of gross cost, land "
+      "not depreciated) and plant at forty years with machinery at "
+      "three to four. No weighted life can be derived from it, and "
+      "the charge-implied route is closed by AED 832mn of assets "
+      "acquired through business combinations in the year. An earlier "
+      "pass recorded the correction as BLOCKED on that basis and left "
+      "the name on the ratchet, which was honest and was not the only "
+      "honest option. The route taken instead has three parts and "
+      "each is necessary: take the disclosed extreme that is most "
+      "conservative for the calculation in hand (here the LONGEST "
+      "life, because on this basis it charges the MOST maintenance "
+      "and gives the LOWEST terminal); publish the WHOLE disclosed "
+      "range beside it; and state what the range does to the "
+      "decision. Every life from two to fifty years put the terminal "
+      "between 15.6% and 23.9% above the one it replaced and above "
+      "the no-growth marker, so the DIRECTION of the correction was "
+      "certain across the entire disclosure and only its size was "
+      "not.",
+      "MODON terminal rebuild, 4 September 2026",
+      "build",
+      "FY2025 property, plant and equipment accounting policy: plant "
+      "40 years, buildings 2 to 50, machinery and equipment 3 to 4, "
+      "vehicles 3 to 5, office and computer equipment 2 to 5, "
+      "furniture and fixtures 2 to 5, leasehold improvements the "
+      "lower of the lease term or 10, other assets 5. Terminal value "
+      "at each life: 2y 77,743 · 5y 77,487 · 20y 76,085 · 50y 72,573, "
+      "against a published 62,758 and a no-growth marker of 69,916 — "
+      "nine points measured, every one above both.",
+      "A case where the disclosed range STRADDLES the decision — the "
+      "correction points one way at one end of the disclosure and the "
+      "other way at the other. There this route gives no answer at "
+      "all and the honest move is to stop and say so, exactly as the "
+      "blocked pass did."),
+
+    L("L-305", "ALL", None,
+      "A model in which LESS growth is worth MORE is charging for "
+      "growth at a price nobody set",
+      "Storing Modon's terminal growth as a real rate on the house "
+      "path cut it from a typed 2.5% to a derived 2.0% — and RAISED "
+      "the value by 1.6%, which no reader would predict and which is "
+      "the sharpest evidence available that the construction "
+      "underneath was wrong rather than merely cautious. The reason "
+      "is arithmetic: the retired reinvestment identity charges "
+      "growth at g times invested capital, and where the terminal "
+      "return sits below the terminal cost of capital (8.5% against "
+      "11.92% here) every unit of growth is bought at a destroying "
+      "spread. A negative growth gradient CAN be legitimate — a "
+      "company contractually committed to reinvesting below its cost "
+      "of capital really is worth less for growing — so the sign "
+      "alone is not the finding. The finding is that when the "
+      "gradient is negative, the first question is whether the growth "
+      "CHARGE is a forecast anybody made or a by-product of the "
+      "formula, because g times invested capital is nobody's estimate "
+      "of what growth costs.",
+      "MODON terminal rebuild, 4 September 2026",
+      "build",
+      "Lever 1 (growth stored as real): 3.5423 to 3.5983, +1.6%, with "
+      "the retired terminal construction unchanged. Lever 2 (terminal "
+      "through the sanctioned module): 3.5983 to 3.9119, +8.7%. After "
+      "the rebuild the sensitivity gradient turns the right way up — "
+      "half a point of extra terminal growth is worth +0.15 a share "
+      "instead of subtracting value — and the delivered figure "
+      "caption asserting the opposite was withdrawn in the same pass.",
+      "A terminal whose negative growth gradient survives being "
+      "rebuilt on a maintenance charge taken from disclosure — i.e. "
+      "the company genuinely destroys value by growing, on a charge "
+      "somebody actually forecast rather than one the identity "
+      "manufactured."),
+
+    L("L-306", "ALL", None,
+      "A sensitivity grid with typed rungs drifts off its own centre "
+      "the moment the base moves, and the caption keeps calling the "
+      "middle column the base",
+      "Modon's terminal-growth sensitivity was a typed ladder of five "
+      "rates centred on 2.5%. The rebuild moved the base to 2.0%, the "
+      "assertion that the grid reproduces the base at its unshifted "
+      "point still passed — because that assertion re-runs the model "
+      "at the BASE parameters rather than reading the middle cell — "
+      "and the grid's centre column silently became a different "
+      "scenario from the answer, under a caption calling it the base. "
+      "Nothing in the study was wrong except that one number moved "
+      "and another did not. Build a grid's rungs FROM the base it is "
+      "centred on, so the two cannot separate; and note that the "
+      "assertion which looked like it covered this did not, because "
+      "it tested the engine rather than the table.",
+      "MODON terminal rebuild, 4 September 2026",
+      "build",
+      "g_grid was [1.5, 2.0, 2.5, 3.0, 3.5]% against a base that had "
+      "become 2.0%; the base sat in column two while Figure 2's "
+      "caption described column three. Rebuilt as base plus or minus "
+      "one and two half-points, the centre cell is 3.91 and equals "
+      "the published central exactly.",
+      "A grid deliberately anchored on external reference points — a "
+      "peer set's rates, a regulator's bands — where the centre is "
+      "not meant to be the base and the caption says which it is."),
+
+    L("L-307", "ALL", None,
+      "A one-at-a-time dead-input sweep cannot see a jointly live "
+      "pair, and declaring the pair dead-by-design is an exemption on "
+      "the wrong object",
+      "The capital a unit of real growth consumes is in Modon's live "
+      "formula chain and moved nothing when bumped, because it "
+      "multiplies a stated real growth of zero. A sweep that bumps "
+      "one driver at a time reported it dead — which is true of the "
+      "base point and false of the model. Declaring it dead-by-design "
+      "would have been an exemption written about the wrong thing, "
+      "the shape that hides work where a check cannot reach it. It is "
+      "MEASURED instead: bumped alongside a non-zero real growth, "
+      "where it must bite, and it does. The general form is that a "
+      "driver inert at the base is not a dead driver, and the cheap "
+      "way to tell them apart is a joint probe rather than a note.",
+      "MODON terminal rebuild, 4 September 2026",
+      "build",
+      "Joint probe: at a real growth of +0.5pp, doubling the capital- "
+      "per-unit-of-growth driver moves the terminal -0.89% (76,634 to "
+      "75,953). Bumped alone at the base it moves nothing, because "
+      "the stated real growth is zero.",
+      "A jointly live pair for which no joint probe can be "
+      "constructed — where the second driver cannot be given a non- "
+      "zero value inside any state the model admits. There the honest "
+      "record is the declaration, with that impossibility stated."),
+
+    L("L-308", "ALL", None,
+      "A hyphen between two percentages is a range separator, and a "
+      "figure mis-signed by a tokeniser will find a coincidental "
+      "match and hold it for weeks",
+      "The shared prose-figure instrument read the disclosed tax "
+      "range '9%-23.5%' as nine per cent and MINUS 23.5 per cent, "
+      "then hunted that negative against several thousand committed "
+      "numbers until it landed on one — and it did, so the study read "
+      "clean. It went red the day the figure it had coincidentally "
+      "matched stopped existing, which is a month after the defect "
+      "entered and in a pass that had nothing to do with tax. The "
+      "instrument was fixed rather than the study: a sign is refused "
+      "where it sits immediately after a percent sign. The general "
+      "lesson is the one this house keeps relearning from the other "
+      "direction — with a large pool of committed numbers, a spurious "
+      "match is not unlikely, it is expected, so a tokeniser that can "
+      "produce a figure the document does not contain will eventually "
+      "certify one.",
+      "MODON terminal rebuild, 4 September 2026",
+      "build",
+      "engine/prose_figures.py NUM regex, three lookbehinds added. "
+      "Book-wide advisory unchanged at 8,868 figures and 343 "
+      "unmatched, so no other study was relying on a mis-signed "
+      "range; MODON goes from one unmatched to zero across 369 "
+      "figures, and the count is unchanged because the range now "
+      "tokenises as two positive figures rather than one positive and "
+      "one negative.",
+      "A house document convention in which a leading hyphen "
+      "immediately after a percent sign genuinely denotes a negative "
+      "figure, which would make the lookbehind drop a real number."),
+
+    L("L-309", "ALL", None,
+      "A depreciation note's own two columns give a weighted asset "
+      "life by identity, and an identity is not an assumption",
+      "L-304 said that where no single disclosed figure applies, take "
+      "the most conservative disclosed one and publish the range. "
+      "SAVOLA is the case its own falsifier named: the policy note "
+      "gives five class RANGES (buildings 5 to 50, plant 3 to 40, "
+      "furniture 1 to 10) and the terminal at a 50-year reading falls "
+      "40% while at a 5-year reading it rises 8%, so the range "
+      "STRADDLES the decision and the conservative-extreme route "
+      "gives no answer at all. What resolves it is a route that name "
+      "did not have: note 6 discloses gross cost AND the year's "
+      "depreciation charge BY CLASS, and gross cost over charge IS "
+      "the weighted life, by identity. It reads 18.03 years, and the "
+      "prior year's own columns give 17.05 on the same identity. The "
+      "same protocol already permits capex to be DERIVED by the "
+      "identity capex = change in property, plant and equipment plus "
+      "depreciation, and LABELLED as derived; this is that permission "
+      "applied to a life. LOOK FOR THE IDENTITY BEFORE ACCEPTING THAT "
+      "A FIGURE IS NOT DISCLOSED — a note that gives ranges may still "
+      "give the answer in another column.",
+      "SAVOLA terminal rebuild and re-strike, 4 September 2026",
+      "build",
+      "FY2025 note 6: depreciable gross cost 10,980,554 (land and "
+      "construction in progress excluded, neither depreciated) over "
+      "depreciation for the year 608,933 = 18.03 years; FY2024's own "
+      "columns give 10,413,988 over 610,659 = 17.05. Terminal value "
+      "across the disclosed range spans 8,916 at 50 years to 15,991 "
+      "at 5, against a published 14,811 — the direction reverses "
+      "inside the disclosure, which is why the extreme-value route "
+      "fails here.",
+      "A charge contaminated within the year — assets acquired "
+      "through business combinations, a large mid-year disposal, or "
+      "an impairment inside the accumulated column — which breaks the "
+      "identity. MODON's own note is the worked case: AED 832mn of "
+      "business-combination additions closed this route there, which "
+      "is why that name took the conservative-extreme route instead."),
+
+    L("L-310", "ALL", None,
+      "Two corrections that point opposite ways can leave the answer "
+      "where they found it, and the rebuild is still worth doing",
+      "SAVOLA's terminal construction changed completely — the "
+      "reinvestment identity out, capital maintenance at replacement "
+      "cost in — and the terminal value moved 0.9%. Storing growth on "
+      "the house inflation path RAISED the rate and the value; "
+      "charging maintenance at what replacement costs LOWERED it by "
+      "slightly more. Neither could have been read off the other, and "
+      "the near-cancellation is not evidence that either lever was "
+      "unnecessary: the retired construction happened to land near "
+      "the right answer for the wrong reasons on this name, which is "
+      "a fact about the name and not about the correction. A REBUILD "
+      "THAT ENDS WHERE IT STARTED IS EVIDENCE, NOT A WASTED PASS. The "
+      "corollary for the register that tracks these: a ledger "
+      "recording the cumulative move alone would say nothing happened "
+      "here, which is why it records each lever's own before and "
+      "after.",
+      "SAVOLA terminal rebuild and re-strike, 4 September 2026",
+      "build",
+      "growth stored 27.2426 to 27.4379 (+0.7%); terminal rebuilt "
+      "27.4379 to 27.2811 (-0.6%); re-struck on the latest price "
+      "27.2811 to 27.1153 (-0.6%); cumulative -0.5% on a terminal "
+      "carrying 79.2% of enterprise value.",
+      "A case where two levers cancel and the CONSTRUCTION also turns "
+      "out to be indifferent — i.e. the same near-zero move recurs "
+      "across many names, which would say the terminal rebuild is not "
+      "doing work rather than that it happened to net out here."),
+
+    L("L-311", "ALL", None,
+      "Fixing a tokeniser exposes the gaps its wrong answers were "
+      "masking, and the count going UP is the instrument working",
+      "Correcting the prose-figure tokeniser to read a hyphen between "
+      "two numbers as a range rather than a minus took SAVOLA from "
+      "four unmatched figures to eight. Nothing in the document had "
+      "changed. The four new ones were figures the old tokeniser had "
+      "SIGNED WRONG, and each wrong sign had then found a "
+      "coincidental match among several thousand committed numbers "
+      "and read as clean. A RISING FAILURE COUNT AFTER AN INSTRUMENT "
+      "IS SHARPENED IS NOT A REGRESSION, and treating it as one is "
+      "how a sharpening gets reverted. All eight were then closed "
+      "properly: the yield-curve endpoints the document quotes as "
+      "source context were registered as four-field inputs, and the "
+      "superseded first-edition deltas — which this model cannot "
+      "compute because a different model produced them — were "
+      "registered and the prose that quoted them made computed rather "
+      "than typed.",
+      "SAVOLA terminal rebuild and re-strike, 4 September 2026",
+      "build",
+      "unmatched 4 -> 8 on the same documents after the tokeniser "
+      "fix, then 8 -> 0 after registering the curve endpoints (5.22%, "
+      "5.48%, 5.83%), the superseded risk-free proxy (5.53%) and the "
+      "three critique deltas. Book-wide the generic advisory fell "
+      "from 343 to 339 unmatched across 8,868 figures, so no other "
+      "study depended on a mis-signed range.",
+      "A sharpening whose new failures turn out on inspection to be "
+      "false positives rather than exposed gaps, which would say the "
+      "instrument was widened rather than sharpened."),
+
+    L("L-312", "ALL", None,
+      "A study-local gate holding its own copy of a house standard "
+      "goes red the day the standard moves, and stays red",
+      "SAVOLA's own gate script asserted the reference set equals a "
+      "hard-coded three names. ADNOCLS displaced one of them on 19 "
+      "August 2026 under the one-in-one-out rule, so that gate had "
+      "been failing every day since on a fact about the house "
+      "standard rather than about the study — and nothing noticed, "
+      "because a gate that is always red is one nobody reads. What "
+      "the assertion exists to prove is that the set is CLOSED at "
+      "three, which the shared module already asserts at import; "
+      "restating the members locally only guaranteed a second copy to "
+      "go stale. ASSERT THE PROPERTY, IMPORT THE MEMBERS.",
+      "SAVOLA terminal rebuild and re-strike, 4 September 2026",
+      "build",
+      "gate_check.py line asserting set(REFERENCE_SET) == {three "
+      "names typed out}; red from 19-Aug-2026 to 4-Sep-2026, "
+      "seventeen days, through a delivered edition and a full "
+      "critique response.",
+      "A case where the local copy is the POINT — a gate whose job is "
+      "to detect that the shared module changed, written deliberately "
+      "with its own copy and a stated review date."),
 ]
 
 

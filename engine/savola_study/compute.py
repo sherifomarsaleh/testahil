@@ -102,12 +102,16 @@ _D_PANDA_SPS_LO = _PANDA_SPS_H126 / _PANDA_SPS_H125_INTERP - 1  # -6.0% (interpo
 
 INP = dict(
     # ---- anchors --------------------------------------------------------
-    spot=I(25.40, "SETTLED Tadawul close for SAVOLA (2050), 18-Aug-2026, confirmed as the "
-           "prior-session close on Argaam 19-Aug-2026 (prev close 25.82, O 25.66 / H 25.78 "
-           "/ L 25.20, vol 859,264 across three reconciling feeds). The 25.30 in the "
-           "uploaded export was an intraday print — the third occurrence of the "
-           "settled-print vendor defect class in this project (TASI, RIYADHCABLE); the "
-           "library row is corrected in the same edition", "2026-08-19", "Market"),
+    spot=I(30.30, "Tadawul close for SAVOLA (2050), 3 September 2026, from the price file "
+           "the principal supplied that day and committed to the repository. THE STUDY IS "
+           "RE-STRUCK ON IT because no study is delivered against a stale price: the prior "
+           "edition stood on the settled 18-August close of 25.40, and the stock has since "
+           "risen 19.3%, which turns a central 7.3% ABOVE the price into one 17.4% BELOW "
+           "it. The 25.40 itself was a correction — the 25.30 in that day's export was an "
+           "intraday print, the third occurrence of the settled-print vendor defect class "
+           "in this project (TASI, RIYADHCABLE) — and it is recorded here rather than "
+           "dropped, because the corrected figure is the one this edition moves away from",
+           "2026-09-03", "Market"),
     shares_issued_mn=I(300.0, FS25 + ", note 16: share capital SAR 3bn = 300mn fully paid "
                        "shares of SAR 10, after the 2024 rights issue (+600mn shares) and the "
                        "capital reduction cancelling 833.98mn shares against the Almarai "
@@ -121,8 +125,40 @@ INP = dict(
                     "own latest ex-treasury divisor, adopted for every per-share value "
                     "(second edition; the first edition used the FY2025 weighted 298.589)",
                     "2026-08-05", "Company"),
-    anchor_days=I(230.0, "31-Dec-2025 valuation date to the 18-Aug-2026 price anchor",
-                  "2026-08-18", "House"),
+    # THE FACTSHEET'S OWN CONTEXT FIGURES, registered rather than typed. Both documents
+    # quote the whole-index yield and the curve's endpoints beside the 7-10 year bucket the
+    # study uses, as evidence that the bucket is not an outlier — real, sourced, and not
+    # model outputs, so they belong in the register where a checker can point at them.
+    rf_index_whole=I(0.0548, "FTSE SAGBI factsheet, 31-Jul-2026: whole-index yield to "
+                     "maturity, quoted beside the 7-10y bucket as context", "2026-07-31",
+                     "Country"),
+    rf_curve_lo=I(0.0522, "FTSE SAGBI factsheet, 31-Jul-2026: the low end of the published "
+                  "curve", "2026-07-31", "Country"),
+    rf_curve_hi=I(0.0583, "FTSE SAGBI factsheet, 31-Jul-2026: the high end of the published "
+                  "curve", "2026-07-31", "Country"),
+    # The three deltas the critique-response section quotes, at the FIRST edition's central.
+    # Each was measured against a model that no longer exists, so this model cannot compute
+    # them; they are registered so a reader can see where they came from.
+    crit_delta_lease=I(-0.0397, "SUPERSEDED-EDITION DELTA: charging the FULL lease "
+                       "additions in the cash-flow waterfall rather than renewals only, "
+                       "priced against the 18-Aug-2026 first edition's own central",
+                       "2026-08-19", "House"),
+    crit_delta_roic=I(-0.016, "SUPERSEDED-EDITION DELTA: computing the terminal return "
+                      "from the model's own year five instead of inputting 10.5%, priced "
+                      "against the first edition's central", "2026-08-19", "House"),
+    crit_delta_relative=I(-0.032, "SUPERSEDED-EDITION DELTA: the relative lens rebuilt "
+                          "trailing-on-trailing with Al Othaim not meaningful, before the "
+                          "offsetting quote refresh", "2026-08-19", "House"),
+    rf_proxy_edition1=I(0.0553, "SUPERSEDED. The first edition's synthetic risk-free rate "
+                        "(US 10-year plus a new-issue spread), built when this desk "
+                        "believed no direct Saudi sovereign series was reachable. It is "
+                        "registered rather than typed because both documents quote it to "
+                        "show what changed, and this model cannot compute it — a different "
+                        "model produced it", "2026-08-18", "House"),
+    anchor_days=I(246.0, "31-Dec-2025 valuation date to the 3-Sep-2026 price anchor "
+                  "(246 days). Sixteen days longer than the prior edition's, because the "
+                  "anchor moved with the price it is compared against",
+                  "2026-09-03", "House"),
     div_between=I(1.70, "FY2025 dividend SAR 1.70/share (SAR 510mn, 17% of par), board-"
                   "recommended 05-Mar-2026 (" + ANNC + " anId 93503), EX-DATE 07-May-2026, "
                   "paid during H1-2026 (H1 release: 524 incl. NCI). Its ex-date falls between "
@@ -593,8 +629,42 @@ INP = dict(
                     "WACC", "2026-08-18", "House"),
     kd_other=I(0.055, "AED/DZD minor tranches (220.4) at ~5.5% local-equivalent",
                "2026-08-18", "House"),
-    g_term=I(0.025, "terminal growth 2.5% = Saudi CPI 1.8% (GASTAT Jul-2026) + ~0.7% real "
-             "staples growth; below nominal GDP", "2026-08-14", "House"),
+    g_term_real=I(0.007, "Terminal REAL growth of 0.7%: staples volume growth a little "
+                  "under population growth, below real GDP. This is the SAME real rate the "
+                  "previous edition argued in prose ('Saudi CPI 1.8% + ~0.7% real staples "
+                  "growth'); what changes is that it is now STORED as a real rate and the "
+                  "nominal is DERIVED from the house inflation path, so a reader can tell "
+                  "whether the company is assumed to grow faster or slower than prices. "
+                  "A typed nominal 2.5% cannot answer that question. Real growth is also "
+                  "now CHARGED for the capital it consumes, which the retired construction "
+                  "did on its own terms and this one does on the model's own forecast",
+                  "2026-08-14", "House"),
+    accum_dep_depreciable_fy25=I(6863703.0 / 1000.0, FS25 + ", note 6, accumulated "
+                       "depreciation and impairment at 31-Dec-2025 on the DEPRECIABLE "
+                       "classes only (buildings 1,420,808 + leasehold improvements "
+                       "1,320,733 + plant and equipment 1,448,812 + furniture and office "
+                       "equipment 2,291,773 + vehicles 381,577), land and construction in "
+                       "progress excluded. SAR mn", "2026-03-05", "Company"),
+    dep_charge_fy25=I(608933.0 / 1000.0, FS25 + ", note 6, depreciation for the year 2025 "
+                      "on the same classes. SAR mn", "2026-03-05", "Company"),
+    asset_life_years=I(18.03, FS25 + ", note 6, DERIVED BY IDENTITY from the note's own two "
+                       "columns and LABELLED as derived: gross cost of the depreciable base "
+                       "(buildings 2,824,359 + leasehold improvements 2,133,648 + plant and "
+                       "equipment 2,563,647 + furniture and office equipment 3,011,907 + "
+                       "vehicles 446,993 = 10,980,554, land and construction in progress "
+                       "excluded because neither is depreciated) divided by the year's own "
+                       "depreciation charge of 608,933. The policy note gives RANGES per "
+                       "class (buildings 5-50, leasehold improvements 3-33, plant and "
+                       "equipment 3-40, furniture and office equipment 1-10, vehicles 2-15) "
+                       "and no weighting, so a single figure cannot be read off it; the "
+                       "identity supplies one from figures that exist. CROSS-CHECKED against "
+                       "FY2024's own columns, which give 17.05 on the same identity, and the "
+                       "route is clean here because 2025 carries no business-combination "
+                       "additions to contaminate the charge. TWO CLASSES COME OUT ABOVE "
+                       "THEIR OWN DISCLOSED RANGE (vehicles 31.9 years against 2-15, "
+                       "furniture 13.9 against 1-10), which says those bases are largely "
+                       "written down rather than that the note is wrong, and is recorded "
+                       "rather than smoothed", "2026-03-05", "Company"),
     roic_term_variant=I(0.105, "RETIRED AS THE BASE, kept as a labelled UPSIDE VARIANT: the "
                         "first edition set terminal ROIC 10.5% as an input, above every "
                         "return the model itself produces (9.2% rising to ~9.7%) — an "
@@ -648,6 +718,22 @@ INP = dict(
 
 # ============================ CALC ===========================================
 V = {k: r['value'] for k, r in INP.items()}
+
+# ---- the house macro path supplies the inflation; this study may not carry one --
+# [R-MACRO-01]. The previous edition typed a nominal 2.5% built on its own reading of
+# Saudi CPI at 1.8%. The real rate it argued in prose is kept exactly; the inflation it
+# sits on is now the house terminal, and the nominal is DERIVED so the two cannot drift.
+import macro_path as MP
+# aliased TERMVAL, not TV: this file's TV is the terminal VALUE
+import terminal_value as TERMVAL
+_SA = MP.load('SA')
+PI_TERM = (_SA.raw['inflation']['terminal'] or {})['value']
+V['g_term'] = (1.0 + PI_TERM) * (1.0 + V['g_term_real']) - 1.0
+INP['g_term_derived'] = I(V['g_term'], "DERIVED, never typed: (1 + terminal inflation "
+                          "%.4f from the house Saudi macro path) x (1 + stated real growth "
+                          "%.4f) - 1. The previous edition's 2.50%% rested on this study's "
+                          "own 1.8%% CPI reading rather than on the house path."
+                          % (PI_TERM, V['g_term_real']), _SA.as_of, "House")
 Y = [2026, 2027, 2028, 2029, 2030]
 say = print
 
@@ -875,17 +961,56 @@ ROIC_PATH = [NOPAT[i] / ([IC0_OP] + IC_PATH)[i] for i in range(5)]
 ROIC_TERM = NOPAT[4] / IC_PATH[3]
 
 # ---- DCF and the EV -> equity bridge ------------------------------------------
-def dcf(fcff, nopat, wacc_e, wacc_t, g, roic):
+# THE INFLATION CHARGE'S BASE IS WORKING CAPITAL PLUS THE LEASE BOOK, AND IT IS NAMED
+# HERE RATHER THAN BURIED. The explicit window charges the growth of BOTH as cash out —
+# DWC and DLEASE sit in the FCFF line together — so a terminal that charged inflation on
+# the working capital alone would hand this company a rent-free expansion of its store
+# estate for ever. The two are the same kind of quantity for this purpose: a balance-sheet
+# base that inflation makes more expensive to carry every year.
+def _wc_and_lease(nwc_last, lease_last):
+    return nwc_last + lease_last
+
+
+def dcf(fcff, nopat, wacc_e, wacc_t, g, dna_oi_last, wc_lease_last, inc_cap,
+        life=None):
+    """The explicit window and the terminal, the terminal through the sanctioned module.
+
+    THE RETIRED FORM WAS fcff_t = nopat(1+g)(1 - g/ROIC): the reinvestment identity, whose
+    implied replacement cycle is 1/g — 40 years at this study's old 2.5%, which is a fact
+    about the riyal's peg to the dollar and not about a supermarket. The asset life is now
+    DERIVED from note 6's own cost and depreciation columns by identity, and every scenario
+    and every sensitivity point goes through the same module as the base, so the retired
+    construction cannot survive anywhere in this file.
+
+    Note the D&A the terminal adds back is the OWNED and INTANGIBLE charge only. The
+    right-of-use charge cancels out of this model's own FCFF line by construction (it is
+    added back with total D&A and deducted again as ROU_D), so adding it back here would
+    give the terminal a lease consumption the explicit window never granted.
+    """
     dfs = [(1 + wacc_e) ** -(i + 1) for i in range(5)]
     pv_exp = sum(f * d for f, d in zip(fcff, dfs))
-    reinvest = g / roic
-    fcff_t = nopat[-1] * (1 + g) * (1 - reinvest)
-    tv = fcff_t / (wacc_t - g)
-    pv_tv = tv * dfs[-1]
-    return pv_exp, tv, pv_tv, dfs, fcff_t
+    t = TERMVAL.build(TERMVAL.TerminalInputs(
+        nopat=nopat[-1] * (1 + g), wacc=wacc_t, inflation=PI_TERM,
+        real_growth=(1.0 + g) / (1.0 + PI_TERM) - 1.0,
+        dna_book=dna_oi_last * (1 + g),
+        useful_life_years=V['asset_life_years'] if life is None else life,
+        useful_life_source=INP['asset_life_years']['source'],
+        maintenance_basis='book_dna_escalated',
+        working_capital=wc_lease_last * (1 + g),
+        incremental_capital_per_unit_growth=inc_cap))
+    return pv_exp, t.tv, t.tv * dfs[-1], dfs, t.fcff, t
 
-PV_EXP, TV, PV_TV, DFS, FCFF_T = dcf(FCFF, NOPAT, wacc_exp, wacc_term, V['g_term'],
-                                     ROIC_TERM)
+DNA_OI = [a + b for a, b in zip(OWN_D, INT_D)]
+# The capital one unit of REAL growth actually needs: this model's own marginal invested
+# capital per unit of revenue across the explicit window, at terminal revenue. IC_PATH
+# already carries owned capex, the right-of-use book, the lease book's growth and working
+# capital, so the figure covers every base real growth expands.
+INC_CAP = ((IC_PATH[-1] - IC0_OP) / (B['rev'][-1] - B['rev'][0])) * B['rev'][-1]
+WC_LEASE_T = _wc_and_lease(NWC[-1], LEASE_PATH[-1])
+TV_RETIRED = NOPAT[-1] * (1 + V['g_term']) * (1 - V['g_term'] / ROIC_TERM) \
+    / (wacc_term - V['g_term'])
+PV_EXP, TV, PV_TV, DFS, FCFF_T, TERMINAL = dcf(
+    FCFF, NOPAT, wacc_exp, wacc_term, V['g_term'], DNA_OI[-1], WC_LEASE_T, INC_CAP)
 EV_OP = PV_EXP + PV_TV
 TV_SHARE = PV_TV / EV_OP
 
@@ -941,8 +1066,18 @@ def full_value(dlease_mult=1.0, **kw):
     for i in range(5):
         ic = ic + b['capex'][i] + roud[i] + dl_s[i] + dwc[i] - dna[i]
         ic_path.append(ic)
-    roic_s = nopat[4] / ic_path[3]              # scenario's own computed terminal return
-    pv_e, tv_, pv_t, _, _ = dcf(fcff, nopat, wacc_exp, wacc_term, V['g_term'], roic_s)
+    # The scenario's OWN terminal inputs, not the base's: its own owned-and-intangible
+    # charge, its own working capital, its own lease book (a scenario that opens fewer
+    # stores raises less lease debt, so dlease_mult moves the book it will have to keep
+    # re-pricing for ever) and its own marginal capital per unit of revenue.
+    nwc_s = wc_path(b['rev'], b['ebitda'])[1]
+    lease_s = V['leases_jun26']
+    for d_ in dl_s:
+        lease_s = lease_s + d_
+    inc_s = ((ic_path[-1] - IC0_OP) / (b['rev'][-1] - b['rev'][0])) * b['rev'][-1]
+    pv_e, tv_, pv_t, _, _, _t = dcf(fcff, nopat, wacc_exp, wacc_term, V['g_term'],
+                                    own[4] + intd[4],
+                                    _wc_and_lease(nwc_s[-1], lease_s), inc_s)
     ev = pv_e + pv_t
     eq = equity_anchor(ev)
     return eq / V['shares_val_mn'] - V['div_between'], b, ev
@@ -962,8 +1097,20 @@ PS_STORES_RUNRATE, _, _ = full_value(stores_override=[235.0, 243.0, 251.0, 259.0
                                      dlease_mult=0.4)
 PS_SPS_71, _, _ = full_value(sps_open=_D_PANDA_SPS)        # -7.1% opening (213 basis)
 PS_SPS_59, _, _ = full_value(sps_open=_D_PANDA_SPS_LO)     # -6.0% opening (interpolated)
-PS_ROIC_VARIANT = (equity_anchor(PV_EXP + dcf(FCFF, NOPAT, wacc_exp, wacc_term,
-                                              V['g_term'], V['roic_term_variant'])[2])
+# THE PUBLISHED TERMINAL VARIANT IS NOW ABOUT THE ASSET LIFE, BECAUSE THAT IS WHAT THE
+# TERMINAL ACTUALLY TURNS ON. The retired variant moved the terminal return on capital,
+# which the sanctioned construction does not use at all; publishing it would have been a
+# lever a reader could not pull. The replacement is the SAME quantity measured a second
+# way: note 6's accumulated depreciation divided by the year's charge says the depreciable
+# base has already taken 11.27 years of depreciation, while the module's formula assumes an
+# average age of half the life, 9.02 years at the derived 18.03. Passing twice the directly
+# measured age puts the escalation on the age actually observed. IT IS A DOWNSIDE VARIANT,
+# not the upside one it replaces, and that is stated rather than left for a reader to work
+# out from the sign.
+LIFE_VARIANT = 2.0 * (V['accum_dep_depreciable_fy25'] / V['dep_charge_fy25'])
+PS_LIFE_VARIANT = (equity_anchor(PV_EXP + dcf(FCFF, NOPAT, wacc_exp, wacc_term,
+                                              V['g_term'], DNA_OI[-1], WC_LEASE_T,
+                                              INC_CAP, life=LIFE_VARIANT)[2])
                    / V['shares_val_mn'] - V['div_between'])
 
 # ---- forward profit / dividend / balance-sheet walk (Framing A) ---------------
@@ -1078,12 +1225,18 @@ PANEL = float(np.median([PS_A, rel_base, norm_base, book_base]))
 
 # ---- sensitivity grids ----------------------------------------------------------
 def dcf_at(wacc_e_, wacc_t_, g_):
-    pv_e, _, pv_t, _, _ = dcf(FCFF, NOPAT, wacc_e_, wacc_t_, g_, ROIC_TERM)
+    pv_e, _, pv_t, _, _, _t = dcf(FCFF, NOPAT, wacc_e_, wacc_t_, g_,
+                                  DNA_OI[-1], WC_LEASE_T, INC_CAP)
     return equity_anchor(pv_e + pv_t) / V['shares_val_mn'] - V['div_between']
     # roll at the base Ke: the grid varies WACC/g only
 
 WACC_GRID = [wacc_exp - 0.01, wacc_exp - 0.005, wacc_exp, wacc_exp + 0.005, wacc_exp + 0.01]
-G_GRID = [0.015, 0.02, 0.025, 0.03, 0.035]
+# DERIVED from the terminal growth rather than typed, the way WACC_GRID beside it always
+# was. A typed ladder centred on the old 2.5% would have left the base sitting between two
+# columns the moment growth was re-derived, under a caption calling the middle one the base
+# — and the assertion below would still have passed, because it re-runs the engine at the
+# base parameters rather than reading the middle cell.
+G_GRID = [round(V['g_term'] + k * 0.005, 6) for k in (-2, -1, 0, 1, 2)]
 SENS = [[dcf_at(w, wacc_term + (w - wacc_exp), g) for g in G_GRID] for w in WACC_GRID]
 
 def dcf_beta(b_):
@@ -1093,7 +1246,8 @@ def dcf_beta(b_):
     wacc_e_ = we * ke_ + wl * kd_loans * (1 - T) + wz * kd_lease * (1 - T)
     wacc_t_ = (V['tw_e'] * ke_ + V['tw_loans'] * kd_loans * (1 - T)
                + tw_lease * kd_lease * (1 - T))
-    pv_e, _, pv_t, _, _ = dcf(FCFF, NOPAT, wacc_e_, wacc_t_, V['g_term'], ROIC_TERM)
+    pv_e, _, pv_t, _, _, _t = dcf(FCFF, NOPAT, wacc_e_, wacc_t_, V['g_term'],
+                                  DNA_OI[-1], WC_LEASE_T, INC_CAP)
     roll_ = (1 + ke_) ** (V['anchor_days'] / 365.0)
     kin_ = (V['kinan_profit_share_h126'] * 2.0) / ke_
     return equity_anchor(pv_e + pv_t, roll=roll_, kinan=kin_) / V['shares_val_mn'] - V['div_between']
@@ -1107,7 +1261,8 @@ def dcf_rf(rf_):
     wacc_e_ = we * ke_ + wl * kd_loans * (1 - T) + wz * kd_lease * (1 - T)
     wacc_t_ = (V['tw_e'] * ke_ + V['tw_loans'] * kd_loans * (1 - T)
                + tw_lease * kd_lease * (1 - T))
-    pv_e, _, pv_t, _, _ = dcf(FCFF, NOPAT, wacc_e_, wacc_t_, V['g_term'], ROIC_TERM)
+    pv_e, _, pv_t, _, _, _t = dcf(FCFF, NOPAT, wacc_e_, wacc_t_, V['g_term'],
+                                  DNA_OI[-1], WC_LEASE_T, INC_CAP)
     roll_ = (1 + ke_) ** (V['anchor_days'] / 365.0)
     kin_ = (V['kinan_profit_share_h126'] * 2.0) / ke_
     return equity_anchor(pv_e + pv_t, roll=roll_, kinan=kin_) / V['shares_val_mn'] - V['div_between']
@@ -1116,8 +1271,8 @@ RF_ALTS = {'5.02%': dcf_rf(0.0502), '5.52% (base)': dcf_rf(0.0552), '6.02%': dcf
 
 # ---- CDS-basis DCF (published beside the rating basis, never averaged; the CDS
 #      spread/ERP legs are the JANUARY-2026 Damodaran vintage, flagged) ----------
-pv_e_cds, _, pv_t_cds, _, _ = dcf(FCFF, NOPAT, wacc_exp_cds, wacc_term_cds, V['g_term'],
-                                  ROIC_TERM)
+pv_e_cds, _, pv_t_cds, _, _, _t_cds = dcf(FCFF, NOPAT, wacc_exp_cds, wacc_term_cds,
+                                          V['g_term'], DNA_OI[-1], WC_LEASE_T, INC_CAP)
 ev_cds = pv_e_cds + pv_t_cds
 roll_cds = (1 + ke_cds) ** (V['anchor_days'] / 365.0)
 kin_cds = (V['kinan_profit_share_h126'] * 2.0) / ke_cds
@@ -1249,7 +1404,12 @@ assert 0.9 < _h2_26 / _h2_25 < 1.15, (_h2_26, _h2_25)
 # terminal must be ROIC-consistent and ordered; the computed terminal return sits
 # below the retired 10.5% variant by construction of the critique response
 assert ROIC_TERM > wacc_term > V['g_term'], (ROIC_TERM, wacc_term)
-assert ROIC_TERM < V['roic_term_variant']
+# The retired ROIC variant's ordering assertion goes with the construction it guarded.
+# What replaces it is the assertion that matters now: a LONGER assumed life must charge
+# MORE maintenance and so give a LOWER value, because on this basis the life sets the
+# average VINTAGE of the base rather than the replacement frequency.
+assert LIFE_VARIANT > V['asset_life_years'] and PS_LIFE_VARIANT < PS, (
+    LIFE_VARIANT, V['asset_life_years'], PS_LIFE_VARIANT, PS)
 assert wacc_term > wacc_exp - 0.02
 # EBITDA margin path stays inside the observed historical envelope +/- 150bp
 for i in range(5):
@@ -1266,7 +1426,11 @@ assert all(DFS[i] > DFS[i + 1] for i in range(4))
 OUT = dict(
     meta=dict(
         ticker='SAVOLA', exchange='TADAWUL', code='2050', market='SA', currency='SAR',
-        spot=V['spot'], spot_date='2026-08-18', shares_mn=V['shares_issued_mn'],
+        # The date comes from the spot's OWN four-field record rather than being typed
+        # beside it: a spot that moves while its date does not is the stale-price defect
+        # wearing the costume of a fresh one.
+        spot=V['spot'], spot_date=INP['spot']['date'],
+        shares_mn=V['shares_issued_mn'],
         shares_val_mn=V['shares_val_mn'], shares_wavg_mn=V['shares_wavg_mn'],
         mktcap=mktcap,
         valuation_date='2025-12-31', anchor_date='2026-08-18',
@@ -1276,6 +1440,55 @@ OUT = dict(
     ),
     # headline figures of the superseded first edition (historical record for the
     # revision note and the before/after table; immutable — published 18-Aug-2026)
+    terminal_record=dict(
+        construction='engine/terminal_value.py [R-TERM-01]',
+        retired_construction=dict(
+            form='NOPAT(1+g)(1 - g/ROIC)/(W-g)', tv=TV_RETIRED,
+            implied_cycle_years=1.0 / V['g_term'],
+            why_retired="the reinvestment identity charges g x IC every year for ever, so "
+                        "the implied replacement cycle is 1/g. At the previous edition's "
+                        "typed 2.50% that was 40 years, and at the derived 2.71% it is "
+                        "36.9 — both facts about the riyal's peg to the dollar rather than "
+                        "about a supermarket, a flour mill or a delivery van. Note 6's own "
+                        "columns say the depreciable base turns over in 18.03."),
+        inputs=dict(nopat=NOPAT[-1] * (1 + V['g_term']), wacc=wacc_term, inflation=PI_TERM,
+                    real_growth=V['g_term_real'], nominal_growth=V['g_term'],
+                    dna_book=DNA_OI[-1] * (1 + V['g_term']),
+                    useful_life_years=V['asset_life_years'],
+                    useful_life_source=INP['asset_life_years']['source'],
+                    maintenance_basis='book_dna_escalated',
+                    maintenance_basis_reason=(
+                        "'disclosed_life' divides REPLACEMENT-COST invested capital by the "
+                        "life, and this model commits no replacement-cost capital base: "
+                        "note 6 gives gross HISTORICAL cost across classes of very mixed "
+                        "vintage, and rolling it forward through five years of forecast "
+                        "spending would be a construction of ours rather than a figure the "
+                        "company discloses. Escalating the model's own book depreciation "
+                        "over half the derived life uses only figures that exist."),
+                    working_capital=WC_LEASE_T * (1 + V['g_term']),
+                    working_capital_basis=(
+                        "NET WORKING CAPITAL PLUS THE LEASE BOOK, named rather than buried. "
+                        "The explicit window charges the growth of both as cash out — DWC "
+                        "and DLEASE sit in the same free-cash-flow line — so a terminal "
+                        "charging inflation on working capital alone would hand this group "
+                        "a rent-free expansion of its store estate for ever."),
+                    incremental_capital_per_unit_growth=INC_CAP),
+        outputs=dict(fcff=TERMINAL.fcff, tv=TERMINAL.tv, floor=TERMINAL.floor,
+                     maintenance=TERMINAL.maintenance, growth_capex=TERMINAL.growth_capex,
+                     wc_charge=TERMINAL.wc_charge, dna_addback=TERMINAL.dna_addback,
+                     implied_cycle_years=TERMINAL.implied_cycle_years,
+                     below_floor=TERMINAL.below_floor),
+        record=TERMINAL.record,
+        derived_life=dict(
+            years=V['asset_life_years'], basis='note 6 gross cost over the year\'s charge',
+            cross_check_fy2024=17.05,
+            direct_average_age=V['accum_dep_depreciable_fy25'] / V['dep_charge_fy25'],
+            variant_years=LIFE_VARIANT, variant_ps=PS_LIFE_VARIANT,
+            note="the module's formula assumes an average age of half the life; the second "
+                 "identity — accumulated depreciation over the same charge — measures that "
+                 "age directly and reads higher, so the base charge is the lighter of the "
+                 "two readings and the variant publishes the heavier one."),
+        moved=dict(tv_before=TV_RETIRED, tv_after=TV, pct=TV / TV_RETIRED - 1.0)),
     edition1=dict(central=28.016591405896726, dcf=26.204159458590066, spot=25.30,
                   rel=30.902614525819423, norm=36.39304315016321, book=20.26739697034573,
                   wacc_exp=0.07966842721649163, wacc_term=0.0845512560367681,
@@ -1415,7 +1628,9 @@ OUT = dict(
         dfs=DFS, fcff_term=FCFF_T,
         reinvest_term=V['g_term'] / ROIC_TERM,
         g=V['g_term'], roic_term=ROIC_TERM, roic_term_variant=V['roic_term_variant'],
-        ps_roic_variant=PS_ROIC_VARIANT,
+        ps_life_variant=PS_LIFE_VARIANT, life_variant_years=LIFE_VARIANT,
+        asset_life_years=V['asset_life_years'],
+        dna_oi_last=DNA_OI[-1], wc_lease_last=WC_LEASE_T, inc_cap=INC_CAP,
         nonop_dec=NONOP_DEC, kinan_capitalized=kinan_capitalized,
         tiryaki_recv=V['tiryaki_recv'], mehbaj_total=V['mehbaj_total'],
         invprop_in_bridge=V['invprop_fy25'],
@@ -1491,8 +1706,14 @@ say(f"lease additions " + " ".join(f"{x:,.0f}" for x in LEASE_ADD)
     + f" = RoU dep + growth {' '.join(f'{x:,.0f}' for x in DLEASE)}")
 say(f"WACC exp {wacc_exp:.2%} (CDS {wacc_exp_cds:.2%}) | term {wacc_term:.2%} | "
     f"Ke {ke_rating:.2%}/{ke_cds:.2%} | Kd loans {kd_loans:.2%} lease {kd_lease:.2%}")
-say(f"terminal ROIC COMPUTED {ROIC_TERM:.2%} (variant {V['roic_term_variant']:.1%} -> "
-    f"{PS_ROIC_VARIANT:.2f}) | ROIC path " + " ".join(f"{r:.2%}" for r in ROIC_PATH))
+say(f"terminal on a DERIVED life of {V['asset_life_years']:.2f}y (variant at the directly "
+    f"measured average age, {LIFE_VARIANT:.2f}y -> {PS_LIFE_VARIANT:.2f}) | maintenance "
+    f"{TERMINAL.maintenance:,.0f} vs book D&A {TERMINAL.dna_addback:,.0f} | terminal FCFF "
+    f"{TERMINAL.fcff:,.0f} = {TERMINAL.fcff / (NOPAT[-1] * (1 + V['g_term'])):.1%} of "
+    f"terminal profit | TV {TV:,.0f} vs retired {TV_RETIRED:,.0f} "
+    f"({TV / TV_RETIRED - 1:+.1%}) vs floor {TERMINAL.tv / TERMINAL.floor - 1:+.1%}")
+say("ROIC path (published; the terminal no longer uses it) " +
+    " ".join(f"{r:.2%}" for r in ROIC_PATH))
 say(f"EV {EV_OP:,.0f} | TV share {TV_SHARE:.1%} | nonop(dec) {NONOP_DEC:,.0f} | "
     f"NCI {NCI_VAL:,.0f}")
 say(f"equity {EQ:,.0f} at anchor -> {PS:.2f}/sh (roll {ROLL:.4f} on Dec legs only, "

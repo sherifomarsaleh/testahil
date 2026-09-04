@@ -1,9 +1,7 @@
 {
  "_": "Studies knowingly outstanding against the valuation-gap gate [R-GAP-01]. Seeded 01-Sep-2026, the day the rule was adopted, from the state of the repository on that day. It may only ever get SHORTER: run scripts/check_valuation_gap.py --prune once a study is reviewed or its numbers made readable. Adding a name here is a deliberate deferral and needs a reason, not a convenience.",
  "seeded": "2026-09-01",
- "breach_no_review": [
-  "SAVOLA"
- ],
+ "breach_no_review": [],
  "unreadable": [
   "ADNOCDIST",
   "ADNOCDRILL",

@@ -35,14 +35,14 @@
     {
      "route": "web.archive.org snapshot of the CBE statistics pages",
      "when": "2026-09-03",
-     "outcome": "404 — no snapshot held",
+     "outcome": "404 \u2014 no snapshot held",
      "rerun": true
     }
    ],
    "refs_searched": 22,
    "why_only_the_principal": "Both are OBSERVED figures, so this is pure access and not a point-in-time problem. Every free route refuses at the proxy; the principal holds the CBE / Ministry of Finance export.",
    "done_meanwhile": "The archive's other four required figures were sourced point-in-time (ERP and default spread from the Damodaran vintages published AT each origin, inflation from six IMF WEO editions published before their origins), so the archive was complete except for these two and closed the moment they arrived.",
-   "default_if_no_answer": "Drop every origin that lacks them and shorten the window — never interpolate, never carry a neighbouring year.",
+   "default_if_no_answer": "Drop every origin that lacks them and shorten the window \u2014 never interpolate, never carry a neighbouring year.",
    "default_date": "2026-09-10",
    "status": "resolved",
    "resolved": "2026-09-03",
@@ -57,7 +57,7 @@
    "key": "EGX-ohlc-refresh-arcc-amoc-egch",
    "opened": "2026-09-03",
    "cls": "missing_data",
-   "question": "A fresh OHLC export for the EGX names whose libraries stop at 6 August 2026 — ARCC, AMOC, EGCH and the others listed by the gap gate's price basis. Without it the house's LATEST KNOWN price is four weeks old and [R-GAP-01] cannot audit a gap it cannot see.",
+   "question": "A fresh OHLC export for the EGX names whose libraries stop at 6 August 2026 \u2014 ARCC, AMOC, EGCH and the others listed by the gap gate's price basis. Without it the house's LATEST KNOWN price is four weeks old and [R-GAP-01] cannot audit a gap it cannot see.",
    "routes": [
     {
      "route": "the persistent library itself, engine/raw_ohlc/EG/*.csv, read newest-first",
@@ -68,7 +68,7 @@
     {
      "route": "the principal's own figures, supplied in chat 03-09-2026",
      "when": "2026-09-03",
-     "outcome": "ARCC 76.81 and AMOC 13.43 at 01-09, against library closes of 59.00 and 9.10 — moves of +30.2% and +47.6% the library never saw. Recorded as evidence of the gap, NOT written into the library: a price typed from a chat message is not a vendor export and would enter a calibration panel as one.",
+     "outcome": "ARCC 76.81 and AMOC 13.43 at 01-09, against library closes of 59.00 and 9.10 \u2014 moves of +30.2% and +47.6% the library never saw. Recorded as evidence of the gap, NOT written into the library: a price typed from a chat message is not a vendor export and would enter a calibration panel as one.",
      "rerun": false
     },
     {
@@ -88,16 +88,16 @@
     "file": "engine/raw_ohlc/EG/ARCC.csv",
     "must_contain": "09/01/2026"
    },
-   "resolves_when_note": "the 1 September 2026 session, the date the principal's own quoted price carries. The first marker written here was '/2026', which the file already contained — the gate refused it immediately, which is the clause this register exists for working on the person writing the register."
+   "resolves_when_note": "the 1 September 2026 session, the date the principal's own quoted price carries. The first marker written here was '/2026', which the file already contained \u2014 the gate refused it immediately, which is the clause this register exists for working on the person writing the register."
   },
   {
    "key": "ELEC-primary-financial-statements",
    "opened": "2026-09-04",
    "cls": "missing_data",
-   "question": "Electro Cable Egypt (EGX: ELEC) audited financial statements — FY2023, FY2024 and every disclosed 2025 period (Q1, H1, 9M), consolidated where issued and standalone otherwise. The company's own website LISTS all of them and SERVES none of them; without them SIGCM clause 1 blocks this study outright, because its entire income statement and balance sheet currently rest on data vendors and press.",
+   "question": "Electro Cable Egypt (EGX: ELEC) audited financial statements \u2014 FY2023, FY2024 and every disclosed 2025 period (Q1, H1, 9M), consolidated where issued and standalone otherwise. The company's own website LISTS all of them and SERVES none of them; without them SIGCM clause 1 blocks this study outright, because its entire income statement and balance sheet currently rest on data vendors and press.",
    "routes": [
     {
-     "route": "the company's own website, www.ececables.com — homepage, investor-relations, shareholder-structure and the financial-statements index",
+     "route": "the company's own website, www.ececables.com \u2014 homepage, investor-relations, shareholder-structure and the financial-statements index",
      "when": "2026-09-04",
      "outcome": "HTTP 200 on every page. THE STUDY'S RECORDED REASON ('the egress proxy blocked the company website') IS FALSE as of today and was re-tested rather than believed [R-ENF-04]. The index lists ~60 audited statements.",
      "rerun": true
@@ -105,7 +105,7 @@
     {
      "route": "every statement PDF the index links, and the same URLs as the WordPress media API returns them",
      "when": "2026-09-04",
-     "outcome": "HTTP 404 on all of them. Not an encoding problem: a non-Arabic PDF in the same tree 404s too, while a 2020-vintage asset in that tree returns 200 — so the host serves the path and not the files. Everything uploaded after August 2020 is listed and unserved.",
+     "outcome": "HTTP 404 on all of them. Not an encoding problem: a non-Arabic PDF in the same tree 404s too, while a 2020-vintage asset in that tree returns 200 \u2014 so the host serves the path and not the files. Everything uploaded after August 2020 is listed and unserved.",
      "rerun": true
     },
     {
@@ -121,7 +121,7 @@
      "rerun": true
     },
     {
-     "route": "the EGX disclosure portal — www.egx.com.eg, disclosure.egx.com.eg, mist.com.eg",
+     "route": "the EGX disclosure portal \u2014 www.egx.com.eg, disclosure.egx.com.eg, mist.com.eg",
      "when": "2026-09-04",
      "outcome": "tunnel closed mid-exchange on nine attempts across three hosts. The proxy's own status endpoint records data received before the close, so it is a relay failure rather than a policy denial. Reported, not routed around.",
      "rerun": true
@@ -143,7 +143,44 @@
     "file": "engine/elec_study/PRIMARY_SOURCES.md",
     "must_contain": "AUDITED STATEMENTS RECEIVED"
    },
-   "note": "The correction this entry carries is not that the documents are unobtainable — they are — but that the RECORDED REASON was wrong for a month, and a wrong reason is actionable in the wrong direction: 'the proxy blocked it' invites trying again, 'the issuer does not serve its own archive' does not."
+   "note": "The correction this entry carries is not that the documents are unobtainable \u2014 they are \u2014 but that the RECORDED REASON was wrong for a month, and a wrong reason is actionable in the wrong direction: 'the proxy blocked it' invites trying again, 'the issuer does not serve its own archive' does not."
+  },
+  {
+   "key": "lens-registry-has-no-row-for-a-food-and-grocery-group",
+   "opened": "2026-09-04",
+   "cls": "instruction",
+   "question": "[R-LENS-03]'s LENS_REGISTRY is a CLOSED enumeration keyed on the lessons register's own class list, and a study must map into one of its thirteen rows to publish a lens record. SAVOLA \u2014 food manufacturing, grocery retail and a listed quick-service stake \u2014 maps to none of them, and BOTH available routes are barred by rules this house already holds. Adding a row is barred because the rule says in terms that a class is added when a DIFFERENT LENS carries the weight and never merely when the industry differs, and a grocer's lens set is identical to three rows already there (primary cash flow; cross-checks own-history EV/EBITDA, a relative multiple and book). Mapping it to one of those rows is barred because a name resolving to the wrong subject is worse than an absence \u2014 calling a supermarket group a telecom operator would put that label in the study's own record. So SAVOLA cannot retire its typed 45/25/15/15 blend under [R-LENS-03] without one of the two being decided.",
+   "routes": [
+    {
+     "route": "research_protocol.LENS_REGISTRY and lessons_register.CLASSES, read live and compared \u2014 the registry asserts on the class list at import, so the two cannot be changed independently",
+     "when": "2026-09-04",
+     "outcome": "13 classes; three rows (telecom operator, airline, pharmaceutical manufacturer) carry an IDENTICAL lens set. The duplication is the evidence: the registry keys on an industry NAME while the thing it stores is a lens SET.",
+     "rerun": true
+    },
+    {
+     "route": "every study directory's committed lens_record, for a precedent mapping an operating company to a row named for another industry",
+     "when": "2026-09-04",
+     "outcome": "none \u2014 every conforming study's declared class matches its actual industry, so there is no house precedent for borrowing a row.",
+     "rerun": true
+    },
+    {
+     "route": "the standing protocol and the digest, for what [R-LENS-03] says about a class that fits nothing",
+     "when": "2026-09-04",
+     "outcome": "The exemplar clause covers the analogous case for REPORTS ('adapt the nearest pattern's lens inside the skeleton and say which and why') and the registry clause does not carry the equivalent for CLASSES. The gap is in the rule, not in the study.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 3,
+   "why_only_the_principal": "Both routes require changing a standing rule rather than applying one: either [R-LENS-03]'s bar on adding a class for an industry difference, or the taxonomy the lessons register and the lens registry share. A rule amendment is the principal's, and taking it inside a study rebuild is exactly the per-name exception this house forbids everywhere else.",
+   "done_meanwhile": "SAVOLA's two terminal levers were taken in full \u2014 growth stored as a real rate on the house Saudi path, and the terminal rebuilt through the sanctioned module on an asset life DERIVED by identity from note 6's own cost and depreciation columns. The blend is left standing and SAVOLA stays on the lens ratchet, where it already sat legitimately. The cost of leaving it is measured and stated rather than implied: the blend publishes 27.28 against a cash-flow lens of 25.02, so retiring it would move the central 8.3% DOWN and the gap against the latest price from -10.0% to -17.4%.",
+   "default_if_no_answer": "RENAME THE REGISTRY'S ROWS FOR THEIR LENS SETS RATHER THAN FOR INDUSTRIES, and merge the three duplicates into one row \u2014 an operating company valued on its own cash flows and cross-checked on its own EV/EBITDA history, a relative multiple and book. That is not adding a class for an industry: it is naming the registry for the thing it actually stores, which makes the closed enumeration closable. SAVOLA then maps to it without anybody inventing a fit.",
+   "default_date": "2026-09-18",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/savola_study/study_numbers.json",
+    "must_contain": "lens_record"
+   },
+   "note": "The gap is worth naming beyond this one name: the registry is keyed on an industry NAME and stores a lens SET, and three of its thirteen rows already store the same set. A taxonomy that must grow per industry, under a rule that forbids growing per industry, has no state in which a new operating company can be added \u2014 which is a property of the design rather than of any study that meets it."
   }
  ]
 }

@@ -518,6 +518,76 @@
    "weighted_life_years": 13.8,
    "weighted_from": "the gross cost by class in note 4.1 at 31-Dec-2024 — buildings 543,426,318 at 50 years, machines and equipment 1,701,915,589 at 15, transportation 107,581,637 at 5, tools 151,105,707 at 5, furniture 197,886,920 at 10 — on a depreciable base of EGP 2,701,916,171 which foots to the note's stated 2,785,102,203 once land of 83,186,032 is excluded. The rates add, not the lives, so the weighted life is the reciprocal of the weighted annual rate.",
    "against_the_terminal": "this study's terminal implies a replacement cycle of 20.0 years (1/g at g=5.0%) against a disclosed weighted life of 13.80 — it charges maintenance over a life 45% longer than the accounts run, which UNDER-charges. THE DIRECTION IS SET BY THE TYPED GROWTH RATE AND NOT BY THE MARKET: [R-TERM-01 CLAUSE TWO] reasons from a terminal at zero real growth, where 1/g is the reciprocal of inflation and runs SHORT in a high-inflation economy. This study typed 5% nominal in a 7%-inflation economy — a real DECLINE — so its 1/g runs long in exactly the market the clause says it should run short. At the house terminal of 7% the implied cycle would be 14.3 years, close to the disclosed 13.80, which is a coincidence of magnitudes rather than a law and is recorded as one."
+  },
+  "MODON": {
+   "classes": [
+    {
+     "asset_class": "Plant",
+     "years": [
+      40,
+      40
+     ]
+    },
+    {
+     "asset_class": "Buildings",
+     "years": [
+      2,
+      50
+     ]
+    },
+    {
+     "asset_class": "Machinery and equipment",
+     "years": [
+      3,
+      4
+     ]
+    },
+    {
+     "asset_class": "Vehicles",
+     "years": [
+      3,
+      5
+     ]
+    },
+    {
+     "asset_class": "Office and computer equipment",
+     "years": [
+      2,
+      5
+     ]
+    },
+    {
+     "asset_class": "Furniture and fixtures",
+     "years": [
+      2,
+      5
+     ]
+    },
+    {
+     "asset_class": "Leasehold improvements",
+     "years": [
+      1,
+      10
+     ],
+     "note": "the lower of the lease term or 10 years, so the short end is the lease"
+    },
+    {
+     "asset_class": "Other assets",
+     "years": [
+      5,
+      5
+     ]
+    }
+   ],
+   "longest_years": 50,
+   "shortest_years": 2,
+   "source": "Modon Holding PSC FY2025 consolidated financial statements, property, plant and equipment accounting policy: 'The estimated useful lives for the current and the comparative periods are as follows', followed by the table. Land is not depreciated.",
+   "file": "engine/modon_study/sources/FS_FY2025.pdf",
+   "route": "text layer via pdftotext -layout",
+   "read_on": "2026-09-04",
+   "weighted_life_years": null,
+   "weighted_not_derivable": "THE WEIGHTED LIFE CANNOT BE DERIVED FROM THIS DISCLOSURE AND NO FIGURE IS CHOSEN INSTEAD. Two of the note's own columns each combine assets whose disclosed lives differ by an order of magnitude, and neither can be split from anything the filings publish. (1) LAND AND BUILDINGS ARE ONE COLUMN — AED 12,438,392 thousand, 73% of the gross cost — and LAND IS NOT DEPRECIATED AT ALL while buildings run 2 to 50 years, so the depreciable base inside the largest class is unknown. (2) PLANT (40 years) shares a column with MACHINERY AND EQUIPMENT (3 to 4 years), a more than tenfold spread on AED 883,217 thousand. THE CHARGE-IMPLIED ROUTE IS ALSO CLOSED and for a reason worth recording: FY2025 carried AED 832,492 thousand of assets acquired through business combinations, most of it into the plant column, so a full-year charge over an average base measures the timing of an acquisition rather than a life — the implied figures come out at 20.7 years on a class disclosed at 3 to 4, and 12.4 years on one disclosed at 2 to 5. Neither route is a disclosure and A LIFE THIS DESK CHOSE IS NOT A DISCLOSED LIFE (SIGCM clause 8), so MODON stays on the terminal ratchet WITH THIS REASON rather than being conformed on an invented number. Same disposition as ADNOCLS, for the same kind of gap.",
+   "against_the_terminal": "this study's terminal is BELOW ITS OWN NO-GROWTH FLOOR — the worst symptom the retired reinvestment identity produces, and the one that says the construction is charging more for growth than the growth is worth. Its implied replacement cycle is 1/g = 40.0 years, which happens to equal the disclosed life of PLANT alone while the rest of the base runs 2 to 5 years. Correcting it is worth at least +6.2% (3.54 -> 3.76 at the floor) and cannot be done until the weighted life can be sourced."
   }
  }
 }

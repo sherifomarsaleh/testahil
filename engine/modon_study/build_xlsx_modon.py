@@ -35,6 +35,7 @@ PCT = '0.0%;(0.0%);"-"'; PCT2 = '0.00%'; PX = '0.00;(0.00);"-"'; MULT = '0.00x';
 M, HI, HB, F = D['meta'], D['hist_is'], D['hist_bs'], D['fcst']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sens']
 EXP, TR, REL, NRM, BK = D['experts'], D['terminal_recon'], D['rel'], D['norm'], D['book']
+TRC = D['terminal_record']; TRI, TRO = TRC['inputs'], TRC['outputs']
 SEG, S0, STK, CJ = D['seg_fy25'], D['step0'], D['strike'], D['contested']
 HA, H1D = D['h1_anchors'], D['h1']
 IN = {k: (v['value'] if isinstance(v, dict) and 'value' in v else v)
@@ -213,8 +214,24 @@ r_erp    = arow('Equity risk premium (UAE row, rating basis)', IN['erp_rating'],
 r_beta   = arow('Beta (own-stock regression vs the published FTSE ADX General index)', IN['beta'], PX)
 r_eib    = arow('6-month EIBOR (31-Mar-2026 fixing, dated)', IN['eibor6m'], PCT2)
 r_kdm    = arow('Marginal debt margin over 6M EIBOR', IN['kd_margin'], PCT2)
-r_g      = arow('Terminal growth', IN['g_term'], PCT2)
-r_roic   = arow('Terminal return on invested capital', IN['roic_term'], PCT2)
+r_greal  = arow('Terminal REAL growth (stated, not derived)', IN['g_term_real'], PCT2)
+r_pi     = arow('Terminal inflation — UAE house macro path', TRI['inflation'], PCT2)
+r_life   = arow('Longest useful life the company discloses (years)',
+                IN['asset_life_years'], NUM0)
+r_inccap = arow('Invested capital per unit of real growth, at terminal revenue (AED mn)',
+                TRI['incremental_capital_per_unit_growth'], NUM0)
+# The terminal return on invested capital is GONE from this sheet, not relabelled. It
+# drove the retired reinvestment identity and drives nothing now; a number sitting among
+# the drivers that no formula reads is the artefact-nothing-writes defect [R-ENF-06] in
+# its cheapest form. The retired pair is kept where it belongs — in the study's own
+# terminal record, beside the construction it served.
+# Nominal terminal growth is DERIVED here, once, so every lens that needs it links to the
+# same cell. A typed nominal rate is unfalsifiable — nobody can tell whether 2.5% meant
+# inflation plus half a point or inflation minus one [R-MACRO-01].
+put(aws, f'A{_r}', 'Terminal growth = (1 + inflation) × (1 + real growth) − 1', fmt=None)
+putf(aws, f'C{_r}', f"=(1+$C${r_pi})*(1+$C${r_greal})-1", TRI['nominal_growth'], PCT2)
+AR['Terminal growth (derived)'] = _r
+r_g = _r; _r += 1
 r_days   = arow('Days from the 30-Jun-2026 valuation date to the 7-Aug anchor', IN['anchor_days'], NUM0)
 band(aws, _r, 8); put(aws, f'A{_r}', 'FY2025 disclosed anchors (audited, pasted)', bold=True, fmt=None); _r += 1
 r_pat25  = arow('FY2025 profit for the year (AED mn, disclosed)', IN['pat_fy25'], NUM0)
@@ -451,18 +468,42 @@ put(dc, f'A{r}', 'Terminal cost of capital (derived weights)', fmt=None)
 putf(dc, f'C{r}', f"=(1-C{r_wdt})*C{r_ke}+C{r_wdt}*C{r_kd}*(1-{av(r_tax)})",
      W['wacc_term'], PCT2, bold=True)
 r_wt = r; r += 2
-band(dc, r, 8); put(dc, f'A{r}', 'Terminal block — reinvestment derived', bold=True, fmt=None)
+band(dc, r, 8)
+put(dc, f'A{r}', 'Terminal block — capital maintained at replacement cost over the '
+    'disclosed asset life', bold=True, fmt=None)
 r += 1
-put(dc, f'A{r}', 'Terminal growth g', fmt=None)
-putf(dc, f'C{r}', f"={av(r_g)}", IN['g_term'], PCT2, green=True); r_gt = r; r += 1
-put(dc, f'A{r}', 'Terminal return on invested capital', fmt=None)
-putf(dc, f'C{r}', f"={av(r_roic)}", IN['roic_term'], PCT2, green=True); r_rc = r; r += 1
-put(dc, f'A{r}', 'Reinvestment rate = g / ROIC', fmt=None)
-putf(dc, f'C{r}', f"=C{r_gt}/C{r_rc}", DCF['rr_term'], PCT2); r_rr = r; r += 1
+put(dc, f'A{r}', 'Terminal REAL growth (stated)', fmt=None)
+putf(dc, f'C{r}', f"={av(r_greal)}", IN['g_term_real'], PCT2, green=True); r_gr = r; r += 1
+put(dc, f'A{r}', 'Terminal inflation — UAE house macro path', fmt=None)
+putf(dc, f'C{r}', f"={av(r_pi)}", TRI['inflation'], PCT2, green=True); r_pit = r; r += 1
+put(dc, f'A{r}', 'Terminal growth g = (1+inflation)(1+real growth) − 1', fmt=None)
+putf(dc, f'C{r}', f"=(1+C{r_pit})*(1+C{r_gr})-1", TRI['nominal_growth'], PCT2)
+r_gt = r; r += 1
 put(dc, f'A{r}', 'Terminal NOPAT = FY2030E NOPAT × (1+g)', fmt=None)
 putf(dc, f'C{r}', f"=F{rw+9}*(1+C{r_gt})", DCF['nopat_term'], NUM0); r_tn = r; r += 1
-put(dc, f'A{r}', 'Terminal value = NOPAT × (1−RR) / (WACCterm − g)', fmt=None)
-putf(dc, f'C{r}', f"=C{r_tn}*(1-C{r_rr})/(C{r_wt}-C{r_gt})", DCF['tv'], NUM0); r_tv = r; r += 1
+put(dc, f'A{r}', 'Plus book depreciation and amortisation, grown one year', fmt=None)
+putf(dc, f'C{r}', f"=F{rw+7}*(1+C{r_gt})", TRI['dna_book'], NUM0); r_tdna = r; r += 1
+put(dc, f'A{r}', 'Less capital maintenance at replacement cost — book D&A escalated '
+    'over half the disclosed life', fmt=None)
+putf(dc, f'C{r}', f"=-C{r_tdna}*(1+C{r_pit})^({av(r_life)}/2)", -TRO['maintenance'], NUM0)
+r_tmaint = r; r += 1
+put(dc, f'A{r}', 'Less capital for REAL growth (real growth × capital per unit of growth)',
+    fmt=None)
+putf(dc, f'C{r}', f"=-C{r_gr}*{av(r_inccap)}", -TRO['growth_capex'], NUM0)
+r_tgcap = r; r += 1
+put(dc, f'A{r}', 'Less inflation on the working capital the business carries', fmt=None)
+putf(dc, f'C{r}', f"=-C{r_pit}*{TRI['working_capital']:.6f}", -TRO['wc_charge'], NUM0)
+r_twc = r; r += 1
+put(dc, f'A{r}', 'Terminal free cash flow', fmt=None)
+putf(dc, f'C{r}', f"=SUM(C{r_tn}:C{r_twc})", TRO['fcff'], NUM0, bold=True)
+r_tfcff = r; r += 1
+put(dc, f'A{r}', 'Terminal value = terminal free cash flow × (1+g) / (WACCterm − g)',
+    fmt=None)
+putf(dc, f'C{r}', f"=C{r_tfcff}*(1+C{r_gt})/(C{r_wt}-C{r_gt})", DCF['tv'], NUM0)
+r_tv = r; r += 1
+put(dc, f'A{r}', 'Memo — the no-growth perpetuity at book depreciation (a diagnostic, '
+    'not a bound)', fmt=None)
+putf(dc, f'C{r}', f"=C{r_tn}/C{r_wt}", TRO['floor'], NUM0); r += 1
 put(dc, f'A{r}', 'PV of terminal value (year-4.5 factor)', fmt=None)
 putf(dc, f'C{r}', f"=C{r_tv}*F{rw+14}", DCF['pv_tv'], NUM0); r_ptv = r; r += 1
 put(dc, f'A{r}', 'PV of explicit periods', fmt=None)
@@ -509,7 +550,9 @@ put(dc, f'C{r}', CJ['runoff_ps'], BLUE, PX); put(dc, f'D{r}', CJ['bull_ps'], BLU
 put(dc, f'E{r}', DCF['ps_egystress'], BLUE, PX); put(dc, f'F{r}', DCF['ps_grosscash'], BLUE, PX)
 ANCH['dcf'] = dict(wacc=r_wacc, wt=r_wt, wdt=r_wdt, ev=r_ev, tvs=r_tvs, eq=r_eq,
                    psd=r_psd, roll=r_roll, ps=r_ps, ke=r_ke, kd=r_kd, rfs=r_rfs,
-                   rr=r_rr, tn=r_tn, tv=r_tv, ptv=r_ptv, pex=r_pex, mc=r_mc)
+                   gr=r_gr, pit=r_pit, gt=r_gt, tdna=r_tdna, tmaint=r_tmaint,
+                   tgcap=r_tgcap, twc=r_twc, tfcff=r_tfcff,
+                   tn=r_tn, tv=r_tv, ptv=r_ptv, pex=r_pex, mc=r_mc)
 
 # ============ RELATIVE & NORMALIZED ==========================================
 rn = wb.create_sheet('Relative & Normalized')
@@ -686,7 +729,8 @@ for label, fml, xp, fmt in [
     ('Cost of capital (explicit window)', f"=DCF!C{ANCH['dcf']['wacc']}", W['wacc_exp'], PCT2),
     ('Cost of capital (terminal, derived weights)', f"=DCF!C{ANCH['dcf']['wt']}",
      W['wacc_term'], PCT2),
-    ('Terminal growth', f"={av(r_g)}", IN['g_term'], PCT2)]:
+    ('Terminal growth (inflation × real growth)', f"=(1+{av(r_pi)})*(1+{av(r_greal)})-1",
+     TRI['nominal_growth'], PCT2)]:
     put(ws, f'A{r}', label, fmt=None)
     if isinstance(fml, str):
         putf(ws, f'C{r}', fml, xp, fmt, green=True)

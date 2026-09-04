@@ -13,13 +13,10 @@
   "BOROUGE": "terminal built on the reinvestment identity: implied cycle equals 1/g. MOVED FROM `unreadable` 03-Sep-2026 \u2014 it was always breaching and the census could not read it; the allowance travels this way and never the other. Gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue.",
   "DU": "terminal built on the reinvestment identity: implied cycle 40.0 years against 1/g of 40.0, charging 9.1% of terminal profit. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue",
   "EGCH": "terminal built on the reinvestment identity: implied cycle 14.3 years against 1/g of 14.3, charging 38.9% of terminal profit \u2014 the LARGEST charge in the book. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue.",
-  "MODON": "terminal built on the reinvestment identity: implied cycle 40.0 years against 1/g of 40.0, charging 29.4% of terminal profit. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue",
-  "RIYADHCABLE": "terminal built on the reinvestment identity: implied cycle 25.0 years against 1/g of 25.0, charging 15.9% of terminal profit. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue",
-  "SAVOLA": "terminal built on the reinvestment identity: implied cycle 40.0 years against 1/g of 40.0, charging 24.8% of terminal profit. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue"
+  "RIYADHCABLE": "terminal built on the reinvestment identity: implied cycle 25.0 years against 1/g of 25.0, charging 15.9% of terminal profit. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue"
  },
  "unreadable": {
   "ADNOCDRILL": "the terminal exposes no wacc_term",
-  "PHAR": "the terminal exposes no g",
   "STC": "no committed numbers file",
   "TMGH": "the terminal exposes no tv",
   "XPT": "no committed numbers file"

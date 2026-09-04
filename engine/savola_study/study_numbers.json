@@ -5,20 +5,103 @@
   "code": "2050",
   "market": "SA",
   "currency": "SAR",
-  "spot": 25.4,
-  "spot_date": "2026-08-18",
+  "spot": 30.3,
+  "spot_date": "2026-09-03",
   "shares_mn": 300.0,
   "shares_val_mn": 296.682,
   "shares_wavg_mn": 298.589,
-  "mktcap": 7620.0,
+  "mktcap": 9090.0,
   "valuation_date": "2025-12-31",
   "anchor_date": "2026-08-18",
-  "anchor_days": 230.0,
+  "anchor_days": 246.0,
   "div_between": 1.7,
   "study_date": "2026-08-19",
   "build": "SAVOLA_Valuation_Study_19-08-2026",
   "edition": 2,
   "first_edition": "SAVOLA_Valuation_Study_18-08-2026"
+ },
+ "terminal_record": {
+  "construction": "engine/terminal_value.py [R-TERM-01]",
+  "retired_construction": {
+   "form": "NOPAT(1+g)(1 - g/ROIC)/(W-g)",
+   "tv": 14963.353876529938,
+   "implied_cycle_years": 36.84598378776721,
+   "why_retired": "the reinvestment identity charges g x IC every year for ever, so the implied replacement cycle is 1/g. At the previous edition's typed 2.50% that was 40 years, and at the derived 2.71% it is 36.9 \u2014 both facts about the riyal's peg to the dollar rather than about a supermarket, a flour mill or a delivery van. Note 6's own columns say the depreciable base turns over in 18.03."
+  },
+  "inputs": {
+   "nopat": 1168.7524794662852,
+   "wacc": 0.0841866710367681,
+   "inflation": 0.02,
+   "real_growth": 0.007,
+   "nominal_growth": 0.027139999999999942,
+   "dna_book": 760.0843070804052,
+   "useful_life_years": 18.03,
+   "useful_life_source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 6, DERIVED BY IDENTITY from the note's own two columns and LABELLED as derived: gross cost of the depreciable base (buildings 2,824,359 + leasehold improvements 2,133,648 + plant and equipment 2,563,647 + furniture and office equipment 3,011,907 + vehicles 446,993 = 10,980,554, land and construction in progress excluded because neither is depreciated) divided by the year's own depreciation charge of 608,933. The policy note gives RANGES per class (buildings 5-50, leasehold improvements 3-33, plant and equipment 3-40, furniture and office equipment 1-10, vehicles 2-15) and no weighting, so a single figure cannot be read off it; the identity supplies one from figures that exist. CROSS-CHECKED against FY2024's own columns, which give 17.05 on the same identity, and the route is clean here because 2025 carries no business-combination additions to contaminate the charge. TWO CLASSES COME OUT ABOVE THEIR OWN DISCLOSED RANGE (vehicles 31.9 years against 2-15, furniture 13.9 against 1-10), which says those bases are largely written down rather than that the note is wrong, and is recorded rather than smoothed",
+   "maintenance_basis": "book_dna_escalated",
+   "maintenance_basis_reason": "'disclosed_life' divides REPLACEMENT-COST invested capital by the life, and this model commits no replacement-cost capital base: note 6 gives gross HISTORICAL cost across classes of very mixed vintage, and rolling it forward through five years of forecast spending would be a construction of ours rather than a figure the company discloses. Escalating the model's own book depreciation over half the derived life uses only figures that exist.",
+   "working_capital": 5841.448657476656,
+   "working_capital_basis": "NET WORKING CAPITAL PLUS THE LEASE BOOK, named rather than buried. The explicit window charges the growth of both as cash out \u2014 DWC and DLEASE sit in the same free-cash-flow line \u2014 so a terminal charging inflation on working capital alone would hand this group a rent-free expansion of its store estate for ever.",
+   "incremental_capital_per_unit_growth": 11453.014352489135
+  },
+  "outputs": {
+   "fcff": 823.1957439164952,
+   "tv": 14821.851319973022,
+   "floor": 13882.868452606215,
+   "maintenance": 908.6409690132392,
+   "growth_capex": 80.17110046742275,
+   "wc_charge": 116.82897314953313,
+   "dna_addback": 760.0843070804052,
+   "implied_cycle_years": null,
+   "below_floor": false
+  },
+  "record": {
+   "rule": "R-TERM-01",
+   "inputs": {
+    "nopat": 1168.7524794662852,
+    "wacc": 0.0841866710367681,
+    "inflation": 0.02,
+    "real_growth": 0.006999999999999895,
+    "dna_book": 760.0843070804052,
+    "ic_replacement": null,
+    "useful_life_years": 18.03,
+    "useful_life_source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 6, DERIVED BY IDENTITY from the note's own two columns and LABELLED as derived: gross cost of the depreciable base (buildings 2,824,359 + leasehold improvements 2,133,648 + plant and equipment 2,563,647 + furniture and office equipment 3,011,907 + vehicles 446,993 = 10,980,554, land and construction in progress excluded because neither is depreciated) divided by the year's own depreciation charge of 608,933. The policy note gives RANGES per class (buildings 5-50, leasehold improvements 3-33, plant and equipment 3-40, furniture and office equipment 1-10, vehicles 2-15) and no weighting, so a single figure cannot be read off it; the identity supplies one from figures that exist. CROSS-CHECKED against FY2024's own columns, which give 17.05 on the same identity, and the route is clean here because 2025 carries no business-combination additions to contaminate the charge. TWO CLASSES COME OUT ABOVE THEIR OWN DISCLOSED RANGE (vehicles 31.9 years against 2-15, furniture 13.9 against 1-10), which says those bases are largely written down rather than that the note is wrong, and is recorded rather than smoothed",
+    "maintenance_basis": "book_dna_escalated",
+    "maintenance_capex": null,
+    "working_capital": 5841.448657476656,
+    "incremental_capital_per_unit_growth": 11453.014352489135,
+    "floor_exemption": "",
+    "floor_exemption_disclosure": ""
+   },
+   "fcff": 823.1957439164952,
+   "tv": 14821.851319973022,
+   "floor": 13882.868452606215,
+   "tv_vs_floor": 0.06763608475959693,
+   "nominal_growth": 0.027139999999999942,
+   "real_growth": 0.006999999999999895,
+   "maintenance": 908.6409690132392,
+   "growth_capex": 80.17110046742275,
+   "wc_charge": 116.82897314953313,
+   "dna_addback": 760.0843070804052,
+   "net_capital_charge": 345.55673554979,
+   "implied_cycle_years": null,
+   "one_over_g": 36.84598378776721,
+   "payout_of_nopat": 0.7043371101915525,
+   "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
+  },
+  "derived_life": {
+   "years": 18.03,
+   "basis": "note 6 gross cost over the year's charge",
+   "cross_check_fy2024": 17.05,
+   "direct_average_age": 11.271688346665398,
+   "variant_years": 22.543376693330796,
+   "variant_ps": 22.818842040039026,
+   "note": "the module's formula assumes an average age of half the life; the second identity \u2014 accumulated depreciation over the same charge \u2014 measures that age directly and reads higher, so the base charge is the lighter of the two readings and the variant publishes the heavier one."
+  },
+  "moved": {
+   "tv_before": 14963.353876529938,
+   "tv_after": 14821.851319973022,
+   "pct": -0.009456606969568737
+  }
  },
  "edition1": {
   "central": 28.016591405896726,
@@ -744,11 +827,11 @@
    "eg": 0.22027916642906475,
    "other": 0.11634574565822071
   },
-  "we": 0.5442341675352749,
-  "wl": 0.19030468971296002,
-  "wlease": 0.2654611427517651,
-  "wacc_exp": 0.07818327765458363,
-  "wacc_exp_cds": 0.08007645062977184,
+  "we": 0.5875385212618491,
+  "wl": 0.1722229885143652,
+  "wlease": 0.2402384902237856,
+  "wacc_exp": 0.08064553252839096,
+  "wacc_exp_cds": 0.08268934402845243,
   "weight_basis": {
    "equity": "18-Aug-2026 settled close x 300mn issued",
    "loans": 2664.518,
@@ -768,24 +851,29 @@
   "tax": 0.195
  },
  "dcf": {
-  "pv_explicit": 2659.5872029693064,
-  "tv": 14811.247723387783,
-  "pv_tv": 10165.498649149798,
-  "ev": 12825.085852119104,
-  "tv_share": 0.7926261676813758,
+  "pv_explicit": 2640.963812625897,
+  "tv": 14821.851319973022,
+  "pv_tv": 10057.409665977619,
+  "ev": 12698.373478603517,
+  "tv_share": 0.7920234574076858,
   "dfs": [
-   0.9274860969605659,
-   0.8602304600551444,
-   0.7978517918831379,
-   0.7399964444066853,
-   0.686336413987453
+   0.9253728164315783,
+   0.8563148493905116,
+   0.7924104839326805,
+   0.7332751212866946,
+   0.6785528642042757
   ],
-  "fcff_term": 876.6284466482331,
-  "reinvest_term": 0.248379198137374,
-  "g": 0.025,
+  "fcff_term": 823.1957439164952,
+  "reinvest_term": 0.26964045749793264,
+  "g": 0.027139999999999942,
   "roic_term": 0.10065255137096045,
   "roic_term_variant": 0.105,
-  "ps_roic_variant": 25.488341585275997,
+  "ps_life_variant": 22.818842040039026,
+  "life_variant_years": 22.543376693330796,
+  "asset_life_years": 18.03,
+  "dna_oi_last": 740.0006883973025,
+  "wc_lease_last": 5687.100743303402,
+  "inc_cap": 11453.014352489135,
   "nonop_dec": 1195.0140000000001,
   "kinan_capitalized": 653.2318646503577,
   "tiryaki_recv": 274.619,
@@ -795,34 +883,34 @@
   "nci_herfy_mkt": 511.29540000000003,
   "nci_other_book": 515.421,
   "herfy_mktcap": 1002.5400000000001,
-  "eq_val": 7918.24752067081,
-  "eq_dec": 7447.13431676946,
-  "ps_dec": 25.101402568303637,
-  "roll": 1.0643896539653195,
-  "ps": 24.989342530624743,
+  "eq_val": 7816.669189949061,
+  "eq_dec": 7320.421943253873,
+  "ps_dec": 24.67430428288158,
+  "roll": 1.0690201878975647,
+  "ps": 24.646961359128834,
   "deroll_note": "Kinan capitalized, Herfy NCI at market and the Mehbaj consideration are anchor-dated legs held outside the Dec-2025 roll",
-  "ps_cds": 23.26663815033465,
-  "eq_cds": 7407.152139717585,
-  "ev_cds": 12351.176973447902,
-  "framingA": 24.989342530624743,
-  "framingB": 19.63185798059476,
-  "framing_gap": 5.357484550029984,
-  "bear": 10.74774836381954,
-  "bull": 32.59035416730926,
+  "ps_cds": 22.862466897808563,
+  "eq_cds": 7287.24180417564,
+  "ev_cds": 12208.667102981984,
+  "framingA": 24.646961359128834,
+  "framingB": 18.447524558842442,
+  "framing_gap": 6.199436800286392,
+  "bear": 8.420918519369135,
+  "bull": 32.949535509074614,
   "scenario_levers": {
    "bear": "Framing B density (-6% then -3% forever) + flat store opex + oil GP/t -40 + sugar GP/t -15 + half volume growth",
    "bull": "oil GP/t +25 + sugar GP/t +10 + volume growth x1.2 + Panda gross margin +40bp",
    "note": "every lever value published (critique response; the first edition described the scenarios only qualitatively)"
   },
-  "stores_runrate": 19.534785535192405,
-  "sps_open_71": 24.337681532831564,
-  "sps_open_59": 25.006358792047365
+  "stores_runrate": 19.12211320925031,
+  "sps_open_71": 24.18151312543466,
+  "sps_open_59": 24.87757939973216
  },
  "lenses": {
   "dcf": {
-   "base": 24.989342530624743,
-   "bear": 10.74774836381954,
-   "bull": 32.59035416730926
+   "base": 24.646961359128834,
+   "bear": 8.420918519369135,
+   "bull": 32.949535509074614
   },
   "relative": {
    "base": 28.220968937489257,
@@ -840,10 +928,10 @@
    "pe_ret_leg": 20.2,
    "pe_discount": 0.2,
    "ddm": {
-    "two_stage": 8.181467034063827,
+    "two_stage": 8.3539253563943,
     "g_stage1": 0.05796422939006396,
-    "gordon_fwd": 6.953417162044963,
-    "e2_implied": 7.72789994071681
+    "gordon_fwd": 7.146773946240663,
+    "e2_implied": 7.890909537392774
    }
   },
   "normalized": {
@@ -855,12 +943,12 @@
    "basis": "FY2026E revenue at the 9.2% mid-cycle margin (second edition; FY2027E under a trailing multiple double-counted growth)"
   },
   "book": {
-   "base": 24.491329027425806,
-   "bear": 21.781101409976824,
-   "bull": 27.201556644874792,
+   "base": 24.669940293726974,
+   "bear": 21.959712676277988,
+   "bull": 27.380167911175956,
    "bvps": 18.06818411632657,
    "roe": 0.13221665401865373,
-   "pb": 1.3554947674733526,
+   "pb": 1.3653801696339256,
    "basis": "30-Jun-2026 reviewed equity x justified P/B; sustainable return = the model's own FY2026E recurring attributable earnings on opening equity"
   }
  },
@@ -870,14 +958,14 @@
   "normalized": 0.15,
   "book": 0.15
  },
- "central": 27.24258808463448,
- "panel_centre": 26.605155734057,
+ "central": 27.115308247406496,
+ "panel_centre": 26.445454615608114,
  "experts": {
   "e1": {
-   "base": 37.44323790900665,
+   "base": 37.59691220858735,
    "rng": [
-    31.17932089968306,
-    43.70715491833023
+    31.30574457713269,
+    43.88807984004202
    ],
    "method_short": "segment sum-of-the-parts",
    "detail": {
@@ -899,10 +987,10 @@
    }
   },
   "e2": {
-   "base": 18.520108534965562,
+   "base": 19.036445705647807,
    "rng": [
-    16.681916849968694,
-    21.487386908056173
+    17.15131427786164,
+    21.588261603218655
    ],
    "method_short": "two-stage dividend model",
    "detail": {
@@ -914,26 +1002,26 @@
      1.6938227964481147
     ],
     "pv_divs": 5.6189500093234965,
-    "tv": 21.949641663349897,
-    "pv_tv": 13.377954422842643,
-    "ps_dec": 18.99690443216614
+    "tv": 22.60710606519047,
+    "pv_tv": 13.778668427078571,
+    "ps_dec": 19.39761843640207
    }
   },
   "e3": {
-   "base": 21.95580408708595,
+   "base": 21.540468099465816,
    "rng": [
-    20.876708310144355,
-    24.152079484762858
+    20.590568243845045,
+    23.401664731908486
    ],
    "method_short": "residual income / economic profit",
    "detail": {
     "ic0": 9777.552999999998,
     "ri": [
-     175.86966334719682,
-     188.09853274435534,
-     204.4548604460531,
-     231.01049867337326,
-     254.0137053507675
+     151.7948358190373,
+     163.1086294329707,
+     178.37848241761594,
+     203.98407090466162,
+     226.1780711460924
     ],
     "ic": [
      10149.194373506634,
@@ -942,79 +1030,79 @@
      11304.93617893972,
      11585.136487024867
     ],
-    "pv_ri": 833.3352350291578,
-    "fade": 300.7811022043412,
-    "ev": 10911.669337233496,
-    "eq": 6562.065937233495,
-    "ps_dec": 22.11818019709148
+    "pv_ri": 724.5383580940878,
+    "fade": 263.62288772070065,
+    "ev": 10765.714245814786,
+    "eq": 6416.1108458147855,
+    "ps_dec": 21.626222169915213
    }
   }
  },
- "panel_median": 21.95580408708595,
+ "panel_median": 21.540468099465816,
  "sens": {
   "wacc_grid": [
-   0.06818327765458364,
-   0.07318327765458363,
-   0.07818327765458363,
-   0.08318327765458364,
-   0.08818327765458363
+   0.07064553252839097,
+   0.07564553252839096,
+   0.08064553252839096,
+   0.08564553252839097,
+   0.09064553252839096
   ],
   "g_grid": [
-   0.015,
-   0.02,
-   0.025,
-   0.03,
-   0.035
+   0.01714,
+   0.02214,
+   0.02714,
+   0.03214,
+   0.03714
   ],
   "grid": [
    [
-    31.636285700589656,
-    33.07471891329561,
-    34.77594947516662,
-    36.82918890960978,
-    39.36918030525404
+    31.00501074795766,
+    32.69578958564818,
+    34.717780654774586,
+    37.18914273816153,
+    40.29182376865352
    ],
    [
-    27.246610811914785,
-    28.25773547608088,
-    29.429170696606175,
-    30.809804887662725,
-    32.47065459076267
+    26.558583763759685,
+    27.77362240825633,
+    29.197234424004698,
+    30.895919746065527,
+    32.96780979585585
    ],
    [
-    23.497428670002584,
-    24.196119210823056,
-    24.989342530624743,
-    25.903267273053554,
-    26.974702624444785
+    22.78031358805377,
+    23.64862124332247,
+    24.646961359128834,
+    25.81280966387594,
+    27.199573184644496
    ],
    [
-    20.259079230849757,
-    20.72598077562345,
-    21.244435372831866,
-    21.827508392987948,
-    22.4930875624581
+    19.530965625838093,
+    20.142349170299017,
+    20.832343612844298,
+    21.621619107399212,
+    22.538788738153166
    ],
    [
-    17.434655266353737,
-    17.727617433187028,
-    18.043713880986946,
-    18.38835093802844,
-    18.768761806164605
+    16.707451984907543,
+    17.12590555776576,
+    17.588750964557544,
+    18.106720086588798,
+    18.6943072968628
    ]
   ],
   "beta_grid": {
-   "0.73": 36.15727415614913,
-   "0.9": 30.253687788788554,
-   "1.0": 27.302799867836573,
-   "1.087": 24.989342530624743,
-   "1.2": 22.28328090141987,
-   "1.44": 17.43252726011622
+   "0.73": 36.329924096572434,
+   "0.9": 30.129054077367428,
+   "1.0": 27.05069765935827,
+   "1.087": 24.646961359128834,
+   "1.2": 21.84589621396383,
+   "1.44": 16.85278527665721
   },
   "rf_alts": {
-   "5.02%": 27.7021324142904,
-   "5.52% (base)": 24.989342530624743,
-   "6.02%": 22.551260936411126
+   "5.02%": 27.466468122863386,
+   "5.52% (base)": 24.646961359128834,
+   "6.02%": 22.12278001195606
   }
  },
  "peers": {
@@ -1029,9 +1117,9 @@
  },
  "inputs": {
   "spot": {
-   "value": 25.4,
-   "source": "SETTLED Tadawul close for SAVOLA (2050), 18-Aug-2026, confirmed as the prior-session close on Argaam 19-Aug-2026 (prev close 25.82, O 25.66 / H 25.78 / L 25.20, vol 859,264 across three reconciling feeds). The 25.30 in the uploaded export was an intraday print \u2014 the third occurrence of the settled-print vendor defect class in this project (TASI, RIYADHCABLE); the library row is corrected in the same edition",
-   "date": "2026-08-19",
+   "value": 30.3,
+   "source": "Tadawul close for SAVOLA (2050), 3 September 2026, from the price file the principal supplied that day and committed to the repository. THE STUDY IS RE-STRUCK ON IT because no study is delivered against a stale price: the prior edition stood on the settled 18-August close of 25.40, and the stock has since risen 19.3%, which turns a central 7.3% ABOVE the price into one 17.4% BELOW it. The 25.40 itself was a correction \u2014 the 25.30 in that day's export was an intraday print, the third occurrence of the settled-print vendor defect class in this project (TASI, RIYADHCABLE) \u2014 and it is recorded here rather than dropped, because the corrected figure is the one this edition moves away from",
+   "date": "2026-09-03",
    "ring": "Market"
   },
   "shares_issued_mn": {
@@ -1052,10 +1140,52 @@
    "date": "2026-08-05",
    "ring": "Company"
   },
-  "anchor_days": {
-   "value": 230.0,
-   "source": "31-Dec-2025 valuation date to the 18-Aug-2026 price anchor",
+  "rf_index_whole": {
+   "value": 0.0548,
+   "source": "FTSE SAGBI factsheet, 31-Jul-2026: whole-index yield to maturity, quoted beside the 7-10y bucket as context",
+   "date": "2026-07-31",
+   "ring": "Country"
+  },
+  "rf_curve_lo": {
+   "value": 0.0522,
+   "source": "FTSE SAGBI factsheet, 31-Jul-2026: the low end of the published curve",
+   "date": "2026-07-31",
+   "ring": "Country"
+  },
+  "rf_curve_hi": {
+   "value": 0.0583,
+   "source": "FTSE SAGBI factsheet, 31-Jul-2026: the high end of the published curve",
+   "date": "2026-07-31",
+   "ring": "Country"
+  },
+  "crit_delta_lease": {
+   "value": -0.0397,
+   "source": "SUPERSEDED-EDITION DELTA: charging the FULL lease additions in the cash-flow waterfall rather than renewals only, priced against the 18-Aug-2026 first edition's own central",
+   "date": "2026-08-19",
+   "ring": "House"
+  },
+  "crit_delta_roic": {
+   "value": -0.016,
+   "source": "SUPERSEDED-EDITION DELTA: computing the terminal return from the model's own year five instead of inputting 10.5%, priced against the first edition's central",
+   "date": "2026-08-19",
+   "ring": "House"
+  },
+  "crit_delta_relative": {
+   "value": -0.032,
+   "source": "SUPERSEDED-EDITION DELTA: the relative lens rebuilt trailing-on-trailing with Al Othaim not meaningful, before the offsetting quote refresh",
+   "date": "2026-08-19",
+   "ring": "House"
+  },
+  "rf_proxy_edition1": {
+   "value": 0.0553,
+   "source": "SUPERSEDED. The first edition's synthetic risk-free rate (US 10-year plus a new-issue spread), built when this desk believed no direct Saudi sovereign series was reachable. It is registered rather than typed because both documents quote it to show what changed, and this model cannot compute it \u2014 a different model produced it",
    "date": "2026-08-18",
+   "ring": "House"
+  },
+  "anchor_days": {
+   "value": 246.0,
+   "source": "31-Dec-2025 valuation date to the 3-Sep-2026 price anchor (246 days). Sixteen days longer than the prior edition's, because the anchor moved with the price it is compared against",
+   "date": "2026-09-03",
    "ring": "House"
   },
   "div_between": {
@@ -2245,11 +2375,29 @@
    "date": "2026-08-18",
    "ring": "House"
   },
-  "g_term": {
-   "value": 0.025,
-   "source": "terminal growth 2.5% = Saudi CPI 1.8% (GASTAT Jul-2026) + ~0.7% real staples growth; below nominal GDP",
+  "g_term_real": {
+   "value": 0.007,
+   "source": "Terminal REAL growth of 0.7%: staples volume growth a little under population growth, below real GDP. This is the SAME real rate the previous edition argued in prose ('Saudi CPI 1.8% + ~0.7% real staples growth'); what changes is that it is now STORED as a real rate and the nominal is DERIVED from the house inflation path, so a reader can tell whether the company is assumed to grow faster or slower than prices. A typed nominal 2.5% cannot answer that question. Real growth is also now CHARGED for the capital it consumes, which the retired construction did on its own terms and this one does on the model's own forecast",
    "date": "2026-08-14",
    "ring": "House"
+  },
+  "accum_dep_depreciable_fy25": {
+   "value": 6863.703,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 6, accumulated depreciation and impairment at 31-Dec-2025 on the DEPRECIABLE classes only (buildings 1,420,808 + leasehold improvements 1,320,733 + plant and equipment 1,448,812 + furniture and office equipment 2,291,773 + vehicles 381,577), land and construction in progress excluded. SAR mn",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "dep_charge_fy25": {
+   "value": 608.933,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 6, depreciation for the year 2025 on the same classes. SAR mn",
+   "date": "2026-03-05",
+   "ring": "Company"
+  },
+  "asset_life_years": {
+   "value": 18.03,
+   "source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 6, DERIVED BY IDENTITY from the note's own two columns and LABELLED as derived: gross cost of the depreciable base (buildings 2,824,359 + leasehold improvements 2,133,648 + plant and equipment 2,563,647 + furniture and office equipment 3,011,907 + vehicles 446,993 = 10,980,554, land and construction in progress excluded because neither is depreciated) divided by the year's own depreciation charge of 608,933. The policy note gives RANGES per class (buildings 5-50, leasehold improvements 3-33, plant and equipment 3-40, furniture and office equipment 1-10, vehicles 2-15) and no weighting, so a single figure cannot be read off it; the identity supplies one from figures that exist. CROSS-CHECKED against FY2024's own columns, which give 17.05 on the same identity, and the route is clean here because 2025 carries no business-combination additions to contaminate the charge. TWO CLASSES COME OUT ABOVE THEIR OWN DISCLOSED RANGE (vehicles 31.9 years against 2-15, furniture 13.9 against 1-10), which says those bases are largely written down rather than that the note is wrong, and is recorded rather than smoothed",
+   "date": "2026-03-05",
+   "ring": "Company"
   },
   "roic_term_variant": {
    "value": 0.105,
@@ -2328,6 +2476,12 @@
    "source": "Company Q2-2026 investor presentation, savola.com, Aug-2026 (COMPANY_IR) net-income analysis table, H1-2025 column: recurring net income 266",
    "date": "2026-08-06",
    "ring": "Company"
+  },
+  "g_term_derived": {
+   "value": 0.027139999999999942,
+   "source": "DERIVED, never typed: (1 + terminal inflation 0.0200 from the house Saudi macro path) x (1 + stated real growth 0.0070) - 1. The previous edition's 2.50% rested on this study's own 1.8% CPI reading rather than on the house path.",
+   "date": "2026-09-03",
+   "ring": "House"
   }
  },
  "step0": {

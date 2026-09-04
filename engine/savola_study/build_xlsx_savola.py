@@ -37,6 +37,8 @@ W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sens']
 EXP, SEG, H1 = D['experts'], D['segments_fy25'], D['h1_2026']
 STK, S0, BT = D['strike'], D['step0'], D['backtest']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
+TRC = D['terminal_record']
+TRI, TRO = TRC['inputs'], TRC['outputs']
 SPOT, SH, SHW = M['spot'], M['shares_mn'], M['shares_val_mn']
 YF = [str(y) + 'E' for y in F['years']]
 YH = ['FY2023', 'FY2024', 'FY2025']
@@ -307,10 +309,20 @@ block('Cost of capital — v2 method, rating basis primary', [
      IN['leases_jun26'], NUM0),
     ('twe', 'Terminal equity weight', IN['tw_e'], PCT),
     ('twl', 'Terminal loans weight', IN['tw_loans'], PCT),
-    ('g', 'Terminal growth', IN['g_term'], PCT),
-    ('roictv', 'Terminal return on capital — 10.5% UPSIDE VARIANT (the base is COMPUTED '
-     'as year-5 NOPAT on year-5 opening invested capital, on the DCF sheet)',
-     IN['roic_term_variant'], PCT)])
+    ('greal', 'Terminal REAL growth (stated, not derived)', IN['g_term_real'], PCT),
+    ('pit', 'Terminal inflation — Saudi house macro path', TRI['inflation'], PCT),
+    ('life', 'Weighted asset life, DERIVED from note 6 (gross cost of the depreciable '
+     'base over the year\'s own depreciation charge)', IN['asset_life_years'], NUM1),
+    ('lifevar', 'Downside variant — twice the directly measured average age (accumulated '
+     'depreciation over the same charge)', DCF['life_variant_years'], NUM1),
+    ('inccap', 'Invested capital per unit of real growth, at terminal revenue',
+     TRI['incremental_capital_per_unit_growth'], NUM0)])
+# Nominal terminal growth is DERIVED once, here, so the book lens and the dividend model
+# link to the same cell the terminal does and the three cannot drift apart.
+put(wsA, f'A{rA}', 'Terminal growth = (1 + inflation) x (1 + real growth) − 1', fmt=None)
+putf(wsA, f'C{rA}', f"=(1+$C${A['pit']})*(1+$C${A['greal']})-1", TRI['nominal_growth'], PCT)
+A['g'] = rA
+rA += 2
 block('Bridge anchors (audited 31-Dec-2025)', [
     ('cash', 'Cash and cash equivalents', IN['cash_fy25'], NUM0),
     ('loans', 'Loans and borrowings (all current)', IN['loans_fy25'], NUM0),
@@ -891,40 +903,60 @@ r += 1
 put(ws, f'A{r}', 'TERMINAL BLOCK', bold=True, fmt=None); r += 1
 TB = {}
 for key, label, fml, xp, fmt in [
-        ('g', 'Terminal growth', f"={a('g')}", IN['g_term'], PCT),
-        ('roic', 'Terminal return on capital — COMPUTED (year-5 NOPAT / opening capital)',
-         "=0.1", DCF['roic_term'], PCT),
-        ('reinv', 'Terminal reinvestment = g / return on capital',
-         f"=C{r+2-2}/C{r+3-2}", DCF['reinvest_term'], PCT),
-        ('nopatT', 'Terminal NOPAT (year five grown one year)',
-         f"=F{DC['nopat']}*(1+C{r})", None, NUM0),
-        ('fcffT', 'Terminal free cash flow = NOPAT x (1 − reinvestment)',
-         None, DCF['fcff_term'], NUM0),
+        ('greal', 'Terminal REAL growth (stated)', None, IN['g_term_real'], PCT),
+        ('pit', 'Terminal inflation — Saudi house macro path', None, TRI['inflation'], PCT),
+        ('g', 'Terminal growth = (1+inflation)(1+real growth) − 1', None,
+         TRI['nominal_growth'], PCT),
+        ('nopatT', 'Terminal operating profit after tax (year five grown one year)',
+         None, None, NUM0),
+        ('dnaT', 'Plus owned and intangible depreciation, grown one year (the right-of-use '
+         'charge cancels out of this model\'s own free cash flow and is not added back '
+         'here)', None, TRI['dna_book'], NUM0),
+        ('maintT', 'Less capital maintenance at replacement cost — that charge escalated '
+         'over half the derived asset life', None, -TRO['maintenance'], NUM0),
+        ('gcapT', 'Less capital for real growth (real growth x capital per unit of growth)',
+         None, -TRO['growth_capex'], NUM0),
+        ('wcT', 'Less inflation on the working capital and lease book the group carries',
+         None, -TRO['wc_charge'], NUM0),
+        ('fcffT', 'Terminal free cash flow', None, TRO['fcff'], NUM0),
         ('tv', 'Terminal value at end of year five', None, DCF['tv'], NUM0),
+        ('floorT', 'Memo — the no-growth perpetuity at book depreciation (a diagnostic, '
+         'not a bound)', None, TRO['floor'], NUM0),
         ('pvtv', 'Present value of the terminal value', None, DCF['pv_tv'], NUM0),
         ('pvexp', 'Present value of the five explicit years', None, DCF['pv_explicit'],
          NUM0),
         ('tvshare', 'Terminal value share of enterprise value', None, DCF['tv_share'], PCT),
         ('ev', 'Enterprise value (operating)', None, DCF['ev'], NUM0)]:
     TB[key] = r
-    put(ws, f'A{r}', label, fmt=None, bold=key in ('ev',))
+    put(ws, f'A{r}', label, fmt=None, bold=key in ('ev', 'fcffT'))
     r += 1
-putf(ws, f"C{TB['g']}", f"={a('g')}", IN['g_term'], PCT)
-putf(ws, f"C{TB['roic']}", "=0.1", DCF['roic_term'], PCT)   # repointed to the invested-
-# capital row on Summary Financials once that sheet exists (cross-sheet build order)
-putf(ws, f"C{TB['reinv']}", f"=C{TB['g']}/C{TB['roic']}", DCF['reinvest_term'], PCT)
-putf(ws, f"C{TB['nopatT']}", f"=F{DC['nopat']}*(1+C{TB['g']})", F['nopat'][4] * (1 + IN['g_term']),
+putf(ws, f"C{TB['greal']}", f"={a('greal')}", IN['g_term_real'], PCT)
+putf(ws, f"C{TB['pit']}", f"={a('pit')}", TRI['inflation'], PCT)
+putf(ws, f"C{TB['g']}", f"=(1+C{TB['pit']})*(1+C{TB['greal']})-1", TRI['nominal_growth'], PCT)
+putf(ws, f"C{TB['nopatT']}", f"=F{DC['nopat']}*(1+C{TB['g']})", TRI['nopat'], NUM0)
+putf(ws, f"C{TB['dnaT']}", f"={DCF['dna_oi_last']}*(1+C{TB['g']})", TRI['dna_book'], NUM0)
+putf(ws, f"C{TB['maintT']}", f"=-C{TB['dnaT']}*(1+C{TB['pit']})^({a('life')}/2)",
+     -TRO['maintenance'], NUM0)
+putf(ws, f"C{TB['gcapT']}", f"=-C{TB['greal']}*{a('inccap')}", -TRO['growth_capex'], NUM0)
+putf(ws, f"C{TB['wcT']}", f"=-C{TB['pit']}*{DCF['wc_lease_last']:.6f}*(1+C{TB['g']})",
+     -TRO['wc_charge'], NUM0)
+putf(ws, f"C{TB['fcffT']}", f"=SUM(C{TB['nopatT']}:C{TB['wcT']})", TRO['fcff'], NUM0,
+     bold=True)
+# Placeholders: both are RE-POINTED at the real terminal-cost-of-capital row once the
+# cost-of-capital block below has been placed. The expected values recorded here are the
+# ones the re-pointed formulas must reproduce, so a re-point that lands on the wrong row
+# fails the recalculation gate rather than passing quietly.
+putf(ws, f"C{TB['tv']}", f"=C{TB['fcffT']}*(1+C{TB['g']})/($C$54-C{TB['g']})", DCF['tv'],
      NUM0)
-putf(ws, f"C{TB['fcffT']}", f"=C{TB['nopatT']}*(1-C{TB['reinv']})", DCF['fcff_term'], NUM0)
-putf(ws, f"C{TB['tv']}", f"=C{TB['fcffT']}/($C$54-C{TB['g']})", DCF['tv'], NUM0)
+putf(ws, f"C{TB['floorT']}", f"=C{TB['nopatT']}/$C$54", TRO['floor'], NUM0)
 putf(ws, f"C{TB['pvtv']}", f"=C{TB['tv']}*F{DC['df']}", DCF['pv_tv'], NUM0)
 putf(ws, f"C{TB['pvexp']}", f"=SUM(B{DC['pv']}:F{DC['pv']})", DCF['pv_explicit'], NUM0)
 putf(ws, f"C{TB['tvshare']}", f"=C{TB['pvtv']}/C{TB['ev']}", DCF['tv_share'], PCT)
 putf(ws, f"C{TB['ev']}", f"=C{TB['pvexp']}+C{TB['pvtv']}", DCF['ev'], NUM0, bold=True)
 r += 1
-put(ws, f'A{r}', 'Upside variant — terminal return held at 10.5% (engine re-run, '
-    'published beside the base, never averaged)', fmt=None)
-put(ws, f'C{r}', DCF['ps_roic_variant'], BLUE, PX)
+put(ws, f'A{r}', 'Downside variant — the asset life read at twice the directly measured '
+    'average age (engine re-run, published beside the base, never averaged)', fmt=None)
+put(ws, f'C{r}', DCF['ps_life_variant'], BLUE, PX)
 r += 1
 put(ws, f'A{r}', 'COST OF CAPITAL — BUILT, NOT PASTED (v2: rf net of the sovereign spread; '
     'both ERP bases shown)', bold=True, fmt=None); r += 1
@@ -995,7 +1027,9 @@ for i in range(5):
     cell = f'{CD[i]}{DC["df"]}'
     ws[cell] = (f"=1/(1+$C${CC['wacc']})" if i == 0
                 else f"={CD[i-1]}{DC['df']}/(1+$C${CC['wacc']})")
-ws[f"C{TB['tv']}"] = f"=C{TB['fcffT']}/($C${CC['wacct']}-C{TB['g']})"
+ws[f"C{TB['tv']}"] = (f"=C{TB['fcffT']}*(1+C{TB['g']})"
+                      f"/($C${CC['wacct']}-C{TB['g']})")
+ws[f"C{TB['floorT']}"] = f"=C{TB['nopatT']}/$C${CC['wacct']}"
 wsIS = wb['Income Statement']
 for i in range(5):
     prevcol = 'D' if i == 0 else FCOL[i - 1]
@@ -1336,9 +1370,11 @@ KEYS = [
     ('FY2026E EPS (SAR)', f"='Income Statement'!E{IS['eps']}", F['eps'][0], PX),
     ('Cost of capital — explicit window', f"=DCF!C{CC['wacc']}", W['wacc_exp'], PCT2),
     ('Cost of capital — terminal', f"=DCF!C{CC['wacct']}", W['wacc_term'], PCT2),
-    ('Terminal growth', f"={a('g')}", IN['g_term'], PCT),
-    ('Terminal return on capital (computed year-5; 10.5% variant published)',
-     f"=DCF!C{TB['roic']}", DCF['roic_term'], PCT2),
+    ('Terminal growth', f"={a('g')}", TRI['nominal_growth'], PCT),
+    ('Terminal asset life, derived from note 6 (years)', f"={a('life')}",
+     IN['asset_life_years'], NUM2),
+    ('Terminal free cash flow as a share of terminal profit',
+     f"=DCF!C{TB['fcffT']}/DCF!C{TB['nopatT']}", TRO['fcff'] / TRI['nopat'], PCT),
     ('Net debt, 30-Jun-2026 (company definition, SAR mn)', None, H1['netdebt'], NUM0),
     ('Weighted central — first edition, 18-Aug-2026 (superseded by this edition)',
      None, D['edition1']['central'], PX),
@@ -1410,8 +1446,8 @@ for lab, val in [
          DCF['sps_open_71']),
         ('Density opening at −6.0% (the interpolated end; the base input)',
          DCF['sps_open_59']),
-        ('Terminal return held at 10.5% (the retired first-edition input, as a variant)',
-         DCF['ps_roic_variant'])]:
+        ('Asset life read at twice the directly measured average age of the base — the '
+         'heavier of the two readings of note 6', DCF['ps_life_variant'])]:
     put(ws, f'A{r}', lab, fmt=None, wrap=True)
     put(ws, f'C{r}', val, BLUE, PX)
     ws.row_dimensions[r].height = 28
@@ -1507,9 +1543,10 @@ for i in range(5):
         f_ = f"=DCF!{CD[i]}{DC['nopat']}/{get_column_letter(2+i)}{IC_ROW}"
     putf(ws, f'{col}{r}', f_, F['roic_path'][i], PCT2)
 r += 1
-# the DCF terminal-return cell can now point at the real invested-capital row:
-# year-5 NOPAT over year-5 OPENING capital (= the year-4 closing column F)
-wb['DCF'][f"C{TB['roic']}"] = f"=F{DC['nopat']}/'Summary Financials'!F{IC_ROW}"
+# The DCF sheet no longer carries a terminal-return cell to re-point: the sanctioned
+# terminal does not use one. The return path stays on THIS sheet, where it is a fact about
+# the forecast rather than a driver of the valuation, and the row above computes it from
+# the invested-capital row rather than from anything typed.
 put(ws, f'A{r}', 'Return on equity (attributable profit / opening equity)', fmt=None)
 for i in range(5):
     col = get_column_letter(3 + i)
@@ -1718,6 +1755,8 @@ ANCH.update(dict(
     is_ebitda_d=f"Income Statement!D{IS['ebitda']}",
     is_np_i=f"Income Statement!I{IS['np']}", is_eps_e=f"Income Statement!E{IS['eps']}",
     dcf_pvexp=f"DCF!C{TB['pvexp']}", bs_cash_i2=f"Balance Sheet!I{BS['cash']}",
+    dcf_maintT=f"DCF!C{TB['maintT']}", dcf_fcffT=f"DCF!C{TB['fcffT']}",
+    dcf_tv=f"DCF!C{TB['tv']}", dcf_floorT=f"DCF!C{TB['floorT']}",
     dcf_wacccds=f"DCF!C{CC['wacccds']}", sf_roic_c=f"Summary Financials!C{IC_ROW + 1}",
 ))
 

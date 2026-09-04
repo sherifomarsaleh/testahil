@@ -145,8 +145,14 @@ def main(argv):
         return 0
 
     src = open(SRC).read()
-    anchor = "]\n\n\ndef assert_lessons_register"
-    assert anchor in src, "cannot find the end of LESSONS in lessons_register.py"
+    # THE ANCHOR IS MATCHED, NOT SPELLED. It used to be the literal "]\n\n\ndef
+    # assert_lessons_register" and the register drifted to five blank lines there, so the
+    # sanctioned path for appending a lesson raised on a whitespace difference that means
+    # nothing. A tool whose only failure mode is a formatting change in the file it edits
+    # is a tool that will be bypassed by hand the first time somebody is in a hurry.
+    m = re.search(r"\]\n\n+(?=def assert_lessons_register)", src)
+    assert m, "cannot find the end of LESSONS in lessons_register.py"
+    anchor = m.group(0)
     block = ""
     for x in ready:
         lid = _next_id(x["scope"])
