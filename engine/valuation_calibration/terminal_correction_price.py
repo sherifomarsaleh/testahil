@@ -56,6 +56,35 @@ import terminal_census as TC              # noqa: E402  the reader, imported not
 import terminal_value as TV               # noqa: E402  the arithmetic, likewise
 
 LIVES = os.path.join(HERE, 'disclosed_lives.json')
+LENS_RATCHET = os.path.join(REPO, 'engine', 'build_depth_audit', 'lens_outstanding.json')
+
+
+def _retired_architecture():
+    """Names whose CENTRAL is still produced by the architecture [R-LENS-03] retired.
+
+    THIS IS THE CONSTRAINT ABOVE THE INPUTS AND IT WAS FOUND BY TRYING TO USE THEM.
+    The obvious reading of this report is that a name becomes priceable once its
+    three inputs resolve — and the first name to reach that state publishes a
+    central that is a typed four-lens weighted blend, which [R-LENS-03] retired on
+    02-Sep-2026 as a new method with free parameters nobody tested.
+
+    A CORRECTED TERMINAL INSIDE A RETIRED BLEND IS NOT A MEASUREMENT. The move it
+    produces is a move in a number the house has already stopped standing behind,
+    and reporting it as the price of the correction would be measuring one defect
+    through another.
+
+    So the answer for every unrebuilt name is the same and it is not about inputs:
+    the correction is measured when a name is RE-ISSUED, lens architecture and
+    terminal and committed inputs together. That is exactly what the two names in
+    ALREADY CORRECTED show — both were re-issued wholesale, and both reproduce their
+    own published fair value to the fourth decimal.
+    """
+    try:
+        d = json.load(open(LENS_RATCHET, encoding='utf-8'))
+    except Exception:                                                # noqa: BLE001
+        return None
+    return set(d.get('outstanding') or [])
+
 
 
 def _latest_price(ticker):
@@ -348,6 +377,35 @@ def report():
     ok = len(buckets.get('ALREADY CORRECTED', []))
     cant = len(buckets.get('CANNOT BE PRICED', []))
 
+    retired = _retired_architecture()
+    if retired is None:
+        print('  FAIL — the lens ratchet could not be read, so this report cannot say '
+              'which centrals are still')
+        print('  produced by the architecture [R-LENS-03] retired. An unreadable answer '
+              'is not a clean one [R-ENF-04].')
+        return 1
+    unrebuilt = [tk for tk, _ in buckets.get('CANNOT BE PRICED', [])
+                 + buckets.get('RESOLVABLE, NOT COMMITTED', [])]
+    still = sorted(tk for tk in unrebuilt if tk in retired)
+    print('  THE CONSTRAINT ABOVE THE INPUTS, AND IT WAS FOUND BY TRYING TO USE THEM.')
+    print('  %d of the %d unrebuilt names are ALSO on the lens ratchet — their CENTRAL is '
+          'still produced by' % (len(still), len(unrebuilt)))
+    print('  the typed weighted blend [R-LENS-03] retired on 02-Sep-2026 as a new method '
+          'with free parameters')
+    print('  nobody tested. A CORRECTED TERMINAL INSIDE A RETIRED BLEND IS NOT A '
+          'MEASUREMENT: the move it')
+    print('  produces is a move in a number this house has already stopped standing '
+          'behind, and reporting it')
+    print('  as the price of the correction would be measuring one defect through '
+          'another.')
+    print()
+    print('  SO THE ANSWER FOR EVERY UNREBUILT NAME IS THE SAME AND IT IS NOT ABOUT '
+          'INPUTS: the correction is')
+    print('  measured when a name is RE-ISSUED — lens architecture, terminal and '
+          'committed inputs together.')
+    print('  Which is what the ALREADY CORRECTED names show: both were re-issued '
+          'wholesale.')
+    print()
     print('  THE ANSWER, AND IT IS NOT A TABLE OF MOVES.')
     print('  %d name(s) are already on the corrected construction and rebuild to their '
           'own published' % ok)

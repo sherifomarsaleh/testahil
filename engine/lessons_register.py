@@ -4014,6 +4014,28 @@ LESSONS = [
       "A repository that does not retain source documents, where the shelf really is "
       "empty and the only route is outward."),
 
+    L("L-286", "ALL", None,
+      "WHEN A FIX IS BLOCKED, CHECK WHETHER THE THING IT WOULD IMPROVE IS ITSELF "
+      "RETIRED. A correction inside a construction nobody stands behind is not a "
+      "measurement.",
+      "Work naturally proceeds inwards: find what the fix needs, source it, apply it. "
+      "That order never asks whether the OUTPUT the fix moves is still one the house "
+      "publishes. If it is not, every hour spent sourcing inputs buys a number in a "
+      "currency that has been withdrawn — and the effort feels productive throughout, "
+      "because each individual step succeeds.",
+      "Pricing the terminal correction across the book, 04-Sep-2026",
+      "build",
+      "An inventory established which inputs each of thirteen studies was missing and "
+      "four asset lives were sourced to close the gaps. The first name to have every "
+      "input resolve turned out to publish a central that is a typed weighted blend of "
+      "four lenses — the architecture retired two days earlier as a new method with "
+      "free parameters nobody tested. Eleven of the thirteen are in that state. The "
+      "correction is therefore measured when a name is RE-ISSUED, architecture and "
+      "terminal and inputs together, which is exactly what the two already-corrected "
+      "names show: both were re-issued wholesale.",
+      "A defect whose correction is genuinely separable from the construction around "
+      "it, where fixing it in place leaves a number the house still stands behind."),
+
 ]
 
 

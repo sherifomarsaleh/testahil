@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**206 lessons**, of which 177 bind on every study, 22 on a class of company, and 7 on a single name.
+**207 lessons**, of which 178 bind on every study, 22 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 131 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 132 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1848,6 +1848,16 @@ Sourcing feels like an outward activity, so the instinct on needing a filing is 
 > **What it cost, or how we know.** Twice in one session. A company's annual reports for four years sat in its own study directory, unopened, while the census reported its life 'not sourced'. An hour later a second company was recorded as needing another route because its website does not resolve from this environment — and eleven of its filings, including five years of audited statements, were already committed. Both were read from disk in minutes once anybody looked.
 
 > **What would overturn it.** A repository that does not retain source documents, where the shelf really is empty and the only route is outward.
+
+### L-286 · WHEN A FIX IS BLOCKED, CHECK WHETHER THE THING IT WOULD IMPROVE IS ITSELF RETIRED. A correction inside a construction nobody stands behind is not a measurement.
+
+Work naturally proceeds inwards: find what the fix needs, source it, apply it. That order never asks whether the OUTPUT the fix moves is still one the house publishes. If it is not, every hour spent sourcing inputs buys a number in a currency that has been withdrawn — and the effort feels productive throughout, because each individual step succeeds.
+
+**Applies to:** every study  ·  *Learned from:* found while building, Pricing the terminal correction across the book, 04-Sep-2026
+
+> **What it cost, or how we know.** An inventory established which inputs each of thirteen studies was missing and four asset lives were sourced to close the gaps. The first name to have every input resolve turned out to publish a central that is a typed weighted blend of four lenses — the architecture retired two days earlier as a new method with free parameters nobody tested. Eleven of the thirteen are in that state. The correction is therefore measured when a name is RE-ISSUED, architecture and terminal and inputs together, which is exactly what the two already-corrected names show: both were re-issued wholesale.
+
+> **What would overturn it.** A defect whose correction is genuinely separable from the construction around it, where fixing it in place leaves a number the house still stands behind.
 
 
 ---
