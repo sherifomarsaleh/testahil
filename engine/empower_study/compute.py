@@ -260,6 +260,24 @@ INP = dict(
               "whose volume grows more slowly than prices shrinks in real terms by "
               "construction, and this rate says so",
               "2026-08-09", "House"),
+    average_age_years=I((3734337.0 + (22649.0 - 1878.0) + (364710.0 - 315668.0))
+                        / (352199.0 + 5361.0 + 12157.0),
+                        FS25 + ", notes 5, 6 and 7. THE AVERAGE AGE OF THE BASE, MEASURED "
+                        "rather than assumed: accumulated depreciation over the year's own "
+                        "charge is, under the straight-line method these accounts use, "
+                        "exactly the charge-weighted average age of the assets bearing that "
+                        "charge — an identity, not an estimate. The property note prints its "
+                        "accumulated column (3,734,337); neither the right-of-use nor the "
+                        "intangible note does, so both are recovered by the identity gross "
+                        "less net (22,649 less 1,878; 364,710 less 315,668) and LABELLED as "
+                        "derived. The three sum to 3,804,150 over a charge of 369,717 = 10.29 "
+                        "years. THIS BASE IS YOUNGER THAN UNIFORM — half the 28.10-year life "
+                        "would put it at 14.05 — so escalating the book charge over half the "
+                        "life OVERSTATES what replacement costs, by 7.2% at this market's 2% "
+                        "terminal. The distinction matters because the escalation is over the "
+                        "AGE of the assets, and half the life is that age only where vintages "
+                        "are uniform, which here they are not",
+                        "2026-09-04", "Company"),
     asset_life_years=I((10929327.0 - 432364.0 - 495858.0 + 22649.0 + 12157.0 * 30.0)
                        / (352199.0 + 5361.0 + 12157.0),
                        FS25 + ", notes 5, 6 and 7, DERIVED BY IDENTITY from those notes' "
@@ -587,6 +605,8 @@ def dcf(rev, eb, dna, capex, dnwc, tax, wacc, label, ppe_d=None, nwc_d=None):
             dna_book=dna0 * (1 + g_nom),
             useful_life_years=V['asset_life_years'],
             useful_life_source=INP['asset_life_years']['source'],
+            average_age_years=V['average_age_years'],
+            average_age_source=INP['average_age_years']['source'],
             maintenance_basis='book_dna_escalated',
             working_capital=wc0 * (1 + g_nom),
             incremental_capital_per_unit_growth=inc))

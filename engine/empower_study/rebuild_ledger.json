@@ -3,15 +3,15 @@
  "started_at": "2026-09-04",
  "start_value": 1.8432206448492996,
  "start_spot": 1.5,
- "start_gap": 0.22881376323286637,
- "audit_after": "the terminal, because the growth storage that follows it moves no number on this name and the re-strike before it settles only which price the answer is compared against \u2014 the terminal is the only lever here whose size could not be known before it was built",
+ "start_gap": 0.2288137632328664,
+ "audit_after": "the terminal, because the growth storage that follows it moves no number on this name and the re-strike before it settles only which price the answer is compared against — the terminal is the only lever here whose size could not be known before it was built",
  "levers": [
   {
    "name": "re-struck on the latest known price, and the two-sided answer published in the shared form",
    "rule": "R-GAP-01",
    "before": 1.8432206448492996,
    "after": 1.8388,
-   "why": "the study stood on the 7-August close of 1.50 while the stock had risen to 1.57. Separately and more consequentially, it published four named branches under keys only its own builder knew, so every instrument that looks for a central found none and recorded the study as UNREADABLE \u2014 which is how a +17% answer escaped the one check that examines the answer rather than the process",
+   "why": "the study stood on the 7-August close of 1.50 while the stock had risen to 1.57. Separately and more consequentially, it published four named branches under keys only its own builder knew, so every instrument that looks for a central found none and recorded the study as UNREADABLE — which is how a +17% answer escaped the one check that examines the answer rather than the process",
    "evidence": "DFM close of 3 September 2026, from the price file supplied that day. The branches now publish in the shared two-sided form, and the moment they did, an eight-heading review became owed and was written; the widest branch reads +17.1% against the price and two of the four breach the trigger",
    "move": -0.0023983264627881473
   },
@@ -20,7 +20,7 @@
    "rule": "R-TERM-01",
    "before": 1.8388,
    "after": 1.8523,
-   "why": "both stages charged reinvestment as growth over the return on capital, which is arithmetically the same as rebuilding the whole capital base every 1/g years \u2014 fifty in stage one and sixty-seven in stage two, both facts about the dirham's peg to the dollar rather than about a chilled-water plant",
+   "why": "both stages charged reinvestment as growth over the return on capital, which is arithmetically the same as rebuilding the whole capital base every 1/g years — fifty in stage one and sixty-seven in stage two, both facts about the dirham's peg to the dollar rather than about a chilled-water plant",
    "evidence": "the FY2025 audited statements were fetched from the company's own investor-relations page and read by OCR off the rendered pixels, the property note rotated because it is printed landscape; the extraction foots four ways. Notes 5, 6 and 7 give class ranges and no weighting, so gross cost over the year's own charge supplies one: property 28.40 years, right-of-use 4.22, intangibles a disclosed 30, blended 28.10, cross-checked at 27.88 on FY2024. Terminal value 25,030 against a retired 24,650",
    "move": 0.007341744616053969
   },
@@ -30,13 +30,21 @@
    "before": 1.8523,
    "after": 1.8523,
    "why": "the two stages carried typed nominals of 2.5% and 1.5% and this study committed no macro record, so nothing held them to the house path",
-   "evidence": "THIS LEVER MOVES NO NUMBER, and the reason is the finding: this company's tariff is regulated and NOT indexed, so nominal revenue growth IS volume growth and the typed rates reproduce exactly as +0.49% and -0.49% real on the house 2.0% inflation. What it buys is a reader who can see that stage two assumes the business shrinks in real terms for ever \u2014 which the study describes as 'about zero real tariff growth' without ever naming the rate",
+   "evidence": "THIS LEVER MOVES NO NUMBER, and the reason is the finding: this company's tariff is regulated and NOT indexed, so nominal revenue growth IS volume growth and the typed rates reproduce exactly as +0.49% and -0.49% real on the house 2.0% inflation. What it buys is a reader who can see that stage two assumes the business shrinks in real terms for ever — which the study describes as 'about zero real tariff growth' without ever naming the rate",
    "move": 0.0
+  },
+  {
+   "name": "the age the maintenance charge rests on MEASURED off the notes rather than assumed at half the useful life",
+   "rule": "R-TERM-01",
+   "before": 1.8523,
+   "after": 1.877,
+   "why": "the construction escalates the book charge to what replacement costs today over the AGE of the base, and half the useful life is that age only where vintages are uniform. THIS PLANT IS YOUNG and half a life would charge for replacing it as though it were fourteen years old: 10.29 years measured against 14.05 assumed, so the construction was over-charging maintenance by 7.2% at this market's 2% terminal. The same re-pointing takes the answer DOWN on the name beside it, whose base is older than uniform — which is why it had to be measured rather than corrected in one direction",
+   "evidence": "note 5 accumulated depreciation 3,734,337; the right-of-use and intangible notes print no accumulated column, so both are recovered by the identity gross less net (22,649 less 1,878; 364,710 less 315,668) and labelled as derived. 3,804,150 over a charge of 369,717 = 10.29 years. An earlier reading of 10.11 took the property note's accumulated column over the BLENDED charge — one leg over three — and is corrected in the evidence file rather than quietly replaced",
+   "move": 0.01333477298493757
   }
  ],
- "value": 1.8523,
- "note": "THREE LEVERS AND ONLY ONE OF THEM MOVES THE VALUE, WHICH IS NOT THE USUAL SHAPE. The re-strike is arithmetic on a new price; the growth storage moves NOTHING, because a regulated unindexed tariff makes a typed nominal rate a volume assumption and the real component reproduces exactly; and the terminal rebuild is worth +0.7%. THE LEVER THAT MATTERED MOST IS NOT IN THE VALUE COLUMN AT ALL: publishing the four branches in the shared two-sided form changed no number and made the study visible to the one gate that examines the ANSWER, which had been skipping a +17% disagreement with the market for as long as this study has existed. Also recorded: the capital-per-unit-of-real-growth derivation used on the other four names in this programme computes NEGATIVE here (-388), because over five years the plant is written down faster than capex replaces it, and passing it through would have paid this company for growing.",
- "cumulative_move": 0.004925810252869978,
+ "value": 1.877,
+ "cumulative_move": 0.01832626779929658,
  "rules": {
   "R-GAP-01": {
    "levers": [
@@ -48,11 +56,12 @@
   },
   "R-TERM-01": {
    "levers": [
-    "terminal built through the sanctioned module, both stages, on a life DERIVED by identity from three notes read by OCR"
+    "terminal built through the sanctioned module, both stages, on a life DERIVED by identity from three notes read by OCR",
+    "the age the maintenance charge rests on MEASURED off the notes rather than assumed at half the useful life"
    ],
    "first_before": 1.8388,
-   "last_after": 1.8523,
-   "move": 0.007341744616053969
+   "last_after": 1.877,
+   "move": 0.020774418098760128
   },
   "R-MACRO-01": {
    "levers": [
@@ -63,5 +72,6 @@
    "move": 0.0
   }
  },
- "distinct_rules": 3
+ "distinct_rules": 3,
+ "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked."
 }
