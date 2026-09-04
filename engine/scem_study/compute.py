@@ -1105,12 +1105,17 @@ BRIDGE_RECORD = dict(
 
 # ---------------------------------------------------------------- [R-ANCHOR-01]
 FORECAST_ANCHOR = dict(
-    rate='EBITDA margin',
-    latest_reviewed=dict(period='FY2025', date='2025-12-31',
-                         rate=float(_HIST_MGN[2]),
-                         source='the audited statements for the year ended 31 December '
-                                '2025, revenue and the cost lines of notes 24, 25 and 26'),
-    first_forecast_year=dict(period='FY2026', rate=float(_mgn_fc0)),
+    # THE FIELD NAMES ARE THE SHARED READER'S. This record was written in the same session
+    # with nested keys of its own and the gate could not read it; it reported OK because
+    # this study was on the ratchet, and A RATCHETED STUDY'S FAILURE REASON WAS NEVER
+    # PRINTED. The record looked right, the gate looked green, and neither was.
+    rate_name='EBITDA margin',
+    latest_reviewed_period='FY2025, audited',
+    latest_reviewed_date='2025-12-31',
+    latest_reviewed_rate=float(_HIST_MGN[2]),
+    latest_reviewed_source='the audited statements for the year ended 31 December 2025, '
+                           'revenue and the cost lines of notes 24, 25 and 26',
+    first_forecast_rate=float(_mgn_fc0),
     forecast_path=[float(b['mgn']) for b in BU[1:]],
     note=('THE FORECAST OPENS ABOVE THE LATEST AUDITED PERIOD AND RISES FROM THERE, which '
           'this rule does not fire on and which is printed anyway so the shape is visible '

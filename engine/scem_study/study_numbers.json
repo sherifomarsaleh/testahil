@@ -1507,17 +1507,12 @@
   }
  },
  "forecast_anchor": {
-  "rate": "EBITDA margin",
-  "latest_reviewed": {
-   "period": "FY2025",
-   "date": "2025-12-31",
-   "rate": 0.3801461371641567,
-   "source": "the audited statements for the year ended 31 December 2025, revenue and the cost lines of notes 24, 25 and 26"
-  },
-  "first_forecast_year": {
-   "period": "FY2026",
-   "rate": 0.38631244935799847
-  },
+  "rate_name": "EBITDA margin",
+  "latest_reviewed_period": "FY2025, audited",
+  "latest_reviewed_date": "2025-12-31",
+  "latest_reviewed_rate": 0.3801461371641567,
+  "latest_reviewed_source": "the audited statements for the year ended 31 December 2025, revenue and the cost lines of notes 24, 25 and 26",
+  "first_forecast_rate": 0.38631244935799847,
   "forecast_path": [
    0.38631244935799847,
    0.38928126530787177,

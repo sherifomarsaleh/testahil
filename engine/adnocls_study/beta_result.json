@@ -44,6 +44,11 @@
  "gate_msg": "passes minimum usability gate",
  "regressor": "FTSE ADX General Index",
  "regressor_code": "FADGI",
+ "index_file": "raw_indices/AE/FADGI.csv",
+ "index_asof": "2026-07-24",
+ "market": "AE",
+ "exchange": "ADX",
+ "conforming": true,
  "regressor_file": "raw_indices/AE/FADGI.csv",
  "regressor_asof": "2026-07-24",
  "regressor_conforming": true,
@@ -79,7 +84,7 @@
   "beta_used": 1.1032195993700773,
   "basis": "tier-1 own-stock weekly regression against the published index of the share's own exchange, produced by the engine's sanctioned routine",
   "why": "n = 159 weekly observations against the published index of the share's own exchange, resolved by the routine from the exchange the share is listed on, over 2023-06-16 to 2026-07-17. R-squared = 0.181, SE(beta) = 0.315. passes minimum usability gate.",
-  "corroboration": "Cross-checked three ways. (i) Shrunk toward the market on the Blume adjustment the same record reports, the slope is 1.069, which sits inside the regression's own 90% interval of [0.59, 1.62] and moves the estimate toward one. (ii) Regressing against an equal-weight composite of the exchange's own names instead of the published index gives 0.705 (R-squared 0.172), and against the wider ADX+DFM library 0.771 (R-squared 0.183). (iii) The sector prior for a listed tanker owner is 0.9-1.4 and for a contracted, fee-based marine services provider 0.5-0.9; the adopted figure is read against both in the study rather than accepted at face value.",
+  "corroboration": "Cross-checked three ways. (i) Shrunk toward the market on the Blume adjustment the same record reports, the slope is 1.069, which sits inside the regression's own 90% interval of [0.59, 1.62] and moves the estimate toward one. (ii) Regressing against an equal-weight composite of the exchange's own names instead of the published index gives 0.690 (R-squared 0.167), and against the wider ADX+DFM library 0.802 (R-squared 0.196). (iii) The sector prior for a listed tanker owner is 0.9-1.4 and for a contracted, fee-based marine services provider 0.5-0.9; the adopted figure is read against both in the study rather than accepted at face value.",
   "sensitivity_required": [
    0.5,
    0.7,
@@ -89,31 +94,31 @@
   ]
  },
  "composite_variant": {
-  "beta": 0.7046672185679277,
-  "r2": 0.17239686601187942,
-  "n": 163,
-  "se": 0.12167952631768053,
+  "beta": 0.6896076795459681,
+  "r2": 0.16723510787354068,
+  "n": 165,
+  "se": 0.12053294380567652,
   "names": 12,
   "note": "Equal-weight composite of the exchange's own listed names, the subject excluded. This was the regressor before the published index was available; disclosed so the effect of the change is visible, not adopted."
  },
  "full_library_variant": {
-  "beta": 0.7713669694474867,
-  "r2": 0.18309914814468886,
+  "beta": 0.8021635680228677,
+  "r2": 0.19569349964370442,
   "n": 165,
-  "se": 0.12761706387805016,
-  "names": 26,
+  "se": 0.1273772066962425,
+  "names": 27,
   "note": "ADX + DFM equal-weight composite; disclosed, not adopted."
  },
  "self_inclusion_bias": {
-  "beta_proxy_including_subject": 0.9073276815884009,
-  "r2_including": 0.2769126767246628,
-  "beta_proxy_excluding_subject": 0.7046672185679277,
-  "r2_excluding": 0.17239686601187942,
-  "note": "The subject is a constituent of the published index it is regressed against, and on a capitalisation-weighted index that cannot be undone. The equal-weight proxy is run both ways to measure how large the resulting self-covariance is: the two figures here differ by 0.203, which is the scale of the upward pull the published-index beta also carries. It is disclosed rather than assumed away, and it works against the study's own conclusion, since removing it would lower the beta further."
+  "beta_proxy_including_subject": 0.89144176460312,
+  "r2_including": 0.27012790292484945,
+  "beta_proxy_excluding_subject": 0.6896076795459681,
+  "r2_excluding": 0.16723510787354068,
+  "note": "The subject is a constituent of the published index it is regressed against, and on a capitalisation-weighted index that cannot be undone. The equal-weight proxy is run both ways to measure how large the resulting self-covariance is: the two figures here differ by 0.202, which is the scale of the upward pull the published-index beta also carries. It is disclosed rather than assumed away, and it works against the study's own conclusion, since removing it would lower the beta further."
  },
  "thin_trading": {
   "flat_frac": 0.0793,
-  "ae_panel_median": 0.1282,
+  "ae_panel_median": 0.1274,
   "ratio": 0.62,
   "note": "Share of sessions closing unchanged, against the median of the UAE library. A high ratio is the documented mechanism for a downward-biased contemporaneous beta."
  },

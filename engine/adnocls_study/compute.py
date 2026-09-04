@@ -2053,6 +2053,152 @@ A('every expert range brackets its own base',
 # ============================================================================
 # OUTPUT
 # ============================================================================
+# ===========================================================================
+# THE THREE STANDING GATES, CALLED IN THIS STUDY'S OWN CODE  [R-ENF-02]
+# ===========================================================================
+# A study that calls none of them is a study passed by not checking itself, which is
+# what thirteen of twenty-one directories were doing when that rule was adopted. THE
+# EXEMPLAR WAS ONE OF THEM — and a debt on the exemplar is a debt every study written
+# afterwards inherits by copying it.
+import research_protocol as RP                                       # noqa: E402
+
+_REVT = BASE['revenue'][0]
+_SEGR = {k: v['rev'][0] for k, v in {s_: BASE['seg'][s_] for s_ in SEGS}.items()}
+_gu = [
+    RP.DriverLine(
+        name='Tankers', level='unit', share_of_revenue=_SEGR['Tankers'] / _REVT,
+        unit='vessel-days by class, at the day rate each vessel actually earns',
+        unit_source='the fleet list and charter register in the FY2025 annual report and '
+                    'the Q1-2026 investor presentation: every chartered vessel with its '
+                    'own contracted rate and the exact dates its charter runs, every '
+                    'other vessel on the implied spot rate for its class',
+        price_basis='the company\'s own disclosed quarterly time-charter-equivalent rates '
+                    'by vessel class, reverting toward the mid-cycle average of the same '
+                    'disclosed series',
+        cost_basis='running cost per vessel-day, solved so the owned fleet reproduces the '
+                   'reported FY2025 earnings, escalated on the house inflation ladder'),
+    RP.DriverLine(
+        name='Gas Carriers', level='unit',
+        share_of_revenue=_SEGR['Gas Carriers'] / _REVT,
+        unit='vessel-years in service times the day rate',
+        unit_source='the vessel count in service through 2025 and the newbuild delivery '
+                    'schedule, both disclosed',
+        price_basis='the disclosed day rate, escalated on the house inflation ladder — '
+                    'these vessels earn under long-term contracts rather than at spot',
+        cost_basis='the disclosed joint-venture charge per vessel-year, escalated on the '
+                   'same ladder'),
+    RP.DriverLine(
+        name='Dry-Bulk and Containers', level='unit',
+        share_of_revenue=_SEGR['Dry-Bulk and Containers'] / _REVT,
+        unit='vessel-days at the class day rate',
+        unit_source='the fleet list in the FY2025 annual report',
+        price_basis='the disclosed class rate on the same reversion path as the tankers',
+        cost_basis='the same per-vessel-day running cost stack'),
+    RP.DriverLine(
+        name='Offshore Contracting', level='segment',
+        share_of_revenue=_SEGR['Offshore Contracting'] / _REVT,
+        gap_note='THE DISCLOSURE STOPS AT THE SEGMENT AND THE GAP IS STATED RATHER THAN '
+                 'FILLED. This leg earns under long-term integrated logistics contracts '
+                 'whose scope, duration and pricing are commercially confidential; the '
+                 'company discloses segment revenue and the contracted backlog but no '
+                 'unit — no vessel-days, no tonne-miles, no day rate. Building a unit '
+                 'economics on an invented unit would add an unsourced driver and no '
+                 'information while looking more precise, which is the offence the rule '
+                 'names. It is grown on the disclosed backlog and its stated run-off.'),
+    RP.DriverLine(
+        name='Offshore Services', level='segment',
+        share_of_revenue=_SEGR['Offshore Services'] / _REVT,
+        gap_note='as Offshore Contracting: segment revenue and backlog are disclosed and '
+                 'no physical unit is. Flagged rather than modelled at a level the '
+                 'filings do not support.'),
+    RP.DriverLine(
+        name='Offshore Projects', level='segment',
+        share_of_revenue=_SEGR['Offshore Projects'] / _REVT,
+        gap_note='as Offshore Contracting. This is the smallest leg and the least '
+                 'disclosed: project revenue is recognised as work completes and the '
+                 'project list is not published, so even the backlog run-off is coarser '
+                 'here than elsewhere. Stated, not smoothed over.'),
+    RP.DriverLine(
+        name='Services', level='segment',
+        share_of_revenue=_SEGR['Services'] / _REVT,
+        gap_note='a portfolio of shore-based and marine support activities disclosed only '
+                 'in aggregate. No unit is published for any of them and none is '
+                 'invented; the leg is grown on the disclosed segment and its margin is '
+                 'held at the disclosed level.'),
+]
+GROUND_UP = RP.assert_ground_up(_gu, ticker='ADNOCLS')
+A('the forecast is built to the finest sourced level [SIGCM clause 2]', True,
+  '%d revenue lines covering %.1f%% of revenue; %d built on a DISCLOSED physical unit '
+  '(%.1f%% of revenue), %d at the disclosed segment with the gap stated'
+  % (len(_gu), 100 * sum(l.share_of_revenue for l in _gu),
+     sum(1 for l in _gu if l.level == 'unit'),
+     100 * sum(l.share_of_revenue for l in _gu if l.level == 'unit'),
+     sum(1 for l in _gu if l.level == 'segment')))
+
+# THE SCRUB ATTESTATION IS READ, NOT TYPED. qc_checks.py scans the DELIVERED documents
+# and writes scrub_result.json; this reads it back and refuses three ways — no result at
+# all, a result covering an edition nobody receives, or a result with any hit in it. A new
+# edition therefore runs compute -> documents -> qc_checks -> compute again, and the
+# second pass is the one that may attest.
+def _scrub_attestation():
+    f = os.path.join(HERE, 'scrub_result.json')
+    if not os.path.exists(f):
+        return False, ('no scrub_result.json: the delivered documents have not been '
+                       'scanned. Build them, run qc_checks.py, then re-run this module — '
+                       'an unmeasured result is not a clean one.')
+    r = json.load(open(f))
+    want = {'ADNOCLS_Valuation_Study_09-08-2026_public.docx',
+            'ADNOCLS_Bibliography_09-08-2026.docx'}
+    missing = sorted(want - set(r.get('files', [])))
+    if missing:
+        return False, ('the scrub covers %s and not %s — a check that opens a superseded '
+                       'file reports on something nobody receives'
+                       % (r.get('files'), missing))
+    if not r.get('clean'):
+        return False, '%d problem(s) in the delivered documents' % len(r.get('hits', []))
+    return True, ('%d patterns scanned across %s characters of delivered text, 0 hits; '
+                  'column audit and figure canvases clean'
+                  % (r.get('patterns', 0), '{:,}'.format(r.get('chars', 0))))
+
+
+SCRUB_OK, SCRUB_NOTE = _scrub_attestation()
+A('the external-reader scrub is MEASURED on the delivered documents, not attested',
+  SCRUB_OK, SCRUB_NOTE)
+
+SIGCM = RP.SIGCMChecklist(
+    historicals_official_only=True,
+    forecast_ground_up=True,
+    debt_lc_fx_split=True,
+    asset_conversion_cycle=True,
+    competitors=True,
+    beta_own_history_vs_egx30=True,
+    formula_based_model=True,
+    flags_raised_before_issue=True,
+    stop_and_inform_honoured=True,
+    na_reasons={},
+)
+MODEL_CHECK = RP.ModelStudyChecklist(
+    structure_matches_model=True,
+    bibliography_document=True,
+    provenance_four_field=True,
+    numeric_traceability=True,
+    external_reader_scrub=SCRUB_OK,
+    figure_discipline=True,
+    table_discipline=True,
+    expert_appendix_max_detail=True,
+    contested_judgement_both_ways=True,
+    na_reasons={},
+)
+# The record inspected is the OWN-STOCK regression against the published index of the
+# exchange this share is listed on. The equal-weight composite is computed and published
+# beside it as the study's largest contested judgement, and is NEVER the adopted number:
+# SIGCM clause 6 calls a composite a hard fail rather than a tier.
+RP.assert_beta_provenance(beta_res, tier2_fallback_documented=False)
+RP.assert_sigcm(SIGCM)
+RP.assert_model_study(MODEL_CHECK)
+A('the three standing gates are called in this study\'s own code [R-ENF-02]', True,
+  'assert_ground_up, assert_beta_provenance, assert_sigcm and assert_model_study')
+
 OUT = dict(
     meta=dict(ticker='ADNOCLS', company='ADNOC Logistics & Services plc',
               exchange='Abu Dhabi Securities Exchange', market='AE',
@@ -2263,6 +2409,54 @@ OUT = dict(
                   'and a ten per cent move in it is well inside the span the disclosed '
                   'quarterly rates have printed.'),
     ],
+    # ---------------------------------------------------------------- [R-ANCHOR-01]
+    # THE RECORD IS PRINTED WHETHER OR NOT THE RULE FIRES, so the shape is visible rather
+    # than merely not-red. This rule fires on a forecast opening materially BELOW the
+    # latest reviewed period; this one opens far ABOVE it, which is [R-GAP-01]'s two-sided
+    # trigger and the sign test's business rather than this rule's — and it is exactly the
+    # shape a reader should see stated.
+    forecast_anchor=dict(
+        # THE FIELD NAMES ARE THE SHARED READER'S, NOT A HOUSE VOCABULARY. A first draft
+        # of this record nested the latest period under its own key names and the gate
+        # could not read it — the same defect as the beta record two hundred lines above,
+        # where index_file had been renamed regressor_file. Both were right underneath and
+        # unreadable, and both were invisible because a ratcheted study's failure REASON
+        # was never printed. It is printed now.
+        rate_name='EBITDA margin, operating basis',
+        latest_reviewed_period='FY2025, audited',
+        latest_reviewed_date='2025-12-31',
+        latest_reviewed_rate=float(hist_is['ebitda_margin'][2]),
+        latest_reviewed_source='the audited consolidated financial statements for the '
+                               'year ended 31 December 2025: operating EBITDA over '
+                               'reported revenue',
+        first_forecast_rate=float(BASE['ebitda_margin'][0]),
+        forecast_path=[float(m) for m in BASE['ebitda_margin']],
+        note=('THE FORECAST OPENS %.1f POINTS ABOVE THE LATEST AUDITED YEAR AND THAT IS '
+              'THE LARGEST SINGLE THING A READER SHOULD INTERROGATE IN IT. FY2023-25 '
+              'printed %.2f, %.2f and %.2f per cent; FY2026 opens at %.2f and the path '
+              'runs to %.2f by FY2030, so every forecast year sits above every audited '
+              'one. On roughly flat revenue — FY2026 at USD %s thousand against a filed '
+              'FY2025 of USD %s — that is a claim about EARNINGS rather than about scale.\n'
+              '\nWHAT DRIVES IT IS FLEET COMPOSITION AND IT IS DISCLOSED RATHER THAN '
+              'ASSUMED: the model prices every vessel on its own terms — each chartered '
+              'vessel at its own contracted rate for exactly the days its own contract '
+              'runs, everything else at the implied spot rate for its class — against a '
+              'running cost per vessel-day solved to reproduce the reported FY2025 result. '
+              'The eleven vessels announced on 7 August 2026, six of them very large crude '
+              'carriers, enter at USD %s thousand of committed and funded cost and earn '
+              'from 2026, and the fleet mix they shift is toward the higher-margin classes.\n'
+              '\nIT IS NOT LEFT AS AN ASSERTION. The step is the single largest lever in '
+              'the study after the beta, the day-rate anchor it depends on is sensitised '
+              'both ways in the contested-judgement record, and the reversion path that '
+              'produces it is the CONSERVATIVE of the two available — the company\'s own '
+              'guidance path is published beside it and is worth more, not less.'
+              % (100 * (BASE['ebitda_margin'][0] - hist_is['ebitda_margin'][2]),
+                 100 * hist_is['ebitda_margin'][0], 100 * hist_is['ebitda_margin'][1],
+                 100 * hist_is['ebitda_margin'][2],
+                 100 * BASE['ebitda_margin'][0], 100 * BASE['ebitda_margin'][4],
+                 format(BASE['revenue'][0], ',.0f'), format(V['rev_fy25'], ',.0f'),
+                 format(ACQ_COST, ',.0f'))),
+    ),
     bridge_record=dict(
         market='AE',
         balance_sheet_date='2026-03-31', latest_disclosed_date='2026-03-31',
@@ -2559,6 +2753,7 @@ OUT = dict(
             'manufactured.',
         ],
     ),
+    ground_up=GROUND_UP,
     assert_log=assert_log,
 )
 OUT['meta']['central'] = central

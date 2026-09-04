@@ -112,9 +112,9 @@
   "column": "C",
   "bump": 0.2,
   "headline": "fv_beta_alt",
-  "base": 7.903387977796292,
-  "bumped": 6.595215048102466,
-  "relative": -0.16552052529484773,
+  "base": 8.018135758598339,
+  "bumped": 6.680975295890461,
+  "relative": -0.16676700207700512,
   "expected_sign": -1,
   "ok": true,
   "why": "the contested alternative construction must reprice its own leg of the model"

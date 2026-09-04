@@ -16,6 +16,15 @@ Run:  python3 docx_biblio.py
 import json, os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, '..'))
+# THE REGISTER KEEPS ITS PROVENANCE; THE DELIVERED DOCUMENT DOES NOT PRINT IT.
+# A rule identifier and a repository path leak by SHAPE rather than by
+# vocabulary, and they leak through this route above all others: an input
+# register's justification legitimately names the rule the input obeys and the
+# file the figure came from, and neither belongs in a document written for an
+# outside reader. Stripped at the BOUNDARY, by a SHARED instrument, so the
+# register loses nothing and no study maintains its own hole.
+from outward_source import outward                              # noqa: E402
 os.chdir(HERE)
 sys.path.insert(0, HERE)
 
@@ -241,6 +250,8 @@ def fval(k, v):
         return f'{v:,.2f} USD'
     if k == 'erp_cds_available':
         return 'none'
+    if isinstance(v, (list, tuple)):
+        return ' · '.join(trim(x, 4) if isinstance(x, float) else str(x) for x in v)
     if isinstance(v, float):
         return trim(v, 3) if abs(v) < 1000 else f'{v:,.0f}'
     return f'{v:,}'
@@ -694,7 +705,8 @@ for lay in LAYERS:
     H2(f'{lay} layer — {len(items):,} inputs')
     rows = [['Input', 'Value', 'Date', 'Source and construction']]
     for k, v in items:
-        rows.append([k.replace('_', ' '), fval(k, v['value']), fdate(v['date']), v['source']])
+        rows.append([k.replace('_', ' '), fval(k, v['value']), fdate(v['date']),
+                     outward(v['source'])])
         rendered += 1
     T(rows, REG_W, aligns=['L', 'R', 'L', 'L'], size=7.4, cell_lr=58)
 

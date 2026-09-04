@@ -9,6 +9,7 @@ import re, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(HERE, '..'))
 from docx import Document
 from docx.shared import Pt, Inches, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -139,28 +140,11 @@ def fmt(v):
 
 
 # THE REGISTER KEEPS ITS PROVENANCE; THE DELIVERED DOCUMENT DOES NOT PRINT IT.
-# An input's justification legitimately names the standing rule it obeys and the file the
-# figure was read from — that is what makes the register auditable from inside. Neither
-# belongs in a document written for an outside reader, and both leak by SHAPE rather than
-# by vocabulary, which is why a hand-maintained word list has never caught them.
-# Stripped here, at the boundary, so the register loses nothing and the reader sees only
-# the source. Anything left dangling ("as [R-X-01] requires" -> "as  requires") would read
-# worse than the original, so the surrounding connective is taken with it.
-_RULE = re.compile(r'\s*[\[(]?R-[A-Z]+-\d+(?:\s+(?:AMENDED|EXTENDED)[^\]]*)?[\])]?'
-                   r'(?:\s+(?:requires|says|refuses|forbids|names))?')
-_PATH = re.compile(r'\s*\b(?:engine|scripts|assets)/[\w./{}-]+')
-_BRACKETED_EMPTY = re.compile(r'\s*[\[(]\s*[\])]')
-
-
-def outward(txt):
-    """The source text as an outside reader receives it."""
-    t = _RULE.sub('', str(txt or ''))
-    t = _PATH.sub('', t)
-    t = _BRACKETED_EMPTY.sub('', t)
-    t = re.sub(r'\s{2,}', ' ', t)
-    t = re.sub(r'\s+([,.;])', r'\1', t)
-    t = re.sub(r'(^|[.;] )\s*(and|the) ', lambda m: m.group(1), t)
-    return t.strip().strip(',').strip()
+# The stripper lived here first and is now engine/outward_source.py, imported rather
+# than copied: one hand-maintained stripper per study is one hole per study, which is
+# [L-084] and the scrub-list finding of the same morning. A rule that one study
+# implements is a rule that one study obeys.
+from outward_source import outward                                  # noqa: E402
 
 
 

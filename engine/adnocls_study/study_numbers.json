@@ -3008,7 +3008,7 @@
    "layer": "Market"
   },
   "beta_composite": {
-   "value": 0.705,
+   "value": 0.69,
    "source": "The share's own returns regressed against an equal-weight composite of the exchange's own listed names instead of the published index \u2014 a basket assembled for this study alone, published for comparison and never adopted, because a hand-built basket is not the market this share is listed against. Reported because the gap between the two is large and is a property of index construction, not of the company: the published index is weighted by size and is dominated by the same large-capitalisation group the subject belongs to",
    "date": "2026-08-07",
    "layer": "Market"
@@ -5488,7 +5488,7 @@
   "erp_mature": 0.0423,
   "ke": 0.09432584,
   "ke_blume": 0.09265055999999999,
-  "ke_beta1": 0.07493349999999999,
+  "ke_beta1": 0.07420299999999999,
   "kd_method1": 0.0445,
   "kd_method2": 0.05694450904059059,
   "kd_method3": 0.0733,
@@ -5614,22 +5614,22 @@
   "ic_terminal": 11440184.528956905
  },
  "dcf_beta_alt": {
-  "wacc": 0.06996112644445039,
-  "wacc_term": 0.06964087906579672,
+  "wacc": 0.06937640216609622,
+  "wacc_term": 0.06905615478744255,
   "g": 0.02,
   "glide": [
-   0.06989707696871966,
-   0.06983302749298892,
-   0.06976897801725819,
-   0.06970492854152745,
-   0.06964087906579672
+   0.0693123526903655,
+   0.06924830321463475,
+   0.06918425373890402,
+   0.06912020426317328,
+   0.06905615478744255
   ],
   "df": [
-   0.9505905646083533,
-   0.888541052836942,
-   0.830591530597373,
-   0.7764678916921792,
-   0.7259145633722702
+   0.9509803913481971,
+   0.88939153654874,
+   0.8318412223511201,
+   0.7780614556100514,
+   0.7278022320209654
   ],
   "fcff": [
    85375.4072683847,
@@ -5639,34 +5639,34 @@
    1438718.642424808
   ],
   "pv": [
-   81157.05659892193,
-   941876.2125883268,
-   1001333.2085543885,
-   1259049.5254162578,
-   1044386.8151313498
+   81190.3382156002,
+   942777.7470472906,
+   1002839.794893625,
+   1261633.50334501,
+   1047102.6392069483
   ],
-  "pv_explicit": 4327802.818289245,
+  "pv_explicit": 4335544.022708475,
   "roic_terminal": 0.11059451594773305,
   "reinvest": 0.18084079331250022,
   "nopat_t1": 1290526.103739388,
-  "tv": 21295882.733008575,
-  "pv_tv": 15458991.415758988,
-  "tv_share": 0.7812782218737508,
+  "tv": 21549718.764734425,
+  "pv_tv": 15683933.416397795,
+  "tv_share": 0.7834337067040833,
   "term_life_disclosed": 25.0,
   "term_gross_base_fy25": 7595070.0,
-  "ev_ops": 19786794.234048232,
+  "ev_ops": 20019477.43910627,
   "jv": 493120,
-  "ev": 20279914.234048232,
+  "ev": 20512597.43910627,
   "net_debt": 3999948,
   "deferred": 301462,
   "hybrid": 1978619,
-  "nci": 358058.4913284842,
+  "nci": 359574.55835093226,
   "nci_book": 272134,
   "nci_navig8": 251985,
   "nci_other_bv": 20149,
-  "equity": 15921907.742719749,
-  "fv_usd": 2.1520457393590973,
-  "fv_aed": 7.903387977796284,
+  "equity": 16153074.880755339,
+  "fv_usd": 2.1832908804896762,
+  "fv_aed": 8.018135758598335,
   "ic_terminal": 11440184.528956905
  },
  "dcf_sustained": {
@@ -5902,9 +5902,9 @@
   },
   "dcf_beta_alt": {
    "bear": 3.039484459774819,
-   "base": 7.903387977796284,
+   "base": 8.018135758598335,
    "bull": 10.177994043579265,
-   "tv_share": 0.7812782218737508
+   "tv_share": 0.7834337067040833
   },
   "relative": {
    "bear": 6.920189426696049,
@@ -5928,7 +5928,7 @@
   },
   "central_beta_alt": {
    "bear": 3.039484459774819,
-   "base": 7.903387977796284,
+   "base": 8.018135758598335,
    "bull": 10.177994043579265
   }
  },
@@ -5940,7 +5940,7 @@
  },
  "retired_blend": 6.736324415141102,
  "central": 5.605378969448954,
- "central_beta_alt": 7.903387977796284,
+ "central_beta_alt": 8.018135758598335,
  "spot": 6.16,
  "beta_framing": {
   "primary": {
@@ -5952,11 +5952,11 @@
    "central": 5.605378969448954
   },
   "alternative": {
-   "beta": 0.705,
+   "beta": 0.69,
    "label": "an equal-weight composite of the same exchange's names",
-   "ke": 0.07493349999999999,
-   "fv": 7.903387977796284,
-   "central": 7.903387977796284
+   "ke": 0.07420299999999999,
+   "fv": 8.018135758598335,
+   "central": 8.018135758598335
   },
   "ci90": [
    0.5855,
@@ -6257,7 +6257,7 @@
  "panel_centre": 6.05533840407787,
  "sens": {
   "betas": [
-   0.705,
+   0.69,
    0.9,
    1.1032,
    1.35,
@@ -6271,10 +6271,10 @@
   ],
   "grid_beta_g": [
    [
-    7.256472712000055,
-    7.552205629563578,
-    7.903387977796284,
-    8.328651590959588
+    7.347689414158981,
+    7.6538046285963945,
+    8.018135758598335,
+    8.460503842511894
    ],
    [
     6.214376836811512,
@@ -6848,6 +6848,11 @@
   "gate_msg": "passes minimum usability gate",
   "regressor": "FTSE ADX General Index",
   "regressor_code": "FADGI",
+  "index_file": "raw_indices/AE/FADGI.csv",
+  "index_asof": "2026-07-24",
+  "market": "AE",
+  "exchange": "ADX",
+  "conforming": true,
   "regressor_file": "raw_indices/AE/FADGI.csv",
   "regressor_asof": "2026-07-24",
   "regressor_conforming": true,
@@ -6883,7 +6888,7 @@
    "beta_used": 1.1032195993700773,
    "basis": "tier-1 own-stock weekly regression against the published index of the share's own exchange, produced by the engine's sanctioned routine",
    "why": "n = 159 weekly observations against the published index of the share's own exchange, resolved by the routine from the exchange the share is listed on, over 2023-06-16 to 2026-07-17. R-squared = 0.181, SE(beta) = 0.315. passes minimum usability gate.",
-   "corroboration": "Cross-checked three ways. (i) Shrunk toward the market on the Blume adjustment the same record reports, the slope is 1.069, which sits inside the regression's own 90% interval of [0.59, 1.62] and moves the estimate toward one. (ii) Regressing against an equal-weight composite of the exchange's own names instead of the published index gives 0.705 (R-squared 0.172), and against the wider ADX+DFM library 0.771 (R-squared 0.183). (iii) The sector prior for a listed tanker owner is 0.9-1.4 and for a contracted, fee-based marine services provider 0.5-0.9; the adopted figure is read against both in the study rather than accepted at face value.",
+   "corroboration": "Cross-checked three ways. (i) Shrunk toward the market on the Blume adjustment the same record reports, the slope is 1.069, which sits inside the regression's own 90% interval of [0.59, 1.62] and moves the estimate toward one. (ii) Regressing against an equal-weight composite of the exchange's own names instead of the published index gives 0.690 (R-squared 0.167), and against the wider ADX+DFM library 0.802 (R-squared 0.196). (iii) The sector prior for a listed tanker owner is 0.9-1.4 and for a contracted, fee-based marine services provider 0.5-0.9; the adopted figure is read against both in the study rather than accepted at face value.",
    "sensitivity_required": [
     0.5,
     0.7,
@@ -6893,31 +6898,31 @@
    ]
   },
   "composite_variant": {
-   "beta": 0.7046672185679277,
-   "r2": 0.17239686601187942,
-   "n": 163,
-   "se": 0.12167952631768053,
+   "beta": 0.6896076795459681,
+   "r2": 0.16723510787354068,
+   "n": 165,
+   "se": 0.12053294380567652,
    "names": 12,
    "note": "Equal-weight composite of the exchange's own listed names, the subject excluded. This was the regressor before the published index was available; disclosed so the effect of the change is visible, not adopted."
   },
   "full_library_variant": {
-   "beta": 0.7713669694474867,
-   "r2": 0.18309914814468886,
+   "beta": 0.8021635680228677,
+   "r2": 0.19569349964370442,
    "n": 165,
-   "se": 0.12761706387805016,
-   "names": 26,
+   "se": 0.1273772066962425,
+   "names": 27,
    "note": "ADX + DFM equal-weight composite; disclosed, not adopted."
   },
   "self_inclusion_bias": {
-   "beta_proxy_including_subject": 0.9073276815884009,
-   "r2_including": 0.2769126767246628,
-   "beta_proxy_excluding_subject": 0.7046672185679277,
-   "r2_excluding": 0.17239686601187942,
-   "note": "The subject is a constituent of the published index it is regressed against, and on a capitalisation-weighted index that cannot be undone. The equal-weight proxy is run both ways to measure how large the resulting self-covariance is: the two figures here differ by 0.203, which is the scale of the upward pull the published-index beta also carries. It is disclosed rather than assumed away, and it works against the study's own conclusion, since removing it would lower the beta further."
+   "beta_proxy_including_subject": 0.89144176460312,
+   "r2_including": 0.27012790292484945,
+   "beta_proxy_excluding_subject": 0.6896076795459681,
+   "r2_excluding": 0.16723510787354068,
+   "note": "The subject is a constituent of the published index it is regressed against, and on a capitalisation-weighted index that cannot be undone. The equal-weight proxy is run both ways to measure how large the resulting self-covariance is: the two figures here differ by 0.202, which is the scale of the upward pull the published-index beta also carries. It is disclosed rather than assumed away, and it works against the study's own conclusion, since removing it would lower the beta further."
   },
   "thin_trading": {
    "flat_frac": 0.0793,
-   "ae_panel_median": 0.1282,
+   "ae_panel_median": 0.1274,
    "ratio": 0.62,
    "note": "Share of sessions closing unchanged, against the median of the UAE library. A high ratio is the documented mechanism for a downward-biased contemporaneous beta."
   },
@@ -7025,8 +7030,8 @@
    "adopted": "the published index of the exchange this company is listed on",
    "alternative": "an equal-weight composite of the same exchange's names",
    "fv_adopted": 5.605378969448954,
-   "fv_alternative": 7.903387977796284,
-   "effect": 0.40996496773406205,
+   "fv_alternative": 8.018135758598335,
+   "effect": 0.4304359798507203,
    "direction": "the adopted side is LOWER",
    "note": "THE SINGLE LARGEST JUDGEMENT IN THIS STUDY, and the beta rule decides it rather than a preference: the regressor is the published index of the exchange the stock is listed on, and a constituent composite is a coverage artefact rather than a market. The two differ because a published index is weighted by size and is dominated by the same large-capitalisation group this company belongs to, while an equal-weight composite gives the exchange's smallest names the same say as its largest. The alternative is published rather than buried because a difference of this size is a fact about index construction that a reader is entitled to see."
   },
@@ -7071,6 +7076,22 @@
    "note": "the anchor is the single quantity the whole reversion path hangs on, and a ten per cent move in it is well inside the span the disclosed quarterly rates have printed."
   }
  ],
+ "forecast_anchor": {
+  "rate_name": "EBITDA margin, operating basis",
+  "latest_reviewed_period": "FY2025, audited",
+  "latest_reviewed_date": "2025-12-31",
+  "latest_reviewed_rate": 0.2927707754531797,
+  "latest_reviewed_source": "the audited consolidated financial statements for the year ended 31 December 2025: operating EBITDA over reported revenue",
+  "first_forecast_rate": 0.4168605305474104,
+  "forecast_path": [
+   0.4168605305474104,
+   0.4402016233299264,
+   0.4363633922059146,
+   0.42037308990155137,
+   0.3978307077543124
+  ],
+  "note": "THE FORECAST OPENS 12.4 POINTS ABOVE THE LATEST AUDITED YEAR AND THAT IS THE LARGEST SINGLE THING A READER SHOULD INTERROGATE IN IT. FY2023-25 printed 31.29, 31.97 and 29.28 per cent; FY2026 opens at 41.69 and the path runs to 39.78 by FY2030, so every forecast year sits above every audited one. On roughly flat revenue \u2014 FY2026 at USD 5,003,932 thousand against a filed FY2025 of USD 5,016,112 \u2014 that is a claim about EARNINGS rather than about scale.\n\nWHAT DRIVES IT IS FLEET COMPOSITION AND IT IS DISCLOSED RATHER THAN ASSUMED: the model prices every vessel on its own terms \u2014 each chartered vessel at its own contracted rate for exactly the days its own contract runs, everything else at the implied spot rate for its class \u2014 against a running cost per vessel-day solved to reproduce the reported FY2025 result. The eleven vessels announced on 7 August 2026, six of them very large crude carriers, enter at USD 1,300,000 thousand of committed and funded cost and earn from 2026, and the fleet mix they shift is toward the higher-margin classes.\n\nIT IS NOT LEFT AS AN ASSERTION. The step is the single largest lever in the study after the beta, the day-rate anchor it depends on is sensitised both ways in the contested-judgement record, and the reversion path that produces it is the CONSERVATIVE of the two available \u2014 the company's own guidance path is published beside it and is worth more, not less."
+ },
  "bridge_record": {
   "market": "AE",
   "balance_sheet_date": "2026-03-31",
@@ -7308,6 +7329,18 @@
    "the perpetual capital securities are WEIGHTED in the cost of capital at their own coupon cost and DEDUCTED in the equity bridge. Those are the two halves of one treatment: a claim deducted from enterprise value must also be allowed to price that value, and weighting only equity and debt subtracts a cheap tranche of capital without letting it earn its place.",
    "the schedule is FLAT by construction of the peg [R-COC-01]. A pegged market is already terminal, so no disinflation glide applies and none is manufactured."
   ]
+ },
+ "ground_up": {
+  "ticker": "ADNOCLS",
+  "lines": 7,
+  "share_by_level": {
+   "unit": 0.5220918589567931,
+   "derived": 0,
+   "segment": 0.47790814104320695,
+   "topdown": 0
+  },
+  "unit_share": 0.5220918589567931,
+  "standard_version": "2026.09.01"
  },
  "assert_log": [
   {
@@ -10564,6 +10597,21 @@
    "check": "every expert range brackets its own base",
    "passed": true,
    "detail": ""
+  },
+  {
+   "check": "the forecast is built to the finest sourced level [SIGCM clause 2]",
+   "passed": true,
+   "detail": "7 revenue lines covering 100.0% of revenue; 3 built on a DISCLOSED physical unit (52.2% of revenue), 4 at the disclosed segment with the gap stated"
+  },
+  {
+   "check": "the external-reader scrub is MEASURED on the delivered documents, not attested",
+   "passed": true,
+   "detail": "51 patterns scanned across 356,184 characters of delivered text, 0 hits; column audit and figure canvases clean"
+  },
+  {
+   "check": "the three standing gates are called in this study's own code [R-ENF-02]",
+   "passed": true,
+   "detail": "assert_ground_up, assert_beta_provenance, assert_sigcm and assert_model_study"
   }
  ]
 }

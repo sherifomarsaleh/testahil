@@ -11,7 +11,7 @@
    "adopted": "the published index of the exchange this company is listed on",
    "alternative": "an equal-weight composite of the same exchange's names",
    "value_adopted": 5.605378969448954,
-   "value_alternative": 7.903387977796284,
+   "value_alternative": 8.018135758598335,
    "why": "THE SINGLE LARGEST JUDGEMENT IN THIS STUDY, and the beta rule decides it rather than a preference: the regressor is the published index of the exchange the stock is listed on, and a constituent composite is a coverage artefact rather than a market. The two differ because a published index is weighted by size and is dominated by the same large-capitalisation group this company belongs to, while an equal-weight composite gives the exchange's smallest names the same say as its largest. The alternative is published rather than buried because a difference of this size is a fact about index construction that a reader is entitled to see."
   },
   {
