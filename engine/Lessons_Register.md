@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**220 lessons**, of which 189 bind on every study, 24 on a class of company, and 7 on a single name.
+**222 lessons**, of which 191 bind on every study, 24 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 145 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 147 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1968,6 +1968,26 @@ A study broken enough to be unreadable by one instrument is usually broken in th
 > **What it cost, or how we know.** The terminal-growth census re-expressed every study's terminal growth as its real rate and found two names assuming a real rate away from zero without stating it, PHAR at -1.87% and RIYADHCABLE at +1.96%. ELEC assumes THE SAME -1.87% on a terminal that also carries the retired g x IC construction, a terminal return on capital 583bp below its own cost of capital, and an invested-capital base resting on a typed 0.05-of-revenue constant — and the census could not see any of it, because ELEC's numbers file carries no meta block at all, so its market resolved to nothing and it landed in the unreadable bucket. THE WORST INSTANCE OF THE THING BEING MEASURED WAS INVISIBLE TO THE INSTRUMENT MEASURING IT, and the reason it was invisible is a symptom of the same neglect.
 
 > **What would overturn it.** A census whose unreadable entries, once opened, turn out no worse than its readable ones — which would make the bucket a coverage problem rather than a sampling one.
+
+### L-300 · A BUILDER THAT OTHER FILES READ BY CELL ADDRESS MUST PUBLISH WHERE ITS ROWS LANDED. Only the builder knows; every other file carries a guess that was true once.
+
+Insert a row into a workbook and every check naming a cell below it goes on reading confidently from the wrong one. Nothing errors — the cells exist and hold numbers — so the failure arrives as a CONFIDENT WRONG ANSWER rather than a crash, and it arrives dressed as a finding about the model. The fix is not care: it is that the builder writes its row map beside the workbook and the checks resolve through it, so the map has one author and moving a row moves everything that reads it.
+
+**Applies to:** every study  ·  *Learned from:* found while building, AIRARABIA, 04-Sep-2026
+
+> **What it cost, or how we know.** Rebuilding a terminal block on the sanctioned construction inserted five rows. Five other sheets referenced the discounting sheet by address, and so did both study-local checks: the recalculation gate reported 25 formula cells disagreeing with the model, every one of them the CHECK looking one row too high, while the workbook itself was correct and had asserted all 663 of its own formulas against recorded expectations. It is [L-067] for the third time in one session — a check that names a cell by address moves with the re-issue — and the first two fixes were both re-pointings of the individual reference.
+
+> **What would overturn it.** A workbook nothing else reads by address, where the map is a cost with no benefit. The moment a second file names a cell, it applies.
+
+### L-301 · A CHECK THAT READS A FIELD NAME CAN ACCUSE AS EASILY AS IT CAN MISS, AND A FALSE ACCUSATION IS THE MORE EXPENSIVE ERROR, because the author fixes something that was not broken.
+
+[R-MACRO-01 AMENDED] records this from one side: a check reading what a process DECLARES is not checking what it DOES, so work hides where the check does not reach. The other side is that the same check can fire on a study doing exactly the right thing and SAYING SO — and the natural remedy, deleting the honest sentence, makes the record worse while turning the check green. Where a check reads prose, its MESSAGE must distinguish the two failures it can produce; where it reads a key, the key must be named for what it holds.
+
+**Applies to:** every study  ·  *Learned from:* found while building, terminal_growth_census.py and AIRARABIA, 04-Sep-2026
+
+> **What it cost, or how we know.** Three instances in one afternoon. A terminal-growth census asked only whether a REAL-GROWTH INPUT KEY existed and printed 'not stated' for every study without one — false of a study whose own justification said 'about 0.5pp real' in as many words; re-pointed to three states, because a SILENT study owes a disclosure and a PROSE-ONLY one owes the arithmetic moved into its register. A lens-design gate matched macro dials against a driver field that named them only to say they were HELD; a regex cutting the text at a holding word was tried and BACKED OUT (the dial usually precedes the verb), and what shipped instead was a sharper message naming the field the sentence belongs in. And an artefact-currency gate refused a row map because a field called 'central' held the integer 8 — correct on the name it was given, and a naming defect before it was a gate problem.
+
+> **What would overturn it.** A check whose false positives are as cheap to resolve as its true positives — where firing on correct work costs only a glance, the message matters less.
 
 
 ---

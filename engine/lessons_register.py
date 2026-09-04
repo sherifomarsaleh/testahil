@@ -4391,6 +4391,57 @@ LESSONS = [
       "A census whose unreadable entries, once opened, turn out no worse than its readable "
       "ones — which would make the bucket a coverage problem rather than a sampling one."),
 
+    L("L-300", "ALL", None,
+      "A BUILDER THAT OTHER FILES READ BY CELL ADDRESS MUST PUBLISH WHERE ITS ROWS "
+      "LANDED. Only the builder knows; every other file carries a guess that was true "
+      "once.",
+      "Insert a row into a workbook and every check naming a cell below it goes on "
+      "reading confidently from the wrong one. Nothing errors — the cells exist and hold "
+      "numbers — so the failure arrives as a CONFIDENT WRONG ANSWER rather than a crash, "
+      "and it arrives dressed as a finding about the model. The fix is not care: it is "
+      "that the builder writes its row map beside the workbook and the checks resolve "
+      "through it, so the map has one author and moving a row moves everything that "
+      "reads it.",
+      "AIRARABIA, 04-Sep-2026",
+      "build",
+      "Rebuilding a terminal block on the sanctioned construction inserted five rows. "
+      "Five other sheets referenced the discounting sheet by address, and so did both "
+      "study-local checks: the recalculation gate reported 25 formula cells disagreeing "
+      "with the model, every one of them the CHECK looking one row too high, while the "
+      "workbook itself was correct and had asserted all 663 of its own formulas against "
+      "recorded expectations. It is [L-067] for the third time in one session — a check "
+      "that names a cell by address moves with the re-issue — and the first two fixes "
+      "were both re-pointings of the individual reference.",
+      "A workbook nothing else reads by address, where the map is a cost with no "
+      "benefit. The moment a second file names a cell, it applies."),
+
+    L("L-301", "ALL", None,
+      "A CHECK THAT READS A FIELD NAME CAN ACCUSE AS EASILY AS IT CAN MISS, AND A FALSE "
+      "ACCUSATION IS THE MORE EXPENSIVE ERROR, because the author fixes something that "
+      "was not broken.",
+      "[R-MACRO-01 AMENDED] records this from one side: a check reading what a process "
+      "DECLARES is not checking what it DOES, so work hides where the check does not "
+      "reach. The other side is that the same check can fire on a study doing exactly "
+      "the right thing and SAYING SO — and the natural remedy, deleting the honest "
+      "sentence, makes the record worse while turning the check green. Where a check "
+      "reads prose, its MESSAGE must distinguish the two failures it can produce; where "
+      "it reads a key, the key must be named for what it holds.",
+      "terminal_growth_census.py and AIRARABIA, 04-Sep-2026",
+      "build",
+      "Three instances in one afternoon. A terminal-growth census asked only whether a "
+      "REAL-GROWTH INPUT KEY existed and printed 'not stated' for every study without "
+      "one — false of a study whose own justification said 'about 0.5pp real' in as many "
+      "words; re-pointed to three states, because a SILENT study owes a disclosure and a "
+      "PROSE-ONLY one owes the arithmetic moved into its register. A lens-design gate "
+      "matched macro dials against a driver field that named them only to say they were "
+      "HELD; a regex cutting the text at a holding word was tried and BACKED OUT (the "
+      "dial usually precedes the verb), and what shipped instead was a sharper message "
+      "naming the field the sentence belongs in. And an artefact-currency gate refused a "
+      "row map because a field called 'central' held the integer 8 — correct on the name "
+      "it was given, and a naming defect before it was a gate problem.",
+      "A check whose false positives are as cheap to resolve as its true positives — "
+      "where firing on correct work costs only a glance, the message matters less."),
+
 ]
 
 
