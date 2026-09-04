@@ -21,10 +21,42 @@ D = json.load(open('study_numbers.json'))
 BETA = json.load(open('beta_result.json'))
 STK = json.load(open('strike_result.json'))
 S0 = json.load(open('step0_result.json'))
+# [R-CAL-02] WHAT A READER IS SHOWN IS THE BAND RECORD, generated from the committed
+# panels and read here rather than re-derived: how many resolved three-month forecasts
+# this name's history holds, how often the price finished inside the band, the count
+# always printed beside the percentage, and a flag ONLY when a two-sided binomial test
+# earns one. The skill verdict is retired outright and reaches no reader, by its name or
+# by a description of it.
+def _band_record(tk):
+    """This name's published band record, read from the site's own generated block.
+
+    Handed to node and read off the OBJECT the page renders [R-ENF-03], never matched out
+    of the text with a regular expression: a JavaScript object literal takes the LAST
+    declaration of a duplicated key and re.search takes the FIRST, and that difference has
+    already put a support level above its own close on a live page.
+    """
+    import subprocess
+    root = os.path.abspath(os.path.join(HERE, '..', '..'))
+    js = ("const fs=require('fs');"
+          "const src=fs.readFileSync(%r,'utf8');"
+          "eval(src.replace(/^\\s*(const|var|let)\\s+/gm,'globalThis.'));"
+          "process.stdout.write(JSON.stringify(globalThis.BANDS[%r]));"
+          % (os.path.join(root, 'assets', 'data.js'), tk))
+    out = subprocess.run(['node', '-e', js], capture_output=True, text=True, check=True)
+    rec = json.loads(out.stdout)
+    assert rec and rec.get('n'), 'no published band record for %s' % tk
+    return rec
+
+
+BAND = _band_record('SCEM')
 M, H, F = D['meta'], D['history'], D['forecast']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sensitivity']
 TR, PE, SHT, DISP = D['terminal_reconciliation'], D['peers'], D['share_triangulation'], D['disposal']
 EXP, LR, GDV = D['experts'], D['lens_ranges'], D['growth_destroys_value']
+LREC = D['lens_record']        # [R-LENS-03] the primary and its cross-checks
+MACRO = D['macro_live']        # [R-MACRO-01] the house path's own figures
+LKEYS = ['DCF (cash flow)', 'Relative multiples',
+         'Asset / replacement cost', 'Book value (disclosed floor)']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 SPOT, SH = M['spot'], M['shares_mn']
 YH, YF = ['FY2023', 'FY2024', 'FY2025'], F['years']
@@ -54,27 +86,44 @@ box([('What this is. ', 'An independent valuation of Sinai Cement, an educationa
      ('The company in one line. ', 'Two cement lines at El Hassana in North Sinai, about '
       '3.8 million tonnes a year of capacity, 77.6% owned by the French Vicat group, with '
       'a 22.4% free float and essentially no debt.'),
-     ('Where the value lands. ', f'Four lenses put the shares between EGP {n2(LN["low"])} '
-      f'and EGP {n2(LN["high"])}, weighting to a central EGP {n2(LN["central"])} against a '
-      f'market price of EGP {n2(SPOT)} — {sg(LN["central"]/SPOT-1)}.')])
+     ('Where the value lands. ',
+      f'The cash-flow lens is the answer: EGP {n2(LN["central"])} a share against a market '
+      f'price of EGP {n2(SPOT)}, {sg(LN["central"]/SPOT-1)}. Flexing the operating margin '
+      f'down to the lowest the company has ever filed takes it to EGP '
+      f'{n2(LREC["primary"]["range"]["low"])}, and the forecast opens above the best year '
+      f'it has filed, so essentially the whole of that range is downside. The other lenses '
+      f'are published beside it rather than averaged into it: replacement cost EGP '
+      f'{n2(LN["values"]["Asset / replacement cost"])}, an enterprise multiple EGP '
+      f'{n2(LN["values"]["Relative multiples"])}, and a disclosed book floor of EGP '
+      f'{n2(LN["values"]["Book value (disclosed floor)"])}.')])
 
 # ---- summary valuation table (gate item i) ----------------------------------
 H2('Summary valuation table')
-rows = [['Lens', 'Value per share (EGP)', 'Weight', 'Versus spot', 'Terminal value % of EV']]
-for k in LN['weights']:
-    rows.append([k, n2(LN['values'][k]), pc(LN['weights'][k], 0),
+ROLE = {'DCF (cash flow)': 'PRIMARY — this is the central',
+        'Relative multiples': 'cross-check',
+        'Asset / replacement cost': 'cross-check',
+        'Book value (disclosed floor)': 'disclosed floor, never weighted'}
+rows = [['Lens', 'Value per share (EGP)', 'Role', 'Versus spot', 'Terminal value % of EV']]
+for k in LKEYS:
+    rows.append([k, n2(LN['values'][k]), ROLE[k],
                  sg(LN['values'][k] / SPOT - 1),
                  pc(DCF['tv_share']) if k == 'DCF (cash flow)' else '—'])
-rows.append(['Weighted central fair value', n2(LN['central']), '100%',
+rows.append(['Central fair value', n2(LN['central']), 'the primary lens, not a blend',
              sg(LN['central'] / SPOT - 1), '—'])
-rows.append(['Range across the four lenses', f'{n2(LN["low"])} – {n2(LN["high"])}', '—',
-             f'{sg(LN["low"]/SPOT-1)} to {sg(LN["high"]/SPOT-1)}', '—'])
+_pr = LREC['primary']['range']
+rows.append(['Range on the primary lens',
+             f'{n2(_pr["low"])} – {n2(_pr["high"])}',
+             'the operating margin across its own filed span',
+             f'{sg(_pr["low"]/SPOT-1)} to {sg(_pr["high"]/SPOT-1)}', '—'])
 rows.append(['Market price, 2 September 2026', n2(SPOT), '—', '—', '—'])
 rows.append(['Vicat tender offer, July 2025 (reference only)', n2(IN['mto_price']), '—',
              sg(IN['mto_price'] / SPOT - 1), '—'])
 table(rows, [2.55, 1.35, 0.72, 1.02, 1.36], band_rows={5})
-caption('Terminal value as a percentage of enterprise value is shown beside the cash-flow '
-        'lens, and again in the enterprise-to-equity bridge in section 1.1.')
+caption('The central IS the cash-flow lens. The other reads are cross-checks published '
+        'beside it and are not averaged into it: where several methods disagree the '
+        'disagreement is the output, and a weighted blend of them is a new method with '
+        'weights nobody has tested. Terminal value as a percentage of enterprise value is '
+        'shown beside the cash-flow lens, and again in the bridge in section 1.1.')
 
 figure('fig1_football.png', 6.9,
        'Figure 1 — Each lens as a range, with its base case marked, against the market price.')
@@ -112,12 +161,14 @@ figure('fig7_bridge.png', 6.7,
 
 # ---- 1.1 --------------------------------------------------------------------
 H2('1.1  The cash-flow model — the primary lens, with the full waterfall')
-# THE WEIGHT WAS TYPED AT 45% AND THE SUMMARY TABLE PUBLISHES 48%. Read from the lens
-# record, so the two cannot disagree again.
-P(f'The discounted cash-flow model is the primary lens and carries '
-  f'{pc(LN["weights"]["DCF (cash flow)"], 0)} of the weight. It '
-  'runs on a volume-and-price build off one plant, discounts each year at that year\'s own '
-  'cost of capital, and capitalises a terminal value at a separately built terminal rate.')
+P('The discounted cash-flow model is the primary lens, and for this company it IS the '
+  'answer rather than a share of one. It runs on a volume-and-price build off one plant, '
+  'discounts each year at that year\'s own cost of capital, and capitalises a terminal '
+  'value at a separately built terminal rate. An earlier edition averaged it with three '
+  'other reads at weights that were typed rather than tested — and two of those three '
+  'value a cement plant off reported accounting earnings and historical-cost book, which '
+  'for an asset commissioned in 1997 and carried through a five-fold devaluation measures '
+  'the accounting rather than the plant.')
 # THE PRINTED WATERFALL WAS NOT THE MODEL'S WATERFALL. It ran NOPAT, plus depreciation,
 # less capital expenditure, less the change in working capital, to free cash flow — and the
 # model computes free cash flow as NOPAT LESS REINVESTMENT, with the first year scaled to
@@ -188,9 +239,10 @@ P('Capital expenditure is the company\'s own run rate from its cash-flow stateme
   'charged depreciation at 4.6% of revenue falling to 4.2%, against a company that filed '
   '1.35%.', size=9.5, italic=True, color=GREY)
 
-P('The discount rate is not one number. Egypt\'s cost of capital today reflects a policy '
-  'rate of 19.50% and a ten-year government yield of 22.31%, neither of which the central '
-  'bank itself expects to persist — its own published medium-term inflation target is 5%. '
+P(f'The discount rate is not one number. Egypt\'s cost of capital today reflects a policy '
+  f'rate of {pc(MACRO["policy_rate"], 2)} and a ten-year government yield of '
+  f'{pc(IN["rf"], 2)}, neither of which the central bank itself expects to persist — its '
+  f'own published target is {pc(MACRO["terminal_inflation"], 0)}. '
   'Applying today\'s rate to a perpetuity would assert that Egypt never normalises. Each '
   'forecast year is therefore discounted at its own forward rate, sliding from the '
   'explicit-window cost of capital to the terminal one, and the terminal value is '
@@ -360,33 +412,57 @@ for lab, v in [('Normalised EBITDA (EGP mn)', n0(LN['ebitda_norm'])),
                ('Justified price/earnings', f"{IN['pe_just']:.1f}x")]:
     rows.append([lab, v])
 lens_tail(rows, LN['earn_norm'] * IN['pe_just'],
-          LN['values']['Normalised earnings'], 'Capitalised earnings (EGP mn)')
+          LREC['retired']['normalised_earnings']['value'], 'Capitalised earnings (EGP mn)')
 table(rows, [4.45, 2.30], band_rows={11})
-caption('Table 7 — Normalised earnings power, on a mid-cycle margin struck between the '
+caption('Table 7 — Normalised earnings power. THIS READ IS RETIRED AS A LENS FOR THIS '
+        'company and is shown for the record rather than carried into the answer: on a '
+        'single-asset plant whose margin is an output of how hard the kilns run against a '
+        'fixed cost stack, there is no mid-cycle earnings level the cash-flow lens does '
+        'not already carry. It rests on a mid-cycle margin struck between the '
         'FY2024 outturn and the FY2025 peak. The income the cash pile earns is left out of '
         'the capitalised figure on purpose: the cash itself is added at face below, and '
         'capitalising its income as well would pay for the same asset twice.')
 
 # ---- 1.5 --------------------------------------------------------------------
-H2('1.5  Synthesis — four lenses, one field')
-P('The four lenses do not agree, and the spread between them is the honest output rather '
-  'than a problem to be smoothed. The cash-flow and normalised-earnings lenses, which both '
-  'ask what the business earns, land in the middle fifties. The relative lens lands in the '
-  'mid sixties. The asset lens, which asks only what the plant is worth, lands near ninety. '
-  'The market price of EGP 79.00 sits between the earnings answers and the asset answer.')
-rows = [['Lens', 'Bear', 'Base', 'Bull', 'Weight', 'What it is measuring']]
+H2('1.5  Synthesis — one answer, and the reads that disagree with it')
+P(f'The lenses do not agree, and the disagreement is PUBLISHED rather than smoothed. The '
+  f'cash-flow lens is the answer for this class of company, at EGP {n2(LN["central"])}. '
+  f'The replacement-cost read, which asks only what the plant itself is worth, lands at '
+  f'EGP {n2(LN["values"]["Asset / replacement cost"])}. The enterprise multiple lands at '
+  f'EGP {n2(LN["values"]["Relative multiples"])} and is the weakest of them, because the '
+  f'Egyptian listed peer set is two names and neither publishes an EBITDA series this '
+  f'study could measure a multiple from. Book value is a disclosed floor at EGP '
+  f'{n2(LN["values"]["Book value (disclosed floor)"])} and is never weighted into '
+  f'anything. The market price of EGP {n2(SPOT)} sits between the multiple and the '
+  f'cash-flow answer.')
+P('An earlier edition averaged four reads at typed weights and published the average. '
+  f'That blend would read EGP {n2(LREC["retired"]["blend_value"])} here. It is retired: '
+  'weights that were chosen, written down and inherited are free parameters that have '
+  'never cleared an out-of-sample test, and a number produced by averaging several '
+  'methods is not more robust than the best of them — it is a new method, importing every '
+  'weakness of the weakest lens at whatever weight somebody typed. A normalised-earnings '
+  f'read (EGP {n2(LREC["retired"]["normalised_earnings"]["value"])}) carried '
+  f'{pc(LREC["retired"]["blend"]["Normalised earnings"], 0)} of that blend and is dropped '
+  'entirely: on a single-asset plant whose margin is an output of how hard the kilns run, '
+  'there is no mid-cycle earnings level the cash-flow lens does not already carry.')
+rows = [['Lens', 'Bear', 'Base', 'Bull', 'Role', 'What it is measuring']]
 WHAT = {'DCF (cash flow)': 'What the cash flows are worth, discounted',
-        'Relative multiples': 'What the market pays peers for the same EBITDA',
-        'Normalised earnings': 'What the business earns through the cycle',
-        'Asset / replacement cost': 'What the plant itself is worth'}
-for k in LN['weights']:
+        'Relative multiples': 'What an enterprise multiple pays for the same EBITDA',
+        'Asset / replacement cost': 'What the plant itself is worth',
+        'Book value (disclosed floor)': 'What the accounts carry the plant at'}
+for k in LKEYS:
     rows.append([k, n2(LR[k]['bear']), n2(LR[k]['base']), n2(LR[k]['bull']),
-                 pc(LN['weights'][k], 0), WHAT[k]])
-rows.append(['Weighted central', n2(LR['Weighted central']['bear']), n2(LN['central']),
-             n2(LR['Weighted central']['bull']), '100%', 'The blend'])
-table(rows, [1.62, 0.72, 0.72, 0.72, 0.78, 2.39], band_rows={5})
-caption('Table 8 — The four lenses side by side. Weighting is applied to the base cases; '
-        'the ranges are shown so the reader can weight them differently.')
+                 ROLE[k], WHAT[k]])
+rows.append(['MEMO — the retired four-lens blend', '—',
+             n2(LREC['retired']['blend_value']), '—', 'retired',
+             'What the previous architecture would have printed'])
+table(rows, [1.62, 0.72, 0.72, 0.72, 0.78, 2.39], band_rows={1})
+caption('Table 8 — The lenses side by side. NOTHING IS WEIGHTED: the cash-flow read is the '
+        'central and the others are cross-checks. Its bear corner flexes the operating '
+        'margin down to the lowest the company has filed and holds the macro path still; '
+        'its bull corner is the base case, because the forecast already opens above the '
+        'best margin the company has ever filed and this driver has no upside left '
+        'against its own record.')
 
 # ---- 1.6 --------------------------------------------------------------------
 H2('1.6  The drivers — a bottom-up build from kilns and tonnes')
@@ -477,7 +553,8 @@ figure('fig8_sector.png', 6.6,
 
 # ---- 1.8 --------------------------------------------------------------------
 H2('1.8  Macro and country — rates, the pound, and the sourced cost of capital')
-P('The cost of equity starts from the Egyptian ten-year government yield of 22.31%. That '
+P(f'The cost of equity starts from the Egyptian ten-year government yield of '
+  f'{pc(IN["rf"], 2)}. That '
   'yield is high largely because of Egypt\'s own sovereign default risk, so charging a '
   'country equity premium on top of it without adjustment would count that risk twice. The '
   'sovereign default spread is therefore netted out of the risk-free rate before the '
@@ -568,14 +645,18 @@ P('Two structural features matter more than any level. The first is liquidity: t
 # ============================== 3 ============================================
 H1('3  A probabilistic price map')
 box([('Read this before the chart. ',
-      'The distribution below is ILLUSTRATIVE ONLY and is materially too wide. Measured '
-      'against a random-walk benchmark over the last five years, this security\'s '
-      f'distribution scores {sg(S0["skill_norm"])} — worse than the benchmark, not better '
-      f'— and covers {pc(S0["cov50"], 0)} of outcomes inside a band meant to hold 50%. The '
-      'cause is diagnosed and specific: on a security that does not trade every session, '
-      'the benchmark\'s own volatility estimate collapses during quiet stretches, and the '
-      'band drawn here stays wide enough for the jumps that follow. It should not be read '
-      'with the confidence attached to a liquid name.')])
+      f'Over {BAND["n"]} resolved three-month forecasts on this security the price '
+      f'finished inside the 90% band {pc(BAND["c90"], 0)} of the time, and inside the '
+      f'middle 50% band {pc(BAND["c50"], 0)} of the time. The wide band is doing what it '
+      f'promises; the middle band has been catching rather more than half, so the map '
+      f'below is better read as a rough guide to where the price could plausibly be than '
+      f'as a fine probability statement. The band this map draws runs about '
+      f'{BAND["width"]:.2f} times as wide as a simple carry-anchored benchmark\'s, which '
+      f'is what real Egyptian tail risk costs and is published rather than tuned away. '
+      f'The cause of the extra width on THIS name is specific: it prints an unchanged '
+      f'close on {pc(S0["flat_frac"], 0)} of sessions, and on a security that does not '
+      f'trade every session a volatility estimate collapses during quiet stretches and '
+      f'the band stays wide enough for the jumps that follow.')])
 figure('fig4_fan.png', 6.9, 'Figure 6 — The three-month cone. Illustrative only.')
 rows = [['Horizon', '5th', '25th', 'Median', '75th', '95th', 'Above spot']]
 for tag in ('1M', '3M'):
@@ -589,24 +670,34 @@ figure('fig6_dist.png', 6.4, 'Figure 7 — The three-month outcome distribution.
 
 # ============================== 4 ============================================
 H1('4  Comparison of the lenses')
-P('Set against each other, the four lenses describe a company whose plant is worth more '
-  'than its cash flows justify. That is the ordinary condition of a good asset in a bad '
-  'market, and it is worth saying plainly rather than resolving by arithmetic.')
-rows = [['Lens', 'Value (EGP)', 'Versus spot', 'What would have to be true for it to be right']]
-rows.append(['Discounted cash flow', n2(LN['values']['DCF (cash flow)']),
-             sg(LN['values']['DCF (cash flow)'] / SPOT - 1),
-             'Prices normalise in real terms as dormant capacity restarts'])
-rows.append(['Relative multiples', n2(LN['values']['Relative multiples']),
-             sg(LN['values']['Relative multiples'] / SPOT - 1),
-             'Peers stay near 5x EBITDA and the mid-cycle margin holds'])
-rows.append(['Normalised earnings', n2(LN['values']['Normalised earnings']),
-             sg(LN['values']['Normalised earnings'] / SPOT - 1),
-             '2025 was a cyclical peak, not a new operating level'])
-rows.append(['Asset / replacement cost', n2(LN['values']['Asset / replacement cost']),
-             sg(LN['values']['Asset / replacement cost'] / SPOT - 1),
-             'Capacity is scarce enough that build cost anchors value'])
-table(rows, [1.62, 0.98, 0.85, 3.30])
-caption('Table 16 — What each lens is betting on.')
+P('Set against each other the reads describe a company whose cash flows, on the operating '
+  'improvement its own filings have already printed, are worth more than either the plant '
+  'or an enterprise multiple would pay for. Each is stated with the condition that has to '
+  'hold for it to be the right one, so a reader who rejects a condition can see '
+  'immediately which answer goes with it.')
+rows = [['Lens', 'Role', 'Value (EGP)', 'Versus spot',
+         'What would have to be true for it to be right']]
+COND = {
+    'DCF (cash flow)':
+        'Utilisation keeps climbing toward 79% and the real price spread per tonne holds',
+    'Relative multiples':
+        'An enterprise multiple near 4x on a normalised margin is what this asset is worth',
+    'Asset / replacement cost':
+        'Capacity is scarce enough that build cost, not cash flow, anchors value',
+    'Book value (disclosed floor)':
+        'Nothing — it is a floor, and a 1997 plant carried through a five-fold devaluation '
+        'is worth more than its historic cost whatever else is true',
+}
+for k in LKEYS:
+    rows.append([k, ROLE[k], n2(LN['values'][k]), sg(LN['values'][k] / SPOT - 1), COND[k]])
+rows.append(['MEMO — normalised earnings, retired for this class', 'retired',
+             n2(LREC['retired']['normalised_earnings']['value']),
+             sg(LREC['retired']['normalised_earnings']['value'] / SPOT - 1),
+             'FY2025 was a cyclical peak rather than a new operating level — a claim the '
+             'cash-flow lens tests directly through utilisation and price'])
+table(rows, [1.50, 0.92, 0.78, 0.72, 2.83])
+caption('Table 16 — What each lens is betting on. The cash-flow read is the answer and the '
+        'others are cross-checks; none of them is weighted into it.')
 
 # ============================== 5 ============================================
 H1('5  Catalysts to watch')
@@ -643,18 +734,20 @@ P('The distribution in section 3 is too wide to support fine probability stateme
   'the honest way to use it is as a rough map of where the price could plausibly be, not '
   'as a calibrated forecast. Read against the fundamental work, three zones are worth '
   'naming.')
+_ASSET = LN['values']['Asset / replacement cost']
 rows = [['Zone', 'Range (EGP)', 'What it would mean']]
-rows.append(['Below the earnings lenses', f'under {n2(LN["values"]["Normalised earnings"])}',
-             'The market has come to agree that 2025 was a peak and that new supply '
-             'compresses margins from here'])
-rows.append(['Between the earnings and asset lenses',
-             f'{n2(LN["values"]["Normalised earnings"])} – '
-             f'{n2(LN["values"]["Asset / replacement cost"])}',
-             'Where the price sits today: the plant is valued above its cash flows but '
-             'below its build cost'])
-rows.append(['Above the asset lens', f'over {n2(LN["values"]["Asset / replacement cost"])}',
-             'The market is paying replacement cost or more for capacity in a market that '
-             'has a structural surplus of it'])
+rows.append(['Below the replacement-cost read', f'under {n2(_ASSET)}',
+             'The plant is valued below what it would cost to build. Where the price sits '
+             'today, and the condition for it is that the operating improvement the '
+             'company has already filed does not hold'])
+rows.append(['Between replacement cost and the cash-flow read',
+             f'{n2(_ASSET)} – {n2(LN["central"])}',
+             'The market has come to price the utilisation and margin the filings '
+             'already show, but not the whole of the forecast path'])
+rows.append(['Above the cash-flow read', f'over {n2(LN["central"])}',
+             'The market is paying for more than this study forecasts — a faster '
+             'utilisation ramp, a wider real spread per tonne, or a lower cost of capital '
+             'than the central bank\'s own easing path implies'])
 table(rows, [2.05, 1.45, 3.25])
 caption('Table 17 — Zones read against the fundamental work rather than against the '
         'simulated distribution.')
@@ -706,10 +799,13 @@ for head, body in [
      'pre-devaluation pounds is small. A different carrying value shifts the split between '
      'the FY2024 disposal gain and FY2024 treasury income, but not the FY2025 or forecast '
      'figures.'),
-    ('The price distribution is not calibrated for this security. ',
-     'Measured over five years it scores worse than a random walk and is materially too '
-     'wide. It is published with that stated, and it carries no weight in the fundamental '
-     'valuation.'),
+    ('The price map is wider than the market average, and it says so. ',
+     f'Over {BAND["n"]} resolved three-month forecasts the 90% band held '
+     f'{pc(BAND["c90"], 0)} of the time and the middle band {pc(BAND["c50"], 0)}, so the '
+     f'wide band does what it promises and the middle one has been generous. The band runs '
+     f'about {BAND["width"]:.2f} times as wide as a simple carry-anchored benchmark, which '
+     f'is what this market\'s tail risk costs. It carries no weight in the fundamental '
+     f'valuation and is not an input to it.'),
     ('Concentration of control. ',
      'Vicat holds 77.6%. A minority shareholder in an Egyptian company with a float of '
      '22.4% has limited influence over dividend policy, related-party terms or the timing '

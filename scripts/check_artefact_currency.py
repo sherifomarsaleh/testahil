@@ -50,6 +50,22 @@ import glob, json, os, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENGINE = os.path.join(ROOT, 'engine')
 OUTSTANDING = os.path.join(ENGINE, 'build_depth_audit', 'artefact_outstanding.json')
+# [R-ENF-03] THE GAP GATE'S READER, IMPORTED RATHER THAN RE-IMPLEMENTED. This gate carried
+# its own and the two disagreed about where a central lives: the gap gate reads the top
+# level AND meta, this one read only the top level. So a study committing its answer where
+# the gap gate looks — which is most of them — was reported HERE as exposing no numeric
+# central at all, and the only reason nobody saw it is that every such study was on the
+# gap gate's own unreadable list and therefore skipped. The first study to come OFF that
+# list surfaced it immediately. Two checkers of one fact that disagree are worse than one,
+# because each looks authoritative alone. check_publish_block.py and
+# check_delivered_pdf_currency.py import the same reader for the same reason.
+import importlib.util as _ilu                                          # noqa: E402
+_spec = _ilu.spec_from_file_location(
+    'check_valuation_gap',
+    os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                 'check_valuation_gap.py'))
+_gap_reader = _ilu.module_from_spec(_spec)
+_spec.loader.exec_module(_gap_reader)
 
 # half a per cent, matching [R-GAP-01]'s AUDITED CENTRAL tolerance: an artefact is
 # stale when the answer has MOVED, not when it has been re-rounded
@@ -198,14 +214,23 @@ def main(argv):
                         'will not parse (%s). An unreadable answer is not a clean answer '
                         '[R-ENF-04].' % type(e).__name__))
             continue
-        central, spot = doc.get('central'), doc.get('spot')
+        central, spot, _route = _gap_reader.read_answer(sdir)
+        if central is None:
+            # read_answer requires BOTH a central and a spot, because ITS question is
+            # whether a study was audited against the price it was struck at. This gate's
+            # question is narrower — what vintage an artefact declares — so a central
+            # with no spot is still an answer here, and is recovered rather than lost.
+            if spot is None:
+                central = doc.get('central')
+                if not isinstance(central, (int, float)):
+                    central = ((doc.get('meta') or {}).get('central'))
+            spot = spot if spot is not None else doc.get('spot')
         if not isinstance(central, (int, float)):
             # A TWO-SIDED STUDY, NOW ACTUALLY HANDLED: its branches are the answer, so the
             # artefacts are held to the branch nearest each figure. Where no branch can be
             # read either, that is a study publishing nothing this gate can anchor on and
             # it says so rather than passing.
-            _br = [b.get('value') for b in
-                   ((doc.get('central_two_sided') or {}).get('branches') or [])
+            _br = [b.get('value') for b in (_gap_reader.read_branches(sdir) or [])
                    if isinstance(b.get('value'), (int, float))]
             if not _br:
                 if arts and tk not in known and tk not in _unreadable:

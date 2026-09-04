@@ -49,10 +49,10 @@ def save(fig, name):
 
 
 # ---- F1 football field -------------------------------------------------------
-keys = ['DCF (cash flow)', 'Relative multiples', 'Normalised earnings',
-        'Asset / replacement cost', 'Weighted central']
-labels = ['Discounted cash flow\n(primary)', 'Relative multiples\n(EV/EBITDA)',
-          'Normalised earnings\npower', 'Asset lens\n(EV per tonne)', 'Weighted central']
+keys = ['DCF (cash flow)', 'Relative multiples', 'Asset / replacement cost',
+        'Book value (disclosed floor)']
+labels = ['Discounted cash flow\n(THE CENTRAL)', 'Relative multiples\n(EV/EBITDA)',
+          'Asset lens\n(EV per tonne)', 'Book value\n(disclosed floor)']
 fig, ax = plt.subplots(figsize=(9.8, 4.4), dpi=110)
 xmin = min(LR[k]['bear'] for k in keys)
 xmax = max(LR[k]['bull'] for k in keys)
@@ -60,9 +60,9 @@ span = xmax - xmin
 for i, k in enumerate(keys):
     y = len(keys) - 1 - i
     b, ba, bu = LR[k]['bear'], LR[k]['base'], LR[k]['bull']
-    col = GOLD if k == 'Weighted central' else SAGE
+    col = GOLD if k == 'DCF (cash flow)' else SAGE
     ax.barh(y, bu - b, left=b, height=0.46, color=col,
-            alpha=0.55 if k == 'Weighted central' else 0.34, edgecolor=col, linewidth=1.2)
+            alpha=0.55 if k == 'DCF (cash flow)' else 0.34, edgecolor=col, linewidth=1.2)
     ax.plot([ba, ba], [y - 0.24, y + 0.24], color=BRASS, lw=3.6)
     # All labels sit in a single column clear of the plot, so none can cross the spot
     # rule or another bar.

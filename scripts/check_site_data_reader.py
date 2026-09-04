@@ -60,6 +60,56 @@ OK_RX = re.compile(r'(import\s+site_data|from\s+site_data|site_data\.|'
 # the construction the rule names
 REGEX_RX = re.compile(r're\.(search|findall|finditer|match)\s*\(')
 
+
+def code_only(src):
+    """The source with every string LITERAL emptied, so a mention is not a use.
+
+    [R-COC-01] RE-POINT, NEVER WIDEN. This gate fired on check_new_study_gauntlet.py,
+    which is right: that file PLANTS a study script reading data.js by regular
+    expression, as the fixture proving THIS gate catches one. The offending text sits
+    inside a string it writes to a sandbox and never executes. Skipping the file by name
+    would be a hand-maintained exemption list, which is the construction this repository
+    keeps paying for; skipping every file that mentions the pattern would delete the
+    check. The discriminator is structural and free: parse the file and blank out what is
+    INSIDE its string literals, span by span. `re.search(` survives, because the call is
+    code and only its argument is a literal; a whole planted script does not, because all
+    of it is a value.
+
+    THE FIRST DRAFT BLANKED WHOLE LINES and its own negative control caught it: a real
+    reader writes re.search(r'levels', src) on ONE line, so blanking the line removed the
+    call with the pattern and four conditions went green that must go red. Columns, not
+    lines.
+
+    An unparseable file is returned UNCHANGED rather than exempted — it is then judged on
+    its raw text exactly as before, because a file this cannot read is not a file this may
+    excuse [R-ENF-04].
+    """
+    import ast as _ast
+    try:
+        tree = _ast.parse(src)
+    except SyntaxError:
+        return src
+    lines = src.splitlines(True)
+    edits = []
+    for node in _ast.walk(tree):
+        if not (isinstance(node, _ast.Constant) and isinstance(node.value, str)):
+            continue
+        lo, hi = getattr(node, 'lineno', 0), getattr(node, 'end_lineno', 0)
+        c0, c1 = getattr(node, 'col_offset', 0), getattr(node, 'end_col_offset', 0)
+        if lo and hi:
+            edits.append((lo, c0, hi, c1))
+    for lo, c0, hi, c1 in edits:
+        for n in range(lo, min(hi, len(lines)) + 1):
+            if n - 1 >= len(lines):
+                continue
+            line = lines[n - 1]
+            a = c0 if n == lo else 0
+            b = c1 if n == hi else len(line.rstrip('\n'))
+            a, b = max(0, min(a, len(line))), max(0, min(b, len(line)))
+            if b > a:
+                lines[n - 1] = line[:a] + ' ' * (b - a) + line[b:]
+    return ''.join(lines)
+
 # A WRITER IS A DIFFERENT OBLIGATION, AND HOLDING IT TO THE READER'S ONE WAS THE CHECK
 # POINTED AT THE WRONG MEASUREMENT [RE-POINTED 03-Sep-2026, per R-COC-01]. Three files
 # WRITE assets/data.js, and each does assert-guarded string surgery — CORRECTLY, because a
@@ -126,7 +176,7 @@ def audit():
             continue
         if OK_RX.search(src):
             continue
-        if REGEX_RX.search(src):
+        if REGEX_RX.search(code_only(src)):
             bad.append(rel)
     return examined, bad
 

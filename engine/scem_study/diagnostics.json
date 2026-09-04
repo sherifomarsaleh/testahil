@@ -1,0 +1,38 @@
+{
+ "ticker": "SCEM",
+ "as_of": "2026-09-04",
+ "spot": 100.5,
+ "spot_date": "2026-09-02",
+ "published_central": 123.27165156625448,
+ "published_spot": 100.5,
+ "why_this_file": "The reverse read \u2014 what the traded price must believe \u2014 is a DIAGNOSTIC and lives outside the numbers file every builder reads. A quantity solved from a price and then used anywhere in the valuation is the reverse-engineered rate the protocol prohibits outright, arriving through a side door. Nothing in this file is an input to anything.",
+ "implied": {
+  "quantity": "the single flat discount rate that reproduces the price on this study's own free cash flows and terminal",
+  "value": 0.24470272409911376,
+  "study_value": 0.20431185321852968,
+  "study_value_range": [
+   0.18982919506576718,
+   0.2895969690413578
+  ],
+  "solved_on": "engine/reverse_read.py, on this study's own committed free cash flows, its own terminal cash flow recovered from its own terminal value, its own terminal growth and its own bridge \u2014 holding every driver at its published value and varying only the discount rate until the model reproduces the traded price. The discounting convention was declared by the study.",
+  "reading": "At EGP 100.50 the price is paying for a flat 24.47% cost of capital on the same cash flows this study discounts at a schedule equivalent to a flat 20.43%. The study's own explicit-window rate is 28.96% gliding to a terminal 18.98%, so the disagreement is about -404 basis points on the price of time and risk. THAT IS THE WHOLE DISAGREEMENT EXPRESSED AS A RATE, and it is worth reading beside the business one: this study's largest contested judgement is kiln utilisation through the forecast, worth 11.4% of value, and it is physical rather than financial. A reader who accepts the rate and rejects the ramp lands close to the market; a reader who accepts both lands here."
+ },
+ "construction": {
+  "implied_rate_at_price": 0.24470272409911376,
+  "implied_rate_at_study_value": 0.20431185321852968,
+  "terminal_cash_flow": 4598.085957146627,
+  "terminal_growth": 0.07,
+  "terminal_arrives_at_year": 3.917,
+  "enterprise_value_at_spot": 19776.51880466412,
+  "enterprise_value_in_study": 25715.64965503988,
+  "bridge_delta_equity_less_ev": 6435.13513383588,
+  "discounting_times": [
+   0.20850000000000002,
+   0.917,
+   1.917,
+   2.917,
+   3.917
+  ],
+  "times_resolved": "declared by the study"
+ }
+}

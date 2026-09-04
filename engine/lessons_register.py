@@ -131,6 +131,7 @@ def L(id, scope, applies_to, headline, plain, source, origin, evidence,
 
 
 DEV = "real-estate developer, off-plan, percentage-of-completion"
+CEM = "cement and heavy industrial"
 
 LESSONS = [
 
@@ -3727,6 +3728,78 @@ LESSONS = [
       "A company whose site genuinely carries nothing, where the attempt is logged as a "
       "failure and the escalation ladder runs \u2014 which is the rule working, not a "
       "counter-example to it."),
+
+
+    L("L-272", "ALL", None,
+      "A CONSTRUCTION THAT IS ONLY HARMLESS BECAUSE THE INPUT IS SMALL IS STILL WRONG.",
+      "It is tempting to leave a defect alone when it moves the answer by a basis point. "
+      "The next study to copy the construction may not have a small input, and it will "
+      "copy the defect with the shape rather than with the number.",
+      "the SCEM rebuild, 04-Sep-2026",
+      "build",
+      "Three defects on one study each moved the answer by well under one per cent and "
+      "each was a real error of construction: a cost of debt 81 basis points BELOW the "
+      "sovereign that taxes the company on a book that is 0.5 per cent of capital; a "
+      "Hamada re-levering applied to an already-levered beta; and a terminal beta the "
+      "workbook computed one way and the model another. The same cost-of-debt error was "
+      "found on AMOC where it was equally immaterial, and the reason given there for "
+      "fixing it is the reason here: a rule obeyed only when it is expensive is not a "
+      "rule.",
+      "A construction whose defect is bounded by arithmetic rather than by the size of "
+      "the input \u2014 where the shape itself cannot go wrong at any input."),
+
+    L("L-273", "ALL", None,
+      "A SENSITIVITY GRID MUST REPRODUCE THE ANSWER AT ITS OWN CENTRE.",
+      "A sensitivity is the base case with one driver moved. If the unmoved cell does "
+      "not reproduce the published figure, the grid is answering a different question "
+      "from the study, and every cell in it looks perfectly reasonable while it does.",
+      "the SCEM rebuild, 04-Sep-2026",
+      "build",
+      "SCEM's grid ran the explicit window on the RETIRED reinvestment identity while the "
+      "base case ran the sanctioned waterfall, so its zero-shift cell read EGP 109.82 "
+      "against a published 128.80, fifteen per cent apart. Its own code comment recorded "
+      "that the TERMINAL had been re-pointed at the sanctioned module and the explicit "
+      "window had been left behind. Nothing noticed because no assertion tied the grid to "
+      "its own centre; three one-line asserts now do, and they are the whole fix.",
+      "A grid that deliberately answers a different question \u2014 an alternative "
+      "construction published as such \u2014 which is then not a sensitivity and is not "
+      "labelled as one."),
+
+    L("L-274", "ALL", None,
+      "A PROBE THAT READS ZERO IS A PROBE THAT DID NOT RUN.",
+      "When a check reads a cell by address and the sheet moves, it does not fail. It "
+      "reads blank space as zero, and every comparison against a zero base comes out at "
+      "zero difference, which reads as a pass.",
+      "the SCEM rebuild, 04-Sep-2026",
+      "build",
+      "Retiring a typed lens blend moved the central from a SUM of weighted lenses at "
+      "D10 to the primary lens at C12. The driver test kept opening D10, read 0.000, and "
+      "reported all 51 drivers passing. A recalculation row pointed at a cell that had "
+      "become the maintenance charge compared 958.83 against 0.1923 and passed a relative "
+      "tolerance in neither direction anybody read. Both are the same shape as L-067 and "
+      "both were caught by asserting that no headline probe may read nothing.",
+      "A quantity that is legitimately zero, which none of a price, a rate or a cash flow "
+      "in a valuation is \u2014 where one exists, the assertion names it rather than "
+      "being relaxed."),
+
+    L("L-275", "CLASS", CEM,
+      "AN OLD PLANT'S RECENT CAPEX IS NOT ITS MAINTENANCE REQUIREMENT.",
+      "A company that has been spending a third of what replacing its plant at today's "
+      "prices would cost is deferring, not economising \u2014 and a forecast cannot "
+      "spend that little AND run the kilns harder every year. Those are two assumptions "
+      "that cannot both be true.",
+      "the SCEM rebuild, 04-Sep-2026",
+      "build",
+      "Sinai Cement's own cash-flow statements average EGP 303.2mn a year of capital "
+      "spending against a current-cost maintenance requirement of EGP 958.8mn on the "
+      "disclosed life \u2014 3.2x apart, on a plant whose note 4 shows 59.7 per cent of "
+      "cost written down, machinery 68.4 per cent, and EGP 379.4mn fully depreciated AND "
+      "STILL IN USE. Replacement cost is 7.9x the book cost because the plant was built "
+      "in pre-devaluation pounds. Charging the recent run rate flat while utilisation "
+      "climbs from 71.0 to 79.1 per cent was worth EGP 5.16 a share, against the value.",
+      "A genuinely young plant, where net book value is a large fraction of cost and the "
+      "gap between recent spend and replacement maintenance is the ordinary under-spend "
+      "of an asset not yet needing renewal."),
 
 ]
 

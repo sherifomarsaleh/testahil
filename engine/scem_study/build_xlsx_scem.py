@@ -48,6 +48,7 @@ PE = D['peers']
 SHT = D['share_triangulation']
 TR = D['terminal_reconciliation']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
+LR = D['lens_record']          # [R-LENS-03] the primary and its cross-checks
 SPOT, SH, TAX = M['spot'], M['shares_mn'], IN['tax_stat']
 YH = ['FY2023', 'FY2024', 'FY2025']
 YF = F['years']
@@ -293,12 +294,29 @@ inp(86, 'Vicat tender offer price', 'mto', IN['mto_price'], PX)
 inp(92, 'Gain on sale of investments, FY2024 (as filed)', 'swgain',
     D['disposal']['gain'], NUM0, 'EGP mn')
 
-inp(87, 'Weight — cash flow', 'w0', IN['w_dcf'], PCT)
-inp(88, 'Weight — relative', 'w1', IN['w_rel'], PCT)
-inp(89, 'Weight — normalised', 'w2', IN['w_norm'], PCT)
-inp(90, 'Weight — asset', 'w3', IN['w_asset'], PCT)
-putf(wsA, 'B91', "=SUM(B87:B90)", 1.0, PCT, bold=True)
-wsA['A91'] = 'Total (must be 100%)'
+# [R-LENS-03] THE FOUR LENS WEIGHTS ARE RETIRED and are no longer inputs to anything:
+# the central IS the class primary. What replaces them on this sheet is the envelope's
+# own floor and the value the retired blend would have read, both committed figures.
+inp(87, 'Envelope floor — the primary at the filed margin floor',
+    'envlo', LR['envelope']['low'], PX)
+inp(88, 'MEMO — the retired four-lens blend', 'blend', LR['retired']['blend_value'], PX)
+
+# [R-TERM-01] THE EXPLICIT WINDOW CONVERGES ON THE TERMINAL'S OWN CAPITAL CHARGE. The
+# company's own spend of EGP 303.2mn a year sits 3.2x below the current-cost maintenance
+# the terminal charges, on a plant 59.7 per cent written down whose machinery is 68.4 per
+# cent gone. The charge glides from one to the other so the step at the boundary is zero.
+inp(89, 'Maintenance at current cost (replacement base / disclosed life)', 'maintcc',
+    DCF['ic_repl'] / (1.0 / IN['dep_rate_disclosed']), NUM0,
+    'Replacement capital over the note 3/2 life — the SAME charge the terminal makes')
+for _i, _w in enumerate(D['conv_weights']):
+    inp(105 + _i, f'Capital-charge convergence weight, FY{2026+_i}', f'conv{_i}', _w, PCT,
+        'the share of the way from the company\'s own spend to current-cost maintenance')
+for _i, _f in enumerate(D['forecast']['glide']):
+    inp(116 + _i, f'Cost-of-capital glide fraction, FY{2026+_i}', f'gl{_i}', _f, DF4,
+        'the central bank\'s own easing calendar: the policy path\'s cumulative progress')
+# The 'Total (must be 100%)' row that summed the four lens weights is RETIRED with
+# them [R-LENS-03]. Left in place it summed whatever landed in those rows next,
+# and it did: it read 1,078 per cent the first time these inputs moved.
 
 # THE FILED HISTORICALS, as inputs on the assumptions sheet — depreciation, operating
 # profit and interest income straight off the audited statements, so the income-statement
@@ -434,8 +452,9 @@ for i in range(5):
     # THE ASSET BASE AND THE CAPEX THAT ROLLS IT, on memo rows 20 and 21 so the disclosed
     # depreciation rate has something to apply to. Rows 6 and 7 are the margin and EBITDA.
     _prevg = f"{A['grossfa']}" if i == 0 else f"{DC[i-1]}21"
-    putf(wsD, f'{c}20', f"={A['capexrr']}*{A[f'infl{i+1}']}/{A['infl0']}", F['capex'][i],
-         NUM0)
+    putf(wsD, f'{c}20',
+         f"=({A['capexrr']}+({A['maintcc']}-{A['capexrr']})*{A[f'conv{i}']})"
+         f"*{A[f'infl{i+1}']}/{A['infl0']}", F['capex'][i], NUM0)
     putf(wsD, f'{c}21', f"={_prevg}+{c}20", F['gross_fa'][i], NUM0)
     putf(wsD, f'{c}8', f"={c}21*{A['deprate']}", F['dna'][i], NUM0)
     putf(wsD, f'{c}9', f"={c}7-{c}8", F['ebit'][i], NUM0)
@@ -455,16 +474,23 @@ for i in range(5):
              NUM0, bold=True)
     else:
         putf(wsD, f'{c}15', f"={c}11+{c}8-{c}12-{c}13", F['fcff'][i], NUM0, bold=True)
-    putf(wsD, f'{c}16', f"=({A['kdp0']}-{A[f'kdp{i}']})/({A['kdp0']}-{A['kdp4']})",
-         F['glide'][i], DF4)
+    # [R-COC-01] THE GLIDE'S FRACTIONS ARE THE POLICY-RATE PATH'S OWN CUMULATIVE
+    # PROGRESS. The retired formula read them off the cost-of-debt ladder, which
+    # inherited its shape from a hand-set path — a second free parameter.
+    putf(wsD, f'{c}16', f"={A[f'gl{i}']}", F['glide'][i], DF4)
     putf(wsD, f'{c}17', f"=$C$46-($C$46-$C$53)*{c}16", F['fwd_wacc'][i], PCT2)
+    # EACH FORWARD RATE IS COMPOUNDED OVER THE SLICE OF CALENDAR IT OWNS. The retired
+    # formulas walked the rates in whole-year steps from t=0, so the whole 0.917 years
+    # to the FY2027 midpoint compounded at the FY2026 rate and the FY2030 rate never
+    # entered any factor at all. On a path that FALLS that over-discounts every year
+    # after the first, and it is the same defect ARCC revision 3 carried.
     if i == 0:
         fm = f"=1/(1+B17)^((1-{A['stub']})/2)"
-    elif i == 1:
-        fm = f"=1/(1+B17)^(1-{A['stub']}+0.5)"
     else:
-        pre = "*".join(f"(1+{DC[k]}17)" for k in range(i - 1))
-        fm = f"=1/({pre}*(1+{DC[i-1]}17)^(1-{A['stub']}+0.5))"
+        parts = [f"(1+B17)^(1-{A['stub']})"]
+        parts += [f"(1+{DC[k]}17)" for k in range(1, i)]
+        parts.append(f"(1+{DC[i]}17)^0.5")
+        fm = "=1/(" + "*".join(parts) + ")"
     putf(wsD, f'{c}18', fm, F['df'][i], DF4)
     putf(wsD, f'{c}19', f"={c}15*{c}18", F['pv'][i], NUM0)
 
@@ -531,8 +557,13 @@ CC = [('Risk-free rate (observed EGP 10-year)', 'C42', f"={A['rf']}", IN['rf'], 
       ('Cost of debt after tax', 'C48', f"={A['kd']}*(1-{A['tax']})", W['kd_at'], PCT2),
       ('Debt weight  D/(D+E)', 'C49', f"={A['debt']}/({A['debt']}+C50)", W['wd_exp'], '0.000%'),
       ('Market capitalisation', 'C50', f"={A['spot']}*{A['shares']}", M['mktcap'], NUM0),
+      # HAMADA MUST START FROM AN ASSET BETA. This formula re-levered an already-levered
+      # beta, levering it twice. Unlever at the OBSERVED structure first — the model does,
+      # and a workbook that does not is a workbook disagreeing with the study it publishes.
+      ('Asset beta, unlevered at the observed structure', 'C47',
+       f"={A['beta']}/(1+(1-{A['tax']})*C49/(1-C49))", W['beta_u'], NUM3),
       ('Terminal beta, RE-LEVERED to the terminal structure (Hamada)', 'C56',
-       f"={A['beta']}*(1+(1-{A['tax']})*{A['wdt']}/(1-{A['wdt']}))", W['beta_term'], NUM3),
+       f"=C47*(1+(1-{A['tax']})*{A['wdt']}/(1-{A['wdt']}))", W['beta_term'], NUM3),
       ('Terminal cost of equity  (rf_term + β_L × ERP_term)', 'C51',
        f"={A['rft']}+C56*{A['erpt']}", W['ke_term'], PCT2),
       ('Terminal cost of debt after tax', 'C52', f"={A['kdt']}*(1-{A['tax']})", W['kd_term_at'], PCT2),
@@ -544,8 +575,8 @@ CC = [('Risk-free rate (observed EGP 10-year)', 'C42', f"={A['rf']}", IN['rf'], 
 for lab, ad, fm, ex, ft in CC:
     wsD.cell(row=int(ad[1:]), column=1, value=lab)
     putf(wsD, ad, fm, ex, ft, bold=(ad in ('C46', 'C53')))
-note(wsD, 57, 'The glide fraction on row 16 is derived from the cost-of-debt path on Assumptions, so the shape of')
-note(wsD, 58, 'the discount schedule is INHERITED rather than invented. The terminal value is capitalised at the')
+note(wsD, 57, 'The glide fraction on row 16 is the central bank\'s own easing calendar — the policy path\'s')
+note(wsD, 58, 'cumulative progress — so the schedule is INHERITED rather than invented. The terminal is capitalised at the')
 note(wsD, 59, 'terminal WACC and discounted on year 5\'s OWN cumulative factor — one date, one price of time.')
 note(wsD, 60, 'Terminal return on capital is struck on REPLACEMENT-COST capacity, not book: the plant dates to 1997')
 note(wsD, 61, 'and its book invested capital implies a 172% return, which would let growth through unpaid for.')
@@ -832,7 +863,8 @@ RL = [('FY2025 revenue (disclosed)', f"={A['rev25']}", IN['rev_fy25'], NUM0),
 for j, (lab, fm, ex, ft) in enumerate(RL):
     wsN.cell(row=5 + j, column=1, value=lab)
     putf(wsN, f'B{5+j}', fm, ex, ft, bold=(j == 10))
-band(wsN, 17, 6); wsN['A17'] = 'NORMALISED EARNINGS POWER'
+band(wsN, 17, 6)
+wsN['A17'] = ('NORMALISED EARNINGS POWER — RETIRED AS A LENS FOR THIS CLASS, SHOWN FOR THE RECORD')
 NL = [('Normalised EBITDA', "=B9", LN['ebitda_norm'], NUM0),
       ('Less D&A (FY2025)', "=-'Income Statement'!D8", -H['dna'][2], NUM0),
       ('Normalised EBIT', "=B18+B19", LN['ebitda_norm'] - H['dna'][2], NUM0),
@@ -842,7 +874,7 @@ NL = [('Normalised EBITDA', "=B9", LN['ebitda_norm'], NUM0),
       ('Plus net cash AT FACE (not capitalised)', "=DCF!B36", DCF['net_cash'], NUM0),
       ('Less non-controlling interests', f"=-{A['nci']}", -IN['nci'], NUM0),
       ('Implied value per share (EGP)', f"=(B23+B24+B25)/{A['shares']}",
-       LN['values']['Normalised earnings'], PX)]
+       LR['retired']['normalised_earnings']['value'], PX)]
 for j, (lab, fm, ex, ft) in enumerate(NL):
     wsN.cell(row=18 + j, column=1, value=lab)
     putf(wsN, f'B{18+j}', fm, ex, ft, bold=(j == 8))
@@ -875,34 +907,46 @@ note(wsN, 47, 'capacity against replacement cost — is used in its place.')
 # ============ 3 FUNDAMENTAL VALUATION =========================================
 wsFV = sheet('Fundamental Valuation')
 title(wsFV, 'Fundamental valuation — four lenses', None, 6, 52, 16)
-hdr(wsFV, 4, ['Lens', 'Value per share (EGP)', 'Weight', 'Weighted'])
-LKEYS = list(LN['weights'].keys())
+hdr(wsFV, 4, ['Lens', 'Role', 'Value per share (EGP)', 'vs spot'])
+# [R-LENS-03] ONE CLASS PRIMARY IS THE CENTRAL AND THE OTHER LENSES ARE CROSS-CHECKS.
+# The retired sheet carried a Weight column and a SUM of weighted lenses. Those weights
+# were typed, inherited, and had never cleared an out-of-sample test; three of the four
+# lenses they averaged read a cement plant off reported accounting earnings and
+# historical-cost book. There is no weight column here because there are no weights.
+LKEYS = ['DCF (cash flow)', 'Relative multiples', 'Asset / replacement cost',
+         'Book value (disclosed floor)']
+LROLE = {'DCF (cash flow)': 'PRIMARY — this IS the central',
+         'Relative multiples': 'cross-check',
+         'Asset / replacement cost': 'cross-check',
+         'Book value (disclosed floor)': 'disclosed floor — never weighted'}
 LSRC = {'DCF (cash flow)': "=DCF!B39",
         'Relative multiples': "='Relative & Normalized'!B15",
-        'Normalised earnings': "='Relative & Normalized'!B26",
-        'Asset / replacement cost': "='Relative & Normalized'!B38"}
+        'Asset / replacement cost': "='Relative & Normalized'!B38",
+        'Book value (disclosed floor)': "='Relative & Normalized'!B41"}
 for j, k in enumerate(LKEYS):
     wsFV.cell(row=5 + j, column=1, value=k)
-    putf(wsFV, f'B{5+j}', LSRC[k], LN['values'][k], PX, green=True)
-    putf(wsFV, f'C{5+j}', f"={A[f'w{j}']}", LN['weights'][k], PCT, green=True)
-    putf(wsFV, f'D{5+j}', f"=B{5+j}*C{5+j}", LN['values'][k] * LN['weights'][k], PX)
-wsFV['A10'] = 'Weighted central fair value (EGP)'
-putf(wsFV, 'D10', "=SUM(D5:D8)", LN['central'], PX, bold=True)
-wsFV['A11'] = 'Lowest lens'
-putf(wsFV, 'B11', "=MIN(B5:B8)", LN['low'], PX)
-wsFV['A12'] = 'Highest lens'
-putf(wsFV, 'B12', "=MAX(B5:B8)", LN['high'], PX)
-wsFV['A13'] = 'Median lens'
-putf(wsFV, 'B13', "=MEDIAN(B5:B8)", sorted(LN['values'].values())[1:3] and
-     (sorted(LN['values'].values())[1] + sorted(LN['values'].values())[2]) / 2, PX)
-wsFV['A14'] = 'Spot price (EGP)'
-putf(wsFV, 'B14', f"={A['spot']}", SPOT, PX, green=True)
-wsFV['A15'] = 'Central versus spot'
-putf(wsFV, 'B15', "=D10/B14-1", LN['central'] / SPOT - 1, PCT, bold=True)
-wsFV['A16'] = 'Terminal value as % of enterprise value (DCF lens)'
-putf(wsFV, 'B16', "=DCF!B33", DCF['tv_share'], PCT, green=True)
-note(wsFV, 18, 'The four lenses disagree by design — the spread between the cash-flow lens and the replacement-cost')
-note(wsFV, 19, 'lens IS the question this company poses, and averaging it away would hide it.')
+    wsFV.cell(row=5 + j, column=2, value=LROLE[k])
+    putf(wsFV, f'C{5+j}', LSRC[k], LN['values'][k], PX, green=True)
+    putf(wsFV, f'D{5+j}', f"=C{5+j}/$C$11-1", LN['values'][k] / SPOT - 1, PCT)
+wsFV['A10'] = 'RETIRED — normalised earnings power, not a lens for this class'
+putf(wsFV, 'C10', "='Relative & Normalized'!B26",
+     LR['retired']['normalised_earnings']['value'], PX)
+wsFV['A11'] = 'Spot price (EGP)'
+putf(wsFV, 'C11', f"={A['spot']}", SPOT, PX, green=True)
+wsFV['A12'] = 'CENTRAL FAIR VALUE (EGP) — the primary lens, not a blend'
+putf(wsFV, 'C12', "=C5", LN['central'], PX, bold=True)
+putf(wsFV, 'D12', "=C12/C11-1", LN['central'] / SPOT - 1, PCT, bold=True)
+wsFV['A13'] = 'Envelope, low — the primary with the EBITDA margin at its filed floor'
+putf(wsFV, 'C13', f"={A['envlo']}", LR['envelope']['low'], PX, green=True)
+wsFV['A14'] = 'Envelope, high — the primary as published'
+putf(wsFV, 'C14', "=C12", LR['envelope']['high'], PX)
+wsFV['A15'] = 'MEMO — what the retired four-lens blend would have read'
+putf(wsFV, 'C15', f"={A['blend']}", LR['retired']['blend_value'], PX, green=True)
+wsFV['A16'] = 'Terminal value as % of enterprise value (primary lens)'
+putf(wsFV, 'C16', "=DCF!B33", DCF['tv_share'], PCT, green=True)
+note(wsFV, 18, 'The lenses disagree by design and the disagreement is PUBLISHED rather than averaged away. The')
+note(wsFV, 19, 'cash-flow lens is the central for this class; the others are cross-checks read beside it, and the')
+note(wsFV, 20, 'book value is a disclosed floor that is never weighted into an answer.')
 
 # ============ 2 SUMMARY =======================================================
 wsS = sheet('Summary')
@@ -918,20 +962,20 @@ for j, (lab, fm, ex, ft) in enumerate(SUMR):
     wsS.cell(row=5 + j, column=1, value=lab)
     putf(wsS, f'B{5+j}', fm, ex, ft, green=True)
 band(wsS, 11, 7); wsS['A11'] = 'VALUATION BY LENS'
-hdr(wsS, 12, ['Lens', 'Value per share (EGP)', 'Weight', 'vs spot', 'Terminal value % of EV'])
+hdr(wsS, 12, ['Lens', 'Role', 'Value per share (EGP)', 'vs spot', 'Terminal value % of EV'])
 for j, k in enumerate(LKEYS):
     wsS.cell(row=13 + j, column=1, value=k)
-    putf(wsS, f'B{13+j}', f"='Fundamental Valuation'!B{5+j}", LN['values'][k], PX, green=True)
-    putf(wsS, f'C{13+j}', f"='Fundamental Valuation'!C{5+j}", LN['weights'][k], PCT, green=True)
-    putf(wsS, f'D{13+j}', f"=B{13+j}/$B$5-1", LN['values'][k] / SPOT - 1, PCT)
+    wsS.cell(row=13 + j, column=2, value=LROLE[k])
+    putf(wsS, f'C{13+j}', f"='Fundamental Valuation'!C{5+j}", LN['values'][k], PX, green=True)
+    putf(wsS, f'D{13+j}', f"=C{13+j}/$B$5-1", LN['values'][k] / SPOT - 1, PCT)
     if k == 'DCF (cash flow)':
         putf(wsS, f'E{13+j}', "=DCF!B33", DCF['tv_share'], PCT, green=True)
-wsS['A17'] = 'Weighted central fair value (EGP)'
-putf(wsS, 'B17', "='Fundamental Valuation'!D10", LN['central'], PX, bold=True)
-putf(wsS, 'D17', "=B17/$B$5-1", LN['central'] / SPOT - 1, PCT, bold=True)
-wsS['A18'] = 'Range across the four lenses (EGP)'
-putf(wsS, 'B18', "=MIN(B13:B16)", LN['low'], PX)
-putf(wsS, 'C18', "=MAX(B13:B16)", LN['high'], PX)
+wsS['A17'] = 'CENTRAL FAIR VALUE (EGP) — the primary lens, not a blend'
+putf(wsS, 'C17', "='Fundamental Valuation'!C12", LN['central'], PX, bold=True)
+putf(wsS, 'D17', "=C17/$B$5-1", LN['central'] / SPOT - 1, PCT, bold=True)
+wsS['A18'] = 'Envelope — the primary with the EBITDA margin across its own filed span (EGP)'
+putf(wsS, 'C18', "='Fundamental Valuation'!C13", LR['envelope']['low'], PX)
+putf(wsS, 'E18', "='Fundamental Valuation'!C14", LR['envelope']['high'], PX)
 wsS['A19'] = 'Vicat tender offer, July 2025 (EGP) — reference, not a value'
 putf(wsS, 'B19', f"={A['mto']}", IN['mto_price'], PX, green=True)
 band(wsS, 21, 7); wsS['A21'] = 'COST OF CAPITAL AND TERMINAL'

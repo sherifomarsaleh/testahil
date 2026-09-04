@@ -4,7 +4,8 @@ Every figure that reaches the study or the model traces to a row here: what it i
 it came from, what kind of source that is, and the date the source itself carries.
 Reads study_numbers.json and the sweep register — no numeral is typed here.
 """
-import json, os, sys
+import json
+import re, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
 sys.path.insert(0, HERE)
@@ -137,10 +138,36 @@ def fmt(v):
     return f'{v:,}' if isinstance(v, int) else str(v)
 
 
+# THE REGISTER KEEPS ITS PROVENANCE; THE DELIVERED DOCUMENT DOES NOT PRINT IT.
+# An input's justification legitimately names the standing rule it obeys and the file the
+# figure was read from — that is what makes the register auditable from inside. Neither
+# belongs in a document written for an outside reader, and both leak by SHAPE rather than
+# by vocabulary, which is why a hand-maintained word list has never caught them.
+# Stripped here, at the boundary, so the register loses nothing and the reader sees only
+# the source. Anything left dangling ("as [R-X-01] requires" -> "as  requires") would read
+# worse than the original, so the surrounding connective is taken with it.
+_RULE = re.compile(r'\s*[\[(]?R-[A-Z]+-\d+(?:\s+(?:AMENDED|EXTENDED)[^\]]*)?[\])]?'
+                   r'(?:\s+(?:requires|says|refuses|forbids|names))?')
+_PATH = re.compile(r'\s*\b(?:engine|scripts|assets)/[\w./{}-]+')
+_BRACKETED_EMPTY = re.compile(r'\s*[\[(]\s*[\])]')
+
+
+def outward(txt):
+    """The source text as an outside reader receives it."""
+    t = _RULE.sub('', str(txt or ''))
+    t = _PATH.sub('', t)
+    t = _BRACKETED_EMPTY.sub('', t)
+    t = re.sub(r'\s{2,}', ' ', t)
+    t = re.sub(r'\s+([,.;])', r'\1', t)
+    t = re.sub(r'(^|[.;] )\s*(and|the) ', lambda m: m.group(1), t)
+    return t.strip().strip(',').strip()
+
+
+
 items = sorted(INP.items(), key=lambda kv: (RING_ORDER.get(kv[1]['ring'], 9), kv[0]))
 for i, (k, v) in enumerate(items, 1):
-    rows.append([str(i), k, fmt(v['value']), v['ring'], v['source'], v['date']])
-table(rows, [0.30, 1.70, 0.92, 0.74, 4.98, 0.84], size=7.4)
+    rows.append([str(i), k, fmt(v['value']), v['ring'], outward(v['source']), v['date']])
+table(rows, [0.36, 1.70, 0.92, 0.74, 4.92, 0.84], size=7.4)
 
 # ---------------------------------------------------- source catalogue
 doc.add_page_break()

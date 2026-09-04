@@ -1,236 +1,268 @@
-# SCEM — gap review, 4 September 2026
+# SCEM — GAP REVIEW, 04-09-2026  [R-GAP-01]
 
-[R-GAP-01] AUDITED CENTRAL: 88.4852 — EGP 88.49 a share.
-AUDITED GAP: -12.0% against the latest known price of EGP 100.50 (2 September 2026), from
-the price file the principal supplied on 3 September and committed at
-`engine/prices/SUPPLIED_03-09-2026.json`.
+[R-GAP-01] AUDITED CENTRAL: 123.27 — EGP 123.27 a share.
+[R-GAP-01] AUDITED GAP: +22.7 per cent against the latest known price of EGP 100.50
+(close of 2026-09-02, from the price file committed at
+engine/prices/SUPPLIED_03-09-2026.json).
 
-The rule fires because the central sits more than ten per cent from the price. It does not
-say the answer must change. What it says is that a large disagreement is a high-prior-of-
-defect region and the price is the only instrument in the room that measures it — so the
-answer is audited before it ships. This review is what that audit found, and it found a
-great deal, because the study it audits had never opened the company's own filings.
+THIS REVIEW IS ON THE OTHER SIDE OF THE PRICE FROM THE LAST ONE, AND THAT IS THE WHOLE
+REASON IT HAD TO BE REWRITTEN. The 04-09-2026 review published earlier today audited a
+central of 88.49 at −12.0 per cent. Nothing about the company changed since; what changed
+is that this study was brought onto five construction standards it had never been held to
+— the house macro path [R-MACRO-01], the cost-of-capital schedule [R-COC-01], the bridge
+record [R-BRIDGE-01], the lens architecture [R-LENS-03] and the forecast anchor
+[R-ANCHOR-01] — and the answer moved from 12 per cent below the market to 23 per cent
+above it. A review written for a −12 per cent disagreement audits nothing at +23, which is
+exactly what the AUDITED GAP marker exists to catch, and it caught this.
 
-**Where the answer moved, and why none of it is a move toward the price.** The central was
-EGP 53.12 when this pass began and −32.8% against the price it was then struck at. It is
-now 88.49. Every step is sourced to the audited statements or to a standing rule, and the
-test [R-GAP-01] sets is whether the same correction would have been made at a different
-price. It would: the cost stack was 6.3% above the company's own disclosed cost, the
-depreciation charge more than three times the filed one, the forecast's opening margin
-eight points below the latest audited year with a mechanism the filings contradict, and
-the terminal built on the reciprocal of an inflation rate. One correction in this review
-moves the answer AWAY from the price by 1.2% and it was made anyway.
+The trigger here is EVIDENTIAL, NOT DEFERENTIAL, and it fires in both directions since
+02-Sep-2026. A large gap either way is a high-prior-of-defect region and the price is the
+only instrument in the room that measures it. The question below is not whether the market
+is right. It is whether WE made a mistake, and this time the mistake would have to be an
+OPTIMISTIC one.
 
----
+WHAT MOVED THE ANSWER, MEASURED RATHER THAN ASSERTED
+  88.49  the previous edition, on the retired four-lens blend
+  +9.3%  the house inflation ladder: this study carried 14.0/11.0/7.9/6.2/5.5 per cent
+         against a house 16.0/12.0/9.0/7.5/7.0, and a terminal growth of 5 per cent
+         against a terminal risk-free rate built on 7 — a perpetual real decline of two
+         points that nothing disclosed
+  +2.9%  the discount factors: the study compounded its forward rates in whole-year steps
+         from t=0, so the entire 0.917 years to the FY2027 midpoint was discounted at the
+         FY2026 rate and the FY2030 rate never entered any factor at all. On a path that
+         FALLS, that over-discounts every year after the first
+  −1.1%  the cost of debt: 21.50 per cent sat 81 basis points BELOW the sovereign that
+         taxes this company, which [R-COC-01] refuses outright. Now derived as the house
+         sovereign plus a stated 200 basis point corporate spread
+  −3.7%  the capital charge: see BASE YEAR below — this one runs AGAINST the value and is
+         the largest thing this review found
+  the blend retired: the published answer is now the cash-flow lens alone at 123.27,
+         where the retired 48/21/23/8 blend would read 95.96
 
-## 1. LATEST FILINGS — every disclosed period actually read
-
-**Clean, and it was not before.** The first edition of this study took its revenue, profit
-and balance-sheet figures from Global Cement, cemnet, Daily News Egypt, Arab Finance and an
-aggregator's carry of S&P Global Market Intelligence — a plain breach of SIGCM clause 1,
-which has forbidden exactly that since July 2026. The audited statements were on the
-company's own website the whole time: `sinaicement.com` carries them as direct PDF links
-from its homepage, no authentication and no investor-relations portal to navigate.
-
-Read this pass, in full, by OCR off the rendered pixels (the filings carry a 37-byte text
-layer across 37 pages, so no extraction is possible):
-
-| document | period | kind | route |
-|---|---|---|---|
-| SCC-AFS-E-1225.pdf | year ended 31 December 2025 | audited | OCR, arithmetic-verified |
-| SCC-AFS-E-1224.pdf | year ended 31 December 2024 | audited | OCR, arithmetic-verified |
-| SCC-AFS-E-0326.pdf | three months to 31 March 2026 | reviewed | OCR, arithmetic-verified |
-
-**The most recent disclosed period is the reviewed quarter to 31 March 2026.** Nothing
-newer is published: the site's own media listing returns the FY2025 and Q1-2026 statements,
-English and Arabic, all dated 9 June 2026 as the newest financial documents, and direct
-probes for a 30-June interim under the naming convention the company uses return 404. The
-probe was re-run rather than remembered, per [R-IND-01].
-
-`filings_extract.py` commits every figure with its statement, printed page and route, and
-asserts every footing the filings themselves perform. **Two of those assertions fired and
-both were right to.** Note 24's FY2024 column summed ten short of its printed total —
-re-rendered at 220 dpi, wages are 69,084,467 and I had read 69,084,457, a single digit
-located in a column of nineteen. And FY2025 profit over the footed closing share count
-gives EPS 8.76 against a printed 10.29, which is not a misread but the capital increase
-registered on 22 April 2025; note 27 states its own weighted-average working and it
-reproduces to the cent.
-
-## 2. BASE YEAR — foots to the filed periods, nothing annualised or solved
-
-**Clean, and it was not before.** The base year is FY2025 exactly as filed: revenue EGP
-9,089.15mn, operating profit 3,304.13mn, depreciation and amortisation 122.56mn, EBITDA
-3,455.21mn at a 38.01% margin, profit after tax 2,284.54mn.
-
-The first edition **solved** its operating profit rather than reading it: it grossed a
-press profit figure at an effective tax rate and subtracted a treasury income estimated on
-a cash balance rolled back by a guessed factor of 1.25, reaching an EBITDA of 3,058mn at
-33.6%. It also charged depreciation at 4.6% of revenue — EGP 418mn against a company that
-filed 122.6mn.
-
-The bottom-up volume-and-price build backcasts FY2025 revenue within **+0.02%** of the
-filed figure and FY2025 EBITDA within **+0.06%**. That second number is the one that
-matters: the first edition's stack agreed with its own closure to 1.36% **while being EGP
-355mn out**, because both sides came from the same press figures. A check whose two sides
-share a source cannot fail.
-
-## 3. MACRO COHERENCE — inflation, currency and price on one path
-
-**One defect found and corrected; one incoherence measured and left, with its reason.**
-
-*The currency was hand-set.* The path slid the pound 5.4% in FY2026 while the same model
-escalated domestic costs 14.0% — one event counted once and ignored once, which is [L-048].
-It is now derived on relative purchasing-power parity against 2.5% foreign inflation from
-this study's own cost path, as [R-MACRO-01] requires. **Correcting it LOWERS the answer by
-1.2%**, because a faster slide costs more on the dollar-linked materials line than it earns
-translating export revenue. That is the AMOC precedent exactly, and it is the evidence that
-conforming to the rule is not fitting to the price.
-
-*The realised price was falling in real terms with nothing behind it.* The old path grew
-domestic price 4.5–6.0% a year against costs rising 14.0%, 11.0%, 7.9%, 6.2% and 5.5%. The
-input register described it in its own words as "a REAL decline against CBE inflation" and
-sourced no mechanism. **It was worth 23% of the answer.** See heading 5 for why it was
-refused rather than argued about.
-
-*The terminal inflation is the study's own 5%, not the house path's 7%.* Within this
-study's ladder it is coherent — the cost path decelerates to 5.5% by FY2030 and 5% is the
-step beyond it — and raising the terminal alone without the ladder would create the
-incoherence [R-MACRO-01] forbids in the other direction. Conforming the whole ladder is
-worth **+3.9%** and is this study's standing entry on the macro ratchet; it is a separate
-pass, and it is recorded here rather than done by halves.
-
-## 4. DISCOUNT RATE — the operations at the right rate, the cash charged exactly once
-
-**Clean.** The explicit window discounts at 28.26% gliding to a terminal 19.01%. The debt
-weight is **0.52%** — gross lease liabilities against market capitalisation, not net debt —
-so the equity weight is 99.5% and never levers above one. This is the case [R-BRIDGE-01]
-calls defect (iii): a net-cash company discounted at a net-debt-weighted rate drives the
-debt weight negative and the operating rate above the cost of equity, and then adds the
-same cash back at face. **This study does not do it.** The cash is added at face, once, in
-the bridge, and the operations carry no credit for it.
-
-## 5. TERMINAL — growth coherent with the inflation inside the terminal rate
-
-**The largest correction in this pass, and it is arithmetic rather than judgement.**
-
-The first edition built its terminal on the reinvestment identity `rr = g/ROIC`, which
-substitutes to a charge of `g × invested capital` every year for ever. Read as a capital
-maintenance programme the implied replacement cycle is `1/g` — **20.0 years at a 5%
-terminal rate, which is a fact about the currency and not about the plant.** The terminal
-it produced sat **34% below the value of not investing at all**, the worst case in this
-house's book.
-
-It is now built by `engine/terminal_value.py` on the **disclosed** life. Note 3/2 of the
-audited accounts gives the rates — buildings and utilities 2–2.5%, machinery 5%, motor
-vehicles and tools 20%, furniture 10–25% — and weighted on note 4's own gross-cost mix that
-is a **25.9-year** life. It reproduces the filed FY2025 depreciation charge to within 1.2%,
-which is what makes it a sourced rule rather than a house guess, and the FY2024 filing
-carries the identical table. Maintenance at current cost is EGP 950mn a year, 24.7% of
-terminal profit, and the terminal free cash flow of 3,848mn sits above its floor.
-
-**A second, independent error rode with it.** The explicit window ran on NOPAT less a
-reinvestment charge derived from the growth in NOPAT while the terminal ran on something
-else — one model, two definitions of free cash flow, with the terminal holding 57% of
-enterprise value. The driver test measured what that cost: raising capital spending by EGP
-100mn a year moved the value by **0.12%**. Both windows now run the same waterfall.
-
-**And the forecast's own margin path was refused on the company's measurement.** The old
-forecast opened at a 30.1% EBITDA margin against a filed FY2025 of 38.0% — 20.8% below in
-relative terms, four times [R-ANCHOR-01]'s trigger — and the mechanism it would have needed
-is `input_cost_outpacing_price`. That rule demands the mechanism be **measured
-like-for-like in the company's own period pair**, and here it runs the other way: cost per
-unit of revenue is 67.91% in Q1-2025, 61.99% in the audited FY2025 and **58.93% in the
-reviewed Q1-2026**. Falling, where the forecast needed it to rise. A mechanism contradicted
-by the filings is the assumption wearing one. The forecast now holds the real spread per
-tonne flat and opens at 38.2%, one fifth of a point above the year the company filed.
-
-The 12.6Mt of dormant Egyptian capacity queuing to restart is a real risk to price. It
-belongs in the bear case and the sensitivity grid, which carry it, and not in the base path
-as an unsourced assumption.
-
-## 6. BALANCE SHEET — the bridge stands on the latest disclosed sheet
-
-**Corrected.** The bridge stood on the audited 31 December 2025 sheet rolled forward on an
-estimate. It stands on the **reviewed 31 March 2026 statement of financial position**:
-cash on hand and at banks EGP 5,801.98mn, lease liabilities of 137.62mn long-term and
-15.09mn current, and **no bank borrowings at either date** — the whole of the company's
-interest-bearing debt is leases under EAS 49. The four months from that sheet to the
-valuation date are carried on this model's own free cash flow, so the period between the
-two dates is counted once and only once.
-
-Net cash at the valuation date is **EGP 6,533.0mn, 24.9% of market capitalisation**.
-
-## 7. CLAIMS AGAINST THE RECORD — every absolute claim recomputed
-
-Five claims were scanned and recomputed. Two were wrong.
-
-**"Net cash worth 37% of its market capitalisation"** was typed and stale; it recomputes to
-24.9% at the current price and is now rendered from the model.
-
-**"The company has no dividend on record, yet the balance sheet arithmetic implies a
-substantial FY2025 distribution. A declared payout would resolve the largest single
-uncertainty in the equity bridge."** The second half is false, and the filed statements
-settle it twice over, to the pound:
-
-| | EGP mn |
-|---|---|
-| Total equity, 31 December 2024 | 3,735.80 |
-| plus FY2025 profit after tax | 2,284.54 |
-| = | **6,020.34** — the filed 31 December 2025 equity, exactly |
-| plus the reviewed quarter's profit | 1,114.48 |
-| = | **7,134.82** — the filed 31 March 2026 equity, exactly |
-
-**Nothing has been distributed.** The study was reading a distribution out of arithmetic it
-had not taken from the statements, and calling the result its largest uncertainty. The
-model's 60% payout assumption is corrected to the filed nil. It changes no valuation number
-— free cash flow to the firm is struck before financing — and it changes the projected
-balance sheet a reader is shown.
-
-The other three claims stand: the industry's best year since 2008, the policy rate and
-ten-year yield, and the 29.3% unchanged-close share, which is computed from the price
-library.
-
-## 8. MULTIPLE CROSS-CHECK — what the fair value implies
-
-| on FY2026E | at the fair value 88.49 | at the market 100.50 |
-|---|---|---|
-| enterprise value (EGP mn) | 16,545 | 19,679 |
-| EV / EBITDA | **4.17x** | 4.96x |
-| price / earnings | **6.29x** | 7.14x |
-
-| on FY2025 as filed | at the fair value | at the market |
-|---|---|---|
-| EV / EBITDA | **4.79x** | 5.70x |
-| price / earnings | **10.10x** | 11.47x |
-
-The only named Egyptian comparator, Misr Beni Suef, is quoted at **5.03x** EV/EBITDA. This
-study's own justified multiple for the relative lens is **4.2x**, below the peer, and the
-cash-flow lens implies 4.17x on FY2026 earnings — so the answer is a discount to the one
-disclosed peer on the one multiple both can be measured on.
-
-**That is the reading this heading is for, and it is not comfortable.** Three of the four
-lenses (relative 62.02, normalised 70.39, asset 93.52) sit below the cash-flow lens at
-107.89, and the weighted central of 88.49 is dragged down by two lenses whose own inputs
-are weaker than the cash-flow model's: the relative lens applies a multiple this study
-chose below the peer's quoted one, and the normalised lens capitalises a mid-cycle margin
-struck between FY2024 and FY2025 — a pair that now looks conservative against a reviewed
-quarter running at 54.6% gross margin. Under [R-LENS-03] the class primary would BE the
-central and the others cross-checks beside it; this study still publishes a typed four-lens
-blend, which is its standing entry on the lens ratchet and the largest remaining structural
-item against it.
+Everything above is arithmetic on this study's own committed record. The net effect is
+that the answer rose, and the eight headings below are the audit of it.
 
 ---
 
-## What this review did not do
+## 1. LATEST FILINGS
 
-It did not move any number toward the price, and the −1.2% currency correction is the
-evidence. It did not conform the macro ladder to the house path (+3.9%), because doing half
-of that would create an incoherence rather than remove one. It did not retire the four-lens
-blend for the same reason: [R-LENS-03] is an architecture change and this study carries it
-on the ratchet.
+Every disclosed period is read and consumed. THE MOST RECENT IS THE REVIEWED CONDENSED
+INTERIM FINANCIAL STATEMENTS FOR THE THREE MONTHS ENDED 31 MARCH 2026, downloaded from the
+company's own website and read by OCR off the rendered pixels because the file carries a
+37-byte text layer across 37 pages. Every statement in it foots against its own arithmetic
+and the footings are asserted in filings_extract.py, not eyeballed.
 
-The gap of −12.0% therefore stands as the honest output of a study that now reads the
-company's own statements. It is past [R-GAP-02]'s publication limit and the study is
-**HELD**. Publishing it would need a market-dissent filing, and on this evidence the
-dissent would be hard to write: the two open items above both move the answer toward the
-price, which is a reason to finish them rather than to argue with the market.
+Consumed, with what each supplies:
+  * FY2025 audited statements — revenue, the cost lines of notes 24/25/26, note 4's
+    fixed-asset schedule, note 3/2's disclosed depreciation rates, note 27's earnings per
+    share working, the statement of changes in equity.
+  * FY2024 audited statements — the comparative year and the disposal gain stated on the
+    face of the income statement.
+  * The reviewed quarter to 31 March 2026 — the balance sheet the bridge stands on, and
+    the quarter's own profit of EGP 1,114.5mn.
+
+NOTHING IS OUTSTANDING. There is no half-year statement between 31 March 2026 and the
+valuation date; the company's next disclosure is the half to 30 June 2026 and it had not
+been filed. THIS IS THE HEADING THAT PRODUCED THE LARGEST FINDING OF THE WHOLE REBUILD,
+and it did so a day before this edition: the prior study built its historicals from Global
+Cement, cemnet, Daily News Egypt, Arab Finance and an aggregator's carry of S&P Global
+Market Intelligence WHILE THESE STATEMENTS SAT ON THE COMPANY'S OWN WEBSITE, six PDFs one
+click from the homepage. Filed equity was EGP 6,020.3mn against 5,240.0mn used, cash
+4,762.3mn against 3,850.0mn, FY2025 depreciation 122.6mn against 418.1mn, operating profit
+3,304.1mn against an EBIT of 2,640.0mn — EVERY ONE UNDERSTATING THE COMPANY. That is where
+most of the distance between this answer and the old one comes from, and it is a defect of
+the *we did not read the filings* kind rather than the *the company did better than we
+thought* kind.
+
+## 2. BASE YEAR
+
+The base year foots to the filed periods. FY2025 revenue of EGP 9,089.1mn, EBITDA of
+3,455.2mn (38.01 per cent), depreciation of 122.6mn and operating profit of 3,304.1mn are
+the audited figures, not a solve. The bottom-up physical model reproduces that revenue to
++0.10 per cent and that EBITDA to +0.26 per cent from tonnes and prices, which is the test
+that the driver structure is right rather than merely calibrated.
+
+NOTHING IS ANNUALISED OR SCALED. FY2026 is stubbed to the five months of the year still
+unearned at the valuation date and the seven already earned are rolled into opening cash,
+so the period between the 31 March balance sheet and the valuation date is counted exactly
+once.
+
+**THE ONE THING THIS HEADING FOUND, AND IT RUNS AGAINST THE VALUE.** The explicit window
+charged capital spending of EGP 352mn rising to 494mn — the company's own three-year
+average of 303.2mn, escalated. The terminal charges maintenance at CURRENT COST on the
+disclosed life, which is EGP 959mn a year in today's money. The two differ by 3.2x,
+and the reason is not that the plant is young: note 4 shows accumulated depreciation of
+EGP 1,875.0mn against a gross cost of 3,140.9mn — 59.7 per cent written down, MACHINERY
+68.4 PER CENT — with EGP 379.4mn of assets fully depreciated AND STILL IN USE. Replacement
+cost is 7.9x the book cost this plant was built at, because it was built in
+pre-devaluation pounds.
+
+Holding that spend flat for five years while simultaneously running the kilns HARDER, from
+71.0 per cent of clinker capacity to 79.1, is two assumptions that cannot both be true. The
+charge now GLIDES from the company's own disclosed run rate to the terminal's own
+current-cost maintenance by FY2030, so the step at the boundary is zero by construction.
+It costs EGP 4.73 a share, and it is the correction this review was written to
+find.
+
+## 3. MACRO COHERENCE
+
+Inflation, currency and price are ONE path, and none of them is this study's own any more.
+The domestic cost index, the domestic realised price and the pound are all derived from the
+house EG macro path [R-MACRO-01]: the ladder is 16.0 / 12.0 / 9.0 / 7.5 / 7.0 per cent for
+2026-2030, sourced to the Central Bank of Egypt's baseline and its published glide, and the
+currency path is relative purchasing-power parity ON THAT LADDER against long-run United
+States inflation, read from the path file rather than computed here.
+
+The previous edition derived the same identity from its OWN ladder, two points a year
+below the house one, so the pound slid more slowly than the house says it does. Conforming
+raises nominal cash flows and RAISES the answer 9.3 per cent — which is worth stating
+plainly because it is the direction that invites suspicion. It is not fitting: the house
+ladder is the same one every Egyptian study in this book now carries, it was sourced before
+this study was touched, and AMOC's own conformance the day before moved its answer the
+opposite way, DOWNWARD, for the same reason (a lower ladder means a stronger pound, and on
+a dollar-linked slate the translation gain lost outweighs the pound costs saved).
+
+The export price is US-dollar denominated and declines on the European carbon border
+mechanism; it carries a stated exemption from the ladder because Egyptian inflation does
+not set it. Egyptian inflation reaches it through the currency path, which is where it
+belongs.
+
+Terminal growth is now 7.0 per cent — the house terminal inflation at a STATED real growth
+of ZERO — against a terminal risk-free rate of 12.5 per cent built on that same 7. The
+previous edition held 5 per cent against the same 12.5, a perpetual real decline of about
+two points a year that nothing in the study disclosed. assert_macro_coherence() reproduces
+every one of these from the path.
+
+## 4. DISCOUNT RATE
+
+Operations are discounted at a rate weighted on GROSS debt, and the cash is added at face
+exactly ONCE. This company is heavily net cash; a net-debt weighting would drive the debt
+weight negative, lever the equity weight above one, put the operating rate ABOVE the cost
+of equity, and then add the same cash back in the bridge. That is the double charge
+[R-BRIDGE-01] names and it is not made here.
+
+The schedule is 28.96 per cent in the explicit window gliding to 18.98 per cent
+in the terminal, and THE GLIDE'S FRACTIONS ARE THE CENTRAL BANK'S OWN EASING CALENDAR — the
+policy path's cumulative progress from 19.0 per cent to 12.0 — rather than a shape anybody
+typed. The terminal beta is re-levered by Hamada from an ASSET beta, unlevered at the
+observed structure first; the previous edition levered an already-levered beta.
+
+Country risk enters ONCE: the risk-free rate is normalised by Egypt's own CDS-implied
+default spread and the premium adds the same basis back. Both premium bases are published
+and the CDS basis is named central. TWO THINGS THIS HEADING FOUND, both corrected above:
+the cost of debt sat below the sovereign, and the discount factors did not reproduce from
+the forward path.
+
+The reverse read is the honest summary of this heading. At EGP 100.50 the price is paying
+for a flat 24.47 per cent cost of capital on these same cash flows; this study's schedule
+is equivalent to a flat 20.43 per cent. FOUR HUNDRED BASIS POINTS ON THE PRICE OF TIME IS
+MOST OF THE DISAGREEMENT, and it is a legible one: the market is saying Egypt's cost of
+capital does not normalise as fast as the central bank's own published path assumes. A
+reader who believes that lands close to the market.
+
+## 5. TERMINAL
+
+The terminal is built by the sanctioned module on a DISCLOSED asset life [R-TERM-01], not
+on the reciprocal of the inflation rate. Note 3/2 states 2-2.5 per cent on buildings and
+utilities, 5 per cent on machinery, 20 per cent on vehicles and tools and 10-25 per cent on
+furniture; weighted on note 4's own gross-cost mix that is a 25.9-year life, and it
+reproduces the filed FY2025 charge to within 1.2 per cent. The FY2024 filing carries the
+identical table.
+
+Terminal growth is coherent with the inflation inside the terminal rate (heading 3).
+Terminal free cash flow is EGP 4297mn, positive, and the terminal sits ABOVE the
+NOPAT-perpetuity floor. The implied replacement cycle is not 1/g and an assertion in the
+study refuses it if it ever becomes so.
+
+**THE TERMINAL IS 66.5 PER CENT OF ENTERPRISE VALUE AND THAT IS THE STRUCTURAL WEAK
+POINT OF THIS ANSWER.** It is not a defect — a five-year window on a business whose growth
+converges to the terminal rate exactly, discounted at a rate falling from 29 to 19 per
+cent, will put most of its value late — but it means the answer is more sensitive to the
+terminal construction than to anything in the explicit window, and the contested-judgement
+record prices exactly that: moving to the 20-year machinery life alone is worth
+5.1 per cent.
+
+## 6. BALANCE SHEET
+
+The bridge stands on the LATEST disclosed balance sheet, the reviewed statement at 31 March
+2026 — cash of EGP 5,802.0mn and interest-bearing debt of EGP 152.7mn, both filed. The four
+months from that date to the valuation date are carried on the model's own free cash flow.
+Non-controlling interests are deducted from EQUITY value at the value-share basis, with the
+book, profit-share and proportional framings published beside it; at EGP 120mn against an
+equity value above EGP 33bn the three cannot differ by anything reaching the second decimal
+of a per-share number, and that is stated rather than used as a shortcut.
+
+No dividend is deducted, and the reason is arithmetic rather than assumption: the filed
+statements of changes in equity show NO distribution at all, twice over and to the pound.
+Equity of EGP 3,735.80mn at 31-Dec-2024 plus FY2025 profit of 2,284.54mn is exactly the
+filed 6,020.34mn, and that plus the reviewed quarter's 1,114.48mn is exactly the filed
+7,134.82mn. A 60 per cent payout had been assumed against a company whose own statements
+reconcile with none.
+
+NET CASH IS EGP 25.13 A SHARE, 20.4 PER CENT OF THE ANSWER. A reader who thinks this
+study is optimistic should note that a fifth of it is a filed bank balance.
+
+## 7. CLAIMS AGAINST THE RECORD
+
+Every "best ever" and "never" is recomputed against the filings rather than typed. What
+this heading finds is not a false claim but an UNMADE one, and it is the most important
+sentence in this review:
+
+**THE FORECAST OPENS ABOVE EVERY YEAR THE COMPANY HAS EVER FILED AND RISES FROM THERE.**
+Sinai Cement filed EBITDA margins of 6.62 per cent (FY2023), 24.66 (FY2024) and 38.01
+(FY2025). The forecast opens at 38.63 per cent — above the best of them — and reaches
+39.83 by FY2030. [R-ANCHOR-01] does not fire on a forecast above the latest period, and
+the record is printed anyway so the shape is visible rather than merely not-red.
+
+The mechanism is operating leverage and it is an OUTPUT rather than an assumption: kiln
+utilisation runs from 71.7 per cent of clinker capacity to 79.1 against a fixed cash cost
+that escalates only with the house ladder. THE RAMP IS AN EXTRAPOLATION OF THE COMPANY'S
+OWN THREE-YEAR TREND — filed utilisation ran 53.2 / 62.7 / 71.0 per cent across FY2023-25
+— AND IT IS AN EXTRAPOLATION AND NOT A DISCLOSURE, with roughly 12.6Mt of dormant Egyptian
+capacity queuing to restart against it. It is the single largest judgement in the study,
+worth 11.4 per cent of value, and it is the first thing a reader should contest.
+Holding utilisation flat at the filed FY2025 rate takes the answer to EGP 109.19, which
+is +8.6 per cent from the price.
+
+## 8. MULTIPLE CROSS-CHECK
+
+At the fair value the shares imply 7.44x FY2025 EBITDA and 6.31x this study's FY2026
+forecast; at the traded price, 5.72x and 4.85x. On earnings, 14.1x FY2025 and
+8.6x FY2026 against 11.5x and 7.0x at the price.
+
+NONE OF THOSE IS ABSURD, IN EITHER DIRECTION. An integrated cement plant trading at 5.7x
+trailing EBITDA and valued at 7.4x is a disagreement inside the ordinary range for the
+asset class, not a claim that requires the market to be broken. That is worth saying
+explicitly, because a multiple cross-check whose only function is to confirm the answer is
+not a cross-check: here it neither refutes the study nor rescues it, and the disagreement
+has to be settled on the drivers rather than on the multiple.
+
+The other lenses are published beside the cash-flow lens rather than averaged into it
+[R-LENS-03]: replacement cost 94.23, the relative multiple 62.11 at a house 4.2x on
+normalised EBITDA, and the disclosed book floor of 27.12. The relative lens is the one that
+disagrees most and it is the weakest of them — the Egyptian listed peer set is two names
+and neither publishes an EBITDA series this study could measure a multiple from, which is
+recorded rather than papered over.
+
+---
+
+## VERDICT
+
+The answer is NOT changed to meet the price, and one correction this review produced moves
+it further away from the market rather than toward it while another moves it closer; both
+were taken on their own evidence.
+
+The gap is +22.7 per cent and it is now READABLE rather than merely large. Four hundred
+basis points of it is a disagreement about Egypt's cost of capital, measured by the reverse
+read. Most of the rest is one physical judgement — the utilisation ramp — which is stated,
+priced at 11.4 per cent, and left as the reader's to contest.
+
+WHAT WOULD CHANGE OUR MIND, IN ADVANCE: a half-year to 30 June 2026 showing utilisation
+flat or falling against the 71.0 per cent of FY2025, or an EBITDA margin below the FY2025
+outturn. Either would refute the ramp directly, and the study prices what happens if they
+do.
+
+THE STUDY IS HELD, NOT PUBLISHED [R-GAP-02]: at +22.7 per cent it is past the 10 per cent
+publication limit and no market-dissent document is filed. Holding is the correct outcome
+of an audit that found one real correction and left a large disagreement standing on a
+stated judgement.

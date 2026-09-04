@@ -28,8 +28,9 @@ CO, REG, PMD, PRESS, AGG = (SourceType.COMPANY_OFFICIAL, SourceType.REGULATOR_OF
 # ---------------------------------------------------------------- RING 1 GLOBAL
 f_rate = R.add(Ring.GLOBAL, "rate cycle & USD/FX regime", FindingClass.S,
     "Global easing cycle underway; Fed funds midpoint 3.63% (Jun-2026), which sets the "
-    "backdrop against which Egypt's own 19.50% policy rate normalises",
-    "US Federal Reserve policy history (house FED_SCHEDULE, engine/market_profiles.py)",
+    "backdrop against which Egypt's own 19.00% policy rate normalises",
+    "US Federal Reserve, Federal Open Market Committee policy decisions and the published "
+    "target range history",
     REG, "2026-06-18",
     model_impact="Anchors the terminal risk-free rate build and the direction of the "
                  "Kd glide: a falling global rate path is a necessary (not sufficient) "

@@ -42,7 +42,11 @@ def row_of(label):
 def read(overrides=None):
     bk = xlcalc.Book(wb, overrides)
     return dict(dcf=bk.cell_value('DCF', 'B39'),
-                central=bk.cell_value('Fundamental Valuation', 'D10'),
+                # [R-LENS-03] the central moved from a SUM of weighted lenses at D10 to
+                # the primary lens at C12 when the blend was retired. A probe that opens
+                # a cell by address moves with the sheet [L-067] — and this one did not,
+                # so it read an empty cell as 0.0 and every case that touched it passed.
+                central=bk.cell_value('Fundamental Valuation', 'C12'),
                 pv_expl=bk.cell_value('DCF', 'B30'),
                 tv=bk.cell_value('DCF', 'B26'),
                 ebitda26=bk.cell_value('Unit Build', 'C34'),
@@ -82,6 +86,14 @@ def read(overrides=None):
 
 
 base = read()
+# A HEADLINE THAT READS ZERO OR NOTHING IS A PROBE THAT DID NOT RUN [R-ENF-04]. Every
+# quantity below is a price, a rate or a cash flow and none of them is legitimately zero;
+# reading one as 0.0 means the cell moved and the probe is now pointed at blank space,
+# which is exactly what happened when the lens sheet was rebuilt and which passed every
+# case silently because a relative move against a zero base is zero.
+_blank = sorted(k for k, v in base.items() if v is None or abs(float(v)) < 1e-12)
+assert not _blank, ('headline probes reading nothing — the cells moved and the test is '
+                    'pointed at blank space: %s' % _blank)
 print('base: ' + ' · '.join(f'{k} {v:,.4f}' for k, v in base.items()))
 
 CASES = [
@@ -217,8 +229,13 @@ CASES = [
      'a smaller haircut leaves a bigger normalised base'),
     ('Replacement cost of capacity', 'B', +20.0, 'roic', -1,
      'more invested capital against the same terminal profit must lower the return on it'),
-    ('Weight — asset', 'B', +0.05, 'central', +1,
-     'the asset lens is the highest of the four, so weighting it more lifts the central'),
+    # THE WEIGHT DRIVERS ARE GONE, NOT MOVED. [R-LENS-03] retired the typed blend, so
+    # there is no weight to bump: the central is the primary lens and nothing else
+    # reaches it. What replaces this case is the envelope's own floor, which IS a
+    # published figure and must move when the margin that produces it moves.
+    ('Envelope floor — the primary at the filed margin floor', 'B', +5.0, 'central', 0,
+     'the envelope floor is published beside the central and does NOT feed it: bumping '
+     'it must leave the central untouched, which is the whole claim of the retirement'),
 ]
 
 fails, rows = [], []
@@ -228,9 +245,14 @@ for label, col, bump, key, sign, why in CASES:
     out = read({('Assumptions', f'{col}{r}'): cur + bump})
     delta = out[key] - base[key]
     rel = delta / abs(base[key]) if base[key] else 0.0
-    ok = (delta * sign > 0) and abs(rel) > 1e-9
+    # A SIGN OF ZERO IS A CLAIM THAT THE DRIVER DOES NOT REACH THE HEADLINE, and it is
+    # tested as strictly as a directional one: after the blend was retired, "the envelope
+    # floor does not feed the central" is exactly the property a reader needs, and a
+    # driver test that could only assert movement could not state it.
+    ok = ((abs(rel) < 1e-9) if sign == 0 else
+          ((delta * sign > 0) and abs(rel) > 1e-9))
     rows.append(dict(driver=label, col=col, bump=bump, headline=key, base=base[key],
-                     bumped=out[key], rel=rel, direction=('up' if sign > 0 else 'down'),
+                     bumped=out[key], rel=rel, direction=('up' if sign > 0 else ('down' if sign < 0 else 'unmoved')),
                      passed=bool(ok), why=why))
     print(f"  [{'OK ' if ok else 'BAD'}] {label} [{col}] {bump:+g} -> {key} "
           f"{base[key]:,.3f} -> {out[key]:,.3f} ({rel:+.3%})")
@@ -241,6 +263,18 @@ for label, col, bump, key, sign, why in CASES:
 DEAD_OK = {
     'Spot price',                 # what fair value is COMPARED with, not an input to it
     'Vicat tender offer price',   # a disclosed reference the model deliberately consumes nowhere
+    # [R-LENS-03] THE RETIRED BLEND IS SHOWN AND REACHES NOTHING, WHICH IS THE POINT.
+    # It is printed so a reader can see what the previous architecture would have said;
+    # a figure that fed the central would mean the blend had not actually been retired.
+    'MEMO — the retired four-lens blend',
+    # [R-COC-01] THE GLIDE'S FRACTIONS ARE THE POLICY-RATE PATH'S, NOT THE DEBT
+    # LADDER'S. The cost-of-debt path used to shape the discount schedule and now
+    # shapes nothing: the explicit WACC takes the first year's rate and the terminal
+    # takes the terminal rate, and the years between are a disclosure about the
+    # company's borrowing costs rather than a driver of its value. It is printed
+    # because a reader is owed it, and it is declared here because a driver test
+    # that could not tell a memo from a broken link would be worth nothing.
+    'Cost-of-debt path',
 }
 print('\nDEAD-INPUT SWEEP — every remaining driver is bumped and must move something')
 dead = []

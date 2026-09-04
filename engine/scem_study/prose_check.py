@@ -71,6 +71,22 @@ RENDER = PF.rendering_set(vals, extra=[
     # built against, cited with their dates beside them.
     0.0363,     # US federal funds midpoint, June 2026
     0.138,      # Egyptian core inflation, May 2026
+    # THREE SUPERSEDED FIGURES, QUOTED TO SHOW WHAT CHANGED. This model cannot compute
+    # any of them because a DIFFERENT model produced them, and the rule is explicit that a
+    # false positive is fixed by widening the rendering set rather than by deleting the
+    # figure — a study that cannot say what it corrected cannot show its working.
+    0.2231,     # the ten-year sovereign yield this study carried at a 21-July quote,
+                # against the house path's 23.00% for the same instrument on 6 August.
+                # Quoted in the register entry that replaces it.
+    0.2150,     # the cost of debt revision 3 typed, 81bp BELOW the sovereign that taxes
+                # this company, which [R-COC-01] refuses outright. Quoted where it is
+                # corrected, because a correction with no before is an assertion.
+    0.407,      # the disclosed materials line against the four industry rules of thumb
+                # revision 2 built in its place (EGP 3,592.5mn against 2,553.7mn). The
+                # 2,553.7 is a RETIRED model's output and is not committed anywhere in
+                # this one, so the ratio has nothing to resolve against; both directions
+                # of it are now computed in the register from the two figures themselves
+                # rather than typed, which is what the earlier edition got backwards.
     # the peer's quoted trailing multiple, cited precisely because this study REFUSES it:
     # 6.44 x the peer's own attributable profit does not reconcile with the market
     # capitalisation printed beside it, and the bibliography says so. A refused figure has
