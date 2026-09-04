@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**189 lessons**, of which 162 bind on every study, 20 on a class of company, and 7 on a single name.
+**190 lessons**, of which 163 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 114 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 115 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1698,6 +1698,16 @@ open(path, 'w').write(f(text)) evaluates the open FIRST. If f() then raises, the
 > **What it cost, or how we know.** A patch script applying the same edit to six builders wrote io.open(p,'w').write(add_import(s)); on the second file add_import raised because that builder has no sys.path preamble, and the traceback was the only sign that the file had already been emptied — 1,023 lines gone, recovered from git because it happened to be committed. Nothing about the error message mentioned the file.
 
 > **What would overturn it.** A write path where the truncation genuinely cannot precede the failure, such as writing to a temporary file and renaming it, which is the stronger form of this same discipline.
+
+### L-269 · A TEMPLATE IS AN UNWRITTEN RULE WITH NOBODY CHECKING IT, AND IT TRANSMITS EVERY PROPERTY IT HAPPENS TO HAVE.
+
+Where a process propagates by imitation — open this document beside the one you are writing — the thing imitated IS the standard, whatever the documents say. It carries not the rules somebody remembered to write down but everything the template contains, including the constructions later rules retired.
+
+**Applies to:** every study  ·  *Learned from:* found while building, measuring the model report against the ratchets, 04-Sep-2026
+
+> **What it cost, or how we know.** The exemplar every study in this house is modelled on was outstanding on EIGHT ratchets at once — among them lens design, so it still publishes the typed four-lens blend that rule retired, and the valuation gap, where it is listed UNREADABLE, meaning that gate cannot recover a central and a spot from the document every other study is copied from. Not one of those entries was wrong; that is what a ratchet is for. Nothing was counting them on THIS study, and a ratchet entry on the exemplar is a debt every study written afterwards owes without anybody deciding to take it on.
+
+> **What would overturn it.** A house whose studies are written from the rules rather than from a template, where the exemplar's own state would stop propagating.
 
 
 ---

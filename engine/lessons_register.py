@@ -3672,6 +3672,26 @@ LESSONS = [
       "writing to a temporary file and renaming it, which is the stronger form of this "
       "same discipline."),
 
+    L("L-269", "ALL", None,
+      "A TEMPLATE IS AN UNWRITTEN RULE WITH NOBODY CHECKING IT, AND IT TRANSMITS EVERY "
+      "PROPERTY IT HAPPENS TO HAVE.",
+      "Where a process propagates by imitation \u2014 open this document beside the one "
+      "you are writing \u2014 the thing imitated IS the standard, whatever the documents "
+      "say. It carries not the rules somebody remembered to write down but everything the "
+      "template contains, including the constructions later rules retired.",
+      "measuring the model report against the ratchets, 04-Sep-2026",
+      "build",
+      "The exemplar every study in this house is modelled on was outstanding on EIGHT "
+      "ratchets at once \u2014 among them lens design, so it still publishes the typed "
+      "four-lens blend that rule retired, and the valuation gap, where it is listed "
+      "UNREADABLE, meaning that gate cannot recover a central and a spot from the "
+      "document every other study is copied from. Not one of those entries was wrong; "
+      "that is what a ratchet is for. Nothing was counting them on THIS study, and a "
+      "ratchet entry on the exemplar is a debt every study written afterwards owes "
+      "without anybody deciding to take it on.",
+      "A house whose studies are written from the rules rather than from a template, "
+      "where the exemplar's own state would stop propagating."),
+
 ]
 
 
