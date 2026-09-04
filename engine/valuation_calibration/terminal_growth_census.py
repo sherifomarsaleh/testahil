@@ -31,6 +31,7 @@ terminals, or that resolves zero house paths, FAILS rather than reporting clean.
 """
 import glob
 import json
+import re
 import os
 import sys
 
@@ -51,6 +52,38 @@ def terminal_inflation(mkt):
     p = MP.load(mkt)
     t = (p.raw.get('inflation') or {}).get('terminal') or {}
     return t.get('value'), p.raw.get('regime')
+
+
+# THREE STATES, NOT TWO, AND THE FIRST DRAFT HAD TWO [R-COC-01].
+# It asked only whether a REAL-GROWTH INPUT KEY exists, and printed "not stated" for
+# every study without one -- which was FALSE of AIRARABIA, whose g_term justification
+# says "about 0.5pp real" in as many words. A check that reads a KEY is not checking
+# what the study SAYS, which is [R-MACRO-01 AMENDED]'s own lesson from the other side.
+# The remedy differs by state, so the label has to: a SILENT study owes a disclosure,
+# a PROSE-ONLY study owes the arithmetic moved into its register, and [R-MACRO-01]
+# wants the STORED form because a typed nominal rate is unfalsifiable -- nobody can
+# tell whether "about 0.5pp" was computed or asserted.
+REAL_KEYS = ('g_term_real', 'real_growth_term', 'g_real')
+_REAL_IN_PROSE = re.compile(r'(\d+(?:\.\d+)?)\s*(?:pp|%|percentage points?|points?)?\s*'
+                            r'(?:in\s+)?real\b', re.I)
+
+
+def _how_stated(D, real):
+    """'stored' | 'prose' | 'silent' — and prose only counts if the figure AGREES."""
+    I = D.get('inputs') or {}
+    if any(k in I for k in REAL_KEYS):
+        return 'stored'
+    just = str(((I.get('g_term') or {}).get('source')) or '')
+    for m in _REAL_IN_PROSE.finditer(just):
+        try:
+            said = float(m.group(1)) / 100.0
+        except ValueError:                                           # noqa: PERF203
+            continue
+        # "about 0.5pp real" against a computed 0.49% agrees; a figure a point away
+        # does not, and a WRONG statement is worse than none.
+        if abs(abs(said) - abs(real)) <= 0.002:
+            return 'prose'
+    return 'silent'
 
 
 def main():
@@ -93,10 +126,7 @@ def main():
             unresolved.append((tk, 'house path for %s states no terminal inflation' % mkt))
             continue
         real = (1.0 + g) / (1.0 + pi) - 1.0
-        # does the study STATE its real rate anywhere it can be read?
-        I = D.get('inputs') or {}
-        stated = any(k in I for k in ('g_term_real', 'real_growth_term', 'g_real'))
-        rows.append((tk, mkt, regime, g, pi, real, stated))
+        rows.append((tk, mkt, regime, g, pi, real, _how_stated(D, real)))
 
     if not rows:
         print('FAIL - %d study directories and not one terminal growth rate was read '
@@ -111,13 +141,14 @@ def main():
           % ('ticker', 'mkt', 'regime', 'nominal', 'inflation', 'REAL', 'states it?'))
     print('  ' + '-' * 74)
     for tk, mkt, regime, g, pi, real, stated in sorted(rows, key=lambda r: r[5]):
-        flag = '' if stated else '   <- not stated'
-        print('  %-13s %-4s %-11s %7.2f%% %9.2f%% %8.2f%%   %-3s%s'
+        flag = {'stored': '', 'prose': '   <- in prose only, not stored as a real rate',
+                'silent': '   <- SILENT'}[stated]
+        print('  %-13s %-4s %-11s %7.2f%% %9.2f%% %8.2f%%   %-6s%s'
               % (tk, mkt, (regime or '')[:11], 100 * g, 100 * pi, 100 * real,
-                 'yes' if stated else 'no', flag))
+                 stated, flag))
     print()
     away = [r for r in rows if abs(r[5]) > 0.005]
-    silent = [r for r in away if not r[6]]
+    silent = [r for r in away if r[6] == 'silent']
     print('  %d of %d assume a real terminal rate more than half a point from zero, and %d '
           'of those state it nowhere.' % (len(away), len(rows), len(silent)))
     if silent:

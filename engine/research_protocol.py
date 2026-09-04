@@ -10,6 +10,8 @@ HARD FAIL and MUST NOT be issued.
 This file holds RULES, not numbers — it never goes stale and is never overridden by a fit.
 """
 
+import re
+
 from dataclasses import dataclass, field
 from typing import List, Optional
 
@@ -1249,6 +1251,15 @@ def assert_lens_design(record: dict, ticker: str = "?") -> dict:
                     fails.append("range_basis does not say what value the driver took at "
                                  "the %s end of the range." % side)
             sanctioned = str(rb.get("sanctioned_framing") or "").strip()
+            # `driver` NAMES WHAT MOVED, and nothing else. A study that also writes
+            # here which dials stood still trips this check while doing exactly the
+            # right thing -- so the MESSAGE says which of the two mistakes it is. A
+            # regex that cut the text at a holding word was tried and backed out: the
+            # dial usually precedes the verb ("the cost of capital ... is held"), so it
+            # caught one phrasing and not the common one, and a check that half-works on
+            # prose is worse than one whose message tells the author where the sentence
+            # belongs. The structured assertion that the macro stood still is
+            # macro_held, checked immediately below.
             drv = str(rb.get("driver") or "").lower()
             hits = [t for t in MACRO_DIALS if t in drv]
             if hits and not sanctioned:
@@ -1260,7 +1271,10 @@ def assert_lens_design(record: dict, ticker: str = "?") -> dict:
                     "internally contradictory and its width is chosen rather than "
                     "observed. Flex the crux in observable units and hold the macro path "
                     "fixed, or name the rule that requires the framing to be published "
-                    "both ways." % ", ".join(hits))
+                    "both ways. IF THE MACRO PATH WAS HELD AND THIS FIELD SAYS SO, the "
+                    "sentence is in the wrong field: `driver` names what MOVED, the "
+                    "structured assertion is macro_held, and the explanation belongs in "
+                    "`evidence`." % ", ".join(hits))
             if rb.get("macro_held") is not True and not sanctioned:
                 fails.append(
                     "range_basis does not assert that the macro path was held fixed across "

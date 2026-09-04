@@ -32,10 +32,18 @@ def style(ax):
     for s_ in ['left', 'bottom']: ax.spines[s_].set_color(GREY)
 
 # ---- F1 football field ------------------------------------------------------
+# [R-LENS-03]: the central IS the cash-flow lens; the others are cross-checks and are
+# drawn beside it, never averaged into it. Normalised earnings power is gone from the
+# lens set entirely — the registry does not permit it for an airline — so the figure
+# has four bars rather than five, and the keys are read from the record rather than
+# typed, so a lens leaving the set cannot leave a KeyError behind.
 L = d['lenses']
-names = ['FCFF DCF\n(primary)', 'Relative\n(EV/EBITDA · P/E)', 'Normalised\nearnings power',
-         'Book value /\nsustainable return', 'Weighted central']
-keys = ['dcf', 'relative', 'normalized', 'book', 'central']
+LABEL = {'dcf': 'FCFF DCF\n(the central)',
+         'relative': 'Relative\n(EV/EBITDA · P/E)',
+         'book': 'Book value /\nsustainable return',
+         'central': 'Central\n(cash-flow lens)'}
+keys = [k for k in ('dcf', 'relative', 'book', 'central') if k in L]
+names = [LABEL[k] for k in keys]
 fig, ax = plt.subplots(figsize=(9.7, 4.2), dpi=110)
 xmax = max(L[k]['bull'] for k in keys); xmin = min(L[k]['bear'] for k in keys)
 for i, k in enumerate(keys):

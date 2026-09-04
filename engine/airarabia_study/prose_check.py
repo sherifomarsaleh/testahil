@@ -41,6 +41,26 @@ vals += PF.ratios_against(PF.numbers_from(HERE, files=['study_numbers.json']), (
 # and the reads are quoted against each other
 _PANEL = [v for v in PF.numbers_from(HERE, files=['study_numbers.json']) if _spot and 0 < v < _spot * 5]
 vals += PF.ratios_against([_spot] if _spot else [], _PANEL)
+# INTRA-STATEMENT RATIOS. A study quotes an effective tax rate, a margin and a
+# working-capital intensity constantly, and every one is a ratio of two committed
+# figures IN THE SAME PERIOD — never a number the model stores on its own. The first
+# runs of this check flagged the FY2024 audited effective rate of 8.79% (tax over
+# profit before tax) and working capital at -66.6% of FY2025 revenue, both of which the
+# model computes to the decimal. WIDENED RATHER THAN DELETED, which is the standing
+# discipline for a false positive here: if a figure is real and the model can produce
+# it, the rendering set is what was missing.
+for _blk in ('hist_is', 'hist_bs'):
+    for _yr, _row in (SN.get(_blk) or {}).items():
+        if not isinstance(_row, dict):
+            continue
+        _dens = [_row.get(k) for k in ('rev', 'ebt', 'ebitda', 'assets', 'eqp')]
+        _dens = [d for d in _dens if isinstance(d, (int, float)) and d]
+        _nums = [v for v in _row.values() if isinstance(v, (int, float))]
+        # revenue is the natural denominator for a balance-sheet intensity too
+        _rev = ((SN.get('hist_is') or {}).get(_yr) or {}).get('rev')
+        if isinstance(_rev, (int, float)) and _rev:
+            _dens.append(_rev)
+        vals += PF.ratios_against(_nums, tuple(_dens))
 
 RENDER = PF.rendering_set(vals)
 

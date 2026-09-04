@@ -60,30 +60,56 @@ for u in uncovered[:20]:
 def g(sheet, cell):
     return cell_value(sheet, cell)
 
+
+# THE ROW MAP IS THE BUILDER'S, NOT THIS FILE'S. Five files read this workbook by cell
+# address and only the builder knows where a row landed; carrying a second copy here is
+# how a check ends up examining the wrong cell and reporting a model defect that is its
+# own [L-067]. Rebuilding the terminal block moved five rows and produced exactly that:
+# 25 "disagreements", every one of them this file looking one row too high.
+ROWS = json.load(open(os.path.join(HERE, 'workbook_rows.json')))
+
+
+def gr(sheet, key, col='C'):
+    return cell_value(sheet, '%s%d' % (col, ROWS[sheet][key]))
+
+
 checks = [
-    ('DCF enterprise value', g('DCF', 'C56'), DCF['ev'], 1.0),
-    ('DCF PV of explicit years', g('DCF', 'C55'), DCF['pv_explicit'], 1.0),
-    ('DCF PV of terminal value', g('DCF', 'C54'), DCF['pv_tv'], 1.0),
-    ('DCF terminal value share', g('DCF', 'C57'), DCF['tv_share'], 0.002),
-    ('DCF fair value at 31-Dec-2025', g('DCF', 'C60'), DCF['ps_dec'], 0.02),
-    ('DCF anchor accretion factor', g('DCF', 'C61'), DCF['roll'], 0.0005),
-    ('DCF fair value at the anchor (split roll)', g('DCF', 'C64'), DCF['ps'], 0.02),
+    ('DCF enterprise value', gr('DCF', 'enterprise_value'), DCF['ev'], 1.0),
+    ('DCF PV of explicit years', gr('DCF', 'pv_explicit'), DCF['pv_explicit'], 1.0),
+    ('DCF PV of terminal value', gr('DCF', 'pv_terminal'), DCF['pv_tv'], 1.0),
+    ('DCF terminal value share', gr('DCF', 'terminal_value_share'), DCF['tv_share'], 0.002),
+    ('DCF fair value at 31-Dec-2025', gr('DCF', 'per_share_dec'), DCF['ps_dec'], 0.02),
+    ('DCF anchor accretion factor', gr('DCF', 'roll_ke'), DCF['roll'], 0.0005),
+    ('DCF fair value at the anchor (split roll)', gr('DCF', 'per_share_anchor'), DCF['ps'], 0.02),
     ('DCF beta at the neutral benchmark switch', g('DCF', 'C8'), W['beta']['beta'], 0.0005),
     ('DCF cost of equity — explicit', g('DCF', 'C10'), W['ke_exp'], 0.0002),
     ('DCF cost of capital — explicit', g('DCF', 'C17'), W['wacc_exp'], 0.0002),
     ('DCF cost of capital — terminal', g('DCF', 'C24'), W['wacc_term'], 0.0002),
-    ('DCF terminal return on capital', g('DCF', 'C51'), DCF['roic_term'], 0.001),
+    ('DCF terminal free cash flow', gr('DCF', 'terminal_fcff'),
+     D['terminal_record']['outputs']['fcff'], 1.0),
+    ('DCF terminal value', gr('DCF', 'terminal_value'), DCF['tv'], 1.0),
     ('Bridge equity attributable', g('SOTP Bridge', 'C13'), DCF['eq_attr'], 1.0),
     ('Bridge net cash', g('SOTP Bridge', 'C6'), -HB['FY25']['nd'], 0.5),
     ('Bridge split-roll per share', g('SOTP Bridge', 'C15'), DCF['ps'], 0.02),
     ('Bridge JV-capitalised per share', g('SOTP Bridge', 'C20'), DCF['ps_jvcap'], 0.02),
-    ('Fundamental — DCF lens', g('Fundamental Valuation', 'C5'), DCF['ps'], 0.02),
-    ('Fundamental — relative lens', g('Fundamental Valuation', 'C6'), LN['relative']['base'], 0.02),
-    ('Fundamental — normalised lens', g('Fundamental Valuation', 'C7'), LN['normalized']['base'], 0.02),
-    ('Fundamental — book lens', g('Fundamental Valuation', 'C8'), LN['book']['base'], 0.02),
+    ('Fundamental — DCF lens', gr('Fundamental Valuation', 'dcf'), DCF['ps'], 0.02),
+    ('Fundamental — relative lens', gr('Fundamental Valuation', 'relative'),
+     LN['relative']['base'], 0.02),
+    # The normalised lens is COMPUTED AND EXCLUDED from the lens set this edition, so it
+    # is read from the excluded record and the workbook prints it at C8 rather than C7,
+    # where book value now sits. A check that opens a cell by address moves with the
+    # edition that moved the cell.
+    ('Fundamental — book value (cross-check)', gr('Fundamental Valuation', 'book'),
+     LN['book']['base'], 0.02),
+    ('Fundamental — normalised, computed and excluded',
+     gr('Fundamental Valuation', 'normalised_excluded'),
+     D['lens_record']['lenses_excluded'][0]['value'], 0.02),
+    ('Fundamental — the central', gr('Fundamental Valuation', 'central_row'),
+     D['central'], 0.02),
     ('Fundamental — panel median', g('Fundamental Valuation', 'C23'), D['panel_centre'], 0.02),
-    ('Summary weighted central', g('Summary', 'C9'), D['central'], 0.02),
-    ('Summary central on the JV-capitalised framing', g('Summary', 'C11'), D['central_jvcap'], 0.02),
+    ('Summary central (the class primary)', gr('Summary', 'central_row'), D['central'], 0.02),
+    ('Summary on the JV-capitalised framing', gr('Summary', 'jv_framing'),
+     D['central_jvcap'], 0.02),
     ('Summary terminal value share', g('Summary', 'C12'), DCF['tv_share'], 0.002),
     ('Segments FY2026E revenue', g('Segments', 'B14'), F['rev'][0], 1.0),
     ('Segments FY2030E revenue', g('Segments', 'F14'), F['rev'][4], 1.0),
@@ -94,8 +120,15 @@ checks = [
     ('Income statement FY2025 profit before tax', g('Income Statement', 'D16'), HI['FY25']['ebt'], 1.0),
     ('Cash flow FY2030E closing gross debt', g('Cash Flow', 'F18'), F['debt'][4], 1.0),
     ('Relative lens fee-stream value', g('Relative & Normalized', 'C7'), D['rel']['fee_value'], 1.0),
-    ('Summary weighted bear', g('Summary', 'B9'), D['lenses']['central']['bear'], 0.02),
-    ('Summary weighted bull', g('Summary', 'D9'), D['lenses']['central']['bull'], 0.02),
+    ('Summary envelope low (the primary\'s own bear)',
+     gr('Summary', 'central_row', col='B'), D['lenses']['central']['bear'], 0.02),
+    ('Summary envelope high (the primary\'s own bull)',
+     gr('Summary', 'central_row', col='D'), D['lenses']['central']['bull'], 0.02),
+    ('Summary normalised, computed and excluded',
+     gr('Summary', 'normalised_excluded'),
+     D['lens_record']['lenses_excluded'][0]['value'], 0.02),
+    ('Summary memo of the retired blend', gr('Summary', 'retired_blend'),
+     D['lens_record']['retired_blend']['value'], 0.02),
     ('Expert 1 live leg', g('Fundamental Valuation', 'C19'), D['experts']['e1']['base'], 0.02),
     ('Expert 2 live leg', g('Fundamental Valuation', 'C20'), D['experts']['e2']['base'], 0.02),
     ('Income statement FY2030E attributable profit', g('Income Statement', 'I20'), F['np_attr'][4], 1.0),

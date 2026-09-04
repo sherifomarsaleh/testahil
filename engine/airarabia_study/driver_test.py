@@ -22,19 +22,46 @@ def row_of(label):
         raise KeyError(f'no Assumptions row labelled {label!r}')
     return A[label]
 
+# THE BUILDER PUBLISHES WHERE ITS ROWS LANDED and this file resolves through that map
+# rather than carrying its own copy of the addresses [L-067]: rebuilding the terminal
+# block moved five rows and every check that named a cell went on reading confidently
+# from the wrong one.
+ROWS = json.load(open(os.path.join(HERE, 'workbook_rows.json')))
+
+
+def rc(sheet, key, col='C'):
+    return '%s%d' % (col, ROWS[sheet][key])
+
+
 def read(overrides=None):
     bk = xlcalc.Book(wb, overrides)
-    return dict(dcf=bk.cell_value('DCF', 'C62'),
-                central=bk.cell_value('Summary', 'C9'),
-                pv_expl=bk.cell_value('DCF', 'C55'),
-                tv=bk.cell_value('DCF', 'C53'),
+    return dict(dcf=bk.cell_value('DCF', rc('DCF', 'per_share_ke_single')),
+                central=bk.cell_value('Summary', rc('Summary', 'central_row')),
+                pv_expl=bk.cell_value('DCF', rc('DCF', 'pv_explicit')),
+                tv=bk.cell_value('DCF', rc('DCF', 'terminal_value')),
                 ebitda26=bk.cell_value('Segments', 'B27'),
                 wacc=bk.cell_value('DCF', 'C17'),
                 wacc_term=bk.cell_value('DCF', 'C24'),
                 nd30=bk.cell_value('Cash Flow', 'F16'),
                 jvcap=bk.cell_value('SOTP Bridge', 'C20'),
                 dcf_split=bk.cell_value('SOTP Bridge', 'C15'),
-                eq30=bk.cell_value('Balance Sheet', 'I15'))
+                eq30=bk.cell_value('Balance Sheet', 'I15'),
+                # Invested capital is read so the dead-input sweep is honest about what
+                # the fleet base and the intangibles still move. Under the RETIRED g x IC
+                # terminal they drove the whole valuation; under the sanctioned one the
+                # terminal charge is depreciation-based and the growth capital is
+                # MARGINAL (a difference in invested capital, from which any common
+                # starting level cancels), so they move the capital display and the
+                # returns on it and no longer move the value. That is a real property of
+                # the new construction and it is asserted rather than discovered.
+                ic30=bk.cell_value('DCF', 'F47'),
+                relative=bk.cell_value('Fundamental Valuation',
+                                       rc('Fundamental Valuation', 'relative')),
+                book=bk.cell_value('Fundamental Valuation',
+                                   rc('Fundamental Valuation', 'book')),
+                normalised=bk.cell_value('Fundamental Valuation',
+                                         rc('Fundamental Valuation',
+                                            'normalised_excluded')))
 
 base = read()
 print('base:  ' + ' · '.join(f'{k} {v:,.4f}' for k, v in base.items()))
@@ -79,12 +106,17 @@ CASES = [
      'more capex must cut free cash flow and the valuation'),
     ('Depreciation & amortisation (AED mn)', 'C', +100.0, 'dcf', +1,
      'with EBITDA fixed, more D&A is a tax shield: NOPAT falls by (1-t) but the add-back is full'),
-    ('Justified EV/EBITDA', 'C', +1.0, 'central', +1,
-     'a higher justified multiple must raise the weighted central'),
-    ('Justified price/earnings', 'C', +1.0, 'central', +1,
-     'a higher justified P/E must raise the weighted central'),
-    ('Sustainable return on equity', 'C', +0.02, 'central', +1,
-     'a higher sustainable return must raise the book lens and the central'),
+    # RE-DERIVED, NOT DELETED. These three drive CROSS-CHECKS, and under the retired
+    # blend each was asserted to raise the central — which was true of a weighted
+    # average and is exactly what [R-LENS-03] removed. Each must now raise ITS OWN lens,
+    # and the assertion that none of them touches the central is made separately below.
+    ('Justified EV/EBITDA', 'C', +1.0, 'relative', +1,
+     'a higher justified multiple must raise the relative cross-check'),
+    ('Justified price/earnings', 'C', +1.0, 'normalised', +1,
+     'a higher justified P/E must raise the normalised figure, which is computed and '
+     'published beside the lenses even though it is not one of them'),
+    ('Sustainable return on equity', 'C', +0.02, 'book', +1,
+     'a higher sustainable return must raise the book cross-check'),
     ('Joint-venture capitalisation multiple', 'C', +3.0, 'jvcap', +1,
      'a higher JV multiple must raise the capitalised-framing value'),
     ('Gross debt, FY2025 (AED mn, audited)', 'C', +2000.0, 'dcf', -1,
@@ -93,7 +125,7 @@ CASES = [
      'more cash must add to the bridge'),
     ('Dividend payout ratio', 'C', +0.20, 'nd30', +1,
      'paying out more must leave more net debt at the end of the forecast'),
-    ('Days from 31-Dec-2025 to the 7-Aug-2026 anchor', 'C', +100.0, 'dcf', +1,
+    ('Days from 31-Dec-2025 to the 3-Sep-2026 anchor', 'C', +100.0, 'dcf', +1,
      'a later anchor accretes more value at the cost of equity'),
     ('FY2025 dividend per share (AED, approved 12 March 2026)', 'C', +0.30, 'dcf', -1,
      'a larger dividend paid before the anchor is value that left the share'),
@@ -176,13 +208,27 @@ assert abs(on_adopt['dcf'] - on['dcf']) < 1e-9, (
 print(f"  [OK ] benchmark switch: adopted DCF {base['dcf']:,.3f} -> cross-check "
       f"DCF {on['dcf']:,.3f}; each beta is live only under its own setting")
 
-# the excluded labels must still move the things they are FOR
-r = row_of('Weight — relative')
-out = read({('Assumptions', f'C{r}'): 0.30})
-assert out['central'] != base['central'], 'lens weight must move the central'
+# THE BLEND IS RETIRED, SO THE ASSERT IS RE-DERIVED RATHER THAN DELETED. It used to
+# claim that moving a lens weight moves the central, which was the right test of a
+# weighted blend and is now a test of something that no longer exists. The claim the
+# architecture actually makes is stronger and is what gets asserted instead: the central
+# IS the cash-flow lens to the cent, and moving a CROSS-CHECK moves nothing.
+assert abs(base['central'] - base['dcf_split']) < 1e-9, (
+    'the central must BE the cash-flow lens, not an average that happens to sit near it: '
+    'central %.6f against the primary %.6f' % (base['central'], base['dcf_split']))
+for _lbl, _bump in (('Justified EV/EBITDA', +2.0),
+                    ('Sustainable return on equity', +0.05)):
+    _r = row_of(_lbl)
+    _out = read({('Assumptions', f'C{_r}'): wb['Assumptions'][f'C{_r}'].value + _bump})
+    assert abs(_out['central'] - base['central']) < 1e-9, (
+        'moving %r is a CROSS-CHECK and must not move the central; it moved it from '
+        '%.6f to %.6f, which would mean the blend is still there under another name'
+        % (_lbl, base['central'], _out['central']))
+print('  [OK ] the central IS the primary (%.4f) and neither cross-check moves it'
+      % base['central'])
 r = row_of('Spot price (AED)')
 bk = xlcalc.Book(wb, {('Assumptions', f'C{r}'): 6.0})
-assert bk.cell_value('Summary', 'G9') != None
+assert bk.cell_value('Summary', rc('Summary', 'central_row', col='G')) is not None
 res = dict(cases=len(CASES), fails=len(fails), dead=dead)
 json.dump(res, open(os.path.join(HERE, 'driver_test_result.json'), 'w'), indent=1)
 assert not fails, f'{len(fails)} drivers failed: {fails}'

@@ -1,0 +1,40 @@
+{
+ "published_central": 4.851079136958483,
+ "published_spot": 4.97,
+ "built_from": "AIRARABIA_Valuation_Model_09082026_public.xlsx",
+ "DCF": {
+  "enterprise_value": 59,
+  "terminal_value_share": 60,
+  "roll_ke": 66,
+  "roll_cash": 68,
+  "terminal_nopat": 50,
+  "dna_addback": 51,
+  "maintenance": 52,
+  "growth_capex": 53,
+  "wc_charge": 54,
+  "terminal_fcff": 55,
+  "terminal_value": 56,
+  "pv_terminal": 57,
+  "pv_explicit": 58,
+  "floor_memo": 61,
+  "retired_terminal_memo": 62,
+  "equity_attributable": 64,
+  "per_share_dec": 65,
+  "roll_ke_row": 66,
+  "per_share_ke_single": 67,
+  "per_share_anchor": 69
+ },
+ "Fundamental Valuation": {
+  "dcf": 5,
+  "relative": 6,
+  "book": 7,
+  "normalised_excluded": 8,
+  "central_row": 10
+ },
+ "Summary": {
+  "central_row": 8,
+  "jv_framing": 9,
+  "normalised_excluded": 10,
+  "retired_blend": 11
+ }
+}
