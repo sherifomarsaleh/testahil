@@ -4339,6 +4339,58 @@ LESSONS = [
       "A landed-check asserting a key\'s presence whose absence the green baseline does "
       "genuinely guarantee — those are sound and this lesson does not touch them."),
 
+    L("L-298", "ALL", None,
+      "A SOURCING CLAIM IS A CLAIM ABOUT THE WORLD AND IT ROTS LIKE ANY OTHER, but nothing "
+      "re-tests it, because it reads as a fact about the study rather than a fact about a "
+      "server.",
+      "\"The proxy blocked the company website\" is true on the day it is written and "
+      "becomes a standing justification for every figure sourced around it. Nobody re-runs "
+      "it, because it looks like part of the study\'s history rather than a live "
+      "condition. TWO OPPOSITE FAILURES LOOK IDENTICAL IN THE RECORD and separate only "
+      "when the probe is run again: in one the documents were on the company\'s own site "
+      "the whole time and nobody looked; in the other the site lists an archive it does "
+      "not serve, so no amount of trying would ever have worked. The reason decides what "
+      "happens next — one says try again, the other says stop trying and ask — so getting "
+      "it wrong wastes the effort in the wrong direction.",
+      "ELEC, 04-Sep-2026",
+      "build",
+      "ELEC is the one study the source-integrity gate reports in plain breach, on 11 dated "
+      "historicals from data vendors and press, justified by a recorded proxy block. Re-run "
+      "a month later: the site returns 200 on every page, publishes an index of some sixty "
+      "audited statements one click from the homepage — and serves none of them, every "
+      "upload after August 2020 returning 404 while a 2020 asset in the same tree returns "
+      "200, with the legacy host that held the older ones no longer resolving in DNS. The "
+      "documents are genuinely unobtainable and the recorded reason was still wrong. The "
+      "mirror case is SCEM, where the statements sat on the company\'s own website while "
+      "the study used Global Cement and an aggregator\'s carry of S&P Global.",
+      "A sourcing failure that is re-tested and comes back identical — which is the point: "
+      "the lesson asks for the re-test, not for a particular answer."),
+
+    L("L-299", "ALL", None,
+      "THE UNREADABLE BUCKET IS NOT NEUTRAL — IT IS WHERE THE WORST CASES GO. [R-ENF-04] "
+      "says an absent answer is not a clean one; this is the sharper half, that absence is "
+      "CORRELATED WITH SEVERITY, so a census reporting \"11 readable, 11 not\" is not "
+      "reporting a random half.",
+      "A study broken enough to be unreadable by one instrument is usually broken in the "
+      "ways that instrument measures, because the same missing structure causes both. So "
+      "the readable population is a FAVOURABLE sample of the book and every figure "
+      "measured across it understates the problem — which is the opposite of how an "
+      "unreadable list is normally read, as a coverage nuisance to be closed later.",
+      "terminal_growth_census.py / ELEC, 04-Sep-2026",
+      "build",
+      "The terminal-growth census re-expressed every study\'s terminal growth as its real "
+      "rate and found two names assuming a real rate away from zero without stating it, "
+      "PHAR at -1.87% and RIYADHCABLE at +1.96%. ELEC assumes THE SAME -1.87% on a "
+      "terminal that also carries the retired g x IC construction, a terminal return on "
+      "capital 583bp below its own cost of capital, and an invested-capital base resting "
+      "on a typed 0.05-of-revenue constant — and the census could not see any of it, "
+      "because ELEC\'s numbers file carries no meta block at all, so its market resolved "
+      "to nothing and it landed in the unreadable bucket. THE WORST INSTANCE OF THE THING "
+      "BEING MEASURED WAS INVISIBLE TO THE INSTRUMENT MEASURING IT, and the reason it was "
+      "invisible is a symptom of the same neglect.",
+      "A census whose unreadable entries, once opened, turn out no worse than its readable "
+      "ones — which would make the bucket a coverage problem rather than a sampling one."),
+
 ]
 
 
