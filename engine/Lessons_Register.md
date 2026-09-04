@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**190 lessons**, of which 163 bind on every study, 20 on a class of company, and 7 on a single name.
+**192 lessons**, of which 165 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 115 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 117 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1708,6 +1708,26 @@ Where a process propagates by imitation — open this document beside the one yo
 > **What it cost, or how we know.** The exemplar every study in this house is modelled on was outstanding on EIGHT ratchets at once — among them lens design, so it still publishes the typed four-lens blend that rule retired, and the valuation gap, where it is listed UNREADABLE, meaning that gate cannot recover a central and a spot from the document every other study is copied from. Not one of those entries was wrong; that is what a ratchet is for. Nothing was counting them on THIS study, and a ratchet entry on the exemplar is a debt every study written afterwards owes without anybody deciding to take it on.
 
 > **What would overturn it.** A house whose studies are written from the rules rather than from a template, where the exemplar's own state would stop propagating.
+
+### L-270 · THE OLDEST RULES ARE THE LEAST CHECKED, BECAUSE THEY PREDATE THE MACHINERY.
+
+A rule adopted before there was any way to enforce it does not acquire enforcement by being important. It acquires it when somebody goes back and asks which of the old rules are still running on trust.
+
+**Applies to:** every study  ·  *Learned from:* found while building, auditing SIGCM clause 1 from outside, 04-Sep-2026
+
+> **What it cost, or how we know.** SIGCM clause 1 — historicals from the company's own filings, never a vendor or press — predates every enforcement rule in the standing protocol, was never in doubt, and was checked only by a boolean each study set on itself. Two delivered studies were in plain breach. One took its revenue, profit and balance sheet from trade press and an aggregator while its audited statements sat on the company's own website, six PDFs one click from the homepage: equity EGP 6,020.3mn filed against 5,240.0mn used, cash 4,762.3mn against 3,850.0mn, depreciation 122.5mn against 418.1mn — every error understating the company.
+
+> **What would overturn it.** An old rule found to have been enforced all along by something nobody had noticed, which would mean the audit should look for the enforcement before assuming its absence.
+
+### L-271 · TRY THE COMPANY'S OWN WEBSITE. IT IS USUALLY THERE.
+
+Before any aggregator, before any press report, before concluding a filing cannot be obtained: fetch the company's own site and list its links. The rule has said so since August 2026 and the cost of not doing it is measured in whole studies.
+
+**Applies to:** every study  ·  *Learned from:* found while building, fetching SCEM's audited statements, 04-Sep-2026
+
+> **What it cost, or how we know.** Sinai Cement's homepage carries six audited financial statements as direct PDF links — FY2022 through FY2025 and the reviewed Q1-2026 — with no authentication and no investor-relations portal to navigate. The study valuing the company had used trade press and an aggregator for every historical, and its sweep register logs no attempt on the site either way, which the primary-source rule requires even when the attempt fails.
+
+> **What would overturn it.** A company whose site genuinely carries nothing, where the attempt is logged as a failure and the escalation ladder runs — which is the rule working, not a counter-example to it.
 
 
 ---

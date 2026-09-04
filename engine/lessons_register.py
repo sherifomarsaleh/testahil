@@ -3692,6 +3692,42 @@ LESSONS = [
       "A house whose studies are written from the rules rather than from a template, "
       "where the exemplar's own state would stop propagating."),
 
+    L("L-270", "ALL", None,
+      "THE OLDEST RULES ARE THE LEAST CHECKED, BECAUSE THEY PREDATE THE MACHINERY.",
+      "A rule adopted before there was any way to enforce it does not acquire enforcement "
+      "by being important. It acquires it when somebody goes back and asks which of the "
+      "old rules are still running on trust.",
+      "auditing SIGCM clause 1 from outside, 04-Sep-2026",
+      "build",
+      "SIGCM clause 1 \u2014 historicals from the company's own filings, never a vendor "
+      "or press \u2014 predates every enforcement rule in the standing protocol, was "
+      "never in doubt, and was checked only by a boolean each study set on itself. Two "
+      "delivered studies were in plain breach. One took its revenue, profit and balance "
+      "sheet from trade press and an aggregator while its audited statements sat on the "
+      "company's own website, six PDFs one click from the homepage: equity EGP 6,020.3mn "
+      "filed against 5,240.0mn used, cash 4,762.3mn against 3,850.0mn, depreciation "
+      "122.5mn against 418.1mn \u2014 every error understating the company.",
+      "An old rule found to have been enforced all along by something nobody had "
+      "noticed, which would mean the audit should look for the enforcement before "
+      "assuming its absence."),
+
+    L("L-271", "ALL", None,
+      "TRY THE COMPANY'S OWN WEBSITE. IT IS USUALLY THERE.",
+      "Before any aggregator, before any press report, before concluding a filing cannot "
+      "be obtained: fetch the company's own site and list its links. The rule has said so "
+      "since August 2026 and the cost of not doing it is measured in whole studies.",
+      "fetching SCEM's audited statements, 04-Sep-2026",
+      "build",
+      "Sinai Cement's homepage carries six audited financial statements as direct PDF "
+      "links \u2014 FY2022 through FY2025 and the reviewed Q1-2026 \u2014 with no "
+      "authentication and no investor-relations portal to navigate. The study valuing the "
+      "company had used trade press and an aggregator for every historical, and its sweep "
+      "register logs no attempt on the site either way, which the primary-source rule "
+      "requires even when the attempt fails.",
+      "A company whose site genuinely carries nothing, where the attempt is logged as a "
+      "failure and the escalation ladder runs \u2014 which is the rule working, not a "
+      "counter-example to it."),
+
 ]
 
 
