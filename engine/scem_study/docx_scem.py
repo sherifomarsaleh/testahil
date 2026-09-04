@@ -1,4 +1,4 @@
-"""SCEM_Valuation_Study_06-08-2026_public.docx — TMPV house structure.
+"""SCEM_Valuation_Study_04-09-2026_public.docx — TMPV house structure.
 
 16 headings: 7 top-level sections plus the 9 subsections of section 1, then three
 appendices. Reads study_numbers.json exclusively — no numeral is typed here.
@@ -40,9 +40,10 @@ def sg(x, dp=1): return f"{x*100:+.{dp}f}%"
 # ============================== COVER ========================================
 masthead()
 P('Sinai Cement Company S.A.E.', size=22, bold=True, space_after=1)
-P('Egyptian Exchange · SCEM · Egyptian pounds · 6 August 2026', size=11, color=GREY,
+P('Egyptian Exchange · SCEM · Egyptian pounds · issued 4 September 2026, struck on the closing price of 2 September 2026', size=11, color=GREY,
   space_after=10)
-rich([('A single-plant cement producer, sitting on net cash worth 37% of its market '
+rich([(f'A single-plant cement producer, sitting on net cash worth '
+       f'{pc(D["dcf"]["net_cash"] / (SPOT * SH), 0)} of its market '
        'capitalisation, at the top of the best year the Egyptian cement industry has had '
        'since 2008 — and with 12.6 million tonnes of dormant capacity queuing to restart '
        'inside the forecast window.', {'size': 12})], space_after=10)
@@ -68,7 +69,7 @@ rows.append(['Weighted central fair value', n2(LN['central']), '100%',
              sg(LN['central'] / SPOT - 1), '—'])
 rows.append(['Range across the four lenses', f'{n2(LN["low"])} – {n2(LN["high"])}', '—',
              f'{sg(LN["low"]/SPOT-1)} to {sg(LN["high"]/SPOT-1)}', '—'])
-rows.append(['Market price, 6 August 2026', n2(SPOT), '—', '—', '—'])
+rows.append(['Market price, 2 September 2026', n2(SPOT), '—', '—', '—'])
 rows.append(['Vicat tender offer, July 2025 (reference only)', n2(IN['mto_price']), '—',
              sg(IN['mto_price'] / SPOT - 1), '—'])
 table(rows, [2.55, 1.35, 0.72, 1.02, 1.36], band_rows={5})
@@ -549,7 +550,7 @@ caption('Table 14 — Margin sensitivity. Each two-point change in the EBITDA ma
 
 # ============================== 2 ============================================
 H1('2  Technical and price structure')
-P(f'The shares closed at EGP {n2(SPOT)} on 6 August 2026. The price history is long and '
+P(f'The shares closed at EGP {n2(SPOT)} on 2 September 2026. The price history is long and '
   f'unusually eventful: EGP 3.62 at the 2021 low, still under EGP 10 through 2023, then a '
   f'run to EGP 45 in 2024, EGP 75 in 2025 and a 2026 high of EGP 87.99. Over the five '
   f'years to date the shares have risen more than tenfold.')
@@ -616,9 +617,15 @@ for head, body in [
     ('The first post-quota pricing year. ', 'FY2026 realised prices are the first clean '
      'read of what an unregulated Egyptian cement market clears at. Published estimates '
      'point to EGP 3,600–3,620 a tonne on about 1% demand growth.'),
-    ('A dividend declaration. ', 'The company has no dividend on record, yet the balance '
-     'sheet arithmetic implies a substantial FY2025 distribution. A declared payout would '
-     'resolve the largest single uncertainty in the equity bridge.'),
+    ('A dividend declaration. ', 'The company has no dividend on record and its own '
+     'statements confirm it twice over, to the pound: equity of EGP 3,735.80 million at '
+     '31 December 2024 plus the year\'s profit of 2,284.54 million is exactly the filed '
+     '6,020.34 million, and that plus the reviewed quarter\'s 1,114.48 million is exactly '
+     'the filed 7,134.82 million at 31 March 2026. Nothing has been distributed. An '
+     'earlier edition read a substantial distribution out of balance-sheet arithmetic and '
+     'called it the largest single uncertainty in the bridge; it was reading a figure it '
+     'had not taken from the statements. What remains genuinely open is whether the cash '
+     'is ever returned, and a first declaration would answer it.'),
     ('Vicat\'s intentions for the float. ', 'The 2025 mandatory offer at EGP 41.00 lapsed '
      'well below the market. Any renewed approach, or a move to delist, changes the '
      'minority shareholder\'s position entirely.'),
@@ -861,6 +868,6 @@ P('Testahil · Independent valuation research · Educational analysis, not inves
   'advice. No rating and no price target is expressed or implied.', size=8.6, italic=True,
   color=GREY)
 
-OUT = 'SCEM_Valuation_Study_06-08-2026_public.docx'
+OUT = 'SCEM_Valuation_Study_04-09-2026_public.docx'
 doc.save(OUT)
 print('wrote', OUT)

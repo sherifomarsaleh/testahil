@@ -1,4 +1,4 @@
-"""SCEM_Valuation_Model_06082026_public.xlsx — 16 sheets, formula-first.
+"""SCEM_Valuation_Model_04092026_public.xlsx — 16 sheets, formula-first.
 
 Blue = input · black = formula · green = cross-sheet link.
 
@@ -1069,7 +1069,7 @@ wb._sheets = [wb[n] for n in ORDER]
 wb.calculation.fullCalcOnLoad = True
 wb.calculation.calcCompleted = False
 
-OUT = os.path.join(HERE, 'SCEM_Valuation_Model_06082026_public.xlsx')
+OUT = os.path.join(HERE, 'SCEM_Valuation_Model_04092026_public.xlsx')
 wb.save(OUT)
 json.dump(dict(expected=EXPECT, anchors=ANCH),
           open(os.path.join(HERE, 'xlsx_expected.json'), 'w'), indent=1)

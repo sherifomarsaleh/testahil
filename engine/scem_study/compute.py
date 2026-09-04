@@ -40,9 +40,16 @@ SP = ("FY2025 balance-sheet data from S&P Global Market Intelligence as carried 
 
 INP = dict(
     # ---- anchors ---------------------------------------------------------
-    spot=I(79.00, "Closing price 06-Aug-2026 from the supplied EGX daily series (open "
-           "81.80, high 82.50, low 78.30). Three reviewers quoted 81.10 with a 78.51-84.00 "
-           "range; that is the 05-Aug row of the same file", "2026-08-06", "Market"),
+    spot=I(100.50, "Closing price 02-Sep-2026, from the price file the principal supplied "
+           "on 3 September 2026 and committed at engine/prices/SUPPLIED_03-09-2026.json. "
+           "[R-GAP-01 AMENDED 03-Sep-2026] NO STUDY IS DELIVERED AGAINST A STALE PRICE: "
+           "this edition was struck against the 06-Aug close of 79.00, and the shares have "
+           "risen 27.2% in the month since. A fair value published against a month-old "
+           "price is a comparison a reader cannot use, whatever the fair value is worth",
+           "2026-09-02", "Market"),
+    spot_prev=I(79.00, "The 06-Aug-2026 close this study was previously struck against "
+                "(open 81.80, high 82.50, low 78.30), kept so the re-strike is visible "
+                "rather than silent", "2026-08-06", "Market"),
     shares_mn=I(260.812477, "260,812,477 shares, corroborated FIVE ways: issued capital "
                 "EGP 2,608,124,770 at EGP 10 par; the Jul-2025 tender offer of 58,416,664 "
                 "shares at 22.4%; quoted market capitalisation over price; and the "
@@ -177,20 +184,38 @@ INP = dict(
                            "away", "2026-08-06", "House"),
     domestic_share=I([0.88, 0.87, 0.86, 0.85, 0.84, 0.83], "Domestic share of despatches",
                      "2026-01-01", "Industry"),
-    price_dom_egp_t=I([3503.0, 3713.0, 3880.0, 4074.0, 4297.0, 4512.0],
+    price_dom_egp_t=I([3503.0, 3993.4, 4431.3, 4781.6, 5079.3, 5359.6],
                       "Domestic realised price ex-works. FY2025 is the level the disclosed "
                       "revenue implies given the volume build — 13.9% below the ~EGP "
                       "4,070/t market average, which is what an ex-works price net of "
-                      "freight and rebates looks like. The path then grows 4.5-6.0% "
-                      "nominal, a REAL decline against CBE inflation",
-                      "2026-01-01", "Industry"),
+                      "freight and rebates looks like. THE REAL SPREAD PER TONNE IS THEN "
+                      "HELD FLAT: price escalates on the same domestic cost path the cost "
+                      "stack does. The previous path grew nominal prices well below the "
+                      "domestic cost path this same model escalates costs on, and this "
+                      "register described it as \'a REAL decline against CBE inflation\' "
+                      "while sourcing no mechanism for it. [R-ANCHOR-01] refuses that "
+                      "mechanism on the company\'s own measurement: cost per unit of "
+                      "revenue FELL across the reviewed quarter pair and the audited year "
+                      "between them, where the forecast needed it to rise, and a mechanism "
+                      "contradicted by the filings is the "
+                      "assumption wearing one. The 12.6Mt of dormant Egyptian capacity "
+                      "queuing to restart is a real risk to price; it belongs in the bear "
+                      "case and the sensitivity grid, which carry it, not in the base path",
+                      "2026-09-04", "House"),
     price_exp_usd_t=I([48.0, 47.0, 46.0, 45.5, 45.0, 45.0],
                       "Export FOB per tonne, declining because the EU carbon border "
                       "mechanism raises the landed cost of Egyptian cement into Europe "
                       "from 2026", "2026-01-01", "Industry"),
     fx=I(49.8, "USD/EGP", "2026-08-06", "Country"),
-    fx_path=I([49.8, 52.5, 55.0, 57.2, 59.3, 61.4], "USD/EGP path. Raises the EGP cost of "
-              "imported fuel AND the EGP value of export revenue; the legs partly offset",
+    fx_path=I([49.8, 55.39, 59.96, 63.12, 65.42, 67.35], "USD/EGP path on RELATIVE "
+              "PURCHASING-POWER PARITY against 2.5% foreign inflation, derived from this "
+              "study\'s own domestic cost path rather than hand-set [R-MACRO-01]: the "
+              "previous path slid the pound 5.4% in FY2026 while escalating domestic "
+              "costs 14.0%, which is one event counted once and ignored once. Deriving it "
+              "LOWERS the answer by 1.2% — a faster slide costs more on the dollar-linked "
+              "materials line than it earns translating export revenue — which is the "
+              "evidence that conforming to the rule is not fitting to the price. Raises "
+              "the EGP cost of imported fuel AND the EGP value of export revenue",
               "2026-08-06", "House"),
     cost_infl=I([1.000, 1.140, 1.265, 1.365, 1.450, 1.530],
                 "Cumulative local cost inflation index on the EGP cost lines",
@@ -203,7 +228,7 @@ INP = dict(
                 "capital-expenditure disclosure is obtainable", "2026-08-06", "House"),
     wc_pct_drev=I(0.080, "Change in working capital over change in revenue",
                   "2026-08-06", "House"),
-    payout=I(0.60, "Dividend payout from FY2026E", "2026-08-06", "House"),
+    payout=I(0.0, "Dividend payout from FY2026E. THE FILED EQUITY STATEMENTS SHOW NO DISTRIBUTION AT ALL, twice over and to the pound: equity of EGP 3,735.80mn at 31-Dec-2024 plus FY2025 profit of 2,284.54mn is exactly the filed 6,020.34mn, and that plus the reviewed quarter's 1,114.48mn is exactly the filed 7,134.82mn at 31-Mar-2026. A 60% payout was assumed against a company whose own statements reconcile with none, and an earlier edition called the implied distribution its 'largest single uncertainty' — it dissolves against the record. This changes no valuation number, because free cash flow to the firm is struck before financing; it changes the projected balance sheet a reader is shown", "2026-09-04", "Company"),
     cash_yield=I([0.190, 0.170, 0.150, 0.135, 0.125], "Yield earned on cash",
                  "2026-08-06", "House"),
     cash_yield_fy25=I(0.210, "Yield earned on cash through FY2025", "2026-08-06", "House"),
@@ -723,7 +748,7 @@ say(f"  lens weights sum to 1.00")
 
 OUT = dict(
     meta=dict(ticker="SCEM", company="Sinai Cement Company S.A.E.", market="EGX",
-              market_code="EG", currency="EGP", asof="2026-08-06", revision=3,
+              market_code="EG", currency="EGP", asof="2026-09-04", spot_date="2026-09-02", revision=3,
               spot=V['spot'], shares_mn=V['shares_mn'], mktcap=mktcap,
               # the central belongs where a checker outside this study can read it:
               # [R-GAP-01]'s gate held this study as "no readable answer" while the

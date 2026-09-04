@@ -38,8 +38,21 @@ import re
 import subprocess
 import sys
 
+import importlib.util as _ilu
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
+
+# [R-ENF-03] THE GAP GATE'S READER, IMPORTED RATHER THAN RE-IMPLEMENTED. This gate carried
+# its own and the two disagreed about where a central lives — the gap gate looks at the top
+# level AND at meta, this one looked only at the top level, so a study committing its
+# answer where the gap gate reads it was reported here as exposing no central at all. Two
+# checkers of one fact that disagree are worse than one, because each looks authoritative
+# alone. check_publish_block.py imports the same reader for the same reason.
+_spec = _ilu.spec_from_file_location(
+    'check_valuation_gap', os.path.join(HERE, 'check_valuation_gap.py'))
+_gap = _ilu.module_from_spec(_spec)
+_spec.loader.exec_module(_gap)
 RATCHET = os.path.join(REPO, 'engine', 'build_depth_audit', 'pdf_outstanding.json')
 
 # The delivered study document, by the date in its own filename. DD-MM-YYYY, so a lexical
@@ -61,22 +74,39 @@ def latest_study_doc(d):
 
 
 def central_of(d):
-    """The study's own committed central, and its two-sided branches where it has them."""
-    f = os.path.join(d, 'study_numbers.json')
-    if not os.path.exists(f):
-        return None, []
-    try:
-        n = json.load(open(f))
-    except Exception:
-        return None, []
-    c = n.get('central')
-    if isinstance(c, (int, float)):
-        return float(c), []
-    ts = n.get('central_two_sided')
-    if isinstance(ts, dict) and ts.get('branches'):
-        vals = [b.get('value') for b in ts['branches'] if isinstance(b.get('value'), (int, float))]
-        return (vals[0] if vals else None), [float(v) for v in vals]
-    return None, []
+    """The study's own committed central, and its two-sided branches where it has them.
+
+    The reader is [R-GAP-01]'s, imported above rather than written again here.
+    """
+    central, _spot, _route = _gap.read_answer(d)
+    if central is None:
+        # read_answer requires BOTH a central and a spot, because ITS question is whether
+        # a study was audited against the price it was struck at. This gate's question is
+        # only whether the delivered PDF carries the answer the study publishes, so where
+        # the spot is missing the central is still resolved — through the gap gate's own
+        # field shapes and its own numeric reader, never a second set of key names.
+        for fn in ('study_numbers.json', 'numbers.json'):
+            q = os.path.join(d, fn)
+            if not os.path.exists(q):
+                continue
+            try:
+                j = json.load(open(q, encoding='utf-8'))
+            except Exception:
+                break
+            meta = j.get('meta') or {}
+            central = (_gap._num(j.get('central')) or _gap._num(j.get('fair'))
+                       or _gap._num(meta.get('central')))
+            break
+    branches = _gap.read_branches(d) or []
+    vals = []
+    for b in branches:
+        if isinstance(b, (int, float)):
+            vals.append(float(b))
+        elif isinstance(b, dict) and isinstance(b.get('value'), (int, float)):
+            vals.append(float(b['value']))
+    if central is not None:
+        return float(central), vals
+    return (vals[0] if vals else None), vals
 
 
 def text_of(pdf):

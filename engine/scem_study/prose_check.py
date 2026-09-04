@@ -71,6 +71,11 @@ RENDER = PF.rendering_set(vals, extra=[
     # built against, cited with their dates beside them.
     0.0363,     # US federal funds midpoint, June 2026
     0.138,      # Egyptian core inflation, May 2026
+    # the peer's quoted trailing multiple, cited precisely because this study REFUSES it:
+    # 6.44 x the peer's own attributable profit does not reconcile with the market
+    # capitalisation printed beside it, and the bibliography says so. A refused figure has
+    # to be quotable or the refusal cannot be shown.
+    6.44,
 ])
 
 if __name__ == '__main__':

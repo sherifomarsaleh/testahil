@@ -25,7 +25,7 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-wb = openpyxl.load_workbook(os.path.join(HERE, 'SCEM_Valuation_Model_06082026_public.xlsx'))
+wb = openpyxl.load_workbook(os.path.join(HERE, 'SCEM_Valuation_Model_04092026_public.xlsx'))
 A = {}
 for row in wb['Assumptions'].iter_rows(min_col=1, max_col=1):
     c = row[0]
