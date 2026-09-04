@@ -230,6 +230,89 @@
    "route": "Text layer via pdftotext -layout, 1.39MB extracted. The report is the integrated annual report and carries the audited consolidated financial statements inside it, which is where this note sits.",
    "cross_check": "NOT YET CROSS-CHECKED AGAINST A SECOND YEAR, and that is recorded rather than left to be assumed from the other entries here. Unlike SAVOLA's, this note does not describe its own table as covering the comparative year, so the one-document check SAVOLA's gave is not available; a prior-year annual report would supply it and was not fetched in this pass. The lives are usable and this is what is known about them.",
    "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE. The weighted life a terminal needs is derived at rebuild from this company's own property, plant and equipment note composition — a further sourcing step, not done here."
+  },
+  "EGCH": {
+   "disclosure_is_rates_not_lives": true,
+   "classes": [
+    {
+     "asset_class": "Buildings — residential city buildings",
+     "disclosed_rate_pct": 2.0,
+     "years_derived": 50.0
+    },
+    {
+     "asset_class": "Buildings — water and sewage pipes",
+     "disclosed_rate_pct": 5.0,
+     "years_derived": 20.0
+    },
+    {
+     "asset_class": "Buildings — plants (al-masani')",
+     "disclosed_rate_pct": 6.0,
+     "years_derived": 16.67
+    },
+    {
+     "asset_class": "Buildings — urea/ammonia plant",
+     "disclosed_rate_pct": 6.0,
+     "years_derived": 16.67
+    },
+    {
+     "asset_class": "Buildings — air-conditioning units",
+     "disclosed_rate_pct": 10.0,
+     "years_derived": 10.0
+    },
+    {
+     "asset_class": "Buildings — overhead cranes",
+     "disclosed_rate_pct": 12.5,
+     "years_derived": 8.0
+    },
+    {
+     "asset_class": "Buildings — rest house building",
+     "disclosed_rate_pct": 16.5,
+     "years_derived": 6.06
+    },
+    {
+     "asset_class": "Machinery and equipment — plants",
+     "disclosed_rate_pct": 9.5,
+     "years_derived": 10.53
+    },
+    {
+     "asset_class": "Machinery and equipment — workshops",
+     "disclosed_rate_pct": 6.5,
+     "years_derived": 15.38
+    },
+    {
+     "asset_class": "Machinery and equipment — urea/ammonia plant",
+     "disclosed_rate_pct": 3.95,
+     "years_derived": 25.32
+    },
+    {
+     "asset_class": "Intangible assets — urea/ammonia plant",
+     "disclosed_rate_pct": 4.75,
+     "years_derived": 21.05
+    },
+    {
+     "asset_class": "Vehicles — cranes, loader, bulldozers",
+     "disclosed_rate_pct": 12.5,
+     "years_derived": 8.0
+    },
+    {
+     "asset_class": "Vehicles — lorry, bus, passenger cars, tractors",
+     "disclosed_rate_pct": 20.0,
+     "years_derived": 5.0
+    },
+    {
+     "asset_class": "Tools and implements",
+     "disclosed_rate_pct": 7.5,
+     "years_derived": 13.33
+    }
+   ],
+   "longest_years": 50.0,
+   "shortest_years": 5.0,
+   "source": "Egyptian Chemical Industries (KIMA), annual financial statements for the year ended 30 June 2025, notes to the financial statements, note 1-5 'الأصول الثابتة وإهلاكاتها' (fixed assets and their depreciation), sub-heading 'الإهلاك' (depreciation), page 31: 'يتم تحميل الإهلاك على قائمة الدخل وفقا لطريقة القسط الثابت وفقا لمعدلات تتماشي مع العمر الإنتاجي المقدر لكل أصل عدا الأراضي' — depreciation is charged on a straight-line basis at rates matching each asset's estimated useful life, land excepted — followed by a table of DEPRECIATION RATES per asset type.",
+   "file": "engine/egch_study/filings/EGCH_FY2024-25_Annual.pdf",
+   "route": "OCR OFF THE RENDERED PIXELS, then READ AS AN IMAGE. The filing carries NO text layer (48 bytes extracted across 48 pages), so pdftotext returns nothing. Tesseract at 200dpi and again at 450dpi located the note and read the asset-class names cleanly, and could NOT read the Arabic-Indic digits reliably at either resolution — one pass rendered 9.5 as '5 ث9' and 4.75 as 'د\" ؛/'. A RATES TABLE HAS NO INTERNAL ARITHMETIC TO FOOT AGAINST, so the usual arbiter is unavailable and the extractor's confidence is worth nothing on its own. The figures below were read from the rendered page as an image at 450dpi, which is the route recorded.",
+   "years_are_derived_not_disclosed": "THE COMPANY DISCLOSES RATES; THE YEARS BESIDE THEM ARE 100/rate AND ARE LABELLED DERIVED. An identity is not an assumption, and the label is what keeps the two apart — the same discipline [R-FCAL-01 AMENDED] applies to capex derived by ΔPPE + D&A.",
+   "cells_not_read": "Three cells in the buildings row are NOT recorded because their digits could not be read with confidence even from the rendered page: an entry for the cinema and cafeteria building, one for iron and steel buildings that appears to be a range, and the furniture and fittings row, which falls on a page boundary in the crop. They are named here rather than guessed — a figure this desk cannot read is a figure this desk does not use (SIGCM clause 8), and none of the three is a production asset the terminal turns on.",
+   "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE and here it is very wide — 5 to 50 years — because the table mixes a residential building at 2% with passenger cars at 20%. The weighted life a terminal needs comes from this company's own property, plant and equipment composition; on a fertiliser producer the classes that carry the value are the plants at 6% (buildings) and 3.95% to 9.5% (machinery), i.e. roughly 10 to 25 years, and establishing that weighting is a further sourcing step not done here."
   }
  }
 }
