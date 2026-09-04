@@ -846,21 +846,141 @@ norm = dict(margin=norm_margin, rev=norm_rev, ebitda=norm_ebitda, ebit=norm_ebit
             interest=norm_interest, np=norm_np, eps_usd=norm_eps_usd, pe=JUST_PE,
             ps_aed=norm_ps_aed)
 
-lenses = dict(
-    dcf=dict(value=DCF_PS_AED, weight=0.45,
-             note='Five-year free cash flow to the firm with an explicit terminal block'),
-    relative=dict(value=rel_ps_aed, weight=0.20,
-                  note='Mid-cycle EBITDA on a peer-anchored enterprise multiple'),
-    normalized=dict(value=norm_ps_aed, weight=0.20,
-                    note='Mid-cycle earnings power on a justified earnings multiple'),
-    book=dict(value=book_ps_aed, weight=0.15,
-              note='Book equity marked to the sustainable return on that equity'),
+# ---------------------------------------------------------------------------
+# 8.9  LENS ARCHITECTURE  [R-LENS-03]
+# ---------------------------------------------------------------------------
+# THE TYPED FOUR-LENS BLEND IS RETIRED. It read dcf 45 / relative 20 / normalised
+# 20 / book 15, weights that were chosen, written down and inherited, and had never
+# cleared an out-of-sample test — which is how a free parameter survives in a house
+# that forbids them everywhere else. For class 'petrochemical' the registry makes
+# the CASH-FLOW LENS the primary and IS the central; the others are published beside
+# it as cross-checks. Book value is a DISCLOSED FLOOR and is never weighted, and the
+# normalised-earnings lens is not a cross-check this class permits at all — it
+# capitalised a mid-cycle profit on a TYPED justified multiple of 11.0, which is a
+# number nobody sourced.
+#
+# AND THE PRIMARY IS TWO-SIDED, WHICH IS THE HALF THAT ACTUALLY MOVED THE ANSWER.
+# DCF_PS_AED was the straight MEAN of framings A and B — the two readings of this
+# study's own central contested judgement about the nitrogen market. Depth-bar
+# standard 8 forbids averaging that judgement into one number, and the cost here is
+# not presentational: against the latest known price framing A sits about a third
+# below and framing B within two points of it, so THE MEAN ASSERTS A DISAGREEMENT
+# WITH THE MARKET THAT NEITHER FRAMING HOLDS. Published side by side, a reader sees
+# that the whole disagreement is one unresolved question about the market.
+#
+# Same shape and same class as EGCH, which retired the identical blend on 03-Sep.
+RETIRED_BLEND = {'cashflow': 0.45, 'relative': 0.20, 'normalised': 0.20, 'book': 0.15}
+RETIRED_BLEND_VALUE = float(
+    DCF_PS_AED * RETIRED_BLEND['cashflow'] + rel_ps_aed * RETIRED_BLEND['relative']
+    + norm_ps_aed * RETIRED_BLEND['normalised'] + book_ps_aed * RETIRED_BLEND['book'])
+
+BRANCHES = [
+    dict(label='A — normalisation to a marginal-cost anchor',
+         value=float(br_A['ps_aed']),
+         condition='nitrogen prices normalise toward the marginal cost of the '
+                   'high-cost swing supplier, which is where they have spent most '
+                   'of the past decade'),
+    dict(label='B — structurally tight market',
+         value=float(br_B['ps_aed']),
+         condition='the tightness in the current market persists, on curtailed '
+                   'European capacity and the gas cost that caused it'),
+]
+CENTRAL = None                      # two-sided: there is no single central
+CENTRAL_TWO_SIDED = dict(
+    branches=BRANCHES,
+    question='Do nitrogen prices normalise to a marginal-cost anchor, or does the '
+             'current tightness persist?',
+    decides='Everything. The two framings differ by roughly half the share price, '
+            'and the study disagrees with the market under one and agrees with it '
+            'under the other. Averaging them published a disagreement neither one '
+            'asserts.')
+
+# THE ENVELOPE IS THE RANGE OF THE PRESENT-VALUE READS, never a spread invented
+# around an answer. The cross-checks are not present-value reads and do not enter it.
+SPAN = [min(b['value'] for b in BRANCHES), max(b['value'] for b in BRANCHES)]
+
+lens_record = dict(
+    # THE KEY IS 'class' AND IT IS A PYTHON KEYWORD, so it cannot be a dict()
+    # kwarg. A first pass used 'cls' and the gate read class None — the record
+    # was complete and unreadable, which the ratchet then reported as this study
+    # simply still being outstanding. A FIELD THE CHECKER CANNOT FIND IS A FIELD
+    # THAT IS NOT THERE, however carefully it was filled in.
+    **{'class': 'petrochemical'},
+    primary=dict(
+        kind='dcf',
+        two_sided=True,
+        branches=BRANCHES,
+        range=dict(low=SPAN[0], high=SPAN[1]),
+        range_note='the cash-flow lens under the two framings of the nitrogen-price '
+                   'question, with the macro path, the cost of capital and terminal '
+                   'growth held still across both',
+        range_basis=dict(
+            driver='the nitrogen price basis the forecast is anchored on',
+            low=float(br_A['ps_aed']), high=float(br_B['ps_aed']),
+            units='AED per share, the present-value read under each framing',
+            macro_held=True,
+            evidence='both framings are built on the same tonnes, the same cost '
+                     'stack and the same discount schedule; what differs is the '
+                     'price anchor, and neither is a chosen percentage band around '
+                     'the other — A anchors on the marginal cost of swing supply '
+                     'and B on the currently prevailing tightness.'),
+        note='the cash-flow lens on the company\'s own tonnes and cost stack. THE '
+             'CONTESTED JUDGEMENT IS BINARY AND THE TWO READS ARE PUBLISHED SIDE BY '
+             'SIDE AND NEVER AVERAGED.'),
+    cross_checks=[
+        dict(kind='relative_multiple', value=float(rel_ps_aed), present_value=False,
+             multiple=float(rel['mult']),
+             multiple_source='the median enterprise-to-EBITDA multiple of the named '
+                             'nitrogen peer set, cross-read against this company\'s '
+                             'own trailing multiple — from peers and own history, '
+                             'never one read off the current price',
+             # THE CIRCULARITY CHECK IS THE POINT OF THE LENS, not paperwork. It
+             # computes the multiple the market is paying right now from this
+             # study's own committed spot, share count and net debt, so a reader
+             # can see the adopted multiple is a different number. A lens that
+             # lands on the traded multiple values the company at what it already
+             # trades at, and its only distance from the price is the bridge.
+             circularity=dict(
+                 spot=float(SPOT_AED / FX),          # USD, the unit the EV is in
+                 shares=float(SHARES),
+                 net_debt=float(V['netdebt_h1_26']),
+                 metric_value=float(rel['ebitda_mid'])),
+             note='mid-cycle EBITDA on an enterprise multiple taken from peers and '
+                  'this company\'s own history, never one read off the current price'),
+        dict(kind='book_value', value=float(book_ps_aed), present_value=False,
+             floor=True,
+             note='book equity marked to the sustainable return on it — a DISCLOSED '
+                  'FLOOR, published as one and never weighted'),
+    ],
+    retired=dict(
+        blend=RETIRED_BLEND,
+        blend_value=RETIRED_BLEND_VALUE,
+        why='the weights were typed and had never cleared an out-of-sample test, and '
+            'the blend also averaged the primary\'s own two framings — so it '
+            'published a single number that disagreed with the market by roughly a '
+            'fifth while neither framing behind it asserted that, one disagreeing by '
+            'about a third and the other agreeing almost exactly.'),
 )
-CENTRAL = float(sum(v['value'] * v['weight'] for v in lenses.values()))
-lens_vals = sorted(v['value'] for v in lenses.values())
-SPAN = [min(lens_vals + [br_A['ps_aed'], br_B['ps_aed']]),
-        max(lens_vals + [br_A['ps_aed'], br_B['ps_aed']])]
-chk(abs(sum(v['weight'] for v in lenses.values()) - 1.0) < 1e-9, "the four lens weights sum to one")
+
+# what the retired construction published, kept as a memo so the move is visible
+lenses = dict(
+    dcf=dict(value=DCF_PS_AED, weight=None,
+             note='Five-year free cash flow to the firm with an explicit terminal '
+                  'block — THE PRIMARY, and two-sided'),
+    relative=dict(value=rel_ps_aed, weight=None,
+                  note='Mid-cycle EBITDA on a peer-anchored enterprise multiple — '
+                       'a cross-check'),
+    normalized=dict(value=norm_ps_aed, weight=None,
+                    note='Mid-cycle earnings power on a justified earnings multiple '
+                         '— RETIRED: not a cross-check this class permits, and the '
+                         'multiple was typed'),
+    book=dict(value=book_ps_aed, weight=None,
+              note='Book equity marked to the sustainable return on that equity — a '
+                   'disclosed FLOOR, never weighted'),
+)
+chk(CENTRAL is None and len(BRANCHES) == 2,
+    "the answer is two-sided: no single central, both branches published")
+chk(SPAN[0] < SPAN[1], "the envelope is the range of the two present-value reads")
 
 # ---------------------------------------------------------------------------
 # 9. SENSITIVITY
@@ -952,7 +1072,8 @@ out = dict(
     bridge_A_cds=br_A_cds, bridge_B_cds=br_B_cds,
     dcf_A_cds=dcf_A_cds, dcf_B_cds=dcf_B_cds,
     dcf_ps_aed=DCF_PS_AED, wacc=wacc, book=book, rel=rel, norm=norm,
-    lenses=lenses, central=CENTRAL, span=SPAN, spot=SPOT_AED,
+    lenses=lenses, central=CENTRAL, central_two_sided=CENTRAL_TWO_SIDED,
+    lens_record=lens_record, span=SPAN, spot=SPOT_AED,
     sens=sens, experts=experts, tax_rate=TAX_RATE, nci_share=NCI_SHARE,
     g_term=G_TERM, step0=step0, backtest=bt5,
     assert_log=ASSERTS)
@@ -978,5 +1099,7 @@ print(f"framing B: EV ${dcf_B['ev']:,.0f}m, TV {dcf_B['tv_share']:.1%} of EV, "
       f"AED {br_B['ps_aed']:.2f}/share")
 print(f"lenses AED: dcf {DCF_PS_AED:.2f} | relative {rel_ps_aed:.2f} | "
       f"normalised {norm_ps_aed:.2f} | book {book_ps_aed:.2f}")
-print(f"CENTRAL AED {CENTRAL:.2f} vs spot AED {SPOT_AED:.2f} | span {SPAN[0]:.2f}-{SPAN[1]:.2f}")
+print(f"TWO-SIDED, no single central — A {BRANCHES[0]['value']:.2f} | B {BRANCHES[1]['value']:.2f} vs spot AED {SPOT_AED:.2f}")
+print(f"  envelope {SPAN[0]:.2f}-{SPAN[1]:.2f}; cross-checks relative {rel_ps_aed:.2f}, book floor {book_ps_aed:.2f}")
+print(f"  the retired blend published {RETIRED_BLEND_VALUE:.2f}, a number neither framing asserts")
 print(f"{len(ASSERTS)} assertions passed; {len(I)} inputs, all four-field complete")

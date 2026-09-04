@@ -2378,29 +2378,111 @@
  "lenses": {
   "dcf": {
    "value": 2.1895312680900547,
-   "weight": 0.45,
-   "note": "Five-year free cash flow to the firm with an explicit terminal block"
+   "weight": null,
+   "note": "Five-year free cash flow to the firm with an explicit terminal block \u2014 THE PRIMARY, and two-sided"
   },
   "relative": {
    "value": 2.0622378774201655,
-   "weight": 0.2,
-   "note": "Mid-cycle EBITDA on a peer-anchored enterprise multiple"
+   "weight": null,
+   "note": "Mid-cycle EBITDA on a peer-anchored enterprise multiple \u2014 a cross-check"
   },
   "normalized": {
    "value": 2.7938465758459676,
-   "weight": 0.2,
-   "note": "Mid-cycle earnings power on a justified earnings multiple"
+   "weight": null,
+   "note": "Mid-cycle earnings power on a justified earnings multiple \u2014 RETIRED: not a cross-check this class permits, and the multiple was typed"
   },
   "book": {
    "value": 1.2690538029043699,
-   "weight": 0.15,
-   "note": "Book equity marked to the sustainable return on that equity"
+   "weight": null,
+   "note": "Book equity marked to the sustainable return on that equity \u2014 a disclosed FLOOR, never weighted"
   }
  },
- "central": 2.1468640317294065,
+ "central": null,
+ "central_two_sided": {
+  "branches": [
+   {
+    "label": "A \u2014 normalisation to a marginal-cost anchor",
+    "value": 1.7580771656522491,
+    "condition": "nitrogen prices normalise toward the marginal cost of the high-cost swing supplier, which is where they have spent most of the past decade"
+   },
+   {
+    "label": "B \u2014 structurally tight market",
+    "value": 2.6209853705278605,
+    "condition": "the tightness in the current market persists, on curtailed European capacity and the gas cost that caused it"
+   }
+  ],
+  "question": "Do nitrogen prices normalise to a marginal-cost anchor, or does the current tightness persist?",
+  "decides": "Everything. The two framings differ by roughly half the share price, and the study disagrees with the market under one and agrees with it under the other. Averaging them published a disagreement neither one asserts."
+ },
+ "lens_record": {
+  "class": "petrochemical",
+  "primary": {
+   "kind": "dcf",
+   "two_sided": true,
+   "branches": [
+    {
+     "label": "A \u2014 normalisation to a marginal-cost anchor",
+     "value": 1.7580771656522491,
+     "condition": "nitrogen prices normalise toward the marginal cost of the high-cost swing supplier, which is where they have spent most of the past decade"
+    },
+    {
+     "label": "B \u2014 structurally tight market",
+     "value": 2.6209853705278605,
+     "condition": "the tightness in the current market persists, on curtailed European capacity and the gas cost that caused it"
+    }
+   ],
+   "range": {
+    "low": 1.7580771656522491,
+    "high": 2.6209853705278605
+   },
+   "range_note": "the cash-flow lens under the two framings of the nitrogen-price question, with the macro path, the cost of capital and terminal growth held still across both",
+   "range_basis": {
+    "driver": "the nitrogen price basis the forecast is anchored on",
+    "low": 1.7580771656522491,
+    "high": 2.6209853705278605,
+    "units": "AED per share, the present-value read under each framing",
+    "macro_held": true,
+    "evidence": "both framings are built on the same tonnes, the same cost stack and the same discount schedule; what differs is the price anchor, and neither is a chosen percentage band around the other \u2014 A anchors on the marginal cost of swing supply and B on the currently prevailing tightness."
+   },
+   "note": "the cash-flow lens on the company's own tonnes and cost stack. THE CONTESTED JUDGEMENT IS BINARY AND THE TWO READS ARE PUBLISHED SIDE BY SIDE AND NEVER AVERAGED."
+  },
+  "cross_checks": [
+   {
+    "kind": "relative_multiple",
+    "value": 2.0622378774201655,
+    "present_value": false,
+    "multiple": 5.8,
+    "multiple_source": "the median enterprise-to-EBITDA multiple of the named nitrogen peer set, cross-read against this company's own trailing multiple \u2014 from peers and own history, never one read off the current price",
+    "circularity": {
+     "spot": 0.6916269571136828,
+     "shares": 8249.6,
+     "net_debt": 621.2,
+     "metric_value": 1190.8166521189885
+    },
+    "note": "mid-cycle EBITDA on an enterprise multiple taken from peers and this company's own history, never one read off the current price"
+   },
+   {
+    "kind": "book_value",
+    "value": 1.2690538029043699,
+    "present_value": false,
+    "floor": true,
+    "note": "book equity marked to the sustainable return on it \u2014 a DISCLOSED FLOOR, published as one and never weighted"
+   }
+  ],
+  "retired": {
+   "blend": {
+    "cashflow": 0.45,
+    "relative": 0.2,
+    "normalised": 0.2,
+    "book": 0.15
+   },
+   "blend_value": 2.1468640317294065,
+   "why": "the weights were typed and had never cleared an out-of-sample test, and the blend also averaged the primary's own two framings \u2014 so it published a single number that disagreed with the market by roughly a fifth while neither framing behind it asserted that, one disagreeing by about a third and the other agreeing almost exactly."
+  }
+ },
  "span": [
-  1.2690538029043699,
-  2.7938465758459676
+  1.7580771656522491,
+  2.6209853705278605
  ],
  "spot": 2.54,
  "sens": {
@@ -2839,6 +2921,7 @@
   "the marginal cost of debt is below the historical accounting capitalisation rate, which is not used",
   "terminal value is 55.2% of enterprise value under framing A",
   "both framings produce a positive equity value",
-  "the four lens weights sum to one"
+  "the answer is two-sided: no single central, both branches published",
+  "the envelope is the range of the two present-value reads"
  ]
 }
