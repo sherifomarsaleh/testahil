@@ -159,7 +159,18 @@ ALL = HC + FCOL
 # below is asserted against the committed study blocks at the foot of this file. No
 # financial numeral is typed into this builder.
 # ============================================================================
+# [R-MACRO-01] THE ESCALATOR IS A PATH, NOT A RATE. The model puts every dirham cost line
+# on the house inflation ladder year by year — 2.5 per cent in 2026 and 2.0 thereafter —
+# and a single rate compounded five times is a different series. ESC is kept as the
+# terminal rate for the one assumption cell that quotes it; ESC_IDX is what the model
+# actually applies and what every line below uses.
 ESC = V['opex_escalation']
+ESC_PATH = V['opex_escalation_path']
+ESC_IDX = []
+_c = 1.0
+for _r in ESC_PATH:
+    _c *= (1.0 + _r)
+    ESC_IDX.append(_c)
 H2W = V['h2_2026_reversion']
 GROSSUP = V['tnk_grossup_26']
 
@@ -309,7 +320,7 @@ VDAYS25 = sum(OWNED25.values()) * 365
 TCEREV25 = sum(OWNED25[c] * TCE25[c] for c in CLS) * 365 / 1000.0
 TNK_EB25 = V['seg_ebitda_tankers_fy25']
 OPEX_DAY = (TCEREV25 - TNK_EB25) * 1000.0 / VDAYS25
-TNK_OPEXD = [OPEX_DAY * (1 + ESC) ** (i + 1) for i in range(5)]
+TNK_OPEXD = [OPEX_DAY * ESC_IDX[i] for i in range(5)]
 TNK_OPEX = [VDAYS25 * TNK_OPEXD[i] / 1000.0 for i in range(5)]
 TNK_EBITDA = [TNK_TCEREV[i] - TNK_OPEX[i] for i in range(5)]
 TNK_REV = [TNK_TCEREV[i] * GROSSUP for i in range(5)]
@@ -333,15 +344,15 @@ GAS_REV25 = V['seg_rev_gas_carriers_fy25']
 GAS_RATE = GAS_REV25 * 1000.0 / (GAS_VY25 * 365)
 GAS_MGN = V['gas_margin']
 JV_GAS = V['jv_gas_fy25']; JV_SERV = V['jv_services_fy25']
-GAS_RATED = [GAS_RATE * (1 + ESC) ** (i + 1) for i in range(5)]
+GAS_RATED = [GAS_RATE * ESC_IDX[i] for i in range(5)]
 GAS_REV = [GAS_VY[i] * 365 * GAS_RATED[i] / 1000.0 for i in range(5)]
 GAS_GROSS_EB = [r * GAS_MGN for r in GAS_REV]
 # The disclosed segment earnings INCLUDE the equity-accounted share of joint-venture
 # profit, and the equity bridge already adds those ventures at carrying value. Leaving them
 # in the forecast would count them twice, so they come out here — in Gas Carriers and in
 # Services, the two units whose 2025 disclosure carries them.
-GAS_JV = [JV_GAS * (1 + ESC) ** (i + 1) for i in range(5)]
-SERV_JV = [JV_SERV * (1 + ESC) ** (i + 1) for i in range(5)]
+GAS_JV = [JV_GAS * ESC_IDX[i] for i in range(5)]
+SERV_JV = [JV_SERV * ESC_IDX[i] for i in range(5)]
 GAS_EBITDA = [GAS_GROSS_EB[i] - GAS_JV[i] for i in range(5)]
 
 SEG_REV_F, SEG_EB_F, SEG_GROSS_EB = {}, {}, {}
@@ -376,7 +387,7 @@ for i in range(5):
     d = DEP_RATE * (_o + max(_o + CAPEX[i] + ACQ_CAPEX[i] - d1, 0)) / 2.0
     PPE_OPEN.append(_o); DEP1.append(d1); DEP_PPE.append(d)
     PPE_CLOSE.append(_o + CAPEX[i] + ACQ_CAPEX[i] - d); _o = PPE_CLOSE[-1]
-OTHER_DNA_Y = [OTHER_DNA * (1 + ESC) ** (i + 1) for i in range(5)]
+OTHER_DNA_Y = [OTHER_DNA * ESC_IDX[i] for i in range(5)]
 DNA_F = [DEP_PPE[i] + OTHER_DNA_Y[i] for i in range(5)]
 EBIT_F = [EB_F[i] - DNA_F[i] for i in range(5)]
 
@@ -440,13 +451,16 @@ DEBT_NOW = V['q1_26_shldr_loan'] + V['q1_26_borrowings'] + V['q1_26_leases']
 KD2 = (V['q1_26_shldr_loan'] * KD1 + V['q1_26_borrowings'] * KD_TP
        + V['q1_26_leases'] * KD_LEASE) / DEBT_NOW
 KD3 = KD_BANK
-# THREE INDEPENDENT CONSTRUCTIONS, AVERAGED — AND THE AVERAGE IS NOT A WEIGHTED FIGURE.
-# Only the second construction is weighted by what is actually drawn, and on its own it
-# gives a different answer. The average is the triangulation the study set out to show, so
-# it is what the model discounts at; the balance-weighted rate is published beside it and
-# labelled for what it is, rather than the average being described as weighted.
-KD = (KD1 + KD2 + KD3) / 3
+# [R-COC-01 AMENDED] THE ADOPTED RATE REPRODUCES FROM ITS CONTRACTUAL ANCHOR OR IT IS NOT
+# THE ADOPTED RATE. Only the second construction is weighted by what is actually drawn, so
+# only the second reproduces from the facility lines; averaging it with a marginal
+# drawdown rate and a bank range's mid-point gives a figure no set of balances and rates
+# produces. The other two are published beside it as what they are. This is [R-LENS-03]'s
+# lesson applied to the cost of debt: averaging several methods makes a new method with
+# free parameters nobody tested, wearing the appearance of caution.
+KD = KD2
 KD_BALWTD = KD2
+KD_RETIRED_AVG = (KD1 + KD2 + KD3) / 3
 TAXS = V['tax_stat']
 KD_AT = KD * (1 - TAXS)
 # The perpetual capital securities are deducted in the equity bridge as a claim ranking
@@ -905,6 +919,16 @@ r = 4
 A = {}
 
 
+def esc_chain(i):
+    """The house ladder compounded to year i, as a LIVE product of the rate cells.
+
+    [R-MACRO-01] A single rate raised to a power is not the ladder, and the model applies
+    the ladder. Written as a chain rather than as a pasted index because this sheet's own
+    note says nothing on it is a pasted result, and an index row would be one.
+    """
+    return '*'.join("(1+%s)" % a('esc%d' % k) for k in range(i + 1))
+
+
 def block(name, items, cols=None):
     global r
     band(ws, r, 8); put(ws, f'A{r}', name, bold=True, fmt=None)
@@ -1100,7 +1124,11 @@ block('Tanker fleet — rate path and running cost', [
     ('h2w', 'Weight on the 2025 implied spot rate in setting the second half of 2026', H2W,
      PCT),
     ('opex_day', 'All-in running cost per vessel per day (USD)', OPEX_DAY, NUM1),
-    ('opex_esc', 'Running-cost escalation (services and wages)', ESC, PCT),
+    ('esc0', 'House inflation ladder, FY2026', ESC_PATH[0], PCT),
+    ('esc1', 'House inflation ladder, FY2027', ESC_PATH[1], PCT),
+    ('esc2', 'House inflation ladder, FY2028', ESC_PATH[2], PCT),
+    ('esc3', 'House inflation ladder, FY2029', ESC_PATH[3], PCT),
+    ('esc4', 'House inflation ladder, FY2030', ESC_PATH[4], PCT),
     ('grossup', 'Gross-up from time-charter-equivalent revenue to reported revenue',
      GROSSUP, '0.00')])
 block('Gas carriers', [
@@ -1787,7 +1815,7 @@ put(ws, f"A{SG['gross']}", 'Gross-up from time-charter-equivalent to reported re
     fmt=None)
 put(ws, f"A{SG['trev']}", 'Tankers revenue', bold=True, fmt=None)
 for i in range(5):
-    putf(ws, f"{CD[i]}{SG['opexd']}", f"={a('opex_day')}*(1+{a('opex_esc')})^{i+1}",
+    putf(ws, f"{CD[i]}{SG['opexd']}", f"={a('opex_day')}*{esc_chain(i)}",
          TNK_OPEXD[i], NUM1)
     putf(ws, f"{CD[i]}{SG['opex']}", f"=$B${SG['vdays25']}*{CD[i]}{SG['opexd']}/1000",
          TNK_OPEX[i], NUM0)
@@ -1833,14 +1861,14 @@ for i in range(5):
     # exactly ONE chain from the contract table and the purchase to gas revenue
     putf(ws, f"{CD[i]}{SG['gasvy']}", f"={a('gas_vy', col=CD[i])}", GAS_VY[i], NUM1,
          bold=True, green=True)
-    putf(ws, f"{CD[i]}{SG['gasrate']}", f"={a('gas_rate')}*(1+{a('opex_esc')})^{i+1}",
+    putf(ws, f"{CD[i]}{SG['gasrate']}", f"={a('gas_rate')}*{esc_chain(i)}",
          GAS_RATED[i], NUM0)
     putf(ws, f"{CD[i]}{SG['gasrev']}",
          f"={CD[i]}{SG['gasvy']}*365*{CD[i]}{SG['gasrate']}/1000", GAS_REV[i], NUM0)
     putf(ws, f"{CD[i]}{SG['gasmgn']}", f"={a('gas_mgn')}", GAS_MGN, PCT, green=True)
     putf(ws, f"{CD[i]}{SG['gasgeb']}", f"={CD[i]}{SG['gasrev']}*{CD[i]}{SG['gasmgn']}",
          GAS_GROSS_EB[i], NUM0)
-    putf(ws, f"{CD[i]}{SG['gasjv']}", f"=-{a('jv_gas')}*(1+{a('opex_esc')})^{i+1}",
+    putf(ws, f"{CD[i]}{SG['gasjv']}", f"=-{a('jv_gas')}*{esc_chain(i)}",
          -GAS_JV[i], NUM0)
     putf(ws, f"{CD[i]}{SG['gaseb']}", f"={CD[i]}{SG['gasgeb']}+{CD[i]}{SG['gasjv']}",
          GAS_EBITDA[i], NUM0, bold=True)
@@ -1863,7 +1891,7 @@ for s in UNITS:
         for i in range(5):
             putf(ws, f'{CD[i]}{_rr+1}', f"={CD[i]}{_rr}*{a('mar_'+k, col=CD[i])}",
                  SEG_GROSS_EB[s][i], NUM0)
-            putf(ws, f'{CD[i]}{_rr+2}', f"=-{a('jv_serv')}*(1+{a('opex_esc')})^{i+1}",
+            putf(ws, f'{CD[i]}{_rr+2}', f"=-{a('jv_serv')}*{esc_chain(i)}",
                  -SERV_JV[i], NUM0)
             putf(ws, f'{CD[i]}{_rr+3}', f"={CD[i]}{_rr+1}+{CD[i]}{_rr+2}", SEG_EB_F[s][i],
                  NUM0)
@@ -2460,13 +2488,18 @@ _kd = [(DF_['sofr'], 'Secured overnight financing rate', f"={a('sofr')}", V['sof
         f"+C{DF_['dlease']}*C{DF_['kdlease']})/C{DF_['dtot']}", KD2, PCT2, False),
        (DF_['kd3'], 'METHOD 3 — the disclosed third-party bank-loan midpoint',
         f"=C{DF_['bankmid']}", KD3, PCT2, False),
-       (DF_['kd'], 'Cost of debt — the three constructions averaged. This is a simple '
-        'average of three independent readings, NOT a figure weighted by what is drawn; '
-        'the weighted one is the line below',
-        f"=AVERAGE(C{DF_['kd1']},C{DF_['kd2']},C{DF_['kd3']})", KD, PCT2, False),
-       (DF_['kdbal'], 'Memorandum — cost of debt on the balance-weighted construction '
-        'alone (method 2), the only one of the three that is weighted by the instruments '
-        'actually outstanding', f"=C{DF_['kd2']}", KD_BALWTD, PCT2, False),
+       (DF_['kd'], 'Cost of debt ADOPTED — method 2, the instruments actually '
+        'outstanding weighted by balance. It is the only one of the three that '
+        'reproduces from the facility lines, which is what makes it checkable from '
+        'outside this model; methods 1 and 3 are published above as what they are, a '
+        'marginal drawdown rate and a disclosed range midpoint, and are no longer '
+        'averaged into the answer',
+        f"=C{DF_['kd2']}", KD, PCT2, False),
+       (DF_['kdbal'], 'MEMORANDUM — the retired average of the three constructions, '
+        'which reproduces from no set of balances and rates and is shown so a reader '
+        'can see what the previous construction said',
+        f"=AVERAGE(C{DF_['kd1']},C{DF_['kd2']},C{DF_['kd3']})", KD_RETIRED_AVG,
+        PCT2, False),
        (DF_['taxstat'], 'Statutory corporate tax rate', f"={a('tax_stat')}", TAXS, PCT,
         True),
        (DF_['kdat'], 'Cost of debt after tax',
@@ -2871,7 +2904,7 @@ for i in range(5):
     putf(ws, f"{c}{BS['ppeclose']}",
          f"={c}{BS['ppeopen']}+{c}{BS['ppecapex']}+{c}{BS['ppeacq']}-{c}{BS['ppedep']}",
          PPE_CLOSE[i], NUM0, bold=True)
-    putf(ws, f"{c}{BS['otherdna']}", f"={a('other_dna')}*(1+{a('opex_esc')})^{i+1}",
+    putf(ws, f"{c}{BS['otherdna']}", f"={a('other_dna')}*{esc_chain(i)}",
          OTHER_DNA_Y[i], NUM0)
     putf(ws, f"{c}{BS['dnatot']}", f"={c}{BS['ppedep']}+{c}{BS['otherdna']}", DNA_F[i],
          NUM0, bold=True)
@@ -3527,10 +3560,10 @@ _KEY = [('Shares outstanding (mn)', f"={a('shares')}", SH, NUM1),
          f"=DCF!$C${DF_['kecilo']}", KE_CI_LO, PCT2),
         ('Cost of equity at the upper 90% confidence bound on the primary beta',
          f"=DCF!$C${DF_['kecihi']}", KE_CI_HI, PCT2),
-        ('Cost of debt — the three constructions averaged (a simple average, not a '
-         'weighted figure)', f"=DCF!$C${DF_['kd']}", KD, PCT2),
-        ('Cost of debt — the balance-weighted construction alone, published beside the '
-         'average rather than in place of it', f"=DCF!$C${DF_['kdbal']}", KD_BALWTD, PCT2),
+        ('Cost of debt ADOPTED — the instruments actually outstanding, weighted by '
+         'balance', f"=DCF!$C${DF_['kd']}", KD, PCT2),
+        ('Cost of debt — MEMORANDUM, the retired average of three constructions',
+         f"=DCF!$C${DF_['kdbal']}", KD_RETIRED_AVG, PCT2),
         ('Cost of capital — explicit window', f"=DCF!$C${DF_['wacc']}", W_EXP, PCT2),
         ('Cost of capital — terminal', f"=DCF!$C${DF_['waccterm']}", W_TERM, PCT2),
         ('Terminal growth', f"=DCF!$C${DF_['g']}", G, PCT),

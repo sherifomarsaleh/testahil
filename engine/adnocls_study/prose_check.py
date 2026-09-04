@@ -42,7 +42,24 @@ vals += PF.ratios_against(PF.numbers_from(HERE, files=['study_numbers.json']), (
 _PANEL = [v for v in PF.numbers_from(HERE, files=['study_numbers.json']) if _spot and 0 < v < _spot * 5]
 vals += PF.ratios_against([_spot] if _spot else [], _PANEL)
 
-RENDER = PF.rendering_set(vals)
+# TWO FIGURES THAT ARE REAL AND ARE NOT MODEL OUTPUTS, DECLARED WITH THEIR REASONS. The
+# rule is explicit that a false positive is fixed by widening the RENDERING SET and never
+# by deleting the figure, and that each study declares which figures may legitimately be
+# quoted against something other than a model output. Both below are sourced external
+# facts cited in the text beside them; neither is produced by this model and neither
+# should be.
+RENDER = PF.rendering_set(vals, extra=[
+    # the disclosed discount at which a twelve-month time charter was struck against the
+    # spot rate in front of it — a market fact quoted from the company's own disclosure to
+    # show what a counterparty willing to commit for a year actually paid. It is evidence
+    # ABOUT the rate path rather than an output of it.
+    -0.253,
+    # Saudi Arabia's country risk premium on the agency credit-rating basis, cited beside
+    # its swap basis to show that the two bases are not interchangeable. It is another
+    # sovereign's figure, quoted from the country-risk file to make a point about basis
+    # consistency, and this model has no reason to compute it.
+    0.0501,
+])
 
 if __name__ == '__main__':
     checked, problems = PF.check(DOCS, RENDER)

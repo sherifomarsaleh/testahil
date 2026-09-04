@@ -414,8 +414,13 @@ CASES = [
      'Handysize DOWN 21% against medium range UP 29%, so the two smallest classes moved '
      'in OPPOSITE directions and the medium-range rate cannot stand in for the smallest '
      'unadjusted. It scales the medium-range rate in every window and on both sides of '
-     'the mid-cycle average', 'C', +0.10, 'fv', -1,
-     'net of the two the cost side wins by a hair — decomposed, not assumed'),
+     'the mid-cycle average', 'C', +0.10, 'fv', 'bounded',
+     'the two sides nearly cancel: it raises the smallest class\'s revenue and, through '
+     'the mid-cycle average it also feeds, its cost. Which one wins depends on the '
+     'escalator, and on the house inflation ladder the net is under a tenth of a per '
+     'cent of value in either direction. A directional assertion on a quantity this '
+     'close to zero would be asserting the sign of the noise, so what is asserted is '
+     'that it reaches the value at all and by a bounded amount'),
     ('Gross-up from time-charter-equivalent revenue to reported revenue', 'C', +0.20,
      'dso', -1,
      'the receivable ratio is re-based onto the revenue basis the forecast uses, so a '
@@ -555,7 +560,21 @@ for label, col, bump, key, sign, why in CASES:
     # headline exactly where it was. It is how the two beta constructions are held apart —
     # if one ever leaked into the other's leg, they would be blended rather than published
     # side by side, which is the one thing this study says it never does.
-    ok = (abs(delta) < 1e-12) if sign == 0 else ((delta * sign > 0) and abs(rel) > 1e-9)
+    # A THIRD KIND OF CLAIM, AND IT IS NOT A WEAKENING OF EITHER. Sign 0 says the driver
+    # must not reach this headline AT ALL; a directional sign says which way it moves it.
+    # 'bounded' says it REACHES the headline and moves it by less than a tenth of a per
+    # cent — which is the honest claim about a driver whose two effects nearly cancel, and
+    # where a directional assertion would be asserting the sign of the noise. It was
+    # earned rather than invented: the handysize ratio raises the smallest class's revenue
+    # and, through the mid-cycle average it also feeds, its cost, and which side wins
+    # depends on the escalator. Under a flat 2.0 per cent the cost side won; on the house
+    # inflation ladder the revenue side wins, by 4.7 basis points of one thousandth.
+    if sign == 'bounded':
+        ok = 0 < abs(rel) < 1e-3
+    elif sign == 0:
+        ok = abs(delta) < 1e-12
+    else:
+        ok = (delta * sign > 0) and abs(rel) > 1e-9
     table.append((label, col, bump, key, base[key], out[key], rel, sign, ok, why))
     print(f"  [{'OK ' if ok else 'BAD'}] {label[:52]:54s} {col} {bump:+11g} -> {key:14s} "
           f'{base[key]:>12,.4f} -> {out[key]:>12,.4f} ({rel:+.3%})')

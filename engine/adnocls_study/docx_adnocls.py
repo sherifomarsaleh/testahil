@@ -162,7 +162,9 @@ def aed_ps(usd_k):
 # from the "after" one it is being compared with.
 _cap_ed = W['mktcap'] + W['debt']
 _we_ed, _wd_ed = W['mktcap'] / _cap_ed, W['debt'] / _cap_ed
-WACC_PRIOR = _we_ed * W['ke'] + _wd_ed * W['kd'] * (1 - W['tax_stat'])
+# COMMITTED, not recomputed here: a figure a reader sees must be one something
+# outside this document can check.
+WACC_PRIOR = W['wacc_ex_hybrid']
 WACC_TERM_PRIOR = _we_ed * W['ke_term'] + _wd_ed * W['kd_term'] * (1 - W['tax_stat'])
 # The justified-multiple form of the asset lens, on the SAME inputs the residual-income
 # construction uses, so the comparison between the two methods is a comparison of methods

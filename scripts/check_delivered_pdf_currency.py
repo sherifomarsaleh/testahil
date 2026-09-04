@@ -119,9 +119,26 @@ def text_of(pdf):
 
 
 def shows(text, value, dps=(0, 1, 2)):
-    """Does the text carry this figure at any of these roundings?"""
+    """Does the text carry this figure at any of these roundings?
+
+    A ROUNDING THAT COLLAPSES THE FIGURE TO ONE OR TWO SIGNIFICANT DIGITS IS NOT EVIDENCE,
+    and this gate passed a stale exemplar on exactly that. ADNOCLS's delivered PDF prints
+    a central of AED 7.05 while the study publishes 6.74; at zero decimal places 6.74
+    renders as "7", a bare digit that appears on every page of every document ever
+    written, so the gate reported the paper current when it was a full edition behind.
+    Every other check in the file was sound — the population, the ratchet, the reader —
+    and the whole of the hole was one formatting call.
+
+    THE BAR IS SIGNIFICANT DIGITS RATHER THAN A CHOSEN LENGTH, because that is arithmetic
+    about the figure rather than a knob: three significant figures is the precision at
+    which this house quotes a per-share value, so "6.74", "123" and "1,234" all qualify
+    and "7" does not. A study whose central genuinely needs one significant figure to be
+    identified in its own document has a bigger problem than this gate.
+    """
     for dp in dps:
         f = f'{value:,.{dp}f}'
+        if len(f.replace(',', '').replace('.', '').replace('-', '').lstrip('0')) < 3:
+            continue                       # not enough of the figure survives the rounding
         if f in text or f.replace(',', '') in text:
             return True
     return False

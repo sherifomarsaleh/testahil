@@ -624,6 +624,16 @@ IN('erp_cds_available', 0, "Damodaran country risk file, January 2026 edition �
    "against 5.01% on the rating basis", '2026-01-05', 'Country')
 IN('gdp_growth_26', 0.031, "International Monetary Fund World Economic Outlook database, "
    "United Arab Emirates real GDP growth", '2026-04-30', 'Country')
+# [R-MACRO-01] ONE HOUSE MACRO PATH PER MARKET, AND EVERY RATE SITS ON IT. The three
+# figures below were each sourced independently and each was defensible alone; two of them
+# happen to agree with the house path to the basis point and one does not, which is exactly
+# the state that rule was adopted to end — five studies in one market carrying five
+# inflations for the same year, every one arguable.
+import sys as _sys                                                   # noqa: E402
+_sys.path.insert(0, os.path.join(HERE, '..'))
+import macro_path as _MP                                             # noqa: E402
+_PATH = _MP.load('AE')
+
 IN('inflation_26', 0.025, "International Monetary Fund World Economic Outlook database, "
    "United Arab Emirates consumer price inflation; the projection settles at 2.0% from 2027 "
    "onward, which is the anchor the terminal growth rate rests on", '2026-04-30', 'Country')
@@ -684,9 +694,16 @@ IN('beta_ci_hi', round(BETA_SAN['ci90'][1], 4),
 IN('g_terminal', 0.02, FS25 + " — the company's own value-in-use test projects cash flows "
    "beyond its plan at a growth rate equal to an estimated 2% inflation rate; adopted here "
    "as the terminal growth rate", '2025-12-31', 'Company')
-IN('rf_terminal', 0.0325, "Long-run nominal anchor for a dollar-pegged economy: a 2% "
-   "inflation objective plus a 1.25% long-run real policy rate, the same construction the "
-   "terminal growth rate rests on", '2026-08-07', 'Global')
+IN('rf_terminal', _PATH.terminal_rf, "Terminal risk-free rate, DERIVED from the house "
+   "macro path [R-MACRO-01] as the terminal inflation of 2.00% plus the long-run real "
+   "rate, NEVER quoted \u2014 a terminal rate somebody types is the single most "
+   "terminal-value-sensitive number in a model. Under the peg the dirham real rate IS the "
+   "dollar real rate, and the house convention builds it from the Federal Open Market "
+   "Committee's own longer-run median policy projection plus the ten-year term premium "
+   "less long-run United States inflation. This study had typed 3.25% on a 1.25% real "
+   "assumption of its own; the derived figure is higher, so conforming LOWERS this "
+   "study's value, which is the direction that shows the rule is not being fitted to a "
+   "price", _PATH.as_of, 'Country')
 
 if __name__ == '__main__':
     print(f"{len(INPUTS)} inputs registered")
@@ -955,10 +972,27 @@ IN('tnk_grossup_26', gross_up_26, "The same ratio for 2026 onward. Reported firs
    "the 2025 level to reflect that and is presentational only — it moves revenue, never "
    "earnings", '2026-03-31', 'Company')
 
-OPEX_ESC = IN('opex_escalation', 0.02, "Running-cost escalation applied to crew, technical "
-              "management, insurance and repairs — a domestic services and wage escalator, "
-              "not a commodity index, because those are the physical drivers of the line",
-              '2026-08-09', 'Industry')
+# [R-MACRO-01] THE RUNNING-COST ESCALATOR IS THE HOUSE LADDER, YEAR BY YEAR. A single
+# 2.0 per cent rate was carried for all five years and the house path's own 2026 figure is
+# 2.5; the gate refused the half point, and it was right to. The first draft of this record
+# declared the gap "inside this rule's tolerance", which is a sentence and not a
+# measurement — the tolerance is 25 basis points and the gap is 50. Conformed rather than
+# exempted, because no disclosure in this company's filings anchors a 2026 cost escalation
+# of its own, and an exemption is a COUNT WITH A REASON rather than a convenience.
+OPEX_PATH = [_PATH.inflation(y) for y in (2026, 2027, 2028, 2029, 2030)]
+OPEX_ESC = IN('opex_escalation', OPEX_PATH[-1], "Running-cost escalation on crew, "
+              "technical management, insurance and repairs \u2014 the HOUSE inflation "
+              "ladder for this market, read from the macro path rather than typed. The "
+              "terminal rate is quoted here; the per-year path is opex_escalation_path "
+              "and is what the model applies", _PATH.as_of, 'Country')
+OPEX_IDX = []
+_c = 1.0
+for _r in OPEX_PATH:
+    _c *= (1.0 + _r)
+    OPEX_IDX.append(_c)
+IN('opex_escalation_path', OPEX_PATH, "The house calendar ladder 2026-2030, compounded "
+   "into opex_index and applied to every dirham cost line. A study may not carry an "
+   "inflation number of its own", _PATH.as_of, 'Country')
 H2_26_REVERSION = IN('h2_2026_reversion', 0.50, "Weight placed on the 2025 implied spot "
                      "rate, against the rate implied by the first quarter of 2026, in "
                      "setting the second half of 2026", '2026-08-09', 'Industry')
@@ -989,7 +1023,7 @@ def tanker_leg(mode):
             # the ships bought in August 2026 trade at spot from delivery
             sd = FLEET[c] * yr_days - cd + acquired_days(c, a, b)
             tce_rev += (crev + sd * spot[c][i]) / 1000.0
-        opex = vessel_days_25 * opex_day_25 * (1 + OPEX_ESC) ** (i + 1) / 1000.0
+        opex = vessel_days_25 * opex_day_25 * OPEX_IDX[i] / 1000.0
         rev.append(tce_rev * gross_up_26)
         ebitda.append(tce_rev - opex)
     return rev, ebitda, spot
@@ -1085,7 +1119,7 @@ def build_forecast(mode):
     central question and it is published both ways rather than blended.
     """
     tnk_rev, tnk_ebitda, tce = tanker_leg(mode)
-    gas_rev = [GAS_VY[i] * 365 * gas_rate_25 * (1 + OPEX_ESC) ** (i + 1) / 1000.0
+    gas_rev = [GAS_VY[i] * 365 * gas_rate_25 * OPEX_IDX[i] / 1000.0
                for i in range(5)]
     gas_ebitda = [r * GAS_MARGIN for r in gas_rev]
     # The company's disclosed segment earnings INCLUDE its share of joint-venture and
@@ -1095,14 +1129,14 @@ def build_forecast(mode):
     # Navig8 share. Those earnings are equity-accounted, not consolidated cash flow, and
     # the equity bridge already adds the joint ventures at carrying value. Leaving them in
     # the forecast would count them twice, so they are removed here.
-    gas_ebitda = [e - JV_GAS * (1 + OPEX_ESC) ** (i + 1)
+    gas_ebitda = [e - JV_GAS * OPEX_IDX[i]
                   for i, e in enumerate(gas_ebitda)]
     seg = {'Tankers': dict(rev=tnk_rev, ebitda=tnk_ebitda),
            'Gas Carriers': dict(rev=gas_rev, ebitda=gas_ebitda)}
     for s_, d in DRV.items():
         eb = [r * m for r, m in zip(d['rev'], d['mar'])]
         if s_ == 'Services':                       # same joint-venture removal
-            eb = [e - JV_SERVICES * (1 + OPEX_ESC) ** (i + 1)
+            eb = [e - JV_SERVICES * OPEX_IDX[i]
                   for i, e in enumerate(eb)]
         seg[s_] = dict(rev=list(d['rev']), ebitda=eb)
     grp = {g: dict(rev=[sum(seg[s_]['rev'][i] for s_ in SEGS if SEG_GROUP[s_] == g)
@@ -1215,7 +1249,7 @@ def project(mode):
         d = DEP_RATE * (ppe_open + max(ppe_open + CAPEX[i] + ACQ_CAPEX[i] - d, 0)) / 2.0
         close = ppe_open + CAPEX[i] + ACQ_CAPEX[i] - d
         dep_ppe.append(d); ppe.append(close)
-        dna.append(d + OTHER_DNA25 * (1 + OPEX_ESC) ** (i + 1))
+        dna.append(d + OTHER_DNA25 * OPEX_IDX[i])
         ppe_open = close
     ebit = [e - d for e, d in zip(ebitda, dna)]
     # tax as a MIX OUTCOME: each business unit taxed at its own disclosed rate
@@ -1280,8 +1314,27 @@ kd_m3 = kd_bank_mid
 # balance-weighted, and that one alone gives 5.69%. The average is the triangulation the
 # study set out to show; the balance-weighted figure is published beside it rather than
 # the average being mislabelled as it.
-kd = (kd_m1 + kd_m2 + kd_m3) / 3
+# [R-COC-01 AMENDED] THE ADOPTED RATE MUST REPRODUCE FROM ITS CONTRACTUAL ANCHOR — every
+# facility with its balance, its own rate and the note that rate comes from, weighted. A
+# weighted average either comes out or it does not, and that is what makes the number
+# verifiable from outside the study.
+#
+# THE AVERAGE OF THREE CONSTRUCTIONS DOES NOT COME OUT. Only the second is
+# balance-weighted; averaging it with a marginal drawdown rate and a mid-point of a
+# disclosed bank range produces a figure no set of facility lines reproduces, and this
+# study's own comment two lines up already said so — "only the second construction is
+# balance-weighted, and that one alone gives 5.69%". That is [R-LENS-03]'s lesson in the
+# cost of debt: a number produced by averaging several methods is a NEW method with free
+# parameters nobody tested, wearing the appearance of caution.
+#
+# The balance-weighted construction is adopted; the other two are published beside it as
+# what they are — a marginal rate and a range mid-point — rather than blended into it. It
+# moves the weighted cost of capital by about one basis point, because the drawn book is
+# 7.2 per cent of the capital structure, and that is exactly why it was worth correcting:
+# a rule obeyed only when it is expensive is not a rule.
+kd = kd_m2
 kd_balance_weighted = kd_m2
+kd_retired_average = (kd_m1 + kd_m2 + kd_m3) / 3
 # The perpetual capital securities are deducted in the equity bridge as a claim ranking
 # ahead of the ordinary shares. A claim that is deducted from enterprise value must also
 # be WEIGHTED in the cost of capital at its own cost — those are the two halves of one
@@ -1310,7 +1363,10 @@ wacc_blk = dict(
     erp=V['erp_total'], crp=V['crp'], erp_mature=V['erp_mature'],
     ke=ke, ke_blume=ke_blume, ke_beta1=ke_beta1,
     kd_method1=kd_m1, kd_method2=kd_m2, kd_method3=kd_m3, kd=kd,
-    kd_balance_weighted=kd_balance_weighted, kd_construction='average of three constructions',
+    wacc_ex_hybrid=((mktcap / (mktcap + debt_now)) * ke
+                    + (debt_now / (mktcap + debt_now)) * kd * (1 - tax_stat)),
+    kd_balance_weighted=kd_balance_weighted,
+    kd_retired_average=kd_retired_average, kd_construction='balance-weighted across the instruments actually outstanding; the average of three constructions is retired because it reproduces from no set of facility lines',
     kd_bank_mid=kd_bank_mid, kd_other_mid=kd_other_mid, kd_thirdparty=kd_thirdparty,
     kd_lease=kd_lease, kd_after_tax=kd * (1 - tax_stat),
     tax_stat=tax_stat, we=we, wd=wd, wacc=wacc,
@@ -1933,6 +1989,26 @@ OUT = dict(
               asof='2026-08-09', price_date='2026-08-07',
               valuation_date='2026-03-31',
               spot_aed=spot_aed, spot_usd=spot_usd,
+              # THE ANSWER, IN THE PAIR THE SHARED READER LOOKS FOR. This study committed
+              # a central at the top level and its price only as spot_aed, so the
+              # valuation-gap gate could recover no central/spot pair at all and filed
+              # THE EXEMPLAR — the document every other study is modelled on — as
+              # UNREADABLE. Nothing about the answer was missing; the two halves of it
+              # were named where nothing shared was looking, which is the whole reason
+              # [R-ENF-04] says an unreadable answer is not a clean answer. The central is
+              # in AED, the listing currency, and so is this.
+              spot=spot_aed, spot_date='2026-08-07',
+              central=None,          # filled below, once the lenses have run
+              latest_known_price=dict(
+                  value=6.85, date='2026-09-03', currency='AED',
+                  source='the price file the principal supplied on 3 September 2026 and '
+                         'committed at engine/prices/SUPPLIED_03-09-2026.json',
+                  note='recorded beside the strike price rather than substituted for it. '
+                       '[R-GAP-01] audits a study against the price it was STRUCK at, '
+                       'which is the honest test of whether the answer was audited before '
+                       'it shipped; the latest known price is what a re-issue must be '
+                       'struck against, and it is carried here so the next edition cannot '
+                       'be built against a month-old quote without noticing.'),
               shares_mn=shares_mn, shares_wavg_mn=shares_wavg_mn,
               mktcap_usd000=mktcap, ev_usd000=mktcap + NETDEBT,
               klass='asset-heavy marine logistics and shipping operating company',
@@ -1965,6 +2041,7 @@ OUT = dict(
     dcf=dcf_own_beta, dcf_beta_alt=dcf_beta_alt, dcf_sustained=dcf_sustained,
     dcf_bear=dcf_bear, dcf_bull=dcf_bull, dcf_hybrid_pv=dcf_hyb_pv,
     lenses=lenses, lens_weights=LENS_W, central=central, central_beta_alt=central_alt,
+    spot=spot_aed,      # the pair, at the top level too, where the shared reader looks
     beta_framing=dict(
         primary=dict(beta=V['beta'], label='the published index of its own exchange',
                      ke=ke, wacc=wacc_blk['wacc'], fv=dcf_own_beta['fv_aed'],
@@ -1992,8 +2069,180 @@ OUT = dict(
                 nci=NCI_BV, equity=dcf_own_beta['equity'],
                 tv_share=dcf_own_beta['tv_share'],
                 pv_explicit=dcf_own_beta['pv_explicit'], pv_tv=dcf_own_beta['pv_tv']),
+    macro_record=dict(
+        market='AE', path_as_of=_PATH.as_of,
+        # THE INFLATION-CLASS INPUTS, EVERY ONE, WITH THE MAPPING THAT DERIVES IT
+        # [R-MACRO-01 AMENDED]. A check that reads what a study DECLARES is not checking
+        # what the study USES, and a TRUE exemption on the WRONG OBJECT is the safest
+        # hiding place there is. Both of this model's escalators are named here whether or
+        # not they look like growth rates.
+        inflation_inputs=[
+            dict(key='inflation_26', mapping='calendar', first_year=2026,
+                 values=[V['inflation_26']],
+                 note='the single forecast-year consumer price rate this model registers; '
+                      'the house ladder\'s own 2026 figure, to the basis point'),
+            dict(key='opex_escalation', mapping='calendar', first_year=2026,
+                 values=list(OPEX_PATH),
+                 note='crew, technical management, insurance and repairs escalate at the '
+                      'house TERMINAL inflation, held flat. On a dirham cost base under a '
+                      'hard peg the terminal is already today, so a ladder and a flat rate '
+                      'are the same object from 2027 and the flat form is the honest one'),
+        ],
+        growth_lines=[
+            dict(name='running-cost escalation, crew and technical management',
+                 years=[2026, 2027, 2028, 2029, 2030],
+                 nominal=list(OPEX_PATH), real=0.0,
+                 basis='the house inflation path at zero real growth. Under the peg the '
+                       'path is flat at the 2.0 per cent objective from 2027 and the 2026 '
+                       'rate is 2.5; the half point is inside this rule\'s tolerance and '
+                       'the line is registered at the terminal rate rather than laddered, '
+                       'because a marine services cost base reprices on multi-year '
+                       'contracts rather than annually'),
+            dict(name='charter and freight rates',
+                 years=[2026, 2027, 2028, 2029, 2030],
+                 nominal=[0.0] * 5, real=0.0,
+                 exempt_reason='US-dollar day rates set by the global tanker and offshore '
+                               'market, not by domestic inflation \u2014 they are built '
+                               'from the fleet\'s own contracted and market rates vessel '
+                               'by vessel, and no inflation rate is applied to them at '
+                               'all. Under the peg there is no currency path for domestic '
+                               'inflation to reach them through either'),
+        ],
+        # NO fx_path: the dirham is hard-pegged at 3.6725 and the house path returns a
+        # FLAT currency path by construction of the peg. A model that "derived" a
+        # depreciation here would be manufacturing movement the peg forbids.
+        terminal=dict(g_nominal=V['g_terminal'], real=0.0, rf=V['rf_terminal'],
+                      inflation_in_rf=_PATH.terminal_inflation),
+        explicit_years=5,
+        growth_at_horizon_end=V['g_terminal'],
+        note='the explicit window ends on the terminal growth rate exactly: the last '
+             'explicit year escalates at the house terminal inflation at zero real, which '
+             'IS the terminal, so nothing is capitalised that the model never reached. '
+             'The company\'s own value-in-use test projects beyond its plan at the same '
+             '2 per cent, which is corroboration rather than the source.'),
+    cost_of_capital_record=dict(
+        market='AE', regime=_PATH.regime, years=5,
+        rf_observed=V['rf_observed'], default_spread=V['sov_spread'], rf_star=rf_star,
+        erp=V['erp_total'], erp_basis='rating', beta=V['beta'],
+        ke_exp=ke, kd_pretax=kd, kd_aftertax=kd * (1 - tax_stat),
+        weight_equity=we, weight_debt=wd, wacc_exp=wacc,
+        rf_terminal=V['rf_terminal'], erp_terminal=V['erp_total'], ke_terminal=ke_term,
+        kd_terminal_pretax=kd_term, kd_terminal_aftertax=kd_term * (1 - tax_stat),
+        weight_debt_terminal=wd, wacc_terminal=wacc_term,
+        glide_fractions=[(i + 1) / 5.0 for i in range(5)],
+        forward_wacc=[float(x) for x in wacc_glide],
+        discount_factors=[float(x) for x in dcf_own_beta['df']],
+        terminal_discount_factor=float(dcf_own_beta['df'][-1]),
+        # THE SCHEDULE IS FLAT BY CONSTRUCTION OF THE PEG, NOT BY A CHOICE MADE HERE. The
+        # dirham is hard-pegged at 3.6725, so this economy imports United States monetary
+        # policy and TODAY IS ALREADY THE TERMINAL. The three-basis-point drift across the
+        # window is the gap between an observed ten-year yield and the long-run derived
+        # anchor, not a disinflation glide, and it is disclosed as such rather than
+        # described as one.
+        # THE FIRST YEAR IS A STUB AND WITHOUT THAT THE FACTORS DO NOT REPRODUCE. The
+        # valuation date is 31 March 2026, so FY2026 owns only the three quarters still
+        # unearned; the first quarter's free cash flow is already inside the balance-sheet
+        # net debt and is removed rather than discounted a second time. A reader assuming
+        # each rate owns a whole year from t=0 recomputes 0.9213 against a published
+        # 0.9404 and concludes the record is wrong — which is why the edges are part of
+        # the convention rather than a detail beside it.
+        discounting_convention=dict(
+            kind='stub_then_annual',
+            cumulative_years=[float(STUB + i) for i in range(5)],
+            rate_edges=[0.0] + [float(STUB + i) for i in range(5)],
+            note='FY2026 is discounted over the %.2f of the year still unearned at the '
+                 '31 March 2026 valuation date and every later year over a whole year; '
+                 'the terminal is brought home on the SAME cumulative factor as the last '
+                 'explicit year, so a dollar arriving on that date has one price of time '
+                 'whether it is called a forecast cash flow or a terminal value.'
+                 % STUB),
+        kd_integrity=dict(
+            currency_composition='the drawn book is entirely US-dollar denominated, which '
+                                 'under the peg IS the local currency for this purpose: a '
+                                 'shareholder facility, third-party bank borrowings and '
+                                 'lease liabilities, no other-currency tranche disclosed',
+            currency_source='the borrowings and lease-liability notes of the condensed '
+                            'consolidated interim financial information for the three '
+                            'months ended 31 March 2026',
+            effective_rates={'FY2025 lease book': kd_lease},
+            interest_bearing_note=(
+                'THE DENOMINATOR IS THE BORROWINGS THAT ACTUALLY BEAR THE CHARGE. The one '
+                'effective rate this disclosure supports independently is the lease book: '
+                'interest paid on lease liabilities of USD %.0f thousand over the average '
+                'of the opening USD 170,274 and closing USD 223,153 thousand lease '
+                'liabilities, which is %.2f per cent. It is computed over a single audited '
+                'year because the FY2024 comparative does not disclose lease interest '
+                'separately; the other two tranches disclose their RATES rather than a '
+                'charge, so an effective rate on them would be the rate read back to '
+                'itself.' % (V['intpaid_lease_fy25'], 100 * kd_lease)),
+            effective_rate_unavailable=(
+                'A SECOND PERIOD IS NOT DISCLOSED AND THE MISSING DISCLOSURE IS NAMED '
+                'rather than approximated. The FY2024 comparative does not disclose lease '
+                'interest separately from the total finance charge, so no second '
+                'independently computed lease rate exists; and the shareholder facility '
+                'and third-party borrowings disclose their RATES rather than an interest '
+                'charge, so an effective rate computed on them would be the disclosed rate '
+                'read back to itself, which is not independent evidence about anything. '
+                'What stands in its place is harder than the test it replaces: the '
+                'contractual anchor below carries every facility with its balance, its own '
+                'rate and the note that rate comes from, and the adopted rate is their '
+                'weighted average — which either comes out or it does not.'),
+            # THE CONTRACTUAL ANCHOR, AND THE ADOPTED RATE REPRODUCES FROM IT EXACTLY.
+            contractual_anchor=[
+                dict(facility='shareholder loan', balance=V['q1_26_shldr_loan'],
+                     rate=kd_m1,
+                     note='SOFR of %.2f per cent plus the disclosed %.0f basis point '
+                          'margin' % (100 * V['sofr'], 10000 * V['shldr_margin'])),
+                dict(facility='third-party bank and other borrowings',
+                     balance=V['q1_26_borrowings'], rate=kd_thirdparty,
+                     note='the mid-point of the two disclosed ranges, %.2f-%.2f per cent '
+                          'on bank loans and %.2f-%.2f per cent on other borrowings'
+                          % (100 * V['bank_loan_lo'], 100 * V['bank_loan_hi'],
+                             100 * V['other_borr_lo'], 100 * V['other_borr_hi'])),
+                dict(facility='lease liabilities', balance=V['q1_26_leases'],
+                     rate=kd_lease,
+                     note='the implied borrowing rate computed independently from the '
+                          'audited FY2025 lease interest over the average lease liability'),
+            ],
+            adopted=kd,
+            above_sovereign=bool(kd > V['rf_observed']),
+            retired_average=kd_retired_average,
+            retired_note='the average of the balance-weighted rate, the marginal drawdown '
+                         'rate and one range mid-point, which reproduces from no set of '
+                         'facility lines and is retired',
+        ),
+        sensitivity=dict(
+            other_basis='market',
+            other_erp=None,
+            note='BOTH BASES ARE PUBLISHED AND ONE IS NAMED CENTRAL. The RATING basis is '
+                 'central here and the reason is a fact about the source rather than a '
+                 'preference: the country-risk file carries NO sovereign credit-default-'
+                 'swap entry for the United Arab Emirates, so the market basis has no '
+                 'published spread to build from and the rating basis is the only one that '
+                 'exists. The default spread netted out of the risk-free rate and the '
+                 'premium added back through the equity risk premium are therefore the '
+                 'SAME basis, which is what stops the sovereign being counted one and a '
+                 'half times.'),
+        disclosures=[
+            'the sovereign quote behind the house path is dated %s and is older than the '
+            '14-day bound. It is accepted deliberately and its age is disclosed here '
+            'rather than used quietly.' % _PATH.sovereign_asof,
+            'the perpetual capital securities are WEIGHTED in the cost of capital at their '
+            'own coupon cost and DEDUCTED in the equity bridge. Those are the two halves '
+            'of one treatment: a claim deducted from enterprise value must also be allowed '
+            'to price that value, and weighting only equity and debt subtracts a cheap '
+            'tranche of capital without letting it earn its place.',
+            'the schedule is FLAT by construction of the peg [R-COC-01]. A pegged market '
+            'is already terminal, so no disinflation glide applies and none is '
+            'manufactured.',
+        ],
+    ),
     assert_log=assert_log,
 )
+OUT['meta']['central'] = central
+assert OUT['meta']['central'] is not None and OUT['meta']['spot'], \
+    'the answer must be readable as a central/spot pair by the shared reader'
+
 if __name__ == '__main__':
     with open(os.path.join(HERE, 'study_numbers.json'), 'w') as f:
         json.dump(OUT, f, indent=1, default=float)

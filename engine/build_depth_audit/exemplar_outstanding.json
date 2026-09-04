@@ -4,10 +4,7 @@
  "outstanding": [
   "ADNOCLS:anchor_outstanding.json:outstanding",
   "ADNOCLS:bridge_outstanding.json:outstanding",
-  "ADNOCLS:coc_outstanding.json:outstanding",
-  "ADNOCLS:gap_outstanding.json:unreadable",
   "ADNOCLS:lens_outstanding.json:outstanding",
-  "ADNOCLS:macro_outstanding.json:outstanding",
   "ADNOCLS:output_outstanding.json:outstanding",
   "ADNOCLS:outstanding.json:outstanding"
  ]
