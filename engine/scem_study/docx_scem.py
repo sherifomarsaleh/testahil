@@ -108,16 +108,31 @@ figure('fig7_bridge.png', 6.7,
 
 # ---- 1.1 --------------------------------------------------------------------
 H2('1.1  The cash-flow model — the primary lens, with the full waterfall')
-P('The discounted cash-flow model is the primary lens and carries 45% of the weight. It '
+# THE WEIGHT WAS TYPED AT 45% AND THE SUMMARY TABLE PUBLISHES 48%. Read from the lens
+# record, so the two cannot disagree again.
+P(f'The discounted cash-flow model is the primary lens and carries '
+  f'{pc(LN["weights"]["DCF (cash flow)"], 0)} of the weight. It '
   'runs on a volume-and-price build off one plant, discounts each year at that year\'s own '
   'cost of capital, and capitalises a terminal value at a separately built terminal rate.')
+# THE PRINTED WATERFALL WAS NOT THE MODEL'S WATERFALL. It ran NOPAT, plus depreciation,
+# less capital expenditure, less the change in working capital, to free cash flow — and the
+# model computes free cash flow as NOPAT LESS REINVESTMENT, with the first year scaled to
+# the unearned part of it. So three of the four lines between NOPAT and the answer fed
+# nothing, the two that do were not printed at all, and a reader adding the column got EGP
+# 1,829mn in year one against a printed 799. Under a caption reading "the FULL waterfall...
+# every line is a live formula in the companion model".
+#
+# Those three lines are real and are not deleted: they drive the projected balance sheet —
+# property, working capital and cash — and they are shown for what they are, below the
+# answer rather than inside it. This is the ARCC Table 3 shape at its worst: every figure
+# individually correct, and the relationship between them not the model's.
+_STUB = 1.0 - IN['stub_years']
 rows = [['EGP million'] + YF]
 for lab, key, f in [('Revenue', 'revenue', n0), ('EBITDA', 'ebitda', n0),
                     ('EBITDA margin', None, None), ('Depreciation & amortisation', 'dna', n0),
                     ('EBIT', 'ebit', n0), ('NOPAT  (EBIT × (1 − t))', 'nopat', n0),
-                    ('Plus depreciation & amortisation', 'dna', n0),
-                    ('Less capital expenditure', 'capex', n0),
-                    ('Less change in working capital', 'dwc', n0),
+                    ('Less reinvestment to fund the growth in NOPAT, at the terminal '
+                     'return on capital', 'reinvestment', n0),
                     ('Free cash flow to the firm', 'fcff', n0),
                     ('Discount factor', 'df', lambda x: f'{x:.4f}'),
                     ('Present value of free cash flow', 'pv', n0)]:
@@ -125,9 +140,32 @@ for lab, key, f in [('Revenue', 'revenue', n0), ('EBITDA', 'ebitda', n0),
         rows.append([lab] + [pc(F['ebitda'][i] / F['revenue'][i]) for i in range(5)])
     else:
         rows.append([lab] + [f(F[key][i]) for i in range(5)])
-table(rows, [2.25, 0.94, 0.94, 0.94, 0.94, 0.94], band_rows={10, 12})
-caption('Table 1 — The full waterfall from revenue to the present value of free cash flow '
-        'to the firm. Every line is a live formula in the companion model.')
+table(rows, [2.25, 0.94, 0.94, 0.94, 0.94, 0.94], band_rows={8, 10})
+# THE FIRST YEAR FOOTS ONLY WITH THE STUB NAMED, so the caption names it and the build
+# asserts every year reproduces from the rows printed above it.
+for _i in range(5):
+    _made = (F['nopat'][_i] - F['reinvestment'][_i]) * (_STUB if _i == 0 else 1.0)
+    assert abs(_made - F['fcff'][_i]) < 1.0, (
+        'the waterfall does not foot in year %d: %.1f vs %.1f'
+        % (_i + 1, _made, F['fcff'][_i]))
+# The stub is quoted to the precision a reader NEEDS, not to a round one: at 42% the two
+# printed rows give 804 against a printed 799, so the caption naming the scaling would not
+# have let anyone reproduce it. Tested on the PRINTED strings, which is what the reader has.
+_STUB_TXT = pc(_STUB, 1)
+_rd = lambda t: float(t.replace(',', '').rstrip('%'))
+assert abs(round(_rd(n0(F['nopat'][0])) * _rd(_STUB_TXT) / 100.0)
+           - _rd(n0(F['fcff'][0]))) <= 1.0, (
+    'the printed stub does not reproduce the printed first-year cash flow')
+caption(f'Table 1 — From revenue to the present value of free cash flow to the firm. Free '
+        f'cash flow is NOPAT less the reinvestment that funds the growth in it, and the '
+        f'first year is scaled to the {_STUB_TXT} of {YF[0]} still unearned at the '
+        f'valuation date — that is the only line a reader cannot add up from the two above '
+        f'it. Every line is a live formula in the companion model.')
+P('Depreciation, capital expenditure and the movement in working capital are drivers of '
+  'the projected BALANCE SHEET rather than of the cash flow above: this model reinvests '
+  'to fund growth at the terminal return on capital and does not route cash through the '
+  'asset schedule. They are set out in the statements appendix.', size=9.5, italic=True,
+  color=GREY)
 
 P('The discount rate is not one number. Egypt\'s cost of capital today reflects a policy '
   'rate of 19.50% and a ten-year government yield of 22.31%, neither of which the central '
