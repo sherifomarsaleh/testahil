@@ -40,6 +40,7 @@ import glob
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 
@@ -327,6 +328,17 @@ def main():
     # ABSENT answer wearing the costume of a clean one. The book delivers PDFs, so zero
     # of them is a broken probe, never a clean result.
     if not pdf_examined:
+        # AND A BROKEN TOOL IS SAID IN ITS OWN WORDS, exit 2 rather than 1. Both are
+        # failures and neither is clean; what separates them is what a reader should go
+        # and fix. On 04-Sep-2026 this gate ran inside the new-study gauntlet before
+        # poppler-utils was installed, and the gauntlet reported it as a gate that DID
+        # NOT REFUSE A NEW STUDY — which is the gauntlet's own first-run finding arriving
+        # again: red for the wrong reason reads exactly like red for the right one.
+        if shutil.which('pdftotext') is None:
+            print('COULD NOT RUN — pdftotext is not on PATH, so not one of the %d '
+                  'delivered PDFs could be read. That is a missing TOOL, not a finding '
+                  'about the book [R-ENF-04]' % examined)
+            return 2
         print('FAIL — examined zero delivered PDFs while %d .docx editions exist; the '
               'extractor did not run [R-ENF-04]' % examined)
         return 1

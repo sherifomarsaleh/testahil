@@ -124,6 +124,21 @@ def main():
         return 1
     ran, unrunnable, bad = audit()
     if not ran:
+        # A MISSING TOOL IS SAID IN ITS OWN WORDS, exit 2 rather than 1. Both are
+        # failures and neither is clean; what separates them is what a reader should go
+        # and fix. Every figure script here imports matplotlib, so without it NONE can
+        # run and this branch fires — which is what happened in CI on 04-Sep-2026, where
+        # matplotlib was never installed, and the new-study gauntlet then reported this
+        # gate as one that DID NOT REFUSE A NEW STUDY. It had refused nothing because it
+        # had run nothing, and those are different repairs.
+        try:
+            subprocess.run([sys.executable, '-c', 'import matplotlib'],
+                           capture_output=True, check=True, timeout=120)
+        except Exception:                                            # noqa: BLE001
+            print('COULD NOT RUN — matplotlib does not import, so not one of the %d '
+                  'figure scripts could execute. That is a missing TOOL, not a finding '
+                  'about the figures [R-ENF-04]' % len(scripts))
+            return 2
         print('FAIL — %d figure script(s) found and NONE of them ran; the guard did not '
               'execute [R-ENF-04]' % len(scripts))
         return 1

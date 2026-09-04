@@ -234,6 +234,12 @@ def sandbox():
     return tmp, repo
 
 
+# THE TOOL CONTRACT. A gate that cannot run because a TOOL is absent exits 2, never
+# 1: both are failures and neither is clean [R-ENF-04], but they send a reader to
+# different repairs — one to the gate or the study, the other to the environment.
+TOOL_EXIT = 2
+
+
 def run(repo, gate):
     r = subprocess.run([sys.executable, os.path.join('scripts', gate)],
                        cwd=repo, capture_output=True, text=True, timeout=1800)
@@ -287,7 +293,7 @@ def main(argv):
         print('%d directory gates, %d artefact gates, %d excluded with a stated reason\n'
               % (len(DIRECTORY_GATES), len(ARTEFACT_GATES), len(EXCLUDED)))
 
-        red, wrong, missing = [], [], []
+        red, wrong, missing, notool = [], [], [], []
 
         print('DIRECTORY GATES — must refuse a study directory that holds nothing')
         for gate in DIRECTORY_GATES:
@@ -299,6 +305,21 @@ def main(argv):
             except Exception as e:                                      # noqa: BLE001
                 rc, out, last = 1, '', '%s: %s' % (type(e).__name__, e)
             named = TICKER.lower() in out.lower()
+            # EXIT 2 IS THE TOOL CONTRACT: the gate could not run, so it has refused
+            # nothing and its silence says nothing about the study. Counting that as a
+            # permissive gate is the gauntlet's own first-run finding arriving a second
+            # time — on 04-Sep-2026 three gates hit it in CI (poppler installed 320 lines
+            # below this step, matplotlib never installed at all) and this file reported
+            # "3 gate(s) did not refuse the new study". They had refused nothing because
+            # they had run nothing, and those are different repairs. It still FAILS the
+            # run [R-ENF-04]; what changes is which way it sends the reader.
+            if rc == TOOL_EXIT:
+                notool.append((gate, rc, named, last))
+                print('   %-4s %-40s exit %d   (could not run — broken tool)'
+                      % ('TOOL', gate, rc))
+                if verbose:
+                    print('        %s' % last[:150])
+                continue
             ok = rc != 0 and named
             (red if ok else wrong).append((gate, rc, named, last))
             print('   %-4s %-40s exit %d%s' % ('RED ' if ok else 'MISS', gate, rc,
@@ -319,6 +340,13 @@ def main(argv):
             except Exception as e:                                      # noqa: BLE001
                 rc, out, last = 0, '', '%s: %s' % (type(e).__name__, e)
             named = TICKER.lower() in out.lower()
+            if rc == TOOL_EXIT:                       # see the note above
+                notool.append((gate, rc, named, last))
+                print('   %-4s %-40s exit %d   (could not run — broken tool)'
+                      % ('TOOL', gate, rc))
+                if verbose:
+                    print('        %s' % last[:150])
+                continue
             ok = rc != 0 and named
             (red if ok else wrong).append((gate, rc, named, last))
             print('   %-4s %-40s exit %d   %s' % ('RED ' if ok else 'MISS', gate, rc, what))
@@ -350,6 +378,16 @@ def main(argv):
             print('A gate nobody listed is a gate this run never tested, and the run still '
                   'reports clean — which is the failure shape this whole file exists to '
                   'close, occurring inside it. Say which kind it is.')
+            rc = 1
+        if notool:
+            print('\nFAIL — %d gate(s) COULD NOT RUN; a tool they need is absent, so they '
+                  'refused nothing and their silence is not evidence [R-ENF-04]:'
+                  % len(notool))
+            for gate, code, _named, last in notool:
+                print('   %-40s exit %d' % (gate, code))
+                print('        %s' % last[:170])
+            print('Fix the ENVIRONMENT, not the gate: every tool a gate needs is installed '
+                  'before any gate runs. This is not a finding about the study.')
             rc = 1
         if wrong:
             print('\nFAIL — %d gate(s) did not refuse the new study, or went red without '

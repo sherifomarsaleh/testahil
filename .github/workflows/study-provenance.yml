@@ -268,8 +268,28 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      # EVERY TOOL A GATE NEEDS IS INSTALLED BEFORE ANY GATE RUNS, and the reason is
+      # measured rather than tidy. poppler-utils used to be installed 320 lines below,
+      # beside the one step that reads a PDF — which was true of that step and false of
+      # the new-study gauntlet, because the gauntlet RUNS THE OTHER GATES and reached two
+      # PDF readers before the tool existed. matplotlib was never installed at all, so
+      # every one of the figure scripts check_figure_axes exists to run failed to import
+      # and the gate correctly refused an empty result [R-ENF-04].
+      #
+      # BOTH READ AS A GATE BEING PERMISSIVE AND NEITHER WAS: the gauntlet reported
+      # "3 gate(s) did not refuse the new study" when what had happened is that three
+      # gates could not run. That is the gauntlet's own first-run finding arriving a
+      # second time — a gate red for the WRONG reason reads exactly like one red for the
+      # right reason — and it is why the exit-2 tool contract below now separates them.
+      #
+      # It also cost a local run its meaning: scripts/run_ci_gates.py reported 89 green
+      # against a CI that had neither tool, because the local container has both. A
+      # LOCAL RUNNER INHERITS THE DEVELOPER'S ENVIRONMENT AND CI DOES NOT.
       - name: Install engine deps
-        run: pip install numpy pandas scipy python-docx openpyxl
+        run: pip install numpy pandas scipy python-docx openpyxl matplotlib
+
+      - name: Install poppler-utils (pdftotext)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
 
       # VERIFY BY IMPORT, NOT BY PARSE. nu=Gaussian parsed cleanly and only died at
       # import, and that bug reached main while a regex check reported the file intact.
@@ -915,12 +935,6 @@ jobs:
       # clean while the delivered PDF still carries the previous edition's answer — which
       # is exactly what happened to four studies on 03-Sep-2026, for four hours, with
       # every gate green.
-      # poppler-utils installed as its OWN step so a failure to install is a failure to
-      # install, not a book-wide red from a gate that could not read anything. The gate
-      # itself exits 2 with a message naming the missing tool if it is still absent.
-      - name: Install poppler-utils (pdftotext)
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
-
       - name: Delivered PDF carries the study's own answer
         run: python3 scripts/check_delivered_pdf_currency.py
 
