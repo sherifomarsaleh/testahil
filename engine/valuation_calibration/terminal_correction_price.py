@@ -142,13 +142,26 @@ def committed_terminal(ticker):
 #   RESOLVABLE  the study publishes it under a named key, so a rebuild can read it —
 #               a candidate that must be confirmed at rebuild, never a substitute
 #   MISSING     nothing in the study answers to it
-# THE LEVEL, NOT THE CHANGE. The corrected terminal charges inflation x WORKING
-# CAPITAL, so it needs the LEVEL; `dnwc` is the year-on-year movement, and a rebuild
-# reading one for the other would charge a rounding error and look entirely fine. A
-# draft of this pattern matched `d?nwc` and reported the CHANGE as resolvable on nine
-# names — a near-miss key is worse than a missing one, because it answers.
-_WC = re.compile(r'(?:^|\.)(?:fcst|forecast)\.nwc(?:\[|$|\.)', re.I)
-_DWC = re.compile(r'(?:^|\.)(?:fcst|forecast)\.dnwc(?:\[|$|\.)', re.I)
+# THE LEVEL, NOT THE CHANGE, AND NOT ONE STUDY'S SPELLING OF IT. The corrected
+# terminal charges inflation x WORKING CAPITAL, so it needs the LEVEL; `dnwc` is the
+# year-on-year movement, and a rebuild reading one for the other would charge a
+# rounding error and look entirely fine.
+#
+# THIS PATTERN WAS WRONG TWICE AND BOTH TIMES IN THE SAME DIRECTION — it reported a
+# field MISSING that the study publishes. First it matched `d?nwc` and returned the
+# CHANGE on nine names. Then, pinned to `fcst|forecast . nwc`, it reported four names
+# as having no working capital at all while three of them publish a forecast level
+# under their own spelling: frame_A.nwc, cases.base.rows[].wc, forecast.nwc_A.
+# A NARROW PATTERN DOES NOT FAIL LOUDLY, IT REPORTS AN ABSENCE — which is the whole
+# [R-ENF-04] shape, and reporting an absence sends the next session to re-derive a
+# figure already in the file.
+#
+# So it is matched STRUCTURALLY rather than by one prefix: any numeric series whose
+# LEAF is nwc or wc, excluding the delta forms and excluding the ratio family
+# (dso/dio/dpo/ccc), which describe working capital without being it.
+_WC = re.compile(r'(?:^|[.\[])(?:nwc|wc)(?:\[\d+\])?$', re.I)
+_DWC = re.compile(r'(?:^|[.\[])(?:d_?nwc|delta_?nwc|dwc)(?:\[\d+\])?$', re.I)
+_WC_RATIO = re.compile(r'\b(?:dso|dio|dpo|ccc|_pct|pct_)\b', re.I)
 _IC = re.compile(r'(?:^|\.)(?:ic_replacement|invested_capital_replacement|'
                  r'replacement_cost_(?:ic|capital))(?:\[|$|\.)', re.I)
 
@@ -178,13 +191,34 @@ def _needs(ticker):
             flat = {}
     out = {}
     for item, pat in (('working_capital', _WC), ('ic_replacement', _IC)):
-        hits = sorted(k for k in flat if pat.search(k))
-        out[item] = ('RESOLVABLE', hits[0]) if hits else ('MISSING', '')
-    if out['working_capital'][0] == 'MISSING':
-        d = sorted(k for k in flat if _DWC.search(k))
-        if d:
-            out['working_capital'] = ('MISSING', 'only the CHANGE (%s) is published '
-                                      'and the charge acts on the level' % d[0])
+        hits = sorted(k for k in flat if pat.search(k)
+                      and not (item == 'working_capital' and _WC_RATIO.search(k)))
+        if not hits:
+            out[item] = ('MISSING', '')
+            continue
+        # A PATTERN CANNOT TELL A STUDY'S BASE CASE FROM ITS SENSITIVITY GRID, AND
+        # THIS IS WHERE GUESSING STOPS. On one name the leaf `nwc` matches 161 keys:
+        # the base case, a historical actual, and a scenario series for every cell of
+        # a beta-by-growth grid. Picking one of those is not resolution — it is a
+        # choice about which case a terminal is built on, and it is the STUDY'S to
+        # make rather than this file's.
+        #
+        # THIS PATTERN HAS NOW BEEN WRONG IN BOTH DIRECTIONS, which is the finding.
+        # Narrow, it reported four names as publishing no working capital while three
+        # publish a forecast level under their own spelling. Widened structurally, it
+        # returns a sensitivity cell with equal confidence. A third adjustment would
+        # be tuning against the names in front of me, which is the free parameter this
+        # house forbids everywhere else.
+        #
+        # So the report says HOW MANY candidates a study exposes and leaves the choice
+        # named as the study's — the architecture prose_figures and table_footing both
+        # reached by measurement, where the shared instrument does the arithmetic and
+        # each study declares only what is its own.
+        out[item] = ('RESOLVABLE', '%d candidate key(s), e.g. %s%s'
+                     % (len(hits), hits[0],
+                        '' if len(hits) == 1
+                        else " — WHICH ONE IS THE STUDY'S TO DECLARE"))
+
     lo, hi, src = TC.disclosed_life(ticker)
     if lo is None:
         out['useful_life_years'] = ('MISSING', '')
