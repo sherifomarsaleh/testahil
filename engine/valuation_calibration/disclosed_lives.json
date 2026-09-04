@@ -1,5 +1,5 @@
 {
- "_what": "DISCLOSED USEFUL LIVES, read from each company's OWN audited accounting-policies note. [R-TERM-01] requires the terminal's maintenance charge to rest on a DISCLOSED life and REFUSES one this desk chose (SIGCM clause 1), so the life has to be sourced before a terminal can be rebuilt \u2014 and until it is, the census can only say 'not sourced'. This file is where that research accumulates, one name at a time, so the next rebuild reads it instead of re-opening the filing.",
+ "_what": "DISCLOSED USEFUL LIVES, read from each company's OWN audited accounting-policies note. [R-TERM-01] requires the terminal's maintenance charge to rest on a DISCLOSED life and REFUSES one this desk chose (SIGCM clause 1), so the life has to be sourced before a terminal can be rebuilt — and until it is, the census can only say 'not sourced'. This file is where that research accumulates, one name at a time, so the next rebuild reads it instead of re-opening the filing.",
  "_how": "Every entry names the FILE, the NOTE and the ROUTE the figure came by (text layer or OCR off the rendered pixels), on the same footing as the four-field rule. A RANGE IS RECORDED AS A RANGE: most policy notes give a band per asset class and not a single number, and collapsing that to one figure here would be this desk choosing the life under cover of a citation. The weighted life a terminal actually needs is derived at rebuild from the property, plant and equipment note's own composition, which is a further sourcing step and is NOT done here.",
  "_binds": "Nothing reads this yet except the census's 'disclosed' column. A rebuild that uses one of these lives commits it to its own terminal_record, which is what the gate and the census then read [R-ENF-01].",
  "lives": {
@@ -46,9 +46,9 @@
    "shortest_years": 4,
    "source": "AMR (Al Maha / Agthia group filing as committed in this study directory), FY2025 consolidated financial statements, property plant and equipment accounting policy: 'Depreciation on other assets is calculated using the straight-line method, at rates calculated to reduce the cost of assets to their estimated residual value over their expected useful lives, as follows'. Land is not depreciated.",
    "file": "engine/amr_study/AMR_FY2025_Consolidated_FS.pdf",
-   "route": "text layer via pdftotext. The -layout rendering places the Years column beyond the extracted line width and drops it silently \u2014 the classes appear with no figures beside them, which reads like a table that has none. Re-extracted WITHOUT -layout, where the column follows the labels as a separate block. RECORDED BECAUSE THE FIRST EXTRACTION LOOKED COMPLETE AND WAS NOT.",
+   "route": "text layer via pdftotext. The -layout rendering places the Years column beyond the extracted line width and drops it silently — the classes appear with no figures beside them, which reads like a table that has none. Re-extracted WITHOUT -layout, where the column follows the labels as a separate block. RECORDED BECAUSE THE FIRST EXTRACTION LOOKED COMPLETE AND WAS NOT.",
    "read_on": "2026-09-03",
-   "against_the_terminal": "this study's terminal implies a replacement cycle of 33.3 years (1/g at g=3.0%) and charges 0.12x its own book depreciation. The LONGEST life the company discloses is 20 years and most of the base is 4 to 7 \u2014 so the terminal assumes an asset life the accounts do not support anywhere, in the direction that OVERSTATES value."
+   "against_the_terminal": "this study's terminal implies a replacement cycle of 33.3 years (1/g at g=3.0%) and charges 0.12x its own book depreciation. The LONGEST life the company discloses is 20 years and most of the base is 4 to 7 — so the terminal assumes an asset life the accounts do not support anywhere, in the direction that OVERSTATES value."
   },
   "ADNOCDIST": {
    "classes": [
@@ -147,7 +147,55 @@
    "file": "engine/adnocls_study/FS_FY2025.pdf",
    "route": "already committed as a four-field input in the study's own register",
    "read_on": "2026-09-03",
-   "against_the_terminal": "this study's terminal implies 50.0 years (1/g at g=2.0%) against a 25-year tanker life, so it UNDER-charges by 2x on the headline class \u2014 and its invested-capital base is NET BOOK ppe plus working capital plus goodwill, which is not a replacement-cost base at all, so the life is the second thing to fix there rather than the first."
+   "against_the_terminal": "this study's terminal implies 50.0 years (1/g at g=2.0%) against a 25-year tanker life, so it UNDER-charges by 2x on the headline class — and its invested-capital base is NET BOOK ppe plus working capital plus goodwill, which is not a replacement-cost base at all, so the life is the second thing to fix there rather than the first."
+  },
+  "SAVOLA": {
+   "classes": [
+    {
+     "asset_class": "Buildings",
+     "years": [
+      12.5,
+      50
+     ]
+    },
+    {
+     "asset_class": "Leasehold improvements",
+     "years": [
+      3,
+      33
+     ]
+    },
+    {
+     "asset_class": "Plant and equipment",
+     "years": [
+      3,
+      30
+     ]
+    },
+    {
+     "asset_class": "Furniture and office equipment",
+     "years": [
+      3,
+      16
+     ]
+    },
+    {
+     "asset_class": "Vehicles",
+     "years": [
+      4,
+      10
+     ]
+    }
+   ],
+   "longest_years": 50,
+   "shortest_years": 3,
+   "land_not_depreciated": true,
+   "source": "Savola Group Company, consolidated financial statements for the year ended 31 December 2024, audited, note 3(f) property, plant and equipment: 'Depreciation is charged to the profit or loss on a straight-line basis over the estimated useful lives of individual items of property, plant and equipment ... The estimated useful lives of assets for current and comparative year is as follow'. Land is not depreciated. Downloaded 04-Sep-2026 from the company's own investor-relations financial-statements page.",
+   "file": "engine/savola_study/SAVOLA_FY2024_Audited_FS.pdf",
+   "route": "Text layer via pdftotext -layout. The document carries a full text layer (369KB extracted across the statements), so no OCR was needed; the route is recorded either way because which route a figure came by is part of the record, not a detail of the day.",
+   "cross_check": "The FY2024 note states the table is 'for current and comparative year', which makes it its own one-year check. Checked further against the FY2020 ANNUAL audited statements (engine/savola_study/SAVOLA_FY2020_Annual_FS.pdf, note 3(g)): the table is IDENTICAL line for line — 12.5-50, 3-33, 3-30, 3-16, 4-10 — so these lives are stable across at least 2020 to 2024. THE FIRST CROSS-CHECK ATTEMPTED WAS THE WRONG DOCUMENT and is recorded rather than quietly replaced: the file the company labels 'q4-2023' is a CONDENSED CONSOLIDATED INTERIM statement, UNAUDITED, and carries no accounting-policies table at all. A fourth-quarter filing is not an annual one.",
+   "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE. The weighted life a terminal needs is derived at rebuild from this company's own property, plant and equipment note composition, which is a further sourcing step and is NOT done here — collapsing 3-50 to one figure here would be this desk choosing the life under cover of a citation.",
+   "vintage_note": "This study's valuation date is 31-Dec-2025 and the latest ANNUAL audited statements on the company's own financial-statements page at 04-Sep-2026 are FY2024; no FY2025 annual was listed there. The lives are unchanged 2020-2024, so the vintage gap is recorded rather than treated as material — but it is recorded."
   }
  }
 }
