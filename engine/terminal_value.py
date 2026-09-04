@@ -68,12 +68,20 @@ WHAT A TERMINAL COSTS, correctly. In a nominal steady state holding physical cap
     it is slightly OVERSTATED where assets sit fully depreciated and still in use, which
     errs toward charging more.
 
-    TWO DISCLOSED CONDITIONS BREAK IT AND BOTH ARE CHECKABLE BEFORE IT IS USED. The identity
-    holds because accumulated = age x charge, which needs the charge to be cost/life.
+    THREE DISCLOSED CONDITIONS BREAK IT AND ALL THREE ARE CHECKABLE BEFORE IT IS USED. The
+    identity holds because accumulated = age x charge, which needs the charge to be cost/life
+    AND the accumulated column to be this group's own depreciation history.
     (i) WHERE ASSETS ARE DEPRECIATED TO A RESIDUAL VALUE the charge is (cost - residual)/life,
     so the same accumulated balance buys MORE years and the ratio OVERSTATES the age.
     (ii) WHERE A USEFUL LIFE HAS BEEN REASSESSED the charge is not level across the base's
     history and the identity is broken outright rather than merely biased.
+    (iii) WHERE THE BASE WAS ASSEMBLED BY BUSINESS COMBINATION the accumulated column carries
+    an acquiree's history against a charge that only ever reflects the period since
+    acquisition, and the ratio is not a number about anything. MODON is the extreme case and
+    it is not close: AED 6,643,801 thousand of accumulated depreciation arrived through a 2024
+    business combination against that year's entire charge of 193,207 — THIRTY-FOUR TIMES IT —
+    and the two acquisitions are 97% of the closing column. The naive age reads 15.45 years;
+    net of the acquired history it is 0.46. A factor of thirty-four.
 
     FOUND ON THE THIRD NAME IT WAS TRIED ON, and the disagreement announced itself before the
     accounts did: AIRARABIA's identity-implied life came to 26.42 years against the 17.84 its
@@ -99,7 +107,11 @@ WHAT A TERMINAL COSTS, correctly. In a nominal steady state holding physical cap
     boilerplate about annual review, never in the depreciable amount; EGCH charges at RATES
     against cost, so a 3.95% rate IS cost/25.3 with nothing deducted. Both read, both clean.
 
-    SAVOLA IS WHY THE ARITHMETIC CANNOT BE THE TEST. Its cross-check passes at 0.0% — because
+    THE ARITHMETIC CATCHES TWO OF THE THREE AND IT IS WORTH KNOWING WHICH. AIRARABIA's
+    residual-plus-reassessment shows up as +48% and MODON's acquisitions as about -34%,
+    because in both the adopted life came from disclosed class rates and the implied one from
+    the identity — genuinely different routes. SAVOLA IS WHY THE ARITHMETIC CANNOT BE THE
+    TEST. Its cross-check passes at 0.0% — because
     it derived its life by the same identity — while its policy note says outright that the
     "depreciable amount represents cost of an asset ... less its residual value". The
     arithmetic would have waved it through and only the note catches it. On AIRARABIA the
