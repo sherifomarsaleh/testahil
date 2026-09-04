@@ -2047,10 +2047,45 @@
    345.4741089825755
   ],
   "pv_explicit": 2680.1085660617982,
-  "tv": 5667.027562942689,
-  "pv_tv": 3299.5704242572774,
-  "ev": 5979.678990319076,
-  "tv_share": 0.551797250253598,
+  "tv": 5941.638263145378,
+  "pv_tv": 3459.4597726872103,
+  "ev": 6139.568338749008,
+  "tv_retired": 5667.02756294269,
+  "terminal_record": {
+   "rule": "R-TERM-01",
+   "inputs": {
+    "nopat": 594.0124926843052,
+    "wacc": 0.11109384650273706,
+    "inflation": 0.02,
+    "real_growth": 0.0,
+    "dna_book": 340.0,
+    "ic_replacement": 8693.243938169058,
+    "useful_life_years": 22.035346097201767,
+    "useful_life_source": "Fertiglobe plc 2025 Annual Report, note 7 property, plant and equipment \u2014 the cost table at 31 December 2025 and the year's depreciation row; DERIVED by the identity depreciable cost / annual depreciation, the disclosed bands being 10-50, 5-30 and 3-10 years and not collapsible to one figure without choosing. No impairments were required in 2025, so the movement row is pure depreciation.",
+    "maintenance_basis": "disclosed_life",
+    "maintenance_capex": null,
+    "working_capital": 443.24393816905916,
+    "incremental_capital_per_unit_growth": 8693.243938169058,
+    "floor_exemption": "",
+    "floor_exemption_disclosure": ""
+   },
+   "fcff": 530.6340038409354,
+   "tv": 5941.638263145378,
+   "floor": 5346.943250089647,
+   "tv_vs_floor": 0.11122149333560993,
+   "nominal_growth": 0.020000000000000018,
+   "real_growth": 0.0,
+   "maintenance": 394.51361007998867,
+   "growth_capex": 0.0,
+   "wc_charge": 8.864878763381183,
+   "dna_addback": 340.0,
+   "net_capital_charge": 63.37848884336984,
+   "implied_cycle_years": 137.16395100004783,
+   "one_over_g": 49.99999999999996,
+   "payout_of_nopat": 0.8933044512970318,
+   "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
+  },
+  "tv_share": 0.5634695440807009,
   "roic_term": 0.13515129548755028,
   "rr_term": 0.14798230329832346,
   "roic_book": 0.22212352590803675,
@@ -2058,10 +2093,10 @@
   "roic_sector": 0.115,
   "ic_replacement": 8693.243938169058,
   "nopat_term": 605.8927425379914,
-  "g": 0.02,
+  "g": 0.020000000000000018,
   "wacc_exp": 0.11897018221623164,
   "wacc_term": 0.11109384650273706,
-  "tv_ebitda_implied": 5.534917383835883
+  "tv_ebitda_implied": 5.803126338434641
  },
  "dcf_B": {
   "df": [
@@ -2079,10 +2114,45 @@
    525.4589967828052
   ],
   "pv_explicit": 3341.0822655917977,
-  "tv": 9048.968881675488,
-  "pv_tv": 5268.672114327397,
-  "ev": 8609.754379919195,
-  "tv_share": 0.6119422090153569,
+  "tv": 9382.19754174831,
+  "pv_tv": 5462.691186773945,
+  "ev": 8803.773452365744,
+  "tv_retired": 9048.96888167549,
+  "terminal_record": {
+   "rule": "R-TERM-01",
+   "inputs": {
+    "nopat": 908.1130184312168,
+    "wacc": 0.11109384650273706,
+    "inflation": 0.02,
+    "real_growth": 0.0,
+    "dna_book": 340.0,
+    "ic_replacement": 8797.739876668431,
+    "useful_life_years": 22.035346097201767,
+    "useful_life_source": "Fertiglobe plc 2025 Annual Report, note 7 property, plant and equipment \u2014 the cost table at 31 December 2025 and the year's depreciation row; DERIVED by the identity depreciable cost / annual depreciation, the disclosed bands being 10-50, 5-30 and 3-10 years and not collapsible to one figure without choosing. No impairments were required in 2025, so the movement row is pure depreciation.",
+    "maintenance_basis": "disclosed_life",
+    "maintenance_capex": null,
+    "working_capital": 547.7398766684306,
+    "incremental_capital_per_unit_growth": 8797.739876668431,
+    "floor_exemption": "",
+    "floor_exemption_disclosure": ""
+   },
+   "fcff": 837.9024144376248,
+   "tv": 9382.19754174831,
+   "floor": 8174.2872987014935,
+   "tv_vs_floor": 0.1477694872846831,
+   "nominal_growth": 0.020000000000000018,
+   "real_growth": 0.0,
+   "maintenance": 399.25580646022354,
+   "growth_capex": 0.0,
+   "wc_charge": 10.954797533368613,
+   "dna_addback": 340.0,
+   "net_capital_charge": 70.21060399359214,
+   "implied_cycle_years": 125.30500204030957,
+   "one_over_g": 49.99999999999996,
+   "payout_of_nopat": 0.9226851696115069,
+   "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
+  },
+  "tv_share": 0.6204942933085148,
   "roic_term": 0.18167622224488436,
   "rr_term": 0.11008595265175468,
   "roic_book": 0.32680749502900525,
@@ -2090,88 +2160,88 @@
   "roic_sector": 0.115,
   "ic_replacement": 8797.739876668431,
   "nopat_term": 926.2752787998412,
-  "g": 0.02,
+  "g": 0.020000000000000018,
   "wacc_exp": 0.11897018221623164,
   "wacc_term": 0.11109384650273706,
-  "tv_ebitda_implied": 6.531274437527117
+  "tv_ebitda_implied": 6.771788893687127
  },
  "bridge_A": {
-  "ev": 5979.678990319076,
+  "ev": 6139.568338749008,
   "net_debt": 621.2,
-  "eq_total": 5358.478990319076,
-  "nci_earnings": 1409.279974453917,
+  "eq_total": 5518.368338749008,
+  "nci_earnings": 1451.3308730909891,
   "nci_book": 443.3,
-  "nci_used": 1409.279974453917,
+  "nci_used": 1451.3308730909891,
   "nci_basis": "earnings",
-  "eq_attr": 3949.199015865159,
-  "ps_usd": 0.47871400017760357,
-  "ps_aed": 1.7580771656522491,
-  "tv_share": 0.551797250253598
+  "eq_attr": 4067.037465658019,
+  "ps_usd": 0.4929981412017575,
+  "ps_aed": 1.8105356735634544,
+  "tv_share": 0.5634695440807009
  },
  "bridge_B": {
-  "ev": 8609.754379919195,
+  "ev": 8803.773452365744,
   "net_debt": 621.2,
-  "eq_total": 7988.5543799191955,
-  "nci_earnings": 2100.9898019187485,
+  "eq_total": 8182.573452365744,
+  "nci_earnings": 2152.016817972191,
   "nci_book": 443.3,
-  "nci_used": 2100.9898019187485,
+  "nci_used": 2152.016817972191,
   "nci_basis": "earnings",
-  "eq_attr": 5887.564578000447,
-  "ps_usd": 0.7136787938809696,
-  "ps_aed": 2.6209853705278605,
-  "tv_share": 0.6119422090153569
+  "eq_attr": 6030.556634393553,
+  "ps_usd": 0.7310120047509641,
+  "ps_aed": 2.6846415874479153,
+  "tv_share": 0.6204942933085148
  },
  "bridge_A_book": {
-  "ev": 5979.678990319076,
+  "ev": 6139.568338749008,
   "net_debt": 621.2,
-  "eq_total": 5358.478990319076,
-  "nci_earnings": 1409.279974453917,
+  "eq_total": 5518.368338749008,
+  "nci_earnings": 1451.3308730909891,
   "nci_book": 443.3,
   "nci_used": 443.3,
   "nci_basis": "book",
-  "eq_attr": 4915.178990319076,
-  "ps_usd": 0.5958081592221532,
-  "ps_aed": 2.1881054647433578,
-  "tv_share": 0.551797250253598
+  "eq_attr": 5075.068338749008,
+  "ps_usd": 0.61518962601205,
+  "ps_aed": 2.2592839015292534,
+  "tv_share": 0.5634695440807009
  },
  "bridge_B_book": {
-  "ev": 8609.754379919195,
+  "ev": 8803.773452365744,
   "net_debt": 621.2,
-  "eq_total": 7988.5543799191955,
-  "nci_earnings": 2100.9898019187485,
+  "eq_total": 8182.573452365744,
+  "nci_earnings": 2152.016817972191,
   "nci_book": 443.3,
   "nci_used": 443.3,
   "nci_basis": "book",
-  "eq_attr": 7545.254379919195,
-  "ps_usd": 0.9146206337179009,
-  "ps_aed": 3.358944277328991,
-  "tv_share": 0.6119422090153569
+  "eq_attr": 7739.273452365744,
+  "ps_usd": 0.9381392373406884,
+  "ps_aed": 3.445316349133678,
+  "tv_share": 0.6204942933085148
  },
  "bridge_A_cds": {
-  "ev": 6677.068621943756,
+  "ev": 6867.288425351166,
   "net_debt": 621.2,
-  "eq_total": 6055.868621943756,
-  "nci_earnings": 1592.6934475712078,
+  "eq_total": 6246.088425351166,
+  "nci_earnings": 1642.7212558673566,
   "nci_book": 443.3,
-  "nci_used": 1592.6934475712078,
+  "nci_used": 1642.7212558673566,
   "nci_basis": "earnings",
-  "eq_attr": 4463.175174372548,
-  "ps_usd": 0.5410171613620719,
-  "ps_aed": 1.986885525102209,
-  "tv_share": 0.5879058183568938
+  "eq_attr": 4603.367169483809,
+  "ps_usd": 0.5580109544079481,
+  "ps_aed": 2.0492952300631893,
+  "tv_share": 0.5993205819960781
  },
  "bridge_B_cds": {
-  "ev": 9705.80156230658,
+  "ev": 9936.625380031022,
   "net_debt": 621.2,
-  "eq_total": 9084.60156230658,
-  "nci_earnings": 2389.2502108866306,
+  "eq_total": 9315.425380031022,
+  "nci_earnings": 2449.9568749481587,
   "nci_book": 443.3,
-  "nci_used": 2389.2502108866306,
+  "nci_used": 2449.9568749481587,
   "nci_basis": "earnings",
-  "eq_attr": 6695.351351419949,
-  "ps_usd": 0.8115970897279806,
-  "ps_aed": 2.980590312026009,
-  "tv_share": 0.6458117760749094
+  "eq_attr": 6865.468505082863,
+  "ps_usd": 0.8322183505967395,
+  "ps_aed": 3.0563218925665256,
+  "tv_share": 0.6540394262994742
  },
  "dcf_A_cds": {
   "df": [
@@ -2189,10 +2259,45 @@
    363.24774506087465
   ],
   "pv_explicit": 2751.581129534775,
-  "tv": 6412.156287313832,
-  "pv_tv": 3925.4874924089813,
-  "ev": 6677.068621943756,
-  "tv_share": 0.5879058183568938,
+  "tv": 6722.874156304393,
+  "pv_tv": 4115.707295816391,
+  "ev": 6867.288425351166,
+  "tv_retired": 6412.156287313833,
+  "terminal_record": {
+   "rule": "R-TERM-01",
+   "inputs": {
+    "nopat": 594.0124926843052,
+    "wacc": 0.10050822778085154,
+    "inflation": 0.02,
+    "real_growth": 0.0,
+    "dna_book": 340.0,
+    "ic_replacement": 8693.243938169058,
+    "useful_life_years": 22.035346097201767,
+    "useful_life_source": "Fertiglobe plc 2025 Annual Report, note 7 property, plant and equipment \u2014 the cost table at 31 December 2025 and the year's depreciation row; DERIVED by the identity depreciable cost / annual depreciation, the disclosed bands being 10-50, 5-30 and 3-10 years and not collapsible to one figure without choosing. No impairments were required in 2025, so the movement row is pure depreciation.",
+    "maintenance_basis": "disclosed_life",
+    "maintenance_capex": null,
+    "working_capital": 443.24393816905916,
+    "incremental_capital_per_unit_growth": 8693.243938169058,
+    "floor_exemption": "",
+    "floor_exemption_disclosure": ""
+   },
+   "fcff": 530.6340038409354,
+   "tv": 6722.874156304393,
+   "floor": 5910.088216653187,
+   "tv_vs_floor": 0.13752517895773075,
+   "nominal_growth": 0.020000000000000018,
+   "real_growth": 0.0,
+   "maintenance": 394.51361007998867,
+   "growth_capex": 0.0,
+   "wc_charge": 8.864878763381183,
+   "dna_addback": 340.0,
+   "net_capital_charge": 63.37848884336984,
+   "implied_cycle_years": 137.16395100004783,
+   "one_over_g": 49.99999999999996,
+   "payout_of_nopat": 0.8933044512970318,
+   "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
+  },
+  "tv_share": 0.5993205819960781,
   "roic_term": 0.13515129548755028,
   "rr_term": 0.14798230329832346,
   "roic_book": 0.22212352590803675,
@@ -2200,10 +2305,10 @@
   "roic_sector": 0.115,
   "ic_replacement": 8693.243938169058,
   "nopat_term": 605.8927425379914,
-  "g": 0.02,
+  "g": 0.020000000000000018,
   "wacc_exp": 0.10703734220925211,
   "wacc_term": 0.10050822778085154,
-  "tv_ebitda_implied": 6.262675610509432
+  "tv_ebitda_implied": 6.566150000821249
  },
  "dcf_B_cds": {
   "df": [
@@ -2221,10 +2326,45 @@
    552.492330801352
   ],
   "pv_explicit": 3437.680617122738,
-  "tv": 10238.771924767767,
-  "pv_tv": 6268.120945183843,
-  "ev": 9705.80156230658,
-  "tv_share": 0.6458117760749094,
+  "tv": 10615.815131998894,
+  "pv_tv": 6498.944762908284,
+  "ev": 9936.625380031022,
+  "tv_retired": 10238.771924767769,
+  "terminal_record": {
+   "rule": "R-TERM-01",
+   "inputs": {
+    "nopat": 908.1130184312168,
+    "wacc": 0.10050822778085154,
+    "inflation": 0.02,
+    "real_growth": 0.0,
+    "dna_book": 340.0,
+    "ic_replacement": 8797.739876668431,
+    "useful_life_years": 22.035346097201767,
+    "useful_life_source": "Fertiglobe plc 2025 Annual Report, note 7 property, plant and equipment \u2014 the cost table at 31 December 2025 and the year's depreciation row; DERIVED by the identity depreciable cost / annual depreciation, the disclosed bands being 10-50, 5-30 and 3-10 years and not collapsible to one figure without choosing. No impairments were required in 2025, so the movement row is pure depreciation.",
+    "maintenance_basis": "disclosed_life",
+    "maintenance_capex": null,
+    "working_capital": 547.7398766684306,
+    "incremental_capital_per_unit_growth": 8797.739876668431,
+    "floor_exemption": "",
+    "floor_exemption_disclosure": ""
+   },
+   "fcff": 837.9024144376248,
+   "tv": 10615.815131998894,
+   "floor": 9035.210733307022,
+   "tv_vs_floor": 0.17493829921035475,
+   "nominal_growth": 0.020000000000000018,
+   "real_growth": 0.0,
+   "maintenance": 399.25580646022354,
+   "growth_capex": 0.0,
+   "wc_charge": 10.954797533368613,
+   "dna_addback": 340.0,
+   "net_capital_charge": 70.21060399359214,
+   "implied_cycle_years": 125.30500204030957,
+   "one_over_g": 49.99999999999996,
+   "payout_of_nopat": 0.9226851696115069,
+   "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
+  },
+  "tv_share": 0.6540394262994742,
   "roic_term": 0.18167622224488436,
   "rr_term": 0.11008595265175468,
   "roic_book": 0.32680749502900525,
@@ -2232,12 +2372,12 @@
   "roic_sector": 0.115,
   "ic_replacement": 8797.739876668431,
   "nopat_term": 926.2752787998412,
-  "g": 0.02,
+  "g": 0.020000000000000018,
   "wacc_exp": 0.10703734220925211,
   "wacc_term": 0.10050822778085154,
-  "tv_ebitda_implied": 7.390038602003028
+  "tv_ebitda_implied": 7.662177084677967
  },
- "dcf_ps_aed": 2.1895312680900547,
+ "dcf_ps_aed": 2.247588630505685,
  "wacc": {
   "ust10": 0.0469,
   "ad_cds": 0.0046,
@@ -2377,7 +2517,7 @@
  },
  "lenses": {
   "dcf": {
-   "value": 2.1895312680900547,
+   "value": 2.247588630505685,
    "weight": null,
    "note": "Five-year free cash flow to the firm with an explicit terminal block \u2014 THE PRIMARY, and two-sided"
   },
@@ -2402,12 +2542,12 @@
   "branches": [
    {
     "label": "A \u2014 normalisation to a marginal-cost anchor",
-    "value": 1.7580771656522491,
+    "value": 1.8105356735634544,
     "condition": "nitrogen prices normalise toward the marginal cost of the high-cost swing supplier, which is where they have spent most of the past decade"
    },
    {
     "label": "B \u2014 structurally tight market",
-    "value": 2.6209853705278605,
+    "value": 2.6846415874479153,
     "condition": "the tightness in the current market persists, on curtailed European capacity and the gas cost that caused it"
    }
   ],
@@ -2422,24 +2562,24 @@
    "branches": [
     {
      "label": "A \u2014 normalisation to a marginal-cost anchor",
-     "value": 1.7580771656522491,
+     "value": 1.8105356735634544,
      "condition": "nitrogen prices normalise toward the marginal cost of the high-cost swing supplier, which is where they have spent most of the past decade"
     },
     {
      "label": "B \u2014 structurally tight market",
-     "value": 2.6209853705278605,
+     "value": 2.6846415874479153,
      "condition": "the tightness in the current market persists, on curtailed European capacity and the gas cost that caused it"
     }
    ],
    "range": {
-    "low": 1.7580771656522491,
-    "high": 2.6209853705278605
+    "low": 1.8105356735634544,
+    "high": 2.6846415874479153
    },
    "range_note": "the cash-flow lens under the two framings of the nitrogen-price question, with the macro path, the cost of capital and terminal growth held still across both",
    "range_basis": {
     "driver": "the nitrogen price basis the forecast is anchored on",
-    "low": 1.7580771656522491,
-    "high": 2.6209853705278605,
+    "low": 1.8105356735634544,
+    "high": 2.6846415874479153,
     "units": "AED per share, the present-value read under each framing",
     "macro_held": true,
     "evidence": "both framings are built on the same tonnes, the same cost stack and the same discount schedule; what differs is the price anchor, and neither is a chosen percentage band around the other \u2014 A anchors on the marginal cost of swing supply and B on the currently prevailing tightness."
@@ -2476,22 +2616,22 @@
     "normalised": 0.2,
     "book": 0.15
    },
-   "blend_value": 2.1468640317294065,
+   "blend_value": 2.17298984481644,
    "why": "the weights were typed and had never cleared an out-of-sample test, and the blend also averaged the primary's own two framings \u2014 so it published a single number that disagreed with the market by roughly a fifth while neither framing behind it asserted that, one disagreeing by about a third and the other agreeing almost exactly."
   }
  },
  "span": [
-  1.7580771656522491,
-  2.6209853705278605
+  1.8105356735634544,
+  2.6846415874479153
  ],
  "spot": 2.54,
  "sens": {
   "g_grid": [
-   0.01,
-   0.015,
-   0.02,
-   0.025,
-   0.03
+   0.0,
+   0.0025,
+   0.005,
+   0.0075,
+   0.01
   ],
   "wacc_grid": [
    0.10109384650273706,
@@ -2502,39 +2642,39 @@
   ],
   "grid_wacc_g": [
    [
-    1.881294606262658,
-    1.9062311593883587,
-    1.933710874822986,
-    1.9642350734536695,
-    1.998446106906989
+    1.994253312995301,
+    1.9846316204812722,
+    1.9740779532551795,
+    1.9624952357023075,
+    1.9497724252514108
    ],
    [
-    1.7993218642785833,
-    1.8192001369982613,
-    1.8408930822839793,
-    1.864736361713828,
-    1.8911538599203277
+    1.897152412635113,
+    1.8859374176609047,
+    1.8737512675933252,
+    1.8604992534552571,
+    1.846073937548967
    ],
    [
-    1.7253108651199878,
-    1.741059992655157,
-    1.7580771656522491,
-    1.776583313744466,
-    1.796853853962693
+    1.8105356735634544,
+    1.7981974571673254,
+    1.7848812835859742,
+    1.7704974952499124,
+    1.754945129561518
    ],
    [
-    1.6581374670349274,
-    1.6704933338421735,
-    1.6837039847522677,
-    1.6979101730875794,
-    1.7132853498203309
+    1.732768442099322,
+    1.7196573649411857,
+    1.7055818603727229,
+    1.6904585097053528,
+    1.6741939881785255
    ],
    [
-    1.5968798818936512,
-    1.606431083745876,
-    1.6165228180550621,
-    1.6272394605346332,
-    1.638683911906381
+    1.6625394276391683,
+    1.6489187906633795,
+    1.6343597865134118,
+    1.6187855935562687,
+    1.6021107693261003
    ]
   ],
   "pt_grid": [
@@ -2545,11 +2685,11 @@
    0.65
   ],
   "grid_pt": [
-   2.9941838170385484,
-   2.308550929968407,
-   1.7580771656522491,
-   1.2928927616300074,
-   0.6384482712559816
+   3.0685883153022666,
+   2.373080187426109,
+   1.8105356735634544,
+   1.3298179956118734,
+   0.6343098677357158
   ],
   "px_grid": [
    -0.2,
@@ -2559,11 +2699,11 @@
    0.2
   ],
   "grid_px": [
-   1.0408939071272278,
-   1.3975346809067484,
-   1.7580771656522491,
-   2.121093306576268,
-   2.4857772982319934
+   1.0737210044176482,
+   1.4421283389905515,
+   1.8105356735634544,
+   2.178943008136358,
+   2.5473503427092616
   ],
   "beta_grid": [
    0.4654135566227273,
@@ -2573,11 +2713,11 @@
    1.3975638921849216
   ],
   "grid_beta": [
-   2.6819561177839204,
-   2.8957431949089907,
-   1.7580771656522491,
-   2.3285451585846086,
-   1.3032970419435872
+   2.7756234232573513,
+   2.9992305515647093,
+   1.8105356735634544,
+   2.406165356345159,
+   1.336849722458352
   ],
   "tax_grid": [
    0.08,
@@ -2587,11 +2727,11 @@
    0.2
   ],
   "grid_tax": [
-   1.8790041648512783,
-   1.8083849061434696,
-   1.7580771656522491,
-   1.6908816951028738,
-   1.5970735872049173
+   1.9344897926185403,
+   1.8621341524417074,
+   1.8105356735634544,
+   1.741541418813652,
+   1.645067231911208
   ]
  },
  "experts": {
@@ -2604,10 +2744,10 @@
   },
   "e2": {
    "method": "Discounted cash flow with an explicit gas pass-through",
-   "ps_aed": 1.7580771656522491,
+   "ps_aed": 1.8105356735634544,
    "passthrough": 0.48088252190243597,
-   "ev": 5979.678990319076,
-   "tv_share": 0.551797250253598
+   "ev": 6139.568338749008,
+   "tv_share": 0.5634695440807009
   },
   "e3": {
    "method": "Replacement cost of installed nitrogen capacity",
@@ -2919,7 +3059,7 @@
   "the country weights used for the equity risk premium sum to one",
   "the marginal cost of debt 5.67% sits above the Abu Dhabi sovereign 5.15%, as a same-currency corporate must",
   "the marginal cost of debt is below the historical accounting capitalisation rate, which is not used",
-  "terminal value is 55.2% of enterprise value under framing A",
+  "terminal value is 56.3% of enterprise value under framing A",
   "both framings produce a positive equity value",
   "the answer is two-sided: no single central, both branches published",
   "the envelope is the range of the two present-value reads"

@@ -21,8 +21,12 @@ Structure:
   8. LENSES      -- cash flow, book value, relative multiples, earnings power
   9. DUAL FRAME  -- the central contested judgement computed BOTH ways
 """
-import os, json, datetime
+import os, json, datetime, sys
 import numpy as np
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import terminal_value as TV       # [R-TERM-01] the ONLY sanctioned terminal builder
+import macro_path as MP           # [R-MACRO-01] the house path; no study carries its own
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, 'study_numbers.json')
@@ -551,6 +555,19 @@ NCI_SHARE = 0.263                                       # FY2025 NCI share of gr
 PAYOUT = 0.80    # FY2025: $250m dividend + $72.9m buyback on $433.9m attributable profit
 REPLACEMENT_PER_T = 1250.0   # $ per tonne of installed nitrogen capacity (greenfield)
 
+# THE COMPOSITE ASSET LIFE, DERIVED BY IDENTITY FROM THE COMPANY'S OWN NOTE 7.
+# depreciable cost / the year's depreciation = (6,197.4 - 190.4 under construction
+# - 22.2 land) / 271.6 = 22.04 years.  Labelled DERIVED, on the same footing as
+# capex derived by dPPE + D&A: an identity is not an assumption, and the label is
+# what keeps the two apart.
+LIFE_DERIVED_YEARS = 5984.8 / 271.6
+LIFE_SOURCE = ("Fertiglobe plc 2025 Annual Report, note 7 property, plant and "
+               "equipment — the cost table at 31 December 2025 and the year's "
+               "depreciation row; DERIVED by the identity depreciable cost / annual "
+               "depreciation, the disclosed bands being 10-50, 5-30 and 3-10 years "
+               "and not collapsible to one figure without choosing. No impairments "
+               "were required in 2025, so the movement row is pure depreciation.")
+
 # tax: triangulated three ways on the sheet, not asserted
 tax_agg_eff = ((V['tax_fy22'] + V['tax_fy23'] + V['tax_fy24'] + V['tax_fy25'])
                / (V['pbt_fy22'] + hist_is['FY23']['pbt'] + hist_is['FY24']['pbt']
@@ -722,7 +739,7 @@ wacc = dict(
 G_TERM = 0.020
 
 
-def run_dcf(f, wacc_exp, wacc_term, g=G_TERM):
+def run_dcf(f, wacc_exp, wacc_term, g=G_TERM, real_growth=0.0):
     df, cum = [], 1.0
     for i in range(5):
         w = wacc_exp + (wacc_term - wacc_exp) * glide[i]
@@ -743,10 +760,54 @@ def run_dcf(f, wacc_exp, wacc_term, g=G_TERM):
     roic_term = float(np.mean([roic_book, roic_replacement, roic_sector]))
     rr_term = g / roic_term
     nopat_term = f['nopat'][-1] * (1 + g)
-    tv = nopat_term * (1 - rr_term) / (wacc_term - g)
+
+    # ---- THE TERMINAL, THROUGH THE SANCTIONED MODULE  [R-TERM-01] ----------
+    # The retired construction was tv = nopat_term (1 - g/ROIC) / (W - g), which
+    # charges g x IC every year for ever and so implies a replacement cycle of 1/g
+    # — FIFTY YEARS at this study's 2% terminal. That is a fact about the dirham's
+    # peg and not about a fertiliser plant.
+    #
+    # THE LIFE IS DERIVED FROM THIS COMPANY'S OWN NOTE, NOT CHOSEN. The disclosed
+    # bands (buildings 10-50, plant and equipment 5-30, fixtures 3-10) cannot be
+    # collapsed to one figure without this desk picking a number out of them, which
+    # SIGCM clause 1 refuses. Note 7 also gives the composition at COST and the
+    # year's charge, and their ratio is an IDENTITY: depreciable cost of 5,984.8
+    # (6,197.4 total, less 190.4 under construction and 22.2 of land, neither
+    # depreciated) over a 2025 charge of 271.6 gives 22.04 years. The report states
+    # no impairments were required in 2025, so that row is pure depreciation and the
+    # identity is exact. It sits INSIDE the disclosed plant band, and plant is 94.6%
+    # of the depreciable base.
+    #
+    # NOBODY PREDICTS WHICH WAY THIS MOVES A VALUE. The census flags this terminal
+    # as charging less than the company's own book depreciation, and reading that as
+    # "therefore over-valued" was wrong — see [R-TERM-01 CLAUSE TWO CORRECTED]. The
+    # retired charge is NET on an implied base, book D&A is GROSS on the historical
+    # base, and the corrected charge is GROSS at replacement cost with book D&A
+    # added back. Here it raises the value, and that is a measurement rather than a
+    # prediction.
+    term = TV.build(TV.TerminalInputs(
+        nopat=f['nopat'][-1],
+        wacc=wacc_term,
+        inflation=MP.load('AE').terminal_inflation,   # derived, never typed
+        real_growth=real_growth,                      # STATED; zero by default
+        dna_book=f['dna'][-1],
+        ic_replacement=ic_replacement,
+        useful_life_years=LIFE_DERIVED_YEARS,
+        useful_life_source=LIFE_SOURCE,
+        maintenance_basis='disclosed_life',
+        working_capital=f['nwc'][-1],
+        # REAL GROWTH COSTS CAPITAL AND THE MODULE REFUSES IT AS A RESIDUAL. One
+        # point of real output needs a point more plant at replacement cost, which
+        # is the same statement the worked precedent makes; at the study's stated
+        # zero real growth it charges nothing and the field is inert.
+        incremental_capital_per_unit_growth=ic_replacement))
+    tv = term.tv
+    g = term.nominal_growth          # DERIVED: inflation + the stated real growth
+    tv_retired = nopat_term * (1 - rr_term) / (wacc_term - g)
     pv_tv = tv * df[-1]
     ev = pv_explicit + pv_tv
     return dict(df=df, pv=pv, pv_explicit=pv_explicit, tv=tv, pv_tv=pv_tv, ev=ev,
+                tv_retired=tv_retired, terminal_record=term.record,
                 tv_share=pv_tv / ev, roic_term=roic_term, rr_term=rr_term,
                 roic_book=roic_book, roic_replacement=roic_replacement,
                 roic_sector=roic_sector, ic_replacement=ic_replacement,
@@ -985,7 +1046,8 @@ chk(SPAN[0] < SPAN[1], "the envelope is the range of the two present-value reads
 # ---------------------------------------------------------------------------
 # 9. SENSITIVITY
 # ---------------------------------------------------------------------------
-def dcf_ps(px_u, px_n, wacc_e=None, wacc_t=None, g=G_TERM, passth=None, tax=None):
+def dcf_ps(px_u, px_n, wacc_e=None, wacc_t=None, g=G_TERM, passth=None, tax=None,
+           real_growth=0.0):
     global passthru, TAX_RATE
     _p, _t = passthru['slope'], TAX_RATE
     if passth is not None:
@@ -994,18 +1056,37 @@ def dcf_ps(px_u, px_n, wacc_e=None, wacc_t=None, g=G_TERM, passth=None, tax=None
         TAX_RATE = tax
     f = build_frame(px_u, px_n, 'sens')
     d = run_dcf(f, wacc_e if wacc_e is not None else wacc_rating,
-                wacc_t if wacc_t is not None else wacc_term_rating, g)
+                wacc_t if wacc_t is not None else wacc_term_rating, g,
+                real_growth=real_growth)
     b = bridge(d)
     passthru = dict(passthru, slope=_p)
     TAX_RATE = _t
     return b['ps_aed']
 
 
-g_grid = [0.010, 0.015, 0.020, 0.025, 0.030]
+# THE GROWTH AXIS IS REAL GROWTH, NOT NOMINAL  [R-TERM-01, R-MACRO-01]
+# This grid used to vary NOMINAL terminal growth from 1.0% to 3.0%. That axis is now
+# inert and would have been silently so: the sanctioned terminal DERIVES its nominal
+# rate as house inflation plus a STATED real growth, and a nominal assumption cannot
+# arrive at all — so every column returned the same number and the base cell stopped
+# being locatable. The figure script's own assertion caught it, which is the assertion
+# doing its job rather than an obstacle to route around.
+#
+# What the study can actually choose is the REAL rate, and zero is what it takes. The
+# axis varies that, so the grid moves something a reader could argue with — and each
+# point of real growth is CHARGED the capital it needs, which is why the axis is not
+# free money.
+# NEGATIVE REAL GROWTH IS NOT AN AXIS HERE AND THE MODULE SAID SO. Tried first at
+# -1.0% to +1.0%, the build REFUSED: shrinking in real terms releases capital, the
+# terminal then distributes more than it earns, and an implied payout above one is a
+# liquidation rather than a going concern. That refusal is recorded rather than
+# worked around — the axis runs from the stated zero upward, where the study's own
+# choice sits at the bottom rather than in the middle, and the grid says so.
+g_grid = [0.000, 0.0025, 0.005, 0.0075, 0.010]
 w_grid = [wacc_term_rating - 0.010, wacc_term_rating - 0.005, wacc_term_rating,
           wacc_term_rating + 0.005, wacc_term_rating + 0.010]
-grid_wacc_g = [[dcf_ps(PRICE_A_UREA, PRICE_A_NH3, wacc_rating, w, g) for g in g_grid]
-               for w in w_grid]
+grid_wacc_g = [[dcf_ps(PRICE_A_UREA, PRICE_A_NH3, wacc_rating, w, real_growth=rg)
+                for rg in g_grid] for w in w_grid]
 pt_grid = [0.30, 0.40, passthru['slope'], 0.55, 0.65]
 grid_pt = [dcf_ps(PRICE_A_UREA, PRICE_A_NH3, passth=p) for p in pt_grid]
 px_grid = [-0.20, -0.10, 0.0, 0.10, 0.20]

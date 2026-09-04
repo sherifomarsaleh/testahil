@@ -227,6 +227,38 @@ def read_study(d):
         rec['unreadable'] = f'numbers file will not parse: {e}'
         return rec
     flat = _flat(n)
+    # THE COMMITTED TERMINAL RECORD, WHEREVER IT SITS. A study rebuilt through the
+    # sanctioned builder commits one; it may be at the top level or inside the frame
+    # that owns the terminal, and reading only one depth is the flat-resolver
+    # assumption this file exists to avoid.
+    _found = []
+
+    def _walk(o):
+        if not isinstance(o, dict):
+            return
+        for _k, _v in o.items():
+            if _k == 'terminal_record' and isinstance(_v, dict) and _v.get('inputs'):
+                _found.append(_v)
+            else:
+                _walk(_v)
+    _walk(n)
+    # A TWO-FRAMING STUDY COMMITS ONE RECORD PER FRAMING AND THAT IS NOT AMBIGUITY.
+    # A first cut required exactly one and returned nothing on the first two-sided
+    # study it met, so that study kept reporting the metric this change exists to
+    # stop reporting. WHAT MATTERS IS WHETHER THE RECORDS AGREE ON THE FIGURE BEING
+    # READ, not how many there are: the framings differ in prices and volumes, not in
+    # how long a plant lasts. Where they disagree, that IS ambiguity and nothing is
+    # read — the census does not pick a life on a study's behalf.
+    if _found:
+        _lives = {round(float((x.get('inputs') or {}).get('useful_life_years') or 0), 6)
+                  for x in _found}
+        rec['_terminal_record'] = _found[0] if len(_lives) == 1 else None
+        if len(_lives) > 1:
+            rec['cycle_basis_note'] = ('this study commits %d terminal records and they '
+                                       'disagree on the useful life, so none is read'
+                                       % len(_found))
+    else:
+        rec['_terminal_record'] = None
 
     # THE TERMINAL VALUE FIXES THE FRAME. Everything else is sought inside it first, and
     # anything found outside it is recorded rather than silently mixed in.
@@ -413,6 +445,37 @@ def read_study(d):
             rec['implied_cycle_years'] = rec['ic'] / rec['charge']
             rec['cycle_basis_note'] = ('computed on a committed ic_* field, not on the base '
                                        'the charge uses — the study exposes no terminal ROIC')
+        # A CORRECTED TERMINAL IS NOT MEASURED BY THIS METRIC, and reporting it as
+        # though it were makes a rebuilt study look WORSE than the one it replaced.
+        # The cycle above is IC/charge, which equals 1/g exactly under the retired
+        # reinvestment identity — that is what makes it a clean DETECTOR of that
+        # construction. The corrected construction charges maintenance GROSS at
+        # replacement cost and ADDS BOOK D&A BACK, so its net charge is small by
+        # design and IC/charge comes out far LONGER than the life it actually charges
+        # maintenance over. Measured on the first name rebuilt: the census read 69.3
+        # years against a life of 22.04 committed in the study's own record.
+        #
+        # This is [R-TERM-01 CLAUSE TWO CORRECTED] one layer down — the same mistake
+        # of reading a ratio built for one construction as a fact about another. Where
+        # a study COMMITS its terminal, the committed life is what is reported and the
+        # basis says so.
+        # TWO QUANTITIES, TWO FIELDS — and a first pass put them in one, which broke
+        # the detector this whole file exists to be. Overwriting implied_cycle_years
+        # with the committed life stopped the signature test firing on a terminal put
+        # BACK onto g x IC, and the negative control caught it on the case labelled
+        # "the one that matters". THE DETECTOR MUST KEEP COMPUTING IC/charge, because
+        # that ratio equalling 1/g IS the algebra that identifies the retired identity;
+        # what the committed life changes is only what a READER should be shown.
+        _tr = (rec.get('_terminal_record') or {})
+        _life = (_tr.get('inputs') or {}).get('useful_life_years')
+        if _life:
+            rec['committed_life_years'] = float(_life)
+            rec['corrected_terminal'] = True
+            rec['cycle_basis_note'] = ('IC/charge is kept as the detector; the life '
+                                       'REPORTED is the one this study commits through '
+                                       'the sanctioned builder, because IC/charge is '
+                                       'net of a book-D&A add-back on a corrected '
+                                       'terminal and means something else there')
         rec['one_over_g'] = 1.0 / g if g > 0 else math.inf
         # the floor: zero nominal growth, maintenance at book D&A, full payout
         base = rec.get('nopat_last', N / (1.0 + g))
@@ -603,7 +666,7 @@ def report():
           f"{'TV vs floor':>13}")
     print('  ' + '-' * 71)
     for r in sorted(scored, key=lambda r: r.get('tv_vs_floor', 9e9)):
-        cyc = r.get('implied_cycle_years')
+        cyc = r.get('committed_life_years') or r.get('implied_cycle_years')
         print(f"  {r['ticker']:<12}{r['g']:>6.1%}{r['wacc_term']:>8.2%}"
               f"{r['charge_share_of_nopat']:>12.1%}"
               f"{(f'{cyc:.1f}' if cyc else '—'):>11}{r['one_over_g']:>7.1f}"
@@ -641,10 +704,26 @@ def report():
     cyc = [r for r in scored if r.get('implied_cycle_years')]
     print(f'\n  THE IMPLIED REPLACEMENT CYCLE IS 1/g, NOT AN ASSET FACT — '
           f'{len(cyc)} studies expose both:')
+    # A CORRECTED TERMINAL DOES NOT BELONG IN THIS COMPARISON. The section exists to
+    # show IC/charge landing exactly on 1/g, which is the signature of the retired
+    # identity. On a rebuilt terminal IC/charge is net of a book-D&A add-back and lands
+    # wherever it lands, so printing it beside 1/g invites the reader to compare two
+    # numbers that mean different things — and on the first rebuilt name it read 69.3
+    # against 50.0, which looks like the rebuild made matters worse and is not what
+    # happened. They are listed separately with the life they actually commit.
+    _fixed = [r for r in cyc if r.get('corrected_terminal')]
+    cyc = [r for r in cyc if not r.get('corrected_terminal')]
     for r in sorted(cyc, key=lambda r: r['implied_cycle_years']):
         d = r['implied_cycle_years'] / r['one_over_g'] - 1.0
         print(f"    {r['ticker']:<12}{r['implied_cycle_years']:>7.1f} years against 1/g of "
               f"{r['one_over_g']:>5.1f}   ({d:+.1%})")
+    if _fixed:
+        print('\n    REBUILT THROUGH THE SANCTIONED BUILDER — the life each COMMITS, and')
+        print('    IC/charge is not comparable to 1/g on these:')
+        for r in sorted(_fixed, key=lambda r: r['committed_life_years']):
+            print('      %-12s %5.1f years committed   (IC/charge reads %.1f, a net '
+                  'figure)' % (r['ticker'], r['committed_life_years'],
+                               r['implied_cycle_years']))
 
     if dark:
         print(f'\n  NOT READABLE ({len(dark)}) — tracked, because an unreadable answer is '
