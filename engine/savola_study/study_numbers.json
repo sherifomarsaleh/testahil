@@ -29,63 +29,68 @@
    "why_retired": "the reinvestment identity charges g x IC every year for ever, so the implied replacement cycle is 1/g. At the previous edition's typed 2.50% that was 40 years, and at the derived 2.71% it is 36.9 \u2014 both facts about the riyal's peg to the dollar rather than about a supermarket, a flour mill or a delivery van. Note 6's own columns say the depreciable base turns over in 18.03."
   },
   "inputs": {
-   "nopat": 1168.7524794662852,
+   "nopat": 1137.8706694961595,
    "wacc": 0.0841866710367681,
    "inflation": 0.02,
    "real_growth": 0.007,
    "nominal_growth": 0.027139999999999942,
-   "dna_book": 760.0843070804052,
+   "dna_book": 740.0006883973025,
    "useful_life_years": 18.03,
    "useful_life_source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 6, DERIVED BY IDENTITY from the note's own two columns and LABELLED as derived: gross cost of the depreciable base (buildings 2,824,359 + leasehold improvements 2,133,648 + plant and equipment 2,563,647 + furniture and office equipment 3,011,907 + vehicles 446,993 = 10,980,554, land and construction in progress excluded because neither is depreciated) divided by the year's own depreciation charge of 608,933. The policy note gives RANGES per class (buildings 5-50, leasehold improvements 3-33, plant and equipment 3-40, furniture and office equipment 1-10, vehicles 2-15) and no weighting, so a single figure cannot be read off it; the identity supplies one from figures that exist. CROSS-CHECKED against FY2024's own columns, which give 17.05 on the same identity, and the route is clean here because 2025 carries no business-combination additions to contaminate the charge. TWO CLASSES COME OUT ABOVE THEIR OWN DISCLOSED RANGE (vehicles 31.9 years against 2-15, furniture 13.9 against 1-10), which says those bases are largely written down rather than that the note is wrong, and is recorded rather than smoothed",
    "maintenance_basis": "book_dna_escalated",
    "maintenance_basis_reason": "'disclosed_life' divides REPLACEMENT-COST invested capital by the life, and this model commits no replacement-cost capital base: note 6 gives gross HISTORICAL cost across classes of very mixed vintage, and rolling it forward through five years of forecast spending would be a construction of ours rather than a figure the company discloses. Escalating the model's own book depreciation over half the derived life uses only figures that exist.",
-   "working_capital": 5841.448657476656,
+   "working_capital": 5687.100743303402,
    "working_capital_basis": "NET WORKING CAPITAL PLUS THE LEASE BOOK, named rather than buried. The explicit window charges the growth of both as cash out \u2014 DWC and DLEASE sit in the same free-cash-flow line \u2014 so a terminal charging inflation on working capital alone would hand this group a rent-free expansion of its store estate for ever.",
    "incremental_capital_per_unit_growth": 11453.014352489135
   },
   "outputs": {
-   "fcff": 823.1957439164952,
-   "tv": 14821.851319973022,
-   "floor": 13882.868452606215,
-   "maintenance": 908.6409690132392,
+   "fcff": 799.3261875205031,
+   "tv": 14392.07381129461,
+   "floor": 13516.043044381697,
+   "maintenance": 884.6320550394681,
    "growth_capex": 80.17110046742275,
-   "wc_charge": 116.82897314953313,
-   "dna_addback": 760.0843070804052,
+   "wc_charge": 113.74201486606805,
+   "dna_addback": 740.0006883973025,
    "implied_cycle_years": null,
    "below_floor": false
   },
   "record": {
    "rule": "R-TERM-01",
    "inputs": {
-    "nopat": 1168.7524794662852,
+    "nopat": 1137.8706694961595,
     "wacc": 0.0841866710367681,
     "inflation": 0.02,
     "real_growth": 0.006999999999999895,
-    "dna_book": 760.0843070804052,
+    "dna_book": 740.0006883973025,
     "ic_replacement": null,
     "useful_life_years": 18.03,
     "useful_life_source": "Audited consolidated FS FY2025, savola.com/en/investors/financial-statements (Deloitte & Touche, unmodified opinion, authorized 05-Mar-2026), note 6, DERIVED BY IDENTITY from the note's own two columns and LABELLED as derived: gross cost of the depreciable base (buildings 2,824,359 + leasehold improvements 2,133,648 + plant and equipment 2,563,647 + furniture and office equipment 3,011,907 + vehicles 446,993 = 10,980,554, land and construction in progress excluded because neither is depreciated) divided by the year's own depreciation charge of 608,933. The policy note gives RANGES per class (buildings 5-50, leasehold improvements 3-33, plant and equipment 3-40, furniture and office equipment 1-10, vehicles 2-15) and no weighting, so a single figure cannot be read off it; the identity supplies one from figures that exist. CROSS-CHECKED against FY2024's own columns, which give 17.05 on the same identity, and the route is clean here because 2025 carries no business-combination additions to contaminate the charge. TWO CLASSES COME OUT ABOVE THEIR OWN DISCLOSED RANGE (vehicles 31.9 years against 2-15, furniture 13.9 against 1-10), which says those bases are largely written down rather than that the note is wrong, and is recorded rather than smoothed",
+    "average_age_years": null,
+    "average_age_source": "",
     "maintenance_basis": "book_dna_escalated",
     "maintenance_capex": null,
-    "working_capital": 5841.448657476656,
+    "working_capital": 5687.100743303402,
     "incremental_capital_per_unit_growth": 11453.014352489135,
     "floor_exemption": "",
     "floor_exemption_disclosure": ""
    },
-   "fcff": 823.1957439164952,
-   "tv": 14821.851319973022,
-   "floor": 13882.868452606215,
-   "tv_vs_floor": 0.06763608475959693,
+   "fcff": 799.3261875205031,
+   "tv": 14392.07381129461,
+   "floor": 13516.043044381697,
+   "tv_vs_floor": 0.06481414449749456,
    "nominal_growth": 0.027139999999999942,
    "real_growth": 0.006999999999999895,
-   "maintenance": 908.6409690132392,
+   "maintenance": 884.6320550394681,
+   "maintenance_age_years": 9.015,
+   "maintenance_age_basis": "half_of_life",
+   "maintenance_escalator": 1.195447610941294,
    "growth_capex": 80.17110046742275,
-   "wc_charge": 116.82897314953313,
-   "dna_addback": 760.0843070804052,
-   "net_capital_charge": 345.55673554979,
+   "wc_charge": 113.74201486606805,
+   "dna_addback": 740.0006883973025,
+   "net_capital_charge": 338.54448197565637,
    "implied_cycle_years": null,
    "one_over_g": 36.84598378776721,
-   "payout_of_nopat": 0.7043371101915525,
+   "payout_of_nopat": 0.7024754297203554,
    "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
   },
   "derived_life": {
@@ -94,13 +99,13 @@
    "cross_check_fy2024": 17.05,
    "direct_average_age": 11.271688346665398,
    "variant_years": 22.543376693330796,
-   "variant_ps": 22.818842040039026,
+   "variant_ps": 21.81634134347257,
    "note": "the module's formula assumes an average age of half the life; the second identity \u2014 accumulated depreciation over the same charge \u2014 measures that age directly and reads higher, so the base charge is the lighter of the two readings and the variant publishes the heavier one."
   },
   "moved": {
    "tv_before": 14963.353876529938,
-   "tv_after": 14821.851319973022,
-   "pct": -0.009456606969568737
+   "tv_after": 14392.07381129461,
+   "pct": -0.038178610888257025
   }
  },
  "edition1": {
@@ -852,10 +857,10 @@
  },
  "dcf": {
   "pv_explicit": 2640.963812625897,
-  "tv": 14821.851319973022,
-  "pv_tv": 10057.409665977619,
-  "ev": 12698.373478603517,
-  "tv_share": 0.7920234574076858,
+  "tv": 14392.07381129461,
+  "pv_tv": 9765.782906493305,
+  "ev": 12406.7467191192,
+  "tv_share": 0.7871348652136112,
   "dfs": [
    0.9253728164315783,
    0.8563148493905116,
@@ -863,12 +868,12 @@
    0.7332751212866946,
    0.6785528642042757
   ],
-  "fcff_term": 823.1957439164952,
+  "fcff_term": 799.3261875205031,
   "reinvest_term": 0.26964045749793264,
   "g": 0.027139999999999942,
   "roic_term": 0.10065255137096045,
   "roic_term_variant": 0.105,
-  "ps_life_variant": 22.818842040039026,
+  "ps_life_variant": 21.81634134347257,
   "life_variant_years": 22.543376693330796,
   "asset_life_years": 18.03,
   "dna_oi_last": 740.0006883973025,
@@ -883,34 +888,34 @@
   "nci_herfy_mkt": 511.29540000000003,
   "nci_other_book": 515.421,
   "herfy_mktcap": 1002.5400000000001,
-  "eq_val": 7816.669189949061,
-  "eq_dec": 7320.421943253873,
-  "ps_dec": 24.67430428288158,
+  "eq_val": 7504.914296729178,
+  "eq_dec": 7028.795183769557,
+  "ps_dec": 23.69134353877066,
   "roll": 1.0690201878975647,
-  "ps": 24.646961359128834,
+  "ps": 23.596156479763444,
   "deroll_note": "Kinan capitalized, Herfy NCI at market and the Mehbaj consideration are anchor-dated legs held outside the Dec-2025 roll",
-  "ps_cds": 22.862466897808563,
-  "eq_cds": 7287.24180417564,
-  "ev_cds": 12208.667102981984,
-  "framingA": 24.646961359128834,
-  "framingB": 18.447524558842442,
-  "framing_gap": 6.199436800286392,
-  "bear": 8.420918519369135,
-  "bull": 32.949535509074614,
+  "ps_cds": 21.85910269010905,
+  "eq_cds": 6989.561704306933,
+  "ev_cds": 11930.79615088781,
+  "framingA": 23.596156479763444,
+  "framingB": 17.527742149762382,
+  "framing_gap": 6.068414330001062,
+  "bear": 7.697414044414612,
+  "bull": 31.727309777488774,
   "scenario_levers": {
    "bear": "Framing B density (-6% then -3% forever) + flat store opex + oil GP/t -40 + sugar GP/t -15 + half volume growth",
    "bull": "oil GP/t +25 + sugar GP/t +10 + volume growth x1.2 + Panda gross margin +40bp",
    "note": "every lever value published (critique response; the first edition described the scenarios only qualitatively)"
   },
-  "stores_runrate": 19.12211320925031,
-  "sps_open_71": 24.18151312543466,
-  "sps_open_59": 24.87757939973216
+  "stores_runrate": 18.23056657362525,
+  "sps_open_71": 23.139473203665602,
+  "sps_open_59": 23.820773183887013
  },
  "lenses": {
   "dcf": {
-   "base": 24.646961359128834,
-   "bear": 8.420918519369135,
-   "bull": 32.949535509074614
+   "base": 23.596156479763444,
+   "bear": 7.697414044414612,
+   "bull": 31.727309777488774
   },
   "relative": {
    "base": 28.220968937489257,
@@ -958,7 +963,7 @@
   "normalized": 0.15,
   "book": 0.15
  },
- "central": 27.115308247406496,
+ "central": 26.64244605169207,
  "panel_centre": 26.445454615608114,
  "experts": {
   "e1": {
@@ -1056,53 +1061,53 @@
   ],
   "grid": [
    [
-    31.00501074795766,
-    32.69578958564818,
-    34.717780654774586,
-    37.18914273816153,
-    40.29182376865352
+    30.316577379369374,
+    31.7163092725914,
+    33.38299584873408,
+    35.41187223926126,
+    37.9495871730258
    ],
    [
-    26.558583763759685,
-    27.77362240825633,
-    29.197234424004698,
-    30.895919746065527,
-    32.96780979585585
+    25.94020240374591,
+    26.900568584637384,
+    28.01846231042661,
+    29.344108456144824,
+    30.951621956984322
    ],
    [
-    22.78031358805377,
-    23.64862124332247,
-    24.646961359128834,
-    25.81280966387594,
-    27.199573184644496
+    22.221164999174025,
+    22.864320879401994,
+    23.596156479763444,
+    24.44222955016812,
+    25.43896268998162
    ],
    [
-    19.530965625838093,
-    20.142349170299017,
-    20.832343612844298,
-    21.621619107399212,
-    22.538788738153166
+    19.02249414644142,
+    19.433098513332826,
+    19.888261073154275,
+    20.39969807300299,
+    20.98362796803861
    ],
    [
-    16.707451984907543,
-    17.12590555776576,
-    17.588750964557544,
-    18.106720086588798,
-    18.6943072968628
+    16.242777568760857,
+    16.48086774908405,
+    16.734917139184876,
+    17.00878393391331,
+    17.307678973166286
    ]
   ],
   "beta_grid": {
-   "0.73": 36.329924096572434,
-   "0.9": 30.129054077367428,
-   "1.0": 27.05069765935827,
-   "1.087": 24.646961359128834,
-   "1.2": 21.84589621396383,
-   "1.44": 16.85278527665721
+   "0.73": 34.96485674624154,
+   "0.9": 28.931491292530957,
+   "1.0": 25.935719912478877,
+   "1.087": 23.596156479763444,
+   "1.2": 20.869474141112192,
+   "1.44": 16.007681931129582
   },
   "rf_alts": {
-   "5.02%": 27.466468122863386,
-   "5.52% (base)": 24.646961359128834,
-   "6.02%": 22.12278001195606
+   "5.02%": 26.340361410981625,
+   "5.52% (base)": 23.596156479763444,
+   "6.02%": 21.13902596103296
   }
  },
  "peers": {
