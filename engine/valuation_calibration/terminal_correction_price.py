@@ -199,6 +199,44 @@ _WC_RATIO = re.compile(r'\b(?:dso|dio|dpo|ccc|_pct|pct_)\b', re.I)
 _IC = re.compile(r'(?:^|\.)(?:ic_replacement|invested_capital_replacement|'
                  r'replacement_cost_(?:ic|capital))(?:\[|$|\.)', re.I)
 
+# THE ASSEMBLED BASE IS NOT THE ONLY THING WORTH KNOWING ABOUT, and reporting only
+# whether it exists made this file assert an absence it had not searched for. Every
+# corrected study built its base the same way — a capacity times a PER-UNIT replacement
+# price the sweep had already sourced (the two cement studies at USD 130 a tonne of
+# capacity, the nitrogen one at USD 1,250) — so a study with no assembled base may still
+# hold the price it would be built from, which is a different and far more useful
+# statement than MISSING.
+#
+# IT WAS MEASURED THE HARD WAY FIRST. On one name this desk read four years of filings
+# and an impairment note, concluded the price input did not exist, wrote that into two
+# records, and was wrong: two transacted vessel prices were sitting in that study's own
+# four-field register the whole time. The search that would have found them was the
+# cheaper one, which is [R-IND-01]'s lesson exactly. So it is mechanised here rather
+# than left to whoever remembers to run it.
+#
+# The ingredient is REPORTED AND NEVER ASSEMBLED: a price per unit needs the capacity it
+# multiplies, and which capacity is the study's judgement — the same boundary the
+# working-capital candidates below already respect.
+# THE FIRST DRAFT OF THIS PAIR WAS THREE-QUARTERS FALSE and it is RE-POINTED rather
+# than widened or tolerated. It matched a SUPERSEDED terminal share whose source mentions
+# a replacement, and two capex forecasts whose source mentions a newbuild programme —
+# none of them an observed price, and a report crying wolf three times in four is one
+# nobody reads. The two exclusions are stated and neither is tuned to a value: a
+# HOUSE-ring figure is this desk's own construction rather than an observation, and a
+# source declaring itself a study forecast driver is the study's own assumption, which is
+# precisely what a replacement-cost base exists to avoid resting on.
+_ICP_KEY = re.compile(r'repl|newbuild|reinstat|greenfield', re.I)
+_ICP_SRC = re.compile(r'replacement cost|newbuild|new-build|cost to build|greenfield|'
+                      r'reinstatement', re.I)
+_ICP_NOT = re.compile(r'study forecast driver|superseded', re.I)
+# WHAT THIS DELIBERATELY DOES NOT CLAIM: completeness. It reports what it FINDS and never
+# that nothing else exists — on the one name whose register was read by hand it names the
+# eleven-vessel acquisition and not the vessel SOLD in January at a stated price against
+# its stated carrying value, which is the more informative datum of the two and is
+# described in words no replacement-cost pattern would carry. Adding those words after
+# reading that one register is tuning against the name in front of me, which this file
+# already refuses to do for working capital. The count is a floor, and the report says so.
+
 
 def _flatten(o, p='', out=None):
     if out is None:
@@ -212,6 +250,33 @@ def _flatten(o, p='', out=None):
     elif isinstance(o, (int, float)) and not isinstance(o, bool):
         out[p] = o
     return out
+
+
+def _replacement_price_candidates(ticker):
+    """Per-unit replacement prices a study's OWN four-field register carries.
+
+    Searched by KEY and by SOURCE TEXT, because a study naming the input after the
+    quantity and one naming it after the asset register the same thing, and the source
+    field is where the words actually live. Reported, never assembled.
+    """
+    f = os.path.join(REPO, 'engine', '%s_study' % ticker.lower(), 'study_numbers.json')
+    if not os.path.exists(f):
+        return []
+    try:
+        I = (json.load(open(f, encoding='utf-8')) or {}).get('inputs') or {}
+    except Exception:                                                # noqa: BLE001
+        return []
+    hits = []
+    for k, v in sorted(I.items()):
+        if not isinstance(v, dict) or not isinstance(v.get('value'), (int, float)):
+            continue
+        src = str(v.get('source') or '')
+        ring = str(v.get('ring') or v.get('layer') or '')
+        if ring.strip().lower() == 'house' or _ICP_NOT.search(src) or _ICP_NOT.search(k):
+            continue
+        if _ICP_KEY.search(k) or _ICP_SRC.search(src):
+            hits.append('%s = %s' % (k, v['value']))
+    return hits
 
 
 def _needs(ticker):
@@ -252,6 +317,17 @@ def _needs(ticker):
                      % (len(hits), hits[0],
                         '' if len(hits) == 1
                         else " — WHICH ONE IS THE STUDY'S TO DECLARE"))
+
+    if out.get('ic_replacement', ('', ''))[0] == 'MISSING':
+        ing = _replacement_price_candidates(ticker)
+        if ing:
+            out['ic_replacement'] = (
+                'MISSING',
+                'no assembled base, but AT LEAST %d replacement price(s) are already '
+                'registered '
+                "(e.g. %s) — the ingredient every corrected study built its base from; "
+                "which capacity it multiplies is the STUDY'S to declare, and the count "
+                'is a FLOOR because the search reads wording' % (len(ing), ing[0]))
 
     lo, hi, src = TC.disclosed_life(ticker)
     if lo is None:
