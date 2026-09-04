@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**211 lessons**, of which 182 bind on every study, 22 on a class of company, and 7 on a single name.
+**212 lessons**, of which 183 bind on every study, 22 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 136 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 137 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1898,6 +1898,16 @@ Every gate here asks whether an input has its four fields. None can ask whether 
 > **What it cost, or how we know.** A new source constant naming note 15 of the annual report was assigned to the name FS25, which sixty lines earlier already held the FY2025 financial statements. Twelve inputs registered after that line — three debt tranches, three facility spreads, the rejected capitalisation rate and five non-current-asset geography figures — were re-sourced to a note that carries none of them. No value moved. The four-field assertion passed on all 208 inputs, the recalculation reconciled 1,084 of 1,084 formula cells, every document gate was green, and the bibliography printed the wrong document beside each of the twelve. It shipped in two pushed commits and was found only because the next piece of work happened to read those same inputs and recognised a source that could not be right.
 
 > **What would overturn it.** A check that holds each input's source against where the figure actually came from — or, short of that, the mechanical half: refusing a source constant that is rebound after any input has been registered against it, which would have caught this one.
+
+### L-291 · A TYPED BLEND ACROSS METHODS DOES NOT BIAS AN ANSWER, IT MASKS ONE — and it masks in whichever direction happens to be convenient, which is why a house running them reads as inconsistent rather than as wrong in a fixed direction.
+
+A blend looks like caution and behaves like camouflage. Where the primary lens disagrees violently with the market, the weaker lenses pull the published number back toward it and the disagreement never surfaces; where the primary AGREES, the weaker lenses push it away and manufacture one. Either way a reader is shown a number no lens asserts, and the SIZE of the real disagreement — the thing a gap gate exists to measure — is the first casualty.
+
+**Applies to:** every study  ·  *Learned from:* found while building, DU, found while reading the gap list, 04-Sep-2026
+
+> **What it cost, or how we know.** One study's four lenses span a factor of 2.1: the declared PRIMARY cash-flow lens reads 18.89 against a market price of 11.36, +66.3%, while the relative and normalised lenses read 8.86 and 8.87, about -22%, and book reads 14.12. The published central is a typed 45/25/20/10 blend of them at 13.90, +22.4%. THE GAP GATE THEREFORE SEES +22% WHERE THE STUDY'S OWN PRIMARY LENS SAYS +66%, and the publication block, one-sided below the price, sees nothing at all. The direction is the OPPOSITE of the case that retired the blend, where a blend landed 28% below a market the cash-flow lens agreed with to within 2.2% — same mechanism, opposite direction, which is the point. It also fits the pooled valuation calibration's own diagnosis: a mean a tenth below the price with a median sitting on it is what masking produces, not what a bias produces.
+
+> **What would overturn it.** A blend whose weights have cleared an out-of-sample test, or evidence that the spread between lenses on a name is small enough that the choice cannot move the published gap by more than the gate's own tolerance.
 
 
 ---

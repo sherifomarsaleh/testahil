@@ -4131,6 +4131,33 @@ LESSONS = [
       "that is rebound after any input has been registered against it, which would "
       "have caught this one."),
 
+    L("L-291", "ALL", None,
+      "A TYPED BLEND ACROSS METHODS DOES NOT BIAS AN ANSWER, IT MASKS ONE — and it masks "
+      "in whichever direction happens to be convenient, which is why a house running them "
+      "reads as inconsistent rather than as wrong in a fixed direction.",
+      "A blend looks like caution and behaves like camouflage. Where the primary lens "
+      "disagrees violently with the market, the weaker lenses pull the published number "
+      "back toward it and the disagreement never surfaces; where the primary AGREES, the "
+      "weaker lenses push it away and manufacture one. Either way a reader is shown a "
+      "number no lens asserts, and the SIZE of the real disagreement — the thing a gap "
+      "gate exists to measure — is the first casualty.",
+      "DU, found while reading the gap list, 04-Sep-2026",
+      "build",
+      "One study's four lenses span a factor of 2.1: the declared PRIMARY cash-flow lens "
+      "reads 18.89 against a market price of 11.36, +66.3%, while the relative and "
+      "normalised lenses read 8.86 and 8.87, about -22%, and book reads 14.12. The "
+      "published central is a typed 45/25/20/10 blend of them at 13.90, +22.4%. THE GAP "
+      "GATE THEREFORE SEES +22% WHERE THE STUDY'S OWN PRIMARY LENS SAYS +66%, and the "
+      "publication block, one-sided below the price, sees nothing at all. The direction is "
+      "the OPPOSITE of the case that retired the blend, where a blend landed 28% below a "
+      "market the cash-flow lens agreed with to within 2.2% — same mechanism, opposite "
+      "direction, which is the point. It also fits the pooled valuation calibration's own "
+      "diagnosis: a mean a tenth below the price with a median sitting on it is what "
+      "masking produces, not what a bias produces.",
+      "A blend whose weights have cleared an out-of-sample test, or evidence that the "
+      "spread between lenses on a name is small enough that the choice cannot move the "
+      "published gap by more than the gate's own tolerance."),
+
 ]
 
 
