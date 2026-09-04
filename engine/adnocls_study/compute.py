@@ -1520,12 +1520,26 @@ def dcf(path, hybrid_as_debt=False, wacc_ov=None, g_ov=None, term_wacc_ov=None):
     # choice — and at any point inside that bound the refusal reverses.
     #
     # WHAT IS STILL MISSING IS NOT THE SPLIT, IT IS THE STEP TO CURRENT COST, which this
-    # rule requires and which a ship market can actually supply: broker-quoted secondhand
-    # and newbuild prices are an OBSERVED price for a vessel in a way they are not for a
-    # kiln. Until that is held, a charge built here would rest on replacement cost
-    # equalling historical cost, which for a fleet of this age is an assumption rather
-    # than a reading. Stop and inform, per SIGCM clause 8 — on the missing input NAMED,
-    # which is not the one this note named yesterday.
+    # rule requires and which a ship market can actually supply: a vessel price is an
+    # OBSERVED price in a way a kiln's is not.
+    #
+    # AND THIS STUDY ALREADY HOLDS TWO OF THEM, which the first version of this note said
+    # it did not. That claim was written after reading four years of filings and the
+    # impairment note and WITHOUT READING THIS STUDY'S OWN INPUT REGISTER, where a
+    # 2017-built very large crude carrier SOLD in January 2026 for USD 111.0mn against a
+    # carrying value of USD 83.0mn sits beside ELEVEN VESSELS ACQUIRED for about USD
+    # 1.3bn announced 7 August 2026. Both are transacted prices rather than quotes. That
+    # is [R-IND-01]'s own lesson landing on the desk about to escalate: the ladder says
+    # open the artefact, and the register is an artefact that search skipped.
+    #
+    # THE GAP IS THEREFORE ONE RESEARCH STEP RATHER THAN AN ABSENT MARKET. The fleet is
+    # held by class (HS 2, MR 16, LR1 9, LR2 17, VLCC 8), so a capacity-times-price base
+    # is constructible in the same shape the corrected cement and nitrogen studies use.
+    # What is not held is a per-class replacement price for the classes other than the
+    # very large crude carrier: the sale is a nine-year-old ship's SECONDHAND value and
+    # the acquisition is a blend across two classes with two newbuildings inside it, so
+    # neither is a newbuild price per class and neither may be spread across the fleet.
+    # Stop and inform, per SIGCM clause 8, on that gap and not a wider one.
     pv_tv = tv * df[4]
     ev_ops = pv_expl + pv_tv
     ev = ev_ops + JV_BV
