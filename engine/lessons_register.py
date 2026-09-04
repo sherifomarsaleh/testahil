@@ -4078,6 +4078,29 @@ LESSONS = [
       "A contested judgement whose framings differ by little enough that the midpoint "
       "is inside both readings, where averaging costs a reader nothing."),
 
+    L("L-289", "ALL", None,
+      "A RATIO BETWEEN TWO QUANTITIES DEFINED DIFFERENTLY IS NOT EVIDENCE ABOUT "
+      "EITHER. A cheap proxy is a hypothesis until the real calculation has been run "
+      "on one case.",
+      "When the real calculation is expensive, a ratio that sorts the book looks "
+      "irresistible: it computes on everything, it ranks, it separates names into "
+      "groups, and it feels like a measurement. What it cannot tell you is whether "
+      "its numerator and denominator are the same KIND of quantity — and if they are "
+      "not, it will rank confidently and point the wrong way.",
+      "The terminal census's under-charging column, corrected 04-Sep-2026",
+      "build",
+      "A column comparing each terminal's capital charge with its own book "
+      "depreciation was read as showing which terminals under-charge and are "
+      "therefore over-valued, and that reading went into a standing rule the same "
+      "morning. The first name actually rebuilt read 0.26x on that column and its "
+      "corrected terminal came out about 5% HIGHER. The retired charge is a NET "
+      "growth charge on an implied capital base with maintenance assumed equal to "
+      "depreciation and cancelled out; book depreciation is a GROSS charge on the "
+      "historical base; and the corrected construction charges maintenance gross and "
+      "adds book depreciation back. Three different definitions, one ratio.",
+      "A proxy whose numerator and denominator are shown to be the same kind of "
+      "quantity, where the ranking and the real calculation agree on a sample."),
+
 ]
 
 

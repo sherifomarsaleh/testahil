@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**209 lessons**, of which 180 bind on every study, 22 on a class of company, and 7 on a single name.
+**210 lessons**, of which 181 bind on every study, 22 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 134 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 135 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1878,6 +1878,16 @@ When a study cannot settle a question, taking the middle looks like modesty. It 
 > **What it cost, or how we know.** One study's cash-flow lens is the straight mean of two framings of its central contested judgement about its market. Against the latest known price the first framing sits 34.2% below and the second 1.8% below — one says the market is badly wrong and the other that it is right. Their mean sits 19.6% below, which is a disagreement with the market that NEITHER framing asserts, and it is the number the study publishes. Under the two-sided rule a study is held only if every branch breaches the limit, so the averaging also changes the study's own publication status.
 
 > **What would overturn it.** A contested judgement whose framings differ by little enough that the midpoint is inside both readings, where averaging costs a reader nothing.
+
+### L-289 · A RATIO BETWEEN TWO QUANTITIES DEFINED DIFFERENTLY IS NOT EVIDENCE ABOUT EITHER. A cheap proxy is a hypothesis until the real calculation has been run on one case.
+
+When the real calculation is expensive, a ratio that sorts the book looks irresistible: it computes on everything, it ranks, it separates names into groups, and it feels like a measurement. What it cannot tell you is whether its numerator and denominator are the same KIND of quantity — and if they are not, it will rank confidently and point the wrong way.
+
+**Applies to:** every study  ·  *Learned from:* found while building, The terminal census's under-charging column, corrected 04-Sep-2026
+
+> **What it cost, or how we know.** A column comparing each terminal's capital charge with its own book depreciation was read as showing which terminals under-charge and are therefore over-valued, and that reading went into a standing rule the same morning. The first name actually rebuilt read 0.26x on that column and its corrected terminal came out about 5% HIGHER. The retired charge is a NET growth charge on an implied capital base with maintenance assumed equal to depreciation and cancelled out; book depreciation is a GROSS charge on the historical base; and the corrected construction charges maintenance gross and adds book depreciation back. Three different definitions, one ratio.
+
+> **What would overturn it.** A proxy whose numerator and denominator are shown to be the same kind of quantity, where the ranking and the real calculation agree on a sample.
 
 
 ---

@@ -557,13 +557,28 @@ def implied_lives():
     print('    terminal inflation and 66.7 at 1.5%, so the same plant is charged four and')
     print('    a half times as hard for being in Egypt rather than the Emirates.')
     print()
-    print('    THE ONE INFERENCE THAT NEEDS NO SOURCED LIFE, AND IT ONLY RUNS ONE WAY: a')
-    print('    terminal charging LESS than its own book depreciation cannot be maintaining')
-    print('    the asset base, because book depreciation is struck on HISTORICAL cost and')
-    print('    replacing the asset costs more than that. It says nothing about a terminal')
-    print('    charging more — that one needs the disclosed life. On this book %d of %d'
+    print('    THIS RATIO IS A FLAG, NOT AN INFERENCE, AND THAT IS A CORRECTION [04-Sep].')
+    print('    It read: a terminal charging LESS than its own book depreciation cannot be')
+    print('    maintaining the asset base, since book depreciation sits on HISTORICAL cost')
+    print('    and replacement costs more — so those terminals are over-valued. THE FIRST')
+    print('    NAME ACTUALLY REBUILT DISPROVED IT: the correction RAISED that value by about')
+    print('    5%, on a name reading 0.26x here.')
+    print()
+    print('    THE TWO FIGURES ARE NOT LIKE FOR LIKE. The retired charge is g x IC — a NET')
+    print('    growth charge on an IMPLIED capital base (nopat_term / a blended terminal')
+    print('    ROIC), with maintenance assumed equal to depreciation and cancelled out of')
+    print('    the arithmetic entirely. Book D&A is a GROSS charge on the historical base.')
+    print('    The corrected construction charges maintenance GROSS at replacement cost and')
+    print('    ADDS BOOK D&A BACK, so what decides the sign is the wedge between those two')
+    print('    minus the retired growth charge — and on the worked case replacement cost ran')
+    print('    only 16% above book depreciation while the implied base was HALF the')
+    print('    replacement base. Both differences push the same way and neither is visible')
+    print('    in this column.')
+    print()
+    print('    SO THE SIGN IS MEASURED PER NAME, NEVER READ OFF THIS RATIO. What the ratio')
+    print('    does is flag a terminal whose charge is worth rebuilding. On this book %d of %d'
           % (len(under), len([r for r in rows if r.get('dna_last')])))
-    print('    terminals charge less than their own book depreciation: %s.'
+    print('    charge less than their own book depreciation: %s.'
           % ', '.join(under))
     return rows
 

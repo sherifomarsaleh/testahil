@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-04h — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-04i — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -3424,3 +3424,49 @@ systematic loosening, and the house cannot tell its own correction from its own 
 which is exactly what [R-VCAL-01]'s promotion guard exists to stop, and why that guard is
 symmetric. **Where a correction has only ever been applied in one market, the first question
 is what it does in another.**
+
+
+### [R-TERM-01 CLAUSE TWO CORRECTED] The under-charging ratio is a flag, not an inference
+
+*Corrected 04-Sep-2026, on the first name actually rebuilt.*
+
+The clause adopted this morning said that a terminal charging **less** than its own book
+depreciation cannot be maintaining the asset base — book depreciation sits on historical
+cost and replacement costs more — and therefore that those terminals are **over-valued**,
+so correcting them moves the value **down**.
+
+**The direction-reversal half stands and is arithmetic.** `1/g` is a fact about a currency,
+so a pegged 2% terminal implies fifty years against whatever life the accounts actually run;
+on the worked name that life *derives* to 22.04 years from its own property, plant and
+equipment note.
+
+**The over-valuation half does not follow, and the first rebuild disproved it.** On a name
+reading 0.26x, the sanctioned terminal came out roughly **5% higher**, not lower.
+
+### Why — the two figures are not like for like
+
+| | what it is |
+|---|---|
+| the retired charge | `g × IC` — a **net** growth charge on an **implied** capital base (terminal NOPAT ÷ a blended terminal return), with maintenance *assumed equal to depreciation* and cancelled out of the arithmetic entirely |
+| book D&A | a **gross** charge on the **historical** base |
+| the corrected charge | maintenance **gross at replacement cost**, with book D&A **added back** |
+
+So the sign is decided by the wedge between replacement maintenance and book depreciation,
+**minus** the retired growth charge. On the worked case replacement cost ran only 16% above
+book depreciation, while the implied base was **half** the replacement base. Both differences
+push the same way, and neither is visible in that column.
+
+**The sign is measured per name and never read off the ratio.** What the ratio does is flag a
+terminal whose charge is worth rebuilding — a smaller claim, and a true one.
+
+**What this does not weaken:** the terminal must still be built on a disclosed life through
+the sanctioned module, the `1/g` identity is still not a fact about any asset, and the reason
+for rebuilding is unchanged. What changes is that nobody may predict which way a rebuild
+moves a value before running it.
+
+> **The general lesson, which is not about terminals: a ratio between two quantities defined
+> differently is not evidence about either.** It computes, it sorts the book, it looks like a
+> measurement — and the first time somebody does the arithmetic it was standing in for, it
+> points the other way. **Where a cheap proxy is adopted because the real calculation is
+> expensive, the proxy is a hypothesis until the real calculation has been run on at least one
+> case.**
