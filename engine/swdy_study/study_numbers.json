@@ -558,6 +558,166 @@
    "date": "2026-05-13",
    "ring": "Company"
   },
+  "h1_26_rev": {
+   "value": 163315.717414,
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, condensed interim consolidated statement of profit or loss, six months to 30-Jun-2026 (H1-2025 comparative 123,800.551073, +31.9%)",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
+  "h1_26_gp": {
+   "value": 26333.30008,
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, gross profit on the face (H1-2025 20,245.400138)",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
+  "h1_26_op": {
+   "value": 16421.199737,
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, operating profit on the face (H1-2025 12,605.157783)",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
+  "h1_26_netfin": {
+   "value": -2141.522815,
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, net finance costs: finance income 1,579.219385 less finance costs 3,720.742200",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
+  "h1_26_assoc": {
+   "value": 572.617216,
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, group share of profit of equity-accounted investees net of tax. A further 542.976117 of gains on sale and revaluation of investments in equity-accounted investees is disclosed SEPARATELY (note 20-3) and is treated as a one-off, not as recurring associate income",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
+  "h1_26_assoc_oneoff": {
+   "value": 542.976117,
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 20-3: gains on sale and revaluation of investments in equity-accounted investees. Disclosed on its own line with no comparative, i.e. nothing in H1-2025 \u2014 a one-off",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
+  "h1_26_tax": {
+   "value": -4748.555104,
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, income tax expense. Effective rate 30.85% on pre-tax profit of 15,395.270255, against 19.39% in H1-2025 and the 24.5% the forecast carries \u2014 a material step this re-issue must price rather than average away",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
+  "h1_26_npa": {
+   "value": 9921.669274,
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, profit attributable to owners of the parent company (H1-2025 8,694.611825, +14.1%)",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
+  "h1_26_nci": {
+   "value": 725.045877,
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, profit attributable to non-controlling interests \u2014 6.81% of the period's total profit after tax of 10,646.715151",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
+  "h1_26_eps": {
+   "value": 4.03,
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 38: basic and diluted earnings per share (H1-2025 3.55)",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
+  "emp_share_fy24": {
+   "value": 2025.840035,
+   "source": "Audited FY2025 consolidated financial statements, note 39 (FY2024 comparative): employees' share in profit (estimated), deducted from profit attributable to owners to reach profit attributable to ordinary shareholders \u2014 11.60% of the 17,461.358714 attributable",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "emp_share_fy25": {
+   "value": 2073.104844,
+   "source": "Audited FY2025 consolidated financial statements, note 39: employees' share in profit (estimated) \u2014 11.96% of the 17,330.244990 attributable to owners. The reported EPS of 7.13 is struck on the 15,257.140146 that remains, over a weighted-average 2,139,355,716 shares (issued 2,140,777,876 less 1,422,160 ESOP shares issued not granted)",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "emp_share_h1_26": {
+   "value": 1291.202008,
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 38: employees' share in profit (expected) \u2014 13.01% of the 9,921.669274 attributable to owners (H1-2025 1,104.834367 on 8,694.611825, 12.71%)",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
+  "eps_fy25": {
+   "value": 7.13,
+   "source": "Audited FY2025 consolidated financial statements, note 39: basic and diluted earnings per share. REGISTERED SO THAT IT CAN BE RECONCILED \u2014 17,330.244990 attributable over 2,140.777876 shares gives 8.095, and the difference from 7.13 is the employees' share above plus the ESOP adjustment to the weighted-average count. Neither figure was wrong in the first edition; nothing compared them",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "seg_rev_h1_26": {
+   "value": {
+    "cables": 96495.17288900001,
+    "construct": 43831.266786,
+    "elecprod": 22989.277738999997
+   },
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 16: revenue without inter-segment sales, aggregating the inside-Egypt and outside-Egypt columns for each segment. Sums EXACTLY to the consolidated 163,315.717414",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
+  "seg_profit_h1_26": {
+   "value": {
+    "cables": 12051.328923000001,
+    "construct": 5081.539172999999,
+    "elecprod": 5725.854708999999
+   },
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 16: SEGMENT PROFIT (gross profit less selling and distribution expenses), aggregating both geography columns per segment",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
+  "seg_unalloc_h1_26": {
+   "value": -121.81615400000001,
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 16: the unallocated segment-profit columns",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
+  "seg_rev_h1_25": {
+   "value": {
+    "cables": 73903.974877,
+    "construct": 34392.79787,
+    "elecprod": 15503.778326
+   },
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 16 H1-2025 comparative. Sums EXACTLY to 123,800.551073",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
+  "seg_profit_h1_25": {
+   "value": {
+    "cables": 10749.242828,
+    "construct": 3115.513212,
+    "elecprod": 3636.809874
+   },
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 16 H1-2025 comparative, segment profit \u2014 THE HALF THIS STUDY MUST COMPARE AGAINST, because FY2025's group margin of 12.18% sits well below H1-2025's 14.06%: this company's halves are not alike and a half-against-full-year comparison is a basis error",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
+  "h1_26_debt": {
+   "value": 84005.212499,
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, condensed interim statement of financial position, note 31: loans and borrowings, non-current 8,072.452169 plus current 75,932.760330",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
+  "h1_26_cash": {
+   "value": 55376.242512,
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 28 cash and cash equivalents 52,775.664158 plus note 27 investments in debt securities at amortised cost 2,600.578354",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
+  "h1_26_investees": {
+   "value": 7119.632125,
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 20: equity-accounted investees at carrying value (31-Dec-2025: 6,757.650507)",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
+  "h1_26_eq_parent": {
+   "value": 70347.328547,
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, equity attributable to owners of the parent company (31-Dec-2025: 66,870.866550)",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
+  "h1_26_nci_eq": {
+   "value": 5677.269855,
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, non-controlling interests \u2014 7.47% of total equity of 76,024.598402, against the 9.7% value share this study's bridge deducts and 6.81% of the half's profit. The study's figure is conservative on all three readings",
+   "date": "2026-08-11",
+   "ring": "Company"
+  },
   "seg_rev_hist": {
    "value": {
     "FY23": {
@@ -706,15 +866,15 @@
   },
   "cables_margin": {
    "value": [
-    0.14,
-    0.145,
-    0.15,
-    0.153,
-    0.155
+    0.114341,
+    0.114341,
+    0.114341,
+    0.114341,
+    0.114341
    ],
-   "source": "Cables segment profit margin (on the Note 5-3 external-revenue base). History: 19.5% (FY2023), 18.1% (FY2024), 13.5% (FY2025) \u2014 the FY2025 collapse is the single largest driver of the group's margin story. The forecast recovers only part of it and never approaches the FY2023-24 levels, which carried devaluation gains on cheaply bought copper inventory",
-   "date": "2026-08-05",
-   "ring": "House"
+   "source": "Cables segment profit margin (Note 5-3 external-revenue base), RE-ANCHORED and held flat. FY2025 13.49% plus the measured like-for-like half change of -2.06pp (H1-2025 14.54% -> H1-2026 12.49%, note 16 of the reviewed interim statements). THE MEASURED DIRECTION IS DOWN, against the first edition's assumed recovery to 14.0-15.5%: cables revenue is copper-linked, so a rising copper price inflates the revenue base faster than the spread, and the FY2023-24 levels carried devaluation gains on cheaply bought inventory that will not repeat. No further decline is projected either \u2014 one measured half is a direction, not a trend",
+   "date": "2026-08-11",
+   "ring": "Company/House"
   },
   "construct_growth": {
    "value": [
@@ -730,15 +890,15 @@
   },
   "construct_margin": {
    "value": [
-    0.068,
-    0.072,
-    0.076,
-    0.079,
-    0.082
+    0.089871,
+    0.089871,
+    0.089871,
+    0.089871,
+    0.089871
    ],
-   "source": "Constructions segment profit margin (on the Note 5-3 external-revenue base). History: 11.6% (FY2023), 11.4% (FY2024), 6.5% (FY2025) \u2014 the sharpest compression of the three segments. Partial, not full, recovery is assumed",
-   "date": "2026-08-05",
-   "ring": "House"
+   "source": "Constructions and infrastructure segment profit margin, RE-ANCHORED and held flat. FY2025 6.45% plus the measured like-for-like half change of +2.53pp (H1-2025 9.06% -> H1-2026 11.59%). THE MEASURED DIRECTION IS UP and sharply, against the first edition's cautious 6.8% opening \u2014 the improvement is real and reviewed. It is NOT projected forward: a contracting margin turns on which projects reach their profitable phases in which period, no disclosure establishes that this mix is durable, and the half is held rather than extrapolated",
+   "date": "2026-08-11",
+   "ring": "Company/House"
   },
   "elecprod_growth": {
    "value": [
@@ -754,17 +914,29 @@
   },
   "elecprod_margin": {
    "value": [
-    0.22,
-    0.222,
-    0.224,
-    0.226,
-    0.228
+    0.236221,
+    0.236221,
+    0.236221,
+    0.236221,
+    0.236221
    ],
-   "source": "Electrical products and digital solutions segment profit margin (on the Note 5-3 external-revenue base). History: 25.4% (FY2023), 26.6% (FY2024), 22.2% (FY2025) \u2014 the least-compressed of the three segments; broadly stable forecast with a slight further normalisation",
-   "date": "2026-08-05",
-   "ring": "House"
+   "source": "Electrical products and digital solutions segment profit margin, RE-ANCHORED and held flat. FY2025 22.17% plus the measured like-for-like half change of +1.45pp (H1-2025 23.46% -> H1-2026 24.91%). The least-compressed segment in FY2025 and the one recovering most quietly; held at the re-anchored level rather than drifting toward the FY2024 26.6%, which no measurement supports",
+   "date": "2026-08-11",
+   "ring": "Company/House"
   },
   "corp_load": {
+   "value": [
+    0.0307,
+    0.0307,
+    0.0307,
+    0.0307,
+    0.0307
+   ],
+   "source": "Net corporate cost load, stated on the SEGMENT-PROFIT-TO-EBIT basis \u2014 the same basis as the audited historical bridge (FY2023 5.70%, FY2024 4.30%, FY2025 3.16%). RE-ANCHORED: FY2025's 3.16% plus the measured like-for-like half change of -0.09pp (H1-2025 3.96% -> H1-2026 3.87%, both computed as segment profit less operating profit over revenue from the reviewed interim statements), held FLAT. The first edition glided it up toward 5.0% on the view that FY2025 was unusually low; the reviewed half measures the level holding, and no disclosure names a mechanism that would take it back up",
+   "date": "2026-08-11",
+   "ring": "Company/House"
+  },
+  "corp_load_reversion": {
    "value": [
     0.0455,
     0.0465,
@@ -772,21 +944,21 @@
     0.0475,
     0.0485
    ],
-   "source": "Net corporate cost load forecast, stated on the SEGMENT-PROFIT-TO-EBIT basis \u2014 the same basis as the audited historical bridge (FY2023 5.70%, FY2024 4.30%, FY2025 3.16%). The path glides UP from FY2025's unusually low level toward the FY2023-24 average (~5.0%), the single most conservative choice in the build. RESTATED after external critique: the previous statement of this input (3.3-3.6%) was the load from segment profit to EBITDA, which mixed bases with the historical disclosure; the forecast EBIT is numerically UNCHANGED by the restatement (old load + D&A ratio = this load, year by year)",
+   "source": "THE RETIRED PATH, kept because it is this study's most consequential contested judgement and the depth bar requires such a judgement to be computed BOTH WAYS and published side by side rather than averaged. It glides the load from FY2025's level toward the FY2023-24 average of about 5.0%",
    "date": "2026-08-07",
    "ring": "House"
   },
   "opex_pct": {
    "value": [
-    0.0455,
-    0.0465,
-    0.0475,
-    0.0475,
-    0.0485
+    0.0307,
+    0.0307,
+    0.0307,
+    0.0307,
+    0.0307
    ],
    "source": "Alias of corp_load (segment-profit-to-EBIT basis), retained for compatibility with the DCF waterfall and sensitivity-grid code paths that reference a single operating-load driver",
-   "date": "2026-08-07",
-   "ring": "House"
+   "date": "2026-08-11",
+   "ring": "Company/House"
   },
   "unit_price_inflation": {
    "value": [
@@ -956,10 +1128,40 @@
    "date": "2026-08-07",
    "ring": "House"
   },
+  "pi_term": {
+   "value": 0.07,
+   "source": "Terminal Egyptian inflation, read from the HOUSE MACRO PATH (engine/macro_paths/EG.json) and not from this study. [R-MACRO-01]: a study may not carry an inflation number of its own. Registered here so that the terminal growth rate below can be DERIVED from it rather than typed beside it",
+   "date": "2026-09-04",
+   "ring": "Country"
+  },
+  "ppe_gross_depreciable_fy25": {
+   "value": 50775.950574,
+   "source": "Audited FY2025 consolidated financial statements, note 17: gross cost at 31-Dec-2025 of the DEPRECIABLE property, plant and equipment \u2014 buildings and constructions 13,357.135195 + machinery and equipment 32,960.824267 + furniture and fixtures 2,464.375061 + vehicles 1,630.540975 + leasehold improvements 363.075076. EXCLUDES land (2,312.648624), which the note states is not depreciated, and projects under construction (8,915.910071), which are not yet in use. The note foots three ways: components to the 53,088.599198 subtotal, subtotal plus projects to the 62,004.509269 total, and the component charges to the 2,733.671862 total charge",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "asset_life_derived": {
+   "value": 17.26,
+   "source": "DERIVED BY IDENTITY, not chosen: the AVERAGE depreciable gross cost across the year ((43,605.306327 opening + 50,775.950574 closing) / 2) over the year's own depreciation charge of 2,733.671862. The average is used rather than the closing balance because the base grew 16% in the year and a closing-cost ratio overstates the life on a fast-growing base (that reading is 18.57 years). Per component the closing-cost readings are buildings 29.00y, machinery 18.72y, furniture 8.45y, vehicles 8.45y, leasehold improvements 13.13y, against disclosed ranges of 8-50, 5-15, 4-17, 5-8 and 'over 3 years or the lease period' \u2014 the disclosed ranges are RANGES, and a life this desk picked from inside one would not be a disclosed life (SIGCM clause 1), which is why the identity is used instead",
+   "date": "2026-03-01",
+   "ring": "Company/derived"
+  },
+  "asset_life_source": {
+   "value": "Audited FY2025 consolidated financial statements of El Sewedy Electric Company, note 17 (property, plant and equipment) read with the accounting-policies note on depreciation: average depreciable gross cost over the year's own charge, excluding land, which the policy note states is not depreciated, and projects under construction, which are not in use.",
+   "source": "The source string the terminal module requires. It refuses a life with no disclosure behind it",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "g_term_real": {
+   "value": 0.0,
+   "source": "STATED real terminal growth: zero. A mature diversified industrial holding its real scale in perpetuity; real growth costs incremental capital and none is assumed. The nominal rate is DERIVED from this and the house path's terminal inflation, never quoted beside it",
+   "date": "2026-09-04",
+   "ring": "House"
+  },
   "g_term": {
-   "value": 0.05,
-   "source": "Terminal growth, 5% \u2014 the standing centre for established names in this market post-disinflation, sensitised 3-7%. Note this is an EGP-NOMINAL rate struck against a terminal risk-free rate that itself embeds 5% inflation, so the base case assumes approximately zero real terminal growth: a deliberate conservatism for a company whose revenue is majority hard-currency",
-   "date": "2026-08-05",
+   "value": 0.07,
+   "source": "Terminal NOMINAL growth, DERIVED: (1 + 0.0 real) x (1 + 0.07 house Egyptian terminal inflation) - 1 = 7.0%. The house macro path is the only source of an inflation rate in this study [R-MACRO-01]; the first edition's 5.0% was struck against an assumed 5% inflation and was therefore a real decline of 1.87% a year for ever",
+   "date": "2026-09-04",
    "ring": "House"
   },
   "usd_rf": {
@@ -1181,18 +1383,18 @@
    291762.9588631169
   ],
   "ebitda": [
-   35157.891506563006,
-   41644.717528922956,
-   47602.960485078955,
-   53648.41488820264,
-   59208.93430000031
+   37964.84774070757,
+   43447.04681820986,
+   48113.062040829354,
+   52750.22697049395,
+   57495.9797221846
   ],
   "ebitda_margin": [
-   0.09501374417863102,
-   0.09856074472518228,
-   0.10201674928799136,
-   0.1051022814764375,
-   0.10663946826032049
+   0.10259950686584564,
+   0.10282632575280608,
+   0.1031099355519153,
+   0.10334264702046195,
+   0.10355431620528092
   ],
   "dna": [
    4625.369178229658,
@@ -1202,18 +1404,18 @@
    6940.316665339115
   ],
   "ebit": [
-   30532.522328333347,
-   36363.112052391545,
-   41770.22213361758,
-   47267.91413520164,
-   52268.61763466119
+   33339.47856247791,
+   38165.44134167845,
+   42280.32368936798,
+   46369.72621749295,
+   50555.663056845486
   ],
   "nopat": [
-   23052.054357891677,
-   27454.149599555618,
-   31536.51771088127,
-   35687.275172077236,
-   39462.8063141692
+   25171.306314670823,
+   28814.90821296723,
+   31921.644385472824,
+   35009.14329420718,
+   38169.525607918345
   ],
   "capex": [
    16281.299507368396,
@@ -1237,11 +1439,11 @@
    8912.269324422712
   ],
   "fcff": [
-   -6387.218688663237,
-   5387.335682222638,
-   11796.934241248862,
-   16502.87650464466,
-   20278.868325044597
+   -4267.966731884091,
+   6748.0942956342515,
+   12182.060915840411,
+   15824.744626774602,
+   18985.587618793747
   ],
   "df": [
    0.7897116360154791,
@@ -1251,11 +1453,11 @@
    0.39153545502304476
   ],
   "pv": [
-   -5044.060920212888,
-   3457.1042516061825,
-   6303.612963613986,
-   7491.044067900889,
-   7939.895936998746
+   -3370.462990295823,
+   4330.315921589626,
+   6509.402828077265,
+   7183.224047582415,
+   7433.530687204295
   ],
   "fwd_wacc": [
    0.26628500125126553,
@@ -1279,39 +1481,39 @@
    203176.43524907748
   ],
   "roic": [
-   0.187412483989698,
-   0.1892495389251013,
-   0.19135296129381188,
-   0.19396049134360435,
-   0.19422924841550185
+   0.2046419363957062,
+   0.19862964881496206,
+   0.1936897801630336,
+   0.19027484172218548,
+   0.18786393983694846
   ],
   "np_attr": [
-   20788.318122056353,
-   24232.959083728005,
-   28050.704928792944,
-   32269.902296643304,
-   36392.51145728383
+   22702.53175073943,
+   25573.951862867973,
+   28588.841068877548,
+   31879.105184026845,
+   35423.23882345769
   ],
   "equity": [
-   82462.10514154227,
-   100636.82445433828,
-   121674.85315093299,
-   145877.27987341548,
-   173171.66346637835
+   83897.76536305458,
+   103078.22926020555,
+   124519.86006186371,
+   148429.18894988386,
+   174996.61806747713
   ],
   "net_debt": [
-   33460.60935720515,
-   36138.65044840941,
-   33327.749269705935,
-   26464.704310950197,
-   16196.576562848391
+   31819.910807596774,
+   33348.56873967899,
+   30076.423752395967,
+   23548.336316799272,
+   14110.985332933387
   ],
   "interest": [
    1743.4542583149996,
-   2658.4596059535143,
-   2613.7176560889416,
-   2082.590691030593,
-   1208.75855976402
+   2494.389750992677,
+   2334.7094852158993,
+   1757.458139299596,
+   917.1217603489272
   ],
   "assoc": [
    1694.415213,
@@ -1321,37 +1523,37 @@
    2305.2331909425493
   ],
   "div": [
-   5197.079530514088,
-   6058.239770932001,
-   7012.676232198236,
-   8067.475574160826,
-   9098.127864320957
+   5675.632937684857,
+   6393.487965716993,
+   7147.210267219387,
+   7969.776296006711,
+   8855.809705864422
   ],
   "seg_gp": [
    {
-    "cables": 31015.78520400258,
-    "construct": 7298.51407029472,
-    "elecprod": 9054.566862792
+    "cables": 25331.25640007756,
+    "construct": 9645.952323697893,
+    "elecprod": 9722.176540434495
    },
    {
-    "cables": 36602.16653376652,
-    "construct": 8809.735807202804,
-    "elecprod": 10598.782084119071
+    "cables": 28862.95395611998,
+    "construct": 10996.385649015601,
+    "elecprod": 11277.724786904013
    },
    {
-    "cables": 41528.03281537016,
-    "construct": 10322.073787439285,
-    "elecprod": 12084.521266361347
+    "cables": 31655.712000948264,
+    "construct": 12205.988070407318,
+    "elecprod": 12743.829009201534
    },
    {
-    "cables": 46285.05091870438,
-    "construct": 11695.181234689433,
-    "elecprod": 13533.584843211642
+    "cables": 34590.05886990573,
+    "construct": 13304.526996743976,
+    "elecprod": 14145.650200213704
    },
    {
-    "cables": 51067.913902982895,
-    "construct": 13110.44620435565,
-    "elecprod": 15018.686188838408
+    "cables": 37671.976410199786,
+    "construct": 14368.889156483496,
+    "elecprod": 15560.215220235075
    }
   ],
   "seg_rev": [
@@ -1383,29 +1585,29 @@
   ],
   "seg_ebit": [
    {
-    "cables": 20935.65501270174,
-    "construct": 2414.949508553401,
-    "elecprod": 7181.9178070782
+    "cables": 18529.937787485567,
+    "construct": 6350.8878831383645,
+    "elecprod": 8458.652891853975
    },
    {
-    "cables": 24864.23036948967,
-    "construct": 3120.114765050993,
-    "elecprod": 8378.766917850888
+    "cables": 21113.391800350102,
+    "construct": 7240.012186777739,
+    "elecprod": 9812.03735455061
    },
    {
-    "cables": 28377.489090502946,
-    "construct": 3870.777670289731,
-    "elecprod": 9521.955372824901
+    "cables": 23156.307951402505,
+    "construct": 8036.4135273232905,
+    "elecprod": 11087.602210642188
    },
    {
-    "cables": 31915.508966819034,
-    "construct": 4663.268466996419,
-    "elecprod": 10689.136701386185
+    "cables": 25302.79701889773,
+    "construct": 8759.690744782387,
+    "elecprod": 12307.23845381283
    },
    {
-    "cables": 35088.59890753341,
-    "construct": 5356.096924950174,
-    "elecprod": 11823.921802177607
+    "cables": 27557.2347532864,
+    "construct": 9460.466004364978,
+    "elecprod": 13537.962299194114
    }
   ],
   "seg_shares": [
@@ -1543,51 +1745,51 @@
    "elecprod": "Electrical products and digital solutions"
   },
   "gp": [
-   47368.8661370893,
-   56010.68442508839,
-   63934.6278691708,
-   71513.81699660546,
-   79197.04629617695
+   44699.38526420995,
+   51137.064392039596,
+   56605.52908055711,
+   62040.236066863414,
+   67601.08078691835
   ],
   "gp_margin": [
-   0.128013744178631,
-   0.13256074472518226,
-   0.13701674928799135,
-   0.14010228147643752,
-   0.14263946826032048
+   0.12079950686584563,
+   0.12102632575280607,
+   0.1213099355519153,
+   0.12154264702046194,
+   0.1217543162052809
   ],
   "opex": [
-   16836.343808755955,
-   19647.572372696843,
-   22164.40573555322,
-   24245.902861403818,
-   26928.428661515765
+   11359.906701732041,
+   12971.623050361142,
+   14325.205391189134,
+   15670.509849370468,
+   17045.417730072866
   ],
   "seg_gp": [
    {
-    "cables": 31015.78520400258,
-    "construct": 7298.51407029472,
-    "elecprod": 9054.566862792
+    "cables": 25331.25640007756,
+    "construct": 9645.952323697893,
+    "elecprod": 9722.176540434495
    },
    {
-    "cables": 36602.16653376652,
-    "construct": 8809.735807202804,
-    "elecprod": 10598.782084119071
+    "cables": 28862.95395611998,
+    "construct": 10996.385649015601,
+    "elecprod": 11277.724786904013
    },
    {
-    "cables": 41528.03281537016,
-    "construct": 10322.073787439285,
-    "elecprod": 12084.521266361347
+    "cables": 31655.712000948264,
+    "construct": 12205.988070407318,
+    "elecprod": 12743.829009201534
    },
    {
-    "cables": 46285.05091870438,
-    "construct": 11695.181234689433,
-    "elecprod": 13533.584843211642
+    "cables": 34590.05886990573,
+    "construct": 13304.526996743976,
+    "elecprod": 14145.650200213704
    },
    {
-    "cables": 51067.913902982895,
-    "construct": 13110.44620435565,
-    "elecprod": 15018.686188838408
+    "cables": 37671.976410199786,
+    "construct": 14368.889156483496,
+    "elecprod": 15560.215220235075
    }
   ],
   "q1_26_implied_fy": 356322.85298020765
@@ -1647,32 +1849,32 @@
   }
  },
  "dcf": {
-  "pv_explicit": 20147.596299906916,
-  "tv": 286048.3278391743,
-  "pv_tv": 111998.0621990922,
-  "ev": 132145.6584989991,
-  "tv_share": 0.8475349358521717,
+  "pv_explicit": 22086.010494157777,
+  "tv": 319492.0792983378,
+  "pv_tv": 125092.4766443334,
+  "ev": 147178.48713849118,
+  "tv_share": 0.84993723659236,
   "nd": 20560.003173,
   "assoc": 6757.650507,
   "nci_share": 0.09675033090812221,
-  "nci_val": 11449.754000103772,
-  "eq_attr": 106893.55183289533,
-  "ps": 56.08399377388404,
-  "ps_dec": 49.93210787128638,
+  "nci_val": 12904.185145459729,
+  "eq_attr": 120471.94932703146,
+  "ps": 63.44319161506309,
+  "ps_dec": 56.27484788479356,
   "roll": 1.1602553195475886,
   "anchor_days": 217,
-  "roic_term": 0.20394071083627696,
-  "rr_term": 0.2451692935411011,
-  "ps_rating_basis": 36.45867600017694,
+  "roic_term": 0.20101441562553485,
+  "rr_term": 0.34823373130811375,
+  "ps_rating_basis": 39.41535864626497,
   "wacc_exp_rating": 0.28095356879907796,
   "wacc_term_rating": 0.19793634999999998,
-  "ps_nci_alt": 55.00589737146846,
-  "nci_alt": 13438.941110563568,
-  "g": 0.05,
-  "bear": 19.945090316451004,
-  "bull": 122.33489333825081,
-  "ccy_alt_ps": 85.97488545126602,
-  "ps_kd_egp_equiv": 55.755721731653615,
+  "ps_nci_alt": 62.36509521264751,
+  "nci_alt": 14893.372255919521,
+  "g": 0.07,
+  "bear": 22.913794402815945,
+  "bull": 119.79373248239902,
+  "ccy_alt_ps": 79.49643460012656,
+  "ps_kd_egp_equiv": 63.08087462820185,
   "kd_egp_equiv": 0.13938079151915464,
   "wacc_exp_kd_egp_equiv": 0.26908808835457754,
   "fx_dep_avg": 0.05436481112522373
@@ -1716,101 +1918,101 @@
  "lenses": {
   "dcf": {
    "name": "Discounted cash flow (primary)",
-   "bear": 19.945090316451004,
-   "base": 56.08399377388404,
-   "bull": 122.33489333825081,
+   "bear": 22.913794402815945,
+   "base": 63.44319161506309,
+   "bull": 119.79373248239902,
    "w": 0.45
   },
   "relative": {
    "name": "Relative multiples",
-   "bear": 62.56960719542908,
-   "base": 75.65202851073832,
-   "bull": 95.27566048370213,
+   "bear": 66.93042304754968,
+   "base": 80.57903456681447,
+   "bull": 101.05195184571166,
    "w": 0.2
   },
   "normalized": {
    "name": "Normalised earnings power",
-   "bear": 83.72206574881132,
-   "base": 108.17122739132883,
-   "bull": 138.73267944447574,
+   "bear": 84.76862860808455,
+   "base": 109.51680821039443,
+   "bull": 140.45203271328177,
    "w": 0.2
   },
   "book": {
    "name": "Book value and sustainable return",
    "bear": 35.32865890158743,
-   "base": 51.52000949652029,
-   "bull": 57.289740252900856,
+   "base": 54.76292263678644,
+   "bull": 61.625095077609046,
    "w": 0.15
   },
   "central": {
    "name": "Weighted central",
-   "bear": 19.945090316451004,
-   "base": 69.7304498031393,
-   "bull": 138.73267944447574,
+   "bear": 22.913794402815945,
+   "base": 74.78304317773814,
+   "bull": 140.45203271328177,
    "w": 1.0
   }
  },
- "central": 69.7304498031393,
+ "central": 74.78304317773814,
  "span": [
-  19.945090316451004,
-  138.73267944447574
+  22.913794402815945,
+  140.45203271328177
  ],
  "spot": 105.2,
  "experts": {
   "e1": {
    "method_short": "earnings power",
-   "base": 146.6166527148279,
+   "base": 148.40774093062083,
    "rng": [
-    107.54648094776792,
-    185.68682448188787
+    108.86623015940482,
+    187.94925170183686
    ],
-   "eps": 13.469508343144462,
-   "margin": 0.10201674928799136,
+   "eps": 13.632003268602704,
+   "margin": 0.1031099355519153,
    "rev": 466619.0681169099,
-   "ebit": 41770.22213361758,
+   "ebit": 42280.32368936798,
    "interest": 1055.8529285480008,
    "pe": 9.5
   },
   "e2": {
    "method_short": "owner cash earnings",
-   "base": 61.914452720878415,
+   "base": 72.81006662300985,
    "rng": [
-    37.47247721279566,
-    68.08877752143243
+    36.13831647623267,
+    65.71584535779077
    ],
-   "fcff": 16192.893023646038,
-   "fcfe": 14076.696168076272,
+   "fcff": 15664.131053802921,
+   "fcfe": 13599.092093787107,
    "ke": 0.17563,
    "int_at": 608.3911414267998
   },
   "e3": {
    "method_short": "cash returns vs cost of capital",
-   "base": 53.24641887790025,
+   "base": 54.45131359842825,
    "rng": [
-    46.17387104421569,
-    85.97488545126602
+    46.88400987822836,
+    79.49643460012656
    ],
    "ic0": 93562.42815899997,
-   "pv_ep": 6135.946166114683,
-   "pv_ep_term": 26650.89466464215,
-   "ev": 126349.2689897568,
+   "pv_ep": 8074.3603603655465,
+   "pv_ep_term": 27173.75087692572,
+   "ev": 128810.53939629125,
    "ep": [
-    -1862.2169414990713,
-    -914.6389646189127,
-    2387.7550221972742,
-    6488.897276473213,
-    10145.055416524061
+    257.03501528007473,
+    446.1196487927009,
+    2772.881696788827,
+    5810.765398603155,
+    8851.77471027321
    ],
    "spread": [
-    -0.07887251726156752,
-    -0.04138782857574236,
-    -0.009578044748346976,
-    0.016794574468393414,
-    0.034887148415501834
+    -0.06164306485555934,
+    -0.03200771868588159,
+    -0.007241225879125263,
+    0.01310892484697454,
+    0.02852183983694845
    ]
   }
  },
- "panel_centre": 61.914452720878415,
+ "panel_centre": 72.81006662300985,
  "sens_wg": {
   "g_grid": [
    0.03,
@@ -1828,59 +2030,59 @@
   ],
   "table": [
    [
-    65.329844401984,
-    68.35354257523431,
-    71.9670712933261,
-    76.39345107557055,
-    81.98435185876774
+    64.02326653453551,
+    66.87332082657952,
+    70.27596109226505,
+    74.4401253255354,
+    79.69527743111146
    ],
    [
-    58.440287909866804,
-    60.6461755538821,
-    63.21971152566643,
-    66.28434770102153,
-    70.02577372147603
+    57.37629801344737,
+    59.444908396257055,
+    61.85495881829012,
+    64.7211007280429,
+    68.21578663977438
    ],
    [
-    52.6302713847032,
-    54.24351203947743,
-    56.08399377388404,
-    58.220340387792056,
-    60.75189974055389
+    51.770807536022296,
+    53.273902154344036,
+    54.985358844742976,
+    56.96810019655753,
+    59.313220328265686
    ],
    [
-    47.66687793345727,
-    48.84248007666995,
-    50.154379287654535,
-    51.63997115359249,
-    53.35170855849378
+    46.982079823268506,
+    48.06820632030645,
+    49.27676996088003,
+    50.641363609092565,
+    52.209106263124774
    ],
    [
-    43.37959572111903,
-    44.22702715685592,
-    45.15076181775254,
-    46.169980669744525,
-    47.310881542696734
+    42.845607827299034,
+    43.61959366674767,
+    44.45954899997528,
+    45.3820571183214,
+    46.409767884497235
    ]
   ]
  },
  "rel": {
-  "ebitda_mid": 41644.717528922956,
-  "ev_rel": 172117.8021156231,
-  "ev_rel_fwd": 270690.6639379992,
-  "pv_interim": -1586.9566686067055,
+  "ebitda_mid": 43447.04681820986,
+  "ev_rel": 182182.3280796195,
+  "ev_rel_fwd": 282405.8043183641,
+  "pv_interim": 959.8529312938026,
   "ev_ebitda_trailing": 8.66509447457633,
   "pe_trailing": 12.995190355655788,
   "just_mult": 6.5
  },
  "norm": {
-  "margin": 0.10201674928799136,
+  "margin": 0.1031099355519153,
   "rev": 370029.5342583727,
-  "ebitda": 37749.21022558861,
-  "ebit": 33123.841047358954,
+  "ebitda": 38153.72142968604,
+  "ebit": 33528.35225145638,
   "interest": 1743.4542583149996,
-  "np": 22555.47699253731,
-  "eps": 10.536112711834337,
+  "np": 22831.334824027253,
+  "eps": 10.664971401277342,
   "pe": 9.0,
   "year": "FY26E",
   "margin_year": "FY28E",
@@ -1888,7 +2090,7 @@
  },
  "book": {
   "bvps": 31.23671414007083,
-  "pb_just": 1.4725782058425534,
+  "pb_just": 1.5620562340244246,
   "roe_sust": 0.235,
   "roe_trailing": 0.2837633032158274,
   "ke_blend": 0.17563
@@ -1917,76 +2119,76 @@
   ],
   "grid_wacc_g": [
    [
-    65.329844401984,
-    68.35354257523431,
-    71.9670712933261,
-    76.39345107557055,
-    81.98435185876774
+    64.02326653453551,
+    66.87332082657952,
+    70.27596109226505,
+    74.4401253255354,
+    79.69527743111146
    ],
    [
-    58.440287909866804,
-    60.6461755538821,
-    63.21971152566643,
-    66.28434770102153,
-    70.02577372147603
+    57.37629801344737,
+    59.444908396257055,
+    61.85495881829012,
+    64.7211007280429,
+    68.21578663977438
    ],
    [
-    52.6302713847032,
-    54.24351203947743,
-    56.08399377388404,
-    58.220340387792056,
-    60.75189974055389
+    51.770807536022296,
+    53.273902154344036,
+    54.985358844742976,
+    56.96810019655753,
+    59.313220328265686
    ],
    [
-    47.66687793345727,
-    48.84248007666995,
-    50.154379287654535,
-    51.63997115359249,
-    53.35170855849378
+    46.982079823268506,
+    48.06820632030645,
+    49.27676996088003,
+    50.641363609092565,
+    52.209106263124774
    ],
    [
-    43.37959572111903,
-    44.22702715685592,
-    45.15076181775254,
-    46.169980669744525,
-    47.310881542696734
+    42.845607827299034,
+    43.61959366674767,
+    44.45954899997528,
+    45.3820571183214,
+    46.409767884497235
    ]
   ],
   "grid_exp_term": [
    [
-    76.53066395732843,
-    67.28261009519261,
-    59.738684100086694,
-    53.470067216369046,
-    48.180573997285194
+    84.65984646706161,
+    72.52574844266042,
+    63.11573867848826,
+    55.60688154053267,
+    49.47730377942706
    ],
    [
-    74.20763706152702,
-    65.21451934442834,
-    57.87843695583718,
-    51.78242507173835,
-    46.63848559892643
+    82.13279721284205,
+    70.3319852695824,
+    61.18033295945634,
+    53.877543302881506,
+    47.916099464817314
    ],
    [
-    71.9670712933261,
-    63.21971152566643,
-    56.08399377388404,
-    50.154379287654535,
-    45.15076181775254
+    79.69527743111146,
+    68.21578663977438,
+    59.313220328265686,
+    52.209106263124774,
+    46.409767884497235
    ],
    [
-    69.80531513594863,
-    61.29494639096928,
-    54.35244928326305,
-    48.58330249404308,
-    43.715009380023275
+    77.34332590623208,
+    66.17372628576796,
+    57.51138889928905,
+    50.598888788524135,
+    44.95589663617206
    ],
    [
-    67.71891197265076,
-    59.4371564326104,
-    52.68105291114693,
-    47.066707057206294,
-    42.32896215043171
+    75.07319276143608,
+    64.20256050533408,
+    55.77198707016157,
+    49.04435177713601,
+    43.55220138111397
    ]
   ],
   "beta_grid": [
@@ -1997,11 +2199,11 @@
    1.3
   ],
   "grid_beta": [
-   82.1040695099194,
-   67.65449935590391,
-   56.08399377388404,
-   49.74342393917833,
-   43.98578978959206
+   92.05706087886328,
+   73.37265613726478,
+   59.313220328265686,
+   51.922167872504005,
+   45.39154463312268
   ],
   "fx_grid": [
    0.9,
@@ -2011,11 +2213,11 @@
    1.7
   ],
   "grid_fx": [
-   52.41845656686412,
-   56.08399377388404,
-   63.415068187923914,
-   72.57891120547374,
-   81.74275422302357
+   61.093629657688346,
+   63.44319161506309,
+   68.14231552981256,
+   74.01622042324942,
+   79.8901253166863
   ],
   "mg_grid": [
    0.85,
@@ -2025,11 +2227,11 @@
    1.15
   ],
   "grid_margin": [
-   30.095968716038186,
-   43.089981244961095,
-   56.08399377388404,
-   69.078006302807,
-   82.07201883172988
+   36.15666072864668,
+   49.7999261718549,
+   63.44319161506309,
+   77.08645705827126,
+   90.72972250147949
   ],
   "cu_grid": [
    0.85,
@@ -2039,11 +2241,11 @@
    1.15
   ],
   "grid_copper": [
-   50.58568796335414,
-   53.334840868619075,
-   56.08399377388404,
-   58.83314667914899,
-   61.58229958441391
+   59.918848679001,
+   61.681020147032015,
+   63.44319161506309,
+   65.20536308309411,
+   66.9675345511252
   ],
   "nwc_grid": [
    0.17,
@@ -2053,25 +2255,25 @@
    0.23
   ],
   "grid_nwc": [
-   62.98785448545478,
-   59.41689204843545,
-   56.08399377388404,
-   52.27496717439674,
-   48.704004737377375
+   71.70423599571691,
+   67.43128200572355,
+   63.44319161506309,
+   58.885374025736844,
+   54.61242003574347
   ],
   "roic_grid": [
    0.15,
    0.18,
-   0.20394071083627696,
+   0.20101441562553485,
    0.26,
    0.3
   ],
   "grid_roic": [
-   49.68012825683863,
-   53.7154504510227,
-   56.08399377388404,
-   59.92363844207513,
-   61.78609483939085
+   48.93607870871411,
+   55.75099900441143,
+   59.313220328265686,
+   66.23549176702268,
+   69.38083959580605
   ]
  },
  "step0": {
@@ -2204,28 +2406,29 @@
   "[Segment build \u2014 the disclosed structure] Cables, Constructions and Electrical products and digital solutions, Note 5-3 revenue reconciling EXACTLY to the consolidated P&L in all three years. FY2025 revenue split: Cables 155,793 (55.4%), Constructions 90,959 (32.4%), Electrical products 34,298 (12.2%). Segment margins (profit / this revenue base) FY2023 -> FY2025: Cables 19.5% -> 13.5%; Constructions 11.6% -> 6.5%; Electrical products 25.4% -> 22.2%. Every segment compressed in FY2025; Cables and Constructions compressed the most.",
   "[Corporate load \u2014 the bridge from segment profit to EBIT] (G&A + net impairment on receivables + other expenses - other income) / revenue: FY2023 5.70%, FY2024 4.30%, FY2025 3.16% \u2014 DECLINING, i.e. operating leverage improving at the corporate level even as segment margins fell. This reconciles EXACTLY: e.g. FY2025 segment profit 34,490 less the unallocated/corporate item of 247 = 34,243, less 3.16% x revenue 281,049 = 25,354, against the audited operating profit of 25,354.",
   "[Forecast, three real segments] revenue 370,030 -> 422,528 -> 466,619 -> 510,440 -> 555,225 (growth +31.7%, +14.2%, +10.4%, +9.4%, +8.8%)",
-  "[Forecast margins are OUTPUTS] gross margin 12.80% -> 13.26% -> 13.70% -> 14.01% -> 14.26%; EBITDA margin 9.50% -> 9.86% -> 10.20% -> 10.51% -> 10.66%. Segment mix FY2030E: Cables 59%, Constructions 29%, Electrical products 12%.",
+  "[Forecast margins are OUTPUTS] gross margin 12.08% -> 12.10% -> 12.13% -> 12.15% -> 12.18%; EBITDA margin 10.26% -> 10.28% -> 10.31% -> 10.33% -> 10.36%. Segment mix FY2030E: Cables 59%, Constructions 29%, Electrical products 12%.",
   "[FY2026 cross-check against the print] the disclosed Q1-2026 revenue of 75,298, grossed up on the Q1-2025 seasonal share of FY2025, implies a full year of 356,323. The build produces 370,030, +3.8% against it \u2014 an independent check that the segment build is not running ahead of the company's own trading.",
-  "[Q1-2026 EBITDA margin check] the disclosed Q1-2026 operating profit 8,247 on revenue 75,298 implies an EBITDA margin (at the model's D&A ratio) of 12.20%, against FY2026E's 9.50% \u2014 consistent, not contradicted.",
+  "[Q1-2026 EBITDA margin check] the disclosed Q1-2026 operating profit 8,247 on revenue 75,298 implies an EBITDA margin (at the model's D&A ratio) of 12.20%, against FY2026E's 10.26% \u2014 consistent, not contradicted.",
   "[Currency split \u2014 two different questions] the audited Note 5-2 shows 40.7% of FY2025 revenue booked OUTSIDE Egypt, which is a geographic statement about where the customer sits. The model derives the share that is HARD-CURRENCY LINKED \u2014 dollar-priced by construction \u2014 at 51% in FY2025 and 53% -> 53% -> 53% -> 53% -> 53% thereafter, using segment-level export-intensity weights (Cables 65%, Constructions 30%, Electrical products 45%) rather than the blanket geographic split, because a project executed abroad for a local utility is foreign revenue but not necessarily dollar-priced. The LOWER figure is used everywhere the currency question is valued, because it is the conservative one.",
-  "[Forecast interest] net finance cost path 1,743 -> 2,658 -> 2,614 -> 2,083 -> 1,209 as the cash pile builds against a broadly static gross debt book. Surplus cash is assumed to yield 10% \u2014 a deliberate blend of Egyptian-pound deposit rates (~19-20%, falling) and hard-currency cash (~4-5%); the positive carry over the hard-currency-heavy debt book (7.7-9.5%) is real economics (borrow dollars cheap, hold pounds dear), disclosed rather than hidden. Payout ratio 25% \u2014 struck at the ACTUAL FY2025 payout: EGP 1.85/share ratified by the AGM on 6 May 2026 and paid from 4 June 2026 = 22.8% of FY2025 attributable EPS, up from 12.3% a year earlier.",
-  "[Forecast equity] attributable profit 20,788, 24,233, 28,051, 32,270, 36,393; net debt path 33,461, 36,139, 33,328, 26,465, 16,197.",
-  "[Terminal return on capital] taken as next year's NOPAT over the closing invested capital (20.4%), the standard convention, rather than the same year's NOPAT over closing capital (19.4%).",
-  "[Terminal growth reconciliation] historical ROIC 22.3% / 24.9% / 21.0%; reinvestment rate 20.1% / 30.4% / 51.5%; implied g 4.5% / 7.6% / 10.8%. Check (a): actual NOPAT CAGR FY23-FY25 = +26.9%. Check (b): implied g from STABLE years only (FY24 excluded as a debt-funded capacity burst, reinvestment 30%) = 7.6%. Adopted terminal g 5.0%.",
-  "[Terminal value] terminal ROIC 20.4%; required reinvestment rate g/ROIC = 24.5%; terminal NOPAT 41,436; TV 286,048 capitalised at the terminal WACC and discounted at the YEAR-5 factor 0.3915 (one date, one price of time) -> PV 111,998. Terminal value is 85% of enterprise value.",
-  "[Terminal ceiling] the domestic leg is 47% of FY30E revenue; a blended long-run nominal ceiling is 11.1% (15% Egyptian nominal on the domestic leg, 7.5% world nominal on the export leg). Adopted g of 5% sits below it.",
+  "[Forecast interest] net finance cost path 1,743 -> 2,494 -> 2,335 -> 1,757 -> 917 as the cash pile builds against a broadly static gross debt book. Surplus cash is assumed to yield 10% \u2014 a deliberate blend of Egyptian-pound deposit rates (~19-20%, falling) and hard-currency cash (~4-5%); the positive carry over the hard-currency-heavy debt book (7.7-9.5%) is real economics (borrow dollars cheap, hold pounds dear), disclosed rather than hidden. Payout ratio 25% \u2014 struck at the ACTUAL FY2025 payout: EGP 1.85/share ratified by the AGM on 6 May 2026 and paid from 4 June 2026 = 22.8% of FY2025 attributable EPS, up from 12.3% a year earlier.",
+  "[Forecast equity] attributable profit 22,703, 25,574, 28,589, 31,879, 35,423; net debt path 31,820, 33,349, 30,076, 23,548, 14,111.",
+  "[Terminal return on capital] taken as next year's NOPAT over the closing invested capital (20.1%), the standard convention, rather than the same year's NOPAT over closing capital (18.8%).",
+  "[Terminal growth reconciliation] historical ROIC 22.3% / 24.9% / 21.0%; reinvestment rate 20.1% / 30.4% / 51.5%; implied g 4.5% / 7.6% / 10.8%. Check (a): actual NOPAT CAGR FY23-FY25 = +26.9%. Check (b): implied g from STABLE years only (FY24 excluded as a debt-funded capacity burst, reinvestment 30%) = 7.6%. Adopted terminal g 7.0%.",
+  "[Terminal value, sanctioned construction] terminal NOPAT 40,841 + book D&A 7,426 - maintenance at replacement cost 13,315 (on the DERIVED 17.26-year life) - growth capital 0 (zero, because real growth is zero) - inflation on working capital 8,276 = FCFF 26,677. TV 319,492 at 15.93% and 7.0% nominal, discounted at the YEAR-5 factor 0.3915 -> PV 125,092, 85% of enterprise value. Implied payout of terminal NOPAT 65.3%; TV against the NOPAT-perpetuity floor +24.6%.",
+  "[Terminal value, the RETIRED construction, published unused] g x IC on the same inputs gives 297,945 (-6.7%), charging 14,222 a year for ever \u2014 an implied replacement cycle of 14.3 years against the 17.26 this company's own note 17 derives. Recorded so the change is visible, and it feeds nothing.",
+  "[Terminal ceiling] the domestic leg is 47% of FY30E revenue; a blended long-run nominal ceiling is 11.1% (15% Egyptian nominal on the domestic leg, 7.5% world nominal on the export leg). Adopted g of 7% sits below it.",
   "[Associates] carried at the audited FY2025 carrying value of 6,758 \u2014 the actual closing balance, not the prior year's carrying value scaled by an assumed growth factor.",
-  "[Bridge] EV 132,146 - net financial debt 20,560 + associates at carrying value 6,758 = 118,343; less minority interests at their 9.7% share of group profit = 11,450 -> equity attributable 106,894 = EGP 49.93/share AT 31-DEC-2025; rolled 217/365 of a year to the 5-Aug-2026 anchor at the 28.4% cost of equity (x1.1603) less the EGP 1.85 dividend paid in the window = EGP 56.08/share against a spot of 105.20 (-47%).",
-  "[Currency-of-discounting alternative \u2014 UIP-corrected] the hard-currency leg (53% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a USD cost of capital of 10.13% with 3.5% terminal growth, and only then translated back. Corrected result EGP 85.97/share (-18% vs spot).",
-  "[Rating-basis alternative, published] on Damodaran's RATING column the cost of equity is 30.01% and the cost of capital 28.10% -> 19.79%, giving EGP 36.46/share against the CDS-basis 56.08.",
-  "[EGP-equivalent cost of debt alternative, published] loading the hard-currency legs (72% of the book) with the pound's own 5.4%/year forecast depreciation under uncovered interest parity gives an EGP-equivalent cost of 11.01% for that share, and a blended Kd of 13.94% against the currency-composition 9.50%. Cost of capital rises to 26.91% from 26.63%, giving EGP 55.76/share against 56.08. CAUTION: adopting the currency-composition Kd as primary means the hard-currency share of the debt book is carried at its coupon rate and NOT compensated for devaluation risk beyond what this forecast's own FX path already assumes.",
-  "[Minority-interest sequencing, alternative published] charging minorities 9.7% of UNLEVERED enterprise value plus associates (13,439) and deducting net debt afterwards gives EGP 55.01/share, against 56.08 on the adopted sequencing. The adopted method is retained because the audited borrowings note records facilities granted to 'the Company AND ITS SUBSIDIARIES ... guaranteed by promissory notes FROM SUBSIDIARIES', i.e. debt does sit at subsidiary level.",
-  "[Relative lens \u2014 forward EV discounted, interim flows included] 6.5x on FY2027E EBITDA 41,645 gives an enterprise value of 270,691 AS AT end-FY2027; discounted back at the year-2 factor 0.6417 plus the present value of the interim FY26-27 free cash flows (-1,587) that is 172,118 at 31-Dec-2025 -> EGP 75.65/share at the anchor.",
-  "[Normalised lens \u2014 current-scale earning power] mid-cycle EBITDA margin 10.20% (FY2028E) on FY2026E revenue 370,030 -> normalised EPS 10.54 x 9.0 = EGP 108.17/share at the anchor. Equity-method associate income is taxed inside this lens although it is already post-tax at the investee \u2014 a disclosed conservatism worth about +0.4/share on the central if removed.",
-  "[Book lens] justified price-to-book 1.47x = (sustainable return 23.5% - growth 5%) / (PERPETUAL cost of equity 17.56% - growth). The justified P/B is a steady-state construct whose implied payout is 1 - g/ROE = 79%, deliberately distinct from the five-year forecast payout of 25% \u2014 the two describe different horizons.",
-  "[DCF scenarios] bear 19.95 / base 56.08 / bull 122.33 EGP per share",
-  "[Synthesis] weighted central EGP 69.73; full span across lenses and scenarios 19.95 - 138.73; spot 105.20 (-34% to the central).",
-  "[Leverage] net financial debt / EBITDA falls from 0.72x to 0.27x over the forecast.",
-  "[Expert panel] Expert 1 146.62 [107.55-185.69]; Expert 2 61.91 [37.47-68.09]; Expert 3 53.25 [46.17-85.97]; panel median 61.91 (-41% vs spot)"
+  "[Bridge] EV 147,178 - net financial debt 20,560 + associates at carrying value 6,758 = 133,376; less minority interests at their 9.7% share of group profit = 12,904 -> equity attributable 120,472 = EGP 56.27/share AT 31-DEC-2025; rolled 217/365 of a year to the 5-Aug-2026 anchor at the 28.4% cost of equity (x1.1603) less the EGP 1.85 dividend paid in the window = EGP 63.44/share against a spot of 105.20 (-40%).",
+  "[Currency-of-discounting alternative \u2014 UIP-corrected] the hard-currency leg (53% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a USD cost of capital of 10.13% with 3.5% terminal growth, and only then translated back. Corrected result EGP 79.50/share (-24% vs spot).",
+  "[Rating-basis alternative, published] on Damodaran's RATING column the cost of equity is 30.01% and the cost of capital 28.10% -> 19.79%, giving EGP 39.42/share against the CDS-basis 63.44.",
+  "[EGP-equivalent cost of debt alternative, published] loading the hard-currency legs (72% of the book) with the pound's own 5.4%/year forecast depreciation under uncovered interest parity gives an EGP-equivalent cost of 11.01% for that share, and a blended Kd of 13.94% against the currency-composition 9.50%. Cost of capital rises to 26.91% from 26.63%, giving EGP 63.08/share against 63.44. CAUTION: adopting the currency-composition Kd as primary means the hard-currency share of the debt book is carried at its coupon rate and NOT compensated for devaluation risk beyond what this forecast's own FX path already assumes.",
+  "[Minority-interest sequencing, alternative published] charging minorities 9.7% of UNLEVERED enterprise value plus associates (14,893) and deducting net debt afterwards gives EGP 62.37/share, against 63.44 on the adopted sequencing. The adopted method is retained because the audited borrowings note records facilities granted to 'the Company AND ITS SUBSIDIARIES ... guaranteed by promissory notes FROM SUBSIDIARIES', i.e. debt does sit at subsidiary level.",
+  "[Relative lens \u2014 forward EV discounted, interim flows included] 6.5x on FY2027E EBITDA 43,447 gives an enterprise value of 282,406 AS AT end-FY2027; discounted back at the year-2 factor 0.6417 plus the present value of the interim FY26-27 free cash flows (960) that is 182,182 at 31-Dec-2025 -> EGP 80.58/share at the anchor.",
+  "[Normalised lens \u2014 current-scale earning power] mid-cycle EBITDA margin 10.31% (FY2028E) on FY2026E revenue 370,030 -> normalised EPS 10.66 x 9.0 = EGP 109.52/share at the anchor. Equity-method associate income is taxed inside this lens although it is already post-tax at the investee \u2014 a disclosed conservatism worth about +0.4/share on the central if removed.",
+  "[Book lens] justified price-to-book 1.56x = (sustainable return 23.5% - growth 7%) / (PERPETUAL cost of equity 17.56% - growth). The justified P/B is a steady-state construct whose implied payout is 1 - g/ROE = 70%, deliberately distinct from the five-year forecast payout of 25% \u2014 the two describe different horizons.",
+  "[DCF scenarios] bear 22.91 / base 63.44 / bull 119.79 EGP per share",
+  "[Synthesis] weighted central EGP 74.78; full span across lenses and scenarios 22.91 - 140.45; spot 105.20 (-29% to the central).",
+  "[Leverage] net financial debt / EBITDA falls from 0.72x to 0.25x over the forecast.",
+  "[Expert panel] Expert 1 148.41 [108.87-187.95]; Expert 2 72.81 [36.14-65.72]; Expert 3 54.45 [46.88-79.50]; panel median 72.81 (-31% vs spot)"
  ]
 }
