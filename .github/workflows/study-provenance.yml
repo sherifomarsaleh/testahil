@@ -73,6 +73,9 @@ on:
       - 'scripts/check_prose_figures_negative_control.py'
       - 'scripts/check_table_footing.py'
       - 'scripts/check_table_footing_negative_control.py'
+      - 'scripts/check_waterfall_assertions.py'
+      - 'scripts/check_waterfall_assertions_negative_control.py'
+      - 'engine/table_residual.py'
       - 'engine/table_footing.py'
       - 'engine/site_data.py'
       - 'scripts/check_site_data_reader.py'
@@ -167,6 +170,9 @@ on:
       - 'scripts/check_prose_figures_negative_control.py'
       - 'scripts/check_table_footing.py'
       - 'scripts/check_table_footing_negative_control.py'
+      - 'scripts/check_waterfall_assertions.py'
+      - 'scripts/check_waterfall_assertions_negative_control.py'
+      - 'engine/table_residual.py'
       - 'engine/table_footing.py'
       - 'engine/site_data.py'
       - 'scripts/check_site_data_reader.py'
@@ -474,6 +480,28 @@ jobs:
       # (a header cell parsing 'FY2025' as 2025, and a dash walling off a component block)
       - name: Table-footing gate — negative control
         run: python3 scripts/check_table_footing_negative_control.py
+
+      # A WATERFALL A READER IS ASKED TO FOLLOW MUST REACH THE ANSWER IT PRINTS.
+      # table_footing tests rows whose LABEL DECLARES A TOTAL, and a waterfall never says
+      # "total" — it says "Plus net cash", "Less depreciation and amortisation", "Add back
+      # the impairment", which is the page giving a reader instructions in its own voice.
+      # Five such tables were found in one study on 04-Sep-2026, every one having passed
+      # table_footing, prose_figures, the recalculation gate, the scrub and the column
+      # audit, because every figure in all of them was computed and individually correct.
+      #
+      # THE CHECK IS ON THE BUILDER RATHER THAN ON THE PAGE, and that was measured rather
+      # than assumed: the page-side reading was built first and flags 30.7% of the tables
+      # that carry an operator row, because a statement mixes labelled and unlabelled steps
+      # and the page cannot say which is which. engine/table_residual.py carries the
+      # measurement in full. The builder knows the anchor because it put it there.
+      - name: Waterfall-assertion gate
+        run: python3 scripts/check_waterfall_assertions.py
+
+      # and the proof it can go red — the bridge and the cash-flow waterfall EXACTLY as
+      # they shipped, a builder that imports the module and never runs its assertion, and
+      # a half-unit of printed rounding that must NOT fire
+      - name: Waterfall-assertion gate — negative control
+        run: python3 scripts/check_waterfall_assertions_negative_control.py
 
       # [R-ENF-03] assets/data.js is read through a REAL JavaScript parse, EVERYWHERE.
       # The rule was adopted four weeks earlier, after a reader — not a check — found a

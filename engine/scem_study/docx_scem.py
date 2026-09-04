@@ -10,7 +10,10 @@ import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(HERE, '..'))   # the shared instruments live in engine/
 from docx_base import *          # noqa: F401,F403
+import table_residual as TRES        # the shared waterfall check, not hand-rolled
+from table_residual import waterfall                              # noqa: F401
 from docx_base import (doc, P, H1, H2, rich, bullet, table, figure, box, caption,
                        masthead, INK, GREY, BRASS, GOLD, F_CREAM, F_PANEL, Pt, Inches)
 
@@ -144,10 +147,16 @@ table(rows, [2.25, 0.94, 0.94, 0.94, 0.94, 0.94], band_rows={8, 10})
 # THE FIRST YEAR FOOTS ONLY WITH THE STUB NAMED, so the caption names it and the build
 # asserts every year reproduces from the rows printed above it.
 for _i in range(5):
-    _made = (F['nopat'][_i] - F['reinvestment'][_i]) * (_STUB if _i == 0 else 1.0)
-    assert abs(_made - F['fcff'][_i]) < 1.0, (
-        'the waterfall does not foot in year %d: %.1f vs %.1f'
-        % (_i + 1, _made, F['fcff'][_i]))
+    waterfall(
+        F['nopat'][_i],
+        [('Less reinvestment to fund the growth in NOPAT', F['reinvestment'][_i])],
+        F['fcff'][_i], dp=0, what='Table 1, %s' % YF[_i],
+        # THE FIRST YEAR IS THE ONE LINE A READER CANNOT ADD UP AND THE CAPTION SAYS SO:
+        # only the unearned part of FY2026 is a future receipt. Declared with its reason
+        # rather than silently tolerated, which is what the helper's own refusal is for.
+        extra=(-(F['nopat'][_i] - F['reinvestment'][_i]) * (1.0 - _STUB)) if _i == 0 else 0.0,
+        why=('only the part of %s still unearned at the valuation date is a future '
+             'receipt; the caption names the fraction' % YF[0]) if _i == 0 else '')
 # The stub is quoted to the precision a reader NEEDS, not to a round one: at 42% the two
 # printed rows give 804 against a printed 799, so the caption naming the scaling would not
 # have let anyone reproduce it. Tested on the PRINTED strings, which is what the reader has.
@@ -198,9 +207,12 @@ rows.append(['Less non-controlling interests in the subsidiaries',
 rows.append(['Equity value', n0(DCF['equity']), n2(DCF['fv'])])
 rows.append(['Market price', '—', n2(SPOT)])
 table(rows, [3.55, 1.65, 1.55], band_rows={4, 7})
-assert abs(DCF['ev'] + DCF['net_cash'] - IN['nci'] - DCF['equity']) < 1.0, (
-    'the bridge does not foot from the rows printed above it')
-assert abs(DCF['sum_pv'] + DCF['pv_tv'] - DCF['ev']) < 1.0, 'enterprise value does not foot'
+waterfall(DCF['ev'],
+          [('Plus net cash', DCF['net_cash']),
+           ('Less non-controlling interests', IN['nci'])],
+          DCF['equity'], dp=0, what='Table 3, the bridge')
+waterfall(DCF['sum_pv'], [('Plus the present value of the terminal value', DCF['pv_tv'])],
+          DCF['ev'], dp=0, what='Table 3, enterprise value')
 # THE CAPTION TYPED 41% AGAINST A COMPUTED 49.2% PRINTED TWO ROWS ABOVE IT. Read from
 # the record. The minority basis is named because the deduction is now visible; the
 # alternative a reviewer proposed is priced here rather than asserted away, since at
@@ -250,10 +262,11 @@ def lens_tail(rows, ev_or_earn, answer, first_label):
     rows.append(['Less non-controlling interests (EGP mn)', '(' + n0(IN['nci']) + ')'])
     rows.append([f'Divided by shares in issue ({n1(SH)} million)', ''])
     rows.append(['Implied value per share (EGP)', n2(answer)])
-    made = (ev_or_earn + DCF['net_cash'] - IN['nci']) / SH
-    assert abs(made - answer) < 0.01, (
-        'the %s lens does not reproduce from its own printed rows: %.2f vs %.2f'
-        % (first_label, made, answer))
+    waterfall(ev_or_earn,
+              [('Plus net cash', DCF['net_cash']),
+               ('Less non-controlling interests', IN['nci']),
+               ('Divided by shares in issue', SH)],
+              answer, dp=2, what=first_label)
     return rows
 
 
