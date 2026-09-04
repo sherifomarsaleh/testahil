@@ -934,11 +934,20 @@ H2("Percentile map (Egyptian pounds a share)")
 rows = [["Percentile", f"One month, to {M1['grade_date']}", f"Three months, to {M3['grade_date']}"]]
 for p in ('p5', 'p25', 'p50', 'p75', 'p95'):
     rows.append([p.upper().replace('P', 'Percentile '), E2(M1['pct'][p]), E2(M3['pct'][p])])
-rows.append(["Probability the price ends above today's", PC(M1['p_above']), PC(M3['p_above'])])
+# "TODAY'S" IS AMBIGUOUS AND WAS THE WRONG PRICE. The probability is the share of paths
+# finishing above the price the cone was STRUCK at, which is the close of 2026-08-06, not
+# the valuation anchor a month later; a reader taking "today's" for the masthead price got
+# a figure measured against something else. The row now names the price and its date.
+_SK = json.load(open(os.path.join(HERE, 'strike_result.json')))
+rows.append(["Probability the price ends above EGP %s, the close it was struck at on %s"
+             % (E2(_SK['spot']), _SK['anchor_date']),
+             PC(M1['p_above']), PC(M3['p_above'])])
 table(rows, [2.4, 2.25, 2.25], size=8.9, band_rows={6})
 caption("{T}.  The map says where the price may end. It is not a forecast of where it "
         "will end, and the probability in the last row is the share of paths finishing "
-        "above the anchor, not a claim about direction.")
+        "above the anchor, not a claim about direction. THE ANCHOR IS NOT THE VALUATION "
+        "PRICE: the cone is struck on the price history and the valuation on the latest "
+        "close, and they are a month apart here — two clocks, both dated, never mixed.")
 figure('fig12_dist1m.png', 6.6,
        f"{{F}}.  The shape of the distribution at one month, to {M1['grade_date']}.")
 figure('fig13_dist3m.png', 6.6,
