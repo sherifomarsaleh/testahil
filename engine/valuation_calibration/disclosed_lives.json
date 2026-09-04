@@ -161,8 +161,59 @@
    "what_is_actually_still_missing": "The fleet composition IS held by class — owned tankers HS 2, MR 16, LR1 9, LR2 17, VLCC 8 at FY2026 — so a capacity-times-price base is constructible in shape, the same shape ARCC and Fertiglobe use. WHAT IS NOT HELD is a per-class replacement price for the classes other than the very large crude carrier: MR, LR1, LR2 and handysize, plus the gas and offshore fleets. The sale price is a NINE-YEAR-OLD ship's secondhand value and the acquisition is a blend across two classes with two newbuildings inside it, so neither is a newbuild price per class and neither may be spread across the fleet. THAT is the gap, and it is one research step rather than an absent market.",
    "replacement_price_search_04-09-2026": {
     "why": "the route was run rather than left as a named gap, so the next pass starts from what it returned instead of repeating it",
-    "what_came_back": "THE ROUTE WORKS AND THREE OF THE FIVE TANKER CLASSES NOW HAVE A PRICE, each from a named party on a named date rather than from a market summary, and TWO OF THE THREE ARE VERIFIED AGAINST THE PRIMARY RELEASE:\n  MR   USD 45.0mn per vessel — Scorpio Tankers, announced 6 November 2025; four newbuildings at Jingjiang Nanyang Shipbuilding, delivering Q2/Q3 2026 and Q1/Q2 2027. VERIFIED: read from the release, which states the figure in those words.\n  LR2  USD 70.8mn per vessel — Scorpio Tankers, announced 16 December 2025; two scrubber-fitted newbuildings at Dalian Shipbuilding Industry, delivering Q3 2027. VERIFIED against the release.\n  VLCC about USD 130mn newbuilding contract, a five-year-old about USD 151mn, a twenty-year-old about USD 71.1mn (Breakwave Advisors, \"Tanker 1H 2026\", 2 September 2026). A MARKET COMMENTARY RATHER THAN A TRANSACTION, and weaker evidence than the two above — the difference is written down rather than smoothed over.\nA separate result quotes two 115,000 dwt LR2 newbuilding RESALES at about USD 66.5mn each; a resale is not a newbuild contract and the two are not the same quantity, so it is recorded as the different thing it is rather than averaged in.\nNOTE THE SCRUBBER: the verified LR2 is scrubber-fitted and the verified MR is not stated to be, so the two are not on identical specifications. Whether that matters for a replacement-cost base is the rebuild's judgement, and it is flagged rather than quietly ignored.",
-    "what_is_still_missing": "LR1 (9 owned) and handysize (2) have NO price, and neither the gas fleet nor the offshore fleet is covered. NEGATIVE SEARCH, ACTUALLY RUN on 4 September 2026: a search for a 2026 LR1 / Panamax newbuilding contract price returned no transaction from a named party — the closest was a Panamax shipyard valuation of about USD 61.5mn dated September 2024, a different vintage and a weaker source, and trade coverage pointing to broker services (Xclusiv, Gibson, Banchero Costa) this desk does not hold. Recorded as a negative result because a negative search is a search somebody RAN, and inventing one to clear a coverage check is worse than the gap it clears.",
+    "what_came_back": {
+     "_grading": "THREE TIERS, AND THEY ARE NOT INTERCHANGEABLE. A price READ FROM THE PRIMARY RELEASE of a named party on a named date is evidence; a market commentary is weaker; a figure of an older vintage is weaker again. Every entry says which it is, because presenting them as equals is the defect L-289 was registered about.",
+     "verified_newbuilding_contracts": [
+      {
+       "klass": "MR",
+       "usd_mn_per_vessel": 45.0,
+       "source": "Scorpio Tankers, announcement of 6 November 2025 — four newbuildings at Jingjiang Nanyang Shipbuilding, delivering Q2/Q3 2026 and Q1/Q2 2027",
+       "scrubber": "not stated"
+      },
+      {
+       "klass": "LR2",
+       "usd_mn_per_vessel": 70.8,
+       "source": "Scorpio Tankers, announcement of 16 December 2025 — two newbuildings at Dalian Shipbuilding Industry, delivering Q3 2027",
+       "scrubber": "yes"
+      },
+      {
+       "klass": "VLCC",
+       "usd_mn_per_vessel": 136.0,
+       "source": "Frontline, announcement of 8 January 2026 — NINE latest-generation ECO VLCC newbuilding contracts acquired for an aggregate USD 1,224.0mn, six at Hengli and three at Dalian, seven delivering from Q3 2026 and the last two in 2027. The per-vessel figure is the aggregate over nine and is arithmetic on the released total, not a separately stated price",
+       "scrubber": "yes"
+      },
+      {
+       "klass": "VLGC (90,000 cbm)",
+       "usd_mn_per_vessel": 115.0,
+       "source": "Dorian LPG, announcement of 23 June 2026 — one 90,000 cbm VLGC at HD Hyundai for July 2029 delivery, stated as \"approximately $115 million\"",
+       "scrubber": "n/a"
+      }
+     ],
+     "verified_secondhand_reference_points": [
+      {
+       "klass": "VLCC, 2015-16 built",
+       "usd_mn_per_vessel": 103.9,
+       "source": "Frontline, same 8 January 2026 release — eight vessels sold for a stated USD 831.5mn; the per-vessel figure is arithmetic on that total"
+      },
+      {
+       "klass": "VLGC, 2014-15 built",
+       "usd_mn_per_vessel": 85.3,
+       "source": "Dorian LPG, same 23 June 2026 release — three vessels for \"aggregate proceeds of approximately $256 million\"; individual prices are NOT disclosed, so the per-vessel figure is an average and not a price"
+      }
+     ],
+     "commentary_only_weaker": [
+      {
+       "klass": "VLCC",
+       "note": "newbuilding contract about USD 130mn, a five-year-old about USD 151mn, a twenty-year-old about USD 71.1mn — Breakwave Advisors, \"Tanker 1H 2026\", 2 September 2026. Consistent with the verified Frontline figure, which is why it is kept as corroboration rather than as evidence"
+      },
+      {
+       "klass": "offshore",
+       "note": "PSV about USD 53.6mn at 4,500 dwt, a medium PSV about USD 29.1mn at 3,200 dwt, a large anchor-handling tug supply about USD 63.6mn, a 100m construction support vessel about USD 87.8mn — trade coverage, and the figures carry a 2024 vintage rather than 2026. Too weak to build on and recorded so the next pass does not re-run the same search"
+      }
+     ],
+     "not_found": "LR1 (9 owned) and HANDYSIZE (2) have no price from any tier, and JACK-UP BARGES have none either. NEGATIVE SEARCHES ACTUALLY RUN on 4 September 2026: the LR1 / Panamax search returned no 2026 transaction from a named party — the closest was a Panamax shipyard valuation of about USD 61.5mn dated September 2024 — and the jack-up search returned brokerage listings rather than a contracted price. Both point at broker services this desk does not hold. Recorded because a negative search is a search somebody RAN, and inventing one to clear a coverage check is worse than the gap it clears."
+    },
+    "what_is_still_missing": "Four of the fleet's main classes now have a verified contracted price and two more have a verified secondhand reference, which is enough to see the shape of a base and NOT enough to build one: LR1 and handysize are unpriced among the tankers, and the offshore fleet rests on 2024 trade figures. A base built on the priced classes with the rest inferred is this desk choosing, which is exactly what the disclosed-life rule forbids in the neighbouring quantity.",
     "NOT_INPUTS": "NONE OF THE ABOVE IS COMMITTED AS A STUDY INPUT and it must not be read as one. A peer's contracted newbuild price is INDUSTRY-ring evidence and is exactly what SIGCM clause 5 puts competitors in the study for, the same way the cement studies cite an industry band for replacement cost per tonne of capacity — but it enters through the study's OWN sweep, as a four-field input naming the release and its date, and that is the rebuild's work. ONE FIGURE HERE IS VERIFIED AGAINST ITS PRIMARY RELEASE AND TWO ARE NOT, and the difference is written down rather than smoothed over."
    }
   },
