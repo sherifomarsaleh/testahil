@@ -74,8 +74,14 @@ def figure_scripts():
 
 def audit():
     """(ran, unrunnable, findings) over every study figure script."""
-    runner = os.path.join(ROOT, 'engine', 'build_depth_audit', '_figure_guard_runner.py')
-    os.makedirs(os.path.dirname(runner), exist_ok=True)
+    # THE RUNNER GOES IN A TEMP DIRECTORY, NOT IN THE REPOSITORY. A first version wrote it
+    # into engine/build_depth_audit/ and removed it at the end — which works until the run
+    # is killed, and then a scratch file is stranded in a committed directory where the
+    # next person finds it and wonders what wrote it. A gate should leave no trace of
+    # itself in the work it checks.
+    import tempfile
+    _tmp = tempfile.mkdtemp(prefix='figguard')
+    runner = os.path.join(_tmp, 'runner.py')
     open(runner, 'w').write(RUNNER)
     ran, unrunnable, bad = 0, [], {}
     for f in figure_scripts():
@@ -98,10 +104,8 @@ def audit():
         found = json.loads(err.split('@@FINDINGS@@', 1)[1].splitlines()[0])
         if found:
             bad[rel] = found
-    try:
-        os.remove(runner)
-    except OSError:
-        pass
+    import shutil
+    shutil.rmtree(_tmp, ignore_errors=True)
     return ran, unrunnable, bad
 
 

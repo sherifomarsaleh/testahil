@@ -243,9 +243,17 @@ rows.append(["EQUITY VALUE", E(BASE['bridge']['equity']), E(HALT['bridge']['equi
 rows.append(["VALUE PER SHARE (EGP)", E2(BASE['bridge']['per_share']),
              E2(HALT['bridge']['per_share'])])
 table(rows, [3.0, 1.95, 1.95], size=8.9, band_rows={3, 4, 8, 9})
-caption("{T}.  Net debt is larger than the enterprise value the cash flows support in "
-        "the carried-through column. That is why the equity value there is negative, and it "
-        "is stated rather than clipped to zero.")
+# THE CAPTION DESCRIBED AN EARLIER EDITION'S NUMBERS AND ITS OWN TABLE REFUTED IT. It
+# said net debt was LARGER than the enterprise value and that the equity was therefore
+# NEGATIVE, three rows under a table showing an enterprise value of EGP 11,085mn against
+# net debt of EGP 10,032mn and an equity of +4,591mn. It is computed now, from the same
+# two figures the table prints, so it cannot describe a bridge this study is not showing.
+_ev, _nd = BASE['bridge']['ev'], abs(BASE['bridge']['net_debt'])
+caption("{T}.  Net debt of EGP %s million stands against an enterprise value of EGP %s "
+        "million that the cash flows support, so the equity in the carried-through column "
+        "is the %s residual between two large numbers — which is why it moves so violently "
+        "on any change to either. It is stated rather than clipped."
+        % (E(_nd), E(_ev), 'thin' if _ev - _nd < 0.25 * _ev else 'narrow'))
 figure('fig2_bridge.png', 6.9, "{F}.  The bridge, carried-through case.")
 
 # THE HEADING, THE CAPTION AND THE LADDER ANNOTATION ALL DESCRIBED A NEGATIVE
@@ -291,13 +299,22 @@ for w, note in [(0.2500, "roughly the rate this study builds from the sovereign'
     rows.append([PC(w), E2(FLAT[f"{w:.4f}"]), note])
 rows.append([PC(DR['implied_wacc_base']), E2(SPOT),
              "the rate the traded price itself implies"])
-table(rows, [1.5, 1.8, 3.6], size=8.5, band_rows={3, 7}, text_cols=(2,))
-caption(f"{{T}}.  Every row is a full re-run. The sign of the answer turns at about "
-        f"eighteen per cent — five points below what Egypt's own government pays to borrow "
-        f"for ten years. Reaching the traded price needs about "
+# THE CAPTION AND THE BANDED ROW BOTH DESCRIBED A MODEL THIS STUDY NO LONGER PUBLISHES.
+# It said "the sign of the answer turns at about eighteen per cent" and banded that row,
+# under a table whose every value is POSITIVE — 0.75 at 25% rising to 12.57 at 12%. There
+# is no sign change anywhere in it. That sentence and the 18% band belong to an earlier
+# edition whose equity went negative at high rates, the same edition the bridge caption
+# above was still describing. The band now marks the row that is actually the point, and
+# the caption is computed from the ladder's own ends.
+_lo_w, _hi_w = min(FLAT, key=float), max(FLAT, key=float)
+table(rows, [1.5, 1.8, 3.6], size=8.5, band_rows={7}, text_cols=(2,))
+caption(f"{{T}}.  Every row is a full re-run. The answer stays positive across the whole "
+        f"ladder and rises from EGP {E2(FLAT[_hi_w])} at {PC(float(_hi_w))} to EGP "
+        f"{E2(FLAT[_lo_w])} at {PC(float(_lo_w))}; what moves is how far below the price "
+        f"it sits. Reaching the traded price needs about "
         f"{PC(DR['implied_wacc_base'])}, which is {PC(V('rf_observed') - DR['implied_wacc_base'])} "
-        f"below the sovereign. That, and not the capital programme, is the disagreement "
-        f"between this study and the market.")
+        f"below what Egypt's own government pays to borrow for ten years. That, and not "
+        f"the capital programme, is the disagreement between this study and the market.")
 
 H2("1.2  Book value and sustainable return — the asset lens")
 B = LN['book']
