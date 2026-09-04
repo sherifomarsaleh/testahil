@@ -1,6 +1,9 @@
 """ADNOCLS_Valuation_Study_09-08-2026_public.docx — python-docx builder, house style.
 
 Reads study_numbers.json exclusively: no financial numeral is typed into this file."""
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+from table_residual import signed_column   # the shared check, not hand-rolled
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -905,7 +908,12 @@ rows = [hdr,
          '× (1 − t)'] + [m0(x) for x in F['nopat']],
         ['Add back depreciation and amortisation'] + [m0(x) for x in F['dna']],
         ['Less capital expenditure'] + [neg(m0(x)) for x in F['capex']],
-        ['Less change in working capital'] +
+        # ONE SIGN CONVENTION, AND THE OPERATOR WORD COMES OFF THE ROW THAT BREAKS IT.
+        # This table prints deductions in parentheses, which is unambiguous — and this
+        # line printed a bare positive in a year working capital RELEASES, under a label
+        # reading "Less change in working capital". A reader following the labels took
+        # the release off instead of adding it. The brackets stay; the word goes.
+        ['Movement in working capital — a release adds, a build subtracts'] +
         [neg(m0(x)) if x >= 0 else m0(-x) for x in F['dnwc']],
         ['Free cash flow to the firm'] + [m0(x) for x in F['fcff']],
         ['Less the first quarter already inside the balance sheet'] +
@@ -914,6 +922,10 @@ rows = [hdr,
         ['Cost of capital that year'] + [pc(x, 2) for x in DCF['glide']],
         ['Discount factor'] + [f"{x:.4f}" for x in DCF['df']],
         ['Present value of free cash flow'] + [m0(x) for x in DCF['pv']]]
+for _i in range(len(F['fcff'])):
+    signed_column([F['nopat'][_i], F['dna'][_i], -F['capex'][_i],
+                   -F['dnwc'][_i]], F['fcff'][_i], dp=0,
+                  what='the cash-flow waterfall, year %d' % (_i + 1))
 table(rows, [2.20, 0.96, 0.96, 0.96, 0.96, 0.96], size=8.3, band_rows={12, 17})
 caption(f"Every line is computed, not typed. The waterfall runs earnings before interest, "
         f"tax, depreciation and amortisation → depreciation and amortisation → "

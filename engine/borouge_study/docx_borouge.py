@@ -4,6 +4,9 @@ Every financial numeral in this document is read from study_numbers.json, techni
 strike_result.json, backtest_5y.json or beta_result.json. No figure is typed into this
 builder — the traceability check in qc_checks.py enforces that.
 """
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), '..'))
+from table_residual import signed_column   # the shared check, not hand-rolled
 import json
 import os
 import sys
@@ -285,6 +288,11 @@ P(f'The realisation residual is the bridge from a published benchmark to the com
   f'three-year mean, not the half-year, because the widening is an artefact of a closed '
   f'shipping lane rather than a durable improvement in what customers will pay.')
 rows = [['USD million', '2026', '2027', '2028', '2029', '2030']]
+# ONE SIGN CONVENTION. Every deduction here printed a POSITIVE MAGNITUDE under "Less"
+# while the working-capital line printed a SIGNED value under the same word — and that row
+# switches between adjacent years, 24.5 in one and -8.1 in the next, which no reader can
+# get right. The magnitudes stay for the cost stack, which never changes sign; the
+# working-capital line is the signed cash effect and says so in its own label.
 for key, label in [('revenue', 'Revenue'), ('feedstock', 'Less: feedstock'),
                    ('othprod', 'Less: other production cost'),
                    ('sd', 'Less: selling and distribution'),
@@ -294,13 +302,18 @@ for key, label in [('revenue', 'Revenue'), ('feedstock', 'Less: feedstock'),
                    ('nopat', 'NOPAT (EBIT after tax)'),
                    ('da2', 'Add back: depreciation and amortisation'),
                    ('capex', 'Less: capital expenditure'),
-                   ('d_nwc', 'Less: increase in working capital'),
+                   ('d_nwc', 'Movement in working capital — a release adds, '
+                             'a build subtracts'),
                    ('fcff', 'Free cash flow to the firm'),
                    ('discount_factor', 'Discount factor'),
                    ('pv_fcff', 'Present value of free cash flow')]:
     src = 'da' if key == 'da2' else key
     dp = 4 if key == 'discount_factor' else (1 if key == 'd_nwc' else 0)
-    rows.append([label] + [m(r[src], dp) for r in FN['rows']])
+    sgn = -1.0 if key == 'd_nwc' else 1.0
+    rows.append([label] + [m(sgn * r[src], dp) for r in FN['rows']])
+for _r in FN['rows']:
+    signed_column([_r['nopat'], _r['da'], -_r['capex'], -_r['d_nwc']],
+                  _r['fcff'], dp=0, what='the cash-flow waterfall')
 table(rows, [2.40, 0.86, 0.86, 0.86, 0.86, 0.86], size=8.6,
       band_rows={7, 14, 16})
 caption('Table 3 — The full free-cash-flow waterfall on the central construction, in the '
@@ -1052,7 +1065,9 @@ for label, v in [
     ('Mid-forecast revenue (USD m)', m(FN['rows'][2]['revenue'])),
     ('Mid-forecast EBITDA (USD m)', m(FN['rows'][2]['ebitda'])),
     ('Implied EBITDA margin', pc(FN['rows'][2]['ebitda_margin'])),
-    ('Less depreciation (USD m)', m(FN['rows'][2]['da'])),
+    # one convention in this table too: the net-debt line below is bracketed, so
+    # this deduction is bracketed rather than left as a bare positive
+    ('Less depreciation (USD m)', '(' + m(FN['rows'][2]['da']) + ')'),
     ('EBIT (USD m)', m(FN['rows'][2]['ebit'])),
     (f'NOPAT after {pc(W["tax"])} tax (USD m)', m(FN['rows'][2]['nopat'])),
     ('Free cash flow to the firm (USD m)', m(FN['rows'][2]['fcff'])),

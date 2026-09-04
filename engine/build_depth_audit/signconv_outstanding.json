@@ -1,12 +1,5 @@
 {
  "rule": "R-ENF-01 / one sign convention per table",
  "note": "Studies whose delivered tables print deductions in more than one sign convention. May only ever SHORTEN. Each closes at its study's next re-issue.",
- "outstanding": [
-  "ADNOCDIST",
-  "ADNOCLS",
-  "AIRARABIA",
-  "BOROUGE",
-  "DU",
-  "FERTIGLOBE"
- ]
+ "outstanding": []
 }
