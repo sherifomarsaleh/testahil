@@ -18,6 +18,7 @@ other.
 
 Every number is read from study_numbers.json / case_adversarial.json — nothing is retyped.
 """
+import datetime as _dt
 import json
 import os
 
@@ -155,17 +156,33 @@ fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig5_spread.png'), dpi=170)
 # ---- fig 6: the price cone ---------------------------------------------------
 fig, ax = plt.subplots(figsize=(7.4, 2.8))
 STK = D['strike']
+# THE FAN STARTS WHERE THE CONE WAS STRUCK, NOT WHERE THE SHARE TRADES TODAY. Every
+# percentile line began at SPOT — the valuation's 13.50, struck on 2026-09-03 — and
+# converged on percentiles simulated from the 2026-08-06 close of 9.10, under an x-axis
+# tick reading "anchor 06-Aug-26". So the cone visibly began 48% above the price it was
+# actually anchored at, at a point the chart labelled the anchor. Section 3 of this study
+# says in capitals "READ THIS SECTION AGAINST EGP 9.10, NOT AGAINST THE PRICE ON THE
+# MASTHEAD", and the picture beneath it did the opposite.
+ANCHOR = STK['spot']
 h1, h3 = STK['horizons']['1M'], STK['horizons']['3M']
 xs = [0, 1, 3]
 for q in ['p5', 'p25', 'p50', 'p75', 'p95']:
-    ys = [SPOT, h1['pct'][q], h3['pct'][q]]
+    ys = [ANCHOR, h1['pct'][q], h3['pct'][q]]
     ax.plot(xs, ys, color=INK, lw=0.9 if q != 'p50' else 1.6,
             ls='-' if q == 'p50' else ':')
     ax.text(3.05, ys[-1], f"{q} {ys[-1]:.2f}", fontsize=7.6, va='center')
-ax.fill_between(xs, [SPOT, h1['pct']['p5'], h3['pct']['p5']],
-                [SPOT, h1['pct']['p95'], h3['pct']['p95']], color=PANEL, alpha=0.6)
+ax.fill_between(xs, [ANCHOR, h1['pct']['p5'], h3['pct']['p5']],
+                [ANCHOR, h1['pct']['p95'], h3['pct']['p95']], color=PANEL, alpha=0.6)
 ax.axhline(C, color=GOLD, lw=1.4); ax.text(0.05, C - 0.32, f'fair value {C:.2f}', color='#896F36', fontsize=8)
-ax.set_xticks(xs); ax.set_xticklabels(['anchor\n06-Aug-26', '1 month', '3 months'], fontsize=8)
+ax.set_xticks(xs)
+# THE ANCHOR DATE WAS TYPED. It is read from the strike record now, so a re-strike moves
+# the label with the number rather than leaving the two to drift apart.
+_ad = _dt.datetime.strptime(STK['anchor_date'], '%Y-%m-%d').strftime('%d-%b-%y')
+ax.set_xticklabels([f'anchor {ANCHOR:.2f}\n{_ad}', '1 month', '3 months'], fontsize=8)
+# and the price the study is struck against, marked as the SEPARATE thing it is
+ax.axhline(SPOT, color=RED, lw=1.0, ls=':')
+ax.text(3.05, SPOT, f'  price {SPOT:.2f}', color=RED, fontsize=7.6, va='center',
+        bbox=dict(boxstyle='square,pad=0.1', fc='white', ec='none'), zorder=4)
 ax.set_ylabel('EGP'); ax.set_xlim(-0.1, 3.7)
 ax.spines[['top', 'right']].set_visible(False)
 fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig6_cone.png'), dpi=170)

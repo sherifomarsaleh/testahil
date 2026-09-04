@@ -850,7 +850,12 @@ P(f'READ THIS SECTION AGAINST EGP {p2(STK["spot"])}, NOT AGAINST THE PRICE ON TH
   f'a fresh price history moves the simulation without re-striking the valuation. '
   f'Every percentile and every probability in this section is measured against EGP '
   f'{p2(STK["spot"])}.')
-table([['Horizon', 'p5', 'p25', 'median', 'p75', 'p95', 'P(above today)', 'Grade date'],
+# "TODAY" IS THE WRONG PRICE AND THIS SECTION SAYS SO IN CAPITALS FOUR LINES ABOVE.
+# The probability is the share of paths finishing above the price the cone was STRUCK
+# at, which is the 2026-08-06 close, not the masthead's later one. ARCC's edition of
+# the same week names the price in this header; this one said "today".
+table([['Horizon', 'p5', 'p25', 'median', 'p75', 'p95',
+        'P(above %.2f)' % STK['spot'], 'Grade date'],
        ['1 month', *[p2(H1M['pct'][k]) for k in ('p5', 'p25', 'p50', 'p75', 'p95')],
         pc(H1M['p_above']), H1M['grade_date']],
        ['3 months', *[p2(H3M['pct'][k]) for k in ('p5', 'p25', 'p50', 'p75', 'p95')],
