@@ -46,6 +46,36 @@ import macro_path as MP                                                # noqa: E
 MARKET = {'EGX': 'EG', 'EG': 'EG', 'TADAWUL': 'SA', 'SA': 'SA', 'ADX': 'AE', 'DFM': 'AE',
           'AE': 'AE', 'QSE': 'QA', 'QA': 'QA', 'NSE': 'IN', 'IN': 'IN', 'KRX': 'KR',
           'KR': 'KR', 'NASDAQ': 'US', 'US': 'US'}
+# An exchange written out in words is still that exchange. The match is on the WHOLE
+# recognised name and the resolution must be UNAMBIGUOUS — exactly one key may match —
+# because a substring rule that resolves two markets at once is worse than an absence
+# [R-ENF-04]. It does NOT guess from a currency: a market is added by sourcing its path,
+# never by inference from something that correlates with it.
+SPELLED = {'DUBAI FINANCIAL MARKET': 'AE', 'ABU DHABI SECURITIES EXCHANGE': 'AE',
+           'THE EGYPTIAN EXCHANGE': 'EG', 'EGYPTIAN EXCHANGE': 'EG',
+           'SAUDI EXCHANGE': 'SA', 'QATAR STOCK EXCHANGE': 'QA'}
+
+
+def _resolve_market(raw):
+    """The house path key a study's recorded market resolves to, or None.
+
+    A SHORT CODE MATCHES AS A WHOLE TOKEN AND NOTHING ELSE. The first draft matched
+    codes as bare substrings and 'AE (Dubai Financial Market)' resolved AMBIGUOUSLY —
+    'IN' sits inside 'FINANCIAL' — so a study naming its exchange in words was refused
+    for a collision that is a fact about English rather than about the market. Refusing
+    ambiguity is right; two-letter codes matching inside words is not ambiguity, it is a
+    bad matcher. Spelled names match as phrases, where a collision would be real.
+    """
+    if raw is None:
+        return None
+    t = str(raw).upper()
+    direct = MARKET.get(t)
+    if direct:
+        return direct
+    tokens = set(re.findall(r'[A-Z]+', t))
+    hits = {v for k, v in MARKET.items() if k in tokens}
+    hits |= {v for k, v in SPELLED.items() if k in t}
+    return hits.pop() if len(hits) == 1 else None
 
 
 def terminal_inflation(mkt):
@@ -68,11 +98,49 @@ _REAL_IN_PROSE = re.compile(r'(\d+(?:\.\d+)?)\s*(?:pp|%|percentage points?|point
                             r'(?:in\s+)?real\b', re.I)
 
 
+def _terminal_growth(D):
+    """The terminal NOMINAL growth, wherever a study keeps it.
+
+    FOUR PLACES, AND THE ORDER MATTERS. A study that does the RIGHT thing under
+    [R-MACRO-01] — stores a REAL rate and DERIVES the nominal — stops carrying a
+    `g_term` input at all, and the first draft of this census read only `dcf.g` and
+    `inputs.g_term`. So conforming a study made it INVISIBLE to the instrument that
+    found the defect, which is the same shape as [L-299]: the unreadable bucket filling
+    up with the cases the measurement is about. A two-sided study keeps its frames under
+    `dcf` and has no `dcf.g` either.
+    """
+    dcf = D.get('dcf') or {}
+    g = dcf.get('g')
+    if isinstance(g, (int, float)):
+        return g
+    # a two-sided answer: the frames share one terminal growth by construction
+    for v in dcf.values():
+        if isinstance(v, dict):
+            tr = (v.get('terminal_record') or {}).get('inputs') or {}
+            if isinstance(tr.get('nominal_growth'), (int, float)):
+                return tr['nominal_growth']
+    for src, key in ((D.get('derived') or {}, 'g_term'),
+                     ((D.get('macro_record') or {}).get('terminal') or {}, 'g_nominal')):
+        if isinstance(src.get(key), (int, float)):
+            return src[key]
+    rec = (D.get('inputs') or {}).get('g_term') or {}
+    v = rec.get('value') if isinstance(rec, dict) else None
+    return v if isinstance(v, (int, float)) else None
+
+
+
 def _how_stated(D, real):
     """'stored' | 'prose' | 'silent' — and prose only counts if the figure AGREES."""
     I = D.get('inputs') or {}
     if any(k in I for k in REAL_KEYS):
         return 'stored'
+    # a study that DERIVES its nominal from a stored real rate keeps the pair in its
+    # derived block or its macro record; that is the shape [R-MACRO-01] asks for and it
+    # must not read as silence
+    for src, key in ((D.get('derived') or {}, 'g_term_real'),
+                     ((D.get('macro_record') or {}).get('terminal') or {}, 'real')):
+        if isinstance(src.get(key), (int, float)):
+            return 'stored'
     just = str(((I.get('g_term') or {}).get('source')) or '')
     for m in _REAL_IN_PROSE.finditer(just):
         try:
@@ -104,16 +172,12 @@ def main():
         except Exception as e:
             unread.append((tk, 'numbers file will not parse: %s' % e))
             continue
-        g = (D.get('dcf') or {}).get('g')
-        if g is None:
-            I = D.get('inputs') or {}
-            rec = I.get('g_term') or {}
-            g = rec.get('value') if isinstance(rec, dict) else None
+        g = _terminal_growth(D)
         if not isinstance(g, (int, float)):
             unread.append((tk, 'exposes no terminal growth rate'))
             continue
         mkt_raw = (D.get('meta') or {}).get('market')
-        mkt = MARKET.get(str(mkt_raw).upper())
+        mkt = _resolve_market(mkt_raw)
         if not mkt:
             unresolved.append((tk, 'market %r does not resolve to a house path' % mkt_raw))
             continue

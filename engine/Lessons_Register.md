@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**223 lessons**, of which 191 bind on every study, 25 on a class of company, and 7 on a single name.
+**224 lessons**, of which 192 bind on every study, 25 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 148 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 149 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1988,6 +1988,16 @@ Insert a row into a workbook and every check naming a cell below it goes on read
 > **What it cost, or how we know.** Three instances in one afternoon. A terminal-growth census asked only whether a REAL-GROWTH INPUT KEY existed and printed 'not stated' for every study without one — false of a study whose own justification said 'about 0.5pp real' in as many words; re-pointed to three states, because a SILENT study owes a disclosure and a PROSE-ONLY one owes the arithmetic moved into its register. A lens-design gate matched macro dials against a driver field that named them only to say they were HELD; a regex cutting the text at a holding word was tried and BACKED OUT (the dial usually precedes the verb), and what shipped instead was a sharper message naming the field the sentence belongs in. And an artefact-currency gate refused a row map because a field called 'central' held the integer 8 — correct on the name it was given, and a naming defect before it was a gate problem.
 
 > **What would overturn it.** A check whose false positives are as cheap to resolve as its true positives — where firing on correct work costs only a glance, the message matters less.
+
+### L-303 · CONFORMING A STUDY TO A RULE MADE IT INVISIBLE TO THE INSTRUMENT THAT MEASURES THAT RULE, because the instrument read the shape the DEFECT takes and the correction changes the shape.
+
+A census looks for a quantity where studies keep it, and studies keep it there BECAUSE THEY HAVE NOT BEEN CORRECTED YET. Fix one and the quantity moves — into a derived block, into a record, under a frame — and the census reports the conforming study as UNREADABLE. The direction of the error is the dangerous part: the instrument's readable population drifts toward the names still carrying the defect, so the measured rate looks WORSE than the book while the unreadable bucket quietly fills with the successes. It is [L-299] inverted — there the bucket collected the worst cases, here it collects the best — and both say the same thing, that an unreadable bucket is never a random sample.
+
+**Applies to:** every study  ·  *Learned from:* found while building, terminal_growth_census.py, 04-Sep-2026
+
+> **What it cost, or how we know.** The census read a study's terminal growth from `dcf.g` or from a `g_term` input. A study that does the RIGHT thing under the house macro path stores a REAL rate and DERIVES the nominal, so it carries no `g_term` at all — and the first study corrected that way promptly vanished from the census that had found the defect. Re-pointed to read four places in order, including a two-sided study's frames, the readable population went from 10 of 24 to 15, and NINE of those turned out to be already conforming at exactly zero real growth. THE BOOK WAS IN BETTER SHAPE THAN THE INSTRUMENT SAID, which is the less common direction and no more comfortable. A second re-pointing in the same pass: a market written as 'AE (Dubai Financial Market)' resolved ambiguously because 'IN' is a substring of 'FINANCIAL' — refusing ambiguity was right and two-letter codes matching inside words is not ambiguity, it is a bad matcher.
+
+> **What would overturn it.** A census whose readable population does not change when a study is corrected — which is what a measurement keyed on a quantity rather than on its storage looks like, and is what this one now aims at.
 
 
 ---
