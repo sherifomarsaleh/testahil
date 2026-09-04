@@ -1,15 +1,17 @@
 # RIYADHCABLE — gap review, 4 September 2026
 
-**AUDITED CENTRAL: 130.4249** — the cash-flow lens, SAR per share.
-**AUDITED GAP: +24.5%** against the latest known price, SAR 104.80 (3 September 2026),
+**AUDITED CENTRAL: 129.0832** — the cash-flow lens, SAR per share.
+**AUDITED GAP: +23.2%** against the latest known price, SAR 104.80 (3 September 2026),
 which is also the price this study was struck at on 18 August 2026 — the two are the same
 figure, so the review is not auditing a disagreement that has since moved.
 
 *Revised the same day. This review first audited a central of 127.9054 at +22.0% and
 recorded the terminal rebuild as one that could not be made honestly. That assessment was
-tested and it was wrong; the terminal is rebuilt, the central is 130.4249, and the TERMINAL
-heading below carries both the correction and the reasoning that failed, rather than the
-correction alone.*
+tested and it was wrong; the terminal is rebuilt and the TERMINAL heading below carries both
+the correction and the reasoning that failed, rather than the correction alone. It then took
+a second correction the same day — the age its maintenance charge rests on, measured off the
+notes rather than assumed — so the central is 129.0832 and the route is 127.9054 → 130.4249
+→ 129.0832, recorded lever by lever rather than reported as one number.*
 
 This fires the ABOVE-price half of the audit trigger, which is deliberately not matched by
 a publication block: the block is one-sided below the price, because the errors in a
@@ -208,24 +210,42 @@ market, where the same identity errs the other way. That is [R-TERM-01 clause tw
 as written, and it moves this answer **away** from the price, which is the only direction
 that shows the discipline is not fitting.
 
-### One reading that is deliberately not applied, and it runs against the value
+### The one reading that was recorded and not applied — now applied
 
 The construction escalates the book charge over **half** the life, as a proxy for the age of
 the average asset. On this issuer the age can be **measured** rather than assumed:
-accumulated depreciation over the year's charge is **23.17 years**, against the 17.88 that
-half a 35.76-year life implies. The base is older than uniform — which is the same fact as
-the fully-depreciated-and-still-in-use disclosure, seen from the other side.
+accumulated depreciation over the year's own charge is, under the straight-line method these
+accounts use, exactly the charge-weighted average age of the assets bearing that charge — an
+identity, not an estimate.
 
-On the measured age the escalator is 1.5824 rather than 1.4248, maintenance is **+11.0%**
-(190.3 → 211.4), and the answer falls **1.33%** to 128.69, taking the gap from +24.5% to
-+22.8%. **It is not applied**, because the half-life proxy is the sanctioned construction's
-own contract and replacing it inside one study is a rule change made in the wrong place. It
-is recorded here so that the direction is visible: **this terminal is the lighter of two
-defensible readings, not the heavier one**, and nothing about the correction above is
-conservative by accident.
+| | accumulated | the year's charge | age |
+|---|---:|---:|---:|
+| Property, plant and equipment (note 9) | 1,775,547,325 | 76,616,111 | 23.17 y |
+| Software (note 10) | 29,319,636 | 5,603,548 | 5.23 y |
+| **Charge-weighted** | **1,804,866,961** | **82,219,659** | **21.95 y** |
 
-**Found, applied, and worth +1.97%; one further reading found, priced at −1.33%, and left
-for the construction to decide rather than this study.**
+Against the **17.88** years half a 35.76-year life implies. The two legs differ sharply — an
+old plant and a young accounting system — and the blend is the point.
+
+The right-of-use note discloses balances *net* of depreciation and carries no accumulated
+column, so its 3.7% of the charge is left out of both sides. Those assets are new (the land
+lease was recognised in 2025), so excluding them **overstates** the age and therefore the
+charge, which is the conservative direction.
+
+**When this review was first written, this was recorded and NOT applied**, on the ground
+that replacing the shared construction's own proxy inside one study is a rule change made in
+the wrong place. That was right, and the answer was to make the change in the right place
+instead: the shared construction now takes a measured age where one is supplied and sourced,
+and says on its own record which of the two it used. So the reason for holding it is gone
+and it is applied here.
+
+It raises maintenance **8.4%** (190.3 → 206.3), takes the terminal to 24,616 and the central
+to **129.0832** — **−1.03%**, and toward the price rather than away from it. It is applied
+because it is the better measurement, not because of the direction it moves; the correction
+that preceded it moved the other way.
+
+**Found and applied: +1.97% from the construction, then −1.03% from measuring the age it
+rests on rather than assuming it. Net +0.92%, 127.9054 → 129.0832.**
 
 ## BALANCE SHEET
 
@@ -284,8 +304,8 @@ is one over the inflation rate. The cross-checks that disagree — a relative mu
 86.36 and a book floor at 94.68 — are published beside it at their own values and are not
 averaged into it.
 
-**And one thing is disclosed rather than left to be found:** the maintenance charge sits on
-the sanctioned half-life proxy, and this base is measurably older than that proxy assumes.
-The heavier reading is priced above at −1.33%. A reader who prefers it should read this
-study at roughly 128.7 rather than 130.4, and the disagreement with the market survives
-either way.
+**And the maintenance charge no longer rests on an assumption.** The construction escalates
+the book charge over the age of the base; this study now supplies the age its own notes
+measure — 21.95 years — rather than the 17.88 half a life implies. That is the smaller of
+the two corrections in this pass and it runs the other way, which is worth saying plainly:
+the two moves are +1.97% and −1.03%, and neither was chosen for its direction.

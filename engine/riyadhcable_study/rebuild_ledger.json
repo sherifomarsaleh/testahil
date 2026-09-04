@@ -23,18 +23,28 @@
    "why": "a typed nominal rate is unfalsifiable — nobody can tell whether 4% meant inflation plus two points or inflation minus one. Stored as +1.96% real on a 2.00% house terminal it recomputes to 4.00% to the basis point, so NOTHING MOVES and what a reader gains is sight of the claim: this business is assumed to grow about two per cent a year in real terms for ever",
    "evidence": "the study's own prior review argued this correction was coupled to the terminal and could not ship, on the ground that zeroing the real growth would leave a 4.2-point convergence gap. The rule requires a stated real growth to be written down, not zeroed; the gap is unchanged at 2.2 points",
    "move": 0.0
+  },
+  {
+   "name": "the age the maintenance charge rests on MEASURED off the notes rather than assumed at half the useful life",
+   "rule": "R-TERM-01",
+   "before": 130.4249,
+   "after": 129.0832,
+   "why": "the construction escalates the book charge to what replacement costs today over the AGE of the base, and half the useful life is that age only under uniform vintages. This base is not: an old plant and a young accounting system blend to 21.95 years against the 17.88 half a life implies. RECORDED AND NOT APPLIED WHEN THIS PASS WAS FIRST WRITTEN, on the correct ground that replacing the shared construction's own proxy inside one study is a rule change made in the wrong place — so the change was made in the right place instead, and the reason for holding it went with it. It moves the answer TOWARD the price, where the lever before it moved away; neither was chosen for its direction",
+   "evidence": "note 9 accumulated depreciation 1,775,547,325 over a charge of 76,616,111 = 23.17 years, note 10 amortisation 29,319,636 over 5,603,548 = 5.23 years, charge-weighted 21.95. Right-of-use excluded from both sides because its note discloses net balances only, and those assets are new, so excluding them overstates the age and the charge. Maintenance 190.3 -> 206.3 (+8.4%); terminal 24,919 -> 24,616; central 130.4249 -> 129.0832",
+   "move": -0.010287146089435373
   }
  ],
- "value": 130.4249,
- "cumulative_move": 0.019697955976114123,
+ "value": 129.0832,
+ "cumulative_move": 0.009208174135889147,
  "rules": {
   "R-TERM-01": {
    "levers": [
-    "terminal built through the sanctioned module on a life DERIVED by identity from notes 9, 10 and 13; the retired reinvestment identity reported, never used"
+    "terminal built through the sanctioned module on a life DERIVED by identity from notes 9, 10 and 13; the retired reinvestment identity reported, never used",
+    "the age the maintenance charge rests on MEASURED off the notes rather than assumed at half the useful life"
    ],
    "first_before": 127.90542457756496,
-   "last_after": 130.4249,
-   "move": 0.019697955976114123
+   "last_after": 129.0832,
+   "move": 0.009208174135889147
   },
   "R-MACRO-01": {
    "levers": [

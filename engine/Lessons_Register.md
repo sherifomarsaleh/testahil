@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**246 lessons**, of which 214 bind on every study, 25 on a class of company, and 7 on a single name.
+**248 lessons**, of which 216 bind on every study, 25 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 171 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 173 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2218,6 +2218,26 @@ A workbook builder here already wrote the rows it had put the headline figures o
 > **What it cost, or how we know.** xlsx_expected.json already carried anchors for ev, tv_share and dcf_ps; recalc.py named DCF!C41/C42/C51, driver_test.py named DCF!C51 and qc_gate.py named DCF!C42, all three beside it. The same QC gate typed '555 of 555 formula cells' against an actual 551 and '18 drivers' against 20, and named SWDY as the pattern this study follows three weeks after SWDY was removed from the reference set outright. All repointed to read what the build publishes, and the gate now asserts the reference set no longer contains the name it was quoting.
 
 > **What would overturn it.** A study whose builder does NOT publish a row map, where the honest fix is to make it publish one rather than to read a map that is not there.
+
+### L-326 · Half the useful life is an ASSUMPTION about the age of an asset base, and where the accounts give the age it should be read rather than assumed
+
+The sanctioned terminal charges capital maintenance as book depreciation escalated to current cost over HALF the useful life. That is the right identity under UNIFORM VINTAGES — book depreciation sits on historical cost, replacement costs (1+inflation)^age more, and on a base in steady state the average asset is half its life old. On a base that is not in steady state the proxy is simply wrong, AND THE ERROR SCALES WITH INFLATION, so it is nearly invisible in a pegged market and severe in a high-inflation one. The age is an IDENTITY the accounts already give: accumulated depreciation over the year's own charge is, under straight-line, exactly the charge-weighted average age — not an estimate, and slightly OVERSTATED where assets sit fully depreciated and still in use, which errs toward charging more. THE DIRECTION IS NOT UNIVERSAL, which is the whole reason it had to be measured rather than corrected: of three bases measured, one came out younger than uniform, one older, and one far younger. A single-signed correction applied to a book that splits both ways makes half of it worse.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EGCH terminal evidence and the terminal_value re-pointing, 4 September 2026
+
+> **What it cost, or how we know.** EGCH: depreciable gross cost EGP 17,020,830,289 over a charge of 771,213,489 implies a 22.07-year life, while accumulated depreciation of 3,435,299,807 over the same charge puts the average age at 4.45 YEARS against the 11.04 half the life assumes, with only 1.3% of the base fully depreciated. At Egypt's 7% terminal the escalators are 1.352 and 2.110 — the proxy over-charges by 56%, charges 144% of terminal profit and drives the equity negative on a company that has just built a new plant. RIYADHCABLE measures 23.17 against 17.88 (older); EMPOWER 10.11 against 14.05 (younger). engine/terminal_value.py now takes a MEASURED age where it is supplied and sourced, and the record says which of the two it used.
+
+> **What would overturn it.** A measurement across enough names showing the half-life proxy is unbiased in aggregate — which would make the measured age a refinement rather than a correction, though it would still be the better number on any single name.
+
+### L-327 · A module that refuses at build time is never seen by any gate, so its refusals need their own negative control
+
+Every ratcheted gate in this repository is negative-controlled, and the reasoning is standing: a check nobody has watched fail is not evidence. The shared terminal construction enforces itself differently — it RAISES, inside a study, before a number is committed — so the study it stops never reaches a gate and the gate's own negative control, which plants mutations in study directories, cannot reach it either. Nine refusal conditions had therefore never been watched to fire. The same argument applies to any shared module whose contract is enforced by an exception rather than by a build failure, and the clean cases matter as much as the refusals, because a module that refused everything would pass a control that only tested refusals.
+
+**Applies to:** every study  ·  *Learned from:* found while building, engine/terminal_value.py re-pointing, 4 September 2026
+
+> **What it cost, or how we know.** scripts/check_terminal_module_negative_control.py: 12 refusal conditions and 6 clean cases, plus an assertion that the half-of-life fallback still reproduces the pre-amendment charge exactly, so the re-pointing moves no committed answer. ITS OWN FIRST RUN CAUGHT A CASE WHOSE MUTATION DID NOT LAND: 'a terminal distributing more than it earns' was written as a huge book charge on a one-year life, and on that basis maintenance is the charge ESCALATED, so free cash flow can never rise above profit — the condition is only reachable where maintenance is supplied directly and is small against the add-back.
+
+> **What would overturn it.** A shared module whose every refusal is already reachable from a gate's own sandbox, where a separate control would be duplication rather than coverage.
 
 
 ---

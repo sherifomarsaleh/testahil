@@ -48,6 +48,30 @@ WHAT A TERMINAL COSTS, correctly. In a nominal steady state holding physical cap
     1). Two independent routes to this quantity agree on ARCC to within 3.9% — IC/30 gives
     1,706.4 and book D&A escalated over half an asset life gives 1,775.3 — which validates
     the replacement-cost base and the life together.
+
+    THE AGE IS MEASURED WHERE THE ACCOUNTS GIVE IT [re-pointed 4 September 2026]. The
+    `book_dna_escalated` basis escalates the book charge to current cost over the average
+    AGE of the assets carrying it, and half the useful life is only that age under UNIFORM
+    VINTAGES. Where a base is not in steady state the proxy is wrong, and the error scales
+    with inflation, so it is invisible in a pegged market and severe in a high-inflation
+    one. MEASURED ON EGCH: a depreciable gross cost of EGP 17.02bn against a charge of
+    771.2mn implies a 22.07-year life, while accumulated depreciation of 3.44bn over the
+    same charge puts the average age at 4.45 YEARS against the 11.04 half the life assumes
+    — the plant was rebuilt recently and only 1.3% of the base sits fully depreciated. At
+    Egypt's 7% terminal the two escalators are 1.352 and 2.110, so the proxy over-charges
+    maintenance by 56%, and on that name it charged 144% of terminal profit and drove the
+    equity negative. A company that has just built a new plant was being charged as though
+    the plant were eleven years old.
+
+    accumulated depreciation / the year's own charge IS the charge-weighted average age
+    under straight-line, exactly — it is an identity off the accounts, not an estimate, and
+    it is slightly OVERSTATED where assets sit fully depreciated and still in use, which
+    errs toward charging more. Supply it and it is used; leave it and half the life is used
+    and the record SAYS WHICH, so a reader can tell an assumption from a measurement.
+    Per [R-COC-01]: WHEN A CHECK FIRES ON WORK THAT IS RIGHT, RE-POINT IT — never widen it
+    and never move the number to satisfy it. The direction is not universal, which is the
+    whole reason it needed measuring rather than correcting: of the three bases measured,
+    one is younger than uniform, one older, and one far younger.
   * real growth capex is charged at the incremental capital the REAL growth needs, and only
     that. Zero real growth costs zero growth capex.
   * working capital grows with the price level, so pi x WC is a real cash cost of inflation
@@ -120,6 +144,15 @@ class TerminalInputs:
     ic_replacement: Optional[float] = None
     useful_life_years: Optional[float] = None
     useful_life_source: str = ''  # the accounting-policies note it came from
+    # THE AGE OF THE BASE, MEASURED RATHER THAN ASSUMED. `book_dna_escalated` escalates the
+    # book charge to current cost over the average age of the assets carrying it, and that
+    # age is an IDENTITY the accounts give: accumulated depreciation over the year's own
+    # charge is, under straight-line, exactly the charge-weighted average age. Supply it
+    # and it is used; leave it and half the useful life is used instead and SAID SO — see
+    # `maintenance_age_basis` on the record. Slightly overstated where assets sit fully
+    # depreciated and still in use, which errs toward charging more.
+    average_age_years: Optional[float] = None
+    average_age_source: str = ''  # the note the two figures were read from
     maintenance_basis: str = 'disclosed_life'
     maintenance_capex: Optional[float] = None   # where disclosed directly
     working_capital: float = 0.0
@@ -162,6 +195,7 @@ def build(i: TerminalInputs) -> Terminal:
             f'The list is closed so that a study cannot opt out by inventing a basis.')
 
     # --- capital maintenance, at CURRENT cost -----------------------------------------
+    age, age_basis = None, 'not_applicable'
     if i.maintenance_capex is not None:
         maint = float(i.maintenance_capex)
     elif i.maintenance_basis == 'disclosed_life':
@@ -176,9 +210,25 @@ def build(i: TerminalInputs) -> Terminal:
                 'disclosure behind it is a figure this desk does not use.')
         maint = i.ic_replacement / float(i.useful_life_years)
     elif i.maintenance_basis == 'book_dna_escalated':
-        if not i.useful_life_years:
-            raise TerminalRefused('escalating book D&A needs the life to escalate it over')
-        maint = i.dna_book * (1.0 + i.inflation) ** (float(i.useful_life_years) / 2.0)
+        if i.average_age_years is not None:
+            if not (0.0 <= float(i.average_age_years) < 200.0):
+                raise TerminalRefused(
+                    f'average age {i.average_age_years} is not an age')
+            if not i.average_age_source:
+                raise TerminalRefused(
+                    'the average age carries no source. It is an identity off the accounts '
+                    '— accumulated depreciation over the year\'s own charge — so name the '
+                    'note both figures were read from or do not supply it (SIGCM clause 1).')
+            age = float(i.average_age_years)
+            age_basis = 'measured'
+        else:
+            if not i.useful_life_years:
+                raise TerminalRefused(
+                    'escalating book D&A needs either the MEASURED average age of the base '
+                    'or a life to take half of')
+            age = float(i.useful_life_years) / 2.0
+            age_basis = 'half_of_life'
+        maint = i.dna_book * (1.0 + i.inflation) ** age
     else:
         raise TerminalRefused('disclosed_capex basis chosen but no maintenance_capex given')
 
@@ -224,7 +274,10 @@ def build(i: TerminalInputs) -> Terminal:
     t.record = dict(
         rule='R-TERM-01', inputs=asdict(i), fcff=fcff, tv=tv, floor=floor,
         tv_vs_floor=tv / floor - 1.0, nominal_growth=g, real_growth=i.real_growth,
-        maintenance=maint, growth_capex=growth_capex, wc_charge=wc_charge,
+        maintenance=maint, maintenance_age_years=age,
+        maintenance_age_basis=age_basis,
+        maintenance_escalator=((1.0 + i.inflation) ** age) if age is not None else None,
+        growth_capex=growth_capex, wc_charge=wc_charge,
         dna_addback=i.dna_book, net_capital_charge=charge,
         implied_cycle_years=cycle, one_over_g=(1.0 / g if g > 0 else None),
         payout_of_nopat=payout,

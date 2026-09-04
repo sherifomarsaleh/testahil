@@ -177,6 +177,7 @@ putf(wsa, f'C{_r}', f"=(1+{AC('Terminal inflation (house Saudi path)')})"
                     f"*(1+{AC('Terminal real growth')})-1", DER['g_term'], PCT2)
 AR['Terminal growth'] = _r; _row[0] += 1
 a_scalar('Weighted asset life, years (derived from the notes)', IN['asset_life_years'], NUM1)
+a_scalar('Average age of the base, years (measured from the notes)', IN['average_age_years'], NUM1)
 a_section('Forecast drivers — Cables & wires leg (metal converter)')
 a_path('Cable volume index growth', IN['vol_growth'])
 a_path('Metal content price growth', IN['metal_growth'])
@@ -441,7 +442,7 @@ putf(wsd, f'C{rr}', f'=G{row_dna}*(1+{AC("Terminal growth")})', TRM['dna_addback
 put(wsd, f'A{rr}', 'Plus book depreciation and amortisation inside that profit', fmt=None); rr += 1
 row_maint = rr
 putf(wsd, f'C{rr}', f'=-C{row_dnaterm}*(1+{AC("Terminal inflation (house Saudi path)")})'
-                    f'^({AC("Weighted asset life, years (derived from the notes)")}/2)',
+                    f'^{AC("Average age of the base, years (measured from the notes)")}',
      -TRM['maintenance'], NUM0)
 put(wsd, f'A{rr}', 'Less capital maintenance at current cost', fmt=None); rr += 1
 row_gcapex = rr

@@ -680,6 +680,12 @@
    "date": "2026-09-04",
    "ring": "House"
   },
+  "average_age_years": {
+   "value": 21.9518,
+   "source": "AVERAGE AGE of the depreciable asset base, 21.95 years, MEASURED rather than assumed. Accumulated depreciation over the year's own charge is, under the straight-line method these accounts use, exactly the charge-weighted average age of the assets bearing that charge \u2014 an identity, not an estimate. Note 9 accumulated depreciation 1,775,547,325 plus note 10 amortisation 29,319,636, over charges of 76,616,111 and 5,603,548 = 21.95 years; the two legs differ sharply and the blend is the point (plant 23.17 years, a young SAP system 5.23). The right-of-use note discloses balances NET of depreciation and no accumulated column, so its 3.7% of the charge is left out of both sides; those assets are new \u2014 the land lease was recognised in 2025 \u2014 so excluding them OVERSTATES the age and therefore the maintenance charge, which is the conservative direction. This matters because the terminal escalates the book charge to what replacement costs today over the age of the base, and half the useful life is only that age on a base of uniform vintages: here 21.95 against the 17.88 half the life implies",
+   "date": "2026-09-04",
+   "ring": "Company"
+  },
   "asset_life_years": {
    "value": 35.7565,
    "source": "Weighted useful life of the depreciable asset base, 35.76 years, DERIVED BY IDENTITY from the company's own FY2025 notes rather than chosen: gross cost of the base that is actually depreciated, divided by that year's own charge. Note 9 property, plant and equipment closes at SAR 3,267,410,445 of cost, of which land (222,330,595) and assets under construction (141,491,829) are not depreciated, leaving 2,903,588,021 against a charge of 76,616,111 = 37.90 years; note 10 software 80,879,539 against 5,603,548 = 14.43 years; note 13 right-of-use 68,978,523 against 3,175,978 = 21.72 years. The three charges sum to 85,395,637, which IS the depreciation and amortisation this model carries for FY2025, so the base and the charge are the same object. The policy note discloses RANGES (buildings 20-25, plant 20-30, spares 10, vehicles 4, fixtures 4-10, tools 5, laboratory 10, computers 10) and no weighting, so no single figure can be read off it; the identity supplies the weighting and the figure is labelled derived. Cross-checked two ways: on FY2024's own columns the same identity gives 40.27 years, and the software leg reproduces the DISCLOSED 15-year life at 14.43, 3.8% apart, which is the strongest evidence a derivation can carry. The FY2025 reading is the SHORTER of the two years and therefore charges the heavier maintenance",
@@ -747,6 +753,18 @@
   "h1_2026_net_profit_yoy": {
    "value": 0.09958372940356952,
    "source": "Tadawul-filed reviewed interim results, net profit attributable to shareholders for the six months to 30 June 2026 against the same period of 2025, both as filed",
+   "date": "2026-09-04",
+   "ring": "Company"
+  },
+  "materials_share_of_cogs_fy25": {
+   "value": 0.9492914076949316,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2025 note 34 cost of revenue by nature (materials) over the FY2025 income statement's own cost of revenue",
+   "date": "2026-09-04",
+   "ring": "Company"
+  },
+  "h1_2025_gross_margin": {
+   "value": 0.16722727250017005,
+   "source": "Tadawul-filed reviewed interim results for the six months to 30 June 2025, gross profit over revenue as filed \u2014 the comparative the H1-2026 margin is read against",
    "date": "2026-09-04",
    "ring": "Company"
   },
@@ -1399,30 +1417,30 @@
  },
  "dcf": {
   "pv_explicit": 3548.2824282354222,
-  "tv": 24919.44321914637,
+  "tv": 24616.151883215185,
   "tv_retired": 24349.92289132351,
   "nopat_term": 1586.8726530085196,
-  "pv_tv": 15489.535411056697,
-  "ev": 19037.817839292118,
-  "tv_share": 0.8136192678074623,
+  "pv_tv": 15301.014269293655,
+  "ev": 18849.296697529076,
+  "tv_share": 0.8117551818949001,
   "nd": 385.17320800000005,
   "assoc": 31.851877,
   "nonop": 20.40064,
   "nci": 62.737156,
   "nci_share": 0.004060669885351275,
-  "eq_attr": 18642.15999229212,
-  "ps": 130.4248509123573,
-  "ps_dec": 124.51557094055217,
+  "eq_attr": 18453.638850529078,
+  "ps": 129.08316012182763,
+  "ps_dec": 123.25639187489156,
   "roll": 1.0655281898494497,
   "anchor_days": 230,
   "roic_term": 0.25208780060730496,
   "rr_term": 0.1586748740067389,
   "g": 0.040000000000000036,
-  "bear": 81.9880979359901,
-  "bull": 202.37404029671117,
-  "spread_base": 130.4248509123573,
-  "spread_bull": 142.45723566881705,
-  "spread_bear": 118.28441984972041,
+  "bear": 81.17493099821168,
+  "bull": 200.3094466830363,
+  "spread_base": 129.08316012182763,
+  "spread_bull": 141.1040137589644,
+  "spread_bear": 116.95436369732582,
   "spread_anchor": 0.1526,
   "spread_bull_v": 0.16,
   "spread_bear_v": 0.145
@@ -1449,26 +1467,31 @@
   "useful_life_source": "Weighted useful life of the depreciable asset base, 35.76 years, DERIVED BY IDENTITY from the company's own FY2025 notes rather than chosen: gross cost of the base that is actually depreciated, divided by that year's own charge. Note 9 property, plant and equipment closes at SAR 3,267,410,445 of cost, of which land (222,330,595) and assets under construction (141,491,829) are not depreciated, leaving 2,903,588,021 against a charge of 76,616,111 = 37.90 years; note 10 software 80,879,539 against 5,603,548 = 14.43 years; note 13 right-of-use 68,978,523 against 3,175,978 = 21.72 years. The three charges sum to 85,395,637, which IS the depreciation and amortisation this model carries for FY2025, so the base and the charge are the same object. The policy note discloses RANGES (buildings 20-25, plant 20-30, spares 10, vehicles 4, fixtures 4-10, tools 5, laboratory 10, computers 10) and no weighting, so no single figure can be read off it; the identity supplies the weighting and the figure is labelled derived. Cross-checked two ways: on FY2024's own columns the same identity gives 40.27 years, and the software leg reproduces the DISCLOSED 15-year life at 14.43, 3.8% apart, which is the strongest evidence a derivation can carry. The FY2025 reading is the SHORTER of the two years and therefore charges the heavier maintenance",
   "useful_life_is_derived": true,
   "maintenance_basis": "book_dna_escalated",
+  "average_age_years": 21.9518,
+  "average_age_source": "AVERAGE AGE of the depreciable asset base, 21.95 years, MEASURED rather than assumed. Accumulated depreciation over the year's own charge is, under the straight-line method these accounts use, exactly the charge-weighted average age of the assets bearing that charge \u2014 an identity, not an estimate. Note 9 accumulated depreciation 1,775,547,325 plus note 10 amortisation 29,319,636, over charges of 76,616,111 and 5,603,548 = 21.95 years; the two legs differ sharply and the blend is the point (plant 23.17 years, a young SAP system 5.23). The right-of-use note discloses balances NET of depreciation and no accumulated column, so its 3.7% of the charge is left out of both sides; those assets are new \u2014 the land lease was recognised in 2025 \u2014 so excluding them OVERSTATES the age and therefore the maintenance charge, which is the conservative direction. This matters because the terminal escalates the book charge to what replacement costs today over the age of the base, and half the useful life is only that age on a base of uniform vintages: here 21.95 against the 17.88 half the life implies",
+  "average_age_is_measured": true,
+  "maintenance_age_basis": "measured",
+  "maintenance_escalator": 1.5445047578454147,
   "inflation_source": "house Saudi macro path [R-MACRO-01], terminal inflation",
   "real_growth": 0.019607843137254832,
   "nominal_growth_derived": 0.040000000000000036,
-  "fcff": 1313.751848463241,
-  "tv": 24919.44321914637,
+  "fcff": 1297.7623438142632,
+  "tv": 24616.151883215185,
   "floor": 16734.088058827303,
-  "maintenance": 190.32892078325992,
+  "maintenance": 206.3184254322378,
   "growth_capex": 128.36700539808817,
   "wc_charge": 88.00713143516876,
   "dna_addback": 133.58225307123828,
-  "net_capital_charge": 273.1208045452786,
-  "payout_of_nopat": 0.8278873833842467,
-  "tv_vs_floor": 0.4891425891595722
+  "net_capital_charge": 289.1103091942565,
+  "payout_of_nopat": 0.8178112726020339,
+  "tv_vs_floor": 0.4710184263808783
  },
  "lenses": {
   "dcf": {
    "name": "Discounted cash flow (the answer)",
-   "bear": 81.9880979359901,
-   "base": 130.4248509123573,
-   "bull": 202.37404029671117,
+   "bear": 81.17493099821168,
+   "base": 129.08316012182763,
+   "bull": 200.3094466830363,
    "w": null
   },
   "relative": {
@@ -1496,41 +1519,41 @@
   },
   "central": {
    "name": "Cash-flow lens (the central)",
-   "bear": 81.9880979359901,
-   "base": 130.4248509123573,
-   "bull": 202.37404029671117,
+   "bear": 81.17493099821168,
+   "base": 129.08316012182763,
+   "bull": 200.3094466830363,
    "w": null
   },
   "retired_blend": {
    "name": "RETIRED 45/20/20/15 blend, published unused",
    "bear": null,
-   "base": 110.48017643142981,
+   "base": 109.87641557569145,
    "bull": null,
    "w": 0.0
   }
  },
- "central": 130.4248509123573,
+ "central": 129.08316012182763,
  "span": [
-  81.9880979359901,
-  202.37404029671117
+  81.17493099821168,
+  200.3094466830363
  ],
  "spot": 104.8,
- "retired_blend_value": 110.48017643142981,
+ "retired_blend_value": 109.87641557569145,
  "lens_record": {
   "class": "cement and heavy industrial",
   "primary": {
    "kind": "dcf",
    "two_sided": false,
-   "value": 130.4248509123573,
+   "value": 129.08316012182763,
    "range": {
-    "low": 81.9880979359901,
-    "high": 202.37404029671117
+    "low": 81.17493099821168,
+    "high": 200.3094466830363
    },
    "range_note": "the cash-flow lens under its own bear and bull scenarios on one clock, not the widest spread across four methods",
    "range_basis": {
     "driver": "the copper pass-through, the conversion spread per tonne and the volume path the cable plant is built on",
-    "low": 81.9880979359901,
-    "high": 202.37404029671117,
+    "low": 81.17493099821168,
+    "high": 200.3094466830363,
     "units": "SAR per share, the present-value read under each scenario",
     "macro_held": true,
     "evidence": "both scenarios are re-runs of the same unit-economics build with the cost of capital and terminal growth held still"
@@ -1576,8 +1599,8 @@
     "normalized": 0.2,
     "book": 0.15
    },
-   "blend_value": 110.48017643142981,
-   "why": "the weights were typed and had never cleared an out-of-sample test. Here the blend did not merely shrink this study's disagreement with the market, it very nearly ERASED it: +5.4% against the price where the cash-flow lens reads +24.5%, so a reader saw agreement where the study holds a fifth above. Normalised earnings power, which this class does not permit, read 101.58 and carried a fifth of the weight."
+   "blend_value": 109.87641557569145,
+   "why": "the weights were typed and had never cleared an out-of-sample test. Here the blend did not merely shrink this study's disagreement with the market, it very nearly ERASED it: +4.8% against the price where the cash-flow lens reads +23.2%, so a reader saw agreement where the study holds a fifth above. Normalised earnings power, which this class does not permit, read 101.58 and carried a fifth of the weight."
   }
  },
  "experts": {
@@ -1686,39 +1709,39 @@
   ],
   "grid_wacc_g": [
    [
-    142.5329983174736,
-    165.8900261351979,
-    202.3566722281835,
-    267.7660755948026,
+    141.18182115950498,
+    164.2048778752795,
+    200.14536499392474,
+    264.6042053864718,
     null
    ],
    [
-    121.14622468853167,
-    136.45819941226944,
-    158.3715319493057,
-    192.5675384208111,
-    253.88033743889247
+    120.02947585496925,
+    135.1117534869411,
+    156.69260089851866,
+    190.36479698198002,
+    250.73128649341595
    ],
    [
-    105.47579192542305,
-    116.1038048717173,
-    130.4248509123573,
-    150.90670319155876,
-    182.85131425327577
+    104.53015165602791,
+    114.99079015547115,
+    129.08316012182763,
+    149.23401082907404,
+    180.65715600107632
    ],
    [
-    93.49993194791615,
-    101.18745360367792,
-    111.09468124935387,
-    124.43322466387758,
-    143.49579428496432
+    92.68449495813583,
+    100.24482830615837,
+    109.98542428841738,
+    123.09631092846561,
+    141.82935984224096
    ],
    [
-    84.04969368984855,
-    89.78587482784923,
-    96.92651079279665,
-    106.11910883466312,
-    118.48356140277195
+    83.33651363068722,
+    88.97291280931691,
+    95.98692365699924,
+    105.01363154704192,
+    117.15144474324943
    ]
   ],
   "beta_grid": [
@@ -1729,11 +1752,11 @@
    1.5
   ],
   "grid_beta": [
-   136.74260423950258,
-   133.74954882516244,
-   130.4248509123573,
-   128.01100866391525,
-   125.259860044495
+   135.3359987826802,
+   132.37370314916495,
+   129.08316012182763,
+   126.69410647892153,
+   123.97120086910944
   ],
   "metal_grid": [
    0.85,
@@ -1743,11 +1766,11 @@
    1.15
   ],
   "grid_metal": [
-   142.6983003741912,
-   136.55058077959808,
-   130.4248509123573,
-   124.31865911093695,
-   118.22998087222726
+   141.51744786707567,
+   135.2893091307755,
+   129.08316012182763,
+   122.89654917870018,
+   116.7274517982834
   ],
   "spread_grid": [
    0.14,
@@ -1757,11 +1780,11 @@
    0.16
   ],
   "grid_spread": [
-   110.41450455479367,
-   118.28441984972041,
-   130.4248509123573,
-   134.30411677017474,
-   142.45723566881705
+   109.09199042826923,
+   116.95436369732582,
+   129.08316012182763,
+   132.9587083256414,
+   141.1040137589644
   ],
   "vol_grid": [
    0.9,
@@ -1771,11 +1794,11 @@
    1.1
   ],
   "grid_vol": [
-   119.60537199049853,
-   125.01989400843732,
-   130.4248509123573,
-   135.82095108037237,
-   141.20881866863715
+   118.39434124797278,
+   123.74353324190963,
+   129.08316012182763,
+   134.41393026584072,
+   139.73646783010355
   ],
   "nwc_grid": [
    0.24,
@@ -1785,11 +1808,11 @@
    0.32
   ],
   "grid_nwc": [
-   136.21601558507965,
-   133.3204332487185,
-   130.4248509123573,
-   127.52926857599613,
-   124.63368623963497
+   134.87432479455,
+   131.9787424581888,
+   129.08316012182763,
+   126.18757778546646,
+   123.2919954491053
   ]
  },
  "step0": {
@@ -2235,18 +2258,18 @@
   "[FY2026 cross-check against the reviewed print] H1-2026 revenue 5,698 at a 15.27% gross margin. Doubling H1 with a light seasonal uplift implies a full year near 11,623; the build produces 11,499 (-1.1%). The model's FY2026E gross margin 15.22% sits right on the reviewed H1 actual.",
   "[FCFF waterfall] EBIT 1,256 -> 1,365 -> 1,476 -> 1,589 -> 1,686; NOPAT 1,137 -> 1,236 -> 1,336 -> 1,438 -> 1,526; less capex 218, 223, 227, 228, 242 and working-capital investment +286, +250, +266, +251, +245; FCFF 730 -> 868 -> 957 -> 1,080 -> 1,167; PV of explicit FCFF 3,548.",
   "[Return on capital] FY2025 NOPAT 1,381 / invested capital 4,425 = 31.2%; forecast ROIC 23.5% -> 24.2%; terminal ROIC (next-year NOPAT over closing capital) 25.2%. A high-return, capital-light-relative-to-earnings model.",
-  "[Terminal value] terminal NOPAT 1,587; book depreciation inside it 134 added back and capital maintenance charged at current cost 190 (that book charge escalated over half the 35.76-year life the notes imply); real growth of 1.96% charged 128 of growth capital at the capital intensity the business already runs; inflation on working capital 88. Terminal free cash flow 1,314, 83% of terminal profit. TV 24,919 discounted at the year-5 factor 0.6216 -> PV 15,490. Terminal value is 81% of enterprise value. The retired reinvestment identity gave 24,350 on the same inputs (+2.34%), charging a replacement cycle of 25.0 years against the 35.76 the company's own notes turn the base over in.",
+  "[Terminal value] terminal NOPAT 1,587; book depreciation inside it 134 added back and capital maintenance charged at current cost 206 (that book charge escalated to what replacement costs today over the 21.95-year average age of the base, MEASURED off the notes as accumulated depreciation over the year's own charge rather than assumed at half the 35.76-year life, which would have been 17.88 years and charged 7.7% less); real growth of 1.96% charged 128 of growth capital at the capital intensity the business already runs; inflation on working capital 88. Terminal free cash flow 1,298, 82% of terminal profit. TV 24,616 discounted at the year-5 factor 0.6216 -> PV 15,301. Terminal value is 81% of enterprise value. The retired reinvestment identity gave 24,350 on the same inputs (+1.09%), charging a replacement cycle of 25.0 years against the 35.76 the company's own notes turn the base over in.",
   "[Terminal ceiling] 73% of revenue is domestic (Saudi nominal ~5%), 27% export (~4.5% world nominal); blended ceiling 4.9%. Adopted g 4.0% sits below it.",
   "[Forecast profit & distribution] attributable profit 1,107, 1,210, 1,317, 1,427, 1,526; payout 55% (the FY2025 actual was 52.6%: SAR 3.8/share on EPS 7.22); net debt path 289, 108, -111, -402, -736 \u2014 the company de-gears further as free cash flow accrues.",
-  "[Bridge] EV 19,038 - net debt 385 + associates 32 + non-operating assets 20 = 18,705; less NCI at carrying value 63 = equity attributable 18,642 = SAR 124.52/share at 31-Dec-2025.",
-  "[Anchor roll] SAR 124.52/share at 31-Dec-2025 rolled 230/365 of a year at the 10.6% cost of equity (x1.0655) less the SAR 2.25 dividend paid in the window = SAR 130.42/share at the 18-Aug-2026 anchor, against a spot of 104.80 (+24%).",
-  "[CONTESTED JUDGEMENT \u2014 sustained gross margin, computed BOTH ways] the central question is the gross margin the business holds once the FY2024-25 metal tailwind has passed. Anchored on the H1-2026 reviewed actual of 15.26%: SAR 130.42/share. On the FY2025-peak framing (16.0%): SAR 142.46. On the further-compression framing (14.5%): SAR 118.28. Published side by side, never averaged into one number.",
-  "[DCF scenarios] bear 81.99 / base 130.42 / bull 202.37 SAR per share.",
+  "[Bridge] EV 18,849 - net debt 385 + associates 32 + non-operating assets 20 = 18,516; less NCI at carrying value 63 = equity attributable 18,454 = SAR 123.26/share at 31-Dec-2025.",
+  "[Anchor roll] SAR 123.26/share at 31-Dec-2025 rolled 230/365 of a year at the 10.6% cost of equity (x1.0655) less the SAR 2.25 dividend paid in the window = SAR 129.08/share at the 18-Aug-2026 anchor, against a spot of 104.80 (+23%).",
+  "[CONTESTED JUDGEMENT \u2014 sustained gross margin, computed BOTH ways] the central question is the gross margin the business holds once the FY2024-25 metal tailwind has passed. Anchored on the H1-2026 reviewed actual of 15.26%: SAR 129.08/share. On the FY2025-peak framing (16.0%): SAR 141.10. On the further-compression framing (14.5%): SAR 116.95. Published side by side, never averaged into one number.",
+  "[DCF scenarios] bear 81.17 / base 129.08 / bull 200.31 SAR per share.",
   "[Relative lens] 9.5x on FY2027E EBITDA 1,471 discounted at the year-2 factor plus interim free cash flow -> SAR 86.36/share. Trailing EV/EBITDA 11.9x, trailing P/E 14.5x.",
   "[Normalised lens] mid-cycle EBITDA margin 11.91% (FY2028E) on FY2026E revenue 11,499 -> normalised EPS 7.50 x 13.0 = SAR 101.58/share.",
   "[Book lens] book value per share SAR 21.68; justified P/B 4.20x = (sustainable ROE 28% - g 4%)/(terminal Ke 9.72% - g) -> SAR 94.68. Trailing ROE 36.8%.",
-  "[Synthesis] THE CENTRAL IS THE CLASS PRIMARY: the cash-flow lens at SAR 130.42, with its own bear-to-bull range of 81.99 - 202.37 on one clock. Cross-checks are published beside it at their own values (relative 86.36, book floor 94.68); the span across all of them, 64.28 - 202.37, is a spread between METHODS and not a range around the answer. Spot 104.80 (+24% to the central).",
-  "[Retired blend, published unused] the 45/20/20/15 weights give SAR 110.48, +5.4% against the price where the cash-flow lens reads +24.5%. The blend did not merely shrink this study's disagreement with the market \u2014 it very nearly erased it, showing a reader agreement where the study's own method holds a fifth above.",
+  "[Synthesis] THE CENTRAL IS THE CLASS PRIMARY: the cash-flow lens at SAR 129.08, with its own bear-to-bull range of 81.17 - 200.31 on one clock. Cross-checks are published beside it at their own values (relative 86.36, book floor 94.68); the span across all of them, 64.28 - 200.31, is a spread between METHODS and not a range around the answer. Spot 104.80 (+23% to the central).",
+  "[Retired blend, published unused] the 45/20/20/15 weights give SAR 109.88, +4.8% against the price where the cash-flow lens reads +23.2%. The blend did not merely shrink this study's disagreement with the market \u2014 it very nearly erased it, showing a reader agreement where the study's own method holds a fifth above.",
   "[Expert panel] Expert 1 119.60 [91.48-147.71]; Expert 2 134.77 [91.96-165.39]; Expert 3 125.98 [92.22-144.81]; panel median 125.98 (+20% vs spot)."
  ]
 }
