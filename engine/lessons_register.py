@@ -4668,6 +4668,126 @@ LESSONS = [
       "A house document convention in which a leading hyphen "
       "immediately after a percent sign genuinely denotes a negative "
       "figure, which would make the lookbehind drop a real number."),
+
+    L("L-309", "ALL", None,
+      "A depreciation note's own two columns give a weighted asset "
+      "life by identity, and an identity is not an assumption",
+      "L-304 said that where no single disclosed figure applies, take "
+      "the most conservative disclosed one and publish the range. "
+      "SAVOLA is the case its own falsifier named: the policy note "
+      "gives five class RANGES (buildings 5 to 50, plant 3 to 40, "
+      "furniture 1 to 10) and the terminal at a 50-year reading falls "
+      "40% while at a 5-year reading it rises 8%, so the range "
+      "STRADDLES the decision and the conservative-extreme route "
+      "gives no answer at all. What resolves it is a route that name "
+      "did not have: note 6 discloses gross cost AND the year's "
+      "depreciation charge BY CLASS, and gross cost over charge IS "
+      "the weighted life, by identity. It reads 18.03 years, and the "
+      "prior year's own columns give 17.05 on the same identity. The "
+      "same protocol already permits capex to be DERIVED by the "
+      "identity capex = change in property, plant and equipment plus "
+      "depreciation, and LABELLED as derived; this is that permission "
+      "applied to a life. LOOK FOR THE IDENTITY BEFORE ACCEPTING THAT "
+      "A FIGURE IS NOT DISCLOSED — a note that gives ranges may still "
+      "give the answer in another column.",
+      "SAVOLA terminal rebuild and re-strike, 4 September 2026",
+      "build",
+      "FY2025 note 6: depreciable gross cost 10,980,554 (land and "
+      "construction in progress excluded, neither depreciated) over "
+      "depreciation for the year 608,933 = 18.03 years; FY2024's own "
+      "columns give 10,413,988 over 610,659 = 17.05. Terminal value "
+      "across the disclosed range spans 8,916 at 50 years to 15,991 "
+      "at 5, against a published 14,811 — the direction reverses "
+      "inside the disclosure, which is why the extreme-value route "
+      "fails here.",
+      "A charge contaminated within the year — assets acquired "
+      "through business combinations, a large mid-year disposal, or "
+      "an impairment inside the accumulated column — which breaks the "
+      "identity. MODON's own note is the worked case: AED 832mn of "
+      "business-combination additions closed this route there, which "
+      "is why that name took the conservative-extreme route instead."),
+
+    L("L-310", "ALL", None,
+      "Two corrections that point opposite ways can leave the answer "
+      "where they found it, and the rebuild is still worth doing",
+      "SAVOLA's terminal construction changed completely — the "
+      "reinvestment identity out, capital maintenance at replacement "
+      "cost in — and the terminal value moved 0.9%. Storing growth on "
+      "the house inflation path RAISED the rate and the value; "
+      "charging maintenance at what replacement costs LOWERED it by "
+      "slightly more. Neither could have been read off the other, and "
+      "the near-cancellation is not evidence that either lever was "
+      "unnecessary: the retired construction happened to land near "
+      "the right answer for the wrong reasons on this name, which is "
+      "a fact about the name and not about the correction. A REBUILD "
+      "THAT ENDS WHERE IT STARTED IS EVIDENCE, NOT A WASTED PASS. The "
+      "corollary for the register that tracks these: a ledger "
+      "recording the cumulative move alone would say nothing happened "
+      "here, which is why it records each lever's own before and "
+      "after.",
+      "SAVOLA terminal rebuild and re-strike, 4 September 2026",
+      "build",
+      "growth stored 27.2426 to 27.4379 (+0.7%); terminal rebuilt "
+      "27.4379 to 27.2811 (-0.6%); re-struck on the latest price "
+      "27.2811 to 27.1153 (-0.6%); cumulative -0.5% on a terminal "
+      "carrying 79.2% of enterprise value.",
+      "A case where two levers cancel and the CONSTRUCTION also turns "
+      "out to be indifferent — i.e. the same near-zero move recurs "
+      "across many names, which would say the terminal rebuild is not "
+      "doing work rather than that it happened to net out here."),
+
+    L("L-311", "ALL", None,
+      "Fixing a tokeniser exposes the gaps its wrong answers were "
+      "masking, and the count going UP is the instrument working",
+      "Correcting the prose-figure tokeniser to read a hyphen between "
+      "two numbers as a range rather than a minus took SAVOLA from "
+      "four unmatched figures to eight. Nothing in the document had "
+      "changed. The four new ones were figures the old tokeniser had "
+      "SIGNED WRONG, and each wrong sign had then found a "
+      "coincidental match among several thousand committed numbers "
+      "and read as clean. A RISING FAILURE COUNT AFTER AN INSTRUMENT "
+      "IS SHARPENED IS NOT A REGRESSION, and treating it as one is "
+      "how a sharpening gets reverted. All eight were then closed "
+      "properly: the yield-curve endpoints the document quotes as "
+      "source context were registered as four-field inputs, and the "
+      "superseded first-edition deltas — which this model cannot "
+      "compute because a different model produced them — were "
+      "registered and the prose that quoted them made computed rather "
+      "than typed.",
+      "SAVOLA terminal rebuild and re-strike, 4 September 2026",
+      "build",
+      "unmatched 4 -> 8 on the same documents after the tokeniser "
+      "fix, then 8 -> 0 after registering the curve endpoints (5.22%, "
+      "5.48%, 5.83%), the superseded risk-free proxy (5.53%) and the "
+      "three critique deltas. Book-wide the generic advisory fell "
+      "from 343 to 339 unmatched across 8,868 figures, so no other "
+      "study depended on a mis-signed range.",
+      "A sharpening whose new failures turn out on inspection to be "
+      "false positives rather than exposed gaps, which would say the "
+      "instrument was widened rather than sharpened."),
+
+    L("L-312", "ALL", None,
+      "A study-local gate holding its own copy of a house standard "
+      "goes red the day the standard moves, and stays red",
+      "SAVOLA's own gate script asserted the reference set equals a "
+      "hard-coded three names. ADNOCLS displaced one of them on 19 "
+      "August 2026 under the one-in-one-out rule, so that gate had "
+      "been failing every day since on a fact about the house "
+      "standard rather than about the study — and nothing noticed, "
+      "because a gate that is always red is one nobody reads. What "
+      "the assertion exists to prove is that the set is CLOSED at "
+      "three, which the shared module already asserts at import; "
+      "restating the members locally only guaranteed a second copy to "
+      "go stale. ASSERT THE PROPERTY, IMPORT THE MEMBERS.",
+      "SAVOLA terminal rebuild and re-strike, 4 September 2026",
+      "build",
+      "gate_check.py line asserting set(REFERENCE_SET) == {three "
+      "names typed out}; red from 19-Aug-2026 to 4-Sep-2026, "
+      "seventeen days, through a delivered edition and a full "
+      "critique response.",
+      "A case where the local copy is the POINT — a gate whose job is "
+      "to detect that the shared module changed, written deliberately "
+      "with its own copy and a stated review date."),
 ]
 
 

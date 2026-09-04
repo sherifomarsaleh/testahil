@@ -12,6 +12,9 @@ D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 M, HI, HB, F = D['meta'], D['hist_is'], D['hist_bs'], D['fcst']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sens']
+TRC = D['terminal_record']
+TRI, TRO = TRC['inputs'], TRC['outputs']
+DL = TRC['derived_life']
 EXP, SEG, H1_ = D['experts'], D['segments_fy25'], D['h1_2026']
 STK, BT, TECH = D['strike'], D['backtest'], D['tech']
 BT5, BTF, BTP = BT['five_year'], BT['full'], BT['production']
@@ -130,9 +133,9 @@ rows.append(['Contested judgement, other way — Framing B (−6% then −3% for
              p2(DCF['framingB']), '', '—', sgn(DCF['framingB']/SPOT-1, 0)])
 rows.append(['Store path at the H1 run-rate (+8/yr, judgement variant)', '',
              p2(DCF['stores_runrate']), '', '—', sgn(DCF['stores_runrate']/SPOT-1, 0)])
-rows.append(['Terminal return held at 10.5% (retired first-edition input, as a variant)',
-             '', p2(DCF['ps_roic_variant']), '', '—',
-             sgn(DCF['ps_roic_variant']/SPOT-1, 0)])
+rows.append(['Asset life read at the heavier of the note\'s two readings (a variant)',
+             '', p2(DCF['ps_life_variant']), '', '—',
+             sgn(DCF['ps_life_variant']/SPOT-1, 0)])
 rows.append(['Expert panel median (Appendix C)', '', p2(D['panel_median']), '', '—',
              sgn(D['panel_median']/SPOT-1, 0)])
 rows.append([f"DCF terminal value share of enterprise value: {pc(DCF['tv_share'],0)}",
@@ -240,23 +243,53 @@ caption(f'{T()} — the FCFF waterfall. The EBITDA margin path '
         'inventory, receivables and payables (ex the Tiryaki receivable); the lease charge is '
         'the FULL additions — renewals plus growth — matching the lease book the balance '
         'sheet itself rolls forward.')
-P(f"Terminal value: terminal-year NOPAT grown at {pc(IN['g_term'])} with a reinvestment "
-  f"rate set by the growth itself — g / return on capital = {pc(IN['g_term'])} / "
-  f"{pc(DCF['roic_term'],2)} = {pc(DCF['reinvest_term'])} of NOPAT — capitalised at the "
-  f"terminal cost of capital of {pc(W['wacc_term'],2)} less growth. The terminal return is "
-  'not an assumption: it is COMPUTED as the model\'s own year-five NOPAT on year-five '
-  'opening invested capital, so the terminal continues exactly the economics the forecast '
-  'itself produces (the return path runs '
-  f"{pc(F['roic_path'][0],2)} to {pc(F['roic_path'][4],2)}). The first edition set 10.5% "
-  'as an input — a step-up above every forecast year that an external audit rightly '
-  'flagged; that case is retired to a labelled variant worth SAR '
-  f"{p2(DCF['ps_roic_variant'])} (the brands/shelf-position argument, published beside "
-  'the base, never averaged). The terminal value is SAR '
-  f"{n0(DCF['tv'])}mn, whose present value is SAR {n0(DCF['pv_tv'])}mn — "
-  f"{pc(DCF['tv_share'],0)} of enterprise value, HIGHER than the first edition\'s 76% "
-  'because the corrected lease charge back-loads the explicit years. A reader should sit '
-  'with that number: four fifths of this valuation is the going concern beyond 2030, '
-  'priced at a return on capital modestly above its cost. Section 1.9 prices the moves.')
+P(f"Terminal growth is stated as a REAL rate and the headline rate is derived from it: "
+  f"real growth of {pc(TRI['real_growth'])} on the {pc(TRI['inflation'])} long-run "
+  f"inflation this economy is expected to run gives a nominal "
+  f"{pc(TRI['nominal_growth'])}. The previous edition typed the nominal figure directly, "
+  f"built on its own reading of consumer prices; the real half — staples volume growth a "
+  f"little under population growth — is unchanged, and is now visible as the assumption "
+  f"it always was.")
+P(f"What the terminal charges for is capital MAINTENANCE, at what replacement actually "
+  f"costs. Terminal operating profit after tax is SAR {n0(TRI['nopat'])}mn; the "
+  f"SAR {n0(TRI['dna_book'])}mn of owned and intangible depreciation is added back "
+  f"because that profit is already struck after it, and against it the model charges "
+  f"SAR {n0(TRO['maintenance'])}mn — the same charge escalated over half the "
+  f"{DL['years']:.1f}-year life of the depreciable asset base. That life is not picked: "
+  f"the accounting policy gives RANGES for five classes and no weighting, so it is "
+  f"derived from the note's own two columns, the gross cost of the depreciable base "
+  f"divided by the year's own depreciation, and cross-checks at "
+  f"{DL['cross_check_fy2024']:.2f} years on the prior year's columns. Inflation on the "
+  f"working capital AND the lease book the group carries takes a further "
+  f"SAR {n0(TRO['wc_charge'])}mn — the lease book belongs there because the explicit "
+  f"years charge its growth as cash out, and a terminal that left it out would hand this "
+  f"group a rent-free store estate for ever. Real growth costs "
+  f"SAR {n0(TRO['growth_capex'])}mn, the capital this model's own forecast spends per "
+  f"unit of revenue. That leaves SAR {n0(TRO['fcff'])}mn, "
+  f"{pc(TRO['fcff'] / TRI['nopat'])} of terminal profit.")
+P(f"The previous edition built this block a different way, and the difference is worth a "
+  f"sentence because the answer barely moved. It grew terminal profit and deducted a "
+  f"reinvestment rate set by the growth rate divided by the return on capital, which is "
+  f"arithmetically the same as rebuilding the entire capital base every "
+  f"{1 / TRI['nominal_growth']:.0f} years — a fact about the riyal's peg to the dollar "
+  f"rather than about a supermarket, a flour mill or a delivery van, where the note says "
+  f"the depreciable base turns over in {DL['years']:.1f}. The terminal value on the new "
+  f"construction is {pc(abs(TRC['moved']['pct']), 1)} "
+  f"{'above' if TRC['moved']['pct'] > 0 else 'below'} the old one. A useful marker beside "
+  f"it: a business that simply held its profit flat for ever, charging only the "
+  f"depreciation its books already record, would be worth SAR {n0(TRO['floor'])}mn, so "
+  f"this terminal sits {pc(abs(TRO['tv'] / TRO['floor'] - 1), 1)} "
+  f"{'above' if TRO['tv'] > TRO['floor'] else 'below'} that marker. The one real judgement "
+  f"left is the life, and the note can be read a second way — accumulated depreciation "
+  f"over the same charge says the base has already taken "
+  f"{DL['direct_average_age']:.2f} years of depreciation, against the "
+  f"{DL['years'] / 2:.2f} the formula assumes. Reading it that way is published beside "
+  f"the base at SAR {p2(DL['variant_ps'])} and never averaged into it.")
+P(f"The terminal value is SAR {n0(DCF['tv'])}mn, whose present value is SAR "
+  f"{n0(DCF['pv_tv'])}mn — {pc(DCF['tv_share'],0)} of enterprise value, higher than the "
+  f"first edition's 76% because the corrected lease charge back-loads the explicit years. "
+  f"A reader should sit with that number: four fifths of this valuation is the going "
+  f"concern beyond 2030. Section 1.9 prices the moves.")
 H2('The enterprise-to-equity bridge')
 _dec_sum = (DCF['ev'] + IN['inv_nc_fy25'] + IN['inv_c_fy25'] + IN['tiryaki_recv']
             + IN['invprop_fy25'] + IN['cash_fy25'] - IN['loans_fy25'] - IN['leases_fy25']
@@ -319,7 +352,7 @@ P(f"Equity attributable to owners at 30-Jun-2026 (reviewed) is SAR "
   'FY2026 earnings base across every lens (the first edition ran this lens on a +15% '
   'step it labelled first-half-evidenced while its own engine said +35%; an external '
   'audit caught the inconsistency and this edition removes it). Against a cost of equity '
-  f"of {pc(W['ke_rating'],2)} and {pc(IN['g_term'])} growth, the justified multiple of "
+  f"of {pc(W['ke_rating'],2)} and {pc(TRI['nominal_growth'])} growth, the justified multiple of "
   f"book is {LN['book']['pb']:.2f}x — value SAR {p2(LN['book']['base'])} per share. The "
   'lens now says something sharper than the first edition\'s floor argument: at the '
   'H1-evidenced recurring run-rate Savola earns a spread over its cost of equity, and '
@@ -588,9 +621,11 @@ caption(f'{T()} — the beta interval, priced. The regression is usable but wide
 P('The judgement variants, priced in one place: the store path at the H1 run-rate reads '
   f"SAR {p2(DCF['stores_runrate'])}; the density opening at −7.1% (the 213-store "
   f"assumption end of the derivation range) reads SAR {p2(DCF['sps_open_71'])} against "
-  f"SAR {p2(DCF['sps_open_59'])} at the −6.0% interpolation end; the 10.5% terminal-"
-  f"return case reads SAR {p2(DCF['ps_roic_variant'])}. The bear/bull scenario levers "
-  'are published in full in the summary table\'s basis column and in the workbook.')
+  f"SAR {p2(DCF['sps_open_59'])} at the −6.0% interpolation end; reading the depreciation "
+  f"note's own columns the second way — accumulated depreciation over the year's charge "
+  f"rather than gross cost over it — reads SAR {p2(DCF['ps_life_variant'])}. The "
+  'bear/bull scenario levers are published in full in the summary table\'s basis column '
+  'and in the workbook.')
 
 # =========================== 2 TECHNICAL ====================================
 H1('2  Technical and price structure')
@@ -744,12 +779,15 @@ P(f"Put sections 1 and 3 side by side. The weighted central of SAR {p2(CEN)} sit
 H1('7  Caveats — and what would change our mind')
 for head, body in [
     ('The terminal is four fifths of the answer — more than the first edition. ',
-     f"{pc(DCF['tv_share'],0)} of enterprise value is beyond 2030, at a computed terminal "
-     f"return ({pc(DCF['roic_term'],2)}) modestly above the terminal cost of capital "
-     f"({pc(W['wacc_term'],2)}). The share ROSE from the first edition's 76% because "
-     'charging the full lease additions back-loads the explicit cash flows — the honest '
-     'consequence of the correction, stated rather than smoothed. We would rather own '
-     'that than an inflated five-year ramp; section 1.9 prices the alternatives.'),
+     f"{pc(DCF['tv_share'],0)} of enterprise value is beyond 2030, and what that block "
+     f"charges for keeping the assets going is now the judgement that matters. It rests "
+     f"on a {DL['years']:.1f}-year life derived from the depreciation note's own columns "
+     f"rather than on a rate of return we chose; read the same note the other way and the "
+     f"answer is SAR {p2(DL['variant_ps'])} instead of SAR {p2(DCF['ps'])}, which is the "
+     f"honest width of that judgement. The share ROSE from the first edition's 76% "
+     'because charging the full lease additions back-loads the explicit cash flows — the '
+     'honest consequence of the correction, stated rather than smoothed. Section 1.9 '
+     'prices the alternatives.'),
     ('The beta is wide. ',
      'R² of 0.159 and a 90% interval of 0.73-1.44 — partly the 2024-2025 restructuring '
      'distorting the return series. Eighteen more months of clean post-reset trading '
@@ -1014,7 +1052,7 @@ P('Worldview: for a policy-driven payer under a family anchor, the dividend IS t
 e2t = [['Year', 'Dividend per share (SAR)', 'Present value at the cost of equity']]
 for i, dp in enumerate(E2['detail']['dps']):
     e2t.append([YRS[i], p2(dp), p2(dp / (1 + W['ke_rating']) ** (i + 1))])
-e2t.append(['Terminal (grown at 2.5%)', p2(E2['detail']['dps'][-1] * (1 + IN['g_term'])),
+e2t.append([f"Terminal (grown at {pc(TRI['nominal_growth'])})", p2(E2['detail']['dps'][-1] * (1 + TRI['nominal_growth'])),
             p2(E2['detail']['pv_tv'])])
 e2t.append(['Value at 31-Dec-2025 → at the anchor', p2(E2['detail']['ps_dec']),
             p2(E2['base'])])
@@ -1117,11 +1155,13 @@ P('This second edition (19-Aug-2026) answers four independent external critiques
   '18-Aug-2026 first edition, worked finding by finding under the project\'s critique-'
   'response procedure: 82 findings enumerated, each priced through the model before any '
   'verdict. The corrections that moved value, at the first edition\'s central: charging '
-  'the FULL lease additions in the cash-flow waterfall rather than renewals only (−3.97% '
-  '— the largest, and the one the first edition\'s own balance sheet already implied); '
-  'computing the terminal return from the model\'s own year five instead of inputting '
-  '10.5% (−1.6%); the relative lens rebuilt trailing-on-trailing with Al Othaim n/m '
-  '(−3.2% before the offsetting quote refresh); the Tiryaki receivable moved from '
+  f"the FULL lease additions in the cash-flow waterfall rather than renewals only "
+  f"({pc(IN['crit_delta_lease'], 2)} — the largest, and the one the first edition's own "
+  f"balance sheet already implied); computing the terminal return from the model's own "
+  f"year five instead of inputting 10.5% ({pc(IN['crit_delta_roic'], 1)}); the relative "
+  f"lens rebuilt trailing-on-trailing with Al Othaim n/m "
+  f"({pc(IN['crit_delta_relative'], 1)} before the offsetting quote refresh); the Tiryaki "
+  'receivable moved from '
   'working capital to the bridge (+1.6%); the book lens on one consistent FY2026 base '
   '(+2.5%); the settled 18-Aug close of SAR 25.40 replacing an intraday 25.30 print; '
   'the published SAR sovereign curve replacing a constructed proxy; 30-Jun-2026 debt in '

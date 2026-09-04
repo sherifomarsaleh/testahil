@@ -1,0 +1,67 @@
+{
+ "ticker": "SAVOLA",
+ "started_at": "2026-09-04",
+ "start_value": 27.242588,
+ "start_spot": 25.4,
+ "start_gap": 0.07254283464566928,
+ "audit_after": "all three levers, and not between them: the two terminal levers very nearly cancel here and the re-strike is what moves the disagreement, so a look taken after either terminal lever alone would have audited a state that is neither the old answer nor the new one",
+ "levers": [
+  {
+   "name": "terminal growth stored as a real rate on the house Saudi path",
+   "rule": "R-MACRO-01",
+   "before": 27.242588,
+   "after": 27.437921,
+   "why": "the previous edition typed a nominal 2.50% built on its own reading of Saudi CPI at 1.8%. The REAL rate it argued in prose, 0.7%, is kept exactly; the inflation it sits on is now the house terminal of 2.0% and the nominal is derived, giving 2.714%",
+   "evidence": "engine/macro_paths/SA.json; the study's own registered justification already said '1.8% CPI + ~0.7% real staples growth', so nothing about the assumption changed — only whether a reader can tell which half is which",
+   "move": 0.007170224152131699
+  },
+  {
+   "name": "terminal built through the sanctioned module on an asset life DERIVED by identity",
+   "rule": "R-TERM-01",
+   "before": 27.437921,
+   "after": 27.281129,
+   "why": "the retired reinvestment identity implied a replacement cycle of 1/g — 40 years at the old 2.5%, a fact about the riyal's peg and not about a supermarket. The policy note gives RANGES for five classes and no weighting, so no single life can be read off it; note 6's own cost and depreciation columns supply one by identity",
+   "evidence": "gross cost of the depreciable base 10,980,554 over the year's charge of 608,933 gives 18.03 years, cross-checked at 17.05 on FY2024's own columns, and the route is clean because 2025 carries no business-combination additions. The terminal charges maintenance of 909 against book depreciation of 760 and inflation on working capital PLUS the lease book, leaving 70.4% of terminal profit",
+   "move": -0.005714760337387549
+  },
+  {
+   "name": "re-struck on the latest known price",
+   "rule": "R-GAP-01",
+   "before": 27.281129,
+   "after": 27.115308,
+   "why": "the study stood on the settled 18-August close of 25.40 while the stock had risen to 30.30. A fair value published against a price a fortnight old is a comparison a reader cannot use, whatever the fair value is worth",
+   "evidence": "Tadawul close of 3 September 2026, from the price file supplied that day; the anchor moves with it from 230 to 246 days, and the higher market capitalisation raises the equity weight and so the cost of capital",
+   "move": -0.006078008337628069
+  }
+ ],
+ "value": 27.115308,
+ "cumulative_move": -0.004672006358036205,
+ "rules": {
+  "R-MACRO-01": {
+   "levers": [
+    "terminal growth stored as a real rate on the house Saudi path"
+   ],
+   "first_before": 27.242588,
+   "last_after": 27.437921,
+   "move": 0.007170224152131699
+  },
+  "R-TERM-01": {
+   "levers": [
+    "terminal built through the sanctioned module on an asset life DERIVED by identity"
+   ],
+   "first_before": 27.437921,
+   "last_after": 27.281129,
+   "move": -0.005714760337387549
+  },
+  "R-GAP-01": {
+   "levers": [
+    "re-struck on the latest known price"
+   ],
+   "first_before": 27.281129,
+   "last_after": 27.115308,
+   "move": -0.006078008337628069
+  }
+ },
+ "distinct_rules": 3,
+ "note": "THE TERMINAL CONSTRUCTION CHANGED COMPLETELY AND THE ANSWER BARELY MOVED — the terminal value came out 0.9% below the retired one and the central 0.5% below where it started, which is the counter-example to the last several names and is why the ledger exists. The two terminal levers point opposite ways and nearly cancel: storing the growth on the house path RAISES the rate from 2.50% to 2.71%, and charging maintenance at what replacement costs LOWERS the terminal by more than that raises it. Neither could have been read off the other. What moved the disagreement with the market was not the model at all but the price, which rose 19.3% while the study stood still. A LEVER WORTH TAKING IS NOT THE SAME AS A LEVER THAT MOVES THE ANSWER, and a rebuild that ends where it started is evidence about the old construction rather than a wasted pass: on this name the retired identity happened to land near the right answer for the wrong reasons."
+}

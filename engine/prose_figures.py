@@ -38,8 +38,10 @@ import re
 # model is then hunted against several thousand committed numbers until it happens to land
 # on one — which is how a real range read as clean for a month and went red the day the
 # figure it had coincidentally matched stopped existing. The lookbehinds refuse a sign
-# that sits immediately after a percent sign, with or without a space.
-NUM = re.compile(r"(?<![\w.])(?<!%)(?<!% )(?<!%\u00a0)"
+# that sits immediately after a percent sign OR after a digit, with or without a space:
+# "9%-23.5%" and "the curve ran 5.22-5.83%" are both ranges, and a genuine minus never
+# abuts the digit before it in prose.
+NUM = re.compile(r"(?<![\w.])(?<!%)(?<!% )(?<!%\u00a0)(?<!\d)(?<!\d )"
                  r"(-?\d{1,3}(?:,\d{3})*(?:\.\d+)?|-?\d+(?:\.\d+)?)\s*"
                  r"(per cent|percent|%|x\b|times)")
 
