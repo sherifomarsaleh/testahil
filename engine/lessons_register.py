@@ -4906,6 +4906,132 @@ LESSONS = [
       "A name where the sign does not follow that spread, which would "
       "say something other than the reinvestment identity is driving "
       "the growth charge."),
+
+    L("L-317", "ALL", None,
+      "A study whose answer no instrument can parse is not a study "
+      "nothing is wrong with — it is a study nothing has looked at",
+      "EMPOWER publishes four named branches and no single central, "
+      "which is the honest shape for an answer turning on two "
+      "undecided questions. It published them under keys its own "
+      "builder invented, so every instrument looking for a central "
+      "found none and filed the study as UNREADABLE — and an "
+      "unreadable study is skipped by the one check in this "
+      "repository that examines the ANSWER rather than the process "
+      "that made it. The consequence is exact and was measured rather "
+      "than feared: a fair value seventeen per cent above the traded "
+      "price sat unexamined for as long as the study has existed, and "
+      "the moment the branches were republished in the SHARED form "
+      "the gate demanded an eight-heading review within the same "
+      "minute. THE FIX WAS TWO LINES AND THE COST OF NOT HAVING MADE "
+      "IT WAS EVERY CHECK THAT INSTRUMENT WOULD HAVE RUN. Where a "
+      "study has a legitimate reason to publish something unusual, "
+      "publish it in the shared vocabulary anyway: the alternative is "
+      "not a study that is checked differently, it is a study that is "
+      "not checked.",
+      "EMPOWER re-strike and readability pass, 4 September 2026",
+      "build",
+      "before: 'EMPOWER — no central in the committed numbers', "
+      "skipped by the valuation-gap gate. After the two-sided block "
+      "was published in the shared form: '+15.3%, no review' and an "
+      "immediate failure demanding one, with two of four branches "
+      "beyond the trigger. Nothing about the valuation changed.",
+      "A shared form that genuinely cannot express a study's answer, "
+      "where publishing in it would misstate the result — there the "
+      "honest move is to extend the form rather than to file the "
+      "study as unreadable."),
+
+    L("L-318", "ALL", None,
+      "A derivation that works on four names can be economically "
+      "wrong on the fifth, and a negative answer is where it "
+      "announces itself",
+      "The capital a unit of real growth consumes has been taken "
+      "across this programme as the marginal invested capital per "
+      "unit of revenue across the explicit window. On EMPOWER that "
+      "computes to about MINUS 388: over its five forecast years the "
+      "plant is written down faster than capex replaces it and the "
+      "working capital is negative and growing more so. Passed "
+      "through unexamined it would CREDIT the company for growing — a "
+      "chilled-water network that adds a customer would be paid for "
+      "it. The arithmetic is not wrong; the QUANTITY is. A five-year "
+      "window measures where a company is in its capital cycle, not "
+      "what another unit of demand costs. The defensible figure is "
+      "the intensity the business already runs at: one per cent of "
+      "real growth costs one per cent of the invested capital it "
+      "operates on. A DERIVATION REUSED ACROSS NAMES IS A HYPOTHESIS "
+      "ON EACH NEW ONE, and a sign nobody expected is the cheapest "
+      "signal that it has stopped measuring what it was chosen to "
+      "measure.",
+      "EMPOWER re-strike and readability pass, 4 September 2026",
+      "build",
+      "marginal invested capital per unit of revenue at terminal "
+      "revenue: -387.8 on EMPOWER, against +12,501 on MODON, +11,453 "
+      "on SAVOLA and +10,430 on DU where the same derivation is "
+      "sound. Terminal invested capital, the replacement, is 5,526.",
+      "A company genuinely able to release capital as it grows — an "
+      "asset-light business shedding working capital with scale — "
+      "where a negative requirement is the right answer rather than "
+      "an artefact of the window."),
+
+    L("L-319", "ALL", None,
+      "Where prices are frozen by regulation, a typed nominal growth "
+      "rate IS a real assumption, and storing it properly changes "
+      "nothing except what a reader can see",
+      "The storage rule has moved answers on every name it has "
+      "touched, because a typed nominal rate usually hides a real "
+      "component nobody chose. EMPOWER is the case where it does not. "
+      "This company's tariff is regulated and NOT indexed, so nominal "
+      "revenue growth is volume growth, and its typed 2.5% and 1.5% "
+      "reproduce exactly as +0.49% and -0.49% real on the house "
+      "inflation path. THE RULE WOULD MOVE NO NUMBER HERE. What it "
+      "would still do is make visible that the second stage assumes "
+      "the business shrinks in real terms for ever — which the study "
+      "describes in the words 'about zero real tariff growth' without "
+      "ever naming the rate. A RULE THAT CHANGES NO NUMBER IS NOT A "
+      "RULE THAT DID NOTHING: what it buys on this name is a reader "
+      "who can see the assumption instead of computing it.",
+      "EMPOWER re-strike and readability pass, 4 September 2026",
+      "build",
+      "stage one 2.5% nominal on 2.0% house inflation = +0.4902% "
+      "real; stage two 1.5% = -0.4902% real; both reproduce their "
+      "nominal to the basis point. Against MODON (+1.6% on the "
+      "answer), DU (-9.2%) and SAVOLA (+0.7%) where the same storage "
+      "moved the value.",
+      "A regulated tariff that turns out to carry an indexation "
+      "clause, which would make nominal growth something other than "
+      "volume growth and put the real component back in doubt."),
+
+    L("L-320", "ALL", None,
+      "A model change is cheap and a workbook change is not, and the "
+      "workbook is where a rebuild actually stops",
+      "EMPOWER's terminal rebuild was built, run and priced in the "
+      "model in under an hour: about +1.5% on the terminal and +0.5% "
+      "on the answer. It was then set down, because the delivered "
+      "workbook publishes FOUR parallel live models on one sheet — "
+      "the crux columns, the second tax framing, the bear case and "
+      "the upside — each rebuilding the terminal in live formulas on "
+      "a fixed row map built from chained range() allocations, and "
+      "the sanctioned construction needs six more rows per block. "
+      "Inserting them moves addresses that a dozen formulas on four "
+      "other sheets name directly, which is the defect that broke "
+      "five sheets on an earlier name. THE HONEST OUTPUT OF A REBUILD "
+      "THAT CANNOT BE FINISHED IS THE EVIDENCE IT GATHERED, WRITTEN "
+      "DOWN SO THE NEXT PASS IS A BUILD RATHER THAN A RESEARCH TASK — "
+      "and the honest thing NOT to do is leave a model rebuilt while "
+      "the workbook publishes the retired construction, which is "
+      "worse than either state alone.",
+      "EMPOWER re-strike and readability pass, 4 September 2026",
+      "build",
+      "compute.py routed through the sanctioned module and run: "
+      "terminal +1.5%, central +0.5%. build_xlsx_empower.py: four "
+      "terminal blocks on the Sensitivity sheet alone, row map "
+      "S_PVEX..S_PS = range(40,51) with three further chained ranges "
+      "below it. Evidence written to "
+      "engine/empower_study/TERMINAL_EVIDENCE_04-09-2026.md, "
+      "including the audited statements read by OCR and footed four "
+      "ways, and the derived asset life of 28.10 years.",
+      "A workbook whose row map is published from the builder rather "
+      "than hard-coded, which is the fix this lesson points at and "
+      "which would make the same change routine."),
 ]
 
 

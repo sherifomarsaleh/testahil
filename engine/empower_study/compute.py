@@ -40,7 +40,11 @@ TH = 1e-3   # AED'000 -> AED mn
 
 INP = dict(
     # ---- anchors ---------------------------------------------------------
-    spot=I(1.50, "Uploaded DFM daily price history, last close", "2026-08-07", "Market"),
+    spot=I(1.57, "DFM close for EMPOWER, 3 September 2026, from the price file the "
+           "principal supplied that day and committed to the repository. THE STUDY IS "
+           "RE-STRUCK ON IT because no study is delivered against a stale price: the "
+           "prior edition stood on the 7-August close of 1.50, and the stock has since "
+           "risen 4.7%", "2026-09-03", "Market"),
     shares_mn=I(10000.0, "Share capital note 16: AED 1,000,000k at AED 0.10 par = "
                 "10,000,000,000 shares, unchanged since the Nov-2022 IPO (EPS note 35 "
                 "cross-check: 896,754k / 0.090 = 9,964mn wtd)", "2026-02-09", "Company"),
@@ -746,7 +750,7 @@ beta_reg = json.load(open(os.path.join(HERE, 'beta_result.json')))
 out = dict(
     meta=dict(ticker='EMPOWER', company='Emirates Central Cooling Systems '
               'Corporation PJSC (Empower)', market='AE (Dubai Financial Market)',
-              currency='AED', asof='2026-08-09', spot=V['spot'],
+              currency='AED', asof=INP['spot']['date'], spot=V['spot'],
               shares_mn=V['shares_mn'], mktcap=mktcap,
               klass='operating company — regulated district-cooling utility',
               ownership='DEWA 80% (since Feb-2026), free float ~20%'),
@@ -828,6 +832,41 @@ out = dict(
                         "by side like the tax framings; neither is privileged as "
                         "'base' after the 17-Aug macro fact-check",
                  bear=bear, bull=bull, spot=V['spot']),
+    # THE ANSWER IS TWO-SIDED AND IT NOW SAYS SO IN THE FORM A READER OUTSIDE THIS STUDY
+    # CAN PARSE. It always published four named branches and no single central, which is
+    # the honest shape for a study whose answer turns on two undecided questions — but it
+    # published them under keys only this study knows, so every instrument that reads a
+    # central found none and recorded EMPOWER as UNREADABLE. An unreadable answer is not a
+    # clean answer: this study escaped the check on how far a fair value sits from the
+    # market price entirely, which is the one instrument that looks at the ANSWER rather
+    # than at how it was built.
+    central_two_sided=dict(
+        branches=[
+            dict(label='Consumption recovers, taxed at the 9% corporate rate',
+                 value=central_ct,
+                 condition='Dubai chilled-water consumption de-escalates toward its '
+                           'pre-2024 pattern AND the group stays outside the top-up tax'),
+            dict(label='Consumption recovers, taxed at the 15% top-up rate',
+                 value=central_dmtt,
+                 condition='the same consumption path, with the domestic minimum top-up '
+                           'tax applying'),
+            dict(label='Consumption continues at its current pace, 9% corporate rate',
+                 value=central_ct - 0.5 * (D_base_ct['ps'] - D_pers_ct['ps']),
+                 condition='the elevated consumption of the last two summers persists '
+                           'AND the group stays outside the top-up tax'),
+            dict(label='Consumption continues at its current pace, 15% top-up rate',
+                 value=central_dmtt - 0.5 * (D_base_dmtt['ps'] - D_pers_dmtt['ps']),
+                 condition='the same consumption path, with the top-up tax applying')],
+        question='Two questions, neither settled: does Dubai consumption de-escalate or '
+                 'persist, and does the group fall inside the domestic minimum top-up tax?',
+        decides='The tax question is worth about six per cent of the answer and the '
+                'consumption question about two; together they span the published range. '
+                'Neither is ours to settle — one is a regulatory determination not yet '
+                'made about this group, and the other is two summers of weather.',
+        why_not_averaged='averaging a tax rate that will turn out to be either 9% or 15% '
+                         'describes a company that pays 12%, which no rule provides for; '
+                         'and the consumption question is a fact about the world that '
+                         'will resolve one way, not a distribution to be integrated over.'),
     sens_wg=dict(g_grid=g_grid, wacc_grid=wacc_grid, table=sens_wg),
     crux=dict(levels=crux_levels, rows=crux_rows,
               persist_ps_ct=D_pers_ct['ps'], persist_ps_dmtt=D_pers_dmtt['ps']),
