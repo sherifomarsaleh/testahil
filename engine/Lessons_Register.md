@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**208 lessons**, of which 179 bind on every study, 22 on a class of company, and 7 on a single name.
+**209 lessons**, of which 180 bind on every study, 22 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 133 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 134 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1868,6 +1868,16 @@ When a lookup returns nothing, the natural reading is that the thing is missing.
 > **What it cost, or how we know.** One study reported 'no latest known price — the gap cannot be measured' for as long as the gate had existed, so the audit that fires on a large gap had never fired on it. Its price was in the supplied file the whole time, under its real ticker, four characters different from its study directory's name. Resolved, it sits 19.6% below the price. The alias map already existed in another module, with the reason written beside it — the gate simply did not import it.
 
 > **What would overturn it.** A population where identifiers are generated from one source and cannot diverge, so a name either exists or genuinely has no data.
+
+### L-288 · AVERAGING TWO FRAMINGS OF A CONTESTED JUDGEMENT MANUFACTURES A DISAGREEMENT THAT NEITHER FRAMING HOLDS.
+
+When a study cannot settle a question, taking the middle looks like modesty. It is not: the midpoint is a position no reading of the evidence actually supports, and it hides the one thing a reader needs, which is that the answer turns on a decision somebody has to make. Published side by side, the two readings show the reader what the argument is about. Averaged, they produce a confident-looking number that is nobody's view.
+
+**Applies to:** every study  ·  *Learned from:* found while building, Fertiglobe's dual framing, read 04-Sep-2026
+
+> **What it cost, or how we know.** One study's cash-flow lens is the straight mean of two framings of its central contested judgement about its market. Against the latest known price the first framing sits 34.2% below and the second 1.8% below — one says the market is badly wrong and the other that it is right. Their mean sits 19.6% below, which is a disagreement with the market that NEITHER framing asserts, and it is the number the study publishes. Under the two-sided rule a study is held only if every branch breaches the limit, so the averaging also changes the study's own publication status.
+
+> **What would overturn it.** A contested judgement whose framings differ by little enough that the midpoint is inside both readings, where averaging costs a reader nothing.
 
 
 ---
