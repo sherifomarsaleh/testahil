@@ -196,6 +196,40 @@
    "cross_check": "The FY2024 note states the table is 'for current and comparative year', which makes it its own one-year check. Checked further against the FY2020 ANNUAL audited statements (engine/savola_study/SAVOLA_FY2020_Annual_FS.pdf, note 3(g)): the table is IDENTICAL line for line — 12.5-50, 3-33, 3-30, 3-16, 4-10 — so these lives are stable across at least 2020 to 2024. THE FIRST CROSS-CHECK ATTEMPTED WAS THE WRONG DOCUMENT and is recorded rather than quietly replaced: the file the company labels 'q4-2023' is a CONDENSED CONSOLIDATED INTERIM statement, UNAUDITED, and carries no accounting-policies table at all. A fourth-quarter filing is not an annual one.",
    "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE. The weighted life a terminal needs is derived at rebuild from this company's own property, plant and equipment note composition, which is a further sourcing step and is NOT done here — collapsing 3-50 to one figure here would be this desk choosing the life under cover of a citation.",
    "vintage_note": "This study's valuation date is 31-Dec-2025 and the latest ANNUAL audited statements on the company's own financial-statements page at 04-Sep-2026 are FY2024; no FY2025 annual was listed there. The lives are unchanged 2020-2024, so the vintage gap is recorded rather than treated as material — but it is recorded."
+  },
+  "FERTIGLOBE": {
+   "classes": [
+    {
+     "asset_class": "Buildings",
+     "years": [
+      10,
+      50
+     ]
+    },
+    {
+     "asset_class": "Plant and equipment",
+     "years": [
+      5,
+      30
+     ]
+    },
+    {
+     "asset_class": "Fixtures and fittings",
+     "years": [
+      3,
+      10
+     ]
+    }
+   ],
+   "longest_years": 50,
+   "shortest_years": 3,
+   "land_not_depreciated": true,
+   "source": "Fertiglobe plc, 2025 Annual Report, note 3 material accounting policies, property, plant and equipment — depreciation: 'Items of property, plant and equipment are depreciated on a straight-line basis through profit or loss over the estimated useful lives of each component, taking into account any residual values. Land is not depreciated ... The estimated useful lives for items of property, plant and equipment are as follows'. Downloaded 04-Sep-2026 from the company's own investor-relations page, fertiglobe.com/wp-content/uploads/2026/03/Fertiglobe-2025-Annual-Report-vF.pdf; sha256 cbb8fdb171154dbe9adac7a0675271b53050d40fd58dfa5595d5ad4b0ff20b8f.",
+   "file": "engine/fertiglobe_study/FERTIGLOBE_2025_Annual_Report.pdf",
+   "sha256": "cbb8fdb171154dbe9adac7a0675271b53050d40fd58dfa5595d5ad4b0ff20b8f",
+   "route": "Text layer via pdftotext -layout, 1.39MB extracted. The report is the integrated annual report and carries the audited consolidated financial statements inside it, which is where this note sits.",
+   "cross_check": "NOT YET CROSS-CHECKED AGAINST A SECOND YEAR, and that is recorded rather than left to be assumed from the other entries here. Unlike SAVOLA's, this note does not describe its own table as covering the comparative year, so the one-document check SAVOLA's gave is not available; a prior-year annual report would supply it and was not fetched in this pass. The lives are usable and this is what is known about them.",
+   "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE. The weighted life a terminal needs is derived at rebuild from this company's own property, plant and equipment note composition — a further sourcing step, not done here."
   }
  }
 }
