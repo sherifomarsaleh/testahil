@@ -1381,9 +1381,33 @@
     "normalized": 0.2,
     "book": 0.1
    },
-   "source": "House synthesis weights, operating-company pattern (SWDY reference study)",
+   "source": "RETIRED 02-Sep-2026 and kept only as the record of what the retired construction did. These were house synthesis weights copied from an operating-company pattern; they were typed, they had never cleared an out-of-sample test, and they are no longer an input to any published figure. They are consumed in exactly two places, both of which price the retired construction rather than the answer: the Summary's own labelled retired row, and the arithmetic recording how the external weight finding was priced at the time it was raised",
    "date": "2026-08-09",
    "ring": "House"
+  },
+  "erp_mature_base": {
+   "value": 0.0423,
+   "source": "Damodaran mature-market equity risk premium base, Jan-2026 edition, read from the original ctryprem file. Both published UAE constructions add their country premium to THIS number: the adopted market-spread basis (4.23% + 6bp) and the alternative rating basis (4.23% + 64bp, Aa2). Quoted four times across the delivered documents and committed here so those quotations reconcile",
+   "date": "2026-01-01",
+   "ring": "Country"
+  },
+  "rf_ad_usd_10y": {
+   "value": 0.0473,
+   "source": "Abu Dhabi sovereign USD 10-year, Feb-2026 issue, priced at UST+25bp. The peg-extrapolated alternative risk-free anchor is this figure less the ~4bp observed AED-through-USD basis at matched tenor; the AED-equivalent result is registered separately as rf_alt, and this is the USD leg it is built from",
+   "date": "2026-02-01",
+   "ring": "Country"
+  },
+  "pe_provider_refused": {
+   "value": 11365.0,
+   "source": "A NEGATIVE RESULT, committed because it is quoted. The data provider returned a price/earnings multiple of 11,365x for Zain, which is corrupt on its face; it was REFUSED rather than carried into a peer median, and that refusal is one of the two reasons this study claims no peer median at all",
+   "date": "2026-08-06",
+   "ring": "Industry"
+  },
+  "mamoura_stake_sold": {
+   "value": 0.0755,
+   "source": "Mubadala's Mamoura vehicle sold three quarters of its holding in du in the 2025 secondary offering \u2014 7.55% of the company. It widened the free float without changing control, and it drives nothing in this model: it is committed because the company overview states it to a reader",
+   "date": "2025-12-31",
+   "ring": "Company"
   },
   "g_term": {
    "value": 0.025,
@@ -2631,43 +2655,117 @@
    "bear": 11.026869910917563,
    "base": 18.89089910623227,
    "bull": 28.653303688485405,
-   "w": 0.45
+   "w": null
   },
   "relative": {
    "name": "Relative multiples",
    "bear": 8.19435733330928,
    "base": 8.858434133307476,
    "bull": 12.990467555518473,
-   "w": 0.25
+   "w": null
   },
   "normalized": {
    "name": "Normalised earnings power",
    "bear": 8.206888252242381,
    "base": 8.87190487116056,
    "bull": 13.009786055540339,
-   "w": 0.2
+   "w": null,
+   "note": "RETIRED for this class: normalised earnings power is not among a telecom operator's permitted cross-checks. Removed rather than re-weighted, and computed and shown so the move is visible."
   },
   "book": {
    "name": "Book value and sustainable return",
    "bear": 10.86491563601984,
    "base": 14.124833332894804,
    "bull": 15.33175850292703,
-   "w": 0.1
+   "w": null,
+   "note": "a disclosed FLOOR, published as such and never weighted"
   },
   "central": {
-   "name": "Weighted central",
-   "bear": 8.19435733330928,
-   "base": 13.902377438652984,
+   "name": "Cash-flow lens (the central)",
+   "bear": 11.026869910917563,
+   "base": 18.89089910623227,
    "bull": 28.653303688485405,
-   "w": 1.0
+   "w": null
+  },
+  "retired_blend": {
+   "name": "RETIRED 45/25/20/10 blend, published unused",
+   "bear": null,
+   "base": 13.902377438652984,
+   "bull": null,
+   "w": 0.0
   }
  },
- "central": 13.902377438652984,
+ "central": 18.89089910623227,
  "span": [
-  8.19435733330928,
+  11.026869910917563,
   28.653303688485405
  ],
  "spot": 12.3,
+ "retired_blend_value": 13.902377438652984,
+ "lens_record": {
+  "class": "telecom operator",
+  "primary": {
+   "kind": "dcf",
+   "two_sided": false,
+   "value": 18.89089910623227,
+   "range": {
+    "low": 11.026869910917563,
+    "high": 28.653303688485405
+   },
+   "range_note": "the cash-flow lens under its own bear and bull paths on one clock, not the widest spread across four methods",
+   "range_basis": {
+    "driver": "the fibre and mobile revenue path and the capital intensity it carries",
+    "low": 11.026869910917563,
+    "high": 28.653303688485405,
+    "units": "AED per share, the present-value read under each path",
+    "macro_held": true,
+    "evidence": "both paths are engine re-runs of the same model with the macro path, the cost of capital and terminal growth held still"
+   }
+  },
+  "cross_checks": [
+   {
+    "kind": "relative_multiple",
+    "value": 8.858434133307476,
+    "present_value": false,
+    "multiple": 12.9,
+    "multiple_source": "a justified earnings multiple set against the named regional telecom peer set and this company's own history, never one read off the current price",
+    "circularity": {
+     "spot": 12.3,
+     "shares": 4532.905989,
+     "net_debt": -2249.719,
+     "metric_value": 7338.388
+    },
+    "note": "forward earnings on a peer-anchored multiple"
+   },
+   {
+    "kind": "book_value",
+    "value": 14.124833332894804,
+    "present_value": false,
+    "floor": true,
+    "note": "a disclosed FLOOR, published as such and never weighted"
+   }
+  ],
+  "cross_checks_not_built": [
+   {
+    "kind": "ev_ebitda_own_history",
+    "why": "this class permits an enterprise multiple on the company's OWN history and this study does not publish one. What it computes is a trailing multiple from the CURRENT market capitalisation, which is a multiple read off the price and is what the non-circularity rule forbids. A genuine own-history multiple needs a series of past enterprise values against past EBITDA \u2014 a construction rather than a rename \u2014 and it is named here rather than left quietly absent."
+   }
+  ],
+  "retired": {
+   "blend": {
+    "dcf": 0.45,
+    "relative": 0.25,
+    "normalized": 0.2,
+    "book": 0.1
+   },
+   "blend_value": 13.902377438652984,
+   "why": "the weights were typed and had never cleared an out-of-sample test. What they concealed here was the SIZE of the disagreement rather than its direction: the blend read +13% against the price where the cash-flow lens reads +54%, so a reader \u2014 and every gate that reads the published central \u2014 saw about a quarter of the disagreement this study actually holds. An external finding (CC10) had already identified the weight scheme as an untested house judgement that moved the answer; it is resolved by removing the scheme rather than by re-tuning it.",
+   "normalised_removed": {
+    "value": 8.87190487116056,
+    "why": "normalised earnings power is not among a telecom operator's permitted cross-checks. Removed rather than re-weighted; computed and shown so the move is visible."
+   }
+  }
+ },
  "experts": {
   "e1": {
    "method_short": "earnings power",
@@ -3278,6 +3376,21 @@
    "panel_names": 18
   }
  },
+ "register_figures": {
+  "lfl_mobile_interconnect": -0.04130064570132963,
+  "lfl_mobile_commission": 0.02981864643752119,
+  "lfl_fixed_capacity": -0.09208110801092095,
+  "rate_mobile_interconnect_h125": 17.5381448247849,
+  "rate_mobile_interconnect_h126": 16.81380811911785,
+  "rate_mobile_commission_h125": 6.12423839592334,
+  "rate_mobile_commission_h126": 6.306854895350471,
+  "rate_fixed_capacity_h125": 75.2855427473583,
+  "rate_fixed_capacity_h126": 68.353166553978,
+  "erp_mature_base": 0.0423,
+  "rf_ad_usd_10y": 0.0473,
+  "pe_provider_refused": 11365.0,
+  "mamoura_stake_sold": 0.0755
+ },
  "assert_log": [
   "==============================================================================",
   "DU \u2014 ASSERT / derivation log (built on audited FY23-25 + reviewed Q1/H1-2026 filings)",
@@ -3318,10 +3431,10 @@
   "[Relative lens] trailing P/E 19.2x, trailing EV/EBITDA 7.6x (du's own, computed from audited figures). Justified P/E 12.9x (Mobily, the closest structural analogue, from its own filings \u2014 NO peer median is claimed: only 2 of 6 peers survive as clean observations) x FY26E EPS 0.71 -> AED 8.86 at the anchor [bear 12x 8.19 / bull 18.5x 12.99]. Dividend-yield cross: DPS 0.70 / peer benchmark 4.9% = AED 14.24. Peer EV/EBITDA was NOT reliably sourceable from public aggregators (flagged) \u2014 the relative lens runs on P/E and yield, both sourced.",
   "[Normalised lens] mid-cycle margin 47.9% (FY2028E) on FY2026E revenue -> normalised EPS 0.71 x 12.9 = AED 8.87 at the anchor",
   "[Book lens] justified P/B = (27% \u2212 2.5%) / (6.35% \u2212 2.5%) = 6.36x on BVPS 2.24 -> AED 14.12 at the anchor. A 27% sustainable ROE against a 6.4% cost of equity is what a licensed duopoly with negative working capital looks like; the multiple is high because the equity base is small, not because the claim is aggressive. Trailing ROE 29.0%.",
-  "[Synthesis] weighted central AED 13.90; span 8.19 - 28.65; spot 12.30 (+13% to the central).",
+  "[Synthesis] the cash-flow lens IS the central, AED 18.89; span 11.03 - 28.65; spot 12.30 (+54% to the central).",
   "[Mix-exhaustion scenario, PRICED] if the postpaid mix tailwind exhausts and the blended ARPU path instead erodes at the per-leg rate the decomposition implies (-2.39%/yr), the DCF is AED 15.62 against the base 18.89 (-3.27/share, -17.3%). Grid across ARPU drift: -2.5% -> 15.47, -1.5% -> 16.81, +0.0% -> 18.89, +0.5% -> 19.61, +1.0% -> 20.33.",
-  "[CC7 PRICED \u2014 Expert 1's discounting horizon] as built AED 9.88 (net exponent -1.40 years). Horizon corrected to the anchor-consistent 2.40 years and nothing else: AED 9.89 (+0.01/share). But that version silently discards the dividends receivable between the anchor and FY2028, worth AED 1.64 in present value on a payout near 100%; adding them back gives AED 11.54 (+1.65/share vs as built, +11.9% of the weighted central). VERDICT: the finding's PREMISE is correct and was under-priced by being left unpriced \u2014 the horizon really is a year short. Its CONCLUSION that the lens is overstated is wrong in sign once the omitted dividends are restored. Expert 1 is republished on the coherent construction.",
-  "[CC10 PRICED \u2014 the market-multiple family at 25% instead of 45%] as published the central is AED 13.90. Moving the freed 20% to the cash-flow lens gives AED 15.91 (+2.01/share, +14.4%); moving it to the book lens gives AED 14.95 (+1.05/share, +7.6%). So the finding is worth up to 2.01/share \u2014 NOT immaterial, and the range between the two destinations is itself 0.95/share, which is the honest disclosure: the weight scheme is a house judgement and it moves the answer. VERDICT: weights unchanged (the operating-company pattern is applied consistently across studies, and re-tuning them for one name is how a house standard stops being one), but the reweighted values are now PUBLISHED beside the central rather than asserted to be immaterial.",
+  "[CC7 PRICED \u2014 Expert 1's discounting horizon] as built AED 9.88 (net exponent -1.40 years). Horizon corrected to the anchor-consistent 2.40 years and nothing else: AED 9.89 (+0.01/share). But that version silently discards the dividends receivable between the anchor and FY2028, worth AED 1.64 in present value on a payout near 100%; adding them back gives AED 11.54 (+1.65/share vs as built, +8.8% of the central). VERDICT: the finding's PREMISE is correct and was under-priced by being left unpriced \u2014 the horizon really is a year short. Its CONCLUSION that the lens is overstated is wrong in sign once the omitted dividends are restored. Expert 1 is republished on the coherent construction.",
+  "[CC10 RESOLVED \u2014 the market-multiple family's weight] the finding said the weight scheme was a house judgement that moved the answer, and it was right. It was priced against the blend this study published at the time, AED 13.90: moving the freed 20% to the cash-flow lens gave AED 15.91 (+2.01/share) and to the book lens AED 14.95 (+1.05/share) \u2014 up to 2.01/share, not immaterial. VERDICT: RESOLVED, and not by re-tuning the weights. The scheme is gone: the cash-flow lens IS the central at AED 18.89 and the others are published beside it, so there is no weight left to re-set. The finding pointed at a free parameter nobody had tested and the answer was to remove it rather than to choose it better. The arithmetic above is kept as the record of what the retired construction did, and the blend itself is published unused.",
   "[CC3 PRICED \u2014 revenue at the guidance midpoint] the build lands at +4.3% against du's guided 4-6%, so the midpoint +5.0% is +0.7pp above it, worth about AED 107mn of FY2026 revenue. Won on PRICE (blended ARPU 1.018x, no incremental unit cost or capex): AED 19.54 (+0.65/share). Won on VOLUME (+337k subscribers, carrying both unit cost and the capex it implies): AED 19.68 (+0.79/share). So the finding is worth AED +0.65 to +0.79 a share and is NOT immaterial.",
   "[Why volume looks better here \u2014 the comparison was mis-specified, and the fix] calibrating both cases on FY2026 growth does NOT hold revenue constant, because H1-2026 is a reviewed ACTUAL: a subscriber shift can only move the second half of FY2026, so matching FY2026 needs a shift large enough to then apply to the WHOLE of FY2027-FY2030. Five-year revenue comes out 91,049 on price against 91,862 on volume (+0.89%) \u2014 the volume case simply sells more over the window. That is a timing artefact of the calibration, not evidence about attribution.",
   "[CC3, attribution isolated on matched five-year revenue] +190k subscribers delivers the same 91,049 of five-year revenue as the price case. On PRICE: AED 19.54. On VOLUME: AED 19.34 (-0.20/share, -1.0%). NOW the expected ordering holds: identical revenue is worth less when it has to be bought with per-subscriber cost and the capex to carry the traffic. VERDICT on the finding: material, published as a range. The build stays below the midpoint because it is driven by disclosed subscriber and ARPU paths rather than reverse-engineered to a guidance number \u2014 but the reader is entitled to see what the midpoint is worth and that HOW it is won matters as much as whether it is.",

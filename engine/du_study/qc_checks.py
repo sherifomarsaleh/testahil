@@ -124,6 +124,19 @@ for label, path in [('study', STUDY), ('bibliography', BIB)]:
     if bad:
         fails.append(f'placeholders in {label}')
 
+# ---- the result, written where the model can read it back ---------------------
+# [R-ENF-01] A SELF-ATTESTED BOOLEAN IS NEVER A CHECK. This scan has always been real and
+# nothing downstream could see it: compute.py could attest external_reader_scrub only on
+# its own say-so. The result is now a file, it NAMES THE FILES IT SCANNED, and the model
+# refuses to attest on a result covering an edition nobody receives.
+json.dump({
+    'files': [os.path.basename(STUDY), os.path.basename(BIB)],
+    'clean': not fails,
+    'hits': sorted(set(fails)),
+    'patterns': len(BANNED) + len(CASE_BANNED),
+    'chars': sum(len(doc_text(p)[1]) for p in (STUDY, BIB)),
+}, open(os.path.join(HERE, 'scrub_result.json'), 'w'), indent=1)
+
 print('=' * 74)
 if fails:
     print('QC CHECKS FAILED:', '; '.join(fails))

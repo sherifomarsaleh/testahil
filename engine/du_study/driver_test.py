@@ -35,6 +35,8 @@ def read(overrides=None):
                 wacc=bk.cell_value('DCF', 'C47'),
                 wacc_term=bk.cell_value('DCF', 'C54'),
                 nc30=bk.cell_value('Balance Sheet', 'I15'),
+                relative=bk.cell_value('Relative & Normalized', 'C11'),
+                book=bk.cell_value('Relative & Normalized', 'C35'),
                 bvps=bk.cell_value('Relative & Normalized', 'C30'))
 
 base = read()
@@ -62,10 +64,14 @@ CASES = [
      'within a fixed EBITDA, faster depreciation is a larger tax shield on the explicit window'),
     ('Capital expenditure / revenue', 'C', +0.02, 'dcf', -1,
      'heavier capex must absorb cash and lower the valuation'),
-    ('Justified price/earnings (GCC telecom peer median)', 'C', +1.0, 'central', +1,
-     'a higher justified multiple must raise the weighted central'),
-    ('Sustainable return on equity', 'C', +0.03, 'central', +1,
-     'a higher sustainable return must raise the book lens and the central'),
+    # These two drive CROSS-CHECKS, not the answer. Under the retired blend they reached the
+    # published central through a weight, and the test asserted exactly that. They must now
+    # move their own lens and leave the central alone — see the isolation sweep below, which
+    # is the stronger claim: it is not that the weight is small, it is that there is none.
+    ('Justified price/earnings (GCC telecom peer median)', 'C', +1.0, 'relative', +1,
+     'a higher justified multiple must raise the relative-multiple cross-check'),
+    ('Sustainable return on equity', 'C', +0.03, 'book', +1,
+     'a higher sustainable return must raise the book lens'),
     ('Lease liabilities at FY2025 (AED mn, audited — the only debt-like item)', 'C', +500.0,
      'dcf', -1, 'more debt-like leases must leave less for shareholders'),
     ('Cash and term deposits at FY2025 (AED mn, audited)', 'C', +500.0, 'dcf', +1,
@@ -160,12 +166,37 @@ DEAD_OK = {
     'Regulated revenue share (Framing B base, audited FY2023)',
     'Framing B — royalty rate on regulated revenue',
     'Framing B — royalty rate on regulated profit',
-    # display-only lens weights (Summary carries its own blue weight cells)
-    'Weight — discounted cash flow', 'Weight — relative', 'Weight — normalised',
-    'Weight — book',
     # yield-cross triangulation is shown beside the lens, not fed into a headline
     'Peer benchmark dividend yield',
 }
+# ---------------------------------------------------------------------------------
+# ISOLATION SWEEP — the claim the retired blend made impossible to test.
+# Under a weighted central every lens input reached the published answer, so no input
+# could be shown independent of it. With one lens as the answer, a cross-check driver
+# must move its own lens and move the central by EXACTLY zero — not a little, zero.
+# A near-zero tolerance would be a free parameter; the right answer here is arithmetic,
+# because a weight of nothing is not a small weight.
+ISOLATED = [
+    ('Justified price/earnings (GCC telecom peer median)', +1.0, 'relative'),
+    ('Sustainable return on equity', +0.03, 'book'),
+    ('Peer benchmark dividend yield', +0.01, None),
+]
+print('\nISOLATION SWEEP — a cross-check driver must move its own lens and NOT the answer')
+iso_fails = []
+for label, bump, lens in ISOLATED:
+    r = row_of(label)
+    out = read({('Assumptions', f'C{r}'): wb['Assumptions'][f'C{r}'].value + bump})
+    moved_central = out['central'] - base['central']
+    moved_dcf = out['dcf'] - base['dcf']
+    own = (out[lens] - base[lens]) if lens else None
+    ok = moved_central == 0.0 and moved_dcf == 0.0 and (own is None or abs(own) > 1e-9)
+    if not ok:
+        iso_fails.append((label, moved_central, moved_dcf, own))
+    own_s = f'{own:+.4f}' if own is not None else 'n/a (published beside, drives no lens)'
+    print(f"  [{'OK ' if ok else 'BAD'}] {label}: own lens {own_s} · "
+          f"central {moved_central:+.10f} · cash-flow lens {moved_dcf:+.10f}")
+assert not iso_fails, f'cross-check drivers that reach the answer: {iso_fails}'
+
 print('\nDEAD-INPUT SWEEP — every driver not covered above is bumped and must move something')
 dead = []
 for label, r in sorted(A.items(), key=lambda kv: kv[1]):

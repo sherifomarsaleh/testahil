@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**213 lessons**, of which 184 bind on every study, 22 on a class of company, and 7 on a single name.
+**214 lessons**, of which 185 bind on every study, 22 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 138 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 139 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1918,6 +1918,16 @@ The register already says an empty probe is a probe that did not run [L-015, L-2
 > **What it cost, or how we know.** Three times in one day, each time the skipped search was the cheaper one. (1) A vessel price was declared not held after reading four years of PDF filings and an impairment note; two transacted prices were sitting in that study's own JSON input register, which was never opened. (2) The instrument reporting the book's blockers made the same assertion mechanically, reporting a capital base MISSING on twelve names while only ever looking for the assembled base and never for the per-unit price every corrected study built one from. (3) A note said the lens registry carried no telecom row and that a class decision was therefore needed; the registry is a dict of eleven lines and it carries one, and reading it made the finding SHARPER rather than softer — the lens carrying a fifth of that study's weight is not permitted for its class at all. In every case the expensive search was done properly and the cheap one was not.
 
 > **What would overturn it.** A case where an absence asserted after thorough expensive work turns out to have been checked cheaply first and the cheap check is what was wrong. The remedy this suggests is arithmetic rather than resolve: a record stating not held / not disclosed / cannot be obtained names the routes actually run, which is what [R-IND-01] already demands of an escalation and does not yet demand of a record.
+
+### L-293 · A TOOL THAT CAN SILENTLY REPLACE THE ANSWER EVENTUALLY DOES, and the run it leaves behind is INTERNALLY COHERENT — which is what makes it invisible, because every check downstream reconciles the file to itself.
+
+A study carried an override harness so an audit finding could be priced on the real chain rather than on a re-implementation, which is the right discipline [R-ENF-03]. It wrote the overridden run straight over the committed numbers file. Nothing was corrupt in the ordinary sense: it was a complete, correct run of the model, answering a different question. The four-field register was complete, the workbook reconciled every formula cell AGAINST THAT FILE, and the document builders rendered it faithfully. Worse, the beta RECORD still reported the registered value, because a record is written from the input's own metadata rather than from the value the model used — so the file asserted a beta the run had not used.
+
+**Applies to:** every study  ·  *Learned from:* found while building, DU, 04-Sep-2026
+
+> **What it cost, or how we know.** The committed study_numbers.json held a fair value of 12.29999994 against a market price of 12.30 — the solved answer of the last bisection step, not the study. It was caught only because a figure printed for an unrelated purpose was one somebody recognised; no gate in the repository could see it, and there was no provenance to read, since an overridden run records no trace of having been overridden. Closed structurally rather than by resolve: an overridden run now writes BESIDE the committed file by default, so forgetting the flag cannot corrupt the study, and scripts/check_harness_outputs.py refuses both a committed file carrying an override block and a harness whose output name does not depend on the override being set.
+
+> **What would overturn it.** A harness whose overridden output genuinely must occupy the committed path — none is known, and the safe default costs nothing. If one appears, the honest form is a provenance block the file carries about itself, which the gate already reads.
 
 
 ---

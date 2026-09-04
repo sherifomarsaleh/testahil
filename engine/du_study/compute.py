@@ -647,8 +647,45 @@ INP = dict(
                    "a forecast to a guidance number is the opposite of a ground-up build",
                    "2026-07-23", "Company"),
     lens_weights=I(dict(dcf=0.45, relative=0.25, normalized=0.20, book=0.10),
-                   "House synthesis weights, operating-company pattern (SWDY reference study)",
+                   "RETIRED 02-Sep-2026 and kept only as the record of what the retired "
+                   "construction did. These were house synthesis weights copied from an "
+                   "operating-company pattern; they were typed, they had never cleared an "
+                   "out-of-sample test, and they are no longer an input to any published "
+                   "figure. They are consumed in exactly two places, both of which price "
+                   "the retired construction rather than the answer: the Summary's own "
+                   "labelled retired row, and the arithmetic recording how the external "
+                   "weight finding was priced at the time it was raised",
                    "2026-08-09", "House"),
+    # ---- figures a reader meets in prose, committed as numbers ----------------
+    # Each of these was sourced correctly and then written ONLY into a justification
+    # sentence or a paragraph, where no instrument could reconcile it. They drive no
+    # forecast: they are the components and refusals the register's own text quotes, and
+    # a component quoted in prose is a claim like any other.
+    erp_mature_base=I(0.0423, "Damodaran mature-market equity risk premium base, Jan-2026 "
+                      "edition, read from the original ctryprem file. Both published UAE "
+                      "constructions add their country premium to THIS number: the adopted "
+                      "market-spread basis (4.23% + 6bp) and the alternative rating basis "
+                      "(4.23% + 64bp, Aa2). Quoted four times across the delivered documents "
+                      "and committed here so those quotations reconcile",
+                      "2026-01-01", "Country"),
+    rf_ad_usd_10y=I(0.0473, "Abu Dhabi sovereign USD 10-year, Feb-2026 issue, priced at "
+                    "UST+25bp. The peg-extrapolated alternative risk-free anchor is this "
+                    "figure less the ~4bp observed AED-through-USD basis at matched tenor; "
+                    "the AED-equivalent result is registered separately as rf_alt, and this "
+                    "is the USD leg it is built from",
+                    "2026-02-01", "Country"),
+    pe_provider_refused=I(11365.0, "A NEGATIVE RESULT, committed because it is quoted. The "
+                          "data provider returned a price/earnings multiple of 11,365x for "
+                          "Zain, which is corrupt on its face; it was REFUSED rather than "
+                          "carried into a peer median, and that refusal is one of the two "
+                          "reasons this study claims no peer median at all",
+                          "2026-08-06", "Industry"),
+    mamoura_stake_sold=I(0.0755, "Mubadala's Mamoura vehicle sold three quarters of its "
+                         "holding in du in the 2025 secondary offering — 7.55% of the "
+                         "company. It widened the free float without changing control, and "
+                         "it drives nothing in this model: it is committed because the "
+                         "company overview states it to a reader",
+                         "2025-12-31", "Company"),
     g_term=I(0.025, "Terminal nominal AED growth 2.5%: below the IMF's UAE long-run nominal GDP "
              "growth (~4%: real ~4% + CPI ~2% per WEO Apr-2026) and consistent with a mature "
              "duopoly telecom growing at population-plus-inflation minus price erosion",
@@ -668,13 +705,32 @@ assert INP['rf']['ring'] != 'SENTINEL', 'WACC register did not overwrite the sen
 
 # ---- audit-response override hook (pricing harness only; unset in the delivered build) ----
 # Lets a finding be PRICED on the real chain rather than on a re-implementation.
+#
+# IT MAY NOT WRITE THE COMMITTED NUMBERS FILE, AND THAT IS STRUCTURAL RATHER THAN
+# REMEMBERED [corrected 04-Sep-2026]. As first written this harness overwrote
+# study_numbers.json with the overridden run, and the file it left behind LOOKED CLEAN:
+# every other block was coherent, and the beta RECORD still reported the registered value
+# because the record is written from the input's own metadata rather than from the value
+# the model used. So an overridden fair value sat in the committed file under a beta the
+# file itself said was 0.488. Nothing could have detected it — no gate reads a provenance
+# that does not exist — and it was found only because a figure printed for another purpose
+# was one somebody happened to recognise. A harness that can silently replace the answer
+# is a harness that eventually does.
 _ovr = os.environ.get('DU_OVERRIDE')
 FLAGS = {}
+OVERRIDE_RECORD = None
 if _ovr:
     _o = json.loads(_ovr)
+    _applied = {}
     for _k, _v in _o.get('inputs', {}).items():
-        INP[_k]['value'] = _v
+        _applied[_k] = dict(was=INP[_k]['value'], now=_v)
+        INP[_k] = dict(INP[_k], value=_v,
+                       source=INP[_k]['source'] + ' [AUDIT OVERRIDE — not the delivered value]')
     FLAGS = _o.get('flags', {})
+    OVERRIDE_RECORD = dict(inputs=_applied, flags=FLAGS,
+                           note=('this run is a PRICING HARNESS run and its numbers are not '
+                                 'this study. The committed file is written only by a run '
+                                 'with no override set.'))
 
 V = {k: rec['value'] for k, rec in INP.items()}
 LOG = []
@@ -1527,11 +1583,51 @@ lenses = dict(
     book=dict(name='Book value and sustainable return', bear=book_bear, base=book_ps,
               bull=book_bull, w=W['book']),
 )
-central = sum(l['base'] * l['w'] for l in lenses.values())
-lo = min(l['bear'] for l in lenses.values())
-hi = max(l['bull'] for l in lenses.values())
-lenses['central'] = dict(name='Weighted central', bear=lo, base=central, bull=hi, w=1.0)
-say(f"[Synthesis] weighted central AED {central:.2f}; span {lo:.2f} - {hi:.2f}; spot "
+# ---------------------------------------------------------------------------
+# [R-LENS-03] ONE CLASS PRIMARY IS THE CENTRAL; THE OTHERS ARE CROSS-CHECKS.
+# ---------------------------------------------------------------------------
+# WHAT THE RETIRED BLEND DID HERE, measured rather than described. The four
+# weights moved the answer from the cash-flow lens's own read to a number
+# roughly a third lower, and what that concealed was the SIZE of this study's
+# disagreement with the market: the blend reported a modest premium where the
+# primary lens asserts a large one. A blend does not bias an answer, it masks
+# one -- and which direction it masks in is an accident of which lenses happen
+# to sit where.
+#
+# NORMALISED EARNINGS IS REMOVED RATHER THAN RE-WEIGHTED. The registry's
+# telecom row is a cash-flow primary with an enterprise multiple on own
+# history, a relative multiple and book value beside it; normalised earnings
+# power is not among them, so the lens carrying a fifth of the weight here was
+# not one this class publishes at all. Computed and shown so the move is
+# visible.
+#
+# ONE PERMITTED CROSS-CHECK IS NOT YET BUILT AND IS NAMED RATHER THAN QUIETLY
+# ABSENT: an enterprise multiple on du's OWN HISTORY. This study computes a
+# trailing multiple, but from the CURRENT market capitalisation -- which is a
+# multiple read off the price, and this rule forbids exactly that because it
+# values the company at what it already trades at. A genuine own-history
+# multiple needs a series of past enterprise values against past EBITDA, which
+# is a construction rather than a rename, and it is left for the pass that can
+# source it.
+RETIRED_BLEND_W = dict(W)
+RETIRED_BLEND_VALUE = sum(l['base'] * l['w'] for l in lenses.values())
+for _k in lenses:
+    lenses[_k]['w'] = None
+lenses['normalized']['note'] = (
+    'RETIRED for this class: normalised earnings power is not among a telecom '
+    'operator\'s permitted cross-checks. Removed rather than re-weighted, and '
+    'computed and shown so the move is visible.')
+lenses['book']['note'] = 'a disclosed FLOOR, published as such and never weighted'
+
+central = lenses['dcf']['base']
+lo, hi = lenses['dcf']['bear'], lenses['dcf']['bull']
+lenses['central'] = dict(name='Cash-flow lens (the central)', bear=lo, base=central,
+                         bull=hi, w=None)
+lenses['retired_blend'] = dict(
+    name='RETIRED %d/%d/%d/%d blend, published unused' % tuple(
+        round(100 * RETIRED_BLEND_W[k]) for k in ('dcf', 'relative', 'normalized', 'book')),
+    bear=None, base=RETIRED_BLEND_VALUE, bull=None, w=0.0)
+say(f"[Synthesis] the cash-flow lens IS the central, AED {central:.2f}; span {lo:.2f} - {hi:.2f}; spot "
     f"{SPOT:.2f} ({central/SPOT-1:+.0%} to the central).")
 assert 0.3 <= central / SPOT <= 3.0
 
@@ -1670,7 +1766,7 @@ say(f"[CC7 PRICED — Expert 1's discounting horizon] as built AED {_e1_as_built
     f"dividends receivable between the anchor and FY2028, worth AED {_e1_div_pv:.2f} in present "
     f"value on a payout near 100%; adding them back gives AED {_e1_coherent:.2f} "
     f"({_e1_coherent - _e1_as_built:+.2f}/share vs as built, "
-    f"{(_e1_coherent - _e1_as_built) / central:+.1%} of the weighted central). VERDICT: the "
+    f"{(_e1_coherent - _e1_as_built) / central:+.1%} of the central). VERDICT: the "
     f"finding's PREMISE is correct and was under-priced by being left unpriced — the horizon "
     f"really is a year short. Its CONCLUSION that the lens is overstated is wrong in sign once "
     f"the omitted dividends are restored. Expert 1 is republished on the coherent construction.")
@@ -1693,19 +1789,19 @@ _w_to_book = dict(dcf=_w_base['dcf'], book=_w_base['book'] + (_fam - 0.25),
 for _w in (_w_base, _w_to_dcf, _w_to_book):
     assert abs(sum(_w.values()) - 1.0) < 1e-9, 'lens weights must sum to one'
 cc10_to_dcf, cc10_to_book = _weighted(_w_to_dcf), _weighted(_w_to_book)
-say(f"[CC10 PRICED — the market-multiple family at 25% instead of "
-    f"{_fam:.0%}] as published the central is AED {central:.2f}. Moving the freed "
-    f"{_fam - 0.25:.0%} to the cash-flow lens gives AED {cc10_to_dcf:.2f} "
-    f"({cc10_to_dcf - central:+.2f}/share, {cc10_to_dcf/central - 1:+.1%}); moving it to the "
-    f"book lens gives AED {cc10_to_book:.2f} ({cc10_to_book - central:+.2f}/share, "
-    f"{cc10_to_book/central - 1:+.1%}). So the finding is worth up to "
-    f"{max(abs(cc10_to_dcf - central), abs(cc10_to_book - central)):.2f}/share — NOT immaterial, "
-    f"and the range between the two destinations is itself "
-    f"{abs(cc10_to_dcf - cc10_to_book):.2f}/share, which is the honest disclosure: the weight "
-    f"scheme is a house judgement and it moves the answer. VERDICT: weights unchanged (the "
-    f"operating-company pattern is applied consistently across studies, and re-tuning them for "
-    f"one name is how a house standard stops being one), but the reweighted values are now "
-    f"PUBLISHED beside the central rather than asserted to be immaterial.")
+say(f"[CC10 RESOLVED — the market-multiple family's weight] the finding said the weight "
+    f"scheme was a house judgement that moved the answer, and it was right. It was priced "
+    f"against the blend this study published at the time, AED {RETIRED_BLEND_VALUE:.2f}: "
+    f"moving the freed {_fam - 0.25:.0%} to the cash-flow lens gave AED {cc10_to_dcf:.2f} "
+    f"({cc10_to_dcf - RETIRED_BLEND_VALUE:+.2f}/share) and to the book lens AED "
+    f"{cc10_to_book:.2f} ({cc10_to_book - RETIRED_BLEND_VALUE:+.2f}/share) — up to "
+    f"{max(abs(cc10_to_dcf - RETIRED_BLEND_VALUE), abs(cc10_to_book - RETIRED_BLEND_VALUE)):.2f}"
+    f"/share, not immaterial. VERDICT: RESOLVED, and not by re-tuning the weights. The "
+    f"scheme is gone: the cash-flow lens IS the central at AED {central:.2f} and the others "
+    f"are published beside it, so there is no weight left to re-set. The finding pointed at "
+    f"a free parameter nobody had tested and the answer was to remove it rather than to "
+    f"choose it better. The arithmetic above is kept as the record of what the retired "
+    f"construction did, and the blend itself is published unused.")
 
 # (3) Revenue at the guidance midpoint. The build lands at +4.3% against a guided 4-6%.
 # The gap is priced BOTH WAYS because the attribution decides most of the value: revenue won
@@ -1852,6 +1948,62 @@ OUT = dict(
                         nopat=dict(FY25=(V['pbt_fy25'] - netfin_fy25) * (1 - TAX)),
                         roic_path=roic),
     lenses=lenses, central=central, span=[lo, hi], spot=SPOT,
+    retired_blend_value=RETIRED_BLEND_VALUE,
+    lens_record=dict(**{'class': 'telecom operator'},
+        primary=dict(
+            kind='dcf', two_sided=False, value=float(central),
+            range={'low': float(lo), 'high': float(hi)},
+            range_note=('the cash-flow lens under its own bear and bull paths on one '
+                        'clock, not the widest spread across four methods'),
+            range_basis=dict(
+                driver='the fibre and mobile revenue path and the capital intensity it '
+                       'carries',
+                low=float(lo), high=float(hi),
+                units='AED per share, the present-value read under each path',
+                macro_held=True,
+                evidence='both paths are engine re-runs of the same model with the macro '
+                         'path, the cost of capital and terminal growth held still')),
+        cross_checks=[
+            dict(kind='relative_multiple', value=float(lenses['relative']['base']),
+                 present_value=False, multiple=float(V['pe_just']),
+                 multiple_source=('a justified earnings multiple set against the named '
+                                  'regional telecom peer set and this company\'s own '
+                                  'history, never one read off the current price'),
+                 circularity=dict(spot=float(SPOT), shares=float(SH),
+                                  net_debt=float(-NETCASH),
+                                  metric_value=float(V['ebitda_fy25'])),
+                 note='forward earnings on a peer-anchored multiple'),
+            dict(kind='book_value', value=float(lenses['book']['base']),
+                 present_value=False, floor=True,
+                 note='a disclosed FLOOR, published as such and never weighted'),
+        ],
+        cross_checks_not_built=[
+            dict(kind='ev_ebitda_own_history',
+                 why=('this class permits an enterprise multiple on the company\'s OWN '
+                      'history and this study does not publish one. What it computes is a '
+                      'trailing multiple from the CURRENT market capitalisation, which is '
+                      'a multiple read off the price and is what the non-circularity rule '
+                      'forbids. A genuine own-history multiple needs a series of past '
+                      'enterprise values against past EBITDA — a construction rather than '
+                      'a rename — and it is named here rather than left quietly absent.')),
+        ],
+        retired=dict(
+            blend=dict(RETIRED_BLEND_W),
+            blend_value=float(RETIRED_BLEND_VALUE),
+            why=('the weights were typed and had never cleared an out-of-sample test. What '
+                 'they concealed here was the SIZE of the disagreement rather than its '
+                 'direction: the blend read %+.0f%% against the price where the cash-flow '
+                 'lens reads %+.0f%%, so a reader — and every gate that reads the published '
+                 'central — saw about a quarter of the disagreement this study actually '
+                 'holds. An external finding (CC10) had already identified the weight '
+                 'scheme as an untested house judgement that moved the answer; it is '
+                 'resolved by removing the scheme rather than by re-tuning it.'
+                 % (100 * (RETIRED_BLEND_VALUE / SPOT - 1), 100 * (central / SPOT - 1))),
+            normalised_removed=dict(
+                value=float(lenses['normalized']['base']),
+                why=('normalised earnings power is not among a telecom operator\'s '
+                     'permitted cross-checks. Removed rather than re-weighted; computed '
+                     'and shown so the move is visible.')))),
     experts=experts, panel_centre=panel_centre, yield_ps=yield_ps,
     rel=dict(pe_trailing=pe_trailing, ev_ebitda_trailing=ev_ebitda_trailing,
              pe_just=V['pe_just'], div_yield_peer=V['div_yield_peer'], eps26=eps_fc[0],
@@ -1879,11 +2031,41 @@ OUT = dict(
               nwc_grid=nwc_grid, grid_nwc=grid_nwc, roic_grid=roic_grid, grid_roic=grid_roic,
               dcf_opex_1pp=dcf_opex_1pp, dcf_tax_per_pp=dcf_tax_per_pp),
     step0=step0, strike=strike, backtest=bt5,
+    # ---------------------------------------------------------------------------------
+    # FIGURES QUOTED IN THE REGISTER'S OWN JUSTIFICATION TEXT, COMMITTED AS NUMBERS.
+    # [R-ENF-01] reaches the four-field register's justification text, not only the
+    # builders — and every one of these was computed or sourced correctly and then written
+    # ONLY into a sentence, where no instrument could reconcile it. A figure the model
+    # holds and does not commit is indistinguishable from one somebody typed. The
+    # like-for-like deltas below are the pre-pass values already cross-asserted against
+    # the joint direct-cost recovery above; the rest are sourced constants and one
+    # refused negative result, each of which a reader meets in prose.
+    register_figures=dict(
+        lfl_mobile_interconnect=_D_INTER,
+        lfl_mobile_commission=_D_COMM,
+        lfl_fixed_capacity=_D_FIXED,
+        rate_mobile_interconnect_h125=_I125, rate_mobile_interconnect_h126=_I126,
+        rate_mobile_commission_h125=_C125, rate_mobile_commission_h126=_C126,
+        rate_fixed_capacity_h125=_X125, rate_fixed_capacity_h126=_X126,
+        erp_mature_base=V['erp_mature_base'],
+        rf_ad_usd_10y=V['rf_ad_usd_10y'],
+        pe_provider_refused=V['pe_provider_refused'],
+        mamoura_stake_sold=V['mamoura_stake_sold'],
+    ),
     assert_log=LOG,
 )
-with open(os.path.join(HERE, 'study_numbers.json'), 'w') as f:
+# An overridden run writes BESIDE the committed file, never over it. The default is the
+# safe one, so forgetting the flag cannot corrupt the study.
+if OVERRIDE_RECORD is not None:
+    OUT['override'] = OVERRIDE_RECORD
+_out_name = 'study_numbers.override.json' if OVERRIDE_RECORD is not None else 'study_numbers.json'
+_out_path = os.environ.get('DU_OUT', os.path.join(HERE, _out_name))
+with open(_out_path, 'w') as f:
     json.dump(OUT, f, indent=1, default=float)
+if OVERRIDE_RECORD is not None:
+    say('PRICING-HARNESS RUN — wrote %s and left the committed study untouched'
+        % os.path.basename(_out_path))
 say("=" * 78)
-say(f"WROTE study_numbers.json | central AED {central:.2f} [{lo:.2f} - {hi:.2f}] vs spot "
+say(f"WROTE {os.path.basename(_out_path)} | central AED {central:.2f} [{lo:.2f} - {hi:.2f}] vs spot "
     f"{SPOT:.2f} | DCF A {dcf_ps:.2f} / B {dcf_ps_B:.2f} | TV {tv_share:.0%} of EV | WACC "
     f"{wacc_exp:.2%} -> {wacc_term:.2%}")

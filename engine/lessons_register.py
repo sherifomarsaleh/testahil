@@ -4188,6 +4188,34 @@ LESSONS = [
       "disclosed / cannot be obtained names the routes actually run, which is what "
       "[R-IND-01] already demands of an escalation and does not yet demand of a record."),
 
+    L("L-293", "ALL", None,
+      "A TOOL THAT CAN SILENTLY REPLACE THE ANSWER EVENTUALLY DOES, and the run it leaves "
+      "behind is INTERNALLY COHERENT — which is what makes it invisible, because every "
+      "check downstream reconciles the file to itself.",
+      "A study carried an override harness so an audit finding could be priced on the real "
+      "chain rather than on a re-implementation, which is the right discipline [R-ENF-03]. "
+      "It wrote the overridden run straight over the committed numbers file. Nothing was "
+      "corrupt in the ordinary sense: it was a complete, correct run of the model, "
+      "answering a different question. The four-field register was complete, the workbook "
+      "reconciled every formula cell AGAINST THAT FILE, and the document builders rendered "
+      "it faithfully. Worse, the beta RECORD still reported the registered value, because "
+      "a record is written from the input's own metadata rather than from the value the "
+      "model used — so the file asserted a beta the run had not used.",
+      "DU, 04-Sep-2026",
+      "build",
+      "The committed study_numbers.json held a fair value of 12.29999994 against a market "
+      "price of 12.30 — the solved answer of the last bisection step, not the study. It was "
+      "caught only because a figure printed for an unrelated purpose was one somebody "
+      "recognised; no gate in the repository could see it, and there was no provenance to "
+      "read, since an overridden run records no trace of having been overridden. Closed "
+      "structurally rather than by resolve: an overridden run now writes BESIDE the "
+      "committed file by default, so forgetting the flag cannot corrupt the study, and "
+      "scripts/check_harness_outputs.py refuses both a committed file carrying an override "
+      "block and a harness whose output name does not depend on the override being set.",
+      "A harness whose overridden output genuinely must occupy the committed path — none "
+      "is known, and the safe default costs nothing. If one appears, the honest form is a "
+      "provenance block the file carries about itself, which the gate already reads."),
+
 ]
 
 

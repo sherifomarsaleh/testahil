@@ -84,6 +84,8 @@ on:
       - 'scripts/check_source_integrity_negative_control.py'
       - 'scripts/check_source_rebinding.py'
       - 'scripts/check_source_rebinding_negative_control.py'
+      - 'scripts/check_harness_outputs.py'
+      - 'scripts/check_harness_outputs_negative_control.py'
       - 'engine/source_integrity.py'
       - 'engine/table_footing.py'
       - 'engine/site_data.py'
@@ -190,6 +192,8 @@ on:
       - 'scripts/check_source_integrity_negative_control.py'
       - 'scripts/check_source_rebinding.py'
       - 'scripts/check_source_rebinding_negative_control.py'
+      - 'scripts/check_harness_outputs.py'
+      - 'scripts/check_harness_outputs_negative_control.py'
       - 'engine/source_integrity.py'
       - 'engine/table_footing.py'
       - 'engine/site_data.py'
@@ -612,6 +616,23 @@ jobs:
       # once and read many times would be the permanently-red check [R-ENF-02] forbids.
       - name: Source-constant rebinding gate — negative control
         run: python3 scripts/check_source_rebinding_negative_control.py
+
+      # A COMMITTED NUMBERS FILE THAT IS A PRICING-HARNESS RUN [L-293]. Three studies
+      # carry an override harness so a critique finding can be priced on the real chain
+      # rather than on a re-implementation. One wrote its overridden run straight over the
+      # committed study_numbers.json, and the file it left behind was internally coherent
+      # in every block — a complete, correct run of the model answering a different
+      # question — with the beta RECORD still reporting the registered value, because a
+      # record is written from the input's metadata rather than from the value the model
+      # used. Nothing downstream could see it; it was found because a figure printed for
+      # another purpose was one somebody recognised, which is not a control. The gate
+      # refuses a committed file carrying an override block, and refuses a harness whose
+      # output name does not depend on whether the override was set.
+      - name: Pricing-harness output gate
+        run: python3 scripts/check_harness_outputs.py
+
+      - name: Pricing-harness output gate — negative control
+        run: python3 scripts/check_harness_outputs_negative_control.py
 
       # [R-ENF-03] assets/data.js is read through a REAL JavaScript parse, EVERYWHERE.
       # The rule was adopted four weeks earlier, after a reader — not a check — found a
