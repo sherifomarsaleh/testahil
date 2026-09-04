@@ -74,6 +74,7 @@ DIRECTORY_GATES = [
     'check_forecast_anchor.py',
     'check_delivered_pdf_currency.py',
     'check_table_footing.py',
+    'check_source_integrity.py',
 ]
 
 # ARTEFACT GATES: bite once the study produces the artefact they read, and are tested by
