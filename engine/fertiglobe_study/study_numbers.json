@@ -2137,7 +2137,9 @@
    "implied_cycle_years": 137.16395100004783,
    "one_over_g": 49.99999999999996,
    "payout_of_nopat": 0.8933044512970318,
-   "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
+   "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC",
+   "published": true,
+   "published_note": "the answer is two-sided, so TWO terminals are published \u2014 one per price framing \u2014 and the pair struck on the alternative CDS premium basis is a cross-check rather than the answer. Marked here because a reader of the committed record finds four and cannot otherwise tell which is which, and picking by position would make the answer depend on dictionary order."
   },
   "tv_share": 0.5634695440807009,
   "roic_term": 0.13515129548755028,
@@ -2204,7 +2206,9 @@
    "implied_cycle_years": 125.30500204030957,
    "one_over_g": 49.99999999999996,
    "payout_of_nopat": 0.9226851696115069,
-   "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
+   "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC",
+   "published": true,
+   "published_note": "the answer is two-sided, so TWO terminals are published \u2014 one per price framing \u2014 and the pair struck on the alternative CDS premium basis is a cross-check rather than the answer. Marked here because a reader of the committed record finds four and cannot otherwise tell which is which, and picking by position would make the answer depend on dictionary order."
   },
   "tv_share": 0.6204942933085148,
   "roic_term": 0.18167622224488436,
@@ -2349,7 +2353,9 @@
    "implied_cycle_years": 137.16395100004783,
    "one_over_g": 49.99999999999996,
    "payout_of_nopat": 0.8933044512970318,
-   "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
+   "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC",
+   "published": false,
+   "published_note": "the answer is two-sided, so TWO terminals are published \u2014 one per price framing \u2014 and the pair struck on the alternative CDS premium basis is a cross-check rather than the answer. Marked here because a reader of the committed record finds four and cannot otherwise tell which is which, and picking by position would make the answer depend on dictionary order."
   },
   "tv_share": 0.5993205819960781,
   "roic_term": 0.13515129548755028,
@@ -2416,7 +2422,9 @@
    "implied_cycle_years": 125.30500204030957,
    "one_over_g": 49.99999999999996,
    "payout_of_nopat": 0.9226851696115069,
-   "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
+   "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC",
+   "published": false,
+   "published_note": "the answer is two-sided, so TWO terminals are published \u2014 one per price framing \u2014 and the pair struck on the alternative CDS premium basis is a cross-check rather than the answer. Marked here because a reader of the committed record finds four and cannot otherwise tell which is which, and picking by position would make the answer depend on dictionary order."
   },
   "tv_share": 0.6540394262994742,
   "roic_term": 0.18167622224488436,

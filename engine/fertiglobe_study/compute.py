@@ -768,7 +768,7 @@ wacc = dict(
 G_TERM = 0.020
 
 
-def run_dcf(f, wacc_exp, wacc_term, g=G_TERM, real_growth=0.0):
+def run_dcf(f, wacc_exp, wacc_term, g=G_TERM, real_growth=0.0, published=True):
     df, cum = [], 1.0
     for i in range(5):
         w = wacc_exp + (wacc_term - wacc_exp) * glide[i]
@@ -832,6 +832,13 @@ def run_dcf(f, wacc_exp, wacc_term, g=G_TERM, real_growth=0.0):
         incremental_capital_per_unit_growth=ic_replacement))
     tv = term.tv
     g = term.nominal_growth          # DERIVED: inflation + the stated real growth
+    term.record['published'] = published
+    term.record['published_note'] = (
+        'the answer is two-sided, so TWO terminals are published — one per price '
+        'framing — and the pair struck on the alternative CDS premium basis is a '
+        'cross-check rather than the answer. Marked here because a reader of the '
+        'committed record finds four and cannot otherwise tell which is which, and '
+        'picking by position would make the answer depend on dictionary order.')
     tv_retired = nopat_term * (1 - rr_term) / (wacc_term - g)
     pv_tv = tv * df[-1]
     ev = pv_explicit + pv_tv
@@ -879,8 +886,8 @@ chk(br_A['ps_usd'] > 0 and br_B['ps_usd'] > 0, "both framings produce a positive
 DCF_PS_AED = float(np.mean([br_A['ps_aed'], br_B['ps_aed']]))
 
 # alternative discount basis (CDS-basis equity risk premium)
-dcf_A_cds = run_dcf(frame_A, wacc_cds, wacc_term_cds)
-dcf_B_cds = run_dcf(frame_B, wacc_cds, wacc_term_cds)
+dcf_A_cds = run_dcf(frame_A, wacc_cds, wacc_term_cds, published=False)
+dcf_B_cds = run_dcf(frame_B, wacc_cds, wacc_term_cds, published=False)
 br_A_cds, br_B_cds = bridge(dcf_A_cds), bridge(dcf_B_cds)
 
 # ---------------------------------------------------------------------------

@@ -153,6 +153,11 @@ def committed_terminal(ticker):
                 walk(v)
     walk(doc)
     if len(found) > 1:
+        pub = [r for r in found if r.get('published')]
+        if len(pub) == 1:
+            return pub[0]
+        if len(pub) > 1:
+            return {'_two_sided': pub}
         return {'_ambiguous': len(found)}
     return found[0] if found else None
 
@@ -283,6 +288,24 @@ def price_one(rec, lives):
         return ('AMBIGUOUS RECORD',
                 'this study commits %d terminal records and which one it means is not '
                 'this file\'s judgement to make' % tr['_ambiguous'], None)
+    if tr and tr.get('_two_sided'):
+        # EACH PUBLISHED BRANCH IS REBUILT ON ITS OWN INPUTS. There is no single fair
+        # value to reproduce against — that is what two-sided means — so what is
+        # asserted is that every published terminal still BUILDS through the sanctioned
+        # module, which is the claim that matters here: the study is on the corrected
+        # construction. A branch that no longer builds is named rather than averaged in.
+        broke = []
+        for i, r in enumerate(tr['_two_sided']):
+            try:
+                TV.build(TV.TerminalInputs(**dict(r['inputs'])))
+            except Exception as e:                                   # noqa: BLE001
+                broke.append('branch %d: %s' % (i + 1, e))
+        if broke:
+            return ('RECORD WILL NOT REBUILD',
+                    'a published branch no longer builds — ' + '; '.join(broke), None)
+        return ('ALREADY CORRECTED',
+                'two-sided: %d published terminals, each rebuilt from its own committed '
+                'inputs through the sanctioned module' % len(tr['_two_sided']), None)
     if tr and tr.get('inputs'):
         ins = dict(tr['inputs'])
         try:
