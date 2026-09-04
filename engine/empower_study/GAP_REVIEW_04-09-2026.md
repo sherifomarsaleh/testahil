@@ -3,12 +3,12 @@
 **A TWO-SIDED ANSWER: four named branches and no single figure. Every one is audited
 here, because a review that audits one branch of a two-sided study has audited half of it.**
 
-**AUDITED CENTRAL: 1.8770** — consumption recovers, taxed at the 9% corporate rate.
-**AUDITED CENTRAL: 1.8474** — consumption continues at its current pace, 9% corporate rate.
-**AUDITED CENTRAL: 1.7625** — consumption recovers, taxed at the 15% top-up rate.
-**AUDITED CENTRAL: 1.7346** — consumption continues at its current pace, 15% top-up rate.
+**AUDITED CENTRAL: 1.8523** — consumption recovers, taxed at the 9% corporate rate.
+**AUDITED CENTRAL: 1.8227** — consumption continues at its current pace, 9% corporate rate.
+**AUDITED CENTRAL: 1.7377** — consumption recovers, taxed at the 15% top-up rate.
+**AUDITED CENTRAL: 1.7098** — consumption continues at its current pace, 15% top-up rate.
 
-**AUDITED GAP: +19.6%** on the widest branch against the latest known price, AED 1.57
+**AUDITED GAP: +18.0%** on the widest branch against the latest known price, AED 1.57
 (3 September 2026, supplied and committed), which is also the price this edition is struck
 at. The four branches read +18.0% / +16.1% / +10.7% / +8.9%, and three of them sit more
 than 10% above the price.

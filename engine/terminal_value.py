@@ -107,13 +107,19 @@ WHAT A TERMINAL COSTS, correctly. In a nominal steady state holding physical cap
     different routes. So the note is the test and the arithmetic is a corroborator that works
     only sometimes.
 
-    EMPOWER'S PPE POLICY NOTE HAS NOT BEEN READ, and saying so is part of the record: its
-    committed extracts carry the note-5 tables and not the accounting policy. What is
-    evidenced there is its INTANGIBLE leg, whose identity reproduces a disclosed 30 years
-    exactly — 3.3% of the charge, not the property that dominates it. The measured age stays
-    applied because the direction is known and safe: if a residual is being deducted the true
-    age is LOWER than 10.29, maintenance lower still and the value HIGHER, so the figure in
-    use is the conservative one. It is listed as outstanding rather than treated as settled. AIRARABIA is the case where
+    EMPOWER FAILS IT TOO, AND THAT WAS FOUND BY READING THE NOTE AFTER APPLYING THE AGE. Its
+    note 2.3 computes depreciation "at rates calculated to reduce the cost of assets to their
+    estimated residual values over their expected useful lives", so its 10.29 years is an
+    overstatement of the age rather than a measurement of it. Applied for part of 4 September
+    2026 and WITHDRAWN on reading that note; the direction of the error was safe — an
+    overstated age overstates maintenance and understates the value — and that is not a
+    reason to keep a number the accounts say is not measuring what it claims.
+
+    SO THREE OF THE FIVE NAMES TRIED FAIL THIS CONDITION (EMPOWER, SAVOLA, AIRARABIA) and two
+    pass (RIYADHCABLE, EGCH). A MEASURED AGE IS THE EXCEPTION RATHER THAN THE RULE, half the
+    life remains what most terminals will use, and the argument for the re-pointing does not
+    rest on how many names can take it: EGCH alone settles it, where the proxy is the
+    difference between a refusal and a +42% correction. AIRARABIA is the case where
     the two lives came from genuinely different routes, and that is why the 48% gap was
     visible at all. Supply it and it is used; leave it and half the life is used
     and the record SAYS WHICH, so a reader can tell an assumption from a measurement.

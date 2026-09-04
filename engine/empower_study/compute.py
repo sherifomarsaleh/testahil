@@ -260,24 +260,16 @@ INP = dict(
               "whose volume grows more slowly than prices shrinks in real terms by "
               "construction, and this rate says so",
               "2026-08-09", "House"),
-    average_age_years=I((3734337.0 + (22649.0 - 1878.0) + (364710.0 - 315668.0))
-                        / (352199.0 + 5361.0 + 12157.0),
-                        FS25 + ", notes 5, 6 and 7. THE AVERAGE AGE OF THE BASE, MEASURED "
-                        "rather than assumed: accumulated depreciation over the year's own "
-                        "charge is, under the straight-line method these accounts use, "
-                        "exactly the charge-weighted average age of the assets bearing that "
-                        "charge — an identity, not an estimate. The property note prints its "
-                        "accumulated column (3,734,337); neither the right-of-use nor the "
-                        "intangible note does, so both are recovered by the identity gross "
-                        "less net (22,649 less 1,878; 364,710 less 315,668) and LABELLED as "
-                        "derived. The three sum to 3,804,150 over a charge of 369,717 = 10.29 "
-                        "years. THIS BASE IS YOUNGER THAN UNIFORM — half the 28.10-year life "
-                        "would put it at 14.05 — so escalating the book charge over half the "
-                        "life OVERSTATES what replacement costs, by 7.2% at this market's 2% "
-                        "terminal. The distinction matters because the escalation is over the "
-                        "AGE of the assets, and half the life is that age only where vintages "
-                        "are uniform, which here they are not",
-                        "2026-09-04", "Company"),
+    # THE MEASURED AGE IS NOT AVAILABLE ON THIS NAME AND THE ACCOUNTS SAY SO. Accumulated
+    # depreciation over the year's charge is the charge-weighted average age only where the
+    # charge is cost/life. Note 2.3 states that depreciation is computed "at rates calculated
+    # to reduce the cost of assets to their estimated residual values over their expected
+    # useful lives" — so the depreciable amount is cost LESS a residual, the charge is not
+    # cost/life, and the identity OVERSTATES the age. It came to 10.29 years and was applied
+    # for part of 4 September 2026 before the policy note was read; withdrawn on reading it.
+    # The direction of the error was safe (an overstated age overstates maintenance and
+    # understates the value) and that is not a reason to keep a number the accounts say is
+    # not measuring what it claims.
     asset_life_years=I((10929327.0 - 432364.0 - 495858.0 + 22649.0 + 12157.0 * 30.0)
                        / (352199.0 + 5361.0 + 12157.0),
                        FS25 + ", notes 5, 6 and 7, DERIVED BY IDENTITY from those notes' "
@@ -605,8 +597,6 @@ def dcf(rev, eb, dna, capex, dnwc, tax, wacc, label, ppe_d=None, nwc_d=None):
             dna_book=dna0 * (1 + g_nom),
             useful_life_years=V['asset_life_years'],
             useful_life_source=INP['asset_life_years']['source'],
-            average_age_years=V['average_age_years'],
-            average_age_source=INP['average_age_years']['source'],
             maintenance_basis='book_dna_escalated',
             working_capital=wc0 * (1 + g_nom),
             incremental_capital_per_unit_growth=inc))

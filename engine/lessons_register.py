@@ -5336,13 +5336,19 @@ LESSONS = [
       "cost with no residual mentioned, a leg whose single disclosed "
       "life the identity reproduces, an implied life inside the "
       "disclosed range rather than outside it. AND THE ARITHMETIC IS "
-      "NOT THE TEST, WHICH TOOK A SECOND NAME TO LEARN: SAVOLA's "
+      "NOT THE TEST, WHICH TOOK TWO MORE NAMES TO LEARN: SAVOLA's "
       "cross-check passes at 0.0% — it derived its life by the same "
       "identity — while its policy note says outright that the "
-      "depreciable amount is cost LESS ITS RESIDUAL VALUE. The "
-      "arithmetic would have waved it through and only the note "
-      "catches it. Read the note first; the arithmetic corroborates "
-      "and only sometimes.",
+      "depreciable amount is cost LESS ITS RESIDUAL VALUE, and "
+      "EMPOWER's age was APPLIED for part of a day before its own "
+      "note was read and said the same thing. THREE OF THE FIVE "
+      "NAMES TRIED FAIL THIS CONDITION and two pass, so a measured "
+      "age is the exception rather than the rule. Read the note "
+      "first; the arithmetic corroborates and only sometimes. And "
+      "a safe error direction is not a reason to keep a number the "
+      "accounts say is not measuring what it claims — EMPOWER's "
+      "overstated age overstated maintenance and understated the "
+      "value, and it was withdrawn anyway.",
       "AIRARABIA, the third name the measured age was tried on, 4 "
       "September 2026",
       "build",

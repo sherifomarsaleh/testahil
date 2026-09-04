@@ -81,12 +81,18 @@ gross less net — an identity, labelled as derived.
 accumulated column over the BLENDED charge — a numerator covering one leg and a denominator
 covering three. It understated the age by 1.8%. Corrected rather than quietly replaced.*
 
-Where a base is younger than uniform, escalating the book charge over half the life
-OVER-states replacement cost: at this market's 2% terminal the escalators are 1.2260 on the
-measured age against 1.3208 on half the life, so the construction charges **7.2% more** than
-the base's own age supports. The shared construction now takes a measured age where one is
-supplied and sourced, so this is a correction this study can take at its next pass rather
-than a caveat it has to carry.
+**AND THEN THE POLICY NOTE RULED IT OUT, WHICH IS WHY IT IS RECORDED HERE RATHER THAN
+APPLIED.** The identity returns the average age only where the annual charge is cost divided
+by life. Note 2.3 says depreciation is computed *"at rates calculated to reduce the cost of
+assets to their estimated residual values over their expected useful lives"* — so the
+depreciable amount is cost LESS a residual, the charge is not cost/life, and 10.29 years is
+an OVERSTATEMENT of this base's age rather than a measurement of it.
+
+The measured age was applied on this study for part of 4 September 2026 and **withdrawn on
+reading that note**. The direction of the error was safe — an overstated age overstates
+maintenance and understates the value, so the figure in use had been the conservative one —
+and that is not a reason to keep a number the accounts say is not measuring what it claims.
+This study stays on half the life, which is an assumption and is labelled as one.
 
 ## 3. What the retired construction implies here
 

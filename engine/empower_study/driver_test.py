@@ -90,12 +90,10 @@ CASES = [
     ('Terminal inflation — UAE house macro path', 'C', +0.005, 't_maint', -1,
      'a higher terminal inflation escalates the cost of replacing the plant over half its '
      'life, so the maintenance charge (a negative row) must grow'),
-    ('Average age of the base, MEASURED from notes 5, 6 and 7 (years)', 'C', +5.0, 't_fcff', -1,
-     'the maintenance charge escalates the book charge to what replacement costs TODAY over '
-     'the age of the assets bearing it, so an older base costs more to replace and leaves '
-     'less. This cell used to be half the useful life, ASSUMED; it is the age the notes '
-     'themselves measure now, and the sign is unchanged because it is the same quantity — '
-     'what changed is that it is read rather than guessed'),
+    ('Weighted asset life, DERIVED from notes 5, 6 and 7 (years)', 'C', +5.0, 't_fcff', -1,
+     'on this basis the life sets the average VINTAGE of the plant rather than the '
+     'replacement frequency: a longer life means the assets carried were bought further '
+     'back, so replacing them today costs more against the depreciation already booked'),
     ('New connections by year (k RT)', 'B', +50.0, 'central', +1,
      'each added RT earns regulated per-RT revenue worth a multiple of its capex'),
     ('Consumption per-RT recovery level from FY2027 (share of FY2025)', 'C', +0.03,

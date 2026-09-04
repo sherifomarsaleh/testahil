@@ -63,7 +63,6 @@ G2 = IN['g_term2_derived']
 G1_REAL, G2_REAL = IN['g1_real'], IN['g2_real']
 PI_T = B_CT['terminal_stage1']['inputs']['inflation']
 LIFE = IN['asset_life_years']
-AGE = IN['average_age_years']
 INC_CAP = B_CT['inc_cap']
 YF = D['fcst']['years']                          # FY26..FY30
 YFL = ['FY2026E', 'FY2027E', 'FY2028E', 'FY2029E', 'FY2030E']
@@ -121,7 +120,6 @@ def _sanctioned_fcff(nopat30, dna30, wc30, wacc, inc, g1=None, g2=None):
             nopat=n0 * (1 + g_nom), wacc=wacc, inflation=PI_T, real_growth=real,
             dna_book=d0 * (1 + g_nom), useful_life_years=LIFE,
             useful_life_source=SRC['asset_life_years'],
-            average_age_years=AGE, average_age_source=SRC['average_age_years'],
             maintenance_basis='book_dna_escalated',
             working_capital=w0 * (1 + g_nom),
             incremental_capital_per_unit_growth=i_))
@@ -508,8 +506,6 @@ block('Cost of capital', [
      SRC['g1_real']),
     ('g2r', 'REAL growth beyond FY2040 (stage two) — NEGATIVE', G2_REAL, PCT2,
      SRC['g2_real']),
-    ('age', 'Average age of the base, MEASURED from notes 5, 6 and 7 (years)', AGE, NUM1,
-     SRC['average_age_years']),
     ('life', 'Weighted asset life, DERIVED from notes 5, 6 and 7 (years)', LIFE, NUM1,
      SRC['asset_life_years']),
     ('inccap', 'Invested capital per unit of real growth (AED mn)', INC_CAP, NUM1,
@@ -900,9 +896,10 @@ put(ws, 'A93', 'The retired construction grew terminal profit and deducted a rei
     'same as rebuilding the whole capital base every 1/g years — fifty in stage one and '
     'sixty-seven in stage two, both facts about the dirham\'s peg to the dollar rather '
     'than about a chilled-water plant this company\'s own notes turn over in 28.1 years. '
-    'Maintenance is charged over the 10.3-year average AGE of the base, which those same '
-    'notes measure, rather than over half its life: this plant is young, and half a life '
-    'would charge for replacing it as though it were fourteen years old. '
+    'Maintenance is charged over half that life, which is the age of the average asset '
+    'where vintages are uniform. It cannot be measured directly here: this company '
+    'depreciates to residual values, so accumulated depreciation over the year\'s charge '
+    'does not return the age. '
     'Column C is the 9% framing and column G the 15%; they differ only in tax.',
     fmt=None).font = SUB
 
@@ -916,9 +913,9 @@ def _wf(row0, tag, TC, TD, n30c, n30d, d30, w30, g_nom, real, inc):
          (f'={d30:.6f}*(1+{g_nom:.10f})', TC['inputs']['dna_book']),
          (f'={d30:.6f}*(1+{g_nom:.10f})', TD['inputs']['dna_book'])),
         ('%s — less capital maintenance at replacement cost, that charge escalated over '
-         'the MEASURED age of the base' % tag,
-         (f'=-C{row0+1}*(1+{a("pi_t")})^{a("age")}', -TC['maintenance']),
-         (f'=-G{row0+1}*(1+{a("pi_t")})^{a("age")}', -TD['maintenance'])),
+         'half the derived life' % tag,
+         (f'=-C{row0+1}*(1+{a("pi_t")})^({a("life")}/2)', -TC['maintenance']),
+         (f'=-G{row0+1}*(1+{a("pi_t")})^({a("life")}/2)', -TD['maintenance'])),
         ('%s — less the capital real growth consumes' % tag,
          (f'=-{real:.10f}*{inc:.6f}', -TC['growth_capex']),
          (f'=-{real:.10f}*{inc:.6f}', -TD['growth_capex'])),

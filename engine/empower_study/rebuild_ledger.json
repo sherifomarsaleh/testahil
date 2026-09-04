@@ -32,19 +32,10 @@
    "why": "the two stages carried typed nominals of 2.5% and 1.5% and this study committed no macro record, so nothing held them to the house path",
    "evidence": "THIS LEVER MOVES NO NUMBER, and the reason is the finding: this company's tariff is regulated and NOT indexed, so nominal revenue growth IS volume growth and the typed rates reproduce exactly as +0.49% and -0.49% real on the house 2.0% inflation. What it buys is a reader who can see that stage two assumes the business shrinks in real terms for ever — which the study describes as 'about zero real tariff growth' without ever naming the rate",
    "move": 0.0
-  },
-  {
-   "name": "the age the maintenance charge rests on MEASURED off the notes rather than assumed at half the useful life",
-   "rule": "R-TERM-01",
-   "before": 1.8523,
-   "after": 1.877,
-   "why": "the construction escalates the book charge to what replacement costs today over the AGE of the base, and half the useful life is that age only where vintages are uniform. THIS PLANT IS YOUNG and half a life would charge for replacing it as though it were fourteen years old: 10.29 years measured against 14.05 assumed, so the construction was over-charging maintenance by 7.2% at this market's 2% terminal. The same re-pointing takes the answer DOWN on the name beside it, whose base is older than uniform — which is why it had to be measured rather than corrected in one direction",
-   "evidence": "note 5 accumulated depreciation 3,734,337; the right-of-use and intangible notes print no accumulated column, so both are recovered by the identity gross less net (22,649 less 1,878; 364,710 less 315,668) and labelled as derived. 3,804,150 over a charge of 369,717 = 10.29 years. An earlier reading of 10.11 took the property note's accumulated column over the BLENDED charge — one leg over three — and is corrected in the evidence file rather than quietly replaced",
-   "move": 0.01333477298493757
   }
  ],
- "value": 1.877,
- "cumulative_move": 0.01832626779929658,
+ "value": 1.8523,
+ "cumulative_move": 0.004925810252869978,
  "rules": {
   "R-GAP-01": {
    "levers": [
@@ -56,12 +47,11 @@
   },
   "R-TERM-01": {
    "levers": [
-    "terminal built through the sanctioned module, both stages, on a life DERIVED by identity from three notes read by OCR",
-    "the age the maintenance charge rests on MEASURED off the notes rather than assumed at half the useful life"
+    "terminal built through the sanctioned module, both stages, on a life DERIVED by identity from three notes read by OCR"
    ],
    "first_before": 1.8388,
-   "last_after": 1.877,
-   "move": 0.020774418098760128
+   "last_after": 1.8523,
+   "move": 0.007341744616053969
   },
   "R-MACRO-01": {
    "levers": [
