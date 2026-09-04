@@ -38,6 +38,7 @@ import json
 import os
 import shutil
 import subprocess
+import re
 import sys
 import tempfile
 
@@ -71,6 +72,8 @@ DIRECTORY_GATES = [
     'check_cost_of_capital.py',
     'check_output_records.py',
     'check_forecast_anchor.py',
+    'check_delivered_pdf_currency.py',
+    'check_table_footing.py',
 ]
 
 # ARTEFACT GATES: bite once the study produces the artefact they read, and are tested by
@@ -80,6 +83,42 @@ ARTEFACT_GATES = {
         'a delivered document naming a standing rule',
         lambda: {'%s_Valuation_Study_03-09-2026.docx' % TICKER: ('docx', 'Adopted under '
                                                                  '[R-GAP-01] in September.')}),
+    'check_waterfall_assertions.py': (
+        'a delivered table instructing a reader whose builder never checks it',
+        lambda: {'%s_Valuation_Study_03-09-2026.docx' % TICKER: ('docx', [
+            ['EGP million', 'Value'],
+            ['Enterprise value', '6,617'],
+            ['Plus net cash', '4,930'],
+            ['Equity value', '11,426'],
+        ]),
+            'build_it.py': ('py', BUILDER_STUB)}),
+    'check_band_vocabulary.py': (
+        'a delivered document carrying the retired verdict vocabulary',
+        lambda: {'%s_Valuation_Study_03-09-2026.docx' % TICKER: (
+            'docx', 'The cone FAILED CALIBRATION TEST over the resolved windows.')}),
+    'check_column_widths.py': (
+        'a delivered table whose column is too narrow for the figure it prints',
+        lambda: {'%s_Valuation_Study_03-09-2026.docx' % TICKER: ('docx', (
+            [['EGP million', 'FY2025'], ['Revenue', '(1,234,567.89)']], [2.0, 0.18]))}),
+    'check_edition_date.py': (
+        'a delivered document whose masthead disagrees with its own filename',
+        lambda: {'%s_Valuation_Study_03-09-2026.docx' % TICKER: (
+            'docx', 'Valuation study issued 1 January 2026')}),
+    'check_site_data_reader.py': (
+        'a study script reading assets/data.js with a regex instead of a real parse',
+        lambda: {'read_it.py': ('py', "import re\n"
+                                      "src = open('assets/data.js').read()\n"
+                                      "m = re.search(r'levels', src)\n")}),
+    'check_figure_axes.py': (
+        'a figure script drawing a reference line outside its own axes',
+        lambda: {'figures.py': ('py', "import matplotlib\n"
+                                      "matplotlib.use('Agg')\n"
+                                      "import matplotlib.pyplot as plt\n"
+                                      "fig, ax = plt.subplots()\n"
+                                      "ax.plot([1, 2, 3], [1, 2, 3])\n"
+                                      "ax.set_ylim(0, 3)\n"
+                                      "ax.axhline(99.0, color='r')\n"
+                                      "fig.savefig('fig_out.png')\n")}),
     'check_artefact_currency.py': (
         'a builder-read JSON carrying a central and declaring no vintage',
         lambda: {'diagnostics.json': ('json', {'central': 12.34, 'note': 'no declaration'}),
@@ -99,7 +138,45 @@ EXCLUDED = {
                                  'directories',
     'check_calibration_deliverables.py': "anchors on the campaign queue's calibrated names",
     'check_lens_vocabulary.py': 'reads delivered PDFs; an empty study has none',
+    'check_page_integrity.py': "its subject is the site's ticker pages; the only mention "
+                               'of a study directory in it is a comment',
+    'check_published_coverage.py': 'holds PUBLISHED fair values against the studies behind '
+                                   'them, so a study directory is its reference set rather '
+                                   'than its subject — a new directory publishes nothing '
+                                   'and there is correctly nothing to refuse',
+    'check_publish_block.py': '[R-GAP-02] deliberately carries NO ratchet because it blocks '
+                              'a FUTURE act rather than condemning a past one, and a held '
+                              'study is not a red build. It reads the new study as '
+                              'unreadable and HOLDS it, which is the rule working; '
+                              'demanding a nonzero exit would contradict the rule',
+    'check_new_study_gauntlet.py': 'this file',
 }
+
+
+# THE LISTS ARE HAND-MAINTAINED, WHICH MEANS A GATE ADDED TOMORROW IS SILENTLY UNTESTED
+# AND THIS FILE STILL REPORTS CLEAN — the [R-ENF-04] species inside the very check written
+# to close it. The completeness clause below reads the gates on disk rather than trusting
+# the lists: any script that resolves study directories for itself is study-scoped, and
+# must be named in EXACTLY ONE of the three lists. A new gate then fails this run until
+# somebody says which kind it is, which is the whole point of the file.
+STUDY_SCOPED = re.compile(r"engine['\"/,\s]{0,4}\*_study|_study['\"]?\s*\)|glob\("
+                          r"[^)]*_study")
+
+
+def study_scoped_gates(repo):
+    """Every gate on disk that resolves study directories for itself."""
+    out = set()
+    for path in sorted(glob.glob(os.path.join(repo, 'scripts', 'check_*.py'))):
+        name = os.path.basename(path)
+        if name.endswith('_negative_control.py'):
+            continue                     # a control is evidence about a gate, not a gate
+        try:
+            src = open(path, encoding='utf-8').read()
+        except OSError:
+            continue
+        if '*_study' in src:
+            out.add(name)
+    return out
 
 
 def sandbox():
@@ -115,9 +192,17 @@ def sandbox():
         # its absence — going red for the wrong reason, which reads exactly like going red
         # for the right one. An excluded directory a gate needs is a sandbox defect
         # masquerading as a finding [R-ENF-04].
+        # raw_ohlc (16MB) and panels (2.6MB) are COPIED, not excluded, and the cost is
+        # accepted deliberately. The first draft excluded raw_indices and a gate crashed
+        # on the absence, going red for the WRONG reason — which reads exactly like going
+        # red for the right one [R-ENF-07]. Excluding these two reproduced that failure in
+        # three more gates the day the lists were completed: page_integrity refused for a
+        # missing OHLC population, band_vocabulary for a legacy page whose panel was not
+        # there, figure_axes for figure scripts that could not run. A SANDBOX DEFECT
+        # MASQUERADING AS A FINDING IS THE MORE DANGEROUS OUTCOME, because it is green-
+        # looking evidence that a gate works.
         return [n for n in names
-                if n in ('.git', '__pycache__', 'raw_ohlc', 'panels', 'node_modules',
-                         'filings')]
+                if n in ('.git', '__pycache__', 'node_modules', 'filings')]
     shutil.copytree(ROOT, os.path.join(tmp, 'repo'), ignore=ignore, symlinks=True)
     repo = os.path.join(tmp, 'repo')
     os.makedirs(os.path.join(repo, 'engine', '%s_study' % TICKER.lower()), exist_ok=True)
@@ -139,7 +224,27 @@ def plant(sdir, files):
         if kind == 'docx':
             import docx
             d = docx.Document()
-            d.add_paragraph(payload)
+            if isinstance(payload, tuple):
+                # (rows, widths_in_inches) — a gate whose subject is a COLUMN WIDTH cannot
+                # be tested by a table that does not carry one
+                rows_, widths = payload
+                t = d.add_table(rows=len(rows_), cols=len(rows_[0]))
+                t.autofit = False
+                for j, w in enumerate(widths):
+                    t.columns[j].width = docx.shared.Inches(w)
+                for i, row in enumerate(rows_):
+                    for j, cell in enumerate(row):
+                        t.cell(i, j).text = str(cell)
+                        t.cell(i, j).width = docx.shared.Inches(widths[j])
+            elif isinstance(payload, list):
+                # a TABLE fixture: [[cell, ...], ...]. A gate whose subject is a table
+                # cannot be given a paragraph and be said to have been tested.
+                t = d.add_table(rows=len(payload), cols=len(payload[0]))
+                for i, row in enumerate(payload):
+                    for j, cell in enumerate(row):
+                        t.cell(i, j).text = str(cell)
+            else:
+                d.add_paragraph(payload)
             d.save(path)
         elif kind == 'json':
             json.dump(payload, open(path, 'w', encoding='utf-8'))
@@ -168,7 +273,7 @@ def main(argv):
                 rc, out, last = run(repo, gate)
             except Exception as e:                                      # noqa: BLE001
                 rc, out, last = 1, '', '%s: %s' % (type(e).__name__, e)
-            named = TICKER in out
+            named = TICKER.lower() in out.lower()
             ok = rc != 0 and named
             (red if ok else wrong).append((gate, rc, named, last))
             print('   %-4s %-40s exit %d%s' % ('RED ' if ok else 'MISS', gate, rc,
@@ -188,7 +293,7 @@ def main(argv):
                 rc, out, last = run(repo, gate)
             except Exception as e:                                      # noqa: BLE001
                 rc, out, last = 0, '', '%s: %s' % (type(e).__name__, e)
-            named = TICKER in out
+            named = TICKER.lower() in out.lower()
             ok = rc != 0 and named
             (red if ok else wrong).append((gate, rc, named, last))
             print('   %-4s %-40s exit %d   %s' % ('RED ' if ok else 'MISS', gate, rc, what))
@@ -211,6 +316,15 @@ def main(argv):
                   % (len(missing), ', '.join(sorted(set(missing)))))
             print('The lists ARE the claim; a name resolving to nothing means the claim is '
                   'about a gate that is not there [R-ENF-04].')
+            rc = 1
+        unlisted = sorted(study_scoped_gates(repo)
+                          - set(DIRECTORY_GATES) - set(ARTEFACT_GATES) - set(EXCLUDED))
+        if unlisted:
+            print('\nFAIL — %d study-scoped gate(s) on disk are named in none of the three '
+                  'lists: %s' % (len(unlisted), ', '.join(unlisted)))
+            print('A gate nobody listed is a gate this run never tested, and the run still '
+                  'reports clean — which is the failure shape this whole file exists to '
+                  'close, occurring inside it. Say which kind it is.')
             rc = 1
         if wrong:
             print('\nFAIL — %d gate(s) did not refuse the new study, or went red without '

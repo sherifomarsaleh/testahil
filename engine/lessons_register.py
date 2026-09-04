@@ -3565,6 +3565,72 @@ LESSONS = [
       "are a ROW formatted as a combined string, not a column it can read.",
       "A derived row that genuinely coincides across two bases, which would need saying."),
 
+    L("L-264", "ALL", None,
+      "A TABLE THAT NAMES ITS OPERATIONS IN WORDS IS GIVING A READER INSTRUCTIONS, AND "
+      "FOLLOWING THEM MUST ARRIVE WHERE THE PAGE SAYS.",
+      "\"Plus net cash\", \"Less depreciation and amortisation\", \"Add back the "
+      "impairment\" are instructions, not labels. A reader will carry them out. Where a "
+      "line the model uses is not printed, the reader arrives somewhere the page does "
+      "not \u2014 and nothing about the page looks wrong, because every figure on it is "
+      "correct.",
+      "reading SCEM's rendered pages, 04-Sep-2026",
+      "build",
+      "Five tables in one study, in a document that had passed table_footing, "
+      "prose_figures, the recalculation gate, the scrub and the column audit. The "
+      "enterprise-to-equity bridge printed \"Enterprise value 6,617\", \"Plus net cash "
+      "4,930\", \"Equity value 11,426\" while deducting EGP 120mn of minority in the "
+      "model and printing no line for it. The cash-flow waterfall printed depreciation, "
+      "capital expenditure and working capital between NOPAT and free cash flow \u2014 "
+      "three lines that feed only the balance-sheet projection \u2014 while the model "
+      "builds free cash flow as NOPAT less reinvestment, so a reader adding the column "
+      "reached 1,829 in year one against a printed 799. Three lenses jumped from an "
+      "enterprise figure straight to value per share: dividing the printed earnings by "
+      "the printed share count gives 39.66 against a printed 58.10.",
+      "A delivered waterfall whose printed rows reach its printed answer while a line "
+      "the model uses is still missing, which would mean the arithmetic closes by "
+      "coincidence."),
+
+    L("L-265", "ALL", None,
+      "WHERE A PAGE CANNOT SAY ENOUGH FOR A CHECK TO BE SOUND, MOVE THE CHECK TO WHOEVER "
+      "KNOWS \u2014 DO NOT WEAKEN IT UNTIL IT PASSES.",
+      "A check firing on work that is right has three possible answers and only one is "
+      "honest. Widening its tolerance is a free parameter. Changing the work to satisfy "
+      "it corrupts what is being measured. The third is to ask what the check is "
+      "actually measuring, and point it at something that can be reproduced.",
+      "building the waterfall instrument, 04-Sep-2026",
+      "build",
+      "The page-side reading of a waterfall was built first and measured twice over the "
+      "whole book: 42.4% of all 979 tables on the first design, whose matches were "
+      "coincidence against a pool of several thousand committed numbers, and 30.7% of "
+      "the 127 tables carrying an operator row on the second, after two further "
+      "re-pointings that were each the instrument being wrong about how tables work. The "
+      "residue is irreducible because a statement mixes labelled and unlabelled steps: "
+      "an income statement runs Revenue, EBITDA, margin, depreciation, \"Plus other "
+      "operating income\", EBIT, and EBIT is EBITDA LESS that depreciation PLUS that "
+      "income \u2014 the page performs the subtraction and never says so. The check "
+      "moved to the builder, which knows the anchor because it put it there.",
+      "A page-side reading that reaches an honest rate on this book, which would mean "
+      "the ambiguity is in the implementation rather than in what a page can state."),
+
+    L("L-266", "ALL", None,
+      "AN EXCEPTION TO A CHECK IS DECLARED WITH A REASON OR IT IS THE CHECK SWITCHED "
+      "OFF.",
+      "Every instrument in this house lets a study declare a legitimate exception. The "
+      "reason is not decoration on the declaration \u2014 it IS the declaration, because "
+      "an exception with no reason is indistinguishable from a defect somebody waved "
+      "through, and nobody can tell the two apart afterwards.",
+      "building the waterfall instrument, 04-Sep-2026",
+      "build",
+      "waterfall() accepts a figure the table does not print and REFUSES when no reason "
+      "is supplied with it, which is [R-COC-01 AMENDED]'s closed-mechanism clause and "
+      "table_footing's own declaration rule arriving at the same place from three "
+      "directions. Its first use is the one line in the study that a reader genuinely "
+      "cannot add up \u2014 a first forecast year scaled to the part of the year still "
+      "unearned at the valuation date \u2014 which the caption already named and which "
+      "is now declared to the instrument in the same words.",
+      "An exception class where the reason is genuinely mechanical and stating it adds "
+      "nothing, which would need to be shown rather than asserted."),
+
 ]
 
 
