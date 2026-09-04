@@ -1130,7 +1130,7 @@
   },
   "pi_term": {
    "value": 0.07,
-   "source": "Terminal Egyptian inflation, read from the HOUSE MACRO PATH (engine/macro_paths/EG.json) and not from this study. [R-MACRO-01]: a study may not carry an inflation number of its own. Registered here so that the terminal growth rate below can be DERIVED from it rather than typed beside it",
+   "source": "Long-run Egyptian inflation, taken from this house's single dated macroeconomic path for Egypt rather than set inside this study \u2014 one path is used by every Egyptian company we cover, so two studies cannot value companies in economies that disagree with each other. It is registered here so that the terminal growth rate below is DERIVED from it rather than typed beside it",
    "date": "2026-09-04",
    "ring": "Country"
   },
@@ -1160,7 +1160,7 @@
   },
   "g_term": {
    "value": 0.07,
-   "source": "Terminal NOMINAL growth, DERIVED: (1 + 0.0 real) x (1 + 0.07 house Egyptian terminal inflation) - 1 = 7.0%. The house macro path is the only source of an inflation rate in this study [R-MACRO-01]; the first edition's 5.0% was struck against an assumed 5% inflation and was therefore a real decline of 1.87% a year for ever",
+   "source": "Terminal NOMINAL growth, DERIVED rather than chosen: (1 + 0.0 real growth) x (1 + 7.0% long-run Egyptian inflation) - 1 = 7.0%. The house macroeconomic path is the only source of an inflation rate in this study. The first edition's 5.0% was struck against an assumed 5% inflation and was therefore a real decline of 1.87% a year in perpetuity",
    "date": "2026-09-04",
    "ring": "House"
   },

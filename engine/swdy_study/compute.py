@@ -717,10 +717,11 @@ INP = dict(
     # convergence requirement (last explicit year 8.8% against 7.0%, a 1.8pp gap, where
     # 5.0% left 3.8pp and capitalised a rate the model never reached).
     # ---- the terminal's own inputs, from SWDY's own audited note 17 ------------
-    pi_term=I(0.07, "Terminal Egyptian inflation, read from the HOUSE MACRO PATH "
-              "(engine/macro_paths/EG.json) and not from this study. [R-MACRO-01]: a study "
-              "may not carry an inflation number of its own. Registered here so that the "
-              "terminal growth rate below can be DERIVED from it rather than typed beside it",
+    pi_term=I(0.07, "Long-run Egyptian inflation, taken from this house's single dated "
+              "macroeconomic path for Egypt rather than set inside this study — one path is "
+              "used by every Egyptian company we cover, so two studies cannot value companies "
+              "in economies that disagree with each other. It is registered here so that the "
+              "terminal growth rate below is DERIVED from it rather than typed beside it",
               "2026-09-04", "Country"),
     ppe_gross_depreciable_fy25=I(50775.950574,
         "Audited FY2025 consolidated financial statements, note 17: gross cost at 31-Dec-2025 "
@@ -755,11 +756,12 @@ INP = dict(
                   "holding its real scale in perpetuity; real growth costs incremental capital "
                   "and none is assumed. The nominal rate is DERIVED from this and the house "
                   "path's terminal inflation, never quoted beside it", "2026-09-04", "House"),
-    g_term=I(0.07, "Terminal NOMINAL growth, DERIVED: (1 + 0.0 real) x (1 + 0.07 house "
-             "Egyptian terminal inflation) - 1 = 7.0%. The house macro path is the only "
-             "source of an inflation rate in this study [R-MACRO-01]; the first edition's "
-             "5.0% was struck against an assumed 5% inflation and was therefore a real "
-             "decline of 1.87% a year for ever", "2026-09-04", "House"),
+    g_term=I(0.07, "Terminal NOMINAL growth, DERIVED rather than chosen: (1 + 0.0 real "
+             "growth) x (1 + 7.0% long-run Egyptian inflation) - 1 = 7.0%. The house "
+             "macroeconomic path is the only source of an inflation rate in this study. The "
+             "first edition's 5.0% was struck against an assumed 5% inflation and was "
+             "therefore a real decline of 1.87% a year in perpetuity",
+             "2026-09-04", "House"),
     # ---- currency-of-discounting alternative inputs (previously unregistered
     # constants inside the computation — registered after external critique) ----
     usd_rf=I(0.043, "US dollar risk-free rate for the currency-of-discounting alternative, 10-year "
