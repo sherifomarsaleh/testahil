@@ -733,8 +733,15 @@ tv_retired = nopat[-1] * (1 + V['g_term']) * (1 - rr_term) / (wacc_term - V['g_t
 
 def _terminal(nopat_last, dna_last, nwc_last, ppe_last, g_nom, wacc_t):
     """The ONLY terminal this model builds. Real growth in, nominal derived, maintenance
-    at current cost on the base's own derived life, growth capital only for REAL growth."""
-    f = 1.0 + g_nom
+    at current cost on the base's own derived life, growth capital only for REAL growth.
+
+    EVERY FIGURE HANDED IN IS THE LAST EXPLICIT YEAR'S, NOT THE TERMINAL YEAR'S. The module
+    grows the free cash flow once itself: tv = fcff (1+g) / (w - g) puts the first perpetuity
+    year in the numerator and values the terminal at the END of the last explicit year, which
+    is where this model discounts it. Figures already grown by (1+g) were handed in until
+    4 September 2026, which overstated the terminal by exactly (1+g) — 4.00% here.
+    """
+    f = 1.0
     return TERMVAL.build(TERMVAL.TerminalInputs(
         nopat=nopat_last * f,
         wacc=wacc_t,
@@ -756,7 +763,10 @@ tv = TERM.tv
 pv_tv = tv * df_[-1]
 ev = pv_explicit + pv_tv
 tv_share = pv_tv / ev
-say(f"[Terminal value] terminal NOPAT {nopat_term:,.0f}; book depreciation inside it "
+say(f"[Terminal value] the terminal is built on the LAST EXPLICIT YEAR and the perpetuity "
+    f"grows it once, so these are FY2030 figures: operating profit after tax "
+    f"{nopat[-1]:,.0f} (the first perpetuity year is {nopat_term:,.0f}); book depreciation "
+    f"inside it "
     f"{TERM.dna_addback:,.0f} added back and capital maintenance charged at current cost "
     f"{TERM.maintenance:,.0f} (that book charge escalated to what replacement costs today over "
     f"the {V['average_age_years']:.2f}-year average age of the base, MEASURED off the notes as "

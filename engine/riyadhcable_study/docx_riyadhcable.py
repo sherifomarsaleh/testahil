@@ -169,28 +169,31 @@ rich([('Sum of the present values of the five explicit years is SAR ', {}),
       ('; the present value of the terminal value is SAR ', {}), (f'{sar(DCF["pv_tv"],0)}mn', {'bold': True}),
       (f' ({pct(DCF["tv_share"],0)} of enterprise value); together the enterprise value is SAR ', {}),
       (f'{sar(DCF["ev"],0)}mn', {'bold': True, 'color': BRASS}), ('.', {})], size=9.6)
-tw = [['Building the terminal year (SAR mn)', ''],
-      ['Terminal-year operating profit after tax', sar(DCF['nopat_term'], 0)],
+tw = [['Building the terminal (SAR mn, FY2030)', ''],
+      ['Operating profit after tax', sar(F['nopat'][4], 0)],
       ['Plus depreciation and amortisation charged inside it', sar(TRM['dna_addback'], 0)],
       ['Less capital maintenance, at what replacement costs today', sar(-TRM['maintenance'], 0)],
       ['Less the capital that real growth needs', sar(-TRM['growth_capex'], 0)],
       ['Less inflation on working capital', sar(-TRM['wc_charge'], 0)],
       ['Terminal free cash flow', sar(TRM['fcff'], 0)],
-      ['Capitalised at the terminal cost of capital less growth', sar(DCF['tv'], 0)]]
+      ['Grown one year and capitalised at the cost of capital less growth',
+       sar(DCF['tv'], 0)]]
 TRES.signed_column(
-    [DCF['nopat_term'], TRM['dna_addback'], -TRM['maintenance'],
+    [F['nopat'][4], TRM['dna_addback'], -TRM['maintenance'],
      -TRM['growth_capex'], -TRM['wc_charge']],
     TRM['fcff'], dp=0, what='RIYADHCABLE terminal-year free cash flow')
 table(tw, [4.6, 1.4], band_rows={6, 7}, size=9.2, align_right_from=1)
 caption(
-    f'How the terminal year is built. Profit after tax is already net of book depreciation, so that '
+    f'How the terminal is built, on the LAST EXPLICIT YEAR — the perpetuity grows this flow '
+    f'once, so the figures here are FY2030\u2019s and not the first perpetuity year\u2019s. '
+    f'Profit after tax is already net of book depreciation, so that '
     f'charge is added back and the CASH cost of keeping the plant intact is charged instead — the '
     f'book charge escalated over half the {IN["asset_life_years"]:.1f}-year life the company\u2019s own '
     f'notes imply, which is SAR {sar(TRM["maintenance"],0)}mn against a book charge of '
     f'SAR {sar(TRM["dna_addback"],0)}mn. Growth capital is charged only for the '
     f'{pct(TRM["real_growth"],2)} of REAL growth the forecast claims; inflation alone buys no capacity '
     f'and is not charged as though it did. What is left, SAR {sar(TRM["fcff"],0)}mn, is '
-    f'{pct(TRM["fcff"]/DCF["nopat_term"],0)} of terminal profit.')
+    f'{pct(TRM["fcff"]/F["nopat"][4],0)} of that year\u2019s profit.')
 
 br = [['Enterprise value to equity (SAR mn)', ''],
       ['Enterprise value', sar(DCF['ev'], 0)],

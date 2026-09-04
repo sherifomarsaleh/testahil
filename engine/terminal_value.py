@@ -202,8 +202,20 @@ class TerminalRefused(Exception):
 
 @dataclass
 class TerminalInputs:
-    """Everything a terminal needs, in the terminal year's own money."""
-    nopat: float                  # terminal-year NOPAT, net of BOOK depreciation
+    """Everything a terminal needs, IN THE LAST EXPLICIT YEAR'S money — not the terminal
+    year's. The module grows the free cash flow one year itself; see `nopat` below."""
+    # THE LAST EXPLICIT YEAR'S NOPAT, NOT THE TERMINAL YEAR'S — the module grows it itself.
+    # `tv = fcff * (1+g) / (wacc - g)` puts the FIRST PERPETUITY year in the numerator and
+    # values the terminal at the END OF THE LAST EXPLICIT YEAR, which is where every caller
+    # discounts it (the year-five factor). So the figures handed in must be that year's. Pass
+    # a NOPAT already grown by (1+g) and the terminal is overstated by exactly (1+g) — a
+    # year-seven flow discounted at the year-five factor. THIS FIELD WAS NAMED
+    # "terminal-year NOPAT" AND SIX OF EIGHT CALLERS READ IT THE OTHER WAY (4 September
+    # 2026), so the name is now the warning. All the other flow inputs — dna_book,
+    # working_capital, and the capital behind incremental_capital_per_unit_growth — are on
+    # the SAME last-explicit-year basis, because the module grows the whole free cash flow
+    # once and they must grow with it.
+    nopat: float                  # LAST EXPLICIT YEAR's NOPAT, net of BOOK depreciation
     wacc: float                   # terminal WACC, from cost_of_capital.py
     inflation: float              # terminal inflation, from the house macro path
     real_growth: float = 0.0      # STATED real growth. Nominal is derived, never supplied.
