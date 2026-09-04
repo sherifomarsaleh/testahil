@@ -66,7 +66,40 @@ WHAT A TERMINAL COSTS, correctly. In a nominal steady state holding physical cap
     accumulated depreciation / the year's own charge IS the charge-weighted average age
     under straight-line, exactly — it is an identity off the accounts, not an estimate, and
     it is slightly OVERSTATED where assets sit fully depreciated and still in use, which
-    errs toward charging more. Supply it and it is used; leave it and half the life is used
+    errs toward charging more.
+
+    TWO DISCLOSED CONDITIONS BREAK IT AND BOTH ARE CHECKABLE BEFORE IT IS USED. The identity
+    holds because accumulated = age x charge, which needs the charge to be cost/life.
+    (i) WHERE ASSETS ARE DEPRECIATED TO A RESIDUAL VALUE the charge is (cost - residual)/life,
+    so the same accumulated balance buys MORE years and the ratio OVERSTATES the age.
+    (ii) WHERE A USEFUL LIFE HAS BEEN REASSESSED the charge is not level across the base's
+    history and the identity is broken outright rather than merely biased.
+
+    FOUND ON THE THIRD NAME IT WAS TRIED ON, and the disagreement announced itself before the
+    accounts did: AIRARABIA's identity-implied life came to 26.42 years against the 17.84 its
+    own disclosed class lives weight to — 48% apart, which no rounding explains. The policy
+    note then says both things outright: depreciation writes off cost "less their estimated
+    residual values", and the group "changed the estimated useful life applied to certain
+    assets" during the year. The measured age of 14.32 years is therefore not this fleet's
+    age, and applying it would have moved that study -9.7% on a terminal carrying 95% of
+    enterprise value. NOT APPLIED.
+
+    SO THE CHEAP CROSS-CHECK IS THE ONE TO RUN FIRST: compare the identity's implied life
+    (depreciable gross cost over the charge) with the life the DISCLOSED CLASS RATES weight
+    to. Where they agree the residual is immaterial and the age is usable; where they diverge,
+    the accounts are saying the charge is not cost/life and the age must not be read off it.
+
+    AND THE CHECK IS CIRCULAR WHERE THE STUDY DERIVED ITS LIFE BY THE SAME IDENTITY, which is
+    most of them, so saying so is part of running it. On the three names carrying a measured
+    age the implied and adopted lives agree to 0.0% for exactly that reason and the agreement
+    proves nothing; what does the work there is the SEPARATE evidence that the charge is
+    cost/life — a policy note that writes off cost with no residual mentioned, a leg whose
+    single disclosed life the identity reproduces (EMPOWER's intangibles at 30 years,
+    RIYADHCABLE's software at 14.43 against a stated 15), and an implied life that sits inside
+    the disclosed range rather than outside it (EGCH's 22.07 against class rates spanning 10.5
+    to 25.3, on a base dominated by the plant carrying the 25.3). AIRARABIA is the case where
+    the two lives came from genuinely different routes, and that is why the 48% gap was
+    visible at all. Supply it and it is used; leave it and half the life is used
     and the record SAYS WHICH, so a reader can tell an assumption from a measurement.
     Per [R-COC-01]: WHEN A CHECK FIRES ON WORK THAT IS RIGHT, RE-POINT IT — never widen it
     and never move the number to satisfy it. The direction is not universal, which is the

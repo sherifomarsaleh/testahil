@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**248 lessons**, of which 216 bind on every study, 25 on a class of company, and 7 on a single name.
+**249 lessons**, of which 217 bind on every study, 25 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 173 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 174 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2238,6 +2238,16 @@ Every ratcheted gate in this repository is negative-controlled, and the reasonin
 > **What it cost, or how we know.** scripts/check_terminal_module_negative_control.py: 12 refusal conditions and 6 clean cases, plus an assertion that the half-of-life fallback still reproduces the pre-amendment charge exactly, so the re-pointing moves no committed answer. ITS OWN FIRST RUN CAUGHT A CASE WHOSE MUTATION DID NOT LAND: 'a terminal distributing more than it earns' was written as a huge book charge on a one-year life, and on that basis maintenance is the charge ESCALATED, so free cash flow can never rise above profit — the condition is only reachable where maintenance is supplied directly and is small against the add-back.
 
 > **What would overturn it.** A shared module whose every refusal is already reachable from a gate's own sandbox, where a separate control would be duplication rather than coverage.
+
+### L-328 · Accumulated depreciation over the charge is the average age only where the charge is cost over life, and two DISCLOSED conditions break that
+
+The identity holds because accumulated equals age times charge, which needs the annual charge to be cost divided by life. Where assets are depreciated to a RESIDUAL VALUE the charge is (cost less residual) over life, so the same accumulated balance buys more years and the ratio OVERSTATES the age; where a useful life has been REASSESSED mid-life the charge is not level across the base's history and the identity is broken outright rather than merely biased. Both are disclosed in the accounting-policies note, so both are checkable before the number is used. AND THE DISAGREEMENT ANNOUNCES ITSELF BEFORE THE NOTE DOES: compare the identity's implied life — depreciable gross cost over the charge — with the life the disclosed class rates weight to, and a large gap IS the accounts saying the charge is not cost over life. THE CHECK IS CIRCULAR WHERE A STUDY DERIVED ITS LIFE BY THE SAME IDENTITY, which is most of them, and saying so is part of running it — what does the work there is separate evidence that the charge is cost over life: a policy note writing off cost with no residual mentioned, a leg whose single disclosed life the identity reproduces, an implied life inside the disclosed range rather than outside it.
+
+**Applies to:** every study  ·  *Learned from:* found while building, AIRARABIA, the third name the measured age was tried on, 4 September 2026
+
+> **What it cost, or how we know.** AIRARABIA's identity-implied life came to 26.42 years against the 17.84 its own disclosed class lives weight to — 48% apart, which no rounding explains. Its policy note then says both things outright: depreciation writes off cost 'less their estimated residual values', and the group 'changed the estimated useful life applied to certain assets' during the year. The measured age of 14.32 years is therefore not that fleet's age, and applying it would have moved the study -9.7% on a terminal carrying 95% of enterprise value. Built, run, and NOT APPLIED. The three names that do carry the measured age all reproduce their adopted life to 0.0%, and that agreement proves nothing because they derived it the same way.
+
+> **What would overturn it.** A residual small enough to be immaterial, or a reassessment old enough that the base has turned over since — in which case the identity is usable again and the cross-check will say so.
 
 
 ---
