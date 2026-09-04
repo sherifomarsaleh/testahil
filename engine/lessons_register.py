@@ -3631,6 +3631,29 @@ LESSONS = [
       "An exception class where the reason is genuinely mechanical and stating it adds "
       "nothing, which would need to be shown rather than asserted."),
 
+    L("L-267", "ALL", None,
+      "A TABLE USES ONE SIGN CONVENTION FOR ITS DEDUCTIONS, AND A LABEL SAYING \"LESS\" "
+      "OVER A FIGURE THE MODEL ADDS IS WRONG WHATEVER THE ARITHMETIC DOES.",
+      "A deduction can be printed in parentheses, as a signed negative, or as a bare "
+      "magnitude. Any one of the three is clear. Two of them in one table means a reader "
+      "does not know whether to take the magnitude off or add the sign \u2014 and the "
+      "same row printing 855 in one year and -4,550 in the next, under one label, is "
+      "something nobody can read correctly.",
+      "measuring the delivered documents, 04-Sep-2026",
+      "build",
+      "Nine of the 100 tables in the book that carry a deduction row print two "
+      "conventions at once, and in every one of the nine the row breaking the convention "
+      "is a working-capital line the model ADDS while its label says \"Less\". One "
+      "prints \"(2,650)\", \"(360)\", \"(792)\", \"(1,012)\" and then \"440\", so "
+      "a reader following the labels reaches 3,488 against a printed 4,368 \u2014 twenty "
+      "per cent of that year's cash flow. Three of the nine switch convention between "
+      "adjacent years in a single row. The semantic defect beneath it is the real one: "
+      "\"Less INCREASE in working capital\" over a release states the opposite of what "
+      "happened.",
+      "A table whose two conventions are two different quantities rather than two "
+      "readings of one \u2014 a rate beside its amount, which the check already "
+      "distinguishes and which is why it distinguishes them."),
+
 ]
 
 

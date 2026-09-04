@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**187 lessons**, of which 160 bind on every study, 20 on a class of company, and 7 on a single name.
+**188 lessons**, of which 161 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 112 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 113 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1678,6 +1678,16 @@ Every instrument in this house lets a study declare a legitimate exception. The 
 > **What it cost, or how we know.** waterfall() accepts a figure the table does not print and REFUSES when no reason is supplied with it, which is [R-COC-01 AMENDED]'s closed-mechanism clause and table_footing's own declaration rule arriving at the same place from three directions. Its first use is the one line in the study that a reader genuinely cannot add up — a first forecast year scaled to the part of the year still unearned at the valuation date — which the caption already named and which is now declared to the instrument in the same words.
 
 > **What would overturn it.** An exception class where the reason is genuinely mechanical and stating it adds nothing, which would need to be shown rather than asserted.
+
+### L-267 · A TABLE USES ONE SIGN CONVENTION FOR ITS DEDUCTIONS, AND A LABEL SAYING "LESS" OVER A FIGURE THE MODEL ADDS IS WRONG WHATEVER THE ARITHMETIC DOES.
+
+A deduction can be printed in parentheses, as a signed negative, or as a bare magnitude. Any one of the three is clear. Two of them in one table means a reader does not know whether to take the magnitude off or add the sign — and the same row printing 855 in one year and -4,550 in the next, under one label, is something nobody can read correctly.
+
+**Applies to:** every study  ·  *Learned from:* found while building, measuring the delivered documents, 04-Sep-2026
+
+> **What it cost, or how we know.** Nine of the 100 tables in the book that carry a deduction row print two conventions at once, and in every one of the nine the row breaking the convention is a working-capital line the model ADDS while its label says "Less". One prints "(2,650)", "(360)", "(792)", "(1,012)" and then "440", so a reader following the labels reaches 3,488 against a printed 4,368 — twenty per cent of that year's cash flow. Three of the nine switch convention between adjacent years in a single row. The semantic defect beneath it is the real one: "Less INCREASE in working capital" over a release states the opposite of what happened.
+
+> **What would overturn it.** A table whose two conventions are two different quantities rather than two readings of one — a rate beside its amount, which the check already distinguishes and which is why it distinguishes them.
 
 
 ---
