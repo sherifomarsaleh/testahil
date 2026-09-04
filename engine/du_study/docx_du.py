@@ -27,6 +27,7 @@ CEN, LO_, HI_ = D['central'], D['span'][0], D['span'][1]
 H1M, H3M = STK['horizons']['1M'], STK['horizons']['3M']
 RETW = D['lens_record']['retired']['blend']
 RETV = D['lens_record']['retired']['blend_value']
+MR = D['margin_record']
 WBEAR_H, WBULL_H = LO_, HI_
 RNAV_NOT_BUILT = D['lens_record'].get('cross_checks_not_built') or []
 SEGS = ['mobile', 'fixed', 'wholesale', 'ict']
@@ -349,9 +350,11 @@ P('The lens strips the cycle: the mid-cycle EBITDA margin (the middle forecast y
   f"anchor: AED {p2(LN['normalized']['base'])} [12× → {p2(LN['normalized']['bear'])}; 18.5× → "
   f"{p2(LN['normalized']['bull'])}]. It reads within a few fils of the relative lens, and that "
   'is worth being blunt about rather than presenting as corroboration: du\'s current year IS '
-  'close to mid-cycle — the war knocked the top line, not the margin, and the first half of 2026 '
-  'printed the best margin in the company\'s history — so normalising changes the earnings base '
-  'by less than a fil. The two market-anchored lenses are therefore ONE reading of one multiple '
+  f'close to mid-cycle — the war knocked the top line, not the margin, and the half-year to '
+  f'30 June 2026 printed an EBITDA margin of {pc(MR["best_margin"])}, the highest of any '
+  f'period from {MR["window"]}, with the four full years in that window rising in every one '
+  f'of them ({" then ".join(pc(x["margin"]) for x in MR["periods"] if x["period"].startswith("FY"))}) '
+  f'— so normalising changes the earnings base by less than a fil. The two market-anchored lenses are therefore ONE reading of one multiple '
   'against one earnings number, not two independent reads — which is one reason neither is '
   f"the answer here, and why an earlier edition that gave the pair "
   f"{pc(RETW['relative']+RETW['normalized'],0)} of a weighted central between them was "

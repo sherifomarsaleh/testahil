@@ -864,10 +864,12 @@
   }
  },
  "anchors": {
+  "summary_central": "C9",
   "summary_alt": "C12",
   "summary_tv_share": "C13",
   "summary_panel": "C14",
   "summary_spot": "C15",
+  "fv_central": "C12",
   "fv_framing1": "C15",
   "fv_framing2": "C18",
   "fv_gap": "C19",

@@ -78,6 +78,24 @@
    "date": "2024-02-13",
    "ring": "Company"
   },
+  "rev_fy22": {
+   "value": 12754.492,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024), FY2022 comparative on the face of the income statement",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "ebitda_fy22": {
+   "value": 5142.857,
+   "source": "DERIVED (flagged), on the SAME construction as FY2023 so the series is like-for-like: revenue 12,754.492 less operating expenses 9,551.929 excluding D&A 2,112.223, less expected credit losses 173.566, plus other income 1.637. Every component is an audited FY2022 comparative in Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024) (income statement and Note 26)",
+   "date": "2024-02-13",
+   "ring": "Company/derived"
+  },
+  "dna_fy22": {
+   "value": 2112.223,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024), Note 26 FY2022 comparative: PP&E depreciation 1,607.280 + right-of-use depreciation 350.859 + intangibles amortisation 154.084",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
   "dna_fy24": {
    "value": 2153.59,
    "source": "Audited consolidated FS, Annual Report 2024, investors.du.ae (PwC, unqualified opinion 10-Feb-2025), Note 31 split: PP&E 1,569.189 + ROU 374.505 + intangibles 209.896",
@@ -3376,6 +3394,51 @@
    "panel_names": 18
   }
  },
+ "margin_record": {
+  "periods": [
+   {
+    "period": "FY2022",
+    "revenue": 12754.492,
+    "ebitda": 5142.857,
+    "margin": 0.40321927364884463
+   },
+   {
+    "period": "FY2023",
+    "revenue": 13636.34,
+    "ebitda": 5799.601,
+    "margin": 0.42530481052833824
+   },
+   {
+    "period": "FY2024",
+    "revenue": 14635.917,
+    "ebitda": 6469.839,
+    "margin": 0.4420521788966144
+   },
+   {
+    "period": "FY2025",
+    "revenue": 15905.421,
+    "ebitda": 7338.388,
+    "margin": 0.46137653319582045
+   },
+   {
+    "period": "H1-2025",
+    "revenue": 7750.295,
+    "ebitda": 3650.187,
+    "margin": 0.47097394357247047
+   },
+   {
+    "period": "H1-2026",
+    "revenue": 8197.573,
+    "ebitda": 4031.922,
+    "margin": 0.4918433785219113
+   }
+  ],
+  "best_period": "H1-2026",
+  "best_margin": 0.4918433785219113,
+  "window": "FY2022 to the reviewed half-year ended 30 June 2026",
+  "full_years_monotone": true,
+  "note": "the window this superlative is claimed over, stated rather than implied. Every period is footed to an audited or reviewed filing on one construction."
+ },
  "register_figures": {
   "lfl_mobile_interconnect": -0.04130064570132963,
   "lfl_mobile_commission": 0.02981864643752119,
@@ -3438,6 +3501,7 @@
   "[CC3 PRICED \u2014 revenue at the guidance midpoint] the build lands at +4.3% against du's guided 4-6%, so the midpoint +5.0% is +0.7pp above it, worth about AED 107mn of FY2026 revenue. Won on PRICE (blended ARPU 1.018x, no incremental unit cost or capex): AED 19.54 (+0.65/share). Won on VOLUME (+337k subscribers, carrying both unit cost and the capex it implies): AED 19.68 (+0.79/share). So the finding is worth AED +0.65 to +0.79 a share and is NOT immaterial.",
   "[Why volume looks better here \u2014 the comparison was mis-specified, and the fix] calibrating both cases on FY2026 growth does NOT hold revenue constant, because H1-2026 is a reviewed ACTUAL: a subscriber shift can only move the second half of FY2026, so matching FY2026 needs a shift large enough to then apply to the WHOLE of FY2027-FY2030. Five-year revenue comes out 91,049 on price against 91,862 on volume (+0.89%) \u2014 the volume case simply sells more over the window. That is a timing artefact of the calibration, not evidence about attribution.",
   "[CC3, attribution isolated on matched five-year revenue] +190k subscribers delivers the same 91,049 of five-year revenue as the price case. On PRICE: AED 19.54. On VOLUME: AED 19.34 (-0.20/share, -1.0%). NOW the expected ordering holds: identical revenue is worth less when it has to be bought with per-subscriber cost and the capex to carry the traffic. VERDICT on the finding: material, published as a range. The build stays below the midpoint because it is driven by disclosed subscriber and ARPU paths rather than reverse-engineered to a guidance number \u2014 but the reader is entitled to see what the midpoint is worth and that HOW it is won matters as much as whether it is.",
-  "[Expert panel] Expert 1 11.54 [9.56-13.19]; Expert 2 18.57 [9.84-21.55]; Expert 3 18.46 [12.20-20.67]; panel median 18.46 (+50% vs spot)"
+  "[Expert panel] Expert 1 11.54 [9.56-13.19]; Expert 2 18.57 [9.84-21.55]; Expert 3 18.46 [12.20-20.67]; panel median 18.46 (+50% vs spot)",
+  "[EBITDA margin record] FY2022 40.32% \u00b7 FY2023 42.53% \u00b7 FY2024 44.21% \u00b7 FY2025 46.14% \u00b7 H1-2025 47.10% \u00b7 H1-2026 49.18% | highest H1-2026 at 49.18% | the full years rise monotonically"
  ]
 }

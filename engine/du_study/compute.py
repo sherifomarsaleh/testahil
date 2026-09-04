@@ -117,6 +117,22 @@ INP = dict(
     dna_fy23=I(2198.277, AR23 + ", Note 26 opex split: PP&E depreciation 1,544.182 + "
                "right-of-use depreciation 445.042 + intangibles amortisation 209.053",
                "2024-02-13", "Company"),
+    # FY2022 is carried for ONE purpose and it is stated rather than left to be inferred:
+    # section 1.4 says the latest reviewed half printed the best margin in the company's
+    # history, and a superlative needs a record to be superlative over. The FY2023
+    # statements carry FY2022 as their comparative, so this costs a read of a document the
+    # study already holds. It enters no forecast driver and no lens.
+    rev_fy22=I(12754.492, AR23 + ", FY2022 comparative on the face of the income statement",
+               "2024-02-13", "Company"),
+    ebitda_fy22=I(5142.857, "DERIVED (flagged), on the SAME construction as FY2023 so the "
+                  "series is like-for-like: revenue 12,754.492 less operating expenses "
+                  "9,551.929 excluding D&A 2,112.223, less expected credit losses 173.566, "
+                  "plus other income 1.637. Every component is an audited FY2022 comparative "
+                  "in " + AR23 + " (income statement and Note 26)",
+                  "2024-02-13", "Company/derived"),
+    dna_fy22=I(2112.223, AR23 + ", Note 26 FY2022 comparative: PP&E depreciation 1,607.280 + "
+               "right-of-use depreciation 350.859 + intangibles amortisation 154.084",
+               "2024-02-13", "Company"),
     dna_fy24=I(2153.590, AR24 + ", Note 31 split: PP&E 1,569.189 + ROU 374.505 + intangibles "
                "209.896", "2025-02-10", "Company"),
     dna_fy25=I(2167.933, AR25 + ", Note 31 split: PP&E 1,557.989 + ROU 364.063 + intangibles "
@@ -1877,6 +1893,37 @@ strike = json.load(open(os.path.join(HERE, 'strike_result.json')))
 beta_res = json.load(open(os.path.join(HERE, 'beta_result.json')))
 bt5 = json.load(open(os.path.join(HERE, 'backtest_5y.json')))
 
+# ---- the EBITDA-margin record the section-1.4 superlative stands on -------------
+# One construction across every period so the series is like-for-like: revenue less
+# operating expenses excluding D&A, less expected credit losses, plus other income —
+# which is what the FY2025 statements print directly as "Operating profit before
+# depreciation and amortization" and what the pre-IFRS-18 years are derived to.
+_MARGIN_PERIODS = [
+    ('FY2022', V['rev_fy22'], V['ebitda_fy22']),
+    ('FY2023', V['rev_fy23'], V['ebitda_fy23']),
+    ('FY2024', V['rev_fy24'], V['ebitda_fy24']),
+    ('FY2025', V['rev_fy25'], V['ebitda_fy25']),
+    ('H1-2025', V['h1_25_rev'], V['h1_25_ebitda']),
+    ('H1-2026', V['h1_26_rev'], V['h1_26_ebitda']),
+]
+_MARGINS = [(p, e / r) for p, r, e in _MARGIN_PERIODS]
+_BEST_P, _BEST_M = max(_MARGINS, key=lambda t: t[1])
+_FULL = [(p, m) for p, m in _MARGINS if p.startswith('FY')]
+_MONOTONE = all(_FULL[i][1] < _FULL[i + 1][1] for i in range(len(_FULL) - 1))
+MARGIN_RECORD = dict(
+    periods=[dict(period=p, revenue=r, ebitda=e, margin=e / r) for p, r, e in _MARGIN_PERIODS],
+    best_period=_BEST_P, best_margin=_BEST_M,
+    window='FY2022 to the reviewed half-year ended 30 June 2026',
+    full_years_monotone=_MONOTONE,
+    note=('the window this superlative is claimed over, stated rather than implied. Every '
+          'period is footed to an audited or reviewed filing on one construction.'))
+say(f"[EBITDA margin record] " + " · ".join(f"{p} {m:.2%}" for p, m in _MARGINS)
+    + f" | highest {_BEST_P} at {_BEST_M:.2%}"
+    + (" | the full years rise monotonically" if _MONOTONE else " | the full years do NOT rise monotonically"))
+assert _BEST_P == 'H1-2026', (
+    f"section 1.4 says the latest reviewed half printed the best margin on this record; the "
+    f"record's own maximum is {_BEST_P} at {_BEST_M:.2%}. Fix the sentence, not the record.")
+
 OUT = dict(
     meta=dict(ticker='DU', company='Emirates Integrated Telecommunications Company PJSC (du)',
               market='DFM', currency='AED', asof='2026-08-07', spot=SPOT, shares_mn=SH,
@@ -2040,6 +2087,13 @@ OUT = dict(
     # like-for-like deltas below are the pre-pass values already cross-asserted against
     # the joint direct-cost recovery above; the rest are sourced constants and one
     # refused negative result, each of which a reader meets in prose.
+    # THE SUPERLATIVE IS COMPUTED AND BOUNDED, NEVER TYPED. Section 1.4 claims the latest
+    # reviewed half printed the best margin in the company's history. It was a typed
+    # sentence over a record the study did not carry — which is the AMOC defect exactly
+    # ("above the best single quarter this company has ever filed", when the company had
+    # filed a higher one twice). The record is now committed, the claim is derived from it,
+    # and the WINDOW IS NAMED so the sentence claims only what the evidence covers.
+    margin_record=MARGIN_RECORD,
     register_figures=dict(
         lfl_mobile_interconnect=_D_INTER,
         lfl_mobile_commission=_D_COMM,

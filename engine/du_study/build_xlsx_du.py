@@ -175,7 +175,7 @@ ws.column_dimensions['A'].width = 112
 ws = sheet('Summary')
 title(ws, 'Summary — valuation at a glance', 'All values link live to their source sheets', 7,
       awidth=44, cwidth=15)
-hdr(ws, 4, ['Lens', 'Bear', 'Base', 'Bull', 'Weight', 'Contribution', 'vs spot'])
+hdr(ws, 4, ['Lens', 'Bear', 'Base', 'Bull', 'Role', '', 'vs price'])
 LENS_SRC = {'dcf': '=DCF!C63', 'relative': "='Relative & Normalized'!C11",
             'normalized': "='Relative & Normalized'!C27", 'book': "='Relative & Normalized'!C35"}
 BEAR_SRC = {'relative': "='Relative & Normalized'!C12",
@@ -215,6 +215,7 @@ for k in LK:
     r += 1
 band(ws, r, 7)
 put(ws, f'A{r}', 'THE CENTRAL — the cash-flow lens, not an average', bold=True, fmt=None)
+ANCH['summary_central'] = f'C{r}'
 putf(ws, f'B{r}', '=B5', LN['dcf']['bear'], PX, bold=True)
 putf(ws, f'C{r}', '=C5', D['central'], PX, bold=True)
 putf(ws, f'D{r}', '=D5', LN['dcf']['bull'], PX, bold=True)
@@ -294,8 +295,12 @@ for a_, b_, c_, xp in rows:
         put(ws, f'C{r}', c_, BLUE, PX)
     r += 1
 r += 1
-band(ws, r, 3); put(ws, f'A{r}', 'Weighted central', bold=True, fmt=None)
-putf(ws, f'C{r}', '=Summary!C9', D['central'], PX, bold=True, green=True)   # row 12
+band(ws, r, 3)
+put(ws, f'A{r}', 'THE CENTRAL — the cash-flow lens itself, not an average of the four',
+    bold=True, fmt=None)
+ANCH['fv_central'] = f'C{r}'
+putf(ws, f'C{r}', f"=Summary!{ANCH['summary_central']}", D['central'], PX, bold=True,
+     green=True)
 r += 2
 put(ws, f'A{r}', 'THE CONTESTED JUDGEMENT — THE REQUIRED RETURN, BOTH WAYS', bold=True,
     fmt=None); r += 1
