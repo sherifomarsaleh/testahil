@@ -42,6 +42,7 @@ would read as though the book had been measured.
 import argparse
 import json
 import os
+import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -92,22 +93,107 @@ def _life_band(ticker, _lives=None):
 
 
 def committed_terminal(ticker):
-    """A study's own committed terminal_record, or None."""
+    """A study's own committed terminal_record, WHEREVER IT SITS, or None.
+
+    A FIRST DRAFT LOOKED ONLY AT THE TOP LEVEL AND MISSED A NAME THAT HAD ONE. SCEM
+    commits its record at dcf.terminal_record, ARCC at the top level, and both are
+    correct — a record belongs beside the terminal it describes, and a study with two
+    frames would have two. Reading one depth and calling the rest uncommitted is the
+    flat-resolver assumption the census exists to avoid, reproduced here.
+
+    So the tree is searched, and MORE THAN ONE record is an error rather than a
+    choice: picking the first would make the answer depend on dictionary order, and
+    which terminal a study means is not this file's judgement to make.
+    """
     f = os.path.join(REPO, 'engine', '%s_study' % ticker.lower(), 'study_numbers.json')
     if not os.path.exists(f):
         return None
     try:
-        return json.load(open(f, encoding='utf-8')).get('terminal_record')
+        doc = json.load(open(f, encoding='utf-8'))
     except Exception:                                                # noqa: BLE001
         return None
+    found = []
+
+    def walk(o):
+        if not isinstance(o, dict):
+            return
+        for k, v in o.items():
+            if k == 'terminal_record' and isinstance(v, dict) and v.get('inputs'):
+                found.append(v)
+            else:
+                walk(v)
+    walk(doc)
+    if len(found) > 1:
+        return {'_ambiguous': len(found)}
+    return found[0] if found else None
 
 
-# WHAT A CORRECTION NEEDS THAT THE RETIRED CONSTRUCTION NEVER COMMITTED. The retired
-# terminal is one line — g x IC — so a study carrying it publishes neither the capital
-# base at REPLACEMENT cost nor the working capital the corrected charge acts on, and
-# usually not the disclosed life either. Naming them individually is the point: "cannot
-# be priced" is a conclusion, and this is the evidence for it.
-NEEDS = ('ic_replacement', 'working_capital', 'useful_life_years')
+# WHAT A CORRECTION NEEDS, AND WHETHER EACH ITEM IS ACTUALLY ABSENT — MEASURED, NOT
+# ASSUMED. A first draft hard-coded all three as missing on every unrebuilt study and
+# said so in the report. That was wrong about one of them and would have sent the next
+# session to re-read thirteen balance sheets for a figure already in the file: every one
+# of the thirteen commits a working-capital series and ten commit a forecast-year one.
+#
+# ASSERTING WHAT IS MISSING IS THE SAME OFFENCE AS ASSERTING WHAT IS PRESENT. So each
+# item is resolved against the study's own committed numbers and reported in one of
+# three states, because "resolvable" and "committed" are not the same claim:
+#
+#   COMMITTED   it sits in a terminal_record, built and gated
+#   RESOLVABLE  the study publishes it under a named key, so a rebuild can read it —
+#               a candidate that must be confirmed at rebuild, never a substitute
+#   MISSING     nothing in the study answers to it
+# THE LEVEL, NOT THE CHANGE. The corrected terminal charges inflation x WORKING
+# CAPITAL, so it needs the LEVEL; `dnwc` is the year-on-year movement, and a rebuild
+# reading one for the other would charge a rounding error and look entirely fine. A
+# draft of this pattern matched `d?nwc` and reported the CHANGE as resolvable on nine
+# names — a near-miss key is worse than a missing one, because it answers.
+_WC = re.compile(r'(?:^|\.)(?:fcst|forecast)\.nwc(?:\[|$|\.)', re.I)
+_DWC = re.compile(r'(?:^|\.)(?:fcst|forecast)\.dnwc(?:\[|$|\.)', re.I)
+_IC = re.compile(r'(?:^|\.)(?:ic_replacement|invested_capital_replacement|'
+                 r'replacement_cost_(?:ic|capital))(?:\[|$|\.)', re.I)
+
+
+def _flatten(o, p='', out=None):
+    if out is None:
+        out = {}
+    if isinstance(o, dict):
+        for k, v in o.items():
+            _flatten(v, '%s.%s' % (p, k) if p else k, out)
+    elif isinstance(o, list):
+        for n, v in enumerate(o):
+            _flatten(v, '%s[%d]' % (p, n), out)
+    elif isinstance(o, (int, float)) and not isinstance(o, bool):
+        out[p] = o
+    return out
+
+
+def _needs(ticker):
+    """{item: (state, where)} for the three inputs a corrected terminal needs."""
+    f = os.path.join(REPO, 'engine', '%s_study' % ticker.lower(), 'study_numbers.json')
+    flat = {}
+    if os.path.exists(f):
+        try:
+            flat = _flatten(json.load(open(f, encoding='utf-8')))
+        except Exception:                                            # noqa: BLE001
+            flat = {}
+    out = {}
+    for item, pat in (('working_capital', _WC), ('ic_replacement', _IC)):
+        hits = sorted(k for k in flat if pat.search(k))
+        out[item] = ('RESOLVABLE', hits[0]) if hits else ('MISSING', '')
+    if out['working_capital'][0] == 'MISSING':
+        d = sorted(k for k in flat if _DWC.search(k))
+        if d:
+            out['working_capital'] = ('MISSING', 'only the CHANGE (%s) is published '
+                                      'and the charge acts on the level' % d[0])
+    lo, hi, src = TC.disclosed_life(ticker)
+    if lo is None:
+        out['useful_life_years'] = ('MISSING', '')
+    elif hi is None:
+        out['useful_life_years'] = ('RESOLVABLE', 'committed at %g years' % lo)
+    else:
+        out['useful_life_years'] = ('RESOLVABLE',
+                                    'sourced as a %g-%g year band' % (lo, hi))
+    return out
 
 
 def price_one(rec, lives):
@@ -130,6 +216,10 @@ def price_one(rec, lives):
         return 'UNREADABLE', rec['unreadable'], None
 
     tr = committed_terminal(tk)
+    if tr and tr.get('_ambiguous'):
+        return ('AMBIGUOUS RECORD',
+                'this study commits %d terminal records and which one it means is not '
+                'this file\'s judgement to make' % tr['_ambiguous'], None)
     if tr and tr.get('inputs'):
         ins = dict(tr['inputs'])
         try:
@@ -154,18 +244,21 @@ def price_one(rec, lives):
     if rec.get('implied_cycle_years') is None:
         return 'NOT THE RETIRED SHAPE', 'no reinvestment charge to correct', None
 
-    band, src = _life_band(tk)
-    have = {'useful_life_years': band[0] if band else None,
-            'ic_replacement': None,        # the retired construction commits BOOK capital
-            'working_capital': None}
-    missing = [k for k in NEEDS if have.get(k) is None]
-    named = (missing[0] if len(missing) == 1
-             else ' and '.join([', '.join(missing[:-1]), missing[-1]]))
-    return ('CANNOT BE PRICED',
-            'the correction needs %s, and this study commits %s; the retired '
-            'construction is one line and never had to'
-            % (named, 'neither' if len(missing) == 2 else
-               ('it not at all' if len(missing) == 1 else 'none of them')), None)
+    st = _needs(tk)
+    missing = [k for k, (s, _) in st.items() if s == 'MISSING']
+    have = [(k, w) for k, (s, w) in st.items() if s == 'RESOLVABLE']
+    if missing:
+        detail = 'MISSING ' + ', '.join(
+            k + (' — ' + st[k][1] if st[k][1] else '') for k in missing)
+        if have:
+            detail += '  ·  resolvable: ' + ', '.join(
+                '%s (%s)' % (k, w) for k, w in have)
+        return 'CANNOT BE PRICED', detail, None
+    return ('RESOLVABLE, NOT COMMITTED',
+            'every input a corrected terminal needs resolves from this study\'s own '
+            'numbers — ' + ', '.join('%s (%s)' % (k, w) for k, w in have)
+            + ' — but none is a committed terminal input, so the rebuild must confirm '
+              'each rather than assume it', None)
 
 
 def _market_of(ticker):
@@ -224,24 +317,48 @@ def report():
     print('  THE ANSWER, AND IT IS NOT A TABLE OF MOVES.')
     print('  %d name(s) are already on the corrected construction and rebuild to their '
           'own published' % ok)
-    print('  fair value exactly — which is what makes this instrument falsifiable rather '
-          'than a column')
-    print('  of numbers. %d carry the retired construction and CANNOT be priced from what '
-          'they publish:' % cant)
-    print('  the retired terminal is one line, g x IC, so it never had to commit the '
-          'replacement-cost')
-    print('  capital base, the working capital the corrected charge acts on, or the '
-          'disclosed life.')
+    print('  fair value EXACTLY — which is what makes this instrument falsifiable rather '
+          'than a column of')
+    print('  numbers, and it caught this file being wrong by 8.4% before it caught '
+          'anything else.')
     print()
-    print('  SO THE NEXT WORK IS SOURCING, NOT MODELLING. Each of those names needs its '
-          'own audited')
-    print('  accounting-policies note and its own balance sheet read again — and A LIFE '
-          'THIS DESK CHOSE IS')
-    print('  NOT A DISCLOSED LIFE (SIGCM clause 1), so nothing here is assumed and every '
-          'name is COUNTED')
-    print('  rather than skipped: a report listing only the priceable ones would read as '
-          'though the book')
-    print('  had been measured.')
+    print('  %d carry the retired construction and CANNOT be priced from what they '
+          'publish. The blocker' % cant)
+    from collections import Counter
+    miss = Counter()
+    for tk, _why in buckets.get('CANNOT BE PRICED', []):
+        for k, (s, _w) in _needs(tk).items():
+            if s == 'MISSING':
+                miss[k] += 1
+    print('  is NOT uniform and naming it per item is the point — "cannot be priced" is '
+          'a conclusion,')
+    print('  and this is the evidence for it:')
+    for k, n in miss.most_common():
+        print('      %-20s missing on %2d of %d' % (k, n, cant))
+    print()
+    print('  THE DOMINANT ONE IS THE CAPITAL BASE, AND THAT IS THE DEFECT RESTATED. The '
+          'retired terminal')
+    print('  charges g x BOOK capital, so a study carrying it never had to construct '
+          'invested capital at')
+    print('  REPLACEMENT cost — the quantity the corrected charge acts on. It is not an '
+          'oversight in any')
+    print('  study; it is what the construction asked for. What a process commits '
+          'decides what can ever')
+    print('  be asked of it later [R-FCAL-01 AMENDED], and nobody notices the missing '
+          'field until the')
+    print('  question arrives.')
+    print()
+    print('  SO THE NEXT WORK IS SOURCING AND CONSTRUCTION, NOT A MODELLING PASS — and '
+          'A LIFE THIS DESK')
+    print('  CHOSE IS NOT A DISCLOSED LIFE (SIGCM clause 1), so nothing here is assumed. '
+          'Every name is')
+    print('  COUNTED rather than skipped: a report listing only the priceable ones would '
+          'read as though')
+    print('  the book had been measured.')
+    print()
+    print('  RESOLVABLE IS NOT COMMITTED. Where an input is named above it is a '
+          'CANDIDATE the rebuild')
+    print('  must confirm, never a substitute for the study committing it.')
 
     if bad:
         print()
