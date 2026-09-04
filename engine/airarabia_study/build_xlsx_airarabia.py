@@ -544,11 +544,9 @@ _TR = TERMINAL_RECORD['outputs']
 _L_PI = ('Terminal inflation (house macro path, AE — this study may not carry its own)')
 _L_LIFE = ("Weighted useful life of the depreciable asset base (years, from the FY2025 "
            "accounting-policy note weighted by the property note's own gross cost)")
-putf(wsD, 'C50', f"=F37*(1+{AR('Terminal growth')})", TERMINAL_RECORD['inputs']['nopat'],
-     NUM1)
-put(wsD, 'A50', 'Terminal NOPAT (FY2031E)', fmt=None)
-putf(wsD, 'C51', f"=F35*(1+{AR('Terminal growth')})",
-     TERMINAL_RECORD['inputs']['dna_book'], NUM1)
+putf(wsD, 'C50', "=F37", TERMINAL_RECORD['inputs']['nopat'], NUM1)
+put(wsD, 'A50', 'FY2030E NOPAT — the perpetuity grows this once', fmt=None)
+putf(wsD, 'C51', "=F35", TERMINAL_RECORD['inputs']['dna_book'], NUM1)
 put(wsD, 'A51', 'Plus book depreciation (NOPAT is already net of it)', fmt=None)
 putf(wsD, 'C52', f"=-C51*(1+{AR(_L_PI)})^({AR(_L_LIFE)}/2)", -_TR['maintenance'], NUM1)
 put(wsD, 'A52', 'Less maintenance at current cost (book depreciation escalated over half '

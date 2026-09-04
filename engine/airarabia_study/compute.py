@@ -923,12 +923,16 @@ tv_retired = nopat_term * (1 - rr_term) / (wacc_term - V['g_term'])
 # the forecast rather than assumed, so it moves when the fleet plan moves.
 _inc_cap = ((ic[-1] - ic[0]) / (rev[-1] - rev[0])) * rev[-1]
 
+# EVERY FIGURE HANDED IN IS THE LAST EXPLICIT YEAR'S. The module grows the free cash flow
+# once itself — tv = fcff (1+g)/(w-g) values the terminal at the END of that year, which is
+# where it is discounted — so figures already grown by (1+g) overstate it by exactly (1+g).
+# They were, until 4 September 2026.
 _terminal = TV.build(TV.TerminalInputs(
-    nopat=nopat_term,
+    nopat=nopat[-1],
     wacc=wacc_term,
     inflation=PI_TERM,
     real_growth=V['g_term_real'],
-    dna_book=dna[-1] * (1 + V['g_term']),
+    dna_book=dna[-1],
     useful_life_years=V['asset_life_weighted'],
     useful_life_source=INP['asset_life_weighted']['source'],
     # THE BASIS IS THE CROSS-CHECK ONE AND THE REASON IS STRUCTURAL, NOT CONVENIENCE.
@@ -940,7 +944,7 @@ _terminal = TV.build(TV.TerminalInputs(
     # model's own book depreciation over half the DISCLOSED life is the same idea using
     # only figures that exist: book D&A is struck on assets averaging half a life old.
     maintenance_basis='book_dna_escalated',
-    working_capital=nwc[-1] * (1 + V['g_term']),
+    working_capital=nwc[-1],
     incremental_capital_per_unit_growth=_inc_cap))
 
 tv = _terminal.tv
@@ -1070,13 +1074,13 @@ def dcf_scenario(pax_mult=1.0, fare_mult=1.0, fuel_mult=1.0, cost_shift=0.0,
     _inc = ((_ic_T - _ic_0) / (_rev[-1] - _rev[0])) * _rev[-1] if _rev[-1] != _rev[0] \
         else _inc_cap
     _tv = TV.build(TV.TerminalInputs(
-        nopat=_nopat[-1] * (1 + g), wacc=max(_wt, g + 0.02), inflation=PI_TERM,
+        nopat=_nopat[-1], wacc=max(_wt, g + 0.02), inflation=PI_TERM,
         real_growth=(1.0 + g) / (1.0 + PI_TERM) - 1.0,
-        dna_book=dna[-1] * (1 + g),
+        dna_book=dna[-1],
         useful_life_years=V['asset_life_weighted'],
         useful_life_source=INP['asset_life_weighted']['source'],
         maintenance_basis='book_dna_escalated',
-        working_capital=_nwc[-1] * (1 + g),
+        working_capital=_nwc[-1],
         incremental_capital_per_unit_growth=_inc)).tv
     _ev = sum(_f[i] * _df[i] for i in range(5)) + _tv * _df[-1]
     return to_anchor_split(_ev, jv_val, roll=roll_at(ke_from_wacc(_we)))
@@ -1245,13 +1249,13 @@ def dcf_at(we_, wt_, g_):
     # house forbids, so the cell comes back as None and the table says so.
     try:
         _tv = TV.build(TV.TerminalInputs(
-            nopat=nopat[-1] * (1 + g_), wacc=max(wt_, g_ + 0.02), inflation=PI_TERM,
+            nopat=nopat[-1], wacc=max(wt_, g_ + 0.02), inflation=PI_TERM,
             real_growth=(1.0 + g_) / (1.0 + PI_TERM) - 1.0,
-            dna_book=dna[-1] * (1 + g_),
+            dna_book=dna[-1],
             useful_life_years=V['asset_life_weighted'],
             useful_life_source=INP['asset_life_weighted']['source'],
             maintenance_basis='book_dna_escalated',
-            working_capital=nwc[-1] * (1 + g_),
+            working_capital=nwc[-1],
             incremental_capital_per_unit_growth=_inc_cap)).tv
     except TV.TerminalRefused:
         return None
@@ -1461,9 +1465,9 @@ OUT = dict(
                         "and not about the asset. At a 2.5% terminal that is 40.0 years "
                         "against a weighted useful life this company's own accounts "
                         "disclose at 17.84."),
-        inputs=dict(nopat=nopat_term, wacc=wacc_term, inflation=PI_TERM,
+        inputs=dict(nopat=nopat[-1], wacc=wacc_term, inflation=PI_TERM,
                     real_growth=V['g_term_real'], nominal_growth=V['g_term'],
-                    dna_book=dna[-1] * (1 + V['g_term']),
+                    dna_book=dna[-1],
                     useful_life_years=V['asset_life_weighted'],
                     useful_life_source=INP['asset_life_weighted']['source'],
                     maintenance_basis='book_dna_escalated',
@@ -1476,7 +1480,7 @@ OUT = dict(
                         "construction of ours rather than a figure the company discloses. "
                         "Escalating the model's own book depreciation over half the "
                         "disclosed life uses only figures that exist."),
-                    working_capital=nwc[-1] * (1 + V['g_term']),
+                    working_capital=nwc[-1],
                     incremental_capital_per_unit_growth=_inc_cap),
         outputs=dict(fcff=_terminal.fcff, tv=_terminal.tv, floor=_terminal.floor,
                      maintenance=_terminal.maintenance,
