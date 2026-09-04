@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**215 lessons**, of which 186 bind on every study, 22 on a class of company, and 7 on a single name.
+**217 lessons**, of which 186 bind on every study, 24 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 140 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 142 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2197,6 +2197,29 @@ Shipping accounts state a hull life of twenty-five years or so, and the company'
 > **What it cost, or how we know.** Rebuilding ADNOCLS's terminal on the sanctioned module at the disclosed 25-year vessel life produced an implied payout of 117 per cent of terminal profit — a going concern distributing more than it earns for ever — and the module refused it. The study's own input register already carried the reason, that dry-docking components are written off over two to five years. The disclosure splits neither the vessel line by type nor the charge by component, so the life that would reconcile the two cannot be derived from the filings and none was invented.
 
 > **What would overturn it.** A fleet operator whose statements disclose the dry-docking component separately, where the hull cycle and the maintenance charge can be built apart and the reconciliation is arithmetic rather than an open question.
+
+
+## Diversified industrial with a contracting arm
+
+### L-295 · A GROUP WHOSE LEGS SIT ON DIFFERENT CONTRACT STRUCTURES CANNOT BE FORECAST ON ONE MARGIN PATH — the legs move in opposite directions at the same time, so a blended path describes neither of them.
+
+A cable is manufactured and sold into a market at a price the market sets, so its margin moves with the input commodity and with capacity. A turnkey project is a multi-year contract whose revenue is recognised as work completes and whose margin is an accident of which phases reach profitability in which period. They are not the same business under one roof, and a group margin built by blending them hides both. Build each leg on its own driver and re-anchor each on the latest reviewed period SEPARATELY.
+
+**Applies to:** every diversified industrial with a contracting arm  ·  *Learned from:* found while building, SWDY, 04-Sep-2026
+
+> **What it cost, or how we know.** Measured on the issuer's own comparable halves, the two legs moved in OPPOSITE directions at once: cables 14.54% to 12.49% while contracting went 9.06% to 11.59%, with electrical products up 23.46% to 24.91%. The group margin barely moved — 14.14% to 13.92% — so a group-level reading would have reported nothing happening while the two legs it is made of diverged by nearly five points between them. The first edition forecast a uniform partial recovery in all three, which was above what cables had just delivered and well below what contracting had.
+
+> **What would overturn it.** A group whose legs are found to co-move closely enough that one path describes both — which would be evidence the legs are not on different contract structures after all, and therefore that this is not a separate class.
+
+### L-296 · NORMALISED EARNINGS POWER IS NOT A LENS FOR A GROUP WITH A CONTRACTING ARM, for the reason it is not one for a developer: the earnings being normalised are an accident of completion timing.
+
+Normalising earnings assumes there is a mid-cycle level to normalise TO. Where a quarter of revenue comes from multi-year contracts recognised as work completes, the reported earnings of any given year say more about which projects finished than about what the business earns through a cycle, so normalising them normalises noise and calls it a mid-cycle.
+
+**Applies to:** every diversified industrial with a contracting arm  ·  *Learned from:* found while building, SWDY, 04-Sep-2026
+
+> **What it cost, or how we know.** The lens read EGP 109.52 against a cash-flow lens of 55.48 — nearly double — and carried a fifth of a typed blend, which is what pulled the published central to 71.20 and showed a reader about two thirds of the disagreement this study holds. It is the same lens, at the same weight, in the same class of defect as the case that retired the blend on a developer.
+
+> **What would overturn it.** A contracting group whose reported earnings are shown to be stable enough through a cycle that a normalised figure means something — which the disclosure would have to support with a completion profile no issuer in this book currently publishes.
 
 
 ---

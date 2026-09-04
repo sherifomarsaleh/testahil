@@ -118,6 +118,26 @@ CLASSES = (
     # lessons under "cement and heavy industrial" because both are capital-intensive would
     # be the superstition this register warns about.
     "marine logistics and shipping, chartered fleet on global day rates",
+    # SWDY manufactures cables and electrical products AND builds turnkey
+    # infrastructure, and the two halves are not the same business under one
+    # roof — they sit on materially different CONTRACT STRUCTURES. A cable is
+    # made and sold into a market at a price the market sets, so its margin
+    # moves with copper and with capacity; a turnkey project is a multi-year
+    # contract whose revenue is recognised as work completes and whose margin
+    # is an accident of which projects reach their profitable phases in which
+    # period. Measured on this issuer's own halves the two legs moved in
+    # OPPOSITE directions at once — cables 14.54% to 12.49% while contracting
+    # went 9.06% to 11.59% — so a single blended margin path describes neither.
+    #
+    # WHAT MAKES IT A CLASS RATHER THAN AN INDUSTRY, which is the test this
+    # register applies [R-LENS-03]: a different lens carries weight. A
+    # disciplined sum of the parts is a real cross-check here, because the legs
+    # would be valued differently by anyone buying them separately — exactly
+    # the argument the shipping row makes for its own SOTP entry. And
+    # NORMALISED EARNINGS POWER IS EXCLUDED, for the reason the developer rows
+    # exclude it: a contractor's reported earnings are an accident of
+    # completion timing, so normalising them normalises noise.
+    "diversified industrial with a contracting arm",
 )
 
 
@@ -4215,6 +4235,50 @@ LESSONS = [
       "A harness whose overridden output genuinely must occupy the committed path — none "
       "is known, and the safe default costs nothing. If one appears, the honest form is a "
       "provenance block the file carries about itself, which the gate already reads."),
+
+    L("L-295", "CLASS", "diversified industrial with a contracting arm",
+      "A GROUP WHOSE LEGS SIT ON DIFFERENT CONTRACT STRUCTURES CANNOT BE FORECAST ON ONE "
+      "MARGIN PATH — the legs move in opposite directions at the same time, so a blended "
+      "path describes neither of them.",
+      "A cable is manufactured and sold into a market at a price the market sets, so its "
+      "margin moves with the input commodity and with capacity. A turnkey project is a "
+      "multi-year contract whose revenue is recognised as work completes and whose margin "
+      "is an accident of which phases reach profitability in which period. They are not "
+      "the same business under one roof, and a group margin built by blending them hides "
+      "both. Build each leg on its own driver and re-anchor each on the latest reviewed "
+      "period SEPARATELY.",
+      "SWDY, 04-Sep-2026",
+      "build",
+      "Measured on the issuer's own comparable halves, the two legs moved in OPPOSITE "
+      "directions at once: cables 14.54% to 12.49% while contracting went 9.06% to 11.59%, "
+      "with electrical products up 23.46% to 24.91%. The group margin barely moved — 14.14% "
+      "to 13.92% — so a group-level reading would have reported nothing happening while "
+      "the two legs it is made of diverged by nearly five points between them. The first "
+      "edition forecast a uniform partial recovery in all three, which was above what "
+      "cables had just delivered and well below what contracting had.",
+      "A group whose legs are found to co-move closely enough that one path describes both "
+      "— which would be evidence the legs are not on different contract structures after "
+      "all, and therefore that this is not a separate class."),
+
+    L("L-296", "CLASS", "diversified industrial with a contracting arm",
+      "NORMALISED EARNINGS POWER IS NOT A LENS FOR A GROUP WITH A CONTRACTING ARM, for the "
+      "reason it is not one for a developer: the earnings being normalised are an accident "
+      "of completion timing.",
+      "Normalising earnings assumes there is a mid-cycle level to normalise TO. Where a "
+      "quarter of revenue comes from multi-year contracts recognised as work completes, "
+      "the reported earnings of any given year say more about which projects finished than "
+      "about what the business earns through a cycle, so normalising them normalises noise "
+      "and calls it a mid-cycle.",
+      "SWDY, 04-Sep-2026",
+      "build",
+      "The lens read EGP 109.52 against a cash-flow lens of 55.48 — nearly double — and "
+      "carried a fifth of a typed blend, which is what pulled the published central to "
+      "71.20 and showed a reader about two thirds of the disagreement this study holds. "
+      "It is the same lens, at the same weight, in the same class of defect as the case "
+      "that retired the blend on a developer.",
+      "A contracting group whose reported earnings are shown to be stable enough through a "
+      "cycle that a normalised figure means something — which the disclosure would have to "
+      "support with a completion profile no issuer in this book currently publishes."),
 
     L("L-294", "ALL", None,
       "A VALUATION ENDS BY DIVIDING BY A SHARE COUNT, AND NOTHING WAS CHECKING WHETHER THE "

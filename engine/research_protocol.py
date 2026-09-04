@@ -993,6 +993,19 @@ LENS_REGISTRY = {
     "marine logistics and shipping, chartered fleet on global day rates":
         ("dcf", ("replacement_cost", "ev_ebitda_own_history", "relative_multiple",
                  "sotp", "book_value")),
+    # A diversified industrial whose legs sit on different CONTRACT STRUCTURES: a cable
+    # is made and sold into a market at a price the market sets, a turnkey project is a
+    # multi-year contract whose margin turns on which phases complete when. DCF primary,
+    # with a disciplined sum of the parts earning a place beside the usual cross-checks
+    # because the legs would be valued differently by anyone buying them apart — the same
+    # argument the shipping row above makes for its own SOTP entry, and not merely that
+    # the industry differs. Replacement cost is NOT here: a cable plant cannot be sold
+    # abroad the way a vessel can, so replacement cost is an industry rule of thumb rather
+    # than an observed price. NORMALISED EARNINGS POWER IS DELIBERATELY ABSENT, on the two
+    # developer rows' reasoning: a contractor's reported earnings are an accident of
+    # completion timing, so normalising them normalises noise.
+    "diversified industrial with a contracting arm":
+        ("dcf", ("ev_ebitda_own_history", "relative_multiple", "sotp", "book_value")),
 }
 
 # RNAV may be a class PRIMARY only where the disclosure supports it. Where land

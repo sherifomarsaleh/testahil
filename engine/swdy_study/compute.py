@@ -1543,22 +1543,54 @@ dcf_bear = dcf_scenario(gp_unit_mult=0.88, fx_mult=0.94, wacc_shift=+0.02, g=0.0
 dcf_bull = dcf_scenario(gp_unit_mult=1.12, fx_mult=1.08, wacc_shift=-0.02, g=0.06, opex_shift=-0.005)
 say(f"[DCF scenarios] bear {dcf_bear:.2f} / base {dcf_ps:.2f} / bull {dcf_bull:.2f} EGP per share")
 
-# ---- synthesis ----------------------------------------------------------------
-W = V['lens_weights']
+# ---- synthesis: ONE CLASS PRIMARY IS THE CENTRAL [R-LENS-03] -------------------
+# The typed 45/20/20/15 blend is RETIRED. It was published, it had never cleared an
+# out-of-sample test, and on this name it did what a blend does — it hid the size of the
+# study's disagreement with the market. The blend read 71.20 against the cash-flow lens's
+# 55.48, so a reader saw -32% where this study's own method says -47%.
+#
+# WHAT IT WAS CARRYING. Normalised earnings power read 109.52, nearly double the primary,
+# and carried a fifth of the weight. For a group that is a quarter turnkey contracting
+# that is the wrong lens on its face: a contractor's reported earnings are an accident of
+# which projects reached their profitable phases in which period, which is exactly why
+# both developer rows of the registry exclude it and why the class row added for this
+# company excludes it too. It is computed and shown so its removal is visible.
+RETIRED_BLEND_W = V['lens_weights']
 lenses = dict(
-    dcf=dict(name='Discounted cash flow (primary)', bear=dcf_bear, base=dcf_ps, bull=dcf_bull, w=W['dcf']),
-    relative=dict(name='Relative multiples', bear=rel_bear, base=rel_ps, bull=rel_bull, w=W['relative']),
-    normalized=dict(name='Normalised earnings power', bear=norm_bear, base=norm_ps, bull=norm_bull,
-                    w=W['normalized']),
-    book=dict(name='Book value and sustainable return', bear=book_bear, base=book_ps, bull=book_bull,
-              w=W['book']),
+    dcf=dict(name='Discounted cash flow (the answer)', bear=dcf_bear, base=dcf_ps,
+             bull=dcf_bull, w=None),
+    relative=dict(name='Relative multiples', bear=rel_bear, base=rel_ps, bull=rel_bull,
+                  w=None),
+    normalized=dict(name='Normalised earnings power', bear=norm_bear, base=norm_ps,
+                    bull=norm_bull, w=None,
+                    note='RETIRED for this class: a contractor\'s reported earnings turn on '
+                         'completion timing, so normalising them normalises noise. Removed '
+                         'rather than re-weighted, and computed and shown so the move is '
+                         'visible.'),
+    book=dict(name='Book value and sustainable return', bear=book_bear, base=book_ps,
+              bull=book_bull, w=None,
+              note='a disclosed FLOOR, published as such and never weighted'),
 )
-central = sum(l['base'] * l['w'] for l in lenses.values())
-lo = min(l['bear'] for l in lenses.values())
-hi = max(l['bull'] for l in lenses.values())
-lenses['central'] = dict(name='Weighted central', bear=lo, base=central, bull=hi, w=1.0)
-say(f"[Synthesis] weighted central EGP {central:.2f}; full span across lenses and scenarios "
-    f"{lo:.2f} - {hi:.2f}; spot {SPOT:.2f} ({central/SPOT-1:+.0%} to the central).")
+RETIRED_BLEND_VALUE = sum(lenses[k]['base'] * RETIRED_BLEND_W[k] for k in RETIRED_BLEND_W)
+central = dcf_ps                      # THE CLASS PRIMARY IS THE CENTRAL
+lo, hi = dcf_bear, dcf_bull           # its OWN bear and bull, on one clock
+span_lo = min(l['bear'] for l in lenses.values())
+span_hi = max(l['bull'] for l in lenses.values())
+lenses['central'] = dict(name='Cash-flow lens (the central)', bear=lo, base=central,
+                         bull=hi, w=None)
+lenses['retired_blend'] = dict(name='RETIRED 45/20/20/15 blend, published unused',
+                               bear=None, base=RETIRED_BLEND_VALUE, bull=None, w=0.0)
+say(f"[Synthesis] THE CENTRAL IS THE CLASS PRIMARY: the cash-flow lens at EGP {central:.2f}, "
+    f"with its own bear-to-bull range of {lo:.2f} - {hi:.2f} on one clock. The cross-checks "
+    f"are published beside it at their own values (relative {rel_ps:.2f}, book floor "
+    f"{book_ps:.2f}) and the span across all of them, {span_lo:.2f} - {span_hi:.2f}, is a "
+    f"spread between METHODS and not a range around the answer. Spot {SPOT:.2f} "
+    f"({central/SPOT-1:+.0%} to the central).")
+say(f"[Retired blend, published unused] the 45/20/20/15 weights give EGP "
+    f"{RETIRED_BLEND_VALUE:.2f}, {RETIRED_BLEND_VALUE/SPOT-1:+.0%} against the price where the "
+    f"cash-flow lens reads {central/SPOT-1:+.0%} — so the published number was showing about "
+    f"{abs((RETIRED_BLEND_VALUE/SPOT-1)/(central/SPOT-1)):.0%} of the disagreement this study "
+    f"actually holds. Normalised earnings power at {norm_ps:.2f} carried a fifth of it.")
 assert 0.20 <= central / SPOT <= 3.0, f"central/spot {central/SPOT:.2f} outside the plausibility band"
 
 # ---- sensitivity grids ---------------------------------------------------------
@@ -1720,7 +1752,107 @@ OUT = dict(
                         ebitda=dict(FY23=ebitda_fy23, FY24=ebitda_fy24, FY25=ebitda_fy25),
                         nopat_cagr=nopat_cagr, stable_g=stable_g,
                         ceiling=blend_ceiling, crossover_years=float(yrs_cross)),
+    # WHAT STANDS BETWEEN PROFIT AND SHAREHOLDERS [L-294]. The identity the gate holds:
+    # attributable profit over the share count must reproduce the reported EPS, and where
+    # it does not the difference is NAMED. Here it is two things, both disclosed in note 39
+    # and neither in any line of the income statement.
+    eps_reconciliation=dict(
+        reported_eps=float(V['eps_fy25']),
+        attributable_profit=float(V['npa_fy25']),
+        shares_issued=float(SH),
+        naive_eps=float(V['npa_fy25'] / SH),
+        what=("the employees' statutory share of distributable profits, plus the ESOP "
+              "adjustment to the weighted-average share count"),
+        difference=float(V['npa_fy25'] / SH - V['eps_fy25']),
+        components=[
+            dict(item="employees' share in profit (estimated)",
+                 amount=float(V['emp_share_fy25']),
+                 per_share=float(V['emp_share_fy25'] / SH),
+                 source='audited FY2025 consolidated financial statements, note 39',
+                 note=('an APPROPRIATION of profit under Egyptian company law, not an '
+                       'operating cost, so it is disclosed only in the earnings-per-share '
+                       'note and appears in no line of the income statement')),
+            dict(item='ESOP shares issued not granted, excluded from the weighted average',
+                 amount=None, shares=1.422160,
+                 source='audited FY2025 consolidated financial statements, note 39',
+                 note=('the reported EPS divides by 2,139,355,716, being the 2,140,777,876 '
+                       'issued less 1,422,160 ESOP shares issued and not granted')),
+        ],
+        charged_in_the_valuation=True,
+        charged_at=float(emp_rate),
+        charged_note=("charged in the bridge below the minority, at the mean of the three "
+                      "measured periods rather than the latest, because this is a rate on "
+                      "profit and one half is not a trend. The statutory cap at total "
+                      "annual wages is NOT modelled — nothing in the filings discloses its "
+                      "headroom — so the charge is an upper bound and the direction of the "
+                      "unmodelled cap is recorded rather than guessed"),
+    ),
     lenses=lenses, central=central, span=[lo, hi], spot=SPOT,
+    retired_blend_value=RETIRED_BLEND_VALUE,
+    lens_record=dict(**{'class': 'diversified industrial with a contracting arm'},
+        primary=dict(
+            kind='dcf', two_sided=False, value=float(central),
+            range={'low': float(lo), 'high': float(hi)},
+            range_note=('the cash-flow lens under its own bear and bull scenarios on one '
+                        'clock, not the widest spread across four methods'),
+            range_basis=dict(
+                driver='the segment margin paths, the corporate load and the copper and '
+                       'currency path the cables leg is built on',
+                low=float(lo), high=float(hi),
+                units='EGP per share, the present-value read under each scenario',
+                macro_held=True,
+                evidence=('both scenarios are re-runs of the same three-segment build '
+                          'through dcf_scenario(), which calls the sanctioned terminal '
+                          'module on the scenario\'s own terminal-year quantities so a '
+                          'scenario cannot run a different construction from the base'))),
+        cross_checks=[
+            dict(kind='relative_multiple', value=float(lenses['relative']['base']),
+                 present_value=False, multiple=float(V['ev_ebitda_just']),
+                 multiple_source=('a justified enterprise multiple set against listed cable '
+                                  'and electrical-equipment peers with an Egyptian-market '
+                                  'discount, never one read off this company\'s own current '
+                                  'price'),
+                 circularity=dict(spot=float(SPOT), shares=float(SH),
+                                  net_debt=float(V['nd_fy25']),
+                                  metric_value=float(ebitda[1])),
+                 note='mid-cycle FY2027E EBITDA on a peer-anchored enterprise multiple'),
+            dict(kind='book_value', value=float(lenses['book']['base']),
+                 present_value=False, floor=True,
+                 note='a disclosed FLOOR, published as such and never weighted'),
+        ],
+        cross_checks_not_built=[
+            dict(kind='ev_ebitda_own_history',
+                 why=('this class permits an enterprise multiple on the company\'s OWN '
+                      'history and this study does not publish one. Its relative lens uses a '
+                      'PEER-anchored multiple, which is a different construction; an '
+                      'own-history multiple needs a series of past enterprise values against '
+                      'past EBITDA, and this company\'s enterprise value over the relevant '
+                      'years is dominated by a debt book that quadrupled and a currency that '
+                      'lost most of its value, so the series would measure the pound rather '
+                      'than the business. Named here rather than left quietly absent.')),
+            dict(kind='sotp',
+                 why=('the disciplined sum of the parts this class row calls for is NOT '
+                      'built. It is the reason the class exists — three legs on materially '
+                      'different contract structures — and it needs segment-level invested '
+                      'capital and segment-level net debt, neither of which note 16 '
+                      'discloses: the segment note stops at segment profit. Building it on '
+                      'allocated group capital would be a construction rather than a '
+                      'measurement, and SIGCM clause 8 says stop rather than invent. It is '
+                      'the first thing this study should gain when the disclosure allows.')),
+        ],
+        retired=dict(
+            blend=dict(RETIRED_BLEND_W),
+            blend_value=float(RETIRED_BLEND_VALUE),
+            why=('the weights were typed and had never cleared an out-of-sample test. What '
+                 'they concealed here was the SIZE of the disagreement rather than its '
+                 'direction: the blend read %+.0f%% against the price where the cash-flow '
+                 'lens reads %+.0f%%, so a reader saw about %.0f%% of the disagreement this '
+                 'study actually holds. Normalised earnings power, which this class does not '
+                 'permit at all, read %.2f against a cash-flow %.2f and carried a fifth of '
+                 'the weight.'
+                 % (100*(RETIRED_BLEND_VALUE/SPOT-1), 100*(central/SPOT-1),
+                    100*abs((RETIRED_BLEND_VALUE/SPOT-1)/(central/SPOT-1)),
+                    norm_ps, central)))),
     experts=experts, panel_centre=panel_centre,
     sens_wg=dict(g_grid=g_grid, wacc_grid=wt_grid, table=grid_wacc_g),
     rel=dict(ebitda_mid=ebitda_mid, ev_rel=ev_rel, ev_rel_fwd=ev_rel_fwd,

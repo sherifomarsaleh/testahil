@@ -1915,49 +1915,150 @@
   "ceiling": 0.11058857439456517,
   "crossover_years": 43.893966915904784
  },
+ "eps_reconciliation": {
+  "reported_eps": 7.13,
+  "attributable_profit": 17330.24499,
+  "shares_issued": 2140.777876,
+  "naive_eps": 8.09530273284644,
+  "what": "the employees' statutory share of distributable profits, plus the ESOP adjustment to the weighted-average share count",
+  "difference": 0.9653027328464399,
+  "components": [
+   {
+    "item": "employees' share in profit (estimated)",
+    "amount": 2073.104844,
+    "per_share": 0.9683885783954168,
+    "source": "audited FY2025 consolidated financial statements, note 39",
+    "note": "an APPROPRIATION of profit under Egyptian company law, not an operating cost, so it is disclosed only in the earnings-per-share note and appears in no line of the income statement"
+   },
+   {
+    "item": "ESOP shares issued not granted, excluded from the weighted average",
+    "amount": null,
+    "shares": 1.42216,
+    "source": "audited FY2025 consolidated financial statements, note 39",
+    "note": "the reported EPS divides by 2,139,355,716, being the 2,140,777,876 issued less 1,422,160 ESOP shares issued and not granted"
+   }
+  ],
+  "charged_in_the_valuation": true,
+  "charged_at": 0.12192719166454939,
+  "charged_note": "charged in the bridge below the minority, at the mean of the three measured periods rather than the latest, because this is a rate on profit and one half is not a trend. The statutory cap at total annual wages is NOT modelled \u2014 nothing in the filings discloses its headroom \u2014 so the charge is an upper bound and the direction of the unmodelled cap is recorded rather than guessed"
+ },
  "lenses": {
   "dcf": {
-   "name": "Discounted cash flow (primary)",
+   "name": "Discounted cash flow (the answer)",
    "bear": 19.894414496322316,
    "base": 55.48217612662315,
    "bull": 104.9620537972264,
-   "w": 0.45
+   "w": null
   },
   "relative": {
    "name": "Relative multiples",
    "bear": 66.93042304754968,
    "base": 80.57903456681447,
    "bull": 101.05195184571166,
-   "w": 0.2
+   "w": null
   },
   "normalized": {
    "name": "Normalised earnings power",
    "bear": 84.76862860808455,
    "base": 109.51680821039443,
    "bull": 140.45203271328177,
-   "w": 0.2
+   "w": null,
+   "note": "RETIRED for this class: a contractor's reported earnings turn on completion timing, so normalising them normalises noise. Removed rather than re-weighted, and computed and shown so the move is visible."
   },
   "book": {
    "name": "Book value and sustainable return",
    "bear": 35.32865890158743,
    "base": 54.76292263678644,
    "bull": 61.625095077609046,
-   "w": 0.15
+   "w": null,
+   "note": "a disclosed FLOOR, published as such and never weighted"
   },
   "central": {
-   "name": "Weighted central",
+   "name": "Cash-flow lens (the central)",
    "bear": 19.894414496322316,
+   "base": 55.48217612662315,
+   "bull": 104.9620537972264,
+   "w": null
+  },
+  "retired_blend": {
+   "name": "RETIRED 45/20/20/15 blend, published unused",
+   "bear": null,
    "base": 71.20058620794018,
-   "bull": 140.45203271328177,
-   "w": 1.0
+   "bull": null,
+   "w": 0.0
   }
  },
- "central": 71.20058620794018,
+ "central": 55.48217612662315,
  "span": [
   19.894414496322316,
-  140.45203271328177
+  104.9620537972264
  ],
  "spot": 105.2,
+ "retired_blend_value": 71.20058620794018,
+ "lens_record": {
+  "class": "diversified industrial with a contracting arm",
+  "primary": {
+   "kind": "dcf",
+   "two_sided": false,
+   "value": 55.48217612662315,
+   "range": {
+    "low": 19.894414496322316,
+    "high": 104.9620537972264
+   },
+   "range_note": "the cash-flow lens under its own bear and bull scenarios on one clock, not the widest spread across four methods",
+   "range_basis": {
+    "driver": "the segment margin paths, the corporate load and the copper and currency path the cables leg is built on",
+    "low": 19.894414496322316,
+    "high": 104.9620537972264,
+    "units": "EGP per share, the present-value read under each scenario",
+    "macro_held": true,
+    "evidence": "both scenarios are re-runs of the same three-segment build through dcf_scenario(), which calls the sanctioned terminal module on the scenario's own terminal-year quantities so a scenario cannot run a different construction from the base"
+   }
+  },
+  "cross_checks": [
+   {
+    "kind": "relative_multiple",
+    "value": 80.57903456681447,
+    "present_value": false,
+    "multiple": 6.5,
+    "multiple_source": "a justified enterprise multiple set against listed cable and electrical-equipment peers with an Egyptian-market discount, never one read off this company's own current price",
+    "circularity": {
+     "spot": 105.2,
+     "shares": 2140.777876,
+     "net_debt": 20560.003173,
+     "metric_value": 43447.04681820986
+    },
+    "note": "mid-cycle FY2027E EBITDA on a peer-anchored enterprise multiple"
+   },
+   {
+    "kind": "book_value",
+    "value": 54.76292263678644,
+    "present_value": false,
+    "floor": true,
+    "note": "a disclosed FLOOR, published as such and never weighted"
+   }
+  ],
+  "cross_checks_not_built": [
+   {
+    "kind": "ev_ebitda_own_history",
+    "why": "this class permits an enterprise multiple on the company's OWN history and this study does not publish one. Its relative lens uses a PEER-anchored multiple, which is a different construction; an own-history multiple needs a series of past enterprise values against past EBITDA, and this company's enterprise value over the relevant years is dominated by a debt book that quadrupled and a currency that lost most of its value, so the series would measure the pound rather than the business. Named here rather than left quietly absent."
+   },
+   {
+    "kind": "sotp",
+    "why": "the disciplined sum of the parts this class row calls for is NOT built. It is the reason the class exists \u2014 three legs on materially different contract structures \u2014 and it needs segment-level invested capital and segment-level net debt, neither of which note 16 discloses: the segment note stops at segment profit. Building it on allocated group capital would be a construction rather than a measurement, and SIGCM clause 8 says stop rather than invent. It is the first thing this study should gain when the disclosure allows."
+   }
+  ],
+  "retired": {
+   "blend": {
+    "dcf": 0.45,
+    "relative": 0.2,
+    "normalized": 0.2,
+    "book": 0.15
+   },
+   "blend_value": 71.20058620794018,
+   "why": "the weights were typed and had never cleared an out-of-sample test. What they concealed here was the SIZE of the disagreement rather than its direction: the blend read -32% against the price where the cash-flow lens reads -47%, so a reader saw about 68% of the disagreement this study actually holds. Normalised earnings power, which this class does not permit at all, read 109.52 against a cash-flow 55.48 and carried a fifth of the weight."
+  }
+ },
  "experts": {
   "e1": {
    "method_short": "earnings power",
@@ -2429,7 +2530,8 @@
   "[Normalised lens \u2014 current-scale earning power] mid-cycle EBITDA margin 10.31% (FY2028E) on FY2026E revenue 370,030 -> normalised EPS 10.66 x 9.0 = EGP 109.52/share at the anchor. Equity-method associate income is taxed inside this lens although it is already post-tax at the investee \u2014 a disclosed conservatism worth about +0.4/share on the central if removed.",
   "[Book lens] justified price-to-book 1.56x = (sustainable return 23.5% - growth 7%) / (PERPETUAL cost of equity 17.56% - growth). The justified P/B is a steady-state construct whose implied payout is 1 - g/ROE = 70%, deliberately distinct from the five-year forecast payout of 25% \u2014 the two describe different horizons.",
   "[DCF scenarios] bear 19.89 / base 55.48 / bull 104.96 EGP per share",
-  "[Synthesis] weighted central EGP 71.20; full span across lenses and scenarios 19.89 - 140.45; spot 105.20 (-32% to the central).",
+  "[Synthesis] THE CENTRAL IS THE CLASS PRIMARY: the cash-flow lens at EGP 55.48, with its own bear-to-bull range of 19.89 - 104.96 on one clock. The cross-checks are published beside it at their own values (relative 80.58, book floor 54.76) and the span across all of them, 19.89 - 140.45, is a spread between METHODS and not a range around the answer. Spot 105.20 (-47% to the central).",
+  "[Retired blend, published unused] the 45/20/20/15 weights give EGP 71.20, -32% against the price where the cash-flow lens reads -47% \u2014 so the published number was showing about 68% of the disagreement this study actually holds. Normalised earnings power at 109.52 carried a fifth of it.",
   "[Leverage] net financial debt / EBITDA falls from 0.72x to 0.25x over the forecast.",
   "[Expert panel] Expert 1 148.41 [108.87-187.95]; Expert 2 72.81 [36.14-65.72]; Expert 3 54.45 [46.88-69.58]; panel median 72.81 (-31% vs spot)"
  ]
