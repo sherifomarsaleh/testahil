@@ -93,11 +93,15 @@ WHAT A TERMINAL COSTS, correctly. In a nominal steady state holding physical cap
     most of them, so saying so is part of running it. On the three names carrying a measured
     age the implied and adopted lives agree to 0.0% for exactly that reason and the agreement
     proves nothing; what does the work there is the SEPARATE evidence that the charge is
-    cost/life — a policy note that writes off cost with no residual mentioned, a leg whose
-    single disclosed life the identity reproduces (EMPOWER's intangibles at 30 years,
-    RIYADHCABLE's software at 14.43 against a stated 15), and an implied life that sits inside
-    the disclosed range rather than outside it (EGCH's 22.07 against class rates spanning 10.5
-    to 25.3, on a base dominated by the plant carrying the 25.3). AIRARABIA is the case where
+    cost/life, and on all three THE POLICY NOTE WAS READ rather than assumed. RIYADHCABLE
+    writes off "over the estimated lives of the assets" and names residual values only in the
+    boilerplate about annual review, never in the depreciable amount; EGCH charges at RATES
+    against cost, so a 3.95% rate IS cost/25.3 with nothing deducted. Each is corroborated
+    arithmetically, and the corroboration runs the right way — a material residual pushes the
+    implied life ABOVE the disclosed one, as AIRARABIA's does: EMPOWER's intangibles reproduce
+    a disclosed 30 years exactly, RIYADHCABLE's software comes to 14.43 against a stated 15
+    which is 3.8% BELOW rather than above, and EGCH's 22.07 sits inside class rates spanning
+    10.5 to 25.3 and below the 25.3 its dominant plant carries. AIRARABIA is the case where
     the two lives came from genuinely different routes, and that is why the 48% gap was
     visible at all. Supply it and it is used; leave it and half the life is used
     and the record SAYS WHICH, so a reader can tell an assumption from a measurement.
