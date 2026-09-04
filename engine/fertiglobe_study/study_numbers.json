@@ -170,6 +170,36 @@
    "date": "2025-12-31",
    "ring": "COMPANY"
   },
+  "borrow_open_fy24": {
+   "value": 1665.1,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) (FY2024 comparative), note 16 loans and borrowings \u2014 the balance at 1 January",
+   "date": "2024-01-01",
+   "ring": "COMPANY"
+  },
+  "borrow_open_fy25": {
+   "value": 1682.2,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 note 16 loans and borrowings, the balance at 1 January (and the FY2024 closing balance)",
+   "date": "2025-01-01",
+   "ring": "COMPANY"
+  },
+  "borrow_close_fy25": {
+   "value": 1740.6,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 note 16 loans and borrowings, the balance at 31 December",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "int_on_borrowings_fy24": {
+   "value": 132.9,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) (FY2024 comparative), note 22 \u2014 interest expense and other financing costs on financial liabilities measured at amortized cost, EXCLUDING the related-party leg disclosed separately on the line below it",
+   "date": "2024-12-31",
+   "ring": "COMPANY"
+  },
+  "int_on_borrowings_fy25": {
+   "value": 103.7,
+   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 note 22, interest expense and other financing costs on financial liabilities measured at amortized cost, EXCLUDING the related-party leg disclosed separately on the line below it",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
   "fcost_fy23": {
    "value": 119.4,
    "source": "Fertiglobe plc, Consolidated Financial Statements FY2023 (signed)",
@@ -3279,6 +3309,75 @@
     0.44196770107148964
    ],
    "note": "Framing B holds the price near the reviewed level, so its margin is essentially flat across the window and owes no mechanism. The two framings are the study's central contested judgement and are published side by side rather than averaged."
+  }
+ },
+ "cost_of_capital_record": {
+  "market": "AE",
+  "rf_observed": 0.0515,
+  "default_spread": 0.0042,
+  "rf_star": 0.047299999999999995,
+  "rf_terminal": 0.047299999999999995,
+  "wacc_exp": 0.11897018221623164,
+  "wacc_terminal": 0.11109384650273706,
+  "forward_wacc": [
+   0.11739491507353272,
+   0.11581964793083381,
+   0.11424438078813488,
+   0.11266911364543597,
+   0.11109384650273706
+  ],
+  "glide_fractions": [
+   0.2,
+   0.4,
+   0.6,
+   0.8,
+   1.0
+  ],
+  "discount_factors": [
+   0.894938742346248,
+   0.8020460510852401,
+   0.7198116184511799,
+   0.6469233392242392,
+   0.5822400522336486
+  ],
+  "terminal_discount_factor": 0.5822400522336486,
+  "erp_basis": "rating",
+  "erp_rating": 0.08514035586272078,
+  "erp_cds": 0.07135730172485086,
+  "sensitivity": {
+   "other_basis": "cds",
+   "other_basis_erp": 0.07135730172485086,
+   "other_basis_wacc": 0.10703734220925211,
+   "other_basis_per_share_aed": [
+    2.0492952300631893,
+    3.0563218925665256
+   ],
+   "note": "The CDS basis prices the sovereign's credit off the market's own live quote rather than an agency judgement updated in steps; it is the narrower premium here, so it raises both framings."
+  },
+  "beta": 0.931,
+  "beta_r2": 0.09960762477978735,
+  "beta_se": 0.2833283694717916,
+  "weights_basis": "net",
+  "equity_weight": 0.9018152132994304,
+  "debt_weight": 0.09818478670056963,
+  "kd_pretax": 0.05665,
+  "kd_after_tax": 0.04920654728091304,
+  "kd_integrity": {
+   "pct_local_currency": 0.9490405607261864,
+   "currency_source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 note 16, loans and borrowings by tranche and currency: the book is predominantly US dollar, with small Algerian dinar and Australian dollar legs carried at local-equivalent cost",
+   "effective_rates": [
+    0.07940728348220955,
+    0.060593666004440806
+   ],
+   "effective_rate_periods": [
+    "FY2024",
+    "FY2025"
+   ],
+   "interest_bearing_note": "the AVERAGE of note 16's own opening and closing loans and borrowings for each year \u2014 1,665.1 to 1,682.2, then 1,682.2 to 1,740.6 \u2014 and nothing else. Trade payables, lease liabilities and the related-party balance are excluded from the denominator, and note 22's related-party interest leg is excluded from the numerator, because a rate is only a rate if the charge and the balance are the same book.",
+   "numerator": "note 22, interest expense and other financing costs on financial liabilities measured at amortised cost: 132.9 in FY2024 and 103.7 in FY2025, both excluding the related-party leg disclosed beneath them",
+   "adopted_vs_latest_bp": -39.43666004440807,
+   "adopted_vs_peak_bp": -227.57283482209547,
+   "note": "The adopted rate is forward-looking and marginal \u2014 the sovereign plus the disclosed margin on facilities B and C \u2014 and it sits below both computed effective rates, which is the direction a falling-rate refinancing produces. The historical accounting capitalisation rate is registered and NOT used."
   }
  },
  "assert_log": [

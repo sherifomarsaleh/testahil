@@ -95,6 +95,19 @@ inp('dna_fy25', 297.6, FS25 + ", cash-flow statement", '2025-12-31', 'COMPANY')
 inp('finc_fy23', 16.3, FS23, '2023-12-31', 'COMPANY')
 inp('finc_fy24', 17.1, FS25 + " (FY2024 comparative)", '2024-12-31', 'COMPANY')
 inp('finc_fy25', 13.6, FS25, '2025-12-31', 'COMPANY')
+inp('borrow_open_fy24', 1665.1, FS25 + " (FY2024 comparative), note 16 loans and "
+    "borrowings — the balance at 1 January", '2024-01-01', 'COMPANY')
+inp('borrow_open_fy25', 1682.2, FS25 + " — note 16 loans and borrowings, the balance at "
+    "1 January (and the FY2024 closing balance)", '2025-01-01', 'COMPANY')
+inp('borrow_close_fy25', 1740.6, FS25 + " — note 16 loans and borrowings, the balance at "
+    "31 December", '2025-12-31', 'COMPANY')
+inp('int_on_borrowings_fy24', 132.9, FS25 + " (FY2024 comparative), note 22 — interest "
+    "expense and other financing costs on financial liabilities measured at amortized "
+    "cost, EXCLUDING the related-party leg disclosed separately on the line below it",
+    '2024-12-31', 'COMPANY')
+inp('int_on_borrowings_fy25', 103.7, FS25 + " — note 22, interest expense and other "
+    "financing costs on financial liabilities measured at amortized cost, EXCLUDING the "
+    "related-party leg disclosed separately on the line below it", '2025-12-31', 'COMPANY')
 inp('fcost_fy23', 119.4, FS23, '2023-12-31', 'COMPANY')
 inp('fcost_fy24', 135.6, FS25 + " (FY2024 comparative)", '2024-12-31', 'COMPANY')
 inp('fcost_fy25', 115.8, FS25, '2025-12-31', 'COMPANY')
@@ -1149,6 +1162,90 @@ experts = dict(
 )
 
 # ---------------------------------------------------------------------------
+# THE COST-OF-CAPITAL SCHEDULE, AS A RECORD [R-COC-01]
+# ---------------------------------------------------------------------------
+# COUNTRY RISK IS COUNTED ONCE: the risk-free rate is the Abu Dhabi sovereign
+# yield less that sovereign's OWN default spread, and the premium added back
+# carries the country risk on the same rating basis. Both premium bases are
+# published and the rating basis is named central.
+#
+# THE COST OF DEBT IS HELD TO A RATE COMPUTED INDEPENDENTLY FROM THE FILINGS, and
+# the denominator is named because naming it is the whole test. The charge is
+# note 22's interest on financial liabilities measured at amortised cost, with the
+# related-party leg EXCLUDED because it is not interest on these borrowings; the
+# balance is the average of note 16's own opening and closing borrowings, not a
+# year-end snapshot and not a broader liabilities total. Dividing a finance charge
+# by a total that includes non-interest-bearing balances understates the rate by a
+# multiple and manufactures a bias that looks exactly like evidence.
+_eff = [float(V['int_on_borrowings_fy24']
+              / ((V['borrow_open_fy24'] + V['borrow_open_fy25']) / 2.0)),
+        float(V['int_on_borrowings_fy25']
+              / ((V['borrow_open_fy25'] + V['borrow_close_fy25']) / 2.0))]
+cost_of_capital_record = dict(
+    market='AE',
+    rf_observed=float(ADGB10), default_spread=float(AD_ADS),
+    rf_star=float(rf_star_rating),
+    # THE ONE THING THIS RECORD FAILS ON, RECORDED RATHER THAN OMITTED. The model
+    # discounts the terminal at the same normalised rate it uses for the explicit
+    # window, which is today's sovereign yield less today's spread. The house path
+    # DERIVES a terminal risk-free rate from the inflation target plus its
+    # real-rate convention, and that is lower. A pegged market gets a flat
+    # schedule, but flat should mean flat at the NORM, and this is flat at the
+    # spot — which is the shape of discounting a perpetuity at a rate the economy
+    # is not expected to hold, milder here than in a crisis market but the same
+    # error. Correcting it RAISES the value, as does the net-weights finding
+    # recorded in the bridge; two levers pointing the same way in one pass is what
+    # the promotion guard forbids, so both are named and neither is taken here.
+    rf_terminal=float(rf_star_rating),
+    wacc_exp=float(wacc_rating), wacc_terminal=float(wacc_term_rating),
+    forward_wacc=[float(wacc_rating + (wacc_term_rating - wacc_rating) * g_) for g_ in glide],
+    glide_fractions=[float(g_) for g_ in glide],
+    discount_factors=[float(x) for x in dcf_A['df']],
+    terminal_discount_factor=float(dcf_A['df'][-1]),
+    erp_basis='rating',
+    erp_rating=float(erp_rating), erp_cds=float(erp_cds),
+    # BOTH BASES ARE PUBLISHED AND ONE IS NAMED CENTRAL. The rating basis is the
+    # adopted one; the CDS basis is carried all the way through to its own value per
+    # share so a reader sees what the choice is worth rather than only that it was made.
+    sensitivity=dict(
+        other_basis='cds', other_basis_erp=float(erp_cds),
+        other_basis_wacc=float(wacc_cds),
+        other_basis_per_share_aed=[float(br_A_cds['ps_aed']), float(br_B_cds['ps_aed'])],
+        note=('The CDS basis prices the sovereign\'s credit off the market\'s own live '
+              'quote rather than an agency judgement updated in steps; it is the '
+              'narrower premium here, so it raises both framings.')),
+    beta=float(BETA), beta_r2=float(_beta['r2']), beta_se=float(_beta['se']),
+    weights_basis='net',
+    equity_weight=float(WE), debt_weight=float(WD),
+    kd_pretax=float(KD), kd_after_tax=float(KD_AT),
+    kd_integrity=dict(
+        pct_local_currency=float(1.0 - wacc['fx_debt_share']),
+        currency_source=(
+            FS25 + ' — note 16, loans and borrowings by tranche and currency: the '
+            'book is predominantly US dollar, with small Algerian dinar and '
+            'Australian dollar legs carried at local-equivalent cost'),
+        effective_rates=_eff,
+        effective_rate_periods=['FY2024', 'FY2025'],
+        interest_bearing_note=(
+            'the AVERAGE of note 16\'s own opening and closing loans and borrowings '
+            'for each year — 1,665.1 to 1,682.2, then 1,682.2 to 1,740.6 — and '
+            'nothing else. Trade payables, lease liabilities and the related-party '
+            'balance are excluded from the denominator, and note 22\'s '
+            'related-party interest leg is excluded from the numerator, because a '
+            'rate is only a rate if the charge and the balance are the same book.'),
+        numerator=(
+            'note 22, interest expense and other financing costs on financial '
+            'liabilities measured at amortised cost: 132.9 in FY2024 and 103.7 in '
+            'FY2025, both excluding the related-party leg disclosed beneath them'),
+        adopted_vs_latest_bp=float(1e4 * (KD - _eff[-1])),
+        adopted_vs_peak_bp=float(1e4 * (KD - max(_eff))),
+        note=('The adopted rate is forward-looking and marginal — the sovereign plus '
+              'the disclosed margin on facilities B and C — and it sits below both '
+              'computed effective rates, which is the direction a falling-rate '
+              'refinancing produces. The historical accounting capitalisation rate '
+              'is registered and NOT used.')))
+
+# ---------------------------------------------------------------------------
 # THE FORECAST ANCHOR [R-ANCHOR-01]
 # ---------------------------------------------------------------------------
 # THE RECORD IS FRAMING A, WHICH IS THE BRANCH THAT HAS TO JUSTIFY ITSELF. Its own
@@ -1419,6 +1516,7 @@ out = dict(
     sens=sens, experts=experts, tax_rate=TAX_RATE, nci_share=NCI_SHARE,
     g_term=G_TERM, step0=step0, backtest=bt5, macro_record=macro_record, bridge_record=bridge_record,
     forecast_anchor=forecast_anchor,
+    cost_of_capital_record=cost_of_capital_record,
     assert_log=ASSERTS)
 
 with open(OUT, 'w') as fh:
