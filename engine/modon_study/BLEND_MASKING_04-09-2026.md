@@ -39,6 +39,39 @@ H1-2026 disclosure falsified it as a live central path."*
 out.** No path in the contested set is that low. It is not a scenario anybody chose; it is
 where four weights happen to land, and nothing in the study asserts it.
 
+## The weights are not a view about method — they are a discount
+
+This study's own four-field register says so, in the justification attached to
+`lens_weights` (layer: House, dated 2026-08-09):
+
+> *"Weights unchanged: DCF primary on backlog visibility; three market lenses carry 60%
+> jointly — **that structure, not an additional holdco discount, is how float/governance
+> friction is priced** (a 30% haircut on top would double-count it; the reading is still
+> shown in section 4)"*
+
+So the weights are doing two jobs at once. They are presented as a blend of methods, and
+they are simultaneously carrying a float-and-governance haircut the study declines to
+apply separately **because applying it separately would double-count what the weights
+already do**.
+
+**The arithmetic agrees with that reading to within half a point.** The weights move the
+answer from 3.5423 to 2.4952 — a cost of **29.6%** of the primary — against the "30%
+haircut" the note says would double-count them. That is not a coincidence; it is the same
+adjustment, and the note is candid that it is.
+
+Which makes this a valuation judgement rather than a methodological one, and it is worth
+roughly a third of the value — well past the 5% materiality line this house applies to a
+contested judgement. A reader of the delivered study sees four lenses and a weighted
+central. **A reader who wants to know what discount is being applied for float and
+governance, and to disagree with it, has to reverse-engineer it out of four weights.**
+
+None of that says the haircut is wrong. A 22% free float and a dominant sovereign
+shareholder are real, and pricing them is legitimate. What is not legitimate is pricing
+them somewhere a reader cannot see the price — and under [R-LENS-03] the fix is
+structural rather than a matter of disclosure: the central becomes the primary lens, and
+a discount the study wants to apply is applied *as a discount*, with both framings
+published, so the sign test can see it.
+
 ## What the gates see, and why neither is wrong
 
 - The **gap gate** reads −11.8% and lists MODON as outside the band with no review. It is
