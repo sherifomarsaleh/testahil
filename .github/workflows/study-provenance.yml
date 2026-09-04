@@ -621,6 +621,22 @@ jobs:
       - name: New-study gauntlet
         run: python3 scripts/check_new_study_gauntlet.py
 
+      # THE STAGED QUEUE AGREES WITH THE STUDIES IT STAGES. Its verifier existed and
+      # was blind by construction: --check recomputed what it WOULD stage and reported
+      # on the recomputation, never opening the committed manifest, so it printed
+      # "publish queue OK" and exited 0 while the manifest said ARCC was staged at
+      # 53.4593 against a committed 66.53 — one full re-issue behind, and the same for
+      # AMOC, EGCH and PHDC. A CHECK THAT RECOMPUTES AND REPORTS ON THE RECOMPUTATION
+      # CANNOT DETECT STALENESS IN WHAT IS WRITTEN DOWN.
+      #
+      # Three of those four were visible to the programme's own acceptance record and
+      # the fourth was not: EGCH publishes a TWO-SIDED answer with no scalar central,
+      # so a reader keyed on one escaped it entirely — the same shape check_artefact_
+      # currency carried until 03-Sep. This step compares the whole record, branches
+      # included, so a two-sided answer is checked rather than skipped.
+      - name: The staged publish queue agrees with the studies it stages
+        run: python3 scripts/build_publish_queue.py --check
+
       # and its falsifier: a WEAKENED gate must break it. The weakening tested is the one
       # that would actually happen — a ratchet seeded with the unknown ticker, a one-line
       # edit anybody could make in good faith and which --prune would then preserve. Its

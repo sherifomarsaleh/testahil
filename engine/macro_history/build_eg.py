@@ -50,12 +50,37 @@ ORIGINS = list(range(2013, 2024))
 # published before the origin and is labelled as the staler read it is.
 WEO_FOR_ORIGIN = {
     2013: "October 2013",
+    2014: "October 2014",
     2015: "October 2015",
     2016: "October 2016",
     2017: "April 2017",
     2018: "October 2018",
     2019: "October 2019",
+    # April of the origin year, under the convention stated above, and labelled as
+    # the staler read it is. October 2020 is not published at the media blob path
+    # that serves every other edition; April 2020 is, it existed well before this
+    # origin's year-end, and 2017 is the standing precedent for the fallback.
+    2020: "April 2020",
+    2021: "October 2021",
+    2022: "October 2022",
+    2023: "October 2023",
 }
+
+# WHY FIVE EDITIONS ARRIVED LATE, AND IT WAS NOT THAT THEY COULD NOT BE OBTAINED.
+# This archive recorded on 03-Sep-2026 that the October 2014 and 2020-2023 editions
+# "could not be retrieved from here — the October 2014 file returns an interstitial
+# page and the 2020-2023 editions sit behind a path this environment cannot
+# resolve." Both halves were true of the routes tried and false of the source: the
+# /en/Publications/ section does return 403 here and the /external/ path does serve
+# a JavaScript redirect, but the media blob path serves every edition, under a
+# pattern with NO month folder — .../WEO-Database/{year}/WEOOct{year}all.xls.
+# Found by re-running the probe through a headless browser's request context, which
+# is the tool this environment provides for exactly that.
+#
+# AN OBSTACLE IS WORK, NOT NEWS, and a written outcome is a fact about the past
+# [R-IND-01]: five origins sat unusable for a day behind a recorded failure that
+# one more probe would have cleared. A probe that came back empty is first evidence
+# the probe did not run.
 
 # The "Updated" line each Damodaran vintage carries, turned into a publication
 # date. Read off the file itself, never inferred from the filename.
@@ -244,7 +269,7 @@ def carry_current_vintage_cpi(prev_path):
 
 
 UNSOURCED = {
-    "fields": ["cpi_annual (5 origins)"],
+    "fields": [],
     "resolved_03_09_2026": (
         "policy_rate and sovereign_10y, both supplied by the principal on "
         "03-Sep-2026 — see _supplied_EG_rates.json for what was supplied, what "
@@ -252,18 +277,41 @@ UNSOURCED = {
         "figure that was WRONG and is corrected here. The policy rate is "
         "corroborated origin by origin; the ten-year yield is NOT, and every "
         "origin says so."),
+    "resolved_04_09_2026": (
+        "cpi_annual for 2014 and 2020-2023, the last five origins, sourced from "
+        "the IMF World Economic Outlook edition that existed at each — October "
+        "2014, April 2020, October 2021, October 2022 and October 2023 — each "
+        "recorded with its own sha256, its URL and the route it came by. All "
+        "eleven declared origins are now usable, up from six.\n\n"
+        "THIS WAS NOT NEW DATA BECOMING AVAILABLE. This record said on 03-Sep "
+        "that those editions 'could not be retrieved from here — the October "
+        "2014 file returns an interstitial page and the 2020-2023 editions sit "
+        "behind a path this environment cannot resolve.' Both halves were true "
+        "of the routes tried and FALSE OF THE SOURCE: /en/Publications/ does "
+        "return 403 here and /external/ does serve a JavaScript redirect, but "
+        "the media blob path serves every edition, under a pattern with NO "
+        "month folder. One more probe, through the headless browser this "
+        "environment provides, cleared five origins. AN OBSTACLE IS WORK, NOT "
+        "NEWS [R-IND-01], and a written outcome is a fact about the past: five "
+        "origins sat unusable for a day behind a recorded failure."),
+    "what_the_re_source_also_verified": (
+        "All six editions already in this archive were re-downloaded by the same "
+        "route and every sha256 MATCHED, which independently confirms both the "
+        "archive's provenance and the new route. It also settled a live question "
+        "rather than assuming it: 'Estimates Start After' is a property of the "
+        "SERIES and not of the edition — October 2014 marks GDP from 2013 and "
+        "CPI from 2014, October 2022 marks GDP from 2021 and CPI from 2022 — and "
+        "this archive keeps one value per edition. Checked against the files, all "
+        "six carry the CPI series' own flag, so the existing record is right; the "
+        "new entries store the per-series flags too, and name any series that "
+        "disagrees rather than losing it."),
     "what_remains": (
-        "The point-in-time CPI vintage for 2014 and 2020-2023. The IMF World "
-        "Economic Outlook editions for those years could not be retrieved from "
-        "here — the October 2014 file returns an interstitial page and the "
-        "2020-2023 editions sit behind a path this environment cannot resolve. "
-        "Six origins (2013, 2015, 2016, 2017, 2018, 2019) are usable without "
-        "them, which is the archive doing its job: a thin record shows up as "
-        "fewer origins rather than as a full-looking one built on filled cells."),
+        "Nothing on cpi_annual. The uncorroborated ten-year yield stands as "
+        "recorded: usable, single-sourced, and said so at every origin."),
     "what_would_close_it": (
-        "The IMF WEO database file for October 2014 and for October 2020 through "
-        "October 2023, downloadable from imf.org's WEO database pages. Each one "
-        "adds exactly one origin, and the calibration lengthens by that much."),
+        "A second independent source for the sovereign ten-year yield at each "
+        "origin, which would corroborate the one field this archive still carries "
+        "on a single source."),
 }
 
 

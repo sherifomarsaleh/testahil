@@ -54,6 +54,42 @@ def recorded_fair(t, mv):
     return e[-1]['fair'] if e else None
 
 
+def _stale(rows):
+    """Every disagreement between the COMMITTED manifest and what would be staged."""
+    mp = os.path.join(QUEUE, 'MANIFEST.json')
+    if not os.path.exists(mp):
+        return ['no MANIFEST.json in the queue — nothing is staged, and an absent '
+                'manifest is not a clean one [R-ENF-04]']
+    try:
+        got = json.load(open(mp, encoding='utf-8'))
+    except Exception as e:                                           # noqa: BLE001
+        return ['MANIFEST.json will not parse (%s)' % e]
+    have = {n['ticker']: n for n in got.get('names', [])}
+    out = []
+    for r in rows:
+        c = have.pop(r['ticker'], None)
+        if c is None:
+            out.append('%s produces a stageable pair and the manifest does not carry it'
+                       % r['ticker'])
+            continue
+        for k in ('report', 'workbook'):
+            if c.get(k) != r[k]:
+                out.append('%s: the manifest stages %s and the current edition is %s'
+                           % (r['ticker'], os.path.basename(str(c.get(k))),
+                              os.path.basename(r[k])))
+        # THE FAIR VALUE IS COMPARED EXACTLY. A tolerance here would be a free
+        # parameter [R-CAL-01] over a figure that is either the study's own or is
+        # not — these are two records of one number, not two measurements of one
+        # quantity, so any difference at all is a disagreement.
+        if c.get('fair') != r['fair']:
+            out.append('%s: the manifest carries fair %s and the study commits %s'
+                       % (r['ticker'], c.get('fair'), r['fair']))
+    for tk in have:
+        out.append('%s is staged in the manifest and produces no stageable pair now'
+                   % tk)
+    return out
+
+
 def build(check_only=False):
     mv = json.load(open(MOVEMENT))
     rows, problems = [], []
@@ -84,6 +120,19 @@ def build(check_only=False):
         problems.append('the queue is EMPTY and that is not a clean result — no calibrated '
                         'name produced a stageable pair [R-ENF-04]')
     if check_only:
+        # THE CHECK OPENS THE COMMITTED MANIFEST. It used to return here on `rows`
+        # alone — recomputing what it WOULD stage and reporting on the recomputation
+        # — so it could not see staleness in the artefact it exists to check, by
+        # construction. Measured 04-Sep-2026: it printed "publish queue OK" and
+        # exited 0 on a manifest saying ARCC was staged at 53.4593 while the study
+        # committed 66.53, one full re-issue behind, and the same for two more names.
+        #
+        # A CHECK THAT RECOMPUTES AND REPORTS ON THE RECOMPUTATION CANNOT DETECT
+        # STALENESS IN WHAT IS WRITTEN DOWN. It is not that the check was weak; it
+        # never looked. This is [R-ENF-06] one level up: that rule makes an artefact
+        # DECLARE the answer it was built against, and here a verifier existed and
+        # was blind anyway, because the thing it compared against was itself.
+        problems.extend(_stale(rows))
         return rows, problems
     if os.path.isdir(QUEUE):
         shutil.rmtree(QUEUE)
