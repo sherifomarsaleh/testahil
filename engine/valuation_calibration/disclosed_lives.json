@@ -456,6 +456,68 @@
    "an_apparent_contradiction_resolved": "The FY2025 policy note opens 'During the year, the Group changed the estimated useful life applied to certain assets ... refer Note 5', while the table it introduces shows NO change between 2025 and 2024. Note 5 settles it: the reassessment was 'during the year ended 31 December 2024', effective 1 October 2024 — aircraft lives raised from 15 to 20 years, residual values cut from 20% to 7-8% of original cost, quantified at AED 29.3mn on net assets and AED 26.7mn on net profit. THE OPENING SENTENCE IS PRIOR-YEAR PROSE CARRIED FORWARD IN THE COMPANY'S OWN FILING. It is recorded because a reader who stopped at that sentence would date a change to the wrong year, and because a disclosure that contradicts its own table is the shape this house is supposed to notice — it is theirs and not ours, and the resolution is theirs too.",
    "why_this_name_matters_here": "AIRARABIA is one of the seven terminals charging LESS than their own book depreciation and one of the three doing it while sitting more than 10% BELOW the price. Its retired terminal implies a replacement cycle of 1/g = 40 years against a DISCLOSED aircraft life of 20 — it charges roughly half the maintenance the disclosure implies, on the asset class that carries essentially all the value. Correcting it moves the value DOWN and therefore AWAY from the price, which is [R-TERM-01 CLAUSE TWO]'s point and the side of the correction this house has never measured.",
    "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE, though this one is unusually well determined: an airline's value sits in aircraft and engines, both disclosed at a single 20 years rather than a band. The weighting is still a further sourcing step, and the 7-8% residual belongs in it — maintenance at replacement cost over 20 years against a 7-8% residual is not the same charge as over 15 against 20%."
+  },
+  "PHAR": {
+   "classes": [
+    {
+     "asset_class": "Administration buildings & structures",
+     "years": [
+      50,
+      50
+     ]
+    },
+    {
+     "asset_class": "Factory buildings & structures",
+     "years": [
+      50,
+      50
+     ]
+    },
+    {
+     "asset_class": "Production activity machines",
+     "years": [
+      15,
+      15
+     ]
+    },
+    {
+     "asset_class": "Service machines & utilities",
+     "years": [
+      15,
+      15
+     ]
+    },
+    {
+     "asset_class": "Means of transportation",
+     "years": [
+      5,
+      5
+     ]
+    },
+    {
+     "asset_class": "Tools",
+     "years": [
+      5,
+      5
+     ]
+    },
+    {
+     "asset_class": "Office furniture & equipment",
+     "years": [
+      10,
+      10
+     ]
+    }
+   ],
+   "longest_years": 50,
+   "shortest_years": 5,
+   "source": "EIPICO (PHAR) FY2024 audited consolidated financial statements, note 3.1 'Fixed assets and depreciation': 'The depreciable fixed asset value ... is depreciated according to the straight-line method over the estimated useful life of each type of fixed asset ... (land is not depreciated)', followed by the table of estimated lives. EVERY LIFE IS A SINGLE FIGURE, not a band, which is unusual in this file and makes the weighting unambiguous.",
+   "file": "engine/phar_study/source_FY2024_audited_consolidated.pdf",
+   "route": "text layer via pdftotext -layout",
+   "read_on": "2026-09-04",
+   "weighted_life_years": 13.8,
+   "weighted_from": "the gross cost by class in note 4.1 at 31-Dec-2024 — buildings 543,426,318 at 50 years, machines and equipment 1,701,915,589 at 15, transportation 107,581,637 at 5, tools 151,105,707 at 5, furniture 197,886,920 at 10 — on a depreciable base of EGP 2,701,916,171 which foots to the note's stated 2,785,102,203 once land of 83,186,032 is excluded. The rates add, not the lives, so the weighted life is the reciprocal of the weighted annual rate.",
+   "against_the_terminal": "this study's terminal implies a replacement cycle of 20.0 years (1/g at g=5.0%) against a disclosed weighted life of 13.80 — it charges maintenance over a life 45% longer than the accounts run, which UNDER-charges. THE DIRECTION IS SET BY THE TYPED GROWTH RATE AND NOT BY THE MARKET: [R-TERM-01 CLAUSE TWO] reasons from a terminal at zero real growth, where 1/g is the reciprocal of inflation and runs SHORT in a high-inflation economy. This study typed 5% nominal in a 7%-inflation economy — a real DECLINE — so its 1/g runs long in exactly the market the clause says it should run short. At the house terminal of 7% the implied cycle would be 14.3 years, close to the disclosed 13.80, which is a coincidence of magnitudes rather than a law and is recorded as one."
   }
  }
 }
