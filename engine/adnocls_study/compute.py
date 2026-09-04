@@ -1495,10 +1495,37 @@ def dcf(path, hybrid_as_debt=False, wacc_ov=None, g_ov=None, term_wacc_ov=None):
     # would add back the amortisation of a maintenance cost it never charged.
     #
     # The honest maintenance charge therefore covers the hull cycle AND the recurring
-    # dry-docking, and this disclosure does not split the vessel line by type or the
-    # charge by component, so the life that would do it cannot be derived from the
-    # filings. A LIFE THIS DESK CHOSE IS NOT A DISCLOSED LIFE, so none is chosen here.
-    # What is needed is the component split — stop and inform, per SIGCM clause 8.
+    # dry-docking, and this disclosure does not split the vessel line by component.
+    # A LIFE THIS DESK CHOSE IS NOT A DISCLOSED LIFE, so none is chosen here.
+    #
+    # [RE-READ 04-Sep-2026, and the stop stands while its reason moves one step.] The
+    # ladder was climbed rather than the note above re-read: the accounting policies of
+    # FY2022, FY2023, FY2024 and FY2025 were all opened, and no year's property note
+    # carries a dry-docking column — the six columns are the same in every one. So the
+    # component split genuinely is not disclosed. TWO THINGS THAT READING DID FIND.
+    #
+    # FIRST, THE DRY-DOCKING LIFE IS DISCLOSED AS A FIGURE AND NOT ONLY AS A BAND. The
+    # class table gives 2-5 years; the policy paragraph beneath it says major dry docking
+    # "is depreciated over the period until the next major dry dock which is normally 60
+    # months". The earlier reading took the band and stopped at it.
+    #
+    # SECOND, AND IT IS WHY THIS REFUSED: the charge above applies the 25-year TANKER life
+    # to the WHOLE gross base. That is one class's life doing duty for every class, which
+    # is the same error the rule names, and it produces 303,803 against book property
+    # depreciation of 385,487 — 78.8% of it, so free cash flow exceeds profit and the
+    # module is right to refuse. Every OTHER class does have its own disclosed life, and
+    # they are 4.1% of the base, so their depreciation is bounded by their own ranges to
+    # 23,993-61,785; that leaves the vessel line depreciating 323,702-361,494 and BOUNDS
+    # the dry-docking component to 2.79%-6.04% of it. Arithmetic on the disclosure, not a
+    # choice — and at any point inside that bound the refusal reverses.
+    #
+    # WHAT IS STILL MISSING IS NOT THE SPLIT, IT IS THE STEP TO CURRENT COST, which this
+    # rule requires and which a ship market can actually supply: broker-quoted secondhand
+    # and newbuild prices are an OBSERVED price for a vessel in a way they are not for a
+    # kiln. Until that is held, a charge built here would rest on replacement cost
+    # equalling historical cost, which for a fleet of this age is an assumption rather
+    # than a reading. Stop and inform, per SIGCM clause 8 — on the missing input NAMED,
+    # which is not the one this note named yesterday.
     pv_tv = tv * df[4]
     ev_ops = pv_expl + pv_tv
     ev = ev_ops + JV_BV
