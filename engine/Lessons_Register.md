@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**182 lessons**, of which 155 bind on every study, 20 on a class of company, and 7 on a single name.
+**184 lessons**, of which 157 bind on every study, 20 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 107 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 109 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1628,6 +1628,26 @@ A file that reads a price library and writes a summary is correct on the day it 
 > **What it cost, or how we know.** Four artefacts went stale in one afternoon on a study already conforming to [R-ENF-06]: statements.json two days behind the model, peers.json five weeks behind THIS REPOSITORY'S OWN price libraries, experts.json quoting a reverse read that had since been corrected, and a note added to a generator that never reached the page because the script writing its file was not re-run after the edit. None was carelessness about a number; each was the ordinary consequence of a pipeline whose steps a person has to remember. MEASURED ACROSS THE BOOK, 2 OF 24 STUDIES HAVE A SINGLE BUILD ENTRY POINT, and the other twenty-two carry 7 to 32 scripts each that must be run in the right order from memory. The fix is not to remember harder: an entry point declares the dependency order explicitly and ends with the checks, so a build that produced a stale artefact cannot also report clean.
 
 > **What would overturn it.** A study whose scripts are genuinely independent, where an order does not exist to be got wrong.
+
+### L-262 · A PRICED ALTERNATIVE THAT RE-RUNS THE BASE CASE SCORES ZERO BY CONSTRUCTION, AND A ZERO DELTA IS THE ONE ANSWER NOBODY CHECKS.
+
+A table that prices each contested choice by re-running the model with that choice moved is only as good as the move. Where the alternative is set to what the base case already uses, the re-run returns the base case, the delta is exactly zero, and the row reports that the choice does not matter.
+
+**Applies to:** every study  ·  *Learned from:* found while building, reading EGCH's rendered pages, 03-Sep-2026
+
+> **What it cost, or how we know.** The FIRST row of EGCH's contested-constructions table priced 'country risk off the sovereign's credit rating' against the traded default swap and scored +0.00. The study's base case already uses the swap basis — rf_star_spot IS rf_star_cds and the published rate IS wacc_cds — so the alternative re-ran the base case. The labels were reversed with it: the study CHOOSES the swap basis and the alternative is the rating basis. Priced correctly the choice is worth EGP 1.26 against a base of 2.31, a delta of −1.05 and the THIRD largest of the ten, in a table whose entire purpose is to show what each choice is worth. Nothing could catch it: the figure was computed, the model re-ran, the arithmetic was exact. A NON-ZERO delta invites a reader to check it; a zero one says there is nothing to look at.
+
+> **What would overturn it.** An alternative that genuinely coincides with the base case for a stated reason, where the row would have to say so rather than print a bare zero.
+
+### L-263 · A TABLE WITH TWO BASIS COLUMNS MUST PRODUCE TWO ANSWERS, AND A DERIVED ROW IDENTICAL IN BOTH WHILE ITS INPUTS DIFFER IS READING ONE COLUMN TWICE.
+
+Where a table sets out the same construction on two bases side by side, the rows that are INPUTS may legitimately be identical — a beta, a cost of debt, a set of weights — but a row DERIVED from rows that differ cannot be.
+
+**Applies to:** every study  ·  *Learned from:* found while building, reading EGCH's rendered pages, 03-Sep-2026
+
+> **What it cost, or how we know.** EGCH's cost-of-capital table set out the rating and swap bases in two columns whose costs of equity differ (30.99% against 29.28%), and printed 25.76% for the cost of capital in BOTH — because the rating cell read wacc_path[0], which IS the published rate and IS the swap basis. The rating figure reproduces from its own rows as 66.2% x 30.99% + 33.8% x 18.86% = 26.88%, and the printed one does not. The note beneath compounded it, saying the rating basis was carried 'as the more conservative' when the study carries the swap basis and that basis is 113 basis points LOWER. The table-footing instrument could not see it: the row is a weighted mean whose weights are a ROW formatted as a combined string, not a column it can read.
+
+> **What would overturn it.** A derived row that genuinely coincides across two bases, which would need saying.
 
 
 ---

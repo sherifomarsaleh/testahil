@@ -45,7 +45,16 @@ def reprice(case="base", glide=False, **patch):
 # ---------------------------------------------------------------------------
 W = C.WACC
 flat_spot = reprice(wacc_path=[D['wacc_spot']] * 5, wacc_terminal=D['wacc_spot'])
-cds_basis = reprice(glide=True, rf_star_spot=W['rf_star_cds'], erp=W['erp_cds'])
+# THE ALTERNATIVE RE-RAN THE BASE CASE AND SCORED +0.00 BY CONSTRUCTION. This priced the
+# CDS basis as the alternative, and the study's base case ALREADY uses the CDS basis:
+# rf_star_spot is rf_star_cds and the published cost of capital is wacc_cds. So the first
+# row of the contested-constructions table — the table whose entire purpose is to show what
+# each choice is worth — moved nothing, and reported that as a finding. A zero delta reads
+# as "this choice does not matter", which is the one answer nobody checks.
+#
+# The labels were reversed with it: the study CHOOSES the swap basis and the ALTERNATIVE is
+# the rating basis, not the other way round.
+rating_basis = reprice(glide=True, rf_star_spot=W['rf_star_rating'], erp=W['erp_rating'])
 g_low = reprice(g_terminal=V('g_terminal_alt'))
 beta_low = reprice(glide=True, beta=V('beta_ci90_low'))
 gas_contract = reprice(gas_usd_mmbtu=V('gas_contract_usd_mmbtu'))
@@ -58,13 +67,17 @@ project_faster = reprice(anna_capex_path=[3000.0, 3500.0, 3500.0, 3000.0, 2000.0
 
 ALTS = [
     dict(key="premium_basis",
-         made="Country risk priced off the sovereign's credit rating",
-         alt="Priced off the sovereign's traded default swap instead, which is the "
-             "narrower of the two spreads",
-         value=cds_basis,
-         why="The rating basis is the wider spread and therefore the more conservative "
-             "equity premium. Both are published in full in section 1.8 and neither is "
-             "ever mixed with the other's risk-free rate."),
+         made="Country risk priced off the sovereign's traded default swap",
+         alt="Priced off the sovereign's credit rating instead, which is the wider of "
+             "the two spreads and gives a cost of capital %d basis points higher"
+             % round((W['wacc_rating'] - W['wacc_cds']) * 1e4),
+         value=rating_basis,
+         why="The swap basis is the market's own live pricing of this sovereign's credit, "
+             "against a rating judgement updated in steps. It is the NARROWER spread, so "
+             "this is not the conservative choice and is not made on that ground; the "
+             "rating basis is priced here rather than argued about. Both are published in "
+             "full in section 1.8 and neither is ever mixed with the other's risk-free "
+             "rate."),
     dict(key="glide",
          made="A cost of capital that glides from its spot build to a terminal rate made "
               "from its own long-run components",
