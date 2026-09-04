@@ -972,6 +972,16 @@ LENS_REGISTRY = {
         ("dcf", ("ev_ebitda_own_history", "replacement_cost", "relative_multiple", "book_value")),
     "airline":
         ("dcf", ("ev_ebitda_own_history", "relative_multiple", "book_value")),
+    # DELIBERATELY THE SAME ROW AS THE AIRLINE AND TELECOM ONES. A vertically integrated
+    # generic and branded manufacturer is valued on its cash flows with an own-history
+    # enterprise multiple, a peer multiple and book beside them; nothing about the
+    # industry gives a DIFFERENT lens the weight, which is the only ground [R-LENS-03]
+    # allows for adding a class here. The class exists because lessons_register.CLASSES
+    # keys the LESSON taxonomy, where a finding about registered price ceilings or an
+    # active-ingredient import bill is not evidence about an airline. Two classes may
+    # share a lens set; they may not share a lesson set.
+    "pharmaceutical manufacturer, generic and branded":
+        ("dcf", ("ev_ebitda_own_history", "relative_multiple", "book_value")),
     "bank":
         ("ddm", ("residual_income", "relative_multiple", "book_value")),
     "holding company":

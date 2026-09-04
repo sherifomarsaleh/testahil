@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**222 lessons**, of which 191 bind on every study, 24 on a class of company, and 7 on a single name.
+**223 lessons**, of which 191 bind on every study, 25 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 147 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 148 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2198,6 +2198,19 @@ Some metals have no history of their own in this system and borrow another metal
 > **What it cost, or how we know.** Gold is calibrated on its own data alone, so testing it against that same data proves nothing. Silver is published with no fit of its own at all — it borrows gold's. Neither may be presented with the confidence of a name that has a proper panel behind it.
 
 > **What would overturn it.** Enough silver, copper and platinum history to fit each on its own.
+
+
+## Pharmaceutical manufacturer, generic and branded
+
+### L-302 · A GENERIC MANUFACTURER THAT EXPORTS CAN STILL BE NET SHORT HARD CURRENCY, and the export line is what hides it: a weaker local currency reads as a tailwind on the revenue page while the active-ingredient bill it also raises is larger.
+
+Active pharmaceutical ingredients are imported and priced in dollars almost everywhere outside the few countries that make them, so the DOLLAR-LINKED COST reaches deep into cost of sales while the dollar-linked REVENUE is only the export book. Compare the two directly before assuming a devaluation helps: hard-currency revenue as a share of total against the imported share of cost of sales times the cost ratio. Where the second is larger the currency path is a first-order value driver running the OPPOSITE way to the intuition, and a study that understates depreciation flatters the value rather than depressing it.
+
+**Applies to:** every pharmaceutical manufacturer, generic and branded  ·  *Learned from:* found while building, PHAR (EIPICO), 04-Sep-2026
+
+> **What it cost, or how we know.** Exports are 33% of forecast revenue and the company's own description of its inputs is that raw materials are predominantly imported active ingredients, against cost of sales at 61% of revenue. Conforming the currency path to the house purchasing-power derivation — 21% weaker by FY2030 than the edition it replaced — took roughly a quarter off the valuation, in the direction an exporter is not expected to move. The previous edition escalated domestic costs at Egyptian inflation while depreciating the pound at about a third of the differential, which flattered the value twice over.
+
+> **What would overturn it.** A manufacturer of this class whose imported-input share of cost of sales, times its cost ratio, is SMALLER than its hard-currency revenue share — where it is, the ordinary exporter intuition holds and this lesson does not apply.
 
 
 ## Real-estate developer, off-plan, point-in-time on handover

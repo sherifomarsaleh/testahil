@@ -90,6 +90,16 @@ CLASSES = (
     "bank",
     "holding company",
     "commodity and metals",
+    # A vertically integrated generic and branded pharmaceutical manufacturer takes
+    # THE SAME LENS SET as an operating manufacturer with no observable asset market,
+    # and [R-LENS-03] is explicit that a class is added when a different lens carries
+    # the weight rather than when the industry differs — so the lens row is deliberately
+    # identical to the telecom and airline rows. What earns the separate class is the
+    # LESSONS taxonomy this tuple keys: a finding about registered-price ceilings, an
+    # active-ingredient import bill or a biosimilars approval cycle is not evidence
+    # about an airline, and filing it under one would be the superstition this register
+    # warns about. Two classes may share a lens set; they may not share a lesson set.
+    "pharmaceutical manufacturer, generic and branded",
     # TMGH is off-plan with a large backlog and long payment plans like the
     # class above, but it recognises revenue when the customer takes control of
     # the home, not as construction progresses. [L-102] makes the recognition
@@ -4441,6 +4451,32 @@ LESSONS = [
       "it was given, and a naming defect before it was a gate problem.",
       "A check whose false positives are as cheap to resolve as its true positives — "
       "where firing on correct work costs only a glance, the message matters less."),
+
+    L("L-302", "CLASS", "pharmaceutical manufacturer, generic and branded",
+      "A GENERIC MANUFACTURER THAT EXPORTS CAN STILL BE NET SHORT HARD CURRENCY, and the "
+      "export line is what hides it: a weaker local currency reads as a tailwind on the "
+      "revenue page while the active-ingredient bill it also raises is larger.",
+      "Active pharmaceutical ingredients are imported and priced in dollars almost "
+      "everywhere outside the few countries that make them, so the DOLLAR-LINKED COST "
+      "reaches deep into cost of sales while the dollar-linked REVENUE is only the export "
+      "book. Compare the two directly before assuming a devaluation helps: hard-currency "
+      "revenue as a share of total against the imported share of cost of sales times the "
+      "cost ratio. Where the second is larger the currency path is a first-order value "
+      "driver running the OPPOSITE way to the intuition, and a study that understates "
+      "depreciation flatters the value rather than depressing it.",
+      "PHAR (EIPICO), 04-Sep-2026",
+      "build",
+      "Exports are 33% of forecast revenue and the company\'s own description of its "
+      "inputs is that raw materials are predominantly imported active ingredients, "
+      "against cost of sales at 61% of revenue. Conforming the currency path to the "
+      "house purchasing-power derivation — 21% weaker by FY2030 than the edition it "
+      "replaced — took roughly a quarter off the valuation, in the direction an exporter "
+      "is not expected to move. The previous edition escalated domestic costs at "
+      "Egyptian inflation while depreciating the pound at about a third of the "
+      "differential, which flattered the value twice over.",
+      "A manufacturer of this class whose imported-input share of cost of sales, times "
+      "its cost ratio, is SMALLER than its hard-currency revenue share — where it is, the "
+      "ordinary exporter intuition holds and this lesson does not apply."),
 
 ]
 

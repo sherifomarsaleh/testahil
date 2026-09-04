@@ -292,7 +292,15 @@ for i, (nm, lo, mid, hi) in enumerate(experts):
 ax.axvline(SPOT, color=RUST, lw=1.8, ls='--')
 ax.text(SPOT, -0.78, f'market price {SPOT:,.2f}', color=RUST, fontsize=8.8, ha='center')
 ax.set_yticks(range(3), [e[0] for e in experts], fontsize=9.0)
-ax.set_xlim(30, 200)
+# DERIVED FROM WHAT IS DRAWN, not typed. The hard-coded 30-200 window was written for
+# an edition whose lowest bar sat near 50; this edition's cash-flow expert reads 17.4
+# after the terminal, macro and discount-rate corrections, and the bar simply left the
+# plot. A figure whose limits are typed goes wrong silently the first time the model
+# moves, which is the same defect class as a check that names a cell by address.
+_e_lo = min(min(lo, mid) for _, lo, mid, _ in experts + [('spot', SPOT, SPOT, SPOT)])
+_e_hi = max(max(hi, mid) for _, _, mid, hi in experts + [('spot', SPOT, SPOT, SPOT)])
+_e_pad = (_e_hi - _e_lo) * 0.10
+ax.set_xlim(_e_lo - _e_pad, _e_hi + _e_pad * 4.0)   # room on the right for the labels
 ax.set_ylim(-1.0, 2.6)
 ax.set_xlabel('EGP per share')
 ax.set_title('Three independent methods, three different answers', fontsize=10, pad=10)
