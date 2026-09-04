@@ -1858,23 +1858,23 @@
   "assoc": 6757.650507,
   "nci_share": 0.09675033090812221,
   "nci_val": 12904.185145459729,
-  "eq_attr": 120471.94932703146,
-  "ps": 63.44319161506309,
-  "ps_dec": 56.27484788479356,
+  "eq_attr": 105783.14287123262,
+  "ps": 55.48217612662315,
+  "ps_dec": 49.413413720850976,
   "roll": 1.1602553195475886,
   "anchor_days": 217,
   "roic_term": 0.20101441562553485,
   "rr_term": 0.34823373130811375,
-  "ps_rating_basis": 39.41535864626497,
+  "ps_rating_basis": 34.383989353495444,
   "wacc_exp_rating": 0.28095356879907796,
   "wacc_term_rating": 0.19793634999999998,
   "ps_nci_alt": 62.36509521264751,
   "nci_alt": 14893.372255919521,
   "g": 0.07,
-  "bear": 22.913794402815945,
-  "bull": 119.79373248239902,
-  "ccy_alt_ps": 79.49643460012656,
-  "ps_kd_egp_equiv": 63.08087462820185,
+  "bear": 19.894414496322316,
+  "bull": 104.9620537972264,
+  "ccy_alt_ps": 69.57809227740921,
+  "ps_kd_egp_equiv": 55.16403543246225,
   "kd_egp_equiv": 0.13938079151915464,
   "wacc_exp_kd_egp_equiv": 0.26908808835457754,
   "fx_dep_avg": 0.05436481112522373
@@ -1918,9 +1918,9 @@
  "lenses": {
   "dcf": {
    "name": "Discounted cash flow (primary)",
-   "bear": 22.913794402815945,
-   "base": 63.44319161506309,
-   "bull": 119.79373248239902,
+   "bear": 19.894414496322316,
+   "base": 55.48217612662315,
+   "bull": 104.9620537972264,
    "w": 0.45
   },
   "relative": {
@@ -1946,15 +1946,15 @@
   },
   "central": {
    "name": "Weighted central",
-   "bear": 22.913794402815945,
-   "base": 74.78304317773814,
+   "bear": 19.894414496322316,
+   "base": 71.20058620794018,
    "bull": 140.45203271328177,
    "w": 1.0
   }
  },
- "central": 74.78304317773814,
+ "central": 71.20058620794018,
  "span": [
-  22.913794402815945,
+  19.894414496322316,
   140.45203271328177
  ],
  "spot": 105.2,
@@ -1990,7 +1990,7 @@
    "base": 54.45131359842825,
    "rng": [
     46.88400987822836,
-    79.49643460012656
+    69.57809227740921
    ],
    "ic0": 93562.42815899997,
    "pv_ep": 8074.3603603655465,
@@ -2213,11 +2213,11 @@
    1.7
   ],
   "grid_fx": [
-   61.093629657688346,
-   63.44319161506309,
-   68.14231552981256,
-   74.01622042324942,
-   79.8901253166863
+   53.419089660352974,
+   55.48217612662315,
+   59.608349059163494,
+   64.76606522483894,
+   69.9237813905144
   ],
   "mg_grid": [
    0.85,
@@ -2227,11 +2227,11 @@
    1.15
   ],
   "grid_margin": [
-   36.15666072864668,
-   49.7999261718549,
-   63.44319161506309,
-   77.08645705827126,
-   90.72972250147949
+   31.522615321455476,
+   43.502395724039324,
+   55.48217612662315,
+   67.46195652920696,
+   79.4417369317908
   ],
   "cu_grid": [
    0.85,
@@ -2241,11 +2241,11 @@
    1.15
   ],
   "grid_copper": [
-   59.918848679001,
-   61.681020147032015,
-   63.44319161506309,
-   65.20536308309411,
-   66.9675345511252
+   52.3875464272179,
+   53.9348612769205,
+   55.48217612662315,
+   57.02949097632575,
+   58.576805826028405
   ],
   "nwc_grid": [
    0.17,
@@ -2255,11 +2255,11 @@
    0.23
   ],
   "grid_nwc": [
-   71.70423599571691,
-   67.43128200572355,
-   63.44319161506309,
-   58.885374025736844,
-   54.61242003574347
+   62.73597456572764,
+   58.98400985584599,
+   55.48217612662315,
+   51.48008043608273,
+   47.72811572620108
   ],
   "roic_grid": [
    0.15,
@@ -2417,18 +2417,20 @@
   "[Terminal value, sanctioned construction] terminal NOPAT 40,841 + book D&A 7,426 - maintenance at replacement cost 13,315 (on the DERIVED 17.26-year life) - growth capital 0 (zero, because real growth is zero) - inflation on working capital 8,276 = FCFF 26,677. TV 319,492 at 15.93% and 7.0% nominal, discounted at the YEAR-5 factor 0.3915 -> PV 125,092, 85% of enterprise value. Implied payout of terminal NOPAT 65.3%; TV against the NOPAT-perpetuity floor +24.6%.",
   "[Terminal value, the RETIRED construction, published unused] g x IC on the same inputs gives 297,945 (-6.7%), charging 14,222 a year for ever \u2014 an implied replacement cycle of 14.3 years against the 17.26 this company's own note 17 derives. Recorded so the change is visible, and it feeds nothing.",
   "[Terminal ceiling] the domestic leg is 47% of FY30E revenue; a blended long-run nominal ceiling is 11.1% (15% Egyptian nominal on the domestic leg, 7.5% world nominal on the export leg). Adopted g of 7% sits below it.",
-  "[Associates] carried at the audited FY2025 carrying value of 6,758 \u2014 the actual closing balance, not the prior year's carrying value scaled by an assumed growth factor.",
-  "[Bridge] EV 147,178 - net financial debt 20,560 + associates at carrying value 6,758 = 133,376; less minority interests at their 9.7% share of group profit = 12,904 -> equity attributable 120,472 = EGP 56.27/share AT 31-DEC-2025; rolled 217/365 of a year to the 5-Aug-2026 anchor at the 28.4% cost of equity (x1.1603) less the EGP 1.85 dividend paid in the window = EGP 63.44/share against a spot of 105.20 (-40%).",
-  "[Currency-of-discounting alternative \u2014 UIP-corrected] the hard-currency leg (53% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a USD cost of capital of 10.13% with 3.5% terminal growth, and only then translated back. Corrected result EGP 79.50/share (-24% vs spot).",
-  "[Rating-basis alternative, published] on Damodaran's RATING column the cost of equity is 30.01% and the cost of capital 28.10% -> 19.79%, giving EGP 39.42/share against the CDS-basis 63.44.",
-  "[EGP-equivalent cost of debt alternative, published] loading the hard-currency legs (72% of the book) with the pound's own 5.4%/year forecast depreciation under uncovered interest parity gives an EGP-equivalent cost of 11.01% for that share, and a blended Kd of 13.94% against the currency-composition 9.50%. Cost of capital rises to 26.91% from 26.63%, giving EGP 63.08/share against 63.44. CAUTION: adopting the currency-composition Kd as primary means the hard-currency share of the debt book is carried at its coupon rate and NOT compensated for devaluation risk beyond what this forecast's own FX path already assumes.",
-  "[Minority-interest sequencing, alternative published] charging minorities 9.7% of UNLEVERED enterprise value plus associates (14,893) and deducting net debt afterwards gives EGP 62.37/share, against 63.44 on the adopted sequencing. The adopted method is retained because the audited borrowings note records facilities granted to 'the Company AND ITS SUBSIDIARIES ... guaranteed by promissory notes FROM SUBSIDIARIES', i.e. debt does sit at subsidiary level.",
+  "[Associates] carried at the audited FY2025 carrying value of 6,758 \u2014 the actual closing balance, not the prior year's carrying value scaled by an assumed growth factor. (Reviewed 30-Jun-2026: 7,120.)",
+  "[Net debt, and why the June sheet is NOT used] the bridge deducts 20,560 at 31-Dec-2025, the date this valuation is struck at. The reviewed 30-Jun-2026 sheet shows 28,629, +8,069 over the half \u2014 and that deterioration is the same working-capital absorption the model's own FY2026 forecast already carries (a working-capital movement of 17,783 against capex of 16,281, giving free cash flow to the firm of -4,268 in the first forecast year). Deducting it in the bridge as well would charge one cash outflow twice.",
+  "[Employees' statutory share of profit] measured at 11.60% (FY2024), 11.96% (FY2025) and 13.01% (H1-2026) of profit attributable to owners; mean 12.19%. It is disclosed only in the earnings-per-share note, below the attributable line, and appears in NO line of the income statement \u2014 which is why the first edition, whose cost stack is built from unit economics, could not have caught it there. Equity attributable 120,472 less 14,689 = 105,783. THE RECONCILIATION THAT SHOULD HAVE EXPOSED IT: this study registered FY2025 attributable profit of 17,330.245 and the reported EPS of 7.13; 17,330.245 / 2,140.777876 = 8.095, and the difference is this charge plus the ESOP adjustment to the weighted-average count.",
+  "[Bridge] EV 147,178 - net financial debt 20,560 + associates at carrying value 6,758 = 133,376; less minority interests at their 9.7% share of group profit = 12,904; less the employees' statutory share of profit at 12.19% = 14,689 -> equity attributable to ORDINARY SHAREHOLDERS 105,783 = EGP 49.41/share AT 31-DEC-2025; rolled 217/365 of a year to the 5-Aug-2026 anchor at the 28.4% cost of equity (x1.1603) less the EGP 1.85 dividend paid in the window = EGP 55.48/share against a spot of 105.20 (-47%).",
+  "[Currency-of-discounting alternative \u2014 UIP-corrected] the hard-currency leg (53% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a USD cost of capital of 10.13% with 3.5% terminal growth, and only then translated back. Corrected result EGP 69.58/share (-34% vs spot).",
+  "[Rating-basis alternative, published] on Damodaran's RATING column the cost of equity is 30.01% and the cost of capital 28.10% -> 19.79%, giving EGP 34.38/share against the CDS-basis 55.48.",
+  "[EGP-equivalent cost of debt alternative, published] loading the hard-currency legs (72% of the book) with the pound's own 5.4%/year forecast depreciation under uncovered interest parity gives an EGP-equivalent cost of 11.01% for that share, and a blended Kd of 13.94% against the currency-composition 9.50%. Cost of capital rises to 26.91% from 26.63%, giving EGP 55.16/share against 55.48. CAUTION: adopting the currency-composition Kd as primary means the hard-currency share of the debt book is carried at its coupon rate and NOT compensated for devaluation risk beyond what this forecast's own FX path already assumes.",
+  "[Minority-interest sequencing, alternative published] charging minorities 9.7% of UNLEVERED enterprise value plus associates (14,893) and deducting net debt afterwards gives EGP 62.37/share, against 55.48 on the adopted sequencing. The adopted method is retained because the audited borrowings note records facilities granted to 'the Company AND ITS SUBSIDIARIES ... guaranteed by promissory notes FROM SUBSIDIARIES', i.e. debt does sit at subsidiary level.",
   "[Relative lens \u2014 forward EV discounted, interim flows included] 6.5x on FY2027E EBITDA 43,447 gives an enterprise value of 282,406 AS AT end-FY2027; discounted back at the year-2 factor 0.6417 plus the present value of the interim FY26-27 free cash flows (960) that is 182,182 at 31-Dec-2025 -> EGP 80.58/share at the anchor.",
   "[Normalised lens \u2014 current-scale earning power] mid-cycle EBITDA margin 10.31% (FY2028E) on FY2026E revenue 370,030 -> normalised EPS 10.66 x 9.0 = EGP 109.52/share at the anchor. Equity-method associate income is taxed inside this lens although it is already post-tax at the investee \u2014 a disclosed conservatism worth about +0.4/share on the central if removed.",
   "[Book lens] justified price-to-book 1.56x = (sustainable return 23.5% - growth 7%) / (PERPETUAL cost of equity 17.56% - growth). The justified P/B is a steady-state construct whose implied payout is 1 - g/ROE = 70%, deliberately distinct from the five-year forecast payout of 25% \u2014 the two describe different horizons.",
-  "[DCF scenarios] bear 22.91 / base 63.44 / bull 119.79 EGP per share",
-  "[Synthesis] weighted central EGP 74.78; full span across lenses and scenarios 22.91 - 140.45; spot 105.20 (-29% to the central).",
+  "[DCF scenarios] bear 19.89 / base 55.48 / bull 104.96 EGP per share",
+  "[Synthesis] weighted central EGP 71.20; full span across lenses and scenarios 19.89 - 140.45; spot 105.20 (-32% to the central).",
   "[Leverage] net financial debt / EBITDA falls from 0.72x to 0.25x over the forecast.",
-  "[Expert panel] Expert 1 148.41 [108.87-187.95]; Expert 2 72.81 [36.14-65.72]; Expert 3 54.45 [46.88-79.50]; panel median 72.81 (-31% vs spot)"
+  "[Expert panel] Expert 1 148.41 [108.87-187.95]; Expert 2 72.81 [36.14-65.72]; Expert 3 54.45 [46.88-69.58]; panel median 72.81 (-31% vs spot)"
  ]
 }

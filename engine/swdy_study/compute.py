@@ -1241,13 +1241,80 @@ say(f"[Terminal ceiling] the domestic leg is {dom_share_term:.0%} of FY30E reven
 assert V['g_term'] < blend_ceiling, "terminal g exceeds the blended nominal growth ceiling"
 
 # ---- EV -> equity bridge ----------------------------------------------------
+# THE BRIDGE STANDS ON THE SHEET THAT MATCHES ITS OWN VALUATION DATE, and here that is
+# 31-Dec-2025 — which needs saying, because a reviewed 30-Jun-2026 sheet now exists and
+# [R-BRIDGE-01] asks for the LATEST disclosed one.
+#
+# IT WAS TRIED THE OTHER WAY AND IT DOUBLE-COUNTS. Net financial debt rose from 20,560 to
+# 28,629 over the half, +8,069, as working capital absorbed cash. That deterioration is
+# not new information the model lacks: the model's OWN FY2026 forecast absorbs cash on
+# exactly that mechanism — a working-capital movement of 17,783 against capex of 16,281,
+# giving free cash flow to the firm of -4,268 for the year. Deducting the June net debt
+# from a valuation dated 31-Dec-2025 charges the same cash outflow twice, once in the
+# bridge and once in the first forecast year, which is [R-BRIDGE-01](iii) in mirror image.
+#
+# The rule's requirement is that the sheet be the latest one CONSISTENT WITH the valuation
+# date, and moving the valuation date to 30-Jun-2026 is a different exercise: the explicit
+# window would have to start from the second half, and the roll and the dividend deduction
+# would move with it. The December sheet with a December valuation date is coherent; the
+# half reaches this study through the FORECAST, where it belongs, and it has re-anchored
+# every margin and the corporate load.
 assoc_val = V['assoc_bv_fy25']   # audited FY2025 carrying value, no uplift
-say(f"[Associates] carried at the audited FY2025 carrying value of {assoc_val:,.0f} — the actual "
-    f"closing balance, not the prior year's carrying value scaled by an assumed growth factor.")
+_nd_jun = V['h1_26_debt'] - V['h1_26_cash']
+say(f"[Associates] carried at the audited FY2025 carrying value of {assoc_val:,.0f} — the "
+    f"actual closing balance, not the prior year's carrying value scaled by an assumed "
+    f"growth factor. (Reviewed 30-Jun-2026: {V['h1_26_investees']:,.0f}.)")
+say(f"[Net debt, and why the June sheet is NOT used] the bridge deducts {V['nd_fy25']:,.0f} at "
+    f"31-Dec-2025, the date this valuation is struck at. The reviewed 30-Jun-2026 sheet shows "
+    f"{_nd_jun:,.0f}, {_nd_jun - V['nd_fy25']:+,.0f} over the half — and that deterioration is "
+    f"the same working-capital absorption the model's own FY2026 forecast already carries "
+    f"(a working-capital movement of {dnwc[0]:,.0f} against capex of {capex[0]:,.0f}, giving "
+    f"free cash flow to the firm of {fcff[0]:,.0f} in the first forecast year). Deducting it "
+    f"in the bridge as well would charge one cash outflow twice.")
 eq_pre_nci = ev - V['nd_fy25'] + assoc_val
 nci_val = nci_share * eq_pre_nci
 eq_attr = eq_pre_nci - nci_val
+
+# THE EMPLOYEES' STATUTORY SHARE OF PROFIT [L-294], which appears in NO line of the income
+# statement and which the first edition did not carry. Egyptian company law gives employees
+# a share of distributable profits; it is an APPROPRIATION rather than a cost, disclosed
+# only in the earnings-per-share note, BELOW profit attributable to owners. A shareholder
+# receives what is left, so a valuation that divides the whole parent equity value by the
+# whole share count hands shareholders value the statute gives to somebody else.
+#
+# MEASURED, NOT ASSUMED: 11.60% of attributable profit in FY2024, 11.96% in FY2025 and
+# 13.01% in the reviewed H1-2026. The three-period mean is used rather than the latest,
+# because this is a rate on profit rather than a driver and one half is not a trend.
+#
+# THE CAP IS STATED AND IS WHY THIS IS AN UPPER BOUND: the statutory share is capped at
+# total annual wages, so as profit grows faster than the wage bill the percentage falls.
+# Nothing in the filings discloses the cap's headroom, so it is not modelled — the charge
+# is held at the measured rate and the direction of the unmodelled cap is recorded.
+emp_rate = (V['emp_share_fy24'] / V['npa_fy24']
+            + V['emp_share_fy25'] / V['npa_fy25']
+            + V['emp_share_h1_26'] / V['h1_26_npa']) / 3.0
+emp_charge = eq_attr * emp_rate
+eq_attr_pre_emp = eq_attr
+eq_attr = eq_attr - emp_charge
+say(f"[Employees' statutory share of profit] measured at {V['emp_share_fy24']/V['npa_fy24']:.2%} "
+    f"(FY2024), {V['emp_share_fy25']/V['npa_fy25']:.2%} (FY2025) and "
+    f"{V['emp_share_h1_26']/V['h1_26_npa']:.2%} (H1-2026) of profit attributable to owners; "
+    f"mean {emp_rate:.2%}. It is disclosed only in the earnings-per-share note, below the "
+    f"attributable line, and appears in NO line of the income statement — which is why the "
+    f"first edition, whose cost stack is built from unit economics, could not have caught it "
+    f"there. Equity attributable {eq_attr_pre_emp:,.0f} less {emp_charge:,.0f} = "
+    f"{eq_attr:,.0f}. THE RECONCILIATION THAT SHOULD HAVE EXPOSED IT: this study registered "
+    f"FY2025 attributable profit of {V['npa_fy25']:,.3f} and the reported EPS of "
+    f"{V['eps_fy25']:.2f}; {V['npa_fy25']:,.3f} / {SH:,.6f} = {V['npa_fy25']/SH:.3f}, and the "
+    f"difference is this charge plus the ESOP adjustment to the weighted-average count.")
 dcf_ps_dec = eq_attr / SH
+
+# The identity the EPS gate checks, asserted here at source rather than left to the gate.
+_eps_implied = (V['npa_fy25'] - V['emp_share_fy25']) / 2139.355716
+assert abs(_eps_implied - V['eps_fy25']) < 0.005, (
+    f"attributable profit less the employees' share over the weighted-average share count "
+    f"gives {_eps_implied:.4f} against the reported {V['eps_fy25']:.2f} — one of the three "
+    f"figures is wrong")
 
 # ---- one date, one price of time: roll every lens to the anchor date ----------
 # Every lens produces an equity value dated 31 December 2025 — the audited balance-sheet
@@ -1265,12 +1332,14 @@ def to_anchor(v):
 dcf_ps = to_anchor(dcf_ps_dec)
 say(f"[Bridge] EV {ev:,.0f} - net financial debt {V['nd_fy25']:,.0f} + associates at carrying "
     f"value {assoc_val:,.0f} = {eq_pre_nci:,.0f}; less minority interests at their "
-    f"{nci_share:.1%} share of group profit = {nci_val:,.0f} -> equity attributable "
-    f"{eq_attr:,.0f} = EGP {dcf_ps_dec:.2f}/share AT 31-DEC-2025; rolled "
+    f"{nci_share:.1%} share of group profit = {nci_val:,.0f}; less the employees' statutory "
+    f"share of profit at {emp_rate:.2%} = {emp_charge:,.0f} -> equity attributable to ORDINARY "
+    f"SHAREHOLDERS {eq_attr:,.0f} = EGP {dcf_ps_dec:.2f}/share AT 31-DEC-2025; rolled "
     f"{V['anchor_days']:.0f}/365 of a year to the 5-Aug-2026 anchor at the {ke_exp:.1%} cost of "
     f"equity (x{ROLL:.4f}) less the EGP {V['dps_fy25']:.2f} dividend paid in the window = EGP "
     f"{dcf_ps:.2f}/share against a spot of {SPOT:.2f} ({dcf_ps/SPOT-1:+.0%}).")
-assert abs((ev - V['nd_fy25'] + assoc_val - nci_val) - eq_attr) < 1e-6, "bridge does not close"
+assert abs((ev - V['nd_fy25'] + assoc_val - nci_val - emp_charge) - eq_attr) < 1e-6, \
+    "bridge does not close"
 assert V['nd_fy25'] > 0 and nci_val > 0, "net debt and NCI must reduce equity value"
 assert dcf_ps > dcf_ps_dec - V['dps_fy25'], "anchor roll must accrete before the dividend"
 
@@ -1290,7 +1359,7 @@ ev_f_egp = (pv_f_usd + tv_f_usd * df_usd[-1]) * V['fx_hist']['FY25']
 pv_d = sum(fcff_d[i] * df[i] for i in range(5))
 tv_d = nopat_term * (1 - rr_term) * (1 - fgn_frac[-1]) / (wacc_term - V['g_term'])
 ev_ccy = ev_f_egp + pv_d + tv_d * df[-1]
-eq_ccy = (ev_ccy - V['nd_fy25'] + assoc_val) * (1 - nci_share)
+eq_ccy = (ev_ccy - V['nd_fy25'] + assoc_val) * (1 - nci_share) * (1 - emp_rate)
 ccy_ps = to_anchor(eq_ccy / SH)
 say(f"[Currency-of-discounting alternative — UIP-corrected] the hard-currency leg "
     f"({fgn_frac[-1]:.0%} of cash flow) is first DEFLATED to dollars at each year's exchange "
@@ -1329,7 +1398,10 @@ def _val_at(we_, wt_, g_=None):
         cc /= (1 + w); _df.append(cc)
     _tv = _terminal_at(wt_, g_).tv
     _ev = sum(fcff[i] * _df[i] for i in range(5)) + _tv * _df[-1]
-    return to_anchor(((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
+    # the employees' statutory share is charged here too, or a scenario silently values a
+    # different claim from the base case
+    return to_anchor(((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)
+                      * (1 - emp_rate)) / SH)
 assert abs(_val_at(wacc_exp, wacc_term) - dcf_ps) < 0.01, 'rating-basis helper does not reproduce base'
 dcf_rating_ps = _val_at(wacc_exp_rating, wacc_term_rating)
 say(f"[Rating-basis alternative, published] on Damodaran's RATING column the cost of equity is "
@@ -1461,7 +1533,8 @@ def dcf_scenario(gp_unit_mult=1.0, fx_mult=1.0, wacc_shift=0.0, g=None, opex_shi
         working_capital=_nwc[-1] * (1 + g),
         incremental_capital_per_unit_growth=_ic_end)).tv
     _ev = sum(_f[i] * _df[i] for i in range(5)) + _tv * _df[-1]
-    return to_anchor(((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
+    return to_anchor(((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)
+                      * (1 - emp_rate)) / SH)
 
 _base_chk = dcf_scenario()
 assert abs(_base_chk - dcf_ps) < 0.02, f'scenario engine does not reproduce base: {_base_chk} vs {dcf_ps}'
