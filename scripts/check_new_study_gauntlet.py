@@ -119,6 +119,15 @@ ARTEFACT_GATES = {
                                       "ax.set_ylim(0, 3)\n"
                                       "ax.axhline(99.0, color='r')\n"
                                       "fig.savefig('fig_out.png')\n")}),
+    'check_sign_convention.py': (
+        'a delivered table printing deductions in two sign conventions at once',
+        lambda: {'%s_Valuation_Study_03-09-2026.docx' % TICKER: ('docx', [
+            ['AED million', '2026E'],
+            ['Less cash operating expenses', '(2,650)'],
+            ['Less capital expenditure', '(1,012)'],
+            ['Less increase in working capital', '440'],
+            ['Free cash flow to the firm', '4,368'],
+        ])}),
     'check_artefact_currency.py': (
         'a builder-read JSON carrying a central and declaring no vintage',
         lambda: {'diagnostics.json': ('json', {'central': 12.34, 'note': 'no declaration'}),

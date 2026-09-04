@@ -46,7 +46,12 @@ import table_residual as TR                                            # noqa: E
 
 RATCHET = os.path.join(ROOT, 'engine', 'build_depth_audit', 'waterfall_outstanding.json')
 DATE = re.compile(r'(\d{2})-(\d{2})-(\d{4})')
-CALL = re.compile(r'\bwaterfall\s*\(')
+# EITHER ASSERTION COUNTS. waterfall() is for a table that names its operations in
+# words; signed_column() is for one that prints signed cash effects and lets the sign
+# do the work. BOTH ARE HONEST CONVENTIONS and check_sign_convention.py is what
+# forbids mixing them. A gate accepting only the first would push a study printing
+# signed values to bolt operator words onto it, which is the worse page.
+CALL = re.compile(r'\b(?:waterfall|signed_column)\s*\(')
 IMPORT = re.compile(r'\b(?:import\s+table_residual|from\s+table_residual\s+import)\b')
 
 

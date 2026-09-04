@@ -8,6 +8,8 @@ import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+from table_residual import signed_column, waterfall   # the shared check, not hand-rolled
 exec(open('docx_base.py').read())
 from inputs import V
 
@@ -213,10 +215,20 @@ for lab, k in [("Revenue", 'revenue'), ("EBITDA", 'ebitda'),
                ("Depreciation and amortisation", 'dep'), ("EBIT", 'ebit'),
                ("NOPAT — EBIT after tax", 'nopat')]:
     rows.append([lab] + [E(r[k]) for r in R])
-rows.append(["Add back depreciation"] + [E(r['dep']) for r in R])
-rows.append(["Less capital expenditure"] + [E(-r['capex']) for r in R])
-rows.append(["Less change in working capital"] + [E(-r['dwc']) for r in R])
+# ONE SIGN CONVENTION, AND THE OPERATOR WORDS COME OFF WITH IT. Every one of these rows
+# already printed the SIGNED CASH EFFECT — capital expenditure as -2,729, and the working
+# capital movement as +788 in a year it releases — under labels reading "Less". "Less
+# -2,729" tells a reader to add 2,729, and in the next year the same row prints -220 under
+# the same word. The sign does the work here, exactly as it does in the top half of every
+# statement in this study, so the words go and the build asserts the column sums.
+rows.append(["Depreciation added back"] + [E(r['dep']) for r in R])
+rows.append(["Capital expenditure"] + [E(-r['capex']) for r in R])
+rows.append(["Change in working capital — a release adds, a build subtracts"]
+            + [E(-r['dwc']) for r in R])
 rows.append(["FREE CASH FLOW TO THE FIRM"] + [E(r['fcff']) for r in R])
+for _i, _r in enumerate(R):
+    signed_column([_r['nopat'], _r['dep'], -_r['capex'], -_r['dwc']], _r['fcff'], dp=0,
+                  what='the cash-flow waterfall, year %d' % (_i + 1))
 rows.append(["Discount rate from the glide"] + [PC2(w) for w in DR['wacc_path']])
 rows.append(["Discount factor"] + [f"{r['df']:.4f}" for r in R])
 rows.append(["PRESENT VALUE OF FREE CASH FLOW"] + [E(r['pv']) for r in R])

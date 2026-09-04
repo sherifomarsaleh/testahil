@@ -24,6 +24,8 @@ from docx_helpers import (INK, MUTED, ACCENT, money, pct, style, para, bullets,
                           assert_columns_fit)
 
 sys.path.insert(0, os.path.join(HERE, ".."))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+from table_residual import signed_column, waterfall   # the shared check, not hand-rolled
 import col_width                                                       # noqa: E402
 
 HDR_SUMMARY = ["Case", "Discount rate", "Enterprise value",
@@ -335,11 +337,19 @@ def section1(doc):
         ("Operating profit", [r["ebit"] for r in rows_]),
         ("Tax on operating profit", [-r["ebit"] * tax for r in rows_]),
         ("Operating profit after tax", [r["ebit"] * (1 - tax) for r in rows_]),
-        ("add back depreciation and amortisation", [r["da"] for r in rows_]),
-        ("less capital spend", [-r["capex"] for r in rows_]),
-        ("less increase in homes built ahead of handover",
+        # ONE SIGN CONVENTION, AND THE OPERATOR WORDS COME OFF WITH IT. Every row here
+        # already printed the SIGNED CASH EFFECT — capital spend as -2,319, and the
+        # movement in homes built ahead of handover as +855 in a year it releases and
+        # -4,550 in the next — under labels reading "less". "less -2,319" tells a reader
+        # to add 2,319, and the same row switching sign between adjacent years is
+        # something no reader can get right. The sign does the work, exactly as it does
+        # in the top half of this same table, so the words go and the build asserts the
+        # column sums.
+        ("Depreciation and amortisation added back", [r["da"] for r in rows_]),
+        ("Capital spend", [-r["capex"] for r in rows_]),
+        ("Movement in homes built ahead of handover — a release adds, a build subtracts",
          [-r["d_properties_under_development"] for r in rows_]),
-        ("add increase in money collected ahead of handover",
+        ("Movement in money collected ahead of handover",
          [r["d_advances"] for r in rows_]),
         ("Free cash flow to the firm", [r["fcff"] for r in rows_]),
         # formatted here, not by the shared money() helper: a discount factor
@@ -347,6 +357,10 @@ def section1(doc):
         ("Discount factor", [money(r["discount_factor"], 4) for r in rows_]),
         ("Present value of free cash flow", [r["pv"] for r in rows_]),
     ]
+    for _r in rows_:
+        signed_column([_r["ebit"] * (1 - tax), _r["da"], -_r["capex"],
+                       -_r["d_properties_under_development"], _r["d_advances"]],
+                      _r["fcff"], dp=0, what='the cash-flow waterfall')
     tab = [[lab] + [x if isinstance(x, str) else money(x) for x in vals]
            for lab, vals in lines]
     table(doc, ["EGP million"] + yrs, tab, [6.2, 2.0, 2.0, 2.0, 2.0, 2.0],

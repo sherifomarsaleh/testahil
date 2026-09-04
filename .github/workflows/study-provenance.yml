@@ -76,6 +76,8 @@ on:
       - 'scripts/check_waterfall_assertions.py'
       - 'scripts/check_waterfall_assertions_negative_control.py'
       - 'engine/table_residual.py'
+      - 'scripts/check_sign_convention.py'
+      - 'scripts/check_sign_convention_negative_control.py'
       - 'engine/table_footing.py'
       - 'engine/site_data.py'
       - 'scripts/check_site_data_reader.py'
@@ -173,6 +175,8 @@ on:
       - 'scripts/check_waterfall_assertions.py'
       - 'scripts/check_waterfall_assertions_negative_control.py'
       - 'engine/table_residual.py'
+      - 'scripts/check_sign_convention.py'
+      - 'scripts/check_sign_convention_negative_control.py'
       - 'engine/table_footing.py'
       - 'engine/site_data.py'
       - 'scripts/check_site_data_reader.py'
@@ -502,6 +506,23 @@ jobs:
       # a half-unit of printed rounding that must NOT fire
       - name: Waterfall-assertion gate — negative control
         run: python3 scripts/check_waterfall_assertions_negative_control.py
+
+      # ONE SIGN CONVENTION PER TABLE, SO A DEDUCTION CAN ONLY BE READ ONE WAY. A table
+      # printing "(2,650)", "(360)", "(792)" and then "440" under four rows that all begin
+      # "Less" has told a reader two different things with the same word — and in every one
+      # of the nine tables that did it, the row breaking the convention was a working-
+      # capital line the model ADDS. A reader following the labels came out 880 low on a
+      # 4,368 cash flow. Unlike the waterfall check this one CAN read the page, because
+      # whether a figure is bracketed, signed or bare is a property of the page and of
+      # nothing else — no anchor, no model, no pool of committed numbers.
+      - name: Sign-convention gate
+        run: python3 scripts/check_sign_convention.py
+
+      # and the proof it can go red, on all three shapes exactly as they shipped — plus
+      # seven clean cases, among them the rate-beside-its-amount row that the first draft
+      # wrongly flagged and that was fixed by re-pointing rather than widening
+      - name: Sign-convention gate — negative control
+        run: python3 scripts/check_sign_convention_negative_control.py
 
       # [R-ENF-03] assets/data.js is read through a REAL JavaScript parse, EVERYWHERE.
       # The rule was adopted four weeks earlier, after a reader — not a check — found a

@@ -152,6 +152,128 @@ def waterfall(anchor, steps, answer, dp=0, what='', extra=0.0, why=''):
     return val
 
 
+def signed_column(values, answer, dp=0, what='', extra=0.0, why=''):
+    """Assert a column of SIGNED cash effects sums to the answer printed below it.
+
+    The sibling of waterfall(), for the other honest convention. A statement can name its
+    operations in words over positive magnitudes, or print signed values and let the sign
+    do the work — BOTH ARE CLEAR AND MIXING THEM IS NOT, which is what
+    scripts/check_sign_convention.py measures on the page. Where a table prints signed
+    values, the operator words come off and this assertion goes on, so the claim is still
+    checked and the study does not simply leave the waterfall gate's population.
+    """
+    if extra and not why:
+        raise WaterfallError(
+            '%s: a figure the table does not print may be declared, but not without a '
+            'reason' % (what or 'signed column'))
+    val = sum(float(v) for v in values) + float(extra)
+    band = (len(values) + 1) * (0.5 * 10.0 ** -int(dp))
+    if abs(val - float(answer)) > band + 1e-9:
+        raise WaterfallError(
+            '%s: the printed rows sum to %.6g and the table prints %.6g — a gap of %.6g '
+            'against a rounding band of %.6g'
+            % (what or 'signed column', val, float(answer), float(answer) - val, band))
+    return val
+
+
+# ---------------------------------------------------------------------------
+# ONE SIGN CONVENTION PER TABLE — exact, page-only, and needing no anchor
+# ---------------------------------------------------------------------------
+# THE ANCHOR PROBLEM ABOVE DOES NOT ARISE HERE. Whether a deduction is printed in
+# parentheses, as a signed negative, or as a bare magnitude is visible on the page and
+# nowhere else, and a table that uses two of those under DEDUCTION labels cannot be read:
+# the reader does not know whether to take the magnitude off or add the sign.
+#
+# It is not a style question. Nine tables in the book do it, and in every one the row that
+# breaks the convention is a working-capital line THE MODEL ADDS while its label says
+# "Less": one prints "(2,650)", "(360)", "(792)" and then "440"; another prints "810",
+# "1,900", "350" and then "-373". A reader following the labels comes out 880 low on a
+# 4,368 cash flow — 20% of the year — and nothing on the page says so. In three of the
+# nine THE SAME ROW SWITCHES CONVENTION BETWEEN ADJACENT YEARS, which no reader can
+# possibly get right.
+#
+# THE SEMANTIC DEFECT BENEATH IT IS THE REAL ONE and is named here because the arithmetic
+# check is what makes it visible: a row labelled "Less INCREASE in working capital" over a
+# figure that is a RELEASE states the opposite of what happened. The honest fix is a signed
+# label ("Change in working capital, a release shown positive") or one convention through
+# the table — never a footnote, because a reader adding a column does not stop to read one.
+_BARE_FIGURE = re.compile(r'[(\-\u2212+]?\s*[\d,]+(?:\.\d+)?\s*\)?\s*[%x\u00d7]?')
+_NOT_A_FIGURE = ('', '—', '-', '–', 'n/a', 'N/A', 'nil')
+
+
+def _convention(text):
+    """(convention, unit) for a printed figure, or None where it is not one.
+
+    The UNIT rides with the convention because a RATE and an AMOUNT are different
+    quantities and comparing their conventions is comparing nothing. One row in the book
+    reads "less: complexity / conglomerate discount | 10% | (4,629)" — the rate bare, the
+    amount in parentheses, and both perfectly clear. The first draft flagged it, and per
+    [R-COC-01] a check firing on work that is right is re-pointed rather than widened.
+    """
+    t = (text or '').strip()
+    if t in _NOT_A_FIGURE:
+        return None
+    # THE CELL MUST BE A FIGURE AND NOTHING ELSE. A note column carrying "26.3% of equity
+    # value" parses as a number under any reader that tolerates trailing words, and a note
+    # is not a convention — that false positive was in the first measurement.
+    if not _BARE_FIGURE.fullmatch(t):
+        return None
+    c = parse_cell(t)
+    if c is None or c[0] == 0:
+        return None
+    unit = 'rate' if c[2] else 'amount'
+    if t.startswith('('):
+        return 'bracket', unit
+    if t.lstrip()[0] in '-\u2212':
+        return 'signed', unit
+    return 'bare', unit
+
+
+def sign_conventions(rows):
+    """Every column of one table whose DEDUCTION rows do not agree on a sign convention.
+
+    Returns {column: {convention: [(row, printed), ...]}} for the columns that disagree.
+    """
+    out = {}
+    width = max((len(r) for r in rows), default=1)
+    for j in range(1, width):
+        seen = {}
+        for i, r in enumerate(rows):
+            if not i or op_of(r[0] if r else '') != '-':
+                continue
+            k = _convention(r[j] if j < len(r) else '')
+            if k:
+                seen.setdefault(k, []).append((i, (r[j] or '').strip()))
+        for unit in ('amount', 'rate'):
+            kinds = {k[0]: v for k, v in seen.items() if k[1] == unit}
+            if len(kinds) > 1:
+                out[j] = kinds
+    return out
+
+
+def sign_conventions_across(rows):
+    """Deduction ROWS that switch convention between adjacent columns.
+
+    The sharpest form: one line of a forecast printing "855" in one year and "-4,550" in
+    the next, under a single label. Nothing a reader does with that is right.
+    """
+    out = {}
+    width = max((len(r) for r in rows), default=1)
+    for i, r in enumerate(rows):
+        if not i or op_of(r[0] if r else '') != '-':
+            continue
+        seen = {}
+        for j in range(1, min(width, len(r))):
+            k = _convention(r[j])
+            if k:
+                seen.setdefault(k, []).append((j, (r[j] or '').strip()))
+        for unit in ('amount', 'rate'):
+            kinds = {k[0]: v for k, v in seen.items() if k[1] == unit}
+            if len(kinds) > 1:
+                out[i] = ((r[0] or '').strip(), kinds)
+    return out
+
+
 # ---------------------------------------------------------------------------
 # ADVISORY ONLY — the page-side reading, kept because its measurement is evidence
 # ---------------------------------------------------------------------------
