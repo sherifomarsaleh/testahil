@@ -134,8 +134,10 @@ rows = [['EGP million'] + YF]
 for lab, key, f in [('Revenue', 'revenue', n0), ('EBITDA', 'ebitda', n0),
                     ('EBITDA margin', None, None), ('Depreciation & amortisation', 'dna', n0),
                     ('EBIT', 'ebit', n0), ('NOPAT  (EBIT × (1 − t))', 'nopat', n0),
-                    ('Less reinvestment to fund the growth in NOPAT, at the terminal '
-                     'return on capital', 'reinvestment', n0),
+                    ('Depreciation and amortisation added back', 'dna', n0),
+                    ('Capital expenditure', 'capex', lambda x: '(' + n0(x) + ')'),
+                    ('Change in working capital', 'dwc',
+                     lambda x: ('(' + n0(x) + ')') if x > 0 else n0(-x)),
                     ('Free cash flow to the firm', 'fcff', n0),
                     ('Discount factor', 'df', lambda x: f'{x:.4f}'),
                     ('Present value of free cash flow', 'pv', n0)]:
@@ -149,12 +151,15 @@ table(rows, [2.25, 0.94, 0.94, 0.94, 0.94, 0.94], band_rows={8, 10})
 for _i in range(5):
     waterfall(
         F['nopat'][_i],
-        [('Less reinvestment to fund the growth in NOPAT', F['reinvestment'][_i])],
+        [('Plus depreciation and amortisation', F['dna'][_i]),
+         ('Less capital expenditure', F['capex'][_i]),
+         ('Less change in working capital', F['dwc'][_i])],
         F['fcff'][_i], dp=0, what='Table 1, %s' % YF[_i],
         # THE FIRST YEAR IS THE ONE LINE A READER CANNOT ADD UP AND THE CAPTION SAYS SO:
         # only the unearned part of FY2026 is a future receipt. Declared with its reason
         # rather than silently tolerated, which is what the helper's own refusal is for.
-        extra=(-(F['nopat'][_i] - F['reinvestment'][_i]) * (1.0 - _STUB)) if _i == 0 else 0.0,
+        extra=(-(F['nopat'][_i] + F['dna'][_i] - F['capex'][_i] - F['dwc'][_i])
+               * (1.0 - _STUB)) if _i == 0 else 0.0,
         why=('only the part of %s still unearned at the valuation date is a future '
              'receipt; the caption names the fraction' % YF[0]) if _i == 0 else '')
 # The stub is quoted to the precision a reader NEEDS, not to a round one: at 42% the two
@@ -162,19 +167,25 @@ for _i in range(5):
 # have let anyone reproduce it. Tested on the PRINTED strings, which is what the reader has.
 _STUB_TXT = pc(_STUB, 1)
 _rd = lambda t: float(t.replace(',', '').rstrip('%'))
-assert abs(round(_rd(n0(F['nopat'][0])) * _rd(_STUB_TXT) / 100.0)
-           - _rd(n0(F['fcff'][0]))) <= 1.0, (
+# the stub scales the WHOLE first-year waterfall, not NOPAT alone, so the reader's own
+# arithmetic runs down the column and then applies the fraction the caption names
+_yr1 = (_rd(n0(F['nopat'][0])) + _rd(n0(F['dna'][0])) - _rd(n0(F['capex'][0]))
+        - _rd(n0(F['dwc'][0])))
+assert abs(round(_yr1 * _rd(_STUB_TXT) / 100.0) - _rd(n0(F['fcff'][0]))) <= 2.0, (
     'the printed stub does not reproduce the printed first-year cash flow')
 caption(f'Table 1 — From revenue to the present value of free cash flow to the firm. Free '
-        f'cash flow is NOPAT less the reinvestment that funds the growth in it, and the '
+        f'cash flow is NOPAT plus book depreciation, less the capital actually spent and '
+        f'the working capital the growth absorbs — the SAME waterfall the terminal uses, '
+        f'so the two windows cannot mean different things by the same words. The '
         f'first year is scaled to the {_STUB_TXT} of {YF[0]} still unearned at the '
         f'valuation date — that is the only line a reader cannot add up from the two above '
         f'it. Every line is a live formula in the companion model.')
-P('Depreciation, capital expenditure and the movement in working capital are drivers of '
-  'the projected BALANCE SHEET rather than of the cash flow above: this model reinvests '
-  'to fund growth at the terminal return on capital and does not route cash through the '
-  'asset schedule. They are set out in the statements appendix.', size=9.5, italic=True,
-  color=GREY)
+P('Capital expenditure is the company\'s own run rate from its cash-flow statements — '
+  'EGP 121 million in FY2023, 526 million in FY2024 and 262 million in FY2025 — escalated '
+  'with domestic costs, and depreciation is the rate its own accounting-policies note '
+  'discloses applied to the asset base that capital spending builds. An earlier edition '
+  'charged depreciation at 4.6% of revenue falling to 4.2%, against a company that filed '
+  '1.35%.', size=9.5, italic=True, color=GREY)
 
 P('The discount rate is not one number. Egypt\'s cost of capital today reflects a policy '
   'rate of 19.50% and a ten-year government yield of 22.31%, neither of which the central '
@@ -396,14 +407,20 @@ caption('Table 9 — The volume and price chain. The clinker factor of '
         'the plant register, which publishes both capacities — 2.57Mt of kiln clinker '
         'against 3.80Mt of grinding — so it is observed rather than assumed.')
 rows = [['EGP per tonne of cement', 'FY2025A'] + YF]
-for lab, k in [('Thermal fuel', 'c_fuel'), ('Electrical power', 'c_pow'),
-               ('Raw materials & quarrying', 'c_raw'), ('Packaging', 'c_pack'),
-               ('Distribution & selling', 'c_dist'), ('Total variable cost', 'var_t')]:
+for lab, k in [('Materials, fuel, power and packing', 'c_mat'),
+               ('Transport, loading and export costs', 'c_dist'),
+               ('Total variable cost', 'var_t')]:
     rows.append([lab] + [n0(b[k]) for b in BUD])
-table(rows, [1.70, 0.84, 0.84, 0.84, 0.84, 0.84, 0.84], size=8.8, band_rows={6})
-caption('Table 10 — The cost stack. Every line is a physical or market quantity: heat per '
-        'tonne of clinker times the delivered fuel price; kilowatt-hours per tonne times '
-        'the industrial tariff; and so on.')
+table(rows, [1.70, 0.84, 0.84, 0.84, 0.84, 0.84, 0.84], size=8.8, band_rows={3})
+caption('Table 10 — The cost stack, on the two lines the company itself discloses. The '
+        'first is note 24 of the audited accounts, "Raw materials, Supplies, fuel, power, '
+        'packing sacks"; the second is note 25\'s transport and export costs together with '
+        'note 24\'s own loading charge. THE ACCOUNTS DO NOT SPLIT THE FIRST LINE FURTHER, '
+        'so neither does this model: an earlier edition built it from four industry rules '
+        f'of thumb that came to {pc(1 - 2553.7/3592.5, 0)} less than the figure the company '
+        'filed. The dollar-linked share of that line is estimated at '
+        f'{pc(IN["materials_usd_share"], 0)} and is the one part of this table the accounts '
+        'do not evidence; it is sensitised in section 1.9.')
 rows = [['EGP million', 'FY2025A'] + YF]
 for lab, k in [('Revenue', 'rev'), ('Variable cost', 'var'), ('Fixed cost', 'fixed'),
                ('EBITDA — an OUTPUT', 'ebitda')]:

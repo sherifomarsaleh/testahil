@@ -66,6 +66,11 @@ RENDER = PF.rendering_set(vals, extra=[
     0.7595,     # the rights-issue take-up: 127.74mn subscribed of 168.20mn offered
     # and the realised price gap the volume build implies against the market average
     0.139,
+    # two macro readings quoted in the bibliography as sourced external facts. Neither is
+    # a model output and neither should be: they are the backdrop the cost of capital is
+    # built against, cited with their dates beside them.
+    0.0363,     # US federal funds midpoint, June 2026
+    0.138,      # Egyptian core inflation, May 2026
 ])
 
 if __name__ == '__main__':

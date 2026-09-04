@@ -188,7 +188,7 @@ band(wsA, 4, 9); wsA['A4'] = 'MARKET'
 inp(5, 'Spot price', 'spot', SPOT, PX, 'EGP, close 06-Aug-2026')
 inp(6, 'Shares outstanding', 'shares', SH, NUM2, 'mn')
 inp(7, 'Statutory tax rate', 'tax', IN['tax_stat'], PCT, '')
-inp(8, 'Effective tax rate (historical closure)', 'taxe', IN['tax_eff'], PCT, '')
+
 inp(9, 'USD/EGP (spot)', 'fx', IN['fx'], NUM1, '')
 
 band(wsA, 11, 9); wsA['A11'] = 'PLANT — PHYSICAL'
@@ -197,15 +197,25 @@ inp(13, 'Kiln clinker capacity', 'capclk', IN['cap_clinker_mt'], NUM2, 'Mt/yr')
 inp(14, 'Clinker factor', 'cfac', IN['clinker_factor'], NUM3, 't clinker / t cement')
 
 band(wsA, 15, 9); wsA['A15'] = 'COST STACK — PHYSICAL AND MARKET DRIVERS'
-inp(16, 'Specific thermal energy', 'thermal', IN['thermal_gj_t_clinker'], NUM2, 'GJ/t clinker')
-inp(17, 'Delivered fuel cost', 'fuelgj', IN['fuel_usd_gj'], NUM2, 'USD/GJ')
-inp(18, 'Specific electrical energy', 'powkwh', IN['power_kwh_t_cement'], NUM0, 'kWh/t cement')
-inp(19, 'Industrial electricity tariff', 'powtar', IN['power_tariff'], NUM2, 'EGP/kWh')
-inp(20, 'Raw materials & quarrying', 'rawmat', IN['rawmat_egp_t'], NUM0, 'EGP/t cement')
-inp(21, 'Packaging', 'packt', IN['packaging_egp_t'], NUM0, 'EGP/t bagged')
-inp(22, 'Bagged share of despatches', 'bagsh', IN['bagged_share'], PCT, '')
-inp(23, 'Distribution & selling', 'distt', IN['distribution_egp_t'], NUM0, 'EGP/t cement')
-inp(24, 'Fixed cash cost', 'fixedt', IN['fixed_usd_t_capacity'], NUM2, 'USD/t of capacity')
+# THE COST STACK IS THE COMPANY'S OWN DISCLOSED ONE. The earlier edition carried four
+# industry rules of thumb and a fixed cost per tonne of installed capacity; notes 24, 25
+# and 26 of the audited accounts state the lines, and they are the inputs now.
+inp(16, 'Materials, fuel, power, packing (note 24)', 'matfy', IN['cost_materials_fy25'],
+    NUM0, 'EGP mn, FY2025')
+inp(17, 'Transport, loading and export (notes 24, 25)', 'distfy',
+    IN['cost_distribution_fy25'], NUM0, 'EGP mn, FY2025')
+inp(18, 'Fixed cash cost (the rest of notes 24, 25, 26)', 'fixfy', IN['cost_fixed_fy25'],
+    NUM0, 'EGP mn, FY2025')
+inp(19, 'Dollar-linked share of the materials line', 'usdsh', IN['materials_usd_share'],
+    PCT, 'ESTIMATED — the accounts do not split it')
+inp(20, 'Gross fixed assets (note 4)', 'grossfa', IN['gross_fixed_fy25'], NUM0,
+    'EGP mn, 31-Dec-2025')
+inp(21, 'Weighted depreciation rate (note 3/2 on note 4)', 'deprate',
+    IN['dep_rate_disclosed'], PCT, 'straight-line')
+inp(22, 'Capex run rate (cash-flow statements)', 'capexrr', IN['capex_run_rate'], NUM0,
+    'EGP mn/yr')
+inp(23, 'Cash, reviewed sheet 31-Mar-2026', 'cashm26', IN['cash_mar26'], NUM0, 'EGP mn')
+inp(24, 'Lease liabilities, 31-Mar-2026', 'debtm26', IN['debt_mar26'], NUM0, 'EGP mn')
 
 band(wsA, 26, 9); wsA['A26'] = 'FORECAST PATHS — FY2025A then FY2026E to FY2030E'
 hdr(wsA, 27, [''] + ['FY2025A'] + YF)
@@ -217,19 +227,19 @@ inprow(32, 'USD/EGP path', 'fxp', IN['fx_path'], NUM1, '')
 inprow(33, 'Local cost inflation index', 'infl', IN['cost_infl'], NUM3, '')
 
 band(wsA, 35, 9); wsA['A35'] = 'CAPITAL INTENSITY (FY2026E to FY2030E)'
+# D&A / revenue and capex / revenue are RETIRED: depreciation is now the disclosed rate on
+# the asset base and capex the company's own run rate, both from the filings.
 for j, (lab, key, vals) in enumerate([
-        ('D&A / revenue', 'dnap', IN['dna_pct']),
-        ('Capex / revenue', 'cxp', IN['capex_pct']),
         ('Cost-of-debt path', 'kdp', IN['kd_path']),
         ('Yield earned on cash', 'cy', IN['cash_yield'])]):
-    rr = 36 + j
+    rr = 38 + j
     wsA.cell(row=rr, column=1, value=lab)
     for i, v in enumerate(vals):
         put(wsA, f'{DC[i]}{rr}', v, BLUE, PCT)
         A[f'{key}{i}'] = f"Assumptions!${DC[i]}${rr}"
 inp(40, 'Delta working capital / delta revenue', 'wcp', IN['wc_pct_drev'], PCT)
 inp(41, 'Dividend payout ratio', 'pay', IN['payout'], PCT)
-inp(42, 'Yield on cash, FY2025', 'cy25', IN['cash_yield_fy25'], PCT)
+
 
 band(wsA, 44, 9); wsA['A44'] = 'COST OF CAPITAL'
 inp(45, 'Risk-free rate (EGP 10-year)', 'rf', IN['rf'], PCT2)
@@ -255,19 +265,22 @@ inp(64, 'FY2025 revenue', 'rev25', IN['rev_fy25'], NUM0)
 inp(65, 'FY2023 profit after tax', 'pat23', IN['pat_fy23'], NUM0)
 inp(66, 'FY2024 profit after tax', 'pat24', IN['pat_fy24'], NUM0)
 inp(67, 'FY2025 profit after tax', 'pat25', IN['pat_fy25'], NUM0)
-inp(68, 'FY2024 EBITDA (disclosed anchor)', 'eb24', IN['ebitda_fy24'], NUM0)
+
 inp(69, 'FY2024 total assets', 'ta24', IN['ta_fy24'], NUM1)
 inp(70, 'FY2024 total liabilities', 'tl24', IN['tl_fy24'], NUM1)
-inp(71, 'FY2023 treasury income', 'tr23', 198.0, NUM0)
+
 inp(72, 'FY2023 weighted-average shares', 'sh23', IN['shares_fy23'], NUM2, 'mn')
 inp(73, 'FY2024 weighted-average shares', 'sh24', IN['shares_fy24'], NUM2, 'mn')
 inp(74, 'FY2025 weighted-average shares', 'sh25', IN['shares_fy25'], NUM2, 'mn')
-inp(75, 'D&A / revenue, FY2023', 'dna23', 0.094, PCT)
-inp(76, 'D&A / revenue, FY2024', 'dna24', 0.062, PCT)
-inp(77, 'D&A / revenue, FY2025', 'dna25p', 0.046, PCT)
+
+
+
 inp(92, 'Sinai White disposal — EUR consideration', 'eur', IN['swcc_eur'], NUM1, 'EUR mn')
-inp(93, 'EGP per EUR at completion', 'fxe', IN['egp_per_eur_aug24'], NUM1, 'Aug-2024')
-inp(94, 'Sinai White stake — carrying value', 'swb', IN['swcc_book'], NUM0, 'EGP mn')
+# The euro rate and the carrying value are RETIRED FROM THE SHEET: the disposal gain is
+# the one the FY2024 income statement states on its face, so reconstructing it from a
+# consideration and a book value changes nothing. Both remain in the input register, where
+# the study quotes the transaction, but an input a reader can change that changes nothing
+# is worse than an absent one — it says the model depends on something it does not.
 
 band(wsA, 79, 9); wsA['A79'] = 'LENS INPUTS AND WEIGHTS'
 inp(80, 'Replacement cost of capacity', 'repl', IN['repl_usd_t'], NUM0, 'USD/t')
@@ -277,6 +290,9 @@ inp(83, 'Justified price/earnings', 'pej', IN['pe_just'], MULT)
 inp(84, 'Mid-cycle EBITDA margin', 'nmgn', IN['norm_mgn'], PCT)
 inp(85, 'Normalised revenue haircut', 'nhair', IN['norm_rev_haircut'], PCT)
 inp(86, 'Vicat tender offer price', 'mto', IN['mto_price'], PX)
+inp(92, 'Gain on sale of investments, FY2024 (as filed)', 'swgain',
+    D['disposal']['gain'], NUM0, 'EGP mn')
+
 inp(87, 'Weight — cash flow', 'w0', IN['w_dcf'], PCT)
 inp(88, 'Weight — relative', 'w1', IN['w_rel'], PCT)
 inp(89, 'Weight — normalised', 'w2', IN['w_norm'], PCT)
@@ -284,10 +300,29 @@ inp(90, 'Weight — asset', 'w3', IN['w_asset'], PCT)
 putf(wsA, 'B91', "=SUM(B87:B90)", 1.0, PCT, bold=True)
 wsA['A91'] = 'Total (must be 100%)'
 
+# THE FILED HISTORICALS, as inputs on the assumptions sheet — depreciation, operating
+# profit and interest income straight off the audited statements, so the income-statement
+# sheet reads facts rather than reconstructing them.
+wsA['A99'] = 'THE FILED HISTORICALS — AUDITED STATEMENTS, NOTHING SOLVED'
+wsA['A99'].font = SUB
+for _j, (_lab, _key, _vals, _f) in enumerate([
+        ('Depreciation & amortisation', 'fdna', D['history']['dna'], NUM0),
+        ('EBIT (operating profit plus the finance charge inside it)', 'febit',
+         D['history']['ebit'], NUM0),
+        ('Interest and investment income', 'ftr', D['history']['treasury'], NUM0)]):
+    _rr = 100 + _j
+    wsA.cell(row=_rr, column=1, value=_lab)
+    for _i, _v in enumerate(_vals):
+        put(wsA, f'{DC[_i]}{_rr}', _v, BLUE, _f)
+        A[f'{_key}{_i}'] = f"Assumptions!${DC[_i]}${_rr}"
+    wsA.cell(row=_rr, column=9, value='EGP mn, FY2023-25').font = SUB
+FDNAK = [A['fdna0'], A['fdna1'], A['fdna2']]
+FEBITK = [A['febit0'], A['febit1'], A['febit2']]
+FTRK = [A['ftr0'], A['ftr1'], A['ftr2']]
+
 PATK = [A['pat23'], A['pat24'], A['pat25']]
 REVK = [A['rev23'], A['rev24'], A['rev25']]
 SHK = [A['sh23'], A['sh24'], A['sh25']]
-DNAK = [A['dna23'], A['dna24'], A['dna25p']]
 
 # ============ 6 UNIT BUILD & COST STACK (the bottom-up engine) ===============
 wsU = sheet('Unit Build')
@@ -326,18 +361,21 @@ for i in range(6):
     putf(wsU, f'{c}20', f"={c}19/{c}10", BU[i]['price'], NUM0)
 
 band(wsU, 22, 10); wsU['A22'] = 'COST STACK — EGP PER TONNE OF CEMENT'
-CL = ['Thermal fuel', 'Electrical power', 'Raw materials & quarrying', 'Packaging',
-      'Distribution & selling', 'TOTAL VARIABLE (EGP/t)']
-for j, l in enumerate(CL):
-    wsU.cell(row=23 + j, column=1, value=l)
+CL = [(23, 'Materials, fuel, power and packing (note 24)'),
+      (24, 'Transport, loading and export (notes 24 and 25)'),
+      (28, 'TOTAL VARIABLE (EGP/t)')]
+for rr, l in CL:
+    wsU.cell(row=rr, column=1, value=l)
 for i in range(6):
     c = BUC[i]
-    putf(wsU, f'{c}23', f"={A['thermal']}*{c}9*{A['fuelgj']}*{c}16", BU[i]['c_fuel'], NUM0)
-    putf(wsU, f'{c}24', f"={A['powkwh']}*{A['powtar']}*{A[f'infl{i}']}", BU[i]['c_pow'], NUM0)
-    putf(wsU, f'{c}25', f"={A['rawmat']}*{A[f'infl{i}']}", BU[i]['c_raw'], NUM0)
-    putf(wsU, f'{c}26', f"={A['packt']}*{A['bagsh']}*{A[f'infl{i}']}", BU[i]['c_pack'], NUM0)
-    putf(wsU, f'{c}27', f"={A['distt']}*{A[f'infl{i}']}", BU[i]['c_dist'], NUM0)
-    putf(wsU, f'{c}28', f"=SUM({c}23:{c}27)", BU[i]['var_t'], NUM0, bold=True)
+    # the two disclosed lines, anchored on FY2025 over the FY2025 volume this model itself
+    # computes, each escalating on its own driver class
+    putf(wsU, f'{c}23', f"={A['matfy']}/$B$10*({A['usdsh']}*{c}16/{A['fxp0']}"
+                        f"+(1-{A['usdsh']})*{A[f'infl{i}']}/{A['infl0']})",
+         BU[i]['c_mat'], NUM0)
+    putf(wsU, f'{c}24', f"={A['distfy']}/$B$10*{A[f'infl{i}']}/{A['infl0']}",
+         BU[i]['c_dist'], NUM0)
+    putf(wsU, f'{c}28', f"={c}23+{c}24", BU[i]['var_t'], NUM0, bold=True)
 
 band(wsU, 30, 10); wsU['A30'] = 'PROFIT AND LOSS — EGP MILLION'
 for j, l in enumerate(['Revenue', 'Variable cost', 'Fixed cost', 'EBITDA  (AN OUTPUT)',
@@ -347,7 +385,7 @@ for i in range(6):
     c = BUC[i]
     putf(wsU, f'{c}31', f"={c}19", BU[i]['rev'], NUM0, green=True)
     putf(wsU, f'{c}32', f"={c}28*{c}10", BU[i]['var'], NUM0)
-    putf(wsU, f'{c}33', f"={A['fixedt']}*{c}8*{A['fx']}*{A[f'infl{i}']}", BU[i]['fixed'], NUM0)
+    putf(wsU, f'{c}33', f"={A['fixfy']}*{A[f'infl{i}']}/{A['infl0']}", BU[i]['fixed'], NUM0)
     putf(wsU, f'{c}34', f"={c}31-{c}32-{c}33", BU[i]['ebitda'], NUM0, bold=True)
     putf(wsU, f'{c}35', f"={c}34/{c}31", BU[i]['mgn'], PCT)
     putf(wsU, f'{c}36', f"={c}34/{c}10", BU[i]['ebitda'] / BU[i]['cement'], NUM0)
@@ -379,30 +417,44 @@ ROWS = [('Revenue', 'rev'), ('EBITDA margin', 'mgn'), ('EBITDA', 'ebitda'),
         ('Depreciation & amortisation', 'dna'), ('EBIT', 'ebit'), ('Tax rate', 'trate'),
         ('NOPAT  (EBIT × (1 − t))', 'nopat'), ('Memo: capital expenditure', 'capex'),
         ('Memo: change in working capital', 'dwc'),
-        ('Net reinvestment  (growth ÷ terminal ROIC)', 'reinv'),
+        ('Net capital charge  (capex + working capital − depreciation)', 'reinv'),
         ('Free cash flow to the firm', 'fcff'), ('Glide fraction', 'glide'),
         ('Forward cost of capital', 'fwd'), ('Discount factor', 'df'),
         ('Present value of FCFF', 'pv')]
 for j, (lab, _) in enumerate(ROWS):
     wsD.cell(row=5 + j, column=1, value=lab)
+wsD.cell(row=20, column=1, value='Memo: capital expenditure, on the company\'s own run rate')
+wsD.cell(row=21, column=1,
+         value='Memo: gross fixed assets, note 4 rolled forward on that capex')
 for i in range(5):
     c = DC[i]
     putf(wsD, f'{c}5', f"='Unit Build'!{BUC[i+1]}31", F['revenue'][i], NUM0, green=True)
     putf(wsD, f'{c}7', f"='Unit Build'!{BUC[i+1]}34", F['ebitda'][i], NUM0, green=True)
     putf(wsD, f'{c}6', f"={c}7/{c}5", F['ebitda'][i] / F['revenue'][i], PCT)
-    putf(wsD, f'{c}8', f"={c}5*{A[f'dnap{i}']}", F['dna'][i], NUM0)
+    # THE ASSET BASE AND THE CAPEX THAT ROLLS IT, on memo rows 20 and 21 so the disclosed
+    # depreciation rate has something to apply to. Rows 6 and 7 are the margin and EBITDA.
+    _prevg = f"{A['grossfa']}" if i == 0 else f"{DC[i-1]}21"
+    putf(wsD, f'{c}20', f"={A['capexrr']}*{A[f'infl{i+1}']}/{A['infl0']}", F['capex'][i],
+         NUM0)
+    putf(wsD, f'{c}21', f"={_prevg}+{c}20", F['gross_fa'][i], NUM0)
+    putf(wsD, f'{c}8', f"={c}21*{A['deprate']}", F['dna'][i], NUM0)
     putf(wsD, f'{c}9', f"={c}7-{c}8", F['ebit'][i], NUM0)
     putf(wsD, f'{c}10', f"={A['tax']}", TAX, PCT, green=True)
     putf(wsD, f'{c}11', f"={c}9*(1-{c}10)", F['nopat'][i], NUM0)
-    putf(wsD, f'{c}12', f"={c}5*{A[f'cxp{i}']}", F['capex'][i], NUM0)
+    putf(wsD, f'{c}12', f"={c}20", F['capex'][i], NUM0)
     prev = A['rev25'] if i == 0 else f"{DC[i-1]}5"
     putf(wsD, f'{c}13', f"=({c}5-{prev})*{A['wcp']}", F['dwc'][i], NUM0)
     pn = "$B$23" if i == 0 else f"{DC[i-1]}11"
-    putf(wsD, f'{c}14', f"=MAX({c}11-{pn},0)/$B$24", F['reinvestment'][i], NUM0)
+    # [R-TERM-01] ONE DEFINITION OF FREE CASH FLOW ACROSS BOTH WINDOWS: NOPAT plus book
+    # depreciation, less the capital actually spent and the working capital the growth
+    # absorbs. Revision 2 ran the explicit years on NOPAT less a reinvestment charge
+    # derived from the growth in NOPAT and the terminal on something else.
+    putf(wsD, f'{c}14', f"={c}12+{c}13-{c}8", F['reinvestment'][i], NUM0)
     if i == 0:
-        putf(wsD, f'{c}15', f"=({c}11-{c}14)*(1-{A['stub']})", F['fcff'][i], NUM0, bold=True)
+        putf(wsD, f'{c}15', f"=({c}11+{c}8-{c}12-{c}13)*(1-{A['stub']})", F['fcff'][i],
+             NUM0, bold=True)
     else:
-        putf(wsD, f'{c}15', f"={c}11-{c}14", F['fcff'][i], NUM0, bold=True)
+        putf(wsD, f'{c}15', f"={c}11+{c}8-{c}12-{c}13", F['fcff'][i], NUM0, bold=True)
     putf(wsD, f'{c}16', f"=({A['kdp0']}-{A[f'kdp{i}']})/({A['kdp0']}-{A['kdp4']})",
          F['glide'][i], DF4)
     putf(wsD, f'{c}17', f"=$C$46-($C$46-$C$53)*{c}16", F['fwd_wacc'][i], PCT2)
@@ -426,9 +478,26 @@ TB = [('Replacement-cost invested capital (EGP mn)', 'B22',
       ('Terminal return on invested capital', 'B24',
        f"=F11*(1+{A['g']})/B22", DCF['roic_term'], PCT),
       ('Terminal NOPAT', 'B28', f"=F11*(1+{A['g']})", DCF['nopat_term'], NUM0),
-      ('Reinvestment rate  (g ÷ ROIC)', 'B25', f"={A['g']}/B24", DCF['rr_term'], PCT),
-      ('Terminal value', 'B26', f"=B28*(1-B25)/($C$53-{A['g']})", DCF['tv'], NUM0),
+      # [R-TERM-01] MAINTENANCE AT CURRENT COST OVER THE DISCLOSED LIFE, not the
+      # reinvestment identity. The retired construction charged g x invested capital every
+      # year for ever, which is an implied replacement cycle of 1/g — a fact about the
+      # currency and not about the plant. The life comes from note 3/2 of the audited
+      # accounts weighted on note 4's own gross-cost mix.
+      ('Disclosed weighted asset life (years)', 'B23b', f"=1/{A['deprate']}",
+       1.0 / IN['dep_rate_disclosed'], NUM1),
+      ('Maintenance at current cost  (invested capital / life)', 'B25',
+       "=B22/B23b", DCF['term_maintenance'], NUM0),
+      ('Book depreciation added back', 'B25b', f"=DCF!F8*(1+{A['g']})",
+       DCF['term_dna_addback'], NUM0),
+      ('Working capital charged with inflation', 'B25c',
+       f"={A['rev25']}*{A['wcp']}*{A['g']}", DCF['term_wc_charge'], NUM0),
+      ('Terminal free cash flow', 'B25d', "=B28+B25b-B25-B25c", DCF['term_fcff'], NUM0),
+      ('Terminal value', 'B26', f"=B25d*(1+{A['g']})/($C$53-{A['g']})", DCF['tv'], NUM0),
       ('Present value of terminal value', 'B27', "=B26*F18", DCF['pv_tv'], NUM0)]
+_ROWMAP = {'B23b': 'B45', 'B25b': 'B46', 'B25c': 'B47', 'B25d': 'B48'}
+TB = [(l, _ROWMAP.get(a, a), f.replace('B23b', _ROWMAP['B23b']).replace('B25b', _ROWMAP['B25b'])
+       .replace('B25c', _ROWMAP['B25c']).replace('B25d', _ROWMAP['B25d']), e, t)
+      for l, a, f, e, t in TB]
 for lab, ad, fm, ex, ft in TB:
     wsD.cell(row=int(ad[1:]), column=1, value=lab)
     putf(wsD, ad, fm, ex, ft)
@@ -437,9 +506,13 @@ BR = [('Present value of explicit years (FY2026E-FY2030E)', 'B30', "=SUM(B19:F19
       ('Present value of terminal value', 'B31', "=B27", DCF['pv_tv'], NUM0),
       ('Enterprise value', 'B32', "=B30+B31", DCF['ev'], NUM0),
       ('Terminal value as % of enterprise value', 'B33', "=B31/B32", DCF['tv_share'], PCT),
-      ('Cash at the valuation date', 'B34',
-       f"='Balance Sheet'!D7+B15/(1-{A['stub']})*{A['stub']}", DCF['cash_fy25'], NUM0),
-      ('Less gross debt', 'B35', f"=-{A['debt']}", -IN['debt_fy25'], NUM0),
+      # [R-BRIDGE-01] THE LATEST DISCLOSED SHEET IS THE REVIEWED 31-MARCH-2026 ONE, not
+      # the audited 31-December-2025 sheet rolled forward on an estimate. The remaining
+      # four months to the valuation date are carried on this model's own free cash flow.
+      ('Cash, reviewed sheet at 31 March 2026', 'B34',
+       f"={A['cashm26']}+B15/(1-{A['stub']})*({A['stub']}-0.25)", DCF['cash_fy25'], NUM0),
+      ('Less lease liabilities (there are no bank borrowings)', 'B35',
+       f"=-{A['debtm26']}", -IN['debt_mar26'], NUM0),
       ('Net cash (ADDED — the company is net cash)', 'B36', "=B34+B35", DCF['net_cash'], NUM0),
       ('Less non-controlling interests', 'B40', f"={A['nci']}", IN['nci'], NUM0),
       ('Equity value', 'B37', "=B32+B36-B40", DCF['equity'], NUM0),
@@ -516,22 +589,20 @@ for j, l in enumerate(IL):
 gain_hist = [0.0, DISP['gain'], 0.0]
 for i in range(3):
     c = HC[i]
+    # THE HISTORICALS ARE FILED FACTS, SO THEY ARE INPUTS, NOT SOLVES. The earlier
+    # edition derived depreciation as a share of revenue, operating profit by grossing a
+    # press profit figure at an effective tax rate, and treasury income from a cash
+    # balance rolled back by a guessed 1.25x. Every one of those is stated in the audited
+    # statements and is now read from them.
     putf(wsI, f'{c}5', f"={REVK[i]}", H['revenue'][i], NUM0, green=True)
+    putf(wsI, f'{c}8', f"={FDNAK[i]}", H['dna'][i], NUM0, green=True)
+    putf(wsI, f'{c}9', f"={FEBITK[i]}", H['ebit'][i], NUM0, green=True)
+    putf(wsI, f'{c}10', f"={FTRK[i]}", H['treasury'][i], NUM0, green=True)
     putf(wsI, f'{c}6', f"={c}9+{c}8", H['ebitda'][i], NUM0)
     putf(wsI, f'{c}7', f"={c}6/{c}5", H['ebitda'][i] / H['revenue'][i], PCT)
-    putf(wsI, f'{c}8', f"={c}5*{DNAK[i]}", H['dna'][i], NUM0)
-    if i == 1:
-        putf(wsI, f'{c}9', f"={A['eb24']}-{c}8", H['ebit'][i], NUM0)
-        putf(wsI, f'{c}10', f"={A['cash25']}/1.25*0.9*{A['cy25']}", H['treasury'][i], NUM0)
-    elif i == 0:
-        putf(wsI, f'{c}9', f"={c}14-{c}10", H['ebit'][i], NUM0)
-        putf(wsI, f'{c}10', f"={A['tr23']}", H['treasury'][i], NUM0, green=True)
-    else:
-        putf(wsI, f'{c}9', f"={c}14/(1-{A['taxe']})-{c}10", H['ebit'][i], NUM0)
-        putf(wsI, f'{c}10', f"=({A['cash25']}+{A['cash25']}/1.25)/2*{A['cy25']}",
-             H['treasury'][i], NUM0)
-    putf(wsI, f'{c}11', f"={A['eur']}*{A['fxe']}-{A['swb']}" if i == 1 else "=0",
-         gain_hist[i], NUM0)
+    # the FILED gain, from the face of the FY2024 income statement, not a reconstruction
+    putf(wsI, f'{c}11', f"={A['swgain']}" if i == 1 else "=0", gain_hist[i], NUM0,
+         green=(i == 1))
     putf(wsI, f'{c}12', f"={c}9+{c}10+{c}11", H['ebit'][i] + H['treasury'][i] + gain_hist[i], NUM0)
     tx = (H['ebit'][i] + H['treasury'][i] + gain_hist[i]) - D['history']['pat'][i]
     putf(wsI, f'{c}13', f"={c}12-{c}14", tx, NUM0)
@@ -568,7 +639,13 @@ BL = ['Property, plant and equipment (net)', 'Working capital (net)', 'Cash and 
       'Return on equity']
 for j, l in enumerate(BL):
     wsBS.cell(row=5 + j, column=1, value=l)
-ppe24 = IN['ta_fy24'] - IN['cash_fy25']/1.25 - 900.0
+# THE FILED OPERATING ASSET BASE at 31-Dec-2024: fixed assets net of depreciation,
+# intangibles and construction in progress, from the face of the audited sheet. Revision 2
+# derived it as total assets less a rolled-back cash balance less a round 900.
+_FB24 = json.load(open('filings_extract.json'))['balance_sheet']['FY2024']
+ppe24 = (_FB24['fixed_assets'] + _FB24['intangibles'] + _FB24['cwip']) / 1e6
+inp(97, 'Operating assets at 31-Dec-2024 (fixed assets net, intangibles, CWIP)',
+    'ppe24f', ppe24, NUM0, 'EGP mn, as filed')
 cash23 = IN['cash_fy25']/1.25*0.35
 eq23 = (IN['ta_fy24'] - IN['tl_fy24']) - IN['pat_fy24']
 ta23 = ppe24 * 0.95 + 850.0 + cash23
@@ -581,7 +658,8 @@ hist_bs = dict(
 for i in range(3):
     c = HC[i]
     if i == 1:
-        putf(wsBS, f'{c}5', f"={A['ta24']}-{c}6-{c}7", ppe24, NUM0)
+        # the filed operating asset base: fixed assets net, intangibles and CWIP
+        putf(wsBS, f'{c}5', f"={A['ppe24f']}", ppe24, NUM0, green=True)
         put(wsBS, f'{c}6', 900.0, BLUE, NUM0)
         putf(wsBS, f'{c}7', f"={A['cash25']}/1.25", IN['cash_fy25'] / 1.25, NUM0)
         putf(wsBS, f'{c}8', f"={A['ta24']}", IN['ta_fy24'], NUM0, green=True, bold=True)

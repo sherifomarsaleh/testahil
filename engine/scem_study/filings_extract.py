@@ -62,7 +62,8 @@ IS = {
                    provisions=4910710, total_expenses=1000147969,
                    operating=-79265571, pbt=-110108976, pat=-117581612, eps=-0.88,
                    page='FY2024 filing, page 3, comparative column'),
-    'FY2024': dict(sales=6428011851, cogs=3775018888, gross=2652992963,
+    'FY2024': dict(gain_on_sale_of_investments=1517386642,
+                   sales=6428011851, cogs=3775018888, gross=2652992963,
                    selling=765354606, ga=355437994, finance=194386055,
                    provisions=37487827, total_expenses=1352666482,
                    operating=1300326481, pbt=3150036485, pat=3072361811, eps=23.09,
@@ -432,7 +433,13 @@ def derived():
 if __name__ == '__main__':
     verify()
     d = derived()
+    # the non-operating income lines the historical closure needs, from the face of the
+    # statements rather than estimated on a rolled-back cash balance
+    INTEREST = {'FY2023': 6973315, 'FY2024': 29990318, 'FY2025': 171609009}
     json.dump({'source': SOURCE, 'income_statement': IS, 'dna': DNA, 'capex': CAPEX,
+               'interest_income': INTEREST, 'cogs_note24': COGS_NOTE24,
+               'selling_note25': SELLING_NOTE25, 'ga_note26': GA_NOTE26,
+               'eps_note27': EPS_NOTE27,
                'balance_sheet': BS, 'fixed_assets_fy2025': FIXED_ASSETS_FY2025,
                'fixed_assets_totals': FIXED_ASSETS_TOTALS,
                'disclosed_lives_note': DISCLOSED_LIVES_NOTE, 'corporate': CORPORATE,

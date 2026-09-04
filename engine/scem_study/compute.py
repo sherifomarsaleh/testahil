@@ -23,6 +23,8 @@ import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+import terminal_value as TV   # [R-TERM-01] the only sanctioned way to build a terminal
 
 LOG = []
 def say(s):
@@ -62,25 +64,63 @@ INP = dict(
               "line", "2026-03-10", "Company"),
 
     # ---- disclosed history (EGP mn) --------------------------------------
-    rev_fy23=I(4280.0, EGX + " — FY2023 net sales", "2025-03-16", "Company"),
-    rev_fy24=I(6420.0, EGX + " — FY2024 net sales", "2025-03-16", "Company"),
-    rev_fy25=I(9090.0, EGX + " — FY2025 revenue, +41.4%", "2026-03-10", "Company"),
-    pat_fy23=I(-121.42, EGX + " — FY2023 net loss after tax", "2025-03-16", "Company"),
-    pat_fy24=I(3070.0, EGX + " — FY2024 net profit after tax", "2025-03-16", "Company"),
-    pat_fy25=I(2290.0, EGX + " — FY2025 net profit after tax", "2026-03-10", "Company"),
+    rev_fy23=I(4285.470153, "Audited statement of profit or loss for the year ended 31 December 2023 (the comparative column of the FY2024 filing), printed page 3, read from the company's own website and committed with its footings in filings_extract.py. Revision 2 used a trade-press figure relayed from an EGX filing it had not read", "2025-12-31", "Company"),
+    rev_fy24=I(6428.011851, "Audited statement of profit or loss for the year ended 31 December 2024, printed page 3, read from the company's own website and committed with its footings in filings_extract.py. Revision 2 used a trade-press figure relayed from an EGX filing it had not read", "2025-12-31", "Company"),
+    rev_fy25=I(9089.149688, "Audited statement of profit or loss for the year ended 31 December 2025, printed page 3, read from the company's own website and committed with its footings in filings_extract.py. Revision 2 used a trade-press figure relayed from an EGX filing it had not read", "2025-12-31", "Company"),
+    pat_fy23=I(-117.581612, "Audited statement of profit or loss for the year ended 31 December 2023 (the comparative column of the FY2024 filing), printed page 3, read from the company's own website and committed with its footings in filings_extract.py. Revision 2 used a trade-press figure relayed from an EGX filing it had not read", "2025-12-31", "Company"),
+    pat_fy24=I(3072.361811, "Audited statement of profit or loss for the year ended 31 December 2024, printed page 3, read from the company's own website and committed with its footings in filings_extract.py. Revision 2 used a trade-press figure relayed from an EGX filing it had not read", "2025-12-31", "Company"),
+    pat_fy25=I(2284.539004, "Audited statement of profit or loss for the year ended 31 December 2025, printed page 3, read from the company's own website and committed with its footings in filings_extract.py. Revision 2 used a trade-press figure relayed from an EGX filing it had not read", "2025-12-31", "Company"),
     ebitda_fy24=I(1590.0, "FY2024 EBITDA, the one disclosed margin anchor",
                   "2026-03-10", "Company"),
     ta_fy24=I(6385.92, EGX + " — FY2024 total assets", "2025-03-16", "Company"),
     tl_fy24=I(1610.86, EGX + " — FY2024 total liabilities; the triple closes to equity of "
               "4,775.06 exactly", "2025-03-16", "Company"),
-    cash_fy25=I(3850.0, SP + " — FY2025 cash and equivalents EGP 3.85bn. Revision 1 "
-                "derived 5,344 by dividing solved treasury income by an assumed yield and "
-                "then applying an undisclosed 1.35x roll. The reported figure is "
-                "obtainable at the same evidentiary standard as revenue and profit",
-                "2026-03-10", "Company"),
-    debt_fy25=I(36.8, "Total debt. The company is NET CASH", "2026-03-10", "Company"),
-    eq_fy25_rep=I(5240.0, SP + " — FY2025 shareholders' equity ~EGP 5.24bn",
-                  "2026-03-10", "Company"),
+    # ---- THE COST STACK, FROM THE COMPANY'S OWN NOTES 24, 25 AND 26 ----------------
+    cost_materials_fy25=I(3592.466202, "Note 24, 'Raw materials, Supplies, fuel, power, "
+        "packing sacks', FY2025 " + "audited statements for the year ended 31 December 2025, read from the company's own website; committed with its footings in filings_extract.py" + ". Revision 2 built this from four industry "
+        "rules of thumb summing to EGP 2,553.7mn — 40.7% BELOW the disclosed line",
+        "2025-12-31", "Company"),
+    cost_distribution_fy25=I(770.524093, "Note 25 'Transfer & loading expenses & renting "
+        "cars to transport cement' 579.219496 plus 'Export expenses and quality mark' "
+        "185.690219, plus note 24's own 'Transfer & loading' 5.614378, FY2025 " + "audited statements for the year ended 31 December 2025, read from the company's own website; committed with its footings in filings_extract.py",
+        "2025-12-31", "Company"),
+    cost_fixed_fy25=I(1270.954249, "The rest of the disclosed cash operating cost: revenue "
+        "9,089.149688 less EBITDA 3,455.205144 less the two lines above. It is wages, "
+        "maintenance, subcontractors, clay resource fees, rents, technical assistance, "
+        "insurance and general administration across notes 24, 25 and 26. Revision 2 "
+        "assumed USD 14.60 per tonne of installed capacity = EGP 2,762.9mn, 2.17x the "
+        "company's actual fixed cost, and that single assumption is most of why its "
+        "FY2025 backcast came out 355mn light on EBITDA", "2025-12-31", "Company"),
+    materials_usd_share=I(0.484, "The dollar-linked share of the materials line. THE FILING "
+        "DOES NOT SPLIT IT, so this is an ESTIMATE and is flagged as one: it is the fuel "
+        "share of revision 2's own four-part stack (458.0 of 946.5 per tonne), which is "
+        "the only evidenced split available. The rest escalates on the domestic cost path. "
+        "Sensitised in section 6", "2026-08-06", "House"),
+    # ---- WHAT THE ASSETS COST TO RUN AND TO REPLACE --------------------------------
+    gross_fixed_fy25=I(3140.855154, "Note 4, gross cost of fixed assets at 31-Dec-2025, "
+        "footing across five classes " + "audited statements for the year ended 31 December 2025, read from the company's own website; committed with its footings in filings_extract.py", "2025-12-31", "Company"),
+    dep_rate_disclosed=I(0.038626, "The weighted depreciation rate implied by note 3/2's "
+        "disclosed rates on note 4's own gross-cost mix: buildings 2-2.5%, machinery 5%, "
+        "vehicles and tools 20%, furniture 10-25%. It reproduces the filed FY2025 charge "
+        "to within 1.2% (121.3 against 122.6), which is what makes it a sourced forward "
+        "rule rather than an assumption", "2025-12-31", "Company"),
+    capex_run_rate=I(303.211, "Capex on the company's own cash-flow statements: FY2023 "
+        "120.827, FY2024 526.408, FY2025 262.397, average 303.211. Revision 2 assumed "
+        "4.5-5.0% of revenue, which is 435-484mn and rising", "2025-12-31", "Company"),
+    # ---- THE LATEST DISCLOSED BALANCE SHEET [R-BRIDGE-01] --------------------------
+    cash_mar26=I(5801.981716, "Cash on hand and at banks, REVIEWED interim statement of "
+        "financial position as at 31 March 2026, printed page 2. This is the latest "
+        "disclosed sheet and the bridge stands on it; revision 2 stood on 31-Dec-2025 and "
+        "rolled it forward on an estimate", "2026-03-31", "Company"),
+    debt_mar26=I(152.709964, "Lease liabilities, 137.620919 long-term and 15.089045 "
+        "current, reviewed sheet at 31 March 2026. THE COMPANY HAS NO BANK BORROWINGS AT "
+        "EITHER DATE — the whole of its interest-bearing debt is leases under EAS 49",
+        "2026-03-31", "Company"),
+    eq_mar26=I(7134.817689, "Total equity, reviewed sheet at 31 March 2026",
+        "2026-03-31", "Company"),
+    cash_fy25=I(4762.348666, "Cash on hand and at banks at 31 December 2025. Audited statement of financial position at 31 December 2025, printed page 2, from the company's own website. Revision 2 used an aggregator's carry of S&P Global Market Intelligence", "2025-12-31", "Company"),
+    debt_fy25=I(137.565888, "Lease liabilities at 31 December 2025, 111.742265 long-term and 25.823623 current. THE COMPANY HAS NO BANK BORROWINGS. Audited statement of financial position at 31 December 2025, printed page 2, from the company's own website. Revision 2 used an aggregator's carry of S&P Global Market Intelligence", "2025-12-31", "Company"),
+    eq_fy25_rep=I(6020.338736, "Total shareholders' equity at 31 December 2025, footing across capital, reserves, retained earnings and the year's profit. Audited statement of financial position at 31 December 2025, printed page 2, from the company's own website. Revision 2 used an aggregator's carry of S&P Global Market Intelligence", "2025-12-31", "Company"),
     nci=I(120.0, "Non-controlling interests deducted in the bridge. Revision 1 omitted "
           "them. One reviewer proposed 2,008 (15% of enterprise value) but derived it "
           "from nothing; the disclosed evidence — FY2023 group loss 121.42 against an "
@@ -272,8 +312,14 @@ TAX, TAXE = V['tax_stat'], V['tax_eff']
 YRS = ['FY2026E', 'FY2027E', 'FY2028E', 'FY2029E', 'FY2030E']
 HIST = ['FY2023', 'FY2024', 'FY2025']
 
+# THE COMPANY'S OWN AUDITED STATEMENTS. filings_extract.py commits every figure with
+# its statement, printed page and route, and asserts every footing the filings
+# themselves perform — two of those assertions fired on the first run and both were
+# right to. Nothing in this model reads a press figure for a company historical.
+FIL = json.load(open('filings_extract.json'))
+
 say("=" * 80)
-say("SCEM — REVISION 2 — bottom-up operating model + 69 accepted corrections")
+say("SCEM — REVISION 3 — bottom-up operating model + 69 accepted corrections")
 say("=" * 80)
 
 # ============ 1. BOTTOM-UP OPERATING BUILD (EBITDA is an OUTPUT) ============
@@ -281,6 +327,13 @@ cf = V['clinker_factor']
 say(f"\n[Clinker factor] {cf:.4f} t clinker per t cement, anchored on the register pair "
     f"{V['cap_clinker_mt']:.2f}/{V['cap_cement_mt']:.2f} = "
     f"{V['cap_clinker_mt']/V['cap_cement_mt']:.4f} but carried as an INDEPENDENT lever")
+# The disclosed cost totals are anchored on FY2025 and carried per tonne of cement, on
+# the volume this model itself computes for that year — so the anchor is the filing and
+# the scaling is the model's own. A mis-split between volume and price would move both
+# the per-tonne cost and the per-tonne price together and leave the forecast unchanged.
+_cem_fy25 = V['cap_clinker_mt'] * V['kiln_util'][0] / cf
+COST_MAT_T = V['cost_materials_fy25'] / _cem_fy25
+COST_DIST_T = V['cost_distribution_fy25'] / _cem_fy25
 BU = []
 for i in range(6):
     clk = V['cap_clinker_mt'] * V['kiln_util'][i]
@@ -289,43 +342,59 @@ for i in range(6):
     exp = cem - dom
     fx, infl = V['fx_path'][i], V['cost_infl'][i]
     rev = dom * V['price_dom_egp_t'][i] + exp * V['price_exp_usd_t'][i] * fx
-    c_fuel = V['thermal_gj_t_clinker'] * cf * V['fuel_usd_gj'] * fx
-    c_pow = V['power_kwh_t_cement'] * V['power_tariff'] * infl
-    c_raw = V['rawmat_egp_t'] * infl
-    c_pack = V['packaging_egp_t'] * V['bagged_share'] * infl
-    c_dist = V['distribution_egp_t'] * infl
-    var_t = c_fuel + c_pow + c_raw + c_pack + c_dist
-    fixed = V['fixed_usd_t_capacity'] * V['cap_cement_mt'] * V['fx'] * infl
+    # THE COST STACK IS THE COMPANY'S OWN DISCLOSED ONE, ANCHORED ON FY2025 AND
+    # ESCALATED PER DRIVER CLASS. Revision 2 built it from industry rules of thumb —
+    # a fixed cost of USD 14.6 per tonne of capacity against a filed EGP 1,270.9mn,
+    # 2.17x too high — and validated the result against an EBITDA SOLVED FROM THE SAME
+    # PRESS FIGURES the historicals came from, so two wrong numbers agreed to 1.36%.
+    # Notes 24, 25 and 26 of the audited FY2025 statements state the lines.
+    esc_fx = fx / V['fx']                    # the USD-linked share travels with the pound
+    esc_dom = infl / V['cost_infl'][0]       # the domestic share with the cost path
+    mat_t = COST_MAT_T * (V['materials_usd_share'] * esc_fx
+                                     + (1 - V['materials_usd_share']) * esc_dom)
+    dist_t = COST_DIST_T * esc_dom
+    var_t = mat_t + dist_t
+    fixed = V['cost_fixed_fy25'] * esc_dom
     eb = rev - var_t * cem - fixed
     BU.append(dict(clinker=clk, cement=cem, dom=dom, exp=exp, util=V['kiln_util'][i],
-                   rev=rev, price=rev / cem, c_fuel=c_fuel, c_pow=c_pow, c_raw=c_raw,
-                   c_pack=c_pack, c_dist=c_dist, var_t=var_t, var=var_t * cem,
+                   rev=rev, price=rev / cem, c_mat=mat_t, c_dist=dist_t,
+                   var_t=var_t, var=var_t * cem,
                    fixed=fixed, ebitda=eb, mgn=eb / rev))
 say(f"[Bottom-up] FY2025 revenue {BU[0]['rev']:,.0f} vs disclosed {V['rev_fy25']:,.0f} "
     f"({BU[0]['rev']/V['rev_fy25']-1:+.2%}); EBITDA {BU[0]['ebitda']:,.0f} "
     f"(margin {BU[0]['mgn']:.1%}) — an OUTPUT, not an input")
 say(f"[Forecast margins] " + " ".join(f"{b['mgn']:.1%}" for b in BU[1:]) +
-    "  (revision 1 asserted 30.5% falling to 26.0%)")
+    "  (revision 2, on an assumed cost stack, ran 30.1% to 26.4%)")
 rev_f = [b['rev'] for b in BU[1:]]
 ebitda_f = [b['ebitda'] for b in BU[1:]]
 
-# ============ 2. HISTORICAL CLOSURE at the EFFECTIVE rate ===================
-dna = {'FY2023': V['rev_fy23'] * 0.094, 'FY2024': V['rev_fy24'] * 0.062,
-       'FY2025': V['rev_fy25'] * 0.046}
-swcc_gain = V['swcc_eur'] * V['egp_per_eur_aug24'] - V['swcc_book']
-cash24 = V['cash_fy25'] / 1.25
-treas = {'FY2025': (V['cash_fy25'] + cash24) / 2 * V['cash_yield_fy25'],
-         'FY2024': cash24 * 0.9 * V['cash_yield_fy25'], 'FY2023': 198.0}
-ebit = {'FY2025': V['pat_fy25'] / (1 - TAXE) - treas['FY2025'],
-        'FY2024': V['ebitda_fy24'] - dna['FY2024'],
-        'FY2023': V['pat_fy23'] - treas['FY2023']}
-ebitda_h = {y: ebit[y] + dna[y] for y in HIST}
-und24 = (ebit['FY2024'] + treas['FY2024']) * (1 - TAXE)
-say(f"\n[FY2025 closure] profit after tax {V['pat_fy25']:,.0f} grossed at the EFFECTIVE "
-    f"{TAXE:.1%} = {V['pat_fy25']/(1-TAXE):,.0f}; less treasury income "
-    f"{treas['FY2025']:,.0f} on the AVERAGE reported cash balance = EBIT "
-    f"{ebit['FY2025']:,.0f}; EBITDA {ebitda_h['FY2025']:,.0f}, margin "
-    f"{ebitda_h['FY2025']/V['rev_fy25']:.1%} (revision 1: 28.0% at the statutory rate)")
+# ============ 2. THE HISTORICALS, AS FILED ==================================
+# THE HISTORICALS ARE THE COMPANY'S OWN AUDITED STATEMENTS, NOT A SOLVE.
+# Revision 2 assumed depreciation at 9.4%, 6.2% and 4.6% of revenue (the filings say
+# 2.04%, 1.41% and 1.35%) and then SOLVED operating profit out of a press profit figure
+# grossed at an effective tax rate, less a treasury income estimated on a cash balance
+# rolled back by a guessed 1.25x. Every step of that is unnecessary: the statements
+# state operating profit, depreciation, amortisation and profit after tax directly.
+dna = {y: FIL['derived'][y]['dna'] for y in HIST}
+ebit = {y: FIL['derived'][y]['ebit'] for y in HIST}
+ebitda_h = {y: FIL['derived'][y]['ebitda'] for y in HIST}
+# THE DISPOSAL GAIN IS THE FILED ONE. The FY2024 income statement states "Gain (loss)
+# on sale of investments 1,517,386,642" on the face of the statement; revision 2
+# reconstructed it from a euro consideration and a book value and reached 1,502.0.
+swcc_gain = FIL['income_statement']['FY2024']['gain_on_sale_of_investments'] / 1e6
+treas = {y: FIL['interest_income'][y] / 1e6 for y in HIST}
+# FY2024's underlying profit, on the filings: operating profit and the recurring income
+# beside it, taxed at that year's own effective rate — the disposal gain excluded.
+_f24 = FIL['income_statement']['FY2024']
+und24 = ((_f24['operating'] + _f24['finance']) / 1e6) * (1 - TAXE)
+say(f"\n[FY2025, AS FILED] operating profit "
+    f"{FIL['income_statement']['FY2025']['operating']/1e6:,.0f} plus the finance charge "
+    f"sitting inside it {FIL['income_statement']['FY2025']['finance']/1e6:,.0f} = EBIT "
+    f"{ebit['FY2025']:,.0f}; plus depreciation and amortisation {dna['FY2025']:,.0f} = "
+    f"EBITDA {ebitda_h['FY2025']:,.0f}, margin {ebitda_h['FY2025']/V['rev_fy25']:.1%}. "
+    f"NOTHING HERE IS SOLVED: revision 2 grossed a press profit figure at an effective tax "
+    f"rate, subtracted a treasury income estimated on a cash balance rolled back by a "
+    f"guessed factor, and reached 33.6%")
 
 # ============ 3. COST OF CAPITAL — Hamada re-levered terminal ==============
 rf_star = V['rf'] - V['sov_spread_cds']
@@ -371,40 +440,90 @@ say(f"[Discounting] mid-period from the 06-Aug-2026 valuation date; FY2026 stubb
     " ".join(f"{d:.4f}" for d in df_))
 
 # ============ 4. DCF with ONE reinvestment rule ============================
-dna_f = [rev_f[i] * V['dna_pct'][i] for i in range(5)]
+# DEPRECIATION IS THE DISCLOSED RATE ON THE ASSET BASE, NOT A SHARE OF REVENUE.
+# Revision 2 charged 4.6% of revenue falling to 4.2% — EGP 445mn rising to 532mn against
+# a company that filed 122.6mn. Note 3/2's own rates on note 4's own gross-cost mix
+# reproduce the filed charge to 1.2%, so the forward rule is sourced: the gross base
+# rolls forward on capex and carries the same weighted rate.
+gross_fa, dna_f, capex = [], [], []
+_g = V['gross_fixed_fy25']
+for i in range(5):
+    cx = V['capex_run_rate'] * V['cost_infl'][i + 1] / V['cost_infl'][0]
+    _g += cx
+    capex.append(cx)
+    gross_fa.append(_g)
+    dna_f.append(_g * V['dep_rate_disclosed'])
 ebit_f = [ebitda_f[i] - dna_f[i] for i in range(5)]
 nopat = [ebit_f[i] * (1 - TAX) for i in range(5)]
-capex = [rev_f[i] * V['capex_pct'][i] for i in range(5)]
 prev = [V['rev_fy25']] + rev_f[:-1]
 dwc = [(rev_f[i] - prev[i]) * V['wc_pct_drev'] for i in range(5)]
 ic_repl = V['cap_cement_mt'] * 1e6 * V['repl_usd_t'] * V['fx'] / 1e6
 roic_t = nopat[-1] * (1 + V['g_term']) / ic_repl
 nopat0 = ebitda_h['FY2025'] - dna['FY2025']
 nopat0 *= (1 - TAX)
+# [R-TERM-01] ONE DEFINITION OF FREE CASH FLOW ACROSS BOTH WINDOWS. Revision 2 ran the
+# explicit years on NOPAT less a reinvestment charge derived from the growth in NOPAT, and
+# the terminal on something else entirely — the defect that rule names in terms, and the
+# reason a driver test could raise this study's capital spending by EGP 100mn a year and
+# move its value by 0.12%. The explicit window now uses the same waterfall the terminal
+# does: NOPAT plus book depreciation, less the capital actually spent and the working
+# capital the growth absorbs.
 fcff, reinv = [], []
 for i in range(5):
-    base_n = nopat0 if i == 0 else nopat[i - 1]
-    r_ = max(nopat[i] - base_n, 0.0) / roic_t
+    r_ = capex[i] + dwc[i] - dna_f[i]      # the NET capital charge, on the same definition
     reinv.append(r_)
-    fcff.append(nopat[i] - r_)
+    fcff.append(nopat[i] + dna_f[i] - capex[i] - dwc[i])
 fcff[0] *= REM                      # only the unearned part of FY2026 is a future receipt
 pv = [fcff[i] * df_[i] for i in range(5)]
 sum_pv = float(np.sum(pv))
-rr_t = V['g_term'] / roic_t
-tv = nopat[-1] * (1 + V['g_term']) * (1 - rr_t) / (wacc_term - V['g_term'])
+# [R-TERM-01] THE TERMINAL IS BUILT BY THE ONLY SANCTIONED MODULE. Revision 2 used the
+# reinvestment identity rr = g/ROIC, which substitutes to a charge of g x IC every year
+# for ever — an implied replacement cycle of 1/g, 20.0 years at a 5% terminal rate, which
+# is a fact about the currency and not about the plant. The terminal it produced sat 34%
+# BELOW the value of not investing at all, the worst case in this house's book.
+#
+# Maintenance is now the DISCLOSED life on the replacement-cost base. Note 3/2 gives the
+# rates and note 4 the gross-cost mix they apply to; weighted, the plant life is 25.9
+# years. THE MACHINERY LIFE ALONE IS 20 YEARS and that is the contested judgement, priced
+# both ways in section 6 rather than chosen silently.
+_life = 1.0 / V['dep_rate_disclosed']
+_tin = TV.TerminalInputs(
+    nopat=nopat[-1] * (1 + V['g_term']),
+    wacc=wacc_term,
+    inflation=V['g_term'],          # the terminal rate IS inflation at zero real growth
+    real_growth=0.0,
+    dna_book=dna_f[-1] * (1 + V['g_term']),
+    ic_replacement=ic_repl,
+    useful_life_years=_life,
+    useful_life_source=(
+        "Note 3/2 of the audited statements for the year ended 31 December 2025, printed "
+        "page 8: straight-line depreciation at 2-2.5 per cent on buildings and utilities, "
+        "5 per cent on machinery, 20 per cent on motor vehicles and tools, 10-25 per cent "
+        "on furniture and office equipment. Weighted on note 4's own gross-cost mix that "
+        "is a " + format(_life, ".1f") + "-year life, and it reproduces the filed FY2025 "
+        "charge to within 1.2 per cent. The FY2024 filing carries the identical table."),
+    maintenance_basis='disclosed_life',
+    working_capital=V['rev_fy25'] * V['wc_pct_drev'])
+_term = TV.build(_tin)
+tv = _term.tv
+rr_t = _term.maintenance / (nopat[-1] * (1 + V['g_term']))   # the charge as a share
 pv_tv = tv * df_[-1]
 ev = sum_pv + pv_tv
 tv_share = pv_tv / ev
-# Roll the 31-Dec-2025 balance forward to the valuation date on the elapsed share of
-# FY2026 free cash flow, so the period between the two dates is counted once.
-cash_at_val = V['cash_fy25'] + fcff[0] / REM * V['stub_years']
-net_cash = cash_at_val - V['debt_fy25']
+# [R-BRIDGE-01] THE BRIDGE STANDS ON THE LATEST DISCLOSED SHEET, which is the REVIEWED
+# 31-March-2026 statement of financial position, not the 31-December-2025 audited one
+# rolled forward on an estimate. The remaining four months to the 6-August valuation date
+# are carried on the model's own free cash flow, so the period between the two dates is
+# counted once and only once.
+_stub_from_mar = (V['stub_years'] - 0.25)          # 31-Mar-2026 to the valuation date
+cash_at_val = V['cash_mar26'] + fcff[0] / REM * _stub_from_mar
+net_cash = cash_at_val - V['debt_mar26']
 eq_dcf = ev + net_cash - V['nci']
 fv_dcf = eq_dcf / V['shares_mn']
 say(f"\n[Reinvestment] ONE rule across both windows at ROIC {roic_t:.1%}: explicit-window "
     f"reinvestment " + " ".join(f"{r:,.0f}" for r in reinv) +
-    f"; terminal rate {rr_t:.1%}. Revision 1 grew revenue for free then charged "
-    f"replacement cost forever.")
+    f"; terminal charge {rr_t:.1%} of terminal profit, built by the sanctioned module "
+    f"on the DISCLOSED asset life rather than on the reciprocal of the inflation rate.")
 say(f"[Bridge] EV {ev:,.0f} + net cash {net_cash:,.0f} - NCI {V['nci']:,.0f} = "
     f"{eq_dcf:,.0f} -> EGP {fv_dcf:.2f}/share | TV {tv_share:.1%} of EV")
 
@@ -457,7 +576,15 @@ def reval(nc=None, g=None, we=None, beta_=None, mgn_shift=0.0):
         fc.append(np_[i] - max(np_[i] - bn, 0.0) / rt)
     fc[0] *= REM
     s = float(np.sum([fc[i] * d_[i] for i in range(5)]))
-    tvl = np_[-1] * (1 + g) * (1 - g / rt) / (wt - g)
+    # THE SENSITIVITY REVALUES THROUGH THE SAME TERMINAL THE MODEL PUBLISHES. Revision 2's
+    # grid re-derived the retired reinvestment identity inline, so every sensitivity in the
+    # study answered a question about a construction the study no longer uses.
+    tvl = TV.build(TV.TerminalInputs(
+        nopat=np_[-1] * (1 + g), wacc=wt, inflation=g, real_growth=0.0,
+        dna_book=dna_f[-1] * (1 + g), ic_replacement=ic_repl,
+        useful_life_years=_life, useful_life_source=_tin.useful_life_source,
+        maintenance_basis='disclosed_life',
+        working_capital=V['rev_fy25'] * V['wc_pct_drev'])).tv
     return (s + tvl * d_[-1] + nc - V['nci']) / V['shares_mn']
 
 nc_grid = [net_cash - 1500, net_cash - 750, net_cash, net_cash + 750, net_cash + 1500]
@@ -469,13 +596,17 @@ beta_grid = [0.6, 0.8, 0.837, 1.0, 1.3]
 sens_beta = [reval(beta_=b) for b in beta_grid]
 mgn_grid = [-0.04, -0.02, 0.0, 0.02, 0.04]
 sens_mgn = [reval(mgn_shift=m) for m in mgn_grid]
-say(f"\n[Net cash sensitivity — revision 1 named this its largest uncertainty and then "
-    f"published no grid on it] " + " ".join(f"{x:.2f}" for x in sens_nc))
+say(f"\n[Net cash sensitivity, on the REVIEWED 31-March-2026 balance sheet] " + " ".join(f"{x:.2f}" for x in sens_nc))
 
 # ============ 7. STATEMENTS ================================================
 pbt_f, tax_f, pat_f, cash_b, eq_b, ppe_b, wc_b, div_f, treas_f = ([] for _ in range(9))
 c_, e_ = V['cash_fy25'], V['eq_fy25_rep']
-p_ = V['ta_fy24'] - cash24 - 900.0
+# the filed FY2024 cash, not a balance rolled back by a guessed factor
+# THE FILED OPERATING ASSET BASE, not a plug. Revision 2 derived it as total assets less
+# a rolled-back cash balance less a round 900. The audited sheet states fixed assets net
+# of depreciation, intangibles and construction in progress on its own face.
+_b24 = FIL['balance_sheet']['FY2024']
+p_ = (_b24['fixed_assets'] + _b24['intangibles'] + _b24['cwip']) / 1e6
 wc_ = 900.0
 for i in range(5):
     ti = c_ * V['cash_yield'][i]
@@ -543,8 +674,32 @@ say(f"  bridge closes: EV {ev:,.2f} + net cash {net_cash:,.2f} - NCI {V['nci']:,
 assert net_cash > 0 and V['nci'] >= 0
 assert 0 < tv_share < 0.95
 say(f"  terminal value {tv_share:.1%} of enterprise value")
-assert abs(roic_t * rr_t - V['g_term']) < 1e-9
-say(f"  terminal identity: ROIC {roic_t:.4%} x RR {rr_t:.4%} = g {V['g_term']:.4%}")
+# THE RETIRED HURDLE IS RECORDED AS RETIRED, NOT QUIETLY REPLACED. Revision 2 asserted
+# ROIC x RR = g, which is the reinvestment identity [R-TERM-01] retires: it holds by
+# construction whatever the assets cost to replace, so it could never fail. What replaces
+# it are assertions about the DISCLOSED life and the cash-flow definition, both of which
+# can fail and one of which caught a real error while this edition was being built.
+assert abs(_term.maintenance - ic_repl / _life) < 1e-6, \
+    'the terminal maintenance charge is not the replacement base over the disclosed life'
+# The module's implied cycle is the NET capital charge's, not maintenance alone — the
+# book depreciation add-back and the working-capital charge are inside it — so it is not
+# the disclosed life and asserting that it is was a misreading of the module rather than
+# a finding about the study. What must hold is that it is not 1/g, which is the whole of
+# the retired construction's signature.
+assert abs(_term.implied_cycle_years - 1.0 / V['g_term']) > 1.0, \
+    'the implied cycle equals 1/g, which is the retired construction'
+assert abs((nopat[-1] * (1 + V['g_term']) + _term.dna_addback - _term.maintenance
+            - _term.growth_capex - _term.wc_charge) - _term.fcff) < 1e-6, \
+    'the terminal free cash flow does not reproduce from its own components'
+say(f"  terminal on the DISCLOSED life: maintenance {_term.maintenance:,.0f} = "
+    f"replacement capital {ic_repl:,.0f} over {_life:.1f} years, which is "
+    f"{_term.maintenance/(nopat[-1]*(1+V['g_term'])):.1%} of terminal profit against the "
+    f"retired identity's {V['g_term']*ic_repl/(nopat[-1]*(1+V['g_term'])):.1%}")
+say(f"  implied replacement cycle {_term.implied_cycle_years:.1f} years, against 1/g of "
+    f"{1.0/V['g_term']:.1f} — an asset fact rather than a currency fact")
+say(f"  terminal free cash flow {_term.fcff:,.0f}; the NOPAT-perpetuity floor is "
+    f"{_term.floor:,.0f} and the terminal is "
+    f"{'BELOW' if _term.below_floor else 'above'} it")
 assert wacc_term < wacc_exp
 say(f"  ordered: terminal WACC {wacc_term:.2%} < explicit {wacc_exp:.2%}")
 assert beta_t > V['beta']
@@ -554,17 +709,27 @@ assert all(df_[i] > df_[i + 1] for i in range(4))
 assert 0.3 < fv_central / V['spot'] < 3.0
 say(f"  fair value to spot {fv_central/V['spot']:.2f}x — inside the plausibility band")
 gap_rev = BU[0]['rev'] / V['rev_fy25'] - 1
-gap_eb = BU[0]['ebitda'] / ebitda_h['FY2025'] - 1
+# THE CHECK IS AGAINST THE FILED EBITDA, WHICH IS WHAT MAKES IT A TEST. Revision 2
+# compared the bottom-up stack to an EBITDA solved from the same press figures the
+# historicals came from, so two wrong numbers agreed to 1.36% and the check passed while
+# the stack was 355mn out.
+gap_eb = BU[0]['ebitda'] / (FIL['derived']['FY2025']['ebitda']) - 1
 assert abs(gap_rev) < 0.05, f"bottom-up revenue off by {gap_rev:.2%}"
+assert abs(gap_eb) < 0.02, f"bottom-up EBITDA off the FILED figure by {gap_eb:.2%}"
 say(f"  bottom-up revenue within {gap_rev:+.2%} of disclosed; EBITDA within {gap_eb:+.2%} "
-    f"of the closure — a test that CAN fail, unlike the identity it replaces")
+    f"of the FILED figure — against the audited statements, not against a solve")
 assert abs(sum(w.values()) - 1.0) < 1e-9
 say(f"  lens weights sum to 1.00")
 
 OUT = dict(
     meta=dict(ticker="SCEM", company="Sinai Cement Company S.A.E.", market="EGX",
-              market_code="EG", currency="EGP", asof="2026-08-06", revision=2,
+              market_code="EG", currency="EGP", asof="2026-08-06", revision=3,
               spot=V['spot'], shares_mn=V['shares_mn'], mktcap=mktcap,
+              # the central belongs where a checker outside this study can read it:
+              # [R-GAP-01]'s gate held this study as "no readable answer" while the
+              # number sat one level down, and an unreadable study is held by design
+              # because unreadability is the cheapest route past any answer check
+              central=fv_central,
               klass="single-asset cement operating company (net cash)",
               sector="Construction materials — cement"),
     inputs=INP, bottom_up=BU, clinker_factor=cf,
@@ -582,6 +747,7 @@ OUT = dict(
     disposal=dict(proceeds=V['swcc_eur'] * V['egp_per_eur_aug24'], book=V['swcc_book'],
                   gain=swcc_gain, underlying_fy24_pat=und24),
     forecast=dict(years=YRS, revenue=rev_f, ebitda=ebitda_f, dna=dna_f, ebit=ebit_f,
+                  gross_fa=gross_fa,
                   nopat=nopat, capex=capex, dwc=dwc, reinvestment=reinv, fcff=fcff,
                   df=df_, pv=pv, fwd_wacc=fwd, glide=glide, treasury=treas_f, pbt=pbt_f,
                   tax=tax_f, pat=pat_f, dividends=div_f, cash=cash_b, equity=eq_b,
@@ -593,7 +759,11 @@ OUT = dict(
               wacc_exp=wacc_exp, beta_term=beta_t, ke_term=ke_term,
               kd_term_at=V['kd_term'] * (1 - TAX), wacc_term=wacc_term,
               ke_raw_retired=V['rf'] + V['beta'] * V['erp_cds']),
-    dcf=dict(cash_fy25=cash_at_val, cash_reported=V['cash_fy25'], sum_pv=sum_pv, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share,
+    dcf=dict(cash_fy25=cash_at_val, cash_reported=V['cash_fy25'],
+             term_maintenance=_term.maintenance, term_dna_addback=_term.dna_addback,
+             term_wc_charge=_term.wc_charge, term_fcff=_term.fcff,
+             term_floor=_term.floor, term_life_years=_life,
+             term_below_floor=_term.below_floor, terminal_record=_term.record, sum_pv=sum_pv, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share,
              net_cash=net_cash, nci=V['nci'], equity=eq_dcf, fv=fv_dcf, roic_term=roic_t,
              rr_term=rr_t, ic_repl=ic_repl, nopat_term=nopat[-1] * (1 + V['g_term'])),
     lenses=dict(values=lenses, weights=w, central=fv_central, low=min(lenses.values()),

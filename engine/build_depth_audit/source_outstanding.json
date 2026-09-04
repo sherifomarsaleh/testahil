@@ -2,8 +2,7 @@
  "rule": "R-ENF-01 / SIGCM clause 1 checked from outside",
  "note": "Studies sourcing the company's OWN dated historicals outside its filings, and studies whose input register this gate cannot read. May only ever SHORTEN. A breach closes by re-issuing the study on its own statements; an unreadable one by committing its register where a checker can reach it.",
  "breaching": [
-  "ELEC",
-  "SCEM"
+  "ELEC"
  ],
  "unreadable": [
   "BOROUGE",
