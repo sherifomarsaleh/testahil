@@ -8,6 +8,12 @@ os.chdir(HERE)
 exec(open(os.path.join(HERE, 'docx_base.py')).read())
 
 INP = D['inputs']
+IN = {k: (v['value'] if isinstance(v, dict) and 'value' in v else v)
+      for k, v in INP.items()}
+
+
+def pc(x, d=1):
+    return f'{x * 100:.{d}f}%'
 
 masthead()
 P('Modon Holding PSC — bibliography and input register', size=20, bold=True, space_after=2)
@@ -108,7 +114,7 @@ jd = [['Judgement', 'Basis', 'What would overturn it'],
   'General), thin-trading corrected',
   '253 weekly observations over 4.9 years to 17-Jul-2026: SE 0.397, R² 0.128, 90% range '
   '1.09-2.40, usability gate PASS. The thin-trading correction is worth +0.35 of beta '
-  '(uncorrected 1.394 on the same weeks) and is warranted by a float with 84.75% in one '
+  f'(uncorrected 1.394 on the same weeks) and is warranted by a float with {pc(IN["limad_stake"], 2)} in one '
   'holder. Long-run-adjusted cross-check 1.497; industry route rejected as primary',
   'the wide interval resolving low — at the bottom of the 90% range the cash-flow lens is '
   'worth materially more; equally, a longer index history or a less thinly traded float '
@@ -145,7 +151,7 @@ corr = [['Item', 'First edition', 'Revision 2', 'Why'],
   '1.746 vs the exchange\'s published index, thin-trading corrected',
   'the official index was obtained; a composite of covered names is a coverage artefact, not '
   'a market. Two separate corrections, both upward: the benchmark swap (+0.36, the index is '
-  'less volatile than the composite) and the thin-trading correction (+0.35, 84.75% of the '
+  f'less volatile than the composite) and the thin-trading correction (+0.35, {pc(IN["limad_stake"], 2)} of the '
   'float is held by one entity)'],
  ['Peer table', 'mixed bases/vintages; multiples irreconcilable',
   'one attributable basis, every multiple = printed numerator/denominator',
