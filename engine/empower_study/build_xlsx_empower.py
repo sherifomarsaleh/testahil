@@ -896,6 +896,10 @@ put(ws, 'A93', 'The retired construction grew terminal profit and deducted a rei
     'same as rebuilding the whole capital base every 1/g years — fifty in stage one and '
     'sixty-seven in stage two, both facts about the dirham\'s peg to the dollar rather '
     'than about a chilled-water plant this company\'s own notes turn over in 28.1 years. '
+    'Maintenance is charged over half that life, which is the age of the average asset '
+    'where vintages are uniform. It cannot be measured directly here: this company '
+    'depreciates to residual values, so accumulated depreciation over the year\'s charge '
+    'does not return the age. '
     'Column C is the 9% framing and column G the 15%; they differ only in tax.',
     fmt=None).font = SUB
 

@@ -64,10 +64,35 @@ buildings against 2,652 of equipment, and the buildings are a one-year office an
 accommodation lease that depreciates fully each year.
 
 **The base is YOUNGER than uniform, which is the first name in this programme where the
-second reading runs that way.** Accumulated depreciation over the same charge is 10.11
-years, against the 14.05 that half of a 28.10-year life implies. Where a base is younger
-than uniform, escalating the book charge over half the life OVER-states replacement cost, so
-the derived life is the heavier of the two readings and therefore the conservative one.
+second reading runs that way.**
+
+| | accumulated | the year's charge | age |
+|---|---:|---:|---:|
+| Property, plant and equipment | 3,734,337 | 352,199 | 10.60 y |
+| Right-of-use *(gross 22,649 less net 1,878)* | 20,771 | 5,361 | 3.87 y |
+| Intangibles *(gross 364,710 less net 315,668)* | 49,042 | 12,157 | 4.03 y |
+| **Charge-weighted** | **3,804,150** | **369,717** | **10.29 y** |
+
+against the **14.05** that half of a 28.10-year life implies. Neither the right-of-use nor
+the intangible note prints an accumulated column, so both are recovered by the identity
+gross less net — an identity, labelled as derived.
+
+*This figure was first written here as **10.11 years**, which took the property note's
+accumulated column over the BLENDED charge — a numerator covering one leg and a denominator
+covering three. It understated the age by 1.8%. Corrected rather than quietly replaced.*
+
+**AND THEN THE POLICY NOTE RULED IT OUT, WHICH IS WHY IT IS RECORDED HERE RATHER THAN
+APPLIED.** The identity returns the average age only where the annual charge is cost divided
+by life. Note 2.3 says depreciation is computed *"at rates calculated to reduce the cost of
+assets to their estimated residual values over their expected useful lives"* — so the
+depreciable amount is cost LESS a residual, the charge is not cost/life, and 10.29 years is
+an OVERSTATEMENT of this base's age rather than a measurement of it.
+
+The measured age was applied on this study for part of 4 September 2026 and **withdrawn on
+reading that note**. The direction of the error was safe — an overstated age overstates
+maintenance and understates the value, so the figure in use had been the conservative one —
+and that is not a reason to keep a number the accounts say is not measuring what it claims.
+This study stays on half the life, which is an assumption and is labelled as one.
 
 ## 3. What the retired construction implies here
 

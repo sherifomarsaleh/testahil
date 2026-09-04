@@ -55,13 +55,12 @@ CASES = [
      'higher terminal inflation raises the nominal growth the perpetuity capitalises; it also '
      'raises the cost of replacing the plant and of carrying working capital, so the sign is a '
      'real test rather than an arithmetic one'),
-    ('Weighted asset life, years (derived from the notes)', 'C', +5.0, 'dcf', -1,
-     'the life enters as the AGE of the base, not as a divisor: the terminal charges the book '
-     'depreciation escalated over half the life, so holding that charge fixed and lengthening the '
-     'life says the plant is OLDER than its charge implies and costs more to replace. The sign is '
-     'negative and that is the construction working — under the alternative basis, replacement cost '
-     'divided by the life, it would be positive, and the two disagree only because this one holds '
-     'the charge fixed while the charge already encodes a life'),
+    ('Average age of the base, years (measured from the notes)', 'C', +5.0, 'dcf', -1,
+     'the terminal escalates the book charge to what replacement costs today over the AGE of the '
+     'assets bearing it, so an older base costs more to replace and is worth less. This cell used '
+     'to be half the useful life, ASSUMED; it is now the age this company\'s own notes measure, '
+     'and the sign is the same because the quantity is the same one — what changed is that it is '
+     'read rather than guessed'),
     ('Beta (own-stock vs TASI)', 'C', +0.20, 'dcf', -1, 'a higher beta raises Ke and must lower the DCF'),
     ('Terminal risk-free rate', 'C', +0.02, 'dcf', -1, 'a higher terminal risk-free rate lowers the DCF'),
     ('Net working capital / revenue', 'C', +0.03, 'dcf', -1, 'more working capital absorbs cash'),
@@ -110,6 +109,14 @@ for label, col, bump, key, sign, why in CASES:
 
 # dead-input sweep
 DEAD_OK = {
+    # UNDER A MEASURED-AGE ESCALATOR THE LIFE STOPS DRIVING THE VALUE, and that is a
+    # real change rather than an oversight. The terminal escalates the book charge over
+    # the AGE of the base; while that age was ASSUMED at half the life, the life drove
+    # the charge, and now that it is measured off the notes the life does not enter the
+    # arithmetic at all. It stays on the sheet because a reader is owed it — the whole
+    # argument against the retired construction is 35.76 years against a 1/g of 25.0 —
+    # but it is EVIDENCE here, not a driver, and the sweep is right to say so.
+    'Weighted asset life, years (derived from the notes)',
     'Spot price (SAR)',                 # a market anchor, only enters mktcap weight and 'vs spot'
     'Shares outstanding (mn)',          # scaling denominator (moves per-share both ways consistently)
     'Yield on surplus cash',            # enters the net-debt roll-forward, not the DCF value

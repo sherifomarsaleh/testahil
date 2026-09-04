@@ -370,6 +370,24 @@ INP = dict(
                   "nominal. Saudi electrification and construction (grid capex, giga-projects, housing) "
                   "support a durable but not perpetual mid-single-digit nominal pace",
                   "2026-09-04", "House"),
+    average_age_years=I(21.9518, "AVERAGE AGE of the depreciable asset base, 21.95 years, "
+                        "MEASURED rather than assumed. Accumulated depreciation over the "
+                        "year's own charge is, under the straight-line method these accounts "
+                        "use, exactly the charge-weighted average age of the assets bearing "
+                        "that charge — an identity, not an estimate. Note 9 accumulated "
+                        "depreciation 1,775,547,325 plus note 10 amortisation 29,319,636, "
+                        "over charges of 76,616,111 and 5,603,548 = 21.95 years; the two legs "
+                        "differ sharply and the blend is the point (plant 23.17 years, a "
+                        "young SAP system 5.23). The right-of-use note discloses balances NET "
+                        "of depreciation and no accumulated column, so its 3.7% of the charge "
+                        "is left out of both sides; those assets are new — the land lease was "
+                        "recognised in 2025 — so excluding them OVERSTATES the age and "
+                        "therefore the maintenance charge, which is the conservative "
+                        "direction. This matters because the terminal escalates the book "
+                        "charge to what replacement costs today over the age of the base, and "
+                        "half the useful life is only that age on a base of uniform vintages: "
+                        "here 21.95 against the 17.88 half the life implies",
+                        "2026-09-04", "Company"),
     asset_life_years=I(35.7565, "Weighted useful life of the depreciable asset base, 35.76 years, "
                        "DERIVED BY IDENTITY from the company's own FY2025 notes rather than chosen: "
                        "gross cost of the base that is actually depreciated, divided by that year's own "
@@ -725,6 +743,8 @@ def _terminal(nopat_last, dna_last, nwc_last, ppe_last, g_nom, wacc_t):
         dna_book=dna_last * f,
         useful_life_years=V['asset_life_years'],
         useful_life_source=INP['asset_life_years']['source'],
+        average_age_years=V['average_age_years'],
+        average_age_source=INP['average_age_years']['source'],
         maintenance_basis='book_dna_escalated',
         working_capital=nwc_last * f,
         incremental_capital_per_unit_growth=(nwc_last + ppe_last) * f))
@@ -738,8 +758,12 @@ ev = pv_explicit + pv_tv
 tv_share = pv_tv / ev
 say(f"[Terminal value] terminal NOPAT {nopat_term:,.0f}; book depreciation inside it "
     f"{TERM.dna_addback:,.0f} added back and capital maintenance charged at current cost "
-    f"{TERM.maintenance:,.0f} (that book charge escalated over half the {V['asset_life_years']:.2f}-year "
-    f"life the notes imply); real growth of {100*TERM.record['real_growth']:.2f}% charged "
+    f"{TERM.maintenance:,.0f} (that book charge escalated to what replacement costs today over "
+    f"the {V['average_age_years']:.2f}-year average age of the base, MEASURED off the notes as "
+    f"accumulated depreciation over the year's own charge rather than assumed at half the "
+    f"{V['asset_life_years']:.2f}-year life, which would have been {V['asset_life_years']/2:.2f} "
+    f"years and charged {100*(1-(1+PI_TERM)**(V['asset_life_years']/2)/(1+PI_TERM)**V['average_age_years']):.1f}% "
+    f"less); real growth of {100*TERM.record['real_growth']:.2f}% charged "
     f"{TERM.growth_capex:,.0f} of growth capital at the capital intensity the business already runs; "
     f"inflation on working capital {TERM.wc_charge:,.0f}. Terminal free cash flow {TERM.fcff:,.0f}, "
     f"{TERM.fcff/nopat_term:.0%} of terminal profit. TV {tv:,.0f} discounted at the year-5 factor "
@@ -1110,6 +1134,20 @@ OUT = dict(
                    "shareholders for the six months to 30 June 2026 against the same "
                    "period of 2025, both as filed",
             date='2026-09-04', ring='Company'),
+        materials_share_of_cogs_fy25=dict(
+            # cost of revenue is carried NEGATIVE in the source file; the share a
+            # reader is shown is a magnitude
+            value=abs(CB['materials']['2025'] / IS['cost_of_revenue']['2025']),
+            source=AUD + ", FY2025 note 34 cost of revenue by nature (materials) over the "
+                   "FY2025 income statement's own cost of revenue",
+            date='2026-09-04', ring='Company'),
+        h1_2025_gross_margin=dict(
+            value=(H1['H1_2025_thousands']['gross_profit']
+                   / H1['H1_2025_thousands']['revenue']),
+            source="Tadawul-filed reviewed interim results for the six months to 30 June "
+                   "2025, gross profit over revenue as filed — the comparative the H1-2026 "
+                   "margin is read against",
+            date='2026-09-04', ring='Company'),
         superseded_rf_estimate=dict(
             value=0.0485,
             source="SUPERSEDED. The risk-free rate this study carried before the external "
@@ -1209,6 +1247,11 @@ OUT = dict(
         useful_life_source=INP['asset_life_years']['source'],
         useful_life_is_derived=True,
         maintenance_basis='book_dna_escalated',
+        average_age_years=V['average_age_years'],
+        average_age_source=INP['average_age_years']['source'],
+        average_age_is_measured=True,
+        maintenance_age_basis=TERM.record['maintenance_age_basis'],
+        maintenance_escalator=TERM.record['maintenance_escalator'],
         inflation_source='house Saudi macro path [R-MACRO-01], terminal inflation',
         real_growth=TERM.record['real_growth'],
         nominal_growth_derived=TERM.nominal_growth,

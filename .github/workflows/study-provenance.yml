@@ -940,6 +940,15 @@ jobs:
       - name: Terminal floor — negative control
         run: python3 scripts/check_terminal_floor_negative_control.py
 
+      # THE MODULE'S OWN REFUSALS, WHICH NO GATE EVER SEES. terminal_value.build() refuses
+      # at BUILD TIME, inside a study, before a number is committed — so the study it stops
+      # never reaches a gate, and the nine refusal conditions had never been watched to
+      # fire. A check nobody has seen fail is not evidence, and that is as true of a raise
+      # as of a red build. Includes the clean cases, because a module that refused
+      # everything would also pass a control that only tested refusals.
+      - name: Terminal construction — the module's own refusals, negative-controlled
+        run: python3 scripts/check_terminal_module_negative_control.py
+
       # A DELIVERED DOCUMENT STATES ITS OWN EDITION DATE, AND STATES THE RIGHT ONE. Found
       # by READING the rendered pages: ARCC shipped a masthead a day stale and that was
       # recorded as one study's defect; reading PHDC the same way found the identical

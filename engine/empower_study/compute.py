@@ -260,6 +260,16 @@ INP = dict(
               "whose volume grows more slowly than prices shrinks in real terms by "
               "construction, and this rate says so",
               "2026-08-09", "House"),
+    # THE MEASURED AGE IS NOT AVAILABLE ON THIS NAME AND THE ACCOUNTS SAY SO. Accumulated
+    # depreciation over the year's charge is the charge-weighted average age only where the
+    # charge is cost/life. Note 2.3 states that depreciation is computed "at rates calculated
+    # to reduce the cost of assets to their estimated residual values over their expected
+    # useful lives" — so the depreciable amount is cost LESS a residual, the charge is not
+    # cost/life, and the identity OVERSTATES the age. It came to 10.29 years and was applied
+    # for part of 4 September 2026 before the policy note was read; withdrawn on reading it.
+    # The direction of the error was safe (an overstated age overstates maintenance and
+    # understates the value) and that is not a reason to keep a number the accounts say is
+    # not measuring what it claims.
     asset_life_years=I((10929327.0 - 432364.0 - 495858.0 + 22649.0 + 12157.0 * 30.0)
                        / (352199.0 + 5361.0 + 12157.0),
                        FS25 + ", notes 5, 6 and 7, DERIVED BY IDENTITY from those notes' "

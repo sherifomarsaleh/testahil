@@ -5235,6 +5235,154 @@ LESSONS = [
       "A study whose builder does NOT publish a row map, where the "
       "honest fix is to make it publish one rather than to read a map "
       "that is not there."),
+
+    L("L-326", "ALL", None,
+      "Half the useful life is an ASSUMPTION about the age of an "
+      "asset base, and where the accounts give the age it should be "
+      "read rather than assumed",
+      "The sanctioned terminal charges capital maintenance as book "
+      "depreciation escalated to current cost over HALF the useful "
+      "life. That is the right identity under UNIFORM VINTAGES — book "
+      "depreciation sits on historical cost, replacement costs "
+      "(1+inflation)^age more, and on a base in steady state the "
+      "average asset is half its life old. On a base that is not in "
+      "steady state the proxy is simply wrong, AND THE ERROR SCALES "
+      "WITH INFLATION, so it is nearly invisible in a pegged market "
+      "and severe in a high-inflation one. The age is an IDENTITY the "
+      "accounts already give: accumulated depreciation over the year's "
+      "own charge is, under straight-line, exactly the charge-weighted "
+      "average age — not an estimate, and slightly OVERSTATED where "
+      "assets sit fully depreciated and still in use, which errs "
+      "toward charging more. THE DIRECTION IS NOT UNIVERSAL, which is "
+      "the whole reason it had to be measured rather than corrected: "
+      "of three bases measured, one came out younger than uniform, one "
+      "older, and one far younger. A single-signed correction applied "
+      "to a book that splits both ways makes half of it worse.",
+      "EGCH terminal evidence and the terminal_value re-pointing, 4 "
+      "September 2026",
+      "build",
+      "EGCH: depreciable gross cost EGP 17,020,830,289 over a charge "
+      "of 771,213,489 implies a 22.07-year life, while accumulated "
+      "depreciation of 3,435,299,807 over the same charge puts the "
+      "average age at 4.45 YEARS against the 11.04 half the life "
+      "assumes, with only 1.3% of the base fully depreciated. At "
+      "Egypt's 7% terminal the escalators are 1.352 and 2.110 — the "
+      "proxy over-charges by 56%, charges 144% of terminal profit and "
+      "drives the equity negative on a company that has just built a "
+      "new plant. RIYADHCABLE measures 23.17 against 17.88 (older); "
+      "EMPOWER 10.11 against 14.05 (younger). engine/terminal_value.py "
+      "now takes a MEASURED age where it is supplied and sourced, and "
+      "the record says which of the two it used.",
+      "A measurement across enough names showing the half-life proxy "
+      "is unbiased in aggregate — which would make the measured age a "
+      "refinement rather than a correction, though it would still be "
+      "the better number on any single name."),
+
+    L("L-327", "ALL", None,
+      "A module that refuses at build time is never seen by any gate, "
+      "so its refusals need their own negative control",
+      "Every ratcheted gate in this repository is negative-controlled, "
+      "and the reasoning is standing: a check nobody has watched fail "
+      "is not evidence. The shared terminal construction enforces "
+      "itself differently — it RAISES, inside a study, before a number "
+      "is committed — so the study it stops never reaches a gate and "
+      "the gate's own negative control, which plants mutations in "
+      "study directories, cannot reach it either. Nine refusal "
+      "conditions had therefore never been watched to fire. The same "
+      "argument applies to any shared module whose contract is "
+      "enforced by an exception rather than by a build failure, and "
+      "the clean cases matter as much as the refusals, because a "
+      "module that refused everything would pass a control that only "
+      "tested refusals.",
+      "engine/terminal_value.py re-pointing, 4 September 2026",
+      "build",
+      "scripts/check_terminal_module_negative_control.py: 12 refusal "
+      "conditions and 6 clean cases, plus an assertion that the "
+      "half-of-life fallback still reproduces the pre-amendment charge "
+      "exactly, so the re-pointing moves no committed answer. ITS OWN "
+      "FIRST RUN CAUGHT A CASE WHOSE MUTATION DID NOT LAND: 'a "
+      "terminal distributing more than it earns' was written as a huge "
+      "book charge on a one-year life, and on that basis maintenance "
+      "is the charge ESCALATED, so free cash flow can never rise above "
+      "profit — the condition is only reachable where maintenance is "
+      "supplied directly and is small against the add-back.",
+      "A shared module whose every refusal is already reachable from a "
+      "gate's own sandbox, where a separate control would be "
+      "duplication rather than coverage."),
+
+
+    L("L-328", "ALL", None,
+      "Accumulated depreciation over the charge is the average age "
+      "only where the charge is cost over life, and two DISCLOSED "
+      "conditions break that",
+      "The identity holds because accumulated equals age times "
+      "charge, which needs the annual charge to be cost divided by "
+      "life AND the accumulated column to be this group's own "
+      "depreciation history. THREE DISCLOSED CONDITIONS BREAK THAT. "
+      "Where assets are depreciated to a RESIDUAL VALUE the charge "
+      "is (cost less residual) over life, so the same accumulated "
+      "balance buys more years and the ratio OVERSTATES the age. "
+      "Where a useful life has been REASSESSED mid-life the charge "
+      "is not level and the identity is broken outright rather than "
+      "merely biased. And where the base was ASSEMBLED BY BUSINESS "
+      "COMBINATION the accumulated column carries an acquiree's "
+      "history against a charge that only ever reflects the period "
+      "since acquisition, and the ratio is not a number about "
+      "anything. All three are disclosed, so all three are "
+      "checkable before the number is used. AND THE DISAGREEMENT "
+      "ANNOUNCES ITSELF BEFORE THE NOTE DOES: compare the identity's "
+      "implied life — depreciable gross cost over the charge — with "
+      "the life the disclosed class rates weight to, and a large gap "
+      "IS the accounts saying the charge is not cost over life. THE "
+      "CHECK IS CIRCULAR WHERE A STUDY DERIVED ITS LIFE BY THE SAME "
+      "IDENTITY, which is most of them, and saying so is part of "
+      "running it — what does the work there is separate evidence "
+      "that the charge is cost over life: a policy note writing off "
+      "cost with no residual mentioned, a leg whose single disclosed "
+      "life the identity reproduces, an implied life inside the "
+      "disclosed range rather than outside it. AND THE ARITHMETIC IS "
+      "NOT THE TEST, WHICH TOOK TWO MORE NAMES TO LEARN: SAVOLA's "
+      "cross-check passes at 0.0% — it derived its life by the same "
+      "identity — while its policy note says outright that the "
+      "depreciable amount is cost LESS ITS RESIDUAL VALUE, and "
+      "EMPOWER's age was APPLIED for part of a day before its own "
+      "note was read and said the same thing. THREE OF THE FIVE "
+      "NAMES TRIED FAIL THIS CONDITION and two pass, so a measured "
+      "age is the exception rather than the rule. Read the note "
+      "first; the arithmetic corroborates and only sometimes. And "
+      "a safe error direction is not a reason to keep a number the "
+      "accounts say is not measuring what it claims — EMPOWER's "
+      "overstated age overstated maintenance and understated the "
+      "value, and it was withdrawn anyway.",
+      "AIRARABIA, the third name the measured age was tried on, 4 "
+      "September 2026",
+      "build",
+      "AIRARABIA's identity-implied life came to 26.42 years against "
+      "the 17.84 its own disclosed class lives weight to — 48% apart, "
+      "which no rounding explains. Its policy note then says both "
+      "things outright: depreciation writes off cost 'less their "
+      "estimated residual values', and the group 'changed the "
+      "estimated useful life applied to certain assets' during the "
+      "year. The measured age of 14.32 years is therefore not that "
+      "fleet's age, and applying it would have moved the study -9.7% "
+      "on a terminal carrying 95% of enterprise value. Built, run, "
+      "and NOT APPLIED. The three names that do carry the measured "
+      "age all reproduce their adopted life to 0.0%, and that "
+      "agreement proves nothing because they derived it the same way. "
+      "MODON is the third condition and it is not close: AED "
+      "6,643,801 thousand of accumulated depreciation arrived through "
+      "a 2024 business combination against that year's entire charge "
+      "of 193,207 — THIRTY-FOUR TIMES IT — and the two acquisitions "
+      "are 97% of the closing column. Its naive age reads 15.45 years "
+      "against 0.46 net of the acquired history. The arithmetic "
+      "cross-check DOES catch that one, at about -34%, as it catches "
+      "AIRARABIA at +48%: it works where the adopted and implied lives "
+      "came from different routes and fails where they did not.",
+"A residual small enough to be immaterial, or a reassessment "
+      "old enough that the base has turned over since — in which case "
+      "the identity is usable again, though the POLICY NOTE and not the "
+      "cross-check is what would say so."),
+
 ]
 
 
