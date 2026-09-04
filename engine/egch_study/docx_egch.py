@@ -716,8 +716,27 @@ rows = [["Component", "Rating basis", "CDS basis", "Source"],
          f"currency wedge of {PC(WC['fx_wedge_path'][0])}"],
         ["Weights, equity and debt", f"{PC(WC['we'])} / {PC(WC['wd'])}",
          f"{PC(WC['we'])} / {PC(WC['wd'])}", "Market-value equity, never book"],
-        ["Cost of capital, year one", PC2(DR['wacc_path'][0]), PC2(WC['wacc_cds']),
-         "The rating basis is carried into the valuation as the more conservative"]]
+        # THE RATING COLUMN PRINTED THE CDS NUMBER AND THE NOTE NAMED THE WRONG BASIS AND
+        # THE WRONG DIRECTION. It read wacc_path[0], which IS the published rate and is the
+        # CDS basis — so both columns showed 25.76% and neither could be reproduced from
+        # the rating rows above it: 66.2% x 30.99% + 33.8% x 18.86% is 26.88%. The note
+        # then said "the rating basis is carried into the valuation as the more
+        # conservative", and the study carries the CDS basis, which is the LOWER of the two
+        # and therefore the LESS conservative. Carrying it is right — [R-COC-01] names the
+        # swap basis as central by default, being the market's own live pricing of the
+        # sovereign's credit against an agency judgement updated in steps — and the note
+        # said none of that. Each column now shows its own basis and the note is computed.
+        ["Cost of capital, year one", PC2(WC['wacc_rating']), PC2(WC['wacc_cds']),
+         "The swap basis is carried into the valuation, as the market's own live pricing "
+         "of the sovereign's credit against a rating judgement updated in steps. It is "
+         # A DIFFERENCE OF TWO RATES IS BASIS POINTS, NOT A PERCENTAGE. Printing it as
+         # "1.13%" beside two rates in per cent invites a reader to take it as a
+         # proportional difference, which it is not; the two framings differ by a factor
+         # of twenty here.
+         f"{(WC['wacc_rating'] - WC['wacc_cds']) * 1e4:,.0f} basis points BELOW the "
+         "rating basis, so the "
+         "choice is not the conservative one and is not made on that ground; section 1.9 "
+         "prices what the other basis is worth"]]
 table(rows, [1.85, 1.05, 1.05, 2.95], size=8.5, band_rows={3, 6, 9}, text_cols=(3,))
 caption("{T}.  The cost of capital, built rather than assumed, on both premium bases.")
 H2("The cost of debt — three pieces of evidence, not an assumption")
