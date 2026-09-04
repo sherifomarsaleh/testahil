@@ -93,15 +93,27 @@ WHAT A TERMINAL COSTS, correctly. In a nominal steady state holding physical cap
     most of them, so saying so is part of running it. On the three names carrying a measured
     age the implied and adopted lives agree to 0.0% for exactly that reason and the agreement
     proves nothing; what does the work there is the SEPARATE evidence that the charge is
-    cost/life, and on all three THE POLICY NOTE WAS READ rather than assumed. RIYADHCABLE
+    cost/life, AND IT IS THE POLICY NOTE THAT SETTLES IT, NOT THE ARITHMETIC — which is the
+    order this got wrong once and is written down so it is not got wrong again. RIYADHCABLE
     writes off "over the estimated lives of the assets" and names residual values only in the
     boilerplate about annual review, never in the depreciable amount; EGCH charges at RATES
-    against cost, so a 3.95% rate IS cost/25.3 with nothing deducted. Each is corroborated
-    arithmetically, and the corroboration runs the right way — a material residual pushes the
-    implied life ABOVE the disclosed one, as AIRARABIA's does: EMPOWER's intangibles reproduce
-    a disclosed 30 years exactly, RIYADHCABLE's software comes to 14.43 against a stated 15
-    which is 3.8% BELOW rather than above, and EGCH's 22.07 sits inside class rates spanning
-    10.5 to 25.3 and below the 25.3 its dominant plant carries. AIRARABIA is the case where
+    against cost, so a 3.95% rate IS cost/25.3 with nothing deducted. Both read, both clean.
+
+    SAVOLA IS WHY THE ARITHMETIC CANNOT BE THE TEST. Its cross-check passes at 0.0% — because
+    it derived its life by the same identity — while its policy note says outright that the
+    "depreciable amount represents cost of an asset ... less its residual value". The
+    arithmetic would have waved it through and only the note catches it. On AIRARABIA the
+    arithmetic DID catch it, at +48%, because there the two lives came from genuinely
+    different routes. So the note is the test and the arithmetic is a corroborator that works
+    only sometimes.
+
+    EMPOWER'S PPE POLICY NOTE HAS NOT BEEN READ, and saying so is part of the record: its
+    committed extracts carry the note-5 tables and not the accounting policy. What is
+    evidenced there is its INTANGIBLE leg, whose identity reproduces a disclosed 30 years
+    exactly — 3.3% of the charge, not the property that dominates it. The measured age stays
+    applied because the direction is known and safe: if a residual is being deducted the true
+    age is LOWER than 10.29, maintenance lower still and the value HIGHER, so the figure in
+    use is the conservative one. It is listed as outstanding rather than treated as settled. AIRARABIA is the case where
     the two lives came from genuinely different routes, and that is why the 48% gap was
     visible at all. Supply it and it is used; leave it and half the life is used
     and the record SAYS WHICH, so a reader can tell an assumption from a measurement.

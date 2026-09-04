@@ -5335,7 +5335,14 @@ LESSONS = [
       "that the charge is cost over life: a policy note writing off "
       "cost with no residual mentioned, a leg whose single disclosed "
       "life the identity reproduces, an implied life inside the "
-      "disclosed range rather than outside it.",
+      "disclosed range rather than outside it. AND THE ARITHMETIC IS "
+      "NOT THE TEST, WHICH TOOK A SECOND NAME TO LEARN: SAVOLA's "
+      "cross-check passes at 0.0% — it derived its life by the same "
+      "identity — while its policy note says outright that the "
+      "depreciable amount is cost LESS ITS RESIDUAL VALUE. The "
+      "arithmetic would have waved it through and only the note "
+      "catches it. Read the note first; the arithmetic corroborates "
+      "and only sometimes.",
       "AIRARABIA, the third name the measured age was tried on, 4 "
       "September 2026",
       "build",
@@ -5351,9 +5358,10 @@ LESSONS = [
       "and NOT APPLIED. The three names that do carry the measured "
       "age all reproduce their adopted life to 0.0%, and that "
       "agreement proves nothing because they derived it the same way.",
-      "A residual small enough to be immaterial, or a reassessment "
+"A residual small enough to be immaterial, or a reassessment "
       "old enough that the base has turned over since — in which case "
-      "the identity is usable again and the cross-check will say so."),
+      "the identity is usable again, though the POLICY NOTE and not the "
+      "cross-check is what would say so."),
 
 ]
 
