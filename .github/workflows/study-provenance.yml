@@ -86,6 +86,8 @@ on:
       - 'scripts/check_source_rebinding_negative_control.py'
       - 'scripts/check_harness_outputs.py'
       - 'scripts/check_harness_outputs_negative_control.py'
+      - 'scripts/check_eps_reconciliation.py'
+      - 'scripts/check_eps_reconciliation_negative_control.py'
       - 'engine/source_integrity.py'
       - 'engine/table_footing.py'
       - 'engine/site_data.py'
@@ -194,6 +196,8 @@ on:
       - 'scripts/check_source_rebinding_negative_control.py'
       - 'scripts/check_harness_outputs.py'
       - 'scripts/check_harness_outputs_negative_control.py'
+      - 'scripts/check_eps_reconciliation.py'
+      - 'scripts/check_eps_reconciliation_negative_control.py'
       - 'engine/source_integrity.py'
       - 'engine/table_footing.py'
       - 'engine/site_data.py'
@@ -633,6 +637,24 @@ jobs:
 
       - name: Pricing-harness output gate — negative control
         run: python3 scripts/check_harness_outputs_negative_control.py
+
+      # WHAT STANDS BETWEEN PROFIT AND SHAREHOLDERS [L-294]. A valuation ends by dividing
+      # an equity value by a share count; every gate here checks how that equity value was
+      # BUILT and none asked whether the number being divided is what shareholders receive.
+      # Egyptian law gives employees a share of distributable profits, disclosed BELOW
+      # attributable profit — an appropriation, not a cost, so it appears in no line of the
+      # income statement and no cost driver can capture it. One study registered
+      # attributable profit of 17,330.245 AND its reported EPS of 7.13, both correctly
+      # sourced; 17,330.245/2,140.778 = 8.095, and the 12% between them was the employees'
+      # share. Nothing reconciled them. The gate holds one identity — profit over shares
+      # reproduces the reported EPS, to the rounding the EPS is printed at — and requires
+      # any gap to be NAMED. A study registering no reported EPS is UNREADABLE rather than
+      # clean: that state is what made the defect invisible.
+      - name: Earnings-per-share reconciliation gate
+        run: python3 scripts/check_eps_reconciliation.py
+
+      - name: Earnings-per-share reconciliation gate — negative control
+        run: python3 scripts/check_eps_reconciliation_negative_control.py
 
       # [R-ENF-03] assets/data.js is read through a REAL JavaScript parse, EVERYWHERE.
       # The rule was adopted four weeks earlier, after a reader — not a check — found a

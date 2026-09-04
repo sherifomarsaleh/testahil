@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**214 lessons**, of which 185 bind on every study, 22 on a class of company, and 7 on a single name.
+**215 lessons**, of which 186 bind on every study, 22 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 139 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 140 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1928,6 +1928,16 @@ A study carried an override harness so an audit finding could be priced on the r
 > **What it cost, or how we know.** The committed study_numbers.json held a fair value of 12.29999994 against a market price of 12.30 — the solved answer of the last bisection step, not the study. It was caught only because a figure printed for an unrelated purpose was one somebody recognised; no gate in the repository could see it, and there was no provenance to read, since an overridden run records no trace of having been overridden. Closed structurally rather than by resolve: an overridden run now writes BESIDE the committed file by default, so forgetting the flag cannot corrupt the study, and scripts/check_harness_outputs.py refuses both a committed file carrying an override block and a harness whose output name does not depend on the override being set.
 
 > **What would overturn it.** A harness whose overridden output genuinely must occupy the committed path — none is known, and the safe default costs nothing. If one appears, the honest form is a provenance block the file carries about itself, which the gate already reads.
+
+### L-294 · A VALUATION ENDS BY DIVIDING BY A SHARE COUNT, AND NOTHING WAS CHECKING WHETHER THE NUMBER BEING DIVIDED IS WHAT SHAREHOLDERS ACTUALLY RECEIVE. Every gate examines how the equity value was BUILT; the last arithmetic step had none.
+
+Egyptian company law gives employees a share of distributable profits. It is an APPROPRIATION of profit rather than an operating cost, so a company discloses it BELOW profit attributable to owners, in the earnings-per-share note — which means it appears in no line of the income statement and NO COST DRIVER CAN EVER CAPTURE IT, however carefully the cost stack is built from unit economics. The mechanism is not Egyptian and not unusual: anywhere the EPS numerator differs from attributable profit there is a claim ahead of ordinary shareholders — a statutory profit share, a preference dividend, a participating instrument, a perpetual coupon, an ESOP allocation.
+
+**Applies to:** every study  ·  *Learned from:* found while building, SWDY, 04-Sep-2026
+
+> **What it cost, or how we know.** The study registered attributable profit of EGP 17,330.245mn AND the company's own reported EPS of 7.13, both correctly sourced to the audited statements, four fields each. 17,330.245 / 2,140.778 shares = 8.095. The 12.0% between them was the employees' share, disclosed in the EPS note and running 11.6%, 12.0% and 13.0% of attributable profit across FY2024, FY2025 and H1-2026. The word 'employee' occurred nowhere in the study's committed numbers, and the valuation divided the full parent equity value by the full share count. Measured across the book, TWENTY-ONE of twenty-four studies register no reported EPS at all, so nothing could have reconciled it even in principle — which is why the gate counts that state as UNREADABLE rather than clean. Closed by scripts/check_eps_reconciliation.py, which holds one identity and requires any gap to be NAMED, never explained away.
+
+> **What would overturn it.** A company whose reported EPS numerator legitimately differs from attributable profit for a reason that is NOT a claim on shareholders — a weighted-average share count in a year of issuance is the obvious case. That is why the gate asks for the difference to be named rather than to be zero, and why a named difference valued at zero with a reason passes.
 
 
 ---

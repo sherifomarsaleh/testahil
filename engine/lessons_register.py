@@ -4216,6 +4216,38 @@ LESSONS = [
       "is known, and the safe default costs nothing. If one appears, the honest form is a "
       "provenance block the file carries about itself, which the gate already reads."),
 
+    L("L-294", "ALL", None,
+      "A VALUATION ENDS BY DIVIDING BY A SHARE COUNT, AND NOTHING WAS CHECKING WHETHER THE "
+      "NUMBER BEING DIVIDED IS WHAT SHAREHOLDERS ACTUALLY RECEIVE. Every gate examines how "
+      "the equity value was BUILT; the last arithmetic step had none.",
+      "Egyptian company law gives employees a share of distributable profits. It is an "
+      "APPROPRIATION of profit rather than an operating cost, so a company discloses it "
+      "BELOW profit attributable to owners, in the earnings-per-share note — which means it "
+      "appears in no line of the income statement and NO COST DRIVER CAN EVER CAPTURE IT, "
+      "however carefully the cost stack is built from unit economics. The mechanism is not "
+      "Egyptian and not unusual: anywhere the EPS numerator differs from attributable "
+      "profit there is a claim ahead of ordinary shareholders — a statutory profit share, a "
+      "preference dividend, a participating instrument, a perpetual coupon, an ESOP "
+      "allocation.",
+      "SWDY, 04-Sep-2026",
+      "build",
+      "The study registered attributable profit of EGP 17,330.245mn AND the company's own "
+      "reported EPS of 7.13, both correctly sourced to the audited statements, four fields "
+      "each. 17,330.245 / 2,140.778 shares = 8.095. The 12.0% between them was the "
+      "employees' share, disclosed in the EPS note and running 11.6%, 12.0% and 13.0% of "
+      "attributable profit across FY2024, FY2025 and H1-2026. The word 'employee' occurred "
+      "nowhere in the study's committed numbers, and the valuation divided the full parent "
+      "equity value by the full share count. Measured across the book, TWENTY-ONE of "
+      "twenty-four studies register no reported EPS at all, so nothing could have "
+      "reconciled it even in principle — which is why the gate counts that state as "
+      "UNREADABLE rather than clean. Closed by scripts/check_eps_reconciliation.py, which "
+      "holds one identity and requires any gap to be NAMED, never explained away.",
+      "A company whose reported EPS numerator legitimately differs from attributable "
+      "profit for a reason that is NOT a claim on shareholders — a weighted-average share "
+      "count in a year of issuance is the obvious case. That is why the gate asks for the "
+      "difference to be named rather than to be zero, and why a named difference valued at "
+      "zero with a reason passes."),
+
 ]
 
 
