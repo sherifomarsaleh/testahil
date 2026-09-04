@@ -61,6 +61,7 @@ BUILDER_STUB = "import json\nd = json.load(open('diagnostics.json'))\n"
 # the checks a new name cannot walk past by simply not producing something.
 DIRECTORY_GATES = [
     'check_study_provenance.py',
+    'check_rebuild_ledger.py',
     'check_workbook_structure.py',
     'check_document_structure.py',
     'check_sweep_module.py',

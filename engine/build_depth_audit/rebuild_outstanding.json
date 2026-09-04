@@ -1,0 +1,27 @@
+{
+ "outstanding": [
+  "ADNOCDIST",
+  "ADNOCDRILL",
+  "ADNOCLS",
+  "AMOC",
+  "AMR",
+  "ARCC",
+  "BOROUGE",
+  "DU",
+  "EGCH",
+  "ELEC",
+  "EMPOWER",
+  "FERTIGLOBE",
+  "GBCO",
+  "MODON",
+  "PHDC",
+  "RIYADHCABLE",
+  "SAVOLA",
+  "SCEM",
+  "STC",
+  "SWDY",
+  "TMGH",
+  "XPT"
+ ],
+ "note": "[R-ENF-02] ratchet. Every study whose delivered edition predates the rebuild ledger carries no route to record and is listed here. A study REBUILT from now on writes one; the build breaks on a new study with neither a ledger nor an entry, and on a ledger that cannot be walked. THE LIST MAY ONLY EVER SHORTEN (--prune)."
+}

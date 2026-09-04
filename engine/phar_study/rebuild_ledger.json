@@ -1,0 +1,87 @@
+{
+ "ticker": "PHAR",
+ "started_at": "2026-09-04",
+ "start_value": 58.043563,
+ "start_spot": 130.05,
+ "start_gap": -0.5536827143406382,
+ "audit_after": "the levers serving [R-MACRO-01] are complete \u2014 the house inflation ladder, the currency derived from it and the terminal risk-free derived from it are ONE rule in three places, and the natural place to stop and look is when that rule has finished moving the answer",
+ "levers": [
+  {
+   "name": "terminal on the disclosed life; growth stored as a real rate",
+   "rule": "R-TERM-01",
+   "before": 58.043563,
+   "after": 84.188194,
+   "why": "the terminal was the retired reinvestment identity, whose implied replacement cycle is 1/g \u2014 20.0 years at the old 5% against a weighted useful life of 13.80 the company itself discloses",
+   "evidence": "FY2024 audited note 3.1 lives weighted by note 4.1's gross cost",
+   "move": 0.4504311873480269
+  },
+  {
+   "name": "re-struck on the latest known price; lens record committed",
+   "rule": "R-GAP-01",
+   "before": 84.188194,
+   "after": 84.63,
+   "why": "the study was struck against a price four weeks old",
+   "evidence": "EGX close of 3 September 2026, EGP 127.30",
+   "move": 0.0052478379569467215
+  },
+  {
+   "name": "domestic inflation moved to the house ladder; currency re-derived from it",
+   "rule": "R-MACRO-01",
+   "before": 84.63,
+   "after": 65.17,
+   "why": "the study carried its own Egyptian inflation path, named in no growth line, driving the cost stack AND the purchasing-power wedge",
+   "evidence": "house ladder 16.0/12.0/9.0/7.5/7.0 against the study's 12.0/10.0/8.5/7.0/6.0",
+   "move": -0.2299421009098428
+  },
+  {
+   "name": "terminal risk-free derived rather than quoted",
+   "rule": "R-MACRO-01",
+   "before": 65.17,
+   "after": 49.1,
+   "why": "10.5% was the central bank's 5% TARGET plus the real convention while every other long-run rate in the model ran on 7%",
+   "evidence": "7.0% terminal inflation + the 5.5-point real-rate convention = 12.5%",
+   "move": -0.24658585238606723
+  },
+  {
+   "name": "currency conformed to the house derivation's own anchor",
+   "rule": "R-MACRO-01",
+   "before": 49.1,
+   "after": 36.639498,
+   "why": "a first draft anchored FY2026 at the observed spot; the house derivation does not admit a leading-year anchor for a currency and the study conforms rather than inventing one",
+   "evidence": "the tension in the house path's first year is registered, not resolved",
+   "move": -0.2537780448065172
+  }
+ ],
+ "value": 36.639498,
+ "cumulative_move": -0.368758633924661,
+ "rules": {
+  "R-TERM-01": {
+   "levers": [
+    "terminal on the disclosed life; growth stored as a real rate"
+   ],
+   "first_before": 58.043563,
+   "last_after": 84.188194,
+   "move": 0.4504311873480269
+  },
+  "R-GAP-01": {
+   "levers": [
+    "re-struck on the latest known price; lens record committed"
+   ],
+   "first_before": 84.188194,
+   "last_after": 84.63,
+   "move": 0.0052478379569467215
+  },
+  "R-MACRO-01": {
+   "levers": [
+    "domestic inflation moved to the house ladder; currency re-derived from it",
+    "terminal risk-free derived rather than quoted",
+    "currency conformed to the house derivation's own anchor"
+   ],
+   "first_before": 84.63,
+   "last_after": 36.639498,
+   "move": -0.5670625310173696
+  }
+ },
+ "distinct_rules": 3,
+ "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked."
+}

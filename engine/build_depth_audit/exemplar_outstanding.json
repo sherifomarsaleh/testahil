@@ -1,5 +1,10 @@
 {
  "rule": "R-ENF-01 / the exemplar is held to the standard it defines",
  "note": "Standards the model report is outstanding on. It may only ever SHORTEN: a new standard is either MET by the exemplar or the entry is added here deliberately, in the commit that adopts it.",
- "outstanding": []
+ "outstanding": [
+  "ADNOCLS:rebuild_outstanding.json:outstanding"
+ ],
+ "reasons": {
+  "ADNOCLS:rebuild_outstanding.json:outstanding": "ADDED DELIBERATELY IN THE COMMIT THAT ADOPTS [R-REBUILD-01], which is what that gate asks for. The rule binds on a study whose committed answer HAS MOVED since its delivered edition; the exemplar has not been rebuilt since the rule exists, so it has no route to record and there is nothing for it to meet. THE DEBT IS NOT A CONSTRUCTION A NEW STUDY WOULD INHERIT — a study written by opening the model report beside it copies its sections, its sheets and its constructions, and \"carries no rebuild ledger because it has not been rebuilt\" is not one of those; it is a fact about history rather than a property of the document. The entry comes off the moment the exemplar is re-issued, at which point it owes a ledger like any other rebuilt study."
+ }
 }

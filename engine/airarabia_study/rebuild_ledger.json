@@ -1,0 +1,67 @@
+{
+ "ticker": "AIRARABIA",
+ "started_at": "2026-09-04",
+ "start_value": 4.174491,
+ "start_spot": 5.24,
+ "start_gap": -0.20334141221374058,
+ "audit_after": "the lens architecture is settled \u2014 the terminal and the blend move the answer in the same direction here, so the place to stop and look is once the central is the primary and before the re-strike moves the price it is compared with",
+ "levers": [
+  {
+   "name": "terminal on the disclosed 17.84-year life; growth stored as a real rate",
+   "rule": "R-TERM-01",
+   "before": 4.174491,
+   "after": 4.39,
+   "why": "the terminal was the retired reinvestment identity, implying a 40.0-year replacement cycle against a weighted useful life of 17.84 the accounts disclose \u2014 the PEGGED-MARKET side, where 1/g runs long and under-charges",
+   "evidence": "FY2025 note 4 class lives weighted by note 5 gross cost; aircraft and engines are 87.4% of the depreciable base at a single disclosed 20 years",
+   "move": 0.051625216104190796
+  },
+  {
+   "name": "the typed 45/20/20/15 blend retired; normalised earnings excluded",
+   "rule": "R-LENS-03",
+   "before": 4.39,
+   "after": 4.82172,
+   "why": "weights that had never cleared an out-of-sample test, and normalised earnings power is not a permitted lens for an airline at all \u2014 it carried a fifth of the weight and read 3.43 against a cash-flow 4.82",
+   "evidence": "an airline's reported earnings in any one year are an accident of the fuel curve, the delivery schedule and the load factor",
+   "move": 0.09834168564920276
+  },
+  {
+   "name": "re-struck on the latest known price; envelope flexed in business units only",
+   "rule": "R-GAP-01",
+   "before": 4.82172,
+   "after": 4.8511,
+   "why": "the study was struck against a price four weeks old; separately, its envelope moved the cost of capital AND the terminal growth, which the study's own lens gate refused \u2014 that changed the range and not the central",
+   "evidence": "DFM close of 3 September 2026, AED 4.97; the envelope tightened from 0.96-10.56 to 1.12-7.04",
+   "move": 0.006093261325833987
+  }
+ ],
+ "value": 4.8511,
+ "cumulative_move": 0.1620817963195993,
+ "rules": {
+  "R-TERM-01": {
+   "levers": [
+    "terminal on the disclosed 17.84-year life; growth stored as a real rate"
+   ],
+   "first_before": 4.174491,
+   "last_after": 4.39,
+   "move": 0.051625216104190796
+  },
+  "R-LENS-03": {
+   "levers": [
+    "the typed 45/20/20/15 blend retired; normalised earnings excluded"
+   ],
+   "first_before": 4.39,
+   "last_after": 4.82172,
+   "move": 0.09834168564920276
+  },
+  "R-GAP-01": {
+   "levers": [
+    "re-struck on the latest known price; envelope flexed in business units only"
+   ],
+   "first_before": 4.82172,
+   "last_after": 4.8511,
+   "move": 0.006093261325833987
+  }
+ },
+ "distinct_rules": 3,
+ "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked."
+}

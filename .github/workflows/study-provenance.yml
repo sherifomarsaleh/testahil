@@ -1022,3 +1022,14 @@ jobs:
 
       - name: Delivered PDF currency — negative control
         run: python3 scripts/check_delivered_pdf_currency_negative_control.py
+
+      # [R-REBUILD-01] — a rebuilt study records the ROUTE it took, not only where it
+      # arrived. The promotion guard governs levers promoted from the calibration; a
+      # rebuild applies rules that already bind and was governed by nothing, which is
+      # how six required corrections stacked on one name without anyone watching the
+      # running total.
+      - name: Rebuild ledgers walk from their start to their answer
+        run: python3 scripts/check_rebuild_ledger.py
+
+      - name: Rebuild ledger — negative control
+        run: python3 scripts/check_rebuild_ledger_negative_control.py
