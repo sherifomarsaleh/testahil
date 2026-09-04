@@ -20,7 +20,7 @@ import sys
 import tempfile
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-EXPECTED_CASES = 7
+EXPECTED_CASES = 8
 
 
 def sandbox(tmp):
@@ -137,12 +137,38 @@ def _clean_superseded_edition(root):
     return 'emptied %d SUPERSEDED ARCC edition(s); the current one is untouched' % len(olds)
 
 
+
+def _one_branch_of_two(root):
+    """A TWO-SIDED STUDY WHOSE DOCUMENT SHOWS ONE BRANCH. Half current is not current.
+
+    The condition this reproduces is the one the gate missed on the day it was written:
+    PHAR publishes two named branches, its rebuilt model moved both, and its stale
+    document happened to carry one of the new figures in its opening pages while the
+    headline still read the old one. `any` over the branches passed it. Here only the
+    SECOND branch is moved, so the document still shows the first — which is exactly
+    the shape that used to pass and must now go red.
+    """
+    f = numbers(root, 'PHAR')
+    d = json.load(open(f))
+    br = (d.get('central_two_sided') or {}).get('branches') or []
+    assert len(br) >= 2, 'PHAR does not publish two branches; this case tests nothing'
+    before = br[1]['value']
+    br[1]['value'] = before * 1.41        # a value no rendered edition carries
+    json.dump(d, open(f, 'w'), indent=1)
+    got = json.load(open(f))['central_two_sided']['branches'][1]['value']
+    assert got != before, 'mutation did not land'
+    return ('PHAR second branch moved %.2f -> %.2f; the first is untouched, so the '
+            'document still shows one of the two' % (before, got))
+
+
 CASES = [
     ('THE ONE THAT MATTERS — the central moves and the PDF does not', _central_moved, 'red'),
     ('the delivered PDF is removed', _pdf_removed, 'red'),
     ('the delivered PDF yields no text [R-ENF-04]', _pdf_emptied, 'red'),
     ('a real outstanding entry with its allowance removed', _off_ratchet, 'red'),
     ('no study directories at all [R-ENF-04]', _empty_population, 'red'),
+    ('a two-sided study whose document shows ONE of its two branches',
+     _one_branch_of_two, 'red'),
     ('CLEAN — the repository as it stands', _clean_untouched, 'green'),
     ('CLEAN — a SUPERSEDED edition left stale beside a current one',
      _clean_superseded_edition, 'green'),

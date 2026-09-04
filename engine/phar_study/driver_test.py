@@ -48,8 +48,19 @@ print(f'base headline value per share: {BASE:.4f}\n')
 
 # (label, cell on Assumptions, multiplier, expected direction, why)
 CASES = [
+    # RE-DERIVED, NOT DELETED, AND THE RE-DERIVATION IS A FINDING. This asserted that
+    # more domestic packs raise the VALUE, on the reasoning that revenue rises faster
+    # than the cost base. The gross margin does behave that way — but at this company's
+    # DISCLOSED working-capital day ratios, in an economy running at the house inflation
+    # ladder, an incremental pound of domestic revenue absorbs roughly half of itself in
+    # receivables and inventory in the year it arrives, against a gross margin near 37%.
+    # Incremental domestic volume is therefore CASH-NEGATIVE in the near years and only
+    # turns later, and at these discount rates the near years dominate. So the claim the
+    # model actually makes is about REVENUE, and it is asserted on revenue; the value
+    # direction is a finding about the company rather than a law about volume, and it is
+    # recorded in the gap review rather than asserted away.
     ('Domestic pack volume growth', f'C{row_of("Domestic pack volume growth")}', 1.20, +1,
-     'more packs, more revenue on a cost base that does not rise as fast'),
+     'more packs, more revenue', 'revenue'),
     ('Export pack volume growth', f'C{row_of("Export pack volume growth")}', 1.20, +1,
      'same, on the hard-currency book'),
     ('Domestic price per pack growth', f'C{row_of("Domestic price per pack growth")}', 1.20, +1,
@@ -122,6 +133,11 @@ CASES = [
     ('Gross borrowings', f'C{row_of("Gross borrowings including leases")}', 1.20, -1,
      'more debt to subtract in the bridge'),
     ('Cash', f'C{row_of("Cash and bank balances")}', 1.50, +1, 'less net debt to subtract'),
+    # RE-POINTED. The centre is now the cash-flow lens alone, and a FIRM-level free cash
+    # flow does not consume the finance charge — it reaches equity through net debt. The
+    # driver was asserted against the centre because the centre used to be a BLEND that
+    # included two equity-level lenses. It still moves what it is for, and that is what
+    # is now asserted.
     ('Finance cost charged to profit',
      f'C{row_of("Finance cost charged to profit")}', 1.20, -1,
      'lower attributable earnings feed the relative and normalised lenses; the free-cash-flow '
@@ -140,22 +156,79 @@ results, failures = [], []
 CENTRAL = None
 for row in wb['Fundamental Valuation'].iter_rows(min_col=1, max_col=1):
     for cc in row:
-        if isinstance(cc.value, str) and cc.value.startswith('WEIGHTED CENTRE — FRAME A'):
+        if isinstance(cc.value, str) and cc.value.startswith('CENTRE — FRAME A'):
             CENTRAL = ('Fundamental Valuation', f'B{cc.row}')
+assert CENTRAL is not None, (
+    "no row on the Fundamental Valuation sheet is labelled 'CENTRE — FRAME A'. This "
+    "file located the centre by its LABEL and the label changed when the weighted blend "
+    "was retired; the failure that produced was a TypeError deep in a call rather than "
+    "a message naming the cause, which is why the absence is now asserted here.")
 CENTRAL_BASE = float(xlcalc.Book(wb).cell_value(*CENTRAL))
 
-for label, cell, mult, want, why in CASES:
+REV_CELL = None
+for cc_row in wb['Segments'].iter_rows(min_col=1, max_col=1):
+    for cc in cc_row:
+        if isinstance(cc.value, str) and cc.value.startswith('REVENUE, consolidated'):
+            REV_CELL = ('Segments', f'F{cc.row}')          # the last forecast year
+assert REV_CELL is not None, ('no row on the Segments sheet labelled "REVENUE, '
+                              'consolidated" to assert a volume driver against; a target '
+                              'named by label needs the label to exist')
+REV_BASE = float(xlcalc.Book(wb).cell_value(*REV_CELL))
+
+NORM_VAL_ROW = None
+for cc_row in wb['Relative & Normalized'].iter_rows(min_col=1, max_col=1):
+    for cc in cc_row:
+        if isinstance(cc.value, str) and cc.value.startswith('NORMALISED EARNINGS POWER'):
+            NORM_VAL_ROW = cc.row
+assert NORM_VAL_ROW is not None, ('no row labelled "NORMALISED EARNINGS POWER" on the '
+                                  'Relative & Normalized sheet')
+NORM_BASE = float(xlcalc.Book(wb).cell_value('Relative & Normalized', f'B{NORM_VAL_ROW}'))
+
+for case in CASES:
+    label, cell, mult, want, why = case[:5]
+    target = case[5] if len(case) > 5 else 'value'
     base_v = wa[cell].value
+    if target == 'revenue':
+        got = float(xlcalc.Book(wb, {('Assumptions', cell): base_v * mult})
+                    .cell_value(*REV_CELL))
+        move = got - REV_BASE
+        ok = move > 1e-6
+        results.append(dict(driver=label, cell=cell, multiplier=mult,
+                            base_input=float(base_v), headline=got, move=move,
+                            expected='up (final-year revenue)', passed=bool(ok),
+                            mechanism=why))
+        print(f"{'PASS' if ok else 'FAIL'}  {label:38s} x{mult:<5.2f} "
+              f"{REV_BASE:8.0f} -> {got:8.0f}  ({move:+8.0f})  expected up [revenue]")
+        if not ok:
+            failures.append(label)
+        continue
     if label == 'Finance cost charged to profit':
-        got = float(xlcalc.Book(wb, {('Assumptions', cell): base_v * mult}).cell_value(*CENTRAL))
-        move = got - CENTRAL_BASE
+        # RE-POINTED at a lens that actually consumes it. A firm-level free cash flow
+        # does not: the finance charge reaches equity through net debt, not through the
+        # enterprise value. It used to move the centre only because the centre was a
+        # BLEND carrying two equity-level lenses at 35% between them, so retiring the
+        # blend made this driver inert on the centre while leaving it live where it
+        # belongs. Asserting it against the centre now would be asserting a mechanism
+        # this model does not have.
+        # THE ROW SPANS FIVE FORECAST YEARS and the case names one column. Bumping C
+        # alone moves FY2026 while the normalised lens is built on FY2027 earnings, so
+        # the driver read as dead when it was simply not the year being looked at. Every
+        # year of the row is bumped, which is what "the finance cost rises" means.
+        _row = cell[1:]
+        _ov = {('Assumptions', f'{col}{_row}'): wa[f'{col}{_row}'].value * mult
+               for col in ('C', 'D', 'E', 'F', 'G')
+               if isinstance(wa[f'{col}{_row}'].value, (int, float))}
+        got = float(xlcalc.Book(wb, _ov)
+                    .cell_value('Relative & Normalized', f'B{NORM_VAL_ROW}'))
+        move = got - NORM_BASE
         ok = move < -1e-6
         results.append(dict(driver=label, cell=cell, multiplier=mult,
                             base_input=float(base_v), headline=got, move=move,
-                            expected='down (weighted central)', passed=bool(ok),
-                            mechanism=why))
+                            expected='down (the normalised earnings figure)',
+                            passed=bool(ok), mechanism=why))
         print(f"{'PASS' if ok else 'FAIL'}  {label:38s} x{mult:<5.2f} "
-              f"{CENTRAL_BASE:8.3f} -> {got:8.3f}  ({move:+8.3f})  expected down [central]")
+              f"{NORM_BASE:8.3f} -> {got:8.3f}  ({move:+8.3f})  expected down "
+              f"[normalised earnings, the lens that consumes it]")
         if not ok:
             failures.append(label)
         continue
@@ -198,8 +271,8 @@ def rowref(sheet, startswith, col):
 HEADLINES = {
     'value per share, Frame A': HEADLINE,
     'value per share, Frame B': cellref('DCF', 'VALUE PER SHARE ON FRAME B'),
-    'weighted centre, Frame A': cellref('Fundamental Valuation', 'WEIGHTED CENTRE — FRAME A'),
-    'weighted centre, Frame B': cellref('Fundamental Valuation', 'WEIGHTED CENTRE — FRAME B'),
+    'weighted centre, Frame A': cellref('Fundamental Valuation', 'CENTRE — FRAME A'),
+    'weighted centre, Frame B': cellref('Fundamental Valuation', 'CENTRE — FRAME B'),
     'book value and sustainable return lens':
         cellref('Fundamental Valuation', 'Book value and sustainable'),
     'relative multiples lens': cellref('Fundamental Valuation', 'Relative multiples'),

@@ -1836,6 +1836,12 @@
    "date": "2026-08-11",
    "layer": "House"
   },
+  "peer_ke": {
+   "value": 0.1,
+   "source": "Cost of equity faced by the struck reference companies \u2014 a listed Saudi Arabian generics manufacturer and larger international generic manufacturers, all of them in hard-currency or pegged economies. It is the ONE difference the peer multiple is adjusted for, and it is registered rather than typed inside the adjustment so a reader can see what the adjustment is made of.",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
   "peer_pe_regional": {
    "value": 21.35,
    "source": "A STRUCK REFERENCE, not a median of a disclosed peer set \u2014 the earlier edition called it a 'peer median', which it was not, because only two reference points are disclosed. Those two are: a listed Saudi Arabian generics manufacturer at 26.7 times, and larger, more liquid regional and international generic manufacturers at about 16.0 times. 21.35 is the midpoint of those two observations \u2014 which for a two-element set is also their median \u2014 rather than a figure struck between them by judgement. MARKET DATA, cross-check layer, never a source for any company historical. The peers are not named and their financials are not published, so this multiple cannot be rebuilt from peer filings; that gap is recorded as an open research item and the lens is run across a 13-26 times band rather than on a point",
@@ -2788,6 +2794,13 @@
    "tv_share_total": 0.6618224057063342
   }
  },
+ "derived": {
+  "g_term": 0.07000000000000006,
+  "g_term_real": 0.0,
+  "pi_term": 0.07,
+  "rf_term": 0.125,
+  "note": "the terminal nominal growth and the terminal risk-free rate are both computed from the house long-run inflation of 7.0% \u2014 the growth as (1+inflation)(1+real)-1 at 0.00% real, the risk-free as inflation plus the 5.5-point real-rate convention. Neither can be typed, so neither can disagree with the inflation the rest of the model uses."
+ },
  "macro_record": {
   "market": "EG",
   "path_as_of": "2026-09-02",
@@ -2901,9 +2914,9 @@
   "cross_checks": [
    {
     "kind": "relative_multiple",
-    "value": 60.92833474062602,
+    "value": 48.649888368263724,
     "present_value": false,
-    "multiple": 7.893586006763442,
+    "multiple": 6.456311106901443,
     "multiple_legs": [
      {
       "basis": "Justified forward multiple from this model, on FY2026E earnings",
@@ -2917,8 +2930,8 @@
      },
      {
       "basis": "Struck peer reference, cost-of-equity adjusted, on trailing earnings",
-      "multiple": 10.779561748964966,
-      "value": 92.08834779271704
+      "multiple": 6.467737049378967,
+      "value": 55.25300867563012
      }
     ],
     "circularity": {
@@ -2963,8 +2976,8 @@
     "relative": 0.15,
     "normalized": 0.15
    },
-   "value_frame_A": 44.75888810886356,
-   "value_frame_B": 53.56012488402551,
+   "value_frame_A": 42.917121153009205,
+   "value_frame_B": 51.71835792817117,
    "why_retired": "typed weights that had never cleared an out-of-sample test, one of the four lenses is not permitted for any class, and blending each frame against three readings that do NOT depend on the contested judgement damps precisely the disagreement a two-sided answer exists to show"
   }
  },
@@ -2984,7 +2997,7 @@
    },
    {
     "name": "Relative multiples",
-    "value": 60.92833474062602,
+    "value": 48.649888368263724,
     "weight": 0.0,
     "role": "cross_check"
    },
@@ -3010,7 +3023,7 @@
    },
    {
     "name": "Relative multiples",
-    "value": 60.92833474062602,
+    "value": 48.649888368263724,
     "weight": 0.0,
     "role": "cross_check"
    },
@@ -3029,7 +3042,7 @@
    },
    {
     "name": "Relative multiples",
-    "value": 60.92833474062602,
+    "value": 48.649888368263724,
     "weight": 0.15
    },
    {
@@ -3041,19 +3054,19 @@
   "w_dcf": 0.5,
   "centre_A": 36.6394977338823,
   "centre_B": 54.24197128420622,
-  "blend_A": 44.75888810886356,
-  "blend_B": 53.56012488402551,
+  "blend_A": 42.917121153009205,
+  "blend_B": 51.71835792817117,
   "fair_bear": 36.6394977338823,
-  "fair_bull": 60.92833474062602,
+  "fair_bull": 56.78243923512581,
   "book_ps": 43.91261572779815,
   "bv_ps": 36.995074135251684,
   "just_pb": 1.1869854772356008,
   "roe_sust": 0.18754717181064154,
   "roe_fy24": 0.2459197116522333,
   "roe_fy25": 0.264599584335609,
-  "rel_ps": 60.92833474062602,
+  "rel_ps": 48.649888368263724,
   "rel_lo": 34.55124054704325,
-  "rel_hi": 92.08834779271704,
+  "rel_hi": 56.14541588211779,
   "rel_triangulation": [
    [
     "Justified forward multiple from this model, on FY2026E earnings",
@@ -3067,13 +3080,13 @@
    ],
    [
     "Struck peer reference, cost-of-equity adjusted, on trailing earnings",
-    10.779561748964966,
-    92.08834779271704
+    6.467737049378967,
+    55.25300867563012
    ]
   ],
   "rel_peer_unadjusted": 182.39018163825529,
   "just_fwd_pe": 6.328996943947787,
-  "peer_adj_pe": 10.779561748964966,
+  "peer_adj_pe": 6.467737049378967,
   "payout_implied": 0.626760567359149,
   "eps_26_A": 5.277396973524437,
   "eps_26_B": 5.640996842444609,
@@ -3673,10 +3686,10 @@
   "[Book value and sustainable return] book value per share 37.00. Return on average equity was 24.6% in FY2024 and 26.5% in FY2025. The forecast path is 13.7% / 14.5% / 17.1% / 19.1% / 20.1% \u2014 it RISES THROUGH the window rather than settling, so the sustainable return used here is the MEAN OF ITS LAST THREE YEARS, 18.75%, computed from that path and not asserted. (The earlier edition described the same number as the level the forecast 'settles at', which the path does not do.) A sustainable-return multiple of (return 18.8% less growth 7%) over (perpetual cost of equity 16.90% less growth) is 1.187 times book, or 43.91 a share. Every term in that multiple is live: change beta, the terminal risk-free rate, the terminal premium or growth and the lens moves.",
   "",
   "[Relative multiples] the company's OWN traded history is computable entirely from primary material \u2014 year-end closes against audited attributable profit: 4.7 times (2022), 6.6 times (2023), 6.2 times (2024), 8.7 times (2025), a four-year mean of 6.6. Each year divides that year's audited attributable profit by that year's WEIGHTED-AVERAGE share count, so the FY2025 reading uses 162.016 million shares rather than the 168.756 million now in issue \u2014 the capital increase completed during that year. At 127.30 the shares trade on 14.9 times trailing attributable earnings measured on the count in issue today, or 14.3 times on the audited weighted average; both readings are legitimate and both are published. The shares also trade on 11.6 times trailing EBITDA. The re-rating is the single most important fact about this share price: the earnings multiple has more than doubled against its own four-year history.",
-  "  The lens triangulates three multiples rather than asserting one, and EACH IS APPLIED TO THE EARNINGS OF ITS OWN PERIOD. (1) The forward multiple this model's own economics justify: retention must equal growth 7% over sustainable return 18.8%, so the payout the multiple can assume is 63%, and 63% over (perpetual cost of equity 16.90% less growth) is 6.33 times \u2014 applied to 5.46 of FY2026E earnings a share. (2) The company's own four-year mean, 6.57 times, a TRAILING multiple applied to 8.54 of trailing earnings. (3) A struck reference of 21.35 times \u2014 the midpoint of the only two comparable observations available, 26.7 times for a listed Saudi Arabian generics manufacturer and about 16 times for larger international generic manufacturers, and NOT a median of a disclosed peer set \u2014 but those companies are Gulf-listed and face a cost of equity near 10%, not 16.9%; adjusted for that single difference the same reference implies 10.78 times, also on trailing earnings. The three give 34.55 / 56.15 / 92.09, averaging 60.93. Left unadjusted, the struck reference alone would give 182.39 \u2014 the size of that gap IS the country-risk discount, and it is shown rather than hidden inside a chosen multiple. The peers are not named and their financials are not published, so this third leg cannot be rebuilt from peer filings; that is a stated limitation of the leg, not a hidden one.",
+  "  The lens triangulates three multiples rather than asserting one, and EACH IS APPLIED TO THE EARNINGS OF ITS OWN PERIOD. (1) The forward multiple this model's own economics justify: retention must equal growth 7% over sustainable return 18.8%, so the payout the multiple can assume is 63%, and 63% over (perpetual cost of equity 16.90% less growth) is 6.33 times \u2014 applied to 5.46 of FY2026E earnings a share. (2) The company's own four-year mean, 6.57 times, a TRAILING multiple applied to 8.54 of trailing earnings. (3) A struck reference of 21.35 times \u2014 the midpoint of the only two comparable observations available, 26.7 times for a listed Saudi Arabian generics manufacturer and about 16 times for larger international generic manufacturers, and NOT a median of a disclosed peer set \u2014 but those companies are Gulf-listed and face a cost of equity near 10%, not 16.9%; adjusted for that single difference the same reference implies 6.47 times, also on trailing earnings. The three give 34.55 / 56.15 / 55.25, averaging 48.65. Left unadjusted, the struck reference alone would give 182.39 \u2014 the size of that gap IS the country-risk discount, and it is shown rather than hidden inside a chosen multiple. The peers are not named and their financials are not published, so this third leg cannot be rebuilt from peer filings; that is a stated limitation of the leg, not a hidden one.",
   "[Normalised earnings power] the three-year average operating margin is 22.9%, against 25.1% in FY2025 \u2014 so this lens deliberately gives back part of the best year. Applied to FY2027E revenue of 12,612 million, financed at the FY2027E cost of debt and taxed at 23.5%, with the normalised associate contribution added, that is EGP 8.97 a share of sustainable earnings. Capitalised at the PERPETUAL cost of equity of 16.90% less 7% growth, on the 63% payout that growth rate permits: 56.78 a share. Using today's crisis-level cost of equity of 25.57% in a perpetuity would be a category error \u2014 a steady-state multiple takes a steady-state rate.",
   "",
-  "[Synthesis \u2014 one lens per frame, not a blend] the centre of each frame IS its own cash-flow read: Frame A 36.64, Frame B 54.24, against a 127.30 market price (-71.2% and -57.4%). The three lenses that do not turn on the contested judgement are published beside both and averaged into neither: Book value and sustainable return 43.91 \u00b7 Relative multiples 60.93 \u00b7 Normalised earnings power 56.78. The retired 50/20/15/15 blend read 44.76 and 53.56 \u2014 it pulled BOTH frames toward the same three shared numbers, which damps precisely the disagreement a two-sided answer exists to show, and its weights had never cleared an out-of-sample test. NORMALISED EARNINGS POWER, at 56.78, is computed and published and is NOT one of the lenses: the registry does not permit it for this class. The field across all five readings runs 36.64 to 60.93.",
+  "[Synthesis \u2014 one lens per frame, not a blend] the centre of each frame IS its own cash-flow read: Frame A 36.64, Frame B 54.24, against a 127.30 market price (-71.2% and -57.4%). The three lenses that do not turn on the contested judgement are published beside both and averaged into neither: Book value and sustainable return 43.91 \u00b7 Relative multiples 48.65 \u00b7 Normalised earnings power 56.78. The retired 50/20/15/15 blend read 42.92 and 51.72 \u2014 it pulled BOTH frames toward the same three shared numbers, which damps precisely the disagreement a two-sided answer exists to show, and its weights had never cleared an out-of-sample test. NORMALISED EARNINGS POWER, at 56.78, is computed and published and is NOT one of the lenses: the registry does not permit it for this class. The field across all five readings runs 36.64 to 56.78.",
   "",
   "[The crux] the base build charges the new biologicals facility's depreciation and its interest \u2014 both mechanical consequences of the company's own disclosed December-2025 licensing \u2014 but carries NO revenue line for it, because the company has published no volume, price or utilisation guidance for the plant. So the crux is not what the plant is worth; it is how much it must sell. Solving the same model for the market price: an additional EGP 7,983 million of revenue by FY2030E at a 45% contribution margin closes the gap from 36.64 to 127.30. That is 30% of FY2030E revenue, or about USD 114 million a year \u2014 1.14 times the USD 100 million the company says it invested in the plant. That number is observable: it is testable against the first year the company discloses biosimilar revenue.",
   "  Two things that must be published for that hurdle to be auditable, and were not before. THE RAMP: the incremental revenue is not dropped into the final year, it is phased 0% / 10% / 30% / 60% / 100% across FY2026E-FY2030E, and the same total placed entirely in FY2030E would be a lower and easier hurdle. THE REINVESTMENT: the incremental revenue is charged capital expenditure at the same share of revenue as the existing business and working capital on the same day ratios, so it faces the identical reinvestment discipline. The earlier edition let it arrive free of both and published a hurdle of about USD 115 million; charged properly it is USD 114 million."

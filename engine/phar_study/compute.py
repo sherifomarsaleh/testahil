@@ -926,6 +926,12 @@ INP = dict(
                  "2026-08-11", "House"),
 
     # ---- relative lens ------------------------------------------------------
+    peer_ke=I(0.10, "Cost of equity faced by the struck reference companies — a listed "
+              "Saudi Arabian generics manufacturer and larger international generic "
+              "manufacturers, all of them in hard-currency or pegged economies. It is the "
+              "ONE difference the peer multiple is adjusted for, and it is registered "
+              "rather than typed inside the adjustment so a reader can see what the "
+              "adjustment is made of.", "2026-08-09", "House"),
     peer_pe_regional=I(21.35, "A STRUCK REFERENCE, not a median of a disclosed peer set — the "
                        "earlier edition called it a 'peer median', which it was not, because "
                        "only two reference points are disclosed. Those two are: a listed Saudi "
@@ -1644,7 +1650,15 @@ eps_fwd = (eps_26_A + eps_26_B) / 2
 peer_pe_struck = (V['peer_pe_hi'] + V['peer_pe_lo']) / 2
 assert abs(peer_pe_struck - V['peer_pe_regional']) < 1e-9, \
     'the struck peer reference does not equal the midpoint of its two observations'
-peer_adj_pe = peer_pe_struck * (0.10 - 0.05) / (ke_term - V['g_term'])
+# THE GROWTH IN THE NUMERATOR IS THE SAME GROWTH AS IN THE DENOMINATOR, and it was a
+# TYPED 0.05 — the terminal growth of a previous edition, left behind when that rate
+# became derived. The adjustment re-prices a peer multiple at THIS company's cost of
+# equity and nothing else, so a different growth on the two sides would be re-pricing
+# the growth as well and calling it a cost-of-equity adjustment. The workbook had it
+# right and the model had it stale, which is the direction that normally runs the other
+# way and is why the recalculation gate is worth having in both directions.
+peer_adj_pe = (peer_pe_struck * (V['peer_ke'] - V['g_term'])
+               / (ke_term - V['g_term']))
 # PERIOD-MATCHED. A TRAILING multiple multiplies TRAILING earnings; a FORWARD multiple
 # multiplies FORWARD earnings. The earlier edition applied all three legs to FY2026E earnings,
 # including the two built from trailing multiples — and because FY2026E earnings are BELOW
@@ -2038,6 +2052,20 @@ OUT = dict(
     # this study is the case in point: its declared growth lines were fine while an
     # input named nowhere in the record, the domestic consumer-price path, drove the
     # cost stack AND the purchasing-power wedge and therefore the whole currency path.
+    # DERIVED QUANTITIES, committed where a builder can read them. They are NOT inputs
+    # and do not belong in the four-field register — a register is for figures with a
+    # source and a date, and a derived rate's provenance is the derivation. Builders
+    # read them from here so no document re-derives one differently.
+    derived=dict(
+        g_term=V['g_term'], g_term_real=V['g_term_real'], pi_term=PI_TERM,
+        rf_term=V['rf_term'],
+        note='the terminal nominal growth and the terminal risk-free rate are both '
+             'computed from the house long-run inflation of %.1f%% — the growth as '
+             '(1+inflation)(1+real)-1 at %.2f%% real, the risk-free as inflation plus '
+             'the %.1f-point real-rate convention. Neither can be typed, so neither can '
+             'disagree with the inflation the rest of the model uses.'
+             % (100 * PI_TERM, 100 * V['g_term_real'],
+                100 * _EG.raw['real_rate_convention']['value'])),
     macro_record=dict(
         market='EG', path_as_of=_EG.as_of, explicit_years=[2026, 2027, 2028, 2029, 2030],
         inflation_inputs=[

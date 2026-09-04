@@ -30,6 +30,8 @@ D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 M, H, FC, W, DCFD, LN = D['meta'], D['history'], D['forecast'], D['wacc'], D['dcf'], D['lenses']
 UB, SENS, CAL, CRUX = D['unit_build'], D['sensitivity'], D['calibration'], D['crux']
 V = {k: v['value'] for k, v in D['inputs'].items()}
+# derived rates, committed by the model so no document re-derives one differently
+DERIVED = D['derived']
 YRS = FC['years']
 SH = M['shares_mn']
 TAX = V['tax_stat']              # statutory — used for the after-tax cost of debt
@@ -289,7 +291,7 @@ arow('intpath', 'Finance cost charged to profit (EGP mn)', 'What the profit and 
 arow('rf_t', 'Terminal risk-free rate', 'A sourced 5% medium-term inflation target plus an '
      'UNSOURCED 5.5-point real convention. The real leg is an assertion, it is the widest '
      'single lever in the study, and it is an open item — see the terminal grid',
-     V['rf_term'], fmt=PCT2)
+     DERIVED['rf_term'], fmt=PCT2)
 arow('erp_t', 'Terminal equity risk premium', 'Normalised toward the rating-class norm',
      V['erp_term'], fmt=PCT2)
 arow('kdt_lc', 'Terminal local-currency borrowing rate', 'Long-run Egyptian norm',
@@ -304,7 +306,7 @@ arow('wd_tb', 'Terminal debt weight — the funded forecast balance sheet at FY2
      'average cost of capital weights market values; this row drives nothing',
      W['wd_term_book'], fmt=PCT)
 arow('g', 'Terminal growth', 'Pound-nominal, against a 5% terminal inflation rate — about zero '
-     'in real terms', V['g_term'], fmt=PCT)
+     'in real terms', DERIVED['g_term'], fmt=PCT)
 arow('assoc_e', 'Normalised associate contribution (EGP mn)', 'Three disclosed years, '
      'reconciled to this model\'s own income statement: 74.508, 151.581, 512.085 — mean '
      '246.058. The first quarter of 2026 annualises to 52.5, but the auditor states two '
@@ -316,6 +318,10 @@ arow('peer_pe', 'Struck peer reference price-earnings multiple', 'MARKET DATA, c
      'layer. The MIDPOINT of the only two disclosed observations (26.7x and 16.0x) — NOT a '
      'median of a peer set, and the peers are not named, so it cannot be rebuilt from their '
      'filings', V['peer_pe_regional'], fmt='0.00"x"')
+arow('peer_ke', 'Cost of equity faced by the struck reference companies',
+     'The ONE difference the peer multiple is adjusted for, registered here rather than '
+     'typed inside the adjustment so a reader can see what the adjustment is made of',
+     V['peer_ke'], fmt=PCT)
 
 lbl(wa, r, 1, 'OPENING BALANCE SHEET (AUDITED, 31 DECEMBER 2025)', bold=True, fill=FILL_C)
 r += 1
@@ -1311,10 +1317,15 @@ dcfrow('pv', 'PRESENT VALUE OF FREE CASH FLOW TO THE FIRM',
        fill=FILL_C)
 r += 1
 pv_sum_sheet = sum(fcff_sheet[j] * W['df'][j] for j in range(5))
-nopat_t_sheet = (FC['ebit_A'][-1] * (1 - TAX_FCFF) * (1 + V['g_term'])
+nopat_t_sheet = (FC['ebit_A'][-1] * (1 - TAX_FCFF) * (1 + DERIVED['g_term'])
                  - DCFD['frame_A']['term_dep_catchup'] * (1 - TAX_FCFF))
-tv_sheet = (nopat_t_sheet * (1 - DCFD['frame_A']['reinvest_rate'])
-            / (W['wacc_term'] - V['g_term']))
+# [R-TERM-01]: the terminal is the SANCTIONED construction, not the reinvestment
+# identity. The workbook must reproduce the model, and the model no longer builds
+# tv = NOPAT(1 - g/ROIC)/(W-g) — a form whose implied replacement cycle is 1/g, which is
+# a fact about the growth rate rather than about the asset.
+_TRA = DCFD['frame_A']['terminal_record']['outputs']
+_TRB = DCFD['frame_B']['terminal_record']['outputs']
+tv_sheet = _TRA['tv']
 pv_tv_sheet = tv_sheet * W['df'][-1]
 ev_core_sheet = pv_sum_sheet + pv_tv_sheet
 assoc_val = V['assoc_norm'] * V['assoc_multiple']
@@ -1351,21 +1362,34 @@ for key, label, formula, exp, fmt in (
      'parked construction balance has never been charged',
      f'=F{DR["nopat"]}*(1+Assumptions!{c("g")})'
      f'-B{TB["tdep"]}*(1-Assumptions!{c("tax_eff")})', nopat_t_sheet, MONEY),
-    ('rr', 'Terminal reinvestment rate = growth / the return the model itself earns in FY2030E',
-     f'=Assumptions!{c("g")}/B{TB["roic"]}', DCFD['frame_A']['reinvest_rate'], PCT),
-    ('ft', 'Terminal free cash flow = terminal NOPAT x (1 less reinvestment)', None, 0, MONEY),
+    # THE SANCTIONED TERMINAL, ROW BY ROW, so a reader following the labels reaches the
+    # figure the page prints. The retired reinvestment identity charged g x IC every
+    # year for ever and is gone: free cash flow is NOPAT plus book depreciation, less
+    # maintenance at CURRENT cost over the DISCLOSED life, less the capital real growth
+    # needs, less inflation on working capital.
+    ('dna', 'Plus book depreciation (terminal NOPAT is already net of it)', None,
+     _TRA['dna_addback'], MONEY),
+    ('mnt', 'Less maintenance at current cost — book depreciation escalated over half '
+     'the useful life the company itself discloses', None, -_TRA['maintenance'], MONEY),
+    ('gcx', 'Less the capital behind real growth', None, -_TRA['growth_capex'], MONEY),
+    ('wcc', 'Less inflation on working capital', None, -_TRA['wc_charge'], MONEY),
+    ('ft', 'Terminal free cash flow to the firm', None, 0, MONEY),
     ('wt', 'Terminal discount rate', f'=Assumptions!{c("waccT")}', W['wacc_term'], PCT2),
-    ('gt', 'Terminal growth', f'=Assumptions!{c("g")}', V['g_term'], PCT),
-    ('tv', 'TERMINAL VALUE', None, 0, MONEY),
+    ('gt', 'Terminal growth', f'=Assumptions!{c("g")}', DERIVED["g_term"], PCT),
+    ('tv', 'TERMINAL VALUE — the free cash flow above, grown one year and capitalised',
+     None, 0, MONEY),
     ('pvtv', 'Present value of the terminal value', None, 0, MONEY),
 ):
     TB[key] = r
     lbl(wd, r, 1, label, bold=key in ('tv', 'pvtv'))
-    if key == 'ft':
-        f(wd, r, 2, f'=B{TB["nt"]}*(1-B{TB["rr"]})',
-          nopat_t_sheet * (1 - DCFD['frame_A']['reinvest_rate']), fmt=MONEY)
+    if key in ('dna', 'mnt', 'gcx', 'wcc'):
+        f(wd, r, 2, '=%.6f' % exp, exp, fmt=fmt)
+    elif key == 'ft':
+        f(wd, r, 2, f'=B{TB["nt"]}+B{TB["dna"]}+B{TB["mnt"]}+B{TB["gcx"]}+B{TB["wcc"]}',
+          _TRA['fcff'], fmt=MONEY)
     elif key == 'tv':
-        f(wd, r, 2, f'=B{TB["ft"]}/(B{TB["wt"]}-B{TB["gt"]})', tv_sheet, fmt=MONEY, bold=True)
+        f(wd, r, 2, f'=B{TB["ft"]}*(1+B{TB["gt"]})/(B{TB["wt"]}-B{TB["gt"]})', tv_sheet,
+          fmt=MONEY, bold=True)
     elif key == 'pvtv':
         f(wd, r, 2, f'=B{TB["tv"]}*F{DR["df"]}', pv_tv_sheet, fmt=MONEY, bold=True)
     else:
@@ -1426,9 +1450,9 @@ for j in range(5):
     col = get_column_letter(2 + j)
     f(wd, r, 2 + j, f'={col}{FB["fcff"]}*{col}{DR["df"]}', fcffB[j] * W['df'][j], fmt=MONEY)
 r += 1
-nopat_tB = (ebitB[-1] * (1 - TAX_FCFF) * (1 + V['g_term'])
+nopat_tB = (ebitB[-1] * (1 - TAX_FCFF) * (1 + DERIVED['g_term'])
             - DCFD['frame_B']['term_dep_catchup'] * (1 - TAX_FCFF))
-tvB = nopat_tB * (1 - DCFD['frame_B']['reinvest_rate']) / (W['wacc_term'] - V['g_term'])
+tvB = DCFD['frame_B']['terminal_record']['outputs']['tv']
 evB = sum(fcffB[j] * W['df'][j] for j in range(5)) + tvB * W['df'][-1]
 eqB = (evB + assoc_val + V['arab_api_cost'] + V['afs_fy25'] - W['net_debt']
        - V['nci_bridge'])
@@ -1436,12 +1460,25 @@ FB['roic'] = r
 lbl(wd, r, 1, "Return on invested capital, FY2030E — Frame B's own")
 f(wd, r, 2, f'=F{FB["nopat"]}/B{TB["ic"]}', DCFD['frame_B']['roic_term'], fmt=PCT2)
 r += 1
+# Frame B's terminal is built the SAME sanctioned way as Frame A's — the two frames
+# differ in the provision charge and in nothing else, so a construction that differed
+# between them would make the spread the construction rather than the judgement.
+FB['ntb'] = r
+lbl(wd, r, 1, 'Terminal NOPAT on Frame B, less the parked construction depreciation')
+f(wd, r, 2, f'=F{FB["nopat"]}*(1+Assumptions!{c("g")})'
+  f'-B{TB["tdep"]}*(1-Assumptions!{c("tax_eff")})', nopat_tB, fmt=MONEY)
+r += 1
+FB['ftb'] = r
+lbl(wd, r, 1, 'Terminal free cash flow on Frame B — the same construction as Frame A: '
+    'NOPAT plus book depreciation, less maintenance at current cost, less growth '
+    'capital, less inflation on working capital')
+f(wd, r, 2, f'=B{FB["ntb"]}+%.6f' % (_TRB['dna_addback'] - _TRB['maintenance']
+                                     - _TRB['growth_capex'] - _TRB['wc_charge']),
+  _TRB['fcff'], fmt=MONEY)
+r += 1
 FB['tv'] = r
 lbl(wd, r, 1, 'Terminal value on Frame B')
-f(wd, r, 2, f'=(F{FB["nopat"]}*(1+Assumptions!{c("g")})'
-  f'-B{TB["tdep"]}*(1-Assumptions!{c("tax_eff")}))'
-  f'*(1-Assumptions!{c("g")}/B{FB["roic"]})'
-  f'/(B{TB["wt"]}-B{TB["gt"]})', tvB, fmt=MONEY)
+f(wd, r, 2, f'=B{FB["ftb"]}*(1+B{TB["gt"]})/(B{TB["wt"]}-B{TB["gt"]})', tvB, fmt=MONEY)
 r += 1
 FB['ev'] = r
 lbl(wd, r, 1, 'Core enterprise value on Frame B', bold=True)
@@ -1604,7 +1641,7 @@ for i, (name, mult, value) in enumerate(tri):
     elif i == 1:
         f(wr, r, 2, f'=D{OH_MEAN_ROW}', mult, fmt='0.00"x"')
     else:
-        f(wr, r, 2, f'=Assumptions!{c("peer_pe")}*(0.10-Assumptions!{c("g")})/'
+        f(wr, r, 2, f'=Assumptions!{c("peer_pe")}*(Assumptions!{c("peer_ke")}-Assumptions!{c("g")})/'
           f'(Assumptions!{c("ket")}-Assumptions!{c("g")})', mult, fmt='0.00"x"')
     eps_ref = f'B{RL["eps"]}' if i == 0 else f'B{RL["epsT"]}'
     eps_val = LN['eps_fwd'] if i == 0 else LN['eps_ttm']
@@ -1706,26 +1743,33 @@ for key, label, formula, exp, wt, how in lens_rows:
     r += 1
 SHARED = ('book', 'rel', 'norm')
 _shared_sum = '+'.join(f'B{LV[k]}*C{LV[k]}' for k in SHARED)
+# [R-LENS-03]: ONE CLASS PRIMARY IS THE CENTRE, and this study has two of them because
+# it publishes two frames. The typed 50/20/15/15 blend is retired. On a two-sided answer
+# it did something worse than damp the number: it pulled BOTH frames toward the same
+# three shared readings, damping precisely the disagreement a two-sided answer exists to
+# show. The memo row below prints what it read, so the change is visible on the page.
 LV['centreA'] = r
-lbl(wfv, r, 1, 'WEIGHTED CENTRE — FRAME A', bold=True, fill=FILL_C)
-f(wfv, r, 2, f'=B{LV["dcfA"]}*C{LV["dcfA"]}+' + _shared_sum, LN['centre_A'], fmt=PS, bold=True,
-  fill=FILL_C)
-f(wfv, r, 3, f'=C{LV["dcfA"]}+' + '+'.join(f'C{LV[k]}' for k in SHARED), 1.0, fmt=PCT,
-  bold=True, fill=FILL_C)
-lbl(wfv, r, 4, 'The discounted-cash-flow weight in full on Frame A, beside the three lenses '
-    'that do not turn on the contested judgement. The weights sum to one; the cell to the '
-    'left proves it.', note=True)
+lbl(wfv, r, 1, 'CENTRE — FRAME A (the cash-flow lens, unweighted)', bold=True, fill=FILL_C)
+f(wfv, r, 2, f'=B{LV["dcfA"]}', LN['centre_A'], fmt=PS, bold=True, fill=FILL_C)
+lbl(wfv, r, 4, 'The centre of each frame IS its own cash-flow read. The three lenses that '
+    'do not turn on the contested judgement are published beside it and averaged into '
+    'neither.', note=True)
 wfv.row_dimensions[r].height = 42
 r += 1
 LV['centreB'] = r
-lbl(wfv, r, 1, 'WEIGHTED CENTRE — FRAME B', bold=True, fill=FILL_C)
-f(wfv, r, 2, f'=B{LV["dcfB"]}*C{LV["dcfB"]}+' + _shared_sum, LN['centre_B'], fmt=PS, bold=True,
-  fill=FILL_C)
-f(wfv, r, 3, f'=C{LV["dcfB"]}+' + '+'.join(f'C{LV[k]}' for k in SHARED), 1.0, fmt=PCT,
-  bold=True, fill=FILL_C)
-lbl(wfv, r, 4, 'THE TWO CENTRES ARE NOT AVERAGED. Weighting both frames inside one number is '
-    'a straight average of them, which is exactly what this study says it never does.',
+lbl(wfv, r, 1, 'CENTRE — FRAME B (the cash-flow lens, unweighted)', bold=True, fill=FILL_C)
+f(wfv, r, 2, f'=B{LV["dcfB"]}', LN['centre_B'], fmt=PS, bold=True, fill=FILL_C)
+lbl(wfv, r, 4, 'THE TWO CENTRES ARE NOT AVERAGED. One number covering both frames is a '
+    'straight average of them, which is exactly what this study says it never does.',
     note=True)
+wfv.row_dimensions[r].height = 42
+r += 1
+LV['blendmemo'] = r
+lbl(wfv, r, 1, 'Memo — the retired weighted blend this edition replaced, on Frame A')
+f(wfv, r, 2, f'=B{LV["dcfA"]}*C{LV["dcfA"]}+' + _shared_sum, LN['blend_A'], fmt=PS)
+lbl(wfv, r, 4, 'Printed so the change is visible rather than only described. Its weights '
+    'had never been tested out of sample, and one of the four readings it carried is not '
+    'a lens this class uses at all.', note=True)
 wfv.row_dimensions[r].height = 42
 r += 1
 LV['central'] = LV['centreA']
@@ -1779,7 +1823,7 @@ for key, label, formula, exp, note in summary_rows:
     lbl(wsum, r, 4, note, note=True)
     r += 1
 SU['central'] = r
-lbl(wsum, r, 1, 'WEIGHTED CENTRE — FRAME A', bold=True, fill=FILL_C)
+lbl(wsum, r, 1, 'CENTRE — FRAME A (the cash-flow lens, unweighted)', bold=True, fill=FILL_C)
 f(wsum, r, 2, f"='Fundamental Valuation'!B{LV['centreA']}", LN['centre_A'], fmt=PS, bold=True,
   fill=FILL_C)
 f(wsum, r, 3, f'=B{r}/Assumptions!{c("spot")}-1', LN['centre_A'] / M['spot'] - 1, fmt=PCT,
@@ -1788,7 +1832,7 @@ lbl(wsum, r, 4, 'A range, not a target. No rating is expressed anywhere in this 
     note=True)
 r += 1
 SU['centreB'] = r
-lbl(wsum, r, 1, 'WEIGHTED CENTRE — FRAME B', bold=True, fill=FILL_C)
+lbl(wsum, r, 1, 'CENTRE — FRAME B (the cash-flow lens, unweighted)', bold=True, fill=FILL_C)
 f(wsum, r, 2, f"='Fundamental Valuation'!B{LV['centreB']}", LN['centre_B'], fmt=PS, bold=True,
   fill=FILL_C)
 f(wsum, r, 3, f'=B{r}/Assumptions!{c("spot")}-1', LN['centre_B'] / M['spot'] - 1, fmt=PCT,
