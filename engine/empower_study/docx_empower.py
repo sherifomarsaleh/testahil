@@ -25,6 +25,8 @@ EX24 = json.load(open('extract_fy2024.json'))
 EX25 = json.load(open('extract_fy2025.json'))
 
 IN = {k: v['value'] for k, v in D['inputs'].items()}
+G1 = IN['g_term_derived']
+G2 = IN['g_term2_derived']
 HI, U, F, W = D['hist_is'], D['unit'], D['fcst'], D['wacc']
 DCF, LN, REL, NRM, BK = D['dcf'], D['lenses'], D['rel'], D['norm'], D['book']
 DDM, CEN, SN, CRX, STK = D['ddm'], D['central'], D['sens_wg'], D['crux'], D['strike']
@@ -112,7 +114,7 @@ REV21 = float(rx(r"revenue ([\d,]+\.\d)", [f for f in SW['findings'] if f['fid']
 MARG_LO, MARG_HI = re.search(r"EBITDA margin ([\d.]+)-([\d.]+)%",
                              [f for f in SW['findings'] if f['fid'] == 'F13'][0]['headline']).groups()
 # sensitivity-grid coordinates for expert 1's range construction
-_gi = SN['g_grid'].index(IN['g_term']); _wi = SN['wacc_grid'].index(W['rating_ct'])
+_gi = SN['g_grid'].index(G1); _wi = SN['wacc_grid'].index(W['rating_ct'])
 _base_cell = SN['table'][_wi][_gi]
 _dn50 = SN['table'][_wi + 1][_gi]; _up50 = SN['table'][_wi - 1][_gi]
 E1_LO = CRX['rows'][0]['ps'] * (1 + 0.5 * (_dn50 / _base_cell - 1))
@@ -153,7 +155,7 @@ _EC = CF['3_ecr_87_2025']['evidence']
 ECR_FEE = float(rx(r'AED ([\d.]+) per refrigeration tonne', _EC['service_fee']['quote']))
 ECR_FINE = rx(r'SCE - ([\d,]+) \(dirhams\)', _EC['fine']['quote'])
 ECR_FEE_MN = ECR_FEE * RT_H1 / 1000.0               # ~AED 2.6mn/yr on the connected base
-ECR_FEE_PS = ECR_FEE_MN / (W['rating_ct'] - IN['g_term']) / SH   # capitalised, per share
+ECR_FEE_PS = ECR_FEE_MN / (W['rating_ct'] - G1) / SH   # capitalised, per share
 CAP_HEADROOM = 1 - UP['rate_aed_per_rth'] / RD10_CAP             # negative headroom vs the cap
 RT_AVG25 = (IN['rt_conn']['2024'] + IN['rt_conn']['2025']) / 2
 
@@ -239,21 +241,20 @@ NDRED_H1 = _ND25 - W['net_debt']
 NF_MODEL = (B['ebitda']['FY26'] - B['dna']['FY26']) - REL['np26'] / (1 - IN['tax_ct'])
 NF_AT = NF_MODEL * (1 - IN['tax_ct'])
 
-# Two-stage terminal: stage 1 = ten years at g_term (volume-only under RD10),
-# stage 2 perpetuity at G2. G2 mirrors the committed model constant and is
-# VERIFIED here by reproducing the committed terminal value exactly.
-G2 = 0.015
-def _tv_two_stage(nopat30, roic, wacc, g1, g2):
-    rr1, rr2 = g1 / roic, g2 / roic
-    nop, tv = nopat30, 0.0
-    for k in range(1, 11):
-        nop *= (1 + g1)
-        tv += nop * (1 - rr1) / (1 + wacc) ** k
-    tv += (nop * (1 + g2) * (1 - rr2) / (wacc - g2)) / (1 + wacc) ** 10
-    return tv
-_tv_chk = _tv_two_stage(BC['nopat']['FY30'], BC['roic_term'], W['rating_ct'], IN['g_term'], G2)
+# Two-stage terminal: stage one is ten further years of ordinary cash flow, stage two a
+# perpetuity beyond them. BOTH stages' cash flows come from the sanctioned terminal module
+# and are committed by the model; what is reproduced here is only the DISCOUNTING, which
+# is arithmetic, and it is checked against the committed terminal value.
+T1C, T2C = BC['terminal_stage1'], BC['terminal_stage2']
+DL_YEARS = IN['asset_life_years']
+T1D, T2D = BD['terminal_stage1'], BD['terminal_stage2']
+def _tv_two_stage(fcff1, fcff2, wacc, g1, g2):
+    q = (1 + g1) / (1 + wacc)
+    return (fcff1 / (1 + wacc) * (1 - q ** 10) / (1 - q)
+            + fcff2 * (1 + g2) / ((wacc - g2) * (1 + wacc) ** 10))
+_tv_chk = _tv_two_stage(T1C['fcff'], T2C['fcff'], W['rating_ct'], G1, G2)
 assert abs(_tv_chk - BC['tv']) < 1.0, f"two-stage TV mismatch: {_tv_chk} vs {BC['tv']}"
-DBL_YRS = math.log(2) / math.log(1 + IN['g_term'])       # years for volume to double at g
+DBL_YRS = math.log(2) / math.log(1 + G1)                 # years for volume to double at g
 
 # Stub-clock weights: share of each forecast year inside the valuation window
 STUB_W = {y: BC['pv'][y] / (BC['fcff'][y] * BC['df'][y]) for y in YRS}
@@ -481,7 +482,7 @@ rows = [['Read', 'Basis', f"At {pc(IN['tax_ct'], 0)} tax", f"At {pc(IN['tax_dmtt
         ['Discounted cash flow (primary)',
          f"5-year free cash flow to the firm on the two-leg unit build from a 30-June-2026 "
          f"valuation clock, cost of capital {pc(W['rating_ct'], 2)}, two-stage terminal (ten "
-         f"years at {pc(IN['g_term'], 1)} volume-only growth, then {pc(G2, 1)}). Terminal value "
+         f"years at {pc(G1, 1)} volume-only growth, then {pc(G2, 1)}). Terminal value "
          f"= {pc(BC['tv_share'], 1)} of enterprise value ({pc(BD['tv_share'], 1)} under the "
          f"{pc(IN['tax_dmtt'], 0)} framing) — disclosed here, in the bridge and in section 1.9",
          p3(BC['ps']), p3(BD['ps']), sgn(BC['ps'] / SPOT - 1, 0)],
@@ -517,7 +518,7 @@ rows = [['Read', 'Basis', f"At {pc(IN['tax_ct'], 0)} tax", f"At {pc(IN['tax_dmtt
          f"{n0(GUID_HI)}k RT/yr)",
          f"{p3(CEN['bear'])} – {p3(CEN['bull'])}", '(bear is struck at this tax rate)', '—'],
         ['Dividend cross-check (unweighted)',
-         f"the committed AED {n0(DDM['policy_mn'])}mn growing at {pc(IN['g_term'], 1)}, "
+         f"the committed AED {n0(DDM['policy_mn'])}mn growing at {pc(G1, 1)}, "
          f"capitalised at the cost of equity",
          p3(DDM['ps']), p3(DDM['ps']), sgn(DDM['ps'] / SPOT - 1, 0)],
         ['Market price', 'closing price, 7 August 2026', p2(SPOT), p2(SPOT), '—'],
@@ -668,10 +669,13 @@ rows = [['Step', f"At {pc(IN['tax_ct'], 0)}", f"At {pc(IN['tax_dmtt'], 0)}", 'No
         ['Present value of the five forecast years', n0(BC['pv_explicit']), n0(BD['pv_explicit']),
          'sum of the present-value rows above (2026 at half weight — the 30-June clock)'],
         ['Terminal value (two-stage)', n0(BC['tv']), n0(BD['tv']),
-         f"stage one: ten further years of NOPAT growth at {pc(IN['g_term'], 1)} — volume-only "
-         f"under the regulator's no-indexation rule; stage two: a perpetuity at {pc(G2, 1)}. "
-         f"Reinvestment is forced to growth ÷ terminal return on capital "
-         f"({pc(BC['roic_term'], 1)}) in EACH stage, so growth is paid for"],
+         f"stage one: ten further years of ordinary cash flow growing at {pc(G1, 1)} — "
+         f"volume-only under the regulator's no-indexation rule; stage two: a perpetuity "
+         f"at {pc(G2, 1)}. In BOTH stages the cash flow is profit after tax, plus the book "
+         f"depreciation charge, less what replacing the plant costs at today's prices over "
+         f"the {DL_YEARS:.1f}-year life the depreciation notes imply, less the capital "
+         f"growth consumes, less inflation on working capital — which is a CREDIT here, "
+         f"because this company is funded by its own customers"],
         ['Present value of the terminal value', n0(BC['pv_tv']), n0(BD['pv_tv']),
          f"discounted at the year-4.5 factor"],
         ['Enterprise value', n0(BC['ev']), n0(BD['ev']), 'the two lines above'],
@@ -722,14 +726,14 @@ P(f"Book value attributable to shareholders is AED {n0(IN['eq_attr_jun26'])}mn a
   f"listing, so the sustainable return on equity is high — {pc(BK['roe_sust'], 1)} on the "
   f"average of the last two year-end equity bases. A justified price-to-book multiple, (return "
   f"on equity − growth) ÷ (cost of equity − growth), gives {n1(BK['pb_just'])}× book at the "
-  f"{pc(W['ke_rating'], 2)} cost of equity and {pc(IN['g_term'], 1)} growth — AED "
+  f"{pc(W['ke_rating'], 2)} cost of equity and {pc(G1, 1)} growth — AED "
   f"{p3(BK['ps'])} per share. The lens is framed under both tax columns like every other: with "
   f"the sustainable return re-taxed at {pc(IN['tax_dmtt'], 0)}, the justified multiple is "
   f"{n1(BK['pb_just_15'])}× and the value {p3(BK['ps_15'])} per share.")
 P(f"This is the lens most exposed to its own construction: a high-ROE, low-book business makes "
   f"the justified multiple acutely sensitive to the return assumption (each percentage point of "
   f"sustainable ROE is worth roughly AED "
-  f"{p3(BK['bvps'] * 0.01 / (W['ke_rating'] - IN['g_term']))} per share). It is retained at a "
+  f"{p3(BK['bvps'] * 0.01 / (W['ke_rating'] - G1))} per share). It is retained at a "
   f"{pc(LN['book']['weight'], 0)} weight because it prices the question the other lenses skip — "
   f"what the installed asset base earns — but it is read as corroboration, not as a primary "
   f"estimate.")
@@ -783,7 +787,7 @@ P(f"The question this lens asks: what does 2026 earn if the consumption shock ha
   f"{n0(NRM['ebitda'])}mn, and attributable profit {n0(NRM['npa'])}mn — earnings per share of "
   f"{p3(NRM['eps'])}. Capitalised at a FORWARD justified multiple of {n1(NRM['pe_just'])}× — "
   f"built from the sustainable return on equity ({pc(BK['roe_sust'], 1)}), the retention that "
-  f"{pc(IN['g_term'], 1)} growth requires, and the {pc(W['ke_rating'], 2)} cost of equity, with "
+  f"{pc(G1, 1)} growth requires, and the {pc(W['ke_rating'], 2)} cost of equity, with "
   f"no growth factor applied on top (the earnings being capitalised are already forward) — "
   f"that is AED {p3(NRM['ps'])} per share. Under the {pc(IN['tax_dmtt'], 0)} minimum-tax "
   f"framing the return re-taxes to {pc(NRM['roe_15'], 1)}, the justified multiple to "
@@ -1089,23 +1093,44 @@ for wi, w_ in enumerate(SN['wacc_grid']):
 table(rows, [1.90, 1.02, 1.02, 1.02, 1.02, 1.02], size=8.4,
       band_rows={_wi + 1})
 caption(f"The base cell ({p3(_base_cell)}) sits at {pc(W['rating_ct'], 2)} and "
-        f"{pc(IN['g_term'], 1)}. A half-point of discount rate is worth roughly AED "
+        f"{pc(G1, 1)}. A half-point of discount rate is worth roughly AED "
         f"{p3(abs(_dn50 - _up50) / 2)} per share — more than the entire consumption crux — "
         f"which is the honest hierarchy of what matters in this valuation: rate, tax, tariff, "
         f"then usage. The growth axis now extends to ZERO so the reader can see the "
         f"flat-everything endpoint: no volume growth at all, forever, is worth "
         f"{p3(SN['table'][_wi][0])} at the base rate.")
 P(f"Two words on the growth assumption itself, because the first edition mislabelled it. The "
-  f"{pc(IN['g_term'], 1)} stage-one rate is NOT a nominal-GDP-consistent figure — UAE nominal "
+  f"{pc(G1, 1)} stage-one rate is NOT a nominal-GDP-consistent figure — UAE nominal "
   f"GDP compounds at roughly {NGDP_CAGR}% a year on the current five-year outlook, and "
-  f"{pc(IN['g_term'], 1)} is about half of it (the error ran in the conservative direction). "
+  f"{pc(G1, 1)} is about half of it (the error ran in the conservative direction). "
   f"It is a VOLUME-ONLY bound under the regulator's no-indexation rule: the Dubai 2040 "
   f"build-out, the contracted backlog and a signing run-rate of {SIGN_RUN} new contracts a "
   f"year support it for the ten-year second stage, after which the perpetuity drops to "
   f"{pc(G2, 1)} (long-run densification, zero real tariff growth). The tension is stated "
-  f"rather than hidden: {pc(IN['g_term'], 1)} volume growth forever would double the "
+  f"rather than hidden: {pc(G1, 1)} volume growth forever would double the "
   f"connected base roughly every {n0(DBL_YRS)} years, which is why it is NOT extended into "
   f"the perpetuity and why the grid above prices every stop down to zero.")
+P(f"Both rates are now stated as REAL rates and the headline figures derived from them, "
+  f"which on this company is a change of description rather than of assumption and is "
+  f"worth a sentence for that reason. Because the tariff is regulated and NOT indexed, "
+  f"nominal revenue growth IS volume growth here, so {pc(G1, 1)} on the "
+  f"{pc(T1C['inputs']['inflation'], 1)} long-run inflation this economy is expected to run "
+  f"is {pc(IN['g1_real'], 2)} in real terms, and the perpetuity's {pc(G2, 1)} is "
+  f"{pc(IN['g2_real'], 2)} — a real DECLINE. Nothing about the forecast moves; what moves "
+  f"is that a reader can see the second stage assumes this business shrinks slowly in real "
+  f"terms for ever, which the phrase 'zero real tariff growth' describes without naming.")
+P(f"What the terminal charges for is capital MAINTENANCE, at what replacement actually "
+  f"costs, and the asset life it rests on is DERIVED rather than chosen. The accounting "
+  f"policy gives ranges by class — plant, equipment and machinery 2 to 30 years, buildings "
+  f"25, intangibles 30 — and no weighting, so no single figure can be read off it. The "
+  f"depreciation notes' own two columns supply one: the gross cost of everything that "
+  f"depreciates, over the year's own charge, is {DL_YEARS:.2f} years, and the prior year's "
+  f"columns give 27.88 on the same identity. Against that, the construction this edition "
+  f"replaces charged as though the whole plant were rebuilt every fifty years in stage one "
+  f"and every sixty-seven in stage two — which are facts about the dirham's peg to the "
+  f"dollar rather than about a chilled-water plant. Terminal free cash flow is AED "
+  f"{n0(T1C['fcff'])}mn in the first year of stage one, "
+  f"{pc(T1C['fcff'] / T1C['inputs']['nopat'])} of profit.")
 rows = [['Scenario', 'What is assumed', f"Fair value (AED/share)"],
         ['Bear — war re-escalation',
          f"usage falls a further {pc(abs(U['crux_shock']), 0)} in 2027 and never recovers; new "
@@ -1769,7 +1794,7 @@ rows = [['Terminal block and bridge', 'Value'],
         ['Sum of the five present values (AED mn; 2026 at half weight — the 30-June clock)',
          n0(BC['pv_explicit'])],
         [f"Terminal value, two-stage — ten years of final-NOPAT growth at "
-         f"{pc(IN['g_term'], 1)} (volume-only), then a perpetuity at {pc(G2, 1)}; "
+         f"{pc(G1, 1)} (volume-only), then a perpetuity at {pc(G2, 1)}; "
          f"reinvestment = growth ÷ {pc(BC['roic_term'], 1)} return in each stage",
          n0(BC['tv'])],
         ['Present value of the terminal value (AED mn)', n0(BC['pv_tv'])],
@@ -1804,9 +1829,9 @@ P("Worldview: for a minority shareholder in a company controlled at 80% by its o
 rows = [['Step', 'Value'],
         ['Committed distribution (AED mn a year, 2025 and 2026)', n0(DDM['policy_mn'])],
         ['Per share (AED)', p3(DDM['dps'])],
-        [f"Grown at {pc(IN['g_term'], 1)} and capitalised at the {pc(W['ke_rating'], 2)} cost "
-         f"of equity", f"× {1 + IN['g_term']:.3f} ÷ ({pc(W['ke_rating'], 2)} − "
-         f"{pc(IN['g_term'], 1)})"],
+        [f"Grown at {pc(G1, 1)} and capitalised at the {pc(W['ke_rating'], 2)} cost "
+         f"of equity", f"× {1 + G1:.3f} ÷ ({pc(W['ke_rating'], 2)} − "
+         f"{pc(G1, 1)})"],
         ['Fair value per share (AED)', p3(DDM['ps'])],
         [f"Range — growth {pc(E2_G_LO, 1)} to {pc(E2_G_HI, 1)}", f"{p2(E2_LO)} – {p2(E2_HI)}"]]
 table(rows, [4.55, 2.45], size=8.5, band_rows={5})

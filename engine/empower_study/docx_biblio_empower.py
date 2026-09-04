@@ -54,14 +54,16 @@ INP['intco_fy23']['source'] = (
     'receivables — concession-grantor financial asset under IFRIC 12 from Dubai Aviation '
     'City, and the Nakheel minimum-demand commitment), presented INSIDE gross profit, '
     'FY2023 audited FS')
-INP['g_term']['source'] = (
-    'Terminal growth, two-stage: 2.5% VOLUME-ONLY for a ten-year second stage under the '
-    "regulator's no-indexation rule (Dubai 2040 build-out, the contracted backlog and the "
-    '163-186 new-contracts/yr signing run-rate), then a 1.5% perpetuity (long-run '
-    'densification, zero real tariff growth); the published grid extends to 0% so the '
-    'flat-everything end is visible. The former "long-run UAE nominal-GDP-consistent" label '
-    'was wrong in the conservative direction (UAE nominal GDP CAGR 2024-29 ≈ 5.7%) and is '
-    'withdrawn')
+INP['g_term_derived']['source'] = (
+    'Terminal growth, two-stage and now DERIVED from real rates rather than typed: 2.5% '
+    'nominal for a ten-year second stage, which under the regulator\'s no-indexation rule '
+    'is a VOLUME-ONLY figure (Dubai 2040 build-out, the contracted backlog and the 163-186 '
+    'new-contracts/yr signing run-rate) and is +0.49% in real terms on the house long-run '
+    'inflation of 2.0%; then a 1.5% perpetuity, which is -0.49% real — a real DECLINE, '
+    'stated as one, for long-run densification with no real tariff growth. The published '
+    'grid extends to 0% so the flat-everything end is visible. The former "long-run UAE '
+    'nominal-GDP-consistent" label was wrong in the conservative direction (UAE nominal GDP '
+    'CAGR 2024-29 about 5.7%) and is withdrawn')
 
 def p3(x): return f"{x:.3f}"
 def pc(x, dp=1): return f"{x*100:.{dp}f}%"
@@ -320,14 +322,14 @@ rows = [['Judgement', 'What was chosen', 'Why', 'What would overturn it'],
          'A Ministry of Finance clarification or the tax note of the FY2026 filing — either '
          'way, the corresponding published column simply takes over'],
         ['Terminal growth — RELABELLED and RESTRUCTURED in the 17-Aug revision',
-         f"Two-stage: {pc(IN['g_term'], 1)} VOLUME-ONLY for ten further years, then a "
+         f"Two-stage: {pc(IN['g_term_derived'], 1)} VOLUME-ONLY for ten further years, then a "
          f"{pc(0.015, 1)} perpetuity; the published grid extends to {pc(0.0, 1)}",
          'The regulator\'s tariff instrument bars indexation of capacity charges, so any '
          'perpetual growth must be volume; the ten-year stage rests on the Dubai 2040 '
          'build-out, the contracted backlog and the disclosed signing run-rate, and the '
          'former "nominal-GDP-consistent" label is withdrawn (it understated nominal GDP '
          'growth — an error in the conservative direction). The tension is stated: '
-         f"{pc(IN['g_term'], 1)} volume growth forever would double the connected base every "
+         f"{pc(IN['g_term_derived'], 1)} volume growth forever would double the connected base every "
          f"~28 years, which is why the perpetuity steps down",
          'A new-emirate or acquisition-led expansion commitment (raises the bound), a tariff '
          'regime with escalation (impossible under the current instrument without a rule '

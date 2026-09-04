@@ -1,9 +1,12 @@
 # EMPOWER — the evidence for a terminal rebuild, gathered and not yet spent
 
-**Status: the terminal is NOT rebuilt in this edition, and this file exists so the next
-pass is a build rather than a research task.** What follows was established on 4 September
-2026, checked, and then set down when the rebuild ran into a workbook obstacle described at
-the end. Nothing here is a conclusion about value; it is the material a rebuild needs.
+**Status: THE TERMINAL IS REBUILT. This file is the evidence it rests on**, gathered on
+4 September 2026 and spent the same day. It is kept because the route by which each figure
+was obtained is part of the record — arithmetic is the arbiter here, not the extractor's
+confidence, and a reader is entitled to see the four ways the extraction was made to foot.
+
+*An earlier version of this file recorded the rebuild as blocked. That assessment was
+wrong and is corrected rather than deleted: see the last section.*
 
 ## 1. The audited statements are now to hand, and they had to be read off the pixels
 
@@ -100,18 +103,24 @@ chilled-water network can do: another unit of demand needs another plant. The de
 figure is the intensity the business already runs at — one per cent of real growth costs one
 per cent of the invested capital it operates on, which is terminal invested capital.
 
-## 6. Why the rebuild stopped, stated plainly
+## 6. The obstacle, and why the first assessment of it was wrong
 
-The model change is small and was built and run: routed through the sanctioned module, the
-terminal came out about 1.5% higher and the answer about 0.5% higher. **The workbook is
-what stopped it.** EMPOWER publishes FOUR parallel live models on one sheet — the crux
-columns, the 15% tax framing, the bear case and the upside — each rebuilding the two-stage
-terminal in live formulas on a fixed row map built from chained `range()` allocations. The
-sanctioned construction needs six more rows per block, and inserting them moves addresses
-that a dozen formulas on four other sheets name directly. That is the defect L-300 was
-written about, and doing it carelessly would have been worse than not doing it.
+The model change is small and was built and run in under an hour. **The first attempt then
+stopped**, on the following reasoning: this study publishes FOUR parallel live models on one
+sheet — the crux columns, the second tax framing, the bear case and the upside — each
+rebuilding the two-stage terminal in live formulas on a fixed row map built from chained
+`range()` allocations; the sanctioned construction appeared to need six more rows per block;
+and inserting them moves addresses that a dozen formulas on four other sheets name directly.
 
-**So this edition carries the re-strike and the readable answer, and the terminal stays on
-its ratchet with this file as the reason.** The next pass needs no research: it needs the
-row map published from the builder, as was done for another study after the same problem,
-and then the change above.
+**That reasoning contained one wrong step and it is worth naming.** The waterfall needs to
+appear *once*, on the sheet where a reader follows the arithmetic. The four parallel blocks
+need only the two stages' free cash flows — two figures each — and each of them already had
+two rows spare, because the retired construction's terminal-return and NOPAT-in-FY2040 rows
+had just become meaningless. **Repurposing two dead rows costs nothing and moves no
+address.** The rebuild that had been called blocked took one further pass.
+
+The general form is worth keeping: **an obstacle assessed from the shape of the change is
+not the same as an obstacle measured.** The row map was real, the coupling was real, and
+the conclusion drawn from them was wrong because it assumed the new construction had to be
+displayed everywhere it was used. What a parallel re-run owes a reader is its result, not a
+second copy of the derivation.

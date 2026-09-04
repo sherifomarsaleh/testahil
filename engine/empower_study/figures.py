@@ -384,7 +384,7 @@ save(fig, 'fig8_unit.png')
 # dividend model at the 2.0% and 3.0% growth nodes; E3 = market price to the
 # DEWA control print, central at the peer-P/E read.
 _SN, _CRX, _W = D['sens_wg'], D['crux'], D['wacc']
-_gi = _SN['g_grid'].index(D['inputs']['g_term']['value'])
+_gi = _SN['g_grid'].index(D['inputs']['g_term_derived']['value'])
 _wi = _SN['wacc_grid'].index(_W['rating_ct'])
 _bc = _SN['table'][_wi][_gi]
 _e1lo = _CRX['rows'][0]['ps'] * (1 + 0.5 * (_SN['table'][_wi + 1][_gi] / _bc - 1))
