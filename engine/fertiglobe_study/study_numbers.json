@@ -1088,6 +1088,18 @@
    "date": "2026-08-09",
    "ring": "COUNTRY"
   },
+  "nci_pct_sorfert": {
+   "value": 0.4901,
+   "source": "Fertiglobe plc, Annual Report 2025, note 15 (non-controlling interests) \u2014 Sorfert Algeria SpA",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
+  "nci_pct_ebic": {
+   "value": 0.25,
+   "source": "Fertiglobe plc, Annual Report 2025, note 15 (non-controlling interests) \u2014 Egyptian Basic Industries Corporation",
+   "date": "2025-12-31",
+   "ring": "COMPANY"
+  },
   "ad_erp": {
    "value": 0.0487,
    "source": "A. Damodaran, country default spreads and risk premiums (ctryprem.html), read live \u2014 Abu Dhabi equity risk premium, rating basis",
@@ -1124,6 +1136,18 @@
    "date": "2026-08-09",
    "ring": "COUNTRY"
   },
+  "eg_ads": {
+   "value": 0.0637,
+   "source": "A. Damodaran, country default spreads and risk premiums (ctryprem.html), read live \u2014 Egypt adjusted default spread (Moody's Caa1)",
+   "date": "2026-08-09",
+   "ring": "COUNTRY"
+  },
+  "dz_ads": {
+   "value": 0.0383,
+   "source": "A. Damodaran, country default spreads and risk premiums (ctryprem.html), read live \u2014 Algeria adjusted default spread (not rated)",
+   "date": "2026-08-09",
+   "ring": "COUNTRY"
+  },
   "mature_erp": {
    "value": 0.0423,
    "source": "A. Damodaran, country default spreads and risk premiums (ctryprem.html), read live \u2014 mature-market ERP = Abu Dhabi ERP 4.87% less its CRP 0.64%",
@@ -1150,73 +1174,73 @@
   },
   "w_egypt": {
    "value": 0.311,
-   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 'non-current assets in individual foreign countries are 31.1% in Egypt'",
+   "source": "Fertiglobe plc, Annual Report 2025, note 15 (non-controlling interests) \u2014 'non-current assets in individual foreign countries are 31.1% in Egypt'",
    "date": "2025-12-31",
    "ring": "COMPANY"
   },
   "w_algeria": {
    "value": 0.161,
-   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 '16.1% in Algeria'",
+   "source": "Fertiglobe plc, Annual Report 2025, note 15 (non-controlling interests) \u2014 '16.1% in Algeria'",
    "date": "2025-12-31",
    "ring": "COMPANY"
   },
   "nca_middle_east": {
    "value": 2769.5,
-   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 geographical information, non-current assets",
+   "source": "Fertiglobe plc, Annual Report 2025, note 15 (non-controlling interests) \u2014 geographical information, non-current assets",
    "date": "2025-12-31",
    "ring": "COMPANY"
   },
   "nca_total": {
    "value": 3385.8,
-   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026)",
+   "source": "Fertiglobe plc, Annual Report 2025, note 15 (non-controlling interests)",
    "date": "2025-12-31",
    "ring": "COMPANY"
   },
   "nca_other_regions": {
    "value": 65.2,
-   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 Europe 14.2 + North America 2.1 + Asia and Oceania 48.9",
+   "source": "Fertiglobe plc, Annual Report 2025, note 15 (non-controlling interests) \u2014 Europe 14.2 + North America 2.1 + Asia and Oceania 48.9",
    "date": "2025-12-31",
    "ring": "COMPANY"
   },
   "kd_spread_facility_bc": {
    "value": 0.009,
-   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 Facilities B ($600m) and C ($500m), SOFR + 0.90%, spread renegotiated down from 150/140bps during 2025",
+   "source": "Fertiglobe plc, Annual Report 2025, note 15 (non-controlling interests) \u2014 Facilities B ($600m) and C ($500m), SOFR + 0.90%, spread renegotiated down from 150/140bps during 2025",
    "date": "2025-12-31",
    "ring": "COMPANY"
   },
   "kd_spread_adnoc": {
    "value": 0.0105,
-   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 ADNOC term loan $300m drawn 27-Mar-2025, SOFR + 1.05%",
+   "source": "Fertiglobe plc, Annual Report 2025, note 15 (non-controlling interests) \u2014 ADNOC term loan $300m drawn 27-Mar-2025, SOFR + 1.05%",
    "date": "2025-03-27",
    "ring": "COMPANY"
   },
   "kd_spread_rcf": {
    "value": 0.0115,
-   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 revolving credit facility $600m, SOFR + 1.15%",
+   "source": "Fertiglobe plc, Annual Report 2025, note 15 (non-controlling interests) \u2014 revolving credit facility $600m, SOFR + 1.15%",
    "date": "2025-12-31",
    "ring": "COMPANY"
   },
   "kd_cap_rate_rejected": {
    "value": 0.0662,
-   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 weighted average interest rate on general borrowings used for borrowing-cost capitalisation. Historical/accounting; NOT used as the cost of debt.",
+   "source": "Fertiglobe plc, Annual Report 2025, note 15 (non-controlling interests) \u2014 weighted average interest rate on general borrowings used for borrowing-cost capitalisation. Historical/accounting; NOT used as the cost of debt.",
    "date": "2025-12-31",
    "ring": "COMPANY"
   },
   "debt_usd_fy25": {
    "value": 1651.9,
-   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 loans and borrowings by tranche: Facilities B/C 1,115.8 + ADNOC 303.2 + trade finance 91.5 + supply chain 67.0 + overdraft 6.9 + 2023 working capital 67.5",
+   "source": "Fertiglobe plc, Annual Report 2025, note 15 (non-controlling interests) \u2014 loans and borrowings by tranche: Facilities B/C 1,115.8 + ADNOC 303.2 + trade finance 91.5 + supply chain 67.0 + overdraft 6.9 + 2023 working capital 67.5",
    "date": "2025-12-31",
    "ring": "COMPANY"
   },
   "debt_dzd_fy25": {
    "value": 34.8,
-   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 Sorfert term loan, Algerian bank rate + 1.95%",
+   "source": "Fertiglobe plc, Annual Report 2025, note 15 (non-controlling interests) \u2014 Sorfert term loan, Algerian bank rate + 1.95%",
    "date": "2025-12-31",
    "ring": "COMPANY"
   },
   "debt_aud_fy25": {
    "value": 53.9,
-   "source": "Fertiglobe plc, Consolidated Financial Statements FY2025 (PwC-signed 4-Mar-2026) \u2014 Fertiglobe Australia trade finance facilities 1 and 2, BBSY + 0.60%",
+   "source": "Fertiglobe plc, Annual Report 2025, note 15 (non-controlling interests) \u2014 Fertiglobe Australia trade finance facilities 1 and 2, BBSY + 0.60%",
    "date": "2025-12-31",
    "ring": "COMPANY"
   },
@@ -2517,9 +2541,13 @@
  },
  "lenses": {
   "dcf": {
-   "value": 2.247588630505685,
+   "value": null,
+   "branches": {
+    "A \u2014 normalisation to a marginal-cost anchor": 1.8105356735634544,
+    "B \u2014 structurally tight market": 2.6846415874479153
+   },
    "weight": null,
-   "note": "Five-year free cash flow to the firm with an explicit terminal block \u2014 THE PRIMARY, and two-sided"
+   "note": "Five-year free cash flow to the firm with an explicit terminal block \u2014 THE PRIMARY, and two-sided: it has no single value, and the midpoint of its two framings is published only as the number the study refuses"
   },
   "relative": {
    "value": 2.0622378774201655,
@@ -3043,6 +3071,9 @@
   }
  },
  "assert_log": [
+  "Abu Dhabi's equity risk premium is its own default spread scaled by the same lambda as the others (1.524)",
+  "Egypt's equity risk premium is its own default spread scaled by the same lambda as the others (1.524)",
+  "Algeria's equity risk premium is its own default spread scaled by the same lambda as the others (1.522)",
   "FY2025 gross profit recomputes to the filed 885.4",
   "FY2025 operating profit recomputes to the filed 727.3",
   "FY2025 profit before tax recomputes to the filed 613.5",

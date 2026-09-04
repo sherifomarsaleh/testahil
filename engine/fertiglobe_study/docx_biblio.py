@@ -180,6 +180,10 @@ PLAIN = {
     'eg_erp': 'Egypt equity risk premium (rating basis)',
     'eg_erp_cds': 'Egypt equity risk premium (swap basis)',
     'dz_erp': 'Algeria equity risk premium (rating basis)',
+    'eg_ads': 'Egypt adjusted default spread (rating basis)',
+    'dz_ads': 'Algeria adjusted default spread (rating basis)',
+    'nci_pct_sorfert': 'Outside ownership of Sorfert Algeria',
+    'nci_pct_ebic': 'Outside ownership of Egyptian Basic Industries',
     'mature_erp': 'Mature-market equity risk premium',
     'tax_dam_uae': 'Published corporate tax rate, Abu Dhabi',
     'tax_dam_eg': 'Published corporate tax rate, Egypt',
@@ -257,6 +261,7 @@ CCC = D['ccc']
 REL = D['rel']
 NORM = D['norm']
 LEN = D['lenses']
+BRANCHES = D['central_two_sided']['branches']
 
 # ===========================================================================
 B.masthead()
@@ -534,22 +539,26 @@ JUD = [
      f'{DA["roic_term"] * 100:.1f}% — the mean of the final-year book return '
      f'({DA["roic_book"] * 100:.1f}%), the return on replacement cost '
      f'({DA["roic_replacement"] * 100:.1f}%) and a long-run sector return for merchant nitrogen '
-     f'producers ({DA["roic_sector"] * 100:.1f}%). It sets the reinvestment rate of '
-     f'{DA["rr_term"] * 100:.1f}% in the terminal block',
+     f'producers ({DA["roic_sector"] * 100:.1f}%). It is published as a diagnostic and does '
+     'not enter the terminal: that value is built from the capital the plants need to be '
+     f'kept whole, US${DA["terminal_record"]["maintenance"]:,.1f}m a year on the asset life '
+     'the accounts themselves disclose, so no assumed return sets the charge',
      'Book invested capital is depreciated historical cost, so a book return above a fifth '
      'overstates what the next tonne of capacity actually earns; replacement cost understates '
      'it, because the existing plants carry a gas position a new entrant cannot buy. Neither '
      'is right on its own',
      'A greenfield nitrogen project reaching a final investment decision at a disclosed capital '
      'cost far from the $1,250 per tonne of capacity assumed here would move the '
-     'replacement-cost leg directly, and with it the terminal reinvestment rate'],
+     'replacement-cost leg directly, and with it the capital the terminal charges to keep '
+     'the existing plants whole'],
     ['Non-controlling interests are charged at their share of profit, not at book value',
      f'{D["nci_share"] * 100:.1f}% of total equity value is deducted for minorities in the '
      f'bridge from enterprise to attributable equity, which is AED {BA["ps_aed"]:.2f} under '
      f'framing A. On a book basis (the balance-sheet carrying amount of '
      f'${BA["nci_book"]:,.1f}m) the same framing gives AED {BAb["ps_aed"]:.2f}',
      'Minorities are large and concentrated in the two most profitable assets — 25% of the '
-     'Egyptian producer and 49.01% of the Algerian one. They take a materially larger share of '
+     f'Egyptian producer and {D["inputs"]["nci_pct_sorfert"]["value"] * 100:.2f}% of the '
+     'Algerian one. They take a materially larger share of '
      'group profit than of group book equity, so charging them at profit share is the '
      'conservative reading and the one consistent with valuing the whole enterprise on its cash '
      'flows',
@@ -650,16 +659,23 @@ JUD = [
      'of the last three forecast years under both price framings, so the multiple is not '
      'applied to a peak',
      'A re-rating of the Gulf nitrogen names as a group, or a change in the country mix of the '
-     'asset base. This lens carries a 20% weight in the blend and is the lowest of the four'],
-    ['The four lenses are weighted, not averaged',
-     ' · '.join(f'{k} {v["weight"] * 100:.0f}%' for k, v in LEN.items()),
-     'The cash-flow lens carries the most weight because the unit economics are disclosed well '
-     'enough to build it from the ground up; the book lens carries the least because '
-     'depreciated historical cost is the weakest guide to the value of plants whose worth turns '
-     'on a gas contract',
-     'A reader who disagrees can re-weight: the four lens values and the two price framings are '
-     'all published separately, and the spread between the lowest and the highest is stated '
-     'rather than smoothed away'],
+     'asset base. This lens is a cross-check and does not set the answer'],
+    ['One lens is the answer; the others are cross-checks and are not weighted into it',
+     'The cash-flow lens is the answer, published as two framings rather than one number '
+     f'(AED {BRANCHES[0]["value"]:.2f} and AED {BRANCHES[1]["value"]:.2f}). The enterprise '
+     f'multiple (AED {LEN["relative"]["value"]:.2f}) and book value '
+     f'(AED {LEN["book"]["value"]:.2f}) sit beside it as cross-checks, the second of them a '
+     'floor rather than a value. Normalised earnings power is not published as either',
+     'The unit economics are disclosed well enough to build the cash flow from the ground up, '
+     'which is what makes it the answer rather than one input to an average. A weighted blend '
+     'is a new method with weights nobody tested, and it imports the weakest lens at whatever '
+     'number somebody typed — here it also averaged the two framings of the study\'s own '
+     'central contested judgement, publishing a disagreement with the market that neither '
+     'framing asserts. Book value is depreciated historical cost, the weakest guide to plants '
+     'whose worth turns on a gas contract, so it is shown as a floor and never weighted',
+     'Evidence, out of sample, that some blend beats the primary lens alone. The lens values '
+     'and both price framings are published separately, so a reader who wants a different '
+     'answer can see exactly what it would be built from'],
 ]
 keep_rows_whole(
     B.table([['Judgement', 'What was chosen', 'Why', 'What would overturn it']] + JUD,

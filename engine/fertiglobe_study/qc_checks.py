@@ -116,10 +116,13 @@ for label, path in [(l,p) for l,p in [('study', STUDY), ('bibliography', BIB)] i
     bad = re.findall(r'\{[a-z_]+\}|\bnan\b|\d+e[+-]\d\d|\bTODO\b|\bXXX\b', txt)
     # a whole cell whose entire content is a Python repr is the real leakage mode
     for t in d.tables:
-        for row in t.rows:
+        for ri, row in enumerate(t.rows):
             for c in row.cells:
-                if c.text.strip() in ('None', 'nan', 'inf', '-inf', '[]', '{}', '0.0%'):
-                    bad.append(f'cell="{c.text.strip()}"')
+                txt = c.text.strip()
+                if txt == '0.0%' and ri == 0:
+                    continue          # an axis label, not a value
+                if txt in ('None', 'nan', 'inf', '-inf', '[]', '{}', '0.0%'):
+                    bad.append(f'cell="{txt}"')
     print(f'  {label}: {len(bad)} hits {sorted(set(bad))[:8]}')
     if bad:
         fails.append(f'placeholders in {label}')

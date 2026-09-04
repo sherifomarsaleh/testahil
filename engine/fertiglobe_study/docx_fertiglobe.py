@@ -19,6 +19,10 @@ bA, bB = D['bridge_A'], D['bridge_B']
 CS, U = D['cost_stack'], D['unit']
 PT = CS['passthrough']
 L, S0, BT = D['lenses'], D['step0'], D['backtest']
+BRN = D['central_two_sided']['branches']
+LR = D['lens_record']
+BR = D['central_two_sided']['branches']
+BR_A, BR_B = BR[0]['value'], BR[1]['value']
 STK = json.load(open('strike_result.json'))
 TE = json.load(open('technicals_result.json'))
 SW = json.load(open('sweep_register.json'))
@@ -81,13 +85,19 @@ box([
 
 # ============================================================ 2 HEADLINE
 H1('Headline')
-prem = D['central'] / D['spot'] - 1
-P(f"Four valuation methods place Fertiglobe between AED {aed(D['span'][0])} and "
-  f"AED {aed(D['span'][1])} per share. The weighted centre of that range is "
-  f"AED {aed(D['central'])}, against a market price of AED {aed(D['spot'])} on "
-  f"{M['price_date']} — a premium of {pct(prem)}. The range is wide because this is a "
-  f"commodity producer at an unusual moment in its price cycle, and honest ranges for "
-  f"such businesses are wide.", size=11)
+P(f"This study reaches TWO answers rather than one, and which of them is right turns on "
+  f"a single question about the nitrogen market. Read on a normalisation to the marginal "
+  f"cost of the high-cost swing supplier, the cash-flow method values Fertiglobe at "
+  f"AED {aed(BR_A)} per share. Read on the current tightness persisting, it values the "
+  f"same company at AED {aed(BR_B)}. The market price is AED {aed(D['spot'])} on "
+  f"{M['price_date']}, which sits between them — "
+  f"{pct(BR_A / D['spot'] - 1)} against the first and {pct(BR_B / D['spot'] - 1)} against "
+  f"the second.", size=11)
+
+P(f"The two are published side by side and are NOT averaged. Their midpoint would be "
+  f"AED {aed((BR_A + BR_B) / 2)}, a number neither reading supports and one that would "
+  f"assert a disagreement with the market that neither reading actually makes. Where two "
+  f"readings disagree this study publishes the disagreement and says what decides it.")
 
 P(f"The company earned {usd(D['hist_is']['FY25']['ebitda'])} million of EBITDA in 2025 on "
   f"{usd(D['hist_is']['FY25']['rev'])} million of revenue. In the first half of 2026 alone "
@@ -109,25 +119,30 @@ box([('The finding that matters. ',
 
 # ============================================================ 3 VALUATION SUMMARY
 H1('Valuation summary')
-rows = [['Method', 'What it measures', 'Value (AED/share)', 'Weight', 'Note']]
-rows.append(['Cash flow', 'Five years of free cash flow to the firm, then a terminal block',
-             aed(L['dcf']['value']), pct(L['dcf']['weight'], 0),
+rows = [['Method', 'What it measures', 'Value (AED/share)', 'Role', 'Note']]
+rows.append(['Cash flow — marginal-cost anchor',
+             'Five years of free cash flow to the firm, then a terminal block',
+             aed(BR_A), 'THE ANSWER',
              f"Terminal value is {pct(dA['tv_share'])} of enterprise value"])
+rows.append(['Cash flow — tightness persists',
+             'The same model on the second reading of the nitrogen market',
+             aed(BR_B), 'THE ANSWER',
+             f"Terminal value is {pct(dB['tv_share'])} of enterprise value"])
 rows.append(['Relative multiples', 'Mid-cycle EBITDA on a peer-anchored enterprise multiple',
-             aed(L['relative']['value']), pct(L['relative']['weight'], 0),
+             aed(L['relative']['value']), 'Cross-check',
              f"{D['rel']['mult']:.1f} times enterprise value to EBITDA"])
-rows.append(['Normalised earnings power', 'Mid-cycle profit on a justified earnings multiple',
-             aed(L['normalized']['value']), pct(L['normalized']['weight'], 0),
-             f"{D['norm']['pe']:.0f} times earnings"])
 rows.append(['Book value and sustainable return', 'Book equity marked to the return it earns',
-             aed(L['book']['value']), pct(L['book']['weight'], 0),
-             'Weakest lens here — see section 1.2'])
-rows.append(['Weighted centre', '', aed(D['central']), '100%',
-             f"Market price AED {aed(D['spot'])}"])
+             aed(L['book']['value']), 'Floor',
+             'A disclosed floor, not a valuation — see section 1.2'])
+rows.append(['Market price', '', aed(D['spot']), '',
+             f"{M['price_date']}"])
 table(rows, [1.35, 2.15, 1.05, 0.65, 1.8], first_col_bold=True, size=8.9,
-      band_rows={5}, align_right_from=2)
-caption('Summary valuation table. Terminal value as a share of enterprise value is shown '
-        'against the cash-flow method because that method is the one it applies to.')
+      band_rows={1, 2}, align_right_from=2)
+caption('Summary valuation table. The cash-flow method IS the answer and it has two '
+        'readings; the multiple stands beside it as a cross-check and book value as a '
+        'floor. Neither is weighted into the answer, and the two readings are not '
+        'averaged. Terminal value as a share of enterprise value is shown against the '
+        'cash-flow method because that method is the one it applies to.')
 
 H2('The same company, valued twice')
 P('The price of nitrogen fertiliser over the next five years is the study\'s central '
@@ -266,7 +281,8 @@ if os.path.exists('fig7_waterfall.png'):
            'Figure 2. From cash flow to equity value: the bridge in picture form.')
 
 P('Non-controlling interests are unusually large here and deserve their own sentence. '
-  'Outside shareholders own 49.01% of Sorfert in Algeria and 25% of Egypt Basic Industries, '
+  f"Outside shareholders own {pct(D['inputs']['nci_pct_sorfert']['value'], 2)} of Sorfert "
+  f"in Algeria and {pct(D['inputs']['nci_pct_ebic']['value'])} of Egypt Basic Industries, "
   f"and together took {pct(D['nci_share'])} of group profit in 2025. Because the cash flows "
   'discounted above are the consolidated ones, that share must come out. Deducting it on a '
   f"proportionate-earnings basis gives AED {aed(bA['ps_aed'])} per share; deducting the "
@@ -321,20 +337,24 @@ P(f"Stripping out the cycle, mid-cycle revenue of {usd(D['norm']['rev'])} millio
   f"producer with a controlling shareholder and a thin float — the shares are worth "
   f"AED {aed(D['norm']['ps_aed'])}.")
 
-H2('1.5  Synthesis — four lenses, one field')
-P('The four methods do not agree, and the spread between them is itself information. The '
-  f"cash-flow method is the highest at AED {aed(L['dcf']['value'])} because it capitalises "
-  'a long stream at a cost of capital held down by a low measured beta. The relative and '
-  'book methods are the lowest, at '
-  f"AED {aed(L['relative']['value'])} and AED {aed(L['book']['value'])}, because they "
-  'anchor on what the market pays for comparable assets and on a distorted book figure '
-  'respectively. Normalised earnings power sits between them at '
-  f"AED {aed(L['normalized']['value'])}.")
-P('Weighting them gives a centre of '
-  f"AED {aed(D['central'])}. The cash-flow method carries the largest weight because it is "
-  'the only one that prices the specific mechanism this company runs on — the link between '
-  'its selling price and its gas cost. The book method carries the smallest for the reason '
-  'given in section 1.2.')
+H2('1.5  Synthesis — one method answers, the others check it')
+P('The cash-flow method IS the answer here, and it is the only one that prices the specific '
+  'mechanism this company runs on — the link between its selling price and its gas cost. It '
+  'reaches two figures rather than one, '
+  f"AED {aed(BR_A)} and AED {aed(BR_B)}, because the question it cannot settle is where "
+  'nitrogen prices sit through the cycle rather than anything about the company itself.')
+P('The other methods stand beside it as checks and are not weighted into it. The relative '
+  f"multiple reads AED {aed(L['relative']['value'])}, which is what the market pays for "
+  'comparable assets rather than what this business generates. Book value reads '
+  f"AED {aed(L['book']['value'])} and is published as a FLOOR — a disclosed number this "
+  'company is worth at least, not an estimate of what it is worth. Neither enters the '
+  'answer.')
+P('An earlier edition of this study blended four methods at fixed weights and published '
+  'their weighted centre. That construction is retired. The weights had never been tested '
+  'against anything, two of the four methods valued a commodity producer on reported '
+  'accounting figures, and — worse here — the blend averaged the cash-flow method\'s own '
+  'two readings into a single number that neither reading supports. Where methods disagree '
+  'this study now publishes the disagreement.')
 
 H2('1.6  Drivers')
 P('Each disclosed segment is grown on its own driver. Margins are outputs of the build, '
@@ -438,9 +458,10 @@ P('Fertiglobe operates across three sovereigns with very different risk, and the
 rows = [['Country', 'Rating', 'Default spread', 'Equity risk premium', 'Non-current assets']]
 rows.append(['Abu Dhabi', 'Aa2', pct(W['ad_ads'], 2), pct(D['inputs']['ad_erp']['value']),
              pct(W['w_uae'])])
-rows.append(['Egypt', 'Caa1', '6.37%', pct(D['inputs']['eg_erp']['value']), pct(W['w_egypt'])])
-rows.append(['Algeria', 'Not rated', '3.83%', pct(D['inputs']['dz_erp']['value']),
-             pct(W['w_algeria'])])
+rows.append(['Egypt', 'Caa1', pct(D['inputs']['eg_ads']['value'], 2),
+             pct(D['inputs']['eg_erp']['value']), pct(W['w_egypt'])])
+rows.append(['Algeria', 'Not rated', pct(D['inputs']['dz_ads']['value'], 2),
+             pct(D['inputs']['dz_erp']['value']), pct(W['w_algeria'])])
 rows.append(['Other', '—', '—', pct(W['mature_erp']), pct(W['w_other'])])
 rows.append(['Weighted', '', '', pct(W['erp_rating']), '100%'])
 table(rows, [1.4, 1.0, 1.25, 1.6, 1.75], first_col_bold=True, size=8.9, align_right_from=1,
@@ -540,7 +561,7 @@ table(rows, [1.9] + [1.02] * 5, first_col_bold=True, size=8.9, align_right_from=
 caption('One-way sensitivities, framing A. The first two lines are the crux; the third is '
         'the fragile input.')
 
-rows = [['Terminal cost of capital \\ growth'] + [pct(g, 1) for g in sn['g_grid']]]
+rows = [['Terminal cost of capital \\ real growth'] + [pct(g, 1) for g in sn['g_grid']]]
 for i, w_ in enumerate(sn['wacc_grid']):
     rows.append([pct(w_)] + [aed(v) for v in sn['grid_wacc_g'][i]])
 table(rows, [1.9] + [1.02] * 5, first_col_bold=True, size=8.9, align_right_from=1)
@@ -632,23 +653,33 @@ P('One caveat is recorded rather than buried. Re-running the same test from five
 
 # ============================================================ 8 §4 COMPARISON
 H1('4. Comparison of the lenses')
-rows = [['Method', 'Value (AED)', 'Against the market price', 'What it assumes that the others do not']]
-for k, nm in (('dcf', 'Cash flow'), ('relative', 'Relative multiples'),
-              ('normalized', 'Normalised earnings power'), ('book', 'Book value')):
-    v = L[k]['value']
-    rows.append([nm, aed(v), f"{v/D['spot']-1:+.0%}",
-                 {'dcf': 'That the gas link, the price path and the cost of capital are all '
-                         'right for five years and beyond',
-                  'relative': 'That the market is pricing comparable assets sensibly today',
-                  'normalized': 'That there is such a thing as a mid-cycle margin for this '
-                                'business, and that the last three years contain it',
-                  'book': 'That book equity means something — which here it largely does '
-                          'not'}[k]])
+rows = [['Method', 'Value (AED)', 'Against the market price', 'What it assumes that the others '
+         'do not']]
+for br in BRN:
+    v = br['value']
+    rows.append(['Cash flow — framing ' + br['label'][0] + ' (the answer)', aed(v),
+                 f"{v/D['spot']-1:+.0%}",
+                 'That the gas link, the price path and the cost of capital are all right '
+                 'for five years and beyond. ' + br['condition'][0].upper()
+                 + br['condition'][1:]])
+rows.append(['Relative multiples (cross-check)', aed(L['relative']['value']),
+             f"{L['relative']['value']/D['spot']-1:+.0%}",
+             'That the market is pricing comparable assets sensibly today'])
+rows.append(['Book value (a floor, not a value)', aed(L['book']['value']),
+             f"{L['book']['value']/D['spot']-1:+.0%}",
+             'That book equity means something — which here it largely does not, so this '
+             'is read as the floor beneath the others rather than as a method'])
 table(rows, [1.75, 0.95, 1.5, 2.8], first_col_bold=True, size=8.7, align_right_from=1)
-P('The methods disagree by a factor of two from bottom to top. That is not a failure of the '
-  'analysis; it is the correct output for a commodity producer whose selling price doubled '
-  'in six months and whose cost base follows it. Any single number presented without that '
-  'spread would be more precise than the evidence permits.')
+P('The cash-flow lens is the answer and the others sit beside it; none of them is averaged '
+  'into it. The spread from the floor to the higher framing is close to a factor of two. '
+  'That is not a failure of the analysis; it is the correct output for a commodity producer '
+  'whose selling price doubled in six months and whose cost base follows it. Any single '
+  'number presented without that spread would be more precise than the evidence permits.')
+P('A fourth method — capitalising a mid-cycle profit on a justified earnings multiple — is '
+  f"not published here. It reads AED {L['normalized']['value']:.2f}, and it is left out "
+  'because the multiple behind it was chosen rather than sourced, and because a mid-cycle '
+  'margin is exactly what is in dispute for this business: a method that assumes the answer '
+  'to the question the study is asking cannot then be evidence about it.')
 
 # ============================================================ 9 §5 CATALYSTS
 H1('5. Catalysts')
@@ -717,7 +748,8 @@ rows.append(['The beta is weak',
              f"A beta of 1.0 rather than {W['beta']:.2f} would cut the cash-flow value "
              'materially. The sensitivity table in section 1.9 shows the range; a reader '
              'who believes the local index is the wrong yardstick should read the low end '
-             'of the cash-flow lens and lean on the other three.'])
+             'of the cash-flow range and weigh the enterprise multiple beside it, which '
+             'needs no beta at all.'])
 rows.append(['The Algerian gas liability is unsettled',
              f"${usd(D['inputs']['sorfert_accr_h1_26']['value'])} million accrued at 30 June "
              '2026, retrospective to November 2023, with negotiations unconcluded and no '
@@ -903,8 +935,11 @@ rows.append(['Present value of five years of cash flow (US$m)', usd(dA['pv_expli
 rows.append(['Present value of terminal value (US$m)', usd(dA['pv_tv']), usd(dB['pv_tv'])])
 rows.append(['Enterprise value (US$m)', usd(dA['ev']), usd(dB['ev'])])
 rows.append(['Terminal share of enterprise value', pct(dA['tv_share']), pct(dB['tv_share'])])
-rows.append(['Terminal return on capital applied', pct(dA['roic_term']), pct(dB['roic_term'])])
-rows.append(['Reinvestment rate', pct(dA['rr_term']), pct(dB['rr_term'])])
+rows.append(['Terminal return on capital (a diagnostic, not an input)',
+             pct(dA['roic_term']), pct(dB['roic_term'])])
+rows.append(['Capital maintenance charged in the terminal (US$m)',
+             usd(dA['terminal_record']['maintenance']),
+             usd(dB['terminal_record']['maintenance'])])
 rows.append(['Value per share (AED)', aed(bA['ps_aed']), aed(bB['ps_aed'])])
 table(rows, [3.2, 1.9, 1.9], first_col_bold=True, size=8.9, align_right_from=1, band_rows={7})
 P('Named sensitivity: moving the gas pass-through from '

@@ -37,25 +37,45 @@ def row_of(label):
     return A[label]
 
 
+# EVERY ONE OF THESE WAS A HARD-CODED CELL ADDRESS and the terminal rebuild moved all
+# of them — the same defect [L-067] records against this file's namesake, which read a
+# superseded edition and reported clean. They are read from the anchors the builder
+# publishes instead, so a row that moves takes its check with it.
+#
+# 'central' is gone with the blend it belonged to: it pointed at Summary B9, which the
+# sheet itself labels NOT AVERAGED. A driver test asserting that inputs move the number
+# the study refuses is the retired construction resurrected inside the test. The answer
+# is two-sided, so a driver must move BOTH branches — a stronger claim than the one it
+# replaces, and the honest one.
+ANCH = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))['anchors']
+
+
 def read(overrides=None):
     bk = xlcalc.Book(wb, overrides)
-    return dict(dcf=bk.cell_value('SOTP Bridge', 'B16'),
-                central=bk.cell_value('Summary', 'B9'),
-                ev_a=bk.cell_value('DCF', 'C59'),
-                pv_expl=bk.cell_value('DCF', 'C57'),
-                tv_a=bk.cell_value('DCF', 'C56'),
-                ebitda26=bk.cell_value('DCF', 'B7'),
-                wacc=bk.cell_value('DCF', 'C85'),
-                wacc_term=bk.cell_value('DCF', 'C88'),
-                tax=bk.cell_value('DCF', 'C103'),
-                panel=bk.cell_value('Fundamental Valuation', 'D26'),
-                nd30=bk.cell_value('Balance Sheet', 'I22'),
-                bvps=bk.cell_value('Relative & Normalized', 'C32'),
+    return dict(
+                branch_a=bk.cell_value('Fundamental Valuation', ANCH['fv_branch_a']),
+                branch_b=bk.cell_value('Fundamental Valuation', ANCH['fv_branch_b']),
+                ev_a=bk.cell_value('DCF', ANCH['dcf_ev_a']),
+                pv_expl=bk.cell_value('DCF', ANCH['dcf_pve_a']),
+                tv_a=bk.cell_value('DCF', ANCH['dcf_tv_a']),
+                ebitda26=bk.cell_value('DCF', ANCH['dcf_ebitda26_a']),
+                wacc=bk.cell_value('DCF', ANCH['dcf_wacc']),
+                wacc_term=bk.cell_value('DCF', ANCH['dcf_wacc_term']),
+                tax=bk.cell_value('DCF', ANCH['dcf_tax']),
+                panel=bk.cell_value('Fundamental Valuation', ANCH['panel_median']),
+                nd30=bk.cell_value('Balance Sheet', ANCH['bs_nd30']),
+                bvps=bk.cell_value('Relative & Normalized', ANCH['book_ps']),
                 # the alternative minority basis, published beside the earnings basis
-                psb_a=bk.cell_value('SOTP Bridge', 'B21'),
+                psb_a=bk.cell_value('SOTP Bridge', ANCH['bridge_psb_a']),
                 # the trailing multiples that anchor the peer comparison
-                ev_ebitda_t=bk.cell_value('Relative & Normalized', 'C14'),
-                pe_t=bk.cell_value('Relative & Normalized', 'C15'))
+                ev_ebitda_t=bk.cell_value('Relative & Normalized', ANCH['rel_evebt']),
+                pe_t=bk.cell_value('Relative & Normalized', ANCH['rel_pet']),
+                # the two cross-checks and the terminal return, which are published
+                # beside the answer and are therefore things a driver may legitimately
+                # move without moving the answer
+                rel_lens=bk.cell_value('Fundamental Valuation', ANCH['fv_rel']),
+                norm_lens=bk.cell_value('Relative & Normalized', ANCH['norm_ps']),
+                roic_term=bk.cell_value('DCF', ANCH['dcf_roic_term_a']))
 
 
 base = read()
@@ -93,25 +113,39 @@ CASES = [
      'running the urea plants harder must raise FY2026 EBITDA'),
     ('Urea production capacity (kt)', 'C', +200.0, 'dcf', +1,
      'more installed capacity at the same utilisation must raise volume and value'),
-    ('Framing A — urea benchmark, Egypt free on board ($/t)', 'C', +50.0, 'dcf', +1,
-     'a higher urea price must raise the valuation'),
+    ('Framing A — urea benchmark, Egypt free on board ($/t)', 'C', +50.0, 'branch_a', +1,
+     'a higher urea price under framing A must raise framing A'),
+    ('Framing A — ammonia benchmark, Middle East ($/t)', 'C', +50.0, 'branch_a', +1,
+     'a higher ammonia price under framing A must raise framing A'),
+    ('Framing B — urea benchmark, Egypt free on board ($/t)', 'C', +50.0, 'branch_b', +1,
+     'a higher urea price under framing B must raise framing B'),
+    ('Framing B — ammonia benchmark, Middle East ($/t)', 'C', +50.0, 'branch_b', +1,
+     'a higher ammonia price under framing B must raise framing B'),
     ('Third-party traded price ($/t)', 'C', +50.0, 'dcf', +1,
      'a higher traded price must raise trading revenue and the valuation'),
     ('Third-party traded volume (kt)', 'B', +100.0, 'ebitda26', +1,
      'more traded volume at a positive margin must raise EBITDA'),
-    ('Long-run return on capital for merchant nitrogen', 'C', +0.03, 'dcf', +1,
-     'a higher terminal return needs less reinvestment to fund growth, raising terminal value'),
-    # Replacement cost is one of the three bases the terminal return on capital averages. A
-    # higher replacement cost means the same terminal profit sits on a larger capital base, so
-    # the terminal return FALLS, the reinvestment rate rises, and terminal value falls with it.
+    # THE TERMINAL RETURN NO LONGER ENTERS THE TERMINAL. It set the reinvestment rate of
+    # the retired construction; the terminal is now built from the capital the plants
+    # need to be kept whole, so this input moves the published diagnostic and nothing
+    # else. Asserted on what it actually moves rather than removed, because a reader is
+    # still shown it.
+    ('Long-run return on capital for merchant nitrogen', 'C', +0.03, 'roic_term', +1,
+     'a higher sector return must raise the triangulated terminal return it is averaged '
+     'into — which is published as a diagnostic and does not enter the valuation'),
+    # Replacement cost is the capital base the maintenance charge is struck on. A higher
+    # replacement cost means more capital to keep whole each year at the same asset life,
+    # so terminal free cash flow falls and terminal value falls with it. Under the retired
+    # construction the same direction came about a different way, through the reinvestment
+    # rate; the direction survived the rebuild and the mechanism did not.
     ('Replacement cost of installed capacity ($ per tonne)', 'C', +250.0, 'tv_a', -1,
-     'a larger capital base lowers the terminal return and raises the reinvestment burden'),
-    ('Justified enterprise value / EBITDA', 'C', +1.0, 'central', +1,
-     'a higher justified multiple must raise the relative lens and the weighted central'),
-    ('Justified price / earnings', 'C', +1.0, 'central', +1,
-     'a higher justified price/earnings must raise the normalised lens and the central'),
-    ('Weight — discounted cash flow', 'C', +0.10, 'central', +1,
-     'the cash-flow lens sits above the central, so weighting it more must raise the central'),
+     'a larger capital base costs more to keep whole, lowering terminal free cash flow'),
+    ('Justified enterprise value / EBITDA', 'C', +1.0, 'rel_lens', +1,
+     'a higher justified multiple must raise the relative cross-check — which sits beside '
+     'the answer and is not weighted into it'),
+    ('Justified price / earnings', 'C', +1.0, 'norm_lens', +1,
+     'a higher justified price/earnings must raise the normalised read, which the study '
+     'computes and does not publish as a lens'),
     ('Dividend payout ratio in the forecast', 'C', +0.15, 'nd30', +1,
      'paying more of the profit out must leave more net debt at the end of the forecast'),
     ('Interest rate charged on net debt in the forecast', 'C', +0.02, 'nd30', +1,
@@ -129,6 +163,8 @@ CASES = [
      'dirham-denominated answer'),
 ]
 
+ANSWER = ('branch_a', 'branch_b')
+
 fails = []
 for label, col, bump, key, sign, why in CASES:
     r = row_of(label)
@@ -136,13 +172,15 @@ for label, col, bump, key, sign, why in CASES:
     if not isinstance(cur, (int, float)):
         raise TypeError(f'{label!r} column {col} is not a numeric input (found {cur!r})')
     out = read({('Assumptions', f'{col}{r}'): cur + bump})
-    delta = out[key] - base[key]
-    rel = delta / abs(base[key]) if base[key] else 0.0
-    ok = (delta * sign > 0) and abs(rel) > 1e-6
-    print(f'  [{"OK " if ok else "BAD"}] {label} [{col}] {bump:+g} -> {key} '
-          f'{base[key]:,.3f} -> {out[key]:,.3f} ({rel:+.2%})   {why}')
-    if not ok:
-        fails.append((label, key, delta, why))
+    keys = ANSWER if key == 'dcf' else (key,)
+    for k in keys:
+        delta = out[k] - base[k]
+        rel = delta / abs(base[k]) if base[k] else 0.0
+        ok = (delta * sign > 0) and abs(rel) > 1e-6
+        print(f'  [{"OK " if ok else "BAD"}] {label} [{col}] {bump:+g} -> {k} '
+              f'{base[k]:,.3f} -> {out[k]:,.3f} ({rel:+.2%})   {why}')
+        if not ok:
+            fails.append((label, k, delta, why))
 
 # ---- dead-input sweep -------------------------------------------------------
 # Every numeric input on the sheet, in every column it occupies, must move something.
@@ -171,6 +209,28 @@ if dead:
 else:
     print('  none — every remaining driver reprices the model')
 
+# THE FRAMINGS ARE INDEPENDENT AND THAT IS TESTED, NOT ASSUMED. Publishing two readings
+# instead of one is worth nothing if a price belonging to one of them leaks into the
+# other; the claim is exact — a crossed bump must move the other branch by nothing at
+# all — so it is asserted at zero rather than within a tolerance.
+print('\nFRAMING INDEPENDENCE — each framing\'s prices must leave the other branch untouched')
+crossed = []
+for lab, own, other in (('Framing A — urea benchmark, Egypt free on board ($/t)',
+                         'branch_a', 'branch_b'),
+                        ('Framing A — ammonia benchmark, Middle East ($/t)',
+                         'branch_a', 'branch_b'),
+                        ('Framing B — urea benchmark, Egypt free on board ($/t)',
+                         'branch_b', 'branch_a'),
+                        ('Framing B — ammonia benchmark, Middle East ($/t)',
+                         'branch_b', 'branch_a')):
+    rr = row_of(lab)
+    out = read({('Assumptions', f'C{rr}'): wb['Assumptions'][f'C{rr}'].value + 50.0})
+    leak = out[other] - base[other]
+    print(f'  [{"OK " if leak == 0.0 else "BAD"}] {lab} -> {other} moved {leak:+.6f}')
+    if leak != 0.0:
+        crossed.append((lab, other, leak))
+
+assert not crossed, f'framing prices leaked across branches: {crossed}'
 assert not fails, f'{len(fails)} drivers failed to move the model correctly: {fails}'
 assert not dead, f'dead inputs: {dead}'
 print(f'\nDRIVER TEST OK — {len(CASES)} drivers each reprice the workbook in the asserted '

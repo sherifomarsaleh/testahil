@@ -273,6 +273,10 @@ inp('sofr', 0.0365, "Secured Overnight Financing Rate, New York Fed", '2026-08-0
 AD_CDS = inp('ad_cds', 0.0046, DAM + " — Abu Dhabi sovereign CDS", '2026-08-09', 'COUNTRY')
 AD_ADS = inp('ad_ads', 0.0042, DAM + " — Abu Dhabi adjusted default spread (Moody's Aa2)",
              '2026-08-09', 'COUNTRY')
+FS25 = 'Fertiglobe plc, Annual Report 2025, note 15 (non-controlling interests)'
+inp('nci_pct_sorfert', 0.4901, FS25 + " — Sorfert Algeria SpA", '2025-12-31', 'COMPANY')
+inp('nci_pct_ebic', 0.2500, FS25 + " — Egyptian Basic Industries Corporation", '2025-12-31',
+    'COMPANY')
 inp('ad_erp', 0.0487, DAM + " — Abu Dhabi equity risk premium, rating basis", '2026-08-09', 'COUNTRY')
 inp('ad_erp_cds', 0.0493, DAM + " — Abu Dhabi equity risk premium, CDS basis", '2026-08-09', 'COUNTRY')
 inp('ad_crp', 0.0064, DAM + " — Abu Dhabi country risk premium", '2026-08-09', 'COUNTRY')
@@ -280,8 +284,20 @@ inp('eg_erp', 0.1394, DAM + " — Egypt equity risk premium, rating basis (Caa1)
 inp('eg_erp_cds', 0.0941, DAM + " — Egypt equity risk premium, CDS basis", '2026-08-09', 'COUNTRY')
 inp('dz_erp', 0.1006, DAM + " — Algeria equity risk premium, rating basis (not rated)",
     '2026-08-09', 'COUNTRY')
+EG_ADS = inp('eg_ads', 0.0637, DAM + " — Egypt adjusted default spread (Moody's Caa1)",
+             '2026-08-09', 'COUNTRY')
+DZ_ADS = inp('dz_ads', 0.0383, DAM + " — Algeria adjusted default spread (not rated)",
+             '2026-08-09', 'COUNTRY')
 MAT_ERP = inp('mature_erp', 0.0423, DAM + " — mature-market ERP = Abu Dhabi ERP 4.87% less its CRP 0.64%",
               '2026-08-09', 'GLOBAL')
+# The published rows tie together: each country's risk premium over the mature market is
+# its own default spread scaled by one lambda. Asserting it is what makes these four
+# figures a read of one table rather than four numbers that happen to be nearby.
+for _ctry, _ads, _erp in (('Abu Dhabi', 0.0042, 0.0487), ('Egypt', 0.0637, 0.1394),
+                          ('Algeria', 0.0383, 0.1006)):
+    chk(abs((_erp - 0.0423) / _ads - 1.524) < 0.02,
+        f"{_ctry}'s equity risk premium is its own default spread scaled by the same "
+        f"lambda as the others ({(_erp - 0.0423) / _ads:.3f})")
 inp('tax_dam_uae', 0.0900, DAM + " — corporate tax rate, Abu Dhabi", '2026-08-09', 'COUNTRY')
 inp('tax_dam_eg', 0.2250, DAM + " — corporate tax rate, Egypt", '2026-08-09', 'COUNTRY')
 inp('tax_dam_dz', 0.1007, DAM + " — corporate tax rate, Algeria", '2026-08-09', 'COUNTRY')
@@ -1025,9 +1041,12 @@ lens_record = dict(
 
 # what the retired construction published, kept as a memo so the move is visible
 lenses = dict(
-    dcf=dict(value=DCF_PS_AED, weight=None,
+    dcf=dict(value=None, branches={b['label']: b['value'] for b in BRANCHES},
+             weight=None,
              note='Five-year free cash flow to the firm with an explicit terminal '
-                  'block — THE PRIMARY, and two-sided'),
+                  'block — THE PRIMARY, and two-sided: it has no single value, and '
+                  'the midpoint of its two framings is published only as the number '
+                  'the study refuses'),
     relative=dict(value=rel_ps_aed, weight=None,
                   note='Mid-cycle EBITDA on a peer-anchored enterprise multiple — '
                        'a cross-check'),
