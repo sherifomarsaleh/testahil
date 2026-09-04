@@ -90,7 +90,32 @@ before this one the same proxy erred in *opposite* directions — one base young
 uniform, one older — and both were in 2% markets where the error is small. Egypt is where it
 compounds.
 
-## 5. Why nothing has been changed yet
+## 5. What the sanctioned terminal gives on the measured age — priced, and buildable
+
+With the age read rather than assumed, the construction builds cleanly and the answer is
+large:
+
+| | |
+|---|---:|
+| terminal-year profit after tax | 3,815 |
+| plus book depreciation and amortisation | 2,338 |
+| less capital maintenance, at the measured 4.45-year age | (3,160) |
+| less growth capital — the terminal real growth is **zero**, so nothing | — |
+| less inflation on working capital | (229) |
+| **terminal free cash flow** | **2,764** |
+| implied payout of terminal profit | 72.4% |
+
+Terminal **25,524** against the retired identity's 20,121, **+26.8%**; per share **3.2905**
+against 2.3109, **+42.4%**. The gap against the traded 14.41 narrows from about −84% to
+**−77.2%** — still far enough below the price that this study stays held, which is the
+right outcome: a correction is applied because it is the better measurement, not because of
+where it leaves the answer.
+
+**On the half-life proxy the same terminal REFUSES**, charging 5,506 of maintenance against
+3,815 of profit and driving the equity negative. The difference between a refusal and a
++42% correction is one number, and it was sitting in the accounts.
+
+## 6. Why the rebuild has not shipped in this pass
 
 Fixing this inside the study would mean either bypassing the sanctioned construction or
 feeding it a life it does not have, and a study quietly using a different escalator would be
@@ -104,7 +129,18 @@ It moves five already-rebuilt names, so it needs its own pass: the amendment, a 
 control, the five re-runs, and both governing documents. It is not squeezed in beside a
 study rebuild.
 
-**What is NOT the reason:** this is a missing measurement, now obtained, in a shared module.
-It is not an obstacle assessed from the shape of the change — the terminal was actually
-built, run and priced, and the number it produced is what sent the enquiry back to the
-module.
+**Status, stated exactly.** The measurement is obtained and footed, the shared construction
+has been re-pointed to take it, and the result is priced above. What remains is a BUILD —
+routing this study's own `terminal()` through the module, the workbook, the documents, the
+gap review and the ledger — on a study whose filings are scanned Arabic and whose central is
+two-sided across four branches. It is the next pass, and it is a build rather than research.
+
+**What is NOT the reason:** this was a missing measurement, now obtained, in a shared
+module. It is not an obstacle assessed from the shape of the change — the terminal was
+actually built, run and priced, and the number it produced is what sent the enquiry back to
+the module.
+
+**And the size is the reason it gets its own pass rather than being appended to another.** A
++42% move on the most-disagreeing study in the book is exactly the shape of change this
+programme exists to be careful about: it is recorded here with its arithmetic so the next
+pass starts from evidence rather than from memory.
