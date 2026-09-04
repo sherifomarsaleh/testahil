@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**204 lessons**, of which 175 bind on every study, 22 on a class of company, and 7 on a single name.
+**205 lessons**, of which 176 bind on every study, 22 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 129 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 130 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1828,6 +1828,16 @@ Numbering a register so the number tells you the kind of entry is convenient unt
 > **What it cost, or how we know.** The minter's docstring read 0xx for one scope, 1xx for another, 2xx for the third, and allocated inside a 99-wide window per scope. The first block had long since overflowed into the others, so the window arithmetic would have minted an id already in use. It never got that far: it CRASHED on a suffixed id — a correction inserted in place in an append-only register, legitimate under that convention and unreadable by int() — so the sanctioned path for appending any harvested lesson raised before it reached the register. Now counted against the whole register, which is the rule this house already holds for every other population.
 
 > **What would overturn it.** A register where the scope really is recoverable from the id, which would make the blocks load-bearing rather than decorative.
+
+### L-284 · A CHECK THAT RECOMPUTES AND REPORTS ON THE RECOMPUTATION CANNOT DETECT STALENESS IN WHAT IS WRITTEN DOWN. Make it open the committed artefact.
+
+A verifier that rebuilds the answer from the current inputs and prints that is answering a different question from the one it appears to answer. It says what the artefact SHOULD contain, and never looks at what it does. Nothing about it reads as weak — it runs, it prints a table, it exits zero — and it is blind by construction rather than by oversight.
+
+**Applies to:** every study  ·  *Learned from:* found while building, The staged publish queue's own verifier, 04-Sep-2026
+
+> **What it cost, or how we know.** build_publish_queue.py --check printed 'publish queue OK' and exited 0 on a manifest recording ARCC as staged at 53.4593 while the study committed 66.53, one full re-issue behind — and the same for three more names. Pointed at the committed file it caught all four immediately, including one the programme's own acceptance record could not see because that name publishes a two-sided answer with no scalar central.
+
+> **What would overturn it.** A verifier whose artefact is regenerated on every read, where there is no written-down copy to go stale.
 
 
 ---

@@ -3976,6 +3976,25 @@ LESSONS = [
       "A register where the scope really is recoverable from the id, which would make "
       "the blocks load-bearing rather than decorative."),
 
+    L("L-284", "ALL", None,
+      "A CHECK THAT RECOMPUTES AND REPORTS ON THE RECOMPUTATION CANNOT DETECT "
+      "STALENESS IN WHAT IS WRITTEN DOWN. Make it open the committed artefact.",
+      "A verifier that rebuilds the answer from the current inputs and prints that is "
+      "answering a different question from the one it appears to answer. It says what "
+      "the artefact SHOULD contain, and never looks at what it does. Nothing about it "
+      "reads as weak — it runs, it prints a table, it exits zero — and it is blind by "
+      "construction rather than by oversight.",
+      "The staged publish queue's own verifier, 04-Sep-2026",
+      "build",
+      "build_publish_queue.py --check printed 'publish queue OK' and exited 0 on a "
+      "manifest recording ARCC as staged at 53.4593 while the study committed 66.53, "
+      "one full re-issue behind — and the same for three more names. Pointed at the "
+      "committed file it caught all four immediately, including one the programme's "
+      "own acceptance record could not see because that name publishes a two-sided "
+      "answer with no scalar central.",
+      "A verifier whose artefact is regenerated on every read, where there is no "
+      "written-down copy to go stale."),
+
 ]
 
 

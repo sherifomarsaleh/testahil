@@ -4,61 +4,61 @@
  "names": [
   {
    "ticker": "AMOC",
-   "report": "engine/amoc_study/AMOC_Valuation_Study_01-09-2026_public.pdf",
-   "workbook": "engine/amoc_study/AMOC_Valuation_Model_01092026_public.xlsx",
+   "report": "engine/amoc_study/AMOC_Valuation_Study_03-09-2026_public.pdf",
+   "workbook": "engine/amoc_study/AMOC_Valuation_Model_03092026_public.xlsx",
    "fair": {
-    "base": 9.9142,
-    "bear": 4.9284,
-    "full": 16.7253
+    "base": 11.401172768028045,
+    "bear": 1.6732033650468485,
+    "full": 23.90485159462365
    },
-   "report_bytes": 846551,
-   "workbook_bytes": 133282
+   "report_bytes": 891119,
+   "workbook_bytes": 133771
   },
   {
    "ticker": "ARCC",
-   "report": "engine/arcc_study/ARCC_Valuation_Study_02-09-2026_public.pdf",
-   "workbook": "engine/arcc_study/ARCC_Valuation_Model_02092026_public.xlsx",
+   "report": "engine/arcc_study/ARCC_Valuation_Study_03-09-2026_public.pdf",
+   "workbook": "engine/arcc_study/ARCC_Valuation_Model_03092026_public.xlsx",
    "fair": {
-    "base": 53.4593,
-    "bear": 47.7778,
-    "full": 59.3294
+    "base": 66.53,
+    "bear": 24.6116,
+    "full": 72.1254
    },
-   "report_bytes": 1256483,
-   "workbook_bytes": 48875
+   "report_bytes": 1339257,
+   "workbook_bytes": 49195
   },
   {
    "ticker": "EGCH",
-   "report": "engine/egch_study/EGCH_Valuation_Study_01-09-2026.pdf",
-   "workbook": "engine/egch_study/EGCH_Valuation_Model_01092026.xlsx",
+   "report": "engine/egch_study/EGCH_Valuation_Study_03-09-2026.pdf",
+   "workbook": "engine/egch_study/EGCH_Valuation_Model_03092026.xlsx",
    "fair": {
     "base": null,
-    "bear": -2.6124650988103313,
+    "bear": 0.30199380842181717,
     "branches": [
      {
       "label": "Cash-flow lens, capital programme carried through",
-      "value": -1.0621217844282123
+      "value": 2.3109
      },
      {
       "label": "Cash-flow lens, capital programme stopped",
-      "value": 2.818216074465918
+      "value": 6.259070497380644
      }
     ],
-    "full": 2.818216074465918
+    "full": 6.259070497380644
    },
-   "report_bytes": 1643818,
-   "workbook_bytes": 46425
+   "report_bytes": 1669664,
+   "workbook_bytes": 47180
   },
   {
    "ticker": "PHDC",
-   "report": "engine/phdc_study/PHDC_Valuation_Study_02-09-2026.pdf",
-   "workbook": "engine/phdc_study/PHDC_Valuation_Model_02092026.xlsx",
+   "report": "engine/phdc_study/PHDC_Valuation_Study_03-09-2026.pdf",
+   "workbook": "engine/phdc_study/PHDC_Valuation_Model_03092026.xlsx",
    "fair": {
-    "base": 17.1517,
-    "bear": 3.7554,
-    "full": 44.8509
+    "base": 17.8478,
+    "bear": 4.0127,
+    "full": 46.4989
    },
-   "report_bytes": 1103206,
-   "workbook_bytes": 37441
+   "report_bytes": 1109080,
+   "workbook_bytes": 37450
   },
   {
    "ticker": "TMGH",
@@ -69,8 +69,8 @@
     "bear": 63.696,
     "full": 123.0284
    },
-   "report_bytes": 771128,
-   "workbook_bytes": 28420
+   "report_bytes": 764432,
+   "workbook_bytes": 28426
   }
  ]
 }
