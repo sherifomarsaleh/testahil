@@ -18,6 +18,9 @@ def H3(text):
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 M, HI, HB, F = D['meta'], D['hist_is'], D['hist_bs'], D['fcst']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sens']
+TRC = D['terminal_record']
+TRI, TRO = TRC['inputs'], TRC['outputs']
+DL = TRC['derived_life']
 EXP, REL, NRM, BK = D['experts'], D['rel'], D['norm'], D['book']
 SEG, S0, STK, BU = D['seg_fy25'], D['step0'], D['strike'], D['bottomup']
 UC = D['unitcost']
@@ -250,15 +253,45 @@ caption(f'{T()} — the FCFF waterfall. EBITDA margin holds near {pc(F["ebitda_m
         'lease replacement is charged at right-of-use depreciation so the lease book neither '
         'inflates nor starves the cash flow; working-capital change is a cash RELEASE in every '
         'year because the working capital is negative and revenue grows.')
-P(f"Terminal value: terminal-year NOPAT grown at {pc(IN['g_term'])} with a reinvestment rate "
-  f"set by the growth itself — g / return on capital = {pc(IN['g_term'])} / "
-  f"{pc(DCF['roic_term'])} = {pc(DCF['rr_term'])} of NOPAT — capitalised at the terminal cost "
-  f"of capital of {pc(W['wacc_term'],2)} less growth. That yields a terminal value of AED "
-  f"{n0(DCF['tv'])}mn, whose present value is AED {n0(DCF['pv_tv'])}mn — "
-  f"{pc(DCF['tv_share'],0)} of enterprise value. A reader should sit with that number: at a "
-  f"{pc(W['wacc_term'],2)} discount rate almost all of the value of a stable, "
-  'licence-protected annuity IS the far future, and that is exactly why the two renewal '
-  'catalysts in section 5 dominate everything else in this report.')
+P(f"Terminal growth is stated as a REAL rate and the headline rate is derived from it: "
+  f"real growth of {pc(TRI['real_growth'])} on the {pc(TRI['inflation'])} long-run "
+  f"inflation this economy is expected to run gives a nominal {pc(TRI['nominal_growth'])}. "
+  f"The previous edition typed the nominal figure and argued it as population growth plus "
+  f"inflation minus price erosion — which names two real forces pointing opposite ways and "
+  f"puts a number on neither, so the real growth it implied was the residue of typing the "
+  f"nominal rather than anybody's estimate. Zero is what this study now assumes, and the "
+  f"sensitivity below prices the alternative rather than burying it.")
+P(f"What the terminal charges for is capital MAINTENANCE, at what replacement costs. "
+  f"Terminal operating profit after tax is AED {n0(TRI['nopat'])}mn; AED "
+  f"{n0(TRI['dna_book'])}mn of owned depreciation and amortisation is added back because "
+  f"that profit is already struck after it, and AED {n0(TRO['maintenance'])}mn charged "
+  f"against it — the same charge escalated over half the {DL['years']:.2f}-year life of "
+  f"the depreciable owned base. That life is not picked: the depreciation notes give "
+  f"RANGES per class and no weighting, so it is derived from those notes' own two columns, "
+  f"the gross cost of the base over the year's own charge, and cross-checks at "
+  f"{DL['cross_check_fy2024']:.2f} years on the prior year. The working-capital line is a "
+  f"CREDIT of AED {n0(-TRO['wc_charge'])}mn rather than a charge, because this company "
+  f"collects from its subscribers before it pays its suppliers and inflation makes that "
+  f"float worth more each year. That leaves AED {n0(TRO['fcff'])}mn, "
+  f"{pc(TRO['fcff'] / TRI['nopat'])} of terminal profit.")
+P(f"One line in that block is easy to miss and matters: the LEASE renewal. The five "
+  f"forecast years add back the right-of-use depreciation and charge no lease replacement, "
+  f"because the lease liability is deducted in full as debt in the bridge and charging "
+  f"renewal there too would bill the same obligation twice. That argument does not survive "
+  f"into perpetuity — a one-off deduction of today's liability cannot cover renewals for "
+  f"ever — and the retired construction supplied the renewal only as a side effect of "
+  f"charging growth against the whole capital base. The terminal therefore neither adds "
+  f"back nor charges the right-of-use depreciation, which is exactly a lease renewed at "
+  f"its own current cost: a lease re-prices when it renews, unlike an asset bought twelve "
+  f"years ago.")
+P(f"That yields a terminal value of AED {n0(DCF['tv'])}mn, whose present value is AED "
+  f"{n0(DCF['pv_tv'])}mn — {pc(DCF['tv_share'],0)} of enterprise value, against AED "
+  f"{n0(TRC['retired_construction']['tv'])}mn on the retired construction. A reader should "
+  f"sit with that share: at a {pc(W['wacc_term'],2)} discount rate almost all of the value "
+  f"of a stable, licence-protected annuity IS the far future, and that is exactly why the "
+  f"two renewal catalysts in section 5 dominate everything else in this report. A marker "
+  f"beside it: a business holding its profit flat for ever, charging only the depreciation "
+  f"its books already record, would be worth AED {n0(TRO['floor'])}mn.")
 
 H2('The bridge from enterprise value to the equity — and to the anchor date')
 rows = [['Step', 'AED mn', 'AED / share'],
@@ -293,7 +326,7 @@ P(f"Book value per share is AED {p2(BK['bvps'])} (audited FY2025 equity of AED "
   'needs very little equity, so the return on it is high by construction. The lens asks what '
   f"a sustainable {pc(BK['roe_sust'],0)} return is worth against a perpetual cost of equity "
   f"of {pc(BK['ke_term'],2)}: justified price-to-book = ({pc(BK['roe_sust'],0)} − "
-  f"{pc(IN['g_term'])}) / ({pc(BK['ke_term'],2)} − {pc(IN['g_term'])}) = "
+  f"{pc(TRI['nominal_growth'])}) / ({pc(BK['ke_term'],2)} − {pc(TRI['nominal_growth'])}) = "
   f"{BK['pb_just']:.2f}×, i.e. AED {p2(LN['book']['base'])} per share at the anchor. The "
   'multiple looks extreme against industrial norms; it is what the arithmetic of a small '
   'equity base and a low required return produces, and the honest caveat is that it is the '
@@ -588,7 +621,7 @@ P('Every valuation has one judgement that moves it more than all the others. Her
   'computed and published; neither is averaged away.')
 rows = [['', 'Framing 1 — the measured return', 'Framing 2 — the market\'s return'],
         ['How the terminal is set',
-         f"capitalised at {pc(W['wacc_term'],2)} with growth of {pc(IN['g_term'])}",
+         f"capitalised at {pc(W['wacc_term'],2)} with growth of {pc(TRI['nominal_growth'])}",
          "du's own current trailing EV/EBITDA held into perpetuity"],
         ['What that implies for the exit multiple',
          f"{DCF['tv_implied_mult']:.2f}x forward EBITDA",
@@ -780,7 +813,8 @@ for lab, grid, vals, gf in [
         ('Direct cost per unit (×)', SN['mg_grid'], SN['grid_margin'], '{:.2f}'),
         ('Blended ARPU drift (%/yr)', SN['drift_grid'], SN['grid_drift'], '{:+.1%}'),
         ('Capex path (×)', SN['capex_grid'], SN['grid_capex'], '{:.2f}'),
-        ('Terminal ROIC', SN['roic_grid'], SN['grid_roic'], '{:.0%}')]:
+        ('Asset life, years (derived from the depreciation notes)',
+         SN['life_grid'], SN['grid_life'], '{:.1f}')]:
     rows.append([f"{lab}  ({' / '.join(gf.format(g) for g in grid)})"]
                 + [p2(v) for v in vals] + [p2(max(vals) - min(vals))])
 table(rows, [2.60, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70], size=8.2)
@@ -922,8 +956,10 @@ P('What would close the gap from each side. The DCF is right and the market re-r
   'if: the royalty regime reverts or worsens (Framing B alone closes most of the gap — AED '
   f"{p2(DCF['ps_framing_b'])}); the measured beta understates the true risk of a "
   'single-market, single-licence operator (beta 0.80 alone takes the DCF to AED '
-  f"{p2(SN['grid_beta'][4])}); or terminal reinvestment needs are heavier than "
-  f"{pc(DCF['rr_term'])} of profit. The central of AED {p2(CEN)} does NOT split the difference: "
+  f"{p2(SN['grid_beta'][4])}); or the capital base is older than the depreciation notes "
+  f"imply, which the second reading of those same notes puts at "
+  f"{SN['life_variant_years']:.2f} years and is worth AED "
+  f"{p2(SN['ps_life_variant'])} a share. The central of AED {p2(CEN)} does NOT split the difference: "
   'it is the cash-flow lens, published with the cross-checks that disagree with it printed '
   'beside it at their own values, so a reader can judge the disagreement instead of receiving '
   'a number in which it has already been settled by a weight. An earlier edition of this study '

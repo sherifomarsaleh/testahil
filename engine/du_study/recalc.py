@@ -19,6 +19,8 @@ D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))
 EXPECT, ANCH = XP['expected'], XP['anchors']
 DCF, LN, HI, HB, F, W = D['dcf'], D['lenses'], D['hist_is'], D['hist_bs'], D['fcst'], D['wacc']
+TRI = D['terminal_record']['inputs']
+TRO = D['terminal_record']['outputs']
 SH = D['meta']['shares_mn']
 
 BK = xlcalc.Book(wb)
@@ -73,7 +75,16 @@ checks = [
     ('DCF fair value per share at the anchor', g('DCF', 'C63'), DCF['ps'], 0.02),
     ('DCF cost of capital — explicit window', g('DCF', 'C47'), W['wacc_exp'], 0.0002),
     ('DCF cost of capital — terminal', g('DCF', 'C54'), W['wacc_term'], 0.0002),
-    ('DCF terminal return on invested capital', g('DCF', 'C22'), DCF['roic_term'], 0.001),
+    # THE RETIRED CONSTRUCTION'S CHECK WENT WITH THE CONSTRUCTION rather than being left
+    # pointing at a cell that now holds something else [L-067]. What replaces it is the
+    # terminal, line by line, against the record the module produced.
+    ('DCF terminal free cash flow', g('DCF', 'C22'), TRO['fcff'], 1.0),
+    ('DCF terminal free cash flow, built line by line', g('DCF', 'C77'), TRO['fcff'], 1.0),
+    ('DCF terminal owned depreciation added back', g('DCF', 'C74'), TRI['dna_book'], 1.0),
+    ('DCF terminal capital maintenance', g('DCF', 'C75'), -TRO['maintenance'], 1.0),
+    ('DCF terminal growth (derived, not typed)', g('DCF', 'C24'),
+     TRI['nominal_growth'], 0.0002),
+    ('DCF terminal value', g('DCF', 'C26'), DCF['tv'], 1.0),
     ('Bridge equity value', g('SOTP Bridge', 'C11'), DCF['eq_val'], 1.0),
     ('Bridge enterprise value', g('SOTP Bridge', 'C7'), DCF['ev'], 1.0),
     ('Fundamental — DCF lens', g('Fundamental Valuation', 'C5'), DCF['ps'], 0.02),
