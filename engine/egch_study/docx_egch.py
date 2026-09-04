@@ -359,11 +359,30 @@ P(f"Egyptian industrial businesses have generally changed hands between {E1(RL['
   f"{E(RL['ev_mid'])} million and, after the debt and the non-operating stack, EGP "
   f"{E2(RL['value_per_share'])} a share — a range of EGP {E2(RL['value_low'])} to EGP "
   f"{E2(RL['value_high'])} across the band.")
-P(f"The two numbers worth putting side by side are these: at the traded price the shares "
-  f"change hands at {E1(RL['implied_at_market'])} times that same forward EBITDA, while the "
-  f"cash-flow lens values them at {E1(RL['implied_at_model'])} times. One is above the "
-  f"Egyptian industrial band and the other below it. That is the whole disagreement in a "
-  f"single number, and it is reported rather than resolved.", bold=True)
+# TWO DEFECTS IN ONE SENTENCE, AND THE SECOND WAS THE SENTENCE CONTRADICTING ITSELF.
+# It compared the traded multiple with the model's while the two sat on DIFFERENT
+# definitions of enterprise value — the traded numerator carried the listed stakes and the
+# investment property, which the model's excludes and the bridge adds back separately — so
+# the like-for-like figure is 7.3x, not 8.0x. And it then said "one is above the Egyptian
+# industrial band and the other below it" when 8.0 sits INSIDE a band of 6.0 to 9.9. The
+# comparison is now like-for-like and the band relation is COMPUTED, not asserted; the
+# corrected reading is the more interesting one, because the market is paying a multiple
+# squarely inside the range and the cash-flow lens is paying a third of it.
+def _vs_band(m):
+    return ('above' if m > RL['mult_high'] else
+            'below' if m < RL['mult_low'] else 'inside')
+_mk, _md = RL['implied_at_market_ex_nonop'], RL['implied_at_model']
+P(f"The two numbers worth putting side by side are these: at the traded price the "
+  f"operating business changes hands at {E1(_mk)} times that same forward EBITDA, while "
+  f"the cash-flow lens values it at {E1(_md)} times — both measured on the enterprise "
+  f"value this study bridges from, with the listed stakes and the investment property "
+  f"taken out of each. One sits {_vs_band(_mk)} the Egyptian industrial band and the "
+  f"other {_vs_band(_md)} it. That is the whole disagreement in a single number, and it "
+  f"is reported rather than resolved.", bold=True)
+P(f"Buying the equity at the traded price buys the stakes and the property too, and on "
+  f"that whole-company basis the multiple is {E1(RL['implied_at_market'])} times. It is "
+  f"the larger number and it is not the comparable one, which is why the sentence above "
+  f"uses the operating figure.", size=9.5, italic=True, color=GREY)
 P("This lens gives the highest of the four answers, and the reason matters. A multiple of "
   "forward operating profit never asks what the capital programme does to cash: it values "
   "the plant as though the money being spent on the new complex were not being spent. That "

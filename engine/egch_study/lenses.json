@@ -35,6 +35,7 @@
   "value_per_share": 15.987731068576231,
   "value_high": 20.711130729004648,
   "implied_at_market": 8.033885974749778,
+  "implied_at_market_ex_nonop": 7.298652283333442,
   "implied_at_model": 2.3036776560803975
  },
  "normalised": {
