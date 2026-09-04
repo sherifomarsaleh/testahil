@@ -107,6 +107,17 @@ CLASSES = (
     # business's lessons under "petrochemical" would be the superstition this
     # register warns about — the two react to the same shock in opposite ways.
     "refiner, commodity pass-through on a thin spread",
+    # ADNOCLS earns vessel-days times day rates set in a GLOBAL charter market in US
+    # dollars, and owns assets that trade in a liquid international secondhand market at
+    # broker-quoted prices. Both halves of that are different from every asset-heavy class
+    # above. A cement plant's price is set in a domestic market behind freight protection
+    # and its kiln cannot be sold to a buyer in another country; a charter rate can halve
+    # in a year and a vessel can. So the two react to the same shock in opposite ways, and
+    # the lens that carries the weight is different: replacement cost is an industry rule
+    # of thumb for a kiln and an OBSERVABLE PRICE for a ship. Filing a shipping company's
+    # lessons under "cement and heavy industrial" because both are capital-intensive would
+    # be the superstition this register warns about.
+    "marine logistics and shipping, chartered fleet on global day rates",
 )
 
 
@@ -132,6 +143,7 @@ def L(id, scope, applies_to, headline, plain, source, origin, evidence,
 
 DEV = "real-estate developer, off-plan, percentage-of-completion"
 CEM = "cement and heavy industrial"
+SHIP = "marine logistics and shipping, chartered fleet on global day rates"
 
 LESSONS = [
 
@@ -3800,6 +3812,46 @@ LESSONS = [
       "A genuinely young plant, where net book value is a large fraction of cost and the "
       "gap between recent spend and replacement maintenance is the ordinary under-spend "
       "of an asset not yet needing renewal."),
+
+
+    L("L-276", "ALL", None,
+      "THE 1/g TERMINAL DEFECT POINTS THE OTHER WAY IN A LOW-INFLATION MARKET.",
+      "Building a terminal on the reinvestment identity makes the implied asset life the "
+      "reciprocal of the growth rate. Everyone here learned that as a rule that CHARGES "
+      "TOO MUCH, because it was found on high-inflation names. In a pegged two per cent "
+      "economy the same arithmetic makes every asset last fifty years and charges far too "
+      "little. Which way it bites is a fact about the currency, not about the asset.",
+      "the ADNOCLS re-issue, 04-Sep-2026",
+      "build",
+      "The construction charges g x IC every year for ever, so the implied replacement "
+      "cycle is 1/g. At Egypt's 7 per cent terminal that is 14.3 years against a "
+      "disclosed 25-year cement plant, and the correction RAISED value on ARCC and SCEM. "
+      "At the dirham's pegged 2 per cent it is 50 years against a disclosed 25-year ship, "
+      "and the correction LOWERS it. Of the thirteen studies carrying the construction, "
+      "the implied cycles run from 14.3 years to 66.7 — every one of them the reciprocal "
+      "of that market's terminal inflation and none of them a fact about the assets.",
+      "A market whose terminal inflation happens to coincide with its assets' disclosed "
+      "life, where the defect is invisible because the two agree by accident."),
+
+    L("L-277", "CLASS", SHIP,
+      "A FLEET'S DISCLOSED HULL LIFE IS NOT ITS MAINTENANCE LIFE.",
+      "Shipping accounts state a hull life of twenty-five years or so, and the company's "
+      "own realised depreciation runs far above what that implies. The gap is not an "
+      "error: dry-docking is capitalised and written off over two to five years, and "
+      "dry-docking IS maintenance. A terminal that charges hull replacement while adding "
+      "back all book depreciation adds back the amortisation of a cost it never charged.",
+      "the ADNOCLS re-issue, 04-Sep-2026",
+      "build",
+      "Rebuilding ADNOCLS's terminal on the sanctioned module at the disclosed 25-year "
+      "vessel life produced an implied payout of 117 per cent of terminal profit — a "
+      "going concern distributing more than it earns for ever — and the module refused "
+      "it. The study's own input register already carried the reason, that dry-docking "
+      "components are written off over two to five years. The disclosure splits neither "
+      "the vessel line by type nor the charge by component, so the life that would "
+      "reconcile the two cannot be derived from the filings and none was invented.",
+      "A fleet operator whose statements disclose the dry-docking component separately, "
+      "where the hull cycle and the maintenance charge can be built apart and the "
+      "reconciliation is arithmetic rather than an open question."),
 
 ]
 

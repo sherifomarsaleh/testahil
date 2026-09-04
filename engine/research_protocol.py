@@ -976,6 +976,23 @@ LENS_REGISTRY = {
         ("sotp", ("relative_multiple", "book_value")),
     "commodity and metals":
         ("dcf", ("replacement_cost", "relative_multiple", "book_value")),
+    # A SHIP IS NOT A KILN, AND THE DIFFERENCE IS IN WHICH CROSS-CHECK MEANS ANYTHING.
+    # Replacement cost is the strongest lens here rather than the weakest: secondhand
+    # vessel values are quoted by brokers in a liquid international market, so "what the
+    # assets are worth" is an OBSERVED PRICE rather than an industry rule of thumb. The
+    # multiple on the company's own history matters for the opposite reason -- day rates
+    # are cyclical enough that any single year's earnings multiple is close to
+    # meaningless, and only the company's own span across a cycle says anything.
+    # SUM-OF-THE-PARTS IS A CROSS-CHECK HERE AND NOT A PRIMARY. It is a holdco's primary
+    # because a holdco IS its stakes; on an operating fleet it earns its place for a
+    # narrower reason — the legs sit on materially different contract structures, one
+    # earning under long-term contracts and one exposed to spot day rates, so a single
+    # group multiple averages two businesses that reprice on different clocks. Summing
+    # them is a real reading; it is not the answer, because the legs share one balance
+    # sheet, one crew pool and one management.
+    "marine logistics and shipping, chartered fleet on global day rates":
+        ("dcf", ("replacement_cost", "ev_ebitda_own_history", "relative_multiple",
+                 "sotp", "book_value")),
 }
 
 # RNAV may be a class PRIMARY only where the disclosure supports it. Where land

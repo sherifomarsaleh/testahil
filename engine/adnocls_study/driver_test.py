@@ -205,8 +205,11 @@ CASES = [
      'book lens)', 'C', +0.05, 'book', -1,
      'a faster fade shortens the life of the excess return and must lower the book lens'),
     ('Rate at which the return above the cost of equity fades beyond the forecast (the '
-     'book lens)', 'C', +0.05, 'central', -1,
-     'and must carry through to the weighted central figure the book lens is part of'),
+     'book lens)', 'C', +0.05, 'central', 0,
+     'and must NOT reach the central at all: book value is a disclosed floor published '
+     'beside the answer and never weighted into it. Under the retired blend it carried '
+     '15 per cent and this same driver moved the published figure; that it now moves '
+     'nothing is the proof the retirement is real'),
 ] + [
     # ---- the tanker leg, driver by driver ---------------------------------------------
     # The 2024 published blends reach the model in ONE place: the mid-cycle anchor the rate
@@ -314,9 +317,15 @@ CASES = [
      'of the implied-spot solve, so one more vessel means a LOWER implied spot rate — and '
      'that lower rate is now earned by the six crude carriers bought in August 2026 as '
      'well, which is a larger fleet than the one extra vessel it adds'),
-    ('Vessels owned at 31 December 2025', 'F', +1.0, 'central', +1,
-     'the multiple lenses value 2026 earnings, which rise, so the weighted central figure '
-     'still rises'),
+    ('Vessels owned at 31 December 2025', 'F', +1.0, 'central', -1,
+     'THE SIGN IS RE-DERIVED WITH THE ARCHITECTURE, NOT DELETED. Under the retired blend '
+     'the central was three parts multiple lens to two parts cash flow, and the multiple '
+     'lenses value 2026 earnings, which rise with the fleet — so the blend rose. The '
+     'central is now the cash-flow lens alone, and there one more vessel in the '
+     'denominator of the implied-spot solve means a LOWER implied spot rate earned by '
+     'the whole fleet, which is worth more than the one vessel adds. The blend was '
+     'reporting the opposite sign to its own primary lens and nothing said so'),
+
     # DECOMPOSED, NOT ASSUMED — AND RE-DECOMPOSED AFTER THE FLEET GREW. The cash-flow lens
     # used to rise 0.06% on this bump and now falls 0.20%. Nothing about the mechanism
     # changed: 2026 tanker earnings still rise 2.17% and the solved running cost still
@@ -585,6 +594,12 @@ for label, col, bump, key, sign, why in CASES:
 print('\nDEAD-INPUT SWEEP — every driver not covered above is bumped and must move '
       'something')
 covered = {(c[0], c[1]) for c in CASES}
+RETIRED_INPUTS = {
+    'Weight — discounted cash flow',
+    'Weight — relative multiples',
+    'Weight — normalised earnings power',
+    'Weight — book value and sustainable return',
+}
 dead = []
 for label, rr in sorted(A.items(), key=lambda kv: kv[1]):
     raw = wb['Assumptions'][f'C{rr}'].value
@@ -604,7 +619,8 @@ for label, rr in sorted(A.items(), key=lambda kv: kv[1]):
         continue
     out = read({('Assumptions', f'C{rr}'): cur * 1.10 + 1e-6})
     if all(abs(out[k] - base[k]) < 1e-12 for k in base):
-        dead.append(label)
+        if label not in RETIRED_INPUTS:
+            dead.append(label)
 if dead:
     print('  INPUTS THAT CHANGED NOTHING:', dead)
 else:

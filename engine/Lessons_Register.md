@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**196 lessons**, of which 168 bind on every study, 21 on a class of company, and 7 on a single name.
+**198 lessons**, of which 169 bind on every study, 22 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 121 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 123 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -1759,6 +1759,16 @@ When a check reads a cell by address and the sheet moves, it does not fail. It r
 
 > **What would overturn it.** A quantity that is legitimately zero, which none of a price, a rate or a cash flow in a valuation is — where one exists, the assertion names it rather than being relaxed.
 
+### L-276 · THE 1/g TERMINAL DEFECT POINTS THE OTHER WAY IN A LOW-INFLATION MARKET.
+
+Building a terminal on the reinvestment identity makes the implied asset life the reciprocal of the growth rate. Everyone here learned that as a rule that CHARGES TOO MUCH, because it was found on high-inflation names. In a pegged two per cent economy the same arithmetic makes every asset last fifty years and charges far too little. Which way it bites is a fact about the currency, not about the asset.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the ADNOCLS re-issue, 04-Sep-2026
+
+> **What it cost, or how we know.** The construction charges g x IC every year for ever, so the implied replacement cycle is 1/g. At Egypt's 7 per cent terminal that is 14.3 years against a disclosed 25-year cement plant, and the correction RAISED value on ARCC and SCEM. At the dirham's pegged 2 per cent it is 50 years against a disclosed 25-year ship, and the correction LOWERS it. Of the thirteen studies carrying the construction, the implied cycles run from 14.3 years to 66.7 — every one of them the reciprocal of that market's terminal inflation and none of them a fact about the assets.
+
+> **What would overturn it.** A market whose terminal inflation happens to coincide with its assets' disclosed life, where the defect is invisible because the two agree by accident.
+
 
 ---
 
@@ -2004,6 +2014,19 @@ When profit is a small difference between two very large numbers, an error that 
 > **What it cost, or how we know.** Average miss 0.504 as known, 0.519 with perfect foresight of inflation — the macro share is only -2.8%.
 
 > **What would overturn it.** A pass-through business with a comparably thin margin where independent revenue and cost forecasts of similar accuracy produce a proportionate, not amplified, profit error.
+
+
+## Marine logistics and shipping, chartered fleet on global day rates
+
+### L-277 · A FLEET'S DISCLOSED HULL LIFE IS NOT ITS MAINTENANCE LIFE.
+
+Shipping accounts state a hull life of twenty-five years or so, and the company's own realised depreciation runs far above what that implies. The gap is not an error: dry-docking is capitalised and written off over two to five years, and dry-docking IS maintenance. A terminal that charges hull replacement while adding back all book depreciation adds back the amortisation of a cost it never charged.
+
+**Applies to:** every marine logistics and shipping, chartered fleet on global day rates  ·  *Learned from:* found while building, the ADNOCLS re-issue, 04-Sep-2026
+
+> **What it cost, or how we know.** Rebuilding ADNOCLS's terminal on the sanctioned module at the disclosed 25-year vessel life produced an implied payout of 117 per cent of terminal profit — a going concern distributing more than it earns for ever — and the module refused it. The study's own input register already carried the reason, that dry-docking components are written off over two to five years. The disclosure splits neither the vessel line by type nor the charge by component, so the life that would reconcile the two cannot be derived from the filings and none was invented.
+
+> **What would overturn it.** A fleet operator whose statements disclose the dry-docking component separately, where the hull cycle and the maintenance charge can be built apart and the reconciliation is arithmetic rather than an open question.
 
 
 ---

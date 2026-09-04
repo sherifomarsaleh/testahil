@@ -280,12 +280,12 @@
   "column": "C",
   "bump": 0.05,
   "headline": "central",
-  "base": 6.736324415141103,
-  "bumped": 6.727182253465513,
-  "relative": -0.0013571439129388357,
-  "expected_sign": -1,
+  "base": 5.6053789694489575,
+  "bumped": 5.6053789694489575,
+  "relative": 0.0,
+  "expected_sign": 0,
   "ok": true,
-  "why": "and must carry through to the weighted central figure the book lens is part of"
+  "why": "and must NOT reach the central at all: book value is a disclosed floor published beside the answer and never weighted into it. Under the retired blend it carried 15 per cent and this same driver moved the published figure; that it now moves nothing is the proof the retirement is real"
  },
  {
   "driver": "Long range 1 \u2014 2024",
@@ -628,12 +628,12 @@
   "column": "F",
   "bump": 1.0,
   "headline": "central",
-  "base": 6.736324415141103,
-  "bumped": 6.765078504801903,
-  "relative": 0.004268513196331628,
-  "expected_sign": 1,
+  "base": 5.6053789694489575,
+  "bumped": 5.594283608104777,
+  "relative": -0.0019794132394354725,
+  "expected_sign": -1,
   "ok": true,
-  "why": "the multiple lenses value 2026 earnings, which rise, so the weighted central figure still rises"
+  "why": "THE SIGN IS RE-DERIVED WITH THE ARCHITECTURE, NOT DELETED. Under the retired blend the central was three parts multiple lens to two parts cash flow, and the multiple lenses value 2026 earnings, which rise with the fleet \u2014 so the blend rose. The central is now the cash-flow lens alone, and there one more vessel in the denominator of the implied-spot solve means a LOWER implied spot rate earned by the whole fleet, which is worth more than the one vessel adds. The blend was reporting the opposite sign to its own primary lens and nothing said so"
  },
  {
   "driver": "Vessels owned at 31 December 2025",

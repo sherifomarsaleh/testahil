@@ -631,6 +631,7 @@ IN('gdp_growth_26', 0.031, "International Monetary Fund World Economic Outlook d
 # inflations for the same year, every one arguable.
 import sys as _sys                                                   # noqa: E402
 _sys.path.insert(0, os.path.join(HERE, '..'))
+import terminal_value as TV        # [R-TERM-01] the only sanctioned terminal
 import macro_path as _MP                                             # noqa: E402
 _PATH = _MP.load('AE')
 
@@ -1409,6 +1410,34 @@ NCI_OTHER_BV = NCI_BV - NCI_NAVIG8
 JV_BV = 493120
 IN('jv_bv_q126', JV_BV, Q126 + " — investment in joint ventures and associates",
    '2026-03-31', 'Company')
+# [R-TERM-01] THE TERMINAL IS BUILT ON A DISCLOSED ASSET LIFE, NOT ON THE RECIPROCAL OF
+# THE GROWTH RATE. This study charged the reinvestment identity rr = g/ROIC, which
+# substitutes to a charge of g x IC every year for ever and therefore an implied
+# replacement cycle of 1/g — FIFTY YEARS at a 2 per cent terminal, for a fleet of ships.
+#
+# AND THE DIRECTION OF THAT DEFECT IS THE OPPOSITE OF THE EGYPTIAN CASES. There, terminal
+# inflation of 7 per cent made 1/g = 14.3 years and the construction OVER-charged a
+# 25-year plant. Here a pegged 2 per cent makes 1/g = 50 years and it UNDER-charges a
+# 25-year ship by half. It is the same defect — an inflation rate silently doing duty as
+# an asset life — and which way it bites depends only on the market's inflation, which is
+# a fact about the currency and not about the asset.
+GROSS_PPE_FY25 = IN('gross_ppe_ex_cwip_fy25', 8167686 - 572616,
+    FS25 + " — note 11, gross cost of property, plant and equipment at 31 December 2025 "
+    "of USD 8,167,686 thousand LESS capital work in progress of USD 572,616 thousand, "
+    "which is not depreciated. Buildings 148,743, vessels and marine equipment 7,279,939, "
+    "plant 5,305, equipment and vehicles 114,636, furniture and office equipment 46,447",
+    '2025-12-31', 'Company')
+VESSEL_LIFE = IN('vessel_life_years', 25.0,
+    FS25 + " — the accounting-policies note states the estimated useful lives directly: "
+    "tankers 25 years, dry-bulk and containers 25 years, gas carriers 25-40 years, "
+    "offshore vessels 20-25 years, jack-up barges 40 years, plant 20 years, buildings and "
+    "port infrastructure 7-50 years. TWENTY-FIVE IS THE STATED LIFE FOR THE MAJORITY "
+    "VESSEL TYPES and the bottom of the gas-carrier range; the note does not split the "
+    "USD 7,279,939 thousand vessel line by type, so a gross-cost-weighted blend across "
+    "vessel classes cannot be computed from this disclosure and is NOT invented. Using "
+    "the longer end instead would lengthen the life and raise the value, and that "
+    "alternative is priced in the sensitivity rather than chosen silently",
+    '2025-12-31', 'Company')
 STUB = 0.75      # the valuation date is 31 March 2026; three quarters of 2026 remain
 Q1_FCF = IN('q1_26_fcf', 130000, MDAQ126 + " — free cash flow of USD 130 million in the "
             "first quarter of 2026, already reflected in net debt at the valuation date",
@@ -1441,6 +1470,35 @@ def dcf(path, hybrid_as_debt=False, wacc_ov=None, g_ov=None, term_wacc_ov=None):
     reinv = g / roic_t
     nopat_t1 = path['nopat'][4] * (1 + g)
     tv = nopat_t1 * (1 - reinv) / (wt - g)
+    # [R-TERM-01] THIS TERMINAL IS THE RETIRED REINVESTMENT IDENTITY AND IT IS LISTED ON
+    # THAT RULE'S RATCHET WITH TWELVE OTHERS. It was rebuilt on the sanctioned module in
+    # this pass and the module REFUSED, for a reason worth writing down rather than
+    # working around.
+    #
+    # THE DEFECT'S DIRECTION REVERSES AT LOW INFLATION AND NOBODY HAD SAID SO. rr = g/ROIC
+    # substitutes to a charge of g x IC every year for ever, so the implied replacement
+    # cycle is 1/g. On the Egyptian names a 7 per cent terminal makes that 14.3 years and
+    # it OVER-charges a 25-year plant. Here a pegged 2 per cent makes it FIFTY YEARS and
+    # it UNDER-charges a 25-year ship by half. Same defect, an inflation rate silently
+    # doing duty as an asset life; which way it bites is a fact about the currency.
+    #
+    # WHY THE SANCTIONED BUILD REFUSED, AND IT IS A REAL DISCLOSURE PROBLEM RATHER THAN A
+    # PARAMETER TO TUNE. Maintenance at the disclosed 25-year vessel life on the gross
+    # base comes to less than this model's own book depreciation, so terminal free cash
+    # flow exceeds terminal profit and the implied payout lands at 117 per cent — a going
+    # concern distributing more than it earns for ever, which the module refuses outright
+    # and is right to. The two figures disagree because THEY ARE NOT MEASURING THE SAME
+    # THING: this study's own register already records that the realised rate runs above
+    # what the disclosed lives imply BECAUSE DRY-DOCKING COMPONENTS ARE WRITTEN OFF OVER
+    # TWO TO FIVE YEARS. Dry-docking IS maintenance, capitalised and amortised fast, so a
+    # terminal charging only hull replacement while adding back all book depreciation
+    # would add back the amortisation of a maintenance cost it never charged.
+    #
+    # The honest maintenance charge therefore covers the hull cycle AND the recurring
+    # dry-docking, and this disclosure does not split the vessel line by type or the
+    # charge by component, so the life that would do it cannot be derived from the
+    # filings. A LIFE THIS DESK CHOSE IS NOT A DISCLOSED LIFE, so none is chosen here.
+    # What is needed is the component split — stop and inform, per SIGCM clause 8.
     pv_tv = tv * df[4]
     ev_ops = pv_expl + pv_tv
     ev = ev_ops + JV_BV
@@ -1452,6 +1510,8 @@ def dcf(path, hybrid_as_debt=False, wacc_ov=None, g_ov=None, term_wacc_ov=None):
     return dict(wacc=w, wacc_term=wt, g=g, glide=glide, df=df, fcff=fcff, pv=pv,
                 pv_explicit=pv_expl, roic_terminal=roic_t, reinvest=reinv,
                 nopat_t1=nopat_t1, tv=tv, pv_tv=pv_tv, tv_share=pv_tv / ev_ops,
+                term_life_disclosed=float(VESSEL_LIFE),
+                term_gross_base_fy25=float(GROSS_PPE_FY25),
                 ev_ops=ev_ops, jv=JV_BV, ev=ev, net_debt=nd, deferred=DEFERRED,
                 hybrid=HYBRID if hybrid_as_debt else 0.0, nci=nci_ded,
                 nci_book=NCI_BV, nci_navig8=NCI_NAVIG8, nci_other_bv=NCI_OTHER_BV,
@@ -1702,10 +1762,18 @@ W_EVEB = IN('rel_weight_ev_ebitda', 0.70, "Study judgement — see the judgement
 rel['base'] = W_EVEB * rel['value_ev_ebitda'] + (1 - W_EVEB) * rel['value_pe']
 rel['weight_ev_ebitda'] = W_EVEB
 
-LENS_W = {'dcf': 0.40, 'relative': 0.25, 'normalized': 0.20, 'book': 0.15}
-for _k, _w in LENS_W.items():
-    IN(f'lens_weight_{_k}', _w, "Study judgement on how much weight each lens carries — "
-       "see the judgements table", '2026-08-09', 'Industry')
+# [R-LENS-03] THE TYPED BLEND IS RETIRED. It weighted 40/25/20/15 across four reads, and
+# two of those weights are forbidden outright rather than merely unevidenced: BOOK VALUE
+# carried 15 per cent, and book value is a DISCLOSED FLOOR that is never weighted into a
+# central; NORMALISED EARNINGS carried 20, and the registry does not permit that lens for
+# a fleet whose day rates are cyclical enough that any single normalised year is a
+# judgement about where the cycle sits rather than a reading of the business. The weights
+# themselves had cleared no out-of-sample test — chosen, written down, inherited, which is
+# how a free parameter survives in a house that forbids them everywhere else.
+#
+# The weights are kept as RETIRED_W so the record can say what the blend read and what
+# retiring it cost. Nothing computes with them.
+RETIRED_W = {'dcf': 0.40, 'relative': 0.25, 'normalized': 0.20, 'book': 0.15}
 
 lenses = {
     'dcf': dict(bear=dcf_bear['fv_aed'], base=dcf_own_beta['fv_aed'],
@@ -1717,13 +1785,17 @@ lenses = {
     'normalized': dict(bear=norm['bear'], base=norm['base'], bull=norm['bull']),
     'book': dict(bear=book['bear'], base=book['base'], bull=book['bull']),
 }
+# THE CENTRAL IS THE CLASS PRIMARY, WHICH FOR THIS CLASS IS THE CASH-FLOW LENS. Its bear
+# and bull are its OWN — the regression's 90 per cent confidence bounds on beta, with the
+# rate anchor and capital expenditure moving with them — rather than a spread invented
+# around a blend.
 for _lab, _dcfkey in (('central', 'dcf'), ('central_beta_alt', 'dcf_beta_alt')):
-    lenses[_lab] = dict(
-        bear=sum(LENS_W[k] * lenses[_dcfkey if k == 'dcf' else k]['bear'] for k in LENS_W),
-        base=sum(LENS_W[k] * lenses[_dcfkey if k == 'dcf' else k]['base'] for k in LENS_W),
-        bull=sum(LENS_W[k] * lenses[_dcfkey if k == 'dcf' else k]['bull'] for k in LENS_W))
+    lenses[_lab] = dict(bear=lenses[_dcfkey]['bear'], base=lenses[_dcfkey]['base'],
+                        bull=lenses[_dcfkey]['bull'])
 central = lenses['central']['base']
 central_alt = lenses['central_beta_alt']['base']
+RETIRED_BLEND = sum(RETIRED_W[k] * lenses['dcf' if k == 'dcf' else k]['base']
+                    for k in RETIRED_W)
 
 # ============================================================================
 # EXPERT PANEL — three methods, cast by approach, worked end to end
@@ -2040,7 +2112,9 @@ OUT = dict(
     wacc=wacc_blk,
     dcf=dcf_own_beta, dcf_beta_alt=dcf_beta_alt, dcf_sustained=dcf_sustained,
     dcf_bear=dcf_bear, dcf_bull=dcf_bull, dcf_hybrid_pv=dcf_hyb_pv,
-    lenses=lenses, lens_weights=LENS_W, central=central, central_beta_alt=central_alt,
+    # RETIRED, and published under its own name so every consumer says so
+    lenses=lenses, lens_weights=RETIRED_W, retired_blend=RETIRED_BLEND,
+    central=central, central_beta_alt=central_alt,
     spot=spot_aed,      # the pair, at the top level too, where the shared reader looks
     beta_framing=dict(
         primary=dict(beta=V['beta'], label='the published index of its own exchange',
@@ -2120,6 +2194,254 @@ OUT = dict(
              'IS the terminal, so nothing is capitalised that the model never reached. '
              'The company\'s own value-in-use test projects beyond its plan at the same '
              '2 per cent, which is corroboration rather than the source.'),
+    # ---------------------------------------------------------------- [R-ENF-05]
+    # EVERY CONTESTED JUDGEMENT WORTH MORE THAN 5 PER CENT OF VALUE, BOTH WAYS, THROUGH
+    # THE SAME CONSTRUCTION. Any single one is defensible; what is not is a study
+    # resolving all of them the same way and never noticing. Each alternative below is
+    # computed by this file's own dcf(), so the difference measures THE CHOICE and not
+    # the construction.
+    contested=[
+        dict(choice='how the market is measured for the beta regression',
+             adopted='the published index of the exchange this company is listed on',
+             alternative='an equal-weight composite of the same exchange\'s names',
+             fv_adopted=float(central), fv_alternative=float(central_alt),
+             effect=abs(central_alt - central) / central,
+             direction='the adopted side is LOWER',
+             note='THE SINGLE LARGEST JUDGEMENT IN THIS STUDY, and the beta rule decides '
+                  'it rather than a preference: the regressor is the published index of '
+                  'the exchange the stock is listed on, and a constituent composite is a '
+                  'coverage artefact rather than a market. The two differ because a '
+                  'published index is weighted by size and is dominated by the same '
+                  'large-capitalisation group this company belongs to, while an '
+                  'equal-weight composite gives the exchange\'s smallest names the same '
+                  'say as its largest. The alternative is published rather than buried '
+                  'because a difference of this size is a fact about index construction '
+                  'that a reader is entitled to see.'),
+        dict(choice='the charter-rate path through the forecast',
+             adopted='reversion toward the mid-cycle rate',
+             alternative='today\'s strength sustained, the company\'s own guidance path',
+             fv_adopted=float(central), fv_alternative=float(dcf_sustained['fv_aed']),
+             effect=abs(dcf_sustained['fv_aed'] - central) / central,
+             direction='the adopted side is LOWER',
+             note='an independent one-year time charter fixed in early 2026 priced a very '
+                  'large crude carrier well below the spot rate of the moment, and a '
+                  'crude tanker order book near a quarter of the trading fleet is the '
+                  'supply reason why. A forward market that will not pay spot for a year '
+                  'of time is saying it does not expect spot to hold. GUIDANCE IS SCORED '
+                  'AND NEVER CONSUMED, so the sustained path is published as the '
+                  'alternative rather than adopted.'),
+        dict(choice='how the perpetual capital securities are deducted',
+             adopted='at carrying value',
+             alternative='at the present value of their perpetual coupon',
+             fv_adopted=float(central), fv_alternative=float(dcf_hyb_pv['fv_aed']),
+             effect=abs(dcf_hyb_pv['fv_aed'] - central) / central,
+             direction='the adopted side is LOWER',
+             note='the securities rank ahead of the ordinary shares whichever way they '
+                  'are classified, so they are deducted in both framings and only the '
+                  'AMOUNT is contested. Carrying value is what the balance sheet states; '
+                  'the present value of the coupon is what the claim is worth at the '
+                  'terminal cost of capital. Both are published and the deduction is '
+                  'weighted in the cost of capital in both.'),
+        dict(choice='the tax relief on shipping earnings',
+             adopted='the reliefs as currently legislated and disclosed',
+             alternative='the whole group taxed at the 9 per cent statutory rate',
+             fv_adopted=float(central), fv_alternative=float(sens['tax']['0.09']),
+             effect=abs(sens['tax']['0.09'] - central) / central,
+             direction='the adopted side is HIGHER',
+             note='most of the shipping income is relieved under the regime as it stands. '
+                  'The alternative is the downside case for a global minimum tax reaching '
+                  'those earnings, and it is a scenario about the law rather than about '
+                  'the business — which is why the sensitivity centred on it does NOT '
+                  'reproduce the base case and says so in its own docstring.'),
+        dict(choice='the day-rate anchor the reversion path converges to',
+             adopted='the mid-cycle average as computed',
+             alternative='that anchor 10 per cent lower',
+             fv_adopted=float(central), fv_alternative=float(sens['anchor']['0.9']),
+             effect=abs(sens['anchor']['0.9'] - central) / central,
+             direction='the adopted side is HIGHER',
+             note='the anchor is the single quantity the whole reversion path hangs on, '
+                  'and a ten per cent move in it is well inside the span the disclosed '
+                  'quarterly rates have printed.'),
+    ],
+    bridge_record=dict(
+        market='AE',
+        balance_sheet_date='2026-03-31', latest_disclosed_date='2026-03-31',
+        latest_disclosed_source=(
+            'the condensed consolidated interim financial information for the three '
+            'months ended 31 March 2026, from the company\'s own investor-relations '
+            'channel and registered in this study\'s sweep. THE VALUATION DATE IS THAT '
+            'BALANCE-SHEET DATE rather than the date of the latest traded price, so no '
+            'roll-forward stands between the bridge and a filing, and the first '
+            'quarter\'s free cash flow is inside net debt rather than discounted again.'),
+        register='sweep_register.json',
+        lines=[
+            dict(label='Enterprise value of the operations',
+                 value=float(dcf_own_beta['ev_ops'])),
+            dict(label='plus joint ventures and associates at carrying value',
+                 value=float(JV_BV)),
+            dict(label='less net debt, including the committed acquisition and the '
+                       'deferred purchase consideration',
+                 value=float(-NETDEBT)),
+            dict(label='less perpetual capital securities at carrying value',
+                 value=float(-HYBRID)),
+            dict(label='less non-controlling interests',
+                 value=float(-(dcf_own_beta['ev'] - NETDEBT - HYBRID
+                               - dcf_own_beta['equity']))),
+        ],
+        equity_value=float(dcf_own_beta['equity']),
+        # EVERY FIGURE IN THIS BRIDGE IS IN USD THOUSANDS, so the share count is too:
+        # the model carries it in millions and dividing thousands by millions gives
+        # a per-share figure a thousand times too large. The unit is the thing to
+        # check when a bridge does not divide.
+        shares_mn=float(shares_mn * 1000.0),
+        per_share=float(dcf_own_beta['fv_usd']),
+        cash_charged_once=True,
+        # 'none': the cash is not added anywhere in this bridge — it sits inside the
+        # net-debt figure deducted once. Registering it as added_at_face would
+        # describe a construction this model does not use.
+        cash=dict(treatment='none', weights_basis='gross'),
+        cash_note=(
+            'THE CASH IS NOT ADDED AT FACE ANYWHERE. It sits inside the net-debt figure '
+            'deducted once, and the operating rate is weighted on the gross capital '
+            'structure — equity, drawn debt AND the perpetual securities — so no tranche '
+            'is deducted from value without also being allowed to price it. The company '
+            'is net DEBT rather than net cash, so the negative-debt-weight trap does not '
+            'arise here; the construction is stated anyway because a reader cannot tell '
+            'from the number which way it was done.'),
+        nci=dict(
+            basis='value_share',
+            value=float(dcf_own_beta['ev'] - NETDEBT - HYBRID - dcf_own_beta['equity']),
+            deduction=float(dcf_own_beta['ev'] - NETDEBT - HYBRID
+                            - dcf_own_beta['equity']),
+            book=float(NCI_BV),
+            profit_share=float(NCI_BV),
+            proportional=float(NCI_BV),
+            proxy='the contracted slice at its CONTRACTED PRICE and the rest at its share '
+                  'of value, whichever is higher. The Navig8 minority is subject to a '
+                  'disclosed purchase arrangement at a stated price, so its claim is that '
+                  'price and not a share of anything; the remaining minorities have no '
+                  'such arrangement and are worth their share of the value the model '
+                  'capitalises, floored at book.',
+            proxy_source='the Navig8 acquisition disclosure and the non-controlling '
+                         'interests line of the 31 March 2026 statement of financial '
+                         'position',
+            framings_note='book, profit share and proportional are the same figure here '
+                          'because the disclosure gives one carrying amount; the adopted '
+                          'deduction differs from all three, and differs UPWARD, because '
+                          'the model capitalises 100 per cent of subsidiary cash flow and '
+                          'a minority\'s claim on that is worth its share of the VALUE '
+                          'rather than its historical cost.',
+            deducted_from='equity'),
+        dividend=dict(declared_after_balance_sheet_date=False, amount=0.0,
+                      note='no dividend declared after the 31 March 2026 balance-sheet '
+                           'date is deducted: one declared before it is already out of '
+                           'the equity it would come from.'),
+        associates=dict(basis='book',
+                        note='the joint ventures and associates are unlisted, so there is '
+                             'no market to carry them at and they stand at the carrying '
+                             'value the balance sheet states.'),
+        hybrid=dict(
+            treatment='deducted_at_carrying_value_and_weighted_in_the_cost_of_capital',
+            carrying_value=float(HYBRID),
+            pv_of_coupon=float(hyb_pv_coupon),
+            note='THE TWO HALVES OF ONE TREATMENT. The perpetual capital securities rank '
+                 'ahead of the ordinary shares, so they are deducted here; a claim '
+                 'deducted from enterprise value must also be WEIGHTED in the cost of '
+                 'capital at its own cost, or the model subtracts a cheap tranche of '
+                 'capital without letting it price the value. The present value of the '
+                 'perpetual coupon is published beside the carrying value as the '
+                 'alternative deduction, because which of the two a reader prefers is a '
+                 'judgement and the study does not hide it inside one number.'),
+    ),
+    lens_record=dict(
+        **{'class': 'marine logistics and shipping, chartered fleet on global day rates'},
+        primary=dict(
+            kind='dcf', value=float(central),
+            range=dict(low=float(lenses['dcf']['bear']),
+                       high=float(lenses['dcf']['bull'])),
+            range_note='the cash-flow lens at the beta regression\'s OWN 90 per cent '
+                       'confidence bounds, with the rate anchor and capital expenditure '
+                       'moving with them',
+            range_basis=dict(
+                driver='the regression beta, across its own 90 per cent confidence '
+                       'interval, with the day-rate anchor and capital expenditure '
+                       'moving with it',
+                low=float(V['beta_ci_hi']), high=float(V['beta_ci_lo']),
+                macro_held=True,
+                sanctioned_framing='',
+                evidence=(
+                    'the own-stock regression against the published index of this '
+                    'company\'s own exchange gives a beta of %.4f with a standard error '
+                    'of %.4f over %d weekly observations, so its 90 per cent interval '
+                    'runs %.4f to %.4f. THE RANGE IS THE INTERVAL THE ESTIMATE ITSELF '
+                    'SUPPORTS rather than a judgement about how wrong it might be, and '
+                    'the corners take the HIGH beta for the bear and the LOW for the '
+                    'bull because a higher beta is a lower value. The day-rate anchor '
+                    'and capital expenditure move with each corner rather than being '
+                    'held, because a cost of capital at the top of its own interval '
+                    'describes a world in which charter rates are also weaker. The '
+                    'macro path does not move: terminal growth and the terminal '
+                    'risk-free rate both contain the same terminal inflation, so '
+                    'flexing them would make the bull corner inflation high and low at '
+                    'once.'
+                    % (V['beta'], V['beta_se'], beta_res.get('n') or 0,
+                       V['beta_ci_lo'], V['beta_ci_hi']))),
+            note='vessel-days times day rates, vessel by vessel, discounted on a schedule '
+                 'that is flat by construction of the currency peg'),
+        cross_checks=[
+            dict(kind='sotp', value=float(sotp['fv_aed']),
+                 note='the three legs summed on their own multiples — a contracted-fleet '
+                      'multiple where the leg earns under long-term contracts and a blend '
+                      'of contracted and spot where it does not, weighted by the '
+                      'company\'s own disclosed share of earnings exposed to spot rates. '
+                      'It is a cross-check rather than the answer because the legs share '
+                      'one balance sheet, one crew pool and one management.'),
+            dict(kind='relative_multiple', value=float(rel['base']),
+                 present_value=False,
+                 multiple=float(rel['blend_ev_ebitda']),
+                 circularity=dict(spot=float(spot_aed), shares=float(shares_mn),
+                                  net_debt=float(NETDEBT),
+                                  metric_value=float(BASE['ebitda'][0])),
+                 multiple_source=(
+                     'a blend of %.2fx on the contracted book and %.2fx on the '
+                     'spot-exposed book, both taken from the listed peer set — Nakilat '
+                     'for long-term contracted gas shipping and the spot tanker names '
+                     'for the exposed half — and weighted by the company\'s OWN '
+                     'disclosed spot share of %.0f per cent. It is not read off this '
+                     'company\'s price: the traded enterprise value over the same '
+                     'forecast EBITDA is committed beside it in the circularity block.'
+                     % (rel['contracted_multiple'], rel['spot_multiple'],
+                        100 * rel['spot_weight']))),
+            dict(kind='book_value', value=float(book['base']),
+                 note='the DISCLOSED floor. Published as a floor and NEVER weighted into '
+                      'a central — which the retired blend did, at 15 per cent.'),
+        ],
+        envelope=dict(low=float(lenses['dcf']['bear']),
+                      high=float(lenses['dcf']['bull'])),
+        central=float(central),
+        retired=dict(
+            blend=dict(RETIRED_W), blend_value=float(RETIRED_BLEND),
+            why=('40/25/20/15 across four reads, and two of the four weights are '
+                 'forbidden outright rather than merely unevidenced. BOOK VALUE carried '
+                 '15 per cent and book value is a disclosed floor that is never weighted '
+                 'into an answer; NORMALISED EARNINGS carried 20 and the registry does '
+                 'not permit it for this class. The weights had cleared no out-of-sample '
+                 'test. Retiring the blend moves the published answer from AED %.2f to '
+                 'AED %.2f, which is a LARGE move and is the point: the blend was '
+                 'averaging a cash-flow reading well below the market with three '
+                 'accounting readings well above it, and publishing the average told a '
+                 'reader neither thing.'
+                 % (RETIRED_BLEND, central)),
+            normalised_earnings=dict(
+                value=float(norm['base']),
+                why='dropped as a lens for this class. Day rates are cyclical enough '
+                    'that a normalised year is a judgement about where the cycle sits '
+                    'rather than a reading of the business, and the cash-flow lens '
+                    'already carries that judgement explicitly in its rate path. It read '
+                    'AED %.2f and carried %.0f per cent of the retired blend.'
+                    % (norm['base'], 100 * RETIRED_W['normalized'])),
+        ),
+    ),
     cost_of_capital_record=dict(
         market='AE', regime=_PATH.regime, years=5,
         rf_observed=V['rf_observed'], default_spread=V['sov_spread'], rf_star=rf_star,

@@ -661,10 +661,14 @@ LB = {'dcf': (LN['dcf']['bear'], DC['fv_aed'], LN['dcf']['bull']),
       'relative': (REL_BEAR, REL_BASE, REL_BULL),
       'normalized': (NORM_BEAR, NORM_BASE, NORM_BULL),
       'book': (BOOK_BEAR, BOOK_BASE, BOOK_BULL)}
-CENTRAL = sum(LW[k] * LB[k][1] for k in LB)
-CENTRAL_A = CENTRAL - LW['dcf'] * DC['fv_aed'] + LW['dcf'] * DA['fv_aed']
-CENTRAL_BEAR = sum(LW[k] * LB[k][0] for k in LB)
-CENTRAL_BULL = sum(LW[k] * LB[k][2] for k in LB)
+# [R-LENS-03] THE CENTRAL IS THE CLASS PRIMARY, WHICH FOR THIS CLASS IS THE CASH-FLOW
+# LENS. The typed 40/25/20/15 blend is retired; its weights are kept so this sheet can
+# show what it read and what retiring it cost, and nothing computes with them.
+CENTRAL = LB['dcf'][1]
+CENTRAL_A = DA['fv_aed']
+CENTRAL_BEAR = LB['dcf'][0]
+CENTRAL_BULL = LB['dcf'][2]
+RETIRED_BLEND = sum(LW[k] * LB[k][1] for k in LB)
 
 # --- the sum-of-the-parts cross-check -----------------------------------------
 SOTP_MULT = {'Integrated Logistics': MULT_CONTR, 'Services': MULT_CONTR,
@@ -3495,19 +3499,21 @@ for k in ('dcf', 'relative', 'normalized', 'book'):
     put(ws, f'A{rw}', LENS_LABEL[k], fmt=None)
     for col, idx in (('B', 0), ('C', 1), ('D', 2)):
         putf(ws, f'{col}{rw}', _LSRC[k][idx], LB[k][idx], PX, green=True)
+    # THE WEIGHT COLUMN IS THE RETIRED BLEND'S, kept so a reader can see what the
+    # previous architecture said and what it cost. Nothing downstream reads column F.
     putf(ws, f'E{rw}', f"={a(_WKEY[k])}", LW[k], PCT, green=True)
     putf(ws, f'F{rw}', f'=C{rw}*E{rw}', LB[k][1] * LW[k], PX)
     putf(ws, f'G{rw}', f"=C{rw}/$C${SU['spot']}-1", LB[k][1] / SPOT - 1, PCT)
 putf(ws, f"H{SU['dcf']}", f"=DCF!$C${DF_['tvshare']}", DC['tv_share'], PCT, green=True)
 band(ws, SU['central'], 8)
-put(ws, f"A{SU['central']}", 'WEIGHTED CENTRAL', bold=True, fmt=None)
+put(ws, f"A{SU['central']}",
+    'CENTRAL — THE CASH-FLOW LENS, NOT A BLEND', bold=True, fmt=None)
 _LK = ['dcf', 'rel', 'norm', 'book']
 for col, idx, xp in (('B', 0, CENTRAL_BEAR), ('D', 2, CENTRAL_BULL)):
-    putf(ws, f"{col}{SU['central']}",
-         '=' + '+'.join(f'{col}{SU[k]}*E{SU[k]}' for k in _LK), xp, PX, bold=True)
-putf(ws, f"C{SU['central']}",
-     f"=SUM(F{SU['dcf']}:F{SU['book']})", CENTRAL, PX, bold=True)
-putf(ws, f"E{SU['central']}", f"=SUM(E{SU['dcf']}:E{SU['book']})", 1.0, PCT, bold=True)
+    putf(ws, f"{col}{SU['central']}", f"={col}{SU['dcf']}", xp, PX, bold=True)
+putf(ws, f"C{SU['central']}", f"=C{SU['dcf']}", CENTRAL, PX, bold=True)
+putf(ws, f"F{SU['central']}", f"=SUM(F{SU['dcf']}:F{SU['book']})", RETIRED_BLEND, PX)
+putf(ws, f"E{SU['central']}", f"=SUM(E{SU['dcf']}:E{SU['book']})", 1.0, PCT)
 putf(ws, f"G{SU['central']}", f"=C{SU['central']}/$C${SU['spot']}-1", CENTRAL / SPOT - 1,
      PCT, bold=True)
 band(ws, SU['cb'], 8)
@@ -3522,10 +3528,10 @@ putf(ws, f"E{SU['dcfa']}", f"=E{SU['dcf']}", LW['dcf'], PCT)
 putf(ws, f"F{SU['dcfa']}", f"=C{SU['dcfa']}*E{SU['dcfa']}", DA['fv_aed'] * LW['dcf'], PX)
 putf(ws, f"G{SU['dcfa']}", f"=C{SU['dcfa']}/$C${SU['spot']}-1", DA['fv_aed'] / SPOT - 1, PCT)
 putf(ws, f"H{SU['dcfa']}", f"=DCF!$C${DF_['tvsharea']}", DA['tv_share'], PCT, green=True)
-put(ws, f"A{SU['centrala']}", 'Weighted central on the composite-index beta', bold=True,
-    fmt=None)
+put(ws, f"A{SU['centrala']}", 'Central on the composite-index beta — the cash-flow '
+    'lens on the other regressor, not a blend', bold=True, fmt=None)
 putf(ws, f"C{SU['centrala']}",
-     f"=F{SU['dcfa']}+F{SU['rel']}+F{SU['norm']}+F{SU['book']}", CENTRAL_A, PX, bold=True)
+     f"=C{SU['dcfa']}", CENTRAL_A, PX, bold=True)
 putf(ws, f"G{SU['centrala']}", f"=C{SU['centrala']}/$C${SU['spot']}-1", CENTRAL_A / SPOT - 1,
      PCT, bold=True)
 band(ws, SU['centrala'], 8)

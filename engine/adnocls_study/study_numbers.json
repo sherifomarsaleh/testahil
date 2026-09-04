@@ -15,7 +15,7 @@
   "spot_usd": 1.6773315180394828,
   "spot": 6.16,
   "spot_date": "2026-08-07",
-  "central": 6.736324415141102,
+  "central": 5.605378969448954,
   "latest_known_price": {
    "value": 6.85,
    "date": "2026-09-03",
@@ -3703,6 +3703,18 @@
    "date": "2026-03-31",
    "layer": "Company"
   },
+  "gross_ppe_ex_cwip_fy25": {
+   "value": 7595070,
+   "source": "ADNOC L&S plc, Consolidated Financial Statements FY2025 (PwC-audited, signed 10 Feb 2026) \u2014 note 11, gross cost of property, plant and equipment at 31 December 2025 of USD 8,167,686 thousand LESS capital work in progress of USD 572,616 thousand, which is not depreciated. Buildings 148,743, vessels and marine equipment 7,279,939, plant 5,305, equipment and vehicles 114,636, furniture and office equipment 46,447",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "vessel_life_years": {
+   "value": 25.0,
+   "source": "ADNOC L&S plc, Consolidated Financial Statements FY2025 (PwC-audited, signed 10 Feb 2026) \u2014 the accounting-policies note states the estimated useful lives directly: tankers 25 years, dry-bulk and containers 25 years, gas carriers 25-40 years, offshore vessels 20-25 years, jack-up barges 40 years, plant 20 years, buildings and port infrastructure 7-50 years. TWENTY-FIVE IS THE STATED LIFE FOR THE MAJORITY VESSEL TYPES and the bottom of the gas-carrier range; the note does not split the USD 7,279,939 thousand vessel line by type, so a gross-cost-weighted blend across vessel classes cannot be computed from this disclosure and is NOT invented. Using the longer end instead would lengthen the life and raise the value, and that alternative is priced in the sensitivity rather than chosen silently",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
   "q1_26_fcf": {
    "value": 130000,
    "source": "ADNOC L&S plc, Management Discussion and Analysis Q1 2026 \u2014 free cash flow of USD 130 million in the first quarter of 2026, already reflected in net debt at the valuation date",
@@ -3724,30 +3736,6 @@
   "rel_weight_ev_ebitda": {
    "value": 0.7,
    "source": "Study judgement \u2014 see the judgements table",
-   "date": "2026-08-09",
-   "layer": "Industry"
-  },
-  "lens_weight_dcf": {
-   "value": 0.4,
-   "source": "Study judgement on how much weight each lens carries \u2014 see the judgements table",
-   "date": "2026-08-09",
-   "layer": "Industry"
-  },
-  "lens_weight_relative": {
-   "value": 0.25,
-   "source": "Study judgement on how much weight each lens carries \u2014 see the judgements table",
-   "date": "2026-08-09",
-   "layer": "Industry"
-  },
-  "lens_weight_normalized": {
-   "value": 0.2,
-   "source": "Study judgement on how much weight each lens carries \u2014 see the judgements table",
-   "date": "2026-08-09",
-   "layer": "Industry"
-  },
-  "lens_weight_book": {
-   "value": 0.15,
-   "source": "Study judgement on how much weight each lens carries \u2014 see the judgements table",
    "date": "2026-08-09",
    "layer": "Industry"
   }
@@ -5608,6 +5596,8 @@
   "tv": 16223017.754772868,
   "pv_tv": 10997630.81457476,
   "tv_share": 0.7270229065456538,
+  "term_life_disclosed": 25.0,
+  "term_gross_base_fy25": 7595070.0,
   "ev_ops": 15126938.52636424,
   "jv": 493120,
   "ev": 15620058.52636424,
@@ -5662,6 +5652,8 @@
   "tv": 21295882.733008575,
   "pv_tv": 15458991.415758988,
   "tv_share": 0.7812782218737508,
+  "term_life_disclosed": 25.0,
+  "term_gross_base_fy25": 7595070.0,
   "ev_ops": 19786794.234048232,
   "jv": 493120,
   "ev": 20279914.234048232,
@@ -5716,6 +5708,8 @@
   "tv": 19775241.23414157,
   "pv_tv": 13405693.41966362,
   "tv_share": 0.7493459787743052,
+  "term_life_disclosed": 25.0,
+  "term_gross_base_fy25": 7595070.0,
   "ev_ops": 17889858.355670534,
   "jv": 493120,
   "ev": 18382978.355670534,
@@ -5770,6 +5764,8 @@
   "tv": 10645177.212966276,
   "pv_tv": 6611590.673678941,
   "tv_share": 0.6662310796950254,
+  "term_life_disclosed": 25.0,
+  "term_gross_base_fy25": 7595070.0,
   "ev_ops": 9923870.073286688,
   "jv": 493120,
   "ev": 10416990.073286688,
@@ -5824,6 +5820,8 @@
   "tv": 26439475.323655054,
   "pv_tv": 19594802.73706186,
   "tv_share": 0.8030922165232368,
+  "term_life_disclosed": 25.0,
+  "term_gross_base_fy25": 7595070.0,
   "ev_ops": 24399193.933035582,
   "jv": 493120,
   "ev": 24892313.933035582,
@@ -5878,6 +5876,8 @@
   "tv": 16223017.754772868,
   "pv_tv": 10997630.81457476,
   "tv_share": 0.7270229065456538,
+  "term_life_disclosed": 25.0,
+  "term_gross_base_fy25": 7595070.0,
   "ev_ops": 15126938.52636424,
   "jv": 493120,
   "ev": 15620058.52636424,
@@ -5922,14 +5922,14 @@
    "bull": 5.412678623096806
   },
   "central": {
-   "bear": 4.867953232960515,
-   "base": 6.736324415141102,
-   "bull": 9.97828006038964
+   "bear": 3.039484459774819,
+   "base": 5.605378969448954,
+   "bull": 10.177994043579265
   },
   "central_beta_alt": {
-   "bear": 4.867953232960515,
-   "base": 7.655528018480034,
-   "bull": 9.97828006038964
+   "bear": 3.039484459774819,
+   "base": 7.903387977796284,
+   "bull": 10.177994043579265
   }
  },
  "lens_weights": {
@@ -5938,8 +5938,9 @@
   "normalized": 0.2,
   "book": 0.15
  },
- "central": 6.736324415141102,
- "central_beta_alt": 7.655528018480034,
+ "retired_blend": 6.736324415141102,
+ "central": 5.605378969448954,
+ "central_beta_alt": 7.903387977796284,
  "spot": 6.16,
  "beta_framing": {
   "primary": {
@@ -5948,14 +5949,14 @@
    "ke": 0.09432584,
    "wacc": 0.08548360695382588,
    "fv": 5.605378969448954,
-   "central": 6.736324415141102
+   "central": 5.605378969448954
   },
   "alternative": {
    "beta": 0.705,
    "label": "an equal-weight composite of the same exchange's names",
    "ke": 0.07493349999999999,
    "fv": 7.903387977796284,
-   "central": 7.655528018480034
+   "central": 7.903387977796284
   },
   "ci90": [
    0.5855,
@@ -7017,6 +7018,188 @@
   "explicit_years": 5,
   "growth_at_horizon_end": 0.02,
   "note": "the explicit window ends on the terminal growth rate exactly: the last explicit year escalates at the house terminal inflation at zero real, which IS the terminal, so nothing is capitalised that the model never reached. The company's own value-in-use test projects beyond its plan at the same 2 per cent, which is corroboration rather than the source."
+ },
+ "contested": [
+  {
+   "choice": "how the market is measured for the beta regression",
+   "adopted": "the published index of the exchange this company is listed on",
+   "alternative": "an equal-weight composite of the same exchange's names",
+   "fv_adopted": 5.605378969448954,
+   "fv_alternative": 7.903387977796284,
+   "effect": 0.40996496773406205,
+   "direction": "the adopted side is LOWER",
+   "note": "THE SINGLE LARGEST JUDGEMENT IN THIS STUDY, and the beta rule decides it rather than a preference: the regressor is the published index of the exchange the stock is listed on, and a constituent composite is a coverage artefact rather than a market. The two differ because a published index is weighted by size and is dominated by the same large-capitalisation group this company belongs to, while an equal-weight composite gives the exchange's smallest names the same say as its largest. The alternative is published rather than buried because a difference of this size is a fact about index construction that a reader is entitled to see."
+  },
+  {
+   "choice": "the charter-rate path through the forecast",
+   "adopted": "reversion toward the mid-cycle rate",
+   "alternative": "today's strength sustained, the company's own guidance path",
+   "fv_adopted": 5.605378969448954,
+   "fv_alternative": 6.967913574676671,
+   "effect": 0.24307626882213518,
+   "direction": "the adopted side is LOWER",
+   "note": "an independent one-year time charter fixed in early 2026 priced a very large crude carrier well below the spot rate of the moment, and a crude tanker order book near a quarter of the trading fleet is the supply reason why. A forward market that will not pay spot for a year of time is saying it does not expect spot to hold. GUIDANCE IS SCORED AND NEVER CONSUMED, so the sustained path is published as the alternative rather than adopted."
+  },
+  {
+   "choice": "how the perpetual capital securities are deducted",
+   "adopted": "at carrying value",
+   "alternative": "at the present value of their perpetual coupon",
+   "fv_adopted": 5.605378969448954,
+   "fv_alternative": 6.022436875325126,
+   "effect": 0.07440315956320999,
+   "direction": "the adopted side is LOWER",
+   "note": "the securities rank ahead of the ordinary shares whichever way they are classified, so they are deducted in both framings and only the AMOUNT is contested. Carrying value is what the balance sheet states; the present value of the coupon is what the claim is worth at the terminal cost of capital. Both are published and the deduction is weighted in the cost of capital in both."
+  },
+  {
+   "choice": "the tax relief on shipping earnings",
+   "adopted": "the reliefs as currently legislated and disclosed",
+   "alternative": "the whole group taxed at the 9 per cent statutory rate",
+   "fv_adopted": 5.605378969448954,
+   "fv_alternative": 5.114650357299365,
+   "effect": 0.08754601871242089,
+   "direction": "the adopted side is HIGHER",
+   "note": "most of the shipping income is relieved under the regime as it stands. The alternative is the downside case for a global minimum tax reaching those earnings, and it is a scenario about the law rather than about the business \u2014 which is why the sensitivity centred on it does NOT reproduce the base case and says so in its own docstring."
+  },
+  {
+   "choice": "the day-rate anchor the reversion path converges to",
+   "adopted": "the mid-cycle average as computed",
+   "alternative": "that anchor 10 per cent lower",
+   "fv_adopted": 5.605378969448954,
+   "fv_alternative": 5.151200767706382,
+   "effect": 0.08102542294071162,
+   "direction": "the adopted side is HIGHER",
+   "note": "the anchor is the single quantity the whole reversion path hangs on, and a ten per cent move in it is well inside the span the disclosed quarterly rates have printed."
+  }
+ ],
+ "bridge_record": {
+  "market": "AE",
+  "balance_sheet_date": "2026-03-31",
+  "latest_disclosed_date": "2026-03-31",
+  "latest_disclosed_source": "the condensed consolidated interim financial information for the three months ended 31 March 2026, from the company's own investor-relations channel and registered in this study's sweep. THE VALUATION DATE IS THAT BALANCE-SHEET DATE rather than the date of the latest traded price, so no roll-forward stands between the bridge and a filing, and the first quarter's free cash flow is inside net debt rather than discounted again.",
+  "register": "sweep_register.json",
+  "lines": [
+   {
+    "label": "Enterprise value of the operations",
+    "value": 15126938.52636424
+   },
+   {
+    "label": "plus joint ventures and associates at carrying value",
+    "value": 493120.0
+   },
+   {
+    "label": "less net debt, including the committed acquisition and the deferred purchase consideration",
+    "value": -2021329.0
+   },
+   {
+    "label": "less perpetual capital securities at carrying value",
+    "value": -1978619.0
+   },
+   {
+    "label": "less non-controlling interests",
+    "value": -327696.8089456763
+   }
+  ],
+  "equity_value": 11292413.717418564,
+  "shares_mn": 7398498.7639999995,
+  "per_share": 1.5263114961059099,
+  "cash_charged_once": true,
+  "cash": {
+   "treatment": "none",
+   "weights_basis": "gross"
+  },
+  "cash_note": "THE CASH IS NOT ADDED AT FACE ANYWHERE. It sits inside the net-debt figure deducted once, and the operating rate is weighted on the gross capital structure \u2014 equity, drawn debt AND the perpetual securities \u2014 so no tranche is deducted from value without also being allowed to price it. The company is net DEBT rather than net cash, so the negative-debt-weight trap does not arise here; the construction is stated anyway because a reader cannot tell from the number which way it was done.",
+  "nci": {
+   "basis": "value_share",
+   "value": 327696.8089456763,
+   "deduction": 327696.8089456763,
+   "book": 272134.0,
+   "profit_share": 272134.0,
+   "proportional": 272134.0,
+   "proxy": "the contracted slice at its CONTRACTED PRICE and the rest at its share of value, whichever is higher. The Navig8 minority is subject to a disclosed purchase arrangement at a stated price, so its claim is that price and not a share of anything; the remaining minorities have no such arrangement and are worth their share of the value the model capitalises, floored at book.",
+   "proxy_source": "the Navig8 acquisition disclosure and the non-controlling interests line of the 31 March 2026 statement of financial position",
+   "framings_note": "book, profit share and proportional are the same figure here because the disclosure gives one carrying amount; the adopted deduction differs from all three, and differs UPWARD, because the model capitalises 100 per cent of subsidiary cash flow and a minority's claim on that is worth its share of the VALUE rather than its historical cost.",
+   "deducted_from": "equity"
+  },
+  "dividend": {
+   "declared_after_balance_sheet_date": false,
+   "amount": 0.0,
+   "note": "no dividend declared after the 31 March 2026 balance-sheet date is deducted: one declared before it is already out of the equity it would come from."
+  },
+  "associates": {
+   "basis": "book",
+   "note": "the joint ventures and associates are unlisted, so there is no market to carry them at and they stand at the carrying value the balance sheet states."
+  },
+  "hybrid": {
+   "treatment": "deducted_at_carrying_value_and_weighted_in_the_cost_of_capital",
+   "carrying_value": 1978619.0,
+   "pv_of_coupon": 1138427.7403291247,
+   "note": "THE TWO HALVES OF ONE TREATMENT. The perpetual capital securities rank ahead of the ordinary shares, so they are deducted here; a claim deducted from enterprise value must also be WEIGHTED in the cost of capital at its own cost, or the model subtracts a cheap tranche of capital without letting it price the value. The present value of the perpetual coupon is published beside the carrying value as the alternative deduction, because which of the two a reader prefers is a judgement and the study does not hide it inside one number."
+  }
+ },
+ "lens_record": {
+  "class": "marine logistics and shipping, chartered fleet on global day rates",
+  "primary": {
+   "kind": "dcf",
+   "value": 5.605378969448954,
+   "range": {
+    "low": 3.039484459774819,
+    "high": 10.177994043579265
+   },
+   "range_note": "the cash-flow lens at the beta regression's OWN 90 per cent confidence bounds, with the rate anchor and capital expenditure moving with them",
+   "range_basis": {
+    "driver": "the regression beta, across its own 90 per cent confidence interval, with the day-rate anchor and capital expenditure moving with it",
+    "low": 1.621,
+    "high": 0.5855,
+    "macro_held": true,
+    "sanctioned_framing": "",
+    "evidence": "the own-stock regression against the published index of this company's own exchange gives a beta of 1.1032 with a standard error of 0.3147 over 159 weekly observations, so its 90 per cent interval runs 0.5855 to 1.6210. THE RANGE IS THE INTERVAL THE ESTIMATE ITSELF SUPPORTS rather than a judgement about how wrong it might be, and the corners take the HIGH beta for the bear and the LOW for the bull because a higher beta is a lower value. The day-rate anchor and capital expenditure move with each corner rather than being held, because a cost of capital at the top of its own interval describes a world in which charter rates are also weaker. The macro path does not move: terminal growth and the terminal risk-free rate both contain the same terminal inflation, so flexing them would make the bull corner inflation high and low at once."
+   },
+   "note": "vessel-days times day rates, vessel by vessel, discounted on a schedule that is flat by construction of the currency peg"
+  },
+  "cross_checks": [
+   {
+    "kind": "sotp",
+    "value": 10.03619200449128,
+    "note": "the three legs summed on their own multiples \u2014 a contracted-fleet multiple where the leg earns under long-term contracts and a blend of contracted and spot where it does not, weighted by the company's own disclosed share of earnings exposed to spot rates. It is a cross-check rather than the answer because the legs share one balance sheet, one crew pool and one management."
+   },
+   {
+    "kind": "relative_multiple",
+    "value": 8.640060670705397,
+    "present_value": false,
+    "multiple": 11.1037,
+    "circularity": {
+     "spot": 6.16,
+     "shares": 7398.498764,
+     "net_debt": 2021329.0,
+     "metric_value": 2085941.8878816736
+    },
+    "multiple_source": "a blend of 12.26x on the contracted book and 8.53x on the spot-exposed book, both taken from the listed peer set \u2014 Nakilat for long-term contracted gas shipping and the spot tanker names for the exposed half \u2014 and weighted by the company's OWN disclosed spot share of 31 per cent. It is not read off this company's price: the traded enterprise value over the same forecast EBITDA is committed beside it in the circularity block."
+   },
+   {
+    "kind": "book_value",
+    "value": 3.661976429240195,
+    "note": "the DISCLOSED floor. Published as a floor and NEVER weighted into a central \u2014 which the retired blend did, at 15 per cent."
+   }
+  ],
+  "envelope": {
+   "low": 3.039484459774819,
+   "high": 10.177994043579265
+  },
+  "central": 5.605378969448954,
+  "retired": {
+   "blend": {
+    "dcf": 0.4,
+    "relative": 0.25,
+    "normalized": 0.2,
+    "book": 0.15
+   },
+   "blend_value": 6.736324415141102,
+   "why": "40/25/20/15 across four reads, and two of the four weights are forbidden outright rather than merely unevidenced. BOOK VALUE carried 15 per cent and book value is a disclosed floor that is never weighted into an answer; NORMALISED EARNINGS carried 20 and the registry does not permit it for this class. The weights had cleared no out-of-sample test. Retiring the blend moves the published answer from AED 6.74 to AED 5.61, which is a LARGE move and is the point: the blend was averaging a cash-flow reading well below the market with three accounting readings well above it, and publishing the average told a reader neither thing.",
+   "normalised_earnings": {
+    "value": 8.924305976495708,
+    "why": "dropped as a lens for this class. Day rates are cyclical enough that a normalised year is a judgement about where the cycle sits rather than a reading of the business, and the cash-flow lens already carries that judgement explicitly in its rate path. It read AED 8.92 and carried 20 per cent of the retired blend."
+   }
+  }
  },
  "cost_of_capital_record": {
   "market": "AE",
@@ -10183,6 +10366,16 @@
    "detail": "jv_bv_q126"
   },
   {
+   "check": "four fields complete: gross_ppe_ex_cwip_fy25",
+   "passed": true,
+   "detail": "gross_ppe_ex_cwip_fy25"
+  },
+  {
+   "check": "four fields complete: vessel_life_years",
+   "passed": true,
+   "detail": "vessel_life_years"
+  },
+  {
    "check": "four fields complete: q1_26_fcf",
    "passed": true,
    "detail": "q1_26_fcf"
@@ -10201,26 +10394,6 @@
    "check": "four fields complete: rel_weight_ev_ebitda",
    "passed": true,
    "detail": "rel_weight_ev_ebitda"
-  },
-  {
-   "check": "four fields complete: lens_weight_dcf",
-   "passed": true,
-   "detail": "lens_weight_dcf"
-  },
-  {
-   "check": "four fields complete: lens_weight_relative",
-   "passed": true,
-   "detail": "lens_weight_relative"
-  },
-  {
-   "check": "four fields complete: lens_weight_normalized",
-   "passed": true,
-   "detail": "lens_weight_normalized"
-  },
-  {
-   "check": "four fields complete: lens_weight_book",
-   "passed": true,
-   "detail": "lens_weight_book"
   },
   {
    "check": "income statement ties fy23",

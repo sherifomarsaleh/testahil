@@ -251,7 +251,7 @@ def _prior2(pattern):
     return float(counts.most_common(1)[0][0])
 
 
-CENTRAL_ED1 = _prior('claimed_impact', 'weighted central')
+CENTRAL_ED1 = _prior('claimed_impact', 'central')
 DCF_ED1 = _prior('claimed_impact', 'dcf')
 CENTRAL_ED2 = _prior2(r'central from (\d+\.\d+) to')
 DCF_ED2 = _prior2(r'published DCF base of (\d+\.\d+)')
@@ -635,7 +635,7 @@ P(f"That merchant half is having an extraordinary year, and reading how extraord
   f"rather than left to be discovered. Whether those rates hold is the whole valuation.")
 P(f"This study says they do not hold, and prices the fleet reverting over five years to "
   f"the average of what it earned in {HYRS[1]} and {HYRS[2]}. That is a judgement, and "
-  f"section 1.7 sets out the outside evidence for it. On that base the four lenses centre "
+  f"section 1.7 sets out the outside evidence for it. On that base the lenses centre "
   f"at AED {p2(D['central'])} against a market price of {p2(SPOT)} — {ab(D['central'])}. "
   f"The cash-flow lens on its own lands at AED {p2(LN['dcf']['base'])}, "
   f"{ab(LN['dcf']['base'])}, and the three notional experts in Appendix C, who price "
@@ -698,14 +698,14 @@ rows = [['Read', 'Basis', 'Range (AED/sh)', 'Central', 'vs price'],
          f"{xt(BK['pb_fair'], 2)} the book it starts from",
          f"{p2(LN['book']['bear'])} – {p2(LN['book']['bull'])}", p2(LN['book']['base']),
          vs(LN['book']['base'])],
-        ['Weighted central',
-         f"discounted cash flow {pc(LW['dcf'], 0)} · relative {pc(LW['relative'], 0)} · "
-         f"normalised {pc(LW['normalized'], 0)} · book {pc(LW['book'], 0)}, on the "
-         f"beta measured against {BFP['label']}",
+        ['Central',
+         f"THE CASH-FLOW LENS, on the beta measured against {BFP['label']}. It is the "
+         f"answer rather than a share of one: the reads below are cross-checks published "
+         f"beside it and are not averaged into it",
          f"{p2(LN['central']['bear'])} – {p2(LN['central']['bull'])}", p2(D['central']),
          vs(D['central'])],
         ['Market price', f"closing price on {M['price_date']}", '—', p2(SPOT), '—'],
-        ['ALTERNATIVE READINGS — not included in the weighted central above',
+        ['ALTERNATIVE READINGS — not included in the central above',
          '', '', '', ''],
         ['The market measured as an equal-weight composite',
          f"the identical model and identical cash flows with the beta regressed against "
@@ -714,7 +714,7 @@ rows = [['Read', 'Basis', 'Range (AED/sh)', 'Central', 'vs price'],
          f"{pc(DCFA['wacc_term'])}, and {pc(DCFA['tv_share'], 0)} of enterprise value "
          f"from the terminal value. The published index is the yardstick this study "
          f"adopts; the composite is shown because the gap turns on index weighting rather "
-         f"than on the company (section 1.8). The weighted central on this construction is "
+         f"than on the company (section 1.8). The central on this construction is "
          f"AED {p2(D['central_beta_alt'])}",
          '—', p2(LN['dcf_beta_alt']['base']), vs(LN['dcf_beta_alt']['base'])],
         ['Rates hold near current levels',
@@ -736,7 +736,7 @@ table(rows, [1.42, 2.86, 1.06, 0.82, 0.84], band_rows={5, 7}, size=8.4,
 caption(f"The alternative readings are shown so that each genuinely contested or "
         f"consequential choice carries a number the reader can see, rather than being "
         f"averaged silently into the headline. They are deliberately excluded from the "
-        f"weighted central because each answers a different question — how the market "
+        f"central because each answers a different question — how the market "
         f"against which this share's risk is measured should itself be measured, where "
         f"shipping rates settle, and whether a perpetual security is a liability at face "
         f"or at coupon — and blending them would hide the difference instead of showing "
@@ -763,7 +763,7 @@ caption(f"The alternative readings are shown so that each genuinely contested or
         f"tighter range was claiming more precision than the data holds. The index reading "
         f"is the largest of the three "
         f"alternatives: AED {p2(beta_gap)} a share separates the two constructions on the "
-        f"cash-flow lens and AED {p2(central_gap)} on the weighted central, and both are "
+        f"cash-flow lens and AED {p2(central_gap)} on the central, and both are "
         f"carried at full size through section 1.1, section 1.8, the comparison in "
         f"section 4 and the expert panel. Terminal value is {pc(DCF['tv_share'], 0)} of "
         f"the cash-flow model's enterprise value — a high share, disclosed here, again in "
@@ -1255,10 +1255,11 @@ P(f"The bounds move with the beta and with the return together: the bear bound o
   f"{pc(BK['ke_bull'], 2)} on the lower end {BF['ci90'][0]:.3f} of the same interval with "
   f"the same proportion applied upward. Only the cost of equity in those bounds comes from "
   f"the estimate's own statistical uncertainty; the return stress beside it is a judgement, "
-  f"as it is in the cash-flow lens. The lens carries the lowest "
-  f"weight of the four, at {pc(LW['book'], 0)}, because it inherits the same cost of equity "
-  f"as the cash-flow model rather than testing it independently, and because carrying value "
-  f"is a poor description of what a fleet is worth.")
+  f"as it is in the cash-flow lens. THIS READ IS A DISCLOSED FLOOR AND CARRIES NO WEIGHT "
+  f"IN THE ANSWER AT ALL, which is a change from an earlier edition where it carried "
+  f"{pc(LW['book'], 0)} of a blend. It inherits the same cost of equity as the cash-flow "
+  f"model rather than testing it independently, and carrying value is a poor description "
+  f"of what a fleet is worth; a floor is what it is good for.")
 P(f"On that last point there is one piece of hard evidence, and it is worth more than any "
   f"amount of argument. In January {YRL[0][:4]} the company completed the sale of a "
   f"2017-built very large crude carrier for USD {m0(BK['vessel_sale_price'])} million "
@@ -1403,7 +1404,7 @@ P(f"Applying one multiple to the whole group is the mistake the frame above is t
   f"contracted-fleet multiple. Shipping takes a blend of the contracted and spot "
   f"multiples, weighted by the company's own disclosed share of earnings exposed to spot "
   f"rates. This is a cross-check on the relative lens rather than a fifth lens, and it is "
-  f"excluded from the weighted central, but it is the construction that honours the fact "
+  f"excluded from the central, but it is the construction that honours the fact "
   f"that this company runs contracted work and market-exposed shipping side by side.")
 rows = [['Business unit', f"{YRL[0]} earnings (USD mn)", 'Multiple',
          'Enterprise value (USD mn)', 'Why that multiple']]
@@ -1443,7 +1444,7 @@ caption(f"The sum of the parts lands at AED {p2(SOTP['fv_aed'])} against the ble
         f"own earnings before any group cost, while the blended lens applies its multiple "
         f"to the consolidated figure and then averages an enterprise measure with an "
         f"after-tax earnings measure. Both are disclosed. Neither is included in the "
-        f"weighted central, which rests on the cash-flow model and the three lenses beside "
+        f"central, which rests on the cash-flow model and the three lenses beside "
         f"it. On the exposure share re-based to the leg it is applied to — the memorandum "
         f"row above, and the more defensible construction of the two — the cross-check "
         f"reads AED {p2(SOTP_FV_REBASED)} instead. The row is published as a memorandum "
@@ -1490,8 +1491,9 @@ caption(f"The two constructions disagree by a wide margin — AED "
         f"first year's figure as though it were the average, which understated the very "
         f"wedge this paragraph exists to explain. An enterprise measure and an after-tax "
         f"earnings measure will never agree on a company like this. Averaging them is a "
-        f"deliberate refusal to pick, and the lens carries {pc(LW['normalized'], 0)} weight "
-        f"accordingly. The published range flexes the enterprise reading between the spot "
+        f"deliberate refusal to pick, and THIS READ IS RETIRED AS A LENS FOR THIS "
+        f"COMPANY accordingly — it carried {pc(LW['normalized'], 0)} of an earlier "
+        f"edition's blend and carries none of the answer now. The published range flexes the enterprise reading between the spot "
         f"and contracted multiples; the base is the average of that reading and the "
         f"earnings reading, so it sits at about the "
         f"{(LN['normalized']['base']-LN['normalized']['bear'])/(LN['normalized']['bull']-LN['normalized']['bear'])*100:.0f}"
@@ -1509,13 +1511,15 @@ lensnames = [('dcf', 'Cash-flow model — published index'),
              ('relative', 'Relative multiples'),
              ('normalized', 'Normalised earnings power'),
              ('book', 'Book value and sustainable return')]
+ROLE = {'dcf': 'PRIMARY — this is the central', 'relative': 'cross-check',
+        'normalized': 'RETIRED for this class', 'book': 'disclosed floor, never weighted'}
 for k, nm in lensnames:
     l = LN[k]
-    rows.append([nm, p2(l['bear']), p2(l['base']), p2(l['bull']), pc(LW[k], 0),
-                 f"{l['base'] * LW[k]:.3f}"])
-rows.append(['Weighted central — published index', p2(LN['central']['bear']),
-             p2(D['central']), p2(LN['central']['bull']), pc(1.0, 0),
-             f"{D['central']:.3f}"])
+    rows.append([nm, p2(l['bear']), p2(l['base']), p2(l['bull']), ROLE[k],
+                 f"{pc(LW[k], 0)}"])
+rows.append(['Central — published index', p2(LN['central']['bear']),
+             p2(D['central']), p2(LN['central']['bull']),
+             'the cash-flow lens, not a blend', '—'])
 # The composite rows carry the PRIMARY construction's bear and bull, because only their
 # base was re-run on the composite beta. Printing those bounds beside a base two dirhams
 # higher puts a range around a number the range was not built for, so the cells say so
@@ -1526,14 +1530,17 @@ _nb = 'not re-run' if _borrowed else None
 rows.append(['Cash-flow model — equal-weight composite',
              _nb or p2(LN['dcf_beta_alt']['bear']), p2(LN['dcf_beta_alt']['base']),
              _nb or p2(LN['dcf_beta_alt']['bull']),
-             pc(LW['dcf'], 0), f"{LN['dcf_beta_alt']['base'] * LW['dcf']:.3f}"])
-rows.append(['Weighted central — equal-weight composite',
+             'the same lens on the other regressor', '—'])
+rows.append(['Central — equal-weight composite',
              _nb or p2(LN['central_beta_alt']['bear']), p2(D['central_beta_alt']),
-             _nb or p2(LN['central_beta_alt']['bull']), pc(1.0, 0),
-             f"{D['central_beta_alt']:.3f}"])
+             _nb or p2(LN['central_beta_alt']['bull']),
+             'the cash-flow lens, not a blend', '—'])
+rows.append(['MEMO — the retired blend at its typed weights',
+             '—', p2(D['retired_blend']), '—',
+             'RETIRED: two of its four weights are forbidden outright', '100%'])
 table(rows, [2.42, 0.86, 0.86, 0.86, 0.86, 1.14], size=8.5, band_rows={5, 7})
 caption(f"Contributions are shown to three decimals so that the four of them add to the "
-        f"weighted central exactly; rounded to the nearest fil they would come up one fil "
+        f"central exactly; rounded to the nearest fil they would come up one fil "
         f"short of it, which is a display artefact rather than an arithmetic one. The two "
         f"composite rows have no bear and bull of their own: only their base case was "
         f"re-run on the composite beta, so the low and high cells are left empty rather "
@@ -1565,7 +1572,7 @@ P(f"There is a weakness in this weighting that a reader should be told about rat
   f"blend of them — and the same weighting between the enterprise and earnings readings. "
   f"What differs between them is only the earnings denominator those multiples are applied "
   f"to: the {YRL[0]} build in one, the five-year average of the same build in the other. "
-  f"Together they carry {pc(LW['relative']+LW['normalized'], 0)} of the weighted central. "
+  f"Together they carry {pc(LW['relative']+LW['normalized'], 0)} of the central. "
   f"So {pc(LW['relative']+LW['normalized'], 0)} of the headline rests on one method "
   f"presented as two reads, and the four-lens field is narrower evidence than four bars "
   f"make it look. The counterfactual is easy to state: dropping the normalised lens and "
@@ -2318,7 +2325,7 @@ P(f"{TC['tech']['summary']}")
 P(f"The structure to watch is straightforward. {TC['tech']['bull']} {TC['tech']['bear']} "
   f"None of this is a valuation argument — it is the price context the valuation has to be "
   f"read against. It is worth noting where the fundamental estimates sit relative to this "
-  f"ladder: the weighted central of AED {p2(D['central'])} sits {ladder(D['central'])}, the "
+  f"ladder: the central of AED {p2(D['central'])} sits {ladder(D['central'])}, the "
   f"cash-flow lens on its own, at AED {p2(LN['dcf']['base'])}, sits "
   f"{ladder(LN['dcf']['base'])}, the equal-weight composite reading of AED "
   f"{p2(D['central_beta_alt'])} sits {ladder(D['central_beta_alt'])}, and the asset lens at "
@@ -2561,7 +2568,7 @@ rows = [['Zone', 'Three-month range (AED)', 'How to read it'],
         ['Upper tail', f"above {p2(H3M['pct']['p95'])}",
          'a 1-in-20 outcome; the zone in which the market would be pricing the rate '
          'strength as durable, or the equal-weight reading of the discount rate'],
-        ['Where the weighted central sits', p2(D['central']),
+        ['Where the central sits', p2(D['central']),
          f"{zone3m(D['central'])}. Reaching it inside a quarter is an ordinary outcome "
          f"rather than a repricing"],
         ['Where the cash-flow lens alone sits', p2(LN['dcf']['base']),
@@ -2638,8 +2645,9 @@ for head, body in [
     ("There is no net-asset-value lens, which is the sector standard for a shipowner. ",
      f"The conventional way to value a fleet owner is vessel by vessel at independent "
      f"broker valuations, bridged to equity. Those valuations are not obtainable from this "
-     f"research environment, so the book-value lens stands in for them at "
-     f"{pc(LW['book'], 0)} weight. The only direct evidence on the gap between carrying "
+     f"research environment, so the book-value read stands in for them AS A DISCLOSED "
+     f"FLOOR rather than as a weighted lens — an earlier edition gave it "
+     f"{pc(LW['book'], 0)} of a blend. The only direct evidence on the gap between carrying "
      f"value and market value is the January {YRL[0][:4]} sale of a 2017-built very large "
      f"crude carrier for USD {m0(BK['vessel_sale_price'])} million against a carrying "
      f"value of USD {m0(BK['vessel_sale_book'])} million — {xt(BK['vessel_value_to_book'], 2)} "
@@ -2702,8 +2710,8 @@ for head, body in [
      f"for a fade is solid — a fleet has to be replaced at market prices rather than at "
      f"the value it is carried at, so a return above the cost of equity cannot persist "
      f"unchanged — but the speed is chosen, not measured. A slower fade raises this lens "
-     f"and a faster one lowers it. The lens carries {pc(LW['book'], 0)} weight, which is "
-     f"the lowest of the four, partly for this reason."),
+     f"and a faster one lowers it. THE READ CARRIES NO WEIGHT IN THE ANSWER, which is "
+     f"partly for this reason; an earlier edition gave it {pc(LW['book'], 0)}."),
     ("Two unit inputs are solved rather than sourced. ",
      f"Per-vessel running cost of USD {n0(FLT['opex_day'])} a day is solved so that the "
      f"owned fleet's earnings reproduce the reported {HYRS[2]} result, and the gas carrier "
@@ -2735,12 +2743,14 @@ for head, body in [
      f"a claim it has made is worse than one that says the claim was wrong. Separately and "
      f"still true: a reader comparing this study's revenue forecast with a broker's should "
      f"know the two may be on different conventions."),
-    ("The four lenses are less independent of one another than four lenses sound. ",
+    ("The cross-checks are less independent of one another than four separate reads sound. ",
      f"The relative lens and the normalised lens apply the SAME three multiples to two "
      f"different earnings denominators — the first forecast year in one, the five-year "
-     f"average of the same forecast in the other. Between them they carry "
-     f"{pc(LW['relative']+LW['normalized'], 0)} of the weighted central, so that much of "
-     f"the headline rests on one method presented as two reads. Both denominators are "
+     f"average of the same forecast in the other. An earlier edition weighted them "
+     f"{pc(LW['relative']+LW['normalized'], 0)} of its blended central, SO THAT MUCH OF "
+     f"THE HEADLINE RESTED ON ONE METHOD PRESENTED AS TWO READS. Neither carries any of "
+     f"the answer now, which removes the overlap from the central without removing the "
+     f"reads from the page. Both denominators are "
      f"legitimate questions and neither read is redundant on its own terms, so nothing has "
      f"been dropped — but the overlap is not neutral in direction. Those two lenses are the "
      f"two that sit highest; collapsing them to one would move the central toward the "
@@ -2787,7 +2797,7 @@ P(f"This study has been through two rounds of external review. {n0(N_REVIEWS)} i
   f"refinement: several were errors, and they are called errors here. A study that has been "
   f"corrected and does not say so is worse than one that was right the first time, because "
   f"the reader has no way of telling which they are holding.")
-rows = [['Edition', 'Cash-flow lens (AED)', 'Weighted central (AED)', 'Against the market '
+rows = [['Edition', 'Cash-flow lens (AED)', 'Central (AED)', 'Against the market '
          f"price of {p2(SPOT)}"],
         ['As first issued', p2(DCF_ED1), p2(CENTRAL_ED1), vs(CENTRAL_ED1)],
         ['After the first round of corrections', p2(DCF_ED2), p2(CENTRAL_ED2),
@@ -2865,9 +2875,10 @@ rows.append([
     f"DOWN, and by more than any other single change. On the same returns, the same cost "
     f"of equity and the same growth, the justified-multiple form gives "
     f"{xt(PB_SINGLE, 2)} book, or AED {p2(BOOK_SINGLE)} a share; residual income gives "
-    f"AED {p2(LN['book']['base'])}. At {pc(LW['book'], 0)} weight the difference is worth "
-    f"about AED {p2((BOOK_SINGLE-LN['book']['base'])*LW['book'])} of the weighted "
-    f"central."])
+    f"AED {p2(LN['book']['base'])}. The difference no longer reaches the answer at all — "
+    f"at the {pc(LW['book'], 0)} weight an earlier edition gave this read it was worth "
+    f"about AED {p2((BOOK_SINGLE-LN['book']['base'])*LW['book'])} of the published "
+    f"figure."])
 rows.append([
     'Earnings per share is struck after the perpetual coupon',
     f"Forecast earnings per share was profit attributable to ordinary AND perpetual "
@@ -3027,12 +3038,14 @@ P(f"And one finding has been left open rather than acted on, which a reader shou
   f"before weighing the field. The relative lens and the normalised lens share all three "
   f"multiples and the same weighting between the enterprise and earnings readings; what "
   f"differs between them is only the earnings denominator those multiples are applied to. "
-  f"Together they carry {pc(LW['relative']+LW['normalized'], 0)} of the weighted central, "
-  f"so {pc(LW['relative']+LW['normalized'], 0)} of the headline rests on one method "
-  f"presented as two reads. It has not been changed, because both denominators are "
-  f"legitimate questions and neither read is redundant on its own terms. But it is not "
-  f"neutral in direction — those are the two lenses that sit highest — and it is the "
-  f"largest single item still outstanding from either round of review. Section 1.5 and "
+  f"An earlier edition weighted them {pc(LW['relative']+LW['normalized'], 0)} of a "
+  f"blended central, so that much of the headline rested on one method presented as two "
+  f"reads. THE ARCHITECTURE RATHER THAN THE READS IS WHAT CHANGED: neither carries any "
+  f"of the answer now, and both are published beside it, so the overlap is visible "
+  f"instead of compounded. Both denominators remain legitimate questions and neither read "
+  f"is redundant on its own terms. It is not neutral in direction — those are the two "
+  f"reads that sit highest — and that is now something a reader can see rather than "
+  f"something buried in a weight. Section 1.5 and "
   f"section 7 both carry it.", space_after=10)
 
 
@@ -3368,8 +3381,9 @@ for head, body in [
      f"comparator's earnings are struck on the same definition as its own, which is a "
      f"reason to read the comparison lens as evidence about relative pricing rather than as "
      f"an independent valuation. It is the largest block of non-company data in the study, "
-     f"and the two lenses that rest on it carry {pc(LW['relative']+LW['normalized'], 0)} of "
-     f"the weighted central between them."),
+     f"and the two reads that rest on it are cross-checks rather than parts of the "
+     f"answer, where an earlier edition gave them "
+     f"{pc(LW['relative']+LW['normalized'], 0)} of a blend between them."),
     ("The UAE has no sovereign credit-default-swap entry in the country-risk file. ",
      "The alternative premium basis therefore cannot be built for this country, and the "
      "study says so rather than omitting the comparison silently. Gulf comparators that "
@@ -3470,7 +3484,7 @@ P(f"One thing this leg does NOT do, and it is a genuine inconsistency across the
   f"{E2_BRIDGED-E2['base']:+.2f}. The published figure is left as the method produces it "
   f"and the difference is stated here, because three experts presented as independent "
   f"reads of one balance sheet should not be quietly running three different bridges.")
-P(f"This expert lands at AED {p2(E2['base'])}, below the study's own weighted central of "
+P(f"This expert lands at AED {p2(E2['base'])}, below the study's own central of "
   f"AED {p2(D['central'])}, and the reason is specific: the five-year average free cash "
   f"flow of USD {m0(E2['fcff'])} million is dragged down by the investment years. Free "
   f"cash flow to the firm is USD {m0(F['fcff'][0])} million in {YRL[0]} and USD "
@@ -3613,10 +3627,10 @@ P(f"The panel spans AED {p2(min(E1['base'], E2['base'], E3['base']))} to "
   f"share almost nothing methodologically land within AED "
   f"{p2(max(E1['base'], E2['base'], E3['base'])-min(E1['base'], E2['base'], E3['base']))} "
   f"of one another. The market price of AED {p2(SPOT)} falls inside that span, and so does "
-  f"this study's own cash-flow lens; the weighted central of AED {p2(D['central'])} sits "
+  f"this study's own cash-flow lens; the central of AED {p2(D['central'])} sits "
   f"{'inside it as well' if min(E1['base'], E2['base'], E3['base']) <= D['central'] <= max(E1['base'], E2['base'], E3['base']) else 'above all three'}.")
 P(f"The panel centre of AED {p2(PANEL)} sits {ab(PANEL)} and "
-  f"{sgn(PANEL/D['central']-1, 0)} against this study's weighted central. That gap is "
+  f"{sgn(PANEL/D['central']-1, 0)} against this study's central. That gap is "
   f"real and it has a single explanation: every one of the three experts works from "
   f"mid-cycle or five-year-average earnings, and none of them capitalises a terminal value "
   f"the way the cash-flow model does. The cash-flow model puts {pc(DCF['tv_share'], 0)} of "
