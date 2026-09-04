@@ -42,20 +42,52 @@ number the study publishes, and the number the study publishes is the blend.
 
 ## What this study needs, and the order
 
-1. **A class decision.** `LENS_REGISTRY` has no telecom row. [R-LENS-03] says to adapt
-   the nearest pattern's lens inside the model report's skeleton and say which and why —
-   never to go looking for a fourth exemplar. That is a rule-level act and it comes first,
-   because everything below depends on which lens is the primary.
-2. **The central becomes that primary**, with the others published beside it as
-   cross-checks and the bear/full envelope the range of the present-value reads. On the
-   current numbers that moves the published answer from 13.90 to 18.89 and the gap from
-   +22.4% to +66.3%.
+1. **No class decision is needed — the registry already has this row, and reading it
+   sharpens the finding.** `LENS_REGISTRY['telecom operator']` is `dcf` primary with
+   `ev_ebitda_own_history`, `relative_multiple` and `book_value` beside it. (An earlier
+   version of this note said the registry carried no telecom row. It does, and that claim
+   was made without opening it — the same failure this session has now made three times,
+   which is asserting an absence before finishing the search.) **Normalised earnings power
+   is NOT among a telecom operator's permitted cross-checks**, so the lens carrying 20% of
+   this study's weight, reading 8.87 against a cash-flow 18.89, is not a lens this class
+   publishes at all.
+2. **The central becomes the cash-flow lens**, with the enterprise multiple on own
+   history, the relative multiple and the book floor beside it as cross-checks, and the
+   bear/full envelope the range of the present-value reads. On the current numbers that
+   moves the published answer from 13.90 to 18.89 and the gap from +22.4% to +66.3%.
 3. **Then the gap review [R-GAP-01] is owed on the new number**, and at +66% it is owed
    badly. It is NOT owed on 13.90 first: auditing a central produced by a retired
    architecture audits the wrong number.
 4. This study also commits **no macro, bridge, forecast-anchor, cost-of-capital or lens
    record at all**, and its spot carries no date — so the re-issue is a full pass rather
    than a patch.
+
+## The same shape is on the book, and one name is worse
+
+Measured across every study that publishes a typed blend AND exposes the lens it calls
+primary, each against its own struck spot — six of them:
+
+| Ticker | Primary | Central | vs price (primary) | vs price (central) | How far the blend moves it |
+|---|---|---|---|---|---|
+| MODON | 3.54 | 2.50 | +25.2% | **-11.8%** | 42.0% |
+| DU | 18.89 | 13.90 | +53.6% | +13.0% | 35.9% |
+| SWDY | 56.08 | 69.73 | -46.7% | -33.7% | 19.6% |
+| RIYADHCABLE | 127.91 | 109.35 | +22.0% | +4.3% | 17.0% |
+| AIRARABIA | 4.35 | 4.17 | -17.1% | -20.3% | 4.1% |
+| AMOC | 11.40 | 11.40 | -15.5% | -15.5% | 0.0% |
+
+**MODON is worse than this name, because there the blend FLIPS THE SIGN**: the primary
+lens says the company is worth a quarter more than the price and the published central
+says it is worth a tenth less. It sits on the gap list at -11.8% with no review, so the
+audit gate is interrogating a below-price answer that the study's own primary lens says
+is above-price — and under the publication block it would be HELD, when its primary says
+it should not be. MODON is a developer, and normalised earnings is deliberately absent
+from both developer rows of the registry; it carries that lens at a fifth of the weight,
+reading 1.46 against a cash-flow 3.54. That is the same defect, at the same weight, on
+the same class, as the case that retired the blend.
+
+AMOC reads 0.0% and it is the control: it has been re-issued, so its central IS its
+primary and there is nothing left to mask.
 
 ## What is deliberately NOT concluded
 
