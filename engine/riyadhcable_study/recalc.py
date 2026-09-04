@@ -19,6 +19,21 @@ EXPECT = XP['expected']
 DCF, LN, F, HI, HB = D['dcf'], D['lenses'], D['fcst'], D['hist_is'], D['hist_bs']
 SPOT = D['meta']['spot']
 
+# [L-067] A CHECK THAT NAMES A CELL BY ADDRESS MOVES WITH THE RE-ISSUE. The builder
+# already publishes the rows it wrote these figures on; this check used to hard-code
+# C41/C42/C51 beside that published map and silently pointed at the wrong rows the
+# moment the terminal gained a waterfall. It reads the map now, and refuses if the map
+# is not there rather than falling back to an address.
+ANCH = XP.get('anchors') or {}
+for _k in ('ev', 'tv_share', 'dcf_ps', 'term_fcff', 'term_tv'):
+    assert _k in ANCH, (
+        'xlsx_expected.json publishes no row for %r. A reconciliation that guesses an '
+        'address is not a reconciliation — rebuild the workbook.' % _k)
+
+
+def dcf_cell(key):
+    return ('DCF', 'C%d' % int(ANCH[key]))
+
 BK = xlcalc.Book(wb)
 cv = BK.cell_value
 
@@ -58,9 +73,11 @@ for u in uncovered[:20]:
 
 # gate 3 — headline reconciliations
 checks = [
-    ('DCF enterprise value', ('DCF', 'C41'), DCF['ev'], 1.0),
-    ('DCF terminal value share', ('DCF', 'C42'), DCF['tv_share'], 0.002),
-    ('DCF value per share at anchor', ('DCF', 'C51'), DCF['ps'], 0.02),
+    ('DCF enterprise value', dcf_cell('ev'), DCF['ev'], 1.0),
+    ('DCF terminal value share', dcf_cell('tv_share'), DCF['tv_share'], 0.002),
+    ('DCF value per share at anchor', dcf_cell('dcf_ps'), DCF['ps'], 0.02),
+    ('DCF terminal free cash flow', dcf_cell('term_fcff'), D['terminal_record']['fcff'], 1.0),
+    ('DCF terminal value', dcf_cell('term_tv'), DCF['tv'], 1.0),
     ('DCF WACC explicit', ('DCF', 'C10'), D['wacc']['wacc'], 0.0002),
     ('DCF WACC terminal', ('DCF', 'C13'), D['wacc']['wacc_term'], 0.0002),
     ('Bridge equity attributable', ('SOTP Bridge', 'C10'), DCF['eq_attr'], 1.0),

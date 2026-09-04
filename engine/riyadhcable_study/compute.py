@@ -361,11 +361,34 @@ INP = dict(
     kd_path=I([0.059, 0.058, 0.057, 0.056, 0.055], "Forward cost-of-debt path FY2026E-FY2030E, easing "
               "gently from the 5.9% marginal rate to the 5.5% terminal as policy normalises. The discount-"
               "rate glide takes its shape from this path by construction", "2026-08-18", "House"),
-    g_term=I(0.04, "Terminal growth 4.0% in nominal SAR: ~2% long-run Saudi real growth plus ~2% "
-             "inflation. Struck below the terminal risk-free-plus-spread and below a blended nominal "
-             "GDP ceiling; sensitised 2-6%. Saudi electrification and construction (grid capex, "
-             "giga-projects, housing) support a durable but not perpetual mid-single-digit nominal pace",
-             "2026-08-18", "House"),
+    g_term_real=I(0.0196078431372549, "Terminal REAL growth 1.96%: ~2% long-run Saudi real growth. "
+                  "STORED AS A REAL RATE and the nominal is DERIVED on the house Saudi inflation "
+                  "path, so the two cannot disagree and a reader can see which component is "
+                  "being claimed. On the house terminal inflation of 2.00% it recomputes to the 4.00% "
+                  "nominal this study has always carried, to the basis point. Struck below the terminal "
+                  "risk-free-plus-spread and below a blended nominal GDP ceiling; sensitised 2-6% "
+                  "nominal. Saudi electrification and construction (grid capex, giga-projects, housing) "
+                  "support a durable but not perpetual mid-single-digit nominal pace",
+                  "2026-09-04", "House"),
+    asset_life_years=I(35.7565, "Weighted useful life of the depreciable asset base, 35.76 years, "
+                       "DERIVED BY IDENTITY from the company's own FY2025 notes rather than chosen: "
+                       "gross cost of the base that is actually depreciated, divided by that year's own "
+                       "charge. Note 9 property, plant and equipment closes at SAR 3,267,410,445 of "
+                       "cost, of which land (222,330,595) and assets under construction (141,491,829) "
+                       "are not depreciated, leaving 2,903,588,021 against a charge of 76,616,111 = "
+                       "37.90 years; note 10 software 80,879,539 against 5,603,548 = 14.43 years; note "
+                       "13 right-of-use 68,978,523 against 3,175,978 = 21.72 years. The three charges "
+                       "sum to 85,395,637, which IS the depreciation and amortisation this model "
+                       "carries for FY2025, so the base and the charge are the same object. The policy "
+                       "note discloses RANGES (buildings 20-25, plant 20-30, spares 10, vehicles 4, "
+                       "fixtures 4-10, tools 5, laboratory 10, computers 10) and no weighting, so no "
+                       "single figure can be read off it; the identity supplies the weighting and the "
+                       "figure is labelled derived. Cross-checked two ways: on FY2024's own columns the "
+                       "same identity gives 40.27 years, and the software leg reproduces the DISCLOSED "
+                       "15-year life at 14.43, 3.8% apart, which is the strongest evidence a derivation "
+                       "can carry. The FY2025 reading is the SHORTER of the two years and therefore "
+                       "charges the heavier maintenance",
+                       "2026-09-04", "Company"),
     anchor_days=I(230, "Days from the DCF construction date (31 Dec 2025, the audited balance-sheet date "
                   "the bridge is built on) to the 18 Aug 2026 anchor. Every lens value is rolled to the "
                   "anchor at the cost of equity, net of the SAR 2.25/share FY2025 final dividend paid "
@@ -414,6 +437,19 @@ for k, rec in INP.items():
     assert rec['source'] and rec['date'] and rec['ring'], f"INPUT {k} missing provenance"
 
 V = {k: rec['value'] for k, rec in INP.items()}
+
+# ---- the house macro path decides the terminal, not this study [R-MACRO-01] -----------
+# A study may not carry an inflation number of its own. The terminal growth this model uses
+# is DERIVED from the stored REAL rate and the house Saudi terminal inflation, so a typed
+# nominal rate cannot arrive at all and the two cannot drift apart.
+import macro_path as MP                                    # noqa: E402
+import terminal_value as TERMVAL                           # noqa: E402
+PI_TERM = MP.load('SA').raw['inflation']['terminal']['value']
+V['g_term'] = (1.0 + PI_TERM) * (1.0 + V['g_term_real']) - 1.0
+assert abs(V['g_term'] - 0.04) < 5e-5, (
+    "the derived nominal terminal growth must reproduce the 4.00% this study has always "
+    "carried; if the house path moves, the REAL rate is what stays fixed and the nominal "
+    "moves with it — that is the point of storing it this way")
 LOG = []
 
 
@@ -668,17 +704,51 @@ say(f"[Return on capital] FY2025 NOPAT {nopat_fy25:,.0f} / invested capital {ic_
     f"{hist_roic25:.1%}; forecast ROIC {roic[0]:.1%} -> {roic[-1]:.1%}; terminal ROIC (next-year NOPAT "
     f"over closing capital) {roic_term:.1%}. A high-return, capital-light-relative-to-earnings model.")
 
-# terminal value: reinvestment forced to satisfy g = ROIC x RR
-rr_term = V['g_term'] / roic_term
+# ---- terminal value [R-TERM-01] --------------------------------------------
+# THE RETIRED CONSTRUCTION, kept only as a recorded comparison: NOPAT(1+g)(1 - g/ROIC)
+# over (W - g). Substituting rr = g/ROIC turns the charge into g x IC, which is a
+# replacement cycle of 1/g — 25.0 years at a 4% nominal terminal. That is a fact about
+# the currency and not about a cable plant, whose own notes turn the base over in 35.76.
+rr_term = V['g_term'] / roic_term                     # retired; reported, never used
+tv_retired = nopat[-1] * (1 + V['g_term']) * (1 - rr_term) / (wacc_term - V['g_term'])
+
+
+def _terminal(nopat_last, dna_last, nwc_last, ppe_last, g_nom, wacc_t):
+    """The ONLY terminal this model builds. Real growth in, nominal derived, maintenance
+    at current cost on the base's own derived life, growth capital only for REAL growth."""
+    f = 1.0 + g_nom
+    return TERMVAL.build(TERMVAL.TerminalInputs(
+        nopat=nopat_last * f,
+        wacc=wacc_t,
+        inflation=PI_TERM,
+        real_growth=(1.0 + g_nom) / (1.0 + PI_TERM) - 1.0,
+        dna_book=dna_last * f,
+        useful_life_years=V['asset_life_years'],
+        useful_life_source=INP['asset_life_years']['source'],
+        maintenance_basis='book_dna_escalated',
+        working_capital=nwc_last * f,
+        incremental_capital_per_unit_growth=(nwc_last + ppe_last) * f))
+
+
+TERM = _terminal(nopat[-1], dna[-1], nwc_f[-1], ppe[-1], V['g_term'], wacc_term)
 nopat_term = nopat[-1] * (1 + V['g_term'])
-tv = nopat_term * (1 - rr_term) / (wacc_term - V['g_term'])
+tv = TERM.tv
 pv_tv = tv * df_[-1]
 ev = pv_explicit + pv_tv
 tv_share = pv_tv / ev
-say(f"[Terminal value] terminal ROIC {roic_term:.1%}; required reinvestment g/ROIC {rr_term:.1%}; "
-    f"terminal NOPAT {nopat_term:,.0f}; TV {tv:,.0f} discounted at the year-5 factor {df_[-1]:.4f} -> PV "
-    f"{pv_tv:,.0f}. Terminal value is {tv_share:.0%} of enterprise value.")
-assert abs(roic_term * rr_term - V['g_term']) < 1e-9, "terminal g != ROIC x RR"
+say(f"[Terminal value] terminal NOPAT {nopat_term:,.0f}; book depreciation inside it "
+    f"{TERM.dna_addback:,.0f} added back and capital maintenance charged at current cost "
+    f"{TERM.maintenance:,.0f} (that book charge escalated over half the {V['asset_life_years']:.2f}-year "
+    f"life the notes imply); real growth of {100*TERM.record['real_growth']:.2f}% charged "
+    f"{TERM.growth_capex:,.0f} of growth capital at the capital intensity the business already runs; "
+    f"inflation on working capital {TERM.wc_charge:,.0f}. Terminal free cash flow {TERM.fcff:,.0f}, "
+    f"{TERM.fcff/nopat_term:.0%} of terminal profit. TV {tv:,.0f} discounted at the year-5 factor "
+    f"{df_[-1]:.4f} -> PV {pv_tv:,.0f}. Terminal value is {tv_share:.0%} of enterprise value. The "
+    f"retired reinvestment identity gave {tv_retired:,.0f} on the same inputs "
+    f"({tv/tv_retired-1:+.2%}), charging a replacement cycle of {1/V['g_term']:.1f} years against the "
+    f"{V['asset_life_years']:.2f} the company's own notes turn the base over in.")
+assert abs(roic_term * rr_term - V['g_term']) < 1e-9, "the retired identity is still reported correctly"
+assert TERM.fcff > 0 and 0 < TERM.fcff / nopat_term <= 1.0, "terminal payout outside [0, 1]"
 
 # terminal-growth ceiling (blended nominal)
 SAUDI_NOM = 0.05    # long-run Saudi nominal GDP growth ~5%
@@ -749,10 +819,7 @@ def dcf_at_spread(spread):
     _ppe, pp = [], V['ppe_fy25']
     for i in range(5):
         pp += _capex[i] - _dna[i]; _ppe.append(pp)
-    _ic = _nwc[-1] + _ppe[-1]
-    _roic = _nopat[-1] * (1 + V['g_term']) / _ic
-    _rr = V['g_term'] / _roic
-    _tv = _nopat[-1] * (1 + V['g_term']) * (1 - _rr) / (wacc_term - V['g_term'])
+    _tv = _terminal(_nopat[-1], _dna[-1], _nwc[-1], _ppe[-1], V['g_term'], wacc_term).tv
     _ev = sum(_f[i] * df_[i] for i in range(5)) + _tv * df_[-1]
     return to_anchor(((_ev - nd_fy25 + assoc_val + nonop_val - nci_val)) / SH)
 
@@ -788,9 +855,10 @@ def dcf_scenario(spread=None, metal_mult=1.0, vol_mult=1.0, wacc_shift=0.0, g=No
     _ppe, pp = [], V['ppe_fy25']
     for i in range(5):
         pp += _capex[i] - _dna[i]; _ppe.append(pp)
-    _roic = _nopat[-1] * (1 + g) / (_nwc[-1] + _ppe[-1])
-    _rr = min(g / _roic, 0.95)
-    _tv = _nopat[-1] * (1 + g) * (1 - _rr) / max(_wt - g, 0.02)
+    try:
+        _tv = _terminal(_nopat[-1], _dna[-1], _nwc[-1], _ppe[-1], g, max(_wt, g + 0.02)).tv
+    except TERMVAL.TerminalRefused:
+        return None
     _ev = sum(_f[i] * _df[i] for i in range(5)) + _tv * _df[-1]
     return to_anchor(((_ev - nd_fy25 + assoc_val + nonop_val - nci_val)) / SH)
 
@@ -920,8 +988,10 @@ def dcf_at(we_, wt_, g_):
     _df, cc = [], 1.0
     for w in _fwd:
         cc /= (1 + w); _df.append(cc)
-    _rr = min(g_ / roic_term, 0.95)
-    _tv = nopat[-1] * (1 + g_) * (1 - _rr) / (wt_ - g_)
+    try:
+        _tv = _terminal(nopat[-1], dna[-1], nwc_f[-1], ppe[-1], g_, wt_).tv
+    except TERMVAL.TerminalRefused:
+        return None
     _ev = sum(fcff[i] * _df[i] for i in range(5)) + _tv * _df[-1]
     return to_anchor(((_ev - nd_fy25 + assoc_val + nonop_val - nci_val)) / SH)
 
@@ -1021,6 +1091,49 @@ OUT = dict(
               ev_trailing=ev_trailing, klass='operating company — electrical cable & wire manufacturer',
               sector='Capital Goods — Electrical Equipment (wire & cable)'),
     inputs=INP,
+    document_figures=dict(
+        # [R-ENF-01 EXTENDED] A NUMBER STATED IN PROSE MUST BE COMPUTED, NOT TYPED, and the
+        # rule reaches the input register's own justification text. These four were typed.
+        # The first two are COMPUTED here from the filings the register already cites; the
+        # last two are SUPERSEDED vintages a different model produced, which this model
+        # cannot compute and which are therefore committed with their four fields rather
+        # than deleted from the document.
+        materials_share_of_sales_fy25=dict(
+            value=CB['materials']['2025'] / IS['revenue']['2025'],
+            source=AUD + ", FY2025 note 34 cost of revenue by nature (materials) over the "
+                   "FY2025 income statement's own revenue line",
+            date='2026-09-04', ring='Company'),
+        h1_2026_net_profit_yoy=dict(
+            value=(H1['H1_2026_thousands']['net_profit_shareholders']
+                   / H1['H1_2025_thousands']['net_profit_shareholders'] - 1.0),
+            source="Tadawul-filed reviewed interim results, net profit attributable to "
+                   "shareholders for the six months to 30 June 2026 against the same "
+                   "period of 2025, both as filed",
+            date='2026-09-04', ring='Company'),
+        superseded_rf_estimate=dict(
+            value=0.0485,
+            source="SUPERSEDED. The risk-free rate this study carried before the external "
+                   "audit, estimated as the policy rate plus a term premium; replaced by "
+                   "primary index observations. Recorded because the document tells a "
+                   "reader what changed, and a figure a different construction produced "
+                   "cannot be recomputed by this one",
+            date='2026-08-18', ring='House'),
+        superseded_erp_january_vintage=dict(
+            value=0.0501,
+            source="SUPERSEDED. The January vintage of the equity risk premium, replaced "
+                   "by the July-2026 vintage after the external audit. Recorded for the "
+                   "same reason as the line above",
+            date='2026-08-18', ring='House'),
+    ),
+    derived=dict(
+        pi_term=PI_TERM,
+        pi_term_source=('house Saudi macro path [R-MACRO-01], terminal inflation — a study may '
+                        'not carry an inflation number of its own'),
+        g_term=V['g_term'],
+        g_term_note=('DERIVED: (1 + terminal inflation) x (1 + terminal real growth) - 1. The '
+                     'real rate is the driver and the nominal is the formula, so the two cannot '
+                     'disagree and a reader can see which component is being claimed'),
+        maintenance_escalator=(1.0 + PI_TERM) ** (V['asset_life_years'] / 2.0)),
     hist_is=hist_is,
     hist_bs=dict(
         FY23=dict(ppe=V['ppe_fy23'], inv=V['inv_fy23'], recv=V['recv_fy23'], cash=V['cash_fy23'],
@@ -1073,7 +1186,8 @@ OUT = dict(
               we=we, wd=wd, wacc=wacc, ke_term=ke_term, kd_term=V['kd_term'], kd_term_at=kd_term_at,
               wacc_term=wacc_term, glide_frac=glide_frac, kd_path=V['kd_path'], beta_res=beta_res,
               beta_term=V['beta_term'], rf_term=V['rf_term'], erp_term=V['erp_term'], wd_term=V['wd_term']),
-    dcf=dict(pv_explicit=pv_explicit, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share, nd=nd_fy25,
+    dcf=dict(pv_explicit=pv_explicit, tv=tv, tv_retired=tv_retired, nopat_term=nopat_term,
+             pv_tv=pv_tv, ev=ev, tv_share=tv_share, nd=nd_fy25,
              assoc=assoc_val, nonop=nonop_val, nci=nci_val, nci_share=nci_share, eq_attr=eq_attr,
              ps=dcf_ps, ps_dec=dcf_ps_dec, roll=ROLL, anchor_days=V['anchor_days'], roic_term=roic_term,
              rr_term=rr_term, g=V['g_term'], bear=dcf_bear, bull=dcf_bull,
@@ -1081,6 +1195,26 @@ OUT = dict(
              spread_anchor=V['spread_anchor'], spread_bull_v=V['spread_bull'], spread_bear_v=V['spread_bear']),
     terminal_recon=dict(roic_term=roic_term, rr_term=rr_term, ceiling=blend_ceiling,
                         hist_roic25=hist_roic25, nopat_fy25=nopat_fy25),
+    terminal_record=dict(
+        construction='engine/terminal_value.py [R-TERM-01]',
+        retired_construction=dict(
+            form='NOPAT(1+g)(1 - g/ROIC)/(W-g)', tv=tv_retired,
+            implied_cycle_years=1.0 / V['g_term'], one_over_g=1.0 / V['g_term'],
+            reinvestment_rate=rr_term, roic_term=roic_term,
+            why_retired=('the charge substitutes to g x IC, which is a replacement cycle of '
+                         '1/g — 25.0 years here. That is a fact about the terminal inflation '
+                         'rate, not about a cable plant, and this base turns over in 35.76 '
+                         'years on the company\'s own notes')),
+        useful_life_years=V['asset_life_years'],
+        useful_life_source=INP['asset_life_years']['source'],
+        useful_life_is_derived=True,
+        maintenance_basis='book_dna_escalated',
+        inflation_source='house Saudi macro path [R-MACRO-01], terminal inflation',
+        real_growth=TERM.record['real_growth'],
+        nominal_growth_derived=TERM.nominal_growth,
+        **{k: TERM.record[k] for k in ('fcff', 'tv', 'floor', 'maintenance', 'growth_capex',
+                                       'wc_charge', 'dna_addback', 'net_capital_charge',
+                                       'payout_of_nopat', 'tv_vs_floor')}),
     lenses=lenses, central=central, span=[lo, hi], spot=SPOT,
     retired_blend_value=RETIRED_BLEND_VALUE,
     lens_record=dict(**{'class': 'cement and heavy industrial'},

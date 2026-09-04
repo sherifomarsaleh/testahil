@@ -1,0 +1,50 @@
+{
+ "ticker": "RIYADHCABLE",
+ "started_at": "2026-09-04",
+ "start_value": 127.90542457756496,
+ "start_spot": 104.8,
+ "start_gap": 0.22047160856455106,
+ "audit_after": "the terminal, because the growth storage that rides with it moves no number on this name and the two are one rule's worth of evidence rather than two — the place to stop and look is once the terminal is on the sanctioned construction and before anything else is touched",
+ "levers": [
+  {
+   "name": "terminal built through the sanctioned module on a life DERIVED by identity from notes 9, 10 and 13; the retired reinvestment identity reported, never used",
+   "rule": "R-TERM-01",
+   "before": 127.90542457756496,
+   "after": 130.4249,
+   "why": "the terminal carried 81% of enterprise value on rr = g/ROIC, which charges g x IC for ever and implies replacing the whole base every 1/g = 25.0 years. That is a fact about a 4% nominal terminal, not about a cable plant, and this base turns over in 35.76 years on the company's own notes. THE DIRECTION IS THE OPPOSITE OF EVERY EARLIER CORRECTION OF THIS DEFECT IN THIS PROGRAMME: in a pegged market 1/g charges too LITTLE, so the corrected terminal is higher and the answer moves AWAY from the price",
+   "evidence": "blended life 3,053,446,083 of gross cost over 85,395,637 of charge = 35.7565 years, the three charges summing to exactly the D&A this model carries; validated on the one leg with a single disclosed life, software at 14.43 derived against a stated 15; FY2024's own columns give 40.27, so the adopted reading is the shorter and heavier. Terminal 24,350 -> 24,919 (+2.34%)",
+   "move": 0.019697955976114123
+  },
+  {
+   "name": "terminal growth stored as a REAL rate on the house Saudi path, nominal derived",
+   "rule": "R-MACRO-01",
+   "before": 130.4249,
+   "after": 130.4249,
+   "why": "a typed nominal rate is unfalsifiable — nobody can tell whether 4% meant inflation plus two points or inflation minus one. Stored as +1.96% real on a 2.00% house terminal it recomputes to 4.00% to the basis point, so NOTHING MOVES and what a reader gains is sight of the claim: this business is assumed to grow about two per cent a year in real terms for ever",
+   "evidence": "the study's own prior review argued this correction was coupled to the terminal and could not ship, on the ground that zeroing the real growth would leave a 4.2-point convergence gap. The rule requires a stated real growth to be written down, not zeroed; the gap is unchanged at 2.2 points",
+   "move": 0.0
+  }
+ ],
+ "value": 130.4249,
+ "cumulative_move": 0.019697955976114123,
+ "rules": {
+  "R-TERM-01": {
+   "levers": [
+    "terminal built through the sanctioned module on a life DERIVED by identity from notes 9, 10 and 13; the retired reinvestment identity reported, never used"
+   ],
+   "first_before": 127.90542457756496,
+   "last_after": 130.4249,
+   "move": 0.019697955976114123
+  },
+  "R-MACRO-01": {
+   "levers": [
+    "terminal growth stored as a REAL rate on the house Saudi path, nominal derived"
+   ],
+   "first_before": 130.4249,
+   "last_after": 130.4249,
+   "move": 0.0
+  }
+ },
+ "distinct_rules": 2,
+ "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked."
+}

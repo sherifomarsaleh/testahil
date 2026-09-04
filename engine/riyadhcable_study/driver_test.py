@@ -6,12 +6,19 @@ below is perturbed in place, the whole workbook is re-evaluated from scratch, an
 asserts the headline moves in the right DIRECTION. A dead-input sweep then bumps every other
 Assumptions driver and asserts it moves something.
 """
-import os
+import json, os
 import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 wb = openpyxl.load_workbook(os.path.join(HERE, 'RIYADHCABLE_Valuation_Model_18082026_public.xlsx'))
+# [L-067] The builder publishes the row it wrote the headline on; this test used to
+# hard-code DCF!C51 beside that map and read a different figure the moment the terminal
+# gained rows. It reads the map, and refuses rather than guessing an address.
+ANCH = (json.load(open(os.path.join(HERE, 'xlsx_expected.json'))).get('anchors') or {})
+assert 'dcf_ps' in ANCH, ('xlsx_expected.json publishes no row for the DCF value per share; '
+                          'rebuild the workbook rather than guessing a cell')
+DCF_PS = 'C%d' % int(ANCH['dcf_ps'])
 A = {}
 for row in wb['Assumptions'].iter_rows(min_col=1, max_col=1):
     c = row[0]
@@ -27,7 +34,7 @@ def row_of(label):
 
 def read(overrides=None):
     bk = xlcalc.Book(wb, overrides)
-    return dict(dcf=bk.cell_value('DCF', 'C51'),
+    return dict(dcf=bk.cell_value('DCF', DCF_PS),
                 central=bk.cell_value('Fundamental Valuation', 'C9'),
                 relative=bk.cell_value('Fundamental Valuation', 'C6'),
                 normalized=bk.cell_value('Fundamental Valuation', 'C7'),
@@ -42,7 +49,19 @@ base = read()
 print('base:  ' + ' · '.join(f'{k} {v:,.4f}' for k, v in base.items()))
 
 CASES = [
-    ('Terminal growth', 'C', +0.01, 'dcf', +1, 'higher terminal growth must raise the DCF'),
+    ('Terminal real growth', 'C', +0.01, 'dcf', +1,
+     'higher REAL terminal growth must raise the DCF, net of the growth capital it costs'),
+    ('Terminal inflation (house Saudi path)', 'C', +0.01, 'dcf', +1,
+     'higher terminal inflation raises the nominal growth the perpetuity capitalises; it also '
+     'raises the cost of replacing the plant and of carrying working capital, so the sign is a '
+     'real test rather than an arithmetic one'),
+    ('Weighted asset life, years (derived from the notes)', 'C', +5.0, 'dcf', -1,
+     'the life enters as the AGE of the base, not as a divisor: the terminal charges the book '
+     'depreciation escalated over half the life, so holding that charge fixed and lengthening the '
+     'life says the plant is OLDER than its charge implies and costs more to replace. The sign is '
+     'negative and that is the construction working — under the alternative basis, replacement cost '
+     'divided by the life, it would be positive, and the two disagree only because this one holds '
+     'the charge fixed while the charge already encodes a life'),
     ('Beta (own-stock vs TASI)', 'C', +0.20, 'dcf', -1, 'a higher beta raises Ke and must lower the DCF'),
     ('Terminal risk-free rate', 'C', +0.02, 'dcf', -1, 'a higher terminal risk-free rate lowers the DCF'),
     ('Net working capital / revenue', 'C', +0.03, 'dcf', -1, 'more working capital absorbs cash'),
@@ -64,7 +83,14 @@ CASES = [
     ('Forecast dividend payout ratio', 'C', +0.20, 'nd30', +1, 'paying out more leaves more net debt at the end'),
     ('Days to the anchor', 'C', +100.0, 'dcf', +1, 'a later anchor accretes more value at Ke'),
     ('FY2025 dividend per share paid in window', 'C', +1.0, 'dcf', -1, 'a larger dividend paid before the anchor left the share'),
-    ('Depreciation and amortisation / revenue', 'C', +0.005, 'dcf', +1, 'more D&A is a larger non-cash add-back to FCFF'),
+    ('Depreciation and amortisation / revenue', 'C', +0.005, 'dcf', -1,
+     'THIS SIGN REVERSED WHEN THE TERMINAL WAS REBUILT AND THE REVERSAL IS THE POINT. In the '
+     'explicit window more depreciation is still a larger non-cash add-back, worth the tax shield on '
+     'it. In the terminal it is no longer only that: book depreciation is the BASE of the '
+     'replacement charge, so a riyal more of it costs 1.42 riyals of maintenance at current cost. '
+     'The terminal is four fifths of enterprise value, so the net is negative — a business that '
+     'depreciates its plant harder is one whose plant costs more to keep intact. The retired '
+     'construction could not see this at all, because its terminal ignored depreciation entirely'),
     ('Cable volume index growth', 'C', +0.02, 'dcf', +1, 'more volume raises revenue and the DCF'),
     ('Capital expenditure / revenue', 'C', +0.01, 'dcf', -1, 'more capex reduces free cash flow'),
 ]

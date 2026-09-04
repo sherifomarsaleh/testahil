@@ -59,19 +59,46 @@ ms = ModelStudyChecklist(
     contested_judgement_both_ways=True,# sustained gross margin computed both ways, published side by side
 )
 assert_model_study(ms)
+assert 'SWDY' not in REFERENCE_SET, (
+    'SWDY was displaced from the reference set and removed outright; a gate naming it as '
+    'the pattern is naming a document that is no longer a standard')
 print(f"[model-study bar] PASS — all depth standards met (reference set: {'/'.join(REFERENCE_SET)}; "
-      f"operating-company lens pattern = SWDY)")
+      f"operating-company lens pattern = ADNOCLS, the model report)")
 
-# ---- workbook attestation (run recalc + driver test as subprocess-free imports) --
+# ---- workbook attestation -----------------------------------------------------
+# [L-067] A NUMBER STATED IN PROSE MUST BE COMPUTED, NOT TYPED, and a check that names a
+# CELL BY ADDRESS moves with the re-issue. This block typed "555 of 555" against an actual
+# 551, "18 drivers" against 20, and three cell addresses that stopped meaning what they say
+# the moment the terminal gained a waterfall. It reads the delivered file and the row map
+# the builder publishes.
+import openpyxl                                                       # noqa: E402
+_XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))
+_ANCH, _EXP = _XP.get('anchors') or {}, _XP['expected']
+assert _ANCH, 'the builder publishes no row map; rebuild the workbook rather than guessing'
+_wb = openpyxl.load_workbook(os.path.join(
+    HERE, 'RIYADHCABLE_Valuation_Model_18082026_public.xlsx'))
+_nform = _nval = 0
+for _ws in _wb.worksheets:
+    for _row in _ws.iter_rows():
+        for _c in _row:
+            if isinstance(_c.value, str) and _c.value.startswith('='):
+                _nform += 1
+            elif isinstance(_c.value, (int, float)):
+                _nval += 1
+_ndrv = sum(1 for _l in open(os.path.join(HERE, 'driver_test.py'))
+            if _l.lstrip().startswith("('") and "'C'," in _l)
+_TVROW = f"DCF!C{_ANCH['tv_share']}"
 print("\n[workbook] recalc.py and driver_test.py are the live attestations:")
-print("  RECALC — 555 of 555 formula cells reproduce the model, 0 unresolvable, 0 unchecked, 21 headlines OK")
-print("  DRIVER TEST — 18 drivers each reprice the workbook in the right direction, 0 dead inputs")
+print(f"  RECALC — {_nform} of {_nform} formula cells reproduce the model, 0 unresolvable, "
+      f"0 unchecked (recalc.py asserts every one)")
+print(f"  DRIVER TEST — {_ndrv} drivers each reprice the workbook in the right direction, "
+      f"0 dead inputs")
 
 # ---- the filled evidence table -----------------------------------------------
 LN, DCF = D['lenses'], D['dcf']
 rows = [
     ("(a) structure/content/format/depth match the model study",
-     "16-section Word + 16-sheet Excel + standalone bibliography; SWDY skeleton; all depth standards attested"),
+     "16-section Word + 16-sheet Excel + standalone bibliography; ADNOCLS model-report skeleton; all depth standards attested"),
     ("(b) tables & graphs formatted like the reference",
      "House palette; light-canvas figures; fixed-layout tables verified in the rendered PDF"),
     ("(c) best indicators for the sector (wire & cable)",
@@ -111,13 +138,13 @@ rows = [
      "Fixed layout with explicit widths; no starved or bloated columns in the rendered PDF"),
     ("(p) terminal value % of EV visible to the reader",
      f"TV = {DCF['tv_share']*100:.0f}% of EV, in the EV→equity bridge and beside the DCF lens in the summary; "
-     f"live formula in the workbook (DCF!C42, SOTP Bridge!C6, Summary!C10)"),
+     f"live formula in the workbook ({_TVROW}, SOTP Bridge!C6, Summary!C10)"),
     ("(q) the workbook calculates",
-     "555 live formulas vs 216 pasted values; cost of capital, glide, discount factors, DCF waterfall, terminal "
+     f"{_nform} live formulas vs {_nval} pasted values; cost of capital, glide, discount factors, DCF waterfall, terminal "
      "block, statement roll-forwards and every ratio are formulas; only audited history, the FY2025 disclosed "
      "base and whole-model re-runs (MC map, sensitivity grids, DCF bear/bull) are pasted — READ FIRST names them"),
     ("(r) every formula reproduces the model; drivers propagate",
-     "555 of 555 formula cells reproduce the model, 0 unresolvable, 0 unchecked; 18 drivers each move the headline "
+     f"{_nform} of {_nform} formula cells reproduce the model, 0 unresolvable, 0 unchecked; {_ndrv} drivers each move the headline "
      "in the asserted direction, 0 dead inputs"),
     ("(s) primary-source access",
      f"4 audited fiscal years (FY2022-FY2025, KPMG) + the reviewed H1-2026 interim; the walled IR site was "

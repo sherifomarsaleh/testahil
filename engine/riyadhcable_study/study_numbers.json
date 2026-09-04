@@ -674,11 +674,17 @@
    "date": "2026-08-18",
    "ring": "House"
   },
-  "g_term": {
-   "value": 0.04,
-   "source": "Terminal growth 4.0% in nominal SAR: ~2% long-run Saudi real growth plus ~2% inflation. Struck below the terminal risk-free-plus-spread and below a blended nominal GDP ceiling; sensitised 2-6%. Saudi electrification and construction (grid capex, giga-projects, housing) support a durable but not perpetual mid-single-digit nominal pace",
-   "date": "2026-08-18",
+  "g_term_real": {
+   "value": 0.0196078431372549,
+   "source": "Terminal REAL growth 1.96%: ~2% long-run Saudi real growth. STORED AS A REAL RATE and the nominal is DERIVED on the house Saudi inflation path, so the two cannot disagree and a reader can see which component is being claimed. On the house terminal inflation of 2.00% it recomputes to the 4.00% nominal this study has always carried, to the basis point. Struck below the terminal risk-free-plus-spread and below a blended nominal GDP ceiling; sensitised 2-6% nominal. Saudi electrification and construction (grid capex, giga-projects, housing) support a durable but not perpetual mid-single-digit nominal pace",
+   "date": "2026-09-04",
    "ring": "House"
+  },
+  "asset_life_years": {
+   "value": 35.7565,
+   "source": "Weighted useful life of the depreciable asset base, 35.76 years, DERIVED BY IDENTITY from the company's own FY2025 notes rather than chosen: gross cost of the base that is actually depreciated, divided by that year's own charge. Note 9 property, plant and equipment closes at SAR 3,267,410,445 of cost, of which land (222,330,595) and assets under construction (141,491,829) are not depreciated, leaving 2,903,588,021 against a charge of 76,616,111 = 37.90 years; note 10 software 80,879,539 against 5,603,548 = 14.43 years; note 13 right-of-use 68,978,523 against 3,175,978 = 21.72 years. The three charges sum to 85,395,637, which IS the depreciation and amortisation this model carries for FY2025, so the base and the charge are the same object. The policy note discloses RANGES (buildings 20-25, plant 20-30, spares 10, vehicles 4, fixtures 4-10, tools 5, laboratory 10, computers 10) and no weighting, so no single figure can be read off it; the identity supplies the weighting and the figure is labelled derived. Cross-checked two ways: on FY2024's own columns the same identity gives 40.27 years, and the software leg reproduces the DISCLOSED 15-year life at 14.43, 3.8% apart, which is the strongest evidence a derivation can carry. The FY2025 reading is the SHORTER of the two years and therefore charges the heavier maintenance",
+   "date": "2026-09-04",
+   "ring": "Company"
   },
   "anchor_days": {
    "value": 230,
@@ -730,6 +736,39 @@
    "date": "2026-05-20",
    "ring": "Company/House"
   }
+ },
+ "document_figures": {
+  "materials_share_of_sales_fy25": {
+   "value": 0.7951321286301593,
+   "source": "Audited consolidated financial statements, Riyadh Cables Group Company (KPMG, unmodified opinion), FY2025 note 34 cost of revenue by nature (materials) over the FY2025 income statement's own revenue line",
+   "date": "2026-09-04",
+   "ring": "Company"
+  },
+  "h1_2026_net_profit_yoy": {
+   "value": 0.09958372940356952,
+   "source": "Tadawul-filed reviewed interim results, net profit attributable to shareholders for the six months to 30 June 2026 against the same period of 2025, both as filed",
+   "date": "2026-09-04",
+   "ring": "Company"
+  },
+  "superseded_rf_estimate": {
+   "value": 0.0485,
+   "source": "SUPERSEDED. The risk-free rate this study carried before the external audit, estimated as the policy rate plus a term premium; replaced by primary index observations. Recorded because the document tells a reader what changed, and a figure a different construction produced cannot be recomputed by this one",
+   "date": "2026-08-18",
+   "ring": "House"
+  },
+  "superseded_erp_january_vintage": {
+   "value": 0.0501,
+   "source": "SUPERSEDED. The January vintage of the equity risk premium, replaced by the July-2026 vintage after the external audit. Recorded for the same reason as the line above",
+   "date": "2026-08-18",
+   "ring": "House"
+  }
+ },
+ "derived": {
+  "pi_term": 0.02,
+  "pi_term_source": "house Saudi macro path [R-MACRO-01], terminal inflation \u2014 a study may not carry an inflation number of its own",
+  "g_term": 0.040000000000000036,
+  "g_term_note": "DERIVED: (1 + terminal inflation) x (1 + terminal real growth) - 1. The real rate is the driver and the nominal is the formula, so the two cannot disagree and a reader can see which component is being claimed",
+  "maintenance_escalator": 1.4248069366052623
  },
  "hist_is": {
   "FY23": {
@@ -1360,45 +1399,76 @@
  },
  "dcf": {
   "pv_explicit": 3548.2824282354222,
-  "tv": 24349.922891323502,
-  "pv_tv": 15135.530499809282,
-  "ev": 18683.812928044703,
-  "tv_share": 0.8100878850638997,
+  "tv": 24919.44321914637,
+  "tv_retired": 24349.92289132351,
+  "nopat_term": 1586.8726530085196,
+  "pv_tv": 15489.535411056697,
+  "ev": 19037.817839292118,
+  "tv_share": 0.8136192678074623,
   "nd": 385.17320800000005,
   "assoc": 31.851877,
   "nonop": 20.40064,
   "nci": 62.737156,
   "nci_share": 0.004060669885351275,
-  "eq_attr": 18288.155081044704,
-  "ps": 127.90542457756496,
-  "ps_dec": 122.15108508387266,
+  "eq_attr": 18642.15999229212,
+  "ps": 130.4248509123573,
+  "ps_dec": 124.51557094055217,
   "roll": 1.0655281898494497,
   "anchor_days": 230,
   "roic_term": 0.25208780060730496,
-  "rr_term": 0.15867487400673877,
-  "g": 0.04,
-  "bear": 80.84906676286525,
-  "bull": 197.7603327814774,
-  "spread_base": 127.90542457756496,
-  "spread_bull": 139.60168534077025,
-  "spread_bear": 116.10413509016158,
+  "rr_term": 0.1586748740067389,
+  "g": 0.040000000000000036,
+  "bear": 81.9880979359901,
+  "bull": 202.37404029671117,
+  "spread_base": 130.4248509123573,
+  "spread_bull": 142.45723566881705,
+  "spread_bear": 118.28441984972041,
   "spread_anchor": 0.1526,
   "spread_bull_v": 0.16,
   "spread_bear_v": 0.145
  },
  "terminal_recon": {
   "roic_term": 0.25208780060730496,
-  "rr_term": 0.15867487400673877,
+  "rr_term": 0.1586748740067389,
   "ceiling": 0.04865936588627853,
   "hist_roic25": 0.3120851267356093,
   "nopat_fy25": 1381.0147742343636
  },
+ "terminal_record": {
+  "construction": "engine/terminal_value.py [R-TERM-01]",
+  "retired_construction": {
+   "form": "NOPAT(1+g)(1 - g/ROIC)/(W-g)",
+   "tv": 24349.92289132351,
+   "implied_cycle_years": 24.99999999999998,
+   "one_over_g": 24.99999999999998,
+   "reinvestment_rate": 0.1586748740067389,
+   "roic_term": 0.25208780060730496,
+   "why_retired": "the charge substitutes to g x IC, which is a replacement cycle of 1/g \u2014 25.0 years here. That is a fact about the terminal inflation rate, not about a cable plant, and this base turns over in 35.76 years on the company's own notes"
+  },
+  "useful_life_years": 35.7565,
+  "useful_life_source": "Weighted useful life of the depreciable asset base, 35.76 years, DERIVED BY IDENTITY from the company's own FY2025 notes rather than chosen: gross cost of the base that is actually depreciated, divided by that year's own charge. Note 9 property, plant and equipment closes at SAR 3,267,410,445 of cost, of which land (222,330,595) and assets under construction (141,491,829) are not depreciated, leaving 2,903,588,021 against a charge of 76,616,111 = 37.90 years; note 10 software 80,879,539 against 5,603,548 = 14.43 years; note 13 right-of-use 68,978,523 against 3,175,978 = 21.72 years. The three charges sum to 85,395,637, which IS the depreciation and amortisation this model carries for FY2025, so the base and the charge are the same object. The policy note discloses RANGES (buildings 20-25, plant 20-30, spares 10, vehicles 4, fixtures 4-10, tools 5, laboratory 10, computers 10) and no weighting, so no single figure can be read off it; the identity supplies the weighting and the figure is labelled derived. Cross-checked two ways: on FY2024's own columns the same identity gives 40.27 years, and the software leg reproduces the DISCLOSED 15-year life at 14.43, 3.8% apart, which is the strongest evidence a derivation can carry. The FY2025 reading is the SHORTER of the two years and therefore charges the heavier maintenance",
+  "useful_life_is_derived": true,
+  "maintenance_basis": "book_dna_escalated",
+  "inflation_source": "house Saudi macro path [R-MACRO-01], terminal inflation",
+  "real_growth": 0.019607843137254832,
+  "nominal_growth_derived": 0.040000000000000036,
+  "fcff": 1313.751848463241,
+  "tv": 24919.44321914637,
+  "floor": 16734.088058827303,
+  "maintenance": 190.32892078325992,
+  "growth_capex": 128.36700539808817,
+  "wc_charge": 88.00713143516876,
+  "dna_addback": 133.58225307123828,
+  "net_capital_charge": 273.1208045452786,
+  "payout_of_nopat": 0.8278873833842467,
+  "tv_vs_floor": 0.4891425891595722
+ },
  "lenses": {
   "dcf": {
    "name": "Discounted cash flow (the answer)",
-   "bear": 80.84906676286525,
-   "base": 127.90542457756496,
-   "bull": 197.7603327814774,
+   "bear": 81.9880979359901,
+   "base": 130.4248509123573,
+   "bull": 202.37404029671117,
    "w": null
   },
   "relative": {
@@ -1418,49 +1488,49 @@
   },
   "book": {
    "name": "Book value and sustainable return",
-   "bear": 64.28485494530243,
-   "base": 94.68361880083455,
-   "bull": 106.80032115093888,
+   "bear": 64.28485494530246,
+   "base": 94.68361880083461,
+   "bull": 106.80032115093893,
    "w": null,
    "note": "a disclosed FLOOR, published as such and never weighted"
   },
   "central": {
    "name": "Cash-flow lens (the central)",
-   "bear": 80.84906676286525,
-   "base": 127.90542457756496,
-   "bull": 197.7603327814774,
+   "bear": 81.9880979359901,
+   "base": 130.4248509123573,
+   "bull": 202.37404029671117,
    "w": null
   },
   "retired_blend": {
    "name": "RETIRED 45/20/20/15 blend, published unused",
    "bear": null,
-   "base": 109.34643458077326,
+   "base": 110.48017643142981,
    "bull": null,
    "w": 0.0
   }
  },
- "central": 127.90542457756496,
+ "central": 130.4248509123573,
  "span": [
-  80.84906676286525,
-  197.7603327814774
+  81.9880979359901,
+  202.37404029671117
  ],
  "spot": 104.8,
- "retired_blend_value": 109.34643458077326,
+ "retired_blend_value": 110.48017643142981,
  "lens_record": {
   "class": "cement and heavy industrial",
   "primary": {
    "kind": "dcf",
    "two_sided": false,
-   "value": 127.90542457756496,
+   "value": 130.4248509123573,
    "range": {
-    "low": 80.84906676286525,
-    "high": 197.7603327814774
+    "low": 81.9880979359901,
+    "high": 202.37404029671117
    },
    "range_note": "the cash-flow lens under its own bear and bull scenarios on one clock, not the widest spread across four methods",
    "range_basis": {
     "driver": "the copper pass-through, the conversion spread per tonne and the volume path the cable plant is built on",
-    "low": 80.84906676286525,
-    "high": 197.7603327814774,
+    "low": 81.9880979359901,
+    "high": 202.37404029671117,
     "units": "SAR per share, the present-value read under each scenario",
     "macro_held": true,
     "evidence": "both scenarios are re-runs of the same unit-economics build with the cost of capital and terminal growth held still"
@@ -1483,7 +1553,7 @@
    },
    {
     "kind": "book_value",
-    "value": 94.68361880083455,
+    "value": 94.68361880083461,
     "present_value": false,
     "floor": true,
     "note": "a disclosed FLOOR, published as such and never weighted"
@@ -1506,8 +1576,8 @@
     "normalized": 0.2,
     "book": 0.15
    },
-   "blend_value": 109.34643458077326,
-   "why": "the weights were typed and had never cleared an out-of-sample test. Here the blend did not merely shrink this study's disagreement with the market, it very nearly ERASED it: +4.3% against the price where the cash-flow lens reads +22.0%, so a reader saw agreement where the study holds a fifth above. Normalised earnings power, which this class does not permit, read 101.58 and carried a fifth of the weight."
+   "blend_value": 110.48017643142981,
+   "why": "the weights were typed and had never cleared an out-of-sample test. Here the blend did not merely shrink this study's disagreement with the market, it very nearly ERASED it: +5.4% against the price where the cash-flow lens reads +24.5%, so a reader saw agreement where the study holds a fifth above. Normalised earnings power, which this class does not permit, read 101.58 and carried a fifth of the weight."
   }
  },
  "experts": {
@@ -1527,7 +1597,7 @@
   },
   "e2": {
    "method_short": "owner cash earnings",
-   "base": 134.76684716087976,
+   "base": 134.76684716087988,
    "rng": [
     91.9649003659359,
     165.3924348207798
@@ -1539,15 +1609,15 @@
   },
   "e3": {
    "method_short": "cash returns vs cost of capital",
-   "base": 125.97890088776248,
+   "base": 125.9789008877625,
    "rng": [
-    92.21621697363723,
-    144.8088587254048
+    92.21621697363726,
+    144.80885872540486
    ],
    "ic0": 4425.122045,
    "pv_ep": 3035.984296327739,
-   "pv_ep_term": 10952.010500704677,
-   "ev": 18413.116842032417,
+   "pv_ep_term": 10952.010500704682,
+   "ev": 18413.11684203242,
    "ep": [
     673.256801473521,
     741.4524715470135,
@@ -1564,7 +1634,7 @@
    ]
   }
  },
- "panel_centre": 125.97890088776248,
+ "panel_centre": 125.9789008877625,
  "rel": {
   "ebitda_mid": 1470.5320189217548,
   "ev_rel_fwd": 13970.054179756671,
@@ -1587,7 +1657,7 @@
  },
  "book": {
   "bvps": 21.681746856579892,
-  "pb_just": 4.195804195804196,
+  "pb_just": 4.195804195804198,
   "roe_sust": 0.28,
   "roe_trailing": 0.3680769183960799,
   "ke_term": 0.09720000000000001
@@ -1616,39 +1686,39 @@
   ],
   "grid_wacc_g": [
    [
-    141.70560577720443,
-    163.71586588598697,
-    198.2042805447696,
-    260.2479130974581,
+    142.5329983174736,
+    165.8900261351979,
+    202.3566722281835,
+    267.7660755948026,
     null
    ],
    [
-    120.46238419522955,
-    134.72102929009714,
-    155.21883601257383,
-    187.32995212358327,
-    245.0864687133326
+    121.14622468853167,
+    136.45819941226944,
+    158.3715319493057,
+    192.5675384208111,
+    253.88033743889247
    ],
    [
-    104.89672966104025,
-    114.66780519714483,
-    127.90542457756496,
-    146.92944537873228,
-    176.7240270270523
+    105.47579192542305,
+    116.1038048717173,
+    130.4248509123573,
+    150.90670319155876,
+    182.85131425327577
    ],
    [
-    93.00059958544631,
-    99.97128853350969,
-    109.01171905034239,
-    121.25436720120366,
-    138.84219992184018
+    93.49993194791615,
+    101.18745360367792,
+    111.09468124935387,
+    124.43322466387758,
+    143.49579428496432
    ],
    [
-    83.61297829887353,
-    88.73699993247544,
-    95.16215451155131,
-    103.49055126023718,
-    114.76356473272784
+    84.04969368984855,
+    89.78587482784923,
+    96.92651079279665,
+    106.11910883466312,
+    118.48356140277195
    ]
   ],
   "beta_grid": [
@@ -1659,11 +1729,11 @@
    1.5
   ],
   "grid_beta": [
-   134.1012811749074,
-   131.16598646251867,
-   127.90542457756496,
-   125.53813036092792,
-   122.8400164516531
+   136.74260423950258,
+   133.74954882516244,
+   130.4248509123573,
+   128.01100866391525,
+   125.259860044495
   ],
   "metal_grid": [
    0.85,
@@ -1673,11 +1743,11 @@
    1.15
   ],
   "grid_metal": [
-   139.32363472990582,
-   133.60318074441707,
-   127.90542457756496,
-   122.22783571579876,
-   116.56832453276643
+   142.6983003741912,
+   136.55058077959808,
+   130.4248509123573,
+   124.31865911093695,
+   118.22998087222726
   ],
   "spread_grid": [
    0.14,
@@ -1687,11 +1757,11 @@
    0.16
   ],
   "grid_spread": [
-   108.45406462530595,
-   116.10413509016158,
-   127.90542457756496,
-   131.67632343511934,
-   139.60168534077025
+   110.41450455479367,
+   118.28441984972041,
+   130.4248509123573,
+   134.30411677017474,
+   142.45723566881705
   ],
   "vol_grid": [
    0.9,
@@ -1701,11 +1771,11 @@
    1.1
   ],
   "grid_vol": [
-   117.0795645368853,
-   122.49709358342245,
-   127.90542457756496,
-   133.30523851809744,
-   138.6971354501409
+   119.60537199049853,
+   125.01989400843732,
+   130.4248509123573,
+   135.82095108037237,
+   141.20881866863715
   ],
   "nwc_grid": [
    0.24,
@@ -1715,11 +1785,11 @@
    0.32
   ],
   "grid_nwc": [
-   133.55809398317376,
-   130.73175928036935,
-   127.90542457756496,
-   125.07908987476054,
-   122.25275517195618
+   136.21601558507965,
+   133.3204332487185,
+   130.4248509123573,
+   127.52926857599613,
+   124.63368623963497
   ]
  },
  "step0": {
@@ -2165,18 +2235,18 @@
   "[FY2026 cross-check against the reviewed print] H1-2026 revenue 5,698 at a 15.27% gross margin. Doubling H1 with a light seasonal uplift implies a full year near 11,623; the build produces 11,499 (-1.1%). The model's FY2026E gross margin 15.22% sits right on the reviewed H1 actual.",
   "[FCFF waterfall] EBIT 1,256 -> 1,365 -> 1,476 -> 1,589 -> 1,686; NOPAT 1,137 -> 1,236 -> 1,336 -> 1,438 -> 1,526; less capex 218, 223, 227, 228, 242 and working-capital investment +286, +250, +266, +251, +245; FCFF 730 -> 868 -> 957 -> 1,080 -> 1,167; PV of explicit FCFF 3,548.",
   "[Return on capital] FY2025 NOPAT 1,381 / invested capital 4,425 = 31.2%; forecast ROIC 23.5% -> 24.2%; terminal ROIC (next-year NOPAT over closing capital) 25.2%. A high-return, capital-light-relative-to-earnings model.",
-  "[Terminal value] terminal ROIC 25.2%; required reinvestment g/ROIC 15.9%; terminal NOPAT 1,587; TV 24,350 discounted at the year-5 factor 0.6216 -> PV 15,136. Terminal value is 81% of enterprise value.",
+  "[Terminal value] terminal NOPAT 1,587; book depreciation inside it 134 added back and capital maintenance charged at current cost 190 (that book charge escalated over half the 35.76-year life the notes imply); real growth of 1.96% charged 128 of growth capital at the capital intensity the business already runs; inflation on working capital 88. Terminal free cash flow 1,314, 83% of terminal profit. TV 24,919 discounted at the year-5 factor 0.6216 -> PV 15,490. Terminal value is 81% of enterprise value. The retired reinvestment identity gave 24,350 on the same inputs (+2.34%), charging a replacement cycle of 25.0 years against the 35.76 the company's own notes turn the base over in.",
   "[Terminal ceiling] 73% of revenue is domestic (Saudi nominal ~5%), 27% export (~4.5% world nominal); blended ceiling 4.9%. Adopted g 4.0% sits below it.",
   "[Forecast profit & distribution] attributable profit 1,107, 1,210, 1,317, 1,427, 1,526; payout 55% (the FY2025 actual was 52.6%: SAR 3.8/share on EPS 7.22); net debt path 289, 108, -111, -402, -736 \u2014 the company de-gears further as free cash flow accrues.",
-  "[Bridge] EV 18,684 - net debt 385 + associates 32 + non-operating assets 20 = 18,351; less NCI at carrying value 63 = equity attributable 18,288 = SAR 122.15/share at 31-Dec-2025.",
-  "[Anchor roll] SAR 122.15/share at 31-Dec-2025 rolled 230/365 of a year at the 10.6% cost of equity (x1.0655) less the SAR 2.25 dividend paid in the window = SAR 127.91/share at the 18-Aug-2026 anchor, against a spot of 104.80 (+22%).",
-  "[CONTESTED JUDGEMENT \u2014 sustained gross margin, computed BOTH ways] the central question is the gross margin the business holds once the FY2024-25 metal tailwind has passed. Anchored on the H1-2026 reviewed actual of 15.26%: SAR 127.91/share. On the FY2025-peak framing (16.0%): SAR 139.60. On the further-compression framing (14.5%): SAR 116.10. Published side by side, never averaged into one number.",
-  "[DCF scenarios] bear 80.85 / base 127.91 / bull 197.76 SAR per share.",
+  "[Bridge] EV 19,038 - net debt 385 + associates 32 + non-operating assets 20 = 18,705; less NCI at carrying value 63 = equity attributable 18,642 = SAR 124.52/share at 31-Dec-2025.",
+  "[Anchor roll] SAR 124.52/share at 31-Dec-2025 rolled 230/365 of a year at the 10.6% cost of equity (x1.0655) less the SAR 2.25 dividend paid in the window = SAR 130.42/share at the 18-Aug-2026 anchor, against a spot of 104.80 (+24%).",
+  "[CONTESTED JUDGEMENT \u2014 sustained gross margin, computed BOTH ways] the central question is the gross margin the business holds once the FY2024-25 metal tailwind has passed. Anchored on the H1-2026 reviewed actual of 15.26%: SAR 130.42/share. On the FY2025-peak framing (16.0%): SAR 142.46. On the further-compression framing (14.5%): SAR 118.28. Published side by side, never averaged into one number.",
+  "[DCF scenarios] bear 81.99 / base 130.42 / bull 202.37 SAR per share.",
   "[Relative lens] 9.5x on FY2027E EBITDA 1,471 discounted at the year-2 factor plus interim free cash flow -> SAR 86.36/share. Trailing EV/EBITDA 11.9x, trailing P/E 14.5x.",
   "[Normalised lens] mid-cycle EBITDA margin 11.91% (FY2028E) on FY2026E revenue 11,499 -> normalised EPS 7.50 x 13.0 = SAR 101.58/share.",
   "[Book lens] book value per share SAR 21.68; justified P/B 4.20x = (sustainable ROE 28% - g 4%)/(terminal Ke 9.72% - g) -> SAR 94.68. Trailing ROE 36.8%.",
-  "[Synthesis] THE CENTRAL IS THE CLASS PRIMARY: the cash-flow lens at SAR 127.91, with its own bear-to-bull range of 80.85 - 197.76 on one clock. Cross-checks are published beside it at their own values (relative 86.36, book floor 94.68); the span across all of them, 64.28 - 197.76, is a spread between METHODS and not a range around the answer. Spot 104.80 (+22% to the central).",
-  "[Retired blend, published unused] the 45/20/20/15 weights give SAR 109.35, +4.3% against the price where the cash-flow lens reads +22.0%. The blend did not merely shrink this study's disagreement with the market \u2014 it very nearly erased it, showing a reader agreement where the study's own method holds a fifth above.",
+  "[Synthesis] THE CENTRAL IS THE CLASS PRIMARY: the cash-flow lens at SAR 130.42, with its own bear-to-bull range of 81.99 - 202.37 on one clock. Cross-checks are published beside it at their own values (relative 86.36, book floor 94.68); the span across all of them, 64.28 - 202.37, is a spread between METHODS and not a range around the answer. Spot 104.80 (+24% to the central).",
+  "[Retired blend, published unused] the 45/20/20/15 weights give SAR 110.48, +5.4% against the price where the cash-flow lens reads +24.5%. The blend did not merely shrink this study's disagreement with the market \u2014 it very nearly erased it, showing a reader agreement where the study's own method holds a fifth above.",
   "[Expert panel] Expert 1 119.60 [91.48-147.71]; Expert 2 134.77 [91.96-165.39]; Expert 3 125.98 [92.22-144.81]; panel median 125.98 (+20% vs spot)."
  ]
 }

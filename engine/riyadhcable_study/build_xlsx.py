@@ -25,6 +25,7 @@ M, HI, HB, F = D['meta'], D['hist_is'], D['hist_bs'], D['fcst']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sens']
 REL, NRM, BKL, EXPP = D['rel'], D['norm'], D['book'], D['experts']
 SEG, S0, STK, BT, TR = D['seg_fy25'], D['step0'], D['strike'], D['backtest'], D['terminal_recon']
+DER, TRM = D['derived'], D['terminal_record']
 UE = D['unit_econ']; SF = D['seg_fcst']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 SPOT, SH, TAX = M['spot'], M['shares_mn'], IN['tax_eff']
@@ -168,7 +169,14 @@ a_scalar('Terminal equity risk premium', IN['erp_term'])
 a_scalar('Terminal beta', IN['beta_term'], '0.000')
 a_scalar('Terminal cost of debt', IN['kd_term'])
 a_scalar('Terminal net-debt weight', IN['wd_term'])
-a_scalar('Terminal growth', IN['g_term'])
+a_scalar('Terminal inflation (house Saudi path)', DER['pi_term'])
+a_scalar('Terminal real growth', IN['g_term_real'])
+_r = _row[0]
+put(wsa, f'A{_r}', 'Terminal growth, nominal (derived)', fmt=None)
+putf(wsa, f'C{_r}', f"=(1+{AC('Terminal inflation (house Saudi path)')})"
+                    f"*(1+{AC('Terminal real growth')})-1", DER['g_term'], PCT2)
+AR['Terminal growth'] = _r; _row[0] += 1
+a_scalar('Weighted asset life, years (derived from the notes)', IN['asset_life_years'], NUM1)
 a_section('Forecast drivers — Cables & wires leg (metal converter)')
 a_path('Cable volume index growth', IN['vol_growth'])
 a_path('Metal content price growth', IN['metal_growth'])
@@ -422,13 +430,36 @@ rr += 1
 row_pvexpl = rr; putf(wsd, f'C{rr}', f'=SUM(C{row_pv}:G{row_pv})', DCF['pv_explicit'], NUM0)
 put(wsd, f'A{rr}', 'PV of explicit FCFF (5 years)', fmt=None); rr += 1
 row_roicterm = rr; putf(wsd, f'C{rr}', f'=G{row_nopat}*(1+{AC("Terminal growth")})/G{row_ic}', DCF['roic_term'], PCT2)
-put(wsd, f'A{rr}', 'Terminal ROIC', fmt=None); ANCH['roic_term'] = rr; rr += 1
-row_rrterm = rr; putf(wsd, f'C{rr}', f'={AC("Terminal growth")}/C{row_roicterm}', DCF['rr_term'], PCT2)
-put(wsd, f'A{rr}', 'Terminal reinvestment rate = g / ROIC', fmt=None); rr += 1
-row_nopatterm = rr; putf(wsd, f'C{rr}', f'=G{row_nopat}*(1+{AC("Terminal growth")})', DCF['tv'] * (W['wacc_term'] - IN['g_term']) / (1 - DCF['rr_term']), NUM0)
+put(wsd, f'A{rr}', 'Terminal ROIC (reported, not used to build the terminal)', fmt=None)
+ANCH['roic_term'] = rr; rr += 1
+# --- the terminal, as a waterfall a reader can add up ---------------------------
+row_nopatterm = rr
+putf(wsd, f'C{rr}', f'=G{row_nopat}*(1+{AC("Terminal growth")})', DCF['nopat_term'], NUM0)
 put(wsd, f'A{rr}', 'Terminal NOPAT (next year)', fmt=None); rr += 1
-row_tv = rr; putf(wsd, f'C{rr}', f'=C{row_nopatterm}*(1-C{row_rrterm})/(C{row_waccterm}-{AC("Terminal growth")})', DCF['tv'], NUM0)
-put(wsd, f'A{rr}', 'Terminal value', fmt=None); rr += 1
+row_dnaterm = rr
+putf(wsd, f'C{rr}', f'=G{row_dna}*(1+{AC("Terminal growth")})', TRM['dna_addback'], NUM0)
+put(wsd, f'A{rr}', 'Plus book depreciation and amortisation inside that profit', fmt=None); rr += 1
+row_maint = rr
+putf(wsd, f'C{rr}', f'=-C{row_dnaterm}*(1+{AC("Terminal inflation (house Saudi path)")})'
+                    f'^({AC("Weighted asset life, years (derived from the notes)")}/2)',
+     -TRM['maintenance'], NUM0)
+put(wsd, f'A{rr}', 'Less capital maintenance at current cost', fmt=None); rr += 1
+row_gcapex = rr
+putf(wsd, f'C{rr}', f'=-{AC("Terminal real growth")}*(G{row_ic})*(1+{AC("Terminal growth")})',
+     -TRM['growth_capex'], NUM0)
+put(wsd, f'A{rr}', 'Less growth capital, for REAL growth only', fmt=None); rr += 1
+row_wcinf = rr
+putf(wsd, f'C{rr}', f'=-{AC("Terminal inflation (house Saudi path)")}*G{row_nwc}'
+                    f'*(1+{AC("Terminal growth")})', -TRM['wc_charge'], NUM0)
+put(wsd, f'A{rr}', 'Less inflation on working capital', fmt=None); rr += 1
+row_fcffterm = rr
+putf(wsd, f'C{rr}', f'=SUM(C{row_nopatterm}:C{row_wcinf})', TRM['fcff'], NUM0, bold=True)
+put(wsd, f'A{rr}', 'Terminal free cash flow', bold=True, fmt=None)
+ANCH['term_fcff'] = rr; rr += 1
+row_tv = rr
+putf(wsd, f'C{rr}', f'=C{row_fcffterm}*(1+{AC("Terminal growth")})'
+                    f'/(C{row_waccterm}-{AC("Terminal growth")})', DCF['tv'], NUM0)
+put(wsd, f'A{rr}', 'Terminal value', fmt=None); ANCH['term_tv'] = rr; rr += 1
 row_pvtv = rr; putf(wsd, f'C{rr}', f'=C{row_tv}*G{row_df}', DCF['pv_tv'], NUM0)
 put(wsd, f'A{rr}', 'PV of terminal value', fmt=None); rr += 1
 row_ev = rr; putf(wsd, f'C{rr}', f'=C{row_pvexpl}+C{row_pvtv}', DCF['ev'], NUM0, bold=True)
@@ -995,7 +1026,7 @@ for ws in wb.worksheets:
 OUT_XLSX = os.path.join(HERE, 'RIYADHCABLE_Valuation_Model_18082026_public.xlsx')
 wb.save(OUT_XLSX)
 ANCH['seg_rev_tot'] = seg['rev']; ANCH['seg_ebitda'] = seg['ebitda']
-json.dump({'expected': EXPECT, 'anchors': {k: (v if not isinstance(v, dict) else v) for k, v in ANCH.items() if k in ('summary_mktcap', 'ev', 'tv_share', 'dcf_ps')}},
+json.dump({'expected': EXPECT, 'anchors': {k: (v if not isinstance(v, dict) else v) for k, v in ANCH.items() if k in ('summary_mktcap', 'ev', 'tv_share', 'dcf_ps', 'term_fcff', 'term_tv')}},
           open(os.path.join(HERE, 'xlsx_expected.json'), 'w'), indent=1, default=str)
 nform = sum(1 for _ in range(0))
 from collections import Counter

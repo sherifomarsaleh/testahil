@@ -1,9 +1,15 @@
 # RIYADHCABLE — gap review, 4 September 2026
 
-**AUDITED CENTRAL: 127.9054** — the cash-flow lens, SAR per share.
-**AUDITED GAP: +22.0%** against the latest known price, SAR 104.80 (3 September 2026),
+**AUDITED CENTRAL: 130.4249** — the cash-flow lens, SAR per share.
+**AUDITED GAP: +24.5%** against the latest known price, SAR 104.80 (3 September 2026),
 which is also the price this study was struck at on 18 August 2026 — the two are the same
 figure, so the review is not auditing a disagreement that has since moved.
+
+*Revised the same day. This review first audited a central of 127.9054 at +22.0% and
+recorded the terminal rebuild as one that could not be made honestly. That assessment was
+tested and it was wrong; the terminal is rebuilt, the central is 130.4249, and the TERMINAL
+heading below carries both the correction and the reasoning that failed, rather than the
+correction alone.*
 
 This fires the ABOVE-price half of the audit trigger, which is deliberately not matched by
 a publication block: the block is one-sided below the price, because the errors in a
@@ -124,43 +130,102 @@ which is conservative rather than generous.
 
 ## TERMINAL
 
-The terminal carries **81.0%** of enterprise value, and it is on the retired reinvestment
+The terminal carries **81.4%** of enterprise value. It was on the retired reinvestment
 identity `rr = g/ROIC`, which charges `g × IC` every year for ever and implies a replacement
-cycle of `1/g` — here **25.0 years** at the published 4%.
+cycle of `1/g` — **25.0 years** at a 4% nominal terminal. It is now built through the
+sanctioned construction, and the two things that were said to make that impossible were
+tested rather than reasoned about.
 
-**The asset life could not be derived, and that is the finding rather than a gap in the
-work.** The disclosed useful lives in note 9 are RANGES — buildings 20–25, plant and
-equipment 20–30, strategic spares 10, vehicles 4, furniture 4–10, tools 5, laboratory 10,
-computers 10 — and a life this desk picked from inside a range is not a disclosed life
-(SIGCM clause 1). The identity that worked on the sister study — average depreciable gross
-cost over the year's own charge — **breaks on this issuer, and it can be shown why**:
+### What the first version of this review said, and why it was wrong
 
-| | gross cost | accumulated depreciation | the year's charge | implied life |
-|---|---:|---:|---:|---:|
-| Plant and equipment | 2,114.5 | 1,294.9 (**61% written down**) | 34.2 | **61.9 y** |
-| All depreciable assets | 2,903.6 | 1,775.5 | 76.6 | 37.9 y |
+It said two things, both carefully argued and both false.
 
-A derived 61.9 years for a line the company itself depreciates over 20–30 is not a
-measurement of anything. The identity assumes a base in steady state; here most of the
-plant is already written down, so assets still in service charge nothing and the ratio
-reports a life roughly twice the disclosed one. **On this issuer the derivation is not
-usable, and using it anyway would be inventing a number with an arithmetic costume on.**
+**First, that the asset life could not be derived.** The evidence offered was that the
+identity — gross cost over the year's own charge — returns **61.9 years** for the plant and
+equipment line the company itself depreciates over 20 to 30, so "the derivation is not
+usable on this issuer". The observation is exactly right and the inference from it is not.
+The identity does not return the ACCOUNTING life and is not trying to: it returns the
+**economic replacement cycle**, and it comes out longer than the accounting life *for a
+reason the company discloses in the same note* — **SAR 841.7mn of cost, 29.0% of the
+depreciable base, is fully depreciated and still in use.** Those assets are in service and
+will one day need replacing, and they charge nothing. A maintenance charge asks how much
+must be spent each year to keep the base intact, which is the economic cycle; using the
+accounting life instead would charge for replacing plant that is demonstrably still running.
 
-**THE TWO CORRECTIONS ARE COUPLED, WHICH IS WHY NEITHER SHIPS IN THIS PASS.** Moving the
-terminal growth to zero real without rebuilding the construction creates a NEW violation
-where it fixes one: at a 2.0% terminal the last explicit year still grows 6.2%, a **4.2
-percentage-point** convergence gap against a requirement of 2, where the published 4%
-leaves 2.2pp. A model whose last explicit year grows far above its terminal capitalises a
-rate it never reached. So the growth correction needs the explicit window extended, and the
-construction correction needs a life this study cannot source — and trading one violation
-for another to move a number 16% is not an improvement.
+The method is validated on this issuer's own accounts, on the one leg where a single life IS
+disclosed: **software, at 14.43 years derived against a stated 15, 3.8% apart.** A
+derivation that reproduces a disclosed figure is the strongest evidence a derivation can
+carry, and it is available here.
 
-Registered for the terminal re-issue, with the brief precise: extend the explicit window
-until growth converges within two points of a 2.0% terminal, and obtain a component-level
-useful life or state that none is disclosable and leave the construction on the ratchet
-with its reason, as the exemplar's vessel life is.
+| | gross cost (SAR) | the year's charge | implied life |
+|---|---:|---:|---:|
+| Property, plant and equipment, less land and assets under construction | 2,903,588,021 | 76,616,111 | 37.90 y |
+| Software (note 10) | 80,879,539 | 5,603,548 | 14.43 y *(disclosed 15)* |
+| Right-of-use assets (note 13) | 68,978,523 | 3,175,978 | 21.72 y |
+| **Blended** | **3,053,446,083** | **85,395,637** | **35.76 y** |
 
-**Found, priced at −16.2%, and deliberately not applied.**
+The three charges sum to **85,395,637**, which *is* the depreciation and amortisation this
+model carries for FY2025 — the base and the charge are the same object, not two figures
+brought together. On FY2024's own columns the same identity gives 40.27 years; the FY2025
+reading is the shorter and therefore charges the heavier maintenance, and it is the one
+adopted.
+
+**Second, that the growth correction and the construction correction were coupled, so
+neither could ship.** The argument was that moving terminal growth to zero real would leave
+the last explicit year growing 6.2% against a 2.0% terminal — a 4.2-point convergence gap
+where two is permitted. That is true of *zeroing* the growth. It is not what the rule
+requires. A stated real growth is permitted and must simply be **written down as the real
+number it is**, so the 4% nominal this study always carried is now stored as **+1.96% real
+on the house Saudi path**, from which 4.00% is derived to the basis point. Nothing moves,
+the convergence gap is unchanged at 2.2 points, and what a reader gains is the ability to
+see that this business is assumed to grow ~2% a year in real terms for ever — which is the
+claim, and it was previously invisible inside a nominal rate.
+
+**The general shape is worth naming because it is the second time in one day:** an obstacle
+assessed from the structure of a change is not the same as an obstacle measured. Both
+premises here were true and neither conclusion followed.
+
+### What the terminal now charges
+
+| | SAR mn |
+|---|---:|
+| Terminal-year operating profit after tax | 1,586.9 |
+| Plus depreciation and amortisation charged inside it | 133.6 |
+| Less capital maintenance, at what replacement costs today | (190.3) |
+| Less the capital that real growth needs | (128.4) |
+| Less inflation on working capital | (88.0) |
+| **Terminal free cash flow** | **1,313.8** |
+
+That is **82.8%** of terminal profit paid out for ever. The retired identity gave a terminal
+of 24,350 against the sanctioned 24,919, **+2.34%**, worth **+1.97%** on the answer:
+127.9054 → **130.4249**.
+
+**The direction is worth stating because it is the opposite of most of this programme.**
+Every earlier correction of this defect raised a value in a high-inflation market where 1/g
+charges far too hard. Here 1/g charges 25 years against a base the accounts turn over in
+35.8, so it charges too *little*, and the corrected terminal is **higher** — a pegged
+market, where the same identity errs the other way. That is [R-TERM-01 clause two] behaving
+as written, and it moves this answer **away** from the price, which is the only direction
+that shows the discipline is not fitting.
+
+### One reading that is deliberately not applied, and it runs against the value
+
+The construction escalates the book charge over **half** the life, as a proxy for the age of
+the average asset. On this issuer the age can be **measured** rather than assumed:
+accumulated depreciation over the year's charge is **23.17 years**, against the 17.88 that
+half a 35.76-year life implies. The base is older than uniform — which is the same fact as
+the fully-depreciated-and-still-in-use disclosure, seen from the other side.
+
+On the measured age the escalator is 1.5824 rather than 1.4248, maintenance is **+11.0%**
+(190.3 → 211.4), and the answer falls **1.33%** to 128.69, taking the gap from +24.5% to
++22.8%. **It is not applied**, because the half-life proxy is the sanctioned construction's
+own contract and replacing it inside one study is a rule change made in the wrong place. It
+is recorded here so that the direction is visible: **this terminal is the lighter of two
+defensible readings, not the heavier one**, and nothing about the correction above is
+conservative by accident.
+
+**Found, applied, and worth +1.97%; one further reading found, priced at −1.33%, and left
+for the construction to decide rather than this study.**
 
 ## BALANCE SHEET
 
@@ -202,23 +267,25 @@ and the cross-checks were right.**
 
 ## Verdict
 
-The answer does not change in this pass, and the reason is stated rather than implied.
+**The answer changed in this pass, by +1.97%, and it moved away from the price.**
 
-Six headings found nothing or found something that was fixed. Two found the same thing from
-opposite sides: the terminal grows in real terms for ever, nothing says so, and correcting
-it to the house default would move this study from +22.0% to +2.2% against the market — and
-would bring the cash-flow lens into line with the three cross-checks that currently
-disagree with it.
+Six headings found nothing or found something that was fixed. The terminal found the one
+material thing, and it found it twice: the construction was the retired identity, and this
+review's own first attempt talked itself out of correcting it on two premises that were
+individually true and jointly wrong. Both were tested. The life derives, and validates
+against the one life this issuer discloses; the growth rate needed storing, not zeroing.
 
-**It is not applied because the two corrections it needs are coupled and one of them cannot
-be made honestly today.** Zeroing the real growth without extending the explicit window
-trades a stated-nowhere growth assumption for a convergence violation twice the permitted
-size; rebuilding the construction needs a disclosed asset life that this issuer's ranges and
-its heavily-written-down plant do not yield. Doing half of it to move the number 16% toward
-the price would be the fitting this method prohibits, in the one direction where it is
-hardest to see.
+**What a reader should weigh.** This study's cash-flow lens remains the only one of four
+reads above the market, and it is now further above it. That is not a finding about the
+market: it is the arithmetic of a terminal that carries four fifths of the value being
+charged for what keeping a cable plant intact actually costs, on the life the company's own
+notes imply, rather than for rebuilding the whole plant every twenty-five years because that
+is one over the inflation rate. The cross-checks that disagree — a relative multiple at
+86.36 and a book floor at 94.68 — are published beside it at their own values and are not
+averaged into it.
 
-**What a reader should weigh:** this study's cash-flow lens is the only one of four reads
-above the market, and the review has identified precisely why — an unstated real growth rate
-in a pegged economy, on a terminal carrying four fifths of the value. That is disclosed here
-rather than left for a reader to find.
+**And one thing is disclosed rather than left to be found:** the maintenance charge sits on
+the sanctioned half-life proxy, and this base is measurably older than that proxy assumes.
+The heavier reading is priced above at −1.33%. A reader who prefers it should read this
+study at roughly 128.7 rather than 130.4, and the disagreement with the market survives
+either way.
