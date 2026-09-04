@@ -117,6 +117,46 @@ At zero real growth the cash-flow lens moves **+39.3%**, and the gap to the pric
 (−3,798), because a firm shrinking in real terms releases capital — arithmetically
 consistent, and evidence that a real decline is an assumption rather than a prudence.
 
+## 3b — THE FORECAST OPENS 20.6% BELOW A MARGIN THE COMPANY HAS ALREADY PRINTED
+
+This is the largest single finding and it was invisible at strike, because the half that
+falsifies the forecast was issued six days after it.
+
+The study forecasts a group gross margin of **12.80% in FY2026 rising to 14.26% by FY2030**.
+The reviewed half-year to 30 June 2026 printed **16.12%** — above the study's own terminal
+year, in the first half of the first forecast year. From note 16 of the reviewed
+statements, aggregating the segment × geography columns (they foot to consolidated revenue
+and gross profit exactly):
+
+| segment | revenue H1-2026 | gross profit | margin | FY2025 margin | change |
+|---|---:|---:|---:|---:|---:|
+| Cables and accessories | 96,495.2 | 14,018.8 | 14.53% | 13.49% | +1.04pp |
+| Constructions and infrastructure | 43,831.3 | 5,118.9 | **11.68%** | 6.45% | **+5.23pp** |
+| Electrical products and digital | 22,989.3 | 7,195.6 | **31.30%** | 22.17% | **+9.13pp** |
+| **Group** | **163,315.7** | **26,333.3** | **16.12%** | 12.27% | **+3.85pp** |
+
+Every segment improved and the contracting arm — the low-margin leg that drags the group —
+nearly doubled its margin.
+
+[R-ANCHOR-01] is exact about this: *a near-term reviewed actual outranks a stale full-year
+rate*, and a forecast opening materially below the latest reviewed period must name a
+mechanism from the closed list, carry the disclosure that establishes it, and supply a
+like-for-like measurement giving that mechanism a direction. At 12.80% against 16.12% the
+opening year is **20.6% below** the latest reviewed period — four times the rule's relative
+5% threshold — and the study names nothing, because at the strike date there was nothing to
+name.
+
+Indicatively: 16.12% on the study's own FY2026 revenue of 370,029.5 is about EGP 12.3bn of
+additional gross profit in year one alone. That is larger than the terminal correction, and
+it runs the same way.
+
+**What must NOT be done with it.** A single half is not a permanent margin, and the
+contracting leg's improvement in particular may be project mix rather than a re-rating of
+the book. The re-issue anchors on the reviewed half and lets the rate DRIFT only where a
+named mechanism has a measured like-for-like direction in the company's own period pair —
+which is the same discipline that forbids projecting the improvement, and equally forbids
+ignoring it.
+
 ## 4 — Still to measure, and not measured here
 
 - The cost-of-capital schedule against [R-COC-01]: the terminal risk-free should DERIVE as
@@ -133,17 +173,52 @@ consistent, and evidence that a real decline is an assumption rather than a prud
   The minority is deducted at a 9.7% share of value (`nci_share`), which is a value-share
   proxy and needs its source named.
 
+## 5 — The balance sheet has moved, and against the study
+
+From the reviewed 30 June 2026 statement of financial position, read against the
+31 December 2025 comparative it prints beside:
+
+| EGP mn | 30 Jun 2026 | 31 Dec 2025 |
+|---|---:|---:|
+| Loans and borrowings, non-current | 8,072.5 | 8,620.7 |
+| Loans and borrowings, current | 75,932.8 | 53,888.5 |
+| Cash and cash equivalents | 52,775.7 | 41,949.2 |
+| Investments in debt securities at amortised cost | 2,600.6 | 706.5 |
+| **Net financial debt** | **28,628.9** | **19,853.5** |
+| Equity attributable to owners | 70,347.3 | 66,870.9 |
+| Non-controlling interests | 5,677.3 | 5,119.0 |
+
+Net debt has risen about EGP 8.8bn over the half — roughly 4 per share against the
+study's bridge figure of 20,560.0 — as working capital absorbed cash. The bridge stands
+on the December sheet and [R-BRIDGE-01] requires the LATEST disclosed one.
+
+One item runs the other way and is recorded because it does: the study deducts the
+minority at a **9.7%** value share, against non-controlling interests of 7.47% of total
+equity at 30 June 2026 (7.11% at December) and 6.81% of the half's profit. The study's
+figure is conservative on all three readings.
+
 ## The order these must be applied in
 
 [R-VCAL-01]'s promotion guard forbids stacking individually-justified moves without
 watching where the total lands. Fixed here, before the answers are known:
 
-1. **H1-2026** — a filed actual outranks everything, and it re-anchors the base.
+1. **H1-2026** — a filed actual outranks everything. It re-anchors the base, the margin
+   and the bridge, and it is the largest of these by some way.
 2. **The employees' share** — a statutory claim ahead of shareholders, worth about −12%,
    and it runs AGAINST the direction the rest of this list runs.
 3. **The terminal** — [R-MACRO-01] and [R-TERM-01], worth about +39%.
 4. **The cost-of-capital schedule** — [R-COC-01], sign unknown.
 5. **The blend** — [R-LENS-03], after the class decision.
 
-Roughly: 56.08 × 0.88 × 1.39 ≈ 68.6 before items 4 and 5, against a price of 105.20. That
-arithmetic is indicative and is NOT the answer; each step is rebuilt on the real chain.
+Roughly: 56.08 × 0.88 × 1.39 ≈ 68.6 before the margin re-anchoring and before items 4 and
+5, against a price of 105.20. That arithmetic is indicative and is NOT the answer; each
+step is rebuilt on the real chain.
+
+**What the shape of these findings says, and it is the point of the gap gate.** SWDY's
+primary lens sits 46.7% below the market. Three of the four measured corrections run
+TOWARD the price and one runs away from it, and none of them was found by looking at the
+price — they were found by asking the eight headings' questions of a study whose answer
+was surprising. A stale base year, a terminal in real decline and an unread half all push
+value DOWN, which is precisely why [R-GAP-01] calls a large discount a high-prior-of-defect
+region. The employees' share is the counter-example that keeps this honest: it was found
+in the same pass, it is worth −12%, and it is recorded first.
