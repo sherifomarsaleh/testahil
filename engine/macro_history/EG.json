@@ -10,15 +10,20 @@
  "measured": {
   "cpi_vintage_drift_pp": {
    "2013": 2.56,
+   "2014": -0.03,
    "2015": -0.62,
    "2016": 3.61,
    "2017": 7.5,
    "2018": -6.46,
-   "2019": -4.71
+   "2019": -4.71,
+   "2020": -0.81,
+   "2021": 0.71,
+   "2022": 5.4,
+   "2023": 10.37
   },
-  "mean_abs_drift_pp": 4.24,
-  "max_abs_drift_pp": 7.5,
-  "n_origins": 6,
+  "mean_abs_drift_pp": 3.89,
+  "max_abs_drift_pp": 10.37,
+  "n_origins": 11,
   "what_it_shows": "The gap, in percentage points, between the inflation figure PUBLISHED at each origin and the figure today's series reports for the same year. It runs in BOTH directions and it is large: a rebuild that quietly used the modern series would be feeding a discounted cash flow an inflation rate several points away from the one the origin actually had, in escalators, in the currency path derived from them and in the terminal. This is the whole argument for the estimated/observed split, measured rather than asserted, on this archive's own numbers.",
   "forward_paths_at_each_origin": {
    "2013": {
@@ -27,6 +32,13 @@
     "2016": 0.11088,
     "2017": 0.11822,
     "2018": 0.12321
+   },
+   "2014": {
+    "2015": 0.13533,
+    "2016": 0.12013,
+    "2017": 0.11717,
+    "2018": 0.11969,
+    "2019": 0.11998
    },
    "2015": {
     "2016": 0.08769,
@@ -62,17 +74,41 @@
     "2022": 0.07011,
     "2023": 0.07002,
     "2024": 0.07078
+   },
+   "2020": {
+    "2021": 0.0823
+   },
+   "2021": {
+    "2022": 0.06273,
+    "2023": 0.07078,
+    "2024": 0.07095,
+    "2025": 0.07127,
+    "2026": 0.07149
+   },
+   "2022": {
+    "2023": 0.11973,
+    "2024": 0.08047,
+    "2025": 0.071,
+    "2026": 0.06991,
+    "2027": 0.06991
+   },
+   "2023": {
+    "2024": 0.32179,
+    "2025": 0.19878,
+    "2026": 0.1377,
+    "2027": 0.11468,
+    "2028": 0.09499
    }
   },
   "what_the_forward_paths_show": "Every vintage's own five-year path converges toward roughly 7 per cent, from wherever it starts — 12.3% by 2018 seen from 2013, 7.0% by 2020 seen from 2015, 7.1% by 2021 seen from 2016. The house macro path [R-MACRO-01] is built the same way, from the same class of institutional forecast, and these are the only out-of-sample readings this project holds of how such a path actually performed. NOTHING IS CONCLUDED FROM SIX ORIGINS HERE: the paths are recorded so the calibration can score them, and a finding is a finding only once it has been scored."
  },
  "unsourced": {
-  "fields": [
-   "cpi_annual (5 origins)"
-  ],
+  "fields": [],
   "resolved_03_09_2026": "policy_rate and sovereign_10y, both supplied by the principal on 03-Sep-2026 — see _supplied_EG_rates.json for what was supplied, what was verified against the CBE decision record, and the one supplied figure that was WRONG and is corrected here. The policy rate is corroborated origin by origin; the ten-year yield is NOT, and every origin says so.",
-  "what_remains": "The point-in-time CPI vintage for 2014 and 2020-2023. The IMF World Economic Outlook editions for those years could not be retrieved from here — the October 2014 file returns an interstitial page and the 2020-2023 editions sit behind a path this environment cannot resolve. Six origins (2013, 2015, 2016, 2017, 2018, 2019) are usable without them, which is the archive doing its job: a thin record shows up as fewer origins rather than as a full-looking one built on filled cells.",
-  "what_would_close_it": "The IMF WEO database file for October 2014 and for October 2020 through October 2023, downloadable from imf.org's WEO database pages. Each one adds exactly one origin, and the calibration lengthens by that much."
+  "resolved_04_09_2026": "cpi_annual for 2014 and 2020-2023, the last five origins, sourced from the IMF World Economic Outlook edition that existed at each — October 2014, April 2020, October 2021, October 2022 and October 2023 — each recorded with its own sha256, its URL and the route it came by. All eleven declared origins are now usable, up from six.\n\nTHIS WAS NOT NEW DATA BECOMING AVAILABLE. This record said on 03-Sep that those editions 'could not be retrieved from here — the October 2014 file returns an interstitial page and the 2020-2023 editions sit behind a path this environment cannot resolve.' Both halves were true of the routes tried and FALSE OF THE SOURCE: /en/Publications/ does return 403 here and /external/ does serve a JavaScript redirect, but the media blob path serves every edition, under a pattern with NO month folder. One more probe, through the headless browser this environment provides, cleared five origins. AN OBSTACLE IS WORK, NOT NEWS [R-IND-01], and a written outcome is a fact about the past: five origins sat unusable for a day behind a recorded failure.",
+  "what_the_re_source_also_verified": "All six editions already in this archive were re-downloaded by the same route and every sha256 MATCHED, which independently confirms both the archive's provenance and the new route. It also settled a live question rather than assuming it: 'Estimates Start After' is a property of the SERIES and not of the edition — October 2014 marks GDP from 2013 and CPI from 2014, October 2022 marks GDP from 2021 and CPI from 2022 — and this archive keeps one value per edition. Checked against the files, all six carry the CPI series' own flag, so the existing record is right; the new entries store the per-series flags too, and name any series that disagrees rather than losing it.",
+  "what_remains": "Nothing on cpi_annual. The uncorroborated ten-year yield stands as recorded: usable, single-sourced, and said so at every origin.",
+  "what_would_close_it": "A second independent source for the sovereign ten-year yield at each origin, which would corroborate the one field this archive still carries on a single source."
  },
  "origins": [
   {
@@ -193,6 +229,26 @@
      "basis": "cds",
      "default_spread_rating_basis": 0.075,
      "default_spread_cds_basis": 0.03254
+    },
+    "cpi_annual": {
+     "value": 0.10097,
+     "source": "IMF World Economic Outlook database, October 2014 edition, Egypt, series PCPIPCH (CPI inflation, period average, % change). Downloaded 03-Sep-2026 from imf.org; sha256 83aef77172daf51e. THE VINTAGE IS THE POINT: this is the inflation an analyst standing at the origin actually had, estimates and projections included. The figure for the origin year is itself an actual in this edition, which is correct — nobody at 31-Dec-2014 had the final print either.",
+     "date": "2014-12-31",
+     "tier": "Global",
+     "revision_class": "estimated",
+     "vintage": "IMF WEO October 2014 (sha256 83aef77172daf51e)",
+     "actual_or_estimate": "actual",
+     "edition_note": null,
+     "last_actual_year": 2014,
+     "last_actual_value": 0.10097,
+     "forward_path": {
+      "2015": 0.13533,
+      "2016": 0.12013,
+      "2017": 0.11717,
+      "2018": 0.11969,
+      "2019": 0.11998
+     },
+     "end_of_period_same_vintage": 0.08205
     },
     "policy_rate": {
      "value": 0.0925,
@@ -685,6 +741,22 @@
      "default_spread_rating_basis": 0.048632,
      "default_spread_cds_basis": 0.0385
     },
+    "cpi_annual": {
+     "value": 0.05857,
+     "source": "IMF World Economic Outlook database, April 2020 edition, Egypt, series PCPIPCH (CPI inflation, period average, % change). Downloaded 03-Sep-2026 from imf.org; sha256 9f0b105004c66a89. THE VINTAGE IS THE POINT: this is the inflation an analyst standing at the origin actually had, estimates and projections included. The figure for the origin year is itself an estimate in this edition, which is correct — nobody at 31-Dec-2020 had the final print either.",
+     "date": "2020-12-31",
+     "tier": "Global",
+     "revision_class": "estimated",
+     "vintage": "IMF WEO April 2020 (sha256 9f0b105004c66a89)",
+     "actual_or_estimate": "estimate",
+     "edition_note": "The October edition of the origin year is not held; the April edition of the same year is used, which is also published before the origin and is merely staler.",
+     "last_actual_year": 2019,
+     "last_actual_value": 0.13865,
+     "forward_path": {
+      "2021": 0.0823
+     },
+     "end_of_period_same_vintage": 0.06212
+    },
     "policy_rate": {
      "value": 0.0825,
      "source": "IMF Country Report 21/7 (January 2021), First Review Under the Stand-By Arrangement: 'the CBE lowered the policy rate by 300 bp in March and by another 50 bp in each of September and November', which takes 12.25% to 8.25%.  [Supplied by the principal 03-Sep-2026 as a lead and CHECKED against the decision record before recording; the value here is the verified one.]",
@@ -749,6 +821,26 @@
      "basis": "cds",
      "default_spread_rating_basis": 0.046824,
      "default_spread_cds_basis": 0.0555
+    },
+    "cpi_annual": {
+     "value": 0.04502,
+     "source": "IMF World Economic Outlook database, October 2021 edition, Egypt, series PCPIPCH (CPI inflation, period average, % change). Downloaded 03-Sep-2026 from imf.org; sha256 20d3a169e7787d4d. THE VINTAGE IS THE POINT: this is the inflation an analyst standing at the origin actually had, estimates and projections included. The figure for the origin year is itself an estimate in this edition, which is correct — nobody at 31-Dec-2021 had the final print either.",
+     "date": "2021-12-31",
+     "tier": "Global",
+     "revision_class": "estimated",
+     "vintage": "IMF WEO October 2021 (sha256 20d3a169e7787d4d)",
+     "actual_or_estimate": "estimate",
+     "edition_note": null,
+     "last_actual_year": 2020,
+     "last_actual_value": 0.057,
+     "forward_path": {
+      "2022": 0.06273,
+      "2023": 0.07078,
+      "2024": 0.07095,
+      "2025": 0.07127,
+      "2026": 0.07149
+     },
+     "end_of_period_same_vintage": 0.04921
     },
     "policy_rate": {
      "value": 0.0825,
@@ -815,6 +907,26 @@
      "default_spread_rating_basis": 0.067302,
      "default_spread_cds_basis": 0.0769
     },
+    "cpi_annual": {
+     "value": 0.08496,
+     "source": "IMF World Economic Outlook database, October 2022 edition, Egypt, series PCPIPCH (CPI inflation, period average, % change). Downloaded 03-Sep-2026 from imf.org; sha256 8154545eec1500d4. THE VINTAGE IS THE POINT: this is the inflation an analyst standing at the origin actually had, estimates and projections included. The figure for the origin year is itself an actual in this edition, which is correct — nobody at 31-Dec-2022 had the final print either.",
+     "date": "2022-12-31",
+     "tier": "Global",
+     "revision_class": "estimated",
+     "vintage": "IMF WEO October 2022 (sha256 8154545eec1500d4)",
+     "actual_or_estimate": "actual",
+     "edition_note": null,
+     "last_actual_year": 2022,
+     "last_actual_value": 0.08496,
+     "forward_path": {
+      "2023": 0.11973,
+      "2024": 0.08047,
+      "2025": 0.071,
+      "2026": 0.06991,
+      "2027": 0.06991
+     },
+     "end_of_period_same_vintage": 0.13097
+    },
     "policy_rate": {
      "value": 0.1625,
      "source": "The 2022 tightening cycle (March, May, October and December) ending at 16.25% on the Central-Bank-sourced chart.  [Supplied by the principal 03-Sep-2026 as a lead and CHECKED against the decision record before recording; the value here is the verified one.]",
@@ -879,6 +991,26 @@
      "basis": "cds",
      "default_spread_rating_basis": 0.081693,
      "default_spread_cds_basis": 0.0955
+    },
+    "cpi_annual": {
+     "value": 0.23516,
+     "source": "IMF World Economic Outlook database, October 2023 edition, Egypt, series PCPIPCH (CPI inflation, period average, % change). Downloaded 03-Sep-2026 from imf.org; sha256 f7fe8a123b30cdef. THE VINTAGE IS THE POINT: this is the inflation an analyst standing at the origin actually had, estimates and projections included. The figure for the origin year is itself an estimate in this edition, which is correct — nobody at 31-Dec-2023 had the final print either.",
+     "date": "2023-12-31",
+     "tier": "Global",
+     "revision_class": "estimated",
+     "vintage": "IMF WEO October 2023 (sha256 f7fe8a123b30cdef)",
+     "actual_or_estimate": "estimate",
+     "edition_note": null,
+     "last_actual_year": 2022,
+     "last_actual_value": 0.085,
+     "forward_path": {
+      "2024": 0.32179,
+      "2025": 0.19878,
+      "2026": 0.1377,
+      "2027": 0.11468,
+      "2028": 0.09499
+     },
+     "end_of_period_same_vintage": 0.35727
     },
     "policy_rate": {
      "value": 0.1925,
