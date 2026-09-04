@@ -190,12 +190,30 @@ for lab, v in [('Present value of the explicit five years', DCF['sum_pv']),
     rows.append([lab, n0(v), n2(v / SH)])
 rows.append(['Terminal value as a percentage of enterprise value', pc(DCF['tv_share']), '—'])
 rows.append(['Plus net cash', n0(DCF['net_cash']), n2(DCF['net_cash'] / SH)])
+# THE MINORITY WAS DEDUCTED IN THE MODEL AND PRINTED NOWHERE, so a reader adding the
+# printed column reached 11,547 against a printed 11,426 — the line, not the arithmetic,
+# was missing. It is printed now, and the bridge is asserted to foot from its own rows.
+rows.append(['Less non-controlling interests in the subsidiaries',
+             '(' + n0(IN['nci']) + ')', '(' + n2(IN['nci'] / SH) + ')'])
 rows.append(['Equity value', n0(DCF['equity']), n2(DCF['fv'])])
 rows.append(['Market price', '—', n2(SPOT)])
-table(rows, [3.55, 1.65, 1.55], band_rows={4, 6})
-caption('Table 3 — The bridge. Net cash is ADDED, because this company holds more cash '
-        'than debt. Terminal value is 41% of enterprise value — a modest share, and '
-        'deliberately so; the next section explains why.')
+table(rows, [3.55, 1.65, 1.55], band_rows={4, 7})
+assert abs(DCF['ev'] + DCF['net_cash'] - IN['nci'] - DCF['equity']) < 1.0, (
+    'the bridge does not foot from the rows printed above it')
+assert abs(DCF['sum_pv'] + DCF['pv_tv'] - DCF['ev']) < 1.0, 'enterprise value does not foot'
+# THE CAPTION TYPED 41% AGAINST A COMPUTED 49.2% PRINTED TWO ROWS ABOVE IT. Read from
+# the record. The minority basis is named because the deduction is now visible; the
+# alternative a reviewer proposed is priced here rather than asserted away, since at
+# EGP 2,008mn it is worth more than a sixth of the answer.
+_nci_alt = 2008.0
+caption(f'Table 3 — The bridge. Net cash is ADDED, because this company holds more cash '
+        f'than debt, and the minority is deducted from EQUITY value rather than from '
+        f'enterprise value, on the share of profit the subsidiaries actually earn. A '
+        f'reviewer proposed EGP {n0(_nci_alt)} million instead, {pc(_nci_alt / DCF["ev"], 0)} '
+        f'of enterprise value; on that reading the shares are worth EGP '
+        f'{n2((DCF["ev"] + DCF["net_cash"] - _nci_alt) / SH)} rather than '
+        f'EGP {n2(DCF["fv"])}, and the reasoning behind the adopted figure is in the input '
+        f'register. Terminal value is {pc(DCF["tv_share"], 0)} of enterprise value.')
 
 H2('The terminal value, and the judgement that decides it')
 P('The single most consequential judgement here is what return the company earns on '
@@ -219,6 +237,26 @@ box([('And this is why growth does not help. ',
       'of a mature plant in an oversupplied market. This company creates value by '
       'harvesting and distributing, not by growing.')])
 
+# EVERY LENS TABLE ENDED ON AN ANSWER A READER COULD NOT REACH FROM THE ROWS ABOVE IT.
+# All three carried an enterprise or earnings figure and then jumped straight to value per
+# share, so the net cash, the minority and the share count — every one of which the model
+# uses — were printed nowhere: on the normalised lens a reader dividing the printed
+# earnings by the printed share count reached EGP 39.66 against a printed 58.10. The tail
+# is the bridge's own three lines, and the build asserts the printed answer reproduces
+# from the rows printed above it.
+def lens_tail(rows, ev_or_earn, answer, first_label):
+    rows.append([first_label, n0(ev_or_earn)])
+    rows.append(['Plus net cash (EGP mn)', n0(DCF['net_cash'])])
+    rows.append(['Less non-controlling interests (EGP mn)', '(' + n0(IN['nci']) + ')'])
+    rows.append([f'Divided by shares in issue ({n1(SH)} million)', ''])
+    rows.append(['Implied value per share (EGP)', n2(answer)])
+    made = (ev_or_earn + DCF['net_cash'] - IN['nci']) / SH
+    assert abs(made - answer) < 0.01, (
+        'the %s lens does not reproduce from its own printed rows: %.2f vs %.2f'
+        % (first_label, made, answer))
+    return rows
+
+
 # ---- 1.2 --------------------------------------------------------------------
 H2('1.2  The asset lens — enterprise value per tonne against replacement cost')
 P('For cement, the sector\'s own yardstick is enterprise value per annual tonne of '
@@ -232,10 +270,11 @@ for lab, v in [('Enterprise value at the market price (EGP mn)', n0(SPOT * SH - 
                ('Enterprise value per tonne, at market (USD/t)', n1(LN['ev_per_t_spot'])),
                ('Replacement cost of new capacity (USD/t)', n0(IN['repl_usd_t'])),
                ('Discount to replacement cost', pc(LN['ev_per_t_spot'] / IN['repl_usd_t'] - 1)),
-               ('Justified enterprise value per tonne (USD/t)', n0(IN['ev_t_just'])),
-               ('Implied value per share (EGP)', n2(LN['values']['Asset / replacement cost']))]:
+               ('Justified enterprise value per tonne (USD/t)', n0(IN['ev_t_just']))]:
     rows.append([lab, v])
-table(rows, [4.45, 2.30], band_rows={7})
+lens_tail(rows, LN['ev_asset'], LN['values']['Asset / replacement cost'],
+          f'Implied enterprise value at EGP {n1(IN["fx"])} to the dollar (EGP mn)')
+table(rows, [4.45, 2.30], band_rows={11})
 caption('Table 5 — The asset lens. The justified figure sits below replacement cost '
         'because nobody pays build cost for capacity in a market with a structural surplus.')
 P('This is the most generous of the four lenses, and the reason is instructive rather than '
@@ -256,15 +295,24 @@ P('The named Egyptian comparator is Misr Beni Suef Cement, which posted the same
   'sector event, not a company event, which is why the multiple here is applied to '
   'normalised rather than trailing earnings.')
 rows = [['', 'Value']]
+# THE HAIRCUT WAS APPLIED IN THE MODEL AND PRINTED NOWHERE, so a reader multiplying the
+# printed revenue by the printed margin reached 2,527 against a printed 2,325. It is the
+# line that makes this lens a normalisation rather than half of one, and it is now visible.
 for lab, v in [('FY2025 revenue (EGP mn)', n0(H['revenue'][2])),
+               (f'Haircut to a mid-cycle revenue base',
+                pc(IN['norm_rev_haircut'] - 1)),
+               ('Mid-cycle revenue base (EGP mn)',
+                n0(H['revenue'][2] * IN['norm_rev_haircut'])),
                ('Mid-cycle EBITDA margin', pc(IN['norm_mgn'])),
                ('Normalised EBITDA (EGP mn)', n0(LN['ebitda_norm'])),
                ('Justified EV/EBITDA', f"{IN['ev_ebitda_just']:.1f}x"),
-               ('Implied enterprise value (EGP mn)', n0(LN['ebitda_norm'] * IN['ev_ebitda_just'])),
-               ('Plus net cash (EGP mn)', n0(DCF['net_cash'])),
-               ('Implied value per share (EGP)', n2(LN['values']['Relative multiples']))]:
+               ]:
     rows.append([lab, v])
-table(rows, [4.45, 2.30], band_rows={7})
+lens_tail(rows, LN['ebitda_norm'] * IN['ev_ebitda_just'],
+          LN['values']['Relative multiples'], 'Implied enterprise value (EGP mn)')
+assert abs(H['revenue'][2] * IN['norm_rev_haircut'] * IN['norm_mgn']
+           - LN['ebitda_norm']) < 1.0, 'normalised EBITDA does not foot from its own rows'
+table(rows, [4.45, 2.30], band_rows={11})
 caption('Table 6 — The relative lens, struck at the peer\'s own EBITDA multiple with no '
         'premium for net cash, which the bridge adds separately.')
 
@@ -277,17 +325,22 @@ P('2025 was the first year since 2008 that Egypt\'s cement supply and demand bal
   'those is a cyclical high, not a plateau.')
 rows = [['', 'Value']]
 for lab, v in [('Normalised EBITDA (EGP mn)', n0(LN['ebitda_norm'])),
-               ('Less depreciation & amortisation (EGP mn)', n0(-H['dna'][2])),
-               ('Normalised NOPAT (EGP mn)', n0(LN['nopat_norm'])),
-               ('Plus after-tax treasury income (EGP mn)',
-                n0(LN['earn_norm'] - LN['nopat_norm'])),
-               ('Normalised earnings (EGP mn)', n0(LN['earn_norm'])),
-               ('Justified price/earnings', f"{IN['pe_just']:.1f}x"),
-               ('Implied value per share (EGP)', n2(LN['values']['Normalised earnings']))]:
+               ('Less depreciation & amortisation (EGP mn)',
+                '(' + n0(H['dna'][2]) + ')'),
+               (f'Less tax at the statutory {pc(IN["tax_stat"], 1)} (EGP mn)',
+                '(' + n0((LN['ebitda_norm'] - H['dna'][2]) * IN['tax_stat']) + ')'),
+               ('Normalised NOPAT — the earnings capitalised (EGP mn)',
+                n0(LN['nopat_norm'])),
+               ('Treasury income on the cash pile, DELIBERATELY EXCLUDED', 'nil'),
+               ('Justified price/earnings', f"{IN['pe_just']:.1f}x")]:
     rows.append([lab, v])
-table(rows, [4.45, 2.30], band_rows={7})
+lens_tail(rows, LN['earn_norm'] * IN['pe_just'],
+          LN['values']['Normalised earnings'], 'Capitalised earnings (EGP mn)')
+table(rows, [4.45, 2.30], band_rows={11})
 caption('Table 7 — Normalised earnings power, on a mid-cycle margin struck between the '
-        'FY2024 outturn and the FY2025 peak.')
+        'FY2024 outturn and the FY2025 peak. The income the cash pile earns is left out of '
+        'the capitalised figure on purpose: the cash itself is added at face below, and '
+        'capitalising its income as well would pay for the same asset twice.')
 
 # ---- 1.5 --------------------------------------------------------------------
 H2('1.5  Synthesis — four lenses, one field')
@@ -306,7 +359,7 @@ for k in LN['weights']:
                  pc(LN['weights'][k], 0), WHAT[k]])
 rows.append(['Weighted central', n2(LR['Weighted central']['bear']), n2(LN['central']),
              n2(LR['Weighted central']['bull']), '100%', 'The blend'])
-table(rows, [1.62, 0.72, 0.72, 0.72, 0.62, 2.55], band_rows={5})
+table(rows, [1.62, 0.72, 0.72, 0.72, 0.78, 2.39], band_rows={5})
 caption('Table 8 — The four lenses side by side. Weighting is applied to the base cases; '
         'the ranges are shown so the reader can weight them differently.')
 
