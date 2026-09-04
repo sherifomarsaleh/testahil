@@ -1269,6 +1269,30 @@
    "date": "2026-02-18",
    "ring": "Company"
   },
+  "limad_stake": {
+   "value": 0.8475,
+   "source": "L'imad Holding Company PJSC's holding, computed from the disclosed share count; the FY2025 results release rounds the same holding to 84.76% and both readings are published rather than one chosen. Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "ke_rev2_published": {
+   "value": 0.0908,
+   "source": "Cost of equity as revision 2 published it, on the composite-index beta this study has since replaced. Superseded; recorded so the change can be stated without typing the old number.",
+   "date": "2026-08-10",
+   "ring": "House"
+  },
+  "central_rev2_published": {
+   "value": 3.38,
+   "source": "The weighted central as revision 2 published it, on the composite-index beta. Superseded; recorded for the same reason.",
+   "date": "2026-08-10",
+   "ring": "House"
+  },
+  "limad_stake_rounded": {
+   "value": 0.8476,
+   "source": "the same holding as the company announcement rounds it, published beside the computed figure rather than instead of it. Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
   "rev_fy23": {
    "value": 994.293,
    "source": "Consolidated statement of profit or loss (revenue from contracts 473.338 + rental 409.058 + dividends 111.897), Audited consolidated financial statements FY2023, Q Holding PSC, modon.com investor relations",
@@ -1483,6 +1507,18 @@
    "value": -0.697,
    "source": "Share of loss from associates and JVs, Audited consolidated financial statements FY2023, Q Holding PSC, modon.com investor relations",
    "date": "2024-02-15",
+   "ring": "Company"
+  },
+  "adj_ebitda_fy25_release": {
+   "value": 4900.0,
+   "source": "Group adjusted EBITDA as the FY2025 results release states it, AED 4.9bn. Modon FY2025 results announcement, modon.com media centre, 18-Feb-2026",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "adj_ebitda_margin_release": {
+   "value": 0.352,
+   "source": "the adjusted EBITDA margin as the FY2025 results release states it. NOT derivable from this study's registered revenue -- 4,900 over 13,828.869 is 35.4% -- so the company computes it on a base this study does not carry, and the release figure is recorded rather than reconstructed. Modon FY2025 results announcement, modon.com media centre, 18-Feb-2026",
+   "date": "2026-02-18",
    "ring": "Company"
   },
   "impair_fy24": {
@@ -2743,7 +2779,7 @@
   }
  },
  "assert_log": [
-  "FY2025 house EBITDA 4895.6 reconciles to the company adjusted EBITDA 4,900 within rounding (release: 4.9bn, 35.2% margin)",
+  "FY2025 house EBITDA 4895.6 reconciles to the company adjusted EBITDA 4,900 within rounding (release margin 35.2%)",
   "FY2025 balance sheet foots: equity + NCI + liabilities = total assets",
   "FY2025 liability components sum to total liabilities",
   "segment revenues + others sum to group revenue FY2025",
@@ -2754,6 +2790,6 @@
   "Step 0 PASS carried",
   "strike anchor equals study spot",
   "q=0 sourced",
-  "input register carries 208 four-field inputs"
+  "input register carries 214 four-field inputs"
  ]
 }

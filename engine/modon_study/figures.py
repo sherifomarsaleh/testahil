@@ -34,7 +34,7 @@ def style(ax):
 # ---- F1 football field ------------------------------------------------------
 L = d['lenses']
 names = ['FCFF DCF\n(primary)', 'Relative\n(EV/EBITDA · P/E)', 'Normalised\nearnings power',
-         'Book value /\nsustainable return', 'Weighted central']
+         'Book value /\nsustainable return', 'THE CENTRAL —\nthe cash-flow lens']
 keys = ['dcf', 'relative', 'normalized', 'book', 'central']
 fig, ax = plt.subplots(figsize=(9.7, 4.2), dpi=110)
 xmax = max(L[k]['bull'] for k in keys); xmin = min(L[k]['bear'] for k in keys)

@@ -52,6 +52,32 @@ spot = inp('spot', 2.83, 'Uploaded ADX daily price history, last close', '2026-0
            'Market')
 shares_mn = inp('shares_mn', 16347.080, 'Share capital note 23: 16,347,080 thousand '
                 'shares of AED 1 each, ' + FS25, '2026-02-18', 'Company')
+# THE OWNERSHIP STAKE WAS TYPED INTO THREE BUILDERS, eight times between them, and never
+# registered. It is a disclosed fact and belongs here with its source and date like every
+# other number a reader is shown -- the same defect the prose check caught on another study
+# this week, and the same fix.
+limad_stake = inp('limad_stake', 0.8475,
+                  "L'imad Holding Company PJSC's holding, computed from the disclosed "
+                  'share count; the FY2025 results release rounds the same holding to '
+                  '84.76% and both readings are published rather than one chosen. '
+                  + FS25, '2026-02-18', 'Company')
+# THE SUPERSEDED FIGURES ARE REGISTERED RATHER THAN TYPED. A previous edition's cost of
+# equity and central cannot be recomputed by this model -- a different model produced them
+# -- which is exactly why they belong in the register with their vintage rather than as
+# literals in a builder where nothing can check them.
+ke_rev2_published = inp('ke_rev2_published', 0.0908,
+                        'Cost of equity as revision 2 published it, on the composite-index '
+                        'beta this study has since replaced. Superseded; recorded so the '
+                        'change can be stated without typing the old number.',
+                        '2026-08-10', 'House')
+central_rev2_published = inp('central_rev2_published', 3.38,
+                             'The weighted central as revision 2 published it, on the '
+                             'composite-index beta. Superseded; recorded for the same '
+                             'reason.', '2026-08-10', 'House')
+limad_stake_rounded = inp('limad_stake_rounded', 0.8476,
+                          'the same holding as the company announcement rounds it, '
+                          'published beside the computed figure rather than instead of '
+                          'it. ' + FS25, '2026-02-18', 'Company')
 mktcap = spot * shares_mn
 D['meta'] = dict(ticker='MODON', company='Modon Holding PSC', market='ADX',
                  currency='AED', asof='2026-08-09', spot=spot, shares_mn=shares_mn,
@@ -150,9 +176,20 @@ ebit23 = ebt23 - fin_net23 - assoc23
 ebitda25 = ebit25 + dna25
 ebitda24 = ebit24 + dna24
 ebitda23 = ebit23 + dna23
+adj_ebitda_fy25_release = inp('adj_ebitda_fy25_release', 4900.0,
+                              'Group adjusted EBITDA as the FY2025 results release states '
+                              'it, AED 4.9bn. ' + PR25, '2026-02-18', 'Company')
+adj_ebitda_margin_release = inp('adj_ebitda_margin_release', 0.352,
+                                'the adjusted EBITDA margin as the FY2025 results release '
+                                'states it. NOT derivable from this study\'s registered '
+                                'revenue -- 4,900 over 13,828.869 is 35.4% -- so the '
+                                'company computes it on a base this study does not carry, '
+                                'and the release figure is recorded rather than '
+                                'reconstructed. ' + PR25, '2026-02-18', 'Company')
 A(abs(ebitda25 - 4895.370) < 0.5,
   f'FY2025 house EBITDA {ebitda25:.1f} reconciles to the company adjusted EBITDA '
-  f'4,900 within rounding (release: 4.9bn, 35.2% margin)')
+  f'{adj_ebitda_fy25_release:,.0f} within rounding (release margin '
+  f'{adj_ebitda_margin_release * 100:.1f}%)')
 
 # one-off strip for the clean/normalised basis (FY2025)
 oneoff25 = fvip25 + fvpl25 + dispassoc25

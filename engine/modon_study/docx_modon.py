@@ -15,6 +15,9 @@ IN = {k: (v['value'] if isinstance(v, dict) and 'value' in v else v)
       for k, v in D['inputs'].items()}
 SPOT, SH = M['spot'], M['shares_mn']
 CEN = D['central']
+# the asset net asset value, read from the lens record where it now sits beside the
+# other lenses rather than only inside the expert appendix
+RNAV = [c for c in D['lens_record']['cross_checks'] if c['kind'] == 'rnav'][0]['value']
 H1M, H3M = STK['horizons']['1M'], STK['horizons']['3M']
 
 def n0(x): return f'{x:,.0f}'
@@ -28,27 +31,41 @@ masthead()
 P('Modon Holding PSC', size=24, bold=True, space_after=0)
 rich([('ADX: MODON · Abu Dhabi Securities Exchange · United Arab Emirates dirham (AED)',
        dict(color=GREY, size=11))], space_after=2)
-rich([(f'Independent valuation study · revision 3 · 10 August 2026 · valuation date 30 June 2026 · '
+rich([(f'Independent valuation study · revision 4 · 10 August 2026 · valuation date 30 June 2026 · '
        f'price anchor AED {px(SPOT)} (close 7 August 2026)', dict(color=GREY, size=10))],
      space_after=10)
 box([
  ('READ FIRST. ', 'This study is an independent, educational analysis of Modon Holding PSC. '
   'It is not investment advice, not a recommendation, and it contains no price target. '
   'Every value is a model output presented as a range with its assumptions shown.'),
+ ('Revision 4. ', f'THE ANSWER IS NOW ONE LENS RATHER THAN AN AVERAGE OF FOUR, and nothing '
+  f'in the forecast moved to do it. Earlier editions published a weighted blend of four '
+  f'lenses at AED {px(D["retired_blend_value"])}; this one publishes the cash-flow model '
+  f'itself, at AED {px(CEN)}, with the asset value, the relative multiple and the book floor '
+  f'beside it as cross-checks. Two things follow and both are stated rather than left to be '
+  f'noticed. The direction of the disagreement with the market REVERSES — the blend read '
+  f'{D["retired_blend_value"] / SPOT - 1:+.0%} against the price and the cash-flow lens reads '
+  f'{CEN / SPOT - 1:+.0%} — and the float-and-governance friction that those weights were '
+  f'carrying, worth {1 - D["retired_blend_value"] / CEN:.0%} of the cash-flow lens, is no '
+  f'longer priced anywhere in the answer. Section 1.5 says so plainly and leaves the '
+  f'question open rather than settling it inside a set of weights. The normalised-earnings '
+  f'lens is removed rather than re-weighted: a developer recognising revenue against '
+  f'completion reports earnings that are an accident of which project completed in which '
+  f'year.'),
  ('Revision 3. ', f'One input changed and it changed the verdict. Revisions 1 and 2 could '
   f'not obtain the exchange\'s official index and measured the stock\'s market sensitivity '
   f'against a composite built from this study\'s own price library, flagged in both editions '
   f'as a stand-in. The official FTSE ADX General series has since been obtained, and the '
   f'regression is now run against it on the house method — including the correction for thin '
-  f'trading that a stock with 84.75% of its shares in one pair of hands requires, and which a '
-  f'plain regression understates. Beta goes from {IN["beta_rev2_published"]:.2f} to '
-  f'{IN["beta"]:.2f}, the cost of equity from 9.08% to {pc(W["ke_exp"], 2)}, and the weighted '
-  f'central from AED 3.38 to AED {px(CEN)}. Against a price of AED {px(SPOT)} that turns a 19% '
-  f'discount to fair value into a {pc(abs(CEN / SPOT - 1), 0)} premium — the shares read '
-  f'EXPENSIVE on these lenses, where two editions ago they read cheap. Nothing in the forecast '
-  f'moved: not a revenue line, not a margin, not the backlog. The stand-in flattered the '
-  f'company and the correction is reported here rather than absorbed quietly. Beta is the '
-  f'input this valuation is now most exposed to, and its 90% range '
+  f'trading that a stock with {pc(IN["limad_stake"], 2)} of its shares in one pair of hands '
+  f'requires, and which a plain regression understates. Beta goes from '
+  f'{IN["beta_rev2_published"]:.2f} to {IN["beta"]:.2f} and the cost of equity from '
+  f'{pc(IN["ke_rev2_published"], 2)} to {pc(W["ke_exp"], 2)}; on the blend this study '
+  f'published at the time that took the answer from AED {px(IN["central_rev2_published"])} to '
+  f'AED {px(D["retired_blend_value"])}. Nothing in the forecast moved: not a revenue line, '
+  f'not a margin, not the backlog. The stand-in flattered the company and the correction is '
+  f'reported here rather than absorbed quietly. Beta is the input this valuation is most '
+  f'exposed to, and its 90% range '
   f'({IN["beta_record"]["ci90"][0]:.2f}-{IN["beta_record"]["ci90"][1]:.2f}) is wide; section '
   f'1.9 prices it.'),
  ('Revision 2. ', 'The first edition (earlier the same day) struck its development drivers on '
@@ -73,8 +90,9 @@ box([
 # ============================ HEADLINE ========================================
 H1('Headline')
 rich([(f'Fair value AED {px(LN["central"]["bear"])}–{px(LN["central"]["bull"])} per share '
-       f'(the envelope of the four lenses\' extremes, not a distribution), weighted central '
-       f'AED {px(CEN)}, against a market price of AED {px(SPOT)} ({CEN / SPOT - 1:+.0%}). ',
+       f'— the cash-flow lens under the run-off and growth-hold paths of the same model, '
+       f'not a distribution and not a spread across methods — with a central of '
+       f'AED {px(CEN)} against a market price of AED {px(SPOT)} ({CEN / SPOT - 1:+.0%}). ',
        dict(bold=True, size=12))], space_after=8)
 P(f'Modon Holding is Abu Dhabi\'s government-owned city-builder: real-estate development '
   f'(Hudayriyat Island, Reem Island, Ras El Hekma in Egypt), the ADNEC events platform, a '
@@ -98,14 +116,27 @@ P(f'Over the next three months the price map is symmetric and modest: central ba
 
 # ============================ VALUATION SUMMARY ===============================
 H1('Valuation summary')
-rows = [['Lens', 'Bear', 'Base', 'Bull', 'Weight', 'vs price']]
-for k, nm in [('dcf', 'Discounted cash flow (primary)'), ('relative', 'Relative multiples'),
-              ('normalized', 'Normalised earnings power'), ('book', 'Book value & sustainable return')]:
+rows = [['Lens', 'Bear', 'Base', 'Bull', 'Role', 'vs price']]
+ROLE = {'dcf': 'THE ANSWER', 'relative': 'cross-check',
+        'normalized': 'not published for this class',
+        'book': 'a floor, never weighted'}
+for k, nm in [('dcf', 'Discounted cash flow (the answer)'),
+              ('rnav', 'Asset net asset value'),
+              ('relative', 'Relative multiples'),
+              ('normalized', 'Normalised earnings power'),
+              ('book', 'Book value & sustainable return')]:
+    if k == 'rnav':
+        rows.append([nm, '', px(RNAV), '', 'cross-check', f'{RNAV / SPOT - 1:+.0%}'])
+        continue
     l = LN[k]
-    rows.append([nm, px(l['bear']), px(l['base']), px(l['bull']), pc(l['w'], 0),
+    rows.append([nm, px(l['bear']), px(l['base']), px(l['bull']), ROLE[k],
                  f"{l['base'] / SPOT - 1:+.0%}"])
-rows.append(['Weighted central', px(LN['central']['bear']), px(CEN), px(LN['central']['bull']),
-             '100%', f'{CEN / SPOT - 1:+.0%}'])
+rows.append(['THE CENTRAL — the cash-flow lens, not an average',
+             px(LN['central']['bear']), px(CEN), px(LN['central']['bull']),
+             'the class primary', f'{CEN / SPOT - 1:+.0%}'])
+rows.append(['NOT AVERAGED — the retired blend, published unused', '',
+             px(D['retired_blend_value']), '', 'retired', 
+             f"{D['retired_blend_value'] / SPOT - 1:+.0%}"])
 rows.append([f'DCF terminal value share of enterprise value: {pc(DCF["tv_share"])}',
              '', '', '', '', ''])
 rows.append(['Market price (7 Aug 2026)', '', px(SPOT), '', '', ''])
@@ -129,9 +160,9 @@ P('Modon Holding PSC is the Abu Dhabi government\'s listed city-development plat
   'sheet roughly four-fold and reset the perimeter — FY2024 income carries a AED '
   f'{bn(D["oneoff"]["fy24"]["bargain"])}bn accounting gain from that combination and is treated '
   'as a transition year throughout. On 30 October 2025 IHC and ADQ sold their entire stakes to '
-  'L\'imad Holding Company PJSC, wholly owned by the Abu Dhabi Government — 84.75% of the '
+  f'L\'imad Holding Company PJSC, wholly owned by the Abu Dhabi Government — {pc(IN["limad_stake"], 2)} of the '
   'shares (the arithmetic of the disclosed share count; one company announcement rounds it to '
-  '84.76%). The stock trades on ADX\'s growth market with a correspondingly thin free float.')
+  f'{pc(IN["limad_stake_rounded"], 2)}). The stock trades on ADX\'s growth market with a correspondingly thin free float.')
 P('Four reported segments. Real Estate Development (54% of FY2025 revenue) masterplans and '
   'sells land and homes on Hudayriyat Island (>50mn sqm, 40,000 planned units), Reem Island '
   'and Al Ain, and leads phase 1 of Ras El Hekma on Egypt\'s north coast (170.8mn sqm, '
@@ -302,15 +333,32 @@ P(f'Through a full cycle this study assumes development sales settle near AED '
   f'earnings AED {n0(NRM["np"])}mn (AED {NRM["eps"]:.3f}/share), worth AED {px(NRM["base"])} '
   f'at {IN["norm_pe"]:.1f}x. The harshest lens: it treats 2025–26 as a cycle top.')
 
-H2('1.5 · Synthesis — four lenses, one field')
-figure('fig1_football.png', 6.9, 'Figure 1 — the four lenses and the weighted central against '
-       'the market price. The DCF span is the run-off-stress-to-growth-hold spread.')
-P(f'Weights: DCF {pc(LN["dcf"]["w"], 0)} on backlog visibility; the three market lenses carry '
-  f'{pc(0.6, 0)} jointly — and that structure IS how the float and governance friction is '
-  f'priced. One audit demanded an additional ~30% holding-company discount on top; that would '
-  f'charge the same friction twice, and is rejected with the reasoning stated here — the '
-  f'central already sits {1 - CEN / DCF["ps"]:.0%} below the DCF because of it. Result: AED '
-  f'{px(CEN)}, {CEN / SPOT - 1:+.0%} above the market.')
+H2('1.5 · Synthesis — one lens is the answer, the others sit beside it')
+figure('fig1_football.png', 6.9, 'Figure 1 — the lenses against the market price. The '
+       'cash-flow span is the run-off-stress-to-growth-hold spread of the same model.')
+P(f'The cash-flow lens IS the answer, at AED {px(CEN)}, {CEN / SPOT - 1:+.0%} against the '
+  f'market. The asset net asset value at AED {px(RNAV)}, the relative multiple at AED '
+  f'{px(LN["relative"]["base"])} and book value at AED {px(LN["book"]["base"])} are published '
+  f'beside it as cross-checks — the last of those a floor rather than a value — and none of '
+  f'them is averaged into it. They straddle the answer, which is information a single blended '
+  f'number destroys.')
+P(f'A previous edition published a weighted blend of four lenses at AED '
+  f'{px(D["retired_blend_value"])} instead. That is shown above, unused, because the change '
+  f'matters and hiding it would be worse than making it: the blend read '
+  f'{D["retired_blend_value"] / SPOT - 1:+.0%} against the market where the cash-flow lens '
+  f'reads {CEN / SPOT - 1:+.0%}, so it reversed the direction of this study\'s disagreement '
+  f'with the price, and it landed below the run-off stress path at AED '
+  f'{px(LN["dcf"]["bear"])} that section 1.7 records as falsified by the first-half '
+  f'disclosure.')
+P(f'ONE CONSEQUENCE IS STATED RATHER THAN LEFT TO BE NOTICED. Those weights were not only a '
+  f'view about method: they were also how this study priced the float and governance friction '
+  f'that comes with a 22% free float and a dominant sovereign shareholder, and they cost '
+  f'{1 - D["retired_blend_value"] / CEN:.0%} of the cash-flow lens in doing it. With the '
+  f'blend gone that friction is NOT priced anywhere in the figure above. Whether an explicit '
+  f'discount belongs, and how large, is a judgement this edition does not make — it is left '
+  f'open, to be published as a contested judgement with both framings valued, rather than '
+  f'buried in a set of weights where a reader would have to reverse-engineer it before '
+  f'they could disagree with it.')
 
 H2('1.6 · Drivers — each leg on its own driver')
 dr = [['Leg', 'Driver build', 'Path'],
@@ -379,7 +427,7 @@ P(f'The result is beta {IN["beta"]:.2f}, quoted here with its uncertainty becaus
   f'uncertainty is large: standard error {IN["beta_record"]["se"]:.2f}, R-squared '
   f'{IN["beta_record"]["r2"]:.2f}, a 90% range of {IN["beta_record"]["ci90"][0]:.2f} to '
   f'{IN["beta_record"]["ci90"][1]:.2f}. Two adjustments sit behind it and both matter. First, '
-  f'the regression corrects for thin trading: 84.75% of Modon\'s shares are held by one '
+  f'the regression corrects for thin trading: {pc(IN["limad_stake"], 2)} of Modon\'s shares are held by one '
   f'entity, so the stock does not move in step with the index within a single week, and an '
   f'uncorrected regression reads {IN["beta_naive_same_weeks"]["beta"]:.2f} — understating the '
   f'sensitivity by {IN["beta"] - IN["beta_naive_same_weeks"]["beta"]:.2f}. Second, the '
@@ -530,8 +578,10 @@ P(f'Second: the market is pricing the run-off stress with a further discount —
   f'current multiples while the DCF anchors on the contracted backlog — and '
   f'{pc(DCF["tv_share"])} of the DCF\'s enterprise value is terminal, which is where '
   f'scepticism belongs; the working-capital honesty of this revision moved cash out of the '
-  f'explicit window and made that share larger, not smaller. The weighted central of AED '
-  f'{px(CEN)} holds these readings in stated proportions rather than pretending they agree.')
+  f'explicit window and made that share larger, not smaller. The lenses are published side '
+  f'by side rather than reconciled: the cash-flow lens at AED {px(CEN)} is the answer, and '
+  f'the others are shown where they fall rather than averaged into it, so a reader sees the '
+  f'disagreement instead of a number that conceals it.')
 figure('figD1_experts.png', 6.9, 'Figure 7 — three expert framings (Appendix C) against the '
        'market price.')
 
@@ -832,9 +882,10 @@ P('Revision 2, produced the same day as the first edition after external audits 
   'receipts in the build record.')
 H1('Disclosure')
 P('Educational analysis. Not investment advice, not a recommendation, not an offer. No '
-  'rating is expressed. The single weighted central is the centre of a stated range of '
-  'model outputs, not a price target, and the full per-lens ranges are shown wherever it '
-  'appears. The authors hold no position in MODON. Data as of 9 August 2026; prices as of '
+  'rating is expressed. The central is one lens — the cash-flow model — and not an average '
+  'of several; it is a model output rather than a price target, it is published inside a '
+  'stated range of that same model\'s own paths, and the other lenses are shown beside it '
+  'wherever it appears. The authors hold no position in MODON. Data as of 9 August 2026; prices as of '
   'the 7 August 2026 close. © Testahil 2026.', size=9)
 
 doc.save('MODON_Valuation_Study_10-08-2026_public.docx')

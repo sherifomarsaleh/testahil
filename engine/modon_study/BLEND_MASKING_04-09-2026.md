@@ -117,3 +117,30 @@ contested. What is concluded is narrower and is arithmetic rather than judgement
 published number is produced by an architecture this house retired, it reverses the sign
 of the study's own disagreement with the market, and it sits below a downside the study
 says its filings falsified.**
+
+---
+
+## What the re-issue moved, and where the old number is recorded
+
+The old fair value is frozen HERE rather than in the campaign's fair-value register. That
+register anchors on walk-forward RUN DIRECTORIES [R-ENF-04], and this is a
+lens-architecture re-issue rather than a walk-forward run — so a snapshot taken there
+failed the register's own check, correctly, with "MODON carries a record with no
+walk-forward run directory behind it". The right instrument for a fact that moves is a
+record that is not the thing being changed; it just is not that one.
+
+| | Before | After |
+|---|---|---|
+| Central | 2.4952 | **3.5423** |
+| Against the struck spot of 2.83 | −11.8% | **+25.2%** |
+| Envelope | [1.0309, 4.1338] | [2.6432, 4.1338] |
+| Published site values (data.js, unchanged by this pass) | bear 1.03 / base 2.50 / full 4.13 | — |
+
+The site is untouched: publishing is a separate, explicitly-requested step, and nothing
+here has been staged.
+
+**The envelope narrowed for a reason.** It used to run from the lowest bear of any lens to
+the highest bull of any other — a measure of how much four different methods disagree.
+It is now the cash-flow lens's own run-off and growth-hold paths on one clock, which is a
+measure of how uncertain the answer is. Those are different quantities and only the second
+is an envelope around a value.

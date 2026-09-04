@@ -735,7 +735,7 @@ for a_, b_, c_, xp in rows:
         put(fv, f'C{r}', c_, BLUE, PX)
     r += 1
 r += 1
-band(fv, r, 3); put(fv, f'A{r}', 'Weighted central (links to Summary)', bold=True, fmt=None)
+band(fv, r, 3); put(fv, f'A{r}', 'THE CENTRAL — the cash-flow lens (links to Summary)', bold=True, fmt=None)
 putf(fv, f'C{r}', "=Summary!C9", D['central'], PX, bold=True); r += 2
 put(fv, f'A{r}', 'What the market price implies', fmt=None)
 put(fv, f'B{r}', 'cost-of-equity adder reconciling the base DCF to spot (engine solve)', fmt=None)
