@@ -164,6 +164,16 @@ ALTS = [
 ]
 for a in ALTS:
     a['delta'] = a['value'] - BASELINE
+    # AN ALTERNATIVE THAT MOVES NOTHING HAS NOT BEEN PRICED, IT HAS BEEN RE-RUN. The
+    # premium-basis row scored exactly +0.00 for a full edition because it repriced the
+    # basis the base case already uses; a zero delta reads as "this choice does not
+    # matter", which is the one answer nobody checks. Priced correctly it was worth
+    # -1.05 a share, the third largest of the ten. Exact zero is the signature, because
+    # a genuine coincidence to the fifth decimal does not happen across a whole model.
+    assert abs(a['delta']) > 1e-6, (
+        "alternative %r scored exactly zero: it re-ran the base case rather than moving "
+        "anything. Check that the value being patched in is not the one already in use."
+        % a['key'])
 
 # ---------------------------------------------------------------------------
 # 2. THE SPAN OF EACH LENS — bear, base, bull
