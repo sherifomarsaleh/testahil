@@ -37,10 +37,21 @@ PCW = lambda x: f"{x*100:.0f}%"          # unsigned: weights, shares, distances 
 M3 = ST['horizons']['3M']; M1 = ST['horizons']['1M']
 
 masthead()
+import datetime as _dt
+# ONE PLACE THE EDITION IS NAMED, read by the masthead and by the save.
+EDITION_FILE = 'EGCH_Valuation_Study_03-09-2026.docx'
+
 P("EGYPTIAN CHEMICAL INDUSTRIES (KIMA)", size=21, bold=True, space_after=1)
 P("Egyptian Exchange: EGCH  ·  Aswan  ·  Nitrogen fertilizers and industrial chemicals",
   size=11, color=BRASS, space_after=1)
-P(f"Valuation study — 1 September 2026  ·  Reporting and valuation currency: Egyptian pounds  "
+# THE EDITION DATE WAS TYPED AND WENT STALE. This read "1 September 2026" on the
+# 03-09-2026 edition, and check_edition_date passed it: that gate asks whether the
+# edition date appears in the masthead, and the ANCHOR PRICE line beside this one carries
+# 2026-09-03, which is a perfectly good rendering of it. The gate saw the right date next
+# to the wrong one. A date this study can compute is a date it must not type.
+_EDITION = _dt.datetime.strptime(EDITION_FILE.split('_')[-1][:10], '%d-%m-%Y').date()
+P(f"Valuation study — {_EDITION.day} {_EDITION.strftime('%B %Y')}  ·  Reporting and "
+  f"valuation currency: Egyptian pounds  "
   f"·  Anchor price EGP {E2(SPOT)} at the close of {V('spot_price_date')}",
   size=10, color=GREY, space_after=10)
 
@@ -1453,5 +1464,5 @@ box([("Educational analysis.  ", "This document is an independent educational an
      ("No position.  ", "The author holds no position in the subject and receives no "
       "compensation from it or from any party with an interest in it.")])
 
-finalise('EGCH_Valuation_Study_03-09-2026.docx')
-print("wrote EGCH_Valuation_Study_03-09-2026.docx")
+finalise(EDITION_FILE)
+print('wrote ' + EDITION_FILE)

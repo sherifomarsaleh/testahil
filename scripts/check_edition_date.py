@@ -190,6 +190,74 @@ def audit_figure_dates():
     return examined, bad
 
 
+# THE MASTHEAD CLAUSE ASKS WHETHER THE EDITION DATE IS PRESENT, AND PRESENCE IS NOT
+# AGREEMENT [ADDED 04-Sep-2026]. EGCH's 03-09-2026 edition carried "Valuation study — 1
+# September 2026" beside "Anchor price EGP 14.41 at the close of 2026-09-03", and this gate
+# passed it: the ISO date is a perfectly good rendering of the edition date, so the gate saw
+# the right date sitting next to the wrong one. The study date was TYPED into the builder
+# and had gone two days stale.
+#
+# WHAT IS CHECKED IS AGREEMENT WHERE THE DOCUMENT ITSELF MAKES A CLAIM. Where a date
+# immediately follows an edition label, that date IS the document's statement of its own
+# edition, and it must be the edition. Where no date follows the label the clause is silent,
+# because the document has claimed nothing and the presence clause above already covers it.
+_LABEL = re.compile(r'(valuation study|edition of)', re.I)
+_ANYDATE = re.compile(
+    r'(\d{4}-\d{2}-\d{2})'
+    r'|(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|'
+    r'November|December)\s+\d{4})'
+    r'|((?:January|February|March|April|May|June|July|August|September|October|November|'
+    r'December)\s+\d{1,2},\s*\d{4})', re.I)
+
+
+def _parse(tok):
+    for fmt in ('%Y-%m-%d', '%d %B %Y', '%B %d, %Y'):
+        try:
+            return datetime.datetime.strptime(tok.strip(), fmt).date()
+        except ValueError:
+            continue
+    return None
+
+
+def audit_masthead_agreement():
+    """(examined, offenders) — a date the masthead states as its edition that is not one."""
+    examined, bad = 0, {}
+    for f, dt in documents():
+        rel = os.path.relpath(f, ROOT)
+        try:
+            import docx
+            head = ' '.join(p.text for p in docx.Document(f).paragraphs[:6])
+        except Exception:                                             # noqa: BLE001
+            continue
+        m = _LABEL.search(head)
+        if not m:
+            continue
+        seg = head[m.end():m.end() + 220]
+        # AMOC'S FORM IS BETTER THAN THE RULE REQUIRES AND MUST NOT BE PUNISHED FOR IT.
+        # "valuation study as of 6 August 2026, issued 3 September 2026" states two dates
+        # on purpose — the price it was struck against and the day it was issued — and the
+        # EDITION is the second. Where the label is qualified by "as of", the date that
+        # must agree is the one after "issued".
+        if re.match(r'\s*as of', seg, re.I):
+            i = seg.lower().find('issued')
+            if i < 0:
+                bad[rel] = ('the masthead says "as of" a date and never says when it was '
+                            'issued, so it states no edition date at all')
+                examined += 1
+                continue
+            seg = seg[i:]
+        d = _ANYDATE.search(seg)
+        if not d:
+            continue
+        examined += 1
+        got = _parse(d.group(0))
+        if got and got != dt:
+            bad[rel] = ('the masthead states this edition is of %s and the edition is %s; '
+                        'presence of the right date elsewhere in the masthead is not '
+                        'agreement' % (got, dt))
+    return examined, bad
+
+
 def audit_delivered_pdfs():
     """The same date rule, applied to THE FILE A READER ACTUALLY RECEIVES.
 
@@ -241,6 +309,8 @@ def main():
     examined, bad = audit()
     fx_examined, fx_bad = audit_figure_dates()
     bad.update(fx_bad)
+    ma_examined, ma_bad = audit_masthead_agreement()
+    bad.update({k: v for k, v in ma_bad.items() if k not in bad})
     pdf_examined, pdf_bad = audit_delivered_pdfs()
     # a study already ratcheted on its .docx is not counted twice for the same date
     _docx_bad = {os.path.splitext(k)[0] for k in bad}
@@ -267,9 +337,9 @@ def main():
               % stranded)
         return 1
 
-    print('delivered studies examined: %d (.docx) + %d (.pdf);  figure labels dating a '
-          'price: %d;  not carrying the right date: %d'
-          % (examined, pdf_examined, fx_examined, len(bad)))
+    print('delivered studies examined: %d (.docx) + %d (.pdf);  mastheads stating their '
+          'own edition: %d;  figure labels dating a price: %d;  not carrying the right '
+          'date: %d' % (examined, pdf_examined, ma_examined, fx_examined, len(bad)))
     for p in sorted(bad):
         print('  [%s] %-52s %s' % ('ratcheted' if p in allowed else 'NEW',
                                    os.path.basename(p), bad[p]))

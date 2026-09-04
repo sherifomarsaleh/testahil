@@ -227,6 +227,50 @@ def main():
             shutil.rmtree(tmp, ignore_errors=True)
     bad += globals().get('_extra_bad', 0)
 
+    # ---- THE MASTHEAD-AGREEMENT CLAUSE -------------------------------------------------
+    # PRESENCE IS NOT AGREEMENT. EGCH's 3 September edition read "Valuation study — 1
+    # September 2026" beside "at the close of 2026-09-03", and the presence clause passed
+    # it: the ISO date is a perfectly good rendering of the right date, sitting next to the
+    # wrong one. The clean cases are the two forms that must NOT fire — AMOC's deliberate
+    # "as of X, issued Y", which states two dates on purpose, and a masthead that names no
+    # date at all, where the document has claimed nothing.
+    for nm, dt, paras, must_fire in (
+            ("EGCH as it shipped — a typed study date beside a correct anchor-price date",
+             datetime.date(2026, 9, 3),
+             ['KIMA', 'Valuation study — 1 September 2026  ·  Anchor price EGP 14.41 at '
+              'the close of 2026-09-03'], True),
+            ("a masthead saying \'as of\' a date and never saying when it was issued",
+             datetime.date(2026, 9, 3),
+             ['ZZZ', 'EGX: ZZZ · Valuation study as of 6 August 2026', 'edition of '
+              '3 September 2026'], True),
+            ("CLEAN — AMOC\'s form, as of one date and ISSUED on the edition date",
+             datetime.date(2026, 9, 3),
+             ['AMOC', 'EGX: AMOC · Valuation study as of 6 August 2026, issued '
+              '3 September 2026'], False),
+            ("CLEAN — the label states the edition date plainly",
+             datetime.date(2026, 9, 3),
+             ['ZZZ', 'Valuation study — 3 September 2026 · EGP'], False),
+            ("CLEAN — a masthead with an edition label and NO date, which claims nothing",
+             datetime.date(2026, 9, 3),
+             ['ZZZ', 'Independent Valuation Study — Educational Analysis',
+              'edition of 3 September 2026'], False)):
+        tmp = tempfile.mkdtemp(prefix='ncedm')
+        try:
+            sd = os.path.join(tmp, 'engine', 'zzz_study')
+            os.makedirs(sd, exist_ok=True)
+            plant(tmp, 'ZZZ_Valuation_Study_%s.docx' % dt.strftime('%d-%m-%Y'), paras,
+                  with_pdf=False)
+            _m.ROOT = tmp
+            ex, offenders = _m.audit_masthead_agreement()
+            ok = (bool(offenders) == must_fire)
+            print('%-4s %s' % ('PASS' if ok else 'FAIL', nm[:96]))
+            if not ok:
+                bad += 1
+                print('      examined %d, offenders %s' % (ex, offenders))
+        finally:
+            _m.ROOT = ROOT
+            shutil.rmtree(tmp, ignore_errors=True)
+
     # ---- THE DELIVERED-PDF CLAUSE ------------------------------------------------------
     # THE PDF IS WHAT A READER RECEIVES AND THE .docx IS THE BUILD ARTEFACT. On 03-Sep-2026
     # TMGH's masthead was corrected in the Word file and its delivered PDF sat NINETEEN
@@ -295,7 +339,7 @@ def main():
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
-    total = len(CASES) + 2 + 5 + 6
+    total = len(CASES) + 2 + 5 + 6 + 5
     print('\n%d/%d conditions behaved as specified' % (total - bad, total))
     return 1 if bad else 0
 
