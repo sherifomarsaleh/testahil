@@ -8,11 +8,11 @@
    "name": "Is the ANNA capital programme carried through, or stopped?",
    "adopted": "Cash-flow lens, capital programme carried through — the ANNA programme is completed and commissioned as the company is currently doing",
    "alternative": "Cash-flow lens, capital programme stopped — the programme is halted and the remaining spend is not committed",
-   "value_adopted": 3.896716038959174,
-   "value_alternative": 7.880735124887895,
+   "value_adopted": 4.0395808164915605,
+   "value_alternative": 8.038774888582243,
    "why": "the judgement is binary and its two answers straddle zero, so an average describes a half-built plant — a world nobody is proposing and the company is not in. Averaging would also hide the finding: that on the disclosed bank-approved cost and the derived nameplate, the programme does not earn the capital sunk into it, which is why stopping is worth more than finishing. Whether the plant, once built, earns a return above the cost of the capital sunk into it. On the disclosed bank-approved cost and the derived nameplate it does not, which is why stopping is worth more than finishing."
   }
  ],
- "published_central": 3.896716038959174,
+ "published_central": 4.0395808164915605,
  "published_spot": 14.41
 }
