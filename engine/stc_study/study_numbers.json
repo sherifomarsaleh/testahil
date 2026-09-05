@@ -1,10 +1,10 @@
 {
- "central": 38.142610789530956,
+ "central": 38.080615910145504,
  "spot": 43.86,
  "spot_date": "2026-09-03",
  "central_range": {
-  "low": 37.365364168091176,
-  "high": 47.97436572183078
+  "low": 37.303369288705724,
+  "high": 48.07526101832944
  },
  "cone_anchor": 44.72,
  "cone_anchor_date": "2026-08-31",
@@ -32,8 +32,8 @@
    "unit": "mobile and fixed subscribers",
    "unit_source": "the quarterly earnings presentations\u2019 own subscriber charts, whose footnote states the figures are not audited",
    "price_basis": "revenue per subscriber, BACK-SOLVED against the audited segment revenue in note 9 rather than disclosed",
-   "cost_basis": "not built per unit \u2014 see the gap note",
-   "gap_note": "The unit is real and disclosed; the PRICE is not. Revenue per subscriber is derived by dividing audited segment revenue by a subscriber count the company publishes in a presentation and does not audit, so this is unit economics on a derived rate rather than on a disclosed one. The cost side is not built per unit either: note 35 discloses seven cost lines by nature for three years and cost_stack.py decomposes them, but the model consumes one held gross margin. That is the finest level this study currently builds at and it is stated rather than claimed away."
+   "cost_basis": "four of note 35\u2019s seven lines on the bases the filings name; the rest on the segment\u2019s own held gross margin",
+   "gap_note": "The unit is real and disclosed; the PRICE is not. Revenue per subscriber is derived by dividing audited segment revenue by a subscriber count the company publishes in a presentation and does not audit, so this is unit economics on a derived rate rather than on a disclosed one. THE COST SIDE IS PART-BUILT: note 35 discloses seven lines by nature for three years, and the four with a sourced base that is not group revenue are built on it \u2014 the commercial service provisioning fee on the Saudi operating segment the sub-note levies it against, the licence fee at its own measured rate, repairs and maintenance on the asset base being maintained, and contract-cost amortisation on the subscriber path. The other three carry no sourced driver \u2014 network access has no disclosed unit rate, employee cost has no headcount anywhere in the filings, and \"Others\" is a residual of three unrelated things \u2014 so they stay on the held margin and that is said rather than filled with an imported ratio. The level stays DERIVED because the price still is."
   },
   {
    "name": "Channels",
@@ -42,7 +42,7 @@
    "unit": null,
    "unit_source": null,
    "price_basis": null,
-   "cost_basis": "the segment\u2019s own held gross margin",
+   "cost_basis": "the segment\u2019s own held gross margin, less its share of the four group cost lines built on their own bases",
    "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
   },
   {
@@ -52,7 +52,7 @@
    "unit": null,
    "unit_source": null,
    "price_basis": null,
-   "cost_basis": "the segment\u2019s own held gross margin",
+   "cost_basis": "the segment\u2019s own held gross margin, less its share of the four group cost lines built on their own bases",
    "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
   },
   {
@@ -62,7 +62,7 @@
    "unit": null,
    "unit_source": null,
    "price_basis": null,
-   "cost_basis": "the segment\u2019s own held gross margin",
+   "cost_basis": "the segment\u2019s own held gross margin, less its share of the four group cost lines built on their own bases",
    "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
   },
   {
@@ -72,7 +72,7 @@
    "unit": null,
    "unit_source": null,
    "price_basis": null,
-   "cost_basis": "the segment\u2019s own held gross margin",
+   "cost_basis": "the segment\u2019s own held gross margin, less its share of the four group cost lines built on their own bases",
    "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
   },
   {
@@ -82,7 +82,7 @@
    "unit": null,
    "unit_source": null,
    "price_basis": null,
-   "cost_basis": "the segment\u2019s own held gross margin",
+   "cost_basis": "the segment\u2019s own held gross margin, less its share of the four group cost lines built on their own bases",
    "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
   },
   {
@@ -92,7 +92,7 @@
    "unit": null,
    "unit_source": null,
    "price_basis": null,
-   "cost_basis": "the segment\u2019s own held gross margin",
+   "cost_basis": "the segment\u2019s own held gross margin, less its share of the four group cost lines built on their own bases",
    "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
   },
   {
@@ -102,7 +102,7 @@
    "unit": null,
    "unit_source": null,
    "price_basis": null,
-   "cost_basis": "the segment\u2019s own held gross margin",
+   "cost_basis": "the segment\u2019s own held gross margin, less its share of the four group cost lines built on their own bases",
    "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
   },
   {
@@ -112,7 +112,7 @@
    "unit": null,
    "unit_source": null,
    "price_basis": null,
-   "cost_basis": "the segment\u2019s own held gross margin",
+   "cost_basis": "the segment\u2019s own held gross margin, less its share of the four group cost lines built on their own bases",
    "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
   },
   {
@@ -122,7 +122,7 @@
    "unit": null,
    "unit_source": null,
    "price_basis": null,
-   "cost_basis": "the segment\u2019s own held gross margin",
+   "cost_basis": "the segment\u2019s own held gross margin, less its share of the four group cost lines built on their own bases",
    "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
   },
   {
@@ -132,7 +132,7 @@
    "unit": null,
    "unit_source": null,
    "price_basis": null,
-   "cost_basis": "the segment\u2019s own held gross margin",
+   "cost_basis": "the segment\u2019s own held gross margin, less its share of the four group cost lines built on their own bases",
    "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
   },
   {
@@ -142,7 +142,7 @@
    "unit": null,
    "unit_source": null,
    "price_basis": null,
-   "cost_basis": "the segment\u2019s own held gross margin",
+   "cost_basis": "the segment\u2019s own held gross margin, less its share of the four group cost lines built on their own bases",
    "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
   },
   {
@@ -152,7 +152,7 @@
    "unit": null,
    "unit_source": null,
    "price_basis": null,
-   "cost_basis": "the segment\u2019s own held gross margin",
+   "cost_basis": "the segment\u2019s own held gross margin, less its share of the four group cost lines built on their own bases",
    "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
   }
  ],
@@ -856,7 +856,7 @@
   },
   "nci": {
    "basis": "value_share",
-   "deduction": 3927.5898358025356,
+   "deduction": 3921.206149602089,
    "applied_to": "equity_value",
    "book": 2726.349,
    "profit_share": 0.020206295602669237,
@@ -875,7 +875,7 @@
   "lines": [
    {
     "name": "enterprise value, discounted cash flow",
-    "value": 176163.3739305896
+    "value": 175847.44832374045
    },
    {
     "name": "plus investments in associates and joint ventures, at book",
@@ -895,12 +895,12 @@
    },
    {
     "name": "less the minority at its share of equity value",
-    "value": -3927.5898358025356
+    "value": -3921.206149602089
    }
   ],
-  "equity_value": 190446.97109478703,
+  "equity_value": 190137.42917413835,
   "shares_mn": 4993.024,
-  "per_share": 38.142610789530956,
+  "per_share": 38.080615910145504,
   "net_debt_build": {
    "borrowings": 23536.554,
    "leases": 2258.902,
@@ -916,7 +916,7 @@
  "terminal_record": {
   "rule": "R-TERM-01",
   "inputs": {
-   "nopat": 15445.66512484251,
+   "nopat": 15407.077608768886,
    "wacc": 0.08132614912126104,
    "inflation": 0.02,
    "real_growth": 0.0,
@@ -933,10 +933,10 @@
    "floor_exemption": "",
    "floor_exemption_disclosure": ""
   },
-  "fcff": 11150.146697337288,
-  "tv": 185453.51035813044,
-  "floor": 189922.49469247967,
-  "tv_vs_floor": -0.023530568833277754,
+  "fcff": 11111.559181263667,
+  "tv": 184811.7080118382,
+  "floor": 189448.016108524,
+  "tv_vs_floor": -0.024472719176061086,
   "nominal_growth": 0.020000000000000018,
   "real_growth": 0.0,
   "maintenance": 15461.020673529309,
@@ -949,7 +949,7 @@
   "net_capital_charge": 4295.51842750522,
   "implied_cycle_years": null,
   "one_over_g": 49.99999999999996,
-  "payout_of_nopat": 0.721894888126482,
+  "payout_of_nopat": 0.7211983650254062,
   "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
  },
  "hist": {
@@ -2956,11 +2956,11 @@
   "latest_reviewed_rate": 0.48958058906326535,
   "first_forecast_rate": 0.49145355407119184,
   "forecast_path": [
-   0.319847256594818,
-   0.3190366010783908,
-   0.3184831288736253,
-   0.3182052626065098,
-   0.31820526260650966
+   0.32057407071688276,
+   0.31978077043482733,
+   0.319055773120738,
+   0.31838296063594496,
+   0.31773233707496906
   ],
   "note": "The first forecast year is BUILT from the reviewed half rather than compared with it: the level, the gross margin and the operating-cost share all come from note 4 of that interim, each corrected by the prior year's OWN measured half-to-year factor rather than by an assumed seasonality. The reviewed half reports a gross margin of 48.958% and the first forecast year carries 49.145%; the difference is the measured seasonal correction, not a fade. The delivered study stood on a stale full year and sat 89 basis points BELOW an EBITDA margin the company had already reported for half the year."
  },
@@ -2992,10 +2992,10 @@
   "fy2025_reported_net": 15189.078,
   "fy2025_reported_margin": 0.19518551298900938,
   "bridge_to_fy2026": {
-   "ebit": 977.8042478304724,
+   "ebit": 1036.4847209178497,
    "early_retirement": -597.4986666666667,
    "finance": -642.9549026964813,
-   "total": -262.6493215326773
+   "total": -203.96884844529995
   },
   "note": "The forecast opens at a net margin below the year it is anchored on, and the reason is arithmetic rather than a view. FY2025 as REPORTED carries three lines no forecast may project \u2014 net other income, the share of associates and net other gains \u2014 and a zakat RELEASE rather than a charge. Rebuilt on this forecast's own basis the filed year is directly comparable, and what is left of the difference is the finance result, which has changed SIGN: the reviewed half reports a net charge where every filed year reported a net credit, because long-term borrowings went from 14,404,268 to 22,094,126 inside that half."
  },
@@ -3165,11 +3165,11 @@
   },
   "cpi_history_source": "International Monetary Fund, World Economic Outlook database, series PCPIPCH (inflation, average consumer prices, annual percent change), Saudi Arabia (SAU), read live from the IMF datamapper API on 5 September 2026.",
   "ebitda_m": [
-   0.319847256594818,
-   0.3190366010783908,
-   0.3184831288736253,
-   0.3182052626065098,
-   0.31820526260650966
+   0.32057407071688276,
+   0.31978077043482733,
+   0.319055773120738,
+   0.31838296063594496,
+   0.31773233707496906
   ],
   "dna_pct": [
    0.12890441786627696,
@@ -3207,18 +3207,18 @@
    "rev": 80736.56153058002,
    "nwc": 14161.993999999993,
    "dwc": -7.275957614183426e-12,
-   "gp": 39678.27010769101,
+   "gp": 39736.950580778386,
    "sga": 13854.902395236271,
-   "ebitda": 25823.36771245474,
-   "ebitda_margin": 0.319847256594818,
+   "ebitda": 25882.048185542117,
+   "ebitda_margin": 0.32057407071688276,
    "dna": 10407.299464624268,
-   "ebit": 15416.068247830472,
+   "ebit": 15474.748720917849,
    "early_retirement": -1421.2996666666668,
    "fin_income": 951.7174030437861,
    "fin_cost": -1443.5913057402674,
-   "pbz": 13502.894678467323,
-   "zakat": -1116.264668183226,
-   "net_profit": 12386.630010284096
+   "pbz": 13561.5751515547,
+   "zakat": -1121.1156975646645,
+   "net_profit": 12440.459453990035
   },
   "FY27E": {
    "gross": 95247.16865747923,
@@ -3226,18 +3226,18 @@
    "rev": 82985.11937468077,
    "nwc": 14556.41335714275,
    "dwc": 394.4193571427568,
-   "gp": 40716.05950690653,
+   "gp": 40777.81448978539,
    "sga": 14240.769081523858,
-   "ebitda": 26475.29042538267,
-   "ebitda_margin": 0.3190366010783908,
+   "ebitda": 26537.045408261532,
+   "ebitda_margin": 0.31978077043482733,
    "dna": 10697.148504556726,
-   "ebit": 15778.141920825945,
+   "ebit": 15839.896903704806,
    "early_retirement": -1451.1469596666666,
    "fin_income": 971.7034685077056,
    "fin_cost": -1473.9067231608128,
-   "pbz": 13824.79170650617,
-   "zakat": -1142.875427412945,
-   "net_profit": 12681.916279093224
+   "pbz": 13886.546689385032,
+   "zakat": -1147.9806220481266,
+   "net_profit": 12738.566067336906
   },
   "FY28E": {
    "gross": 97624.40113136098,
@@ -3245,18 +3245,18 @@
    "rev": 85056.3087171784,
    "nwc": 14919.720519167546,
    "dwc": 363.3071620247956,
-   "gp": 41685.197546650386,
+   "gp": 41733.904552517924,
    "sga": 14596.198215962402,
-   "ebitda": 27088.999330687984,
-   "ebitda_margin": 0.3184831288736253,
+   "ebitda": 27137.706336555522,
+   "ebitda_margin": 0.319055773120738,
    "dna": 10964.13396104222,
-   "ebit": 16124.865369645764,
+   "ebit": 16173.572375513302,
    "early_retirement": -1480.1698988599999,
    "fin_income": 991.1375378778597,
    "fin_cost": -1503.384857624029,
-   "pbz": 14132.448151039594,
-   "zakat": -1168.3089383118477,
-   "net_profit": 12964.139212727747
+   "pbz": 14181.155156907133,
+   "zakat": -1172.3354756608821,
+   "net_profit": 13008.81968124625
   },
   "FY29E": {
    "gross": 99834.5646119905,
@@ -3264,18 +3264,18 @@
    "rev": 86981.93740370838,
    "nwc": 15257.494897811801,
    "dwc": 337.7743786442552,
-   "gp": 42604.75845874212,
+   "gp": 42620.214977615215,
    "sga": 14926.648225172105,
-   "ebitda": 27678.11023357002,
-   "ebitda_margin": 0.3182052626065098,
+   "ebitda": 27693.566752443112,
+   "ebitda_margin": 0.31838296063594496,
    "dna": 11212.356005905971,
-   "ebit": 16465.75422766405,
+   "ebit": 16481.21074653714,
    "early_retirement": -1509.7732968372,
    "fin_income": 1010.9602886354169,
    "fin_cost": -1533.4525547765097,
-   "pbz": 14433.488664685756,
-   "zakat": -1193.1955198246856,
-   "net_profit": 13240.29314486107
+   "pbz": 14448.945183558848,
+   "zakat": -1194.4732877642261,
+   "net_profit": 13254.471895794622
   },
   "FY30E": {
    "gross": 101831.25590423032,
@@ -3283,18 +3283,18 @@
    "rev": 88721.57615178254,
    "nwc": 15562.644795768036,
    "dwc": 305.1498979562348,
-   "gp": 43456.85362791696,
+   "gp": 43414.894929356255,
    "sga": 15225.181189675546,
-   "ebitda": 28231.67243824141,
-   "ebitda_margin": 0.31820526260650966,
+   "ebitda": 28189.71373968071,
+   "ebitda_margin": 0.31773233707496906,
    "dna": 11436.603126024089,
-   "ebit": 16795.06931221732,
+   "ebit": 16753.11061365662,
    "early_retirement": -1539.968762773944,
    "fin_income": 1031.1794944081253,
    "fin_cost": -1564.12160587204,
-   "pbz": 14722.158437979462,
-   "zakat": -1217.0594302211784,
-   "net_profit": 13505.099007758283
+   "pbz": 14680.19973941876,
+   "zakat": -1213.5907656243235,
+   "net_profit": 13466.608973794437
   }
  },
  "dcf": {
@@ -3302,78 +3302,78 @@
    {
     "year": "FY26E",
     "rev": 80736.56153058002,
-    "ebitda": 25823.36771245474,
+    "ebitda": 25882.048185542113,
     "dna": 10407.299464624268,
-    "ebit": 15416.068247830472,
-    "nopat": 14177.46025760647,
+    "ebit": 15474.748720917845,
+    "nopat": 14231.42603290789,
     "capex": 12080.938286969373,
     "dwc": -7.275957614183426e-12,
-    "fcff": 12503.821435261372,
+    "fcff": 12557.78721056279,
     "df": 0.9247903611807125,
-    "pv": 11563.413541254498
+    "pv": 11613.320570086895
    },
    {
     "year": "FY27E",
     "rev": 82985.11937468077,
-    "ebitda": 26475.29042538267,
+    "ebitda": 26537.045408261532,
     "dna": 10697.148504556726,
-    "ebit": 15778.141920825945,
-    "nopat": 14510.443027706837,
+    "ebit": 15839.896903704806,
+    "nopat": 14567.23629051543,
     "capex": 12417.399092758991,
     "dwc": 394.4193571427567,
-    "fcff": 12395.773082361815,
+    "fcff": 12452.566345170406,
     "df": 0.8552372121327526,
-    "pv": 10601.326413189336
+    "pv": 10649.898124941677
    },
    {
     "year": "FY28E",
     "rev": 85056.3087171784,
-    "ebitda": 27088.999330687988,
+    "ebitda": 27137.706336555522,
     "dna": 10964.13396104222,
-    "ebit": 16124.865369645768,
-    "nopat": 14829.308891362773,
+    "ebit": 16173.572375513302,
+    "nopat": 14874.102520247436,
     "capex": 12727.319532185498,
     "dwc": 363.3071620247956,
-    "fcff": 12702.8161581947,
+    "fcff": 12747.609787079362,
     "df": 0.7909151303034339,
-    "pv": 10046.849496979126
+    "pv": 10082.277455805202
    },
    {
     "year": "FY29E",
     "rev": 86981.93740370838,
-    "ebitda": 27678.11023357002,
+    "ebitda": 27693.566752443112,
     "dna": 11212.356005905971,
-    "ebit": 16465.75422766405,
-    "nopat": 15142.808945924036,
+    "ebit": 16481.21074653714,
+    "nopat": 15157.023606790957,
     "capex": 13015.45914185633,
     "dwc": 337.7743786442552,
-    "fcff": 13001.931431329422,
+    "fcff": 13016.146092196343,
     "df": 0.7314306890166028,
-    "pv": 9510.011665363903
+    "pv": 9520.408704555934
    },
    {
     "year": "FY30E",
     "rev": 88721.57615178254,
-    "ebitda": 28231.67243824141,
+    "ebitda": 28189.71373968071,
     "dna": 11436.603126024089,
-    "ebit": 16795.06931221732,
-    "nopat": 15445.66512484251,
+    "ebit": 16753.11061365662,
+    "nopat": 15407.077608768886,
     "capex": 13275.768324693458,
     "dwc": 305.1498979562348,
-    "fcff": 13301.350028216904,
+    "fcff": 13262.762512143283,
     "df": 0.6764200510743215,
-    "pv": 8997.299865443905
+    "pv": 8971.198495850555
    }
   ],
-  "pv_sum": 50718.90098223077,
-  "tv": 185453.51035813044,
-  "pv_tv": 125444.4729483588,
-  "ev": 176163.3739305896,
-  "tv_pct": 0.7120916802932338,
-  "nopat_term": 15445.66512484251,
+  "pv_sum": 50837.103351240265,
+  "tv": 184811.7080118382,
+  "pv_tv": 125010.34497250018,
+  "ev": 175847.44832374045,
+  "tv_pct": 0.7109022403461458,
+  "nopat_term": 15407.077608768886,
   "ic_repl": 182011.2410570005,
   "terminal_maintenance": 15461.020673529309,
-  "terminal_fcff": 11150.146697337288,
+  "terminal_fcff": 11111.559181263667,
   "terminal_life_years": 20.862788325368726,
   "terminal_age_years": 15.225406428884998,
   "wacc": 0.08132614912126104,
@@ -3382,9 +3382,9 @@
   "assoc": 12909.648,
   "telefonica": 8513.43,
   "net_debt": 8375.407,
-  "nci": 3927.5898358025356,
-  "eq": 190446.97109478703,
-  "ps": 38.142610789530956,
+  "nci": 3921.206149602089,
+  "eq": 190137.42917413835,
+  "ps": 38.080615910145504,
   "wacc_build": {
    "rf": 0.0552,
    "default_spread": 0.0098,
@@ -3442,9 +3442,9 @@
  },
  "lenses": {
   "dcf": {
-   "bear": 37.365364168091176,
-   "base": 38.142610789530956,
-   "bull": 39.047729075601026
+   "bear": 37.303369288705724,
+   "base": 38.080615910145504,
+   "bull": 38.98573419621558
   },
   "ddm": {
    "bear": 29.160467565141218,
@@ -3452,9 +3452,9 @@
    "bull": 49.622266617523856
   },
   "relative": {
-   "bear": 45.716288248682936,
-   "base": 47.97436572183078,
-   "bull": 49.842523134861
+   "bear": 45.812052337824454,
+   "base": 48.07526101832944,
+   "bull": 49.94766359264222
   },
   "normalized": {
    "bear": 36.771303322395404,
@@ -3486,9 +3486,9 @@
    }
   ],
   "central": {
-   "bear": 37.365364168091176,
-   "base": 38.142610789530956,
-   "bull": 47.97436572183078
+   "bear": 37.303369288705724,
+   "base": 38.080615910145504,
+   "bull": 48.07526101832944
   },
   "weights": null
  },
@@ -3496,10 +3496,10 @@
   "class": "telecom operator",
   "primary": {
    "kind": "dcf",
-   "value": 38.142610789530956,
+   "value": 38.080615910145504,
    "range": {
-    "low": 37.365364168091176,
-    "high": 47.97436572183078
+    "low": 37.303369288705724,
+    "high": 48.07526101832944
    },
    "range_basis": {
     "driver": "capital expenditure as a multiple of depreciation",
@@ -3512,7 +3512,7 @@
   "cross_checks": [
    {
     "kind": "ev_ebitda_own_history",
-    "value": 47.97436572183078,
+    "value": 48.07526101832944,
     "multiple": 8.762062030257292,
     "multiple_source": "the company's own trailing EV/EBITDA at each of the last three financial year ends, computed from that year-end close in the persistent price library, the shares in issue and that year's own net debt and EBITDA from the filings: 9.131x, 8.316x and 8.839x, whose mean is adopted and whose lowest and highest are the bear and bull. Never a multiple read off the current price.",
     "circularity": {
@@ -3531,10 +3531,10 @@
    }
   ],
   "envelope": {
-   "low": 37.365364168091176,
-   "high": 47.97436572183078
+   "low": 37.303369288705724,
+   "high": 48.07526101832944
   },
-  "central": 38.142610789530956,
+  "central": 38.080615910145504,
   "retired": {
    "blend_weights": {
     "dcf": 0.35,
@@ -3547,9 +3547,9 @@
   }
  },
  "rel_basis": {
-  "ebitda26": 25823.36771245474,
-  "np26": 14450.688112160437,
-  "eps26": 2.894175576195996,
+  "ebitda26": 25882.048185542113,
+  "np26": 14503.304743079323,
+  "eps26": 2.904713605037613,
   "evx": {
    "bear": 8.316451989813418,
    "base": 8.762062030257292,
@@ -3575,39 +3575,39 @@
   ],
   "table_wg": [
    [
-    43.97066013126773,
-    44.607771126138694,
-    45.35562980178166,
-    46.25443383562156,
-    47.366512443050375
+    43.89746928609277,
+    44.52463877321838,
+    45.26040995921722,
+    46.144201602375496,
+    47.23713515132143
    ],
    [
-    40.736087040474025,
-    41.0899273118705,
-    41.48909253808688,
-    41.94825854120651,
-    42.48920358203212
+    40.6726720471298,
+    41.01834543245054,
+    41.407752598069884,
+    41.85505415774346,
+    42.38126382625633
    ],
    [
-    37.98766725433279,
-    38.14261078953095,
-    38.30403714530711,
-    38.473840917502656,
-    38.65473463993838
+    37.93248054695057,
+    38.0806159101455,
+    38.23402538852858,
+    38.39425033537072,
+    38.563497539468614
    ],
    [
-    35.62320809441867,
-    35.6368853312627,
-    35.63392193279919,
-    35.609886395481404,
-    35.558620414269186
+    35.57502932774326,
+    35.582959933419474,
+    35.57331284329272,
+    35.54140700884202,
+    35.48073734112956
    ],
    [
-    33.56729318816192,
-    33.479965601810115,
-    33.36241938639304,
-    33.207263250553474,
-    33.00448144112617
+    33.52514344457281,
+    33.432913021339346,
+    33.309724767843704,
+    33.14800658864895,
+    32.937497727525304
    ]
   ],
   "margin_steps": [
@@ -3626,39 +3626,39 @@
   ],
   "table_cm": [
    [
-    36.39433005595676,
-    36.06412665427751,
-    35.73392325259826,
-    35.40371985091901,
-    35.07351644923976
+    36.3323351765713,
+    36.00213177489205,
+    35.6719283732128,
+    35.34172497153355,
+    35.0115215698543
    ],
    [
-    37.5986738244231,
-    37.26847042274385,
-    36.93826702106461,
-    36.60806361938536,
-    36.277860217706106
+    37.536678945037636,
+    37.20647554335839,
+    36.876272141679145,
+    36.546068739999896,
+    36.21586533832064
    ],
    [
-    38.80301759288945,
-    38.4728141912102,
-    38.14261078953095,
-    37.81240738785171,
-    37.48220398617245
+    38.741022713503995,
+    38.41081931182475,
+    38.0806159101455,
+    37.75041250846625,
+    37.420209106787
    ],
    [
-    40.0073613613558,
-    39.67715795967655,
-    39.34695455799729,
-    39.016751156318044,
-    38.6865477546388
+    39.94536648197034,
+    39.61516308029109,
+    39.28495967861184,
+    38.954756276932585,
+    38.62455287525334
    ],
    [
-    41.21170512982216,
-    40.88150172814291,
-    40.55129832646365,
-    40.22109492478441,
-    39.89089152310516
+    41.14971025043669,
+    40.81950684875745,
+    40.48930344707819,
+    40.159100045398944,
+    39.8288966437197
    ]
   ],
   "beta_grid": [
@@ -3666,74 +3666,74 @@
     "beta": 0.3,
     "ke": 0.06255999999999999,
     "wacc": 0.060262182322846934,
-    "ps": 55.480246930270965,
+    "ps": 55.360908620829136,
     "adopted": false
    },
    {
     "beta": 0.5,
     "ke": 0.074,
     "wacc": 0.07059197935220196,
-    "ps": 45.182531356949,
+    "ps": 45.097502453477766,
     "adopted": false
    },
    {
     "beta": 0.7078292485042049,
     "ke": 0.08588783301444051,
     "wacc": 0.08132614912126106,
-    "ps": 38.14261078953094,
+    "ps": 38.08061591014549,
     "adopted": true
    },
    {
     "beta": 0.85,
     "ke": 0.09401999999999999,
     "wacc": 0.08866912415357323,
-    "ps": 34.587373687721424,
+    "ps": 34.536801811771056,
     "adopted": false
    },
    {
     "beta": 1.0,
     "ke": 0.1026,
     "wacc": 0.09641647192558948,
-    "ps": 31.571714418273316,
+    "ps": 31.53067388372556,
     "adopted": false
    },
    {
     "beta": 1.2,
     "ke": 0.11403999999999999,
     "wacc": 0.10674626895494449,
-    "ps": 28.3815931522416,
+    "ps": 28.35042315250166,
     "adopted": false
    }
   ],
-  "capex_floor_2pp": 39.463424396247945
+  "capex_floor_2pp": 39.40142951686249
  },
  "cover": [
   {
    "capex": "13.6% (the lowest of the three filed years, 1.054x depreciation)",
-   "fcf": 13.610353618517534,
+   "fcf": 13.664319393818957,
    "div": 10.984652800000001,
-   "cover": 1.239033574053204
+   "cover": 1.2439464080119997
   },
   {
    "capex": "15.0% (adopted, the three-year mean of 1.161x depreciation)",
-   "fcf": 12.503821435261369,
+   "fcf": 12.55778721056279,
    "div": 10.984652800000001,
-   "cover": 1.1382991946055288
+   "cover": 1.1432120285643246
   },
   {
    "capex": "16.1% (the highest of the three filed years, 1.252x depreciation)",
-   "fcf": 11.553615905015747,
+   "fcf": 11.607581680317168,
    "div": 10.984652800000001,
-   "cover": 1.051796184674653
+   "cover": 1.056709018633449
   }
  ],
  "div_bill": 10.984652800000001,
  "experts": {
   "e1": {
-   "base": 36.86229303577099,
+   "base": 36.98496548706956,
    "rng": [
-    34.64648351126129,
-    40.010078932961065
+    34.7509959240561,
+    40.15854959139892
    ],
    "fade_lo": 0.01,
    "fade_hi": 0.04
@@ -3748,9 +3748,9 @@
   "e3": {
    "base": 38.12489853142939
   },
-  "e1_roic": 0.15185437236375782,
+  "e1_roic": 0.15243239824347235,
   "e1_ic": 93362.21299999999,
-  "e1_ep": 6584.6710008775335,
+  "e1_ep": 6638.636776178954,
   "e1_fade": 0.025,
   "e1_fade_lo": 0.01,
   "e1_fade_hi": 0.04

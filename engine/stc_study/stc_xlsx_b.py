@@ -92,7 +92,8 @@ def ac(label, j): return f"Assumptions!${ACOLS[j]}${A[label]}"
 
 # ================= SEGMENTS ==================================================
 ws = sheet('Segments')
-title(ws, 'Operating segments — the eleven the company discloses',
+title(ws, 'Operating segments — the %d the company discloses' % len(
+    [k for k in D['seg_forecast'] if 'liminat' not in k]),
       "Note 9 of the audited statements, three filed years, each segment grown on ITS OWN "
       "measured real rate times the house Saudi inflation ladder. This sheet used to carry "
       "four BUSINESS UNITS with their historicals typed in — consumer, enterprise, "

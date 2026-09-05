@@ -1,18 +1,18 @@
 {
- "published_central": 38.142610789530956,
+ "published_central": 38.080615910145504,
  "published_spot": 43.86,
  "spot": 43.86,
  "spot_date": "2026-09-03",
  "implied": {
   "quantity": "the equity beta the traded price implies, through the cost of capital that reproduces it on this study's own drivers",
-  "value": 0.5333340745870031,
+  "value": 0.5312294313512965,
   "study_value": 0.7078292485042049,
   "solved_on": "stc_compute.dcf_ps_at() by bisection on the weighted cost of capital, holding the terminal growth, the forecast drivers and every other input at their published values; the beta is then recovered from that rate through the schedule's own arithmetic, which is asserted to reproduce the committed cost of capital before it is used backwards."
  },
- "implied_wacc": 0.07231365047542757,
+ "implied_wacc": 0.0722049477882073,
  "study_wacc": 0.08132614912126104,
- "beta_standard_errors_apart": 1.695962151971452,
- "reading": "The price is paying for a beta of 0.5333. This stock's own 4.91-year weekly regression against its exchange's published index gives 0.7078 with a standard error of 0.1029, so the market's implied beta sits 1.70 standard errors below the point estimate \u2014 inside what the regression cannot rule out, and not what it measures. THAT IS THE WHOLE DISAGREEMENT, and it is a disagreement about the price of risk rather than about the business.",
- "not_the_crux": "The study's own crux names capital intensity as the swing driver, and the price is NOT paying for a lighter one: two percentage points of revenue below the modelled intensity \u2014 lighter than any of the three filed years ran \u2014 reaches only SAR 39.46 against a market price of 43.86. No capital-spending assumption inside this company's own history closes the gap, which is worth knowing precisely because the crux says otherwise.",
+ "beta_standard_errors_apart": 1.7164177049304972,
+ "reading": "The price is paying for a beta of 0.5312. This stock's own 4.91-year weekly regression against its exchange's published index gives 0.7078 with a standard error of 0.1029, so the market's implied beta sits 1.72 standard errors below the point estimate \u2014 inside what the regression cannot rule out, and not what it measures. THAT IS THE WHOLE DISAGREEMENT, and it is a disagreement about the price of risk rather than about the business.",
+ "not_the_crux": "The study's own crux names capital intensity as the swing driver, and the price is NOT paying for a lighter one: two percentage points of revenue below the modelled intensity \u2014 lighter than any of the three filed years ran \u2014 reaches only SAR 39.40 against a market price of 43.86. No capital-spending assumption inside this company's own history closes the gap, which is worth knowing precisely because the crux says otherwise.",
  "used_by": "NOTHING. This file is a diagnostic and no builder reads it; a quantity solved from a price and fed back into a valuation is the reverse-engineered rate this house prohibits outright."
 }

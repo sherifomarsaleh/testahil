@@ -424,10 +424,38 @@ payout_dps = [2.20, 2.20, 2.30, 2.40, 2.55]       # policy 0.55/q locked to Q3-2
 _margin_shift = FY26_GROSS_MARGIN - (sum(seg_fc[yrs[0]][k] * SEG_MARGIN[k]
                                          for k in seg_fc[yrs[0]])
                                      + fc[yrs[0]]['gross'] * ELIM_GP_SHARE) / fc[yrs[0]]['rev']
+# FOUR COST LINES COME OFF THE HELD MARGIN AND ONTO THE BASES THE FILINGS NAME. The
+# standing rule is that a gross margin set as an INPUT is a fail wherever the disclosure
+# supports building cost per unit instead, and note 35 discloses all seven lines by nature
+# for three years. FOUR of them have a sourced base that is NOT group revenue: the
+# commercial service provisioning fee is levied on the Saudi operating segment, which grows
+# more slowly than the group; the licence fee is near-fixed and has its own measured rate;
+# repairs and maintenance sit on the ASSET BASE being maintained, which the model already
+# projects; and contract-cost amortisation is subscriber acquisition, on a volume path the
+# model already carries and which grows FASTER than revenue.
+#
+# THE OTHER THREE, AND THE SPECTRUM SUB-LINE, ARE LEFT HELD AND SAID TO BE — network access
+# has no disclosed unit rate, employee cost has no headcount anywhere in the filings
+# (searched, and the negative search is registered), "Others" is a residual of three
+# unrelated things, and the spectrum fee is lumpy with the first Saudi licence expiry
+# falling INSIDE the explicit window against no disclosed renewal cost. Inventing a driver
+# to complete the table is worse than the gap it closes.
+#
+# THE OFFSETS RUN BOTH WAYS, which is why this had to be built rather than argued: two
+# lines fall against a group growing faster than their own bases and two rise. It was
+# measured beside the model and consumed by nothing for a week, which is the difference
+# between pricing a construction and building it.
+import cost_decomposition as _CDEC             # the four lines' own bases, shared with
+                                               # the diagnostic that reports them
+_COST_OWN_BASE = _CDEC.net_by_year(
+    yrs, [fc[y]['rev'] for y in yrs], [2026 + i for i in range(len(yrs))],
+    seg_real0['stc'], VOLUME_REAL, [DNA_SHARE] * len(yrs), capex_pct)
+
 for i, y in enumerate(yrs):
     _gp = sum(seg_fc[y][k] * SEG_MARGIN[k] for k in seg_fc[y]) \
         + fc[y]['gross'] * ELIM_GP_SHARE
     _gp += fc[y]['rev'] * _margin_shift
+    _gp -= _COST_OWN_BASE[i]
     fc[y]['gp'] = _gp
     fc[y]['sga'] = fc[y]['rev'] * FY26_SGA_SHARE
     fc[y]['ebitda'] = _gp - fc[y]['sga']
@@ -1148,22 +1176,31 @@ DRIVER_LINES = [
                     'footnote states the figures are not audited',
         price_basis='revenue per subscriber, BACK-SOLVED against the audited segment '
                     'revenue in note 9 rather than disclosed',
-        cost_basis='not built per unit \u2014 see the gap note',
+        cost_basis='four of note 35\u2019s seven lines on the bases the filings name; '
+                   'the rest on the segment\u2019s own held gross margin',
         gap_note='The unit is real and disclosed; the PRICE is not. Revenue per subscriber '
                  'is derived by dividing audited segment revenue by a subscriber count the '
                  'company publishes in a presentation and does not audit, so this is unit '
-                 'economics on a derived rate rather than on a disclosed one. The cost side '
-                 'is not built per unit either: note 35 discloses seven cost lines by '
-                 'nature for three years and cost_stack.py decomposes them, but the model '
-                 'consumes one held gross margin. That is the finest level this study '
-                 'currently builds at and it is stated rather than claimed away.'),
+                 'economics on a derived rate rather than on a disclosed one. THE COST SIDE '
+                 'IS PART-BUILT: note 35 discloses seven lines by nature for three years, '
+                 'and the four with a sourced base that is not group revenue are built on '
+                 'it \u2014 the commercial service provisioning fee on the Saudi operating '
+                 'segment the sub-note levies it against, the licence fee at its own '
+                 'measured rate, repairs and maintenance on the asset base being '
+                 'maintained, and contract-cost amortisation on the subscriber path. The '
+                 'other three carry no sourced driver \u2014 network access has no '
+                 'disclosed unit rate, employee cost has no headcount anywhere in the '
+                 'filings, and "Others" is a residual of three unrelated things \u2014 so '
+                 'they stay on the held margin and that is said rather than filled with an '
+                 'imported ratio. The level stays DERIVED because the price still is.'),
 ]
 for _nm, _v in sorted(_base_seg.items(), key=lambda kv: -kv[1]):
     if _nm == 'stc':
         continue
     DRIVER_LINES.append(_RP.DriverLine(
         name=_nm, level='segment', share_of_revenue=_v / _seg_total,
-        cost_basis='the segment\u2019s own held gross margin',
+        cost_basis='the segment\u2019s own held gross margin, less its share of the four '
+                   'group cost lines built on their own bases',
         gap_note='No unit is disclosed for this segment \u2014 note 9 gives revenue and no '
                  'volume, and the earnings presentations carry no subscriber, connection '
                  'or capacity count for it. It is grown on its own measured two-year real '

@@ -378,8 +378,21 @@ reverse-engineered rate this protocol prohibits outright, arriving through the f
 The study is HELD in any case: [R-GAP-02] blocks publication past 10% below the price, and
 Phase 1 of the method reassessment is not proven, which holds every study in the book.
 
-*AUDITED CENTRAL: 38.1426* — the figure this review audits, stated so a job outside the
+*AUDITED CENTRAL: 38.0806* — the figure this review audits, stated so a job outside the
 study can tell whether the review still describes the answer the study publishes.
 
-*AUDITED GAP: -13.0%* — the disagreement this review interrogates, stated so a job outside
+*AUDITED GAP: -13.2%* — the disagreement this review interrogates, stated so a job outside
 the study can tell whether the eight headings were asked at the size the study now carries.
+
+**What moved after this review was written, and why the eight headings still hold.** One
+further correction landed the same day: four of the seven cost lines note 35 discloses by
+nature came off the held gross margin and onto the bases the filings name for them — the
+commercial service provisioning fee onto the Saudi operating segment the sub-note levies it
+against, the licence fee onto its own measured rate, repairs and maintenance onto the asset
+base being maintained, and contract-cost amortisation onto the subscriber path. The other
+three stay held because no sourced driver exists for them, and that is written down rather
+than filled. The answer moved 38.1426 to 38.0806, -0.163%, and the gap from -13.0% to -13.2%.
+That is a tenth of a point of disagreement on a review written for thirteen, so every one
+of the eight headings above was asked at materially the size the study now carries. The
+correction moved the answer AWAY from the price, which is the direction that shows it was
+not fitted.

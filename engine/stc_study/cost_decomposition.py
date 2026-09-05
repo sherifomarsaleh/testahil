@@ -63,20 +63,21 @@ def _load():
         return json.load(f)
 
 
-def price(d=None):
-    """Each line on the base the filings name, against the model's own forecast path."""
-    d = d or _load()
-    fc = d['forecast']
-    yrs = list(fc)
-    rev = [fc[y]['rev'] for y in yrs]                       # SR million
-    dr = d['drivers']
+def price_on(yrs, rev, fy, ksa_real, sub_real, dna_pct, capex_pct):
+    """Each line on the base the filings name, against a forecast path handed in.
+
+    TAKEN AS ARGUMENTS RATHER THAN READ FROM THE COMMITTED FILE so the MODEL can call this
+    while it is still building. The four lines below were priced beside the model for a
+    week and consumed by nothing, which is the difference between measuring what a
+    construction would do and building it: the standing rule says a gross margin set as an
+    INPUT is a fail wherever the filings support a build, and for these four they do. A
+    module the model reads must not read the model's own output back — that is the
+    circularity [R-ENF-05] closes structurally — so the quantities arrive as parameters and
+    the reporting wrapper below is what reads the committed file.
+    """
     # [R-MACRO-01] a study may not carry an inflation number of its own; this is the house
     # Saudi ladder, read through the same resolver the model itself uses.
-    fy = d['drivers'].get('forecast_years') or [2026 + i for i in range(len(yrs))]
     infl = [COCRUN.MACRO.inflation(y) for y in fy]
-    ksa_real = dr['segment_real_growth']['stc']
-    sub_real = dr['unit_volume_real']
-    dna_pct, capex_pct = dr['dna_pct'], dr['capex_pct']
 
     rev25 = float(C.REVENUE[2]) / 1000.0
     ksa25 = float(S.REVENUE['stc'][2]) / 1000.0
@@ -126,6 +127,26 @@ def price(d=None):
     out['Amortisation and impairment of contract costs'] = (held(ca25), own)
 
     return dict(years=yrs, revenue=rev, lines=out)
+
+
+def net_by_year(yrs, rev, fy, ksa_real, sub_real, dna_pct, capex_pct):
+    """The cost the model must ADD in each forecast year to put these four lines on their
+    own bases instead of on a share of revenue. Positive means the own-driver base costs
+    more than the held one, so gross profit falls."""
+    p = price_on(yrs, rev, fy, ksa_real, sub_real, dna_pct, capex_pct)
+    return [sum(own[i] - h[i] for h, own in p['lines'].values()) for i in range(len(yrs))]
+
+
+def price(d=None):
+    """The same, read off the committed file — for the record and the documents."""
+    d = d or _load()
+    fc = d['forecast']
+    yrs = list(fc)
+    dr = d['drivers']
+    return price_on(yrs, [fc[y]['rev'] for y in yrs],
+                    dr.get('forecast_years') or [2026 + i for i in range(len(yrs))],
+                    dr['segment_real_growth']['stc'], dr['unit_volume_real'],
+                    dr['dna_pct'], dr['capex_pct'])
 
 
 def value_effect(d=None):

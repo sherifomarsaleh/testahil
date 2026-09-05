@@ -40,7 +40,8 @@ LANDED = {
     'R-ANCHOR-01': '34e74f311f05c0e535037cee70d5111a5bbc8c27',    # lever 11
     'R-BRIDGE-01:spectrum': '0a1e324ca29d129c25dc5da50fbcd3b9909decea',   # lever 12
     'R-SIGCM-02:workingcapital': '61b9b6b7073fb625f3c22961ca17439205b4f292',   # lever 13
-    'R-SIGCM-02:tax': None,                                      # the working tree, latest
+    'R-SIGCM-02:tax': '6212d3d213f077670ff91c834a0fd4000d32fe02',   # lever 14
+    'R-SIGCM-02:coststack': None,                                # the working tree, latest
 }
 
 
@@ -65,6 +66,12 @@ def at(rev):
 
 
 PUB = at(PUBLISHED_REV)
+#: ELEVEN AGAINST TWELVE. This ledger stated the segment count twice and got it wrong
+#: both times, in the same edition whose delivered study did. It is counted from the
+#: model's own segment set now; eliminations are not a segment.
+_NSEG = len([k for k in json.load(
+    open(os.path.join(HERE, 'study_numbers.json')))['seg_forecast']
+    if 'liminat' not in k])
 AFTER_BETA = at(LANDED['R-BETA-04'])
 AFTER_MACRO = at(LANDED['R-MACRO-01'])
 AFTER_TERM = at(LANDED['R-TERM-01'])
@@ -77,6 +84,7 @@ AFTER_CAPEX = at(LANDED['R-FCAL-01'])
 AFTER_ANCHOR = at(LANDED['R-ANCHOR-01'])
 AFTER_SPECTRUM = at(LANDED['R-BRIDGE-01:spectrum'])
 AFTER_WC = at(LANDED['R-SIGCM-02:workingcapital'])
+AFTER_TAX = at(LANDED['R-SIGCM-02:tax'])
 NOW = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 # The lever-2 intermediate, struck when the cost-of-capital schedule was in and the beta
 # was not. It is named for that lever set, so a later sensitivity run cannot overwrite the
@@ -366,7 +374,7 @@ led.apply(
 )
 
 led.apply(
-    name='revenue and margin rebuilt on the eleven disclosed segments',
+    name='revenue and margin rebuilt on the %d disclosed segments' % _NSEG,
     rule='R-SIGCM-02',
     after=AFTER_SEG['lenses']['central']['base'],
     why=(
@@ -395,10 +403,11 @@ led.apply(
         'eight-heading review is written and committed as GAP_REVIEW_05-09-2026.md. THE SIZE '
         'WAS DECLARED UNPREDICTED IN ADVANCE and it was: group real growth of +2.33%% '
         'trailing is close to what the delivered arrays imply in aggregate, and what changed '
-        'is the COMPOSITION, because four aggregates do not map onto eleven segments and a '
+        'is the COMPOSITION, because four aggregates do not map onto %d segments and a '
         'segment growing at its own rate compounds differently from a blend growing at an '
         'average of them.'
-        % (100 * ((AFTER_SEG['forecast']['FY30E']['rev'] / 77_818.675) ** 0.2 - 1),
+        % (_NSEG,
+           100 * ((AFTER_SEG['forecast']['FY30E']['rev'] / 77_818.675) ** 0.2 - 1),
            100 * ((93_373.0 / 77_818.675) ** 0.2 - 1),
            100 * AFTER_SEG['forecast']['FY26E']['ebitda_margin'],
            100 * 24_469.435 / 77_818.675,
@@ -616,7 +625,7 @@ led.apply(
 led.apply(
     name='the tax rate measured on the base it is applied to, with the disclosed reversal out',
     rule='R-SIGCM-02',
-    after=NOW['lenses']['central']['base'],
+    after=AFTER_TAX['lenses']['central']['base'],
     why=(
         'THE TAX RATE WAS A TYPED CONSTANT AND TWO THINGS WERE WRONG WITH IT, both found by '
         'an arithmetic check rather than by judgement. It read 0.097 with a comment saying '
@@ -647,10 +656,59 @@ led.apply(
         'denominators were named.'
         % (100 * _IS['effective_zakat_rate_on_ebit'], 100 * _IS['effective_zakat_rate'],
            100 * _IS['zakat_rate_carrying_the_reversal'],
-           AFTER_WC['lenses']['central']['base'], NOW['lenses']['central']['base'],
-           100 * (NOW['lenses']['central']['base']
+           AFTER_WC['lenses']['central']['base'], AFTER_TAX['lenses']['central']['base'],
+           100 * (AFTER_TAX['lenses']['central']['base']
                   / AFTER_WC['lenses']['central']['base'] - 1),
-           100 * (NOW['lenses']['central']['base'] / NOW['spot'] - 1))),
+           100 * (AFTER_TAX['lenses']['central']['base'] / AFTER_TAX['spot'] - 1))),
+)
+
+
+_CD = json.load(open(os.path.join(HERE, 'cost_decomposition.json')))
+led.apply(
+    name='four of the seven disclosed cost lines onto the bases the filings name',
+    rule='R-SIGCM-02',
+    after=NOW['lenses']['central']['base'],
+    why=(
+        'A GROSS MARGIN SET AS AN INPUT IS A FAIL WHEREVER THE DISCLOSURE SUPPORTS BUILDING '
+        'COST PER UNIT INSTEAD, and note 35 discloses all seven cost lines by nature for '
+        'three years. FOUR of them have a sourced base that is NOT group revenue and the '
+        'model was charging all four against group revenue anyway: the commercial service '
+        'provisioning fee, which the sub-note levies on the SAUDI OPERATING SEGMENT and '
+        'which therefore grows more slowly than the group; the licence fee, near-fixed with '
+        'its own measured rate; repairs and maintenance, which sit on the ASSET BASE being '
+        'maintained and which the model already projects through capital expenditure '
+        'against depreciation; and contract-cost amortisation, which is subscriber '
+        'acquisition on a volume path the model already carries and which grows FASTER than '
+        'revenue. THE OFFSETS RUN BOTH WAYS, which is exactly why this had to be built '
+        'rather than argued: two lines fall and two rise. THE OTHER THREE STAY HELD AND ARE '
+        'SAID TO BE — network access has no disclosed unit rate, employee cost has no '
+        'headcount anywhere in the filings and the negative search is registered, and '
+        '"Others" is a residual of three unrelated things; the spectrum sub-line is lumpy '
+        'with the first Saudi licence expiry falling INSIDE the explicit window against no '
+        'disclosed renewal cost, which is a gap to NAME rather than a driver to build. '
+        'Inventing a driver to complete the table is worse than the gap it closes. THE '
+        'CONSTRUCTION EXISTED AND WAS CONSUMED BY NOTHING for a week: it was priced beside '
+        'the model, which is the difference between measuring what a construction would do '
+        'and building it.'),
+    evidence=(
+        'On the final forecast year the four lines cost a net SAR %.1fmn more on their own '
+        'bases than on a share of revenue, %.4f points of margin. The answer falls %.4f to '
+        '%.4f, %+.2f%%, and the gap against the latest known price goes to %+.2f%%. THE '
+        'APPROXIMATION WAS NEARLY DOUBLE THE TRUTH AND THAT IS WORTH RECORDING: priced '
+        'through the study\u2019s own committed margin-sensitivity grid the effect read '
+        '%+.3f%%, against an exact %+.3f%% once the lines were actually in the model, '
+        'because a uniform margin shift is not four cost lines each on its own base with '
+        'its own timing. A grid is a linearisation and this is the size of error it carries '
+        'on a change this small.'
+        % (_CD['value_effect']['net_cost_change_fy_final'],
+           -_CD['value_effect']['margin_shift'],
+           AFTER_TAX['lenses']['central']['base'], NOW['lenses']['central']['base'],
+           100 * (NOW['lenses']['central']['base']
+                  / AFTER_TAX['lenses']['central']['base'] - 1),
+           100 * (NOW['lenses']['central']['base'] / NOW['spot'] - 1),
+           100 * _CD['value_effect']['pct_of_central'],
+           100 * (NOW['lenses']['central']['base']
+                  / AFTER_TAX['lenses']['central']['base'] - 1))),
 )
 
 

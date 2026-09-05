@@ -479,14 +479,14 @@ rows = [
   + '%.1f mn mobile subscribers at the half year, %+.1f%% on the full-year 2025 count'
   % (_SUBH1, 100.0 * (_SUBH1 / _SUBFY25 - 1)), 'The cash cow', 'Competition watch'],
  ['KSA Enterprise (EBU)', 'SAR 13.5 bn (+0.4%)', 'Government phasing; private sector +6%; flat ex-mega-projects', 'High-margin', 'Recovery lever'],
- ['KSA Wholesale & Carrier', 'SAR 4.8 bn (+10.8%)', 'Hosting, FWA backhaul, national roaming (+32.6% national)', 'Structural', 'Steady'],
+ ['KSA Wholesale & Carrier', 'SAR 4.8 bn (+10.8%)', 'Hosting, FWA backhaul, national roaming', 'Structural', 'Steady'],
  ['Subsidiaries (net)', '~SAR 26.7 bn', 'solutions 12.7 bn · channels ~14.1 bn gross · stc bank 2.0 bn (+11%) · SCCC +62% · sirar +13% · center3', 'Dilutive today, guided to turn', 'The option book'],
  ['Associates & stakes', 'off-P&L', '43.06% towers (DIIC) · 9.97% Telefónica · iot squared 50%', 'Equity-method / marks', 'Bridge items'],
 ]
 table(rows, [1.55, 1.35, 2.35, 1.15, 0.95], first_col_bold=True, size=8.6)
 P('The build is per disclosed segment. THE PREVIOUS EDITION GREW FOUR BUSINESS UNITS — '
   'consumer, enterprise, wholesale and a subsidiaries residual — which is not how this '
-  'company reports: note 9 discloses ELEVEN operating segments and each is grown on its own '
+  'company reports: note 9 discloses %d operating segments and each is grown on its own ' % _NSEG +
   'measured real rate. One of them, the Saudi operating business and two thirds of group '
   'revenue, is built as volume times price from the subscriber counts the earnings '
   'presentations disclose; the others are forecast on their net rate because no unit data '
