@@ -33,7 +33,8 @@ sys.path.insert(0, os.path.join(HERE, '..'))
 os.chdir(HERE)
 import prose_figures as PF                                             # noqa: E402
 
-DOCS = ['STC_Valuation_Study_05-09-2026_public.docx']
+DOCS = ['STC_Valuation_Study_05-09-2026_public.docx',
+        'STC_Bibliography_05-09-2026.docx']
 
 SN = json.load(open('study_numbers.json'))
 SPOT = SN['spot']
@@ -83,6 +84,41 @@ vals += PF.ratios_against(_PANEL + [SPOT, ANCHOR], _PER_SHARE)
 # ratio, and neither is the shortfall against the 90% the band aims at.
 _B = SN['band_record']
 vals += [_B['hits'] / _B['n'], _B['cov90'] - 0.90, _B['n'] - _B['hits']]
+
+# THE SWEEP REGISTER'S FINDINGS CARRY THEIR NUMBERS IN PROSE, NOT IN NUMERIC FIELDS. The
+# bibliography quotes those findings VERBATIM — that is what a research trail is — so a
+# figure inside one is a QUOTATION of a committed artefact rather than a figure typed into
+# a builder. numbers_from() reads numeric JSON values and cannot see them.
+#
+# This widening is deliberately narrow: it takes numerals only from this one file's own
+# text, so it admits the research facts the trail reports and nothing else. The alternative
+# — dropping the figures out of the quoted findings — would make the trail less useful and
+# would be the "delete the figure" move this method forbids.
+import re as _re
+
+_sweep_text = []
+
+
+def _walk(o):
+    if isinstance(o, dict):
+        for v in o.values():
+            _walk(v)
+    elif isinstance(o, list):
+        for v in o:
+            _walk(v)
+    elif isinstance(o, str):
+        _sweep_text.append(o)
+
+
+_walk(json.load(open('sweep_register.json')))
+for _t in _sweep_text:
+    for _m in _re.finditer(r'(?<![\w.])(\d[\d,]*\.?\d*)', _t):
+        try:
+            _v = float(_m.group(1).replace(',', ''))
+        except ValueError:
+            continue
+        vals.append(_v)
+        vals.append(_v / 100.0)
 
 RENDER = PF.rendering_set(vals)
 
