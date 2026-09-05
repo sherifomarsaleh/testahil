@@ -809,6 +809,14 @@ e2 = dict(base=norm['base'], rng=(norm['bear'], norm['bull']))
 scen = [(0.30, ddm_lens['bull'] * 1.02), (0.45, ddm_ps), (0.25, ddm_lens['bear'] * 0.96)]
 e3 = dict(base=sum(p * v_ for p, v_ in scen))
 
+# The register is built and ASSERTED before the record is assembled, so a source that
+# stopped naming a company document breaks the build rather than reaching a gate.
+import inputs_register as _IR
+_INPUTS = _IR.build()
+_ir_problems, _ir_hist = _IR.check(_INPUTS)
+assert not _ir_problems, _ir_problems[:4]
+assert _ir_hist >= 100, 'the input register carries only %d dated historicals' % _ir_hist
+
 out = dict(
     # The answer and the price it is measured against, at the top level, where a reader
     # and a checker both look. The delivered study exposed neither, so every gate that
@@ -909,6 +917,12 @@ out = dict(
     ),
     terminal_record=_t.record,
     hist=hist, seg_hist=seg_hist,
+    # THE FOUR-FIELD INPUT REGISTER, generated from this study's own disclosure modules
+    # rather than typed beside them — a second copy of a figure is a thing that goes stale,
+    # which is the defect three separate rules here were written to close. It is what
+    # SIGCM clause 1 is checked on from outside: every dated historical of this company
+    # names the company document it was read from, and the assertion runs at build time.
+    inputs=_INPUTS,
     drivers=dict(
         # Per-segment REAL growth, measured from the company's own note 9 and deflated by
         # a published price index, fading to zero real by the last explicit year. Nominal

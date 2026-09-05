@@ -841,6 +841,1064 @@
    "FY25": -11498.645
   }
  },
+ "inputs": {
+  "rev_fy2023": {
+   "value": 71777161,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, consolidated statement of profit or loss",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "cogs_fy2023": {
+   "value": 37037095,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 35, cost of revenues",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "gp_fy2023": {
+   "value": 34740066,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, revenue less cost of revenues, both as stated",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "sga_selling_fy2023": {
+   "value": 5869821,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 36, selling and marketing expenses",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "sga_admin_fy2023": {
+   "value": 6424856,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 37, general and administrative expenses",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "ebitda_fy2023": {
+   "value": 22445389,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, gross profit less both operating-expense notes, each as stated; the three foot to the riyal",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "cogs_cost_of_devices_equipment_and_software_fy2023": {
+   "value": 13360079,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 35, cost of devices, equipment and software",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "cogs_network_access_charges_fy2023": {
+   "value": 9149535,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 35, network access charges",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "cogs_government_charges_fy2023": {
+   "value": 4571302,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 35, government charges",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "cogs_employees_costs_fy2023": {
+   "value": 5051339,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 35, employees costs",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "cogs_repairs_and_maintenance_fy2023": {
+   "value": 1952911,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 35, repairs and maintenance",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "cogs_amortisation_and_impairment_of_contract_cost_fy2023": {
+   "value": 150725,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 35, amortisation and impairment of contract costs",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "cogs_others_fy2023": {
+   "value": 2801204,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 35, others",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "cogs_gov_commercial_service_provisioning_fees_fy2023": {
+   "value": 3687775,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 35, details of government charges, commercial service provisioning fees",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "cogs_gov_license_fees_fy2023": {
+   "value": 444266,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 35, details of government charges, license fees",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "cogs_gov_frequency_spectrum_fees_fy2023": {
+   "value": 361932,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 35, details of government charges, frequency spectrum fees",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "cogs_gov_others_fy2023": {
+   "value": 77329,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 35, details of government charges, others",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_rendering_of_services_fy2023": {
+   "value": 60306720,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 34, revenues, rendering of services",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_sale_of_devices_fy2023": {
+   "value": 11406625,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 34, revenues, sale of devices",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_others_fy2023": {
+   "value": 63816,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 34, revenues, others",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_fy2024": {
+   "value": 75893413,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, consolidated statement of profit or loss",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_fy2024": {
+   "value": 38567489,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, cost of revenues",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_fy2024": {
+   "value": 37325924,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, revenue less cost of revenues, both as stated",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "sga_selling_fy2024": {
+   "value": 6561820,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 36, selling and marketing expenses",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "sga_admin_fy2024": {
+   "value": 6812989,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 37, general and administrative expenses",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "ebitda_fy2024": {
+   "value": 23951115,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, gross profit less both operating-expense notes, each as stated; the three foot to the riyal",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_cost_of_devices_equipment_and_software_fy2024": {
+   "value": 14644906,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, cost of devices, equipment and software",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_network_access_charges_fy2024": {
+   "value": 8100803,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, network access charges",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_government_charges_fy2024": {
+   "value": 5378203,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, government charges",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_employees_costs_fy2024": {
+   "value": 5534674,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, employees costs",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_repairs_and_maintenance_fy2024": {
+   "value": 1895572,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, repairs and maintenance",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_amortisation_and_impairment_of_contract_cost_fy2024": {
+   "value": 190054,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, amortisation and impairment of contract costs",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_others_fy2024": {
+   "value": 2823277,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, others",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_gov_commercial_service_provisioning_fees_fy2024": {
+   "value": 4702782,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, details of government charges, commercial service provisioning fees",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_gov_license_fees_fy2024": {
+   "value": 463948,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, details of government charges, license fees",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_gov_frequency_spectrum_fees_fy2024": {
+   "value": 137427,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, details of government charges, frequency spectrum fees",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_gov_others_fy2024": {
+   "value": 74046,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, details of government charges, others",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_rendering_of_services_fy2024": {
+   "value": 63283188,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 34, revenues, rendering of services",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_sale_of_devices_fy2024": {
+   "value": 12458105,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 34, revenues, sale of devices",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_others_fy2024": {
+   "value": 152120,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 34, revenues, others",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_fy2025": {
+   "value": 77818675,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, consolidated statement of profit or loss",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_fy2025": {
+   "value": 40118986,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, cost of revenues",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_fy2025": {
+   "value": 37699689,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, revenue less cost of revenues, both as stated",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "sga_selling_fy2025": {
+   "value": 6371576,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 36, selling and marketing expenses",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "sga_admin_fy2025": {
+   "value": 6858678,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 37, general and administrative expenses",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "ebitda_fy2025": {
+   "value": 24469435,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, gross profit less both operating-expense notes, each as stated; the three foot to the riyal",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_cost_of_devices_equipment_and_software_fy2025": {
+   "value": 14195531,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, cost of devices, equipment and software",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_network_access_charges_fy2025": {
+   "value": 10094182,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, network access charges",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_government_charges_fy2025": {
+   "value": 5417576,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, government charges",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_employees_costs_fy2025": {
+   "value": 5543832,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, employees costs",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_repairs_and_maintenance_fy2025": {
+   "value": 1967772,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, repairs and maintenance",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_amortisation_and_impairment_of_contract_cost_fy2025": {
+   "value": 189743,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, amortisation and impairment of contract costs",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_others_fy2025": {
+   "value": 2710350,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, others",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_gov_commercial_service_provisioning_fees_fy2025": {
+   "value": 4608632,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, details of government charges, commercial service provisioning fees",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_gov_license_fees_fy2025": {
+   "value": 468768,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, details of government charges, license fees",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_gov_frequency_spectrum_fees_fy2025": {
+   "value": 265470,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, details of government charges, frequency spectrum fees",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cogs_gov_others_fy2025": {
+   "value": 74706,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 35, details of government charges, others",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_rendering_of_services_fy2025": {
+   "value": 63312089,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 34, revenues, rendering of services",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_sale_of_devices_fy2025": {
+   "value": 12634029,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 34, revenues, sale of devices",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_others_fy2025": {
+   "value": 1872557,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 34, revenues, others",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_stc_fy2023": {
+   "value": 49218179,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, stc",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_stc_fy2024": {
+   "value": 49643893,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, stc",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_stc_fy2025": {
+   "value": 51119024,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, stc",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_channels_fy2023": {
+   "value": 14194210,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, Channels",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_channels_fy2024": {
+   "value": 15110606,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Channels",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_channels_fy2025": {
+   "value": 14085195,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Channels",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_solutions_fy2023": {
+   "value": 11040493,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, Solutions",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_solutions_fy2024": {
+   "value": 12063897,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Solutions",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_solutions_fy2025": {
+   "value": 12730189,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Solutions",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_stc_kuwait_fy2023": {
+   "value": 3986034,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, stc Kuwait",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_stc_kuwait_fy2024": {
+   "value": 4105483,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, stc Kuwait",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_stc_kuwait_fy2025": {
+   "value": 4179842,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, stc Kuwait",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_stc_bahrain_fy2023": {
+   "value": 1913287,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, stc Bahrain",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_stc_bahrain_fy2024": {
+   "value": 1927967,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, stc Bahrain",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_stc_bahrain_fy2025": {
+   "value": 1967830,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, stc Bahrain",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_center_3_fy2023": {
+   "value": 1089218,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, Center 3",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_center_3_fy2024": {
+   "value": 1911716,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Center 3",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_center_3_fy2025": {
+   "value": 1961666,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Center 3",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_stc_bank_fy2023": {
+   "value": 1063006,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, stc Bank",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_stc_bank_fy2024": {
+   "value": 1261646,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, stc Bank",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_stc_bank_fy2025": {
+   "value": 1401027,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, stc Bank",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_sirar_fy2023": {
+   "value": 588606,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, Sirar",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_sirar_fy2024": {
+   "value": 732675,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Sirar",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_sirar_fy2025": {
+   "value": 826545,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Sirar",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_specialized_fy2023": {
+   "value": 397492,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, Specialized",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_specialized_fy2024": {
+   "value": 371763,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Specialized",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_specialized_fy2025": {
+   "value": 355306,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Specialized",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_iot2_fy2023": {
+   "value": 72539,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, iot2",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_iot2_fy2024": {
+   "value": 301434,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, iot2",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_iot2_fy2025": {
+   "value": 321668,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, iot2",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_sccc_fy2023": {
+   "value": 72150,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, SCCC",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_sccc_fy2024": {
+   "value": 187904,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, SCCC",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_sccc_fy2025": {
+   "value": 303969,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, SCCC",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_other_operating_segments_fy2023": {
+   "value": 709843,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, Other operating segments",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_other_operating_segments_fy2024": {
+   "value": 729345,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Other operating segments",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_other_operating_segments_fy2025": {
+   "value": 65059,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Other operating segments",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_eliminations_adjustments_fy2023": {
+   "value": -12567896,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, Eliminations / adjustments",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_eliminations_adjustments_fy2024": {
+   "value": -12454916,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Eliminations / adjustments",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_seg_eliminations_adjustments_fy2025": {
+   "value": -11498645,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Eliminations / adjustments",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_stc_fy2023": {
+   "value": 29973976,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, stc",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_stc_fy2024": {
+   "value": 31178645,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, stc",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_stc_fy2025": {
+   "value": 30628607,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, stc",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_channels_fy2023": {
+   "value": 3083568,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, Channels",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_channels_fy2024": {
+   "value": 3365489,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Channels",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_channels_fy2025": {
+   "value": 3429410,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Channels",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_solutions_fy2023": {
+   "value": 2792163,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, Solutions",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_solutions_fy2024": {
+   "value": 2981285,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Solutions",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_solutions_fy2025": {
+   "value": 2932415,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Solutions",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_stc_kuwait_fy2023": {
+   "value": 2061419,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, stc Kuwait",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_stc_kuwait_fy2024": {
+   "value": 2019660,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, stc Kuwait",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_stc_kuwait_fy2025": {
+   "value": 2139245,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, stc Kuwait",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_stc_bahrain_fy2023": {
+   "value": 878634,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, stc Bahrain",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_stc_bahrain_fy2024": {
+   "value": 949684,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, stc Bahrain",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_stc_bahrain_fy2025": {
+   "value": 1008601,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, stc Bahrain",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_center_3_fy2023": {
+   "value": 483553,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, Center 3",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_center_3_fy2024": {
+   "value": 747048,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Center 3",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_center_3_fy2025": {
+   "value": 818319,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Center 3",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_stc_bank_fy2023": {
+   "value": 207653,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, stc Bank",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_stc_bank_fy2024": {
+   "value": 344985,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, stc Bank",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_stc_bank_fy2025": {
+   "value": 724914,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, stc Bank",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_sirar_fy2023": {
+   "value": 173207,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, Sirar",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_sirar_fy2024": {
+   "value": 268317,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Sirar",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_sirar_fy2025": {
+   "value": 283341,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Sirar",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_specialized_fy2023": {
+   "value": 178078,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, Specialized",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_specialized_fy2024": {
+   "value": 185327,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Specialized",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_specialized_fy2025": {
+   "value": 135410,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Specialized",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_iot2_fy2023": {
+   "value": 26948,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, iot2",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_iot2_fy2024": {
+   "value": 88538,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, iot2",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_iot2_fy2025": {
+   "value": 71617,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, iot2",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_sccc_fy2023": {
+   "value": -70021,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, SCCC",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_sccc_fy2024": {
+   "value": -18539,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, SCCC",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_sccc_fy2025": {
+   "value": 78538,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, SCCC",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_other_operating_segments_fy2023": {
+   "value": 506492,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, Other operating segments",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_other_operating_segments_fy2024": {
+   "value": 505609,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Other operating segments",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_other_operating_segments_fy2025": {
+   "value": 34055,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Other operating segments",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_eliminations_adjustments_fy2023": {
+   "value": -5555604,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2024, note 9, operating segments, Eliminations / adjustments",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_eliminations_adjustments_fy2024": {
+   "value": -5290124,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Eliminations / adjustments",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_seg_eliminations_adjustments_fy2025": {
+   "value": -4584783,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 9, operating segments, Eliminations / adjustments",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "debt_sukuk_may_2019_final_may_2029_fy2025": {
+   "value": 4680493,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 26, borrowings, Sukuk, May 2019, final May 2029 (USD)",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "debt_murabaha_dec_2017_final_dec_2027_fy2025": {
+   "value": 1310218,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 26, borrowings, Murabaha, Dec 2017, final Dec 2027 (MYR)",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "debt_murabaha_sep_2021_final_aug_2026_fy2025": {
+   "value": 494831,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 26, borrowings, Murabaha, Sep 2021, final Aug 2026 (USD)",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "debt_murabaha_mar_2021_final_nov_2029_fy2025": {
+   "value": 275469,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 26, borrowings, Murabaha, Mar 2021, final Nov 2029 (USD)",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "debt_murabaha_sep_2023_final_mar_2029_fy2025": {
+   "value": 6000726,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 26, borrowings, Murabaha, Sep 2023, final Mar 2029 (USD)",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "debt_murabaha_feb_2022_final_mar_2028_fy2025": {
+   "value": 140038,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 26, borrowings, Murabaha, Feb 2022, final Mar 2028 (KWD)",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "debt_mudarabah_dec_2018_final_may_2026_fy2025": {
+   "value": 1837,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 26, borrowings, Mudarabah, Dec 2018, final May 2026 (BHD)",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "debt_murabaha_jan_2023_final_jan_2029_fy2025": {
+   "value": 450059,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 26, borrowings, Murabaha, Jan 2023, final Jan 2029 (USD)",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "debt_murabaha_aug_2022_final_aug_2036_fy2025": {
+   "value": 605394,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 26, borrowings, Murabaha, Aug 2022, final Aug 2036 (SAR)",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "debt_murabaha_jun_2022_final_jun_2027_fy2025": {
+   "value": 499626,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 26, borrowings, Murabaha, Jun 2022, final Jun 2027 (SAR)",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "debt_others_subsidiaries_fy2025": {
+   "value": 732737,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 26, borrowings, Others, subsidiaries (n/d)",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_h1_2026": {
+   "value": 40110089,
+   "source": "Saudi Telecom Company, reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, condensed consolidated statement of profit or loss",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "rev_h1_2025": {
+   "value": 38660477,
+   "source": "Saudi Telecom Company, reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, condensed consolidated statement of profit or loss, comparative period",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "gp_h1_2026": {
+   "value": 19637121,
+   "source": "Saudi Telecom Company, reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, note 4, revenue less cost of operations",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "gp_h1_2025": {
+   "value": 18657904,
+   "source": "Saudi Telecom Company, reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, note 4, comparative period",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "debt_borrowings_jun2026": {
+   "value": 23536554,
+   "source": "Saudi Telecom Company, reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, long-term borrowings 22,094,126 plus short-term borrowings 1,442,428",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "debt_leases_jun2026": {
+   "value": 2258902,
+   "source": "Saudi Telecom Company, reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, note 13, lease liabilities, non-current 1,642,836 plus current 616,066",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "debt_spectrum_jun2026": {
+   "value": 3443044,
+   "source": "Saudi Telecom Company, reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, note 14.1, financial liabilities related to frequency spectrum licences",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "cash_non_bank_jun2026": {
+   "value": 12940389,
+   "source": "Saudi Telecom Company, reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, cash and cash equivalents, excluding the digital-banking subsidiary",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "inv_murabahas_jun2026": {
+   "value": 1062181,
+   "source": "Saudi Telecom Company, reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, short-term murabahas",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "inv_sukuk_jun2026": {
+   "value": 6368453,
+   "source": "Saudi Telecom Company, reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, note 9.1, financial assets at amortised cost",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "inv_tbills_jun2026": {
+   "value": 492070,
+   "source": "Saudi Telecom Company, reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, note 9.1, treasury bills",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "eq_nci_jun2026": {
+   "value": 2726349,
+   "source": "Saudi Telecom Company, reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, consolidated statement of financial position, non-controlling interests",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "assets_depreciable_gross_fy2025": {
+   "value": 134634729,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 10, property and equipment, depreciable gross cost",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "dep_charge_fy2025": {
+   "value": 6453343,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 10, the year's depreciation on that base",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "assets_additions_total_fy2025": {
+   "value": 13815240,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, additions to property and equipment, intangible assets and goodwill by segment",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "assets_additions_noncash_fy2025": {
+   "value": 2122000,
+   "source": "Saudi Telecom Company, audited consolidated financial statements for the year ended 31 December 2025, note 12(2), additions include non-cash additions",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "capex_fy2025": {
+   "value": 11795000,
+   "source": "Saudi Telecom Company, fourth-quarter and full-year 2025 earnings presentation, capital expenditure as the company reports it",
+   "date": "2025-12-31",
+   "layer": "Company_IR"
+  },
+  "inv_subs_mobile_fy2023": {
+   "value": 26.47,
+   "source": "Saudi Telecom Company, fourth-quarter and full-year 2025 earnings presentation, mobile subscribers as at Q4 2023, stated in millions",
+   "date": "2025-12-31",
+   "layer": "Company_IR"
+  },
+  "inv_subs_fixed_fy2023": {
+   "value": 5.57,
+   "source": "Saudi Telecom Company, fourth-quarter and full-year 2025 earnings presentation, fixed subscribers as at Q4 2023, stated in millions",
+   "date": "2025-12-31",
+   "layer": "Company_IR"
+  },
+  "inv_subs_mobile_fy2024": {
+   "value": 28.34,
+   "source": "Saudi Telecom Company, fourth-quarter and full-year 2025 earnings presentation, mobile subscribers as at Q4 2024, stated in millions",
+   "date": "2025-12-31",
+   "layer": "Company_IR"
+  },
+  "inv_subs_fixed_fy2024": {
+   "value": 5.72,
+   "source": "Saudi Telecom Company, fourth-quarter and full-year 2025 earnings presentation, fixed subscribers as at Q4 2024, stated in millions",
+   "date": "2025-12-31",
+   "layer": "Company_IR"
+  },
+  "inv_subs_mobile_fy2025": {
+   "value": 30.0,
+   "source": "Saudi Telecom Company, fourth-quarter and full-year 2025 earnings presentation, mobile subscribers as at Q4 2025, stated in millions",
+   "date": "2025-12-31",
+   "layer": "Company_IR"
+  },
+  "inv_subs_fixed_fy2025": {
+   "value": 6.0,
+   "source": "Saudi Telecom Company, fourth-quarter and full-year 2025 earnings presentation, fixed subscribers as at Q4 2025, stated in millions",
+   "date": "2025-12-31",
+   "layer": "Company_IR"
+  },
+  "inv_subs_mobile_h1_2026": {
+   "value": 30.3,
+   "source": "Saudi Telecom Company, second-quarter and half-year 2026 earnings presentation, mobile subscribers as at H1 2026, stated in millions",
+   "date": "2026-06-30",
+   "layer": "Company_IR"
+  },
+  "inv_subs_fixed_h1_2026": {
+   "value": 6.1,
+   "source": "Saudi Telecom Company, second-quarter and half-year 2026 earnings presentation, fixed subscribers as at H1 2026, stated in millions",
+   "date": "2026-06-30",
+   "layer": "Company_IR"
+  },
+  "spot": {
+   "value": 43.86,
+   "source": "Tadawul closing price for STC, supplied for this study and committed under the house price register",
+   "date": "2026-09-03",
+   "layer": "Market"
+  },
+  "shares_mn": {
+   "value": 4993.024,
+   "source": "Saudi Telecom Company, reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, note 17, share capital divided by par value, less treasury shares",
+   "date": "2026-06-30",
+   "layer": "Company"
+  }
+ },
  "drivers": {
   "segment_real_growth": {
    "stc": 0.001602,
