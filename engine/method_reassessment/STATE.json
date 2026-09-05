@@ -19,7 +19,7 @@
   ]
  },
  "phase": "1",
- "current": "STC rebuild COMPLETE on all seven levers of REBUILD_PLAN_05-09-2026.md. 47.1108 -> 41.1548, -12.64%, and -6.17% against the latest known close of 43.86 \u2014 inside the band either way. STC came off four ratchets: rebuild ledger, bridge, lens design and valuation gap (which now carries NO breaching study, one unreadable). It stays on the macro ratchet deliberately: its four segment growth arrays are typed nominals with no source, and expressing them as (real, path) would mean choosing a real rate to clear a checker.",
+ "current": "STC rebuilt on all seven levers PLUS a declared second stage (the ground-up driver rebuild on the eleven disclosed segments). Central 47.1108 -> 34.7988, -26.13%, and -20.7% against the latest known close of 43.86 \u2014 past the trigger, so GAP_REVIEW_05-09-2026.md is written and accepted by the gate. The two defects it found BOTH make the answer too high. PR #370 open; CI running on 5b8882a6.",
  "done": [
   "All seven markets carry a sourced house macro path; 53 names unblocked. Two identities were running where they do not hold (a pegged currency drifting, the dollar depreciating against itself) \u2014 both found by PRINTING a path, not by a gate.",
   "The explicit window's inflation assumption is RULED OUT as the general scale error: perfect foresight of the path removes only 11% of the pooled driver error.",
@@ -223,13 +223,20 @@
   "The Q2-2026 balance sheet's '60,000,000' share capital is an EXTRACTION ARTEFACT \u2014 note 17 states 50,000,000 at both dates and only 50,000,000 makes the equity block foot. Nearly recorded as a 20% share-count increase that does not exist.",
   "STC levers 4-7 landed: the house macro path on both terminal growth rates, the sanctioned terminal on a 20.86-year derived life, the bridge on the reviewed 30 June 2026 sheet (associates were carried at 4,641 against a filed 12,909.648 \u2014 the towers business had moved from the subsidiaries into the associates and the bridge followed it into neither), the four-lens blend retired for the cash-flow primary with the multiple recomputed from own history (the typed 9.0x was the traded multiple), and the answer exposed where a checker can read it.",
   "L-342 registered: a decomposition whose steps all read the same mutable file collapses silently and the collapsed version still walks its own gate.",
-  "terminal_census.py now globs for a study numbers file like every other gate, instead of resolving one name literally and reporting three studies unreadable."
+  "terminal_census.py now globs for a study numbers file like every other gate, instead of resolving one name literally and reporting three studies unreadable.",
+  "STC driver rebuild: eleven disclosed segments, each at its own MEASURED real rate deflated by a published price index from the same IMF series as the house ladder, fading to zero real; margin an OUTPUT of gross profit less one cost line at its own three-year share of revenue. -15.44%.",
+  "GAP_REVIEW_05-09-2026.md written and accepted; the multiple cross-check is the heading that argues hardest against the answer (6.24x implied against a traded 8.98x and an own history of 8.32-9.13x) and is set out rather than explained away.",
+  "Corrected my own lever-4 justification: it read \"growing with the economy in perpetuity\" while implementing zero real, which is growing with PRICES. The number was defensible and the reason was false.",
+  "The STC investor-relations channel WAS reachable \u2014 four failed URL guesses had been recorded as evidence it was gone. L-343.",
+  "L-342 and L-343 registered; 264 lessons."
  ],
  "next": [
-  "STC is not a DELIVERED study: no bibliography, no four-field inputs register, no sweep register, no QC gate, no driver test, no recalculation harness. The eleven disclosed segments in the FY2025 filing (two years of revenue AND gross profit each) are the base a ground-up rebuild builds on, and they close the macro ratchet at the same time.",
-  "Re-issue the three documents publishing the retired skill verdict (ADNOCLS the exemplar last, verified page by page).",
-  "GBCO is the last unreadable study on the valuation-gap ratchet.",
-  "AMOC escalation default 12-Sep; lens-registry escalation default 18-Sep."
+  "MERGE PR #370 on green [R-MERGE-01], then restart the branch from main.",
+  "STC: build revenue as VOLUME x PRICE now that the earnings presentations are registered \u2014 KSA mobile 28.3 -> 30.0mn and fixed 5.7 -> 6.0mn against segment revenue growing 2.97%, so revenue per subscriber fell ~2.9%. The extrapolated segment rate nets the two and hides them. The counts are unaudited chart figures, so they are an INDICATOR until the same numbers are found in a table.",
+  "STC: the explicit window takes capex DOWN to 15.0% of revenue (bottom of guidance) while the terminal charges 17.43% (top of it) on a base 73% written off. The step points the wrong way for an old base and the suspect half is the explicit window \u2014 it makes the answer too HIGH, so correcting it widens the discount.",
+  "STC is still not a delivered study: no bibliography, no four-field register, no sweep register, no QC gate, no driver test, no recalculation harness.",
+  "Re-issue the three documents publishing the retired skill verdict (ADNOCLS last).",
+  "GBCO is the last unreadable study on the valuation-gap ratchet."
  ],
  "stop_and_ask": [
   "TMGH: two earnings releases could not be re-fetched from the company's own channels (FY2020 release: 502 via proxy on every retry; 1H2021 release: 404). They are not inputs to the delivered numbers \u2014 the audited statements for both periods were obtained and verified \u2014 so this blocks nothing; recorded for the morning list."
@@ -245,7 +252,7 @@
   "Phase 2 keeps the campaign's market order \u2014 principal, 03-Sep-2026."
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-05T06:05:00+03:00",
+ "updated": "2026-09-05T06:20:00+03:00",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md \u2014 it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",
