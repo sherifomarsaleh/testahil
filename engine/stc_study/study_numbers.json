@@ -1899,6 +1899,725 @@
    "layer": "Company"
   }
  },
+ "macro_record": {
+  "market": "SA",
+  "path_as_of": "2026-09-03",
+  "inflation_inputs": [
+   {
+    "key": "house_ladder",
+    "mapping": "calendar",
+    "first_year": 2026,
+    "values": [
+     0.023,
+     0.021,
+     0.02,
+     0.02,
+     0.02
+    ],
+    "note": "the ONLY forward inflation series this model registers. It is read from the house path at each forecast year and used in exactly one place \u2014 converting each segment's real growth to its nominal. There is no second escalator: the cost side is held at each segment's own disclosed margin rather than escalated line by line, which cost_decomposition.py measures at -0.30% of the central."
+   },
+   {
+    "key": "cpi_2024_observed",
+    "mapping": "observed",
+    "values": 0.015,
+    "date": "2026-09-05",
+    "note": "International Monetary Fund, World Economic Outlook database, series PCPIPCH (inflation, average consumer prices, annual percent change), Saudi Arabia (SAU), read live from the IMF datamapper API on 5 September 2026."
+   },
+   {
+    "key": "cpi_2025_observed",
+    "mapping": "observed",
+    "values": 0.02,
+    "date": "2026-09-05",
+    "note": "International Monetary Fund, World Economic Outlook database, series PCPIPCH (inflation, average consumer prices, annual percent change), Saudi Arabia (SAU), read live from the IMF datamapper API on 5 September 2026."
+   }
+  ],
+  "growth_lines": [
+   {
+    "name": "Center 3 \u2014 real growth, explicit year 1",
+    "years": [
+     2026
+    ],
+    "nominal": [
+     0.04209320350418033
+    ],
+    "real": 0.018663933044164693,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Center 3 \u2014 real growth, explicit year 2",
+    "years": [
+     2027
+    ],
+    "nominal": [
+     0.03529190672856908
+    ],
+    "real": 0.01399794978312352,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Center 3 \u2014 real growth, explicit year 3",
+    "years": [
+     2028
+    ],
+    "nominal": [
+     0.029518605852524082
+    ],
+    "real": 0.009331966522082347,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Center 3 \u2014 real growth, explicit year 4",
+    "years": [
+     2029
+    ],
+    "nominal": [
+     0.02475930292626205
+    ],
+    "real": 0.0046659832610411725,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Center 3 \u2014 real growth, explicit year 5",
+    "years": [
+     2030
+    ],
+    "nominal": [
+     0.020000000000000018
+    ],
+    "real": 0.0,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Channels \u2014 real growth, explicit year 1",
+    "years": [
+     2026
+    ],
+    "nominal": [
+     0.005832085767008888
+    ],
+    "real": -0.01678192984652105,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Channels \u2014 real growth, explicit year 2",
+    "years": [
+     2027
+    ],
+    "nominal": [
+     0.008149237220026473
+    ],
+    "real": -0.012586447384890787,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Channels \u2014 real growth, explicit year 3",
+    "years": [
+     2028
+    ],
+    "nominal": [
+     0.011441215778274172
+    ],
+    "real": -0.008390964923260524,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Channels \u2014 real growth, explicit year 4",
+    "years": [
+     2029
+    ],
+    "nominal": [
+     0.015720607889137206
+    ],
+    "real": -0.004195482461630261,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Channels \u2014 real growth, explicit year 5",
+    "years": [
+     2030
+    ],
+    "nominal": [
+     0.020000000000000018
+    ],
+    "real": -0.0,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Other operating segments \u2014 real growth, explicit year 1",
+    "years": [
+     2026
+    ],
+    "nominal": [
+     0.04209320350418033
+    ],
+    "real": 0.018663933044164693,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Other operating segments \u2014 real growth, explicit year 2",
+    "years": [
+     2027
+    ],
+    "nominal": [
+     0.03529190672856908
+    ],
+    "real": 0.01399794978312352,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Other operating segments \u2014 real growth, explicit year 3",
+    "years": [
+     2028
+    ],
+    "nominal": [
+     0.029518605852524082
+    ],
+    "real": 0.009331966522082347,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Other operating segments \u2014 real growth, explicit year 4",
+    "years": [
+     2029
+    ],
+    "nominal": [
+     0.02475930292626205
+    ],
+    "real": 0.0046659832610411725,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Other operating segments \u2014 real growth, explicit year 5",
+    "years": [
+     2030
+    ],
+    "nominal": [
+     0.020000000000000018
+    ],
+    "real": 0.0,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "SCCC \u2014 real growth, explicit year 1",
+    "years": [
+     2026
+    ],
+    "nominal": [
+     0.04209320350418033
+    ],
+    "real": 0.018663933044164693,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "SCCC \u2014 real growth, explicit year 2",
+    "years": [
+     2027
+    ],
+    "nominal": [
+     0.03529190672856908
+    ],
+    "real": 0.01399794978312352,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "SCCC \u2014 real growth, explicit year 3",
+    "years": [
+     2028
+    ],
+    "nominal": [
+     0.029518605852524082
+    ],
+    "real": 0.009331966522082347,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "SCCC \u2014 real growth, explicit year 4",
+    "years": [
+     2029
+    ],
+    "nominal": [
+     0.02475930292626205
+    ],
+    "real": 0.0046659832610411725,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "SCCC \u2014 real growth, explicit year 5",
+    "years": [
+     2030
+    ],
+    "nominal": [
+     0.020000000000000018
+    ],
+    "real": 0.0,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Sirar \u2014 real growth, explicit year 1",
+    "years": [
+     2026
+    ],
+    "nominal": [
+     0.15773281694659413
+    ],
+    "real": 0.13170363337887991,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Sirar \u2014 real growth, explicit year 2",
+    "years": [
+     2027
+    ],
+    "nominal": [
+     0.12185205725987713
+    ],
+    "real": 0.09877772503415994,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Sirar \u2014 real growth, explicit year 3",
+    "years": [
+     2028
+    ],
+    "nominal": [
+     0.08716885302322885
+    ],
+    "real": 0.06585181668943996,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Sirar \u2014 real growth, explicit year 4",
+    "years": [
+     2029
+    ],
+    "nominal": [
+     0.053584426511614325
+    ],
+    "real": 0.03292590834471997,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Sirar \u2014 real growth, explicit year 5",
+    "years": [
+     2030
+    ],
+    "nominal": [
+     0.020000000000000018
+    ],
+    "real": 0.0,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Solutions \u2014 real growth, explicit year 1",
+    "years": [
+     2026
+    ],
+    "nominal": [
+     0.0682856542957937
+    ],
+    "real": 0.04426750175541905,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Solutions \u2014 real growth, explicit year 2",
+    "years": [
+     2027
+    ],
+    "nominal": [
+     0.05489783946921212
+    ],
+    "real": 0.033200626316564286,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Solutions \u2014 real growth, explicit year 3",
+    "years": [
+     2028
+    ],
+    "nominal": [
+     0.04257642589526367
+    ],
+    "real": 0.022133750877709524,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Solutions \u2014 real growth, explicit year 4",
+    "years": [
+     2029
+    ],
+    "nominal": [
+     0.031288212947631955
+    ],
+    "real": 0.01106687543885476,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Solutions \u2014 real growth, explicit year 5",
+    "years": [
+     2030
+    ],
+    "nominal": [
+     0.020000000000000018
+    ],
+    "real": 0.0,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Specialized \u2014 real growth, explicit year 1",
+    "years": [
+     2026
+    ],
+    "nominal": [
+     -0.034951884102092934
+    ],
+    "real": -0.05664895806656194,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Specialized \u2014 real growth, explicit year 2",
+    "years": [
+     2027
+    ],
+    "nominal": [
+     -0.022378939639469908
+    ],
+    "real": -0.042486718549921455,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Specialized \u2014 real growth, explicit year 3",
+    "years": [
+     2028
+    ],
+    "nominal": [
+     -0.00889096861394656
+    ],
+    "real": -0.02832447903328097,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Specialized \u2014 real growth, explicit year 4",
+    "years": [
+     2029
+    ],
+    "nominal": [
+     0.005554515693026785
+    ],
+    "real": -0.014162239516640482,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "Specialized \u2014 real growth, explicit year 5",
+    "years": [
+     2030
+    ],
+    "nominal": [
+     0.020000000000000018
+    ],
+    "real": -0.0,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "iot2 \u2014 real growth, explicit year 1",
+    "years": [
+     2026
+    ],
+    "nominal": [
+     0.04209320350418033
+    ],
+    "real": 0.018663933044164693,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "iot2 \u2014 real growth, explicit year 2",
+    "years": [
+     2027
+    ],
+    "nominal": [
+     0.03529190672856908
+    ],
+    "real": 0.01399794978312352,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "iot2 \u2014 real growth, explicit year 3",
+    "years": [
+     2028
+    ],
+    "nominal": [
+     0.029518605852524082
+    ],
+    "real": 0.009331966522082347,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "iot2 \u2014 real growth, explicit year 4",
+    "years": [
+     2029
+    ],
+    "nominal": [
+     0.02475930292626205
+    ],
+    "real": 0.0046659832610411725,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "iot2 \u2014 real growth, explicit year 5",
+    "years": [
+     2030
+    ],
+    "nominal": [
+     0.020000000000000018
+    ],
+    "real": 0.0,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "stc \u2014 real growth, explicit year 1",
+    "years": [
+     2026
+    ],
+    "nominal": [
+     0.024852493994583558
+    ],
+    "real": 0.001810844569485548,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "stc \u2014 real growth, explicit year 2",
+    "years": [
+     2027
+    ],
+    "nominal": [
+     0.02279161821339981
+    ],
+    "real": 0.0017547680836433877,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "stc \u2014 real growth, explicit year 3",
+    "years": [
+     2028
+    ],
+    "nominal": [
+     0.021462953863317535
+    ],
+    "real": 0.0014342684934485206,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "stc \u2014 real growth, explicit year 4",
+    "years": [
+     2029
+    ],
+    "nominal": [
+     0.02086633271487881
+    ],
+    "real": 0.0008493457989007247,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "stc \u2014 real growth, explicit year 5",
+    "years": [
+     2030
+    ],
+    "nominal": [
+     0.020000000000000018
+    ],
+    "real": 0.0,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "stc Bahrain \u2014 real growth, explicit year 1",
+    "years": [
+     2026
+    ],
+    "nominal": [
+     0.020310855536161965
+    ],
+    "real": -0.002628684715384111,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "stc Bahrain \u2014 real growth, explicit year 2",
+    "years": [
+     2027
+    ],
+    "nominal": [
+     0.01898708467919441
+    ],
+    "real": -0.001971513536538083,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "stc Bahrain \u2014 real growth, explicit year 3",
+    "years": [
+     2028
+    ],
+    "nominal": [
+     0.018659370795154118
+    ],
+    "real": -0.0013143423576920555,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "stc Bahrain \u2014 real growth, explicit year 4",
+    "years": [
+     2029
+    ],
+    "nominal": [
+     0.019329685397577068
+    ],
+    "real": -0.0006571711788460275,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "stc Bahrain \u2014 real growth, explicit year 5",
+    "years": [
+     2030
+    ],
+    "nominal": [
+     0.020000000000000018
+    ],
+    "real": -0.0,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "stc Bank \u2014 real growth, explicit year 1",
+    "years": [
+     2026
+    ],
+    "nominal": [
+     0.1279958284162086
+    ],
+    "real": 0.10263521839316586,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "stc Bank \u2014 real growth, explicit year 2",
+    "years": [
+     2027
+    ],
+    "nominal": [
+     0.09959291848456653
+    ],
+    "real": 0.07697641379487438,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "stc Bank \u2014 real growth, explicit year 3",
+    "years": [
+     2028
+    ],
+    "nominal": [
+     0.0723439613805148
+    ],
+    "real": 0.05131760919658293,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "stc Bank \u2014 real growth, explicit year 4",
+    "years": [
+     2029
+    ],
+    "nominal": [
+     0.04617198069025741
+    ],
+    "real": 0.02565880459829146,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "stc Bank \u2014 real growth, explicit year 5",
+    "years": [
+     2030
+    ],
+    "nominal": [
+     0.020000000000000018
+    ],
+    "real": 0.0,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "stc Kuwait \u2014 real growth, explicit year 1",
+    "years": [
+     2026
+    ],
+    "nominal": [
+     0.028248566796465147
+    ],
+    "real": 0.005130563828411816,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "stc Kuwait \u2014 real growth, explicit year 2",
+    "years": [
+     2027
+    ],
+    "nominal": [
+     0.024928729251606274
+    ],
+    "real": 0.003847922871308862,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "stc Kuwait \u2014 real growth, explicit year 3",
+    "years": [
+     2028
+    ],
+    "nominal": [
+     0.022616587552489964
+    ],
+    "real": 0.002565281914205908,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "stc Kuwait \u2014 real growth, explicit year 4",
+    "years": [
+     2029
+    ],
+    "nominal": [
+     0.02130829377624499
+    ],
+    "real": 0.0012826409571029538,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   },
+   {
+    "name": "stc Kuwait \u2014 real growth, explicit year 5",
+    "years": [
+     2030
+    ],
+    "nominal": [
+     0.020000000000000018
+    ],
+    "real": 0.0,
+    "basis": "the segment's own measured real rate, faded to zero real by the last explicit year, recomputed on the house Saudi ladder. Nothing here is a typed nominal rate."
+   }
+  ],
+  "terminal": {
+   "g_nominal": 0.02,
+   "real": 0.0,
+   "rf": 0.039751,
+   "inflation_in_rf": 0.02
+  },
+  "explicit_years": 5,
+  "growth_at_horizon_end": 0.020000000000000018,
+  "note": "The riyal is pegged, so the house path returns a FLAT cost-of-capital schedule and today is already the terminal. No currency path is registered because this model has none: revenue and cost are both in riyals and the peg is not a forecast."
+ },
+ "forecast_anchor": {
+  "rate_name": "gross margin",
+  "latest_reviewed_period": "six months ended 30 June 2026",
+  "latest_reviewed_date": "2026-06-30",
+  "latest_reviewed_rate": 0.48958058906326535,
+  "first_forecast_rate": 0.49145355407119184,
+  "forecast_path": [
+   0.319847256594818,
+   0.3190366010783908,
+   0.3184831288736253,
+   0.3182052626065098,
+   0.31820526260650966
+  ],
+  "note": "The first forecast year is BUILT from the reviewed half rather than compared with it: the level, the gross margin and the operating-cost share all come from note 4 of that interim, each corrected by the prior year's OWN measured half-to-year factor rather than by an assumed seasonality. The reviewed half reports a gross margin of 48.958% and the first forecast year carries 49.145%; the difference is the measured seasonal correction, not a fade. The delivered study stood on a stale full year and sat 89 basis points BELOW an EBITDA margin the company had already reported for half the year."
+ },
  "drivers": {
   "segment_real_growth": {
    "stc": 0.001602,

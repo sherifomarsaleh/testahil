@@ -809,6 +809,91 @@ e2 = dict(base=norm['base'], rng=(norm['bear'], norm['bull']))
 scen = [(0.30, ddm_lens['bull'] * 1.02), (0.45, ddm_ps), (0.25, ddm_lens['bear'] * 0.96)]
 e3 = dict(base=sum(p * v_ for p, v_ in scen))
 
+# ---------------------------------------------------------------------------------------
+# THE MACRO RECORD AND THE FORECAST-ANCHOR RECORD [R-MACRO-01, R-ANCHOR-01].
+#
+# BOTH THINGS THEY ATTEST WERE ALREADY TRUE HERE AND NEITHER WAS CHECKABLE FROM OUTSIDE,
+# which is the exact shape [R-ENF-01] exists to close: no growth rate in this model is a
+# typed nominal, every one is a real rate recomputed on the house Saudi ladder, and the
+# first forecast year is anchored on the latest reviewed period rather than grown off a
+# stale full year — and a job outside the study could read none of it.
+#
+# THE GROWTH LINES ARE PER SEGMENT AND PER YEAR because the real rate FADES: a segment's
+# real growth is not one number over five years, so storing one would be storing a rate the
+# model does not use. Sixty lines is bulky and it is the honest form — a single averaged
+# real rate would recompute to nominals this model never carries.
+_macro_lines = []
+for _k in sorted(seg_fc[yrs[0]]):
+    for _i, _y in enumerate(FORECAST_YEARS):
+        _r = seg_real(_k, _i + 1)
+        _macro_lines.append(dict(
+            name='%s — real growth, explicit year %d' % (_k, _i + 1),
+            years=[_y],
+            nominal=[(1.0 + _r) * (1.0 + COCRUN.MACRO.inflation(_y)) - 1.0],
+            real=_r,
+            basis=('the segment\'s own measured real rate, faded to zero real by the last '
+                   'explicit year, recomputed on the house Saudi ladder. Nothing here is a '
+                   'typed nominal rate.')))
+
+macro_record = dict(
+    market='SA',
+    path_as_of=COCRUN.MACRO.as_of,
+    inflation_inputs=[
+        dict(key='house_ladder', mapping='calendar', first_year=FORECAST_YEARS[0],
+             values=[COCRUN.MACRO.inflation(_y) for _y in FORECAST_YEARS],
+             note=('the ONLY forward inflation series this model registers. It is read from '
+                   'the house path at each forecast year and used in exactly one place — '
+                   'converting each segment\'s real growth to its nominal. There is no '
+                   'second escalator: the cost side is held at each segment\'s own disclosed '
+                   'margin rather than escalated line by line, which cost_decomposition.py '
+                   'measures at -0.30% of the central.')),
+        dict(key='cpi_2024_observed', mapping='observed', values=CPI_HIST[2024],
+             date='2026-09-05', note=CPI_HIST_SOURCE),
+        dict(key='cpi_2025_observed', mapping='observed', values=CPI_HIST[2025],
+             date='2026-09-05', note=CPI_HIST_SOURCE),
+    ],
+    growth_lines=_macro_lines,
+    terminal=dict(g_nominal=TG, real=TG_REAL,
+                  rf=SCHED.rf_terminal,
+                  inflation_in_rf=COCRUN.MACRO.terminal_inflation),
+    explicit_years=len(FORECAST_YEARS),
+    growth_at_horizon_end=(1.0 + seg_real(UNIT_SEGMENT, len(FORECAST_YEARS)))
+                          * (1.0 + COCRUN.MACRO.inflation(FORECAST_YEARS[-1])) - 1.0,
+    note=('The riyal is pegged, so the house path returns a FLAT cost-of-capital schedule '
+          'and today is already the terminal. No currency path is registered because this '
+          'model has none: revenue and cost are both in riyals and the peg is not a '
+          'forecast.'),
+)
+
+# THE ANCHOR RECORD. The forecast opens ON the latest reviewed period — the six months to
+# 30 June 2026 — rather than below it, so no mechanism is owed. The record is committed
+# anyway, because [R-ANCHOR-01] prints it for every study whether or not it fires: a shape
+# that is merely not-red is invisible, and the one this study has is worth seeing.
+_anchor_reported = H1_2026_GROSS / H1_2026_REVENUE
+forecast_anchor = dict(
+    rate_name='gross margin',
+    latest_reviewed_period='six months ended 30 June 2026',
+    latest_reviewed_date='2026-06-30',
+    latest_reviewed_rate=_anchor_reported,
+    first_forecast_rate=FY26_GROSS_MARGIN,
+    forecast_path=[fc[_y]['ebitda_margin'] for _y in yrs],
+    note=('The first forecast year is BUILT from the reviewed half rather than compared '
+          'with it: the level, the gross margin and the operating-cost share all come from '
+          'note 4 of that interim, each corrected by the prior year\'s OWN measured '
+          'half-to-year factor rather than by an assumed seasonality. The reviewed half '
+          'reports a gross margin of %.3f%% and the first forecast year carries %.3f%%; the '
+          'difference is the measured seasonal correction, not a fade. The delivered study '
+          'stood on a stale full year and sat 89 basis points BELOW an EBITDA margin the '
+          'company had already reported for half the year.'
+          % (100 * _anchor_reported, 100 * FY26_GROSS_MARGIN)),
+)
+
+# ASSERTED AT BUILD TIME, so a record that stopped reproducing breaks the build rather than
+# reaching a gate.
+
+import research_protocol as _RP
+_RP.assert_macro_coherence(macro_record, market='SA', ticker='STC')
+
 # The register is built and ASSERTED before the record is assembled, so a source that
 # stopped naming a company document breaks the build rather than reaching a gate.
 import inputs_register as _IR
@@ -923,6 +1008,8 @@ out = dict(
     # SIGCM clause 1 is checked on from outside: every dated historical of this company
     # names the company document it was read from, and the assertion runs at build time.
     inputs=_INPUTS,
+    macro_record=macro_record,
+    forecast_anchor=forecast_anchor,
     drivers=dict(
         # Per-segment REAL growth, measured from the company's own note 9 and deflated by
         # a published price index, fading to zero real by the last explicit year. Nominal
