@@ -261,6 +261,61 @@
    },
    "answer_written_to": "engine/amoc_study/TERMINAL_EVIDENCE_05-09-2026.md",
    "note": "The ARCC precedent is the pattern: the company's own site refused at the proxy, the attempt was logged either way, and the principal supplying the document IS the rule working rather than a failure of it."
+  },
+  {
+   "key": "GBCO-audited-statements-not-reachable-from-this-container",
+   "opened": "2026-09-05",
+   "cls": "missing_data",
+   "question": "GB Corp's own audited financial statements \u2014 any two consecutive full fiscal years, and ideally the accounting-policies note that discloses useful lives. This study holds NO FILINGS AT ALL: its README records that the historical financials were gathered in conversation rather than by code, so SIGCM clause 1 has nothing behind it here.",
+   "routes": [
+    {
+     "route": "GB Corp's own domain \u2014 five candidate hostnames (ghabbourauto.com with and without www, gb-corp.com, gbcorp.com.eg, gb.com.eg, gbautogroup.com, ghabbour.com, gbcorp-eg.com)",
+     "when": "2026-09-05",
+     "outcome": "every one fails to connect (curl 000) EXCEPT gbauto.com, which returns 403 with a 5,900-byte 'Just a moment...' body \u2014 a Cloudflare JavaScript bot challenge rather than a refusal. The host exists and the challenge cannot be solved by curl.",
+     "rerun": true
+    },
+    {
+     "route": "headless Chromium through the agent proxy, which is the tool that defeats a JavaScript challenge",
+     "when": "2026-09-05",
+     "outcome": "ERR_CONNECTION_RESET on gbauto.com AND on a CONTROL host that curl reaches with a 200 in the same minute, so the failure is the browser/relay pairing rather than the site. The proxy's own status endpoint confirms it: twenty recent 'ws_closed_mid_exchange' entries, tunnel closed after 6s with 39 bytes received. Playwright's own build was mismatched and was pointed at the installed binary first, so the browser did launch.",
+     "rerun": true
+    },
+    {
+     "route": "the Egyptian Exchange's own site, egx.com.eg \u2014 a REGULATOR_OFFICIAL route and where a listed company's disclosures are lodged",
+     "when": "2026-09-05",
+     "outcome": "HTTP 200 with 47KB, and the body is an F5 '/TSPD/' bot-defence interstitial carrying three links, none of them content. Reachable and unusable without JavaScript. WORTH RECORDING SEPARATELY: another study's sweep register has this host down as 'connect_rejected at the proxy', which has stopped being true \u2014 the reason changed even though the outcome did not [L-343].",
+     "rerun": false
+    },
+    {
+     "route": "the Egyptian financial regulator \u2014 disclosure.efsa.gov.eg and mist.gov.eg",
+     "when": "2026-09-05",
+     "outcome": "neither host resolves (curl 000)",
+     "rerun": false
+    },
+    {
+     "route": "web.archive.org, both the site and the CDX index, as a delivery route to documents the company itself published",
+     "when": "2026-09-05",
+     "outcome": "the host is unreachable from this container (000, and 'Recv failure: Connection reset by peer' on the CDX endpoint)",
+     "rerun": false
+    },
+    {
+     "route": "every live ref in the repository, for filings held under another branch",
+     "when": "2026-09-05",
+     "outcome": "239 remote refs searched; the only GBCO PDFs anywhere are the study's own delivered document under files/ and legacy/files/. No company filing is held on any ref, and engine/gbco_study has no src/ directory.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 239,
+   "why_only_the_principal": "Pure access, not judgement. Both routes that would carry the documents \u2014 the company's own site and the exchange's \u2014 sit behind JavaScript bot challenges, and the one tool that defeats those has its tunnels dropped by the relay, which is established by a CONTROL rather than assumed. The principal can attach the PDFs, as they did for the Egyptian rate series on 3 September.",
+   "done_meanwhile": "The rebuild proceeds on the three levers that need no filing: the cost-of-capital schedule on the house Egyptian path [R-COC-01], growth stored as a real rate on that path [R-MACRO-01], and the re-strike with its eight-heading review [R-GAP-01]. The terminal [R-TERM-01] is the one lever that needs a DISCLOSED useful life and it stays on the ratchet with this as its reason, because a life this desk chose is not a disclosed life.",
+   "default_if_no_answer": "Rebuild on those three levers and leave the terminal on the ratchet, with the study stating in its own record that SIGCM clause 1 is unmet \u2014 the historicals were gathered in conversation and no filing backs them. Do not substitute an aggregator, and do not choose a useful life.",
+   "default_date": "2026-09-19",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/gbco_study/src/SOURCES.md",
+    "must_contain": "audited"
+   },
+   "note": "THE LADDER FOUND ONE THING WORTH MORE THAN THE ANSWER. A control on a host curl reaches turned what looked like 'GB Corp blocks automated readers' into 'this container's browser cannot reach anything', which is a different fact with a different remedy \u2014 and without the control the first would have gone into the record as true. The same pass found another study's register carrying a stale negative about egx.com.eg. Both are [L-343]: a recorded failure is a fact about one attempt on one day, and it stops being true without anybody noticing."
   }
  ]
 }

@@ -490,3 +490,22 @@ it happened, not because it is asking.
     **The industry-specific alternative is recorded rather than dismissed**: escalating at *general* inflation assumes a radio costs 2% more each year to replace, where telecom equipment has historically fallen in real cost per unit of capacity. If that holds, the terminal is too high and the 1.161-to-1.352 gap is priced equipment rather than deferred maintenance. What would separate them is a disclosed replacement-cost or capacity series, and this company does not publish one.
 
 **Ten levers, nine rules, 47.11 → 35.53, −24.6%.** Every one is in the rebuild ledger with the answer either side of it, so the route can be walked rather than inferred from the net.
+
+## 05 Sep 2026, last before the slot — the biggest finding came last
+
+16. **PR #370 is merged** (CI green, merge commit `af036f12`); the anchor lever below is in **PR #371**.
+
+17. **The most recent reviewed period had been read and was not used, and this is the largest single defect of the night.** The six months to 30 June 2026 are published and reviewed, and the model was growing FY2025 forward as though they were not. The standing rule is explicit that a near-term reviewed actual **outranks** a stale full-year rate — anchor on it, hold everything else flat including observed improvements, and where a first-half rate is carried into the second half *prove with the prior year's actual halves which way it runs*.
+
+    | | reviewed H1-2026 | half-to-year factor | anchored FY2026 | the model had |
+    |---|---:|---:|---:|---:|
+    | revenue (SAR mn) | 40,110 | 1.00644 | **80,737** | 80,224 |
+    | EBITDA margin | 32.33% | | **31.98%** | **31.09%** |
+
+    **The forecast sat eighty-nine basis points below a margin the company had already reported for half the year.** Central **35.53 → 37.84, +6.49%**; the gap narrows **−19.0% → −13.7%**.
+
+18. **It is the strongest evidence in the review because it is not a forecast at all.** It is a disclosed actual the model had not been shown. A model that has not seen the half-year the company already reported is not conservative — it is out of date. Every seasonality factor is measured from the prior year's own half against its own full year, which is the proof the rule asks for rather than an assumption.
+
+19. **Two things about the process, which matter more than the number.** The gap gate went red the instant the answer moved — the review audited −19.0% while the study sat at −13.7% — and forced the eight headings to be re-asked at the size the disagreement actually is. And **the answer moved twice tonight in the direction the review's own logic had predicted**: once on the capital path, where the review named the suspect half *before* anyone knew which way a correction would run, and once here.
+
+**Where STC ends: SAR 47.11 → 37.84, −19.7%, across eleven levers and ten rules, off five ratchets.** Nothing published; the study remains held. Every correction is in the rebuild ledger with the answer either side of it, so the route can be walked rather than inferred from the net — which is the whole point, because the net of −19.7% contains a +8.4%, a −13.8%, a −15.4% and a +6.5% pulling against each other.

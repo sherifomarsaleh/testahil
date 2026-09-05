@@ -96,3 +96,49 @@ block is one-sided and below.
 Steps 1–3 and 5 are available today. Step 4 is not, and a rebuild that took 1–3 and left
 the blend standing is the SAVOLA and EMPOWER precedent of 4 September: legitimate, recorded,
 and the name stays on the lens ratchet with its reason.
+
+## 7. The filings were looked for, and the ladder found something worth more than the answer
+
+**Added the same day.** Section 3 records that this study holds no filings at all. Six routes
+were run to get them; all six are in `engine/escalations.json` under
+`GBCO-audited-statements-not-reachable-from-this-container` with their dates and outcomes.
+The short version:
+
+- **GB Corp's own domain.** Eight candidate hostnames. Seven fail to connect. One —
+  `gbauto.com` — returns a 5,900-byte **Cloudflare "Just a moment..." challenge**, which is a
+  JavaScript bot check rather than a refusal: the host exists and curl cannot pass it.
+- **The Egyptian Exchange**, `egx.com.eg`, where a listed company's disclosures are lodged.
+  **HTTP 200 with 47KB — and the body is an F5 `/TSPD/` bot-defence interstitial** carrying
+  three links, none of them content. Reachable and unusable without JavaScript.
+- **The regulator** (`disclosure.efsa.gov.eg`, `mist.gov.eg`) — neither resolves.
+- **web.archive.org**, as a delivery route to documents the company itself published —
+  unreachable from this container.
+- **Every live ref in the repository**, in case another branch held them: 239 searched, and
+  the only GBCO PDFs anywhere are this study's own delivered document.
+
+### The control is the part worth keeping
+
+The tool that defeats a JavaScript challenge is a headless browser, and this container has
+Chromium installed. It launched — Playwright's own build was mismatched and was pointed at
+the installed binary first — and then returned `ERR_CONNECTION_RESET` on `gbauto.com`.
+
+**That looked exactly like "GB Corp blocks automated readers", and it is not.** The same
+browser returns the same reset on a **control host that curl fetches with a 200 in the same
+minute**, and the proxy's own status endpoint names the reason: twenty recent
+`ws_closed_mid_exchange` entries, *tunnel closed after 6s, 39 bytes received*. The browser's
+traffic is dropped by the relay regardless of destination.
+
+**Without the control, "the site blocks us" would have gone into this file as a fact.** It is
+a different fact with a different remedy, and it is [L-343] again from the other side: a
+recorded failure is a fact about one attempt on one day. The same pass found another study's
+sweep register carrying `egx.com.eg` as *"connect_rejected at the proxy"* — the outcome is
+still failure and **the reason has changed**, which nobody would have noticed.
+
+### What proceeds anyway
+
+Steps 1, 2 and 5 of section 6 need no filing and are the rebuild. **Step 3 needs a DISCLOSED
+useful life and stays on the ratchet with this as its reason** — a life this desk chose is
+not a disclosed life. The default, if no filings arrive by 19 September, is to rebuild on
+those three and have the study state plainly that SIGCM clause 1 is unmet: the historicals
+were gathered in conversation and no filing backs them. Not an aggregator, and not a chosen
+life.

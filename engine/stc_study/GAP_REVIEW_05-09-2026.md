@@ -10,16 +10,43 @@ it. The rule does not say the answer must change.
 
 | | |
 |---|---:|
-| central, the cash-flow lens under [R-LENS-03] | **SAR 35.5319** |
+| central, the cash-flow lens under [R-LENS-03] | **SAR 37.8396** |
 | latest known close, 3 September 2026 | 43.86 |
-| **gap** | **−18.99%** |
-| envelope, the range of the present-value reads | 34.76 – 47.15 |
+| **gap** | **−13.73%** |
+| envelope, the range of the present-value reads | 37.14 – 48.71 |
 | where it stood before tonight's driver rebuild | 41.1548, −6.17% |
 
 ## 1. LATEST FILINGS
 
-**Every disclosed period has been read, and the most recent is the reviewed interim for the
-six months to 30 June 2026.** Five sets are in `src/` with the URL each came from: the
+**THE MOST RECENT REVIEWED PERIOD WAS READ AND WAS NOT USED, WHICH IS THE LARGEST SINGLE
+DEFECT THIS REVIEW FOUND.** The six months to 30 June 2026 are published and reviewed, and
+the model was growing FY2025 forward as though they were not. The standing rule is that a
+near-term reviewed actual OUTRANKS a stale full-year rate: anchor every rate on the most
+recent reviewed period, hold everything else flat including observed improvements, and where
+a first-half rate is carried into the second half **prove with the prior year's actual halves
+which way it runs**.
+
+Note 4 of that interim gives revenue by segment for both halves and the group's cost of
+operations excluding depreciation, so the level and both rates are readable from one note,
+and every seasonality factor below is the prior year's own half against its own full year —
+measured, not assumed:
+
+| | reviewed H1-2026 | prior year's half-to-year factor | anchored FY2026 | the model had |
+|---|---:|---:|---:|---:|
+| revenue (SAR mn) | 40,110 | 1.00644 | **80,737** | 80,224 |
+| gross margin | 48.96% | 1.00383 | **49.15%** | 48.31% |
+| operating-cost share | 16.63% | 1.03195 | **17.16%** | 17.25% |
+| **EBITDA margin** | **32.33%** | | **31.98%** | **31.09%** |
+
+**The model's forecast sat 89 basis points below a margin the company had already reported
+for half the year**, and 0.6% below the revenue that half implies. Corrected, the central
+rises from 35.5319 to **37.8396, +6.49%**, and the gap narrows from −19.0% to −13.7%. It is
+the strongest evidence in this review because it is not a forecast at all: it is a disclosed
+actual the model had not been shown.
+
+**Every other disclosed period has been read.** Five sets are in `src/` with the URL each
+came from: the audited statements for FY2023, FY2024 and FY2025, and the reviewed interims
+for the three and six months to 31 March and 30 June 2026. Five sets are in `src/` with the URL each came from: the
 audited statements for FY2023, FY2024 and FY2025, and the reviewed interims for the three
 and six months to 31 March and 30 June 2026. The delivered study stood on first-quarter
 figures while the half-year set was already published; that is corrected and the bridge now
@@ -206,7 +233,7 @@ explained away.**
 
 | | at the fair value | at the traded price | this company's own history |
 |---|---:|---:|---:|
-| enterprise value / FY2026 EBITDA | **6.39x** | 8.98x | 8.32x – 9.13x |
+| enterprise value / FY2026 EBITDA | **6.63x** | 8.98x | 8.32x – 9.13x |
 | price / FY2026 earnings | **14.6x** | 18.4x | — |
 
 **The fair value implies an enterprise multiple below every one of the last three years.**
@@ -254,10 +281,18 @@ this review did find — a false justification for the terminal growth rate and 
 capital intensity on an ageing base — both make the answer too HIGH, not too low, so
 correcting either widens the discount rather than closing it.
 
-**The answer moved 1.84% on this review and in the direction the review's own logic
-predicted** — the one defect it found that was priceable was a guidance-consumed capital
-path, and correcting it raised the value. That is the review working: it named the suspect
-half before knowing which way the correction would run. What also moves is the queue: revenue is built from
+**The answer moved twice on this review, by +1.84% and then by +6.49%, and both times in the
+direction the review's own logic predicted.** The second is the larger and the plainer: the
+most recent reviewed period had been read and not used, and a model that has not been shown
+the half-year the company already reported is not conservative, it is out of date.
+
+The first was the capital path: the review named the explicit window as the suspect half of
+the terminal tension **before knowing which way a correction would run**, and the reason
+turned out to be that the number was management's guidance rather than the company's own
+record. That is the review working rather than a coincidence, and it is the case for writing
+one even when the answer is not expected to change.
+
+What also moves is the queue: revenue is built from
 an extrapolated two-year rate because the disclosure this study holds stops at the segment,
 and the honest next step is to get the disclosure that goes below it rather than to adjust
 the rate until the answer is comfortable. **A fair value moved to meet a price is the
@@ -266,8 +301,8 @@ reverse-engineered rate this protocol prohibits outright, arriving through the f
 The study is HELD in any case: [R-GAP-02] blocks publication past 10% below the price, and
 Phase 1 of the method reassessment is not proven, which holds every study in the book.
 
-*AUDITED CENTRAL: 35.5319* — the figure this review audits, stated so a job outside the
+*AUDITED CENTRAL: 37.8396* — the figure this review audits, stated so a job outside the
 study can tell whether the review still describes the answer the study publishes.
 
-*AUDITED GAP: -19.0%* — the disagreement this review interrogates, stated so a job outside
+*AUDITED GAP: -13.7%* — the disagreement this review interrogates, stated so a job outside
 the study can tell whether the eight headings were asked at the size the study now carries.
