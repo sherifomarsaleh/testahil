@@ -2618,29 +2618,11 @@
   },
   "maint_capex_pct_replacement": {
    "key": "maint_capex_pct_replacement",
-   "value": 0.0610485267386962,
+   "value": 0.06104852759224623,
    "unit": "ratio",
    "source": "Constructed: gross fixed assets at the disclosed 3.95% machinery depreciation rate, over first-forecast-year revenue \u2014 replacement-rate maintenance, the upper framing of the same driver",
    "date": "2026-08-09",
    "layer": "L5",
-   "note": ""
-  },
-  "bs_gross_fixed_M9FY2526": {
-   "key": "bs_gross_fixed_M9FY2526",
-   "value": 17022.493,
-   "unit": "EGP m",
-   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, note 6 fixed assets at cost",
-   "date": "2026-05-20",
-   "layer": "L1",
-   "note": ""
-  },
-  "bs_acc_dep_M9FY2526": {
-   "key": "bs_acc_dep_M9FY2526",
-   "value": 3435.3,
-   "unit": "EGP m",
-   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, note 6 accumulated depreciation",
-   "date": "2026-05-20",
-   "layer": "L1",
    "note": ""
   },
   "spot_price_date": {

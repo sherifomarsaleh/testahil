@@ -39,7 +39,7 @@
    }
   ],
   "pre_project_pooled": 0.011156990270541007,
-  "replacement_rate": 0.0610485267386962,
+  "replacement_rate": 0.06104852759224623,
   "house_standard": 0.03,
   "house_standard_value": 3.6964771443170696,
   "run_rate": 2598.845948,
@@ -118,9 +118,9 @@
    "key": "maintenance_capex",
    "made": "Maintenance capital expenditure at the company's own observed pre-project rate of 1.12% of revenue",
    "alt": "Replacement-rate maintenance: gross fixed assets at the disclosed 3.95% machinery depreciation rate, or 6.11% of revenue",
-   "value": 3.131128843137776,
+   "value": 3.131128827595877,
    "why": "The observed rate is what this company has actually paid to keep this plant running in the two years when it was not building anything. The replacement-rate framing is the honest upper bound \u2014 a plant cannot spend a fifth of its depreciation forever \u2014 and it is carried as the downside case rather than averaged into the central.",
-   "delta": -0.9084519733537846
+   "delta": -0.9084519888956835
   },
   {
    "key": "terminal_asset_age",

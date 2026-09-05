@@ -734,15 +734,30 @@ I("maint_capex_pct_observed", (80.847245 + 42.470154) / (4440.701 + 6612.226), "
   "expenditure on EGP 11,052.9m of revenue. This is what the plant costs to keep running "
   "when it is not building anything, from the company's own cash-flow statements.",
   "2026-08-09", "L5")
-I("maint_capex_pct_replacement", 17022.493 * 0.0395 / 11014.0, "ratio",
+# THE THREE FIGURES ARE READ, NOT TYPED. This line carried 17022.493 * 0.0395 / 11014.0
+# as literals -- the gross cost, the disclosed machinery rate and first-forecast-year
+# revenue -- so a change to any of the three moved the model and not this driver.
+I("maint_capex_pct_replacement",
+  REG["fa_cost_gross_FY2425"]["value"] * REG["dep_rate_kima2_machinery"]["value"]
+  / 11014.0, "ratio",
   "Constructed: gross fixed assets at the disclosed 3.95% machinery depreciation rate, "
   "over first-forecast-year revenue — replacement-rate maintenance, the upper framing of "
   "the same driver", "2026-08-09", "L5")
 
-I("bs_gross_fixed_M9FY2526", 17022.493, "EGP m",
-  M9 + ", note 6 fixed assets at cost", "2026-05-20", "L1")
-I("bs_acc_dep_M9FY2526", 3435.300, "EGP m",
-  M9 + ", note 6 accumulated depreciation", "2026-05-20", "L1")
+# THE TWO INPUTS THAT STOOD HERE CARRIED THE 30-JUNE-2025 FIGURES UNDER A 31-MARCH-2026
+# SOURCE. They read 17,022.493 of cost and 3,435.300 of accumulated depreciation and cited
+# the nine-month interim; those are the AUDITED year-end figures, and cost less accumulated
+# reproduces the 13,587.193 the appendix prints for 30 June 2025 rather than the interim's
+# own net position. Found by an audit run from outside the study on 5 September 2026, after
+# this desk had registered the labelling as an open question in the gap review and been
+# unable to settle it from what the repository held.
+#
+# They were also DUPLICATES: fa_cost_gross_FY2425 and fa_accum_dep_FY2425 carry the same
+# two figures with the source they actually came from, read by OCR off note 6 and footed
+# four ways. So the fix is not to relabel a duplicate but to delete it and point the two
+# consumers -- the replacement-rate maintenance driver and the asset-backing expert -- at
+# the correctly-sourced pair. A wrong source on a right number is the harder defect to see,
+# because nothing about the value looks wrong.
 I("spot_price_date", "2026-09-03", "date",
   "Egyptian Exchange closing session used as the study's anchor date", "2026-09-03", "L2")
 I("beta_ci90_low", 0.7165230052490117, "ratio",

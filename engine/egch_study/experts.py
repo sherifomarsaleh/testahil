@@ -18,8 +18,8 @@ NET_DEBT, FVOCI, INVPROP = B['net_debt'], B['fvoci'], B['inv_prop']
 E = {}
 
 # ------------------------------------------------ EXPERT 1: replacement cost --
-gross_fixed = V('bs_gross_fixed_M9FY2526')   # note 6 cost at period end, EGP m
-acc_dep = V('bs_acc_dep_M9FY2526')           # note 6 accumulated depreciation
+gross_fixed = V('fa_cost_gross_FY2425')   # note 6 cost at period end, EGP m
+acc_dep = V('fa_accum_dep_FY2425')           # note 6 accumulated depreciation
 cwip = V('bs_cwip_M9FY2526')
 cap_lo, cap_hi = V('greenfield_capex_usd_t_low'), V('greenfield_capex_usd_t_high')
 fx = V('usd_egp_spot')

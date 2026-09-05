@@ -523,10 +523,10 @@ put(ws, f"D{CXR+8}", f"=(B{R22}+B{R23})/(C{R22}+C{R23})", fmt=PC1,
     expect=V('maint_capex_pct')).font = BLUE
 put(ws, f"E{CXR+8}", "THE MAINTENANCE DRIVER. Assumptions reads this cell.")
 put(ws, f"A{CXR+9}", "Replacement-rate framing, the published alternative")
-put(ws, f"B{CXR+9}", V('bs_gross_fixed_M9FY2526'), fmt=N0)
+put(ws, f"B{CXR+9}", V('fa_cost_gross_FY2425'), fmt=N0)
 put(ws, f"C{CXR+9}", V('dep_rate_kima2_machinery'), fmt=PC2)
 put(ws, f"D{CXR+9}", f"=B{CXR+9}*C{CXR+9}/B5", fmt=PC1,
-    expect=V('bs_gross_fixed_M9FY2526') * V('dep_rate_kima2_machinery') / R[0]['revenue'])
+    expect=V('fa_cost_gross_FY2425') * V('dep_rate_kima2_machinery') / R[0]['revenue'])
 put(ws, f"E{CXR+9}", "Gross fixed assets at the disclosed machinery rate, over "
                      "first-forecast-year revenue. NOT used in the valuation — the "
                      "downside case, published beside the central and never averaged in.")
