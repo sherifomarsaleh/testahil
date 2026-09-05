@@ -1,0 +1,921 @@
+           Saudi Telecom Company
+             (A Saudi Joint Stock Company)
+
+INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS
+     FOR THE THREE MONTHS PERIOD ENDED 31 MARCH 2026
+
+                      (UNAUDITED)
+
+                      First Quarter
+                          2026
+Saudi Telecom Company
+A Saudi Joint Stock Company
+INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (UNAUDITED)
+FOR THE THREE MONTHS PERIOD ENDED 31 MARCH 2026
+
+
+INDEX                                                              PAGES
+
+
+Independent auditor’s review report                                  2
+
+Interim condensed consolidated statement of financial position       3
+
+Interim condensed consolidated statement of profit or loss           4
+
+Interim condensed consolidated statement of comprehensive income     5
+
+Interim condensed consolidated statement of cash flows               6
+
+Interim condensed consolidated statement of changes in equity        7
+
+Notes to the interim condensed consolidated financial statements   8-22
+                                                                         Deloitte and Touche & Co.
+                                                                         Chartered Accountants
+                                                                         (Professional Simplified Joint Stock Company)
+                                                                         Paid-up capital  5,000,000
+                                                                         Metro Boulevard – Al-Aqiq
+                                                                         King Abdullah Financial District
+                                                                         P.O. Box 213 - Riyadh 11411
+                                                                         Kingdom of Saudi Arabia
+                                                                         C.R. No. 1010600030
+                                                                         Tel: +966 11 5089001
+                                                                         www.deloitte.com
+
+Independent Auditors’ Review Report on The Interim Condensed Consolidated Financial Information
+
+To the Shareholders
+Saudi Telecom Company
+(A Saudi Joint Stock Company)
+Riyadh, Kingdom of Saudi Arabia
+
+Introduction
+
+We have reviewed the accompanying interim condensed consolidated statement of financial position of Saudi
+Telecom Company (“the Company”) and its subsidiaries (together “the Group”) as at 31 March 2026, and the
+related interim condensed consolidated statements of profit or loss and comprehensive income, changes in
+equity and cash flows for the three-month period then ended, and the explanatory notes (“the interim financial
+information”). Management is responsible for the preparation and presentation of this interim financial
+information in accordance with International Accounting Standard 34 – Interim Financial Reporting (IAS 34) that
+is endorsed in the Kingdom of Saudi Arabia. Our responsibility is to express a conclusion on this interim financial
+information based on our review.
+
+Scope of Review
+
+We conducted our review in accordance with International Standard on Review Engagements 2410 – “Review
+of Interim Financial Information Performed by the Independent Auditor of the Entity” that is endorsed in the
+Kingdom of Saudi Arabia. A review of interim financial information consists of making inquiries, primarily of
+persons responsible for financial and accounting matters, and applying analytical and other review procedures.
+A review is substantially less in scope than an audit conducted in accordance with International Standards on
+Auditing endorsed in the Kingdom of Saudi Arabia and consequently does not enable us to obtain assurance
+that we would become aware of all significant matters that might be identified in an audit. Accordingly, we do
+not express an audit opinion.
+
+Conclusion
+
+Based on our review, nothing has come to our attention that causes us to believe that the accompanying interim
+financial information is not prepared, in all material respects, in accordance with IAS 34 that is endorsed in the
+Kingdom of Saudi Arabia.
+
+
+Deloitte and Touche & Co.
+Chartered Accountants
+
+
+
+
+Mazen A. Al-Omari
+Certified Public Accountant
+License No. 480
+16 Thul-Qi`dah 1447H
+03 May 2026
+Saudi Telecom Company
+(A Saudi Joint Stock Company)
+NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (UNAUDITED)
+FOR THE THREE MONTHS PERIOD ENDED 31 MARCH 2026
+(All Amounts in Saudi Riyals thousands unless otherwise stated)
+1. GENERAL INFORMATION
+
+A) ESTABLISHMENT OF THE COMPANY
+ Saudi Telecom Company (the “Company” or “stc”) was established as a Saudi Joint Stock Company pursuant to Royal Decree No.
+ M/35 dated 24 Dhul Hijja 1418H (corresponding to 21 April 1998) that authorized the transfer of the telegraph and telephone division
+ of the Ministry of Post, Telegraph and Telephone (“MoPTT”) with its various components and technical and administrative
+ facilities to the Company, and in accordance with the Council of Ministers’ Resolution No. 213 dated 23 Dhul Hijja 1418H
+ (corresponding to 20 April 1998) that approved the Company’s by-laws (“By-laws”). The Company was wholly owned by the
+ Government of the Kingdom of Saudi Arabia (the “Government”). The Government sold 30% of its shares pursuant to the Council
+ of Ministers Resolution No. 171 dated 2 Rajab 1423H (corresponding to 9 September 2002). The Public Investment Fund (“PIF”) is the
+ ultimate controlling party of the Company through its ownership of 62% as at 31 March 2026 (31 December 2025: 62%).
+
+ The Company commenced its operation as the provider of telecommunications services throughout the Kingdom of Saudi Arabia
+ (the “Kingdom”) on 6 Muharram 1419H (corresponding to 2 May 1998) as a Saudi Joint Stock Company on 4 Rabi al-Awal 1419H
+ (corresponding to 29 June 1998) with National No. 7000876768. The Company’s head office is located in King Abdulaziz Complex,
+ Imam Mohammed Bin Saud Street Al Mursalat Area, Riyadh, Kingdom of Saudi Arabia.
+
+
+
+B) GROUP ACTIVITIES
+ The main activities of the Company and its subsidiaries (collectively referred to as the “Group”) comprise the provision of
+ telecommunications, information, media services and digital payments, which include, among other things:
+
+ 1)    Establish, manage, operate and maintain fixed and mobile telecommunication networks, systems and infrastructure.
+ 2)    Deliver, provide, maintain and manage diverse telecommunication and information technology (IT) services to customers.
+ 3)    Prepare the required plans and necessary studies to develop, implement and provide telecommunication and IT services
+       covering all technical, financial and administrative aspects. In addition, prepare and implement training plans in the field of
+       telecommunications and IT, and provide consultancy services.
+ 4)    Expand and develop telecommunication networks, systems, and infrastructure by utilizing the most current devices and
+       equipment in telecom technology, especially in the fields of providing and managing services, applications and software.
+ 5)    Provide integrated communication and information technology solutions which include, among other things, telecom, IT
+       services, managed services, cloud services, and internet of things, etc.
+ 6)    Provide information-based systems and technologies to customers including providing telecommunication means for the
+       transfer of internet services.
+ 7)    Wholesale and retail trade, import, export, purchase, own, lease, manufacture, promote, sell, develop, design, setup and
+       maintenance of devices, equipment, and components and executing contracting works that are related to different telecom
+       networks including fixed, moving and private networks. In addition, computer programs and other intellectual properties.
+ 8)    Real estate investment and the resulting activities, such as selling, buying, leasing, managing, developing and maintenance.
+ 9)    Acquire loans and own fixed and movable assets for intended use.
+ 10)   Provide financial and managerial support and other services to subsidiaries.
+ 11)   Provide development, training, asset management and other related services.
+ 12)   Provide solutions for decision support, business intelligence and data investment.
+ 13)   Provide supply chain and other related services.
+ 14)   Provide digital banking services.
+ 15)   Provide cybersecurity services.
+ 16)   Construction, maintenance and repair of telecommunication and radar stations and towers.
+
+ Moreover, the Company is entitled to set up individual companies as limited liability or closed joint stock. It may also own shares
+ in, or merge with, other companies, and it has the right to partner with others to establish joint stock, limited liability or any other
+ entities whether inside or outside the Kingdom.
+
+ Regional geopolitical developments
+ The Group closely monitors regional geopolitical developments and their potential impacts on the Kingdom and the GCC
+ countries. The Group maintains a robust and flexible operating model to manage potential risks effectively, while continuously
+ assessing any possible impacts on its business operations.
+
+
+
+
+                                                                   8
+Saudi Telecom Company
+(A Saudi Joint Stock Company)
+NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (UNAUDITED)
+FOR THE THREE MONTHS PERIOD ENDED 31 MARCH 2026 (CONTINUED)
+(All Amounts in Saudi Riyals thousands unless otherwise stated)
+2. BASIS OF PREPARATION AND CONSOLIDATION
+These interim condensed consolidated financial statements have been prepared in accordance with International Accounting
+Standard 34 “Interim Financial Reporting” that is endorsed in the Kingdom and other standards and pronouncements that are
+endorsed by the Saudi Organization for Chartered and Professional Accountants (“SOCPA”) (“IAS 34”).
+
+The Group has prepared the interim condensed consolidated financial statements on the basis that it will continue to operate as a
+going concern.
+
+The interim condensed consolidated financial statements are presented in Saudi Riyals (“ ”), which is the functional currency of
+the Company, and all values are rounded to the nearest thousand Saudi Riyals, except when otherwise indicated.
+
+The interim condensed consolidated financial statements do not include all the information and disclosures required in the annual
+consolidated financial statements in accordance with International Financial Reporting Standards (“IFRS” Accounting Standards)
+and other standards and pronouncements that are endorsed by the Saudi Organization for Chartered and Professional Accountants
+(“IFRS endorsed in the Kingdom”). Therefore, these interim condensed consolidated financial statements should be read in
+conjunction with the Group’s annual consolidated financial statements for the year ended 31 December 2025.
+
+
+3. THE GROUP’S MATERIAL ACCOUNTING POLICIES AND SIGNIFICANT ACCOUNTING JUDGEMENTS,
+   ESTIMATES AND ASSUMPTIONS
+The material accounting policies and significant accounting judgements, estimates and assumptions adopted in the preparation of
+the interim condensed consolidated financial statements are consistent with those followed in the preparation of the Group’s
+annual consolidated financial statements for the year ended 31 December 2025.
+
+The Group has not early adopted any standard, interpretation or amendment that has been issued but is not yet effective.
+
+There are new standards and amendments to standards which are effective from 1 January 2026 but they do not have a material
+effect on these interim condensed consolidated financial statements.
+
+
+4. SEGMENT INFORMATION
+The Group is engaged mainly in providing telecommunication services and related products. The majority of the Group’s revenues,
+income and assets relate to its operations within the Kingdom. Outside of the Kingdom, the Group operates through its subsidiaries,
+associates and joint ventures in several countries.
+
+Revenue is distributed to an operating segment based on the entity of the Group reporting the revenue. Sales between segments
+are calculated at normal business transaction prices.
+
+The disclosed operating segments exceeded the 75% of total external Group revenue.
+
+
+
+
+                                                                9
+Saudi Telecom Company
+(A Saudi Joint Stock Company)
+NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (UNAUDITED)
+FOR THE THREE MONTHS PERIOD ENDED 31 MARCH 2026 (CONTINUED)
+(All Amounts in Saudi Riyals thousands unless otherwise stated)
+4. SEGMENT INFORMATION (CONTINUED)
+The following is an analysis of the Group's revenues and results based on segments:
+
+                                                                                      For the three months period ended
+                                                                                                   31 March
+                                                                                         2026                 2025
+ Revenues (1)
+ stc                                                                                      13,000,600             12,651,514
+ Saudi Telecom Channels Company (“Channels”)                                               3,523,507             4,052,200
+ Arabian Internet and Communications Services Company (“Solutions”)                       3,002,477              2,823,891
+ Kuwait Telecommunications Company (“stc Kuwait”)                                          1,038,078             1,062,582
+ stc Bahrain BSC (c) (“stc Bahrain”)                                                         490,501              504,230
+ Digital Centers for Data and Telecommunications (“Center3”)                                 539,511                 482,912
+ STC Bank                                                                                   396,545                  319,716
+ Advanced Technology and Cybersecurity Company (“sirar”)                                     263,103                 145,654
+ Public Telecommunications Company (“Specialized”)                                           432,112                  68,891
+ Internet of Things Information Technology Company (“iot2”)                                   83,504                 53,428
+ General Cloud Computing Company for Information Technology (“SCCC”)                         65,494                   41,945
+ Other operating segments (2)                                                                   6,358                 15,149
+ Eliminations / adjustments                                                              (2,903,080)            (3,012,560)
+ Total revenues                                                                           19,938,710            19,209,552
+ Cost of operations (excluding depreciation, amortization and impairment)                (13,381,984)          (13,089,100)
+ Depreciation, amortization and impairment                                               (2,578,678)            (2,536,943)
+ Cost of early retirement program                                                          (253,063)              (239,154)
+ Finance income                                                                             242,249                479,350
+ Finance cost                                                                              (330,667)              (292,811)
+ Net other expenses                                                                             (1,918)              (44,152)
+ Net share in results of investments in associates and joint ventures                        118,720                 60,975
+ Net other gains (losses)                                                                    166,389              (142,815)
+ Zakat and income tax (expense) reversal, net                                              (152,222)               310,546
+ Net profit                                                                                3,767,536             3,715,448
+
+
+
+
+                                                                10
+Saudi Telecom Company
+(A Saudi Joint Stock Company)
+NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (UNAUDITED)
+FOR THE THREE MONTHS PERIOD ENDED 31 MARCH 2026 (CONTINUED)
+(All Amounts in Saudi Riyals thousands unless otherwise stated)
+4. SEGMENT INFORMATION (CONTINUED)
+The following is the gross profit analysis on a segment basis:
+                                                                      For the three months period ended
+                                                                                   31 March
+                                                                         2026                  2025
+Gross profit
+stc                                                                        7,587,078             7,445,938
+Saudi Telecom Channels Company (“Channels”)                                  868,368                  899,148
+Arabian Internet and Communications Services Company (“Solutions”)           654,851                  671,075
+Kuwait Telecommunications Company (“stc Kuwait”)                             547,305                  523,618
+stc Bahrain BSC (c) (“stc Bahrain”)                                            241,893                236,592
+Digital Centers for Data and Telecommunications (“Center3”)                  273,255               206,894
+STC Bank                                                                     204,754                  106,964
+Advanced Technology and Cybersecurity Company (“sirar”)                         82,158                 39,931
+Public Telecommunications Company (“Specialized”)                            360,698                   34,972
+Internet of Things Information Technology Company (“iot2”)                      3,756                  19,310
+General Cloud Computing Company for Information Technology (“SCCC”)             16,038                   433
+Other operating segments (2)                                                    2,333                   4,279
+Eliminations / adjustments                                                (1,070,069)           (1,090,823)
+Gross profit                                                               9,772,418              9,098,331
+
+
+Information about geographical segmentation
+Following is the geographical segmentation of revenues:
+                                                                      For the three months period ended
+                                                                                   31 March
+                                                                        2026                   2025
+ Kingdom of Saudi Arabia                                                   17,607,014             16,911,319
+ Outside the Kingdom of Saudi Arabia                                       2,331,696             2,298,233
+                                                                           19,938,710            19,209,552
+
+
+
+
+                                                                 11
+Saudi Telecom Company
+(A Saudi Joint Stock Company)
+NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (UNAUDITED)
+FOR THE THREE MONTHS PERIOD ENDED 31 MARCH 2026 (CONTINUED)
+(All Amounts in Saudi Riyals thousands unless otherwise stated)
+4. SEGMENT INFORMATION (CONTINUED)
+The following is an analysis of the assets and liabilities on a segment basis as at:
+                                                                                       31 March 2026          31 December 2025
+ Assets
+ stc                                                                                        160,664,373               152,076,841
+ Saudi Telecom Channels Company (“Channels”)                                                  6,633,386                 5,942,466
+ Arabian Internet and Communications Services Company (“Solutions”)                           13,124,298                12,916,946
+ Kuwait Telecommunications Company (“stc Kuwait”)                                             6,029,458                 5,847,775
+ stc Bahrain BSC (c) (“stc Bahrain”)                                                          3,792,322                 3,819,009
+ Digital Centers for Data and Telecommunications (“Center3”)                                 10,878,587                 11,048,281
+ STC Bank                                                                                     11,323,250                9,342,649
+ Advanced Technology and Cybersecurity Company (“sirar”)                                       1,152,550                 1,152,678
+ Public Telecommunications Company (“Specialized”)                                             2,377,551                1,758,740
+ Internet of Things Information Technology Company (“iot2”)                                     924,249                   973,109
+ General Cloud Computing Company for Information Technology (“SCCC”)                           1,081,471                 1,145,723
+ Other operating segments (2)                                                                16,796,904                16,874,844
+ Eliminations / adjustments                                                                 (68,621,200)              (65,422,392)
+ Total assets                                                                                166,157,199              157,476,669
+
+
+ Liabilities
+ stc                                                                                         59,479,879                 51,660,411
+ Saudi Telecom Channels Company (“Channels”)                                                   5,178,329                4,675,065
+ Arabian Internet and Communications Services Company (“Solutions”)                           8,463,573                 8,589,796
+ Kuwait Telecommunications Company (“stc Kuwait”)                                             3,471,087                 2,923,594
+ stc Bahrain BSC (c) (“stc Bahrain”)                                                          2,005,648                 2,052,909
+ Digital Centers for Data and Telecommunications (“Center3”)                                  8,799,797                 9,019,872
+ STC Bank                                                                                     8,805,792                 6,645,246
+ Advanced Technology and Cybersecurity Company (“sirar”)                                        672,860                   703,884
+ Public Telecommunications Company (“Specialized”)                                             1,320,657                  992,818
+ Internet of Things Information Technology Company (“iot ”) 2
+                                                                                                230,128                   230,127
+ General Cloud Computing Company for Information Technology (“SCCC”)                           1,126,609                 1,142,735
+ Other operating segments (2)                                                                12,338,375                  12,716,151
+ Eliminations / adjustments                                                                (33,285,284)               (30,262,279)
+ Total liabilities                                                                           78,607,450                71,090,329
+
+
+(1)    Segment revenue reported above represents revenue generated from external and internal customers. There were 2,903
+       million of inter-segment sales and adjustments (between the Group’s companies mainly stc, Solutions and Channels) for the
+       three months period ended 31 March 2026 (2025: 3,013 million) which were eliminated at consolidation.
+(2)    Other operating segments include the following subsidiaries: Gulf Digital Media Model Company Ltd (“GDMM”) (“Intigral”),
+       Aqalat Limited (“Aqalat”), Smart Zone Real Estate, stc Gulf Investment Holding (“stc Gulf”), stc GCC Cable Systems W.L.L.,
+       Sendouk Al-Abatakar for Investment (“Tali”), stc Asia Limited Holding, stc Turkey Limited Holding (under liquidation), Green
+       Bridge Investment (“GBI”) and Green Bridge Management (“GBM”), and Telecom Commercial Investment Company Limited
+       (“TCIC”).
+
+
+
+
+                                                                   12
+Saudi Telecom Company
+(A Saudi Joint Stock Company)
+NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (UNAUDITED)
+FOR THE THREE MONTHS PERIOD ENDED 31 MARCH 2026 (CONTINUED)
+(All Amounts in Saudi Riyals thousands unless otherwise stated)
+5. PROPERTY AND EQUIPMENT
+During the three months period ended 31 March 2026, the Group acquired property and equipment with total cost of        1,091 million
+(31 March 2025: 1,039 million).
+
+During the three months period ended 31 March 2026, the Group disposed of property and equipment with a net book value of 18
+million (31 March 2025: 2 million) resulting in a (loss) gain on sale of property and equipment for the three months period ended 31
+March 2026 with an amount of (12) million (31 March 2025: 18 million).
+
+The following table shows the breakdown of depreciation expense if allocated to operating costs items:
+
+                                                                                          For the three months period ended
+                                                                                                        31 March
+                                                                                            2026                      2025
+Cost of revenues                                                                               1,227,570                  1,286,175
+Selling and marketing expenses                                                                       4,273                     5,575
+General and administrative expenses                                                             288,544                      274,967
+                                                                                               1,520,387                  1,566,717
+
+6. INVESTMENT PROPERTIES
+During the three months period ended 31 March 2026, the net additions in investment properties amounted to 6 million (31 March
+2025: 26 million), borrowing cost capitalized amounted to 6 million (31 March 2025: 8 million) while the depreciation expense
+recorded amounted to 1.4 million (31 March 2025: Nil).
+
+The fair value of the lands as at 31 December 2025 amounted to 331 million, valued by RAWAJ Real Estate Valuation license no.
+1210000062 and First Valuator license no. 1210000221 appointed as an independent, professionally qualified valuers accredited by
+the Saudi Authority for Accredited Valuers (Taqeem). The fair value measurement is classified within level 3 based on valuation
+techniques applied (residual value method, comparable method, and discounted cash flow method).
+
+7. INTANGIBLE ASSETS AND GOODWILL
+During the three months period ended 31 March 2026, the net additions in intangible assets amounted to        603 million (31 March
+2025: 2,690 million).
+
+The following table shows the breakdown of amortization expense if allocated to operating costs items:
+
+                                                                                          For the three months period ended
+                                                                                                        31 March
+                                                                                             2026                     2025
+Cost of revenues                                                                                   195,968                   156,090
+Selling and marketing expenses                                                                      70,734                   69,280
+General and administrative expenses                                                              657,270                     616,159
+                                                                                                   923,972                   841,529
+
+8. RIGHT OF USE ASSETS
+During the three months period ended 31 March 2026, the net additions in right of use assets amounted to     131 million (31 March
+2025: 306 million).
+The following table shows the breakdown of depreciation expense if allocated to operating costs items:
+
+                                                                                          For the three months period ended
+                                                                                                        31 March
+                                                                                            2026                      2025
+Cost of revenues                                                                                    72,480                   63,303
+Selling and marketing expenses                                                                       1,279                     1,244
+General and administrative expenses                                                                 59,186                    64,150
+                                                                                                   132,945                   128,697
+
+
+
+
+                                                                 13
+Saudi Telecom Company
+(A Saudi Joint Stock Company)
+NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (UNAUDITED)
+FOR THE THREE MONTHS PERIOD ENDED 31 MARCH 2026 (CONTINUED)
+(All Amounts in Saudi Riyals thousands unless otherwise stated)
+9. FINANCIAL ASSETS AND OTHERS
+9.1 Financial assets
+                                                        31 March 2026       31 December 2025
+Financial assets measured at FVOCI
+Listed equity investments                                    9,223,586             8,706,529
+Financial assets measured at FVTPL
+Investment funds and unlisted equity investments              5,141,984            5,137,979
+Financial assets at amortized cost, net
+Sukuk                                                         5,915,028            5,635,282
+Financial assets from digital banking operations              1,925,786            1,444,853
+Treasury bills                                                1,279,930              395,217
+Finance lease receivables                                     1,057,431            1,010,076
+Loans and advances to employees                                642,271              649,500
+Accrued profit on financial assets                              130,191              118,479
+Others                                                       1,345,008              1,231,898
+                                                            12,295,645            10,485,305
+Financial derivatives
+Options                                                         119,150              562,725
+
+
+                                                            26,780,365            24,892,538
+
+
+Current                                                      4,969,794             3,561,804
+Non-current                                                  21,810,571           21,330,734
+                                                            26,780,365            24,892,538
+
+
+9.2 Other assets
+                                                        31 March 2026      31 December 2025
+Advances                                                      1,550,593             1,216,018
+Prepaid expenses                                                773,674              688,013
+Deferred expenses                                               127,209              126,500
+Deferred tax assets                                              56,968               56,643
+Others                                                         459,058               515,648
+                                                              2,967,502            2,602,822
+
+
+Current                                                       2,410,178            2,031,499
+Non-current                                                     557,324              571,323
+                                                              2,967,502            2,602,822
+
+
+10. TRADE RECEIVABLES
+                                                        31 March 2026      31 December 2025
+
+
+Trade receivables                                             29,801,084          30,086,398
+Less: allowance for impairment loss                          (3,375,850)          (3,359,200)
+                                                             26,425,234            26,727,198
+
+
+
+
+                                                   14
+Saudi Telecom Company
+(A Saudi Joint Stock Company)
+NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (UNAUDITED)
+FOR THE THREE MONTHS PERIOD ENDED 31 MARCH 2026 (CONTINUED)
+(All Amounts in Saudi Riyals thousands unless otherwise stated)
+11. RELATED PARTY TRANSACTIONS
+11.1 Trading transactions and balances with related parties (Associates and Joint Ventures)
+The Group trading transactions with associates and joint ventures were as follows:
+
+                                                                                        For the three months period ended
+                                                                                                   31 March
+                                                                                            2026                         2025
+Services provided
+Associates (1)                                                                                     175,551                   155,408
+Joint ventures                                                                                       1,707                       1,665
+                                                                                                   177,258                   157,073
+
+
+Services received
+Associates (1)                                                                                  1,174,207                   1,120,829
+Joint ventures                                                                                       1,358                         714
+                                                                                                1,175,565                   1,121,543
+
+
+The Group outstanding balances with associates and joint ventures were as follows:
+
+                                        Amounts due from related parties                    Amounts due to related parties
+                                     31 March 2026           31 December 2025           31 March 2026             31 December 2025
+
+
+Associates (2)                                1,877,267                 1,834,318               1,449,912                       1,193,811
+Joint ventures                                  10,093                    10,033                    3,286                         3,628
+                                             1,887,360                  1,844,351               1,453,198                    1,197,439
+
+
+(1) Includes amounts of services received and provided ,respectively from Digital Infrastructure for Investment Company (DIIC) (a
+    subsidiary of PIF) for the three months period ended 31 March 2026 amounting to 980 million and 20 million (31 March 2025:
+      953 million and to 7 million).
+
+(2) Includes amounts due from DIIC amounted to 1,264 million as at 31 March 2026 (31 December 2025:          1,270 million) and amounts
+    due to DIIC as at 31 March 2026 amounted to 1,348 million (31 December 2025: 1,094 million).
+
+In addition, the Group has an investment in sukuk issued by a joint venture entity (BGSM) amounting to RM 1,508 million (equivalent
+to 1,383 million at the exchange rate as at investment date) with a book value of     1,141 million as of 31 March 2026 (31 December
+2025: 1,137 million).
+
+The sale and purchase transactions are carried out by the relevant parties in accordance with the normal terms of trade. The
+outstanding balances are without commission and no guarantees have been provided or received in relation to the balances due or
+from the related parties.
+
+
+
+
+                                                                 15
+Saudi Telecom Company
+(A Saudi Joint Stock Company)
+NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (UNAUDITED)
+FOR THE THREE MONTHS PERIOD ENDED 31 MARCH 2026 (CONTINUED)
+(All Amounts in Saudi Riyals thousands unless otherwise stated)
+11. RELATED PARTY TRANSACTIONS (CONTINUED)
+11.2 Transactions and related parties’ balances (government and government related entities)
+Revenues from transactions with government and government related entities for the three months period ended 31 March 2026
+amounted to 3,190 million (31 March 2025: 3,047 million) and expenses related to transactions with government and government
+related entities for the three months period ended 31 March 2026 (including government charges) amounted to    1,555 million (31
+March 2025: 1,550 million).
+
+As at 31 March 2026, accounts receivable from government entities totalled 22,359 million (31 December 2025: 22,577 million)
+and as at 31 March 2026, accounts payable due to government entities totalled 2,472 million (31 December 2025: 1,288 million).
+Among the balances with government entities, the Group invested 6,054 million in the Sukuk and treasury bills issued by the
+Government as at 31 March 2026 (31 December 2025: 4,894 million).
+
+The total balance of accounts receivable with government related entities as of 31 March 2026 was 1,200 million (31 December
+2025: 1,236 million). Total balance of accounts payable with government related entities as of 31 March 2026 was 2,386 million
+(31 December 2025: 2,335 million).
+
+The transactions with government/government related entities are conducted in the ordinary course of the Group’s business based
+on terms comparable to the terms of transactions enacted with other entities that are not government-related. The Group has also
+established its procurement policies and approval processes for purchases of products and services, which do not depend on
+whether the counterparties are government-related entities or not.
+
+Government entities are defined as ministries, authorities, commissions, and other entities of the Government. On the other hand,
+Government related entities are defined as PIF, its subsidiaries, and related entities.
+
+Receivable aging from the government entities is as follows:
+
+                                                                                       31 March 2026           31 December 2025
+
+
+Less than a year                                                                              10,905,676                11,295,824
+More than one year but less than two years                                                     6,014,404                 6,581,479
+More than two years                                                                            5,439,011                 4,699,630
+                                                                                              22,359,091                22,576,933
+
+
+11.3 Loans to related parties
+                                                                                       31 March 2026           31 December 2025
+Loans to senior executives                                                                         12,273                      9,964
+
+
+11.4 Benefits, remuneration and compensation of board members and senior executives
+The remuneration and compensation of board members and senior executives were as follows:
+
+                                                                                        For the three months period ended
+                                                                                                     31 March
+                                                                                            2026                       2025
+Short-term benefits and remuneration                                                             396,378                   367,860
+Share-based payment expenses                                                                       36,336                     30,487
+Provisions for end of service benefits and others                                                  33,055                     36,381
+                                                                                                 465,769                   434,728
+
+
+12. END OF SERVICE BENEFITS PROVISION
+Calculation of end of service benefit provision was performed using the most recent actuarial valuation as at 31 March 2026. The
+present value of the defined benefit obligation, and the related current service cost and past service cost, were measured using the
+projected unit credit method.
+
+The significant actuarial assumptions as at 31 March 2026, used in determining the end of service benefits obligation, represent the
+discount rate of (5.10%-6.00%) (31 December 2025: 4.20%-5.80%) and experience adjustments resulting in recording of net actuarial
+gain included in the interim condensed consolidated statement of comprehensive income for the three months period ended 31
+March 2026 amounting to 205 million (31 March 2025: net actuarial loss amounting to 303 million).
+
+
+
+
+                                                                 16
+Saudi Telecom Company
+(A Saudi Joint Stock Company)
+NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (UNAUDITED)
+FOR THE THREE MONTHS PERIOD ENDED 31 MARCH 2026 (CONTINUED)
+(All Amounts in Saudi Riyals thousands unless otherwise stated)
+13. LEASE LIABILITIES
+                                                                                     31 March 2026           31 December 2025
+
+
+Current                                                                                      716,275                    538,711
+Non-current                                                                                1,579,866                   1,714,519
+                                                                                            2,296,141                2,253,230
+
+The interest expense on lease liabilities for the three months period ended 31 March 2026 amounted to    18 million which was
+included in finance cost (31 March 2025: 21 million).
+
+
+14. FINANCIAL LIABILITIES AND OTHERS
+14.1 Financial liabilities
+                                                                                     31 March 2026           31 December 2025
+
+
+Financial liabilities from digital banking operations                                       5,889,461                   4,244,331
+Financial liabilities related to frequency spectrum licenses                                3,406,856                  3,803,108
+Dividends payable (Note 21)                                                                 3,234,147                  3,015,050
+Government charges                                                                          2,224,281                   1,057,987
+Islamic cross currency profit rate swap                                                       331,496                     516,686
+Other financial liabilities                                                                   866,216                     711,257
+                                                                                           15,952,457                  13,348,419
+
+
+Current                                                                                    12,382,966                   9,189,613
+Non-current                                                                                 3,569,491                  4,158,806
+                                                                                           15,952,457                  13,348,419
+
+
+14.2 Other liabilities
+                                                                                     31 March 2026           31 December 2025
+
+
+Deferred income                                                                             3,733,513                   3,772,492
+Deferred tax liabilities                                                                        11,206                     12,285
+Others                                                                                        725,176                     801,724
+                                                                                            4,469,895                  4,586,501
+
+
+Current                                                                                       827,371                    852,524
+Non-current                                                                                 3,642,524                   3,733,977
+                                                                                            4,469,895                  4,586,501
+
+
+
+
+                                                               17
+Saudi Telecom Company
+(A Saudi Joint Stock Company)
+NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (UNAUDITED)
+FOR THE THREE MONTHS PERIOD ENDED 31 MARCH 2026 (CONTINUED)
+(All Amounts in Saudi Riyals thousands unless otherwise stated)
+15. FAIR VALUE MEASUREMENT OF FINANCIAL INSTRUMENTS
+The Group uses valuation techniques appropriate to current circumstances that provide sufficient data to measure fair value. In
+addition, for financial reporting purposes, fair value measurements are categorized into Level 1, 2 or 3 based on the degree to which
+the inputs to the fair value measurements are observable and the significance of the inputs to the fair value measurement in its
+entirety, which are described as follows:
+• Level 1 inputs are quoted prices (unadjusted) in active markets for identical assets or liabilities that the Group can access at the
+  measurement date;
+• Level 2 inputs are inputs, other than quoted prices included within Level 1, that are observable for the asset or liability, either
+  directly or indirectly; and
+• Level 3 inputs are unobservable inputs for valuing the asset or liability, either directly or indirectly.
+
+The fair values of financial instruments represented in trade and other receivables, short-term murabahas, cash and cash
+equivalents, and trade and other credit payables closely approximate their book value due to their short maturity.
+
+
+Financial assets and liabilities measured at fair value:
+31 March 2026                                           Carrying amount                              Fair value
+                                                                                  Level 1             Level 2             Level 3
+Financial assets
+Listed equity investments (Note 9.1)                          9,223,586          9,223,586 (1)                      -                  -
+Investment funds and unlisted equity investments
+(Note 9.1)                                                     5,141,984                    -                       -      5,141,984 (4)
+Financial derivatives - options (Note 9.1)                       119,150                    -            119,150   (2)
+                                                                                                                                       -
+
+
+Financial liabilities
+Put option to non-controlling interest shareholders             228,318                     -                       -        228,318 (3)
+Islamic cross currency profit rate swap (Note 14.1)             331,496                     -           331,496    (5)
+                                                                                                                                       -
+
+
+31 December 2025                                        Carrying amount                              Fair value
+                                                                                  Level 1             Level 2              Level 3
+Financial assets
+Listed equity investments (Note 9.1)                           8,706,529         8,706,529 (1)                      -                    -
+Investment funds and unlisted equity investments
+(Note 9.1)                                                     5,137,979                    -                       -       5,137,979 (4)
+Financial derivatives - Options (Note 9.1)                       562,725                    -            562,725   (2)
+                                                                                                                                         -
+
+
+Financial liabilities
+Put option to non-controlling interest shareholders              228,318                    -                       -        228,318 (3)
+Islamic cross currency profit rate swap (Note 14.1)              516,686                    -            516,686 (5)                     -
+
+
+There are no transfers between levels of the fair value hierarchy during the three months period ended 31 March 2026.
+
+
+
+
+                                                                  18
+Saudi Telecom Company
+(A Saudi Joint Stock Company)
+NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (UNAUDITED)
+FOR THE THREE MONTHS PERIOD ENDED 31 MARCH 2026 (CONTINUED)
+(All Amounts in Saudi Riyals thousands unless otherwise stated)
+15. FAIR VALUE MEASUREMENT OF FINANCIAL INSTRUMENTS (CONTINUED)
+The following methods / assumptions were used to estimate the fair values:
+1. Fair value of equity instruments at level 1 is based on quoted market price at the reporting date.
+2. The fair value of financial derivatives - options were estimated by using Black Scholes Model. The significant observable inputs
+   are the volatility of share prices and interest rate.
+3. The fair value of the non-current liability resulting from the put option to non-controlling interest shareholders has been
+   determined within level 3 utilizing discounted cash flow method.
+4. The fair value of the Group’s investment in funds is obtained from the net asset value (“NAV”) reports received from the funds’
+   managers. The funds’ managers deploy various techniques (such as recent round of finance, discounted cash flow models and
+   comparables method) for the valuation of underlying financial instruments classified under level 3 of the respective fund's fair
+   value hierarchy. STV fund represents the majority of Group’s investment in funds with carrying value of 4,744 million as at 31
+   March 2026 (31 December 2025: 4,749 million). Significant unobservable inputs embedded in the models used by the STV fund’s
+   managers include multiples, WACC, exit multiple and lack of marketability.
+
+The following is a reconciliation of the Group’s investment in these funds which are categorized within Level “3” of the fair value
+hierarchy:
+
+                                                                                                       31 March 2026               31 December 2025
+Net assets value at beginning of the period / year                                                            5,137,979                   4,063,687
+Contributions paid                                                                                                 11,856                  364,222
+Proceeds from investments liquidation                                                                                    -                 (19,943)
+Net unrealized (losses) gains recognized in profit or loss (*)                                                    (7,851)                  730,013
+Net asset value as at ending of the period / year                                                              5,141,984                  5,137,979
+
+(*) The net unrealized (losses) gains recognized were included within net other gains (losses) item in the statement of profit or loss.
+
+5. During the year 2024, the Group entered into an Islamic Cross Currency Profit Rate Swap arrangement with a notional amount of
+   EUR 1,470 million (USD 1,600 million) to hedge the EUR foreign exchange exposure arising from a EUR functional currency
+   subsidiary and the floating profit rate exposure on a USD-denominated borrowing. Under this arrangement, the Group receives
+   USD and pays EUR. This financial instrument was designated as a hedge instrument protecting the Group from the fluctuations
+   in the EUR net asset position due to movement in EUR/ exchange rates (net investment hedge) and movement in the Term SOFR
+   rates (cash flow hedge). The Group recognizes the change in fair value of the hedging instrument in other comprehensive income
+   for the effective portion and in profit or loss for the ineffective portion. The fair value was estimated using appropriate valuation
+   techniques based on the forward profit and currency rates in Bloomberg portal.
+
+
+
+
+                                                                            19
+Saudi Telecom Company
+(A Saudi Joint Stock Company)
+NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (UNAUDITED)
+FOR THE THREE MONTHS PERIOD ENDED 31 MARCH 2026 (CONTINUED)
+(All Amounts in Saudi Riyals thousands unless otherwise stated)
+15. FAIR VALUE MEASUREMENT OF FINANCIAL INSTRUMENTS (CONTINUED)
+Financial assets and liabilities measured at amortized cost:
+The Group believes that the other financial assets and liabilities carried at cost in the interim condensed consolidated financial
+statements approximate their fair value except for the following:
+
+31 March 2026                                       Carrying amount                                 Fair value levels
+                                                                               Level 1                   Level 2              Level 3
+Financial assets
+Financial assets at amortized cost –
+Government Sukuk                                           4,774,514                     -              4,716,935                      -
+
+
+Financial liabilities
+Borrowings – Sukuk (*)                                     12,157,254                    -             11,900,525                      -
+
+
+31 December 2025                                    Carrying amount                                    Fair value
+                                                                               Level 1                   Level 2             Level 3
+Financial assets
+Financial assets at amortized cost –
+Government Sukuk                                              4,498,591                         -            4,437,621                     -
+
+
+Financial liabilities
+Borrowings – Sukuk                                            4,680,493                         -            4,656,108                     -
+
+Level 2 inputs are based on quoted prices in non-active market.
+
+There are no transfers between levels of the fair value hierarchy during the three months period ended 31 March 2026.
+
+(*) During the period, the Company has completed the issuance of international sukuk amounting to 7,500 million (equivalent to
+USD 2,000 million) in two tranches: 2,812 million (equivalent to USD 750 million) for 5 years and 4,688 million (equivalent to USD
+1,250 million) for 10 years. The issuance was through an offshore special purpose vehicle established outside the Kingdom for this
+purpose.
+
+16. ZAKAT AND INCOME TAX
+The Group submitted all zakat returns until the end of 2024, with payment of zakat due based on those returns, and accordingly the
+Group received zakat certificates for those years. Effective from year 2009, the Group started the submission of a consolidated
+zakat return for the Company and its wholly owned subsidiaries whether directly or indirectly in accordance with the implementing
+regulations for zakat collection.
+
+The Zakat position of the Group with Zakat, Tax, and Customs Authority (“ZATCA”) has been finalized up to the year 2020.
+
+The Group did not receive the zakat assessment of the years from 2021 up to 2024.
+
+
+The not wholly owned subsidiaries submit their zakat returns separately. They have submitted all zakat returns until the end of 2024,
+and have paid the zakat dues based on those returns. Solutions received from ZATCA a notice stating the finalization of Solutions’
+zakat position for the years from 2021 to 2023. STC Bank received from ZATCA a notice stating the finalization of STC Banks’ zakat
+position for the years 2019 and 2020. The remaining other not wholly owned subsidiaries have not received any zakat assessments
+on their returns yet.
+
+
+17. SHARE CAPITAL
+                                                                                             31 March 2026              31 December 2025
+Authorized, issued and fully paid capital comprises
+5 billion fully paid ordinary shares at   10 each share                                             50,000,000                50,000,000
+
+
+Number of outstanding shares “in thousands”                                                           4,989,807                 4,989,798
+Number of treasury shares “in thousands”                                                                  10,193                   10,202
+                                                                                                      5,000,000                5,000,000
+
+
+
+
+                                                                  20
+Saudi Telecom Company
+(A Saudi Joint Stock Company)
+NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (UNAUDITED)
+FOR THE THREE MONTHS PERIOD ENDED 31 MARCH 2026 (CONTINUED)
+(All Amounts in Saudi Riyals thousands unless otherwise stated)
+18. COMMITMENTS
+1.   One of the Group’s subsidiaries has an agreement to invest in a fund aiming to improve the telecommunication and internet
+     environment for 553 million (equivalent to USD 147.5 million) as at 31 March 2026 (31 December 2025: 553 million (equivalent
+     to USD 147.5 million).
+
+2.   The Group has contractual commitments amounting to          9,604 million as at 31 March 2026 (31 December 2025:     9,488 million).
+
+3.   During 2022, the Company signed an agreement with STV LP Fund to allocate an additional 1,125 million (equivalent to USD
+     300 million) additional investment in the fund out of which 869 million (equivalent to USD 232 million) as at 31 March 2026 (31
+     December 2025: 866 million equivalent to USD 231 million).
+
+
+19. CONTINGENT LIABILITIES
+1.   The Group has outstanding letters of guarantee on behalf of the parent and its subsidiaries amounting to         5,241 million as at
+     31 March 2026 (31 December 2025: 4,828 million).
+
+2.   The Group has outstanding letters of credit as at 31 March 2026 amounting to      1,677 million (31 December 2025:    1,948 million).
+
+3.   On 21 March 2016, the Company received a letter from a key customer requesting a refund for paid balances amounting to
+     742 million related to construction of a fibre optic network. Based on independent legal opinions obtained, the management
+     believes that the customer’s claim has no merit and therefore this claim has no material impact on the financial results of the
+     Group.
+
+4.   The Group, in its ordinary course of business, is subject to proceedings, lawsuits and other claims. However, these matters are
+     not expected to have any material impact on the Group’s financial position or on the results of its operations as reflected in
+     these interim condensed consolidated financial statements.
+
+5.   In April 2017, Kuwait’s Cassation Court invalidated a portion of the regulatory tariff decree levied on mobile telecommunication
+     companies in Kuwait since 26 July 2011 by Kuwait’s Ministry of Communications. Accordingly, stc Kuwait had filed a claim for
+     the recovery of the excess amount paid from change in regulation date till date.
+
+     stc Kuwait initiated legal proceedings against the Ministry of Communications ("MOC") and the Communications and
+     Information Technology Regulatory Authority ("CITRA") in connection with the aforementioned matter. The dispute was
+     resolved upon the issuance of a final judgment by the Court of Cassation in favor of stc Kuwait, ordering the authorities to pay
+     a sum of 221 million (equivalent to KD 18 million), which was received by stc Kuwait in previous years.
+
+     On 22 December 2024, the Ministry of Communications ("MOC") and the Communications and Information Technology
+     Regulatory Authority ("CITRA") (collectively, the "Plaintiff") filed a lawsuit before the First Court of Instance against stc Kuwait
+     ("Defendant"), seeking the reimbursement of the amounts previously adjudicated in the aforementioned case, asserting a claim
+     for unjust enrichment where the plaintiff overpaid the claim amount.
+
+     On 24 March 2025, the Court of First Instance issued a favorable judgment in stc Kuwait favor. The matter is currently under
+     review before the Court of Appeal.
+
+     On 11 November 2025, the Ministry of Communications ("MOC") filed an appeal against the judgment before the Court of
+     Cassation, and as of the reporting date, no hearing has been scheduled to consider the appeal.
+
+
+20. CASH AND CASH EQUIVALENTS FROM BANKING AND NON-BANKING OPERATIONS
+                                                                                          31 March 2026            31 December 2025
+
+
+Cash and cash equivalents from banking operations                                                6,592,751                   6,214,118
+Cash and cash equivalents from non-banking operations                                           12,960,095                   7,161,953
+                                                                                                19,552,846                  13,376,071
+
+
+
+
+                                                                   21
+Saudi Telecom Company
+(A Saudi Joint Stock Company)
+NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (UNAUDITED)
+FOR THE THREE MONTHS PERIOD ENDED 31 MARCH 2026 (CONTINUED)
+(All Amounts in Saudi Riyals thousands unless otherwise stated)
+21. DIVIDENDS
+On 20 Safar 1446H (corresponding to 24 August 2024), the Board of Directors approved the Company’s dividends distribution policy
+for the next three years. The dividends distribution policy was approved by the General Assembly during the meeting held on 4
+Jumada al-Ula 1446 (corresponding to 6 November 2024).
+
+The Company’s dividends policy is based on maintaining a minimum dividend of 0.55 per share per quarter for the next three years
+starting from the dividends distribution of the 4th quarter of 2024 until the 3rd quarter of 2027. Further, the Company may consider
+paying special dividends after the assessment of the Company's financial position, future outlook, strategic investments and capital
+expenditure requirements subject to the General Assembly’s recommendation.
+
+In line with this policy, the Company distributed cash dividends to the shareholders of the Company for the fourth quarter of 2025
+at a rate of 0.55 per share.
+
+In line with this policy, the Company will also distribute cash dividends to the shareholders of the Company for the first quarter of
+2026 at a rate of 0.55 per share.
+
+The dividends distribution policy remains subject to change based on any material changes in stc’s strategy and business or
+regulatory requirements applicable to the Company, or banking agreements.
+
+Treasury shares allocated to the employee long-term incentives program are not entitled for any dividends during the period while
+the shares are still under the Company's possession.
+
+
+22. APPROVAL OF THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS
+The Audit Committee (delegated by the Board of Directors) approved the interim condensed consolidated financial statements for
+the three months period ended 31 March 2026 on 11 Dhul-Qi’dah 1447 H (corresponding to 28 April 2026).
+
+
+
+
+                                                                 22
+
