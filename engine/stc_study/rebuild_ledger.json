@@ -113,10 +113,19 @@
    "why": "A CLAIM AHEAD OF EQUITY WAS DISCLOSED IN A NOTE THE BRIDGE DID NOT OPEN. The bridge already stood on the latest disclosed sheet and read its borrowings, its leases and its cash correctly; what it did not read is note 14.1, where consideration owed to the regulator for spectrum licences ALREADY capitalised as intangible assets sits on its own row inside \"financial liabilities and others\", nowhere near the borrowings lines. This is the same shape as the two other defects this rebuild found \u2014 the associates line and the reviewed half \u2014 a figure in a note the build did not open, in a document it had already fetched. Two of the three raised the answer and this one lowers it, so the pattern is a reading habit rather than a lean.",
    "evidence": "Note 14.1 of the reviewed interim to 30 June 2026 carries financial liabilities related to frequency spectrum licences of 3443.044 (31 December 2025: 3,803.108). Net debt goes 4932.363 to 8375.407. IT IS NOT DOUBLE-COUNTED AGAINST CAPITAL EXPENDITURE and that was established rather than assumed: the company's total additions to property, equipment, intangibles and goodwill were 13,815.240 in FY2025 against the 11,795 of capital expenditure this model forecasts on, and note 12(2) states that additions include NON-CASH additions of 2,122 million (FY2024: 883). The model therefore runs on CASH capital expenditure, the licences bought against this liability never entered it, and the unpaid consideration is a financing claim the discounted cash flows do not service. The answer falls 37.8396 to 37.1640, -1.79%, and the gap widens to -15.3%.",
    "move": -0.017855299945049197
+  },
+  {
+   "name": "working capital projected from the asset-conversion cycle instead of plugged",
+   "rule": "R-SIGCM-02",
+   "before": 37.163952046259304,
+   "after": 37.31621091824889,
+   "why": "SIGCM CLAUSE 4 REQUIRES THE CYCLE TO BE STUDIED AND THE BALANCE SHEET PROJECTED FROM IT, with no unexplained plugs where the drivers are disclosed. This study carried a typed working-capital outflow of 0.8%% of revenue falling to 0.4%% \u2014 a number per year with no balance sheet behind it, which is the plug the clause names. And the drivers ARE disclosed, in unusual detail: receivables with an ageing analysis and the government share of the book, inventory with ITS OWN cost base stated in the note, payables with a stated settlement range, and the two contract balances a telecom actually turns over and which no cash-cycle built from three lines would see.",
+   "evidence": "WHAT THE PLUG WAS HIDING: net working capital ran 5.9%, 6.5% and 13.2% of revenue across the filed years and 17.5% at the reviewed half \u2014 it MORE THAN DOUBLED in FY2025 and rose again in the half \u2014 while the plug said the outflow shrank every year. Days sales outstanding went 108.8 to 106.9 to 125.4 on a book where government and government-related entities owe 75% of the gross receivable, and days payable fell 11.6. The days are anchored on the LATEST DISCLOSED sheet and then held flat, which matters: receivables were essentially unchanged across the half (26,727,198 to 26,727,997) while revenue grew, so the days fall to 120.8 without anything being assumed. Projected, the five-year outflow is 1401 against the plug's 2272. The answer rises 37.1640 to 37.3162, +0.41%, and the gap narrows to -14.9%. TWO THINGS ARE RECORDED RATHER THAN REPAIRED: the measured trade payable days (161, 185, 229) do not reconcile with the 90-107 the filings state, because trade payables are not bought only against inventory and the purchases actually on trade terms are not disclosed \u2014 so the right denominator cannot be built and is not invented; and the conventional cash cycle MIXES DENOMINATORS, so at 18.6 days it is not net working capital in days of revenue, which is 64. Both are published and the projection runs on the second.",
+   "move": 0.004096950501929042
   }
  ],
- "value": 37.163952046259304,
- "cumulative_move": -0.21113807487311265,
+ "value": 37.31621091824889,
+ "cumulative_move": -0.20790614661301143,
  "rules": {
   "R-COC-01": {
    "levers": [
@@ -178,11 +187,12 @@
   "R-SIGCM-02": {
    "levers": [
     "revenue and margin rebuilt on the eleven disclosed segments",
-    "the one segment with unit data built as volume times price"
+    "the one segment with unit data built as volume times price",
+    "working capital projected from the asset-conversion cycle instead of plugged"
    ],
    "first_before": 41.15477165329675,
-   "last_after": 34.888546164557496,
-   "move": -0.15225999895050535
+   "last_after": 37.31621091824889,
+   "move": -0.09327134086383304
   },
   "R-FCAL-01": {
    "levers": [
@@ -213,7 +223,7 @@
   "latest_price": 43.86,
   "latest_price_date": "2026-09-03",
   "gap_at_the_audit": "+0.43%",
-  "gap_now_after_later_levers": "-15.27%",
+  "gap_now_after_later_levers": "-14.92%",
   "gap_at_delivery": "+8.10%",
   "what_the_audit_shows": "THE TWO LEVERS DISAGREED AND THE ROUTE IS WHY THAT MATTERS. Taken in the order fixed in writing before either was touched, the cost-of-capital correction moved the answer AWAY from the market \u2014 from 8.1%% above the price it was struck at to 16.4%% above the latest one \u2014 and the beta correction brought it back. Neither was chosen for where it landed and neither could have been: the first raises every value it touches and the second lowers every value it touches, and which one dominates is arithmetic about this company's own capital structure. Read as two corrections the rebuild is a contest; read as one net figure of -6.5%% it would look like a small tidy-up, and the 8.4%% and the 13.8%% inside it would be invisible. THE ANSWER NOW SITS ESSENTIALLY ON THE PRICE, at +0.4%%, and that is reported as an observation and NOT as corroboration \u2014 four levers remain, the lens retirement among them, and a rebuild that stopped here because the number looked comfortable would be fitting to the price by choosing when to stop.",
   "levers_remaining_at_the_audit": [

@@ -38,7 +38,8 @@ LANDED = {
     'R-SIGCM-02:units': '4996c2f5097ef20628960e14bab1a9a00c2a2ac7',   # the unit build, SAME RULE, so it groups with it
     'R-FCAL-01': '52aade4029cfc181a84069d9e6fabcf92cf2662e',          # capex measured rather than guided
     'R-ANCHOR-01': '34e74f311f05c0e535037cee70d5111a5bbc8c27',    # lever 11
-    'R-BRIDGE-01:spectrum': None,                                # the working tree, latest
+    'R-BRIDGE-01:spectrum': '0a1e324ca29d129c25dc5da50fbcd3b9909decea',   # lever 12
+    'R-SIGCM-02:workingcapital': None,                           # the working tree, latest
 }
 
 
@@ -73,6 +74,7 @@ AFTER_SEG = at(LANDED['R-SIGCM-02'])
 AFTER_UNITS = at(LANDED['R-SIGCM-02:units'])
 AFTER_CAPEX = at(LANDED['R-FCAL-01'])
 AFTER_ANCHOR = at(LANDED['R-ANCHOR-01'])
+AFTER_SPECTRUM = at(LANDED['R-BRIDGE-01:spectrum'])
 NOW = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 # The lever-2 intermediate, struck when the cost-of-capital schedule was in and the beta
 # was not. It is named for that lever set, so a later sensitivity run cannot overwrite the
@@ -530,7 +532,7 @@ led.apply(
 led.apply(
     name='the spectrum-licence liability into net debt, a claim disclosed outside borrowings',
     rule='R-BRIDGE-01',
-    after=NOW['lenses']['central']['base'],
+    after=AFTER_SPECTRUM['lenses']['central']['base'],
     why=(
         'A CLAIM AHEAD OF EQUITY WAS DISCLOSED IN A NOTE THE BRIDGE DID NOT OPEN. The '
         'bridge already stood on the latest disclosed sheet and read its borrowings, its '
@@ -554,13 +556,55 @@ led.apply(
         'liability never entered it, and the unpaid consideration is a financing claim the '
         'discounted cash flows do not service. The answer falls %.4f to %.4f, %+.2f%%, and '
         'the gap widens to %+.1f%%.'
-        % ('%.3f' % NOW['bridge_record']['net_debt_build']['spectrum_licences'],
-           '%.3f' % (NOW['bridge_record']['net_debt_build']['net']
-                     - NOW['bridge_record']['net_debt_build']['spectrum_licences']),
-           '%.3f' % NOW['bridge_record']['net_debt_build']['net'],
-           AFTER_ANCHOR['lenses']['central']['base'], NOW['lenses']['central']['base'],
-           100 * (NOW['lenses']['central']['base']
+        % ('%.3f' % AFTER_SPECTRUM['bridge_record']['net_debt_build']['spectrum_licences'],
+           '%.3f' % (AFTER_SPECTRUM['bridge_record']['net_debt_build']['net']
+                     - AFTER_SPECTRUM['bridge_record']['net_debt_build']['spectrum_licences']),
+           '%.3f' % AFTER_SPECTRUM['bridge_record']['net_debt_build']['net'],
+           AFTER_ANCHOR['lenses']['central']['base'],
+           AFTER_SPECTRUM['lenses']['central']['base'],
+           100 * (AFTER_SPECTRUM['lenses']['central']['base']
                   / AFTER_ANCHOR['lenses']['central']['base'] - 1),
+           100 * (AFTER_SPECTRUM['lenses']['central']['base'] / NOW['spot'] - 1))),
+)
+
+
+led.apply(
+    name='working capital projected from the asset-conversion cycle instead of plugged',
+    rule='R-SIGCM-02',
+    after=NOW['lenses']['central']['base'],
+    why=(
+        'SIGCM CLAUSE 4 REQUIRES THE CYCLE TO BE STUDIED AND THE BALANCE SHEET PROJECTED '
+        'FROM IT, with no unexplained plugs where the drivers are disclosed. This study '
+        'carried a typed working-capital outflow of 0.8%% of revenue falling to 0.4%% — a '
+        'number per year with no balance sheet behind it, which is the plug the clause names. '
+        'And the drivers ARE disclosed, in unusual detail: receivables with an ageing '
+        'analysis and the government share of the book, inventory with ITS OWN cost base '
+        'stated in the note, payables with a stated settlement range, and the two contract '
+        'balances a telecom actually turns over and which no cash-cycle built from three '
+        'lines would see.'),
+    evidence=(
+        'WHAT THE PLUG WAS HIDING: net working capital ran 5.9%%, 6.5%% and 13.2%% of revenue '
+        'across the filed years and 17.5%% at the reviewed half — it MORE THAN DOUBLED in '
+        'FY2025 and rose again in the half — while the plug said the outflow shrank every '
+        'year. Days sales outstanding went 108.8 to 106.9 to 125.4 on a book where '
+        'government and government-related entities owe 75%% of the gross receivable, and '
+        'days payable fell 11.6. The days are anchored on the LATEST DISCLOSED sheet and '
+        'then held flat, which matters: receivables were essentially unchanged across the '
+        'half (26,727,198 to 26,727,997) while revenue grew, so the days fall to 120.8 '
+        'without anything being assumed. Projected, the five-year outflow is %.0f against '
+        'the plug\'s %.0f. The answer rises %.4f to %.4f, %+.2f%%, and the gap narrows to '
+        '%+.1f%%. TWO THINGS ARE RECORDED RATHER THAN REPAIRED: the measured trade payable '
+        'days (161, 185, 229) do not reconcile with the 90-107 the filings state, because '
+        'trade payables are not bought only against inventory and the purchases actually on '
+        'trade terms are not disclosed — so the right denominator cannot be built and is not '
+        'invented; and the conventional cash cycle MIXES DENOMINATORS, so at 18.6 days it is '
+        'not net working capital in days of revenue, which is 64. Both are published and the '
+        'projection runs on the second.'
+        % (sum(r['dwc'] for r in NOW['dcf']['rows']),
+           sum(r['dwc'] for r in AFTER_SPECTRUM['dcf']['rows']),
+           AFTER_SPECTRUM['lenses']['central']['base'], NOW['lenses']['central']['base'],
+           100 * (NOW['lenses']['central']['base']
+                  / AFTER_SPECTRUM['lenses']['central']['base'] - 1),
            100 * (NOW['lenses']['central']['base'] / NOW['spot'] - 1))),
 )
 

@@ -239,6 +239,29 @@ fetched, and each was missed because the build read the *line it expected* rathe
 *note the line points at*. Two of the three raised the answer and one lowered it, so the
 pattern is not a lean — it is a reading habit.
 
+
+**The working capital was a plug and the plug was hiding a deterioration.** The study
+carried a typed outflow of 0.8%% of revenue falling to 0.4%% — a number a year with no
+balance sheet behind it, which is exactly what SIGCM clause 4 forbids where the drivers are
+disclosed. They are disclosed here in unusual detail, and what they show is that net working
+capital ran **5.9%%, 6.5%% and 13.2%% of revenue** across the filed years and **17.5%% at the
+reviewed half**: it more than doubled in FY2025 and rose again in the half, while the plug
+said the outflow shrank every year. Days sales outstanding went 108.8 to 106.9 to **125.4**,
+on a receivable book of which **government and government-related entities owe 75%%**.
+Projected properly the outflow is smaller than the plug assumed and the answer RISES 0.41%%,
+which is the opposite direction from the deterioration — because a level that is high and
+stable absorbs cash only as revenue grows, and the plug was charging for the level every
+year.
+
+Two things are recorded rather than repaired, both of which a tidier answer would have
+buried. The measured trade payable days — 161, 185, 229 — **do not reconcile** with the
+90-to-107-day settlement range the filings state, because trade payables are not bought only
+against inventory and the purchases actually on trade terms are not disclosed; the right
+denominator cannot be built and is not invented. And the conventional cash conversion cycle
+**mixes denominators**, so at 18.6 days it is not net working capital in days of revenue,
+which is 64 — a ratio between quantities defined differently is not evidence about either,
+so both are published and the projection runs on the one a balance sheet obeys.
+
 ## 7. CLAIMS AGAINST THE RECORD
 
 **No "best ever", "never", "highest" or "unprecedented" claim is made anywhere in this
@@ -326,8 +349,8 @@ reverse-engineered rate this protocol prohibits outright, arriving through the f
 The study is HELD in any case: [R-GAP-02] blocks publication past 10% below the price, and
 Phase 1 of the method reassessment is not proven, which holds every study in the book.
 
-*AUDITED CENTRAL: 37.1640* — the figure this review audits, stated so a job outside the
+*AUDITED CENTRAL: 37.3162* — the figure this review audits, stated so a job outside the
 study can tell whether the review still describes the answer the study publishes.
 
-*AUDITED GAP: -15.3%* — the disagreement this review interrogates, stated so a job outside
+*AUDITED GAP: -14.9%* — the disagreement this review interrogates, stated so a job outside
 the study can tell whether the eight headings were asked at the size the study now carries.

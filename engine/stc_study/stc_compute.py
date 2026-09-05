@@ -374,7 +374,60 @@ capex_pct = [DNA_SHARE * CAPEX_TO_DNA] * 5
 # SEPARATE THEM is a disclosed replacement-cost or capacity series, which this company does
 # not publish; until one is found the rising age is the only measured evidence and it
 # supports the first reading.
-wc_out_pct = [0.008, 0.006, 0.005, 0.004, 0.004]
+# WORKING CAPITAL IS PROJECTED FROM THE ASSET-CONVERSION CYCLE, NOT PLUGGED [SIGCM clause
+# 4]. This line used to be a typed outflow of 0.8% of revenue falling to 0.4% — a number per
+# year with no balance sheet behind it, which is exactly the plug the clause forbids where
+# the drivers are disclosed. And they are disclosed, in unusual detail: receivables with an
+# ageing analysis, inventory with ITS OWN cost base stated in the note, payables with a
+# stated settlement range, and the two contract balances a telecom actually turns over.
+#
+# WHAT THE PLUG WAS HIDING. Net working capital ran 5.9%, 6.5% and 13.2% of revenue across
+# the filed years and 17.5% at the reviewed half — it MORE THAN DOUBLED in FY2025 and rose
+# again in the half — while the plug said the outflow shrank every year. Days sales
+# outstanding went from 107 to 125 on a receivable book three quarters of which is owed by
+# government and government-related entities, and days payable fell 12. None of that is a
+# view about the future; it is what the filed balance sheets did.
+#
+# THE DAYS ARE ANCHORED ON THE LATEST DISCLOSED SHEET, the reviewed interim the bridge
+# already stands on, and then held flat — the same rule every other rate in this study
+# obeys. It matters here: receivables were essentially UNCHANGED across the half (26,727,198
+# to 26,727,997, eight hundred thousand on a twenty-seven billion book) while revenue grew,
+# so days sales outstanding falls from 125 to 121 without anything being assumed.
+import working_capital as WC
+
+_wc_rev26 = FY26_REVENUE_ANCHOR * 1000.0                       # SAR thousands
+_WC_COR_SHARE = WC.COST_OF_REVENUES[2] / WC.REVENUE[2]
+_WC_INV_SHARE = WC.INVENTORY_EXPENSE[2] / WC.REVENUE[2]
+WC_DAYS = WC.anchored_days(_wc_rev26, _wc_rev26 * _WC_COR_SHARE,
+                           _wc_rev26 * _WC_INV_SHARE)
+
+
+def _nwc(rev_mn):
+    """Net working capital at a level of revenue, each line on its OWN driver."""
+    return (WC_DAYS['dso'] / 365.0 * rev_mn
+            + WC_DAYS['dio'] / 365.0 * rev_mn * _WC_INV_SHARE
+            + WC_DAYS['dco'] / 365.0 * rev_mn
+            - WC_DAYS['dpo_total'] / 365.0 * rev_mn * _WC_COR_SHARE
+            - WC_DAYS['dcl'] / 365.0 * rev_mn)
+
+
+# The opening balance is the LATEST DISCLOSED sheet's own, not a ratio applied to it.
+NWC_OPEN = (WC.H1_2026['trade_receivables'] + WC.H1_2026['inventories']
+            + WC.H1_2026['contract_assets'] - WC.H1_2026['payables_total']
+            - WC.H1_2026['contract_liabilities']) / 1000.0
+_nwc_path, _prev = [], NWC_OPEN
+for _i, _y in enumerate(yrs):
+    _n = _nwc(fc[_y]['rev'])
+    _nwc_path.append(_n)
+    fc[_y]['nwc'] = _n
+    fc[_y]['dwc'] = _n - _prev
+    _prev = _n
+# THE FIRST YEAR MOVES BY NOTHING BY CONSTRUCTION, and that is a property rather than a
+# coincidence: the days are struck on the annualised revenue of the half and the first
+# forecast year IS that annualised revenue, so the balance reproduces its own opening
+# figure. It is asserted so a later change to either cannot break the identity silently.
+assert abs(fc[yrs[0]]['dwc']) < 1e-6, fc[yrs[0]]['dwc']
+wc_out_pct = [fc[_y]['dwc'] / fc[_y]['rev'] for _y in yrs]
 payout_dps = [2.20, 2.20, 2.30, 2.40, 2.55]       # policy 0.55/q locked to Q3-27
 
 # THE TWO RATES ARE ANCHORED ON THE SAME REVIEWED HALF AND THEN HELD FLAT. The rule says
