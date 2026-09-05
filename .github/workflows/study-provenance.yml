@@ -73,6 +73,8 @@ on:
       - 'scripts/check_prose_figures_negative_control.py'
       - 'scripts/check_workbook_values.py'
       - 'scripts/check_workbook_values_negative_control.py'
+      - 'scripts/check_walkforward_scope.py'
+      - 'scripts/check_walkforward_scope_negative_control.py'
       - 'scripts/check_table_footing.py'
       - 'scripts/check_table_footing_negative_control.py'
       - 'scripts/check_waterfall_assertions.py'
@@ -185,6 +187,8 @@ on:
       - 'scripts/check_prose_figures_negative_control.py'
       - 'scripts/check_workbook_values.py'
       - 'scripts/check_workbook_values_negative_control.py'
+      - 'scripts/check_walkforward_scope.py'
+      - 'scripts/check_walkforward_scope_negative_control.py'
       - 'scripts/check_table_footing.py'
       - 'scripts/check_table_footing_negative_control.py'
       - 'scripts/check_waterfall_assertions.py'
@@ -551,6 +555,23 @@ jobs:
       # re-filed as merely unchecked
       - name: Workbook-values gate — negative control
         run: python3 scripts/check_workbook_values_negative_control.py
+
+      # EVERY STUDY STATES ITS FUNDAMENTAL WALK-FORWARD SCOPE DECISION. [R-FCAL-01] has
+      # required one since 31-Aug-2026 — FULL at eight or more sourceable fiscal years,
+      # LIGHT at five to seven, SKIP below five, on the same footing as the data-quality
+      # gate and the sweep — and measured 05-Sep-2026 TWENTY-THREE OF TWENTY-FOUR STUDIES
+      # STATED NONE. The rule was not disputed and was not hard; it was simply not present
+      # at the moment it bound, and nothing outside a study was looking. The gate does NOT
+      # require the run — the rule forbids delaying a delivery for one — it requires the
+      # DECISION to exist, to be internally consistent, and to be TRUE against the disk.
+      - name: Walk-forward scope gate
+        run: python3 scripts/check_walkforward_scope.py
+
+      # and the proof it can go red, on ten conditions — among them a record saying
+      # "pending" while the run sits on disk, and that same falsehood sitting on the
+      # ratchet, which the allowance must NOT excuse
+      - name: Walk-forward scope gate — negative control
+        run: python3 scripts/check_walkforward_scope_negative_control.py
 
       # EVERY TOTAL A READER SEES IS REPRODUCIBLE FROM THE ROWS PRINTED ABOVE IT.
       # Three defects were found in ARCC on 03-Sep-2026 by rendering the delivered PDF and
