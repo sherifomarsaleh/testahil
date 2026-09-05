@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**269 lessons**, of which 237 bind on every study, 25 on a class of company, and 7 on a single name.
+**270 lessons**, of which 238 bind on every study, 25 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 188 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 189 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2448,6 +2448,16 @@ A delivered study's probability section ran a simulation of its own rather than 
 > **What it cost, or how we know.** Re-pointed at the production strike, the study reproduces the published row to the cent at both horizons and the touch ladder to the point, across eight levels and two horizons. The study's own walk-forward artefact was the same defect one layer down: sixty origins from an uncleaned frame, disagreeing with the committed panel on the very first row because the data-quality gate had not been applied.
 
 > **What would overturn it.** It is overturned where a study legitimately needs a construction the production engine does not offer — a counterfactual, an ablation, a diagnostic. Those are internal and must be LABELLED as not the published cone; what is forbidden is a study-local construction PRESENTED as the house's price map.
+
+### L-349 · A DIRECTIONAL CLAIM IS TESTABLE FROM THE RECORD, AND THE NAIVE TEST IS NOT
+
+"X sits above the market price" is a claim a study can be held to using only its own committed values and no model at all, which makes it look like an easy gate. MEASURED ACROSS TWENTY-THREE DELIVERED STUDIES it is not: a first draft flagged 11 of 119 such sentences, a second draft — re-pointed to skip probability reads, to skip a spot compared with itself, and to take the NEAREST figure rather than the last in a window — flagged 16 of 57, WORSE at 28.1%, and inspection put almost all of it on the instrument rather than on the book. It read "30% above the market price" as a value of 3.0; it took the top of a printed range as the subject of a sentence about that range's bottom corner; it ran one table cell's figure into the next row's direction word. THE SUBJECT OF A DIRECTIONAL SENTENCE IS NOT RECOVERABLE FROM THE PAGE, which is the same residue the waterfall gate hit and has the same answer: the test moves to whoever knows, because the BUILDER knows which value the sentence is about and the page never says. WHAT THE SWEEP DID FIND, and no gate in this repository could see either, is two delivered studies whose lens-comparison prose contradicts their own committed record — every individual figure correct, the relationship between them wrong.
+
+**Applies to:** every study  ·  *Learned from:* found while building, A book-wide directional sweep run while auditing STC, 5 September 2026
+
+> **What it cost, or how we know.** ARCC's section 4 states "two of them sit ABOVE the market price" against a committed spot of 77.00 and committed lens values of 66.53, 65.57 and 45.65 — ALL THREE BELOW — then lists three names under "two" and quotes 49.64 and 55.21, neither of which is in its committed lens set: a sentence written for the values that study held before it was re-struck. GBCO's football-field caption reads "Central fair value ~EGP 35.7/share, 14% below spot" where its own stated spot is 31.25, so the magnitude is right and the direction inverted. False-positive rates measured at 9.2% and 28.1% on two drafts of the detector.
+
+> **What would overturn it.** It is overturned by a detector that resolves a sentence's SUBJECT reliably from the page — the residue here is entirely that problem and not the arithmetic, which is trivial. It would also be overturned, in the direction that matters, by studies DECLARING their directional claims the way a waterfall declares its steps: the claim becomes checkable at build time and the page-side detector stops being needed. What would NOT overturn it is a wider tolerance, which is the free parameter the promotion rule forbids.
 
 
 ---
