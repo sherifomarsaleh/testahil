@@ -1,0 +1,69 @@
+{
+ "ticker": "STC",
+ "started_at": "2026-09-05",
+ "start_value": 47.11084520942183,
+ "start_spot": 43.58,
+ "start_gap": 0.08101985335984008,
+ "audit_after": "AFTER LEVER 3, AND THE REASON IS THAT LEVERS 2 AND 3 PULL IN OPPOSITE DIRECTIONS. Declared in REBUILD_PLAN_05-09-2026.md before any lever was touched, and unchanged since. Normalising the risk-free rate by Saudi Arabia's own sovereign default spread lowers the cost of capital and raises the value; replacing a 40-session daily regression with a conforming own-stock weekly beta raises the cost of capital and lowers it. A look taken between them would audit a state this study never publishes \u2014 a normalised risk-free on a beta the rule refuses \u2014 which is why the audit point sits after the pair rather than between them. THE NET WAS NOT PREDICTED and the plan said so in advance.",
+ "levers": [
+  {
+   "name": "the mechanical unblock, then the cost-of-capital schedule through the sanctioned module",
+   "rule": "R-COC-01",
+   "before": 47.11084520942183,
+   "after": 51.071420594226275,
+   "why": "Two mechanical blockers first, neither a valuation decision: the study imported mc_v2, renamed on 2 August 2026, so it had not run since; and it read a one-off price export of its own rather than the persistent library the rest of the engine reads for this name. Then the rule. The delivered study discounted a five-year forecast and a perpetuity alike at a single rate built by hand: a raw local sovereign yield with NO normalisation for Saudi Arabia's own default spread, so country risk was counted twice \u2014 once in the yield and again inside the equity risk premium added on top of it. The sanctioned schedule normalises the risk-free by this sovereign's OWN spread, takes the equity premium from the country-risk file's own row, weights at market value on the LATEST DISCLOSED balance sheet, and returns a FLAT ladder because the riyal is pegged and today is already the terminal \u2014 stated by the module rather than assumed by the study.",
+   "evidence": "Cost of capital 7.540% (the delivered study's own rating-basis figure) to 6.932% on the swap basis, which the rule makes central, with 7.051% on the rating basis published beside it. The debt book is read facility by facility out of note 26 of the FY2025 audited statements \u2014 eleven facilities in five currencies footing exactly to the stated 15,191,428 thousand \u2014 and the cost of debt is this company's OWN latest issue, the January 2026 sukuk of SAR 7,500 million in two tranches at 4.489% and 5.083%, weighting to 4.860%. The effective rate is computed independently over two periods from the murabaha and sukuk finance cost alone, over the borrowings that actually bear it. This lever is measured on the RETIRED beta held fixed, through the module's own sensitivity path, so it carries none of the beta correction: 47.1108 to 51.0714.",
+   "move": 0.0840692916291037
+  },
+  {
+   "name": "the beta re-derived against the published index of its own exchange",
+   "rule": "R-BETA-04",
+   "before": 51.071420594226275,
+   "after": 44.050181325121294,
+   "why": "The delivered study regressed 40 DAILY sessions over nine weeks against TASI closes and adopted 0.48. The standing rule is explicit that a daily or short-window regression is NOT one of the three tiers and may stand only as a flagged interim. The conforming construction is an own-stock WEEKLY regression against the published index of the exchange the stock is listed on, resolved through beta_regression.own_stock_beta, and it is nearly half as much again.",
+   "evidence": "beta 0.7078 against 0.4753, from 252 weekly observations over 4.91 years to 2026-08-18 against raw_indices/SA/TASI.csv, R-squared 0.302, standard error 0.1029. Cost of capital 6.932% to 8.133% on the swap basis. The answer falls 51.0714 to 44.0502, -13.75%.",
+   "move": -0.1374788323373708
+  }
+ ],
+ "value": 44.050181325121294,
+ "cumulative_move": -0.0649672887568663,
+ "rules": {
+  "R-COC-01": {
+   "levers": [
+    "the mechanical unblock, then the cost-of-capital schedule through the sanctioned module"
+   ],
+   "first_before": 47.11084520942183,
+   "last_after": 51.071420594226275,
+   "move": 0.0840692916291037
+  },
+  "R-BETA-04": {
+   "levers": [
+    "the beta re-derived against the published index of its own exchange"
+   ],
+   "first_before": 51.071420594226275,
+   "last_after": 44.050181325121294,
+   "move": -0.1374788323373708
+  }
+ },
+ "distinct_rules": 2,
+ "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked.",
+ "audit_taken": {
+  "at": "2026-09-05, after lever 3, as declared",
+  "levers_so_far": 2,
+  "up": "+8.41%",
+  "down": "-13.75%",
+  "net": "-6.50%",
+  "latest_price": 43.86,
+  "latest_price_date": "2026-09-03",
+  "gap_now": "+0.43%",
+  "gap_at_delivery": "+8.10%",
+  "what_the_audit_shows": "THE TWO LEVERS DISAGREED AND THE ROUTE IS WHY THAT MATTERS. Taken in the order fixed in writing before either was touched, the cost-of-capital correction moved the answer AWAY from the market \u2014 from 8.1%% above the price it was struck at to 16.4%% above the latest one \u2014 and the beta correction brought it back. Neither was chosen for where it landed and neither could have been: the first raises every value it touches and the second lowers every value it touches, and which one dominates is arithmetic about this company's own capital structure. Read as two corrections the rebuild is a contest; read as one net figure of -6.5%% it would look like a small tidy-up, and the 8.4%% and the 13.8%% inside it would be invisible. THE ANSWER NOW SITS ESSENTIALLY ON THE PRICE, at +0.4%%, and that is reported as an observation and NOT as corroboration \u2014 four levers remain, the lens retirement among them, and a rebuild that stopped here because the number looked comfortable would be fitting to the price by choosing when to stop.",
+  "levers_remaining": [
+   "R-MACRO-01 terminal growth as a real rate on the house path",
+   "R-TERM-01 the terminal on the derived asset life",
+   "R-BRIDGE-01 the bridge on the latest disclosed sheet",
+   "R-LENS-03 the four-lens blend retired",
+   "R-GAP-01 re-struck on the latest known price"
+  ]
+ }
+}

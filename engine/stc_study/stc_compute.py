@@ -1,12 +1,24 @@
 """STC study — master computation. Outputs stc_study_numbers.json + backtest tables.
-Saudi Telecom Company (Tadawul: 7010). Spot from the attached daily history (7 Jul 2026)."""
+Saudi Telecom Company (Tadawul: 7010).
+
+Price history comes from the PERSISTENT LIBRARY at engine/raw_ohlc/SA/STC.csv, which is
+the file the whole engine reads for this name. The study previously carried its own
+one-off export beside it; a study-local copy of a series the library already holds is a
+second source for one fact, and the two drift apart the moment either is refreshed.
+"""
 import json
+import os
+import sys
+
 import numpy as np
 import pandas as pd
-import mc_v2 as m
+import primitives as m
 from wacc_builder import WaccInputs, build_wacc, RegressionBetaAttempt
 
-df = m.load_ohlc('STC_Stock_Price_History.csv')
+HERE = os.path.dirname(os.path.abspath(__file__))
+OHLC = os.path.join(HERE, '..', 'raw_ohlc', 'SA', 'STC.csv')
+
+df = m.load_ohlc(OHLC)
 close = df['Price'].values
 spot = float(close[-1])
 spot_date = str(df['Date'].iloc[-1].date())
@@ -173,32 +185,39 @@ for i, y in enumerate(yrs):
     cbu *= (1 + g_cbu[i]); ebu *= (1 + g_ebu[i]); wc_ *= (1 + g_wc[i]); sub *= (1 + g_sub[i])
     fc[y] = dict(cbu=cbu, ebu=ebu, wc=wc_, ksa=cbu + ebu + wc_, sub=sub, rev=cbu + ebu + wc_ + sub)
 
-# ===== WACC — bottom-up, sourced (house rule §3.5-G) =========================
-reg = RegressionBetaAttempt(beta=0.4753, r_squared=0.1426, n_obs=40, se_beta=0.1890)
-usable, gate_msg = reg.is_usable()
-assert usable, gate_msg
-BETA = round(reg.beta, 2)
-wacc_inputs = WaccInputs(
-    rf=0.055,
-    rf_source="Derived SAR 10Y sovereign: KSA govt-guaranteed USD 10Y priced UST+95bp on 8-Jul-2026 (SRC $1.5bn 10y sukuk; UST 10Y 4.45%) = 5.40%, plus the SAR-over-USD sovereign pickup documented in the Saudi Exchange 'KSA Sovereign Local Currency Debt Primer Update' (21-May-2026); cross-checked vs FAB Securities' 5.5% SAR rf (27-Feb-2026). Flagged: derived, no free live SAR 10Y screen quote exists.",
-    erp_rating=0.0501, erp_cds=0.0572,
-    erp_source="Damodaran ORIGINAL file (pages.stern.nyu.edu/~adamodar/.../ctryprem.html), Saudi Arabia row, 'Last updated: January 5, 2026': Moody's Aa3, CRP 0.78% + mature 4.23% = 5.01% (rating); CDS-based 5.72%.",
-    beta=BETA,
-    beta_source=f"Genuine daily STC-vs-TASI regression, n=40 paired sessions (5-May→7-Jul-2026, investing.com TASI closes): beta={reg.beta:.3f}, R2={reg.r_squared:.3f}, SE={reg.se_beta:.3f} — passes the usability gate (n≥24, R2≥5%, SE<|beta|, beta>0). Flag: 9-week window (longer TASI history not programmatically accessible); beta sensitivity grid published.",
-    kd_pretax_local=0.050,
-    kd_source="stc's own instruments: Jan-2026 $2bn sukuk priced 4.489% (5y, T+75) / 5.083% (10y, T+90); May-2019 $1.25bn sukuk 3.89%; SAR bank murabaha ≈ 3M SAIBOR 4.79% (Apr-2026, SAMA-linked) + ~60–100bp. Weighted outstanding book ≈ 5.0% pre-tax.",
-    kd_pretax_fx=None, pct_debt_local_ccy=1.0,
-    debt_currency_evidence="Named instruments: USD sukuk $1.25bn (2019, 3.89%) + $2.0bn (Jan-2026, 4.489%/5.083%) = SAR 12.2bn of Q1-26 sukuk 12.16bn; ECA loan $584mn (2021); remainder SAR murabaha/facilities. USD-linked ≈ 55-60% of gross debt, but SAR is pegged 3.75 — USD legs are economically quasi-SAR, so a single blended local-cost Kd is used (no floating-FX tranche).",
-    tax_rate=TAX,
-    market_cap=MKTCAP, total_debt=22475.0,
-    weights_source="Market cap = spot(43.58) × shares(4,989.8mn) = SAR 217.5bn; total debt = Q1-2026 IR-disclosed total debt SAR 22,475mn (post Jan-26 $2bn sukuk; excl. leases 2,296).",
-)
-_wr = build_wacc(wacc_inputs)
-WACC = _wr.wacc_rating          # primary: rating-based ERP ("standard practice" per Damodaran)
-WACC_CDS = _wr.wacc_cds         # alternative: CDS-based ERP ("more current")
-KE_RATING, KE_CDS = _wr.ke_rating, _wr.ke_cds
-KD_AT = _wr.kd_aftertax
-WE, WD = _wr.we, _wr.wd
+# ===== Cost of capital — the sanctioned schedule [R-COC-01] ==================
+# The whole ladder comes from engine/cost_of_capital.py through this study's own
+# coc_run.py, which reads the debt book facility by facility out of note 26 and the
+# finance cost out of note 39/40. Nothing about the rate is typed here: the risk-free
+# is normalised by Saudi Arabia's OWN default spread so country risk is counted once,
+# the weights are market-value, and the schedule is FLAT because the riyal is pegged
+# and today is already the terminal — stated by the module rather than assumed here.
+#
+# The beta is re-derived live through beta_regression.own_stock_beta against TASI, the
+# published index of the exchange this stock is listed on. It replaces a 40-session
+# DAILY regression, which the standing rule says is not one of the three tiers at all;
+# the module refuses to build on a non-conforming tier-1 beta, which is why the
+# schedule and the beta land in the same pass.
+import coc_run as COCRUN
+
+# A sensitivity run rebuilds the schedule on a stated beta and prints the answer without
+# writing anything, so the rebuild ledger can measure what the beta correction alone was
+# worth rather than assert a direction for it.
+_SENS_BETA = float(sys.argv[sys.argv.index('--beta') + 1]) if '--beta' in sys.argv else None
+
+SCHED = COCRUN.build(beta_value=_SENS_BETA, erp_basis='market')  # swap basis, CENTRAL
+SCHED_RATING = COCRUN.build(beta_value=_SENS_BETA, erp_basis='rating')
+BETA = _SENS_BETA if _SENS_BETA is not None else COCRUN.BETA.beta
+
+WACC = SCHED.wacc_exp
+WACC_RATING = SCHED_RATING.wacc_exp
+KE_RATING, KE_MARKET = SCHED_RATING.ke_exp, SCHED.ke_exp
+KD_AT = SCHED.kd_aftertax
+WE, WD = SCHED.weight_equity, SCHED.weight_debt
+DF = list(SCHED.discount_factors)                 # one date, one price of time
+DF_TERMINAL = SCHED.terminal_discount_factor
+WACC_TERMINAL = SCHED.wacc_terminal
+
 TG = 0.025                      # terminal growth, nominal SAR
 
 # ===== DCF (FCFF, full build) =================================================
@@ -215,11 +234,11 @@ for i, y in enumerate(yrs):
     rows.append(dict(year=y, rev=r, ebitda=ebitda, dna=dna, ebit=ebit, nopat=nopat,
                      capex=capex, dwc=dwc, fcff=fcff))
 for i, rw in enumerate(rows):
-    rw['df'] = 1 / (1 + WACC) ** (i + 1)
+    rw['df'] = DF[i]
     rw['pv'] = rw['fcff'] * rw['df']
 pv_sum = sum(rw['pv'] for rw in rows)
-tv = rows[-1]['fcff'] * (1 + TG) / (WACC - TG)
-pv_tv = tv * rows[-1]['df']
+tv = rows[-1]['fcff'] * (1 + TG) / (WACC_TERMINAL - TG)
+pv_tv = tv * DF_TERMINAL
 ev = pv_sum + pv_tv
 # EV → equity bridge (marks)
 assoc = 4641.0        # investments in associates & JVs, 31-Dec-25 FS (incl. 43.06% DIIC/TAWAL)
@@ -329,24 +348,34 @@ out = dict(
     mc=dict(q20=q20, q60=q60, touch=touch, prob_read=prob_read, zones=zone_probs, fan=fan),
     tech=dict(sma=sma, rsi=rsi, macd=macd, hi52=hi52, lo52=lo52, rv252=rv252,
               chg20=chg20, chg60=chg60),
+    coc_record=COCRUN.record(SCHED),
     hist=hist, seg_hist=seg_hist,
     drivers=dict(g_cbu=g_cbu, g_ebu=g_ebu, g_wc=g_wc, g_sub=g_sub, ebitda_m=ebitda_m,
                  dna_pct=dna_pct, capex_pct=capex_pct, wc_out_pct=wc_out_pct, payout_dps=payout_dps),
     forecast=fc,
     dcf=dict(rows=rows, pv_sum=pv_sum, tv=tv, pv_tv=pv_tv, ev=ev, tv_pct=pv_tv / ev,
-             wacc=WACC, wacc_cds=WACC_CDS, tg=TG, assoc=assoc, telefonica=telefonica,
+             wacc=WACC, wacc_rating_basis=WACC_RATING, tg=TG, assoc=assoc, telefonica=telefonica,
              net_debt=net_debt, nci=nci_v, eq=eq_dcf, ps=dcf_ps,
-             wacc_build=dict(rf=wacc_inputs.rf, erp_rating=wacc_inputs.erp_rating,
-                             erp_cds=wacc_inputs.erp_cds, beta=BETA,
-                             beta_reg=dict(beta=reg.beta, r2=reg.r_squared, n=reg.n_obs, se=reg.se_beta),
-                             ke_rating=KE_RATING, ke_cds=KE_CDS,
-                             kd_pretax=wacc_inputs.kd_pretax_local, kd_aftertax=KD_AT,
-                             we=WE, wd=WD, wacc_rating=WACC, wacc_cds=WACC_CDS, tax=TAX,
-                             rf_source=wacc_inputs.rf_source, erp_source=wacc_inputs.erp_source,
-                             kd_source=wacc_inputs.kd_source,
-                             debt_currency_evidence=wacc_inputs.debt_currency_evidence,
-                             beta_source=wacc_inputs.beta_source,
-                             weights_source=wacc_inputs.weights_source)),
+             wacc_build=dict(rf=SCHED.rf_observed, default_spread=SCHED.default_spread,
+                             rf_star=SCHED.rf_star, erp_market=SCHED.erp,
+                             erp_rating=SCHED_RATING.erp, beta=BETA,
+                             beta_reg=dict(beta=COCRUN.BETA_RAW['beta'],
+                                           r2=COCRUN.BETA_RAW['r2'],
+                                           n=COCRUN.BETA_RAW['n'],
+                                           se=COCRUN.BETA_RAW['se'],
+                                           window_years=COCRUN.BETA_RAW['window_years'],
+                                           index_file=COCRUN.BETA_RAW['index_file'],
+                                           index_asof=COCRUN.BETA_RAW['index_asof'],
+                                           conforming=COCRUN.BETA_RAW['conforming']),
+                             ke_rating=KE_RATING, ke_market=KE_MARKET,
+                             kd_pretax=SCHED.kd_pretax, kd_aftertax=KD_AT,
+                             we=WE, wd=WD, wacc_market=WACC, wacc_rating=WACC_RATING,
+                             tax=TAX, regime=SCHED.regime,
+                             beta_source=COCRUN.BETA.source,
+                             kd_source=COCRUN.DEBT.kd_source,
+                             debt_currency_evidence=COCRUN.DEBT.currency_source,
+                             weights_source=COCRUN.WEIGHTS_SOURCE,
+                             disclosures=list(SCHED.disclosures))),
     ddm=dict(dps=payout_dps, pv_div=pv_div, tv=tv_div, pv_tv=pv_tv_div, ps=ddm_ps,
              tv_pct=ddm_tv_pct, ke=KE, g=tg_div),
     lenses=dict(dcf=dcf_lens, ddm=ddm_lens, relative=rel, normalized=norm,
@@ -362,12 +391,34 @@ out = dict(
 res.to_csv('backtest_rows.csv', index=False)
 np.save('fan.npy', np.array([fan[p] for p in pcts]))
 np.save('pT20.npy', pT20[:20000]); np.save('pT60.npy', pT60[:20000])
-with open('stc_study_numbers.json', 'w') as f:
-    json.dump(out, f, indent=1, default=float)
+# A SENSITIVITY RUN NEVER WRITES. It exists to measure one lever's own worth, and an
+# answer struck on a beta this study does not adopt must not reach the committed record.
+if _SENS_BETA is None:
+    with open(os.path.join(HERE, 'stc_study_numbers.json'), 'w') as f:
+        json.dump(out, f, indent=1, default=float)
+else:
+    # It writes ONE artefact and it is not the study's numbers: the answer this study
+    # would reach on a beta it does not adopt, so the rebuild ledger can read the lever's
+    # own worth instead of a figure somebody copied off a terminal. [R-ENF-06]
+    with open(os.path.join(HERE, 'beta_sensitivity.json'), 'w') as f:
+        json.dump(dict(beta=_SENS_BETA,
+                       what=('the answer on a beta this study does NOT adopt, produced '
+                             'only to measure what the beta correction was worth on its '
+                             'own. The 40-session daily regression the delivered study '
+                             'carried is not one of the three tiers, and the sanctioned '
+                             'schedule refuses to build on it as a study beta.'),
+                       wacc_market=WACC, wacc_rating=WACC_RATING,
+                       ke_market=KE_MARKET, ke_rating=KE_RATING,
+                       lenses=dict(dcf=dcf_lens, ddm=ddm_lens, relative=rel,
+                                   normalized=norm),
+                       central=dict(bear=central_bear, base=central, bull=central_bull),
+                       weights=weights), f, indent=1, default=float)
+    print('SENSITIVITY RUN on beta %.4f — beta_sensitivity.json only' % _SENS_BETA)
 print('spot', spot, spot_date, '| anchor_vol', round(anchor_vol, 4), '| factor_q', round(factor_drift_q * 100, 2), '%')
 print('Step0 zero-drift non-overlap:', {k: round(v_, 4) if isinstance(v_, float) else v_ for k, v_ in summ.items()})
 print('boot:', boot)
-print('WACC rating %.3f%% | CDS %.3f%% | Ke %.3f/%.3f | Kd_at %.3f | We %.3f' % (WACC*100, WACC_CDS*100, KE_RATING*100, KE_CDS*100, KD_AT*100, WE))
+print('WACC market %.3f%% | rating %.3f%% | Ke %.3f/%.3f | Kd_at %.3f | We %.3f'
+      % (WACC*100, WACC_RATING*100, KE_MARKET*100, KE_RATING*100, KD_AT*100, WE))
 print('T60:', {k: round(v_, 1) for k, v_ in q60.items()}, '| P(up)=%.3f odds=%.2f' % (prob_read['p_above'], prob_read['odds']))
 print('DCF: EV %.0f TV%% %.0f%% eq %.0f ps %.2f | DDM %.2f (TV %.0f%%) | rel %.1f | norm %.1f | central %.1f [%.1f-%.1f]' %
       (ev, 100 * pv_tv / ev, eq_dcf, dcf_ps, ddm_ps, ddm_tv_pct * 100, rel['base'], norm['base'], central, central_bear, central_bull))

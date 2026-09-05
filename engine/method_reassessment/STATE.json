@@ -19,7 +19,7 @@
   ]
  },
  "phase": "1",
- "current": "PR #369 CI is running on 52da5588. Three gate holes fixed tonight each surfaced a further one when CI ran them: the gauntlet had never tested the terminal gate (it takes the shared census, and the gauntlet reads each gate's own source); the fix's pattern-scan call then tripped [R-ENF-03]'s data.js rule because the gauntlet plants a study script reading data.js; and the COMMENT explaining that tripped it too, because a shape-matching check cannot tell a call from a description of one. All three closed, gauntlet 29 of 29, its control 7 of 7, the PDF-currency control 8 of 8 after its case 4 was re-pointed at a name the gate actually reports as outstanding.\nSTC groundwork is committed: the income statement from note 9 FOOTS TO THE RIYAL in both years (revenue 77,818,675 / 75,893,413, EBITDA 31.44%, EBIT 18.55%), eleven segments with revenue and gross profit each, the debt book, the cash with its banking caveat, and the share count footing both ways. The primary statements do NOT extract and need OCR; the notes do.",
+ "current": "STC rebuild, levers 1-3 landed and the AUDIT POINT TAKEN where it was declared. Published 47.1108 -> 51.0714 on [R-COC-01] (+8.41%) -> 44.0502 on [R-BETA-04] (-13.75%), net -6.50%, and +0.43% against the latest known close of 43.86. Four levers remain: R-MACRO-01, R-TERM-01, R-BRIDGE-01 (added mid-plan, before any rebuilt answer existed, and the timing is recorded in the plan), R-LENS-03, R-GAP-01.",
  "done": [
   "All seven markets carry a sourced house macro path; 53 names unblocked. Two identities were running where they do not hold (a pegged currency drifting, the dollar depreciating against itself) \u2014 both found by PRINTING a path, not by a gate.",
   "The explicit window's inflation assumption is RULED OUT as the general scale error: perfect foresight of the path removes only 11% of the pooled driver error.",
@@ -216,9 +216,19 @@
    "lessons": [
     "L-340"
    ]
-  }
+  },
+  "PR #369 MERGED to main on green [R-MERGE-01] \u2014 merge commit 3c170b9c.",
+  "STC FY2023 extracted on BOTH bases and the bridge between them foots to the riyal: as originally reported 72,336,611, restated continuing 71,777,161, the difference being TAWAL out of continuing operations (3,343,350 less 3,076,148 of eliminations = 267,202) and note 49's 292,248 reclassification, which lands entirely on stc Kuwait.",
+  "STC levers 1-3 landed; STC came OFF the rebuild ratchet (15 -> 14).",
+  "The Q2-2026 balance sheet's '60,000,000' share capital is an EXTRACTION ARTEFACT \u2014 note 17 states 50,000,000 at both dates and only 50,000,000 makes the equity block foot. Nearly recorded as a 20% share-count increase that does not exist."
  ],
- "next": "1. MERGE PR #369 the moment CI is green [R-MERGE-01], then restart the branch from main. 2. STC lever 1 of the plan in engine/stc_study/REBUILD_PLAN_05-09-2026.md \u2014 the two mechanical unblocks, both already tested in a scratch copy. The audit point is declared AFTER LEVER 3 because levers 2 and 3 pull opposite ways. 3. STC's remaining extraction needs OCR on pages 7-11 of the FY2025 filing; the notes gave everything else. 4. The three documents publishing the retired skill verdict (ADNOCLS, SWDY, ADNOCDRILL) want one pass with the model report last and verified page by page. 5. Four studies carry priced correction sets from tonight's gap reviews and NONE is implemented; each needs a rebuild ledger with its audit point declared first. 6. AMOC default 12-Sep; the lens registry default 18-Sep, evidence now five of seven names AND the largest correction on four audited studies. 7. STANDING: scripts/run_ci_gates.py against the workflow, never a hand list (L-336).",
+ "next": [
+  "STC lever 4 [R-MACRO-01]: terminal growth stored as (real, inflation-path id) against the Saudi terminal inflation of 2.00%, replacing the typed nominal 2.5%.",
+  "STC lever 5 [R-TERM-01]: the terminal through terminal_value.build() on the DERIVED 20.86-year life in TERMINAL_EVIDENCE_05-09-2026.md. Sign not predicted.",
+  "STC lever 5b [R-BRIDGE-01]: the bridge onto the reviewed 30 June 2026 sheet \u2014 borrowings 23,536.554, cash 18,940.773, minority 2,726.349 \u2014 and the share count onto the 4,993.024mn that foots against par, replacing the Q1-2026 figures and the 4,989.8mn divisor.",
+  "STC lever 6 [R-LENS-03] then lever 7 [R-GAP-01], then the eight-heading review before any file is staged.",
+  "Re-issue the three documents publishing the retired skill verdict (ADNOCLS the exemplar last, verified page by page)."
+ ],
  "stop_and_ask": [
   "TMGH: two earnings releases could not be re-fetched from the company's own channels (FY2020 release: 502 via proxy on every retry; 1H2021 release: 404). They are not inputs to the delivered numbers \u2014 the audited statements for both periods were obtained and verified \u2014 so this blocks nothing; recorded for the morning list."
  ],
@@ -233,7 +243,7 @@
   "Phase 2 keeps the campaign's market order \u2014 principal, 03-Sep-2026."
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-05T04:20:00Z",
+ "updated": "2026-09-05T05:10:00+03:00",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md \u2014 it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",

@@ -20,16 +20,51 @@ ledger will be walked against it.
 
 AFTER LEVER 3, AND THE REASON IS THAT LEVERS 2 AND 3 PULL IN OPPOSITE DIRECTIONS. This is the shape [R-REBUILD-01] exists for: read as a list of corrections a rebuild of seven levers is a landslide, and read as the rules they serve it is a contest. DECLARED BEFORE ANY LEVER IS TOUCHED. Normalising the risk-free by Saudi Arabia's own sovereign default spread ([R-COC-01], lever 2) takes it from a raw 5.50% to 4.99% on the rating basis or 4.52% on the CDS basis, which LOWERS the cost of capital and RAISES the value. Re-deriving the beta through own_stock_beta ([R-BETA-04], lever 3) replaces the 0.48 this study actually uses — from a nine-week DAILY regression the rule states is not a tier — with a conforming 0.71 from 252 weekly points over 4.91 years, which the study's own beta record prices at +1.156pp on the cost of equity on the rating basis and +1.320pp on the CDS basis, and which LOWERS the value. THE SIZE IS KNOWN IN ADVANCE ONLY FOR THE LENS LEVER AND IT IS STATED HERE RATHER THAN DISCOVERED: retiring the four-lens blend under [R-LENS-03] moves the central from 47.1108 to the cash-flow lens's 50.1165, and against the latest known close of SAR 43.86 on 3 September that carries the gap from +7.4% to +14.3% — from inside [R-GAP-01]'s band to outside it, owing the eight-heading review, and NOT held by [R-GAP-02], whose block is one-sided and below. A LOOK TAKEN BEFORE LEVER 3 WOULD AUDIT A STATE THIS STUDY NEVER PUBLISHES — a normalised risk-free on a beta the rule refuses — which is why the audit point is after the pair rather than between them.
 
+## THE AUDIT, TAKEN — 5 September 2026, after lever 3, exactly where it was declared
+
+| | |
+|---|---:|
+| published central, the four-lens blend | SAR 47.1108 |
+| after [R-COC-01] — the sanctioned schedule, on the RETIRED beta held fixed | **51.0714** (+8.41%) |
+| after [R-BETA-04] — the conforming own-stock weekly beta | **44.0502** (−13.75%) |
+| net across both | **−6.50%** |
+| against the latest known close of SAR 43.86, 3 September 2026 | **+0.43%** |
+
+**The two levers disagreed, and the route is why that matters.** Taken in the order fixed
+in writing before either was touched, the cost-of-capital correction moved the answer AWAY
+from the market — from 8.1% above the price it was struck at to 16.4% above the latest one —
+and the beta correction brought it back. Neither was chosen for where it landed and neither
+could have been: the first raises every value it touches and the second lowers every value
+it touches, and which of them dominates is arithmetic about this company's own capital
+structure. Read as one net figure of −6.5% this is a small tidy-up; read as its two levers
+it is an 8.4% and a 13.8% pulling against each other, and that is the decomposition
+[R-REBUILD-01] exists to keep visible.
+
+**The answer now sits essentially on the price, and that is an observation rather than
+corroboration.** Four levers remain and the lens retirement is one of them. A rebuild that
+stopped here because the number looked comfortable would be fitting to the price by choosing
+when to stop, which is the same offence as moving a driver to meet one.
+
+**The two levers could not in fact be separated in the model, only in measurement, and that
+is recorded rather than glossed.** `cost_of_capital.schedule()` REFUSES to build on a tier-1
+beta recorded as non-conforming, and the beta this study carried is a 40-session daily
+regression the standing rule says is not one of the three tiers at all — so there is no state
+of this study in which the schedule rule is satisfied and the beta rule is not. The
+intermediate above is produced through the module's own sensitivity path, on a beta declared
+as a sensitivity and never as this study's beta, and it writes `beta_sensitivity.json` and
+nothing else. The ledger reads that artefact; no figure in it was copied from a terminal.
+
 ## The levers, in order
 
 | # | rule | what |
 |---|---|---|
-| 1 | mechanical | import mc_v2 -> primitives (a pure rename, the module was renamed 2 August 2026) and the price history taken from the persistent library engine/raw_ohlc/SA/STC.csv, which this study never committed. BOTH TESTED IN A SCRATCH COPY: the import resolves and the file is in the same vendor format. Neither is a valuation decision, though the library re-strikes the study from 9 July to 31 August 2026 at SAR 44.72, which [R-GAP-01] wants anyway. |
-| 2 | R-COC-01 | the cost-of-capital schedule through engine/cost_of_capital.py on the house Saudi path, FLAT because the market is pegged and stated as such rather than left as an absence. rf* = 5.50% less Saudi Arabia's own default spread (rating 0.51%, market 0.98%). RAISES the value. |
-| 3 | R-BETA-04 | the beta re-derived live through beta_regression.own_stock_beta('STC','SA','TADAWUL') and attested. LOWERS the value. Do not carry either recorded figure forward — the committed 0.7107 and tonight's 0.7078 differ only because the library lengthened. |
-| AUDIT | R-REBUILD-01 | STOP AND LOOK. Levers 2 and 3 pull opposite ways and the net is not predicted here. |
+| 1 ✅ | mechanical | import mc_v2 -> primitives (a pure rename, the module was renamed 2 August 2026) and the price history taken from the persistent library engine/raw_ohlc/SA/STC.csv, which this study never committed. BOTH TESTED IN A SCRATCH COPY: the import resolves and the file is in the same vendor format. Neither is a valuation decision, though the library re-strikes the study from 9 July to 31 August 2026 at SAR 44.72, which [R-GAP-01] wants anyway. |
+| 2 ✅ | R-COC-01 | the cost-of-capital schedule through engine/cost_of_capital.py on the house Saudi path, FLAT because the market is pegged and stated as such rather than left as an absence. rf* = 5.50% less Saudi Arabia's own default spread (rating 0.51%, market 0.98%). RAISES the value. |
+| 3 ✅ | R-BETA-04 | the beta re-derived live through beta_regression.own_stock_beta('STC','SA','TADAWUL') and attested. LOWERS the value. Do not carry either recorded figure forward — the committed 0.7107 and tonight's 0.7078 differ only because the library lengthened. |
+| AUDIT ✅ | R-REBUILD-01 | STOP AND LOOK. Levers 2 and 3 pull opposite ways and the net is not predicted here. |
 | 4 | R-MACRO-01 | terminal growth stored as (real, inflation-path id) rather than the typed nominal 2.5%. Against a Saudi terminal inflation of 2.00% that is +0.5% real; on a pegged market this is likely to change what a reader can see rather than the number ([L-319]). |
 | 5 | R-TERM-01 | the terminal through engine/terminal_value.py on the DERIVED life in TERMINAL_EVIDENCE_05-09-2026.md — 20.86 years, base 15.23 years old, 73% of the depreciable base written off, on three filed years that each foot to the riyal. THE BASE IS OLD, at 1.46 times half its own implied life, so maintenance at current cost is a large multiple of the book charge. THE SIGN IS NOT PREDICTED [R-TERM-01 CLAUSE TWO CORRECTED]. |
+| 5b | R-BRIDGE-01 | **ADDED 5 September 2026, and the timing is recorded because it is the whole question.** The bridge stands on figures the company has since superseded: the study deducts net debt of SAR 7,063mn on a Q1-2026 basis and a minority of SAR 2,335mn at 31 March 2026, while a REVIEWED 30 June 2026 balance sheet was published carrying borrowings of SAR 23,536.554mn, cash of SAR 18,940.773mn and a minority of SAR 2,726.349mn. It also divides by 4,989.8mn shares, which is the 31 December 2025 count; note 17 of that same interim foots issued capital of SAR 50,000,000 thousand at SAR 10 par to 5,000,000 thousand shares and states 4,993.024mn outstanding. THIS WAS FOUND WHILE SOURCING THE DEBT BOOK FOR LEVER 2 AND BEFORE THE MODEL PRODUCED ANY REBUILT ANSWER — the plan is amended at a point where nobody could yet know which way it moves the value, which is the only condition under which adding a lever is not reshaping the route to suit where it lands. |
 | 6 | R-LENS-03 | the four-lens blend retired. LENS_REGISTRY['telecom operator'] is a cash-flow primary cross-checked on own-history EV/EBITDA, a relative multiple and book — so the dividend-discount and normalised-earnings reads come OUT of the answer entirely. STC is the ONE of the seven unreadable studies whose class the registry holds. |
 | 7 | R-GAP-01 | re-struck on the latest known price, and the eight-heading review written before any file is staged. |
 
