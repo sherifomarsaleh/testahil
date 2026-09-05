@@ -1,64 +1,98 @@
-
-=== [FS_FY2025.pdf p1] ===
 Borouge PLC
 REPORTS AND CONSOLIDATED
 FINANCIAL STATEMENTS
 FOR THE YEAR ENDED 31 DECEMBER 2025
+
 Principal business address:
 P.O. Box: 764652
 Abu Dhabi
 UAE
 
-=== [FS_FY2025.pdf p2] ===
-Borouge PLC
+Borouge PLC
 REPORTS AND CONSOLIDATED FINANCIAL STATEMENTS
 For the year ended 31 December 2025
 Pages
-Board of Directors’ report
-Independent Auditor’s report 1 - 5
-Consolidated statement of financial position 6 - 7
-Consolidated statement of profit or loss and other comprehensive income 8
-Consolidated statement of changes in equity 9
-Consolidated statement of cash flows 10
-Notes to the consolidated financial statements 11 – 64
 
-=== [FS_FY2025.pdf p3] ===
-Borouge PLC
+Board of Directors’ report
+
+Independent Auditor’s report
+
+1-5
+
+Consolidated statement of financial position
+
+6-7
+
+Consolidated statement of profit or loss and other comprehensive income
+
+8
+
+Consolidated statement of changes in equity
+
+9
+
+Consolidated statement of cash flows
+
+10
+
+Notes to the consolidated financial statements
+
+11 – 64
+
+Borouge PLC
 BOARD OF DIRECTORS’ REPORT
 31 DECEMBER 2025
 
-=== [FS_FY2025.pdf p4] ===
-BOROUGE PLC
+BOROUGE PLC
 BOARD OF DIRECTORS’ REPORT
 FOR THE YEAR ENDED 31 DECEMBER 2025
+
 The Directors present their report together with the audited consolidated financial statements of Borouge PLC
 ("the Company") and its subsidiaries (together, the “Group”) for the year ended 31 December 2025.
 Principal activities
-The purpose of the Company is to serve as a holding company for Abu Dhabi Polymers Co. Ltd (Borouge)-
-Sole Proprietorship L.L.C. (“ADP”) and Borouge Pte Ltd. which are engaged in the principal activities of production
+The purpose of the Company is to serve as a holding company for Abu Dhabi Polymers Co. Ltd (Borouge)Sole Proprietorship L.L.C. (“ADP”) and Borouge Pte Ltd. which are engaged in the principal activities of production
 of ethylene, propylene, polyethylene, polypropylene and trading of polyolefins, respectively.
 Financial results
 The financial results of the Group represent a profit for the year of USD 1,099.13 million (2024: USD 1,238.95 million)
 as presented in these audited consolidated financial statements.
 Directors
 The Directors of the Group during the year and as of the date of the audit report were:
-H.E. Dr. Sultan Ahmed Al Jaber Chairperson
-Mr. Stefan Doboczky Vice Chairman
-Mr. Thomas Gangl (resigned) Vice Chairman
-Mr. Khaled Salmeen Director/Board Member
-Mr. Thomas Boesen Director/Board Member
-Mr. Philippe Roodhooft Director/Board Member
-Mr. Nasser Omair Al Muhairi (appointed) Director/Board Member
-Mr. Daniel Turnheim (appointed) Director/Board Member
-Mr. Klaus Froehlich (appointed) Director/Board Member
-Mr. Hetal Patel (appointed) Director/Board Member
-Mr. Ahmed El-Hoshy (appointed) Director/Board Member
-Ms. Ayesha Al Hammadi (appointed) Director/Board Member
-Mr. Abdulaziz Al Hajri (resigned) Director/Board Member
-Mr. Khaled Al Zaabi (resigned) Director/Board Member
-Mr. Omar Al Nuaimi (resigned) Director/Board Member
-Ms. Tasnim Ahnaish (resigned) Director/Board Member
-Ms. Daniela Vlad (resigned) Director/Board Member
+H.E. Dr. Sultan Ahmed Al Jaber
+Mr. Stefan Doboczky
+Mr. Thomas Gangl (resigned)
+Mr. Khaled Salmeen
+Mr. Thomas Boesen
+Mr. Philippe Roodhooft
+Mr. Nasser Omair Al Muhairi (appointed)
+Mr. Daniel Turnheim (appointed)
+Mr. Klaus Froehlich (appointed)
+Mr. Hetal Patel (appointed)
+Mr. Ahmed El-Hoshy (appointed)
+Ms. Ayesha Al Hammadi (appointed)
+Mr. Abdulaziz Al Hajri (resigned)
+Mr. Khaled Al Zaabi (resigned)
+Mr. Omar Al Nuaimi (resigned)
+Ms. Tasnim Ahnaish (resigned)
+Ms. Daniela Vlad (resigned)
+
+Chairperson
+Vice Chairman
+Vice Chairman
+Director/Board Member
+Director/Board Member
+Director/Board Member
+Director/Board Member
+Director/Board Member
+Director/Board Member
+Director/Board Member
+Director/Board Member
+Director/Board Member
+Director/Board Member
+Director/Board Member
+Director/Board Member
+Director/Board Member
+Director/Board Member
+
 During the year ended 31 December 2025, several members resigned from the Borouge PLC board, with replacement
 appointments made in same period. During the year ended 31 December 2024, Mr. Thomas Gangl resigned from his
 position as Vice Chairman of the Board of Directors and was replaced by Mr. Stefan Doboczky.
@@ -70,252 +104,1024 @@ In so far as the Directors are aware, there is no relevant information of which 
 The Group’s auditors have been provided with access to all information of which we are aware that is relevant to the
 preparation of consolidated financial statements.
 
-=== [FS_FY2025.pdf p5] ===
-BOROUGE PLC
+BOROUGE PLC
 BOARD OF DIRECTORS’ REPORT continued
 FOR THE YEAR ENDED 31 DECEMBER 2025
+
 Directors’ statement to the disclosure to auditors
 In so far as the Directors are aware, there is no relevant information of which the Group’s auditors are unaware.
 The Group’s auditors have been provided with access to all information of which we are aware that is relevant to the
 preparation of consolidated financial statements.
+
 For the Board of Directors
+
 _____________________
 Chairman
 Date: 3 February 2026
 Abu Dhabi, UAE
 
-=== [FS_FY2025.pdf p6] ===
-Borouge PLC
+Borouge PLC
 CONSOLIDATED FINANCIAL STATEMENTS
 31 DECEMBER 2025
 
-=== [FS_FY2025.pdf p7] ===
-
-
-=== [FS_FY2025.pdf p8] ===
-
-
-=== [FS_FY2025.pdf p9] ===
-
-
-=== [FS_FY2025.pdf p10] ===
-
-
-=== [FS_FY2025.pdf p11] ===
-
-
-=== [FS_FY2025.pdf p12] ===
-Borouge PLC
+Borouge PLC
 CONSOLIDATED STATEMENT OF FINANCIAL POSITION
 As at 31 December 2025
-Notes 2025 2024
-USD’000 USD’000
+Notes
+
+2025
+USD’000
+
+2024
+USD’000
+
+6
+7
+8(a)
+8(b)&12(d)
+10(c)
+13(c)
+
+6,082,232
+104,573
+23,327
+135,697
+21,905
+1,992
+
+6,292,502
+60,643
+24,797
+135,789
+20,509
+2,397
+
+6,369,726
+
+6,536,637
+
+523,702
+293,251
+808,237
+13,245
+5,952
+48,090
+426,901
+
+640,505
+209,937
+858,768
+13,454
+5,741
+23,917
+418,506
+
+Total current assets
+
+2,119,378
+
+2,170,828
+
+TOTAL ASSETS
+
+8,489,104
+
+8,707,465
+
+4,809,231
+(4,446,467)
+(158,223)
+368
+186,869
+12,490
+(6,002)
+17,125
+(4,426)
+3,677,885
+
+4,809,231
+(4,446,467)
+186,770
+12,490
+(5,993)
+18,320
+(7,741)
+3,896,116
+
+Equity attributable to the owners of the Company
+Non-controlling interests
+
+4,088,850
+26,832
+
+4,462,726
+19,337
+
+Total equity
+
+4,115,682
+
+4,482,063
+
 ASSETS
 Non-current assets
-Property, plant and equipment 6 6,082,232 6,292,502
-Intangible assets 7 104,573 60,643
-Right-of-use assets 8(a) 23,327 24,797
-Investment in sublease 8(b)&12(d) 135,697 135,789
-Loans to employees 10(c) 21,905 20,509
-Deferred tax assets 13(c) 1,992 2,397
-Total non-current assets 6,369,726 6,536,637
+
+Property, plant and equipment
+Intangible assets
+Right-of-use assets
+Investment in sublease
+Loans to employees
+Deferred tax assets
+Total non-current assets
 Current assets
-Inventories 9 523,702 640,505
-Amounts due from related parties 12(d) 293,251 209,937
-Trade receivables 10(a) 808,237 858,768
-Loans to employees 10(c) 13,245 13,454
-Investments in sublease 8(b)&12(d) 5,952 5,741
-Prepayments and other receivables 10(b) 48,090 23,917
-Cash and cash equivalents 11 426,901 418,506
-Total current assets 2,119,378 2,170,828
-TOTAL ASSETS 8,489,104 8,707,465
+Inventories
+
+9
+12(d)
+10(a)
+10(c)
+8(b)&12(d)
+10(b)
+11
+
+Amounts due from related parties
+Trade receivables
+Loans to employees
+Investments in sublease
+Prepayments and other receivables
+Cash and cash equivalents
+
 EQUITY AND LIABILITIES
 Equity
-Share capital 14 4,809,231 4,809,231
-Merger reserve 15 (4,446,467) (4,446,467)
-Treasury shares 31 (158,223) -
-Other reserve 31 368 -
-Restricted reserve 15 186,869 186,770
-Capital reserve 15 12,490 12,490
-Cash flow hedge reserve 15 (6,002) (5,993)
-Actuarial reserve 15 17,125 18,320
-Translation reserve 15 (4,426) (7,741)
-Retained earnings 3,677,885 3,896,116
-Equity attributable to the owners of the Company 4,088,850 4,462,726
-Non-controlling interests 26,832 19,337
-Total equity 4,115,682 4,482,063
+
+Share capital
+Merger reserve
+Treasury shares
+Other reserve
+Restricted reserve
+Capital reserve
+Cash flow hedge reserve
+Actuarial reserve
+Translation reserve
+Retained earnings
+
+14
+15
+31
+31
+15
+15
+15
+15
+15
+
 6
 
-=== [FS_FY2025.pdf p13] ===
-Borouge PLC
+Borouge PLC
 CONSOLIDATED STATEMENT OF FINANCIAL POSITION continued
 As at 31 December 2025
-Notes 2025 2024
-USD’000 USD’000
+Notes
+
+2025
+USD’000
+
+2024
+USD’000
+
+16
+8(c)
+13(c)
+17
+30
+
+93,044
+156,652
+128,972
+-
+
+97,585
+158,082
+85,136
+2,944,100
+5,993
+
+378,668
+
+3,290,896
+
+378,200
+2,957,730
+6,002
+576,502
+9,528
+12,293
+54,499
+
+356,660
+520,260
+9,042
+1,235
+47,309
+
+Total current liabilities
+
+3,994,754
+
+934,506
+
+Total liabilities
+
+4,373,422
+
+4,225,402
+
+TOTAL EQUITY AND LIABILITIES
+
+8,489,104
+
+8,707,465
+
 EQUITY AND LIABILITIES continued
 Non-current liabilities
-Provision for employees’ end of service benefits 16 93,044 97,585
-Lease liabilities 8(c) 156,652 158,082
-Deferred tax liability 13(c) 128,972 85,136
-Bank loans 17 - 2,944,100
-Derivative financial instruments 30 - 5,993
-Total non-current liabilities 378,668 3,290,896
+
+Provision for employees’ end of service benefits
+Lease liabilities
+Deferred tax liability
+Bank loans
+Derivative financial instruments
+Total non-current liabilities
 Current liabilities
-Trade and other payables 18 378,200 356,660
-Bank loans 17 2,957,730 -
-Derivative financial instruments 30 6,002 -
-Amounts due to related parties 12(c) 576,502 520,260
-Lease liabilities 8(c) 9,528 9,042
-Provisions for employees end of service benefits 16 12,293 1,235
-Income tax payable 54,499 47,309
-Total current liabilities 3,994,754 934,506
-Total liabilities 4,373,422 4,225,402
-TOTAL EQUITY AND LIABILITIES 8,489,104 8,707,465
-H.E. Dr. Sultan Ahmed Al Jaber Hazeem Sultan Al Suwaidi Jan-Martin Nufer
-Chairman Chief Executive Officer Chief Financial Officer
+
+Trade and other payables
+Bank loans
+Derivative financial instruments
+Amounts due to related parties
+Lease liabilities
+Provisions for employees end of service benefits
+Income tax payable
+
+H.E. Dr. Sultan Ahmed Al Jaber
+Chairman
+
+18
+17
+30
+12(c)
+8(c)
+16
+
+Hazeem Sultan Al Suwaidi
+Chief Executive Officer
+
 The attached notes 1 to 33 form part of the consolidated financial statements.
 7
 
-=== [FS_FY2025.pdf p14] ===
-Borouge PLC
+Jan-Martin Nufer
+Chief Financial Officer
+
+Borouge PLC
 CONSOLIDATED STATEMENT OF PROFIT OR LOSS AND
 OTHER COMPREHENSIVE INCOME
 For the year ended 31 December 2025
-2025 2024
-Notes USD’000 USD’000
-Revenue 19 5,847,773 6,026,123
-Cost of sales 20 (3,565,985) (3,490,989)
-Gross profit 2,281,788 2,535,134
-Other income 22 26,321 53,951
-General and administrative expenses 23 (196,577) (193,121)
-Selling and distribution expenses 24 (416,028) (471,963)
-Impairment loss on property, plant and
-6
-equipment and intangible assets (1,441) (3,082)
-Operating profit 1,694,063 1,920,919
-Finance income 23,718 28,554
-Finance costs 17.1 (175,924) (202,025)
-Foreign exchange loss (2,013) (2,139)
-Net finance loss (154,219) (175,610)
-Profit for the year before tax 1,539,844 1,745,309
-Income tax expense 13(a) (440,714) (506,361)
-Profit for the year 1,099,130 1,238,948
+
+Notes
+
+2025
+USD’000
+
+2024
+USD’000
+
+19
+20
+
+5,847,773
+(3,565,985)
+
+6,026,123
+(3,490,989)
+
+2,281,788
+
+2,535,134
+
+26,321
+(196,577)
+(416,028)
+
+53,951
+(193,121)
+(471,963)
+
+(1,441)
+
+(3,082)
+
+1,694,063
+
+1,920,919
+
+23,718
+(175,924)
+(2,013)
+
+28,554
+(202,025)
+(2,139)
+
+Net finance loss
+
+(154,219)
+
+(175,610)
+
+Profit for the year before tax
+
+1,539,844
+
+1,745,309
+
+(440,714)
+
+(506,361)
+
+Profit for the year
+
+1,099,130
+
+1,238,948
+
 Profit for the year attributable to:
-Shareholders of the Parent 1,089,178 1,225,273
-Non-controlling interests 9,952 13,675
-1,099,130 1,238,948
+Shareholders of the Parent
+Non-controlling interests
+
+1,089,178
+9,952
+
+1,225,273
+13,675
+
+1,099,130
+
+1,238,948
+
+565
+
+363
+
+3,911
+
+(2,675)
+
+(9)
+
+6,615
+
+4,467
+
+4,303
+
+Total comprehensive income for the year
+
+1,103,597
+
+1,243,251
+
+Total comprehensive income for the year attributable to:
+Shareholders of the Parent
+Non-controlling interests
+
+1,093,042
+10,555
+
+1,229,948
+13,303
+
+1,103,597
+
+1,243,251
+
+0.04
+
+0.04
+
+Revenue
+Cost of sales
+Gross profit
+Other income
+General and administrative expenses
+Selling and distribution expenses
+Impairment loss on property, plant and
+equipment and intangible assets
+
+22
+23
+24
+6
+
+Operating profit
+Finance income
+Finance costs
+Foreign exchange loss
+
+17.1
+
+Income tax expense
+
+13(a)
+
 Other comprehensive income for the year
 Items that will not be reclassified to profit or loss in subsequent periods
-Defined benefit plan remeasurements, net of tax 16 565 363
+Defined benefit plan remeasurements, net of tax
 Items that may be reclassified to profit or loss
-Exchange differences on translation of foreign operation 3,911 (2,675)
+Exchange differences on translation of foreign operation
 Fair value (loss) gain on derivatives used in effective
-cash flow hedge relationship 30 (9) 6,615
-Other comprehensive income for the year 4,467 4,303
-Total comprehensive income for the year 1,103,597 1,243,251
-Total comprehensive income for the year attributable to:
-Shareholders of the Parent 1,093,042 1,229,948
-Non-controlling interests 10,555 13,303
-1,103,597 1,243,251
+cash flow hedge relationship
+
+16
+
+30
+
+Other comprehensive income for the year
+
 Earnings per share:
-Basic and Diluted (USD) 29 0.04 0.04
+Basic and Diluted (USD)
+
+29
+
 The attached notes 1 to 33 form part of the consolidated financial statements.
+
 8
 
-=== [FS_FY2025.pdf p15] ===
-Borouge PLC
+Borouge PLC
 CONSOLIDATED STATEMENT OF CHANGES IN EQUITY
 For the year ended 31 December 2025
+
+Translation
+reserve
+USD’000
+
+Retained
+earnings
+USD’000
+
 Equity
-Cash flow attributable Non-
-Share Treasury Other Merger Restricted Capital Actuarial hedge Translation Retained to Owners of controlling Total
-capital shares reserve reserve reserve reserve reserve reserve reserve earnings the Company interests equity
-USD’000 USD’000 USD’000 USD’000 USD’000 USD’000 USD’000 USD’000 USD’000 USD’000 USD’000 USD’000 USD’000
-Balance at 1 January 2024 4,809,231 - - (4,446,467) 186,486 12,490 17,993 (12,608) (5,474) 3,970,831 4,532,482 13,354 4,545,836
-Profit for the year - - - - - - - - - 1,225,273 1,225,273 13,675 1,238,948
-Other comprehensive income for the year - - - - - - 327 6,615 (2,267) - 4,675 (372) 4,303
-Total comprehensive income for the year - - - - - - 327 6,615 (2,267) 1,225,273 1,229,948 13,303 1,243,251
-Movement during theyear - - - - 284 - - - - (284) - - -
-Dividend declared (note 15) - - - - - - - - - (1,299,704) (1,299,704) (7,320) (1,307,024)
-Balance at 31 December 2024 4,809,231 - - (4,446,467) 186,770 12,490 18,320 (5,993) (7,741) 3,896,116 4,462,726 19,337 4,482,063
-Balance at 1 January 2025 4,809,231 - - (4,446,467) 186,770 12,490 18,320 (5,993) (7,741) 3,896,116 4,462,726 19,337 4,482,063
-Profit for the year - - - - - - - - - 1,089,178 1,089,178 9,952 1,099,130
-Other comprehensive income for the year - - - - - - 558 (9) 3,315 - 3,864 603 4,467
-Total comprehensive income for the year - - - - - - 558 (9) 3,315 1,089,178 1,093,042 10,555 1,103,597
-Others - - - - (90) - (1,753) - - 1,810 (33) (10) (43)
-Dividends (note12) - - - - - - - - - (1,309,030) (1,309,030) (3,050) (1,312,080)
-Transfer to statutory reserve - - - - 189 - - - - (189) - - -
-Own shares acquired in the period (note31) - (158,223) 368 - - - - - - - (157,855) - (157,855)
-Balance at 31 December 2025 4,809,231 (158,223) 368 (4,446,467) 186,869 12,490 17,125 (6,002) (4,426) 3,677,885 4,088,850 26,832 4,115,682
+attributable
+to Owners of
+the Company
+USD’000
+
+Share
+capital
+USD’000
+
+Treasury
+shares
+USD’000
+
+Other
+reserve
+USD’000
+
+Merger
+reserve
+USD’000
+
+Restricted
+reserve
+USD’000
+
+Capital
+reserve
+USD’000
+
+Actuarial
+reserve
+USD’000
+
+Cash flow
+hedge
+reserve
+USD’000
+
+4,809,231
+
+-
+
+-
+
+(4,446,467)
+
+186,486
+
+12,490
+
+17,993
+
+(12,608)
+
+(5,474)
+
+3,970,831
+
+Profit for the year
+Other comprehensive income for the year
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+327
+
+6,615
+
+(2,267)
+
+Total comprehensive income for the year
+Movement during the year
+Dividend declared (note 15)
+
+-
+
+-
+
+-
+
+-
+
+284
+-
+
+-
+
+327
+-
+
+6,615
+-
+
+Balance at 31 December 2024
+
+4,809,231
+
+-
+
+-
+
+(4,446,467)
+
+186,770
+
+12,490
+
+18,320
+
+Balance at 1 January 2025
+
+4,809,231
+
+-
+
+-
+
+(4,446,467)
+
+186,770
+
+12,490
+
+Profit for the year
+Other comprehensive income for the year
+
+-
+
+-
+
+-
+
+-
+
+-
+
+Total comprehensive income for the year
+
+-
+
+-
+
+-
+
+-
+
+Others
+Dividends (note 12)
+Transfer to statutory reserve
+Own shares acquired in the period (note 31)
+
+-
+
+(158,223)
+
+368
+
+4,809,231
+
+(158,223)
+
+368
+
+Balance at 1 January 2024
+
+Balance at 31 December 2025
+
+Noncontrolling
+interests
+USD’000
+
+Total
+equity
+USD’000
+
+4,532,482
+
+13,354
+
+4,545,836
+
+1,225,273
+-
+
+1,225,273
+4,675
+
+13,675
+(372)
+
+1,238,948
+4,303
+
+(2,267)
+-
+
+1,225,273
+(284)
+(1,299,704)
+
+1,229,948
+(1,299,704)
+
+13,303
+(7,320)
+
+1,243,251
+(1,307,024)
+
+(5,993)
+
+(7,741)
+
+3,896,116
+
+4,462,726
+
+19,337
+
+4,482,063
+
+18,320
+
+(5,993)
+
+(7,741)
+
+3,896,116
+
+4,462,726
+
+19,337
+
+4,482,063
+
+-
+
+558
+
+(9)
+
+3,315
+
+1,089,178
+-
+
+1,089,178
+3,864
+
+9,952
+603
+
+1,099,130
+4,467
+
+-
+
+-
+
+558
+
+(9)
+
+3,315
+
+1,089,178
+
+1,093,042
+
+10,555
+
+1,103,597
+
+-
+
+(90)
+189
+-
+
+-
+
+(1,753)
+-
+
+-
+
+-
+
+1,810
+(1,309,030)
+(189)
+-
+
+(33)
+(1,309,030)
+(157,855)
+
+(10)
+(3,050)
+-
+
+(43)
+(1,312,080)
+(157,855)
+
+(4,446,467)
+
+186,869
+
+12,490
+
+17,125
+
+(6,002)
+
+(4,426)
+
+3,677,885
+
+4,088,850
+
+26,832
+
+4,115,682
+
 The attached notes 1 to 33 form part of the consolidated financial statements.
+
 9
 
-=== [FS_FY2025.pdf p16] ===
-Borouge PLC
+Borouge PLC
 CONSOLIDATED STATEMENT OF CASH FLOWS
 For the year ended 31 December 2025
-2025 2024
-USD’000 USD’000
+2025
+USD’000
+
+2024
+USD’000
+
+1,539,844
+
+1,745,309
+
+6
+6
+8(a)
+7
+9
+10a
+
+449,384
+1,441
+3,609
+23,321
+2,677
+811
+
+524,116
+3,082
+4,786
+23,748
+7,220
+(3,195)
+
+10b
+10c
+
+752
+16
+(13)
+7,484
+(294)
+175,924
+(23,718)
+
+169
+650
+8,310
+396
+206,870
+(28,554)
+
+2,181,238
+
+2,492,907
+
+48,518
+(81,648)
+114,501
+(23,603)
+54,615
+10,166
+11,658
+53
+
+(60,051)
+(29,826)
+(2,787)
+(2,246)
+(45,347)
+6,566
+38,240
+1,212
+
+2,315,498
+(4,927)
+(389,595)
+
+2,398,668
+(8,004)
+(477,512)
+
+1,920,976
+
+1,913,152
+
+(275,687)
+5,551
+13
+(32,546)
+17,939
+
+(160,124)
+6,349
+(7,259)
+23,170
+
+(284,730)
+
+(137,864)
+
+(9,808)
+10,680
+(1,312,080)
+(157,855)
+(161,769)
+
+(8,904)
+(200,000)
+(1,307,024)
+(191,839)
+
+(1,630,832)
+
+(1,707,767)
+
+Changes in translation reserve
+
+2,981
+
+(2,936)
+
+NET INCREASE IN CASH AND CASH EQUIVALENTS
+
+8,395
+
+64,585
+
+418,506
+
+353,921
+
+426,901
+
+418,506
+
 OPERATING ACTIVITIES
-Profit for the year before tax 1,539,844 1,745,309
+Profit for the year before tax
 Adjustments for:
-Depreciation on property, plant and equipment 6 449,384 524,116
-Impairment of property, plant and equipment 6 1,441 3,082
-Depreciation on right-of-use assets 8(a) 3,609 4,786
-Amortisation of intangible assets 7 23,321 23,748
-Provision for slow moving and obsolete inventory 9 2,677 7,220
-Provisionfor (reversal of)expected credit losses on trade receivable 10a 811 (3,195)
+Depreciation on property, plant and equipment
+Impairment of property, plant and equipment
+Depreciation on right-of-use assets
+Amortisation of intangible assets
+Provision for slow moving and obsolete inventory
+Provision for (reversal of) expected credit losses on trade receivable
 Provision for expected credit losses on
-prepayments and other receivable 10b - 169
-Provision for (reversal of) expected credit losseson employee receivables 10c 752 -
-Loss on modification of lease liability 16 650
-Gainon disposal of plant, property and equipment (13) -
-End of service benefits charge 16 7,484 8,310
-Provision for other retirement benefit - -
-Unrealised foreign exchange (gain) loss (294) 396
-Finance costs 175,924 206,870
-Finance income (23,718) (28,554)
-Net cash flow from operating activities before changes in working capital 2,181,238 2,492,907
+prepayments and other receivable
+Provision for (reversal of) expected credit losses on employee receivables
+Loss on modification of lease liability
+Gain on disposal of plant, property and equipment
+End of service benefits charge
+Provision for other retirement benefit
+Unrealised foreign exchange (gain) loss
+Finance costs
+Finance income
+
+16
+
+Net cash flow from operating activities before changes in working capital
 Changes in working capital:
-Decrease / (increase) in trade receivables 48,518 (60,051)
-Increase in amounts due from related parties (81,648) (29,826)
-Decrease / (increase) in inventories 114,501 (2,787)
-Increase in prepayments and other receivables (23,603) (2,246)
-Increase / (decrease) in amounts due to related parties 54,615 (45,347)
-Increase in trade and other payables 10,166 6,566
-Increase in accruals 11,658 38,240
-Increase in contract liabilities 53 1,212
-Cash generated from operating activities 2,315,498 2,398,668
-End of service benefits paid 16 (4,927) (8,004)
-Tax paid (389,595) (477,512)
-Net cash generated from operating activities 1,920,976 1,913,152
+Decrease / (increase) in trade receivables
+Increase in amounts due from related parties
+Decrease / (increase) in inventories
+Increase in prepayments and other receivables
+Increase / (decrease) in amounts due to related parties
+Increase in trade and other payables
+Increase in accruals
+Increase in contract liabilities
+Cash generated from operating activities
+End of service benefits paid
+Tax paid
+
+16
+
+Net cash generated from operating activities
 INVESTING ACTIVITIES
-Payments for purchase of property, plant and equipment 6 (275,687) (160,124)
-Proceeds from lease receivable, net 8(b) 5,551 6,349
-Proceeds from disposal of property, plant and equipment 13 -
-Payments for purchase of intangible assets (32,546) (7,259)
-Interest income received 17,939 23,170
-Net cash used in investing activities (284,730) (137,864)
+Payments for purchase of property, plant and equipment
+Proceeds from lease receivable, net
+Proceeds from disposal of property, plant and equipment
+Payments for purchase of intangible assets
+Interest income received
+
+6
+8(b)
+
+Net cash used in investing activities
 FINANCING ACTIVITIES
-Repayment of lease liabilities (9,808) (8,904)
-Repayments of borrowings 17 - (200,000)
-Proceeds fromreceivablesdiscountingagreement 17 10,680 -
-Payment of dividends 12(b) (1,312,080) (1,307,024)
-Purchase of Treasury shares 31 (157,855) -
-Payment of interest on bank loan (161,769) (191,839)
-Net cash used in financing activities (1,630,832) (1,707,767)
-Changes in translation reserve 2,981 (2,936)
-NET INCREASE IN CASH AND CASH EQUIVALENTS 8,395 64,585
-Cash and cash equivalents at beginning of the year 418,506 353,921
-CASH AND CASH EQUIVALENTS AT END OF THE YEAR 11 426,901 418,506
+Repayment of lease liabilities
+Repayments of borrowings
+Proceeds from receivables discounting agreement
+Payment of dividends
+Purchase of Treasury shares
+Payment of interest on bank loan
+
+17
+17
+12(b)
+31
+
+Net cash used in financing activities
+
+Cash and cash equivalents at beginning of the year
+CASH AND CASH EQUIVALENTS AT END OF THE YEAR
+
+11
+
 The attached notes 1 to 33 form part of the consolidated financial statements.
+
 10
 
-=== [FS_FY2025.pdf p17] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-1 LEGAL STATUS AND PRINCIPAL ACTIVITIES
+
+1
+
+LEGAL STATUS AND PRINCIPAL ACTIVITIES
+
 Borouge PLC (the “Company”) was incorporated on 28 April 2022 as a public company limited by shares, with
 registration number 000007602, pursuant to the Abu Dhabi Global Market Companies Regulations 2020. The
 Company has been established for the purpose of serving as a holding company for Abu Dhabi Polymers Co. Ltd
@@ -340,12 +1146,21 @@ Pursuant to a resolution of the Shareholders dated 10 May 2022, the shareholders
 shares on Abu Dhabi Securities Exchange whereby 10% of its shares were offered in an Initial Public Offering (“IPO”).
 As of the reporting date, ADNOC held 54% and BMEH held 36% of the issued share capital of the Group while the
 remaining 10% is held by the general public.
-2 BASIS OF PREPARATION
-2.1 Statement of compliance
+2
+
+BASIS OF PREPARATION
+
+2.1
+
+Statement of compliance
+
 The consolidated financial statements have been prepared in accordance with IFRS Accounting Standards (“IFRSs”)
 as issued by the International Accounting Standards Board (IASB) and the applicable provisions of the Companies
 Regulations 2020 of Abu Dhabi Global Market.
-2.2 Basis of measurement
+2.2
+
+Basis of measurement
+
 These consolidated financial statements have been prepared on the historical cost basis except for derivative financial
 instruments which are carried at fair value. Historical cost is generally based on the fair value of the consideration
 given in exchange for goods or services.
@@ -354,16 +1169,26 @@ between market participants at the measurement date, regardless of whether that 
 estimated using another valuation technique.
 The fair value measurement is based on the presumption that the transaction to sell the asset or transfer the liability
 takes place either:
- In the principal market for the asset or liability; or
- In the absence of a principal market, in the most advantageous market for the asset or liability.
+
+
+
+In the principal market for the asset or liability; or
+In the absence of a principal market, in the most advantageous market for the asset or liability.
+
 11
 
-=== [FS_FY2025.pdf p18] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-2 BASIS OF PREPARATION continued
-2.2 Basis of measurement continued
+
+2
+
+BASIS OF PREPARATION continued
+
+2.2
+
+Basis of measurement continued
+
 The principal or the most advantageous market must be accessible to by the Group.
 The fair value of an asset or a liability is measured using the assumptions that market participants would use when
 pricing the asset or liability, assuming that market participants act in their economic best interest.
@@ -374,15 +1199,28 @@ determined on such a basis.
 For financial reporting purposes, fair value measurements are categorised into level 1, 2 or 3 based on the degree to
 which the inputs to the fair value measurements are observable and the significance of the inputs to the fair value
 measurement in its entirety, which is described as follows:
- Level 1 inputs are quoted prices (unadjusted) in active markets for identical assets or liabilities that the entity
+
+
+
+
+Level 1 inputs are quoted prices (unadjusted) in active markets for identical assets or liabilities that the entity
 can access at the measurement date;
- Level 2 inputs are inputs, other than quoted prices included within level 1, that are observable for the asset or
+Level 2 inputs are inputs, other than quoted prices included within level 1, that are observable for the asset or
 liability, either directly (i.e. as prices) or indirectly (i.e. derived from prices); and
- Level 3 inputs are unobservable inputs for the asset or liability that are derived from valuation techniques.
-2.3 Functional and presentation currency
+Level 3 inputs are unobservable inputs for the asset or liability that are derived from valuation techniques.
+
+2.3
+
+Functional and presentation currency
+
+
+
 These consolidated financial statements are presented in US Dollars (“USD”), which is the Company’s functional
 currency. All amounts have been rounded to the nearest thousand, unless otherwise indicated.
-2.4 Use of judgements and estimates
+2.4
+
+Use of judgements and estimates
+
 The preparation of consolidated financial statements in conformity with IFRSs requires management to make
 judgements, estimates and assumptions that affect the application of accounting policies and the reported amounts of
 assets, liabilities, income and expenses. The judgments, estimates and associated assumptions are based on historical
@@ -396,20 +1234,32 @@ recognised in the period in which the estimates are revised and in any future pe
 In particular, information about significant areas of estimation, uncertainty and critical judgements in applying
 accounting policies that have the most significant effect on the amounts recognised in these consolidated financial
 statements, is included in note 5.
-2.5 New and amended standards that are effective for the current year
+2.5
+
+New and amended standards that are effective for the current year
+
 In the current year, the Group has applied a number of amendments to IFRS Accounting Standards issued by the
 International Accounting Standards Board (IASB) that are mandatorily effective for an accounting period that begins
 on or after 1 January 2025. Their adoption has not had any material impact on the disclosures or on the amounts
 reported in these consolidated financial statements.
- Lack of exchangeability - Amendments to IAS 21
+
+
+Lack of exchangeability - Amendments to IAS 21
+
 12
 
-=== [FS_FY2025.pdf p19] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-2 BASIS OF PREPARATION continued
-2.5 New and amended standards that are effective for the current year continued
+
+2
+
+BASIS OF PREPARATION continued
+
+2.5
+
+New and amended standards that are effective for the current year continued
+
 Lack of exchangeability - Amendments to IAS 21
 The amendments to IAS 21 The Effects of Changes in Foreign Exchange Rates specify how an entity should assess
 whether a currency is exchangeable and how it should determine a spot exchange rate when exchangeability is lacking.
@@ -419,7 +1269,10 @@ performance, financial position and cash flows.
 The amendments are effective for annual reporting periods beginning on or after 1 January 2025. When applying the
 amendments, an entity cannot restate comparative information.
 The amendments did not have a material impact on the Group’s financial statements.
-2.6 Climate related matters
+2.6
+
+Climate related matters
+
 The Group considers climate-related matters in estimates and assumptions, where appropriate. This assessment
 includes a wide range of possible impacts on the Group due to both physical and transition risks. Even though the
 Group believes its business model and products will still be viable after the transition to a low-carbon economy,
@@ -430,16 +1283,29 @@ legislation.
 The Group’s Borouge 2030 (B2030) Strategy aims to proactively steer the business ambitions in response to the
 changing business environment. The B2030 Strategy works to ensure the continued growth of the Group through the
 pursuit of excellence and create a Borouge identity.
-2.7 New and amended standards issued but not yet effective
+2.7
+
+New and amended standards issued but not yet effective
+
 The new and amended standards and interpretations that are issued, but not yet effective, up to the date of issuance of
 the Group’s consolidated financial statements are disclosed below. The Group intends to adopt these new and amended
 standards and interpretations, if applicable, when they become effective.
- Classification and Measurement of Financial Instruments - Amendments to IFRS 9 and IFRS 7
- IFRS 18 – Presentation and Disclosure in Financial Statements
- IFRS 19 - Subsidiaries without Public Accountability: Disclosures
- Annual Improvements to IFRS Accounting Standards—Volume 11
- Contracts Referencing Nature-dependent Electricity – Amendments to IFRS 9 and IFRS 7
-2.8 Going concern
+
+
+
+
+
+
+Classification and Measurement of Financial Instruments - Amendments to IFRS 9 and IFRS 7
+IFRS 18 – Presentation and Disclosure in Financial Statements
+IFRS 19 - Subsidiaries without Public Accountability: Disclosures
+Annual Improvements to IFRS Accounting Standards—Volume 11
+Contracts Referencing Nature-dependent Electricity – Amendments to IFRS 9 and IFRS 7
+
+2.8
+
+Going concern
+
 The directors have, at the time of approving the consolidated financial statements, reasonable expectation that the
 Group will continue in operational existence for the foreseeable future as its subsidiaries have a history of profitable
 operations and the Group has ready access to financial resources. Thus, they continue to adopt the going concern basis
@@ -447,14 +1313,21 @@ of accounting in preparing the consolidated financial statements.
 As at 31 December 2025, the Group’s current liabilities exceeded its current assets by approximately USD 1.876
 billion, primarily due to the classification of a loan maturing on 31 December 2026 as a current liability at the reporting
 date.
+
 13
 
-=== [FS_FY2025.pdf p20] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-2 BASIS OF PREPARATION continued
-2.8 Going concern continued
+
+2
+
+BASIS OF PREPARATION continued
+
+2.8
+
+Going concern continued
+
 Further to the restructuring explained in note 1, on 4 March 2025, the Group’s major shareholders—ADNOC and
 OMV – announced they had entered into a binding agreement to form a new jointly controlled entity. This planned
 transaction involves combining the Group with Borealis under a newly established joint venture, expected to be named
@@ -467,40 +1340,59 @@ profile of existing borrowings, the availability of refinancing options, and the
 shareholders. Management concluded that the Group will have access to sufficient financial resources to meet its
 obligations as they fall due, and accordingly the consolidated financial statements have been prepared on a going
 concern basis.
-3 MATERIAL ACCOUNTING POLICY INFORMATION
+
+3
+
+MATERIAL ACCOUNTING POLICY INFORMATION
+
 Basis of consolidation
 The consolidated financial statements comprise the financial statements of the Company and entities controlled by the
 Company (its subsidiaries). Control is achieved when the Group is exposed, or has rights, to variable returns from its
 involvement with the investee and has the ability to affect those returns through its power over the investee.
 Specifically, the Group controls an investee if, and only if, the Group has:
- Power over the investee (i.e., existing rights that give it the current ability to direct the relevant activities of
+
+
+
+
+Power over the investee (i.e., existing rights that give it the current ability to direct the relevant activities of
 the investee)
- Exposure, or rights, to variable returns from its involvement with the investee
- The ability to use its power over the investee to affect its returns.
+Exposure, or rights, to variable returns from its involvement with the investee
+The ability to use its power over the investee to affect its returns.
+
 Generally, there is a presumption that a majority of voting rights results in control. When the Group has less than a
 majority of the voting or similar rights of an investee, it has power over the investee when the voting rights are
 sufficient to give it the practical ability to direct the relevant activities of the investee unilaterally. The Group considers
 all relevant facts and circumstances in assessing whether or not the Group's voting rights in an investee are sufficient
 to give it power, including:
- the size of the Group's holding of voting rights relative to the size and dispersion of holdings of the other vote
+
+
+
+
+
+the size of the Group's holding of voting rights relative to the size and dispersion of holdings of the other vote
 holders;
- potential voting rights held by the Group, other vote holders or other parties;
- rights arising from other contractual arrangements; and
- any additional facts and circumstances that indicate that the Group has, or does not have, the current ability
+potential voting rights held by the Group, other vote holders or other parties;
+rights arising from other contractual arrangements; and
+any additional facts and circumstances that indicate that the Group has, or does not have, the current ability
 to direct the relevant activities at the time that decisions need to be made, including voting patterns at previous
 shareholders’ meetings.
+
 The Group reassesses whether or not it controls an investee if facts and circumstances indicate that there are changes
 to one or more of the three elements of control. Consolidation of a subsidiary begins when the Group obtains control
 over the subsidiary and ceases when the Group loses control of the subsidiary. Assets, liabilities, income and expenses
 of a subsidiary acquired or disposed of during the period are included in consolidated financial statements from the
 date when the Group gains control until the date when the Group ceases to control the subsidiary.
+
 14
 
-=== [FS_FY2025.pdf p21] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-3 MATERIAL ACCOUNTING POLICY INFORMATION continued
+
+3
+
+MATERIAL ACCOUNTING POLICY INFORMATION continued
+
 Basis of consolidation continued
 Profit or loss and each component of other comprehensive income (OCI) are attributed to equity holders of the
 Company and to the non-controlling interests, even if this results in the non-controlling interest having a deficit
@@ -510,10 +1402,8 @@ cash flows relating to transactions between members of the Group are eliminated 
 Non-controlling interests in subsidiaries are identified separately from the Group’s equity therein. Those interests of
 non-controlling shareholders that are present ownership interests entitling their holders to a proportionate share of net
 assets upon liquidation may initially be measured at fair value or at the non-controlling interests’ proportionate share
-of the fair value of the acquiree’s identifiable net assets. The choice of measurement is made on an acquisition-by-
-acquisition basis. Other non-controlling interests are initially measured at fair value. Subsequent to acquisition, the
-carrying amount of non-controlling interests is the amount of those interests at initial recognition plus the non-
-controlling interests’ share of subsequent changes in equity.
+of the fair value of the acquiree’s identifiable net assets. The choice of measurement is made on an acquisition-byacquisition basis. Other non-controlling interests are initially measured at fair value. Subsequent to acquisition, the
+carrying amount of non-controlling interests is the amount of those interests at initial recognition plus the noncontrolling interests’ share of subsequent changes in equity.
 A change in the ownership interest of a subsidiary without a loss of control, is accounted for as equity transaction. The
 carrying amount of the Group’s interests and the non-controlling interests are adjusted to reflect the changes in their
 relative interests in the subsidiaries. Any difference between the amount by which the non-controlling interest are
@@ -531,8 +1421,7 @@ recognition of an investment in an associate or joint venture.
 Business combinations
 Business combinations are accounted for using the acquisition method. The cost of an acquisition is measured as the
 aggregate of the consideration transferred, which is measured at acquisition date fair value, and the amount of any
-non-controlling interests in the acquiree. For each business combination, the Group elects whether to measure the non-
-controlling interests in the acquiree at fair value or at the proportionate share of the acquiree’s identifiable net assets.
+non-controlling interests in the acquiree. For each business combination, the Group elects whether to measure the noncontrolling interests in the acquiree at fair value or at the proportionate share of the acquiree’s identifiable net assets.
 Acquisition-related costs are expensed as incurred and included in general and administrative expenses.
 Transactions under common control
 A business combination involving entities or business under common control is a business combination in which all
@@ -543,13 +1432,17 @@ are accounted for using the pooling of interest method without restatement of co
 liabilities acquired are recognised at the carrying amounts recognised previously in the books of the transferor entity.
 The components of equity of the acquired entities are added to the same components within Group equity. Any
 difference between the consideration paid and capital of the acquiree is recognised directly in equity.
+
 15
 
-=== [FS_FY2025.pdf p22] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-3 MATERIAL ACCOUNTING POLICY INFORMATION continued
+
+3
+
+MATERIAL ACCOUNTING POLICY INFORMATION continued
+
 Financial instruments
 Financial assets and financial liabilities are recognised in the Group’s consolidated statement of financial position when
 the Group becomes a party to the contractual provisions of the instrument.
@@ -586,8 +1479,7 @@ conditions and an assessment of both the current as well as the forecast directi
 including time value of money where appropriate.
 For all other financial instruments, the Group recognises lifetime ECL when there has been a significant increase in
 credit risk since initial recognition. However, if the credit risk on the financial instrument has not increased significantly
-since initial recognition, the Group measures the loss allowance for that financial instrument at an amount equal to 12-
-month ECL.
+since initial recognition, the Group measures the loss allowance for that financial instrument at an amount equal to 12month ECL.
 The assessment of whether lifetime ECL should be recognised is based on significant increases in the likelihood or risk
 of a default occurring since initial recognition instead of on evidence of a financial asset being credit-impaired at the
 reporting date.
@@ -596,14 +1488,20 @@ life of a financial instrument. In contrast, 12-month ECL represents the portion
 result from default events on a financial instrument that are possible within 12 months after the reporting date.
 16
 
-=== [FS_FY2025.pdf p23] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-3 MATERIAL ACCOUNTING POLICY INFORMATIONcontinued
+
+3
+
+MATERIAL ACCOUNTING POLICY INFORMATION continued
+
 Financial instruments continued
 Financial assets continued
-(i) Significant increase in credit risk
+(i)
+
+Significant increase in credit risk
+
 In assessing whether the credit risk on a financial instrument has increased significantly since initial recognition, the
 Group compares the risk of a default occurring on the financial instrument as at the reporting date with the risk of a
 default occurring on the financial instrument as at the date of initial recognition. In making this assessment, the Group
@@ -619,38 +1517,63 @@ increase in credit risk before the amount becomes past due.
 The Group assumes that the credit risk on a financial instrument has not increased significantly since initial recognition
 if the financial instrument is determined to have low credit risk at the reporting date. A financial instrument is
 determined to have low credit risk if:
-a) the financial instrument has a low risk of default;
-b) the borrower has a strong capacity to meet its contractual cash flow obligations in the near term; and
-c) adverse changes in economic and business conditions in the longer term may, but will not necessarily, reduce
+a)
+b)
+c)
+
+the financial instrument has a low risk of default;
+the borrower has a strong capacity to meet its contractual cash flow obligations in the near term; and
+adverse changes in economic and business conditions in the longer term may, but will not necessarily, reduce
 the ability of the borrower to fulfil its contractual cash flow obligations.
-(ii) Definition of default
+
+(ii)
+
+Definition of default
+
 The Group employs models to analyse the data collected and generate estimates of probability of default (“PD”) of
 exposures with the passage of time. This analysis includes the identification for any changes in default rates and
 changes in key macro-economic factors across various geographies of the Group.
-(iii) Credit-impaired financial assets
+(iii)
+
+Credit-impaired financial assets
+
 A financial asset is credit-impaired when one or more events that have a detrimental impact on the estimated future
 cash flows of that financial asset have occurred. Evidence that a financial asset is credit-impaired includes observable
 data about the following events:
-a) significant financial difficulty of the issuer or the borrower;
-b) a breach of contract, such as a default or past due event (see (ii) above);
-c) the lender(s) of the borrower, for economic or contractual reasons relating to the borrower’s financial
+a)
+b)
+c)
+d)
+e)
+
+significant financial difficulty of the issuer or the borrower;
+a breach of contract, such as a default or past due event (see (ii) above);
+the lender(s) of the borrower, for economic or contractual reasons relating to the borrower’s financial
 difficulty, having granted to the borrower a concession(s) that the lender(s) would not otherwise consider;
-d) it is becoming probable that the borrower will enter bankruptcy or other financial reorganisation; or
-e) the disappearance of an active market for that financial asset because of financial difficulties.
+it is becoming probable that the borrower will enter bankruptcy or other financial reorganisation; or
+the disappearance of an active market for that financial asset because of financial difficulties.
+
 Write-off policy
 The Group writes off a financial asset when there is information indicating that the counterparty is in severe financial
 difficulty and there is no realistic prospect of recovery.
+
 17
 
-=== [FS_FY2025.pdf p24] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-3 MATERIAL ACCOUNTING POLICY INFORMATIONcontinued
+
+3
+
+MATERIAL ACCOUNTING POLICY INFORMATION continued
+
 Financial instruments continued
 Financial assets continued
-Impairment of financial assetscontinued
-(iv) Measurement and recognition of expected credit losses
+Impairment of financial assets continued
+(iv)
+
+Measurement and recognition of expected credit losses
+
 The measurement of expected credit losses is a function of the probability of default, loss given default (i.e. the
 magnitude of the loss if there is a default) and the exposure at default. The assessment of the probability of default and
 loss given default is based on historical data adjusted by forward-looking information as described above. As for the
@@ -684,13 +1607,17 @@ cumulative gain or loss previously accumulated in the investment’s revaluation
 In contrast, on derecognition of an investment in equity instrument which the Group has elected on initial recognition
 to measure at FVTOCI, the cumulative gain or loss previously accumulated in the investments’ revaluation reserve is
 not reclassified to profit or loss, but is transferred to retained earnings.
+
 18
 
-=== [FS_FY2025.pdf p25] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-3 MATERIAL ACCOUNTING POLICY INFORMATIONcontinued
+
+3
+
+MATERIAL ACCOUNTING POLICY INFORMATION continued
+
 Financial instruments continued
 Financial liabilities
 Financial liabilities are classified, at initial recognition, as financial liabilities at fair value through profit or loss, loans
@@ -731,13 +1658,17 @@ consideration paid and payable is recognised in profit or loss.
 Cash and cash equivalents
 Cash and cash equivalents includes cash on hand, short-term deposits held with banks, other short-term highly liquid
 investments with original maturities of three months or less.
+
 19
 
-=== [FS_FY2025.pdf p26] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-3 MATERIAL ACCOUNTING POLICY INFORMATIONcontinued
+
+3
+
+MATERIAL ACCOUNTING POLICY INFORMATION continued
+
 Revenue recognition
 Application of IFRS 15 Revenue from Contracts with Customers
 IFRS 15 establishes a single comprehensive model for entities to use in accounting for revenue arising from contracts
@@ -745,11 +1676,18 @@ with customers. The core principle of IFRS 15 is that an entity should recognise
 promised goods or services to customers in an amount that reflects the consideration to which the entity expects to be
 entitled in exchange for those goods or services. Specifically, the standard introduces a 5-step approach to revenue
 recognition:
- Step 1: Identify the contract(s) with a customer.
- Step 2: Identify the performance obligations in the contract.
- Step 3: Determine the transaction price.
- Step 4: Allocate the transaction price to the performance obligations in the contract.
- Step 5: Recognise revenue when (or as) the entity satisfies a performance obligation.
+
+
+
+
+
+
+Step 1: Identify the contract(s) with a customer.
+Step 2: Identify the performance obligations in the contract.
+Step 3: Determine the transaction price.
+Step 4: Allocate the transaction price to the performance obligations in the contract.
+Step 5: Recognise revenue when (or as) the entity satisfies a performance obligation.
+
 Under IFRS 15, an entity recognises revenue when (or as) a performance obligation is satisfied, i.e. when ‘control’ of
 the goods or services underlying the particular performance obligation is transferred to the customer.
 The Group is in the business of sale of high-density Polyethylene, linear low-density Polyethylene, Polypropylene,
@@ -775,38 +1713,56 @@ satisfied over time, revenue is recognised based on the percentage of completion
 complete satisfaction of that PO.
 Revenue represents the invoiced value of goods delivered to the customer and is recognised when all criteria for
 acceptance have been satisfied.
+
 20
 
-=== [FS_FY2025.pdf p27] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-3 MATERIAL ACCOUNTING POLICY INFORMATIONcontinued
-Revenue recognitioncontinued
-Application of IFRS 15 Revenue from Contracts with Customerscontinued
+
+3
+
+MATERIAL ACCOUNTING POLICY INFORMATION continued
+
+Revenue recognition continued
+Application of IFRS 15 Revenue from Contracts with Customers continued
 The following table provides information about the nature and timing of the satisfaction of performance obligations
 in revenue contracts with customers, including significant payment terms, and the related revenue recognition policies:
-Nature of goods or services The Group generates revenue from sales of polyolefin and compounded products.
-When revenue is recognised Revenue consideration is allocated to the respective performance obligations, i.e. sales of
+Nature of goods or services
+
+The Group generates revenue from sales of polyolefin and compounded products.
+
+When revenue is recognised
+
+Revenue consideration is allocated to the respective performance obligations, i.e. sales of
 goods and the insurance and freight service, based on their stand-alone selling price. For
 sales transactions with delivery terms CIF and CFR (i.e. Cost, Insurance and Freight and
 Cost and Freight), the Company has additional obligation to arrange for the insurance and
 freight services subsequent to the transfer of the goods to the customer.
 Management assessed the Company’s performance obligations are as follows:
-A. Sale of goods – revenue is recognised at a point of time when control of goods
+A.
+
+Sale of goods – revenue is recognised at a point of time when control of goods
 are transferred to the customers based on trade terms and all criteria for
 acceptance have been satisfied.
+
 The total transaction price is allocated to a single performance obligation as observable
 stand-alone selling prices for freight and insurance are not available. Revenue is therefore
 recognised at a point in time, upon satisfaction of the combined performance obligation
 when control transfers at the delivery destination.
-Significant payment terms Invoices are issued upon goods delivery. The Group provides credit terms of between 30 to
+Significant payment terms
+
+Invoices are issued upon goods delivery. The Group provides credit terms of between 30 to
 90 days to their customers which are common market credit terms. In cases where, the Group
 received cash paid in advance of goods delivered and to the extent that they remain
 undelivered as at reporting date, the Group defers recognition of revenue and recognise such
 amounts in the consolidated statement of financial position as “Contract liabilities”.
-Obligations for returns and Sales returns
-refunds, if any Customers have the right to return the goods to the Group within 14 days if the products are
+
+Obligations for returns and
+refunds, if any
+
+Sales returns
+Customers have the right to return the goods to the Group within 14 days if the products are
 found defective or do not conform with requirements. For contracts that permit the customer
 to return an item, revenue is recognised to the extent that revenue recognised will not be
 reversed.
@@ -823,16 +1779,21 @@ when the probability of paying the sales rebates to the customers is high. The G
 its estimate of expected rebate at each reporting date based on the sales to customers,
 contingent on a future event occurring or not occurring, and recognise the rebate as a
 reduction of the revenue.
+
 Other income
 Other income is recognised when it is probable that the economic benefit will flow to the Group and the amount of
 income can be measured reliably.
+
 21
 
-=== [FS_FY2025.pdf p28] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-3 MATERIAL ACCOUNTING POLICY INFORMATIONcontinued
+
+3
+
+MATERIAL ACCOUNTING POLICY INFORMATION continued
+
 Property, plant and equipment
 Property, plant and equipment are stated at cost less accumulated depreciation and accumulated impairment losses, if
 any. Historical cost includes expenditure that is directly attributable to the acquisition of the assets.
@@ -855,14 +1816,19 @@ year end and, if expectations differ from previous estimates, the change(s) shal
 accounting estimate in accordance with IAS 8 Basis of Preparation of Financial Statements.
 The useful life of an asset is primarily determined by the extent to which its economic benefits are expected to be
 consumed through use. However, some factors contribute to the reduction of these benefits, including:
- Expected Usage: Based on the asset’s anticipated capacity or output.
- Physical Deterioration: Influenced by operational intensity, maintenance practices, and conditions during idle
+
+
+
+
+Expected Usage: Based on the asset’s anticipated capacity or output.
+Physical Deterioration: Influenced by operational intensity, maintenance practices, and conditions during idle
 periods.
- Obsolescence: Resulting from technological advancements, changes in production methods, or shifts in
+Obsolescence: Resulting from technological advancements, changes in production methods, or shifts in
 market demand, which may diminish the asset’s value or utility.
+
 Change in estimate – useful life of property, plant and equipment:
 In line with the Group policy, during the year ended 31 December 2025, the Group has reassessed the estimated useful
-life of some of its Plant, Machinery and related Buildings assets.The overview reflects the updated expectation about
+life of some of its Plant, Machinery and related Buildings assets. The overview reflects the updated expectation about
 the pattern of economic benefits and maintenance practices resulting in a decrease in depreciation charge and increase
 in profit before tax for the year of USD 90,335 thousand. The Group revisits its estimates annually as per its policy,
 and in light of the comprehensive asset lifetime extension initiated by technical steering committee, the estimated useful
@@ -873,19 +1839,29 @@ profit before tax) by approximately USD 179,198 thousand in 2026. The effect on 
 because it is impracticable to estimate this reliably over the remaining useful lives.
 The estimated useful lives of the Group’s Property, Plant and Equipment is applied prospectively, in accordance with
 IAS 8, from 1 July 2025, as follows:
-Buildings 15 – 40 years
-Plant and machinery 8 – 35 years
+Buildings
+Plant and machinery
+
+15 – 40 years
+8 – 35 years
+
 The estimated useful lives of the Group’s remaining Property, Plant and Equipment where there is no change in useful
 life is as follows:
-Motor vehicles 4 – 10 years
-Furniture, fixtures and equipment 3 – 4 years
+Motor vehicles
+Furniture, fixtures and equipment
+
+4 – 10 years
+3 – 4 years
 22
 
-=== [FS_FY2025.pdf p29] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-3 MATERIAL ACCOUNTING POLICY INFORMATIONcontinued
+
+3
+
+MATERIAL ACCOUNTING POLICY INFORMATION continued
+
 Borrowing costs
 Borrowing costs directly attributable to the acquisition, construction or production of qualifying assets, which are
 assets that necessarily take a substantial period of time to get ready for their intended use or sale, are added to the cost
@@ -896,10 +1872,16 @@ profit or loss in the period in which they are incurred.
 Intangible assets
 Intangible assets acquired are recorded at cost and are amortised on a straight-line basis over their estimated useful
 lives as follows:
-Computer software 3 – 5 years
-Cracker rights 10 years
-License costs 10 years
-Others 4 years
+Computer software
+Cracker rights
+License costs
+Others
+
+3 – 5 years
+10 years
+10 years
+4 years
+
 License costs represent irrevocable exclusive and non-exclusive rights and licenses granted by Borealis to the Group
 for use of Borealis’s proprietary catalyst, process design, patent rights and technical information in order to design,
 construct, maintain and operate the Ruwais plant, as well as use and sell Polyethylene (“PE”) resins manufactured in
@@ -930,39 +1912,52 @@ Where an impairment loss subsequently reverses, the carrying amount of the asset
 to the revised estimate of its recoverable amount, but so that the increased carrying amount does not exceed the
 carrying amount that would have been determined had no impairment loss been recognised for the asset (or cash
 generating unit) in prior years. A reversal of an impairment loss is recognised immediately in profit or loss.
+
 23
 
-=== [FS_FY2025.pdf p30] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-3 MATERIAL ACCOUNTING POLICY INFORMATION continued
+
+3
+
+MATERIAL ACCOUNTING POLICY INFORMATION continued
+
 Leases
 The Group as a lessee
 At commencement or on modification of a contract that contains a lease component, the Group allocates the
 consideration in the contract to each lease component on the basis of its relative stand-alone prices. However, for the
-leases of property, the Group has elected not to separate non- lease components and account for the lease and non-
-lease components as a single lease component.
+leases of property, the Group has elected not to separate non- lease components and account for the lease and nonlease components as a single lease component.
 Leases are recognised as a right-of-use asset and a corresponding liability at the date at which the leased asset is
 available for use by the Group. Each lease payment is allocated between the liability and finance cost. The finance
 cost is charged to profit or loss over the lease period so as to produce a constant periodic rate of interest on the
 remaining balance of the liability for each period. The right-of-use asset is depreciated over the earlier of the asset’s
 useful life and the lease term on a straight-line basis. The estimated useful lives of the assets is as follows:
-Land lease 35 – 50 years
-Transportation, storage, and terminals 4 years
-Buildings and infrastructure 3 to 9 years
-Fixture, fittings, and office equipment 3 years
+Land lease
+Transportation, storage, and terminals
+Buildings and infrastructure
+Fixture, fittings, and office equipment
+
+35 – 50 years
+4 years
+3 to 9 years
+3 years
+
 Assets and liabilities arising from a lease are initially measured on a present value basis. Lease liabilities include the
 net present value of fixed payments (including in-substance fixed payments), less any lease incentives receivable.
 The lease payments are discounted using the interest rate implicit in the lease. If that rate cannot be determined, the
 lessee’s incremental borrowing rate is used, being the rate that the lessee would have to pay to borrow the funds
 necessary to obtain an asset of similar value in a similar economic environment with similar terms and conditions.
 Right-of-use assets are measured at cost comprising the following:
- the amount of the initial measurement of lease liability
- any lease payments made at or before the commencement date less any lease incentives received; and
- restoration costs.
-The Group has elected not to recognise right-of-use assets and lease liabilities for leases of low- value assets and short-
-term leases. The Group recognises the lease payments associated with these leases as an expense on a straight-line
+
+
+
+
+the amount of the initial measurement of lease liability
+any lease payments made at or before the commencement date less any lease incentives received; and
+restoration costs.
+
+The Group has elected not to recognise right-of-use assets and lease liabilities for leases of low- value assets and shortterm leases. The Group recognises the lease payments associated with these leases as an expense on a straight-line
 basis over the lease term.
 The Group as a lessor
 When the Group acts as a lessor, it determines at lease inception whether each lease is a finance lease or an operating
@@ -977,23 +1972,33 @@ with reference to the underlying asset. If a head lease is a short-term lease to
 described above, then it classifies the sub-lease as an operating lease.
 Investment in sub-lease is recognised in the consolidated financial statements to reflect the sub-lease of a plot of land
 to a related party, Borouge 4.
+
 24
 
-=== [FS_FY2025.pdf p31] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-3 MATERIAL ACCOUNTING POLICY INFORMATIONcontinued
+
+3
+
+MATERIAL ACCOUNTING POLICY INFORMATION continued
+
 Interest income
 Interest income is accrued on a time basis, by reference to the principal outstanding and at the effective interest rate
 applicable.
 Taxation
 Value added tax (VAT)
 Expenses and assets are recognised net of the amount of VAT, except:
- When VAT incurred on a purchase of assets or services is not recoverable from the taxation authority, in
+
+
+When VAT incurred on a purchase of assets or services is not recoverable from the taxation authority, in
 which case, VAT is recognised as part of the cost of acquisition of the asset or as part of the expense item,
 as applicable
- When receivables and payables are stated with the amount of VAT included
+
+
+
+When receivables and payables are stated with the amount of VAT included
+
 The net amount of VAT recoverable from, or payable to, the taxation authority is included as part of receivables or
 payables in the consolidated statement of financial position.
 Current income tax
@@ -1021,21 +2026,29 @@ asset is realised. Deferred tax is charged or credited in the consolidated state
 comprehensive income.
 Deferred tax assets and liabilities are offset for financial reporting purposes when they relate to income taxes levied
 by the same taxation authorities.
+
 25
 
-=== [FS_FY2025.pdf p32] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-3 MATERIAL ACCOUNTING POLICY INFORMATIONcontinued
-Taxationcontinued
+
+3
+
+MATERIAL ACCOUNTING POLICY INFORMATION continued
+
+Taxation continued
 International Tax Reform—Pillar Two Model Rules – Amendments to IAS 12
 The amendments to IAS 12 have been introduced in response to the OECD’s BEPS Pillar Two rules and include:
- A mandatory temporary exception to the recognition and disclosure of deferred taxes arising from the
+
+
+
+A mandatory temporary exception to the recognition and disclosure of deferred taxes arising from the
 jurisdictional implementation of the Pillar Two model rules; and
- Disclosure requirements for affected entities to help users of the financial statements better understand an
+Disclosure requirements for affected entities to help users of the financial statements better understand an
 entity’s exposure to Pillar Two income taxes arising from that legislation, particularly before its effective
 date.
+
 The mandatory temporary exception – the use of which is required to be disclosed – applies immediately. The
 remaining disclosure requirements apply for annual reporting periods beginning on or after 1 January 2023, but not
 for any interim periods ending on or before 31 December 2024.
@@ -1046,8 +2059,7 @@ Pillar Two income taxes. The assessment of the potential exposure to Pillar Two 
 recent tax filings, country-by-country reporting and financial statements for the constituent entities in the Group. Based
 on the assessment, the Pillar Two effective tax rates in most of the jurisdictions in which the Group operates are above
 15%. However, there are a limited jurisdictions where the legislation has not been enacted or substantively enacted.
-The Group is continuing to assess the exposure to the Pillar Two legislation in enacted jurisdictions and creates top-
-tax tax provisions as necessary.
+The Group is continuing to assess the exposure to the Pillar Two legislation in enacted jurisdictions and creates toptax tax provisions as necessary.
 IAS 12 is amended to add the exception to recognising and disclosing information about deferred tax assets and
 liabilities that are related to tax law enacted or substantively enacted to implement the Pillar Two Model Rules
 published by the Organisation for Economic Co-operating and Development (the “Pillar Two legislation”). It is
@@ -1069,19 +2081,29 @@ period beginning from 1 January 2025.
 As per IAS12 (Income taxes), any change in tax laws should be recognised in the consolidated financial statements in
 the period in which the enactment occurs (i.e., FY24) and therefore the tax implications (current and/or deferred) were
 assessed and recorded accordingly (Note 13).
+
 26
 
-=== [FS_FY2025.pdf p33] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-3 MATERIAL ACCOUNTING POLICY INFORMATIONcontinued
+
+3
+
+MATERIAL ACCOUNTING POLICY INFORMATION continued
+
 Employees’ benefit
-(i) Short term obligation
+(i)
+
+Short term obligation
+
 An accrual is made for the estimated liability for employees' entitlement to annual leave and leave passage as a result
 of services rendered by eligible employees up to the end of the reporting period. The accrual relating to annual leave
 and leave passage is disclosed as a current liability in the consolidated statement of financial position.
-(ii) Employees’ end of service benefits (EOSB)
+(ii)
+
+Employees’ end of service benefits (EOSB)
+
 The liability recognised in the consolidated statement of financial position in respect of the defined end of service
 benefit plan is the present value of the projected defined benefit obligation (“DBO”) at the end of the reporting period.
 The provision for EOSB is calculated by a qualified actuary using the projected unit credit method whilst considering
@@ -1100,10 +2122,16 @@ of profit or loss.
 The net interest cost is calculated by applying the discount rate to the net balance of the defined EOSB obligation. The
 Group recognises the following changes in the net defined benefit obligation in the consolidated statement of profit
 or loss within personnel costs:
- Service costs comprising current service costs, past-service costs, gains and losses on curtailments and non-
-routine settlements.
- Net interest expense or income
-(iii) Pension contributions
+
+
+
+Service costs comprising current service costs, past-service costs, gains and losses on curtailments and nonroutine settlements.
+Net interest expense or income
+
+(iii)
+
+Pension contributions
+
 With respect to its UAE national employees, the Group makes pension contributions to the Abu Dhabi Retirement
 Pensions and Benefits Funds in accordance with the Abu Dhabi Retirement Pensions and Benefits Fund's regulations.
 With respect to its GCC national employees, the Group makes pension contributions to the pension funds or agencies
@@ -1116,13 +2144,17 @@ Foreign currency transactions are translated at the rates prevailing on the date
 reporting period, monetary items denominated in foreign currencies are retranslated at the rates prevailing at that date.
 Non-monetary items carried at fair value that are denominated in foreign currencies are retranslated at the rates
 prevailing at the date when the fair value was determined.
+
 27
 
-=== [FS_FY2025.pdf p34] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-3 MATERIAL ACCOUNTING POLICY INFORMATIONcontinued
+
+3
+
+MATERIAL ACCOUNTING POLICY INFORMATION continued
+
 Foreign currency transactions continued
 Non-monetary items that are measured in terms of historical cost in a foreign currency are translated using the
 exchange rates at the dates of the initial transactions. Non-monetary items measured at fair value in a foreign currency
@@ -1146,28 +2178,43 @@ Any goodwill arising on the acquisition of a foreign operation and any fair valu
 of assets and liabilities arising on the acquisition are treated as assets and liabilities of the foreign operation and
 translated at the spot rate of exchange at the reporting date.
 Current versus non-current classification
-The Group presents assets and liabilities in the consolidated statement of financial position based on current/non-
-current classification. An asset as current when it is:
- Expected to be realised or intended to be sold or consumed in normal operating cycle;
- Held primarily for the purpose of trading;
- Expected to be realised within twelve months after the reporting period, or
- Cash or cash equivalent unless restricted from being exchanged or used to settle a liability for at least twelve
+The Group presents assets and liabilities in the consolidated statement of financial position based on current/noncurrent classification. An asset as current when it is:
+
+
+
+
+
+Expected to be realised or intended to be sold or consumed in normal operating cycle;
+Held primarily for the purpose of trading;
+Expected to be realised within twelve months after the reporting period, or
+Cash or cash equivalent unless restricted from being exchanged or used to settle a liability for at least twelve
 months after the reporting period.
+
 All other assets are classified as non-current.
 A liability is current when:
- It is expected to be settled in normal operating cycle;
- It is held primarily for the purpose of trading;
- It is due to be settled within twelve months after the reporting period, or
- There is no unconditional right to defer the settlement of the liability for at least twelve months after the
+
+
+
+
+
+It is expected to be settled in normal operating cycle;
+It is held primarily for the purpose of trading;
+It is due to be settled within twelve months after the reporting period, or
+There is no unconditional right to defer the settlement of the liability for at least twelve months after the
 reporting period.
+
 The Group classifies all other liabilities as non-current.
+
 28
 
-=== [FS_FY2025.pdf p35] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-3 MATERIAL ACCOUNTING POLICY INFORMATIONcontinued
+
+3
+
+MATERIAL ACCOUNTING POLICY INFORMATION continued
+
 Derivative financial instruments
 The Group enters into derivative financial instrument contracts to manage its exposure to interest rate. Derivatives are
 recognised initially at fair value at the date a derivative contract is entered into and are subsequently remeasured to
@@ -1184,11 +2231,16 @@ The documentation includes identification of the hedging instrument, the hedged 
 hedged and how the Group will assess whether the hedging relationship meets the hedge effectiveness requirements
 (including the analysis of sources of hedge ineffectiveness and how the hedge ratio is determined).
 A hedging relationship qualifies for hedge accounting if it meets all of the following effectiveness requirements:
- There is ‘an economic relationship’ between the hedged item and the hedging instrument.
- The effect of credit risk does not ‘dominate the value changes’ that result from that economic relationship.
- The hedge ratio of the hedging relationship is the same as that resulting from the quantity of the hedged item
+
+
+
+
+There is ‘an economic relationship’ between the hedged item and the hedging instrument.
+The effect of credit risk does not ‘dominate the value changes’ that result from that economic relationship.
+The hedge ratio of the hedging relationship is the same as that resulting from the quantity of the hedged item
 that the Group actually hedges and the quantity of the hedging instrument that the Group actually uses to
 hedge that quantity of hedged item.
+
 Hedges that meet all the qualifying criteria for hedge accounting are accounted for and further described in the below
 sections. If a hedging relationship ceases to meet the hedge effectiveness requirement relating to the hedge ratio but
 the risk management objective for that designated hedging relationship remains the same, the Group adjusts the hedge
@@ -1210,39 +2262,133 @@ or the original hedged item affects the Group’s consolidated statement of prof
 income. If a forecast hedged transaction is no longer expected to occur, the net cumulative gain or loss recognised in
 the Group’s consolidated statement of changes in equity is reclassified to the Group’s consolidated statement of profit
 or loss and other comprehensive income.
+
 29
 
-=== [FS_FY2025.pdf p36] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-4 GROUP INFORMATION
+
+4
+
+GROUP INFORMATION
+
 Details of the Company’s subsidiaries as at 31 December 2025 and 2024 are as follows:
-Ownership Parent Country of
-Name of subsidiary Principal activities
-interest Company incorporation
-Abu Dhabi Polymers Co. Ltd 100% PLC U.A.E Production of ethylene,
-(Borouge) - Sole Proprietorship propylene, polyethylene and
-L.L.C (“ADP”) polypropylene
-Borouge Pte Ltd (“PTE”) 84.746% PLC Singapore Trading of polyolefins
-Borouge (India) Pvt Ltd 100% PTE India Marketing and support services
-Borouge Compounding Holding 100% PTE Singapore Investment Holding
+Ownership
+interest
+
+Parent
+Company
+
+Country of
+incorporation
+
+Abu Dhabi Polymers Co. Ltd
+(Borouge) - Sole Proprietorship
+L.L.C (“ADP”)
+
+100%
+
+PLC
+
+U.A.E
+
+Borouge Pte Ltd (“PTE”)
+
+84.746%
+
+PLC
+
+Singapore
+
+Borouge (India) Pvt Ltd
+
+100%
+
+PTE
+
+India
+
+Borouge Compounding Holding
 PTE Ltd (“PTECOM”)
-Borouge Compounding People’s Republic Trading polyolefins products
-100% PTECOM
-(Shanghai) Co. Ltd of China
-People’s Republic
-Borouge Sales and Marketing Marketing and support services
-100% PTE of China
+
+100%
+
+PTE
+
+Singapore
+
+Borouge Compounding
 (Shanghai) Co. Ltd
+
+100%
+
+PTECOM
+
+People’s Republic
+of China
+
+Borouge Sales and Marketing
+(Shanghai) Co. Ltd
+
+100%
+
+PTE
+
+100%
+
+Borouge Kenya Ltd
+Borouge Korea Co. Ltd
+
+Name of subsidiary
+
+Borouge Egypt LLC
+
+Principal activities
+Production of ethylene,
+propylene, polyethylene and
+polypropylene
+Trading of polyolefins
+Marketing and support services
+Investment Holding
+
+Trading polyolefins products
+
+People’s Republic
+of China
+
+Marketing and support services
+
+PTE
+
 Arab Republic
-100% PTE Marketing and support services
-Borouge Egypt LLC Egypt
-Borouge Kenya Ltd 100% PTE Kenya Marketing and support services
-Borouge Korea Co. Ltd 100% PTE South Korea Trading of polyolefins products
+Egypt
+
+Marketing and support services
+
+100%
+
+PTE
+
+Kenya
+
+Marketing and support services
+
+100%
+
+PTE
+
+South Korea
+
+Trading of polyolefins products
 and sales and marketing support
+
 The Company together with its subsidiaries is referred to as the “Group”.
-5 CRITICAL JUDGEMENTS AND KEY SOURCES OF ESTIMATION UNCERTAINTY
+
+5
+
+CRITICAL JUDGEMENTS AND KEY SOURCES OF ESTIMATION UNCERTAINTY
+
 The preparation of the consolidated financial statements in compliance with IFRS requires the management to make
 estimates and assumptions that affect the reported amounts of assets and liabilities and disclosure of contingent assets
 and contingent liabilities. Future events may occur which will cause the assumptions used in arriving at the estimates
@@ -1260,13 +2406,17 @@ operating segments, has been identified as the CODM that makes strategic decisio
 reviewed by the CODM is based on the IFRS compliant financial information for the Group. The CODM monitors the
 operating results of its business unit separately for the purpose of making decisions about resource allocation and
 performance assessment.
+
 30
 
-=== [FS_FY2025.pdf p37] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-5 CRITICAL JUDGEMENTS AND KEY SOURCES OF ESTIMATION UNCERTAINTY continued
+
+5
+
+CRITICAL JUDGEMENTS AND KEY SOURCES OF ESTIMATION UNCERTAINTY continued
+
 Critical judgements continued
 Determination of principal status
 The Group measures its revenue at the fair value of consideration received or receivable, taking into account
@@ -1291,8 +2441,7 @@ The useful lives and residual values are reviewed for reasonableness by manageme
 Useful lives of right-of-use assets
 The Group’s management determines the estimated useful lives of its right-of- use assets for calculating depreciation.
 The cost of right-of-use assets are depreciated over the estimated useful lives of the assets, which is based on the shorter
-of the lease term and the estimated useful lives of the assets. The Group reviews the estimated useful lives of right-of-
-use assets at the end of each annual reporting period. Any change in the lease term or pattern of consumption of these
+of the lease term and the estimated useful lives of the assets. The Group reviews the estimated useful lives of right-ofuse assets at the end of each annual reporting period. Any change in the lease term or pattern of consumption of these
 assets are adjusted prospectively.
 Assessment of indicators of impairment of non-financial assets
 The Group assesses at each reporting date whether there is objective evidence that its non- financial assets are impaired.
@@ -1311,13 +2460,17 @@ asset in a similar economic environment. The IBR therefore reflects what the Gro
 requires estimation when no observable rates are available or when they need to be adjusted to reflect the terms and
 conditions of the lease. The Group estimates the IBR using observable inputs (such as market interest rates) when
 available and is required to make certain entity-specific estimates (such as the Company’s stand-alone credit rating).
+
 31
 
-=== [FS_FY2025.pdf p38] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-5 CRITICAL JUDGMENTS AND KEY SOURCES OF ESTIMATION UNCERTAINTY continued
+
+5
+
+CRITICAL JUDGMENTS AND KEY SOURCES OF ESTIMATION UNCERTAINTY continued
+
 Key sources of estimation uncertainty continued
 Contingencies
 By their nature, contingencies will only be resolved when one or more future events occur or fail to occur. The
@@ -1360,302 +2513,1185 @@ prices. As at 31 December 2025, gross inventory was USD 586,491 thousand (2024: 
 31 December 2025, a provision of USD 62,789 thousand (2024: USD 60,112 thousand) on inventories has been
 recorded. Any difference between the amounts actually realised in future periods and the amounts expected to be
 realised will be recognised in the profit or loss (note 9).
+
 32
 
-=== [FS_FY2025.pdf p39] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-6 PROPERTY, PLANT AND EQUIPMENT
-Furniture, Capital
-Plant and Motor fixtures and work-in-
-Buildings machinery vehicles equipment progress Total
-USD’000 USD’000 USD’000 USD’000 USD’000 USD’000
+
+6
+
+PROPERTY, PLANT AND EQUIPMENT
+
+Buildings
+USD’000
+
+Plant and
+machinery
+USD’000
+
+Motor
+vehicles
+USD’000
+
+Furniture,
+fixtures and
+equipment
+USD’000
+
+Capital
+work-inprogress
+USD’000
+
+Total
+USD’000
+
 2025
 Cost:
-Balance at 1 January 2025 716,770 12,751,222 14,093 194,204 257,273 13,933,562
-Additions 22 87,312 - 1,823 186,530 275,687
-Disposals - (90) - (9,077) - (9,167)
-Write off - - - - (1,078) (1,078)
-Transfers from capital work in progress 704 105,493 - 9,989 (116,186) -
-Transfers to intangibles (note7) - - - - (36,198) (36,198)
-Exchange differences 769 1,876 - 1,309 35 3,989
-At 31 December 2025 718,265 12,945,813 14,093 198,248 290,376 14,166,795
+Balance at 1 January 2025
+Additions
+Disposals
+Write off
+Transfers from capital work in progress
+Transfers to intangibles (note 7)
+Exchange differences
+
+716,770
+22
+704
+769
+
+12,751,222
+87,312
+(90)
+105,493
+1,876
+
+14,093
+-
+
+194,204
+1,823
+(9,077)
+9,989
+1,309
+
+257,273
+186,530
+(1,078)
+(116,186)
+(36,198)
+35
+
+13,933,562
+275,687
+(9,167)
+(1,078)
+(36,198)
+3,989
+
+At 31 December 2025
+
+718,265
+
+12,945,813
+
+14,093
+
+198,248
+
+290,376
+
+14,166,795
+
 Accumulated depreciation and impairment:
-Balance at 1 January 2025 366,869 7,084,935 13,562 173,850 1,844 7,641,060
-Impairment - - - - 363 363
-Depreciation 20,714 419,235 136 9,299 - 449,384
-Disposals - (90) - (9,077) - (9,167)
-Exchange differences 364 1,343 3 1,214 (1) 2,923
-At 31 December 2025 387,947 7,505,423 13,701 175,286 2,206 8,084,563
+Balance at 1 January 2025
+Impairment
+Depreciation
+Disposals
+Exchange differences
+
+366,869
+20,714
+364
+
+7,084,935
+419,235
+(90)
+1,343
+
+13,562
+136
+3
+
+173,850
+9,299
+(9,077)
+1,214
+
+1,844
+363
+(1)
+
+7,641,060
+363
+449,384
+(9,167)
+2,923
+
+At 31 December 2025
+
+387,947
+
+7,505,423
+
+13,701
+
+175,286
+
+2,206
+
+8,084,563
+
 Net book value:
-At 31 December 2025 330,318 5,440,390 392 22,962 288,170 6,082,232
+At 31 December 2025
+
+330,318
+
+5,440,390
+
+392
+
+22,962
+
+288,170
+
+6,082,232
+
 33
 
-=== [FS_FY2025.pdf p40] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-6 PROPERTY, PLANT AND EQUIPMENT continued
-Furniture, Capital
-Plant and Motor fixtures and work-in-
-Buildings machinery vehicles equipment progress Total
-USD’000 USD’000 USD’000 USD’000 USD’000 USD’000
+
+6
+
+PROPERTY, PLANT AND EQUIPMENT continued
+
+Buildings
+USD’000
+
+Plant and
+machinery
+USD’000
+
+Motor
+vehicles
+USD’000
+
+Furniture,
+fixtures and
+equipment
+USD’000
+
+Capital
+work-inprogress
+USD’000
+
+Total
+USD’000
+
 2024
 Cost:
-Balance at 1 January 2024 720,196 12,693,872 14,093 184,005 207,842 13,820,008
-Additions - 315 - 191 159,618 160,124
-Disposals (5,062) (14,249) - (3,817) (4,449) (27,577)
-Transfers from capital work in progress 2,168 72,355 - 14,150 (88,673) -
-Transfers to intangibles (note7) - - - - (17,019) (17,019)
-Exchange differences (532) (1,071) - (325) (46) (1,974)
-At 31 December 2024 716,770 12,751,222 14,093 194,204 257,273 13,933,562
+Balance at 1 January 2024
+Additions
+Disposals
+Transfers from capital work in progress
+Transfers to intangibles (note 7)
+Exchange differences
+
+720,196
+(5,062)
+2,168
+(532)
+
+12,693,872
+315
+(14,249)
+72,355
+(1,071)
+
+14,093
+-
+
+184,005
+191
+(3,817)
+14,150
+(325)
+
+207,842
+159,618
+(4,449)
+(88,673)
+(17,019)
+(46)
+
+13,820,008
+160,124
+(27,577)
+(17,019)
+(1,974)
+
+At 31 December 2024
+
+716,770
+
+12,751,222
+
+14,093
+
+194,204
+
+257,273
+
+13,933,562
+
 Accumulated depreciation and impairment:
-Balance at 1 January 2024 346,093 6,609,624 13,375 170,177 3,384 7,142,653
-Impairment (370) 543 - - 2,909 3,082
-Depreciation 26,444 489,722 190 7,760 - 524,116
-Disposals (5,062) (14,249) - (3,817) (4,449) (27,577)
-Exchange differences (236) (705) (3) (270) - (1,214)
-At 31 December 2024 366,869 7,084,935 13,562 173,850 1,844 7,641,060
+Balance at 1 January 2024
+Impairment
+Depreciation
+Disposals
+Exchange differences
+
+346,093
+(370)
+26,444
+(5,062)
+(236)
+
+6,609,624
+543
+489,722
+(14,249)
+(705)
+
+13,375
+190
+(3)
+
+170,177
+7,760
+(3,817)
+(270)
+
+3,384
+2,909
+(4,449)
+-
+
+7,142,653
+3,082
+524,116
+(27,577)
+(1,214)
+
+At 31 December 2024
+
+366,869
+
+7,084,935
+
+13,562
+
+173,850
+
+1,844
+
+7,641,060
+
 Net book value:
-At 31 December 2024 349,901 5,666,287 531 20,354 255,429 6,292,502
+At 31 December 2024
+
+349,901
+
+5,666,287
+
+531
+
+20,354
+
+255,429
+
+6,292,502
+
 34
 
-=== [FS_FY2025.pdf p41] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-6 PROPERTY, PLANT AND EQUIPMENT continued
+
+6
+
+PROPERTY, PLANT AND EQUIPMENT continued
+
 The right and license to use the land in Ruwais, on which the buildings, plant and machinery are constructed, was
 granted by the Supreme Petroleum Council, free of all fees, in accordance with a letter dated 28 October 1998. The
 land in Ruwais continues to be free of all fees, expect for the Borouge 4-Plant Site in accordance with an agreement
 signed between the Group and ADNOC on 16 November 2021. On the same day, the Group signed an agreement with
 ADNOC for the lease of the Sas Al Nakhl Area where rent will be payable on land for the Innovation Centre Site.
 The depreciation charge for the year is allocated to consolidated statement of profit or loss and inventory as follows:
-2025 2024
-USD’000 USD’000
-Cost of sales (note20) 408,732 456,370
-Depreciation included in unsold inventory 36,611 64,438
-General and administrative expenses (note 23) 4,040 3,307
-Selling and distribution expenses (note 24) 1 1
-449,384 524,116
+
+Cost of sales (note 20)
+Depreciation included in unsold inventory
+General and administrative expenses (note 23)
+Selling and distribution expenses (note 24)
+
 35
 
-=== [FS_FY2025.pdf p42] ===
-Borouge PLC
+2025
+USD’000
+
+2024
+USD’000
+
+408,732
+36,611
+4,040
+1
+
+456,370
+64,438
+3,307
+1
+
+449,384
+
+524,116
+
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-7 INTANGIBLE ASSETS
-License and Capital
-Computer patent Development work in
-software costs Others costs progress Total
-USD’000 USD’000 USD’000 USD’000 USD’000 USD’000
+
+7
+
+INTANGIBLE ASSETS
+Computer
+software
+USD’000
+
+License and
+patent
+costs
+USD’000
+
+Others
+USD’000
+
+Development
+costs
+USD’000
+
+Capital
+work in
+progress
+USD’000
+
+Total
+USD’000
+
 2025
 Cost:
-Balance at 1 January 2025 125,135 28,202 187,082 - 12,768 353,187
-Reclassification 29,697 144,721 (185,038) 10,276 344 -
-Additions 903 47 - 62 30,023 31,035
-Disposals (515) - - - - (515)
-Transfers from property, plant, and equipment (note6) - - - - 36,198 36,198
-Transfers fromcapital work in progress 31,433 - - - (31,433) -
-Exchange differences 121 - 1 (1) 4 125
-At 31 December 2025 186,774 172,970 2,045 10,337 47,904 420,030
+Balance at 1 January 2025
+Reclassification
+Additions
+Disposals
+Transfers from property, plant, and equipment (note 6)
+Transfers from capital work in progress
+Exchange differences
+
+125,135
+29,697
+903
+(515)
+31,433
+121
+
+28,202
+144,721
+47
+-
+
+187,082
+(185,038)
+1
+
+10,276
+62
+(1)
+
+12,768
+344
+30,023
+36,198
+(31,433)
+4
+
+353,187
+31,035
+(515)
+36,198
+125
+
+At 31 December 2025
+
+186,774
+
+172,970
+
+2,045
+
+10,337
+
+47,904
+
+420,030
+
 Accumulated amortisation:
-Balance at 1 January 2025 99,038 25,044 168,462 - - 292,544
-Reclassification 20,063 143,786 (167,654) 3,805 - -
-Charge for the year 18,997 1,538 1,239 1,547 - 23,321
-Disposals (515) - - - - (515)
-Exchange differences 109 - (2) - - 107
-At 31 December 2025 137,692 170,368 2,045 5,352 - 315,457
+Balance at 1 January 2025
+Reclassification
+Charge for the year
+Disposals
+Exchange differences
+
+99,038
+20,063
+18,997
+(515)
+109
+
+25,044
+143,786
+1,538
+-
+
+168,462
+(167,654)
+1,239
+(2)
+
+3,805
+1,547
+-
+
+-
+
+292,544
+23,321
+(515)
+107
+
+At 31 December 2025
+
+137,692
+
+170,368
+
+2,045
+
+5,352
+
+-
+
+315,457
+
 Net book value:
-At 31 December 2025 49,082 2,602 - 4,985 47,904 104,573
+At 31 December 2025
+
+49,082
+
+2,602
+
+-
+
+4,985
+
+47,904
+
+104,573
+
 36
 
-=== [FS_FY2025.pdf p43] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-7 INTANGIBLE ASSETS continued
+
+7
+
+INTANGIBLE ASSETS continued
+Computer
+software
+USD’000
+
+Cracker
+rights
+USD’000
+
+Licence
+costs
+USD’000
+
 Capital
-Computer Cracker Licence work in
-software rights costs progress Others Total
-USD’000 USD’000 USD’000 USD’000 USD’000 USD’000
+work in
+progress
+USD’000
+
+Others
+USD’000
+
+Total
+USD’000
+
 2024
 Cost:
-Balance at 1 January 2024 114,008 11,305 31,255 7,423 181,171 345,162
-Additions 953 - - 6,306 - 7,259
-Disposals (1,030) - (15,050) - (129) (16,209)
-Transfers 959 - - (959) - -
-Transfers from property, plant, and equipment (note6) 10,289 - 691 - 6,039 17,019
-Exchange differences (44) - 1 (2) 1 (44)
-At 31 December 2024 125,135 11,305 16,897 12,768 187,082 353,187
+Balance at 1 January 2024
+Additions
+Disposals
+Transfers
+Transfers from property, plant, and equipment (note 6)
+Exchange differences
+
+114,008
+953
+(1,030)
+959
+10,289
+(44)
+
+11,305
+-
+
+31,255
+(15,050)
+691
+1
+
+7,423
+6,306
+(959)
+(2)
+
+181,171
+(129)
+6,039
+1
+
+345,162
+7,259
+(16,209)
+17,019
+(44)
+
+At 31 December 2024
+
+125,135
+
+11,305
+
+16,897
+
+12,768
+
+187,082
+
+353,187
+
 Accumulated amortisation:
-Balance at 1 January 2024 88,949 11,305 27,721 - 157,061 285,036
-Charge for the year 11,153 - 1,065 - 11,530 23,748
-Disposals (1,030) - (15,050) - (129) (16,209)
-Exchange differences (34) - 3 - - (31)
-At 31 December 2024 99,038 11,305 13,739 - 168,462 292,544
+Balance at 1 January 2024
+Charge for the year
+Disposals
+Exchange differences
+
+88,949
+11,153
+(1,030)
+(34)
+
+11,305
+-
+
+27,721
+1,065
+(15,050)
+3
+
+-
+
+157,061
+11,530
+(129)
+-
+
+285,036
+23,748
+(16,209)
+(31)
+
+At 31 December 2024
+
+99,038
+
+11,305
+
+13,739
+
+-
+
+168,462
+
+292,544
+
 Net book value:
-At 31 December 2024 26,097 - 3,158 12,768 18,620 60,643
+At 31 December 2024
+
+26,097
+
+-
+
+3,158
+
+12,768
+
+18,620
+
+60,643
+
 37
 
-=== [FS_FY2025.pdf p44] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-7 INTANGIBLE ASSETS continued
+
+7
+
+INTANGIBLE ASSETS continued
+
 The amortisation charge for the year is allocated to the consolidated statement of profit or loss and inventory as
 follows:
-2025 2024
-USD’000 USD’000
-Cost of sales (note20) 20,098 20,372
-Amortisationincluded in unsold inventory 1,801 2,881
-General and administrative expenses (note 23) 1,274 350
-Selling and distribution expenses (note 24) 148 145
-23,321 23,748
-8 RIGHT-OF-USE ASSETS AND LEASE LIABILITIES
+
+Cost of sales (note 20)
+Amortisation included in unsold inventory
+General and administrative expenses (note 23)
+Selling and distribution expenses (note 24)
+
+8
+
+2025
+USD’000
+
+2024
+USD’000
+
+20,098
+1,801
+1,274
+148
+
+20,372
+2,881
+350
+145
+
+23,321
+
+23,748
+
+RIGHT-OF-USE ASSETS AND LEASE LIABILITIES
+
 The right and license to use the land in Ruwais, on which the buildings, plant and machinery are constructed, was
 granted by the Supreme Petroleum Council, free of all fees, in accordance with a letter dated 28 October 1998. The
 land in Ruwais continues to be free of all fees, expect for the Borouge 4-Plant Site in accordance with an agreement
 signed between the Group and ADNOC on 16 November 2021. On the same day, the Group signed an agreement with
 ADNOC for the lease of the Sas Al Nakhl Area where rent will be payable on land for the Innovation Centre Site.
-(a) Right-of-use assets
-2025 2024
-USD’000 USD’000
+(a)
+
+Right-of-use assets
+2025
+USD’000
+
+2024
+USD’000
+
 Cost:
-Balance at 1 January 51,214 49,578
-Additions 1,802 361
-Disposals (8,529) (2,745)
-Modification on lease liability (62) 2,341
-Transferofsublease, net - 2,156
-Exchange differences 1,331 (477)
-At 31 December 45,756 51,214
+Balance at 1 January
+Additions
+Disposals
+Modification on lease liability
+Transfer of sublease, net
+Exchange differences
+
+51,214
+1,802
+(8,529)
+(62)
+1,331
+
+49,578
+361
+(2,745)
+2,341
+2,156
+(477)
+
+At 31 December
+
+45,756
+
+51,214
+
 Accumulated depreciation:
-Balance at 1 January 26,417 22,274
-Charge for the year 3,609 4,786
-Disposal (8,529) (438)
-Exchange differences 932 (205)
-At 31 December 22,429 26,417
+Balance at 1 January
+Charge for the year
+Disposal
+Exchange differences
+
+26,417
+3,609
+(8,529)
+932
+
+22,274
+4,786
+(438)
+(205)
+
+At 31 December
+
+22,429
+
+26,417
+
 Carrying amount:
-At 31 December 23,327 24,797
+At 31 December
+
+23,327
+
+24,797
+
 38
 
-=== [FS_FY2025.pdf p45] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-8 RIGHT-OF-USE ASSETS AND LEASE LIABILITIES continued
-(a) Right-of-use assetscontinued
+
+8
+
+RIGHT-OF-USE ASSETS AND LEASE LIABILITIES continued
+
+(a)
+
+Right-of-use assets continued
+
 The depreciation for the year is allocated to consolidated statement of profit or loss and inventory as follows:
-2025 2024
-USD’000 USD’000
-Cost of sales (note20) 186 164
-Depreciation included in unsold inventory 13 18
-General and administrative expenses (note 23) 3,410 4,604
-Selling and distribution expenses (note 24) - -
-3,609 4,786
-(b) Investment in sublease
+
+Cost of sales (note 20)
+Depreciation included in unsold inventory
+General and administrative expenses (note 23)
+Selling and distribution expenses (note 24)
+
+(b)
+
+2025
+USD’000
+
+2024
+USD’000
+
+186
+13
+3,410
+-
+
+164
+18
+4,604
+-
+
+3,609
+
+4,786
+
+Investment in sublease
+
 Investment in sub-lease is recognised in the consolidated financial statements to reflect the sub-lease of a plot of land
-to a related party, Borouge 4(note 12(d)).
-2025 2024
-USD’000 USD’000
-Balance at 1 January 141,530 142,641
-Additions - 100
-Receipts (5,551) (6,449)
-Accretion of interest 5,205 5,214
-Modification of lease 465 -
-Exchange differences - 24
-At 31 December 141,649 141,530
-2025 2024
-USD’000 USD’000
-Current–Investment in sublease 5,952 5,741
-Non–current–Investment in sublease 135,697 135,789
-141,649 141,530
-(c) Lease liabilities
-2025 2024
-USD’000 USD’000
-Balance at 1 January 167,124 170,613
-Additions 1,802 361
-Payments (9,808) (8,904)
-Interest expense 6,193 6,233
-Modification of lease liability (107) (616)
-Exchange differences 976 (563)
-At 31 December 166,180 167,124
-Non-current 156,652 158,082
-Current 9,528 9,042
-Total 166,180 167,124
+to a related party, Borouge 4 (note 12(d)).
+2025
+USD’000
+
+2024
+USD’000
+
+Balance at 1 January
+Additions
+Receipts
+Accretion of interest
+Modification of lease
+Exchange differences
+
+141,530
+(5,551)
+5,205
+465
+-
+
+142,641
+100
+(6,449)
+5,214
+24
+
+At 31 December
+
+141,649
+
+141,530
+
+2025
+USD’000
+
+2024
+USD’000
+
+5,952
+135,697
+
+5,741
+135,789
+
+141,649
+
+141,530
+
+2025
+USD’000
+
+2024
+USD’000
+
+Balance at 1 January
+Additions
+Payments
+Interest expense
+Modification of lease liability
+Exchange differences
+
+167,124
+1,802
+(9,808)
+6,193
+(107)
+976
+
+170,613
+361
+(8,904)
+6,233
+(616)
+(563)
+
+At 31 December
+
+166,180
+
+167,124
+
+Non-current
+Current
+
+156,652
+9,528
+
+158,082
+9,042
+
+Total
+
+166,180
+
+167,124
+
+Current – Investment in sublease
+Non–current – Investment in sublease
+
+(c)
+
+Lease liabilities
+
 39
 
-=== [FS_FY2025.pdf p46] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-8 RIGHT-OF-USE ASSETS AND LEASE LIABILITIES continued
-(c) Lease liabilitiescontinued
+
+8
+
+RIGHT-OF-USE ASSETS AND LEASE LIABILITIES continued
+
+(c)
+
+Lease liabilities continued
+
 Set out below, is the amount recognised in the consolidated statement of profit or loss related to leases:
-2025 2024
-USD’000 USD’000
-Depreciation charge 3,609 4,786
-Interest expense 6,193 6,233
-9,802 11,019
-9 INVENTORIES
-2025 2024
-USD’000 USD’000
-Finished goods 266,352 378,208
-Spare parts 166,930 148,411
-Raw materials 133,686 159,183
-Goods in transit 14,566 9,020
-Work in progress 4,957 5,795
-586,491 700,617
-Less: allowance for slow moving and obsolete inventories (62,789) (60,112)
-523,702 640,505
+2025
+USD’000
+
+2024
+USD’000
+
+3,609
+6,193
+
+4,786
+6,233
+
+9,802
+
+11,019
+
+2025
+USD’000
+
+2024
+USD’000
+
+Finished goods
+Spare parts
+Raw materials
+Goods in transit
+Work in progress
+
+266,352
+166,930
+133,686
+14,566
+4,957
+
+378,208
+148,411
+159,183
+9,020
+5,795
+
+Less: allowance for slow moving and obsolete inventories
+
+586,491
+(62,789)
+
+700,617
+(60,112)
+
+523,702
+
+640,505
+
+Depreciation charge
+Interest expense
+
+9
+
+INVENTORIES
+
 Finished goods include an allocation of depreciation and amortisation charges amounting to USD 38,404 thousand
 (2024: USD 67,337 thousand). The movement in the allowance for slow moving and obsolete inventories during the
 year was as follows:
-2025 2024
-USD’000 USD’000
-Balance at 1 January 60,112 52,892
-Chargeforthe year 2,677 7,220
-At 31 December 62,789 60,112
+2025
+USD’000
+
+2024
+USD’000
+
+Balance at 1 January
+Charge for the year
+
+60,112
+2,677
+
+52,892
+7,220
+
+At 31 December
+
+62,789
+
+60,112
+
 During the year, total of USD 75 million (2024: 41 million) has been consumed in capex activities. Increase is primarily
 due to B3 Turnaround.
+
 40
 
-=== [FS_FY2025.pdf p47] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-10 RECEIVABLES
-(a) Trade receivables
-2025 2024
-USD’000 USD’000
-Trade receivables 811,680 859,914
-Less:provision for expected credit losses (3,443) (1,146)
-808,237 858,768
+
+10
+
+RECEIVABLES
+
+(a)
+
+Trade receivables
+
+Trade receivables
+Less: provision for expected credit losses
+
+2025
+USD’000
+
+2024
+USD’000
+
+811,680
+(3,443)
+
+859,914
+(1,146)
+
+808,237
+
+858,768
+
 Movement in the provision for expected credit losses of trade receivables was as follows:
-2025 2024
-USD’000 USD’000
-Balance at 1 January 1,146 4,341
-Transfer from Prepayments and other receivables (note 10b) 2,010 -
-Charge/ (reversal)forthe year 811 (3,195)
-Write off (524) -
-At 31 December 3,443 1,146
+2025
+USD’000
+
+2024
+USD’000
+
+Balance at 1 January
+Transfer from Prepayments and other receivables (note 10b)
+Charge / (reversal) for the year
+Write off
+
+1,146
+2,010
+811
+(524)
+
+4,341
+(3,195)
+-
+
+At 31 December
+
+3,443
+
+1,146
+
 The analysis of the trade receivables provision for expected credit losses is as follows:
 Past due
 ___________________________________________________________
-Not past 30 31-60 61–90 91–180 Over 180
-Total due days days days days days
-USD’000 USD’000 USD’000 USD’000 USD’000 USD’000 USD’000
+30
+31-60
+61 – 90
+91 – 180
+Over 180
+days
+days
+days
+days
+days
+USD’000
+USD’000
+USD’000
+USD’000
+USD’000
+
+Total
+USD’000
+
+Not past
+due
+USD’000
+
 31 December 2025
-Expected credit loss rate 0.01% 0.01% - 100% 79.45% 64.62%
-Estimated total gross carrying 811,680 763,923 42,630 - 85 73 4,969
+Expected credit loss rate
+Estimated total gross carrying
 amount at default
-Expected credit losses 3,443 85 4 - 85 58 3,211
+Expected credit losses
+
+811,680
+
+0.01%
+763,923
+
+0.01%
+42,630
+
+-
+
+100%
+85
+
+79.45%
+73
+
+64.62%
+4,969
+
+3,443
+
+85
+
+4
+
+-
+
+85
+
+58
+
+3,211
+
 31 December 2024
-Expected credit loss rate 0.01% 0.01% - 34.22% - 55.85%
-Estimated total gross carrying 859,914 808,242 49,656 - 263 - 1,753
+Expected credit loss rate
+Estimated total gross carrying
 amount at default
-Expected credit losses 1,146 73 4 - 90 - 979
+Expected credit losses
+
+859,914
+
+0.01%
+808,242
+
+0.01%
+49,656
+
+-
+
+34.22%
+263
+
+-
+
+55.85%
+1,753
+
+1,146
+
+73
+
+4
+
+-
+
+90
+
+-
+
+979
+
 Limited recourse receivables discounting agreement
 During the year-ended 31 December 2025, a subsidiary of Borouge PLC entered into a Limited Recourse Receivables
 Discounting Agreement (“agreement”) with an external Commercial Bank (“Purchaser”). The agreed structure
@@ -1669,146 +3705,425 @@ portion of the agreement is irrevocably transferred, with Purchases obtaining th
 receivables. As of 31 December 2025, USD 90 million has been de-recognised from Trade Receivables (2024: nil).
 Borouge continues to administer the relationship with Debtors and has to transfer all receivables collected and
 previously sold to the Purchaser under this program.
+
 41
 
-=== [FS_FY2025.pdf p48] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-10 RECEIVABLES continued
-(a) Trade receivables continued
-Limited Recourse Receivables Discounting Agreementcontinued
+
+10
+
+RECEIVABLES continued
+
+(a)
+
+Trade receivables continued
+
+Limited Recourse Receivables Discounting Agreement continued
 For the remaining ‘with-recourse’ portion of the sale, it is concluded that the Group have substantially retained the
 risks and rewards associated and therefore, have not met the criteria for de-recognition and accordingly, corresponding
 liability has been recognised. See note 17 for further details on treatment of recourse portion of the agreement.
 For the year ended 31 December 2025, Interest payable on the agreement has been recognised in the profit or loss
 statement of USD 94 thousand (2024: nil), which represents accumulated daily interest due payable on gross
 receivables sold to Purchaser, irrespective of their recourse vs non-recourse nature.
-(b) Prepayments and other receivables
-2025 2024
-USD’000 USD’000
-Other receivables 25,871 19,651
-Tax recoverable 3,741 784
-Deposits 13,234 1,760
-Less:provision for expected credit losses - (2,857)
-42,846 19,338
-Prepayments 5,244 4,579
-48,090 23,917
+(b)
+
+Prepayments and other receivables
+2025
+USD’000
+
+2024
+USD’000
+
+Other receivables
+Tax recoverable
+Deposits
+Less: provision for expected credit losses
+
+25,871
+3,741
+13,234
+-
+
+19,651
+784
+1,760
+(2,857)
+
+Prepayments
+
+42,846
+5,244
+
+19,338
+4,579
+
+48,090
+
+23,917
+
 No interest is charged on the other receivable balances. Past due receivables are provided for based on estimated
 irrecoverable amounts determined by reference to management expectations and past default history. In determining
 the recoverability of a receivable balance, the Group considers any change in the credit quality of the receivable
 balances from the date credit was initially granted up to the reporting date.
 The movement in the provision for expected credit losses on other receivables during the year was as follows:
-2025 2024
-USD’000 USD’000
-Balance at 1 January 2,857 2,688
-Transfer totrade receivables(note 10a) (2,010) -
-Transfer toloans to employees (note 10c) (847) -
-Charge for the year - 169
-At 31 December - 2,857
+
+Balance at 1 January
+Transfer to trade receivables (note 10a)
+Transfer to loans to employees (note 10c)
+Charge for the year
+At 31 December
+
 42
 
-=== [FS_FY2025.pdf p49] ===
-Borouge PLC
+2025
+USD’000
+
+2024
+USD’000
+
+2,857
+(2,010)
+(847)
+-
+
+2,688
+169
+
+-
+
+2,857
+
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-10 RECEIVABLES continued
-(c) Loans to employees
-2025 2024
-USD’000 USD’000
-Loans to employees 36,749 33,963
-Less:provision for expected credit losses (1,599) -
-At 31 December 35,150 33,963
+
+10
+
+RECEIVABLES continued
+
+(c)
+
+Loans to employees
+2025
+USD’000
+
+2024
+USD’000
+
+Loans to employees
+Less: provision for expected credit losses
+
+36,749
+(1,599)
+
+33,963
+-
+
+At 31 December
+
+35,150
+
+33,963
+
 The movement in the provision for expected credit losses on other receivables during the year was as follows:
-2025 2024
-USD’000 USD’000
-Balance at 1 January - -
-Transfer from Prepayments and other receivables (note 10b) 847 -
-Charge for the year 752 -
-At 31 December 1,599 -
-2025 2024
-USD’000 USD’000
-Loans to employees–non-current 21,905 20,509
-Loans to employees–current 13,245 13,454
-35,150 33,963
-11 CASH AND CASH EQUIVALENTS
-2025 2024
-USD’000 USD’000
-Cash at bank–current accounts 114,643 86,216
-Short-term deposits 312,248 332,286
-Cash in hand 10 4
-Cash and cash equivalents 426,901 418,506
+2025
+USD’000
+
+2024
+USD’000
+
+847
+752
+
+-
+
+1,599
+
+-
+
+2025
+USD’000
+
+2024
+USD’000
+
+21,905
+13,245
+
+20,509
+13,454
+
+35,150
+
+33,963
+
+2025
+USD’000
+
+2024
+USD’000
+
+Cash at bank – current accounts
+Short-term deposits
+Cash in hand
+
+114,643
+312,248
+10
+
+86,216
+332,286
+4
+
+Cash and cash equivalents
+
+426,901
+
+418,506
+
+Balance at 1 January
+Transfer from Prepayments and other receivables (note 10b)
+Charge for the year
+At 31 December
+
+Loans to employees – non-current
+Loans to employees – current
+
+11
+
+CASH AND CASH EQUIVALENTS
+
 Short-term deposits are mainly denominated in US Dollar and earn interest at average floating rate of 4.67%
 (2024: 5.32%) per annum with an original maturity period of less than three months.
+
 43
 
-=== [FS_FY2025.pdf p50] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-12 RELATED PARTIES TRANSACTIONS AND BALANCES
-(a) Related parties
+
+12
+
+RELATED PARTIES TRANSACTIONS AND BALANCES
+
+(a)
+
+Related parties
+
 Related parties comprise the Government of Abu Dhabi and related departments and institutions (owner of the
 majority shareholder), associated companies, joint ventures, shareholders, directors and key management personnel
 of the Group, and entities controlled, jointly controlled or significantly influenced by such parties. Pricing policies
 and terms of these transactions are approved by the Group’s management. During the year, the Group entered into
 the following significant transactions with related parties at prices and on terms agreed between the related parties:
-(b) Related party transactions
-2025 2024
-Nature USD’000 USD’000
+(b)
+
+Related party transactions
+
 Sale of goods
-ADNOC Shareholder 9,704 6,756
-Borealis AG Shareholder 570,028 462,629
-ADNOC Refining Affiliate 36,412 40,295
-Borouge 4 Affiliate 13,884 18,065
-ADNOC Global Trading Affiliate - 82
-630,028 527,827
+ADNOC
+Borealis AG
+ADNOC Refining
+Borouge 4
+ADNOC Global Trading
+
+Nature
+
+2025
+USD’000
+
+2024
+USD’000
+
+Shareholder
+Shareholder
+Affiliate
+Affiliate
+Affiliate
+
+9,704
+570,028
+36,412
+13,884
+-
+
+6,756
+462,629
+40,295
+18,065
+82
+
+630,028
+
+527,827
+
+2025
+USD’000
+
+2024
+USD’000
+
+4,507
+2
+25
+5,134
+
+19
+5,133
+
+9,668
+
+5,152
+
+Nature
+
+2025
+USD’000
+
+2024
+USD’000
+
+Shareholder
+Shareholder
+Affiliate
+Shareholder
+Affiliate
+Shareholder
+
+975,456
+495,167
+419,928
+247,829
+60,053
+45,486
+
+951,616
+435,715
+450,550
+250,277
+47,319
+42,643
+
+Affiliate
+
+22,649
+
+21,919
+
+Affiliate
+Affiliate
+
+6,748
+5,295
+
+5,925
+5,041
+
+Affiliate
+
+2,359
+
+3,530
+
+2,280,970
+
+2,214,535
+
 Other income
-2025 2024
-Nature USD’000 USD’000
-ADNOC Shareholder 4,507 -
-Borealis AG Shareholder 2 -
-OMV Supply and Trading Singapore PTE Ltd Affiliate 25 19
-Borouge 4 Affiliate 5,134 5,133
-9,668 5,152
-2025 2024
-Nature USD’000 USD’000
+Nature
+ADNOC
+Borealis AG
+OMV Supply and Trading Singapore PTE Ltd
+Borouge 4
+
 Cost of sales
-Purchase of feedstock (ADNOC) Shareholder 975,456 951,616
-Purchase of catalyst (Borealis AG) Shareholder 495,167 435,715
-Purchase of feedstock-ADNOC Gas Facility Affiliate 419,928 450,550
-Re-charge electricity and water (ADNOC) Shareholder 247,829 250,277
-Purchase of feedstock(DYM Solution) Affiliate 60,053 47,319
-Royalties (BorealisAG) (note20) Shareholder 45,486 42,643
+Purchase of feedstock (ADNOC)
+Purchase of catalyst (Borealis AG)
+Purchase of feedstock- ADNOC Gas Facility
+Re-charge electricity and water (ADNOC)
+Purchase of feedstock (DYM Solution)
+Royalties (Borealis AG) (note 20)
 Purchase of feedstock –
-ADNOC GasProcessing Affiliate 22,649 21,919
+ADNOC Gas Processing
 Purchase of feedstock –
-ADNOC Industrial Gas-(Elixier) Affiliate 6,748 5,925
-Fuel, gas and oil (ADNOC Distribution) Affiliate 5,295 5,041
+ADNOC Industrial Gas-(Elixier)
+Fuel, gas and oil (ADNOC Distribution)
 Purchase of feedstock – Borealis
-CompoundsInc Affiliate 2,359 3,530
-2,280,970 2,214,535
+Compounds Inc
+
+Shareholder
+Shareholder
+Affiliate
+Affiliate
+
 44
 
-=== [FS_FY2025.pdf p51] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-12 RELATED PARTIES TRANSACTIONS AND BALANCES continued
-(b) Related party transactions continued
-2025 2024
-Nature USD’000 USD’000
+
+12
+
+RELATED PARTIES TRANSACTIONS AND BALANCES continued
+
+(b)
+
+Related party transactions continued
+
+Nature
+
+2025
+USD’000
+
+2024
+USD’000
+
 Selling and distribution costs
-(ADNOC Logistics and Services) Affiliate 136,649 185,725
+(ADNOC Logistics and Services)
+
+Affiliate
+
+136,649
+
+185,725
+
 Administrative costs including secondee costs
-(ADNOC and Borealis) Shareholder 80,651 88,149
+(ADNOC and Borealis)
+
+Shareholder
+
+80,651
+
+88,149
+
 Interest Expenses
-(ADNOC) Shareholder 5,991 10,013
+(ADNOC)
+
+Shareholder
+
+5,991
+
+10,013
+
+Short-term benefits
+
+2025
+USD’000
+7,836
+
+2024
+USD’000
+6,247
+
+Long-term benefits
+
+408
+
+469
+
 Compensation of key management personnel:
-2025 2024
-USD’000 USD’000
-Short-term benefits 7,836 6,247
-Long-term benefits 408 469
+
 Other transactions
 Tax
 An amount of 383,060 thousand (2024: USD 470,063 thousand) was paid to the Government of Abu Dhabi
@@ -1827,161 +4142,550 @@ and paid in accordance with resolutions of the Board of Directors (note 15).
 In accordance with IAS 24 “Related Party Disclosures”, the Group has elected to disclose qualitatively the transactions
 and balances with the Government of Abu Dhabi (other than ADNOC) and other entities over which the Government
 of Abu Dhabi exerts control, joint control or significant influence.
+
 45
 
-=== [FS_FY2025.pdf p52] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-12 RELATED PARTIES TRANSACTIONS AND BALANCES continued
-(c) Amounts due to related parties
-2025 2024
-Nature USD’000 USD’000
-ADNOC Shareholder 334,017 278,554
-Borealis AG Shareholder 121,998 112,502
-ADNOC Logistics Affiliate 44,658 68,626
-ADNOC Gas Facility Affiliate 41,924 40,246
-ADNOC Refining Affiliate 18,242 8,814
-DYM Solution Co. Ltd Affiliate 12,680 10,449
-ADNOC Distribution Affiliate 1,632 491
-ADNOC Industrial Gas Elixier Affiliate 679 471
-Borealis Compounds Inc. Affiliate 539 107
-ADNOCGlobal Trading Co Affiliate 90 -
-Borouge 4 Affiliate 29 -
-OMV Supply & Trading Singapore Pte Ltd Afilliate 12 -
-ADNOC Onshore Affiliate 2 -
-576,502 520,260
+
+12
+
+RELATED PARTIES TRANSACTIONS AND BALANCES continued
+
+(c)
+
+Amounts due to related parties
+
+ADNOC
+Borealis AG
+ADNOC Logistics
+ADNOC Gas Facility
+ADNOC Refining
+DYM Solution Co. Ltd
+ADNOC Distribution
+ADNOC Industrial Gas Elixier
+Borealis Compounds Inc.
+ADNOC Global Trading Co
+Borouge 4
+OMV Supply & Trading Singapore Pte Ltd
+ADNOC Onshore
+
+Nature
+
+2025
+USD’000
+
+2024
+USD’000
+
+Shareholder
+Shareholder
+Affiliate
+Affiliate
+Affiliate
+Affiliate
+Affiliate
+Affiliate
+Affiliate
+Affiliate
+Affiliate
+Afilliate
+Affiliate
+
+334,017
+121,998
+44,658
+41,924
+18,242
+12,680
+1,632
+679
+539
+90
+29
+12
+2
+
+278,554
+112,502
+68,626
+40,246
+8,814
+10,449
+491
+471
+107
+-
+
+576,502
+
+520,260
+
 Amounts due to related parties are disclosed in the consolidated statement of financial position as follows:
-2025 2024
-USD’000 USD’000
-Non-current - -
-Current 576,502 520,260
-Total 576,502 520,260
-(d) Amounts due from related parties
-2025 2024
-Nature USD’000 USD’000
-Borealis AG Shareholder 223,174 152,407
-ADNOC Shareholder 43,977 40,088
-Borouge 4 Affiliate 23,044 14,142
-ADNOC Refining Affiliate 2,501 3,216
-ADNOC Offshore Affiliate - -
-Borealis AG Abu Dhabi Affiliate 551 57
-ADNOC Global Trading Affiliate 4 27
-293,251 209,937
-OMV Supply & Trading Singapore PTE Ltd Affiliate 96 98
-Borouge 4-Investment in sublease (note8(b)) Affiliate 141,553 141,432
-141,649 141,530
-434,900 351,467
+2025
+USD’000
+
+2024
+USD’000
+
+Non-current
+Current
+
+576,502
+
+520,260
+
+Total
+
+576,502
+
+520,260
+
+Nature
+
+2025
+USD’000
+
+2024
+USD’000
+
+Shareholder
+Shareholder
+Affiliate
+Affiliate
+Affiliate
+Affiliate
+Affiliate
+
+223,174
+43,977
+23,044
+2,501
+551
+4
+
+152,407
+40,088
+14,142
+3,216
+57
+27
+
+293,251
+
+209,937
+
+96
+141,553
+
+98
+141,432
+
+141,649
+
+141,530
+
+434,900
+
+351,467
+
+(d)
+
+Amounts due from related parties
+
+Borealis AG
+ADNOC
+Borouge 4
+ADNOC Refining
+ADNOC Offshore
+Borealis AG Abu Dhabi
+ADNOC Global Trading
+
+OMV Supply & Trading Singapore PTE Ltd
+Borouge 4- Investment in sublease (note 8(b))
+
+Affiliate
+Affiliate
+
 46
 
-=== [FS_FY2025.pdf p53] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-12 RELATED PARTIES TRANSACTIONS AND BALANCES continued
-(d) Amounts due from related parties
+
+12
+
+RELATED PARTIES TRANSACTIONS AND BALANCES continued
+
+(d)
+
+Amounts due from related parties
+
 Amounts due from related parties are disclosed in the consolidated statement of financial position as follows:
-2025 2024
-USD’000 USD’000
-Investment in sublease–current 5,952 5,741
-Investment in sublease–non-current 135,697 135,789
-Amounts due from related parties-current 293,251 209,937
-Total 434,900 351,467
+2025
+USD’000
+
+2024
+USD’000
+
+Investment in sublease – current
+Investment in sublease – non-current
+Amounts due from related parties - current
+
+5,952
+135,697
+293,251
+
+5,741
+135,789
+209,937
+
+Total
+
+434,900
+
+351,467
+
 The Group provides credit terms of between 30 to 90 days to their customers which are common market credit terms.
 No interest is charged on amounts due from related parties. Past due receivables are provided for based on estimated
 irrecoverable amounts determined by reference to management expectations and past default history. In determining
 the recoverability of a receivable balance, the Group considers any change in the credit quality of the receivable
 balances from the date credit was initially granted up to the reporting date. Management believes that no provision
 for expected credit losses is required. The ageing analysis of amounts due from related parties is as follows:
-Weighted Provision
-average Gross for expected
-loss rate receivables credit losses
-USD’000 USD’000 USD’000
+
 31 December 2025
-Not yet due 0% 430,219 -
-< 90 days 0% 4,677 -
-Past due 91-180 days 0% 4 -
-Past due 181-365 days 0% - -
-Past due > 365 days 0% - -
-434,900 -
-31 December 2024 0% 293,092 -
-Not yet due 0% 58,145 -
-< 90 days 0% 230 -
-Past due 91-180 days 0% - -
-Past due 181-365 days 0% - -
-Past due > 365 days - -
-351,467 -
+Not yet due
+< 90 days
+Past due 91 -180 days
+Past due 181 -365 days
+Past due > 365 days
+
+31 December 2024
+Not yet due
+< 90 days
+Past due 91 -180 days
+Past due 181 -365 days
+Past due > 365 days
+
+Weighted
+average
+loss rate
+USD’000
+
+Gross
+receivables
+USD’000
+
+Provision
+for expected
+credit losses
+USD’000
+
+0%
+0%
+0%
+0%
+0%
+
+430,219
+4,677
+4
+-
+
+-
+
+434,900
+
+-
+
+293,092
+58,145
+230
+-
+
+-
+
+351,467
+
+-
+
+0%
+0%
+0%
+0%
+0%
+
 47
 
-=== [FS_FY2025.pdf p54] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-13 INCOME TAX EXPENSE
-a) Amounts recognised in profit or loss
-2025 2024
-USD’000 USD’000
+
+13
+
+INCOME TAX EXPENSE
+
+a)
+
+Amounts recognised in profit or loss
+2025
+USD’000
+
+2024
+USD’000
+
+385,236
+11,360
+
+466,352
+8,382
+
+396,596
+
+474,734
+
+44,118
+
+31,627
+
+440,714
+
+506,361
+
+2025
+USD’000
+
+2024
+USD’000
+
+1,539,844
+
+1,745,309
+
+Effective tax rate
+
+38.24%
+
+29.66%
+
+Tax on accounting profit at applicable rate
+
+588,825
+
+517,572
+
+Tax effect of non-deductible expenses
+Tax effect of exempt income/tax holidays
+Tax effect of Pillar 2 adjustments
+Opening deferred tax assets remeasured
+Deferred tax assets reversed on disposed assets during current period
+Others
+
+(5,807)
+(141,795)
+4,955
+4,152
+(9,616)
+
+(42)
+(7,273)
+2,893
+727
+(7,516)
+
+440,714
+
+506,361
+
 Income tax expense
-UAE 385,236 466,352
-Foreign jurisdictions 11,360 8,382
-396,596 474,734
+UAE
+Foreign jurisdictions
+
 Deferred tax expense
-Origination and reversal of temporary differences 44,118 31,627
-440,714 506,361
-b) Reconciliation of effective tax rate
-2025 2024
-USD’000 USD’000
-Profit for the period before tax 1,539,844 1,745,309
-Effective tax rate 38.24% 29.66%
-Tax on accounting profit at applicable rate 588,825 517,572
-Tax effect of non-deductible expenses (5,807) (42)
-Tax effect of exempt income/tax holidays (141,795) (7,273)
-Tax effect of Pillar 2 adjustments 4,955 -
-Opening deferred tax assets remeasured 4,152 2,893
-Deferred tax assets reversed on disposed assets during current period - 727
-Others (9,616) (7,516)
-440,714 506,361
+Origination and reversal of temporary differences
+
+b)
+
+Reconciliation of effective tax rate
+
+Profit for the period before tax
+
 48
 
-=== [FS_FY2025.pdf p55] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-13 INCOME TAX EXPENSE continued
-(c) Movement in deferred tax balances
+
+13
+
+INCOME TAX EXPENSE continued
+
+(c)
+
+Movement in deferred tax balances
+
 Deferred tax represents temporary differences arising due to the difference in useful lives used for accounting
 purposes and that used for fiscal purposes for all assets. It also arises due to the timing difference created in respect
 of the provision and payment relating to end of service benefits. Deferred tax assets are recognised to the extent that
 it is probable that taxable profit will be available against which the deductible temporary differences. Deferred tax
 relates to the following:
+
+At
+
+Tax charge
+Recognised
+
 FX
-Tax charge difference Tax charge
-At Recognised Recognised Recognised At
+difference
+Recognised
+
+1 January
+
+in profit
+
+in profit
+
+2025
+USD’000
+
+or loss
+USD’000
+
+Property, plant and equipment
+Other provision
+
+(110,110)
+27,371
+
+Deferred tax liability
+
+31 December
+
+or loss
+USD’000
+
+Tax charge
+Recognised
 in other
-1 January in profit in profit 31 December
 comprehensive
-2025 or loss or loss Income 2025
-USD’000 USD’000 USD’000 USD’000 USD’000
-Property, plant and equipment (110,110) (46,085) 83 - (156,112)
-Other provision 27,371 1,967 - (206) 29,132
-Deferred tax liability (82,739) (44,118) 83 (206) (126,980)
-Tax charge FX difference Tax charge
-At Recognised Recognised Recognised At
+Income
+USD’000
+
+(46,085)
+1,967
+
+83
+-
+
+(206)
+
+(156,112)
+29,132
+
+(82,739)
+
+(44,118)
+
+83
+
+(206)
+
+(126,980)
+
+At
+
+Tax charge
+Recognised
+
+FX difference
+Recognised
+
+1 January
+
+in profit
+
+in profit
+
+31 December
+
+2024
+USD’000
+
+or loss
+USD’000
+
+or loss
+USD’000
+
+Tax charge
+Recognised
 in other
-1 January in profit in profit 31 December
 comprehensive
-2024 or loss or loss Income 2024
-USD’000 USD’000 USD’000 USD’000 USD’000
-Property, plant and equipment (78,920) (31,190) - - (110,110)
-Other provision 27,863 (437) (55) - 27,371
-Deferred tax liability (51,057) (31,627) (55) - (82,739)
-At At
-31 December 31 December
-2025 2024
-USD’000 USD’000
-Deferred tax asset 1,992 2,397
-Deferred tax liability (128,972) (85,136)
-(126,980) (82,739)
+Income
+USD’000
+
+Property, plant and equipment
+Other provision
+
+(78,920)
+27,863
+
+(31,190)
+(437)
+
+(55)
+
+-
+
+(110,110)
+27,371
+
+Deferred tax liability
+
+(51,057)
+
+(31,627)
+
+(55)
+
+-
+
+(82,739)
+
+Deferred tax asset
+Deferred tax liability
+
+At
+
+2025
+USD’000
+
+At
+
+2024
+USD’000
+
+At
+31 December
+2025
+USD’000
+
+At
+31 December
+2024
+USD’000
+
+1,992
+(128,972)
+
+2,397
+(85,136)
+
+(126,980)
+
+(82,739)
+
 Deferred tax asset and liabilities relate to property, plant and equipment and provision for end of service benefits.
 International Tax Reform - Pillar Two model rules:
 The Organisation for Economic Co-operation and Development (OECD)/G20 Inclusive Framework on Base Erosion
@@ -1989,13 +4693,17 @@ and Profit Shifting (BEPS) has published the Pillar Two Anti-Global Base Erosion
 designed to address the tax challenges arising from the digitalisation of the global economy. The Group falls within
 the scope of the Pillar Two legislation, as its consolidated revenue exceeds the €750 million threshold, and it operates
 in a jurisdiction that has been enacted or substantively enacted Pillar Two legislation.
+
 49
 
-=== [FS_FY2025.pdf p56] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-13 INCOME TAX EXPENSE continued
+
+13
+
+INCOME TAX EXPENSE continued
+
 International Tax Reform - Pillar Two model rules: continued
 It is unclear if the Pillar Two model rules create additional temporary differences, whether to remeasure deferred taxes
 for the Pillar Two model rules and which tax rate to use to measure deferred taxes. In response to this uncertainty, on
@@ -2026,22 +4734,39 @@ ETR rate resulting to a recognition of additional top-up tax of 10%.
 The Group continues to follow Pillar Two legislative developments, as further countries enact the Pillar Two model
 rules, to evaluate the potential future impact on its consolidated results of operations, financial position and cash flows
 beginning.
-14 SHARE CAPITAL
+
+14
+
+SHARE CAPITAL
+
 In accordance with the Articles of Association of the Company which became effective on 28 April 2022, the Company
 issued 50,000 ordinary shares of USD 1 each on its incorporation to the Shareholders. By virtue of the Subscription
 and Transfer agreement dated 17 May 2022, the Company issued further shares effective 31 May 2022 (note 1)
 increasing its share capital to USD 4.8 billion divided into 30,057,691,583 shares, each valued at USD 0.16.
-2025 2024
-USD’000 USD’000
+
 Authorised, issued and fully paid
-30,057,691,583 ordinary shares of USD 0.16 each 4,809,231 4,809,231
+30,057,691,583 ordinary shares of USD 0.16 each
+
 50
 
-=== [FS_FY2025.pdf p57] ===
-Borouge PLC
+2025
+USD’000
+
+2024
+USD’000
+
+4,809,231
+
+4,809,231
+
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-15 RESERVES
+
+15
+
+RESERVES
+
 Merger reserve
 The merger reserve was recognised on combination of the Borouge Business under the pooling of interest method.
 Restricted reserve
@@ -2056,8 +4781,7 @@ Capital reserve
 The capital reserve attributable to the owners of the Company relates to a waiver of a related party payable balance
 amounting to USD 14.8 million in prior years of PTE, the subsidiary.
 Actuarial reserve
-Re-measurement gains and losses arising from experience adjustments and changes in actuarial assumptions on post-
-employment benefits are recognised in the period in which they occur, directly in other comprehensive income. They
+Re-measurement gains and losses arising from experience adjustments and changes in actuarial assumptions on postemployment benefits are recognised in the period in which they occur, directly in other comprehensive income. They
 are included in the actuarial reserve in the consolidated statement of changes in equity and in the consolidated
 statement of financial position.
 Cash flow hedge reserve
@@ -2075,7 +4799,11 @@ million (2024: USD 1,299.7 million) was paid to shareholders of the Company and 
 million) was paid to non-controlling interests.
 Treasury Shares and Other reserve
 See note 31 for further information.
-16 PROVISION FOR EMPLOYEES’ END OF SERVICE BENEFITS
+
+16
+
+PROVISION FOR EMPLOYEES’ END OF SERVICE BENEFITS
+
 The Group has a post-employment benefit plan that is awarded to employees in the United Arab Emirates. Under the
 plan, qualifying employees will receive gratuity benefits when they leave service. The employees are entitled to
 receive a lumpsum benefit based on their last drawn salaries taking into account the number of years of their service
@@ -2085,72 +4813,191 @@ independent actuary to assess the defined benefit plan obligation. The defined b
 actuarial risks such as mortality rates, interest rates, and expected retirement and termination rates.
 51
 
-=== [FS_FY2025.pdf p58] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-16 PROVISION FOR EMPLOYEES’ END OF SERVICE BENEFITS continued
+
+16
+
+PROVISION FOR EMPLOYEES’ END OF SERVICE BENEFITS continued
+
 The provision for employees' end of service benefit at the reporting date is as follows:
-2025 2024
-USD’000 USD’000
-Defined benefit obligation–current 12,293 1,235
-Defined benefit obligation – non-current 93,044 97,585
-105,337 98,820
+
+Defined benefit obligation – current
+Defined benefit obligation – non-current
+
+2025
+USD’000
+
+2024
+USD’000
+
+12,293
+93,044
+
+1,235
+97,585
+
+105,337
+
+98,820
+
 Movement in defined benefit obligation
 The following table shows a reconciliation from the opening balances to the closing balances for the net defined
 benefit liability and its components.
-2025 2024
-USD’000 USD’000
-Balance at 1 January 98,820 94,369
+2025
+2024
+USD’000
+USD’000
+Balance at 1 January
+
+98,820
+
+94,369
+
 Included in the consolidated statement of profit or loss
-Current service cost 7,484 8,310
-Interest cost 4,673 4,845
-12,157 13,155
+Current service cost
+Interest cost
+
+7,484
+4,673
+
+8,310
+4,845
+
+12,157
+
+13,155
+
+(5,362)
+435
+20
+
+(8,466)
+462
+(337)
+
+(4,907)
+
+(8,341)
+
+(728)
+(2)
+(3)
+
+(1,798)
+(693)
+2,128
+
+(733)
+
+(363)
+
+105,337
+
+98,820
+
 Other
-Benefits paid (5,362) (8,466)
-Transferred 435 462
-Foreign exchange loss 20 (337)
-(4,907) (8,341)
-Remeasurement of provision--
-Actuarial gains–arising from experience (728) (1,798)
-Return on assets (2) (693)
-Actuarial gains–arising from financial assumptions (3) 2,128
-(733) (363)
-Balance at 31 December 105,337 98,820
+Benefits paid
+Transferred
+Foreign exchange loss
+
+Remeasurement of provision-Actuarial gains – arising from experience
+Return on assets
+Actuarial gains – arising from financial assumptions
+
+Balance at 31 December
+
 Actuarial assumptions
 The following were the principal actuarial assumptions at the reporting date (expressed as weighted averages).
-2025 2024
-Discount rate 5.0% 5.0%
-Salary escalation rate per annum 4.0% 4.0%
+
+Discount rate
+Salary escalation rate per annum
+
 52
 
-=== [FS_FY2025.pdf p59] ===
-Borouge PLC
+2025
+
+2024
+
+5.0%
+4.0%
+
+5.0%
+4.0%
+
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-16 PROVISION FOR EMPLOYEES’ END OF SERVICE BENEFITS continued
+
+16
+
+PROVISION FOR EMPLOYEES’ END OF SERVICE BENEFITS continued
+
 Sensitivity analysis
 Reasonably possible changes at the reporting date to one of the relevant actuarial assumptions, holding other
 assumptions constant, would have affected the defined benefit obligation by the amounts shown below.
 2025
 USD ‘000
-Increase Decrease
-Discount rate (1% movement) (5,811) 6,426
-Salary escalation rate per annum (1% movement) 6,694 (6,144)
+Increase
+Decrease
+Discount rate (1% movement)
+Salary escalation rate per annum (1% movement)
+
+(5,811)
+6,694
+
+6,426
+(6,144)
+
 2024
 USD ‘000
-Increase Decrease
-Discount rate (1% movement) (4,969) 5,509
-Salary escalation rate per annum (1% movement) 5,744 (5,258)
-17 BANK LOANS
-2025 2024
-USD’000 USD’000
-Commercial term facility 2,600,000 2,600,000
-Islamic facility 350,000 350,000
-Receivablesdiscounting(note10(a)) 10,680 -
-2,960,680 2,950,000
-Unamortised transaction costs (2,950) (5,900)
-2,957,730 2,944,100
+Increase
+Discount rate (1% movement)
+Salary escalation rate per annum (1% movement)
+
+Decrease
+
+(4,969)
+5,744
+
+5,509
+(5,258)
+
+2025
+USD’000
+
+2024
+USD’000
+
+Commercial term facility
+Islamic facility
+Receivables discounting (note 10 (a))
+
+2,600,000
+350,000
+10,680
+
+2,600,000
+350,000
+-
+
+Unamortised transaction costs
+
+2,960,680
+(2,950)
+
+2,950,000
+(5,900)
+
+2,957,730
+
+2,944,100
+
+17
+
+BANK LOANS
+
 This represents external facilities from a consortium of banks amounting to USD 4,000 million with a maturity of
 5 years from 19 December 2021, comprising a commercial term facility of USD 3,650 million and an Islamic facility
 of USD 350 million. The commercial term facility carries an interest rate of SOFR + 0.90% margin per annum and the
@@ -2164,46 +5011,132 @@ As at 31 December 2025, the Group has an undrawn revolving loan facility with Fi
 USD 500 million, valid for up to 5 years from December 2024. The loan bears an interest rate at SOFR plus margin
 per annum of 0.8%. Total commitment fee recognised during the year amounted to USD 886 thousand (2024:
 USD 1,522 thousand). There are no bank covenants or collateral maintained for this facility.
-2025 2024
-USD’000 USD’000
-Current liabilities 2,957,730 -
-Non–current liabilities - 2,944,100
-2,957,730 2,944,100
+
+Current liabilities
+Non – current liabilities
+
 53
 
-=== [FS_FY2025.pdf p60] ===
-Borouge PLC
+2025
+USD’000
+
+2024
+USD’000
+
+2,957,730
+-
+
+2,944,100
+
+2,957,730
+
+2,944,100
+
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-17 BANK LOANS continued
-17.1 Finance costs
-2025 2024
-USD’000 USD’000
-Interest on loans 164,476 191,959
-Intereston lease liabilities (8(c)) 6,193 6,233
-Others 5,255 3,833
-175,924 202,025
-18 TRADE AND OTHER PAYABLES
-2025 2024
-USD’000 USD’000
-Trade accounts payable 79,430 68,794
-Accrued expenses 248,325 244,954
-Contract liabilities (note 19) 20,568 20,494
-Other payables 29,877 22,418
-378,200 356,660
+
+17
+
+BANK LOANS continued
+
+17.1
+
+Finance costs
+
+Interest on loans
+Interest on lease liabilities (8 (c))
+Others
+
+18
+
+2025
+USD’000
+
+2024
+USD’000
+
+164,476
+6,193
+5,255
+
+191,959
+6,233
+3,833
+
+175,924
+
+202,025
+
+2025
+USD’000
+
+2024
+USD’000
+
+79,430
+248,325
+20,568
+29,877
+
+68,794
+244,954
+20,494
+22,418
+
+378,200
+
+356,660
+
+TRADE AND OTHER PAYABLES
+
+Trade accounts payable
+Accrued expenses
+Contract liabilities (note 19)
+Other payables
+
 Trade and other payables are non-interest bearing and have an average credit period of 30 days. The Group has
 financial risk management policies in place to ensure that all payables are paid within the credit timeframe.
-19 REVENUE
-2025 2024
-USD’000 USD’000
-Sale of goods (net of commissions and rebates)
-Polyethylene 3,419,049 2,431,350
-Polypropylene 2,384,384 3,547,516
-Ethylene and others 44,340 47,257
-5,847,773 6,026,123
+
+19
+
+REVENUE
+2025
+USD’000
+
+2024
+USD’000
+
+3,419,049
+2,384,384
+44,340
+
+2,431,350
+3,547,516
+47,257
+
+5,847,773
+
+6,026,123
+
 Timing of revenue recognition
-At a point in time 5,847,773 6,026,123
-Revenue from contracts with customers 5,847,773 6,026,123
+At a point in time
+
+5,847,773
+
+6,026,123
+
+Revenue from contracts with customers
+
+5,847,773
+
+6,026,123
+
+Sale of goods (net of commissions and rebates)
+Polyethylene
+Polypropylene
+Ethylene and others
+
 In terms of the timing of revenue recognition, revenue is recognised at a point in time, when the control of goods is
 transferred to the Customer. The Group does not render any installation or other services. There are no financing
 components on these contracts with customers. The performance obligation is satisfied upon delivery of the goods
@@ -2212,99 +5145,254 @@ with a right of return. However, the sales returns are negligible as compared to
 Based on estimated expected returns, goods that are likely to be returned are expected to be very minimal. Considering
 that the sales returns of the Group are not significant, the Group has not recorded a refund liability and a right of
 return asset for anticipated sales returns in either period.
+
 54
 
-=== [FS_FY2025.pdf p61] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-19 REVENUE continued
+
+19
+
+REVENUE continued
+
 Geographical information
 Revenue based on the geographical location of customers as follow:
-2025 2024
-USD’000 USD’000
-People’s Republic of China 1,533,835 1,803,740
-India 812,522 818,815
-United Arab Emirates 649,417 685,489
-Austria 570,028 462,629
-Egypt 302,794 374,061
-Pakistan 268,804 247,825
-Vietnam 151,892 150,389
-Saudi Arabia 145,904 120,811
-Others 1,412,577 1,362,364
-5,847,773 6,026,123
+
+People’s Republic of China
+India
+United Arab Emirates
+Austria
+Egypt
+Pakistan
+Vietnam
+Saudi Arabia
+Others
+
+2025
+USD’000
+
+2024
+USD’000
+
+1,533,835
+812,522
+649,417
+570,028
+302,794
+268,804
+151,892
+145,904
+1,412,577
+
+1,803,740
+818,815
+685,489
+462,629
+374,061
+247,825
+150,389
+120,811
+1,362,364
+
+5,847,773
+
+6,026,123
+
 Contract balances
 Contract liabilities relate to advance consideration received from customers for sale of polyolefin products. The Group
 did not account for any significant financing component arising from these advances as the related performance
 obligations are completed within less than 12 months.
-20 COST OF SALES
-2025 2024
-USD’000 USD’000
-Cost of production and other related costs 2,728,868 2,507,546
-Staff cost (note 21) 295,277 338,370
-Depreciation on goods sold (note6) 473,170 533,820
-Amortisation on goods sold (note7) 22,979 68,446
-Depreciation on right-of-use assets (note8(a)) 205 164
-Royalty expense (note 12(b)) 45,486 42,643
-3,565,985 3,490,989
-20.1 Royalty expense relates to fees charged by Borealis for the manufacturing of polyolefin products under the
+20
+
+COST OF SALES
+
+Cost of production and other related costs
+Staff cost (note 21)
+Depreciation on goods sold (note 6)
+Amortisation on goods sold (note 7)
+Depreciation on right-of-use assets (note 8 (a))
+Royalty expense (note 12(b))
+
+2025
+USD’000
+
+2024
+USD’000
+
+2,728,868
+295,277
+473,170
+22,979
+205
+45,486
+
+2,507,546
+338,370
+533,820
+68,446
+164
+42,643
+
+3,565,985
+
+3,490,989
+
+20.1
+
+Royalty expense relates to fees charged by Borealis for the manufacturing of polyolefin products under the
 Borstar process license and process design agreement.
-21 STAFF COSTS
-2025 2024
-USD’000 USD’000
-Cost of sales (note20) 295,277 338,370
-General and administrative expenses (note 23) 126,250 84,224
-Selling and distribution expenses (note 24) 112,586 106,903
-534,113 529,497
-22 OTHER INCOME
+
+21
+
+STAFF COSTS
+
+Cost of sales (note 20)
+General and administrative expenses (note 23)
+Selling and distribution expenses (note 24)
+
+22
+
+2025
+USD’000
+
+2024
+USD’000
+
+295,277
+126,250
+112,586
+
+338,370
+84,224
+106,903
+
+534,113
+
+529,497
+
+OTHER INCOME
+
 Other income relates mainly to the sale of scrap materials that took place during the year.
+
 55
 
-=== [FS_FY2025.pdf p62] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-23 GENERAL AND ADMINISTRATIVE EXPENSES
-2025 2024
-USD’000 USD’000
-Salaries and wages (note 21) 126,250 84,224
-Maintenance cost 23,678 30,828
-General service cost 13,881 21,351
-Corporate service cost 8,587 8,072
-Human capability cost 206 5,907
-Depreciation of right-of-use assets (note8(a)) 3,410 4,604
-Depreciation of property, plant and equipment (note6) 4,040 3,307
-Insurance 3,041 3,083
-Travel cost 511 384
-Amortisation of intangible assets (note7) 1,274 350
-Others 11,699 31,011
-196,577 193,121
-24 SELLING AND DISTRIBUTION EXPENSES
-2025 2024
-USD’000 USD’000
-Shipping cost 169,804 209,382
-Storage cost 117,691 140,701
-Salaries and wages (note 21) 112,586 106,903
-General service cost 5,123 5,415
-Travel cost 2,309 2,058
-Depreciation of property, plant and equipment (note6) 1 1
-Amortisation of intangible assets (note7) 148 145
-Others 8,366 7,358
-416,028 471,963
-25 CONTINGENCIES
+
+23
+
+GENERAL AND ADMINISTRATIVE EXPENSES
+
+Salaries and wages (note 21)
+Maintenance cost
+General service cost
+Corporate service cost
+Human capability cost
+Depreciation of right-of-use assets (note 8(a))
+Depreciation of property, plant and equipment (note 6)
+Insurance
+Travel cost
+Amortisation of intangible assets (note 7)
+Others
+
+24
+
+2024
+USD’000
+
+126,250
+23,678
+13,881
+8,587
+206
+3,410
+4,040
+3,041
+511
+1,274
+11,699
+
+84,224
+30,828
+21,351
+8,072
+5,907
+4,604
+3,307
+3,083
+384
+350
+31,011
+
+196,577
+
+193,121
+
+2025
+USD’000
+
+2024
+USD’000
+
+169,804
+117,691
+112,586
+5,123
+2,309
+1
+148
+8,366
+
+209,382
+140,701
+106,903
+5,415
+2,058
+1
+145
+7,358
+
+416,028
+
+471,963
+
+SELLING AND DISTRIBUTION EXPENSES
+
+Shipping cost
+Storage cost
+Salaries and wages (note 21)
+General service cost
+Travel cost
+Depreciation of property, plant and equipment (note 6)
+Amortisation of intangible assets (note 7)
+Others
+
+25
+
+2025
+USD’000
+
+CONTINGENCIES
+
 As at 31 December 2025, the Group had contingent liabilities amounting to USD 322 thousand (2024: USD 193
 thousand) in respect of bank and other guarantees and other matters arising in the ordinary course of business from
 which it is anticipated that no material liabilities will arise.
 The Group is involved in various legal proceedings and claims arising in the ordinary course of business. While the
 outcome of these matters cannot be predicted with certainty, management does not believe that these matters will have
 a material adverse effect on the Group’s consolidated financial statements if concluded unfavorably.
+
 56
 
-=== [FS_FY2025.pdf p63] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-26 SEGMENTAL ANALYSIS
+
+26
+
+SEGMENTAL ANALYSIS
+
 The business activities of the Group are performed on an integrated basis. Therefore, any segmentation of operating
 income, expenses, assets and liabilities is not relevant and is not performed for internal management reporting
 purposes.
@@ -2323,13 +5411,23 @@ There are no other economic characteristics within the Group that will lead to d
 segments. This analysis requires significant judgement as to the circumstances of the Group.
 The Group does not have any operating segments that are aggregated. The CODM has considered the following criteria
 in determining the operating segments of the Group:
- the nature of products and services;
- the nature of the production processes;
- the type or class of customer for their products and services; and
- the methods used to distribute their products or provide their services;
+
+
+
+
+
+the nature of products and services;
+the nature of the production processes;
+the type or class of customer for their products and services; and
+the methods used to distribute their products or provide their services;
+
 Based on the criteria and evaluation above, the CODM has determined that the Group has only one operating segment,
 which is consistent with the internal reporting and performance measurement.
-27 FINANCIAL RISK MANAGEMENT
+
+27
+
+FINANCIAL RISK MANAGEMENT
+
 Overview
 The Board of Directors has overall responsibility for the establishment and oversight of the Group’s risk management
 framework and is responsible for developing and monitoring the Group’s risk management policies. The Group’s risk
@@ -2337,34 +5435,72 @@ management policies are established to identify and analyse the risks faced by t
 and controls, and to monitor risks and adherence to limits. Risk management policies and systems are reviewed
 regularly to reflect changes in market conditions and the Group’s activities.
 The Group has exposure to the following risks from its use of financial instruments:
- Credit risk
- Liquidity risk
- Market risk
+
+
+
+
+Credit risk
+Liquidity risk
+Market risk
+
 This note presents information about the Group’s exposure to each of the above risks, the Group’s objectives, policies
 and processes for measuring and managing risk and the Group’s management of capital. Further quantitative
 disclosures are included throughout these consolidated financial statements. Credit risk is limited to the carrying values
 of financial assets in the consolidated statement of financial position.
+
 57
 
-=== [FS_FY2025.pdf p64] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-27 FINANCIAL RISK MANAGEMENT continued
-i) Credit risk
+
+27
+
+FINANCIAL RISK MANAGEMENT continued
+
+i)
+
+Credit risk
+
 Credit risk is the risk that a counterparty will not meet its obligations under a financial instrument or customer contract,
 leading to a financial loss. The Group is exposed to credit risk from its operating activities primarily for other
 receivables and amounts due from related parties and from its financing activities, including deposits with banks and
 financial institutions and other financial instruments.
 The carrying amount of financial assets represents the maximum credit exposure. The maximum exposure to credit
 risk at the reporting date was:
-2025 2024
-Notes USD’000 USD’000
-Amounts due from related parties 12(d) 293,251 209,937
-Loans to employees 10(c) 35,150 33,963
-Cash and cash equivalents 11 426,901 418,506
-Trade receivables 10(a) 808,237 858,768
-Prepayments and other receivables 10(b) 48,090 23,917
+
+Amounts due from related parties
+Loans to employees
+Cash and cash equivalents
+Trade receivables
+Prepayments and other receivables
+
+Notes
+
+2025
+USD’000
+
+2024
+USD’000
+
+12(d)
+10(c)
+11
+10(a)
+10(b)
+
+293,251
+35,150
+426,901
+808,237
+48,090
+
+209,937
+33,963
+418,506
+858,768
+23,917
+
 The Group’s credit risk primarily relates to concentration of credit attributable to the amounts due from third parties.
 Management estimates that this concentration of credit risk is not significant, as exposure is ultimately spread over a
 large number of third party customers. All balances with banks represent commercial banks in the Middle East region.
@@ -2373,7 +5509,10 @@ The amount that best represents the Group’s maximum credit risk exposure at th
 parties fail to perform their obligations under financial instruments generally approximates their carrying value.
 Amounts due from related parties and certain other receivables and balances with banks are not secured by any
 collateral.
-ii) Liquidity risk
+ii)
+
+Liquidity risk
+
 Liquidity risk is the risk that the Group will encounter difficulty in meeting the obligations associated with its financial
 liabilities that are settled by delivering cash or another financial asset. The Group monitors its risk to a shortage of
 funds using a recurring liquidity planning tool. The Group’s objective is to maintain a balance between continuity of
@@ -2387,62 +5526,266 @@ At 31 December 2025, 93.2% (2024: 19.2%) of the Group’s financial liabilities 
 on the carrying value of borrowings reflected in the consolidated financial statements. The table below summarises
 the maturity profile of the Group’s financial liabilities in each period based on undiscounted payments and current
 market interest rates:
+
 58
 
-=== [FS_FY2025.pdf p65] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-27 FINANCIAL RISK MANAGEMENT continued
-ii) Liquidity risk continued
-Carrying Contractual One year More than
-value cash flows or less one year
-Notes USD ‘000 USD ‘000 USD ‘000 USD ‘000
+
+27
+
+FINANCIAL RISK MANAGEMENT continued
+
+ii)
+
+Liquidity risk continued
+
 31 December 2025
-Amounts due to related parties 12(c) 576,502 (576,502) (576,502) -
-Lease liabilities 8(c) 166,180 (293,799) (10,297) (283,502)
-Bank loan including interest 17 2,957,730 (3,095,410) (3,095,410) -
-Derivative financial instruments 30 6,002 (6,162) (6,162) -
-Trade and other payables 18 109,307 (109,307) (109,307) -
-3,815,721 (4,081,180) (3,797,678) (283,502)
+Amounts due to related parties
+Lease liabilities
+Bank loan including interest
+Derivative financial instruments
+Trade and other payables
+
 31 December 2024
-Amounts due to related parties 12(c) 520,260 (520,260) (520,260) -
-Lease liabilities 8(c) 167,124 (294,696) (9,788) (284,908)
-Bank loan including interest 17 2,944,100 (3,316,676) (189,441) (3,127,235)
-Derivative financial instruments 30 5,993 (6,308) (2,712) (3,596)
-Trade and other payables 18 91,212 (91,212) (91,212) -
-3,728,689 (4,229,152) (813,413) (3,415,739)
+Amounts due to related parties
+Lease liabilities
+Bank loan including interest
+Derivative financial instruments
+Trade and other payables
+
+Notes
+
+Carrying
+value
+USD ‘000
+
+Contractual
+cash flows
+USD ‘000
+
+One year
+or less
+USD ‘000
+
+More than
+one year
+USD ‘000
+
+12(c)
+8(c)
+17
+30
+18
+
+576,502
+166,180
+2,957,730
+6,002
+109,307
+
+(576,502)
+(293,799)
+(3,095,410)
+(6,162)
+(109,307)
+
+(576,502)
+(10,297)
+(3,095,410)
+(6,162)
+(109,307)
+
+(283,502)
+-
+
+3,815,721
+
+(4,081,180)
+
+(3,797,678)
+
+(283,502)
+
+520,260
+167,124
+2,944,100
+5,993
+91,212
+
+(520,260)
+(294,696)
+(3,316,676)
+(6,308)
+(91,212)
+
+(520,260)
+(9,788)
+(189,441)
+(2,712)
+(91,212)
+
+(284,908)
+(3,127,235)
+(3,596)
+-
+
+3,728,689
+
+(4,229,152)
+
+(813,413)
+
+(3,415,739)
+
+12(c)
+8(c)
+17
+30
+18
+
 The financial derivative instruments disclosed in the above table are the gross undiscounted cash flows. However,
 those amounts may be settled gross or net. The following table shows the corresponding reconciliation of those
 amounts to their carrying amounts:
-On Less than 3 to 12 1 to 5 Over 5
-demand 3 months months years years Total
-USD ‘000 USD ‘000 USD ‘000 USD ‘000 USD ‘000 USD ‘000
+On
+demand
+USD ‘000
+
+Less than
+3 months
+USD ‘000
+
+3 to 12
+months
+USD ‘000
+
+1 to 5
+years
+USD ‘000
+
+Over 5
+years
+USD ‘000
+
+Total
+USD ‘000
+
 Year ended 31 December 2025
-Inflows - 4,590 12,176 - - 16,766
-Outflows - (5,813) (17,115) - - (22,928)
-Net - (1,223) (4,939) - - (6,162)
+Inflows
+Outflows
+
+-
+
+4,590
+(5,813)
+
+12,176
+(17,115)
+
+-
+
+-
+
+16,766
+(22,928)
+
+Net
+
+-
+
+(1,223)
+
+(4,939)
+
+-
+
+-
+
+(6,162)
+
 Discounted at the applicable
-- (1,211) (4,791) - - (6,002)
 interbank rates
+
+-
+
+(1,211)
+
+(4,791)
+
+-
+
+-
+
+(6,002)
+
 Year ended 31 December 2024
-Inflows - 5,339 15,522 19,331 - 40,192
-Outflows - (5,735) (17,838) (22,927) - (46,500)
-Net - (396) (2,316) (3,596) - (6,308)
+Inflows
+Outflows
+
+-
+
+5,339
+(5,735)
+
+15,522
+(17,838)
+
+19,331
+(22,927)
+
+-
+
+40,192
+(46,500)
+
+Net
+
+-
+
+(396)
+
+(2,316)
+
+(3,596)
+
+-
+
+(6,308)
+
 Discounted at the applicable
-- (392) (2,240) (3,361) - (5,993)
 interbank rates
+
+-
+
+(392)
+
+(2,240)
+
+(3,361)
+
+-
+
+(5,993)
+
 The Group is exposed to certain risks relating to its ongoing business operations. The derivative instruments have been
 entered into to manage the interest rate risk, explained in the Financial Instruments risk management section on
 page 60.
+
 59
 
-=== [FS_FY2025.pdf p66] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-27 FINANCIAL RISK MANAGEMENT continued
-iii) Market risk
+
+27
+
+FINANCIAL RISK MANAGEMENT continued
+
+iii)
+
+Market risk
+
 Market price risk is the risk that the fair value of future cash flows of a financial instrument will fluctuate because of
 changes in market prices. The objective of market risk management is to manage and control market risk exposures
 within acceptable parameters, while optimising the return. Market prices comprise the following types of risk:
@@ -2458,16 +5801,38 @@ the Japanese Yen, Chinese Yuan Renminbi, Euro, Singaporean Dollar, British Pound
 States Dollar, with all other variables held constant, of the Group’s profit before tax (due to changes in the fair value
 of monetary assets and liabilities). A 5% decrease in exchange rates will have the same opposite effect. The Group’s
 exposure to foreign currency changes for all other currencies is not material.
-2025 2024
-USD’000 USD’000
+2025
+USD’000
+
+2024
+USD’000
+
+30
+(538)
+(378)
+(699)
+(1)
+6
+
+21
+(249)
+581
+(895)
+(1)
+1
+
+(1,580)
+
+(542)
+
 5% increase in exchange rates - impact on profit or loss
-Japanese Yen 30 21
-Chinese Yuan Renminbi (538) (249)
-Euro (378) 581
-Singaporean Dollar (699) (895)
-British Pound (1) (1)
-Swiss Frank 6 1
-(1,580) (542)
+Japanese Yen
+Chinese Yuan Renminbi
+Euro
+Singaporean Dollar
+British Pound
+Swiss Frank
+
 Interest rate risk
 Interest rate risk is the risk that the fair value of future cash flows of a financial instrument will fluctuate because of
 changes in market interest rate. The Group’s exposure to the risk of changes in market interest rates relates primarily
@@ -2475,20 +5840,39 @@ to the Group’s bank loan drawdown.
 The sensitivity of the relevant profit or loss item is the effect of the assumed changes in respective market risks. This
 is based on the financial assets and financial liabilities held at the end of each period.
 The interest rate profile of the Group’s interest bearing financial instruments is as follows:
-2025 2024
-USD’000 USD’000
-Increase of 0.5% 14,746 (14,721)
-Decrease of 0.5% (14,746) 14,721
+
+Increase of 0.5%
+Decrease of 0.5%
+
+2025
+USD’000
+
+2024
+USD’000
+
+14,746
+(14,746)
+
+(14,721)
+14,721
+
 Debt issued at variable interest rates gives rise to an interest rate cash flow risk. Interest rate swap contracts are used
 for debt issued at variable rates to generate fixed interest exposure, creating a cashflow hedge.
+
 60
 
-=== [FS_FY2025.pdf p67] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-27 FINANCIAL RISK MANAGEMENT continued
-iv) Capital risk management
+
+27
+
+FINANCIAL RISK MANAGEMENT continued
+
+iv)
+
+Capital risk management
+
 The primary objective of the Group’s capital management is to achieve strong credit metrics and healthy capital ratios
 in order to support its business and maximise shareholder value. The Group manages its capital structure and makes
 adjustments to it, in light of changes in economic conditions. There are no regulatory imposed requirements on the
@@ -2496,67 +5880,252 @@ level of share capital which the Group has not met.
 The Group monitors capital using a gearing ratio, which is net debt divided by total capital plus net debt. The Group
 includes within net debt, trade and other payables, bank loans, amounts due to related parties, derivative financial
 instruments lease liabilities and income tax payable less cash and cash equivalents. Capital includes total equity.
-2025 2024
-Notes USD’000 USD’000
-Trade and other payables 18 378,200 356,660
-Amounts due to related parties 12(c) 576,502 520,260
-Bank loans 17 2,957,730 2,944,100
-Lease liabilities 8(c) 166,180 167,124
-Derivative financial instruments 30 6,002 5,993
-Income tax payable 54,499 47,309
-Less: cash and cash equivalents 11 (426,901) (418,506)
-Total debt net of cash and cash equivalents 3,712,212 3,622,940
-Total equity 4,115,682 4,482,063
-Equity and total debt net of cash and cash equivalents 7,827,894 8,105,003
-Gearing ratio 0.47 0.45
+2025
+USD’000
+
+2024
+USD’000
+
+378,200
+576,502
+2,957,730
+166,180
+6,002
+54,499
+(426,901)
+
+356,660
+520,260
+2,944,100
+167,124
+5,993
+47,309
+(418,506)
+
+Total debt net of cash and cash equivalents
+
+3,712,212
+
+3,622,940
+
+Total equity
+
+4,115,682
+
+4,482,063
+
+Equity and total debt net of cash and cash equivalents
+
+7,827,894
+
+8,105,003
+
+0.47
+
+0.45
+
+Notes
+Trade and other payables
+Amounts due to related parties
+Bank loans
+Lease liabilities
+Derivative financial instruments
+Income tax payable
+Less: cash and cash equivalents
+
+18
+12(c)
+17
+8(c)
+30
+11
+
+Gearing ratio
 Changes in liabilities arising from financing activities – year ended 31 December 2025
-At At
-1 January Cash 31 December
-2025 outflows Proceeds Others 2025
-USD’000 USD’000 USD’000 USD’000 USD’000
-Bank loan(note 17) 2,944,100 - - 2,950 2,947,050
-Receivables discounting(note 17) - - 10,000 680 10,680
-Total liabilities from financing activities 2,944,100 - 10,000 3,630 2,957,730
+At
+1 January
+2025
+USD’000
+
+Cash
+outflows
+USD’000
+
+Proceeds
+USD’000
+
+Others
+USD’000
+
+At
+31 December
+2025
+USD’000
+
+Bank loan (note 17)
+Receivables discounting (note 17)
+
+2,944,100
+-
+
+-
+
+10,000
+
+2,950
+680
+
+2,947,050
+10,680
+
+Total liabilities from financing activities
+
+2,944,100
+
+-
+
+10,000
+
+3,630
+
+2,957,730
+
 Changes in liabilities arising from financing activities – year ended 31 December 2024
-At At
-1 January Cash 31 December
-2024 outflows Proceeds Others 2024
-USD’000 USD’000 USD’000 USD’000 USD’000
-Bank loan(note 17) 3,140,725 (200,000) - 3,375 2,944,100
-Total liabilities from financing activities 3,140,725 (200,000) - 3,375 2,944,100
+At
+1 January
+2024
+USD’000
+
+Cash
+outflows
+USD’000
+
+Proceeds
+USD’000
+
+Others
+USD’000
+
+At
+31 December
+2024
+USD’000
+
+Bank loan (note 17)
+
+3,140,725
+
+(200,000)
+
+-
+
+3,375
+
+2,944,100
+
+Total liabilities from financing activities
+
+3,140,725
+
+(200,000)
+
+-
+
+3,375
+
+2,944,100
+
 61
 
-=== [FS_FY2025.pdf p68] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-28 CAPITAL COMMITMENTS
+
+28
+
+CAPITAL COMMITMENTS
+
 The Group has authorised and committed estimated future expenditure amounting to USD 324,736 thousand
 (2024: USD 129,087 thousand).
-29 BASIC AND DILUTED EARNINGS PER SHARE
+
+29
+
+BASIC AND DILUTED EARNINGS PER SHARE
+
 Basic and diluted earnings per share are calculated by dividing the profit attributable to shareholders of the Group by
 the weighted average number of share outstanding during the period as follows:
-2025 2024
-USD’000 USD’000
-Profit attributable to owners of the Company (USD’000) 1,089,178 1,225,273
-Weighted average number of shares in issue 29,937,557,774 30,057,691,583
-Basic and Diluted Earnings per share (USD) 0.04 0.04
+2025
+USD’000
+
+2024
+USD’000
+
+1,089,178
+
+1,225,273
+
+Weighted average number of shares in issue
+
+29,937,557,774
+
+30,057,691,583
+
+Basic and Diluted Earnings per share (USD)
+
+0.04
+
+0.04
+
+Profit attributable to owners of the Company (USD ’000)
+
 The weighted average number of ordinary shares takes into account the weighted average effect of changes in treasury
 shares (note 31) during the year.
-30 FAIR VALUE OF FINANCIAL ASSETS AND LIABILITIES
+
+30
+
+FAIR VALUE OF FINANCIAL ASSETS AND LIABILITIES
+
 Management considers that the fair values of the financial instruments of the Group are not materially different from
 their carrying values at the reporting date.
 Fair value hierarchy
 As at 31 December 2025 and 2024, the fair value measurement hierarchy of the Group’s assets and liabilities is as
 follows:
-Level 1 Level 2 Level 3 Total
-USD’000 USD’000 USD’000 USD’000
+Level 1
+USD’000
+
+Level 2
+USD’000
+
+Level 3
+USD’000
+
+Total
+USD’000
+
 Items measured at fair value
 At 31 December 2025
-Interest rate swap–hedged - (6,002) - (6,002)
+Interest rate swap – hedged
+
+-
+
+(6,002)
+
+-
+
+(6,002)
+
 Items measured at fair value
 At 31 December 2024
-Interest rate swap–hedged - (5,993) - (5,993)
+Interest rate swap – hedged
+
+-
+
+(5,993)
+
+-
+
+(5,993)
+
 During the year ended 31 December 2023, the Group entered in interest rate swap agreements for notional amount of
 USD 500 million. The Group earned fair value loss on derivatives used in effective cashflow hedge relationship of
 USD 9 thousand (2024: gain of USD 6,615 thousand).
@@ -2565,13 +6134,17 @@ At 31 December 2025, the Group had interest rate swap agreements in place with a
 thousand (2024: USD 500,000 thousand) whereby the Group receives a fixed rate of interest of 4.65% and pays interest
 at a variable rate on the external bank loan The swap is being used to hedge the exposure to variability of cash flows
 associated with the variable interest bearing loan held by the Group.
+
 62
 
-=== [FS_FY2025.pdf p69] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-30 FAIR VALUE OF FINANCIAL ASSETS AND LIABILITIES continued
+
+30
+
+FAIR VALUE OF FINANCIAL ASSETS AND LIABILITIES continued
+
 There is an economic relationship between the hedged item and the hedging instrument as the terms of the interest
 rate swap match the terms of the fixed rate loan (i.e., notional amount, maturity, payment and reset dates). The Group
 has established a hedge ratio of 1:1 for the hedging relationships as the underlying risk of the interest rate swap is
@@ -2579,22 +6152,36 @@ identical to the hedged risk component. To test the hedge effectiveness, the Gro
 of the critical terms, as the critical terms of the interest rate swap match with that of the hedged item and the underlying
 economics of the interest rate swap matches the underlying of the hedged item.
 The hedge ineffectiveness can arise from:
- Different interest rate curve applied to discount the hedged item and hedging instrument
- Differences in timing of cash flows of the hedged item and hedging instrument
- The counterparties’ credit risk differently impacting the fair value movements of the hedging instrument and
+
+
+
+
+Different interest rate curve applied to discount the hedged item and hedging instrument
+Differences in timing of cash flows of the hedged item and hedging instrument
+The counterparties’ credit risk differently impacting the fair value movements of the hedging instrument and
 hedged item
+
 The ineffectiveness recognised in the statement of profit or loss was USD nil (2024: USD nil).
 Fair value hierarchy
 The Group uses the following hierarchy for determining and disclosing the fair value of assets and liabilities by
 valuation technique:
-Level 1: Quoted (unadjusted) prices in active markets for identical assets or liabilities.
-Level 2: Other techniques for which all inputs which have a significant effect on the recorded fair value are
+Level 1:
+Level 2:
+Level 3:
+
+Quoted (unadjusted) prices in active markets for identical assets or liabilities.
+Other techniques for which all inputs which have a significant effect on the recorded fair value are
 observable, either directly or indirectly.
-Level 3: Techniques which use inputs which have a significant effect on the recorded fair value that are not based
+Techniques which use inputs which have a significant effect on the recorded fair value that are not based
 on observable market data.
+
 During the years ended 31 December 2025 and 31 December 2024, there were no transfers between Level 1 and Level
 2 fair value measurements, and no transfers into and out of Level 3 fair value measurements.
-31 TREASURY SHARES AND SHARE PREMIUM
+
+31
+
+TREASURY SHARES AND SHARE PREMIUM
+
 During the year, the Group appointed, (“Al Ramz Capital”) a licensed Market Maker on the Abu Dhabi Securities
 Exchange (ADX) that offers liquidity provision services, to place buy and sell orders of the Group’s shares with the
 objective of reducing bid/ask spreads as well as reducing price and volume volatility.
@@ -2612,17 +6199,28 @@ Shareholders of the Group approved the purchase of up to a maximum of 2.5% of th
 The share buyback program commenced after shareholder approval was received and at 31 December 2025, the Group
 held 211,847 thousand shares (31 December 2024: Nil) which are classified under equity as treasury shares at
 acquisition cost amounting to USD 147,818 thousand (31 December 2024: Nil).
+
 63
 
-=== [FS_FY2025.pdf p70] ===
-Borouge PLC
+Borouge PLC
 NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
 31 December 2025
-32 COMPARATIVE INFORMATION
+
+32
+
+COMPARATIVE INFORMATION
+
 Certain comparative figures have been reclassified in order to conform to the presentation for the current year and to
 improve the quality of information previously presented. Such reclassifications do not affect previously reported net
 profit or total equity.
-33 APPROVAL OF CONSOLIDATED FINANCIAL STATEMENTS
+
+33
+
+APPROVAL OF CONSOLIDATED FINANCIAL STATEMENTS
+
 The consolidated financial statements were approved by the Board of Directors and authorised for issue on 3 February
 2026.
+
 64
+
+
