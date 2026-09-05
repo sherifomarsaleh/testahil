@@ -427,12 +427,43 @@ def load_outstanding():
             set(d.get('review_central_unstated', [])))
 
 
+# A DIRECTORY THAT IS NOT AN EQUITY VALUATION IS EXEMPT, AND THE EXEMPTION IS EXECUTED
+# RATHER THAN DECLARED [added 05-Sep-2026].
+#
+# gap_outstanding.json has carried an `exempt` block since the rule was seeded — "XPT:
+# metals study - no issuer, no equity fair value of this shape" — and NOTHING READ IT.
+# So the same name sat in `unreadable` as well, as a defect to be cleared, and it can
+# never be cleared: a metal has no issuer, no statements and no equity, so there is no
+# central fair value for it to expose. A permanently-uncleara ble entry on a ratchet is
+# the permanently-red check [R-ENF-02] forbids, one level down — it makes the
+# outstanding list one longer than it is and implies work nobody can ever do.
+#
+# The exemption is now enforced, and it is deliberately narrow so it cannot become an
+# escape hatch:
+#   * it needs a REASON, and an empty one fails rather than exempting;
+#   * every exempt name is PRINTED, because an exemption a reader cannot see is
+#     indistinguishable from a study the gate silently skipped;
+#   * an exempt study that DOES expose a central FAILS. That is the clause that keeps
+#     it honest: the exemption says "this is not an equity valuation", so a central
+#     appearing there means either the exemption is wrong or the study is, and both
+#     are findings rather than passes.
+def exemptions(d):
+    ex = d.get('exempt') or {}
+    bad = [k for k, v in ex.items() if not str(v or '').strip()]
+    return ex, bad
+
+
 def main(argv):
     prune = '--prune' in argv
     d, known_breach, known_unreadable, known_unstated = load_outstanding()
 
     sdirs = sorted(glob.glob(os.path.join(ENGINE, '*_study')))
     ok, breaches, unreadable, reviewed, new_fail = [], [], [], [], []
+    exempt, exempt_no_reason = exemptions(d)
+    exempted = []
+    for k in sorted(exempt_no_reason):
+        new_fail.append('%s is listed exempt with no reason. An exemption without one is '
+                        'a name switched off, not a name excused.' % k)
 
     # [R-ENF-04] the population, counted somewhere other than this gate's own glob
     on_disk = {os.path.basename(s).replace('_study', '').upper() for s in sdirs}
@@ -450,6 +481,15 @@ def main(argv):
     for sdir in sdirs:
         tk = os.path.basename(sdir).replace('_study', '').upper()
         central, spot, route = read_answer(sdir)
+        if tk in exempt:
+            exempted.append((tk, exempt[tk]))
+            if central is not None:
+                new_fail.append(
+                    '%s is listed exempt from this gate — %r — and its committed numbers '
+                    'DO resolve to a central fair value of %.4f. Either the exemption is '
+                    'wrong or the study is; an exemption is not a place to put an answer '
+                    'nobody wants audited.' % (tk, exempt[tk], central))
+            continue
         # [R-GAP-01] compares against THE LATEST KNOWN MARKET PRICE. Prefer the
         # house's own price library over the spot the study froze at strike; fall
         # back to the struck spot only where no library resolves, and say which was
@@ -559,9 +599,14 @@ def main(argv):
             new_fail.append('%s: central is %.1f%% %s the spot it was struck at, and %s.'
                             % (tk, abs(100 * gap), side, why))
 
-    print('study directories: %d   readable: %d   reviewed: %d   breaching: %d   unreadable: %d'
+    print('study directories: %d   readable: %d   reviewed: %d   breaching: %d   '
+          'unreadable: %d   exempt: %d'
           % (len(sdirs), len(ok) + len(reviewed) + len(breaches), len(reviewed),
-             len(breaches), len(unreadable)))
+             len(breaches), len(unreadable), len(exempted)))
+    for tk, why in sorted(exempted):
+        # printed, never silent: an exemption a reader cannot see is indistinguishable
+        # from a study this gate quietly skipped
+        print('   EXEMPT  %-11s %s' % (tk, why))
     print('trigger: central more than %.0f%% BELOW or %.0f%% ABOVE the spot it was struck at\n'
           % (-100 * GAP_LIMIT, 100 * GAP_LIMIT_ABOVE))
 
