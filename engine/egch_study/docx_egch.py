@@ -426,15 +426,30 @@ rows = [["Line", "EGP million"],
         ["Inland freight", E(-NM['freight'])],
         ["Other selling and administration", E(-(NM['other_selling'] + NM['admin']))],
         ["MID-CYCLE EBITDA", E(NM['ebitda'])],
-        ["Depreciation and amortisation", E(-NM['dep'])],
+        ["Less depreciation and amortisation", E(-NM['dep'])],
+        ["MID-CYCLE OPERATING PROFIT", E(NM['ebitda'] - NM['dep'])],
+        # THE TAX LINE WAS MISSING AND THE COLUMN DID NOT ADD UP FOR A READER. Subtracting
+        # depreciation from EBITDA gives operating profit, not profit AFTER tax, so a reader
+        # following this table reached 1,938 against a printed 1,502 [R-ENF-01 EXTENDED].
+        [f"Less tax at {PC(DR['tax_rate'])}", E(NM['nopat'] - (NM['ebitda'] - NM['dep']))],
         ["MID-CYCLE OPERATING PROFIT AFTER TAX", E(NM['nopat'])],
-        ["At ten times — enterprise value", E(NM['ev'])],
-        ["Value per share at ten times (EGP)", E2(NM['value_per_share'])],
-        ["At eight times (EGP)", E2(NM['value_low'])],
-        ["At twelve times (EGP)", E2(NM['value_high'])]]
-table(rows, [4.4, 2.5], size=8.9, band_rows={7, 9, 11})
+        [f"At {E1(NM['mult'])} times — enterprise value", E(NM['ev'])],
+        # AND THE BRIDGE FROM ENTERPRISE VALUE TO A SHARE PRICE WAS NOT PRINTED EITHER: a
+        # reader dividing 15,016 by 1,987 million shares reached 7.56 against a printed 4.29.
+        # The three lines that close it are the same three the cash-flow bridge uses.
+        ["Less net debt", E(-BASE['bridge']['net_debt'])],
+        ["Plus listed stakes at market and investment property",
+         E(BASE['bridge']['fvoci'] + BASE['bridge']['inv_prop'])],
+        ["Equity value", E(NM['ev'] - BASE['bridge']['net_debt'] + BASE['bridge']['fvoci'] + BASE['bridge']['inv_prop'])],
+        [f"Divided by shares in issue ({E1(BASE['bridge']['shares'] / 1e6)} million)", ""],
+        [f"Value per share at {E1(NM['mult'])} times (EGP)", E2(NM['value_per_share'])],
+        [f"At {E1(NM['mult_low'])} times (EGP)", E2(NM['value_low'])],
+        [f"At {E1(NM['mult_high'])} times (EGP)", E2(NM['value_high'])]]
+table(rows, [4.4, 2.5], size=8.9, band_rows={7, 9, 11, 15, 17})
 caption("{T}.  A mature single-asset industrial in a high-inflation economy does not "
-        "deserve more than ten times, and the band either side is shown.")
+        "deserve more than ten times, and the band either side is shown. The column is "
+        "printed in full: tax, net debt, the non-operating assets and the share count all "
+        "appear, so a reader adding it up reaches the figure at the bottom.")
 
 H2("1.5  Synthesis — four lenses, one field")
 P(f"The field runs from EGP {E2(LN['synthesis']['low'])} to EGP {E2(LN['synthesis']['high'])} "
