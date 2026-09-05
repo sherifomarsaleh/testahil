@@ -888,6 +888,22 @@ out = dict(drivers=D, hist=H, fy2526=fy2526, years=YEARS, hist_years=HIST_YEARS,
 # OVER, and a key added by any later stage survives an import of this one without
 # anybody remembering to come back here. That is [R-ENF-01]'s "close the class, not
 # the instance" applied to a build script.
+# A SUPERSEDED FIGURE QUOTED TO SHOW WHAT CHANGED IS A NUMBER A READER SEES, so it needs a
+# counterpart in the file the prose check reads. This study's rule is deliberately stricter
+# than the book's — a registered input NOTHING CONSUMES cannot license a figure [L-018] — and
+# it is right about drivers: registering a number must not become the cheap way to clear a
+# check. But a correction note is not a driver. It is a committed fact about this study's own
+# history, it reaches a reader in the delivered workbook, and the honest counterpart is the
+# numbers file rather than the register's prose. So the pair is CARRIED into the output here,
+# where it is consumed by construction, rather than the sentence being deleted — the standing
+# discipline being that a false positive is fixed by widening the rendering set and never by
+# deleting the figure from the study. Found once the delivered workbook joined this check's
+# population, 05-09-2026.
+out['superseded'] = {
+    'erp_cds': _V('erp_cds_superseded'),
+    'sov_spread_cds': _V('sov_spread_cds_superseded'),
+}
+
 try:
     _prev = json.load(open(os.path.join(HERE, 'study_numbers.json')))
     for _k, _v in _prev.items():

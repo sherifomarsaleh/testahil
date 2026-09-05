@@ -2042,6 +2042,92 @@ assert _BEST_P == 'H1-2026', (
     f"section 1.4 says the latest reviewed half printed the best margin on this record; the "
     f"record's own maximum is {_BEST_P} at {_BEST_M:.2%}. Fix the sentence, not the record.")
 
+# ---- [R-ANCHOR-01] the forecast anchor -----------------------------------------
+# THE RATE IS ANCHORED ON THE LATEST REVIEWED PERIOD AND EVERY FIGURE HERE IS
+# DERIVED, NOT TYPED. The rate this record governs is the EBITDA margin: it is the
+# headline profitability rate of the forecast, and the margin record above already
+# foots it to an audited or reviewed filing in every period on one construction. It
+# is an OUTPUT of the build -- revenue from subscribers x ARPU, cost from per-unit
+# rates anchored on the H1-2026 reviewed actual -- never an input, which is the
+# condition the margins-are-outputs rule imposes on this class.
+#
+# THE FIRST FORECAST YEAR IS A HYBRID AND THAT IS THE THING TO WATCH. FY2026E is
+# the reviewed H1-2026 half PLUS a unit-built H2, so a full-year rate can read calm
+# while the only genuinely forecast half does something the filings do not support
+# -- which is exactly how the AMOC case concealed an implied second half at roughly
+# half what the company had just reported. So the implied H2 is measured here and
+# carried in the note, against the two comparisons that can settle it: the
+# company's OWN prior-year seasonal step, and the like-for-like H2-on-H2 change.
+_ANCH_LATEST_P, _ANCH_LATEST = 'H1-2026', V['h1_26_ebitda'] / V['h1_26_rev']
+_ANCH_FIRST = ebitda_margin[0]
+_ANCH_PATH = list(ebitda_margin)
+_ANCH_GAP_REL = (_ANCH_FIRST - _ANCH_LATEST) / abs(_ANCH_LATEST)
+_ANCH_PATH_DROP = (min(_ANCH_PATH) - _ANCH_PATH[0]) / abs(_ANCH_PATH[0])
+# the implied second half -- the only part of FY2026E that is a forecast at all
+_ANCH_H2 = _h2_26_margin
+_ANCH_H2_VS_H1 = _ANCH_H2 / _ANCH_LATEST - 1           # against the reviewed half
+_ANCH_SEASONAL = _h2_25_margin / _h1_25_margin - 1      # the company's own FY2025 step
+_ANCH_H2_YOY = _ANCH_H2 - _h2_25_margin                 # like-for-like, H2 on H2
+# the H2 margin the company's own guided full-year midpoint would require, hoisted
+# out of the emit block below so it is named once and quoted rather than retyped
+_ANCH_H2_AT_GUID = (0.465 * rev[0] - V['h1_26_ebitda']) / _h2_26_rev
+
+FORECAST_ANCHOR = dict(
+    rate_name='EBITDA margin',
+    latest_reviewed_period=f'{_ANCH_LATEST_P}, reviewed',
+    latest_reviewed_date='2026-06-30',
+    latest_reviewed_rate=_ANCH_LATEST,
+    first_forecast_rate=_ANCH_FIRST,
+    forecast_path=_ANCH_PATH,
+    note=(
+        f'the forecast opens at {_ANCH_FIRST:.2%} against the reviewed half-year ended '
+        f'30 June 2026 at {_ANCH_LATEST:.2%} -- {abs(_ANCH_GAP_REL):.2%} relative below it, '
+        f'inside the tolerance -- and is held roughly flat across the explicit window, its '
+        f'lowest year {abs(_ANCH_PATH_DROP):.2%} below the opening year. No mechanism is '
+        f'named because none is claimed: the per-unit cost rates are anchored on the H1-2026 '
+        f'reviewed actual and held flat, and only two of them carry a drift, each with its '
+        f'own measured like-for-like direction in the company\'s own half-year pair. '
+        f'FY2026E IS A HYBRID and this record says so rather than letting a full-year rate '
+        f'stand in for a forecast: it is the filed H1-2026 half at {_ANCH_LATEST:.2%} plus a '
+        f'unit-built H2 at {_ANCH_H2:.2%}, so the implied second half sits '
+        f'{abs(_ANCH_H2_VS_H1):.2%} relative below the reviewed half. That step is NOT a '
+        f'decline away from the filed record -- it is seasonal, and the company printed the '
+        f'same step in its own last full year ({_h1_25_margin:.2%} to {_h2_25_margin:.2%}, '
+        f'{abs(_ANCH_SEASONAL):.2%} relative). The like-for-like comparison is H2 on H2, and '
+        f'on that basis the implied half IMPROVES {_ANCH_H2_YOY*100:+.2f} points against the '
+        f'H2-2025 actual. The build is the more conservative reading on both counts: the '
+        f'modelled H1-to-H2 step is steeper than the one the company actually filed, and the '
+        f'implied y/y gain of {_ANCH_H2_YOY*100:+.2f} points is smaller than the '
+        f'{(_h1_26_margin - _h1_25_margin)*100:+.2f} points the reviewed first half just '
+        f'delivered. The filed record on one construction is '
+        + ' · '.join(f'{p} {m:.2%}' for p, m in _MARGINS)
+        + f'; the full years rise monotonically, and the forecast opens above every one of '
+        f'them and below the reviewed half. GUIDANCE IS SCORED AND NOT CONSUMED, and here it '
+        f'cuts against the build rather than for it: the company\'s own July full-year range '
+        f'is 46-47%, whose midpoint would require an H2 margin of {_ANCH_H2_AT_GUID:.2%} '
+        f'against a first half that printed {_ANCH_LATEST:.2%} -- a y/y deterioration where '
+        f'the filings show improvement. The build follows the filed halves rather than the '
+        f'guided range, and its FY2026E therefore sits above that range; the opposite lean '
+        f'to the one a guidance-anchored forecast would inherit.'),
+)
+say(f"[R-ANCHOR-01 forecast anchor] {FORECAST_ANCHOR['rate_name']}: latest reviewed "
+    f"{_ANCH_LATEST_P} {_ANCH_LATEST:.2%} -> first forecast year {_ANCH_FIRST:.2%} "
+    f"({_ANCH_GAP_REL:+.2%} relative); path low {min(_ANCH_PATH):.2%} "
+    f"({_ANCH_PATH_DROP:+.2%} from the opening year); implied H2-2026 {_ANCH_H2:.2%} "
+    f"({_ANCH_H2_VS_H1:+.2%} vs the reviewed half, against a filed FY2025 seasonal step of "
+    f"{_ANCH_SEASONAL:+.2%}; H2-on-H2 {_ANCH_H2_YOY*100:+.2f}pp)")
+# THE ASSERTS ARE THE POINT: if a future driver change pushes either clause past the
+# 5% relative line the build STOPS, and a mechanism has to be named, sourced and
+# measured -- rather than the record quietly shipping a decline nothing supports.
+assert _ANCH_GAP_REL >= -0.05, (
+    f"[R-ANCHOR-01] the forecast now opens {abs(_ANCH_GAP_REL):.2%} relative below the "
+    f"latest reviewed period. Name a mechanism from the closed list, carry the disclosure "
+    f"that establishes it, and supply the like-for-like measurement -- or re-anchor.")
+assert _ANCH_PATH_DROP >= -0.05, (
+    f"[R-ANCHOR-01 clause two] the forecast rate now falls {abs(_ANCH_PATH_DROP):.2%} "
+    f"relative from its own opening year. A decline inside the forecast is the same claim "
+    f"about the world as one against the filed record.")
+
 OUT = dict(
     meta=dict(ticker='DU', company='Emirates Integrated Telecommunications Company PJSC (du)',
               market='DFM', currency='AED', asof='2026-08-07', spot=SPOT, shares_mn=SH,
@@ -2068,8 +2154,7 @@ OUT = dict(
               h2_26=dict(rev=_h2_26_rev, ebitda=_h2_26_ebitda, margin=_h2_26_margin,
                          h2_25_margin=_h2_25_margin, h1_26_margin=_h1_26_margin,
                          h1_25_margin=_h1_25_margin,
-                         margin_at_guidance_mid=(0.465 * rev[0] - V['h1_26_ebitda'])
-                         / _h2_26_rev)),
+                         margin_at_guidance_mid=_ANCH_H2_AT_GUID)),
     unitcost=dict(hist=DCU, joint=_DCP, h2_25=H2_25_U, den={k: list(v) for k, v in _DEN.items()},
                   arpu_q=V['arpu_mobile_q'], peers=V['arpu_ratio_peers'],
                   nature_hist=V['dc_nature_hist'], nature_h1=V['dc_nature_h1'],
@@ -2278,6 +2363,7 @@ OUT = dict(
     # filed a higher one twice). The record is now committed, the claim is derived from it,
     # and the WINDOW IS NAMED so the sentence claims only what the evidence covers.
     margin_record=MARGIN_RECORD,
+    forecast_anchor=FORECAST_ANCHOR,
     register_figures=dict(
         lfl_mobile_interconnect=_D_INTER,
         lfl_mobile_commission=_D_COMM,

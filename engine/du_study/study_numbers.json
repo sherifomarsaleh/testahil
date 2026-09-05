@@ -3553,6 +3553,21 @@
   "full_years_monotone": true,
   "note": "the window this superlative is claimed over, stated rather than implied. Every period is footed to an audited or reviewed filing on one construction."
  },
+ "forecast_anchor": {
+  "rate_name": "EBITDA margin",
+  "latest_reviewed_period": "H1-2026, reviewed",
+  "latest_reviewed_date": "2026-06-30",
+  "latest_reviewed_rate": 0.4918433785219113,
+  "first_forecast_rate": 0.47831635728252436,
+  "forecast_path": [
+   0.47831635728252436,
+   0.4778873846608979,
+   0.47880303855441503,
+   0.4791709755352587,
+   0.4792834266366561
+  ],
+  "note": "the forecast opens at 47.83% against the reviewed half-year ended 30 June 2026 at 49.18% -- 2.75% relative below it, inside the tolerance -- and is held roughly flat across the explicit window, its lowest year 0.09% below the opening year. No mechanism is named because none is claimed: the per-unit cost rates are anchored on the H1-2026 reviewed actual and held flat, and only two of them carry a drift, each with its own measured like-for-like direction in the company's own half-year pair. FY2026E IS A HYBRID and this record says so rather than letting a full-year rate stand in for a forecast: it is the filed H1-2026 half at 49.18% plus a unit-built H2 at 46.51%, so the implied second half sits 5.44% relative below the reviewed half. That step is NOT a decline away from the filed record -- it is seasonal, and the company printed the same step in its own last full year (47.10% to 45.23%, 3.97% relative). The like-for-like comparison is H2 on H2, and on that basis the implied half IMPROVES +1.29 points against the H2-2025 actual. The build is the more conservative reading on both counts: the modelled H1-to-H2 step is steeper than the one the company actually filed, and the implied y/y gain of +1.29 points is smaller than the +2.09 points the reviewed first half just delivered. The filed record on one construction is FY2022 40.32% \u00b7 FY2023 42.53% \u00b7 FY2024 44.21% \u00b7 FY2025 46.14% \u00b7 H1-2025 47.10% \u00b7 H1-2026 49.18%; the full years rise monotonically, and the forecast opens above every one of them and below the reviewed half. GUIDANCE IS SCORED AND NOT CONSUMED, and here it cuts against the build rather than for it: the company's own July full-year range is 46-47%, whose midpoint would require an H2 margin of 43.88% against a first half that printed 49.18% -- a y/y deterioration where the filings show improvement. The build follows the filed halves rather than the guided range, and its FY2026E therefore sits above that range; the opposite lean to the one a guidance-anchored forecast would inherit."
+ },
  "register_figures": {
   "lfl_mobile_interconnect": -0.04130064570132963,
   "lfl_mobile_commission": 0.02981864643752119,
@@ -3616,6 +3631,7 @@
   "[Why volume looks better here \u2014 the comparison was mis-specified, and the fix] calibrating both cases on FY2026 growth does NOT hold revenue constant, because H1-2026 is a reviewed ACTUAL: a subscriber shift can only move the second half of FY2026, so matching FY2026 needs a shift large enough to then apply to the WHOLE of FY2027-FY2030. Five-year revenue comes out 91,049 on price against 91,862 on volume (+0.89%) \u2014 the volume case simply sells more over the window. That is a timing artefact of the calibration, not evidence about attribution.",
   "[CC3, attribution isolated on matched five-year revenue] +190k subscribers delivers the same 91,049 of five-year revenue as the price case. On PRICE: AED 17.16. On VOLUME: AED 16.98 (-0.18/share, -1.1%). NOW the expected ordering holds: identical revenue is worth less when it has to be bought with per-subscriber cost and the capex to carry the traffic. VERDICT on the finding: material, published as a range. The build stays below the midpoint because it is driven by disclosed subscriber and ARPU paths rather than reverse-engineered to a guidance number \u2014 but the reader is entitled to see what the midpoint is worth and that HOW it is won matters as much as whether it is.",
   "[Expert panel] Expert 1 11.54 [9.56-13.19]; Expert 2 16.36 [9.89-21.65]; Expert 3 16.84 [11.23-18.86]; panel median 16.36 (+44% vs spot)",
-  "[EBITDA margin record] FY2022 40.32% \u00b7 FY2023 42.53% \u00b7 FY2024 44.21% \u00b7 FY2025 46.14% \u00b7 H1-2025 47.10% \u00b7 H1-2026 49.18% | highest H1-2026 at 49.18% | the full years rise monotonically"
+  "[EBITDA margin record] FY2022 40.32% \u00b7 FY2023 42.53% \u00b7 FY2024 44.21% \u00b7 FY2025 46.14% \u00b7 H1-2025 47.10% \u00b7 H1-2026 49.18% | highest H1-2026 at 49.18% | the full years rise monotonically",
+  "[R-ANCHOR-01 forecast anchor] EBITDA margin: latest reviewed H1-2026 49.18% -> first forecast year 47.83% (-2.75% relative); path low 47.79% (-0.09% from the opening year); implied H2-2026 46.51% (-5.44% vs the reviewed half, against a filed FY2025 seasonal step of -3.97%; H2-on-H2 +1.29pp)"
  ]
 }

@@ -1994,6 +1994,10 @@
  },
  "spot": 14.41,
  "spot_date": "2026-09-03",
+ "superseded": {
+  "erp_cds": 0.094247,
+  "sov_spread_cds": 0.0355
+ },
  "central": null,
  "fair": {
   "bear": 0.9084436628369906,

@@ -617,9 +617,15 @@ def build():
             "retail_volume_growth_fy2025": vol_retail_g_fy25,
             "network_growth_h1_2026": stations_g,
             "litres_per_station_growth_h1_2026": lps_g,
-            "return_on_capital_employed_fy2025_company_measure": float(V["roic_terminal"]),
-            "note": ("every figure here is the company's own disclosure or an identity on "
-                     "two of them, taken from this study's own four-field input register"),
+            "return_on_capital_fy2025_this_study_definition": float(H["FY2025"]["roce"]),
+            "note": ("every figure here is the company's own disclosure, or an identity on "
+                     "two of them, taken from this study's own four-field input register — "
+                     "except the last, which is this study's own computation on its own "
+                     "definition and is labelled as such. The company's own disclosed "
+                     "return on capital employed of 32.7% for FY2025 and 40.1% for the "
+                     "first half of 2026 sits in the study's record as evidence inside an "
+                     "input's source rather than as a committed value of its own, so it is "
+                     "quoted in the judgement that turns on it and not recomputed here."),
         },
     }
 

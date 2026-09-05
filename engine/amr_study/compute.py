@@ -1378,6 +1378,90 @@ experts = [
 ]
 expert_median = sorted(e['base'] for e in experts)[1]
 
+# ---- [R-ANCHOR-01] THE FORECAST IS ANCHORED ON THE LATEST REVIEWED PERIOD ---
+# THE ANCHOR IS THE REVIEWED HALF, NOT THE AUDITED FULL YEAR, and that is the whole
+# of the rule: a near-term reviewed actual outranks a stale full-year rate. The six
+# months to 30 June 2026 carry a review report from the group auditor dated 28 July
+# 2026, and the EBITDA behind the rate below is reproduced here from the interim
+# statement's own lines -- operating profit plus depreciation and amortisation plus
+# both impairment charges -- rather than lifted from the presentation that also
+# states it. Anchoring on the half rather than on FY2025 is the STRICTER of the two
+# available tests and is chosen for that reason: the reviewed half prints a higher
+# margin than any audited year this company has filed, so measuring the forecast
+# against it is measuring it against the toughest number on the record. Against
+# FY2025 the same forecast would open ABOVE the anchor and the clause could not
+# fire at all.
+#
+# NEITHER CLAUSE FIRES, AND WHAT THE RECORD MAKES VISIBLE IS THE SHAPE NO SENTENCE
+# IN THIS STUDY STATES. The forecast opens a tenth of a point below the reviewed
+# half -- half a per cent relatively, well inside the materiality line -- so no
+# mechanism is owed and none is claimed. It also opens ABOVE EVERY AUDITED FULL
+# YEAR THIS COMPANY HAS FILED, and eases only slightly from there. That is the
+# direction this gate deliberately does not fire on; it is audited by the valuation
+# gap's two-sided trigger and by the sign test, and the record is printed here so
+# the shape is visible rather than merely not-red.
+#
+# THE EASING ALONG THE PATH IS DECLARED EVEN THOUGH IT IS INSIDE THE TOLERANCE. It
+# is not an unsourced drift: it falls out of the delivery-channel mix the company
+# itself discloses, which is a driver in this model rather than an assumption laid
+# on top of one, and the direction is measured in the company's own filings.
+FORECAST_ANCHOR = dict(
+    rate_name='EBITDA margin',
+    latest_reviewed_period='H1 2026, reviewed six-month interim',
+    latest_reviewed_date='2026-06-30',
+    latest_reviewed_rate=float(ebitda_h1_26 / REV_H1_26),
+    first_forecast_rate=float(ebitda_margin_f[0]),
+    # the PATH, per clause two: the whole explicit window, not only the opening year
+    forecast_path=[float(m) for m in ebitda_margin_f],
+    note=(
+        'the anchor is the reviewed half to 30 June 2026, not the audited full year: EBITDA '
+        'of USD %.3f million on revenue of USD %.3f million, %.2f%%, rebuilt from the interim '
+        'statement\'s own operating profit, depreciation and impairment lines and agreeing '
+        'with the reconciliation the company publishes beside them. The forecast opens at '
+        '%.2f%%, %.2f points below that half and %.2f%% of it relatively, inside the '
+        'materiality line, so no mechanism is owed. What the record makes visible is that it '
+        'opens ABOVE every audited full year on the filed record -- FY2023 %.2f%%, FY2024 '
+        '%.2f%%, FY2025 %.2f%% -- which is the direction this record does not fire on and '
+        'which no sentence in the study states. The path then eases from %.2f%% to %.2f%%, '
+        '%.2f%% relative across the window and inside the same line; the easing is not a '
+        'drift laid on the margin but the arithmetic of a disclosed mix shift, the home '
+        'delivery channel carrying %.1f%% of revenue in the reviewed half and %.1f%% by the '
+        'last forecast year at a cost of about %.2f%% of delivered revenue, so the delivery '
+        'line rises from %.2f%% to %.2f%% of group revenue while every other cost line is '
+        'held on its own driver. TWO LIMITS OF THIS COMPARISON ARE STATED RATHER THAN LEFT '
+        'TO BE FOUND: the anchor is a HALF measured against FULL years, and this study holds '
+        'no H1 2025 EBITDA, so a half-against-half margin cannot be formed from its own '
+        'inputs and none is estimated -- what it does hold on that footing is the disclosed '
+        'cost of inventory, %.1f%% of revenue in the reviewed half against a prior-year half '
+        'the same disclosure puts higher, a like-for-like pair running in the direction that '
+        'RAISES the margin rather than lowers it; and the forecast basis carries other '
+        'income but no hyperinflation line, where the historical and interim EBITDA carry '
+        'both, worth %.2f%% of FY2025 revenue and immaterial against the tolerance, noted '
+        'because a basis difference is exactly what a like-for-like claim can hide.'
+        % (ebitda_h1_26, REV_H1_26, 100 * ebitda_h1_26 / REV_H1_26,
+           100 * ebitda_margin_f[0],
+           100 * (ebitda_h1_26 / REV_H1_26 - ebitda_margin_f[0]),
+           100 * (ebitda_margin_f[0] - ebitda_h1_26 / REV_H1_26) / (ebitda_h1_26 / REV_H1_26),
+           100 * ebitda[0] / REV[0], 100 * ebitda[1] / REV[1], 100 * ebitda[2] / REV[2],
+           100 * ebitda_margin_f[0], 100 * ebitda_margin_f[4],
+           100 * (min(ebitda_margin_f) - ebitda_margin_f[0]) / ebitda_margin_f[0],
+           100 * DEL_SHARE_PATH[0], 100 * DEL_SHARE_PATH[4],
+           100 * DEL_RATIO_PATH[0],
+           100 * DEL_SHARE_PATH[0] * DEL_RATIO_PATH[0],
+           100 * DEL_SHARE_PATH[4] * DEL_RATIO_PATH[4],
+           100 * INV_PCT_H1_26,
+           100 * HYPER[2] / REV[2])))
+
+chk('the forecast anchor is inside the materiality line on the opening year',
+    (ebitda_margin_f[0] - ebitda_h1_26 / REV_H1_26)
+    >= -max(0.0005, 0.05 * abs(ebitda_h1_26 / REV_H1_26)),
+    f'{100*ebitda_margin_f[0]:.4f}% against a reviewed '
+    f'{100*ebitda_h1_26/REV_H1_26:.4f}%')
+chk('the forecast anchor is inside the materiality line along the whole path',
+    (min(ebitda_margin_f) - ebitda_margin_f[0]) / ebitda_margin_f[0] >= -0.05,
+    f'{100*(min(ebitda_margin_f)-ebitda_margin_f[0])/ebitda_margin_f[0]:.4f}% relative')
+
+
 # ============================================================================
 # 11. ASSEMBLE
 # ============================================================================
@@ -1574,6 +1658,7 @@ OUT = dict(
                   pe=SPOT / eps[2], pb=SPOT / (EQUITY[2] / SH),
                   dividend_yield=DIV_FY25_DECL / MKTCAP,
                   net_debt_ebitda=NET_DEBT_A / ebitda[2]),
+    forecast_anchor=FORECAST_ANCHOR,
     assert_log=ASSERTS, log=LOG,
 )
 
