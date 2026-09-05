@@ -39,7 +39,8 @@ LANDED = {
     'R-FCAL-01': '52aade4029cfc181a84069d9e6fabcf92cf2662e',          # capex measured rather than guided
     'R-ANCHOR-01': '34e74f311f05c0e535037cee70d5111a5bbc8c27',    # lever 11
     'R-BRIDGE-01:spectrum': '0a1e324ca29d129c25dc5da50fbcd3b9909decea',   # lever 12
-    'R-SIGCM-02:workingcapital': None,                           # the working tree, latest
+    'R-SIGCM-02:workingcapital': '61b9b6b7073fb625f3c22961ca17439205b4f292',   # lever 13
+    'R-SIGCM-02:tax': None,                                      # the working tree, latest
 }
 
 
@@ -75,12 +76,14 @@ AFTER_UNITS = at(LANDED['R-SIGCM-02:units'])
 AFTER_CAPEX = at(LANDED['R-FCAL-01'])
 AFTER_ANCHOR = at(LANDED['R-ANCHOR-01'])
 AFTER_SPECTRUM = at(LANDED['R-BRIDGE-01:spectrum'])
+AFTER_WC = at(LANDED['R-SIGCM-02:workingcapital'])
 NOW = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 # The lever-2 intermediate, struck when the cost-of-capital schedule was in and the beta
 # was not. It is named for that lever set, so a later sensitivity run cannot overwrite the
 # number this ledger chains through — which is the stale-artefact defect [R-ENF-06] names,
 # and it would be invisible here because the file would still parse and still look computed.
 SENS = json.load(open(os.path.join(HERE, 'beta_sensitivity_after_coc.json')))
+_IS = json.load(open(os.path.join(HERE, 'income_statement.json')))
 
 led = RL.Ledger(
     ticker='STC',
@@ -571,7 +574,7 @@ led.apply(
 led.apply(
     name='working capital projected from the asset-conversion cycle instead of plugged',
     rule='R-SIGCM-02',
-    after=NOW['lenses']['central']['base'],
+    after=AFTER_WC['lenses']['central']['base'],
     why=(
         'SIGCM CLAUSE 4 REQUIRES THE CYCLE TO BE STUDIED AND THE BALANCE SHEET PROJECTED '
         'FROM IT, with no unexplained plugs where the drivers are disclosed. This study '
@@ -600,11 +603,46 @@ led.apply(
         'invented; and the conventional cash cycle MIXES DENOMINATORS, so at 18.6 days it is '
         'not net working capital in days of revenue, which is 64. Both are published and the '
         'projection runs on the second.'
-        % (sum(r['dwc'] for r in NOW['dcf']['rows']),
+        % (sum(r['dwc'] for r in AFTER_WC['dcf']['rows']),
            sum(r['dwc'] for r in AFTER_SPECTRUM['dcf']['rows']),
-           AFTER_SPECTRUM['lenses']['central']['base'], NOW['lenses']['central']['base'],
-           100 * (NOW['lenses']['central']['base']
+           AFTER_SPECTRUM['lenses']['central']['base'],
+           AFTER_WC['lenses']['central']['base'],
+           100 * (AFTER_WC['lenses']['central']['base']
                   / AFTER_SPECTRUM['lenses']['central']['base'] - 1),
+           100 * (AFTER_WC['lenses']['central']['base'] / NOW['spot'] - 1))),
+)
+
+
+led.apply(
+    name='the tax rate measured on the base it is applied to, with the disclosed reversal out',
+    rule='R-SIGCM-02',
+    after=NOW['lenses']['central']['base'],
+    why=(
+        'THE TAX RATE WAS A TYPED CONSTANT AND TWO THINGS WERE WRONG WITH IT, both found by '
+        'an arithmetic check rather than by judgement. It read 0.097 with a comment saying '
+        'FY23 9.5%, FY24 9.8%, FY25 a one-off credit — a mean of the two years that looked '
+        'ordinary, on a base the comment does not name. FIRST, WHICH YEAR IS ONE-OFF IS '
+        'DISCLOSED RATHER THAN JUDGED: note 33(a) carries "Reversal of prior years\' Zakat '
+        'provision during the year (1,324,787)" on its own line, so the FY2025 credit does '
+        "not have to be inferred from its size and the underlying charge is that year's own "
+        'additions. SECOND, THE BASE HAS TO MATCH: after-tax operating profit is EBIT times '
+        "one minus a rate, so the rate must be measured against EBIT, while the income "
+        "statement's zakat line sits on profit before zakat. The two differ because the "
+        'lines between them are a net charge on this book.'),
+    evidence=(
+        'Measured over the three filed years together with the disclosed reversal put back: '
+        '%.2f%% on EBIT, which is what after-tax operating profit needs, and %.2f%% on '
+        'profit before zakat, which is what the income statement applies. Carrying the '
+        'reversal forward instead would read %.2f%% and would assume the company keeps '
+        'discovering it has over-provided, for ever. The answer rises %.4f to %.4f, %+.2f%%, '
+        'and the gap narrows to %+.1f%%. THE WORKBOOK RECONCILIATION IS WHAT SURFACED IT: '
+        'the sheet and the model disagreed and neither was obviously wrong until the two '
+        'denominators were named.'
+        % (100 * _IS['effective_zakat_rate_on_ebit'], 100 * _IS['effective_zakat_rate'],
+           100 * _IS['zakat_rate_carrying_the_reversal'],
+           AFTER_WC['lenses']['central']['base'], NOW['lenses']['central']['base'],
+           100 * (NOW['lenses']['central']['base']
+                  / AFTER_WC['lenses']['central']['base'] - 1),
            100 * (NOW['lenses']['central']['base'] / NOW['spot'] - 1))),
 )
 

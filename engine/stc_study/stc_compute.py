@@ -12,6 +12,7 @@ import sys
 
 import numpy as np
 import pandas as pd
+import income_statement as ISTMT_EARLY
 import primitives as m
 from wacc_builder import WaccInputs, build_wacc, RegressionBetaAttempt
 
@@ -152,7 +153,22 @@ chg20 = float(close[-1]/close[-21]-1); chg60 = float(close[-1]/close[-61]-1)
 ISSUED_CAPITAL, PAR_VALUE, TREASURY_SHARES = 50_000_000.0, 10.0, 6_976.0
 SH = (ISSUED_CAPITAL / PAR_VALUE - TREASURY_SHARES) / 1000.0   # mn shares outstanding
 assert abs(SH - 4_993.024) < 1e-9
-TAX = 0.097          # normalized effective zakat+tax (FY23 9.5%, FY24 9.8%; FY25 −3.2% one-off credit)
+# THE TAX RATE IS MEASURED, ON THE BASE IT IS APPLIED TO. It was 0.097, typed, with a
+# comment reading "FY23 9.5%, FY24 9.8%; FY25 -3.2% one-off credit" — a mean of the two
+# years that looked ordinary, on a base the comment does not name. Two things were wrong
+# with it and each was found by an arithmetic check rather than by judgement.
+#
+# WHICH YEAR IS ONE-OFF IS DISCLOSED, NOT JUDGED. Note 33(a)'s movement table carries
+# "Reversal of prior years' Zakat provision during the year (1,324,787)" on its own line, so
+# the FY2025 credit does not have to be inferred from its size; the underlying charge is the
+# year's own additions and the reversal belongs to the years it corrects.
+#
+# AND THE BASE HAS TO MATCH. After-tax operating profit is EBIT times one minus a rate, so
+# the rate must be measured against EBIT — 8.03% — while the income statement's zakat line
+# sits on profit before zakat and takes 8.27%. The two differ because the lines between them
+# are a net charge on this book, and a ratio between quantities defined differently is not
+# evidence about either.
+TAX = ISTMT_EARLY.effective_zakat_rate('ebit')
 # ===== TWO CLOCKS, AND THE STUDY SAYS WHICH IS WHICH [R-GAP-01] =============
 # `spot` above is the last session in the PERSISTENT PRICE LIBRARY, and it is the anchor
 # the Monte Carlo cone is struck on, because a cone is built on a price series and has to
@@ -315,6 +331,7 @@ for i, y in enumerate(yrs):
         # measured half-to-year factor rather than a forecast.
         _target = FY26_REVENUE_ANCHOR / (1.0 + ELIM_SHARE)
         _scale = _target / sum(_lvl.values())
+        _h1_scale = _scale
         for k in list(_lvl):
             _lvl[k] *= _scale
     _gross = sum(_lvl.values())
@@ -1192,6 +1209,10 @@ out = dict(
     ),
     terminal_record=_t.record,
     hist=hist, seg_hist=seg_hist,
+    # THE PER-SEGMENT FORECAST, committed rather than left inside the build. The workbook's
+    # segment sheet had to reconstruct it from four business units that no longer exist;
+    # what the model actually projects is these eleven, each on its own real rate.
+    seg_forecast={k: {y: seg_fc[y][k] for y in yrs} for k in seg_fc[yrs[0]]},
     # THE FOUR-FIELD INPUT REGISTER, generated from this study's own disclosure modules
     # rather than typed beside them — a second copy of a figure is a thing that goes stale,
     # which is the defect three separate rules here were written to close. It is what
@@ -1206,6 +1227,21 @@ out = dict(
         # a published price index, fading to zero real by the last explicit year. Nominal
         # recomputes on the house ladder; nothing here is a typed nominal rate.
         segment_real_growth={k: round(v, 6) for k, v in seg_real0.items()},
+        # The house Saudi ladder, published beside the real rates so every nominal in this
+        # model recomputes from two figures a reader can see rather than from one they
+        # cannot check.
+        inflation_ladder=[COCRUN.MACRO.inflation(_y) for _y in FORECAST_YEARS],
+        # THE REAL RATE FADES TO ZERO BY THE LAST EXPLICIT YEAR and the workbook has to be
+        # able to reproduce that. Publishing ONE rate per segment let the sheet compound a
+        # constant rate for five years, which reached FY2030 revenue 3.0% above the model —
+        # a disagreement no amount of clean recalculation would have shown, because the
+        # workbook recalculated perfectly to the wrong answer.
+        segment_real_growth_path={k: [round(seg_real(k, _t), 8)
+                                      for _t in range(1, len(FORECAST_YEARS) + 1)]
+                                  for k in seg_fc[yrs[0]]},
+        # The first forecast year is scaled onto the reviewed half's own annualised level,
+        # so the sheet needs the scale as its own line or it cannot reach the same number.
+        h1_anchor_scale=_h1_scale,
         unit_segment=UNIT_SEGMENT,
         unit_volume_real=VOLUME_REAL, unit_price_real=PRICE_REAL,
         unit_note=('the stc segment is built as VOLUME x PRICE from the subscriber counts '

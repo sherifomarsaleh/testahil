@@ -95,13 +95,50 @@ def pbz(i):
     return NET_PROFIT_CONTINUING[i] - ZAKAT[i]
 
 
-def effective_zakat_rate():
-    """One ratio over the three years together, never a mean of three.
+#: THE FILING NAMES THE REVERSAL, so it does not have to be judged one-off — note 33's own
+#: movement table carries "Reversal of prior years' Zakat provision during the year
+#: (1,324,787)" on its own line. That is a correction of provisions taken in EARLIER years,
+#: and a forecast that carries it forward assumes the company keeps discovering it has
+#: over-provided, for ever.
+ZAKAT_REVERSAL_FY2025 = 1_324_787
+ZAKAT_REVERSAL_SOURCE = ("stc_Annual-2025-en.txt, note 33(a), the movement of the zakat "
+                         "provision: \"Reversal of prior years' Zakat provision during the "
+                         "year\"")
 
-    FY2025's zakat is a RELEASE, so its own-year ratio is negative and averaging three
-    ratios would hand a third of the weight to a number that cannot recur.
+
+def underlying_zakat(i):
+    """The charge with the disclosed prior-year reversal put back."""
+    z = -ZAKAT[i]
+    if YEARS[i] == 'FY2025':
+        z += ZAKAT_REVERSAL_FY2025
+    return z
+
+
+def effective_zakat_rate(base='pbz'):
+    """One ratio over the three years together, on a NAMED base, excluding the reversal.
+
+    TWO THINGS HAD TO BE SEPARATED HERE AND EACH WAS FOUND BY AN ARITHMETIC CHECK RATHER
+    THAN BY JUDGEMENT.
+
+    First, the reversal. A rate taken over the three years together correctly avoids
+    averaging three ratios one of which is negative — but it still CARRIES the release into
+    perpetuity, which is the same defect wearing a different hat: 5.02% against 8.27%
+    underlying. The filing names the reversal on its own line, so this is a disclosure
+    rather than a call.
+
+    Second, the DENOMINATOR. A rate measured against profit before zakat cannot be applied
+    to EBIT, and the model's after-tax operating profit needs the second. The two differ
+    (8.27% and 8.03%) because the lines between them are a net charge on this book. A ratio
+    between quantities defined differently is not evidence about either, so both are
+    computed and each is used only where its own base is.
     """
-    return -sum(ZAKAT) / sum(pbz(i) for i in range(3))
+    if base == 'pbz':
+        den = sum(pbz(i) for i in range(3))
+    elif base == 'ebit':
+        den = sum(ebit(i) for i in range(3))
+    else:
+        raise ValueError('base must be pbz or ebit: %r' % base)
+    return sum(underlying_zakat(i) for i in range(3)) / den
 
 
 def early_retirement_mean():
@@ -124,10 +161,16 @@ def check():
             problems.append('%s EBITDA from this reconciliation is %s against %s from the '
                             'cost and expense notes'
                             % (y, f'{ebitda(i):,}', f'{EBITDA_FROM_NOTES[i]:,}'))
-    if not 0.0 < effective_zakat_rate() < 0.25:
-        problems.append('the effective zakat rate computes to %.4f, which is outside any '
-                        'rate this regime levies — the sign convention or the profit base '
-                        'is wrong' % effective_zakat_rate())
+    for _b in ('pbz', 'ebit'):
+        if not 0.0 < effective_zakat_rate(_b) < 0.25:
+            problems.append('the effective zakat rate on %s computes to %.4f, which is '
+                            'outside any rate this regime levies — the sign convention or '
+                            'the profit base is wrong' % (_b, effective_zakat_rate(_b)))
+    # The reversal must stay INSIDE the year it is disclosed against, or the underlying
+    # charge stops being the charge.
+    if underlying_zakat(2) <= 0:
+        problems.append('the underlying FY2025 zakat is not positive once the disclosed '
+                        'reversal is put back, which cannot be right for a profitable year')
     return problems
 
 
@@ -141,7 +184,12 @@ def record():
         ebit=[ebit(i) for i in range(3)],
         net_finance=[net_finance(i) for i in range(3)],
         profit_before_zakat=[pbz(i) for i in range(3)],
-        effective_zakat_rate=effective_zakat_rate(),
+        effective_zakat_rate=effective_zakat_rate('pbz'),
+        effective_zakat_rate_on_ebit=effective_zakat_rate('ebit'),
+        zakat_reversal_fy2025=ZAKAT_REVERSAL_FY2025,
+        zakat_reversal_source=ZAKAT_REVERSAL_SOURCE,
+        underlying_zakat=[underlying_zakat(i) for i in range(3)],
+        zakat_rate_carrying_the_reversal=-sum(ZAKAT) / sum(pbz(i) for i in range(3)),
         early_retirement_mean=early_retirement_mean(),
         finding=(
             'The two lines a forecast has to decide about are the early retirement '
@@ -155,7 +203,7 @@ def record():
             'negative.'
             % (f'{-EARLY_RETIREMENT[0]:,}', f'{-EARLY_RETIREMENT[1]:,}',
                f'{-EARLY_RETIREMENT[2]:,}', f'{ZAKAT[2]:,}', f'{-ZAKAT[0]:,}',
-               f'{-ZAKAT[1]:,}', 100 * effective_zakat_rate())),
+               f'{-ZAKAT[1]:,}', 100 * effective_zakat_rate('pbz'))),
     )
 
 
@@ -177,8 +225,13 @@ if __name__ == '__main__':
         print('  EBITDA        %s' % '  '.join(f'{ebitda(i):,}' for i in range(3)))
         print('  EBIT          %s' % '  '.join(f'{ebit(i):,}' for i in range(3)))
         print('  net finance   %s' % '  '.join(f'{net_finance(i):,}' for i in range(3)))
-        print('  effective zakat rate over the three years together: %.2f%%'
-              % (100 * r['effective_zakat_rate']))
+        print('  effective zakat rate, three years together, the disclosed prior-year')
+        print('  reversal of %s put back:' % f'{ZAKAT_REVERSAL_FY2025:,}')
+        print('    on profit before zakat  %.2f%%   (carrying the reversal: %.2f%%)'
+              % (100 * r['effective_zakat_rate'],
+                 100 * r['zakat_rate_carrying_the_reversal']))
+        print('    on EBIT                 %.2f%%   — the base after-tax operating profit '
+              'needs' % (100 * r['effective_zakat_rate_on_ebit']))
         with open(os.path.join(HERE, 'income_statement.json'), 'w') as f:
             json.dump(r, f, indent=1)
         print('\nwrote income_statement.json')

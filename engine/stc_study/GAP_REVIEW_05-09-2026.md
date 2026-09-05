@@ -262,6 +262,25 @@ denominator cannot be built and is not invented. And the conventional cash conve
 which is 64 — a ratio between quantities defined differently is not evidence about either,
 so both are published and the projection runs on the one a balance sheet obeys.
 
+
+**The tax rate was typed, and two things were wrong with it.** It read 9.7% with a comment
+saying FY2023 was 9.5%, FY2024 9.8% and FY2025 a one-off credit — a mean of the two years
+that looked ordinary, on a base the comment does not name.
+
+**Which year is one-off is disclosed, not judged.** Note 33(a)'s movement of the zakat
+provision carries *"Reversal of prior years' Zakat provision during the year (1,324,787)"*
+on its own line, so the FY2025 credit does not have to be inferred from its size; the
+underlying charge is that year's own additions and the reversal belongs to the years it
+corrects. **And the base has to match**: after-tax operating profit is EBIT times one minus a
+rate, so the rate must be measured against EBIT — **8.03%** — while the income statement's
+zakat line sits on profit before zakat and takes **8.27%**. The two differ because the lines
+between them are a net charge on this book. Carrying the reversal forward instead would read
+**5.02%** and would assume the company keeps discovering it has over-provided, for ever.
+
+**What surfaced it was the workbook reconciliation**, not a reading of the model: the sheet
+and the model disagreed on after-tax operating profit and neither was obviously wrong until
+the two denominators were named. Worth **+2.21%** of the central.
+
 ## 7. CLAIMS AGAINST THE RECORD
 
 **No "best ever", "never", "highest" or "unprecedented" claim is made anywhere in this
@@ -349,8 +368,8 @@ reverse-engineered rate this protocol prohibits outright, arriving through the f
 The study is HELD in any case: [R-GAP-02] blocks publication past 10% below the price, and
 Phase 1 of the method reassessment is not proven, which holds every study in the book.
 
-*AUDITED CENTRAL: 37.3162* — the figure this review audits, stated so a job outside the
+*AUDITED CENTRAL: 38.1426* — the figure this review audits, stated so a job outside the
 study can tell whether the review still describes the answer the study publishes.
 
-*AUDITED GAP: -14.9%* — the disagreement this review interrogates, stated so a job outside
+*AUDITED GAP: -13.0%* — the disagreement this review interrogates, stated so a job outside
 the study can tell whether the eight headings were asked at the size the study now carries.

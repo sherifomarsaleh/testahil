@@ -3,13 +3,21 @@ import json
 from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill
 from openpyxl.utils import get_column_letter
+import os
 
-FN = 'STC_Valuation_Model_09072026_public.xlsx'
-wb = load_workbook(FN)
-A = json.load(open('_asm_rows.json'))
-BSJ = json.load(open('_bs_rows.json')); BS = BSJ['BS']
-IS = json.load(open('_is_rows.json'))
-CFJ = json.load(open('_cf_rows.json')); CF = CFJ['CF']; CLOSE = CFJ['CLOSE']
+HERE = os.path.dirname(os.path.abspath(__file__))
+# PATHS ARE ABSOLUTE AGAINST THIS FILE'S OWN DIRECTORY. They were relative to the
+# working directory, so running the build from the repository root — which is how
+# every gate and the CI runner invoke things — read no inputs and scattered outputs.
+# A path relative to cwd is a path that depends on who ran it.
+
+
+FN = 'STC_Valuation_Model_05092026_public.xlsx'
+wb = load_workbook(os.path.join(HERE, FN))
+A = json.load(open(os.path.join(HERE, '_asm_rows.json')))
+BSJ = json.load(open(os.path.join(HERE, '_bs_rows.json'))); BS = BSJ['BS']
+IS = json.load(open(os.path.join(HERE, '_is_rows.json')))
+CFJ = json.load(open(os.path.join(HERE, '_cf_rows.json'))); CF = CFJ['CF']; CLOSE = CFJ['CLOSE']
 BLUE = Font(color='0000FF'); GREEN = Font(color='008000'); BLACK = Font(color='000000')
 SUB = Font(size=9, color='6E7B77')
 NUM0 = '#,##0;(#,##0);"-"'; PCT = '0.0%;(0.0%);"-"'
@@ -22,7 +30,7 @@ wa[f'A{grow}'] = 'Gross margin (% of revenue)'
 for j, v in enumerate([0.485]*5):
     c = wa[f'{get_column_letter(3+j)}{grow}']; c.value = v; c.font = BLUE; c.number_format = PCT
 A['Gross margin (% of revenue)'] = grow
-json.dump(A, open('_asm_rows.json', 'w'))
+json.dump(A, open(os.path.join(HERE, '_asm_rows.json'), 'w'))
 
 def ac(label, j): return f"Assumptions!${ACOLS[j]}${A[label]}"
 
@@ -43,7 +51,7 @@ for col, v in [('B', 13987.0), ('C', 12134.0), ('D', 14723.0)]:
     wi[f'{col}{EBTR}'] = v; wi[f'{col}{EBTR}'].font = BLUE; wi[f'{col}{EBTR}'].number_format = NUM0
 IS['Associates, net finance, impairments & other'] = ASSR
 del IS['Share of associates & JVs + net finance & other']
-json.dump(IS, open('_is_rows.json', 'w'))
+json.dump(IS, open(os.path.join(HERE, '_is_rows.json'), 'w'))
 
 # ---- 3) Balance Sheet restructure -------------------------------------------
 wbs = wb['Balance Sheet']
@@ -94,5 +102,5 @@ wbs[f'A{CHK+2}'] = ('Historic mapping: disclosed IR anchors (total assets, cash+
                     'SAR +7,284mn (the completed Jan-2026 $2bn sukuk net of amortisation); gross debt flat thereafter. Two cash framings: FS cash incl. '
                     'stc bank (21,442 at Q1-26) vs IR core-group cash (15,412) — the model rolls the IR-basis series (FY25: 15,080).')
 wbs[f'A{CHK+2}'].font = SUB
-wb.save(FN)
+wb.save(os.path.join(HERE, FN))
 print('fix1 ok')

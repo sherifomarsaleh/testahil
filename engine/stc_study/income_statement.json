@@ -87,7 +87,16 @@
   12134447,
   14722642
  ],
- "effective_zakat_rate": 0.05023336032701099,
+ "effective_zakat_rate": 0.08266854587581883,
+ "effective_zakat_rate_on_ebit": 0.08034525861665882,
+ "zakat_reversal_fy2025": 1324787,
+ "zakat_reversal_source": "stc_Annual-2025-en.txt, note 33(a), the movement of the zakat provision: \"Reversal of prior years' Zakat provision during the year\"",
+ "underlying_zakat": [
+  1326610,
+  1191564,
+  858351
+ ],
+ "zakat_rate_carrying_the_reversal": 0.05023336032701099,
  "early_retirement_mean": -1421299.6666666667,
- "finding": "The two lines a forecast has to decide about are the early retirement programme and zakat, and neither can be read off the latest year. The programme ran 862,842, 2,577,256 and 823,801 \u2014 a threefold swing with no year resembling another \u2014 so it is normalised to its own three-year mean rather than dropped, because it is a real recurring cost of a company restructuring its workforce and no filing calls it non-recurring. Zakat went to a RELEASE of 466,436 in FY2025 after charges of 1,326,610 and 1,191,564, so the effective rate is taken over the three years TOGETHER (5.02%) rather than as a mean of three ratios one of which is negative."
+ "finding": "The two lines a forecast has to decide about are the early retirement programme and zakat, and neither can be read off the latest year. The programme ran 862,842, 2,577,256 and 823,801 \u2014 a threefold swing with no year resembling another \u2014 so it is normalised to its own three-year mean rather than dropped, because it is a real recurring cost of a company restructuring its workforce and no filing calls it non-recurring. Zakat went to a RELEASE of 466,436 in FY2025 after charges of 1,326,610 and 1,191,564, so the effective rate is taken over the three years TOGETHER (8.27%) rather than as a mean of three ratios one of which is negative."
 }

@@ -1,6 +1,6 @@
 {
  "ticker": "STC",
- "published_central": 37.31621091824889,
+ "published_central": 38.142610789530956,
  "published_spot": 43.86,
  "years": [
   "FY26E",
@@ -95,11 +95,11 @@
  "value_effect": {
   "net_cost_change_fy_final": 41.94589851037324,
   "margin_shift": -0.0004727812594155597,
-  "sar_per_unit_of_margin": 236.50667451336318,
-  "central_effect": -0.1118159234366137,
-  "central_before": 37.31621091824889,
-  "central_after": 37.204394994812276,
-  "pct_of_central": -0.0029964436550531963
+  "sar_per_unit_of_margin": 240.8687536932689,
+  "central_effect": -0.11387823272495992,
+  "central_before": 38.142610789530956,
+  "central_after": 38.028732556806,
+  "pct_of_central": -0.0029855909275150142
  },
  "finding": "Put each line on the base the filings name and the model's final forecast year moves by a net SR 41.9 million of cost, which is -0.047 points of margin and -0.30% of the central. The offsets run BOTH ways and that is the finding: the levy and the licence fee fall against a group that grows faster than the Saudi segment they are charged on, while maintenance and subscriber-acquisition costs rise against it, and the two nearly cancel. The blended construction is not hiding a mix effect here \u2014 which is worth knowing precisely because the same test on another name in this book found one worth seventeen per cent."
 }
