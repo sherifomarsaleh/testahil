@@ -241,11 +241,7 @@
   "STC first forecast year anchored on the reviewed H1-2026 with every seasonality factor measured from the prior year own half against its own full year. +6.49%. The strongest evidence in the review because it is a disclosed actual rather than a forecast.",
   "The gap gate went red the instant the answer moved and forced the review to be re-asked at the size the disagreement actually is \u2014 the AUDITED GAP marker doing its job."
  ],
- "next": [
-  "ADNOCDIST: the remaining verified findings from the QC audit \u2014 a cost-of-capital GLIDE described in eight delivered passages that the model retired (wacc == wacc_terminal exactly, beta_drift_frac 0.0), Table 12's ten-times unit error across every forecast cell (366.9 fils against a true 36.7), the dividend policy misstated in the two places its own register records as corrected, C.5 asserting all three experts above a price one of them sits below, and a price-cone claim false for three of the four methods it names. It carries no lens_record at all. This is a re-issue, not a fix in passing.",
-  "The negative-control audit's remaining findings: check_band_vocabulary's .docx arm is never exercised by any of its 22 cases (the sandbox stages no document), check_campaign_register's whole currency clause is dead code under its control, and check_coverage_floor has no clean case and two of its three reds now come from a different refusal than the one it was written to prove.",
-  "Re-run the four workflows that hit the session limit: 27 of ~100 agents finished. The workbook-population sweep and the answer audit both have 21 studies unstarted."
- ],
+ "next": "Eight workflows running (05-09 21:2x UTC), double the four that hit the session limit: (1) workbook-population sweep [resume wf_cb712c66-2e7], (2) answer audit [wf_57268725-ed9], (3) rendered-page read [wf_200458f6-f20], (4) negative-control repair [wf_985a73ad-c22], (5) forecast-anchor records, 18 studies [wf_020aabbb-a80], (6) output records + sign test, 20 studies [wf_7a1ff08b-951], (7) lens-architecture census, 25 studies [wf_12b314f6-b85], (8) valuation-input blocks for the walk-forward runs [wf_686aabc8-cfd]. THE MACHINE HAS 4 CPUs so the per-workflow concurrency cap is 2 \u2014 throughput scales by adding WORKFLOWS, not by widening one. Load ran 0.6 with eight of them, so agents are I/O bound on the API and more workflows is the right lever. Held for an explicit re-issue: ADNOCDIST (engine/adnocdist_study/AUDIT_05-09-2026.md, six verified findings, the first of which moves the answer).",
  "stop_and_ask": [
   "TMGH: two earnings releases could not be re-fetched from the company's own channels (FY2020 release: 502 via proxy on every retry; 1H2021 release: 404). They are not inputs to the delivered numbers \u2014 the audited statements for both periods were obtained and verified \u2014 so this blocks nothing; recorded for the morning list."
  ],
@@ -297,5 +293,12 @@
   "question_slot": "trig_01KkkkWuNQvo54szxH3inKbQ \u2014 09:00 Cairo Sun-Thu; silence is its correct output on most days"
  },
  "head": "13c7569f",
- "open_questions": []
+ "open_questions": [],
+ "log": [
+  {
+   "date": "2026-09-05",
+   "what": "AMR, ARCC and DU joined the workbook widening. ARCC was CLEAN at 544 figures and the widening found one: the READ FIRST narrative typed '950 times too much' for the revision-1 minority against the input register's own COMPUTED 949 for the same fact. Conformed rather than ratcheted (a ratchet may only SHORTEN); the superseded figure is now registered on central_pre_rebuild's disposition and both quotes compute from it. Rebuilt: 919/919 formula cells reproduce, 143 driver assertions hold, central unmoved at EGP 66.53.",
+   "lesson": "THE POPULATION IS THE CHECK. ARCC's register had this exact figure computed a month ago and the workbook beside it kept the typed one, because the instrument reached one file and not the other. Widening a population is how a check finds what it was always able to see."
+  }
+ ]
 }
