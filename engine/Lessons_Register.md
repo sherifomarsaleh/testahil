@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**251 lessons**, of which 219 bind on every study, 25 on a class of company, and 7 on a single name.
+**254 lessons**, of which 222 bind on every study, 25 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 176 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 21 from self-audits, 178 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2268,6 +2268,36 @@ Two independent routes landing on the same answer is the strongest corroboration
 > **What it cost, or how we know.** The evidence file reported the sanctioned terminal construction landing at 3.2905 against the study's own separately-priced alternative of 3.2396 — 1.6% apart, built months apart by different routes — and called it 'the strongest corroboration available and it was not looked for'. It was an artefact: the sanctioned figure carried the (1+g) growth-basis defect of L-329, and correcting it moved that number to 2.9877 while the study's own alternative, built inside the study's own correct convention, did not move at all. The two now differ by 8.4%. The corroboration survives in direction and not in force, and the reason it looked remarkable was an error running one way by 7%.
 
 > **What would overturn it.** An agreement that holds after every shared input and shared convention between the two routes has been named and varied — which is the test that should have been run in the first place.
+
+### L-331 · A CORRECTION THAT MAKES A QUANTITY LOAD-BEARING MAKES EVERY ERROR IN THAT QUANTITY VISIBLE
+
+Under the retired terminal, book depreciation entered only through profit: overstate it and the value falls a little. Under the sanctioned one it is added back AND is the base of the replacement charge, so an overstated figure takes value out twice and the second bite is larger than the first. A defect that had sat in a delivered study through four editions and several rounds of outside critique became findable within an hour of the construction changing — not because anyone looked harder, but because the quantity started carrying weight. THE PRACTICAL FORM: when a rebuild promotes a number from a bit-part to a driver, re-derive that number from its own definition before trusting the rebuild. The question that finds it is the one the old construction never had to ask — here, 'what exactly should the depreciation add-back be?', which a model that never adds depreciation back has no occasion to pose.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EGCH's terminal rebuild, 5 September 2026
+
+> **What it cost, or how we know.** The explicit window depreciated a plant under construction as it was spent, so the last explicit year carried EGP 482mn of charge on the part in service; the terminal then charged the whole plant on top. Worth 30.4% of the equity — larger than the sanctioned terminal correction itself, which was 29.3% — and it survived the editions in which depreciation only depressed profit.
+
+> **What would overturn it.** A rebuild that promotes a quantity and finds no error in it. That is the ordinary case and it is worth recording when it happens, because this lesson otherwise only ever gets confirming evidence.
+
+### L-332 · WHERE TWO BRANCHES OF ONE MODEL DO THE SAME STEP DIFFERENTLY, THE DISCREPANCY IS THE FINDING
+
+A study publishing two scenarios should differ between them in exactly the thing the scenarios are about, and in nothing else. So a step that one branch performs and the other does not is either a real economic difference — which must be stated — or a defect in one of them, and the branch that does MORE work is usually the right one, because somebody had to think about that branch to write it. THE CHEAP TEST: put the two branches' formulas for the shared steps side by side and require them to be IDENTICAL. Anything that is not identical is either named as the scenario's own difference or is a bug, and there is no third case.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EGCH's terminal rebuild, 5 September 2026
+
+> **What it cost, or how we know.** The programme-stopped branch stripped the project's in-service depreciation before grossing the last explicit year; the carried-through branch did not, and charged that depreciation twice. The stopped branch had been written later and more carefully, and it was right. Corrected, both branches carry the IDENTICAL year-five formula and differ only in the project's own revenue, profit and depreciation — which is what the difference between them is supposed to be, and the identity of the two formulas is now itself the check.
+
+> **What would overturn it.** A pair of branches whose shared steps legitimately differ — which happens where a scenario changes the accounting rather than the economics — in which case the difference is stated in the record and this test is run against the statement instead of against identity.
+
+### L-333 · A FIGURE REMEMBERED THROUGH A RATIO IN PROSE IS NOT A FIGURE YOU HOLD, AND WRITING IT DOWN AGAIN IS FABRICATION
+
+An internal evidence note recorded a corroboration as a computed ratio — 'the prior year's column says the same thing, life 26.14 and age 4.14'. Registering that corroboration in the study's own input register needs the two FIGURES behind the ratio, and they were not in the note; only the ratio was. Reconstructing them from the ratio would produce numbers that look exactly like read figures, foot against each other perfectly, and carry a source field naming a filing nobody re-opened. SIGCM clause 1 forbids it and the reason is not pedantry: the fabricated cell is invisible afterwards precisely BECAUSE it was derived from something true. The rule: a prose record proves that a reading happened, never what was read. To register a figure, re-read it or leave it out and shorten the claim.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, the EGCH terminal rebuild, caught in its own commit, 5 September 2026
+
+> **What it cost, or how we know.** A prior-year accumulated-depreciation figure was typed into the input register to carry a cross-check the evidence file had recorded as a ratio. It was removed in the same session before it was committed, and the cross-check now lives only in the internal evidence file where it was actually measured. The study's claim is one year shorter and true.
+
+> **What would overturn it.** Nothing overturns it; what LIMITS it is that a prose record written with the figures in it is a perfectly good source for them — which is the argument for writing evidence notes with the numbers rather than with the conclusions.
 
 
 ---
