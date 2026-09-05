@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**263 lessons**, of which 231 bind on every study, 25 on a class of company, and 7 on a single name.
+**264 lessons**, of which 232 bind on every study, 25 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 182 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 183 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2388,6 +2388,16 @@ A rebuild ledger records what each correction was worth by storing the answer ei
 > **What it cost, or how we know.** Levers read -18.27% and +0.00% against their true -13.75% and -5.25%; the cumulative -11.40% and both endpoints were unchanged either way, and the ledger gate passed both versions.
 
 > **What would overturn it.** It is overturned where a process genuinely writes an immutable artefact per step — a per-state file named for its own step, which is the same remedy one level earlier and needs no version control at all. What would NOT overturn it is a checker on the ledger: a collapsed decomposition is internally consistent, so no amount of checking the record against itself can see it.
+
+### L-343 · RECORDING A FAILED SEARCH IS RIGHT, AND IT TURNS THE FAILURE INTO A COMMITTED FACT UNLESS THE RECORD SEPARATES WHAT WAS TRIED FROM WHAT EXISTS
+
+A study's source register listed four investor-relations URLs, each returning the site's own 404 page under an HTTP 200, and concluded that the investor-relations path in the delivered study no longer resolved. Every word of that was true about those four URLs. It was false about the site: the sitemap listed a whole investor section including the presentations page, carrying every earnings deck and call transcript back to 2017 — and the sitemap was ALREADY the route that had found the financial statements in the same session. Nobody pointed it at the presentations. THE DISCIPLINE THAT CAUSED THIS IS THE RIGHT ONE: writing down what was attempted and what came back is exactly what the protocol asks for, and it is why the four URLs were on the page at all. What it lacked was the distinction between the two claims — 'these four addresses returned nothing' and 'this channel is gone' — because a register is precisely the artefact a later session trusts instead of searching again, so a negative written into one becomes durable in a way a failed command never is. The cost here was a study forecasting two thirds of its revenue from an extrapolated segment rate while the subscriber counts that would let it be built as volume times price sat one sitemap away, and the correction immediately showed the growth was VOLUME with price per subscriber falling about 3%, which the extrapolated rate nets out and hides.
+
+**Applies to:** every study  ·  *Learned from:* found while building, STC's source register, 5 September 2026
+
+> **What it cost, or how we know.** Four URLs recorded as failing; www.stc.com.sa/sitemap.xml listed the investor section and the presentations page resolved first try, carrying decks back to 2017.
+
+> **What would overturn it.** It is overturned where a register records only the attempts and never a conclusion about the world — then there is no false claim to inherit. What would NOT overturn it is trying harder: four careful probes is not a small effort, and the defect was in what their failure was written up as, not in how many there were.
 
 
 ---

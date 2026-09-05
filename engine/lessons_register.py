@@ -5928,6 +5928,47 @@ LESSONS = [
       "internally consistent, so no amount of checking the record "
       "against itself can see it."),
 
+    L("L-343", "ALL", None,
+      "RECORDING A FAILED SEARCH IS RIGHT, AND IT TURNS THE "
+      "FAILURE INTO A COMMITTED FACT UNLESS THE RECORD SEPARATES "
+      "WHAT WAS TRIED FROM WHAT EXISTS",
+      "A study's source register listed four investor-relations "
+      "URLs, each returning the site's own 404 page under an HTTP "
+      "200, and concluded that the investor-relations path in the "
+      "delivered study no longer resolved. Every word of that was "
+      "true about those four URLs. It was false about the site: the "
+      "sitemap listed a whole investor section including the "
+      "presentations page, carrying every earnings deck and call "
+      "transcript back to 2017 — and the sitemap was ALREADY the "
+      "route that had found the financial statements in the same "
+      "session. Nobody pointed it at the presentations. THE "
+      "DISCIPLINE THAT CAUSED THIS IS THE RIGHT ONE: writing down "
+      "what was attempted and what came back is exactly what the "
+      "protocol asks for, and it is why the four URLs were on the "
+      "page at all. What it lacked was the distinction between the "
+      "two claims — 'these four addresses returned nothing' and "
+      "'this channel is gone' — because a register is precisely the "
+      "artefact a later session trusts instead of searching again, "
+      "so a negative written into one becomes durable in a way a "
+      "failed command never is. The cost here was a study forecasting "
+      "two thirds of its revenue from an extrapolated segment rate "
+      "while the subscriber counts that would let it be built as "
+      "volume times price sat one sitemap away, and the correction "
+      "immediately showed the growth was VOLUME with price per "
+      "subscriber falling about 3%, which the extrapolated rate "
+      "nets out and hides.",
+      "STC's source register, 5 September 2026",
+      "build",
+      "Four URLs recorded as failing; www.stc.com.sa/sitemap.xml "
+      "listed the investor section and the presentations page "
+      "resolved first try, carrying decks back to 2017.",
+      "It is overturned where a register records only the attempts "
+      "and never a conclusion about the world — then there is no "
+      "false claim to inherit. What would NOT overturn it is trying "
+      "harder: four careful probes is not a small effort, and the "
+      "defect was in what their failure was written up as, not in "
+      "how many there were."),
+
 ]
 
 
