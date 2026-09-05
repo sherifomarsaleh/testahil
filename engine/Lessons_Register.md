@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**249 lessons**, of which 217 bind on every study, 25 on a class of company, and 7 on a single name.
+**251 lessons**, of which 219 bind on every study, 25 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 174 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 20 from self-audits, 176 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2248,6 +2248,26 @@ The identity holds because accumulated equals age times charge, which needs the 
 > **What it cost, or how we know.** AIRARABIA's identity-implied life came to 26.42 years against the 17.84 its own disclosed class lives weight to — 48% apart, which no rounding explains. Its policy note then says both things outright: depreciation writes off cost 'less their estimated residual values', and the group 'changed the estimated useful life applied to certain assets' during the year. The measured age of 14.32 years is therefore not that fleet's age, and applying it would have moved the study -9.7% on a terminal carrying 95% of enterprise value. Built, run, and NOT APPLIED. The three names that do carry the measured age all reproduce their adopted life to 0.0%, and that agreement proves nothing because they derived it the same way. MODON is the third condition and it is not close: AED 6,643,801 thousand of accumulated depreciation arrived through a 2024 business combination against that year's entire charge of 193,207 — THIRTY-FOUR TIMES IT — and the two acquisitions are 97% of the closing column. Its naive age reads 15.45 years against 0.46 net of the acquired history. The arithmetic cross-check DOES catch that one, at about -34%, as it catches AIRARABIA at +48%: it works where the adopted and implied lives came from different routes and fails where they did not.
 
 > **What would overturn it.** A residual small enough to be immaterial, or a reassessment old enough that the base has turned over since — in which case the identity is usable again, though the POLICY NOTE and not the cross-check is what would say so.
+
+### L-329 · A SHARED MODULE'S CONVENTION ABOUT WHICH YEAR ITS INPUTS BELONG TO IS INVISIBLE AT THE CALL SITE, AND SIX OF EIGHT CALLERS GOT IT WRONG
+
+terminal_value.build() computes tv = fcff x (1+g) / (w - g), so the first perpetuity year sits in the NUMERATOR and the terminal is valued at the END of the last explicit year — which is where every caller discounts it. Its inputs must therefore be the LAST EXPLICIT YEAR's profit, book depreciation and working capital. Six of the eight studies using it handed over the year AFTER, already grown, and the module grew them again: every one of those terminals was overstated by exactly (1+g), from 2.0% in the pegged markets to 7.0% in Egypt. NOTHING COULD SEE IT. The module cannot — a number is a number and no signature distinguishes this year's profit from next year's. The recalculation gates cannot — the workbook reproduced the model to the cell, because the workbook was built from the same wrong inputs. The prose-figure gate cannot — every figure was computed. The terminal floor gate cannot — a terminal that is 7% too big still clears a floor that is 7% too big. WHAT FOUND IT WAS A COMMENT: one study's own code recorded that three independent critiques had found the identical defect in its hand-rolled terminal, and reading that comment is what prompted asking the same question of the shared module. THE RULE: where a function takes a QUANTITY THAT CARRIES A DATE, the date is part of the contract and belongs in the field name, the docstring and the field comment — not in the author's head. And a module whose arithmetic already applies the growth must SAY SO where the caller looks, because the caller is reading its own model, not the module's.
+
+**Applies to:** every study  ·  *Learned from:* found while building, The whole terminal rebuild programme, 4-5 September 2026
+
+> **What it cost, or how we know.** Six of eight callers — RIYADHCABLE, SAVOLA, AIRARABIA, EMPOWER, DU, MODON — plus the unspent EGCH pricing. Every correction was DOWNWARD and every one was the same size: exactly (1+g) off the terminal, which on MODON took the central from 3.9119 to 3.8583 and on EGCH's unshipped pricing took the terminal from 25,524 to 23,854. Two of the eight were right, and both were right because their authors had been forced to think about the year explicitly for another reason. On MODON the defect survived a first pass: the base call site was corrected and the SENSITIVITY engine was not, so the grid was centred on a point the study does not publish, and the only thing that caught it was that study's own assertion that the grid must reproduce the base at the unshifted point.
+
+> **What would overturn it.** A caller that legitimately strikes its terminal one year later and discounts it at that later factor — the convention is a pair, and only mixing the halves is wrong.
+
+### L-330 · A DEFECT CAN MANUFACTURE AGREEMENT AS EASILY AS DISAGREEMENT, AND AGREEMENT IS THE ONE NOBODY RE-CHECKS
+
+Two independent routes landing on the same answer is the strongest corroboration this method has, and it is treated as such — which is exactly why it needs auditing at least as hard as a surprise does. A disagreement provokes investigation by itself; an agreement closes the question. So an error that happens to move one of the two numbers ONTO the other is not merely undetected, it is actively protected, and it gets written up as evidence. THE PRACTICAL FORM: when two routes agree closely, ask what would have to be true for them to agree, and check that it is — a shared input, a shared convention, or a coincidence in the size of the errors. Where they agree BECAUSE they share the thing under test, the agreement is a tautology wearing a corroboration's clothes.
+
+**Applies to:** every study  ·  *Learned from:* found while building, EGCH's terminal evidence, restated 5 September 2026
+
+> **What it cost, or how we know.** The evidence file reported the sanctioned terminal construction landing at 3.2905 against the study's own separately-priced alternative of 3.2396 — 1.6% apart, built months apart by different routes — and called it 'the strongest corroboration available and it was not looked for'. It was an artefact: the sanctioned figure carried the (1+g) growth-basis defect of L-329, and correcting it moved that number to 2.9877 while the study's own alternative, built inside the study's own correct convention, did not move at all. The two now differ by 8.4%. The corroboration survives in direction and not in force, and the reason it looked remarkable was an error running one way by 7%.
+
+> **What would overturn it.** An agreement that holds after every shared input and shared convention between the two routes has been named and varied — which is the test that should have been run in the first place.
 
 
 ---
