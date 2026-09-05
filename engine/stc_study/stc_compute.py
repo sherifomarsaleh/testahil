@@ -811,6 +811,28 @@ weights = None
 wacc_steps = [WACC - 0.010, WACC - 0.005, WACC, WACC + 0.005, WACC + 0.010]
 g_steps = [0.015, 0.020, 0.025, 0.030, 0.035]
 sens_wg = [[(dcf_ps_at(w, g) if w - g > 0.02 else None) for g in g_steps] for w in wacc_steps]
+# THE BETA GRID IS COMPUTED. Appendix §1.9 published one as six typed rows — a cost of
+# equity, a cost of capital and a value per share at each of six betas — and by the time
+# the study was rebuilt every row was stale, including the one labelled "regressed base",
+# which still carried the retired nine-week beta of 0.48 and a cost of capital of 7.59%
+# against the schedule's 8.13%. A grid whose base row disagrees with the model is worse
+# than no grid: it reads as the model's own arithmetic.
+# The adopted row uses the EXACT beta, not a rounded one: rounding it to four places moved
+# the reconstructed cost of capital by 1.5e-6 and the assertion below refused the grid,
+# which is the assertion doing its job on the desk that wrote it.
+beta_steps = sorted({0.30, 0.50, SCHED.beta, 0.85, 1.00, 1.20})
+sens_beta = []
+for _b in beta_steps:
+    _ke = SCHED.rf_star + _b * SCHED.erp
+    _w = WE * _ke + (1.0 - WE) * KD_AT
+    sens_beta.append(dict(beta=_b, ke=_ke, wacc=_w,
+                          ps=dcf_ps_at(_w, TG) if _w - TG > 0.02 else None,
+                          adopted=abs(_b - SCHED.beta) < 5e-5))
+assert any(r['adopted'] for r in sens_beta), 'the adopted beta must appear in its own grid'
+_adopted = next(r for r in sens_beta if r['adopted'])
+assert abs(_adopted['wacc'] - WACC) < 1e-9, (_adopted['wacc'], WACC)
+assert abs(_adopted['ps'] - dcf_ps) < 1e-6, 'the adopted row must reproduce the answer'
+
 capex_steps = [-0.010, -0.005, 0.0, 0.005, 0.010]     # capex intensity shift (pp of revenue)
 margin_steps = [-0.010, -0.005, 0.0, 0.005, 0.010]    # EBITDA margin shift
 sens_cm = [[dcf_ps_at(WACC, TG, mm, cc) for cc in capex_steps] for mm in margin_steps]
@@ -839,7 +861,12 @@ for label, cint in [
 
 # ===== Experts ================================================================
 # Expert 1 — Hisham (cash returns / ROIC vs WACC, economic profit)
-ic = 90500.0   # invested capital ≈ equity att 83.4bn + net debt 7.1bn (FY25/Q1-26)
+# INVESTED CAPITAL IS DERIVED FROM THE BRIDGE, NOT TYPED. This read a flat 90,500.0 with
+# a comment naming its two parts approximately — "equity att 83.4bn + net debt 7.1bn" —
+# and neither part matched the study's own committed balance sheet once the bridge moved
+# onto the reviewed 30 June 2026 interim. An expert's assumption may be his own; the
+# balance sheet he stands on is the study's.
+ic = BOOK_PS * SH + net_debt        # parent equity on the latest disclosed sheet, plus net debt
 roic = rows[0]['nopat'] / ic
 ep = (roic - WACC) * ic
 FADE = 0.025   # excess returns decay 2.5%/yr toward the cost of capital (moat half-life ~25yr)
@@ -1420,7 +1447,8 @@ out = dict(
     rel_basis=dict(ebitda26=ebitda26, np26=np26, eps26=eps26, evx=rel_evx,
                    norm_pat=norm_pat, norm_eps=norm_eps),
     sens=dict(wacc_steps=wacc_steps, g_steps=g_steps, table_wg=sens_wg,
-              margin_steps=margin_steps, capex_steps=capex_steps, table_cm=sens_cm),
+              margin_steps=margin_steps, capex_steps=capex_steps, table_cm=sens_cm,
+              beta_grid=sens_beta),
     cover=cover, div_bill=div_bill,
     experts=dict(e1=e1, e2=e2, e3=e3, e1_roic=roic, e1_ic=ic, e1_ep=ep),
 )

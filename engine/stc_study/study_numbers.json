@@ -602,6 +602,101 @@
    }
   ],
   "weights_source": "Market-value equity, never book: the latest known close of SAR 43.86 on 2026-09-03 times 4,993,024 thousand shares outstanding \u2014 issued capital of SAR 50,000,000 thousand in shares of SAR 10 each, which divides to the 5,000,000 thousand shares note 17 of the reviewed 30 June 2026 interim itself states, less 6,976 thousand held in treasury. Debt is the borrowings total from the LATEST DISCLOSED balance sheet, 30 June 2026, SAR 23,536,554 thousand, which reproduces from the same interim's own financing cash flows to twelve basis points.",
+  "marginal_issue": {
+   "tranches": [
+    {
+     "years": 5,
+     "amount_th": 2812000,
+     "rate": 0.04489
+    },
+    {
+     "years": 10,
+     "amount_th": 4688000,
+     "rate": 0.05083
+    }
+   ],
+   "weighted_rate": 0.048602896,
+   "note": "The January 2026 international sukuk, SAR 7,500 million in two tranches, weighted by their own sizes. It is the marginal rate this company actually faces and it is what the schedule adopts."
+  },
+  "facilities_fy25": [
+   {
+    "name": "Sukuk, May 2019, final May 2029",
+    "currency": "USD",
+    "rate_as_disclosed": "3.89%",
+    "current_th": 0,
+    "non_current_th": 4680493
+   },
+   {
+    "name": "Murabaha, Dec 2017, final Dec 2027",
+    "currency": "MYR",
+    "rate_as_disclosed": "6M KLIBOR + 0.65%",
+    "current_th": 0,
+    "non_current_th": 1310218
+   },
+   {
+    "name": "Murabaha, Sep 2021, final Aug 2026",
+    "currency": "USD",
+    "rate_as_disclosed": "3M SOFR + 0.75%",
+    "current_th": 494831,
+    "non_current_th": 0
+   },
+   {
+    "name": "Murabaha, Mar 2021, final Nov 2029",
+    "currency": "USD",
+    "rate_as_disclosed": "1.27%",
+    "current_th": 69728,
+    "non_current_th": 205741
+   },
+   {
+    "name": "Murabaha, Sep 2023, final Mar 2029",
+    "currency": "USD",
+    "rate_as_disclosed": "6M SOFR + 0.73%",
+    "current_th": 0,
+    "non_current_th": 6000726
+   },
+   {
+    "name": "Murabaha, Feb 2022, final Mar 2028",
+    "currency": "KWD",
+    "rate_as_disclosed": "CBK + 0.55%",
+    "current_th": 70019,
+    "non_current_th": 70019
+   },
+   {
+    "name": "Mudarabah, Dec 2018, final May 2026",
+    "currency": "BHD",
+    "rate_as_disclosed": "2.10%",
+    "current_th": 1837,
+    "non_current_th": 0
+   },
+   {
+    "name": "Murabaha, Jan 2023, final Jan 2029",
+    "currency": "USD",
+    "rate_as_disclosed": "3M SOFR + 0.95%",
+    "current_th": 0,
+    "non_current_th": 450059
+   },
+   {
+    "name": "Murabaha, Aug 2022, final Aug 2036",
+    "currency": "SAR",
+    "rate_as_disclosed": "6M SAIBOR + 0.60%",
+    "current_th": 0,
+    "non_current_th": 605394
+   },
+   {
+    "name": "Murabaha, Jun 2022, final Jun 2027",
+    "currency": "SAR",
+    "rate_as_disclosed": "6M SAIBOR + 0.45%",
+    "current_th": 0,
+    "non_current_th": 499626
+   },
+   {
+    "name": "Others, subsidiaries",
+    "currency": "n/d",
+    "rate_as_disclosed": "not disclosed",
+    "current_th": 150745,
+    "non_current_th": 581992
+   }
+  ],
   "sovereign_staleness_disclosed": "The Saudi sovereign quote on the house macro path carries an as-of date of 31 July 2026 and this schedule is struck on 5 September 2026, so it is 36 days old against the 14-day bound. It is accepted DELIBERATELY and the age is disclosed here rather than used quietly; refreshing the path is a macro-path task that moves every Saudi study at once, not a lever inside this one."
  },
  "bridge_record": {
@@ -3420,6 +3515,50 @@
     40.22109492478441,
     39.89089152310516
    ]
+  ],
+  "beta_grid": [
+   {
+    "beta": 0.3,
+    "ke": 0.06255999999999999,
+    "wacc": 0.060262182322846934,
+    "ps": 55.480246930270965,
+    "adopted": false
+   },
+   {
+    "beta": 0.5,
+    "ke": 0.074,
+    "wacc": 0.07059197935220196,
+    "ps": 45.182531356949,
+    "adopted": false
+   },
+   {
+    "beta": 0.7078292485042049,
+    "ke": 0.08588783301444051,
+    "wacc": 0.08132614912126106,
+    "ps": 38.14261078953094,
+    "adopted": true
+   },
+   {
+    "beta": 0.85,
+    "ke": 0.09401999999999999,
+    "wacc": 0.08866912415357323,
+    "ps": 34.587373687721424,
+    "adopted": false
+   },
+   {
+    "beta": 1.0,
+    "ke": 0.1026,
+    "wacc": 0.09641647192558948,
+    "ps": 31.571714418273316,
+    "adopted": false
+   },
+   {
+    "beta": 1.2,
+    "ke": 0.11403999999999999,
+    "wacc": 0.10674626895494449,
+    "ps": 28.3815931522416,
+    "adopted": false
+   }
   ]
  },
  "cover": [
@@ -3445,10 +3584,10 @@
  "div_bill": 10.984652800000001,
  "experts": {
   "e1": {
-   "base": 36.829761798807624,
+   "base": 36.86229303577099,
    "rng": [
-    33.079630309199345,
-    42.84152405654751
+    33.18527869151769,
+    42.756842631486464
    ]
   },
   "e2": {
@@ -3461,8 +3600,8 @@
   "e3": {
    "base": 38.12489853142939
   },
-  "e1_roic": 0.15665701942106597,
-  "e1_ic": 90500.0,
-  "e1_ep": 6817.443762132346
+  "e1_roic": 0.15185437236375782,
+  "e1_ic": 93362.21299999999,
+  "e1_ep": 6584.6710008775335
  }
 }

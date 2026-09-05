@@ -105,8 +105,14 @@ im = ax.imshow(tab, cmap=matplotlib.colors.LinearSegmentedColormap.from_list(
 for i in range(tab.shape[0]):
     for j in range(tab.shape[1]):
         v = tab[i, j]
+        # BOLD MARKED THE CELLS NEAREST SPOT AND NO CELL WAS EVER NEAR IT: the grid runs
+        # 35-41 against a market price of 43.86, so the title and the caption both promised
+        # a bold cell that did not exist anywhere in the figure. Bold now marks the BASE
+        # cell — this study's own answer, the centre of the grid — which is a claim about
+        # the picture that is true and useful.
+        _base = (i == tab.shape[0] // 2 and j == tab.shape[1] // 2)
         ax.text(j, i, f'{v:.0f}', ha='center', va='center', fontsize=10,
-                color=INK, fontweight='bold' if abs(v - spot) < 1.2 else 'normal')
+                color=INK, fontweight='bold' if _base else 'normal')
 ax.set_xticks(range(5), [f'{x*100:+.1f}pp' for x in S['capex_steps']])
 ax.set_yticks(range(5), [f'{x*100:+.1f}pp' for x in S['margin_steps']])
 # THREE TYPED FIGURES SAT IN THESE THREE LINES AND ALL THREE WERE WRONG — a capital
@@ -118,8 +124,11 @@ _cap0 = d['drivers']['capex_pct'][0]
 _mgn0 = d['drivers']['ebitda_m'][0]
 ax.set_xlabel(f'capital intensity shift (pp of revenue; base {_cap0*100:.2f}% FY26E)')
 ax.set_ylabel(f'EBITDA margin shift (base {_mgn0*100:.2f}% FY26E)')
-ax.set_title(f'Fair value from the cash-flow model (SAR/sh) — EBITDA margin x capital intensity; '
-             f'bold is within SAR 1.2 of the SAR {spot:.2f} market price', fontsize=9.4, pad=8)
+# THE TITLE OVERFLOWED THE IMAGE ON BOTH SIDES and a clipped title is a defect a text
+# check cannot see: it read "ir value from the cash-flow model ... of the SAR 43.8".
+ax.set_title('Fair value from the cash-flow model (SAR/share)\n'
+             f'EBITDA margin x capital intensity; bold is the base case, SAR {tab[tab.shape[0]//2][tab.shape[1]//2]:.1f}',
+             fontsize=9.0, pad=6)
 ax.grid(False); fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig2_sens.png')); plt.close(fig)
 
 # ---- F3 MA stack ------------------------------------------------------------

@@ -250,6 +250,21 @@ def record(sched):
     r['gross_debt'] = BORROWINGS_H126
     r['effective_rate_detail'] = EFF
     r['weights_source'] = WEIGHTS_SOURCE
+    # THE CONTRACTUAL ANCHOR IS COMMITTED, NOT ONLY DESCRIBED. The two tranche rates of
+    # the January 2026 sukuk build the marginal cost of debt and are quoted in the study,
+    # the workbook and the sweep — and they were in no committed record, so the instrument
+    # that reconciles the delivered documents against the model reported them unmatched.
+    # They were right, and the model was what was missing.
+    r['marginal_issue'] = dict(
+        tranches=[dict(years=5, amount_th=T5, rate=T5_RATE),
+                  dict(years=10, amount_th=T10, rate=T10_RATE)],
+        weighted_rate=KD_MARGINAL,
+        note=('The January 2026 international sukuk, SAR 7,500 million in two tranches, '
+              'weighted by their own sizes. It is the marginal rate this company actually '
+              'faces and it is what the schedule adopts.'))
+    r['facilities_fy25'] = [dict(name=n, currency=c, rate_as_disclosed=rt,
+                                 current_th=cu, non_current_th=nc)
+                            for n, c, rt, cu, nc in FACILITIES_FY25]
     r['sovereign_staleness_disclosed'] = (
         'The Saudi sovereign quote on the house macro path carries an as-of date of '
         '31 July 2026 and this schedule is struck on 5 September 2026, so it is 36 days '

@@ -173,9 +173,16 @@ P('We value stc as a going-concern operator. ONE lens is the answer — a free-c
   'SAR 0.55-per-quarter distribution through 2027. A relative EV/EBITDA read and a normalized-earnings read complete the '
   'set. The weights and the football field are in §1.5; the segment engine in §1.6; the crux — dividend cover against the '
   'capex cycle, in real units — in §1.7; the cost-of-capital build (every input sourced, both ERP bases published) in §1.8; '
-  'and the sensitivity grids in §1.9. One lens-selection note (§3.5-F5 considered and set aside): stc does own a captive-finance-flavoured arm — stc bank — but at SAR 2.0 bn of revenue (2.5% of group) and an early-stage loan book it does not yet warrant the split-legs operating-co-plus-lender treatment; it is carried inside the subsidiaries line with a justified N/A, to be revisited once SAMA-reported bank financials give it a book worth marking separately. Throughout, the cost of equity is published explicitly as Ke = rf + β × ERP = '
-  '5.50% + 0.48 × 5.01% = 7.90% (rating basis; 8.25% on the CDS basis), with the beta a genuine — if short-window — '
-  'regression against TASI rather than an assumed round number.')
+  'and the sensitivity grids in §1.9. '
+  'One lens-selection note, considered and set aside: stc does own a captive-finance arm in stc bank, but at SAR 2.0 bn of revenue — 2.5% of the group — and an early-stage loan book it does not yet warrant the split-legs '
+  'treatment a bank leg would get; it is carried inside the subsidiaries line and flagged as such, to be revisited '
+  'once its regulated financials give it a book worth marking separately. Throughout, the cost of equity is '
+  f"published explicitly as the normalised risk-free rate plus beta times the equity risk premium: "
+  f"{D['coc_record']['rf_star']*100:.2f}% + {D['coc_record']['beta']:.4f} x {D['coc_record']['erp']*100:.2f}% = "
+  f"{D['coc_record']['ke_exp']*100:.2f}%, on the {D['coc_record']['erp_basis']} basis this study names as central, "
+  'with the alternative basis published beside it in §1.8 rather than chosen silently. The beta behind it is a '
+  'five-year weekly regression against the published index of the exchange the stock is listed on, not an assumed '
+  'round number.')
 
 H2('1.1  The FCFF DCF — the primary lens')
 P('The revenue engine is the §1.6 segment build (top-down: stc discloses unit revenue, not subscriber × ARPU detail, so '
@@ -386,7 +393,7 @@ P('stc is a defensive claim on the Saudi macro, in three channels. Rates: SAMA s
   'phasing, not demand. Vision 2030: the structural bid — data centres (the center3–HUMAIN 1 GW ambition inside a national '
   'AI push), 5G/fibre densification, and digital-services adjacencies — is what turns a utility growth profile into a '
   'utility-plus-options profile. Because the riyal is pegged, there is no currency-translation channel in the valuation '
-  'and no FX factor in the Monte Carlo. Every input in the cost-of-capital build is sourced and named (house rule §3.5-G):', size=10.5)
+  'and no currency factor in the price map. Every input in the cost-of-capital build is sourced and named:', size=10.5)
 # EVERY CELL OF THIS TABLE WAS TYPED, AND BY THE TIME THE STUDY WAS REBUILT NOT ONE OF
 # THEM MATCHED THE MODEL. It published a risk-free rate of 5.50% against a committed
 # 5.52%, a beta of 0.48 from a nine-week daily window against a conforming 0.71 from a
@@ -442,11 +449,15 @@ P('Two honesty notes on this build. First, the sovereign quote behind the risk-f
   'inputs.', size=9.6)
 
 H2('1.9  Sensitivity — the margin, the capex, the rate spread, and the beta')
-P('The first grid re-prices the DCF across the two real-unit operating levers (EBITDA margin and capex intensity); the '
-  'second across WACC × terminal growth; the third across the beta — the single input most likely to move the answer, '
-  'given the short regression window.')
-figure(os.path.join(HERE, 'fig2_sens.png'), 5.6, 'Figure 2 — DCF fair value (SAR/share) across EBITDA-margin and capex-intensity shifts. '
-       f'Bold cells sit nearest spot (SAR {spot:.2f}).')
+P('The first grid re-prices the cash-flow model across the two real-unit operating levers (EBITDA margin and capital '
+  'intensity); the second across the cost of capital × terminal growth; the third across the beta — which is a proper '
+  'five-year weekly regression against the exchange’s own index, but explains less than a third of this stock’s '
+  'variance, so it is the input whose uncertainty is widest even though its construction is sound.')
+figure(os.path.join(HERE, 'fig2_sens.png'), 5.6,
+       'Figure 2 — Fair value from the cash-flow model (SAR/share) across shifts in the EBITDA margin and in '
+       f"capital intensity. The bold cell is the base case. EVERY cell in the grid sits below the market price of "
+       f"SAR {spot:.2f}: on this model the disagreement with the market survives the whole plausible range of both "
+       'operating levers, so it is not an artefact of where either one was set.')
 S = D['sens']
 wg_rows = [['WACC \\ terminal g', '1.5%', '2.0%', '2.5%', '3.0%', '3.5%']]
 for i, w in enumerate(S['wacc_steps']):
@@ -458,18 +469,28 @@ for i, w in enumerate(S['wacc_steps']):
 table(wg_rows, [1.5, 1.0, 1.0, 1.0, 1.0, 1.0], first_col_bold=True, size=9.0)
 caption(f"DCF fair value (SAR/share) across WACC × terminal growth. Base cell {dcf['wacc']*100:.2f}% × 2.5% = {dcf['ps']:.1f}. "
         'The CDS-ERP alternative WACC (7.90%) sits between the third and fourth rows.')
-rows = [['Beta', 'Ke (rating ERP)', 'WACC', 'DCF value/sh', 'Note'],
- ['0.30', '7.00%', '7.05%', '59.8', ''],
- ['0.48', '7.90%', '7.59%', f"{dcf['ps']:.1f}", 'regressed base (n=40, R² 14%)'],
- ['0.70', '9.01%', '8.59%', '41.8', ''],
- ['0.85', '9.76%', '9.27%', '37.6', ''],
- ['1.00', '10.51%', '9.95%', '34.2', 'house fallback had the regression failed'],
- ['1.20', '11.51%', '10.86%', '30.4', ''],
-]
-table(rows, [1.0, 1.4, 1.1, 1.3, 2.4], first_col_bold=True, size=8.9)
-caption('The beta grid is mandatory disclosure here (house rule): a nine-week regression passes the usability gate but is '
-        'not a settled estimate. Even at β = 0.70 the DCF only converges to spot — the undervaluation read survives '
-        'moderate beta doubt but not a full reversion to 1.0.')
+# SIX TYPED ROWS, AND BY THE REBUILD EVERY ONE WAS STALE — including the row labelled the
+# regressed base, which still carried the retired nine-week beta of 0.48 and a cost of
+# capital of 7.59% against the schedule's 8.13%. A grid whose base row disagrees with the
+# model is worse than no grid, because it reads as the model's own arithmetic. The grid is
+# now computed, and the model asserts at build time that its adopted row reproduces the
+# published answer.
+_BG = D['sens']['beta_grid']
+rows = [['Beta', 'Cost of equity', 'Cost of capital', 'Value per share', 'Note']]
+for _r in _BG:
+    rows.append([f"{_r['beta']:.2f}", f"{_r['ke']*100:.2f}%", f"{_r['wacc']*100:.2f}%",
+                 f"{_r['ps']:.2f}",
+                 'the adopted regression' if _r['adopted'] else
+                 ('the house fallback, had the regression failed its usability gate'
+                  if abs(_r['beta'] - 1.0) < 1e-9 else '')])
+table(rows, [1.0, 1.4, 1.4, 1.3, 2.1], first_col_bold=True, size=8.9)
+_b1 = next(r for r in _BG if abs(r['beta'] - 1.0) < 1e-9)
+caption('The grid is mandatory disclosure here: the regression is a proper five-year weekly one against the exchange\u2019s '
+        f"own published index, but it explains {D['dcf']['wacc_build']['beta_reg']['r2']*100:.0f}% of this stock\u2019s "
+        'variance and no more, so the answer is priced across the plausible range rather than at one point. The read '
+        f"survives moderate beta doubt \u2014 at {_BG[-3]['beta']:.2f} the value is SAR {_BG[-3]['ps']:.2f} \u2014 but not "
+        f"a full reversion to 1.0, where it falls to SAR {_b1['ps']:.2f}, "
+        f"{(_b1['ps']/D['spot']-1)*100:.0f}% against the market price.")
 
 # ================= §2 Technical ==============================================
 H1('2  Technical and price structure')

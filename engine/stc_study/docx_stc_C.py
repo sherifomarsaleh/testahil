@@ -207,9 +207,15 @@ table(rows, [1.15, 0.85, 1.9, 2.2], first_col_bold=True, size=8.5, band_rows=[le
 P('A NEGATIVE RESULT IS A RESULT, and this study records four of them. They are printed here rather than left out, '
   'because a question asked and answered with nothing is evidence, while a question never asked looks identical to one '
   'that found nothing:', size=9.8)
+# THE HEAD IS THE QUESTION THAT WAS ASKED, NOT THE ANSWER. A first pass took the head off
+# the front of the headline, which for these findings is the phrase "Negative search" — so
+# every bullet read "Negative search. Negative search — nothing found (...)". What a reader
+# needs is which question came back empty, and that is the category the search was run in.
 for f in _negall:
-    bullet(f['detail'].strip().split('\n')[0][:400] if f.get('detail') else f['headline'],
-           bold_head=f['headline'].split(';')[0].split(' — ')[0][:110] + '. ')
+    _body = f['headline']
+    if '(' in _body:
+        _body = _body[_body.index('(') + 1:].rstrip(')')
+    bullet(_body.strip(), bold_head='%s ring — %s. ' % (f['ring'].capitalize(), f['category']))
 _pa = _SW['primary_access'][0]
 P('The company\u2019s own investor-relations channel was attempted first, before any aggregator, and the attempt is '
   f"logged whether or not it succeeded. It was reached on {_pa['attempt_date']} — and the route matters: four direct "
@@ -234,14 +240,25 @@ P('Worldview and tradition. A business is worth the cash it returns over its lif
 P('When it works / fails. Best for capital-intensive businesses where returns on capital are the crux — precisely a '
   'telecom. Fails where reinvestment economics are genuinely improving (past ROIC misleads a new-moat story) — his risk '
   'here if the AI-data-centre build earns structurally above telecom returns.', size=9.8)
+# EVERY LINE OF THIS TABLE WAS TYPED and by the rebuild the cost of capital in it read
+# 7.59% against the §1.8 build's 8.13% — the row's own label says it accepts that build.
+# An expert's assumptions may be his own; the study's numbers may not be retyped.
+_e1ic = E['e1_ic']; _e1roic = E['e1_roic']; _e1ep = E['e1_ep']
+_wacc = D['coc_record']['wacc_exp']; _fade = 0.025
+_e1mult = 1.0 / (_wacc + _fade - dcf['tg'])
 rows = [
  ['Expert 1’s economic-profit test', 'Value'],
- ['Invested capital (equity 83.4 bn + net debt 7.1 bn)', 'SAR 90.5 bn'],
- ['FY26E NOPAT → ROIC', 'SAR 13.9 bn → 15.3%'],
- ['WACC (accepts the §1.8 build)', '7.59%'],
- ['Economic profit = (ROIC − WACC) × IC', 'SAR ~7.0 bn/yr'],
- ['Fade: excess returns decay 2.5%/yr toward WACC', 'EP multiple ≈ 13.2×'],
- ['Core EV = IC + PV(fading EP)', 'SAR ~183 bn'],
+ [f"Invested capital (parent equity {D['lenses']['book_value']*D['bridge_record']['shares_mn']/1000.0:,.1f} bn "
+  f"plus net debt {(_e1ic - D['lenses']['book_value']*D['bridge_record']['shares_mn'])/1000.0:,.1f} bn)",
+  f"SAR {_e1ic/1000.0:,.1f} bn"],
+ ['FY26E operating profit after tax, over that capital',
+  f"SAR {_e1roic*_e1ic/1000.0:,.1f} bn → {_e1roic*100:.1f}%"],
+ ['Cost of capital (he accepts the §1.8 build)', f"{_wacc*100:.2f}%"],
+ ['Economic profit = (return − cost) × capital', f"SAR {_e1ep/1000.0:,.1f} bn/yr"],
+ [f'Fade: excess returns decay {_fade*100:.1f}%/yr toward the cost of capital',
+  f"Multiple on economic profit {_e1mult:.1f}x"],
+ ['Core enterprise value = capital + present value of the fading economic profit',
+  f"SAR {(_e1ic + _e1ep*_e1mult)/1000.0:,.0f} bn"],
  [f"+ stakes less net debt less the minority, divided by "
    f"{D['bridge_record']['shares_mn']:,.1f} mn shares",
    f"\u2192 SAR {E['e1']['base']:.1f} per share"],
@@ -292,20 +309,29 @@ rows = [
  ['Normalised profit attributable', f"{D['rel_basis']['norm_pat']:,.0f}"],
  ['Divided by shares in issue (%s million)' % f"{D['bridge_record']['shares_mn']:,.1f}",
   f"SAR {D['rel_basis']['norm_eps']:.2f} per share"],
- ['Justified through-cycle price-to-earnings', '15.0x'],
+ ['Justified through-cycle price-to-earnings',
+  f"{E['e2']['base']/D['rel_basis']['norm_eps']:.1f}x"],
  ['Fair value', f"SAR {E['e2']['base']:.1f} per share"],
 ]
 table(rows, [4.4, 1.7], first_col_bold=True, size=9.0)
-P('Sensitivity (swing = the multiple): at 13.5× SAR 36.8; at 16.5× SAR 50.3; each 1× of P/E ≈ SAR 2.9. Cross-examination: '
-  'he tells Expert 1 that a fade model is just a multiple wearing a lab coat — the honest disagreement is the number, and '
-  '15× for a zero-net-debt incumbent yielding 5% is not heroic when du trades at 17.6×. He tells Expert 3 that the '
-  'dividend lens undervalues whatever the board chooses not to distribute — the same retained cash the specials keep '
-  'proving exists.', size=9.8)
+# THE THREE FIGURES IN THIS SENTENCE WERE TYPED AND NONE OF THEM SURVIVED HIS OWN
+# ARITHMETIC: 13.5x on his normalised earnings per share is 35.8 rather than 36.8, 16.5x
+# is 43.7 rather than 50.3, and one turn of the multiple is worth his EPS, not 2.9.
+_e2eps = D['rel_basis']['norm_eps']
+_e2x = E['e2']['base'] / _e2eps
+P(f"Sensitivity (the swing is the multiple): every turn of the price-to-earnings ratio is worth exactly his normalised "
+  f"earnings per share, SAR {_e2eps:.2f} — so at {_e2x-1.5:.1f}x he reads SAR {(_e2x-1.5)*_e2eps:.1f} and at "
+  f"{_e2x+1.5:.1f}x SAR {(_e2x+1.5)*_e2eps:.1f}. His published range of SAR {E['e2']['rng'][0]:.1f} to "
+  f"{E['e2']['rng'][1]:.1f} spans {E['e2']['rng'][0]/_e2eps:.1f}x to {E['e2']['rng'][1]/_e2eps:.1f}x. "
+  'Cross-examination: he tells Expert 1 that a fade model is a multiple wearing a lab coat — the honest disagreement '
+  f"is the number. He tells Expert 3 that the dividend lens undervalues whatever the board chooses not to distribute.",
+  size=9.8)
 rich([('Verdict, falsification, market-implied. ', dict(bold=True)),
-      (f"Fair SAR {E['e2']['base']:.1f} (range {E['e2']['rng'][0]:.0f}–{E['e2']['rng'][1]:.0f}) — a whisker below spot: on "
-       "clean current earnings the stock is fully priced, and everything above 15× is paying for growth not yet printed. "
-       "Falsified by two consecutive years of double-digit adjusted EPS growth (his base would be stale), or by the margin "
-       "glide reversing. The market pays 15.1× his normalized EPS — it agrees with him almost exactly.", {})])
+      (f"Fair SAR {E['e2']['base']:.1f} (range {E['e2']['rng'][0]:.0f}–{E['e2']['rng'][1]:.0f}), "
+       f"{(E['e2']['base']/D['spot']-1)*100:+.0f}% against the market. On clean current earnings the stock is priced "
+       f"above his read: the market pays {D['spot']/_e2eps:.1f}x his normalised earnings against the {_e2x:.1f}x he "
+       "will justify, and the difference is growth not yet printed. Falsified by two consecutive years of double-digit "
+       "adjusted earnings growth, which would make his base stale, or by the margin glide reversing.", {})])
 
 H2('C.3  Expert 3 — macro-policy: the scenario tree')
 P('Worldview and tradition. In a policy-driven market, policy outranks fundamentals: the Fed/SAMA rate path, the oil-'
@@ -330,7 +356,11 @@ P(f"Sensitivity (swing = the scenario weights): shifting 10 points from base to 
   "pegged to a foreign central bank, so the local 'cycle' is imported and can stay dislocated from local fundamentals for "
   "years.", size=9.8)
 rich([('Verdict, falsification, market-implied. ', dict(bold=True)),
-      (f"Fair SAR {E['e3']['base']:.1f} — essentially the DDM with eyes open, and the panel value closest to spot. "
+      # "THE PANEL VALUE CLOSEST TO SPOT" WAS TYPED AND IS NO LONGER TRUE: on the rebuilt
+      # numbers Expert 2 sits nearer the market than Expert 3 does. Which expert is
+      # closest is arithmetic about three committed numbers, so it is computed.
+      (f"Fair SAR {E['e3']['base']:.1f} — the dividend model with its eyes open, and "
+       f"{'the panel value closest to the market' if abs(E['e3']['base']-D['spot']) <= min(abs(E['e1']['base']-D['spot']), abs(E['e2']['base']-D['spot'])) else 'between his two colleagues, with Expert 2 the nearer to the market'}. "
        "Falsified by the board breaking the policy (either direction: a cut dividend or a step-change up), or by a Fed "
        "path outside his tree (no cuts through 2027, or emergency easing). What the price implies: the market is pricing "
        "roughly his base case with a small weight on the bear — i.e. the locked dividend at a ~5% yield, and near-zero "
@@ -372,14 +402,22 @@ caption('Two conceded, two rejected. Nothing here changes any expert\u2019s numb
 H2('C.5  The three in one room')
 P('Put the three in a room and the argument is about one thing: what happens to stc’s return on capital as the Kingdom’s '
   'AI-infrastructure build runs through its income statement.', size=9.8)
-P('Expert 1: “Fifteen percent returns on ninety billion of capital, fading as every telecom’s returns have always faded. '
-  'The data centres are capex with a press release until someone shows me contracted economics. I pay SAR 37.”', size=9.8)
-P('Expert 3: “Your fade rate is a guess dressed as physics. What is not a guess: the board has signed a cheque for SAR 2.20 '
-  'a year through 2027, SAMA’s next moves are the Fed’s, and the sovereign has made this company its digital-infrastructure '
-  'champion. Price the policy, not the physics — SAR 46.”', size=9.8)
-P('Expert 2: “You are both reaching. Clean earnings are SAR 2.89 a share, growing high single digits; the market pays 15× '
-  'for that across the Gulf. Everything else — fades, scenario trees, gigawatts — is a story about the sixteenth multiple '
-  'point. SAR 43, and the market agrees with me to the decimal.”', size=9.8)
+# THE FIGURES INSIDE THE QUOTATION MARKS ARE EACH EXPERT'S OWN AND WERE TYPED. Expert 3
+# was made to say SAR 46 against a computed 38.1, and Expert 2 to say the market agreed
+# with him "to the decimal" while it sits ten per cent above him. A number in dialogue is
+# still a number.
+P(f"Expert 1: “{E['e1_roic']*100:.0f} per cent returns on {E['e1_ic']/1000.0:.0f} billion of capital, fading as every "
+  'telecom’s returns have always faded. The data centres are capital expenditure with a press release until somebody '
+  f"shows me contracted economics. I pay SAR {E['e1']['base']:.0f}.”", size=9.8)
+P('Expert 3: “Your fade rate is a guess dressed as physics. What is not a guess: the board has signed a cheque for '
+  f"SAR {D['drivers']['payout_dps'][0]:.2f} a year through 2027, the central bank’s next moves are the Federal "
+  'Reserve’s, and the sovereign has made this company its digital-infrastructure champion. Price the policy, not the '
+  f"physics — SAR {E['e3']['base']:.0f}.”", size=9.8)
+P(f"Expert 2: “You are both reaching. Clean earnings are SAR {D['rel_basis']['norm_eps']:.2f} a share; the market pays "
+  f"{E['e2']['base']/D['rel_basis']['norm_eps']:.0f} times that across the Gulf. Everything else — fades, scenario "
+  f"trees, gigawatts — is a story about the next turn of the multiple. SAR {E['e2']['base']:.0f}, and note that the "
+  f"market is paying {D['spot']/D['rel_basis']['norm_eps']:.1f} times, which is {(D['spot']/E['e2']['base']-1)*100:.0f} "
+  'per cent more than I will justify — so I am not agreeing with the price, I am naming the gap.”', size=9.8)
 
 H2('C.6  Reading the divergence')
 figure(os.path.join(HERE, 'figD1_experts.png'), 6.0, 'Figure C-1 — The three experts’ fair-value ranges. Brass ticks are base cases; the gold '
@@ -387,22 +425,38 @@ figure(os.path.join(HERE, 'figD1_experts.png'), 6.0, 'Figure C-1 — The three e
 rows = [
  ['Expert', 'Method', 'Single swing assumption', 'Base fair value'],
  ['Expert 1', 'Cash returns / economic profit', 'The fade rate on excess returns (2.5%/yr)', f"SAR {E['e1']['base']:.1f}"],
- ['Expert 2', 'Normalized earnings power', 'The through-cycle multiple (15×)', f"SAR {E['e2']['base']:.1f}"],
+ ['Expert 2', 'Normalized earnings power',
+  f"The through-cycle multiple ({E['e2']['base']/D['rel_basis']['norm_eps']:.0f}x)",
+  f"SAR {E['e2']['base']:.1f}"],
  ['Expert 3', 'Macro-policy scenario tree', 'The scenario weights on the rate/payout path', f"SAR {E['e3']['base']:.1f}"],
 ]
 table(rows, [1.0, 2.2, 2.5, 1.3], first_col_bold=True, size=9.0)
-P(f"The spread — SAR {min(E['e1']['base'],E['e2']['base'],E['e3']['base']):.0f} to "
-  f"{max(E['e1']['base'],E['e2']['base'],E['e3']['base']):.0f}, about 23% of the low — is narrow by this series’ standards, "
-  "and it measures one thing cleanly: how much of stc’s current 15% return on capital survives the next decade of "
-  "competition, technology churn and nation-scale capex. Expert 1 charges for the erosion explicitly and lands below spot; "
-  "Expert 2 freezes today’s clean earnings at a market multiple and lands at spot; Expert 3 prices the policy floor and "
-  "lands above it. The house lenses (§1.5) sit above the panel because the DCF credits the margin glide and capex fade the "
-  "experts decline to pre-pay for — that gap, ~SAR 4, is the price of believing management’s own guidance. An investor’s "
-  "position on this stock reduces to a position on that one axis: if the AI-infrastructure build earns telecom-plus "
-  "returns, the house DCF is right and the stock is cheap; if it earns telecom-minus, Expert 1 is right and today’s price "
-  "already flatters it.")
-caption('Each expert’s point fair value (and bull/base/bear where applicable) is logged with the study date (9 Jul 2026) and '
-        f'spot (SAR {D["spot"]:.2f}).')
+# THIS PARAGRAPH MADE FOUR CLAIMS ABOUT THREE NUMBERS AND EVERY ONE WAS TYPED AND WRONG
+# ON THE REBUILT PANEL: a spread of "about 23% of the low" against an actual 7.9%; Expert 2
+# "lands at spot" and Expert 3 "lands above it" when all three sit below it; and the house
+# lenses "sit above the panel" when the central sits inside it. Each is now derived from
+# the three committed values, so the sentence cannot outlive the numbers it describes.
+_bases = [E['e1']['base'], E['e2']['base'], E['e3']['base']]
+_lo, _hi = min(_bases), max(_bases)
+_mean = sum(_bases) / 3.0
+_above = [n for n, b in zip(('Expert 1', 'Expert 2', 'Expert 3'), _bases) if b >= D['spot']]
+_where = ('all three land below the market price' if not _above else
+          '%s land%s above the market price and the others below' %
+          (' and '.join(_above), '' if len(_above) > 1 else 's'))
+P(f"The spread — SAR {_lo:.1f} to {_hi:.1f}, {(_hi/_lo-1)*100:.0f}% of the low — is narrow by this series’ standards, "
+  f"and it measures one thing cleanly: how much of stc’s current {E['e1_roic']*100:.0f}% return on capital survives the "
+  f"next decade of competition, technology churn and nation-scale capital spending. On that question the three barely "
+  f"disagree, and {_where}: Expert 1 charges for the erosion explicitly, Expert 2 freezes today’s clean earnings at a "
+  "multiple he will defend, and Expert 3 prices the policy floor — three different routes to the same neighbourhood. "
+  f"The study’s own central of SAR {D['central']:.2f} sits "
+  f"{'inside' if _lo <= D['central'] <= _hi else 'outside'} that band, "
+  f"SAR {abs(D['central']-_mean):.2f} {'above' if D['central'] > _mean else 'below'} the panel’s own average, which is "
+  "worth saying plainly: the cash-flow model and three independently-constructed methods arrive within a riyal or two "
+  "of each other, and all of them below the price. An investor’s position on this stock reduces to a position on one "
+  "axis: if the data-centre build earns telecom-plus returns, the cash-flow model understates it; if it earns "
+  "telecom-minus, Expert 1 is right and today’s price already flatters it.")
+caption('Each expert\u2019s point fair value, and its range where the method produces one, is recorded with the price '
+        f'it was struck against: SAR {D["spot"]:.2f} on {D["spot_date"]}.')
 
 # ================= About / Disclaimer / footer ================================
 H1('About this series')
