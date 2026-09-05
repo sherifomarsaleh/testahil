@@ -5545,6 +5545,44 @@ LESSONS = [
       "guess that travels into a durable record wearing a "
       "measurement's clothes."),
 
+    L("L-335", "ALL", None,
+      "OPENING THE FILE IS NOT THE CHECK; THE CHECK IS NOT STOPPING "
+      "AT THE FIRST READING THAT FITS",
+      "[L-334] says to open the files before writing a sentence that "
+      "names a set. Within the hour of registering it I did open a "
+      "file, read its top-level keys, found two fields called "
+      "centre_A and centre_B, and wrote that the study 'carries two "
+      "decided centres — a dual framing, not a blend, and it needs no "
+      "valuation judgement at all'. Each centre was a typed "
+      "four-lens weighted blend, and the weights were one level down "
+      "in a field called items_A. THE READING WAS COHERENT, FITTED "
+      "EVERY FACT IN VIEW, AND WAS WRONG — which is what makes this "
+      "distinct from not looking. A partial reading does not feel "
+      "partial; it feels like understanding, and the feeling arrives "
+      "at exactly the moment the first consistent story forms. THE "
+      "PRACTICAL FORM: when a structure is about to be characterised "
+      "— 'this is a blend', 'these are branches', 'this is a range' "
+      "— follow it to the LEAF that carries the arithmetic, and name "
+      "that leaf in whatever is written. A claim that cites a line "
+      "number cannot be made from the top-level keys.",
+      "the unreadable-studies diagnosis, three wrong versions, 5 "
+      "September 2026",
+      "self_audit",
+      "The corrected note names the exact line or field carrying each "
+      "study's construction — lenses.items_A, fair_value.weights, "
+      "compute.py:722, compute.py:505, compute.py:258-260, "
+      "stc_compute.py:277, lenses.weights — and writing that column "
+      "is what forced every row to be verified rather than inferred. "
+      "It also overturned the note's own structure: all seven "
+      "studies turned out to carry the same defect, so the 'ordered "
+      "by what each needs' sequencing rested on a distinction that "
+      "does not exist. THE CITATION COLUMN IS THE INSTRUMENT, not "
+      "the discipline of the person filling it in.",
+      "A structure genuinely characterisable from its top level — "
+      "which exists, and is why this is a habit rather than a bar: "
+      "the test is whether the characterisation could be WRONG one "
+      "level down, and if it could, go there."),
+
     L("L-331", "ALL", None,
       "A CORRECTION THAT MAKES A QUANTITY LOAD-BEARING MAKES EVERY "
       "ERROR IN THAT QUANTITY VISIBLE",

@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**255 lessons**, of which 223 bind on every study, 25 on a class of company, and 7 on a single name.
+**256 lessons**, of which 224 bind on every study, 25 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 22 from self-audits, 178 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 23 from self-audits, 178 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2308,6 +2308,16 @@ The dangerous ones are not wild guesses; they are the plausible summaries a comp
 > **What it cost, or how we know.** (1) 'Two names remain on the retired construction and both are Egyptian' — wrong in both halves: one remained, and the other was a UAE filer, which also thinned the jurisdictional hypothesis the sentence was supporting. (2) 'The seven unreadable studies split three ways and some fixes are cheap' — the filename and dict-shape causes were real and NEITHER WAS SUFFICIENT; underneath, all seven need a valuation decision. (3) 'AMR and probably ADNOCDIST, ADNOCDRILL and BOROUGE carry the retired blend' — right for one, wrong for two, which carry a dual framing and a published range instead. Every one was written before the files were opened, and every one was corrected by opening them.
 
 > **What would overturn it.** Nothing overturns it. What limits it is that a guess EXPLICITLY labelled as one, in a place that expects hypotheses, is a legitimate and useful thing to write down — the offence is the guess that travels into a durable record wearing a measurement's clothes.
+
+### L-335 · OPENING THE FILE IS NOT THE CHECK; THE CHECK IS NOT STOPPING AT THE FIRST READING THAT FITS
+
+[L-334] says to open the files before writing a sentence that names a set. Within the hour of registering it I did open a file, read its top-level keys, found two fields called centre_A and centre_B, and wrote that the study 'carries two decided centres — a dual framing, not a blend, and it needs no valuation judgement at all'. Each centre was a typed four-lens weighted blend, and the weights were one level down in a field called items_A. THE READING WAS COHERENT, FITTED EVERY FACT IN VIEW, AND WAS WRONG — which is what makes this distinct from not looking. A partial reading does not feel partial; it feels like understanding, and the feeling arrives at exactly the moment the first consistent story forms. THE PRACTICAL FORM: when a structure is about to be characterised — 'this is a blend', 'these are branches', 'this is a range' — follow it to the LEAF that carries the arithmetic, and name that leaf in whatever is written. A claim that cites a line number cannot be made from the top-level keys.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, the unreadable-studies diagnosis, three wrong versions, 5 September 2026
+
+> **What it cost, or how we know.** The corrected note names the exact line or field carrying each study's construction — lenses.items_A, fair_value.weights, compute.py:722, compute.py:505, compute.py:258-260, stc_compute.py:277, lenses.weights — and writing that column is what forced every row to be verified rather than inferred. It also overturned the note's own structure: all seven studies turned out to carry the same defect, so the 'ordered by what each needs' sequencing rested on a distinction that does not exist. THE CITATION COLUMN IS THE INSTRUMENT, not the discipline of the person filling it in.
+
+> **What would overturn it.** A structure genuinely characterisable from its top level — which exists, and is why this is a habit rather than a bar: the test is whether the characterisation could be WRONG one level down, and if it could, go there.
 
 
 ---
