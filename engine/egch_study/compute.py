@@ -134,6 +134,37 @@ D['other_rev_path'] = _V('other_rev_path')   # ferrosilicon plant rent,
 # FY2024/25 materials line — the split of that line between gas and everything else
 # is the model's, and is flagged as such, because the statements give only the total.
 D['gas_m3_per_t_ammonia'] = _V('gas_m3_per_t_ammonia_modelled')
+# THE AUDITOR'S OWN DISCLOSED STANDARD RATE IS 1,200 m3/t, AND IT WAS REGISTERED AS A
+# PRIMARY INPUT AND CONSUMED BY NOTHING until 5 September 2026, when an audit run from
+# outside this study found it sitting unused while the model ran a constructed allocation.
+# It is now a live CROSS-CHECK on that allocation, which is what a disclosed figure the
+# model does not adopt should be.
+#
+# THE MODELLED RATE IS NOT SUBSTITUTED BY IT, AND THE REASON IS ARITHMETIC RATHER THAN
+# PREFERENCE. 1,200 is the STANDARD — what the plant consumes when it runs to specification
+# — and this plant does not: the same auditor's report discloses 38,480,270 m3 of gas LOST
+# in FY2024/25, which over that year's own 318,242 tonnes of ammonia is 120.9 m3/t. Standard
+# plus disclosed loss is 1,320.9 m3/t, and the model's allocation-implied 1,292 sits between
+# the two, 7.7% above the standard and 2.2% below standard-plus-loss. A model of what this
+# plant actually consumes has to carry the losses; adopting the standard would model a plant
+# that does not exist.
+#
+# WHAT THAT LEAVES OPEN, STATED RATHER THAN CLOSED: whether the abnormal-gas line charged
+# separately below the gross margin is charging some of the SAME lost gas a second time
+# depends on whether those losses sit inside the disclosed materials line, which the
+# statements do not split. The direction is known — if they do, the model overstates cost —
+# and the size is bounded by the abnormal path itself. The substitution is priced in the
+# contested-constructions table rather than argued about here.
+_gas_standard = _V('gas_standard_m3_t')
+_gas_loss_rate = _V('gas_loss_FY2425_m3') / _V('prod_ammonia_FY2425')
+assert _V('gas_usage_low_m3_t') <= D['gas_m3_per_t_ammonia'] <= _V('gas_usage_high_m3_t'), \
+    'the allocation-implied gas rate must sit inside the auditor\'s own disclosed range'
+assert _gas_standard <= D['gas_m3_per_t_ammonia'] <= _gas_standard + _gas_loss_rate * 1.05, \
+    ('the allocation-implied gas rate must sit between the disclosed STANDARD and that '
+     'standard plus the disclosed LOSS: below the standard it models a plant running better '
+     'than specification, above standard-plus-loss it charges gas nobody reports')
+D['gas_standard_m3_t'] = _gas_standard
+D['gas_loss_rate_m3_t'] = _gas_loss_rate
 D['gas_usd_mmbtu'] = _V('gas_realised_usd_mmbtu')
 D['gas_usd_mmbtu_contract'] = _V('gas_contract_usd_mmbtu')
 D['mmbtu_per_m3'] = _V('mmbtu_per_m3')

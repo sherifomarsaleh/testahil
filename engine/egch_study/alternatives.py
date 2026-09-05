@@ -62,6 +62,7 @@ util_bull = reprice(anna_util_base=V('anna_util_bull'))
 capex_replacement = reprice(maint_capex_pct_rev=V('maint_capex_pct_replacement'))
 capex_house = reprice(maint_capex_pct_rev=0.030)          # the superseded house standard
 age_assumed = reprice(terminal_force_half_life=True)
+gas_standard = reprice(gas_m3_per_t_ammonia=V('gas_standard_m3_t'))
 kd_floored = reprice(glide=True, kd_floor=W['sovereign_floor'])
 project_faster = reprice(anna_capex_path=[3000.0, 3500.0, 3500.0, 3000.0, 2000.0])
 
@@ -165,6 +166,26 @@ ALTS = [
              "enters the terminal at all: under the sanctioned construction there is no "
              "reinvestment rate to contest, and this module's own gate caught the dead "
              "alternative the moment it scored zero."),
+    dict(key="gas_consumption",
+         made=f"Gas consumption at {D['gas_m3_per_t_ammonia']:,.0f} cubic metres a tonne of "
+              "ammonia — the rate implied by allocating three quarters of the single "
+              "disclosed materials line to gas, which carries the plant's disclosed losses "
+              "as well as its standard usage",
+         alt=f"The auditor's own disclosed STANDARD rate of "
+             f"{V('gas_standard_m3_t'):,.0f} cubic metres a tonne, which is what the plant "
+             "consumes when it runs to specification and excludes the losses",
+         value=gas_standard,
+         why="The disclosed standard is the cleaner number and it is not what this plant "
+             "does: the same auditor's report discloses 38,480,270 cubic metres of gas LOST "
+             "in FY2024/25, which over that year's ammonia output is a further 120.9 cubic "
+             "metres a tonne. Standard plus disclosed loss is 1,320.9 and the modelled rate "
+             "sits between the two. The higher figure is adopted because a model of what "
+             "this plant actually consumes has to carry the losses; the standard is priced "
+             "here because it is a disclosed primary figure and a reader is entitled to see "
+             "what adopting it would be worth. It is the only alternative in this table that "
+             "was found by an audit run from OUTSIDE the study rather than chosen by it, "
+             "which is the argument for that audit.",
+         ),
     dict(key="project_profile",
          made="Project spending anchored on the observed run rate: the nine-month actual "
               "extended to a full year",

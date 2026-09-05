@@ -131,6 +131,14 @@
    "delta": -2.2198340874696765
   },
   {
+   "key": "gas_consumption",
+   "made": "Gas consumption at 1,292 cubic metres a tonne of ammonia \u2014 the rate implied by allocating three quarters of the single disclosed materials line to gas, which carries the plant's disclosed losses as well as its standard usage",
+   "alt": "The auditor's own disclosed STANDARD rate of 1,200 cubic metres a tonne, which is what the plant consumes when it runs to specification and excludes the losses",
+   "value": 4.88445528574309,
+   "why": "The disclosed standard is the cleaner number and it is not what this plant does: the same auditor's report discloses 38,480,270 cubic metres of gas LOST in FY2024/25, which over that year's ammonia output is a further 120.9 cubic metres a tonne. Standard plus disclosed loss is 1,320.9 and the modelled rate sits between the two. The higher figure is adopted because a model of what this plant actually consumes has to carry the losses; the standard is priced here because it is a disclosed primary figure and a reader is entitled to see what adopting it would be worth. It is the only alternative in this table that was found by an audit run from OUTSIDE the study rather than chosen by it, which is the argument for that audit.",
+   "delta": 0.8448744692515291
+  },
+  {
    "key": "project_profile",
    "made": "Project spending anchored on the observed run rate: the nine-month actual extended to a full year",
    "alt": "The faster profile the first issue of this study used, opening at EGP 3,000m",
