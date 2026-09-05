@@ -73,11 +73,12 @@ RATCHET = os.path.join(REPO, 'engine', 'build_depth_audit', 'terminal_outstandin
 
 def load_ratchet():
     if not os.path.exists(RATCHET):
-        return {'breaching': {}, 'unreadable': {}}
+        return {'breaching': {}, 'unreadable': {}, 'unscored': {}}
     d = json.load(open(RATCHET))
     d.setdefault('breaching', {})
     d.setdefault('signature', {})
     d.setdefault('unreadable', {})
+    d.setdefault('unscored', {})
     return d
 
 
@@ -88,12 +89,29 @@ def main(argv):
     read = [r for r in rows if 'unreadable' not in r]
     dark = [r for r in rows if 'unreadable' in r]
     scored = [r for r in read if 'floor' in r]
+    # THE THIRD BUCKET, AND IT WAS FALLING THROUGH [ADDED 05-Sep-2026]. A study is
+    # `dark` when no terminal resolves at all and `scored` when the charge it levies can
+    # be derived. Between them sits a state this gate did not name: the terminal
+    # RESOLVES — g and the terminal rate both read — and the charge does NOT, because
+    # some component of it (terminal NOPAT, invested capital, the terminal value itself)
+    # is not exposed. Those studies were counted in `read`, excluded from `scored`, and
+    # then mentioned nowhere; the gate printed OK having said nothing about them.
+    #
+    # ELEC is what found it. engine/elec_study/compute.py builds its terminal as
+    #     roic_T = nop_T / ic_T ; rr_T = g / roic_T ; tv = nop_T (1+g)(1-rr_T)/(W-g)
+    # which is the retired reinvestment identity in plain sight, and this gate reported
+    # "no new terminal carries the 1/g construction" while it sat there — because the
+    # census cannot recover its terminal NOPAT and so never scored the charge. A gate
+    # blind to the exact construction it exists to find is the [R-ENF-04] failure in its
+    # usual costume: an ABSENT answer wearing a clean one's clothes.
+    unscored = [r for r in read if 'floor' not in r]
 
     print('TERMINAL CONSTRUCTION GATE  [R-TERM-01]')
     print('   the implied replacement cycle is 1/g whenever the terminal is built on the')
     print('   reinvestment identity — so the asset life is the reciprocal of the GROWTH RATE')
-    print('   %d study directories · %d readable · %d with a scoreable terminal'
-          % (len(rows), len(read), len(scored)))
+    print('   %d study directories · %d readable · %d with a scoreable terminal · '
+          '%d read but not scoreable'
+          % (len(rows), len(read), len(scored), len(unscored)))
 
     fail = []
 
@@ -107,7 +125,7 @@ def main(argv):
               'an absent answer wearing the costume of a clean one.' % len(rows))
         return 1
     on_disk = {r['ticker'] for r in rows}
-    for group in ('breaching', 'signature', 'unreadable'):
+    for group in ('breaching', 'signature', 'unreadable', 'unscored'):
         for tk in sorted(rat[group]):
             if tk not in on_disk:
                 fail.append('ratchet lists %s under %s and no such study directory exists '
@@ -138,8 +156,15 @@ def main(argv):
         # would make widening a reader more expensive than leaving studies dark — the exact
         # incentive [R-ENF-04] exists to remove. So the allowance TRAVELS one way only, and
         # the entry is rewritten into the group that now describes it.
-        known = tk in rat['signature'] or tk in rat['unreadable']
-        if tk not in rat['signature'] and tk in rat['unreadable']:
+        # `unscored` travels the same way and for the same reason [ADDED 05-Sep-2026]:
+        # a study whose charge the census could not derive was never TESTED, so learning
+        # to score it and finding the construction is the instrument improving rather
+        # than the study getting worse. The move toward `signature` is free; the move
+        # away from it stays refused.
+        known = (tk in rat['signature'] or tk in rat['unreadable']
+                 or tk in rat['unscored'])
+        if tk not in rat['signature'] and (tk in rat['unreadable']
+                                           or tk in rat['unscored']):
             moved.append(tk)
         print('    %-12s implied cycle %6.1f years against 1/g of %5.1f   '
               'charge %5.1f%% of terminal profit%s'
@@ -188,37 +213,68 @@ def main(argv):
         else:
             print('    %-12s%s' % (tk, r['unreadable']))
 
+    # ---- read but not scoreable is tracked, never skipped -----------------------------
+    # Same discipline as the line above and for the same reason: a charge that cannot be
+    # derived is not a charge that is sound. These studies are NOT excused the 1/g test —
+    # they are recorded as untested, which is the honest state and the one a reader can
+    # act on.
+    print('\n  READ BUT NOT SCOREABLE: %d' % len(unscored))
+    for r in sorted(unscored, key=lambda r: r['ticker']):
+        tk = r['ticker']
+        why = ', '.join('no ' + f for f in ('nopat_term', 'ic', 'tv')
+                        if r.get(f) is None) or 'the charge is not derivable'
+        if tk not in rat['unscored']:
+            fail.append('%s exposes a terminal whose charge cannot be derived (%s) and is '
+                        'not on the ratchet. The 1/g test never ran on it, and an untested '
+                        'terminal is not a clean terminal [R-ENF-04].' % (tk, why))
+            print('    %-12s%s   *** NEW ***' % (tk, why))
+        else:
+            print('    %-12s%s' % (tk, why))
+
     # ---- the ratchet may only SHORTEN ------------------------------------------------
     now_sig = {r['ticker'] for r in sig}
     now_dark = {r['ticker'] for r in dark}
+    now_unscored = {r['ticker'] for r in unscored}
     if moved:
         print('\n  BECAME READABLE AND WERE ALREADY RATCHETED (%d): %s'
               % (len(moved), ', '.join(sorted(moved))))
-        print('    the allowance moves from `unreadable` to `signature` — the defect was '
-              'always there and the census could not see it. The reverse move stays '
-              'refused: a known breach re-filed as unreadable is the escape hatch.')
+        print('    the allowance moves from `unreadable` or `unscored` to `signature` — '
+              'the defect was always there and the census could not see it. The reverse '
+              'move stays refused: a known breach re-filed behind an absence is the '
+              'escape hatch.')
     # A NAME THAT MOVED GROUPS HAS NOT CLEARED, AND SAYING SO IS NOT A DETAIL: it is no
     # longer in `now_dark`, so the plain arithmetic below reads it as cleared, --prune
     # would DROP it, and the very next run would fail it as a NEW violation — a ratchet
     # that empties itself and then goes red is worse than one that never shortened.
-    cleared = ((set(rat['signature']) - now_sig)
-               | (set(rat['unreadable']) - now_dark - now_sig)
+    cleared = ((set(rat['signature']) - now_sig - now_unscored)
+               | (set(rat['unreadable']) - now_dark - now_sig - now_unscored)
+               | (set(rat['unscored']) - now_unscored - now_sig)
                | set(rat['breaching']))
-    if cleared:
-        print('\n  CLEARED since the list was written: %s' % ', '.join(sorted(cleared)))
+    # A MOVE IS A REWRITE EVEN WHEN NOTHING CLEARED [FIXED 05-Sep-2026]. The rewrite of a
+    # travelled entry sat inside `if cleared:`, so a run where an entry moved groups and
+    # nothing else cleared printed the move and wrote nothing — and reported the move again
+    # on every subsequent run, for ever. ELEC found it: it travelled from `unscored` to
+    # `signature`, `cleared` was empty by the very guard that keeps a moved name from
+    # reading as cleared, and --prune was a no-op.
+    if cleared or moved:
+        if cleared:
+            print('\n  CLEARED since the list was written: %s' % ', '.join(sorted(cleared)))
         if prune:
             for tk in moved:
+                whence = 'unreadable' if tk in rat['unreadable'] else 'unscored'
                 rat['signature'][tk] = (
                     'terminal built on the reinvestment identity: implied cycle equals 1/g. '
-                    'MOVED FROM `unreadable` 03-Sep-2026 — it was always breaching and the '
-                    'census could not read it; the allowance travels this way and never '
-                    'the other. Gets engine/terminal_value.py and a DISCLOSED useful life '
-                    'at its next re-issue.')
+                    'MOVED FROM `%s` — it was always breaching and the census could not '
+                    'score it; the allowance travels this way and never the other. Gets '
+                    'engine/terminal_value.py and a DISCLOSED useful life at its next '
+                    're-issue.' % whence)
                 rat['unreadable'].pop(tk, None)
+                rat['unscored'].pop(tk, None)
             for tk in cleared:
                 rat['breaching'].pop(tk, None)
                 rat['signature'].pop(tk, None)
                 rat['unreadable'].pop(tk, None)
+                rat['unscored'].pop(tk, None)
             json.dump(rat, open(RATCHET, 'w'), indent=1, sort_keys=True)
             print('  --prune: the list has been SHORTENED. It may never grow.')
         else:
@@ -230,7 +286,7 @@ def main(argv):
             print('   * %s' % m)
         return 1
     print('\nOK — no new terminal carries the 1/g construction, no newly unreadable '
-          'terminal, and the list has not grown.')
+          'terminal, no newly unscoreable one, and the list has not grown.')
     return 0
 
 

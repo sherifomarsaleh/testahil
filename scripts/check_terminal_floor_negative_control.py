@@ -22,7 +22,7 @@ import sys
 import tempfile
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-EXPECTED_CASES = 12
+EXPECTED_CASES = 15
 
 
 def sandbox(tmp):
@@ -251,6 +251,69 @@ def _breaching_hidden_as_unreadable(root):
     return 'AMOC made unreadable with its allowance filed under `signature` — must go RED'
 
 
+def _newly_unscoreable(root):
+    """A terminal that still RESOLVES but whose charge can no longer be derived.
+
+    THE THIRD BUCKET [ADDED 05-Sep-2026]. Between `unreadable` (no terminal at all) and
+    `scored` (the charge is derivable) sits a state the gate did not name: the terminal
+    reads, the charge does not, and the 1/g test never runs. Four studies were in it and
+    the gate printed OK — one of them, ELEC, carrying the retired construction in plain
+    sight in its own compute.py. An UNTESTED terminal is not a clean terminal.
+    """
+    f = numbers(root, 'SAVOLA')
+    d = json.load(open(f))
+    assert 'nopat' in d.get('fcst', {}), 'fixture assumed SAVOLA exposed a forecast NOPAT'
+    d['fcst'].pop('nopat')
+    json.dump(d, open(f, 'w'), indent=1)
+    import sys as _s
+    _s.path.insert(0, root)
+    for m in [k for k in list(_s.modules) if 'terminal_census' in k or 'valuation_calib' in k]:
+        _s.modules.pop(m, None)
+    from engine.valuation_calibration.terminal_census import read_study
+    rr = read_study(os.path.join(root, 'engine', 'savola_study'))
+    assert 'unreadable' not in rr and 'floor' not in rr, (
+        'mutation did not land: SAVOLA is %s'
+        % ('unreadable' if 'unreadable' in rr else 'still scoreable'))
+    return 'SAVOLA terminal still reads and its charge no longer derives — must go RED'
+
+
+def _unscoreable_hidden_as_signature(root):
+    """A study whose charge cannot be derived, with its allowance filed under `signature`.
+
+    The mirror of the unreadable escape hatch and refused for the same reason: an entry
+    able to travel INTO an ignorance group lets a name escape the group that actually
+    describes it. GBCO is genuinely unscoreable; filing it under `signature` must not
+    satisfy the unscoreable check.
+    """
+    r = os.path.join(root, 'engine', 'build_depth_audit', 'terminal_outstanding.json')
+    rat = json.load(open(r))
+    assert 'GBCO' in rat.get('unscored', {}), 'fixture assumed GBCO was on the unscored list'
+    rat['unscored'].pop('GBCO')
+    rat['signature']['GBCO'] = 'filed in the WRONG group on purpose'
+    json.dump(rat, open(r, 'w'), indent=1)
+    assert 'GBCO' not in json.load(open(r))['unscored'], 'mutation did not land'
+    return 'GBCO unscoreable with its allowance filed under `signature` — must go RED'
+
+
+def _clean_scenario_knob_ignored(root):
+    """CLEAN — a bear-case knob is set absurd and the base answer must not move.
+
+    ELEC's terminal growth WAS being read from `scenarios.bear.knobs.g`, so its whole
+    terminal was scored on the bear case: 1/g read 25.0 years against the study's own
+    committed 20.0. A resolver that guesses is the defect [R-ENF-04] closes, and a
+    sensitivity grid, a bear case and a scenario knob all carry the same field names as
+    the base answer and are numerically plausible — so the wrong one reads as clean. The
+    knob below would give 1/g of 1000 years if it were read.
+    """
+    f = numbers(root, 'ELEC')
+    d = json.load(open(f))
+    assert d['scenarios']['bear']['knobs']['g'], 'fixture assumed ELEC had a bear g knob'
+    d['scenarios']['bear']['knobs']['g'] = 0.001
+    json.dump(d, open(f, 'w'), indent=1)
+    assert json.load(open(f))['scenarios']['bear']['knobs']['g'] == 0.001, 'did not land'
+    return "ELEC's bear-case growth knob set to 0.1% — the base answer must ignore it"
+
+
 CASES = [
     ('THE ONE THAT MATTERS — a study newly carrying the 1/g construction',
      _new_signature, 'red'),
@@ -268,6 +331,12 @@ CASES = [
      'readable', _moves_unreadable_to_signature, 'green'),
     ('...and NOT the other way: a breach hidden behind an unreadable allowance',
      _breaching_hidden_as_unreadable, 'red'),
+    ('a terminal that reads and can no longer be SCORED [R-ENF-04]',
+     _newly_unscoreable, 'red'),
+    ('an unscoreable terminal filed under `signature` — the mirror escape hatch',
+     _unscoreable_hidden_as_signature, 'red'),
+    ('CLEAN — a bear-case knob set absurd; the base answer must ignore it',
+     _clean_scenario_knob_ignored, 'green'),
 ]
 
 
