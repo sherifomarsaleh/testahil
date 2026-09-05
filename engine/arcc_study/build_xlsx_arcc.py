@@ -28,6 +28,9 @@ from openpyxl.styles import Font, PatternFill, Alignment
 from openpyxl.utils import get_column_letter
 
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
+_NCI = D['inputs']['nci']['value']          # EGP mn, audited, note 24
+_NCI_V1 = D['inputs']['nci_v1']['value']    # EGP mn, revision 1's inferred figure
+_NCI_EGP = _NCI * 1e6                       # the same figure in pounds, as the line states it
 S0 = json.load(open(os.path.join(HERE, 'step0_result.json')))
 STK = json.load(open(os.path.join(HERE, 'strike_result.json')))
 BETA = json.load(open(os.path.join(HERE, 'beta_result.json')))
@@ -145,8 +148,15 @@ LINES = [
  'FY2024 and FY2025 — Deloitte, signed 25 February 2026 — and the reviewed Q1-2026 interim accounts are now in',
  'hand, and every historical cell in this workbook is a disclosed figure read from them.', '',
  'WHAT THE STATEMENTS CHANGED, and it is not cosmetic:',
- '  * Non-controlling interests are EGP 158,005 — one hundred and fifty-eight THOUSAND pounds. Revision 1',
- '    deducted EGP 150 MILLION on inference, 950 times too much.',
+ # THE MULTIPLE IS COMPUTED, NOT TYPED. This line read "950 times too much" against the
+ # input register's own computed 949 for the same fact, and the two disagreed for a month
+ # because the workbook sat in no study's prose population — the register was reached by an
+ # instrument and the delivered spreadsheet beside it was not [found by prose_check.py,
+ # 05-09-2026].
+ '  * Non-controlling interests are EGP %s — one hundred and fifty-eight THOUSAND pounds. Revision 1'
+ % f"{_NCI_EGP:,.0f}",
+ '    deducted EGP %.0f MILLION on inference, %.0f times too much.'
+ % (_NCI_V1, _NCI_V1 / _NCI),
  '  * The effective tax rate is 23.82%, not the 29.43% revision 1 inferred. Every forecast year was over-taxed.',
  '  * The cost of debt is about 7.5%, not 21.5%: 91% of the book is EURO-denominated, at Euribor plus 4.35%',
  '    (a EUR 25mn EBRD decarbonisation facility) and Euribor plus 3% (a EUR 3.09mn NBE/KfW facility).',

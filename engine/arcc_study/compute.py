@@ -196,6 +196,13 @@ def I(value, source, date, ring):
 
 AFS25 = ("Audited consolidated financial statements for the year ended 31 December 2025, "
          "Deloitte (Wafik, Ramy & Partners), signed 25 February 2026")
+
+# THE SUPERSEDED FIGURE IS WRITTEN ONCE AND EVERY QUOTE OF IT IS COMPUTED. Revision 1's
+# inferred minority sits in two delivered artefacts — the input register's own justification
+# and the workbook's READ FIRST narrative — and the second of them typed the multiple as
+# "950 times too much" against the register's computed 949, because the workbook was in no
+# study's prose population until 05-09-2026. One study, two figures, for the same fact.
+NCI_V1 = 150.0
 AFS24 = ("Audited consolidated financial statements for the year ended 31 December 2024, "
          "Deloitte (Wafik, Ramy & Partners), signed 23 March 2025")
 IH26 = ("Reviewed condensed consolidated interim financial statements for the six months "
@@ -401,9 +408,16 @@ INP = dict(
                           "rather than typed into a builder, which is the same disposition "
                           "any superseded figure quoted to show what changed must take.",
                           "2026-08-06", "House"),
+    nci_v1=I(NCI_V1, "The non-controlling interest revision 1 of this study deducted, "
+             "inferred from the profit statements when no source document could be opened. "
+             "THIS MODEL CANNOT COMPUTE IT — a different model produced it — so it is "
+             "registered as the historical fact it is rather than typed into a builder, the "
+             "same disposition central_pre_rebuild takes. Note 24 of the audited accounts "
+             "puts the real figure at EGP 158,005.",
+             "2026-08-06", "House"),
     nci=I(0.158005, AFS25 + " — non-controlling interests, note 24: EGP 158,005. Revision 1 "
           "deducted EGP 150mn on inference from the profit statements; the audited figure "
-          "is %.0f times smaller and immaterial to the bridge" % (150.0 / 0.158005),
+          "is %.0f times smaller and immaterial to the bridge" % (NCI_V1 / 0.158005),
           "2025-12-31", "Company"),
 
     # ---- debt, note 25 ----------------------------------------------------

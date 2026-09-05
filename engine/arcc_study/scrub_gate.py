@@ -47,7 +47,25 @@ FORBIDDEN_CASED = ["PARITY", "PASS/PARITY/FAIL"]
 
 
 def _texts(path):
-    """Every string a reader can see: body paragraphs, tables, headers, footers."""
+    """Every string a reader can see: body paragraphs, tables, headers, footers.
+
+    A WORKBOOK IS A DELIVERED DOCUMENT AND THIS SCRUB NAMED TWO OF THE THREE FILES A READER
+    RECEIVES [L-350]. The .xlsx branch reads every STRING cell: a numeric cell is a model
+    output the recalculation gate reconciles, a formula is skipped because data_only=False
+    hands back its text and a formula is not a sentence, and a numeral inside a label or a
+    note is prose that happens to live in a spreadsheet — the shape this scrub exists for.
+    """
+    if path.lower().endswith((".xlsx", ".xlsm")):
+        import openpyxl
+        wb = openpyxl.load_workbook(path, data_only=False, read_only=True)
+        out = []
+        for ws in wb.worksheets:
+            for row in ws.iter_rows(values_only=True):
+                for v in row:
+                    if isinstance(v, str) and not v.startswith("="):
+                        out.append(v)
+        wb.close()
+        return [x for x in out if x and x.strip()]
     d = Document(path)
     out = [p.text for p in d.paragraphs]
     for t in d.tables:
@@ -140,6 +158,16 @@ def delivered():
                                             r"\3\2\1", f))
         if files:
             out.append(files[-1])
+    # THE WORKBOOK NAMES ITS EDITION DDMMYYYY WITH NO SEPARATORS, so its date is PARSED
+    # rather than the filenames sorted as text: as strings 03092026 sorts BELOW 06082026 and
+    # a text sort hands this scrub the superseded 6 August file [L-067, L-350].
+    xl = []
+    for f in glob.glob(os.path.join(HERE, "ARCC_Valuation_Model_*.xlsx")):
+        m = re.search(r"_(\d{2})(\d{2})(\d{4})_", os.path.basename(f))
+        if m and not os.path.basename(f).startswith("~$"):
+            xl.append((m.group(3) + m.group(2) + m.group(1), f))
+    if xl:
+        out.append(sorted(xl)[-1][1])
     return out
 
 
@@ -155,8 +183,9 @@ def main(argv):
         h, c = scrub(f)
         result["hits"].extend(h)
         result["chars"] += c
-        result["column_problems"].extend(
-            dict(file=os.path.basename(f), **b) for b in column_audit(f))
+        if f.lower().endswith(".docx"):        # the column grid is a Word property
+            result["column_problems"].extend(
+                dict(file=os.path.basename(f), **b) for b in column_audit(f))
     result["clean"] = not result["hits"] and not result["column_problems"]
 
     with open(os.path.join(HERE, "scrub_result.json"), "w") as fh:
