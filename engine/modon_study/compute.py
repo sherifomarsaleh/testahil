@@ -802,10 +802,7 @@ asset_life_years = inp(
     "by AED 832mn of assets acquired through business combinations during the year. So "
     "the LONGEST disclosed life is taken DELIBERATELY, because it produces the LARGEST "
     "maintenance charge and therefore the LOWEST terminal of any life in the note — and "
-    "the whole disclosed range is published beside it: every life from 2 to 50 years "
-    "puts the terminal between 15.6% and 23.9% above the one this edition replaces and "
-    "above the no-growth floor, so the DIRECTION of the correction is certain across the "
-    "entire range and only its size is not.", '2026-02-18', 'Company')
+    "the whole disclosed range is published beside it: {LIFE_RANGE}.", '2026-02-18', 'Company')
 roic_term = inp('roic_term', 0.085, 'Terminal ROIC 8.5% — deliberately BELOW the '
                 'model\'s own forecast path (which reaches ~15% by FY2030E as '
                 'invested capital shrinks while NOPAT grows): a mean-reversion '
@@ -881,16 +878,45 @@ tv_retired = nopat_term * (1 - rr_term) / (wacc_term - g_term)
 # denominator. It is INERT at the central, where real growth is zero; it binds in the
 # sensitivity grid, which is exactly where a free-growth assumption would hide.
 _inc_cap = ((ic_f_pre[-1] - ic_f_pre[0]) / (rev_f[-1] - fy26_rev_total)) * rev_f[-1]
+# EVERY FIGURE HANDED IN IS THE LAST EXPLICIT YEAR'S. The module grows the free cash flow
+# once itself — tv = fcff (1+g)/(w-g) values the terminal at the END of that year, which is
+# where it is discounted — so figures already grown by (1+g) overstate it by exactly (1+g).
+# They were, until 4 September 2026.
+# THE DISCLOSED RANGE, SWEPT RATHER THAN TYPED. The note gives lives from 2 to 50 and
+# no weighting, so the life adopted is a choice; what makes the choice safe is that the
+# WHOLE range points one way. These two figures were typed until 4 September 2026, and
+# they were typed on a terminal that had been grown twice — 15.6% and 23.9% against the
+# 10.7% and 18.6% the arithmetic actually gives. A number nobody recomputes after the
+# model moves is a number that documents an earlier model.
+_life_sweep = {}
+for _L in range(2, 51):
+    _life_sweep[_L] = TV.build(TV.TerminalInputs(
+        nopat=nopat_f[-1], wacc=wacc_term, inflation=PI_TERM, real_growth=g_term_real,
+        dna_book=dna_f[-1], useful_life_years=float(_L),
+        useful_life_source=INP['asset_life_years']['source'],
+        maintenance_basis='book_dna_escalated', working_capital=nwc_f[-1],
+        incremental_capital_per_unit_growth=_inc_cap)).tv
+_life_lo, _life_hi = min(_life_sweep.values()), max(_life_sweep.values())
+_life_floor = nopat_f[-1] / wacc_term
+A(_life_lo > _life_floor, 'every disclosed life clears the no-growth marker, so the '
+  'direction of the terminal correction does not depend on which life is taken')
+INP['asset_life_years']['source'] = INP['asset_life_years']['source'].replace(
+    '{LIFE_RANGE}',
+    'every life from 2 to 50 years puts the terminal between %.1f%% and %.1f%% above '
+    'the one this edition replaces and above the no-growth marker, so the DIRECTION of '
+    'the correction is certain across the entire range and only its size is not'
+    % (100 * (_life_lo / tv_retired - 1.0), 100 * (_life_hi / tv_retired - 1.0)))
+
 _terminal = TV.build(TV.TerminalInputs(
-    nopat=nopat_term, wacc=wacc_term, inflation=PI_TERM, real_growth=g_term_real,
-    dna_book=dna_f[-1] * (1 + g_term),
+    nopat=nopat_f[-1], wacc=wacc_term, inflation=PI_TERM, real_growth=g_term_real,
+    dna_book=dna_f[-1],
     useful_life_years=asset_life_years,
     useful_life_source=INP['asset_life_years']['source'],
     maintenance_basis='book_dna_escalated',
     # A DEVELOPER CARRIES A LARGE POSITIVE WORKING CAPITAL, so inflation on it is a real
     # CHARGE rather than the credit a business paid before it delivers receives. Omitting
     # it would have flattered this terminal by about 8 points.
-    working_capital=nwc_f[-1] * (1 + g_term),
+    working_capital=nwc_f[-1],
     incremental_capital_per_unit_growth=_inc_cap))
 tv = _terminal.tv
 
@@ -905,11 +931,11 @@ def _variant_terminal(nopat_t, wacc_t, g_nom, dna_last, nwc_last):
         return TV.build(TV.TerminalInputs(
             nopat=nopat_t, wacc=wacc_t, inflation=PI_TERM,
             real_growth=(1.0 + g_nom) / (1.0 + PI_TERM) - 1.0,
-            dna_book=dna_last * (1 + g_nom),
+            dna_book=dna_last,
             useful_life_years=asset_life_years,
             useful_life_source=INP['asset_life_years']['source'],
             maintenance_basis='book_dna_escalated',
-            working_capital=nwc_last * (1 + g_nom),
+            working_capital=nwc_last,
             incremental_capital_per_unit_growth=_inc_cap)).tv
     except TV.TerminalRefused:
         return float('nan')
@@ -992,7 +1018,7 @@ def dcf_variant(ns, rm, conv=conv_path, ke_add=0.0, dso=None, nwc_add=0.0):
         fcffs.append(eb * (1 - tax_f) + da - capex_f[t] - dn + nwc_add)
         ebits.append(eb); revs.append(rv)
     wt_x = (1 - wd_term) * ke_x + wd_term * kd * (1 - tax_f)
-    tvv = _variant_terminal(ebits[-1] * (1 - tax_f) * (1 + g_term), wt_x, g_term, da, nwc)
+    tvv = _variant_terminal(ebits[-1] * (1 - tax_f), wt_x, g_term, da, nwc)
     evv = sum(f * d for f, d in zip(fcffs, dfx)) + tvv * dfx[-1]
     eqv = evv + h1_avail_cash - bs30_debt - bs30_lease + bs30_assoc + bs30_finass
     eqv_attr = eqv - max(bs30_nci, 0.02 * (eqv - bs30_nci))
@@ -1271,7 +1297,8 @@ def dcf_shift(w_add=0.0, g_x=None, beta_x=None, margin_shift=0.0, conv_shift=0.0
         iprev2, nprev2 = invv, nwc
         fcffs.append(eb * (1 - tax_f) + da - capex_f[t] - dn + nwc_add)
         ebits.append(eb)
-    tvx = _variant_terminal(ebits[-1] * (1 - tax_f) * (1 + gx), wt_x, gx, da, nwc)
+    # LAST EXPLICIT YEAR's NOPAT, not one grown by (1+gx): the module grows it itself.
+    tvx = _variant_terminal(ebits[-1] * (1 - tax_f), wt_x, gx, da, nwc)
     evx = sum(f * d for f, d in zip(fcffs, dfx)) + tvx * dfx[-1]
     eqx = evx + h1_avail_cash - bs30_debt - bs30_lease + bs30_assoc + bs30_finass
     eqx_attr = eqx - max(bs30_nci, 0.02 * (eqx - bs30_nci))
@@ -1468,9 +1495,9 @@ D['terminal_record'] = dict(
                     'NOT INVESTING AT ALL — 10.7% below its own no-growth perpetuity — '
                     'which is what that construction does on a pegged currency when it '
                     'charges more for growth than the growth is worth.'),
-    inputs=dict(nopat=nopat_term, wacc=wacc_term, inflation=PI_TERM,
+    inputs=dict(nopat=nopat_f[-1], wacc=wacc_term, inflation=PI_TERM,
                 real_growth=g_term_real, nominal_growth=g_term,
-                dna_book=dna_f[-1] * (1 + g_term),
+                dna_book=dna_f[-1],
                 useful_life_years=asset_life_years,
                 useful_life_source=INP['asset_life_years']['source'],
                 maintenance_basis='book_dna_escalated',
@@ -1485,7 +1512,7 @@ D['terminal_record'] = dict(
                     "exist, and the life taken is the LONGEST the company discloses, "
                     "which charges the LEAST maintenance and so is the conservative "
                     "choice against a correction that raises the value."),
-                working_capital=nwc_f[-1] * (1 + g_term),
+                working_capital=nwc_f[-1],
                 incremental_capital_per_unit_growth=_inc_cap),
     outputs=dict(fcff=_terminal.fcff, tv=_terminal.tv, floor=_terminal.floor,
                  maintenance=_terminal.maintenance,

@@ -479,10 +479,14 @@ putf(dc, f'C{r}', f"={av(r_pi)}", TRI['inflation'], PCT2, green=True); r_pit = r
 put(dc, f'A{r}', 'Terminal growth g = (1+inflation)(1+real growth) − 1', fmt=None)
 putf(dc, f'C{r}', f"=(1+C{r_pit})*(1+C{r_gr})-1", TRI['nominal_growth'], PCT2)
 r_gt = r; r += 1
-put(dc, f'A{r}', 'Terminal NOPAT = FY2030E NOPAT × (1+g)', fmt=None)
-putf(dc, f'C{r}', f"=F{rw+9}*(1+C{r_gt})", DCF['nopat_term'], NUM0); r_tn = r; r += 1
-put(dc, f'A{r}', 'Plus book depreciation and amortisation, grown one year', fmt=None)
-putf(dc, f'C{r}', f"=F{rw+7}*(1+C{r_gt})", TRI['dna_book'], NUM0); r_tdna = r; r += 1
+# THE LAST EXPLICIT YEAR's figures, ungrown. The terminal-value row below applies
+# (1+g) once — the whole of the growth this construction charges for — and it values
+# the terminal at the END of FY2030, which is where the year-4.5 factor discounts it.
+# Growing the inputs as well would charge the growth twice.
+put(dc, f'A{r}', 'Terminal NOPAT = FY2030E NOPAT', fmt=None)
+putf(dc, f'C{r}', f"=F{rw+9}", TRI['nopat'], NUM0); r_tn = r; r += 1
+put(dc, f'A{r}', 'Plus book depreciation and amortisation', fmt=None)
+putf(dc, f'C{r}', f"=F{rw+7}", TRI['dna_book'], NUM0); r_tdna = r; r += 1
 put(dc, f'A{r}', 'Less capital maintenance at replacement cost — book D&A escalated '
     'over half the disclosed life', fmt=None)
 putf(dc, f'C{r}', f"=-C{r_tdna}*(1+C{r_pit})^({av(r_life)}/2)", -TRO['maintenance'], NUM0)

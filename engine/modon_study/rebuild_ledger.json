@@ -3,7 +3,7 @@
  "started_at": "2026-09-04",
  "start_value": 3.5423,
  "start_spot": 2.83,
- "start_gap": 0.25169611307420496,
+ "start_gap": 0.251696113074205,
  "audit_after": "the terminal is rebuilt and before the eight-heading review is rewritten — the growth storage and the terminal construction are one pass on this name and the gap only settles once both have landed, so auditing between them would audit a state the study never publishes",
  "levers": [
   {
@@ -13,20 +13,20 @@
    "after": 3.5983,
    "why": "a typed nominal 2.5% is unfalsifiable — nobody can tell whether it meant inflation plus half a point or inflation minus one. Stored as a stated REAL growth of zero on the house terminal inflation of 2.0%, it recomputes to a nominal 2.0%",
    "evidence": "engine/macro_paths/AE.json, as of 3 September 2026; IMF World Economic Outlook PCPIPCH for the United Arab Emirates prints 2.0% flat from 2027 onward, so no step is interpolated",
-   "move": 0.015809507666205572
+   "move": 0.01580950766620557
   },
   {
    "name": "terminal built through the sanctioned module on the longest disclosed asset life",
    "rule": "R-TERM-01",
    "before": 3.5983,
-   "after": 3.9119,
-   "why": "the retired reinvestment identity charged g x IC every year for ever, so the implied replacement cycle was 1/g — 50 years at a 2.0% terminal, a fact about the dirham and not about a building. This study carried the ONLY terminal in the book worth less than not investing at all: 10.7% below its own no-growth perpetuity",
+   "after": 3.8583,
+   "why": "the retired reinvestment identity charged g x IC every year for ever, so the implied replacement cycle was 1/g — 50 years at a 2.0% terminal, a fact about the dirham and not about a building. This study carried the ONLY terminal in the book worth less than not investing at all: 10.7% below its own no-growth perpetuity THIS LEVER READ 3.9119 UNTIL 4 SEPTEMBER 2026 AND WAS WRONG: it handed the sanctioned construction a profit figure, a depreciation charge and a working-capital balance ALL already grown by (1+g), which the construction grows again — the terminal was overstated by exactly (1+g), 2.00% here. Corrected, the lever gives back a third of a point of what it adds.",
    "evidence": "maintenance is the model's own book depreciation escalated over half the 50-year life the company discloses for its longest-lived assets; inflation is charged on the AED 37.8bn of working capital a developer carries, which a terminal that omitted it would have flattered by about eight points; the corrected terminal sits 3.8% above the no-growth marker rather than 10.7% below it",
-   "move": 0.08715235532473404
+   "move": 0.0722563432732124
   }
  ],
- "value": 3.9119,
- "cumulative_move": 0.10437569092397603,
+ "value": 3.8583,
+ "cumulative_move": 0.08920757699799564,
  "rules": {
   "R-MACRO-01": {
    "levers": [
@@ -34,15 +34,15 @@
    ],
    "first_before": 3.5423,
    "last_after": 3.5983,
-   "move": 0.015809507666205572
+   "move": 0.01580950766620557
   },
   "R-TERM-01": {
    "levers": [
     "terminal built through the sanctioned module on the longest disclosed asset life"
    ],
    "first_before": 3.5983,
-   "last_after": 3.9119,
-   "move": 0.08715235532473404
+   "last_after": 3.8583,
+   "move": 0.0722563432732124
   }
  },
  "distinct_rules": 2,
