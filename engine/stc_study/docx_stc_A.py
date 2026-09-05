@@ -30,7 +30,10 @@ rich([('Anchor: ', dict(bold=True)),
       (' (solutions by stc 79%, stc bank 85%, stc Kuwait 51.8%, stc Bahrain, center3 data centres, sirar, iot squared) and ', {}),
       ('minority stakes', dict(bold=True)),
       (' — 43.06% of the PIF-controlled tower company (TAWAL/Digital Infrastructure) and 9.97% of Telefónica · reporting currency SAR '
-       '(pegged to USD at 3.75) · prices and probabilities computed 7 Jul 2026 from the attached daily history · primary lens: '
+       # A DATE TYPED INTO THE MASTHEAD, AND IT WAS TWO MONTHS STALE. There are two clocks
+# here and the masthead now names both rather than inventing a third.
+  f"(pegged to USD at 3.75) \u00b7 valued against the latest known close of {D['spot_date']}, with the price map "
+  f"struck on the last session in the price library, {D['cone_anchor_date']} \u00b7 primary lens: "
        'going-concern FCFF DCF, cross-checked by the dividend-policy DDM, relative multiples and normalized earnings · the swing '
        'factors: capex intensity against the locked SAR 2.20 dividend, and the discount-rate (beta) question.', {})],
      size=9.8, space_after=10)
@@ -48,7 +51,10 @@ box([
       'Reported financials are the company’s own disclosure (FY2023–FY2025 IR releases on the restated '
       'continuing-operations basis; Q1-2026 release, 28 Apr 2026; Q1-2026 interim financial statements) — all from '
       'stc.com. Forward-looking inputs — the segment growth and margin paths, capex intensity, the cost of capital, '
-      'terminal growth, the multiples and the Monte-Carlo factor probabilities — are the preparer’s judgments and '
+      # THE FACTOR PROBABILITIES ARE GONE. The price map used to carry nine typed jump
+      # probabilities; it is now the production engine's own fitted cone, so the list of
+      # what is a judgement here no longer includes them.
+      'terminal growth and the multiples — are the preparer’s judgments and '
       'are flagged throughout. Some balance-sheet detail lines are grouped estimates tying to disclosed totals. Consult a '
       'licensed financial advisor before any investment decision.'),
 ])

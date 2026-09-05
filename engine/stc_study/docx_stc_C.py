@@ -503,9 +503,13 @@ for head, body in [
  ('No reliance; your responsibility. ', 'Do your own research and consult a licensed professional before making any '
   'decision. You are solely responsible for your investment decisions and their outcomes. To the maximum extent permitted '
   'by law, the preparer accepts no liability for any loss arising from use of this document.'),
- ('Currency & figures. ', 'Figures are in Saudi riyals (SAR), millions unless stated; bn denotes billion. The riyal is '
-  'pegged to the US dollar at 3.75. Rounding may cause totals to differ slightly. Spot price and market data are as of '
-  '7 July 2026 and change continuously.'),
+ # A DATE TYPED INTO THE DISCLOSURE, TWO MONTHS STALE, telling a reader when the market
+ # data was struck. The two dates this study runs on are committed and are read here.
+ ('Currency & figures. ',
+  'Figures are in Saudi riyals (SAR), millions unless stated; bn denotes billion. The riyal is '
+  'pegged to the US dollar at 3.75. Rounding may cause totals to differ slightly. The market price this study is '
+  'measured against is the close of %s; the price map is struck on %s, the last session in the price library, and '
+  'both change continuously.' % (D['spot_date'], D['cone_anchor_date'])),
 ]:
     rich([(head, dict(bold=True, italic=True)), (body, {})], size=9.6, space_after=5)
 P('TESTAHIL · Independent Valuation Study · Educational Analysis · Saudi Telecom Company (Tadawul: 7010) · '
