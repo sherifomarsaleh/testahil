@@ -288,8 +288,14 @@ rows = [
 ]
 table(rows, [4.0, 1.6], first_col_bold=True, header=False)
 rich([(f"DDM base ≈ SAR {ddm['ps']:.0f}/share", dict(bold=True)),
-      (' — a touch above spot: at a 7.9% cost of equity a locked 5.0% yield growing at ~3% is worth slightly more than the '
-       'market pays, and any repeat of a special distribution (the quarterly-assessment clause) is free upside to this lens. '
+      # "A TOUCH ABOVE SPOT" AND "WORTH SLIGHTLY MORE THAN THE MARKET PAYS" WERE BOTH TYPED
+      # AND BOTH BACKWARDS: this lens reads 19% BELOW the price, and it is the lowest of the
+      # four. The cost of equity quoted beside them was the retired 7.9% as well.
+      (f" — {(ddm['ps']/spot-1)*100:+.0f}% against the market and the LOWEST of the four reads: at a "
+       f"{D['coc_record']['ke_exp']*100:.2f}% cost of equity a locked dividend growing slowly is worth materially less "
+       'than the market pays, so on this lens alone the market is paying for something the declared distribution does '
+       'not deliver. Any repeat of a special distribution — the policy explicitly allows a quarterly assessment — is '
+       'upside this lens does not credit. '
        'The cross-check earns its place for a subtler reason: it is the one lens that cannot be flattered by the capex '
        'assumptions, because the board has pre-committed the cash.', {})])
 
@@ -495,8 +501,11 @@ rows = [
   'removed here rather than counted twice'],
  ['Normalised risk-free rate', f"{_c['rf_star']*100:.2f}%", 'The two lines above, by subtraction'],
  ['Equity beta', f"{_beta['beta']:.4f}",
+  # A REPOSITORY PATH IN A DELIVERED DOCUMENT. This printed the index's file location —
+  # raw_indices/SA/TASI.csv — because the record stores the regressor as a path. What a
+  # reader needs is the index's NAME and the date it was read on.
   f"A {_beta['window_years']:.2f}-year weekly regression of stc against the published index of the exchange it is "
-  f"listed on ({_beta['index_file']}, as of {_beta['index_asof']}): {_beta['n']} observations, R\u00b2 "
+  f"listed on, the Tadawul All Share Index, read as of {_beta['index_asof']}: {_beta['n']} observations, R\u00b2 "
   f"{_beta['r2']*100:.1f}%, standard error {_beta['se']:.4f}. This is the first tier of the house preference order, "
   f"not a stopgap — but it explains {_beta['r2']*100:.0f}% of the variance and no more, which is why §1.9 prices the "
   f"answer at every beta up to 1.2"],

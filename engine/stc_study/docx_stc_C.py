@@ -130,7 +130,16 @@ rows = [
  ['Dividend bill (SAR bn)', '11.0', '11.0', '11.0', '11.5', '12.0', '12.7'],
  ['Payout of attributable NP', '74%', '78%', '75%', '75%', '74%', '74%'],
  ['Yield at spot (declared)', '5.0%', '5.0%', '5.0%', '5.3%', '5.5%', '5.9%'],
- ['Stress check', 'At the 17.5% top of the capex band, FY26E cover is 0.86× — the SAR 15.4 bn core cash pile funds the gap for >3 years before leverage exceeds 1× EBITDA; the policy is safe to Q3-2027 barring a margin break.', '', '', '', '', ''],
+ # THE STRESS CHECK QUOTED MANAGEMENT'S GUIDANCE BAND AND A COVER FIGURE FROM IT. The
+ # model spans the three filed years instead — guidance is scored, never consumed — and on
+ # that range the dividend is covered throughout, which is a different and better-evidenced
+ # statement than the one this cell was making.
+ ['Stress check',
+  'At the heaviest capital spending of the three filed years the dividend is %.2fx covered by model free cash flow '
+  'in the first forecast year, and at the lightest %.2fx — covered throughout the range this company has actually '
+  'operated in. The question the cover table asks is whether the data-centre build takes intensity ABOVE anything '
+  'it has yet run; the core cash pile funds a shortfall for years before leverage becomes a constraint.'
+  % (D['cover'][-1]['cover'], D['cover'][0]['cover']), '', '', '', '', ''],
 ]
 table(rows, [1.9, 0.85, 0.85, 0.85, 0.85, 0.85, 0.85], first_col_bold=True, size=8.6)
 caption('Two yield framings (house rule): declared-regular 2.20/sh = 5.0%; cash paid during calendar-2025 incl. the FY24 '
