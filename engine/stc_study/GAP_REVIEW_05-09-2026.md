@@ -10,10 +10,10 @@ it. The rule does not say the answer must change.
 
 | | |
 |---|---:|
-| central, the cash-flow lens under [R-LENS-03] | **SAR 34.8885** |
+| central, the cash-flow lens under [R-LENS-03] | **SAR 35.5319** |
 | latest known close, 3 September 2026 | 43.86 |
-| **gap** | **−20.45%** |
-| envelope, the range of the present-value reads | 34.23 – 47.15 |
+| **gap** | **−18.99%** |
+| envelope, the range of the present-value reads | 34.76 – 47.15 |
 | where it stood before tonight's driver rebuild | 41.1548, −6.17% |
 
 ## 1. LATEST FILINGS
@@ -105,13 +105,31 @@ boundary.
 [R-TERM-01] permits the two to differ and requires the reason to be **economic rather than a
 fudge**: its own example is a young plant genuinely spending less than replacement
 depreciation for a while. **This base is not young.** Seventy-three per cent of it is written
-off and it stands at 1.46 times half its own implied life, so the step points the wrong way
-for the asset it describes — an old base should be spending *more* than replacement
-depreciation to catch up, not less. **The suspect half is the explicit window, not the
-terminal**: a declining capital intensity on an ageing base flatters the five years before
-the terminal, which means this defect makes the answer too HIGH rather than too low and
-cannot explain the discount. It is recorded here and it is the first thing the next edition
-should price.
+off and its measured age rose 13.60 → 14.18 → 15.23 years across the three filed years.
+
+**THE SUSPECT HALF WAS THE EXPLICIT WINDOW AND IT HAS BEEN PRICED.** Its capital-expenditure
+path — 16.5% of revenue falling to 15.0% — was **management's own published guidance band**,
+taken as an input. [R-FCAL-01] forbids exactly that: *guidance is scored and never consumed*,
+because a forward target leans the same way an optimistic model does. What this company
+actually spends is disclosed for three years, as a multiple of the depreciation of the base
+it renews: **1.054x, 1.252x, 1.176x, a mean of 1.161x**. The path now sits on that measured
+ratio, which is **14.96% of revenue** — *below* the guided path, so correcting it RAISED the
+answer 1.84%, from 34.8885 to 35.5319.
+
+**The step at the boundary is now larger, not smaller, and it is stated with its reason.**
+The terminal charges maintenance at current cost, 1.352x depreciation or 17.43% of revenue;
+the explicit window continues the 1.161x this company actually spends. **The economic reading
+is that the base is ageing**, which the accounts say independently — an explicit window may
+continue an observed under-maintenance for five years, and a perpetuity may not, because a
+company that never replaces its plant is not a going concern.
+
+**The alternative reading is recorded rather than dismissed and it is specific to this
+industry.** Escalating at *general* inflation assumes a radio or a switch costs 2% more each
+year to replace, where telecommunications equipment has historically fallen in real cost per
+unit of capacity. If that holds here, the terminal charge is too high and the 1.161-to-1.352
+gap is priced equipment rather than deferred maintenance. **What would separate them is a
+disclosed replacement-cost or capacity series, which this company does not publish**; until
+one is found, the rising age is the only measured evidence and it supports the first reading.
 
 ## 6. BALANCE SHEET
 
@@ -148,7 +166,7 @@ explained away.**
 
 | | at the fair value | at the traded price | this company's own history |
 |---|---:|---:|---:|
-| enterprise value / FY2026 EBITDA | **6.26x** | 8.98x | 8.32x – 9.13x |
+| enterprise value / FY2026 EBITDA | **6.39x** | 8.98x | 8.32x – 9.13x |
 | price / FY2026 earnings | **14.6x** | 18.4x | — |
 
 **The fair value implies an enterprise multiple below every one of the last three years.**
@@ -196,7 +214,10 @@ this review did find — a false justification for the terminal growth rate and 
 capital intensity on an ageing base — both make the answer too HIGH, not too low, so
 correcting either widens the discount rather than closing it.
 
-**The answer does not move on this review.** What moves is the queue: revenue is built from
+**The answer moved 1.84% on this review and in the direction the review's own logic
+predicted** — the one defect it found that was priceable was a guidance-consumed capital
+path, and correcting it raised the value. That is the review working: it named the suspect
+half before knowing which way the correction would run. What also moves is the queue: revenue is built from
 an extrapolated two-year rate because the disclosure this study holds stops at the segment,
 and the honest next step is to get the disclosure that goes below it rather than to adjust
 the rate until the answer is comfortable. **A fair value moved to meet a price is the
@@ -205,8 +226,8 @@ reverse-engineered rate this protocol prohibits outright, arriving through the f
 The study is HELD in any case: [R-GAP-02] blocks publication past 10% below the price, and
 Phase 1 of the method reassessment is not proven, which holds every study in the book.
 
-*AUDITED CENTRAL: 34.8885* — the figure this review audits, stated so a job outside the
+*AUDITED CENTRAL: 35.5319* — the figure this review audits, stated so a job outside the
 study can tell whether the review still describes the answer the study publishes.
 
-*AUDITED GAP: -20.5%* — the disagreement this review interrogates, stated so a job outside
+*AUDITED GAP: -19.0%* — the disagreement this review interrogates, stated so a job outside
 the study can tell whether the eight headings were asked at the size the study now carries.

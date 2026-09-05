@@ -477,3 +477,16 @@ it happened, not because it is asking.
 **The decision on item 12 is taken and reported as taken rather than put to you.** Two years is thin evidence for a growth rate on a business this size, the review says so in its own voice, and the study is held in any case — so the answer is not to widen the rate until the number is comfortable, which would be the reverse-engineered rate this protocol prohibits, but to go and get the disclosure that makes the rate unnecessary. **The work continues on the investor-relations channel**, where subscriber counts and revenue per unit would let revenue be built as volume times price. Say so if you want it sequenced differently; nothing waits on a reply.
 
 *(This paragraph first put that choice to you as a question. It should not have: the rule here is that a choice which is reversible and inside the stated scope is taken, recorded with its reasoning and reported as taken — asking converts my work into your queue, which is the complaint the independence rule was written from. Corrected in the same hour rather than left standing.)*
+
+
+## 05 Sep 2026, one more — the review's own logic paid out
+
+14. **Item 11's second defect was priceable after all, and correcting it RAISED the answer.** The review named the explicit window as the suspect half of the capex tension before anyone knew which way a correction would run. The reason it was suspect turned out to be sharper than "an ageing base should spend more": **the capital-expenditure path was management's own published guidance band, taken straight in as an input**, and the standing rule is explicit that *guidance is scored and never consumed*, because a forward target leans the same way an optimistic model does.
+
+    What this company actually spends is disclosed for three years, as a multiple of the depreciation of the base it renews: **1.054x, 1.252x, 1.176x — a mean of 1.161x**, which is 14.96% of revenue, *below* the guided path. Central **34.89 → 35.53, +1.84%**, and the gap **−20.5% → −19.0%**.
+
+15. **The step at the terminal boundary is now larger, and that is the honest outcome rather than an awkward one.** The terminal charges 1.352x depreciation (maintenance at current cost on a 15.23-year-old base); the explicit window continues the 1.161x this company actually spends. An explicit window may continue an observed under-maintenance for five years; **a perpetuity may not**, because a company that never replaces its plant is not a going concern — and the accounts support that independently, with the base 73% written off and its measured age rising 13.60 → 14.18 → 15.23 years.
+
+    **The industry-specific alternative is recorded rather than dismissed**: escalating at *general* inflation assumes a radio costs 2% more each year to replace, where telecom equipment has historically fallen in real cost per unit of capacity. If that holds, the terminal is too high and the 1.161-to-1.352 gap is priced equipment rather than deferred maintenance. What would separate them is a disclosed replacement-cost or capacity series, and this company does not publish one.
+
+**Ten levers, nine rules, 47.11 → 35.53, −24.6%.** Every one is in the rebuild ledger with the answer either side of it, so the route can be walked rather than inferred from the net.

@@ -303,7 +303,40 @@ SGA_SHARE = sum((SEG.STATED_GROSS_PROFIT[i] - e) / SEG.STATED_REVENUE[i]
 # Depreciation and amortisation at the FY2025 filed ratio, and capital expenditure on the
 # guidance band the company publishes. Both anchored on a disclosed figure rather than typed.
 DNA_SHARE = 10_031.171 / 77_818.675
-capex_pct = [0.165, 0.165, 0.160, 0.155, 0.150]   # guidance band 15.0-17.5%
+
+# CAPITAL EXPENDITURE IS MEASURED FROM THE FILINGS, NOT TAKEN FROM GUIDANCE [R-FCAL-01].
+# The delivered path — 16.5% of revenue falling to 15.0% — is management's own published
+# band, and the rule is explicit that GUIDANCE IS SCORED AND NEVER CONSUMED: a forward
+# target leans the same way an optimistic model does, so a driver that takes it as an input
+# inherits the lean instead of correcting for it.
+#
+# What this company actually spends is disclosed for three years, and the ratio that
+# matters is capital expenditure over the depreciation of the base it renews:
+CAPEX_TO_DNA_HISTORY = [9_790.0 / 9_284.098,        # FY2023  1.054
+                        11_927.0 / 9_525.477,       # FY2024  1.252
+                        11_795.0 / 10_031.171]      # FY2025  1.176
+CAPEX_TO_DNA = sum(CAPEX_TO_DNA_HISTORY) / len(CAPEX_TO_DNA_HISTORY)
+capex_pct = [DNA_SHARE * CAPEX_TO_DNA] * 5
+
+# THE STEP AT THE TERMINAL BOUNDARY IS REAL, IT IS LARGE, AND IT IS STATED RATHER THAN
+# SMOOTHED [R-TERM-01]. The terminal charges maintenance at CURRENT cost — book
+# depreciation escalated over the measured 15.23-year age of the base, a factor of 1.3519,
+# or 17.43% of revenue. This company has never spent that: its peak year was 15.72% and its
+# capital expenditure has run at 1.16 times depreciation against the 1.35 a base maintained
+# at current cost would need. THE ECONOMIC READING IS THAT THE BASE IS AGEING, and the
+# accounts say so independently — 73% of the depreciable base is written off and its
+# measured age rose 13.60 to 14.18 to 15.23 years across the three filed years. An explicit
+# window may continue an observed under-maintenance for five years; A PERPETUITY MAY NOT,
+# because a company that never replaces its plant is not a going concern.
+#
+# THE ALTERNATIVE READING IS RECORDED RATHER THAN DISMISSED, and it is specific to this
+# industry: escalating at GENERAL inflation assumes a radio or a switch costs 2% more each
+# year to replace, where telecommunications equipment has historically fallen in real cost
+# per unit of capacity. If that holds here, the terminal charge is too high and the gap
+# between 1.16 and 1.35 is priced equipment rather than deferred maintenance. WHAT WOULD
+# SEPARATE THEM is a disclosed replacement-cost or capacity series, which this company does
+# not publish; until one is found the rising age is the only measured evidence and it
+# supports the first reading.
 wc_out_pct = [0.008, 0.006, 0.005, 0.004, 0.004]
 payout_dps = [2.20, 2.20, 2.30, 2.40, 2.55]       # policy 0.55/q locked to Q3-27
 
@@ -615,9 +648,16 @@ norm = dict(bear=(13600/SH)*13.5, base=norm_eps*15.0, bull=(15200/SH)*16.5)
 # INTENSITY. Management guides capital expenditure to 15.0-17.5% of revenue and the base
 # path opens at 16.5% and declines to 15.0%, so the bear takes the top of that band and the
 # bull the bottom. One inflation, one currency, one price of time, across all three.
+# The range flexes on the ratio the company's OWN THREE YEARS actually span — 1.054 to
+# 1.252 times depreciation — rather than on the band it guides to, for the same reason the
+# base path does. Guidance is a claim about the future and it is scored; this is a record
+# of the past and it is measured.
+CAPEX_RATIO_LOW = min(CAPEX_TO_DNA_HISTORY)
+CAPEX_RATIO_HIGH = max(CAPEX_TO_DNA_HISTORY)
+CAPEX_BEAR_SHIFT = DNA_SHARE * (CAPEX_RATIO_HIGH - CAPEX_TO_DNA)
+CAPEX_BULL_SHIFT = DNA_SHARE * (CAPEX_RATIO_LOW - CAPEX_TO_DNA)
+# Published beside the adopted basis so a reader sees the choice and not only its result.
 CAPEX_GUIDANCE_LOW, CAPEX_GUIDANCE_BASE, CAPEX_GUIDANCE_HIGH = 0.150, 0.165, 0.175
-CAPEX_BEAR_SHIFT = CAPEX_GUIDANCE_HIGH - CAPEX_GUIDANCE_BASE      # +1.0pp of revenue
-CAPEX_BULL_SHIFT = CAPEX_GUIDANCE_LOW - CAPEX_GUIDANCE_BASE       # -1.5pp of revenue
 dcf_lens = dict(bear=dcf_ps_at(WACC, TG, 0.0, CAPEX_BEAR_SHIFT),
                 base=dcf_ps,
                 bull=dcf_ps_at(WACC, TG, 0.0, CAPEX_BULL_SHIFT))
@@ -665,7 +705,20 @@ sens_cm = [[dcf_ps_at(WACC, TG, mm, cc) for cc in capex_steps] for mm in margin_
 # ===== Dividend cover stress (device A-2, crux in real units) =================
 div_bill = 2.20 * SH / 1000  # SAR bn per year under the locked policy
 cover = []
-for label, cint in [('15.0%', 0.150), ('16.5% (base FY26E)', 0.165), ('17.5% (top of guidance)', 0.175)]:
+# The rungs are the model's OWN adopted intensity and the two ends of the range it is
+# flexed over, each COMPUTED rather than typed. The delivered labels read "16.5% (base
+# FY26E)" and "17.5% (top of guidance)", and both went stale the moment capital
+# expenditure stopped being taken from the guidance band — a label is a figure a reader
+# sees, and a stale one is the defect the prose-figure rule exists to stop.
+for label, cint in [
+        ('%.1f%% (the lowest of the three filed years, %.3fx depreciation)'
+         % (100 * (capex_pct[0] + CAPEX_BULL_SHIFT), CAPEX_RATIO_LOW),
+         capex_pct[0] + CAPEX_BULL_SHIFT),
+        ('%.1f%% (adopted, the three-year mean of %.3fx depreciation)'
+         % (100 * capex_pct[0], CAPEX_TO_DNA), capex_pct[0]),
+        ('%.1f%% (the highest of the three filed years, %.3fx depreciation)'
+         % (100 * (capex_pct[0] + CAPEX_BEAR_SHIFT), CAPEX_RATIO_HIGH),
+         capex_pct[0] + CAPEX_BEAR_SHIFT)]:
     r = fc['FY26E']['rev']
     ocf_e = r * ebitda_m[0] * (1 - TAX) + r * dna_pct[0] * TAX - r * wc_out_pct[0]  # approx: NOPAT+D&A−ΔWC
     fcf_e = ocf_e - r * cint
@@ -799,6 +852,11 @@ out = dict(
         group_real_growth=GROUP_REAL,
         segment_margin={k: round(v, 6) for k, v in SEG_MARGIN.items()},
         sga_share_of_revenue=SGA_SHARE, dna_share_of_revenue=DNA_SHARE,
+        capex_to_dna_history=CAPEX_TO_DNA_HISTORY, capex_to_dna_adopted=CAPEX_TO_DNA,
+        capex_guidance_band=[CAPEX_GUIDANCE_LOW, CAPEX_GUIDANCE_HIGH],
+        capex_note=('measured from the filings as capital expenditure over the '
+                    "depreciation of the base it renews, not taken from management's own "
+                    'band, because guidance is scored and never consumed'),
         elimination_share=ELIM_SHARE, elimination_gp_share=ELIM_GP_SHARE,
         regrouped_take_group_rate=sorted(SEG.REGROUPED),
         cpi_history=CPI_HIST, cpi_history_source=CPI_HIST_SOURCE,
@@ -851,14 +909,18 @@ out = dict(
             kind='dcf', value=central,
             range=dict(low=central_bear, high=central_bull),
             range_basis=dict(
-                driver='capital expenditure as a share of revenue',
-                low=CAPEX_GUIDANCE_HIGH, high=CAPEX_GUIDANCE_LOW,
+                driver='capital expenditure as a multiple of depreciation',
+                low=CAPEX_RATIO_HIGH, high=CAPEX_RATIO_LOW,
                 macro_held=True,
                 evidence=(
-                    "Management's own guidance band for capital expenditure, 15.0% to "
-                    '17.5% of revenue, against a base path opening at 16.5% and declining '
-                    'to 15.0% by the last explicit year. The bear takes the top of that '
-                    'band and the bull the bottom, and nothing else moves: the cost of '
+                    "The range this company's OWN THREE FILED YEARS actually span, 1.054 "
+                    'to 1.252 times the depreciation of the base being renewed, against an '
+                    'adopted mean of 1.161. It is measured rather than guided: management '
+                    'publishes a band of 15.0% to 17.5% of revenue and the delivered study '
+                    'took its path straight from it, which the standing rule forbids — '
+                    'guidance is SCORED and never CONSUMED, because a forward target leans '
+                    'the same way an optimistic model does. The bear takes the highest year '
+                    'and the bull the lowest, and nothing else moves: the cost of '
                     'capital, the terminal growth, the terminal risk-free rate, the '
                     'inflation ladder and the margin path are IDENTICAL across all three '
                     "reads. The delivered study's bear and bull moved the cost of capital "

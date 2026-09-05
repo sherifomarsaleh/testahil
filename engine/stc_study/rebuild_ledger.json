@@ -86,10 +86,19 @@
    "why": "The stage above sat at the disclosed segment level and flagged that volume times price was out of reach because the financial statements carry no subscriber counts. THE GAP WAS IN THE REGISTER RATHER THAN IN THE WORLD: four guessed investor-relations URLs had failed and been written up as evidence the channel was gone, and the earnings presentations were one sitemap away, carrying the subscriber base by category at three fiscal year ends. The stc segment \u2014 the KSA operating business, two thirds of group revenue \u2014 is now built from its two halves, each faded on the same schedule and MULTIPLIED, which is the identity revenue actually obeys.",
    "evidence": "Subscribers compound at +6.00% a year and revenue per subscriber falls -3.86% nominal, and (1 +0.0600) x (1 -0.0386) - 1 returns exactly the +1.91% the audited statements report for that segment. THE ANSWER BARELY MOVES AND IT WAS NOT EXPECTED TO: fading the net drops the cross-term the product keeps, worth about five basis points a year, so 34.7988 becomes 34.8885, +0.26%. The gain is not the five basis points \u2014 it is that the forecast now rests on a volume line and a price line a reader can see and disagree with separately, where before it rested on one net rate that showed neither. Saudi mobile penetration is already far above one line per person and the two are not equally likely to persist, which is a judgement a later edition can now make with a reason.",
    "move": 0.0025786322253451566
+  },
+  {
+   "name": "capital expenditure measured from the filings instead of taken from guidance",
+   "rule": "R-FCAL-01",
+   "before": 34.888546164557496,
+   "after": 35.53191287646005,
+   "why": "The capital-expenditure path was management's OWN PUBLISHED GUIDANCE BAND \u2014 16.5% of revenue falling to 15.0% \u2014 taken straight in as an input. The rule is explicit that GUIDANCE IS SCORED AND NEVER CONSUMED, because a forward target leans the same way an optimistic model does and a driver that takes it inherits the lean instead of correcting for it. What this company actually spends is disclosed for three years, and the ratio that matters is capital expenditure over the depreciation of the base it renews. THE GAP REVIEW NAMED THIS AS THE SUSPECT HALF BEFORE ANYONE KNEW WHICH WAY THE CORRECTION WOULD RUN, which is the review working rather than a coincidence.",
+   "evidence": "The filed ratio runs 1.054x, 1.252x and 1.176x, a mean of 1.161x against the 1.352x a base maintained at CURRENT cost would need \u2014 so the adopted path is 14.96% of revenue, BELOW the guided one, and the answer RISES 34.8885 to 35.5319, +1.84%. The step at the terminal boundary is therefore larger rather than smaller and is stated with its reason: an explicit window may continue an observed under-maintenance for five years and a perpetuity may not, because a company that never replaces its plant is not a going concern \u2014 and the accounts support that independently, with 73% of the depreciable base written off and its measured age rising 13.60 to 14.18 to 15.23 years. The industry-specific alternative is recorded rather than dismissed: if telecommunications equipment falls in real cost per unit of capacity, the terminal charge is too high and the gap is priced equipment rather than deferred maintenance. No disclosed replacement-cost series exists to separate them. The dividend-cover rungs are recomputed from the same measured ratio, because their old labels named a guidance band the model had stopped using.",
+   "move": 0.01844062830443005
   }
  ],
- "value": 34.888546164557496,
- "cumulative_move": -0.2594370572324175,
+ "value": 35.53191287646005,
+ "cumulative_move": -0.24578061126880568,
  "rules": {
   "R-COC-01": {
    "levers": [
@@ -155,9 +164,17 @@
    "first_before": 41.15477165329675,
    "last_after": 34.888546164557496,
    "move": -0.15225999895050535
+  },
+  "R-FCAL-01": {
+   "levers": [
+    "capital expenditure measured from the filings instead of taken from guidance"
+   ],
+   "first_before": 34.888546164557496,
+   "last_after": 35.53191287646005,
+   "move": 0.01844062830443005
   }
  },
- "distinct_rules": 8,
+ "distinct_rules": 9,
  "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked.",
  "audit_taken": {
   "at": "2026-09-05, after lever 3, as declared",
@@ -169,7 +186,7 @@
   "latest_price": 43.86,
   "latest_price_date": "2026-09-03",
   "gap_at_the_audit": "+0.43%",
-  "gap_now_after_later_levers": "-20.45%",
+  "gap_now_after_later_levers": "-18.99%",
   "gap_at_delivery": "+8.10%",
   "what_the_audit_shows": "THE TWO LEVERS DISAGREED AND THE ROUTE IS WHY THAT MATTERS. Taken in the order fixed in writing before either was touched, the cost-of-capital correction moved the answer AWAY from the market \u2014 from 8.1%% above the price it was struck at to 16.4%% above the latest one \u2014 and the beta correction brought it back. Neither was chosen for where it landed and neither could have been: the first raises every value it touches and the second lowers every value it touches, and which one dominates is arithmetic about this company's own capital structure. Read as two corrections the rebuild is a contest; read as one net figure of -6.5%% it would look like a small tidy-up, and the 8.4%% and the 13.8%% inside it would be invisible. THE ANSWER NOW SITS ESSENTIALLY ON THE PRICE, at +0.4%%, and that is reported as an observation and NOT as corroboration \u2014 four levers remain, the lens retirement among them, and a rebuild that stopped here because the number looked comfortable would be fitting to the price by choosing when to stop.",
   "levers_remaining_at_the_audit": [

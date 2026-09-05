@@ -19,7 +19,7 @@
   ]
  },
  "phase": "1",
- "current": "STC rebuilt on all seven levers PLUS a declared second stage (the ground-up driver rebuild on the eleven disclosed segments). Central 47.1108 -> 34.7988, -26.13%, and -20.7% against the latest known close of 43.86 \u2014 past the trigger, so GAP_REVIEW_05-09-2026.md is written and accepted by the gate. The two defects it found BOTH make the answer too high. PR #370 open; CI running on 5b8882a6.",
+ "current": "STC rebuilt: ten levers, nine rules, 47.1108 -> 35.5319, -24.58%, and -18.99% against the latest known close of 43.86. GAP_REVIEW_05-09-2026.md written and accepted. The review named the capex path as the suspect half BEFORE knowing which way a correction would run, and correcting it (guidance consumed rather than scored) RAISED the answer 1.84%. PR #370 open; nothing unpushed.",
  "done": [
   "All seven markets carry a sourced house macro path; 53 names unblocked. Two identities were running where they do not hold (a pegged currency drifting, the dollar depreciating against itself) \u2014 both found by PRINTING a path, not by a gate.",
   "The explicit window's inflation assumption is RULED OUT as the general scale error: perfect foresight of the path removes only 11% of the pooled driver error.",
@@ -228,13 +228,16 @@
   "GAP_REVIEW_05-09-2026.md written and accepted; the multiple cross-check is the heading that argues hardest against the answer (6.24x implied against a traded 8.98x and an own history of 8.32-9.13x) and is set out rather than explained away.",
   "Corrected my own lever-4 justification: it read \"growing with the economy in perpetuity\" while implementing zero real, which is growing with PRICES. The number was defensible and the reason was false.",
   "The STC investor-relations channel WAS reachable \u2014 four failed URL guesses had been recorded as evidence it was gone. L-343.",
-  "L-342 and L-343 registered; 264 lessons."
+  "L-342 and L-343 registered; 264 lessons.",
+  "STC capex measured from the filings (1.161x depreciation, the three-year mean) instead of taken from management guidance, which [R-FCAL-01] forbids consuming. +1.84%.",
+  "The dividend-cover rungs are recomputed from the same measured ratio; their old labels named a guidance band the model had stopped using.",
+  "STC unit build wired: the stc segment as volume x price, both halves faded and multiplied, +0.26% \u2014 the cross-term the net drops."
  ],
  "next": [
   "MERGE PR #370 on green [R-MERGE-01], then restart the branch from main.",
-  "STC: build revenue as VOLUME x PRICE now that the earnings presentations are registered \u2014 KSA mobile 28.3 -> 30.0mn and fixed 5.7 -> 6.0mn against segment revenue growing 2.97%, so revenue per subscriber fell ~2.9%. The extrapolated segment rate nets the two and hides them. The counts are unaudited chart figures, so they are an INDICATOR until the same numbers are found in a table.",
-  "STC: the explicit window takes capex DOWN to 15.0% of revenue (bottom of guidance) while the terminal charges 17.43% (top of it) on a base 73% written off. The step points the wrong way for an old base and the suspect half is the explicit window \u2014 it makes the answer too HIGH, so correcting it widens the discount.",
+  "STC: the terminal charges 1.352x depreciation and the explicit window 1.161x. The industry alternative \u2014 telecom equipment falling in real cost per unit of capacity \u2014 would make the terminal too high, and no disclosed replacement-cost or capacity series exists to separate it from deferred maintenance. Look for one before the next edition.",
   "STC is still not a delivered study: no bibliography, no four-field register, no sweep register, no QC gate, no driver test, no recalculation harness.",
+  "STC stays on the macro ratchet: the non-unit segments rest on measured-but-crude trailing rates. The stc segment is now volume x price; the others have no unit data.",
   "Re-issue the three documents publishing the retired skill verdict (ADNOCLS last).",
   "GBCO is the last unreadable study on the valuation-gap ratchet."
  ],
@@ -252,7 +255,7 @@
   "Phase 2 keeps the campaign's market order \u2014 principal, 03-Sep-2026."
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-05T06:20:00+03:00",
+ "updated": "2026-09-05T06:35:00+03:00",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md \u2014 it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",

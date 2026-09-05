@@ -35,7 +35,8 @@ LANDED = {
     'R-LENS-03':  'accc82d745bccf22f5455d0504c92c7043ee3f56',     # lever 6
     'R-GAP-01':   '750bd6e18d39cea57ea19a6ab096b3335ea9a849',     # lever 7
     'R-SIGCM-02': '57db3fcf6dfac4036f449aa0769d451e6e872ab8',     # the segment rebuild
-    'R-SIGCM-02:units': None,          # the unit build, SAME RULE, so it groups with it
+    'R-SIGCM-02:units': '4996c2f5097ef20628960e14bab1a9a00c2a2ac7',   # the unit build, SAME RULE, so it groups with it
+    'R-FCAL-01': None,                                           # the working tree, latest
 }
 
 
@@ -67,6 +68,7 @@ AFTER_BRIDGE = at(LANDED['R-BRIDGE-01'])
 AFTER_LENS = at(LANDED['R-LENS-03'])
 AFTER_GAP = at(LANDED['R-GAP-01'])
 AFTER_SEG = at(LANDED['R-SIGCM-02'])
+AFTER_UNITS = at(LANDED['R-SIGCM-02:units'])
 NOW = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 # The lever-2 intermediate, struck when the cost-of-capital schedule was in and the beta
 # was not. It is named for that lever set, so a later sensitivity run cannot overwrite the
@@ -408,7 +410,7 @@ led.apply(
     # segment rebuild and the unit build as two independent confirmations of a single
     # correction, which is exactly what by_rule() exists to prevent.
     rule='R-SIGCM-02',
-    after=NOW['lenses']['central']['base'],
+    after=AFTER_UNITS['lenses']['central']['base'],
     why=(
         'The stage above sat at the disclosed segment level and flagged that volume times '
         'price was out of reach because the financial statements carry no subscriber '
@@ -430,13 +432,53 @@ led.apply(
         'rate that showed neither. Saudi mobile penetration is already far above one line '
         'per person and the two are not equally likely to persist, which is a judgement a '
         'later edition can now make with a reason.'
-        % (100 * NOW['drivers']['unit_volume_real'],
-           100 * ((1 + NOW['drivers']['unit_price_real']) * (1.0175) - 1),
-           NOW['drivers']['unit_volume_real'],
-           (1 + NOW['drivers']['unit_price_real']) * 1.0175 - 1,
-           AFTER_SEG['lenses']['central']['base'], NOW['lenses']['central']['base'],
-           100 * (NOW['lenses']['central']['base']
+        % (100 * AFTER_UNITS['drivers']['unit_volume_real'],
+           100 * ((1 + AFTER_UNITS['drivers']['unit_price_real']) * (1.0175) - 1),
+           AFTER_UNITS['drivers']['unit_volume_real'],
+           (1 + AFTER_UNITS['drivers']['unit_price_real']) * 1.0175 - 1,
+           AFTER_SEG['lenses']['central']['base'],
+           AFTER_UNITS['lenses']['central']['base'],
+           100 * (AFTER_UNITS['lenses']['central']['base']
                   / AFTER_SEG['lenses']['central']['base'] - 1))),
+)
+
+led.apply(
+    name='capital expenditure measured from the filings instead of taken from guidance',
+    rule='R-FCAL-01',
+    after=NOW['lenses']['central']['base'],
+    why=(
+        "The capital-expenditure path was management's OWN PUBLISHED GUIDANCE BAND — 16.5% "
+        'of revenue falling to 15.0% — taken straight in as an input. The rule is explicit '
+        'that GUIDANCE IS SCORED AND NEVER CONSUMED, because a forward target leans the '
+        'same way an optimistic model does and a driver that takes it inherits the lean '
+        'instead of correcting for it. What this company actually spends is disclosed for '
+        'three years, and the ratio that matters is capital expenditure over the '
+        'depreciation of the base it renews. THE GAP REVIEW NAMED THIS AS THE SUSPECT HALF '
+        'BEFORE ANYONE KNEW WHICH WAY THE CORRECTION WOULD RUN, which is the review working '
+        'rather than a coincidence.'),
+    evidence=(
+        'The filed ratio runs %.3fx, %.3fx and %.3fx, a mean of %.3fx against the 1.352x a '
+        'base maintained at CURRENT cost would need — so the adopted path is %.2f%% of '
+        'revenue, BELOW the guided one, and the answer RISES %.4f to %.4f, %+.2f%%. The step '
+        'at the terminal boundary is therefore larger rather than smaller and is stated with '
+        'its reason: an explicit window may continue an observed under-maintenance for five '
+        'years and a perpetuity may not, because a company that never replaces its plant is '
+        'not a going concern — and the accounts support that independently, with 73%% of the '
+        'depreciable base written off and its measured age rising 13.60 to 14.18 to 15.23 '
+        'years. The industry-specific alternative is recorded rather than dismissed: if '
+        'telecommunications equipment falls in real cost per unit of capacity, the terminal '
+        'charge is too high and the gap is priced equipment rather than deferred '
+        'maintenance. No disclosed replacement-cost series exists to separate them. The '
+        'dividend-cover rungs are recomputed from the same measured ratio, because their '
+        'old labels named a guidance band the model had stopped using.'
+        % (NOW['drivers']['capex_to_dna_history'][0],
+           NOW['drivers']['capex_to_dna_history'][1],
+           NOW['drivers']['capex_to_dna_history'][2],
+           NOW['drivers']['capex_to_dna_adopted'],
+           100 * NOW['drivers']['capex_pct'][0],
+           AFTER_UNITS['lenses']['central']['base'], NOW['lenses']['central']['base'],
+           100 * (NOW['lenses']['central']['base']
+                  / AFTER_UNITS['lenses']['central']['base'] - 1))),
 )
 
 rec = led.record()

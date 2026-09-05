@@ -1,9 +1,9 @@
 {
- "central": 34.888546164557496,
+ "central": 35.53191287646005,
  "spot": 43.86,
  "spot_date": "2026-09-03",
  "central_range": {
-  "low": 34.232131741856016,
+  "low": 34.75936497157102,
   "high": 47.14839882868572
  },
  "cone_anchor": 44.72,
@@ -596,7 +596,7 @@
   },
   "nci": {
    "basis": "value_share",
-   "deduction": 3592.5149449773307,
+   "deduction": 3658.763177755767,
    "applied_to": "equity_value",
    "book": 2726.349,
    "profit_share": 0.020206295602669237,
@@ -615,7 +615,7 @@
   "lines": [
    {
     "name": "enterprise value, discounted cash flow",
-    "value": 156137.6322697209
+    "value": 159416.22593582983
    },
    {
     "name": "plus investments in associates and joint ventures, at book",
@@ -635,12 +635,12 @@
    },
    {
     "name": "less the minority at its share of equity value",
-    "value": -3592.5149449773307
+    "value": -3658.763177755767
    }
   ],
-  "equity_value": 174199.34832474354,
+  "equity_value": 177411.69375807405,
   "shares_mn": 4993.024,
-  "per_share": 34.888546164557496,
+  "per_share": 35.53191287646005,
   "net_debt_build": {
    "borrowings": 23536.554,
    "leases": 2258.902,
@@ -875,6 +875,17 @@
   },
   "sga_share_of_revenue": 0.17251163231986957,
   "dna_share_of_revenue": 0.12890441786627696,
+  "capex_to_dna_history": [
+   1.0544912386749903,
+   1.25211577330983,
+   1.1758348053283112
+  ],
+  "capex_to_dna_adopted": 1.1608139391043772,
+  "capex_guidance_band": [
+   0.15,
+   0.175
+  ],
+  "capex_note": "measured from the filings as capital expenditure over the depreciation of the base it renews, not taken from management's own band, because guidance is scored and never consumed",
   "elimination_share": -0.12873925236449102,
   "elimination_gp_share": -0.05133139910601885,
   "regrouped_take_group_rate": [
@@ -903,11 +914,11 @@
    0.12890441786627696
   ],
   "capex_pct": [
-   0.165,
-   0.165,
-   0.16,
-   0.155,
-   0.15
+   0.14963404507130962,
+   0.14963404507130962,
+   0.14963404507130962,
+   0.14963404507130962,
+   0.14963404507130962
   ],
   "wc_out_pct": [
    0.008,
@@ -980,11 +991,11 @@
     "dna": 10344.383848275393,
     "ebit": 14605.654357483942,
     "nopat": 13188.905884808,
-    "capex": 13240.999519008468,
+    "capex": 12007.904962524255,
     "dwc": 641.9878554670772,
-    "fcff": 9650.302358607849,
+    "fcff": 10883.396915092062,
     "df": 0.9247903611807125,
-    "pv": 8924.506603720034
+    "pv": 10064.86056398104
    },
    {
     "year": "FY27E",
@@ -993,11 +1004,11 @@
     "dna": 10632.480653532806,
     "ebit": 14945.564239784948,
     "nopat": 13495.844508525808,
-    "capex": 13609.768671022995,
+    "capex": 12342.3317498785,
     "dwc": 494.9006789462907,
-    "fcff": 10023.65581208933,
+    "fcff": 11291.092733233825,
     "df": 0.8552372121327526,
-    "pv": 8572.60345210954
+    "pv": 9656.562671103278
    },
    {
     "year": "FY28E",
@@ -1006,11 +1017,11 @@
     "dna": 10897.852093374684,
     "ebit": 15271.792338015955,
     "nopat": 13790.428481228408,
-    "capex": 13526.738367871814,
+    "capex": 12650.378616287151,
     "dwc": 422.7105739959942,
-    "fcff": 10738.831632735286,
+    "fcff": 11615.191384319949,
     "df": 0.7909151303034339,
-    "pv": 8493.504420111465
+    "pv": 9186.630607228735
    },
    {
     "year": "FY29E",
@@ -1019,11 +1030,11 @@
     "dna": 11144.57355271218,
     "ebit": 15593.514197193665,
     "nopat": 14080.943320065879,
-    "capex": 13400.695874228064,
+    "capex": 12936.776325362289,
     "dwc": 345.82440965749845,
-    "fcff": 11478.996588892496,
+    "fcff": 11942.916137758271,
     "df": 0.7314306890166028,
-    "pv": 8396.090384232872
+    "pv": 8735.415379508036
    },
    {
     "year": "FY30E",
@@ -1032,18 +1043,18 @@
     "dna": 11367.465023766425,
     "ebit": 15905.384481137542,
     "nopat": 14362.562186467201,
-    "capex": 13227.783669399314,
+    "capex": 13195.511851869536,
     "dwc": 352.74089785064837,
-    "fcff": 12149.502642983662,
+    "fcff": 12181.77446051344,
     "df": 0.6764200510743215,
-    "pv": 8218.167198294612
+    "pv": 8239.996502756365
    }
   ],
-  "pv_sum": 42604.87205846852,
+  "pv_sum": 45883.46572457745,
   "tv": 167843.57594210052,
   "pv_tv": 113532.76021125239,
-  "ev": 156137.6322697209,
-  "tv_pct": 0.7271325852766202,
+  "ev": 159416.22593582983,
+  "tv_pct": 0.7121781960699094,
   "nopat_term": 14362.562186467201,
   "ic_repl": 182011.2410570005,
   "terminal_maintenance": 15367.553617222884,
@@ -1056,9 +1067,9 @@
   "assoc": 12909.648,
   "telefonica": 8513.43,
   "net_debt": 4932.3629999999985,
-  "nci": 3592.5149449773307,
-  "eq": 174199.34832474354,
-  "ps": 34.888546164557496,
+  "nci": 3658.763177755767,
+  "eq": 177411.69375807405,
+  "ps": 35.53191287646005,
   "wacc_build": {
    "rf": 0.0552,
    "default_spread": 0.0098,
@@ -1116,9 +1127,9 @@
  },
  "lenses": {
   "dcf": {
-   "bear": 34.232131741856016,
-   "base": 34.888546164557496,
-   "bull": 35.87316779860973
+   "bear": 34.75936497157102,
+   "base": 35.53191287646005,
+   "bull": 36.43155941887267
   },
   "ddm": {
    "bear": 29.160467565141218,
@@ -1160,8 +1171,8 @@
    }
   ],
   "central": {
-   "bear": 34.232131741856016,
-   "base": 34.888546164557496,
+   "bear": 34.75936497157102,
+   "base": 35.53191287646005,
    "bull": 47.14839882868572
   },
   "weights": null
@@ -1170,17 +1181,17 @@
   "class": "telecom operator",
   "primary": {
    "kind": "dcf",
-   "value": 34.888546164557496,
+   "value": 35.53191287646005,
    "range": {
-    "low": 34.232131741856016,
+    "low": 34.75936497157102,
     "high": 47.14839882868572
    },
    "range_basis": {
-    "driver": "capital expenditure as a share of revenue",
-    "low": 0.175,
-    "high": 0.15,
+    "driver": "capital expenditure as a multiple of depreciation",
+    "low": 1.25211577330983,
+    "high": 1.0544912386749903,
     "macro_held": true,
-    "evidence": "Management's own guidance band for capital expenditure, 15.0% to 17.5% of revenue, against a base path opening at 16.5% and declining to 15.0% by the last explicit year. The bear takes the top of that band and the bull the bottom, and nothing else moves: the cost of capital, the terminal growth, the terminal risk-free rate, the inflation ladder and the margin path are IDENTICAL across all three reads. The delivered study's bear and bull moved the cost of capital by 100 and 70 basis points and terminal growth between 2.0% and 3.0% as well, which makes each corner an economy nothing describes and its width chosen rather than observed."
+    "evidence": "The range this company's OWN THREE FILED YEARS actually span, 1.054 to 1.252 times the depreciation of the base being renewed, against an adopted mean of 1.161. It is measured rather than guided: management publishes a band of 15.0% to 17.5% of revenue and the delivered study took its path straight from it, which the standing rule forbids \u2014 guidance is SCORED and never CONSUMED, because a forward target leans the same way an optimistic model does. The bear takes the highest year and the bull the lowest, and nothing else moves: the cost of capital, the terminal growth, the terminal risk-free rate, the inflation ladder and the margin path are IDENTICAL across all three reads. The delivered study's bear and bull moved the cost of capital by 100 and 70 basis points and terminal growth between 2.0% and 3.0% as well, which makes each corner an economy nothing describes and its width chosen rather than observed."
    }
   },
   "cross_checks": [
@@ -1205,10 +1216,10 @@
    }
   ],
   "envelope": {
-   "low": 34.232131741856016,
+   "low": 34.75936497157102,
    "high": 47.14839882868572
   },
-  "central": 34.888546164557496,
+  "central": 35.53191287646005,
   "retired": {
    "blend_weights": {
     "dcf": 0.35,
@@ -1249,39 +1260,39 @@
   ],
   "table_wg": [
    [
-    40.36469362195063,
-    40.729027023527294,
-    41.14522611407036,
-    41.632116391504276,
-    42.21888806258089
+    41.02070782665586,
+    41.38504122823252,
+    41.80124031877559,
+    42.28813059620951,
+    42.87490226728611
    ],
    [
-    37.42089457679787,
-    37.550649771210765,
-    37.682070873189886,
-    37.81569728896641,
-    37.952329473159324
+    38.07053236671073,
+    38.20028756112363,
+    38.331708663102745,
+    38.46533507887927,
+    38.60196726307219
    ],
    [
-    34.92040696742795,
-    34.888546164557496,
-    34.830003419364886,
-    34.73698096907859,
-    34.59831458817528
+    35.563773679330495,
+    35.53191287646004,
+    35.47337013126743,
+    35.380347680981124,
+    35.24168130007782
    ],
    [
-    32.77002508497444,
-    32.626024808542,
-    32.43967259492905,
-    32.19968986273754,
-    31.890403163005136
+    33.40722369925351,
+    33.26322342282107,
+    33.076871209208115,
+    32.836888477016615,
+    32.527601777284204
    ],
    [
-    30.90096527571814,
-    30.679112416223635,
-    30.406758539054696,
-    30.07155140497953,
-    29.656752805043496
+    31.532096481746397,
+    31.31024362225189,
+    31.037889745082946,
+    30.702682611007788,
+    30.287884011071757
    ]
   ],
   "margin_steps": [
@@ -1300,60 +1311,60 @@
   ],
   "table_cm": [
    [
-    33.194191463951455,
-    32.86598425260071,
-    32.53777704124997,
-    32.20956982989922,
-    31.88136261854848
+    33.837558175854,
+    33.50935096450325,
+    33.18114375315251,
+    32.85293654180177,
+    32.524729330451024
    ],
    [
-    34.36957602560522,
-    34.041368814254476,
-    33.71316160290373,
-    33.38495439155299,
-    33.05674718020225
+    35.012942737507764,
+    34.68473552615702,
+    34.356528314806276,
+    34.02832110345554,
+    33.70011389210479
    ],
    [
-    35.54496058725899,
-    35.21675337590824,
-    34.888546164557496,
-    34.56033895320675,
-    34.232131741856016
+    36.18832729916153,
+    35.860120087810785,
+    35.53191287646004,
+    35.2037056651093,
+    34.87549845375855
    ],
    [
-    36.72034514891275,
-    36.392137937562005,
-    36.06393072621126,
-    35.735723514860524,
-    35.40751630350977
+    37.3637118608153,
+    37.035504649464556,
+    36.70729743811381,
+    36.37909022676307,
+    36.050883015412325
    ],
    [
-    37.89572971056652,
-    37.56752249921578,
-    37.23931528786503,
-    36.91110807651429,
-    36.582900865163545
+    38.539096422469065,
+    38.21088921111832,
+    37.88268199976758,
+    37.55447478841683,
+    37.22626757706609
    ]
   ]
  },
  "cover": [
   {
-   "capex": "15.0%",
-   "fcf": 10.854029587608618,
+   "capex": "13.6% (the lowest of the three filed years, 1.054x depreciation)",
+   "fcf": 11.983239740118833,
    "div": 10.984652800000001,
-   "cover": 0.9881085715889553
+   "cover": 1.090907465015083
   },
   {
-   "capex": "16.5% (base FY26E)",
-   "fcf": 9.650302358607847,
+   "capex": "15.0% (adopted, the three-year mean of 1.161x depreciation)",
+   "fcf": 10.88339691509206,
    "div": 10.984652800000001,
-   "cover": 0.8785259338017353
+   "cover": 0.9907820586820968
   },
   {
-   "capex": "17.5% (top of guidance)",
-   "fcf": 8.847817539274,
+   "capex": "16.1% (the highest of the three filed years, 1.252x depreciation)",
+   "fcf": 9.938935696019255,
    "div": 10.984652800000001,
-   "cover": 0.8054708419435888
+   "cover": 0.9048019884633272
   }
  ],
  "div_bill": 10.984652800000001,
