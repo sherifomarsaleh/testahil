@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**260 lessons**, of which 228 bind on every study, 25 on a class of company, and 7 on a single name.
+**261 lessons**, of which 229 bind on every study, 25 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 24 from self-audits, 181 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 25 from self-audits, 181 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2358,6 +2358,16 @@ Both identities used to age a fixed-asset base divide by the YEAR'S CHARGE — g
 > **What it cost, or how we know.** A sweep of every JSON in every study directory for a field naming a blocker returns exactly two, both wacc_reissue_blocked_on, both asking for a sovereign default spread. engine/macro_paths/EG.json carries Egypt's at 6.37% rating and 3.41% market; SA.json carries Saudi Arabia's at 0.51% and 0.98%. Both were sourced and dated on 2-3 September; both blockers were written in July and August.
 
 > **What would overturn it.** It is overturned by a checker that reads study artefacts for blocker fields and re-tests each one — which is the obvious fix and is not made here, because two instances is a thin population to design a gate against and the cheaper move is to write blockers into the escalation register, where a gate already exists.
+
+### L-340 · A GATE'S POPULATION IS DEFINED BY A SHAPE AND THE THING IT GOVERNS KEEPS ARRIVING IN ANOTHER ONE
+
+Three gates were found blind on one night, each for the same reason and none of them for a reason anyone would call carelessness. The 1/g terminal gate sorted studies into `unreadable` and `scored` and never named the state between them — the terminal resolves, the charge does not — so four studies sat in a bucket nothing reported, one of them carrying the retired construction in plain sight in its own compute.py. The verdict-vocabulary gate holds a list of banned phrasings, was widened two days earlier with a comment saying a rule like this 'is not enforced by banning the word people happened to use for it last time', and was then defeated by a HYPHEN: it looks for 'random walk' and three delivered documents wrote 'random-walk benchmark' and 'no-information benchmark'. The exemplar-debt gate matched a ratchet entry only as a list item equal to a ticker, while three ratchets store their entries as a dict keyed by ticker and two as document paths — so the gate whose whole purpose is to notice the exemplar acquiring debt reported one entry where there were five. IN EVERY CASE THE RULE WAS RIGHT, THE CODE WAS CORRECT FOR WHAT IT LOOKED AT, AND THE POPULATION WAS A GUESS ABOUT WHAT THE WORLD WOULD LOOK LIKE. Where a gate enumerates, enumerate the SHAPES the thing actually arrives in, and make the residue a named bucket rather than an absence.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, the terminal, band-vocabulary and exemplar-debt gates, all found on 5 September 2026
+
+> **What it cost, or how we know.** check_terminal_floor: 24 directories, 20 readable, 16 scored, and the missing 4 reported nowhere. check_band_vocabulary: 3 delivered documents publishing the retired skill verdict, one of them the exemplar, none matched. check_exemplar_debt: 1 entry reported against 5 on disk, and the rule's own adoption note records 8.
+
+> **What would overturn it.** It is overturned where a residue is genuinely empty by construction and can be proved so — then naming the bucket adds a line nobody reads. What does NOT overturn it is a residue that happens to be empty today, which is the state every one of these three was in on the day it was written.
 
 
 ---

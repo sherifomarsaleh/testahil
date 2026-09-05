@@ -5812,6 +5812,47 @@ LESSONS = [
       "population to design a gate against and the cheaper move is "
       "to write blockers into the escalation register, where a gate "
       "already exists."),
+    L("L-340", "ALL", None,
+      "A GATE'S POPULATION IS DEFINED BY A SHAPE AND THE THING IT "
+      "GOVERNS KEEPS ARRIVING IN ANOTHER ONE",
+      "Three gates were found blind on one night, each for the same "
+      "reason and none of them for a reason anyone would call "
+      "carelessness. The 1/g terminal gate sorted studies into "
+      "`unreadable` and `scored` and never named the state between "
+      "them — the terminal resolves, the charge does not — so four "
+      "studies sat in a bucket nothing reported, one of them "
+      "carrying the retired construction in plain sight in its own "
+      "compute.py. The verdict-vocabulary gate holds a list of "
+      "banned phrasings, was widened two days earlier with a "
+      "comment saying a rule like this 'is not enforced by banning "
+      "the word people happened to use for it last time', and was "
+      "then defeated by a HYPHEN: it looks for 'random walk' and "
+      "three delivered documents wrote 'random-walk benchmark' and "
+      "'no-information benchmark'. The exemplar-debt gate matched a "
+      "ratchet entry only as a list item equal to a ticker, while "
+      "three ratchets store their entries as a dict keyed by ticker "
+      "and two as document paths — so the gate whose whole purpose "
+      "is to notice the exemplar acquiring debt reported one entry "
+      "where there were five. IN EVERY CASE THE RULE WAS RIGHT, THE "
+      "CODE WAS CORRECT FOR WHAT IT LOOKED AT, AND THE POPULATION "
+      "WAS A GUESS ABOUT WHAT THE WORLD WOULD LOOK LIKE. Where a "
+      "gate enumerates, enumerate the SHAPES the thing actually "
+      "arrives in, and make the residue a named bucket rather than "
+      "an absence.",
+      "the terminal, band-vocabulary and exemplar-debt gates, all "
+      "found on 5 September 2026",
+      "self_audit",
+      "check_terminal_floor: 24 directories, 20 readable, 16 "
+      "scored, and the missing 4 reported nowhere. "
+      "check_band_vocabulary: 3 delivered documents publishing the "
+      "retired skill verdict, one of them the exemplar, none "
+      "matched. check_exemplar_debt: 1 entry reported against 5 on "
+      "disk, and the rule's own adoption note records 8.",
+      "It is overturned where a residue is genuinely empty by "
+      "construction and can be proved so — then naming the bucket "
+      "adds a line nobody reads. What does NOT overturn it is a "
+      "residue that happens to be empty today, which is the state "
+      "every one of these three was in on the day it was written."),
 
 ]
 
