@@ -1299,6 +1299,40 @@ import sys as _sys
 _sys.path.insert(0, os.path.join(HERE, '..'))
 from research_protocol import MODEL_STUDY as _MS
 wb._sheets = [wb[n] for n in _MS["excel_sheets"]]
+
+# ---- PAGE SETUP, because the WORKBOOK PDF IS A DELIVERABLE and it was losing columns.
+# Nothing here set a print layout, so every sheet defaulted to portrait with no
+# fit-to-width and LibreOffice paginated by column. On the DCF sheet that DROPPED THE
+# "PROGRAMME STOPPED" COLUMN ENTIRELY from the rendered PDF — a two-sided answer losing a
+# side in the file a reader is handed — and on Assumptions it orphaned a whole page of
+# figures from the label column that says what they are. Found by an audit that read the
+# rendered pages as images, which is the only thing that can see it: every cell was
+# correct, the recalculation was clean, and the defect was entirely in the pagination.
+#
+# Landscape, fit to one page WIDE and any number of pages long, with column A repeated on
+# every page so a figure is never printed away from its own label.
+from openpyxl.worksheet.properties import PageSetupProperties as _PSP
+from openpyxl.styles import Alignment as _Alignment
+for _ws in wb.worksheets:
+    _ws.page_setup.orientation = 'landscape'
+    _ws.page_setup.fitToWidth = 1
+    _ws.page_setup.fitToHeight = 0
+    _ws.sheet_properties.pageSetUpPr = _PSP(fitToPage=True)
+    _ws.print_title_cols = 'A:A'
+    _ws.page_margins.left = _ws.page_margins.right = 0.3
+    _ws.page_margins.top = _ws.page_margins.bottom = 0.4
+    # AND THE LABELS WRAP RATHER THAN BEING CUT. A label longer than its column is
+    # truncated at the neighbouring cell, so "Year-five profit before interest and tax,
+    # the project's own depreciation added back, grown at terminal growth" printed as
+    # "...and tax, the pr". Wrapping keeps the whole label and lets the row grow, which
+    # costs a little height and loses nothing.
+    _w = (_ws.column_dimensions['A'].width or 10)
+    for _c in _ws['A']:
+        if isinstance(_c.value, str) and len(_c.value) > _w:
+            _a = _c.alignment
+            _c.alignment = _Alignment(horizontal=_a.horizontal, vertical='top',
+                                      wrap_text=True, indent=_a.indent or 0)
+
 wb.save(os.path.join(HERE, 'EGCH_Valuation_Model_05092026.xlsx'))
 json.dump(EXPECT, open(os.path.join(HERE, 'xlsx_expected.json'), 'w'), indent=1)
 json.dump({"cost_of_equity": f"C{KE_C}", "wacc_year_one": f"C{W1}",
