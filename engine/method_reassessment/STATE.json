@@ -19,7 +19,7 @@
   ]
  },
  "phase": "1",
- "current": "STC delivery plan. ITEMS 1-6 DONE, item 7 (the QC gate) with a subagent auditing from outside as this was written. Central UNCHANGED throughout at 38.1426 against 43.86, -13.04%, fourteen levers; twelve commits pushed. ITEM 4 was far larger than its description: SECTION 3 WAS PUBLISHING A DIFFERENT CONE FROM THE SITE \u2014 a study-local simulation at a hardcoded Student-t(5) against a fitted nu=15, no width calibration against a fitted 1.056, zero drift on a market running an active momentum lean, a 60-session horizon, and nine typed jump probabilities whose own caption conceded they were uncalibrated (median 45.06 against the published 45.30). It now calls strike_cohorts.strike() and reproduces the published row to the cent at both horizons and the touch ladder to the point, and carries the band record inline (58 windows, 51 inside the 90% band, no flag at p=0.52) which is depth-bar standard 4's requirement. Section 4's verdict and the retired four-lens blend gone; section 2 contradicted its own computed numbers three ways; section 1.8's cost-of-capital table was typed end to end with not one cell still matching; Appendix C.4 and B.1/B.2/B.3 added per the model skeleton. ITEM 5 is what made the rest findable \u2014 prose_check.py on the shared instrument, zero unmatched across 377 figures over BOTH delivered documents, off the prose ratchet. Its first run found nine defects a page-by-page read had just missed. The residue it CANNOT see (a guidance band consumed, a glide asserted, a floor mislabelled) came from a claim sweep, which is written by reading \u2014 registered as L-346/347/348. ITEM 6: the standalone bibliography exists for the first time, 19 pages, no numeral typed in the builder; writing it caught a repository path and eight extraction filenames heading for a reader. ALSO CLEARED: [R-ENF-05]. The reverse read bisects the model's own dcf_ps_at \u2014 the price implies a beta of 0.5333 against the regression's 0.7078, 1.70 standard errors apart \u2014 AND IT CONTRADICTS THE STUDY'S OWN CRUX: two points of revenue below the modelled capital intensity still reaches only 39.46, so the disagreement is the discount rate and not the capital programme. Seven contested judgements priced both ways; two material, opposite ways, p=1.00, no lean. REMAINING: the QC gate row for [R-ENF-05] will read stale in the audit (it was cleared while the audit ran) and must be corrected on landing. Appendix A.2/A.3 stay blocked on the reviewed interim that does not foot in its own current column. Full CI clean: 45 green, the two lessons-gate reds were the run reading the register mid-write and are green run directly.",
+ "current": "Gate defects found by the 05-Sep fable fan-out, being closed one at a time. Done today: the workbook into every instrument's population (L-350, STC + ADNOCLS the exemplar); check_workbook_values, which RUNS each study's own recalculation rather than counting the file (L-351, SWDY red at +6.9%, AMOC's recalculator superseded); check_walkforward_scope (23 of 24 studies stated no scope decision); [R-LENS-03]'s own sentence now asserted (the primary's value must BE the central) and its vocabulary gate widened from CENTRAL to CENTRE, which caught ADNOCDIST publishing the retired 40/25/20/15 blend with BOOK weighted; and check_artefact_currency's comment made true (it claimed nearest-branch anchoring and did first-branch).",
  "done": [
   "All seven markets carry a sourced house macro path; 53 names unblocked. Two identities were running where they do not hold (a pegged currency drifting, the dollar depreciating against itself) \u2014 both found by PRINTING a path, not by a gate.",
   "The explicit window's inflation assumption is RULED OUT as the general scale error: perfect foresight of the path removes only 11% of the pooled driver error.",
@@ -242,11 +242,9 @@
   "The gap gate went red the instant the answer moved and forced the review to be re-asked at the size the disagreement actually is \u2014 the AUDITED GAP marker doing its job."
  ],
  "next": [
-  "Item 3: the 16-sheet live formula workbook. Buildable now for everything except Appendix A.2/A.3 \u2014 the income statement, DCF, segments, assumptions and Monte Carlo sheets all have committed sources.",
-  "Item 4: re-point the three document parts. The skeleton is broadly right; section 4 is titled 'and a verdict' and section 3 leans on a calibration appendix depth-bar standard 4 forbids. The old builder resolves 13 forecast fields against the model's 7 \u2014 the four business-unit keys are gone for good (replaced by the eleven disclosed segments) and the income-statement keys now EXIST, so the re-binding is smaller than it was.",
-  "Item 5 the reconciliation script; item 6 the bibliography (a rendering job now the input register is generated); item 7 the QC gate.",
-  "BLOCKED, NOT FORGOTTEN: Appendix A.2/A.3 wait on the FY2026 audited statements or a corrected interim. engine/stc_study/balance_sheet.py asserts the finding so it fails if the June column ever foots.",
-  "Two documents remain on band_outstanding (EIPICO/PHAR, SCEM). GBCO is the last unreadable study on the valuation-gap ratchet; escalation default 2026-09-19. AMOC default 12-Sep; lens-registry 18-Sep."
+  "ADNOCDIST: the remaining verified findings from the QC audit \u2014 a cost-of-capital GLIDE described in eight delivered passages that the model retired (wacc == wacc_terminal exactly, beta_drift_frac 0.0), Table 12's ten-times unit error across every forecast cell (366.9 fils against a true 36.7), the dividend policy misstated in the two places its own register records as corrected, C.5 asserting all three experts above a price one of them sits below, and a price-cone claim false for three of the four methods it names. It carries no lens_record at all. This is a re-issue, not a fix in passing.",
+  "The negative-control audit's remaining findings: check_band_vocabulary's .docx arm is never exercised by any of its 22 cases (the sandbox stages no document), check_campaign_register's whole currency clause is dead code under its control, and check_coverage_floor has no clean case and two of its three reds now come from a different refusal than the one it was written to prove.",
+  "Re-run the four workflows that hit the session limit: 27 of ~100 agents finished. The workbook-population sweep and the answer audit both have 21 studies unstarted."
  ],
  "stop_and_ask": [
   "TMGH: two earnings releases could not be re-fetched from the company's own channels (FY2020 release: 502 via proxy on every retry; 1H2021 release: 404). They are not inputs to the delivered numbers \u2014 the audited statements for both periods were obtained and verified \u2014 so this blocks nothing; recorded for the morning list."
@@ -262,7 +260,7 @@
   "Phase 2 keeps the campaign's market order \u2014 principal, 03-Sep-2026."
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-05",
+ "updated": "2026-09-05T16:50:00Z",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md \u2014 it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",
@@ -297,5 +295,7 @@
   "wake": "trig_01U15XntjFZbQaGYn7vFKW7M \u2014 08:00 / 22:00 Cairo, into this session",
   "safety_net": "trig_01LRF1v3vuQBjFnRMPoi3rmg \u2014 22:05 Cairo, fresh session, acts only if STATE is >6h stale",
   "question_slot": "trig_01KkkkWuNQvo54szxH3inKbQ \u2014 09:00 Cairo Sun-Thu; silence is its correct output on most days"
- }
+ },
+ "head": "13c7569f",
+ "open_questions": []
 }
