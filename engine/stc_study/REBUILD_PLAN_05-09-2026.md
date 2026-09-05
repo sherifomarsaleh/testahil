@@ -60,8 +60,9 @@ nothing else. The ledger reads that artefact; no figure in it was copied from a 
 |---|---|---:|---:|---:|
 | 4 | R-MACRO-01 | 44.0502 | **41.7388** | −5.25% |
 | 5 | R-TERM-01 | 41.7388 | **40.4206** | −3.16% |
+| 5b | R-BRIDGE-01 | 40.4206 | **41.8568** | +3.55% |
 
-Cumulative **−14.20%** from the delivered 47.1108, and **−7.84%** against the latest known
+Cumulative **−11.15%** from the delivered 47.1108, and **−4.57%** against the latest known
 close of SAR 43.86.
 
 **Worth more than the plan expected, and the reason is the lens that was about to be
@@ -115,6 +116,34 @@ a failure because a study reported unreadable is one nobody looks at again. The 
 renamed to the house name and the census now globs like everything else, which also recovers
 the two other studies that name theirs differently.
 
+### Lever 5b, and the largest line was not stale but wrong by more than half
+
+The bridge stood on a first-quarter net-debt figure and a 31 March 2026 minority while a
+reviewed 30 June 2026 balance sheet was already published — in the same document set this
+rebuild had just read to source the debt book. That is the stale-sheet defect [R-BRIDGE-01]
+was written for, and it is the smaller half of what was found.
+
+**Associates and joint ventures were carried at SAR 4,641mn against a filed 12,909.648mn.**
+That is a figure from before February 2025, when the group contributed the whole of its
+towers business to DIIC in exchange for 43.06% of it. **The towers business the entire 2024
+restatement was about had left the subsidiaries and arrived in the associates, and the
+bridge had followed it into neither** — the same event, missed twice, from opposite sides.
+
+Three more lines moved on the same sheet. The listed equity investment is taken at the fair
+value the company itself discloses (8,513.430, Level 1, note 9.1) rather than at a mark
+typed here; the investment funds it holds at fair value were omitted altogether; and the
+minority now comes out at its SHARE OF EQUITY VALUE — its own disclosed 2.021% of profit,
+note 25 — rather than at historical cost, because the model capitalises 100% of subsidiary
+cash flow. The share count is footed against par at 4,993.024mn.
+
+**One thing is deliberately absent and the direction is stated.** STC Bank's cash and its
+digital-banking financial assets are excluded from net debt, because netting a bank's cash
+against group borrowings treats money that backs customer balances as though it were free.
+The cost is that the bank's own equity value appears in this bridge nowhere. That
+understates the answer, it is left as a gap rather than filled with a number nothing
+supports, and the same is true of the market cross-check on BGSM's look-through into a
+listed Malaysian operator, whose price this desk does not hold.
+
 ## The levers, in order
 
 | # | rule | what |
@@ -125,7 +154,7 @@ the two other studies that name theirs differently.
 | AUDIT ✅ | R-REBUILD-01 | STOP AND LOOK. Levers 2 and 3 pull opposite ways and the net is not predicted here. |
 | 4 ✅ | R-MACRO-01 | terminal growth stored as (real, inflation-path id) rather than the typed nominal 2.5%. Against a Saudi terminal inflation of 2.00% that is +0.5% real; on a pegged market this is likely to change what a reader can see rather than the number ([L-319]). |
 | 5 ✅ | R-TERM-01 | the terminal through engine/terminal_value.py on the DERIVED life in TERMINAL_EVIDENCE_05-09-2026.md — 20.86 years, base 15.23 years old, 73% of the depreciable base written off, on three filed years that each foot to the riyal. THE BASE IS OLD, at 1.46 times half its own implied life, so maintenance at current cost is a large multiple of the book charge. THE SIGN IS NOT PREDICTED [R-TERM-01 CLAUSE TWO CORRECTED]. |
-| 5b | R-BRIDGE-01 | **ADDED 5 September 2026, and the timing is recorded because it is the whole question.** The bridge stands on figures the company has since superseded: the study deducts net debt of SAR 7,063mn on a Q1-2026 basis and a minority of SAR 2,335mn at 31 March 2026, while a REVIEWED 30 June 2026 balance sheet was published carrying borrowings of SAR 23,536.554mn, cash of SAR 18,940.773mn and a minority of SAR 2,726.349mn. It also divides by 4,989.8mn shares, which is the 31 December 2025 count; note 17 of that same interim foots issued capital of SAR 50,000,000 thousand at SAR 10 par to 5,000,000 thousand shares and states 4,993.024mn outstanding. THIS WAS FOUND WHILE SOURCING THE DEBT BOOK FOR LEVER 2 AND BEFORE THE MODEL PRODUCED ANY REBUILT ANSWER — the plan is amended at a point where nobody could yet know which way it moves the value, which is the only condition under which adding a lever is not reshaping the route to suit where it lands. |
+| 5b ✅ | R-BRIDGE-01 | **ADDED 5 September 2026, and the timing is recorded because it is the whole question.** The bridge stands on figures the company has since superseded: the study deducts net debt of SAR 7,063mn on a Q1-2026 basis and a minority of SAR 2,335mn at 31 March 2026, while a REVIEWED 30 June 2026 balance sheet was published carrying borrowings of SAR 23,536.554mn, cash of SAR 18,940.773mn and a minority of SAR 2,726.349mn. It also divides by 4,989.8mn shares, which is the 31 December 2025 count; note 17 of that same interim foots issued capital of SAR 50,000,000 thousand at SAR 10 par to 5,000,000 thousand shares and states 4,993.024mn outstanding. THIS WAS FOUND WHILE SOURCING THE DEBT BOOK FOR LEVER 2 AND BEFORE THE MODEL PRODUCED ANY REBUILT ANSWER — the plan is amended at a point where nobody could yet know which way it moves the value, which is the only condition under which adding a lever is not reshaping the route to suit where it lands. |
 | 6 | R-LENS-03 | the four-lens blend retired. LENS_REGISTRY['telecom operator'] is a cash-flow primary cross-checked on own-history EV/EBITDA, a relative multiple and book — so the dividend-discount and normalised-earnings reads come OUT of the answer entirely. STC is the ONE of the seven unreadable studies whose class the registry holds. |
 | 7 | R-GAP-01 | re-struck on the latest known price, and the eight-heading review written before any file is staged. |
 

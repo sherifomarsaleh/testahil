@@ -135,7 +135,19 @@ rv252 = float(np.std(np.diff(np.log(close[-253:])), ddof=1) * np.sqrt(252))
 chg20 = float(close[-1]/close[-21]-1); chg60 = float(close[-1]/close[-61]-1)
 
 # ---------------- Valuation model -------------------------------------------
-SH = 4989.8          # mn shares outstanding net of ~10.2mn treasury (5,000 issued)
+# THE SHARE COUNT IS FOOTED AGAINST PAR OR IT IS NOT USED [R-FCAL-01]. Note 17 of the
+# reviewed 30 June 2026 interim states issued capital of SAR 50,000,000 thousand in shares
+# of SAR 10 each; 50,000,000 / 10 is 5,000,000 thousand shares, which is the number that
+# note itself states, and 6,976 thousand sit in treasury. The delivered study divided by
+# 4,989.798mn, the 31 December 2025 count.
+#
+# The interim's own balance sheet PRINTS share capital as 60,000,000, and it is an
+# EXTRACTION artefact of that page rather than a capital increase: note 17 says 50,000,000
+# at both dates, and only 50,000,000 makes the equity block foot to the stated 84,986,806.
+# Taken at face value it would have been a 20% rise in the share count that never happened.
+ISSUED_CAPITAL, PAR_VALUE, TREASURY_SHARES = 50_000_000.0, 10.0, 6_976.0
+SH = (ISSUED_CAPITAL / PAR_VALUE - TREASURY_SHARES) / 1000.0   # mn shares outstanding
+assert abs(SH - 4_993.024) < 1e-9
 TAX = 0.097          # normalized effective zakat+tax (FY23 9.5%, FY24 9.8%; FY25 −3.2% one-off credit)
 MKTCAP = spot * SH
 
@@ -314,11 +326,68 @@ tv = _t.tv
 pv_tv = tv * DF_TERMINAL
 ev = pv_sum + pv_tv
 # EV → equity bridge (marks)
-assoc = 4641.0        # investments in associates & JVs, 31-Dec-25 FS (incl. 43.06% DIIC/TAWAL)
-telefonica = 8630.0   # 9.97% Telefónica at €3.50 (6-Jul-26): 561mn sh × €3.50 × 4.40 SAR/EUR ≈ SAR 8.6bn (cost €2.1bn ≈ 8.5bn)
-net_debt = 7063.0     # Q1-26 IR basis (total debt 22,475 − IR cash 15,412, excl. stc bank cash 6.0bn)
-nci_v = 2335.0        # NCI book, 31-Mar-26 FS
-eq_dcf = ev + assoc + telefonica - net_debt - nci_v
+# ===== Enterprise value to equity, on the LATEST DISCLOSED sheet [R-BRIDGE-01] ======
+# Every line below is read from the REVIEWED interim statements for the six months to
+# 30 June 2026 - the latest balance sheet this company has published - except the minority
+# profit share, which is the FY2025 audited figure because a half-year share is not a rate.
+# The study this replaces stood on a 31 March 2026 minority and a first-quarter net-debt
+# figure, and carried associates at less than half what the accounts state.
+#
+# ASSOCIATES AND JOINT VENTURES AT BOOK. The delivered study carried SAR 4,641mn against a
+# filed 12,909.648mn - a figure from before February 2025, when the group contributed the
+# whole of its towers business to DIIC in exchange for 43.06% of it. The tower business the
+# entire 2024 restatement was about had left the subsidiaries and arrived in the associates,
+# and the bridge had followed it into neither. Note 8.1.4 splits the line: associates
+# 10,150.459 and joint ventures the remainder at 31 December 2025. Both are unlisted, so
+# book is the basis; the joint venture BGSM holds 62% of a LISTED Malaysian operator, and a
+# market cross-check on that look-through is not performed because the price is not held -
+# recorded as a gap rather than estimated.
+BR_ASSOC = 12_909.648
+# TELEFONICA AT THE COMPANY'S OWN DISCLOSED FAIR VALUE, not at a mark this desk computed.
+# The 9.97% holding is irrevocably designated at fair value through other comprehensive
+# income and note 9.1 states its Level 1 carrying amount, so the filed figure IS the market
+# value and a typed one is a worse estimate of the same thing.
+BR_LISTED_EQUITY = 8_513.430
+# Investment funds and unlisted equity investments at fair value, note 9.1. Outside the
+# telecom cash flows the model discounts, so they are added rather than left out.
+BR_FUNDS = 5_163.516
+
+# NET DEBT, AND THE BANK IS OUT OF THE PERIMETER - STATED, NOT ASSUMED. STC Bank is a
+# consolidated subsidiary, and netting a bank's cash against the group's borrowings treats
+# money that backs customer balances as though it were free. Its cash (6,000.384) and its
+# digital-banking financial assets (4,111.267) are excluded here, and so are its
+# digital-banking liabilities. THE COST IS THAT THE BANK'S OWN EQUITY VALUE APPEARS IN THIS
+# BRIDGE NOWHERE: that understates the answer, the direction is named, and it is left as a
+# gap rather than filled with a number nothing supports (SIGCM clause 8).
+BR_BORROWINGS = 23_536.554          # long-term 22,094.126 + short-term 1,442.428
+BR_LEASES = 2_258.902               # non-current 1,642.836 + current 616.066
+BR_CASH_NON_BANK = 12_940.389       # cash and cash equivalents, excluding STC Bank
+BR_MURABAHAS = 1_062.181            # short-term murabahas, its own balance-sheet line
+BR_SUKUK = 6_368.453                # financial assets at amortised cost, note 9.1
+BR_TBILLS = 492.070                 # treasury bills, note 9.1
+net_debt = (BR_BORROWINGS + BR_LEASES - BR_CASH_NON_BANK - BR_MURABAHAS
+            - BR_SUKUK - BR_TBILLS)
+
+# THE MINORITY AT ITS SHARE OF THE VALUE, NOT AT HISTORICAL COST. The model capitalises
+# 100% of subsidiary cash flow, so the minority's claim is worth its share of THAT, and
+# deducting book overstates the parent's equity by the difference. The proxy is the
+# minority's own disclosed share of profit - note 25, 306,915 against group net profit from
+# continuing operations of 15,189,078 - and book and the profit share are both published
+# beside the adopted figure so a reader sees the choice and not only its result. It comes
+# off EQUITY value and never off enterprise value: an equity share applied to an enterprise
+# number hands the minority growth assets it does not own.
+BR_NCI_PROFIT = 306.915
+BR_GROUP_PROFIT = 15_189.078
+BR_NCI_SHARE = BR_NCI_PROFIT / BR_GROUP_PROFIT
+BR_NCI_BOOK = 2_726.349             # 30 June 2026, published for comparison only
+
+_eq_before_nci = ev + BR_ASSOC + BR_LISTED_EQUITY + BR_FUNDS - net_debt
+nci_v = _eq_before_nci * BR_NCI_SHARE
+assoc, telefonica = BR_ASSOC, BR_LISTED_EQUITY      # the names the rest of the model uses
+eq_dcf = _eq_before_nci - nci_v
+# The bridge FOOTS to the stated equity value and divides to the stated per share, asserted
+# rather than asserted-in-prose [R-BRIDGE-01] clause (iv).
+assert abs((ev + BR_ASSOC + BR_LISTED_EQUITY + BR_FUNDS - net_debt - nci_v) - eq_dcf) < 1e-6
 dcf_ps = eq_dcf / SH
 
 def dcf_ps_at(wacc, g, ebitda_shift=0.0, capex_shift=0.0):
@@ -348,7 +417,8 @@ def dcf_ps_at(wacc, g, ebitda_shift=0.0, capex_shift=0.0):
             else TERM_IC_PER_UNIT_GROWTH),
     )).tv
     pvtv = tv_ / (1 + wacc) ** 5
-    return (pv + pvtv + assoc + telefonica - net_debt - nci_v) / SH
+    _e = pv + pvtv + BR_ASSOC + BR_LISTED_EQUITY + BR_FUNDS - net_debt
+    return _e * (1.0 - BR_NCI_SHARE) / SH
 
 # ===== DDM (cash-flow cross-check: the locked 0.55/q policy) ==================
 KE = KE_RATING
@@ -372,7 +442,8 @@ rel_evx = dict(bear=8.0, base=9.0, bull=10.0)
 rel = {}
 for k, x in rel_evx.items():
     ev_r = ebitda26 * x
-    rel[k] = (ev_r + assoc + telefonica - net_debt - nci_v) / SH
+    rel[k] = ((ev_r + BR_ASSOC + BR_LISTED_EQUITY + BR_FUNDS - net_debt)
+              * (1.0 - BR_NCI_SHARE) / SH)
 norm_pat = 14400.0
 norm_eps = norm_pat / SH
 norm = dict(bear=(13600/SH)*13.5, base=norm_eps*15.0, bull=(15200/SH)*16.5)
@@ -420,7 +491,11 @@ def e1_ps_at(fade, wacc_):
     ep_ = (rows[0]['nopat'] / ic - wacc_) * ic
     mult = 1.0 / (wacc_ + fade - TG)          # growing-fading EP perpetuity
     ev_ = ic + ep_ * mult
-    return (ev_ + assoc + telefonica - net_debt - nci_v) / SH
+    # The same bridge as the base, with the minority taken as its share of THIS value
+    # rather than as a constant: a fixed deduction against a moving enterprise value is
+    # the historical-cost construction [R-BRIDGE-01] retires, wearing a different hat.
+    _e = ev_ + BR_ASSOC + BR_LISTED_EQUITY + BR_FUNDS - net_debt
+    return _e * (1.0 - BR_NCI_SHARE) / SH
 e1_ps = e1_ps_at(FADE, WACC)
 e1_ev = ic + ep / (WACC + FADE - TG)
 e1 = dict(base=e1_ps, rng=(e1_ps_at(0.040, WACC + 0.005), e1_ps_at(0.010, WACC - 0.005)))
@@ -442,6 +517,70 @@ out = dict(
               chg20=chg20, chg60=chg60),
     levers_applied=LEVERS_APPLIED,
     coc_record=COCRUN.record(SCHED),
+    bridge_record=dict(
+        balance_sheet_date='2026-06-30',
+        latest_disclosed_date='2026-06-30',
+        latest_disclosed_source=(
+            "src/SOURCES.md, this study's own register of the primary documents: every "
+            "audited and reviewed set this company has published back to FY2023, each with "
+            "the URL it was fetched from and the date it carries. The latest is the "
+            "reviewed interim for the six months to 30 June 2026; the delivered study "
+            "stood on first-quarter figures while that one was already published."),
+        associates=dict(
+            basis='book', value=BR_ASSOC, listed=False,
+            note=('Note 8.1.4 splits the line: associates 10,150.459 and joint ventures '
+                  'the remainder at 31 December 2025. DIIC (43.06%, which holds the towers '
+                  'business contributed in February 2025), Arabsat, Beyond One and Devoteam '
+                  'Middle East are all unlisted, so book is the basis. The joint venture '
+                  'BGSM holds 62% of a LISTED Malaysian operator; a market cross-check on '
+                  'that look-through is NOT performed because the price is not held, and '
+                  'that is recorded as a gap rather than estimated (SIGCM clause 8).')),
+        nci=dict(
+            basis='value_share',
+            deduction=nci_v,
+            applied_to='equity_value',
+            book=BR_NCI_BOOK,
+            profit_share=BR_NCI_SHARE,
+            proportional=BR_NCI_SHARE,
+            proxy_source=(
+                "Note 25 of the FY2025 audited statements: the minority's own share of "
+                'profit, 306,915, against group net profit from continuing operations of '
+                '15,189,078, which is 2.021%. The subsidiaries carrying the minority — stc '
+                'Kuwait at 48.162%, Solutions at 20.363%, and STC Bank, iot2 and SCCC — are '
+                'not separately valued in this model, so the profit share is the proxy. Book '
+                'of 2,726.349 at 30 June 2026 is published beside it and is NOT the adopted '
+                'basis: the model capitalises 100% of subsidiary cash flow, so the minority '
+                'claim is worth its share of that value and not what it historically cost.')),
+        cash=dict(
+            treatment='added_at_face', weights_basis='gross',
+            note=('The discount-rate weights are GROSS: market-value equity over market '
+                  'capitalisation plus gross borrowings, so no cash is netted inside the '
+                  'rate and the cash added here is charged exactly once. STC Bank\'s cash '
+                  'of 6,000.384 and its digital-banking financial assets of 4,111.267 are '
+                  'EXCLUDED, because netting a bank\'s cash against group borrowings treats '
+                  'money that backs customer balances as though it were free; the cost is '
+                  "that the bank's own equity value appears in this bridge nowhere, which "
+                  'understates the answer, and it is left as a stated gap.')),
+        dividend=dict(deducted=False,
+                      note=('No dividend is deducted. The interim balance sheet is struck '
+                            'after the SAR 6,486.411mn paid in the half, so it is already '
+                            'out of the equity it would come out of.')),
+        lines=[
+            dict(name='enterprise value, discounted cash flow', value=ev),
+            dict(name='plus investments in associates and joint ventures, at book',
+                 value=BR_ASSOC),
+            dict(name='plus the listed equity investment at its disclosed fair value',
+                 value=BR_LISTED_EQUITY),
+            dict(name='plus investment funds and unlisted equity investments, at fair value',
+                 value=BR_FUNDS),
+            dict(name='less net debt', value=-net_debt),
+            dict(name='less the minority at its share of equity value', value=-nci_v),
+        ],
+        equity_value=eq_dcf, shares_mn=SH, per_share=dcf_ps,
+        net_debt_build=dict(borrowings=BR_BORROWINGS, leases=BR_LEASES,
+                            cash_non_bank=BR_CASH_NON_BANK, murabahas=BR_MURABAHAS,
+                            sukuk=BR_SUKUK, treasury_bills=BR_TBILLS, net=net_debt),
+    ),
     terminal_record=_t.record,
     hist=hist, seg_hist=seg_hist,
     drivers=dict(g_cbu=g_cbu, g_ebu=g_ebu, g_wc=g_wc, g_sub=g_sub, ebitda_m=ebitda_m,

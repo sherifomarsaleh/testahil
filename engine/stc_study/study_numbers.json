@@ -1,8 +1,8 @@
 {
  "spot": 44.72,
  "spot_date": "2026-08-31",
- "shares": 4989.8,
- "mktcap": 223143.856,
+ "shares": 4993.024,
+ "mktcap": 223288.03328,
  "step0": {
   "nonoverlap": {
    "n": 60,
@@ -576,6 +576,73 @@
   "weights_source": "Market-value equity, never book: the latest known close of SAR 43.86 on 2026-09-03 times 4,993,024 thousand shares outstanding \u2014 issued capital of SAR 50,000,000 thousand in shares of SAR 10 each, which divides to the 5,000,000 thousand shares note 17 of the reviewed 30 June 2026 interim itself states, less 6,976 thousand held in treasury. Debt is the borrowings total from the LATEST DISCLOSED balance sheet, 30 June 2026, SAR 23,536,554 thousand, which reproduces from the same interim's own financing cash flows to twelve basis points.",
   "sovereign_staleness_disclosed": "The Saudi sovereign quote on the house macro path carries an as-of date of 31 July 2026 and this schedule is struck on 5 September 2026, so it is 36 days old against the 14-day bound. It is accepted DELIBERATELY and the age is disclosed here rather than used quietly; refreshing the path is a macro-path task that moves every Saudi study at once, not a lever inside this one."
  },
+ "bridge_record": {
+  "balance_sheet_date": "2026-06-30",
+  "latest_disclosed_date": "2026-06-30",
+  "latest_disclosed_source": "src/SOURCES.md, this study's own register of the primary documents: every audited and reviewed set this company has published back to FY2023, each with the URL it was fetched from and the date it carries. The latest is the reviewed interim for the six months to 30 June 2026; the delivered study stood on first-quarter figures while that one was already published.",
+  "associates": {
+   "basis": "book",
+   "value": 12909.648,
+   "listed": false,
+   "note": "Note 8.1.4 splits the line: associates 10,150.459 and joint ventures the remainder at 31 December 2025. DIIC (43.06%, which holds the towers business contributed in February 2025), Arabsat, Beyond One and Devoteam Middle East are all unlisted, so book is the basis. The joint venture BGSM holds 62% of a LISTED Malaysian operator; a market cross-check on that look-through is NOT performed because the price is not held, and that is recorded as a gap rather than estimated (SIGCM clause 8)."
+  },
+  "nci": {
+   "basis": "value_share",
+   "deduction": 4237.755609656061,
+   "applied_to": "equity_value",
+   "book": 2726.349,
+   "profit_share": 0.020206295602669237,
+   "proportional": 0.020206295602669237,
+   "proxy_source": "Note 25 of the FY2025 audited statements: the minority's own share of profit, 306,915, against group net profit from continuing operations of 15,189,078, which is 2.021%. The subsidiaries carrying the minority \u2014 stc Kuwait at 48.162%, Solutions at 20.363%, and STC Bank, iot2 and SCCC \u2014 are not separately valued in this model, so the profit share is the proxy. Book of 2,726.349 at 30 June 2026 is published beside it and is NOT the adopted basis: the model capitalises 100% of subsidiary cash flow, so the minority claim is worth its share of that value and not what it historically cost."
+  },
+  "cash": {
+   "treatment": "added_at_face",
+   "weights_basis": "gross",
+   "note": "The discount-rate weights are GROSS: market-value equity over market capitalisation plus gross borrowings, so no cash is netted inside the rate and the cash added here is charged exactly once. STC Bank's cash of 6,000.384 and its digital-banking financial assets of 4,111.267 are EXCLUDED, because netting a bank's cash against group borrowings treats money that backs customer balances as though it were free; the cost is that the bank's own equity value appears in this bridge nowhere, which understates the answer, and it is left as a stated gap."
+  },
+  "dividend": {
+   "deducted": false,
+   "note": "No dividend is deducted. The interim balance sheet is struck after the SAR 6,486.411mn paid in the half, so it is already out of the equity it would come out of."
+  },
+  "lines": [
+   {
+    "name": "enterprise value, discounted cash flow",
+    "value": 188070.28718908646
+   },
+   {
+    "name": "plus investments in associates and joint ventures, at book",
+    "value": 12909.648
+   },
+   {
+    "name": "plus the listed equity investment at its disclosed fair value",
+    "value": 8513.43
+   },
+   {
+    "name": "plus investment funds and unlisted equity investments, at fair value",
+    "value": 5163.516
+   },
+   {
+    "name": "less net debt",
+    "value": -4932.3629999999985
+   },
+   {
+    "name": "less the minority at its share of equity value",
+    "value": -4237.755609656061
+   }
+  ],
+  "equity_value": 205486.76257943036,
+  "shares_mn": 4993.024,
+  "per_share": 41.15477165329675,
+  "net_debt_build": {
+   "borrowings": 23536.554,
+   "leases": 2258.902,
+   "cash_non_bank": 12940.389,
+   "murabahas": 1062.181,
+   "sukuk": 6368.453,
+   "treasury_bills": 492.07,
+   "net": 4932.3629999999985
+  }
+ },
  "terminal_record": {
   "rule": "R-TERM-01",
   "inputs": {
@@ -908,12 +975,12 @@
   "wacc": 0.08132614912126104,
   "wacc_rating_basis": 0.08103215834431124,
   "tg": 0.02,
-  "assoc": 4641.0,
-  "telefonica": 8630.0,
-  "net_debt": 7063.0,
-  "nci": 2335.0,
-  "eq": 191943.28718908646,
-  "ps": 38.467130383800246,
+  "assoc": 12909.648,
+  "telefonica": 8513.43,
+  "net_debt": 4932.3629999999985,
+  "nci": 4237.755609656061,
+  "eq": 205486.76257943036,
+  "ps": 41.15477165329675,
   "wacc_build": {
    "rf": 0.0552,
    "default_spread": 0.0098,
@@ -971,9 +1038,9 @@
  },
  "lenses": {
   "dcf": {
-   "bear": 31.412835033155556,
-   "base": 38.467130383800246,
-   "bull": 47.171574587147376
+   "bear": 34.24748040554084,
+   "base": 41.15477165329675,
+   "bull": 49.677824385539466
   },
   "ddm": {
    "bear": 29.160467565141218,
@@ -981,19 +1048,19 @@
    "bull": 49.622266617523856
   },
   "relative": {
-   "bear": 42.05426333720789,
-   "base": 47.21402332758827,
-   "bull": 52.373783317968645
+   "bear": 44.66715252509355,
+   "base": 49.7193885388321,
+   "bull": 54.77162455257065
   },
   "normalized": {
-   "bear": 36.795061926329716,
-   "base": 43.28830814862319,
-   "bull": 50.262535572568034
+   "bear": 36.771303322395404,
+   "base": 43.26035684987695,
+   "bull": 50.23008100902379
   },
   "central": {
-   "bear": 34.05447420559727,
-   "base": 40.42061344670193,
-   "bull": 49.442881537989884
+   "bear": 35.56442620272239,
+   "base": 41.85677067352522,
+   "bull": 50.79314630163867
   },
   "weights": {
    "dcf": 0.35,
@@ -1005,14 +1072,14 @@
  "rel_basis": {
   "ebitda26": 25746.170399999995,
   "np26": 14088.533732909997,
-  "eps26": 2.823466618483706,
+  "eps26": 2.8216435035982195,
   "evx": {
    "bear": 8.0,
    "base": 9.0,
    "bull": 10.0
   },
   "norm_pat": 14400.0,
-  "norm_eps": 2.8858872099082125
+  "norm_eps": 2.8840237899917964
  },
  "sens": {
   "wacc_steps": [
@@ -1031,39 +1098,39 @@
   ],
   "table_wg": [
    [
-    44.82031071633693,
-    45.82218552349984,
-    47.01297628696161,
-    48.46125313495224,
-    50.2733386852373
+    47.37555838323359,
+    48.35655517212351,
+    49.52253110728426,
+    50.940627387522774,
+    52.71495097896769
    ],
    [
-    41.168736047737724,
-    41.81861921812049,
-    42.57100353323077,
-    43.459077963015154,
-    44.532093448182465
+    43.800078693878454,
+    44.43641898184761,
+    45.17312439839005,
+    46.04269229019159,
+    47.09334726010653
    ],
    [
-    38.068376372851226,
-    38.467130383800246,
-    38.915205228344114,
-    39.42701485564129,
-    40.02319602828526
+    40.76432725694978,
+    41.15477165329675,
+    41.59350908888974,
+    42.09465314133205,
+    42.678410524768545
    ],
    [
-    35.40330357987099,
-    35.62028365167665,
-    35.85337255400455,
-    36.10686016751603,
-    36.38670798889417
+    38.154791780681066,
+    38.36725021577957,
+    38.59548179029841,
+    38.84368698829346,
+    39.11770307512092
    ],
    [
-    33.08796655743754,
-    33.171983379910856,
-    33.25125227311461,
-    33.324611922665696,
-    33.39048866062863
+    35.88770394898172,
+    35.96996994915439,
+    36.04758696191464,
+    36.11941787345088,
+    36.18392180941388
    ]
   ],
   "margin_steps": [
@@ -1082,39 +1149,39 @@
   ],
   "table_cm": [
    [
-    36.63324234746115,
-    36.28698657672197,
-    35.9407308059828,
-    35.594475035243626,
-    35.248219264504456
+    39.35909991669847,
+    39.02005975239728,
+    38.6810195880961,
+    38.34197942379491,
+    38.00293925949373
    ],
    [
-    37.89644213636988,
-    37.55018636563071,
-    37.20393059489153,
-    36.85767482415236,
-    36.511419053413185
+    40.595975949298804,
+    40.25693578499762,
+    39.917895620696434,
+    39.578855456395246,
+    39.239815292094065
    ],
    [
-    39.15964192527859,
-    38.81338615453942,
-    38.467130383800246,
-    38.12087461306107,
-    37.7746188423219
+    41.83285198189912,
+    41.49381181759794,
+    41.15477165329675,
+    40.81573148899556,
+    40.47669132469438
    ],
    [
-    40.42284171418732,
-    40.07658594344815,
-    39.73033017270898,
-    39.38407440196981,
-    39.037818631230635
+    43.06972801449946,
+    42.73068785019828,
+    42.39164768589709,
+    42.0526075215959,
+    41.71356735729472
    ],
    [
-    41.68604150309606,
-    41.33978573235688,
-    40.99352996161771,
-    40.64727419087854,
-    40.301018420139364
+    44.306604047099796,
+    43.96756388279861,
+    43.628523718497426,
+    43.28948355419624,
+    42.95044338989506
    ]
   ]
  },
@@ -1122,36 +1189,36 @@
   {
    "capex": "15.0%",
    "fcf": 11.469756987599999,
-   "div": 10.97756,
-   "cover": 1.0448366474517103
+   "div": 10.984652800000001,
+   "cover": 1.0441619955070403
   },
   {
    "capex": "16.5% (base FY26E)",
    "fcf": 10.255314987599997,
-   "div": 10.97756,
-   "cover": 0.9342071450850641
+   "div": 10.984652800000001,
+   "cover": 0.933603926707633
   },
   {
    "capex": "17.5% (top of guidance)",
    "fcf": 9.445686987599998,
-   "div": 10.97756,
-   "cover": 0.8604541435073002
+   "div": 10.984652800000001,
+   "cover": 0.8598985475080284
   }
  ],
- "div_bill": 10.97756,
+ "div_bill": 10.984652800000001,
  "experts": {
   "e1": {
-   "base": 33.904844902787154,
+   "base": 36.68755940793965,
    "rng": [
-    30.232011448215047,
-    39.79269219623433
+    33.09126394337386,
+    42.45271015037834
    ]
   },
   "e2": {
-   "base": 43.28830814862319,
+   "base": 43.26035684987695,
    "rng": [
-    36.795061926329716,
-    50.262535572568034
+    36.771303322395404,
+    50.23008100902379
    ]
   },
   "e3": {

@@ -30,7 +30,8 @@ LANDED = {
     'R-COC-01':   None,                                          # via the sensitivity artefact
     'R-BETA-04':  'fe76400fb6155c044e9e76ec32088303b5a59a6b',     # levers 1-3
     'R-MACRO-01': '518aee8b42d7bf9436844f14bc54aae91ec815cf',     # lever 4
-    'R-TERM-01':  None,                                          # the working tree, latest
+    'R-TERM-01':  'a8f1f4026c24385e06d9bc493f6f74e7607de52f',     # lever 5
+    'R-BRIDGE-01': None,                                         # the working tree, latest
 }
 
 
@@ -57,6 +58,7 @@ def at(rev):
 PUB = at(PUBLISHED_REV)
 AFTER_BETA = at(LANDED['R-BETA-04'])
 AFTER_MACRO = at(LANDED['R-MACRO-01'])
+AFTER_TERM = at(LANDED['R-TERM-01'])
 NOW = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 # The lever-2 intermediate, struck when the cost-of-capital schedule was in and the beta
 # was not. It is named for that lever set, so a later sensitivity run cannot overwrite the
@@ -179,7 +181,7 @@ led.apply(
 led.apply(
     name='the terminal rebuilt on the asset life the accounts themselves imply',
     rule='R-TERM-01',
-    after=NOW['lenses']['central']['base'],
+    after=AFTER_TERM['lenses']['central']['base'],
     why=(
         'The retired construction charged g x IC every year for ever, which read as a '
         'capital-maintenance programme with a replacement cycle of 1/g — a fact about the '
@@ -206,14 +208,64 @@ led.apply(
         'THE DIRECTION WAS NOT PREDICTED and [R-TERM-01 CLAUSE TWO CORRECTED] forbids '
         'predicting it: on this name the sanctioned terminal is SMALLER, and on the last '
         'name rebuilt it was about 5%% larger.'
-        % (NOW['dcf']['terminal_life_years'], NOW['dcf']['terminal_age_years'],
-           format(NOW['dcf']['terminal_maintenance'], ',.0f'),
-           format(NOW['dcf']['rows'][-1]['dna'], ',.0f'),
-           100 * NOW['dcf']['tv_pct'],
-           AFTER_MACRO['lenses']['dcf']['base'], NOW['lenses']['dcf']['base'],
-           AFTER_MACRO['lenses']['central']['base'], NOW['lenses']['central']['base'],
-           100 * (NOW['lenses']['central']['base']
+        % (AFTER_TERM['dcf']['terminal_life_years'], AFTER_TERM['dcf']['terminal_age_years'],
+           format(AFTER_TERM['dcf']['terminal_maintenance'], ',.0f'),
+           format(AFTER_TERM['dcf']['rows'][-1]['dna'], ',.0f'),
+           100 * AFTER_TERM['dcf']['tv_pct'],
+           AFTER_MACRO['lenses']['dcf']['base'], AFTER_TERM['lenses']['dcf']['base'],
+           AFTER_MACRO['lenses']['central']['base'],
+           AFTER_TERM['lenses']['central']['base'],
+           100 * (AFTER_TERM['lenses']['central']['base']
                   / AFTER_MACRO['lenses']['central']['base'] - 1))),
+)
+
+led.apply(
+    name='the bridge moved onto the latest disclosed balance sheet',
+    rule='R-BRIDGE-01',
+    after=NOW['lenses']['central']['base'],
+    why=(
+        'The bridge stood on a first-quarter net-debt figure and a 31 March 2026 minority '
+        'while a REVIEWED 30 June 2026 balance sheet was already published, in the same '
+        'document set this rebuild had just read to source the debt book. The largest line '
+        'was not stale but WRONG BY MORE THAN HALF: associates and joint ventures were '
+        'carried at SAR 4,641mn against a filed 12,909.648mn, a figure from before February '
+        '2025, when the group contributed the whole of its towers business to DIIC in '
+        'exchange for 43.06% of it. The towers business the entire 2024 restatement was '
+        'about had left the subsidiaries and arrived in the associates, and this bridge had '
+        'followed it into neither. Three further lines were corrected on the same sheet: '
+        'the listed equity investment is taken at the fair value the company itself '
+        'discloses rather than at a mark typed here; the investment funds it holds at fair '
+        'value were omitted altogether; and the minority now comes out at its SHARE OF '
+        'EQUITY VALUE rather than at historical cost, because the model capitalises 100% of '
+        'subsidiary cash flow.'),
+    evidence=(
+        'Associates and joint ventures 4,641 to %s at book (note 8.1.4, all unlisted); the '
+        'listed equity investment %s at its own disclosed Level 1 fair value against a '
+        'typed 8,630; investment funds and unlisted equity %s added; net debt %s, built '
+        'from borrowings %s and leases %s less non-bank cash %s, short-term murabahas %s, '
+        'sukuk %s and treasury bills %s. The minority is %.3f%% of equity value — its own '
+        'disclosed share of profit, note 25 — deducting %s against a book of %s. The share '
+        'count is 4,993.024mn, footed against par: issued capital of SAR 50,000,000 '
+        'thousand at SAR 10 gives the 5,000,000 thousand shares note 17 states, less 6,976 '
+        'thousand in treasury. The cash-flow read moves %.4f to %.4f and the blend %.4f to '
+        '%.4f, %+.2f%%.'
+        % (format(NOW['bridge_record']['associates']['value'], ',.3f'),
+           format(NOW['bridge_record']['lines'][2]['value'], ',.3f'),
+           format(NOW['bridge_record']['lines'][3]['value'], ',.3f'),
+           format(NOW['bridge_record']['net_debt_build']['net'], ',.3f'),
+           format(NOW['bridge_record']['net_debt_build']['borrowings'], ',.3f'),
+           format(NOW['bridge_record']['net_debt_build']['leases'], ',.3f'),
+           format(NOW['bridge_record']['net_debt_build']['cash_non_bank'], ',.3f'),
+           format(NOW['bridge_record']['net_debt_build']['murabahas'], ',.3f'),
+           format(NOW['bridge_record']['net_debt_build']['sukuk'], ',.3f'),
+           format(NOW['bridge_record']['net_debt_build']['treasury_bills'], ',.3f'),
+           100 * NOW['bridge_record']['nci']['profit_share'],
+           format(NOW['bridge_record']['nci']['deduction'], ',.3f'),
+           format(NOW['bridge_record']['nci']['book'], ',.3f'),
+           AFTER_TERM['lenses']['dcf']['base'], NOW['lenses']['dcf']['base'],
+           AFTER_TERM['lenses']['central']['base'], NOW['lenses']['central']['base'],
+           100 * (NOW['lenses']['central']['base']
+                  / AFTER_TERM['lenses']['central']['base'] - 1))),
 )
 
 rec = led.record()
