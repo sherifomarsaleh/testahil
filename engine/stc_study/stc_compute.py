@@ -810,6 +810,143 @@ scen = [(0.30, ddm_lens['bull'] * 1.02), (0.45, ddm_ps), (0.25, ddm_lens['bear']
 e3 = dict(base=sum(p * v_ for p, v_ in scen))
 
 # ---------------------------------------------------------------------------------------
+# THE FORECAST INCOME STATEMENT, DOWN TO NET PROFIT.
+#
+# The valuation never needed one — free cash flow to the firm runs off NOPAT, and NOPAT is
+# EBIT times one minus a tax rate without passing through a finance charge — so the model
+# projected EBITDA, depreciation, EBIT and stopped. Appendix A needs the rest, and building
+# it turned up something the valuation could not have seen.
+#
+# THE NET FINANCE RESULT HAS CHANGED SIGN. This company earned MORE finance income than it
+# paid in all three filed years (+414, +484, +151 million), so a model carrying FY2025
+# forward would credit itself with a net financial income in perpetuity. The reviewed half
+# to 30 June 2026 reports finance income of 604,264 against a finance cost of 710,681 — a
+# net CHARGE — because long-term borrowings went from 14,404,268 to 22,094,126 inside the
+# half, with 8,720,100 drawn. THE BOOK THAT PRODUCED THE CREDIT NO LONGER EXISTS.
+#
+# So the finance lines are anchored the way every other rate in this study is [R-ANCHOR-01]:
+# on the latest reviewed period, each leg corrected by the PRIOR YEAR'S OWN measured
+# half-to-year factor rather than by an assumed seasonality. The two legs are corrected
+# SEPARATELY and deliberately: their factors are 1.575 and 2.031, nothing like each other,
+# and a single factor on the net would be applied to a quantity that changes sign, which is
+# arithmetic without meaning.
+import income_statement as ISTMT
+
+H1_2026_FIN_INCOME, H1_2026_FIN_COST = 604_264.0, -710_681.0
+H1_2025_FIN_INCOME, H1_2025_FIN_COST = 810_438.0, -554_016.0
+SEASON_FIN_INCOME = ISTMT.FINANCE_INCOME[2] / H1_2025_FIN_INCOME
+SEASON_FIN_COST = ISTMT.FINANCE_COST[2] / H1_2025_FIN_COST
+FY26_FIN_INCOME = H1_2026_FIN_INCOME * SEASON_FIN_INCOME / 1000.0     # SAR millions
+FY26_FIN_COST = H1_2026_FIN_COST * SEASON_FIN_COST / 1000.0
+
+# THE EARLY RETIREMENT PROGRAMME IS NORMALISED, NOT DROPPED. It ran 862,842 / 2,577,256 /
+# 823,801 — a threefold swing, no year like another — and no filing calls it non-recurring,
+# which is what a company continuously restructuring its workforce looks like. Its own
+# three-year mean, escalated on the house ladder because it is a domestic wage cost.
+# THE FILED VALUES ARE ALREADY NEGATIVE — they are costs as the statement prints them — so
+# this is used AS IS. The first draft negated it, which turned a 1.4 billion charge into 1.4
+# billion of income and raised net profit by 2.8 billion; the footing assertion below passed
+# it, because a statement is internally consistent whichever way one of its lines points.
+# That is why the sign is asserted separately.
+EARLY_RET_BASE = ISTMT.early_retirement_mean() / 1000.0
+assert EARLY_RET_BASE < 0, 'the early retirement programme is a cost and must be negative'
+
+# ZAKAT AT THE RATE THE THREE YEARS TOGETHER IMPLY. FY2025's charge is a RELEASE of 466,436
+# after charges of 1,326,610 and 1,191,564, so its own-year ratio is negative; averaging
+# three ratios would give a third of the weight to a number that cannot recur, and taking
+# the latest year would forecast a permanent zakat credit.
+ZAKAT_RATE = ISTMT.effective_zakat_rate()
+
+_fin_inc, _fin_cst, _early = FY26_FIN_INCOME, FY26_FIN_COST, EARLY_RET_BASE
+for _i, _y in enumerate(yrs):
+    if _i:
+        # The financial legs and the programme all escalate on the house ladder and nothing
+        # else: no view is taken on the debt path beyond the level the reviewed half
+        # discloses, and holding it there is a STATED assumption rather than a free one.
+        _g = 1.0 + COCRUN.MACRO.inflation(FORECAST_YEARS[_i])
+        _fin_inc *= _g
+        _fin_cst *= _g
+        _early *= _g
+    _row = fc[_y]
+    _row['dna'] = _row['rev'] * DNA_SHARE
+    _row['ebit'] = _row['ebitda'] - _row['dna']
+    _row['early_retirement'] = _early
+    _row['fin_income'] = _fin_inc
+    _row['fin_cost'] = _fin_cst
+    _row['pbz'] = _row['ebit'] + _early + _fin_inc + _fin_cst
+    _row['zakat'] = -_row['pbz'] * ZAKAT_RATE
+    _row['net_profit'] = _row['pbz'] + _row['zakat']
+
+# THE STATEMENT MUST FOOT AT EVERY YEAR, and the check is the same one income_statement.py
+# runs on the filed columns: the lines above net profit sum to it.
+for _y in yrs:
+    _r = fc[_y]
+    _sum = (_r['ebitda'] - _r['dna'] + _r['early_retirement'] + _r['fin_income']
+            + _r['fin_cost'] + _r['zakat'])
+    assert abs(_sum - _r['net_profit']) < 1e-6, (_y, _sum, _r['net_profit'])
+    # A FOOTING CHECK IS NOT A SIGN CHECK and this pair is why: the statement foots
+    # whichever way its lines point, so each line's DIRECTION is asserted on its own.
+    assert _r['early_retirement'] < 0, (_y, 'the programme must be a charge')
+    assert _r['fin_income'] > 0 > _r['fin_cost'], (_y, 'the finance legs are mis-signed')
+    assert _r['zakat'] < 0, (_y, 'zakat is a charge on a profit')
+    assert _r['pbz'] < _r['ebit'], (_y, 'the lines below EBIT are a net charge on this '
+                                        'book, so profit before zakat cannot exceed it')
+
+# ONE LINE IS DELIBERATELY ABSENT FROM THE PROJECTION AND ITS ABSENCE IS THE HONEST READING.
+# The filed statement carries net other income, the share of associates, and net other gains
+# — 1,333,077 then 529,069 then 654,896 on the last of those alone, with no disclosed driver
+# behind any of them. Forecasting them would be inventing three lines; the study says so and
+# the projected net profit is therefore BELOW what the same company would report if they
+# recurred, which is stated rather than left for a reader to discover.
+FORECAST_IS_OMITS = ('net other income and expenses', 'net share in associates and joint '
+                     'ventures', 'net other gains')
+
+# THE LIKE-FOR-LIKE, so nobody has to reconstruct it. FY2025 as reported carries a net
+# margin the forecast does not reach, and almost all of the difference is the three omitted
+# lines plus a zakat CREDIT — none of which a forecast may carry. Rebuilt on the forecast's
+# own basis the filed year is directly comparable, and what remains is the finance swing.
+_fy25_like = (ISTMT.ebit(2) + ISTMT.EARLY_RETIREMENT[2] + ISTMT.net_finance(2)) / 1000.0
+_fy25_like_np = _fy25_like * (1.0 - ZAKAT_RATE)
+forecast_is_record = dict(
+    basis=('EBIT less the early retirement programme at its three-year mean, plus the net '
+           'finance result anchored on the reviewed half, less zakat at the rate the three '
+           'filed years together imply'),
+    omitted=list(FORECAST_IS_OMITS),
+    omitted_fy2025=[ISTMT.NET_OTHER[2] / 1000.0, ISTMT.ASSOCIATES[2] / 1000.0,
+                    ISTMT.OTHER_GAINS[2] / 1000.0],
+    zakat_rate=ZAKAT_RATE,
+    early_retirement_mean=EARLY_RET_BASE,
+    fy2026_finance=dict(income=FY26_FIN_INCOME, cost=FY26_FIN_COST,
+                        net=FY26_FIN_INCOME + FY26_FIN_COST,
+                        season_income=SEASON_FIN_INCOME, season_cost=SEASON_FIN_COST,
+                        fy2025_net=ISTMT.net_finance(2) / 1000.0),
+    fy2025_like_for_like_pbz=_fy25_like,
+    fy2025_like_for_like_net=_fy25_like_np,
+    fy2025_like_for_like_margin=_fy25_like_np / (ISTMT.REVENUE[2] / 1000.0),
+    fy2025_reported_net=ISTMT.NET_PROFIT_CONTINUING[2] / 1000.0,
+    fy2025_reported_margin=ISTMT.NET_PROFIT_CONTINUING[2] / ISTMT.REVENUE[2],
+    # THE BRIDGE FROM THE FILED YEAR TO THE FIRST FORECAST YEAR, on the like-for-like basis
+    # and asserted to close. Three moves, and two of them run against the first.
+    bridge_to_fy2026=dict(
+        ebit=fc[yrs[0]]['ebit'] - ISTMT.ebit(2) / 1000.0,
+        early_retirement=fc[yrs[0]]['early_retirement'] - ISTMT.EARLY_RETIREMENT[2] / 1000.0,
+        finance=(fc[yrs[0]]['fin_income'] + fc[yrs[0]]['fin_cost']
+                 - ISTMT.net_finance(2) / 1000.0),
+        total=fc[yrs[0]]['pbz'] - _fy25_like),
+    note=('The forecast opens at a net margin below the year it is anchored on, and the '
+          'reason is arithmetic rather than a view. FY2025 as REPORTED carries three lines '
+          'no forecast may project — net other income, the share of associates and net '
+          'other gains — and a zakat RELEASE rather than a charge. Rebuilt on this '
+          "forecast's own basis the filed year is directly comparable, and what is left of "
+          'the difference is the finance result, which has changed SIGN: the reviewed half '
+          'reports a net charge where every filed year reported a net credit, because '
+          'long-term borrowings went from 14,404,268 to 22,094,126 inside that half.'),
+)
+_b = forecast_is_record['bridge_to_fy2026']
+assert abs(_b['ebit'] + _b['early_retirement'] + _b['finance'] - _b['total']) < 1e-6, _b
+
+
+# ---------------------------------------------------------------------------------------
 # THE MACRO RECORD AND THE FORECAST-ANCHOR RECORD [R-MACRO-01, R-ANCHOR-01].
 #
 # BOTH THINGS THEY ATTEST WERE ALREADY TRUE HERE AND NEITHER WAS CHECKABLE FROM OUTSIDE,
@@ -1010,6 +1147,7 @@ out = dict(
     inputs=_INPUTS,
     macro_record=macro_record,
     forecast_anchor=forecast_anchor,
+    forecast_is=forecast_is_record,
     drivers=dict(
         # Per-segment REAL growth, measured from the company's own note 9 and deflated by
         # a published price index, fading to zero real by the last explicit year. Nominal

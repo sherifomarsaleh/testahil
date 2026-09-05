@@ -2618,6 +2618,41 @@
   ],
   "note": "The first forecast year is BUILT from the reviewed half rather than compared with it: the level, the gross margin and the operating-cost share all come from note 4 of that interim, each corrected by the prior year's OWN measured half-to-year factor rather than by an assumed seasonality. The reviewed half reports a gross margin of 48.958% and the first forecast year carries 49.145%; the difference is the measured seasonal correction, not a fade. The delivered study stood on a stale full year and sat 89 basis points BELOW an EBITDA margin the company had already reported for half the year."
  },
+ "forecast_is": {
+  "basis": "EBIT less the early retirement programme at its three-year mean, plus the net finance result anchored on the reviewed half, less zakat at the rate the three filed years together imply",
+  "omitted": [
+   "net other income and expenses",
+   "net share in associates and joint ventures",
+   "net other gains"
+  ],
+  "omitted_fy2025": [
+   7.042,
+   295.16,
+   654.896
+  ],
+  "zakat_rate": 0.05023336032701099,
+  "early_retirement_mean": -1421.2996666666668,
+  "fy2026_finance": {
+   "income": 951.7174030437861,
+   "cost": -1443.5913057402674,
+   "net": -491.8739026964813,
+   "season_income": 1.5750026528864638,
+   "season_cost": 2.0312788800323456,
+   "fy2025_net": 151.081
+  },
+  "fy2025_like_for_like_pbz": 13765.544,
+  "fy2025_like_for_like_net": 13074.054468150676,
+  "fy2025_like_for_like_margin": 0.16800664452524636,
+  "fy2025_reported_net": 15189.078,
+  "fy2025_reported_margin": 0.19518551298900938,
+  "bridge_to_fy2026": {
+   "ebit": 977.8042478304724,
+   "early_retirement": -597.4986666666667,
+   "finance": -642.9549026964813,
+   "total": -262.6493215326773
+  },
+  "note": "The forecast opens at a net margin below the year it is anchored on, and the reason is arithmetic rather than a view. FY2025 as REPORTED carries three lines no forecast may project \u2014 net other income, the share of associates and net other gains \u2014 and a zakat RELEASE rather than a charge. Rebuilt on this forecast's own basis the filed year is directly comparable, and what is left of the difference is the finance result, which has changed SIGN: the reviewed half reports a net charge where every filed year reported a net credit, because long-term borrowings went from 14,404,268 to 22,094,126 inside that half."
+ },
  "drivers": {
   "segment_real_growth": {
    "stc": 0.001602,
@@ -2733,7 +2768,15 @@
    "gp": 39678.27010769101,
    "sga": 13854.902395236271,
    "ebitda": 25823.36771245474,
-   "ebitda_margin": 0.319847256594818
+   "ebitda_margin": 0.319847256594818,
+   "dna": 10407.299464624268,
+   "ebit": 15416.068247830472,
+   "early_retirement": -1421.2996666666668,
+   "fin_income": 951.7174030437861,
+   "fin_cost": -1443.5913057402674,
+   "pbz": 13502.894678467323,
+   "zakat": -678.2957738411283,
+   "net_profit": 12824.598904626195
   },
   "FY27E": {
    "gross": 95247.16865747923,
@@ -2742,7 +2785,15 @@
    "gp": 40716.05950690653,
    "sga": 14240.769081523858,
    "ebitda": 26475.29042538267,
-   "ebitda_margin": 0.3190366010783908
+   "ebitda_margin": 0.3190366010783908,
+   "dna": 10697.148504556726,
+   "ebit": 15778.141920825945,
+   "early_retirement": -1451.1469596666666,
+   "fin_income": 971.7034685077056,
+   "fin_cost": -1473.9067231608128,
+   "pbz": 13824.79170650617,
+   "zakat": -694.4657432387977,
+   "net_profit": 13130.325963267373
   },
   "FY28E": {
    "gross": 97624.40113136098,
@@ -2751,7 +2802,15 @@
    "gp": 41685.197546650386,
    "sga": 14596.198215962402,
    "ebitda": 27088.999330687984,
-   "ebitda_margin": 0.3184831288736253
+   "ebitda_margin": 0.3184831288736253,
+   "dna": 10964.13396104222,
+   "ebit": 16124.865369645764,
+   "early_retirement": -1480.1698988599999,
+   "fin_income": 991.1375378778597,
+   "fin_cost": -1503.384857624029,
+   "pbz": 14132.448151039594,
+   "zakat": -709.9203602739722,
+   "net_profit": 13422.527790765622
   },
   "FY29E": {
    "gross": 99834.5646119905,
@@ -2760,7 +2819,15 @@
    "gp": 42604.75845874212,
    "sga": 14926.648225172105,
    "ebitda": 27678.11023357002,
-   "ebitda_margin": 0.3182052626065098
+   "ebitda_margin": 0.3182052626065098,
+   "dna": 11212.356005905971,
+   "ebit": 16465.75422766405,
+   "early_retirement": -1509.7732968372,
+   "fin_income": 1010.9602886354169,
+   "fin_cost": -1533.4525547765097,
+   "pbz": 14433.488664685756,
+   "zakat": -725.0426368689883,
+   "net_profit": 13708.446027816768
   },
   "FY30E": {
    "gross": 101831.25590423032,
@@ -2769,7 +2836,15 @@
    "gp": 43456.85362791696,
    "sga": 15225.181189675546,
    "ebitda": 28231.67243824141,
-   "ebitda_margin": 0.31820526260650966
+   "ebitda_margin": 0.31820526260650966,
+   "dna": 11436.603126024089,
+   "ebit": 16795.06931221732,
+   "early_retirement": -1539.968762773944,
+   "fin_income": 1031.1794944081253,
+   "fin_cost": -1564.12160587204,
+   "pbz": 14722.158437979462,
+   "zakat": -739.5434896063676,
+   "net_profit": 13982.614948373095
   }
  },
  "dcf": {
