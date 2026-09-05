@@ -188,10 +188,10 @@ r = dline(r, 'Terminal free cash flow', f"=SUM(B{TN}:B{TW})", bold=True); TFC = 
 r = dline(r, 'Terminal value', f"=B{TFC}*(1+{an('Terminal growth — DERIVED, terminal inflation + stated real growth')})/({an('WACC')}-{an('Terminal growth — DERIVED, terminal inflation + stated real growth')})"); TVR = r-1
 r = dline(r, 'PV of terminal value', f"=B{TVR}*F{DC['Discount factor']}"); PVT = r-1
 r = dline(r, 'Enterprise value — core operations', f"=B{SPV}+B{PVT}", bold=True); EVR = r-1
-r = dline(r, '% terminal of EV (device A-7)', f"=B{PVT}/B{EVR}", PCT, bold=True); TVP = r-1
+r = dline(r, '% terminal of enterprise value', f"=B{PVT}/B{EVR}", PCT, bold=True); TVP = r-1
 r = dline(r, '+ Investments in associates (DIIC/TAWAL 43.06%)', f"={an('Investments in associates and joint ventures')}")
 r = dline(r, '+ Telefónica 9.97% (market mark)', f"={an('Listed equity investment at its disclosed fair value')}")
-r = dline(r, '− Net debt (IR basis, Q1-26)', f"=-{an('Net debt')}")
+r = dline(r, '− Net debt, on the 30 June 2026 reviewed sheet', f"=-{an('Net debt')}")
 r = dline(r, '− Non-controlling interests', f"=-{an('Non-controlling interests, at their share of equity value')}")
 r = dline(r, '+ Investment funds and unlisted equity investments',
           f"={an('Investment funds and unlisted equity investments, at fair value')}")
@@ -205,7 +205,7 @@ r = dline(r, 'Equity value',
 r = dline(r, 'DCF fair value per share (SAR)', f"=B{EQR}/{an('Shares outstanding (mn)')}", PX, bold=True); PSR = r-1
 r = dline(r, 'Upside / (downside) vs spot', f"=B{PSR}/{an('Spot price (SAR/share)')}-1", PCT)
 put(ws, f'A{r+1}', 'WACC is built on Assumptions as Ke = rf + β×ERP blended with after-tax Kd (§3.5-G); the alternative CDS-based WACC '
-                   'is on Assumptions row 88. Terminal value is disclosed as % of EV above rather than blended away (device A-7).', SUB, None)
+                   'is on Assumptions row 88. Terminal value is disclosed as a share of enterprise value above rather than blended away.', SUB, None)
 json.dump(dict(DC=DC, SPV=SPV, TVR=TVR, PVT=PVT, EVR=EVR, EQR=EQR, PSR=PSR, TVP=TVP), open(os.path.join(HERE, '_dcf_rows.json'), 'w'))
 
 # ================= INCOME STATEMENT ==========================================

@@ -37,6 +37,7 @@ A_LISTED = an('Listed equity investment at its disclosed fair value')
 A_FUNDS = an('Investment funds and unlisted equity investments, at fair value')
 A_NETDEBT = an('Net debt')
 A_NCI = an('Non-controlling interests, at their share of equity value')
+A_FUNDS = an('Investment funds and unlisted equity investments, at fair value')
 A_NCISHARE = an('Minority share of equity value (proportional)')
 A_SHARES = an('Shares outstanding (mn)')
 A_SPOT = an('Spot price (SAR/share)')
@@ -87,21 +88,50 @@ r = 5
 rows = [
  ('Component', 'Basis', 'Value (SAR mn)', True),
  ('Core operations enterprise value', 'FCFF DCF (§1.1): Σ PV FCFF + PV terminal', f"=DCF!B{DCJ['EVR']}", False),
- ('  of which terminal value (device A-7)', '% of core EV', f"=DCF!B{DCJ['TVP']}", False),
+ ('  of which terminal value', '% of core enterprise value', f"=DCF!B{DCJ['TVP']}", False),
  ('+ Investments in associates & JVs', '43.06% DIIC/TAWAL at carrying value', f"={A_ASSOC}", False),
- ('+ Telefónica 9.97%', 'Market mark: 561mn sh × €3.50 × 4.40', f"={A_LISTED}", False),
- ('− Net debt (IR basis, Q1-26)', 'Total debt 22,475 − core cash 15,412', f"=-{A_NETDEBT}", False),
- ('− Non-controlling interests', 'Book, 31-Mar-26', f"=-{A_NCI}", False),
- ('Equity value', '', f"=C6+{A_ASSOC}+{A_LISTED}-{A_NETDEBT}-{A_NCI}", True),
- ('DCF fair value per share (SAR)', '', f'=C12/{A_SHARES}', True),
- ('Upside / (downside) vs spot', '', f'=C13/{A_SPOT}-1', True),
+ ('+ Telefónica 9.97%', 'Market mark on the disclosed stake', f"={A_LISTED}", False),
+ # THIS ROW WAS PRINTED NOWHERE AND THE TOTAL BELOW ADDED IT NOWHERE, while the DCF sheet's
+ # own bridge DID add it — so one workbook computed two different values per share from one
+ # model, 190,447 on the DCF sheet and 185,283 here, SAR 1.03 apart. The delivered document
+ # printed the same short bridge. A reader following the printed rows could not reach the
+ # printed answer, which is the one thing a waterfall must do.
+ ('+ Investment funds and unlisted equity investments', 'At fair value',
+  f"={A_FUNDS}", False),
+ # TWO LABELS NAMING A SUPERSEDED QUARTER on figures taken from the reviewed 30 June 2026
+ # sheet, and the minority is not book at all — it is its share of value, with book
+ # published beside it as the basis NOT adopted.
+ ('− Net debt', 'Total borrowings less cash, on the 30 June 2026 reviewed sheet',
+  f"=-{A_NETDEBT}", False),
+ ('− Non-controlling interests', 'At the minority\u2019s share of equity value, not at book',
+  f"=-{A_NCI}", False),
+ ('Equity value', '', f"=C6+{A_ASSOC}+{A_LISTED}+{A_FUNDS}-{A_NETDEBT}-{A_NCI}", True),
+ # THESE TWO REFERENCED C12 AND C13 BY POSITION and broke the moment a row was inserted
+ # above them: the per-share line started dividing the MINORITY by the share count. The
+ # map below is built from the list's own order before a cell is written, so a row added
+ # anywhere carries every reference with it.
+ ('DCF fair value per share (SAR)', '', '={EQ}/%s' % A_SHARES, True),
+ ('Upside / (downside) vs spot', '', '={PS}/%s-1' % A_SPOT, True),
 ]
+BR = {a.strip(): 5 + i for i, (a, _b, _c, _bold) in enumerate(rows)}
+_SUB = {'EQ': 'C%d' % BR['Equity value'],
+        'PS': 'C%d' % BR['DCF fair value per share (SAR)']}
+rows = [(a, b, (c.format(**_SUB) if isinstance(c, str) and '{' in c else c), bold)
+        for a, b, c, bold in rows]
+# THE BRIDGE'S ROWS ARE CAPTURED BY NAME AS THEY ARE WRITTEN. They were referenced
+# positionally from the Summary sheet, so adding the investment-funds row above moved the
+# per-share line and the Summary silently started reading the EQUITY VALUE instead —
+# 190,447 where it wanted 38.14. That is the same defect the Assumptions map already had,
+# in a second place: a hardcoded row number is a reference that breaks the moment anybody
+# inserts a line, and it breaks silently because the cell it lands on still holds a number.
+assert BR['Component'] == r, 'the row map must start where the table does'
 for a, b, c, bold in rows:
     put(ws, f'A{r}', a, BLACK, None, bold=bold)
     put(ws, f'B{r}', b, SUB if b else BLACK, None)
     if c: put(ws, f'C{r}', c,
               GREEN if isinstance(c, str) and ('DCF!' in c or 'Assumptions!' in c) else BLACK,
-              PCT if r in (7, 14) else (PX if r == 13 else NUM0), bold=bold)
+              PCT if r in (BR['of which terminal value'], BR['Upside / (downside) vs spot'])
+              else (PX if r == BR['DCF fair value per share (SAR)'] else NUM0), bold=bold)
     r += 1
 ws.column_dimensions['B'].width = 52; ws.column_dimensions['C'].width = 16
 r += 1
@@ -120,13 +150,19 @@ put(ws, f'C{r}', f"=G{DPS_L}*(1+{A_TGDIV})/({A_KE}-{A_TGDIV})", BLACK, PX); TV_D
 put(ws, f'A{r}', 'PV of terminal value'); put(ws, f'C{r}', f"=C{TV_D}/(1+{A_KE})^5", BLACK, PX); PVT_D = r; r += 1
 put(ws, f'A{r}', 'DDM fair value per share (SAR)', BLACK, None, True)
 put(ws, f'C{r}', f"=C{SPV_D}+C{PVT_D}", BLACK, PX, True); DDM_PS = r; r += 1
-put(ws, f'A{r}', '  terminal as % of DDM value (device A-7)'); put(ws, f'C{r}', f"=C{PVT_D}/C{DDM_PS}", BLACK, PCT); r += 2
+put(ws, f'A{r}', '  terminal as a share of the dividend-model value'); put(ws, f'C{r}', f"=C{PVT_D}/C{DDM_PS}", BLACK, PCT); r += 2
+# EVERY FIGURE IN THIS NOTE WAS TYPED AND MOST HAD GONE STALE: a cost of capital of 7.6%
+# against the schedule's 8.13%, a dividend cover quoted at the GUIDED capex band the model
+# no longer uses, and a core enterprise value that is not the one the sheet above computes.
+# A note beside a live model is read as the model speaking.
 put(ws, f'A{r}',
-    'Market-implied read: at spot, the market pays ≈ core EV of SAR 209bn for operations that produce ~SAR 10–11bn of '
-    'model FCFF — an implied core FCFF yield of ~5% against a 7.6% WACC, i.e. the market already prices a large share of '
-    'the terminal growth. The regular dividend (SAR 2.20 ≈ 5.0% yield) is ~0.9–1.0× covered by model FY26E FCF at the '
-    'guided capex band — the balance sheet (SAR 15.4bn core cash) carries the difference; §1.7 of the study sensitizes '
-    'this in real units.', SUB, None)
+    'What the market is paying, read off this sheet: at the spot price the market values '
+    'the whole equity above what these lines add to, and the difference is the disagreement '
+    'section 4 of the study takes apart. The regular dividend is covered %.2f to %.2f times '
+    'by first-year model free cash flow across the range of capital intensity this company '
+    'own three filed years actually ran — covered throughout that range, so the question is '
+    'whether the data-centre build takes intensity above anything it has yet run.'
+    % (D['cover'][-1]['cover'], D['cover'][0]['cover']), SUB, None)
 json.dump(dict(DDM_PS=DDM_PS), open(os.path.join(HERE, '_vb_rows.json'), 'w'))
 
 # ================= Relative & Normalized =====================================
@@ -166,8 +202,8 @@ for j, h in enumerate(['', 'Bear', 'Base', 'Bull', 'Role']):
 r += 1
 _PRIM = LR['primary']['kind']
 lens_rows = [
- ('dcf', 'Discounted cash flow', "='SOTP Bridge'!C13"),
- ('ddm', 'Dividend discount', "='SOTP Bridge'!C22"),
+ ('dcf', 'Discounted cash flow', "='SOTP Bridge'!C%d" % BR['DCF fair value per share (SAR)']),
+ ('ddm', 'Dividend discount', "='SOTP Bridge'!C%d" % DDM_PS),
  ('relative', 'Enterprise multiple on own history', f"='Relative & Normalized'!C{RELR}"),
  ('normalized', 'Normalised earnings power', f"='Relative & Normalized'!C{NORMR}"),
 ]
