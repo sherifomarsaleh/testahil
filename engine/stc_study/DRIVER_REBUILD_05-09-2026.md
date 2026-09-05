@@ -132,3 +132,47 @@ to group EBITDA is one line — selling, general and administrative cost — whi
 so EBITDA is built as gross profit less that cost at its three-year average share of
 revenue, and the EBITDA margin becomes an **output** of two sourced lines rather than an
 assumption typed above them.
+
+## Addendum, same day — the unit data exists, and it says the growth is volume
+
+The rule above sits at the disclosed segment level and flags that **volume times price** was
+out of reach because the financial statements carry no subscriber counts. **They do not; the
+earnings presentations do**, and those are now registered — see `src/SOURCES.md` for the
+route and for the correction that got there, which is that four failed URL guesses had been
+recorded as evidence the investor-relations channel no longer resolved.
+
+From the FY2025 presentation, KSA, and **every column foots to its own stated total**:
+
+| | Q4 2024 | Q4 2025 | growth |
+|---|---:|---:|---:|
+| prepaid mobile | 21.1 | 22.2 | |
+| postpaid mobile | 6.2 | 6.5 | |
+| machine-to-machine | 1.0 | 1.3 | |
+| **mobile subscribers, millions** | **28.3** | **30.0** | **+6.01%** |
+| fixed telephone lines | 3.9 | 4.1 | |
+| fixed-wired broadband | 1.3 | 1.4 | |
+| fixed-wireless broadband | 0.5 | 0.5 | |
+| **fixed subscribers, millions** | **5.7** | **6.0** | **+5.26%** |
+
+The components sum to the stated totals in both years and both computed growth rates
+reproduce the presentation's own stated 5.9% and 5.0% to the rounding of its chart labels.
+These are chart figures rather than a table, which is exactly where a text layer can be
+trusted least — so arithmetic is the arbiter, and it agrees.
+
+**And it changes what the segment rule is measuring.** The `stc` segment's revenue grew
+**2.97%** in FY2025 while the subscriber base it serves grew about **6%**. Revenue per
+subscriber therefore fell about **2.9%** — 1,754 riyals a year to 1,704 on mobile alone,
+1,460 to 1,420 across mobile and fixed together.
+
+So the +0.16% real growth this rule extrapolates for two thirds of the business is the NET
+of a volume line growing strongly and a price line falling. Extrapolating the net is not
+wrong, and it is what the rule does; but it hides the two forces inside it, and a build that
+projected them separately could say which one it expects to continue. **That is the next
+refinement of this rule and it is now sourced rather than blocked.**
+
+**One caution, recorded before anyone builds on it.** These are KSA subscriber counts and
+the `stc` segment is the KSA operating business, so the two line up — but the presentation's
+counts are explicitly *not audited*, they are read off a chart, and they are period-end
+stocks against a full-year revenue flow. Each of those is a reason to treat the derived
+revenue per subscriber as an INDICATOR rather than as a driver until the same figures are
+found in a table.

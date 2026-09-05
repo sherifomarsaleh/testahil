@@ -16,6 +16,8 @@ auditor's report from Deloitte and Touche & Co.; the 2026 sets are the reviewed 
 | `STC_FY2023_FS_en.txt` | year ended 31 Dec 2023, audited | `https://www.stc.com/content/dam/groupsites/ar/pdf/STC-2023-English-YE-FS-Final-Draft-AC-Copy-Final-Shared-with-report.pdf` |
 | `financial-statementsQ1-2026En.txt` | three months to 31 Mar 2026, reviewed | `https://www.stc.com/content/dam/groupsites/en/pdf/financial-statementsQ1-2026En.pdf` |
 | `financial-statementsQ2-2026En.txt` | six months to 30 Jun 2026, reviewed | `https://www.stc.com/content/dam/groupsites/en/pdf/financial-statementsQ2-2026En.pdf` |
+| `EarningsPresentationQ4-2025En.txt` | FY2025 earnings presentation (COMPANY_IR) | `https://www.stc.com/content/dam/groupsites/en/pdf/EarningsPresentationQ4-2025En.pdf` |
+| `EarningsPresentationQ2-2026En.txt` | H1-2026 earnings presentation (COMPANY_IR) | `https://www.stc.com/content/dam/groupsites/en/pdf/EarningsPresentationQ2-2026En.pdf` |
 
 All five carry a real text layer (64k–396k characters over 23–112 pages), so no OCR was
 needed; extraction was `pdftotext -layout`. Arithmetic remains the arbiter — anything that
@@ -38,6 +40,25 @@ the group site at `www.stc.com`, whose financial-statements page carries every s
 2010. The recent links sit inside an escaped JSON blob rather than as plain `href`s, so a
 naive scrape of the rendered anchors finds only the pre-2017 files — unescape twice before
 matching.
+
+## The investor-relations channel WAS reachable, and four guessed URLs said otherwise
+
+**Added 5 September 2026, and the correction matters more than the documents.** The section
+above records four investor-relations URLs that return the site's own 404 page with HTTP 200,
+and concluded that the path in the delivered study no longer resolves. That conclusion was
+true of those four URLs and FALSE of the site: `www.stc.com.sa/sitemap.xml` lists an entire
+investor section under `/content/stcgroupwebsite/sa/en/investors/`, including
+`financial-reports/presentations-and-report.html`, which carries every earnings presentation
+and call transcript back to 2017.
+
+**Four probes failing is not evidence that a thing does not exist** — it is evidence that
+four guesses were wrong, and the difference is exactly what [R-IND-01] means when it says
+the first hypothesis on an empty result is that the probe did not run. The sitemap was
+already the route that found the financial statements; nobody pointed it at the presentations.
+
+The two most recent are now registered. They carry what no financial statement does: **mobile
+and fixed subscriber counts by category**, which is the unit data SIGCM clause 2 asks for and
+which the segment panel cannot supply.
 
 ## What is still needed before this study can be rebuilt
 
