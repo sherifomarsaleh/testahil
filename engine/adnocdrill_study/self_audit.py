@@ -163,5 +163,15 @@ f = findings[-1]
 print(f'{"ALL":<6}{"the two priced findings applied together":<72}'
       f'AED {f["central"]:5.2f} {f["delta"]:+6.2f}  {f["pct"]:+6.1%}')
 
-json.dump(dict(base=FV, spot=SPOT, findings=findings),
+# [R-ENF-06] THE ANSWER THIS ARTEFACT WAS BUILT AGAINST, read from the study's own
+# committed numbers rather than typed, so it cannot drift from them. A builder reads
+# this file and nothing said what it was current WITH, so a stale copy would have had
+# the shape of a computed record — which is worse than a typed numeral, because a typed
+# numeral is what the numeric-traceability gate already catches.
+_PUB = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                   'study_numbers.json'), encoding='utf-8'))
+_PUB_C, _PUB_S = _PUB['central'], _PUB['spot']
+
+json.dump(dict(base=FV, spot=SPOT, findings=findings,
+               published_central=_PUB_C, published_spot=_PUB_S),
           open(os.path.join(HERE, 'self_audit.json'), 'w'), indent=1)

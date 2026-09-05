@@ -678,6 +678,18 @@ print(f'  central {central["base"]:.2f} [{central["bear"]:.2f}-{central["bull"]:
 
 # ============================ EMIT ===========================================
 out = dict(
+    # THE ANSWER, WHERE THE SHARED READER LOOKS FOR IT. [R-GAP-01]'s gate reads a study's
+    # own numbers for a central; this study carried its spot at the top level and its
+    # central at lenses.central.base, so the gate could see neither pair and THE LARGEST
+    # GAP IN THE BOOK WAS INVISIBLE FOR A MONTH. An unreadable answer is not a clean
+    # answer [R-ENF-04].
+    #
+    # NOTHING HERE ENDORSES THE NUMBER. GAP_REVIEW_05-09-2026.md establishes that the
+    # published central is not a valuation at all: two of the four lenses are pinned at
+    # floors (max(...,0.01) and max(...,0.05) at lines 389 and 493) and carry 60% of the
+    # weight while producing 4.2% of the answer; unfloored the same blend is -0.7055. The
+    # figure below is what a reader receives today, which is what the gate audits.
+    central=lens['central']['base'],
     spot=SPOT, spot_date=tech['spot_date'], shares=SH, mktcap=MKTCAP, fx=V['fx'], tax=TAX,
     inputs={k: INP[k] for k in INP},
     hist_is=hist_is,

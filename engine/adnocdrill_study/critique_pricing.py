@@ -17,7 +17,8 @@ thing changed and reports the move in the weighted central, in dirhams per share
 and as a percentage of it. Findings that touch no number are priced at zero
 explicitly rather than being called immaterial without one.
 """
-import json, os, sys
+import json
+import os, os, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -295,5 +296,15 @@ for c in ('A', 'B'):
     C.FLEET[c]['regional'] = dict(orig_reg[c])
 C.INP['rev_per_rig_regional']['value'] = orig_rate
 
-json.dump(dict(base=BASE, spot=SPOT, rows=ROWS),
+# [R-ENF-06] THE ANSWER THIS ARTEFACT WAS BUILT AGAINST, read from the study's own
+# committed numbers rather than typed, so it cannot drift from them. A builder reads
+# this file and nothing said what it was current WITH, so a stale copy would have had
+# the shape of a computed record — which is worse than a typed numeral, because a typed
+# numeral is what the numeric-traceability gate already catches.
+_PUB = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                   'study_numbers.json'), encoding='utf-8'))
+_PUB_C, _PUB_S = _PUB['central'], _PUB['spot']
+
+json.dump(dict(base=BASE, spot=SPOT, rows=ROWS,
+               published_central=_PUB_C, published_spot=_PUB_S),
           open(os.path.join(HERE, 'critique_pricing.json'), 'w'), indent=1)
