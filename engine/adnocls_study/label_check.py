@@ -48,7 +48,35 @@ def cells(doc):
                     yield f'table {ti} r{ri}c{ci}', c.text
 
 
+def xlsx_cells(path):
+    """String cells only, formulas skipped — modelled on engine/stc_study/scrub.py [L-350]."""
+    import openpyxl
+    wb = openpyxl.load_workbook(path, data_only=False, read_only=True)
+    for ws in wb.worksheets:
+        for ri, row in enumerate(ws.iter_rows(values_only=True), start=1):
+            for ci, v in enumerate(row, start=1):
+                if isinstance(v, str) and not v.startswith('=') and v.strip():
+                    yield f'{ws.title}!r{ri}c{ci}', v
+    wb.close()
+
+
 def main(path):
+    if path.lower().endswith(('.xlsx', '.xlsm')):
+        blocks = list(xlsx_cells(path))
+        hits = []
+        for where, text in blocks:
+            for pat, label in BANNED:
+                flags = 0 if label in CASE_SENSITIVE else re.IGNORECASE
+                for mt in re.finditer(pat, text, flags):
+                    s = max(0, mt.start() - 45)
+                    hits.append((label, where, text[s:mt.end() + 45].replace('\n', ' ')))
+        if hits:
+            print(f'{len(hits)} HITS')
+            for label, where, ctx in hits:
+                print(f'  [{label}] {where}: ...{ctx}...')
+            return 1
+        print(f'scrub clean: 0 hits across {len(blocks)} workbook string cells')
+        return 0
     doc = Document(path)
     hits = []
     for where, text in cells(doc):

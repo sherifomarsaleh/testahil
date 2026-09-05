@@ -12,6 +12,9 @@ from PIL import Image
 HERE = os.path.dirname(os.path.abspath(__file__))
 STUDY = os.path.join(HERE, 'ADNOCLS_Valuation_Study_09-08-2026_public.docx')
 BIB = os.path.join(HERE, 'ADNOCLS_Bibliography_09-08-2026.docx')
+# THE WORKBOOK IS A DELIVERED DOCUMENT AND EVERY SCRUB IN THE BOOK EXCLUDED IT [L-350]. A
+# reader receives three files and this scan named two, so the third was scanned by nothing.
+XLSX = os.path.join(HERE, 'ADNOCLS_Valuation_Model_09082026_public.xlsx')
 TEXT_WIDTH = 7.0            # 8.5in page less 0.75in margins each side
 BIB_WIDTH = 7.1             # bibliography uses 0.7in margins
 
@@ -36,6 +39,21 @@ BANNED = [
 CASE_BANNED = [r'\bPARITY\b', r'\bBOUNDARY\b', r'\bFAIL\b(?! )']
 
 def doc_text(path):
+    if path.lower().endswith(('.xlsx', '.xlsm')):
+        # ONLY STRING CELLS ARE READ: a numeric cell is a model output another gate already
+        # reconciles, and a formula is not a sentence. A numeral inside a label, caption or
+        # source note is prose that happens to live in a spreadsheet, and that is what a
+        # scrub is for. Modelled on engine/stc_study/scrub.py.
+        import openpyxl
+        wb = openpyxl.load_workbook(path, data_only=False, read_only=True)
+        parts = []
+        for ws in wb.worksheets:
+            for row in ws.iter_rows(values_only=True):
+                for v in row:
+                    if isinstance(v, str) and not v.startswith('='):
+                        parts.append(v)
+        wb.close()
+        return None, '\n'.join(parts)
     d = Document(path)
     parts = [p.text for p in d.paragraphs]
     for t in d.tables:
@@ -49,7 +67,7 @@ fails = []
 # ---- (k)/(m) procedure-reference scrub --------------------------------------
 print('=' * 74)
 print('(k)+(m)  internal-procedure vocabulary scrub')
-for label, path in [('study', STUDY), ('bibliography', BIB)]:
+for label, path in [('study', STUDY), ('bibliography', BIB), ('workbook', XLSX)]:
     _, txt = doc_text(path)
     low = txt.lower()
     hits = []
@@ -135,11 +153,11 @@ for label, path in [('study', STUDY), ('bibliography', BIB)]:
 # The result is now a file, it NAMES THE FILES IT SCANNED, and the model refuses to attest
 # on a result that covers an edition nobody receives.
 json.dump({
-    'files': [os.path.basename(STUDY), os.path.basename(BIB)],
+    'files': [os.path.basename(STUDY), os.path.basename(BIB), os.path.basename(XLSX)],
     'clean': not fails,
     'hits': sorted(set(fails)),
     'patterns': len(BANNED),
-    'chars': sum(len(doc_text(p)[1]) for p in (STUDY, BIB)),
+    'chars': sum(len(doc_text(p)[1]) for p in (STUDY, BIB, XLSX)),
 }, open(os.path.join(HERE, 'scrub_result.json'), 'w'), indent=1)
 
 print('=' * 74)
