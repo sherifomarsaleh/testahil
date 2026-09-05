@@ -71,6 +71,8 @@ on:
       - 'engine/research_sweep.py'
       - 'scripts/check_prose_figures.py'
       - 'scripts/check_prose_figures_negative_control.py'
+      - 'scripts/check_workbook_values.py'
+      - 'scripts/check_workbook_values_negative_control.py'
       - 'scripts/check_table_footing.py'
       - 'scripts/check_table_footing_negative_control.py'
       - 'scripts/check_waterfall_assertions.py'
@@ -181,6 +183,8 @@ on:
       - 'engine/research_sweep.py'
       - 'scripts/check_prose_figures.py'
       - 'scripts/check_prose_figures_negative_control.py'
+      - 'scripts/check_workbook_values.py'
+      - 'scripts/check_workbook_values_negative_control.py'
       - 'scripts/check_table_footing.py'
       - 'scripts/check_table_footing_negative_control.py'
       - 'scripts/check_waterfall_assertions.py'
@@ -526,6 +530,27 @@ jobs:
       # the file would have reported clean
       - name: Prose-figure gate — negative control
         run: python3 scripts/check_prose_figures_negative_control.py
+
+      # THE DELIVERED WORKBOOK MUST PUBLISH THE ANSWER THE STUDY PUBLISHES, and that is
+      # checked by RUNNING each study's own recalculation rather than noting that it has
+      # one. Depth-bar standard 3 has required an independent recalculation since the
+      # standard was written, twenty-two of twenty-four studies carry the instrument, and
+      # measured on 05-Sep-2026 no gate anywhere ran any of them: every mention of the
+      # word outside a study directory was a sentence in a comment. SWDY's workbook
+      # published SAR 59.31 where its document published 55.48, +6.9%, with zero formula
+      # errors — its own recalc.py names all 27 disagreeing cells in under a second and
+      # had simply not been run since the rebuild. AMOC's refuses outright, still written
+      # for a nine-sheet workbook the study replaced with a sixteen-sheet one, which is
+      # L-066/L-067 on that same study for the third time.
+      - name: Workbook-values gate
+        run: python3 scripts/check_workbook_values.py
+
+      # and the proof it can go red, on ten conditions — among them the two that matter:
+      # a study whose script EXISTS and is RED, and a red check excused by the allowance
+      # for an ABSENT one, which would let a study escape a real disagreement by being
+      # re-filed as merely unchecked
+      - name: Workbook-values gate — negative control
+        run: python3 scripts/check_workbook_values_negative_control.py
 
       # EVERY TOTAL A READER SEES IS REPRODUCIBLE FROM THE ROWS PRINTED ABOVE IT.
       # Three defects were found in ARCC on 03-Sep-2026 by rendering the delivered PDF and
