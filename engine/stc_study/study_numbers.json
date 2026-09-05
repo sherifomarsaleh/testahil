@@ -469,6 +469,12 @@
   "chg20": 0.01821493624772308,
   "chg60": 0.016363636363636358
  },
+ "levers_applied": [
+  "mechanical",
+  "R-COC-01",
+  "R-BETA-04",
+  "R-MACRO-01"
+ ],
  "coc_record": {
   "market": "SA",
   "regime": "pegged",
@@ -569,6 +575,45 @@
   ],
   "weights_source": "Market-value equity, never book: the latest known close of SAR 43.86 on 2026-09-03 times 4,993,024 thousand shares outstanding \u2014 issued capital of SAR 50,000,000 thousand in shares of SAR 10 each, which divides to the 5,000,000 thousand shares note 17 of the reviewed 30 June 2026 interim itself states, less 6,976 thousand held in treasury. Debt is the borrowings total from the LATEST DISCLOSED balance sheet, 30 June 2026, SAR 23,536,554 thousand, which reproduces from the same interim's own financing cash flows to twelve basis points.",
   "sovereign_staleness_disclosed": "The Saudi sovereign quote on the house macro path carries an as-of date of 31 July 2026 and this schedule is struck on 5 September 2026, so it is 36 days old against the 14-day bound. It is accepted DELIBERATELY and the age is disclosed here rather than used quietly; refreshing the path is a macro-path task that moves every Saudi study at once, not a lever inside this one."
+ },
+ "terminal_record": {
+  "rule": "R-TERM-01",
+  "inputs": {
+   "nopat": 16863.13771266538,
+   "wacc": 0.08132614912126104,
+   "inflation": 0.02,
+   "real_growth": 0.0,
+   "dna_book": 11671.606943982128,
+   "ic_replacement": null,
+   "useful_life_years": 20.862788325368726,
+   "useful_life_source": "Derived from note 10 of the FY2025 audited statements: depreciable gross cost of SAR 134,634,729 thousand \u2014 total cost of 141,541,105 less capital work in progress of 4,910,376 and land of 1,996,000, both disclosed separately in the same note \u2014 over the year's own charge of SAR 6,453,343 thousand. The company discloses RANGES rather than one life (buildings 25-50 years, telecommunication network and equipment 3-30, other assets 2-20, note 4.11), so a single figure has to come from the identity; 19.54 and 19.84 years stand behind it on the two earlier filed years.",
+   "average_age_years": 15.225406428884998,
+   "average_age_source": "Note 10 of the FY2025 audited statements, the property and equipment roll-forward: accumulated depreciation of SAR 98,254,770 thousand over the year's own charge of SAR 6,453,343 thousand. An identity off the accounts, not a figure this desk chose, and the same note gives 14.18 and 13.60 years on the two years behind it.",
+   "maintenance_basis": "book_dna_escalated",
+   "maintenance_capex": null,
+   "working_capital": 13555.044,
+   "incremental_capital_per_unit_growth": null,
+   "floor_exemption": "",
+   "floor_exemption_disclosure": ""
+  },
+  "fcff": 12484.92397097469,
+  "tv": 207654.0371907886,
+  "floor": 207351.97590041626,
+  "tv_vs_floor": 0.001456756267022019,
+  "nominal_growth": 0.020000000000000018,
+  "real_growth": 0.0,
+  "maintenance": 15778.719805672814,
+  "maintenance_age_years": 15.225406428884998,
+  "maintenance_age_basis": "measured",
+  "maintenance_escalator": 1.3518892369664925,
+  "growth_capex": 0.0,
+  "wc_charge": 271.10088,
+  "dna_addback": 11671.606943982128,
+  "net_capital_charge": 4378.213741690686,
+  "implied_cycle_years": null,
+  "one_over_g": 49.99999999999996,
+  "payout_of_nopat": 0.7403677882318219,
+  "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
  },
  "hist": {
   "rev": {
@@ -850,10 +895,16 @@
    }
   ],
   "pv_sum": 47608.93274670421,
-  "tv": 235436.78523080662,
-  "pv_tv": 159254.16229059626,
-  "ev": 206863.09503730046,
-  "tv_pct": 0.7698529419270286,
+  "tv": 207654.0371907886,
+  "pv_tv": 140461.35444238226,
+  "ev": 188070.28718908646,
+  "tv_pct": 0.7468556386111218,
+  "nopat_term": 16863.13771266538,
+  "ic_repl": 182011.2410570005,
+  "terminal_maintenance": 15778.719805672814,
+  "terminal_fcff": 12484.92397097469,
+  "terminal_life_years": 20.862788325368726,
+  "terminal_age_years": 15.225406428884998,
   "wacc": 0.08132614912126104,
   "wacc_rating_basis": 0.08103215834431124,
   "tg": 0.02,
@@ -861,8 +912,8 @@
   "telefonica": 8630.0,
   "net_debt": 7063.0,
   "nci": 2335.0,
-  "eq": 210736.09503730046,
-  "ps": 42.2333750926491,
+  "eq": 191943.28718908646,
+  "ps": 38.467130383800246,
   "wacc_build": {
    "rf": 0.0552,
    "default_spread": 0.0098,
@@ -920,9 +971,9 @@
  },
  "lenses": {
   "dcf": {
-   "bear": 32.77669516144569,
-   "base": 42.2333750926491,
-   "bull": 60.540292345310654
+   "bear": 31.412835033155556,
+   "base": 38.467130383800246,
+   "bull": 47.171574587147376
   },
   "ddm": {
    "bear": 29.160467565141218,
@@ -940,9 +991,9 @@
    "bull": 50.262535572568034
   },
   "central": {
-   "bear": 34.53182525049882,
-   "base": 41.73879909479903,
-   "bull": 54.12193275334703
+   "bear": 34.05447420559727,
+   "base": 40.42061344670193,
+   "bull": 49.442881537989884
   },
   "weights": {
    "dcf": 0.35,
@@ -980,39 +1031,39 @@
   ],
   "table_wg": [
    [
-    46.81166890355634,
-    50.536196051034466,
-    55.06470263952524,
-    60.689006122907706,
-    67.86158918434505
+    44.82031071633693,
+    45.82218552349984,
+    47.01297628696161,
+    48.46125313495224,
+    50.2733386852373
    ],
    [
-    42.955646623810985,
-    46.01532224632294,
-    49.67112200339311,
-    54.11606565142236,
-    59.63658583937715
+    41.168736047737724,
+    41.81861921812049,
+    42.57100353323077,
+    43.459077963015154,
+    44.532093448182465
    ],
    [
-    39.68273367082029,
-    42.2333750926491,
-    45.2368508483745,
-    48.825501180246185,
-    53.18880047386909
+    38.068376372851226,
+    38.467130383800246,
+    38.915205228344114,
+    39.42701485564129,
+    40.02319602828526
    ],
    [
-    36.870262749344775,
-    39.02320416822238,
-    41.52720976603944,
-    44.4757700932108,
-    47.9988056883796
+    35.40330357987099,
+    35.62028365167665,
+    35.85337255400455,
+    36.10686016751603,
+    36.38670798889417
    ],
    [
-    34.4277105334452,
-    36.26452940771886,
-    38.3782856435926,
-    40.836716421429536,
-    43.73161069201198
+    33.08796655743754,
+    33.171983379910856,
+    33.25125227311461,
+    33.324611922665696,
+    33.39048866062863
    ]
   ],
   "margin_steps": [
@@ -1031,39 +1082,39 @@
   ],
   "table_cm": [
    [
-    42.504760207874234,
-    41.10586786135294,
-    39.70697551483165,
-    38.30808316831036,
-    36.90919082178907
+    36.63324234746115,
+    36.28698657672197,
+    35.9407308059828,
+    35.594475035243626,
+    35.248219264504456
    ],
    [
-    43.76795999678296,
-    42.36906765026168,
-    40.97017530374038,
-    39.5712829572191,
-    38.172390610697796
+    37.89644213636988,
+    37.55018636563071,
+    37.20393059489153,
+    36.85767482415236,
+    36.511419053413185
    ],
    [
-    45.03115978569168,
-    43.632267439170384,
-    42.2333750926491,
-    40.834482746127804,
-    39.43559039960652
+    39.15964192527859,
+    38.81338615453942,
+    38.467130383800246,
+    38.12087461306107,
+    37.7746188423219
    ],
    [
-    46.294359574600406,
-    44.89546722807912,
-    43.49657488155783,
-    42.09768253503654,
-    40.69879018851525
+    40.42284171418732,
+    40.07658594344815,
+    39.73033017270898,
+    39.38407440196981,
+    39.037818631230635
    ],
    [
-    47.55755936350914,
-    46.15866701698785,
-    44.75977467046656,
-    43.36088232394527,
-    41.961989977423976
+    41.68604150309606,
+    41.33978573235688,
+    40.99352996161771,
+    40.64727419087854,
+    40.301018420139364
    ]
   ]
  },

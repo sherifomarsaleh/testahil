@@ -15,7 +15,7 @@ plt.rcParams.update({'figure.facecolor': 'none', 'axes.facecolor': 'none',
                      'grid.color': GRID, 'grid.linewidth': 0.6,
                      'axes.titlecolor': INK, 'savefig.transparent': True})
 
-d = json.load(open('stc_study_numbers.json'))
+d = json.load(open('study_numbers.json'))
 spot = d['spot']
 df = m.load_ohlc('STC_Stock_Price_History.csv')
 

@@ -59,6 +59,10 @@ nothing else. The ledger reads that artefact; no figure in it was copied from a 
 | lever | rule | before | after | move |
 |---|---|---:|---:|---:|
 | 4 | R-MACRO-01 | 44.0502 | **41.7388** | −5.25% |
+| 5 | R-TERM-01 | 41.7388 | **40.4206** | −3.16% |
+
+Cumulative **−14.20%** from the delivered 47.1108, and **−7.84%** against the latest known
+close of SAR 43.86.
 
 **Worth more than the plan expected, and the reason is the lens that was about to be
 retired anyway.** The plan judged this "likely to change what a reader can see rather than
@@ -87,6 +91,30 @@ section below already names. Until then a partial macro record would be worse th
 ratchet allows a listed study to carry no record and breaks on one that has appeared and is
 wrong.
 
+### Lever 5, and the direction was not predicted
+
+The retired terminal charged g × IC every year for ever, which reads as a capital
+maintenance programme with a replacement cycle of 1/g — a fact about the currency and not
+about the asset. At a pegged 2% terminal that is **fifty years**, against a base whose own
+accounts run twenty-one. The same construction never added book depreciation back although
+the operating profit it starts from is already net of it, so one model carried two
+definitions of free cash flow with the terminal holding three quarters of the value.
+
+The life is **20.86 years** and the base is **15.23 years old**, both DERIVED from note 10's
+own roll-forward by the identity this protocol already sanctions, because the company
+discloses ranges rather than one life. All three conditions that break that identity were
+checked on the policy note first and all three are clear. The terminal is smaller on this
+name; on the last name rebuilt it was about 5% larger, which is why [R-TERM-01 CLAUSE TWO
+CORRECTED] forbids predicting the sign before running it.
+
+**A filename, and it was worth more than it looks.** This study called its numbers file
+`stc_study_numbers.json` where twenty-one of twenty-four call it `study_numbers.json`. Most
+gates glob for it; the terminal census resolved the name literally and reported the study
+"no committed numbers file" — an ABSENT answer wearing a clean one's costume, and worse than
+a failure because a study reported unreadable is one nobody looks at again. The file is
+renamed to the house name and the census now globs like everything else, which also recovers
+the two other studies that name theirs differently.
+
 ## The levers, in order
 
 | # | rule | what |
@@ -96,7 +124,7 @@ wrong.
 | 3 ✅ | R-BETA-04 | the beta re-derived live through beta_regression.own_stock_beta('STC','SA','TADAWUL') and attested. LOWERS the value. Do not carry either recorded figure forward — the committed 0.7107 and tonight's 0.7078 differ only because the library lengthened. |
 | AUDIT ✅ | R-REBUILD-01 | STOP AND LOOK. Levers 2 and 3 pull opposite ways and the net is not predicted here. |
 | 4 ✅ | R-MACRO-01 | terminal growth stored as (real, inflation-path id) rather than the typed nominal 2.5%. Against a Saudi terminal inflation of 2.00% that is +0.5% real; on a pegged market this is likely to change what a reader can see rather than the number ([L-319]). |
-| 5 | R-TERM-01 | the terminal through engine/terminal_value.py on the DERIVED life in TERMINAL_EVIDENCE_05-09-2026.md — 20.86 years, base 15.23 years old, 73% of the depreciable base written off, on three filed years that each foot to the riyal. THE BASE IS OLD, at 1.46 times half its own implied life, so maintenance at current cost is a large multiple of the book charge. THE SIGN IS NOT PREDICTED [R-TERM-01 CLAUSE TWO CORRECTED]. |
+| 5 ✅ | R-TERM-01 | the terminal through engine/terminal_value.py on the DERIVED life in TERMINAL_EVIDENCE_05-09-2026.md — 20.86 years, base 15.23 years old, 73% of the depreciable base written off, on three filed years that each foot to the riyal. THE BASE IS OLD, at 1.46 times half its own implied life, so maintenance at current cost is a large multiple of the book charge. THE SIGN IS NOT PREDICTED [R-TERM-01 CLAUSE TWO CORRECTED]. |
 | 5b | R-BRIDGE-01 | **ADDED 5 September 2026, and the timing is recorded because it is the whole question.** The bridge stands on figures the company has since superseded: the study deducts net debt of SAR 7,063mn on a Q1-2026 basis and a minority of SAR 2,335mn at 31 March 2026, while a REVIEWED 30 June 2026 balance sheet was published carrying borrowings of SAR 23,536.554mn, cash of SAR 18,940.773mn and a minority of SAR 2,726.349mn. It also divides by 4,989.8mn shares, which is the 31 December 2025 count; note 17 of that same interim foots issued capital of SAR 50,000,000 thousand at SAR 10 par to 5,000,000 thousand shares and states 4,993.024mn outstanding. THIS WAS FOUND WHILE SOURCING THE DEBT BOOK FOR LEVER 2 AND BEFORE THE MODEL PRODUCED ANY REBUILT ANSWER — the plan is amended at a point where nobody could yet know which way it moves the value, which is the only condition under which adding a lever is not reshaping the route to suit where it lands. |
 | 6 | R-LENS-03 | the four-lens blend retired. LENS_REGISTRY['telecom operator'] is a cash-flow primary cross-checked on own-history EV/EBITDA, a relative multiple and book — so the dividend-discount and normalised-earnings reads come OUT of the answer entirely. STC is the ONE of the seven unreadable studies whose class the registry holds. |
 | 7 | R-GAP-01 | re-struck on the latest known price, and the eight-heading review written before any file is staged. |

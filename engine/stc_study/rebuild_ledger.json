@@ -32,10 +32,19 @@
    "why": "The delivered study typed 2.5%% as its cash-flow terminal growth and 3.0%% as its dividend terminal growth \u2014 two answers to one question about one economy, in one model, on one company. A typed nominal rate is also unfalsifiable: nobody reading the page can tell whether 2.5%% meant terminal inflation plus half a point or something else. Both now sit on the house path as (real, path id) and recompute to their nominal, at the rule's own STATED DEFAULT of zero real growth \u2014 a mature domestic telecom growing with the economy in perpetuity and no further. Any other figure would have to be sourced and nothing in the filings supplies one, and reverse-engineering the real rate that reproduces the typed 2.5%% would be keeping the number and inventing a reason for it.",
    "evidence": "Saudi terminal inflation of 2.00% plus a stated real growth of 0.00% gives a terminal growth of 2.00%, against a typed 2.5% in the cash-flow lens and a typed 3.0% in the dividend lens. The cash-flow read falls 45.2369 to 42.2334 and the dividend read 40.4673 to 35.4266 \u2014 the dividend lens moves furthest because a discounted-dividend terminal is the most convex thing in the model to its own growth rate, which is why carrying a second one was worth more than it looked. The blend falls 44.0502 to 41.7388, -5.25%.",
    "move": -0.05247157130325164
+  },
+  {
+   "name": "the terminal rebuilt on the asset life the accounts themselves imply",
+   "rule": "R-TERM-01",
+   "before": 41.73879909479903,
+   "after": 40.42061344670193,
+   "why": "The retired construction charged g x IC every year for ever, which read as a capital-maintenance programme with a replacement cycle of 1/g \u2014 a fact about the currency and not about the asset. At a pegged 2%% terminal that is FIFTY YEARS, against a base whose own accounts run twenty-one, so it bought less than half the maintenance this company needs. The same construction never added book depreciation back although the operating profit it starts from is already net of it, so one model carried two definitions of free cash flow with the terminal holding three quarters of the value. Rebuilt through terminal_value.build(): maintenance is book depreciation escalated to CURRENT cost over the measured age of the base, the depreciation is added back gross, and working capital is charged at the terminal inflation on the stock the latest disclosed sheet actually shows.",
+   "evidence": "The life and the age are DERIVED from note 10 of the FY2025 audited statements by the identity this protocol already sanctions, because the company discloses RANGES (buildings 25-50 years, network 3-30, other 2-20) rather than one life: depreciable gross cost over the year's own charge gives 20.86 years, and accumulated depreciation over the same charge gives an age of 15.23 years \u2014 so the base is at 1.46 times half its own life and 73% of it is written off. All three conditions that break that identity were checked on the policy note FIRST and all three are clear. Maintenance comes out at 15,779 against a book charge of 11,672. The terminal falls from three quarters of enterprise value at a lower charge to 74.7% at the right one; the cash-flow read moves 42.2334 to 38.4671 and the blend 41.7388 to 40.4206, -3.16%. THE DIRECTION WAS NOT PREDICTED and [R-TERM-01 CLAUSE TWO CORRECTED] forbids predicting it: on this name the sanctioned terminal is SMALLER, and on the last name rebuilt it was about 5% larger.",
+   "move": -0.03158178185968352
   }
  ],
- "value": 41.73879909479903,
- "cumulative_move": -0.11402992433573311,
+ "value": 40.42061344670193,
+ "cumulative_move": -0.14201043799956925,
  "rules": {
   "R-COC-01": {
    "levers": [
@@ -60,9 +69,17 @@
    "first_before": 44.050181325121294,
    "last_after": 41.73879909479903,
    "move": -0.05247157130325164
+  },
+  "R-TERM-01": {
+   "levers": [
+    "the terminal rebuilt on the asset life the accounts themselves imply"
+   ],
+   "first_before": 41.73879909479903,
+   "last_after": 40.42061344670193,
+   "move": -0.03158178185968352
   }
  },
- "distinct_rules": 3,
+ "distinct_rules": 4,
  "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked.",
  "audit_taken": {
   "at": "2026-09-05, after lever 3, as declared",
@@ -74,7 +91,7 @@
   "latest_price": 43.86,
   "latest_price_date": "2026-09-03",
   "gap_at_the_audit": "+0.43%",
-  "gap_now_after_later_levers": "-4.84%",
+  "gap_now_after_later_levers": "-7.84%",
   "gap_at_delivery": "+8.10%",
   "what_the_audit_shows": "THE TWO LEVERS DISAGREED AND THE ROUTE IS WHY THAT MATTERS. Taken in the order fixed in writing before either was touched, the cost-of-capital correction moved the answer AWAY from the market \u2014 from 8.1%% above the price it was struck at to 16.4%% above the latest one \u2014 and the beta correction brought it back. Neither was chosen for where it landed and neither could have been: the first raises every value it touches and the second lowers every value it touches, and which one dominates is arithmetic about this company's own capital structure. Read as two corrections the rebuild is a contest; read as one net figure of -6.5%% it would look like a small tidy-up, and the 8.4%% and the 13.8%% inside it would be invisible. THE ANSWER NOW SITS ESSENTIALLY ON THE PRICE, at +0.4%%, and that is reported as an observation and NOT as corroboration \u2014 four levers remain, the lens retirement among them, and a rebuild that stopped here because the number looked comfortable would be fitting to the price by choosing when to stop.",
   "levers_remaining_at_the_audit": [

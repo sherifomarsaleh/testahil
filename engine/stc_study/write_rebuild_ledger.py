@@ -29,23 +29,35 @@ PUBLISHED_REV = '3c170b9c23372e0f0170413485439415cffc634b'   # main, before this
 LANDED = {
     'R-COC-01':   None,                                          # via the sensitivity artefact
     'R-BETA-04':  'fe76400fb6155c044e9e76ec32088303b5a59a6b',     # levers 1-3
-    'R-MACRO-01': None,                                          # the working tree, latest
+    'R-MACRO-01': '518aee8b42d7bf9436844f14bc54aae91ec815cf',     # lever 4
+    'R-TERM-01':  None,                                          # the working tree, latest
 }
+
+
+#: The file was renamed to the house name PART WAY THROUGH this rebuild — twenty-one of
+#: twenty-four studies call it study_numbers.json and one gate resolved that name
+#: literally, so this study read as having no numbers at all. Both names are tried,
+#: newest first, because a rename does not reach backwards into the commits behind it and
+#: a ledger that could not read its own history would have to be re-keyed by hand.
+NAMES = ('engine/stc_study/study_numbers.json',
+         'engine/stc_study/stc_study_numbers.json')
 
 
 def at(rev):
     """A study numbers file as it stood at one commit — read out of git, never remembered."""
-    raw = subprocess.run(
-        ['git', 'show', '%s:engine/stc_study/stc_study_numbers.json' % rev],
-        capture_output=True, text=True, cwd=os.path.join(HERE, '..', '..'))
-    if raw.returncode != 0:
-        raise SystemExit('cannot read %s: %s' % (rev, raw.stderr.strip()))
-    return json.loads(raw.stdout)
+    for name in NAMES:
+        raw = subprocess.run(['git', 'show', '%s:%s' % (rev, name)],
+                             capture_output=True, text=True,
+                             cwd=os.path.join(HERE, '..', '..'))
+        if raw.returncode == 0:
+            return json.loads(raw.stdout)
+    raise SystemExit('cannot read the numbers file at %s under either name' % rev)
 
 
 PUB = at(PUBLISHED_REV)
 AFTER_BETA = at(LANDED['R-BETA-04'])
-NOW = json.load(open(os.path.join(HERE, 'stc_study_numbers.json')))
+AFTER_MACRO = at(LANDED['R-MACRO-01'])
+NOW = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 # The lever-2 intermediate, struck when the cost-of-capital schedule was in and the beta
 # was not. It is named for that lever set, so a later sensitivity run cannot overwrite the
 # number this ledger chains through — which is the stale-artefact defect [R-ENF-06] names,
@@ -135,7 +147,7 @@ led.apply(
 led.apply(
     name='terminal growth stored as a real rate on the house Saudi path',
     rule='R-MACRO-01',
-    after=NOW['lenses']['central']['base'],
+    after=AFTER_MACRO['lenses']['central']['base'],
     why=(
         'The delivered study typed 2.5%% as its cash-flow terminal growth and 3.0%% as its '
         'dividend terminal growth — two answers to one question about one economy, in one '
@@ -155,12 +167,53 @@ led.apply(
         "terminal is the most convex thing in the model to its own growth rate, which is "
         'why carrying a second one was worth more than it looked. The blend falls %.4f to '
         '%.4f, %+.2f%%.'
-        % (100 * 0.02, 0.0, 100 * NOW['dcf']['tg'],
-           AFTER_BETA['lenses']['dcf']['base'], NOW['lenses']['dcf']['base'],
-           AFTER_BETA['lenses']['ddm']['base'], NOW['lenses']['ddm']['base'],
-           AFTER_BETA['lenses']['central']['base'], NOW['lenses']['central']['base'],
-           100 * (NOW['lenses']['central']['base']
+        % (100 * 0.02, 0.0, 100 * AFTER_MACRO['dcf']['tg'],
+           AFTER_BETA['lenses']['dcf']['base'], AFTER_MACRO['lenses']['dcf']['base'],
+           AFTER_BETA['lenses']['ddm']['base'], AFTER_MACRO['lenses']['ddm']['base'],
+           AFTER_BETA['lenses']['central']['base'],
+           AFTER_MACRO['lenses']['central']['base'],
+           100 * (AFTER_MACRO['lenses']['central']['base']
                   / AFTER_BETA['lenses']['central']['base'] - 1))),
+)
+
+led.apply(
+    name='the terminal rebuilt on the asset life the accounts themselves imply',
+    rule='R-TERM-01',
+    after=NOW['lenses']['central']['base'],
+    why=(
+        'The retired construction charged g x IC every year for ever, which read as a '
+        'capital-maintenance programme with a replacement cycle of 1/g — a fact about the '
+        'currency and not about the asset. At a pegged 2%% terminal that is FIFTY YEARS, '
+        "against a base whose own accounts run twenty-one, so it bought less than half the "
+        'maintenance this company needs. The same construction never added book '
+        'depreciation back although the operating profit it starts from is already net of '
+        'it, so one model carried two definitions of free cash flow with the terminal '
+        'holding three quarters of the value. Rebuilt through terminal_value.build(): '
+        'maintenance is book depreciation escalated to CURRENT cost over the measured age '
+        'of the base, the depreciation is added back gross, and working capital is charged '
+        'at the terminal inflation on the stock the latest disclosed sheet actually shows.'),
+    evidence=(
+        'The life and the age are DERIVED from note 10 of the FY2025 audited statements by '
+        "the identity this protocol already sanctions, because the company discloses RANGES "
+        '(buildings 25-50 years, network 3-30, other 2-20) rather than one life: depreciable '
+        "gross cost over the year's own charge gives %.2f years, and accumulated "
+        'depreciation over the same charge gives an age of %.2f years — so the base is at '
+        '1.46 times half its own life and 73%% of it is written off. All three conditions '
+        'that break that identity were checked on the policy note FIRST and all three are '
+        'clear. Maintenance comes out at %s against a book charge of %s. The terminal falls '
+        'from three quarters of enterprise value at a lower charge to %.1f%% at the right '
+        'one; the cash-flow read moves %.4f to %.4f and the blend %.4f to %.4f, %+.2f%%. '
+        'THE DIRECTION WAS NOT PREDICTED and [R-TERM-01 CLAUSE TWO CORRECTED] forbids '
+        'predicting it: on this name the sanctioned terminal is SMALLER, and on the last '
+        'name rebuilt it was about 5%% larger.'
+        % (NOW['dcf']['terminal_life_years'], NOW['dcf']['terminal_age_years'],
+           format(NOW['dcf']['terminal_maintenance'], ',.0f'),
+           format(NOW['dcf']['rows'][-1]['dna'], ',.0f'),
+           100 * NOW['dcf']['tv_pct'],
+           AFTER_MACRO['lenses']['dcf']['base'], NOW['lenses']['dcf']['base'],
+           AFTER_MACRO['lenses']['central']['base'], NOW['lenses']['central']['base'],
+           100 * (NOW['lenses']['central']['base']
+                  / AFTER_MACRO['lenses']['central']['base'] - 1))),
 )
 
 rec = led.record()

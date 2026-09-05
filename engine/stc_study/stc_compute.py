@@ -1,4 +1,4 @@
-"""STC study — master computation. Outputs stc_study_numbers.json + backtest tables.
+"""STC study — master computation. Outputs study_numbers.json + backtest tables.
 Saudi Telecom Company (Tadawul: 7010).
 
 Price history comes from the PERSISTENT LIBRARY at engine/raw_ohlc/SA/STC.csv, which is
@@ -254,7 +254,63 @@ for i, rw in enumerate(rows):
     rw['df'] = DF[i]
     rw['pv'] = rw['fcff'] * rw['df']
 pv_sum = sum(rw['pv'] for rw in rows)
-tv = rows[-1]['fcff'] * (1 + TG) / (WACC_TERMINAL - TG)
+
+# ===== The terminal, through the sanctioned module [R-TERM-01] ===============
+# The retired construction charged g x IC every year for ever, which reads as a capital
+# maintenance programme with a replacement cycle of 1/g — a fact about the currency and
+# not about the asset. At a pegged 2% terminal that is FIFTY YEARS against a base whose
+# own accounts run twenty-one, so it bought half the maintenance this company needs. It
+# also never added book depreciation back although NOPAT is already net of it, so one
+# model carried two definitions of free cash flow with the terminal holding most of the
+# value.
+#
+# The life and the age are DERIVED from note 10's own roll-forward by the identity the
+# protocol already sanctions, because this company discloses RANGES rather than a single
+# life. All three conditions that break that identity were checked on the policy note
+# first and all three are clear; the working is in TERMINAL_EVIDENCE_05-09-2026.md.
+import terminal_value as TVM
+
+TERM_LIFE = 134_634_729 / 6_453_343          # depreciable gross cost over the year's charge
+TERM_AGE = 98_254_770 / 6_453_343            # accumulated depreciation over the same charge
+# Net working capital from the LATEST DISCLOSED balance sheet, 30 June 2026, reviewed:
+# inventories, contract assets and trade receivables less trade and other payables and
+# contract liabilities. SAR millions, to match the model.
+TERM_WC = (1_781_441 + 9_971_423 + 26_727_997 - 21_198_207 - 3_727_610) / 1000.0
+# Capital per unit of REAL growth, used ONLY where the sensitivity grid moves terminal
+# growth off the house terminal inflation. The base case states real growth of zero and
+# is charged no growth capital at all, so this figure shapes the grid and never the
+# answer. It is the depreciable gross base at CURRENT cost — the same escalation the
+# maintenance charge uses, so the grid cannot quietly price growth on a historical base
+# while maintenance is priced on a current one.
+TERM_IC_PER_UNIT_GROWTH = (134_634_729 / 1000.0) * (1.0 + 0.02) ** (98_254_770 / 6_453_343)
+
+_t = TVM.build(TVM.TerminalInputs(
+    nopat=rows[-1]['nopat'],
+    wacc=WACC_TERMINAL,
+    inflation=COCRUN.MACRO.terminal_inflation,
+    real_growth=TG_REAL,
+    dna_book=rows[-1]['dna'],
+    maintenance_basis='book_dna_escalated',
+    average_age_years=TERM_AGE,
+    average_age_source=(
+        "Note 10 of the FY2025 audited statements, the property and equipment "
+        "roll-forward: accumulated depreciation of SAR 98,254,770 thousand over the "
+        "year's own charge of SAR 6,453,343 thousand. An identity off the accounts, not "
+        "a figure this desk chose, and the same note gives 14.18 and 13.60 years on the "
+        "two years behind it."),
+    useful_life_years=TERM_LIFE,
+    useful_life_source=(
+        "Derived from note 10 of the FY2025 audited statements: depreciable gross cost of "
+        "SAR 134,634,729 thousand — total cost of 141,541,105 less capital work in "
+        "progress of 4,910,376 and land of 1,996,000, both disclosed separately in the "
+        "same note — over the year's own charge of SAR 6,453,343 thousand. The company "
+        "discloses RANGES rather than one life (buildings 25-50 years, telecommunication "
+        "network and equipment 3-30, other assets 2-20, note 4.11), so a single figure has "
+        "to come from the identity; 19.54 and 19.84 years stand behind it on the two "
+        "earlier filed years."),
+    working_capital=TERM_WC,
+))
+tv = _t.tv
 pv_tv = tv * DF_TERMINAL
 ev = pv_sum + pv_tv
 # EV → equity bridge (marks)
@@ -275,8 +331,22 @@ def dcf_ps_at(wacc, g, ebitda_shift=0.0, capex_shift=0.0):
         fcff_ = nopat_ + dna_ - r * (capex_pct[i] + capex_shift) - r * wc_out_pct[i]
         pv += fcff_ / (1 + wacc) ** (i + 1)
         if i == 4:
-            fcff5 = fcff_
-    tv_ = fcff5 * (1 + g) / (wacc - g)
+            fcff5, nopat5, dna5 = fcff_, nopat_, dna_
+    # THE SENSITIVITY MUST USE THE SAME TERMINAL AS THE BASE. A grid centred on a
+    # construction the study does not publish grades a different model, which is the
+    # defect one of this house's own studies shipped when its base call site was
+    # corrected and its sensitivity engine was not.
+    tv_ = TVM.build(TVM.TerminalInputs(
+        nopat=nopat5, wacc=wacc, inflation=COCRUN.MACRO.terminal_inflation,
+        real_growth=(1.0 + g) / (1.0 + COCRUN.MACRO.terminal_inflation) - 1.0,
+        dna_book=dna5, maintenance_basis='book_dna_escalated',
+        average_age_years=TERM_AGE, average_age_source='see the base call site',
+        useful_life_years=TERM_LIFE, useful_life_source='see the base call site',
+        working_capital=TERM_WC,
+        incremental_capital_per_unit_growth=(
+            None if abs((1.0 + g) / (1.0 + COCRUN.MACRO.terminal_inflation) - 1.0) < 1e-12
+            else TERM_IC_PER_UNIT_GROWTH),
+    )).tv
     pvtv = tv_ / (1 + wacc) ** 5
     return (pv + pvtv + assoc + telefonica - net_debt - nci_v) / SH
 
@@ -372,11 +442,20 @@ out = dict(
               chg20=chg20, chg60=chg60),
     levers_applied=LEVERS_APPLIED,
     coc_record=COCRUN.record(SCHED),
+    terminal_record=_t.record,
     hist=hist, seg_hist=seg_hist,
     drivers=dict(g_cbu=g_cbu, g_ebu=g_ebu, g_wc=g_wc, g_sub=g_sub, ebitda_m=ebitda_m,
                  dna_pct=dna_pct, capex_pct=capex_pct, wc_out_pct=wc_out_pct, payout_dps=payout_dps),
     forecast=fc,
     dcf=dict(rows=rows, pv_sum=pv_sum, tv=tv, pv_tv=pv_tv, ev=ev, tv_pct=pv_tv / ev,
+             # Exposed so the terminal census can score this terminal from outside rather
+             # than report it unreadable. Both are real quantities the module already used:
+             # the terminal year's own after-tax operating profit, and the depreciable gross
+             # base at CURRENT cost, which is the same escalation the maintenance charge
+             # rests on.
+             nopat_term=rows[-1]['nopat'], ic_repl=TERM_IC_PER_UNIT_GROWTH,
+             terminal_maintenance=_t.maintenance, terminal_fcff=_t.fcff,
+             terminal_life_years=TERM_LIFE, terminal_age_years=TERM_AGE,
              wacc=WACC, wacc_rating_basis=WACC_RATING, tg=TG, assoc=assoc, telefonica=telefonica,
              net_debt=net_debt, nci=nci_v, eq=eq_dcf, ps=dcf_ps,
              wacc_build=dict(rf=SCHED.rf_observed, default_spread=SCHED.default_spread,
@@ -417,7 +496,7 @@ np.save('pT20.npy', pT20[:20000]); np.save('pT60.npy', pT60[:20000])
 # A SENSITIVITY RUN NEVER WRITES. It exists to measure one lever's own worth, and an
 # answer struck on a beta this study does not adopt must not reach the committed record.
 if _SENS_BETA is None:
-    with open(os.path.join(HERE, 'stc_study_numbers.json'), 'w') as f:
+    with open(os.path.join(HERE, 'study_numbers.json'), 'w') as f:
         json.dump(out, f, indent=1, default=float)
 else:
     # It writes ONE artefact and it is not the study's numbers: the answer this study
