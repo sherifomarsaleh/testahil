@@ -7,7 +7,7 @@ from openpyxl.utils import get_column_letter
 FN = 'STC_Valuation_Model_09072026_public.xlsx'
 wb = load_workbook(FN)
 A = json.load(open('_asm_rows.json'))
-D = json.load(open('stc_study_numbers.json'))
+D = json.load(open('study_numbers.json'))
 BLUE = Font(color='0000FF'); GREEN = Font(color='008000'); BLACK = Font(color='000000')
 TITLE = Font(bold=True, size=13, color='F6F1E6'); SUB = Font(size=9, color='6E7B77')
 FILL_T = PatternFill('solid', start_color='1C3A36'); FILL_H = PatternFill('solid', start_color='EAF0EE')

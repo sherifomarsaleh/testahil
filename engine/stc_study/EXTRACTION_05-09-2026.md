@@ -234,7 +234,7 @@ riyal, which is what makes it a reconciliation rather than a reading.
 
 ### What the delivered study actually carries
 
-Every FY2023 line in `stc_study_numbers.json` reconciles to the **restated** column:
+Every FY2023 line in `study_numbers.json` reconciles to the **restated** column:
 
 | | study FY23 | restated FY2023 | |
 |---|---:|---:|---|

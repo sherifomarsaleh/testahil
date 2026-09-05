@@ -5890,6 +5890,85 @@ LESSONS = [
       "is the cheap approximation, and a gate that delegates two "
       "levels down is still invisible."),
 
+    L("L-342", "ALL", None,
+      "A DECOMPOSITION WHOSE STEPS ALL READ THE SAME MUTABLE FILE "
+      "COLLAPSES SILENTLY, AND THE COLLAPSED VERSION STILL WALKS",
+      "A rebuild ledger records what each correction was worth by "
+      "storing the answer either side of it. The first draft of one "
+      "read every lever's answer out of the study's CURRENT numbers "
+      "file, which is the only place the answer lives — so the "
+      "moment a fourth lever landed, the third lever's 'after' "
+      "silently became the fourth's: the third read -18.27% where "
+      "it was worth -13.75%, and the fourth read +0.00% where it "
+      "was worth -5.25%. NOTHING ABOUT THAT IS DETECTABLE FROM THE "
+      "LEDGER. The chain still starts where it started and ends "
+      "where it ends, every link still joins, the cumulative figure "
+      "is still exactly right, and the gate that walks it passes. "
+      "One lever had simply been credited with another's work. THE "
+      "FIX IS NOT CARE, IT IS AN IMMUTABLE SOURCE — each landed "
+      "lever's answer now comes from the COMMIT that landed it, "
+      "because version control is the only record in the room that "
+      "the next run cannot overwrite. The same defect had been "
+      "guarded against an hour earlier on a different artefact, by "
+      "naming that file for its lever set so a later run writes a "
+      "different file; the guard was right, and it was applied to "
+      "the file somebody happened to be thinking about while the "
+      "main record went on being read the wrong way.",
+      "the STC rebuild ledger, 5 September 2026",
+      "build",
+      "Levers read -18.27% and +0.00% against their true -13.75% "
+      "and -5.25%; the cumulative -11.40% and both endpoints were "
+      "unchanged either way, and the ledger gate passed both "
+      "versions.",
+      "It is overturned where a process genuinely writes an "
+      "immutable artefact per step — a per-state file named for its "
+      "own step, which is the same remedy one level earlier and "
+      "needs no version control at all. What would NOT overturn it "
+      "is a checker on the ledger: a collapsed decomposition is "
+      "internally consistent, so no amount of checking the record "
+      "against itself can see it."),
+
+    L("L-343", "ALL", None,
+      "RECORDING A FAILED SEARCH IS RIGHT, AND IT TURNS THE "
+      "FAILURE INTO A COMMITTED FACT UNLESS THE RECORD SEPARATES "
+      "WHAT WAS TRIED FROM WHAT EXISTS",
+      "A study's source register listed four investor-relations "
+      "URLs, each returning the site's own 404 page under an HTTP "
+      "200, and concluded that the investor-relations path in the "
+      "delivered study no longer resolved. Every word of that was "
+      "true about those four URLs. It was false about the site: the "
+      "sitemap listed a whole investor section including the "
+      "presentations page, carrying every earnings deck and call "
+      "transcript back to 2017 — and the sitemap was ALREADY the "
+      "route that had found the financial statements in the same "
+      "session. Nobody pointed it at the presentations. THE "
+      "DISCIPLINE THAT CAUSED THIS IS THE RIGHT ONE: writing down "
+      "what was attempted and what came back is exactly what the "
+      "protocol asks for, and it is why the four URLs were on the "
+      "page at all. What it lacked was the distinction between the "
+      "two claims — 'these four addresses returned nothing' and "
+      "'this channel is gone' — because a register is precisely the "
+      "artefact a later session trusts instead of searching again, "
+      "so a negative written into one becomes durable in a way a "
+      "failed command never is. The cost here was a study forecasting "
+      "two thirds of its revenue from an extrapolated segment rate "
+      "while the subscriber counts that would let it be built as "
+      "volume times price sat one sitemap away, and the correction "
+      "immediately showed the growth was VOLUME with price per "
+      "subscriber falling about 3%, which the extrapolated rate "
+      "nets out and hides.",
+      "STC's source register, 5 September 2026",
+      "build",
+      "Four URLs recorded as failing; www.stc.com.sa/sitemap.xml "
+      "listed the investor section and the presentations page "
+      "resolved first try, carrying decks back to 2017.",
+      "It is overturned where a register records only the attempts "
+      "and never a conclusion about the world — then there is no "
+      "false claim to inherit. What would NOT overturn it is trying "
+      "harder: four careful probes is not a small effort, and the "
+      "defect was in what their failure was written up as, not in "
+      "how many there were."),
+
 ]
 
 

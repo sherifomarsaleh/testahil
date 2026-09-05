@@ -247,12 +247,32 @@ def _tag_of(key):
     return t[-1] if t in ('frame_A', 'frame_B') else t
 
 
+def numbers_file(d):
+    """A study's committed numbers file, however that study happens to name it.
+
+    THE HOUSE NAME IS study_numbers.json AND THREE OF TWENTY-FOUR STUDIES DO NOT USE IT.
+    This census resolved the name literally and reported those three "no committed numbers
+    file" — an ABSENT answer wearing a clean one's costume [R-ENF-04], and worse than a
+    failure because a study reported unreadable is a study nobody looks at again. Every
+    other gate in this repository already globs; this one did not, and the divergence was
+    invisible because the studies it missed were also missing from everything the census
+    feeds. Preference order first so the house name always wins where both exist.
+    """
+    for name in ('study_numbers.json', 'numbers.json'):
+        p = os.path.join(d, name)
+        if os.path.exists(p):
+            return p
+    cands = sorted(g for g in glob(os.path.join(d, '*.json'))
+                   if 'numbers' in os.path.basename(g).lower())
+    return cands[0] if cands else None
+
+
 def read_study(d):
     """One study's terminal, read from ONE frame, or a stated reason it cannot be read."""
     tk = os.path.basename(d)[:-6].upper()
-    f = os.path.join(d, 'study_numbers.json')
+    f = numbers_file(d)
     rec = {'ticker': tk, 'dir': os.path.relpath(d, REPO), 'routes': {}, 'off_frame': []}
-    if not os.path.exists(f):
+    if not f:
         rec['unreadable'] = 'no committed numbers file'
         return rec
     try:
@@ -584,8 +604,8 @@ def disclosed_life(ticker):
     a terminal needs comes from the property, plant and equipment note's own
     composition — a further sourcing step, and the caller is told which state it has.
     """
-    nf = os.path.join(REPO, 'engine', '%s_study' % ticker.lower(), 'study_numbers.json')
-    if os.path.exists(nf):
+    nf = numbers_file(os.path.join(REPO, 'engine', '%s_study' % ticker.lower()))
+    if nf:
         try:
             rec = (json.load(open(nf)).get('terminal_record') or {}).get('inputs', {})
             v = rec.get('useful_life_years')

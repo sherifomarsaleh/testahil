@@ -1,0 +1,1393 @@
+{
+ "central": 35.53191287646005,
+ "spot": 43.86,
+ "spot_date": "2026-09-03",
+ "central_range": {
+  "low": 34.75936497157102,
+  "high": 47.14839882868572
+ },
+ "cone_anchor": 44.72,
+ "cone_anchor_date": "2026-08-31",
+ "two_clocks": "The valuation is struck against the latest known close, the Monte Carlo cone against the last session in the persistent price library. They are different dates because a cone must start where its own price series ends, and the study says so rather than publishing one number for both.",
+ "shares": 4993.024,
+ "mktcap": 218994.03264000002,
+ "step0": {
+  "nonoverlap": {
+   "n": 60,
+   "crps_skill": -0.00515158862523224,
+   "interval_skill": 0.014467872825776218,
+   "cov50": 0.5166666666666667,
+   "cov80": 0.7166666666666667,
+   "cov90": 0.9,
+   "pit_mean": 0.5612458333333332
+  },
+  "monthly": {
+   "n": 171,
+   "crps_skill": -0.0011792895768407696,
+   "interval_skill": 0.011975994832529202,
+   "cov50": 0.42105263157894735,
+   "cov80": 0.7543859649122807,
+   "cov90": 0.8771929824561403,
+   "pit_mean": 0.5520423976608186
+  },
+  "secular": {
+   "n": 60,
+   "crps_skill": -0.02517121950712431,
+   "interval_skill": -0.05280681489236194,
+   "cov50": 0.43333333333333335,
+   "cov80": 0.75,
+   "cov90": 0.8833333333333333,
+   "pit_mean": 0.51623125
+  },
+  "pit_hist": [
+   8,
+   3,
+   3,
+   6,
+   5,
+   2,
+   10,
+   6,
+   8,
+   9
+  ],
+  "n_rows": 60,
+  "boot": {
+   "lo90": -0.019232907310716675,
+   "hi90": 0.011548336264775937,
+   "p_pos": 0.2935
+  }
+ },
+ "engine": {
+  "anchor_vol": 0.16174582205536406,
+  "drift_daily": 0.0,
+  "drift_q": 0.0,
+  "factor_drift_q": 0.0072,
+  "cont_drift_q": 0.002,
+  "disc_drift_q": 0.0052
+ },
+ "mc": {
+  "q20": {
+   "5": 41.66286852301965,
+   "25": 43.65375433285497,
+   "50": 44.834652256151216,
+   "75": 46.05066648507227,
+   "95": 48.248856679398614
+  },
+  "q60": {
+   "5": 39.70276570849665,
+   "25": 43.00795781762339,
+   "50": 45.0594943870675,
+   "75": 47.183853751230075,
+   "95": 51.20825868590482
+  },
+  "touch": {
+   "50": {
+    "t20": 0.02346,
+    "t60": 0.13418
+   },
+   "48": {
+    "t20": 0.09494,
+    "t60": 0.3138
+   },
+   "46": {
+    "t20": 0.42702,
+    "t60": 0.65984
+   },
+   "44": {
+    "t20": 0.5667,
+    "t60": 0.72556
+   },
+   "42": {
+    "t20": 0.11068,
+    "t60": 0.30474
+   },
+   "40": {
+    "t20": 0.02038,
+    "t60": 0.10814
+   },
+   "38": {
+    "t20": 0.00476,
+    "t60": 0.03742
+   },
+   "36": {
+    "t20": 0.00112,
+    "t60": 0.01378
+   }
+  },
+  "prob_read": {
+   "p_above": 0.54426,
+   "p_up10": 0.11196,
+   "p_dn10": 0.06716,
+   "median": 45.0594943870675,
+   "med_move": 0.00759155606143791,
+   "band50": [
+    43.00795781762339,
+    47.183853751230075
+   ],
+   "band50_pct": [
+    -0.038283590840264003,
+    0.055095119660779845
+   ],
+   "touch_up10": 0.1896,
+   "touch_dn10": 0.12394,
+   "odds": 1.6670637284097678
+  },
+  "zones": [
+   0.01998,
+   0.1403,
+   0.45984,
+   0.29972,
+   0.08016
+  ],
+  "fan": {
+   "5": [
+    44.72,
+    43.99100588366961,
+    43.69665678703133,
+    43.47992671256343,
+    43.29717793700658,
+    43.11355202168466,
+    42.986867428690076,
+    42.83483009073648,
+    42.70665886824234,
+    42.602648977765654,
+    42.49853824317502,
+    42.391792107805955,
+    42.29948489320231,
+    42.229457449696454,
+    42.119497855476006,
+    42.037445480498015,
+    41.96021473756994,
+    41.90608960038279,
+    41.824359953145866,
+    41.739126477216935,
+    41.66286852301965,
+    41.58161894380245,
+    41.50263119809175,
+    41.44156627057272,
+    41.382198294270644,
+    41.30021574172179,
+    41.217659841088576,
+    41.190985031081865,
+    41.136691624355116,
+    41.08401930428902,
+    41.03016957311532,
+    40.98752229006806,
+    40.92274222450017,
+    40.860316784769935,
+    40.817226690487715,
+    40.76449526809525,
+    40.711275069007606,
+    40.667182832363125,
+    40.60573892838398,
+    40.54580348096933,
+    40.495878978215956,
+    40.46125276053437,
+    40.42360579534204,
+    40.3707469952551,
+    40.31580621946897,
+    40.28969399247932,
+    40.256980125526354,
+    40.21474690740818,
+    40.17362023787827,
+    40.11998809068536,
+    40.10229555838758,
+    40.05419855716312,
+    40.01733129692211,
+    39.93973328530961,
+    39.92424175957437,
+    39.91210056779294,
+    39.86142193918888,
+    39.83437055333158,
+    39.787522066059346,
+    39.73651831663413,
+    39.70276570849665
+   ],
+   "25": [
+    44.72,
+    44.46100125633,
+    44.35743809854666,
+    44.27949992933264,
+    44.217262086661755,
+    44.15633461730191,
+    44.108781501491464,
+    44.066984572982506,
+    44.021189974010106,
+    43.98281014498348,
+    43.93716136209515,
+    43.90180644526872,
+    43.86669689158698,
+    43.8331765745783,
+    43.809333206679966,
+    43.782315883615205,
+    43.746082630108035,
+    43.73096925527417,
+    43.699492320825804,
+    43.67718358303243,
+    43.65375433285497,
+    43.617737623922764,
+    43.59434335111674,
+    43.57215462578799,
+    43.56137521520847,
+    43.52951229926002,
+    43.51753798094423,
+    43.4893963362461,
+    43.464819312215795,
+    43.45180368563342,
+    43.42830486894865,
+    43.40462753900097,
+    43.38818852719638,
+    43.379762660496276,
+    43.357110252523945,
+    43.343080731233506,
+    43.32334551314249,
+    43.30900966531908,
+    43.301095058273,
+    43.286251998022415,
+    43.27561563005089,
+    43.25947832769122,
+    43.249871939503606,
+    43.234727179483244,
+    43.212452025415985,
+    43.204166102487385,
+    43.18899793395769,
+    43.18283228923047,
+    43.17351810509456,
+    43.164399257571056,
+    43.14214286445536,
+    43.131858035652456,
+    43.11847857444677,
+    43.1093697793404,
+    43.09730683565864,
+    43.07904637685439,
+    43.05792310751244,
+    43.05201358643923,
+    43.0400761118187,
+    43.01809060846723,
+    43.00795781762339
+   ],
+   "50": [
+    44.72,
+    44.72210773349772,
+    44.729796641307985,
+    44.737363684075504,
+    44.74651240288384,
+    44.756736097963156,
+    44.761013260050916,
+    44.76786893548879,
+    44.76934653200668,
+    44.777423974293036,
+    44.77453190163189,
+    44.783339007274876,
+    44.79603256937274,
+    44.79527290748358,
+    44.793421116535185,
+    44.808682139538774,
+    44.81690121115108,
+    44.82590630898892,
+    44.81866483645229,
+    44.83561568776855,
+    44.834652256151216,
+    44.84240329486562,
+    44.844834531263714,
+    44.850322202243,
+    44.86456943006539,
+    44.862106952241426,
+    44.85938160902478,
+    44.8686834123793,
+    44.87025468828526,
+    44.878668066495784,
+    44.87289482442683,
+    44.87981788826682,
+    44.88922187029768,
+    44.89259802957695,
+    44.901953565896314,
+    44.90704641702975,
+    44.914023501334526,
+    44.91959188137826,
+    44.930010355268465,
+    44.930109431576355,
+    44.941293506136574,
+    44.949238430253374,
+    44.95657620572817,
+    44.96968392753412,
+    44.98023572593654,
+    44.980653382646004,
+    44.98584298206673,
+    44.976176543479404,
+    44.988452081143706,
+    44.99111577561942,
+    45.00057635627408,
+    45.000504644518365,
+    45.005056338317424,
+    45.02243209336214,
+    45.015459086596195,
+    45.02246354101006,
+    45.041215293257025,
+    45.04547437648896,
+    45.04256444868534,
+    45.04413715455069,
+    45.0594943870675
+   ],
+   "75": [
+    44.72,
+    44.98658437545533,
+    45.109846034674874,
+    45.200565028347704,
+    45.286808099355355,
+    45.35113205775157,
+    45.41385304629735,
+    45.476931702182014,
+    45.527014746731794,
+    45.58493415903799,
+    45.6356376457276,
+    45.690261368313955,
+    45.722981352596605,
+    45.77017936805191,
+    45.810634088758,
+    45.860378286212466,
+    45.89552540938951,
+    45.93843237499599,
+    45.977613691031344,
+    46.018613221341965,
+    46.05066648507227,
+    46.0825276359282,
+    46.11306012164928,
+    46.145734117445855,
+    46.17615263629896,
+    46.20922670562461,
+    46.250307149983,
+    46.271446677470166,
+    46.31143463584988,
+    46.34454276402427,
+    46.38065701295575,
+    46.414579385324565,
+    46.46033007128669,
+    46.47628897749749,
+    46.50516840686554,
+    46.53836239695227,
+    46.57569526945635,
+    46.59704254004792,
+    46.620429685919405,
+    46.649622238480404,
+    46.68507252317335,
+    46.72401088516037,
+    46.747395708315445,
+    46.77848400109046,
+    46.791044971122034,
+    46.811002182040454,
+    46.839223843155786,
+    46.862302539901165,
+    46.878889513705744,
+    46.91620933077103,
+    46.944733214684724,
+    46.9571036481136,
+    46.9779971281213,
+    47.00147128492855,
+    47.03088830370163,
+    47.04585947558246,
+    47.076550225058895,
+    47.09693468724178,
+    47.1402174655447,
+    47.15568925940583,
+    47.183853751230075
+   ],
+   "95": [
+    44.72,
+    45.46096409386758,
+    45.79955232946457,
+    46.03619848710064,
+    46.25714385410525,
+    46.443910253383386,
+    46.60365970524766,
+    46.77421238580834,
+    46.9396215951275,
+    47.06111097433414,
+    47.184944350389394,
+    47.30840405258881,
+    47.417992183559925,
+    47.51741181456029,
+    47.6351817948977,
+    47.736343498994856,
+    47.849364790489375,
+    47.9584787267453,
+    48.049249267878196,
+    48.148525823982446,
+    48.248856679398614,
+    48.373638787932165,
+    48.44433624830057,
+    48.53966947232613,
+    48.57776335877116,
+    48.678995645772844,
+    48.77203209555014,
+    48.857273776846796,
+    48.94296815868312,
+    49.05201610195991,
+    49.10977818303153,
+    49.196692452523216,
+    49.28635337275406,
+    49.361457976719294,
+    49.441261422810555,
+    49.50229825388099,
+    49.585989691167725,
+    49.690767430113134,
+    49.74138735915073,
+    49.808288293711634,
+    49.86566560955253,
+    49.91844000837278,
+    50.009663558065114,
+    50.05999575719197,
+    50.114662594044376,
+    50.199431484414134,
+    50.27071755632975,
+    50.347251588194474,
+    50.41446768419763,
+    50.463740868136234,
+    50.5276918514531,
+    50.612688997950386,
+    50.68603355933405,
+    50.76647323968339,
+    50.82374713543468,
+    50.8915212098697,
+    50.92031091704755,
+    51.0023676809641,
+    51.06845480897484,
+    51.15470855035075,
+    51.20825868590482
+   ]
+  }
+ },
+ "tech": {
+  "sma": {
+   "20": 43.912,
+   "50": 43.603199999999994,
+   "100": 43.5074,
+   "200": 43.299099999999996
+  },
+  "rsi": 65.73708351073938,
+  "macd": {
+   "line": 0.30667126294959246,
+   "signal": 0.21309550467424082,
+   "hist": 0.09357575827535164
+  },
+  "hi52": 45.38,
+  "lo52": 40.2,
+  "rv252": 0.12928324149456857,
+  "chg20": 0.01821493624772308,
+  "chg60": 0.016363636363636358
+ },
+ "levers_applied": [
+  "mechanical",
+  "R-COC-01",
+  "R-BETA-04",
+  "R-MACRO-01"
+ ],
+ "coc_record": {
+  "market": "SA",
+  "regime": "pegged",
+  "years": 5,
+  "rf_observed": 0.0552,
+  "default_spread": 0.0098,
+  "rf_star": 0.045399999999999996,
+  "erp": 0.0572,
+  "erp_basis": "market",
+  "beta": 0.7078292485042049,
+  "ke_exp": 0.08588783301444051,
+  "kd_pretax": 0.048602896,
+  "kd_aftertax": 0.038882316800000004,
+  "weight_equity": 0.9029542857827806,
+  "weight_debt": 0.09704571421721937,
+  "wacc_exp": 0.08132614912126104,
+  "rf_terminal": 0.039751,
+  "erp_terminal": 0.0501,
+  "ke_terminal": 0.07521324535006066,
+  "kd_terminal_pretax": 0.055,
+  "kd_terminal_aftertax": 0.044000000000000004,
+  "weight_debt_terminal": 0.09704571421721937,
+  "wacc_terminal": 0.08132614912126104,
+  "glide_fractions": [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "forward_wacc": [
+   0.08132614912126104,
+   0.08132614912126104,
+   0.08132614912126104,
+   0.08132614912126104,
+   0.08132614912126104
+  ],
+  "discount_factors": [
+   0.9247903611807125,
+   0.8552372121327526,
+   0.7909151303034339,
+   0.7314306890166028,
+   0.6764200510743215
+  ],
+  "terminal_discount_factor": 0.6764200510743215,
+  "kd_integrity": {
+   "adopted_kd": 0.048602896,
+   "effective_rates": [
+    0.052256915084247756,
+    0.03890114872676881
+   ],
+   "effective_rate_periods": [
+    "FY2024",
+    "FY2025"
+   ],
+   "latest_effective": 0.03890114872676881,
+   "peak_effective": 0.052256915084247756,
+   "within_tolerance_bp": 97.01747273231192,
+   "currency_source": "Note 26 of the FY2025 audited statements gives every facility with its own currency column: dollar 19,401,578, ringgit 1,310,218, riyal 1,105,020, dinar 141,875 and 732,737 of subsidiary borrowings whose currency the note does not state, footing exactly to the stated 15,191,428. The January 2026 issue is dollar sukuk (note 15 of the reviewed 30 June 2026 interim, which names both tranches), so the riyal share of the current book is 4.9%. Every non-riyal leg is in a currency pegged or managed against the dollar, and the riyal itself is pegged at 3.75, so expected depreciation is zero and the local-equivalent cost of a dollar leg is its own coupon.",
+   "interest_bearing_note": "The denominator is the BORROWINGS total from note 26 (FY2025 filing) and note 27 (FY2024 filing) \u2014 murabaha, sukuk and mudarabah \u2014 and nothing else. Lease liabilities are excluded because their interest is disclosed separately and they are not in the borrowings total; trade payables, contract liabilities and the digital bank's customer balances are excluded because they bear no interest. The numerator is the murabaha and sukuk finance cost from note 39/40, excluding lease interest and the unwinding of discounts on provisions. CLOSING rather than average balances, because the book RE-BASED inside both periods and an average describes a book that existed at no point in either: SAR 2,635 million of loans were repaid in 2024 against SAR 433 million in 2023 while TAWAL left the group, and SAR 7,500 million was drawn in January 2026. Both bases are computed and published below.",
+   "pct_local_currency": 0.048697684429556395
+  },
+  "disclosures": [
+   "SA runs a pegged regime, so the risk-free rate already sits at its long-run level and the schedule is FLAT by construction. Applying a glide here would manufacture movement the peg forbids and measures nothing (+0.0% where it was tried).",
+   "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (0.98%) on the market basis, and the premium added back is on the same basis.",
+   "The terminal is norm-built and no line in it is an observable quote: risk-free 3.98% = the inflation target in force (2.00%) plus the real-rate convention (1.98%); cost of debt 5.50% is the long-run corporate norm; the premium is normalised to 5.01%.",
+   "DISCLOSED STALENESS: the sovereign quote is 36 days old (as of 2026-07-31), beyond the 14-day bound, and was accepted deliberately."
+  ],
+  "sensitivity": {
+   "note": "the alternative premium basis is published where the study carries it",
+   "other_basis": "rating",
+   "other_default_spread": 0.0051,
+   "rf_star_other_basis": 0.0501
+  },
+  "build_date": "2026-09-05",
+  "spot": 43.86,
+  "spot_date": "2026-09-03",
+  "market_cap": 218994032.64,
+  "shares_outstanding": 4993024.0,
+  "gross_debt": 23536554,
+  "effective_rate_detail": [
+   {
+    "year": "FY2024",
+    "interest": 790738,
+    "closing": 15131739,
+    "opening": 21957496,
+    "on_average": 0.04263975787044408,
+    "on_closing": 0.052256915084247756
+   },
+   {
+    "year": "FY2025",
+    "interest": 590964,
+    "closing": 15191428,
+    "opening": 15131739,
+    "on_average": 0.038977722874395014,
+    "on_closing": 0.03890114872676881
+   }
+  ],
+  "weights_source": "Market-value equity, never book: the latest known close of SAR 43.86 on 2026-09-03 times 4,993,024 thousand shares outstanding \u2014 issued capital of SAR 50,000,000 thousand in shares of SAR 10 each, which divides to the 5,000,000 thousand shares note 17 of the reviewed 30 June 2026 interim itself states, less 6,976 thousand held in treasury. Debt is the borrowings total from the LATEST DISCLOSED balance sheet, 30 June 2026, SAR 23,536,554 thousand, which reproduces from the same interim's own financing cash flows to twelve basis points.",
+  "sovereign_staleness_disclosed": "The Saudi sovereign quote on the house macro path carries an as-of date of 31 July 2026 and this schedule is struck on 5 September 2026, so it is 36 days old against the 14-day bound. It is accepted DELIBERATELY and the age is disclosed here rather than used quietly; refreshing the path is a macro-path task that moves every Saudi study at once, not a lever inside this one."
+ },
+ "bridge_record": {
+  "balance_sheet_date": "2026-06-30",
+  "latest_disclosed_date": "2026-06-30",
+  "latest_disclosed_source": "src/SOURCES.md, this study's own register of the primary documents: every audited and reviewed set this company has published back to FY2023, each with the URL it was fetched from and the date it carries. The latest is the reviewed interim for the six months to 30 June 2026; the delivered study stood on first-quarter figures while that one was already published.",
+  "associates": {
+   "basis": "book",
+   "value": 12909.648,
+   "listed": false,
+   "note": "Note 8.1.4 splits the line: associates 10,150.459 and joint ventures the remainder at 31 December 2025. DIIC (43.06%, which holds the towers business contributed in February 2025), Arabsat, Beyond One and Devoteam Middle East are all unlisted, so book is the basis. The joint venture BGSM holds 62% of a LISTED Malaysian operator; a market cross-check on that look-through is NOT performed because the price is not held, and that is recorded as a gap rather than estimated (SIGCM clause 8)."
+  },
+  "nci": {
+   "basis": "value_share",
+   "deduction": 3658.763177755767,
+   "applied_to": "equity_value",
+   "book": 2726.349,
+   "profit_share": 0.020206295602669237,
+   "proportional": 0.020206295602669237,
+   "proxy_source": "Note 25 of the FY2025 audited statements: the minority's own share of profit, 306,915, against group net profit from continuing operations of 15,189,078, which is 2.021%. The subsidiaries carrying the minority \u2014 stc Kuwait at 48.162%, Solutions at 20.363%, and STC Bank, iot2 and SCCC \u2014 are not separately valued in this model, so the profit share is the proxy. Book of 2,726.349 at 30 June 2026 is published beside it and is NOT the adopted basis: the model capitalises 100% of subsidiary cash flow, so the minority claim is worth its share of that value and not what it historically cost."
+  },
+  "cash": {
+   "treatment": "added_at_face",
+   "weights_basis": "gross",
+   "note": "The discount-rate weights are GROSS: market-value equity over market capitalisation plus gross borrowings, so no cash is netted inside the rate and the cash added here is charged exactly once. STC Bank's cash of 6,000.384 and its digital-banking financial assets of 4,111.267 are EXCLUDED, because netting a bank's cash against group borrowings treats money that backs customer balances as though it were free; the cost is that the bank's own equity value appears in this bridge nowhere, which understates the answer, and it is left as a stated gap."
+  },
+  "dividend": {
+   "deducted": false,
+   "note": "No dividend is deducted. The interim balance sheet is struck after the SAR 6,486.411mn paid in the half, so it is already out of the equity it would come out of."
+  },
+  "lines": [
+   {
+    "name": "enterprise value, discounted cash flow",
+    "value": 159416.22593582983
+   },
+   {
+    "name": "plus investments in associates and joint ventures, at book",
+    "value": 12909.648
+   },
+   {
+    "name": "plus the listed equity investment at its disclosed fair value",
+    "value": 8513.43
+   },
+   {
+    "name": "plus investment funds and unlisted equity investments, at fair value",
+    "value": 5163.516
+   },
+   {
+    "name": "less net debt",
+    "value": -4932.3629999999985
+   },
+   {
+    "name": "less the minority at its share of equity value",
+    "value": -3658.763177755767
+   }
+  ],
+  "equity_value": 177411.69375807405,
+  "shares_mn": 4993.024,
+  "per_share": 35.53191287646005,
+  "net_debt_build": {
+   "borrowings": 23536.554,
+   "leases": 2258.902,
+   "cash_non_bank": 12940.389,
+   "murabahas": 1062.181,
+   "sukuk": 6368.453,
+   "treasury_bills": 492.07,
+   "net": 4932.3629999999985
+  }
+ },
+ "terminal_record": {
+  "rule": "R-TERM-01",
+  "inputs": {
+   "nopat": 14362.562186467201,
+   "wacc": 0.08132614912126104,
+   "inflation": 0.02,
+   "real_growth": 0.0,
+   "dna_book": 11367.465023766425,
+   "ic_replacement": null,
+   "useful_life_years": 20.862788325368726,
+   "useful_life_source": "Derived from note 10 of the FY2025 audited statements: depreciable gross cost of SAR 134,634,729 thousand \u2014 total cost of 141,541,105 less capital work in progress of 4,910,376 and land of 1,996,000, both disclosed separately in the same note \u2014 over the year's own charge of SAR 6,453,343 thousand. The company discloses RANGES rather than one life (buildings 25-50 years, telecommunication network and equipment 3-30, other assets 2-20, note 4.11), so a single figure has to come from the identity; 19.54 and 19.84 years stand behind it on the two earlier filed years.",
+   "average_age_years": 15.225406428884998,
+   "average_age_source": "Note 10 of the FY2025 audited statements, the property and equipment roll-forward: accumulated depreciation of SAR 98,254,770 thousand over the year's own charge of SAR 6,453,343 thousand. An identity off the accounts, not a figure this desk chose, and the same note gives 14.18 and 13.60 years on the two years behind it.",
+   "maintenance_basis": "book_dna_escalated",
+   "maintenance_capex": null,
+   "working_capital": 13555.044,
+   "incremental_capital_per_unit_growth": null,
+   "floor_exemption": "",
+   "floor_exemption_disclosure": ""
+  },
+  "fcff": 10091.37271301074,
+  "tv": 167843.57594210052,
+  "floor": 176604.4788995475,
+  "tv_vs_floor": -0.04960747888183625,
+  "nominal_growth": 0.020000000000000018,
+  "real_growth": 0.0,
+  "maintenance": 15367.553617222884,
+  "maintenance_age_years": 15.225406428884998,
+  "maintenance_age_basis": "measured",
+  "maintenance_escalator": 1.3518892369664925,
+  "growth_capex": 0.0,
+  "wc_charge": 271.10088,
+  "dna_addback": 11367.465023766425,
+  "net_capital_charge": 4271.189473456459,
+  "implied_cycle_years": null,
+  "one_over_g": 49.99999999999996,
+  "payout_of_nopat": 0.7026164678694382,
+  "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
+ },
+ "hist": {
+  "rev": {
+   "FY23": 71777.0,
+   "FY24": 75893.0,
+   "FY25": 77819.0
+  },
+  "gp": {
+   "FY23": 34740.0,
+   "FY24": 37326.0,
+   "FY25": 37700.0
+  },
+  "ebitda": {
+   "FY23": 22445.0,
+   "FY24": 23951.0,
+   "FY25": 24469.0
+  },
+  "ebit": {
+   "FY23": 13161.0,
+   "FY24": 14426.0,
+   "FY25": 14438.0
+  },
+  "np_att": {
+   "FY23": 13295.0,
+   "FY24": 24689.0,
+   "FY25": 14828.0
+  },
+  "np_cont_att": {
+   "FY23": 12536.0,
+   "FY24": 10716.0,
+   "FY25": 14828.0
+  },
+  "assets": {
+   "FY23": 159646.0,
+   "FY24": 160638.0,
+   "FY25": 157477.0
+  },
+  "cash": {
+   "FY23": 28138.0,
+   "FY24": 30755.0,
+   "FY25": 15080.0
+  },
+  "debt": {
+   "FY23": 21958.0,
+   "FY24": 15132.0,
+   "FY25": 15191.0
+  },
+  "eq_att": {
+   "FY23": 78985.0,
+   "FY24": 89417.0,
+   "FY25": 83414.0
+  },
+  "nci": {
+   "FY23": 2530.0,
+   "FY24": 3069.0,
+   "FY25": 3482.0
+  },
+  "ocf": {
+   "FY23": 22418.0,
+   "FY24": 19885.0,
+   "FY25": 18283.0
+  },
+  "fcf": {
+   "FY23": 12628.0,
+   "FY24": 7959.0,
+   "FY25": 6488.0
+  },
+  "capex": {
+   "FY23": 9790.0,
+   "FY24": 11927.0,
+   "FY25": 11795.0
+  },
+  "dna": {
+   "FY23": 9284.0,
+   "FY24": 9525.0,
+   "FY25": 10031.0
+  },
+  "dps": {
+   "FY23": 1.6,
+   "FY24": 3.75,
+   "FY25": 2.2
+  }
+ },
+ "seg_hist": {
+  "stc": {
+   "FY23": 49218.179,
+   "FY24": 49643.893,
+   "FY25": 51119.024
+  },
+  "Channels": {
+   "FY23": 14194.21,
+   "FY24": 15110.606,
+   "FY25": 14085.195
+  },
+  "Solutions": {
+   "FY23": 11040.493,
+   "FY24": 12063.897,
+   "FY25": 12730.189
+  },
+  "stc Kuwait": {
+   "FY23": 3986.034,
+   "FY24": 4105.483,
+   "FY25": 4179.842
+  },
+  "stc Bahrain": {
+   "FY23": 1913.287,
+   "FY24": 1927.967,
+   "FY25": 1967.83
+  },
+  "Center 3": {
+   "FY23": 1089.218,
+   "FY24": 1911.716,
+   "FY25": 1961.666
+  },
+  "stc Bank": {
+   "FY23": 1063.006,
+   "FY24": 1261.646,
+   "FY25": 1401.027
+  },
+  "Sirar": {
+   "FY23": 588.606,
+   "FY24": 732.675,
+   "FY25": 826.545
+  },
+  "Specialized": {
+   "FY23": 397.492,
+   "FY24": 371.763,
+   "FY25": 355.306
+  },
+  "iot2": {
+   "FY23": 72.539,
+   "FY24": 301.434,
+   "FY25": 321.668
+  },
+  "SCCC": {
+   "FY23": 72.15,
+   "FY24": 187.904,
+   "FY25": 303.969
+  },
+  "Other operating segments": {
+   "FY23": 709.843,
+   "FY24": 729.345,
+   "FY25": 65.059
+  },
+  "Eliminations / adjustments": {
+   "FY23": -12567.896,
+   "FY24": -12454.916,
+   "FY25": -11498.645
+  }
+ },
+ "drivers": {
+  "segment_real_growth": {
+   "stc": 0.001602,
+   "Channels": -0.020977,
+   "Solutions": 0.055334,
+   "stc Kuwait": 0.006413,
+   "stc Bahrain": -0.003286,
+   "Center 3": 0.02333,
+   "stc Bank": 0.128294,
+   "Sirar": 0.16463,
+   "Specialized": -0.070811,
+   "iot2": 0.02333,
+   "SCCC": 0.02333,
+   "Other operating segments": 0.02333
+  },
+  "unit_segment": "stc",
+  "unit_volume_real": 0.05999788000635986,
+  "unit_price_real": -0.055090093250974026,
+  "unit_note": "the stc segment is built as VOLUME x PRICE from the subscriber counts in the earnings presentations, each half faded on the same schedule and multiplied; the other segments are forecast on their net rate because no unit data is disclosed for them",
+  "group_real_growth": 0.023329916305205867,
+  "segment_margin": {
+   "stc": 0.599163,
+   "Channels": 0.243476,
+   "Solutions": 0.230351,
+   "stc Kuwait": 0.5118,
+   "stc Bahrain": 0.512545,
+   "Center 3": 0.417155,
+   "stc Bank": 0.517416,
+   "Sirar": 0.342802,
+   "Specialized": 0.381108,
+   "iot2": 0.222643,
+   "SCCC": 0.258375,
+   "Other operating segments": 0.523448
+  },
+  "sga_share_of_revenue": 0.17251163231986957,
+  "dna_share_of_revenue": 0.12890441786627696,
+  "capex_to_dna_history": [
+   1.0544912386749903,
+   1.25211577330983,
+   1.1758348053283112
+  ],
+  "capex_to_dna_adopted": 1.1608139391043772,
+  "capex_guidance_band": [
+   0.15,
+   0.175
+  ],
+  "capex_note": "measured from the filings as capital expenditure over the depreciation of the base it renews, not taken from management's own band, because guidance is scored and never consumed",
+  "elimination_share": -0.12873925236449102,
+  "elimination_gp_share": -0.05133139910601885,
+  "regrouped_take_group_rate": [
+   "Center 3",
+   "Other operating segments",
+   "SCCC",
+   "iot2"
+  ],
+  "cpi_history": {
+   "2024": 0.015,
+   "2025": 0.02
+  },
+  "cpi_history_source": "International Monetary Fund, World Economic Outlook database, series PCPIPCH (inflation, average consumer prices, annual percent change), Saudi Arabia (SAU), read live from the IMF datamapper API on 5 September 2026.",
+  "ebitda_m": [
+   0.3109097842682021,
+   0.3100991287517747,
+   0.30954565654700933,
+   0.30926779027989404,
+   0.3092677902798941
+  ],
+  "dna_pct": [
+   0.12890441786627696,
+   0.12890441786627696,
+   0.12890441786627696,
+   0.12890441786627696,
+   0.12890441786627696
+  ],
+  "capex_pct": [
+   0.14963404507130962,
+   0.14963404507130962,
+   0.14963404507130962,
+   0.14963404507130962,
+   0.14963404507130962
+  ],
+  "wc_out_pct": [
+   0.008,
+   0.006,
+   0.005,
+   0.004,
+   0.004
+  ],
+  "payout_dps": [
+   2.2,
+   2.2,
+   2.3,
+   2.4,
+   2.55
+  ]
+ },
+ "forecast": {
+  "FY26E": {
+   "gross": 92106.1601261951,
+   "elim": -11857.67819281045,
+   "rev": 80248.48193338465,
+   "gp": 38793.834815279086,
+   "sga": 13843.79660951975,
+   "ebitda": 24950.038205759338,
+   "ebitda_margin": 0.3109097842682021
+  },
+  "FY27E": {
+   "gross": 94671.36757267907,
+   "elim": -12187.921081630622,
+   "rev": 82483.44649104845,
+   "gp": 39807.39888685714,
+   "sga": 14229.353993539387,
+   "ebitda": 25578.044893317754,
+   "ebitda_margin": 0.3100991287517747
+  },
+  "FY28E": {
+   "gross": 97034.22887882347,
+   "elim": -12492.114079624638,
+   "rev": 84542.11479919884,
+   "gp": 40754.14265517423,
+   "sga": 14584.498223783594,
+   "ebitda": 26169.64443139064,
+   "ebitda_margin": 0.30954565654700933
+  },
+  "FY29E": {
+   "gross": 99231.03117982244,
+   "elim": -12774.928765447838,
+   "rev": 86456.1024143746,
+   "gp": 41652.77110142343,
+   "sga": 14914.68335151758,
+   "ebitda": 26738.087749905848,
+   "ebitda_margin": 0.30926779027989404
+  },
+  "FY30E": {
+   "gross": 101215.65180341889,
+   "elim": -13030.427340756796,
+   "rev": 88185.2244626621,
+   "gp": 42485.8265234519,
+   "sga": 15212.977018547932,
+   "ebitda": 27272.849504903967,
+   "ebitda_margin": 0.3092677902798941
+  }
+ },
+ "dcf": {
+  "rows": [
+   {
+    "year": "FY26E",
+    "rev": 80248.48193338465,
+    "ebitda": 24950.038205759334,
+    "dna": 10344.383848275393,
+    "ebit": 14605.654357483942,
+    "nopat": 13188.905884808,
+    "capex": 12007.904962524255,
+    "dwc": 641.9878554670772,
+    "fcff": 10883.396915092062,
+    "df": 0.9247903611807125,
+    "pv": 10064.86056398104
+   },
+   {
+    "year": "FY27E",
+    "rev": 82483.44649104845,
+    "ebitda": 25578.044893317754,
+    "dna": 10632.480653532806,
+    "ebit": 14945.564239784948,
+    "nopat": 13495.844508525808,
+    "capex": 12342.3317498785,
+    "dwc": 494.9006789462907,
+    "fcff": 11291.092733233825,
+    "df": 0.8552372121327526,
+    "pv": 9656.562671103278
+   },
+   {
+    "year": "FY28E",
+    "rev": 84542.11479919884,
+    "ebitda": 26169.64443139064,
+    "dna": 10897.852093374684,
+    "ebit": 15271.792338015955,
+    "nopat": 13790.428481228408,
+    "capex": 12650.378616287151,
+    "dwc": 422.7105739959942,
+    "fcff": 11615.191384319949,
+    "df": 0.7909151303034339,
+    "pv": 9186.630607228735
+   },
+   {
+    "year": "FY29E",
+    "rev": 86456.1024143746,
+    "ebitda": 26738.087749905844,
+    "dna": 11144.57355271218,
+    "ebit": 15593.514197193665,
+    "nopat": 14080.943320065879,
+    "capex": 12936.776325362289,
+    "dwc": 345.82440965749845,
+    "fcff": 11942.916137758271,
+    "df": 0.7314306890166028,
+    "pv": 8735.415379508036
+   },
+   {
+    "year": "FY30E",
+    "rev": 88185.2244626621,
+    "ebitda": 27272.849504903967,
+    "dna": 11367.465023766425,
+    "ebit": 15905.384481137542,
+    "nopat": 14362.562186467201,
+    "capex": 13195.511851869536,
+    "dwc": 352.74089785064837,
+    "fcff": 12181.77446051344,
+    "df": 0.6764200510743215,
+    "pv": 8239.996502756365
+   }
+  ],
+  "pv_sum": 45883.46572457745,
+  "tv": 167843.57594210052,
+  "pv_tv": 113532.76021125239,
+  "ev": 159416.22593582983,
+  "tv_pct": 0.7121781960699094,
+  "nopat_term": 14362.562186467201,
+  "ic_repl": 182011.2410570005,
+  "terminal_maintenance": 15367.553617222884,
+  "terminal_fcff": 10091.37271301074,
+  "terminal_life_years": 20.862788325368726,
+  "terminal_age_years": 15.225406428884998,
+  "wacc": 0.08132614912126104,
+  "wacc_rating_basis": 0.08103215834431124,
+  "tg": 0.02,
+  "assoc": 12909.648,
+  "telefonica": 8513.43,
+  "net_debt": 4932.3629999999985,
+  "nci": 3658.763177755767,
+  "eq": 177411.69375807405,
+  "ps": 35.53191287646005,
+  "wacc_build": {
+   "rf": 0.0552,
+   "default_spread": 0.0098,
+   "rf_star": 0.045399999999999996,
+   "erp_market": 0.0572,
+   "erp_rating": 0.0501,
+   "beta": 0.7078292485042049,
+   "beta_reg": {
+    "beta": 0.7078292485042049,
+    "r2": 0.3017708702514479,
+    "n": 252,
+    "se": 0.10288860144335289,
+    "window_years": 4.91,
+    "index_file": "raw_indices/SA/TASI.csv",
+    "index_asof": "2026-08-18",
+    "conforming": true
+   },
+   "ke_rating": 0.08556224535006066,
+   "ke_market": 0.08588783301444051,
+   "kd_pretax": 0.048602896,
+   "kd_aftertax": 0.038882316800000004,
+   "we": 0.9029542857827806,
+   "wd": 0.09704571421721937,
+   "wacc_market": 0.08132614912126104,
+   "wacc_rating": 0.08103215834431124,
+   "tax": 0.097,
+   "regime": "pegged",
+   "beta_source": "Own-stock weekly regression against the published index of the exchange the stock is listed on, through beta_regression.own_stock_beta(\"STC\",\"SA\",\"TADAWUL\"): 252 weekly observations over 4.91 years to 2026-08-13 against TASI.",
+   "kd_source": "The company's OWN latest issue: international sukuk of SAR 7,500 million (USD 2,000 million) completed in the first half of 2026 in two tranches \u2014 SAR 2,812 million for five years at 4.489% and SAR 4,688 million for ten years at 5.083% \u2014 weighting to 4.860%. It is 32% of the current book and is the marginal rate this company actually faces.",
+   "debt_currency_evidence": "Note 26 of the FY2025 audited statements gives every facility with its own currency column: dollar 19,401,578, ringgit 1,310,218, riyal 1,105,020, dinar 141,875 and 732,737 of subsidiary borrowings whose currency the note does not state, footing exactly to the stated 15,191,428. The January 2026 issue is dollar sukuk (note 15 of the reviewed 30 June 2026 interim, which names both tranches), so the riyal share of the current book is 4.9%. Every non-riyal leg is in a currency pegged or managed against the dollar, and the riyal itself is pegged at 3.75, so expected depreciation is zero and the local-equivalent cost of a dollar leg is its own coupon.",
+   "weights_source": "Market-value equity, never book: the latest known close of SAR 43.86 on 2026-09-03 times 4,993,024 thousand shares outstanding \u2014 issued capital of SAR 50,000,000 thousand in shares of SAR 10 each, which divides to the 5,000,000 thousand shares note 17 of the reviewed 30 June 2026 interim itself states, less 6,976 thousand held in treasury. Debt is the borrowings total from the LATEST DISCLOSED balance sheet, 30 June 2026, SAR 23,536,554 thousand, which reproduces from the same interim's own financing cash flows to twelve basis points.",
+   "disclosures": [
+    "SA runs a pegged regime, so the risk-free rate already sits at its long-run level and the schedule is FLAT by construction. Applying a glide here would manufacture movement the peg forbids and measures nothing (+0.0% where it was tried).",
+    "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (0.98%) on the market basis, and the premium added back is on the same basis.",
+    "The terminal is norm-built and no line in it is an observable quote: risk-free 3.98% = the inflation target in force (2.00%) plus the real-rate convention (1.98%); cost of debt 5.50% is the long-run corporate norm; the premium is normalised to 5.01%.",
+    "DISCLOSED STALENESS: the sovereign quote is 36 days old (as of 2026-07-31), beyond the 14-day bound, and was accepted deliberately."
+   ]
+  }
+ },
+ "ddm": {
+  "dps": [
+   2.2,
+   2.2,
+   2.3,
+   2.4,
+   2.55
+  ],
+  "pv_div": 9.111030071423325,
+  "tv": 39.67222272685012,
+  "pv_tv": 26.31557599709488,
+  "ps": 35.426606068518204,
+  "tv_pct": 0.7428195618343517,
+  "ke": 0.08556224535006066,
+  "g": 0.02
+ },
+ "lenses": {
+  "dcf": {
+   "bear": 34.75936497157102,
+   "base": 35.53191287646005,
+   "bull": 36.43155941887267
+  },
+  "ddm": {
+   "bear": 29.160467565141218,
+   "base": 35.426606068518204,
+   "bull": 49.622266617523856
+  },
+  "relative": {
+   "bear": 44.96668806756642,
+   "base": 47.14839882868572,
+   "bull": 48.95337637260986
+  },
+  "normalized": {
+   "bear": 36.771303322395404,
+   "base": 43.26035684987695,
+   "bull": 50.23008100902379
+  },
+  "book_value": 17.02110905134844,
+  "own_history_evx": [
+   {
+    "year": 2023,
+    "close": 39.35,
+    "ebitda": 22445.389,
+    "ev": 204942.676,
+    "x": 9.130725067852467
+   },
+   {
+    "year": 2024,
+    "close": 40.0,
+    "ebitda": 23951.115,
+    "ev": 199188.298,
+    "x": 8.316451989813418
+   },
+   {
+    "year": 2025,
+    "close": 42.98,
+    "ebitda": 24469.435,
+    "ev": 216285.55699999997,
+    "x": 8.839009033105993
+   }
+  ],
+  "central": {
+   "bear": 34.75936497157102,
+   "base": 35.53191287646005,
+   "bull": 47.14839882868572
+  },
+  "weights": null
+ },
+ "lens_record": {
+  "class": "telecom operator",
+  "primary": {
+   "kind": "dcf",
+   "value": 35.53191287646005,
+   "range": {
+    "low": 34.75936497157102,
+    "high": 47.14839882868572
+   },
+   "range_basis": {
+    "driver": "capital expenditure as a multiple of depreciation",
+    "low": 1.25211577330983,
+    "high": 1.0544912386749903,
+    "macro_held": true,
+    "evidence": "The range this company's OWN THREE FILED YEARS actually span, 1.054 to 1.252 times the depreciation of the base being renewed, against an adopted mean of 1.161. It is measured rather than guided: management publishes a band of 15.0% to 17.5% of revenue and the delivered study took its path straight from it, which the standing rule forbids \u2014 guidance is SCORED and never CONSUMED, because a forward target leans the same way an optimistic model does. The bear takes the highest year and the bull the lowest, and nothing else moves: the cost of capital, the terminal growth, the terminal risk-free rate, the inflation ladder and the margin path are IDENTICAL across all three reads. The delivered study's bear and bull moved the cost of capital by 100 and 70 basis points and terminal growth between 2.0% and 3.0% as well, which makes each corner an economy nothing describes and its width chosen rather than observed."
+   }
+  },
+  "cross_checks": [
+   {
+    "kind": "ev_ebitda_own_history",
+    "value": 47.14839882868572,
+    "multiple": 8.762062030257292,
+    "multiple_source": "the company's own trailing EV/EBITDA at each of the last three financial year ends, computed from that year-end close in the persistent price library, the shares in issue and that year's own net debt and EBITDA from the filings: 9.131x, 8.316x and 8.839x, whose mean is adopted and whose lowest and highest are the bear and bull. Never a multiple read off the current price.",
+    "circularity": {
+     "spot": 43.86,
+     "shares": 4993.024,
+     "net_debt": 4932.3629999999985,
+     "metric_value": 24469.0,
+     "traded_multiple": 9.151432246516
+    },
+    "note": "The traded multiple today is 9.151x, ABOVE every one of the three years this multiple is built from, so the lens is not anchored on the price and can be seen not to be."
+   },
+   {
+    "kind": "book_value",
+    "value": 17.02110905134844,
+    "note": "Equity attributable to the parent on the reviewed 30 June 2026 sheet, SAR 84,986.806mn over 4,993.024mn shares. A DISCLOSED FLOOR, published as such and never weighted into the answer."
+   }
+  ],
+  "envelope": {
+   "low": 34.75936497157102,
+   "high": 47.14839882868572
+  },
+  "central": 35.53191287646005,
+  "retired": {
+   "blend_weights": {
+    "dcf": 0.35,
+    "ddm": 0.25,
+    "relative": 0.2,
+    "normalized": 0.2
+   },
+   "retired_value": null,
+   "why": "The four-lens blend at typed weights is retired under [R-LENS-03]. The dividend-discount and normalised-earnings reads are not permitted cross-checks for this class and carried 45% of the answer between them."
+  }
+ },
+ "rel_basis": {
+  "ebitda26": 24950.038205759334,
+  "np26": 13475.480737687798,
+  "eps26": 2.69886159924082,
+  "evx": {
+   "bear": 8.316451989813418,
+   "base": 8.762062030257292,
+   "bull": 9.130725067852467
+  },
+  "norm_pat": 14400.0,
+  "norm_eps": 2.8840237899917964
+ },
+ "sens": {
+  "wacc_steps": [
+   0.07132614912126105,
+   0.07632614912126104,
+   0.08132614912126104,
+   0.08632614912126105,
+   0.09132614912126104
+  ],
+  "g_steps": [
+   0.015,
+   0.02,
+   0.025,
+   0.03,
+   0.035
+  ],
+  "table_wg": [
+   [
+    41.02070782665586,
+    41.38504122823252,
+    41.80124031877559,
+    42.28813059620951,
+    42.87490226728611
+   ],
+   [
+    38.07053236671073,
+    38.20028756112363,
+    38.331708663102745,
+    38.46533507887927,
+    38.60196726307219
+   ],
+   [
+    35.563773679330495,
+    35.53191287646004,
+    35.47337013126743,
+    35.380347680981124,
+    35.24168130007782
+   ],
+   [
+    33.40722369925351,
+    33.26322342282107,
+    33.076871209208115,
+    32.836888477016615,
+    32.527601777284204
+   ],
+   [
+    31.532096481746397,
+    31.31024362225189,
+    31.037889745082946,
+    30.702682611007788,
+    30.287884011071757
+   ]
+  ],
+  "margin_steps": [
+   -0.01,
+   -0.005,
+   0.0,
+   0.005,
+   0.01
+  ],
+  "capex_steps": [
+   -0.01,
+   -0.005,
+   0.0,
+   0.005,
+   0.01
+  ],
+  "table_cm": [
+   [
+    33.837558175854,
+    33.50935096450325,
+    33.18114375315251,
+    32.85293654180177,
+    32.524729330451024
+   ],
+   [
+    35.012942737507764,
+    34.68473552615702,
+    34.356528314806276,
+    34.02832110345554,
+    33.70011389210479
+   ],
+   [
+    36.18832729916153,
+    35.860120087810785,
+    35.53191287646004,
+    35.2037056651093,
+    34.87549845375855
+   ],
+   [
+    37.3637118608153,
+    37.035504649464556,
+    36.70729743811381,
+    36.37909022676307,
+    36.050883015412325
+   ],
+   [
+    38.539096422469065,
+    38.21088921111832,
+    37.88268199976758,
+    37.55447478841683,
+    37.22626757706609
+   ]
+  ]
+ },
+ "cover": [
+  {
+   "capex": "13.6% (the lowest of the three filed years, 1.054x depreciation)",
+   "fcf": 11.983239740118833,
+   "div": 10.984652800000001,
+   "cover": 1.090907465015083
+  },
+  {
+   "capex": "15.0% (adopted, the three-year mean of 1.161x depreciation)",
+   "fcf": 10.88339691509206,
+   "div": 10.984652800000001,
+   "cover": 0.9907820586820968
+  },
+  {
+   "capex": "16.1% (the highest of the three filed years, 1.252x depreciation)",
+   "fcf": 9.938935696019255,
+   "div": 10.984652800000001,
+   "cover": 0.9048019884633272
+  }
+ ],
+ "div_bill": 10.984652800000001,
+ "experts": {
+  "e1": {
+   "base": 35.25826390979629,
+   "rng": [
+    31.93081961871056,
+    40.59242460771112
+   ]
+  },
+  "e2": {
+   "base": 43.26035684987695,
+   "rng": [
+    36.771303322395404,
+    50.23008100902379
+   ]
+  },
+  "e3": {
+   "base": 38.12489853142939
+  },
+  "e1_roic": 0.14573376668296134,
+  "e1_ic": 90500.0,
+  "e1_ep": 5828.889389333877
+ }
+}

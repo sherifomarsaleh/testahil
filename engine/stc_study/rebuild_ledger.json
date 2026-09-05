@@ -1,0 +1,200 @@
+{
+ "ticker": "STC",
+ "started_at": "2026-09-05",
+ "start_value": 47.11084520942183,
+ "start_spot": 43.58,
+ "start_gap": 0.08101985335984008,
+ "audit_after": "AFTER LEVER 3, AND THE REASON IS THAT LEVERS 2 AND 3 PULL IN OPPOSITE DIRECTIONS. Declared in REBUILD_PLAN_05-09-2026.md before any lever was touched, and unchanged since. Normalising the risk-free rate by Saudi Arabia's own sovereign default spread lowers the cost of capital and raises the value; replacing a 40-session daily regression with a conforming own-stock weekly beta raises the cost of capital and lowers it. A look taken between them would audit a state this study never publishes \u2014 a normalised risk-free on a beta the rule refuses \u2014 which is why the audit point sits after the pair rather than between them. THE NET WAS NOT PREDICTED and the plan said so in advance.",
+ "levers": [
+  {
+   "name": "the mechanical unblock, then the cost-of-capital schedule through the sanctioned module",
+   "rule": "R-COC-01",
+   "before": 47.11084520942183,
+   "after": 51.071420594226275,
+   "why": "Two mechanical blockers first, neither a valuation decision: the study imported mc_v2, renamed on 2 August 2026, so it had not run since; and it read a one-off price export of its own rather than the persistent library the rest of the engine reads for this name. Then the rule. The delivered study discounted a five-year forecast and a perpetuity alike at a single rate built by hand: a raw local sovereign yield with NO normalisation for Saudi Arabia's own default spread, so country risk was counted twice \u2014 once in the yield and again inside the equity risk premium added on top of it. The sanctioned schedule normalises the risk-free by this sovereign's OWN spread, takes the equity premium from the country-risk file's own row, weights at market value on the LATEST DISCLOSED balance sheet, and returns a FLAT ladder because the riyal is pegged and today is already the terminal \u2014 stated by the module rather than assumed by the study.",
+   "evidence": "Cost of capital 7.540% (the delivered study's own rating-basis figure) to 6.932% on the swap basis, which the rule makes central, with 7.051% on the rating basis published beside it. The debt book is read facility by facility out of note 26 of the FY2025 audited statements \u2014 eleven facilities in five currencies footing exactly to the stated 15,191,428 thousand \u2014 and the cost of debt is this company's OWN latest issue, the January 2026 sukuk of SAR 7,500 million in two tranches at 4.489% and 5.083%, weighting to 4.860%. The effective rate is computed independently over two periods from the murabaha and sukuk finance cost alone, over the borrowings that actually bear it. This lever is measured on the RETIRED beta held fixed, through the module's own sensitivity path, so it carries none of the beta correction: 47.1108 to 51.0714.",
+   "move": 0.0840692916291037
+  },
+  {
+   "name": "the beta re-derived against the published index of its own exchange",
+   "rule": "R-BETA-04",
+   "before": 51.071420594226275,
+   "after": 44.050181325121294,
+   "why": "The delivered study regressed 40 DAILY sessions over nine weeks against TASI closes and adopted 0.48. The standing rule is explicit that a daily or short-window regression is NOT one of the three tiers and may stand only as a flagged interim. The conforming construction is an own-stock WEEKLY regression against the published index of the exchange the stock is listed on, resolved through beta_regression.own_stock_beta, and it is nearly half as much again.",
+   "evidence": "beta 0.7078 against 0.4753, from 252 weekly observations over 4.91 years to 2026-08-18 against raw_indices/SA/TASI.csv, R-squared 0.302, standard error 0.1029. Cost of capital 6.932% to 8.133% on the swap basis. The answer falls 51.0714 to 44.0502, -13.75%.",
+   "move": -0.1374788323373708
+  },
+  {
+   "name": "terminal growth stored as a real rate on the house Saudi path",
+   "rule": "R-MACRO-01",
+   "before": 44.050181325121294,
+   "after": 41.73879909479903,
+   "why": "The delivered study typed 2.5%% as its cash-flow terminal growth and 3.0%% as its dividend terminal growth \u2014 two answers to one question about one economy, in one model, on one company. A typed nominal rate is also unfalsifiable: nobody reading the page can tell whether 2.5%% meant terminal inflation plus half a point or something else. Both now sit on the house path as (real, path id) and recompute to their nominal, at the rule's own STATED DEFAULT of zero real growth \u2014 a mature domestic telecom growing with the economy in perpetuity and no further. Any other figure would have to be sourced and nothing in the filings supplies one, and reverse-engineering the real rate that reproduces the typed 2.5%% would be keeping the number and inventing a reason for it.",
+   "evidence": "Saudi terminal inflation of 2.00% plus a stated real growth of 0.00% gives a terminal growth of 2.00%, against a typed 2.5% in the cash-flow lens and a typed 3.0% in the dividend lens. The cash-flow read falls 45.2369 to 42.2334 and the dividend read 40.4673 to 35.4266 \u2014 the dividend lens moves furthest because a discounted-dividend terminal is the most convex thing in the model to its own growth rate, which is why carrying a second one was worth more than it looked. The blend falls 44.0502 to 41.7388, -5.25%.",
+   "move": -0.05247157130325164
+  },
+  {
+   "name": "the terminal rebuilt on the asset life the accounts themselves imply",
+   "rule": "R-TERM-01",
+   "before": 41.73879909479903,
+   "after": 40.42061344670193,
+   "why": "The retired construction charged g x IC every year for ever, which read as a capital-maintenance programme with a replacement cycle of 1/g \u2014 a fact about the currency and not about the asset. At a pegged 2%% terminal that is FIFTY YEARS, against a base whose own accounts run twenty-one, so it bought less than half the maintenance this company needs. The same construction never added book depreciation back although the operating profit it starts from is already net of it, so one model carried two definitions of free cash flow with the terminal holding three quarters of the value. Rebuilt through terminal_value.build(): maintenance is book depreciation escalated to CURRENT cost over the measured age of the base, the depreciation is added back gross, and working capital is charged at the terminal inflation on the stock the latest disclosed sheet actually shows.",
+   "evidence": "The life and the age are DERIVED from note 10 of the FY2025 audited statements by the identity this protocol already sanctions, because the company discloses RANGES (buildings 25-50 years, network 3-30, other 2-20) rather than one life: depreciable gross cost over the year's own charge gives 20.86 years, and accumulated depreciation over the same charge gives an age of 15.23 years \u2014 so the base is at 1.46 times half its own life and 73% of it is written off. All three conditions that break that identity were checked on the policy note FIRST and all three are clear. Maintenance comes out at 15,779 against a book charge of 11,672. The terminal falls from three quarters of enterprise value at a lower charge to 74.7% at the right one; the cash-flow read moves 42.2334 to 38.4671 and the blend 41.7388 to 40.4206, -3.16%. THE DIRECTION WAS NOT PREDICTED and [R-TERM-01 CLAUSE TWO CORRECTED] forbids predicting it: on this name the sanctioned terminal is SMALLER, and on the last name rebuilt it was about 5% larger.",
+   "move": -0.03158178185968352
+  },
+  {
+   "name": "the bridge moved onto the latest disclosed balance sheet",
+   "rule": "R-BRIDGE-01",
+   "before": 40.42061344670193,
+   "after": 41.85677067352522,
+   "why": "The bridge stood on a first-quarter net-debt figure and a 31 March 2026 minority while a REVIEWED 30 June 2026 balance sheet was already published, in the same document set this rebuild had just read to source the debt book. The largest line was not stale but WRONG BY MORE THAN HALF: associates and joint ventures were carried at SAR 4,641mn against a filed 12,909.648mn, a figure from before February 2025, when the group contributed the whole of its towers business to DIIC in exchange for 43.06% of it. The towers business the entire 2024 restatement was about had left the subsidiaries and arrived in the associates, and this bridge had followed it into neither. Three further lines were corrected on the same sheet: the listed equity investment is taken at the fair value the company itself discloses rather than at a mark typed here; the investment funds it holds at fair value were omitted altogether; and the minority now comes out at its SHARE OF EQUITY VALUE rather than at historical cost, because the model capitalises 100% of subsidiary cash flow.",
+   "evidence": "Associates and joint ventures 4,641 to 12,909.648 at book (note 8.1.4, all unlisted); the listed equity investment 8,513.430 at its own disclosed Level 1 fair value against a typed 8,630; investment funds and unlisted equity 5,163.516 added; net debt 4,932.363, built from borrowings 23,536.554 and leases 2,258.902 less non-bank cash 12,940.389, short-term murabahas 1,062.181, sukuk 6,368.453 and treasury bills 492.070. The minority is 2.021% of equity value \u2014 its own disclosed share of profit, note 25 \u2014 deducting 4,237.756 against a book of 2,726.349. The share count is 4,993.024mn, footed against par: issued capital of SAR 50,000,000 thousand at SAR 10 gives the 5,000,000 thousand shares note 17 states, less 6,976 thousand in treasury. The cash-flow read moves 38.4671 to 41.1548 and the blend 40.4206 to 41.8568, +3.55%.",
+   "move": 0.03553031743857593
+  },
+  {
+   "name": "the four-lens blend retired for the class primary",
+   "rule": "R-LENS-03",
+   "before": 41.85677067352522,
+   "after": 41.15477165329675,
+   "why": "The delivered central was a BLEND of four lenses at typed weights \u2014 35% cash flow, 25% dividend discount, 20% relative multiple, 20% normalised earnings \u2014 that nobody chose on evidence and no out-of-sample test ever cleared. Two of those four are not permitted cross-checks for a telecom operator at all and carried 45% of the answer between them. A number produced by averaging several methods is not more robust than the best of them: it is a NEW method with free parameters nobody tested, wearing the appearance of caution, and it imports every weakness of the weakest lens at whatever weight somebody typed. The registry gives this class a CASH-FLOW primary cross-checked on an EV/EBITDA multiple from its own history and on book value, so the cash-flow read IS the central and the others are published beside it.",
+   "evidence": "The central becomes the cash-flow read at 41.1548, from a blend of 41.8568. The dividend-discount read of 35.4266 and the normalised-earnings read of 43.2604 come out of the answer entirely. THE MULTIPLE IS NOW COMPUTED RATHER THAN TYPED: the study used 8.0 / 9.0 / 10.0 with no source of any kind, and its base of 9.0 sat within a rounding of the 9.151x the shares trade at today \u2014 which values the company at what it already trades at. The adopted 8.762x is the mean of this company's own trailing EV/EBITDA at the last three year ends (9.131x, 8.316x, 8.839x), each computed from that year-end's own close in the persistent price library, the shares in issue and that year's net debt and EBITDA from the filings. Every one of the three sits BELOW the traded multiple, so the lens can be SEEN not to be anchored on the price. Book value of 17.0211 is published as the disclosed floor it is and is never weighted. The bear and bull are flexed on capital intensity between the 15.0% and 17.5% of revenue management guides to, with the macro path standing still across all three \u2014 the delivered study's corners moved the cost of capital by 100 and 70 basis points and terminal growth between 2.0% and 3.0% as well, which makes each corner an economy nothing describes.",
+   "move": -0.016771456778257643
+  },
+  {
+   "name": "the answer and the price it is measured against, published where they can be read",
+   "rule": "R-GAP-01",
+   "before": 41.15477165329675,
+   "after": 41.15477165329675,
+   "why": "THE MOVE IS ZERO AND THAT IS THE FINDING RATHER THAN AN OMISSION. The rule wants the central put against the LATEST KNOWN price before any delivery, and the valuation has been struck on that price since the cost-of-capital lever, because the schedule reads the supplied close register directly \u2014 so there was nothing left to re-strike by the time this lever arrived. What WAS missing is that neither the answer nor the price appeared anywhere a reader or a checker could find them: the study exposed no central at all, so every gate that audits an ANSWER rather than a step reported it unreadable, and an unreadable study is not a clean one \u2014 it is the cheapest possible route past an audit. Both are now published at the top level of the committed record.",
+   "evidence": "Central 41.1548 against the latest known close of SAR 43.86 on 2026-09-03, a gap of -6.17%, inside the ten per cent band either way, so no eight-heading review is owed and the publication block does not fire on the gap. TWO CLOCKS ARE NOW NAMED RATHER THAN CONFLATED: the valuation is struck against that latest known close, and the Monte Carlo cone against SAR 44.72 on 2026-08-31, the last session in the persistent price library, because a cone has to start where its own price series ends. Publishing one number for both would either strike the cone on a session that is not in its series or measure the gap against a price the market has already left. STC comes off the valuation-gap ratchet, which now carries no breaching study at all and one unreadable one.",
+   "move": 0.0
+  },
+  {
+   "name": "revenue and margin rebuilt on the eleven disclosed segments",
+   "rule": "R-SIGCM-02",
+   "before": 41.15477165329675,
+   "after": 34.798812824404735,
+   "why": "A SECOND STAGE, DECLARED IN DRIVER_REBUILD_05-09-2026.md BEFORE IT WAS CODED, with its own audit point after the whole rebuild rather than inside it. The seven levers of the plan are landed; this is not a reshaping of them. The study forecast four typed arrays over a taxonomy the filings do not use, with no source, date or layer on any of them. The company discloses eleven to thirteen operating segments with revenue AND gross profit for every one, three filed years, all six columns footing to their own filing's stated total. Each segment now grows at its own MEASURED real rate, deflated by a published price index from the same database the house ladder comes from, fading to zero real by the last explicit year so that no segment is capitalised at a rate it never reached. And the margin becomes an OUTPUT: gross profit is built per segment at its own disclosed rate and EBITDA is that less one cost line at its own three-year average share of revenue, instead of a margin path typed above them.",
+   "evidence": "Revenue compounds at 2.50% nominal against the delivered arrays' 3.71%, because the measured rates are lower than the typed ones: stc, two thirds of revenue, grows +0.16% real, Channels -2.10%, Solutions +5.53%, the group +2.33%. The EBITDA margin comes out at 31.09% in the first forecast year against a filed 31.44% \u2014 a relative gap of -1.14%, well inside [R-ANCHOR-01]'s five per cent trigger, so the forecast does not open materially below the latest filed period and owes no mechanism. The answer falls 41.1548 to 34.7988, -15.44%, and the gap against the latest known price goes -6.2% to -20.7% \u2014 past [R-GAP-01]'s trigger, so the eight-heading review is written and committed as GAP_REVIEW_05-09-2026.md. THE SIZE WAS DECLARED UNPREDICTED IN ADVANCE and it was: group real growth of +2.33% trailing is close to what the delivered arrays imply in aggregate, and what changed is the COMPOSITION, because four aggregates do not map onto eleven segments and a segment growing at its own rate compounds differently from a blend growing at an average of them.",
+   "move": -0.15444038621905132
+  },
+  {
+   "name": "the one segment with unit data built as volume times price",
+   "rule": "R-SIGCM-02",
+   "before": 34.798812824404735,
+   "after": 34.888546164557496,
+   "why": "The stage above sat at the disclosed segment level and flagged that volume times price was out of reach because the financial statements carry no subscriber counts. THE GAP WAS IN THE REGISTER RATHER THAN IN THE WORLD: four guessed investor-relations URLs had failed and been written up as evidence the channel was gone, and the earnings presentations were one sitemap away, carrying the subscriber base by category at three fiscal year ends. The stc segment \u2014 the KSA operating business, two thirds of group revenue \u2014 is now built from its two halves, each faded on the same schedule and MULTIPLIED, which is the identity revenue actually obeys.",
+   "evidence": "Subscribers compound at +6.00% a year and revenue per subscriber falls -3.86% nominal, and (1 +0.0600) x (1 -0.0386) - 1 returns exactly the +1.91% the audited statements report for that segment. THE ANSWER BARELY MOVES AND IT WAS NOT EXPECTED TO: fading the net drops the cross-term the product keeps, worth about five basis points a year, so 34.7988 becomes 34.8885, +0.26%. The gain is not the five basis points \u2014 it is that the forecast now rests on a volume line and a price line a reader can see and disagree with separately, where before it rested on one net rate that showed neither. Saudi mobile penetration is already far above one line per person and the two are not equally likely to persist, which is a judgement a later edition can now make with a reason.",
+   "move": 0.0025786322253451566
+  },
+  {
+   "name": "capital expenditure measured from the filings instead of taken from guidance",
+   "rule": "R-FCAL-01",
+   "before": 34.888546164557496,
+   "after": 35.53191287646005,
+   "why": "The capital-expenditure path was management's OWN PUBLISHED GUIDANCE BAND \u2014 16.5% of revenue falling to 15.0% \u2014 taken straight in as an input. The rule is explicit that GUIDANCE IS SCORED AND NEVER CONSUMED, because a forward target leans the same way an optimistic model does and a driver that takes it inherits the lean instead of correcting for it. What this company actually spends is disclosed for three years, and the ratio that matters is capital expenditure over the depreciation of the base it renews. THE GAP REVIEW NAMED THIS AS THE SUSPECT HALF BEFORE ANYONE KNEW WHICH WAY THE CORRECTION WOULD RUN, which is the review working rather than a coincidence.",
+   "evidence": "The filed ratio runs 1.054x, 1.252x and 1.176x, a mean of 1.161x against the 1.352x a base maintained at CURRENT cost would need \u2014 so the adopted path is 14.96% of revenue, BELOW the guided one, and the answer RISES 34.8885 to 35.5319, +1.84%. The step at the terminal boundary is therefore larger rather than smaller and is stated with its reason: an explicit window may continue an observed under-maintenance for five years and a perpetuity may not, because a company that never replaces its plant is not a going concern \u2014 and the accounts support that independently, with 73% of the depreciable base written off and its measured age rising 13.60 to 14.18 to 15.23 years. The industry-specific alternative is recorded rather than dismissed: if telecommunications equipment falls in real cost per unit of capacity, the terminal charge is too high and the gap is priced equipment rather than deferred maintenance. No disclosed replacement-cost series exists to separate them. The dividend-cover rungs are recomputed from the same measured ratio, because their old labels named a guidance band the model had stopped using.",
+   "move": 0.01844062830443005
+  }
+ ],
+ "value": 35.53191287646005,
+ "cumulative_move": -0.24578061126880568,
+ "rules": {
+  "R-COC-01": {
+   "levers": [
+    "the mechanical unblock, then the cost-of-capital schedule through the sanctioned module"
+   ],
+   "first_before": 47.11084520942183,
+   "last_after": 51.071420594226275,
+   "move": 0.0840692916291037
+  },
+  "R-BETA-04": {
+   "levers": [
+    "the beta re-derived against the published index of its own exchange"
+   ],
+   "first_before": 51.071420594226275,
+   "last_after": 44.050181325121294,
+   "move": -0.1374788323373708
+  },
+  "R-MACRO-01": {
+   "levers": [
+    "terminal growth stored as a real rate on the house Saudi path"
+   ],
+   "first_before": 44.050181325121294,
+   "last_after": 41.73879909479903,
+   "move": -0.05247157130325164
+  },
+  "R-TERM-01": {
+   "levers": [
+    "the terminal rebuilt on the asset life the accounts themselves imply"
+   ],
+   "first_before": 41.73879909479903,
+   "last_after": 40.42061344670193,
+   "move": -0.03158178185968352
+  },
+  "R-BRIDGE-01": {
+   "levers": [
+    "the bridge moved onto the latest disclosed balance sheet"
+   ],
+   "first_before": 40.42061344670193,
+   "last_after": 41.85677067352522,
+   "move": 0.03553031743857593
+  },
+  "R-LENS-03": {
+   "levers": [
+    "the four-lens blend retired for the class primary"
+   ],
+   "first_before": 41.85677067352522,
+   "last_after": 41.15477165329675,
+   "move": -0.016771456778257643
+  },
+  "R-GAP-01": {
+   "levers": [
+    "the answer and the price it is measured against, published where they can be read"
+   ],
+   "first_before": 41.15477165329675,
+   "last_after": 41.15477165329675,
+   "move": 0.0
+  },
+  "R-SIGCM-02": {
+   "levers": [
+    "revenue and margin rebuilt on the eleven disclosed segments",
+    "the one segment with unit data built as volume times price"
+   ],
+   "first_before": 41.15477165329675,
+   "last_after": 34.888546164557496,
+   "move": -0.15225999895050535
+  },
+  "R-FCAL-01": {
+   "levers": [
+    "capital expenditure measured from the filings instead of taken from guidance"
+   ],
+   "first_before": 34.888546164557496,
+   "last_after": 35.53191287646005,
+   "move": 0.01844062830443005
+  }
+ },
+ "distinct_rules": 9,
+ "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked.",
+ "audit_taken": {
+  "at": "2026-09-05, after lever 3, as declared",
+  "levers_so_far": 2,
+  "up": "+8.41%",
+  "down": "-13.75%",
+  "net": "-6.50%",
+  "read_from": "each landed lever's answer comes from the commit that landed it, so no lever can absorb a later one's move",
+  "latest_price": 43.86,
+  "latest_price_date": "2026-09-03",
+  "gap_at_the_audit": "+0.43%",
+  "gap_now_after_later_levers": "-18.99%",
+  "gap_at_delivery": "+8.10%",
+  "what_the_audit_shows": "THE TWO LEVERS DISAGREED AND THE ROUTE IS WHY THAT MATTERS. Taken in the order fixed in writing before either was touched, the cost-of-capital correction moved the answer AWAY from the market \u2014 from 8.1%% above the price it was struck at to 16.4%% above the latest one \u2014 and the beta correction brought it back. Neither was chosen for where it landed and neither could have been: the first raises every value it touches and the second lowers every value it touches, and which one dominates is arithmetic about this company's own capital structure. Read as two corrections the rebuild is a contest; read as one net figure of -6.5%% it would look like a small tidy-up, and the 8.4%% and the 13.8%% inside it would be invisible. THE ANSWER NOW SITS ESSENTIALLY ON THE PRICE, at +0.4%%, and that is reported as an observation and NOT as corroboration \u2014 four levers remain, the lens retirement among them, and a rebuild that stopped here because the number looked comfortable would be fitting to the price by choosing when to stop.",
+  "levers_remaining_at_the_audit": [
+   "R-MACRO-01 terminal growth as a real rate on the house path",
+   "R-TERM-01 the terminal on the derived asset life",
+   "R-BRIDGE-01 the bridge on the latest disclosed sheet",
+   "R-LENS-03 the four-lens blend retired",
+   "R-GAP-01 re-struck on the latest known price"
+  ]
+ }
+}

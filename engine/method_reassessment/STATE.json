@@ -19,7 +19,7 @@
   ]
  },
  "phase": "1",
- "current": "PR #369 CI is running on 52da5588. Three gate holes fixed tonight each surfaced a further one when CI ran them: the gauntlet had never tested the terminal gate (it takes the shared census, and the gauntlet reads each gate's own source); the fix's pattern-scan call then tripped [R-ENF-03]'s data.js rule because the gauntlet plants a study script reading data.js; and the COMMENT explaining that tripped it too, because a shape-matching check cannot tell a call from a description of one. All three closed, gauntlet 29 of 29, its control 7 of 7, the PDF-currency control 8 of 8 after its case 4 was re-pointed at a name the gate actually reports as outstanding.\nSTC groundwork is committed: the income statement from note 9 FOOTS TO THE RIYAL in both years (revenue 77,818,675 / 75,893,413, EBITDA 31.44%, EBIT 18.55%), eleven segments with revenue and gross profit each, the debt book, the cash with its banking caveat, and the share count footing both ways. The primary statements do NOT extract and need OCR; the notes do.",
+ "current": "STC rebuilt: ten levers, nine rules, 47.1108 -> 35.5319, -18.99% against the latest known close. Five ratchets cleared. The whole income statement to EBITDA is now committed line by line (cost_stack.py) and normalising it VALIDATES the rebuilt forecast margin: the model opens at 31.09% against a normalised FY2025 of 30.97%. PR #370 open and waiting on a CI run that survives to completion.",
  "done": [
   "All seven markets carry a sourced house macro path; 53 names unblocked. Two identities were running where they do not hold (a pegged currency drifting, the dollar depreciating against itself) \u2014 both found by PRINTING a path, not by a gate.",
   "The explicit window's inflation assumption is RULED OUT as the general scale error: perfect foresight of the path removes only 11% of the pooled driver error.",
@@ -216,9 +216,36 @@
    "lessons": [
     "L-340"
    ]
-  }
+  },
+  "PR #369 MERGED to main on green [R-MERGE-01] \u2014 merge commit 3c170b9c.",
+  "STC FY2023 extracted on BOTH bases and the bridge between them foots to the riyal: as originally reported 72,336,611, restated continuing 71,777,161, the difference being TAWAL out of continuing operations (3,343,350 less 3,076,148 of eliminations = 267,202) and note 49's 292,248 reclassification, which lands entirely on stc Kuwait.",
+  "STC levers 1-3 landed; STC came OFF the rebuild ratchet (15 -> 14).",
+  "The Q2-2026 balance sheet's '60,000,000' share capital is an EXTRACTION ARTEFACT \u2014 note 17 states 50,000,000 at both dates and only 50,000,000 makes the equity block foot. Nearly recorded as a 20% share-count increase that does not exist.",
+  "STC levers 4-7 landed: the house macro path on both terminal growth rates, the sanctioned terminal on a 20.86-year derived life, the bridge on the reviewed 30 June 2026 sheet (associates were carried at 4,641 against a filed 12,909.648 \u2014 the towers business had moved from the subsidiaries into the associates and the bridge followed it into neither), the four-lens blend retired for the cash-flow primary with the multiple recomputed from own history (the typed 9.0x was the traded multiple), and the answer exposed where a checker can read it.",
+  "L-342 registered: a decomposition whose steps all read the same mutable file collapses silently and the collapsed version still walks its own gate.",
+  "terminal_census.py now globs for a study numbers file like every other gate, instead of resolving one name literally and reporting three studies unreadable.",
+  "STC driver rebuild: eleven disclosed segments, each at its own MEASURED real rate deflated by a published price index from the same IMF series as the house ladder, fading to zero real; margin an OUTPUT of gross profit less one cost line at its own three-year share of revenue. -15.44%.",
+  "GAP_REVIEW_05-09-2026.md written and accepted; the multiple cross-check is the heading that argues hardest against the answer (6.24x implied against a traded 8.98x and an own history of 8.32-9.13x) and is set out rather than explained away.",
+  "Corrected my own lever-4 justification: it read \"growing with the economy in perpetuity\" while implementing zero real, which is growing with PRICES. The number was defensible and the reason was false.",
+  "The STC investor-relations channel WAS reachable \u2014 four failed URL guesses had been recorded as evidence it was gone. L-343.",
+  "L-342 and L-343 registered; 264 lessons.",
+  "STC capex measured from the filings (1.161x depreciation, the three-year mean) instead of taken from management guidance, which [R-FCAL-01] forbids consuming. +1.84%.",
+  "The dividend-cover rungs are recomputed from the same measured ratio; their old labels named a guidance band the model had stopped using.",
+  "STC unit build wired: the stc segment as volume x price, both halves faded and multiplied, +0.26% \u2014 the cross-term the net drops.",
+  "STC cost stack committed: seven lines by nature, three filed years, every column footing AND revenue less the total IS the stated gross profit to the riyal. Two disclosed one-offs (SR 1,500mn and SR 724mn, both reversals) mean the UNDERLYING gross margin RISES 47.39/47.21/48.45 where the reported one dips and recovers \u2014 and the model holds the highest of the three flat, which is the optimistic end.",
+  "STC Step 2A sweep through the shared register: 4 rings, 19 findings, 4 real negative searches, a 5-row driver gate, zero errors. STC off the sweep ratchet (9 -> 8).",
+  "Two findings the build had not consumed: government charges are 7.0% of revenue and move with a rule not with inflation; the first Saudi spectrum expiry is inside the forecast window with no disclosed renewal cost.",
+  "STC: the full path from revenue to EBITDA committed \u2014 notes 35, 36 and 37, fourteen lines, three filed years. Gross profit less both expense notes IS the stated EBITDA in every year to the riyal.",
+  "The credit-loss charge swings 448,141 / 1,257,976 / 301,871 with no footnote, so it is normalised to its own mean rather than called non-recurring. Normalised EBITDA margin RISES steadily 29.95 / 30.36 / 30.97 where the reported one rises then dips \u2014 and the rebuilt model opens at 31.09%, twelve basis points above the normalised base. That is a validation of the rebuild, and the previous cost-side finding ran the other way."
  ],
- "next": "1. MERGE PR #369 the moment CI is green [R-MERGE-01], then restart the branch from main. 2. STC lever 1 of the plan in engine/stc_study/REBUILD_PLAN_05-09-2026.md \u2014 the two mechanical unblocks, both already tested in a scratch copy. The audit point is declared AFTER LEVER 3 because levers 2 and 3 pull opposite ways. 3. STC's remaining extraction needs OCR on pages 7-11 of the FY2025 filing; the notes gave everything else. 4. The three documents publishing the retired skill verdict (ADNOCLS, SWDY, ADNOCDRILL) want one pass with the model report last and verified page by page. 5. Four studies carry priced correction sets from tonight's gap reviews and NONE is implemented; each needs a rebuild ledger with its audit point declared first. 6. AMOC default 12-Sep; the lens registry default 18-Sep, evidence now five of seven names AND the largest correction on four audited studies. 7. STANDING: scripts/run_ci_gates.py against the workflow, never a hand list (L-336).",
+ "next": [
+  "MERGE PR #370 once a CI run completes [R-MERGE-01]. Stop pushing so one can.",
+  "STC cost side: fourteen disclosed lines stand behind one blended share of revenue. Wiring it needs a SOURCED escalator per driver class and two lines (network access charges, the residual) have no disclosed physical driver \u2014 so it is correctly queued rather than attempted. Government charges DO have one: commercial service provisioning fees run about 9% of the KSA segment revenue, which is a rule rather than an inflation rate.",
+  "STC: the first Saudi spectrum expiry is 2029, INSIDE the explicit window, with no disclosed renewal cost. Named as a gap and carried inside the measured capex ratio.",
+  "STC still lacks a bibliography, a four-field inputs register, a QC gate, a driver test and a recalculation harness.",
+  "Re-issue the three documents publishing the retired skill verdict (ADNOCLS last).",
+  "GBCO is the last unreadable study on the valuation-gap ratchet."
+ ],
  "stop_and_ask": [
   "TMGH: two earnings releases could not be re-fetched from the company's own channels (FY2020 release: 502 via proxy on every retry; 1H2021 release: 404). They are not inputs to the delivered numbers \u2014 the audited statements for both periods were obtained and verified \u2014 so this blocks nothing; recorded for the morning list."
  ],
@@ -233,7 +260,7 @@
   "Phase 2 keeps the campaign's market order \u2014 principal, 03-Sep-2026."
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-05T04:20:00Z",
+ "updated": "2026-09-05T07:20:00+03:00",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md \u2014 it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",

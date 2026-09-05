@@ -1,0 +1,41 @@
+{
+ "beta": 0.4753,
+ "what": "the answer on a beta this study does NOT adopt, produced only to measure what the beta correction was worth on its own. The 40-session daily regression the delivered study carried is not one of the three tiers, and the sanctioned schedule refuses to build on it as a study beta.",
+ "wacc_market": 0.0693162494190766,
+ "wacc_rating": 0.07051299794082452,
+ "ke_market": 0.07258716,
+ "ke_rating": 0.07391253,
+ "lenses": {
+  "dcf": {
+   "bear": 39.47726721944687,
+   "base": 57.57640142860509,
+   "bull": 83.12773456025643
+  },
+  "ddm": {
+   "bear": 34.86377109519214,
+   "base": 51.2768551958888,
+   "bull": 65.71242170621957
+  },
+  "relative": {
+   "bear": 42.05426333720789,
+   "base": 47.21402332758827,
+   "bull": 52.373783317968645
+  },
+  "normalized": {
+   "bear": 36.795061926329716,
+   "base": 43.28830814862319,
+   "bull": 50.262535572568034
+  }
+ },
+ "central": {
+  "bear": 38.302851353311965,
+  "base": 51.071420594226275,
+  "bull": 66.05007630075198
+ },
+ "weights": {
+  "dcf": 0.35,
+  "ddm": 0.25,
+  "relative": 0.2,
+  "normalized": 0.2
+ }
+}

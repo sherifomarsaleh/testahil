@@ -1,0 +1,358 @@
+{
+ "ticker": "STC",
+ "asset_class": "STOCK",
+ "sweep_date": "2026-09-05",
+ "findings": [
+  {
+   "fid": "F01",
+   "ring": "GLOBAL",
+   "category": "rate cycle & USD/FX regime",
+   "klass": "STRUCTURAL",
+   "headline": "The riyal is pegged to the dollar at 3.75, so Saudi Arabia imports United States monetary policy and TODAY IS ALREADY THE TERMINAL for the cost of capital; the house macro path calls the regime pegged and the schedule is flat by construction",
+   "source_name": "engine/macro_paths/SA.json, sourced to the International Monetary Fund's World Economic Outlook database and the sovereign quote it carries",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-07-31",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the cost-of-capital schedule FLAT rather than gliding, and makes the currency path flat by construction of the peg. It is also why this company's dollar borrowings are carried at their own coupon: under a peg the expected depreciation in the local-equivalent cost is zero.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F02",
+   "ring": "GLOBAL",
+   "category": "commodity complex (input/output)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "This business has no commodity input in the sense the category means: its cost of revenues is handsets and equipment, interconnection, wages, a regulated levy and maintenance, and note 35 discloses all seven lines. The nearest thing to a global price input is imported device and network equipment cost, which is the largest single line at SAR 14,195,531 thousand, 18.2% of revenue",
+   "source_name": "stc_Annual-2025-en.txt, note 35, cost of revenues by nature",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-25",
+   "detail": "",
+   "url": "",
+   "model_impact": "The cost-stack rule requires ONE ESCALATOR PER DRIVER CLASS. The device and equipment line is dollar-denominated under a pegged riyal, so it cannot take the domestic inflation ladder that governs the wage line.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F03",
+   "ring": "GLOBAL",
+   "category": "global sector demand",
+   "klass": "STRUCTURAL",
+   "headline": "Global telecom demand growth is in data volume rather than in revenue per user, and this company's own record shows the same shape: a subscriber base compounding at 6.00% a year against revenue per subscriber falling 3.86%",
+   "source_name": "EarningsPresentationQ4-2025En.txt and earnings-presentation2024en.txt, subscriber charts, cross-checked against note 9 segment revenue",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-02-25",
+   "detail": "",
+   "url": "",
+   "model_impact": "It is the reason the stc segment is built as volume times price rather than on a net growth rate: the net hides two forces moving opposite ways and neither is equally likely to persist.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F04",
+   "ring": "GLOBAL",
+   "category": "trade / sanctions / supply chains",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (Searched the FY2025 audited statements and the FY2025 and H1-2026 earnings presentations for sanctions, export controls, supply-chain disruption or tariffs. Two hits in the statements, neither a risk disclosure: one lists 'supply chain and other related services' among a subsidiary's permitted activities, and one records a 2017 Kuwaiti court ruling on a regulatory tariff decree. No supply-chain or sanctions exposure is disclosed anywhere in the three documents.)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-05",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F05",
+   "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "BASE_CHANGER",
+   "headline": "Saudi consumer-price inflation ran 2.5% (2023), 1.5% (2024) and 2.0% (2025) and the published projection ladder is 2.3 / 2.1 / 2.0 / 2.0 / 2.0 to 2030, terminating at 2.0%; the riyal is pegged so devaluation risk is a regime question rather than a rate",
+   "source_name": "International Monetary Fund, World Economic Outlook database, series PCPIPCH, Saudi Arabia (SAU), read live from the datamapper API",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-09-05",
+   "detail": "",
+   "url": "",
+   "model_impact": "Every nominal growth rate in the model recomputes from a stated REAL rate on this ladder, and the three historical prints are what the trailing segment growth is deflated by so that history and forecast sit on one economy.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F06",
+   "ring": "COUNTRY",
+   "category": "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+   "klass": "BASE_CHANGER",
+   "headline": "GOVERNMENT CHARGES ARE A DISCLOSED COST LINE OF SAR 5,417,576 thousand, 7.0% of revenue, and licences and frequency spectrum are carried at SAR 5,941,321 thousand net book value with named expiry dates running 2029, 2032, 2033, 2034, 2037 and 2039 in Saudi Arabia alone. A SAR 1,124,590 thousand 600MHz block expiring 2039 was added in FY2025",
+   "source_name": "stc_Annual-2025-en.txt, notes 12 and 35",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-25",
+   "detail": "",
+   "url": "",
+   "model_impact": "The regulated levy is 7% of revenue and moves with a rule rather than with inflation, so it cannot sit inside a blended cost escalator. The first Saudi spectrum expiry, 2029, falls INSIDE the explicit forecast window, and renewal cost is not disclosed \u2014 a named gap, not an assumption.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F07",
+   "ring": "COUNTRY",
+   "category": "fiscal / political events with sector read-through",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (Searched the FY2025 audited statements and both 2026 interim sets for any fiscal or political event with a stated effect on this company \u2014 a change in the zakat or income-tax basis, a subsidy, a state directive. The tax note records ordinary zakat and income tax and a FY2025 CREDIT of SAR 466,436 thousand against a FY2024 charge of 1,191,564, a swing of 1.66bn that the statements do not attribute to a policy change. Nothing else is disclosed.)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-05",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F08",
+   "ring": "INDUSTRY",
+   "category": "demand drivers & capacity/supply balance",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Saudi mobile subscribers rose 26.47mn to 28.34mn to 30.0mn across the three filed year ends and fixed 5.57mn to 5.72mn to 6.0mn; the latest disclosed point is 30.3mn and 6.1mn at H1-2026. Penetration is already far above one mobile line per person, so the volume line cannot extend at 6% indefinitely",
+   "source_name": "earnings-presentation2024en.txt, EarningsPresentationQ4-2025En.txt and EarningsPresentationQ2-2026En.txt, subscriber charts",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-05",
+   "detail": "",
+   "url": "",
+   "model_impact": "It is the volume half of the stc segment's revenue build, and the reason the real rate is faded to zero rather than extended: a penetrated market cannot compound its subscriber base for ever.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F09",
+   "ring": "INDUSTRY",
+   "category": "pricing",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Revenue per subscriber fell from SAR 1,536.1 a year to 1,457.5 to 1,420.0 across the three filed years \u2014 a decline of 3.86% a year compounding, which with 6.00% volume growth multiplies back to exactly the +1.91% the audited segment revenue reports",
+   "source_name": "note 9 segment revenue divided by the subscriber counts in the earnings presentations; units.py checks the identity three ways",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-02-25",
+   "detail": "",
+   "url": "",
+   "model_impact": "The price half of the same build. It is why the segment's +0.16% real growth is not a mature business standing still: it is two large forces moving against each other, and a forecast on the net could not say which one it expected to continue.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F10",
+   "ring": "INDUSTRY",
+   "category": "new entrants (named-competitor level)",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (Searched the FY2025 audited statements and the FY2025 and H1-2026 earnings presentations for any named competitor, market-share figure or new entrant. ZERO hits across all three documents for 'competitor', 'market share', 'Mobily' or 'Zain'. This company does not disclose its competitive position in any document this study holds, and no peer multiple or share figure is therefore used anywhere in the model.)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-05",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F11",
+   "ring": "INDUSTRY",
+   "category": "technology substitution",
+   "klass": "STRUCTURAL",
+   "headline": "Fixed-wireless broadband is disclosed as a separate subscriber category and is flat at 0.5mn while fixed-wired grows 1.30mn to 1.4mn, so within this company's own disclosure the substitution runs toward fibre rather than away from it. A direct-to-mobile satellite partnership with AST SpaceMobile is disclosed as a partnership rather than as a revenue line",
+   "source_name": "EarningsPresentationQ4-2025En.txt, subscriber categories and the partnership summary",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-02-25",
+   "detail": "",
+   "url": "",
+   "model_impact": "It is the reason the fixed lines are not given a decline driver: the disclosed mix is moving between fixed categories rather than out of them.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F12",
+   "ring": "INDUSTRY",
+   "category": "competitor capacity / price moves (named)",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (The same search as the new-entrants category and with the same result: no named competitor appears in any of the three documents, so no competitor capacity or price move can be cited. Recorded as an evidenced absence rather than closed by moving a company-ring finding into this row.)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-05",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F13",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "STRUCTURAL",
+   "headline": "Management publishes a capital-expenditure band of 15.0% to 17.5% of revenue and a dividend policy of SAR 0.55 a quarter locked to the third quarter of 2027",
+   "source_name": "EarningsPresentationQ4-2025En.txt and the delivered study's own record of the policy",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-02-25",
+   "detail": "",
+   "url": "",
+   "model_impact": "SCORED AND NOT CONSUMED [R-FCAL-01]. The delivered study took the capex band straight in as its driver; the rebuilt model uses the ratio the filings actually show \u2014 1.161 times depreciation \u2014 and publishes the band beside it as the guidance it is.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F14",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "BASE_CHANGER",
+   "headline": "FY2025 audited: revenue 77,818,675, gross profit 37,699,689, EBITDA 24,469,435, EBIT 14,438,264, total assets 157,476,669, borrowings 15,191,428, cash and equivalents 13,376,071. Every line foots to its own note",
+   "source_name": "stc_Annual-2025-en.txt, audited by Deloitte and Touche & Co.",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-25",
+   "detail": "",
+   "url": "",
+   "model_impact": "The base year of the whole build, and the year each segment's gross margin is held at.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F15",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "BASE_CHANGER",
+   "headline": "FY2023 exists on TWO bases and both are held: as originally reported, revenue 72,336,611 with TAWAL as a segment; as restated on a continuing basis in the FY2024 filing, 71,777,161 with TAWAL a discontinued operation. The bridge between them foots to the riyal \u2014 less TAWAL's 3,343,350, plus the 3,076,148 of eliminations that went with it, less note 49's 292,248 reclassification",
+   "source_name": "STC_FY2023_FS_en.txt note 9 and stc_Annual-2024-en.txt notes 9 and 49",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2024-02-25",
+   "detail": "",
+   "url": "",
+   "model_impact": "The forward basis is CONTINUING, because TAWAL was sold and a forecast built on revenue the company no longer earns is a forecast of something that does not exist. The as-filed column is kept because a point-in-time origin must see what was published at the time.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2023"
+  },
+  {
+   "fid": "F16",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "STRUCTURAL",
+   "headline": "The Q1-2026 reviewed interim and its earnings presentation are published, as are the H1-2026 set and an H1-2026 earnings call transcript",
+   "source_name": "financial-statementsQ1-2026En.txt and the investor-relations presentations page",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-05-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sweeping every disclosed quarter of the study year BEFORE the build is the rule; the Q1 set is registered here and the H1 set is what the bridge stands on.",
+   "is_fs_data": false,
+   "fiscal_period": "Q1-2026"
+  },
+  {
+   "fid": "F17",
+   "ring": "COMPANY",
+   "category": "management & capital actions",
+   "klass": "BASE_CHANGER",
+   "headline": "H1-2026 reviewed: total assets 166,996,964, long-term borrowings 22,094,126 and short-term 1,442,428, lease liabilities 2,258,902, cash 18,940,773, equity attributable 84,986,806, minority 2,726,349. Share capital is SAR 50,000,000 thousand in shares of SAR 10, which divides to the 5,000,000 thousand shares note 17 states, less 6,976 thousand in treasury",
+   "source_name": "financial-statementsQ2-2026En.txt, reviewed, notes 15 and 17",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-05",
+   "detail": "",
+   "url": "",
+   "model_impact": "The bridge stands on this sheet and the share count is footed against par from it. The balance sheet PRINTS share capital as 60,000,000, which is an extraction artefact of that page: note 17 says 50,000,000 at both dates and only 50,000,000 makes the equity block foot to the stated 84,986,806.",
+   "is_fs_data": true,
+   "fiscal_period": "H1-2026"
+  },
+  {
+   "fid": "F18",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "BASE_CHANGER",
+   "headline": "TWO ONE-OFFS INSIDE THE COST LINE, each named in its own filing's footnote: SR 1,500 million of withholding-tax provision reversed into FY2024's network access charges and SR 724 million of provision reversed into FY2023's government charges. Separately, international sukuk of SAR 7,500 million was issued in the first half of 2026 in two tranches at 4.489% and 5.083%, and TAWAL was contributed to DIIC in February 2025 for 43.06% of it",
+   "source_name": "stc_Annual-2025-en.txt note 35, stc_Annual-2024-en.txt note 36, financial-statementsQ2-2026En.txt note 15 and stc_Annual-2025-en.txt note 8.1.1",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-05",
+   "detail": "",
+   "url": "",
+   "model_impact": "The two reversals flatter FY2023 and FY2024, so the UNDERLYING gross margin rises 47.39 / 47.21 / 48.45 where the reported one dips and recovers \u2014 and the model holds the highest of the three flat. The sukuk is the marginal cost of debt the schedule adopts, and the DIIC contribution is why the bridge's associates line more than doubled.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2024"
+  },
+  {
+   "fid": "F19",
+   "ring": "COMPANY",
+   "category": "ownership / stake changes (named-transaction rule)",
+   "klass": "STRUCTURAL",
+   "headline": "The direct holding in Telefonica rose from 4.97% to 9.97% during 2025 after regulatory approval, and the forward agreement that had given synthetic exposure to the extra 5% was terminated. It is irrevocably designated at fair value through other comprehensive income and carried at SAR 8,513,430 thousand at 30 June 2026",
+   "source_name": "stc_Annual-2025-en.txt note 9.1 and financial-statementsQ2-2026En.txt note 9.1",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-05",
+   "detail": "",
+   "url": "",
+   "model_impact": "It is a NAMED transaction rather than an estimate, and the bridge takes the company's own disclosed Level 1 fair value rather than a mark this desk computed.",
+   "is_fs_data": true,
+   "fiscal_period": "H1-2026"
+  }
+ ],
+ "drivers": [
+  {
+   "driver": "stc segment revenue (two thirds of group)",
+   "mode": "BOTTOM_UP",
+   "justification": "Volume times price on disclosed units: subscribers by category from the earnings presentations, revenue per subscriber derived against the audited segment revenue, each half faded to zero real and multiplied.",
+   "sweep_refs": [
+    "F08",
+    "F09",
+    "F14"
+   ]
+  },
+  {
+   "driver": "the other twelve segments' revenue",
+   "mode": "BOTTOM_UP",
+   "justification": "Each grows at its own measured two-year real rate from note 9, deflated by the published inflation prints, fading to zero real. No unit data is disclosed for any of them, so this is the finest sourced level available and the gap is flagged rather than filled.",
+   "sweep_refs": [
+    "F14",
+    "F15",
+    "F05"
+   ]
+  },
+  {
+   "driver": "cost of revenues",
+   "mode": "BOTTOM_UP",
+   "justification": "Note 35 discloses all seven lines by nature for three years and each is a different driver class. The model currently holds each segment's disclosed gross margin, and the seven-line build is registered as the next correction rather than claimed here.",
+   "sweep_refs": [
+    "F02",
+    "F06",
+    "F18"
+   ]
+  },
+  {
+   "driver": "competitive position and peer multiples",
+   "mode": "TOP_DOWN",
+   "justification": "No named competitor, market share or peer figure appears in any document this study holds, so no relative multiple is taken from peers. The relative lens uses this company's OWN trailing EV/EBITDA at three year ends instead.",
+   "sweep_refs": [
+    "F10",
+    "F12",
+    "F14"
+   ]
+  },
+  {
+   "driver": "spectrum renewal cost inside the explicit window",
+   "mode": "TOP_DOWN",
+   "justification": "The first Saudi spectrum expiry falls in 2029, inside the forecast window, and no renewal cost is disclosed anywhere. Carried inside the capital-expenditure ratio measured from the filings rather than modelled separately, and named as a gap.",
+   "sweep_refs": [
+    "F06",
+    "F07",
+    "F14"
+   ]
+  }
+ ],
+ "primary_access": [
+  {
+   "url": "https://www.stc.com.sa/content/stcgroupwebsite/sa/en/investors/financial-reports/presentations-and-report.html",
+   "reachable": true,
+   "attempt_date": "2026-09-05",
+   "note": "Reached through www.stc.com.sa/sitemap.xml after four direct URL guesses had each returned the site's own 404 page under an HTTP 200. Carries every earnings presentation and call transcript back to 2017. The financial statements come from the same group site at www.stc.com/content/dam/groupsites/en/pdf/."
+  }
+ ],
+ "study_year": "FY2026",
+ "study_quarters_disclosed": [
+  "Q1-2026",
+  "H1-2026"
+ ],
+ "qc_line": "QC(m) \u2014 Information Sweep [STC, 2026-09-05]: PASS \u2014 4/4 rings, 19 findings (6 B \u00b7 6 S \u00b7 3 D \u00b7 0 C \u00b7 4 NEG), driver gate 5 rows (3 bottom-up / 2 top-down) | primary access: attempted (1) | FS years: 3 ['FY2023', 'FY2024', 'FY2025'] | IR findings: 6 | warnings: 1"
+}

@@ -8,7 +8,7 @@ from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 
-D = json.load(open('stc_study_numbers.json'))
+D = json.load(open('study_numbers.json'))
 INK = RGBColor(0x1C, 0x3A, 0x36); GREY = RGBColor(0x6E, 0x7B, 0x77)
 BRASS = RGBColor(0x89, 0x6F, 0x36); GOLD = RGBColor(0xC0, 0xA4, 0x5F)
 WHITE = RGBColor(0xFF, 0xFF, 0xFF)

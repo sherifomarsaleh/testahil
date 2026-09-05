@@ -7,7 +7,7 @@ from openpyxl.utils import get_column_letter
 
 FN = 'STC_Valuation_Model_09072026_public.xlsx'
 wb = load_workbook(FN)
-D = json.load(open('stc_study_numbers.json'))
+D = json.load(open('study_numbers.json'))
 A = json.load(open('_asm_rows.json')); AX = json.load(open('_asm_extra.json'))
 SR = json.load(open('_seg_rows.json')); IS = json.load(open('_is_rows.json'))
 BSJ = json.load(open('_bs_rows.json')); CFJ = json.load(open('_cf_rows.json'))

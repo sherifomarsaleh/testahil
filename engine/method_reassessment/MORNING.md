@@ -426,3 +426,67 @@ it happened, not because it is asking.
 
 7. **Nothing was published.** Everything above is in the repository; the live site is
    untouched, and [R-GAP-02]'s Phase-1 clause continues to hold every study regardless.
+
+## 05 Sep 2026, before dawn — STC rebuilt end to end
+
+1. **PR #369 is merged.** All three CI gates green on `903e5628`; merge commit `3c170b9c`. Nothing needed.
+
+2. **STC is rebuilt on all seven levers of its plan, and the route is the report.** Central **SAR 47.11 → 41.15**, −12.6%, against a latest known close of 43.86 — **−6.2%, inside the band either way**, so no eight-heading review is owed and the publication block does not fire on the gap. Under the reporting threshold you set, that gap needs no calling out; the *route* does, because two levers pulled hard in opposite directions and the net hides both:
+
+   | lever | rule | move |
+   |---|---|---:|
+   | the sanctioned cost-of-capital schedule | R-COC-01 | **+8.4%** |
+   | the beta re-derived against TASI | R-BETA-04 | **−13.8%** |
+   | terminal growth on the house path | R-MACRO-01 | −5.2% |
+   | the terminal on a 20.86-year derived life | R-TERM-01 | −3.2% |
+   | the bridge on the 30 June 2026 sheet | R-BRIDGE-01 | **+3.6%** |
+   | the four-lens blend retired | R-LENS-03 | −1.7% |
+   | the answer published where it can be read | R-GAP-01 | 0.0% |
+
+   The audit point was declared in writing before any lever was touched, taken where it was declared, and the cost-of-capital lever moved the answer **away** from the market before the beta lever brought it back. Nothing was chosen for where it landed. **No decision needed.**
+
+3. **The single largest defect was not in the method but in a number nobody had re-read.** The bridge carried associates and joint ventures at **SAR 4,641mn against a filed 12,910mn**. That is a figure from before February 2025, when the group contributed its whole towers business to DIIC in exchange for 43.06% of it. The towers business the entire 2024 restatement was about had left the subsidiaries and arrived in the associates — **and the bridge had followed it into neither.** Worth 1.66 per share. No decision needed.
+
+4. **The relative multiple was the traded multiple wearing a different hat.** The study used 8.0 / 9.0 / 10.0x EV/EBITDA with no source of any kind, and its base of 9.0 sat within a rounding of the **9.151x the shares trade at today** — which values the company at what it already trades at. It is now the mean of STC's own trailing multiple at the last three year ends, 8.762x, every one of the three below the traded figure so the lens can be *seen* not to be anchored on the price. No decision needed.
+
+5. **A 20% share-count increase that never happened.** The reviewed 30 June 2026 balance sheet *prints* share capital as SAR 60,000,000 thousand against 50,000,000 at December. Note 17 says 50,000,000 at both dates, and only 50,000,000 makes the equity block foot to the stated total — it is an extraction artefact of that page. Taken at face value it would have cut every per-share figure by a sixth. Arithmetic caught it, which is what that rule is for. No decision needed.
+
+6. **STC came off four ratchets** — the rebuild ledger, the bridge, the lens architecture and the valuation gap. **The valuation-gap ratchet now carries no breaching study at all**, and one unreadable one (GBCO).
+
+7. **One defect was mine, and it is registered as L-342.** The first draft of STC's rebuild ledger read every lever's answer out of the study's *current* numbers file — the only place the answer lives — so the moment a fourth lever landed, the third lever's "after" silently became the fourth's. One lever read −18.3% where it was worth −13.8%, and another read 0.0% where it was worth −5.3%. **Nothing about that is visible in the ledger**: the chain still joins, the endpoints are unchanged, the cumulative figure is exactly right, and the gate that walks it passed both versions. Each landed lever now reads the commit that landed it. No decision needed.
+
+8. **STC stays on the macro ratchet deliberately, and this is the one thing I want you to see.** Its four segment growth arrays are typed nominals with no source, date or layer, whose implied real growth wanders from 0.68% to 0.00% across five years with nothing saying why. They cannot be written as (real, house path) without *choosing* a real rate, and choosing one to clear a checker is the offence the protocol names in three places. The honest fix is the ground-up rebuild on the **eleven disclosed segments** the FY2025 filing carries with two years of revenue *and* gross profit each — materially finer than four typed arrays, and disclosed rather than assumed. That is the next block of work and it closes the macro ratchet at the same time. **No decision needed unless you want it sequenced differently.**
+
+9. **STC is rebuilt, not delivered.** It still has no bibliography, no four-field inputs register, no sweep register, no QC gate, no driver test and no recalculation harness. Nothing about it has been published, and the publication block holds it anyway on the Phase 1 method-proof condition, as it holds every study in the book.
+
+## 05 Sep 2026, still before dawn — an addition to item 8, and it changes the number
+
+**Item 8 above said the ground-up rebuild on the eleven disclosed segments was the next block of work. It was done, and it moves the answer a long way.** What the earlier items say about the seven levers stands; what changes is where the study now sits.
+
+10. **Central SAR 41.15 → 34.80, and the gap goes −6.2% → −20.7%.** Every segment now grows at **its own measured real rate** — from the company's own note 9, deflated by a published price index from the same IMF database and country row the house forward ladder comes from — instead of four typed arrays over a taxonomy the filings do not use. The measured rates are lower than the typed ones: **stc, two thirds of revenue, grows +0.16% real**; Channels −2.10%; Solutions +5.53%; the group +2.33%. Revenue compounds at 2.50% nominal against the delivered study's 3.71%. The margin is now an **output** — gross profit per segment at its own disclosed rate, less one cost line at its own three-year average share of revenue — rather than a typed EBITDA path.
+
+11. **The eight-heading review is written, and the two defects it found both make the answer TOO HIGH.** Correcting either widens the discount rather than closing it, which is worth saying plainly because the instinct on a −20.7% gap is to look for what is missing on the upside.
+
+    - **One is mine, from earlier last night.** The justification I wrote for terminal growth read "a mature domestic telecom growing with the economy in perpetuity" — and that sentence describes a *positive* real rate, since an economy grows by inflation plus real output and a company growing at inflation alone grows with prices only. **The number was defensible and the reason was false**, which is the more dangerous of the two because it survives review. Corrected in place: zero real means STC's share of Saudi output declines in perpetuity, and that is now written down as the real assumption it is. It is not moved, because any positive rate would need a source and telecom revenue has fallen as a share of output across most markets for two decades.
+    - **One is structural and is recorded rather than resolved.** Terminal maintenance at current cost is **17.43% of revenue — essentially the top of management's 15.0–17.5% capital guidance** — while the explicit window takes capex *down* to 15.0%, the bottom of it. Free cash flow steps 17% at that boundary. The rule permits the two to differ where the reason is economic, and its example is a young plant spending less than replacement depreciation for a while. **This base is not young**: 73% written off, at 1.46 times half its own implied life. The step points the wrong way for the asset it describes, and the suspect half is the explicit window.
+
+12. **The multiple cross-check argues hardest against the answer and I have set it out rather than explained it away.** The fair value implies **6.24x** enterprise value to forward EBITDA against a traded 8.98x and an own history of 8.32–9.13x. Three readings are given, and **the third cannot be ruled out**: a two-year trailing window is short, Channels fell 7% in FY2025 alone and may be a one-off, and if those two years understate the run rate then the whole forecast is too low and the gap is ours. What would settle it is the investor-relations channel — subscriber counts and revenue per unit — which would let revenue be built as volume times price instead of an extrapolated segment rate. **That is the next work, and it is named as work rather than accepted as a limitation, because a fair value moved to meet a price is the reverse-engineered rate this protocol prohibits outright.**
+
+13. **Nothing about this changes what may be published.** The study was already held on the Phase 1 method-proof condition, and it is now held on the gap as well. Nothing is on the live site.
+
+**The decision on item 12 is taken and reported as taken rather than put to you.** Two years is thin evidence for a growth rate on a business this size, the review says so in its own voice, and the study is held in any case — so the answer is not to widen the rate until the number is comfortable, which would be the reverse-engineered rate this protocol prohibits, but to go and get the disclosure that makes the rate unnecessary. **The work continues on the investor-relations channel**, where subscriber counts and revenue per unit would let revenue be built as volume times price. Say so if you want it sequenced differently; nothing waits on a reply.
+
+*(This paragraph first put that choice to you as a question. It should not have: the rule here is that a choice which is reversible and inside the stated scope is taken, recorded with its reasoning and reported as taken — asking converts my work into your queue, which is the complaint the independence rule was written from. Corrected in the same hour rather than left standing.)*
+
+
+## 05 Sep 2026, one more — the review's own logic paid out
+
+14. **Item 11's second defect was priceable after all, and correcting it RAISED the answer.** The review named the explicit window as the suspect half of the capex tension before anyone knew which way a correction would run. The reason it was suspect turned out to be sharper than "an ageing base should spend more": **the capital-expenditure path was management's own published guidance band, taken straight in as an input**, and the standing rule is explicit that *guidance is scored and never consumed*, because a forward target leans the same way an optimistic model does.
+
+    What this company actually spends is disclosed for three years, as a multiple of the depreciation of the base it renews: **1.054x, 1.252x, 1.176x — a mean of 1.161x**, which is 14.96% of revenue, *below* the guided path. Central **34.89 → 35.53, +1.84%**, and the gap **−20.5% → −19.0%**.
+
+15. **The step at the terminal boundary is now larger, and that is the honest outcome rather than an awkward one.** The terminal charges 1.352x depreciation (maintenance at current cost on a 15.23-year-old base); the explicit window continues the 1.161x this company actually spends. An explicit window may continue an observed under-maintenance for five years; **a perpetuity may not**, because a company that never replaces its plant is not a going concern — and the accounts support that independently, with the base 73% written off and its measured age rising 13.60 → 14.18 → 15.23 years.
+
+    **The industry-specific alternative is recorded rather than dismissed**: escalating at *general* inflation assumes a radio costs 2% more each year to replace, where telecom equipment has historically fallen in real cost per unit of capacity. If that holds, the terminal is too high and the 1.161-to-1.352 gap is priced equipment rather than deferred maintenance. What would separate them is a disclosed replacement-cost or capacity series, and this company does not publish one.
+
+**Ten levers, nine rules, 47.11 → 35.53, −24.6%.** Every one is in the rebuild ledger with the answer either side of it, so the route can be walked rather than inferred from the net.
