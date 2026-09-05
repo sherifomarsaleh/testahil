@@ -5778,6 +5778,40 @@ LESSONS = [
       "presentations do — then the depreciated share moves with the "
       "impairment as well and the immunity is gone. Read which "
       "column the roll-forward puts it in before relying on this."),
+    L("L-339", "ALL", None,
+      "A BLOCKER RECORDED INSIDE A STUDY'S OWN ARTEFACT IS "
+      "RE-CHECKED BY NOTHING, AND IT GOES ON ASKING AFTER IT HAS "
+      "BEEN ANSWERED",
+      "[R-IND-01] made a question to the principal an ARTEFACT "
+      "rather than a message, and its gate re-checks every open "
+      "entry against every live ref precisely so an entry cannot go "
+      "on asking for something already supplied. That polices the "
+      "escalation REGISTER. A blocker written into a study's own "
+      "JSON is outside it: nothing globs for one, nothing re-tests "
+      "its resolving condition, and it reads as current for as long "
+      "as it sits there. Two studies carried the identical field — "
+      "'this market's own sovereign default spread, on both bases, "
+      "read fresh from the original source; not reconstructed from "
+      "memory: stop and inform' — and a rule adopted three days "
+      "earlier had put exactly those figures in the house macro "
+      "path for every market. Where a process records that it is "
+      "waiting for something, the record has to be somewhere a "
+      "checker can find it, or the waiting is permanent.",
+      "GBCO and STC read to the leaf, 5 September 2026",
+      "build",
+      "A sweep of every JSON in every study directory for a field "
+      "naming a blocker returns exactly two, both "
+      "wacc_reissue_blocked_on, both asking for a sovereign default "
+      "spread. engine/macro_paths/EG.json carries Egypt's at 6.37% "
+      "rating and 3.41% market; SA.json carries Saudi Arabia's at "
+      "0.51% and 0.98%. Both were sourced and dated on 2-3 "
+      "September; both blockers were written in July and August.",
+      "It is overturned by a checker that reads study artefacts for "
+      "blocker fields and re-tests each one — which is the obvious "
+      "fix and is not made here, because two instances is a thin "
+      "population to design a gate against and the cheaper move is "
+      "to write blockers into the escalation register, where a gate "
+      "already exists."),
 
 ]
 
