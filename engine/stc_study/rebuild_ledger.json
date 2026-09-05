@@ -77,10 +77,19 @@
    "why": "A SECOND STAGE, DECLARED IN DRIVER_REBUILD_05-09-2026.md BEFORE IT WAS CODED, with its own audit point after the whole rebuild rather than inside it. The seven levers of the plan are landed; this is not a reshaping of them. The study forecast four typed arrays over a taxonomy the filings do not use, with no source, date or layer on any of them. The company discloses eleven to thirteen operating segments with revenue AND gross profit for every one, three filed years, all six columns footing to their own filing's stated total. Each segment now grows at its own MEASURED real rate, deflated by a published price index from the same database the house ladder comes from, fading to zero real by the last explicit year so that no segment is capitalised at a rate it never reached. And the margin becomes an OUTPUT: gross profit is built per segment at its own disclosed rate and EBITDA is that less one cost line at its own three-year average share of revenue, instead of a margin path typed above them.",
    "evidence": "Revenue compounds at 2.50% nominal against the delivered arrays' 3.71%, because the measured rates are lower than the typed ones: stc, two thirds of revenue, grows +0.16% real, Channels -2.10%, Solutions +5.53%, the group +2.33%. The EBITDA margin comes out at 31.09% in the first forecast year against a filed 31.44% \u2014 a relative gap of -1.14%, well inside [R-ANCHOR-01]'s five per cent trigger, so the forecast does not open materially below the latest filed period and owes no mechanism. The answer falls 41.1548 to 34.7988, -15.44%, and the gap against the latest known price goes -6.2% to -20.7% \u2014 past [R-GAP-01]'s trigger, so the eight-heading review is written and committed as GAP_REVIEW_05-09-2026.md. THE SIZE WAS DECLARED UNPREDICTED IN ADVANCE and it was: group real growth of +2.33% trailing is close to what the delivered arrays imply in aggregate, and what changed is the COMPOSITION, because four aggregates do not map onto eleven segments and a segment growing at its own rate compounds differently from a blend growing at an average of them.",
    "move": -0.15444038621905132
+  },
+  {
+   "name": "the one segment with unit data built as volume times price",
+   "rule": "R-SIGCM-02",
+   "before": 34.798812824404735,
+   "after": 34.888546164557496,
+   "why": "The stage above sat at the disclosed segment level and flagged that volume times price was out of reach because the financial statements carry no subscriber counts. THE GAP WAS IN THE REGISTER RATHER THAN IN THE WORLD: four guessed investor-relations URLs had failed and been written up as evidence the channel was gone, and the earnings presentations were one sitemap away, carrying the subscriber base by category at three fiscal year ends. The stc segment \u2014 the KSA operating business, two thirds of group revenue \u2014 is now built from its two halves, each faded on the same schedule and MULTIPLIED, which is the identity revenue actually obeys.",
+   "evidence": "Subscribers compound at +6.00% a year and revenue per subscriber falls -3.86% nominal, and (1 +0.0600) x (1 -0.0386) - 1 returns exactly the +1.91% the audited statements report for that segment. THE ANSWER BARELY MOVES AND IT WAS NOT EXPECTED TO: fading the net drops the cross-term the product keeps, worth about five basis points a year, so 34.7988 becomes 34.8885, +0.26%. The gain is not the five basis points \u2014 it is that the forecast now rests on a volume line and a price line a reader can see and disagree with separately, where before it rested on one net rate that showed neither. Saudi mobile penetration is already far above one line per person and the two are not equally likely to persist, which is a judgement a later edition can now make with a reason.",
+   "move": 0.0025786322253451566
   }
  ],
- "value": 34.798812824404735,
- "cumulative_move": -0.26134178510885175,
+ "value": 34.888546164557496,
+ "cumulative_move": -0.2594370572324175,
  "rules": {
   "R-COC-01": {
    "levers": [
@@ -140,11 +149,12 @@
   },
   "R-SIGCM-02": {
    "levers": [
-    "revenue and margin rebuilt on the eleven disclosed segments"
+    "revenue and margin rebuilt on the eleven disclosed segments",
+    "the one segment with unit data built as volume times price"
    ],
    "first_before": 41.15477165329675,
-   "last_after": 34.798812824404735,
-   "move": -0.15444038621905132
+   "last_after": 34.888546164557496,
+   "move": -0.15225999895050535
   }
  },
  "distinct_rules": 8,
@@ -159,7 +169,7 @@
   "latest_price": 43.86,
   "latest_price_date": "2026-09-03",
   "gap_at_the_audit": "+0.43%",
-  "gap_now_after_later_levers": "-20.66%",
+  "gap_now_after_later_levers": "-20.45%",
   "gap_at_delivery": "+8.10%",
   "what_the_audit_shows": "THE TWO LEVERS DISAGREED AND THE ROUTE IS WHY THAT MATTERS. Taken in the order fixed in writing before either was touched, the cost-of-capital correction moved the answer AWAY from the market \u2014 from 8.1%% above the price it was struck at to 16.4%% above the latest one \u2014 and the beta correction brought it back. Neither was chosen for where it landed and neither could have been: the first raises every value it touches and the second lowers every value it touches, and which one dominates is arithmetic about this company's own capital structure. Read as two corrections the rebuild is a contest; read as one net figure of -6.5%% it would look like a small tidy-up, and the 8.4%% and the 13.8%% inside it would be invisible. THE ANSWER NOW SITS ESSENTIALLY ON THE PRICE, at +0.4%%, and that is reported as an observation and NOT as corroboration \u2014 four levers remain, the lens retirement among them, and a rebuild that stopped here because the number looked comfortable would be fitting to the price by choosing when to stop.",
   "levers_remaining_at_the_audit": [

@@ -215,6 +215,21 @@ _DEFLATOR = (1 + CPI_HIST[2024]) * (1 + CPI_HIST[2025])
 # THE GROUP'S OWN REAL RATE, which a re-grouped line takes instead of its own.
 GROUP_REAL = (SEG.STATED_REVENUE[2] / SEG.STATED_REVENUE[0] / _DEFLATOR) ** 0.5 - 1.0
 
+# THE ONE SEGMENT WITH UNIT DATA IS BUILT AS VOLUME TIMES PRICE [SIGCM clause 2]. The stc
+# segment is the KSA operating business and two thirds of group revenue; the earnings
+# presentations disclose its subscriber base by category at three fiscal year ends, and
+# units.py checks those three ways before this reads them. Its revenue compounded at 1.91%
+# — a subscriber base compounding at 6.00% against revenue per subscriber falling 3.86%,
+# which multiply back to exactly that 1.91%. The net is what the other segments have to be
+# forecast on; where the two halves are disclosed, forecasting the net throws away the only
+# thing that says which of them is likely to continue.
+import units as UNITS
+
+_u = UNITS.record()
+UNIT_SEGMENT = 'stc'
+VOLUME_REAL = _u['volume_cagr_2y']                       # subscribers; a real quantity
+PRICE_REAL = (1 + _u['price_cagr_2y']) / _DEFLATOR ** 0.5 - 1.0   # revenue per subscriber
+
 seg_real0 = {}
 for _k, _v in SEG.REVENUE.items():
     if _k == 'Eliminations / adjustments':
@@ -232,13 +247,25 @@ for _k, _v in SEG.REVENUE.items():
 def seg_real(name, t):
     """The segment's real growth in explicit year t (1-based), fading to ZERO by year 5.
 
-    The fade is not a free parameter dressed up. The terminal states real growth of zero,
-    so a segment still growing in real terms in the last explicit year would be capitalised
-    at a rate it never reached — which is what [R-MACRO-01] says about explicit windows and
-    [R-TERM-01] about terminals. Fading to the number the terminal already assumes is what
-    makes the two halves of the model one model.
+    THE ONE SEGMENT WITH UNIT DATA IS BUILT FROM ITS TWO HALVES rather than from the net.
+    Volume and real price are each faded on the same schedule and MULTIPLIED, which is the
+    identity revenue actually obeys; fading the net instead would drop the cross-term, and
+    on this name that is worth about five basis points a year. The gain is not the five
+    basis points — it is that the two halves are now separately visible, so a later edition
+    can fade them DIFFERENTLY with a reason. Saudi mobile penetration is already far above
+    one line per person, and a volume line growing at 6% and a price line falling at 4% are
+    not equally likely to persist.
+
+    THE FADE ITSELF IS NOT A FREE PARAMETER DRESSED UP. The terminal states real growth of
+    zero, so a segment still growing in real terms in the last explicit year would be
+    capitalised at a rate it never reached, which is what [R-MACRO-01] says about explicit
+    windows and [R-TERM-01] about terminals. Fading to the number the terminal already
+    assumes is what makes the two halves of the model one model.
     """
-    return seg_real0[name] * (1.0 - t / float(len(yrs)))
+    f = 1.0 - t / float(len(yrs))
+    if name == UNIT_SEGMENT:
+        return (1.0 + VOLUME_REAL * f) * (1.0 + PRICE_REAL * f) - 1.0
+    return seg_real0[name] * f
 
 
 # Revenue, segment by segment, nominal RECOMPUTED from real on the house ladder.
@@ -763,6 +790,12 @@ out = dict(
         # a published price index, fading to zero real by the last explicit year. Nominal
         # recomputes on the house ladder; nothing here is a typed nominal rate.
         segment_real_growth={k: round(v, 6) for k, v in seg_real0.items()},
+        unit_segment=UNIT_SEGMENT,
+        unit_volume_real=VOLUME_REAL, unit_price_real=PRICE_REAL,
+        unit_note=('the stc segment is built as VOLUME x PRICE from the subscriber counts '
+                   'in the earnings presentations, each half faded on the same schedule and '
+                   'multiplied; the other segments are forecast on their net rate because '
+                   'no unit data is disclosed for them'),
         group_real_growth=GROUP_REAL,
         segment_margin={k: round(v, 6) for k, v in SEG_MARGIN.items()},
         sga_share_of_revenue=SGA_SHARE, dna_share_of_revenue=DNA_SHARE,

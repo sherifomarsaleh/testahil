@@ -10,10 +10,10 @@ it. The rule does not say the answer must change.
 
 | | |
 |---|---:|
-| central, the cash-flow lens under [R-LENS-03] | **SAR 34.7988** |
+| central, the cash-flow lens under [R-LENS-03] | **SAR 34.8885** |
 | latest known close, 3 September 2026 | 43.86 |
-| **gap** | **−20.66%** |
-| envelope, the range of the present-value reads | 34.11 – 47.14 |
+| **gap** | **−20.45%** |
+| envelope, the range of the present-value reads | 34.23 – 47.15 |
 | where it stood before tonight's driver rebuild | 41.1548, −6.17% |
 
 ## 1. LATEST FILINGS
@@ -148,7 +148,7 @@ explained away.**
 
 | | at the fair value | at the traded price | this company's own history |
 |---|---:|---:|---:|
-| enterprise value / FY2026 EBITDA | **6.24x** | 8.98x | 8.32x – 9.13x |
+| enterprise value / FY2026 EBITDA | **6.26x** | 8.98x | 8.32x – 9.13x |
 | price / FY2026 earnings | **14.6x** | 18.4x | — |
 
 **The fair value implies an enterprise multiple below every one of the last three years.**
@@ -171,10 +171,21 @@ and the honest answer is that the third cannot be ruled out:
    reading, since Channels fell 7% in FY2025 alone and may be a one-off — the whole forecast
    is too low, and the gap is ours.
 
-**What would settle it is the thing this study does not yet have**: the investor-relations
-channel, where subscriber counts and revenue per unit would let revenue be built as volume
-times price instead of as an extrapolated segment rate. That is named as the next block of
-work rather than treated as a limitation to live with.
+**What would settle it was found the same morning, and it sharpens the third reading rather
+than removing it.** The investor-relations channel was reachable all along — four guessed
+URLs had failed and been written up as evidence it was gone — and its earnings presentations
+carry the subscriber base by category at three fiscal year ends. The `stc` segment is now
+built as **volume times price**: a subscriber base compounding at **+6.00%** a year against
+revenue per subscriber falling **−3.86%** nominal, which multiply back to exactly the +1.91%
+the audited statements report.
+
+**That does not close the gap and it was not expected to** — the two halves multiply to the
+net either way, and the answer moves 0.26%. What it does is make the question answerable: the
+forecast's growth rests on a volume line that Saudi mobile penetration cannot extend for ever
+and a price line that may not fall for ever, and those are now two visible assumptions instead
+of one invisible net. A later edition can fade them differently with a reason. **The remaining
+gap between the segment counts and a true unit build is that these are chart labels from an
+unaudited page, and that is what is still to be found in a table.**
 
 ## The verdict
 
@@ -194,8 +205,8 @@ reverse-engineered rate this protocol prohibits outright, arriving through the f
 The study is HELD in any case: [R-GAP-02] blocks publication past 10% below the price, and
 Phase 1 of the method reassessment is not proven, which holds every study in the book.
 
-*AUDITED CENTRAL: 34.7988* — the figure this review audits, stated so a job outside the
+*AUDITED CENTRAL: 34.8885* — the figure this review audits, stated so a job outside the
 study can tell whether the review still describes the answer the study publishes.
 
-*AUDITED GAP: -20.7%* — the disagreement this review interrogates, stated so a job outside
+*AUDITED GAP: -20.5%* — the disagreement this review interrogates, stated so a job outside
 the study can tell whether the eight headings were asked at the size the study now carries.

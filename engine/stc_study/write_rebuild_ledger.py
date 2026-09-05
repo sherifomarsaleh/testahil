@@ -34,7 +34,8 @@ LANDED = {
     'R-BRIDGE-01': '7a10176ffdf65947f599b3d472061fc917a4168c',    # lever 5b
     'R-LENS-03':  'accc82d745bccf22f5455d0504c92c7043ee3f56',     # lever 6
     'R-GAP-01':   '750bd6e18d39cea57ea19a6ab096b3335ea9a849',     # lever 7
-    'R-SIGCM-02': None,                                          # the working tree, latest
+    'R-SIGCM-02': '57db3fcf6dfac4036f449aa0769d451e6e872ab8',     # the segment rebuild
+    'R-SIGCM-02:units': None,          # the unit build, SAME RULE, so it groups with it
 }
 
 
@@ -65,6 +66,7 @@ AFTER_TERM = at(LANDED['R-TERM-01'])
 AFTER_BRIDGE = at(LANDED['R-BRIDGE-01'])
 AFTER_LENS = at(LANDED['R-LENS-03'])
 AFTER_GAP = at(LANDED['R-GAP-01'])
+AFTER_SEG = at(LANDED['R-SIGCM-02'])
 NOW = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 # The lever-2 intermediate, struck when the cost-of-capital schedule was in and the beta
 # was not. It is named for that lever set, so a later sensitivity run cannot overwrite the
@@ -355,7 +357,7 @@ led.apply(
 led.apply(
     name='revenue and margin rebuilt on the eleven disclosed segments',
     rule='R-SIGCM-02',
-    after=NOW['lenses']['central']['base'],
+    after=AFTER_SEG['lenses']['central']['base'],
     why=(
         'A SECOND STAGE, DECLARED IN DRIVER_REBUILD_05-09-2026.md BEFORE IT WAS CODED, with '
         'its own audit point after the whole rebuild rather than inside it. The seven levers '
@@ -385,17 +387,56 @@ led.apply(
         'is the COMPOSITION, because four aggregates do not map onto eleven segments and a '
         'segment growing at its own rate compounds differently from a blend growing at an '
         'average of them.'
-        % (100 * ((NOW['forecast']['FY30E']['rev'] / 77_818.675) ** 0.2 - 1),
+        % (100 * ((AFTER_SEG['forecast']['FY30E']['rev'] / 77_818.675) ** 0.2 - 1),
            100 * ((93_373.0 / 77_818.675) ** 0.2 - 1),
-           100 * NOW['forecast']['FY26E']['ebitda_margin'],
+           100 * AFTER_SEG['forecast']['FY26E']['ebitda_margin'],
            100 * 24_469.435 / 77_818.675,
-           100 * (NOW['forecast']['FY26E']['ebitda_margin']
+           100 * (AFTER_SEG['forecast']['FY26E']['ebitda_margin']
                   / (24_469.435 / 77_818.675) - 1),
-           AFTER_GAP['lenses']['central']['base'], NOW['lenses']['central']['base'],
-           100 * (NOW['lenses']['central']['base']
+           AFTER_GAP['lenses']['central']['base'],
+           AFTER_SEG['lenses']['central']['base'],
+           100 * (AFTER_SEG['lenses']['central']['base']
                   / AFTER_GAP['lenses']['central']['base'] - 1),
-           100 * (AFTER_GAP['lenses']['central']['base'] / NOW['spot'] - 1),
-           100 * (NOW['lenses']['central']['base'] / NOW['spot'] - 1))),
+           100 * (AFTER_GAP['lenses']['central']['base'] / AFTER_SEG['spot'] - 1),
+           100 * (AFTER_SEG['lenses']['central']['base'] / AFTER_SEG['spot'] - 1))),
+)
+
+led.apply(
+    name='the one segment with unit data built as volume times price',
+    # THE SAME RULE AS THE LEVER ABOVE, deliberately: two levers serving one rule are ONE
+    # piece of evidence, and keying this one differently would let a reader count the
+    # segment rebuild and the unit build as two independent confirmations of a single
+    # correction, which is exactly what by_rule() exists to prevent.
+    rule='R-SIGCM-02',
+    after=NOW['lenses']['central']['base'],
+    why=(
+        'The stage above sat at the disclosed segment level and flagged that volume times '
+        'price was out of reach because the financial statements carry no subscriber '
+        'counts. THE GAP WAS IN THE REGISTER RATHER THAN IN THE WORLD: four guessed '
+        'investor-relations URLs had failed and been written up as evidence the channel '
+        'was gone, and the earnings presentations were one sitemap away, carrying the '
+        'subscriber base by category at three fiscal year ends. The stc segment — the KSA '
+        'operating business, two thirds of group revenue — is now built from its two '
+        'halves, each faded on the same schedule and MULTIPLIED, which is the identity '
+        'revenue actually obeys.'),
+    evidence=(
+        'Subscribers compound at %+.2f%% a year and revenue per subscriber falls %+.2f%% '
+        'nominal, and (1 %+.4f) x (1 %+.4f) - 1 returns exactly the +1.91%% the audited '
+        'statements report for that segment. THE ANSWER BARELY MOVES AND IT WAS NOT '
+        'EXPECTED TO: fading the net drops the cross-term the product keeps, worth about '
+        'five basis points a year, so %.4f becomes %.4f, %+.2f%%. The gain is not the five '
+        'basis points — it is that the forecast now rests on a volume line and a price line '
+        'a reader can see and disagree with separately, where before it rested on one net '
+        'rate that showed neither. Saudi mobile penetration is already far above one line '
+        'per person and the two are not equally likely to persist, which is a judgement a '
+        'later edition can now make with a reason.'
+        % (100 * NOW['drivers']['unit_volume_real'],
+           100 * ((1 + NOW['drivers']['unit_price_real']) * (1.0175) - 1),
+           NOW['drivers']['unit_volume_real'],
+           (1 + NOW['drivers']['unit_price_real']) * 1.0175 - 1,
+           AFTER_SEG['lenses']['central']['base'], NOW['lenses']['central']['base'],
+           100 * (NOW['lenses']['central']['base']
+                  / AFTER_SEG['lenses']['central']['base'] - 1))),
 )
 
 rec = led.record()
