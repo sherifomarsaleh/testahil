@@ -124,6 +124,22 @@ is DERIVED by the identity capex = change in property and equipment plus depreci
 LABELLED as derived, which is what that rule permits and what the label keeps apart from an
 assumption.
 
+## The primary statements do not extract, and the notes do
+
+Worth recording before anyone tries: **the four primary statements — financial position,
+profit or loss, cash flows and changes in equity, pages 7 to 11 — do not appear in the text
+layer at all**, while the ninety pages of notes behind them extract cleanly. Everything
+above is therefore read from the NOTES, which is why every figure here carries its note
+number.
+
+That is not a problem for the figures taken so far — note 9 is the income statement by
+segment and it foots, note 10 is the fixed-asset roll-forward and it foots, notes 20, 22 and
+42.6 carry the cash, the share capital and the debt — but it means the balance sheet's own
+subtotals and the cash-flow statement have to be **read by OCR off the rendered pixels**,
+which is the route [R-FCAL-01] names for exactly this and which the arithmetic then has to
+arbitrate. Until that is done, the receivables, contract-asset and inventory lines above stay
+recorded as missing rather than guessed at.
+
 ## What is still to extract before the register is complete
 
 The balance sheet and the cash-flow statement, the debt book split by currency and facility
