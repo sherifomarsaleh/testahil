@@ -1382,6 +1382,27 @@ expert_median = sorted(e['base'] for e in experts)[1]
 # 11. ASSEMBLE
 # ============================================================================
 OUT = dict(
+    # THE ANSWER, WHERE THE SHARED READER LOOKS FOR IT. [R-GAP-01]'s gate reads a
+    # study's own numbers for a central and the spot it was struck at; this study
+    # carried both — under meta.spot and lenses.central — and the gate could see
+    # neither, so it could say nothing about this name at all and the study sat on
+    # the unreadable list. AN UNREADABLE STUDY IS NOT A CLEAN STUDY [R-ENF-04].
+    # The figures below are the ones the delivered document publishes today, in the
+    # study's own currency: they are NOT a new answer and NOTHING here endorses the
+    # weighted blend that produces the central — [R-LENS-03] retires it and this name
+    # stays on the lens ratchet until it is rebuilt. What the gate audits is the
+    # answer a reader actually receives, and this is that answer.
+    # IN THE LISTING CURRENCY, WHICH IS NOT THIS STUDY'S REPORTING CURRENCY. The
+    # gate substitutes the LATEST KNOWN price for the struck spot, and that price
+    # comes from the supplied close register and the OHLC library, both of which
+    # carry an ADX name in DIRHAMS. Committing the dollar figures the model works
+    # in put a USD 0.58 central against an AED 2.39 close and the gate reported this
+    # study 75.6% below the market — a currency error wearing the appearance of a
+    # valuation finding, and the more dangerous kind because the arithmetic is
+    # perfect. Both figures below are therefore converted at the peg, and both are
+    # what the delivered document states in its own headline.
+    central=central * AEDUSD,
+    spot=SPOT_AED,
     meta=dict(ticker='AMR', company='Americana Restaurants International PLC',
               market='UAE (ADX/DFM)', market_code='AE', exchange='Abu Dhabi Securities Exchange',
               dual_listing='Saudi Exchange (Tadawul), symbol 6015',

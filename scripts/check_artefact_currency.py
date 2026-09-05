@@ -112,7 +112,21 @@ def carries_valuation(obj, depth=0):
             return True
         for k, v in obj.items():
             if k in VALUE_KEYS and isinstance(v, (int, float)) and not isinstance(v, bool):
-                return True
+                # `end` IS THE ONE AMBIGUOUS KEY AND IT IS ONLY THIS STUDY'S ANSWER AT
+                # THE ROOT [re-pointed 05-Sep-2026]. It is in the list because ARCC's
+                # efg_bridge.json carries its figure under that name and the first draft
+                # could not see it. Deep inside a nested blob it means something else:
+                # three raw market-data downloads in one study directory carry
+                # chart.result[0].meta.currentTradingPeriod.regular.end, a UNIX
+                # TIMESTAMP, and this gate demanded they declare the fair value they
+                # were built against. WHEN A CHECK FIRES ON WORK THAT IS RIGHT, RE-POINT
+                # IT [R-COC-01] — not widen it, and not delete the artefact. A magnitude
+                # test would be the free parameter the promotion rule forbids; the
+                # structural fact is that a study's own answer is not five levels down
+                # inside a vendor's metadata. The motivating case is at the root and
+                # keeps firing; it also declares its vintage now, so it is caught twice.
+                if k != 'end' or depth == 0:
+                    return True
             if carries_valuation(v, depth + 1):
                 return True
     elif isinstance(obj, list):

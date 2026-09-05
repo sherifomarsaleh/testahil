@@ -1357,6 +1357,48 @@ CAL = dict(step0=_load('step0_result.json'), backtest=_load('backtest_5y.json'),
            vol=_load('vol_diagnostic.json'), width=_load('width_diagnostic.json'))
 
 OUT = dict(
+    # THE ANSWER, WHERE THE SHARED READER LOOKS FOR IT. [R-GAP-01]'s gate reads a
+    # study's own numbers for an answer and the spot it was struck at. This study
+    # publishes TWO weighted centres and no single figure — deliberately, because the
+    # contested judgement is carried both ways and the two are never averaged — and it
+    # carried them at lenses.centre_A and lenses.centre_B, where the shared reader does
+    # not look. So the gate could see nothing and this study sat on the unreadable
+    # list. AN UNREADABLE STUDY IS NOT A CLEAN STUDY [R-ENF-04], and a TWO-SIDED answer
+    # is READABLE rather than missing: read_branches() exists for exactly this shape.
+    #
+    # Nothing here is a new answer and nothing here endorses the weighted blend that
+    # produces each centre — [R-LENS-03] retires that construction and this study stays
+    # on the lens ratchet until it is rebuilt. What the gate audits is the answer a
+    # reader actually receives, and this is that answer, in the listing currency the
+    # price library carries.
+    spot=V['spot'],
+    central_two_sided=dict(
+        question='Do inventory movements normalise to zero, or persist at the '
+                 'through-cycle rate the company has actually reported?',
+        decides='Whether the gross profit that compounds into the perpetuity carries '
+                'the inventory contribution at all. The difference is overwhelmingly a '
+                'TERMINAL effect, which is precisely why the two frames are published '
+                'side by side and never averaged.',
+        branches=[
+            dict(label='Frame A — inventory movements normalised to zero from FY2027',
+                 value=L['centre_A'],
+                 condition='Inventory movements are a windfall of a rising oil price '
+                           'and revert to nothing once prices stop rising. They were '
+                           'AED 254 million in FY2024, AED 335 million in FY2025 and '
+                           'AED 762 million in the first half of 2026 alone, against '
+                           'fuel volume growth in that half of 1.6%.'),
+            dict(label='Frame B — inventory movements carried at the FY2024-FY2025 '
+                       'average of AED 294 million',
+                 value=L['centre_B'],
+                 condition='Inventory movements are a through-cycle feature of holding '
+                           'fuel stock rather than a windfall, and the two-year average '
+                           'is the company\'s own recent experience of them.'),
+        ],
+        why_not_averaged='A number between the two describes a world in which the '
+                         'inventory contribution is half real. The dual-framing rule '
+                         'forbids averaging such a pair, and this study takes the '
+                         'further step of printing no average at all.',
+    ),
     meta=dict(
         company='Abu Dhabi National Oil Company for Distribution PJSC',
         short='ADNOC Distribution', ticker='ADNOCDIST', market='AE',

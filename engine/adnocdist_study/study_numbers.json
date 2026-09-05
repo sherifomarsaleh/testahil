@@ -1,4 +1,22 @@
 {
+ "spot": 4.07,
+ "central_two_sided": {
+  "question": "Do inventory movements normalise to zero, or persist at the through-cycle rate the company has actually reported?",
+  "decides": "Whether the gross profit that compounds into the perpetuity carries the inventory contribution at all. The difference is overwhelmingly a TERMINAL effect, which is precisely why the two frames are published side by side and never averaged.",
+  "branches": [
+   {
+    "label": "Frame A \u2014 inventory movements normalised to zero from FY2027",
+    "value": 4.411292110312444,
+    "condition": "Inventory movements are a windfall of a rising oil price and revert to nothing once prices stop rising. They were AED 254 million in FY2024, AED 335 million in FY2025 and AED 762 million in the first half of 2026 alone, against fuel volume growth in that half of 1.6%."
+   },
+   {
+    "label": "Frame B \u2014 inventory movements carried at the FY2024-FY2025 average of AED 294 million",
+    "value": 4.582096886797197,
+    "condition": "Inventory movements are a through-cycle feature of holding fuel stock rather than a windfall, and the two-year average is the company's own recent experience of them."
+   }
+  ],
+  "why_not_averaged": "A number between the two describes a world in which the inventory contribution is half real. The dual-framing rule forbids averaging such a pair, and this study takes the further step of printing no average at all."
+ },
  "meta": {
   "company": "Abu Dhabi National Oil Company for Distribution PJSC",
   "short": "ADNOC Distribution",
