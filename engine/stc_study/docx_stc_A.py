@@ -17,7 +17,12 @@ spot = D['spot']; E = D['experts']; cov = D['cover']
 masthead()
 P('Independent Valuation Study — Educational Analysis', size=12, bold=True, space_before=4, space_after=2)
 P('Saudi Telecom Company (Tadawul: 7010)', size=17, bold=True, space_after=2)
-P('Fundamental analysis · Technical analysis · Monte Carlo simulation — one integrated read',
+# THE EDITION DATE IS IN THE MASTHEAD BAND AND ALSO HERE, and the second placement is not
+# redundancy: the band is a table cell, and a reader — or a check — scanning the opening
+# paragraphs of the document sees only paragraphs. It appeared first inside §1.8's honesty
+# note, eighteen pages in.
+P('Fundamental analysis · Technical analysis · Monte Carlo simulation — one integrated read'
+  '   ·   Edition of 5 September 2026',
   size=10.5, italic=True, color=GREY, space_after=8)
 rich([('Anchor: ', dict(bold=True)),
       (f"SAR {spot:.2f} ({D['spot_date']} close) \u00b7 {D['bridge_record']['shares_mn']:,.1f} mn shares "
@@ -261,16 +266,36 @@ rows = [
  ['PV of terminal value', f"{dcf['pv_tv']:,.0f}"],
  ['Enterprise value — core operations', f"{dcf['ev']:,.0f}"],
  ['Terminal value as % of enterprise value', f"{dcf['tv_pct']*100:.0f}%"],
- ['+ Associates & JVs (43.06% DIIC/TAWAL, carrying)', f"{dcf['assoc']:,.0f}"],
- ['+ Telefónica 9.97% (market mark)', f"{dcf['telefonica']:,.0f}"],
- ['less: Net debt (IR basis, Q1-26) · NCI', f"({dcf['net_debt']:,.0f}) · ({dcf['nci']:,.0f})"],
- ['Equity value', f"{dcf['eq']:,.0f}"],
- ['DCF fair value per share', f"SAR {dcf['ps']:.2f}"],
 ]
+# THE BRIDGE A READER IS ASKED TO FOLLOW MUST REACH THE ANSWER IT PRINTS, AND THIS ONE DID
+# NOT. It printed enterprise value, associates and the listed stake, then combined net debt
+# and the minority into one row, and omitted the SAR 5,163.5mn investment-funds line the
+# model includes — so a reader adding the printed rows reached 185,283 against a printed
+# 190,447, SAR 1.03 a share away. Every figure in it was computed and individually correct.
+# The rows now come from the bridge record itself, in its own order, and table_residual
+# asserts at build time that they reach the equity value printed beneath them.
+import table_residual as _TRES
+_BRL = D['bridge_record']['lines']
+_steps = []
+for _l in _BRL[1:]:
+    _verb = 'Plus' if _l['value'] >= 0 else 'Less'
+    _nm = _l['name']
+    for _p in ('plus ', 'less '):
+        if _nm.lower().startswith(_p):
+            _nm = _nm[len(_p):]
+            break
+    rows.append(['%s %s' % (_verb, _nm), f"{abs(_l['value']):,.0f}"])
+    _steps.append(('%s %s' % (_verb, _nm), _l['value']))
+_TRES.waterfall(_BRL[0]['value'], _steps, D['bridge_record']['equity_value'])
+rows.append(['Equity value', f"{D['bridge_record']['equity_value']:,.0f}"])
+rows.append(['Divided by shares in issue (%s million)'
+             % f"{D['bridge_record']['shares_mn']:,.1f}",
+             f"SAR {D['bridge_record']['per_share']:.2f} per share"])
 table(rows, [4.0, 1.6], first_col_bold=True)
-P(f"Two honesty notes. First, {dcf['tv_pct']*100:.0f}% of the enterprise value sits in the terminal — at a 5.1-point "
-  "WACC−g spread this is a duration bet dressed as a five-year model, which is why §1.9 sensitizes the WACC × g grid and "
-  "the beta separately rather than hiding either. Second, the model FCFF (SAR 10.3 bn FY26E) runs ~SAR 2–3 bn richer than "
+P(f"Two honesty notes. First, {dcf['tv_pct']*100:.0f}% of the enterprise value sits in the terminal — at a "
+  f"{(dcf['wacc']-dcf['tg'])*100:.1f}-point spread between the cost of capital and terminal growth this is a duration "
+  "bet dressed as a five-year model, which is why §1.9 prices the rate grid and the beta separately rather than hiding "
+  f"either. Second, the model's first-year free cash flow of SAR {D['dcf']['rows'][0]['fcff']/1000.0:.1f} bn runs richer than "
   "stc's own reported FY25 free cash flow (6.5 bn), because reported OCF absorbs receivables swings, early-retirement cash "
   "and zakat timing that a NOPAT-based FCFF smooths; Q1-26's FCF of 3.9 bn (+494% YoY) suggests the gap is closing, but "
   "Appendix A shows both series so the difference is visible rather than averaged away.")
@@ -366,18 +391,39 @@ rich([(f"Normalized base ≈ SAR {L['normalized']['base']:.0f}", dict(bold=True)
        'build purely as cost.', {})])
 
 H2('1.5  Synthesis — the central, and the lenses beside it')
-P('We weight the DCF most heavily because it is the only lens that prices the full capex-and-recovery arc; the DDM carries '
-  'the pre-committed cash; the relative lens anchors to what the market pays for GCC telecom cash flows today; normalized '
-  'earnings is the ballast.')
-rows = [['Lens', 'Weight', 'Bear', 'Base', 'Bull'],
- ['FCFF DCF (primary)', '35%', f"{L['dcf']['bear']:.0f}", f"{L['dcf']['base']:.1f}", f"{L['dcf']['bull']:.0f}"],
- ['Dividend discount (policy)', '25%', f"{L['ddm']['bear']:.0f}", f"{L['ddm']['base']:.1f}", f"{L['ddm']['bull']:.0f}"],
- ['Relative (EV/EBITDA)', '20%', f"{L['relative']['bear']:.0f}", f"{L['relative']['base']:.1f}", f"{L['relative']['bull']:.0f}"],
- ['Normalized earnings', '20%', f"{L['normalized']['bear']:.0f}", f"{L['normalized']['base']:.1f}", f"{L['normalized']['bull']:.0f}"],
- ['THE CENTRAL — the class primary', '', f"{L['dcf']['bear']:.1f}",
-  f"{L['dcf']['base']:.1f}", f"{L['dcf']['bull']:.1f}"],
+# THE TITLE OF THIS SECTION WAS CHANGED AND ITS BODY WAS NOT READ, which is the same
+# defect as the sentence that restates a rebuilt table: the heading said "the central, and
+# the lenses beside it" while the paragraph underneath still opened "We weight the DCF most
+# heavily", and the table carried a WEIGHT column of 35 / 25 / 20 / 20 — the typed blend
+# that was retired outright. Section 4, four sections later, says "No weights are applied
+# anywhere". THE STUDY CONTRADICTED ITSELF, and the record conformed the whole time, so
+# every gate that reads the record passed it.
+_LR = D['lens_record']
+_ROLE = {_LR['primary']['kind']: 'THE CENTRAL'}
+for _cc in _LR['cross_checks']:
+    _ROLE[_cc['kind']] = 'Cross-check'
+P('One lens is the answer and the others are published beside it. The cash-flow model is '
+  'the class primary — it is the only one of these that prices the whole capital programme '
+  'and its recovery — and the dividend, multiple and normalised-earnings reads are '
+  'cross-checks a reader can hold against it. THEY ARE NOT WEIGHTED AND THERE IS NO BLEND: '
+  'a number produced by averaging several methods is a new method with parameters nobody '
+  'tested, and it imports the weakness of the weakest lens at whatever weight somebody '
+  'typed. An earlier edition of this study did exactly that, at 35 / 25 / 20 / 20.')
+rows = [['Lens', 'Role', 'Bear', 'Base', 'Bull'],
+ ['Cash-flow model', 'THE CENTRAL', f"{L['dcf']['bear']:.1f}", f"{L['dcf']['base']:.1f}",
+  f"{L['dcf']['bull']:.1f}"],
+ ['Dividend discount', 'Cross-check', f"{L['ddm']['bear']:.1f}", f"{L['ddm']['base']:.1f}",
+  f"{L['ddm']['bull']:.1f}"],
+ ['Enterprise multiple on own history', 'Cross-check', f"{L['relative']['bear']:.1f}",
+  f"{L['relative']['base']:.1f}", f"{L['relative']['bull']:.1f}"],
+ ['Normalised earnings power', 'Cross-check', f"{L['normalized']['bear']:.1f}",
+  f"{L['normalized']['base']:.1f}", f"{L['normalized']['bull']:.1f}"],
+ ['Book value', 'Disclosed floor', '', f"{L['book_value']:.2f}", ''],
+ ['THE PUBLISHED RANGE — the span of the present-value reads, never an average', '',
+  f"{D['central_range']['low']:.2f}", f"{D['central']:.2f}",
+  f"{D['central_range']['high']:.2f}"],
 ]
-table(rows, [2.4, 0.9, 1.1, 1.1, 1.1], first_col_bold=True, band_rows=[5])
+table(rows, [2.4, 1.0, 1.05, 1.05, 1.05], first_col_bold=True, band_rows=[6], size=8.8)
 figure(os.path.join(HERE, 'fig1_football.png'), 6.3, 'Figure 1 — Valuation football field. Bars span bear–bull per lens; the brass tick is each '
        'base case; the gold band is the range the present-value reads span; the ink line is the market price.')
 _RB = D['lens_record']['primary']['range_basis']
@@ -596,7 +642,7 @@ for _r in _BG:
     rows.append([f"{_r['beta']:.2f}", f"{_r['ke']*100:.2f}%", f"{_r['wacc']*100:.2f}%",
                  f"{_r['ps']:.2f}",
                  'the adopted regression' if _r['adopted'] else
-                 ('the house fallback, had the regression failed its usability gate'
+                 ('the house fallback, used only where a regression is not usable'
                   if abs(_r['beta'] - 1.0) < 1e-9 else '')])
 table(rows, [1.0, 1.4, 1.4, 1.3, 2.1], first_col_bold=True, size=8.9)
 _b1 = next(r for r in _BG if abs(r['beta'] - 1.0) < 1e-9)

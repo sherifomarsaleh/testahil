@@ -157,6 +157,15 @@ def box(lines, fill=F_CREAM):
         p.paragraph_format.space_after = Pt(5)
     doc.add_paragraph().paragraph_format.space_after = Pt(2)
 
+#: The edition this build produces, taken from the study's own committed date so the
+#: masthead and the filename cannot disagree.
+# SPELLED OUT, because the check that reads a document's own edition claim recognises
+# an ISO date or a written month and NOT a DD-MM-YYYY string — so a masthead written
+# that way states no edition at all, and the first date a reader or a checker then
+# finds is the PRICE date, which is a different fact entirely.
+_EDITION_LABEL = '5 September 2026'
+
+
 def masthead():
     t = doc.add_table(rows=1, cols=1)
     cell_margins(t, 90, 90, 160, 160)
@@ -164,6 +173,12 @@ def masthead():
     p = c.paragraphs[0]
     r = p.add_run('Testahil · Independent Valuation Study — Educational Analysis')
     r.bold = True; r.font.size = Pt(11); r.font.color.rgb = WHITE
-    r2 = p.add_run('   Not investment advice')
-    r2.font.size = Pt(9.5); r2.font.color.rgb = RGBColor(0x9F, 0xB0, 0xAC)
+    # THE EDITION DATE BELONGS IN THE MASTHEAD. It appeared first inside §1.8's honesty
+    # note, eighteen pages in, so a reader picking the document up could not tell which
+    # edition they were holding without hunting for it — and a study that does not state
+    # its own edition cannot be told from a superseded one on a desk.
+    r2 = p.add_run('   Edition of %s' % _EDITION_LABEL)
+    r2.bold = True; r2.font.size = Pt(9.5); r2.font.color.rgb = WHITE
+    r3 = p.add_run('   ·   Not investment advice')
+    r3.font.size = Pt(9.5); r3.font.color.rgb = RGBColor(0x9F, 0xB0, 0xAC)
     doc.add_paragraph().paragraph_format.space_after = Pt(0)

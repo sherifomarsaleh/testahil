@@ -188,7 +188,7 @@ n_competitor = R.add_negative(
     "The same search as the new-entrants category and with the same result: no named "
     "competitor appears in any of the three documents, so no competitor capacity or price "
     "move can be cited. Recorded as an evidenced absence rather than closed by moving a "
-    "company-ring finding into this row.",
+    "finding about this company's own operations into a row about its competitors.",
     SWEEP_DATE)
 
 # ----------------------------------------------------------------- RING 4 COMPANY

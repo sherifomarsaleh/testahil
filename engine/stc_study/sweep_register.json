@@ -173,7 +173,7 @@
    "ring": "INDUSTRY",
    "category": "competitor capacity / price moves (named)",
    "klass": "NEGATIVE_SEARCH",
-   "headline": "Negative search \u2014 nothing found (The same search as the new-entrants category and with the same result: no named competitor appears in any of the three documents, so no competitor capacity or price move can be cited. Recorded as an evidenced absence rather than closed by moving a company-ring finding into this row.)",
+   "headline": "Negative search \u2014 nothing found (The same search as the new-entrants category and with the same result: no named competitor appears in any of the three documents, so no competitor capacity or price move can be cited. Recorded as an evidenced absence rather than closed by moving a finding about this company's own operations into a row about its competitors.)",
    "source_name": "negative search",
    "source_type": "SEARCH",
    "source_date": "2026-09-05",

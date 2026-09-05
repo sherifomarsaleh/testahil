@@ -152,7 +152,7 @@ _nir = sum(1 for v in INP.values() if v.get('layer') == 'Company_IR')
 P('Three figures about this register, all computed from it: it carries %d inputs, of which '
   '%d come from this company’s own documents and %d of those from the investor-relations '
   'channel specifically — which is the split a reviewer needs, because it says how much of '
-  'the company ring rests on material no financial statement carries. The three most recent '
+  'what is known about the company rests on material no financial statement carries. The three most recent '
   'fiscal years and every disclosed period of the study year come from the statements '
   'themselves.' % (len(INP), _ncomp, _nir), size=9.5)
 
@@ -175,13 +175,18 @@ for i, (k, v) in enumerate(items, 1):
     rows.append([str(i), k.replace('_', ' '), fmt(v['value']),
                  LAYER_NAME.get(v.get('layer'), v.get('layer', '')),
                  v['source'], v.get('date', '')])
-table(rows, [0.30, 2.05, 0.95, 1.15, 4.55, 0.80], size=7.0)
+# THE INDEX COLUMN WAS DECLARED AT 0.76cm AND ITS WIDEST NUMBER NEEDS 0.84cm, so the row
+# numbers past 99 wrapped. Sized by the shared helper against the rows actually printed.
+import col_width as _CW
+_W = [w / 2.54 for w in _CW.fit_widths(rows[0], rows[1:], total_cm=9.8 * 2.54,
+                                       generous=4, size=7.0)]
+table(rows, _W, size=7.0)
 
 # ------------------------------------------------------- 2 the source catalogue
 doc.add_page_break()
 H1('2  Source catalogue — the documents relied on')
 P('Every document named in the register above, with what it was used for. The list is '
-  'closed: a row of the input register that cited a document not on this list would have '
+  'closed: a row in the table above citing a document not on this list would have '
   'failed the register’s own assertion.', size=9.3)
 _USE = {}
 for v in INP.values():
@@ -282,8 +287,8 @@ table(rows, [2.15, 1.05, 6.60], size=7.8)
 
 # ----------------------------------------------------------- 4 research trail
 doc.add_page_break()
-H1('4  Research trail — the four rings, and what came back empty')
-P('Before any forecast driver was set, the research ran in four rings: the world, the '
+H1('4  Research trail — the four levels, and what came back empty')
+P('Before any forecast driver was set, the research ran at four levels: the world, the '
   'country, the industry and the company. Every finding carries its source and that '
   'source’s own date.', size=9.3)
 # A SOURCE FIELD IN THE SWEEP REGISTER NAMES THE EXTRACTED FILE THIS DESK READ. That is
@@ -314,7 +319,7 @@ def _reader_source(txt):
 
 
 RINGS = ['GLOBAL', 'COUNTRY', 'INDUSTRY', 'COMPANY']
-rows = [['#', 'Ring', 'What was found', 'Source', 'Kind', 'Source date']]
+rows = [['#', 'Level', 'What was found', 'Source', 'Kind', 'Source date']]
 n = 0
 for rg in RINGS:
     for f in [x for x in SW['findings'] if x['ring'] == rg]:

@@ -245,7 +245,13 @@ r = 5
 for j, h in enumerate(['Lens', 'Bear', 'Base', 'Bull']):
     put(ws, f'{get_column_letter(1+j)}{r}', h, BLACK, None, True, FILL_H)
 r += 1
-for i, nm in enumerate(['FCFF DCF (primary)', 'Dividend discount (policy lens)', 'Relative (EV/EBITDA)', 'Normalized earnings', 'Weighted central']):
+# THE LAST ROW WAS LABELLED "Weighted central" AND POINTED AT THE BOOK-VALUE FLOOR. Two
+# defects in one cell: a retired label naming a construction this house does not build, on
+# a row that was not even what the label claimed. The Summary rows it mirrors are the four
+# lenses and then the disclosed floor, so it is named for what it is.
+for i, nm in enumerate(['Cash-flow model (the class primary)', 'Dividend discount',
+                        'Enterprise multiple on own history', 'Normalised earnings power',
+                        'Book value — a disclosed floor, never weighted into an answer']):
     put(ws, f'A{r}', nm, BLACK, None, i == 4)
     for j, col in enumerate('BCD'):
         put(ws, f'{col}{r}', f'=Summary!{col}{first + i}', GREEN, PX, i == 4)

@@ -68,8 +68,16 @@ rows = [
  ['Profit from continuing operations'] + [f0(v / 1000.0) for v in _ISH['net_profit_continuing']]
    + [f0(fc[y]['net_profit']) for y in _FY],
 ]
-table(rows, [2.05, 0.615, 0.615, 0.615, 0.615, 0.615, 0.615, 0.615, 0.615],
-      first_col_bold=True, size=8.2)
+# SIZED BY THE SHARED HELPER, NOT BY EYE. The six forecast columns were declared at
+# 1.56cm and their widest printed figure needs 1.63cm, so every one of them wrapped — and
+# a wrapped FIGURE is not a typographic nuisance the way a wrapped word is: a negative
+# loses its sign, a rate loses its percent. fit_widths() raises rather than returning a
+# table that cannot fit, which is the point: a table needing more room needs fewer
+# columns, never a squeeze.
+import col_width as _CW
+_W = [w / 2.54 for w in _CW.fit_widths(rows[0], rows[1:], total_cm=7.0 * 2.54,
+                                       generous=0, equal_from=1, size=8.2)]
+table(rows, _W, first_col_bold=True, size=8.2)
 caption('The three filed years are note 9\'s own reconciliation of segment revenue to profit '
         'from continuing operations, and they foot to the riyal in every column. THREE LINES '
         'ARE NOT FORECAST AND THE TABLE SAYS SO RATHER THAN LEAVING A READER TO NOTICE: net '
@@ -201,11 +209,12 @@ H2('B.3  The research register — what was searched, and what came back empty')
 _SW = json.load(open(os.path.join(HERE, 'sweep_register.json')))
 _F = _SW['findings']
 _rings = ['GLOBAL', 'COUNTRY', 'INDUSTRY', 'COMPANY']
-P('Before any forecast driver was set, the research ran in four rings — the world, the country, the industry, and the '
+P('Before any forecast driver was set, the research ran at four levels — the world, the country, the industry and the '
   'company — and every finding was recorded with its source and that source\u2019s own date. The table below is that '
   'register in summary; the standalone bibliography carries every line of it, together with the full register of the '
   f"{len(D['inputs'])} inputs this study consumes, each with its value, its source and its date.", size=9.8)
-rows = [['Ring', 'Findings', 'Of which searches that came back empty', 'The sources they rest on']]
+rows = [['Level', 'Findings', 'Of which searches that came back empty',
+         'The sources they rest on']]
 for rg in _rings:
     inring = [f for f in _F if f['ring'] == rg]
     negs = [f for f in inring if f['klass'] == 'NEGATIVE_SEARCH']
@@ -226,7 +235,8 @@ for f in _negall:
     _body = f['headline']
     if '(' in _body:
         _body = _body[_body.index('(') + 1:].rstrip(')')
-    bullet(_body.strip(), bold_head='%s ring — %s. ' % (f['ring'].capitalize(), f['category']))
+    bullet(_body.strip(),
+           bold_head='%s \u2014 %s. ' % (f['ring'].capitalize(), f['category']))
 _pa = _SW['primary_access'][0]
 P('The company\u2019s own investor-relations channel was attempted first, before any aggregator, and the attempt is '
   f"logged whether or not it succeeded. It was reached on {_pa['attempt_date']} — and the route matters: four direct "
@@ -359,7 +369,11 @@ rows = [
  ['Easing + special dividends', '30%', 'Fed/SAMA cut 75–100 bp; cover proven; a special repeats', f"SAR {L['ddm']['bull']*1.02:.0f}"],
  ['Base: policy held, dividend locked', '45%', 'Gradual cuts; capex mid-band; SAR 2.20 through 2027 then +3%', f"SAR {ddm['ps']:.0f}"],
  ['Higher-for-longer + capex overrun', '25%', 'No cuts to mid-2027; capex at 17.5%; no specials', f"SAR {L['ddm']['bear']*0.96:.0f}"],
- ['Probability-weighted fair value', '', '', f"SAR {E['e3']['base']:.1f}"],
+ # "PROBABILITY-WEIGHTED FAIR VALUE" READS AS A BLEND OF LENSES AND IS NOT ONE — it is a
+ # weighting of policy scenarios INSIDE the dividend lens. The phrase is genuinely
+ # ambiguous, and where a house rule forbids a construction the safe move is to stop using
+ # its words for something else rather than to argue that this instance is different.
+ ['His answer across the three policy worlds', '', '', f"SAR {E['e3']['base']:.1f}"],
 ]
 table(rows, [2.2, 0.7, 2.7, 1.1], first_col_bold=True, size=8.9, band_rows=[4])
 P(f"Sensitivity (swing = the scenario weights): shifting 10 points from base to bear moves him ≈SAR 1.5; his answer is "
