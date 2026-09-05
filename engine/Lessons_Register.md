@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**254 lessons**, of which 222 bind on every study, 25 on a class of company, and 7 on a single name.
+**255 lessons**, of which 223 bind on every study, 25 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 21 from self-audits, 178 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 22 from self-audits, 178 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2298,6 +2298,16 @@ An internal evidence note recorded a corroboration as a computed ratio — 'the 
 > **What it cost, or how we know.** A prior-year accumulated-depreciation figure was typed into the input register to carry a cross-check the evidence file had recorded as a ratio. It was removed in the same session before it was committed, and the cross-check now lives only in the internal evidence file where it was actually measured. The study's claim is one year shorter and true.
 
 > **What would overturn it.** Nothing overturns it; what LIMITS it is that a prose record written with the figures in it is a perfectly good source for them — which is the argument for writing evidence notes with the numbers rather than with the conclusions.
+
+### L-334 · A CLAIM ABOUT A POPULATION MADE FROM THE SHAPE OF THE PROBLEM IS A GUESS, AND IT READS EXACTLY LIKE A MEASUREMENT
+
+The dangerous ones are not wild guesses; they are the plausible summaries a competent reading of the situation produces — 'the causes split three ways', 'both remaining names are Egyptian', 'these studies still carry the retired blend'. Each is the kind of sentence somebody writes to organise their own thinking and then leaves in a commit message, a state file or a standing lesson, where the next reader takes it for something that was counted. THE TEST IS MECHANICAL AND CHEAP: before a sentence naming a set, a count or a shared cause goes anywhere durable, OPEN THE FILES AND COUNT. On the cases that produced this lesson it took five minutes each and the guesses were wrong every time. AND WHEN ONE IS FOUND WRONG, CORRECT THE STRENGTH OF THE CLAIM AND NOT ONLY ITS ARITHMETIC — a hypothesis resting on four failures against one success with one test left is a different object from the same sentence with the count patched.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, three population claims in one night, 5 September 2026
+
+> **What it cost, or how we know.** (1) 'Two names remain on the retired construction and both are Egyptian' — wrong in both halves: one remained, and the other was a UAE filer, which also thinned the jurisdictional hypothesis the sentence was supporting. (2) 'The seven unreadable studies split three ways and some fixes are cheap' — the filename and dict-shape causes were real and NEITHER WAS SUFFICIENT; underneath, all seven need a valuation decision. (3) 'AMR and probably ADNOCDIST, ADNOCDRILL and BOROUGE carry the retired blend' — right for one, wrong for two, which carry a dual framing and a published range instead. Every one was written before the files were opened, and every one was corrected by opening them.
+
+> **What would overturn it.** Nothing overturns it. What limits it is that a guess EXPLICITLY labelled as one, in a place that expects hypotheses, is a legitimate and useful thing to write down — the offence is the guess that travels into a durable record wearing a measurement's clothes.
 
 
 ---

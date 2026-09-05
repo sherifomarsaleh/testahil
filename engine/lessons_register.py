@@ -5504,6 +5504,47 @@ LESSONS = [
       "— which is the test that should have been run in the first "
       "place."),
 
+    L("L-334", "ALL", None,
+      "A CLAIM ABOUT A POPULATION MADE FROM THE SHAPE OF THE "
+      "PROBLEM IS A GUESS, AND IT READS EXACTLY LIKE A "
+      "MEASUREMENT",
+      "The dangerous ones are not wild guesses; they are the "
+      "plausible summaries a competent reading of the situation "
+      "produces — 'the causes split three ways', 'both remaining "
+      "names are Egyptian', 'these studies still carry the retired "
+      "blend'. Each is the kind of sentence somebody writes to "
+      "organise their own thinking and then leaves in a commit "
+      "message, a state file or a standing lesson, where the next "
+      "reader takes it for something that was counted. THE TEST IS "
+      "MECHANICAL AND CHEAP: before a sentence naming a set, a count "
+      "or a shared cause goes anywhere durable, OPEN THE FILES AND "
+      "COUNT. On the cases that produced this lesson it took five "
+      "minutes each and the guesses were wrong every time. AND WHEN "
+      "ONE IS FOUND WRONG, CORRECT THE STRENGTH OF THE CLAIM AND NOT "
+      "ONLY ITS ARITHMETIC — a hypothesis resting on four failures "
+      "against one success with one test left is a different object "
+      "from the same sentence with the count patched.",
+      "three population claims in one night, 5 September 2026",
+      "self_audit",
+      "(1) 'Two names remain on the retired construction and both "
+      "are Egyptian' — wrong in both halves: one remained, and the "
+      "other was a UAE filer, which also thinned the jurisdictional "
+      "hypothesis the sentence was supporting. (2) 'The seven "
+      "unreadable studies split three ways and some fixes are "
+      "cheap' — the filename and dict-shape causes were real and "
+      "NEITHER WAS SUFFICIENT; underneath, all seven need a "
+      "valuation decision. (3) 'AMR and probably ADNOCDIST, "
+      "ADNOCDRILL and BOROUGE carry the retired blend' — right for "
+      "one, wrong for two, which carry a dual framing and a "
+      "published range instead. Every one was written before the "
+      "files were opened, and every one was corrected by opening "
+      "them.",
+      "Nothing overturns it. What limits it is that a guess EXPLICITLY "
+      "labelled as one, in a place that expects hypotheses, is a "
+      "legitimate and useful thing to write down — the offence is the "
+      "guess that travels into a durable record wearing a "
+      "measurement's clothes."),
+
     L("L-331", "ALL", None,
       "A CORRECTION THAT MAKES A QUANTITY LOAD-BEARING MAKES EVERY "
       "ERROR IN THAT QUANTITY VISIBLE",
