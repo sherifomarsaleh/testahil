@@ -161,6 +161,41 @@ caption('The envelope this study publishes is the RANGE of the present-value rea
         f"SAR {D['central_range']['low']:.2f} to {D['central_range']['high']:.2f}. No weights are applied anywhere, "
         'because a number produced by averaging several methods is a new method with parameters nobody tested — it '
         'imports the weakness of the weakest lens at whatever weight somebody typed.')
+# WHAT THE PRICE IS PAYING FOR, READ OFF THIS STUDY'S OWN MODEL. Every study states what
+# IT believes and almost none states what the MARKET believes, and the two are the same
+# model read backwards. The quantities below are computed here at build time from the
+# committed grids — nothing is solved from a price and fed back into the valuation, which
+# is the reverse-engineered rate this house prohibits outright.
+_bg = D['sens']['beta_grid']
+_badopt = next(r for r in _bg if r['adopted'])
+# The implied beta by interpolation on the committed grid, which brackets the price.
+_above = [r for r in _bg if r['ps'] >= spot]
+_below = [r for r in _bg if r['ps'] < spot]
+_hi, _lo = max(_above, key=lambda r: r['beta']), min(_below, key=lambda r: r['beta'])
+_frac = (_hi['ps'] - spot) / (_hi['ps'] - _lo['ps'])
+_b_implied = _hi['beta'] + _frac * (_lo['beta'] - _hi['beta'])
+_se = D['dcf']['wacc_build']['beta_reg']['se']
+_cf = D['sens']['capex_floor_2pp']
+rich([('What the price is paying for. ', dict(bold=True)),
+      (f"Read backwards, this model reproduces the market price of SAR {spot:.2f} at an "
+       f"equity beta of about {_b_implied:.2f} — read straight off the grid in §1.9, "
+       f"between its {_hi['beta']:.2f} and {_lo['beta']:.2f} rows, so a reader can check "
+       "it against what is printed there rather than taking it on trust. This stock's "
+       "own "
+       f"{D['dcf']['wacc_build']['beta_reg']['window_years']:.1f}-year weekly regression "
+       f"against its exchange's published index gives {D['coc_record']['beta']:.4f} with a "
+       f"standard error of {_se:.4f}, so the market is paying for a beta roughly "
+       f"{(D['coc_record']['beta']-_b_implied)/_se:.1f} standard errors below the point "
+       "estimate — inside what the regression cannot rule out, and not what it measures. "
+       "THE DISAGREEMENT IS ABOUT THE PRICE OF RISK, NOT ABOUT THE BUSINESS, and that is "
+       "worth stating because §1.7 says otherwise: the crux names capital intensity as "
+       "the swing driver, and no capital-spending assumption inside this company's own "
+       f"history closes the gap. At two percentage points of revenue BELOW the modelled "
+       f"intensity — lighter than any of the three filed years ran — the model reaches "
+       f"SAR {_cf:.2f}, still {(1-_cf/spot)*100:.0f}% short of the "
+       "price. A reader who thinks this study too pessimistic should therefore be "
+       "arguing about the discount rate rather than about the capital programme.", {})])
+
 rich([('Where the lenses disagree, and what would settle it. ', dict(bold=True)),
       (f"The gap between the cash-flow answer and the multiple read is not a modelling artefact — it is one question "
        f"asked two ways. The multiple lens capitalises what this company earns today at what the market has paid for "

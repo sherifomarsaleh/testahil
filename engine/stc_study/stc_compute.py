@@ -833,6 +833,12 @@ _adopted = next(r for r in sens_beta if r['adopted'])
 assert abs(_adopted['wacc'] - WACC) < 1e-9, (_adopted['wacc'], WACC)
 assert abs(_adopted['ps'] - dcf_ps) < 1e-6, 'the adopted row must reproduce the answer'
 
+# HOW FAR THE CAPITAL PROGRAMME CAN CARRY THE ANSWER, which is the question the crux
+# raises and does not answer. Two percentage points of revenue below the modelled
+# intensity is lighter than any of the three filed years ran, so this is a floor on what
+# the swing driver the crux names can be worth — a model output, not a price solve.
+capex_floor_2pp = dcf_ps_at(WACC, TG, capex_shift=-0.02)
+
 capex_steps = [-0.010, -0.005, 0.0, 0.005, 0.010]     # capex intensity shift (pp of revenue)
 margin_steps = [-0.010, -0.005, 0.0, 0.005, 0.010]    # EBITDA margin shift
 sens_cm = [[dcf_ps_at(WACC, TG, mm, cc) for cc in capex_steps] for mm in margin_steps]
@@ -1455,7 +1461,7 @@ out = dict(
                    norm_pat=norm_pat, norm_eps=norm_eps),
     sens=dict(wacc_steps=wacc_steps, g_steps=g_steps, table_wg=sens_wg,
               margin_steps=margin_steps, capex_steps=capex_steps, table_cm=sens_cm,
-              beta_grid=sens_beta),
+              beta_grid=sens_beta, capex_floor_2pp=capex_floor_2pp),
     cover=cover, div_bill=div_bill,
     experts=dict(e1=e1, e2=e2, e3=e3, e1_roic=roic, e1_ic=ic, e1_ep=ep,
                  # His fade rate is his single swing assumption and the document quotes it in
