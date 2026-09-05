@@ -60,6 +60,26 @@ cautious one. A study that did not know which end it was at had not classified i
 Every column foots, and revenue less the cost total **is** the gross profit the segment note
 states, to the riyal, in all three years.
 
+**The rest of the way to EBITDA is disclosed too, and normalising it VALIDATES the rebuilt
+forecast rather than faulting it.** Notes 36 and 37 break selling and marketing and general
+and administrative expenses into their own components, and gross profit less the two of them
+**is** the stated EBITDA in every year, to the riyal. The volatile line is the credit-loss
+charge — impairment on trade receivables swings **448,141 → 1,257,976 → 301,871**, fourfold,
+with no footnote explaining any of it, so it is not classifiable as non-recurring and is
+instead held at its own three-year mean, which is a judgement and is stated as one.
+
+| EBITDA margin | FY2023 | FY2024 | FY2025 |
+|---|---:|---:|---:|
+| reported | 31.27% | 31.56% | 31.44% |
+| **normalised** | **29.95%** | **30.36%** | **30.97%** |
+
+The reported margin rises then dips; normalised, it **rises steadily at about fifty basis
+points a year**. **The rebuilt model opens at 31.09%** — twelve basis points above the
+normalised base year and thirty-five below the reported one. Once the one-offs are
+classified, the forecast margin is well anchored, and this is also the only basis on which
+the anchor rule can be applied honestly: the reported series it would otherwise be measured
+against is moved by items the filings themselves call non-recurring.
+
 **One exception was found and it is in the delivered study rather than in this base.** Its
 cash line read 30,755 for FY2024 against a note-20 figure of 15,543 and 15,080 for FY2025
 against 13,376 — very nearly double in one year — with no source named for the wider figure.

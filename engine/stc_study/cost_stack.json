@@ -102,6 +102,107 @@
   "Amortisation and impairment of contract costs": "contract acquisition costs amortised over contract life; a subscriber-acquisition driver",
   "Others": "stc Bank direct cost, postage and delivery, and utilities per the note; a residual with no single driver"
  },
+ "selling_and_marketing": {
+  "Employee costs": [
+   2904133,
+   2905142,
+   2862473
+  ],
+  "Advertising, publicity and sales commissions": [
+   1800537,
+   1763681,
+   2368067
+  ],
+  "Impairment loss on trade receivables": [
+   448141,
+   1257976,
+   301871
+  ],
+  "Impairment loss on contract assets": [
+   135851,
+   113839,
+   104399
+  ],
+  "Amortisation and impairment of contract costs": [
+   93645,
+   92817,
+   110461
+  ],
+  "Call centre expenses": [
+   87765,
+   43781,
+   39579
+  ],
+  "Others": [
+   399749,
+   384584,
+   584726
+  ]
+ },
+ "general_and_administrative": {
+  "Employees costs": [
+   4279273,
+   4596844,
+   4774730
+  ],
+  "Consultancy and other contracted services": [
+   682577,
+   646645,
+   614096
+  ],
+  "Repairs and maintenance": [
+   577674,
+   644871,
+   542082
+  ],
+  "Utilities and cleaning": [
+   142612,
+   160792,
+   156100
+  ],
+  "Rent": [
+   44554,
+   38866,
+   42263
+  ],
+  "Others (incl. security, safety and subscriptions)": [
+   698166,
+   724971,
+   729407
+  ]
+ },
+ "sm_total": [
+  5869821,
+  6561820,
+  6371576
+ ],
+ "ga_total": [
+  6424856,
+  6812989,
+  6858678
+ ],
+ "ebitda": [
+  22445389,
+  23951115,
+  24469435
+ ],
+ "reported_ebitda_margin": [
+  0.31270934496838065,
+  0.31558885090594097,
+  0.31444168125453176
+ ],
+ "normalised_ebitda": [
+  21500200.666666668,
+  23039761.666666668,
+  24101976.666666668
+ ],
+ "normalised_ebitda_margin": [
+  0.29954097330022106,
+  0.3035805184656364,
+  0.30971969988780546
+ ],
+ "impairment_mean": 669329.3333333334,
+ "ebitda_finding": "The REPORTED EBITDA margin rises then dips, 31.27%, 31.56%, 31.44%. With the two named reversals put back and the credit-loss charge held at its own three-year mean it RISES STEADILY: 29.95%, 30.36%, 30.97%, about fifty basis points a year. THE REBUILT MODEL OPENS AT 31.09%, twelve basis points above the normalised base year and thirty-five below the reported one \u2014 so once the one-offs are classified the forecast margin is well anchored, which is a validation of the rebuild rather than a defect in it. It is also the only reading under which the anchor rule can be applied honestly, because the reported series it would otherwise be measured against is moved by items the filings themselves call non-recurring.",
  "finding": "The REPORTED gross margin dips and recovers, 48.40%, 49.18%, 48.45%. With the two disclosed reversals put back it RISES: 47.39%, 47.20%, 48.45%. The model holds FY2025 flat, and FY2025 is the HIGHEST of the three on the underlying basis \u2014 so that assumption sits at the optimistic end of this record rather than the cautious one.",
  "foots": true
 }
