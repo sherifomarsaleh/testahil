@@ -282,12 +282,22 @@ margin, which is the whole answer.
 holds on re-probing: the 2021–2025 statement files all return 404 on the live host and the
 2015–2020 links point at a host that does not resolve.
 
-**One fact the register did not carry, from enumerating the archive rather than counting
-it**: it lists **no FY2025 annual, no first quarter of 2026 and no half year of 2026 at
-all**, and every statement listed from 2021 onward is **STANDALONE**. **The last CONSOLIDATED
-statement this company published is 31 December 2020**, and every income and balance-sheet
-figure this study uses is consolidated. **The issuer has served no consolidated statement in
-six years.**
+**One fact the register did not carry, from enumerating the index rather than counting it,
+and re-run on 5 September against the correct host rather than taken on report** — 61 linked
+statement files, parsed by the Arabic type marker in each filename:
+
+- the index **ends at 30 September 2025**: no FY2025 annual, no first quarter of 2026 and no
+  half year of 2026 at all;
+- **every statement listed from mid-2021 onward is STANDALONE**, and the latest carrying the
+  CONSOLIDATED marker is **30 September 2020** — the 31 December 2020 entry beside it is the
+  standalone one;
+- and **every consolidated statement without exception sits on the dead legacy host**
+  (42 of the 61 links), while the 19 files on the live host are all standalone. So the
+  consolidated series is not merely old, it is unreachable by construction.
+
+Every income and balance-sheet figure this study uses is consolidated. **The issuer has
+served no consolidated statement in five years, and none of the ones it lists can be
+fetched.**
 
 What that leaves the model standing on: equity FY2024 = 3,600 from a retail data site,
 driving net debt one-for-one (±1,000 is worth ∓0.30 a share); total assets FY2025 = 16,460

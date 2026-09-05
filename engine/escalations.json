@@ -131,6 +131,12 @@
      "when": "2026-09-04",
      "outcome": "only the research note exists on any ref; no ELEC filing anywhere.",
      "rerun": true
+    },
+    {
+     "route": "the statement index at www.ececables.com/financial-statements-2/ ENUMERATED rather than counted \u2014 every linked file parsed for the Arabic type marker in its own filename and for its host",
+     "when": "2026-09-05",
+     "outcome": "61 linked statement files, and three facts the earlier routes did not carry. THE INDEX ENDS AT 30 SEPTEMBER 2025 \u2014 there is no FY2025 annual, no Q1-2026 and no H1-2026 listed at all, so the missing periods are not merely unserved, they are unpublished. EVERY FILE LISTED FROM MID-2021 ONWARD IS STANDALONE (\u0627\u0644\u0645\u0633\u062a\u0642\u0644\u0629); the latest carrying the consolidated marker (\u0627\u0644\u0645\u062c\u0645\u0639\u0629) is 30-09-2020, and the 31-12-2020 entry beside it is the standalone one. AND EVERY CONSOLIDATED STATEMENT SITS ON THE DEAD LEGACY HOST \u2014 42 of the 61 links point at ece.allmediaegypt.com, which does not resolve, while all 19 on the live host are standalone. So the consolidated series is unreachable by construction rather than by outage. This study models CONSOLIDATED figures.",
+     "rerun": true
     }
    ],
    "refs_searched": 22,
