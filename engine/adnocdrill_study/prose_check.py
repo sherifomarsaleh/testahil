@@ -25,12 +25,19 @@ def latest(pat):
     c = []
     for f in os.listdir('.'):
         if re.match(pat, f) and not f.startswith('~$'):
-            m = re.findall(r'(\d{2})-(\d{2})-(\d{4})', f)
+            # the workbook's filename carries its date WITHOUT dashes (..._09082026.xlsx)
+            m = re.findall(r'(\d{2})-?(\d{2})-?(\d{4})', f)
             c.append(((m[-1][2] + m[-1][1] + m[-1][0]) if m else '', f))
     return sorted(c)[-1][1] if c else None
 
 
-DOCS = [d for d in (latest(r'.*Valuation_Study_.*\.docx$'), latest(r'.*(?:Bibliograph|Source).*\.docx$'),) if d]
+# THE WORKBOOK IS A DELIVERED DOCUMENT AND WAS IN NO STUDY'S POPULATION IN THE BOOK [L-350]. A
+# reader receives three files and this list named two, so the third was scanned by nothing.
+# prose_figures.texts_of() reads a workbook's STRING cells only: a numeric cell is a model
+# output the recalculation gate already reconciles, and a numeral inside a label is prose
+# that happens to live in a spreadsheet.
+DOCS = [d for d in (latest(r'.*Valuation_Study_.*\.docx$'), latest(r'.*(?:Bibliograph|Source).*\.docx$'),
+                    latest(r'.*Valuation_Model_.*\.xlsx$'),) if d]
 
 SN = json.load(open('study_numbers.json'))
 _spot = None

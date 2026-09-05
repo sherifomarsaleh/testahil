@@ -8,8 +8,8 @@
   "night_start_local": "22:00",
   "night_end_local": "08:00",
   "budget_night_pct": 100,
-  "budget_day_pct": 50,
-  "note": "UTC+3 until the last Thursday of October 2026, UTC+2 after; routines are set from this offset"
+  "budget_day_pct": 100,
+  "note": "UTC+3 until the last Thursday of October 2026, UTC+2 after; routines are set from this offset. BOOSTED WINDOW, PER THE PRINCIPAL 05-Sep-2026 ~12:30 UTC: weekly limits are temporarily raised and the instruction is to use them \u2014 'Use this golden opportunity to run the agents for QC or whatever before 6AM tomorrow. Because starting tomorrow at 6AM we do business as usual again with normal limits.' So the 50%-by-day default is OVERRIDDEN until 06:00 Cairo on 06-Sep-2026, after which it returns to 50/100. Spend the window on PARALLEL work \u2014 the serial path cannot consume it and that is not the point."
  },
  "weekly_cap_window_equivalents": null,
  "measured": {
