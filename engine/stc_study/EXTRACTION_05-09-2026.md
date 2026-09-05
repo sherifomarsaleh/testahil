@@ -93,6 +93,37 @@ worked case did not have. The bridge record must say which treatment it takes; n
 the banking cash MORE THAN DOUBLED year on year while non-banking cash fell 41%, so the
 choice moves with the year and cannot be settled once.
 
+## The valuation-input block [R-FCAL-01 AMENDED], as far as it goes
+
+Six of the seven items that rule requires beside a driver panel, so a value struck here can
+be rebuilt at this origin later. SAR thousands, FY2025 unless stated.
+
+| item | figure | where |
+|---|---:|---|
+| cash and equivalents | 13,376,071 | note 20, and see the banking caveat above |
+| interest-bearing debt — borrowings | 15,191,428 | note 42.6, carrying amount |
+| interest-bearing debt — leases | 2,253,230 | note 42.6, carrying amount |
+| property and equipment, net book value | 43,286,335 | note 10 |
+| depreciation on property and equipment | 6,453,343 | note 10, and it includes impairment |
+| share count | see below | note 22 |
+| working capital — trade and other payables | 22,259,436 | note 42.6 / note 32 |
+| **working capital — receivables, contract assets, inventories** | **NOT YET EXTRACTED** | recorded as missing rather than omitted, per that rule's clause (i) |
+
+**The share count FOOTS BOTH WAYS**, which is the clause that rule states most firmly —
+issued capital divided by par must reproduce the count the same document states:
+
+- issued and fully paid capital **SAR 50,000,000** ÷ par **SAR 10** = **5,000,000** thousand
+  shares, which is exactly the total note 22 states;
+- outstanding **4,989,798** + treasury **10,202** = **5,000,000** thousand, which is the same
+  total from the other direction.
+
+The delivered study uses 4,989.8mn shares, which is the outstanding count and is right.
+
+Capex is not yet taken. Where the cash-flow statement discloses it, it is read; otherwise it
+is DERIVED by the identity capex = change in property and equipment plus depreciation and
+LABELLED as derived, which is what that rule permits and what the label keeps apart from an
+assumption.
+
 ## What is still to extract before the register is complete
 
 The balance sheet and the cash-flow statement, the debt book split by currency and facility
