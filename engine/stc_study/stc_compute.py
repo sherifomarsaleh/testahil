@@ -881,7 +881,14 @@ def e1_ps_at(fade, wacc_):
     return _e * (1.0 - BR_NCI_SHARE) / SH
 e1_ps = e1_ps_at(FADE, WACC)
 e1_ev = ic + ep / (WACC + FADE - TG)
-e1 = dict(base=e1_ps, rng=(e1_ps_at(0.040, WACC + 0.005), e1_ps_at(0.010, WACC - 0.005)))
+# A SINGLE SWING ASSUMPTION MEANS ONE. This range moved the fade rate AND the cost of
+# capital by 50 basis points in the same step, while the document called it "swing = the
+# fade rate" and the divergence table gave his single swing assumption as the fade alone.
+# Two levers wearing one label overstates what the named assumption is worth. The cost of
+# capital has its own grid in section 1.9; here only the fade moves.
+FADE_LO, FADE_HI = 0.010, 0.040
+e1 = dict(base=e1_ps, rng=(e1_ps_at(FADE_HI, WACC), e1_ps_at(FADE_LO, WACC)),
+          fade_lo=FADE_LO, fade_hi=FADE_HI)
 # Expert 2 — Karim (normalized earnings power)
 e2 = dict(base=norm['base'], rng=(norm['bear'], norm['bull']))
 # Expert 3 — Omar (macro-policy scenario tree on the DDM/rate path)
@@ -1450,7 +1457,10 @@ out = dict(
               margin_steps=margin_steps, capex_steps=capex_steps, table_cm=sens_cm,
               beta_grid=sens_beta),
     cover=cover, div_bill=div_bill,
-    experts=dict(e1=e1, e2=e2, e3=e3, e1_roic=roic, e1_ic=ic, e1_ep=ep),
+    experts=dict(e1=e1, e2=e2, e3=e3, e1_roic=roic, e1_ic=ic, e1_ep=ep,
+                 # His fade rate is his single swing assumption and the document quotes it in
+                 # four places. It was typed in every one of them.
+                 e1_fade=FADE, e1_fade_lo=FADE_LO, e1_fade_hi=FADE_HI),
 )
 # WRITTEN BESIDE THIS FILE, NEVER BESIDE THE CALLER. These four were relative to the
 # working directory, so running the model from the repository root — which is how CI and

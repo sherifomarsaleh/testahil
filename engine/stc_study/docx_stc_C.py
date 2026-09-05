@@ -244,7 +244,7 @@ P('When it works / fails. Best for capital-intensive businesses where returns on
 # 7.59% against the §1.8 build's 8.13% — the row's own label says it accepts that build.
 # An expert's assumptions may be his own; the study's numbers may not be retyped.
 _e1ic = E['e1_ic']; _e1roic = E['e1_roic']; _e1ep = E['e1_ep']
-_wacc = D['coc_record']['wacc_exp']; _fade = 0.025
+_wacc = D['coc_record']['wacc_exp']; _fade = E['e1_fade']
 _e1mult = 1.0 / (_wacc + _fade - dcf['tg'])
 rows = [
  ['Expert 1’s economic-profit test', 'Value'],
@@ -264,8 +264,10 @@ rows = [
    f"\u2192 SAR {E['e1']['base']:.1f} per share"],
 ]
 table(rows, [4.4, 1.7], first_col_bold=True, size=9.0)
-P(f"Sensitivity (swing = the fade rate): at a 1%/yr fade (a durable moat) his value rises to ≈SAR {E['e1']['rng'][1]:.0f}; "
-  f"at 4%/yr (competition and technology churn eat the spread) it falls to ≈SAR {E['e1']['rng'][0]:.0f}. Cross-examination: "
+P(f"Sensitivity, and the swing really is the fade rate alone — the cost of capital has its own grid in §1.9 and is held "
+  f"here: at {E['e1_fade_lo']*100:.0f}% a year, a durable moat, his value rises to SAR {E['e1']['rng'][1]:.2f}; "
+  f"at {E['e1_fade_hi']*100:.0f}%, where competition and technology churn eat the spread, it falls to "
+  f"SAR {E['e1']['rng'][0]:.2f}. Cross-examination: "
   "he tells Expert 2 that a 15× multiple on normalized earnings quietly capitalizes today’s ROIC forever without charging "
   "for the capital that sustains it — his fade does explicitly what the multiple hides. He tells Expert 3 that scenario "
   "trees on the policy rate are fine, but the bigger lever is inside the company: each percentage point of capex intensity "
@@ -276,7 +278,7 @@ rich([('Verdict, falsification, market-implied. ', dict(bold=True)),
        "Falsified by disclosed data-centre economics showing contracted returns above telecom ROIC (the fade would then be "
        f"too harsh), or by return on capital holding above 15% through FY2028 while capital "
        f"intensity normalises. What the price implies: at SAR {D['spot']:.2f} the "
-       "market discounts a fade of roughly 1.5%/yr — gentler than his 2.5%, i.e. the market believes in the moat slightly "
+       f"market discounts a gentler fade than his {E['e1_fade']*100:.1f}% a year, i.e. it believes in the moat slightly "
        "more than he does.", {})])
 
 H2('C.2  Expert 2 — normalized earnings power')
@@ -424,7 +426,8 @@ figure(os.path.join(HERE, 'figD1_experts.png'), 6.0, 'Figure C-1 — The three e
        'band is the panel centre; the ink line is spot. The spread is the return-fade question.')
 rows = [
  ['Expert', 'Method', 'Single swing assumption', 'Base fair value'],
- ['Expert 1', 'Cash returns / economic profit', 'The fade rate on excess returns (2.5%/yr)', f"SAR {E['e1']['base']:.1f}"],
+ ['Expert 1', 'Cash returns / economic profit',
+  f"The fade rate on excess returns ({E['e1_fade']*100:.1f}%/yr)", f"SAR {E['e1']['base']:.1f}"],
  ['Expert 2', 'Normalized earnings power',
   f"The through-cycle multiple ({E['e2']['base']/D['rel_basis']['norm_eps']:.0f}x)",
   f"SAR {E['e2']['base']:.1f}"],

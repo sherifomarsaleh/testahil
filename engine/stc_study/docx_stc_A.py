@@ -185,18 +185,41 @@ P('We value stc as a going-concern operator. ONE lens is the answer — a free-c
   'round number.')
 
 H2('1.1  The FCFF DCF — the primary lens')
-P('The revenue engine is the §1.6 segment build (top-down: stc discloses unit revenue, not subscriber × ARPU detail, so '
-  'per the house data-discipline gate we forecast disclosed segment lines rather than manufacture a bottom-up split). '
-  'Group revenue compounds ~3.0% — consumer +2.0–3.0%, enterprise recovering to ~4% as mega-project phasing normalizes, '
-  'wholesale mid-single-digit on hosting and FWA backhaul, subsidiaries ~5–6% led by solutions, stc bank and center3. The '
-  'EBITDA margin glides from 31.4% (FY25) to 32.5% by FY30E — Q1-26 already printed 32.9% — as the subsidiary mix matures. '
-  'Capex intensity follows management’s own band: 16.5% of revenue in FY26–27E (the “edge up slightly” guidance for the '
-  'mission-critical and data-centre build), fading to 15.0% by FY30E; the long-term guided range is 15–17.5%. A working-'
-  'capital/OCF-conversion drag of 0.4–0.8% of revenue reflects the receivables-heavy government business. Zakat and income '
-  'tax at the normalized effective ~9.7% (statutory zakat is 2.5% of the zakat base; FY25’s net credit was a one-off).', size=10.5)
+# EVERY NUMBER IN THIS PARAGRAPH WAS TYPED AND FOUR OF THEM HAD STOPPED BEING TRUE. It
+# said revenue compounds at 3.0% where the committed path gives 2.4%; that the margin
+# GLIDES UP from 31.4% to 32.5% where the model runs 31.98% down to 31.82%; that capital
+# intensity is 16.5% of revenue fading to 15.0%, which is MANAGEMENT'S GUIDANCE BAND and
+# is exactly the construction this rebuild retired — guidance is scored, never consumed —
+# against a measured 14.96%; and that tax is 9.7% where the model applies 8.03%. The
+# reconciliation instrument could not see any of it: each of those figures exists
+# elsewhere in the committed record (a sensitivity step, a filed year, a guidance range),
+# so a rendering set wide enough to admit the legitimate uses admits these too. A widening
+# made to clear a false positive can hide a true one, and the answer is not a narrower set
+# but a paragraph that computes what it asserts.
+_rv = D['drivers'] if 'drivers' in D else {}
+_ebm = _rv['ebitda_m']; _cpx = _rv['capex_pct']
+_revp = [r['rev'] for r in D['dcf']['rows']]
+_r0, _r4 = _revp[0], _revp[-1]
+_cagr = (_r4 / _r0) ** (1.0 / (len(_revp) - 1)) - 1
+P('The revenue engine is the §1.6 segment build: stc discloses revenue by segment rather than subscribers and revenue '
+  'per subscriber, so the forecast grows the disclosed lines on their own drivers rather than manufacturing a '
+  'bottom-up split it has no data for. '
+  f"Group revenue compounds {_cagr*100:.1f}% a year across the explicit window, from SAR {_r0:,.0f} mn to "
+  f"{_r4:,.0f} mn — consumer growing slowly, enterprise recovering as mega-project phasing normalises, wholesale on "
+  'hosting and fixed-wireless backhaul, and the subsidiaries fastest of the four. The EBITDA margin runs '
+  f"{_ebm[0]*100:.2f}% in the first forecast year and {_ebm[-1]*100:.2f}% in the last: essentially flat, and slightly "
+  'DOWN rather than up. That is deliberate and it is the point of §1.6 — margins here are an OUTPUT of the cost build, '
+  'not an input, so the model is not permitted to assume the mix improvement that a glide would represent. '
+  f"Capital intensity is {_cpx[0]*100:.2f}% of revenue, held flat, and it is MEASURED rather than guided: it is the "
+  f"three filed years' own mean of {_rv['capex_to_dna_adopted']:.3f} times the depreciation of the base being renewed. "
+  'Management publishes a band and an earlier edition of this study took its path straight from it; a forward target '
+  'leans the same way an optimistic model does, so guidance is scored against what happens and never consumed as an '
+  'input. Working capital is projected from the asset-conversion cycle rather than plugged. '
+  f"Zakat and income tax enter at the {D['tax_rate']*100:.2f}% the three filed years imply on operating profit, with "
+  'the disclosed reversal of a prior year’s provision taken out rather than extrapolated.', size=10.5)
 rows = [['SAR mn', 'FY26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E']]
 labels = [('rev', 'Group revenue'), ('ebitda', 'EBITDA'), ('dna', 'D&A'), ('ebit', 'EBIT'),
-          ('nopat', 'NOPAT = EBIT × (1 − 9.7%)'), ('dna', '+ D&A'), ('capex', '− Capex'),
+          ('nopat', 'NOPAT = EBIT × (1 − %.2f%%)' % (D['tax_rate'] * 100)), ('dna', '+ D&A'), ('capex', '− Capex'),
           ('dwc', '− Δ working capital'), ('fcff', 'FCFF'), ('df', 'Discount factor'), ('pv', 'PV of FCFF')]
 for k, lbl in labels:
     row = [lbl]
@@ -211,7 +234,7 @@ table(rows, [2.1, 1.0, 1.0, 1.0, 1.0, 1.0], first_col_bold=True, size=8.9)
 rows = [
  ['DCF bridge', 'SAR mn'],
  ['Σ PV of explicit FCFF (FY26–30E)', f"{dcf['pv_sum']:,.0f}"],
- ['Terminal value (Gordon, g = 2.5%)', f"{dcf['tv']:,.0f}"],
+ [f"Terminal value (perpetuity, g = {dcf['tg']*100:.2f}%)", f"{dcf['tv']:,.0f}"],
  ['PV of terminal value', f"{dcf['pv_tv']:,.0f}"],
  ['Enterprise value — core operations', f"{dcf['ev']:,.0f}"],
  ['Terminal value as % of enterprise value', f"{dcf['tv_pct']*100:.0f}%"],
@@ -276,7 +299,8 @@ H2('1.4  Normalized earnings power — where this sits in the cycle')
 P('Cycle position first: unlike a developer or a smelter, stc’s P&L has no violent cycle, but FY25 profit is '
   'still not a clean base — it carries a one-off SAR 466 mn zakat credit (prior-year provision reversals), and FY24 before '
   'it carried the SAR 12.9 bn TAWAL disposal gain, a SAR 1.5 bn withholding-tax reversal and a SAR 2.6 bn early-retirement '
-  'charge. Margins sit mid-cycle: EBITDA margin 31.4% is on the guided path (Q1-26: 32.9%), enterprise revenue is at the '
+  f"charge. Margins sit mid-cycle: the forecast opens at an EBITDA margin of {D['drivers']['ebitda_m'][0]*100:.2f}% "
+  'against the filed FY2025 year, and it is an output of the cost build rather than a target, enterprise revenue is at the '
   'soft point of the government mega-project phasing, and the subsidiary portfolio (stc bank, center3) is still in its '
   'investment phase — 2–3 subsidiaries are guided to turn contribution-positive from 2026. Normalized attributable profit '
   'is therefore ~SAR 14.4 bn (reported FY25 14.8 bn less the zakat credit), or EPS ≈ 2.89, capitalized at a through-cycle '
@@ -467,7 +491,14 @@ for i, w in enumerate(S['wacc_steps']):
         row.append('n.m.' if v is None else f'{v:.1f}')
     wg_rows.append(row)
 table(wg_rows, [1.5, 1.0, 1.0, 1.0, 1.0, 1.0], first_col_bold=True, size=9.0)
-caption(f"DCF fair value (SAR/share) across WACC × terminal growth. Base cell {dcf['wacc']*100:.2f}% × 2.5% = {dcf['ps']:.1f}. "
+# THE BASE CELL IS NOT IN THE 2.5% COLUMN. This caption named one, typed, while the
+# terminal growth the model actually uses is 2.00% — so it pointed a reader at the wrong
+# cell of its own grid and the figure it quoted came from a third place entirely.
+_gi = min(range(len(S['g_steps'])), key=lambda i: abs(S['g_steps'][i] - dcf['tg']))
+_wi = min(range(len(S['wacc_steps'])), key=lambda i: abs(S['wacc_steps'][i] - dcf['wacc']))
+assert abs(S['table_wg'][_wi][_gi] - dcf['ps']) < 1e-6, 'the named base cell must be the answer'
+caption(f"Fair value from the cash-flow model (SAR/share) across the cost of capital and terminal growth. The base "
+        f"cell is {dcf['wacc']*100:.2f}% against {dcf['tg']*100:.2f}%, giving SAR {S['table_wg'][_wi][_gi]:.2f}. "
         'The CDS-ERP alternative WACC (7.90%) sits between the third and fourth rows.')
 # SIX TYPED ROWS, AND BY THE REBUILD EVERY ONE WAS STALE — including the row labelled the
 # regressed base, which still carried the retired nine-week beta of 0.48 and a cost of

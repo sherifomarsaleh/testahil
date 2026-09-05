@@ -252,7 +252,9 @@ for head, body in [
   'reverses and every lens compresses toward the normalized floor.'),
  ('The subsidiary portfolio is an investment phase, not yet a return. ', 'stc bank (8 mn customers, SAMA-licensed '
   'Jan-2025), center3, SCCC and iot squared are guided to turn contribution-positive from 2026; if they stay dilutive '
-  'through FY27, the margin glide to 32.5% is wrong by construction.'),
+  f"through FY27, the {D['drivers']['ebitda_m'][-1]*100:.2f}% terminal-year margin this model carries is wrong by "
+  'construction — and it is worth saying that this forecast assumes NO mix improvement at all, so the risk here '
+  'is a margin that falls rather than one that fails to rise.'),
  ('The stake marks are point-in-time. ', 'Telefónica (9.97%) is marked at market (≈SAR 8.6 bn, ~7% below cost) and the '
   'tower stake at carrying value (SAR 4.6 bn) — the former moves daily, the latter is conservative against any '
   'transaction mark; together they are ~5% of the bridge.'),
