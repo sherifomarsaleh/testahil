@@ -1,0 +1,186 @@
+{
+ "ticker": "STC",
+ "years": [
+  "FY2023",
+  "FY2024",
+  "FY2025"
+ ],
+ "basis": "continuing operations, which is the basis the company reports on after the TAWAL disposal and the basis a forward valuation needs",
+ "sources": {
+  "FY2025": "stc_Annual-2025-en.txt, note 9 (audited, year ended 31 December 2025)",
+  "FY2024": "stc_Annual-2024-en.txt, note 9 (audited, year ended 31 December 2024)",
+  "FY2023": "stc_Annual-2024-en.txt, note 9 (audited, year ended 31 December 2024)",
+  "FY2023_as_filed": "STC_FY2023_FS_en.txt, note 9 (audited, year ended 31 December 2023)"
+ },
+ "revenue": {
+  "stc": [
+   49218179,
+   49643893,
+   51119024
+  ],
+  "Channels": [
+   14194210,
+   15110606,
+   14085195
+  ],
+  "Solutions": [
+   11040493,
+   12063897,
+   12730189
+  ],
+  "stc Kuwait": [
+   3986034,
+   4105483,
+   4179842
+  ],
+  "stc Bahrain": [
+   1913287,
+   1927967,
+   1967830
+  ],
+  "Center 3": [
+   1089218,
+   1911716,
+   1961666
+  ],
+  "stc Bank": [
+   1063006,
+   1261646,
+   1401027
+  ],
+  "Sirar": [
+   588606,
+   732675,
+   826545
+  ],
+  "Specialized": [
+   397492,
+   371763,
+   355306
+  ],
+  "iot2": [
+   72539,
+   301434,
+   321668
+  ],
+  "SCCC": [
+   72150,
+   187904,
+   303969
+  ],
+  "Other operating segments": [
+   709843,
+   729345,
+   65059
+  ],
+  "Eliminations / adjustments": [
+   -12567896,
+   -12454916,
+   -11498645
+  ]
+ },
+ "gross_profit": {
+  "stc": [
+   29973976,
+   31178645,
+   30628607
+  ],
+  "Channels": [
+   3083568,
+   3365489,
+   3429410
+  ],
+  "Solutions": [
+   2792163,
+   2981285,
+   2932415
+  ],
+  "stc Kuwait": [
+   2061419,
+   2019660,
+   2139245
+  ],
+  "stc Bahrain": [
+   878634,
+   949684,
+   1008601
+  ],
+  "Center 3": [
+   483553,
+   747048,
+   818319
+  ],
+  "stc Bank": [
+   207653,
+   344985,
+   724914
+  ],
+  "Sirar": [
+   173207,
+   268317,
+   283341
+  ],
+  "Specialized": [
+   178078,
+   185327,
+   135410
+  ],
+  "iot2": [
+   26948,
+   88538,
+   71617
+  ],
+  "SCCC": [
+   -70021,
+   -18539,
+   78538
+  ],
+  "Other operating segments": [
+   506492,
+   505609,
+   34055
+  ],
+  "Eliminations / adjustments": [
+   -5555604,
+   -5290124,
+   -4584783
+  ]
+ },
+ "stated_totals": {
+  "revenue": [
+   71777161,
+   75893413,
+   77818675
+  ],
+  "gross_profit": [
+   34740066,
+   37325924,
+   37699689
+  ]
+ },
+ "regrouped": {
+  "Other operating segments": "Intigral is disclosed separately in the FY2023 and FY2024 statements (643,314 and 686,001 of revenue) and sits inside this line in the FY2025 statements. The FY2023 and FY2024 figures here ADD Intigral back so the column foots to the stated total, and no growth rate may be taken across the change.",
+  "Center 3": "Revenue rises from 1,089,218 to 1,911,716 between FY2023 and FY2024, a step of 76% that is a scale-up of a new data-centre business rather than a growth rate to project. Its FY2024 gross profit ALSO differs between the two filings \u2014 721,534 in the FY2024 statements against 747,048 in the FY2025 comparative \u2014 which is why ONE FILING PER COLUMN is a rule here and not a preference: mixing them was this panel's own first-draft error, and the footing check found it in the same minute.",
+  "iot2": "Revenue rises fourfold between FY2023 and FY2024 from a base under 0.1% of group.",
+  "SCCC": "Gross profit is NEGATIVE in FY2023 and FY2024, so a margin is not defined."
+ },
+ "as_filed_fy2023": {
+  "revenue": {
+   "stc": 49218179,
+   "Channels": 14194210,
+   "Solutions": 11040493,
+   "stc Kuwait": 4278282,
+   "Tawal": 3343350,
+   "stc Bahrain": 1913287,
+   "stc Bank": 1063006,
+   "Intigral": 643314,
+   "Sirar": 588606,
+   "Specialized": 397492,
+   "Other operating segments": 1300436,
+   "Eliminations / adjustments": -15644044
+  },
+  "stated_total": 72336611,
+  "source": "STC_FY2023_FS_en.txt, note 9 (audited, year ended 31 December 2023)"
+ },
+ "foots": true
+}
