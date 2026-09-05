@@ -426,3 +426,35 @@ it happened, not because it is asking.
 
 7. **Nothing was published.** Everything above is in the repository; the live site is
    untouched, and [R-GAP-02]'s Phase-1 clause continues to hold every study regardless.
+
+## 05 Sep 2026, before dawn — STC rebuilt end to end
+
+1. **PR #369 is merged.** All three CI gates green on `903e5628`; merge commit `3c170b9c`. Nothing needed.
+
+2. **STC is rebuilt on all seven levers of its plan, and the route is the report.** Central **SAR 47.11 → 41.15**, −12.6%, against a latest known close of 43.86 — **−6.2%, inside the band either way**, so no eight-heading review is owed and the publication block does not fire on the gap. Under the reporting threshold you set, that gap needs no calling out; the *route* does, because two levers pulled hard in opposite directions and the net hides both:
+
+   | lever | rule | move |
+   |---|---|---:|
+   | the sanctioned cost-of-capital schedule | R-COC-01 | **+8.4%** |
+   | the beta re-derived against TASI | R-BETA-04 | **−13.8%** |
+   | terminal growth on the house path | R-MACRO-01 | −5.2% |
+   | the terminal on a 20.86-year derived life | R-TERM-01 | −3.2% |
+   | the bridge on the 30 June 2026 sheet | R-BRIDGE-01 | **+3.6%** |
+   | the four-lens blend retired | R-LENS-03 | −1.7% |
+   | the answer published where it can be read | R-GAP-01 | 0.0% |
+
+   The audit point was declared in writing before any lever was touched, taken where it was declared, and the cost-of-capital lever moved the answer **away** from the market before the beta lever brought it back. Nothing was chosen for where it landed. **No decision needed.**
+
+3. **The single largest defect was not in the method but in a number nobody had re-read.** The bridge carried associates and joint ventures at **SAR 4,641mn against a filed 12,910mn**. That is a figure from before February 2025, when the group contributed its whole towers business to DIIC in exchange for 43.06% of it. The towers business the entire 2024 restatement was about had left the subsidiaries and arrived in the associates — **and the bridge had followed it into neither.** Worth 1.66 per share. No decision needed.
+
+4. **The relative multiple was the traded multiple wearing a different hat.** The study used 8.0 / 9.0 / 10.0x EV/EBITDA with no source of any kind, and its base of 9.0 sat within a rounding of the **9.151x the shares trade at today** — which values the company at what it already trades at. It is now the mean of STC's own trailing multiple at the last three year ends, 8.762x, every one of the three below the traded figure so the lens can be *seen* not to be anchored on the price. No decision needed.
+
+5. **A 20% share-count increase that never happened.** The reviewed 30 June 2026 balance sheet *prints* share capital as SAR 60,000,000 thousand against 50,000,000 at December. Note 17 says 50,000,000 at both dates, and only 50,000,000 makes the equity block foot to the stated total — it is an extraction artefact of that page. Taken at face value it would have cut every per-share figure by a sixth. Arithmetic caught it, which is what that rule is for. No decision needed.
+
+6. **STC came off four ratchets** — the rebuild ledger, the bridge, the lens architecture and the valuation gap. **The valuation-gap ratchet now carries no breaching study at all**, and one unreadable one (GBCO).
+
+7. **One defect was mine, and it is registered as L-342.** The first draft of STC's rebuild ledger read every lever's answer out of the study's *current* numbers file — the only place the answer lives — so the moment a fourth lever landed, the third lever's "after" silently became the fourth's. One lever read −18.3% where it was worth −13.8%, and another read 0.0% where it was worth −5.3%. **Nothing about that is visible in the ledger**: the chain still joins, the endpoints are unchanged, the cumulative figure is exactly right, and the gate that walks it passed both versions. Each landed lever now reads the commit that landed it. No decision needed.
+
+8. **STC stays on the macro ratchet deliberately, and this is the one thing I want you to see.** Its four segment growth arrays are typed nominals with no source, date or layer, whose implied real growth wanders from 0.68% to 0.00% across five years with nothing saying why. They cannot be written as (real, house path) without *choosing* a real rate, and choosing one to clear a checker is the offence the protocol names in three places. The honest fix is the ground-up rebuild on the **eleven disclosed segments** the FY2025 filing carries with two years of revenue *and* gross profit each — materially finer than four typed arrays, and disclosed rather than assumed. That is the next block of work and it closes the macro ratchet at the same time. **No decision needed unless you want it sequenced differently.**
+
+9. **STC is rebuilt, not delivered.** It still has no bibliography, no four-field inputs register, no sweep register, no QC gate, no driver test and no recalculation harness. Nothing about it has been published, and the publication block holds it anyway on the Phase 1 method-proof condition, as it holds every study in the book.
