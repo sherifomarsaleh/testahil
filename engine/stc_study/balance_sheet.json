@@ -1,0 +1,49 @@
+{
+ "ticker": "STC",
+ "as_at": "2026-06-30",
+ "source": "the reviewed interim condensed consolidated statement of financial position at 30 June 2026, re-fetched from the company's own site, re-extracted, and re-read by OCR off the page rendered at 300 dots per inch",
+ "residuals": {
+  "non-current assets": {
+   "jun": 201,
+   "dec": 0
+  },
+  "current assets": {
+   "jun": -900,
+   "dec": 0
+  },
+  "non-current liabilities": {
+   "jun": 1000030,
+   "dec": 0
+  },
+  "current liabilities": {
+   "jun": -9900,
+   "dec": 0
+  },
+  "assets against the stated total": {
+   "jun": 990,
+   "dec": 0
+  },
+  "liabilities against the stated total": {
+   "jun": 10001,
+   "dec": 0
+  }
+ },
+ "corroborated": {
+  "cash": {
+   "value": 12940389,
+   "plus_bank": 6000384,
+   "closing_per_cash_flow": 18940773,
+   "how": "the interim cash-flow statement's own closing balance, to the riyal"
+  },
+  "borrowings": {
+   "value": 23536554,
+   "audited_open": 15191428,
+   "drawn": 8720100,
+   "repaid": 346194,
+   "how": "rolls from the audited FY2025 book through the interim cash-flow statement's own financing movements, asserted to twelve basis points by the cost-of-capital schedule"
+  }
+ },
+ "forecast_balance_sheet_built": false,
+ "reason": "the reviewed interim's balance sheet does not foot in its CURRENT column \u2014 four subtotals and both totals \u2014 while every prior-year column foots exactly, on the text layer and on OCR off the rendered pixels alike. A statement is accepted only if it foots against its own arithmetic; solving for the figures that would make it foot would be inventing them, and the identity cannot say which of the six in each block is wrong.",
+ "unblocked_by": "the FY2026 audited statements, whose December column can be expected to foot as every audited December column here does, or an interim whose current column reproduces"
+}

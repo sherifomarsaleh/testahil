@@ -44,11 +44,18 @@ already. The historicals carry `assets`, `capex`, `cash`, `debt`, `dna`, `dps`, 
    facility by facility with its own rate and the adopted cost of debt is the January 2026
    sukuk. What is NOT yet decided is the debt PATH, and holding gross debt flat is a stated
    assumption rather than a free one — it has to be written down as such.
-2. **The forecast balance sheet and cash flow, projected from the asset-conversion cycle.**
-   SIGCM clause 4 requires days sales outstanding, days inventory and days payable to be
-   studied from the statements and the balance sheet and cash flow PROJECTED from them, with
-   no unexplained plugs. None of that exists yet. This is the largest single item and it is
-   the one that makes Appendix A.2 and A.3 possible at all.
+2. ~~**The forecast balance sheet and cash flow.**~~ **HALF DONE, AND THE OTHER HALF IS
+   BLOCKED BY THE FILING ITSELF.** The asset-conversion cycle is studied and committed
+   (`working_capital.py`) and the working capital is now projected from it rather than
+   plugged — which found that net working capital more than doubled in FY2025 while the plug
+   said the outflow shrank. THE FORECAST BALANCE SHEET IS NOT BUILT: the reviewed interim's
+   own balance sheet **does not foot in its current column** — four subtotals and both
+   totals — while every prior-year column foots exactly, on the PDF's text layer and on OCR
+   off the rendered pixels alike (`balance_sheet.py`). A statement is accepted only if it
+   foots against its own arithmetic. The lines the bridge uses are corroborated by the
+   interim's own cash-flow statement instead, to the riyal. Unblocked by the FY2026 audited
+   statements or a corrected interim; **Appendix A.2 and A.3 wait on that**, and the study
+   says so rather than projecting from figures that do not add up.
 3. **A live formula model, not a table of values** (SIGCM clause 7): driver to income
    statement to balance sheet to cash flow to discounted cash flow, blue for input and black
    for formula, recomputing when a driver moves. Sixteen sheets in a fixed order, and the
