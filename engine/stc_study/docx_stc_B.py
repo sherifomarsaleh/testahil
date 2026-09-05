@@ -228,7 +228,9 @@ P(f"The distribution leans mildly to the upside — the ladder above gives a {pr
 # ================= §7 caveats ================================================
 H1('7  Caveats and what would change our mind')
 for head, body in [
- ('The dividend-vs-capex tension is the model. ', 'The FY26E cover of 0.86–1.04× is an estimate built on management’s own '
+ ('The dividend-vs-capex tension is the model. ',
+  f"The first forecast year's dividend cover of {D['cover'][-1]['cover']:.2f}\u2013{D['cover'][0]['cover']:.2f}x is "
+  'an estimate built on the range of capital intensity this company\u2019s own three filed years ran, and on a '
   f"capital-intensity range and a margin path that is FLAT rather than improving — {D['drivers']['ebitda_m'][0]*100:.2f}% "
   f"in the first forecast year against {D['drivers']['ebitda_m'][-1]*100:.2f}% in the last. Two consecutive quarters of "
   'free cash flow below the quarterly dividend bill would '
@@ -262,7 +264,7 @@ for head, body in [
   'transaction mark; together they are ~5% of the bridge.'),
  ('OCF conversion. ', 'Reported FY25 FCF (6.5 bn) ran well below model FCFF on receivables build and one-off cash items; '
   'we model an explicit conversion drag, but a government-receivables cycle that widens rather than narrows would make '
-  'even the 0.86× bear cover optimistic.'),
+  f"even the {D['cover'][-1]['cover']:.2f}x heaviest-spending cover optimistic."),
  ('Technical reminder. ', 'A compressed, low-volatility tape can break either way; the narrow cone in §3 is a regime '
   'read, not a promise. The technical section is context, not a trigger.'),
 ]:

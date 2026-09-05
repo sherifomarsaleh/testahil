@@ -130,18 +130,19 @@ rows = [
  ['Dividend bill (SAR bn)', '11.0', '11.0', '11.0', '11.5', '12.0', '12.7'],
  ['Payout of attributable NP', '74%', '78%', '75%', '75%', '74%', '74%'],
  ['Yield at spot (declared)', '5.0%', '5.0%', '5.0%', '5.3%', '5.5%', '5.9%'],
- # THE STRESS CHECK QUOTED MANAGEMENT'S GUIDANCE BAND AND A COVER FIGURE FROM IT. The
- # model spans the three filed years instead — guidance is scored, never consumed — and on
- # that range the dividend is covered throughout, which is a different and better-evidenced
- # statement than the one this cell was making.
- ['Stress check',
-  'At the heaviest capital spending of the three filed years the dividend is %.2fx covered by model free cash flow '
-  'in the first forecast year, and at the lightest %.2fx — covered throughout the range this company has actually '
-  'operated in. The question the cover table asks is whether the data-centre build takes intensity ABOVE anything '
-  'it has yet run; the core cash pile funds a shortfall for years before leverage becomes a constraint.'
-  % (D['cover'][-1]['cover'], D['cover'][0]['cover']), '', '', '', '', ''],
+
 ]
 table(rows, [1.9, 0.85, 0.85, 0.85, 0.85, 0.85, 0.85], first_col_bold=True, size=8.6)
+# THE STRESS CHECK WAS A ROW IN THIS TABLE and it is a sentence, not a row: one cell of
+# seven carrying two hundred words while the other six sat empty. It survived only because
+# the table was reflowing; the moment the layout was fixed — which is what the depth bar
+# asks for — it squeezed into a single narrow column and ran off the page. A paragraph
+# that needs a table's full width is not a table row.
+caption('Stress check: at the heaviest capital spending of the three filed years the dividend is %.2fx covered by '
+        'model free cash flow in the first forecast year, and at the lightest %.2fx \u2014 covered throughout the '
+        'range this company has actually operated in. What the cover table asks is whether the data-centre build '
+        'takes intensity ABOVE anything it has yet run; the core cash pile funds a shortfall for years before '
+        'leverage becomes a constraint.' % (D['cover'][-1]['cover'], D['cover'][0]['cover']))
 caption('Two yield framings (house rule): declared-regular 2.20/sh = 5.0%; cash paid during calendar-2025 incl. the FY24 '
         'special = 4.20/sh = 9.6%. A forecast-versus-actual scorecard and a new-versus-old reconciliation: not '
         'applicable on an initiation; both become standing sections from the first 3-month update.')

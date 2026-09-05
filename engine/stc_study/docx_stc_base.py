@@ -97,7 +97,29 @@ def table(rows, widths, header=True, first_col_bold=False, size=9.3, header_fill
     t = doc.add_table(rows=len(rows), cols=len(widths))
     t.alignment = WD_TABLE_ALIGNMENT.CENTER
     cell_margins(t); borders(t)
+    # FIXED LAYOUT, DECLARED IN THE XML AND NOT ONLY ON THE PYTHON OBJECT. Setting
+    # autofit=False and a width on every cell is NOT enough: without an explicit
+    # tblLayout of type "fixed" and a grid to match, a renderer recomputes the columns
+    # from its own view of the content — and it did. Appendix A.1 declares a 2.05-inch
+    # first column and rendered it at about a quarter of that, wrapping "Depreciation,
+    # amortisation and impairment" one character to a line down eight rows. Every figure
+    # in the table was right and the page was unreadable, which is the depth bar's own
+    # point: fixed layout with explicit widths, checked programmatically.
     t.autofit = False
+    _tblPr = t._tbl.tblPr
+    _layout = OxmlElement('w:tblLayout')
+    _layout.set(qn('w:type'), 'fixed')
+    _tblPr.append(_layout)
+    _w = OxmlElement('w:tblW')
+    _w.set(qn('w:w'), str(int(sum(widths) * 1440)))
+    _w.set(qn('w:type'), 'dxa')
+    _tblPr.append(_w)
+    # The grid is what a renderer reads first; a cell width with no grid behind it is a
+    # suggestion.
+    _grid = t._tbl.find(qn('w:tblGrid'))
+    if _grid is not None:
+        for _gc, _wd in zip(_grid.findall(qn('w:gridCol')), widths):
+            _gc.set(qn('w:w'), str(int(_wd * 1440)))
     for i, row in enumerate(rows):
         for j, val in enumerate(row):
             c = t.cell(i, j); c.width = Inches(widths[j])

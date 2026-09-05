@@ -374,12 +374,24 @@ rows = [['Lens', 'Weight', 'Bear', 'Base', 'Bull'],
 table(rows, [2.4, 0.9, 1.1, 1.1, 1.1], first_col_bold=True, band_rows=[5])
 figure(os.path.join(HERE, 'fig1_football.png'), 6.3, 'Figure 1 — Valuation football field. Bars span bear–bull per lens; the brass tick is each '
        'base case; the gold band is the range the present-value reads span; the ink line is the market price.')
+_RB = D['lens_record']['primary']['range_basis']
 rich([(f"Central fair value ≈ SAR {L['central']['base']:.0f}/share", dict(bold=True)),
-      (f", {(L['central']['base']/spot-1)*100:+.0f}% versus spot. The bear–bull span ({L['central']['bear']:.0f}–"
-       f"{L['central']['bull']:.0f}) is driven almost entirely by the DCF’s terminal arithmetic — the bear case is "
-       "WACC +100 bp with margins 50 bp lighter and capex 100 bp heavier; the bull is the mirror image. Note what the "
-       "spread is NOT about: revenue. A ±1 pp change to every growth rate moves the central by only ~SAR 2 — this is a "
-       "margin, capex and discount-rate story, which is exactly what §1.7 and §1.9 sensitize.", {})])
+      # THIS DESCRIBED THE BEAR AND BULL THE REBUILD RETIRED. It said the bear moves the cost
+      # of capital 100 basis points, the margin 50 and capital intensity 100 all at once —
+      # which is what the delivered edition did, and which makes each case incoherent: three
+      # levers moving together cannot be attributed, and moving the discount rate inside a
+      # scenario changes the economy the company is being valued in. ONE driver moves now,
+      # and the record says which.
+      (f", {(L['central']['base']/spot-1)*100:+.0f}% versus the market. The bear-to-bull span of "
+       f"SAR {D['central_range']['low']:.2f} to {D['central_range']['high']:.2f} moves exactly ONE driver: capital "
+       f"expenditure as a multiple of the depreciation of the base being renewed, across the range this company's own "
+       f"three filed years ran — {_RB['high']:.3f} times at the bull end and {_RB['low']:.3f} at the bear. Everything "
+       'else is held IDENTICAL across all three reads: the cost of capital, the terminal growth, the terminal '
+       'risk-free rate, the inflation ladder and the margin path. That is deliberate and it is a change from the '
+       'previous edition, which moved the discount rate and terminal growth inside the scenarios as well — three '
+       'levers moving together cannot be attributed to any of them, and a bear case that also changes the economy is '
+       'not a bear case for this company. What the spread is NOT about is revenue: it is a capital-intensity story, '
+       'and the discount rate has its own grid in §1.9 rather than being folded in here.', {})])
 
 H2('1.6  The segments — a deeper look, and the driver table')
 rows = [
