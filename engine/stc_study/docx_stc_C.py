@@ -15,9 +15,10 @@ spot = D['spot']; hist = D['hist']; fc = D['forecast']
 
 # ================= Appendix A ================================================
 H1('Appendix A  Financial statements')
-P('Consolidated figures as disclosed by stc — FY2023–FY2025 IR releases on the restated continuing-operations basis '
-  '(TAWAL and Digital Infrastructure Co reclassified to discontinued operations), Q1-2026 release and interim FS — all '
-  'from stc.com, per the study’s sourcing rule. SAR million. The five-year forecast is the model build (companion Excel, '
+P('Consolidated figures as disclosed by stc — the audited statements for FY2023 to FY2025 on the restated '
+  'continuing-operations basis (TAWAL and Digital Infrastructure Co reclassified to discontinued operations) and the '
+  'reviewed interim for the six months to 30 June 2026 — all from the company’s own investor-relations archive, '
+  'per the study’s sourcing rule. SAR million. The five-year forecast is the model build (companion Excel, '
   'formula-linked to Assumptions).')
 H2('A.1  Income statement — 3-year historical + 5-year forecast (consolidated, SAR mn)')
 def f0(x): return f"{x:,.0f}"

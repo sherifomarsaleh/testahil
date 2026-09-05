@@ -13,6 +13,23 @@ L = D['lenses']; tech = D['tech']; dcf = D['dcf']; ddm = D['ddm']
 LR = D['lens_record']
 spot = D['spot']; E = D['experts']; cov = D['cover']
 
+# FIGURES THE OVERVIEW STATES, DERIVED RATHER THAN TYPED. Three rows of that table
+# described the first quarter of 2026 while the base year, the bridge and the first
+# forecast year all stand on the reviewed half to 30 June 2026 — a period the study had
+# read, used, and gone on describing as forthcoming.
+_H1R = D['inputs']['rev_h1_2026']['value']
+_H1R_PY = D['inputs']['rev_h1_2025']['value']
+_H1G = D['inputs']['gp_h1_2026']['value']
+_H1G_PY = D['inputs']['gp_h1_2025']['value']
+_NDB = dict(D['bridge_record']['net_debt_build'])
+_NDB['liquid'] = (_NDB['cash_non_bank'] + _NDB['murabahas'] + _NDB['sukuk']
+                  + _NDB['treasury_bills'])
+# ELEVEN AGAINST TWELVE. The disclosed segments are counted from the model's own segment
+# set rather than stated, and eliminations are not a segment.
+_NSEG = len([k for k in D['seg_forecast'] if 'liminat' not in k])
+_SUBH1 = D['inputs']['inv_subs_mobile_h1_2026']['value']
+_SUBFY25 = D['inputs']['inv_subs_mobile_fy2025']['value']
+
 # ---------------- Masthead / title / anchor --------------------------------
 masthead()
 P('Independent Valuation Study — Educational Analysis', size=12, bold=True, space_before=4, space_after=2)
@@ -54,7 +71,7 @@ box([
       'consultancy, manages no money, and accepts no fees, funds or clients. See the Disclosure & Disclaimer at the end.'),
  ('', 'All values are model outputs presented as ranges and distributions because no single number should be relied on. '
       'Reported financials are the company’s own disclosure (FY2023–FY2025 IR releases on the restated '
-      'continuing-operations basis; Q1-2026 release, 28 Apr 2026; Q1-2026 interim financial statements) — all from '
+      'continuing-operations basis) and the reviewed interim statements for the six months to 30 June 2026 — all from '
       'stc.com. Forward-looking inputs — the segment growth and margin paths, capex intensity, the cost of capital, '
       # THE FACTOR PROBABILITIES ARE GONE. The price map used to carry nine typed jump
       # probabilities; it is now the production engine's own fitted cone, so the list of
@@ -178,18 +195,27 @@ rows = [
    f"{D['bridge_record']['shares_mn']:,.1f} mn (issued capital over par, less treasury) "
    f"\u00b7 SAR {spot * D['bridge_record']['shares_mn'] / 1000.0:,.1f} bn"],
  ['FY2025 revenue / EBITDA / net profit', 'SAR 77,819 mn (+2.5%) · SAR 24,469 mn (31.4% margin) · SAR 14,828 mn (+12.5% adjusted; reported −39.9% vs FY24’s TAWAL-gain year)'],
- ['Q1-2026 revenue / net profit', 'SAR 19,939 mn (+3.8%) · SAR 3,696 mn (+12.0% ex non-recurring; +1.3% reported)'],
+ ['Half-year 2026 revenue / gross profit',
+  'SAR %s mn (%+.1f%%) · SAR %s mn (%+.1f%%, a %.1f%% margin) — the reviewed six months to 30 June 2026, '
+  'which is the period the base year, the bridge and the first forecast year all stand on'
+  % ('{:,.0f}'.format(_H1R / 1000.0), 100.0 * (_H1R / _H1R_PY - 1),
+     '{:,.0f}'.format(_H1G / 1000.0), 100.0 * (_H1G / _H1G_PY - 1), 100.0 * _H1G / _H1R)],
  ['Segment split (FY2025)', 'stc KSA SAR 51,119 mn (consumer 32,826 · enterprise 13,514 · wholesale 4,779) · subsidiaries net ~SAR 26,700 mn'],
- ['Balance sheet', 'Net debt SAR 111 mn at FY25 (~0.0× EBITDA); SAR 7.1 bn at Q1-26 after the Jan-2026 $2 bn sukuk (~0.3×); cash framings: FS 21.4 bn incl. stc bank / IR core 15.4 bn'],
+ ['Balance sheet',
+  'Net debt SAR %s mn on the reviewed 30 June 2026 sheet the bridge stands on — borrowings %s '
+  'plus leases %s and the spectrum-licence liability %s, against cash and near-cash of %s'
+  % tuple('{:,.0f}'.format(_NDB[k]) for k in
+          ('net', 'borrowings', 'leases', 'spectrum_licences', 'liquid'))],
  ['Dividend', 'SAR 0.55/quarter locked through Q3-2027 (SAR 2.20/yr ≈ 5.0% yield); FY24 also paid a SAR 2.00 special (cash paid 2025: SAR 4.20/sh ≈ 9.6%)'],
  ['Key stakes', '43.06% Digital Infrastructure Co (TAWAL + Zain towers; PIF 54%) · 9.97% Telefónica (€2.1 bn cost; ≈€1.96 bn market) · solutions by stc 79% (mkt cap ~SAR 26 bn) · stc bank 85% (8 mn customers)'],
  ['52-week range', 'SAR 40.20 (1 Mar 2026) – 45.38 (30 Oct 2025)'],
  ['Ownership', 'PIF 62.0% (after the Nov-2024 SAR 3.86 bn accelerated bookbuild) · free float ~38%'],
- ['Corporate events', '$2 bn dual-tranche sukuk (Jan-2026, 4.489%/5.083%) · 26 mn-share ESIP buyback approved 7 May 2026 · center3–HUMAIN AI-data-centre framework (Dec-2025, toward 1 GW) · SilkLink Syria fibre corridor (SAR 3 bn, Feb-2026) · 2Q26 results due ~late Jul 2026'],
+ ['Corporate events', '$2 bn dual-tranche sukuk (Jan-2026, 4.489%/5.083%) · 26 mn-share ESIP buyback approved 7 May 2026 · center3–HUMAIN AI-data-centre framework (Dec-2025, toward 1 GW) · SilkLink Syria fibre corridor (SAR 3 bn, Feb-2026)'],
 ]
 table(rows, [1.7, 5.4], first_col_bold=True)
-caption('Source: stc FY2023–FY2025 IR releases, Q1-2026 release and interim FS, FY2025 earnings presentation (all stc.com); '
-        'Saudi Exchange disclosures; PIF press releases. Values rounded.')
+caption('Source: the company\u2019s own audited statements for FY2023 to FY2025, the reviewed interim for the six '
+        'months to 30 June 2026, and its own earnings presentations — every one from its investor-relations '
+        'archive; Saudi Exchange disclosures; PIF press releases. Values rounded.')
 
 # ================= §1 Fundamental ===========================================
 H1('1  Fundamental valuation')
@@ -296,8 +322,8 @@ P(f"Two honesty notes. First, {dcf['tv_pct']*100:.0f}% of the enterprise value s
   f"{(dcf['wacc']-dcf['tg'])*100:.1f}-point spread between the cost of capital and terminal growth this is a duration "
   "bet dressed as a five-year model, which is why §1.9 prices the rate grid and the beta separately rather than hiding "
   f"either. Second, the model's first-year free cash flow of SAR {D['dcf']['rows'][0]['fcff']/1000.0:.1f} bn runs richer than "
-  "stc's own reported FY25 free cash flow (6.5 bn), because reported OCF absorbs receivables swings, early-retirement cash "
-  "and zakat timing that a NOPAT-based FCFF smooths; Q1-26's FCF of 3.9 bn (+494% YoY) suggests the gap is closing, but "
+  f"stc's own reported FY2025 free cash flow of {D['hist']['fcf']['FY25']/1000.0:.1f} bn, because reported operating cash flow "
+  "absorbs receivables swings, early-retirement cash and zakat timing that a NOPAT-based free cash flow smooths. "
   "Appendix A shows both series so the difference is visible rather than averaged away.")
 
 H2('1.2  Dividend discount — the policy lens, as the cash-flow cross-check')
@@ -448,7 +474,10 @@ rich([(f"Central fair value ≈ SAR {L['central']['base']:.0f}/share", dict(bold
 H2('1.6  The segments — a deeper look, and the driver table')
 rows = [
  ['Segment / leg', 'FY25 revenue', 'Trend', 'Margin role', 'Swing role'],
- ['KSA Consumer (CBU)', 'SAR 32.8 bn (+3.4%)', 'Mobility +2.8%, fixed +6.6%; 30.6 mn subs (+5.3% Q1-26)', 'The cash cow', 'Competition watch'],
+ ['KSA Consumer (CBU)', 'SAR 32.8 bn (+3.4%)',
+  'Mobility +2.8%, fixed +6.6%; '
+  + '%.1f mn mobile subscribers at the half year, %+.1f%% on the full-year 2025 count'
+  % (_SUBH1, 100.0 * (_SUBH1 / _SUBFY25 - 1)), 'The cash cow', 'Competition watch'],
  ['KSA Enterprise (EBU)', 'SAR 13.5 bn (+0.4%)', 'Government phasing; private sector +6%; flat ex-mega-projects', 'High-margin', 'Recovery lever'],
  ['KSA Wholesale & Carrier', 'SAR 4.8 bn (+10.8%)', 'Hosting, FWA backhaul, national roaming (+32.6% national)', 'Structural', 'Steady'],
  ['Subsidiaries (net)', '~SAR 26.7 bn', 'solutions 12.7 bn · channels ~14.1 bn gross · stc bank 2.0 bn (+11%) · SCCC +62% · sirar +13% · center3', 'Dilutive today, guided to turn', 'The option book'],
@@ -489,9 +518,10 @@ rows.append(['EBITDA margin', '', '',
 rows.append(['Capital intensity (% of revenue)', '', '',
              *[f"{D['drivers']['capex_pct'][i]*100:.1f}%" for i in (0, 2, 4)]])
 table(rows, [2.35, 0.95, 0.95, 0.95, 0.95, 0.95], first_col_bold=True, size=8.0)
-caption('History: stc FY2025 earnings presentation and IR releases (stc.com), restated basis. Forecast drivers are the house’s '
+caption('History: note 9 of the FY2025 audited consolidated statements, on the restated basis, with the earnings presentations for the operating detail no statement carries. Forecast drivers are the house’s '
         'own flagged view. These are the company\'s own internal unit names, used here to describe '
-        'what drives the business; the MODEL is built on the eleven operating segments note 9 '
+        'what drives the business; the MODEL is built on the %d operating segments note 9 '
+        % _NSEG +
         'discloses, which is a different and finer cut.')
 
 # The crux paragraph quotes the cover table, the beta grid and the rate grid; all three
@@ -533,8 +563,8 @@ for c in cov:
     rows.append([f"Capex at {c['capex']}", f"{c['fcf']:.1f}", f"{c['div']:.1f}", f"{c['cover']:.2f}×"])
 table(rows, [2.6, 1.5, 1.5, 0.9], first_col_bold=True)
 caption('The dividend schedule and its stress test live in Appendix A.3. The dividend is policy-locked through the '
-        'Q3-2027 distribution; the test is whether FCF or the balance sheet pays for it — at Q1-26 run-rate (FCF 3.9 bn vs '
-        'a 2.74 bn quarterly dividend) it was FCF, for the first quarter in a year.')
+        'Q3-2027 distribution; the test is whether free cash flow or the balance sheet pays for it, and the table '
+        'above answers it at every capital-intensity level this company has actually run.')
 
 H2('1.8  Macro and country — SAMA, oil, Vision 2030, and the sourced cost of capital')
 P('stc is a defensive claim on the Saudi macro, in three channels. Rates: SAMA shadows the Fed to defend the riyal peg '

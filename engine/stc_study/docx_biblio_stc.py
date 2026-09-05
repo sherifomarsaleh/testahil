@@ -31,7 +31,6 @@ import inputs_register as IR                                           # noqa: E
 D = json.load(open('study_numbers.json'))
 SW = json.load(open('sweep_register.json'))
 INP = D['inputs']
-LED = json.load(open('rebuild_ledger.json'))
 _ISJ = json.load(open('income_statement.json'))
 EDITION = '05-09-2026'
 
@@ -339,11 +338,27 @@ P('The house standard is to build at the finest level the disclosure supports �
   'times price on a disclosed unit, with cost per unit and the margin as an OUTPUT. Where '
   'the disclosure stops short of that, the driver drops to the finest sourced level and the '
   'gap is STATED rather than filled.', size=9.3)
+_GU = {l['name']: l['level'] for l in D['driver_lines']}
+_LEVEL_OF = {
+ 'stc segment revenue (two thirds of group)': _GU['stc (the Saudi operating business)'],
+ "the other twelve segments' revenue":
+     sorted({v for k, v in _GU.items() if k != 'stc (the Saudi operating business)'}),
+ 'cost of revenues': 'not built per unit',
+}
+assert _LEVEL_OF["the other twelve segments' revenue"] == ['segment'], (
+    'the other segments no longer share one level; the delivered column would state a '
+    'level that is true of some of them and not others: %r'
+    % _LEVEL_OF["the other twelve segments' revenue"])
+_LEVEL_OF["the other twelve segments' revenue"] = 'segment'
+assert D['ground_up']['unit_share'] == 0, (
+    'a unit-level line has appeared and the cost column below still says none was built')
+
 rows = [['Driver', 'Level built at', 'Why, and what the disclosure supports',
          'Sweep findings behind it']]
 for d in SW['drivers']:
-    rows.append([d['driver'], d['mode'].replace('_', ' ').lower(), d['justification'],
-                 ', '.join(d.get('sweep_refs', []))])
+    rows.append([d['driver'],
+                 _LEVEL_OF.get(d['driver'], d['mode'].replace('_', ' ').lower()),
+                 d['justification'], ', '.join(d.get('sweep_refs', []))])
 table(rows, [2.15, 0.95, 5.70, 1.00], size=7.8)
 
 # ------------------------------------------------ 6 judgements and falsifiers
@@ -379,8 +394,12 @@ rows += [
   'history. Management’s own guidance is deliberately NOT the test: it is scored against '
   'what happens, never consumed.'],
  ['The margin path',
-  'An OUTPUT of the cost build, which runs %.2f%% in the first forecast year and %.2f%% in '
-  'the last — flat, and slightly down.'
+  'HELD, not built: each segment carries its own disclosed gross margin from the filings, '
+  'with an SG&A share applied against it, so the resulting path runs %.2f%% in the first '
+  'forecast year and %.2f%% in the last — flat, and slightly down. The house standard is a '
+  'margin that falls OUT of a cost built per unit, and note 35 discloses all seven cost '
+  'lines by nature for three years, so the disclosure would support one. This model does '
+  'not yet consume it, and that gap is stated here rather than dressed as a cost build.'
   % (D['drivers']['ebitda_m'][0]*100, D['drivers']['ebitda_m'][-1]*100),
   'A cost line moving differently from the driver it is attached to. The model is not '
   'permitted to assume the mix improvement an upward glide would represent, so the risk '
@@ -411,23 +430,9 @@ rows += [
 table(rows, [1.65, 4.35, 3.80], size=7.8)
 
 # --------------------------------------------------------- 7 what moved, and why
-H1('7  What moved this edition, and in what order')
-P('This study was rebuilt rather than re-struck, and the route matters as much as the '
-  'destination: several corrections serving one rule are ONE piece of evidence, not '
-  'several, and a running total looked at only once at the end can hide two rules pulling '
-  'in opposite directions.', size=9.3)
-rows = [['#', 'What changed', 'Before', 'After', 'Move']]
-for i, lv in enumerate(LED['levers'], 1):
-    rows.append([str(i), lv['name'], f"{lv['before']:.4f}", f"{lv['after']:.4f}",
-                 f"{lv['move']*100:+.2f}%"])
-rows.append(['', 'CUMULATIVE', f"{LED['start_value']:.4f}", f"{LED['value']:.4f}",
-             f"{LED['cumulative_move']*100:+.2f}%"])
-table(rows, [0.28, 5.20, 0.95, 0.95, 0.85], size=7.6)
-
 P('TESTAHIL · Source register · Saudi Telecom Company (Tadawul: 7010) · edition '
   + EDITION, size=8.6, color=GREY, space_before=10)
 
 OUT = 'STC_Bibliography_%s.docx' % EDITION
 doc.save(OUT)
-print('saved', OUT, '|', len(INP), 'inputs |', len(SW['findings']), 'findings |',
-      len(LED['levers']), 'levers')
+print('saved', OUT, '|', len(INP), 'inputs |', len(SW['findings']), 'findings')

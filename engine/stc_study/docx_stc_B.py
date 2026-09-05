@@ -212,8 +212,9 @@ rich([('Where the lenses disagree, and what would settle it. ', dict(bold=True))
 # ================= §5 catalysts ==============================================
 H1('5  Catalysts to watch')
 for head, body in [
- ('2Q26 results (~late July 2026). ', 'The first full quarter to show whether Q1’s cash-flow inflection (FCF 3.9 bn, '
-  '1.4× the quarterly dividend) is a run-rate or a blip; watch enterprise revenue (mega-project phasing) and capex phasing.'),
+ ('Third-quarter 2026 results. ', 'The reviewed half to 30 June 2026 is already in this model — it sets the base '
+  'year, the bridge and the first forecast year — so the next disclosure is the first that can move the answer: watch '
+  'enterprise revenue against mega-project phasing, and capital expenditure against the data-centre build.'),
  ('Quarterly dividend declarations. ', 'SAR 0.55 is policy through Q3-2027 — the information is in any SPECIAL '
   'distribution (the policy explicitly allows quarterly assessment; FY24 paid SAR 2.00). A special would mechanically '
   're-rate the DDM lens; its absence through 2026 keeps the balance sheet funding the build.'),
