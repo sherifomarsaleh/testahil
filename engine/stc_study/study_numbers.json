@@ -1038,9 +1038,9 @@
  },
  "lenses": {
   "dcf": {
-   "bear": 34.24748040554084,
+   "bear": 40.47669132469438,
    "base": 41.15477165329675,
-   "bull": 49.677824385539466
+   "bull": 42.17189214620031
   },
   "ddm": {
    "bear": 29.160467565141218,
@@ -1048,25 +1048,98 @@
    "bull": 49.622266617523856
   },
   "relative": {
-   "bear": 44.66715252509355,
-   "base": 49.7193885388321,
-   "bull": 54.77162455257065
+   "bear": 46.265942664648115,
+   "base": 48.51726975906215,
+   "bull": 50.379842434534744
   },
   "normalized": {
    "bear": 36.771303322395404,
    "base": 43.26035684987695,
    "bull": 50.23008100902379
   },
+  "book_value": 17.02110905134844,
+  "own_history_evx": [
+   {
+    "year": 2023,
+    "close": 39.35,
+    "ebitda": 22445.389,
+    "ev": 204942.676,
+    "x": 9.130725067852467
+   },
+   {
+    "year": 2024,
+    "close": 40.0,
+    "ebitda": 23951.115,
+    "ev": 199188.298,
+    "x": 8.316451989813418
+   },
+   {
+    "year": 2025,
+    "close": 42.98,
+    "ebitda": 24469.435,
+    "ev": 216285.55699999997,
+    "x": 8.839009033105993
+   }
+  ],
   "central": {
-   "bear": 35.56442620272239,
-   "base": 41.85677067352522,
-   "bull": 50.79314630163867
+   "bear": 40.47669132469438,
+   "base": 41.15477165329675,
+   "bull": 48.51726975906215
   },
-  "weights": {
-   "dcf": 0.35,
-   "ddm": 0.25,
-   "relative": 0.2,
-   "normalized": 0.2
+  "weights": null
+ },
+ "lens_record": {
+  "class": "telecom operator",
+  "primary": {
+   "kind": "dcf",
+   "value": 41.15477165329675,
+   "range": {
+    "low": 40.47669132469438,
+    "high": 48.51726975906215
+   },
+   "range_basis": {
+    "driver": "capital expenditure as a share of revenue",
+    "low": 0.175,
+    "high": 0.15,
+    "macro_held": true,
+    "evidence": "Management's own guidance band for capital expenditure, 15.0% to 17.5% of revenue, against a base path opening at 16.5% and declining to 15.0% by the last explicit year. The bear takes the top of that band and the bull the bottom, and nothing else moves: the cost of capital, the terminal growth, the terminal risk-free rate, the inflation ladder and the margin path are IDENTICAL across all three reads. The delivered study's bear and bull moved the cost of capital by 100 and 70 basis points and terminal growth between 2.0% and 3.0% as well, which makes each corner an economy nothing describes and its width chosen rather than observed."
+   }
+  },
+  "cross_checks": [
+   {
+    "kind": "ev_ebitda_own_history",
+    "value": 48.51726975906215,
+    "multiple": 8.762062030257292,
+    "multiple_source": "the company's own trailing EV/EBITDA at each of the last three financial year ends, computed from that year-end close in the persistent price library, the shares in issue and that year's own net debt and EBITDA from the filings: 9.131x, 8.316x and 8.839x, whose mean is adopted and whose lowest and highest are the bear and bull. Never a multiple read off the current price.",
+    "circularity": {
+     "spot": 43.86,
+     "shares": 4993.024,
+     "net_debt": 4932.3629999999985,
+     "metric_value": 24469.0,
+     "traded_multiple": 9.151432246516
+    },
+    "note": "The traded multiple today is 9.151x, ABOVE every one of the three years this multiple is built from, so the lens is not anchored on the price and can be seen not to be."
+   },
+   {
+    "kind": "book_value",
+    "value": 17.02110905134844,
+    "note": "Equity attributable to the parent on the reviewed 30 June 2026 sheet, SAR 84,986.806mn over 4,993.024mn shares. A DISCLOSED FLOOR, published as such and never weighted into the answer."
+   }
+  ],
+  "envelope": {
+   "low": 40.47669132469438,
+   "high": 48.51726975906215
+  },
+  "central": 41.15477165329675,
+  "retired": {
+   "blend_weights": {
+    "dcf": 0.35,
+    "ddm": 0.25,
+    "relative": 0.2,
+    "normalized": 0.2
+   },
+   "retired_value": null,
+   "why": "The four-lens blend at typed weights is retired under [R-LENS-03]. The dividend-discount and normalised-earnings reads are not permitted cross-checks for this class and carried 45% of the answer between them."
   }
  },
  "rel_basis": {
@@ -1074,9 +1147,9 @@
   "np26": 14088.533732909997,
   "eps26": 2.8216435035982195,
   "evx": {
-   "bear": 8.0,
-   "base": 9.0,
-   "bull": 10.0
+   "bear": 8.316451989813418,
+   "base": 8.762062030257292,
+   "bull": 9.130725067852467
   },
   "norm_pat": 14400.0,
   "norm_eps": 2.8840237899917964

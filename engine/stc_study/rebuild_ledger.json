@@ -50,10 +50,19 @@
    "why": "The bridge stood on a first-quarter net-debt figure and a 31 March 2026 minority while a REVIEWED 30 June 2026 balance sheet was already published, in the same document set this rebuild had just read to source the debt book. The largest line was not stale but WRONG BY MORE THAN HALF: associates and joint ventures were carried at SAR 4,641mn against a filed 12,909.648mn, a figure from before February 2025, when the group contributed the whole of its towers business to DIIC in exchange for 43.06% of it. The towers business the entire 2024 restatement was about had left the subsidiaries and arrived in the associates, and this bridge had followed it into neither. Three further lines were corrected on the same sheet: the listed equity investment is taken at the fair value the company itself discloses rather than at a mark typed here; the investment funds it holds at fair value were omitted altogether; and the minority now comes out at its SHARE OF EQUITY VALUE rather than at historical cost, because the model capitalises 100% of subsidiary cash flow.",
    "evidence": "Associates and joint ventures 4,641 to 12,909.648 at book (note 8.1.4, all unlisted); the listed equity investment 8,513.430 at its own disclosed Level 1 fair value against a typed 8,630; investment funds and unlisted equity 5,163.516 added; net debt 4,932.363, built from borrowings 23,536.554 and leases 2,258.902 less non-bank cash 12,940.389, short-term murabahas 1,062.181, sukuk 6,368.453 and treasury bills 492.070. The minority is 2.021% of equity value \u2014 its own disclosed share of profit, note 25 \u2014 deducting 4,237.756 against a book of 2,726.349. The share count is 4,993.024mn, footed against par: issued capital of SAR 50,000,000 thousand at SAR 10 gives the 5,000,000 thousand shares note 17 states, less 6,976 thousand in treasury. The cash-flow read moves 38.4671 to 41.1548 and the blend 40.4206 to 41.8568, +3.55%.",
    "move": 0.03553031743857593
+  },
+  {
+   "name": "the four-lens blend retired for the class primary",
+   "rule": "R-LENS-03",
+   "before": 41.85677067352522,
+   "after": 41.15477165329675,
+   "why": "The delivered central was a BLEND of four lenses at typed weights \u2014 35% cash flow, 25% dividend discount, 20% relative multiple, 20% normalised earnings \u2014 that nobody chose on evidence and no out-of-sample test ever cleared. Two of those four are not permitted cross-checks for a telecom operator at all and carried 45% of the answer between them. A number produced by averaging several methods is not more robust than the best of them: it is a NEW method with free parameters nobody tested, wearing the appearance of caution, and it imports every weakness of the weakest lens at whatever weight somebody typed. The registry gives this class a CASH-FLOW primary cross-checked on an EV/EBITDA multiple from its own history and on book value, so the cash-flow read IS the central and the others are published beside it.",
+   "evidence": "The central becomes the cash-flow read at 41.1548, from a blend of 41.8568. The dividend-discount read of 35.4266 and the normalised-earnings read of 43.2604 come out of the answer entirely. THE MULTIPLE IS NOW COMPUTED RATHER THAN TYPED: the study used 8.0 / 9.0 / 10.0 with no source of any kind, and its base of 9.0 sat within a rounding of the 9.151x the shares trade at today \u2014 which values the company at what it already trades at. The adopted 8.762x is the mean of this company's own trailing EV/EBITDA at the last three year ends (9.131x, 8.316x, 8.839x), each computed from that year-end's own close in the persistent price library, the shares in issue and that year's net debt and EBITDA from the filings. Every one of the three sits BELOW the traded multiple, so the lens can be SEEN not to be anchored on the price. Book value of 17.0211 is published as the disclosed floor it is and is never weighted. The bear and bull are flexed on capital intensity between the 15.0% and 17.5% of revenue management guides to, with the macro path standing still across all three \u2014 the delivered study's corners moved the cost of capital by 100 and 70 basis points and terminal growth between 2.0% and 3.0% as well, which makes each corner an economy nothing describes.",
+   "move": -0.016771456778257643
   }
  ],
- "value": 41.85677067352522,
- "cumulative_move": -0.11152579650270922,
+ "value": 41.15477165329675,
+ "cumulative_move": -0.1264268032052609,
  "rules": {
   "R-COC-01": {
    "levers": [
@@ -94,9 +103,17 @@
    "first_before": 40.42061344670193,
    "last_after": 41.85677067352522,
    "move": 0.03553031743857593
+  },
+  "R-LENS-03": {
+   "levers": [
+    "the four-lens blend retired for the class primary"
+   ],
+   "first_before": 41.85677067352522,
+   "last_after": 41.15477165329675,
+   "move": -0.016771456778257643
   }
  },
- "distinct_rules": 5,
+ "distinct_rules": 6,
  "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked.",
  "audit_taken": {
   "at": "2026-09-05, after lever 3, as declared",
@@ -108,7 +125,7 @@
   "latest_price": 43.86,
   "latest_price_date": "2026-09-03",
   "gap_at_the_audit": "+0.43%",
-  "gap_now_after_later_levers": "-4.57%",
+  "gap_now_after_later_levers": "-6.17%",
   "gap_at_delivery": "+8.10%",
   "what_the_audit_shows": "THE TWO LEVERS DISAGREED AND THE ROUTE IS WHY THAT MATTERS. Taken in the order fixed in writing before either was touched, the cost-of-capital correction moved the answer AWAY from the market \u2014 from 8.1%% above the price it was struck at to 16.4%% above the latest one \u2014 and the beta correction brought it back. Neither was chosen for where it landed and neither could have been: the first raises every value it touches and the second lowers every value it touches, and which one dominates is arithmetic about this company's own capital structure. Read as two corrections the rebuild is a contest; read as one net figure of -6.5%% it would look like a small tidy-up, and the 8.4%% and the 13.8%% inside it would be invisible. THE ANSWER NOW SITS ESSENTIALLY ON THE PRICE, at +0.4%%, and that is reported as an observation and NOT as corroboration \u2014 four levers remain, the lens retirement among them, and a rebuild that stopped here because the number looked comfortable would be fitting to the price by choosing when to stop.",
   "levers_remaining_at_the_audit": [

@@ -31,7 +31,8 @@ LANDED = {
     'R-BETA-04':  'fe76400fb6155c044e9e76ec32088303b5a59a6b',     # levers 1-3
     'R-MACRO-01': '518aee8b42d7bf9436844f14bc54aae91ec815cf',     # lever 4
     'R-TERM-01':  'a8f1f4026c24385e06d9bc493f6f74e7607de52f',     # lever 5
-    'R-BRIDGE-01': None,                                         # the working tree, latest
+    'R-BRIDGE-01': '7a10176ffdf65947f599b3d472061fc917a4168c',    # lever 5b
+    'R-LENS-03':  None,                                          # the working tree, latest
 }
 
 
@@ -59,6 +60,7 @@ PUB = at(PUBLISHED_REV)
 AFTER_BETA = at(LANDED['R-BETA-04'])
 AFTER_MACRO = at(LANDED['R-MACRO-01'])
 AFTER_TERM = at(LANDED['R-TERM-01'])
+AFTER_BRIDGE = at(LANDED['R-BRIDGE-01'])
 NOW = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 # The lever-2 intermediate, struck when the cost-of-capital schedule was in and the beta
 # was not. It is named for that lever set, so a later sensitivity run cannot overwrite the
@@ -222,7 +224,7 @@ led.apply(
 led.apply(
     name='the bridge moved onto the latest disclosed balance sheet',
     rule='R-BRIDGE-01',
-    after=NOW['lenses']['central']['base'],
+    after=AFTER_BRIDGE['lenses']['central']['base'],
     why=(
         'The bridge stood on a first-quarter net-debt figure and a 31 March 2026 minority '
         'while a REVIEWED 30 June 2026 balance sheet was already published, in the same '
@@ -249,23 +251,68 @@ led.apply(
         'thousand at SAR 10 gives the 5,000,000 thousand shares note 17 states, less 6,976 '
         'thousand in treasury. The cash-flow read moves %.4f to %.4f and the blend %.4f to '
         '%.4f, %+.2f%%.'
-        % (format(NOW['bridge_record']['associates']['value'], ',.3f'),
-           format(NOW['bridge_record']['lines'][2]['value'], ',.3f'),
-           format(NOW['bridge_record']['lines'][3]['value'], ',.3f'),
-           format(NOW['bridge_record']['net_debt_build']['net'], ',.3f'),
-           format(NOW['bridge_record']['net_debt_build']['borrowings'], ',.3f'),
-           format(NOW['bridge_record']['net_debt_build']['leases'], ',.3f'),
-           format(NOW['bridge_record']['net_debt_build']['cash_non_bank'], ',.3f'),
-           format(NOW['bridge_record']['net_debt_build']['murabahas'], ',.3f'),
-           format(NOW['bridge_record']['net_debt_build']['sukuk'], ',.3f'),
-           format(NOW['bridge_record']['net_debt_build']['treasury_bills'], ',.3f'),
-           100 * NOW['bridge_record']['nci']['profit_share'],
-           format(NOW['bridge_record']['nci']['deduction'], ',.3f'),
-           format(NOW['bridge_record']['nci']['book'], ',.3f'),
-           AFTER_TERM['lenses']['dcf']['base'], NOW['lenses']['dcf']['base'],
-           AFTER_TERM['lenses']['central']['base'], NOW['lenses']['central']['base'],
-           100 * (NOW['lenses']['central']['base']
+        % (format(AFTER_BRIDGE['bridge_record']['associates']['value'], ',.3f'),
+           format(AFTER_BRIDGE['bridge_record']['lines'][2]['value'], ',.3f'),
+           format(AFTER_BRIDGE['bridge_record']['lines'][3]['value'], ',.3f'),
+           format(AFTER_BRIDGE['bridge_record']['net_debt_build']['net'], ',.3f'),
+           format(AFTER_BRIDGE['bridge_record']['net_debt_build']['borrowings'], ',.3f'),
+           format(AFTER_BRIDGE['bridge_record']['net_debt_build']['leases'], ',.3f'),
+           format(AFTER_BRIDGE['bridge_record']['net_debt_build']['cash_non_bank'], ',.3f'),
+           format(AFTER_BRIDGE['bridge_record']['net_debt_build']['murabahas'], ',.3f'),
+           format(AFTER_BRIDGE['bridge_record']['net_debt_build']['sukuk'], ',.3f'),
+           format(AFTER_BRIDGE['bridge_record']['net_debt_build']['treasury_bills'], ',.3f'),
+           100 * AFTER_BRIDGE['bridge_record']['nci']['profit_share'],
+           format(AFTER_BRIDGE['bridge_record']['nci']['deduction'], ',.3f'),
+           format(AFTER_BRIDGE['bridge_record']['nci']['book'], ',.3f'),
+           AFTER_TERM['lenses']['dcf']['base'], AFTER_BRIDGE['lenses']['dcf']['base'],
+           AFTER_TERM['lenses']['central']['base'],
+           AFTER_BRIDGE['lenses']['central']['base'],
+           100 * (AFTER_BRIDGE['lenses']['central']['base']
                   / AFTER_TERM['lenses']['central']['base'] - 1))),
+)
+
+led.apply(
+    name='the four-lens blend retired for the class primary',
+    rule='R-LENS-03',
+    after=NOW['lenses']['central']['base'],
+    why=(
+        'The delivered central was a BLEND of four lenses at typed weights — 35% cash flow, '
+        '25% dividend discount, 20% relative multiple, 20% normalised earnings — that '
+        'nobody chose on evidence and no out-of-sample test ever cleared. Two of those four '
+        'are not permitted cross-checks for a telecom operator at all and carried 45% of '
+        'the answer between them. A number produced by averaging several methods is not '
+        'more robust than the best of them: it is a NEW method with free parameters nobody '
+        'tested, wearing the appearance of caution, and it imports every weakness of the '
+        'weakest lens at whatever weight somebody typed. The registry gives this class a '
+        'CASH-FLOW primary cross-checked on an EV/EBITDA multiple from its own history and '
+        'on book value, so the cash-flow read IS the central and the others are published '
+        'beside it.'),
+    evidence=(
+        'The central becomes the cash-flow read at %.4f, from a blend of %.4f. The '
+        'dividend-discount read of %.4f and the normalised-earnings read of %.4f come out '
+        'of the answer entirely. THE MULTIPLE IS NOW COMPUTED RATHER THAN TYPED: the study '
+        'used 8.0 / 9.0 / 10.0 with no source of any kind, and its base of 9.0 sat within a '
+        'rounding of the %.3fx the shares trade at today — which values the company at what '
+        'it already trades at. The adopted %.3fx is the mean of this company\'s own trailing '
+        'EV/EBITDA at the last three year ends (%.3fx, %.3fx, %.3fx), each computed from '
+        "that year-end's own close in the persistent price library, the shares in issue and "
+        "that year's net debt and EBITDA from the filings. Every one of the three sits BELOW "
+        'the traded multiple, so the lens can be SEEN not to be anchored on the price. Book '
+        'value of %.4f is published as the disclosed floor it is and is never weighted. The '
+        'bear and bull are flexed on capital intensity between the 15.0%% and 17.5%% of '
+        'revenue management guides to, with the macro path standing still across all three '
+        "— the delivered study's corners moved the cost of capital by 100 and 70 basis "
+        'points and terminal growth between 2.0%% and 3.0%% as well, which makes each corner '
+        'an economy nothing describes.'
+        % (NOW['lenses']['central']['base'],
+           AFTER_BRIDGE['lenses']['central']['base'],
+           NOW['lenses']['ddm']['base'], NOW['lenses']['normalized']['base'],
+           NOW['lens_record']['cross_checks'][0]['circularity']['traded_multiple'],
+           NOW['rel_basis']['evx']['base'],
+           NOW['lenses']['own_history_evx'][0]['x'],
+           NOW['lenses']['own_history_evx'][1]['x'],
+           NOW['lenses']['own_history_evx'][2]['x'],
+           NOW['lenses']['book_value'])),
 )
 
 rec = led.record()

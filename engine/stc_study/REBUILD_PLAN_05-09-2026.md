@@ -61,8 +61,9 @@ nothing else. The ledger reads that artefact; no figure in it was copied from a 
 | 4 | R-MACRO-01 | 44.0502 | **41.7388** | −5.25% |
 | 5 | R-TERM-01 | 41.7388 | **40.4206** | −3.16% |
 | 5b | R-BRIDGE-01 | 40.4206 | **41.8568** | +3.55% |
+| 6 | R-LENS-03 | 41.8568 | **41.1548** | −1.68% |
 
-Cumulative **−11.15%** from the delivered 47.1108, and **−4.57%** against the latest known
+Cumulative **−12.64%** from the delivered 47.1108, and **−6.17%** against the latest known
 close of SAR 43.86.
 
 **Worth more than the plan expected, and the reason is the lens that was about to be
@@ -144,6 +145,34 @@ understates the answer, it is left as a gap rather than filled with a number not
 supports, and the same is true of the market cross-check on BGSM's look-through into a
 listed Malaysian operator, whose price this desk does not hold.
 
+### Lever 6, and the multiple was the traded one wearing a different hat
+
+The delivered central was a blend of four lenses at typed weights — 35% cash flow, 25%
+dividend discount, 20% relative multiple, 20% normalised earnings — that nobody chose on
+evidence and no out-of-sample test ever cleared. **Two of the four are not permitted
+cross-checks for a telecom operator at all, and they carried 45% of the answer between
+them.** The registry gives this class a cash-flow primary cross-checked on an EV/EBITDA
+multiple from its own history and on book value, so the cash-flow read IS the central.
+
+**The multiple is now computed rather than typed, and the old one was circular.** The study
+used 8.0 / 9.0 / 10.0 with no source of any kind, and its base of 9.0 sat within a rounding
+of the **9.151x** the shares trade at today — which values the company at what it already
+trades at. The adopted **8.762x** is the mean of this company's own trailing EV/EBITDA at
+the last three year ends (9.131x, 8.316x, 8.839x), each computed from that year-end's own
+close in the persistent price library, the shares in issue and that year's own net debt and
+EBITDA from the filings. Every one of the three sits BELOW the traded multiple, so the lens
+can be *seen* not to be anchored on the price rather than merely asserted not to be.
+
+**The bear and bull are flexed in observable units with the macro path standing still.** The
+delivered corners moved the cost of capital by 100 and 70 basis points AND terminal growth
+between 2.0% and 3.0% AND the margin AND capex, all at once — and since terminal growth and
+the terminal risk-free rate are derived from one house path carrying one terminal inflation,
+each corner was an economy nothing describes and the width was chosen rather than observed.
+What moves now is capital intensity, between the 15.0% and 17.5% of revenue management
+guides to. The published envelope is then the RANGE of the present-value reads on one clock,
+40.48 to 48.52, which stretches to what the cross-check says rather than to a spread
+invented around the answer; book value of 17.02 is the disclosed floor and is never weighted.
+
 ## The levers, in order
 
 | # | rule | what |
@@ -155,7 +184,7 @@ listed Malaysian operator, whose price this desk does not hold.
 | 4 ✅ | R-MACRO-01 | terminal growth stored as (real, inflation-path id) rather than the typed nominal 2.5%. Against a Saudi terminal inflation of 2.00% that is +0.5% real; on a pegged market this is likely to change what a reader can see rather than the number ([L-319]). |
 | 5 ✅ | R-TERM-01 | the terminal through engine/terminal_value.py on the DERIVED life in TERMINAL_EVIDENCE_05-09-2026.md — 20.86 years, base 15.23 years old, 73% of the depreciable base written off, on three filed years that each foot to the riyal. THE BASE IS OLD, at 1.46 times half its own implied life, so maintenance at current cost is a large multiple of the book charge. THE SIGN IS NOT PREDICTED [R-TERM-01 CLAUSE TWO CORRECTED]. |
 | 5b ✅ | R-BRIDGE-01 | **ADDED 5 September 2026, and the timing is recorded because it is the whole question.** The bridge stands on figures the company has since superseded: the study deducts net debt of SAR 7,063mn on a Q1-2026 basis and a minority of SAR 2,335mn at 31 March 2026, while a REVIEWED 30 June 2026 balance sheet was published carrying borrowings of SAR 23,536.554mn, cash of SAR 18,940.773mn and a minority of SAR 2,726.349mn. It also divides by 4,989.8mn shares, which is the 31 December 2025 count; note 17 of that same interim foots issued capital of SAR 50,000,000 thousand at SAR 10 par to 5,000,000 thousand shares and states 4,993.024mn outstanding. THIS WAS FOUND WHILE SOURCING THE DEBT BOOK FOR LEVER 2 AND BEFORE THE MODEL PRODUCED ANY REBUILT ANSWER — the plan is amended at a point where nobody could yet know which way it moves the value, which is the only condition under which adding a lever is not reshaping the route to suit where it lands. |
-| 6 | R-LENS-03 | the four-lens blend retired. LENS_REGISTRY['telecom operator'] is a cash-flow primary cross-checked on own-history EV/EBITDA, a relative multiple and book — so the dividend-discount and normalised-earnings reads come OUT of the answer entirely. STC is the ONE of the seven unreadable studies whose class the registry holds. |
+| 6 ✅ | R-LENS-03 | the four-lens blend retired. LENS_REGISTRY['telecom operator'] is a cash-flow primary cross-checked on own-history EV/EBITDA, a relative multiple and book — so the dividend-discount and normalised-earnings reads come OUT of the answer entirely. STC is the ONE of the seven unreadable studies whose class the registry holds. |
 | 7 | R-GAP-01 | re-struck on the latest known price, and the eight-heading review written before any file is staged. |
 
 ## What this rebuild also needs, and the ledger does not measure

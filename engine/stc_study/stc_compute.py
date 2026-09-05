@@ -438,17 +438,53 @@ ddm_tv_pct = pv_tv_div / ddm_ps
 ebitda26 = rows[0]['ebitda']
 np26 = (rows[0]['ebit'] + 500 + 200) * (1 - TAX) * (1 - 0.025)   # attributable: + assoc 0.5 + net fin 0.2, − 2.5% NCI
 eps26 = np26 / SH
-rel_evx = dict(bear=8.0, base=9.0, bull=10.0)
+# THE MULTIPLE COMES FROM THE COMPANY'S OWN HISTORY AND IS COMPUTED, NOT TYPED
+# [R-LENS-03]. The delivered study used 8.0 / 9.0 / 10.0 with no source of any kind, and
+# its base of 9.0 sat within a rounding of the multiple the shares trade at today — which
+# values the company at what it already trades at. Each historical point is that year-end's
+# own close from the persistent library, times the shares in issue, plus that year's net
+# debt from the filings, over that year's EBITDA. Nothing here reads the current price.
+OWN_HIST_EVX = []
+for _y, _p, _eb, _dbt, _cash in (
+        # year, 31 Dec close (engine/raw_ohlc/SA/STC.csv), EBITDA, borrowings, cash
+        (2023, 39.35, 22_445.389, 21_957.496, 13_371.320),   # restated continuing basis
+        (2024, 40.00, 23_951.115, 15_131.739, 15_543.441),
+        (2025, 42.98, 24_469.435, 15_191.428, 13_376.071)):
+    OWN_HIST_EVX.append(dict(year=_y, close=_p, ebitda=_eb,
+                             ev=_p * 4_990.0 + (_dbt - _cash),
+                             x=(_p * 4_990.0 + (_dbt - _cash)) / _eb))
+_xs = sorted(d['x'] for d in OWN_HIST_EVX)
+rel_evx = dict(bear=_xs[0], base=sum(_xs) / len(_xs), bull=_xs[-1])
 rel = {}
 for k, x in rel_evx.items():
     ev_r = ebitda26 * x
     rel[k] = ((ev_r + BR_ASSOC + BR_LISTED_EQUITY + BR_FUNDS - net_debt)
               * (1.0 - BR_NCI_SHARE) / SH)
+# The traded multiple, computed so the circularity check is arithmetic rather than a
+# sentence: a record that only asserts non-circularity in prose has switched the check off.
+TRADED_EVX = (COCRUN.SPOT * SH + net_debt) / hist['ebitda']['FY25']
+BOOK_PS = 84_986.806 / SH        # equity attributable, 30 June 2026 reviewed sheet
 norm_pat = 14400.0
 norm_eps = norm_pat / SH
 norm = dict(bear=(13600/SH)*13.5, base=norm_eps*15.0, bull=(15200/SH)*16.5)
-dcf_lens = dict(bear=dcf_ps_at(WACC + 0.010, 0.020, -0.005, +0.010),
-                base=dcf_ps, bull=dcf_ps_at(WACC - 0.007, 0.030, +0.004, -0.007))
+# THE RANGE IS FLEXED IN OBSERVABLE UNITS AND THE MACRO PATH STANDS STILL [R-LENS-03,
+# R-MACRO-01]. The delivered study's bear and bull moved the cost of capital by 100 and 70
+# basis points AND terminal growth between 2.0% and 3.0% AND the margin AND capex, all at
+# once. Terminal growth and the terminal risk-free rate are DERIVED from one house path and
+# carry the same terminal inflation, so the corners of such a range are internally
+# contradictory — each one is an economy nothing describes — and its width is chosen rather
+# than observed.
+#
+# What moves instead is the one driver this company publishes a band for: CAPITAL
+# INTENSITY. Management guides capital expenditure to 15.0-17.5% of revenue and the base
+# path opens at 16.5% and declines to 15.0%, so the bear takes the top of that band and the
+# bull the bottom. One inflation, one currency, one price of time, across all three.
+CAPEX_GUIDANCE_LOW, CAPEX_GUIDANCE_BASE, CAPEX_GUIDANCE_HIGH = 0.150, 0.165, 0.175
+CAPEX_BEAR_SHIFT = CAPEX_GUIDANCE_HIGH - CAPEX_GUIDANCE_BASE      # +1.0pp of revenue
+CAPEX_BULL_SHIFT = CAPEX_GUIDANCE_LOW - CAPEX_GUIDANCE_BASE       # -1.5pp of revenue
+dcf_lens = dict(bear=dcf_ps_at(WACC, TG, 0.0, CAPEX_BEAR_SHIFT),
+                base=dcf_ps,
+                bull=dcf_ps_at(WACC, TG, 0.0, CAPEX_BULL_SHIFT))
 def ddm_at(ke, g, dps_path):
     pv = sum(dps_path[i] / (1 + ke) ** (i + 1) for i in range(5))
     tv_ = dps_path[-1] * (1 + g) / (ke - g)
@@ -456,13 +492,31 @@ def ddm_at(ke, g, dps_path):
 ddm_lens = dict(bear=ddm_at(KE + 0.005, 0.020, [2.20, 2.20, 2.20, 2.20, 2.20]),
                 base=ddm_ps,
                 bull=ddm_at(KE - 0.005, 0.0325, [2.20, 2.20, 2.35, 2.55, 2.75]))
-weights = dict(dcf=0.35, ddm=0.25, relative=0.20, normalized=0.20)
-central = (weights['dcf'] * dcf_lens['base'] + weights['ddm'] * ddm_lens['base']
-           + weights['relative'] * rel['base'] + weights['normalized'] * norm['base'])
-central_bear = (weights['dcf'] * dcf_lens['bear'] + weights['ddm'] * ddm_lens['bear']
-                + weights['relative'] * rel['bear'] + weights['normalized'] * norm['bear'])
-central_bull = (weights['dcf'] * dcf_lens['bull'] + weights['ddm'] * ddm_lens['bull']
-                + weights['relative'] * rel['bull'] + weights['normalized'] * norm['bull'])
+# ===== ONE CLASS PRIMARY IS THE CENTRAL [R-LENS-03] =========================
+# The delivered study published a BLEND of four lenses at typed weights — 35% cash flow,
+# 25% dividend discount, 20% relative multiple, 20% normalised earnings — that nobody chose
+# on evidence and no out-of-sample test ever cleared. A number produced by averaging several
+# methods is not more robust than the best of them: it is a NEW method with free parameters
+# nobody tested, and it imports every weakness of the weakest lens at whatever weight
+# somebody typed.
+#
+# LENS_REGISTRY gives a telecom operator a CASH-FLOW primary, cross-checked on an
+# EV/EBITDA multiple from its own history and on book value. The dividend-discount and
+# normalised-earnings reads are not permitted cross-checks for this class and come OUT of
+# the answer entirely — they are computed above and published as what they are, nowhere in
+# the central.
+central = dcf_lens['base']
+# THE ENVELOPE IS THE RANGE OF THE PRESENT-VALUE READS ON ONE CLOCK, not the primary's own
+# band. The primary's bear and bull come from the capital-intensity guidance band; the
+# envelope stretches to whatever the cross-checks say as well, because a reader is owed the
+# disagreement between the lenses rather than a spread invented around the answer. Book
+# value is a DISCLOSED FLOOR and is published as such rather than as an end of the range.
+_pv_reads = [dcf_lens['base'], dcf_lens['bear'], dcf_lens['bull'], rel['base']]
+central_bear = min(_pv_reads)
+central_bull = max(_pv_reads)
+# The envelope is the RANGE of the PRESENT-VALUE reads on one clock, never a spread
+# invented around the central and never an average of the lenses.
+weights = None
 
 # ===== Sensitivity grids ======================================================
 wacc_steps = [WACC - 0.010, WACC - 0.005, WACC, WACC + 0.005, WACC + 0.010]
@@ -620,8 +674,64 @@ out = dict(
     ddm=dict(dps=payout_dps, pv_div=pv_div, tv=tv_div, pv_tv=pv_tv_div, ps=ddm_ps,
              tv_pct=ddm_tv_pct, ke=KE, g=tg_div),
     lenses=dict(dcf=dcf_lens, ddm=ddm_lens, relative=rel, normalized=norm,
+                book_value=BOOK_PS, own_history_evx=OWN_HIST_EVX,
                 central=dict(bear=central_bear, base=central, bull=central_bull),
                 weights=weights),
+    lens_record={
+        # 'class' is a Python keyword, so this record is a literal rather than a dict()
+        # call — the gate reads the key 'class' and a record keyed 'cls' reads as a study
+        # with no class at all.
+        'class': 'telecom operator',
+        'primary': dict(
+            kind='dcf', value=central,
+            range=dict(low=central_bear, high=central_bull),
+            range_basis=dict(
+                driver='capital expenditure as a share of revenue',
+                low=CAPEX_GUIDANCE_HIGH, high=CAPEX_GUIDANCE_LOW,
+                macro_held=True,
+                evidence=(
+                    "Management's own guidance band for capital expenditure, 15.0% to "
+                    '17.5% of revenue, against a base path opening at 16.5% and declining '
+                    'to 15.0% by the last explicit year. The bear takes the top of that '
+                    'band and the bull the bottom, and nothing else moves: the cost of '
+                    'capital, the terminal growth, the terminal risk-free rate, the '
+                    'inflation ladder and the margin path are IDENTICAL across all three '
+                    "reads. The delivered study's bear and bull moved the cost of capital "
+                    'by 100 and 70 basis points and terminal growth between 2.0% and 3.0% '
+                    'as well, which makes each corner an economy nothing describes and its '
+                    'width chosen rather than observed.')),
+        ),
+        'cross_checks': [
+            dict(kind='ev_ebitda_own_history', value=rel['base'],
+                 multiple=rel_evx['base'],
+                 multiple_source=(
+                     "the company's own trailing EV/EBITDA at each of the last three "
+                     'financial year ends, computed from that year-end close in the '
+                     'persistent price library, the shares in issue and that year\'s own '
+                     'net debt and EBITDA from the filings: %.3fx, %.3fx and %.3fx, whose '
+                     'mean is adopted and whose lowest and highest are the bear and bull. '
+                     'Never a multiple read off the current price.'
+                     % tuple(d['x'] for d in OWN_HIST_EVX)),
+                 circularity=dict(spot=COCRUN.SPOT, shares=SH, net_debt=net_debt,
+                                  metric_value=hist['ebitda']['FY25'],
+                                  traded_multiple=TRADED_EVX),
+                 note=('The traded multiple today is %.3fx, ABOVE every one of the three '
+                       'years this multiple is built from, so the lens is not anchored on '
+                       'the price and can be seen not to be.' % TRADED_EVX)),
+            dict(kind='book_value', value=BOOK_PS,
+                 note=('Equity attributable to the parent on the reviewed 30 June 2026 '
+                       'sheet, SAR 84,986.806mn over 4,993.024mn shares. A DISCLOSED '
+                       'FLOOR, published as such and never weighted into the answer.')),
+        ],
+        'envelope': dict(low=central_bear, high=central_bull),
+        'central': central,
+        'retired': dict(
+            blend_weights=dict(dcf=0.35, ddm=0.25, relative=0.20, normalized=0.20),
+            retired_value=None,
+            why=('The four-lens blend at typed weights is retired under [R-LENS-03]. The '
+                 'dividend-discount and normalised-earnings reads are not permitted '
+                 'cross-checks for this class and carried 45% of the answer between them.')),
+    },
     rel_basis=dict(ebitda26=ebitda26, np26=np26, eps26=eps26, evx=rel_evx,
                    norm_pat=norm_pat, norm_eps=norm_eps),
     sens=dict(wacc_steps=wacc_steps, g_steps=g_steps, table_wg=sens_wg,
