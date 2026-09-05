@@ -39,6 +39,7 @@ NRM, REL, BV = D['normalised'], D['relative'], D['book_value']
 ALT = D['alt_wacc']['bottom_up_sector_beta']
 FN, FP = FR['normalisation'], FR['prolonged']
 SPOT, FX = D['spot_aed'], D['aed_per_usd']
+BR = D['central_two_sided']['branches']
 SHARES = D['shares_out'] / 1e6
 YF = [r['year'] for r in FN['rows']]
 HYS = ['2023', '2024', '2025']
@@ -103,12 +104,22 @@ P('Borouge is a low-cost polyolefin producer in the middle of the worst polyolef
   'market in a generation, and it is also, right now, a company whose shipping lane was '
   'shut for half a year. Those two facts pull in different directions and the study '
   'keeps them separate.', size=11)
-P(f'On the four valuation lenses the study runs, the field spans {px(D["fair_low"])} to '
-  f'{px(D["fair_high"])} dirhams a share, with a median of {px(D["fair_mid"])} against a '
-  f'close of {px(SPOT)}. That is not a narrow answer and the study does not pretend '
-  f'otherwise. The width is not noise — it is almost entirely one disagreement, about '
-  f'how risky this share really is, and the study prices that disagreement rather than '
-  f'resolving it.')
+P(f'The answer is the cash-flow lens and it has TWO SIDES, because one question decides '
+  f'it: is navigation through the Strait of Hormuz restored during 2026, or does the '
+  f'disruption persist into 2027? Carried through to a normalising lane the shares are '
+  f'worth {px(BR[0]["value"])} dirhams; if the disruption persists, {px(BR[1]["value"])} '
+  f'— a difference of {px(D["central_two_sided"]["gap_per_share"])} dirhams a share '
+  f'against a close of {px(SPOT)}. The study publishes both rather than averaging them, '
+  f'because the average describes a shipping lane that is neither open nor closed.')
+P(f'The other lenses are published beside it as cross-checks and span '
+  f'{px(D["field_low"])} to {px(D["field_high"])} dirhams. That width is not noise and it '
+  f'is not the answer either — it is almost entirely one disagreement, about how risky '
+  f'this share really is, and the study prices that disagreement rather than resolving '
+  f'it. A previous edition published the MEDIAN of those readings as its central, '
+  f'{px(D["fair_mid_retired"])} dirhams. That number is retired and is shown unused: the '
+  f'readings do not spread, they fall into two blocks according to which cost of capital '
+  f'is used, so the median did not average them — it picked one of them, and which one it '
+  f'picked depended on how many lenses happened to have been computed each way.')
 P(f'The operating picture underneath is more settled than the valuation range suggests. '
   f'Borouge earned an EBITDA margin of {pc(H["2025"]["ebitda"] / H["2025"]["revenue"])} '
   f'in 2025 while nine of its eleven listed peers lost money. It does that on advantaged '
@@ -176,8 +187,13 @@ rows.append(['Normalised earnings power',
 rows.append(['Relative multiples', px(LEN_['relative_multiples']),
              px(LEN_['relative_multiples']), '—',
              'Three through-cycle multiples; unaffected by the risk debate'])
-rows.append(['The field', px(D['fair_low']) + ' low', px(D['fair_high']) + ' high', '',
-             f'Median {px(D["fair_mid"])} against a close of {px(SPOT)}'])
+rows.append(['THE ANSWER — the cash-flow lens', px(BR[1]['value']) + ' if impaired',
+             px(BR[0]['value']) + ' if it normalises', '',
+             f'Published both ways against a close of {px(SPOT)}, never averaged'])
+rows.append(['The cross-checks', px(D['field_low']) + ' low',
+             px(D['field_high']) + ' high', '',
+             f'Beside the answer, never weighted into it; the retired median of the '
+             f'nine readings was {px(D["fair_mid_retired"])}'])
 table(rows, [1.72, 1.06, 1.16, 1.20, 1.86], band_rows={6}, size=8.9)
 caption('Table 1 — The summary valuation. The terminal-value share is shown against the '
         'two cash-flow lenses because that is where it applies; the other three lenses do '
@@ -399,11 +415,19 @@ P(f'On that basis mid-cycle EBITDA is ${m(NRM["ebitda"])}m and mid-cycle NOPAT '
   f'{pc(W["wacc_bottom_up"], 2)} it gives '
   f'{px(LEN_["normalised_earnings_sector_beta"])}.')
 
-H2('1.5  The four lenses in one field')
-P(f'The four lenses across both costs of capital span {px(D["fair_low"])} to '
-  f'{px(D["fair_high"])} dirhams, median {px(D["fair_mid"])}, against a close of '
-  f'{px(SPOT)}. Read column by column they agree closely; read across columns they do '
-  f'not. That is the honest shape of the answer and Figure 1 draws it as such.')
+H2('1.5  The answer, and the field around it')
+P(f'The answer is the cash-flow lens on the adopted cost of capital, and it is stated on '
+  f'both sides of the shipping-lane judgement: {px(BR[0]["value"])} dirhams if navigation '
+  f'normalises during 2026, {px(BR[1]["value"])} if the disruption persists. The other '
+  f'lenses are cross-checks and span {px(D["field_low"])} to {px(D["field_high"])} '
+  f'dirhams against a close of {px(SPOT)}.')
+P(f'Read column by column those cross-checks agree closely; read across columns they do '
+  f'not, and the reason is one number — which cost of capital the reading uses. That is '
+  f'why an average across them is not a valuation: the readings fall into two blocks '
+  f'rather than spreading, so anything computed across the field picks a block rather '
+  f'than balancing the two. A previous edition published the MEDIAN of the nine readings, '
+  f'{px(D["fair_mid_retired"])} dirhams, as its central. It is retired and shown unused. '
+  f'Figure 1 draws the field as it is.')
 
 H2('1.6  The drivers, and what each one is built on')
 P('Every forecast driver below is built from something disclosed. Where nothing is '
@@ -821,7 +845,7 @@ bullet(f'The evidence in Section 3 says these bands have been too WIDE on this s
        f'{pc(BT["full"]["cov90"], 0)} of past outcomes landed inside a band meant to hold '
        f'90%. A reader should treat the edges as conservative rather than as a tight '
        f'boundary.', bold_head='On this share specifically, the bands are generous. ')
-bullet(f'A fair-value range of {px(D["fair_low"])} to {px(D["fair_high"])} and a '
+bullet(f'A fair-value range of {px(BR[1]["value"])} to {px(BR[0]["value"])} and a '
        f'three-month band of {px(h3m["pct"]["p5"])} to {px(h3m["pct"]["p95"])} are '
        f'answers to different questions. The first is about the business over years; the '
        f'second is about the share price over weeks. Nothing in this study claims the '

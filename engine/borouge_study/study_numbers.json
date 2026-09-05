@@ -5,12 +5,12 @@
  "company": "Borouge plc",
  "reporting_currency": "USD",
  "listing_currency": "AED",
- "spot_aed": 2.4,
- "spot_usd": 0.6535057862491491,
- "spot_date": "2026-08-07",
+ "spot_aed": 2.35,
+ "spot_usd": 0.6398910823689585,
+ "spot_date": "2026-09-03",
  "aed_per_usd": 3.6725,
  "shares_out": 30057691583.0,
- "mktcap_usd": 19642.875370782847,
+ "mktcap_usd": 19233.648800558203,
  "net_debt": 3275.0,
  "leases": 222.68,
  "nci_value": 26.832,
@@ -189,13 +189,13 @@
   "crp": 0.0064,
   "beta_own": 0.41528940171777734,
   "beta_used": 0.41528940171777734,
-  "beta_bottom_up": 1.0182347577122213,
+  "beta_bottom_up": 1.0205354972380132,
   "sector_unlevered": 1.0021,
-  "de_ratio": 0.16672711800998807,
+  "de_ratio": 0.1702745034995623,
   "ke_own": 0.06442459386365576,
-  "ke_bottom_up": 0.09378803270058518,
+  "ke_bottom_up": 0.09390007871549125,
   "ke_own_ds": 0.06351095717987665,
-  "ke_bu_ds": 0.0915479162336183,
+  "ke_bu_ds": 0.09165490062156761,
   "sofr": 0.0365,
   "kd_related_party": 0.05523714285714286,
   "kd": 0.0555,
@@ -203,24 +203,24 @@
   "margin_arms": 0.009,
   "margin_related": 0.008737142857142857,
   "sovereign_usd": 0.0507,
-  "equity_weight": 0.857098446212201,
-  "debt_weight": 0.142901553787799,
+  "equity_weight": 0.8545003732112617,
+  "debt_weight": 0.1454996267887383,
   "tax": 0.2873603961007691,
-  "wacc_own": 0.060870189819571104,
-  "wacc_bottom_up": 0.08603754762215031,
-  "wacc_own_ds": 0.06008711323750156,
-  "wacc_bu_ds": 0.08411754727897863,
-  "wacc": 0.060870189819571104,
-  "mktcap": 19642.875370782847
+  "wacc_own": 0.060805567700800596,
+  "wacc_bottom_up": 0.08599238050727691,
+  "wacc_own_ds": 0.06002486481353184,
+  "wacc_bu_ds": 0.08407387498809342,
+  "wacc": 0.060805567700800596,
+  "mktcap": 19233.648800558203
  },
  "grid_2x2": {
   "own_stock_beta": {
-   "normalisation": 2.549854919607749,
-   "prolonged": 2.348085070915562
+   "normalisation": 2.5542948237696477,
+   "prolonged": 2.35239131496106
   },
   "bottom_up_sector_beta": {
-   "normalisation": 1.4769944608534211,
-   "prolonged": 1.31003678279902
+   "normalisation": 1.4781943678941736,
+   "prolonged": 1.3111934788739366
   }
  },
  "working_capital": {
@@ -390,8 +390,8 @@
      "nwc": 579.4618086573954,
      "d_nwc": 24.477562856787586,
      "fcff": 1318.528296973831,
-     "discount_factor": 0.9426223958372101,
-     "pv_fcff": 1242.874302272629,
+     "discount_factor": 0.9426798184773943,
+     "pv_fcff": 1242.9500156485988,
      "ppe_close": 5982.232
     },
     {
@@ -426,8 +426,8 @@
      "nwc": 571.3682208273409,
      "d_nwc": -8.093587830054503,
      "fcff": 1335.46682255314,
-     "discount_factor": 0.8885369811338819,
-     "pv_fcff": 1186.6116589158246,
+     "discount_factor": 0.8886452401645731,
+     "pv_fcff": 1186.7562352595544,
      "ppe_close": 5908.808533088511
     },
     {
@@ -462,8 +462,8 @@
      "nwc": 541.0329464651995,
      "d_nwc": -30.335274362141377,
      "fcff": 1257.70736074478,
-     "discount_factor": 0.8375548579463817,
-     "pv_fcff": 1053.398909866713,
+     "discount_factor": 0.8377079336891403,
+     "pv_fcff": 1053.591434355132,
      "ppe_close": 5840.213784773187
     },
     {
@@ -498,8 +498,8 @@
      "nwc": 546.3946612650782,
      "d_nwc": 5.361714799878655,
      "fcff": 1235.512246949442,
-     "discount_factor": 0.7894979668425125,
-     "pv_fcff": 975.4344069756087,
+     "discount_factor": 0.789690362867152,
+     "pv_fcff": 975.6721146203151,
      "ppe_close": 5776.130192777802
     },
     {
@@ -534,22 +534,22 @@
      "nwc": 555.415961811263,
      "d_nwc": 9.021300546184762,
      "fcff": 1259.6043690109532,
-     "discount_factor": 0.7441984650136955,
-     "pv_fcff": 937.3956379424958,
+     "discount_factor": 0.7444251679209546,
+     "pv_fcff": 937.6811939149469,
      "ppe_close": 5716.2610794143
     }
    ],
-   "pv_explicit": 5395.714915973271,
+   "pv_explicit": 5396.6509937985475,
    "terminal_nopat": 1232.9316873175085,
    "reinvestment_rate": 0.16666666666666669,
    "terminal_roc": 0.12,
    "terminal_growth": 0.02,
    "terminal_fcff": 1027.4430727645904,
-   "terminal_value": 25139.18034881719,
-   "pv_terminal": 18708.53942729221,
-   "ev_core": 24104.25434326548,
-   "ev": 24393.879666430217,
-   "tv_share_of_ev": 0.7669357922199672,
+   "terminal_value": 25178.99224679656,
+   "pv_terminal": 18743.875531401944,
+   "ev_core": 24140.52652520049,
+   "ev": 24430.21820147622,
+   "tv_share_of_ev": 0.7672414293159824,
    "b4": {
     "steady_from_cumulative": 400.0,
     "steady_from_accretion": 120.82559783314203,
@@ -559,45 +559,45 @@
       "year": 2026,
       "ramp": 0.1,
       "net_profit": 12.082559783314203,
-      "pv": 11.389291450793955
+      "pv": 11.389985263276898
      },
      {
       "year": 2027,
       "ramp": 0.3,
       "net_profit": 36.24767934994261,
-      "pv": 32.20740358270696
+      "pv": 32.211327721338186
      },
      {
       "year": 2028,
       "ramp": 0.6,
       "net_profit": 72.49535869988522,
-      "pv": 60.71883985765435
+      "pv": 60.729937138533884
      },
      {
       "year": 2029,
       "ramp": 1.0,
       "net_profit": 120.82559783314203,
-      "pv": 95.39156383179672
+      "pv": 95.4148101964945
      },
      {
       "year": 2030,
       "ramp": 1.0,
       "net_profit": 120.82559783314203,
-      "pv": 89.91822444178638
+      "pv": 89.94561595608648
      }
     ],
-    "pv_explicit": 289.62532316473835,
+    "pv_explicit": 289.69167627572995,
     "pv_terminal": 0.0,
-    "value": 289.62532316473835,
-    "share_of_ev": 0.011872868404910104
+    "value": 289.69167627572995,
+    "share_of_ev": 0.011857924226735931
    },
    "net_debt": 3275.0,
    "leases": 222.68,
    "nci": 26.832,
-   "equity": 20869.36766643022,
-   "per_share_usd": 0.6943103933581345,
-   "per_share_aed": 2.549854919607749,
-   "wacc": 0.060870189819571104,
+   "equity": 20905.70620147622,
+   "per_share_usd": 0.6955193529665481,
+   "per_share_aed": 2.5542948237696477,
+   "wacc": 0.060805567700800596,
    "tax": 0.2873603961007691
   },
   "prolonged": {
@@ -636,8 +636,8 @@
      "nwc": 540.2997930250065,
      "d_nwc": -14.684452775601358,
      "fcff": 1149.4064284957726,
-     "discount_factor": 0.9426223958372101,
-     "pv_fcff": 1083.456241419376,
+     "discount_factor": 0.9426798184773943,
+     "pv_fcff": 1083.5222433711451,
      "ppe_close": 5982.232
     },
     {
@@ -672,8 +672,8 @@
      "nwc": 481.31222152820305,
      "d_nwc": -58.98757149680341,
      "fcff": 853.7762233920912,
-     "discount_factor": 0.8885369811338819,
-     "pv_fcff": 758.6117480966955,
+     "discount_factor": 0.8886452401645731,
+     "pv_fcff": 758.7041770830672,
      "ppe_close": 5908.808533088511
     },
     {
@@ -708,8 +708,8 @@
      "nwc": 493.5977401356107,
      "d_nwc": 12.285518607407653,
      "fcff": 844.0037882958001,
-     "discount_factor": 0.8375548579463817,
-     "pv_fcff": 706.8994730122969,
+     "discount_factor": 0.8377079336891403,
+     "pv_fcff": 707.0286695190813,
      "ppe_close": 5840.213784773187
     },
     {
@@ -744,8 +744,8 @@
      "nwc": 533.182845764171,
      "d_nwc": 39.585105628560314,
      "fcff": 1054.139441673257,
-     "discount_factor": 0.7894979668425125,
-     "pv_fcff": 832.2409459695376,
+     "discount_factor": 0.789690362867152,
+     "pv_fcff": 832.4437582075312,
      "ppe_close": 5776.130192777802
     },
     {
@@ -780,22 +780,22 @@
      "nwc": 551.9121167223377,
      "d_nwc": 18.729270958166694,
      "fcff": 1218.7529137794818,
-     "discount_factor": 0.7441984650136955,
-     "pv_fcff": 906.9940476656591,
+     "discount_factor": 0.7444251679209546,
+     "pv_fcff": 907.2703424944434,
      "ppe_close": 5716.2610794143
     }
    ],
-   "pv_explicit": 4288.202456163565,
+   "pv_explicit": 4288.969190675269,
    "terminal_nopat": 1201.1653328016291,
    "reinvestment_rate": 0.16666666666666669,
    "terminal_roc": 0.12,
    "terminal_growth": 0.02,
    "terminal_fcff": 1000.9711106680242,
-   "terminal_value": 24491.472026114716,
-   "pv_terminal": 18226.515887760434,
-   "ev_core": 22514.718343924,
-   "ev": 22742.488003329243,
-   "tv_share_of_ev": 0.8014301638893808,
+   "terminal_value": 24530.25817475357,
+   "pv_terminal": 18260.941560885294,
+   "ev_core": 22549.910751560565,
+   "ev": 22777.732592955028,
+   "tv_share_of_ev": 0.8017014637590951,
    "b4": {
     "steady_from_cumulative": 400.0,
     "steady_from_accretion": 95.02071491944866,
@@ -805,45 +805,45 @@
       "year": 2026,
       "ramp": 0.1,
       "net_profit": 9.502071491944866,
-      "pv": 8.956865395153523
+      "pv": 8.95741102918581
      },
      {
       "year": 2027,
       "ramp": 0.3,
       "net_profit": 28.5062144758346,
-      "pv": 25.32882575391304
+      "pv": 25.33191180906087
      },
      {
       "year": 2028,
       "ramp": 0.6,
       "net_profit": 57.0124289516692,
-      "pv": 47.75103683179348
+      "pv": 47.75976405170172
      },
      {
       "year": 2029,
       "ramp": 1.0,
       "net_profit": 95.02071491944866,
-      "pv": 75.01866123682672
+      "pv": 75.03694284463562
      },
      {
       "year": 2030,
       "ramp": 1.0,
       "net_profit": 95.02071491944866,
-      "pv": 70.71427018755764
+      "pv": 70.73581165987973
      }
     ],
-    "pv_explicit": 227.7696594052444,
+    "pv_explicit": 227.82184139446377,
     "pv_terminal": 0.0,
-    "value": 227.7696594052444,
-    "share_of_ev": 0.010015160143072363
+    "value": 227.82184139446377,
+    "share_of_ev": 0.010001954341360881
    },
    "net_debt": 3275.0,
    "leases": 222.68,
    "nci": 26.832,
-   "equity": 19217.976003329244,
-   "per_share_usd": 0.6393696585202348,
-   "per_share_aed": 2.348085070915562,
-   "wacc": 0.060870189819571104,
+   "equity": 19253.22059295503,
+   "per_share_usd": 0.6405422232705404,
+   "per_share_aed": 2.35239131496106,
+   "wacc": 0.060805567700800596,
    "tax": 0.2873603961007691
   }
  },
@@ -970,19 +970,115 @@
   }
  },
  "lenses": {
-  "dcf_normalisation_own_beta": 2.549854919607749,
-  "dcf_prolonged_own_beta": 2.348085070915562,
-  "dcf_normalisation_sector_beta": 1.4769944608534211,
-  "dcf_prolonged_sector_beta": 1.31003678279902,
+  "dcf_normalisation_own_beta": 2.5542948237696477,
+  "dcf_prolonged_own_beta": 2.35239131496106,
+  "dcf_normalisation_sector_beta": 1.4781943678941736,
+  "dcf_prolonged_sector_beta": 1.3111934788739366,
   "book_value_own_beta": 2.3897784314647748,
-  "book_value_sector_beta": 1.4387825824377205,
-  "relative_multiples": 1.4598686181140186,
-  "normalised_earnings_own_beta": 2.34582322793206,
-  "normalised_earnings_sector_beta": 1.3011839069629867
+  "book_value_sector_beta": 1.4366011252934185,
+  "relative_multiples": 1.4598767252502383,
+  "normalised_earnings_own_beta": 2.350172251760281,
+  "normalised_earnings_sector_beta": 1.302353098942028
  },
- "fair_low": 1.3011839069629867,
- "fair_mid": 1.4769944608534211,
- "fair_high": 2.549854919607749,
+ "spot": 2.35,
+ "central_two_sided": {
+  "question": "Is navigation through the Strait of Hormuz restored during 2026, or does the disruption persist into 2027?",
+  "decides": "Whether the plant runs at the utilisation it has demonstrated or stays capped by feedstock and logistics, and whether the benchmark price holds a shortage premium or reverts.",
+  "branches": [
+   {
+    "label": "Cash-flow lens, navigation normalises during 2026",
+    "value": 2.5542948237696477,
+    "condition": "Navigation through the Strait of Hormuz is restored during the second half of 2026, on the basis of the United States-Iran memorandum signed on 18 June 2026 and the Energy Information Administration's July expectation that most shut-in production returns by the end of 2026. Utilisation returns to the high-capacity rates the plant demonstrated in 2024 and 2025, benchmark prices give back the shortage premium over 2027, realised premia revert to the company's own through-the-cycle guidance, and freight returns to the cost of the direct route. Prices settle BELOW the 2023-2024 level, not back at it, because the structural oversupply is untouched by the war: global polyethylene capacity still rises 22% to 2034 and the producer consensus on a return to healthy operating rates has moved out to 2032."
+   },
+   {
+    "label": "Cash-flow lens, disruption persists into 2027",
+    "value": 2.35239131496106,
+    "condition": "Navigation remains impaired into 2027 and normalises only slowly thereafter. Utilisation stays capped by feedstock and logistics, benchmark prices hold a persistent shortage premium, Borouge's own premia stay above guidance because differentiated grades are scarce, and distribution cost per tonne stays at the elevated level the second quarter of 2026 established. The binding constraint is feedstock, not export capacity: management stated on the July call that it shipped every tonne it made without the strait, and that ethane availability was what capped production."
+   }
+  ],
+  "gap_per_share": 0.20190350880858787,
+  "why_not_averaged": "the judgement is binary and about the world rather than about the model, so an average describes a shipping lane that is neither open nor closed. The previous edition published the MEDIAN OF NINE LENS READINGS, which averaged across this judgement AND across the beta construction at the same time, and which cell it landed on was decided by how many lenses happened to have been computed under each framing rather than by any valuation choice.",
+  "both_sides_vs_spot": [
+   {
+    "label": "navigation normalises",
+    "pct": 8.693396756155213
+   },
+   {
+    "label": "disruption persists",
+    "pct": 0.10175808344934367
+   }
+  ]
+ },
+ "lens_record": {
+  "lens_class": "petrochemical",
+  "class": "petrochemical",
+  "primary": {
+   "kind": "dcf",
+   "value": 2.5542948237696477,
+   "range": {
+    "low": 2.35239131496106,
+    "high": 2.5542948237696477
+   },
+   "range_note": "the cash-flow lens across the contested judgement itself \u2014 the two Hormuz framings on the adopted own-stock beta, present values on one clock, never averaged",
+   "range_basis": {
+    "driver": "polyethylene plant utilisation against nameplate in the first forecast year, and the shipping-and-distribution cost per tonne that moves with it",
+    "low": 0.8,
+    "high": 0.86,
+    "units": "fraction of nameplate capacity",
+    "macro_held": true,
+    "sanctioned_framing": "depth-bar standard 8 \u2014 the study's single most consequential CONTESTED JUDGEMENT computed both ways and published side by side, never averaged into one number. The judgement is about the world rather than about the model: whether navigation through the Strait of Hormuz is restored during 2026.",
+    "evidence": "BOTH ENDS ARE THE COMPANY'S OWN DEMONSTRATED RANGE, not a nudge either side of a base case. The high end is the utilisation this plant has actually run at in an unimpaired year; the low end is the rate it ran while feedstock and logistics were capped. The shipping-and-distribution cost moves with it on the same evidence \u2014 172 US$ a tonne in the impaired year against 150 in the normalising one \u2014 and it decays to the same terminal figure in both, because a blockade is an event rather than a permanent state. THE MACRO PATH STANDS STILL ACROSS THE RANGE: the benchmark price ladder, the premium ladder, the cost of capital, the terminal growth and the terminal rate are IDENTICAL in the two framings, which is what makes this a range about the world rather than a grid of dials."
+   },
+   "note": "the cash-flow lens on the company's own tonnes, its disclosed costs and the adopted tier-1 own-stock beta. Published TWO-SIDED: the value is stated for each branch of the shipping-lane judgement rather than as one number."
+  },
+  "cross_checks": [
+   {
+    "kind": "relative_multiple",
+    "value": 1.4598767252502383,
+    "present_value": false,
+    "multiple": 8.655,
+    "multiple_source": "the median of three THROUGH-CYCLE anchors \u2014 LyondellBasell's own ten-year median EV/EBITDA, Industries Qatar's current multiple and Damodaran's global Chemical (Diversified) sector figure. The naive peer median is REJECTED because 9 of 11 listed peers are loss-making and 2 have an undefined EV/EBITDA. Never a multiple read off this company's own traded price.",
+    "circularity": {
+     "spot": 2.35,
+     "shares": 30057.691583,
+     "net_debt": 3524.5119999999997,
+     "metric_value": 1754.2723545029498
+    }
+   },
+   {
+    "kind": "book_value",
+    "value": 2.3897784314647748,
+    "present_value": false,
+    "note": "a DISCLOSED FLOOR on the sustainable return, never weighted into the answer: justified price-to-book from a sustainable return on equity of 25.32% against the cost of equity on the adopted beta."
+   }
+  ],
+  "envelope": {
+   "low": 2.35239131496106,
+   "high": 2.5542948237696477
+  },
+  "central": 2.5542948237696477,
+  "retired": {
+   "construction": "the median of nine lens readings across two orthogonal framings",
+   "value": 1.4781943678941736,
+   "why": "it was not a weighted blend and it is caught by [R-LENS-03] for the reason the rule gives. The nine readings CLUSTER in two blocks of four, one per beta construction, so the median averaged nothing \u2014 it SELECTED one cell of the grid, and which cell was decided by how many lenses happened to have been computed under each framing. One more own-beta lens moves it to 1.91, one fewer sector lens to 1.90. The free parameter was not even a weight somebody chose; it was a count."
+  },
+  "diagnostics": {
+   "normalised_earnings_own_beta": 2.350172251760281,
+   "normalised_earnings_sector_beta": 1.302353098942028,
+   "normalised_earnings_disposition": "REMOVED FROM THE ANSWER. Normalised earnings appears in no row of the lens registry, so it is not a permitted cross-check for any class; carried here as a diagnostic so the figure that was in the retired median stays visible.",
+   "sector_beta_framing": {
+    "normalisation": 1.4781943678941736,
+    "prolonged": 1.3111934788739366,
+    "disposition": "a LABELLED CROSS-CHECK on an adopted figure, not a branch. SIGCM clause 6 is a strict preference order and this study's beta record adopts the tier-1 own-stock regression on its merits \u2014 n=215, R-squared 0.094 against the 0.05 floor, SE 0.088 against |beta| 0.415, all three usability conditions met. Its weakness (R-squared below the 10% weak-instrument threshold) is disclosed rather than hidden, and it is the reason the bottom-up construction was built at all. A quantity a rule decides is not a contested judgement, however much value it moves."
+   },
+   "book_value_floor": 2.3897784314647748
+  }
+ },
+ "fair_low": 2.35239131496106,
+ "fair_high": 2.5542948237696477,
+ "fair_mid_retired": 1.4781943678941736,
+ "field_low": 1.302353098942028,
+ "field_high": 2.5542948237696477,
  "book_value": {
   "bvps_usd": 0.12396151546472536,
   "roe_hist": [
@@ -993,8 +1089,8 @@
   "roe_sustainable": 0.25320208114182485,
   "justified_pb": 5.2493914037244584,
   "value_aed": 2.3897784314647748,
-  "justified_pb_sector_beta": 3.160432289719732,
-  "value_aed_sector_beta": 1.4387825824377205
+  "justified_pb_sector_beta": 3.155640497212895,
+  "value_aed_sector_beta": 1.4366011252934185
  },
  "relative": {
   "triangulation": {
@@ -1004,9 +1100,9 @@
   },
   "median_ev_ebitda": 8.655,
   "midcycle_ebitda": 1754.2723545029498,
-  "ev": 15472.852551387768,
-  "equity": 11948.340551387768,
-  "value_aed": 1.4598686181140186
+  "ev": 15472.91890449876,
+  "equity": 11948.40690449876,
+  "value_aed": 1.4598767252502383
  },
  "normalised": {
   "util_pe": 1.06,
@@ -1022,18 +1118,18 @@
   "da": 400.0,
   "ebit": 1543.9436607020775,
   "nopat": 1100.275398805457,
-  "ev": 22723.975878398738,
-  "equity": 19199.46387839874,
-  "value_aed": 2.34582322793206,
-  "value_aed_sector_beta": 1.3011839069629867
+  "ev": 22759.570600499705,
+  "equity": 19235.058600499706,
+  "value_aed": 2.350172251760281,
+  "value_aed_sector_beta": 1.302353098942028
  },
  "sensitivity": {
   "wacc_grid": [
-   0.0508701898195711,
-   0.055870189819571106,
-   0.060870189819571104,
-   0.0658701898195711,
-   0.0708701898195711
+   0.050805567700800594,
+   0.0558055677008006,
+   0.060805567700800596,
+   0.0658055677008006,
+   0.0708055677008006
   ],
   "g_grid": [
    0.01,
@@ -1045,76 +1141,76 @@
   "grids": {
    "normalisation": [
     [
-     2.893894044153059,
-     3.1366329695082693,
-     3.456448615077962,
-     3.8980314454965534,
-     4.548899005574333
+     2.8989602025475087,
+     3.1427894928121733,
+     3.464210661588403,
+     3.908325533070411,
+     4.563591464781581
     ],
     [
-     2.5449976143681523,
-     2.7190480218000452,
-     2.9403135118701047,
-     3.2317361605328987,
-     3.633994346502716
+     2.549023446208399,
+     2.7237956186149046,
+     2.9460692659008405,
+     3.238974042098614,
+     3.643565697113109
     ],
     [
-     2.264351045241041,
-     2.392041742172137,
-     2.549854919607749,
-     2.7503870318694346,
-     3.0143954512356355
+     2.267627983906301,
+     2.395815594658295,
+     2.5542948237696477,
+     2.755755716520112,
+     3.021127118008359
     ],
     [
-     2.0336405376399926,
-     2.1289186231316295,
-     2.243992778539845,
-     2.3861284716801685,
-     2.5666421485492172
+     2.03636047970787,
+     2.1319914799711106,
+     2.247523228457307,
+     2.3902711784284536,
+     2.5716369930472642
     ],
     [
-     1.8405692865639587,
-     1.9125389747201216,
-     1.9977973901989965,
-     2.100690076601443,
-     2.22768908764244
+     1.8428637256569258,
+     1.9150904304616554,
+     2.000673093907594,
+     2.1039854065671797,
+     2.2315447324470754
     ]
    ],
    "prolonged": [
     [
-     2.6802235010882014,
-     2.9167082837062632,
-     3.2282839129949283,
-     3.6584894084942428,
-     4.292587434729233
+     2.6851391405575815,
+     2.9226861949485343,
+     3.2358259813081363,
+     3.6684982801006827,
+     4.30688135438915
     ],
     [
-     2.3418486227941155,
-     2.5114146398879305,
-     2.7269792480097075,
-     3.010893422953637,
-     3.40278746930901
+     2.345751105715478,
+     2.516020291585677,
+     2.7325670818592966,
+     3.017925197479032,
+     3.4120925912959588
     ],
     [
-     2.069937173674011,
-     2.1943379333045914,
-     2.348085070915562,
-     2.5434504945152154,
-     2.800656764880761
+     2.073110415905884,
+     2.1979952864253254,
+     2.35239131496106,
+     2.548661589118437,
+     2.807195724515817
     ],
     [
-     1.8466478761721872,
-     1.9394711318687474,
-     2.0515804138343268,
-     2.190053995874659,
-     2.365916756952206
+     1.849278821583429,
+     1.9424458992398297,
+     2.055000984446136,
+     2.1940710485848043,
+     2.3707639921731225
     ],
     [
-     1.6600014001267371,
-     1.7301167968798299,
-     1.8131785383017205,
-     1.9134202055220242,
-     2.037147100476304
+     1.6622181461547783,
+     1.7325839375496723,
+     1.8159615727240521,
+     1.9166120545753622,
+     2.0408848279159812
     ]
    ]
   },
@@ -1122,45 +1218,45 @@
    "normalisation": [
     [
      -100,
-     1.6106507974803603
+     1.6136521558132597
     ],
     [
      -50,
-     2.080252858544056
+     2.0839734897914557
     ],
     [
      0,
-     2.549854919607749
+     2.5542948237696477
     ],
     [
      50,
-     3.019456980671444
+     3.0246161577478423
     ],
     [
      100,
-     3.4890590417351404
+     3.4949374917260387
     ]
    ],
    "prolonged": [
     [
      -100,
-     1.4255725266177968
+     1.4284498332134243
     ],
     [
      -50,
-     1.8868287987666774
+     1.8904205740872406
     ],
     [
      0,
-     2.348085070915562
+     2.35239131496106
     ],
     [
      50,
-     2.8093413430644443
+     2.8143620558348768
     ],
     [
      100,
-     3.270597615213326
+     3.276332796708694
     ]
    ]
   },
@@ -1168,45 +1264,45 @@
    "normalisation": [
     [
      -0.1,
-     2.0266913916077964
+     2.0303368279058156
     ],
     [
      -0.05,
-     2.2882731556077753
+     2.292315825837734
     ],
     [
      0.0,
-     2.549854919607749
+     2.5542948237696477
     ],
     [
      0.05,
-     2.811436683607727
+     2.8162738217015644
     ],
     [
      0.1,
-     3.073018447607703
+     3.0782528196334806
     ]
    ],
    "prolonged": [
     [
      -0.1,
-     1.8360393142341613
+     1.8395588146253472
     ],
     [
      -0.05,
-     2.09206219257486
+     2.095975064793202
     ],
     [
      0.0,
-     2.348085070915562
+     2.35239131496106
     ],
     [
      0.05,
-     2.6041079492562607
+     2.608807565128914
     ],
     [
      0.1,
-     2.86013082759696
+     2.8652238152967686
     ]
    ]
   }
@@ -1215,39 +1311,39 @@
   "own_stock_beta": {
    "beta": 0.41528940171777734,
    "ke": 0.06442459386365576,
-   "wacc": 0.060870189819571104,
+   "wacc": 0.060805567700800596,
    "basis": "Tier-1 own-stock weekly regression against the FTSE ADX General Index \u2014 the company's own local market index, which is what the beta rule asks for. It passes the usability gate on all three conditions.",
    "against": "It is flagged weak by the same machinery: an R-squared of 0.094 and a 90% interval of [0.27, 0.56] spanning 0.70 times the point estimate. A Dimson lead-lag correction moves it DOWN, not up, so thin trading does not explain it. What it most plausibly measures is a share with a 10% free float that has traded in a narrow band, not the risk of a business whose earnings track a global commodity benchmark. It is, however, materially HIGHER than the 0.271 an equal-weight composite of the other listed UAE names produces, because an equal-weight composite over-weights small, thinly traded constituents and understates covariance with any single large name.",
    "value_aed": {
-    "normalisation": 2.549854919607749,
-    "prolonged": 2.348085070915562
+    "normalisation": 2.5542948237696477,
+    "prolonged": 2.35239131496106
    },
    "ev": {
-    "normalisation": 24393.879666430217,
-    "prolonged": 22742.488003329243
+    "normalisation": 24430.21820147622,
+    "prolonged": 22777.732592955028
    },
    "tv_share": {
-    "normalisation": 0.7669357922199672,
-    "prolonged": 0.8014301638893808
+    "normalisation": 0.7672414293159824,
+    "prolonged": 0.8017014637590951
    }
   },
   "bottom_up_sector_beta": {
-   "beta": 1.0182347577122213,
-   "ke": 0.09378803270058518,
-   "wacc": 0.08603754762215031,
+   "beta": 1.0205354972380132,
+   "ke": 0.09390007871549125,
+   "wacc": 0.08599238050727691,
    "basis": "Global Chemical (Basic) unlevered beta corrected for cash, re-levered to Borouge's own market-value capital structure and effective tax rate. It prices the business rather than the listing.",
    "against": "It imports the capital-structure and cyclicality of a 909-firm global set, most of which lack Borouge's contracted ethane position, and it overrides an own-stock estimate that did pass its gate.",
    "value_aed": {
-    "normalisation": 1.4769944608534211,
-    "prolonged": 1.31003678279902
+    "normalisation": 1.4781943678941736,
+    "prolonged": 1.3111934788739366
    },
    "ev": {
-    "normalisation": 15613.019549116816,
-    "prolonged": 14246.549189859363
+    "normalisation": 15622.840225974325,
+    "prolonged": 14256.01620520997
    },
    "tv_share": {
-    "normalisation": 0.6595621515533581,
-    "prolonged": 0.7042011380077203
+    "normalisation": 0.6597358609617034,
+    "prolonged": 0.7043616097878573
    }
   }
  },
@@ -1761,9 +1857,9 @@
  },
  "company_inputs": {
   "spot_aed": {
-   "value": 2.4,
-   "source": "Closing price 07-Aug-2026 on the supplied ADX daily series for Borouge (open 2.40, high 2.41, low 2.39, volume 10.94m shares)",
-   "date": "2026-08-07",
+   "value": 2.35,
+   "source": "Closing price 03-Sep-2026 on the Abu Dhabi Securities Exchange. It supersedes the 07-Aug-2026 close of 2.40 the previous edition was struck at",
+   "date": "2026-09-03",
    "ring": "Market"
   },
   "aed_per_usd": {
@@ -3114,17 +3210,18 @@
   "Selling and distribution: $78 / $88 / $77 per tonne sold in the audited years, against $177 in H1-2026 while alternative logistics routes are in use.",
   "Asset-conversion cycle from the statements: 51 days sales outstanding, 62 days inventory, 92 days payable, a cash cycle of 20 days. The balance sheet and the cash flow are projected from these, not plugged.",
   "Cost of capital: rf* = 4.65% US 10-year less 0.23% US default spread = 4.42%; the dirham construction gives 4.48% less 0.42% = 4.06%, and the +0.36% gap under a hard peg is reported, not reconciled away.",
-  "  Beta: own-stock regression 0.415 (weak, R-squared 0.094); sector bottom-up 1.0021 unlevered re-levered at a 0.167 debt-to-equity ratio = 1.018.",
-  "  Ke 6.44% on the own-stock beta and 9.38% on the bottom-up beta. Kd marginal 5.55% pre-tax (arm's-length margin 0.900% over the long dollar rate) against a 5.07% sovereign; the related-party facilities price 5.52%, inside arm's length by 0.03%.",
-  "  Equity weight 85.7% on market value. WACC 6.09% on the own-stock beta and 8.60% on the bottom-up beta \u2014 the study's central contested judgement, published both ways.",
-  "DCF [Normalisation]: EV $24,394m, terminal value 76.7% of enterprise value, equity $20,869m, AED 2.55 per share against a AED 2.40 close.",
-  "DCF [Prolonged disruption]: EV $22,742m, terminal value 80.1% of enterprise value, equity $19,218m, AED 2.35 per share against a AED 2.40 close.",
+  "  Beta: own-stock regression 0.415 (weak, R-squared 0.094); sector bottom-up 1.0021 unlevered re-levered at a 0.170 debt-to-equity ratio = 1.021.",
+  "  Ke 6.44% on the own-stock beta and 9.39% on the bottom-up beta. Kd marginal 5.55% pre-tax (arm's-length margin 0.900% over the long dollar rate) against a 5.07% sovereign; the related-party facilities price 5.52%, inside arm's length by 0.03%.",
+  "  Equity weight 85.5% on market value. WACC 6.08% on the own-stock beta and 8.60% on the bottom-up beta \u2014 the study's central contested judgement, published both ways.",
+  "DCF [Normalisation]: EV $24,430m, terminal value 76.7% of enterprise value, equity $20,906m, AED 2.55 per share against a AED 2.35 close.",
+  "DCF [Prolonged disruption]: EV $22,778m, terminal value 80.2% of enterprise value, equity $19,253m, AED 2.35 per share against a AED 2.35 close.",
   "Book value lens: sustainable return on equity 25.3% against a cost of equity of 6.44% justifies 5.25x book of $0.1240 per share, or AED 2.39.",
   "Relative lens: 9 of 11 listed peers are loss-making and 2 have undefined EV/EBITDA, so the naive median of 13.4x is rejected. Three through-cycle anchors (LyondellBasell 7.18x, Industries 9.90x, Damodaran 8.65x) give a median of 8.65x, which on a mid-cycle EBITDA of $1,754m is AED 1.46 per share.",
-  "Normalised earnings power: mid-cycle EBITDA $1,944m capitalised at 6.09% gives AED 2.35 per share.",
+  "Normalised earnings power: mid-cycle EBITDA $1,944m capitalised at 6.08% gives AED 2.35 per share.",
   "The 2x2 of the two contested judgements, AED per share:",
   "   own_stock_beta           normalisation=2.55  prolonged=2.35",
   "   bottom_up_sector_beta    normalisation=1.48  prolonged=1.31",
-  "All lenses across both constructions span AED 1.30 to AED 2.55, median AED 1.48, against a close of AED 2.40."
+  "Cash-flow lens on the adopted own-stock beta: AED 2.5543 if navigation normalises and AED 2.3524 if the disruption persists, against a close of AED 2.35.",
+  "  cross-checks span AED 1.30 to AED 2.55; the retired nine-lens median was AED 1.4782 and is published unused."
  ]
 }

@@ -717,12 +717,154 @@ lenses = {
     'normalised_earnings_own_beta': nep_aed,
     'normalised_earnings_sector_beta': nep_aed_bu,
 }
-vals = list(lenses.values())
-FAIR_LOW, FAIR_HIGH = float(min(vals)), float(max(vals))
-FAIR_MID = float(np.median(vals))
-say(f"All lenses across both constructions span AED {FAIR_LOW:.2f} to AED "
-    f"{FAIR_HIGH:.2f}, median AED {FAIR_MID:.2f}, against a close of AED "
-    f"{v('spot_aed'):.2f}.")
+
+# ============================================================================
+# 6b. THE ANSWER [R-LENS-03], and what it replaced
+# ============================================================================
+# THE MEDIAN OF THESE NINE WAS PUBLISHED AS THE CENTRAL UNTIL 5 SEPTEMBER 2026, and it was
+# decided by a COUNT rather than by a valuation choice. The nine are not nine views of this
+# company: they are a 2x2 of two orthogonal framings — the beta construction and the
+# Hormuz scenario — plus a framing-neutral relative multiple, and they do not spread, they
+# CLUSTER IN TWO BLOCKS OF FOUR, one per beta, with the relative multiple sitting inside
+# the lower one. So the median averaged nothing; it SELECTED ONE CELL of the grid, and
+# which cell it selected was decided by how many lenses happened to have been computed
+# under each framing. One more own-beta lens and it moves to 1.91; one fewer sector lens
+# and it moves to 1.90. Neither is a different view of the company.
+#
+# [R-LENS-03] retires it, and depth-bar standard 8 forbids it in the same sentence that
+# requires the dual framing this study does correctly: computed both ways and published
+# side by side, "NEVER AVERAGED INTO ONE NUMBER".
+#
+# WHAT THE ANSWER IS INSTEAD, decided on the rules and not on where it lands:
+#   * THE PRIMARY IS THE CASH-FLOW LENS. This study is registered `petrochemical`, whose
+#     row is a DCF primary with EV/EBITDA on own history, replacement cost, a relative
+#     multiple and book beside it as cross-checks.
+#   * IT IS TWO-SIDED, AND THE HORMUZ SCENARIO IS THE SIDE THAT SPLITS IT. Navigation
+#     restored during 2026 against navigation impaired into 2027 is a contested judgement
+#     about the world with two answers, which is what standard 8 asks to be published both
+#     ways — not an averageable spread.
+#   * THE BETA IS NOT A BRANCH. SIGCM clause 6 is a strict preference order and this
+#     study's own beta record adopts the tier-1 own-stock regression on its merits: n=215,
+#     R-squared 0.094 against the 0.05 floor, SE 0.088 against |beta| 0.415, all three
+#     conditions of the usability gate met. The bottom-up sector beta is a labelled
+#     CROSS-CHECK on an adopted figure, and its weakness (R-squared below the 10%
+#     weak-instrument threshold) is disclosed rather than hidden. A rule decides it, so it
+#     is not a contested judgement however much value it moves.
+#   * NORMALISED EARNINGS COMES OUT. It appears in NO row of the lens registry — the same
+#     thing EMPOWER's record found, and the rule working rather than a gap in it.
+CENTRAL_NORMALISATION = GRID_2X2['own_stock_beta']['normalisation']
+CENTRAL_PROLONGED = GRID_2X2['own_stock_beta']['prolonged']
+# The envelope is the RANGE of the present-value reads on one clock, never a spread
+# invented around a point and never the extremes of a blend.
+FAIR_LOW = float(min(CENTRAL_NORMALISATION, CENTRAL_PROLONGED))
+FAIR_HIGH = float(max(CENTRAL_NORMALISATION, CENTRAL_PROLONGED))
+# FAIR_MID is retired as a CENTRAL and kept as what it always was — the median of the
+# nine-lens field — so a reader of the previous edition can see the number that moved and
+# what it was. It is published UNUSED, the same disposition as a retired blend.
+_FIELD = list(lenses.values())
+FIELD_LOW, FIELD_HIGH = float(min(_FIELD)), float(max(_FIELD))
+FAIR_MID_RETIRED = float(np.median(_FIELD))
+LENS_RECORD = dict(
+    lens_class='petrochemical',
+    # the gate reads 'class'; 'lens_class' is kept as the human-readable alias
+    **{'class': 'petrochemical'},
+    primary=dict(
+        kind='dcf',
+        value=CENTRAL_NORMALISATION,
+        range=dict(low=FAIR_LOW, high=FAIR_HIGH),
+        range_note=('the cash-flow lens across the contested judgement itself — the two '
+                    'Hormuz framings on the adopted own-stock beta, present values on one '
+                    'clock, never averaged'),
+        range_basis=dict(
+            driver='polyethylene plant utilisation against nameplate in the first forecast '
+                   'year, and the shipping-and-distribution cost per tonne that moves with '
+                   'it',
+            low=FRAMINGS['prolonged']['util_pe'][0],
+            high=FRAMINGS['normalisation']['util_pe'][0],
+            units='fraction of nameplate capacity',
+            macro_held=True,
+            sanctioned_framing=(
+                'depth-bar standard 8 — the study\'s single most consequential CONTESTED '
+                'JUDGEMENT computed both ways and published side by side, never averaged '
+                'into one number. The judgement is about the world rather than about the '
+                'model: whether navigation through the Strait of Hormuz is restored during '
+                '2026.'),
+            evidence=(
+                'BOTH ENDS ARE THE COMPANY\'S OWN DEMONSTRATED RANGE, not a nudge either '
+                'side of a base case. The high end is the utilisation this plant has '
+                'actually run at in an unimpaired year; the low end is the rate it ran '
+                'while feedstock and logistics were capped. The shipping-and-distribution '
+                'cost moves with it on the same evidence — %.0f US$ a tonne in the '
+                'impaired year against %.0f in the normalising one — and it decays to the '
+                'same terminal figure in both, because a blockade is an event rather than '
+                'a permanent state. THE MACRO PATH STANDS STILL ACROSS THE RANGE: the '
+                'benchmark price ladder, the premium ladder, the cost of capital, the '
+                'terminal growth and the terminal rate are IDENTICAL in the two framings, '
+                'which is what makes this a range about the world rather than a grid of '
+                'dials.'
+                % (FRAMINGS['prolonged']['sd_per_t'][0],
+                   FRAMINGS['normalisation']['sd_per_t'][0])),
+        ),
+        note=("the cash-flow lens on the company's own tonnes, its disclosed costs and the "
+              'adopted tier-1 own-stock beta. Published TWO-SIDED: the value is stated for '
+              'each branch of the shipping-lane judgement rather than as one number.')),
+    cross_checks=[
+        dict(kind='relative_multiple', value=rel_aed, present_value=False,
+             multiple=ev_mult,
+             multiple_source=("the median of three THROUGH-CYCLE anchors — LyondellBasell's "
+                              "own ten-year median EV/EBITDA, Industries Qatar's current "
+                              "multiple and Damodaran's global Chemical (Diversified) "
+                              "sector figure. The naive peer median is REJECTED because "
+                              f"{peers_loss_making} of {len(peer_table)} listed peers are "
+                              f"loss-making and {peers_ev_undefined} have an undefined "
+                              "EV/EBITDA. Never a multiple read off this company's own "
+                              "traded price."),
+             circularity=dict(spot=v('spot_aed'), shares=shares_out / 1e6,
+                              net_debt=net_debt + leases + m('nci_value'),
+                              metric_value=mid_ebitda)),
+        dict(kind='book_value', value=pb_value_aed, present_value=False,
+             note=('a DISCLOSED FLOOR on the sustainable return, never weighted into the '
+                   'answer: justified price-to-book from a sustainable return on equity of '
+                   f"{ROE_SUST:.2%} against the cost of equity on the adopted beta.")),
+    ],
+    envelope=dict(low=FAIR_LOW, high=FAIR_HIGH),
+    central=CENTRAL_NORMALISATION,
+    retired=dict(
+        construction='the median of nine lens readings across two orthogonal framings',
+        value=FAIR_MID_RETIRED,
+        why=('it was not a weighted blend and it is caught by [R-LENS-03] for the reason '
+             'the rule gives. The nine readings CLUSTER in two blocks of four, one per '
+             'beta construction, so the median averaged nothing — it SELECTED one cell of '
+             'the grid, and which cell was decided by how many lenses happened to have '
+             'been computed under each framing. One more own-beta lens moves it to 1.91, '
+             'one fewer sector lens to 1.90. The free parameter was not even a weight '
+             'somebody chose; it was a count.')),
+    diagnostics=dict(
+        normalised_earnings_own_beta=nep_aed,
+        normalised_earnings_sector_beta=nep_aed_bu,
+        normalised_earnings_disposition=(
+            'REMOVED FROM THE ANSWER. Normalised earnings appears in no row of the lens '
+            'registry, so it is not a permitted cross-check for any class; carried here as '
+            'a diagnostic so the figure that was in the retired median stays visible.'),
+        sector_beta_framing=dict(
+            normalisation=GRID_2X2['bottom_up_sector_beta']['normalisation'],
+            prolonged=GRID_2X2['bottom_up_sector_beta']['prolonged'],
+            disposition=(
+                'a LABELLED CROSS-CHECK on an adopted figure, not a branch. SIGCM clause 6 '
+                'is a strict preference order and this study\'s beta record adopts the '
+                'tier-1 own-stock regression on its merits — n=215, R-squared 0.094 against '
+                'the 0.05 floor, SE 0.088 against |beta| 0.415, all three usability '
+                'conditions met. Its weakness (R-squared below the 10% weak-instrument '
+                'threshold) is disclosed rather than hidden, and it is the reason the '
+                'bottom-up construction was built at all. A quantity a rule decides is not '
+                'a contested judgement, however much value it moves.')),
+        book_value_floor=pb_value_aed))
+
+say(f"Cash-flow lens on the adopted own-stock beta: AED {CENTRAL_NORMALISATION:.4f} if "
+    f"navigation normalises and AED {CENTRAL_PROLONGED:.4f} if the disruption persists, "
+    f"against a close of AED {v('spot_aed'):.2f}.")
+say(f"  cross-checks span AED {FIELD_LOW:.2f} to AED {FIELD_HIGH:.2f}; the retired "
+    f"nine-lens median was AED {FAIR_MID_RETIRED:.4f} and is published unused.")
 
 
 # ============================================================================
@@ -776,7 +918,45 @@ OUT = dict(
     relative_triangulation=tri,
     framings={k: {kk: vv for kk, vv in r.items()} for k, r in RES.items()},
     framing_drivers=FRAMINGS,
-    lenses=lenses, fair_low=FAIR_LOW, fair_mid=FAIR_MID, fair_high=FAIR_HIGH,
+    lenses=lenses,
+    # THE SHAPE THE SHARED READERS LOOK FOR. [R-GAP-01]'s reader wants a central and the
+    # spot it was struck at, or named BRANCHES where the answer is two-sided; this study
+    # published neither and was invisible to that gate — and to [R-GAP-02], which decides
+    # whether it may publish at all — for as long as its answer was a median nobody could
+    # name. Seven studies were in that state and every one for the same reason.
+    spot=v('spot_aed'),
+    central_two_sided=dict(
+        question='Is navigation through the Strait of Hormuz restored during 2026, or does '
+                 'the disruption persist into 2027?',
+        decides='Whether the plant runs at the utilisation it has demonstrated or stays '
+                'capped by feedstock and logistics, and whether the benchmark price holds '
+                'a shortage premium or reverts.',
+        branches=[
+            dict(label='Cash-flow lens, navigation normalises during 2026',
+                 value=CENTRAL_NORMALISATION,
+                 condition=FRAMINGS['normalisation']['thesis']),
+            dict(label='Cash-flow lens, disruption persists into 2027',
+                 value=CENTRAL_PROLONGED,
+                 condition=FRAMINGS['prolonged']['thesis']),
+        ],
+        gap_per_share=abs(CENTRAL_NORMALISATION - CENTRAL_PROLONGED),
+        why_not_averaged=(
+            'the judgement is binary and about the world rather than about the model, so '
+            'an average describes a shipping lane that is neither open nor closed. The '
+            'previous edition published the MEDIAN OF NINE LENS READINGS, which averaged '
+            'across this judgement AND across the beta construction at the same time, and '
+            'which cell it landed on was decided by how many lenses happened to have been '
+            'computed under each framing rather than by any valuation choice.'),
+        both_sides_vs_spot=[
+            dict(label='navigation normalises',
+                 pct=100.0 * (CENTRAL_NORMALISATION / v('spot_aed') - 1.0)),
+            dict(label='disruption persists',
+                 pct=100.0 * (CENTRAL_PROLONGED / v('spot_aed') - 1.0)),
+        ]),
+    lens_record=LENS_RECORD,
+    fair_low=FAIR_LOW, fair_high=FAIR_HIGH,
+    fair_mid_retired=FAIR_MID_RETIRED,
+    field_low=FIELD_LOW, field_high=FIELD_HIGH,
     book_value=dict(bvps_usd=bvps_usd, roe_hist=roe_hist, roe_sustainable=ROE_SUST,
                     justified_pb=justified_pb, value_aed=pb_value_aed,
                     justified_pb_sector_beta=justified_pb_bu,

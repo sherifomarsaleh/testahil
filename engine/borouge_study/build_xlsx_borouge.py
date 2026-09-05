@@ -969,24 +969,50 @@ putf(wsF, f'C{r}', f"='Relative & Normalized'!{REL_VPS.replace('B', '$B$')}",
      LEN_['relative_multiples'], PX, green=True)
 LR['rel'] = r; r += 2
 
-band(wsF, r, 'THE FIELD'); r += 1
+band(wsF, r, 'THE ANSWER — the cash-flow lens, both sides of the shipping-lane judgement')
+r += 1
+# THE MEDIAN OF THE NINE READINGS WAS THE PUBLISHED CENTRAL UNTIL 5 SEPTEMBER 2026 AND IS
+# RETIRED [R-LENS-03]. The nine cluster in two blocks of four, one per beta construction,
+# so the median averaged nothing — it SELECTED one cell of the grid, and which cell was
+# decided by how many lenses happened to have been computed under each framing rather than
+# by any valuation choice. It is kept below, labelled and unused, so a reader of the
+# previous edition can see the number that moved.
+BR = D['central_two_sided']['branches']
+lab(wsF, r, 'Navigation normalises during 2026 (AED)', bold=True)
+FV_NORM = f'$B${r}'
+# COLUMN C IS THE OWN-STOCK BETA, column B the bottom-up sector one — the answer is the
+# ADOPTED tier-1 beta, so it reads C. A first draft read B and the recalculation gate
+# caught it within the minute, which is what that gate is for.
+putf(wsF, f'B{r}', f'=C{LR["dcf_n"]}', BR[0]['value'], PX, bold=True); r += 1
+lab(wsF, r, 'Disruption persists into 2027 (AED)', bold=True)
+FV_PROL = f'$B${r}'
+putf(wsF, f'B{r}', f'=C{LR["dcf_p"]}', BR[1]['value'], PX, bold=True); r += 1
+lab(wsF, r, 'The judgement is worth (AED a share)')
+putf(wsF, f'B{r}', f'={FV_NORM}-{FV_PROL}',
+     D['central_two_sided']['gap_per_share'], PX); r += 1
+lab(wsF, r, 'Closing price, 3 September 2026 (AED)')
+FV_SPOT = f'$B${r}'
+putf(wsF, f'B{r}', f'={a("spot")}', SPOT, PX, green=True); r += 1
+lab(wsF, r, 'Navigation normalises, against the close')
+putf(wsF, f'B{r}', f'={FV_NORM}/{FV_SPOT}-1', BR[0]['value'] / SPOT - 1, PCT); r += 1
+lab(wsF, r, 'Disruption persists, against the close')
+putf(wsF, f'B{r}', f'={FV_PROL}/{FV_SPOT}-1', BR[1]['value'] / SPOT - 1, PCT); r += 2
+
+band(wsF, r, 'THE FIELD OF CROSS-CHECKS — published beside the answer, never averaged into it')
+r += 1
 # The relative lens is beta-independent, so it appears in BOTH columns. Counting it twice
-# would weight it double in the median. It enters the field ONCE.
+# would weight it double in anything computed across the field. It enters ONCE.
 cells = ','.join([f'B{LR[k]}' for k in ('dcf_n', 'dcf_p', 'bv', 'ne', 'rel')] +
                  [f'C{LR[k]}' for k in ('dcf_n', 'dcf_p', 'bv', 'ne')])
 lab(wsF, r, 'Lowest lens reading (AED)')
 FV_LOW = f'$B${r}'
-putf(wsF, f'B{r}', f'=MIN({cells})', D['fair_low'], PX); r += 1
-lab(wsF, r, 'Median lens reading (AED)', bold=True)
-FV_MID = f'$B${r}'
-putf(wsF, f'B{r}', f'=MEDIAN({cells})', D['fair_mid'], PX, bold=True); r += 1
+putf(wsF, f'B{r}', f'=MIN({cells})', D['field_low'], PX); r += 1
 lab(wsF, r, 'Highest lens reading (AED)')
 FV_HIGH = f'$B${r}'
-putf(wsF, f'B{r}', f'=MAX({cells})', D['fair_high'], PX); r += 1
-lab(wsF, r, 'Closing price, 7 August 2026 (AED)')
-putf(wsF, f'B{r}', f'={a("spot")}', SPOT, PX, green=True); r += 1
-lab(wsF, r, 'Median lens reading against the close')
-putf(wsF, f'B{r}', f'={FV_MID}/B{r - 1}-1', D['fair_mid'] / SPOT - 1, PCT)
+putf(wsF, f'B{r}', f'=MAX({cells})', D['field_high'], PX); r += 1
+lab(wsF, r, 'RETIRED — the median of the nine readings, published unused (AED)')
+FV_MID = f'$B${r}'
+putf(wsF, f'B{r}', f'=MEDIAN({cells})', D['fair_mid_retired'], PX); r += 1
 FV_LR = LR
 
 # =============================================================================
@@ -1312,6 +1338,8 @@ for label_, v, fmt in [('Anchor close (AED)', STK['spot'], PX),
         put(wsM, f'B{r}', STK['anchor_date'], BLUE, None, cls='history')
     else:
         put(wsM, f'B{r}', v, BLUE, fmt, cls='rerun')
+    if label_ == 'Anchor close (AED)':
+        MC_ANCHOR = f'$B${r}'
     r += 1
 r += 1
 band(wsM, r, 'PERCENTILE MAP (AED PER SHARE)'); r += 1
@@ -1335,8 +1363,14 @@ for pct_ in (5, 10, 15, 20):
     for sign in (1, -1):
         lvl = STK['spot'] * (1 + sign * pct_ / 100)
         lab(wsM, r, f"{'Up' if sign > 0 else 'Down'} {pct_}%")
-        putf(wsM, f'B{r}', f'={a("spot")}*(1{"+" if sign > 0 else "-"}{pct_ / 100})', lvl,
-             PX)
+        # THE LADDER STANDS ON THE CONE'S OWN ANCHOR, NOT ON THE VALUATION'S SPOT — two
+        # clocks, and they separated the moment this study was re-struck on the latest
+        # price while its price library still ends on the anchor date. The formula read
+        # the valuation spot cell and the expected value came from the strike, so they
+        # agreed only while the two dates happened to coincide. The recalculation gate
+        # caught all eight rungs the minute they stopped coinciding.
+        putf(wsM, f'B{r}',
+             f'={MC_ANCHOR}*(1{"+" if sign > 0 else "-"}{pct_ / 100})', lvl, PX)
         for k, tag in enumerate(('1M', '3M')):
             key = 'touch_up' if sign > 0 else 'touch_dn'
             put(wsM, f'{get_column_letter(3 + k)}{r}',
@@ -1532,22 +1566,26 @@ for key, label_, tv in [('dcf_n', 'Discounted cash flow — normalisation', 'own
              FR[frk]['pv_terminal'] / FR[frk]['ev'], PCT, green=True)
     r += 1
 r += 1
-band(wsSm, r, 'THE FIELD AGAINST THE MARKET'); r += 1
-lab(wsSm, r, 'Lowest lens reading')
-putf(wsSm, f'B{r}', f"='Fundamental Valuation'!{FV_LOW}", D['fair_low'], PX, green=True)
-r += 1
-lab(wsSm, r, 'Median lens reading', bold=True)
-SM_MID = r
-putf(wsSm, f'B{r}', f"='Fundamental Valuation'!{FV_MID}", D['fair_mid'], PX, green=True,
+band(wsSm, r, 'THE ANSWER AGAINST THE MARKET'); r += 1
+lab(wsSm, r, 'Navigation normalises during 2026', bold=True)
+SM_NORM = r
+putf(wsSm, f'B{r}', f"='Fundamental Valuation'!{FV_NORM}", BR[0]['value'], PX, green=True,
      bold=True); r += 1
-lab(wsSm, r, 'Highest lens reading')
-putf(wsSm, f'B{r}', f"='Fundamental Valuation'!{FV_HIGH}", D['fair_high'], PX, green=True)
-r += 1
-lab(wsSm, r, 'Closing price, 7 August 2026')
+lab(wsSm, r, 'Disruption persists into 2027', bold=True)
+SM_PROL = r
+putf(wsSm, f'B{r}', f"='Fundamental Valuation'!{FV_PROL}", BR[1]['value'], PX, green=True,
+     bold=True); r += 1
+lab(wsSm, r, 'Closing price, 3 September 2026')
 SM_SPOT = r
 putf(wsSm, f'B{r}', f'={a("spot")}', SPOT, PX, green=True); r += 1
-lab(wsSm, r, 'Median lens reading against the close')
-putf(wsSm, f'B{r}', f'=B{SM_MID}/B{SM_SPOT}-1', D['fair_mid'] / SPOT - 1, PCT); r += 2
+lab(wsSm, r, 'Navigation normalises, against the close')
+putf(wsSm, f'B{r}', f'=B{SM_NORM}/B{SM_SPOT}-1', BR[0]['value'] / SPOT - 1, PCT); r += 1
+lab(wsSm, r, 'Disruption persists, against the close')
+putf(wsSm, f'B{r}', f'=B{SM_PROL}/B{SM_SPOT}-1', BR[1]['value'] / SPOT - 1, PCT); r += 1
+lab(wsSm, r, 'Cross-checks span (AED)')
+putf(wsSm, f'B{r}', f"='Fundamental Valuation'!{FV_LOW}", D['field_low'], PX, green=True)
+putf(wsSm, f'C{r}', f"='Fundamental Valuation'!{FV_HIGH}", D['field_high'], PX, green=True)
+r += 2
 
 band(wsSm, r, 'THE COST OF CAPITAL BEHIND IT'); r += 1
 lab(wsSm, r, 'Weighted average cost of capital — own-stock beta')

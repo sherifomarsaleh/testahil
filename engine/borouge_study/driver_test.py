@@ -106,12 +106,19 @@ def locate():
     return dict(
         dcf_own_n=('DCF', by_value('DCF', D['lenses']['dcf_normalisation_own_beta'])),
         dcf_own_p=('DCF', by_value('DCF', D['lenses']['dcf_prolonged_own_beta'])),
-        median=('Fundamental Valuation', by_value('Fundamental Valuation',
-                                                  D['fair_mid'])),
+        # THE ANSWER IS PROBED ON BOTH SIDES. It used to probe the median of the nine
+        # readings — a cell that no longer decides anything and is published unused — so
+        # the headline this test drove was one [R-LENS-03] has retired.
+        answer_normalisation=('Fundamental Valuation',
+                              by_value('Fundamental Valuation',
+                                       D['central_two_sided']['branches'][0]['value'])),
+        answer_prolonged=('Fundamental Valuation',
+                          by_value('Fundamental Valuation',
+                                   D['central_two_sided']['branches'][1]['value'])),
         lowest=('Fundamental Valuation', by_value('Fundamental Valuation',
-                                                  D['fair_low'])),
+                                                  D['field_low'])),
         highest=('Fundamental Valuation', by_value('Fundamental Valuation',
-                                                   D['fair_high'])),
+                                                   D['field_high'])),
         wacc=('Fundamental Valuation', by_value('Fundamental Valuation',
                                                 D['wacc']['wacc_own'])),
         ebitda26=('DCF', by_value('DCF', FRn['rows'][0]['ebitda'])),
