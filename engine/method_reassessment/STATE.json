@@ -299,6 +299,12 @@
    "date": "2026-09-05",
    "what": "AMR, ARCC and DU joined the workbook widening. ARCC was CLEAN at 544 figures and the widening found one: the READ FIRST narrative typed '950 times too much' for the revision-1 minority against the input register's own COMPUTED 949 for the same fact. Conformed rather than ratcheted (a ratchet may only SHORTEN); the superseded figure is now registered on central_pre_rebuild's disposition and both quotes compute from it. Rebuilt: 919/919 formula cells reproduce, 143 driver assertions hold, central unmoved at EGP 66.53.",
    "lesson": "THE POPULATION IS THE CHECK. ARCC's register had this exact figure computed a month ago and the workbook beside it kept the typed one, because the instrument reached one file and not the other. Widening a population is how a check finds what it was always able to see."
+  },
+  {
+   "date": "2026-09-05",
+   "what": "MEASURED where the lean actually is, live off engine/prices/gap_today.py against the latest supplied closes. Twenty-one readable studies: mean -11.0%, median -12.1%, eighteen breaching the ten-per-cent trigger, twelve below and six above. DROP FOUR NAMES AND THE OTHER SEVENTEEN AVERAGE +2.0% \u2014 ELEC -83.9%, EGCH -72.0%, PHAR -71.2% and SWDY -38.7% carry the whole of the negative mean between them. Two studies, GBCO and XPT, expose no readable answer at all and are held rather than skipped. Ten workflows now running; one of them takes those four names with three independent lenses each and an adversarial verify on every priced candidate.",
+   "lesson": "A POOLED MEAN IS A CLAIM ABOUT A DISTRIBUTION AND MOST OF THIS ONE IS A TAIL. The obvious remedy for a mean eleven points below the market is to move a rate, and it would push seventeen well-centred names off their prices to fix four that are wrong for reasons of their own. Look at the shape before reaching for the lever \u2014 which is the same finding the delivered-fair-value calibration reached from the other direction, and neither was visible without plotting the names.",
+   "read_live": "python3 engine/prices/gap_today.py \u2014 never from this note, the figures move with every close and every rebuild"
   }
  ]
 }
