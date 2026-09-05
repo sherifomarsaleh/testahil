@@ -15,6 +15,16 @@ Run:  python3 scripts/check_band_vocabulary.py [--root DIR]
 """
 import argparse
 import glob
+
+# THE READERS ARE IMPORTED AT MODULE SCOPE, DELIBERATELY. Both were originally imported
+# inside the loops that use them, and on 5 September 2026 that turned a missing openpyxl
+# in one workflow into TWENTY-TWO lines reading "could not be read ... an unreadable
+# workbook is not a clean one" — every word of which is this gate's own correct rule, and
+# none of which said the real thing, which was that a dependency was absent. A missing
+# dependency should fail once, loudly, at import; twenty-two of them dressed as findings
+# is red for the wrong reason, and it reads exactly like red for the right one.
+import openpyxl
+from docx import Document
 import json
 import os
 import re
@@ -181,7 +191,6 @@ def main():
     for path in sorted(_delivered):
         rel = os.path.relpath(path, root)
         try:
-            from docx import Document
             _d = Document(path)
             _parts = [p_.text for p_ in _d.paragraphs]
             for _t in _d.tables:
@@ -224,7 +233,6 @@ def main():
     for path in sorted(_books):
         rel = os.path.relpath(path, root).replace(os.sep, "/")
         try:
-            import openpyxl
             _wb = openpyxl.load_workbook(path, data_only=False, read_only=True)
             _cells = []
             for _ws in _wb.worksheets:

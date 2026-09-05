@@ -63,7 +63,12 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install deps
-        run: pip install numpy pandas scipy python-docx   # python-docx: this gate now reads the DELIVERED study documents, not only the site
+        # python-docx: this gate reads the DELIVERED study documents, not only the site.
+        # openpyxl: and the delivered WORKBOOKS, added 05-Sep-2026 — the retired verdict
+        # was in five of them because no gate had ever opened one. Without this the gate
+        # goes red on every workbook as UNREADABLE, which is correct behaviour on a
+        # missing dependency and the wrong reason to be red.
+        run: pip install numpy pandas scipy python-docx openpyxl
 
       # VERIFY BY IMPORT, NOT BY PARSE — the standing rule, for the same reason as ever.
       - name: Import the record module and check its thresholds
