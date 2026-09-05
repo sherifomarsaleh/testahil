@@ -6044,6 +6044,128 @@ LESSONS = [
       "being correct on the surfaces it does read: it was, on all "
       "three, which is why nothing looked wrong.",
       "adopted"),
+
+    L("L-346", "ALL", None,
+      "AN INSTRUMENT THAT MATCHES FIGURES AGAINST A MODEL CANNOT SEE "
+      "A FIGURE USED IN THE WRONG PLACE",
+      "A study's reconciliation instrument reported zero unmatched "
+      "across every percentage and multiple in its delivered "
+      "document, and the opening paragraph of its own valuation "
+      "section was wrong in four places at once: revenue compounding "
+      "at 3.0% against a committed 2.4%, a margin GLIDING UP to 32.5% "
+      "where the model runs flat and slightly DOWN, a capital "
+      "intensity of 16.5% fading to 15.0% which is MANAGEMENT'S "
+      "GUIDANCE BAND and is the construction that study had just "
+      "retired, and a tax rate of 9.7% against the 8.03% applied. "
+      "THE REASON THE INSTRUMENT WAS BLIND IS STRUCTURAL AND NOT A "
+      "BUG: every one of those figures exists somewhere in the "
+      "committed record — a sensitivity step, a filed year, a "
+      "guidance range, a forecast-year earnings figure — so a "
+      "rendering set wide enough to admit the legitimate uses admits "
+      "the illegitimate ones too. Being in the record is exactly what "
+      "makes a misplaced figure look right. THE PRACTICAL FORM: the "
+      "figure check and a CLAIM sweep are different instruments and "
+      "neither is optional. The claim sweep tests assertions rather "
+      "than numerals — a guidance band consumed, a glide asserted, a "
+      "floor named, a lens said to sit above a price it sits below — "
+      "and it is written by reading the document, which is what "
+      "tells you which arithmetic to write.",
+      "STC, found while rebuilding its delivered documents, "
+      "5 September 2026",
+      "build",
+      "Eleven defects of this class in one document after the "
+      "instrument reported zero unmatched, and after a page-by-page "
+      "read had already found and fixed nine others. The claim sweep "
+      "that caught them tests twelve shapes and is four lines of "
+      "regular expressions.",
+      "It is overturned by a rendering set that can distinguish a "
+      "figure's USE from its presence — which would mean matching "
+      "each figure to the specific committed value it renders rather "
+      "than to any of them. That is buildable and nobody has built "
+      "it; until then the two instruments are complementary. What "
+      "would NOT overturn it is a wider or narrower rendering set: "
+      "narrower produces false positives on legitimate uses, wider "
+      "hides more.",
+      "adopted"),
+
+    L("L-347", "ALL", None,
+      "FIXING A TABLE DOES NOT FIX THE SENTENCE THAT RESTATES IT",
+      "A study's normalisation was rebuilt after a workbook "
+      "reconciliation exposed it, and an assertion now holds the "
+      "rebuilt table to its own arithmetic at every build. The "
+      "paragraph three inches above it went on stating the RETIRED "
+      "arithmetic in words — \"~SAR 14.4 bn (reported 14.8 bn less "
+      "the zakat credit), or EPS ~2.89\" — which is the filed profit "
+      "less the NET zakat line rather than the disclosed one-off "
+      "inside it, against a rebuilt 13.2 bn and 2.65. The same shape "
+      "appeared three more times in one document: a cost-of-capital "
+      "table rebuilt from the record while the prose sentence "
+      "restating it kept the retired beta; a cover table moved onto "
+      "the filed years while its introduction still framed the "
+      "guidance band; a football-field figure recomputed while its "
+      "caption still described the three-lever bear case that had "
+      "been replaced by a one-lever one. NO ASSERTION REACHES A "
+      "SENTENCE. THE PRACTICAL FORM: when a construction changes, "
+      "grep the delivered text for the OLD construction by name — not "
+      "for its numbers, which is what the figure check already does — "
+      "because the sentence that restates a table is written once and "
+      "never rebuilt.",
+      "STC, found while rebuilding its delivered documents, "
+      "5 September 2026",
+      "build",
+      "Four instances in one document, each surviving the rebuild of "
+      "the exact table it described, and each invisible to a figure "
+      "check because its figures were legitimate elsewhere.",
+      "It is overturned where prose is generated from the same record "
+      "as the table it describes, which removes the possibility "
+      "rather than checking for it — several of these were fixed that "
+      "way and the fix is available whenever a sentence's claim is "
+      "arithmetic. It does NOT apply to genuinely narrative prose, "
+      "which cannot be generated and must be swept.",
+      "adopted"),
+
+    L("L-348", "ALL", None,
+      "A STUDY'S OWN PRICE MAP MUST REPRODUCE THE COMMITTED FIT, AND "
+      "ONE THAT RE-DERIVES IT WILL DISAGREE WITH THE SITE",
+      "A delivered study's probability section ran a simulation of "
+      "its own rather than calling the production chain, and it was "
+      "wrong in five ways at once against the fit its market actually "
+      "runs: Student-t innovations hardcoded at five degrees of "
+      "freedom against a fitted fifteen, NO width calibration at all "
+      "against a fitted 1.056, zero drift on a market carrying an "
+      "ACTIVE momentum lean, a horizon fixed at sixty sessions where "
+      "the horizons are calendar, and a sixteen-factor stack of nine "
+      "typed jump probabilities with typed impacts whose own printed "
+      "caption conceded that none of them was calibrated. THE "
+      "CONSEQUENCE WAS NOT A ROUNDING DIFFERENCE: it published a "
+      "different cone from the one the site publishes for that name "
+      "on that day — a three-month median of 45.06 against 45.30, a "
+      "95th percentile of 51.21 against 52.20, and a thirteen per "
+      "cent chance of touching a level against twenty. A reader "
+      "holding both would have found two answers to one question, and "
+      "the one with the invented event probabilities was the one "
+      "wearing the study's covers. THE PRACTICAL FORM: a study "
+      "REPRODUCES the committed fit by calling the same function the "
+      "roll-forward calls, and asserts the reproduction rather than "
+      "trusting it. Re-implementing an engine to describe it grades "
+      "something other than what ships.",
+      "STC, found while rebuilding its delivered documents, "
+      "5 September 2026",
+      "build",
+      "Re-pointed at the production strike, the study reproduces the "
+      "published row to the cent at both horizons and the touch "
+      "ladder to the point, across eight levels and two horizons. The "
+      "study's own walk-forward artefact was the same defect one "
+      "layer down: sixty origins from an uncleaned frame, disagreeing "
+      "with the committed panel on the very first row because the "
+      "data-quality gate had not been applied.",
+      "It is overturned where a study legitimately needs a "
+      "construction the production engine does not offer — a "
+      "counterfactual, an ablation, a diagnostic. Those are internal "
+      "and must be LABELLED as not the published cone; what is "
+      "forbidden is a study-local construction PRESENTED as the "
+      "house's price map.",
+      "adopted"),
 ]
 
 
