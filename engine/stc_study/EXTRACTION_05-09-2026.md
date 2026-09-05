@@ -140,6 +140,38 @@ which is the route [R-FCAL-01] names for exactly this and which the arithmetic t
 arbitrate. Until that is done, the receivables, contract-asset and inventory lines above stay
 recorded as missing rather than guessed at.
 
+## The delivered study's historicals reconcile — with one exception, and it is cash
+
+Checked line by line against the extraction above (the study carries SAR millions, the
+filing SAR thousands):
+
+| | study FY2025 | filing | | study FY2024 | filing |
+|---|---:|---:|---|---:|---:|
+| revenue | 77,819 | 77,818.675 | ✓ | 75,893 | 75,893.413 | ✓ |
+| gross profit | 37,700 | 37,699.689 | ✓ | 37,326 | 37,325.924 | ✓ |
+| EBITDA | 24,469 | 24,469.435 | ✓ | 23,951 | 23,951.115 | ✓ |
+| EBIT | 14,438 | 14,438.264 | ✓ | 14,426 | 14,425.638 | ✓ |
+| depreciation and amortisation | 10,031 | 10,031.171 | ✓ | 9,525 | 9,525.477 | ✓ |
+| total assets | 157,477 | 157,476.669 | ✓ | 160,638 | 160,638.143 | ✓ |
+| debt | 15,191 | 15,191.428 | ✓ | 15,132 | 15,131.739 | ✓ |
+| **cash** | **15,080** | **13,376.071** | **✗** | **30,755** | **15,543.441** | **✗** |
+
+**So the base is right and the defects are elsewhere.** That is worth establishing before a
+rebuild, because it says the corrections this study needs are in the forecast drivers, the
+cost of capital, the beta, the terminal and the lens architecture — not in its history.
+
+**The cash line is the exception and it is not a small one.** FY2024 reads 30,755 against a
+note-20 cash and cash equivalents of 15,543 — very nearly double — and FY2025 reads 15,080
+against 13,376. The most likely reading is that the study includes short-term investments
+and murabahas beyond three months, which a net-debt figure may legitimately do; note 20
+itself says its total is "cash and cash equivalents FOR THE PURPOSE OF THE PREPARATION OF
+THE CONSOLIDATED STATEMENT OF CASH FLOWS", which is a narrower definition than a bridge
+needs. **But the study names no source for the wider figure**, and on its own numbers cash
+falls 51% in one year — from 30,755 to 15,080 — which is the single largest movement in its
+balance sheet and the thing its bridge stands on. It is reconciled line by line before it is
+used again, and the debt figure beside it excludes leases (2,253) which the same bridge
+should be deducting.
+
 ## What is still to extract before the register is complete
 
 The balance sheet and the cash-flow statement, the debt book split by currency and facility
