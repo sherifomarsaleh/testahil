@@ -6216,6 +6216,82 @@ LESSONS = [
       "overturn it is a wider tolerance, which is the free parameter "
       "the promotion rule forbids.",
       "adopted"),
+    L("L-350", "ALL", None,
+      "A DELIVERED SET IS THREE FILES AND EVERY INSTRUMENT IN THE "
+      "BOOK WAS POINTED AT TWO",
+      "Every study declares its own document population, and every "
+      "one of the twenty-four declares the same pair: the study and "
+      "the bibliography. The WORKBOOK a reader also receives was "
+      "scanned by nothing — not the prose-figure instrument, not the "
+      "external-reader scrub, not the shape-matching vocabulary gate. "
+      "It is not an oversight anybody would notice, because a "
+      "population written as a list looks complete from the inside "
+      "and omits whatever nobody thought of on the day it was "
+      "written. The fix is one line per study and a string-cell "
+      "reader in the shared module; the finding is that a rule saying "
+      "EVERY DELIVERED DOCUMENT was being read as every document "
+      "somebody remembered to name.",
+      "STC audit item 15a, 5 September 2026",
+      "build",
+      "Extending STC's two instruments to its own workbook found "
+      "eleven defects in one pass, every one beside a cell computing "
+      "the right answer: a spot of 43.58 against a delivered 43.86, a "
+      "share count of 4,989.8mn against 4,993.024mn, a market "
+      "capitalisation of 217,455 against 218,994, an equity weight of "
+      "90.6% against a cell computing 90.3%, a balance sheet named as "
+      "the first quarter's when the bridge stands on the reviewed "
+      "half, a caption promising a retired four-lens blend, a beta "
+      "cell describing a nine-week daily regression on a vendor's "
+      "index quotes that the model had replaced, a beta sensitivity "
+      "grid WITHOUT THE ADOPTED BETA ON IT, a Monte Carlo caption "
+      "reading \"Zero drift\" against a committed live momentum lean, "
+      "a sovereign rate derived from a broker's note, and an average "
+      "twelve-month target price. Four internal-vocabulary leaks came "
+      "out of the same pass.",
+      "It is overturned by a study whose delivered set is genuinely "
+      "two files, which is a fact about that study rather than about "
+      "the rule. What would NOT overturn it is a study declaring the "
+      "workbook and finding nothing: an instrument that comes back "
+      "clean on a population it was finally pointed at is the "
+      "instrument working, not evidence the population did not "
+      "matter.",
+      "adopted"),
+    L("L-351", "ALL", None,
+      "A CHECK SOMEBODY HAS TO REMEMBER TO RUN IS RUN UNTIL THE DAY "
+      "IT MATTERS",
+      "Depth-bar standard 3 has required an independent recalculation "
+      "of the delivered workbook since the standard was written, "
+      "every study's QC gate carries a row attesting it, and "
+      "twenty-two of twenty-four studies carry the instrument to do "
+      "it. Nothing outside a study directory ran any of them: every "
+      "occurrence of the word was a sentence in a comment. The "
+      "instruments are careful, correct and cheap — the whole book "
+      "runs in under two minutes — and the moment a rebuild lands is "
+      "exactly the moment nobody runs them, which is the moment the "
+      "answer has just moved. WHERE A STUDY BUILDS ITS OWN CHECK, "
+      "SOMETHING OUTSIDE THE STUDY HAS TO PULL THE TRIGGER.",
+      "The workbook-values gate's first run, 5 September 2026",
+      "build",
+      "Running all twenty-two found two red. SWDY's delivered "
+      "workbook publishes SAR 59.3132 where its delivered document "
+      "publishes 55.4822, +6.9%, with ZERO formula errors: DCF!C25 "
+      "still carries the g x IC terminal [R-TERM-01] retired, which "
+      "the study's own compute.py computes and labels \"published "
+      "unused, feeds nothing\" (-6.5% alone), and SOTP Bridge!C12 "
+      "carries no line for the employees' statutory share of profit "
+      "the model deducts at 12.19% (+14.4% alone) — with the "
+      "builder's own expected-value map holding the RIGHT figure for "
+      "both cells. Its recalc.py names all 27 disagreeing cells in "
+      "under a second and had not been run since the rebuild. AMOC's "
+      "refuses outright, still written for a nine-sheet workbook the "
+      "study replaced with a sixteen-sheet one.",
+      "It is overturned by evidence that these checks are in fact run "
+      "at every rebuild without a gate — which the two red studies "
+      "are direct evidence against. It would be strengthened, not "
+      "overturned, by a study whose check is red for a reason the "
+      "gate should not fire on: that is a re-pointing question about "
+      "one instrument, not about whether the trigger is pulled.",
+      "adopted"),
 ]
 
 
