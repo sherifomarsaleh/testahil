@@ -5,7 +5,6 @@
   "ELEC": "no sweep script in the study directory",
   "GBCO": "no sweep script in the study directory",
   "PHDC": "no sweep script in the study directory",
-  "STC": "no sweep script in the study directory",
   "SWDY": "no sweep script in the study directory",
   "TMGH": "no sweep script in the study directory",
   "XPT": "imports the shared register but commits no sweep_register.json"
