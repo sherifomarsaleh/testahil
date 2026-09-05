@@ -1,0 +1,14 @@
+{
+ "ticker": "BOROUGE",
+ "started_at": "2026-09-05",
+ "start_value": 1.477,
+ "start_spot": 2.4,
+ "start_gap": -0.3845833333333333,
+ "audit_after": "BOTH levers, and not between them, DECLARED BEFORE EITHER IS APPLIED. They are one pass because the first decides WHICH NUMBER the second compares against a price: the study currently publishes a median across two framings, so re-striking it on the latest price would audit the gap of a number [R-LENS-03] is about to retire. A look taken between them would audit a state this study never publishes. THE SIZE IS KNOWN IN ADVANCE AND IS THE REASON FOR DECLARING IT HERE: the first lever moves the answer from 1.4770 to somewhere between 2.3481 and 2.5499, +59% to +73%, which would carry this study from 38% BELOW its price to roughly at or above it — across [R-GAP-02]'s publication block in the direction that RELEASES it. That is precisely the shape where a rebuild must be decided on the rules rather than on where it lands, and the choice between the two framings is made below on the rules alone.",
+ "levers": [],
+ "value": 1.477,
+ "cumulative_move": 0.0,
+ "rules": {},
+ "distinct_rules": 0,
+ "note": "PLAN COMMITTED BEFORE THE WORK, and this file is rewritten with the levers as they land. What is fixed here and may not move afterwards: the two levers, their order, and the audit point. [R-REBUILD-01] exists because six individually-required corrections were once stacked on one name without anybody looking at the running total until the last one was in."
+}
