@@ -33,7 +33,8 @@ LANDED = {
     'R-TERM-01':  'a8f1f4026c24385e06d9bc493f6f74e7607de52f',     # lever 5
     'R-BRIDGE-01': '7a10176ffdf65947f599b3d472061fc917a4168c',    # lever 5b
     'R-LENS-03':  'accc82d745bccf22f5455d0504c92c7043ee3f56',     # lever 6
-    'R-GAP-01':   None,                                          # the working tree, latest
+    'R-GAP-01':   '750bd6e18d39cea57ea19a6ab096b3335ea9a849',     # lever 7
+    'R-SIGCM-02': None,                                          # the working tree, latest
 }
 
 
@@ -63,6 +64,7 @@ AFTER_MACRO = at(LANDED['R-MACRO-01'])
 AFTER_TERM = at(LANDED['R-TERM-01'])
 AFTER_BRIDGE = at(LANDED['R-BRIDGE-01'])
 AFTER_LENS = at(LANDED['R-LENS-03'])
+AFTER_GAP = at(LANDED['R-GAP-01'])
 NOW = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 # The lever-2 intermediate, struck when the cost-of-capital schedule was in and the beta
 # was not. It is named for that lever set, so a later sensitivity run cannot overwrite the
@@ -321,7 +323,7 @@ led.apply(
 led.apply(
     name='the answer and the price it is measured against, published where they can be read',
     rule='R-GAP-01',
-    after=NOW['lenses']['central']['base'],
+    after=AFTER_GAP['lenses']['central']['base'],
     why=(
         'THE MOVE IS ZERO AND THAT IS THE FINDING RATHER THAN AN OMISSION. The rule wants '
         'the central put against the LATEST KNOWN price before any delivery, and the '
@@ -344,9 +346,56 @@ led.apply(
         'series or measure the gap against a price the market has already left. STC comes '
         'off the valuation-gap ratchet, which now carries no breaching study at all and one '
         'unreadable one.'
-        % (NOW['lenses']['central']['base'], NOW['spot'], NOW['spot_date'],
-           100 * (NOW['lenses']['central']['base'] / NOW['spot'] - 1),
-           NOW['cone_anchor'], NOW['cone_anchor_date'])),
+        % (AFTER_GAP['lenses']['central']['base'], AFTER_GAP['spot'],
+           AFTER_GAP['spot_date'],
+           100 * (AFTER_GAP['lenses']['central']['base'] / AFTER_GAP['spot'] - 1),
+           AFTER_GAP['cone_anchor'], AFTER_GAP['cone_anchor_date'])),
+)
+
+led.apply(
+    name='revenue and margin rebuilt on the eleven disclosed segments',
+    rule='R-SIGCM-02',
+    after=NOW['lenses']['central']['base'],
+    why=(
+        'A SECOND STAGE, DECLARED IN DRIVER_REBUILD_05-09-2026.md BEFORE IT WAS CODED, with '
+        'its own audit point after the whole rebuild rather than inside it. The seven levers '
+        'of the plan are landed; this is not a reshaping of them. The study forecast four '
+        'typed arrays over a taxonomy the filings do not use, with no source, date or layer '
+        'on any of them. The company discloses eleven to thirteen operating segments with '
+        'revenue AND gross profit for every one, three filed years, all six columns footing '
+        "to their own filing's stated total. Each segment now grows at its own MEASURED real "
+        'rate, deflated by a published price index from the same database the house ladder '
+        'comes from, fading to zero real by the last explicit year so that no segment is '
+        'capitalised at a rate it never reached. And the margin becomes an OUTPUT: gross '
+        'profit is built per segment at its own disclosed rate and EBITDA is that less one '
+        "cost line at its own three-year average share of revenue, instead of a margin path "
+        'typed above them.'),
+    evidence=(
+        'Revenue compounds at %.2f%% nominal against the delivered arrays\' %.2f%%, because '
+        'the measured rates are lower than the typed ones: stc, two thirds of revenue, grows '
+        '+0.16%% real, Channels -2.10%%, Solutions +5.53%%, the group +2.33%%. The EBITDA '
+        'margin comes out at %.2f%% in the first forecast year against a filed %.2f%% — a '
+        'relative gap of %.2f%%, well inside [R-ANCHOR-01]\'s five per cent trigger, so the '
+        'forecast does not open materially below the latest filed period and owes no '
+        'mechanism. The answer falls %.4f to %.4f, %+.2f%%, and the gap against the latest '
+        'known price goes %+.1f%% to %+.1f%% — past [R-GAP-01]\'s trigger, so the '
+        'eight-heading review is written and committed as GAP_REVIEW_05-09-2026.md. THE SIZE '
+        'WAS DECLARED UNPREDICTED IN ADVANCE and it was: group real growth of +2.33%% '
+        'trailing is close to what the delivered arrays imply in aggregate, and what changed '
+        'is the COMPOSITION, because four aggregates do not map onto eleven segments and a '
+        'segment growing at its own rate compounds differently from a blend growing at an '
+        'average of them.'
+        % (100 * ((NOW['forecast']['FY30E']['rev'] / 77_818.675) ** 0.2 - 1),
+           100 * ((93_373.0 / 77_818.675) ** 0.2 - 1),
+           100 * NOW['forecast']['FY26E']['ebitda_margin'],
+           100 * 24_469.435 / 77_818.675,
+           100 * (NOW['forecast']['FY26E']['ebitda_margin']
+                  / (24_469.435 / 77_818.675) - 1),
+           AFTER_GAP['lenses']['central']['base'], NOW['lenses']['central']['base'],
+           100 * (NOW['lenses']['central']['base']
+                  / AFTER_GAP['lenses']['central']['base'] - 1),
+           100 * (AFTER_GAP['lenses']['central']['base'] / NOW['spot'] - 1),
+           100 * (NOW['lenses']['central']['base'] / NOW['spot'] - 1))),
 )
 
 rec = led.record()

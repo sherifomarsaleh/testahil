@@ -193,23 +193,108 @@ seg_hist = dict(
     subs={'FY24': 26249.0, 'FY25': 26700.0},   # group − KSA (net of eliminations)
 )
 
-# ===== Forecast drivers (top-down, §3.5-C: subs×ARPU not disclosed → normalized margins) =====
-yrs = ['FY26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E']
-g_cbu = [0.030, 0.028, 0.025, 0.022, 0.020]
-g_ebu = [0.020, 0.035, 0.040, 0.040, 0.035]
-g_wc  = [0.060, 0.050, 0.040, 0.035, 0.030]
-g_sub = [0.060, 0.058, 0.052, 0.047, 0.042]
-ebitda_m = [0.318, 0.320, 0.322, 0.323, 0.325]
-dna_pct  = [0.129, 0.128, 0.127, 0.126, 0.125]
-capex_pct = [0.165, 0.165, 0.160, 0.155, 0.150]   # guidance band 15–17.5%, edging up 2026–27
-wc_out_pct = [0.008, 0.006, 0.005, 0.004, 0.004]  # net WC/OCF-conversion drag as % of revenue (receivables-led; FY25 conversion gap)
-payout_dps = [2.20, 2.20, 2.30, 2.40, 2.55]       # policy 0.55/q locked to Q3-27, then growing
+# ===== Forecast drivers, built on the DISCLOSED SEGMENTS [R-MACRO-01, R-SIGCM-02] ====
+# The rule is pre-registered in DRIVER_REBUILD_05-09-2026.md and every clause of it is
+# mechanical. It replaces four typed arrays over a taxonomy the filings do not use.
+import segments as SEG
 
-fc = {}
-cbu, ebu, wc_, sub = seg_hist['ksa_cbu']['FY25'], seg_hist['ksa_ebu']['FY25'], seg_hist['ksa_wc']['FY25'], seg_hist['subs']['FY25']
+yrs = ['FY26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E']
+FORECAST_YEARS = [2026, 2027, 2028, 2029, 2030]
+
+# Saudi consumer-price inflation for the two years the trailing window spans, each a DATED
+# SCALAR from the International Monetary Fund's World Economic Outlook database, series
+# PCPIPCH, Saudi Arabia — the same database, series and country row the house macro path's
+# forward ladder comes from, so the history and the forecast are one economy rather than two.
+CPI_HIST = {2024: 0.015, 2025: 0.020}
+CPI_HIST_SOURCE = ('International Monetary Fund, World Economic Outlook database, series '
+                   'PCPIPCH (inflation, average consumer prices, annual percent change), '
+                   'Saudi Arabia (SAU), read live from the IMF datamapper API on '
+                   '5 September 2026.')
+_DEFLATOR = (1 + CPI_HIST[2024]) * (1 + CPI_HIST[2025])
+
+# THE GROUP'S OWN REAL RATE, which a re-grouped line takes instead of its own.
+GROUP_REAL = (SEG.STATED_REVENUE[2] / SEG.STATED_REVENUE[0] / _DEFLATOR) ** 0.5 - 1.0
+
+seg_real0 = {}
+for _k, _v in SEG.REVENUE.items():
+    if _k == 'Eliminations / adjustments':
+        # eliminations are intra-group and scale with the segments they eliminate between,
+        # so they are held at their FY2025 share of gross segment revenue rather than grown
+        continue
+    if _k in SEG.REGROUPED or _v[0] <= 0:
+        # A line whose composition changed between filings has no growth rate of its own:
+        # iot2 reads +107% real and Other reads -70%, and both are accounting changes.
+        seg_real0[_k] = GROUP_REAL
+    else:
+        seg_real0[_k] = (_v[2] / _v[0] / _DEFLATOR) ** 0.5 - 1.0
+
+
+def seg_real(name, t):
+    """The segment's real growth in explicit year t (1-based), fading to ZERO by year 5.
+
+    The fade is not a free parameter dressed up. The terminal states real growth of zero,
+    so a segment still growing in real terms in the last explicit year would be capitalised
+    at a rate it never reached — which is what [R-MACRO-01] says about explicit windows and
+    [R-TERM-01] about terminals. Fading to the number the terminal already assumes is what
+    makes the two halves of the model one model.
+    """
+    return seg_real0[name] * (1.0 - t / float(len(yrs)))
+
+
+# Revenue, segment by segment, nominal RECOMPUTED from real on the house ladder.
+_gross_fy25 = sum(v[2] for k, v in SEG.REVENUE.items()
+                  if k != 'Eliminations / adjustments')
+ELIM_SHARE = SEG.REVENUE['Eliminations / adjustments'][2] / _gross_fy25
+
+seg_fc, fc = {}, {}
+_lvl = {k: v[2] / 1000.0 for k, v in SEG.REVENUE.items()
+        if k != 'Eliminations / adjustments'}          # SAR millions
 for i, y in enumerate(yrs):
-    cbu *= (1 + g_cbu[i]); ebu *= (1 + g_ebu[i]); wc_ *= (1 + g_wc[i]); sub *= (1 + g_sub[i])
-    fc[y] = dict(cbu=cbu, ebu=ebu, wc=wc_, ksa=cbu + ebu + wc_, sub=sub, rev=cbu + ebu + wc_ + sub)
+    _infl = COCRUN.MACRO.inflation(FORECAST_YEARS[i])
+    for k in list(_lvl):
+        _lvl[k] *= (1.0 + seg_real(k, i + 1)) * (1.0 + _infl)
+    _gross = sum(_lvl.values())
+    seg_fc[y] = dict(_lvl)
+    fc[y] = dict(gross=_gross, elim=_gross * ELIM_SHARE,
+                 rev=_gross * (1.0 + ELIM_SHARE))
+
+# Gross profit per segment at its own FY2025 margin. Margin is an OUTPUT of the cost side
+# wherever the filings support one; this panel discloses cost only as the residual, so the
+# finest sourced level is the segment's own disclosed margin, held.
+SEG_MARGIN = {}
+for _k in _lvl:
+    _r, _g = SEG.REVENUE[_k][2], SEG.GROSS_PROFIT[_k][2]
+    SEG_MARGIN[_k] = (_g / _r) if _r > 0 else 0.0
+ELIM_GP_SHARE = SEG.GROSS_PROFIT['Eliminations / adjustments'][2] / _gross_fy25
+
+# The one line between group gross profit and group EBITDA — selling, general and
+# administrative cost — at its OWN three-year average share of revenue, so the EBITDA
+# margin is an output of two sourced lines rather than a number typed above them.
+SGA_SHARE = sum((SEG.STATED_GROSS_PROFIT[i] - e) / SEG.STATED_REVENUE[i]
+                for i, e in enumerate((22_445_389, 23_951_115, 24_469_435))) / 3.0
+
+# Depreciation and amortisation at the FY2025 filed ratio, and capital expenditure on the
+# guidance band the company publishes. Both anchored on a disclosed figure rather than typed.
+DNA_SHARE = 10_031.171 / 77_818.675
+capex_pct = [0.165, 0.165, 0.160, 0.155, 0.150]   # guidance band 15.0-17.5%
+wc_out_pct = [0.008, 0.006, 0.005, 0.004, 0.004]
+payout_dps = [2.20, 2.20, 2.30, 2.40, 2.55]       # policy 0.55/q locked to Q3-27
+
+for i, y in enumerate(yrs):
+    _gp = sum(seg_fc[y][k] * SEG_MARGIN[k] for k in seg_fc[y]) \
+        + fc[y]['gross'] * ELIM_GP_SHARE
+    fc[y]['gp'] = _gp
+    fc[y]['sga'] = fc[y]['rev'] * SGA_SHARE
+    fc[y]['ebitda'] = _gp - fc[y]['sga']
+    fc[y]['ebitda_margin'] = fc[y]['ebitda'] / fc[y]['rev']
+
+# The names the rest of the model reads. ebitda_m and dna_pct are now DERIVED rather than
+# typed: the first is an output of gross profit less a sourced cost share, the second the
+# company's own filed ratio held flat.
+ebitda_m = [fc[y]['ebitda_margin'] for y in yrs]
+dna_pct = [DNA_SHARE] * len(yrs)
+seg_hist = {k: {'FY23': v[0] / 1000.0, 'FY24': v[1] / 1000.0, 'FY25': v[2] / 1000.0}
+            for k, v in SEG.REVENUE.items()}
 
 # ===== Cost of capital — the sanctioned schedule [R-COC-01] ==================
 # The whole ladder comes from engine/cost_of_capital.py through this study's own
@@ -255,11 +340,21 @@ WACC_TERMINAL = SCHED.wacc_terminal
 # Terminal growth is STORED AS A REAL RATE AND RECOMPUTES TO ITS NOMINAL on the house
 # Saudi path [R-MACRO-01]. The delivered study typed 2.5% nominal, which is unfalsifiable:
 # nobody can tell from the page whether it meant terminal inflation plus half a point or
-# something else. The real growth is the rule's own STATED DEFAULT OF ZERO — a mature
-# domestic telecom growing with the economy in perpetuity and no further — because any
-# other figure would have to be sourced and nothing in the filings supplies one, and
-# reverse-engineering the real rate that reproduces the typed 2.5% would be keeping the
-# number and inventing a reason for it.
+# something else. The real growth is the rule's own STATED DEFAULT OF ZERO.
+#
+# WHAT ZERO REAL ACTUALLY MEANS, WRITTEN DOWN AS THE REAL NUMBER IT IS. This comment first
+# justified the default as "a mature domestic telecom growing with the economy in
+# perpetuity", and that sentence describes a POSITIVE real rate — an economy grows by
+# inflation plus real output, and a company growing at inflation alone is growing with
+# PRICES and not with the economy. The number was defensible and the reason for it was
+# false, which is the more dangerous of the two because it survives review. Zero real means
+# STC's revenue grows with the price level for ever and its share of Saudi output declines
+# in perpetuity. That is a real assumption, it is conservative, and it stands because any
+# positive rate would have to be SOURCED: telecommunications revenue has fallen as a share
+# of output across most markets for two decades, so "it holds its share of a growing
+# economy" is a claim about this company that nothing here evidences. Reverse-engineering
+# the real rate that reproduces the typed 2.5% would be keeping the number and inventing a
+# reason for it, which is the same offence from the other end.
 TG_REAL = 0.0
 TG = COCRUN.MACRO.terminal_growth(TG_REAL)      # = terminal inflation + the stated real
 
@@ -663,8 +758,19 @@ out = dict(
     ),
     terminal_record=_t.record,
     hist=hist, seg_hist=seg_hist,
-    drivers=dict(g_cbu=g_cbu, g_ebu=g_ebu, g_wc=g_wc, g_sub=g_sub, ebitda_m=ebitda_m,
-                 dna_pct=dna_pct, capex_pct=capex_pct, wc_out_pct=wc_out_pct, payout_dps=payout_dps),
+    drivers=dict(
+        # Per-segment REAL growth, measured from the company's own note 9 and deflated by
+        # a published price index, fading to zero real by the last explicit year. Nominal
+        # recomputes on the house ladder; nothing here is a typed nominal rate.
+        segment_real_growth={k: round(v, 6) for k, v in seg_real0.items()},
+        group_real_growth=GROUP_REAL,
+        segment_margin={k: round(v, 6) for k, v in SEG_MARGIN.items()},
+        sga_share_of_revenue=SGA_SHARE, dna_share_of_revenue=DNA_SHARE,
+        elimination_share=ELIM_SHARE, elimination_gp_share=ELIM_GP_SHARE,
+        regrouped_take_group_rate=sorted(SEG.REGROUPED),
+        cpi_history=CPI_HIST, cpi_history_source=CPI_HIST_SOURCE,
+        ebitda_m=ebitda_m, dna_pct=dna_pct, capex_pct=capex_pct,
+        wc_out_pct=wc_out_pct, payout_dps=payout_dps),
     forecast=fc,
     dcf=dict(rows=rows, pv_sum=pv_sum, tv=tv, pv_tv=pv_tv, ev=ev, tv_pct=pv_tv / ev,
              # Exposed so the terminal census can score this terminal from outside rather

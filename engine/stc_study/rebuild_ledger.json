@@ -68,10 +68,19 @@
    "why": "THE MOVE IS ZERO AND THAT IS THE FINDING RATHER THAN AN OMISSION. The rule wants the central put against the LATEST KNOWN price before any delivery, and the valuation has been struck on that price since the cost-of-capital lever, because the schedule reads the supplied close register directly \u2014 so there was nothing left to re-strike by the time this lever arrived. What WAS missing is that neither the answer nor the price appeared anywhere a reader or a checker could find them: the study exposed no central at all, so every gate that audits an ANSWER rather than a step reported it unreadable, and an unreadable study is not a clean one \u2014 it is the cheapest possible route past an audit. Both are now published at the top level of the committed record.",
    "evidence": "Central 41.1548 against the latest known close of SAR 43.86 on 2026-09-03, a gap of -6.17%, inside the ten per cent band either way, so no eight-heading review is owed and the publication block does not fire on the gap. TWO CLOCKS ARE NOW NAMED RATHER THAN CONFLATED: the valuation is struck against that latest known close, and the Monte Carlo cone against SAR 44.72 on 2026-08-31, the last session in the persistent price library, because a cone has to start where its own price series ends. Publishing one number for both would either strike the cone on a session that is not in its series or measure the gap against a price the market has already left. STC comes off the valuation-gap ratchet, which now carries no breaching study at all and one unreadable one.",
    "move": 0.0
+  },
+  {
+   "name": "revenue and margin rebuilt on the eleven disclosed segments",
+   "rule": "R-SIGCM-02",
+   "before": 41.15477165329675,
+   "after": 34.798812824404735,
+   "why": "A SECOND STAGE, DECLARED IN DRIVER_REBUILD_05-09-2026.md BEFORE IT WAS CODED, with its own audit point after the whole rebuild rather than inside it. The seven levers of the plan are landed; this is not a reshaping of them. The study forecast four typed arrays over a taxonomy the filings do not use, with no source, date or layer on any of them. The company discloses eleven to thirteen operating segments with revenue AND gross profit for every one, three filed years, all six columns footing to their own filing's stated total. Each segment now grows at its own MEASURED real rate, deflated by a published price index from the same database the house ladder comes from, fading to zero real by the last explicit year so that no segment is capitalised at a rate it never reached. And the margin becomes an OUTPUT: gross profit is built per segment at its own disclosed rate and EBITDA is that less one cost line at its own three-year average share of revenue, instead of a margin path typed above them.",
+   "evidence": "Revenue compounds at 2.50% nominal against the delivered arrays' 3.71%, because the measured rates are lower than the typed ones: stc, two thirds of revenue, grows +0.16% real, Channels -2.10%, Solutions +5.53%, the group +2.33%. The EBITDA margin comes out at 31.09% in the first forecast year against a filed 31.44% \u2014 a relative gap of -1.14%, well inside [R-ANCHOR-01]'s five per cent trigger, so the forecast does not open materially below the latest filed period and owes no mechanism. The answer falls 41.1548 to 34.7988, -15.44%, and the gap against the latest known price goes -6.2% to -20.7% \u2014 past [R-GAP-01]'s trigger, so the eight-heading review is written and committed as GAP_REVIEW_05-09-2026.md. THE SIZE WAS DECLARED UNPREDICTED IN ADVANCE and it was: group real growth of +2.33% trailing is close to what the delivered arrays imply in aggregate, and what changed is the COMPOSITION, because four aggregates do not map onto eleven segments and a segment growing at its own rate compounds differently from a blend growing at an average of them.",
+   "move": -0.15444038621905132
   }
  ],
- "value": 41.15477165329675,
- "cumulative_move": -0.1264268032052609,
+ "value": 34.798812824404735,
+ "cumulative_move": -0.26134178510885175,
  "rules": {
   "R-COC-01": {
    "levers": [
@@ -128,9 +137,17 @@
    "first_before": 41.15477165329675,
    "last_after": 41.15477165329675,
    "move": 0.0
+  },
+  "R-SIGCM-02": {
+   "levers": [
+    "revenue and margin rebuilt on the eleven disclosed segments"
+   ],
+   "first_before": 41.15477165329675,
+   "last_after": 34.798812824404735,
+   "move": -0.15444038621905132
   }
  },
- "distinct_rules": 7,
+ "distinct_rules": 8,
  "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked.",
  "audit_taken": {
   "at": "2026-09-05, after lever 3, as declared",
@@ -142,7 +159,7 @@
   "latest_price": 43.86,
   "latest_price_date": "2026-09-03",
   "gap_at_the_audit": "+0.43%",
-  "gap_now_after_later_levers": "-6.17%",
+  "gap_now_after_later_levers": "-20.66%",
   "gap_at_delivery": "+8.10%",
   "what_the_audit_shows": "THE TWO LEVERS DISAGREED AND THE ROUTE IS WHY THAT MATTERS. Taken in the order fixed in writing before either was touched, the cost-of-capital correction moved the answer AWAY from the market \u2014 from 8.1%% above the price it was struck at to 16.4%% above the latest one \u2014 and the beta correction brought it back. Neither was chosen for where it landed and neither could have been: the first raises every value it touches and the second lowers every value it touches, and which one dominates is arithmetic about this company's own capital structure. Read as two corrections the rebuild is a contest; read as one net figure of -6.5%% it would look like a small tidy-up, and the 8.4%% and the 13.8%% inside it would be invisible. THE ANSWER NOW SITS ESSENTIALLY ON THE PRICE, at +0.4%%, and that is reported as an observation and NOT as corroboration \u2014 four levers remain, the lens retirement among them, and a rebuild that stopped here because the number looked comfortable would be fitting to the price by choosing when to stop.",
   "levers_remaining_at_the_audit": [

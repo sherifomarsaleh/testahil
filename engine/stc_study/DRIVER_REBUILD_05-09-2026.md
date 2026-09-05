@@ -97,3 +97,38 @@ the gap is what the rule requires where the unit data stops, and the gap is flag
   with its source, and the archive itself is outstanding.
 - **The investor-relations register**, which is where subscriber and revenue-per-user data
   would come from if this company publishes it.
+
+## The audit point for this stage, declared before the rule is coded
+
+**AFTER THE WHOLE DRIVER REBUILD, AND NOT INSIDE IT.** The seven levers of
+`REBUILD_PLAN_05-09-2026.md` are landed; this is a new stage and it gets its own declared
+stop rather than borrowing that plan's. It is ONE rule applied in one place — the revenue
+and margin build moves from four typed arrays to eleven disclosed segments — so there is no
+intermediate state worth auditing: half the segments on measured rates and half on typed
+ones is a model this study would never publish, and a look taken there would audit a
+chimera. The rebuild lands as one lever serving [R-MACRO-01] and [R-SIGCM-02] together.
+
+**The size is NOT known in advance and that is stated rather than discovered.** Group real
+growth of +2.33% trailing is close to what the delivered arrays imply in aggregate, so the
+headline may barely move — but the *composition* changes completely, because the four
+aggregates do not map onto the eleven segments at all, and a segment growing at its own
+rate compounds differently from a blend growing at an average of them. Whether that is worth
+a percent or ten is not predicted here.
+
+## Margins become outputs in the same pass, because the panel makes it possible
+
+The delivered model types an EBITDA margin path of 31.8% rising to 32.5%. A margin set as an
+input is a fail wherever the filings disclose enough to build the cost side instead, and
+they do: the panel carries **gross profit per segment**, and the gap from group gross profit
+to group EBITDA is one line — selling, general and administrative cost — which runs
+
+| | FY2023 | FY2024 | FY2025 |
+|---|---:|---:|---:|
+| gross profit | 34,740,066 | 37,325,924 | 37,699,689 |
+| EBITDA | 22,445,389 | 23,951,115 | 24,469,435 |
+| **the residual** | **12,294,677** | **13,374,809** | **13,230,254** |
+| as a share of revenue | 17.13% | 17.62% | 17.00% |
+
+so EBITDA is built as gross profit less that cost at its three-year average share of
+revenue, and the EBITDA margin becomes an **output** of two sourced lines rather than an
+assumption typed above them.
