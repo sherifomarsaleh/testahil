@@ -337,3 +337,92 @@ Questions and deliveries that arose overnight, each with the evidence and the re
     **The default fires 18 September and takes exactly that route.** What has changed is the cost of waiting: this is no longer a taxonomy tidy-up, it is the reason a gate that governs publication says nothing about a third of the book.
 
     One honest caveat, carried from yesterday and still true: EMPOWER's blend carries a *normalised earnings* lens at 15%, and normalised earnings appears in no row of the registry at all. Even under the fix, that lens has to go — which is the rule working as intended rather than a further gap in it.
+
+---
+
+## 04→05 Sep 2026, second half of the night
+
+**Nothing below needs a decision except items 1 and 5.** Everything else is reported because
+it happened, not because it is asking.
+
+1. **THE MODEL REPORT PUBLISHES A NUMBER A STANDING RULE RETIRED, and so do two other
+   delivered studies.** [R-CAL-03] retired the skill verdict outright — "nothing on any
+   public surface — no page, figure, document or deck". ADNOCLS's delivered study says "the
+   three-month distributions scored **+2.95% better than a random-walk benchmark** anchored
+   on the same cost of carry"; SWDY says "+1.50% better than a random-walk benchmark";
+   ADNOCDRILL says "the map scored 1.65% **WORSE** than a simple no-information benchmark".
+
+   The verdict-vocabulary gate was widened two days ago after ARCC shipped the same claim in
+   different words, with a comment saying a rule like this "is not enforced by banning the
+   word people happened to use for it last time" — **and it was then defeated by a hyphen**,
+   because the patterns look for "random walk" and these three wrote "random-WALK
+   benchmark". The patterns now match the shape of the claim rather than its wording.
+
+   **The decision is yours because one of the three is the exemplar.** The fix is one clause
+   in one builder each plus a document and PDF rebuild — small work, but on ADNOCLS it is a
+   re-issue of the document every new study is copied from, and [R-ENF-01]'s exemplar clause
+   says such a debt is either met or consciously added in the same commit. **I added it
+   consciously rather than re-issuing the model report at four in the morning**, and it is
+   now visible on the exemplar's debt list with the fix named. *Recommendation: re-issue all
+   three in one pass, with the model report last and its rebuild verified page by page.*
+
+2. **Four studies the publication gate could say nothing about are now readable and
+   audited, and the ratchet fell from six to two.** AMR, ADNOCDIST, ADNOCDRILL and ELEC each
+   carried their answer under a key the shared reader does not look at, so [R-GAP-01] had
+   never seen them. All four now expose it and all four breach; all four carry a full
+   eight-heading review; **every one of the four verdicts is that the gap is OURS.**
+
+   | | central | latest price | gap | what the review found |
+   |---|---|---|---|---|
+   | AMR | AED 2.1455 | 2.39 | −10.2% | the blend, and an unsourced 6% wage escalator against a revenue line converging to 2% |
+   | ADNOCDIST | 4.4113 / 4.5821 | 4.02 | +9.7% / **+14.0%** | a FY2026 needing a second half +9.9% above the reviewed first half when its own seasonality is +2.8% |
+   | ADNOCDRILL | 4.9194 | 5.80 | −15.2% | **the blend and nothing else** — its two cash-flow framings straddle the price and their midpoint lands 0.04% from it |
+   | ELEC | EGP 0.3357 | 2.08 | −83.9% | **not a valuation**: two lenses pinned at floors carry 60% of the weight and produce 4.2% of the answer |
+
+   ADNOCDIST is the sharpest: **it was already breaching at strike on 9 August** and owed
+   this review then. It did not get one purely because its answer sat where nothing looked.
+
+3. **Three of the four name the SAME largest correction and none of them can take it** —
+   retiring the typed multi-lens blend, which is blocked for all four by the lens-registry
+   escalation waiting on you. Until tonight the cost of that wait was measured in
+   readability; it is now measured in corrections worth +0.09 to +1.29 a share, **and on two
+   of the four the blocked correction moves the answer AWAY from the price**, which is the
+   shape that proves it is not being chosen for where it lands.
+
+4. **Three gates were found blind, all for the same reason, and all closed.** The 1/g
+   terminal gate had an unnamed third bucket and reported "no new terminal carries the
+   construction" while ELEC carried it in plain sight in its own code — its resolver was
+   also reading **bear cases** for two studies' growth and discount rates, and could not see
+   a four-field input register at all, so the better-documented a study's input was the less
+   visible it was. The verdict gate is item 1. And the gate whose whole purpose is to notice
+   the exemplar acquiring debt read one ratchet layout out of four and reported **one entry
+   where there were five**. Registered as one lesson: a gate's population is defined by a
+   shape, and the thing it governs keeps arriving in another one.
+
+   A fourth, found by the first three: the new-study gauntlet had **never tested the terminal
+   gate**, because that gate takes the shared census module and the gauntlet decides its
+   population by reading each gate's own source. Following the house's own advice is what
+   hid it. Fixed by following imports one level down.
+
+5. **ELEC should be withdrawn from coverage rather than re-issued, and that is your call.**
+   Enumerating the company's own statement index rather than counting it: the index **ends at
+   30 September 2025** — no FY2025 annual and no 2026 interims exist at all — **every file
+   listed from mid-2021 onward is standalone**, and **every consolidated statement sits on a
+   dead host**, 42 of 61 links. This study models consolidated figures. Its central rests on
+   two clamps and its most consequential driver is justified against a year it holds no
+   income statement for. *Recommendation: take the escalation's standing default and
+   withdraw, rather than re-issue on aggregator data.*
+
+6. **STC is ready to rebuild and GBCO is not.** Both carry a `wacc_reissue_blocked_on` field
+   asking for their own sovereign's default spread — **and [R-MACRO-01] put those figures in
+   the house macro paths on 2–3 September**, so both blockers were closed three days before
+   anyone looked. A blocker written into a study's own JSON is re-checked by nothing, which
+   is [R-IND-01]'s failure mode one level down from the register that rule does police.
+   STC's five audited and reviewed statement sets are fetched and committed, its asset life
+   is derived from its own note 10 (20.86 years, base 15.23 years old, 73% written off — the
+   first name in five where the identity is not closed by residual-value depreciation), and
+   its conforming beta is already on file at 0.7107 against the 0.48 the study actually uses.
+   GBCO stops at the lens registry, which is item 3.
+
+7. **Nothing was published.** Everything above is in the repository; the live site is
+   untouched, and [R-GAP-02]'s Phase-1 clause continues to hold every study regardless.
