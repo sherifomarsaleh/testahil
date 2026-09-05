@@ -18,6 +18,15 @@ Published centre **4.4113 / 4.5821** against AED 4.02 on 3-Sep-2026 (+9.7% / +14
 class-primary cash-flow read is 4.784 / 5.101 (+19.0% / +26.9%) — the blend [R-LENS-03]
 retired, which this study's own held findings already record.
 
+**VERIFIED BY HAND, 5 September, since the verification agents could not run.** The
+arithmetic below reproduces from the study's committed numbers alone, and the study's own
+input register states the intent that makes it a defect: the 17% "**is** the realised
+first-half outcome", and `compute.py:865` then applies it *on top of* that realised half.
+Second half of 2026 implied at **0.5847 AED/L** against **0.4363** in the half just filed —
+a 34.0% jump nothing discloses, compounding through all five explicit years. Written up in
+full at `engine/adnocdist_study/AUDIT_05-09-2026.md` finding 7. **This one is no longer
+unverified.** The rest of the ADNOCDIST stack below, and all of ADNOCDRILL, still is.
+
 **The one defect the audit calls ours, and it is large.** The FY2026 commercial margin per
 litre steps +17% on an anchor that is *already* the realised H1-2026 outcome:
 

@@ -86,6 +86,15 @@ SIGN = {
 }
 ITEMS = ["cash", "debt", "capex", "ppe", "dep", "wc", "shares", "cap"]
 
+# The record [R-FCAL-01 AMENDED] defines, which a run commits BESIDE its driver
+# panel. It is read first and needs no key map: the amendment names the items, so
+# a run that commits it has no private vocabulary for this module to have read
+# wrongly. The named map below stays for the runs that predate the amendment —
+# they committed whatever their own schema happened to carry, and only a named
+# map can find it. A run appearing in both is not double-counted; the same item
+# simply resolves through two files and both are reported.
+STANDARD = "valuation_inputs.json"
+
 # The leaf keys each run actually uses. Named, not guessed — see the header.
 MAP = {
     "AMOC": {
@@ -182,11 +191,52 @@ def scan_file(path, claims):
     return out, unclaimed
 
 
+def scan_standard(path):
+    """{year: {item: [where]}} from the record [R-FCAL-01 AMENDED] defines.
+
+    An item marked MISSING is not present — that is the whole point of recording
+    it as missing rather than omitting it, and crediting a cell for a recorded
+    absence would turn the clause that makes gaps visible into one that hides
+    them. `cap` is credited from the share record's own issued capital, which is
+    where the amendment puts it: the count and the capital it was footed against
+    live in one record rather than two rows.
+    """
+    try:
+        doc = json.load(open(path, encoding="utf-8"))
+    except Exception:
+        return {}
+    out = {}
+    for key, block in (doc.get("origins") or {}).items():
+        y = _year_of(key)
+        if y is None or not isinstance(block, dict):
+            continue
+        for item, rec in block.items():
+            if item not in ITEMS or not isinstance(rec, dict):
+                continue
+            if "missing" in rec or not _is_number(rec.get("value")):
+                continue
+            out.setdefault(y, {}).setdefault(item, []).append(
+                "/origins/%s/%s" % (key, item))
+            if item == "shares" and _is_number(rec.get("issued_capital")):
+                out[y].setdefault("cap", []).append(
+                    "/origins/%s/shares/issued_capital" % key)
+    return out
+
+
 def census():
     found, files, loose = {}, {}, {}
     for tk, rundir in P.runs().items():
         claims = MAP.get(tk, {})
         agg, seen, un = {}, [], {}
+        p = os.path.join(rundir, STANDARD)
+        if os.path.exists(p):
+            got = scan_standard(p)
+            if got:
+                seen.append(STANDARD)
+                for y, items in got.items():
+                    for item, wheres in items.items():
+                        agg.setdefault(y, {}).setdefault(item, [])
+                        agg[y][item].extend("%s:%s" % (STANDARD, w) for w in wheres[:2])
         for fn in CANDIDATES:
             p = os.path.join(rundir, fn)
             if not os.path.exists(p):

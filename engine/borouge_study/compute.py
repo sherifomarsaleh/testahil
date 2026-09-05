@@ -868,6 +868,205 @@ say(f"  cross-checks span AED {FIELD_LOW:.2f} to AED {FIELD_HIGH:.2f}; the retir
 
 
 # ============================================================================
+# 6B. THE FORECAST ANCHOR — WHAT THE FORECAST CLAIMS AGAINST WHAT WAS LAST FILED
+# ============================================================================
+# A near-term reviewed actual outranks a stale full-year rate. This record states the
+# rate the forecast is built on, the latest period the company has actually reported,
+# and the whole explicit window, so a reader can see the claim rather than infer it.
+#
+# THE RATE IS THE ADJUSTED EBITDA MARGIN, and the choice is forced rather than
+# preferred. It is the company's own published key performance indicator, it is the
+# rate the reference pattern for this class anchors on, and it is the ONLY rate that
+# exists on both sides of this model: the forecast never forms a cost-of-sales
+# subtotal — it builds EBITDA directly from feedstock, other production cost,
+# distribution, general and administrative expense and other income — so a gross
+# margin is computable from the filings and NOT resolvable on the forecast side.
+#
+# Adjusted EBITDA is defined by the company as EBITDA plus the foreign exchange gain
+# or loss and the impairment loss on property, plant and equipment. Foreign exchange
+# sits BELOW operating profit in this company's income statement, inside net finance
+# costs, so at the EBITDA level the only adjustment is the impairment. The
+# reconstruction is asserted against the figure the company publishes rather than
+# accepted on trust: arithmetic is the arbiter.
+def _adj_ebitda(ebit_k, dep_ppe_k, dep_rou_k, amort_k, imp_k):
+    return (ebit_k + dep_ppe_k + dep_rou_k + amort_k + imp_k) * USDm
+
+
+ADJ_H126 = _adj_ebitda(v('ebit_h126'), v('dep_ppe_h126'), v('dep_rou_h126'),
+                       v('amort_h126'), v('imp_h126'))
+ADJ_H125 = _adj_ebitda(v('ebit_h125'), v('dep_ppe_h125'), v('dep_rou_h125'),
+                       v('amort_h125'), v('imp_h125'))
+assert round(ADJ_H126) == v('ebitda_adj_h126'), (ADJ_H126, v('ebitda_adj_h126'))
+assert round(ADJ_H125) == v('ebitda_adj_h125'), (ADJ_H125, v('ebitda_adj_h125'))
+
+REV_H126 = v('rev_h126') * USDm
+REV_H125 = v('rev_h125') * USDm
+LATEST_RATE = ADJ_H126 / REV_H126
+
+# the audited full years on the SAME basis, so the reviewed half is read against the
+# record rather than on its own
+FILED_ADJ_MARGIN = {y: (hist[y]['ebitda'] + hist[y]['impairment']) / hist[y]['revenue']
+                    for y in HIST}
+for _y in HIST:
+    assert round((hist[_y]['ebitda'] + hist[_y]['impairment'])) == \
+        v(f'ebitda_adj_fy{str(_y)[2:]}'), _y
+
+ANCHOR_PATH = {k: [r['ebitda_margin'] for r in RES[k]['rows']] for k in RES}
+
+# --- the like-for-like pair, in the company's own six months a year apart -----------
+# Cash operating cost per unit of revenue: revenue less adjusted EBITDA, over revenue.
+# Both halves are read off the reviewed interim statements and their own comparative
+# column, so the pair is like for like by construction.
+COST_REV_H125 = (REV_H125 - ADJ_H125) / REV_H125
+COST_REV_H126 = (REV_H126 - ADJ_H126) / REV_H126
+VOL_H126 = v('vol_pe_h126') + v('vol_pp_h126')
+VOL_H125 = v('vol_tot_h125')
+COST_T_H125 = (REV_H125 - ADJ_H125) * 1000.0 / VOL_H125
+COST_T_H126 = (REV_H126 - ADJ_H126) * 1000.0 / VOL_H126
+SD_T_H125 = v('sd_h125') * USDm * 1000.0 / VOL_H125
+SD_T_H126 = v('sd_h126') * USDm * 1000.0 / VOL_H126
+ASP_CHG = v('asp_h126') / v('asp_h125') - 1.0
+# the audited full years on the same measure, published beside the chosen pair because
+# a relationship that only held in one direction would not be one
+COST_REV_FY = {y: 1.0 - FILED_ADJ_MARGIN[y] for y in HIST}
+
+# --- which framing governs the record ------------------------------------------------
+# The study is deliberately two-sided and never averages the branches. The anchor is
+# recorded on the branch that makes the claim this record exists to test — the one
+# whose rate falls materially inside its own window — and the other branch is printed
+# beside it in full rather than left out.
+_GOV, _OTH = 'prolonged', 'normalisation'
+_gp, _op = ANCHOR_PATH[_GOV], ANCHOR_PATH[_OTH]
+_gov_min = min(_gp)
+_gov_min_year = YEARS[_gp.index(_gov_min)]
+
+FORECAST_ANCHOR = dict(
+    rate_name='EBITDA margin, prolonged-disruption framing',
+    latest_reviewed_period='H1 2026, reviewed (six months ended 30 June 2026)',
+    latest_reviewed_date='2026-06-30',
+    latest_reviewed_rate=LATEST_RATE,
+    latest_reviewed_source=(
+        'Borouge plc condensed consolidated interim financial statements for the six '
+        'months ended 30 June 2026, reviewed by Ernst & Young under ISRE 2410 with an '
+        f"unmodified conclusion signed 30 July 2026: operating profit of USD "
+        f"{v('ebit_h126') * USDm:,.3f} million plus depreciation and amortisation of USD "
+        f"{(v('dep_ppe_h126') + v('dep_rou_h126') + v('amort_h126')) * USDm:,.3f} million "
+        f"from the interim statement of cash flows plus the impairment loss of USD "
+        f"{v('imp_h126') * USDm:,.3f} million, over revenue of USD {REV_H126:,.3f} "
+        f"million. That reconstruction is USD {ADJ_H126:,.3f} million against the USD "
+        f"{v('ebitda_adj_h126'):,} million the company publishes as adjusted EBITDA in "
+        'its own Q2 2026 Management Discussion & Analysis, and the margin against the '
+        f"{v('ebitda_adj_h126') / round(REV_H126):.0%} that document prints."),
+    first_forecast_rate=_gp[0],
+    forecast_path=_gp,
+    mechanism=dict(
+        name='input_cost_outpacing_price',
+        disclosure=(
+            'THE TWO COST LEGS THAT MOVED IN THE LATEST REVIEWED HALF ARE SET BY THE '
+            'SHIPPING ROUTE AND BY THE PROPYLENE MARKET, NOT BY THE POLYMER PRICE THIS '
+            'COMPANY REALISES, so when the benchmark path gives back its shortage '
+            'premium they do not give it back with it. The Q2 2026 Management Discussion '
+            f"& Analysis reports feedstock cost of USD {v('feed_h126'):,} million for the "
+            'half, up 33 per cent year on year, on higher purchased propylene prices '
+            'after the Olefins Conversion Unit was idled for want of ethane; the company '
+            'states it buys propylene linked to market prices, so that leg is priced off '
+            'propylene rather than off polyethylene. The reviewed statements report '
+            f"selling and distribution expenses of USD {v('sd_h126') * USDm:,.3f} million "
+            f"against USD {v('sd_h125') * USDm:,.3f} million in the comparative half, on "
+            f"{100 * (1 - VOL_H126 / VOL_H125):.0f} per cent fewer tonnes sold — USD "
+            f"{SD_T_H126:,.2f} a tonne against USD {SD_T_H125:,.2f} — while alternative "
+            'routes are in use. OVER THE SAME HALF THE REALISED PRICE ROSE RATHER THAN '
+            f"FELL: the company's own average selling price ran USD {v('asp_h126'):,} a "
+            f"tonne against USD {v('asp_h125'):,} a tonne, {ASP_CHG:+.1%}. The cost stack "
+            'therefore moved against the price in the company\'s own most recent filed '
+            'period, which is the decoupling the forecast carries forward.'),
+        like_for_like=dict(
+            measures=('cash operating cost per unit of revenue — revenue less adjusted '
+                      'EBITDA, over revenue — for the six months ended 30 June, read off '
+                      'the reviewed interim statements and their own comparative column'),
+            period_a='H1 2025 (six months ended 30 June 2025)',
+            period_b='H1 2026 (six months ended 30 June 2026)',
+            value_a=COST_REV_H125,
+            value_b=COST_REV_H126,
+            higher_is_worse=True,
+            note=(
+                'THE DIRECTION, AND WHY IT IS NOT A PRICE EFFECT. Cost per unit of '
+                f"revenue went from {COST_REV_H125:.6f} to {COST_REV_H126:.6f}, "
+                f"{100 * (COST_REV_H126 - COST_REV_H125):+.2f} points, WHILE THE REALISED "
+                f"PRICE ROSE {ASP_CHG:+.1%} over the same pair. A cost ratio that rises "
+                'into a rising price cannot be a price effect; per tonne sold the cash '
+                f"cost went from USD {COST_T_H125:,.2f} to USD {COST_T_H126:,.2f}, "
+                f"{COST_T_H126 / COST_T_H125 - 1:+.1%}, against realised price at "
+                f"{ASP_CHG:+.1%}. THE OPPOSITE EVIDENCE IS PUBLISHED BESIDE IT RATHER "
+                'THAN LEFT OUT, because a relationship that only held in one direction '
+                'would not be one: on the audited full years the same measure is NOT '
+                f"monotone — FY2023 {COST_REV_FY[2023]:.6f}, FY2024 "
+                f"{COST_REV_FY[2024]:.6f}, FY2025 {COST_REV_FY[2025]:.6f}, falling and "
+                'then rising. What the reviewed half adds is a level well above all '
+                'three, and the mechanism claimed is about the disruption that produced '
+                'it rather than about a trend through the cycle.'))),
+    other_framing=dict(
+        label='Normalisation — navigation restored during the second half of 2026',
+        first_forecast_rate=_op[0],
+        forecast_path=_op,
+        note=(
+            f"The normalisation branch opens at {_op[0]:.6f}, "
+            f"{(_op[0] - LATEST_RATE) / LATEST_RATE:+.1%} relative to the reviewed half, "
+            f"and its low is {min(_op):.6f} in {YEARS[_op.index(min(_op))]}, "
+            f"{(min(_op) - _op[0]) / _op[0]:+.1%} from its own opening year — inside the "
+            'materiality line, so it owes no mechanism and none is claimed. THE TWO '
+            'BRANCHES SHARE AN IDENTICAL PRICE PATH: the benchmark ladder, the premium '
+            'ladder, the cost of capital, the terminal growth and the terminal rate are '
+            'the same in both, and they differ only in utilisation, in distribution cost '
+            'per tonne and in how much of the feedstock is bought at market prices. That '
+            'is why the same price reversion compresses one branch and not the other — '
+            'in the normalisation branch the disruption cost stack unwinds with the '
+            'price, and in the prolonged branch it does not.'),
+        value_aed=CENTRAL_NORMALISATION),
+    note=(
+        'BOTH BRANCHES OPEN WELL ABOVE THE LATEST REVIEWED PERIOD AND THAT IS THE FIRST '
+        'THING A READER SHOULD SEE, because a record that only catches declines would say '
+        f"nothing about it. The reviewed six months to 30 June 2026 carried an adjusted "
+        f"EBITDA margin of {LATEST_RATE:.2%}, the weakest half this company has filed; "
+        f"the prolonged branch opens FY2026 at {_gp[0]:.2%}, "
+        f"{(_gp[0] - LATEST_RATE) / LATEST_RATE:+.1%} relative, and the normalisation "
+        f"branch at {_op[0]:.2%}, {(_op[0] - LATEST_RATE) / LATEST_RATE:+.1%}. THE FILED "
+        f"RECORD ON THE SAME BASIS IS FY2023 {FILED_ADJ_MARGIN[2023]:.2%}, FY2024 "
+        f"{FILED_ADJ_MARGIN[2024]:.2%}, FY2025 {FILED_ADJ_MARGIN[2025]:.2%} AND H1 2026 "
+        f"{LATEST_RATE:.2%}, so every forecast year in both branches sits below every "
+        'audited year and above the reviewed half. The half is the event rather than the '
+        'run rate — production ran '
+        f"{v('prod_h126'):,} kt against {prod_hist[2025] / 2:,.0f} kt at half the prior "
+        'year\'s rate, on a plant damaged on 5 April 2026 with the Strait of Hormuz '
+        'closed — and a forecast that opens above it is the ordinary consequence of not '
+        'projecting a blockade for ever.\n\n'
+        'THE CLAIM THIS RECORD TESTS IS THE ONE INSIDE THE WINDOW. The prolonged branch '
+        f"falls from {_gp[0]:.2%} in {YEARS[0]} to {_gov_min:.2%} in {_gov_min_year}, "
+        f"{(_gov_min - _gp[0]) / _gp[0]:+.1%} from its own opening year, and then "
+        f"recovers to {_gp[-1]:.2%} by {YEARS[-1]}. It is a trough rather than a decline, "
+        'and it is entirely a cost-against-price effect that can be shown in one line: '
+        'revenue per tonne sold falls '
+        f"{(RES[_GOV]['rows'][1]['revenue'] * 1000 / RES[_GOV]['rows'][1]['vol_sold']) / (RES[_GOV]['rows'][0]['revenue'] * 1000 / RES[_GOV]['rows'][0]['vol_sold']) - 1:+.1%} "
+        f"between {YEARS[0]} and {YEARS[1]} as the benchmark gives back its shortage "
+        'premium, while cash cost per tonne sold falls only '
+        f"{((RES[_GOV]['rows'][1]['feedstock'] + RES[_GOV]['rows'][1]['othprod'] + RES[_GOV]['rows'][1]['sd'] + RES[_GOV]['rows'][1]['ga'] - RES[_GOV]['rows'][1]['other_income']) * 1000 / RES[_GOV]['rows'][1]['vol_sold']) / ((RES[_GOV]['rows'][0]['feedstock'] + RES[_GOV]['rows'][0]['othprod'] + RES[_GOV]['rows'][0]['sd'] + RES[_GOV]['rows'][0]['ga'] - RES[_GOV]['rows'][0]['other_income']) * 1000 / RES[_GOV]['rows'][0]['vol_sold']) - 1:+.1%}. "
+        'Had the cost stack given back what the price gave back, the margin would not '
+        'have moved at all.\n\n'
+        'WHICH BRANCH THE STUDY PUBLISHES AS ITS CENTRAL IS NOT WHICH BRANCH THIS RECORD '
+        f"GOVERNS, and saying so is the point. The published central is the normalisation "
+        f"branch at AED {CENTRAL_NORMALISATION:.4f}, with the prolonged branch at AED "
+        f"{CENTRAL_PROLONGED:.4f}; the two are published side by side and never averaged. "
+        'The anchor is recorded on the prolonged branch because that is the branch making '
+        'a claim this record exists to test, and the normalisation branch is printed '
+        'beside it in full so nothing is hidden by the choice.'))
+
+say(f"Forecast anchor: adjusted EBITDA margin of {LATEST_RATE:.2%} in the reviewed six "
+    f"months to 30 June 2026 against a forecast opening at {_gp[0]:.2%} (prolonged) and "
+    f"{_op[0]:.2%} (normalisation); the prolonged path troughs at {_gov_min:.2%} in "
+    f"{_gov_min_year}, {(_gov_min - _gp[0]) / _gp[0]:+.1%} from its own opening year.")
+
+
+# ============================================================================
 # 7. WRITE THE NUMBERS FILE
 # ============================================================================
 OUT = dict(
@@ -954,6 +1153,7 @@ OUT = dict(
                  pct=100.0 * (CENTRAL_PROLONGED / v('spot_aed') - 1.0)),
         ]),
     lens_record=LENS_RECORD,
+    forecast_anchor=FORECAST_ANCHOR,
     fair_low=FAIR_LOW, fair_high=FAIR_HIGH,
     fair_mid_retired=FAIR_MID_RETIRED,
     field_low=FIELD_LOW, field_high=FIELD_HIGH,
