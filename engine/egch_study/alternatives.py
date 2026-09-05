@@ -150,7 +150,10 @@ ALTS = [
              f"imply, {V('fa_life_implied_years') / 2:.2f} years, which is what has to be "
              "assumed where a company does not disclose enough to measure it",
          value=age_assumed,
-         why="This is the largest single contested number in the study and it is a "
+         why="This is the largest contested number inside the TERMINAL, and the third "
+             "largest of the ten alternatives priced here — behind the gas price and the "
+             "discount-rate glide, both of which are about the forecast rather than about "
+             "the terminal. It is a "
              "question about THIS BASE rather than about method. Half the life is the "
              "right assumption for a plant in steady state, where the average asset is "
              "half worn out. This one is not: only 1.3% of the base is fully depreciated "

@@ -5,8 +5,8 @@ cent trigger below the price:
 
 | branch | value | vs spot 14.41 |
 |---|---:|---:|
-| cash-flow lens, ANNA capital programme **carried through** | **EGP 3.8967** | **−73.0%** |
-| cash-flow lens, ANNA capital programme **stopped** | **EGP 7.8807** | **−45.3%** |
+| cash-flow lens, ANNA capital programme **carried through** | **EGP 4.0396** | **−72.0%** |
+| cash-flow lens, ANNA capital programme **stopped** | **EGP 8.0388** | **−44.2%** |
 
 Spot is the close on the Egyptian Exchange on 3 September 2026, supplied by the principal
 and committed at `engine/prices/SUPPLIED_03-09-2026.json`. The price has not moved since
@@ -138,18 +138,18 @@ can follow it:
 | less inflation on the working capital the business carries | (228.9) |
 | **terminal free cash flow** | **3,345.1** |
 | implied payout of terminal profit | 79.4% |
-| **terminal value** | **28,867** |
-| memo — the no-growth perpetuity at book depreciation | 22,676 |
+| **terminal value** | **29,516** |
+| memo — the no-growth perpetuity at book depreciation | 22,991 |
 
-Against the retired construction's 22,229, the rebuilt terminal is **+29.9%**. It sits
+Against the retired construction's 22,728, the rebuilt terminal is **+29.9%**. It sits
 **above** the no-growth marker rather than below it, which the retired one did not, and the
 implied payout of 79.4% is inside [0, 1] with room.
 
-**Terminal value is 73.0% of enterprise value on the carried-through branch and 50.4% on the
+**Terminal value is 73.5% of enterprise value on the carried-through branch and 51.0% on the
 stopped one, and that share went UP with the rebuild.** It is the most sensitive part of this
 valuation and it is flagged rather than presented as settled. The single number it rests on
 is the measured age, and the alternative — half the implied life, which is what has to be
-assumed where a company discloses less — is published beside it at EGP 1.73 a share.
+assumed where a company discloses less — is worth EGP 2.22 a share.
 
 ## 6. BALANCE SHEET
 
@@ -157,21 +157,21 @@ The bridge stands on the latest disclosed balance sheet, 31 March 2026, and foot
 
 | line | EGP mn |
 |---|---:|
-| present value of the explicit window | 3,837.4 |
-| present value of the terminal | 10,398.3 |
-| **enterprise value** | **14,235.7** |
+| present value of the explicit window | 3,842.7 |
+| present value of the terminal | 10,676.8 |
+| **enterprise value** | **14,519.5** |
 | less net debt (debt 14,639.0 less cash 4,606.5) | −10,032.5 |
 | plus investments at fair value through other comprehensive income | +1,382.9 |
 | plus investment property | +2,155.1 |
-| **equity value** | **7,741.1** |
+| **equity value** | **8,024.9** |
 | shares (mn) | 1,986.6 |
-| **per share, carried through** | **EGP 3.8967** |
+| **per share, carried through** | **EGP 4.0396** |
 
 **The structural fact a reader must see is unchanged and it is why this study's precision
 should be held lightly: equity is the thin residual between two large numbers.** Enterprise
-value 14,236 against net debt 10,032. A ten per cent error in enterprise value is a
-twenty-six per cent error in the equity. It is also why a terminal correction worth +29.9% on
-the terminal is worth +68.6% on the equity — the same gearing, running the other way.
+value 14,520 against net debt 10,032. A ten per cent error in enterprise value is a
+twenty-five per cent error in the equity. It is also why a terminal correction worth +29.9% on
+the terminal is worth +74.8% on the equity — the same gearing, running the other way.
 
 ## 7. CLAIMS AGAINST THE RECORD
 
@@ -199,13 +199,13 @@ dead row the moment it scored zero**, which is what that gate is for.
 
 | | carried through (3.90) | stopped (7.88) | at the market (14.41) |
 |---|---:|---:|---:|
-| equity value, EGP mn | 7,741 | 15,656 | **28,627** |
-| implied enterprise value, EGP mn | 14,236 | 22,150 | **38,659** |
-| price to disclosed book (8.158/share) | 0.48x | 0.97x | **1.77x** |
-| enterprise value / terminal profit before interest and tax | **2.62x** | **4.11x** | **7.11x** |
+| equity value, EGP mn | 8,025 | 15,970 | **28,627** |
+| implied enterprise value, EGP mn | 14,520 | 22,464 | **38,659** |
+| price to disclosed book (8.158/share) | 0.50x | 0.99x | **1.77x** |
+| enterprise value / terminal profit before interest and tax | **2.67x** | **4.17x** | **7.11x** |
 
 **The earnings multiple is where the gap actually is, and the rebuild narrowed it without
-closing it.** The carried-through branch moved from 2.25x forward operating profit to 2.62x
+closing it.** The carried-through branch moved from 2.25x forward operating profit to 2.67x
 against a market at 7.11x. Two and a half times forward operating profit for a nitrogen
 producer is still not an ordinary valuation; seven times is.
 
@@ -213,12 +213,12 @@ producer is still not an ordinary valuation; seven times is.
 
 - **It is not the bridge.** The investment property and the portfolio at fair value through
   other comprehensive income are carried at their disclosed amounts and total EGP 3,538mn.
-  Doubling both would move the answer by less than EGP 1.80 a share against a gap of EGP 10.51.
+  Doubling both would move the answer by less than EGP 1.79 a share against a gap of EGP 10.37.
 - **It is no longer the terminal charge.** That was the candidate this pass tested, and it was
-  worth EGP 1.59 a share of the gap — real, and a sixth of what is outstanding. Closing the
+  worth EGP 1.73 a share of the gap — real, and a sixth of what is outstanding. Closing the
   rest on the terminal alone would need a terminal several times larger again, which no
   maintenance assumption reaches: even charging **nothing at all** for keeping the plant
-  intact takes the carried-through branch only to EGP 7.75, still 46% below the price.
+  intact takes the carried-through branch only to EGP 8.00, still 44% below the price.
 - **It is not the discount rate in any believable range**, per heading 4: the price is paying
   less than the sovereign.
 
@@ -226,18 +226,39 @@ producer is still not an ordinary valuation; seven times is.
 or in something the market believes that this model does not — and the honest position is
 that this study does not know which.** It says so, and it stays held.
 
+
+## Restated 5 September 2026, after an outside audit of this edition
+
+An audit run from outside the study found the terminal risk-free rate **computed inside
+this study rather than taken from the house macro path**: `macro_path.terminal_rf` is
+terminal inflation PLUS the long-run real rate — additive, derived, never quoted — and both
+`compute.py` and the workbook's Assumptions sheet were COMPOUNDING them, giving 12.885%
+against the house 12.500%. **The study's terminal GROWTH already came from the same path
+additively**, so one model carried two conventions about inflation, which is exactly [L-055].
+
+The macro-coherence gate could not see it, and the reason is worth recording: **that gate
+reads the study's committed macro record, and the record declared the right figure (0.1250)
+while the model ran the wrong one (0.12885).** A record that agreed with the model would
+have gone red at the gate's own tolerance. The record was correct and the model was not,
+which is the one arrangement no gate reading the record can catch.
+
+Corrected: carried through **3.8967 → 4.0396** and stopped **7.8807 → 8.0388**, +3.7% and
++2.0%. Both branches remain far below the traded 14.41 — **−72.0% and −44.2% — so this
+study stays HELD either way** and every heading below reads the same. The figures in the
+terminal and bridge tables above are the corrected ones.
+
 ---
 
 ## Register
 
-*AUDITED CENTRAL: 3.8967* — the carried-through branch.
+*AUDITED CENTRAL: 4.0396* — the carried-through branch.
 
-*AUDITED CENTRAL: 7.8807* — the capital-discipline branch. A two-sided study has two
+*AUDITED CENTRAL: 8.0388* — the capital-discipline branch. A two-sided study has two
 answers and a review that audits one of them has audited half the study.
 
-*AUDITED GAP: -73.0%* — the disagreement this review interrogates, on the carried-through
+*AUDITED GAP: -72.0%* — the disagreement this review interrogates, on the carried-through
 branch, against the latest known price of EGP 14.41 (Egyptian Exchange close, 3 September
-2026). The stopped branch's disagreement is -45.3%.
+2026). The stopped branch's disagreement is -44.2%.
 
 *This review was written after the rebuild and audits the answer the study now publishes. It
 supersedes GAP_REVIEW_03-09-2026.md, which audited 2.3109 and 6.2591 at a gap of -84.0% and

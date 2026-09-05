@@ -4,7 +4,7 @@
  "start_value": 2.3109,
  "start_spot": 14.41,
  "start_gap": -0.8396321998612075,
- "audit_after": "both levers, and not between them. They are one pass on this name because the second is only visible once the first is made: under the retired construction the project's depreciation only depressed profit, and it took the sanctioned terminal — where book depreciation is also the BASE of the replacement charge — to make the double count matter enough to find. A look taken between them would audit a state this study never publishes.",
+ "audit_after": "both levers, and not between them. They are one pass on this name because the second is only visible once the first is made: under the retired construction the project's depreciation only depressed profit, and it took the sanctioned terminal — where book depreciation is also the BASE of the replacement charge — to make the double count matter enough to find. A look taken between them would audit a state this study never publishes. THE THIRD LEVER WAS NOT PLANNED AND ITS AUDIT POINT IS STATED HERE RATHER THAN INFERRED: it arrived from an outside audit AFTER the first two had landed and the eight-heading review had been written, so the look was taken again with all three in, and the review restated. A lever found by somebody else is still a lever, and the running total is what it is either way.",
  "levers": [
   {
    "name": "terminal built through the sanctioned module on the MEASURED age of the base",
@@ -23,10 +23,19 @@
    "why": "the explicit window depreciates the new complex AS IT IS SPENT, so the last explicit year already carried the charge on the part in service; the terminal then charged the WHOLE plant on top. EGP 482mn a year of depreciation on a plant that appears once in the accounts. Under the retired construction that only depressed profit; under the sanctioned one book depreciation is ALSO the base of the replacement charge, so it was depressing the value twice over",
    "evidence": "THE MODEL ALREADY KNEW HOW TO DO THIS, which is what settles it: the programme-stopped branch strips exactly this charge before it grosses the year, and that branch was never wrong. Corrected, the two branches now carry the IDENTICAL year-five formula and differ only in the project's own revenue, profit and depreciation — which is what the difference between them is supposed to be",
    "move": 0.30424741439903613
+  },
+  {
+   "name": "the terminal risk-free rate taken from the house macro path instead of computed here",
+   "rule": "R-MACRO-01",
+   "before": 3.8967,
+   "after": 4.0396,
+   "why": "macro_path.terminal_rf is terminal inflation PLUS the long-run real rate — additive, derived, never quoted — and this study was COMPOUNDING them, in compute.py and again in the workbook's Assumptions sheet, giving 12.885% against the house 12.500%. Its terminal GROWTH already came from the same path additively, so one model carried two conventions about inflation, which is [L-055] in the place that rule was written for",
+   "evidence": "found by an audit run from OUTSIDE the study. The macro-coherence gate could not see it and the reason is exact: that gate reads the study's committed macro record, the record declared the right figure (0.1250) and the model ran the wrong one (0.12885). A record agreeing with the model would have gone red at the gate's own 0.0005 tolerance. THE RECORD WAS CORRECT AND THE MODEL WAS NOT, which is the one arrangement no gate reading the record can catch",
+   "move": 0.03667205584212274
   }
  ],
- "value": 3.8967,
- "cumulative_move": 0.6862261456575358,
+ "value": 4.0396,
+ "cumulative_move": 0.7480635250335366,
  "rules": {
   "R-TERM-01": {
    "levers": [
@@ -36,8 +45,16 @@
    "first_before": 2.3109,
    "last_after": 3.8967,
    "move": 0.6862261456575358
+  },
+  "R-MACRO-01": {
+   "levers": [
+    "the terminal risk-free rate taken from the house macro path instead of computed here"
+   ],
+   "first_before": 3.8967,
+   "last_after": 4.0396,
+   "move": 0.03667205584212274
   }
  },
- "distinct_rules": 1,
- "note": "THIS STUDY IS TWO-SIDED AND THE LEDGER WALKS THE PRIMARY BRANCH. The capital-programme-carried-through answer runs 2.3109 -> 3.8967, +68.6%; the programme-stopped branch runs 6.2591 -> 7.8807, +25.9%. BOTH REMAIN FAR BELOW THE TRADED 14.41 — -73.0% and -45.3% — so nothing about this study's held status changes, and the corrections were not made in the hope that it would. A THIRD CORRECTION WAS PRICED AND IS NOT A LEVER because it never shipped: the evidence gathered on 4 September put the first lever at 3.2905 rather than 2.9877, having handed the sanctioned construction figures already grown by (1+g), which that construction grows again [L-329]. It was corrected before it was built, so it belongs in the evidence file rather than in this route."
+ "distinct_rules": 2,
+ "note": "THIS STUDY IS TWO-SIDED AND THE LEDGER WALKS THE PRIMARY BRANCH. The capital-programme-carried-through answer runs 2.3109 -> 3.8967, +68.6%; the programme-stopped branch runs 6.2591 -> 7.8807, +25.9%. BOTH REMAIN FAR BELOW THE TRADED 14.41 — -73.0% and -45.3% — so nothing about this study's held status changes, and the corrections were not made in the hope that it would. A THIRD CORRECTION WAS PRICED AND IS NOT A LEVER because it never shipped: the evidence gathered on 4 September put the first lever at 3.2905 rather than 2.9877, having handed the sanctioned construction figures already grown by (1+g), which that construction grows again [L-329]. It was corrected before it was built, so it belongs in the evidence file rather than in this route. THIRD LEVER, 5-Sep: the cumulative is now +74.8% rather than +68.6%, and both branches remain far below the price — carried through -72.0%, stopped -44.2%. Nothing about the held status changes at any point on this route, which is worth saying because a +74.8% cumulative move is the kind of number [R-REBUILD-01] exists to make somebody look at."
 }

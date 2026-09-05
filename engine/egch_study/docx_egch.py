@@ -87,14 +87,24 @@ box([("What this is.  ",
       f"assumption drives which gap.")])
 
 # ---------------------------------------------------------------- HEADLINE ---
+_ORDINAL = ('the largest', 'the second largest', 'the third largest',
+            'the fourth largest', 'the fifth largest', 'the sixth largest',
+            'the seventh largest', 'the eighth largest', 'the ninth largest',
+            'the tenth largest')
+
 H1("Headline")
 P(f"Four lenses put this company between EGP {E2(LN['synthesis']['low'])} and EGP "
   f"{E2(LN['synthesis']['high'])} a share. It trades at EGP {E2(SPOT)}. The gap is not a "
   f"rounding difference between the lenses: it is the whole disagreement. The multiple "
   f"lens, on the range Egyptian fertilizer producers actually trade at, centres at EGP "
   f"{E2(LN['relative']['value_per_share'])} — above the traded price — and it reaches that "
-  f"answer only by never asking what the capital programme does to cash. Every lens that "
-  f"does ask lands below EGP {E2(LN['normalised']['value_per_share'])}.", bold=True)
+  f"answer only by never asking what the capital programme does to cash. THE TWO LENSES "
+  f"THAT DO ASK SPLIT ON THE ANSWER, and the split is the study: carrying the programme "
+  f"through gives EGP {E2(LN['cashflow']['carry_through'])} and stopping it gives EGP "
+  f"{E2(LN['cashflow']['stopped'])} — a difference of EGP "
+  f"{E2(LN['cashflow']['stopped'] - LN['cashflow']['carry_through'])} a share that is what "
+  f"the capital costs its owners. Both sit below the traded price, and so does normalised "
+  f"earnings at EGP {E2(LN['normalised']['value_per_share'])}.", bold=True)
 P(f"Three things push in the same direction. An EGP {E1(V('anna_cost_egp')/1000 + V('anna_cost_usd')*V('usd_egp_spot')/1000)} "
   f"billion capital programme is running two years behind its own plan. The debt book is "
   f"{PC(1 - WC['pct_debt_local'])} dollar-denominated against an earnings stream that must "
@@ -1121,7 +1131,7 @@ rows.append(["Above the upper quartile",
              f"{E2(M3['pct']['p75'])} to {E2(M3['pct']['p95'])}",
              "The market would be paying more for a business whose sustainable return on "
              f"equity is {PC(LN['book']['roe_sustainable'])} against a cost of equity of "
-             f"{PC(WC['ke_rating'])}, with the capital programme still unfinished."])
+             f"{PC(WC['ke_cds'])}, with the capital programme still unfinished."])
 rows.append(["Above the ninety-fifth percentile", f"over {E2(M3['pct']['p95'])}",
              "One path in twenty. On a free float of about six per cent this can happen "
              "on modest volume, which is a fact about the register rather than about the "
@@ -1183,8 +1193,10 @@ P(f"The terminal charge for keeping the plant intact is the largest single judge
   f"of the depreciable cost, is fully depreciated and still in production. Where a company "
   f"discloses too little to measure the age, half the life has to be assumed instead, and "
   f"on this base that assumption is worth EGP "
-  f"{E2(abs(AL_BY['terminal_asset_age']['delta']))} a share — the largest of the priced "
-  f"alternatives, and the reason the measurement was worth making.")
+  f"{E2(abs(AL_BY['terminal_asset_age']['delta']))} a share — "
+  f"{_ORDINAL[sorted((abs(a['delta']) for a in AL['alternatives']), reverse=True).index(abs(AL_BY['terminal_asset_age']['delta']))]} "
+  f"of the ten priced alternatives, behind only the gas price and the discount-rate glide, "
+  f"and the reason the measurement was worth making.")
 P(f"The new plant's capacity is derived, not disclosed. No filing states it. It is built "
   f"from the ammonia design plate less the draw of urea at its own plate, converted at "
   f"the nitrate route's ammonia ratio. Every figure that depends on it is flagged as "
@@ -1540,8 +1552,16 @@ box([("Educational analysis.  ", "This document is an independent educational an
       "is not investment advice, not a recommendation, and not an offer or solicitation."),
      ("No rating, no target.  ", "It contains no rating and no price target. It reports a "
       "range of fair values and the reasoning behind them."),
-     ("Point in time.  ", f"It reflects information available on 1 September 2026 and the "
-      f"closing price of {ST['anchor_date']}. It will age, and it is not updated."),
+     # THE EDITION DATE AND THE PRICE DATE ARE COMPUTED, NOT TYPED — the same defect the
+     # masthead records fixing, left standing here until 5 September 2026: this read
+     # "1 September 2026" on a 5 September edition and named the CONE's anchor as though
+     # it were the valuation's price. They are two clocks and the sentence now says so.
+     ("Point in time.  ", f"It reflects information available on "
+      f"{_EDITION.day} {_EDITION.strftime('%B %Y')} and the closing price of "
+      f"{V('spot_price_date')}, which is what the valuation is struck against. The price "
+      f"map in section 3 stands on its own earlier anchor of {ST['anchor_date']}, the last "
+      f"session in this study's price library, and says so where it is published. It will "
+      f"age, and it is not updated."),
      ("Sources and their limits.  ", "Historical figures come from the company's own "
       "audited and reviewed statements. Those statements carry qualifications, set out in "
       "section 7; a reader should weigh them."),

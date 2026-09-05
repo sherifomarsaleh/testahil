@@ -310,8 +310,13 @@ put(ws, f"C{r}", f"={WE}*'Assumptions'!C{KE_C}+{WD}*{KDBC}*(1-{TAXR})", fmt=PC2,
     expect=DR['wacc_path'][0]); r += 1
 INFLT = drv(r, "Terminal inflation (the same figure terminal growth is set at)", DR['inflation_lt'], "%", src('inflation_terminal'), PC1); r += 1
 REALLT = drv(r, "Long-run real rate", V('real_rate_lt'), "%", src('real_rate_lt'), PC1); r += 1
-RFT = r; put(ws, f"A{r}", "Terminal normalised risk-free rate"); put(ws, f"B{r}", "%")
-put(ws, f"C{r}", f"=(1+{INFLT})*(1+{REALLT})-1", fmt=PC2, expect=DR['rf_star_terminal'])
+RFT = r; put(ws, f"A{r}", "Terminal normalised risk-free rate — terminal inflation plus "
+             "the long-run real rate, on the house macro path's own construction")
+put(ws, f"B{r}", "%")
+# ADDITIVE, matching macro_path.terminal_rf, which owns this quantity. The cell compounded
+# the two until 5 September 2026 while terminal GROWTH on the same sheet came from the same
+# path ADDITIVELY — one model, two conventions about inflation, which is [L-055].
+put(ws, f"C{r}", f"={INFLT}+{REALLT}", fmt=PC2, expect=DR['rf_star_terminal'])
 RFTC = f"'Assumptions'!C{r}"; r += 1
 KDLT = drv(r, "Long-run dollar cost of debt", V('kd_usd_lt'), "%", src('kd_usd_lt'), PC2); r += 1
 KDTC_R = r; put(ws, f"A{r}", "Terminal cost of debt, local-equivalent"); put(ws, f"B{r}", "%")

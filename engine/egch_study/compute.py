@@ -31,7 +31,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 
 sys.path.insert(0, HERE)
-from inputs import V as _V          # the study's input register — the single source of
+from inputs import V as _V
+from inputs import _HOUSE          # the house macro path [R-MACRO-01], not a second copy          # the study's input register — the single source of
                                     # every number in this model (numeric traceability)
 from inputs import REG as _REG
 import terminal_value as TV        # [R-TERM-01] — the ONLY sanctioned terminal
@@ -202,7 +203,14 @@ D['roc_terminal'] = _V('roc_terminal')              # reinvestment = g / RoC
 # discount factors compound the glide year by year rather than powering one rate.
 D['inflation_lt'] = _V('inflation_terminal')   # the SAME inflation terminal growth carries (L-055)
 D['real_rate_lt'] = _V('real_rate_lt')                              # EM long-run real policy rate
-D['rf_star_terminal'] = (1 + D['inflation_lt']) * (1 + D['real_rate_lt']) - 1   # 10.75%
+# THE HOUSE PATH OWNS THIS QUANTITY AND THIS STUDY WAS COMPUTING IT ITSELF.
+# macro_path.terminal_rf() is terminal inflation PLUS the real-rate convention —
+# additive, derived, never quoted. This line compounded them instead, which is a
+# second convention about inflation inside a model whose terminal GROWTH already
+# comes from the house path additively ([L-055]: one model, one inflation). Worth
+# 38.5 basis points on the terminal risk-free rate and, through the whole terminal
+# block, several per cent on the answer. Corrected 5 September 2026.
+D['rf_star_terminal'] = _HOUSE.terminal_rf
 D['kd_usd_lt'] = _V('kd_usd_lt')                                 # long-run USD corporate cost
 D['deprec_lt'] = _V('expected_depreciation')                                 # same wedge used in the Kd build
 D['kd_local_equiv_terminal'] = (1 + D['kd_usd_lt']) * (1 + D['deprec_lt']) - 1
@@ -217,7 +225,7 @@ def set_glide():
     alternative construction can never be a hand-adjusted rate. The risk-free rate glides
     linearly from spot to terminal; the cost of debt is built YEAR BY YEAR from the dollar
     coupon and that year's derived currency wedge (the same wedge the revenue build uses)."""
-    D['rf_star_terminal'] = (1 + D['inflation_lt']) * (1 + D['real_rate_lt']) - 1
+    D['rf_star_terminal'] = _HOUSE.terminal_rf
     _kd_fx_T = (1 + D['kd_usd_lt']) * (1 + D['deprec_lt']) - 1
     D['kd_fx_terminal'] = _kd_fx_T                                  # the dollar leg alone
     D['kd_local_equiv_terminal'] = kd_blend(D['kd_local'], _kd_fx_T)   # blended with the local leg
