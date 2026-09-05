@@ -5853,6 +5853,42 @@ LESSONS = [
       "adds a line nobody reads. What does NOT overturn it is a "
       "residue that happens to be empty today, which is the state "
       "every one of these three was in on the day it was written."),
+    L("L-341", "ALL", None,
+      "TAKING THE SHARED INSTRUMENT IS WHAT HID THE GATE FROM THE "
+      "META-CHECK, AND THE ADVICE WAS STILL RIGHT",
+      "The new-study gauntlet decides which gates it must hold "
+      "against an empty study directory by scanning each gate's own "
+      "SOURCE for a study path — a rule its own comment already "
+      "widened once, when five gates turned out to construct the "
+      "path rather than glob it. One gate defeated even that, and "
+      "for the best possible reason: it hands its population to a "
+      "shared census module, so the glob lives there and its own "
+      "source carried no study path at all. IT HAS RUN OVER EVERY "
+      "STUDY DIRECTORY SINCE THE DAY IT WAS WRITTEN AND THE "
+      "GAUNTLET HAD NEVER TESTED IT. What surfaced it was luck: an "
+      "unrelated comment added to that gate for another reason "
+      "happened to name a study path, and the gauntlet went red the "
+      "next time it ran. THE TENSION IS REAL AND THE RESOLUTION IS "
+      "NOT TO STOP SHARING: a detector that reads only the caller "
+      "punishes exactly the behaviour this house asks for — import "
+      "the shared instrument rather than hand-rolling one. So the "
+      "detector follows first-party imports one level down, and a "
+      "gate that delegates its population is still a gate over that "
+      "population.",
+      "the new-study gauntlet, 5 September 2026",
+      "self_audit",
+      "The gauntlet reported 28 of 28 gates refusing a new study "
+      "while a 29th, running over every study directory through an "
+      "imported census, was named in none of its three lists. With "
+      "the study-path comments stripped out of that gate's source, "
+      "the widened import route still detects it; the literal scan "
+      "does not.",
+      "It is overturned by a detector that resolves the population "
+      "at RUNTIME rather than by reading source — which would be "
+      "strictly better and needs every gate to declare its "
+      "population in a form a caller can query. One level of import "
+      "is the cheap approximation, and a gate that delegates two "
+      "levels down is still invisible."),
 
 ]
 

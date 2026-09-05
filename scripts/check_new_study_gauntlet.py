@@ -76,6 +76,13 @@ DIRECTORY_GATES = [
     'check_delivered_pdf_currency.py',
     'check_table_footing.py',
     'check_source_integrity.py',
+    # ADDED 05-Sep-2026, and how it got here is the finding beside it. This gate has
+    # always run over every study directory — through engine/valuation_calibration/
+    # terminal_census.census(), which does the glob — so its own source carried no
+    # `_study` and the detector below could not see it. It became visible only when an
+    # unrelated comment in it happened to mention a study path. An empty directory has no
+    # numbers file, the census reports it unreadable, and the gate refuses it by name.
+    'check_terminal_floor.py',
 ]
 
 # ARTEFACT GATES: bite once the study produces the artefact they read, and are tested by
@@ -225,9 +232,37 @@ def study_scoped_gates(repo):
         # and the first draft of this clause could not see them, which is the same
         # under-detection it exists to close, one level down. A comment about "the study"
         # carries no underscore, so this stays exact rather than becoming a word search.
-        if '_study' in src:
+        #
+        # AND A GATE MAY DELEGATE THE RESOLUTION ENTIRELY [widened 05-Sep-2026].
+        # check_terminal_floor.py runs over every study directory through
+        # terminal_census.census(), which does the glob, so its own source carried no
+        # `_study` at all and this detector could not see it — for as long as it has
+        # existed. It surfaced only because an unrelated comment added to that gate
+        # happened to name a study path, which is luck rather than a check. So the
+        # first-party modules a gate imports are read too, one level down: a gate that
+        # hands its population to a shared instrument is still a gate over that
+        # population.
+        if '_study' in src or _imports_a_study_resolver(repo, src):
             out.add(name)
     return out
+
+
+def _imports_a_study_resolver(repo, src):
+    """Does this script import a first-party module that resolves study directories?"""
+    mods = set(re.findall(r'^\s*(?:from|import)\s+([A-Za-z_][\w.]*)', src, re.M))
+    for m in mods:
+        rel = m.replace('.', os.sep)
+        for cand in (os.path.join(repo, rel + '.py'),
+                     os.path.join(repo, rel, '__init__.py'),
+                     os.path.join(repo, 'engine', rel + '.py'),
+                     os.path.join(repo, 'scripts', rel + '.py')):
+            if os.path.exists(cand):
+                try:
+                    if '_study' in open(cand, encoding='utf-8').read():
+                        return True
+                except OSError:
+                    continue
+    return False
 
 
 def sandbox():
