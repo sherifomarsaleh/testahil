@@ -31,6 +31,14 @@ WHAT A VALUE NEEDS, AND WHY EACH ITEM IS HERE
           with a share count it does not have is the fabrication this whole
           archive exists to refuse, so the two are different rows.
 
+TWO SOURCES, AND THE SECOND ONE IS THE POINT OF THE FIRST. Since [R-FCAL-01
+AMENDED] a run commits a VALUATION-INPUT BLOCK beside its driver panel —
+`valuation_inputs.json`, named items, a value or an explicit missing-with-a-reason
+for each — and that record is read first and needs no key map. What follows is for
+the runs that predate the amendment, which committed whatever their own schema
+happened to carry. An item recorded MISSING is not credited: recording it is what
+makes the gap visible, and crediting it would undo that.
+
 HOW IT MATCHES, AND WHY THE MAP IS EXPLICIT. The five runs share no schema and
 several use abbreviations — TMGH writes `da` for depreciation and `nr_undelivered`
 for notes receivable, PHDC writes `bs.ar` and `bs.np_short`. A regex broad enough
