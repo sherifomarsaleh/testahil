@@ -156,6 +156,26 @@ def _flat(o, path='', out=None):
     return out
 
 
+# A BRANCH THAT IS NOT THE BASE ANSWER MUST NEVER SUPPLY ONE [ADDED 05-Sep-2026].
+# ELEC found this. Its terminal growth is 0.05, committed in its own four-field input
+# register as inputs.g_term.value; the resolver could not see that shape (see below) and
+# fell through the alias list to the bare name `g`, which it found at
+# `scenarios.bear.knobs.g` — the BEAR CASE's knob, 0.04. Everything downstream was then
+# computed on a growth rate the study does not publish: 1/g reads 25.0 years instead of
+# 20.0, and the implied terminal cash flow misses the study's own by 10%.
+#
+# A resolver that guesses is the defect [R-ENF-04] closes, and this file's own comment on
+# the `g` aliases says exactly that. Falling back to ANY leaf with the right final segment
+# is the guess; what makes it dangerous is that a sensitivity grid, a bear case and a
+# scenario knob all carry the same field names as the base answer and are numerically
+# plausible, so the wrong one reads as clean. These segments are refused in the FALLBACK
+# search only — a study that genuinely keys its base terminal under a container named
+# below would be found by the qualified pass first.
+NOT_THE_BASE = ('bear', 'bull', 'downside', 'upside', 'low', 'high', 'scenario',
+                'scenarios', 'sens', 'sensitivity', 'grid', 'alt', 'alternative',
+                'stress', 'adversarial', 'halt', 'placebo')
+
+
 def _resolve(flat, names, prefer=DCF_HOLDERS):
     """First candidate present, preferring a DCF-ish container. Returns (value, key)."""
     for n in names:
@@ -164,8 +184,22 @@ def _resolve(flat, names, prefer=DCF_HOLDERS):
             k = f'{pre}.{n}'
             if k in flat:
                 return flat[k], k
-        # then any leaf whose FINAL segment is exactly this name
-        hits = [k for k in flat if k.split('.')[-1] == n]
+            # THE FOUR-FIELD INPUT REGISTER IS A DICT, NOT A NUMBER [ADDED 05-Sep-2026].
+            # Depth-bar standard 2 requires every input to carry value/source/date/layer,
+            # so a study that commits its terminal growth properly stores
+            # {"value": 0.05, "source": ..., "date": ..., "ring": ...} and _flat() emits
+            # `inputs.g_term.value`, whose final segment is `value`. The resolver looked
+            # for a leaf named `g_term` and there is none — SO THE BETTER-DOCUMENTED A
+            # STUDY'S INPUT WAS, THE LESS VISIBLE IT WAS TO THIS READER, which is exactly
+            # backwards.
+            if f'{pre}.{n}.value' in flat:
+                return flat[f'{pre}.{n}.value'], f'{pre}.{n}.value'
+        # then any leaf whose FINAL segment is exactly this name, or a four-field
+        # register entry of that name — never one inside a branch that is not the base
+        hits = [k for k in flat
+                if (k.split('.')[-1] == n
+                    or (k.endswith('.value') and k.split('.')[-2] == n))
+                and not any(seg in NOT_THE_BASE for seg in k.split('.')[:-1])]
         if len(hits) == 1:
             return flat[hits[0]], hits[0]
         if hits:
@@ -237,7 +271,18 @@ def read_study(d):
         if not isinstance(o, dict):
             return
         for _k, _v in o.items():
-            if _k == 'terminal_record' and isinstance(_v, dict) and _v.get('inputs'):
+            # THE SANCTIONED TERMINAL IS RECOGNISED BY WHAT IT IS, NOT BY THE KEY IT
+            # HAPPENS TO SIT UNDER [WIDENED 05-Sep-2026]. terminal_value.build() returns a
+            # block stamped rule='R-TERM-01' carrying its inputs and the disclosed life;
+            # most studies commit it as `terminal_record`, and EMPOWER commits two of them
+            # as `terminal_stage1` and `terminal_stage2` because its terminal is staged.
+            # Matching only the KEY made a correctly-rebuilt study read as though it had
+            # never been rebuilt — the same defect as a scrub keyed on a word list, one
+            # level down.
+            if (isinstance(_v, dict) and _v.get('inputs')
+                    and (_k == 'terminal_record'
+                         or (_v.get('rule') == 'R-TERM-01'
+                             and (_v.get('inputs') or {}).get('useful_life_years')))):
                 _found.append(_v)
             else:
                 _walk(_v)
@@ -384,6 +429,33 @@ def read_study(d):
         N = rec['nopat_last'] * (1.0 + g)
         rec['nopat_term'] = N
         rec['routes']['nopat_term'] = rec['routes']['nopat_last'] + f' x (1+g)  [derived]'
+    # A STUDY MAY EXPOSE THE REINVESTMENT RATE AND THE TERMINAL CASH FLOW AND NOT THE
+    # PROFIT BETWEEN THEM [ADDED 05-Sep-2026]. The reinvestment construction is
+    # fcff = NOPAT x (1 - rr), so the profit is the cash flow grossed back up — an
+    # identity on the study's OWN terminal, not a proxy, and strictly better than the
+    # nopat_last route above, which is why it is tried only when that one found nothing
+    # and can therefore change no study that already scores.
+    #
+    # ELEC is why it exists. Its terminal is the retired identity in plain sight —
+    # roic_T = nop_T/ic_T, rr_T = g/roic_T, tv = nop_T(1+g)(1-rr_T)/(W-g) — and the
+    # census could not score the charge, so the 1/g gate reported "no new terminal
+    # carries the construction" while that one did. A GATE BLIND TO THE EXACT THING IT
+    # EXISTS TO FIND IS THE [R-ENF-04] FAILURE IN ITS USUAL COSTUME.
+    # NOT ON A TERMINAL THAT HAS ALREADY BEEN CORRECTED. A study rebuilt through
+    # terminal_value.py keeps its retired construction beside the new one for the record —
+    # EMPOWER commits `tv_retired` alongside its staged R-TERM-01 terminals — so its
+    # `rr_term` describes the construction that was RETIRED. Grossing the corrected cash
+    # flow up by a retired reinvestment rate mixes the two and manufactures a 1/g reading
+    # on a study that no longer carries one. The first draft of this derivation did
+    # exactly that and flagged a correctly-rebuilt name.
+    if N is None and rec.get('rr_term') is not None and not rec.get('_terminal_record'):
+        _rr = float(rec['rr_term'])
+        if 0.0 <= _rr < 1.0 and rec['fcff_term_implied'] > 0:
+            N = rec['fcff_term_implied'] / (1.0 - _rr)
+            rec['nopat_term'] = N
+            rec['routes']['nopat_term'] = (
+                'tv (W - g) / (1 - %s)  [derived: fcff = NOPAT (1 - rr)]'
+                % rec['routes'].get('rr_term', 'rr'))
     if N is not None and N > 0:
         # A study may expose the REINVESTMENT RATE and not the return it came from. They
         # are the same statement — rr = g/ROIC — so the return is DERIVED rather than the

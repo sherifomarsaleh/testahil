@@ -61,7 +61,8 @@ gas_contract = reprice(gas_usd_mmbtu=V('gas_contract_usd_mmbtu'))
 util_bull = reprice(anna_util_base=V('anna_util_bull'))
 capex_replacement = reprice(maint_capex_pct_rev=V('maint_capex_pct_replacement'))
 capex_house = reprice(maint_capex_pct_rev=0.030)          # the superseded house standard
-roc_high = reprice(roc_terminal=0.30)
+age_assumed = reprice(terminal_force_half_life=True)
+gas_standard = reprice(gas_m3_per_t_ammonia=V('gas_standard_m3_t'))
 kd_floored = reprice(glide=True, kd_floor=W['sovereign_floor'])
 project_faster = reprice(anna_capex_path=[3000.0, 3500.0, 3500.0, 3000.0, 2000.0])
 
@@ -142,17 +143,49 @@ ALTS = [
              "replacement-rate framing is the honest upper bound — a plant cannot spend a "
              "fifth of its depreciation forever — and it is carried as the downside case "
              "rather than averaged into the central."),
-    dict(key="terminal_reinvestment",
-         made=f"Terminal reinvestment of {D['g_terminal'] / D['roc_terminal'] * 100:.1f}% of operating "
-              f"profit after tax, from growth over an {D['roc_terminal'] * 100:.0f}% return on capital",
-         alt=f"{D['g_terminal'] / 0.30 * 100:.1f}%, from a 30% return on capital — the rate a newly "
-             "completed plant earns on incremental capital while it is still filling",
-         value=roc_high,
-         why="Eighteen per cent is the conservative reading and is kept, but it is an "
-             "assumption rather than a disclosure, and on a plant that has just been "
-             "rebuilt it charges a heavy ongoing reinvestment against a terminal year that "
-             "needs no further building. It is the single largest unsourced input left in "
-             "the model and is flagged as such."),
+    dict(key="terminal_asset_age",
+         made="Capital maintenance charged at what replacing the plant costs today, on "
+              f"the {V('fa_avg_age_years'):.2f}-year average age the accounts MEASURE — "
+              "accumulated depreciation over the year's own charge",
+         alt=f"Half the {V('fa_life_implied_years'):.1f}-year life the same accounts "
+             f"imply, {V('fa_life_implied_years') / 2:.2f} years, which is what has to be "
+             "assumed where a company does not disclose enough to measure it",
+         value=age_assumed,
+         why="This is the largest contested number inside the TERMINAL, and the third "
+             "largest of the ten alternatives priced here — behind the gas price and the "
+             "discount-rate glide, both of which are about the forecast rather than about "
+             "the terminal. It is a "
+             "question about THIS BASE rather than about method. Half the life is the "
+             "right assumption for a plant in steady state, where the average asset is "
+             "half worn out. This one is not: only 1.3% of the base is fully depreciated "
+             "and still in production, and a second complex is still being built, so the "
+             "measured age is a quarter of the life rather than half. The measured figure "
+             "is adopted BECAUSE it is measured, and the assumed one is published beside "
+             "it so a reader can see what the disclosure is worth. THIS ROW REPLACED THE "
+             "TERMINAL REINVESTMENT ROW, which priced a return on capital that no longer "
+             "enters the terminal at all: under the sanctioned construction there is no "
+             "reinvestment rate to contest, and this module's own gate caught the dead "
+             "alternative the moment it scored zero."),
+    dict(key="gas_consumption",
+         made=f"Gas consumption at {D['gas_m3_per_t_ammonia']:,.0f} cubic metres a tonne of "
+              "ammonia — the rate implied by allocating three quarters of the single "
+              "disclosed materials line to gas, which carries the plant's disclosed losses "
+              "as well as its standard usage",
+         alt=f"The auditor's own disclosed STANDARD rate of "
+             f"{V('gas_standard_m3_t'):,.0f} cubic metres a tonne, which is what the plant "
+             "consumes when it runs to specification and excludes the losses",
+         value=gas_standard,
+         why="The disclosed standard is the cleaner number and it is not what this plant "
+             "does: the same auditor's report discloses 38,480,270 cubic metres of gas LOST "
+             "in FY2024/25, which over that year's ammonia output is a further 120.9 cubic "
+             "metres a tonne. Standard plus disclosed loss is 1,320.9 and the modelled rate "
+             "sits between the two. The higher figure is adopted because a model of what "
+             "this plant actually consumes has to carry the losses; the standard is priced "
+             "here because it is a disclosed primary figure and a reader is entitled to see "
+             "what adopting it would be worth. It is the only alternative in this table that "
+             "was found by an audit run from OUTSIDE the study rather than chosen by it, "
+             "which is the argument for that audit.",
+         ),
     dict(key="project_profile",
          made="Project spending anchored on the observed run rate: the nine-month actual "
               "extended to a full year",

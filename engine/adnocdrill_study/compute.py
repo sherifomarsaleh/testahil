@@ -1621,6 +1621,22 @@ central = sum(FAIR[k] * LENS_WEIGHT[k] for k in FAIR)
 lo, hi = min(FAIR.values()), max(FAIR.values())
 
 OUT = dict(
+    # THE ANSWER, WHERE THE SHARED READER LOOKS FOR IT. [R-GAP-01]'s gate reads a study's
+    # own numbers for a central and the spot it was struck at; this study carried both at
+    # fair_value.central and fair_value.spot, where that reader does not look, so the gate
+    # could say nothing about this name at all and it sat on the unreadable list. AN
+    # UNREADABLE STUDY IS NOT A CLEAN STUDY [R-ENF-04], and here the invisibility and the
+    # defect are the same event: nothing was looking at the number, so nothing asked why
+    # three lenses that value a franchise at historical cost were carrying half the weight.
+    #
+    # Both figures are in DIRHAMS, the listing currency, because the gate substitutes the
+    # LATEST KNOWN price for the struck spot and that price comes from the supplied close
+    # register in the currency the shares trade in — not the dollars this study models in.
+    # Nothing here is a new answer and nothing here endorses the five-lens blend that
+    # produces the central: [R-LENS-03] retires it and this study stays on the lens
+    # ratchet. What the gate audits is the answer a reader actually receives.
+    central=central,
+    spot=V('spot_aed'),
     meta=dict(ticker='ADNOCDRILL', market='AE', exchange='Abu Dhabi Securities Exchange',
               company='ADNOC Drilling Company P.J.S.C.',
               reporting_currency='USD', listing_currency='AED',

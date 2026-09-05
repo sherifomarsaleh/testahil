@@ -128,6 +128,30 @@ def clean(dst):
     return ''
 
 
+def a_new_standard_stored_as_a_dict(dst):
+    """THE SHAPE THAT WAS INVISIBLE. A ratchet whose group is a DICT keyed by ticker.
+
+    This gate matched only a list item equal to a ticker, so three of the shapes a
+    ratchet actually uses defeated it — and the two most consequential entries the
+    exemplar carries, its terminal construction and its lens vocabulary, are both stored
+    exactly this way. The gate reported ONE entry where there were FIVE.
+    """
+    p = os.path.join(dst, 'engine', 'build_depth_audit', 'dictshape_outstanding.json')
+    json.dump({'rule': 'a standard whose ratchet is a dict',
+               'outstanding': {'ADNOCLS': 'why', 'PHDC': 'why'}}, open(p, 'w'), indent=1)
+    assert 'ADNOCLS' in json.load(open(p))['outstanding']
+    return 'dictshape'
+
+
+def a_new_standard_stored_as_a_path(dst):
+    """The second invisible shape: a ratchet listing DOCUMENT PATHS, not names."""
+    p = os.path.join(dst, 'engine', 'build_depth_audit', 'pathshape_outstanding.json')
+    json.dump({'rule': 'a standard whose ratchet lists documents',
+               'outstanding': ['engine/adnocls_study/ADNOCLS_Valuation_Study_09-08-2026_public.docx']}, open(p, 'w'), indent=1)
+    assert 'adnocls' in json.load(open(p))['outstanding'][0]
+    return 'pathshape'
+
+
 CASES = [
     ('1 a standard adopted tomorrow whose ratchet names the exemplar',
      a_new_standard_the_exemplar_misses, True, 'newthing'),
@@ -140,6 +164,10 @@ CASES = [
     ('6 another study joining a ratchet must NOT fire here',
      a_non_exemplar_joining_a_ratchet, False, ''),
     ('7 the repository as it stands must stay GREEN', clean, False, ''),
+    ('8 a ratchet group stored as a DICT keyed by ticker must be SEEN',
+     a_new_standard_stored_as_a_dict, True, 'dictshape'),
+    ('9 a ratchet listing DOCUMENT PATHS must be SEEN',
+     a_new_standard_stored_as_a_path, True, 'pathshape'),
 ]
 
 

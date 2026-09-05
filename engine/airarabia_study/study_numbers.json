@@ -4630,11 +4630,11 @@
  },
  "dcf": {
   "pv_explicit": 801.2983224164435,
-  "tv": 26367.248023377477,
-  "pv_tv": 18220.87821286559,
-  "ev": 19022.176535282033,
-  "tv_share": 0.9578755711298228,
-  "ps_beta_alt": 3.9076043145118824,
+  "tv": 25694.353018192636,
+  "pv_tv": 17755.879441334786,
+  "ev": 18557.177763751228,
+  "tv_share": 0.9568200330557989,
+  "ps_beta_alt": 3.8262252207929217,
   "nd": -2417.297,
   "non_op": 1069.2839999999999,
   "jv_book": 363.386,
@@ -4642,18 +4642,18 @@
   "jv_pe": 15.0,
   "nci_share": 0.00015963308948355068,
   "nci_val": 1.287,
-  "eq_attr": 22870.85653528203,
-  "ps": 4.851079136958483,
-  "ps_dec": 4.900862822825986,
-  "ps_jvcap": 5.398465917835497,
-  "ps_iata_fuel": 2.7504176156555933,
+  "eq_attr": 22405.857763751224,
+  "ps": 4.7458743053797985,
+  "ps_dec": 4.801220940654258,
+  "ps_jvcap": 5.293261086256813,
+  "ps_iata_fuel": 2.6871456951307615,
   "roll": 1.0558294292089863,
   "anchor_days": 246,
   "roic_term": 0.1428446151870426,
   "rr_term": 0.17500134651395255,
   "g": 0.024997999999999854,
-  "bear": 1.1218835430307332,
-  "bull": 7.044222881257744,
+  "bear": 1.081007637294689,
+  "bull": 6.913529127525565,
   "roll_cash": 1.0274514599436184,
   "nci_book": 1.287,
   "scenario_vectors": {
@@ -4685,38 +4685,38 @@
    "why_retired": "the reinvestment identity charges g x IC every year for ever, so the implied replacement cycle is 1/g \u2014 a fact about the currency and not about the asset. At a 2.5% terminal that is 40.0 years against a weighted useful life this company's own accounts disclose at 17.84."
   },
   "inputs": {
-   "nopat": 1411.1785662327254,
+   "nopat": 1376.7622631778067,
    "wacc": 0.074963,
    "inflation": 0.02,
    "real_growth": 0.0049,
    "nominal_growth": 0.024997999999999854,
-   "dna_book": 1086.49788,
+   "dna_book": 1060.0,
    "useful_life_years": 17.84,
    "useful_life_source": "Weighted useful life of the depreciable asset base, derived from the FY2025 consolidated financial statements' own composition: the disclosed class lives in note 4 (aircraft and aircraft engines 20 years, buildings 15-20, aircraft rotables 3-10, airport equipment 3-15, other 3-5) weighted by the GROSS carrying amounts in note 5, at each range's longest disclosed end. Aircraft and engines are 87.4% of the AED 11,457mn depreciable base at a single disclosed 20 years, so the band is narrow: 14.55 years if every range is taken at its shortest end, 17.84 at its longest. Land (AED 89mn) and capital work-in-progress (AED 452mn) are excluded because neither is depreciated, and the note foots to its stated AED 11,999mn total. Note 5 also records that with effect from 1-Oct-2024 the aircraft life was raised from 15 to 20 years and residual values cut from 20% to 7-8% of original cost, so the 20 years is the current estimate rather than a legacy one. Text layer via pdftotext -layout; the two years' tables cross-check.",
    "maintenance_basis": "book_dna_escalated",
    "maintenance_basis_reason": "Maintenance could be struck as replacement-cost capital divided by the disclosed life, and this model holds no replacement-cost capital figure: the property note gives GROSS HISTORICAL cost on a base 54.2% depreciated, and rolling that forward through five years of forecast capital spending at mixed vintages would be a construction of ours rather than a figure the company discloses. Escalating the model's own book depreciation over half the disclosed life uses only figures that exist.",
-   "working_capital": -7184.461799217362,
+   "working_capital": -7009.24470020172,
    "incremental_capital_per_unit_growth": 12172.68781384815
   },
   "outputs": {
-   "fcff": 1285.3093835188554,
-   "tv": 26367.248023377477,
-   "floor": 18825.001217036744,
-   "maintenance": 1296.4101284103615,
+   "fcff": 1252.5081498246818,
+   "tv": 25694.353018192636,
+   "floor": 18365.890681773766,
+   "maintenance": 1264.7928370693032,
    "growth_capex": 59.64617028785593,
-   "wc_charge": -143.68923598434725,
-   "dna_addback": 1086.49788,
+   "wc_charge": -140.1848940040344,
+   "dna_addback": 1060.0,
    "implied_cycle_years": null,
    "below_floor": false
   },
   "record": {
    "rule": "R-TERM-01",
    "inputs": {
-    "nopat": 1411.1785662327254,
+    "nopat": 1376.7622631778067,
     "wacc": 0.074963,
     "inflation": 0.02,
     "real_growth": 0.0049,
-    "dna_book": 1086.49788,
+    "dna_book": 1060.0,
     "ic_replacement": null,
     "useful_life_years": 17.84,
     "useful_life_source": "Weighted useful life of the depreciable asset base, derived from the FY2025 consolidated financial statements' own composition: the disclosed class lives in note 4 (aircraft and aircraft engines 20 years, buildings 15-20, aircraft rotables 3-10, airport equipment 3-15, other 3-5) weighted by the GROSS carrying amounts in note 5, at each range's longest disclosed end. Aircraft and engines are 87.4% of the AED 11,457mn depreciable base at a single disclosed 20 years, so the band is narrow: 14.55 years if every range is taken at its shortest end, 17.84 at its longest. Land (AED 89mn) and capital work-in-progress (AED 452mn) are excluded because neither is depreciated, and the note foots to its stated AED 11,999mn total. Note 5 also records that with effect from 1-Oct-2024 the aircraft life was raised from 15 to 20 years and residual values cut from 20% to 7-8% of original cost, so the 20 years is the current estimate rather than a legacy one. Text layer via pdftotext -layout; the two years' tables cross-check.",
@@ -4724,34 +4724,34 @@
     "average_age_source": "",
     "maintenance_basis": "book_dna_escalated",
     "maintenance_capex": null,
-    "working_capital": -7184.461799217362,
+    "working_capital": -7009.24470020172,
     "incremental_capital_per_unit_growth": 12172.68781384815,
     "floor_exemption": "",
     "floor_exemption_disclosure": ""
    },
-   "fcff": 1285.3093835188554,
-   "tv": 26367.248023377477,
-   "floor": 18825.001217036744,
-   "tv_vs_floor": 0.40065053485972424,
+   "fcff": 1252.5081498246818,
+   "tv": 25694.353018192636,
+   "floor": 18365.890681773766,
+   "tv_vs_floor": 0.3990256973320443,
    "nominal_growth": 0.024997999999999854,
    "real_growth": 0.0049,
-   "maintenance": 1296.4101284103615,
+   "maintenance": 1264.7928370693032,
    "maintenance_age_years": 8.92,
    "maintenance_age_basis": "half_of_life",
    "maintenance_escalator": 1.193200789688022,
    "growth_capex": 59.64617028785593,
-   "wc_charge": -143.68923598434725,
-   "dna_addback": 1086.49788,
-   "net_capital_charge": 125.86918271387026,
+   "wc_charge": -140.1848940040344,
+   "dna_addback": 1060.0,
+   "net_capital_charge": 124.25411335312492,
    "implied_cycle_years": null,
    "one_over_g": 40.00320025602072,
-   "payout_of_nopat": 0.9108056303250908,
+   "payout_of_nopat": 0.9097490418815484,
    "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
   },
   "moved": {
    "tv_before": 23300.718842597136,
-   "tv_after": 26367.248023377477,
-   "pct": 0.13160663417706564
+   "tv_after": 25694.353018192636,
+   "pct": 0.10272791117583835
   }
  },
  "lens_record": {
@@ -4759,16 +4759,16 @@
   "primary": {
    "kind": "dcf",
    "two_sided": false,
-   "value": 4.851079136958483,
+   "value": 4.7458743053797985,
    "range": {
-    "low": 1.1218835430307332,
-    "high": 7.044222881257744
+    "low": 1.081007637294689,
+    "high": 6.913529127525565
    },
    "range_note": "the cash-flow lens under its own bear and bull on one clock, not the widest spread across four methods",
    "range_basis": {
     "driver": "passenger volume, fare, the fuel path and the fleet capex programme \u2014 observable business units only",
-    "low": 1.1218835430307332,
-    "high": 7.044222881257744,
+    "low": 1.081007637294689,
+    "high": 6.913529127525565,
     "units": "AED per share, the present-value read under each scenario",
     "macro_held": true,
     "evidence": "both corners re-run the same unit build through dcf_scenario(), which calls the sanctioned terminal module on the scenario's own terminal-year quantities, so a corner cannot run a construction the base does not. Every corner discounts on the same house cost-of-capital path and the same derived terminal growth: the prior edition also moved the discount rate a point either way and the terminal growth to 1.5% and 3.5%, which makes the corners internally contradictory \u2014 1.5% nominal against a 2.0% house terminal inflation is a permanent REAL contraction of this airline. The rate sensitivities are unchanged and published as their own grids, where a reader sees what a point of discount rate is worth without it being folded into the envelope."
@@ -4809,14 +4809,14 @@
     "value": 3.4488988849529076,
     "bear": 2.602231171306467,
     "bull": 4.295566598599348,
-    "why": "not a permitted lens for this class. An airline's reported earnings in any one year are an accident of the fuel curve, the fleet delivery schedule and the load factor, so normalising them normalises a cycle rather than a level \u2014 the same reason the registry excludes it from developers. It carried a fifth of the retired blend and read AED 3.45 against a cash-flow AED 4.85."
+    "why": "not a permitted lens for this class. An airline's reported earnings in any one year are an accident of the fuel curve, the fleet delivery schedule and the load factor, so normalising them normalises a cycle rather than a level \u2014 the same reason the registry excludes it from developers. It carried a fifth of the retired blend and read AED 3.45 against a cash-flow AED 4.75."
    }
   ],
   "envelope": {
-   "low": 1.1218835430307332,
-   "high": 7.044222881257744
+   "low": 1.081007637294689,
+   "high": 6.913529127525565
   },
-  "central": 4.851079136958483,
+  "central": 4.7458743053797985,
   "retired_blend": {
    "weights": {
     "dcf": 0.45,
@@ -4824,16 +4824,16 @@
     "normalized": 0.2,
     "book": 0.15
    },
-   "value": 4.415925392817751,
+   "value": 4.368583218607343,
    "why_retired": "typed weights that had never cleared an out-of-sample test, and one of the four lenses is not permitted for this class at all"
   }
  },
  "lenses": {
   "dcf": {
    "name": "Discounted cash flow (the central)",
-   "bear": 1.1218835430307332,
-   "base": 4.851079136958483,
-   "bull": 7.044222881257744,
+   "bear": 1.081007637294689,
+   "base": 4.7458743053797985,
+   "bull": 6.913529127525565,
    "w": 1.0,
    "role": "primary"
   },
@@ -4855,22 +4855,22 @@
   },
   "central": {
    "name": "Central \u2014 the cash-flow lens",
-   "bear": 1.1218835430307332,
-   "base": 4.851079136958483,
-   "bull": 7.044222881257744,
+   "bear": 1.081007637294689,
+   "base": 4.7458743053797985,
+   "bull": 6.913529127525565,
    "w": 1.0,
    "role": "primary"
   }
  },
- "central": 4.851079136958483,
- "central_jvcap": 5.398465917835497,
+ "central": 4.7458743053797985,
+ "central_jvcap": 5.293261086256813,
  "span": [
-  1.1218835430307332,
-  7.044222881257744
+  1.081007637294689,
+  6.913529127525565
  ],
  "span_widest": [
-  1.1218835430307332,
-  7.044222881257744
+  1.081007637294689,
+  6.913529127525565
  ],
  "spot": 4.97,
  "fuel_defer_q": 0.019071487949193208,
@@ -4946,39 +4946,39 @@
   ],
   "table": [
    [
-    6.6139319717021525,
-    7.22938797416904,
-    8.047303999567715,
-    9.189336112633173,
-    10.880229972123534
+    6.530864632088698,
+    7.102168803376595,
+    7.860833702331569,
+    8.91944238848209,
+    10.485309650718195
    ],
    [
-    5.290650036151688,
-    5.628038240398886,
-    6.047709804384486,
-    6.5849663439903665,
-    7.298672947301888
+    5.22620977758266,
+    5.5320930149621255,
+    5.912111496029038,
+    6.398071091427047,
+    7.043007769349051
    ],
    [
-    4.411265519707568,
-    4.611970399626963,
-    4.851184061604538,
-    5.14175332927026,
-    5.5029543852260465
+    4.359176372904554,
+    4.535826864943507,
+    4.7459663960166365,
+    5.0007671651656915,
+    5.316992642879297
    ],
    [
-    3.7853381607076946,
-    3.9108019481499783,
-    4.055845559017758,
-    4.225812539903896,
-    4.428185438899458
+    3.742017746254053,
+    3.848289311017446,
+    3.9707740284449855,
+    4.113896644092114,
+    4.283853112430982
    ],
    [
-    3.317696432266285,
-    3.3984300908798946,
-    3.4895854522205823,
-    3.5935688943944535,
-    3.713589416492556
+    3.280908427380842,
+    3.3458500133239943,
+    3.4188180157165267,
+    3.501665739466495,
+    3.5968646389767813
    ]
   ]
  },
@@ -5038,76 +5038,76 @@
   ],
   "grid_wacc_g": [
    [
-    6.6139319717021525,
-    7.22938797416904,
-    8.047303999567715,
-    9.189336112633173,
-    10.880229972123534
+    6.530864632088698,
+    7.102168803376595,
+    7.860833702331569,
+    8.91944238848209,
+    10.485309650718195
    ],
    [
-    5.290650036151688,
-    5.628038240398886,
-    6.047709804384486,
-    6.5849663439903665,
-    7.298672947301888
+    5.22620977758266,
+    5.5320930149621255,
+    5.912111496029038,
+    6.398071091427047,
+    7.043007769349051
    ],
    [
-    4.411265519707568,
-    4.611970399626963,
-    4.851184061604538,
-    5.14175332927026,
-    5.5029543852260465
+    4.359176372904554,
+    4.535826864943507,
+    4.7459663960166365,
+    5.0007671651656915,
+    5.316992642879297
    ],
    [
-    3.7853381607076946,
-    3.9108019481499783,
-    4.055845559017758,
-    4.225812539903896,
-    4.428185438899458
+    3.742017746254053,
+    3.848289311017446,
+    3.9707740284449855,
+    4.113896644092114,
+    4.283853112430982
    ],
    [
-    3.317696432266285,
-    3.3984300908798946,
-    3.4895854522205823,
-    3.5935688943944535,
-    3.713589416492556
+    3.280908427380842,
+    3.3458500133239943,
+    3.4188180157165267,
+    3.501665739466495,
+    3.5968646389767813
    ]
   ],
   "grid_exp_term": [
    [
-    8.190595518800578,
-    6.152900095652542,
-    4.933557898331902,
-    4.12305166807534,
-    3.5459957084846447
+    8.000623234748355,
+    6.014763569019446,
+    4.826377818105075,
+    4.036399438767721,
+    3.4739183978229775
    ],
    [
-    8.118262350506111,
-    6.0998475014143345,
-    4.89203512682659,
-    4.089186917413269,
-    3.5175784119382327
+    7.9300671140293035,
+    5.962997828691612,
+    4.785849443207093,
+    4.003335375343121,
+    3.4461644348099227
    ],
    [
-    8.046922852356397,
-    6.047521370368907,
-    4.851079136958488,
-    4.055782974525162,
-    3.489546608836069
+    7.860480281412786,
+    5.911940959735956,
+    4.745874305379804,
+    3.970721252795083,
+    3.418786994571136
    ],
    [
-    7.976559329993601,
-    5.995908808691096,
-    4.810679901554656,
-    4.022831713053255,
-    3.461893522369199
+    7.791845476389811,
+    5.861580380242414,
+    4.706442616760781,
+    3.9385491360975546,
+    3.391779457697584
    ],
    [
-    7.907154453209897,
-    5.944997186851519,
-    4.770827598168174,
-    3.9903251719119934,
-    3.4346125130259573
+    7.7241457936839835,
+    5.81190376621413,
+    4.667544789338453,
+    3.906811251616137,
+    3.365135338899167
    ]
   ],
   "beta_grid": [
@@ -5118,11 +5118,11 @@
    1.086
   ],
   "grid_beta": [
-   5.957451797954994,
-   5.3797023214669855,
-   4.851079136958488,
-   4.325720187878041,
-   3.9076043145118824
+   5.824215735162758,
+   5.261113519562423,
+   4.745874305379804,
+   4.233794195992333,
+   3.8262252207929217
   ],
   "fuel_grid": [
    0.85,
@@ -5132,11 +5132,11 @@
    1.15
   ],
   "grid_fuel": [
-   6.4433429196471135,
-   5.647211028302799,
-   4.851079136958488,
-   4.054947245614179,
-   3.2588153542698652
+   6.306723155809302,
+   5.526298730594553,
+   4.745874305379804,
+   3.9654498801650613,
+   3.18502545495031
   ],
   "paxg_grid": [
    0.9,
@@ -5146,11 +5146,11 @@
    1.1
   ],
   "grid_pax": [
-   4.024478047929036,
-   4.437801581315985,
-   4.851079136958488,
-   5.264316942610993,
-   5.6775201498720325
+   3.9330107294774406,
+   4.339465506300848,
+   4.745874305379804,
+   5.152243354468767,
+   5.558577805166262
   ],
   "fare_grid": [
    0.94,
@@ -5160,11 +5160,11 @@
    1.06
   ],
   "grid_fare": [
-   2.9918059014985023,
-   3.9214394489438806,
-   4.851079136958488,
-   5.780724545348389,
-   6.710375291402692
+   2.9220680519959177,
+   3.8339681084032478,
+   4.745874305379804,
+   5.657786222731658,
+   6.569703477747911
   ],
   "capex_grid": [
    0.8,
@@ -5174,11 +5174,11 @@
    1.3
   ],
   "grid_capex": [
-   5.363960992397897,
-   5.107520064678192,
-   4.851079136958488,
-   4.466417745378932,
-   4.081756353799374
+   5.258756160819213,
+   5.002315233099507,
+   4.745874305379804,
+   4.361212913800246,
+   3.9765515222206904
   ],
   "jv_grid": [
    363.386,
@@ -5188,11 +5188,11 @@
    3799.5
   ],
   "grid_jv": [
-   4.851079136958488,
-   5.105682872488786,
-   5.272987469829767,
-   5.398465917835503,
-   5.607596664511728
+   4.745874305379804,
+   5.0004780409101,
+   5.167782638251081,
+   5.293261086256817,
+   5.502391832933043
   ],
   "nwc_grid": [
    -0.58,
@@ -5202,11 +5202,11 @@
    -0.7
   ],
   "grid_nwc": [
-   4.666619172766612,
-   4.758849154862552,
-   4.851079136958488,
-   4.943309119054425,
-   5.035539101150361
+   4.562468056436314,
+   4.654171180908059,
+   4.745874305379804,
+   4.837577429851549,
+   4.929280554323295
   ]
  },
  "step0": {
@@ -5509,20 +5509,20 @@
   "[FCFF waterfall] NOPAT (on EBIT including the recurring fee/other-income line, at the 15% DMTT) 982, 1,255, 1,291, 1,341, 1,377; capex 2,000, 1,900, 1,900, 1,950, 2,000; working-capital release -151, +373, +516, +536, +549 -> FCFF -624, 187, 457, 557, 635.",
   "[Forecast net finance \u2014 rebuilt after critique] gross debt now ROLLS with the financing of the fleet (leases + aircraft loans - amortisation): 2,606 -> 2,586 -> 2,546 -> 2,636 -> 2,706; finance costs at the booked blended rate 84, 86, 90, 93, 99 (no hardcoded factor); finance income 213, 118, 70, 34, 4. BOTH financing legs are tax-effected in the net-debt roll; the JV/associate share sits BELOW the tax line (equity-method income arrives net of the ventures' own tax). Attributable profit 1,286, 1,511, 1,544, 1,600, 1,643; EPS 0.276, 0.324, 0.331, 0.343, 0.352; DPS floored at 30 fils throughout \u2014 the dividend ladder holds in the base case by construction, funded by net cash in the dip year.",
   "[Invested capital] FY2025: fleet assets (PP&E + right-of-use + pre-delivery payments) 8,671 + intangibles 1,362 + working capital -5,187 = 4,847; ROIC 25.7%. Terminal ROIC (NOPAT(n+1)/IC(n)) 14.3%.",
-  "[Terminal value \u2014 [R-TERM-01]] terminal NOPAT 1,411; add back book depreciation 1,086; charge maintenance at current cost 1,296 (book depreciation escalated at 2.0% over half the disclosed weighted life of 17.84 years); charge 60 of growth capital for 0.49% REAL growth; working capital contributes 144 because an airline collects fares before it flies and its working capital is negative. Terminal free cash flow 1,285; TV 26,367 at a terminal WACC of 7.50% less derived nominal growth of 2.50%, discounted at the year-5 factor 0.6910 -> PV 18,221, 96% of operating enterprise value. THE TERMINAL SHARE IS HIGH AND IT IS THE FLEET PLAN, NOT A TRICK: the explicit window carries 9,750 of fleet capex against 4,470 of depreciation, so its free cash flow is suppressed by an expansion whose revenue arrives after FY2030. Said plainly, not hidden.",
-  "[Terminal \u2014 what the correction did] the retired reinvestment-identity form (g/ROIC = 17.5% of terminal profit) gave TV 23,301; the sanctioned construction gives 26,367, +13.2%. The retired form's implied replacement cycle is 1/g = 40.0 years against the 17.84 the accounts disclose \u2014 it charged maintenance over a life more than twice the asset's, which is the pegged-market direction of the defect. It moved the value UP, and that could not have been read off the ratio: the two charges are not like for like (one is a NET charge on an IMPLIED capital base, the other GROSS at replacement cost with book depreciation added back), so the sign is measured per name and never predicted.",
+  "[Terminal value \u2014 [R-TERM-01]] terminal NOPAT 1,411; add back book depreciation 1,060; charge maintenance at current cost 1,265 (book depreciation escalated at 2.0% over half the disclosed weighted life of 17.84 years); charge 60 of growth capital for 0.49% REAL growth; working capital contributes 140 because an airline collects fares before it flies and its working capital is negative. Terminal free cash flow 1,253; TV 25,694 at a terminal WACC of 7.50% less derived nominal growth of 2.50%, discounted at the year-5 factor 0.6910 -> PV 17,756, 96% of operating enterprise value. THE TERMINAL SHARE IS HIGH AND IT IS THE FLEET PLAN, NOT A TRICK: the explicit window carries 9,750 of fleet capex against 4,470 of depreciation, so its free cash flow is suppressed by an expansion whose revenue arrives after FY2030. Said plainly, not hidden.",
+  "[Terminal \u2014 what the correction did] the retired reinvestment-identity form (g/ROIC = 17.5% of terminal profit) gave TV 23,301; the sanctioned construction gives 25,694, +10.3%. The retired form's implied replacement cycle is 1/g = 40.0 years against the 17.84 the accounts disclose \u2014 it charged maintenance over a life more than twice the asset's, which is the pegged-market direction of the defect. It moved the value UP, and that could not have been read off the ratio: the two charges are not like for like (one is a NET charge on an IMPLIED capital base, the other GROSS at replacement cost with book depreciation added back), so the sign is measured per name and never predicted.",
   "[JV network \u2014 BOTH WAYS, never averaged] BASE: audited carrying value 363. ALTERNATIVE: capitalised share of FY2025 profit 190 x 15 = 2,850. The gap (+0.53/share) is the single most consequential contested judgement in this study: five airline JVs (Abu Dhabi, Egypt at a raised 49%, Fly Jinnah, Maroc, the pre-operational Saudi DMM) whose combined 100%-basis profits grew ~65% in FY2025 sit on the balance sheet at less than 2.0x their annual profit share.",
-  "[Bridge] operating EV 19,022 + NET CASH 2,417 + non-operating assets (FVOCI investments 458 + investment property 277 + net investment in lease 335) + JV network at carrying value 363 = 22,872; less minorities (0.02%) 1 -> equity 22,871 = AED 4.90/share at 31-Dec-2025; rolled 246/365 at Ke (x1.0558) less the AED 0.30 dividend paid in the window = AED 4.85 vs spot 4.97 (-2%) \u2014 the operating equity rolls at Ke, the cash/near-cash legs at the deposit yield, and minorities are deducted at their audited carrying value. ON THE ALTERNATIVE JV FRAMING: AED 5.40 (+9%).",
-  "[Fuel framing both ways] BASE (EIA July-2026 STEO path, relief in 2027): AED 4.85. ALTERNATIVE (IATA June-2026 high-fuel assumption held): AED 2.75 \u2014 -2.10/share. Both published; the workbook carries the base and the alternative side by side.",
-  "[Envelope \u2014 business drivers only, macro held] bear 1.12 (passengers -6%, fares -3%, the IATA high-fuel path, fleet capex +15%) / base 4.85 / bull 7.04 (passengers +5%, fares +3%, capex -10%, the JV network capitalised). Every corner discounts on the same house cost-of-capital path and the same derived terminal growth of 2.50% (+0.49% real). The prior edition also moved the cost of capital a point either way and the terminal growth to 1.5%/3.5% \u2014 and 1.50% nominal is -0.49% REAL, a permanent real contraction of this airline that nothing in the study argues for and that was invisible while the rate was typed nominal.",
-  "[DCF scenarios] bear 1.12 / base 4.85 / bull 7.04 (the bull adopts the JV-capitalised framing; the bear the IATA fuel path)",
+  "[Bridge] operating EV 18,557 + NET CASH 2,417 + non-operating assets (FVOCI investments 458 + investment property 277 + net investment in lease 335) + JV network at carrying value 363 = 22,407; less minorities (0.02%) 1 -> equity 22,406 = AED 4.80/share at 31-Dec-2025; rolled 246/365 at Ke (x1.0558) less the AED 0.30 dividend paid in the window = AED 4.75 vs spot 4.97 (-5%) \u2014 the operating equity rolls at Ke, the cash/near-cash legs at the deposit yield, and minorities are deducted at their audited carrying value. ON THE ALTERNATIVE JV FRAMING: AED 5.29 (+7%).",
+  "[Fuel framing both ways] BASE (EIA July-2026 STEO path, relief in 2027): AED 4.75. ALTERNATIVE (IATA June-2026 high-fuel assumption held): AED 2.69 \u2014 -2.06/share. Both published; the workbook carries the base and the alternative side by side.",
+  "[Envelope \u2014 business drivers only, macro held] bear 1.08 (passengers -6%, fares -3%, the IATA high-fuel path, fleet capex +15%) / base 4.75 / bull 6.91 (passengers +5%, fares +3%, capex -10%, the JV network capitalised). Every corner discounts on the same house cost-of-capital path and the same derived terminal growth of 2.50% (+0.49% real). The prior edition also moved the cost of capital a point either way and the terminal growth to 1.5%/3.5% \u2014 and 1.50% nominal is -0.49% REAL, a permanent real contraction of this airline that nothing in the study argues for and that was invisible while the rate was typed nominal.",
+  "[DCF scenarios] bear 1.08 / base 4.75 / bull 6.91 (the bull adopts the JV-capitalised framing; the bear the IATA fuel path)",
   "[Relative lens \u2014 basis-matched after critique] 6.5x FY2027E EBITDA EXCLUDING fees/other income (2,056) \u2014 the same basis peer multiples are computed on \u2014 plus the fee stream valued separately as an after-tax annuity (3,912), discounted and bridged -> AED 3.81/share. Trailing prints for context, BOTH bases: EV/EBITDA 11.0x ex-fees / 9.9x incl-fees; P/E 14.2x. Peer set rebuilt from primary filings: Ryanair 6.50x, Wizz 4.75x, easyJet 3.5x, IndiGo 11.1x, Pegasus 6.6x -> median 6.5x.",
   "[Normalised lens \u2014 de-JV'd] mid-cycle EBITDA margin 23.4% (FY2028E) on FY2026E revenue 7,869 + fees/other + net finance income, EXCLUDING the JV share -> normalised EPS 0.267 x 13 plus the JV network at BOOK (AED 0.08/share) = AED 3.45/share. The base-framing central now genuinely carries the JV at carrying value in every lens.",
   "[Book lens] justified P/B 2.89x = (18% - 2.5%) / (7.86% - 2.5%) on BVPS 1.80 -> AED 5.20/share. Trailing ROE 19.9%.",
-  "[Synthesis \u2014 [R-LENS-03]] the central is the class primary and nothing else: the cash-flow lens at AED 4.85 against a spot of 4.97 (-2.4%). The envelope 1.12 - 7.04 is that same lens under its own bear and bull, on one clock \u2014 never a spread across methods. Cross-checks published beside it and never averaged in: relative multiples AED 3.81, book value AED 5.20 (a disclosed FLOOR). The retired blend read AED 4.42, -9.0% against the primary \u2014 it was showing a reader about four fifths of the disagreement this study actually holds with the market.",
+  "[Synthesis \u2014 [R-LENS-03]] the central is the class primary and nothing else: the cash-flow lens at AED 4.75 against a spot of 4.97 (-4.5%). The envelope 1.08 - 6.91 is that same lens under its own bear and bull, on one clock \u2014 never a spread across methods. Cross-checks published beside it and never averaged in: relative multiples AED 3.81, book value AED 5.20 (a disclosed FLOOR). The retired blend read AED 4.37, -7.9% against the primary \u2014 it was showing a reader about four fifths of the disagreement this study actually holds with the market.",
   "[Normalised earnings \u2014 computed, published as an observation, NOT a lens] AED 3.45. It is retained in the record because it was built and deleting a computed figure to satisfy a rule is the wrong direction, and it is excluded from the lens set because the registry does not permit it for this class.",
-  "[JV framing] on the alternative JV-capitalised framing the central becomes 5.40 (+8.6%) \u2014 both stated, never averaged.",
-  "[Beta \u2014 resolved by the exchange rule, both regressions priced] ADOPTED: own-stock 5-year weekly vs FTSE ADX General Index (FADGI), the index the binding rule resolves for a DFM-listed share = 0.812 (R2 0.135, n 260, SE 0.128) -> Ke 8.39%, WACC 8.00%, DCF AED 4.85. It applies under a REGISTERED INTERIM SUBSTITUTION, quoted in the report. CROSS-CHECK on the unregistered DFM General series held in the repo = 1.086 (R2 0.402, n 258) -> Ke 9.73%, WACC 9.19%, DCF AED 3.91 (-0.94/share, -19.4%). The cross-check has the HIGHER explanatory power (3.0x), which is why registering it is a live open item \u2014 but it is not the registered regressor today, so it is published beside the adopted figure rather than used.",
+  "[JV framing] on the alternative JV-capitalised framing the central becomes 5.29 (+6.5%) \u2014 both stated, never averaged.",
+  "[Beta \u2014 resolved by the exchange rule, both regressions priced] ADOPTED: own-stock 5-year weekly vs FTSE ADX General Index (FADGI), the index the binding rule resolves for a DFM-listed share = 0.812 (R2 0.135, n 260, SE 0.128) -> Ke 8.39%, WACC 8.00%, DCF AED 4.75. It applies under a REGISTERED INTERIM SUBSTITUTION, quoted in the report. CROSS-CHECK on the unregistered DFM General series held in the repo = 1.086 (R2 0.402, n 258) -> Ke 9.73%, WACC 9.19%, DCF AED 3.83 (-0.92/share, -19.4%). The cross-check has the HIGHER explanatory power (3.0x), which is why registering it is a live open item \u2014 but it is not the registered regressor today, so it is published beside the adopted figure rather than used.",
   "[Expert panel] Expert 1 4.12 [3.10-5.14]; Expert 2 2.59 [1.79-3.50]; Expert 3 4.31 [3.14-4.86]; panel median 4.12 (-17% vs spot)",
   "[Catalyst quantity, defined] one quarter's deferral of the FY2027 fuel relief = (fuel/pax FY26 - FY27) x FY27 passengers x (1-t) / 4 / shares = AED 0.019 per share per quarter."
  ]

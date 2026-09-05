@@ -3,16 +3,10 @@
  "seeded": "2026-09-01",
  "breach_no_review": [],
  "unreadable": [
-  "ADNOCDIST",
-  "ADNOCDRILL",
-  "AMR",
-  "BOROUGE",
-  "ELEC",
   "GBCO",
-  "STC",
-  "XPT"
+  "STC"
  ],
- "note_on_unreadable": "These studies commit numbers files that do not expose a central fair value and the spot it was struck against, so the gate cannot see their answer. That is tracked as a defect rather than passed over: a gate that reports clean having examined nothing is the [R-ENF-04] failure. Each is cleared by making the study's own numbers file carry central and spot, which every current-standard study already does.",
+ "note_on_unreadable": "These studies commit numbers files that do not expose a central fair value and the spot it was struck against, so the gate cannot see their answer. That is tracked as a defect rather than passed over: a gate that reports clean having examined nothing is the [R-ENF-04] failure. Each is cleared by making the study's own numbers file carry central and spot, which every current-standard study already does. XPT was removed from this list on 5 September 2026: it was carried here AND in the exempt block at the same time, and nothing read the exempt block. A metals study has no issuer, no statements and no equity, so it can never expose a central fair value and the entry could never have been cleared. The exemption is now enforced by the gate, which prints every exempt name and FAILS if an exempt study turns out to expose a central after all.",
  "exempt": {
   "XPT": "metals study - no issuer, no equity fair value of this shape"
  },

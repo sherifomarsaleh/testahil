@@ -7,8 +7,9 @@ transform is applied (data_quality.clean_ohlc -> backtest_v3 on the calendar
 robust_verdict across bootstrap blocks {2,3,4}). EGCH is NEW coverage: it has
 no committed fitted_configs entry to reconcile a verdict against, so the
 reconciliation ASSERT here is on the FIT ITSELF — the (nu, width_cal) used must
-be exactly the committed EG production fit, and the market-panel gate verdict
-must match the committed registry (PASS).
+be exactly the committed EG production fit. The skill verdict is RETIRED
+[R-CAL-03] and is read for the archive only; it is not a gate and this script no
+longer asserts a value for it.
 """
 import sys, os, json
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -29,8 +30,35 @@ with open(os.path.join(HERE, '..', 'fitted_configs.json')) as f:
 NU, CAL = float(reg['nu']), float(reg['width_cal'])
 assert (NU, CAL) == (float(EG.nu), float(EG.width_cal)), \
     f"registry ({NU},{CAL}) != profile ({EG.nu},{EG.width_cal}) — mirror out of sync"
-assert reg['market_verdict'] == 'PASS', reg['market_verdict']
-assert 'EGCH' not in reg['panel_names'], "EGCH already covered — not new coverage"
+# THE SKILL VERDICT IS RETIRED AND THIS ASSERT WAS STILL DEMANDING IT. [R-CAL-03] retired
+# PASS/PARITY/FAIL outright on 25 August 2026 — no gate, no materiality trigger, nothing on
+# any public surface — after measuring that it had never excluded a market and disagreed
+# with the band record on 40% of the book. This line went on asserting 'PASS' against a
+# registry that now prints PARITY, so step0 ABORTED before it ran a single check: a script
+# holding a retired standard does not report the standard is gone, it reports a failure.
+# Found by an audit run from outside the study on 5 September 2026.
+#
+# What replaces it is the thing that IS the gate: the fit this study simulates on must be
+# the committed EG production fit, cell for cell, which the assert above already checks.
+# The verdict is recorded for the archive and asserted on only for its PRESENCE, because a
+# registry that stopped carrying one would mean the mirror had changed shape.
+assert reg.get('market_verdict'), 'the registry carries no market verdict at all'
+_RETIRED_VERDICT = reg['market_verdict']
+# EGCH WAS NEW COVERAGE WHEN THIS STUDY WAS WRITTEN AND IS NOT ANY MORE. The line here
+# asserted its ABSENCE from the EG panel, which was true in August and stopped being true
+# when the name was posted — so this script aborted on a fact about the world having
+# changed in the direction the project wanted. A study-local assert that encodes a
+# transient state ages into a false alarm, and a false alarm on a data-quality gate is
+# worse than none because the gate stops running at all.
+#
+# It is inverted into what it was always trying to establish: the fit this study simulates
+# on is the live production one. Now that EGCH sits in the panel, the reconciliation is
+# STRONGER than it was — the name is inside the very panel the (nu, width_cal) above were
+# fitted on, so the fit is not merely current, it is this stock's own.
+_IN_PANEL = 'EGCH' in reg['panel_names']
+print("Step 0 reconciliation: EGCH is %s the committed EG panel of %d names; the fit used "
+      "here (nu=%s, width_cal=%s) is the live production one either way."
+      % ('INSIDE' if _IN_PANEL else 'NOT YET IN', len(reg['panel_names']), NU, CAL))
 
 # ---- Step 0.0 — data-quality gate ----------------------------------------
 df_raw = raw_load(os.path.join(HERE, 'EGCH_Stock_Price_History.csv'))

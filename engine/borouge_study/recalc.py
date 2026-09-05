@@ -104,7 +104,15 @@ for label, sheet, want in [
     ('relative lens (AED)', 'Relative & Normalized', LEN_['relative_multiples']),
     ('book value lens, own beta (AED)', 'Fundamental Valuation',
      LEN_['book_value_own_beta']),
-    ('median lens reading (AED)', 'Fundamental Valuation', D['fair_mid']),
+    # THE HEADLINE IS THE TWO-SIDED ANSWER, not the retired median. Both branches are
+    # reconciled, because a study whose answer depends on a judgement has two headlines
+    # and reconciling one of them reconciles half the study.
+    ('answer — navigation normalises (AED)', 'Fundamental Valuation',
+     D['central_two_sided']['branches'][0]['value']),
+    ('answer — disruption persists (AED)', 'Fundamental Valuation',
+     D['central_two_sided']['branches'][1]['value']),
+    ('retired median of the nine readings (AED)', 'Fundamental Valuation',
+     D['fair_mid_retired']),
     ('enterprise value, normalisation (USD m)', 'DCF', FR['normalisation']['ev']),
     ('Borouge 4 fee stream value (USD m)', 'SOTP Bridge',
      FR['normalisation']['b4']['value']),

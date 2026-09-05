@@ -1,9 +1,10 @@
-"""EGCH_Bibliography_03-09-2026.docx — a standalone source register.
+"""EGCH_Bibliography_05-09-2026.docx — a standalone source register.
 
 Every figure that reaches the study or the model traces to a row here: what it is, where
 it came from, what kind of source that is, and the date the source itself carries.
 Reads the sweep register and the filings source log — nothing is typed twice.
 """
+import datetime as _dt
 import json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
@@ -100,7 +101,14 @@ c = t.cell(0, 0); shade(c, F_DARK); c.width = Inches(9.8)
 p = c.paragraphs[0]
 r = p.add_run('Testahil · Bibliography and source register')
 r.bold = True; r.font.size = Pt(12); r.font.color.rgb = WHITE
-r2 = p.add_run('   Egyptian Chemical Industries (KIMA), EGX: EGCH — 1 September 2026')
+# COMPUTED FROM THE FILENAME, never typed. This read "1 September 2026" on the
+# 5 September edition — the identical defect docx_egch.py records fixing in its own
+# masthead, left open here, which is what a fix applied in one place and not the other
+# looks like.
+EDITION_FILE = 'EGCH_Bibliography_05-09-2026.docx'
+_EDITION = _dt.datetime.strptime(EDITION_FILE.split('_')[-1][:10], '%d-%m-%Y').date()
+r2 = p.add_run('   Egyptian Chemical Industries (KIMA), EGX: EGCH — %d %s'
+               % (_EDITION.day, _EDITION.strftime('%B %Y')))
 r2.font.size = Pt(10); r2.font.color.rgb = RGBColor(0x9F, 0xB0, 0xAC)
 doc.add_paragraph().paragraph_format.space_after = Pt(0)
 
@@ -375,6 +383,6 @@ P("Every historical figure in the study appears in the accompanying workbook on 
   "watch the valuation move; the two grids that do not redraw are labelled on their own "
   "sheets, because each of their cells is a separate run of the whole model.", size=9.5)
 
-doc.save('EGCH_Bibliography_03-09-2026.docx')
-strip_stub_counts('EGCH_Bibliography_03-09-2026.docx')
-print("wrote EGCH_Bibliography_03-09-2026.docx")
+doc.save(EDITION_FILE)
+strip_stub_counts(EDITION_FILE)
+print("wrote " + EDITION_FILE)

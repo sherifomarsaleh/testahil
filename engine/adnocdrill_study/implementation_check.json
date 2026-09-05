@@ -2,6 +2,8 @@
  "prior_central": 5.032139158938172,
  "central": 4.919425418226855,
  "spot": 5.94,
+ "published_central": 4.919425418226855,
+ "published_spot": 5.94,
  "by_lens": {
   "dcf_A": 6.208275510273871,
   "dcf_B": 5.397011082424389,

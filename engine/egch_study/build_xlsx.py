@@ -310,8 +310,13 @@ put(ws, f"C{r}", f"={WE}*'Assumptions'!C{KE_C}+{WD}*{KDBC}*(1-{TAXR})", fmt=PC2,
     expect=DR['wacc_path'][0]); r += 1
 INFLT = drv(r, "Terminal inflation (the same figure terminal growth is set at)", DR['inflation_lt'], "%", src('inflation_terminal'), PC1); r += 1
 REALLT = drv(r, "Long-run real rate", V('real_rate_lt'), "%", src('real_rate_lt'), PC1); r += 1
-RFT = r; put(ws, f"A{r}", "Terminal normalised risk-free rate"); put(ws, f"B{r}", "%")
-put(ws, f"C{r}", f"=(1+{INFLT})*(1+{REALLT})-1", fmt=PC2, expect=DR['rf_star_terminal'])
+RFT = r; put(ws, f"A{r}", "Terminal normalised risk-free rate — terminal inflation plus "
+             "the long-run real rate, on the house macro path's own construction")
+put(ws, f"B{r}", "%")
+# ADDITIVE, matching macro_path.terminal_rf, which owns this quantity. The cell compounded
+# the two until 5 September 2026 while terminal GROWTH on the same sheet came from the same
+# path ADDITIVELY — one model, two conventions about inflation, which is [L-055].
+put(ws, f"C{r}", f"={INFLT}+{REALLT}", fmt=PC2, expect=DR['rf_star_terminal'])
 RFTC = f"'Assumptions'!C{r}"; r += 1
 KDLT = drv(r, "Long-run dollar cost of debt", V('kd_usd_lt'), "%", src('kd_usd_lt'), PC2); r += 1
 KDTC_R = r; put(ws, f"A{r}", "Terminal cost of debt, local-equivalent"); put(ws, f"B{r}", "%")
@@ -322,7 +327,10 @@ put(ws, f"C{r}", f"={WE}*({RFTC}+{BETAC}*{ERPC})+{WD}*{KDTC}*(1-{TAXR})", fmt=PC
     expect=DR['wacc_terminal'])
 WTC = f"'Assumptions'!C{r}"; r += 1
 GT = drv(r, "Terminal growth", V('g_terminal'), "%", src('g_terminal'), PC1); r += 1
-ROCT = drv(r, "Terminal return on invested capital", V('roc_terminal'), "%", src('roc_terminal'), PC1); r += 1
+AGEC = drv(r, "Average age of the fixed-asset base — MEASURED", V('fa_avg_age_years'),
+           "years", src('fa_avg_age_years'), N2); r += 1
+LIFEC = drv(r, "Replacement cycle the accounts imply", V('fa_life_implied_years'),
+            "years", src('fa_life_implied_years'), N2); r += 1
 r += 1
 put(ws, f"A{r}", "CAPITAL, WORKING CAPITAL AND THE PROJECT").font = SUB; r += 1
 DEPB = drv(r, "Depreciation charge, FY2024/25", V('dep_charge_FY2425'), "EGP m", src('dep_charge_FY2425'), N1); r += 1
@@ -515,10 +523,10 @@ put(ws, f"D{CXR+8}", f"=(B{R22}+B{R23})/(C{R22}+C{R23})", fmt=PC1,
     expect=V('maint_capex_pct')).font = BLUE
 put(ws, f"E{CXR+8}", "THE MAINTENANCE DRIVER. Assumptions reads this cell.")
 put(ws, f"A{CXR+9}", "Replacement-rate framing, the published alternative")
-put(ws, f"B{CXR+9}", V('bs_gross_fixed_M9FY2526'), fmt=N0)
+put(ws, f"B{CXR+9}", V('fa_cost_gross_FY2425'), fmt=N0)
 put(ws, f"C{CXR+9}", V('dep_rate_kima2_machinery'), fmt=PC2)
 put(ws, f"D{CXR+9}", f"=B{CXR+9}*C{CXR+9}/B5", fmt=PC1,
-    expect=V('bs_gross_fixed_M9FY2526') * V('dep_rate_kima2_machinery') / R[0]['revenue'])
+    expect=V('fa_cost_gross_FY2425') * V('dep_rate_kima2_machinery') / R[0]['revenue'])
 put(ws, f"E{CXR+9}", "Gross fixed assets at the disclosed machinery rate, over "
                      "first-forecast-year revenue. NOT used in the valuation — the "
                      "downside case, published beside the central and never averaged in.")
@@ -601,7 +609,18 @@ for k, c in enumerate(CO):
 # terminal block and the two-column bridge
 put(ws, "A19", "TERMINAL BLOCK AND THE BRIDGE — BOTH SIDES").font = SUB
 header(ws, 20, 1, ["", "Programme carried through", "", "Programme stopped"], [38, 15, 3, 15])
-BLK = [(21, "Year-five EBIT grown at terminal growth", f"=F9*(1+{GT})", TT['base_ebit'], HT['base_ebit'], N0),
+# THE PROJECT'S DEPRECIATION IS ADDED BACK BEFORE THE YEAR IS GROSSED, IN BOTH COLUMNS.
+# The explicit window depreciates the complex as it is spent, so year five already carries
+# the charge on the part in service, and rows 22-23 then charge the WHOLE plant. Grossing
+# year five without removing the in-service part charged it twice — EGP 482mn a year in
+# the carried column. THE STOPPED COLUMN ALREADY DID THIS, which is why it was never
+# wrong, and the two formulas are now identical: the branches differ in rows 22, 23 and
+# 26 — the project's revenue, its profit and its depreciation — and nowhere else.
+_STRIP = f"SUM('Assumptions'!C{_ANNAC_ROWS[0]}:C{_ANNAC_ROWS[3]})*{DEPRP}"
+_GREAL = f"((1+{GT})/(1+{INFLT})-1)"
+BLK = [(21, "Year-five profit before interest and tax, the project's own depreciation "
+            "added back, grown at terminal growth",
+        f"=(F9+{_STRIP})*(1+{GT})", TT['base_ebit'], HT['base_ebit'], N0),
        (22, "Project revenue in the terminal year",
         f"={ANNAN}*{ANNAU}*{ANNAP}*({FXP[4]}*(1+{GT}-{FXTW}))/1000000",
         TT['anna_rev'], HT['anna_rev'], N0),
@@ -609,25 +628,38 @@ BLK = [(21, "Year-five EBIT grown at terminal growth", f"=F9*(1+{GT})", TT['base
        (23, "Project operating profit, after its own depreciation",
         f"=B22*{ANNAM}-{ANNADONE}*{ANNACOST}*{DEPRP}", TT['anna_ebit'], HT['anna_ebit'], N0),
        (24, "Terminal EBIT", "=B21+B23", TT['ebit_T'], HT['ebit_T'], N0),
-       (25, "Terminal NOPAT", f"=B24*(1-{TAXR})", TT['nopat_T'], HT['nopat_T'], N0),
-       (26, "Reinvestment rate = growth / return on capital", f"={GT}/{ROCT}", TT['reinv_rate'], HT['reinv_rate'], PC1),
-       (27, "Terminal free cash flow", "=B25*(1-B26)", TT['fcff_T'], HT['fcff_T'], N0),
-       (28, "TERMINAL VALUE", f"=B27/({WTC}-{GT})", TT['tv'], HT['tv'], N0)]
+       (25, "Terminal profit after tax", f"=B24*(1-{TAXR})", TT['nopat_T'], HT['nopat_T'], N0),
+       (26, "Plus book depreciation and amortisation in the terminal year",
+        f"=(F8-{_STRIP})*(1+{GT})+{ANNADONE}*{ANNACOST}*{DEPRP}",
+        TT['dna_T'], HT['dna_T'], N0),
+       (27, "Less capital maintenance at replacement cost — the book charge escalated "
+            "over the measured average age of the base",
+        f"=-B26*(1+{INFLT})^{AGEC}", -TT['maintenance_T'], -HT['maintenance_T'], N0),
+       (28, "Less capital for REAL growth — the stated real growth is zero, so none",
+        f"=-{_GREAL}*(-B27*{LIFEC})", -TT['growth_capex_T'], -HT['growth_capex_T'], N0),
+       (29, "Less inflation on the working capital the business carries",
+        f"=-{INFLT}*'Cash Flow'!F10*(1+{GT})", -TT['wc_charge_T'], -HT['wc_charge_T'], N0),
+       (30, "Terminal free cash flow", "=SUM(B25:B29)", TT['fcff_T'], HT['fcff_T'], N0),
+       # The rows above are the TERMINAL YEAR's — year five grown once — so the perpetuity
+       # takes them straight. Multiplying by (1+g) here would put a year-seven flow into a
+       # perpetuity the year-five factor discounts, which three separate critiques found in
+       # an earlier edition of this study and which six of this house's studies then did to
+       # the shared construction from the other direction.
+       (31, "TERMINAL VALUE", f"=B30/({WTC}-{GT})", TT['tv'], HT['tv'], N0),
+       (32, "Memo — the no-growth perpetuity at book depreciation (a diagnostic, not a bound)",
+        f"=B25/{WTC}", TT['floor_T'] * (1 + DR['g_terminal']),
+        HT['floor_T'] * (1 + DR['g_terminal']), N0)]
 for rr, lab, f, va, vb, fmt in BLK:
     c = put(ws, f"A{rr}", lab)
     put(ws, f"B{rr}", f, fmt=fmt, expect=va)
     fd = (f.replace(f"*{ANNAU}*", "*0*") if rr == 22
           else f.replace("B22", "D22").replace(f"{ANNADONE}*", "0*") if rr == 23
-          else f.replace("B2", "D2"))
-    if rr == 21:
-        # the stopped column never builds the plant, so year-five EBIT must be struck
-        # before the project depreciation the carried column charges
-        fd = (f"=(F9+SUM('Assumptions'!C{_ANNAC_ROWS[0]}:C{_ANNAC_ROWS[3]})*{DEPRP})"
-              f"*(1+{GT})")
+          else f.replace(f"+{ANNADONE}*", "+0*") if rr == 26
+          else f.replace("B2", "D2").replace("B3", "D3"))
     put(ws, f"D{rr}", fd, fmt=fmt, expect=vb)
 put(ws, "A33", "Present value of the terminal value")
-put(ws, "B33", "=B28*F16", fmt=N0, expect=TT['pv_tv'])
-put(ws, "D33", "=D28*F16", fmt=N0, expect=HT['pv_tv'])
+put(ws, "B33", "=B31*F16", fmt=N0, expect=TT['pv_tv'])
+put(ws, "D33", "=D31*F16", fmt=N0, expect=HT['pv_tv'])
 put(ws, "A36", "Present value of the explicit window")
 put(ws, "B36", "=SUM(B17:F17)", fmt=N0, expect=BASE['bridge']['pv_explicit'])
 # THE PLUG IS GONE. This was `=SUM(B17:F17)+7259.375005` -- a frozen constant on the
@@ -1267,7 +1299,41 @@ import sys as _sys
 _sys.path.insert(0, os.path.join(HERE, '..'))
 from research_protocol import MODEL_STUDY as _MS
 wb._sheets = [wb[n] for n in _MS["excel_sheets"]]
-wb.save(os.path.join(HERE, 'EGCH_Valuation_Model_03092026.xlsx'))
+
+# ---- PAGE SETUP, because the WORKBOOK PDF IS A DELIVERABLE and it was losing columns.
+# Nothing here set a print layout, so every sheet defaulted to portrait with no
+# fit-to-width and LibreOffice paginated by column. On the DCF sheet that DROPPED THE
+# "PROGRAMME STOPPED" COLUMN ENTIRELY from the rendered PDF — a two-sided answer losing a
+# side in the file a reader is handed — and on Assumptions it orphaned a whole page of
+# figures from the label column that says what they are. Found by an audit that read the
+# rendered pages as images, which is the only thing that can see it: every cell was
+# correct, the recalculation was clean, and the defect was entirely in the pagination.
+#
+# Landscape, fit to one page WIDE and any number of pages long, with column A repeated on
+# every page so a figure is never printed away from its own label.
+from openpyxl.worksheet.properties import PageSetupProperties as _PSP
+from openpyxl.styles import Alignment as _Alignment
+for _ws in wb.worksheets:
+    _ws.page_setup.orientation = 'landscape'
+    _ws.page_setup.fitToWidth = 1
+    _ws.page_setup.fitToHeight = 0
+    _ws.sheet_properties.pageSetUpPr = _PSP(fitToPage=True)
+    _ws.print_title_cols = 'A:A'
+    _ws.page_margins.left = _ws.page_margins.right = 0.3
+    _ws.page_margins.top = _ws.page_margins.bottom = 0.4
+    # AND THE LABELS WRAP RATHER THAN BEING CUT. A label longer than its column is
+    # truncated at the neighbouring cell, so "Year-five profit before interest and tax,
+    # the project's own depreciation added back, grown at terminal growth" printed as
+    # "...and tax, the pr". Wrapping keeps the whole label and lets the row grow, which
+    # costs a little height and loses nothing.
+    _w = (_ws.column_dimensions['A'].width or 10)
+    for _c in _ws['A']:
+        if isinstance(_c.value, str) and len(_c.value) > _w:
+            _a = _c.alignment
+            _c.alignment = _Alignment(horizontal=_a.horizontal, vertical='top',
+                                      wrap_text=True, indent=_a.indent or 0)
+
+wb.save(os.path.join(HERE, 'EGCH_Valuation_Model_05092026.xlsx'))
 json.dump(EXPECT, open(os.path.join(HERE, 'xlsx_expected.json'), 'w'), indent=1)
 json.dump({"cost_of_equity": f"C{KE_C}", "wacc_year_one": f"C{W1}",
            "wacc_terminal": f"C{WT}", "rf_star": f"C{RFS_C}", "terminal_growth": f"C{r}"},

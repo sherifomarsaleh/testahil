@@ -435,10 +435,10 @@ put(wsd, f'A{rr}', 'Terminal ROIC (reported, not used to build the terminal)', f
 ANCH['roic_term'] = rr; rr += 1
 # --- the terminal, as a waterfall a reader can add up ---------------------------
 row_nopatterm = rr
-putf(wsd, f'C{rr}', f'=G{row_nopat}*(1+{AC("Terminal growth")})', DCF['nopat_term'], NUM0)
-put(wsd, f'A{rr}', 'Terminal NOPAT (next year)', fmt=None); rr += 1
+putf(wsd, f'C{rr}', f'=G{row_nopat}', F['nopat'][4], NUM0)
+put(wsd, f'A{rr}', 'FY2030 operating profit after tax', fmt=None); rr += 1
 row_dnaterm = rr
-putf(wsd, f'C{rr}', f'=G{row_dna}*(1+{AC("Terminal growth")})', TRM['dna_addback'], NUM0)
+putf(wsd, f'C{rr}', f'=G{row_dna}', TRM['dna_addback'], NUM0)
 put(wsd, f'A{rr}', 'Plus book depreciation and amortisation inside that profit', fmt=None); rr += 1
 row_maint = rr
 putf(wsd, f'C{rr}', f'=-C{row_dnaterm}*(1+{AC("Terminal inflation (house Saudi path)")})'
@@ -446,21 +446,22 @@ putf(wsd, f'C{rr}', f'=-C{row_dnaterm}*(1+{AC("Terminal inflation (house Saudi p
      -TRM['maintenance'], NUM0)
 put(wsd, f'A{rr}', 'Less capital maintenance at current cost', fmt=None); rr += 1
 row_gcapex = rr
-putf(wsd, f'C{rr}', f'=-{AC("Terminal real growth")}*(G{row_ic})*(1+{AC("Terminal growth")})',
+putf(wsd, f'C{rr}', f'=-{AC("Terminal real growth")}*(G{row_ic})',
      -TRM['growth_capex'], NUM0)
 put(wsd, f'A{rr}', 'Less growth capital, for REAL growth only', fmt=None); rr += 1
 row_wcinf = rr
-putf(wsd, f'C{rr}', f'=-{AC("Terminal inflation (house Saudi path)")}*G{row_nwc}'
-                    f'*(1+{AC("Terminal growth")})', -TRM['wc_charge'], NUM0)
+putf(wsd, f'C{rr}', f'=-{AC("Terminal inflation (house Saudi path)")}*G{row_nwc}',
+     -TRM['wc_charge'], NUM0)
 put(wsd, f'A{rr}', 'Less inflation on working capital', fmt=None); rr += 1
 row_fcffterm = rr
 putf(wsd, f'C{rr}', f'=SUM(C{row_nopatterm}:C{row_wcinf})', TRM['fcff'], NUM0, bold=True)
-put(wsd, f'A{rr}', 'Terminal free cash flow', bold=True, fmt=None)
+put(wsd, f'A{rr}', 'FY2030 free cash flow on this construction', bold=True, fmt=None)
 ANCH['term_fcff'] = rr; rr += 1
 row_tv = rr
 putf(wsd, f'C{rr}', f'=C{row_fcffterm}*(1+{AC("Terminal growth")})'
                     f'/(C{row_waccterm}-{AC("Terminal growth")})', DCF['tv'], NUM0)
-put(wsd, f'A{rr}', 'Terminal value', fmt=None); ANCH['term_tv'] = rr; rr += 1
+put(wsd, f'A{rr}', 'Terminal value = that flow grown one year, capitalised',
+    fmt=None); ANCH['term_tv'] = rr; rr += 1
 row_pvtv = rr; putf(wsd, f'C{rr}', f'=C{row_tv}*G{row_df}', DCF['pv_tv'], NUM0)
 put(wsd, f'A{rr}', 'PV of terminal value', fmt=None); rr += 1
 row_ev = rr; putf(wsd, f'C{rr}', f'=C{row_pvexpl}+C{row_pvtv}', DCF['ev'], NUM0, bold=True)

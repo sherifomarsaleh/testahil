@@ -151,6 +151,29 @@ def main():
         put_list(tmp, [])
     case("clean: an artefact carrying no valuation figure", k_no_valuation, False, results)
 
+    # THE AMBIGUOUS KEY, BOTH WAYS [added 05-Sep-2026]. `end` is in VALUE_KEYS because a
+    # bridge artefact carries its figure under that name, and three raw market-data
+    # downloads in one study directory carry a UNIX TIMESTAMP under
+    # chart.result[0].meta.currentTradingPeriod.regular.end. The gate demanded they
+    # declare the fair value they were built against, which is a false accusation, and a
+    # false accusation is the more expensive error [L-301]. Re-pointed to the ROOT rather
+    # than widened, so both halves are tested: the deep one must NOT fire and the root
+    # one must still fire.
+    def k_deep_end(tmp):
+        put(tmp, "NCL", 10.0, 12.0, {"yh_series.json": {"chart": {"result": [
+            {"meta": {"symbol": "^TASI", "currentTradingPeriod": {
+                "regular": {"start": 1786258800, "end": 1786276800}}}}]}}})
+        put_list(tmp, [])
+    case("clean: a market download whose deep `end` is a UNIX timestamp",
+         k_deep_end, False, results)
+
+    def k_root_end(tmp):
+        put(tmp, "NCL", 10.0, 12.0,
+            {"bridge.json": {"start": 8.0, "end": 9.5, "reviewer": "a name"}})
+        put_list(tmp, [])
+    case("a bridge whose ROOT `end` is a valuation figure and declares no vintage",
+         k_root_end, True, results)
+
     # THIS CASE IS INVERTED, NOT DELETED [03-Sep-2026]. It asserted that a two-sided study
     # must NOT fire, on the reasoning that its branches are [R-GAP-01]'s business and this
     # gate must not invent a comparison. The reasoning was wrong in a way that mattered:

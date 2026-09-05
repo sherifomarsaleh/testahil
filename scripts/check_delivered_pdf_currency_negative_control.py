@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -100,7 +101,23 @@ def _off_ratchet(root):
     assert names, ('the ratchet is empty, so no real outstanding entry exists to remove. '
                    'That is the list having done its job, not a broken fixture — retire '
                    'this case when it happens.')
-    tk = names[0]
+    # AN ENTRY ON THE RATCHET IS NOT THE SAME AS AN ENTRY STILL BREACHING [fixed
+    # 05-Sep-2026]. Taking names[0] assumed every listed name still fails, and a ratchet
+    # legitimately carries names that have since been fixed and not yet pruned. On
+    # 5 September five entries cleared at once — four studies exposed answers the gate had
+    # never been able to read — and the first name alphabetically was one of them, so this
+    # fixture removed an allowance nothing needed, the gate stayed correctly GREEN, and the
+    # control went red for a reason with nothing to do with the gate it tests. THAT IS THE
+    # MUTATION-DID-NOT-LAND FAILURE this file already guards everywhere else: assert the
+    # CONDITION, not the edit. So the gate is run first and the fixture picks a name it
+    # actually reports as outstanding.
+    rc0, out0 = run(root)
+    listed = [tk for tk in names
+              if re.search(r'^\s+%s\s' % re.escape(tk), out0, re.M)]
+    assert listed, ('every name on the ratchet is now passing the gate, so removing an '
+                    'allowance cannot make it fail. Prune the list — that is what --prune '
+                    'is for — and this case becomes constructible again.')
+    tk = listed[0]
     d['entries'].pop(tk)
     json.dump(d, open(f, 'w'), indent=1)
     assert tk not in json.load(open(f))['entries'], 'mutation did not land'

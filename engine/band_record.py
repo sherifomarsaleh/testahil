@@ -176,6 +176,28 @@ BANNED = [
      "the retired skill verdict, described rather than named"),
     (r"(?:better|worse)\s+than\s+(?:a\s+)?(?:simple\s+|naive\s+)?random walk\b",
      "the retired skill verdict, described rather than named"),
+    # A THIRD COSTUME, ON THE VERY NEXT DOCUMENT [added 05-Sep-2026]. The comment above
+    # says a rule of this kind "is not enforced by banning the word people happened to
+    # use for it last time", and then the next study named the benchmark differently:
+    # ADNOCDRILL's section 3 publishes "the map scored 1.65% WORSE than a simple
+    # NO-INFORMATION BENCHMARK that assumes the price simply drifts with the risk-free
+    # rate less the dividend", and explains the shortfall with "a SCORING RULE THAT
+    # REWARDS SHARPNESS penalises it accordingly". Every pattern above looks for the words
+    # `random walk`, so none of them fired.
+    #
+    # SO THE PATTERNS BELOW MATCH THE SHAPE OF THE CLAIM RATHER THAN ITS WORDING: a
+    # comparison of this house's cone against a benchmark, and the name of the scoring
+    # rule that produced it. Neither can occur innocently in a document written for an
+    # outside reader — which is what makes shape-matching safe here where a word list is
+    # not, the same argument [R-ENF-01] already makes for rule ids and repository paths.
+    (r"no[- ]information\s+benchmark", "the retired skill verdict's benchmark, renamed"),
+    (r"(?:better|worse|ahead of|behind)\s+than\s+(?:a\s+)?(?:simple\s+|naive\s+)?"
+     r"(?:no[- ]information\s+|carry[- ]anchored\s+|carry\s+)?benchmark\b",
+     "the retired skill verdict, described rather than named"),
+    (r"scored\s+[-+]?\d[\d.,]*\s*%?\s*(?:better|worse)\b",
+     "the retired skill verdict, stated as a score"),
+    (r"scoring rule that (?:rewards|penalis|punish)",
+     "the retired proper score, explained beside a company"),
 ]
 # CRPS is a legitimate methodology explanation where the scoring rule is taught,
 # and nowhere else: naming it beside a company is the verdict wearing a hat.

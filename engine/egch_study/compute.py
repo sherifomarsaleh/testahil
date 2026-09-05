@@ -31,8 +31,17 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 
 sys.path.insert(0, HERE)
-from inputs import V as _V          # the study's input register — the single source of
+from inputs import V as _V
+from inputs import _HOUSE          # the house macro path [R-MACRO-01], not a second copy          # the study's input register — the single source of
                                     # every number in this model (numeric traceability)
+from inputs import REG as _REG
+import terminal_value as TV        # [R-TERM-01] — the ONLY sanctioned terminal
+
+
+def _SRC(k):
+    """An input's own source field, so a provenance string is never retyped."""
+    return _REG[k]['source']
+
 FY25 = json.load(open(os.path.join(HERE, 'extract_fy2425.json')))
 HIST = json.load(open(os.path.join(HERE, 'extract_history.json')))
 NINE = json.load(open(os.path.join(HERE, 'extract_9m_fy2526.json')))
@@ -125,6 +134,37 @@ D['other_rev_path'] = _V('other_rev_path')   # ferrosilicon plant rent,
 # FY2024/25 materials line — the split of that line between gas and everything else
 # is the model's, and is flagged as such, because the statements give only the total.
 D['gas_m3_per_t_ammonia'] = _V('gas_m3_per_t_ammonia_modelled')
+# THE AUDITOR'S OWN DISCLOSED STANDARD RATE IS 1,200 m3/t, AND IT WAS REGISTERED AS A
+# PRIMARY INPUT AND CONSUMED BY NOTHING until 5 September 2026, when an audit run from
+# outside this study found it sitting unused while the model ran a constructed allocation.
+# It is now a live CROSS-CHECK on that allocation, which is what a disclosed figure the
+# model does not adopt should be.
+#
+# THE MODELLED RATE IS NOT SUBSTITUTED BY IT, AND THE REASON IS ARITHMETIC RATHER THAN
+# PREFERENCE. 1,200 is the STANDARD — what the plant consumes when it runs to specification
+# — and this plant does not: the same auditor's report discloses 38,480,270 m3 of gas LOST
+# in FY2024/25, which over that year's own 318,242 tonnes of ammonia is 120.9 m3/t. Standard
+# plus disclosed loss is 1,320.9 m3/t, and the model's allocation-implied 1,292 sits between
+# the two, 7.7% above the standard and 2.2% below standard-plus-loss. A model of what this
+# plant actually consumes has to carry the losses; adopting the standard would model a plant
+# that does not exist.
+#
+# WHAT THAT LEAVES OPEN, STATED RATHER THAN CLOSED: whether the abnormal-gas line charged
+# separately below the gross margin is charging some of the SAME lost gas a second time
+# depends on whether those losses sit inside the disclosed materials line, which the
+# statements do not split. The direction is known — if they do, the model overstates cost —
+# and the size is bounded by the abnormal path itself. The substitution is priced in the
+# contested-constructions table rather than argued about here.
+_gas_standard = _V('gas_standard_m3_t')
+_gas_loss_rate = _V('gas_loss_FY2425_m3') / _V('prod_ammonia_FY2425')
+assert _V('gas_usage_low_m3_t') <= D['gas_m3_per_t_ammonia'] <= _V('gas_usage_high_m3_t'), \
+    'the allocation-implied gas rate must sit inside the auditor\'s own disclosed range'
+assert _gas_standard <= D['gas_m3_per_t_ammonia'] <= _gas_standard + _gas_loss_rate * 1.05, \
+    ('the allocation-implied gas rate must sit between the disclosed STANDARD and that '
+     'standard plus the disclosed LOSS: below the standard it models a plant running better '
+     'than specification, above standard-plus-loss it charges gas nobody reports')
+D['gas_standard_m3_t'] = _gas_standard
+D['gas_loss_rate_m3_t'] = _gas_loss_rate
 D['gas_usd_mmbtu'] = _V('gas_realised_usd_mmbtu')
 D['gas_usd_mmbtu_contract'] = _V('gas_contract_usd_mmbtu')
 D['mmbtu_per_m3'] = _V('mmbtu_per_m3')
@@ -143,6 +183,10 @@ D['cpi_path'] = _V('cpi_path')         # CBE target convergence
 # ---- D&A, capex, working capital --------------------------------------------
 D['dep_escalation'] = _V('dep_escalation')
 D['dep_rate_project'] = _V('dep_rate_kima2_machinery')
+# the fixed-asset base the terminal maintenance charge is struck on
+D['fa_avg_age_years'] = _V('fa_avg_age_years')
+D['fa_life_implied_years'] = _V('fa_life_implied_years')
+D['terminal_force_half_life'] = False  # the age is MEASURED; see the terminal
 D['dep_base'] = _V('dep_charge_FY2425')
 D['amort_base'] = _V('amort_FY2425')
 D['anna_total_cost'] = (_V('anna_cost_egp')
@@ -190,7 +234,14 @@ D['roc_terminal'] = _V('roc_terminal')              # reinvestment = g / RoC
 # discount factors compound the glide year by year rather than powering one rate.
 D['inflation_lt'] = _V('inflation_terminal')   # the SAME inflation terminal growth carries (L-055)
 D['real_rate_lt'] = _V('real_rate_lt')                              # EM long-run real policy rate
-D['rf_star_terminal'] = (1 + D['inflation_lt']) * (1 + D['real_rate_lt']) - 1   # 10.75%
+# THE HOUSE PATH OWNS THIS QUANTITY AND THIS STUDY WAS COMPUTING IT ITSELF.
+# macro_path.terminal_rf() is terminal inflation PLUS the real-rate convention —
+# additive, derived, never quoted. This line compounded them instead, which is a
+# second convention about inflation inside a model whose terminal GROWTH already
+# comes from the house path additively ([L-055]: one model, one inflation). Worth
+# 38.5 basis points on the terminal risk-free rate and, through the whole terminal
+# block, several per cent on the answer. Corrected 5 September 2026.
+D['rf_star_terminal'] = _HOUSE.terminal_rf
 D['kd_usd_lt'] = _V('kd_usd_lt')                                 # long-run USD corporate cost
 D['deprec_lt'] = _V('expected_depreciation')                                 # same wedge used in the Kd build
 D['kd_local_equiv_terminal'] = (1 + D['kd_usd_lt']) * (1 + D['deprec_lt']) - 1
@@ -205,7 +256,7 @@ def set_glide():
     alternative construction can never be a hand-adjusted rate. The risk-free rate glides
     linearly from spot to terminal; the cost of debt is built YEAR BY YEAR from the dollar
     coupon and that year's derived currency wedge (the same wedge the revenue build uses)."""
-    D['rf_star_terminal'] = (1 + D['inflation_lt']) * (1 + D['real_rate_lt']) - 1
+    D['rf_star_terminal'] = _HOUSE.terminal_rf
     _kd_fx_T = (1 + D['kd_usd_lt']) * (1 + D['deprec_lt']) - 1
     D['kd_fx_terminal'] = _kd_fx_T                                  # the dollar leg alone
     D['kd_local_equiv_terminal'] = kd_blend(D['kd_local'], _kd_fx_T)   # blended with the local leg
@@ -293,6 +344,10 @@ WACC = dict(
     kd_pretax_path=[r.kd_pretax_blended for r in _res],
     tax_rate=D['tax_rate'], we=_r0.we, wd=_r0.wd,
     wacc_rating=_r0.wacc_rating, wacc_cds=_r0.wacc_cds, wacc_published=_r0.wacc_cds,
+    # A DIFFERENCE OF TWO RATES IS BASIS POINTS, and it is COMPUTED here rather than
+    # scaled inside a builder: depth-bar standard 3 forbids a financial numeral in a
+    # builder, and a bare 1e4 beside two rates is exactly that.
+    wacc_rating_less_cds_bp=(_r0.wacc_rating - _r0.wacc_cds) * 10000.0,
     warnings_by_year={YEARS[k]: r.warnings for k, r in enumerate(_res)},
     # the builder gates its local-below-sovereign check on an all-local book; on a 0.3%-local
     # book it stays silent, so the fact is stated here in the same words and printed in §1.8
@@ -505,19 +560,108 @@ def terminal(rows, case="base"):
     # charge before it enters terminal EBIT.
     anna_dep = (D['anna_total_cost'] * D['dep_rate_project']) if util > 0 else 0.0
     anna_ebit -= anna_dep
-    base_ebit = last['ebit'] * (1 + D['g_terminal'])
+    # THE PROJECT'S DEPRECIATION IS CHARGED ONCE, AND IT WAS CHARGED TWICE. The explicit
+    # window depreciates the complex AS IT IS SPENT, so the last explicit year already
+    # carries the charge on the part in service; the terminal line above then charges the
+    # WHOLE plant. Grossing the last explicit year's profit without first removing the
+    # in-service part therefore charged that part twice — on the base case, EGP 482mn of
+    # depreciation on a plant that appears once in the accounts. THE MODEL ALREADY KNEW
+    # HOW TO DO THIS: the programme-stopped branch strips exactly this charge before it
+    # grosses, which is why that branch was never wrong. Under the retired construction
+    # the error only depressed profit; under the sanctioned one book depreciation is also
+    # the BASE OF THE REPLACEMENT CHARGE, so it was depressing the value twice over.
+    _anna_dep_in_last = ((sum(D['anna_capex_path'][:len(rows) - 1]) * D['dep_rate_project'])
+                         if util > 0 else 0.0)
+    base_ebit = (last['ebit'] + _anna_dep_in_last) * (1 + D['g_terminal'])
     ebit_T = base_ebit + anna_ebit
     nopat_T = ebit_T * (1 - D['tax_rate'])
+    # Book depreciation in the terminal year, on exactly the construction ebit_T charges:
+    # the existing plant's charge grown with the rest of that profit, plus the complex's
+    # own full-year charge once. It is an ADD-BACK and the base of the maintenance charge,
+    # so the two must be the same number or the waterfall is not a waterfall.
+    dna_T = (last['dep'] - _anna_dep_in_last) * (1 + D['g_terminal']) + anna_dep
+    wc_T = last['wc'] * (1 + D['g_terminal'])
+
+    # ---- THE RETIRED CONSTRUCTION, kept in two lines so the change stays legible -------
+    # rr = g / RoC substitutes to a charge of g x IC every year for ever, so the implied
+    # replacement cycle is 1/g — 14.3 years at a 7% terminal, a fact about the pound and
+    # not about a urea plant. The disclosed rate for this plant's machinery is 3.95%, a
+    # 25.3-year life, and the base is 4.45 years old.
     reinv_rate = D['g_terminal'] / D['roc_terminal']
-    fcff_T = nopat_T * (1 - reinv_rate)
+    fcff_retired = nopat_T * (1 - reinv_rate)
     # base_ebit is ALREADY the year-six flow (EBIT_5 grown once). The Gordon numerator must
     # therefore be FCFF_6, not FCFF_6 x (1+g): the extra factor put a year-seven flow into a
     # perpetuity discounted at the year-five factor. Found by three independent critiques.
-    tv = fcff_T / (D['wacc_terminal'] - D['g_terminal'])
+    tv_retired = fcff_retired / (D['wacc_terminal'] - D['g_terminal'])
+
+    # ---- THE SANCTIONED CONSTRUCTION [R-TERM-01] --------------------------------------
+    # terminal_value.build() applies the Gordon step ITSELF — tv = fcff x (1+g)/(w-g) —
+    # and values the terminal at the END of the year whose figures it is handed, which is
+    # where the year-five factor above discounts it. THE FIGURES ABOVE ARE THE YEAR-SIX
+    # ONES, so each is handed over one year earlier and the module grows it back. Handing
+    # over the year-six figures directly would grow them a second time and overstate the
+    # terminal by exactly (1+g) — 7.0% here, and it is what six of this house's eight
+    # studies did until 4 September 2026 [L-329]. The assertion below is the bridge
+    # between the two presentations: whatever the module returns must equal this study's
+    # own convention applied to the year-six free cash flow.
+    # REAL growth is DERIVED from the terminal growth this study carries and the terminal
+    # inflation it discounts at, so the two cannot disagree about inflation [L-055]. At the
+    # central they are the same number and real growth is exactly zero; the alternative
+    # terminal growth is a real DECLINE and says so in real terms rather than in nominal.
+    _g_real = (1.0 + D['g_terminal']) / (1.0 + D['inflation_lt']) - 1.0
+    # The capital a unit of REAL growth consumes, at replacement cost: one year's
+    # replacement-cost consumption multiplied by the life over which the base turns over,
+    # which is the whole depreciable base at what it would cost to build now. INERT at the
+    # central, where real growth is zero; it binds in the alternative and in the grid,
+    # which is exactly where an assumption that growth is free would hide.
+    _dna5 = dna_T / (1 + D['g_terminal'])
+    _inc_cap = (_dna5 * (1 + D['inflation_lt']) ** D['fa_avg_age_years']
+                * D['fa_life_implied_years'])
+    # AND IT IS ONE-SIDED, WHICH IS AN ECONOMIC STATEMENT AND NOT A CONVENIENCE. Real
+    # growth costs capital here; real DECLINE releases none of it. This is a single site:
+    # a urea train cannot be part-sold, and shrinking output leaves the same plant to
+    # maintain. Letting the identity run symmetrically would have credited the alternative
+    # terminal — a real decline of 3.7% a year — with a permanent capital release of about
+    # EGP 1.9bn a year, which drives the implied payout to 128% of profit and the module
+    # REFUSES it outright: a going concern distributing more than it earns for ever is a
+    # liquidation. The refusal is right and the fix is the assumption, not the module.
+    if _g_real < 0:
+        _inc_cap = 0.0
+    # THE CONTESTED CONSTRUCTION, priced rather than described. The escalator rests on the
+    # AGE of the base, and this company's accounts let that be MEASURED — accumulated
+    # depreciation over the year's own charge. Where they do not, the shared construction
+    # assumes half the life, which on a base this young is more than twice the truth. The
+    # alternative below is what this same terminal would say if the age had to be assumed,
+    # and it is the largest single contested number in the study.
+    _age = None if D.get('terminal_force_half_life') else D['fa_avg_age_years']
+    _T = TV.build(TV.TerminalInputs(
+        nopat=nopat_T / (1 + D['g_terminal']),
+        wacc=D['wacc_terminal'], inflation=D['inflation_lt'], real_growth=_g_real,
+        dna_book=_dna5,
+        average_age_years=_age,
+        average_age_source=(_SRC('fa_accum_dep_FY2425') if _age is not None else ''),
+        useful_life_years=D['fa_life_implied_years'],
+        useful_life_source=_SRC('fa_cost_gross_FY2425'),
+        maintenance_basis='book_dna_escalated',
+        working_capital=wc_T / (1 + D['g_terminal']),
+        incremental_capital_per_unit_growth=_inc_cap))
+    fcff_T = _T.fcff * (1 + D['g_terminal'])        # the year-six flow the page prints
+    tv = _T.tv
+    assert abs(tv - fcff_T / (D['wacc_terminal'] - D['g_terminal'])) < 1e-6 * abs(tv), (
+        'the module and this study state the same perpetuity two ways and they must agree')
     pv_tv = tv * rows[-1]['df']
     return dict(fx=fx, anna_util=util, an_t=an_t, anna_rev=anna_rev, anna_ebit=anna_ebit,
                 base_ebit=base_ebit, ebit_T=ebit_T, nopat_T=nopat_T,
-                reinv_rate=reinv_rate, fcff_T=fcff_T, tv=tv, pv_tv=pv_tv,
+                anna_dep=anna_dep, anna_dep_in_last=_anna_dep_in_last,
+                dna_T=dna_T, wc_T=wc_T,
+                maintenance_T=_T.maintenance * (1 + D['g_terminal']),
+                wc_charge_T=_T.wc_charge * (1 + D['g_terminal']),
+                floor_T=_T.floor, payout_T=_T.fcff / (nopat_T / (1 + D['g_terminal'])),
+                growth_capex_T=_T.growth_capex * (1 + D['g_terminal']),
+                inc_cap=_inc_cap, g_real=_g_real,
+                reinv_rate=reinv_rate, fcff_retired=fcff_retired, tv_retired=tv_retired,
+                terminal_record=_T.record,
+                fcff_T=fcff_T, tv=tv, pv_tv=pv_tv,
                 wacc_terminal=D['wacc_terminal'], ke_terminal=D['ke_terminal'],
                 rf_star_terminal=D['rf_star_terminal'],
                 kd_terminal=D['kd_local_equiv_terminal'])

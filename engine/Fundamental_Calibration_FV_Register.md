@@ -22,7 +22,7 @@ Internal record. No rating, no price target, no recommendation — a range and w
 |---|---|---|---|---|---|---|---|---|---|---|
 | 33 | AMOC | EGP | light | 5.9500 | 11.4012 | +91.6% | -59.1% | +180.6% | (study carries no stamp) → 2026.09.01 | L-082 |
 | 34 | ARCC | EGP | full | 54.6500 | 66.5300 | +21.7% | -50.3% | +16.9% | (study carries no stamp) → 2026.09.01 | — |
-| 35 | EGCH | EGP | full | 3.6400 | 2.3109 / 6.2591 (two-sided) | n/a | n/a | -59.5% | (study carries no stamp) → 2026.09.01 | L-080 |
+| 35 | EGCH | EGP | full | 3.6400 | 4.0396 / 8.0388 (two-sided) | n/a | n/a | -48.0% | (study carries no stamp) → 2026.09.01 | L-326, L-330, L-331, L-332, L-333 |
 | 36 | PHDC | EGP | full | unrecoverable | 17.8478 | n/a | n/a | n/a | 2026.08.23 → 2026.09.01 | L-073 |
 | 37 | TMGH | EGP | full | 147.1200 | 91.8306 | -37.6% | -23.8% | -35.1% | (study carries no stamp) → 2026.09.01 | — |
 

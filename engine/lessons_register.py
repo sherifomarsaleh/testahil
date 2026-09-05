@@ -5346,9 +5346,43 @@ LESSONS = [
       "identity — while its policy note says outright that the "
       "depreciable amount is cost LESS ITS RESIDUAL VALUE, and "
       "EMPOWER's age was APPLIED for part of a day before its own "
-      "note was read and said the same thing. THREE OF THE FIVE "
+      "note was read and said the same thing. SIX OF THE EIGHT "
       "NAMES TRIED FAIL THIS CONDITION and two pass, so a measured "
-      "age is the exception rather than the rule. Read the note "
+      "age is the exception rather than the rule — and residual-value "
+      "depreciation is the ORDINARY IFRS presentation, which is why. "
+      "The two added 5 September 2026 could hardly be less alike and "
+      "fail identically: ADNOCLS, an ocean fleet whose scrap steel is "
+      "a real residual and whose salvage value is reassessed every "
+      "year; and ADNOCDIST, a fuel-retail network whose residual is a "
+      "piece of accounting policy and which QUANTIFIED its own break "
+      "— a life revision on assets carrying AED 5.35bn that cut the "
+      "year's charge by AED 90.9mn, 15.3% of it, applied "
+      "prospectively, so the charge is not the one that produced the "
+      "accumulated balance above it and the same column gives 10.47 "
+      "years on the old basis against 12.07 on the new. BOROUGE IS "
+      "SHARPER STILL because it quantified BOTH ends: a life extension "
+      "of up to ten years applied prospectively FROM 1 JULY 2025, "
+      "worth USD 90.3mn that year and an expected USD 179.2mn the "
+      "next — almost exactly twice, which is what a half-year of it "
+      "should be — so the same accumulated balance supports 14.98, "
+      "17.99 and about 22.42 years depending only on which charge is "
+      "in the denominator. AMR fails on the residual clause alone with "
+      "no reassessment, which is worth recording because it is the "
+      "one case where the residual might genuinely be immaterial. AND "
+      "THERE IS A JURISDICTIONAL PATTERN, offered as a hypothesis "
+      "rather than a finding: the name the route has UNLOCKED "
+      "discloses depreciation as RATES applied to cost with no "
+      "residual mentioned, the Egyptian presentation, while all four "
+      "that stopped on 5 September are UAE filers using the IFRS "
+      "residual-value form. ONE name remains untested, AMOC, and it "
+      "is Egyptian — so the hypothesis rests on four UAE failures "
+      "against ONE Egyptian success with ONE test left, which is a "
+      "thin basis and is stated as one. THAT NAME IS "
+      "ALSO THE WARNING AGAINST TRUSTING THE ARITHMETIC: its naive "
+      "age sits within three per cent of half its implied life in "
+      "both years, the textbook signature of a base in steady state, "
+      "and the agreement is worth nothing because both figures rest "
+      "on the same broken charge. Read the note "
       "first; the arithmetic corroborates and only sometimes. And "
       "a safe error direction is not a reason to keep a number the "
       "accounts say is not measuring what it claims — EMPOWER's "
@@ -5382,6 +5416,479 @@ LESSONS = [
       "old enough that the base has turned over since — in which case "
       "the identity is usable again, though the POLICY NOTE and not the "
       "cross-check is what would say so."),
+
+    L("L-329", "ALL", None,
+      "A SHARED MODULE'S CONVENTION ABOUT WHICH YEAR ITS INPUTS "
+      "BELONG TO IS INVISIBLE AT THE CALL SITE, AND SIX OF EIGHT "
+      "CALLERS GOT IT WRONG",
+      "terminal_value.build() computes tv = fcff x (1+g) / (w - g), "
+      "so the first perpetuity year sits in the NUMERATOR and the "
+      "terminal is valued at the END of the last explicit year — "
+      "which is where every caller discounts it. Its inputs must "
+      "therefore be the LAST EXPLICIT YEAR's profit, book "
+      "depreciation and working capital. Six of the eight studies "
+      "using it handed over the year AFTER, already grown, and the "
+      "module grew them again: every one of those terminals was "
+      "overstated by exactly (1+g), from 2.0% in the pegged markets "
+      "to 7.0% in Egypt. NOTHING COULD SEE IT. The module cannot — "
+      "a number is a number and no signature distinguishes this "
+      "year's profit from next year's. The recalculation gates "
+      "cannot — the workbook reproduced the model to the cell, "
+      "because the workbook was built from the same wrong inputs. "
+      "The prose-figure gate cannot — every figure was computed. "
+      "The terminal floor gate cannot — a terminal that is 7% too "
+      "big still clears a floor that is 7% too big. WHAT FOUND IT "
+      "WAS A COMMENT: one study's own code recorded that three "
+      "independent critiques had found the identical defect in its "
+      "hand-rolled terminal, and reading that comment is what "
+      "prompted asking the same question of the shared module. THE "
+      "RULE: where a function takes a QUANTITY THAT CARRIES A DATE, "
+      "the date is part of the contract and belongs in the field "
+      "name, the docstring and the field comment — not in the "
+      "author's head. And a module whose arithmetic already applies "
+      "the growth must SAY SO where the caller looks, because the "
+      "caller is reading its own model, not the module's.",
+      "The whole terminal rebuild programme, 4-5 September 2026",
+      "build",
+      "Six of eight callers — RIYADHCABLE, SAVOLA, AIRARABIA, "
+      "EMPOWER, DU, MODON — plus the unspent EGCH pricing. Every "
+      "correction was DOWNWARD and every one was the same size: "
+      "exactly (1+g) off the terminal, which on MODON took the "
+      "central from 3.9119 to 3.8583 and on EGCH's unshipped "
+      "pricing took the terminal from 25,524 to 23,854. Two of the "
+      "eight were right, and both were right because their authors "
+      "had been forced to think about the year explicitly for "
+      "another reason. On MODON the defect survived a first pass: "
+      "the base call site was corrected and the SENSITIVITY engine "
+      "was not, so the grid was centred on a point the study does "
+      "not publish, and the only thing that caught it was that "
+      "study's own assertion that the grid must reproduce the base "
+      "at the unshifted point.",
+      "A caller that legitimately strikes its terminal one year "
+      "later and discounts it at that later factor — the convention "
+      "is a pair, and only mixing the halves is wrong."),
+
+    L("L-330", "ALL", None,
+      "A DEFECT CAN MANUFACTURE AGREEMENT AS EASILY AS "
+      "DISAGREEMENT, AND AGREEMENT IS THE ONE NOBODY RE-CHECKS",
+      "Two independent routes landing on the same answer is the "
+      "strongest corroboration this method has, and it is treated "
+      "as such — which is exactly why it needs auditing at least as "
+      "hard as a surprise does. A disagreement provokes "
+      "investigation by itself; an agreement closes the question. "
+      "So an error that happens to move one of the two numbers ONTO "
+      "the other is not merely undetected, it is actively "
+      "protected, and it gets written up as evidence. THE "
+      "PRACTICAL FORM: when two routes agree closely, ask what "
+      "would have to be true for them to agree, and check that it "
+      "is — a shared input, a shared convention, or a coincidence "
+      "in the size of the errors. Where they agree BECAUSE they "
+      "share the thing under test, the agreement is a tautology "
+      "wearing a corroboration's clothes.",
+      "EGCH's terminal evidence, restated 5 September 2026",
+      "build",
+      "The evidence file reported the sanctioned terminal "
+      "construction landing at 3.2905 against the study's own "
+      "separately-priced alternative of 3.2396 — 1.6% apart, built "
+      "months apart by different routes — and called it 'the "
+      "strongest corroboration available and it was not looked "
+      "for'. It was an artefact: the sanctioned figure carried the "
+      "(1+g) growth-basis defect of L-329, and correcting it moved "
+      "that number to 2.9877 while the study's own alternative, "
+      "built inside the study's own correct convention, did not "
+      "move at all. The two now differ by 8.4%. The corroboration "
+      "survives in direction and not in force, and the reason it "
+      "looked remarkable was an error running one way by 7%.",
+      "An agreement that holds after every shared input and shared "
+      "convention between the two routes has been named and varied "
+      "— which is the test that should have been run in the first "
+      "place."),
+
+    L("L-334", "ALL", None,
+      "A CLAIM ABOUT A POPULATION MADE FROM THE SHAPE OF THE "
+      "PROBLEM IS A GUESS, AND IT READS EXACTLY LIKE A "
+      "MEASUREMENT",
+      "The dangerous ones are not wild guesses; they are the "
+      "plausible summaries a competent reading of the situation "
+      "produces — 'the causes split three ways', 'both remaining "
+      "names are Egyptian', 'these studies still carry the retired "
+      "blend'. Each is the kind of sentence somebody writes to "
+      "organise their own thinking and then leaves in a commit "
+      "message, a state file or a standing lesson, where the next "
+      "reader takes it for something that was counted. THE TEST IS "
+      "MECHANICAL AND CHEAP: before a sentence naming a set, a count "
+      "or a shared cause goes anywhere durable, OPEN THE FILES AND "
+      "COUNT. On the cases that produced this lesson it took five "
+      "minutes each and the guesses were wrong every time. AND WHEN "
+      "ONE IS FOUND WRONG, CORRECT THE STRENGTH OF THE CLAIM AND NOT "
+      "ONLY ITS ARITHMETIC — a hypothesis resting on four failures "
+      "against one success with one test left is a different object "
+      "from the same sentence with the count patched.",
+      "three population claims in one night, 5 September 2026",
+      "self_audit",
+      "(1) 'Two names remain on the retired construction and both "
+      "are Egyptian' — wrong in both halves: one remained, and the "
+      "other was a UAE filer, which also thinned the jurisdictional "
+      "hypothesis the sentence was supporting. (2) 'The seven "
+      "unreadable studies split three ways and some fixes are "
+      "cheap' — the filename and dict-shape causes were real and "
+      "NEITHER WAS SUFFICIENT; underneath, all seven need a "
+      "valuation decision. (3) 'AMR and probably ADNOCDIST, "
+      "ADNOCDRILL and BOROUGE carry the retired blend' — right for "
+      "one, wrong for two, which carry a dual framing and a "
+      "published range instead. Every one was written before the "
+      "files were opened, and every one was corrected by opening "
+      "them.",
+      "Nothing overturns it. What limits it is that a guess EXPLICITLY "
+      "labelled as one, in a place that expects hypotheses, is a "
+      "legitimate and useful thing to write down — the offence is the "
+      "guess that travels into a durable record wearing a "
+      "measurement's clothes."),
+
+    L("L-335", "ALL", None,
+      "OPENING THE FILE IS NOT THE CHECK; THE CHECK IS NOT STOPPING "
+      "AT THE FIRST READING THAT FITS",
+      "[L-334] says to open the files before writing a sentence that "
+      "names a set. Within the hour of registering it I did open a "
+      "file, read its top-level keys, found two fields called "
+      "centre_A and centre_B, and wrote that the study 'carries two "
+      "decided centres — a dual framing, not a blend, and it needs no "
+      "valuation judgement at all'. Each centre was a typed "
+      "four-lens weighted blend, and the weights were one level down "
+      "in a field called items_A. THE READING WAS COHERENT, FITTED "
+      "EVERY FACT IN VIEW, AND WAS WRONG — which is what makes this "
+      "distinct from not looking. A partial reading does not feel "
+      "partial; it feels like understanding, and the feeling arrives "
+      "at exactly the moment the first consistent story forms. THE "
+      "PRACTICAL FORM: when a structure is about to be characterised "
+      "— 'this is a blend', 'these are branches', 'this is a range' "
+      "— follow it to the LEAF that carries the arithmetic, and name "
+      "that leaf in whatever is written. A claim that cites a line "
+      "number cannot be made from the top-level keys.",
+      "the unreadable-studies diagnosis, three wrong versions, 5 "
+      "September 2026",
+      "self_audit",
+      "The corrected note names the exact line or field carrying each "
+      "study's construction — lenses.items_A, fair_value.weights, "
+      "compute.py:722, compute.py:505, compute.py:258-260, "
+      "stc_compute.py:277, lenses.weights — and writing that column "
+      "is what forced every row to be verified rather than inferred. "
+      "It also overturned the note's own structure: all seven "
+      "studies turned out to carry the same defect, so the 'ordered "
+      "by what each needs' sequencing rested on a distinction that "
+      "does not exist. THE CITATION COLUMN IS THE INSTRUMENT, not "
+      "the discipline of the person filling it in.",
+      "A structure genuinely characterisable from its top level — "
+      "which exists, and is why this is a habit rather than a bar: "
+      "the test is whether the characterisation could be WRONG one "
+      "level down, and if it could, go there."),
+
+    L("L-331", "ALL", None,
+      "A CORRECTION THAT MAKES A QUANTITY LOAD-BEARING MAKES EVERY "
+      "ERROR IN THAT QUANTITY VISIBLE",
+      "Under the retired terminal, book depreciation entered only "
+      "through profit: overstate it and the value falls a little. "
+      "Under the sanctioned one it is added back AND is the base of "
+      "the replacement charge, so an overstated figure takes value "
+      "out twice and the second bite is larger than the first. A "
+      "defect that had sat in a delivered study through four "
+      "editions and several rounds of outside critique became "
+      "findable within an hour of the construction changing — not "
+      "because anyone looked harder, but because the quantity "
+      "started carrying weight. THE PRACTICAL FORM: when a rebuild "
+      "promotes a number from a bit-part to a driver, re-derive that "
+      "number from its own definition before trusting the rebuild. "
+      "The question that finds it is the one the old construction "
+      "never had to ask — here, 'what exactly should the "
+      "depreciation add-back be?', which a model that never adds "
+      "depreciation back has no occasion to pose.",
+      "EGCH's terminal rebuild, 5 September 2026",
+      "build",
+      "The explicit window depreciated a plant under construction "
+      "as it was spent, so the last explicit year carried EGP 482mn "
+      "of charge on the part in service; the terminal then charged "
+      "the whole plant on top. Worth 30.4% of the equity — larger "
+      "than the sanctioned terminal correction itself, which was "
+      "29.3% — and it survived the editions in which depreciation "
+      "only depressed profit.",
+      "A rebuild that promotes a quantity and finds no error in it. "
+      "That is the ordinary case and it is worth recording when it "
+      "happens, because this lesson otherwise only ever gets "
+      "confirming evidence."),
+
+    L("L-332", "ALL", None,
+      "WHERE TWO BRANCHES OF ONE MODEL DO THE SAME STEP "
+      "DIFFERENTLY, THE DISCREPANCY IS THE FINDING",
+      "A study publishing two scenarios should differ between them "
+      "in exactly the thing the scenarios are about, and in nothing "
+      "else. So a step that one branch performs and the other does "
+      "not is either a real economic difference — which must be "
+      "stated — or a defect in one of them, and the branch that "
+      "does MORE work is usually the right one, because somebody "
+      "had to think about that branch to write it. THE CHEAP TEST: "
+      "put the two branches' formulas for the shared steps side by "
+      "side and require them to be IDENTICAL. Anything that is not "
+      "identical is either named as the scenario's own difference "
+      "or is a bug, and there is no third case.",
+      "EGCH's terminal rebuild, 5 September 2026",
+      "build",
+      "The programme-stopped branch stripped the project's "
+      "in-service depreciation before grossing the last explicit "
+      "year; the carried-through branch did not, and charged that "
+      "depreciation twice. The stopped branch had been written "
+      "later and more carefully, and it was right. Corrected, both "
+      "branches carry the IDENTICAL year-five formula and differ "
+      "only in the project's own revenue, profit and depreciation "
+      "— which is what the difference between them is supposed to "
+      "be, and the identity of the two formulas is now itself the "
+      "check.",
+      "A pair of branches whose shared steps legitimately differ — "
+      "which happens where a scenario changes the accounting rather "
+      "than the economics — in which case the difference is stated "
+      "in the record and this test is run against the statement "
+      "instead of against identity."),
+
+    L("L-333", "ALL", None,
+      "A FIGURE REMEMBERED THROUGH A RATIO IN PROSE IS NOT A FIGURE "
+      "YOU HOLD, AND WRITING IT DOWN AGAIN IS FABRICATION",
+      "An internal evidence note recorded a corroboration as a "
+      "computed ratio — 'the prior year's column says the same "
+      "thing, life 26.14 and age 4.14'. Registering that "
+      "corroboration in the study's own input register needs the "
+      "two FIGURES behind the ratio, and they were not in the note; "
+      "only the ratio was. Reconstructing them from the ratio would "
+      "produce numbers that look exactly like read figures, foot "
+      "against each other perfectly, and carry a source field "
+      "naming a filing nobody re-opened. SIGCM clause 1 forbids it "
+      "and the reason is not pedantry: the fabricated cell is "
+      "invisible afterwards precisely BECAUSE it was derived from "
+      "something true. The rule: a prose record proves that a "
+      "reading happened, never what was read. To register a figure, "
+      "re-read it or leave it out and shorten the claim.",
+      "the EGCH terminal rebuild, caught in its own commit, 5 "
+      "September 2026",
+      "self_audit",
+      "A prior-year accumulated-depreciation figure was typed into "
+      "the input register to carry a cross-check the evidence file "
+      "had recorded as a ratio. It was removed in the same session "
+      "before it was committed, and the cross-check now lives only "
+      "in the internal evidence file where it was actually "
+      "measured. The study's claim is one year shorter and true.",
+      "Nothing overturns it; what LIMITS it is that a prose record "
+      "written with the figures in it is a perfectly good source "
+      "for them — which is the argument for writing evidence notes "
+      "with the numbers rather than with the conclusions."),
+
+    L("L-336", "ALL", None,
+      "A SHARED INSTRUMENT IS ONLY SHARED IF SOMEBODY RUNS IT, AND "
+      "THE HAND LIST WINS BECAUSE IT IS FASTER TO TYPE",
+      "scripts/run_ci_gates.py exists precisely so a local sweep "
+      "cannot drift from CI: it parses the workflow YAML and runs "
+      "every step it finds, and its own docstring records the day "
+      "somebody reported every gate green off a hand-maintained "
+      "list while CI had been red for a day. Two days later this "
+      "session did the identical thing — swept twenty-one check "
+      "scripts named from memory, reported every one green, and "
+      "pushed. CI was red on engine/fv_movement.py check, which is "
+      "a workflow step rather than a scripts/check_*.py file and "
+      "therefore invisible to a list built by guessing at "
+      "filenames; two of the guessed names did not even exist and "
+      "were reported as absent rather than as a hole in the sweep. "
+      "The register was genuinely behind: a study had been rebuilt "
+      "and its recorded branches never updated. The instrument was "
+      "in the repository, was correct, was built for this exact "
+      "failure, and was not run.",
+      "the BOROUGE push, caught by CI rather than by the sweep that "
+      "preceded it, 5 September 2026",
+      "self_audit",
+      "The hand sweep reported 21 of 21 green and named two scripts "
+      "that do not exist. CI ran two jobs and both failed on the "
+      "same step, which the hand sweep never contained. Running "
+      "scripts/run_ci_gates.py on the workflow reproduces the "
+      "failure without a push.",
+      "Nothing overturns it. What would BLUNT it is a runner that "
+      "cannot execute a workflow's steps locally at all — then the "
+      "hand list is the only instrument there is, and the honest "
+      "report says which population it covered rather than 'every "
+      "gate'."),
+
+    L("L-337", "ALL", None,
+      "A TAXONOMY KEYED ON WHAT SOMETHING IS CALLED WILL REFUSE AN "
+      "ANSWER IT ALREADY HOLDS",
+      "The lens registry is a closed enumeration keyed on industry "
+      "names, and what it stores against each name is a LENS SET. "
+      "Nine studies now cannot publish a lens record, and the "
+      "sharpest of them is the one where the registry already "
+      "contains the right answer: GB Corp is valued on split legs "
+      "with a sum-of-the-parts primary and a relative multiple and "
+      "book beside it, which is EXACTLY the set stored under "
+      "'holding company' — and it may not use that row, because GB "
+      "Corp is an auto assembler with a captive lender and a "
+      "holding company IS its stakes. The refusal is on the row's "
+      "NAME and on nothing else. Where the key and the payload "
+      "answer different questions, every new case is either a new "
+      "key for a payload that already exists or a subject filed "
+      "under the wrong name, and neither is a taxonomy.",
+      "GBCO read against research_protocol.LENS_REGISTRY, 5 "
+      "September 2026",
+      "build",
+      "Thirteen rows; three of them store an identical lens set "
+      "under three industry names. Of the nine names blocked, not "
+      "one needs a lens the registry lacks. GBCO needs a set the "
+      "registry stores once, under a name that is a real and "
+      "different subject.",
+      "It is overturned if a blocked name turns up needing a LENS "
+      "the registry does not hold — that would be a genuine gap in "
+      "coverage rather than in naming, and the fix would be a new "
+      "row rather than a renamed one. EMPOWER is the near miss: its "
+      "blend carries a normalised-earnings lens that appears in no "
+      "row, and that lens has to GO rather than be added, so it "
+      "does not overturn this."),
+
+    L("L-338", "ALL", None,
+      "THE RATIO THAT SAYS WHETHER A BASE IS OLD NEEDS NO "
+      "DEPRECIATION CHARGE, WHICH IS WHY IT SURVIVES A CONTAMINATED "
+      "ONE",
+      "Both identities used to age a fixed-asset base divide by the "
+      "YEAR'S CHARGE — gross cost over charge gives the weighted "
+      "life, accumulated over charge gives the charge-weighted age "
+      "— and in most filings that line reads 'depreciation AND "
+      "IMPAIRMENT' with no split disclosed, so both quantities "
+      "carry whatever impairment is inside it. The DEPRECIATED "
+      "SHARE, accumulated depreciation over depreciable gross cost, "
+      "has no charge in it at all. It answers the question the "
+      "terminal actually turns on — is this base young or old — and "
+      "it is immune to the contamination, because the impairment "
+      "sits in both columns of the roll-forward rather than in the "
+      "ratio between them. Where the charge is contaminated, say so "
+      "and give the direction, and lead with the ratio that is not.",
+      "the STC terminal evidence, 5 September 2026",
+      "build",
+      "STC's note reads 'Depreciation and impairment' with no split. "
+      "The implied life moves from 20.86 to 22.12 years and the "
+      "measured age from 15.23 to 16.15 depending which of the two "
+      "disclosed charge figures is used — about 6% on each — while "
+      "the depreciated share is 73.0% on either, because the charge "
+      "cancels. The direction is knowable too: impairment inside "
+      "the charge shortens both, which understates the escalation "
+      "to current cost, which understates maintenance, which "
+      "overstates value.",
+      "It is overturned where impairment is written off against the "
+      "COST column rather than the accumulated column, which some "
+      "presentations do — then the depreciated share moves with the "
+      "impairment as well and the immunity is gone. Read which "
+      "column the roll-forward puts it in before relying on this."),
+    L("L-339", "ALL", None,
+      "A BLOCKER RECORDED INSIDE A STUDY'S OWN ARTEFACT IS "
+      "RE-CHECKED BY NOTHING, AND IT GOES ON ASKING AFTER IT HAS "
+      "BEEN ANSWERED",
+      "[R-IND-01] made a question to the principal an ARTEFACT "
+      "rather than a message, and its gate re-checks every open "
+      "entry against every live ref precisely so an entry cannot go "
+      "on asking for something already supplied. That polices the "
+      "escalation REGISTER. A blocker written into a study's own "
+      "JSON is outside it: nothing globs for one, nothing re-tests "
+      "its resolving condition, and it reads as current for as long "
+      "as it sits there. Two studies carried the identical field — "
+      "'this market's own sovereign default spread, on both bases, "
+      "read fresh from the original source; not reconstructed from "
+      "memory: stop and inform' — and a rule adopted three days "
+      "earlier had put exactly those figures in the house macro "
+      "path for every market. Where a process records that it is "
+      "waiting for something, the record has to be somewhere a "
+      "checker can find it, or the waiting is permanent.",
+      "GBCO and STC read to the leaf, 5 September 2026",
+      "build",
+      "A sweep of every JSON in every study directory for a field "
+      "naming a blocker returns exactly two, both "
+      "wacc_reissue_blocked_on, both asking for a sovereign default "
+      "spread. engine/macro_paths/EG.json carries Egypt's at 6.37% "
+      "rating and 3.41% market; SA.json carries Saudi Arabia's at "
+      "0.51% and 0.98%. Both were sourced and dated on 2-3 "
+      "September; both blockers were written in July and August.",
+      "It is overturned by a checker that reads study artefacts for "
+      "blocker fields and re-tests each one — which is the obvious "
+      "fix and is not made here, because two instances is a thin "
+      "population to design a gate against and the cheaper move is "
+      "to write blockers into the escalation register, where a gate "
+      "already exists."),
+    L("L-340", "ALL", None,
+      "A GATE'S POPULATION IS DEFINED BY A SHAPE AND THE THING IT "
+      "GOVERNS KEEPS ARRIVING IN ANOTHER ONE",
+      "Three gates were found blind on one night, each for the same "
+      "reason and none of them for a reason anyone would call "
+      "carelessness. The 1/g terminal gate sorted studies into "
+      "`unreadable` and `scored` and never named the state between "
+      "them — the terminal resolves, the charge does not — so four "
+      "studies sat in a bucket nothing reported, one of them "
+      "carrying the retired construction in plain sight in its own "
+      "compute.py. The verdict-vocabulary gate holds a list of "
+      "banned phrasings, was widened two days earlier with a "
+      "comment saying a rule like this 'is not enforced by banning "
+      "the word people happened to use for it last time', and was "
+      "then defeated by a HYPHEN: it looks for 'random walk' and "
+      "three delivered documents wrote 'random-walk benchmark' and "
+      "'no-information benchmark'. The exemplar-debt gate matched a "
+      "ratchet entry only as a list item equal to a ticker, while "
+      "three ratchets store their entries as a dict keyed by ticker "
+      "and two as document paths — so the gate whose whole purpose "
+      "is to notice the exemplar acquiring debt reported one entry "
+      "where there were five. IN EVERY CASE THE RULE WAS RIGHT, THE "
+      "CODE WAS CORRECT FOR WHAT IT LOOKED AT, AND THE POPULATION "
+      "WAS A GUESS ABOUT WHAT THE WORLD WOULD LOOK LIKE. Where a "
+      "gate enumerates, enumerate the SHAPES the thing actually "
+      "arrives in, and make the residue a named bucket rather than "
+      "an absence.",
+      "the terminal, band-vocabulary and exemplar-debt gates, all "
+      "found on 5 September 2026",
+      "self_audit",
+      "check_terminal_floor: 24 directories, 20 readable, 16 "
+      "scored, and the missing 4 reported nowhere. "
+      "check_band_vocabulary: 3 delivered documents publishing the "
+      "retired skill verdict, one of them the exemplar, none "
+      "matched. check_exemplar_debt: 1 entry reported against 5 on "
+      "disk, and the rule's own adoption note records 8.",
+      "It is overturned where a residue is genuinely empty by "
+      "construction and can be proved so — then naming the bucket "
+      "adds a line nobody reads. What does NOT overturn it is a "
+      "residue that happens to be empty today, which is the state "
+      "every one of these three was in on the day it was written."),
+    L("L-341", "ALL", None,
+      "TAKING THE SHARED INSTRUMENT IS WHAT HID THE GATE FROM THE "
+      "META-CHECK, AND THE ADVICE WAS STILL RIGHT",
+      "The new-study gauntlet decides which gates it must hold "
+      "against an empty study directory by scanning each gate's own "
+      "SOURCE for a study path — a rule its own comment already "
+      "widened once, when five gates turned out to construct the "
+      "path rather than glob it. One gate defeated even that, and "
+      "for the best possible reason: it hands its population to a "
+      "shared census module, so the glob lives there and its own "
+      "source carried no study path at all. IT HAS RUN OVER EVERY "
+      "STUDY DIRECTORY SINCE THE DAY IT WAS WRITTEN AND THE "
+      "GAUNTLET HAD NEVER TESTED IT. What surfaced it was luck: an "
+      "unrelated comment added to that gate for another reason "
+      "happened to name a study path, and the gauntlet went red the "
+      "next time it ran. THE TENSION IS REAL AND THE RESOLUTION IS "
+      "NOT TO STOP SHARING: a detector that reads only the caller "
+      "punishes exactly the behaviour this house asks for — import "
+      "the shared instrument rather than hand-rolling one. So the "
+      "detector follows first-party imports one level down, and a "
+      "gate that delegates its population is still a gate over that "
+      "population.",
+      "the new-study gauntlet, 5 September 2026",
+      "self_audit",
+      "The gauntlet reported 28 of 28 gates refusing a new study "
+      "while a 29th, running over every study directory through an "
+      "imported census, was named in none of its three lists. With "
+      "the study-path comments stripped out of that gate's source, "
+      "the widened import route still detects it; the literal scan "
+      "does not.",
+      "It is overturned by a detector that resolves the population "
+      "at RUNTIME rather than by reading source — which would be "
+      "strictly better and needs every gate to declare its "
+      "population in a form a caller can query. One level of import "
+      "is the cheap approximation, and a gate that delegates two "
+      "levels down is still invisible."),
 
 ]
 

@@ -93,7 +93,7 @@ def dcf(cfo_margin, sched):
     # struck, and brought home on the window's OWN factor -- one date, one price
     # of time. Capitalising at the explicit-window rate gives the same pound
     # arriving on the same day two different values.
-    pv_tv = tail * dc.perpetuity_factor(TG)
+    pv_tv = dc.perpetuity_pv(tail, TG)
     tv = pv_tv / dc.factor(len(ROWS))
     ev = pv + pv_tv
     eq_gross = ev - NET_DEBT + BS["investments_assoc"] + BS["investment_property"]

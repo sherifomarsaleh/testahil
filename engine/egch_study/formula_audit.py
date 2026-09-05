@@ -14,7 +14,7 @@ import openpyxl
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
-XLSX = 'EGCH_Valuation_Model_03092026.xlsx'
+XLSX = 'EGCH_Valuation_Model_05092026.xlsx'
 
 # Structural, not financial: unit conversions, day counts, percentage bases, and the
 # small integers that index a model (years, halves, quarters).

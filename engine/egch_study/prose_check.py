@@ -12,7 +12,7 @@ fixed HERE by widening the rendering set, never by deleting the figure from the 
 import json, os, re, sys
 from docx import Document
 HERE = os.path.dirname(os.path.abspath(__file__)); os.chdir(HERE)
-DOCS = ['EGCH_Valuation_Study_03-09-2026.docx', 'EGCH_Bibliography_03-09-2026.docx']
+DOCS = ['EGCH_Valuation_Study_05-09-2026.docx', 'EGCH_Bibliography_05-09-2026.docx']
 
 
 def walk(x, out):
@@ -77,6 +77,23 @@ def _levels(x, out):
             if _den:
                 out.append(x / _den - 1)
 _lv = []; _levels(_tech, _lv); vals.extend(_lv)
+
+# THE REVENUE-MIX SHARES ARE MODEL OUTPUTS AND THE SET DID NOT GENERATE THEM. Section 1.6
+# prints each channel's share of that year's revenue; those are ratios of two committed
+# figures and this checker had no route to them, so they matched only by COINCIDENCE
+# against unrelated values in the set's own 1-v and 100*v expansions. Re-striking the price
+# map on the live fit moved the coincidence away and the document's own correct 71.5%
+# reported as unmatched.
+#
+# Widened rather than the figure deleted, which is what the rule says to do and is the
+# right answer here twice over: the figures are real, and a figure that passes by
+# coincidence is a figure this checker was not actually checking.
+for _row in (_sn.get('cases', {}).get('base', {}).get('rows') or []):
+    _tot = _row.get('revenue')
+    if _tot:
+        for _k in ('rev_exp', 'rev_sub', 'rev_free', 'rev_an', 'rev_other'):
+            if _row.get(_k) is not None:
+                vals.append(_row[_k] / _tot)
 RENDER = set()
 for v in vals:
     for x in (v, 1 - v, v - 1, -v, 100 * v, 100 * (1 - v), 100 * (v - 1), v / 100):

@@ -1,7 +1,7 @@
 # RIYADHCABLE — gap review, 4 September 2026
 
-**AUDITED CENTRAL: 129.0832** — the cash-flow lens, SAR per share.
-**AUDITED GAP: +23.2%** against the latest known price, SAR 104.80 (3 September 2026),
+**AUDITED CENTRAL: 124.8948** — the cash-flow lens, SAR per share.
+**AUDITED GAP: +19.2%** against the latest known price, SAR 104.80 (3 September 2026),
 which is also the price this study was struck at on 18 August 2026 — the two are the same
 figure, so the review is not auditing a disagreement that has since moved.
 
@@ -10,8 +10,12 @@ recorded the terminal rebuild as one that could not be made honestly. That asses
 tested and it was wrong; the terminal is rebuilt and the TERMINAL heading below carries both
 the correction and the reasoning that failed, rather than the correction alone. It then took
 a second correction the same day — the age its maintenance charge rests on, measured off the
-notes rather than assumed — so the central is 129.0832 and the route is 127.9054 → 130.4249
-→ 129.0832, recorded lever by lever rather than reported as one number.*
+notes rather than assumed. **And then a third, which corrected the first two**: the terminal
+was handed a profit figure already grown by one year, which the sanctioned construction
+grows again, overstating the terminal by exactly (1+g) — 4.00% here. So the central is
+124.8948 and the route is 127.9054 → 126.1849 → 124.8948, recorded lever by lever. The
+direction reverses with that correction: BOTH levers now move the answer DOWN, toward the
+price, where the first version of this review reported the terminal moving it away.*
 
 This fires the ABOVE-price half of the audit trigger, which is deliberately not matched by
 a publication block: the block is one-sided below the price, because the errors in a
@@ -199,16 +203,27 @@ premises here were true and neither conclusion followed.
 | **Terminal free cash flow** | **1,313.8** |
 
 That is **82.8%** of terminal profit paid out for ever. The retired identity gave a terminal
-of 24,350 against the sanctioned 24,919, **+2.34%**, worth **+1.97%** on the answer:
-127.9054 → **130.4249**.
+of 24,350 against the sanctioned **23,961**, **−1.60%**, worth **−1.34%** on the answer:
+127.9054 → **126.1849**.
 
-**The direction is worth stating because it is the opposite of most of this programme.**
-Every earlier correction of this defect raised a value in a high-inflation market where 1/g
-charges far too hard. Here 1/g charges 25 years against a base the accounts turn over in
-35.8, so it charges too *little*, and the corrected terminal is **higher** — a pegged
-market, where the same identity errs the other way. That is [R-TERM-01 clause two] behaving
-as written, and it moves this answer **away** from the price, which is the only direction
-that shows the discipline is not fitting.
+*This figure read +2.34% for part of 4 September 2026 and the correction is worth recording.
+The construction was handed a profit figure ALREADY GROWN by one year, and it grows the flow
+itself — `tv = fcff(1+g)/(w−g)` puts the first perpetuity year in the numerator and values
+the terminal at the end of the last explicit year, which is where it is discounted. Handing
+in a grown figure therefore values a year-seven flow at a year-five date and overstates the
+terminal by exactly (1+g), 4.00% here. Corrected, the sanctioned terminal is BELOW the
+retired one rather than above it.*
+
+**The direction here is DOWN, and the first version of this review said the opposite.**
+The reasoning it gave was sound as far as it went — 1/g charges 25 years against a base the
+accounts turn over in 35.8, so on the replacement-cycle argument alone it charges too little
+— but the sanctioned construction does not only change the cycle. It charges maintenance at
+what replacement costs today and adds book depreciation back, and on this base those two
+outweigh the growth charge the identity was levying. Corrected for the growth-basis error
+above, the sanctioned terminal comes out 1.60% BELOW the retired one, and the answer moves
+**toward** the price rather than away from it. Nothing about that makes the correction
+optional: it is applied because it is the better construction, and the direction is reported
+rather than chosen.
 
 ### The one reading that was recorded and not applied — now applied
 
@@ -240,12 +255,15 @@ and says on its own record which of the two it used. So the reason for holding i
 and it is applied here.
 
 It raises maintenance **8.4%** (190.3 → 206.3), takes the terminal to 24,616 and the central
-to **129.0832** — **−1.03%**, and toward the price rather than away from it. It is applied
-because it is the better measurement, not because of the direction it moves; the correction
-that preceded it moved the other way.
+to **124.8948** — **−1.02%**, and toward the price. It is applied because it is the better
+measurement, not because of the direction it moves. **This name is one of only two in six
+where the accounts permit the measurement at all**: three deduct residual values from the
+depreciable amount and one assembled its base by acquisition, and on those the identity does
+not return an age.
 
-**Found and applied: +1.97% from the construction, then −1.03% from measuring the age it
-rests on rather than assuming it. Net +0.92%, 127.9054 → 129.0832.**
+**Found and applied: −1.34% from the construction, then −1.02% from measuring the age it
+rests on rather than assuming it. Net −2.35%, 127.9054 → 124.8948 — both levers moving the
+same way, toward the price.**
 
 ## BALANCE SHEET
 
@@ -287,7 +305,7 @@ and the cross-checks were right.**
 
 ## Verdict
 
-**The answer changed in this pass, by +1.97%, and it moved away from the price.**
+**The answer changed in this pass, by −2.35%, and it moved toward the price.**
 
 Six headings found nothing or found something that was fixed. The terminal found the one
 material thing, and it found it twice: the construction was the retired identity, and this
@@ -308,4 +326,6 @@ averaged into it.
 the book charge over the age of the base; this study now supplies the age its own notes
 measure — 21.95 years — rather than the 17.88 half a life implies. That is the smaller of
 the two corrections in this pass and it runs the other way, which is worth saying plainly:
-the two moves are +1.97% and −1.03%, and neither was chosen for its direction.
+the two moves are −1.34% and −1.02%, and neither was chosen for its direction. An earlier
+version of this review reported the first as +1.97% on a terminal handed a profit figure
+already grown by a year; that is corrected above and the direction reverses with it.

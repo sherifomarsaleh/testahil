@@ -180,6 +180,27 @@ def main():
          lambda e: make_study(e, 'PHDC', 17.1517, 14.40,
                               review=review_auditing(17.1517) + '\nAUDITED GAP: +16.0%\n'),
          EMPTY, False),
+
+        # --- the exemption, added 05-Sep-2026 with the clause it enforces --------------
+        # gap_outstanding.json carried an `exempt` block from the day the rule was seeded
+        # and NOTHING READ IT, so the one exempt name sat in `unreadable` as well, as a
+        # defect that could never be cleared. These three cases are what makes the
+        # enforcement evidence rather than an assertion.
+        ('an exempt study that DOES expose a central — the exemption or the study is wrong',
+         lambda e: make_study(e, 'XPT', 1608.37, 1600.00),
+         {'breach_no_review': [], 'unreadable': [],
+          'exempt': {'XPT': 'metals study - no issuer, no equity fair value of this shape'}},
+         True),
+        ('an exemption with an empty reason is a name switched off, not excused',
+         lambda e: make_study(e, 'XPT', None, None),
+         {'breach_no_review': [], 'unreadable': [], 'exempt': {'XPT': '   '}},
+         True),
+        ('CLEAN — an exempt study exposing no central, with its reason, must PASS',
+         lambda e: (make_study(e, 'XPT', None, None),
+                    make_study(e, 'AMOC', 9.00, 9.10)),
+         {'breach_no_review': [], 'unreadable': [],
+          'exempt': {'XPT': 'metals study - no issuer, no equity fair value of this shape'}},
+         False),
     ]
     results = [run_case(n, b, o, f) for n, b, o, f in cases]
     print()

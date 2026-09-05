@@ -1,7 +1,20 @@
 # EGCH — the fixed-asset evidence a terminal rebuild needs, and what it found
 
-**Status: gathered 4 September 2026 and NOT yet spent.** The terminal is still on the
-retired reinvestment identity. What this file records is the primary-source work, the
+**Status: SPENT 5 September 2026. The terminal is rebuilt** and this file is the
+evidence it rests on, kept because the route by which each figure was obtained is part of
+the record. What shipped is NOT what this file first priced, in two ways, and both are set
+out below rather than tidied away.
+
+> **EVERY PRICED FIGURE IN THIS FILE WAS RESTATED ON 5 SEPTEMBER 2026 AND EVERY ONE CAME
+> DOWN.** The first pricing handed the sanctioned construction this study's *terminal-year*
+> figures — profit, book depreciation and working capital all already grown by (1+g) — and
+> that construction grows them again. At Egypt's 7% terminal the terminal was overstated by
+> exactly 7%, and the same defect was found in six of the eight studies then using the
+> module. The correction does not change a single conclusion here: the direction is
+> unchanged, the rebuild is still worth making, and this study is still held either way.
+> It changes the size, and **it destroys one corroboration this file had claimed** — see
+> §6, where the agreement with the study's own priced alternative was itself an artefact of
+> the double growth. What this file records is the primary-source work, the
 arithmetic that validates it, and a defect it exposed in the shared construction — which is
 the reason the rebuild has not shipped, and the reason is a *missing measurement in a shared
 module*, not an assessment of how hard the change looks.
@@ -79,8 +92,8 @@ inflation.** At Egypt's 7% terminal:
 | the construction over-charges by | **+56.1%** |
 
 Run on EGCH's own committed terminal-year figures at the disclosed 25.3-year machinery life,
-the sanctioned construction charges maintenance of EGP 5,506mn against a terminal profit
-after tax of EGP 3,815mn — 144% of it — and drives the equity **negative**. That is not a
+the sanctioned construction charges maintenance of EGP 5,145mn against a terminal profit
+after tax of EGP 3,566mn — 144% of it — and drives the equity **negative**. That is not a
 finding about this company. A company that has just spent EGP 20bn on a new plant is being
 charged as though that plant were eleven years old and needed replacing at 2.1 times its
 cost.
@@ -95,25 +108,32 @@ compounds.
 With the age read rather than assumed, the construction builds cleanly and the answer is
 large:
 
+**The figures are the LAST EXPLICIT YEAR's, not the terminal year's**, because the module
+applies (1+g) itself and values the terminal at the end of that year — which is where this
+study's own year-five factor discounts it. That is the same convention this study already
+uses in its own words: *"base_ebit is ALREADY the year-six flow … the Gordon numerator must
+therefore be FCFF_6, not FCFF_6 × (1+g)"*. The first pricing of this table handed over the
+year-six figures and let the module grow them a second time.
+
 | | |
 |---|---:|
-| terminal-year profit after tax | 3,815 |
-| plus book depreciation and amortisation | 2,338 |
-| less capital maintenance, at the measured 4.45-year age | (3,160) |
+| profit after tax, last explicit year, on the terminal year's economics | 3,566 |
+| plus book depreciation and amortisation | 2,185 |
+| less capital maintenance, at the measured 4.45-year age | (2,954) |
 | less growth capital — the terminal real growth is **zero**, so nothing | — |
-| less inflation on working capital | (229) |
-| **terminal free cash flow** | **2,764** |
-| implied payout of terminal profit | 72.4% |
+| less inflation on working capital | (214) |
+| **free cash flow the perpetuity is struck on** | **2,583** |
+| implied payout of profit | 72.4% |
 
-Terminal **25,524** against the retired identity's 20,121, **+26.8%**; per share **3.2905**
-against 2.3109, **+42.4%**. The gap against the traded 14.41 narrows from about −84% to
-**−77.2%** — still far enough below the price that this study stays held, which is the
+Terminal **23,854** against the retired identity's 20,121, **+18.6%**; per share **2.9877**
+against 2.3109, **+29.3%**. The gap against the traded 14.41 narrows from about −84% to
+**−79.3%** — still far enough below the price that this study stays held, which is the
 right outcome: a correction is applied because it is the better measurement, not because of
 where it leaves the answer.
 
-**On the half-life proxy the same terminal REFUSES**, charging 5,506 of maintenance against
-3,815 of profit and driving the equity negative. The difference between a refusal and a
-+42% correction is one number, and it was sitting in the accounts.
+**On the half-life proxy the same terminal REFUSES**, charging 5,145 of maintenance against
+3,566 of profit and driving the equity negative. The difference between a refusal and a
++29% correction is one number, and it was sitting in the accounts.
 
 **AND IT BUILDS ON ALL FOUR OF THIS STUDY'S CASES, not just the one quoted.** That was worth
 testing before committing to the rebuild, because a case with a thinner profit and the same
@@ -121,10 +141,10 @@ asset base is where a maintenance charge refuses:
 
 | case | terminal profit | book D&A | maintenance | terminal cash flow | payout | terminal | vs retired |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| base | 3,815 | 2,338 | 3,160 | 2,764 | 72.4% | 25,524 | +26.8% |
-| bull | 3,794 | 2,338 | 3,160 | 2,745 | 72.3% | 25,342 | +26.7% |
-| bear | 2,829 | 1,535 | 2,074 | 2,061 | 72.8% | 19,027 | +27.5% |
-| halt | 4,175 | 1,019 | 1,377 | 3,588 | 85.9% | 33,129 | +50.5% |
+| base | 3,566 | 2,185 | 2,954 | 2,583 | 72.4% | 23,854 | +18.6% |
+| bull | 3,546 | 2,185 | 2,954 | 2,565 | 72.3% | 23,684 | +18.4% |
+| bear | 2,644 | 1,434 | 1,939 | 1,926 | 72.8% | 17,782 | +19.2% |
+| halt | 3,902 | 952 | 1,287 | 3,353 | 85.9% | 30,962 | +40.6% |
 
 No refusals; every payout sits inside [0, 1]. **The halt case gains most and that is
 coherent rather than odd:** a board that does not build the complex carries no project
@@ -163,13 +183,23 @@ raised to the 30% "a newly completed line earns while it is still filling":
 |---|---:|
 | published | 2.3109 |
 | the study's own priced alternative, on a raised return on capital | **3.2396** |
-| the sanctioned construction, on a measured-age maintenance charge | **3.2905** |
-| the two agree to | **1.6%** |
+| the sanctioned construction, on a measured-age maintenance charge | **2.9877** |
+| the two agree to | **8.4%** |
 
-**Two entirely different routes to the same place.** One raises an assumed return on
-capital inside the retired identity; the other throws the identity away and charges what
+**Two entirely different routes to the same neighbourhood.** One raises an assumed return
+on capital inside the retired identity; the other throws the identity away and charges what
 keeping the plant intact costs on the age the accounts measure. They were built
-independently, months apart, and they differ by a percent and a half.
+independently, months apart, and they land eight per cent apart on the same side of a
+published number they both say is too low.
+
+**THIS PARAGRAPH READ "they differ by a percent and a half" UNTIL 5 SEPTEMBER 2026, AND
+THAT AGREEMENT WAS MANUFACTURED BY THE DEFECT.** On the doubly-grown arithmetic the
+sanctioned construction gave 3.2905 against the study's own 3.2396 — 1.6% apart, which was
+written up here as the strongest corroboration available. Correcting the growth basis moved
+one of the two numbers and not the other, and the agreement widened to 8.4%. It is still
+corroboration and it still points the same way; it is no longer remarkable, and the reason
+it looked remarkable was an error. **A defect can manufacture agreement as easily as
+disagreement, and agreement is the one nobody re-checks.**
 
 This is worth contrasting with the two other cases in this programme where a study priced a
 correction it declined: RIYADHCABLE's review predicted −16.2% and the build gave +1.97%, and
@@ -183,13 +213,13 @@ is held only if *every* branch sits more than ten per cent below the price:
 
 | branch | published | corrected | move | gap now |
 |---|---:|---:|---:|---:|
-| capital programme carried through | 2.3109 | **3.2905** | +42.4% | −77.2% |
-| capital programme stopped | 6.2591 | **8.2737** | +32.2% | −42.6% |
+| capital programme carried through | 2.3109 | **2.9877** | +29.3% | −79.3% |
+| capital programme stopped | 6.2591 | **7.8807** | +25.9% | −45.3% |
 
 Both remain far below the traded 14.41, so **EGCH stays held either way** — the correction
 does not change its publication status, and it was not made in the hope that it would.
 
-Corrected, this study reads 3.2905 against a traded 14.41 — **still 77% below the price**,
+Corrected, this study reads 2.9877 against a traded 14.41 — **still 79% below the price**,
 so it stays held and its eight-heading review still has to explain a very large
 disagreement. Two things about that are worth writing down before the rebuild, because they
 change what the review should be looking at.
@@ -200,17 +230,24 @@ enterprise value is spoken for before equity gets any:
 
 | | EGP mn |
 |---|---:|
-| study enterprise value | 11,085 |
-| price-implied enterprise value | 38,659 |
-| **the enterprise disagreement** | **3.5x** |
-| the equity disagreement | 6.2x |
+| study enterprise value, as published | 11,085 |
+| study enterprise value, terminal corrected | 12,430 |
+| price-implied enterprise value (market capitalisation plus net debt) | 38,659 |
+| **the enterprise disagreement, corrected** | **3.1x** |
+| the equity disagreement, corrected | 4.8x |
 
-**So the honest statement of the disagreement is 3.5x on enterprise value, not 6.2x on
+**So the honest statement of the disagreement is about 3x on enterprise value, not 5x on
 equity** — leverage does the rest, and it does it in both directions. It is also why the
-terminal correction is worth +42% on equity for +26.8% on the terminal: the same gearing.
+terminal correction is worth +29% on equity for +18.6% on the terminal: the same gearing.
+*(The two enterprise figures are not on identical bases — the price-implied one carries the
+listed stakes and investment property that the study's operating enterprise value excludes
+and then adds in the bridge. Putting both on the study's basis gives 15,968 against 38,659,
+2.4x. The point the row is making — that leverage, not the terminal, is doing most of the
+work in the equity ratio — holds on either basis, and the mismatch is named rather than
+left for a reader to find.)*
 
 **And it means the terminal is not where the remaining gap can live.** After the correction
-the enterprise value is 16,569mn against a price-implied 38,659mn. Closing that on the
+the enterprise value is 12,430mn against a price-implied 38,659mn. Closing that on the
 terminal alone would need a terminal several times larger again, which no maintenance
 assumption reaches. **Whatever else is wrong here — or whatever the market believes that
 this model does not — it is in the operating build, the capital programme's returns, or the
@@ -264,3 +301,41 @@ the module.
 +42% move on the most-disagreeing study in the book is exactly the shape of change this
 programme exists to be careful about: it is recorded here with its arithmetic so the next
 pass starts from evidence rather than from memory.
+
+---
+
+## 9. What shipped, 5 September 2026, and the second defect this file did not find
+
+The rebuild landed at **EGP 3.8967 carried through and 7.8807 stopped**, not at the 2.9877
+and 7.8807 §5 and §7 above predict. The carried-through branch is 30.4% higher than this
+file's own corrected pricing, and the reason is a defect the terminal rebuild EXPOSED rather
+than caused.
+
+**The project's depreciation was charged twice.** The explicit window depreciates the new
+complex as it is spent, so the last explicit year already carried the charge on the part in
+service — EGP 481.9mn — and the terminal then charged the whole plant on top. Grossing the
+last explicit year without first removing the in-service part therefore charged it twice.
+
+**Under the retired construction that error only depressed profit.** Under the sanctioned
+one, book depreciation is also the BASE of the replacement charge, so an overstated charge
+took value out twice: once through profit, and once through a maintenance charge struck on a
+depreciation figure 32% too large. That is why the defect became worth finding only after
+the first correction was made, and it is the general shape worth keeping: **a correction that
+makes a quantity load-bearing makes every error in that quantity visible.**
+
+**The model already knew how to do this**, which is what settles it as a defect rather than a
+choice: the programme-stopped branch strips exactly that charge before it grosses the year,
+which is why that branch was never wrong. Corrected, the two branches carry the identical
+year-five formula and differ only in the project's own revenue, profit and depreciation.
+
+Neither this file nor the four rounds of critique behind it found that. What found it was
+building the waterfall and asking what number the depreciation add-back should be — a
+question the retired construction never asks, because it never adds depreciation back.
+
+**And one prediction in §7 above was wrong in the direction that matters least and is
+recorded anyway.** This file said the correction "does not change its publication status".
+It does not: at −73.0% and −45.3% both branches remain far below the price and the study
+stays held. But it also said the terminal was where the remaining gap could NOT live, and
+that was too strong — the terminal rebuild plus the double-count fix was worth EGP 1.59 a
+share, a sixth of the outstanding gap. The conclusion survives; the confidence in it should
+have been lower.

@@ -132,7 +132,17 @@ print()
 print(f'{len(CHECKS)} findings checked, {len(CHECKS)-len(FAILED)} implemented, '
       f'{len(FAILED)} not' + (f': {FAILED}' if FAILED else ''))
 
+# [R-ENF-06] THE ANSWER THIS ARTEFACT WAS BUILT AGAINST, read from the study's own
+# committed numbers rather than typed, so it cannot drift from them. A builder reads
+# this file and nothing said what it was current WITH, so a stale copy would have had
+# the shape of a computed record — which is worse than a typed numeral, because a typed
+# numeral is what the numeric-traceability gate already catches.
+_PUB = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                   'study_numbers.json'), encoding='utf-8'))
+_PUB_C, _PUB_S = _PUB['central'], _PUB['spot']
+
 json.dump(dict(prior_central=PRIOR_CENTRAL, central=C.central, spot=V('spot_aed'),
+               published_central=_PUB_C, published_spot=_PUB_S,
                by_lens=C.FAIR, checks=CHECKS),
           open(os.path.join(HERE, 'implementation_check.json'), 'w'), indent=1)
 assert not FAILED, f'accepted findings missing from the model: {FAILED}'

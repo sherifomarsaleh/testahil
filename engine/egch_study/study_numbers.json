@@ -117,6 +117,8 @@
    186.0
   ],
   "gas_m3_per_t_ammonia": 1292.0,
+  "gas_standard_m3_t": 1200,
+  "gas_loss_rate_m3_t": 120.91512119707645,
   "gas_usd_mmbtu": 4.68,
   "gas_usd_mmbtu_contract": 5.75,
   "mmbtu_per_m3": 0.03531,
@@ -147,6 +149,9 @@
   ],
   "dep_escalation": 0.02,
   "dep_rate_project": 0.0395,
+  "fa_avg_age_years": 4.454408352548927,
+  "fa_life_implied_years": 22.070192666196995,
+  "terminal_force_half_life": false,
   "dep_base": 771.213,
   "amort_base": 119.378,
   "anna_total_cost": 20341.667999999998,
@@ -174,7 +179,7 @@
   "roc_terminal": 0.18,
   "inflation_lt": 0.07,
   "real_rate_lt": 0.055,
-  "rf_star_terminal": 0.1288499999999999,
+  "rf_star_terminal": 0.125,
   "kd_usd_lt": 0.09,
   "deprec_lt": 0.044921875,
   "kd_local_equiv_terminal": 0.1391376109978745,
@@ -193,21 +198,21 @@
   "wacc_cds": 0.25757854106089717,
   "kd_pretax_spot": 0.2433796546906064,
   "kd_fx_terminal": 0.13896484375000018,
-  "wacc_terminal": 0.18588040212578727,
-  "ke_terminal": 0.2257927898875875,
+  "wacc_terminal": 0.1833330573146555,
+  "ke_terminal": 0.2219427898875876,
   "wacc_path": [
    0.25757854106089717,
-   0.23872594066841366,
-   0.22343759051654077,
-   0.2117134906052787,
-   0.20212794083838306
+   0.2382164717061873,
+   0.2224186525920881,
+   0.21018508371859965,
+   0.20009006498947762
   ],
   "rf_star_path": [
    0.19590000000000002,
-   0.18248999999999999,
-   0.16907999999999998,
-   0.15566999999999995,
-   0.14225999999999994
+   0.18172000000000002,
+   0.16754000000000002,
+   0.15336,
+   0.13918
   ],
   "kd_path": [
    0.2433796546906064,
@@ -221,8 +226,8 @@
   "anna_ebit_built": 0.0,
   "anna_ebit_assumed": 0.0,
   "anna_margin_built_pct": 0.0,
-  "implied_wacc_base": 0.11501301802662825,
-  "implied_wacc_halt": 0.1301555972035554,
+  "implied_wacc_base": 0.1300292595239384,
+  "implied_wacc_halt": 0.14264996521794682,
   "gates": {
    "standard_version": "2026.09.01",
    "beta": {
@@ -740,8 +745,8 @@
      "wc": 2501.0662607719833,
      "dwc": 219.82394542692145,
      "fcff": 797.8442154326985,
-     "df": 0.6419329221718455,
-     "pv": 512.1624686506157,
+     "df": 0.6421970479585323,
+     "pv": 512.3731998816703,
      "cpi_cum": 1.2597
     },
     {
@@ -786,8 +791,8 @@
      "wc": 2690.7344672083345,
      "dwc": 189.66820643635128,
      "fcff": 874.1540872087753,
-     "df": 0.5246960916909693,
-     "pv": 458.66523309413117,
+     "df": 0.5253495163844073,
+     "pv": 459.2364269605831,
      "cpi_cum": 1.3636252500000001
     },
     {
@@ -832,8 +837,8 @@
      "wc": 2872.6657917831867,
      "dwc": 181.93132457485217,
      "fcff": 1202.4301424413766,
-     "df": 0.4330199306676627,
-     "pv": 520.6762169126727,
+     "df": 0.4341067523077859,
+     "pv": 521.9830440122144,
      "cpi_cum": 1.4624880806250002
     },
     {
@@ -878,8 +883,8 @@
      "wc": 3056.069679857385,
      "dwc": 183.40388807419822,
      "fcff": 2122.1555915846475,
-     "df": 0.3602111854796984,
-     "pv": 764.4241814170765,
+     "df": 0.3617284776968736,
+     "pv": 767.6441115798227,
      "cpi_cum": 1.5648622462687503
     }
    ],
@@ -889,31 +894,83 @@
     "an_t": 132000.0,
     "anna_rev": 2671.8024127880276,
     "anna_ebit": 51.48088609216893,
-    "base_ebit": 4871.699890775021,
-    "ebit_T": 4923.18077686719,
-    "nopat_T": 3815.465102072072,
+    "base_ebit": 5387.284114767242,
+    "ebit_T": 5438.76500085941,
+    "nopat_T": 4215.042875666043,
+    "anna_dep": 803.4958859999999,
+    "anna_dep_in_last": 481.854414946,
+    "dna_T": 1822.4440888,
+    "wc_T": 3269.9945574474023,
+    "maintenance_T": 2463.4375560256885,
+    "wc_charge_T": 228.89961902131816,
+    "floor_T": 21487.081843638804,
+    "payout_T": 0.7936217704287171,
+    "growth_capex_T": 0.0,
+    "inc_cap": 50811.72101180598,
+    "g_real": 0.0,
     "reinv_rate": 0.38888888888888895,
-    "fcff_T": 2331.6731179329327,
-    "tv": 20121.375790549293,
-    "pv_tv": 7247.944626996264,
-    "wacc_terminal": 0.18588040212578727,
-    "ke_terminal": 0.2257927898875875,
-    "rf_star_terminal": 0.1288499999999999,
+    "fcff_retired": 2575.8595351292483,
+    "tv_retired": 22728.227722452477,
+    "terminal_record": {
+     "rule": "R-TERM-01",
+     "inputs": {
+      "nopat": 3939.292407164526,
+      "wacc": 0.1833330573146555,
+      "inflation": 0.07,
+      "real_growth": 0.0,
+      "dna_book": 1703.218774579439,
+      "ic_replacement": null,
+      "useful_life_years": 22.070192666196995,
+      "useful_life_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 \u2014 read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
+      "average_age_years": 4.454408352548927,
+      "average_age_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 \u2014 read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
+      "maintenance_basis": "book_dna_escalated",
+      "maintenance_capex": null,
+      "working_capital": 3056.069679857385,
+      "incremental_capital_per_unit_growth": 50811.72101180598,
+      "floor_exemption": "",
+      "floor_exemption_disclosure": ""
+     },
+     "fcff": 3126.3082144103137,
+     "tv": 29516.099438945115,
+     "floor": 21487.081843638804,
+     "tv_vs_floor": 0.3736671947234791,
+     "nominal_growth": 0.07000000000000006,
+     "real_growth": 0.0,
+     "maintenance": 2302.278089743634,
+     "maintenance_age_years": 4.454408352548927,
+     "maintenance_age_basis": "measured",
+     "maintenance_escalator": 1.3517218833570666,
+     "growth_capex": 0.0,
+     "wc_charge": 213.92487759001696,
+     "dna_addback": 1703.218774579439,
+     "net_capital_charge": 812.984192754212,
+     "implied_cycle_years": null,
+     "one_over_g": 14.285714285714272,
+     "payout_of_nopat": 0.7936217704287171,
+     "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
+    },
+    "fcff_T": 3345.1497894190356,
+    "tv": 29516.099438945115,
+    "pv_tv": 10676.813717599161,
+    "wacc_terminal": 0.1833330573146555,
+    "ke_terminal": 0.2219427898875876,
+    "rf_star_terminal": 0.125,
     "kd_terminal": 0.1391376109978745
    },
    "bridge": {
-    "pv_explicit": 3837.360014846451,
-    "pv_tv": 7247.944626996264,
-    "ev": 11085.304641842715,
-    "tv_pct_ev": 0.6538335987301684,
+    "pv_explicit": 3842.6686972062453,
+    "pv_tv": 10676.813717599161,
+    "ev": 14519.482414805407,
+    "tv_pct_ev": 0.7353439614839228,
     "cash": 4606.522,
     "debt": 14639.005000000001,
     "net_debt": 10032.483,
     "fvoci": 1382.886,
     "inv_prop": 2155.061,
-    "equity": 4590.768641842715,
+    "equity": 8024.946414805407,
     "shares": 1986578999,
-    "per_share": 2.310891559889441
+    "per_share": 4.0395808164915605
    }
   },
   "bull": {
@@ -1006,8 +1063,8 @@
      "wc": 2522.9850870847713,
      "dwc": 201.13764674670165,
      "fcff": 1044.7694479885395,
-     "df": 0.6419329221718455,
-     "pv": 670.6719047431491,
+     "df": 0.6421970479585323,
+     "pv": 670.9478552955054,
      "cpi_cum": 1.2597
     },
     {
@@ -1052,8 +1109,8 @@
      "wc": 2690.7344672083345,
      "dwc": 167.74938012356324,
      "fcff": 896.0729135215634,
-     "df": 0.5246960916909693,
-     "pv": 470.16595559490423,
+     "df": 0.5253495163844073,
+     "pv": 470.75147176372013,
      "cpi_cum": 1.3636252500000001
     },
     {
@@ -1098,8 +1155,8 @@
      "wc": 2856.496735240374,
      "dwc": 165.76226803203963,
      "fcff": 1050.2321443598698,
-     "df": 0.4330199306676627,
-     "pv": 454.77145033566154,
+     "df": 0.4341067523077859,
+     "pv": 455.91286535730484,
      "cpi_cum": 1.4624880806250002
     },
     {
@@ -1144,8 +1201,8 @@
      "wc": 3030.714662797211,
      "dwc": 174.2179275568369,
      "fcff": 1867.3218468664277,
-     "df": 0.3602111854796984,
-     "pv": 672.6302161318957,
+     "df": 0.3617284776968736,
+     "pv": 675.4634890371074,
      "cpi_cum": 1.5648622462687503
     }
    ],
@@ -1155,31 +1212,83 @@
     "an_t": 184800.0,
     "anna_rev": 3740.523377903239,
     "anna_ebit": 393.47159492903666,
-    "base_ebit": 4501.858076418261,
-    "ebit_T": 4895.329671347297,
-    "nopat_T": 3793.8804952941555,
+    "base_ebit": 5017.442300410482,
+    "ebit_T": 5410.913895339519,
+    "nopat_T": 4193.458268888127,
+    "anna_dep": 803.4958859999999,
+    "anna_dep_in_last": 481.854414946,
+    "dna_T": 1822.4440888,
+    "wc_T": 3242.864689193016,
+    "maintenance_T": 2463.4375560256885,
+    "wc_charge_T": 227.00052824351113,
+    "floor_T": 21377.049697802908,
+    "payout_T": 0.7930123683574074,
+    "growth_capex_T": 0.0,
+    "inc_cap": 50811.72101180598,
+    "g_real": 0.0,
     "reinv_rate": 0.38888888888888895,
-    "fcff_T": 2318.4825249019837,
-    "tv": 20007.54642174342,
-    "pv_tv": 7206.942015116295,
-    "wacc_terminal": 0.18588040212578727,
-    "ke_terminal": 0.2257927898875875,
-    "rf_star_terminal": 0.1288499999999999,
+    "fcff_retired": 2562.6689420983,
+    "tv_retired": 22611.83985342741,
+    "terminal_record": {
+     "rule": "R-TERM-01",
+     "inputs": {
+      "nopat": 3919.1198774655395,
+      "wacc": 0.1833330573146555,
+      "inflation": 0.07,
+      "real_growth": 0.0,
+      "dna_book": 1703.218774579439,
+      "ic_replacement": null,
+      "useful_life_years": 22.070192666196995,
+      "useful_life_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 \u2014 read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
+      "average_age_years": 4.454408352548927,
+      "average_age_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 \u2014 read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
+      "maintenance_basis": "book_dna_escalated",
+      "maintenance_capex": null,
+      "working_capital": 3030.714662797211,
+      "incremental_capital_per_unit_growth": 50811.72101180598,
+      "floor_exemption": "",
+      "floor_exemption_disclosure": ""
+     },
+     "fcff": 3107.9105359055397,
+     "tv": 29342.403286502555,
+     "floor": 21377.049697802908,
+     "tv_vs_floor": 0.37261239045153705,
+     "nominal_growth": 0.07000000000000006,
+     "real_growth": 0.0,
+     "maintenance": 2302.278089743634,
+     "maintenance_age_years": 4.454408352548927,
+     "maintenance_age_basis": "measured",
+     "maintenance_escalator": 1.3517218833570666,
+     "growth_capex": 0.0,
+     "wc_charge": 212.1500263958048,
+     "dna_addback": 1703.218774579439,
+     "net_capital_charge": 811.2093415599998,
+     "implied_cycle_years": null,
+     "one_over_g": 14.285714285714272,
+     "payout_of_nopat": 0.7930123683574074,
+     "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
+    },
+    "fcff_T": 3325.464273418928,
+    "tv": 29342.403286502555,
+    "pv_tv": 10613.98287279431,
+    "wacc_terminal": 0.1833330573146555,
+    "ke_terminal": 0.2219427898875876,
+    "rf_star_terminal": 0.125,
     "kd_terminal": 0.1391376109978745
    },
    "bridge": {
-    "pv_explicit": 4153.598938879945,
-    "pv_tv": 7206.942015116295,
-    "ev": 11360.54095399624,
-    "tv_pct_ev": 0.6343837009434965,
+    "pv_explicit": 4158.435093527973,
+    "pv_tv": 10613.98287279431,
+    "ev": 14772.417966322282,
+    "tv_pct_ev": 0.7185000381787024,
     "cash": 4606.522,
     "debt": 14639.005000000001,
     "net_debt": 10032.483,
     "fvoci": 1382.886,
     "inv_prop": 2155.061,
-    "equity": 4866.00495399624,
+    "equity": 8277.881966322282,
     "shares": 1986578999,
-    "per_share": 2.449439441595668
+    "per_share": 4.166902987743848
    }
   },
   "bear": {
@@ -1272,8 +1381,8 @@
      "wc": 2501.0662607719833,
      "dwc": 219.82394542692145,
      "fcff": 54.35663689486955,
-     "df": 0.6419329221718455,
-     "pv": 34.893314761357566,
+     "df": 0.6421970479585323,
+     "pv": 34.907671750839064,
      "cpi_cum": 1.2597
     },
     {
@@ -1318,8 +1427,8 @@
      "wc": 2690.7344672083345,
      "dwc": 189.66820643635128,
      "fcff": 81.37224777228403,
-     "df": 0.5246960916909693,
-     "pv": 42.69570037822661,
+     "df": 0.5253495163844073,
+     "pv": 42.748871014281576,
      "cpi_cum": 1.3636252500000001
     },
     {
@@ -1364,8 +1473,8 @@
      "wc": 2872.6657917831867,
      "dwc": 181.93132457485217,
      "fcff": 364.0640964640761,
-     "df": 0.4330199306676627,
-     "pv": 157.6470098094595,
+     "df": 0.4341067523077859,
+     "pv": 158.04268254788855,
      "cpi_cum": 1.4624880806250002
     },
     {
@@ -1410,8 +1519,8 @@
      "wc": 3056.069679857385,
      "dwc": 183.40388807419822,
      "fcff": 1237.7321457671896,
-     "df": 0.3602111854796984,
-     "pv": 445.8449635331302,
+     "df": 0.3617284776968736,
+     "pv": 447.7229648848504,
      "cpi_cum": 1.5648622462687503
     }
    ],
@@ -1424,28 +1533,80 @@
     "base_ebit": 3650.6249397754345,
     "ebit_T": 3650.6249397754345,
     "nopat_T": 2829.234328325962,
+    "anna_dep": 0.0,
+    "anna_dep_in_last": 0.0,
+    "dna_T": 1534.5324267922201,
+    "wc_T": 3269.9945574474023,
+    "maintenance_T": 2074.2610620160694,
+    "wc_charge_T": 228.89961902131816,
+    "floor_T": 14422.626616334552,
+    "payout_T": 0.7283264074135705,
+    "growth_capex_T": 0.0,
+    "inc_cap": 42784.43110157481,
+    "g_real": 0.0,
     "reinv_rate": 0.38888888888888895,
-    "fcff_T": 1728.9765339769765,
-    "tv": 14920.353245755794,
-    "pv_tv": 5374.47813042956,
-    "wacc_terminal": 0.18588040212578727,
-    "ke_terminal": 0.2257927898875875,
-    "rf_star_terminal": 0.1288499999999999,
+    "fcff_retired": 1728.9765339769765,
+    "tv_retired": 15255.712454457864,
+    "terminal_record": {
+     "rule": "R-TERM-01",
+     "inputs": {
+      "nopat": 2644.144232080338,
+      "wacc": 0.1833330573146555,
+      "inflation": 0.07,
+      "real_growth": 0.0,
+      "dna_book": 1434.142454946,
+      "ic_replacement": null,
+      "useful_life_years": 22.070192666196995,
+      "useful_life_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 \u2014 read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
+      "average_age_years": 4.454408352548927,
+      "average_age_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 \u2014 read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
+      "maintenance_basis": "book_dna_escalated",
+      "maintenance_capex": null,
+      "working_capital": 3056.069679857385,
+      "incremental_capital_per_unit_growth": 42784.43110157481,
+      "floor_exemption": "",
+      "floor_exemption_disclosure": ""
+     },
+     "fcff": 1925.8000692343867,
+     "tv": 18181.862581892343,
+     "floor": 14422.626616334552,
+     "tv_vs_floor": 0.26064849805514734,
+     "nominal_growth": 0.07000000000000006,
+     "real_growth": 0.0,
+     "maintenance": 1938.561740201934,
+     "maintenance_age_years": 4.454408352548927,
+     "maintenance_age_basis": "measured",
+     "maintenance_escalator": 1.3517218833570666,
+     "growth_capex": 0.0,
+     "wc_charge": 213.92487759001696,
+     "dna_addback": 1434.142454946,
+     "net_capital_charge": 718.3441628459511,
+     "implied_cycle_years": null,
+     "one_over_g": 14.285714285714272,
+     "payout_of_nopat": 0.7283264074135705,
+     "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
+    },
+    "fcff_T": 2060.606074080794,
+    "tv": 18181.862581892343,
+    "pv_tv": 6576.897473441665,
+    "wacc_terminal": 0.1833330573146555,
+    "ke_terminal": 0.2219427898875876,
+    "rf_star_terminal": 0.125,
     "kd_terminal": 0.1391376109978745
    },
    "bridge": {
-    "pv_explicit": 1719.9924272092517,
-    "pv_tv": 5374.47813042956,
-    "ev": 7094.470557638811,
-    "tv_pct_ev": 0.7575587334903676,
+    "pv_explicit": 1722.3336289249376,
+    "pv_tv": 6576.897473441665,
+    "ev": 8299.231102366602,
+    "tv_pct_ev": 0.7924706990706889,
     "cash": 4606.522,
     "debt": 14639.005000000001,
     "net_debt": 10032.483,
     "fvoci": 1382.886,
     "inv_prop": 2155.061,
-    "equity": 599.9345576388114,
+    "equity": 1804.6951023666024,
     "shares": 1986578999,
-    "per_share": 0.30199380842181717
+    "per_share": 0.9084436628369906
    }
   },
   "halt": {
@@ -1538,8 +1699,8 @@
      "wc": 2501.0662607719833,
      "dwc": 219.82394542692145,
      "fcff": 3874.746972069848,
-     "df": 0.6419329221718455,
-     "pv": 2487.3276464573078,
+     "df": 0.6421970479585323,
+     "pv": 2488.351067049518,
      "cpi_cum": 1.2597
     },
     {
@@ -1584,8 +1745,8 @@
      "wc": 2690.7344672083345,
      "dwc": 189.66820643635128,
      "fcff": 4123.505593845926,
-     "df": 0.5246960916909693,
-     "pv": 2163.587269156807,
+     "df": 0.5253495163844073,
+     "pv": 2166.281669535356,
      "cpi_cum": 1.3636252500000001
     },
     {
@@ -1630,8 +1791,8 @@
      "wc": 2872.6657917831867,
      "dwc": 181.93132457485217,
      "fcff": 4322.4528990785275,
-     "df": 0.4330199306676627,
-     "pv": 1871.7082546732215,
+     "df": 0.4341067523077859,
+     "pv": 1876.4059900223533,
      "cpi_cum": 1.4624880806250002
     },
     {
@@ -1676,8 +1837,8 @@
      "wc": 3056.069679857385,
      "dwc": 183.40388807419822,
      "fcff": 4503.050400221796,
-     "df": 0.3602111854796984,
-     "pv": 1622.0491229387233,
+     "df": 0.3617284776968736,
+     "pv": 1628.8815662645277,
      "cpi_cum": 1.5648622462687503
     }
    ],
@@ -1690,28 +1851,80 @@
     "base_ebit": 5387.284114767242,
     "ebit_T": 5387.284114767242,
     "nopat_T": 4175.1451889446125,
+    "anna_dep": 0.0,
+    "anna_dep_in_last": 0.0,
+    "dna_T": 1018.9482028000001,
+    "wc_T": 3269.9945574474023,
+    "maintenance_T": 1377.3345837321144,
+    "wc_charge_T": 228.89961902131816,
+    "floor_T": 21283.69485915415,
+    "payout_T": 0.859337586269213,
+    "growth_capex_T": 0.0,
+    "inc_cap": 28409.38283063925,
+    "g_real": 0.0,
     "reinv_rate": 0.38888888888888895,
-    "fcff_T": 2551.4776154661517,
-    "tv": 22018.197802735816,
-    "pv_tv": 7931.201132649959,
-    "wacc_terminal": 0.18588040212578727,
-    "ke_terminal": 0.2257927898875875,
-    "rf_star_terminal": 0.1288499999999999,
+    "fcff_retired": 2551.4776154661517,
+    "tv_retired": 22513.09261323714,
+    "terminal_record": {
+     "rule": "R-TERM-01",
+     "inputs": {
+      "nopat": 3902.004849480946,
+      "wacc": 0.1833330573146555,
+      "inflation": 0.07,
+      "real_growth": 0.0,
+      "dna_book": 952.28804,
+      "ic_replacement": null,
+      "useful_life_years": 22.070192666196995,
+      "useful_life_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 \u2014 read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
+      "average_age_years": 4.454408352548927,
+      "average_age_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 \u2014 read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
+      "maintenance_basis": "book_dna_escalated",
+      "maintenance_capex": null,
+      "working_capital": 3056.069679857385,
+      "incremental_capital_per_unit_growth": 28409.38283063925,
+      "floor_exemption": "",
+      "floor_exemption_disclosure": ""
+     },
+     "fcff": 3353.13942896372,
+     "tv": 31657.658180260034,
+     "floor": 21283.69485915415,
+     "tv_vs_floor": 0.4874136464441945,
+     "nominal_growth": 0.07000000000000006,
+     "real_growth": 0.0,
+     "maintenance": 1287.2285829272096,
+     "maintenance_age_years": 4.454408352548927,
+     "maintenance_age_basis": "measured",
+     "maintenance_escalator": 1.3517218833570666,
+     "growth_capex": 0.0,
+     "wc_charge": 213.92487759001696,
+     "dna_addback": 952.28804,
+     "net_capital_charge": 548.8654205172264,
+     "implied_cycle_years": null,
+     "one_over_g": 14.285714285714272,
+     "payout_of_nopat": 0.859337586269213,
+     "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
+    },
+    "fcff_T": 3587.859188991181,
+    "tv": 31657.658180260034,
+    "pv_tv": 11451.47650099344,
+    "wacc_terminal": 0.1833330573146555,
+    "ke_terminal": 0.2219427898875876,
+    "rf_star_terminal": 0.125,
     "kd_terminal": 0.1391376109978745
    },
    "bridge": {
-    "pv_explicit": 10997.472870706913,
-    "pv_tv": 7931.201132649959,
-    "ev": 18928.67400335687,
-    "tv_pct_ev": 0.4190045816861453,
+    "pv_explicit": 11012.720870352608,
+    "pv_tv": 11451.47650099344,
+    "ev": 22464.197371346047,
+    "tv_pct_ev": 0.5097656645235962,
     "cash": 4606.522,
     "debt": 14639.005000000001,
     "net_debt": 10032.483,
     "fvoci": 1382.886,
     "inv_prop": 2155.061,
-    "equity": 12434.138003356871,
+    "equity": 15969.661371346047,
     "shares": 1986578999,
-    "per_share": 6.259070497380644
+    "per_share": 8.038774888582243
    }
   }
  },
@@ -1763,6 +1976,7 @@
   "wacc_rating": 0.268839782805404,
   "wacc_cds": 0.25757854106089717,
   "wacc_published": 0.25757854106089717,
+  "wacc_rating_less_cds_bp": 112.61241744506822,
   "warnings_by_year": {
    "FY2026/27": [],
    "FY2027/28": [],
@@ -1782,35 +1996,35 @@
  "spot_date": "2026-09-03",
  "central": null,
  "fair": {
-  "bear": 0.30199380842181717,
+  "bear": 0.9084436628369906,
   "base": null,
-  "full": 6.259070497380644
+  "full": 8.038774888582243
  },
  "central_two_sided": {
   "branches": [
    {
     "label": "Cash-flow lens, capital programme carried through",
-    "value": 2.310891559889441,
+    "value": 4.0395808164915605,
     "condition": "the ANNA programme is completed and commissioned as the company is currently doing"
    },
    {
     "label": "Cash-flow lens, capital programme stopped",
-    "value": 6.259070497380644,
+    "value": 8.038774888582243,
     "condition": "the programme is halted and the remaining spend is not committed"
    }
   ],
   "question": "Is the ANNA capital programme carried through, or stopped?",
   "decides": "Whether the plant, once built, earns a return above the cost of the capital sunk into it. On the disclosed bank-approved cost and the derived nameplate it does not, which is why stopping is worth more than finishing.",
-  "gap_per_share": 3.948178937491203,
+  "gap_per_share": 3.999194072090682,
   "why_not_averaged": "the judgement is binary and its two answers straddle zero, so an average describes a half-built plant \u2014 a world nobody is proposing and the company is not in. Averaging would also hide the finding: that on the disclosed bank-approved cost and the derived nameplate, the programme does not earn the capital sunk into it, which is why stopping is worth more than finishing.",
   "both_sides_vs_spot": [
    {
     "label": "carried through",
-    "pct": -83.96327855732518
+    "pct": -71.9668229251106
    },
    {
     "label": "stopped",
-    "pct": -56.56439627077972
+    "pct": -44.21391472184426
    }
   ]
  },
@@ -1876,10 +2090,10 @@
   "class": "petrochemical",
   "primary": {
    "kind": "dcf",
-   "value": 2.310891559889441,
+   "value": 4.0395808164915605,
    "range": {
-    "low": 0.30199380842181717,
-    "high": 2.449439441595668
+    "low": 0.9084436628369906,
+    "high": 4.166902987743848
    },
    "range_note": "the cash-flow lens across the dollar export price, from the flat-at-opening path the base case holds to the higher path the upside case holds, with the programme carried through in both and the macro path held still",
    "range_basis": {
@@ -1890,7 +2104,7 @@
     "macro_held": true,
     "evidence": "the base case holds the price FLAT in nominal dollars at the opening level, because no forecast of a traded commodity price is defensible and that is the convention this house applies to the same class of input elsewhere; the upside case holds it nearer the CME FOB Egypt settlement of 7 August 2026. Both are levels the market has actually printed, not a chosen percentage band, and the currency path, the cost of capital and terminal growth are held at the house macro path across both."
    },
-   "note": "the cash-flow lens on the company's own tonnes, dollar prices and disclosed capital programme, discounted on the glide. THE CONTESTED JUDGEMENT IS BINARY AND IT STRADDLES ZERO: carried through the lens reads 2.31, stopped it reads 6.26, and the two are published side by side and never averaged."
+   "note": "the cash-flow lens on the company's own tonnes, dollar prices and disclosed capital programme, discounted on the glide. THE CONTESTED JUDGEMENT IS BINARY AND IT STRADDLES ZERO: carried through the lens reads 4.04, stopped it reads 8.04, and the two are published side by side and never averaged."
   },
   "cross_checks": [
    {
@@ -1920,8 +2134,8 @@
     "normalised": 0.2,
     "book": 0.15
    },
-   "blend_value": 5.095373540542885,
-   "why": "the weights were typed and had never cleared an out-of-sample test, and here the blend did something worse than average: it mixed a negative cash-flow read with three positive ones and published a positive number, so a reader saw EGP 5.10 and never learned that the study's own primary lens was below zero."
+   "blend_value": 5.873283706013839,
+   "why": "the weights were typed and had never cleared an out-of-sample test, and here the blend did something worse than average: it mixed a negative cash-flow read with three positive ones and published a positive number, so a reader saw EGP 5.87 and never learned that the study's own primary lens was below zero."
   },
   "diagnostics": {
    "normalised_earnings": 4.289630624386951,
@@ -1938,7 +2152,7 @@
   "lines": [
    {
     "label": "Enterprise value",
-    "value": 11085.304641842715
+    "value": 14519.482414805407
    },
    {
     "label": "plus cash, 31 March 2026",
@@ -1957,9 +2171,9 @@
     "value": 2155.061
    }
   ],
-  "equity_value": 4590.768641842715,
+  "equity_value": 8024.946414805407,
   "shares_mn": 1986.578999,
-  "per_share": 2.310891559889441,
+  "per_share": 4.0395808164915605,
   "cash": {
    "treatment": "added_at_face",
    "weights_basis": "gross"

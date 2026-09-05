@@ -19,23 +19,23 @@
    "name": "terminal built through the sanctioned module, both stages, on a life DERIVED by identity from three notes read by OCR",
    "rule": "R-TERM-01",
    "before": 1.8388,
-   "after": 1.8523,
-   "why": "both stages charged reinvestment as growth over the return on capital, which is arithmetically the same as rebuilding the whole capital base every 1/g years — fifty in stage one and sixty-seven in stage two, both facts about the dirham's peg to the dollar rather than about a chilled-water plant",
+   "after": 1.83533,
+   "why": "both stages charged reinvestment as growth over the return on capital, which is arithmetically the same as rebuilding the whole capital base every 1/g years — fifty in stage one and sixty-seven in stage two, both facts about the dirham's peg to the dollar rather than about a chilled-water plant THIS LEVER READ 1.8523 UNTIL 4 SEPTEMBER 2026 AND WAS WRONG: both stages were handed a profit figure, a depreciation charge and a working-capital balance ALREADY GROWN by (1+g), which the construction grows again, overstating each stage by exactly (1+g). Corrected, the terminal rebuild takes the answer DOWN from 1.8388 rather than up.",
    "evidence": "the FY2025 audited statements were fetched from the company's own investor-relations page and read by OCR off the rendered pixels, the property note rotated because it is printed landscape; the extraction foots four ways. Notes 5, 6 and 7 give class ranges and no weighting, so gross cost over the year's own charge supplies one: property 28.40 years, right-of-use 4.22, intangibles a disclosed 30, blended 28.10, cross-checked at 27.88 on FY2024. Terminal value 25,030 against a retired 24,650",
-   "move": 0.007341744616053969
+   "move": -0.0018871002827931527
   },
   {
    "name": "terminal growth stored as real rates on the house UAE path",
    "rule": "R-MACRO-01",
-   "before": 1.8523,
-   "after": 1.8523,
+   "before": 1.83533,
+   "after": 1.83533,
    "why": "the two stages carried typed nominals of 2.5% and 1.5% and this study committed no macro record, so nothing held them to the house path",
    "evidence": "THIS LEVER MOVES NO NUMBER, and the reason is the finding: this company's tariff is regulated and NOT indexed, so nominal revenue growth IS volume growth and the typed rates reproduce exactly as +0.49% and -0.49% real on the house 2.0% inflation. What it buys is a reader who can see that stage two assumes the business shrinks in real terms for ever — which the study describes as 'about zero real tariff growth' without ever naming the rate",
    "move": 0.0
   }
  ],
- "value": 1.8523,
- "cumulative_move": 0.004925810252869978,
+ "value": 1.83533,
+ "cumulative_move": -0.004280900863035231,
  "rules": {
   "R-GAP-01": {
    "levers": [
@@ -50,15 +50,15 @@
     "terminal built through the sanctioned module, both stages, on a life DERIVED by identity from three notes read by OCR"
    ],
    "first_before": 1.8388,
-   "last_after": 1.8523,
-   "move": 0.007341744616053969
+   "last_after": 1.83533,
+   "move": -0.0018871002827931527
   },
   "R-MACRO-01": {
    "levers": [
     "terminal growth stored as real rates on the house UAE path"
    ],
-   "first_before": 1.8523,
-   "last_after": 1.8523,
+   "first_before": 1.83533,
+   "last_after": 1.83533,
    "move": 0.0
   }
  },

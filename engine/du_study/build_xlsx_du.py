@@ -930,14 +930,14 @@ wf(17, 'Discount factor', lambda i: (f'=1/(1+{CD[i]}16)' if i == 0
 wf(18, 'Present value of FCFF', lambda i: f'={CD[i]}15*{CD[i]}17', F['pv'], bd=True)
 
 put(ws, 'A20', 'TERMINAL VALUE, BRIDGE AND THE ANCHOR ROLL', bold=True, fmt=None)
-nopat_grown = F['nopat'][-1] * (1 + TRI['nominal_growth'])
+nopat_last = F['nopat'][-1]   # the terminal is built on the LAST EXPLICIT YEAR
 # THE TERMINAL WATERFALL IS BUILT IN A BLOCK OF ITS OWN AT ROWS 70-77 AND SUMMARISED HERE.
 # Rows 21-32 keep their positions deliberately: a dozen formulas on five other sheets name
 # C24, C26, C27, C28, C29, C30, C32, C40, C50, C54 and C62 by address, and inserting four
 # rows into this block to hold the waterfall would move every one of them silently [L-300].
 tv_block = [
-    ('Terminal-year operating profit after tax, grown one year (AED mn)',
-     '=F10*(1+C24)', nopat_grown, NUM0),
+    ('FY2030E operating profit after tax — the perpetuity grows this once (AED mn)',
+     '=F10', nopat_last, NUM0),
     ('Terminal free cash flow — built line by line at rows 70-77 (AED mn)', '=C77',
      TRO['fcff'], NUM0),
     ('Terminal free cash flow as a share of terminal profit', '=C22/C21',
@@ -1027,9 +1027,9 @@ _tw = [('Terminal inflation — UAE house macro path', f'={a("pit")}', TRI['infl
        ('Weighted asset life, derived from notes 6 and 8 (years)', f'={a("life")}',
         IN['asset_life_years'], NUM1),
        ('Terminal operating profit after tax (from row 21)', '=C21', TRI['nopat'], NUM0),
-       ('Plus owned depreciation and amortisation, grown one year — the right-of-use '
+       ('Plus owned depreciation and amortisation — the right-of-use '
         'charge is neither added back nor charged, which is a lease renewed at its own '
-        'current cost', f'={TRI["dna_book"] / (1 + TRI["nominal_growth"]):.6f}*(1+C24)',
+        'current cost', f'={TRI["dna_book"]:.6f}',
         TRI['dna_book'], NUM0),
        ('Less capital maintenance at replacement cost — that charge escalated over half '
         'the derived life', '=-C74*(1+C70)^(C72/2)', -TRO['maintenance'], NUM0),

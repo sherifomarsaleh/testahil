@@ -72,11 +72,38 @@ def survey():
         files += 1
         if not isinstance(d, dict):
             continue
+        # A RATCHET STORES ITS ENTRIES IN FOUR SHAPES AND THIS GATE READ ONE OF THEM
+        # [WIDENED 05-Sep-2026]. The first draft matched only a list item equal to a
+        # ticker, so it was blind to: a group stored as a DICT keyed by ticker (which is
+        # how terminal_outstanding and lens_vocabulary_outstanding store theirs), a list
+        # of FILE PATHS (band_outstanding.documents), and a dict keyed by path
+        # (edition_outstanding). Measured on the exemplar the night this was found:
+        # ADNOCLS sits in FIVE ratchets and the gate reported ONE — and the rule's own
+        # adoption note records it as outstanding on EIGHT when it was written, so this
+        # has been under-reporting since the day it shipped.
+        #
+        # THE GATE WHOSE WHOLE PURPOSE IS TO NOTICE THE EXEMPLAR ACQUIRING DEBT COULD NOT
+        # SEE FOUR FIFTHS OF IT. That is [R-ENF-04] in the place it costs most, because
+        # the exemplar is how this house's standards propagate: a debt on it is a debt
+        # every study written afterwards inherits without anybody deciding to take it on.
         for key, val in d.items():
-            if not isinstance(val, list):
+            if isinstance(val, list):
+                names = [str(x) for x in val if not isinstance(x, (list, dict))]
+            elif isinstance(val, dict):
+                names = [str(k) for k in val]
+            else:
+                continue
+            if not names:
                 continue
             for tk in R.REFERENCE_SET:
-                if any(str(x).upper() == tk for x in val):
+                # the bare ticker, or a path naming that study's own directory, or a
+                # document whose filename starts with it — a path is how three ratchets
+                # record a document rather than a name
+                needle = '%s_study/' % tk.lower()
+                if any(x.upper() == tk
+                       or needle in x.replace(os.sep, '/').lower()
+                       or os.path.basename(x).upper().startswith(tk + '_')
+                       for x in names):
                     entries.append('%s:%s:%s' % (tk, os.path.basename(f), key))
     return sorted(set(entries)), files, on_disk
 

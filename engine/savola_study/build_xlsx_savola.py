@@ -907,9 +907,9 @@ for key, label, fml, xp, fmt in [
         ('pit', 'Terminal inflation — Saudi house macro path', None, TRI['inflation'], PCT),
         ('g', 'Terminal growth = (1+inflation)(1+real growth) − 1', None,
          TRI['nominal_growth'], PCT),
-        ('nopatT', 'Terminal operating profit after tax (year five grown one year)',
+        ('nopatT', 'Year-five operating profit after tax (the perpetuity grows it once)',
          None, None, NUM0),
-        ('dnaT', 'Plus owned and intangible depreciation, grown one year (the right-of-use '
+        ('dnaT', 'Plus owned and intangible depreciation (the right-of-use '
          'charge cancels out of this model\'s own free cash flow and is not added back '
          'here)', None, TRI['dna_book'], NUM0),
         ('maintT', 'Less capital maintenance at replacement cost — that charge escalated '
@@ -933,12 +933,12 @@ for key, label, fml, xp, fmt in [
 putf(ws, f"C{TB['greal']}", f"={a('greal')}", IN['g_term_real'], PCT)
 putf(ws, f"C{TB['pit']}", f"={a('pit')}", TRI['inflation'], PCT)
 putf(ws, f"C{TB['g']}", f"=(1+C{TB['pit']})*(1+C{TB['greal']})-1", TRI['nominal_growth'], PCT)
-putf(ws, f"C{TB['nopatT']}", f"=F{DC['nopat']}*(1+C{TB['g']})", TRI['nopat'], NUM0)
-putf(ws, f"C{TB['dnaT']}", f"={DCF['dna_oi_last']}*(1+C{TB['g']})", TRI['dna_book'], NUM0)
+putf(ws, f"C{TB['nopatT']}", f"=F{DC['nopat']}", TRI['nopat'], NUM0)
+putf(ws, f"C{TB['dnaT']}", f"={DCF['dna_oi_last']}", TRI['dna_book'], NUM0)
 putf(ws, f"C{TB['maintT']}", f"=-C{TB['dnaT']}*(1+C{TB['pit']})^({a('life')}/2)",
      -TRO['maintenance'], NUM0)
 putf(ws, f"C{TB['gcapT']}", f"=-C{TB['greal']}*{a('inccap')}", -TRO['growth_capex'], NUM0)
-putf(ws, f"C{TB['wcT']}", f"=-C{TB['pit']}*{DCF['wc_lease_last']:.6f}*(1+C{TB['g']})",
+putf(ws, f"C{TB['wcT']}", f"=-C{TB['pit']}*{DCF['wc_lease_last']:.6f}",
      -TRO['wc_charge'], NUM0)
 putf(ws, f"C{TB['fcffT']}", f"=SUM(C{TB['nopatT']}:C{TB['wcT']})", TRO['fcff'], NUM0,
      bold=True)

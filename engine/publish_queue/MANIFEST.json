@@ -28,25 +28,25 @@
   },
   {
    "ticker": "EGCH",
-   "report": "engine/egch_study/EGCH_Valuation_Study_03-09-2026.pdf",
-   "workbook": "engine/egch_study/EGCH_Valuation_Model_03092026.xlsx",
+   "report": "engine/egch_study/EGCH_Valuation_Study_05-09-2026.pdf",
+   "workbook": "engine/egch_study/EGCH_Valuation_Model_05092026.xlsx",
    "fair": {
     "base": null,
-    "bear": 0.30199380842181717,
+    "bear": 0.9084436628369906,
     "branches": [
      {
       "label": "Cash-flow lens, capital programme carried through",
-      "value": 2.3109
+      "value": 4.0395808164915605
      },
      {
       "label": "Cash-flow lens, capital programme stopped",
-      "value": 6.259070497380644
+      "value": 8.038774888582243
      }
     ],
-    "full": 6.259070497380644
+    "full": 8.038774888582243
    },
-   "report_bytes": 1669664,
-   "workbook_bytes": 47180
+   "report_bytes": 1676380,
+   "workbook_bytes": 49574
   },
   {
    "ticker": "PHDC",

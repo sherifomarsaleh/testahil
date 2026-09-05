@@ -989,14 +989,18 @@ def dcf(fcff, nopat, wacc_e, wacc_t, g, dna_oi_last, wc_lease_last, inc_cap,
     """
     dfs = [(1 + wacc_e) ** -(i + 1) for i in range(5)]
     pv_exp = sum(f * d for f, d in zip(fcff, dfs))
+    # EVERY FIGURE HANDED IN IS THE LAST EXPLICIT YEAR'S. The module grows the free cash flow
+    # once itself — tv = fcff (1+g)/(w-g) values the terminal at the END of that year, which is
+    # where it is discounted — so figures already grown by (1+g) overstate it by exactly (1+g).
+    # They were, until 4 September 2026.
     t = TERMVAL.build(TERMVAL.TerminalInputs(
-        nopat=nopat[-1] * (1 + g), wacc=wacc_t, inflation=PI_TERM,
+        nopat=nopat[-1], wacc=wacc_t, inflation=PI_TERM,
         real_growth=(1.0 + g) / (1.0 + PI_TERM) - 1.0,
-        dna_book=dna_oi_last * (1 + g),
+        dna_book=dna_oi_last,
         useful_life_years=V['asset_life_years'] if life is None else life,
         useful_life_source=INP['asset_life_years']['source'],
         maintenance_basis='book_dna_escalated',
-        working_capital=wc_lease_last * (1 + g),
+        working_capital=wc_lease_last,
         incremental_capital_per_unit_growth=inc_cap))
     return pv_exp, t.tv, t.tv * dfs[-1], dfs, t.fcff, t
 
@@ -1451,9 +1455,9 @@ OUT = dict(
                         "36.9 — both facts about the riyal's peg to the dollar rather than "
                         "about a supermarket, a flour mill or a delivery van. Note 6's own "
                         "columns say the depreciable base turns over in 18.03."),
-        inputs=dict(nopat=NOPAT[-1] * (1 + V['g_term']), wacc=wacc_term, inflation=PI_TERM,
+        inputs=dict(nopat=NOPAT[-1], wacc=wacc_term, inflation=PI_TERM,
                     real_growth=V['g_term_real'], nominal_growth=V['g_term'],
-                    dna_book=DNA_OI[-1] * (1 + V['g_term']),
+                    dna_book=DNA_OI[-1],
                     useful_life_years=V['asset_life_years'],
                     useful_life_source=INP['asset_life_years']['source'],
                     maintenance_basis='book_dna_escalated',
@@ -1465,7 +1469,7 @@ OUT = dict(
                         "spending would be a construction of ours rather than a figure the "
                         "company discloses. Escalating the model's own book depreciation "
                         "over half the derived life uses only figures that exist."),
-                    working_capital=WC_LEASE_T * (1 + V['g_term']),
+                    working_capital=WC_LEASE_T,
                     working_capital_basis=(
                         "NET WORKING CAPITAL PLUS THE LEASE BOOK, named rather than buried. "
                         "The explicit window charges the growth of both as cash out — DWC "

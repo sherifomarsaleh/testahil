@@ -56,6 +56,25 @@ REFUSE = [
     ('neither a measured age nor a life to halve', dict(useful_life_years=None)),
 ]
 
+# THE CONVENTION ITSELF, asserted rather than described. `nopat` is the LAST EXPLICIT
+# YEAR's figure and the module grows the free cash flow once; six of eight callers read the
+# old field comment ("terminal-year NOPAT") the other way and overstated their terminals by
+# exactly (1+g). A comment cannot stop that recurring. This can.
+def convention():
+    g_real, pi = 0.0, 0.02
+    a = TV.build(TV.TerminalInputs(**GOOD))
+    grown = dict(GOOD)
+    f = (1.0 + pi) * (1.0 + g_real)
+    for k in ('nopat', 'dna_book', 'working_capital'):
+        grown[k] = GOOD[k] * f
+    b = TV.build(TV.TerminalInputs(**grown))
+    ratio = b.tv / a.tv
+    ok = abs(ratio - f) < 1e-9
+    print('%s     handing in figures already grown by (1+g) overstates the terminal by '
+          'exactly (1+g): %.6f vs %.6f' % ('PASS' if ok else 'FAIL', ratio, f))
+    return 0 if ok else 1
+
+
 CLEAN = [
     ('the base case', {}),
     ('a MEASURED age, sourced — the re-pointed branch',
@@ -111,7 +130,10 @@ def main():
         print('PASS     and the record says which age it used, so an assumption is '
               'distinguishable from a measurement')
 
-    n = len(REFUSE) + len(CLEAN) + 2
+    print()
+    bad += convention()
+
+    n = len(REFUSE) + len(CLEAN) + 3
     print('\n%d/%d cases behaved as specified' % (n - bad, n))
     return 1 if bad else 0
 

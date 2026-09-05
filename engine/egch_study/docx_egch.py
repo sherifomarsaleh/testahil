@@ -1,4 +1,4 @@
-"""EGCH_Valuation_Study_03-09-2026.docx — the MODEL STUDY structure.
+"""EGCH_Valuation_Study_05-09-2026.docx — the MODEL STUDY structure.
 
 Sixteen sections in the model order. No financial numeral is typed in this file: every
 number comes from study_numbers.json, lenses.json, experts.json, strike_result.json,
@@ -41,7 +41,7 @@ M3 = ST['horizons']['3M']; M1 = ST['horizons']['1M']
 masthead()
 import datetime as _dt
 # ONE PLACE THE EDITION IS NAMED, read by the masthead and by the save.
-EDITION_FILE = 'EGCH_Valuation_Study_03-09-2026.docx'
+EDITION_FILE = 'EGCH_Valuation_Study_05-09-2026.docx'
 
 P("EGYPTIAN CHEMICAL INDUSTRIES (KIMA)", size=21, bold=True, space_after=1)
 P("Egyptian Exchange: EGCH  ·  Aswan  ·  Nitrogen fertilizers and industrial chemicals",
@@ -87,14 +87,24 @@ box([("What this is.  ",
       f"assumption drives which gap.")])
 
 # ---------------------------------------------------------------- HEADLINE ---
+_ORDINAL = ('the largest', 'the second largest', 'the third largest',
+            'the fourth largest', 'the fifth largest', 'the sixth largest',
+            'the seventh largest', 'the eighth largest', 'the ninth largest',
+            'the tenth largest')
+
 H1("Headline")
 P(f"Four lenses put this company between EGP {E2(LN['synthesis']['low'])} and EGP "
   f"{E2(LN['synthesis']['high'])} a share. It trades at EGP {E2(SPOT)}. The gap is not a "
   f"rounding difference between the lenses: it is the whole disagreement. The multiple "
   f"lens, on the range Egyptian fertilizer producers actually trade at, centres at EGP "
   f"{E2(LN['relative']['value_per_share'])} — above the traded price — and it reaches that "
-  f"answer only by never asking what the capital programme does to cash. Every lens that "
-  f"does ask lands below EGP {E2(LN['normalised']['value_per_share'])}.", bold=True)
+  f"answer only by never asking what the capital programme does to cash. THE TWO LENSES "
+  f"THAT DO ASK SPLIT ON THE ANSWER, and the split is the study: carrying the programme "
+  f"through gives EGP {E2(LN['cashflow']['carry_through'])} and stopping it gives EGP "
+  f"{E2(LN['cashflow']['stopped'])} — a difference of EGP "
+  f"{E2(LN['cashflow']['stopped'] - LN['cashflow']['carry_through'])} a share that is what "
+  f"the capital costs its owners. Both sit below the traded price, and so does normalised "
+  f"earnings at EGP {E2(LN['normalised']['value_per_share'])}.", bold=True)
 P(f"Three things push in the same direction. An EGP {E1(V('anna_cost_egp')/1000 + V('anna_cost_usd')*V('usd_egp_spot')/1000)} "
   f"billion capital programme is running two years behind its own plan. The debt book is "
   f"{PC(1 - WC['pct_debt_local'])} dollar-denominated against an earnings stream that must "
@@ -416,15 +426,30 @@ rows = [["Line", "EGP million"],
         ["Inland freight", E(-NM['freight'])],
         ["Other selling and administration", E(-(NM['other_selling'] + NM['admin']))],
         ["MID-CYCLE EBITDA", E(NM['ebitda'])],
-        ["Depreciation and amortisation", E(-NM['dep'])],
+        ["Less depreciation and amortisation", E(-NM['dep'])],
+        ["MID-CYCLE OPERATING PROFIT", E(NM['ebitda'] - NM['dep'])],
+        # THE TAX LINE WAS MISSING AND THE COLUMN DID NOT ADD UP FOR A READER. Subtracting
+        # depreciation from EBITDA gives operating profit, not profit AFTER tax, so a reader
+        # following this table reached 1,938 against a printed 1,502 [R-ENF-01 EXTENDED].
+        [f"Less tax at {PC(DR['tax_rate'])}", E(NM['nopat'] - (NM['ebitda'] - NM['dep']))],
         ["MID-CYCLE OPERATING PROFIT AFTER TAX", E(NM['nopat'])],
-        ["At ten times — enterprise value", E(NM['ev'])],
-        ["Value per share at ten times (EGP)", E2(NM['value_per_share'])],
-        ["At eight times (EGP)", E2(NM['value_low'])],
-        ["At twelve times (EGP)", E2(NM['value_high'])]]
-table(rows, [4.4, 2.5], size=8.9, band_rows={7, 9, 11})
+        [f"At {E1(NM['mult'])} times — enterprise value", E(NM['ev'])],
+        # AND THE BRIDGE FROM ENTERPRISE VALUE TO A SHARE PRICE WAS NOT PRINTED EITHER: a
+        # reader dividing 15,016 by 1,987 million shares reached 7.56 against a printed 4.29.
+        # The three lines that close it are the same three the cash-flow bridge uses.
+        ["Less net debt", E(-BASE['bridge']['net_debt'])],
+        ["Plus listed stakes at market and investment property",
+         E(BASE['bridge']['fvoci'] + BASE['bridge']['inv_prop'])],
+        ["Equity value", E(NM['ev'] - BASE['bridge']['net_debt'] + BASE['bridge']['fvoci'] + BASE['bridge']['inv_prop'])],
+        [f"Divided by shares in issue ({E1(BASE['bridge']['shares'] / 1e6)} million)", ""],
+        [f"Value per share at {E1(NM['mult'])} times (EGP)", E2(NM['value_per_share'])],
+        [f"At {E1(NM['mult_low'])} times (EGP)", E2(NM['value_low'])],
+        [f"At {E1(NM['mult_high'])} times (EGP)", E2(NM['value_high'])]]
+table(rows, [4.4, 2.5], size=8.9, band_rows={7, 9, 11, 15, 17})
 caption("{T}.  A mature single-asset industrial in a high-inflation economy does not "
-        "deserve more than ten times, and the band either side is shown.")
+        "deserve more than ten times, and the band either side is shown. The column is "
+        "printed in full: tax, net debt, the non-operating assets and the share count all "
+        "appear, so a reader adding it up reaches the figure at the bottom.")
 
 H2("1.5  Synthesis — four lenses, one field")
 P(f"The field runs from EGP {E2(LN['synthesis']['low'])} to EGP {E2(LN['synthesis']['high'])} "
@@ -745,7 +770,7 @@ rows = [["Component", "Rating basis", "CDS basis", "Source"],
          # "1.13%" beside two rates in per cent invites a reader to take it as a
          # proportional difference, which it is not; the two framings differ by a factor
          # of twenty here.
-         f"{(WC['wacc_rating'] - WC['wacc_cds']) * 1e4:,.0f} basis points BELOW the "
+         f"{E(WC['wacc_rating_less_cds_bp'])} basis points BELOW the "
          "rating basis, so the "
          "choice is not the conservative one and is not made on that ground; section 1.9 "
          "prices what the other basis is worth"]]
@@ -958,7 +983,7 @@ table(rows, [2.4, 2.25, 2.25], size=8.9, band_rows={6})
 caption("{T}.  The map says where the price may end. It is not a forecast of where it "
         "will end, and the probability in the last row is the share of paths finishing "
         "above the anchor, not a claim about direction. THE ANCHOR IS NOT THE VALUATION "
-        "PRICE: the cone is struck on the price history and the valuation on the latest "
+        "PRICE: the price distribution is struck on the price history and the valuation on the latest "
         "close, and they are a month apart here — two clocks, both dated, never mixed.")
 figure('fig12_dist1m.png', 6.6,
        f"{{F}}.  The shape of the distribution at one month, to {M1['grade_date']}.")
@@ -1121,7 +1146,7 @@ rows.append(["Above the upper quartile",
              f"{E2(M3['pct']['p75'])} to {E2(M3['pct']['p95'])}",
              "The market would be paying more for a business whose sustainable return on "
              f"equity is {PC(LN['book']['roe_sustainable'])} against a cost of equity of "
-             f"{PC(WC['ke_rating'])}, with the capital programme still unfinished."])
+             f"{PC(WC['ke_cds'])}, with the capital programme still unfinished."])
 rows.append(["Above the ninety-fifth percentile", f"over {E2(M3['pct']['p95'])}",
              "One path in twenty. On a free float of about six per cent this can happen "
              "on modest volume, which is a fact about the register rather than about the "
@@ -1165,15 +1190,28 @@ P(f"Maintenance capital expenditure is the driver this study got wrong on its fi
   f"{E2(abs(AL['capex']['house_standard_value'] - AL['baseline']))} a share on its own. "
   f"The replacement-rate framing at {PC(AL['capex']['replacement_rate'])} is published "
   f"beside it as the downside rather than averaged in.")
-P(f"The terminal reinvestment rate is now the largest unsourced input left in the model. "
-  f"It is set by terminal growth over an assumed {PC(DR['roc_terminal'])} return on "
-  f"invested capital, which charges "
-  f"{PC(DR['g_terminal'] / DR['roc_terminal'])} of terminal operating profit after tax "
-  f"back into the business every year for ever — on a plant that has just been rebuilt "
-  f"and needs no further building. A thirty per cent return on capital, which is what a "
-  f"newly completed line earns while it is still filling, is worth EGP "
-  f"{E2(abs(AL_BY['terminal_reinvestment']['delta']))} a share. The conservative reading "
-  f"is kept and the alternative is priced.")
+P(f"The terminal charge for keeping the plant intact is the largest single judgement left "
+  f"in the model, and it is now a measurement rather than an assumption. Earlier editions "
+  f"charged the terminal by reinvesting a share of profit set by growth over an assumed "
+  f"return on capital — a construction that, read as a capital programme, rebuilds the "
+  f"entire asset base every {E1(1 / DR['g_terminal'])} years, which is a fact about the "
+  f"pound rather than about a urea plant. It now charges what replacing the plant costs "
+  f"at today's prices: the book depreciation charge escalated over the average age of the "
+  f"base. THAT AGE IS READ OFF THE ACCOUNTS rather than assumed — accumulated "
+  f"depreciation over the year's own charge is the charge-weighted average age under "
+  f"straight-line depreciation, and it comes to "
+  f"{E2(V('fa_avg_age_years'))} years against the "
+  f"{E2(V('fa_life_implied_years'))}-year replacement cycle the same note implies. This "
+  f"base is a quarter worn rather than half: only EGP "
+  f"{E(V('fa_fully_dep_in_use_FY2425'))} million of it, "
+  f"{PC(V('fa_fully_dep_in_use_FY2425') / (V('fa_cost_gross_FY2425') - V('fa_land_FY2425')))} "
+  f"of the depreciable cost, is fully depreciated and still in production. Where a company "
+  f"discloses too little to measure the age, half the life has to be assumed instead, and "
+  f"on this base that assumption is worth EGP "
+  f"{E2(abs(AL_BY['terminal_asset_age']['delta']))} a share — "
+  f"{_ORDINAL[sorted((abs(a['delta']) for a in AL['alternatives']), reverse=True).index(abs(AL_BY['terminal_asset_age']['delta']))]} "
+  f"of the ten priced alternatives, behind only the gas price and the discount-rate glide, "
+  f"and the reason the measurement was worth making.")
 P(f"The new plant's capacity is derived, not disclosed. No filing states it. It is built "
   f"from the ammonia design plate less the draw of urea at its own plate, converted at "
   f"the nitrate route's ammonia ratio. Every figure that depends on it is flagged as "
@@ -1529,8 +1567,16 @@ box([("Educational analysis.  ", "This document is an independent educational an
       "is not investment advice, not a recommendation, and not an offer or solicitation."),
      ("No rating, no target.  ", "It contains no rating and no price target. It reports a "
       "range of fair values and the reasoning behind them."),
-     ("Point in time.  ", f"It reflects information available on 1 September 2026 and the "
-      f"closing price of {ST['anchor_date']}. It will age, and it is not updated."),
+     # THE EDITION DATE AND THE PRICE DATE ARE COMPUTED, NOT TYPED — the same defect the
+     # masthead records fixing, left standing here until 5 September 2026: this read
+     # "1 September 2026" on a 5 September edition and named the CONE's anchor as though
+     # it were the valuation's price. They are two clocks and the sentence now says so.
+     ("Point in time.  ", f"It reflects information available on "
+      f"{_EDITION.day} {_EDITION.strftime('%B %Y')} and the closing price of "
+      f"{V('spot_price_date')}, which is what the valuation is struck against. The price "
+      f"map in section 3 stands on its own earlier anchor of {ST['anchor_date']}, the last "
+      f"session in this study's price library, and says so where it is published. It will "
+      f"age, and it is not updated."),
      ("Sources and their limits.  ", "Historical figures come from the company's own "
       "audited and reviewed statements. Those statements carry qualifications, set out in "
       "section 7; a reader should weigh them."),

@@ -116,6 +116,11 @@ items = [('Present value of\nthe explicit window', b['pv_explicit'], BRASS),
          ('Plus listed stakes\nand property', b['fvoci'] + b['inv_prop'], SAGE),
          ('Equity value', b['equity'], CANVAS)]
 run = 0
+# THE LIMITS ARE DERIVED FROM WHAT IS DRAWN, NEVER TYPED. They read -12,500 to 13,500
+# until 5 September 2026, and the terminal rebuild took enterprise value to 14,236 — a
+# bar drawn outside its own axis, which matplotlib renders without complaint and which
+# only the figure guard can see. A typed limit is a number that documents an earlier model.
+_lo, _hi = 0.0, 0.0
 for i, (lab, v, col) in enumerate(items):
     if lab in ('Enterprise value', 'Equity value'):
         ax.bar(i, v, color=col, edgecolor=INK, linewidth=0.6, width=0.62)
@@ -125,13 +130,15 @@ for i, (lab, v, col) in enumerate(items):
         ax.bar(i, v, bottom=run, color=col, edgecolor=INK, linewidth=0.6, width=0.62)
         top = run + v
         run = run + v
+    _lo, _hi = min(_lo, run, top), max(_hi, run, top)
     ax.text(i, top + (400 if v >= 0 else -900), f"{v:,.0f}", ha='center',
             va='bottom' if v >= 0 else 'top', fontsize=9, color=INK, fontweight='bold')
 ax.axhline(0, color=GREY, lw=0.9)
 ax.set_xticks(range(len(items)))
 ax.set_xticklabels([l for l, _, _ in items], fontsize=8.4)
 ax.set_ylabel('EGP million')
-ax.set_ylim(-12500, 13500)
+_pad = 0.10 * (_hi - _lo)          # headroom for the value labels above and below the bars
+ax.set_ylim(_lo - _pad, _hi + _pad)
 ax.set_title('From discounted cash flow to equity value — committed-capital case',
              pad=12, fontsize=11.5)
 style(ax); ax.grid(axis='x', visible=False)

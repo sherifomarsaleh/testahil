@@ -1,7 +1,7 @@
 # MODON — gap review, 4 September 2026
 
-**AUDITED CENTRAL: 3.9119** — the cash-flow lens, AED per share.
-**AUDITED GAP: +38.2%** against the latest known price, AED 2.83 (3 September 2026 close,
+**AUDITED CENTRAL: 3.8583** — the cash-flow lens, AED per share.
+**AUDITED GAP: +36.3%** against the latest known price, AED 2.83 (3 September 2026 close,
 supplied; the same close the study is struck at).
 
 This fires the ABOVE-price half of the audit trigger. That half is deliberately not
@@ -13,6 +13,14 @@ one. The review is therefore the only thing standing here, and it is written tha
 and a gap of +25.2%. Two rebuild levers landed between them and the gap moved 13
 percentage points, which is more than twice the staleness tolerance a review is allowed;
 a review of a different disagreement is not a review.*
+
+*Restated again on 4 September 2026 at a central of 3.8583 and a gap of +36.3%. The
+terminal correction above had handed the sanctioned construction figures already grown by
+(1+g), which that construction grows again; the terminal was overstated by exactly 2.00%
+and the whole book carried the same defect. The gap moved 1.9 percentage points, inside
+the staleness tolerance, and this review is restated rather than rewritten because none of
+the eight headings turns on the difference — every figure quoted here is the corrected
+one.*
 
 ## The finding that comes before the eight headings
 
@@ -35,7 +43,7 @@ that charge cost more than the growth was worth, and **this study carried the on
 terminal in the book worth less than not investing at all**: 10.7% below its own no-growth
 perpetuity. Rebuilding it on what replacing the assets actually costs, and storing growth
 as a real rate on the house inflation path rather than as a typed nominal one, took the
-central to AED 3.9119.
+central to AED 3.8583.
 
 **The lever that RAISED the value did so by CUTTING the growth rate**, from a typed 2.5%
 to a derived 2.0%, and that is the sharpest available evidence that the old construction
@@ -100,16 +108,16 @@ study reports it rather than absorbing it.
 
 **The reverse read is the sharpest thing under this heading and it cuts against the
 premium.** The price is consistent with this study's own model at a cost of equity of
-**16.61%**, which is **4.05 percentage points** above the one adopted. That is a wider gap
+**16.43%**, which is **3.87 percentage points** above the one adopted. That is a wider gap
 than the previous edition carried, and it is still not an absurd number — it is comparable
 to what the Egypt stress case applies. A reverse read landing on a believable figure is
-evidence against the disagreement, not for it. The +38% is not supported by the discount
+evidence against the disagreement, not for it. The +36% is not supported by the discount
 rate being obviously wrong, and this heading is the one that most argues the answer is
 still too high.
 
 ## 5. TERMINAL
 
-**The terminal is 71.7% of enterprise value**, up from 68.7%, and that share rising is the
+**The terminal is 71.3% of enterprise value**, up from 68.7%, and that share rising is the
 honest consequence of the rebuild rather than a separate concern: the correction raised
 the terminal without touching the explicit window. A share this high is where scepticism
 belongs, and it is named here rather than left to a reader to notice.
@@ -187,13 +195,13 @@ is exactly the shape a defect makes, and it is not explained away here.
 ## VERDICT
 
 **The answer is not changed, and the reason it is not changed is not that it was
-vindicated.** Three of the eight headings cut against a +38% premium, and two of them cut
+vindicated.** Three of the eight headings cut against a +36% premium, and two of them cut
 harder than they did at +25%:
 
-- the reverse read now says the price sits 4.05 percentage points of cost of equity away
+- the reverse read now says the price sits 3.87 percentage points of cost of equity away
   from this model — a wider disagreement, and still a believable number rather than an
   absurd one;
-- the terminal carries 71.7% of the value, more than before;
+- the terminal carries 71.3% of the value, more than before;
 - the implied trailing earnings multiple sits at nearly twice the best peer.
 
 What the rebuild removed was a defect, and the evidence for that is arithmetic rather than

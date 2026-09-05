@@ -1,13 +1,13 @@
 {
  "anchor_date": "2026-08-06",
  "spot": 13.98,
- "nu": 6.0,
+ "nu": 5.0,
  "width_cal": 0.951,
  "width_overlay_mult": 0.9,
  "rf_live": 0.195,
  "q_annual": 0.0,
  "q_source": "Proposed appropriation statements, audited FY2023/24 and FY2024/25 \u2014 nothing distributed in either year",
- "signal_active": false,
+ "signal_active": true,
  "horizons": {
   "1M": {
    "h": 20,
@@ -17,26 +17,26 @@
    "sigma_h": 0.10482291676136432,
    "drift_log_h": 0.014845515448622832,
    "pct": {
-    "p5": 12.04,
-    "p25": 13.35,
-    "p50": 14.19,
-    "p75": 15.09,
-    "p95": 16.73
+    "p5": 12.12,
+    "p25": 13.45,
+    "p50": 14.26,
+    "p75": 15.11,
+    "p95": 16.77
    },
-   "p_above": 0.56706,
+   "p_above": 0.59134,
    "ladder": {
-    "touch_up5": 0.5606,
-    "touch_dn5": 0.4361,
-    "touch_up10": 0.3006,
-    "touch_dn10": 0.1831,
-    "touch_up15": 0.148,
-    "touch_dn15": 0.06858,
-    "touch_up20": 0.07272,
-    "touch_dn20": 0.02568,
-    "end_up5": 0.35168,
-    "end_dn5": 0.2323,
-    "end_up10": 0.18976,
-    "end_dn10": 0.10428
+    "touch_up5": 0.56936,
+    "touch_dn5": 0.40288,
+    "touch_up10": 0.30078,
+    "touch_dn10": 0.16326,
+    "touch_up15": 0.1504,
+    "touch_dn15": 0.062,
+    "touch_up20": 0.07576,
+    "touch_dn20": 0.0241,
+    "end_up5": 0.36546,
+    "end_dn5": 0.20932,
+    "end_up10": 0.19554,
+    "end_dn10": 0.09134
    }
   },
   "3M": {
@@ -47,26 +47,26 @@
    "sigma_h": 0.1986700559185689,
    "drift_log_h": 0.0445365463458685,
    "pct": {
-    "p5": 10.69,
-    "p25": 13.03,
-    "p50": 14.64,
-    "p75": 16.43,
-    "p95": 20.04
+    "p5": 10.84,
+    "p25": 13.21,
+    "p50": 14.77,
+    "p75": 16.5,
+    "p95": 20.09
    },
-   "p_above": 0.60656,
+   "p_above": 0.63116,
    "ladder": {
-    "touch_up5": 0.7869,
-    "touch_dn5": 0.63416,
-    "touch_up10": 0.61668,
-    "touch_dn10": 0.40808,
-    "touch_up15": 0.47072,
-    "touch_dn15": 0.24862,
-    "touch_up20": 0.34748,
-    "touch_dn20": 0.14526,
-    "end_up5": 0.49362,
-    "end_dn5": 0.28476,
-    "end_up10": 0.38486,
-    "end_dn10": 0.19206
+    "touch_up5": 0.79774,
+    "touch_dn5": 0.60252,
+    "touch_up10": 0.62622,
+    "touch_dn10": 0.3747,
+    "touch_up15": 0.47416,
+    "touch_dn15": 0.22228,
+    "touch_up20": 0.3513,
+    "touch_dn20": 0.13014,
+    "end_up5": 0.51568,
+    "end_dn5": 0.25972,
+    "end_up10": 0.40076,
+    "end_dn10": 0.17232
    }
   }
  }

@@ -116,12 +116,13 @@ def _sanctioned_fcff(nopat30, dna30, wc30, wacc, inc, g1=None, g2=None):
     g2 = G2 if g2 is None else g2
 
     def stage(n0, d0, w0, g_nom, real, i_):
+        # the stage's OPENING year, not the year after it — the module grows the flow once
         return TERMVAL.build(TERMVAL.TerminalInputs(
-            nopat=n0 * (1 + g_nom), wacc=wacc, inflation=PI_T, real_growth=real,
-            dna_book=d0 * (1 + g_nom), useful_life_years=LIFE,
+            nopat=n0, wacc=wacc, inflation=PI_T, real_growth=real,
+            dna_book=d0, useful_life_years=LIFE,
             useful_life_source=SRC['asset_life_years'],
             maintenance_basis='book_dna_escalated',
-            working_capital=w0 * (1 + g_nom),
+            working_capital=w0,
             incremental_capital_per_unit_growth=i_))
     t1 = stage(nopat30, dna30, wc30, g1, G1_REAL, inc)
     g10 = (1 + g1) ** 10
@@ -906,12 +907,12 @@ put(ws, 'A93', 'The retired construction grew terminal profit and deducted a rei
 
 def _wf(row0, tag, TC, TD, n30c, n30d, d30, w30, g_nom, real, inc):
     rows = [
-        ('%s — operating profit after tax, grown one year' % tag,
-         (f'={n30c:.6f}*(1+{g_nom:.10f})', TC['inputs']['nopat']),
-         (f'={n30d:.6f}*(1+{g_nom:.10f})', TD['inputs']['nopat'])),
-        ('%s — plus the book depreciation and amortisation charge, grown' % tag,
-         (f'={d30:.6f}*(1+{g_nom:.10f})', TC['inputs']['dna_book']),
-         (f'={d30:.6f}*(1+{g_nom:.10f})', TD['inputs']['dna_book'])),
+        ('%s — operating profit after tax (the stage grows this once)' % tag,
+         (f'={n30c:.6f}', TC['inputs']['nopat']),
+         (f'={n30d:.6f}', TD['inputs']['nopat'])),
+        ('%s — plus the book depreciation and amortisation charge' % tag,
+         (f'={d30:.6f}', TC['inputs']['dna_book']),
+         (f'={d30:.6f}', TD['inputs']['dna_book'])),
         ('%s — less capital maintenance at replacement cost, that charge escalated over '
          'half the derived life' % tag,
          (f'=-C{row0+1}*(1+{a("pi_t")})^({a("life")}/2)', -TC['maintenance']),
@@ -921,8 +922,8 @@ def _wf(row0, tag, TC, TD, n30c, n30d, d30, w30, g_nom, real, inc):
          (f'=-{real:.10f}*{inc:.6f}', -TD['growth_capex'])),
         ('%s — less inflation on working capital (a CREDIT here: this company is funded '
          'by its own customers)' % tag,
-         (f'=-{a("pi_t")}*{w30:.6f}*(1+{g_nom:.10f})', -TC['wc_charge']),
-         (f'=-{a("pi_t")}*{w30:.6f}*(1+{g_nom:.10f})', -TD['wc_charge'])),
+         (f'=-{a("pi_t")}*{w30:.6f}', -TC['wc_charge']),
+         (f'=-{a("pi_t")}*{w30:.6f}', -TD['wc_charge'])),
         ('%s — FREE CASH FLOW' % tag,
          (f'=SUM(C{row0}:C{row0+4})', TC['fcff']),
          (f'=SUM(G{row0}:G{row0+4})', TD['fcff'])),
@@ -943,7 +944,7 @@ _wf(103, 'Stage two, FY2041', T2C, T2D, _n30c * _g10, _n30d * _g10, _d30 * _g10,
     _w30 * _g10, G2, G2_REAL, 0.0)
 put(ws, 'A111', 'Memo — the no-growth perpetuity at book depreciation, a diagnostic and '
     'not a bound', fmt=None)
-putf(ws, 'C111', '=F14*(1+C27)/$C$56', T1C['floor'], NUM1)
+putf(ws, 'C111', '=F14/$C$56', T1C['floor'], NUM1)
 
 # ---- 15% parallel framing ---------------------------------------------------------
 _F1D, _F2D = T1D['fcff'], T2D['fcff']

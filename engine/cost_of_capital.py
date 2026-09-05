@@ -566,7 +566,24 @@ class Discounter:
 
     def perpetuity_factor(self, growth: float, from_year: Optional[int] = None) -> float:
         """The capitalisation multiple for a growing perpetuity struck at the end
-        of the explicit window, brought home on that window's own factor."""
+        of the explicit window, brought home on that window's own factor.
+
+        MULTIPLY IT BY THE **LAST EXPLICIT YEAR'S** FLOW, NEVER BY THAT FLOW GROWN.
+        The (1 + growth) in the expression below IS the step from the last explicit
+        year to the first perpetuity year, and it is applied here. A caller that
+        grows its own flow first and then multiplies by this overstates the terminal
+        by exactly (1 + growth) — 2% in a pegged market, 7% in Egypt — and NOTHING
+        downstream can see it, because a workbook built from the same wrong input
+        reconciles to the cell and every figure in it was computed rather than typed.
+
+        That is not hypothetical. The sibling module terminal_value.build() carries
+        the identical convention, its field was named 'terminal-year NOPAT', and SIX
+        OF ITS EIGHT CALLERS read it the other way [L-329]. This docstring exists
+        because the same trap is set here and, as of 5 September 2026, none of this
+        module's three callers had fallen into it.
+
+        Prefer perpetuity_pv() below, whose parameter name carries the date.
+        """
         y = from_year or self._n
         if self._wt <= growth:
             raise CostOfCapitalError(
@@ -574,6 +591,18 @@ class Discounter:
                 "(%.4f). A capped denominator is a free parameter hiding an impossible "
                 "assumption." % (self._wt, growth))
         return (1 + growth) / (self._wt - growth) * self.factor(y)
+
+    def perpetuity_pv(self, last_explicit_year_flow: float, growth: float,
+                      from_year: Optional[int] = None) -> float:
+        """The present value of a growing perpetuity, from the LAST EXPLICIT YEAR's flow.
+
+        Identical arithmetic to flow * perpetuity_factor(growth); the difference is
+        that the parameter name states which year's flow it wants, so a caller cannot
+        satisfy the signature while meaning the year after. Where a date is part of a
+        contract, put it in the name — the whole of [L-329] is that a docstring nobody
+        re-reads is not a contract.
+        """
+        return float(last_explicit_year_flow) * self.perpetuity_factor(growth, from_year)
 
 
 def flat_schedule(rate: float, years: int, market: str = "EG",

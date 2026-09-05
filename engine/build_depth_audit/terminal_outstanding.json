@@ -11,12 +11,18 @@
   "AMOC": "terminal built on the reinvestment identity: implied cycle 14.3 years against 1/g of 14.3, charging 23.1% of terminal profit. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue",
   "AMR": "terminal built on the reinvestment identity: implied cycle 33.3 years against 1/g of 33.3, charging 10.0% of terminal profit. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue",
   "BOROUGE": "terminal built on the reinvestment identity: implied cycle equals 1/g. MOVED FROM `unreadable` 03-Sep-2026 \u2014 it was always breaching and the census could not read it; the allowance travels this way and never the other. Gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue.",
-  "EGCH": "terminal built on the reinvestment identity: implied cycle 14.3 years against 1/g of 14.3, charging 38.9% of terminal profit \u2014 the LARGEST charge in the book. Predates [R-TERM-01]; gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue."
+  "ELEC": "terminal built on the reinvestment identity: implied cycle equals 1/g. MOVED FROM `unscored` \u2014 it was always breaching and the census could not score it; the allowance travels this way and never the other. Gets engine/terminal_value.py and a DISCLOSED useful life at its next re-issue."
  },
  "unreadable": {
   "ADNOCDRILL": "the terminal exposes no wacc_term",
   "STC": "no committed numbers file",
   "TMGH": "the terminal exposes no tv",
   "XPT": "no committed numbers file"
- }
+ },
+ "unscored": {
+  "EMPOWER": "the terminal resolves and its charge does not (no nopat_term, no ic), so the 1/g test has never run on it. Its terminal WAS rebuilt through engine/terminal_value.py on 4-Sep-2026 on a derived 28.10-year life, and the census now RECOGNISES that record (it is committed as terminal_stage1/terminal_stage2 rather than terminal_record, which is why it did not before) \u2014 which is what stops the reinvestment-rate derivation from being applied to it, since the rr_term it exposes belongs to the tv_retired kept beside the new construction. What is outstanding is that the committed record does not expose the components the census scores, so the gate cannot confirm from OUTSIDE what the rebuild did. Gets the exposure at its next re-issue.",
+  "GBCO": "the terminal resolves and its charge does not (no nopat_term, no ic), so the 1/g test has never run on it. This study additionally does not RUN \u2014 compute.py passes rf= to a v2 WaccInputs \u2014 so its numbers file cannot be regenerated at all until the cost-of-capital rebuild recorded in engine/gbco_study/REBUILD_READINESS_05-09-2026.md is taken. Its terminal growth is a typed nominal 11.5% against a house Egyptian terminal of 7.0%.",
+  "PHDC": "the terminal resolves and its charge does not (no nopat_term, no ic), so the 1/g test has never run on it. Gets the exposure at its next re-issue."
+ },
+ "why_unscored": "ADDED 05-Sep-2026. A study is `unreadable` when no terminal resolves and `signature` when the charge it levies is derivable and equals 1/g. Between them sat a state the gate did not name: the terminal resolves, the charge does not, and the 1/g test never runs. Four studies were in it and the gate reported OK, one of them carrying the retired construction in plain sight in its own compute.py. AN UNTESTED TERMINAL IS NOT A CLEAN TERMINAL [R-ENF-04]. This list may only ever SHORTEN, and an entry may travel to `signature` when the census learns to score it \u2014 never the other way, which would be the escape hatch."
 }

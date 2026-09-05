@@ -592,13 +592,18 @@ def dcf(rev, eb, dna, capex, dnwc, tax, wacc, label, ppe_d=None, nwc_d=None):
     inc_cap = ic_term
 
     def _stage(nopat0, dna0, wc0, g_nom, real, inc):
+        # EVERY FIGURE HANDED IN IS THE STAGE'S OPENING YEAR, NOT THE YEAR AFTER IT. The
+        # module grows the free cash flow once itself — tv = fcff (1+g)/(w-g) values the
+        # stage at the END of that opening year, which is where it is discounted — so
+        # figures already grown by (1+g) overstate it by exactly (1+g). They were, until
+        # 4 September 2026.
         return TERMVAL.build(TERMVAL.TerminalInputs(
-            nopat=nopat0 * (1 + g_nom), wacc=wacc, inflation=PI_TERM, real_growth=real,
-            dna_book=dna0 * (1 + g_nom),
+            nopat=nopat0, wacc=wacc, inflation=PI_TERM, real_growth=real,
+            dna_book=dna0,
             useful_life_years=V['asset_life_years'],
             useful_life_source=INP['asset_life_years']['source'],
             maintenance_basis='book_dna_escalated',
-            working_capital=wc0 * (1 + g_nom),
+            working_capital=wc0,
             incremental_capital_per_unit_growth=inc))
 
     # STAGE ONE, FY31-FY40: ten more years of ORDINARY cash flow rather than a terminal.

@@ -2080,6 +2080,60 @@
    "layer": "L5",
    "note": ""
   },
+  "fa_cost_gross_FY2425": {
+   "key": "fa_cost_gross_FY2425",
+   "value": 17022.493238,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 \u2014 read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "fa_land_FY2425": {
+   "key": "fa_land_FY2425",
+   "value": 1.662949,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 land, cross-checked against the total in note 4-6 \u2014 land is never depreciated and is removed before any life or age is derived",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "fa_accum_dep_FY2425": {
+   "key": "fa_accum_dep_FY2425",
+   "value": 3435.299807,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 \u2014 read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "fa_avg_age_years": {
+   "key": "fa_avg_age_years",
+   "value": 4.454408352548927,
+   "unit": "years",
+   "source": "DERIVED BY IDENTITY, labelled as derived: accumulated depreciation over the year's own charge. Under straight-line depreciation accumulated equals age times charge, so the ratio is the charge-weighted average age of the base. THE THREE CONDITIONS THAT BREAK THAT IDENTITY ARE CHECKED AND CLEAR HERE. There is no residual value: the policy note writes off cost over the useful life and mentions none. No useful life has been reassessed: the disclosed rates are unchanged from the prior year's identical table. And the base was not assembled by acquisition \u2014 it is one plant, built and extended by this company. The corroboration is that only EGP 220mn, 1.3% of the base, is fully depreciated and still in production, so almost nothing is past its accounting life and the gross-over-charge life below reads close to a true weighted life rather than a longer economic cycle. 4.45 years against the 11.04 that half of that life would assume: this plant was rebuilt recently and has another complex still under construction.",
+   "date": "2025-09-24",
+   "layer": "L5",
+   "note": ""
+  },
+  "fa_life_implied_years": {
+   "key": "fa_life_implied_years",
+   "value": 22.070192666196995,
+   "unit": "years",
+   "source": "DERIVED BY IDENTITY, labelled as derived: the depreciable gross cost \u2014 cost less land, which is never depreciated \u2014 over the year's own charge. It is the replacement cycle the accounts themselves run, and it sits inside the disclosed range: note 5-2 gives 3.95% on the urea and ammonia machinery (25.3 years), 9.5% on the factories (10.5), 6.5% on the workshops (15.4), 6% on the factory buildings (16.7), 2 to 5% on the residential city and the water and sewage pipes (20 to 50) and 4.75% on the intangible (21.1). A weighted life cannot be read off the note because it publishes no class balances, so the identity supplies one and the disclosed range is what checks it.",
+   "date": "2025-09-24",
+   "layer": "L5",
+   "note": ""
+  },
+  "fa_fully_dep_in_use_FY2425": {
+   "key": "fa_fully_dep_in_use_FY2425",
+   "value": 220.495594,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 disclosure of assets fully depreciated and still in production \u2014 1.3% of the depreciable base, which is what makes the gross-over-charge identity read close to a true weighted accounting life here rather than a longer economic cycle",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
   "maint_capex_pct": {
    "key": "maint_capex_pct",
    "value": 0.011156990270541007,
@@ -2564,29 +2618,11 @@
   },
   "maint_capex_pct_replacement": {
    "key": "maint_capex_pct_replacement",
-   "value": 0.0610485267386962,
+   "value": 0.06104852759224623,
    "unit": "ratio",
    "source": "Constructed: gross fixed assets at the disclosed 3.95% machinery depreciation rate, over first-forecast-year revenue \u2014 replacement-rate maintenance, the upper framing of the same driver",
    "date": "2026-08-09",
    "layer": "L5",
-   "note": ""
-  },
-  "bs_gross_fixed_M9FY2526": {
-   "key": "bs_gross_fixed_M9FY2526",
-   "value": 17022.493,
-   "unit": "EGP m",
-   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, note 6 fixed assets at cost",
-   "date": "2026-05-20",
-   "layer": "L1",
-   "note": ""
-  },
-  "bs_acc_dep_M9FY2526": {
-   "key": "bs_acc_dep_M9FY2526",
-   "value": 3435.3,
-   "unit": "EGP m",
-   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, note 6 accumulated depreciation",
-   "date": "2026-05-20",
-   "layer": "L1",
    "note": ""
   },
   "spot_price_date": {

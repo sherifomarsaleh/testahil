@@ -1,7 +1,7 @@
 # SAVOLA — gap review, 4 September 2026
 
-**AUDITED CENTRAL: 27.1153** — SAR per share.
-**AUDITED GAP: −10.5%** against the latest known price, SAR 30.30 (Tadawul close of
+**AUDITED CENTRAL: 26.6424** — SAR per share.
+**AUDITED GAP: −12.1%** against the latest known price, SAR 30.30 (Tadawul close of
 3 September 2026, supplied and committed; the study is re-struck on it).
 
 This fires the BELOW-price half of the audit trigger, which is also the half that HOLDS a

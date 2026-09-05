@@ -37,9 +37,18 @@ CO = "Company"
 INP = dict(
 
     # ======================= MARKET ANCHORS =================================
-    spot_aed=I(2.40, "Closing price 07-Aug-2026 on the supplied ADX daily series for "
-               "Borouge (open 2.40, high 2.41, low 2.39, volume 10.94m shares)",
-               "2026-08-07", "Market"),
+    # RE-STRUCK ON THE LATEST KNOWN PRICE [R-GAP-01 AMENDED]. The study stood on the
+    # 7-August close for a month. A fair value published against a month-old price is a
+    # comparison a reader cannot use, whatever the fair value is worth — and this rebuild
+    # moves the answer far enough that the price it is measured against decides whether the
+    # study may publish at all.
+    # WRITTEN FOR A READER. A first version of this source field named the repository file
+    # the closes are committed in, which is internal plumbing and has no business in a
+    # delivered bibliography; the vocabulary gate caught it the same minute.
+    spot_aed=I(2.35, "Closing price 03-Sep-2026 on the Abu Dhabi Securities Exchange. It "
+               "supersedes the 07-Aug-2026 close of 2.40 the previous edition was struck "
+               "at",
+               "2026-09-03", "Market"),
     aed_per_usd=I(3.6725, "AED/USD central parity. The dirham has been pegged to the US "
                   "dollar at this rate since November 1997 and the Central Bank of the "
                   "UAE has maintained it without interruption since",
