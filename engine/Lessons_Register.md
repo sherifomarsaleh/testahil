@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**256 lessons**, of which 224 bind on every study, 25 on a class of company, and 7 on a single name.
+**258 lessons**, of which 226 bind on every study, 25 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 23 from self-audits, 178 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 24 from self-audits, 179 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2318,6 +2318,26 @@ The dangerous ones are not wild guesses; they are the plausible summaries a comp
 > **What it cost, or how we know.** The corrected note names the exact line or field carrying each study's construction — lenses.items_A, fair_value.weights, compute.py:722, compute.py:505, compute.py:258-260, stc_compute.py:277, lenses.weights — and writing that column is what forced every row to be verified rather than inferred. It also overturned the note's own structure: all seven studies turned out to carry the same defect, so the 'ordered by what each needs' sequencing rested on a distinction that does not exist. THE CITATION COLUMN IS THE INSTRUMENT, not the discipline of the person filling it in.
 
 > **What would overturn it.** A structure genuinely characterisable from its top level — which exists, and is why this is a habit rather than a bar: the test is whether the characterisation could be WRONG one level down, and if it could, go there.
+
+### L-336 · A SHARED INSTRUMENT IS ONLY SHARED IF SOMEBODY RUNS IT, AND THE HAND LIST WINS BECAUSE IT IS FASTER TO TYPE
+
+scripts/run_ci_gates.py exists precisely so a local sweep cannot drift from CI: it parses the workflow YAML and runs every step it finds, and its own docstring records the day somebody reported every gate green off a hand-maintained list while CI had been red for a day. Two days later this session did the identical thing — swept twenty-one check scripts named from memory, reported every one green, and pushed. CI was red on engine/fv_movement.py check, which is a workflow step rather than a scripts/check_*.py file and therefore invisible to a list built by guessing at filenames; two of the guessed names did not even exist and were reported as absent rather than as a hole in the sweep. The register was genuinely behind: a study had been rebuilt and its recorded branches never updated. The instrument was in the repository, was correct, was built for this exact failure, and was not run.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, the BOROUGE push, caught by CI rather than by the sweep that preceded it, 5 September 2026
+
+> **What it cost, or how we know.** The hand sweep reported 21 of 21 green and named two scripts that do not exist. CI ran two jobs and both failed on the same step, which the hand sweep never contained. Running scripts/run_ci_gates.py on the workflow reproduces the failure without a push.
+
+> **What would overturn it.** Nothing overturns it. What would BLUNT it is a runner that cannot execute a workflow's steps locally at all — then the hand list is the only instrument there is, and the honest report says which population it covered rather than 'every gate'.
+
+### L-337 · A TAXONOMY KEYED ON WHAT SOMETHING IS CALLED WILL REFUSE AN ANSWER IT ALREADY HOLDS
+
+The lens registry is a closed enumeration keyed on industry names, and what it stores against each name is a LENS SET. Nine studies now cannot publish a lens record, and the sharpest of them is the one where the registry already contains the right answer: GB Corp is valued on split legs with a sum-of-the-parts primary and a relative multiple and book beside it, which is EXACTLY the set stored under 'holding company' — and it may not use that row, because GB Corp is an auto assembler with a captive lender and a holding company IS its stakes. The refusal is on the row's NAME and on nothing else. Where the key and the payload answer different questions, every new case is either a new key for a payload that already exists or a subject filed under the wrong name, and neither is a taxonomy.
+
+**Applies to:** every study  ·  *Learned from:* found while building, GBCO read against research_protocol.LENS_REGISTRY, 5 September 2026
+
+> **What it cost, or how we know.** Thirteen rows; three of them store an identical lens set under three industry names. Of the nine names blocked, not one needs a lens the registry lacks. GBCO needs a set the registry stores once, under a name that is a real and different subject.
+
+> **What would overturn it.** It is overturned if a blocked name turns up needing a LENS the registry does not hold — that would be a genuine gap in coverage rather than in naming, and the fix would be a new row rather than a renamed one. EMPOWER is the near miss: its blend carries a normalised-earnings lens that appears in no row, and that lens has to GO rather than be added, so it does not overturn this.
 
 
 ---

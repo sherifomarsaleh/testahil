@@ -5679,6 +5679,72 @@ LESSONS = [
       "for them — which is the argument for writing evidence notes "
       "with the numbers rather than with the conclusions."),
 
+    L("L-336", "ALL", None,
+      "A SHARED INSTRUMENT IS ONLY SHARED IF SOMEBODY RUNS IT, AND "
+      "THE HAND LIST WINS BECAUSE IT IS FASTER TO TYPE",
+      "scripts/run_ci_gates.py exists precisely so a local sweep "
+      "cannot drift from CI: it parses the workflow YAML and runs "
+      "every step it finds, and its own docstring records the day "
+      "somebody reported every gate green off a hand-maintained "
+      "list while CI had been red for a day. Two days later this "
+      "session did the identical thing — swept twenty-one check "
+      "scripts named from memory, reported every one green, and "
+      "pushed. CI was red on engine/fv_movement.py check, which is "
+      "a workflow step rather than a scripts/check_*.py file and "
+      "therefore invisible to a list built by guessing at "
+      "filenames; two of the guessed names did not even exist and "
+      "were reported as absent rather than as a hole in the sweep. "
+      "The register was genuinely behind: a study had been rebuilt "
+      "and its recorded branches never updated. The instrument was "
+      "in the repository, was correct, was built for this exact "
+      "failure, and was not run.",
+      "the BOROUGE push, caught by CI rather than by the sweep that "
+      "preceded it, 5 September 2026",
+      "self_audit",
+      "The hand sweep reported 21 of 21 green and named two scripts "
+      "that do not exist. CI ran two jobs and both failed on the "
+      "same step, which the hand sweep never contained. Running "
+      "scripts/run_ci_gates.py on the workflow reproduces the "
+      "failure without a push.",
+      "Nothing overturns it. What would BLUNT it is a runner that "
+      "cannot execute a workflow's steps locally at all — then the "
+      "hand list is the only instrument there is, and the honest "
+      "report says which population it covered rather than 'every "
+      "gate'."),
+
+    L("L-337", "ALL", None,
+      "A TAXONOMY KEYED ON WHAT SOMETHING IS CALLED WILL REFUSE AN "
+      "ANSWER IT ALREADY HOLDS",
+      "The lens registry is a closed enumeration keyed on industry "
+      "names, and what it stores against each name is a LENS SET. "
+      "Nine studies now cannot publish a lens record, and the "
+      "sharpest of them is the one where the registry already "
+      "contains the right answer: GB Corp is valued on split legs "
+      "with a sum-of-the-parts primary and a relative multiple and "
+      "book beside it, which is EXACTLY the set stored under "
+      "'holding company' — and it may not use that row, because GB "
+      "Corp is an auto assembler with a captive lender and a "
+      "holding company IS its stakes. The refusal is on the row's "
+      "NAME and on nothing else. Where the key and the payload "
+      "answer different questions, every new case is either a new "
+      "key for a payload that already exists or a subject filed "
+      "under the wrong name, and neither is a taxonomy.",
+      "GBCO read against research_protocol.LENS_REGISTRY, 5 "
+      "September 2026",
+      "build",
+      "Thirteen rows; three of them store an identical lens set "
+      "under three industry names. Of the nine names blocked, not "
+      "one needs a lens the registry lacks. GBCO needs a set the "
+      "registry stores once, under a name that is a real and "
+      "different subject.",
+      "It is overturned if a blocked name turns up needing a LENS "
+      "the registry does not hold — that would be a genuine gap in "
+      "coverage rather than in naming, and the fix would be a new "
+      "row rather than a renamed one. EMPOWER is the near miss: its "
+      "blend carries a normalised-earnings lens that appears in no "
+      "row, and that lens has to GO rather than be added, so it "
+      "does not overturn this."),
+
 ]
 
 
