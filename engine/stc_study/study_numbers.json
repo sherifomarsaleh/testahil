@@ -2964,6 +2964,15 @@
   ],
   "note": "The first forecast year is BUILT from the reviewed half rather than compared with it: the level, the gross margin and the operating-cost share all come from note 4 of that interim, each corrected by the prior year's OWN measured half-to-year factor rather than by an assumed seasonality. The reviewed half reports a gross margin of 48.958% and the first forecast year carries 49.145%; the difference is the measured seasonal correction, not a fade. The delivered study stood on a stale full year and sat 89 basis points BELOW an EBITDA margin the company had already reported for half the year."
  },
+ "walkforward_scope": {
+  "rule": "R-FCAL-01",
+  "scope": "FULL",
+  "sourceable_fiscal_years": 16,
+  "earliest_sourceable": "FY2010",
+  "basis": "the company\u2019s own financial-statements archive on its group site, whose route and escaping quirk this study\u2019s source catalogue records; three audited years and two reviewed interims are held in this study\u2019s own source directory and the rest are reachable by the same route",
+  "status": "pending",
+  "note": "The fundamental walk-forward has NOT been run on this name. Scope is FULL on sixteen sourceable fiscal years, and the rule forbids delaying a delivery for the run: it goes alongside and its corrections feed the next edition. No lesson, bias correction or calibrated range in this study rests on a walk-forward result, because there is none."
+ },
  "forecast_is": {
   "basis": "EBIT less the early retirement programme at its three-year mean, plus the net finance result anchored on the reviewed half, less zakat at the rate the three filed years together imply",
   "omitted": [

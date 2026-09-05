@@ -1440,6 +1440,36 @@ out = dict(
     inputs=_INPUTS,
     macro_record=macro_record,
     forecast_anchor=forecast_anchor,
+
+    # [R-FCAL-01] THE SCOPE DECISION IS DECIDED FIRST AND STATED IN THE STUDY, and no study
+    # in this book states one. The rule is explicit that the fundamental walk-forward is a
+    # standing step of every new study AND EVERY UPDATE, on the same footing as the
+    # data-quality gate and the information sweep, and that the scope decision — FULL at
+    # eight or more sourceable fiscal years, LIGHT at five to seven, SKIP below five — is
+    # recorded rather than left implicit. It is equally explicit that a first delivery is
+    # NEVER DELAYED for the run: it goes alongside, its corrections feed the next edition,
+    # and the edition carries a one-line pending note. That is what this is.
+    #
+    # THE SCOPE IS FULL AND THE COUNT IS NOT A GUESS. This study's own source catalogue
+    # records the route to the company's financial-statements archive, which carries every
+    # set back to 2010 — sixteen fiscal years — with the escaping quirk that defeats a
+    # naive scrape written down beside it. So the history is sourceable; what has not
+    # happened is the run.
+    walkforward_scope=dict(
+        rule='R-FCAL-01',
+        scope='FULL',
+        sourceable_fiscal_years=16,
+        earliest_sourceable='FY2010',
+        basis='the company\u2019s own financial-statements archive on its group site, whose '
+              'route and escaping quirk this study\u2019s source catalogue records; three '
+              'audited years and two reviewed interims are held in this study\u2019s own '
+              'source directory and the rest are reachable by the same route',
+        status='pending',
+        note='The fundamental walk-forward has NOT been run on this name. Scope is FULL on '
+             'sixteen sourceable fiscal years, and the rule forbids delaying a delivery for '
+             'the run: it goes alongside and its corrections feed the next edition. No '
+             'lesson, bias correction or calibrated range in this study rests on a '
+             'walk-forward result, because there is none.'),
     forecast_is=forecast_is_record,
     drivers=dict(
         # Per-segment REAL growth, measured from the company's own note 9 and deflated by

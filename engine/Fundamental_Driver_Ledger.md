@@ -625,3 +625,67 @@ measured on a different basis from the study's own cash-cost definition (which e
 provisions and expected credit losses — revision 3 of this study carried them inside "cash
 cost" and they are not cash). Either would settle the question the other way, and neither
 can be decided from the repository as it stands.
+
+---
+
+## STC · Saudi Telecom Company · Tadawul 7010 · 05-Sep-2026
+**Class:** telecom operator with a captive bank and a listed systems-integration subsidiary
+**Context:** delivered study, rebuilt; `engine/stc_study/`
+**No fundamental walk-forward exists on this name.** The scope decision is FULL on 16
+sourceable fiscal years back to FY2010 and the run is PENDING — so every entry below is a
+driver decision that has NOT been tested against what this company went on to report. Read
+them as decisions taken, never as findings.
+
+### Drivers set, and from what
+
+| # | driver | rule as set | set from | tested? |
+|---|---|---|---|---|
+| D1 | segment revenue, 12 disclosed segments | each grows at its OWN measured two-year real rate, deflated by a published price index, fading to zero real by the last explicit year | note 9 of the audited statements, revenue and gross profit for every segment, three filed years | no |
+| D2 | the Saudi operating segment's revenue | volume times price: mobile and fixed subscribers times revenue per subscriber, each faded to zero real | subscriber counts from the earnings presentations, price BACK-SOLVED against the audited segment revenue — a derived rate, not a disclosed one | no |
+| D3 | gross margin, four cost lines | on the bases the filings name: the provisioning levy on the Saudi segment, the licence fee at its own rate, repairs on the asset base, contract amortisation on subscribers | note 35, seven lines by nature, three filed years | no |
+| D4 | gross margin, the other three cost lines | HELD at each segment's own disclosed margin | no sourced driver exists — no unit rate for network access, no headcount anywhere in the filings, and "Others" is a residual of three unrelated things | no |
+| D5 | operating cost between gross profit and EBITDA | its own three-year average share of revenue | filed statements | no |
+| D6 | capital intensity | the three filed years' own mean of 1.161 times the depreciation of the base being renewed, held flat | filed statements — NOT management's guided band, which is scored and never consumed | no |
+| D7 | depreciation | the FY2025 filed ratio to revenue, held flat | filed statements | no |
+| D8 | working capital | projected from the asset-conversion cycle rather than plugged | filed statements | no |
+| D9 | tax | 8.03% measured on EBIT with the disclosed prior-year reversal taken out; the debt shield stays at the statutory rate | note 33(a), which discloses the reversal on its own line | no |
+| D10 | beta | own-stock weekly regression against the published index of the exchange it is listed on, at its point estimate | 4.91-year window, 252 paired weeks, R² 30.2% | n/a |
+| D11 | terminal | maintenance at the 21-year average asset life the accounts themselves imply, on the sanctioned module | the property, plant and equipment note | no |
+| D12 | terminal growth | 2.0% nominal, stored as a REAL rate of 0.0% on the house Saudi path | the house macro path, never a number of this study's own | no |
+
+### Decisions worth carrying to the next same-class study
+
+1. **A telecom's cost side is only partly buildable and the split is worth knowing in
+   advance.** Of the seven cost lines a Saudi operator discloses by nature, four have a
+   sourced base that is not group revenue and three do not. Building the four is a real
+   correction and it is SMALL — -0.163% of the answer on this name — because the offsets run
+   both ways: the provisioning levy and the licence fee fall against a group growing faster
+   than their own bases, while repairs and contract amortisation rise. **Expect the effect
+   to be small and build it anyway**, because the alternative is a margin nobody can trace.
+
+2. **The unit price is usually derived, not disclosed.** Subscriber counts come from the
+   earnings presentation and are footnoted as unaudited; revenue per subscriber has to be
+   back-solved against the audited segment revenue. That is unit economics on a derived
+   rate, which is level `derived` and not level `unit` — and this study's unit share is
+   therefore 0%, not the two thirds a reader might infer from "built as volume times
+   price". **Say which half of the unit economics is disclosed.**
+
+3. **Headcount is not disclosed and employee cost is the second-largest line.** Searched
+   across every audited set and both presentations; the negative search is registered.
+   A same-class study should expect to hold this line rather than build it.
+
+4. **Segment growth measured beats segment growth typed, and the difference is
+   composition rather than level.** Group real growth measured from the audited segment
+   table came out close to what the previous edition's typed arrays implied in aggregate;
+   what changed was that 12 segments growing at their own rates compound differently from
+   four aggregates growing at an average of them. The answer moved -15.4% on that lever
+   alone.
+
+5. **A pegged currency means the cost-of-capital schedule is FLAT and that is not an
+   oversight.** The riyal's peg puts this economy at its terminal cost of capital by
+   construction, so there is no normalisation to glide toward; the module returns a flat
+   ladder and says so. A same-class study in a transition market must NOT copy this shape.
+
+### The most consequential contested judgement, both ways
+
+which lens is the answer: the cash-flow model is the central at 38.0806 against the enterprise multiple on this company's own trading history at 48.0753. Published side by side, never averaged.

@@ -280,6 +280,19 @@ for head, body in [
   "for its plant, not on a life chosen here — but a network is a bundle of assets with very different lives, and a "
   "single average is the coarsest honest way to state it."),
  ('The sovereign quote is older than the house bound. ', coc['sovereign_staleness_disclosed']),
+ # THE SCOPE DECISION IS DECIDED FIRST AND STATED IN THE STUDY, and a reader is owed it
+ # more than the desk is: it says whether the forecasting method behind these numbers has
+ # ever been tested against what this company actually went on to report.
+ ('The method behind these forecasts has not yet been tested on this company\u2019s own history. ',
+  'This house walk-forward tests its forecasting method by rebuilding the driver model as it stood at a '
+  'past date, projecting forward from there, and scoring each driver against what the company then '
+  'reported. %s discloses %d fiscal years reachable from its own archive, back to %s, which is deep '
+  'enough for the full test; the test has NOT been run here. Nothing in this study rests on a result '
+  'from one — there is no bias correction, no calibrated range and no lesson drawn from a test that '
+  'does not exist — and the practical consequence is that the forecast years three to five carry the '
+  'uncertainty the sensitivities show and no measured error distribution behind it.'
+  % ('This company', D['walkforward_scope']['sourceable_fiscal_years'],
+     D['walkforward_scope']['earliest_sourceable'].replace('FY', ''))),
  ('The beta is a real regression, and it explains less than a third of the variance. ',
   f"The {beta['beta']:.2f} beta is a {beta['window_years']:.1f}-year weekly regression of this stock against the "
   f"published index of the exchange it is listed on ({beta['n']} observations, standard error {beta['se']:.2f}), which "
