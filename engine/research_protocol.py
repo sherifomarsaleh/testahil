@@ -1106,6 +1106,44 @@ def assert_lens_design(record: dict, ticker: str = "?") -> dict:
                    and float(pr["low"]) <= float(pr["high"])):
         fails.append("the primary's published range is not an ordered low/high pair")
 
+    # THE SENTENCE THIS RULE IS NAMED FOR WAS THE ONE THING NOT CHECKED. [R-LENS-03] is
+    # "ONE CLASS PRIMARY *IS* THE CENTRAL", and every clause above tests the primary's
+    # KIND, its permitted cross-checks, whether book is weighted, whether a multiple is
+    # circular -- and none of them ever compared the primary's VALUE with the answer the
+    # study publishes. So a study could name a conforming primary and publish something
+    # else entirely, which is what ADNOCDIST does: its published central reproduces to
+    # 8.9e-16 as 0.40 x cash flow + 0.25 x normalised + 0.20 x relative + 0.15 x BOOK --
+    # the retired four-lens blend, with book value carrying weight, which this rule
+    # forbids outright as a disclosed floor that is never weighted.
+    #
+    # check_lens_vocabulary reads the DOCUMENT for the words; this holds the QUANTITY,
+    # which is [R-MACRO-01]'s lesson -- a check that reads what a process DECLARES is not
+    # checking what the process DOES, and where a rule governs a quantity, hold it.
+    #
+    # BOTH SHAPES ARE HONEST AND BOTH ARE TESTED. A primary carrying a VALUE must equal
+    # the central. A primary carrying only a RANGE -- which the clause above deliberately
+    # permits, because a two-sided answer must not be forced to invent a point -- must
+    # CONTAIN it. A record exposing neither a central nor a comparable primary is not
+    # failed here: `central` is optional in this record's shape and inventing a
+    # requirement for it belongs to a rule amendment rather than to an assertion.
+    _pub = r.get("central")
+    if _pub is not None:
+        _pub = float(_pub)
+        _pv = prim.get("value")
+        if _pv is not None:
+            if abs(float(_pv) - _pub) > max(abs(_pub), 1.0) * 1e-9:
+                fails.append(
+                    "the primary lens reads %.6f and the record publishes a central of "
+                    "%.6f. ONE CLASS PRIMARY IS THE CENTRAL: a central that is not the "
+                    "primary's own answer is some other construction, and the commonest "
+                    "one is the weighted blend this rule retired." % (float(_pv), _pub))
+        elif pr:
+            _lo, _hi = float(pr["low"]), float(pr["high"])
+            if not (_lo - abs(_lo) * 1e-9 <= _pub <= _hi + abs(_hi) * 1e-9):
+                fails.append(
+                    "the record publishes a central of %.6f and the primary's own range "
+                    "runs %.6f to %.6f, which does not contain it." % (_pub, _lo, _hi))
+
     seen = []
     for x in (r.get("cross_checks") or []):
         k = x.get("kind")
