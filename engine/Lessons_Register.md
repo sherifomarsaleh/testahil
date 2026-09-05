@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**258 lessons**, of which 226 bind on every study, 25 on a class of company, and 7 on a single name.
+**259 lessons**, of which 227 bind on every study, 25 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 24 from self-audits, 179 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 24 from self-audits, 180 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2338,6 +2338,16 @@ The lens registry is a closed enumeration keyed on industry names, and what it s
 > **What it cost, or how we know.** Thirteen rows; three of them store an identical lens set under three industry names. Of the nine names blocked, not one needs a lens the registry lacks. GBCO needs a set the registry stores once, under a name that is a real and different subject.
 
 > **What would overturn it.** It is overturned if a blocked name turns up needing a LENS the registry does not hold — that would be a genuine gap in coverage rather than in naming, and the fix would be a new row rather than a renamed one. EMPOWER is the near miss: its blend carries a normalised-earnings lens that appears in no row, and that lens has to GO rather than be added, so it does not overturn this.
+
+### L-338 · THE RATIO THAT SAYS WHETHER A BASE IS OLD NEEDS NO DEPRECIATION CHARGE, WHICH IS WHY IT SURVIVES A CONTAMINATED ONE
+
+Both identities used to age a fixed-asset base divide by the YEAR'S CHARGE — gross cost over charge gives the weighted life, accumulated over charge gives the charge-weighted age — and in most filings that line reads 'depreciation AND IMPAIRMENT' with no split disclosed, so both quantities carry whatever impairment is inside it. The DEPRECIATED SHARE, accumulated depreciation over depreciable gross cost, has no charge in it at all. It answers the question the terminal actually turns on — is this base young or old — and it is immune to the contamination, because the impairment sits in both columns of the roll-forward rather than in the ratio between them. Where the charge is contaminated, say so and give the direction, and lead with the ratio that is not.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the STC terminal evidence, 5 September 2026
+
+> **What it cost, or how we know.** STC's note reads 'Depreciation and impairment' with no split. The implied life moves from 20.86 to 22.12 years and the measured age from 15.23 to 16.15 depending which of the two disclosed charge figures is used — about 6% on each — while the depreciated share is 73.0% on either, because the charge cancels. The direction is knowable too: impairment inside the charge shortens both, which understates the escalation to current cost, which understates maintenance, which overstates value.
+
+> **What would overturn it.** It is overturned where impairment is written off against the COST column rather than the accumulated column, which some presentations do — then the depreciated share moves with the impairment as well and the immunity is gone. Read which column the roll-forward puts it in before relying on this.
 
 
 ---

@@ -5745,6 +5745,40 @@ LESSONS = [
       "row, and that lens has to GO rather than be added, so it "
       "does not overturn this."),
 
+    L("L-338", "ALL", None,
+      "THE RATIO THAT SAYS WHETHER A BASE IS OLD NEEDS NO "
+      "DEPRECIATION CHARGE, WHICH IS WHY IT SURVIVES A CONTAMINATED "
+      "ONE",
+      "Both identities used to age a fixed-asset base divide by the "
+      "YEAR'S CHARGE — gross cost over charge gives the weighted "
+      "life, accumulated over charge gives the charge-weighted age "
+      "— and in most filings that line reads 'depreciation AND "
+      "IMPAIRMENT' with no split disclosed, so both quantities "
+      "carry whatever impairment is inside it. The DEPRECIATED "
+      "SHARE, accumulated depreciation over depreciable gross cost, "
+      "has no charge in it at all. It answers the question the "
+      "terminal actually turns on — is this base young or old — and "
+      "it is immune to the contamination, because the impairment "
+      "sits in both columns of the roll-forward rather than in the "
+      "ratio between them. Where the charge is contaminated, say so "
+      "and give the direction, and lead with the ratio that is not.",
+      "the STC terminal evidence, 5 September 2026",
+      "build",
+      "STC's note reads 'Depreciation and impairment' with no split. "
+      "The implied life moves from 20.86 to 22.12 years and the "
+      "measured age from 15.23 to 16.15 depending which of the two "
+      "disclosed charge figures is used — about 6% on each — while "
+      "the depreciated share is 73.0% on either, because the charge "
+      "cancels. The direction is knowable too: impairment inside "
+      "the charge shortens both, which understates the escalation "
+      "to current cost, which understates maintenance, which "
+      "overstates value.",
+      "It is overturned where impairment is written off against the "
+      "COST column rather than the accumulated column, which some "
+      "presentations do — then the depreciated share moves with the "
+      "impairment as well and the immunity is gone. Read which "
+      "column the roll-forward puts it in before relying on this."),
+
 ]
 
 
