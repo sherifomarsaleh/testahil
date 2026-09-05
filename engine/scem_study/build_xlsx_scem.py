@@ -1011,14 +1011,18 @@ for j, hz in enumerate(['1M', '3M']):
     for k, key in enumerate(['p_above', 'p_up10', 'p_dn10', 'touch_up10', 'touch_dn10']):
         put(wsM, f'{chr(66+k)}{9+j}', h[key], BLUE, PCT)
 band(wsM, 12, 8); wsM['A12'] = 'CALIBRATION — READ THIS BEFORE THE MAP'
+# THE BAND RECORD IS WHAT A READER GETS [R-CAL-02, R-CAL-03]: how often the price
+# finished inside the band, WITH the count of resolved forecasts beside it, and the
+# width ratio, which is disclosed and never gated. The three verdict rows that stood
+# here — a market-panel verdict, this name's own, and a comparison against a random
+# walk — are the retired test, and they survived every sweep of the document beside
+# this file because nothing had ever read a workbook.
 CAL = [
- ('Market panel verdict (Egypt)', f"{S0['market_gate']['verdict']} — skill "
-  f"{S0['market_gate']['skill']:+.4f}, 90% interval {S0['market_gate']['ci90']}"),
- ('This name\'s verdict', f"{S0['verdict']} at every bootstrap block size {{2,3,4}}"),
- ('This name\'s CRPS skill vs a random walk', f"{S0['skill_norm']:+.4f} — BELOW zero"),
+ ('Resolved three-month forecasts scored', f"{S0['windows_scored']}"),
  ('Coverage 50 / 80 / 90', f"{S0['cov50']:.2f} / {S0['cov80']:.2f} / {S0['cov90']:.2f} "
-  f"against nominal 0.50 / 0.80 / 0.90 — OVER-COVERED"),
- ('Cone width versus the benchmark', f"{S0['w90_ratio']:.2f}x"),
+  f"against nominal 0.50 / 0.80 / 0.90 — the bands ran WIDE"),
+ ('Cone width versus a naive carry-anchored band', f"{S0['w90_ratio']:.2f}x — and this "
+  f"is the figure that carries the caveat below, not a score"),
  ('Why', 'SCEM prints an unchanged close on 29.3% of sessions, 3.4x the Egyptian panel '
          'median and 2nd thinnest of 33 names. On such a series the benchmark\'s own '
          'volatility estimate collapses in quiet quarters.'),

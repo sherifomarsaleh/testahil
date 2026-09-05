@@ -3191,8 +3191,17 @@ for j, (lab, v, fmt, gr) in enumerate([
          STK['horizons']['3M']['anchor_vol_ann'], PCT, False),
         ('Spot price (AED)', f"=Summary!$C${SU['spot']}", PX, True),
         ('Anchor date', STK['anchor_date'], None, False),
-        ('Calibration verdict on the five-year walk-forward', STEP0['verdict'], None,
-         False)]):
+        # WHAT A READER IS SHOWN IS THE BAND RECORD [R-CAL-02, R-CAL-03]. The retired
+        # verdict was published here in one word and nothing read the workbook, so it
+        # survived every sweep of the document beside it. Its replacement is the record
+        # itself — how often the price finished inside the band, WITH the count of
+        # resolved forecasts, because a percentage without its count is the number that
+        # misleads — and the band-width ratio, which is disclosed and never gated.
+        ('Resolved three-month forecasts scored', STEP0['windows_scored'], NUM0, False),
+        ('Price finished inside the 90% band', STEP0['cov90'], PCT, False),
+        ('Price finished inside the 50% band', STEP0['cov50'], PCT, False),
+        ('Band width against a naive carry-anchored band',
+         STEP0['w90_ratio'], None, False)]):
     rw = MC['e0'] + j
     put(ws, f'A{rw}', lab, fmt=None)
     if gr:
