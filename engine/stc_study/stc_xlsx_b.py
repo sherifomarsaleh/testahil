@@ -28,6 +28,45 @@ HOUSE_LADDER = 'House Saudi inflation ladder (nominal = real x this)'
 ELIM_LABEL = 'Inter-segment eliminations (% of gross segment revenue)'
 ANCHOR_SCALE = 'First-year scale onto the reviewed half (annualised)'
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
+
+
+def _primary_documents():
+    """The documents the input register ACTUALLY names, deduplicated, in the order a reader
+    would read them.
+
+    THREE SOURCE CAPTIONS ON THESE SHEETS NAMED A PROVENANCE THIS STUDY HAD REPLACED. They
+    told a reader the historicals came from investor-relations releases and a first-quarter
+    interim; the register names the audited FY2024 and FY2025 statements and the reviewed
+    half-year to 30 June 2026, and no first-quarter document appears in it at all. A source
+    line is a claim about where a number came from, so it is read off the register rather
+    than typed beside it.
+    """
+    import re
+    seen = []
+
+    def walk(o):
+        if isinstance(o, dict):
+            src = o.get('source')
+            if isinstance(src, str) and src.startswith('Saudi Telecom Company,'):
+                head = re.split(r',\s*(?:note\b|consolidated\b|condensed\b|revenue\b|'
+                                r'gross\b|profit\b|long-term\b|cash\b|short-term\b|'
+                                r'additions\b|capital\b|mobile\b|fixed\b|the\b)',
+                                src)[0].strip()
+                head = head[len('Saudi Telecom Company,'):].strip()
+                if head and head not in seen:
+                    seen.append(head)
+            for v in o.values():
+                walk(v)
+        elif isinstance(o, list):
+            for v in o:
+                walk(v)
+
+    walk(D['inputs'])
+    return seen
+
+
+PRIMARY_DOCS = _primary_documents()
+DOCS_PHRASE = '; '.join(PRIMARY_DOCS)
 # The minority's share of profit, from the bridge's own committed record rather
 # than a flat percentage typed into this builder.
 NCI_SHARE = D['bridge_record']['nci']['profit_share']
@@ -279,7 +318,8 @@ _SH = an('Shares outstanding (mn)')
 r = irow(r, 'EPS (SAR)', ['=B'+str(NPR)+'/'+_SH, '=C'+str(NPR)+'/'+_SH,
                           '=D'+str(NPR)+'/'+_SH],
          lambda j, c: f"={c}{NPR}/{an('Shares outstanding (mn)')}", PX, BLACK)
-put(ws, f'A{r+1}', 'Sources: stc FY2024/FY2025 IR releases + Q1-2026 interim FS (all stc.com). FY23/FY24 restated to continuing operations '
+put(ws, f'A{r+1}', 'Sources — the filings every figure above was read out of: ' + DOCS_PHRASE +
+                   ' — every one fetched from the company\'s own investor-relations archive. FY23/FY24 restated to continuing operations '
                    '(TAWAL + Digital Infrastructure Co reclassified as discontinued; FY24 discontinued profit 13,973 incl. the SAR 12,885mn disposal gain). '
                    'One-offs: FY23 AlKhobar land gain +1,296, WHT reversal +724, ERP −863; FY24 WHT reversal +1,500, ERP −2,577, BGSM impairment −764; '
                    'FY25 zakat credit +466, ERP ≈ −824. "Share of associates + net finance & other" is the residual bridging disclosed EBIT to disclosed '
@@ -289,7 +329,7 @@ json.dump(IS, open(os.path.join(HERE, '_is_rows.json'), 'w'))
 # ================= BALANCE SHEET =============================================
 ws = sheet('Balance Sheet')
 title(ws, 'Balance sheet (SAR mn, consolidated)',
-      'FY23–FY25 grouped from stc disclosure to a house layout (blue; FY25 detail from the Q1-2026 FS comparatives). '
+      'FY23\u2013FY25 grouped from the company\'s own statements into one layout (blue). '
       'Forecast rolls forward clean-surplus; the check row is zero by construction.', 10)
 for j, h in enumerate([''] + YH + YF):
     put(ws, f'{get_column_letter(1+j)}4', h, BLACK, None, bold=True, fill=FILL_H)
@@ -371,9 +411,11 @@ r = brow(r, 'Net debt — IR basis (borrowings − cash, group def.)', [None]*3,
 NDR = BS['Net debt — IR basis (borrowings − cash, group def.)']
 for col in 'BCD':
     ws[f'{col}{NDR}'] = f"={col}{DEBTR}-{col}{CASH}"; ws[f'{col}{NDR}'].number_format = NUM0
-put(ws, f'A{r+1}', 'Historic mapping: FY25 line detail from the Q1-2026 FS 31-Dec-25 comparatives (PP&E 95,313 + ROU 2,635 + intangibles 28,139 '
-                   '+ inv. property 350 grouped; cash 13,376 + murabaha 1,732). FY23/FY24 detail lines are grouped estimates reconciling to the '
-                   'disclosed IR totals (blue totals are as-disclosed); "Other" lines are the disclosed-total balancing items, shown as formulas. '
+put(ws, f'A{r+1}', 'Historic mapping: the FY2025 line detail is grouped from that year\'s own audited statements '
+                   '(property and equipment, right-of-use assets, intangibles and investment property into one line; cash '
+                   'and short-term murabahas into another). FY23/FY24 detail lines are groupings that reconcile to the '
+                   'disclosed totals (blue totals are as disclosed); "Other" lines are the balancing items against those '
+                   'totals, shown as formulas so a reader can see them close. '
                    'FY26E borrowings step up SAR +7,284mn = the Jan-2026 $2bn sukuk (net of FY26 amortisation) — thereafter gross debt held flat. '
                    'Two cash framings exist (FS 21,442 incl. stc bank vs IR 15,412 core): the model rolls the FS-basis cash from FY25’s 15,108 '
                    '(cash + murabaha) and states the IR basis in the net-debt memo.', SUB, None)

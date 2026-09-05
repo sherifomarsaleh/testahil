@@ -187,7 +187,9 @@ json.dump(dict(RELR=RELR, NORMR=NORMR), open(os.path.join(HERE, '_rn_rows.json')
 # ================= Summary ===================================================
 ws = sheet('Summary')
 title(ws, 'Valuation summary — Saudi Telecom Company (Tadawul: 7010)',
-      'Four-lens fair value vs spot. Base links live; bear/bull are scenario outputs (study §1.5).', 7)
+      'The class primary is the central; the other lenses sit beside it as cross-checks and are never '
+      'weighted into it. Base links live; bear and bull are the same model on one driver’s own filed '
+      'range (study §1.5).', 7)
 L = D['lenses']
 LR = D['lens_record']
 r = 5
@@ -288,8 +290,20 @@ for col, v in zip('BCD', (12628.0, 7959.0, 6488.0)):
 
 # ================= Monte Carlo ===============================================
 ws = sheet('Monte Carlo')
-title(ws, 'Monte Carlo — engine outputs (YZ-HAR v2)',
-      '50,000 paths · 16 factors · seed 42 · computed by the Testahil MC engine (values, not a sheet simulation). Zero drift — the Step 0-passed configuration for this name.', 8)
+# "ZERO DRIFT" WAS FALSE OF THE DELIVERED CONE. This caption was typed when the engine ran
+# carry-centred everywhere; the committed record for this name carries a LIVE momentum lean
+# with a positive alpha at both horizons, so the sheet told a reader the opposite of what
+# produced the numbers beside it. The path count, the seed and the engine's own name were
+# typed too, and the version named was one behind the engine that struck the cone.
+_ENG = D['engine']
+_DRIFT = ('a live momentum lean, %s, worth %.2f%% at one month and %.2f%% at three'
+          % ({'up': 'upward', 'down': 'downward'}.get(_ENG['call'], _ENG['call']),
+             _ENG['horizons']['1M']['signal_alpha'] * 100,
+             _ENG['horizons']['3M']['signal_alpha'] * 100)) if _ENG['signal_active'] else \
+         'no lean either way — the cone is centred on carry alone'
+title(ws, 'Monte Carlo — the price cone as the engine struck it',
+      '%s paths, seed %d, computed by the engine itself rather than simulated in this sheet. '
+      'The distribution carries %s.' % ('{:,}'.format(_ENG['n_paths']), _ENG['seed'], _DRIFT), 8)
 pr = D['mc']['prob_read']; q20, q60 = D['mc']['q20'], D['mc']['q60']
 r = 5
 put(ws, f'A{r}', 'The probability read (%s)' % D['engine']['horizons']['3M']['label'],
@@ -348,12 +362,34 @@ for i, w in enumerate(gw):
              f"+DCF!$F${FR}*(1+{col}$5)/($A{rr}-{col}$5)/(1+$A{rr})^5"
              f"+{A_ASSOC}+{A_LISTED}-{A_NETDEBT}-{A_NCI})/{A_SHARES}")
         put(ws, f'{col}{rr}', f, BLACK, PX)
-put(ws, 'A12', 'The WACC axis centres on the sourced bottom-up build (rf 5.5% + β 0.48 × ERP 5.01%, blended with after-tax Kd 4.5%); '
-               'the CDS-ERP alternative WACC (7.90%) sits between rows 3 and 4. At β = 1.0 the WACC is 9.90% — off this grid deliberately: '
-               'see the beta grid below.', SUB, None)
-put(ws, 'A14', 'Beta sensitivity (regressed β = 0.48 on a 9-week window — grid mandatory)', BLACK, None, True, FILL_H)
-put(ws, 'A15', 'beta', BLACK, None, True); put(ws, 'B15', 'Ke (rating ERP)', BLACK, None, True); put(ws, 'C15', 'WACC', BLACK, None, True); put(ws, 'D15', 'DCF value/sh', BLACK, None, True)
-for i, b in enumerate([0.30, 0.48, 0.70, 0.85, 1.00, 1.20]):
+# THE GRID'S OWN RUNGS WERE TYPED AND THE ADOPTED BETA WAS NOT AMONG THEM. This block ran
+# [0.30, 0.48, 0.70, 0.85, 1.00, 1.20] and marked 0.48 "<- regressed base" — a beta the
+# model retired when the study moved to the sanctioned weekly regression, so the sheet
+# priced the answer at every beta EXCEPT the one it uses. The rungs, and which of them is
+# the adopted one, now come from the committed grid. The caption's four typed rates and the
+# column header naming the wrong premium basis went the same way: the formula reads the
+# central premium and the header said it read the alternative.
+_BG = D['sens']['beta_grid']
+_BG1 = [g for g in _BG if abs(g['beta'] - 1.0) < 1e-9][0]
+_WB = D['dcf']['wacc_build']
+put(ws, 'A12',
+    'The cost-of-capital axis centres on the sourced bottom-up build — a normalised risk-free rate of %.2f%% '
+    'plus a beta of %.4f times the %.2f%% premium this study names as central, blended with an after-tax cost '
+    'of debt of %.2f%% at a %.1f%% debt weight. On the alternative premium basis, published beside the central '
+    'one rather than chosen silently, the same build gives %.2f%%. At a beta of 1.00 the rate is %.2f%%, which '
+    'sits off this grid deliberately and is priced in the beta grid below.'
+    % (_WB['rf_star'] * 100, _WB['beta'], _WB['erp_market'] * 100, D['coc_record']['kd_aftertax'] * 100,
+       D['coc_record']['weight_debt'] * 100, D['dcf']['wacc_rating_basis'] * 100, _BG1['wacc'] * 100),
+    SUB, None)
+put(ws, 'A14',
+    'Beta sensitivity — the regression gives %.4f and the grid prices the answer either side of it'
+    % _WB['beta'], BLACK, None, True, FILL_H)
+put(ws, 'A15', 'beta', BLACK, None, True)
+put(ws, 'B15', 'Cost of equity (central premium basis)', BLACK, None, True)
+put(ws, 'C15', 'Cost of capital', BLACK, None, True)
+put(ws, 'D15', 'DCF value/sh', BLACK, None, True)
+for i, _g in enumerate(_BG):
+    b = _g['beta']
     rr = 16 + i
     put(ws, f'A{rr}', b, BLUE, '0.00')
     put(ws, f'B{rr}', f"={A_RF}+A{rr}*{A_ERP}", BLACK, PCT)
@@ -361,14 +397,14 @@ for i, b in enumerate([0.30, 0.48, 0.70, 0.85, 1.00, 1.20]):
     put(ws, f'D{rr}', (f"=(SUMPRODUCT(DCF!$B${FR}:$F${FR},1/(1+C{rr})^{{1,2,3,4,5}})"
                        f"+DCF!$F${FR}*(1+{A_TG})/(C{rr}-{A_TG})/(1+C{rr})^5"
                        f"+{A_ASSOC}+{A_LISTED}-{A_NETDEBT}-{A_NCI})/{A_SHARES}"), BLACK, PX)
-    if abs(b - 0.48) < 1e-9:
-        put(ws, f'E{rr}', '<- regressed base', SUB, None)
-    if abs(b - 1.00) < 1e-9:
-        put(ws, f'E{rr}', '<- house fallback had the regression failed', SUB, None)
+    if _g['adopted']:
+        put(ws, f'E{rr}', '<- the adopted regression beta', SUB, None)
+    elif abs(b - 1.00) < 1e-9:
+        put(ws, f'E{rr}', '<- the fallback this desk would have used had the regression not been usable', SUB, None)
 
 # ================= Per-Share & Ratios ========================================
 ws = sheet('Per-Share & Ratios')
-title(ws, 'Per-share & ratios — the standing dashboard (device A-5)', 'Links to statements / Assumptions.', 10)
+title(ws, 'Per-share & ratios', 'Every line links to the statements and the assumptions behind them.', 10)
 for j, h in enumerate([''] + YH + YF):
     put(ws, f'{get_column_letter(1+j)}4', h, BLACK, None, True, FILL_H)
 allc = ['B', 'C', 'D'] + FCOLS
@@ -436,7 +472,6 @@ r += 1
 put(ws, f'A{r}', 'Sector: KSA mobile ≈ 57/27/16 stc/Mobily/Zain; Nov-2024 CST spectrum auction (stc: 600MHz + 3.8GHz); 10,800+ stc 5G sites, '
                  '63% populated coverage; FTTH 3.75mn; FWA one of the highest-adoption markets globally; center3–HUMAIN 1GW AI-DC ambition; '
                  'SilkLink Syria fibre corridor (SAR 3bn, Feb-2026). Peer P/E band 10.7–17.6×; stc premium tracks its share, balance sheet and yield.', SUB, None)
-put(ws, f'A{r+1}', 'Analyst context (not a model input): 17 analysts, 8 Buy / 9 Hold, average 12m TP SAR 47.9 (41.1–55.0), Jul-2026.', SUB, None)
 
 # ================= sheet order ===============================================
 order = ['READ FIRST', 'Summary', 'Fundamental Valuation', 'Assumptions', 'SOTP Bridge', 'Segments',

@@ -25,8 +25,12 @@ import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+# THE WORKBOOK IS A DELIVERED DOCUMENT AND EVERY SCRUB IN THE BOOK EXCLUDED IT. A reader
+# receives three files and this list named two, so the third was scanned by nothing — which
+# is the prose instrument's finding of the same hour, in a different costume.
 DOCS = ['STC_Valuation_Study_05-09-2026_public.docx',
-        'STC_Bibliography_05-09-2026.docx']
+        'STC_Bibliography_05-09-2026.docx',
+        'STC_Valuation_Model_05092026_public.xlsx']
 
 #: (name, pattern, why). Each is a noun this house uses for a step of its own process.
 PATTERNS = [
@@ -54,6 +58,17 @@ PATTERNS = [
 
 
 def texts(path):
+    if path.lower().endswith(('.xlsx', '.xlsm')):
+        import openpyxl
+        wb = openpyxl.load_workbook(path, data_only=False, read_only=True)
+        out = []
+        for ws in wb.worksheets:
+            for ri, row in enumerate(ws.iter_rows(values_only=True), start=1):
+                for ci, v in enumerate(row, start=1):
+                    if isinstance(v, str) and not v.startswith('='):
+                        out.append(('%s!r%dc%d' % (ws.title, ri, ci), v))
+        wb.close()
+        return out
     import docx
     d = docx.Document(path)
     out = [(i, p.text) for i, p in enumerate(d.paragraphs)]

@@ -15,6 +15,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
+_BETA_REC = json.load(open(os.path.join(HERE, 'beta_result.json')))
 BLUE = Font(color='0000FF'); GREEN = Font(color='008000'); BLACK = Font(color='000000')
 TITLE = Font(bold=True, size=13, color='F6F1E6'); SUB = Font(size=9, color='6E7B77')
 FILL_T = PatternFill('solid', start_color='1C3A36'); FILL_H = PatternFill('solid', start_color='EAF0EE')
@@ -22,6 +23,15 @@ FILL_G = PatternFill('solid', start_color='F6F1E6')
 NUM = '#,##0.0;(#,##0.0);"-"'; NUM0 = '#,##0;(#,##0);"-"'; PCT = '0.0%;(0.0%);"-"'
 PCT2 = '0.00%;(0.00%);"-"'; MULT = '0.00x'; PX = '0.00'
 FN = 'STC_Valuation_Model_05092026_public.xlsx'
+
+
+def longdate(iso):
+    """'2026-09-03' -> '3 September 2026'. A DATE STATED IN PROSE IS A FIGURE AND IS
+    COMPUTED, NOT TYPED: this builder carried a spot date and a balance-sheet date that
+    had both been superseded by a re-strike, and each read as ordinary sentence text."""
+    y, m, d = (int(x) for x in iso.split('-'))
+    return '%d %s %d' % (d, ('January', 'February', 'March', 'April', 'May', 'June', 'July',
+                             'August', 'September', 'October', 'November', 'December')[m - 1], y)
 
 wb = Workbook()
 
@@ -66,9 +76,13 @@ lines = [
  'and minority stakes: 43.06% of Digital Infrastructure Co (TAWAL+GLIC towers, PIF-controlled) and 9.97% of',
  'Telefónica. House lens: going-concern FCFF DCF (primary), cross-checked by the dividend-policy DDM,',
  'relative multiples and normalized earnings; the tower and Telefónica stakes are bridge items marked separately.', '',
- 'Currency. SAR million unless stated. Spot SAR 43.58 (7 Jul 2026 close, from the attached daily history).',
- 'Historical financials are stc’s own IR disclosure (FY23–FY25 releases, restated continuing-ops basis;',
- 'Q1-26 release 28 Apr 2026); balance-sheet detail from the Q1-2026 interim FS (31-Dec-25 comparatives).', '',
+ 'Currency. SAR million unless stated. Spot SAR %.2f (%s close, the latest known price this study is\n'
+ ' struck against; the Monte Carlo cone starts at the last session in the price library, %s, which is a\n'
+ ' different date and is stated as one).' % (D['spot'], longdate(D['spot_date']), longdate(D['cone_anchor_date'])),
+ 'Historical financials are the company’s own audited annual and reviewed interim statements, FY2023',
+ 'onward, each fetched from its own investor-relations archive and listed with that URL in the study’s',
+ 'bibliography. The balance sheet the bridge stands on is the reviewed interim to %s.' %
+ longdate(D['bridge_record']['balance_sheet_date']), '',
  'Sheets: Summary · Fundamental Valuation · Assumptions · SOTP Bridge · Segments · Relative & Normalized ·',
  'DCF · Income Statement · Balance Sheet · Cash Flow · Summary Financials · Monte Carlo · Sensitivity ·',
  'Per-Share & Ratios · Peer & Sector.']
@@ -355,12 +369,15 @@ wa.column_dimensions['C'].width = 11
 
 # ===== WACC BUILD — FULL DETAIL & SOURCING (rows 84-92) ======================
 r = hdr(wa, 84, 'WACC BUILD — FULL DETAIL & SOURCING (feeds rows 9-17; reference only)')
-put(wa, f'A{r}', 'rf source')
-put(wa, f'C{r}', 'Derived SAR 10Y sovereign: SRC (govt-guaranteed) $1.5bn 10y sukuk priced UST+95bp on 8-Jul-2026; UST 10Y '
-                  '4.45% → 5.40% USD basis; the Saudi Exchange "KSA Sovereign Local Currency Debt Primer Update" (21-May-2026) '
-                  'documents SAR sovereign yields sitting ABOVE the USD curve through 10Y → 5.4–5.6% band, 5.5% point. '
-                  'Cross-check: FAB Securities stc note (27-Feb-2026) uses 5.5%. Per house rule the SAR-USD peg does NOT '
-                  'make UST a substitute — this is a documented named mistake in professional practice.', SUB)
+put(wa, f'A{r}', 'Risk-free rate — where the quote comes from')
+put(wa, f'C{r}',
+    'One dated sovereign quote is held for every Saudi company this desk covers, so no single study carries a '
+    'rate of its own: %.2f%% as at %s, less this sovereign\u2019s own default spread of %.2f%%, giving the '
+    'normalised %.2f%% the cost of equity is built on. Country risk is then charged once, inside the equity '
+    'risk premium, rather than twice. %s'
+    % (D['coc_record']['rf_observed'] * 100, D['macro_record']['path_as_of'],
+       D['coc_record']['default_spread'] * 100, D['coc_record']['rf_star'] * 100,
+       D['coc_record']['sovereign_staleness_disclosed']), SUB)
 r += 1
 r = inp(wa, r, 'ERP — CDS-based (Damodaran, "more current" alternative)', 0.0572, PCT2,
         'Same original file, Saudi row, CDS column: sovereign CDS 0.98% → ERP 5.72%. For Saudi the CDS basis is ABOVE the '
@@ -368,12 +385,24 @@ r = inp(wa, r, 'ERP — CDS-based (Damodaran, "more current" alternative)', 0.05
 put(wa, f'A{r}', 'Ke, alternative (CDS-based ERP)'); put(wa, f'B{r}', '=B9+B10*B86', BLACK, PCT2); r += 1   # B87
 put(wa, f'A{r}', 'WACC, alternative (CDS-based ERP)'); put(wa, f'B{r}', '=(1-B15)*B87+B15*B14', BLACK, PCT2); r += 1  # B88
 put(wa, f'A{r}', 'Beta — regression detail')
-put(wa, f'C{r}', 'Daily stc-vs-TASI OLS, n=40 paired sessions 5-May→7-Jul-2026 (TASI closes: investing.com historical table; '
-                  'stc: the attached price history): beta 0.475 (SE 0.189), R² 14.3%, alpha ≈ 0. Ex-Eid-gap robustness: 0.494. '
-                  'Passes RegressionBetaAttempt.is_usable() (n≥24, R²≥5%, SE<|β|, β>0). Honest flag: a 9-week daily window is '
-                  'the best obtainable (Yahoo/stooq/WSJ TASI history all blocked programmatically; Saudi Exchange login-gated); '
-                  'a 2–5yr weekly regression should replace it when accessible. Sensitivity: at β=1.0, Ke 10.51%, WACC 9.90% '
-                  '(rating basis) — the DCF grid in §1.9 spans this.', SUB)
+# THIS CELL DESCRIBED A REGRESSION THE MODEL NO LONGER USES. It told a reader the beta came
+# from a nine-week DAILY window on a commercial data vendor's index quotes — which the
+# standing preference order says is not one of its tiers at all — while the model had long
+# since moved to the sanctioned weekly regression against the exchange's own published
+# index. The provenance is now read from the beta record itself, and the retired reading is
+# named as retired rather than left standing as the method.
+_BETAG = [g for g in D['sens']['beta_grid'] if abs(g['beta'] - 1.0) < 1e-9][0]
+put(wa, f'C{r}',
+    'A %.2f-year weekly regression of stc against the published index of the exchange it is listed on, the '
+    'Tadawul All Share Index, read as of %s: %d paired weeks on that exchange\u2019s own trading week, beta '
+    '%.4f, standard error %.4f, R\u00b2 %.1f%%, and a confidence interval running %.4f to %.4f. It is the '
+    'first tier of the house preference order rather than a stopgap. A superseded reading of %.4f, taken from '
+    'a nine-week daily window on a commercial vendor\u2019s index quotes, is recorded in the bibliography and '
+    'is not used. Sensitivity: at a beta of 1.00 the cost of equity is %.2f%% and the cost of capital %.2f%%, '
+    'which the beta grid on the Sensitivity sheet prices in full.'
+    % (_BETA_REC['window_years'], _BETA_REC['index_asof'], _BETA_REC['n'], _BETA_REC['beta'],
+       _BETA_REC['se'], _BETA_REC['r2'] * 100, _BETA_REC['ci90'][0], _BETA_REC['ci90'][1],
+       _BETA_REC['superseded_beta'], _BETAG['ke'] * 100, _BETAG['wacc'] * 100), SUB)
 r += 1
 put(wa, f'A{r}', 'Kd source & currency-mix evidence')
 put(wa, f'C{r}', 'Named instruments: May-2019 $1.25bn 10y sukuk at 3.89% (matures 2029); Jan-2026 $2bn dual-tranche sukuk '
@@ -383,12 +412,20 @@ put(wa, f'C{r}', 'Named instruments: May-2019 $1.25bn 10y sukuk at 3.89% (mature
                   'tranche modelled).', SUB)
 r += 1
 put(wa, f'A{r}', 'Weights source')
-put(wa, f'C{r}', 'Market cap = 43.58 × 4,989.8mn = SAR 217,455mn; total debt = SAR 22,475mn (Q1-2026 IR release, post the '
-                  'Jan-2026 $2bn sukuk; excludes lease liabilities 2,296). E/(D+E) = 90.6%.', SUB)
+put(wa, f'C{r}', D['coc_record']['weights_source'] +
+     ' E/(D+E) = %.1f%%.' % (100.0 * D['coc_record']['weight_equity']), SUB)
 r += 1
-put(wa, f'A{r}', 'Full reference & cache')
-put(wa, f'C{r}', 'See Cost_of_Capital_Reference.md (Saudi Arabia row, filled 09-07-2026) and wacc_builder.py for the standing '
-                  'method. Both ERP-basis WACCs are published per protocol.', SUB)
+put(wa, f'A{r}', 'Both premium bases')
+# THIS CELL POINTED A READER AT A REPOSITORY FILE AND A CODE MODULE. Neither is a source
+# an outside reader can open, and a file path in a delivered document is caught by shape.
+put(wa, f'C{r}',
+    'The cost of capital is built the same way for every market this desk covers: the sovereign yield for the '
+    'country, less that same sovereign\u2019s own default spread so country risk is charged once rather than '
+    'twice, plus beta times an equity risk premium published for Saudi Arabia specifically. Both premium bases '
+    'are published — %.2f%% central and %.2f%% on the alternative — giving costs of capital of %.2f%% and '
+    '%.2f%%, so the choice is visible rather than made silently.'
+    % (D['dcf']['wacc_build']['erp_market'] * 100, D['dcf']['wacc_build']['erp_rating'] * 100,
+       D['dcf']['wacc'] * 100, D['dcf']['wacc_rating_basis'] * 100), SUB)
 
 json.dump(DRV, open(os.path.join(HERE, '_asm_rows.json'), 'w'))
 json.dump(dict(DPS_ROW=DPS_ROW, ANCHOR_ROWS=ANCHOR_ROWS),

@@ -33,8 +33,16 @@ sys.path.insert(0, os.path.join(HERE, '..'))
 os.chdir(HERE)
 import prose_figures as PF                                             # noqa: E402
 
+# THE WORKBOOK IS A DELIVERED DOCUMENT AND WAS IN NO STUDY'S POPULATION IN THE BOOK. This
+# study's own audit found six typed figures inside it — a spot, a share count, a market
+# capitalisation, an equity weight, a superseded balance-sheet date and a caption promising
+# a retired four-lens blend — every one of them beside a cell computing the right answer
+# from the numbers file. prose_figures.texts_of() reads a workbook's STRING cells only: a
+# numeric cell is a model output the recalculation gate already reconciles, and a numeral
+# inside a label is prose that happens to live in a spreadsheet.
 DOCS = ['STC_Valuation_Study_05-09-2026_public.docx',
-        'STC_Bibliography_05-09-2026.docx']
+        'STC_Bibliography_05-09-2026.docx',
+        'STC_Valuation_Model_05092026_public.xlsx']
 
 SN = json.load(open('study_numbers.json'))
 SPOT = SN['spot']
