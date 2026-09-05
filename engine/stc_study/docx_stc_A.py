@@ -87,13 +87,30 @@ H2('Valuation summary — every read at a glance')
 P('One table for the four reads that follow — what the business is worth (fundamental), what the tape is doing (technical), '
   'where price could travel over three months (Monte Carlo), and how three independent expert methods land. Every row is '
   'developed in the sections and appendices below.', size=9.8)
+# THE TAKEAWAY COLUMN RANKS THREE COMMITTED NUMBERS AND WAS TYPED. "Closest to spot" sat
+# on Expert 3 while Expert 2 is nearer the market, and "the floor-setter" sat on the
+# expert whose read is the HIGHEST of the three.
+_eb = {'Expert 1': E['e1']['base'], 'Expert 2': E['e2']['base'], 'Expert 3': E['e3']['base']}
+_near = min(_eb, key=lambda k: abs(_eb[k] - spot))
+_low = min(_eb, key=lambda k: _eb[k])
+
+
+def _etake(who):
+    bits = []
+    if who == _low:
+        bits.append('the lowest of the three')
+    if who == _near:
+        bits.append('nearest the market')
+    return '; '.join(bits) if bits else 'between the two'
+
+
 rows = [
  ['Lens / read', 'What it measures', 'Output', 'Takeaway'],
  ['FUNDAMENTAL — what the business is worth (the anchor)', '', '', ''],
  ['FCFF DCF (primary)', 'Core operations + stake marks − net debt − NCI', f"SAR {L['dcf']['base']:.0f}", f"{(L['dcf']['base']/spot-1)*100:+.0f}% vs spot"],
  ['Dividend discount (policy lens)', 'The locked SAR 0.55/quarter, discounted at Ke', f"SAR {L['ddm']['base']:.0f}", f"{(L['ddm']['base']/spot-1)*100:+.0f}%"],
  ['Relative (EV/EBITDA)', 'FY26E EBITDA × justified 9.0×, bridged to equity', f"SAR {L['relative']['base']:.0f}", f"{(L['relative']['base']/spot-1)*100:+.0f}%"],
- ['Normalized earnings', 'Ex-one-off PAT × through-cycle P/E', f"SAR {L['normalized']['base']:.0f}", f"{(L['normalized']['base']/spot-1)*100:+.0f}% · the floor"],
+ ['Normalized earnings', 'Ex-one-off PAT × through-cycle P/E', f"SAR {L['normalized']['base']:.0f}", f"{(L['normalized']['base']/spot-1)*100:+.0f}% · a cross-check, not the floor"],
  # ONE CLASS PRIMARY IS THE CENTRAL. This row read "Weighted central — Blend 35/25/20/20",
  # the construction [R-LENS-03] retired: a number produced by averaging several methods is
  # not more robust than the best of them, it is a new method with free parameters nobody
@@ -119,9 +136,9 @@ rows = [
   f"p5 {q60['5']:.0f} · p50 {q60['50']:.1f} · p95 {q60['95']:.0f}",
   f"Median {(q60['50']/D['cone_anchor']-1)*100:+.1f}%; a small upward lean"],
  ['EXPERT PANEL — three independent methods (Appendix C)', '', '', ''],
- ['Expert 1 — cash returns / economic profit', 'ROIC vs WACC with fading excess returns', f"SAR {E['e1']['base']:.0f}", 'Most conservative'],
- ['Expert 2 — normalized earnings power', 'Mid-cycle EPS × multiple', f"SAR {E['e2']['base']:.0f}", 'The floor-setter'],
- ['Expert 3 — macro-policy scenario tree', 'Rate path & payout scenarios into a DDM', f"SAR {E['e3']['base']:.0f}", 'Closest to spot'],
+ ['Expert 1 — cash returns / economic profit', 'ROIC vs WACC with fading excess returns', f"SAR {E['e1']['base']:.0f}", _etake('Expert 1')],
+ ['Expert 2 — normalized earnings power', 'Mid-cycle EPS × multiple', f"SAR {E['e2']['base']:.0f}", _etake('Expert 2')],
+ ['Expert 3 — macro-policy scenario tree', 'Rate path & payout scenarios into a DDM', f"SAR {E['e3']['base']:.0f}", _etake('Expert 3')],
  ['Panel range', 'Spread = the fade-vs-franchise question', f"SAR {min(E['e1']['base'],E['e2']['base'],E['e3']['base']):.0f}–{max(E['e1']['base'],E['e2']['base'],E['e3']['base']):.0f}", f"Centres ~SAR {sorted([E['e1']['base'],E['e2']['base'],E['e3']['base']])[1]:.0f}"],
 ]
 table(rows, [2.15, 2.35, 1.45, 1.15], band_rows=[1, 7, 10, 13], first_col_bold=False, size=8.9)
@@ -295,16 +312,33 @@ rich([(f"Relative base ≈ SAR {L['relative']['base']:.0f}", dict(bold=True)),
       (' — in line with the DCF, which is itself informative: the market’s multiple for this franchise already embeds '
        'roughly the same view of its cash engine as our explicit model.', {})])
 
+# The reconciliation of note 9 is its own committed artefact rather than a block inside
+# the numbers file, because it is read by three builders and written by one.
+import json as _json
+_ISJ = _json.load(open(os.path.join(HERE, 'income_statement.json')))
 H2('1.4  Normalized earnings power — where this sits in the cycle')
 P('Cycle position first: unlike a developer or a smelter, stc’s P&L has no violent cycle, but FY25 profit is '
-  'still not a clean base — it carries a one-off SAR 466 mn zakat credit (prior-year provision reversals), and FY24 before '
+  f"still not a clean base — it carries the reversal of a prior year's zakat provision, SAR "
+  f"{_ISJ['zakat_reversal_fy2025']/1000.0:,.0f} mn on its own disclosed line, and FY24 before "
   'it carried the SAR 12.9 bn TAWAL disposal gain, a SAR 1.5 bn withholding-tax reversal and a SAR 2.6 bn early-retirement '
   f"charge. Margins sit mid-cycle: the forecast opens at an EBITDA margin of {D['drivers']['ebitda_m'][0]*100:.2f}% "
   'against the filed FY2025 year, and it is an output of the cost build rather than a target, enterprise revenue is at the '
   'soft point of the government mega-project phasing, and the subsidiary portfolio (stc bank, center3) is still in its '
-  'investment phase — 2–3 subsidiaries are guided to turn contribution-positive from 2026. Normalized attributable profit '
-  'is therefore ~SAR 14.4 bn (reported FY25 14.8 bn less the zakat credit), or EPS ≈ 2.89, capitalized at a through-cycle '
-  '15× — the stock’s own multi-year median area and the peer-set mid.', size=10.5)
+  'investment phase, with several guided to turn contribution-positive from 2026. '
+  # THIS SENTENCE WAS THE PRE-CORRECTION NORMALISATION AND SURVIVED THE CORRECTION. It read
+  # "~SAR 14.4 bn (reported FY25 14.8 bn less the zakat credit), or EPS ~2.89" — which is
+  # the filed profit less 466, the NET zakat line for the year rather than the one-off
+  # inside it. What is non-recurring is the reversal of prior years' provision that the
+  # zakat note carries on its own line, and the normalisation charges the year at the rate
+  # the three filed years imply instead. The table in Appendix C was rebuilt on that and
+  # asserted; this paragraph restated the retired arithmetic in words, where no assertion
+  # reaches. FIXING A TABLE DOES NOT FIX THE SENTENCE THAT RESTATES IT.
+  f"Normalised attributable profit is therefore SAR {D['rel_basis']['norm_pat']/1000.0:,.1f} bn — the filed profit "
+  f"before zakat, charged at the {D['tax_rate_on_pbz']*100:.2f}% the three filed years imply once the disclosed "
+  'reversal of a prior year’s provision is taken out rather than extrapolated, less the minority’s share — or '
+  f"SAR {D['rel_basis']['norm_eps']:.2f} a share, capitalised at "
+  f"{D['lenses']['normalized']['base']/D['rel_basis']['norm_eps']:.0f} times, which is this stock’s own multi-year "
+  'median area and the middle of its peer set.', size=10.5)
 rows = [
  ['Normalized-earnings basis', 'Bear', 'Base', 'Bull'],
  ['Normalized PAT (SAR mn)', '13,600', '14,400', '15,200'],
@@ -313,7 +347,10 @@ rows = [
 ]
 table(rows, [2.6, 1.3, 1.3, 1.3], first_col_bold=True)
 rich([(f"Normalized base ≈ SAR {L['normalized']['base']:.0f}", dict(bold=True)),
-      (' — the floor of the set: it pays nothing for growth beyond today’s earnings power and treats the AI-infrastructure '
+      # "THE FLOOR OF THE SET" IS FALSE ON THREE COMMITTED NUMBERS: this lens reads ABOVE
+      # both the cash-flow lens and the dividend lens, and the DISCLOSED floor is book value.
+      (f" — not the floor of the set, which is the disclosed book value of SAR {L['book_value']:.2f}, but the read "
+       'that pays nothing for growth beyond today’s earnings power and treats the data-centre '
        'build purely as cost.', {})])
 
 H2('1.5  Synthesis — the central, and the lenses beside it')
@@ -387,19 +424,39 @@ caption('History: stc FY2025 earnings presentation and IR releases (stc.com), re
         'what drives the business; the MODEL is built on the eleven operating segments note 9 '
         'discloses, which is a different and finer cut.')
 
+# The crux paragraph quotes the cover table, the beta grid and the rate grid; all three
+# are committed and none is retyped.
+_CV = D['cover']
+S = D['sens']
+_GI = min(range(len(S['g_steps'])), key=lambda k: abs(S['g_steps'][k] - D['dcf']['tg']))
+_WI = min(range(len(S['wacc_steps'])), key=lambda k: abs(S['wacc_steps'][k] - D['dcf']['wacc']))
+_B1 = next(r for r in S['beta_grid'] if r['adopted'])
+_BETA1 = next(r for r in S['beta_grid'] if abs(r['beta'] - 1.0) < 1e-9)
+
 H2('1.7  The crux — dividend cover against the capex cycle, in real units')
 P('Three judgments drive this valuation, and all three are observable rather than abstract. First and largest: capex '
   f"intensity against the locked dividend. The policy dividend costs SAR "
   f"{D['drivers']['payout_dps'][0] * D['bridge_record']['shares_mn'] / 1000.0:,.2f} bn a year "
   f"({D['drivers']['payout_dps'][0]:.2f} x {D['bridge_record']['shares_mn']:,.1f} mn shares); "
-  'management guides capex to 15–17.5% of revenue with 2026–27 “edging up.” The cover table below is the whole tension in '
-  'one place — at the top of the guided band the dividend is only 0.86× covered by model FY26E free cash flow and the '
-  'balance sheet funds the rest; at the bottom it is fully covered. Each percentage point of capex intensity is worth '
-  '≈SAR 0.8 bn of annual FCF and ≈SAR 1.6 of DCF fair value per share. Second: the discount rate. This is a 90%-equity-'
-  'weighted WACC built on a 0.48 regressed beta from a nine-week window (§1.8) — at β = 1.0 the DCF falls from ~50 to ~34, '
-  'below spot, so §1.9 publishes the full beta grid rather than letting one regression settle it. Third: the SAMA/Fed '
-  'path — the rf is 5.5% today; each 50 bp off the Saudi curve adds ≈SAR 4–5 to the DCF and directly lowers the funding '
-  'cost of the AI-infrastructure build. A fourth, slower variable: KSA mobile competition (Mobily’s subscriber growth has '
+  # THIS PARAGRAPH DESCRIBED A COVER TABLE THAT NO LONGER EXISTS AND A BETA THAT NO LONGER
+  # EXISTS. It framed the tension across management's 15-17.5% GUIDANCE band — the
+  # construction this rebuild retired, since guidance is scored and never consumed — and
+  # its cover figures (0.86x at the top, fully covered at the bottom) belong to that band,
+  # not to the three filed years the table below actually spans. It then described the
+  # discount rate as built on a nine-week regression of 0.48.
+  f"and the model spans the range this company's OWN three filed years actually ran, "
+  f"{_CV[0]['capex'].split(' ')[0]} to {_CV[-1]['capex'].split(' ')[0]} of revenue, rather than the band management "
+  f"guides to. The cover table below is the whole tension in one place: at the heaviest of those three years the "
+  f"dividend is {_CV[-1]['cover']:.2f}x covered by model free cash flow in the first forecast year, and at the "
+  f"lightest {_CV[0]['cover']:.2f}x — so on this company's own history of capital spending the dividend is covered "
+  f"throughout, and the question is whether the data-centre build takes intensity ABOVE anything it has yet run. "
+  f"Second: the discount rate, a {D['coc_record']['weight_equity']*100:.0f}%-equity-weighted cost of capital on a "
+  f"{D['coc_record']['beta']:.2f} beta from a five-year weekly regression (§1.8) — at a beta of 1.0 the value falls "
+  f"from SAR {_B1['ps']:.2f} to {_BETA1['ps']:.2f}, {(_BETA1['ps']/spot-1)*100:+.0f}% against the price, so §1.9 "
+  'publishes the whole grid rather than letting one regression settle it. Third: the policy rate path — each 50 basis '
+  f"points off the curve is worth about SAR {abs(S['table_wg'][_WI-1][_GI]-S['table_wg'][_WI][_GI]):.1f} on the value "
+  'and lowers the funding cost of the build directly. A fourth, slower variable: mobile competition (Mobily’s '
+  'subscriber growth has '
   'outpaced stc’s revenue growth for four quarters) — each 1 pp off consumer growth costs ≈SAR 2 of fair value.', size=10.5)
 rows = [['FY26E scenario (real units)', 'Model FCF (SAR bn)', 'Dividend bill (SAR bn)', 'Cover']]
 for c in cov:

@@ -167,13 +167,14 @@ H2('B.2  Risk register')
 rows = [['Risk', 'How it would show up first', 'What it is worth']]
 for r, sig, w in [
  ('A price war in Saudi mobile', 'Consumer revenue per subscriber, before it reaches the margin',
-  'The single largest downside: the margin glide is the model'),
+  'The single largest downside: this model assumes NO margin improvement, so a price war breaks it downward from a '
+  'path that has nothing built in to give back'),
  ('Capital expenditure overshoot on the data-centre build', 'Capital intensity against the three filed years (1.05x to 1.25x depreciation)',
   f"The bear-to-bull span of the central: SAR {D['central_range']['low']:.2f} to the cash-flow bull"),
  ('Government receivables cycles', 'Operating cash conversion, not the income statement',
   'A cash-flow timing risk rather than a value risk, unless it persists'),
  ('Subsidiary execution as the portfolio scales', 'Contribution turning positive on the guided schedule, or not',
-  'The margin glide to the terminal depends on it'),
+  'The flat margin carried to the terminal depends on it'),
  ('The rate path staying higher for longer', 'The discount rate directly',
   f"{D['dcf']['tv_pct']*100:.0f}% of enterprise value sits beyond year five"),
  ('The overseas listed stake', 'A mark that moves daily and is carried at market',
@@ -333,7 +334,7 @@ rich([('Verdict, falsification, market-implied. ', dict(bold=True)),
        f"{(E['e2']['base']/D['spot']-1)*100:+.0f}% against the market. On clean current earnings the stock is priced "
        f"above his read: the market pays {D['spot']/_e2eps:.1f}x his normalised earnings against the {_e2x:.1f}x he "
        "will justify, and the difference is growth not yet printed. Falsified by two consecutive years of double-digit "
-       "adjusted earnings growth, which would make his base stale, or by the margin glide reversing.", {})])
+       "adjusted earnings growth, which would make his base stale, or by the flat margin path turning down.", {})])
 
 H2('C.3  Expert 3 — macro-policy: the scenario tree')
 P('Worldview and tradition. In a policy-driven market, policy outranks fundamentals: the Fed/SAMA rate path, the oil-'

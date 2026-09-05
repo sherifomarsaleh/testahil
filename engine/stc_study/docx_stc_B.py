@@ -229,7 +229,9 @@ P(f"The distribution leans mildly to the upside — the ladder above gives a {pr
 H1('7  Caveats and what would change our mind')
 for head, body in [
  ('The dividend-vs-capex tension is the model. ', 'The FY26E cover of 0.86–1.04× is an estimate built on management’s own '
-  'capex band and our margin glide; two consecutive quarters of FCF below the SAR 2.74 bn quarterly dividend bill would '
+  f"capital-intensity range and a margin path that is FLAT rather than improving — {D['drivers']['ebitda_m'][0]*100:.2f}% "
+  f"in the first forecast year against {D['drivers']['ebitda_m'][-1]*100:.2f}% in the last. Two consecutive quarters of "
+  'free cash flow below the quarterly dividend bill would '
   'push the DDM lens toward its bear case and the balance sheet toward releveraging — watch the quarterly FCF line, '
   'not the payout announcements.'),
  ('Terminal-value dependency. ', f"{dcf['tv_pct']*100:.0f}% of the cash-flow model's enterprise value sits beyond the "
@@ -248,7 +250,7 @@ for head, body in [
   "specific to stc. A beta is a statement about how a stock moves with its market, and on this name that statement is "
   "weak. §1.9 shows the valuation at every beta up to 1.2 for exactly that reason."),
  ('Competition is the slow leak. ', 'stc’s consumer growth (+3%) already trails Mobily’s subscriber momentum; a price '
-  'war in KSA mobile — three players, one regulator, heavy 5G capacity — is the scenario in which the margin glide '
+  'war in Saudi mobile — three players, one regulator, heavy capacity — is the scenario in which the flat margin path '
   'reverses and every lens compresses toward the normalized floor.'),
  ('The subsidiary portfolio is an investment phase, not yet a return. ', 'stc bank (8 mn customers, SAMA-licensed '
   'Jan-2025), center3, SCCC and iot squared are guided to turn contribution-positive from 2026; if they stay dilutive '
