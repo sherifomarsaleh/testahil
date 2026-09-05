@@ -83,6 +83,14 @@ DIRECTORY_GATES = [
     # unrelated comment in it happened to mention a study path. An empty directory has no
     # numbers file, the census reports it unreadable, and the gate refuses it by name.
     'check_terminal_floor.py',
+    # ADDED 05-Sep-2026, BY THIS FILE'S OWN REFUSAL rather than by anyone remembering. Both
+    # gates were adopted the same day and neither was listed here, so the gauntlet reported
+    # 29 of 29 refusing while two study-scoped gates on disk had been tested by nothing — the
+    # failure shape this file exists to close, occurring inside it. Both are directory-scoped:
+    # an empty study directory declares no walk-forward scope and carries no recalculation
+    # instrument, neither has a ratchet entry, and each refuses BY NAME.
+    'check_walkforward_scope.py',
+    'check_workbook_values.py',
 ]
 
 # ARTEFACT GATES: bite once the study produces the artefact they read, and are tested by

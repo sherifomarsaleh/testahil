@@ -2,7 +2,6 @@
  "entries": {
   "ADNOCDIST": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",
   "ADNOCDRILL": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",
-  "ADNOCLS": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",
   "AIRARABIA": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",
   "AMOC": "a walk-forward run exists at engine/amoc_walkforward/ and the study states no scope decision. The run is the harder half and it is done; what is missing is the sentence in the study saying which scope was decided and on how many sourceable years.",
   "AMR": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",

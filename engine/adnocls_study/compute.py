@@ -2498,6 +2498,35 @@ OUT = dict(
                  format(BASE['revenue'][0], ',.0f'), format(V['rev_fy25'], ',.0f'),
                  format(ACQ_COST, ',.0f'))),
     ),
+    # [R-FCAL-01] THE SCOPE DECISION IS STATED IN THE STUDY, and the exemplar owes it first:
+    # a study is built by opening this document beside it, so a record this one does not carry
+    # is a record every study written after it does not carry either [R-ENF-01 EXT 04-Sep].
+    # THE COUNT IS WHAT IS ESTABLISHED, NOT WHAT IS HOPED FOR. Five fiscal years are sourceable
+    # from statements in this study's own directory: FY2022, FY2023, FY2024 and FY2025 from
+    # their own signed audited accounts, and FY2021 as the comparative carried in the FY2022
+    # accounts — a comparative rather than an as-originally-reported filing, which is a
+    # point-in-time qualification and is written down rather than smoothed over. The company
+    # listed in June 2023 and its pre-listing audited years were NOT established as reachable
+    # by this study; asserting they are, to reach the eight a FULL scope needs, would be the
+    # fabricated count this rule exists to prevent. Five puts it in the LIGHT band.
+    walkforward_scope=dict(
+        rule='R-FCAL-01',
+        scope='LIGHT',
+        sourceable_fiscal_years=5,
+        earliest_sourceable='FY2021',
+        basis=('the four audited consolidated financial statements held in this study\'s own '
+               'directory (FY2022, FY2023, FY2024, FY2025), plus FY2021 as the comparative '
+               'carried in the FY2022 accounts. The company listed in June 2023 and no '
+               'pre-listing audited year was established as reachable by this study, so the '
+               'count stops at five rather than being extended to the eight a FULL scope '
+               'would need'),
+        status='pending',
+        note=('The fundamental walk-forward has NOT been run on this name. Scope is LIGHT on '
+              'five sourceable fiscal years — the last five origins, horizons one to three — '
+              'and the rule forbids delaying a delivery for the run: it goes alongside and its '
+              'corrections feed the next edition. No lesson, bias correction or calibrated '
+              'range in this study rests on a walk-forward result, because there is none.'),
+    ),
     bridge_record=dict(
         market='AE',
         balance_sheet_date='2026-03-31', latest_disclosed_date='2026-03-31',
