@@ -112,6 +112,12 @@ presentation, so the measured-age route is the exception rather than the rule** 
 **And there is a jurisdictional pattern worth testing rather than asserting.** The one name
 the route has unlocked in this pass, EGCH, discloses depreciation as RATES applied to cost
 with no residual mentioned — the Egyptian presentation. The three that stopped are all UAE
-filers using the IFRS residual-value form. Two names remain on the retired construction and
-both are Egyptian, so the next pass is the test of whether that pattern is real or a
-coincidence of three.
+filers using the IFRS residual-value form.
+
+*Corrected the same day: this paragraph first said "two names remain on the retired
+construction and both are Egyptian". Both halves were wrong. AMR was tested within the hour
+and is a UAE filer on ADX carrying the same residual-value clause, which makes it the fourth
+UAE stop rather than a second Egyptian test; and that leaves ONE name untested, AMOC. The
+pattern is therefore four-for-four in the UAE against one Egyptian success, on a single
+remaining test — which is a thinner basis than the sentence originally implied, and the
+thinness is the point of correcting it rather than the count.*
