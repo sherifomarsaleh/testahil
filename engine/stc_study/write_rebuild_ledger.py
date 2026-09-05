@@ -628,7 +628,14 @@ led.apply(
         'additions. SECOND, THE BASE HAS TO MATCH: after-tax operating profit is EBIT times '
         "one minus a rate, so the rate must be measured against EBIT, while the income "
         "statement's zakat line sits on profit before zakat. The two differ because the "
-        'lines between them are a net charge on this book.'),
+        'lines between them are a net charge on this book. THE DEBT SHIELD WAS LOOKED AT '
+        'AND DELIBERATELY LEFT ALONE, which is recorded because the opposite was tried: '
+        'the schedule shields interest at the statutory 20%%, and carrying the measured '
+        'effective rate into it on a one-model-one-rate argument was WRONG — an effective '
+        'rate is the average the filed years bore, a shield is the marginal rate an '
+        'authority allows on the income-tax portion, and the two are not required to be '
+        'equal. The span between them is worth 0.79%% of the answer, below the line this '
+        'house sets for a contested judgement.'),
     evidence=(
         'Measured over the three filed years together with the disclosed reversal put back: '
         '%.2f%% on EBIT, which is what after-tax operating profit needs, and %.2f%% on '

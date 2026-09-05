@@ -268,11 +268,24 @@ put(wa, f'A{r}', 'Former weights: cash flow 35%, dividend discount 25%, relative
 put(wa, f'C{r}', 'RETIRED. Two of those four lenses are not permitted cross-checks for this '
                  'class at all and between them carried 45% of a central.', SUB)
 r += 1
-r = hdr(wa, r, 'MONTE CARLO (YZ-HAR v2 — engine outputs on the Monte Carlo sheet)')  # 36
-r = inp(wa, r, 'Anchor volatility (HAR forecast, annualized)', round(D['engine']['anchor_vol'], 4), PCT)  # B37
-r = inp(wa, r, 'Secular drift (daily) — zero-drift class', 0.0, '0.0000%', 'International/GCC name: zero drift passed Step 0; secular drift failed (−4.8%)')  # B38
-r = inp(wa, r, 'Net factor drift per quarter (16-factor stack)', round(D['engine']['factor_drift_q'], 4), PCT)  # B39
-r = inp(wa, r, 'Paths / seed', '50,000 / 42', '@')                          # B40
+# THESE ROWS DESCRIBED A MODEL THIS HOUSE DOES NOT RUN. They named an engine version that
+# is not the production one, an anchor volatility from a study-local simulation, a "secular
+# drift failed (-4.8%)" note — a score against a naive benchmark, which is the retired
+# verdict machinery and may not reach a reader in any form — and a sixteen-factor stack of
+# typed event probabilities. Every row below is the production strike's own record.
+_EN = D['engine']
+_H3 = _EN['horizons']['3M']
+r = hdr(wa, r, 'THE PRICE MAP — the production engine, reproduced (outputs on the Monte Carlo sheet)')
+r = inp(wa, r, 'Forward volatility over three months (annualised)',
+        round(_H3['anchor_vol_ann'], 4), PCT,
+        'Projected from this stock\u2019s own recent, medium and longer-run variation')
+r = inp(wa, r, 'Tail parameter and width calibration', '%.1f / %.3f' % (_EN['nu'], _EN['width_cal']), '@',
+        'The market panel\u2019s fitted pair. Neither is quoted alone: they trade off, and the honest '
+        'object is the cone they jointly produce')
+r = inp(wa, r, 'Momentum lean applied over three months', round(_H3['signal_alpha'], 6), PCT2,
+        'Direction call %s (reading %+.2f against a %.2f threshold); capped at the strength measured'
+        % (_EN['call'].upper(), _EN['signal_z'], _EN['dead_zone']))
+r = inp(wa, r, 'Paths / seed', '%s / %d' % (format(_EN['n_paths'], ','), _EN['seed']), '@')
 r = hdr(wa, r, 'FORECAST DRIVERS (FY26E–FY30E) — top-down (§3.5-C gate: subs × ARPU not disclosed)')  # 41
 put(wa, f'A{r}', 'Driver \\ year', bold=True)
 for j, y in enumerate(YF):

@@ -31,7 +31,20 @@ MACRO = MP.load('SA')
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 BUILD_DATE = '2026-09-05'
-TAX = 0.20                      # zakat and income tax, the study's own rate
+# THE DEBT SHIELD IS A MARGINAL RATE AND THE MODEL'S TAX CHARGE IS AN EFFECTIVE ONE, AND
+# THEY ARE NOT REQUIRED TO BE EQUAL. This was changed to the measured 8.03% effective rate
+# on a coherence argument — one model, one tax rate — and the argument was wrong. The
+# 8.03% is the AVERAGE rate the three filed years bore, a blend of zakat on the Saudi
+# share of the base and income tax on the rest; the shield on interest is a MARGINAL rate
+# against the income-tax portion, for which the statutory 20% is the rate an authority
+# actually allows. Taxing profit at an effective rate while shielding debt at a marginal
+# one is ordinary and correct, not an inconsistency.
+#
+# What IS unsourced is the split: the correct shield is 20% weighted by the non-Saudi
+# ownership share, which this study does not hold, so 20% is the upper bound of it. The
+# whole span is worth 0.79% of the answer — below the materiality line this house sets for
+# a contested judgement — and it is recorded here rather than left as a bare constant.
+TAX = 0.20
 
 # ---------------------------------------------------------------------------
 # THE BORROWINGS BOOK, facility by facility, from note 26 of the FY2025 audited

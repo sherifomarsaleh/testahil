@@ -147,6 +147,16 @@ plus gross borrowings — so no cash is netted inside the rate, and the cash add
 bridge is therefore charged once. Cost of capital 8.133% on the swap basis, 8.103% on the
 rating basis.
 
+**The debt tax shield was challenged and left alone, and the reasoning is recorded because
+the change was made and then withdrawn.** The schedule shields interest at the statutory
+20% while the model strikes after-tax operating profit at the 8.03% the three filed years
+imply, and that looked like one model carrying two tax rates. It is not: an effective rate
+is the average a company bore, a shield is the marginal rate an authority allows on the
+income-tax portion of its base, and the two are not required to agree. What is genuinely
+unsourced is the split between zakat and income tax by ownership, which would place the
+true shield somewhere below 20%; the whole span is worth 0.79% of the answer, below this
+house's materiality line for a contested judgement, and it is flagged rather than filled.
+
 **The beta is the largest single input and it moved the most.** A 40-session daily
 regression over nine weeks gave 0.48; the conforming own-stock weekly regression against
 TASI gives 0.7078 over 252 observations and 4.91 years. That correction alone took 13.75% off

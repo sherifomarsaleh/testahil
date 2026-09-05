@@ -51,9 +51,8 @@ A_TG = an('Terminal growth — DERIVED, terminal inflation + stated real growth'
 A_TGDIV = an('DDM terminal dividend growth')
 A_RF = an('Risk-free rate, normalised by the sovereign default spread')
 A_ERP = an('Equity risk premium (market basis, central)')
-A_VOL = an('Anchor volatility (HAR forecast, annualized)')
-A_DRIFT = an('Secular drift (daily) — zero-drift class')
-A_FDRIFT = an('Net factor drift per quarter (16-factor stack)')
+A_VOL = an('Forward volatility over three months (annualised)')
+A_LEAN = an('Momentum lean applied over three months')
 A_TAX = an('Effective zakat rate ON EBIT (used for after-tax operating profit)')
 SR = json.load(open(os.path.join(HERE, '_seg_rows.json'))); IS = json.load(open(os.path.join(HERE, '_is_rows.json')))
 BSJ = json.load(open(os.path.join(HERE, '_bs_rows.json'))); CFJ = json.load(open(os.path.join(HERE, '_cf_rows.json')))
@@ -251,7 +250,8 @@ title(ws, 'Monte Carlo — engine outputs (YZ-HAR v2)',
       '50,000 paths · 16 factors · seed 42 · computed by the Testahil MC engine (values, not a sheet simulation). Zero drift — the Step 0-passed configuration for this name.', 8)
 pr = D['mc']['prob_read']; q20, q60 = D['mc']['q20'], D['mc']['q60']
 r = 5
-put(ws, f'A{r}', 'The probability read (T+60)', BLACK, None, True, FILL_G); r += 1
+put(ws, f'A{r}', 'The probability read (%s)' % D['engine']['horizons']['3M']['label'],
+    BLACK, None, True, FILL_G); r += 1
 prr = [
  ('P(price above spot)', pr['p_above'], PCT),
  ('P(+10%) vs P(−10%) — odds', f"{pr['p_up10']*100:.0f}% vs {pr['p_dn10']*100:.0f}% · {pr['odds']:.1f}:1", '@'),
@@ -266,20 +266,21 @@ put(ws, f'A{r}', 'Percentile map (SAR/share)', BLACK, None, True, FILL_H); r += 
 for j, h in enumerate(['Horizon', 'p5', 'p25', 'p50', 'p75', 'p95']):
     put(ws, f'{get_column_letter(1+j)}{r}', h, BLACK, None, True, FILL_H)
 r += 1
-for tag, q in [('T+20 sessions', q20), ('T+60 sessions', q60)]:
+for tag, q in [(D['engine']['horizons']['1M']['label'], q20),
+               (D['engine']['horizons']['3M']['label'], q60)]:
     put(ws, f'A{r}', tag)
     for j, p in enumerate(['5', '25', '50', '75', '95']):
         put(ws, f'{get_column_letter(2+j)}{r}', round(q[p], 1), BLACK, PX)
     r += 1
 r += 1
 put(ws, f'A{r}', 'Engine inputs (from Assumptions)', BLACK, None, True, FILL_H); r += 1
-for nm, ref in [('Anchor volatility (HAR, annualized)', '=' + A_VOL),
-                ('Secular drift (daily) — zero-drift class', '=' + A_DRIFT),
-                ('Net factor drift / quarter', '=' + A_FDRIFT)]:
+for nm, ref in [('Forward volatility over three months (annualised)', '=' + A_VOL),
+                ('Momentum lean applied over three months', '=' + A_LEAN)]:
     put(ws, f'A{r}', nm); put(ws, f'B{r}', ref, GREEN, PCT); r += 1
 r += 1
 put(ws, f'A{r}', 'Level-touch ladder (probability of touching by horizon)', BLACK, None, True, FILL_H); r += 1
-for j, h in enumerate(['Level (SAR)', 'T+20', 'T+60']):
+for j, h in enumerate(['Level (SAR)', D['engine']['horizons']['1M']['label'],
+                       D['engine']['horizons']['3M']['label']]):
     put(ws, f'{get_column_letter(1+j)}{r}', h, BLACK, None, True, FILL_H)
 r += 1
 for L_, tv in D['mc']['touch'].items():

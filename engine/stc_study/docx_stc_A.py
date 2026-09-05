@@ -1,8 +1,16 @@
 """Content part A: masthead → §2."""
 from docx_stc_base import *
+import os
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+# Absolute against this file's own directory: the builders read and wrote relative
+# to the working directory, so running them from the repository root — which is how
+# every gate does — found no inputs and scattered the outputs.
+
 
 pr = D['mc']['prob_read']; q20, q60 = D['mc']['q20'], D['mc']['q60']
 L = D['lenses']; tech = D['tech']; dcf = D['dcf']; ddm = D['ddm']
+LR = D['lens_record']
 spot = D['spot']; E = D['experts']; cov = D['cover']
 
 # ---------------- Masthead / title / anchor --------------------------------
@@ -12,8 +20,10 @@ P('Saudi Telecom Company (Tadawul: 7010)', size=17, bold=True, space_after=2)
 P('Fundamental analysis · Technical analysis · Monte Carlo simulation — one integrated read',
   size=10.5, italic=True, color=GREY, space_after=8)
 rich([('Anchor: ', dict(bold=True)),
-      ('SAR 43.58 (7 Jul 2026 close) · 4,989.8 mn shares (5,000 mn issued less treasury) · mkt cap ~SAR 217.5 bn (~US$58 bn) · '
-       'the Kingdom’s incumbent operator and the largest MENA telecom by market value: ', {}),
+      (f"SAR {spot:.2f} ({D['spot_date']} close) \u00b7 {D['bridge_record']['shares_mn']:,.1f} mn shares "
+       f"(issued capital over par, less treasury) \u00b7 market capitalisation SAR "
+       f"{spot * D['bridge_record']['shares_mn'] / 1000.0:,.1f} bn \u00b7 "
+       "the Kingdom\u2019s incumbent operator and the largest MENA telecom by market value: ", {}),
       ('stc KSA', dict(bold=True)),
       (' (consumer, enterprise, wholesale — ~57% mobile share, the national fibre and 5G backbone) plus ', {}),
       ('subsidiaries', dict(bold=True)),
@@ -45,24 +55,31 @@ box([
 
 # ---------------- Headline ---------------------------------------------------
 H2('Headline')
-rich([("The model's read: modestly undervalued, with the answer hinging on whether a zero-net-debt incumbent yielding 5% "
-       "can hold its margin story while funding the AI-infrastructure build. ", dict(bold=True)),
-      (f"At SAR 43.58 the shares sit about {abs(L['central']['base']/spot-1)*100:.0f}% below our weighted central estimate of "
-       f"SAR {L['central']['base']:.0f}. The four lenses cluster unusually tightly: the FCFF DCF lands at {L['dcf']['base']:.0f} "
-       f"(80% of it terminal value — disclosed, not buried), the locked dividend policy discounts to {L['ddm']['base']:.0f}, "
-       f"a justified EV/EBITDA read gives {L['relative']['base']:.0f}, and a conservative normalized-earnings read marks the floor "
-       f"at {L['normalized']['base']:.0f}. In one sentence: on the cash it pays out today stc is roughly fairly valued; on the "
-       "cash the business generates once capex normalizes from the current data-centre-and-5G investment phase, it is modestly "
-       "cheap. The crux is concrete and observable (§1.7): the SAR 0.55-per-quarter dividend — locked by policy through "
-       "the Q3-2027 distribution — costs SAR 11.0 bn a year, and at the guided 15–17.5% capex band our FY26E free cash "
-       f"flow covers between 0.86× and 1.04× of it. The balance sheet carries the gap comfortably (net debt ≈ "
-       "SAR 7.1 bn, ~0.3× EBITDA, after January’s $2 bn sukuk), but the equity story quietly shifted in 2024–25: "
-       "stc sold control of its towers, banked SAR 12.9 bn of gains, paid a SAR 2.00 special, and is now redeploying into AI "
-       "data centres (the center3–HUMAIN 1 GW ambition) and adjacencies (stc bank, Telefónica). Technically the tape is "
-       "flat — price within ±1% of every major moving average, RSI 48 — a stock waiting for its next catalyst. Over "
-       f"three months the Monte Carlo — zero drift, the configuration that passed the Step 0 calibration gate — places "
-       f"the 5th–95th percentile band at roughly SAR {q60['5']:.0f}–{q60['95']:.0f} with the median at "
-       f"{q60['50']:.1f}, and the honest core — the 50% band — at SAR {q60['25']:.0f}–{q60['75']:.0f}.", {})],
+# THE HEADLINE IS COMPUTED AND ITS DIRECTION FOLLOWS THE ARITHMETIC. Every clause here was
+# written for an answer this study no longer publishes: a typed spot of 43.58, a "weighted
+# central" that [R-LENS-03] retired, four lenses described as clustering tightly when they
+# now span ten riyals, a typed terminal share against a computed one, and a central called
+# ABOVE spot while the figure printed beside it was negative.
+_gap = L['central']['base'] / spot - 1.0
+_dir = 'below' if _gap < 0 else 'above'
+rich([("The model's read: the central sits below the traded price, and the study is HELD "
+       "rather than published while it does. ", dict(bold=True)),
+      (f"At SAR {spot:.2f} — the latest known close, on {D['spot_date']} — the shares sit "
+       f"about {abs(_gap)*100:.0f}% {'above' if _gap < 0 else 'below'} the central of SAR "
+       f"{L['central']['base']:.2f}, which is the CASH-FLOW lens and not an average of the "
+       f"reads beside it. Those cross-checks do NOT cluster: the dividend-policy read "
+       f"discounts to {L['ddm']['base']:.0f}, the enterprise multiple on this company's own "
+       f"history gives {L['relative']['base']:.0f}, a normalised-earnings read marks "
+       f"{L['normalized']['base']:.0f}, and disclosed book value is {L['book_value']:.0f} — "
+       f"a published range of SAR {LR['envelope']['low']:.1f} to "
+       f"{LR['envelope']['high']:.1f}, and the study publishes that disagreement rather "
+       f"than averaging it away. The terminal carries {D['dcf']['tv_pct']*100:.0f}% of the "
+       f"cash-flow value — disclosed, not buried — and is built on the "
+       f"{D['terminal_record']['inputs']['useful_life_years']:.1f}-year asset life this "
+       f"company's own accounting-policies note discloses, never on the reciprocal of an "
+       f"inflation rate. Over three months the price map places the 5th-to-95th percentile "
+       f"band at roughly SAR {q60['5']:.0f}-{q60['95']:.0f}, the median at {q60['50']:.1f}, "
+       f"and the middle half at SAR {q60['25']:.0f}-{q60['75']:.0f}.", {})],
      space_after=8)
 
 # ---------------- Valuation summary table -----------------------------------
@@ -77,13 +94,30 @@ rows = [
  ['Dividend discount (policy lens)', 'The locked SAR 0.55/quarter, discounted at Ke', f"SAR {L['ddm']['base']:.0f}", f"{(L['ddm']['base']/spot-1)*100:+.0f}%"],
  ['Relative (EV/EBITDA)', 'FY26E EBITDA × justified 9.0×, bridged to equity', f"SAR {L['relative']['base']:.0f}", f"{(L['relative']['base']/spot-1)*100:+.0f}%"],
  ['Normalized earnings', 'Ex-one-off PAT × through-cycle P/E', f"SAR {L['normalized']['base']:.0f}", f"{(L['normalized']['base']/spot-1)*100:+.0f}% · the floor"],
- ['Weighted central', 'Blend 35 / 25 / 20 / 20', f"SAR {L['central']['base']:.0f}", f"{(L['central']['base']/spot-1)*100:+.0f}% vs SAR {spot:.2f}"],
+ # ONE CLASS PRIMARY IS THE CENTRAL. This row read "Weighted central — Blend 35/25/20/20",
+ # the construction [R-LENS-03] retired: a number produced by averaging several methods is
+ # not more robust than the best of them, it is a new method with free parameters nobody
+ # tested, and it imports every weakness of the weakest lens at whatever weight somebody
+ # typed. Two of those four are not permitted cross-checks for this class at all.
+ ['THE CENTRAL — the cash-flow lens, not an average',
+  'the class primary; the others are cross-checks',
+  f"SAR {L['central']['base']:.2f}",
+  f"{(L['central']['base']/spot-1)*100:+.1f}% vs SAR {spot:.2f}"],
+ ['Published range', 'the span of the present-value reads',
+  f"SAR {LR['envelope']['low']:.1f}-{LR['envelope']['high']:.1f}", ''],
  ['TECHNICAL — what the tape is doing (timing, not value)', '', '', ''],
- ['Trend & momentum', 'Price vs the 20/50/100/200-day averages', 'Flat — within ±1% of all four', 'Range-bound'],
- ['Momentum / range', 'RSI · MACD · 52-week range', f"RSI {tech['rsi']:.0f} · MACD {tech['macd']['hist']:+.2f} · 40.2–45.4", 'Neutral, coiled'],
- ['MONTE CARLO — where price could go in 3 months (paths from spot)', '', '', ''],
- ['T+20 sessions', '50,000 paths · 16 factors', f"p5 {q20['5']:.0f} · p50 {q20['50']:.1f} · p95 {q20['95']:.0f}", 'Median ≈ spot'],
- ['T+60 sessions', 'same engine, longer horizon', f"p5 {q60['5']:.0f} · p50 {q60['50']:.1f} · p95 {q60['95']:.0f}", 'Mild upside skew'],
+ ['Trend & momentum', 'Price vs the 20/50/100/200-day averages',
+  f"Above all four, by {(D['cone_anchor']/max(tech['sma'].values())-1)*100:.1f}% on the highest", 'Firm, low energy'],
+ ['Momentum / range', 'RSI · MACD · 52-week range',
+  f"RSI {tech['rsi']:.0f} · MACD {tech['macd']['hist']:+.2f} · {tech['lo52']:.1f}–{tech['hi52']:.1f}",
+  'Firm, not overbought' if tech['rsi'] < 70 else 'Overbought'],
+ ['THE PRICE MAP — where price could go, from the cone anchor', '', '', ''],
+ [D['engine']['horizons']['1M']['label'].capitalize(), '50,000 paths, the production engine',
+  f"p5 {q20['5']:.0f} · p50 {q20['50']:.1f} · p95 {q20['95']:.0f}",
+  f"Median {(q20['50']/D['cone_anchor']-1)*100:+.1f}% on the anchor"],
+ [D['engine']['horizons']['3M']['label'].capitalize(), 'same engine, the longer horizon',
+  f"p5 {q60['5']:.0f} · p50 {q60['50']:.1f} · p95 {q60['95']:.0f}",
+  f"Median {(q60['50']/D['cone_anchor']-1)*100:+.1f}%; a small upward lean"],
  ['EXPERT PANEL — three independent methods (Appendix C)', '', '', ''],
  ['Expert 1 — cash returns / economic profit', 'ROIC vs WACC with fading excess returns', f"SAR {E['e1']['base']:.0f}", 'Most conservative'],
  ['Expert 2 — normalized earnings power', 'Mid-cycle EPS × multiple', f"SAR {E['e2']['base']:.0f}", 'The floor-setter'],
@@ -92,15 +126,18 @@ rows = [
 ]
 table(rows, [2.15, 2.35, 1.45, 1.15], band_rows=[1, 7, 10, 13], first_col_bold=False, size=8.9)
 rich([('Bottom line. ', dict(bold=True)),
-      (f"Every fundamental lens lands between SAR {L['normalized']['base']:.0f} and {L['dcf']['base']:.0f} — a tight cluster "
-       f"by house standards — and the weighted central of SAR {L['central']['base']:.0f} sits {(L['central']['base']/spot-1)*100:+.0f}% "
-       "above spot. The expert panel is more cautious than the house lenses precisely where it should be: the cash-returns "
-       "expert charges the company for the capital the network swallows and lands below spot, while the earnings and policy "
-       "experts sit at or just above it. This is not a deep-value situation and it is not an expensive one: it is a "
-       "zero-net-debt utility-grade franchise at ~14.7× trailing earnings and a 5.0% locked yield (9.6% counting last year's "
-       "special), where the return comes from the dividend plus whatever the market eventually pays for the AI-infrastructure "
-       "and fintech options. The three-month distribution centres at spot with a mild upside tilt — the tape has no opinion "
-       "yet.", {})], size=9.8, space_after=8)
+      (f"The fundamental reads span SAR {LR['envelope']['low']:.1f} to "
+       f"{LR['envelope']['high']:.1f} and the central — the cash-flow lens, which is what "
+       f"this class is valued on — is SAR {L['central']['base']:.2f}, "
+       f"{abs(_gap)*100:.1f}% {_dir} the latest known price. THAT GAP IS WHY THIS STUDY IS "
+       "HELD: a central more than a tenth below the traded price is a high-prior-of-defect "
+       "region, and an eight-heading review is what stands between the number and a reader. "
+       "The review did not move the answer toward the price and was not meant to — what it "
+       "found were defects in the model, each corrected on its own evidence, and the answer "
+       "moved where the corrections took it. The cross-checks are published beside the "
+       "central and never averaged into it: two of them are not permitted cross-checks for "
+       "this class at all, and in the delivered edition they carried 45% of a weighted "
+       "answer.", {})], size=9.8, space_after=8)
 
 # ---------------- Company overview -------------------------------------------
 H2('Company overview — stc at a glance')
@@ -108,8 +145,10 @@ rows = [
  ['Item', 'Value'],
  ['Listed entity', 'Saudi Telecom Company (stc Group), Tadawul: 7010'],
  ['What it is', 'The Kingdom’s incumbent telecom operator and MENA’s largest telecom by market value; consumer, enterprise and wholesale connectivity plus a digital-infrastructure and fintech portfolio'],
- ['Spot / date', 'SAR 43.58 · 7 Jul 2026 close'],
- ['Shares · market cap', '4,989.8 mn (5,000 mn issued − ~10.2 mn treasury) · ~SAR 217.5 bn (~US$58 bn)'],
+ ['Spot / date', f"SAR {spot:.2f} \u00b7 {D['spot_date']} close, the latest known"],
+ ['Shares \u00b7 market capitalisation',
+   f"{D['bridge_record']['shares_mn']:,.1f} mn (issued capital over par, less treasury) "
+   f"\u00b7 SAR {spot * D['bridge_record']['shares_mn'] / 1000.0:,.1f} bn"],
  ['FY2025 revenue / EBITDA / net profit', 'SAR 77,819 mn (+2.5%) · SAR 24,469 mn (31.4% margin) · SAR 14,828 mn (+12.5% adjusted; reported −39.9% vs FY24’s TAWAL-gain year)'],
  ['Q1-2026 revenue / net profit', 'SAR 19,939 mn (+3.8%) · SAR 3,696 mn (+12.0% ex non-recurring; +1.3% reported)'],
  ['Segment split (FY2025)', 'stc KSA SAR 51,119 mn (consumer 32,826 · enterprise 13,514 · wholesale 4,779) · subsidiaries net ~SAR 26,700 mn'],
@@ -126,7 +165,8 @@ caption('Source: stc FY2023–FY2025 IR releases, Q1-2026 release and interim FS
 
 # ================= §1 Fundamental ===========================================
 H1('1  Fundamental valuation')
-P('We value stc as a going-concern operator and triangulate four lenses. The primary lens is a free-cash-flow-to-firm DCF, '
+P('We value stc as a going-concern operator. ONE lens is the answer — a free-cash-flow-to-firm DCF — and the others '
+  'are published beside it as cross-checks rather than averaged into it. The primary lens is that DCF, '
   'because a mature, capital-intensive network operator is ultimately worth the cash its infrastructure produces after the '
   'capex that keeps it competitive; the tower and Telefónica stakes sit outside the operating engine and are marked '
   'separately on the bridge. A dividend-discount read is the natural cross-check for a company whose board has locked a '
@@ -167,7 +207,7 @@ rows = [
  ['Terminal value (Gordon, g = 2.5%)', f"{dcf['tv']:,.0f}"],
  ['PV of terminal value', f"{dcf['pv_tv']:,.0f}"],
  ['Enterprise value — core operations', f"{dcf['ev']:,.0f}"],
- ['Terminal value as % of EV (device A-7)', f"{dcf['tv_pct']*100:.0f}%"],
+ ['Terminal value as % of enterprise value', f"{dcf['tv_pct']*100:.0f}%"],
  ['+ Associates & JVs (43.06% DIIC/TAWAL, carrying)', f"{dcf['assoc']:,.0f}"],
  ['+ Telefónica 9.97% (market mark)', f"{dcf['telefonica']:,.0f}"],
  ['less: Net debt (IR basis, Q1-26) · NCI', f"({dcf['net_debt']:,.0f}) · ({dcf['nci']:,.0f})"],
@@ -180,7 +220,7 @@ P(f"Two honesty notes. First, {dcf['tv_pct']*100:.0f}% of the enterprise value s
   "the beta separately rather than hiding either. Second, the model FCFF (SAR 10.3 bn FY26E) runs ~SAR 2–3 bn richer than "
   "stc's own reported FY25 free cash flow (6.5 bn), because reported OCF absorbs receivables swings, early-retirement cash "
   "and zakat timing that a NOPAT-based FCFF smooths; Q1-26's FCF of 3.9 bn (+494% YoY) suggests the gap is closing, but "
-  "Appendix A shows both series so the difference is visible, not blended away (device A-8).")
+  "Appendix A shows both series so the difference is visible rather than averaged away.")
 
 H2('1.2  Dividend discount — the policy lens, as the cash-flow cross-check')
 P('stc is one of the few large emerging-market payers whose dividend is a stated, board-locked policy rather than a ratio: '
@@ -197,7 +237,7 @@ rows = [
  ['Terminal value = TDPS / (Ke − g)', f"SAR {ddm['tv']:.2f}"],
  ['PV of terminal value', f"SAR {ddm['pv_tv']:.2f}"],
  ['DDM fair value per share', f"SAR {ddm['ps']:.2f}"],
- ['Terminal value as % of value (device A-7)', f"{ddm['tv_pct']*100:.0f}%"],
+ ['Terminal value as % of the total', f"{ddm['tv_pct']*100:.0f}%"],
 ]
 table(rows, [4.0, 1.6], first_col_bold=True, header=False)
 rich([(f"DDM base ≈ SAR {ddm['ps']:.0f}/share", dict(bold=True)),
@@ -226,7 +266,7 @@ rich([(f"Relative base ≈ SAR {L['relative']['base']:.0f}", dict(bold=True)),
        'roughly the same view of its cash engine as our explicit model.', {})])
 
 H2('1.4  Normalized earnings power — where this sits in the cycle')
-P('Cycle position first (device A-6): unlike a developer or a smelter, stc’s P&L has no violent cycle, but FY25 profit is '
+P('Cycle position first: unlike a developer or a smelter, stc’s P&L has no violent cycle, but FY25 profit is '
   'still not a clean base — it carries a one-off SAR 466 mn zakat credit (prior-year provision reversals), and FY24 before '
   'it carried the SAR 12.9 bn TAWAL disposal gain, a SAR 1.5 bn withholding-tax reversal and a SAR 2.6 bn early-retirement '
   'charge. Margins sit mid-cycle: EBITDA margin 31.4% is on the guided path (Q1-26: 32.9%), enterprise revenue is at the '
@@ -245,7 +285,7 @@ rich([(f"Normalized base ≈ SAR {L['normalized']['base']:.0f}", dict(bold=True)
       (' — the floor of the set: it pays nothing for growth beyond today’s earnings power and treats the AI-infrastructure '
        'build purely as cost.', {})])
 
-H2('1.5  Synthesis — four lenses')
+H2('1.5  Synthesis — the central, and the lenses beside it')
 P('We weight the DCF most heavily because it is the only lens that prices the full capex-and-recovery arc; the DDM carries '
   'the pre-committed cash; the relative lens anchors to what the market pays for GCC telecom cash flows today; normalized '
   'earnings is the ballast.')
@@ -254,11 +294,12 @@ rows = [['Lens', 'Weight', 'Bear', 'Base', 'Bull'],
  ['Dividend discount (policy)', '25%', f"{L['ddm']['bear']:.0f}", f"{L['ddm']['base']:.1f}", f"{L['ddm']['bull']:.0f}"],
  ['Relative (EV/EBITDA)', '20%', f"{L['relative']['bear']:.0f}", f"{L['relative']['base']:.1f}", f"{L['relative']['bull']:.0f}"],
  ['Normalized earnings', '20%', f"{L['normalized']['bear']:.0f}", f"{L['normalized']['base']:.1f}", f"{L['normalized']['bull']:.0f}"],
- ['Weighted central', '', f"{L['central']['bear']:.1f}", f"{L['central']['base']:.1f}", f"{L['central']['bull']:.1f}"],
+ ['THE CENTRAL — the class primary', '', f"{L['dcf']['bear']:.1f}",
+  f"{L['dcf']['base']:.1f}", f"{L['dcf']['bull']:.1f}"],
 ]
 table(rows, [2.4, 0.9, 1.1, 1.1, 1.1], first_col_bold=True, band_rows=[5])
-figure('fig1_football.png', 6.3, 'Figure 1 — Valuation football field. Bars span bear–bull per lens; the brass tick is each '
-       'base case; the gold band is the blended central range; the ink line is spot.')
+figure(os.path.join(HERE, 'fig1_football.png'), 6.3, 'Figure 1 — Valuation football field. Bars span bear–bull per lens; the brass tick is each '
+       'base case; the gold band is the range the present-value reads span; the ink line is the market price.')
 rich([(f"Central fair value ≈ SAR {L['central']['base']:.0f}/share", dict(bold=True)),
       (f", {(L['central']['base']/spot-1)*100:+.0f}% versus spot. The bear–bull span ({L['central']['bear']:.0f}–"
        f"{L['central']['bull']:.0f}) is driven almost entirely by the DCF’s terminal arithmetic — the bear case is "
@@ -276,26 +317,50 @@ rows = [
  ['Associates & stakes', 'off-P&L', '43.06% towers (DIIC) · 9.97% Telefónica · iot squared 50%', 'Equity-method / marks', 'Bridge items'],
 ]
 table(rows, [1.55, 1.35, 2.35, 1.15, 0.95], first_col_bold=True, size=8.6)
-P('The top-down driver build (§3.5-C — the gate is deliberately NOT cleared for a bottom-up subscriber × ARPU model: stc '
-  'discloses unit revenue and subscriber counts but not ARPU by tier, so a manufactured split would be false precision — '
-  'the ETEL precedent in the house protocol). The sourced segment history comes first; the forward path is the house view:', size=9.8)
+P('The build is per disclosed segment. THE PREVIOUS EDITION GREW FOUR BUSINESS UNITS — '
+  'consumer, enterprise, wholesale and a subsidiaries residual — which is not how this '
+  'company reports: note 9 discloses ELEVEN operating segments and each is grown on its own '
+  'measured real rate. One of them, the Saudi operating business and two thirds of group '
+  'revenue, is built as volume times price from the subscriber counts the earnings '
+  'presentations disclose; the others are forecast on their net rate because no unit data '
+  'is published for them, and that gap is stated rather than filled.', size=9.8)
 fc = D['forecast']
-rows = [['Driver (disclosed history)', 'FY24', 'FY25', 'FY26E', 'FY28E', 'FY30E'],
- ['KSA Consumer (SAR mn)', '31,741', '32,826', f"{fc['FY26E']['cbu']:,.0f}", f"{fc['FY28E']['cbu']:,.0f}", f"{fc['FY30E']['cbu']:,.0f}"],
- ['KSA Enterprise', '13,466', '13,514', f"{fc['FY26E']['ebu']:,.0f}", f"{fc['FY28E']['ebu']:,.0f}", f"{fc['FY30E']['ebu']:,.0f}"],
- ['KSA Wholesale & Carrier', '4,313', '4,779', f"{fc['FY26E']['wc']:,.0f}", f"{fc['FY28E']['wc']:,.0f}", f"{fc['FY30E']['wc']:,.0f}"],
- ['Subsidiaries, net', '26,249', '26,700', f"{fc['FY26E']['sub']:,.0f}", f"{fc['FY28E']['sub']:,.0f}", f"{fc['FY30E']['sub']:,.0f}"],
- ['Group revenue', '75,893', '77,819', f"{fc['FY26E']['rev']:,.0f}", f"{fc['FY28E']['rev']:,.0f}", f"{fc['FY30E']['rev']:,.0f}"],
- ['EBITDA margin', '31.5%', '31.4%', '31.8%', '32.2%', '32.5%'],
- ['Capex intensity', '15.7%', '15.2%', '16.5%', '16.0%', '15.0%'],
-]
-table(rows, [2.2, 0.95, 0.95, 1.0, 1.0, 1.0], first_col_bold=True, size=8.9)
+_SEGH, _SEGF = D['seg_hist'], D['seg_forecast']
+_ELIM = 'Eliminations / adjustments'
+_order = [k for k in sorted(_SEGH, key=lambda k: -_SEGH[k]['FY25']) if k != _ELIM]
+rows = [['Operating segment (note 9)', 'FY24', 'FY25', 'FY26E', 'FY28E', 'FY30E']]
+for _k in _order:
+    rows.append([_k,
+                 f"{_SEGH[_k]['FY24']:,.0f}", f"{_SEGH[_k]['FY25']:,.0f}",
+                 f"{_SEGF[_k]['FY26E']:,.0f}", f"{_SEGF[_k]['FY28E']:,.0f}",
+                 f"{_SEGF[_k]['FY30E']:,.0f}"])
+# The elimination is forecast as a share of GROSS segment revenue rather than grown on its
+# own rate, so it comes off the forecast record's own line rather than the segment table.
+rows.append([_ELIM,
+             f"({abs(_SEGH[_ELIM]['FY24']):,.0f})", f"({abs(_SEGH[_ELIM]['FY25']):,.0f})",
+             f"({abs(fc['FY26E']['elim']):,.0f})", f"({abs(fc['FY28E']['elim']):,.0f})",
+             f"({abs(fc['FY30E']['elim']):,.0f})"])
+rows.append(['Group revenue',
+             f"{D['hist']['rev']['FY24']:,.0f}", f"{D['hist']['rev']['FY25']:,.0f}",
+             f"{fc['FY26E']['rev']:,.0f}", f"{fc['FY28E']['rev']:,.0f}",
+             f"{fc['FY30E']['rev']:,.0f}"])
+rows.append(['EBITDA margin', '', '',
+             f"{fc['FY26E']['ebitda_margin']*100:.1f}%",
+             f"{fc['FY28E']['ebitda_margin']*100:.1f}%",
+             f"{fc['FY30E']['ebitda_margin']*100:.1f}%"])
+rows.append(['Capital intensity (% of revenue)', '', '',
+             *[f"{D['drivers']['capex_pct'][i]*100:.1f}%" for i in (0, 2, 4)]])
+table(rows, [2.35, 0.95, 0.95, 0.95, 0.95, 0.95], first_col_bold=True, size=8.0)
 caption('History: stc FY2025 earnings presentation and IR releases (stc.com), restated basis. Forecast drivers are the house’s '
-        'own flagged view (Fundamental Driver Ledger rows logged). Q1-26 actuals: CBU +5.2%, EBU −3.6%, W&C +6.2%.')
+        'own flagged view. These are the company\'s own internal unit names, used here to describe '
+        'what drives the business; the MODEL is built on the eleven operating segments note 9 '
+        'discloses, which is a different and finer cut.')
 
 H2('1.7  The crux — dividend cover against the capex cycle, in real units')
 P('Three judgments drive this valuation, and all three are observable rather than abstract. First and largest: capex '
-  'intensity against the locked dividend. The policy dividend costs SAR 10.98 bn a year (2.20 × 4,989.8 mn shares); '
+  f"intensity against the locked dividend. The policy dividend costs SAR "
+  f"{D['drivers']['payout_dps'][0] * D['bridge_record']['shares_mn'] / 1000.0:,.2f} bn a year "
+  f"({D['drivers']['payout_dps'][0]:.2f} x {D['bridge_record']['shares_mn']:,.1f} mn shares); "
   'management guides capex to 15–17.5% of revenue with 2026–27 “edging up.” The cover table below is the whole tension in '
   'one place — at the top of the guided band the dividend is only 0.86× covered by model FY26E free cash flow and the '
   'balance sheet funds the rest; at the bottom it is fully covered. Each percentage point of capex intensity is worth '
@@ -309,7 +374,7 @@ rows = [['FY26E scenario (real units)', 'Model FCF (SAR bn)', 'Dividend bill (SA
 for c in cov:
     rows.append([f"Capex at {c['capex']}", f"{c['fcf']:.1f}", f"{c['div']:.1f}", f"{c['cover']:.2f}×"])
 table(rows, [2.6, 1.5, 1.5, 0.9], first_col_bold=True)
-caption('Device A-2: the DPS schedule and its stress test live in Appendix A.3. The dividend is policy-locked through the '
+caption('The dividend schedule and its stress test live in Appendix A.3. The dividend is policy-locked through the '
         'Q3-2027 distribution; the test is whether FCF or the balance sheet pays for it — at Q1-26 run-rate (FCF 3.9 bn vs '
         'a 2.74 bn quarterly dividend) it was FCF, for the first quarter in a year.')
 
@@ -322,35 +387,66 @@ P('stc is a defensive claim on the Saudi macro, in three channels. Rates: SAMA s
   'AI push), 5G/fibre densification, and digital-services adjacencies — is what turns a utility growth profile into a '
   'utility-plus-options profile. Because the riyal is pegged, there is no currency-translation channel in the valuation '
   'and no FX factor in the Monte Carlo. Every input in the cost-of-capital build is sourced and named (house rule §3.5-G):', size=10.5)
+# EVERY CELL OF THIS TABLE WAS TYPED, AND BY THE TIME THE STUDY WAS REBUILT NOT ONE OF
+# THEM MATCHED THE MODEL. It published a risk-free rate of 5.50% against a committed
+# 5.52%, a beta of 0.48 from a nine-week daily window against a conforming 0.71 from a
+# five-year weekly regression, a cost of equity of 7.90% against 8.59%, weights of
+# 90.6/9.4 against 90.3/9.7, a weighted cost of capital of 7.59% against 8.13%, and a
+# terminal growth of 2.50% against 2.00%. The model was right throughout; the page a
+# reader actually reads described a different company's cost of capital. Every figure
+# below now comes from the committed schedule.
 wb = dcf['wacc_build']
+_c = D['coc_record']
+_beta = wb['beta_reg']
 rows = [
  ['Cost-of-capital build', 'Value', 'Source'],
- ['Risk-free rate (rf)', '5.50%', 'Derived SAR 10Y: KSA govt-guaranteed USD 10Y priced UST+95bp on 8-Jul-2026 (SRC $1.5bn sukuk; UST 4.45%) = 5.40%, plus the SAR-over-USD pickup per the Saudi Exchange sovereign-debt primer (21-May-2026); FAB’s 5.5% as cross-check. Flagged: derived — no free live SAR 10Y screen exists'],
- ['Equity beta (β)', '0.48', 'Genuine daily stc-vs-TASI regression, n=40 sessions (5-May→7-Jul-2026): β 0.475, R² 14.3%, SE 0.19 — passes the house usability gate; flagged short-window, beta grid in §1.9'],
- ['Equity risk premium (rating-based, primary)', '5.01%', 'Damodaran ORIGINAL file (ctryprem.html), Saudi Arabia row, “Last updated: January 5, 2026”: Aa3, CRP 0.78% + mature 4.23%'],
- ['  — ERP, CDS-based (the “more current” alternative)', '5.72%', 'Same file, CDS column (sovereign CDS 0.98%) — for Saudi the CDS basis is the HIGHER one'],
- ['Cost of equity Ke = rf + β × ERP', '7.90%', '(rating basis; 8.25% on the CDS basis)'],
- ['Pre-tax cost of debt', '5.00%', 'stc’s own instruments: Jan-26 $2bn sukuk 4.489%/5.083% (T+75/T+90); 2019 sukuk 3.89%; SAR murabaha ≈ SAIBOR 4.79% + 60–100bp'],
- ['After-tax cost of debt (9.7% effective zakat/tax)', '4.51%', 'Debt mix: USD-linked ≈55–60% (named sukuk/ECA), SAR remainder — peg makes USD legs quasi-SAR'],
- ['Weights (E / D)', '90.6% / 9.4%', 'Market cap (43.58 × 4,989.8 mn) vs Q1-26 disclosed total debt SAR 22,475 mn'],
- ['WACC', '7.59%', '(7.90% on the CDS-based ERP — both published per protocol)'],
- ['Terminal growth (nominal SAR)', '2.50%', 'House view ≈ long-run nominal GDP-lite for a mature operator; sensitized in §1.9'],
+ ['Risk-free rate, as observed', f"{_c['rf_observed']*100:.2f}%",
+  'The sovereign yield on the house macro path for Saudi Arabia, carried with its own as-of date'],
+ ['  — less this sovereign\u2019s own default spread', f"{_c['default_spread']*100:.2f}%",
+  'Country risk is charged exactly once, and it is charged inside the equity risk premium below — so it is '
+  'removed here rather than counted twice'],
+ ['Normalised risk-free rate', f"{_c['rf_star']*100:.2f}%", 'The two lines above, by subtraction'],
+ ['Equity beta', f"{_beta['beta']:.4f}",
+  f"A {_beta['window_years']:.2f}-year weekly regression of stc against the published index of the exchange it is "
+  f"listed on ({_beta['index_file']}, as of {_beta['index_asof']}): {_beta['n']} observations, R\u00b2 "
+  f"{_beta['r2']*100:.1f}%, standard error {_beta['se']:.4f}. This is the first tier of the house preference order, "
+  f"not a stopgap — but it explains {_beta['r2']*100:.0f}% of the variance and no more, which is why §1.9 prices the "
+  f"answer at every beta up to 1.2"],
+ [f"Equity risk premium ({_c['erp_basis']} basis, adopted)", f"{_c['erp']*100:.2f}%",
+  'The premium published for Saudi Arabia specifically, on the basis this study names as central; the alternative '
+  'basis is published beside it rather than chosen silently'],
+ ['Cost of equity', f"{_c['ke_exp']*100:.2f}%", 'The normalised risk-free rate plus beta times the premium'],
+ ['Cost of debt, before tax', f"{_c['kd_pretax']*100:.2f}%",
+  'Built from the company\u2019s own facilities, and above this sovereign\u2019s own yield, as a same-currency corporate '
+  'borrower must be'],
+ [f"Cost of debt, after tax", f"{_c['kd_aftertax']*100:.2f}%",
+  f"At the {D['tax_rate']*100:.2f}% effective rate the three filed years imply" if 'tax_rate' in D else
+  'At the effective rate the three filed years imply'],
+ ['Weights (equity / debt)', f"{_c['weight_equity']*100:.1f}% / {_c['weight_debt']*100:.1f}%", _c['weights_source']],
+ ['Weighted cost of capital', f"{_c['wacc_exp']*100:.2f}%", 'The explicit-window rate the forecast is discounted at'],
+ ['Terminal cost of capital', f"{_c['wacc_terminal']*100:.2f}%",
+  'Flat against the explicit window, and that is not an oversight: the riyal is pegged, so this economy is already at '
+  'its terminal cost of capital by construction of the peg and there is no normalisation to glide toward'],
+ ['Terminal growth (nominal)', f"{dcf['tg']*100:.2f}%",
+  f"Terminal inflation of {D['macro_record']['terminal']['inflation_in_rf']*100:.1f}% plus a stated real growth of "
+  f"{D['macro_record']['terminal']['real']*100:.1f}% — derived from the house macro path rather than chosen, and the "
+  'real component is written down as the number it is'],
 ]
 table(rows, [2.3, 1.0, 3.6], first_col_bold=True, size=8.4)
-P('Two honesty notes on this build. First, the risk-free rate is a derived figure: Saudi Arabia has no freely quoted '
-  'live SAR 10-year screen, so we triangulated from a government-guaranteed USD sukuk priced the day before the study '
-  '(UST + 95 bp) plus the officially documented SAR-over-USD sovereign pickup — the number is checkable end-to-end, but '
-  'it is an estimate of a quote, not a quote. Second, the beta is regressed on only nine weeks of daily data, because '
-  'every programmatic source of longer TASI history is access-blocked; 0.48 is consistent with a defensive, '
-  'PIF-anchored mega-cap (aggregators print ~0.2 on longer windows), but the honest treatment is the grid in §1.9, where '
-  'the reader can see the valuation at any beta up to 1.2. Both flags are logged in the study’s driver ledger.', size=9.6)
+P('Two honesty notes on this build. First, the sovereign quote behind the risk-free rate is older than the fourteen-day '
+  'bound this house sets: ' + _c['sovereign_staleness_disclosed'] + ' Second, the beta is a proper five-year weekly '
+  f"regression against the exchange\u2019s own published index — the standard, not a stopgap — but its R\u00b2 of "
+  f"{_beta['r2']*100:.0f}% means roughly {(1-_beta['r2'])*100:.0f}% of what moves this stock is specific to it rather "
+  'than to the market. A beta is a statement about co-movement, and on this name that statement is weak. The grid in '
+  '§1.9 prices the answer at every beta up to 1.2 for exactly that reason. Both are recorded with the study\u2019s own '
+  'inputs.', size=9.6)
 
 H2('1.9  Sensitivity — the margin, the capex, the rate spread, and the beta')
 P('The first grid re-prices the DCF across the two real-unit operating levers (EBITDA margin and capex intensity); the '
   'second across WACC × terminal growth; the third across the beta — the single input most likely to move the answer, '
   'given the short regression window.')
-figure('fig2_sens.png', 5.6, 'Figure 2 — DCF fair value (SAR/share) across EBITDA-margin and capex-intensity shifts. '
-       'Bold cells sit nearest spot (SAR 43.58).')
+figure(os.path.join(HERE, 'fig2_sens.png'), 5.6, 'Figure 2 — DCF fair value (SAR/share) across EBITDA-margin and capex-intensity shifts. '
+       f'Bold cells sit nearest spot (SAR {spot:.2f}).')
 S = D['sens']
 wg_rows = [['WACC \\ terminal g', '1.5%', '2.0%', '2.5%', '3.0%', '3.5%']]
 for i, w in enumerate(S['wacc_steps']):
@@ -377,26 +473,60 @@ caption('The beta grid is mandatory disclosure here (house rule): a nine-week re
 
 # ================= §2 Technical ==============================================
 H1('2  Technical and price structure')
-P('The tape is flat in every sense that matters. stc trades within ±1% of all four major moving averages (the stack itself '
-  'is compressed into a SAR 0.7 band — 43.25 to 43.93), RSI sits at 48, and the MACD histogram is fractionally negative '
-  'with both lines hugging zero. The 52-week range is narrow for an emerging-market name — 40.20 (1 Mar 2026) to 45.38 '
-  '(30 Oct 2025), barely ±6% around spot — and realized volatility (13% over the trailing year) is among the lowest on '
-  'Tadawul. Price action over the last quarter: +4%, in a series of small steps around the Q1 print and the May dividend. '
-  'This is a coiled, catalyst-waiting chart, not a trending one.')
+# EVERY CLAUSE HERE IS SELECTED BY A COMPUTED NUMBER. What stood here contradicted the
+# model beside it three times in one paragraph: it called an RSI of 65.7 "dead neutral",
+# a positive MACD "fractionally negative", and a price sitting above all four moving
+# averages "within +/-1% of the stack, no trend". Every figure in the table was computed
+# and right; the words around them were typed and wrong, which no check that inspects
+# figures can see. The prose is now assembled from the same numbers the table prints.
+# TWO CLOCKS, AND THIS SECTION RUNS ON THE OTHER ONE. The technical read is computed on
+# the last session in the persistent price library; the valuation is struck against the
+# latest known close, which is a later date. Using the valuation price here put the stock
+# 0.1% BELOW the highest of its own moving averages in a sentence saying it had stepped
+# clear of them — the same figure, the wrong clock. Everything in this section is
+# measured at the technical anchor, and the section says which date that is.
+_tanchor = D['cone_anchor']
+_tdate = D['cone_anchor_date']
+_stack = [tech['sma'][k] for k in ('20', '50', '100', '200')]
+_above = sum(1 for v in _stack if _tanchor > v)
+_gap = (_tanchor / max(_stack) - 1) * 100
+_rsi = tech['rsi']
+_rsi_word = ('firm but short of overbought' if 60 <= _rsi < 70 else
+             'overbought' if _rsi >= 70 else
+             'neutral' if 45 <= _rsi < 60 else
+             'soft' if 30 <= _rsi < 45 else 'oversold')
+_macd_word = ('positive, with the line above its signal' if tech['macd']['hist'] > 0
+              else 'negative, with the line below its signal')
+_pos52 = (spot - tech['lo52']) / (tech['hi52'] - tech['lo52']) * 100
+P(f"The tape is firm and the stock is trading above its whole moving-average stack. At SAR {_tanchor:.2f} the price sits "
+  f"above all {_above} of the 20-, 50-, 100- and 200-day averages, which are themselves compressed into a band of "
+  f"SAR {max(_stack) - min(_stack):.2f} ({min(_stack):.2f} to {max(_stack):.2f}) — so the stack is flat while the price "
+  f"has stepped clear of it by {_gap:.1f}% above the highest of the four. RSI(14) at {_rsi:.0f} is {_rsi_word}, and the "
+  f"MACD histogram is {_macd_word}. The 52-week range is narrow for an emerging-market name — {tech['lo52']:.2f} to "
+  f"{tech['hi52']:.2f}, a span of {(tech['hi52'] / tech['lo52'] - 1) * 100:.0f}% — and realised volatility over the "
+  f"trailing year ({tech['rv252'] * 100:.1f}%) is among the lowest on the exchange. Price is up "
+  f"{tech['chg20'] * 100:.1f}% over the last twenty sessions and {tech['chg60'] * 100:.1f}% over the last sixty. This is "
+  "a quiet advance rather than a trending breakout: the direction is up, the energy behind it is low.")
 rows = [
- ['Indicator', 'Reading', 'Signal'],
- ['Spot', 'SAR 43.58', '—'],
- ['SMA 20 / 50', f"SAR {tech['sma']['20']:.2f} / {tech['sma']['50']:.2f}", 'Spot within ±1% of both — no trend'],
- ['SMA 100 / 200', f"SAR {tech['sma']['100']:.2f} / {tech['sma']['200']:.2f}", 'Stack compressed — long base'],
- ['RSI (14)', f"{tech['rsi']:.1f}", 'Dead neutral'],
- ['MACD (12,26,9)', f"{tech['macd']['line']:+.2f} line / {tech['macd']['signal']:+.2f} signal / {tech['macd']['hist']:+.2f} hist", 'Flat, fractionally negative'],
- ['52-week range', 'SAR 40.20 – 45.38', 'Spot at the 63rd percentile'],
- ['20-day / 60-day change', f"{tech['chg20']*100:+.1f}% / {tech['chg60']*100:+.1f}%", 'Quiet accumulation'],
- ['Realized vol (252d)', f"{tech['rv252']*100:.1f}%", 'Very low; HAR forward read 15.1%'],
+ ['Indicator', 'Reading', 'What it says'],
+ [f'Price on {_tdate}', f"SAR {_tanchor:.2f}", f"{_pos52:.0f}th percentile of the 52-week range"],
+ ['SMA 20 / 50', f"SAR {tech['sma']['20']:.2f} / {tech['sma']['50']:.2f}",
+  f"Price above both, by {(_tanchor/tech['sma']['20']-1)*100:.1f}% and {(_tanchor/tech['sma']['50']-1)*100:.1f}%"],
+ ['SMA 100 / 200', f"SAR {tech['sma']['100']:.2f} / {tech['sma']['200']:.2f}",
+  f"Stack compressed into SAR {max(_stack)-min(_stack):.2f} — a long flat base"],
+ ['RSI (14)', f"{_rsi:.1f}", _rsi_word.capitalize()],
+ ['MACD (12,26,9)', f"{tech['macd']['line']:+.2f} line / {tech['macd']['signal']:+.2f} signal / {tech['macd']['hist']:+.2f} hist",
+  _macd_word.capitalize()],
+ ['52-week range', f"SAR {tech['lo52']:.2f} – {tech['hi52']:.2f}",
+  f"A span of {(tech['hi52']/tech['lo52']-1)*100:.0f}% — narrow"],
+ ['Change over 20 / 60 sessions', f"{tech['chg20']*100:+.1f}% / {tech['chg60']*100:+.1f}%", 'A quiet advance'],
+ ['Realised volatility (252 sessions)', f"{tech['rv252']*100:.1f}%",
+  f"Very low; the forward read used in §3 is {D['engine']['horizons']['3M']['anchor_vol_ann']*100:.1f}%"],
 ]
 table(rows, [1.8, 2.6, 2.5], first_col_bold=True)
-figure('fig3_ma.png', 6.4, 'Figure 3 — Price versus the moving-average stack, last 260 sessions.')
-P('For the probabilistic work this matters in one way: a compressed, low-volatility tape produces a genuinely narrow '
-  'three-month cone — the 5–95% band in §3 spans only ±12% — so even modest fundamental catalysts (a covered dividend, a '
-  'capex surprise, a special) can move price to the edge of the distribution. The technical picture neither confirms nor '
-  'contradicts the fundamental read; it simply has not voted yet.')
+figure(os.path.join(HERE, 'fig3_ma.png'), 6.4, 'Figure 3 — Price against the moving-average stack, the last 260 sessions.')
+P('For the probabilistic work this matters in one way: a low-volatility tape produces a genuinely narrow three-month '
+  f"cone — the 5th-to-95th band in §3 runs {(D['mc']['q60']['5']/_tanchor-1)*100:+.1f}% to "
+  f"{(D['mc']['q60']['95']/_tanchor-1)*100:+.1f}% around the anchor — so even a modest fundamental surprise can carry the "
+  'price to the edge of the distribution. The technical read neither confirms nor contradicts the fundamental one, and '
+  'it is not asked to: it is the shortest of the three lenses and speaks only to the weeks ahead.')

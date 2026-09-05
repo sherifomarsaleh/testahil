@@ -12,117 +12,87 @@ import sys
 
 import numpy as np
 import pandas as pd
-import income_statement as ISTMT_EARLY
-import primitives as m
-from wacc_builder import WaccInputs, build_wacc, RegressionBetaAttempt
+
+# The engine directory, explicitly. This file imported engine modules by bare name and
+# resolved them only when it happened to be invoked with the right PYTHONPATH — an
+# invocation dependency nothing stated and nothing checked, which every other study in
+# the repository already avoids the same way.
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+
+import income_statement as ISTMT_EARLY          # noqa: E402  (after the path insert)
+import strike_cohorts as SC                     # noqa: E402
+from wacc_builder import WaccInputs, build_wacc, RegressionBetaAttempt  # noqa: E402
 
 # Imported here rather than beside the cost-of-capital block because the LATEST KNOWN
 # price it reads is needed by the market capitalisation long before the schedule is built.
 import coc_run as COCRUN
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-OHLC = os.path.join(HERE, '..', 'raw_ohlc', 'SA', 'STC.csv')
 
-df = m.load_ohlc(OHLC)
-close = df['Price'].values
+df, STEP0 = SC.load_clean('SA', 'STC')       # Step 0.0 applied — the frame production reads
+close = df['Price'].to_numpy(dtype=float)
 spot = float(close[-1])
 spot_date = str(df['Date'].iloc[-1].date())
 N = len(df)
 
-# ---------------- Step 0 backtest (zero drift = house default for non-EGX) ---
-res, summ = m.backtest(df, horizon=60, secular_drift=False)          # adopted config
-res_sec, summ_sec = m.backtest(df, horizon=60, secular_drift=True)   # rejected diagnostic
-res21, summ21 = m.backtest(df, horizon=60, step=21, secular_drift=False)
-pit_hist = np.histogram(res['pit'], bins=10, range=(0, 1))[0].tolist()
-# block bootstrap CI on CRPS skill (n windows, resample with replacement)
-rng_bs = np.random.default_rng(7)
-sk = []
-c, cb = res['crps'].values, res['crps_bench'].values
-for _ in range(4000):
-    idx = rng_bs.integers(0, len(c), len(c))
-    sk.append(1 - c[idx].sum() / cb[idx].sum())
-sk = np.array(sk)
-boot = dict(lo90=float(np.percentile(sk, 5)), hi90=float(np.percentile(sk, 95)),
-            p_pos=float(np.mean(sk > 0)))
+# ---------------- The price cone: the PRODUCTION chain, never a study-local one ----
+# This section used to run a simulation of its own, and it was wrong in five ways at
+# once against the fit this market actually runs: Student-t innovations hardcoded at
+# five degrees of freedom against a fitted fifteen; NO width calibration at all against
+# a fitted 1.056; zero drift on a market that runs an ACTIVE momentum lean; a horizon
+# hardcoded at sixty sessions where the horizons are calendar and the session count is
+# projected at strike; and — the part that mattered most — a sixteen-factor stack of
+# nine typed jump probabilities with their typed impacts, whose own printed caption
+# conceded that none of them was calibrated.
+#
+# The consequence was not a rounding difference. IT PUBLISHED A DIFFERENT CONE FROM THE
+# ONE THE SITE PUBLISHES FOR THIS NAME ON THIS DAY: a three-month median of 45.06
+# against 45.30, a 95th percentile of 51.21 against 52.20, and a thirteen per cent
+# chance of touching SAR 50 against twenty. A reader holding both would have found two
+# answers to one question, and the one with the invented event probabilities was the one
+# wearing the study's covers.
+#
+# A study's own price map REPRODUCES the committed fit; it never re-derives one. Every
+# figure below now comes from engine/strike_cohorts.strike(), the same call the roll-
+# forward makes, and the assertions underneath hold it to the published row rather than
+# trusting that it matches.
+CONE = SC.strike('SA', 'STC')
+assert CONE['anchor_date'] == spot_date and CONE['spot'] == spot
+H1M, H3M = CONE['horizons']['1M'], CONE['horizons']['3M']
+paths20, paths60 = H1M['_paths'], H3M['_paths']
+term20, term60 = paths20[:, -1], paths60[:, -1]
 
-# ---------------- Forward run parameters ------------------------------------
-v = m.yz_variance_proxy(df)
-beta_har = m.fit_har(v, N - 1, horizon=60)
-dv = m.har_forecast_daily_var(v, N - 1, beta_har, horizon=60)
-anchor_vol = float(np.sqrt(dv * 252))
-drift_daily = 0.0   # zero-drift class: international/GCC name (Step 0-adopted)
-
-# ---------------- 16-factor stack (7 continuous + 9 discrete) ---------------
-continuous = [
-    ("SAMA/Fed policy-rate path (easing)", "+"),
-    ("Oil price / fiscal impulse (govt ICT & mega-project spend)", "+"),
-    ("Vision 2030 / non-oil GDP digital demand", "+"),
-    ("KSA mobile competition (Mobily/Zain share & price pressure)", "−"),
-    ("Data-centre / AI buildout economics (center3–HUMAIN)", "±"),
-    ("Subsidiary drag→contribution (stc bank, solutions, intl)", "±"),
-    ("TASI flows / index weight (free float 38%)", "±"),
-]
-cont_drift_q = 0.002
-discrete = [
-    ("2Q26 results (~late Jul 2026)",                  0.90, 0.004),
-    ("Special dividend announced with 2Q/3Q results",  0.20, 0.020),
-    ("SAMA/Fed cut ≥25bp (Sep/Oct)",                   0.55, 0.006),
-    ("center3/HUMAIN AI-DC milestone (toward 1GW)",    0.35, 0.010),
-    ("TAWAL/DIIC monetization event",                  0.10, 0.015),
-    ("Telefónica mark deterioration spillover",        0.25, -0.006),
-    ("KSA mobile price-war escalation / weak prints",  0.20, -0.015),
-    ("Regional geopolitical escalation",               0.25, -0.020),
-    ("PIF further sell-down / index-flow event",       0.10, -0.012),
-]
-disc_drift_q = sum(p * i for _, p, i in discrete)
-factor_drift_q = cont_drift_q + disc_drift_q
-
-# ---------------- Forward simulation (50,000 paths, seed 42) ----------------
-H = 60
-rng = np.random.default_rng(42)
-n_paths = 50000
-sd = np.sqrt(dv)
-z = rng.standard_normal((n_paths, H))
-chi = rng.chisquare(5, n_paths)
-mix = np.sqrt(3.0 / chi)[:, None]
-incr = drift_daily + cont_drift_q / H + z * mix * sd
-for name, p, imp in discrete:
-    fire = rng.random(n_paths) < p
-    day = rng.integers(0, H, n_paths)
-    size = rng.normal(imp, abs(imp) / 2, n_paths)
-    add = np.zeros((n_paths, H))
-    add[np.arange(n_paths)[fire], day[fire]] = size[fire]
-    incr += add
-logp = np.cumsum(incr, axis=1)
-paths = np.empty((n_paths, H + 1))
-paths[:, 0] = spot
-paths[:, 1:] = spot * np.exp(logp)
-
-pT20, pT60 = paths[:, 20], paths[:, 60]
 pcts = [5, 25, 50, 75, 95]
-q20 = {p: float(np.percentile(pT20, p)) for p in pcts}
-q60 = {p: float(np.percentile(pT60, p)) for p in pcts}
-run_max = paths.max(axis=1); run_min = paths.min(axis=1)
-run_max20 = paths[:, :21].max(axis=1); run_min20 = paths[:, :21].min(axis=1)
+q20 = {p: float(np.percentile(term20, p)) for p in pcts}
+q60 = {p: float(np.percentile(term60, p)) for p in pcts}
+
 levels = [50, 48, 46, 44, 42, 40, 38, 36]
-touch = {L: dict(t20=float(np.mean(run_max20 >= L) if L > spot else np.mean(run_min20 <= L)),
-                 t60=float(np.mean(run_max >= L) if L > spot else np.mean(run_min <= L)))
-         for L in levels}
+
+
+def _touch(paths, level):
+    """P(the path reaches `level` at any point before its horizon)."""
+    return float(np.mean(paths.max(axis=1) >= level) if level > spot
+                 else np.mean(paths.min(axis=1) <= level))
+
+
+touch = {L: dict(t20=_touch(paths20, L), t60=_touch(paths60, L)) for L in levels}
 prob_read = dict(
-    p_above=float(np.mean(pT60 > spot)),
-    p_up10=float(np.mean(pT60 >= spot * 1.10)),
-    p_dn10=float(np.mean(pT60 <= spot * 0.90)),
-    median=float(np.median(pT60)),
-    med_move=float(np.median(pT60) / spot - 1),
+    p_above=float(np.mean(term60 > spot)),
+    p_up10=float(np.mean(term60 >= spot * 1.10)),
+    p_dn10=float(np.mean(term60 <= spot * 0.90)),
+    median=float(np.median(term60)),
+    med_move=float(np.median(term60) / spot - 1),
     band50=(q60[25], q60[75]),
     band50_pct=((q60[25] / spot - 1), (q60[75] / spot - 1)),
-    touch_up10=float(np.mean(run_max >= spot * 1.10)),
-    touch_dn10=float(np.mean(run_min <= spot * 0.90)),
+    touch_up10=float(np.mean(paths60.max(axis=1) >= spot * 1.10)),
+    touch_dn10=float(np.mean(paths60.min(axis=1) <= spot * 0.90)),
 )
 prob_read['odds'] = prob_read['p_up10'] / prob_read['p_dn10']
 zones_edges = [0, 38, 42, 46, 50, 1e9]
-zone_probs = [float(np.mean((pT60 >= a) & (pT60 < b))) for a, b in zip(zones_edges[:-1], zones_edges[1:])]
-fan = {p: np.percentile(paths, p, axis=0).tolist() for p in pcts}
+zone_probs = [float(np.mean((term60 >= a) & (term60 < b)))
+              for a, b in zip(zones_edges[:-1], zones_edges[1:])]
+assert abs(sum(zone_probs) - 1.0) < 1e-9, 'the zones must partition the distribution'
+fan = {p: np.percentile(paths60, p, axis=0).tolist() for p in pcts}
 
 # ---------------- Technicals -------------------------------------------------
 s = pd.Series(close)
@@ -764,7 +734,19 @@ for k, x in rel_evx.items():
 # sentence: a record that only asserts non-circularity in prose has switched the check off.
 TRADED_EVX = (COCRUN.SPOT * SH + net_debt) / hist['ebitda']['FY25']
 BOOK_PS = 84_986.806 / SH        # equity attributable, 30 June 2026 reviewed sheet
-norm_pat = 14400.0
+# NORMALISED PROFIT IS COMPUTED, AND THE ONE-OFF IT STRIPS IS THE DISCLOSED ONE. This was a
+# typed 14,400 — a round number — and the document beside it walked a reader down "FY2025
+# attributable profit 14,828 less the one-off zakat credit (466)" to reach it, which does
+# not reproduce: that arithmetic gives 14,362 and the page printed about 14,400.
+#
+# AND THE ADJUSTMENT WAS THE WRONG SIZE. The 466 is the NET zakat line for the year, not the
+# one-off inside it; what is non-recurring is the reversal of prior years' provision that
+# note 33(a) names on its own line. The honest normalisation charges the year at the rate
+# the three filed years imply on profit before zakat, which is what the underlying charge
+# would have been, and takes the minority's share off the result.
+NORM_PBZ = ISTMT_EARLY.pbz(2) / 1000.0
+NORM_ZAKAT = NORM_PBZ * ISTMT_EARLY.effective_zakat_rate('pbz')
+norm_pat = (NORM_PBZ - NORM_ZAKAT) * (1.0 - BR_NCI_SHARE)
 norm_eps = norm_pat / SH
 norm = dict(bear=(13600/SH)*13.5, base=norm_eps*15.0, bull=(15200/SH)*16.5)
 # THE RANGE IS FLEXED IN OBSERVABLE UNITS AND THE MACRO PATH STANDS STILL [R-LENS-03,
@@ -1109,6 +1091,67 @@ _ir_problems, _ir_hist = _IR.check(_INPUTS)
 assert not _ir_problems, _ir_problems[:4]
 assert _ir_hist >= 100, 'the input register carries only %d dated historicals' % _ir_hist
 
+# ---------------- The published record of this name's own cone ----------------
+# [R-CAL-02]: the count is ALWAYS printed beside the percentage, the record strength
+# is stated, and a narrow/wide flag appears ONLY when the name's own history earns one
+# on a two-sided binomial test. Silence is the honest response to a cone that held
+# about as often as it promised, and this name's does. The sentences are rendered by
+# band_record itself — that module says in terms that nothing else may phrase them,
+# and six independent phrasings had already drifted apart once.
+import html as _html
+import inspect as _inspect
+
+import band_record as BR
+import mc_v3 as MC3
+
+_BREC = BR.resolve('STC', BR.by_key())
+assert _BREC.market == 'SA' and _BREC.n == _BREC.hits + (_BREC.n - _BREC.hits)
+
+
+def _plain(t):
+    """The clauses are written for a web surface; a document is not one."""
+    return _html.unescape(t).replace('\u2014', '\u2014')
+
+
+BAND = dict(
+    instrument=_BREC.instrument, market=_BREC.market, n=_BREC.n, hits=_BREC.hits,
+    cov50=_BREC.cov50, cov80=_BREC.cov80, cov90=_BREC.cov90, width=_BREC.width,
+    strength=_BREC.strength, flag=_BREC.flag, p_value=_BREC.p_value,
+    record_clause=_plain(_BREC.record_clause()),
+    width_clause=_plain(_BREC.width_clause()),
+    chip=_plain(_BREC.chip()),
+)
+
+_prof = SC.MP.PROFILES['SA']
+_dead = _inspect.signature(MC3.signal_alpha).parameters['dead'].default
+_z = H3M['signal_z']
+ENGINE = dict(
+    # The fit this cone was actually built on, read live rather than described.
+    nu=CONE['nu'], width_cal=CONE['width_cal'],
+    width_overlay_mult=CONE['width_overlay_mult'],
+    n_paths=SC.N_PATHS, seed=SC.SEED,
+    rf_live=CONE['rf_live'], q_annual=CONE['q_annual'],
+    # THE DIRECTION CALL [R-DRIFT-01]: every covered name's forecast states one — the
+    # sign of its own momentum reading — and it is printed even inside the dead zone,
+    # where it carries no tilt at all and is labelled WEAK.
+    signal_active=CONE['signal_active'], signal_type=_prof.signal_type,
+    signal_sign=_prof.signal_sign, ic_by_h=dict(_prof.ic_by_h or {}),
+    signal_z=_z, dead_zone=_dead,
+    call='up' if _z > 0 else ('down' if _z < 0 else 'flat'),
+    call_strength='weak' if abs(_z) < _dead else 'live',
+    horizons={k: dict(label=h['label'], sessions=h['h'], grade_date=h['grade_date'],
+                      basis=h['basis'], anchor_vol_ann=h['anchor_vol_ann'],
+                      sigma_h=h['sigma_h'], drift_log_h=h['drift_log_h'],
+                      signal_alpha=h['signal_alpha'])
+              for k, h in (('1M', H1M), ('3M', H3M))},
+)
+# The tilt never exceeds ic x sigma x z: beyond that a bigger number is a deliberately
+# worse forecast, not more commitment. Asserted rather than asserted-in-prose.
+for _k, _h in (('1M', H1M), ('3M', H3M)):
+    _cap = abs((_prof.ic_by_h or {}).get(_k, _prof.ic) * _h['sigma_h'] * _z)
+    assert abs(_h['signal_alpha']) <= _cap + 1e-12, (_k, _h['signal_alpha'], _cap)
+
+
 out = dict(
     # The answer and the price it is measured against, at the top level, where a reader
     # and a checker both look. The delivered study exposed neither, so every gate that
@@ -1123,11 +1166,18 @@ out = dict(
                 'different dates because a cone must start where its own price series '
                 'ends, and the study says so rather than publishing one number for both.'),
     shares=SH, mktcap=MKTCAP,
-    step0=dict(nonoverlap=summ, monthly=summ21, secular=summ_sec,
-               pit_hist=pit_hist, n_rows=len(res), boot=boot),
-    engine=dict(anchor_vol=anchor_vol, drift_daily=drift_daily,
-                drift_q=drift_daily * 60, factor_drift_q=factor_drift_q,
-                cont_drift_q=cont_drift_q, disc_drift_q=disc_drift_q),
+    # WHAT A READER IS SHOWN IS THE BAND RECORD. What stood here was the retired
+    # skill machinery — a CRPS score against a naive benchmark, its bootstrap and a
+    # probability-integral histogram — which answers a modelling question rather than
+    # the one an investor asks, and which may no longer reach a reader at all. It is
+    # replaced by the record of how often the published bands actually held, phrased
+    # by the module that owns those sentences rather than re-worded here.
+    band_record=BAND,
+    engine=ENGINE,
+    # The one tax rate this model uses, everywhere it uses one — measured on the
+    # base each use applies it to, and exported so the page cannot type its own.
+    tax_rate=TAX,
+    tax_rate_on_pbz=ISTMT_EARLY.effective_zakat_rate('pbz'),
     mc=dict(q20=q20, q60=q60, touch=touch, prob_read=prob_read, zones=zone_probs, fan=fan),
     tech=dict(sma=sma, rsi=rsi, macd=macd, hi52=hi52, lo52=lo52, rv252=rv252,
               chg20=chg20, chg60=chg60),
@@ -1378,10 +1428,21 @@ out = dict(
 # working directory, so running the model from the repository root — which is how CI and
 # every gate runs it — dropped them at the root and left the study's own copies stale. A
 # path relative to cwd is a path that depends on who ran it.
-res.to_csv(os.path.join(HERE, 'backtest_rows.csv'), index=False)
+# THE WALK-FORWARD RECORD IS THE COMMITTED PANEL, NOT A RE-DERIVATION OF IT. This file
+# used to write its own backtest here — 60 origins from an uncleaned frame, disagreeing
+# with the production panel on the very first row (a realised close of 16.00 against the
+# panel's 16.08, because Step 0.0 had not been applied). Two records of one name's
+# history, and the study was quoting the one nobody else could see. The panel is copied
+# so the two cannot drift: 58 resolved three-month windows, the same 58 the band record
+# above is computed from and the same 58 the site publishes.
+_PANEL = os.path.join(HERE, '..', 'panels', 'SA_STC_3m.csv')
+_panel_rows = pd.read_csv(_PANEL)
+assert len(_panel_rows) == BAND['n'], (len(_panel_rows), BAND['n'])
+assert int(_panel_rows['in90'].sum()) == BAND['hits'], 'the panel and the band record disagree'
+_panel_rows.to_csv(os.path.join(HERE, 'backtest_rows.csv'), index=False)
 np.save(os.path.join(HERE, 'fan.npy'), np.array([fan[p] for p in pcts]))
-np.save(os.path.join(HERE, 'pT20.npy'), pT20[:20000])
-np.save(os.path.join(HERE, 'pT60.npy'), pT60[:20000])
+np.save(os.path.join(HERE, 'pT20.npy'), term20[:20000])
+np.save(os.path.join(HERE, 'pT60.npy'), term60[:20000])
 # A SENSITIVITY RUN NEVER WRITES. It exists to measure one lever's own worth, and an
 # answer struck on a beta this study does not adopt must not reach the committed record.
 if _SENS_BETA is None:
@@ -1406,12 +1467,14 @@ else:
                        weights=weights), f, indent=1, default=float)
     print('SENSITIVITY RUN on beta %.4f — beta_sensitivity_%s.json only'
           % (_SENS_BETA, SENS_TAG))
-print('spot', spot, spot_date, '| anchor_vol', round(anchor_vol, 4), '| factor_q', round(factor_drift_q * 100, 2), '%')
-print('Step0 zero-drift non-overlap:', {k: round(v_, 4) if isinstance(v_, float) else v_ for k, v_ in summ.items()})
-print('boot:', boot)
+print('cone anchor', spot, spot_date, '| nu', ENGINE['nu'], 'cal', ENGINE['width_cal'],
+      '| call %s (%s), z=%.4f' % (ENGINE['call'], ENGINE['call_strength'], ENGINE['signal_z']))
+print('band record: %d windows, %d inside the 90%% band (%.1f%%), strength %s, flag %s'
+      % (BAND['n'], BAND['hits'], BAND['cov90'] * 100, BAND['strength'], BAND['flag']))
 print('WACC market %.3f%% | rating %.3f%% | Ke %.3f/%.3f | Kd_at %.3f | We %.3f'
       % (WACC*100, WACC_RATING*100, KE_MARKET*100, KE_RATING*100, KD_AT*100, WE))
-print('T60:', {k: round(v_, 1) for k, v_ in q60.items()}, '| P(up)=%.3f odds=%.2f' % (prob_read['p_above'], prob_read['odds']))
+print('3 months:', {k: round(v_, 1) for k, v_ in q60.items()},
+      '| P(up)=%.3f odds=%.2f' % (prob_read['p_above'], prob_read['odds']))
 print('DCF: EV %.0f TV%% %.0f%% eq %.0f ps %.2f | DDM %.2f (TV %.0f%%) | rel %.1f | norm %.1f | central %.1f [%.1f-%.1f]' %
       (ev, 100 * pv_tv / ev, eq_dcf, dcf_ps, ddm_ps, ddm_tv_pct * 100, rel['base'], norm['base'], central, central_bear, central_bull))
 print('FCFF path:', [round(r['fcff']) for r in rows])

@@ -1,4 +1,4 @@
-"""STC_Valuation_Study_09-07-2026_public.docx — python-docx builder, TMPV house style.
+"""STC_Valuation_Study_05-09-2026_public.docx — python-docx builder, TMPV house style.
 Palette: canvas 1C3A36 · panel EAF0EE/EFF3F1 · cream F6F1E6 · gold C0A45F · brass 896F36 · grey 6E7B77."""
 import json
 from docx import Document
@@ -7,8 +7,17 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
+import os
 
-D = json.load(open('study_numbers.json'))
+HERE = os.path.dirname(os.path.abspath(__file__))
+import sys
+sys.path.insert(0, os.path.join(HERE, '..'))   # the shared instruments
+# Absolute against this file's own directory: the builders read and wrote relative
+# to the working directory, so running them from the repository root — which is how
+# every gate does — found no inputs and scattered the outputs.
+
+
+D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 INK = RGBColor(0x1C, 0x3A, 0x36); GREY = RGBColor(0x6E, 0x7B, 0x77)
 BRASS = RGBColor(0x89, 0x6F, 0x36); GOLD = RGBColor(0xC0, 0xA4, 0x5F)
 WHITE = RGBColor(0xFF, 0xFF, 0xFF)

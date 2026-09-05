@@ -1,7 +1,16 @@
 """Content part C: Appendices A–D, About, Disclosure, footer."""
 from docx_stc_base import *
+import json
+import os
 
-L = D['lenses']; E = D['experts']; s0 = D['step0']; dcf = D['dcf']; ddm = D['ddm']
+HERE = os.path.dirname(os.path.abspath(__file__))
+# Absolute against this file's own directory: the builders read and wrote relative
+# to the working directory, so running them from the repository root — which is how
+# every gate does — found no inputs and scattered the outputs.
+
+
+L = D['lenses']; E = D['experts']; dcf = D['dcf']; ddm = D['ddm']
+# `s0` was the retired skill backtest and nothing in this part ever read it.
 spot = D['spot']; hist = D['hist']; fc = D['forecast']
 
 # ================= Appendix A ================================================
@@ -12,63 +21,97 @@ P('Consolidated figures as disclosed by stc — FY2023–FY2025 IR releases on t
   'formula-linked to Assumptions).')
 H2('A.1  Income statement — 3-year historical + 5-year forecast (consolidated, SAR mn)')
 def f0(x): return f"{x:,.0f}"
-IS_fc = {}
-for y in ['FY26E','FY27E','FY28E','FY29E','FY30E']:
-    r = fc[y]['rev']
-    i = ['FY26E','FY27E','FY28E','FY29E','FY30E'].index(y)
-    eb = D['drivers']['ebitda_m'][i]*r; dna = D['drivers']['dna_pct'][i]*r
-    ebit = eb-dna
-    oth = [700, 750, 800, 850, 900][i]
-    pbt = ebit + oth
-    zk = -pbt*0.097
-    npc = pbt+zk
-    att = npc*(1-0.025)
-    IS_fc[y] = dict(rev=r, eb=eb, dna=dna, ebit=ebit, oth=oth, pbt=pbt, zk=zk, npc=npc, att=att)
+
+
+def fp(x):
+    """A deduction, printed as the statements print it — in brackets, positive magnitude."""
+    return f"({abs(x):,.0f})"
+
+
+# EVERY FIGURE BELOW IS READ, NOT RECOMPUTED. This appendix used to run a SHADOW MODEL
+# inside the document builder: it rebuilt EBITDA from a margin, then set other income to a
+# typed [700, 750, 800, 850, 900], zakat to a typed 9.7% and the minority to a typed 2.5%,
+# and printed the result as the study's income statement. None of those three came from the
+# model, so the appendix and the valuation could disagree and nothing would say so.
+_ISH = json.load(open(os.path.join(HERE, 'income_statement.json')))
+_GP_HIST = [D['hist']['gp'][k] * 1000.0 for k in ('FY23', 'FY24', 'FY25')]
+_H = _ISH['lines']
+_FY = ['FY26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E']
 rows = [
- ['Line', 'FY23', 'FY24', 'FY25', 'FY26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E'],
- ['Revenue', '71,777', '75,893', '77,819'] + [f0(IS_fc[y]['rev']) for y in IS_fc],
- ['Gross profit', '34,740', '37,326', '37,700'] + [f0(IS_fc[y]['rev']*0.485) for y in IS_fc],
- ['EBITDA', '22,445', '23,951', '24,469'] + [f0(IS_fc[y]['eb']) for y in IS_fc],
- ['D&A & impairment', '(9,284)', '(9,525)', '(10,031)'] + [f"({f0(IS_fc[y]['dna'])})" for y in IS_fc],
- ['Operating profit (EBIT)', '13,161', '14,426', '14,438'] + [f0(IS_fc[y]['ebit']) for y in IS_fc],
- ['Associates, net finance, impairments & other', '826', '(2,292)', '285'] + [f0(IS_fc[y]['oth']) for y in IS_fc],
- ['Profit before zakat & income tax', '13,987', '12,134', '14,723'] + [f0(IS_fc[y]['pbt']) for y in IS_fc],
- ['Zakat & income tax', '(1,327)', '(1,192)', '466'] + [f"({f0(-IS_fc[y]['zk'])})" for y in IS_fc],
- ['Profit from continuing operations', '12,660', '10,942', '15,189'] + [f0(IS_fc[y]['npc']) for y in IS_fc],
- ['Discontinued operations', '759', '13,973', '—', '—', '—', '—', '—', '—'],
- ['Net profit (attributable)', '13,295', '24,689', '14,828'] + [f0(IS_fc[y]['att']) for y in IS_fc],
- ['EPS (SAR)', '2.67', '4.95', '2.97'] + [f"{IS_fc[y]['att']/4989.8:.2f}" for y in IS_fc],
+ ['Line', 'FY23', 'FY24', 'FY25'] + _FY,
+ ['Revenue'] + [f0(v) / 1 if False else f0(v / 1000.0) for v in _ISH['lines']['Total revenues']]
+   + [f0(fc[y]['rev']) for y in _FY],
+ ['Gross profit'] + [f0(v / 1000.0) for v in _GP_HIST] + [f0(fc[y]['gp']) for y in _FY],
+ ['EBITDA'] + [f0(v / 1000.0) for v in _ISH['ebitda']] + [f0(fc[y]['ebitda']) for y in _FY],
+ ['Depreciation, amortisation and impairment']
+   + [fp(v / 1000.0) for v in _H['Depreciation, amortisation and impairment']]
+   + [fp(fc[y]['dna']) for y in _FY],
+ ['Operating profit (EBIT)'] + [f0(v / 1000.0) for v in _ISH['ebit']]
+   + [f0(fc[y]['ebit']) for y in _FY],
+ ['Cost of the early retirement programme']
+   + [fp(v / 1000.0) for v in _H['Cost of the early retirement programme']]
+   + [fp(fc[y]['early_retirement']) for y in _FY],
+ ['Finance income'] + [f0(v / 1000.0) for v in _H['Finance income']]
+   + [f0(fc[y]['fin_income']) for y in _FY],
+ ['Finance cost'] + [fp(v / 1000.0) for v in _H['Finance cost']]
+   + [fp(fc[y]['fin_cost']) for y in _FY],
+ ['Other income, associates and other gains']
+   + [f0((_H['Net other income and expenses'][i]
+          + _H['Net share in associates and joint ventures'][i]
+          + _H['Net other gains'][i]) / 1000.0) for i in range(3)]
+   + ['not forecast'] * 5,
+ ['Profit before zakat and income tax'] + [f0(v / 1000.0) for v in _ISH['profit_before_zakat']]
+   + [f0(fc[y]['pbz']) for y in _FY],
+ ['Zakat and income tax'] + [(fp(v / 1000.0) if v < 0 else f0(v / 1000.0))
+                             for v in _H['Zakat and income tax']]
+   + [fp(fc[y]['zakat']) for y in _FY],
+ ['Profit from continuing operations'] + [f0(v / 1000.0) for v in _ISH['net_profit_continuing']]
+   + [f0(fc[y]['net_profit']) for y in _FY],
 ]
-table(rows, [2.05, 0.615, 0.615, 0.615, 0.615, 0.615, 0.615, 0.615, 0.615], first_col_bold=True, size=8.2)
-caption('FY23–FY25 as disclosed (stc.com IR releases; restated). FY24 discontinued operations include the SAR 12,885 mn '
-        'TAWAL/Digital-Infrastructure disposal gain. One-offs: FY23 AlKhobar land gain +1,296, WHT reversal +724; FY24 WHT '
-        'reversal +1,500, ERP −2,577, BGSM impairment −764; FY25 zakat credit +466. Forecast columns are the live model '
-        'build (rounded); the Excel is the source of truth.')
-H2('A.2  Balance sheet — condensed house layout (consolidated, SAR mn)')
+table(rows, [2.05, 0.615, 0.615, 0.615, 0.615, 0.615, 0.615, 0.615, 0.615],
+      first_col_bold=True, size=8.2)
+caption('The three filed years are note 9\'s own reconciliation of segment revenue to profit '
+        'from continuing operations, and they foot to the riyal in every column. THREE LINES '
+        'ARE NOT FORECAST AND THE TABLE SAYS SO RATHER THAN LEAVING A READER TO NOTICE: net '
+        'other income, the share of associates and net other gains have no disclosed driver '
+        'between them and were worth %s million in FY2025 alone, so the projected profit is '
+        'BELOW what the same company would report if they recurred. Zakat is the rate the '
+        'three years imply on profit before zakat, %.2f per cent, with the reversal of prior '
+        'years\' provision that note 33(a) names put back — carrying that reversal forward '
+        'would read %.2f per cent and assume the company keeps finding it has over-provided.'
+        % (f0((_H['Net other income and expenses'][2]
+               + _H['Net share in associates and joint ventures'][2]
+               + _H['Net other gains'][2]) / 1000.0),
+           100 * _ISH['effective_zakat_rate'],
+           100 * _ISH['zakat_rate_carrying_the_reversal']))
+
+H2('A.2  Balance sheet — the filed years, and why there is no forecast column')
+_BSJ = json.load(open(os.path.join(HERE, 'balance_sheet.json')))
 rows = [
- ['Line', 'FY23', 'FY24', 'FY25', 'FY26E', 'FY28E', 'FY30E'],
- ['Net fixed & intangible assets', '78,408', '74,383', '83,529', '86,529', '91,801', '95,232'],
- ['Investments in associates & JVs', '3,800*', '4,200*', '4,641', '5,141', '6,231', '7,441'],
- ['Financial assets (incl. Telefónica)', '22,000*', '23,500*', '24,893', '24,893', '24,893', '24,893'],
- ['Trade receivables, net', '24,500*', '25,800*', '26,727', '27,375', '28,486', '29,222'],
- ['Cash, equivalents & ST murabahas', '28,138', '30,755', '15,080', '21,774', '25,177', '31,116'],
- ['Other assets', '2,800', '2,000', '2,952', '2,952', '2,952', '2,952'],
- ['TOTAL ASSETS', '159,646', '160,638', '157,477', '168,664', '179,540', '190,856'],
- ['Equity attributable', '78,985', '89,417', '83,414', '86,525', '93,364', '101,411'],
- ['Non-controlling interests', '2,530*', '3,069*', '3,482', '3,834', '4,606', '5,455'],
- ['Borrowings & sukuk (excl. leases)', '21,958', '15,132', '15,191', '22,475', '22,475', '22,475'],
- ['Lease liabilities', '6,985*', '4,580*', '2,253', '2,253', '2,253', '2,253'],
- ['Trade payables & financial liabilities', '25,000*', '26,500*', '29,610', '29,610', '29,610', '29,610'],
- ['Zakat, provisions & other liabilities', '24,188', '21,940', '23,527', '23,967', '27,232', '29,652'],
- ['Balance check (assets − L&E)', '0', '0', '0', '0', '0', '0'],
+ ['Line', 'FY23', 'FY24', 'FY25'],
+ ['Total assets'] + [f0(D['hist']['assets'][k]) for k in ('FY23', 'FY24', 'FY25')],
+ ['Cash and equivalents'] + [f0(D['hist']['cash'][k]) for k in ('FY23', 'FY24', 'FY25')],
+ ['Borrowings'] + [fp(D['hist']['debt'][k]) for k in ('FY23', 'FY24', 'FY25')],
+ ['Equity attributable to the parent']
+   + [f0(D['hist']['eq_att'][k]) for k in ('FY23', 'FY24', 'FY25')],
+ ['Non-controlling interests'] + [f0(D['hist']['nci'][k]) for k in ('FY23', 'FY24', 'FY25')],
 ]
-table(rows, [2.5, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75], first_col_bold=True, size=8.4)
-caption('Disclosed anchors (total assets, cash+murabaha, total debt, attributable equity) exactly as reported; * = grouped '
-        'estimate tying to the disclosed totals; FY25 line detail from the Q1-2026 FS 31-Dec-25 comparatives. "Net fixed & '
-        'intangible assets" and "Zakat, provisions & other" are the balancing lines, shown as formulas in the Excel so the '
-        'check row is exact in every column. FY26E borrowings step up by the completed Jan-2026 $2 bn sukuk. Forecast values '
-        'here are indicative reads of the live model.')
-H2('A.3  Cash flow, the two FCF framings, and the DPS schedule (device A-2)')
+table(rows, [3.2, 0.95, 0.95, 0.95], first_col_bold=True, size=8.4)
+caption('THERE IS NO FORECAST BALANCE SHEET IN THIS EDITION AND THE REASON IS A DEFECT IN '
+        'THE FILING RATHER THAN A GAP IN THE MODEL. The latest reviewed balance sheet does '
+        'not add up in its own current column — four subtotals and both totals — while every '
+        'prior-year column foots exactly. That was not assumed to be an extraction problem: '
+        'the file was re-fetched from the company\'s own site, re-extracted, and re-read by '
+        'optical character recognition off the page rendered at 300 dots per inch, and both '
+        'routes return the same figures. A statement is used only if it foots against its '
+        'own arithmetic, and solving for the six figures that would make it foot would be '
+        'inventing them. The lines this study\'s valuation does use are corroborated instead '
+        'by the same interim\'s CASH FLOW statement, to the riyal. The previous edition '
+        'printed a forecast balance sheet whose gaps were filled with grouped estimates '
+        'chosen to make a balance-check row read zero; a check that cannot fail is not a '
+        'check, and it is not reprinted here.')
+
+H2('A.3  Cash flow, the two free-cash-flow framings, and the dividend schedule')
 rows = [
  ['Cash flow (SAR mn)', 'FY23', 'FY24', 'FY25', 'FY26E', 'FY28E', 'FY30E'],
  ['Operating cash flow (disclosed / model)', '22,418', '19,885', '18,283', '23,647', '26,155', '28,441'],
@@ -91,11 +134,12 @@ rows = [
 ]
 table(rows, [1.9, 0.85, 0.85, 0.85, 0.85, 0.85, 0.85], first_col_bold=True, size=8.6)
 caption('Two yield framings (house rule): declared-regular 2.20/sh = 5.0%; cash paid during calendar-2025 incl. the FY24 '
-        'special = 4.20/sh = 9.6%. Forecast-vs-actual scorecard (device A-3) and new-vs-old reconciliation (A-4): not '
+        'special = 4.20/sh = 9.6%. A forecast-versus-actual scorecard and a new-versus-old reconciliation: not '
         'applicable on an initiation; both become standing sections from the first 3-month update.')
 
 # ================= Appendix B ================================================
-H1('Appendix B  Peer set, sector structure, and risks')
+H1('Appendix B  Peer frame, risk register, and the research register')
+H2('B.1  The peer frame and the sector')
 P('stc is the premium name in a three-player Saudi market inside a GCC cohort where telecom equity is increasingly a '
   'yield-plus-digital-infrastructure asset class.')
 rows = [
@@ -118,6 +162,61 @@ P('Sector structure. Saudi mobile is a disciplined three-player market (~57/27/1
   'strategy line item. Principal risks: a mobile price war; capex overshoot on the AI build; government-receivables '
   'cycles; subsidiary execution (stc bank credit costs as it scales); the Telefónica mark; regional geopolitics; and the '
   'rate path staying higher for longer.')
+
+H2('B.2  Risk register')
+rows = [['Risk', 'How it would show up first', 'What it is worth']]
+for r, sig, w in [
+ ('A price war in Saudi mobile', 'Consumer revenue per subscriber, before it reaches the margin',
+  'The single largest downside: the margin glide is the model'),
+ ('Capital expenditure overshoot on the data-centre build', 'Capital intensity against the three filed years (1.05x to 1.25x depreciation)',
+  f"The bear-to-bull span of the central: SAR {D['central_range']['low']:.2f} to the cash-flow bull"),
+ ('Government receivables cycles', 'Operating cash conversion, not the income statement',
+  'A cash-flow timing risk rather than a value risk, unless it persists'),
+ ('Subsidiary execution as the portfolio scales', 'Contribution turning positive on the guided schedule, or not',
+  'The margin glide to the terminal depends on it'),
+ ('The rate path staying higher for longer', 'The discount rate directly',
+  f"{D['dcf']['tv_pct']*100:.0f}% of enterprise value sits beyond year five"),
+ ('The overseas listed stake', 'A mark that moves daily and is carried at market',
+  'A few per cent of the bridge; disclosed, not modelled'),
+]:
+    rows.append([r, sig, w])
+table(rows, [1.9, 2.3, 1.9], first_col_bold=True, size=8.5)
+
+H2('B.3  The research register — what was searched, and what came back empty')
+# THE MODEL SKELETON CARRIES A B.3 AND THIS STUDY HAD NO APPENDIX B SUBSECTIONS AT ALL.
+# The register existed on disk the whole time; the document simply never showed it, so a
+# reader could not see how much of this study rests on the company's own filings, nor
+# which questions were asked and answered with nothing.
+_SW = json.load(open(os.path.join(HERE, 'sweep_register.json')))
+_F = _SW['findings']
+_rings = ['GLOBAL', 'COUNTRY', 'INDUSTRY', 'COMPANY']
+P('Before any forecast driver was set, the research ran in four rings — the world, the country, the industry, and the '
+  'company — and every finding was recorded with its source and that source\u2019s own date. The table below is that '
+  'register in summary; the standalone bibliography carries every line of it, together with the full register of the '
+  f"{len(D['inputs'])} inputs this study consumes, each with its value, its source and its date.", size=9.8)
+rows = [['Ring', 'Findings', 'Of which searches that came back empty', 'The sources they rest on']]
+for rg in _rings:
+    inring = [f for f in _F if f['ring'] == rg]
+    negs = [f for f in inring if f['klass'] == 'NEGATIVE_SEARCH']
+    srcs = sorted({f['source_type'].replace('_', ' ').lower() for f in inring})
+    rows.append([rg.capitalize(), str(len(inring)), str(len(negs)), ', '.join(srcs)])
+_negall = [f for f in _F if f['klass'] == 'NEGATIVE_SEARCH']
+rows.append(['All four', str(len(_F)), str(len(_negall)),
+             'sweep dated %s' % _SW['sweep_date']])
+table(rows, [1.15, 0.85, 1.9, 2.2], first_col_bold=True, size=8.5, band_rows=[len(_rings) + 1])
+P('A NEGATIVE RESULT IS A RESULT, and this study records four of them. They are printed here rather than left out, '
+  'because a question asked and answered with nothing is evidence, while a question never asked looks identical to one '
+  'that found nothing:', size=9.8)
+for f in _negall:
+    bullet(f['detail'].strip().split('\n')[0][:400] if f.get('detail') else f['headline'],
+           bold_head=f['headline'].split(';')[0].split(' — ')[0][:110] + '. ')
+_pa = _SW['primary_access'][0]
+P('The company\u2019s own investor-relations channel was attempted first, before any aggregator, and the attempt is '
+  f"logged whether or not it succeeded. It was reached on {_pa['attempt_date']} — and the route matters: four direct "
+  'address guesses each returned the site\u2019s own error page under a success code, which reads as a working page to '
+  'anything that only checks the status. The sitemap found it. Every historical figure in this study comes from the '
+  'company\u2019s own audited statements or its own investor material, and none from a data vendor, a broker or a press '
+  'report.', size=9.8)
 
 # ================= Appendix C ================================================
 H1('Appendix C  The expert valuation panel')
@@ -143,7 +242,9 @@ rows = [
  ['Economic profit = (ROIC − WACC) × IC', 'SAR ~7.0 bn/yr'],
  ['Fade: excess returns decay 2.5%/yr toward WACC', 'EP multiple ≈ 13.2×'],
  ['Core EV = IC + PV(fading EP)', 'SAR ~183 bn'],
- ['+ stakes − net debt − NCI, / 4,989.8 mn shares', f"→ SAR {E['e1']['base']:.1f}/share"],
+ [f"+ stakes less net debt less the minority, divided by "
+   f"{D['bridge_record']['shares_mn']:,.1f} mn shares",
+   f"\u2192 SAR {E['e1']['base']:.1f} per share"],
 ]
 table(rows, [4.4, 1.7], first_col_bold=True, size=9.0)
 P(f"Sensitivity (swing = the fade rate): at a 1%/yr fade (a durable moat) his value rises to ≈SAR {E['e1']['rng'][1]:.0f}; "
@@ -156,7 +257,8 @@ rich([('Verdict, falsification, market-implied. ', dict(bold=True)),
       (f"Fair SAR {E['e1']['base']:.1f} (range {E['e1']['rng'][0]:.0f}–{E['e1']['rng'][1]:.0f}) — the panel’s conservative "
        "anchor, below spot: on his arithmetic the market already pays for the excess returns to persist a decade-plus. "
        "Falsified by disclosed data-centre economics showing contracted returns above telecom ROIC (the fade would then be "
-       "too harsh), or by ROIC holding ≥15% through FY28 while capex normalizes. What the price implies: at SAR 43.58 the "
+       f"too harsh), or by return on capital holding above 15% through FY2028 while capital "
+       f"intensity normalises. What the price implies: at SAR {D['spot']:.2f} the "
        "market discounts a fade of roughly 1.5%/yr — gentler than his 2.5%, i.e. the market believes in the moat slightly "
        "more than he does.", {})])
 
@@ -166,13 +268,32 @@ P('Worldview and tradition. An operating company is worth a fair multiple of its
 P('When it works / fails. Best for stable operating businesses with a track record — a fit for stc, whose underlying '
   'earnings have grown 12–13% (adjusted) for two straight years. Fails at structural breaks: if the subsidiary portfolio '
   're-rates the growth profile, his through-cycle multiple is too low; if a price war breaks the margin, too high.', size=9.8)
+# A WATERFALL A READER IS ASKED TO FOLLOW MUST REACH THE ANSWER IT PRINTS, and this one did
+# not. It ran "FY2025 attributable profit 14,828 less the one-off zakat credit (466)" to a
+# printed "about 14,400" — arithmetic that gives 14,362 — and the adjustment was the wrong
+# size anyway: 466 is the NET zakat line for the year, not the one-off inside it. What is
+# non-recurring is the reversal of prior years' provision that note 33(a) names on its own
+# line. The normalisation now charges the year at the rate the three filed years imply and
+# takes the minority's share off the result, and table_residual asserts the column at build
+# time so it cannot silently stop reaching its own answer again.
+import table_residual as TRES
+
+_pbz = _ISH['profit_before_zakat'][2] / 1000.0
+_zk = _pbz * _ISH['effective_zakat_rate']
+_nci_off = (_pbz - _zk) * D['bridge_record']['nci']['profit_share']
+_steps = [('less zakat at the rate the three filed years imply', -_zk),
+          ('less the minority interest', -_nci_off)]
+TRES.waterfall(_pbz, _steps, D['rel_basis']['norm_pat'])
 rows = [
- ['Expert 2’s normalization', 'Value'],
- ['FY25 attributable profit, reported', 'SAR 14,828 mn'],
- ['less: one-off zakat credit', '(466)'],
- ['Normalized PAT → EPS', 'SAR ~14,400 mn → SAR 2.89'],
- ['Justified through-cycle P/E', '15.0×'],
- ['Fair value', f"→ SAR {E['e2']['base']:.1f}/share"],
+ ['Expert 2’s normalisation', 'SAR mn'],
+ ['FY2025 profit before zakat, as filed', f"{_pbz:,.0f}"],
+ ['less zakat at the rate the three filed years imply', f"({_zk:,.0f})"],
+ ['less the minority interest', f"({_nci_off:,.0f})"],
+ ['Normalised profit attributable', f"{D['rel_basis']['norm_pat']:,.0f}"],
+ ['Divided by shares in issue (%s million)' % f"{D['bridge_record']['shares_mn']:,.1f}",
+  f"SAR {D['rel_basis']['norm_eps']:.2f} per share"],
+ ['Justified through-cycle price-to-earnings', '15.0x'],
+ ['Fair value', f"SAR {E['e2']['base']:.1f} per share"],
 ]
 table(rows, [4.4, 1.7], first_col_bold=True, size=9.0)
 P('Sensitivity (swing = the multiple): at 13.5× SAR 36.8; at 16.5× SAR 50.3; each 1× of P/E ≈ SAR 2.9. Cross-examination: '
@@ -215,6 +336,39 @@ rich([('Verdict, falsification, market-implied. ', dict(bold=True)),
        "roughly his base case with a small weight on the bear — i.e. the locked dividend at a ~5% yield, and near-zero "
        "credit for specials or the AI build.", {})])
 
+H2('C.4  Cross-examination — each challenge conceded or rejected')
+# THE MODEL SKELETON CARRIES A C.4 AND THIS STUDY SKIPPED STRAIGHT FROM C.3 TO C.5. The
+# challenges existed — each expert put one to each colleague inside their own paragraph —
+# but nothing said which of them survived, which is the whole point of the section: a
+# challenge that is never answered is a debating point rather than a finding.
+P('Each expert puts a challenge to each colleague above. A challenge is worth nothing until somebody says whether it '
+  'lands, so each is answered here, and two of the four are conceded.', size=9.8)
+rows = [
+ ['Challenge', 'From → to', 'Answer'],
+ ['A fade model is a multiple wearing a lab coat — the honest disagreement is the number, not the machinery.',
+  '2 → 1', 'CONCEDED, partly. Both capitalise the same earnings; the fade makes the capital charge explicit and the '
+           'multiple buries it. That is a real difference in what is visible, not in what is assumed — and it means '
+           'Expert 1 owns his fade rate where Expert 2 does not own his multiple.'],
+ ['A through-cycle multiple assumes a cycle, and the Saudi rate cycle is imported from a foreign central bank.',
+  '3 → 2', 'CONCEDED. The riyal is pegged, so the local discount rate is set abroad and can stay dislocated from '
+           'local fundamentals for years. Expert 2\u2019s multiple is a claim about the average of a cycle whose length '
+           'he does not control.'],
+ ['Scenario trees on the policy rate are fine, but the bigger lever is inside the company: each point of capital '
+  'intensity is real cash that either earns the spread or does not.',
+  '1 → 3', 'REJECTED, on this company\u2019s own numbers. The three filed years span a capital intensity of '
+           '1.05 to 1.25 times the depreciation of the base being renewed, and that whole span is worth less to the '
+           'answer than the discount rate is. The policy lever is the larger one here; it is simply the one nobody '
+           'controls.'],
+ ['The dividend lens undervalues whatever the board chooses not to distribute.',
+  '2 → 3', 'REJECTED, with a caveat. Retained cash shows up as future dividends in the same model, so it is not lost '
+           '— but only if it earns its cost of capital on the way. That is Expert 1\u2019s question, not Expert 2\u2019s, '
+           'and it is the one the data-centre build actually turns on.'],
+]
+table(rows, [2.5, 0.75, 2.85], first_col_bold=False, size=8.4)
+caption('Two conceded, two rejected. Nothing here changes any expert\u2019s number: a concession about what a method '
+        'makes visible is not a concession about what it computes, and the panel is published with its disagreement '
+        'intact rather than talked into a consensus.')
+
 H2('C.5  The three in one room')
 P('Put the three in a room and the argument is about one thing: what happens to stc’s return on capital as the Kingdom’s '
   'AI-infrastructure build runs through its income statement.', size=9.8)
@@ -228,7 +382,7 @@ P('Expert 2: “You are both reaching. Clean earnings are SAR 2.89 a share, grow
   'point. SAR 43, and the market agrees with me to the decimal.”', size=9.8)
 
 H2('C.6  Reading the divergence')
-figure('figD1_experts.png', 6.0, 'Figure C-1 — The three experts’ fair-value ranges. Brass ticks are base cases; the gold '
+figure(os.path.join(HERE, 'figD1_experts.png'), 6.0, 'Figure C-1 — The three experts’ fair-value ranges. Brass ticks are base cases; the gold '
        'band is the panel centre; the ink line is spot. The spread is the return-fade question.')
 rows = [
  ['Expert', 'Method', 'Single swing assumption', 'Base fair value'],
@@ -248,7 +402,7 @@ P(f"The spread — SAR {min(E['e1']['base'],E['e2']['base'],E['e3']['base']):.0f
   "returns, the house DCF is right and the stock is cheap; if it earns telecom-minus, Expert 1 is right and today’s price "
   "already flatters it.")
 caption('Each expert’s point fair value (and bull/base/bear where applicable) is logged with the study date (9 Jul 2026) and '
-        'spot (SAR 43.58) as an internal per-expert track record, kept separate from the core Calibration Ledger.')
+        f'spot (SAR {D["spot"]:.2f}).')
 
 # ================= About / Disclaimer / footer ================================
 H1('About this series')
@@ -287,7 +441,7 @@ for head, body in [
 ]:
     rich([(head, dict(bold=True, italic=True)), (body, {})], size=9.6, space_after=5)
 P('TESTAHIL · Independent Valuation Study · Educational Analysis · Saudi Telecom Company (Tadawul: 7010) · '
-  'edition 09-07-2026 · reporting currency SAR', size=8.8, color=GREY, align='center', space_before=10)
+  'edition 05-09-2026 · reporting currency SAR', size=8.8, color=GREY, align='center', space_before=10)
 
-doc.save('STC_Valuation_Study_09-07-2026_public.docx')
+doc.save(os.path.join(HERE, 'STC_Valuation_Study_05-09-2026_public.docx'))
 print('docx saved')
