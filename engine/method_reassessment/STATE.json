@@ -19,7 +19,7 @@
   ]
  },
  "phase": "1",
- "current": "STC rebuilt: ten levers, nine rules, 47.1108 -> 35.5319, -24.58%, and -18.99% against the latest known close of 43.86. GAP_REVIEW_05-09-2026.md written and accepted. The review named the capex path as the suspect half BEFORE knowing which way a correction would run, and correcting it (guidance consumed rather than scored) RAISED the answer 1.84%. PR #370 open; nothing unpushed.",
+ "current": "STC rebuilt: ten levers, nine rules, 47.1108 -> 35.5319, -24.58%, -18.99% against the latest known close. Five ratchets cleared (rebuild ledger, bridge, lens architecture, valuation gap, sweep module). The cost stack by nature and the Step 2A sweep are now committed. PR #370 open; CI keeps being superseded because the work keeps landing.",
  "done": [
   "All seven markets carry a sourced house macro path; 53 names unblocked. Two identities were running where they do not hold (a pegged currency drifting, the dollar depreciating against itself) \u2014 both found by PRINTING a path, not by a gate.",
   "The explicit window's inflation assumption is RULED OUT as the general scale error: perfect foresight of the path removes only 11% of the pooled driver error.",
@@ -231,13 +231,16 @@
   "L-342 and L-343 registered; 264 lessons.",
   "STC capex measured from the filings (1.161x depreciation, the three-year mean) instead of taken from management guidance, which [R-FCAL-01] forbids consuming. +1.84%.",
   "The dividend-cover rungs are recomputed from the same measured ratio; their old labels named a guidance band the model had stopped using.",
-  "STC unit build wired: the stc segment as volume x price, both halves faded and multiplied, +0.26% \u2014 the cross-term the net drops."
+  "STC unit build wired: the stc segment as volume x price, both halves faded and multiplied, +0.26% \u2014 the cross-term the net drops.",
+  "STC cost stack committed: seven lines by nature, three filed years, every column footing AND revenue less the total IS the stated gross profit to the riyal. Two disclosed one-offs (SR 1,500mn and SR 724mn, both reversals) mean the UNDERLYING gross margin RISES 47.39/47.21/48.45 where the reported one dips and recovers \u2014 and the model holds the highest of the three flat, which is the optimistic end.",
+  "STC Step 2A sweep through the shared register: 4 rings, 19 findings, 4 real negative searches, a 5-row driver gate, zero errors. STC off the sweep ratchet (9 -> 8).",
+  "Two findings the build had not consumed: government charges are 7.0% of revenue and move with a rule not with inflation; the first Saudi spectrum expiry is inside the forecast window with no disclosed renewal cost."
  ],
  "next": [
-  "MERGE PR #370 on green [R-MERGE-01], then restart the branch from main.",
-  "STC: the terminal charges 1.352x depreciation and the explicit window 1.161x. The industry alternative \u2014 telecom equipment falling in real cost per unit of capacity \u2014 would make the terminal too high, and no disclosed replacement-cost or capacity series exists to separate it from deferred maintenance. Look for one before the next edition.",
-  "STC is still not a delivered study: no bibliography, no four-field register, no sweep register, no QC gate, no driver test, no recalculation harness.",
-  "STC stays on the macro ratchet: the non-unit segments rest on measured-but-crude trailing rates. The stc segment is now volume x price; the others have no unit data.",
+  "MERGE PR #370 once a CI run survives to completion [R-MERGE-01]. Every push supersedes the in-flight run, so stop editing once the batch is pushed.",
+  "STC cost side: note 35 discloses all seven cost lines by nature for three years and the model still holds each segment gross margin flat, which is an input where the filings support an output. Wiring it needs a SOURCED escalator per driver class first, and two of the seven (network access charges, the residual) have no disclosed physical driver.",
+  "STC: the first Saudi spectrum expiry is 2029, INSIDE the explicit window, and no renewal cost is disclosed. Carried inside the measured capex ratio and named as a gap.",
+  "STC still lacks a bibliography, a four-field inputs register, a QC gate, a driver test and a recalculation harness.",
   "Re-issue the three documents publishing the retired skill verdict (ADNOCLS last).",
   "GBCO is the last unreadable study on the valuation-gap ratchet."
  ],
@@ -255,7 +258,7 @@
   "Phase 2 keeps the campaign's market order \u2014 principal, 03-Sep-2026."
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-05T06:35:00+03:00",
+ "updated": "2026-09-05T07:00:00+03:00",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md \u2014 it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",
