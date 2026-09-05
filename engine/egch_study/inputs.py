@@ -440,6 +440,55 @@ I("kd_usd_lt", 0.090, "ratio", "Constructed: long-run corporate dollar cost of d
 I("roc_terminal", 0.18, "ratio",
   "Constructed: terminal return on invested capital, which sets the terminal reinvestment rate as growth "
   "divided by return on capital", "2026-08-08", "L5")
+
+# ---- the fixed-asset base the terminal maintenance charge is struck on --------
+# READ BY OCR OFF THE RENDERED PIXELS of note 6, الأصول الثابتة (بالصافي). The filing
+# carries a 48-character text layer across 48 pages, so no extraction route but the image
+# exists. Arithmetic is the arbiter: the cost column rolls forward from its opening
+# balance through additions and disposals to the figure below, the accumulated column does
+# the same, cost less accumulated reproduces the balance-sheet net book value, and the
+# year's charge reproduces the figure this register already carried from an earlier
+# reading of the same note.
+I("fa_cost_gross_FY2425", 17022.493238, "EGP m",
+  FS25 + ", note 6 fixed-asset register, cost column at 30 June 2025 — read by OCR off the "
+  "rendered page; the cost roll-forward (opening plus additions less disposals) reproduces "
+  "this figure exactly", "2025-09-24", "L1")
+I("fa_land_FY2425", 1.662949, "EGP m",
+  FS25 + ", note 6 land, cross-checked against the total in note 4-6 — land is never "
+  "depreciated and is removed before any life or age is derived", "2025-09-24", "L1")
+I("fa_accum_dep_FY2425", 3435.299807, "EGP m",
+  FS25 + ", note 6 accumulated depreciation at 30 June 2025 — read by OCR off the rendered "
+  "page; the accumulated roll-forward reproduces it, and cost less accumulated reproduces "
+  "the balance-sheet net book value of 13,587.193", "2025-09-24", "L1")
+I("fa_avg_age_years", 3435.299807 / 771.213489, "years",
+  "DERIVED BY IDENTITY, labelled as derived: accumulated depreciation over the year's own "
+  "charge. Under straight-line depreciation accumulated equals age times charge, so the "
+  "ratio is the charge-weighted average age of the base. THE THREE CONDITIONS THAT BREAK "
+  "THAT IDENTITY ARE CHECKED AND CLEAR HERE. There is no residual value: the policy note "
+  "writes off cost over the useful life and mentions none. No useful life has been "
+  "reassessed: the disclosed rates are unchanged from the prior year's identical table. "
+  "And the base was not assembled by acquisition — it is one plant, built and extended by "
+  "this company. The corroboration is that only EGP 220mn, 1.3% of the base, is fully "
+  "depreciated and still in production, so almost nothing is past its accounting life and "
+  "the gross-over-charge life below reads close to a true weighted life rather than a "
+  "longer economic cycle. 4.45 years against the 11.04 that half of that life would "
+  "assume: this plant was rebuilt recently and has another complex still under "
+  "construction.", "2025-09-24", "L5")
+I("fa_life_implied_years", (17022.493238 - 1.662949) / 771.213489, "years",
+  "DERIVED BY IDENTITY, labelled as derived: the depreciable gross cost — cost less land, "
+  "which is never depreciated — over the year's own charge. It is the replacement cycle "
+  "the accounts themselves run, and it sits inside the disclosed range: note 5-2 gives "
+  "3.95% on the urea and ammonia machinery (25.3 years), 9.5% on the factories (10.5), "
+  "6.5% on the workshops (15.4), 6% on the factory buildings (16.7), 2 to 5% on the "
+  "residential city and the water and sewage pipes (20 to 50) and 4.75% on the intangible "
+  "(21.1). A weighted life cannot be read off the note because it publishes no class "
+  "balances, so the identity supplies one and the disclosed range is what checks it.",
+  "2025-09-24", "L5")
+I("fa_fully_dep_in_use_FY2425", 220.495594, "EGP m",
+  FS25 + ", note 6 disclosure of assets fully depreciated and still in production — 1.3% "
+  "of the depreciable base, which is what makes the gross-over-charge identity read close "
+  "to a true weighted accounting life here rather than a longer economic cycle",
+  "2025-09-24", "L1")
 I("maint_capex_pct", (80.847245 + 42.470154) / (4440.701 + 6612.226), "ratio",
   "Maintenance capital expenditure as a share of revenue, RE-ANCHORED 9 August 2026 on the "
   "company's OWN pre-project cash-flow statements: EGP 123.3m spent across FY2021/22 and "

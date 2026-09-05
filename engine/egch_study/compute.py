@@ -505,19 +505,76 @@ def terminal(rows, case="base"):
     # charge before it enters terminal EBIT.
     anna_dep = (D['anna_total_cost'] * D['dep_rate_project']) if util > 0 else 0.0
     anna_ebit -= anna_dep
-    base_ebit = last['ebit'] * (1 + D['g_terminal'])
+    # THE PROJECT'S DEPRECIATION IS CHARGED ONCE, AND IT WAS CHARGED TWICE. The explicit
+    # window depreciates the complex AS IT IS SPENT, so the last explicit year already
+    # carries the charge on the part in service; the terminal line above then charges the
+    # WHOLE plant. Grossing the last explicit year's profit without first removing the
+    # in-service part therefore charged that part twice — on the base case, EGP 482mn of
+    # depreciation on a plant that appears once in the accounts. THE MODEL ALREADY KNEW
+    # HOW TO DO THIS: the programme-stopped branch strips exactly this charge before it
+    # grosses, which is why that branch was never wrong. Under the retired construction
+    # the error only depressed profit; under the sanctioned one book depreciation is also
+    # the BASE OF THE REPLACEMENT CHARGE, so it was depressing the value twice over.
+    _anna_dep_in_last = ((sum(D['anna_capex_path'][:len(rows) - 1]) * D['dep_rate_project'])
+                         if util > 0 else 0.0)
+    base_ebit = (last['ebit'] + _anna_dep_in_last) * (1 + D['g_terminal'])
     ebit_T = base_ebit + anna_ebit
     nopat_T = ebit_T * (1 - D['tax_rate'])
+    # Book depreciation in the terminal year, on exactly the construction ebit_T charges:
+    # the existing plant's charge grown with the rest of that profit, plus the complex's
+    # own full-year charge once. It is an ADD-BACK and the base of the maintenance charge,
+    # so the two must be the same number or the waterfall is not a waterfall.
+    dna_T = (last['dep'] - _anna_dep_in_last) * (1 + D['g_terminal']) + anna_dep
+    wc_T = last['wc'] * (1 + D['g_terminal'])
+
+    # ---- THE RETIRED CONSTRUCTION, kept in two lines so the change stays legible -------
+    # rr = g / RoC substitutes to a charge of g x IC every year for ever, so the implied
+    # replacement cycle is 1/g — 14.3 years at a 7% terminal, a fact about the pound and
+    # not about a urea plant. The disclosed rate for this plant's machinery is 3.95%, a
+    # 25.3-year life, and the base is 4.45 years old.
     reinv_rate = D['g_terminal'] / D['roc_terminal']
-    fcff_T = nopat_T * (1 - reinv_rate)
+    fcff_retired = nopat_T * (1 - reinv_rate)
     # base_ebit is ALREADY the year-six flow (EBIT_5 grown once). The Gordon numerator must
     # therefore be FCFF_6, not FCFF_6 x (1+g): the extra factor put a year-seven flow into a
     # perpetuity discounted at the year-five factor. Found by three independent critiques.
-    tv = fcff_T / (D['wacc_terminal'] - D['g_terminal'])
+    tv_retired = fcff_retired / (D['wacc_terminal'] - D['g_terminal'])
+
+    # ---- THE SANCTIONED CONSTRUCTION [R-TERM-01] --------------------------------------
+    # terminal_value.build() applies the Gordon step ITSELF — tv = fcff x (1+g)/(w-g) —
+    # and values the terminal at the END of the year whose figures it is handed, which is
+    # where the year-five factor above discounts it. THE FIGURES ABOVE ARE THE YEAR-SIX
+    # ONES, so each is handed over one year earlier and the module grows it back. Handing
+    # over the year-six figures directly would grow them a second time and overstate the
+    # terminal by exactly (1+g) — 7.0% here, and it is what six of this house's eight
+    # studies did until 4 September 2026 [L-329]. The assertion below is the bridge
+    # between the two presentations: whatever the module returns must equal this study's
+    # own convention applied to the year-six free cash flow.
+    _T = TV.build(TV.TerminalInputs(
+        nopat=nopat_T / (1 + D['g_terminal']),
+        wacc=D['wacc_terminal'], inflation=D['inflation_lt'], real_growth=0.0,
+        dna_book=dna_T / (1 + D['g_terminal']),
+        average_age_years=D['fa_avg_age_years'],
+        average_age_source=_SRC('fa_accum_dep_FY2425'),
+        useful_life_years=D['fa_life_implied_years'],
+        useful_life_source=_SRC('fa_cost_gross_FY2425'),
+        maintenance_basis='book_dna_escalated',
+        working_capital=wc_T / (1 + D['g_terminal']),
+        incremental_capital_per_unit_growth=0.0))
+    fcff_T = _T.fcff * (1 + D['g_terminal'])        # the year-six flow the page prints
+    tv = _T.tv
+    assert abs(tv - fcff_T / (D['wacc_terminal'] - D['g_terminal'])) < 1e-6 * abs(tv), (
+        'the module and this study state the same perpetuity two ways and they must agree')
     pv_tv = tv * rows[-1]['df']
     return dict(fx=fx, anna_util=util, an_t=an_t, anna_rev=anna_rev, anna_ebit=anna_ebit,
                 base_ebit=base_ebit, ebit_T=ebit_T, nopat_T=nopat_T,
-                reinv_rate=reinv_rate, fcff_T=fcff_T, tv=tv, pv_tv=pv_tv,
+                anna_dep=anna_dep, anna_dep_in_last=_anna_dep_in_last,
+                dna_T=dna_T, wc_T=wc_T,
+                maintenance_T=_T.maintenance * (1 + D['g_terminal']),
+                wc_charge_T=_T.wc_charge * (1 + D['g_terminal']),
+                floor_T=_T.floor, payout_T=_T.fcff / (nopat_T / (1 + D['g_terminal'])),
+                reinv_rate=reinv_rate, fcff_retired=fcff_retired, tv_retired=tv_retired,
+                terminal_record=_T.record,
+                fcff_T=fcff_T, tv=tv, pv_tv=pv_tv,
                 wacc_terminal=D['wacc_terminal'], ke_terminal=D['ke_terminal'],
                 rf_star_terminal=D['rf_star_terminal'],
                 kd_terminal=D['kd_local_equiv_terminal'])
