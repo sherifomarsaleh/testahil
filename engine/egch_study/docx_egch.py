@@ -1,4 +1,4 @@
-"""EGCH_Valuation_Study_03-09-2026.docx — the MODEL STUDY structure.
+"""EGCH_Valuation_Study_05-09-2026.docx — the MODEL STUDY structure.
 
 Sixteen sections in the model order. No financial numeral is typed in this file: every
 number comes from study_numbers.json, lenses.json, experts.json, strike_result.json,
@@ -41,7 +41,7 @@ M3 = ST['horizons']['3M']; M1 = ST['horizons']['1M']
 masthead()
 import datetime as _dt
 # ONE PLACE THE EDITION IS NAMED, read by the masthead and by the save.
-EDITION_FILE = 'EGCH_Valuation_Study_03-09-2026.docx'
+EDITION_FILE = 'EGCH_Valuation_Study_05-09-2026.docx'
 
 P("EGYPTIAN CHEMICAL INDUSTRIES (KIMA)", size=21, bold=True, space_after=1)
 P("Egyptian Exchange: EGCH  ·  Aswan  ·  Nitrogen fertilizers and industrial chemicals",
@@ -745,7 +745,7 @@ rows = [["Component", "Rating basis", "CDS basis", "Source"],
          # "1.13%" beside two rates in per cent invites a reader to take it as a
          # proportional difference, which it is not; the two framings differ by a factor
          # of twenty here.
-         f"{(WC['wacc_rating'] - WC['wacc_cds']) * 1e4:,.0f} basis points BELOW the "
+         f"{E(WC['wacc_rating_less_cds_bp'])} basis points BELOW the "
          "rating basis, so the "
          "choice is not the conservative one and is not made on that ground; section 1.9 "
          "prices what the other basis is worth"]]
@@ -958,7 +958,7 @@ table(rows, [2.4, 2.25, 2.25], size=8.9, band_rows={6})
 caption("{T}.  The map says where the price may end. It is not a forecast of where it "
         "will end, and the probability in the last row is the share of paths finishing "
         "above the anchor, not a claim about direction. THE ANCHOR IS NOT THE VALUATION "
-        "PRICE: the cone is struck on the price history and the valuation on the latest "
+        "PRICE: the price distribution is struck on the price history and the valuation on the latest "
         "close, and they are a month apart here — two clocks, both dated, never mixed.")
 figure('fig12_dist1m.png', 6.6,
        f"{{F}}.  The shape of the distribution at one month, to {M1['grade_date']}.")
@@ -1165,15 +1165,26 @@ P(f"Maintenance capital expenditure is the driver this study got wrong on its fi
   f"{E2(abs(AL['capex']['house_standard_value'] - AL['baseline']))} a share on its own. "
   f"The replacement-rate framing at {PC(AL['capex']['replacement_rate'])} is published "
   f"beside it as the downside rather than averaged in.")
-P(f"The terminal reinvestment rate is now the largest unsourced input left in the model. "
-  f"It is set by terminal growth over an assumed {PC(DR['roc_terminal'])} return on "
-  f"invested capital, which charges "
-  f"{PC(DR['g_terminal'] / DR['roc_terminal'])} of terminal operating profit after tax "
-  f"back into the business every year for ever — on a plant that has just been rebuilt "
-  f"and needs no further building. A thirty per cent return on capital, which is what a "
-  f"newly completed line earns while it is still filling, is worth EGP "
-  f"{E2(abs(AL_BY['terminal_reinvestment']['delta']))} a share. The conservative reading "
-  f"is kept and the alternative is priced.")
+P(f"The terminal charge for keeping the plant intact is the largest single judgement left "
+  f"in the model, and it is now a measurement rather than an assumption. Earlier editions "
+  f"charged the terminal by reinvesting a share of profit set by growth over an assumed "
+  f"return on capital — a construction that, read as a capital programme, rebuilds the "
+  f"entire asset base every {E1(1 / DR['g_terminal'])} years, which is a fact about the "
+  f"pound rather than about a urea plant. It now charges what replacing the plant costs "
+  f"at today's prices: the book depreciation charge escalated over the average age of the "
+  f"base. THAT AGE IS READ OFF THE ACCOUNTS rather than assumed — accumulated "
+  f"depreciation over the year's own charge is the charge-weighted average age under "
+  f"straight-line depreciation, and it comes to "
+  f"{E2(V('fa_avg_age_years'))} years against the "
+  f"{E2(V('fa_life_implied_years'))}-year replacement cycle the same note implies. This "
+  f"base is a quarter worn rather than half: only EGP "
+  f"{E(V('fa_fully_dep_in_use_FY2425'))} million of it, "
+  f"{PC(V('fa_fully_dep_in_use_FY2425') / (V('fa_cost_gross_FY2425') - V('fa_land_FY2425')))} "
+  f"of the depreciable cost, is fully depreciated and still in production. Where a company "
+  f"discloses too little to measure the age, half the life has to be assumed instead, and "
+  f"on this base that assumption is worth EGP "
+  f"{E2(abs(AL_BY['terminal_asset_age']['delta']))} a share — the largest of the priced "
+  f"alternatives, and the reason the measurement was worth making.")
 P(f"The new plant's capacity is derived, not disclosed. No filing states it. It is built "
   f"from the ammonia design plate less the draw of urea at its own plate, converted at "
   f"the nitrate route's ammonia ratio. Every figure that depends on it is flagged as "

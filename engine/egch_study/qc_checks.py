@@ -16,7 +16,7 @@ from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
-DOCS = ['EGCH_Valuation_Study_03-09-2026.docx', 'EGCH_Bibliography_03-09-2026.docx']
+DOCS = ['EGCH_Valuation_Study_05-09-2026.docx', 'EGCH_Bibliography_05-09-2026.docx']
 fails = []
 
 # ---------------------------------------------- (4) external-reader scrub -----

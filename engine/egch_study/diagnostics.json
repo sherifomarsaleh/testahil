@@ -6,7 +6,7 @@
  "why_this_file": "The reverse read — what the traded price must believe — is a DIAGNOSTIC and lives outside the numbers file every builder reads. A quantity solved from a price and then used anywhere in the valuation is the reverse-engineered rate the protocol prohibits outright, arriving through a side door. Nothing in this file is an input to anything; it is written OUT of what compute.py already committed.",
  "implied": {
   "quantity": "the single flat nominal EGP discount rate — applied to every explicit year and to the perpetuity — that reproduces the traded price on this study's own operating cash flows",
-  "value": 0.11501301802662825,
+  "value": 0.1300292595239384,
   "study_value": 0.25757854106089717,
   "study_value_range": [
    0.18588040212578727,
@@ -14,10 +14,10 @@
   ],
   "solved_on": "compute.py's own implied_flat_wacc(), holding every driver at its published value and varying only the discount rate; solved on BOTH sides of the binary judgement because this study's central is two-sided and picking a side to solve on would make the choice the study declined to make",
   "both_sides": {
-   "capital programme carried through": 0.11501301802662825,
-   "capital programme stopped": 0.1301555972035554
+   "capital programme carried through": 0.1300292595239384,
+   "capital programme stopped": 0.14264996521794682
   },
-  "reading": "At EGP 14.41 the price implies a flat nominal discount rate of 11.5% if the ANNA programme is carried through and 13.0% if it is stopped. This study discounts at 25.8% falling to 18.6%. The sovereign's own ten-year yield is 23.0%, so on either branch the price is paying a rate BELOW what the government of Egypt pays to borrow — less than half of it on the committed-capital case. That is not a disagreement about the business; it is a statement that the equity is priced as though the cash flows this study projects were safer than the sovereign. The study's answer is 2.31 carried through and 6.26 stopped, and it publishes both rather than averaging a half-built plant nobody is proposing."
+  "reading": "At EGP 14.41 the price implies a flat nominal discount rate of 13.0% if the ANNA programme is carried through and 14.3% if it is stopped. This study discounts at 25.8% falling to 18.6%. The sovereign's own ten-year yield is 23.0%, so on either branch the price is paying a rate BELOW what the government of Egypt pays to borrow — less than half of it on the committed-capital case. That is not a disagreement about the business; it is a statement that the equity is priced as though the cash flows this study projects were safer than the sovereign. The study's answer is 3.90 carried through and 7.88 stopped, and it publishes both rather than averaging a half-built plant nobody is proposing."
  },
  "construction": {
   "built_wacc_path": [

@@ -1,7 +1,9 @@
 # EGCH — the fixed-asset evidence a terminal rebuild needs, and what it found
 
-**Status: gathered 4 September 2026 and NOT yet spent.** The terminal is still on the
-retired reinvestment identity.
+**Status: SPENT 5 September 2026. The terminal is rebuilt** and this file is the
+evidence it rests on, kept because the route by which each figure was obtained is part of
+the record. What shipped is NOT what this file first priced, in two ways, and both are set
+out below rather than tidied away.
 
 > **EVERY PRICED FIGURE IN THIS FILE WAS RESTATED ON 5 SEPTEMBER 2026 AND EVERY ONE CAME
 > DOWN.** The first pricing handed the sanctioned construction this study's *terminal-year*
@@ -299,3 +301,41 @@ the module.
 +42% move on the most-disagreeing study in the book is exactly the shape of change this
 programme exists to be careful about: it is recorded here with its arithmetic so the next
 pass starts from evidence rather than from memory.
+
+---
+
+## 9. What shipped, 5 September 2026, and the second defect this file did not find
+
+The rebuild landed at **EGP 3.8967 carried through and 7.8807 stopped**, not at the 2.9877
+and 7.8807 §5 and §7 above predict. The carried-through branch is 30.4% higher than this
+file's own corrected pricing, and the reason is a defect the terminal rebuild EXPOSED rather
+than caused.
+
+**The project's depreciation was charged twice.** The explicit window depreciates the new
+complex as it is spent, so the last explicit year already carried the charge on the part in
+service — EGP 481.9mn — and the terminal then charged the whole plant on top. Grossing the
+last explicit year without first removing the in-service part therefore charged it twice.
+
+**Under the retired construction that error only depressed profit.** Under the sanctioned
+one, book depreciation is also the BASE of the replacement charge, so an overstated charge
+took value out twice: once through profit, and once through a maintenance charge struck on a
+depreciation figure 32% too large. That is why the defect became worth finding only after
+the first correction was made, and it is the general shape worth keeping: **a correction that
+makes a quantity load-bearing makes every error in that quantity visible.**
+
+**The model already knew how to do this**, which is what settles it as a defect rather than a
+choice: the programme-stopped branch strips exactly that charge before it grosses the year,
+which is why that branch was never wrong. Corrected, the two branches carry the identical
+year-five formula and differ only in the project's own revenue, profit and depreciation.
+
+Neither this file nor the four rounds of critique behind it found that. What found it was
+building the waterfall and asking what number the depreciation add-back should be — a
+question the retired construction never asks, because it never adds depreciation back.
+
+**And one prediction in §7 above was wrong in the direction that matters least and is
+recorded anyway.** This file said the correction "does not change its publication status".
+It does not: at −73.0% and −45.3% both branches remain far below the price and the study
+stays held. But it also said the terminal was where the remaining gap could NOT live, and
+that was too strong — the terminal rebuild plus the double-count fix was worth EGP 1.59 a
+share, a sixth of the outstanding gap. The conclusion survives; the confidence in it should
+have been lower.

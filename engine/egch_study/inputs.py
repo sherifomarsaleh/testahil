@@ -451,15 +451,15 @@ I("roc_terminal", 0.18, "ratio",
 # reading of the same note.
 I("fa_cost_gross_FY2425", 17022.493238, "EGP m",
   FS25 + ", note 6 fixed-asset register, cost column at 30 June 2025 — read by OCR off the "
-  "rendered page; the cost roll-forward (opening plus additions less disposals) reproduces "
-  "this figure exactly", "2025-09-24", "L1")
+  "rendered page; the cost movement table (opening balance plus additions less "
+  "disposals) reproduces this figure exactly", "2025-09-24", "L1")
 I("fa_land_FY2425", 1.662949, "EGP m",
   FS25 + ", note 6 land, cross-checked against the total in note 4-6 — land is never "
   "depreciated and is removed before any life or age is derived", "2025-09-24", "L1")
 I("fa_accum_dep_FY2425", 3435.299807, "EGP m",
   FS25 + ", note 6 accumulated depreciation at 30 June 2025 — read by OCR off the rendered "
-  "page; the accumulated roll-forward reproduces it, and cost less accumulated reproduces "
-  "the balance-sheet net book value of 13,587.193", "2025-09-24", "L1")
+  "page; the accumulated-depreciation movement table reproduces it, and cost less "
+  "accumulated reproduces the balance-sheet net book value of 13,587.193", "2025-09-24", "L1")
 I("fa_avg_age_years", 3435.299807 / 771.213489, "years",
   "DERIVED BY IDENTITY, labelled as derived: accumulated depreciation over the year's own "
   "charge. Under straight-line depreciation accumulated equals age times charge, so the "

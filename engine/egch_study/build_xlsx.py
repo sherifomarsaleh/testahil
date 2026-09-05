@@ -322,7 +322,10 @@ put(ws, f"C{r}", f"={WE}*({RFTC}+{BETAC}*{ERPC})+{WD}*{KDTC}*(1-{TAXR})", fmt=PC
     expect=DR['wacc_terminal'])
 WTC = f"'Assumptions'!C{r}"; r += 1
 GT = drv(r, "Terminal growth", V('g_terminal'), "%", src('g_terminal'), PC1); r += 1
-ROCT = drv(r, "Terminal return on invested capital", V('roc_terminal'), "%", src('roc_terminal'), PC1); r += 1
+AGEC = drv(r, "Average age of the fixed-asset base — MEASURED", V('fa_avg_age_years'),
+           "years", src('fa_avg_age_years'), N2); r += 1
+LIFEC = drv(r, "Replacement cycle the accounts imply", V('fa_life_implied_years'),
+            "years", src('fa_life_implied_years'), N2); r += 1
 r += 1
 put(ws, f"A{r}", "CAPITAL, WORKING CAPITAL AND THE PROJECT").font = SUB; r += 1
 DEPB = drv(r, "Depreciation charge, FY2024/25", V('dep_charge_FY2425'), "EGP m", src('dep_charge_FY2425'), N1); r += 1
@@ -601,7 +604,18 @@ for k, c in enumerate(CO):
 # terminal block and the two-column bridge
 put(ws, "A19", "TERMINAL BLOCK AND THE BRIDGE — BOTH SIDES").font = SUB
 header(ws, 20, 1, ["", "Programme carried through", "", "Programme stopped"], [38, 15, 3, 15])
-BLK = [(21, "Year-five EBIT grown at terminal growth", f"=F9*(1+{GT})", TT['base_ebit'], HT['base_ebit'], N0),
+# THE PROJECT'S DEPRECIATION IS ADDED BACK BEFORE THE YEAR IS GROSSED, IN BOTH COLUMNS.
+# The explicit window depreciates the complex as it is spent, so year five already carries
+# the charge on the part in service, and rows 22-23 then charge the WHOLE plant. Grossing
+# year five without removing the in-service part charged it twice — EGP 482mn a year in
+# the carried column. THE STOPPED COLUMN ALREADY DID THIS, which is why it was never
+# wrong, and the two formulas are now identical: the branches differ in rows 22, 23 and
+# 26 — the project's revenue, its profit and its depreciation — and nowhere else.
+_STRIP = f"SUM('Assumptions'!C{_ANNAC_ROWS[0]}:C{_ANNAC_ROWS[3]})*{DEPRP}"
+_GREAL = f"((1+{GT})/(1+{INFLT})-1)"
+BLK = [(21, "Year-five profit before interest and tax, the project's own depreciation "
+            "added back, grown at terminal growth",
+        f"=(F9+{_STRIP})*(1+{GT})", TT['base_ebit'], HT['base_ebit'], N0),
        (22, "Project revenue in the terminal year",
         f"={ANNAN}*{ANNAU}*{ANNAP}*({FXP[4]}*(1+{GT}-{FXTW}))/1000000",
         TT['anna_rev'], HT['anna_rev'], N0),
@@ -609,25 +623,38 @@ BLK = [(21, "Year-five EBIT grown at terminal growth", f"=F9*(1+{GT})", TT['base
        (23, "Project operating profit, after its own depreciation",
         f"=B22*{ANNAM}-{ANNADONE}*{ANNACOST}*{DEPRP}", TT['anna_ebit'], HT['anna_ebit'], N0),
        (24, "Terminal EBIT", "=B21+B23", TT['ebit_T'], HT['ebit_T'], N0),
-       (25, "Terminal NOPAT", f"=B24*(1-{TAXR})", TT['nopat_T'], HT['nopat_T'], N0),
-       (26, "Reinvestment rate = growth / return on capital", f"={GT}/{ROCT}", TT['reinv_rate'], HT['reinv_rate'], PC1),
-       (27, "Terminal free cash flow", "=B25*(1-B26)", TT['fcff_T'], HT['fcff_T'], N0),
-       (28, "TERMINAL VALUE", f"=B27/({WTC}-{GT})", TT['tv'], HT['tv'], N0)]
+       (25, "Terminal profit after tax", f"=B24*(1-{TAXR})", TT['nopat_T'], HT['nopat_T'], N0),
+       (26, "Plus book depreciation and amortisation in the terminal year",
+        f"=(F8-{_STRIP})*(1+{GT})+{ANNADONE}*{ANNACOST}*{DEPRP}",
+        TT['dna_T'], HT['dna_T'], N0),
+       (27, "Less capital maintenance at replacement cost — the book charge escalated "
+            "over the measured average age of the base",
+        f"=-B26*(1+{INFLT})^{AGEC}", -TT['maintenance_T'], -HT['maintenance_T'], N0),
+       (28, "Less capital for REAL growth — the stated real growth is zero, so none",
+        f"=-{_GREAL}*(-B27*{LIFEC})", -TT['growth_capex_T'], -HT['growth_capex_T'], N0),
+       (29, "Less inflation on the working capital the business carries",
+        f"=-{INFLT}*'Cash Flow'!F10*(1+{GT})", -TT['wc_charge_T'], -HT['wc_charge_T'], N0),
+       (30, "Terminal free cash flow", "=SUM(B25:B29)", TT['fcff_T'], HT['fcff_T'], N0),
+       # The rows above are the TERMINAL YEAR's — year five grown once — so the perpetuity
+       # takes them straight. Multiplying by (1+g) here would put a year-seven flow into a
+       # perpetuity the year-five factor discounts, which three separate critiques found in
+       # an earlier edition of this study and which six of this house's studies then did to
+       # the shared construction from the other direction.
+       (31, "TERMINAL VALUE", f"=B30/({WTC}-{GT})", TT['tv'], HT['tv'], N0),
+       (32, "Memo — the no-growth perpetuity at book depreciation (a diagnostic, not a bound)",
+        f"=B25/{WTC}", TT['floor_T'] * (1 + DR['g_terminal']),
+        HT['floor_T'] * (1 + DR['g_terminal']), N0)]
 for rr, lab, f, va, vb, fmt in BLK:
     c = put(ws, f"A{rr}", lab)
     put(ws, f"B{rr}", f, fmt=fmt, expect=va)
     fd = (f.replace(f"*{ANNAU}*", "*0*") if rr == 22
           else f.replace("B22", "D22").replace(f"{ANNADONE}*", "0*") if rr == 23
-          else f.replace("B2", "D2"))
-    if rr == 21:
-        # the stopped column never builds the plant, so year-five EBIT must be struck
-        # before the project depreciation the carried column charges
-        fd = (f"=(F9+SUM('Assumptions'!C{_ANNAC_ROWS[0]}:C{_ANNAC_ROWS[3]})*{DEPRP})"
-              f"*(1+{GT})")
+          else f.replace(f"+{ANNADONE}*", "+0*") if rr == 26
+          else f.replace("B2", "D2").replace("B3", "D3"))
     put(ws, f"D{rr}", fd, fmt=fmt, expect=vb)
 put(ws, "A33", "Present value of the terminal value")
-put(ws, "B33", "=B28*F16", fmt=N0, expect=TT['pv_tv'])
-put(ws, "D33", "=D28*F16", fmt=N0, expect=HT['pv_tv'])
+put(ws, "B33", "=B31*F16", fmt=N0, expect=TT['pv_tv'])
+put(ws, "D33", "=D31*F16", fmt=N0, expect=HT['pv_tv'])
 put(ws, "A36", "Present value of the explicit window")
 put(ws, "B36", "=SUM(B17:F17)", fmt=N0, expect=BASE['bridge']['pv_explicit'])
 # THE PLUG IS GONE. This was `=SUM(B17:F17)+7259.375005` -- a frozen constant on the
@@ -1267,7 +1294,7 @@ import sys as _sys
 _sys.path.insert(0, os.path.join(HERE, '..'))
 from research_protocol import MODEL_STUDY as _MS
 wb._sheets = [wb[n] for n in _MS["excel_sheets"]]
-wb.save(os.path.join(HERE, 'EGCH_Valuation_Model_03092026.xlsx'))
+wb.save(os.path.join(HERE, 'EGCH_Valuation_Model_05092026.xlsx'))
 json.dump(EXPECT, open(os.path.join(HERE, 'xlsx_expected.json'), 'w'), indent=1)
 json.dump({"cost_of_equity": f"C{KE_C}", "wacc_year_one": f"C{W1}",
            "wacc_terminal": f"C{WT}", "rf_star": f"C{RFS_C}", "terminal_growth": f"C{r}"},

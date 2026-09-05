@@ -33,6 +33,14 @@ sys.path.insert(0, os.path.join(HERE, '..'))
 sys.path.insert(0, HERE)
 from inputs import V as _V          # the study's input register — the single source of
                                     # every number in this model (numeric traceability)
+from inputs import REG as _REG
+import terminal_value as TV        # [R-TERM-01] — the ONLY sanctioned terminal
+
+
+def _SRC(k):
+    """An input's own source field, so a provenance string is never retyped."""
+    return _REG[k]['source']
+
 FY25 = json.load(open(os.path.join(HERE, 'extract_fy2425.json')))
 HIST = json.load(open(os.path.join(HERE, 'extract_history.json')))
 NINE = json.load(open(os.path.join(HERE, 'extract_9m_fy2526.json')))
@@ -143,6 +151,10 @@ D['cpi_path'] = _V('cpi_path')         # CBE target convergence
 # ---- D&A, capex, working capital --------------------------------------------
 D['dep_escalation'] = _V('dep_escalation')
 D['dep_rate_project'] = _V('dep_rate_kima2_machinery')
+# the fixed-asset base the terminal maintenance charge is struck on
+D['fa_avg_age_years'] = _V('fa_avg_age_years')
+D['fa_life_implied_years'] = _V('fa_life_implied_years')
+D['terminal_force_half_life'] = False  # the age is MEASURED; see the terminal
 D['dep_base'] = _V('dep_charge_FY2425')
 D['amort_base'] = _V('amort_FY2425')
 D['anna_total_cost'] = (_V('anna_cost_egp')
@@ -293,6 +305,10 @@ WACC = dict(
     kd_pretax_path=[r.kd_pretax_blended for r in _res],
     tax_rate=D['tax_rate'], we=_r0.we, wd=_r0.wd,
     wacc_rating=_r0.wacc_rating, wacc_cds=_r0.wacc_cds, wacc_published=_r0.wacc_cds,
+    # A DIFFERENCE OF TWO RATES IS BASIS POINTS, and it is COMPUTED here rather than
+    # scaled inside a builder: depth-bar standard 3 forbids a financial numeral in a
+    # builder, and a bare 1e4 beside two rates is exactly that.
+    wacc_rating_less_cds_bp=(_r0.wacc_rating - _r0.wacc_cds) * 10000.0,
     warnings_by_year={YEARS[k]: r.warnings for k, r in enumerate(_res)},
     # the builder gates its local-below-sovereign check on an all-local book; on a 0.3%-local
     # book it stays silent, so the fact is stated here in the same words and printed in §1.8
@@ -549,17 +565,47 @@ def terminal(rows, case="base"):
     # studies did until 4 September 2026 [L-329]. The assertion below is the bridge
     # between the two presentations: whatever the module returns must equal this study's
     # own convention applied to the year-six free cash flow.
+    # REAL growth is DERIVED from the terminal growth this study carries and the terminal
+    # inflation it discounts at, so the two cannot disagree about inflation [L-055]. At the
+    # central they are the same number and real growth is exactly zero; the alternative
+    # terminal growth is a real DECLINE and says so in real terms rather than in nominal.
+    _g_real = (1.0 + D['g_terminal']) / (1.0 + D['inflation_lt']) - 1.0
+    # The capital a unit of REAL growth consumes, at replacement cost: one year's
+    # replacement-cost consumption multiplied by the life over which the base turns over,
+    # which is the whole depreciable base at what it would cost to build now. INERT at the
+    # central, where real growth is zero; it binds in the alternative and in the grid,
+    # which is exactly where an assumption that growth is free would hide.
+    _dna5 = dna_T / (1 + D['g_terminal'])
+    _inc_cap = (_dna5 * (1 + D['inflation_lt']) ** D['fa_avg_age_years']
+                * D['fa_life_implied_years'])
+    # AND IT IS ONE-SIDED, WHICH IS AN ECONOMIC STATEMENT AND NOT A CONVENIENCE. Real
+    # growth costs capital here; real DECLINE releases none of it. This is a single site:
+    # a urea train cannot be part-sold, and shrinking output leaves the same plant to
+    # maintain. Letting the identity run symmetrically would have credited the alternative
+    # terminal — a real decline of 3.7% a year — with a permanent capital release of about
+    # EGP 1.9bn a year, which drives the implied payout to 128% of profit and the module
+    # REFUSES it outright: a going concern distributing more than it earns for ever is a
+    # liquidation. The refusal is right and the fix is the assumption, not the module.
+    if _g_real < 0:
+        _inc_cap = 0.0
+    # THE CONTESTED CONSTRUCTION, priced rather than described. The escalator rests on the
+    # AGE of the base, and this company's accounts let that be MEASURED — accumulated
+    # depreciation over the year's own charge. Where they do not, the shared construction
+    # assumes half the life, which on a base this young is more than twice the truth. The
+    # alternative below is what this same terminal would say if the age had to be assumed,
+    # and it is the largest single contested number in the study.
+    _age = None if D.get('terminal_force_half_life') else D['fa_avg_age_years']
     _T = TV.build(TV.TerminalInputs(
         nopat=nopat_T / (1 + D['g_terminal']),
-        wacc=D['wacc_terminal'], inflation=D['inflation_lt'], real_growth=0.0,
-        dna_book=dna_T / (1 + D['g_terminal']),
-        average_age_years=D['fa_avg_age_years'],
-        average_age_source=_SRC('fa_accum_dep_FY2425'),
+        wacc=D['wacc_terminal'], inflation=D['inflation_lt'], real_growth=_g_real,
+        dna_book=_dna5,
+        average_age_years=_age,
+        average_age_source=(_SRC('fa_accum_dep_FY2425') if _age is not None else ''),
         useful_life_years=D['fa_life_implied_years'],
         useful_life_source=_SRC('fa_cost_gross_FY2425'),
         maintenance_basis='book_dna_escalated',
         working_capital=wc_T / (1 + D['g_terminal']),
-        incremental_capital_per_unit_growth=0.0))
+        incremental_capital_per_unit_growth=_inc_cap))
     fcff_T = _T.fcff * (1 + D['g_terminal'])        # the year-six flow the page prints
     tv = _T.tv
     assert abs(tv - fcff_T / (D['wacc_terminal'] - D['g_terminal'])) < 1e-6 * abs(tv), (
@@ -572,6 +618,8 @@ def terminal(rows, case="base"):
                 maintenance_T=_T.maintenance * (1 + D['g_terminal']),
                 wc_charge_T=_T.wc_charge * (1 + D['g_terminal']),
                 floor_T=_T.floor, payout_T=_T.fcff / (nopat_T / (1 + D['g_terminal'])),
+                growth_capex_T=_T.growth_capex * (1 + D['g_terminal']),
+                inc_cap=_inc_cap, g_real=_g_real,
                 reinv_rate=reinv_rate, fcff_retired=fcff_retired, tv_retired=tv_retired,
                 terminal_record=_T.record,
                 fcff_T=fcff_T, tv=tv, pv_tv=pv_tv,

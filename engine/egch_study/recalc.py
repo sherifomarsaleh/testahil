@@ -15,7 +15,7 @@ import json, os, sys
 import openpyxl, xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-XLSX = os.path.join(HERE, 'EGCH_Valuation_Model_03092026.xlsx')
+XLSX = os.path.join(HERE, 'EGCH_Valuation_Model_05092026.xlsx')
 wb = openpyxl.load_workbook(XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 EXPECT = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))

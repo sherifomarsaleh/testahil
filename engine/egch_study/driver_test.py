@@ -38,7 +38,7 @@ import json, os, sys, copy
 import openpyxl, xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-XLSX = os.path.join(HERE, 'EGCH_Valuation_Model_03092026.xlsx')
+XLSX = os.path.join(HERE, 'EGCH_Valuation_Model_05092026.xlsx')
 SHEET_A = 'Assumptions'
 HEAD = ('DCF', 'B44')          # value per share, programme carried through
 
@@ -92,15 +92,21 @@ TESTS = [
     ("Project capital expenditure — FY2026/27", 1.20, "down",
      "Cash out with no incremental cash in inside the explicit window."),
     ("Maintenance capital expenditure", 1.30, "down", "Cash out of free cash flow."),
-    ("Terminal return on invested capital", 1.20, "up",
-     "A higher return on capital means less must be reinvested to buy the same growth."),
-    ("Terminal growth", 1.20, "up",
-     "Growth enters twice and the entries fight: it raises the reinvestment rate and it "
-     "tightens the perpetuity denominator, so the response is concave with a turning point "
-     "near 7.3%. RE-DERIVED 9 August 2026: with terminal growth re-anchored on the central "
-     "bank's longest-horizon 5% target the base now sits well BELOW that turning point, so "
-     "the response over the tested range is monotonically increasing. The assertion follows "
-     "the model rather than the other way round."),
+    ("Average age of the fixed-asset base — MEASURED", 1.20, "down",
+     "An older base costs more to replace at today's prices, because the book charge it "
+     "is escalated from was struck on cost that much further back."),
+    ("Terminal growth", 1.20, "down",
+     "RE-DERIVED 5 September 2026, and the sign flipped, because the construction under it "
+     "changed. The retired terminal reinvested a share of PROFIT, so growth cost a "
+     "proportion of earnings and the two entries fought to a concave response. The "
+     "sanctioned terminal charges what growth actually consumes: real growth times the "
+     "capital a unit of it needs, which on this company is the replacement cost of a plant "
+     "carrying roughly three pounds of capital for every pound of revenue. A point of REAL "
+     "growth then costs about a tenth of terminal profit every year for ever, against a "
+     "terminal cost of capital near nineteen per cent, and it does not pay for itself. "
+     "THAT IS A FINDING ABOUT THIS ASSET IN THIS ECONOMY RATHER THAN A CONSERVATISM, and "
+     "it is inert at the central, where the stated real growth is zero. The assertion "
+     "follows the model rather than the other way round."),
     ("Tax rate", 1.20, "down", "A larger share of operating profit leaves the firm."),
     ("Days inventory outstanding", 1.20, "down", "More cash locked in working capital."),
     ("Days payable outstanding", 1.20, "up", "Supplier financing releases cash."),
@@ -143,7 +149,14 @@ for lab, mult, want, why in TESTS:
 # are exempted BY EXPLICIT LABEL and the exemptions are counted out loud -- an exemption the
 # reader cannot see is indistinguishable from a dead input the sweep missed.
 CROSS_CHECK_PREFIXES = ("Cross-check:",)
-CROSS_CHECK_FEEDS = ("Ammonia design capacity", "Ammonia per tonne of nitrate")
+CROSS_CHECK_FEEDS = ("Ammonia design capacity", "Ammonia per tonne of nitrate",
+                     # The implied replacement cycle sets the capital a unit of REAL
+                     # growth consumes. The stated real growth is ZERO, so the term is
+                     # inert at the central BY CONSTRUCTION and binds only in the
+                     # sensitivity grid — which is exactly where an assumption that
+                     # growth is free would otherwise hide. Dead by design is not dead,
+                     # and it is named here rather than passed over in silence.
+                     "Replacement cycle the accounts imply")
 exempt = [lab for lab in LABELS
           if lab.startswith(CROSS_CHECK_PREFIXES) or lab in CROSS_CHECK_FEEDS]
 

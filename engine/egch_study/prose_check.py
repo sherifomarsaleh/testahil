@@ -12,7 +12,7 @@ fixed HERE by widening the rendering set, never by deleting the figure from the 
 import json, os, re, sys
 from docx import Document
 HERE = os.path.dirname(os.path.abspath(__file__)); os.chdir(HERE)
-DOCS = ['EGCH_Valuation_Study_03-09-2026.docx', 'EGCH_Bibliography_03-09-2026.docx']
+DOCS = ['EGCH_Valuation_Study_05-09-2026.docx', 'EGCH_Bibliography_05-09-2026.docx']
 
 
 def walk(x, out):

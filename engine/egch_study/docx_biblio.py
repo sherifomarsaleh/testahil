@@ -1,4 +1,4 @@
-"""EGCH_Bibliography_03-09-2026.docx — a standalone source register.
+"""EGCH_Bibliography_05-09-2026.docx — a standalone source register.
 
 Every figure that reaches the study or the model traces to a row here: what it is, where
 it came from, what kind of source that is, and the date the source itself carries.
@@ -375,6 +375,6 @@ P("Every historical figure in the study appears in the accompanying workbook on 
   "watch the valuation move; the two grids that do not redraw are labelled on their own "
   "sheets, because each of their cells is a separate run of the whole model.", size=9.5)
 
-doc.save('EGCH_Bibliography_03-09-2026.docx')
-strip_stub_counts('EGCH_Bibliography_03-09-2026.docx')
-print("wrote EGCH_Bibliography_03-09-2026.docx")
+doc.save('EGCH_Bibliography_05-09-2026.docx')
+strip_stub_counts('EGCH_Bibliography_05-09-2026.docx')
+print("wrote EGCH_Bibliography_05-09-2026.docx")
