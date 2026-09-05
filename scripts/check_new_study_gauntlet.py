@@ -249,7 +249,25 @@ def study_scoped_gates(repo):
 
 def _imports_a_study_resolver(repo, src):
     """Does this script import a first-party module that resolves study directories?"""
-    mods = set(re.findall(r'^\s*(?:from|import)\s+([A-Za-z_][\w.]*)', src, re.M))
+    # NO REGEX HERE, DELIBERATELY. [R-ENF-03]'s gate refuses a regular-expression call in
+    # any file that reads assets/data.js, and this file does — it plants a study script
+    # reading data.js as one of its own fixtures. A pattern-scan call added here for an
+    # unrelated purpose tripped that gate the first time it ran, which is the right
+    # outcome: the rule is about the FILE, not about which line the call sits on. Splitting
+    # the line is enough for an import statement and needs no pattern.
+    #
+    # AND THE COMMENT EXPLAINING THAT TRIPPED IT TOO, because it named the call. Worth
+    # leaving recorded rather than tidied away: a shape-matching check cannot tell a call
+    # from a description of one, which is the cost of shape-matching and is why it is only
+    # used where the shape cannot occur innocently. Here it can, in a comment — so the
+    # comment says what happened without writing the call.
+    mods = set()
+    for line in src.splitlines():
+        head = line.strip()
+        if head.startswith('import ') or head.startswith('from '):
+            parts = head.split()
+            if len(parts) >= 2:
+                mods.add(parts[1].rstrip(','))
     for m in mods:
         rel = m.replace('.', os.sep)
         for cand in (os.path.join(repo, rel + '.py'),
