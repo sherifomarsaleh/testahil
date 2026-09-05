@@ -36,7 +36,8 @@ LANDED = {
     'R-GAP-01':   '750bd6e18d39cea57ea19a6ab096b3335ea9a849',     # lever 7
     'R-SIGCM-02': '57db3fcf6dfac4036f449aa0769d451e6e872ab8',     # the segment rebuild
     'R-SIGCM-02:units': '4996c2f5097ef20628960e14bab1a9a00c2a2ac7',   # the unit build, SAME RULE, so it groups with it
-    'R-FCAL-01': None,                                           # the working tree, latest
+    'R-FCAL-01': '52aade4029cfc181a84069d9e6fabcf92cf2662e',          # capex measured rather than guided
+    'R-ANCHOR-01': None,                                         # the working tree, latest
 }
 
 
@@ -69,6 +70,7 @@ AFTER_LENS = at(LANDED['R-LENS-03'])
 AFTER_GAP = at(LANDED['R-GAP-01'])
 AFTER_SEG = at(LANDED['R-SIGCM-02'])
 AFTER_UNITS = at(LANDED['R-SIGCM-02:units'])
+AFTER_CAPEX = at(LANDED['R-FCAL-01'])
 NOW = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 # The lever-2 intermediate, struck when the cost-of-capital schedule was in and the beta
 # was not. It is named for that lever set, so a later sensitivity run cannot overwrite the
@@ -445,7 +447,7 @@ led.apply(
 led.apply(
     name='capital expenditure measured from the filings instead of taken from guidance',
     rule='R-FCAL-01',
-    after=NOW['lenses']['central']['base'],
+    after=AFTER_CAPEX['lenses']['central']['base'],
     why=(
         "The capital-expenditure path was management's OWN PUBLISHED GUIDANCE BAND — 16.5% "
         'of revenue falling to 15.0% — taken straight in as an input. The rule is explicit '
@@ -471,14 +473,55 @@ led.apply(
         'maintenance. No disclosed replacement-cost series exists to separate them. The '
         'dividend-cover rungs are recomputed from the same measured ratio, because their '
         'old labels named a guidance band the model had stopped using.'
-        % (NOW['drivers']['capex_to_dna_history'][0],
-           NOW['drivers']['capex_to_dna_history'][1],
-           NOW['drivers']['capex_to_dna_history'][2],
-           NOW['drivers']['capex_to_dna_adopted'],
-           100 * NOW['drivers']['capex_pct'][0],
-           AFTER_UNITS['lenses']['central']['base'], NOW['lenses']['central']['base'],
-           100 * (NOW['lenses']['central']['base']
+        % (AFTER_CAPEX['drivers']['capex_to_dna_history'][0],
+           AFTER_CAPEX['drivers']['capex_to_dna_history'][1],
+           AFTER_CAPEX['drivers']['capex_to_dna_history'][2],
+           AFTER_CAPEX['drivers']['capex_to_dna_adopted'],
+           100 * AFTER_CAPEX['drivers']['capex_pct'][0],
+           AFTER_UNITS['lenses']['central']['base'],
+           AFTER_CAPEX['lenses']['central']['base'],
+           100 * (AFTER_CAPEX['lenses']['central']['base']
                   / AFTER_UNITS['lenses']['central']['base'] - 1))),
+)
+
+led.apply(
+    name='the first forecast year anchored on the latest reviewed period',
+    rule='R-ANCHOR-01',
+    after=NOW['lenses']['central']['base'],
+    why=(
+        'THE MOST RECENT REVIEWED PERIOD HAD BEEN READ AND WAS NOT USED. The six months to '
+        '30 June 2026 are published and reviewed, and the model was growing FY2025 forward '
+        'as though they were not. The standing rule is that a near-term reviewed actual '
+        'OUTRANKS a stale full-year rate: anchor every rate on the most recent reviewed '
+        'period, hold everything else flat INCLUDING observed improvements, and where a '
+        "first-half rate is carried into the second half PROVE with the prior year's actual "
+        'halves which way it runs. Note 4 of that interim gives revenue by segment for both '
+        "halves and the group's cost of operations excluding depreciation, so the level and "
+        'both rates come from one note, and every seasonality factor is the prior year own '
+        'half against its own full year — measured rather than assumed.'),
+    evidence=(
+        'The reviewed half reports revenue of SAR 40,110mn and an EBITDA margin of 32.33%%. '
+        'Corrected by the prior year measured half-to-year factors (%.5f on revenue, %.5f '
+        'on the gross margin, %.5f on the operating-cost share) that anchors FY2026 at '
+        'revenue %.0f and an EBITDA margin of %.2f%%. THE MODEL HAD %.2f%% AND 80,224 — '
+        'eighty-nine basis points below a margin the company had ALREADY REPORTED for half '
+        'the year, and 0.6%% below the revenue that half implies. The answer rises %.4f to '
+        '%.4f, %+.2f%%, and the gap narrows %+.1f%% to %+.1f%%. It is the strongest '
+        'evidence in the whole review because it is not a forecast at all: it is a '
+        'disclosed actual the model had not been shown. Nothing after the first year '
+        'assumes any further gain — the rule says hold flat including observed '
+        'improvements, and the margin drifts DOWN on mix from there.'
+        % (NOW['drivers']['h1_anchor']['season_revenue'],
+           NOW['drivers']['h1_anchor']['season_gross_margin'],
+           NOW['drivers']['h1_anchor']['season_sga_share'],
+           NOW['drivers']['h1_anchor']['revenue'],
+           100 * NOW['forecast']['FY26E']['ebitda_margin'],
+           100 * 0.310873,
+           AFTER_CAPEX['lenses']['central']['base'], NOW['lenses']['central']['base'],
+           100 * (NOW['lenses']['central']['base']
+                  / AFTER_CAPEX['lenses']['central']['base'] - 1),
+           100 * (AFTER_CAPEX['lenses']['central']['base'] / NOW['spot'] - 1),
+           100 * (NOW['lenses']['central']['base'] / NOW['spot'] - 1))),
 )
 
 rec = led.record()

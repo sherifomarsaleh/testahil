@@ -268,6 +268,34 @@ def seg_real(name, t):
     return seg_real0[name] * f
 
 
+# ===== THE FIRST FORECAST YEAR IS ANCHORED ON THE LATEST REVIEWED PERIOD ==============
+# The standing rule is that A NEAR-TERM REVIEWED ACTUAL OUTRANKS A STALE FULL-YEAR RATE:
+# anchor every rate on the most recent reviewed period, hold everything else flat INCLUDING
+# observed improvements, and where a first-half rate is carried into the second half PROVE
+# with the prior year's actual halves which way that runs.
+#
+# The six months to 30 June 2026 are published and reviewed, and the model was growing
+# FY2025 forward as though they were not. Note 4 of that interim gives revenue by segment
+# for both halves and the group's cost of operations excluding depreciation, so the level,
+# the gross margin and the operating-cost share are all readable from one note.
+H1_2026_REVENUE, H1_2025_REVENUE = 40_110_089.0, 38_660_477.0
+H1_2026_COST_EX_DA, H1_2025_COST_EX_DA = 27_141_890.0, 26_371_877.0
+H1_2026_GROSS, H1_2025_GROSS = 19_637_121.0, 18_657_904.0
+H1_2026_SGA = 3_206_382.0 + 3_463_640.0        # selling and marketing plus administrative
+H1_2025_SGA = 3_037_913.0 + 3_331_391.0
+
+# THE SEASONALITY IS MEASURED, NOT ASSUMED — each factor is the prior year's own half
+# against its own full year, which is the proof the rule asks for.
+SEASON_REVENUE = 77_818.675 / (H1_2025_REVENUE / 1000.0 * 2)          # 1.0064
+SEASON_GROSS_MARGIN = ((37_699.689 / 77_818.675)
+                       / (H1_2025_GROSS / H1_2025_REVENUE))           # H1 understates
+SEASON_SGA_SHARE = ((13_230.254 / 77_818.675)
+                    / (H1_2025_SGA / H1_2025_REVENUE))                # H1 understates
+
+FY26_REVENUE_ANCHOR = H1_2026_REVENUE / 1000.0 * 2 * SEASON_REVENUE
+FY26_GROSS_MARGIN = H1_2026_GROSS / H1_2026_REVENUE * SEASON_GROSS_MARGIN
+FY26_SGA_SHARE = H1_2026_SGA / H1_2026_REVENUE * SEASON_SGA_SHARE
+
 # Revenue, segment by segment, nominal RECOMPUTED from real on the house ladder.
 _gross_fy25 = sum(v[2] for k, v in SEG.REVENUE.items()
                   if k != 'Eliminations / adjustments')
@@ -280,6 +308,15 @@ for i, y in enumerate(yrs):
     _infl = COCRUN.MACRO.inflation(FORECAST_YEARS[i])
     for k in list(_lvl):
         _lvl[k] *= (1.0 + seg_real(k, i + 1)) * (1.0 + _infl)
+    if i == 0:
+        # The first year is put ON the reviewed half rather than grown off a stale full
+        # year. The segment MIX stays the model's own; what the anchor sets is the level,
+        # and it is a disclosed six months doubled and corrected by the prior year's own
+        # measured half-to-year factor rather than a forecast.
+        _target = FY26_REVENUE_ANCHOR / (1.0 + ELIM_SHARE)
+        _scale = _target / sum(_lvl.values())
+        for k in list(_lvl):
+            _lvl[k] *= _scale
     _gross = sum(_lvl.values())
     seg_fc[y] = dict(_lvl)
     fc[y] = dict(gross=_gross, elim=_gross * ELIM_SHARE,
@@ -340,11 +377,19 @@ capex_pct = [DNA_SHARE * CAPEX_TO_DNA] * 5
 wc_out_pct = [0.008, 0.006, 0.005, 0.004, 0.004]
 payout_dps = [2.20, 2.20, 2.30, 2.40, 2.55]       # policy 0.55/q locked to Q3-27
 
+# THE TWO RATES ARE ANCHORED ON THE SAME REVIEWED HALF AND THEN HELD FLAT. The rule says
+# to hold everything else flat INCLUDING observed improvements, so the first year takes the
+# reviewed period's own gross margin and operating-cost share (each corrected by the prior
+# year's measured half-to-year factor) and no year after it assumes any further gain.
+_margin_shift = FY26_GROSS_MARGIN - (sum(seg_fc[yrs[0]][k] * SEG_MARGIN[k]
+                                         for k in seg_fc[yrs[0]])
+                                     + fc[yrs[0]]['gross'] * ELIM_GP_SHARE) / fc[yrs[0]]['rev']
 for i, y in enumerate(yrs):
     _gp = sum(seg_fc[y][k] * SEG_MARGIN[k] for k in seg_fc[y]) \
         + fc[y]['gross'] * ELIM_GP_SHARE
+    _gp += fc[y]['rev'] * _margin_shift
     fc[y]['gp'] = _gp
-    fc[y]['sga'] = fc[y]['rev'] * SGA_SHARE
+    fc[y]['sga'] = fc[y]['rev'] * FY26_SGA_SHARE
     fc[y]['ebitda'] = _gp - fc[y]['sga']
     fc[y]['ebitda_margin'] = fc[y]['ebitda'] / fc[y]['rev']
 
@@ -851,7 +896,16 @@ out = dict(
                    'no unit data is disclosed for them'),
         group_real_growth=GROUP_REAL,
         segment_margin={k: round(v, 6) for k, v in SEG_MARGIN.items()},
-        sga_share_of_revenue=SGA_SHARE, dna_share_of_revenue=DNA_SHARE,
+        sga_share_of_revenue=FY26_SGA_SHARE, sga_share_three_year_mean=SGA_SHARE,
+        dna_share_of_revenue=DNA_SHARE,
+        h1_anchor=dict(
+            revenue=FY26_REVENUE_ANCHOR, gross_margin=FY26_GROSS_MARGIN,
+            sga_share=FY26_SGA_SHARE, gross_margin_shift=_margin_shift,
+            season_revenue=SEASON_REVENUE, season_gross_margin=SEASON_GROSS_MARGIN,
+            season_sga_share=SEASON_SGA_SHARE,
+            source=('note 4 of the reviewed interim for the six months to 30 June 2026, '
+                    'with each seasonality factor measured from the prior year own half '
+                    'against its own full year')),
         capex_to_dna_history=CAPEX_TO_DNA_HISTORY, capex_to_dna_adopted=CAPEX_TO_DNA,
         capex_guidance_band=[CAPEX_GUIDANCE_LOW, CAPEX_GUIDANCE_HIGH],
         capex_note=('measured from the filings as capital expenditure over the '

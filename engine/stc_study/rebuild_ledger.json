@@ -95,10 +95,19 @@
    "why": "The capital-expenditure path was management's OWN PUBLISHED GUIDANCE BAND \u2014 16.5% of revenue falling to 15.0% \u2014 taken straight in as an input. The rule is explicit that GUIDANCE IS SCORED AND NEVER CONSUMED, because a forward target leans the same way an optimistic model does and a driver that takes it inherits the lean instead of correcting for it. What this company actually spends is disclosed for three years, and the ratio that matters is capital expenditure over the depreciation of the base it renews. THE GAP REVIEW NAMED THIS AS THE SUSPECT HALF BEFORE ANYONE KNEW WHICH WAY THE CORRECTION WOULD RUN, which is the review working rather than a coincidence.",
    "evidence": "The filed ratio runs 1.054x, 1.252x and 1.176x, a mean of 1.161x against the 1.352x a base maintained at CURRENT cost would need \u2014 so the adopted path is 14.96% of revenue, BELOW the guided one, and the answer RISES 34.8885 to 35.5319, +1.84%. The step at the terminal boundary is therefore larger rather than smaller and is stated with its reason: an explicit window may continue an observed under-maintenance for five years and a perpetuity may not, because a company that never replaces its plant is not a going concern \u2014 and the accounts support that independently, with 73% of the depreciable base written off and its measured age rising 13.60 to 14.18 to 15.23 years. The industry-specific alternative is recorded rather than dismissed: if telecommunications equipment falls in real cost per unit of capacity, the terminal charge is too high and the gap is priced equipment rather than deferred maintenance. No disclosed replacement-cost series exists to separate them. The dividend-cover rungs are recomputed from the same measured ratio, because their old labels named a guidance band the model had stopped using.",
    "move": 0.01844062830443005
+  },
+  {
+   "name": "the first forecast year anchored on the latest reviewed period",
+   "rule": "R-ANCHOR-01",
+   "before": 35.53191287646005,
+   "after": 37.83958926233577,
+   "why": "THE MOST RECENT REVIEWED PERIOD HAD BEEN READ AND WAS NOT USED. The six months to 30 June 2026 are published and reviewed, and the model was growing FY2025 forward as though they were not. The standing rule is that a near-term reviewed actual OUTRANKS a stale full-year rate: anchor every rate on the most recent reviewed period, hold everything else flat INCLUDING observed improvements, and where a first-half rate is carried into the second half PROVE with the prior year's actual halves which way it runs. Note 4 of that interim gives revenue by segment for both halves and the group's cost of operations excluding depreciation, so the level and both rates come from one note, and every seasonality factor is the prior year own half against its own full year \u2014 measured rather than assumed.",
+   "evidence": "The reviewed half reports revenue of SAR 40,110mn and an EBITDA margin of 32.33%. Corrected by the prior year measured half-to-year factors (1.00644 on revenue, 1.00383 on the gross margin, 1.03195 on the operating-cost share) that anchors FY2026 at revenue 80737 and an EBITDA margin of 31.98%. THE MODEL HAD 31.09% AND 80,224 \u2014 eighty-nine basis points below a margin the company had ALREADY REPORTED for half the year, and 0.6% below the revenue that half implies. The answer rises 35.5319 to 37.8396, +6.49%, and the gap narrows -19.0% to -13.7%. It is the strongest evidence in the whole review because it is not a forecast at all: it is a disclosed actual the model had not been shown. Nothing after the first year assumes any further gain \u2014 the rule says hold flat including observed improvements, and the margin drifts DOWN on mix from there.",
+   "move": 0.06494658460689196
   }
  ],
- "value": 35.53191287646005,
- "cumulative_move": -0.24578061126880568,
+ "value": 37.83958926233577,
+ "cumulative_move": -0.19679663792641688,
  "rules": {
   "R-COC-01": {
    "levers": [
@@ -172,9 +181,17 @@
    "first_before": 34.888546164557496,
    "last_after": 35.53191287646005,
    "move": 0.01844062830443005
+  },
+  "R-ANCHOR-01": {
+   "levers": [
+    "the first forecast year anchored on the latest reviewed period"
+   ],
+   "first_before": 35.53191287646005,
+   "last_after": 37.83958926233577,
+   "move": 0.06494658460689196
   }
  },
- "distinct_rules": 9,
+ "distinct_rules": 10,
  "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked.",
  "audit_taken": {
   "at": "2026-09-05, after lever 3, as declared",
@@ -186,7 +203,7 @@
   "latest_price": 43.86,
   "latest_price_date": "2026-09-03",
   "gap_at_the_audit": "+0.43%",
-  "gap_now_after_later_levers": "-18.99%",
+  "gap_now_after_later_levers": "-13.73%",
   "gap_at_delivery": "+8.10%",
   "what_the_audit_shows": "THE TWO LEVERS DISAGREED AND THE ROUTE IS WHY THAT MATTERS. Taken in the order fixed in writing before either was touched, the cost-of-capital correction moved the answer AWAY from the market \u2014 from 8.1%% above the price it was struck at to 16.4%% above the latest one \u2014 and the beta correction brought it back. Neither was chosen for where it landed and neither could have been: the first raises every value it touches and the second lowers every value it touches, and which one dominates is arithmetic about this company's own capital structure. Read as two corrections the rebuild is a contest; read as one net figure of -6.5%% it would look like a small tidy-up, and the 8.4%% and the 13.8%% inside it would be invisible. THE ANSWER NOW SITS ESSENTIALLY ON THE PRICE, at +0.4%%, and that is reported as an observation and NOT as corroboration \u2014 four levers remain, the lens retirement among them, and a rebuild that stopped here because the number looked comfortable would be fitting to the price by choosing when to stop.",
   "levers_remaining_at_the_audit": [
