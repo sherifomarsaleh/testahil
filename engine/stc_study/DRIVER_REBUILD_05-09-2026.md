@@ -201,8 +201,8 @@ final forecast year, in SR million:
 | **net** | | | **+41.9** |
 
 That is **-0.0473 points of margin** and, through the study's own
-committed sensitivity grid, **37.8396 → 37.7278**, or
-**-0.295%** of the central.
+committed sensitivity grid, **37.1640 → 37.0521**, or
+**-0.301%** of the central.
 
 **The offsets run both ways and that is the finding.** The levy and the licence fee fall
 against a group growing faster than the Saudi segment they are charged on; maintenance and

@@ -1,10 +1,10 @@
 {
- "central": 37.83958926233577,
+ "central": 37.163952046259304,
  "spot": 43.86,
  "spot_date": "2026-09-03",
  "central_range": {
-  "low": 37.062342640896006,
-  "high": 48.650002937907246
+  "low": 36.38670542481953,
+  "high": 47.97436572183078
  },
  "cone_anchor": 44.72,
  "cone_anchor_date": "2026-08-31",
@@ -596,7 +596,7 @@
   },
   "nci": {
    "basis": "value_share",
-   "deduction": 3896.387350036464,
+   "deduction": 3826.816185199467,
    "applied_to": "equity_value",
    "book": 2726.349,
    "profit_share": 0.020206295602669237,
@@ -631,25 +631,27 @@
    },
    {
     "name": "less net debt",
-    "value": -4932.3629999999985
+    "value": -8375.407
    },
    {
     "name": "less the minority at its share of equity value",
-    "value": -3896.387350036464
+    "value": -3826.816185199467
    }
   ],
-  "equity_value": 188933.97733698483,
+  "equity_value": 185560.50450182182,
   "shares_mn": 4993.024,
-  "per_share": 37.83958926233577,
+  "per_share": 37.163952046259304,
   "net_debt_build": {
    "borrowings": 23536.554,
    "leases": 2258.902,
+   "spectrum_licences": 3443.044,
    "cash_non_bank": 12940.389,
    "murabahas": 1062.181,
    "sukuk": 6368.453,
    "treasury_bills": 492.07,
-   "net": 4932.3629999999985
-  }
+   "net": 8375.407
+  },
+  "net_debt_note": "The spectrum-licence liability is consideration owed for licences already capitalised and it is disclosed outside borrowings, so a bridge built from the borrowings lines does not see it. It is not double-counted against capital expenditure: the company's total additions in FY2025 were 13,815.240 against the 11,795 of capital expenditure this model forecasts on, and the intangibles note states that additions include non-cash additions of 2,122 million, so the licences bought against this liability never entered the capital expenditure the cash flows are charged for."
  },
  "terminal_record": {
   "rule": "R-TERM-01",
@@ -1077,10 +1079,10 @@
   "tg": 0.02,
   "assoc": 12909.648,
   "telefonica": 8513.43,
-  "net_debt": 4932.3629999999985,
-  "nci": 3896.387350036464,
-  "eq": 188933.97733698483,
-  "ps": 37.83958926233577,
+  "net_debt": 8375.407,
+  "nci": 3826.816185199467,
+  "eq": 185560.50450182182,
+  "ps": 37.163952046259304,
   "wacc_build": {
    "rf": 0.0552,
    "default_spread": 0.0098,
@@ -1138,9 +1140,9 @@
  },
  "lenses": {
   "dcf": {
-   "bear": 37.062342640896006,
-   "base": 37.83958926233577,
-   "bull": 38.744707548405856
+   "bear": 36.38670542481953,
+   "base": 37.163952046259304,
+   "bull": 38.06907033232939
   },
   "ddm": {
    "bear": 29.160467565141218,
@@ -1148,9 +1150,9 @@
    "bull": 49.622266617523856
   },
   "relative": {
-   "bear": 46.39192546475941,
-   "base": 48.650002937907246,
-   "bull": 50.51816035093747
+   "bear": 45.716288248682936,
+   "base": 47.97436572183078,
+   "bull": 49.842523134861
   },
   "normalized": {
    "bear": 36.771303322395404,
@@ -1182,9 +1184,9 @@
    }
   ],
   "central": {
-   "bear": 37.062342640896006,
-   "base": 37.83958926233577,
-   "bull": 48.650002937907246
+   "bear": 36.38670542481953,
+   "base": 37.163952046259304,
+   "bull": 47.97436572183078
   },
   "weights": null
  },
@@ -1192,10 +1194,10 @@
   "class": "telecom operator",
   "primary": {
    "kind": "dcf",
-   "value": 37.83958926233577,
+   "value": 37.163952046259304,
    "range": {
-    "low": 37.062342640896006,
-    "high": 48.650002937907246
+    "low": 36.38670542481953,
+    "high": 47.97436572183078
    },
    "range_basis": {
     "driver": "capital expenditure as a multiple of depreciation",
@@ -1208,17 +1210,17 @@
   "cross_checks": [
    {
     "kind": "ev_ebitda_own_history",
-    "value": 48.650002937907246,
+    "value": 47.97436572183078,
     "multiple": 8.762062030257292,
     "multiple_source": "the company's own trailing EV/EBITDA at each of the last three financial year ends, computed from that year-end close in the persistent price library, the shares in issue and that year's own net debt and EBITDA from the filings: 9.131x, 8.316x and 8.839x, whose mean is adopted and whose lowest and highest are the bear and bull. Never a multiple read off the current price.",
     "circularity": {
      "spot": 43.86,
      "shares": 4993.024,
-     "net_debt": 4932.3629999999985,
+     "net_debt": 8375.407,
      "metric_value": 24469.0,
-     "traded_multiple": 9.151432246516
+     "traded_multiple": 9.292142696473089
     },
-    "note": "The traded multiple today is 9.151x, ABOVE every one of the three years this multiple is built from, so the lens is not anchored on the price and can be seen not to be."
+    "note": "The traded multiple today is 9.292x, ABOVE every one of the three years this multiple is built from, so the lens is not anchored on the price and can be seen not to be."
    },
    {
     "kind": "book_value",
@@ -1227,10 +1229,10 @@
    }
   ],
   "envelope": {
-   "low": 37.062342640896006,
-   "high": 48.650002937907246
+   "low": 36.38670542481953,
+   "high": 47.97436572183078
   },
-  "central": 37.83958926233577,
+  "central": 37.163952046259304,
   "retired": {
    "blend_weights": {
     "dcf": 0.35,
@@ -1271,39 +1273,39 @@
   ],
   "table_wg": [
    [
-    43.57654584066842,
-    44.141591713636764,
-    44.801829231904804,
-    45.59180975604853,
-    46.565107505609475
+    42.900908624591956,
+    43.4659544975603,
+    44.12619201582834,
+    44.91617253997205,
+    45.88947028953301
    ],
    [
-    40.41784552647047,
-    40.71248475354965,
-    41.04091465022946,
-    41.41407633839534,
-    41.84820595150143
+    39.742208310394005,
+    40.036847537473186,
+    40.36527743415299,
+    40.738439122318866,
+    41.17256873542496
    ],
    [
-    37.73399757173846,
-    37.83958926233577,
-    37.9429019736418,
-    38.04326967693734,
-    38.13973880450727
+    37.058360355661996,
+    37.163952046259304,
+    37.267264757565336,
+    37.367632460860875,
+    37.4641015884308
    ],
    [
-    35.425183167701945,
-    35.39720357680459,
-    35.345790680859594,
-    35.26470404658343,
-    35.14527156273074
+    34.749545951625485,
+    34.72156636072812,
+    34.67015346478312,
+    34.589066830506965,
+    34.469634346654274
    ],
    [
-    33.41773785272097,
-    33.2948700297576,
-    33.13642517277369,
-    32.93370135741971,
-    32.67490682470055
+    32.742100636644494,
+    32.61923281368112,
+    32.460787956697224,
+    32.25806414134323,
+    31.99926960862408
    ]
   ],
   "margin_steps": [
@@ -1322,39 +1324,39 @@
   ],
   "table_cm": [
    [
-    36.13492932056062,
-    35.80472591888138,
-    35.474522517202125,
-    35.144319115522876,
-    34.814115713843634
+    35.459292104484156,
+    35.12908870280491,
+    34.79888530112566,
+    34.46868189944641,
+    34.13847849776716
    ],
    [
-    37.317462693127446,
-    36.987259291448204,
-    36.65705588976895,
-    36.3268524880897,
-    35.99664908641045
+    36.64182547705098,
+    36.31162207537173,
+    35.98141867369248,
+    35.65121527201323,
+    35.321011870333976
    ],
    [
-    38.49999606569427,
-    38.16979266401503,
-    37.83958926233577,
-    37.50938586065652,
-    37.17918245897728
+    37.8243588496178,
+    37.49415544793855,
+    37.163952046259304,
+    36.83374864458005,
+    36.503545242900806
    ],
    [
-    39.682529438261085,
-    39.352326036581836,
-    39.022122634902594,
-    38.691919233223345,
-    38.36171583154409
+    39.00689222218462,
+    38.676688820505376,
+    38.34648541882612,
+    38.01628201714687,
+    37.68607861546762
    ],
    [
-    40.865062810827915,
-    40.534859409148666,
-    40.20465600746942,
-    39.87445260579017,
-    39.54424920411092
+    40.18942559475145,
+    39.85922219307219,
+    39.52901879139295,
+    39.1988153897137,
+    38.868611988034445
    ]
   ]
  },
@@ -1381,10 +1383,10 @@
  "div_bill": 10.984652800000001,
  "experts": {
   "e1": {
-   "base": 36.921765611009036,
+   "base": 36.24612839493257,
    "rng": [
-    33.28141584653584,
-    42.75753893780466
+    32.605778630459376,
+    42.081901721728194
    ]
   },
   "e2": {

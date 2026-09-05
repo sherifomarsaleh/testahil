@@ -19,7 +19,7 @@
   ]
  },
  "phase": "1",
- "current": "PR #370 MERGED (af036f12). STC: eleven levers, ten rules, 47.1108 -> 37.8396, -19.68%, and -13.73% against the latest known close. The last lever is the largest finding of the night \u2014 the reviewed six months to 30 June 2026 had been read and not used, and the forecast sat 89bp below a margin the company had already reported for half the year. It is in PR #371, CI running.",
+ "current": "PR #371 MERGED (e4eb2690); branch restarted from main. The STC cost side is ANSWERED rather than left open: the seven-line stack, each line put on the base the filings name, moves the answer -0.30% \u2014 the offsets run both ways and the blend hides almost nothing, which is worth establishing because the same test elsewhere in this book found 17%. Then the real finding, the third defect of one shape: note 14.1 carries SR 3,443.044mn of spectrum-licence liabilities OUTSIDE borrowings and the bridge had never deducted them. Established not double-counted against capex \u2014 total FY2025 additions 13,815.240 against 11,795 of capex, with note 12(2) naming 2,122mn of NON-CASH additions, so the model runs on cash capex and never saw the licences. Central 37.8396 -> 37.1640, gap -13.7% -> -15.27%. Twelve levers, ten rules, 47.11 -> 37.1640, -21.11%.",
  "done": [
   "All seven markets carry a sourced house macro path; 53 names unblocked. Two identities were running where they do not hold (a pegged currency drifting, the dollar depreciating against itself) \u2014 both found by PRINTING a path, not by a gate.",
   "The explicit window's inflation assumption is RULED OUT as the general scale error: perfect foresight of the path removes only 11% of the pooled driver error.",
@@ -242,13 +242,11 @@
   "The gap gate went red the instant the answer moved and forced the review to be re-asked at the size the disagreement actually is \u2014 the AUDITED GAP marker doing its job."
  ],
  "next": [
-  "MERGE PR #371 on green [R-MERGE-01], then restart the branch from main.",
-  "STC cost side: fourteen disclosed lines behind one blended share of revenue. Needs a SOURCED escalator per driver class; two lines have no disclosed physical driver. Government charges DO: commercial service provisioning fees run ~9% of the KSA segment.",
-  "STC: the first Saudi spectrum expiry is 2029, INSIDE the explicit window, no disclosed renewal cost. Named as a gap.",
-  "STC: the terminal charges 1.352x depreciation and the explicit window 1.161x. The industry alternative (telecom equipment falling in real cost per unit of capacity) would make the terminal too high; no disclosed replacement-cost series separates them.",
-  "STC still lacks a bibliography, a four-field inputs register, a QC gate, a driver test and a recalculation harness.",
-  "Re-issue the three documents publishing the retired skill verdict (ADNOCLS last).",
-  "GBCO is the last unreadable study on the valuation-gap ratchet."
+  "STC: no bibliography, no four-field inputs register (it reads UNREADABLE on source integrity for exactly that), no QC gate, no driver test, no recalculation harness. That is what stands between it and being a delivered study.",
+  "Re-issue the three documents publishing the retired skill verdict (ADNOCLS the exemplar last).",
+  "GBCO is the last unreadable study on the valuation-gap ratchet; rebuild on the three levers needing no filing. Escalation default fires 2026-09-19.",
+  "AMOC escalation default 12-Sep; lens-registry escalation default 18-Sep.",
+  "The reading habit found three times on STC \u2014 reading the line expected rather than the note the line points at \u2014 is a candidate lesson at ALL scope once a second name shows it."
  ],
  "stop_and_ask": [
   "TMGH: two earnings releases could not be re-fetched from the company's own channels (FY2020 release: 502 via proxy on every retry; 1H2021 release: 404). They are not inputs to the delivered numbers \u2014 the audited statements for both periods were obtained and verified \u2014 so this blocks nothing; recorded for the morning list."
@@ -264,7 +262,7 @@
   "Phase 2 keeps the campaign's market order \u2014 principal, 03-Sep-2026."
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-05T07:20:00+03:00",
+ "updated": "2026-09-05",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md \u2014 it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",

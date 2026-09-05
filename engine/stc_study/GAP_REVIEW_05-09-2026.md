@@ -214,6 +214,31 @@ balances and is excluded from net debt rather than netted; and no market cross-c
 taken on BGSM's look-through into a listed Malaysian operator, because that price is not
 held. Neither is filled with a number nothing supports.
 
+
+**A claim ahead of equity was disclosed outside borrowings and the bridge did not see it.**
+Note 14.1 of the same reviewed interim carries **financial liabilities related to frequency
+spectrum licences of SR 3443.044 million** — consideration owed to the regulator for licences already
+capitalised as intangible assets — on its own row inside *financial liabilities and others*,
+nowhere near the borrowings lines a net-debt build reads. It is now in net debt, which
+**lowered** the answer by 1.82%.
+
+It is not double-counted against capital expenditure, and that had to be established rather
+than assumed. Total additions to property, equipment, intangibles and goodwill were
+**13,815.240** in FY2025 against the **11,795** of capital expenditure this model forecasts
+on, and note 12(2) states that additions include **non-cash additions of 2,122 million**
+(FY2024: 883). The model therefore runs on *cash* capital expenditure, the licences bought
+against this liability never entered it, and the unpaid consideration is a financing claim
+the discounted cash flows do not service. Charging the asset as capital expenditure **and**
+the liability as debt would be the double count; charging neither — which is what the bridge
+did — simply omits the claim.
+
+**This is the third defect of one shape in this study and the shape is worth naming**: a
+figure sitting in a note the build did not open. The associates line was one, the reviewed
+half was another, and this is the third. Each was disclosed, each was in a document already
+fetched, and each was missed because the build read the *line it expected* rather than the
+*note the line points at*. Two of the three raised the answer and one lowered it, so the
+pattern is not a lean — it is a reading habit.
+
 ## 7. CLAIMS AGAINST THE RECORD
 
 **No "best ever", "never", "highest" or "unprecedented" claim is made anywhere in this
@@ -301,8 +326,8 @@ reverse-engineered rate this protocol prohibits outright, arriving through the f
 The study is HELD in any case: [R-GAP-02] blocks publication past 10% below the price, and
 Phase 1 of the method reassessment is not proven, which holds every study in the book.
 
-*AUDITED CENTRAL: 37.8396* — the figure this review audits, stated so a job outside the
+*AUDITED CENTRAL: 37.1640* — the figure this review audits, stated so a job outside the
 study can tell whether the review still describes the answer the study publishes.
 
-*AUDITED GAP: -13.7%* — the disagreement this review interrogates, stated so a job outside
+*AUDITED GAP: -15.3%* — the disagreement this review interrogates, stated so a job outside
 the study can tell whether the eight headings were asked at the size the study now carries.

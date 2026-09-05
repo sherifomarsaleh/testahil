@@ -579,7 +579,23 @@ BR_CASH_NON_BANK = 12_940.389       # cash and cash equivalents, excluding STC B
 BR_MURABAHAS = 1_062.181            # short-term murabahas, its own balance-sheet line
 BR_SUKUK = 6_368.453                # financial assets at amortised cost, note 9.1
 BR_TBILLS = 492.070                 # treasury bills, note 9.1
-net_debt = (BR_BORROWINGS + BR_LEASES - BR_CASH_NON_BANK - BR_MURABAHAS
+# SPECTRUM ALREADY BOUGHT AND NOT YET PAID FOR IS A CLAIM AHEAD OF EQUITY, and it is
+# disclosed OUTSIDE borrowings, which is why a bridge reading the borrowings lines misses it
+# [R-BRIDGE-01]. Note 14.1 of the reviewed interim carries it on its own row inside
+# "financial liabilities and others"; it is consideration owed to the regulator for licences
+# already capitalised as intangible assets, not a trade payable.
+#
+# THE REASON IT IS NOT DOUBLE-COUNTED IS THE MODEL'S OWN CAPEX DEFINITION, and that had to
+# be established rather than assumed. Total additions to property, equipment, intangibles
+# and goodwill were 13,815.240 in FY2025 while the capital expenditure this model forecasts
+# on is 11,795 — the company's own reported figure — and note 12(2) says additions include
+# NON-CASH additions of 2,122 million (FY2024: 883). So the model runs on CASH capex, the
+# licences acquired against this liability never entered it, and the unpaid consideration is
+# a financing claim the discounted cash flows do not service. Counting the asset as capex
+# AND the liability as debt would be the double count; counting neither, which is what the
+# bridge did, simply omits the claim.
+BR_SPECTRUM = 3_443.044             # note 14.1, financial liabilities re frequency spectrum
+net_debt = (BR_BORROWINGS + BR_LEASES + BR_SPECTRUM - BR_CASH_NON_BANK - BR_MURABAHAS
             - BR_SUKUK - BR_TBILLS)
 
 # THE MINORITY AT ITS SHARE OF THE VALUE, NOT AT HISTORICAL COST. The model capitalises
@@ -878,8 +894,18 @@ out = dict(
         ],
         equity_value=eq_dcf, shares_mn=SH, per_share=dcf_ps,
         net_debt_build=dict(borrowings=BR_BORROWINGS, leases=BR_LEASES,
+                            spectrum_licences=BR_SPECTRUM,
                             cash_non_bank=BR_CASH_NON_BANK, murabahas=BR_MURABAHAS,
                             sukuk=BR_SUKUK, treasury_bills=BR_TBILLS, net=net_debt),
+        net_debt_note=(
+            'The spectrum-licence liability is consideration owed for licences already '
+            'capitalised and it is disclosed outside borrowings, so a bridge built from the '
+            'borrowings lines does not see it. It is not double-counted against capital '
+            "expenditure: the company's total additions in FY2025 were 13,815.240 against "
+            'the 11,795 of capital expenditure this model forecasts on, and the intangibles '
+            'note states that additions include non-cash additions of 2,122 million, so the '
+            'licences bought against this liability never entered the capital expenditure '
+            'the cash flows are charged for.'),
     ),
     terminal_record=_t.record,
     hist=hist, seg_hist=seg_hist,
@@ -1020,9 +1046,14 @@ out = dict(
     cover=cover, div_bill=div_bill,
     experts=dict(e1=e1, e2=e2, e3=e3, e1_roic=roic, e1_ic=ic, e1_ep=ep),
 )
-res.to_csv('backtest_rows.csv', index=False)
-np.save('fan.npy', np.array([fan[p] for p in pcts]))
-np.save('pT20.npy', pT20[:20000]); np.save('pT60.npy', pT60[:20000])
+# WRITTEN BESIDE THIS FILE, NEVER BESIDE THE CALLER. These four were relative to the
+# working directory, so running the model from the repository root — which is how CI and
+# every gate runs it — dropped them at the root and left the study's own copies stale. A
+# path relative to cwd is a path that depends on who ran it.
+res.to_csv(os.path.join(HERE, 'backtest_rows.csv'), index=False)
+np.save(os.path.join(HERE, 'fan.npy'), np.array([fan[p] for p in pcts]))
+np.save(os.path.join(HERE, 'pT20.npy'), pT20[:20000])
+np.save(os.path.join(HERE, 'pT60.npy'), pT60[:20000])
 # A SENSITIVITY RUN NEVER WRITES. It exists to measure one lever's own worth, and an
 # answer struck on a beta this study does not adopt must not reach the committed record.
 if _SENS_BETA is None:
