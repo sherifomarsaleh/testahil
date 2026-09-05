@@ -95,7 +95,13 @@ COPY = ["*.html", "legacy/*.html", "assets/*.js", "engine/band_record.py", "engi
         "engine/build_depth_audit/band_outstanding.json", "engine/metal_backtest.py",
         "engine/primitives.py",
         "scripts/build_market_registry.py", "scripts/build_band_records.py",
-        "scripts/check_band_vocabulary.py"]
+        "scripts/check_band_vocabulary.py",
+        # ONE DELIVERED WORKBOOK, so the workbook arm added 05-Sep-2026 is LIVE here
+        # rather than merely present. Staging none would make that arm refuse an empty
+        # population on EVERY case, clean ones included — the gate going red for the
+        # WRONG reason, which reads exactly like going red for the right one and is a
+        # mistake this repository has already made once inside a sandbox.
+        "engine/tmgh_study/TMGH_Valuation_Model_02092026.xlsx"]
 
 
 def stage(dst):
@@ -110,6 +116,93 @@ def stage(dst):
             shutil.copy2(src, out)
             n += 1
     return n
+
+
+#: Injecting into a workbook is not a string edit, so it gets its own runner. The
+#: retired verdict reached FIVE delivered workbooks at their latest edition — two of
+#: them built the same week — because every surface this gate reads was swept and the
+#: workbook beside the document was read by nothing at all.
+WORKBOOK_CASES = [
+    ("PARITY in a delivered workbook",
+     "engine/tmgh_study/TMGH_Valuation_Model_02092026.xlsx",
+     "Calibration verdict: PARITY"),
+    ("the verdict described rather than named, in a workbook",
+     "engine/tmgh_study/TMGH_Valuation_Model_02092026.xlsx",
+     "Skill against a random walk: -1.8%"),
+    ("CRPS in a workbook",
+     "engine/tmgh_study/TMGH_Valuation_Model_02092026.xlsx",
+     "This name's CRPS skill vs a random walk: -0.13"),
+]
+WORKBOOK_CLEAN = [
+    ("the benchmark named as a width construction, in a workbook",
+     "engine/tmgh_study/TMGH_Valuation_Model_02092026.xlsx",
+     "Cone width versus a naive carry-anchored band: 1.18x"),
+    ("a band record with its count, in a workbook",
+     "engine/tmgh_study/TMGH_Valuation_Model_02092026.xlsx",
+     "Over 17 resolved forecasts the price finished inside the 90% band 94% of the time"),
+]
+
+
+def run_workbook_case(label, rel, text, must_fail):
+    import openpyxl
+    with tempfile.TemporaryDirectory() as tmp:
+        work = os.path.join(tmp, "repo")
+        stage(work)
+        path = os.path.join(work, rel)
+        if not os.path.exists(path):
+            return f"{label}: {rel} was not staged — control is stale"
+        wb = openpyxl.load_workbook(path)
+        ws = wb.worksheets[0]
+        before = ws.cell(row=ws.max_row + 2, column=1).value
+        ws.cell(row=ws.max_row + 2, column=1, value=text)
+        if before == text:
+            return f"{label}: could not inject into {rel} — control is stale"
+        wb.save(path)
+        # PROVE THE MUTATION LANDED before believing anything about the result: a case
+        # that silently modified nothing reports a green that means only that the file
+        # was untouched, which this repository has shipped once already.
+        chk = openpyxl.load_workbook(path)
+        if not any(isinstance(c.value, str) and text in c.value
+                   for row in chk.worksheets[0].iter_rows() for c in row):
+            return f"{label}: the injected text is not in the saved workbook"
+        r = subprocess.run([sys.executable,
+                            os.path.join(ROOT, "scripts", "check_band_vocabulary.py"),
+                            "--root", work], capture_output=True, text=True)
+        red = r.returncode != 0
+        if red != must_fail:
+            what = "PASSED on an injected defect" if must_fail else "FAILED on legitimate text"
+            return f"{label}: gate {what} in {rel}"
+        print(f"  {'caught' if must_fail else 'allowed'}: {label}  ({os.path.basename(rel)})")
+        return None
+
+
+def run_empty_population_case():
+    """[R-ENF-04] An empty population is not a clean one. Removing the only staged
+    workbook must make the gate REFUSE rather than report clean — otherwise the whole
+    workbook arm could be switched off by a resolver that quietly finds nothing, which
+    is the absent answer wearing a clean one's costume."""
+    with tempfile.TemporaryDirectory() as tmp:
+        work = os.path.join(tmp, "repo")
+        stage(work)
+        gone = [os.path.join(dp, f)
+                for dp, _, fs in os.walk(os.path.join(work, "engine"))
+                for f in fs if f.endswith(".xlsx")]
+        if not gone:
+            return "empty population: no workbook was staged — control is stale"
+        for g in gone:
+            os.remove(g)
+        r = subprocess.run([sys.executable,
+                            os.path.join(ROOT, "scripts", "check_band_vocabulary.py"),
+                            "--root", work], capture_output=True, text=True)
+        if r.returncode == 0:
+            return ("empty population: the gate reported CLEAN having read no workbook "
+                    "at all")
+        if "no delivered workbook was read" not in r.stdout:
+            return ("empty population: the gate went red, but not for the population "
+                    "reason — it must NAME why, or it is red for the wrong cause")
+        print("  caught: an empty workbook population reported as clean  "
+              "(all delivered workbooks removed)")
+        return None
 
 
 def run_case(label, rel, mutate, must_fail):
@@ -136,15 +229,20 @@ def run_case(label, rel, mutate, must_fail):
 def main():
     failures = [f for f in
                 [run_case(*c, must_fail=True) for c in CASES] +
-                [run_case(*c, must_fail=False) for c in CLEAN]
+                [run_case(*c, must_fail=False) for c in CLEAN] +
+                [run_workbook_case(*c, must_fail=True) for c in WORKBOOK_CASES] +
+                [run_workbook_case(*c, must_fail=False) for c in WORKBOOK_CLEAN] +
+                [run_empty_population_case()]
                 if f]
     if failures:
         print("NEGATIVE CONTROL FAILED:")
         for f in failures:
             print("  " + f)
         return 1
-    print(f"negative control OK — {len(CASES)} defects caught, "
-          f"{len(CLEAN)} legitimate cases allowed through")
+    print(f"negative control OK — {len(CASES) + len(WORKBOOK_CASES) + 1} defects caught "
+          f"({len(WORKBOOK_CASES)} of them in a delivered workbook, plus an emptied "
+          f"workbook population), "
+          f"{len(CLEAN) + len(WORKBOOK_CLEAN)} legitimate cases allowed through")
     return 0
 
 

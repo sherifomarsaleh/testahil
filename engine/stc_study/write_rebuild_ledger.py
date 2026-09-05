@@ -37,7 +37,8 @@ LANDED = {
     'R-SIGCM-02': '57db3fcf6dfac4036f449aa0769d451e6e872ab8',     # the segment rebuild
     'R-SIGCM-02:units': '4996c2f5097ef20628960e14bab1a9a00c2a2ac7',   # the unit build, SAME RULE, so it groups with it
     'R-FCAL-01': '52aade4029cfc181a84069d9e6fabcf92cf2662e',          # capex measured rather than guided
-    'R-ANCHOR-01': None,                                         # the working tree, latest
+    'R-ANCHOR-01': '34e74f311f05c0e535037cee70d5111a5bbc8c27',    # lever 11
+    'R-BRIDGE-01:spectrum': None,                                # the working tree, latest
 }
 
 
@@ -71,6 +72,7 @@ AFTER_GAP = at(LANDED['R-GAP-01'])
 AFTER_SEG = at(LANDED['R-SIGCM-02'])
 AFTER_UNITS = at(LANDED['R-SIGCM-02:units'])
 AFTER_CAPEX = at(LANDED['R-FCAL-01'])
+AFTER_ANCHOR = at(LANDED['R-ANCHOR-01'])
 NOW = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 # The lever-2 intermediate, struck when the cost-of-capital schedule was in and the beta
 # was not. It is named for that lever set, so a later sensitivity run cannot overwrite the
@@ -487,7 +489,7 @@ led.apply(
 led.apply(
     name='the first forecast year anchored on the latest reviewed period',
     rule='R-ANCHOR-01',
-    after=NOW['lenses']['central']['base'],
+    after=AFTER_ANCHOR['lenses']['central']['base'],
     why=(
         'THE MOST RECENT REVIEWED PERIOD HAD BEEN READ AND WAS NOT USED. The six months to '
         '30 June 2026 are published and reviewed, and the model was growing FY2025 forward '
@@ -511,18 +513,57 @@ led.apply(
         'disclosed actual the model had not been shown. Nothing after the first year '
         'assumes any further gain — the rule says hold flat including observed '
         'improvements, and the margin drifts DOWN on mix from there.'
-        % (NOW['drivers']['h1_anchor']['season_revenue'],
-           NOW['drivers']['h1_anchor']['season_gross_margin'],
-           NOW['drivers']['h1_anchor']['season_sga_share'],
-           NOW['drivers']['h1_anchor']['revenue'],
-           100 * NOW['forecast']['FY26E']['ebitda_margin'],
+        % (AFTER_ANCHOR['drivers']['h1_anchor']['season_revenue'],
+           AFTER_ANCHOR['drivers']['h1_anchor']['season_gross_margin'],
+           AFTER_ANCHOR['drivers']['h1_anchor']['season_sga_share'],
+           AFTER_ANCHOR['drivers']['h1_anchor']['revenue'],
+           100 * AFTER_ANCHOR['forecast']['FY26E']['ebitda_margin'],
            100 * 0.310873,
-           AFTER_CAPEX['lenses']['central']['base'], NOW['lenses']['central']['base'],
-           100 * (NOW['lenses']['central']['base']
+           AFTER_CAPEX['lenses']['central']['base'],
+           AFTER_ANCHOR['lenses']['central']['base'],
+           100 * (AFTER_ANCHOR['lenses']['central']['base']
                   / AFTER_CAPEX['lenses']['central']['base'] - 1),
            100 * (AFTER_CAPEX['lenses']['central']['base'] / NOW['spot'] - 1),
+           100 * (AFTER_ANCHOR['lenses']['central']['base'] / NOW['spot'] - 1))),
+)
+
+led.apply(
+    name='the spectrum-licence liability into net debt, a claim disclosed outside borrowings',
+    rule='R-BRIDGE-01',
+    after=NOW['lenses']['central']['base'],
+    why=(
+        'A CLAIM AHEAD OF EQUITY WAS DISCLOSED IN A NOTE THE BRIDGE DID NOT OPEN. The '
+        'bridge already stood on the latest disclosed sheet and read its borrowings, its '
+        'leases and its cash correctly; what it did not read is note 14.1, where '
+        'consideration owed to the regulator for spectrum licences ALREADY capitalised as '
+        'intangible assets sits on its own row inside "financial liabilities and others", '
+        'nowhere near the borrowings lines. This is the same shape as the two other '
+        'defects this rebuild found — the associates line and the reviewed half — a figure '
+        'in a note the build did not open, in a document it had already fetched. Two of '
+        'the three raised the answer and this one lowers it, so the pattern is a reading '
+        'habit rather than a lean.'),
+    evidence=(
+        'Note 14.1 of the reviewed interim to 30 June 2026 carries financial liabilities '
+        'related to frequency spectrum licences of %s (31 December 2025: 3,803.108). Net '
+        'debt goes %s to %s. IT IS NOT DOUBLE-COUNTED AGAINST CAPITAL EXPENDITURE and that '
+        "was established rather than assumed: the company's total additions to property, "
+        'equipment, intangibles and goodwill were 13,815.240 in FY2025 against the 11,795 '
+        'of capital expenditure this model forecasts on, and note 12(2) states that '
+        'additions include NON-CASH additions of 2,122 million (FY2024: 883). The model '
+        'therefore runs on CASH capital expenditure, the licences bought against this '
+        'liability never entered it, and the unpaid consideration is a financing claim the '
+        'discounted cash flows do not service. The answer falls %.4f to %.4f, %+.2f%%, and '
+        'the gap widens to %+.1f%%.'
+        % ('%.3f' % NOW['bridge_record']['net_debt_build']['spectrum_licences'],
+           '%.3f' % (NOW['bridge_record']['net_debt_build']['net']
+                     - NOW['bridge_record']['net_debt_build']['spectrum_licences']),
+           '%.3f' % NOW['bridge_record']['net_debt_build']['net'],
+           AFTER_ANCHOR['lenses']['central']['base'], NOW['lenses']['central']['base'],
+           100 * (NOW['lenses']['central']['base']
+                  / AFTER_ANCHOR['lenses']['central']['base'] - 1),
            100 * (NOW['lenses']['central']['base'] / NOW['spot'] - 1))),
 )
+
 
 rec = led.record()
 rec['audit_taken'] = {

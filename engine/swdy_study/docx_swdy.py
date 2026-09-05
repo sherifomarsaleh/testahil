@@ -854,20 +854,29 @@ P(f"This section answers a different question from the valuation. It does not as
   f"fitted to the daily high-low-open-close range, with a fat-tailed shock distribution and a drift "
   f"anchored to the cost of carry — an EGP deposit-rate carry, ~18% annualised as implied by the "
   f"median path, deliberately below the 22.3% bond yield and carrying no directional view.")
+# WHAT A READER IS SHOWN IS THE BAND RECORD [R-CAL-02, R-CAL-03]. The two skill clauses
+# this paragraph used to carry — the model scoring a per cent or so "better than a
+# random-walk benchmark" over five years and again over the full history — were the
+# retired verdict in plain words, and the verdict reaches no page, figure, document or
+# deck. What replaces them is not less: the coverage figures WITH their window count, the
+# uniformity test, and the band-width ratio, which is the sharpness measure the protocol
+# says is disclosed rather than gated, and is what the retired comparison was standing
+# in for.
 P(f"The widths below are calibrated rather than assumed. Tested by walk-forward simulation over "
   f"nearly five years — {BT5['windows']} independent non-overlapping quarterly windows with "
   f"origins from {BT5['first_origin']} to {BT5['last_origin']} (the final window runs three "
   f"months past its origin), each one forecast using only data available "
-  f"before it — the model scored {BT5['skill_norm']*100:+.2f}% better than a random-walk benchmark "
-  f"anchored on the same cost of carry. Outcomes fell inside the stated bands at close to the "
+  f"before it — outcomes fell inside the stated bands at close to the "
   f"advertised rate ({BT5['cov50']*100:.0f}% inside the 50% band, {BT5['cov80']*100:.0f}% inside "
-  f"the 80%, {BT5['cov90']*100:.0f}% inside the 90%), and the outcomes were spread evenly across "
+  f"the 80%, {BT5['cov90']*100:.0f}% inside the 90%, over those {BT5['windows']} windows), and "
+  f"the outcomes were spread evenly across "
   f"the distribution rather than bunching at one end — a uniformity test returns p = "
   f"{BT5['chi2_p']:.2f}, comfortably consistent with a well-calibrated forecast. Over the very "
   f"long run the picture is more mixed: across the full {BT5F['span_years']:.0f}-year history the "
-  f"model still beats the benchmark ({BT5F['skill_norm']*100:+.2f}%) but its bands are about "
-  f"{(BT5F['width_vs_benchmark']-1)*100:.0f}% wider than they need to be, which is a real "
-  f"limitation and is stated here rather than left out.")
+  f"bands are about "
+  f"{(BT5F['width_vs_benchmark']-1)*100:.0f}% wider than a naive carry-anchored band, which is a "
+  f"real limitation — a wider band catches more by construction — and is stated here rather "
+  f"than left out.")
 P(f"This is a map of price dispersion, not a forecast, and it is never blended with the fair-value "
   f"work above.")
 figure(os.path.join(HERE, 'fig4_fan.png'), 7.0,

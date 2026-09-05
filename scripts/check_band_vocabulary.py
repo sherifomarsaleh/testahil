@@ -15,6 +15,16 @@ Run:  python3 scripts/check_band_vocabulary.py [--root DIR]
 """
 import argparse
 import glob
+
+# THE READERS ARE IMPORTED AT MODULE SCOPE, DELIBERATELY. Both were originally imported
+# inside the loops that use them, and on 5 September 2026 that turned a missing openpyxl
+# in one workflow into TWENTY-TWO lines reading "could not be read ... an unreadable
+# workbook is not a clean one" — every word of which is this gate's own correct rule, and
+# none of which said the real thing, which was that a dependency was absent. A missing
+# dependency should fail once, loudly, at import; twenty-two of them dressed as findings
+# is red for the wrong reason, and it reads exactly like red for the right one.
+import openpyxl
+from docx import Document
 import json
 import os
 import re
@@ -34,6 +44,26 @@ DEFAULT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # learns to ignore, and a gate with no release is a stall).
 FIGURE_CAPTION_SOURCE = os.path.join("engine", "metal_backtest.py")
 OUTSTANDING = os.path.join("engine", "build_depth_audit", "band_outstanding.json")
+
+
+
+def _ratchet_json(root):
+    try:
+        return json.load(open(os.path.join(root, OUTSTANDING), encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def _workbook_key(fp):
+    """Newest edition of a workbook. The dates are DDMMYYYY, run together, so they are
+    PARSED rather than sorted lexically — 03092026 sorts below 09082026 as a string and
+    would pick the wrong file, which is the mistake the document resolver beside this one
+    records having already made once."""
+    m = re.search(r"(\d{2})(\d{2})(\d{4})", os.path.basename(fp))
+    if m:
+        return (m.group(3), m.group(2), m.group(1))
+    m = re.search(r"(\d{2})-(\d{2})-(\d{4})", os.path.basename(fp))
+    return (m.group(3), m.group(2), m.group(1)) if m else ("", "", "")
 
 
 def surfaces(root):
@@ -148,11 +178,7 @@ def main():
 
     # RATCHETED per [R-ENF-02]: three current editions predate this extension and are
     # cleared at their own next re-issue. The list may only ever SHORTEN.
-    try:
-        _DOC_RATCHET = set(json.load(open(os.path.join(root, OUTSTANDING),
-                                          encoding="utf-8")).get("documents", []))
-    except Exception:
-        _DOC_RATCHET = set()
+    _DOC_RATCHET = set(_ratchet_json(root).get("documents", []))
     _doc_outstanding = 0
     _delivered = []
     for _sdir in sorted(glob.glob(os.path.join(root, "engine", "*_study"))):
@@ -165,7 +191,6 @@ def main():
     for path in sorted(_delivered):
         rel = os.path.relpath(path, root)
         try:
-            from docx import Document
             _d = Document(path)
             _parts = [p_.text for p_ in _d.paragraphs]
             for _t in _d.tables:
@@ -178,6 +203,51 @@ def main():
                 fails += _hits
         except Exception as e:                       # [R-ENF-04]: an unreadable
             fails.append("%s: could not be read (%s). An unreadable document is not "
+                         "a clean one." % (rel, e))
+
+
+    # ---- 1b. the delivered WORKBOOKS, which no gate had ever read ------------
+    # [R-CAL-03] retires the verdict from "no page, figure, document or deck", and
+    # this check grew one surface at a time: the pages first, the figures' caption
+    # template next, the Word documents on 03-Sep-2026. THE WORKBOOK IS DELIVERED
+    # BESIDE THE DOCUMENT and nothing read it, so the verdict survived there while
+    # every other surface was swept — including in two workbooks built THIS WEEK,
+    # which is what makes this a live hole rather than a legacy one. Same population
+    # discipline as the documents: latest edition per study, [R-ENF-04] anchoring, and
+    # a ratchet that may only SHORTEN.
+    _WB_RATCHET = set(_ratchet_json(root).get("workbooks", []))
+    _wb_outstanding = 0
+    _books = []
+    for _sdir in sorted(glob.glob(os.path.join(root, "engine", "*_study"))):
+        _x = [f for f in glob.glob(os.path.join(_sdir, "*.xlsx"))
+              if re.search(r"\d{2}", os.path.basename(f))]
+        if not _x:
+            continue
+        _top = max(_workbook_key(f) for f in _x)
+        _books += [f for f in _x if _workbook_key(f) == _top]
+    if not _books:
+        # [R-ENF-04] an empty population is not a clean one: this repository holds
+        # delivered workbooks, so reading none means the resolver broke.
+        fails.append("no delivered workbook was read at all — the population resolver "
+                     "found none, which is a broken run rather than a clean one")
+    for path in sorted(_books):
+        rel = os.path.relpath(path, root).replace(os.sep, "/")
+        try:
+            _wb = openpyxl.load_workbook(path, data_only=False, read_only=True)
+            _cells = []
+            for _ws in _wb.worksheets:
+                for _row in _ws.iter_rows():
+                    for _c in _row:
+                        if isinstance(_c.value, str):
+                            _cells.append(_c.value)
+            _wb.close()
+            _hits = br.scan_text("\n".join(_cells), rel)
+            if rel in _WB_RATCHET:
+                _wb_outstanding += len(_hits)
+            else:
+                fails += _hits
+        except Exception as e:                       # [R-ENF-04]: unreadable is not clean
+            fails.append("%s: could not be read (%s). An unreadable workbook is not "
                          "a clean one." % (rel, e))
 
     # ---- 2. the published record still matches its panel --------------------
@@ -242,6 +312,12 @@ def main():
             print(f"  OUTSTANDING (reported, not failing): {_doc_outstanding} verdict "
                   f"hit(s) in {len(_DOC_RATCHET)} delivered study document(s) that predate "
                   f"this check — see {OUTSTANDING}.")
+        if _wb_outstanding:
+            print(f"  OUTSTANDING (reported, not failing): {_wb_outstanding} verdict "
+                  f"hit(s) in {len(_WB_RATCHET)} delivered WORKBOOK(s) that predate the "
+                  f"05-Sep-2026 extension of this check to workbooks — see {OUTSTANDING}.")
+        print(f"  read {len(_books)} delivered workbook(s) and {len(_delivered)} delivered "
+              f"document(s).")
         print(f"  OUTSTANDING (reported, not failing): the skill verdict is still baked into "
               f"{n} calibration figure(s) this gate cannot read — see {OUTSTANDING}.")
     return 0

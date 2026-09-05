@@ -1379,7 +1379,6 @@ putf(wsM, 'C21', "=(C11-C7)/C12",
      (STK['horizons']['3M']['pct']['p95'] - STK['horizons']['3M']['pct']['p5']) / SPOT, PCT)
 band(wsM, 23, 7); wsM['A23'] = 'HOW WELL CALIBRATED IS THIS MAP? — MEASURED, NOT ASSERTED'
 for j, (lab, v, ft) in enumerate([('Windows scored', S0['windows_scored'], NUM0),
-                                  ('Skill against a random walk', S0['skill_norm'], PCT),
                                   ('Coverage of the 50% band (nominal 50%)', S0['cov50'], PCT),
                                   ('Coverage of the 80% band (nominal 80%)', S0['cov80'], PCT),
                                   ('Coverage of the 90% band (nominal 90%)', S0['cov90'], PCT),

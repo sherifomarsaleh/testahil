@@ -883,8 +883,14 @@ for p in ['p5', 'p25', 'p50', 'p75', 'p95']:
 put(wmc, f'A{rr}', 'Spot', fmt=None); put(wmc, f'B{rr}', STK['spot'], BLUE, PX); put(wmc, f'C{rr}', STK['spot'], BLUE, PX); rr += 1
 put(wmc, f'A{rr}', 'P(above spot)', fmt=None); put(wmc, f'B{rr}', h1['p_above'], BLUE, PCT); put(wmc, f'C{rr}', h3['p_above'], BLUE, PCT); rr += 1
 put(wmc, f'A{rr}', 'Annualised vol', fmt=None); put(wmc, f'B{rr}', h1['anchor_vol_ann'], BLUE, PCT); put(wmc, f'C{rr}', h3['anchor_vol_ann'], BLUE, PCT); rr += 2
-put(wmc, f'A{rr}', f"3-month calibration: {S0['verdict']} vs the random walk; coverage "
-    f"{S0['cov50']:.2f}/{S0['cov80']:.2f}/{S0['cov90']:.2f}; PIT mean {S0['pit_mean']:.2f}.", fmt=None)
+# THE BAND RECORD, NOT THE RETIRED VERDICT [R-CAL-02, R-CAL-03] — coverage with the count
+# of resolved forecasts beside it, because a percentage without its count is the number that
+# misleads, plus the width ratio, which is disclosed and never gated.
+put(wmc, f'A{rr}', f"Three-month record: over {S0['windows_scored']} resolved forecasts the "
+    f"price finished inside the 50/80/90% bands "
+    f"{S0['cov50']:.2f}/{S0['cov80']:.2f}/{S0['cov90']:.2f} of the time; PIT mean "
+    f"{S0['pit_mean']:.2f}; the 90% band ran {S0['w90_ratio']:.2f}x a naive carry-anchored "
+    f"band.", fmt=None)
 
 # =========================================================================
 # SENSITIVITY — pasted whole-model grids

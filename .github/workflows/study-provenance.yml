@@ -474,6 +474,25 @@ jobs:
       # attempted and REFUSED, an investor presentation cited by page for six drivers, the
       # reviewed half the bridge stands on, and three top-down drivers whose evidenced
       # absence sat in prose inside their own justification.
+      # A GATE RED ON A MISSING DEPENDENCY IS RED FOR THE WRONG REASON. On 5 September
+      # 2026 the band-vocabulary gate was extended to read the delivered WORKBOOKS, its
+      # workflow's pip line was not extended with openpyxl, and Actions reported twenty-two
+      # workbooks as UNREADABLE — every word of that message being the gate's own correct
+      # rule, and none of it saying the real thing. It passed here and it passed the local
+      # CI runner, because both environments already had openpyxl: a runner that executes a
+      # workflow's STEPS models what the commands are, never what they run inside.
+      - name: Workflow-dependency gate
+        run: python3 scripts/check_workflow_deps.py
+
+      # and the proof it can go red — the openpyxl condition exactly as it shipped, a gate
+      # that grows a top-level import nobody installed, an emptied pip line and an emptied
+      # workflow population; plus three clean cases: an import inside a function (which is
+      # not what a pip line must cover for a script to start, and is the residue this
+      # checker states rather than hides), a distribution whose import name differs from its
+      # package name, and this repository's own modules and packages.
+      - name: Workflow-dependency gate — negative control
+        run: python3 scripts/check_workflow_deps_negative_control.py
+
       - name: Sweep-module gate
         run: python3 scripts/check_sweep_module.py
 

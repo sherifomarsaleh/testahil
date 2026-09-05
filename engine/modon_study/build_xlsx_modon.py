@@ -1123,9 +1123,8 @@ for lbl, k1, k3, fmt in [
 r += 1
 put(mc, f'A{r}', 'Calibration evidence (walk-forward, this name)', bold=True, fmt=None); r += 1
 for lbl, v, fmt in [('Windows scored (post-break)', S0['windows_scored'], NUM0),
-                    ('CRPS skill vs carry-anchored random walk', S0['skill_norm'], PCT2),
-                    ('Verdict', S0['verdict'], None),
-                    ('Coverage of the 80% band (over-covered: bands run wide)', S0['cov80'], PCT),
+                    ('Coverage of the 50% band', S0['cov50'], PCT),
+                    ('Coverage of the 80% band', S0['cov80'], PCT),
                     ('Coverage of the 90% band', S0['cov90'], PCT),
                     ('PIT mean (0.5 = centred)', S0['pit_mean'], DF4)]:
     put(mc, f'A{r}', lbl, fmt=None); put(mc, f'B{r}', v, BLUE, fmt); r += 1

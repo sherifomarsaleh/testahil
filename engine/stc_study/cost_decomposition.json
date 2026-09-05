@@ -1,0 +1,105 @@
+{
+ "ticker": "STC",
+ "published_central": 37.163952046259304,
+ "published_spot": 43.86,
+ "years": [
+  "FY26E",
+  "FY27E",
+  "FY28E",
+  "FY29E",
+  "FY30E"
+ ],
+ "revenue": [
+  80736.56153058002,
+  82985.11937468077,
+  85056.3087171784,
+  86981.93740370838,
+  88721.57615178254
+ ],
+ "lines": {
+  "Commercial service provisioning fees": {
+   "held_at_share_of_revenue": [
+    4781.437116987664,
+    4914.6027823523555,
+    5037.264206257268,
+    5151.3051351841605,
+    5254.331237887844
+   ],
+   "on_its_own_base": [
+    4722.183374118672,
+    4829.073026433574,
+    4933.54538545036,
+    5040.277903661009,
+    5149.319477439928
+   ],
+   "final_year_difference": -105.01176044791555
+  },
+  "License fees": {
+   "held_at_share_of_revenue": [
+    486.3449098248837,
+    499.8898842601773,
+    512.3664175049792,
+    523.9661152398388,
+    534.4454375446356
+   ],
+   "on_its_own_base": [
+    481.5211828601348,
+    494.6213255662148,
+    508.07786741947314,
+    521.9005045243691,
+    536.0991967751113
+   ],
+   "final_year_difference": 1.6537592304756572
+  },
+  "Repairs and maintenance": {
+   "held_at_share_of_revenue": [
+    2041.5555155128573,
+    2098.413964541986,
+    2150.7873619927295,
+    2199.4800210716776,
+    2243.4696214931114
+   ],
+   "on_its_own_base": [
+    2038.0546591848629,
+    2107.114777228546,
+    2176.711807182757,
+    2248.883863923016,
+    2323.6563297501834
+   ],
+   "final_year_difference": 80.18670825707204
+  },
+  "Amortisation and impairment of contract costs": {
+   "held_at_share_of_revenue": [
+    196.8575974147188,
+    202.34019026294206,
+    207.39031067958405,
+    212.085514804664,
+    216.3272251007573
+   ],
+   "on_its_own_base": [
+    205.75310283420578,
+    222.67790771797743,
+    240.75887230741407,
+    260.30797212335244,
+    281.4444165714984
+   ],
+   "final_year_difference": 65.11719147074109
+  }
+ },
+ "not_priced": {
+  "Network access charges": "no disclosed unit rate",
+  "Employees costs": "no headcount disclosed anywhere in the filings",
+  "Others": "a residual of three unrelated things",
+  "Frequency spectrum fees": "lumpy, and the first Saudi licence expiry falls inside the explicit window with no disclosed renewal cost \u2014 a gap to name, not a driver"
+ },
+ "value_effect": {
+  "net_cost_change_fy_final": 41.94589851037324,
+  "margin_shift": -0.0004727812594155597,
+  "sar_per_unit_of_margin": 236.50667451336318,
+  "central_effect": -0.1118159234366137,
+  "central_before": 37.163952046259304,
+  "central_after": 37.05213612282269,
+  "pct_of_central": -0.0030087199363897687
+ },
+ "finding": "Put each line on the base the filings name and the model's final forecast year moves by a net SR 41.9 million of cost, which is -0.047 points of margin and -0.30% of the central. The offsets run BOTH ways and that is the finding: the levy and the licence fee fall against a group that grows faster than the Saudi segment they are charged on, while maintenance and subscriber-acquisition costs rise against it, and the two nearly cancel. The blended construction is not hiding a mix effect here \u2014 which is worth knowing precisely because the same test on another name in this book found one worth seventeen per cent."
+}

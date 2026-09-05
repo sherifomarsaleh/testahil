@@ -822,26 +822,44 @@ d.figure(os.path.join(HERE, 'fig6_dist.png'), 6.2,
          'The three-month distribution of outcomes. The gold line is the current price.')
 
 H_2('How well has this map worked?')
+# WHAT A READER IS SHOWN IS THE BAND RECORD [R-CAL-02, R-CAL-03]. This section used to
+# publish the retired comparison against a no-information benchmark, and to build its whole
+# reading on it — the map "scored WORSE", the bands were therefore "TOO WIDE", and narrowing
+# them "would have turned the score positive". Retiring the comparison takes that reading
+# with it, and the honest replacement says LESS rather than saying the same thing in other
+# words: over fifteen windows the 90% coverage figure cannot separate an honest cone from a
+# broken one, so no flag is earned and none is given. The band-width ratio is published
+# because sharpness is disclosed and never gated, and at 1.10 times a naive band it does not
+# on its own support the strong claim the retired score was carrying.
 P('A probability map that has never been scored is decoration, so the record is stated plainly. '
   'Run backwards across every non-overlapping three-month window that the price history used '
   f'here can score — the first of them opens on {S0["first_origin"]} and the last on '
   f'{S0["last_origin"]}, which is not the whole listed history: the earliest windows are held '
-  'back to fit the model that predicts them — '
-  f'{S0["windows_scored"]} independent, non-overlapping windows — the map scored '
-  f'{abs(S0["skill_norm"])*100:.2f}% WORSE than a simple no-information benchmark that assumes '
-  'the price simply drifts with the risk-free rate less the dividend. That shortfall held under '
-  'three different resampling schemes, so it is a real result and not a sampling artifact.',
+  'back to fit the model that predicts them — the price finished inside the 90% band in '
+  f'{S0["cov90"]*100:.0f}% of those {S0["windows_scored"]} resolved forecasts, inside the 80% '
+  f'band in {S0["cov80"]*100:.0f}% and inside the 50% band in {S0["cov50"]*100:.0f}%.',
   space_after=4)
-P('The reason is specific and worth stating, because it is not the reason most readers would '
-  'assume. The map is not pointing the wrong way. Its centring is close to perfect: the median '
-  f'of the realised outcomes sat at the {S0["pit_mean"]*100:.0f}th percentile of the predicted '
-  f'distribution, against 50 for a perfectly centred forecast. The problem is that it is TOO '
-  f'WIDE. Every single realised outcome fell inside the predicted 80% band and inside the 90% '
-  f'band — {pc(S0["cov80"],0)} and {pc(S0["cov90"],0)} coverage against targets of 80% and 90% '
-  f'— and the band itself was {S0["w90_ratio"]:.2f} times the benchmark\'s. A band that wide is '
-  'never wrong and is not very useful, and a scoring rule that rewards sharpness penalises it '
-  'accordingly.', space_after=4)
-P('The cause is mechanical. The bands are calibrated across a panel of Abu Dhabi and Dubai '
+P('Fifteen windows is a SHORT record and that is the first thing to say about it. A coverage '
+  'figure drawn from fifteen observations cannot tell a well-sized band from an over-wide one '
+  'with any confidence — the interval around it is wider than the differences worth arguing '
+  'about — so nothing here is offered as a verdict on this name, and no flag is raised in '
+  'either direction. The one-month record is longer: over '
+  f'{S0["h1"]["windows_scored"]} resolved forecasts the price finished inside the 90% band '
+  f'{S0["h1"]["cov90"]*100:.0f}% of the time, inside the 80% band '
+  f'{S0["h1"]["cov80"]*100:.0f}% and inside the 50% band {S0["h1"]["cov50"]*100:.0f}%, which '
+  'is close to what each band promises.', space_after=4)
+P('The centring is good on both horizons and that is worth separating from the width, because '
+  'they are different questions. The median of the realised three-month outcomes sat at the '
+  f'{S0["pit_mean"]*100:.0f}th percentile of the predicted distribution against 50 for a '
+  'perfectly centred forecast, so the map is not pointing the wrong way. How SHARP it is is '
+  'reported beside that rather than folded into it: the 90% band runs '
+  f'{S0["w90_ratio"]:.2f} times the width of a naive band anchored on the same cost of carry. '
+  'That figure carries no pass mark, deliberately — a wider band is not automatically wrong, '
+  'and what the right width is differs by market — but it is what a reader needs in order to '
+  'judge the coverage above rather than take it at face value, because a band wide enough is '
+  'never wrong and is not very useful.', space_after=4)
+P('One mechanical fact sits behind the width and is stated as a diagnosis rather than acted '
+  'on. The bands are calibrated across a panel of Abu Dhabi and Dubai '
   'listed companies, and this share\'s own realised volatility — measured as the annualised '
   'standard deviation of its daily returns over the whole price history used here — of '
   f'{pc(S0D["own_annualised_vol"])} sits at the {S0D["own_vol_percentile_in_panel"]*100:.0f}th '
@@ -850,16 +868,9 @@ P('The cause is mechanical. The bands are calibrated across a panel of Abu Dhabi
   'quantity: the shorter-window figure quoted in the technical section, which is measured over '
   'the recent trading range only, and the forward volatility embedded in the probability map, '
   'which is what the panel calibration produces.) A band sized '
-  'for the average name is too wide for a below-average-volatility one. Narrowing it to '
-  '80% of the panel width would have turned the score positive, and that is reported as a '
-  'diagnosis rather than applied, because a width chosen after seeing the outcomes it is '
-  'scored on is not evidence of anything.', space_after=4)
-P(f'The one-month map is a different matter: over {S0["h1"]["windows_scored"]} windows it '
-  f'scored {S0["h1"]["skill_norm"]*100:+.2f}% against the same benchmark — statistically '
-  'indistinguishable from it — with outcomes spread across the predicted distribution rather '
-  'than bunched in the middle. Read the three-month percentiles above as an outer bound on '
-  'plausible movement rather than as a calibrated probability, and read the one-month figures '
-  'as neither better nor worse than assuming no information.')
+  'for the average name may be wider than a below-average-volatility one needs. Whether it '
+  'should be narrowed for this name is not a question fifteen windows can answer, and a width '
+  'chosen after seeing the outcomes it is measured on would not be evidence of anything.')
 
 # ============================== 8. §4 COMPARISON =============================
 d.page_break()

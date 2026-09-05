@@ -104,10 +104,19 @@
    "why": "THE MOST RECENT REVIEWED PERIOD HAD BEEN READ AND WAS NOT USED. The six months to 30 June 2026 are published and reviewed, and the model was growing FY2025 forward as though they were not. The standing rule is that a near-term reviewed actual OUTRANKS a stale full-year rate: anchor every rate on the most recent reviewed period, hold everything else flat INCLUDING observed improvements, and where a first-half rate is carried into the second half PROVE with the prior year's actual halves which way it runs. Note 4 of that interim gives revenue by segment for both halves and the group's cost of operations excluding depreciation, so the level and both rates come from one note, and every seasonality factor is the prior year own half against its own full year \u2014 measured rather than assumed.",
    "evidence": "The reviewed half reports revenue of SAR 40,110mn and an EBITDA margin of 32.33%. Corrected by the prior year measured half-to-year factors (1.00644 on revenue, 1.00383 on the gross margin, 1.03195 on the operating-cost share) that anchors FY2026 at revenue 80737 and an EBITDA margin of 31.98%. THE MODEL HAD 31.09% AND 80,224 \u2014 eighty-nine basis points below a margin the company had ALREADY REPORTED for half the year, and 0.6% below the revenue that half implies. The answer rises 35.5319 to 37.8396, +6.49%, and the gap narrows -19.0% to -13.7%. It is the strongest evidence in the whole review because it is not a forecast at all: it is a disclosed actual the model had not been shown. Nothing after the first year assumes any further gain \u2014 the rule says hold flat including observed improvements, and the margin drifts DOWN on mix from there.",
    "move": 0.06494658460689196
+  },
+  {
+   "name": "the spectrum-licence liability into net debt, a claim disclosed outside borrowings",
+   "rule": "R-BRIDGE-01",
+   "before": 37.83958926233577,
+   "after": 37.163952046259304,
+   "why": "A CLAIM AHEAD OF EQUITY WAS DISCLOSED IN A NOTE THE BRIDGE DID NOT OPEN. The bridge already stood on the latest disclosed sheet and read its borrowings, its leases and its cash correctly; what it did not read is note 14.1, where consideration owed to the regulator for spectrum licences ALREADY capitalised as intangible assets sits on its own row inside \"financial liabilities and others\", nowhere near the borrowings lines. This is the same shape as the two other defects this rebuild found \u2014 the associates line and the reviewed half \u2014 a figure in a note the build did not open, in a document it had already fetched. Two of the three raised the answer and this one lowers it, so the pattern is a reading habit rather than a lean.",
+   "evidence": "Note 14.1 of the reviewed interim to 30 June 2026 carries financial liabilities related to frequency spectrum licences of 3443.044 (31 December 2025: 3,803.108). Net debt goes 4932.363 to 8375.407. IT IS NOT DOUBLE-COUNTED AGAINST CAPITAL EXPENDITURE and that was established rather than assumed: the company's total additions to property, equipment, intangibles and goodwill were 13,815.240 in FY2025 against the 11,795 of capital expenditure this model forecasts on, and note 12(2) states that additions include NON-CASH additions of 2,122 million (FY2024: 883). The model therefore runs on CASH capital expenditure, the licences bought against this liability never entered it, and the unpaid consideration is a financing claim the discounted cash flows do not service. The answer falls 37.8396 to 37.1640, -1.79%, and the gap widens to -15.3%.",
+   "move": -0.017855299945049197
   }
  ],
- "value": 37.83958926233577,
- "cumulative_move": -0.19679663792641688,
+ "value": 37.163952046259304,
+ "cumulative_move": -0.21113807487311265,
  "rules": {
   "R-COC-01": {
    "levers": [
@@ -143,11 +152,12 @@
   },
   "R-BRIDGE-01": {
    "levers": [
-    "the bridge moved onto the latest disclosed balance sheet"
+    "the bridge moved onto the latest disclosed balance sheet",
+    "the spectrum-licence liability into net debt, a claim disclosed outside borrowings"
    ],
    "first_before": 40.42061344670193,
-   "last_after": 41.85677067352522,
-   "move": 0.03553031743857593
+   "last_after": 37.163952046259304,
+   "move": -0.08056932151059049
   },
   "R-LENS-03": {
    "levers": [
@@ -203,7 +213,7 @@
   "latest_price": 43.86,
   "latest_price_date": "2026-09-03",
   "gap_at_the_audit": "+0.43%",
-  "gap_now_after_later_levers": "-13.73%",
+  "gap_now_after_later_levers": "-15.27%",
   "gap_at_delivery": "+8.10%",
   "what_the_audit_shows": "THE TWO LEVERS DISAGREED AND THE ROUTE IS WHY THAT MATTERS. Taken in the order fixed in writing before either was touched, the cost-of-capital correction moved the answer AWAY from the market \u2014 from 8.1%% above the price it was struck at to 16.4%% above the latest one \u2014 and the beta correction brought it back. Neither was chosen for where it landed and neither could have been: the first raises every value it touches and the second lowers every value it touches, and which one dominates is arithmetic about this company's own capital structure. Read as two corrections the rebuild is a contest; read as one net figure of -6.5%% it would look like a small tidy-up, and the 8.4%% and the 13.8%% inside it would be invisible. THE ANSWER NOW SITS ESSENTIALLY ON THE PRICE, at +0.4%%, and that is reported as an observation and NOT as corroboration \u2014 four levers remain, the lens retirement among them, and a rebuild that stopped here because the number looked comfortable would be fitting to the price by choosing when to stop.",
   "levers_remaining_at_the_audit": [
