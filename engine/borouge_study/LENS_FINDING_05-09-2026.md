@@ -49,52 +49,56 @@ number produced by averaging several methods is not more robust than the best of
 is a NEW method with free parameters nobody tested."* Here the free parameter is not even a
 weight somebody chose. It is a count.
 
-## And the cell it selects is built on a tier-2 beta while a tier-1 beta exists and passes
+## And the cell it selects is the SECOND framing's, not the one the study adopts
 
-This is the part that makes the finding material rather than tidy.
+**CORRECTED BEFORE ACTING ON IT.** An earlier version of this section said the study had
+substituted a tier-2 beta where a tier-1 beta passes, and that is wrong. `beta_result.json`
+records the opposite in its own words: *"tier-1 own-stock weekly regression against its own
+local index (usability gate PASSED) … All three conditions of the usability gate are met,
+so the regression estimate is adopted rather than a default."* **The study adopts the
+tier-1 beta.** It then builds a bottom-up sector beta as a SECOND FRAMING and publishes both
+side by side — which is not a defect at all; it is depth-bar standard 8, the study's single
+most consequential contested judgement computed both ways and published side by side.
 
-`beta_result.json` records an own-stock five-year weekly regression against the FTSE ADX
-General Index, `engine/raw_indices/AE/FADGI.csv`: **beta 0.4153, R² 9.45%, n 215, SE
-0.0881, `usable: true`, `gate_msg: "passes minimum usability gate"`.** It carries a
-`weak: true` flag — R² below a 10% weak-instrument threshold, and a 90% interval of
-[0.27, 0.56] spanning 0.70× the point estimate.
+**The defect is the median, and only the median.** The dual framing is correct and the
+`fair_mid` that collapses it is the very thing standard 8 forbids in the same sentence that
+requires it: *"never averaged into one number."* The study does the hard half right and then
+undoes it in one line of `compute.py`.
 
-SIGCM clause 6 and the BETA hierarchy are a STRICT PREFERENCE ORDER: the own-stock
-regression is first choice **whenever that much usable history exists and it passes the
-gate**, and a same-country peer beta is tier 2, reached only when tier 1 is unavailable.
-This one is available and passes. **So the study's published number is built on the tier-2
-beta, and the tier-1 cell — 2.5499 on the normalisation scenario — is the one the hierarchy
-points at.**
+That distinction matters for the rebuild. There is nothing to fix in the beta, and there is
+no shrinkage to apply: the own-stock regression passes its gate and is adopted, its weakness
+is disclosed, and the sector read stands beside it as the labelled alternative. **What has
+to change is what the study CALLS its answer.**
 
-**The bottom-up sector beta is a defensible RESPONSE to a weak instrument and it is not the
-sanctioned one.** [R-COC-01] names the sanctioned escape and it is different: *a noisy beta
-may be Vasicek-shrunk toward its market-class prior, with the raw beta and the shrinkage
-disclosed.* Shrinkage keeps the tier-1 instrument and states how far it was pulled;
-substitution replaces it silently with a tier-2 one. On a petrochemical company a raw beta
-of 0.42 is implausibly low and the study was right to be uncomfortable — **the discomfort
-was correct and the remedy was not the one the rules hold.**
+The own-stock beta is 0.4153 with R² 9.45%, n 215, SE 0.0881, `usable: true` and a `weak:
+true` flag — a 90% interval of [0.27, 0.56] spanning 0.70× the point estimate. That
+weakness is exactly why a second framing exists, and it is disclosed rather than hidden.
+Whether a Vasicek shrinkage toward the sector prior would be a better central than either
+cell is a real question and it is NOT this rebuild's: [R-COC-01] permits it, the study has
+not taken it, and taking it would be a new construction rather than the application of a
+standing rule.
 
 ## What the rebuild has to do, and why it needs a declared audit point
 
-Three corrections, and they do not point the same way:
+Two corrections, not three, and the beta is not one of them:
 
 1. **The lens architecture** — [R-LENS-03]: one class primary IS the central. BOROUGE is
    registered `petrochemical`, whose row is a DCF primary with EV/EBITDA on own history,
    replacement cost, a relative multiple and book beside it. **Normalised earnings appears
    in no row of the registry at all**, so those two readings come out entirely — the same
    thing EMPOWER's record found, and the rule working rather than a gap in it.
-2. **The beta** — tier 1 restored, Vasicek-shrunk toward the sector prior if the weakness
-   warrants it, with the raw beta, the prior and the shrinkage all disclosed. The sector
-   read stays as a labelled cross-check, which is what it is.
-3. **The scenario pair** — normalisation against prolonged is a genuine contested judgement
-   about the world and is the study's real two-sidedness. Published as two branches, or as
-   the ENVELOPE of the present-value reads on one clock; never averaged.
+2. **The median retired** — the two framings stay, published side by side as standard 8
+   requires; what goes is the single number that averages across them. Whether the answer
+   is then two branches or one central with the other framing as a labelled alternative is
+   the rebuild's own decision, and it is the only judgement in this pass.
 
-**On the current numbers, (1) and (2) together move the central from 1.4770 toward 2.5499,
-+72.6%, against a spot of 2.40 that is itself a month stale.** That takes the study from
-38% below the price to roughly 6% above it, which crosses [R-GAP-02]'s publication block in
-the direction that releases it — and that is exactly why the audit point is declared BEFORE
-the levers are applied rather than after. [R-REBUILD-01] exists for this shape.
+**Which cell the answer lands on decides the size of the move and it is large either way.**
+The own-beta normalisation cell reads 2.5499 against the published 1.4770, +72.6%, against
+a spot of 2.40 that is itself a month stale — which would take the study from 38% below the
+price to roughly 6% above it, crossing [R-GAP-02]'s publication block in the direction that
+releases it. **That is exactly why the audit point is declared BEFORE the levers are
+applied rather than after**, and why the choice between the two framings has to be made on
+the rules rather than on where it lands. [R-REBUILD-01] exists for this shape.
 
 **None of the three is discretionary and none was chosen for where it lands.** Each is a
 standing rule applied to a study that predates it.
