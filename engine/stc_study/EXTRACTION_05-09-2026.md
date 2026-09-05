@@ -172,13 +172,114 @@ balance sheet and the thing its bridge stands on. It is reconciled line by line 
 used again, and the debt figure beside it excludes leases (2,253) which the same bridge
 should be deducting.
 
+## FY2023 exists in two versions, both from the company, and they differ by design
+
+The three-year history needs FY2023, and reading it turned up something worth recording
+before a driver is built on it: **the company has published FY2023 twice, on two different
+bases, and the delivered study uses the second one without saying so.**
+
+**As originally reported** — the FY2023 filing's own note 9, SAR thousands, alongside its
+FY2022 comparative:
+
+| | FY2023 | FY2022 |
+|---|---:|---:|
+| Total revenues | 72,336,611 | 67,431,546 |
+| Cost of operations excluding depreciation, amortisation and impairment | (47,653,600) | (42,352,879) |
+| Depreciation, amortisation and impairment | (10,482,577) | (9,990,226) |
+| Cost of the early retirement programme | (862,842) | (365,727) |
+| Finance income | 1,512,581 | 602,463 |
+| Finance cost | (1,270,744) | (696,602) |
+| Net other expenses | (110,549) | (136,220) |
+| Net share in associates and joint ventures | 52,579 | (1,211,924) |
+| Net other gains | 1,273,518 | 189,666 |
+| Zakat and income tax | (1,375,498) | (1,083,175) |
+| **Net profit** | **13,419,479** | **12,386,922** |
+
+**Both years foot to the riyal.** Attributable to the parent 13,295,381 (FY2022: 12,170,537)
+plus non-controlling interests 124,098 (216,385) returns the stated 13,419,479 (12,386,922).
+Gross profit, from the same note, is 37,803,690 (FY2022: 37,393,255). Derived and labelled
+as derived: EBITDA 24,683,011, a margin of 34.12%; EBIT 14,200,434, 19.63%.
+
+**As restated** — the FY2024 filing's note 9 carries a FY2023 comparative on a
+continuing-operations basis, and it is a different set of numbers: revenue 71,777,161,
+cost of operations (49,331,772), depreciation and amortisation (9,284,098), gross profit
+34,740,066, net profit from continuing operations 12,660,433. That column foots to the riyal
+too.
+
+### The bridge between them foots exactly, and it is two separate events
+
+**TAWAL left continuing operations.** The tower business is a named segment of the FY2023
+accounts at 3,343,350 of revenue; it is absent from the FY2024 filing's segment list
+altogether, and the eliminations line moves with it, from (15,644,044) to (12,567,896). The
+FY2025 filing states the reason in a footnote to its own comparative: TAWAL and DIIC were
+consolidated to their disposal date as discontinued operations.
+
+**A reclassification of 292,248.** Note 49 of the FY2024 filing lists it — revenue moved to
+cost of revenues, with a further 482,178 moved out of general and administration into the
+same line — and states that the reclassifications have no effect on previously reported net
+income, retained earnings or net assets. It lands **entirely on one segment**: stc Kuwait
+reads 4,278,282 as filed and 3,986,034 restated, a difference of exactly 292,248.
+
+| | SAR thousands |
+|---|---:|
+| Total revenues, as originally reported (FY2023 filing, note 9) | 72,336,611 |
+| less TAWAL's segment revenue | (3,343,350) |
+| add back the intra-group eliminations that went with it | 3,076,148 |
+| **= "as previously reported" in note 49 of the FY2024 filing** | **72,069,409** |
+| less the note 49 reclassification to cost of revenues | (292,248) |
+| **= FY2023 revenue as restated on a continuing basis** | **71,777,161** |
+
+Every figure in that bridge is disclosed by the company and the arithmetic closes to the
+riyal, which is what makes it a reconciliation rather than a reading.
+
+### What the delivered study actually carries
+
+Every FY2023 line in `stc_study_numbers.json` reconciles to the **restated** column:
+
+| | study FY23 | restated FY2023 | |
+|---|---:|---:|---|
+| revenue | 71,777 | 71,777.161 | ✓ |
+| gross profit | 34,740 | 34,740.066 | ✓ |
+| EBITDA | 22,445 | 22,445.389 | ✓ derived |
+| EBIT | 13,161 | 13,161.291 | ✓ derived |
+| depreciation and amortisation | 9,284 | 9,284.098 | ✓ |
+| net profit attributable, continuing | 12,536 | 12,536.335 | ✓ |
+| net profit attributable | 13,295 | 13,295.381 | ✓ **total, including discontinued** |
+
+**So the source is right — this is the company's own filing, not an aggregator's
+restatement — and the basis is nowhere stated.** The last row is the one that is on a
+different footing from the six above it: revenue through continuing profit exclude TAWAL,
+and attributable profit includes it, which is how the filing itself presents the year under
+IFRS 5 and is therefore not an error to correct. It is a basis break to **declare**, because
+anyone computing a margin down that column crosses it without being told: 13,295 over 71,777
+returns 18.52%, against 17.47% on one consistent basis and 18.38% on the other. A hundred
+and six basis points of net margin sits in a choice the study never records.
+
+### Which basis a rebuild uses, and where the other one still binds
+
+**Forward, the continuing basis is the right one and needs no defence** — TAWAL was sold, and
+a value built on revenue the company no longer earns is a value of something that does not
+exist. The rebuild's base year is therefore the restated column, and what it owes is the
+label.
+
+**Backward, it is the other way round.** [R-FCAL-01] is explicit that each origin sees only
+what was published by that date, **as originally reported**, with restatements noted beside
+rather than substituted — so a walk-forward standing at a 2023 origin sees 72,336,611 and a
+company that owns its towers, and scoring a 2023-origin forecast against 71,777,161 would
+grade it on a perimeter that did not exist when it was made. Both numbers are kept, each
+labelled with the basis it belongs to; neither replaces the other.
+
+The FY2022 comparative above is on the as-filed basis for the same reason, and it is the
+only version of FY2022 the register will hold, since no later filing restates that far back.
+
 ## What is still to extract before the register is complete
 
 The balance sheet and the cash-flow statement, the debt book split by currency and facility
 (SIGCM clause 3), the working-capital lines for the conversion cycle (clause 4), the share
-count footed against par (the [R-FCAL-01] valuation-input block), and the same rows from
-FY2023 and from the two reviewed 2026 interims — all five documents are in `src/` with
-their source URLs in `SOURCES.md`.
+count footed against par (the [R-FCAL-01] valuation-input block), and the same rows from the
+two reviewed 2026 interims — all five documents are in `src/` with their source URLs in
+`SOURCES.md`. The FY2023 income statement is done, on both bases, above; its balance sheet
+sits on the same non-extracting pages as FY2025's and waits on the same OCR pass.
 
 The fixed-asset note is already done: `TERMINAL_EVIDENCE_05-09-2026.md` carries the
 depreciable base, the year's charge and the derived life on three filed years, each footing
