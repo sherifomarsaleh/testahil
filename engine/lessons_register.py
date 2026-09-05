@@ -5969,6 +5969,81 @@ LESSONS = [
       "defect was in what their failure was written up as, not in "
       "how many there were."),
 
+    L("L-344", "ALL", None,
+      "A BUILD READS THE LINE IT EXPECTS AND NOT THE NOTE THE LINE "
+      "POINTS AT, AND EVERY GATE IN THE ROOM IS BLIND TO IT",
+      "Three defects of one shape landed in a single study in a "
+      "single session, and all three were figures sitting in a note "
+      "the build had never opened, inside documents it had already "
+      "fetched and parsed cell by cell. The associates line was "
+      "carried at a quarter of the filed figure because the note "
+      "splitting it was not read; the reviewed half-year was "
+      "downloaded and the forecast built as though it did not exist; "
+      "and a claim ahead of equity — consideration owed to a "
+      "regulator for licences already capitalised — sat on its own "
+      "row inside \"financial liabilities and others\" while the bridge "
+      "read the borrowings lines beside it and stopped. The same "
+      "shape had already produced AMOC's unopened reviewed statements "
+      "and SCEM's audited statements sitting unread on the company's "
+      "own website, so it is three companies rather than one quirk. "
+      "WHAT MAKES IT INVISIBLE is that nothing is wrong with the "
+      "figure that WAS read: it is correctly extracted, correctly "
+      "footed and correctly sourced, so provenance, arithmetic, four- "
+      "field registers and recalculation are all clean. The defect is "
+      "an ABSENCE, and an absence has no cell to check. Two of the "
+      "three raised the value and one lowered it, which is the useful "
+      "part: it is a reading habit and not a lean, and a habit is "
+      "cheaper to fix than a bias. THE PRACTICAL FORM: where a line "
+      "on the face of a statement carries a note reference, the note "
+      "is opened before the line is used, and a bridge is built from "
+      "the NOTES rather than from the face — the face aggregates, and "
+      "what it aggregates is where the claims hide.",
+      "STC, AMOC and SCEM, August-September 2026",
+      "build",
+      "Associates 4,641 carried against a filed 12,909.648; a "
+      "reviewed half with an EBITDA margin 89 basis points above the "
+      "forecast built without it; spectrum-licence liabilities of "
+      "3,443.044 outside borrowings and outside the bridge, worth "
+      "-1.79% of the central.",
+      "It is overturned if a study is found where opening every "
+      "referenced note changed nothing material across a whole build "
+      "— which would say the face of the statements is usually "
+      "sufficient and these were three unlucky names. What would NOT "
+      "overturn it is a gate catching one of these: none of the "
+      "existing gates can, because each defect is a figure that is "
+      "absent rather than wrong.",
+      "adopted"),
+    L("L-345", "ALL", None,
+      "A RULE THAT ENUMERATES ITS SURFACES IS ONLY CHECKED ON THE "
+      "SURFACES SOMEBODY WIRED UP",
+      "The retired skill verdict may reach \"no page, figure, document "
+      "or deck\". Its gate grew one surface at a time — the pages "
+      "first, the figures' caption template next, the Word documents "
+      "a fortnight later — and nobody ever pointed it at the "
+      "WORKBOOK, which is delivered in the same folder, on the same "
+      "day, to the same reader. Five delivered workbooks still "
+      "carried the verdict, three of them the literal word in "
+      "capitals, and TWO WERE BUILT THAT WEEK: those studies were "
+      "swept, passed, and shipped it in the file beside the document. "
+      "The missing surface was not obscure and nobody decided to "
+      "leave it out; it simply was never counted. THE PRACTICAL FORM: "
+      "when a rule names a set of surfaces, read the set back off the "
+      "CHECKER rather than off the rule, and make the difference "
+      "explicit. A gate that reads three of four named surfaces "
+      "reports clean on the fourth for ever, and reports it in "
+      "exactly the words a fully wired gate would use.",
+      "The skill-verdict sweep, 5 September 2026",
+      "build",
+      "Eight verdict hits across five delivered workbooks at their "
+      "latest edition, found by a sweep and by no gate; all five "
+      "fixed rather than ratcheted, so the exemplar's debt did not "
+      "grow.",
+      "It is overturned where a rule's surfaces cannot be enumerated "
+      "at all — then the gate is doing the best available thing and "
+      "the gap is in the rule. What would NOT overturn it is the gate "
+      "being correct on the surfaces it does read: it was, on all "
+      "three, which is why nothing looked wrong.",
+      "adopted"),
 ]
 
 

@@ -19,7 +19,7 @@
   ]
  },
  "phase": "1",
- "current": "PR #371 MERGED (e4eb2690); branch restarted from main. The STC cost side is ANSWERED rather than left open: the seven-line stack, each line put on the base the filings name, moves the answer -0.30% \u2014 the offsets run both ways and the blend hides almost nothing, which is worth establishing because the same test elsewhere in this book found 17%. Then the real finding, the third defect of one shape: note 14.1 carries SR 3,443.044mn of spectrum-licence liabilities OUTSIDE borrowings and the bridge had never deducted them. Established not double-counted against capex \u2014 total FY2025 additions 13,815.240 against 11,795 of capex, with note 12(2) naming 2,122mn of NON-CASH additions, so the model runs on cash capex and never saw the licences. Central 37.8396 -> 37.1640, gap -13.7% -> -15.27%. Twelve levers, ten rules, 47.11 -> 37.1640, -21.11%.",
+ "current": "PR #371 merged; branch restarted from main; PR #372 open with five commits, CI running. STC's cost side is ANSWERED (-0.30%, offsets both ways, the blend hides almost nothing) and its spectrum-licence liability of SR 3,443.044mn \u2014 a claim ahead of equity disclosed OUTSIDE borrowings \u2014 is now in the bridge: central 37.1640, gap -15.27%, twelve levers over ten rules. STC also commits a 176-row four-field register and comes off the source-integrity unreadable list. SEPARATELY, the retired skill verdict was still in SEVEN delivered artefacts: two documents (SWDY a deletion, ADNOCDRILL a rewrite, because its whole 'the bands are too wide' reading was an inference FROM the retired score) and FIVE WORKBOOKS, a surface no gate had ever opened, two of them built this week. All seven fixed rather than ratcheted \u2014 the exemplar's debt did not grow \u2014 and the gate now reads workbooks, negative-controlled on 16 defects and 6 clean cases including an emptied population.",
  "done": [
   "All seven markets carry a sourced house macro path; 53 names unblocked. Two identities were running where they do not hold (a pegged currency drifting, the dollar depreciating against itself) \u2014 both found by PRINTING a path, not by a gate.",
   "The explicit window's inflation assumption is RULED OUT as the general scale error: perfect foresight of the path removes only 11% of the pooled driver error.",
@@ -242,11 +242,11 @@
   "The gap gate went red the instant the answer moved and forced the review to be re-asked at the size the disagreement actually is \u2014 the AUDITED GAP marker doing its job."
  ],
  "next": [
-  "STC: no bibliography, no four-field inputs register (it reads UNREADABLE on source integrity for exactly that), no QC gate, no driver test, no recalculation harness. That is what stands between it and being a delivered study.",
-  "Re-issue the three documents publishing the retired skill verdict (ADNOCLS the exemplar last).",
+  "MERGE PR #372 on green [R-MERGE-01], then restart the branch from main.",
+  "STC still lacks a bibliography, a QC gate, a driver test and a recalculation harness. That is what stands between it and being a delivered study; the input register is now done.",
+  "Two documents remain on band_outstanding: EIPICO/PHAR and SCEM. Both are queued for re-issue for bigger reasons (PHAR's six-lever rebuild; SCEM's SIGCM breach), so both are genuinely 'clears at its own next re-issue' rather than deferred. ADNOCLS's DOCUMENT stays on it as the exemplar, deliberately; its workbook is now clean.",
   "GBCO is the last unreadable study on the valuation-gap ratchet; rebuild on the three levers needing no filing. Escalation default fires 2026-09-19.",
-  "AMOC escalation default 12-Sep; lens-registry escalation default 18-Sep.",
-  "The reading habit found three times on STC \u2014 reading the line expected rather than the note the line points at \u2014 is a candidate lesson at ALL scope once a second name shows it."
+  "AMOC escalation default 12-Sep; lens-registry escalation default 18-Sep."
  ],
  "stop_and_ask": [
   "TMGH: two earnings releases could not be re-fetched from the company's own channels (FY2020 release: 502 via proxy on every retry; 1H2021 release: 404). They are not inputs to the delivered numbers \u2014 the audited statements for both periods were obtained and verified \u2014 so this blocks nothing; recorded for the morning list."
