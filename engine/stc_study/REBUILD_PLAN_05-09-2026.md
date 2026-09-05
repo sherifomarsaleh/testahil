@@ -54,6 +54,39 @@ intermediate above is produced through the module's own sensitivity path, on a b
 as a sensitivity and never as this study's beta, and it writes `beta_sensitivity.json` and
 nothing else. The ledger reads that artefact; no figure in it was copied from a terminal.
 
+## After the audit
+
+| lever | rule | before | after | move |
+|---|---|---:|---:|---:|
+| 4 | R-MACRO-01 | 44.0502 | **41.7388** | −5.25% |
+
+**Worth more than the plan expected, and the reason is the lens that was about to be
+retired anyway.** The plan judged this "likely to change what a reader can see rather than
+the number", which is right about a pegged market's cash-flow lens — the terminal falls from
+a typed 2.5% to a derived 2.0% and the discounted-cash-flow read moves 45.24 to 42.23. What
+the plan did not anticipate is that the study carried a SECOND terminal growth rate, 3.0%,
+inside its dividend lens: two answers to one question about one economy, in one model, on
+one company. A discounted-dividend terminal is the most convex thing in this model to its
+own growth rate, so that read falls 40.47 to 35.43 — and it carried a quarter of the blend.
+
+**Neither number was defended anywhere.** Both were typed, and a typed nominal rate is
+unfalsifiable: nobody reading the page can tell whether 2.5% meant terminal inflation plus
+half a point or something else. Both now sit on the house Saudi path as (real, path id) at
+the rule's own stated default of zero real growth. Reverse-engineering the real rate that
+reproduces the typed 2.5% would have kept the number and invented a reason for it.
+
+**The [R-MACRO-01] RECORD is not yet written and STC stays on that ratchet, deliberately.**
+The rule binds every growth rate in the model, and the four segment growth arrays — `g_cbu`,
+`g_ebu`, `g_wc`, `g_sub` — are typed nominals with no source, date or layer, whose implied
+real growth wanders from 0.68% to 0.00% across five years with nothing saying why. They
+cannot be expressed as (real, path) without choosing a real rate, and choosing one to clear
+a checker is the offence this protocol names in three separate places. **The honest fix is
+the ground-up rebuild on the eleven disclosed segments** the FY2025 filing carries with two
+years of revenue AND gross profit each, which [R-SIGCM-02] requires anyway and which the
+section below already names. Until then a partial macro record would be worse than none: the
+ratchet allows a listed study to carry no record and breaks on one that has appeared and is
+wrong.
+
 ## The levers, in order
 
 | # | rule | what |
@@ -62,7 +95,7 @@ nothing else. The ledger reads that artefact; no figure in it was copied from a 
 | 2 ✅ | R-COC-01 | the cost-of-capital schedule through engine/cost_of_capital.py on the house Saudi path, FLAT because the market is pegged and stated as such rather than left as an absence. rf* = 5.50% less Saudi Arabia's own default spread (rating 0.51%, market 0.98%). RAISES the value. |
 | 3 ✅ | R-BETA-04 | the beta re-derived live through beta_regression.own_stock_beta('STC','SA','TADAWUL') and attested. LOWERS the value. Do not carry either recorded figure forward — the committed 0.7107 and tonight's 0.7078 differ only because the library lengthened. |
 | AUDIT ✅ | R-REBUILD-01 | STOP AND LOOK. Levers 2 and 3 pull opposite ways and the net is not predicted here. |
-| 4 | R-MACRO-01 | terminal growth stored as (real, inflation-path id) rather than the typed nominal 2.5%. Against a Saudi terminal inflation of 2.00% that is +0.5% real; on a pegged market this is likely to change what a reader can see rather than the number ([L-319]). |
+| 4 ✅ | R-MACRO-01 | terminal growth stored as (real, inflation-path id) rather than the typed nominal 2.5%. Against a Saudi terminal inflation of 2.00% that is +0.5% real; on a pegged market this is likely to change what a reader can see rather than the number ([L-319]). |
 | 5 | R-TERM-01 | the terminal through engine/terminal_value.py on the DERIVED life in TERMINAL_EVIDENCE_05-09-2026.md — 20.86 years, base 15.23 years old, 73% of the depreciable base written off, on three filed years that each foot to the riyal. THE BASE IS OLD, at 1.46 times half its own implied life, so maintenance at current cost is a large multiple of the book charge. THE SIGN IS NOT PREDICTED [R-TERM-01 CLAUSE TWO CORRECTED]. |
 | 5b | R-BRIDGE-01 | **ADDED 5 September 2026, and the timing is recorded because it is the whole question.** The bridge stands on figures the company has since superseded: the study deducts net debt of SAR 7,063mn on a Q1-2026 basis and a minority of SAR 2,335mn at 31 March 2026, while a REVIEWED 30 June 2026 balance sheet was published carrying borrowings of SAR 23,536.554mn, cash of SAR 18,940.773mn and a minority of SAR 2,726.349mn. It also divides by 4,989.8mn shares, which is the 31 December 2025 count; note 17 of that same interim foots issued capital of SAR 50,000,000 thousand at SAR 10 par to 5,000,000 thousand shares and states 4,993.024mn outstanding. THIS WAS FOUND WHILE SOURCING THE DEBT BOOK FOR LEVER 2 AND BEFORE THE MODEL PRODUCED ANY REBUILT ANSWER — the plan is amended at a point where nobody could yet know which way it moves the value, which is the only condition under which adding a lever is not reshaping the route to suit where it lands. |
 | 6 | R-LENS-03 | the four-lens blend retired. LENS_REGISTRY['telecom operator'] is a cash-flow primary cross-checked on own-history EV/EBITDA, a relative multiple and book — so the dividend-discount and normalised-earnings reads come OUT of the answer entirely. STC is the ONE of the seven unreadable studies whose class the registry holds. |

@@ -23,10 +23,19 @@
    "why": "The delivered study regressed 40 DAILY sessions over nine weeks against TASI closes and adopted 0.48. The standing rule is explicit that a daily or short-window regression is NOT one of the three tiers and may stand only as a flagged interim. The conforming construction is an own-stock WEEKLY regression against the published index of the exchange the stock is listed on, resolved through beta_regression.own_stock_beta, and it is nearly half as much again.",
    "evidence": "beta 0.7078 against 0.4753, from 252 weekly observations over 4.91 years to 2026-08-18 against raw_indices/SA/TASI.csv, R-squared 0.302, standard error 0.1029. Cost of capital 6.932% to 8.133% on the swap basis. The answer falls 51.0714 to 44.0502, -13.75%.",
    "move": -0.1374788323373708
+  },
+  {
+   "name": "terminal growth stored as a real rate on the house Saudi path",
+   "rule": "R-MACRO-01",
+   "before": 44.050181325121294,
+   "after": 41.73879909479903,
+   "why": "The delivered study typed 2.5%% as its cash-flow terminal growth and 3.0%% as its dividend terminal growth \u2014 two answers to one question about one economy, in one model, on one company. A typed nominal rate is also unfalsifiable: nobody reading the page can tell whether 2.5%% meant terminal inflation plus half a point or something else. Both now sit on the house path as (real, path id) and recompute to their nominal, at the rule's own STATED DEFAULT of zero real growth \u2014 a mature domestic telecom growing with the economy in perpetuity and no further. Any other figure would have to be sourced and nothing in the filings supplies one, and reverse-engineering the real rate that reproduces the typed 2.5%% would be keeping the number and inventing a reason for it.",
+   "evidence": "Saudi terminal inflation of 2.00% plus a stated real growth of 0.00% gives a terminal growth of 2.00%, against a typed 2.5% in the cash-flow lens and a typed 3.0% in the dividend lens. The cash-flow read falls 45.2369 to 42.2334 and the dividend read 40.4673 to 35.4266 \u2014 the dividend lens moves furthest because a discounted-dividend terminal is the most convex thing in the model to its own growth rate, which is why carrying a second one was worth more than it looked. The blend falls 44.0502 to 41.7388, -5.25%.",
+   "move": -0.05247157130325164
   }
  ],
- "value": 44.050181325121294,
- "cumulative_move": -0.0649672887568663,
+ "value": 41.73879909479903,
+ "cumulative_move": -0.11402992433573311,
  "rules": {
   "R-COC-01": {
    "levers": [
@@ -43,9 +52,17 @@
    "first_before": 51.071420594226275,
    "last_after": 44.050181325121294,
    "move": -0.1374788323373708
+  },
+  "R-MACRO-01": {
+   "levers": [
+    "terminal growth stored as a real rate on the house Saudi path"
+   ],
+   "first_before": 44.050181325121294,
+   "last_after": 41.73879909479903,
+   "move": -0.05247157130325164
   }
  },
- "distinct_rules": 2,
+ "distinct_rules": 3,
  "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked.",
  "audit_taken": {
   "at": "2026-09-05, after lever 3, as declared",
@@ -53,12 +70,14 @@
   "up": "+8.41%",
   "down": "-13.75%",
   "net": "-6.50%",
+  "read_from": "each landed lever's answer comes from the commit that landed it, so no lever can absorb a later one's move",
   "latest_price": 43.86,
   "latest_price_date": "2026-09-03",
-  "gap_now": "+0.43%",
+  "gap_at_the_audit": "+0.43%",
+  "gap_now_after_later_levers": "-4.84%",
   "gap_at_delivery": "+8.10%",
   "what_the_audit_shows": "THE TWO LEVERS DISAGREED AND THE ROUTE IS WHY THAT MATTERS. Taken in the order fixed in writing before either was touched, the cost-of-capital correction moved the answer AWAY from the market \u2014 from 8.1%% above the price it was struck at to 16.4%% above the latest one \u2014 and the beta correction brought it back. Neither was chosen for where it landed and neither could have been: the first raises every value it touches and the second lowers every value it touches, and which one dominates is arithmetic about this company's own capital structure. Read as two corrections the rebuild is a contest; read as one net figure of -6.5%% it would look like a small tidy-up, and the 8.4%% and the 13.8%% inside it would be invisible. THE ANSWER NOW SITS ESSENTIALLY ON THE PRICE, at +0.4%%, and that is reported as an observation and NOT as corroboration \u2014 four levers remain, the lens retirement among them, and a rebuild that stopped here because the number looked comfortable would be fitting to the price by choosing when to stop.",
-  "levers_remaining": [
+  "levers_remaining_at_the_audit": [
    "R-MACRO-01 terminal growth as a real rate on the house path",
    "R-TERM-01 the terminal on the derived asset life",
    "R-BRIDGE-01 the bridge on the latest disclosed sheet",

@@ -205,6 +205,14 @@ import coc_run as COCRUN
 # worth rather than assert a direction for it.
 _SENS_BETA = float(sys.argv[sys.argv.index('--beta') + 1]) if '--beta' in sys.argv else None
 
+# WHICH LEVERS OF THE REBUILD PLAN ARE IN THIS FILE. Declared in one place so an artefact
+# can state the state it was struck in, and so a measurement taken at one point in the
+# rebuild cannot be silently overwritten by a later one: the sensitivity artefact is NAMED
+# for its lever set, and a run with more levers in writes a different file rather than
+# replacing a number the ledger is chaining through. [R-ENF-06]
+LEVERS_APPLIED = ['mechanical', 'R-COC-01', 'R-BETA-04', 'R-MACRO-01']
+SENS_TAG = 'after_coc'      # the lever set the retired-beta measurement belongs to
+
 SCHED = COCRUN.build(beta_value=_SENS_BETA, erp_basis='market')  # swap basis, CENTRAL
 SCHED_RATING = COCRUN.build(beta_value=_SENS_BETA, erp_basis='rating')
 BETA = _SENS_BETA if _SENS_BETA is not None else COCRUN.BETA.beta
@@ -218,7 +226,16 @@ DF = list(SCHED.discount_factors)                 # one date, one price of time
 DF_TERMINAL = SCHED.terminal_discount_factor
 WACC_TERMINAL = SCHED.wacc_terminal
 
-TG = 0.025                      # terminal growth, nominal SAR
+# Terminal growth is STORED AS A REAL RATE AND RECOMPUTES TO ITS NOMINAL on the house
+# Saudi path [R-MACRO-01]. The delivered study typed 2.5% nominal, which is unfalsifiable:
+# nobody can tell from the page whether it meant terminal inflation plus half a point or
+# something else. The real growth is the rule's own STATED DEFAULT OF ZERO — a mature
+# domestic telecom growing with the economy in perpetuity and no further — because any
+# other figure would have to be sourced and nothing in the filings supplies one, and
+# reverse-engineering the real rate that reproduces the typed 2.5% would be keeping the
+# number and inventing a reason for it.
+TG_REAL = 0.0
+TG = COCRUN.MACRO.terminal_growth(TG_REAL)      # = terminal inflation + the stated real
 
 # ===== DCF (FCFF, full build) =================================================
 rows = []
@@ -266,7 +283,12 @@ def dcf_ps_at(wacc, g, ebitda_shift=0.0, capex_shift=0.0):
 # ===== DDM (cash-flow cross-check: the locked 0.55/q policy) ==================
 KE = KE_RATING
 pv_div = sum(payout_dps[i] / (1 + KE) ** (i + 1) for i in range(5))
-tg_div = 0.030
+# The dividend lens carried its OWN terminal growth of 3.0% against the cash-flow lens's
+# 2.5%, in the same model, on the same company, in the same economy — two answers to one
+# question, which is the incoherence [R-MACRO-01] exists to close. It sits on the same
+# path at the same stated real rate: a dividend cannot grow faster than the business that
+# pays it, in perpetuity.
+tg_div = COCRUN.MACRO.terminal_growth(TG_REAL)
 tv_div = payout_dps[-1] * (1 + tg_div) / (KE - tg_div)
 pv_tv_div = tv_div / (1 + KE) ** 5
 ddm_ps = pv_div + pv_tv_div
@@ -348,6 +370,7 @@ out = dict(
     mc=dict(q20=q20, q60=q60, touch=touch, prob_read=prob_read, zones=zone_probs, fan=fan),
     tech=dict(sma=sma, rsi=rsi, macd=macd, hi52=hi52, lo52=lo52, rv252=rv252,
               chg20=chg20, chg60=chg60),
+    levers_applied=LEVERS_APPLIED,
     coc_record=COCRUN.record(SCHED),
     hist=hist, seg_hist=seg_hist,
     drivers=dict(g_cbu=g_cbu, g_ebu=g_ebu, g_wc=g_wc, g_sub=g_sub, ebitda_m=ebitda_m,
@@ -400,8 +423,8 @@ else:
     # It writes ONE artefact and it is not the study's numbers: the answer this study
     # would reach on a beta it does not adopt, so the rebuild ledger can read the lever's
     # own worth instead of a figure somebody copied off a terminal. [R-ENF-06]
-    with open(os.path.join(HERE, 'beta_sensitivity.json'), 'w') as f:
-        json.dump(dict(beta=_SENS_BETA,
+    with open(os.path.join(HERE, 'beta_sensitivity_%s.json' % SENS_TAG), 'w') as f:
+        json.dump(dict(beta=_SENS_BETA, levers_applied=LEVERS_APPLIED,
                        what=('the answer on a beta this study does NOT adopt, produced '
                              'only to measure what the beta correction was worth on its '
                              'own. The 40-session daily regression the delivered study '
@@ -413,7 +436,8 @@ else:
                                    normalized=norm),
                        central=dict(bear=central_bear, base=central, bull=central_bull),
                        weights=weights), f, indent=1, default=float)
-    print('SENSITIVITY RUN on beta %.4f — beta_sensitivity.json only' % _SENS_BETA)
+    print('SENSITIVITY RUN on beta %.4f — beta_sensitivity_%s.json only'
+          % (_SENS_BETA, SENS_TAG))
 print('spot', spot, spot_date, '| anchor_vol', round(anchor_vol, 4), '| factor_q', round(factor_drift_q * 100, 2), '%')
 print('Step0 zero-drift non-overlap:', {k: round(v_, 4) if isinstance(v_, float) else v_ for k, v_ in summ.items()})
 print('boot:', boot)

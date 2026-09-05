@@ -24,7 +24,10 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 
 import cost_of_capital as COC
+import macro_path as MP
 from beta_regression import own_stock_beta
+
+MACRO = MP.load('SA')
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 BUILD_DATE = '2026-09-05'

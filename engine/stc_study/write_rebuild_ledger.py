@@ -18,20 +18,39 @@ import rebuild_ledger as RL
 
 PUBLISHED_REV = '3c170b9c23372e0f0170413485439415cffc634b'   # main, before this rebuild
 
+# EACH LANDED LEVER'S ANSWER IS READ FROM THE COMMIT THAT LANDED IT, not from the study's
+# current numbers file. THE FIRST DRAFT OF THIS SCRIPT DID THE LATTER AND IT WAS WRONG IN
+# THE WAY THAT DOES NOT ANNOUNCE ITSELF: every lever pointed at the same file, so the last
+# lever to land silently became every earlier lever's answer too. The beta lever read
+# -18.27% and the macro lever read +0.00%, which is arithmetically consistent, walks the
+# gate, and attributes one lever's work to another. A ledger exists to decompose a rebuild
+# and a decomposition that collapses is worse than none, because it reads as a measurement.
+# Git is the only record here that cannot be overwritten by the next run.
+LANDED = {
+    'R-COC-01':   None,                                          # via the sensitivity artefact
+    'R-BETA-04':  'fe76400fb6155c044e9e76ec32088303b5a59a6b',     # levers 1-3
+    'R-MACRO-01': None,                                          # the working tree, latest
+}
 
-def published():
-    """The delivered edition's own numbers, read out of git rather than remembered."""
+
+def at(rev):
+    """A study numbers file as it stood at one commit — read out of git, never remembered."""
     raw = subprocess.run(
-        ['git', 'show', '%s:engine/stc_study/stc_study_numbers.json' % PUBLISHED_REV],
+        ['git', 'show', '%s:engine/stc_study/stc_study_numbers.json' % rev],
         capture_output=True, text=True, cwd=os.path.join(HERE, '..', '..'))
     if raw.returncode != 0:
-        raise SystemExit('cannot read the published edition: %s' % raw.stderr.strip())
+        raise SystemExit('cannot read %s: %s' % (rev, raw.stderr.strip()))
     return json.loads(raw.stdout)
 
 
-PUB = published()
+PUB = at(PUBLISHED_REV)
+AFTER_BETA = at(LANDED['R-BETA-04'])
 NOW = json.load(open(os.path.join(HERE, 'stc_study_numbers.json')))
-SENS = json.load(open(os.path.join(HERE, 'beta_sensitivity.json')))
+# The lever-2 intermediate, struck when the cost-of-capital schedule was in and the beta
+# was not. It is named for that lever set, so a later sensitivity run cannot overwrite the
+# number this ledger chains through — which is the stale-artefact defect [R-ENF-06] names,
+# and it would be invisible here because the file would still parse and still look computed.
+SENS = json.load(open(os.path.join(HERE, 'beta_sensitivity_after_coc.json')))
 
 led = RL.Ledger(
     ticker='STC',
@@ -89,7 +108,7 @@ led.apply(
 led.apply(
     name='the beta re-derived against the published index of its own exchange',
     rule='R-BETA-04',
-    after=NOW['lenses']['central']['base'],
+    after=AFTER_BETA['lenses']['central']['base'],
     why=(
         'The delivered study regressed 40 DAILY sessions over nine weeks against TASI '
         'closes and adopted 0.48. The standing rule is explicit that a daily or '
@@ -108,9 +127,40 @@ led.apply(
            NOW['dcf']['wacc_build']['beta_reg']['index_file'],
            NOW['dcf']['wacc_build']['beta_reg']['r2'],
            NOW['dcf']['wacc_build']['beta_reg']['se'],
-           100 * SENS['wacc_market'], 100 * NOW['coc_record']['wacc_exp'],
-           SENS['central']['base'], NOW['lenses']['central']['base'],
-           100 * (NOW['lenses']['central']['base'] / SENS['central']['base'] - 1))),
+           100 * SENS['wacc_market'], 100 * AFTER_BETA['coc_record']['wacc_exp'],
+           SENS['central']['base'], AFTER_BETA['lenses']['central']['base'],
+           100 * (AFTER_BETA['lenses']['central']['base'] / SENS['central']['base'] - 1))),
+)
+
+led.apply(
+    name='terminal growth stored as a real rate on the house Saudi path',
+    rule='R-MACRO-01',
+    after=NOW['lenses']['central']['base'],
+    why=(
+        'The delivered study typed 2.5%% as its cash-flow terminal growth and 3.0%% as its '
+        'dividend terminal growth — two answers to one question about one economy, in one '
+        "model, on one company. A typed nominal rate is also unfalsifiable: nobody reading "
+        'the page can tell whether 2.5%% meant terminal inflation plus half a point or '
+        'something else. Both now sit on the house path as (real, path id) and recompute '
+        "to their nominal, at the rule's own STATED DEFAULT of zero real growth — a mature "
+        'domestic telecom growing with the economy in perpetuity and no further. Any other '
+        'figure would have to be sourced and nothing in the filings supplies one, and '
+        'reverse-engineering the real rate that reproduces the typed 2.5%% would be keeping '
+        'the number and inventing a reason for it.'),
+    evidence=(
+        'Saudi terminal inflation of %.2f%% plus a stated real growth of %.2f%% gives a '
+        'terminal growth of %.2f%%, against a typed 2.5%% in the cash-flow lens and a typed '
+        '3.0%% in the dividend lens. The cash-flow read falls %.4f to %.4f and the dividend '
+        'read %.4f to %.4f — the dividend lens moves furthest because a discounted-dividend '
+        "terminal is the most convex thing in the model to its own growth rate, which is "
+        'why carrying a second one was worth more than it looked. The blend falls %.4f to '
+        '%.4f, %+.2f%%.'
+        % (100 * 0.02, 0.0, 100 * NOW['dcf']['tg'],
+           AFTER_BETA['lenses']['dcf']['base'], NOW['lenses']['dcf']['base'],
+           AFTER_BETA['lenses']['ddm']['base'], NOW['lenses']['ddm']['base'],
+           AFTER_BETA['lenses']['central']['base'], NOW['lenses']['central']['base'],
+           100 * (NOW['lenses']['central']['base']
+                  / AFTER_BETA['lenses']['central']['base'] - 1))),
 )
 
 rec = led.record()
@@ -119,10 +169,13 @@ rec['audit_taken'] = {
     'levers_so_far': 2,
     'up': '%+.2f%%' % (100 * led.levers[0].move),
     'down': '%+.2f%%' % (100 * led.levers[1].move),
-    'net': '%+.2f%%' % (100 * led.cumulative),
+    'net': '%+.2f%%' % (100 * (led.levers[1].after / led.start_value - 1)),
+    'read_from': ('each landed lever\'s answer comes from the commit that landed it, so '
+                  'no lever can absorb a later one\'s move'),
     'latest_price': 43.86,
     'latest_price_date': '2026-09-03',
-    'gap_now': '%+.2f%%' % (100 * (led.value / 43.86 - 1)),
+    'gap_at_the_audit': '%+.2f%%' % (100 * (led.levers[1].after / 43.86 - 1)),
+    'gap_now_after_later_levers': '%+.2f%%' % (100 * (led.value / 43.86 - 1)),
     'gap_at_delivery': '%+.2f%%' % (100 * (led.start_value / 43.58 - 1)),
     'what_the_audit_shows': (
         'THE TWO LEVERS DISAGREED AND THE ROUTE IS WHY THAT MATTERS. Taken in the order '
@@ -138,7 +191,8 @@ rec['audit_taken'] = {
         'reported as an observation and NOT as corroboration — four levers remain, the '
         'lens retirement among them, and a rebuild that stopped here because the number '
         'looked comfortable would be fitting to the price by choosing when to stop.'),
-    'levers_remaining': ['R-MACRO-01 terminal growth as a real rate on the house path',
+    'levers_remaining_at_the_audit': [
+                         'R-MACRO-01 terminal growth as a real rate on the house path',
                          'R-TERM-01 the terminal on the derived asset life',
                          'R-BRIDGE-01 the bridge on the latest disclosed sheet',
                          'R-LENS-03 the four-lens blend retired',

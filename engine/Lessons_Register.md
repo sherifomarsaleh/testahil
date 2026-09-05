@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**262 lessons**, of which 230 bind on every study, 25 on a class of company, and 7 on a single name.
+**263 lessons**, of which 231 bind on every study, 25 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 181 found while building.
+By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 182 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -67,9 +67,9 @@ They test different machinery on different evidence, and the first edition of th
 | | what it tests | names | resolved forecasts |
 |---|---|---|---|
 | **Fundamental** | the forecasting method — project each driver from a past origin, score revenue, cost and profit against what happened | 5 (AMOC, ARCC, EGCH, PHDC, TMGH) | 10 origins x 5 horizons |
-| **Price engine** | the probability cone — strike it at a past origin and score band coverage and a proper score against a naive rule | 19 | 317 |
+| **Price engine** | the probability cone — strike it at a past origin and score band coverage and a proper score against a naive rule | 20 | 377 |
 
-**The price engine is well tested; the fundamental method is not.** 19 names carry price-engine evidence, including DU (18 forecasts) and GBCO (17). The fundamental method has been through a full training run on AMOC and ARCC and EGCH and PHDC and TMGH alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 317 forecasts across 19 names.
+**The price engine is well tested; the fundamental method is not.** 20 names carry price-engine evidence, including DU (18 forecasts) and GBCO (17). The fundamental method has been through a full training run on AMOC and ARCC and EGCH and PHDC and TMGH alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 377 forecasts across 20 names.
 
 **Not yet acted on (2):** L-104 (Deliveries must be constrained by what has actually been sold), L-203 (Palm Hills' 2025 balance sheet and cash-flow statement disagree by 47% of revenue). These are recorded as open rather than quietly carried as done.
 
@@ -2378,6 +2378,16 @@ The new-study gauntlet decides which gates it must hold against an empty study d
 > **What it cost, or how we know.** The gauntlet reported 28 of 28 gates refusing a new study while a 29th, running over every study directory through an imported census, was named in none of its three lists. With the study-path comments stripped out of that gate's source, the widened import route still detects it; the literal scan does not.
 
 > **What would overturn it.** It is overturned by a detector that resolves the population at RUNTIME rather than by reading source — which would be strictly better and needs every gate to declare its population in a form a caller can query. One level of import is the cheap approximation, and a gate that delegates two levels down is still invisible.
+
+### L-342 · A DECOMPOSITION WHOSE STEPS ALL READ THE SAME MUTABLE FILE COLLAPSES SILENTLY, AND THE COLLAPSED VERSION STILL WALKS
+
+A rebuild ledger records what each correction was worth by storing the answer either side of it. The first draft of one read every lever's answer out of the study's CURRENT numbers file, which is the only place the answer lives — so the moment a fourth lever landed, the third lever's 'after' silently became the fourth's: the third read -18.27% where it was worth -13.75%, and the fourth read +0.00% where it was worth -5.25%. NOTHING ABOUT THAT IS DETECTABLE FROM THE LEDGER. The chain still starts where it started and ends where it ends, every link still joins, the cumulative figure is still exactly right, and the gate that walks it passes. One lever had simply been credited with another's work. THE FIX IS NOT CARE, IT IS AN IMMUTABLE SOURCE — each landed lever's answer now comes from the COMMIT that landed it, because version control is the only record in the room that the next run cannot overwrite. The same defect had been guarded against an hour earlier on a different artefact, by naming that file for its lever set so a later run writes a different file; the guard was right, and it was applied to the file somebody happened to be thinking about while the main record went on being read the wrong way.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the STC rebuild ledger, 5 September 2026
+
+> **What it cost, or how we know.** Levers read -18.27% and +0.00% against their true -13.75% and -5.25%; the cumulative -11.40% and both endpoints were unchanged either way, and the ledger gate passed both versions.
+
+> **What would overturn it.** It is overturned where a process genuinely writes an immutable artefact per step — a per-state file named for its own step, which is the same remedy one level earlier and needs no version control at all. What would NOT overturn it is a checker on the ledger: a collapsed decomposition is internally consistent, so no amount of checking the record against itself can see it.
 
 
 ---
