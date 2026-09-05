@@ -19,7 +19,7 @@
   ]
  },
  "phase": "1",
- "current": "STC rebuilt: ten levers, nine rules, 47.1108 -> 35.5319, -18.99% against the latest known close. Five ratchets cleared. The whole income statement to EBITDA is now committed line by line (cost_stack.py) and normalising it VALIDATES the rebuilt forecast margin: the model opens at 31.09% against a normalised FY2025 of 30.97%. PR #370 open and waiting on a CI run that survives to completion.",
+ "current": "PR #370 MERGED (af036f12). STC: eleven levers, ten rules, 47.1108 -> 37.8396, -19.68%, and -13.73% against the latest known close. The last lever is the largest finding of the night \u2014 the reviewed six months to 30 June 2026 had been read and not used, and the forecast sat 89bp below a margin the company had already reported for half the year. It is in PR #371, CI running.",
  "done": [
   "All seven markets carry a sourced house macro path; 53 names unblocked. Two identities were running where they do not hold (a pegged currency drifting, the dollar depreciating against itself) \u2014 both found by PRINTING a path, not by a gate.",
   "The explicit window's inflation assumption is RULED OUT as the general scale error: perfect foresight of the path removes only 11% of the pooled driver error.",
@@ -236,12 +236,16 @@
   "STC Step 2A sweep through the shared register: 4 rings, 19 findings, 4 real negative searches, a 5-row driver gate, zero errors. STC off the sweep ratchet (9 -> 8).",
   "Two findings the build had not consumed: government charges are 7.0% of revenue and move with a rule not with inflation; the first Saudi spectrum expiry is inside the forecast window with no disclosed renewal cost.",
   "STC: the full path from revenue to EBITDA committed \u2014 notes 35, 36 and 37, fourteen lines, three filed years. Gross profit less both expense notes IS the stated EBITDA in every year to the riyal.",
-  "The credit-loss charge swings 448,141 / 1,257,976 / 301,871 with no footnote, so it is normalised to its own mean rather than called non-recurring. Normalised EBITDA margin RISES steadily 29.95 / 30.36 / 30.97 where the reported one rises then dips \u2014 and the rebuilt model opens at 31.09%, twelve basis points above the normalised base. That is a validation of the rebuild, and the previous cost-side finding ran the other way."
+  "The credit-loss charge swings 448,141 / 1,257,976 / 301,871 with no footnote, so it is normalised to its own mean rather than called non-recurring. Normalised EBITDA margin RISES steadily 29.95 / 30.36 / 30.97 where the reported one rises then dips \u2014 and the rebuilt model opens at 31.09%, twelve basis points above the normalised base. That is a validation of the rebuild, and the previous cost-side finding ran the other way.",
+  "PR #370 merged on green: the whole STC rebuild is on main.",
+  "STC first forecast year anchored on the reviewed H1-2026 with every seasonality factor measured from the prior year own half against its own full year. +6.49%. The strongest evidence in the review because it is a disclosed actual rather than a forecast.",
+  "The gap gate went red the instant the answer moved and forced the review to be re-asked at the size the disagreement actually is \u2014 the AUDITED GAP marker doing its job."
  ],
  "next": [
-  "MERGE PR #370 once a CI run completes [R-MERGE-01]. Stop pushing so one can.",
-  "STC cost side: fourteen disclosed lines stand behind one blended share of revenue. Wiring it needs a SOURCED escalator per driver class and two lines (network access charges, the residual) have no disclosed physical driver \u2014 so it is correctly queued rather than attempted. Government charges DO have one: commercial service provisioning fees run about 9% of the KSA segment revenue, which is a rule rather than an inflation rate.",
-  "STC: the first Saudi spectrum expiry is 2029, INSIDE the explicit window, with no disclosed renewal cost. Named as a gap and carried inside the measured capex ratio.",
+  "MERGE PR #371 on green [R-MERGE-01], then restart the branch from main.",
+  "STC cost side: fourteen disclosed lines behind one blended share of revenue. Needs a SOURCED escalator per driver class; two lines have no disclosed physical driver. Government charges DO: commercial service provisioning fees run ~9% of the KSA segment.",
+  "STC: the first Saudi spectrum expiry is 2029, INSIDE the explicit window, no disclosed renewal cost. Named as a gap.",
+  "STC: the terminal charges 1.352x depreciation and the explicit window 1.161x. The industry alternative (telecom equipment falling in real cost per unit of capacity) would make the terminal too high; no disclosed replacement-cost series separates them.",
   "STC still lacks a bibliography, a four-field inputs register, a QC gate, a driver test and a recalculation harness.",
   "Re-issue the three documents publishing the retired skill verdict (ADNOCLS last).",
   "GBCO is the last unreadable study on the valuation-gap ratchet."
