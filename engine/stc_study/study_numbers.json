@@ -11,6 +11,151 @@
  "two_clocks": "The valuation is struck against the latest known close, the Monte Carlo cone against the last session in the persistent price library. They are different dates because a cone must start where its own price series ends, and the study says so rather than publishing one number for both.",
  "shares": 4993.024,
  "mktcap": 218994.03264000002,
+ "standard_version": "2026.09.01",
+ "ground_up": {
+  "ticker": "STC",
+  "lines": 13,
+  "share_by_level": {
+   "unit": 0,
+   "derived": 0.6568991826190822,
+   "segment": 0.34310081738091797,
+   "topdown": 0
+  },
+  "unit_share": 0,
+  "standard_version": "2026.09.01"
+ },
+ "driver_lines": [
+  {
+   "name": "stc (the Saudi operating business)",
+   "level": "derived",
+   "share_of_revenue": 0.6568991826190822,
+   "unit": "mobile and fixed subscribers",
+   "unit_source": "the quarterly earnings presentations\u2019 own subscriber charts, whose footnote states the figures are not audited",
+   "price_basis": "revenue per subscriber, BACK-SOLVED against the audited segment revenue in note 9 rather than disclosed",
+   "cost_basis": "not built per unit \u2014 see the gap note",
+   "gap_note": "The unit is real and disclosed; the PRICE is not. Revenue per subscriber is derived by dividing audited segment revenue by a subscriber count the company publishes in a presentation and does not audit, so this is unit economics on a derived rate rather than on a disclosed one. The cost side is not built per unit either: note 35 discloses seven cost lines by nature for three years and cost_stack.py decomposes them, but the model consumes one held gross margin. That is the finest level this study currently builds at and it is stated rather than claimed away."
+  },
+  {
+   "name": "Channels",
+   "level": "segment",
+   "share_of_revenue": 0.18100019050697022,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "the segment\u2019s own held gross margin",
+   "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
+  },
+  {
+   "name": "Solutions",
+   "level": "segment",
+   "share_of_revenue": 0.16358784057939824,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "the segment\u2019s own held gross margin",
+   "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
+  },
+  {
+   "name": "stc Kuwait",
+   "level": "segment",
+   "share_of_revenue": 0.05371258248742992,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "the segment\u2019s own held gross margin",
+   "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
+  },
+  {
+   "name": "stc Bahrain",
+   "level": "segment",
+   "share_of_revenue": 0.02528737478503714,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "the segment\u2019s own held gross margin",
+   "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
+  },
+  {
+   "name": "Center 3",
+   "level": "segment",
+   "share_of_revenue": 0.025208165006664535,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "the segment\u2019s own held gross margin",
+   "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
+  },
+  {
+   "name": "stc Bank",
+   "level": "segment",
+   "share_of_revenue": 0.018003737534724156,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "the segment\u2019s own held gross margin",
+   "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
+  },
+  {
+   "name": "Sirar",
+   "level": "segment",
+   "share_of_revenue": 0.010621422171477478,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "the segment\u2019s own held gross margin",
+   "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
+  },
+  {
+   "name": "Specialized",
+   "level": "segment",
+   "share_of_revenue": 0.004565819194428587,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "the segment\u2019s own held gross margin",
+   "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
+  },
+  {
+   "name": "iot2",
+   "level": "segment",
+   "share_of_revenue": 0.004133557915243354,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "the segment\u2019s own held gross margin",
+   "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
+  },
+  {
+   "name": "SCCC",
+   "level": "segment",
+   "share_of_revenue": 0.0039061189361037055,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "the segment\u2019s own held gross margin",
+   "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
+  },
+  {
+   "name": "Other operating segments",
+   "level": "segment",
+   "share_of_revenue": 0.0008360332529434613,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "the segment\u2019s own held gross margin",
+   "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
+  },
+  {
+   "name": "Eliminations / adjustments",
+   "level": "segment",
+   "share_of_revenue": -0.14776202498950286,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "the segment\u2019s own held gross margin",
+   "gap_note": "No unit is disclosed for this segment \u2014 note 9 gives revenue and no volume, and the earnings presentations carry no subscriber, connection or capacity count for it. It is grown on its own measured two-year real rate from the audited segment table, which is the finest sourced level available, and the absence of a unit is stated rather than filled."
+  }
+ ],
  "band_record": {
   "instrument": "STC",
   "market": "SA",

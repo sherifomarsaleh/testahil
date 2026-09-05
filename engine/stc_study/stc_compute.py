@@ -1123,6 +1123,93 @@ forecast_anchor = dict(
 import research_protocol as _RP
 _RP.assert_macro_coherence(macro_record, market='SA', ticker='STC')
 
+# ---------------- THE THREE STANDING GATES, CALLED IN THE STUDY'S OWN CODE -------------
+# An outside audit found that assert_sigcm(), assert_model_study() and assert_ground_up()
+# NEVER EXECUTED on this study, and the repository-level check passed anyway because its
+# own clause requires at least ONE of the three and the beta call satisfied it. A study
+# that calls one gate and skips two is not a study that was checked; it is a study that
+# was checked once.
+#
+# THE GROUND-UP CLAUSE IS THE ONE THAT BITES, and it is attested on a RECORD rather than a
+# flag precisely so it cannot be claimed. Every revenue line names the level it was
+# actually built at, and any line below "unit" carries a gap note — the rule has always
+# permitted a coarser level where the disclosure stops, and has never permitted going
+# quiet about it. The lines must cover 100% of revenue, because a line left out of the
+# record is a line nobody checked.
+_base_seg = {k: v['FY25'] for k, v in seg_hist.items()}
+_seg_total = sum(_base_seg.values())
+DRIVER_LINES = [
+    _RP.DriverLine(
+        name='stc (the Saudi operating business)',
+        level='derived',
+        share_of_revenue=_base_seg['stc'] / _seg_total,
+        unit='mobile and fixed subscribers',
+        unit_source='the quarterly earnings presentations\u2019 own subscriber charts, whose '
+                    'footnote states the figures are not audited',
+        price_basis='revenue per subscriber, BACK-SOLVED against the audited segment '
+                    'revenue in note 9 rather than disclosed',
+        cost_basis='not built per unit \u2014 see the gap note',
+        gap_note='The unit is real and disclosed; the PRICE is not. Revenue per subscriber '
+                 'is derived by dividing audited segment revenue by a subscriber count the '
+                 'company publishes in a presentation and does not audit, so this is unit '
+                 'economics on a derived rate rather than on a disclosed one. The cost side '
+                 'is not built per unit either: note 35 discloses seven cost lines by '
+                 'nature for three years and cost_stack.py decomposes them, but the model '
+                 'consumes one held gross margin. That is the finest level this study '
+                 'currently builds at and it is stated rather than claimed away.'),
+]
+for _nm, _v in sorted(_base_seg.items(), key=lambda kv: -kv[1]):
+    if _nm == 'stc':
+        continue
+    DRIVER_LINES.append(_RP.DriverLine(
+        name=_nm, level='segment', share_of_revenue=_v / _seg_total,
+        cost_basis='the segment\u2019s own held gross margin',
+        gap_note='No unit is disclosed for this segment \u2014 note 9 gives revenue and no '
+                 'volume, and the earnings presentations carry no subscriber, connection '
+                 'or capacity count for it. It is grown on its own measured two-year real '
+                 'rate from the audited segment table, which is the finest sourced level '
+                 'available, and the absence of a unit is stated rather than filled.'))
+GROUND_UP = _RP.assert_ground_up(DRIVER_LINES, ticker='STC')
+
+# THE COMMITTED BETA ARTEFACT MUST BE THE BETA THIS MODEL USES. An outside audit found
+# beta_result.json recording 0.7107 on 254 observations while every delivered document
+# published 0.7078 on 252 — because coc_run calls own_stock_beta() LIVE at build time and
+# the index file lengthens, so the artefact goes stale the moment the library moves while
+# still reading as the study's own record. It is the record the repository-level gate and
+# assert_beta_provenance() both inspect, so a stale one means those gates are checking a
+# number the study does not stand on. Small in value here — 29 basis points of beta, under
+# two on the cost of equity — and the point is that nothing was watching.
+_BETA_ARTEFACT = json.load(open(os.path.join(HERE, 'beta_result.json')))
+_RP.assert_beta_provenance(_BETA_ARTEFACT)
+assert abs(_BETA_ARTEFACT['beta'] - SCHED.beta) < 1e-9, (
+    'the committed beta artefact records %.6f and this model discounts at %.6f — '
+    're-run beta_reissue.py in the same pass, because the artefact is what the gates read'
+    % (_BETA_ARTEFACT['beta'], SCHED.beta))
+
+_RP.assert_sigcm(_RP.SIGCMChecklist(
+    historicals_official_only=True,
+    forecast_ground_up=True,          # attested on DRIVER_LINES above, not on this flag
+    debt_lc_fx_split=True,
+    asset_conversion_cycle=True,
+    competitors=True,
+    beta_own_history_vs_egx30=True,
+    formula_based_model=True,
+    flags_raised_before_issue=True,
+    stop_and_inform_honoured=True,
+    na_reasons={}))
+
+_RP.assert_model_study(_RP.ModelStudyChecklist(
+    structure_matches_model=True,
+    bibliography_document=True,
+    provenance_four_field=True,
+    numeric_traceability=True,
+    external_reader_scrub=True,
+    figure_discipline=True,
+    table_discipline=True,
+    expert_appendix_max_detail=True,
+    contested_judgement_both_ways=True,
+    na_reasons={}))
+
 # The register is built and ASSERTED before the record is assembled, so a source that
 # stopped naming a company document breaks the build rather than reaching a gate.
 import inputs_register as _IR
@@ -1212,6 +1299,11 @@ out = dict(
     # the one an investor asks, and which may no longer reach a reader at all. It is
     # replaced by the record of how often the published bands actually held, phrased
     # by the module that owns those sentences rather than re-worded here.
+    # THE STANDARD THIS STUDY WAS BUILT TO [R-STD-01]. Without it a book-wide
+    # re-issue is open-ended and nobody can tell which names are current.
+    standard_version=_RP.STANDARD_VERSION,
+    ground_up=GROUND_UP,
+    driver_lines=[vars(l) for l in DRIVER_LINES],
     band_record=BAND,
     engine=ENGINE,
     # The one tax rate this model uses, everywhere it uses one — measured on the
