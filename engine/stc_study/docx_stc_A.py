@@ -633,9 +633,21 @@ _rsi_word = ('firm but short of overbought' if 60 <= _rsi < 70 else
              'soft' if 30 <= _rsi < 45 else 'oversold')
 _macd_word = ('positive, with the line above its signal' if tech['macd']['hist'] > 0
               else 'negative, with the line below its signal')
-_pos52 = (spot - tech['lo52']) / (tech['hi52'] - tech['lo52']) * 100
+# THE PERCENTILE WAS ON THE VALUATION PRICE while the row it labels shows the technical
+# anchor — one line missed when this section was re-anchored, and the same two-clock
+# error the sign-word check caught in the sentence above it.
+_pos52 = (_tanchor - tech['lo52']) / (tech['hi52'] - tech['lo52']) * 100
+
+
+def _ord(x):
+    """71st, not 71th. An ordinal built by concatenating 'th' is wrong one time in ten."""
+    n = int(round(x))
+    if 10 <= n % 100 <= 20:
+        return '%dth' % n
+    return '%d%s' % (n, {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th'))
 P(f"The tape is firm and the stock is trading above its whole moving-average stack. At SAR {_tanchor:.2f} the price sits "
-  f"above all {_above} of the 20-, 50-, 100- and 200-day averages, which are themselves compressed into a band of "
+  f"above all {['no', 'one', 'two', 'three', 'four'][_above]} of the 20-, 50-, 100- and 200-day averages, "
+  f"which are themselves compressed into a band of "
   f"SAR {max(_stack) - min(_stack):.2f} ({min(_stack):.2f} to {max(_stack):.2f}) — so the stack is flat while the price "
   f"has stepped clear of it by {_gap:.1f}% above the highest of the four. RSI(14) at {_rsi:.0f} is {_rsi_word}, and the "
   f"MACD histogram is {_macd_word}. The 52-week range is narrow for an emerging-market name — {tech['lo52']:.2f} to "
@@ -645,7 +657,7 @@ P(f"The tape is firm and the stock is trading above its whole moving-average sta
   "a quiet advance rather than a trending breakout: the direction is up, the energy behind it is low.")
 rows = [
  ['Indicator', 'Reading', 'What it says'],
- [f'Price on {_tdate}', f"SAR {_tanchor:.2f}", f"{_pos52:.0f}th percentile of the 52-week range"],
+ [f'Price on {_tdate}', f"SAR {_tanchor:.2f}", f"{_ord(_pos52)} percentile of the 52-week range"],
  ['SMA 20 / 50', f"SAR {tech['sma']['20']:.2f} / {tech['sma']['50']:.2f}",
   f"Price above both, by {(_tanchor/tech['sma']['20']-1)*100:.1f}% and {(_tanchor/tech['sma']['50']-1)*100:.1f}%"],
  ['SMA 100 / 200', f"SAR {tech['sma']['100']:.2f} / {tech['sma']['200']:.2f}",
