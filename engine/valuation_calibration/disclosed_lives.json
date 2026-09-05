@@ -56,7 +56,7 @@
      "asset_class": "Buildings",
      "years": [
       15,
-      30
+      50
      ]
     },
     {
@@ -74,49 +74,40 @@
      ]
     },
     {
-     "asset_class": "Furniture, fixtures and computer equipments",
+     "asset_class": "Furniture, fixtures and computer equipment",
      "years": [
-      5,
-      10
+      4,
+      15
      ]
     },
     {
      "asset_class": "Pipelines",
      "years": [
       10,
-      40
+      50
      ]
     }
    ],
-   "longest_years": 40,
-   "shortest_years": 5,
-   "source": "ADNOC Distribution, FY2024 audited consolidated financial statements, note 3 (Summary of material accounting policies), property plant and equipment: 'Depreciation is calculated using the straight-line method to allocate their cost to their residual values over their estimated useful lives, as follows'. Land was historically provided by the Government and is not depreciated.",
-   "file": "engine/adnocdist_study/source_FY2024_audited_consolidated.pdf",
-   "route": "text layer via pdftotext -layout; the table renders cleanly with its years column",
-   "read_on": "2026-09-03",
-   "against_the_terminal": "this study's terminal implies a replacement cycle of 66.7 years (1/g at g=1.5%) and charges 0.31x its own book depreciation. NOTHING THE COMPANY DISCLOSES LASTS BEYOND 40 YEARS and the pipeline band is the only class that reaches it. Its own explicit window spends capital at a rate implying 17.8 years. Three implied lives in one model, the longest of them a fact about the currency."
+   "longest_years": 50,
+   "shortest_years": 4,
+   "source": "ADNOC Distribution, FY2025 audited consolidated financial statements, note 3.10 (Summary of material accounting policies — property, plant and equipment): \"Depreciation is calculated using the straight-line method to allocate their cost to their residual values over their estimated useful lives, as follows\", printed page 23. The SAME table is printed a second time under note 4, Critical accounting judgments — 'Changes in Judgements', printed page 32, and the two agree class for class. Land was historically provided by the Government of Abu Dhabi and is carried at a nominal AED 1 per plot (note 3.10), so it is not depreciated; capital work in progress is not depreciated until commissioned (note 3.11).",
+   "file": "engine/adnocdist_study/source_FY2025_audited_consolidated.pdf",
+   "route": "text layer via pdftotext -layout, CORROBORATED OFF THE RENDERED PIXELS at 200 dpi (pdftoppm, PDF page 25) and read as an image. THE PIXEL ROUTE IS NOT OPTIONAL HERE AND THE REASON IS STRUCTURAL: this table carries no arithmetic, so footing cannot arbitrate it, and a broken character map yields figures that look perfectly clean. The two routes agree character for character on all ten bands.",
+   "read_on": "2026-09-05",
+   "SUPERSEDED_READING_the_register_was_a_year_stale": "THIS ENTRY PREVIOUSLY READ 5-40 YEARS, CITED TO THE FY2024 AUDITED STATEMENTS, AND THE CENSUS PRINTED THAT FIGURE. It was not wrong about FY2024 — that filing carries a single column and it says 15-30 / 5-30 / 5-20 / 5-10 / 10-40, confirmed by opening it. It was stale, because the FY2025 audited statements sit in the same study directory and THE COMPANY REVISED THREE OF THE FIVE CLASSES UPWARD in them: buildings 15-30 to 15-50, furniture 5-10 to 4-15, pipelines 10-40 to 10-50. Plant and vehicles are unchanged. So the span is 4-50 on the current filing, not 5-40. THE FILING THAT MOVED THE LIVES IS THE FILING THAT QUANTIFIES THE MOVE — the same note carries the AED 90,917 thousand relief — so the staleness and the reason for it were one page apart, and the register cited the older one.",
+   "prior_year_cross_check": "RUN AND PASSED EXACTLY. The FY2024 audited consolidated financial statements' own policy note (engine/adnocdist_study/source_FY2024_audited_consolidated.pdf) gives 15-30 / 5-30 / 5-20 / 5-10 / 10-40, byte-identical to the 2024 comparative column printed beside the 2025 column in the FY2025 note. The prior filing therefore corroborates the comparative column, and the revision is real rather than a re-presentation.",
+   "the_note_foots": "PROPERTY, PLANT AND EQUIPMENT (note 5) WAS FOOTED CELL BY CELL AND PASSED WITH ZERO FAILURES ACROSS ROUGHLY FORTY TESTS, both years: every movement row sums across the six classes to its printed total (cost and accumulated depreciation); every class column rolls from opening through additions, transfers, disposals, impairment and exchange differences to its printed closing balance; closing cost less closing accumulated depreciation reproduces the printed net carrying amount for every class in both years; the FY2025 opening balances tie to the FY2024 closing balances class by class; and the note total ties to the balance-sheet line on a different page (AED 8,032,197 thousand and 7,552,178 thousand). ARITHMETIC IS THE ARBITER AND IT PASSED, so no OCR re-read of note 5 was required; one was done on the LIVES table anyway, for the reason in 'route'.",
+   "weighted_not_derivable": "THE WEIGHTED LIFE CANNOT BE DERIVED FROM THIS DISCLOSURE AND NO FIGURE IS CHOSEN INSTEAD. Unlike ADNOCLS and MODON the composition is NOT the obstacle — note 5 discloses cost, accumulated depreciation and net carrying amount for every one of the five depreciable classes, so a weighting is arithmetically available. WHAT IS MISSING IS A LIFE PER CLASS: the note discloses a RANGE per class, and weighting ranges returns a range. Weighted on the note's own gross cost the disclosed bands give 10.89 years at every low end and 39.87 at every high end — A SPREAD OF 29 YEARS; on net carrying amount 12.20 to 43.41. Buildings alone are 59.9% of gross cost on a band of 15 to 50, so the answer is decided almost entirely by where inside ONE class's range a figure is picked. That pick is this desk choosing a life under cover of a citation (SIGCM clause 1). THE IDENTITY ROUTE THAT WOULD COLLAPSE THE BAND IS CLOSED TWICE OVER AND THE ACCOUNTS SAY SO IN THEIR OWN WORDS. (i) RESIDUAL VALUES: note 3.10 allocates cost 'to their residual values', so the charge is (cost less residual) over life and gross cost over charge OVERSTATES the life by an unknown amount; no residual is disclosed. (ii) THE REASSESSMENT, QUANTIFIED BY THE COMPANY: AED 90,917 thousand of relief in FY2025 on assets carrying AED 5,347,053 thousand — 15.3% of the year's entire charge of 594,222, on 77.7% of the depreciable net book value, applied prospectively — so the FY2025 charge is not the charge that built the accumulated column above it and the identity is broken outright rather than merely biased. On the prior basis the implied life reads 20.51 years against 23.65 as reported and the measured age 10.47 against 12.07: a 15.3% swing in both from an accounting estimate rather than from anything about the assets. THE CHEAP CROSS-CHECK CANNOT ARBITRATE EITHER — the identity's 23.65 years sits inside the 10.89-39.87 band, but a band 29 years wide contains almost any number, so the agreement is worth nothing; the NOTE is the test and the arithmetic corroborates only sometimes. THE ALTERNATIVE BASIS WAS RUN AND IS ALSO CLOSED: 'disclosed_capex' needs a stated maintenance capital figure, and the FY2025 management discussion breaks capital expenditure down by PROJECT TYPE while putting new-station construction and capitalised property maintenance in the SAME category, saying only that 'about 50% of the CAPEX comprised development and construction of new service stations'; the H1 2026 management discussion says 'over 50% represented growth CAPEX' on AED 339 million, a bound over half a year rather than a figure. NEGATIVE SEARCHES ACTUALLY RUN, recorded so the next pass does not repeat them: no maintenance or sustaining capital figure appears in the FY2025 management discussion, the FY2025 or Q1/Q2 2026 results presentations, or the 2025 integrated report. So ADNOCDIST stays on the terminal ratchet WITH THIS REASON. Same disposition as ADNOCLS and MODON, reached by a different route: there the classes could not be split, here they can and the lives inside them are bands.",
+   "what_would_open_it": "THE RESIDUAL VALUES, in aggregate or by class — with those disclosed both identities work again on (cost less residual) and this name becomes straightforward. Or A PRE- AND POST-REASSESSMENT CHARGE BY CLASS, which the AED 90,917 thousand disclosure approaches but does not give: it names the carrying value affected and the total effect, not the split. Or A SINGLE LIFE PER CLASS rather than a band. None of the three is in the FY2025 audited statements, the FY2025 or H1 2026 management discussion, the FY2025 or Q1/Q2 2026 presentations, or the 2025 integrated report held in the study directory — that is a statement about what was searched.",
+   "against_the_terminal": "this study's terminal implies a replacement cycle of 66.7 years (1/g at g=1.5%) and charges 0.31x its own book depreciation — the lightest charge in the book. NOTHING THE COMPANY DISCLOSES LASTS BEYOND 50 YEARS even after the upward revision, and only buildings and pipelines reach it; the base the note itself turns over reads about 24 years on a broken identity. Per [R-TERM-01 CLAUSE TWO] the defect runs the OPTIMISTIC way at a pegged 1.5% terminal, so correcting it would be EXPECTED to lower this value — expected, never predicted, because [R-TERM-01 CLAUSE TWO CORRECTED] measures the sign per name and the first name actually rebuilt moved the other way. THE LIFE IS NOT THE ONLY BLOCKER: terminal_correction_price.py reports this name MISSING working_capital and ic_replacement as well, so no figure can be priced here even with a life, and the replacement-cost base needs an escalation from historical cost which needs an age — the same missing number again."
   },
   "ADNOCLS": {
    "classes": [
     {
-     "asset_class": "Tankers",
+     "asset_class": "Buildings, ports, wharves and land improvements",
      "years": [
-      25,
-      25
-     ]
-    },
-    {
-     "asset_class": "Dry-bulk and container vessels",
-     "years": [
-      25,
-      25
-     ]
-    },
-    {
-     "asset_class": "Gas carriers",
-     "years": [
-      25,
-      40
+      7,
+      50
      ]
     },
     {
@@ -127,6 +118,27 @@
      ]
     },
     {
+     "asset_class": "Vessels - Tankers",
+     "years": [
+      25,
+      25
+     ]
+    },
+    {
+     "asset_class": "Vessels - Dry-Bulk and Containers",
+     "years": [
+      25,
+      25
+     ]
+    },
+    {
+     "asset_class": "Vessels - Gas Carriers",
+     "years": [
+      25,
+      40
+     ]
+    },
+    {
      "asset_class": "Jack-up barges",
      "years": [
       40,
@@ -134,18 +146,39 @@
      ]
     },
     {
-     "asset_class": "Dry-docking components",
+     "asset_class": "Dry docking components of vessel and marine equipment",
      "years": [
       2,
       5
      ]
+    },
+    {
+     "asset_class": "Plant",
+     "years": [
+      20,
+      20
+     ]
+    },
+    {
+     "asset_class": "Equipment and vehicles",
+     "years": [
+      4,
+      10
+     ]
+    },
+    {
+     "asset_class": "Furniture, fixtures and office equipment",
+     "years": [
+      4,
+      5
+     ]
     }
    ],
-   "longest_years": 40,
+   "longest_years": 50,
    "shortest_years": 2,
    "source": "ADNOC L&S plc, consolidated financial statements FY2025 (PwC-audited, signed 10 February 2026), accounting policies. ALREADY REGISTERED BY THAT STUDY as the input life_tankers with the full policy sentence; recorded here so every sourced life sits in one place.",
    "file": "engine/adnocls_study/FS_FY2025.pdf",
-   "route": "already committed as a four-field input in the study's own register",
+   "route": "text layer of FS_FY2025.pdf p33, CORROBORATED BY OCR off the rendered pixels at 170dpi on 05-09-2026. The life table carries no arithmetic and so cannot be footed; what was footed is the note 11 movement schedule on pp50-51 that supplies the weights, 30 checks across cost, accumulated depreciation and net book value in BOTH years, every one exact. A footing page beside an unfootable table does not certify the unfootable table, so that one was read off the pixels.",
    "read_on": "2026-09-03",
    "against_the_terminal": "this study's terminal implies 50.0 years (1/g at g=2.0%) against a 25-year tanker life, so it UNDER-charges by 2x on the headline class — and its invested-capital base is NET BOOK ppe plus working capital plus goodwill, which is not a replacement-cost base at all, so the life is the second thing to fix there rather than the first.",
    "dry_docking_life": {
@@ -215,7 +248,20 @@
     },
     "what_is_still_missing": "Four of the fleet's main classes now have a verified contracted price and two more have a verified secondhand reference, which is enough to see the shape of a base and NOT enough to build one: LR1 and handysize are unpriced among the tankers, and the offshore fleet rests on 2024 trade figures. A base built on the priced classes with the rest inferred is this desk choosing, which is exactly what the disclosed-life rule forbids in the neighbouring quantity.",
     "NOT_INPUTS": "NONE OF THE ABOVE IS COMMITTED AS A STUDY INPUT and it must not be read as one. A peer's contracted newbuild price is INDUSTRY-ring evidence and is exactly what SIGCM clause 5 puts competitors in the study for, the same way the cement studies cite an industry band for replacement cost per tonne of capacity — but it enters through the study's OWN sweep, as a four-field input naming the release and its date, and that is the rebuild's work. ONE FIGURE HERE IS VERIFIED AGAINST ITS PRIMARY RELEASE AND TWO ARE NOT, and the difference is written down rather than smoothed over."
-   }
+   },
+   "CORRECTION_05-09-2026_the_band_was_understated": "THIS ENTRY CARRIED THE SIX VESSEL CLASSES AND NOT THE OTHER FOUR, so it read 2-40 years and the census printed that. The FY2025 policy note discloses TEN classes and its widest is BUILDINGS, PORTS, WHARVES AND LAND IMPROVEMENTS AT 7-50 YEARS, so the disclosed band is 2-50. The four added classes are 4.15% of depreciable gross cost and do not move a weighting; the point is that a partial transcription of a policy note reads exactly like a complete one, which is why the route and the class list are recorded rather than the band alone. Re-read off the rendered pixels of FS_FY2025.pdf page 33 as well as the text layer.",
+   "CORRECTION_05-09-2026_the_dry_docking_bound_is_not_a_disclosure": "'what_the_disclosure_does_support' bounds the dry-docking component to 2.79%-6.04% of the vessel line by solving (V-x)/25 + x/5 against the residual charge. THAT ARITHMETIC REPRODUCES EXACTLY (23,993 / 61,785 / 323,702 / 361,494 all to the digit) AND ITS BOUND IS A PROPERTY OF THE 25 IN IT, NOT OF THE DISCLOSURE. The note puts SIX lives in that one column - dry docking 2-5, offshore 20-25, tankers 25, dry-bulk and containers 25, gas carriers 25-40, jack-up barges 40 - so the solve is ONE EQUATION IN FIVE UNKNOWN CLASS COSTS. Re-run at other hull composites the same residual charge gives 4.95-8.12% at 27.5 years, 6.68-9.79% at 30, 9.27-12.30% at 35 and 11.12-14.09% at 40: a five-fold move driven entirely by the assumed hull life. The company's OWN FY2022 and FY2023 notes disclose the vessel line as a single band, 'Vessels (excluding dry docking component) 20 - 40 years', which contradicts 25 outright; the FY2024 note is where it was disaggregated into five classes and no carrying amount followed the disaggregation.",
+   "fleet_age_route_run_05-09-2026": {
+    "why": "TERMINAL_EVIDENCE named a disclosed average fleet age as one of three things that would open this terminal, and said it was worth one look before being called closed.",
+    "found": "ADNOC L&S investor presentation April 2026, appendix slide 22, 'Owned Shipping Fleet (as of 31 December 2025)': owned counts and average age by vessel type, 87 vessels. Footed - 53+20+11+3=87 against the stated blocks and total. Read off the rendered pixels because the text layer's block assignment does not foot (it puts FSU with the tankers, giving 55 and 18 against a stated 53 and 20); the pixels put FSU in the gas block and every subtotal then foots.",
+    "why_it_does_not_open_it": [
+     "IT IS COUNTS AND AGES, NOT CARRYING AMOUNTS. Weighting by vessel count is not weighting by value and the two are far apart on this fleet - a very large crude carrier contracts near USD 136mn against an MR near USD 45mn on this file's own verified newbuild prices, so a count weight silently prices a VLCC and an MR the same.",
+     "ONE AGE IS NOT DISCLOSED AT ALL: LNG, 8 of the 87 owned vessels, prints as 'XX' in the published deck - an unfilled placeholder, and the newest and among the most valuable part of the fleet. The 79 vessels that do carry an age count-weight to 9.87 years; the 8 that do not are exactly the ones that would move it.",
+     "A VESSEL AGE IS NOT THE CHARGE-WEIGHTED AGE OF THE DEPRECIABLE BASE the escalation identity needs, which also carries buildings, ports, plant, equipment and the capitalised dry-docking components."
+    ],
+    "so": "Route 3 is RUN and CLOSED. Assembling a life or an age out of a count-weighted, incomplete table is the life-this-desk-chose error in a third costume, and the direction is not even safe: the missing 8 are the youngest."
+   },
+   "weighted_life_05-09-2026": "REFUSED. The weighting [R-TERM-01] needs is by the property, plant and equipment note's own carrying amounts, and note 11 carries SIX columns - buildings, VESSELS AND MARINE EQUIPMENT, plant, equipment and vehicles, furniture, and capital work in progress. 97.85% of depreciable net book value (95.85% of depreciable gross cost) sits in the single vessels-and-marine-equipment column, which spans six disclosed lives from 2 to 40 years and is disclosed at no finer level in any of the four years of statements, either annual report, the investor presentations or the management discussion. THE NOTE DISCLOSES THE LIVES AND IT DOES NOT DISCLOSE THE COMPOSITION THEY WOULD BE WEIGHTED BY. Any single figure is this desk choosing one, so none is recorded. What the accounts DO give, and it is a bound rather than a life: the vessel column's charge-implied composite is 20.14-22.49 years and the whole depreciable base's cost-over-charge is 19.70 years - both OVERSTATEMENTS, because this note depreciates to residual values and reassesses vessel salvage annually, so the charge is (cost - residual)/life and cost/charge exceeds the life."
   },
   "SAVOLA": {
    "classes": [

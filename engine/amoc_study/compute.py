@@ -2608,6 +2608,26 @@ LENS_RECORD = {
 # from it. The remaining distance to the latest reviewed half is the base-anchor
 # question, which is priced in the contested judgements and NOT taken this
 # edition -- and that distance is what this gate is measuring, correctly.
+
+# The filed record and the like-for-like pair this rule prescribes, COMPUTED from the
+# registered filings rather than typed into the note below. Every period here is already
+# read by the model body; nothing new is registered and no driver moves.
+_FA_FILED = [
+    ('the six months to 31-Dec-2024, audited comparative', V['rev_h2_24'], V['cogs_h2_24']),
+    ('the quarter to 31-Mar-2025, reviewed comparative', V['rev_q1_25'], V['cogs_q1_25']),
+    ('the six months to 31-Dec-2025, audited transition period', V['rev_h2_25'], V['cogs_h2_25']),
+    ('the quarter to 31-Mar-2026, reviewed', V['rev_q1_26'], V['cogs_q1_26']),
+    ('the six months to 30-Jun-2026, reviewed', V['rev_h1cy26'], V['cogs_h1cy26'])]
+_FA_CPR = ' \u00b7 '.join(f"{_n} {_c / _r:.3%}" for _n, _r, _c in _FA_FILED)
+_FA_LAT = V['gp_h1cy26'] / V['rev_h1cy26']
+_FA_FIRST = B['gm'][0]
+_FA_REL = _FA_FIRST / _FA_LAT - 1
+_FA_CPR_Q1_25 = V['cogs_q1_25'] / V['rev_q1_25']
+_FA_CPR_Q1_26 = V['cogs_q1_26'] / V['rev_q1_26']
+_FA_GM_H2_25 = 1 - V['cogs_h2_25'] / V['rev_h2_25']
+_FA_Q2_26 = ((V['gp_h1cy26'] - (V['rev_q1_26'] - V['cogs_q1_26']))
+             / (V['rev_h1cy26'] - V['rev_q1_26']))
+
 FORECAST_ANCHOR = dict(
     rate_name='gross margin',
     latest_reviewed_period='six months to 30 June 2026, reviewed',
@@ -2640,7 +2660,40 @@ FORECAST_ANCHOR = dict(
     # from 12.3% below the price to 35.9% above it in a single pass. AMOC is
     # therefore listed on the forecast-anchor ratchet with that reason, and comes off
     # it when the base anchor is taken at the next edition.
-    mechanism=None)
+    mechanism=None,
+    note=(
+        f"THE FORECAST OPENS BELOW THE LATEST REVIEWED PERIOD AND NO MECHANISM IS CLAIMED, "
+        f"BECAUSE NONE OF THE SIX ON THE CLOSED LIST SURVIVES THIS COMPANY'S OWN FILINGS. "
+        f"The reviewed six months to 30-Jun-2026 carried a gross margin of {_FA_LAT:.3%} \u2014 "
+        f"gross profit footing exactly to net sales less cost of sales in the same statements "
+        f"\u2014 and the forecast opens at {_FA_FIRST:.3%}, {-_FA_REL:.2%} relatively below it. "
+        f"The path then RISES to {B['gm'][-1]:.3%} by the fifth year, so the path clause does "
+        f"not fire and the whole of the claim sits in the opening level. "
+        f"WHAT THE GAP ACTUALLY IS: the base year is the {BASE_YEAR}, and those twelve months "
+        f"blend the audited transition half at {_FA_GM_H2_25:.3%} with the reviewed half at "
+        f"{_FA_LAT:.3%} to give {BASE_GM:.3%}. It is a BASE-PERIOD CHOICE, and a base-period "
+        f"choice is not on the closed list. "
+        f"WHAT THE FILED RECORD DOES: cost per unit of revenue, period by period, runs "
+        f"{_FA_CPR} \u2014 it FALLS "
+        f"\u2014 and the quarter inside the latest half that is not the first printed a gross "
+        f"margin of {_FA_Q2_26:.3%}, the highest in the record this study holds. "
+        f"THE CANDIDATES, TESTED RATHER THAN ASSERTED. Input cost outpacing price is refused by "
+        f"the same-quarter pair this rule prescribes \u2014 cost per unit of revenue "
+        f"{_FA_CPR_Q1_25:.3%} in the quarter to 31-Mar-2025 against {_FA_CPR_Q1_26:.3%} in the "
+        f"quarter to 31-Mar-2026, {100 * (_FA_CPR_Q1_25 - _FA_CPR_Q1_26):.2f} points the OTHER "
+        f"WAY \u2014 and this model makes no such claim in any case: the gross spread per tonne "
+        f"is held flat in real terms and the forecast margin rises. A one-off in the latest "
+        f"period was drafted on 03-09-2026 and refused on that same pair; no non-recurring item "
+        f"is disclosed inside the reviewed statements' net sales or cost of sales, and both foot "
+        f"to the filed gross profit to the pound. A contracted price step-down, a subsidy or "
+        f"levy withdrawal and a capacity commissioning drag have no disclosure in any filing "
+        f"this study holds. A mix shift to lower margin has no decline to attribute, the "
+        f"forecast path rising rather than falling. SO THE RECORD STANDS AS A REFUSAL, AND THE "
+        f"REFUSAL IS THE FINDING. Anchoring on the reviewed half and holding it flat is this "
+        f"study's largest contested judgement, priced at EGP {_PS_H1_ANCHOR:.2f} a share "
+        f"against the adopted EGP {dcf_ps:.2f}; it is published beside the answer and left for "
+        f"the next edition because levers are taken one at a time and this one crosses the "
+        f"traded price of EGP {SPOT:.2f} in a single pass."))
 
 BRIDGE_RECORD = dict(
     market='EG',

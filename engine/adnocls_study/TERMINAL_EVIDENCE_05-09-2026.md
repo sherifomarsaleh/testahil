@@ -95,3 +95,58 @@ information: this terminal is not blocked by the vessel-component problem alone,
 blocked by a residual-value policy that would defeat the age identity even if the component
 split were published tomorrow. Knowing which of the two is binding changes what a session
 should go looking for, and that is the whole value of writing it down.
+
+---
+
+## Route 3 run and closed, and the weighting refused (05-09-2026, later pass)
+
+The three things named above under "What would open it" were left with route 3 — a disclosed
+average fleet age — flagged as worth one look. **It was looked at, it exists, and it does not
+open this.**
+
+ADNOC L&S investor presentation April 2026, appendix slide 22, *Owned Shipping Fleet (as of
+31 December 2025)*: owned counts and average age by vessel type, 87 vessels, subtotals footing
+53 + 20 + 11 + 3 = 87. **Read off the rendered pixels, because the text layer does not foot** —
+it places FSU with the tankers and returns 55 and 18 against a stated 53 and 20; the pixels put
+FSU in the gas block and every subtotal then foots. The extraction was not wrong about any
+figure, only about which block a row belongs to, which is exactly the failure a footing check
+is for.
+
+It does not open the terminal, for three reasons and the first is sufficient:
+
+1. **It is counts and ages, not carrying amounts.** A count weight prices a very large crude
+   carrier and an MR the same; this file's own verified newbuild prices put them at about
+   USD 136mn and USD 45mn.
+2. **One age is not disclosed at all.** LNG — 8 of the 87 owned vessels, the newest and among
+   the most valuable — prints as **"XX"**, an unfilled placeholder in the published deck. The
+   79 that carry an age count-weight to 9.87 years, and the 8 that do not are precisely the
+   ones that would move it.
+3. A vessel age is not the charge-weighted age of the depreciable base, which also carries
+   buildings, ports, plant, equipment and the capitalised dry-docking components.
+
+### The weighting itself is refused, and the reason is in note 11's shape
+
+Note 11 carries six columns. **97.85% of depreciable net book value — 95.85% of depreciable
+gross cost — sits in the single "vessels and marine equipment" column**, which spans six
+disclosed lives from 2 to 40 years. No filing, annual report, presentation or management
+discussion held here splits it. **The note discloses the lives and does not disclose the
+composition they would be weighted by**, so no single life is recorded.
+
+Two corrections to the sourced record came out of this pass, both now in
+`engine/valuation_calibration/disclosed_lives.json`:
+
+* The band was recorded as **2–40 years** from the six vessel classes; the note discloses **ten**
+  classes and its widest is buildings, ports, wharves and land improvements at **7–50**. The
+  census printed 2–40 for two days. A partial transcription of a policy note reads exactly like
+  a complete one.
+* The dry-docking bound of **2.79%–6.04%** reproduces to the digit and is **a property of the 25
+  in the solve, not of the disclosure**: one equation, five unknown class costs. At other hull
+  composites the same residual charge gives 6.68–9.79% at 30 years and 11.12–14.09% at 40. The
+  company's own FY2022 and FY2023 notes disclose the vessel line as *"Vessels (excluding dry
+  docking component) 20 – 40 years"*, which contradicts 25 outright; FY2024 is where it was
+  disaggregated into five classes, and **no carrying amount followed the disaggregation**.
+
+**The stop stands, and it is now stopped for a third distinct reason** — not the vessel-component
+problem, not the residual-value policy, but that the one column carrying 98% of the base is
+disclosed at no finer level than a six-life range. Knowing which of the three is binding is the
+whole value of writing it down.

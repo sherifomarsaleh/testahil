@@ -1347,6 +1347,165 @@ CE = dict(
           'is a domestic administered price and takes the domestic escalator as well.'),
 )
 
+# ==================== [R-ANCHOR-01] THE FORECAST ANCHOR ====================
+# THE RECORD IS PRINTED WHETHER OR NOT IT FIRES, and this one fires. What it says about
+# this study is that the forecast opens BELOW the period the company has just filed, and
+# that the whole of the shortfall is ONE DISCLOSED ITEM which the company itself removes
+# from its own run rate.
+#
+# THE LATEST REVIEWED PERIOD IS THE SIX MONTHS TO 30 JUNE 2026, not FY2025. The build is
+# already anchored there — every volume, price and margin-per-litre leg starts from the
+# annualised disclosed first half — which is what this rule asks for and what the
+# FORECAST section above already does.
+#
+# WHICH RATE, AND THE CHOICE IS RECORDED RATHER THAN MADE QUIETLY. The company publishes
+# an EBITDA margin as its own KPI at the half year and the full year; this study's
+# reference pattern is the operating-company one, whose anchor record is the EBITDA
+# margin; and the study's central contested judgement — whether the inventory movement is
+# a windfall or a through-cycle feature — lands in gross profit and reaches value through
+# EBITDA. THE GROSS MARGIN IS RECORDED BESIDE IT rather than instead of it, because on
+# the gross margin this same forecast does NOT fire, and picking the rate that clears the
+# check would be the move-the-number-to-satisfy-the-check offence in another costume.
+#
+# WHICH FRAME. Frame A — the branch that declines and therefore owes a mechanism. Frame B
+# is recorded in other_framing rather than left out, because the two frames are the
+# study's published contested judgement and neither is the answer on its own.
+#
+# EBITDA is the two filed lines, operating profit plus the depreciation and amortisation
+# line of the distribution-and-administrative-expenses note. The company publishes the
+# same figure as its own EBITDA KPI in the management discussion and analysis of the same
+# date, so this is a disclosed rate rather than one constructed here.
+_eb_h126 = V['op_h126'] + V['dna_h126']
+# H1 2025 revenue is the four disclosed segment comparatives in the revenue note of that
+# same reviewed interim, which are the components of its filed comparative total.
+_rev_h125 = (V['rev_retfuel_h125'] + V['rev_nonfuel_h125']
+             + V['rev_corp_h125'] + V['rev_avi_h125'])
+_vol_h125 = V['vol_retail_h125'] + V['vol_comm_h125']
+_vol_h126 = V['vol_retail_h126'] + V['vol_comm_h126']
+# THE LIKE-FOR-LIKE MEASUREMENT IS THE CLAUSE THAT DOES THE WORK, and it is normalised by
+# LITRES rather than by revenue on purpose: this company's revenue is a crude pass-through
+# — the same reason the unit build separates realised price from margin per litre — so a
+# share of revenue moves with the oil price whether or not anything about the company has
+# changed. Both halves, both volumes and both inventory figures are disclosed.
+_invgain_per_l_h125 = V['invgain_h125'] / _vol_h125
+_invgain_per_l_h126 = V['invgain_h126'] / _vol_h126
+
+FORECAST_ANCHOR = dict(
+    rate_name='EBITDA margin, frame A (inventory movements normalised)',
+    latest_reviewed_period='H1 2026, reviewed (six months ended 30 June 2026)',
+    latest_reviewed_date='2026-06-30',
+    latest_reviewed_rate=float(_eb_h126 / V['rev_h126']),
+    latest_reviewed_source=(
+        'Abu Dhabi National Oil Company for Distribution PJSC, reviewed interim condensed '
+        'consolidated financial statements for the six months ended 30 June 2026: '
+        'operating profit of AED %s million plus the depreciation and amortisation line of '
+        'the distribution and administrative expenses note of AED %s million, over revenue '
+        'of AED %s million. The company publishes the same EBITDA figure as its own KPI in '
+        'the management discussion and analysis of 5 August 2026.'
+        % (f"{V['op_h126']:,.0f}", f"{V['dna_h126']:,.0f}", f"{V['rev_h126']:,.0f}")),
+    first_forecast_rate=float(F['ebitda_margin_A'][0]),
+    # [R-ANCHOR-01] CLAUSE TWO — the whole explicit window, not only the opening year.
+    forecast_path=[float(x) for x in F['ebitda_margin_A']],
+    mechanism=dict(
+        name='one_off_in_the_latest_period',
+        disclosure=(
+            'The management discussion and analysis for the second quarter and first half '
+            'of 2026, published 5 August 2026, states inventory gains of AED %s million in '
+            'H1 2026 against AED %s million in H1 2025, splits them by segment (AED %s '
+            'million fuel retail and AED %s million commercial, against AED %s million and '
+            'a loss of AED %s million a year earlier), and attributes the rise in half-year '
+            'EBITDA to them. THE COMPANY ITSELF REMOVES THIS ITEM FROM ITS OWN RUN RATE: '
+            'the same document defines underlying EBITDA as EBITDA excluding inventory '
+            'movements and one-off items. The full-year figures on the same disclosure are '
+            'AED %s million in FY2024 and AED %s million in FY2025, so a single half has '
+            'just carried more than the two preceding years together. Frame A holds the '
+            'realised first half and assumes nothing for the second half or beyond; frame B '
+            'carries the through-cycle rate instead, and both are published.'
+            % (f"{V['invgain_h126']:,.0f}", f"{V['invgain_h125']:,.0f}",
+               f"{V['invgain_retfuel_h126']:,.0f}", f"{V['invgain_comm_h126']:,.0f}",
+               f"{V['invgain_retfuel_h125']:,.0f}", f"{abs(V['invgain_comm_h125']):,.0f}",
+               f"{V['invgain_fy24']:,.0f}", f"{V['invgain_fy25']:,.0f}")),
+        like_for_like=dict(
+            measures='inventory gains disclosed for the six months to 30 June, per litre of '
+                     'fuel sold',
+            period_a='H1 2025',
+            period_b='H1 2026',
+            value_a=float(_invgain_per_l_h125),
+            value_b=float(_invgain_per_l_h126),
+            higher_is_worse=True,
+            note=(
+                'THE DIRECTION: the larger the non-recurring gain sitting inside the latest '
+                'reviewed period, the further a forecast that does not repeat it must open '
+                'below that period. Measured in the same six months a year apart, on the '
+                "company's own disclosed volumes, it went from AED %s to AED %s per litre — "
+                '%.1f times larger — while the STRUCTURAL margins the forecast is actually '
+                'built on moved the other way: retail fuel gross profit per litre excluding '
+                'inventory movements rose %.1f%% year on year in the same pair and '
+                'commercial rose %.1f%%. The mechanism and the filings agree, and they agree '
+                'about a windfall rather than about the business.'
+                % (f"{_invgain_per_l_h125:.4f}", f"{_invgain_per_l_h126:.4f}",
+                   _invgain_per_l_h126 / _invgain_per_l_h125,
+                   100 * UB['margin_retail_growth_h1'],
+                   100 * UB['margin_comm_growth_h1'])),
+        ),
+    ),
+    other_framing=dict(
+        label='Frame B — inventory movements carried at the through-cycle rate',
+        first_forecast_rate=float(F['ebitda_margin_B'][0]),
+        forecast_path=[float(x) for x in F['ebitda_margin_B']],
+        note=('Frame B opens %.2f%% relatively below the reviewed half against frame A\'s '
+              '%.2f%%, and falls %.2f%% from its own opening year against frame A\'s %.2f%%. '
+              'Neither clause of this rule would fire on it. The two frames are the study\'s '
+              'central contested judgement and are published side by side, never averaged, '
+              'so the anchor is recorded on the branch that makes the larger claim.'
+              % (100 * abs(F['ebitda_margin_B'][0] / (_eb_h126 / V['rev_h126']) - 1),
+                 100 * abs(F['ebitda_margin_A'][0] / (_eb_h126 / V['rev_h126']) - 1),
+                 100 * abs(min(F['ebitda_margin_B']) / F['ebitda_margin_B'][0] - 1),
+                 100 * abs(min(F['ebitda_margin_A']) / F['ebitda_margin_A'][0] - 1))),
+    ),
+    gross_margin_beside_it=dict(
+        latest_reviewed_rate=float(V['gp_h126'] / V['rev_h126']),
+        first_forecast_rate=float(F['gross_margin_A'][0]),
+        forecast_path=[float(x) for x in F['gross_margin_A']],
+        note=('Recorded because the choice of rate decides whether this record fires and '
+              'the choice should be visible. On the gross margin frame A opens %.2f%% '
+              'relatively below the reviewed half and falls %.2f%% from its own opening '
+              'year, both inside the tolerance; on the EBITDA margin it opens %.2f%% below '
+              'and falls %.2f%%. The difference is cash operating cost, which the forecast '
+              'grows off FY2025 rather than off the realised half. The EBITDA margin is '
+              'recorded as the governing rate because it is the one the company publishes '
+              'as its own KPI, the one this study\'s reference pattern anchors on, and the '
+              'one the contested judgement reaches value through.'
+              % (100 * abs(F['gross_margin_A'][0] / (V['gp_h126'] / V['rev_h126']) - 1),
+                 100 * abs(min(F['gross_margin_A']) / F['gross_margin_A'][0] - 1),
+                 100 * abs(F['ebitda_margin_A'][0] / (_eb_h126 / V['rev_h126']) - 1),
+                 100 * abs(min(F['ebitda_margin_A']) / F['ebitda_margin_A'][0] - 1))),
+    ),
+    note=(
+        'THE FORECAST OPENS BELOW THE REVIEWED HALF AND THE WHOLE OF THE GAP IS THE '
+        'INVENTORY MOVEMENT. The reviewed six months to 30 June 2026 carried an EBITDA '
+        'margin of %.2f%%; frame A opens FY2026 at %.2f%%, %.2f%% relatively below it, and '
+        'reaches its low of %.2f%% in FY2027 when the realised first-half gain stops being '
+        'carried at all. THE UNIT RATES THE FORECAST IS ACTUALLY BUILT ON BOTH OPEN ABOVE '
+        'THE REVIEWED HALF, which is the other half of this record and is printed because a '
+        'gate that only catches declines would say nothing about it: structural retail fuel '
+        'margin per litre opens %.1f%% above the realised half and structural commercial '
+        'margin per litre %.1f%% above it, the second of those being an escalator the '
+        'study sources to the disclosed first half, in which that same structural margin '
+        'per litre rose %.1f%% year on year. So this is '
+        'not a real cost drift and not a price step-down — the operating rate the business '
+        'earns per litre is forecast to rise, and what falls out is a windfall the company '
+        'itself excludes from underlying EBITDA. Frame B, which carries that windfall at '
+        'the through-cycle rate instead of at zero, does not fire on either clause.'
+        % (100 * _eb_h126 / V['rev_h126'], 100 * F['ebitda_margin_A'][0],
+           100 * abs(F['ebitda_margin_A'][0] / (_eb_h126 / V['rev_h126']) - 1),
+           100 * min(F['ebitda_margin_A']),
+           100 * (F['margin_retail'][0] / UB['margin_retail_h126'] - 1),
+           100 * (F['margin_comm'][0] / UB['margin_comm_h126'] - 1),
+           100 * UB['margin_comm_growth_h1'])),
+)
+
+
 # ============================ OUTPUT ============================
 def _load(name):
     p = os.path.join(HERE, name)
@@ -1413,6 +1572,7 @@ OUT = dict(
     ),
     inputs=INP, history=H, unit_build=UB, forecast=F, wacc=W, dcf=DCF, lenses=L,
     sensitivity=SENS, crux=CRUX, cost_exposure=CE, working_capital=WC, calibration=CAL,
+    forecast_anchor=FORECAST_ANCHOR,
 )
 
 with open(os.path.join(HERE, 'study_numbers.json'), 'w') as f:
