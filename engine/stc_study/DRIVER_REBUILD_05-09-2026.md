@@ -176,3 +176,79 @@ counts are explicitly *not audited*, they are read off a chart, and they are per
 stocks against a full-year revenue flow. Each of those is a reason to treat the derived
 revenue per subscriber as an INDICATOR rather than as a driver until the same figures are
 found in a table.
+
+
+---
+
+## The cost side, decomposed and priced
+
+The rule is that a gross margin set as an input is a fail wherever the filings disclose
+enough to build cost instead, and note 35 breaks cost of revenues into seven lines by
+nature. The model holds each **segment's** margin flat, so every line already sits on the
+revenue of the segment it belongs to — which is the right base for most of the stack, and
+is not the single blended index the cost-stack rule forbids. What it does not do is put the
+lines whose driver is something *other* than revenue onto that other thing.
+
+Four lines have a base the filings actually name. Each is priced against the model's own
+final forecast year, in SR million:
+
+| line | held at a share of revenue | on the base the filings name | difference |
+|---|---:|---:|---:|
+| Commercial service provisioning fees | 5,254.3 | 5,149.3 | -105.0 |
+| License fees | 534.4 | 536.1 | +1.7 |
+| Repairs and maintenance | 2,243.5 | 2,323.7 | +80.2 |
+| Amortisation and impairment of contract costs | 216.3 | 281.4 | +65.1 |
+| **net** | | | **+41.9** |
+
+That is **-0.0473 points of margin** and, through the study's own
+committed sensitivity grid, **37.8396 → 37.7278**, or
+**-0.295%** of the central.
+
+**The offsets run both ways and that is the finding.** The levy and the licence fee fall
+against a group growing faster than the Saudi segment they are charged on; maintenance and
+subscriber-acquisition costs rise against it; the two nearly cancel. The blended
+construction is not hiding a mix effect here — which is worth establishing rather than
+assuming, because the same test on another name in this book found one worth seventeen per
+cent. Three tenths of one per cent does not justify adding four escalators, two of which
+would rest on two observations apiece, so **the model is not rewired and the measurement is
+what is committed.**
+
+### Four lines are deliberately not priced
+
+Inventing a driver to complete a table is worse than the gap it closes.
+
+| line | share of FY2025 revenue | why not |
+|---|---:|---|
+| Network access charges | 12.97% | no disclosed unit rate |
+| Employees costs | 7.12% | no headcount anywhere in the filings — searched, absent |
+| Others | 3.48% | a residual of three unrelated things |
+| Frequency spectrum fees | 0.34% | lumpy, and the first Saudi licence expiry falls **inside** the explicit window with no renewal cost disclosed |
+
+The spectrum line is the one to watch rather than to model. It ran
+361,932 then
+137,427 then
+265,470 across the three filed years — a
+swing of roughly a hundred per cent in each direction — and escalating a three-year mean at
+consumer-price inflation would dress a guess as a construction. It is named as a gap.
+
+### Two things the sub-notes settle that nobody had
+
+**The 724 million reversal is placed by arithmetic, not by inference.** The FY2024 filing's
+footnote puts a non-recurring provision reversal of that size inside FY2023 government
+charges and does not say which sub-line. Three of the four sub-lines are each *smaller than
+the reversal* — License fees at 444,266,
+Frequency spectrum fees at 361,932 and Others at
+77,329 — so it cannot sit in any of them. It belongs to the commercial service
+provisioning fee, and placing it there tightens that levy's own ratio against the Saudi
+segment from a two-point step to
+8.964% / 9.473% / 9.015%. The tightening is corroboration; the
+deduction stands on the sizes alone, and `check()` fails if a restatement ever makes a
+second sub-line large enough to carry it.
+
+**The device line is not device cost of sales, and the split is unidentified.** The line
+costs more than the devices sell for in every filed year — by 1,953,454,
+2,186,801 and 1,561,502 — so it carries equipment and software consumed in operations as
+well as handsets resold. Solving `cost = k x device revenue + e x revenue` across every
+available period pair gives a device ratio ranging from **-1.08 to 5.86**,
+two of the three pairs economically impossible. That is a split *demonstrated* unidentified
+rather than asserted to be, and it is left alone rather than filled with an imported ratio.

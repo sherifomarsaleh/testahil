@@ -96,12 +96,103 @@
  "driver_class": {
   "Cost of devices, equipment and software": "imported handsets and equipment; dollar-denominated under a pegged riyal, so the driver is device volume and world equipment prices rather than domestic inflation",
   "Network access charges": "interconnection and wholesale capacity; volume-linked and regulated, with no disclosed unit rate",
-  "Government charges": "a regulated levy; note 35 breaks it out further and it runs about 7% of revenue",
+  "Government charges": "FOUR things with four drivers, per note 35's own sub-table, and the largest is not levied on group revenue at all \u2014 the commercial service provisioning fee sits on the Saudi operating segment, which grows far more slowly than the group. See levy_ratio() and cost_decomposition.py",
   "Employees costs": "domestic wages; the one line the Saudi inflation ladder governs directly",
   "Repairs and maintenance": "the asset base being maintained, so it belongs with the capital-intensity question rather than with revenue",
   "Amortisation and impairment of contract costs": "contract acquisition costs amortised over contract life; a subscriber-acquisition driver",
   "Others": "stc Bank direct cost, postage and delivery, and utilities per the note; a residual with no single driver"
  },
+ "revenue_disaggregation": {
+  "Rendering of services": [
+   60306720,
+   63283188,
+   63312089
+  ],
+  "Sale of devices": [
+   11406625,
+   12458105,
+   12634029
+  ],
+  "Others": [
+   63816,
+   152120,
+   1872557
+  ]
+ },
+ "government_charges": {
+  "Commercial service provisioning fees": [
+   3687775,
+   4702782,
+   4608632
+  ],
+  "License fees": [
+   444266,
+   463948,
+   468768
+  ],
+  "Frequency spectrum fees": [
+   361932,
+   137427,
+   265470
+  ],
+  "Others": [
+   77329,
+   74046,
+   74706
+  ]
+ },
+ "reversal_placed_in": "Commercial service provisioning fees",
+ "reversal_ruled_out": [
+  {
+   "line": "License fees",
+   "size": 444266
+  },
+  {
+   "line": "Frequency spectrum fees",
+   "size": 361932
+  },
+  {
+   "line": "Others",
+   "size": 77329
+  }
+ ],
+ "device_line_less_device_revenue": [
+  1953454,
+  2186801,
+  1561502
+ ],
+ "device_split_pairs": [
+  {
+   "pair": [
+    "FY2023",
+    "FY2024"
+   ],
+   "k": 1.3053354115339617,
+   "e": -0.021307509481861157
+  },
+  {
+   "pair": [
+    "FY2023",
+    "FY2025"
+   ],
+   "k": -1.0814353231924807,
+   "e": 0.35799139775687744
+  },
+  {
+   "pair": [
+    "FY2024",
+    "FY2025"
+   ],
+   "k": 5.858752393106834,
+   "e": -0.7687629818720395
+  }
+ ],
+ "levy_share_of_ksa_segment": [
+  0.08963710339628778,
+  0.09473032261994441,
+  0.09015492940553795
+ ],
+ "levy_note": "The provisioning levy is the largest government charge and it is not levied on group revenue. Against the stc (Saudi) segment the sub-note implies it is charged on, and with the disclosed reversal put back in the only sub-line big enough to carry it, it runs a tight band across all three filed years. Held against GROUP revenue instead it appears to step two points in a single year, which is an artefact of the base and of an item the filing calls non-recurring.",
  "selling_and_marketing": {
   "Employee costs": [
    2904133,
