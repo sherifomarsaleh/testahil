@@ -160,8 +160,8 @@ and the honest answer is that the third cannot be ruled out:
    materially less EBITDA into distributable cash than a young one, and a lower multiple is
    what that means. The historical multiples embed no such charge because the market has
    never had to state one.
-2. **It follows from the growth.** Revenue compounds at 2.35% nominal against the delivered
-   study's 3.63%, because every segment now grows at **its own measured rate** rather than
+2. **It follows from the growth.** Revenue compounds at 2.50% nominal against the delivered
+   study's 3.71%, because every segment now grows at **its own measured rate** rather than
    at four typed arrays, and the measured rates are lower — stc, two thirds of revenue,
    grows +0.16% real. The market may be paying for growth this company's own last three
    years do not show.
