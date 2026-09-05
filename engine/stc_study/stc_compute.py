@@ -15,6 +15,10 @@ import pandas as pd
 import primitives as m
 from wacc_builder import WaccInputs, build_wacc, RegressionBetaAttempt
 
+# Imported here rather than beside the cost-of-capital block because the LATEST KNOWN
+# price it reads is needed by the market capitalisation long before the schedule is built.
+import coc_run as COCRUN
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 OHLC = os.path.join(HERE, '..', 'raw_ohlc', 'SA', 'STC.csv')
 
@@ -149,7 +153,17 @@ ISSUED_CAPITAL, PAR_VALUE, TREASURY_SHARES = 50_000_000.0, 10.0, 6_976.0
 SH = (ISSUED_CAPITAL / PAR_VALUE - TREASURY_SHARES) / 1000.0   # mn shares outstanding
 assert abs(SH - 4_993.024) < 1e-9
 TAX = 0.097          # normalized effective zakat+tax (FY23 9.5%, FY24 9.8%; FY25 −3.2% one-off credit)
-MKTCAP = spot * SH
+# ===== TWO CLOCKS, AND THE STUDY SAYS WHICH IS WHICH [R-GAP-01] =============
+# `spot` above is the last session in the PERSISTENT PRICE LIBRARY, and it is the anchor
+# the Monte Carlo cone is struck on, because a cone is built on a price series and has to
+# start where that series ends. THE VALUATION IS A DIFFERENT QUESTION and is put against
+# the LATEST KNOWN price, which on 5 September 2026 is a later figure than the library
+# holds. Publishing one number for both would either strike the cone on a session that is
+# not in its own series or measure the gap against a price the market has already left.
+CONE_ANCHOR, CONE_ANCHOR_DATE = spot, spot_date
+VALUATION_SPOT = COCRUN.SPOT               # the supplied close register, read not typed
+VALUATION_SPOT_DATE = COCRUN.SPOT_DATE
+MKTCAP = VALUATION_SPOT * SH
 
 # ===== Historical anchors (stc.com IR releases; restated continuing-ops) =====
 hist = dict(
@@ -560,7 +574,19 @@ scen = [(0.30, ddm_lens['bull'] * 1.02), (0.45, ddm_ps), (0.25, ddm_lens['bear']
 e3 = dict(base=sum(p * v_ for p, v_ in scen))
 
 out = dict(
-    spot=spot, spot_date=spot_date, shares=SH, mktcap=MKTCAP,
+    # The answer and the price it is measured against, at the top level, where a reader
+    # and a checker both look. The delivered study exposed neither, so every gate that
+    # audits an ANSWER rather than a step reported it unreadable — and an unreadable study
+    # is not a clean one.
+    central=central,
+    spot=VALUATION_SPOT, spot_date=VALUATION_SPOT_DATE,
+    central_range=dict(low=central_bear, high=central_bull),
+    cone_anchor=CONE_ANCHOR, cone_anchor_date=CONE_ANCHOR_DATE,
+    two_clocks=('The valuation is struck against the latest known close, the Monte Carlo '
+                'cone against the last session in the persistent price library. They are '
+                'different dates because a cone must start where its own price series '
+                'ends, and the study says so rather than publishing one number for both.'),
+    shares=SH, mktcap=MKTCAP,
     step0=dict(nonoverlap=summ, monthly=summ21, secular=summ_sec,
                pit_hist=pit_hist, n_rows=len(res), boot=boot),
     engine=dict(anchor_vol=anchor_vol, drift_daily=drift_daily,

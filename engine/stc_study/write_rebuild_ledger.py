@@ -32,7 +32,8 @@ LANDED = {
     'R-MACRO-01': '518aee8b42d7bf9436844f14bc54aae91ec815cf',     # lever 4
     'R-TERM-01':  'a8f1f4026c24385e06d9bc493f6f74e7607de52f',     # lever 5
     'R-BRIDGE-01': '7a10176ffdf65947f599b3d472061fc917a4168c',    # lever 5b
-    'R-LENS-03':  None,                                          # the working tree, latest
+    'R-LENS-03':  'accc82d745bccf22f5455d0504c92c7043ee3f56',     # lever 6
+    'R-GAP-01':   None,                                          # the working tree, latest
 }
 
 
@@ -61,6 +62,7 @@ AFTER_BETA = at(LANDED['R-BETA-04'])
 AFTER_MACRO = at(LANDED['R-MACRO-01'])
 AFTER_TERM = at(LANDED['R-TERM-01'])
 AFTER_BRIDGE = at(LANDED['R-BRIDGE-01'])
+AFTER_LENS = at(LANDED['R-LENS-03'])
 NOW = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 # The lever-2 intermediate, struck when the cost-of-capital schedule was in and the beta
 # was not. It is named for that lever set, so a later sensitivity run cannot overwrite the
@@ -274,7 +276,7 @@ led.apply(
 led.apply(
     name='the four-lens blend retired for the class primary',
     rule='R-LENS-03',
-    after=NOW['lenses']['central']['base'],
+    after=AFTER_LENS['lenses']['central']['base'],
     why=(
         'The delivered central was a BLEND of four lenses at typed weights — 35% cash flow, '
         '25% dividend discount, 20% relative multiple, 20% normalised earnings — that '
@@ -304,15 +306,47 @@ led.apply(
         "— the delivered study's corners moved the cost of capital by 100 and 70 basis "
         'points and terminal growth between 2.0%% and 3.0%% as well, which makes each corner '
         'an economy nothing describes.'
-        % (NOW['lenses']['central']['base'],
+        % (AFTER_LENS['lenses']['central']['base'],
            AFTER_BRIDGE['lenses']['central']['base'],
-           NOW['lenses']['ddm']['base'], NOW['lenses']['normalized']['base'],
-           NOW['lens_record']['cross_checks'][0]['circularity']['traded_multiple'],
-           NOW['rel_basis']['evx']['base'],
-           NOW['lenses']['own_history_evx'][0]['x'],
-           NOW['lenses']['own_history_evx'][1]['x'],
-           NOW['lenses']['own_history_evx'][2]['x'],
-           NOW['lenses']['book_value'])),
+           AFTER_LENS['lenses']['ddm']['base'],
+           AFTER_LENS['lenses']['normalized']['base'],
+           AFTER_LENS['lens_record']['cross_checks'][0]['circularity']['traded_multiple'],
+           AFTER_LENS['rel_basis']['evx']['base'],
+           AFTER_LENS['lenses']['own_history_evx'][0]['x'],
+           AFTER_LENS['lenses']['own_history_evx'][1]['x'],
+           AFTER_LENS['lenses']['own_history_evx'][2]['x'],
+           AFTER_LENS['lenses']['book_value'])),
+)
+
+led.apply(
+    name='the answer and the price it is measured against, published where they can be read',
+    rule='R-GAP-01',
+    after=NOW['lenses']['central']['base'],
+    why=(
+        'THE MOVE IS ZERO AND THAT IS THE FINDING RATHER THAN AN OMISSION. The rule wants '
+        'the central put against the LATEST KNOWN price before any delivery, and the '
+        'valuation has been struck on that price since the cost-of-capital lever, because '
+        'the schedule reads the supplied close register directly — so there was nothing '
+        'left to re-strike by the time this lever arrived. What WAS missing is that neither '
+        'the answer nor the price appeared anywhere a reader or a checker could find them: '
+        'the study exposed no central at all, so every gate that audits an ANSWER rather '
+        'than a step reported it unreadable, and an unreadable study is not a clean one — '
+        'it is the cheapest possible route past an audit. Both are now published at the top '
+        'level of the committed record.'),
+    evidence=(
+        'Central %.4f against the latest known close of SAR %.2f on %s, a gap of %+.2f%%, '
+        'inside the ten per cent band either way, so no eight-heading review is owed and '
+        'the publication block does not fire on the gap. TWO CLOCKS ARE NOW NAMED RATHER '
+        'THAN CONFLATED: the valuation is struck against that latest known close, and the '
+        'Monte Carlo cone against SAR %.2f on %s, the last session in the persistent price '
+        'library, because a cone has to start where its own price series ends. Publishing '
+        'one number for both would either strike the cone on a session that is not in its '
+        'series or measure the gap against a price the market has already left. STC comes '
+        'off the valuation-gap ratchet, which now carries no breaching study at all and one '
+        'unreadable one.'
+        % (NOW['lenses']['central']['base'], NOW['spot'], NOW['spot_date'],
+           100 * (NOW['lenses']['central']['base'] / NOW['spot'] - 1),
+           NOW['cone_anchor'], NOW['cone_anchor_date'])),
 )
 
 rec = led.record()

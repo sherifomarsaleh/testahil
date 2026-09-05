@@ -59,6 +59,15 @@
    "why": "The delivered central was a BLEND of four lenses at typed weights \u2014 35% cash flow, 25% dividend discount, 20% relative multiple, 20% normalised earnings \u2014 that nobody chose on evidence and no out-of-sample test ever cleared. Two of those four are not permitted cross-checks for a telecom operator at all and carried 45% of the answer between them. A number produced by averaging several methods is not more robust than the best of them: it is a NEW method with free parameters nobody tested, wearing the appearance of caution, and it imports every weakness of the weakest lens at whatever weight somebody typed. The registry gives this class a CASH-FLOW primary cross-checked on an EV/EBITDA multiple from its own history and on book value, so the cash-flow read IS the central and the others are published beside it.",
    "evidence": "The central becomes the cash-flow read at 41.1548, from a blend of 41.8568. The dividend-discount read of 35.4266 and the normalised-earnings read of 43.2604 come out of the answer entirely. THE MULTIPLE IS NOW COMPUTED RATHER THAN TYPED: the study used 8.0 / 9.0 / 10.0 with no source of any kind, and its base of 9.0 sat within a rounding of the 9.151x the shares trade at today \u2014 which values the company at what it already trades at. The adopted 8.762x is the mean of this company's own trailing EV/EBITDA at the last three year ends (9.131x, 8.316x, 8.839x), each computed from that year-end's own close in the persistent price library, the shares in issue and that year's net debt and EBITDA from the filings. Every one of the three sits BELOW the traded multiple, so the lens can be SEEN not to be anchored on the price. Book value of 17.0211 is published as the disclosed floor it is and is never weighted. The bear and bull are flexed on capital intensity between the 15.0% and 17.5% of revenue management guides to, with the macro path standing still across all three \u2014 the delivered study's corners moved the cost of capital by 100 and 70 basis points and terminal growth between 2.0% and 3.0% as well, which makes each corner an economy nothing describes.",
    "move": -0.016771456778257643
+  },
+  {
+   "name": "the answer and the price it is measured against, published where they can be read",
+   "rule": "R-GAP-01",
+   "before": 41.15477165329675,
+   "after": 41.15477165329675,
+   "why": "THE MOVE IS ZERO AND THAT IS THE FINDING RATHER THAN AN OMISSION. The rule wants the central put against the LATEST KNOWN price before any delivery, and the valuation has been struck on that price since the cost-of-capital lever, because the schedule reads the supplied close register directly \u2014 so there was nothing left to re-strike by the time this lever arrived. What WAS missing is that neither the answer nor the price appeared anywhere a reader or a checker could find them: the study exposed no central at all, so every gate that audits an ANSWER rather than a step reported it unreadable, and an unreadable study is not a clean one \u2014 it is the cheapest possible route past an audit. Both are now published at the top level of the committed record.",
+   "evidence": "Central 41.1548 against the latest known close of SAR 43.86 on 2026-09-03, a gap of -6.17%, inside the ten per cent band either way, so no eight-heading review is owed and the publication block does not fire on the gap. TWO CLOCKS ARE NOW NAMED RATHER THAN CONFLATED: the valuation is struck against that latest known close, and the Monte Carlo cone against SAR 44.72 on 2026-08-31, the last session in the persistent price library, because a cone has to start where its own price series ends. Publishing one number for both would either strike the cone on a session that is not in its series or measure the gap against a price the market has already left. STC comes off the valuation-gap ratchet, which now carries no breaching study at all and one unreadable one.",
+   "move": 0.0
   }
  ],
  "value": 41.15477165329675,
@@ -111,9 +120,17 @@
    "first_before": 41.85677067352522,
    "last_after": 41.15477165329675,
    "move": -0.016771456778257643
+  },
+  "R-GAP-01": {
+   "levers": [
+    "the answer and the price it is measured against, published where they can be read"
+   ],
+   "first_before": 41.15477165329675,
+   "last_after": 41.15477165329675,
+   "move": 0.0
   }
  },
- "distinct_rules": 6,
+ "distinct_rules": 7,
  "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked.",
  "audit_taken": {
   "at": "2026-09-05, after lever 3, as declared",

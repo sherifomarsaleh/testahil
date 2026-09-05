@@ -62,9 +62,11 @@ nothing else. The ledger reads that artefact; no figure in it was copied from a 
 | 5 | R-TERM-01 | 41.7388 | **40.4206** | −3.16% |
 | 5b | R-BRIDGE-01 | 40.4206 | **41.8568** | +3.55% |
 | 6 | R-LENS-03 | 41.8568 | **41.1548** | −1.68% |
+| 7 | R-GAP-01 | 41.1548 | **41.1548** | +0.00% |
 
 Cumulative **−12.64%** from the delivered 47.1108, and **−6.17%** against the latest known
-close of SAR 43.86.
+close of SAR 43.86 — inside the ten per cent band either way, so no eight-heading review is
+owed and the publication block does not fire on the gap. **All seven levers are landed.**
 
 **Worth more than the plan expected, and the reason is the lens that was about to be
 retired anyway.** The plan judged this "likely to change what a reader can see rather than
@@ -173,6 +175,35 @@ guides to. The published envelope is then the RANGE of the present-value reads o
 40.48 to 48.52, which stretches to what the cross-check says rather than to a spread
 invented around the answer; book value of 17.02 is the disclosed floor and is never weighted.
 
+### Lever 7, whose move is zero, and that is the finding
+
+[R-GAP-01] wants the central put against the latest known price before any delivery, and
+the valuation has been struck on that price since lever 2, because the cost-of-capital
+schedule reads the supplied close register directly. **There was nothing left to re-strike.**
+
+What was missing is that neither the answer nor the price appeared anywhere a reader or a
+checker could find them. The study exposed no central at all, so every gate that audits an
+ANSWER rather than a step reported it unreadable — and an unreadable study is not a clean
+one, it is the cheapest possible route past an audit. Both are now at the top level of the
+committed record, and the valuation-gap ratchet carries no breaching study at all.
+
+**Two clocks are named rather than conflated.** The valuation is struck against the latest
+known close of SAR 43.86 on 3 September 2026; the Monte Carlo cone is struck against SAR
+44.72 on 31 August, the last session in the persistent price library, because a cone has to
+start where its own price series ends. Publishing one number for both would either strike
+the cone on a session that is not in its series or measure the gap against a price the
+market has already left.
+
+## What is left, and it is not small
+
+The seven levers are done and **this is not a delivered study.** It has no bibliography, no
+inputs register with four fields, no sweep register, no QC gate, no driver test and no
+recalculation harness, and its four segment growth arrays are still typed nominals with no
+source, date or layer — which is why [R-MACRO-01]'s record is still unwritten and STC stays
+on that one ratchet. The eleven disclosed segments in the FY2025 filing, with two years of
+revenue and gross profit each, are the base a ground-up rebuild builds on, and they were not
+available to this study before 5 September.
+
 ## The levers, in order
 
 | # | rule | what |
@@ -185,7 +216,7 @@ invented around the answer; book value of 17.02 is the disclosed floor and is ne
 | 5 ✅ | R-TERM-01 | the terminal through engine/terminal_value.py on the DERIVED life in TERMINAL_EVIDENCE_05-09-2026.md — 20.86 years, base 15.23 years old, 73% of the depreciable base written off, on three filed years that each foot to the riyal. THE BASE IS OLD, at 1.46 times half its own implied life, so maintenance at current cost is a large multiple of the book charge. THE SIGN IS NOT PREDICTED [R-TERM-01 CLAUSE TWO CORRECTED]. |
 | 5b ✅ | R-BRIDGE-01 | **ADDED 5 September 2026, and the timing is recorded because it is the whole question.** The bridge stands on figures the company has since superseded: the study deducts net debt of SAR 7,063mn on a Q1-2026 basis and a minority of SAR 2,335mn at 31 March 2026, while a REVIEWED 30 June 2026 balance sheet was published carrying borrowings of SAR 23,536.554mn, cash of SAR 18,940.773mn and a minority of SAR 2,726.349mn. It also divides by 4,989.8mn shares, which is the 31 December 2025 count; note 17 of that same interim foots issued capital of SAR 50,000,000 thousand at SAR 10 par to 5,000,000 thousand shares and states 4,993.024mn outstanding. THIS WAS FOUND WHILE SOURCING THE DEBT BOOK FOR LEVER 2 AND BEFORE THE MODEL PRODUCED ANY REBUILT ANSWER — the plan is amended at a point where nobody could yet know which way it moves the value, which is the only condition under which adding a lever is not reshaping the route to suit where it lands. |
 | 6 ✅ | R-LENS-03 | the four-lens blend retired. LENS_REGISTRY['telecom operator'] is a cash-flow primary cross-checked on own-history EV/EBITDA, a relative multiple and book — so the dividend-discount and normalised-earnings reads come OUT of the answer entirely. STC is the ONE of the seven unreadable studies whose class the registry holds. |
-| 7 | R-GAP-01 | re-struck on the latest known price, and the eight-heading review written before any file is staged. |
+| 7 ✅ | R-GAP-01 | re-struck on the latest known price, and the eight-heading review written before any file is staged. |
 
 ## What this rebuild also needs, and the ledger does not measure
 

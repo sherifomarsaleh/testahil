@@ -1,8 +1,16 @@
 {
- "spot": 44.72,
- "spot_date": "2026-08-31",
+ "central": 41.15477165329675,
+ "spot": 43.86,
+ "spot_date": "2026-09-03",
+ "central_range": {
+  "low": 40.47669132469438,
+  "high": 48.51726975906215
+ },
+ "cone_anchor": 44.72,
+ "cone_anchor_date": "2026-08-31",
+ "two_clocks": "The valuation is struck against the latest known close, the Monte Carlo cone against the last session in the persistent price library. They are different dates because a cone must start where its own price series ends, and the study says so rather than publishing one number for both.",
  "shares": 4993.024,
- "mktcap": 223288.03328,
+ "mktcap": 218994.03264000002,
  "step0": {
   "nonoverlap": {
    "n": 60,
