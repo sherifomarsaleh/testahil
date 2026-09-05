@@ -243,7 +243,7 @@ def terminal(rows, sched, tg, framing):
     # capitalised at the TERMINAL rate and brought home on the window's own
     # factor -- one date, one price of time [R-COC-01]
     dc = _discounter(sched)
-    pv_tv = tail * dc.perpetuity_factor(tg)
+    pv_tv = dc.perpetuity_pv(tail, tg)
     tv = pv_tv / dc.factor(len(rows))
     return tail, tv, pv_tv
 

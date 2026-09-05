@@ -120,7 +120,7 @@ def discounted(mode, sched):
     # applies when it is struck — and brought home on the window's own factor. The
     # earlier editions capitalised it at the explicit-window rate and floored the
     # denominator at 2%, which is a free parameter hiding an impossible assumption.
-    pv_rec = rec_fcff * dc.perpetuity_factor(M.TERMINAL_GROWTH)
+    pv_rec = dc.perpetuity_pv(rec_fcff, M.TERMINAL_GROWTH)
     tv_rec = pv_rec / dc.factor(len(rows))
 
     return {"mode": mode, "wacc": wacc, "conversion_years": n,
