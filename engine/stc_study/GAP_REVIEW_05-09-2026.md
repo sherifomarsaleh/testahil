@@ -40,6 +40,26 @@ segment table foots to its own stated total in both years. FY2023 was checked on
 bases and the bridge between them foots exactly (72,336.611 as originally reported, less
 TAWAL and its eliminations, less note 49's reclassification, to 71,777.161).
 
+**AND THE BASE YEAR IS THE BEST OF THE THREE, WHICH IS NOT WHAT THE REPORTED FIGURES SAY.**
+Note 35 of the FY2025 statements breaks the whole cost of revenues into seven lines by
+nature, and each filing's own footnote names a non-recurring item inside it: **SR 1,500
+million of withholding-tax provision reversed into FY2024's network access charges**, and
+**SR 724 million of provision reversed into FY2023's government charges**. Both are
+reversals, so both lower the reported cost and raise the reported margin of the year they
+sit in. Put back:
+
+| | FY2023 | FY2024 | FY2025 |
+|---|---:|---:|---:|
+| reported gross margin | 48.40% | 49.18% | 48.45% |
+| **underlying** | **47.39%** | **47.21%** | **48.45%** |
+
+The reported series dips and recovers; the underlying one **rises**. The model holds each
+segment's FY2025 margin flat, and FY2025 is the **highest** of the three on the underlying
+basis — so that assumption sits at the optimistic end of this record rather than the
+cautious one. A study that did not know which end it was at had not classified its one-offs.
+Every column foots, and revenue less the cost total **is** the gross profit the segment note
+states, to the riyal, in all three years.
+
 **One exception was found and it is in the delivered study rather than in this base.** Its
 cash line read 30,755 for FY2024 against a note-20 figure of 15,543 and 15,080 for FY2025
 against 13,376 — very nearly double in one year — with no source named for the wider figure.
