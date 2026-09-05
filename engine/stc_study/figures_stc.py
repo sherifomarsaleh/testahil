@@ -1,50 +1,101 @@
 import json
+import os
+import sys
+
 import numpy as np
 import pandas as pd
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-import mc_v2 as m
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, '..'))
+
+# mc_v2 WAS RENAMED ON 2 AUGUST 2026 and is legacy reference only; this file had not run
+# since. The production primitives are what the model itself reads.
+import primitives as m
 
 CANVAS, CREAM, GOLD, BRASS, SAGE = '#1C3A36', '#F6F1E6', '#C0A45F', '#896F36', '#9FB0AC'
 INK, GRID, GREY = '#1C3A36', '#D5DDDB', '#6E7B77'
-plt.rcParams.update({'figure.facecolor': 'none', 'axes.facecolor': 'none',
+plt.rcParams.update({'figure.facecolor': CREAM, 'axes.facecolor': CREAM,
                      'axes.edgecolor': GREY, 'axes.labelcolor': INK,
                      'xtick.color': INK, 'ytick.color': INK, 'text.color': INK,
                      'font.family': 'DejaVu Sans', 'axes.grid': True,
                      'grid.color': GRID, 'grid.linewidth': 0.6,
-                     'axes.titlecolor': INK, 'savefig.transparent': True})
+                     'axes.titlecolor': INK,
+                     # SOLID LIGHT CANVAS, ZERO TRANSPARENCY — depth-bar standard 5, and it
+                     # is verified programmatically rather than trusted. A transparent PNG
+                     # renders correctly on a white page and turns unreadable the moment a
+                     # reader opens it on anything else.
+                     'savefig.transparent': False,
+                     'savefig.facecolor': CREAM})
 
-d = json.load(open('study_numbers.json'))
+d = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 spot = d['spot']
-df = m.load_ohlc('STC_Stock_Price_History.csv')
+# THE PERSISTENT LIBRARY, not a one-off export of this study's own. Reading a
+# private copy is how a figure comes to disagree with the cone above it.
+df = m.load_ohlc(os.path.join(HERE, '..', 'raw_ohlc', 'SA', 'STC.csv'))
 
 def style(ax):
     for s in ['top', 'right']: ax.spines[s].set_visible(False)
     for s in ['left', 'bottom']: ax.spines[s].set_color(GREY)
 
-# ---- F1 football field ------------------------------------------------------
+# ---- F1 the lenses, one primary and its cross-checks -----------------------
+# THE BLEND IS RETIRED [R-LENS-03] AND THIS FIGURE USED TO PUBLISH IT: its last bar was
+# labelled "Weighted central" and drew a fifth number averaged out of the four above it. One
+# class primary IS the central; every other lens is a CROSS-CHECK shown beside it, and the
+# envelope is the RANGE of the present-value reads rather than a spread invented around a
+# mean. Reading the four bars and expecting the fifth to be their average is exactly what a
+# reader would do, and it would be wrong about what this study claims.
 L = d['lenses']
-names = ['FCFF DCF\n(primary)', 'Dividend discount\n(policy lens)', 'Relative\n(EV/EBITDA)', 'Normalized earnings', 'Weighted central']
-keys = ['dcf', 'ddm', 'relative', 'normalized', 'central']
+LR = d['lens_record']
+_names = {'dcf': 'Discounted cash flow\n(the central)',
+          'ddm': 'Dividend discount\n(cross-check)',
+          'relative': 'Enterprise multiple on own\nhistory (cross-check)',
+          'normalized': 'Normalised earnings\n(cross-check)'}
+keys = ['dcf', 'ddm', 'relative', 'normalized']
+names = [_names[k] for k in keys]
 fig, ax = plt.subplots(figsize=(9.7, 4.1), dpi=110)
 for i, k in enumerate(keys):
     y = len(keys) - 1 - i
     b, ba, bu = L[k]['bear'], L[k]['base'], L[k]['bull']
-    col = GOLD if k == 'central' else SAGE
-    ax.barh(y, bu - b, left=b, height=0.46, color=col, alpha=0.32 if k != 'central' else 0.5,
+    col = GOLD if k == LR['primary']['kind'] else SAGE
+    ax.barh(y, bu - b, left=b, height=0.46, color=col, alpha=0.5 if col is GOLD else 0.32,
             edgecolor=col, linewidth=1.1)
     ax.plot([ba, ba], [y - 0.23, y + 0.23], color=BRASS, lw=3.4)
-    ax.text(bu + 0.7, y, f'{b:.0f}–{bu:.0f}  ·  base {ba:.1f}', va='center', fontsize=8.6, color=INK)
+    ax.text(bu + 0.7, y, f'{b:.0f}–{bu:.0f}  ·  {ba:.1f}', va='center', fontsize=8.6,
+            color=INK)
+# the published envelope is the RANGE OF THE READS, drawn as a band rather than as a bar,
+# so nothing on this chart can be mistaken for a fifth lens
+_env = LR['envelope']
+# DRAWN AS EDGES RATHER THAN AS A WASH, and in a different colour from the primary bar: at
+# the first attempt the band and the central lens were both gold and a reader could not tell
+# which was which — the wash read as a fifth, wider lens, which is the exact misreading the
+# retired blend used to invite.
+for _x in (_env['low'], _env['high']):
+    ax.axvline(_x, color=BRASS, lw=1.0, ls=(0, (5, 3)), zorder=0)
+ax.annotate('', xy=(_env['low'], -0.72), xytext=(_env['high'], -0.72),
+            arrowprops=dict(arrowstyle='<->', color=BRASS, lw=1.0))
+# LEFT-ALIGNED off the low edge, not centred: centred, the text sat exactly under the spot
+# line and the line ran through it. Three passes on this one figure, each one found by
+# looking at the rendered image and none of them visible in the code.
+ax.text(_env['high'] + 0.8, -0.72,
+        f"published range {_env['low']:.1f}–{_env['high']:.1f}", color=BRASS, fontsize=8.2,
+        ha='left', va='center')
 ax.axvline(spot, color=INK, lw=1.6)
-ax.text(spot, len(keys) - 0.32, f' spot {spot:.2f}', color=INK, fontsize=9, ha='left')
-cB = L['central']
-ax.axvspan(cB['base'] * 0.95, cB['base'] * 1.05, color=GOLD, alpha=0.13)
+# INSIDE the axes and below the top bar, not above it: at the previous placement the label
+# sat on the title and the two were unreadable together. Caught by looking at the rendered
+# image, which is a gate rather than a formality — nothing in the code says two pieces of
+# text overlap.
+ax.text(spot + 0.5, -0.30, f'spot {spot:.2f}', color=INK, fontsize=8.6, ha='left',
+        va='center')
 ax.set_yticks(range(len(keys)), names[::-1], fontsize=9)
-ax.set_xlabel('SAR / share'); ax.set_xlim(26, 76)
-ax.set_title('stc — valuation football field (bear–bull span per lens; brass tick = base; ink line = spot)',
-             fontsize=10, pad=10)
-style(ax); fig.tight_layout(); fig.savefig('fig1_football.png'); plt.close(fig)
+ax.set_xlabel('SAR / share'); ax.set_xlim(26, 76); ax.set_ylim(-1.05, len(keys) - 0.35)
+ax.set_title('stc — one primary lens and its cross-checks. The bar is each lens\u2019s own '
+             'range, the brass tick its central read,\nand the dashed pair the range this '
+             'study publishes. Nothing here is an average of the others.',
+             fontsize=9.4, pad=8)
+style(ax); fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig1_football.png')); plt.close(fig)
 
 # ---- F2 sensitivity heatmap: EBITDA margin × capex intensity (real units) ---
 S = d['sens']; tab = np.array(S['table_cm'])
@@ -61,7 +112,7 @@ ax.set_yticks(range(5), [f'{x*100:+.1f}pp' for x in S['margin_steps']])
 ax.set_xlabel('capex intensity shift (pp of revenue; base 16.5% FY26E)')
 ax.set_ylabel('EBITDA margin shift (base 31.8% FY26E)')
 ax.set_title('DCF fair value (SAR/sh) — EBITDA margin × capex intensity; bold ≈ spot 43.58', fontsize=10, pad=8)
-ax.grid(False); fig.tight_layout(); fig.savefig('fig2_sens.png'); plt.close(fig)
+ax.grid(False); fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig2_sens.png')); plt.close(fig)
 
 # ---- F3 MA stack ------------------------------------------------------------
 s = df.set_index('Date')['Price'].iloc[-260:]
@@ -73,7 +124,7 @@ for n, c in [(20, GOLD), (50, BRASS), (100, SAGE), (200, '#7B8D88')]:
 ax.legend(frameon=False, fontsize=8.5, ncol=5, labelcolor=INK, loc='upper left')
 ax.set_title('stc — price versus the moving-average stack, last 260 sessions', fontsize=10, pad=8)
 ax.set_ylabel('SAR'); style(ax)
-fig.tight_layout(); fig.savefig('fig3_ma.png'); plt.close(fig)
+fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig3_ma.png')); plt.close(fig)
 
 # ---- F4 fan chart ------------------------------------------------------------
 fan = np.load('fan.npy'); days = np.arange(fan.shape[1])
@@ -90,7 +141,7 @@ ax.set_xlabel('trading sessions ahead'); ax.set_ylabel('SAR / share')
 ax.legend(frameon=False, fontsize=8.5, labelcolor=INK, loc='upper left')
 ax.set_title('Forward price cone to T+60 — 50,000 YZ-HAR paths, Student-t(5), zero drift (Step 0-passed)',
              fontsize=10, pad=8)
-style(ax); fig.tight_layout(); fig.savefig('fig4_fan.png'); plt.close(fig)
+style(ax); fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig4_fan.png')); plt.close(fig)
 
 # ---- F5/F6 distributions -----------------------------------------------------
 for tag, fn in [('T+20', 'pT20.npy'), ('T+60', 'pT60.npy')]:
@@ -105,7 +156,7 @@ for tag, fn in [('T+20', 'pT20.npy'), ('T+60', 'pT60.npy')]:
     ax.set_xlabel('SAR / share'); ax.set_yticks([])
     ax.set_title(f'Price distribution at {tag}', fontsize=10, pad=8)
     style(ax); fig.tight_layout()
-    fig.savefig(f"fig{'5' if tag=='T+20' else '6'}_dist.png"); plt.close(fig)
+    fig.savefig(os.path.join(HERE, f"fig{'5' if tag=='T+20' else '6'}_dist.png")); plt.close(fig)
 
 # ---- FB1 calibration 3-panel --------------------------------------------------
 bt = pd.read_csv('backtest_rows.csv', parse_dates=['origin'])
@@ -137,8 +188,9 @@ c.text(0.02, 0.94, f"CRPS skill +{so['crps_skill']*100:.1f}% (n={d['step0']['n_r
 style(c)
 fig.suptitle('Step 0 — stc calibration backtest: YZ-HAR · t(5) · zero drift vs zero-drift random-walk benchmark',
              fontsize=10, color=INK, y=1.02)
-fig.tight_layout(); fig.savefig('figB1_calibration.png', bbox_inches='tight'); plt.close(fig)
-import shutil; shutil.copy('figB1_calibration.png', 'calibration_STC.png')
+fig.tight_layout(); fig.savefig(os.path.join(HERE, 'figB1_calibration.png'), bbox_inches='tight'); plt.close(fig)
+import shutil; shutil.copy(os.path.join(HERE, 'figB1_calibration.png'),
+            os.path.join(HERE, 'calibration_STC.png'))
 
 # ---- FD1 experts -------------------------------------------------------------
 E = d['experts']
@@ -158,5 +210,5 @@ ax.set_yticks(range(len(ex)), [e[0] for e in ex][::-1], fontsize=9)
 ax.set_xlabel('SAR / share'); ax.set_xlim(28, 62)
 ax.set_title('The three experts’ fair-value ranges — brass = base; gold band = panel centre; ink line = spot',
              fontsize=10, pad=8)
-style(ax); fig.tight_layout(); fig.savefig('figD1_experts.png'); plt.close(fig)
+style(ax); fig.tight_layout(); fig.savefig(os.path.join(HERE, 'figD1_experts.png')); plt.close(fig)
 print('figures done')
