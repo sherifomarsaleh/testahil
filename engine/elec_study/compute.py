@@ -722,8 +722,8 @@ FORECAST_ANCHOR = dict(
     latest_reviewed_source=(
         'THE STUDY HOLDS NO COMPANY FINANCIAL STATEMENT, AND THIS FIELD SAYS SO RATHER '
         'THAN NAMING A FILING. The Q1-2026 figures reach this model as press coverage of '
-        'the interim filing lodged with the exchange — revenue EGP %.0fmn, cost of sales '
-        'EGP %.0fmn, gross profit EGP %.3fmn and operating profit EGP %.3fmn — not as the '
+        'the interim filing lodged with the exchange — revenue EGP %s mn, cost of sales '
+        'EGP %s mn, gross profit EGP %.3fmn and operating profit EGP %.3fmn — not as the '
         'reviewed statements. EBITDA is that operating profit plus a depreciation add-back '
         'of EGP %.1fmn, which is this study\'s own estimate for the quarter and not a '
         'disclosed line. The issuer\'s statement index lists nothing after 30 September '
@@ -733,7 +733,8 @@ FORECAST_ANCHOR = dict(
         're-probed on 5 September 2026 rather than taken on report. So the anchor is '
         'recorded and its provenance is not of the class the source rule requires — a '
         'condition of the study, not of this record.'
-        % (V['q1_26_rev'], V['q1_26_cogs'], V['q1_26_gp'], V['q1_26_op'], _q1_dna_addback)),
+        % (format(V['q1_26_rev'], ',.0f'), format(V['q1_26_cogs'], ',.0f'),
+           V['q1_26_gp'], V['q1_26_op'], _q1_dna_addback)),
     first_forecast_rate=float(_fcst_mgn[0]),
     forecast_path=[float(m) for m in _fcst_mgn],
     other_framing=dict(
@@ -745,12 +746,12 @@ FORECAST_ANCHOR = dict(
              'SHOULD BE SHOWN NOT TO TURN ON IT. Strip the add-back from both sides and the '
              'shape is identical: %.4f%% in the quarter against %.4f%% in the first forecast '
              'year, rising to %.2f%% by FY2030E. The bound is exact — the quarterly add-back '
-             'would have to exceed EGP %.1fmn, an annualised EGP %.0fmn against this study\'s '
+             'would have to exceed EGP %.1fmn, an annualised EGP %s mn against this study\'s '
              'own FY2025 depreciation charge of EGP %.1fmn, before the forecast opened below '
              'the quarter at all. No treatment of depreciation available on these numbers '
              'reverses the sign.'
              % (100 * _ebit_mgn_q1, 100 * _ebit_mgn_f[0], 100 * _ebit_mgn_f[-1],
-                _dna_to_close, 4 * _dna_to_close, dna_fy['FY25'])),
+                _dna_to_close, format(4 * _dna_to_close, ',.0f'), dna_fy['FY25'])),
     driver_rate_beside_it=dict(
         label='conversion EBITDA per tonne (k EGP/t) — the unit rate the forecast is '
               'actually built on, margin being an output of it',
@@ -773,9 +774,9 @@ FORECAST_ANCHOR = dict(
          'path\'s minimum IS its opening year, running %.2f%% / %.2f%% / %.2f%% / %.2f%% / '
          '%.2f%%.\n\n'
          'WHAT SITS EITHER SIDE OF THAT IS THE WHOLE OF THIS STUDY AND A READER SHOULD SEE '
-         'IT. The anchor quarter is the worst the company has reported: revenue EGP %.0fmn '
-         'against EGP %.0fmn a year earlier, gross margin %.2f%% against %.2f%%, operating '
-         'profit EGP %.3fmn against EGP %.0fmn, and a net loss of EGP %.1fmn against a '
+         'IT. The anchor quarter is the worst the company has reported: revenue EGP %s mn '
+         'against EGP %s mn a year earlier, gross margin %.2f%% against %.2f%%, operating '
+         'profit EGP %.3fmn against EGP %s mn, and a net loss of EGP %.1fmn against a '
          'profit of EGP %.1fmn. A forecast opening above that is the ordinary consequence of '
          'not projecting the worst quarter for ever, and it is not evidence of anything. The '
          'LAST forecast year is where the answer lives: %.2f%% against a reported record of '
@@ -786,8 +787,9 @@ FORECAST_ANCHOR = dict(
          'minimum against its own opening year, and on a rising path out of a collapsed '
          'quarter both pass while the single judgement carrying the valuation goes '
          'unexamined. It is examined instead by this study\'s own dated gap review, which '
-         'solves the traded price back through these same drivers onto a terminal margin of '
-         '27.17%% and finds it inside the reported range in all three years.\n\n'
+         'solves the traded price back through these same drivers onto a terminal margin '
+         'that sits inside the reported range in all three years — a figure that review '
+         'computes and this model does not, so it is described rather than quoted.\n\n'
          'AND THE RECORD IS ONLY AS GOOD AS WHAT IT IS STRUCK ON. The full-year margins '
          'quoted above are not filed rates: revenue and net profit are vendor and press '
          'prints, and everything between them is solved or typed — the FY2025 EBITDA rests '
@@ -800,9 +802,9 @@ FORECAST_ANCHOR = dict(
             100 * (_fcst_mgn[0] - _q1_mgn) / abs(_q1_mgn),
             100 * _fcst_mgn[0], 100 * _fcst_mgn[1], 100 * _fcst_mgn[2],
             100 * _fcst_mgn[3], 100 * _fcst_mgn[4],
-            V['q1_26_rev'], V['q1_25_rev'],
+            format(V['q1_26_rev'], ',.0f'), format(V['q1_25_rev'], ',.0f'),
             100 * V['q1_26_gp'] / V['q1_26_rev'], 100 * V['q1_25_gp'] / V['q1_25_rev'],
-            V['q1_26_op'], V['q1_25_op'], -V['q1_26_np'], V['q1_25_np'],
+            V['q1_26_op'], format(V['q1_25_op'], ',.0f'), -V['q1_26_np'], V['q1_25_np'],
             100 * _fcst_mgn[-1], 100 * _hist_mgn['FY23'], 100 * _hist_mgn['FY24'],
             100 * _hist_mgn['FY25'],
             -100 * (_fcst_mgn[-1] - _mgn_filed_low) / _mgn_filed_low,
