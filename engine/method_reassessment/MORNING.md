@@ -1277,3 +1277,42 @@ So the corrections machinery tested at one boundary and still adopted the one
 correction that also passes the full test. **That is the procedure holding, and
 there is now evidence for it rather than luck.** No live defect; the boundary
 result binds on what is adopted next, not on anything already in the book.
+
+## 06-09-2026, 22:15 firing
+
+### The currency note was in the repository, and it refutes the simplification
+
+Last hour I recorded EGCH's FX line as diagnosed but **blocked**: "confirming it
+needs the filings' currency note — stop and inform". [R-IND-01] says a question
+is the last resort and the ladder is climbed rather than recalled. The filings
+are in `engine/egch_walkforward/filings`. They are Arabic scans whose text layer
+is a broken font map, which is why an English keyword search over `pdftotext`
+returned nothing and looked like an absence.
+
+Rendered at 200 and again at 450 dpi and read by OCR in Arabic, page 29 of the
+FY2020-21 annual carries note **(4/11) Long-term loans**, and it says the facility
+financing the natural-gas conversion project was contracted with a consortium of
+six named **Egyptian** banks **"in the amount of [X] million US dollars AND 1.887
+billion Egyptian pounds"**, with debit interest accruing **"in dollars and in
+pounds"** and the second instalment repaid **"in dollars and in pounds"**.
+
+**So the borrowings are a split-currency facility, and the model treats 100% of
+total borrowings as dollar-denominated.** `usd_borrowings()` calls that a "stated
+simplification" in its own docstring; the company's own note refutes it. Add the
+short-term loans and the holding-company loans, both in pounds, and the dollar
+share of total borrowings is a fraction rather than all of it.
+
+That is consistent with what the outcome already said — the bracket put the
+realised FX result outside every net-dollar-position construction in 9 of 12
+years — and it now has a primary source rather than an inference.
+
+**Two decimal digits of the dollar figure did not resolve** across the two passes
+(one reads 117.1, the other 117.7) and are NOT recorded; the pound leg, the six
+banks and the dual-currency interest and repayment language are unambiguous in
+both. The per-origin dollar share needs each year's own note and is the next unit
+on this line, not a number to estimate.
+
+**The general point is the one [R-IND-01] was adopted for.** The register said the
+answer could not be obtained. It was one OCR pass away, in a file this run had
+already parsed cell by cell — and the search that "found nothing" had searched for
+English words in a document written in Arabic.
