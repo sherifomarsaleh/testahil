@@ -106,6 +106,39 @@ def audit(sdir):
     # test in `if central is not None`, so a record carrying a primary value and no central
     # skips it just as completely. A check whose condition is narrower than the skip it is
     # detecting reports most of the hole as clean, which is the failure it exists to close.
+    # ---- A TWO-SIDED ANSWER IS HELD BRANCH-WISE [added 06-09-2026]. The clause
+    # above was firing on work that was right: a study whose answer turns on a
+    # contested judgement publishes BOTH framings and is forbidden to average
+    # them, so it has no scalar central and demanding one demands the midpoint
+    # the dual-framing rule prohibits. Re-pointed per [R-COC-01], and the test
+    # is harder than the one it replaces rather than looser.
+    #
+    # THE SPLIT IS FORCED BY WHAT EACH INSTRUMENT CAN SEE. assert_lens_design()
+    # receives the RECORD and so tests the record's own shape — two_sided implies
+    # branches, distinct, labelled, no scalar beside them. Only this gate holds
+    # the DOCUMENT, so only this gate can ask the question that matters: are the
+    # branches the record declares the branches the study actually publishes?
+    _pub_ts = (doc.get("central_two_sided") or {}).get("branches")
+    _pub_vals = sorted(round(float(b["value"]), 9) for b in (_pub_ts or [])
+                       if isinstance((b or {}).get("value"), (int, float)))
+    if out.get("two_sided"):
+        _rec_vals = sorted(round(v, 9) for v in out.get("branches") or [])
+        if not _pub_vals:
+            return ("fail", "the record declares a two-sided primary and the study "
+                            "publishes no two-sided answer for it to describe")
+        if _rec_vals != _pub_vals:
+            return ("fail", "the record's branches %s are not the branches the study "
+                            "publishes %s. THE IDENTITY CLAUSE, BRANCH-WISE: each answer a "
+                            "reader is given is a lens read, and a branch nothing produced "
+                            "is the blend arriving one framing at a time."
+                            % (_rec_vals, _pub_vals))
+        return "ok", "two-sided primary %s, branches %s, %d cross-checks" % (
+            out["primary"], _rec_vals, len(out["cross_checks"]))
+    if _pub_vals:
+        return ("fail", "the study publishes a TWO-SIDED answer (%s) and its lens record "
+                        "declares a single-sided primary. The record understates the answer "
+                        "the study gives, and everything downstream reads the one branch it "
+                        "names." % _pub_vals)
     _c = rec.get("central")
     if _c is None:
         return ("no_central",

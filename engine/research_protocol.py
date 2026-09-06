@@ -1126,6 +1126,67 @@ def assert_lens_design(record: dict, ticker: str = "?") -> dict:
     # CONTAIN it. A record exposing neither a central nor a comparable primary is not
     # failed here: `central` is optional in this record's shape and inventing a
     # requirement for it belongs to a rule amendment rather than to an assertion.
+    # ------------------------------------------------- a TWO-SIDED answer
+    # [ADDED 06-09-2026] THE IDENTITY CLAUSE WAS FIRING ON WORK THAT WAS RIGHT.
+    # A study whose answer depends on a contested judgement publishes BOTH
+    # framings side by side and is forbidden to average them, so it has no
+    # scalar central to expose -- and the check that a record must expose one
+    # therefore demanded the very midpoint the dual-framing rule prohibits.
+    # Three studies were in that state. Per [R-COC-01] the check is RE-POINTED
+    # rather than widened or switched off: a two-sided record is held to a test
+    # of the same claim, branch-wise, and the test is HARDER than the one it
+    # replaces, because `two_sided` must not become the cheapest route past the
+    # clause that catches a blend.
+    _ts = bool(prim.get("two_sided"))
+    _branches = prim.get("branches") or []
+    if _ts:
+        if len(_branches) < 2:
+            fails.append(
+                "the primary declares two_sided and carries %d branch(es). A two-sided "
+                "answer IS its branches: without them the record states that there is no "
+                "single central and never says what the two answers are, which switches "
+                "the identity clause off rather than satisfying it."
+                % len(_branches))
+        seen_v = []
+        for i, b in enumerate(_branches):
+            if not str((b or {}).get("label") or "").strip():
+                fails.append("branch %d carries no label. A reader shown two numbers and "
+                             "not told which judgement produces which has been shown one "
+                             "number twice." % (i + 1))
+            bv = (b or {}).get("value")
+            if not isinstance(bv, (int, float)):
+                fails.append("branch %d carries no numeric value" % (i + 1))
+            else:
+                seen_v.append(float(bv))
+        if len(seen_v) >= 2 and len(set(round(v, 10) for v in seen_v)) < len(seen_v):
+            fails.append(
+                "two branches carry the same value. Two framings that reach the same "
+                "answer are not a two-sided answer; the judgement is not contested.")
+        if prim.get("value") is not None:
+            fails.append(
+                "the primary declares two_sided AND carries a scalar value of %.6f. It is "
+                "one or the other: a scalar beside the branches is the single number a "
+                "reader will quote, and choosing it is the averaging this rule forbids."
+                % float(prim["value"]))
+        if r.get("central") is not None:
+            fails.append(
+                "the record declares a two-sided primary and also exposes a central of "
+                "%.6f. A two-sided answer has no central -- that is what makes it "
+                "two-sided." % float(r["central"]))
+        if pr and seen_v:
+            _lo, _hi = float(pr["low"]), float(pr["high"])
+            if _lo - abs(_lo) * 1e-9 > min(seen_v) or _hi + abs(_hi) * 1e-9 < max(seen_v):
+                fails.append(
+                    "the primary's published range %.6f to %.6f does not contain its own "
+                    "branches (%s). An envelope that excludes the study's own answer is "
+                    "not that study's envelope."
+                    % (_lo, _hi, ", ".join("%.6f" % v for v in seen_v)))
+    elif _branches:
+        fails.append(
+            "the primary carries %d branches and does not declare two_sided. A record "
+            "that publishes two answers and does not say so is read as single-sided by "
+            "everything downstream, and the branch nobody reads is the one that "
+            "disagrees." % len(_branches))
     _pub = r.get("central")
     if _pub is not None:
         _pub = float(_pub)
@@ -1358,6 +1419,12 @@ def assert_lens_design(record: dict, ticker: str = "?") -> dict:
                              % (ticker, cls, "\n  - ".join(fails)))
     return {"ticker": ticker, "class": cls, "primary": prim.get("kind"),
             "central": central, "cross_checks": seen,
+            # the gate needs these to run the identity clause BRANCH-WISE against
+            # what the study publishes; the assertion sees only the record and so
+            # can test the record's own shape and nothing further
+            "two_sided": _ts,
+            "branches": [float(b["value"]) for b in _branches
+                         if isinstance((b or {}).get("value"), (int, float))],
             "standard_version": STANDARD_VERSION}
 
 

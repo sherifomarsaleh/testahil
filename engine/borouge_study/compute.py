@@ -770,7 +770,20 @@ LENS_RECORD = dict(
     **{'class': 'petrochemical'},
     primary=dict(
         kind='dcf',
-        value=CENTRAL_NORMALISATION,
+        # [R-LENS-03] TWO-SIDED, AND THE RECORD NOW SAYS SO. This carried
+        # value=CENTRAL_NORMALISATION and central=CENTRAL_NORMALISATION while the study
+        # published TWO branches, so the record named one of the two answers as THE
+        # answer and everything reading the record — rather than the document — saw a
+        # single-sided study. Nothing about the published answer changes here; the
+        # record stops disagreeing with it. Caught 06-09-2026 by the branch-wise
+        # identity clause, on a study that was not on any ratchet.
+        two_sided=True,
+        branches=[
+            dict(label='Cash-flow lens, navigation normalises during 2026',
+                 value=CENTRAL_NORMALISATION),
+            dict(label='Cash-flow lens, disruption persists into 2027',
+                 value=CENTRAL_PROLONGED),
+        ],
         range=dict(low=FAIR_LOW, high=FAIR_HIGH),
         range_note=('the cash-flow lens across the contested judgement itself — the two '
                     'Hormuz framings on the adopted own-stock beta, present values on one '
@@ -828,7 +841,12 @@ LENS_RECORD = dict(
                    f"{ROE_SUST:.2%} against the cost of equity on the adopted beta.")),
     ],
     envelope=dict(low=FAIR_LOW, high=FAIR_HIGH),
-    central=CENTRAL_NORMALISATION,
+    # NO RECORD-LEVEL CENTRAL: this study's answer is TWO-SIDED and a two-sided answer
+    # has no central -- that is what makes it two-sided. It carried
+    # central=CENTRAL_NORMALISATION, which named the normalisation branch as THE answer
+    # while the document published both; the branches are declared on the primary above
+    # and the document's central_two_sided is unchanged.
+
     retired=dict(
         construction='the median of nine lens readings across two orthogonal framings',
         value=FAIR_MID_RETIRED,

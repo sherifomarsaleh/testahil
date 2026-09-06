@@ -1014,7 +1014,17 @@
   "class": "petrochemical",
   "primary": {
    "kind": "dcf",
-   "value": 2.5542948237696477,
+   "two_sided": true,
+   "branches": [
+    {
+     "label": "Cash-flow lens, navigation normalises during 2026",
+     "value": 2.5542948237696477
+    },
+    {
+     "label": "Cash-flow lens, disruption persists into 2027",
+     "value": 2.35239131496106
+    }
+   ],
    "range": {
     "low": 2.35239131496106,
     "high": 2.5542948237696477
@@ -1056,7 +1066,6 @@
    "low": 2.35239131496106,
    "high": 2.5542948237696477
   },
-  "central": 2.5542948237696477,
   "retired": {
    "construction": "the median of nine lens readings across two orthogonal framings",
    "value": 1.4781943678941736,
