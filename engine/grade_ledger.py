@@ -506,21 +506,34 @@ def apply_grade(src: str, row: dict, got: dict) -> str:
 
     jb = lambda v: 'true' if v else 'false'
     rq = 'null' if got['realized_quantile'] is None else f"{got['realized_quantile']:.3f}"
-    new_outcome = (
-        f"realized_close:{num(got['realized_close'])}, "
-        f"realized_high:{num(got['realized_high'])}, "
-        f"realized_low:{num(got['realized_low'])},")
-    old_outcome = re.search(r'realized_close:null, realized_high:null, realized_low:null,', t)
+    # The emitters that write these rows do not agree on where they break the line:
+    # 234 open rows carry the stats fields on one line and 12 split them across two,
+    # and until 06-Sep-2026 the fixed-space patterns below matched only the first
+    # shape. All 85 rows graded before that date happened to be single-line, so the
+    # defect never fired — it was waiting on the first split row to mature, which is
+    # EGCH's 1-month cohort. A grader that refuses on WHITESPACE is refusing on a
+    # property of the writer rather than of the forecast [R-ENF-04]: an unwritable
+    # grade reads exactly like an ungradable one. So the separators are matched as
+    # \s+ and RE-EMITTED VERBATIM from the text that was found, which is what keeps
+    # a single-line row byte-identical to what the old pattern produced.
+    old_outcome = re.search(r'realized_close:null,(\s+)realized_high:null,(\s+)'
+                            r'realized_low:null,', t)
     if not old_outcome:
         raise SystemExit('outcome block not in the expected shape')
-    t2 = t.replace(old_outcome.group(0), new_outcome)
+    g = old_outcome.groups()
+    t2 = t.replace(old_outcome.group(0),
+                   f"realized_close:{num(got['realized_close'])},{g[0]}"
+                   f"realized_high:{num(got['realized_high'])},{g[1]}"
+                   f"realized_low:{num(got['realized_low'])},")
 
-    old_stats = re.search(r'in_90:null, in_50:null, realized_quantile:null, median_err:null,', t2)
+    old_stats = re.search(r'in_90:null,(\s+)in_50:null,(\s+)realized_quantile:null,'
+                          r'(\s+)median_err:null,', t2)
     if not old_stats:
         raise SystemExit('stats block not in the expected shape')
+    g = old_stats.groups()
     t2 = t2.replace(old_stats.group(0),
-                    f"in_90:{jb(got['in_90'])}, in_50:{jb(got['in_50'])}, "
-                    f"realized_quantile:{rq}, median_err:{got['median_err']:.4f},")
+                    f"in_90:{jb(got['in_90'])},{g[0]}in_50:{jb(got['in_50'])},{g[1]}"
+                    f"realized_quantile:{rq},{g[2]}median_err:{got['median_err']:.4f},")
 
     old_th = re.search(r'touch_hit:\{[^}]*\}', t2)
     if not old_th:

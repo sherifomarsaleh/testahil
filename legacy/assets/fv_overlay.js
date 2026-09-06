@@ -1340,98 +1340,6 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
-   "ticker": "AMOC",
-   "name": "Alexandria Mineral Oils",
-   "code": "EGX:AMOC",
-   "ccy": "EGP",
-   "spot": 9.1,
-   "anchor_date": "2026-08-06",
-   "fv_asof": "2026-08-06",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 5.53,
-   "fv_base": 8.64,
-   "fv_full": 12.48,
-   "gap_base_pct": -5.1,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.111209,
-    "mu_h": 0.007663,
-    "G": {
-     "bear": -4.48,
-     "base": -0.47,
-     "full": 2.84
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.001,
-     "base": 0.2601,
-     "full": 0.008
-    },
-    "p_touch": {
-     "bear": 0.0015,
-     "base": 0.4642,
-     "full": 0.0124
-    },
-    "required_cagr": {
-     "bear": -0.9975,
-     "base": -0.4634,
-     "full": 43.2668
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0016
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.1929,
-    "mu_h": 0.024961,
-    "G": {
-     "bear": -2.58,
-     "base": -0.27,
-     "full": 1.64
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0086,
-     "base": 0.3145,
-     "full": 0.0546
-    },
-    "p_touch": {
-     "bear": 0.0161,
-     "base": 0.6419,
-     "full": 0.0905
-    },
-    "required_cagr": {
-     "bear": -0.8636,
-     "base": -0.1874,
-     "full": 2.5375
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00293
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "ALPHADHABI",
    "name": "Alpha Dhabi Holding",
    "code": "ADX:ALPHADHABI",
@@ -1898,8 +1806,8 @@ const FV_OVERLAY = {
    "ccy": "EGP",
    "spot": 59,
    "anchor_date": "2026-08-06",
-   "fv_asof": "2026-08-06",
-   "fv_lag_days": 0,
+   "fv_asof": "2026-06-30",
+   "fv_lag_days": 37,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 49.53,
@@ -6668,6 +6576,98 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
+   "ticker": "AMOC",
+   "name": "Alexandria Mineral Oils",
+   "code": "EGX:AMOC",
+   "ccy": "EGP",
+   "spot": 9.1,
+   "anchor_date": "2026-08-06",
+   "fv_asof": "2026-08-06",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 4.09,
+   "fv_base": 5.95,
+   "fv_full": 8.52,
+   "gap_base_pct": -34.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.111209,
+    "mu_h": 0.007663,
+    "G": {
+     "bear": -7.19,
+     "base": -3.82,
+     "full": -0.59
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0001,
+     "base": 0.002,
+     "full": 0.2162
+    },
+    "p_touch": {
+     "bear": 0.0002,
+     "base": 0.0028,
+     "full": 0.3787
+    },
+    "required_cagr": {
+     "bear": -0.9999,
+     "base": -0.9939,
+     "full": -0.5463
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.0016
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.1929,
+    "mu_h": 0.024961,
+    "G": {
+     "bear": -4.15,
+     "base": -2.2,
+     "full": -0.34
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0013,
+     "base": 0.0149,
+     "full": 0.2849
+    },
+    "p_touch": {
+     "bear": 0.0023,
+     "base": 0.0268,
+     "full": 0.5753
+    },
+    "required_cagr": {
+     "bear": -0.9592,
+     "base": -0.8172,
+     "full": -0.2316
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00293
+   },
+   "market": "EG"
+  },
+  {
    "ticker": "BURJEEL",
    "name": "Burjeel Holdings PLC",
    "code": "ADX:BURJEEL",
@@ -7832,16 +7832,16 @@ const FV_OVERLAY = {
    "name": "Egyptian Chemical Industries (KIMA)",
    "code": "EGX:EGCH",
    "ccy": "EGP",
-   "spot": 13.98,
-   "anchor_date": "2026-08-06",
+   "spot": 14.23,
+   "anchor_date": "2026-09-06",
    "fv_asof": "2026-08-06",
-   "fv_lag_days": 0,
+   "fv_lag_days": 31,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 0,
    "fv_base": 3.64,
    "fv_full": 15.47,
-   "gap_base_pct": -74.0,
+   "gap_base_pct": -74.4,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
@@ -7855,12 +7855,12 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.105381,
-    "mu_h": 0.01491,
+    "sigma_h": 0.10173,
+    "mu_h": 0.018106,
     "G": {
      "bear": null,
-     "base": -12.77,
-     "full": 0.96
+     "base": -13.4,
+     "full": 0.82
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7870,21 +7870,21 @@ const FV_OVERLAY = {
     "required_cagr": {
      "bear": -1.0,
      "base": -1.0,
-     "full": 2.3713
+     "full": 1.7254
     },
     "hurdle_rf": 0.195,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00155
+    "selftest_max_dev": 0.00123
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.201308,
-    "mu_h": 0.04613,
+    "sigma_h": 0.193642,
+    "mu_h": 0.052698,
     "G": {
      "bear": null,
-     "base": -6.68,
-     "full": 0.5
+     "base": -7.04,
+     "full": 0.43
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7893,13 +7893,13 @@ const FV_OVERLAY = {
     "p_touch": null,
     "required_cagr": {
      "bear": -1.0,
-     "base": -0.9954,
-     "full": 0.4995
+     "base": -0.9957,
+     "full": 0.3968
     },
     "hurdle_rf": 0.195,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00264
+    "selftest_max_dev": 0.00298
    },
    "market": "EG"
   },
