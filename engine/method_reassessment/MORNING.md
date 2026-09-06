@@ -650,3 +650,27 @@ own input register says so in as many words. Written up as finding 7 of
 **No decision is needed tonight.** Hand work continues without credits. If they are topped
 up, every workflow resumes from `resumeFromRunId` with completed agents replaying from cache
 — nothing already done is repeated or paid for twice.
+
+## 06-09-2026, 19:25 UTC — the FY2014 parse was already done, and the origins cannot move
+
+**Done.** Checked what blocks ARCC's walk-forward from reaching back before FY2018.
+
+**Measured.** `panel_export.json` already carries the complete cost stack, revenue
+split and physical volumes from **FY2014** — twelve years, not eight.
+`bottom_up.actual()` resolves FY2016 and FY2017 fully today. FY2014 and FY2015 fail on
+one thing only: the local/export volume split, which the panel does not hold.
+
+**Contradicts what the programme believed.** The next-list item read *"parse ARCC's
+cost stack back to FY2014 — it adds two origins"*. **Both halves are wrong.** The parse
+was already done, and the origins cannot be extended at all — not for want of data, but
+because [R-FCAL-01] runs *every origin from the first year with five years of history*,
+and the pre-registration states it plainly: FY2018 is the first year with FY2014–FY2018
+behind it. Adding FY2016 and FY2017 as origins would break the standing scope rule.
+
+**What those years are actually for** is the mid-cycle anchor, and F7 already reads
+them — twelve years of gross margin from FY2014, which is what took ARCC's profit error
+down 62%. Nothing further to do here.
+
+**Next.** Make AMOC, EGCH and PHDC commit per-cell errors. The three-origin finding —
+the one that overturned the programme's premise — rests on the only two runs that
+expose them.
