@@ -70,3 +70,36 @@ documents with an identifier and a negative control — recorded here with its a
 done in passing.
 
 **Read the dates live** — `python3 engine/macro_path.py EG` — never from this note.
+
+---
+
+## Measured: it is four names, not one
+
+[R-LESSON-01] says to file at the narrower scope and widen only when a second company shows
+the same thing, because one observation is not a pattern. PHAR was one observation. Measured
+across every Egyptian study that commits a strike date:
+
+| EGP study | strike date | days after the currency anchor |
+|---|---|---|
+| AMOC | 2026-09-03 | **+28** |
+| ARCC | 2026-09-03 | **+28** |
+| PHAR | 2026-09-03 | **+28** |
+| SCEM | 2026-09-02 | **+27** |
+| ELEC | 2026-08-05 | −1 |
+| SWDY | 2026-08-05 | −1 |
+
+**Four of six are struck 27–28 days after the anchor their currency path rests on.** The two
+that are not were struck the day before it, which is the only reason they are clean — not a
+property of those studies.
+
+So this is not PHAR's quirk. It is what happens to **every** study delivered under
+[R-GAP-01 AMENDED]'s latest-price requirement while the house path's currency anchor stays
+where it was, and it will happen to every study delivered tomorrow.
+
+**The bar for widening is met.** What is still owed before this becomes a rule is the thing
+this house owes every rule: an identifier, both governing documents in one commit, and a
+negative control that reinjects the condition — a path whose anchor is older than the strike
+date must go RED, and a path refreshed to the strike date must stay GREEN.
+
+**Read the dates live** — `python3 engine/macro_path.py EG` and each study's own strike date —
+never from this table, because both move.

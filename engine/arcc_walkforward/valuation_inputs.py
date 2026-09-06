@@ -87,12 +87,12 @@ FILES = {
     2017: ("FY-2017-Consolidated-Financials-English.pdf", "ARCC_FY2017_Consolidated.pdf"),
     2018: ("ARCC_FY_2018_Consolidated_Financials-English.pdf", "ARCC_FY2018_Consolidated.pdf"),
     2019: ("FY_2019_Consolidated_Financials-English.pdf", "ARCC_FY2019_Consolidated.pdf"),
-    2020: ("FY-2020-consolidated-financials-english.pdf", None),
-    2021: ("FY_2021_Consolidated_Financials-English.pdf", None),
-    2022: ("FY_2022_Consolidated_Financials-English.pdf", None),
-    2023: ("4Q2023_ACC_Consolidated_Financials.pdf", None),
-    2024: ("FY2024_Consolidated_Financials-English.pdf", None),
-    2025: ("FY-2025-Consolidated-Financials-English.pdf", None),
+    2020: ("FY-2020-consolidated-financials-english.pdf", "ARCC_FY2020_Consolidated.pdf"),
+    2021: ("FY_2021_Consolidated_Financials-English.pdf", "ARCC_FY2021_Consolidated.pdf"),
+    2022: ("FY_2022_Consolidated_Financials-English.pdf", "ARCC_FY2022_Consolidated.pdf"),
+    2023: ("4Q2023_ACC_Consolidated_Financials.pdf", "ARCC_FY2023_Consolidated.pdf"),
+    2024: ("FY2024_Consolidated_Financials-English.pdf", "ARCC_FY2024_Consolidated.pdf"),
+    2025: ("FY-2025-Consolidated-Financials-English.pdf", "ARCC_FY2025_Consolidated.pdf"),
 }
 
 ROUTE = ("OCR at 300 dpi off the rendered pixels — the filing carries no text "
@@ -295,10 +295,105 @@ CF = {
 # the count the same document states. Today's count is never carried back —
 # each year's entry is that year's own note, with its own page.
 # ---------------------------------------------------------------------------
-CAPITAL = {}
+#
+# WHAT IS ON THE PAGE, AND WHY NINE IDENTICAL COUNTS ARE NINE READINGS AND NOT
+# ONE CARRIED FORWARD.  Every one of these nine filings carries its own capital
+# note — note 20 throughout, titled "Capital" to 2021 and "Issued and paid-up
+# capital" from 2022 — and every one is the SAME three-row table: par value per
+# share, the number of ordinary shares authorized, issued and fully paid, and the
+# issued capital.  The count does not move across the window because the capital
+# does not move: the last resolution that changed it was the January 2014 stock
+# split, recited in note 20.2 of the 2017 and 2018 filings, which took EGP
+# 757 479 400 from 7 574 794 shares at EGP 100 to 378 739 700 shares at EGP 2.
+# Each year below is that year's OWN page, and each foots against that year's own
+# balance sheet, which states the same issued and paid-up capital under note 20.
+# The prohibition [clause (ii)] is on carrying TODAY'S count back to a past
+# origin; it is not a prohibition on a count that is genuinely unchanged and read
+# nine times, and the difference is exactly that these are nine pages.
+CAPITAL = {
+ 2017: dict(shares=378_739_700, issued_capital=757_479_400, par_value=2.0,
+            page=33, note="20.1",
+            par_source=(
+                "note 20.1 'Authorized and Issued capital' prints par value per "
+                "share (EGP) 2, number of ordinary shares authorized, issued and "
+                "fully paid 378 739 700 and issued capital (EGP) 757 479 400 in "
+                "one table headed 2017 and 2016; note 20.2 on the following page "
+                "recites the Extraordinary General Assembly resolution updating "
+                "Article No. (6) of the Articles of Association to EGP 757 479 400 "
+                "distributed among 378 739 700 shares with a par value amounting "
+                "to EGP 2 each, so the table and the recital state the same "
+                "identity two ways in the same document")),
+ 2018: dict(shares=378_739_700, issued_capital=757_479_400, par_value=2.0,
+            page=35, note="20.1",
+            par_source=(
+                "note 20.1 'Authorized and Issued capital', the same three-row "
+                "table headed 2018 and 2017, with note 20.2's recital of the "
+                "Article 6 resolution on the page after it")),
+ 2019: dict(shares=378_739_700, issued_capital=757_479_400, par_value=2.0,
+            page=36, note="20",
+            par_source=(
+                "note 20 'Capital', the same three-row table. THE TABLE'S OWN "
+                "COLUMN HEADERS READ 2018 AND 2017 while the notes around it read "
+                "2019 and 2018 — a stale header left in the filing, recorded as "
+                "read rather than silently corrected. What settles the year is "
+                "arithmetic and two other pages: the FY2019 balance sheet states "
+                "issued and paid-up capital of EGP 757 479 400 at 31 December 2019 "
+                "under this same note, 757 479 400 / 2 reproduces 378 739 700, and "
+                "the FY2020 filing's own note 20 — properly headed 2020 and 2019 — "
+                "states par 2, 378 739 700 shares and EGP 757 479 400 for the 2019 "
+                "comparative")),
+ 2020: dict(shares=378_739_700, issued_capital=757_479_400, par_value=2.0,
+            page=37, note="20",
+            par_source=("note 20 'Capital', the three-row table headed 2020 and "
+                        "2019")),
+ 2021: dict(shares=378_739_700, issued_capital=757_479_400, par_value=2.0,
+            page=35, note="20",
+            par_source=("note 20 'Capital', the three-row table headed 2021 and "
+                        "2020")),
+ 2022: dict(shares=378_739_700, issued_capital=757_479_400, par_value=2.0,
+            page=33, note="20",
+            par_source=("note 20 'Issued and paid-up capital', the three-row table "
+                        "headed December 31, 2022 and December 31, 2021")),
+ 2023: dict(shares=378_739_700, issued_capital=757_479_400, par_value=2.0,
+            page=35, note="20",
+            par_source=("note 20 'Issued and paid-up capital', the three-row table "
+                        "headed December 31, 2023 and December 31, 2022")),
+ 2024: dict(shares=378_739_700, issued_capital=757_479_400, par_value=2.0,
+            page=35, note="20",
+            par_source=("note 20 'Issued and paid-up capital', the three-row table "
+                        "headed December 31, 2024 and December 31, 2023")),
+ 2025: dict(shares=378_739_700, issued_capital=757_479_400, par_value=2.0,
+            page=33, note="20",
+            par_source=("note 20 'Issued and paid-up capital', the three-row table "
+                        "headed December 31, 2025 and December 31, 2024"),
+            treasury_cost=143_327_985, treasury_shares=3_872_255,
+            treasury_page=33, treasury_note="21",
+            treasury_why=(
+                "note 21 'Treasury shares' states that on July 21, 2025 the Board "
+                "approved acquiring treasury shares and that the Company acquired "
+                "during 2025 3 872 255 shares amounting to EGP 143 327 985, which "
+                "the balance sheet carries as a deduction from equity of the same "
+                "amount. THE COUNT RECORDED ABOVE IS THE ISSUED COUNT, which is "
+                "what the capital note states and what foots against par; the "
+                "shares in issue net of treasury are 374 867 445 and are named "
+                "here rather than substituted, because which of the two a value is "
+                "divided by is a valuation choice and this record makes none. This "
+                "is the case clause (ii) anticipates — the capital note cannot see "
+                "a treasury movement, so the movement is read off its own note")),
+}
 
-# Disclosures that ride beside a figure and change how it should be read.
-NOTES = {}
+# Disclosures that ride beside a figure and change how it should be read. Only the
+# figures READ off a page are typed here; everything a reader would compare them
+# against is computed in `_wc` from the committed lines, so no arithmetic is typed.
+NOTES = {
+ (2022, "wc"): dict(
+     re_presented_debtors=198_934_777,
+     re_presented_tca=1_721_494_081,
+     re_presented_total_assets=3_771_380_478,
+     re_presented_in=2023, page=5,
+     why=("netting debtors against trade and notes payable"),
+ ),
+}
 
 
 def _close(a, b, tol=1):
@@ -558,8 +653,43 @@ def _wc(y):
                     "is named here with its own amount"),
         },
     }
-    if (y, "wc") in NOTES:
-        rec.update(NOTES[(y, "wc")])
+    n = NOTES.get((y, "wc"))
+    if n:
+        b2 = dict(b)
+        b2["debtors"] = n["re_presented_debtors"]
+        alt = ((b2["inventories"] + b2["trade_receivables"] + b2["debtors"]
+                + b2["due_from_related"])
+               - (b2["trade_payables"] + b2["creditors"] + b2["due_to_related"]))
+        d_debtors = b["debtors"] - n["re_presented_debtors"]
+        d_tca = b["tca"] - n["re_presented_tca"]
+        d_ta = b["total_assets"] - n["re_presented_total_assets"]
+        rec["point_in_time"] = (
+            "AS FIRST REPORTED. The FY%d filing's own statement of financial "
+            "position states debtors and other debit balances (net) of %s at "
+            "%d-12-31, and that is the figure in the working capital above. The "
+            "FY%d filing re-presents the same date at %s — %s — carrying total "
+            "current assets to %s and total assets to %s, the same %s in all "
+            "three. An origin standing at FY%d could not have seen the later "
+            "presentation, so it is recorded beside the figure it would replace "
+            "and never substituted for it."
+            % (y, format(b["debtors"], ","), y, n["re_presented_in"],
+               format(n["re_presented_debtors"], ","), n["why"],
+               format(n["re_presented_tca"], ","),
+               format(n["re_presented_total_assets"], ","),
+               format(d_debtors, ","), y))
+        rec["re_presented_by_a_later_filing"] = {
+            "debtors_and_other_debit_balances_net": n["re_presented_debtors"],
+            "total_current_assets": n["re_presented_tca"],
+            "total_assets": n["re_presented_total_assets"],
+            "difference_on_each_of_the_three": d_debtors,
+            "the_three_agree": d_debtors == d_tca == d_ta,
+            "working_capital_on_that_basis": alt,
+            "adopted": "the figure as first reported, above",
+            "source": source(n["re_presented_in"],
+                             "consolidated statement of financial position, the "
+                             "%d-12-31 comparative column" % y, (n["page"],)),
+            "route": ROUTE,
+        }
     return rec
 
 

@@ -990,7 +990,7 @@ FORECAST_ANCHOR = dict(
         'definitional gap and nothing else, and the mechanism clause would then have been '
         'asked to explain an artefact. BOTH SIDES HERE ARE STRUCK ON THE FORECAST\'S '
         'BASIS. The latest reviewed period is the six months to 30 June 2026: operating '
-        'EBITDA of AED %.3fmn on revenue of AED %.3fmn, %.2f%%. THE ASSEMBLY IS FOOTED '
+        'EBITDA of AED %.3fmn on revenue of AED %s mn, %.2f%%. THE ASSEMBLY IS FOOTED '
         'RATHER THAN ASSERTED — the depreciation split reconciles four ways across notes '
         '19 and 20, the statement of cash flows, the segment note and the class notes, '
         'and putting the three excluded items back reproduces AED %.1fmn against the AED '
@@ -1004,7 +1004,8 @@ FORECAST_ANCHOR = dict(
         'to catch. WHAT SITS EITHER SIDE OF THE NUMBER, because inside a band is not the '
         'same as needing no explanation. FIRST, the same opening year is %.2f%% relative '
         'ABOVE the last AUDITED full year (FY2025 %.2f%% on this basis), the direction '
-        'neither clause fires on and which [R-GAP-01] and the sign test are what audit. '
+        'neither clause fires on and which the two-sided valuation-gap trigger and '
+        'the sign test are what audit. '
         'SECOND, part of the gap against the half is a CLOCK rather than a claim: a half '
         'of this business prints above its own year on exactly this basis — H1-2025 ran '
         '%.2f%% against a FY2025 full year of %.2f%%, %.2f points higher — and the '
@@ -1024,7 +1025,7 @@ FORECAST_ANCHOR = dict(
         % (100 * (hist_is['FY25']['ebitda'] / V['rev_fy25'] - OP_MARGIN_FY25),
            100 * hist_is['FY25']['ebitda'] / V['rev_fy25'], 100 * OP_MARGIN_FY25,
            100 * (fa_path[0] / (V['ebitda_h1_26'] / V['rev_h1_26']) - 1),
-           H1_26['ebitda'], V['rev_h1_26'], 100 * H1_26['margin'],
+           H1_26['ebitda'], f"{V['rev_h1_26']:,.3f}", 100 * H1_26['margin'],
            H1_26['presented'], V['ebitda_h1_26'], H1_25['presented'],
            100 * fa_path[0], 100 * H1_26['margin'],
            100 * (H1_26['margin'] - fa_path[0]),
