@@ -251,6 +251,53 @@ def readable(pop=None):
     return {k: v for k, v in pop.items() if v['readable']}
 
 
+def examinable(pop=None):
+    """What a RECORD-READING gate should iterate, and what it should say it did.
+
+    Ten gates resolve their population by globbing `engine/*_study` and print
+    "studies examined: 24" WITH NO DENOMINATOR -- which is precisely why 24 looked
+    like the book for as long as it did. This returns the directories they can
+    actually inspect, the names they cannot, and the one line they print about it,
+    so the ten call sites are three lines each and THE WORDING CANNOT DRIFT between
+    them. A helper rather than ten hand-written edits, for the same reason the
+    no-record set is one ratchet rather than ten.
+
+    THEY DEFER, THEY DO NOT RE-LIST. The no-record set is owned once and
+    check_valuation_gap is the gate that REPORTS its problems; if all ten reported
+    them, one new unlisted name would produce ten identical failures, which is the
+    duplication this whole refactor exists to avoid arriving one level up.
+
+    Returns (record_dirs, deferred_tickers, population_line).
+    """
+    pop = pop or population()
+    if not pop:
+        raise SystemExit('FATAL: the population is empty. An empty result is not a clean '
+                         'result [R-ENF-04].')
+    # EVERY RECORD ON DISK, NOT ONLY THE COVERED ONES. A first draft returned just
+    # the covered names with a record and immediately broke check_bridge, whose
+    # ratchet lists XPT — a metals study with a record directory and no covered
+    # equity behind it. Dropping it would have removed a study from that gate's
+    # scope silently, which is this whole defect in miniature. A record-reading
+    # gate reads every record that exists; what the covered population decides is
+    # the DENOMINATOR and the deferred set, not which records to skip.
+    _dirs = record_dirs()
+    dirs = sorted(_dirs.values())
+    deferred = sorted(k for k, v in pop.items() if not v['readable'])
+    _uncovered = sorted(set(_dirs) - set(pop))
+    if not dirs:
+        raise SystemExit('FATAL: %d covered names and NOT ONE with a record to read. A run '
+                         'that examined a population and resolved nothing in it is an absent '
+                         'result, not a clean one [R-ENF-04].' % len(pop))
+    line = ('population: %d covered names, every one carrying a delivered study — %d '
+            'records on disk to read%s, %d covered names deferred to %s (reported by the '
+            'valuation-gap gate, never re-listed here)'
+            % (len(pop), len(dirs),
+               '' if not _uncovered else ' (incl. %s, which the site does not carry)'
+               % ', '.join(_uncovered),
+               len(deferred), os.path.basename(NO_RECORD_RATCHET)))
+    return dirs, deferred, line
+
+
 def unreadable(pop=None):
     """The names a record-reading gate cannot inspect, which under
     [R-ENF-04] are RED-and-ratcheted rather than absent."""

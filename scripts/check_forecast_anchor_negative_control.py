@@ -14,6 +14,13 @@ company's own five filed periods.
 import json, os, shutil, subprocess, sys, tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# THIS FIXTURE SUPPLIES ITS OWN POPULATION [06-09-2026]. The gate resolves the
+# book through engine/study_population.py; this control runs it against a
+# sandboxed tree holding studies it planted, which is the point of the control.
+# The escape is explicit and the gate PRINTS that it took it, so a fixture
+# population can never be mistaken for the real one.
+_FIXTURE_ENV = dict(os.environ, TESTAHIL_FIXTURE_POPULATION='1')
+
 GATE = os.path.join("scripts", "check_forecast_anchor.py")
 
 # ---- AMOC's own numbers, as they shipped -----------------------------------
@@ -62,7 +69,8 @@ def case(name, build, expect_red, results):
     tmp = sandbox()
     try:
         build(tmp)
-        r = subprocess.run([sys.executable, GATE], cwd=tmp, capture_output=True, text=True)
+        r = subprocess.run([sys.executable, GATE], cwd=tmp, capture_output=True, text=True,
+                       env=_FIXTURE_ENV)
         out = (r.stdout + r.stderr).strip()
         red = r.returncode != 0
         ok = red == expect_red
