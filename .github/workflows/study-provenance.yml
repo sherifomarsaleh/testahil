@@ -56,6 +56,9 @@ on:
       - 'engine/build_lessons_register.py'
       - 'engine/Lessons_Register.md'
       - 'scripts/check_protocol_sync.py'
+      - 'scripts/check_agent_card.py'
+      - 'docs/agent_card/**'
+      - '.claude/agents/**'
       - 'scripts/check_protocol_text.py'
       - 'scripts/check_tech_calibration.py'
       - 'scripts/check_tech_calibration_negative_control.py'
@@ -175,6 +178,9 @@ on:
       - 'engine/build_lessons_register.py'
       - 'engine/Lessons_Register.md'
       - 'scripts/check_protocol_sync.py'
+      - 'scripts/check_agent_card.py'
+      - 'docs/agent_card/**'
+      - '.claude/agents/**'
       - 'scripts/check_protocol_text.py'
       - 'scripts/check_tech_calibration.py'
       - 'scripts/check_tech_calibration_negative_control.py'
@@ -356,6 +362,12 @@ jobs:
       # mechanically before delivery instead of by the reader pasting the block back
       - name: Protocol text gate
         run: python3 scripts/check_protocol_text.py
+
+      # [R-ENF-01] the agent card counts the agents, so it goes stale the moment one is
+      # added — and it already had, saying eight while .claude/agents/ held nine. The
+      # population comes from the directory, never from the card [R-ENF-04].
+      - name: Agent card gate
+        run: python3 scripts/check_agent_card.py
 
       # [R-DOC-02] The text gate's own negative control: it restores the status claims
       # EXACTLY as they shipped and asserts each is caught, plus four clean sentences that
