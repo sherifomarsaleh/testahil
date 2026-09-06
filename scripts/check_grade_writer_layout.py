@@ -128,7 +128,22 @@ def _legacy_rewrite(src: str, a: int, b: int, t: str) -> str:
     t2 = t2.replace(OLD_STATS,
                     f"in_90:{jb(GOT['in_90'])}, in_50:{jb(GOT['in_50'])}, "
                     f"realized_quantile:{rq}, median_err:{GOT['median_err']:.4f},")
-    old_th = re.search(r'touch_hit:\{[^}]*\}', t2)
+    # THE CONTROL TRACKS THE WRITER ON EVERYTHING EXCEPT THE ONE CHANGE UNDER TEST.
+    # This pattern is copied from apply_grade deliberately, and it has already moved
+    # once: it began as `touch_hit:\{[^}]*\}` and another session widened it to accept
+    # `touch_hit:null` as well. While this control still carried the narrower version
+    # it reported NINE rows as "the widened pattern changed output" — MODON, ARCC,
+    # SCEM, AMOC and SWDY — which was this file describing somebody else's correct
+    # change as this branch's regression. Those rows had previously been invisible
+    # here (they raised 'touch_hit block not found' and were filed unreachable), so
+    # the staleness only surfaced when a merge made them comparable.
+    #
+    # The lesson is about controls rather than about touch_hit: A CONTROL THAT
+    # HARD-CODES "THE OLD IMPLEMENTATION" IS ONLY VALID WHILE THE IMPLEMENTATION IS
+    # OTHERWISE UNCHANGED. What is under test here is the whitespace widening of the
+    # outcome and stats patterns and nothing else, so every other behaviour must be
+    # taken from the writer as it stands, not frozen at the day this was written.
+    old_th = re.search(r'touch_hit:(?:null|\{[^}]*\})', t2)
     if old_th:
         th = ', '.join(f'"{k}":{jb(GOT["touch_hit"][k])}' for k, _ in GL.REL)
         t2 = t2.replace(old_th.group(0), 'touch_hit:{ ' + th + ' }')

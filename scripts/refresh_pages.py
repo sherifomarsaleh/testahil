@@ -572,6 +572,21 @@ def main() -> int:
         overlay_gate()
     sh([sys.executable, os.path.join(ROOT, 'scripts', 'check_data_freshness.py')])
 
+    # THE LEGACY SNAPSHOT IS A SERVED SURFACE, NOT A BACKUP, and this pass rewrote
+    # assets/data.js without touching it. Measured on main 06-09-2026, one commit
+    # after this script ran unattended: /legacy/ served AMOC at spot 9.10 (06-Aug)
+    # while / served 13.54 (06-Sep) — TWO PRICES FOR ONE STOCK ON ONE SITE, for
+    # every name the pass touched, and check_legacy_assets_sync went red on main
+    # itself. publish_site.py has mirrored these since the 30-Aug cutover; the
+    # unattended path never did, so the drift arrived only when nobody published.
+    # Reusing publish_site's own mirror rather than copying the loop: a second
+    # implementation of one rule is how the two copies drift apart in the first
+    # place, which is the defect this closes.
+    sys.path.insert(0, os.path.join(ROOT, 'scripts'))
+    from publish_site import mirror_legacy_assets
+    mirror_legacy_assets()
+    sh([sys.executable, os.path.join(ROOT, 'scripts', 'check_legacy_assets_sync.py')])
+
     print(f'\nRefreshed {len(plan)} name(s). '
           f'{len(refused)} refused for an unsourced dividend yield.')
     if refused:
