@@ -40,7 +40,8 @@
     </div>
 
     <div class="t-pane" id="pane-screener">
-      <p class="muted" style="max-width:66ch">Rank the whole coverage by <b>reachability</b> — can the study’s central fair value be reached in 3 months, given how much the name actually moves? <b>Big-win odds</b> is the share of the simulated 3-month paths that finish <b>more than 10% above today’s price</b> at the check date.</p>
+      <p class="muted" style="max-width:66ch">Rank the whole coverage by <b>reachability</b> — can the study’s central fair value be reached in 3 months, given how much the name actually moves? <b>Big-win odds</b> is the share of the simulated 3-month paths that finish <b>more than 10% above the price the cone was struck at</b> at the check date.</p>
+      <p class="muted" style="max-width:66ch;font-size:var(--fs-small)"><b>Two prices, two jobs.</b> The gap to fair value is measured against the latest price we hold, and every row prints the date of that price — they are entered by hand, so some are days old and some are weeks. The odds columns stay on the price each cone was struck at, because that is the anchor the simulation was built on. Where the two differ, the date beside the price is the one to read.</p>
       <div class="t-filters">
         <select id="sc-mkt" class="t-chip"></select>
         <label class="t-chip" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="sc-reach"> only in reach</label>
@@ -50,6 +51,7 @@
         <table>
           <thead><tr>
             <th class="sortable" data-s="code">Ticker</th>
+            <th class="sortable num" data-s="px">Price<br><span class="muted" style="font-weight:400;font-size:var(--fs-caption)">and the date we hold it for</span></th>
             <th class="sortable" data-s="reach">Reachability</th>
             <th class="sortable num" data-s="gap">Gap to fair value</th>
             <th class="sortable num" data-s="up">Odds up · 3 mo</th>
@@ -61,7 +63,7 @@
       </div>
       <p class="muted" style="font-size:var(--fs-small);margin-top:10px">The full list with prices → <a href="coverage.html">Coverage</a></p>
       <div class="t-accordion" id="sc-caveat"><button>Read this before ranking ▾</button><div class="muted" style="font-size:var(--fs-small)">
-        A big gap to fair value is not a recommendation — it can mean opportunity or a valuation that needs its next study cycle. Reachability only says whether the cone’s own 3-month spread covers the study’s central value ("in reach" = inside the middle half of paths, "stretch" = inside the 90% band, "out of reach" = beyond it). "Odds up" is the share of paths finishing above today’s price; "Big-win odds" is the share finishing more than 10% above it — the same ≥ +10% bucket the Odds tab shows. Rankings refresh whenever the studies do.
+        A big gap to fair value is not a recommendation — it can mean opportunity or a valuation that needs its next study cycle. Reachability only says whether the cone’s own 3-month spread covers the study’s central value ("in reach" = inside the middle half of paths, "stretch" = inside the 90% band, "out of reach" = beyond it). "Odds up" is the share of paths finishing above today’s price; "Big-win odds" is the share finishing more than 10% above it — the same ≥ +10% bucket the Odds tab shows. Rankings refresh whenever the studies do, and whenever a fresher price is entered — each row states the date of the price it was ranked on.
       </div></div>
     </div>
 
@@ -161,9 +163,12 @@ renderChrome("tools");
 
   /* ---------- screener ---------- */
   var scRows = KEYS.map(function(k){
-    var t=ALL[k], g=gapOf(t), r=reachOf(t);
+    var t=ALL[k], g=gapOf(t, k), r=reachOf(t, k), lp=latestPx(k, t);
+    /* odds stay on the cone's own anchor; the gap moves to the latest price. */
     var d=t.dist&&t.dist.t60, b=d?computeBuckets(d,t.spot):null;
-    return {k:k, code:t.code, name:t.name, mkt:mktOf(t), gap:g, reach:r?r.rank:9, reachO:r, up:b?b.up:null, big:b?b.bigGain:null, v:verdictOf(t)};
+    return {k:k, code:t.code, name:t.name, mkt:mktOf(t), gap:g, reach:r?r.rank:9, reachO:r,
+            up:b?b.up:null, big:b?b.bigGain:null, v:verdictOf(t, k),
+            px:lp.px, ccy:t.ccy, pxDate:lp.date, pxStrike:lp.strike};
   }).filter(function(r){ return r.gap!=null && r.reachO; });
   var scState = {mkt:"All", s:"reach", dir:1, reach:false, cheap:false};
   var scMkts = ["All"].concat([...new Set(scRows.map(function(r){return r.mkt}))].sort());
@@ -195,12 +200,15 @@ renderChrome("tools");
     document.getElementById("sc-body").innerHTML = list.map(function(r){
       return '<tr class="rowlink" data-href="'+pageFor(r.k)+'">'+
         '<td class="num"><b>'+r.code+'</b></td>'+
+        '<td class="num">'+fmtPx(r.px, r.ccy)+
+          '<br><span class="muted" style="font-size:var(--fs-caption)">'+
+          (r.pxStrike ? (r.pxDate||"at the strike") : fmtPxDate(r.pxDate))+'</span></td>'+
         '<td><span class="t-badge '+r.reachO.cls+'">'+r.reachO.label+'</span></td>'+
         '<td class="num">'+fmtSPct(r.gap)+'</td>'+
         '<td class="num">'+(r.up!=null?Math.round(r.up*100)+"%":"—")+'</td>'+
         '<td class="num">'+(r.big!=null?Math.round(r.big*100)+"%":"—")+'</td>'+
         '<td><a href="'+pageFor(r.k)+'">study →</a></td></tr>';
-    }).join("") || '<tr><td colspan="6" class="muted">Nothing matches those filters.</td></tr>';
+    }).join("") || '<tr><td colspan="7" class="muted">Nothing matches those filters.</td></tr>';
   }
   document.getElementById("sc-body").addEventListener("click", function(e){
     if(e.target.closest("a")) return;
