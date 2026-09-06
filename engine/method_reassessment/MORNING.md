@@ -674,3 +674,56 @@ down 62%. Nothing further to do here.
 **Next.** Make AMOC, EGCH and PHDC commit per-cell errors. The three-origin finding —
 the one that overturned the programme's premise — rests on the only two runs that
 expose them.
+
+## 06-09-2026, continuous run
+
+Made AMOC, EGCH and ARCC write `error_cells.json` — all three already built the
+rows in their own scoring pass and aggregated them away. Scores unchanged; the
+dump adds a file and moves no number.
+
+Then re-ran the break cut on five names instead of three, and it changed the
+answer twice over. The typed origin-year range used in the three-name note
+conflated two questions; split properly into an ORIGIN cut (what the analyst
+knew) and a TARGET cut (what hit the window), they disagree — ARCC's effect is
++0.392 on one and -2.215 on the other, because its own era labels correctly call
+the FY2020/21 origins pre-devaluation while their windows ran straight through it.
+
+On the target cut, **eleven of eleven family-level effects carry the same sign
+across four names**, 0.45 to 3.2 log points, and the residual outside the
+devaluation years is small on three of them (-0.17, -0.01, -0.03). The founding
+premise of a uniform -45% house lean does not survive that split. It also
+compounds monotonically to h=3 on all five names, which is a rate error rather
+than a level shock.
+
+`engine/method_reassessment/BREAK_EFFECT_FIVE_NAMES_06-09-2026.md`;
+read live with `python3 engine/valuation_calibration/break_effect.py`.
+
+### Later the same day — the break effect is not one thing
+
+Split the devaluation-year error macro-versus-company on identical cells
+(`engine/valuation_calibration/macro_share.py`). Three names, three answers:
+**AMOC 51% macro, EGCH 34%, ARCC -1%.** A single house-wide correction is ruled
+out by those three alone.
+
+Sharper: **on two of the three names, handing the model more macro truth makes
+it worse.** AMOC's perfect-CPI-only setting is worse than knowing nothing
+(-1.136 against -0.707); ARCC's best setting is perfect CPI (-0.168) and adding
+the realised currency takes it back to -0.493. A model whose error grows when it
+is told the truth is mis-specified, which is a specification error and not a
+calibration one.
+
+Found AMOC's, in its own code: `brent_ratio()` returns 1.0 outside foresight, so
+crude-in-EGP is frozen while every domestic cost compounds Egyptian inflation —
+[L-048] exactly. Putting both on one clock takes the bias from -0.774 to -0.258.
+The adopted fix is the house PPP identity (F8, -0.443), **not** the better-scoring
+diagnostic, because adopting a rule for its score is the selection mistake the
+promotion rule forbids. What is left after F8 is the honest answer: PPP
+under-predicts a step devaluation by 2.3-2.5x at three years, and that residual
+is the width years three to five should carry rather than a rule waiting to be
+found.
+
+Two bugs closed on the way: my own dump called ARCC's `cpi_only` without
+`foresight` and silently got the as-known answer back; `_paths()` now refuses
+that combination instead of returning it.
+
+`MACRO_SHARE_06-09-2026.md`, `BREAK_EFFECT_FIVE_NAMES_06-09-2026.md`.

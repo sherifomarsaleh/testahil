@@ -104,6 +104,31 @@ def skill(rows, driver, key_bench="ef"):
     return {"n": len(pairs), "mae_model": m, "mae_bench": b, "skill": 1.0 - m / b}
 
 
+
+def flatten_cells(rows, fore, fore_cpi):
+    """Per-cell error rows, the shape the pooled cuts read [R-ENF-06 species].
+
+    build_cells() already computes every cell; the first version of this module
+    aggregated them away and wrote only the summaries, so a later question about
+    WHICH origins carry the bias had no answer here at all. The projections and
+    actuals are already in each row; this only writes them down.
+    """
+    out = []
+    settings = [("asknown", rows, "e"), ("freeze", rows, "ef"), ("trend", rows, "et"),
+                ("foresight", fore, "e"), ("foresight_cpi_only", fore_cpi, "e")]
+    for name, src, key in settings:
+        for r in src:
+            for d in DRIVERS:
+                le = r[key][d]
+                if le is None:
+                    continue
+                out.append({"origin": r["origin"], "horizon": r["h"], "year": r["target"],
+                            "driver": d, "setting": name,
+                            "projected": r["proj"].get(d) if key == "e" else None,
+                            "actual": r["act"].get(d), "era": r["era"], "log_error": le})
+    return out
+
+
 def main():
     rows = build_cells()
     fore = build_cells(foresight=True)
@@ -215,6 +240,8 @@ def main():
                             for e, v in rec["by_era"].items() if v}
 
     json.dump(res, open(os.path.join(HERE, "scores.json"), "w"), indent=1, default=str)
+    json.dump(flatten_cells(rows, fore, fore_cpi),
+              open(os.path.join(HERE, "error_cells.json"), "w"), indent=1)
     return res, rows
 
 

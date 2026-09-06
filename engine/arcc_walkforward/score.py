@@ -126,6 +126,37 @@ def macro_split(driver, h=None):
             "macro_share": 1.0 - f["mae"] / k["mae"], "n": k["n"]}
 
 
+
+def flatten_cells(rows, fore, fore_cpi):
+    """Per-cell error rows, the shape the pooled cuts read.
+
+    build_cells() already computes every cell; the aggregates threw them away, so
+    this run could not answer which origins carry the bias without being re-run.
+    A cell the log score cannot take is written with log_error null and
+    dropped="non_positive" rather than omitted, because a silently shorter sample
+    is how an apparent improvement is manufactured.
+    """
+    out = []
+    settings = [("asknown", rows, "e"), ("freeze", rows, "ef"), ("trend", rows, "et"),
+                ("foresight", fore, "e"), ("foresight_cpi_only", fore_cpi, "e")]
+    for name, src, key in settings:
+        for r in src:
+            for d in DRIVERS:
+                le = r[key][d]
+                dropped = None
+                if le is None:
+                    if key == "e":
+                        dropped = "non_positive"
+                    else:
+                        continue
+                out.append({"origin": r["origin"], "horizon": r["h"], "year": r["target"],
+                            "driver": d, "setting": name,
+                            "projected": r["proj"].get(d) if key == "e" else None,
+                            "actual": r["act"].get(d), "era": r["era"],
+                            "log_error": le, "dropped": dropped})
+    return out
+
+
 def run():
     rows = build_cells()
     out = {"n_cells": len(rows), "drivers": {}, "by_horizon": {}, "skill": {},
@@ -210,6 +241,9 @@ if __name__ == "__main__":
     bad = check_macro_wiring(out)
     json.dump(harvest_shape(rows, out),
               open(os.path.join(HERE, "scores.json"), "w"), indent=1, default=str)
+    json.dump(flatten_cells(rows, build_cells(foresight=True),
+                             build_cells(foresight=True, cpi_only=True)),
+              open(os.path.join(HERE, "error_cells.json"), "w"), indent=1)
     print("cells %d   trend fallbacks %d" % (out["n_cells"], out["trend_fallbacks"]))
     print()
     print("%-18s %4s %8s %8s %7s %9s %9s %8s" %

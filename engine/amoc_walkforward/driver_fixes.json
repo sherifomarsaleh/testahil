@@ -1,0 +1,38 @@
+{
+ "cells": 63,
+ "variants": {
+  "as shipped (crude frozen in EGP)": {
+   "n": 63,
+   "bias": -0.7737047437846322,
+   "mae": 0.7785657000071778,
+   "n_deval": 63,
+   "bias_deval": -0.7737047437846322,
+   "mae_deval": 0.7785657000071778,
+   "n_other": 0,
+   "bias_other": null,
+   "mae_other": null
+  },
+  "asymmetry test: crude on own CPI": {
+   "n": 63,
+   "bias": -0.2577855768240417,
+   "mae": 0.46475008586128747,
+   "n_deval": 63,
+   "bias_deval": -0.2577855768240417,
+   "mae_deval": 0.46475008586128747,
+   "n_other": 0,
+   "bias_other": null,
+   "mae_other": null
+  },
+  "F8: crude on the PPP currency": {
+   "n": 63,
+   "bias": -0.4425790778028031,
+   "mae": 0.5190727218630594,
+   "n_deval": 63,
+   "bias_deval": -0.4425790778028031,
+   "mae_deval": 0.5190727218630594,
+   "n_other": 0,
+   "bias_other": null,
+   "mae_other": null
+  }
+ }
+}

@@ -1,0 +1,33 @@
+{
+ "_retrieved": "2026-07-13",
+ "_tier": "C",
+ "_note": "US annual consumer price inflation, World Bank WDI. Held separately from macro.json so adding it cannot re-fetch and silently move a delivered run's Egyptian series.",
+ "_source": {
+  "url": "https://api.worldbank.org/v2/country/USA/indicator/FP.CPI.TOTL.ZG?format=json&per_page=200&date=2004:2026",
+  "desc": "annual consumer price inflation, %",
+  "basis": "calendar year"
+ },
+ "cpi_us_pct_cy": {
+  "2024": 2.94952520485207,
+  "2023": 4.11633838374488,
+  "2022": 8.00279982052121,
+  "2021": 4.69785886363742,
+  "2020": 1.23358439630629,
+  "2019": 1.81221007526021,
+  "2018": 2.44258329692817,
+  "2017": 2.13011000365961,
+  "2016": 1.26158320570536,
+  "2015": 0.118627135552451,
+  "2014": 1.62222297740817,
+  "2013": 1.46483265562717,
+  "2012": 2.06933726526067,
+  "2011": 3.156841568622,
+  "2010": 1.6400434423899,
+  "2009": -0.355546266299747,
+  "2008": 3.839100296651,
+  "2007": 2.85267248150138,
+  "2006": 3.22594410070404,
+  "2005": 3.3927468454955,
+  "2004": 2.67723669309172
+ }
+}

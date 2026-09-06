@@ -101,6 +101,13 @@ def _paths(o, h, foresight, cpi_only):
     assuming one would be a forecast, not a rule.
     """
     t = "FY%d" % (_y(o) + h)
+    # cpi_only is a variant OF foresight, not a setting of its own. Asking for it
+    # without foresight used to fall through and return the as-known paths, so a
+    # caller got the as-known answer under a foresight label -- an absent answer
+    # wearing the costume of a result [R-ENF-04]. It refuses now.
+    if cpi_only and not foresight:
+        raise ValueError("cpi_only requires foresight=True; it is a variant of the "
+                         "foresight path, not a setting on the knowable one")
     if foresight:
         pi = (1 + cpi(o)) ** h if False else _cum_cpi_realised(o, h)
         fxm = _m("egp_usd", t) / _m("egp_usd", o)

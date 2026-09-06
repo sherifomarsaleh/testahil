@@ -116,6 +116,37 @@ def skill_pairs(rows, driver, key_bench, h=None):
             "skill": round(1.0 - m / b, 4)}
 
 
+
+def flatten_cells(rows, fore, fore_cpi):
+    """Per-cell error rows, the shape the pooled cuts read.
+
+    build_cells() already computes every cell and the aggregates threw them away,
+    so a question about WHICH origins carry the bias had no answer in this run.
+    A cell the log score cannot take is written with log_error null and
+    dropped="non_positive" rather than omitted, because a silently shorter sample
+    is how an apparent improvement is manufactured.
+    """
+    out = []
+    settings = [("asknown", rows, "e"), ("freeze", rows, "ef"), ("trend", rows, "et"),
+                ("foresight", fore, "e"), ("foresight_cpi_only", fore_cpi, "e")]
+    for name, src, key in settings:
+        for r in src:
+            for d in DRIVERS:
+                le = r[key][d]
+                dropped = None
+                if le is None:
+                    if key == "e" and r["excluded"].get(d):
+                        dropped = "non_positive"
+                    else:
+                        continue
+                out.append({"origin": r["origin"], "horizon": r["h"], "year": r["target"],
+                            "driver": d, "setting": name,
+                            "projected": r["proj"].get(d) if key == "e" else None,
+                            "actual": r["act"].get(d), "era": r["era"],
+                            "log_error": le, "dropped": dropped})
+    return out
+
+
 def main():
     rows = build_cells()
     fore = build_cells(foresight=True)
@@ -192,6 +223,8 @@ def main():
                                  "macro_share": round(rec["macro_share"], 3) if rec["macro_share"] is not None else None}
         res["by_era"][d] = {e: {"n": v["n"], "bias": round(v["bias"], 4)} for e, v in rec["by_era"].items() if v}
     json.dump(res, open(os.path.join(HERE, "scores.json"), "w"), indent=1, default=str)
+    json.dump(flatten_cells(rows, fore, fore_cpi),
+              open(os.path.join(HERE, "error_cells.json"), "w"), indent=1)
     return res, rows
 
 
