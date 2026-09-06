@@ -67,9 +67,9 @@
   var OHLC_BASE="https://raw.githubusercontent.com/sherifomarsaleh/testahil/main/engine/raw_ohlc/";
   var OHLC_PATH={DU:"AE/DU.csv",BOROUGE:"AE/BOROUGE.csv",EMPOWER:"AE/EMPOWER.csv","2POINTZERO":"AE/TWOPOINTZERO.csv",AAPL:"US/AAPL.csv",ABUK:"EG/ABUK.csv",ACWA:"SA/ACWA.csv",ADCB:"AE/ADCB.csv",ADNOCDRILL:"AE/ADNOCDRILL.csv",ADNOCDIST:"AE/ADNOCDIST.csv",ADIB:"EG/ADIB.csv",ADIBUAE:"AE/ADIB.csv",ADNOCGAS:"AE/ADNOCGAS.csv",ADNOCLS:"AE/ADNOCLS.csv",AGTHIA:"AE/AGTHIA.csv",ALDAR:"AE/ALDAR.csv",ALINMA:"SA/ALINMA.csv",AMOC:"EG/AMOC.csv",ARCC:"EG/ARCC.csv",ALPHADHABI:"AE/ALPHADHABI.csv",ALRAJHI:"SA/RAJHI.csv",ARAMCO:"SA/ARAMCO.csv",BTFH:"EG/BTFH.csv",BURJEEL:"AE/BURJEEL.csv",CCAP:"EG/CCAP.csv",CLHO:"EG/CLHO.csv",COMI:"EG/COMI.csv",DEWA:"AE/DEWA.csv",DIB:"AE/DIB.csv",DSCW:"EG/DSCW.csv",EAND:"AE/EAND.csv",ELEC:"EG/ELEC.csv",EFID:"EG/EFID.csv",EFIH:"EG/EFIH.csv",EGAL:"EG/EGAL.csv",ELM:"SA/ELM.csv",EMAAR:"AE/EMAAR.csv",EMAARDEV:"AE/EMAARDEV.csv",EMFD:"EG/EMFD.csv",ENBD:"AE/ENBD.csv",ETEL:"EG/ETEL.csv",EXTRA:"SA/EXTRA.csv",FAB:"AE/FAB.csv",FERTIGLB:"AE/FERTIGLB.csv",FWRY:"EG/FWRY.csv",GBCO:"EG/GBCO.csv",Gold:"XAU/GOLD.csv",HELI:"EG/HELI.csv",HRHO:"EG/HRHO.csv",IHC:"AE/IHC.csv",INFY:"IN/INFY.csv",IQCD:"QA/IQCD.csv",ISPH:"EG/ISPH.csv",JUFO:"EG/JUFO.csv",KABO:"EG/KABO.csv",Kakao:"KR/KAKAO.csv",LCSW:"EG/LCSW.csv",LGES:"KR/LGES.csv",LULU:"AE/LULU.csv",MAADEN:"SA/MAADEN.csv",MODON:"AE/MODON.csv",NVDA:"US/NVDA.csv",OCDI:"EG/OCDI.csv",OIH:"EG/OIH.csv",ORAS:"EG/ORAS.csv",ORHD:"EG/ORHD.csv",ORWE:"EG/ORWE.csv",AIRARABIA:"AE/AIRARABIA.csv",AMR:"AE/AMR.csv",PHAR:"EG/PHAR.csv",PHDC:"EG/PHDC.csv",PRDC:"EG/PRDC.csv",QGTS:"QA/QGTS.csv",QNB:"QA/QNB.csv",RAYA:"EG/RAYA.csv",RELIANCE:"IN/RELIANCE.csv",RIBL:"SA/RIBL.csv",RIYADHCABLE:"SA/RIYADHCABLE.csv",SAVOLA:"SA/SAVOLA.csv",RMDA:"EG/RMDA.csv",SABIC:"SA/SABIC.csv",SALIK:"AE/SALIK.csv",SCEM:"EG/SCEM.csv",EGCH:"EG/EGCH.csv",SNB:"SA/SNB.csv",STC:"SA/STC.csv",SWDY:"EG/SWDY.csv",Samsung:"KR/SAMSUNG.csv",Silver:"XAU/SILVER.csv",TMGH:"EG/TMGH.csv",TMPV:"IN/TMPV.csv",TSLA:"US/TSLA.csv",Platinum:"XPT/PLATINUM.csv"};
   function ohlcUrlFor(instr){ var p=OHLC_PATH[instr]||OHLC_PATH[instr.charAt(0)+instr.slice(1).toLowerCase()]; return p ? OHLC_BASE+p : null; }
-  async function drawActualLine(r,geom){
-    var url=ohlcUrlFor(r.instrument); if(!url) return;
-    var text; try{ var resp=await fetch(url); if(!resp.ok) return; text=await resp.text(); }catch(e){ return; }
+  async function loadWin(r){
+    var url=ohlcUrlFor(r.instrument); if(!url) return null;
+    var text; try{ var resp=await fetch(url); if(!resp.ok) return null; text=await resp.text(); }catch(e){ return null; }
     var splitRow=function(l){ if(l.indexOf('"')!==-1){ var out=[],re=/"([^"]*)"/g,m; while((m=re.exec(l))) out.push(m[1]); return out; } return l.split(","); };
     var toISO=function(d){ var m=/(\d{1,2})\/(\d{1,2})\/(\d{4})/.exec(d); return m?m[3]+"-"+("0"+m[1]).slice(-2)+"-"+("0"+m[2]).slice(-2):null; };
     var ca=(typeof r.ca_factor==="number"&&isFinite(r.ca_factor)&&r.ca_factor>0)?r.ca_factor:1;
@@ -77,7 +77,10 @@
       .map(function(c){return {iso:toISO(c[0]),price:parseFloat(String(c[1]).replace(/,/g,""))*ca}})
       .filter(function(o){return o.iso&&isFinite(o.price)}).sort(function(a,b){return a.iso.localeCompare(b.iso)});
     var win=series.filter(function(o){return o.iso>=r.anchor_date&&o.iso<=r.grade_date});
-    if(win.length<2) return;
+    return win.length>1?win:null;
+  }
+  function drawActualLine(r,geom,win){
+    if(!win||win.length<2) return;
     var n=win.length-1, d="";
     win.forEach(function(o,i){ d+=(i===0?"M":" L")+geom.px(geom.steps*i/n)+" "+geom.py(o.price); });
     var svg=document.querySelector("#c-funnel svg"); if(!svg) return;
@@ -105,7 +108,7 @@
     var bg=document.createElementNS(NS,"rect"); bg.setAttribute("rx","5"); bg.setAttribute("fill","var(--card)"); bg.setAttribute("stroke","var(--line)");
     cur.appendChild(vline); cur.appendChild(bg); cur.appendChild(dot); cur.appendChild(txt); svg.appendChild(cur);
     var ov=document.createElementNS(NS,"rect");
-    ov.setAttribute("x","70"); ov.setAttribute("y","14"); ov.setAttribute("width","554"); ov.setAttribute("height","196"); ov.setAttribute("fill","transparent"); ov.setAttribute("style","cursor:crosshair");
+    ov.setAttribute("x","70"); ov.setAttribute("y","14"); ov.setAttribute("width","500"); ov.setAttribute("height","196"); ov.setAttribute("fill","transparent"); ov.setAttribute("style","cursor:crosshair");
     svg.appendChild(ov);
     function coneAt(f,P){ return r.anchor_price+(P-r.anchor_price)*Math.sqrt(f); }
     function show(e){
@@ -120,7 +123,7 @@
       dot.setAttribute("cx",x); dot.setAttribute("cy",geom.py(o.price));
       var label=o.iso+"  close "+fmtPx(o.price)+"  ·  cone p5 "+fmtPx(coneAt(f,r.p5))+" / p50 "+fmtPx(coneAt(f,r.p50))+" / p95 "+fmtPx(coneAt(f,r.p95));
       txt.textContent=label;
-      var tw=label.length*6.4, tx=Math.max(74,Math.min(x-tw/2,720-96-tw));
+      var tw=label.length*6.4, tx=Math.max(74,Math.min(x-tw/2,720-150-tw));
       txt.setAttribute("x",tx); txt.setAttribute("y","30");
       bg.setAttribute("x",tx-6); bg.setAttribute("y","18"); bg.setAttribute("width",tw+12); bg.setAttribute("height","17");
       cur.setAttribute("opacity","1");
@@ -131,12 +134,15 @@
     ov.addEventListener("mouseleave",function(){cur.setAttribute("opacity","0")});
   }
   
-  function drawFunnel(r){
-    var W=720,H=240,ml=70,mr=96,mt=16,mb=30,steps=40;
+  async function drawFunnel(r){
+    var win=await loadWin(r);
+    var W=720,H=240,ml=70,mr=150,mt=16,mb=30,steps=40;
     var rc=(r.realized_close==null)?r.anchor_price:r.realized_close;
-    var lo=Math.min(r.p5,r.anchor_price,rc)*0.985, hi=Math.max(r.p95,r.anchor_price,rc)*1.015;
+    var wl=(win&&win.length)?win.map(function(o){return o.price}):[];
+    var lo=Math.min.apply(null,[r.p5,r.anchor_price,rc].concat(wl))*0.985,
+        hi=Math.max.apply(null,[r.p95,r.anchor_price,rc].concat(wl))*1.015;
     function px(i){return ml+(W-ml-mr)*i/steps}
-    function py(v){return mt+(H-mt-mb)*(1-(v-lo)/(hi-lo))}
+    function py(v){var y=mt+(H-mt-mb)*(1-(v-lo)/(hi-lo));return Math.max(mt,Math.min(H-mb,y))}
     function edge(P){var d='M'+px(0)+' '+py(r.anchor_price);for(var i=1;i<=steps;i++){var f=Math.sqrt(i/steps);d+=' L'+px(i)+' '+py(r.anchor_price+(P-r.anchor_price)*f)}return d}
     function band(Pt,Pb){var d=edge(Pt);for(var i=steps;i>=0;i--){var f=Math.sqrt(i/steps);d+=' L'+px(i)+' '+py(r.anchor_price+(Pb-r.anchor_price)*f)}return d+' Z'}
     var s='<svg viewBox="0 0 '+W+' '+H+'" width="100%" role="img" aria-label="forecast cone vs realized close">';
@@ -157,7 +163,7 @@
     s+='<text x="'+px(steps)+'" y="'+(H-8)+'" text-anchor="end" font-size="11" fill="var(--muted)">'+r.horizon_label+' · '+(r.realized_close==null?'grades on ':'')+r.grade_date+'</text></svg>';
     document.getElementById("c-funnel").innerHTML=s;
     document.getElementById("c-funnelwrap").style.display="";
-    drawActualLine(r,{px:px,py:py,steps:steps});
+    drawActualLine(r,{px:px,py:py,steps:steps},win);
   }
   
   var kT=k.charAt(0)+k.slice(1).toLowerCase();
