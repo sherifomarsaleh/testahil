@@ -25,6 +25,11 @@ on:
       - 'scripts/check_page_integrity.py'
       - 'scripts/check_data_freshness.py'
       - 'scripts/check_technical_read.py'
+      - 'scripts/check_prices_block.py'
+      - 'scripts/build_prices_block.py'
+      - 'scripts/check_screen_block.py'
+      - 'scripts/build_screen_block.py'
+      - 'engine/prices/**'
       - 'scripts/coverage_floor.py'
       - 'scripts/check_coverage_floor_negative_control.py'
       - 'engine/raw_ohlc/**'
@@ -35,6 +40,11 @@ on:
       - 'scripts/check_page_integrity.py'
       - 'scripts/check_data_freshness.py'
       - 'scripts/check_technical_read.py'
+      - 'scripts/check_prices_block.py'
+      - 'scripts/build_prices_block.py'
+      - 'scripts/check_screen_block.py'
+      - 'scripts/build_screen_block.py'
+      - 'engine/prices/**'
       - 'scripts/coverage_floor.py'
       - 'scripts/check_coverage_floor_negative_control.py'
       - 'engine/raw_ohlc/**'
@@ -80,6 +90,19 @@ jobs:
       # that were true of every correct page and false of those two.
       - name: Run technical-read coherence gate
         run: python3 scripts/check_technical_read.py
+
+      # Added 06-Sep-2026. Prices are entered BY HAND, so they arrive with lags
+      # and gaps and the committed PRICES block goes stale by the calendar the
+      # moment a file lands and nobody re-runs the builder -- the shape the
+      # 29-Jul technical-read rule closed one layer up. This holds the block
+      # against what its own readers produce now. It deliberately does NOT gate
+      # on how OLD a price is: that is a data-supply fact, printed beside every
+      # number on the page, and a gate nobody can clear is one everybody learns
+      # to ignore.
+      - name: Prices block is what its readers produce now
+        run: python3 scripts/check_prices_block.py
+      - name: Screen block is what its readers produce now
+        run: python3 scripts/check_screen_block.py
 
       # LEGACY/ IS SERVED CONTENT AND IT READS ITS OWN COPY OF data.js. The 30-Aug-2026
       # cutover left root ledger.html, picker.html, trade.html and portfolio.html as

@@ -34,7 +34,7 @@
         <thead><tr>
           <th class="sortable" data-s="code">Ticker</th>
           <th class="sortable" data-s="name">Name</th>
-          <th class="sortable num" data-s="spot">Price</th>
+          <th class="sortable num" data-s="spot">Price<br><span class="muted" style="font-weight:400;font-size:var(--fs-caption)">and the date we hold it for</span></th>
           <th class="sortable" data-s="gap">Vs fair value</th>
           <th class="sortable num" data-s="up">Odds up · 3 mo</th>
           <th></th>
@@ -42,6 +42,7 @@
         <tbody id="cov-body"></tbody>
       </table>
     </div>
+    <p class="muted" style="font-size:var(--fs-small);margin-top:10px">Each price carries the date we hold it for — they are entered by hand, so some are days old and some weeks; the gap to fair value is measured against that price, the 3-month odds against the price the cone was struck at.</p>
     <p class="muted" style="font-size:var(--fs-small);margin-top:10px">Rank these by reachability instead → <a href="tools.html#screener">the Screener</a></p>
     <div id="coming-wrap" class="t-sec" style="display:none">
       <h2>Coming soon</h2>
@@ -57,9 +58,13 @@
 renderChrome("coverage");
 (function(){
   var rows = Object.keys(ALL).map(function(k){
-    var t = ALL[k], g = gapOf(t), v = verdictOf(t);
+    var t = ALL[k], g = gapOf(t, k), v = verdictOf(t, k);
+    /* the cone was built on the strike spot, so its odds stay on that anchor —
+       only the price a GAP is measured against moves to the latest we hold. */
     var up = (t.dist && t.dist.t60) ? probAbove(t.dist.t60, t.spot) : null;
-    return {k:k, code:t.code, name:t.name, spot:t.spot, ccy:t.ccy, gap:g, v:v, up:up, mkt:mktOf(t)};
+    var lp = latestPx(k, t);
+    return {k:k, code:t.code, name:t.name, spot:lp.px, pxDate:lp.date, pxStrike:lp.strike,
+            ccy:t.ccy, gap:g, v:v, up:up, mkt:mktOf(t)};
   });
   var mkts = ["All"].concat([...new Set(rows.map(function(r){ return r.mkt; }))].sort());
   var state = {mkt:"All", q:"", s:"name", dir:1};
@@ -97,7 +102,9 @@ renderChrome("coverage");
       return '<tr class="rowlink" data-href="'+pageFor(r.k)+'">'+
         '<td class="num"><b>'+r.code+'</b></td>'+
         '<td>'+r.name+'</td>'+
-        '<td class="num">'+fmtPx(r.spot, r.ccy)+'</td>'+
+        '<td class="num">'+fmtPx(r.spot, r.ccy)+
+          '<br><span class="muted" style="font-size:var(--fs-caption)">'+
+          (r.pxStrike ? (r.pxDate||"at the strike") : fmtPxDate(r.pxDate))+'</span></td>'+
         '<td><span class="t-badge '+r.v.cls+'">'+r.v.label+'</span>'+(r.gap!=null?' <span class="num" style="color:var(--muted);font-size:var(--fs-caption)">'+fmtSPct(r.gap)+'</span>':'')+'</td>'+
         '<td class="num">'+(r.up!=null?Math.round(r.up*100)+"%":"—")+'</td>'+
         '<td><a href="'+pageFor(r.k)+'">study →</a></td>'+

@@ -506,34 +506,35 @@ def apply_grade(src: str, row: dict, got: dict) -> str:
 
     jb = lambda v: 'true' if v else 'false'
     rq = 'null' if got['realized_quantile'] is None else f"{got['realized_quantile']:.3f}"
-    # The emitters that write these rows do not agree on where they break the line:
-    # 234 open rows carry the stats fields on one line and 12 split them across two,
-    # and until 06-Sep-2026 the fixed-space patterns below matched only the first
-    # shape. All 85 rows graded before that date happened to be single-line, so the
-    # defect never fired — it was waiting on the first split row to mature, which is
-    # EGCH's 1-month cohort. A grader that refuses on WHITESPACE is refusing on a
-    # property of the writer rather than of the forecast [R-ENF-04]: an unwritable
-    # grade reads exactly like an ungradable one. So the separators are matched as
-    # \s+ and RE-EMITTED VERBATIM from the text that was found, which is what keeps
-    # a single-line row byte-identical to what the old pattern produced.
-    old_outcome = re.search(r'realized_close:null,(\s+)realized_high:null,(\s+)'
-                            r'realized_low:null,', t)
+    new_outcome = (
+        f"realized_close:{num(got['realized_close'])}, "
+        f"realized_high:{num(got['realized_high'])}, "
+        f"realized_low:{num(got['realized_low'])},")
+    # THE LINE BREAK IS NOT PART OF THE FIELD. Both patterns below used to hard-code
+    # ONE line-wrapping of the outcome and stats blocks, so a row that wrapped between
+    # `in_50:null,` and `realized_quantile:null,` was UNREACHABLE by the grader — it
+    # raised 'stats block not in the expected shape' and the matured row simply did not
+    # grade. Measured on the shipped ledger 06-Sep-2026: 234 open rows carry the block
+    # on one line and 12 wrap it, PHAR's two among them, so the metronome could not
+    # grade a name whose cone had resolved correctly. This is the layout-dependent-regex
+    # family the roll-forward protocol already names ("A LAYOUT MUST NEVER DECIDE
+    # WHETHER A FIELD GETS REFRESHED") — same defect as the `dist` span that closed on
+    # the first 4-space `},` and the `touch` ladder matched only in its multi-line form.
+    #
+    # \s+ spans the newline and the indent; the REPLACEMENT is emitted on one line, so
+    # every row the old code already handled comes out BYTE-IDENTICAL (asserted by the
+    # replay negative control in sweep(), and by scripts/check_grade_writer_layout.py).
+    old_outcome = re.search(r'realized_close:null,\s+realized_high:null,\s+realized_low:null,', t)
     if not old_outcome:
         raise SystemExit('outcome block not in the expected shape')
-    g = old_outcome.groups()
-    t2 = t.replace(old_outcome.group(0),
-                   f"realized_close:{num(got['realized_close'])},{g[0]}"
-                   f"realized_high:{num(got['realized_high'])},{g[1]}"
-                   f"realized_low:{num(got['realized_low'])},")
+    t2 = t.replace(old_outcome.group(0), new_outcome)
 
-    old_stats = re.search(r'in_90:null,(\s+)in_50:null,(\s+)realized_quantile:null,'
-                          r'(\s+)median_err:null,', t2)
+    old_stats = re.search(r'in_90:null,\s+in_50:null,\s+realized_quantile:null,\s+median_err:null,', t2)
     if not old_stats:
         raise SystemExit('stats block not in the expected shape')
-    g = old_stats.groups()
     t2 = t2.replace(old_stats.group(0),
-                    f"in_90:{jb(got['in_90'])},{g[0]}in_50:{jb(got['in_50'])},{g[1]}"
-                    f"realized_quantile:{rq},{g[2]}median_err:{got['median_err']:.4f},")
+                    f"in_90:{jb(got['in_90'])}, in_50:{jb(got['in_50'])}, "
+                    f"realized_quantile:{rq}, median_err:{got['median_err']:.4f},")
 
     # A FIRST-COVERAGE ROW WRITES touch_hit:null, NOT AN EMPTY OBJECT, and this
     # matched only the object shape — so the twelve rows six names were published

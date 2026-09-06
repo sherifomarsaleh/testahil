@@ -41,6 +41,22 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    # THIS JOB PUSHES STRAIGHT TO main, so it may only ever RUN on main.
+    #
+    # It triggers on any push touching engine/raw_ohlc/**.csv, on any branch, and
+    # then does `git rebase origin/main && git push origin HEAD:main` twice. On a
+    # feature branch that is not merely a failing job -- it is a rebase of THAT
+    # BRANCH'S WHOLE HISTORY onto main followed by a push of it to main, which
+    # would put unreviewed work on the default branch and bypass the pull request
+    # entirely. Measured 06-09-2026: a branch carrying a library refresh tripped
+    # it, and only an unresolved merge conflict stopped the push -- the guard was
+    # an accident, not a design.
+    #
+    # A skipped job is neutral rather than red, so a branch that legitimately
+    # carries a CSV no longer reports a failure it cannot fix. workflow_dispatch
+    # is unaffected in the way that matters: run it from main, which is the only
+    # ref it was ever able to finish on.
+    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
 
@@ -159,6 +175,20 @@ jobs:
         # Refuses any name whose dividend yield it cannot source rather than
         # defaulting it to zero, and asserts the LEDGER is byte-identical across
         # the pass. A nonzero exit means a gate refused, not that nothing ran.
+
+      # A LIBRARY LANDING MOVES THE PRICE BLOCKS TOO, so they are regenerated in
+      # the SAME PASS as the pages that read them -- the discipline their own
+      # docstrings state and the one the 29-Jul technical-read rule closed a
+      # layer up. Measured twice on 06-09-2026: a fresh AMOC export, then a
+      # fresh ARCC one, each landed between a rebuild and a merge and left the
+      # committed block a row behind, red on the gate that exists to catch
+      # exactly that. Regenerating here is what stops it recurring; the gate
+      # then only ever fires on a pass somebody skipped.
+      - name: Regenerate the price and funnel blocks onto the current library
+        run: |
+          python3 scripts/build_prices_block.py
+          python3 scripts/build_screen_block.py
+          cp assets/data.js legacy/assets/data.js
 
       - name: Commit the refreshed pages
         run: |
