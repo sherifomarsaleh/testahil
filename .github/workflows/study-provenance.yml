@@ -128,6 +128,12 @@ on:
       - 'scripts/check_valuation_inputs.py'
       - 'scripts/check_valuation_inputs_negative_control.py'
       - 'engine/build_depth_audit/valuation_inputs_outstanding.json'
+      # [R-IND-01]'s register itself. check_escalations.py was watched via the
+      # scripts/check_*.py glob; the FILE IT READS was not, so a commit that closed
+      # an escalation — or opened a malformed one — ran nothing. Every other gate's
+      # data file is listed above; this one was missed, which is the hand-maintained
+      # trigger list failing exactly as the note at the top of this block says it does.
+      - 'engine/escalations.json'
       - 'scripts/check_calibration_deliverables.py'
       - 'scripts/check_calibration_deliverables_negative_control.py'
       - 'engine/build_depth_audit/deliverables_outstanding.json'
@@ -238,6 +244,12 @@ on:
       - 'scripts/check_valuation_inputs.py'
       - 'scripts/check_valuation_inputs_negative_control.py'
       - 'engine/build_depth_audit/valuation_inputs_outstanding.json'
+      # [R-IND-01]'s register itself. check_escalations.py was watched via the
+      # scripts/check_*.py glob; the FILE IT READS was not, so a commit that closed
+      # an escalation — or opened a malformed one — ran nothing. Every other gate's
+      # data file is listed above; this one was missed, which is the hand-maintained
+      # trigger list failing exactly as the note at the top of this block says it does.
+      - 'engine/escalations.json'
       - 'scripts/check_calibration_deliverables.py'
       - 'scripts/check_calibration_deliverables_negative_control.py'
       - 'engine/build_depth_audit/deliverables_outstanding.json'
