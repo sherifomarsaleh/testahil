@@ -142,26 +142,47 @@ def guard(numbers_path, before=None):
     return before
 
 
+def _path_names(tree):
+    """Names holding the numbers-file PATH — the same taint used by writes_numbers."""
+    tainted = set()
+    for _ in range(6):
+        before = set(tainted)
+        for n in ast.walk(tree):
+            if (isinstance(n, ast.Assign) and len(n.targets) == 1
+                    and isinstance(n.targets[0], ast.Name)):
+                if _is_content(n.value):
+                    continue
+                d = ast.dump(n.value)
+                names = {x.id for x in ast.walk(n.value) if isinstance(x, ast.Name)}
+                if 'study_numbers' in d or (names & tainted):
+                    tainted.add(n.targets[0].id)
+        if tainted == before:
+            break
+    return tainted
+
+
 def restorers(study_dir):
     """Writers whose write is a RESTORE rather than an append.
 
-    EMPOWER and FERTIGLOBE were called false positives twice and they are not:
-    `open(NUMBERS, "wb").write(_BEFORE)` really does write the numbers file. What
-    it writes is the ORIGINAL BYTES, to put back what importing the model moved —
-    the guard, not a generator. The detector was right and the classification was
-    wrong, which is worth recording because the same mistake would have been made
-    again by the next person reading its output.
+    EMPOWER and FERTIGLOBE were called false positives of the detector twice and
+    they are not: `open(NUMBERS, "wb").write(_BEFORE)` really does write the numbers
+    file. What it writes is the ORIGINAL BYTES, to put back what importing the model
+    moved — the guard, not a generator. The detector was right and the reader was
+    wrong, which is worth recording because the next person reading its output would
+    have made the same mistake.
 
-    Detection is mechanical; CLASSIFICATION IS DECLARED. A script that calls
-    guard() has said what its write is. A script that writes and neither calls
-    guard() nor appears in the study's declared generator order is the violation.
-    THE TEST IS STRUCTURAL, NOT A MESSAGE MATCH. A first draft looked for
-    guard()'s own wording and missed FERTIGLOBE, which carries the identical
-    construction with an assert instead of a raise — the forbidden-word-list
-    mistake in miniature: a list of phrases cannot be complete, and the shape can.
-    A restore is a write whose VALUE was read from the same file earlier in the
-    same script; nothing else has that shape and no generator can acquire it by
-    accident.
+    Detection is mechanical; CLASSIFICATION IS DECLARED. A script that calls guard()
+    has said what its write is. A script that writes and neither calls guard() nor
+    appears in a declared generator order is the violation.
+
+    THE TEST IS STRUCTURAL AND DOES NOT DEPEND ON A VARIABLE'S NAME. A first draft
+    matched guard()'s own wording and missed FERTIGLOBE, which carries the identical
+    construction with an assert instead of a raise. A second draft asked for a
+    variable literally called NUM and failed its own negative control's case 7 — the
+    case written to protect exactly this classification. Both are the same mistake:
+    matching a spelling rather than a shape. A restore is a write whose VALUE was
+    read from THE NUMBERS PATH earlier in the same script, and both halves are
+    resolved by the same taint the writer detection already uses.
     """
     out = []
     for f in sorted(glob.glob(os.path.join(study_dir, '*.py'))):
@@ -175,21 +196,23 @@ def restorers(study_dir):
             tree = ast.parse(src)
         except Exception:
             continue
-        # names holding bytes READ from the numbers file
-        held = set()
+        paths = _path_names(tree)
+        held = set()                     # names holding bytes READ from that path
         for n in ast.walk(tree):
             if (isinstance(n, ast.Assign) and len(n.targets) == 1
                     and isinstance(n.targets[0], ast.Name)):
-                d = ast.dump(n.value)
-                if 'study_numbers' in d or ('read' in d and 'NUM' in d):
-                    if "'rb'" in d or '"rb"' in d or 'read' in d:
-                        held.add(n.targets[0].id)
-        # a write whose argument is one of those names is a RESTORE
+                for c in ast.walk(n.value):
+                    if (isinstance(c, ast.Call) and isinstance(c.func, ast.Name)
+                            and c.func.id == 'open' and c.args):
+                        nm = {x.id for x in ast.walk(c.args[0]) if isinstance(x, ast.Name)}
+                        tgt = ast.dump(c.args[0])
+                        if (nm & paths) or 'study_numbers' in tgt:
+                            held.add(n.targets[0].id)
         for n in ast.walk(tree):
             if (isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute)
                     and n.func.attr == 'write' and n.args):
-                arg = n.args[0]
-                if isinstance(arg, ast.Name) and arg.id in held:
+                a = n.args[0]
+                if isinstance(a, ast.Name) and a.id in held:
                     out.append(os.path.basename(f))
                     break
     return out

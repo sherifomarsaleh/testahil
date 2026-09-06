@@ -61,6 +61,11 @@ on:
       - 'scripts/check_valuation_gap_negative_control.py'
       - 'engine/build_depth_audit/gap_outstanding.json'
       - 'engine/study_population.py'
+      - 'engine/study_aliases.py'
+      - 'engine/numbers_generators.py'
+      - 'scripts/check_numbers_generators.py'
+      - 'scripts/check_numbers_generators_negative_control.py'
+      - 'engine/build_depth_audit/generators_outstanding.json'
       - 'engine/build_depth_audit/coverage_outstanding.json'
       - 'scripts/check_study_population_negative_control.py'
       - 'scripts/check_workbook_structure.py'
@@ -178,6 +183,11 @@ on:
       - 'scripts/check_valuation_gap_negative_control.py'
       - 'engine/build_depth_audit/gap_outstanding.json'
       - 'engine/study_population.py'
+      - 'engine/study_aliases.py'
+      - 'engine/numbers_generators.py'
+      - 'scripts/check_numbers_generators.py'
+      - 'scripts/check_numbers_generators_negative_control.py'
+      - 'engine/build_depth_audit/generators_outstanding.json'
       - 'engine/build_depth_audit/coverage_outstanding.json'
       - 'scripts/check_study_population_negative_control.py'
       - 'scripts/check_workbook_structure.py'
@@ -433,6 +443,18 @@ jobs:
       # correct and referenced by nothing, which an outside gate-runner found the same day.
       - name: Study-population resolver — negative control
         run: python3 scripts/check_study_population_negative_control.py
+
+      # [R-ENF-01] A NUMBERS FILE WITH TWO GENERATORS DECLARES THEIR ORDER. Adding one
+      # line to SWDY's lens record and rebuilding it deleted that study's entire
+      # forecast_anchor record, because the file is written whole by compute.py and
+      # that block is appended afterwards by a second script with nothing saying so.
+      # It was caught by reading a diffstat: no gate can see it, because a gate reads
+      # the file that is there and cannot know what a rebuild removed.
+      - name: Numbers-file generators declare their order
+        run: python3 scripts/check_numbers_generators.py
+
+      - name: Numbers-file generators — negative control
+        run: python3 scripts/check_numbers_generators_negative_control.py
 
       # [R-ENF-01] the DELIVERED WORKBOOK's shape, read off the file itself. On
       # 01-Sep-2026 the AMOC rebuild shipped seven sheets against the model report's
