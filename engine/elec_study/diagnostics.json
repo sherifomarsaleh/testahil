@@ -1,0 +1,71 @@
+{
+ "ticker": "ELEC",
+ "as_of": "2026-09-06",
+ "spot": 2.08,
+ "spot_date": "close 2026-09-03, the Egyptian Exchange",
+ "spot_source": "engine/prices/SUPPLIED_03-09-2026.json — Electro Cable Egypt, the close on the Egyptian Exchange, 3 September 2026",
+ "published_central": 0.3357186228503667,
+ "published_spot": 2.19,
+ "why_this_file": "The reverse read — what the traded price must believe — is a DIAGNOSTIC and lives outside the numbers file every builder reads. A quantity solved from a price and then used anywhere in the valuation is the reverse-engineered rate the protocol prohibits outright, arriving through a side door, and the prohibition is worth nothing if the side door is open. Nothing in this file is an input to anything: no builder in this study reads it, and it is COMPUTED by diagnostics_elec.py, which re-runs the study's own compute.py with one driver moved at a time.",
+ "implied": {
+  "quantity": "the conversion EBITDA per tonne — the unit rate the whole forecast is built on, margin being an output of it — scaled in parallel across the five forecast years, stated here as the EBITDA margin it produces in the terminal year",
+  "value": 0.2834371500651252,
+  "study_value": 0.12304977500120771,
+  "study_value_range": [
+   0.253298689233717,
+   0.3068042959675745
+  ],
+  "value_at_the_strike_price": 0.2897709371416175,
+  "solved_on": "this study's own compute.py, on the answer the study PUBLISHES — the four-lens weighted central of EGP 0.3357 — holding every other driver at its published value and moving only the conversion-EBITDA-per-tonne path, in parallel so its recovery shape is preserved, until the model reproduces EGP 2.08. The two lens clamps are not binding on the way up: the cash-flow lens leaves its floor long before the price is reached, so the published construction can carry this solve.",
+  "value_conversion_per_tonne_k_egp": 310.963715768,
+  "study_value_conversion_per_tonne_k_egp": 135.0,
+  "scale_on_the_whole_path": 2.303434931614902,
+  "company_record_ebitda_margin": {
+   "FY23": 0.3068042959675745,
+   "FY24": 0.253298689233717,
+   "FY25": 0.2653936861375895
+  },
+  "company_record_conversion_per_tonne_k_egp": {
+   "FY23": 110.75661782539277,
+   "FY24": 145.57482764316092,
+   "FY25": 182.21001612305412
+  },
+  "what_the_company_actually_disclosed": "THIS IS THE HALF THAT HAS TO BE SAID PLAINLY. The three full-year margins beside the two forecasts are NOT filed rates. What reaches this study for those years is revenue and net profit as press and vendor prints of exchange filings — FY2025 revenue EGP 10,819 mn and net profit EGP 500.31 mn — and everything between them, EBITDA included, is solved or typed: the FY2025 EBITDA rests on a finance cost derived to close the profit and loss to that reported net profit. The company's own statement index lists nothing after 30 September 2025 and nothing consolidated after 31 December 2020, and this study models consolidated figures. The reverse read is therefore compared against a reconstruction of the filed years rather than against filed rates, and that is a condition of the study rather than of this record. The genuinely disclosed near-term figures are the first quarter of 2026: revenue EGP 2,094 mn, cost of sales EGP 1,975 mn, gross profit EGP 119.066 mn and operating profit EGP 1.429 mn.",
+  "reading": "At EGP 2.08 the price is paying for a terminal EBITDA margin of 28.34% — a conversion rate of 311 thousand pounds a tonne against this study's 135, the whole path 2.303 times higher. The study forecasts 12.30%. The reconstructed record of the three years this study holds runs 30.68% (FY2023), 25.33% (FY2024) and 26.54% (FY2025), so THE PRICE'S NUMBER SITS INSIDE THAT RECONSTRUCTED RANGE ON ALL THREE YEARS, above the lowest and below the highest, while the study's own forecast sits below every one of them. At the EGP 2.19 this study was struck against the same solve gives 28.98%. The disagreement is one driver — how much cash a tonne of cable converts — and every other door is shut: at a risk-free rate of zero on both legs the equity is still negative, at working capital of 5% of revenue the price is unreachable, growth moves the answer the wrong way because the terminal return sits below the terminal cost of capital, and the price is payable on this balance sheet only if the company holds net cash. That is a more useful statement than \"the study is -83.9% below the price\", and under [R-GAP-02] a reverse read landing on a believable number is evidence AGAINST dissent."
+ },
+ "other_quantities": [
+  {
+   "quantity": "terminal growth",
+   "value": null,
+   "study_value": 0.05,
+   "not_reachable": "The terminal return on capital of 9.17% sits BELOW the terminal cost of capital of 15.00%, so growth destroys value in this model and the price is further away at every growth rate, not nearer: the central runs 0.3547 at zero growth and 0.1875 just below the terminal discount rate, against a price of 2.08. The gradient inverts by construction and the study says so itself."
+  },
+  {
+   "quantity": "working-capital intensity, held flat across the window",
+   "value": null,
+   "study_value": 0.88,
+   "not_reachable": "At 5% of revenue — an intensity no cable maker runs and far below the FY2024 level of about 76% — the published central reaches only 1.6942 against a price of 2.08. Working capital cannot close this gap because it is a level effect on five years of cash flow while 82% of enterprise value sits in the terminal."
+  },
+  {
+   "quantity": "the risk-free rate, explicit and terminal together",
+   "value": null,
+   "study_value": 0.2231,
+   "not_reachable": "At a TERMINAL risk-free rate of zero the cash-flow lens is still 0.2127 a share — negative — and the published central reaches only 1.5091. Zero the EXPLICIT leg as well, which is a cost of capital no economy has, and the lens turns positive at 0.8469 while the published central still reaches only 1.7628 against a price of 2.08. So the price is not reachable through the discount rate at any rate a market could produce, which is the cleanest evidence that the disagreement is not about the cost of capital."
+  },
+  {
+   "quantity": "net debt at the bridge date",
+   "value": -4617.777304499963,
+   "study_value": 9805.0,
+   "note": "The price is payable only if this company holds NET CASH of EGP 4,618 mn against the EGP 9,805 mn of net debt this study triangulates. That is not a disagreement about leverage, it is a different balance sheet."
+  },
+  {
+   "quantity": "volumes, scaled in parallel",
+   "value": 5.218084218155127,
+   "study_value": 16.0,
+   "note": "Volumes reach the price at 5.218 times the forecast path — FY2030E of 83.5 kt against a stated parent capacity of 25 kt, which is 3.3 times that capacity. Volume is the wrong door for a different reason from the others: it raises revenue and working capital together, so most of what it earns it lends back.",
+   "not_reachable": null
+  }
+ ],
+ "the_lens_the_read_is_solved_on": "Measured rather than asserted. On the published four-lens central the price implies a terminal margin of 28.34%; on the cash-flow lens alone — which is what [R-LENS-03] would make the central for this class, and what this study's own gap review published — it implies 27.17%, the whole conversion path 2.208 times higher. Both are recorded because the published answer is a blend and the class primary is not, and a reader is owed the number that belongs to the answer they receive as well as the one that belongs to the model beneath it.",
+ "runs_behind_this_record": 202
+}
