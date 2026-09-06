@@ -608,19 +608,20 @@ const TICKERS = {
     name: "Alexandria Mineral Oils",
     nameAr: "\u0627\u0644\u0625\u0633\u0643\u0646\u062f\u0631\u064a\u0629 \u0644\u0644\u0632\u064a\u0648\u062a \u0627\u0644\u0645\u0639\u062f\u0646\u064a\u0629",
     code: "EGX:AMOC",
-    spot: 9.10,
-    spotDate: "close 6 Aug 2026",
+    spot: 13.54,
+    spotDate: "close 06 Sep 2026",
     fairAsof: "2026-08-06",   // the close the FAIR VALUE is struck on — not the publication date in the filename
     ccy: "EGP",
     fair: { bear: 4.09, base: 5.95, full: 8.52 },      // PRE-CALIBRATION. HELD BACK FROM THE SITE, DELIBERATELY. The fundamental-calibration rebuild of this name is COMPLETE and the number below is the number from BEFORE it; per instruction of 1 September 2026 nothing from the calibration campaign goes live one name at a time — the whole book publishes together at the end, in a new location, with the valuation report as a PDF and the workbook beside it. THE CALIBRATED RANGE IS DELIBERATELY NOT RESTATED HERE: it moves at every re-issue, and the three notes that used to carry it were all stale within two days (one naming a range two editions old, one naming a closing price 23% away). Read it live from engine/fv_movement.json, or with python3 engine/fv_movement.py check, which is generated from the study's own committed numbers and cannot drift from them. A FILE THAT STATES A FACT WHICH MOVES MUST NOT BE THE THING THAT REMEMBERS IT.
       // 8 Aug 2026 - four-lens weighted central EGP 5.95 (-34.6% vs spot 9.10). Weights 45/20/20/15: FCFF DCF 5.50 / relative EV-to-EBITDA 8.14 / normalised earnings 5.83 / book 4.57. bear/full are the WEIGHTED bear and bull columns (4.09-8.52), not the min/max across lenses. Base year = twelve contiguous months to 30-Jun-2026 (audited half + REPORTED half, no scalar); the released H1-2026 gross profit is rejected on a coherence test and SOLVED from the release's own profit line. Give back every contested judgement simultaneously and the central still reaches only 7.47. Terminal value 44.8% of enterprise value; WACC 31.58% explicit to 18.34% terminal.
     dist: {
-      t20: { label:"1 month",   p5:7.71, p25:8.60, p50:9.17, p75:9.79, p95:10.91, resolve:"2026-09-06" },
-      t60: { label:"3 months",  p5:6.90, p25:8.34, p50:9.33, p75:10.42, p95:12.60, resolve:"2026-11-08" }
+      t20: { label:"1 month",   p5:11.24, p25:12.78, p50:13.74, p75:14.76, p95:16.78, resolve:"2026-10-06" },
+      t60: { label:"3 months",  p5:10.04, p25:12.45, p50:14.05, p75:15.86, p95:19.63, resolve:"2026-12-06" }
     },
     hz: { h1:20, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:5, cal:0.951, mult:0.98773, eff:0.939331, on:"2026-09-06" },
     touch: [ /* level, P(touch) 1-month %, 3-month % \u2014 descending */
-      [11.00, 7, 27], [10.50, 14, 40], [10.00, 30, 57], [8.50, 38, 58], [8.00, 15, 35], [7.50, 5, 20]
+      [11.00, 6, 19], [10.50, 3, 13], [10.00, 2, 9], [8.50, 0, 3], [8.00, 0, 2], [7.50, 0, 1]
     ],
     levels: { res:[14.13, 15, 16], sup:[12.25, 9.81, 9.13] },
     tech: {
@@ -630,7 +631,7 @@ const TICKERS = {
       bear: "A close below 12.25 would break the nearest support; the next charted level below it is 9.13."
     },
     asof: {
-      mc:   { data:"2026-08-06", computed:"2026-08-06" },
+      mc:   { data:"2026-09-06", computed:"2026-09-06" },
       tech: { data:"2026-09-06", computed:"2026-09-06" }
     },
     files: {
@@ -7760,6 +7761,35 @@ const LEDGER = [
     note:"Cycle 3 roll-forward, 06-Sep-2026 — struck on the 04-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-03 and is graded in this same pass. The previous cone was anchored 2026-08-03; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (q=0 is SOURCED, not defaulted: a spot metal pays no holder yield — the lease rate is a borrower’s cost, not a return to the holder — so the carry is rf alone.) XAU live fit nu=12.0, width_cal=0.958. rf_live 3.63% Fed funds midpoint schedule (USD cost-of-carry anchor). No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on XAU’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 65) size the cone only.",
     p5:47.46, p25:58.45, p50:66.89, p75:76.62, p95:94.26,
     touch:{ "+5":76, "+10":60, "+15":46, "+20":35, "-5":73, "-10":53 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 2026-09-06 single-name roll-forward: ELEC, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"ELEC", asset_class:"equity",
+    anchor_date:"2026-09-06", run_date:"2026-09-06", anchor_price:2.12, ccy:"EGP",
+    horizon_label:"1 month", grade_date:"2026-10-06", grade_basis:"projected", horizon_days:20,
+    cycle_no:2, reanchor_from:"2026-08-05", anchor_vol:0.3667,
+    signal_z:-0.3806, signal_alpha:-0.002318,
+    note:"Cycle 2 roll-forward, 2026-09-06 — struck on the 06-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-06 and is graded in this same pass. The previous cone was anchored 2026-08-05; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. rf_live 19.50% CBE main operation rate. Direction call DOWN, from this name’s own mom_combo z of -0.381 (outside the 0.25 dead zone); tilt -0.23% at 1M and -0.49% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 62) size the cone only.",
+    p5:1.84, p25:2.03, p50:2.15, p75:2.27, p95:2.5,
+    touch:{ "+5":52, "+10":25, "+15":12, "+20":6, "-5":40, "-10":16 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ELEC", asset_class:"equity",
+    anchor_date:"2026-09-06", run_date:"2026-09-06", anchor_price:2.12, ccy:"EGP",
+    horizon_label:"3 months", grade_date:"2026-12-06", grade_basis:"projected", horizon_days:62,
+    cycle_no:2, reanchor_from:"2026-08-05", anchor_vol:0.3997,
+    signal_z:-0.3806, signal_alpha:-0.004881,
+    note:"Cycle 2 roll-forward, 2026-09-06 — struck on the 06-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-06 and is graded in this same pass. The previous cone was anchored 2026-08-05; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. rf_live 19.50% CBE main operation rate. Direction call DOWN, from this name’s own mom_combo z of -0.381 (outside the 0.25 dead zone); tilt -0.23% at 1M and -0.49% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 62) size the cone only.",
+    p5:1.65, p25:1.99, p50:2.21, p75:2.45, p95:2.96,
+    touch:{ "+5":77, "+10":58, "+15":43, "+20":30, "-5":61, "-10":38 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
