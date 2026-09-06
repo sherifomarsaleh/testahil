@@ -6,10 +6,19 @@
   "ADNOCDRILL",
   "AMOC",
   "AMR",
+  "ARCC",
+  "DU",
+  "EGCH",
   "ELEC",
   "EMPOWER",
+  "FERTIGLOBE",
   "GBCO",
+  "MODON",
+  "PHAR",
+  "RIYADHCABLE",
   "SAVOLA",
+  "SWDY",
   "XPT"
- ]
+ ],
+ "identity_clause_untested_06-09-2026": "ARCC, DU, EGCH, FERTIGLOBE, MODON, PHAR, RIYADHCABLE and SWDY were added on 06-09-2026 when the gate began separating CONFORMING from HELD TO THE IDENTITY CLAUSE. Each commits a lens record that passes everything testable and exposes NO CENTRAL, so assert_lens_design()'s identity test \u2014 the one clause that catches a weighted blend \u2014 is skipped on it. The skip is correct in the assertion (`central` is optional in that record's shape and an assertion may not invent a field requirement); counting the study as conforming afterwards is not. THE CORRELATION IS THE FINDING: a book-wide census the same day found NINE studies still publishing a weighted central and EVERY ONE sat in the unheld group. Each comes off this list by exposing its central, which is a one-line addition to its own record and not a re-issue."
 }

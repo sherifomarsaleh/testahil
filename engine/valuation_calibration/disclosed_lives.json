@@ -858,7 +858,7 @@
     {
      "asset_class": "Buildings",
      "years": [
-      12.5,
+      5,
       50
      ]
     },
@@ -873,33 +873,225 @@
      "asset_class": "Plant and equipment",
      "years": [
       3,
-      30
+      40
      ]
     },
     {
      "asset_class": "Furniture and office equipment",
      "years": [
-      3,
-      16
+      1,
+      10
      ]
     },
     {
      "asset_class": "Vehicles",
      "years": [
-      4,
-      10
+      2,
+      15
      ]
     }
    ],
    "longest_years": 50,
-   "shortest_years": 3,
+   "shortest_years": 1,
    "land_not_depreciated": true,
-   "source": "Savola Group Company, consolidated financial statements for the year ended 31 December 2024, audited, note 3(f) property, plant and equipment: 'Depreciation is charged to the profit or loss on a straight-line basis over the estimated useful lives of individual items of property, plant and equipment ... The estimated useful lives of assets for current and comparative year is as follow'. Land is not depreciated. Downloaded 04-Sep-2026 from the company's own investor-relations financial-statements page.",
-   "file": "engine/savola_study/SAVOLA_FY2024_Audited_FS.pdf",
-   "route": "Text layer via pdftotext -layout. The document carries a full text layer (369KB extracted across the statements), so no OCR was needed; the route is recorded either way because which route a figure came by is part of the record, not a detail of the day.",
-   "cross_check": "The FY2024 note states the table is 'for current and comparative year', which makes it its own one-year check. Checked further against the FY2020 ANNUAL audited statements (engine/savola_study/SAVOLA_FY2020_Annual_FS.pdf, note 3(g)): the table is IDENTICAL line for line — 12.5-50, 3-33, 3-30, 3-16, 4-10 — so these lives are stable across at least 2020 to 2024. THE FIRST CROSS-CHECK ATTEMPTED WAS THE WRONG DOCUMENT and is recorded rather than quietly replaced: the file the company labels 'q4-2023' is a CONDENSED CONSOLIDATED INTERIM statement, UNAUDITED, and carries no accounting-policies table at all. A fourth-quarter filing is not an annual one.",
-   "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE. The weighted life a terminal needs is derived at rebuild from this company's own property, plant and equipment note composition, which is a further sourcing step and is NOT done here — collapsing 3-50 to one figure here would be this desk choosing the life under cover of a citation.",
-   "vintage_note": "This study's valuation date is 31-Dec-2025 and the latest ANNUAL audited statements on the company's own financial-statements page at 04-Sep-2026 are FY2024; no FY2025 annual was listed there. The lives are unchanged 2020-2024, so the vintage gap is recorded rather than treated as material — but it is recorded."
+   "source": "Savola Group Company, AUDITED consolidated financial statements for the year ended 31 December 2025 (Deloitte and Touche & Co., unmodified opinion), note 4.8 property, plant and equipment: 'Depreciation is charged to the profit or loss on a straight-line basis over the estimated useful lives of individual items of property, plant and equipment ... Land is not depreciated. The estimated useful lives of assets for current and comparative year is as follow'. PDF page 32, printed page 30. Construction work in progress is not depreciated either until the asset is available for use (note 4.9), so it leaves the depreciable base alongside land.",
+   "file": "engine/savola_study/filings/FY2025_FS.pdf",
+   "route": "Text layer via pdftotext -layout, AND read off the rendered pixels at 200 dpi (pdftoppm) because A LIFE TABLE CARRIES NO ARITHMETIC AND CANNOT BE FOOTED - the two agree character for character. What CAN be footed is the note 6 movement schedule that supplies the weights, and it was: 82 checks across cost, accumulated depreciation and net book value in BOTH years - every movement row summing across the seven classes to its printed total, every class column rolling opening-plus-movements to its printed close, and net book value reproducing as cost less accumulated by class and in total - ZERO failures. A footing page beside an unfootable table does not certify the unfootable table, which is why the life table was taken off the pixels.",
+   "read_on": "2026-09-06",
+   "SUPERSEDES_the_FY2024_read": "THIS ENTRY PREVIOUSLY CARRIED 12.5-50 / 3-33 / 3-30 / 3-16 / 4-10 FROM THE FY2024 FILING, on a vintage note reading 'the latest ANNUAL audited statements on the company's own financial-statements page at 04-Sep-2026 are FY2024; no FY2025 annual was listed there'. THE FY2025 ANNUAL AUDITED STATEMENTS WERE ON DISK IN THIS STUDY'S OWN filings/ DIRECTORY THE WHOLE TIME (FY2025_FS.pdf, 113 pages, full text layer, Deloitte unmodified opinion, committed 31-Aug-2026) - [R-IND-01]'s ladder says OPEN THE ARTEFACT, and the earlier pass reasoned about the investor-relations page instead of listing the directory. The FY2024 figures are not withdrawn as a reading of FY2024; they are superseded as the current disclosure.",
+   "THE_BANDS_MOVED_AND_THE_NOTE_SAYS_THEY_DID_NOT": "Four of the five classes are disclosed differently in FY2025 than in FY2024, FY2023 and FY2020 - buildings 12.5-50 -> 5-50, plant and equipment 3-30 -> 3-40, furniture and office equipment 3-16 -> 1-10, vehicles 4-10 -> 2-15; only leasehold improvements (3-33) is unchanged. BOTH FILINGS INTRODUCE THEIR TABLE WITH THE SAME SENTENCE, 'for current and comparative year', so the FY2025 note asserts these bands describe 2024 as well and the FY2024 audited filing's own table for 2024 says otherwise. No change in accounting estimate is quantified anywhere in FY2025 - the only related words are the standing policy sentence ('Depreciation methods, useful lives and residual values are reviewed at least annually and adjusted prospectively if required') and critical-estimates note 2(a). BOTH TABLES WERE READ OFF THE RENDERED PIXELS so neither reading is an extraction artefact; which of the two possibilities holds - a re-description of the bands, or a reassessment whose effect is undisclosed - is not decidable from outside, and it is [L-328] condition (ii) either way.",
+   "residual_values": "[L-328] condition (i) is disclosed in terms: 'Depreciation represents the systematic allocation of the depreciable amount of an asset over its estimated useful life. DEPRECIABLE AMOUNT REPRESENTS COST OF AN ASSET, OR OTHER AMOUNT SUBSTITUTED FOR COST, LESS ITS RESIDUAL VALUE.' The charge is therefore (cost - residual)/life, not cost/life, so BOTH identities off this note overstate: gross cost over the charge overstates the LIFE, and accumulated depreciation over the charge overstates the AGE. NO RESIDUAL PERCENTAGE IS QUANTIFIED ANYWHERE in the FY2025 statements, so neither can be corrected - the overstatement is of unknown size. Negative searches actually run on the held filings: 'maintenance capex' / 'sustaining capex' - nothing, in any filing; a depreciation RATE (which would pin a life the way EGCH's 3.95% does) - nothing, this company discloses lives and not rates; AR2025 - no useful-life disclosure at all.",
+   "the_arithmetic_contradicts_the_note_on_a_third_of_the_base": "Per class, gross cost over that class's own FY2025 charge: buildings 26.59 y (band 5-50, inside), leasehold improvements 15.46 y (3-33, inside), plant and equipment 19.23 y (3-40, inside), FURNITURE AND OFFICE EQUIPMENT 13.86 y AGAINST A DISCLOSED MAXIMUM OF 10, and VEHICLES 31.85 y AGAINST A DISCLOSED MAXIMUM OF 15 - 2.1x it. Those two classes are 31.5% of depreciable gross cost. Their bases are 76.1% and 85.4% written down, so the excess is what a largely-written-down base does to a cost-over-charge ratio, plus the residual clause above. The prior year does the same thing: on the FY2024 columns against the FY2024 bands, vehicles implies 26.15 y against a maximum of 10 (2.6x).",
+   "weighted_life_06-09-2026": "REFUSED - AND THE MIRROR IMAGE OF THE EXEMPLAR'S REFUSAL. ADNOCLS discloses the lives and NOT the composition (97.85% of depreciable net book value in one column spanning six lives). SAVOLA DISCLOSES THE COMPOSITION AND NOT THE LIVES: note 6 gives gross cost, accumulated depreciation and net book value for every one of the five depreciable classes, so the weighting [R-TERM-01] asks for can actually be performed - and the bands it weights are so wide that it determines nothing. Capital-weighted harmonic mean (maintenance = sum of IC_class / L_class, so the aggregate life is the harmonic mean, not the arithmetic one): on GROSS COST of 10,980,554 it runs 21.27 years with every class at its LONGEST disclosed life and 2.05 years with every class at its SHORTEST - a factor of 10.4 - and the implied maintenance charge on that base spans SR 516mn to SR 5,366mn. On NET BOOK VALUE of 4,116,851 it runs 26.23 to 2.46 years, a factor of 10.7. THE MIDPOINT OF THAT IS THIS DESK CHOOSING A LIFE UNDER COVER OF A CITATION, WHICH IS THE THING THE RULE FORBIDS, so no single figure is recorded. The same weighting on the FY2024/23/20 bands gives 24.97 to 3.82 years on gross cost, so the refusal does not turn on which vintage of the disclosure is used.",
+   "what_the_study_currently_commits": "18.03 years, DERIVED BY IDENTITY (note 6 depreciable gross cost 10,980,554 over the year's own charge of 608,933) and labelled as derived in its own record, cross-checked against FY2024's columns at 17.05. BOTH FIGURES REPRODUCE EXACTLY and the cross-check is CIRCULAR - the same identity one year apart, which is the case terminal_value.py's own docstring already names this company for. The note is the test and the arithmetic is a corroborator that works only sometimes: here the arithmetic passes at 0.0% and the note closes the route. WHAT THE 18.03 ACTUALLY DOES in that terminal is set an ESCALATION WINDOW, not a divisor - the study builds maintenance on the book_dna_escalated basis over half the life (9.015 years at 2% terminal inflation, escalator 1.1954, maintenance 884.6) because the model commits no replacement-cost capital base. So the life is standing in for an AGE, and a SHORTER life LOWERS maintenance and RAISES the terminal, the opposite of what the word suggests.",
+   "priced_across_the_disclosed_band_06-09-2026": "What the sanctioned terminal WOULD give at the ends of the carrying-amount-weighted band, everything else held exactly as committed and the committed case reproduced bit-for-bit first (maintenance 884.6321, TV 14392.07381 - identical to the study's own record, which is what makes the rest comparable): at 21.27 years TV 13,872.8 (-3.61%), at 2.05 years TV 16,723.0 (+16.20%), a span of 17.0% of the terminal. On the net-book weighting, -9.36% to +15.81%. On the FY2024 bands, -7.87% to +14.53%. NOTHING HERE IS APPLIED AND NO PUBLISHED NUMBER MOVES - this is the size of the indeterminacy, not a correction. The direction is not predicted either way per [R-TERM-01 CLAUSE TWO CORRECTED].",
+   "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE, and on this name the range cannot be collapsed by the weighting step that collapses others, because the disclosure is a set of bands spanning 1 to 50 years and the weighting inherits their width. What would close it: a residual-value percentage by class (turns both identities into measurements), a disclosed depreciation RATE by class (pins a life outright), or a disclosed maintenance capex (removes the need for a life at all). None is disclosed in any filing this study holds, and the searches for each were run rather than assumed."
+  },
+  "SCEM": {
+   "disclosure_is_rates_not_lives": true,
+   "classes": [
+    {
+     "asset_class": "Buildings & Utilities",
+     "disclosed_rate_pct": [
+      2.0,
+      2.5
+     ],
+     "years_derived": [
+      40.0,
+      50.0
+     ],
+     "gross_cost_31_12_2025": 834757411,
+     "carrying_amount_31_12_2025": 535935700
+    },
+    {
+     "asset_class": "Machinery",
+     "disclosed_rate_pct": 5.0,
+     "years_derived": 20.0,
+     "gross_cost_31_12_2025": 2182615926,
+     "carrying_amount_31_12_2025": 690265913,
+     "note": "note 3/2 names this class 'Machinery'; note 4 columns it 'Machinery & Equipment'. The label is not identical and the arithmetic below says the difference is not cosmetic."
+    },
+    {
+     "asset_class": "Motor Vehicles",
+     "disclosed_rate_pct": 20.0,
+     "years_derived": 5.0,
+     "gross_cost_31_12_2025": 37425653,
+     "carrying_amount_31_12_2025": 13883295
+    },
+    {
+     "asset_class": "Tools",
+     "disclosed_rate_pct": 20.0,
+     "years_derived": 5.0,
+     "gross_cost_31_12_2025": 42816197,
+     "carrying_amount_31_12_2025": 7996678
+    },
+    {
+     "asset_class": "Furniture & Office equipment",
+     "disclosed_rate_pct": [
+      10.0,
+      25.0
+     ],
+     "years_derived": [
+      4.0,
+      10.0
+     ],
+     "gross_cost_31_12_2025": 43239967,
+     "carrying_amount_31_12_2025": 17790005
+    }
+   ],
+   "shortest_years": 4.0,
+   "longest_years": 50.0,
+   "source": "Sinai Cement Company S.A.E., audited financial statements for the year ended 31 December 2025, note 3/2 'Fixed assets and depreciation', PRINTED PAGE 8: 'Depreciation is calculated on the basis of the straight-line method. Depreciation is to be charged to the income statement based on the estimated useful life of fixed assets and consistent with preceeding year, at the following rates: Buildings & Utilities 2% - 2.5%; Machinery 5%; Motor Vehicles 20%; Tools 20%; Furniture & Office equipment 10%-25%.' The composition the rates are weighted on is note 4 'Fixed Assets', PRINTED PAGE 15. No land line and no capital work in progress sit inside note 4 — the land was transferred to North Sinai Governorate in 2022 and is a right-of-use asset at note 5, and construction works in progress is its own note — so the whole of note 4 is depreciable and nothing has to be excluded from the weighting.",
+   "file": "engine/scem_study/filings/SCC-AFS-E-1225.pdf",
+   "route": "OCR OFF THE RENDERED PIXELS, by necessity rather than as a fallback: the filing carries NO text layer at all — pdftotext returns 37 bytes across 37 pages, one newline per page, and pdfinfo names the producer 'Xerox AltaLink C8135', i.e. a photocopier scan. Rendered with pdftoppm -r 200 -png and the pages read as images; note 3/2 is PDF page 11 and note 4 PDF page 18 (printed page = PDF page - 3). A first pass ran tesseract at --psm 6 over the whole document and it is RECORDED that this produced unusable output on the rotated landscape statement pages — the figures below were read off the images, not off that OCR text.",
+   "read_on": "2026-09-06",
+   "verified_independently": "Read from the filings for this pass rather than taken from the study's own filings_extract.py, which already holds the same rates and the same note 4 table. The two agree figure for figure.",
+   "the_note_foots": "NOTE 4 FOOTS EXACTLY, TO THE POUND, ON ALL 24 CHECKS — five classes summing to the printed Total on each of the nine rows, and within each class cost(open)+additions-disposals=cost(close), accumulated(open)+charge-disposals=accumulated(close), cost-accumulated=net book value. Gross cost 3,140,855,154; accumulated depreciation 1,874,983,563; charge for the year 99,209,674; net book value 1,265,871,591. No re-read was forced by a footing failure; the route is OCR because no other route exists.",
+   "prior_year_cross_check": "The FY2024 filing (SCC-AFS-E-1224.pdf) carries the IDENTICAL rate table at note 3/2, printed page 9, rate for rate and word for word, including 'consistent with preceeding year' and including the same capitalised-overhaul sentence. Its own note 4 is at printed page 16 and its closing figures reproduce FY2025's opening figures EXACTLY, class by class, on both cost and accumulated depreciation. Its 24 footing checks pass on 22: the printed net book value row carries two OFFSETTING ONE-POUND differences (Motor Vehicles printed 2,064,182 against 2,064,181; Office Furniture printed 15,302,081 against 15,302,082) which cancel exactly in the printed total. Both cells were re-read at magnification off the rendered pixels and are as printed — the filing's own rounding, EGP 1 on a EGP 2.8bn table, and nothing to do with the lives.",
+   "weighted_life_band": {
+    "method": "carrying-amount-weighted HARMONIC mean of the class lives, and the gross-cost-weighted one beside it. maintenance = sum(IC_c / L_c) while terminal_value.build() charges IC_total / L, so the single life reproducing that charge is IC_total divided by that sum. An arithmetic mean of lives overstates the life and undercharges. This is an identity, not a choice.",
+    "FY2025_net_book_years": [
+     22.31,
+     24.63
+    ],
+    "FY2025_gross_cost_years": [
+     20.02,
+     21.48
+    ],
+    "FY2024_net_book_years": [
+     23.14,
+     25.69
+    ],
+    "FY2024_gross_cost_years": [
+     20.17,
+     21.57
+    ],
+    "arithmetic_mean_FY2025_gross_cost_years": [
+     24.71,
+     27.45
+    ],
+    "band_midpoints": {
+     "net_book_years": 23.42,
+     "gross_cost_years": 20.73
+    },
+    "which_base": "GROSS COST is the base a maintenance charge belongs on, and the difference is not a rounding: maintenance replaces the whole asset, not its undepreciated remainder, so weighting on carrying amounts lengthens the life of a mature plant purely because its short-lived classes are already written down. SCEM's motor vehicles and tools are 2.6% of cost and 1.7% of carrying amount for that reason. Both are recorded; the gross-cost band is the one a rebuild should charge on, and the carrying-amount band is the alternative framing published beside it.",
+    "stability": "the band is narrow and barely moves between years or weight bases, because 96.1% of gross cost sits in two classes whose disclosed rates carry no band at all (machinery, a flat 5%) or a very tight one (buildings and utilities, 2%-2.5%). The width is not a weighting artefact."
+   },
+   "what_the_study_currently_commits": "25.889 years, at engine/scem_study/study_numbers.json -> dcf.terminal_record.inputs.useful_life_years, built through terminal_value.build() on maintenance_basis 'disclosed_life'. IT IS THE COST-WEIGHTED ARITHMETIC MEAN OF THE CLASS LIVES (25.917 exactly; the study carries it as the reciprocal of a typed 0.038626), which is the aggregation this file's own method note says overstates the life. The harmonic mean on the same weights and the same disclosed rates is 20.73 years, so the committed figure sits 24.9% above it and above the TOP of both harmonic bands on both weight bases. Separately, the label on that input in compute.py reads 'the weighted depreciation rate implied by note 3/2's disclosed rates on note 4's own gross-cost mix' — that quantity is 4.8244%, and the value carried is 3.8626%. The label names the number it does not carry, which is [R-TERM-01]'s own general lesson in miniature: a rate that has quietly become a life. NOTHING HERE MOVES A PUBLISHED NUMBER — this is a record, and a rebuild is a re-issue under [R-REBUILD-01].",
+   "the_reproduction_claim_is_not_like_for_like": "The committed source string says the weighted rate 'reproduces the filed FY2025 charge to within 1.2 per cent'. It compares 3,140.855 x 3.8626% = 121.3 against 122.6 — but 122.6 is depreciation of 99.2 PLUS 23.3 of intangible and right-of-use amortisation, which is charged on a different asset base (note 5's 164.3mn of right-of-use cost) and not on note 4's. Against note 4's own charge of 99.209674 the same computation is 22.2% high, not 1.0% low.",
+   "L328_condition_i_residual_value": "CLEAR. Note 3/2 charges at RATES against cost and mentions no residual value anywhere — neither in the depreciable amount nor in the boilerplate. So a rate of 5% IS cost/20 with nothing deducted, on the same reading terminal_value.py records for EGCH.",
+   "L328_condition_ii_reassessment": "CLEAR, and the note says so in its own words: depreciation is charged 'based on the estimated useful life of fixed assets and CONSISTENT WITH PRECEEDING YEAR', and the FY2024 filing carries the identical table.",
+   "L328_condition_iii_business_combination": "CLEAR. No acquisition; FY2024's closing accumulated depreciation reproduces FY2025's opening column exactly, class by class, so the accumulated balance is this company's own depreciation history and nothing else.",
+   "the_arithmetic_contradicts_the_note_on_the_class_carrying_70pct_of_the_base": "RECORDED RATHER THAN RESOLVED, because it is the cross-check terminal_value.py asks for and it FAILS. Note 4's own charge over its own cost implies 31.66 years for the whole base against a disclosed-rate harmonic of 20.73. Per class the disclosed rate reproduces the class charge for buildings (2.32% implied against a 2%-2.5% band) and furniture (10.19% against 10%-25%), and does NOT for machinery (3.36% implied against a flat disclosed 5%, i.e. 29.80 years against 20), motor vehicles (2.74% against 20%) or tools (2.66% against 20%). Fully depreciated assets still in use are the ordinary explanation and HERE THEY ARE TOO SMALL TO BE IT: closing the gap at the disclosed rates would need EGP 777.9mn of cost fully depreciated, of which machinery alone would need 717.8mn, and the filing discloses EGP 379.4mn across ALL classes (EGP 364.8mn at 31-Dec-2024, where the same arithmetic fails the same way). So the accounts are running the machinery column slower than 5%, and note 3/2 names that column 'Machinery' while note 4 columns it 'Machinery & Equipment'. THE DIRECTION IS TOWARD A LONGER LIFE, i.e. toward the study's own committed figure — which is a reason to state it, not to adopt it, because the identity route is contaminated here by exactly the fully-depreciated assets the disclosure quantifies. The DISCLOSED rates are what [R-TERM-01] mandates and what is recorded; the implied life is recorded beside them as a cross-check that does not agree.",
+   "capitalised_overhaul_and_why_this_is_NOT_the_exemplar_refusal": "Note 3/2 also discloses that 'the company capitalize some expenses related to periodical major overhaul for the production line and add it to the fixed assets', the work done by Relliance Company for Heavy Industries and ASEC. That is maintenance capitalised, which is the shape that left ADNOCLS on the ratchet — but the two are not the same case and the difference is what the note discloses. ADNOCLS discloses a SEPARATE FASTER LIFE for dry-docking (2 to 5 years) inside an unsplit vessel column, so a terminal charging only hull replacement while adding back all book depreciation adds back the amortisation of a cost it never charged, and the life that would split it cannot be derived. SCEM discloses NO second rate: the overhaul enters the fixed assets and is depreciated at the class rate, and every one of note 4's five columns has a disclosed rate covering 100% of the depreciable base. There is no undivided component with a different disclosed life, so there is nothing to refuse for. What it does mean, and it is a caveat rather than a hole: recurring overhaul recycled into a 20-year class understates what the plant actually consumes, which points the SAME way as the harmonic finding — the committed maintenance charge is too small — and is left unquantified because the note does not quantify it.",
+   "priced_across_the_disclosed_band_06-09-2026": {
+    "what_this_is": "the terminal RE-PRICED through terminal_value.build() on the study's own committed inputs with ONLY the life changed. NOTHING PUBLISHED MOVES; a rebuild is a re-issue with a rebuild ledger and an audit point declared in advance [R-REBUILD-01].",
+    "as_committed": {
+     "life_years": 25.889,
+     "maintenance": 958.8,
+     "tv": 38372.0,
+     "fv": 123.27
+    },
+    "gross_cost_harmonic_slow_end": {
+     "life_years": 21.484,
+     "maintenance": 1155.4,
+     "tv": 36616.4,
+     "fv": 120.27,
+     "fv_pct": -2.43
+    },
+    "gross_cost_harmonic_midpoint": {
+     "life_years": 20.728,
+     "maintenance": 1197.6,
+     "tv": 36240.1,
+     "fv": 119.63,
+     "fv_pct": -2.95
+    },
+    "gross_cost_harmonic_fast_end": {
+     "life_years": 20.024,
+     "maintenance": 1239.7,
+     "tv": 35864.1,
+     "fv": 118.99,
+     "fv_pct": -3.48
+    },
+    "carrying_amount_harmonic_midpoint": {
+     "life_years": 23.416,
+     "maintenance": 1060.1,
+     "tv": 37467.7,
+     "fv": 121.73,
+     "fv_pct": -1.25
+    },
+    "units": "EGP millions except life in years and fair value in EGP per share",
+    "no_refusal": "terminal_value.build() returns cleanly everywhere in the sourced band: terminal free cash flow stays positive and the implied payout of terminal NOPAT runs 80.6% to 82.2%, well inside [0,1]. The exemplar's refusal condition — maintenance coming in below book depreciation and driving payout above 100% — does not arise here; maintenance is 3.6x to 3.9x book depreciation.",
+    "direction": "the correction LOWERS the value, by 2.4% to 3.5% on the central. SCEM's committed central of 123.27 sits +22.7% ABOVE the latest known price of 100.50 (SUPPLIED_03-09-2026.json), so this moves the answer TOWARD the price. That is stated because the direction has to be reported either way and it is NOT evidence for the correction — nobody may predict which way a rebuild moves a value before running it [R-TERM-01 CLAUSE TWO CORRECTED], and a move toward the price is no more a vindication than a move away from it is an objection."
+   },
+   "against_the_terminal": "The committed terminal is already the sanctioned construction — SCEM is in the census's rebuilt group, not on g x IC — so what is at issue is the LIFE inside it and not the shape around it. Its implied replacement cycle reads 64.0 years in the census's IC/charge column, which is net of a book-D&A add-back and is not comparable to 1/g of 14.3; the life it actually charges maintenance over is 25.889.",
+   "the_census_reports_this_name_NOT_SOURCED_and_that_is_a_resolver_defect": "terminal_census.disclosed_life('SCEM') returns (None, None, None) while the same file's own census prints 'SCEM 25.9 years committed' three tables higher, both from the same study_numbers.json. The reason is exact and it is the failure that resolver's docstring says it was written to prevent, one nesting level deeper: disclosed_life() reads the FIXED path terminal_record.inputs, the widened _walk() that feeds the committed-life table matches the record by its rule='R-TERM-01' stamp wherever it sits, and SCEM commits its record at dcf.terminal_record. ARCC commits at the top level and resolves; SCEM does not. This entry closes the column for SCEM either way, but the resolver is still reading one place and the census two, and any other study committing below the top level reads 'not sourced' the same way."
+  },
+  "STC": {
+   "classes": [
+    {
+     "asset_class": "Buildings",
+     "years": [
+      25,
+      50
+     ]
+    },
+    {
+     "asset_class": "Telecommunication network and equipment",
+     "years": [
+      3,
+      30
+     ]
+    },
+    {
+     "asset_class": "Other assets",
+     "years": [
+      2,
+      20
+     ]
+    }
+   ],
+   "longest_years": 50,
+   "shortest_years": 2,
+   "land_not_depreciated": true,
+   "source": "Saudi Telecom Company, AUDITED consolidated financial statements for the year ended 31 December 2025 (Deloitte and Touche & Co.), note 10 property and equipment, immediately under the roll-forward: 'Property and equipment are depreciated using the following estimated useful lives: Buildings 25 - 50 years; Telecommunication network and equipment 3 - 30 years; Other assets 2- 20 years'. Method at note 4.11: 'Depreciation is charged using MAINLY the straight-line method over the estimated useful lives of property and equipment, other than land.' Land of SAR 1,996 million is disclosed separately at note 10(1) and is not depreciated; capital work in progress is carried at cost with depreciation commencing when the asset is ready for use (note 4.11), so both leave the depreciable base. Other assets are 'furniture, fixtures, motor vehicles, computers and tools' (note 10(2)).",
+   "file": "engine/stc_study/src/stc_Annual-2025-en.txt (extracted from https://www.stc.com/content/dam/groupsites/en/pdf/stc_Annual-2025-en.pdf; see engine/stc_study/src/SOURCES.md)",
+   "route": "TEXT LAYER, pdftotext -layout. No OCR was needed and the arithmetic is why, not the extractor's confidence: the note 10 movement schedule that supplies the weights was footed 25 ways across BOTH years printed in the FY2025 filing - every class column rolling opening-plus-movements to its printed close in cost and in accumulated depreciation, every row summing across the four classes to its printed total, and net book value reproducing as cost less accumulated by class and in total - ZERO failures, every one to the riyal. The FY2024 filing's own note and the FY2023 filing's own note were footed the same way and also reproduce exactly. The life table itself carries no arithmetic and cannot be footed; a footing page beside it does not certify it, so it is quoted verbatim and nothing is inferred from it that the columns do not support.",
+   "read_on": "2026-09-06",
+   "L328_condition_i_residual_value": "CLEAR, and this is the condition that closed the route on three of the five names tried before it. Note 4.11 depreciates 'over the estimated useful lives' with nothing deducted - compare ADNOC Distribution's 'to allocate their cost TO THEIR RESIDUAL VALUES over their estimated useful lives' and Savola's 'depreciable amount represents cost of an asset ... LESS ITS RESIDUAL VALUE', both of which break the identity. The whole FY2025 document contains exactly three occurrences of 'residual value': the IAS 16 annual-review sentence at note 4.11, lease RESIDUAL VALUE GUARANTEES, and an investment-property VALUATION TECHNIQUE. No residual enters the depreciable amount and none is quantified anywhere.",
+   "L328_condition_ii_reassessment": "CLEAR, with AFFIRMATIVE evidence rather than an absence, and the affirmative evidence matters because the bands DID move. FY2023 disclosed Buildings 10 - 50 and Other assets 3 - 20; FY2024 and FY2025 disclose 25 - 50 and 2 - 20. The FY2024 filing footnotes both changed rows itself: '(*) Range has been updated to reflect the impact of deconsolidating discontinued operations (Note 14.1).' THAT IS A CHANGE IN THE POPULATION, NOT A REASSESSMENT OF ANY SURVIVING ASSET'S LIFE, which is the distinction this condition turns on - and it is the opposite of Savola, where four of five bands moved and the note asserted they had not. Note 5.2.2 carries only the standing sentence that asset lives are assessed annually; no change in accounting estimate is quantified anywhere for property and equipment.",
+   "L328_condition_iii_business_combination": "CLEAR. FY2025 acquisitions of new subsidiaries add SAR 9,898 thousand of cost against a base of 141,541,105 (0.007%) and 4,304 of accumulated depreciation against a charge of 6,453,343 (0.07%). Nothing resembling MODON's acquired history at thirty-four times the year's charge. The large FY2024 movement was a DISPOSAL of subsidiaries (note 14.1, cost -11,329,587 and accumulated -3,302,684), which removes both columns together; it is why that year's measured age steps only +0.58 rather than about +1.0, and it is outside the FY2025 year entirely.",
+   "a_fourth_qualification_unquantified": "Note 4.11 says 'MAINLY the straight-line method'. Both identities off this note - gross cost over the charge for the life, accumulated over the charge for the age - are exact only under straight line. The FY2025 document names no other depreciation method for property and equipment anywhere; every other straight-line sentence in it concerns leases, right-of-use assets or intangibles. So the exposure is small and undisclosed, its direction is unknown, and it is recorded rather than adjusted for.",
+   "weighted_life_06-09-2026": "THE RANGES WEIGHT TO A RANGE AND THAT ROUTE IS REFUSED; THE IDENTITY ROUTE IS OPEN BECAUSE ALL THREE CONDITIONS ABOVE ARE CLEAR. Weighting the three disclosed bands by the note's own amounts, capital-weighted HARMONIC (maintenance = sum of IC_class / L_class, so the aggregate life is the harmonic mean and not the arithmetic one): on depreciable GROSS COST of 134,634,729 the band runs 30.28 years with every class at its longest disclosed life to 3.21 years with every class at its shortest, a factor of 9.4; on NET BOOK VALUE of 36,379,959 it runs 30.81 to 3.37. A point inside that is this desk choosing a life under cover of a citation, so no single figure is recorded FROM THE BANDS. What IS recorded is the identity, below, which is a measurement off the same note's own columns rather than a choice.",
+   "the_identity_per_class_06-09-2026": "Depreciable gross cost over that class's OWN charge, FY2025: lands and buildings ex land 15,700,925 / 475,018 = 33.05 y (band 25-50, inside); telecommunication network and equipment 108,848,482 / 5,481,822 = 19.86 y (3-30, inside); OTHER ASSETS 10,085,322 / 496,503 = 20.31 y AGAINST A DISCLOSED MAXIMUM OF 20. That one breach is the only internal disagreement in the note and it is informative rather than fatal: it is what a largely-written-down base does to a cost-over-charge ratio, that class being 69.2% depreciated, and it says the identity reads marginally LONG - which under-states maintenance and over-states value. BOUNDED: capping that class at its own disclosed 20 years moves the pooled life from 20.863 to 20.838, -0.12%. The class is 7.49% of depreciable gross cost.",
+   "the_pooled_identity_and_why_harmonic": "134,634,729 over 6,453,343 = 20.863 years, which IS the cost-weighted harmonic mean of the three class lives and reproduces the note's own charge by construction. The cost-weighted ARITHMETIC mean of the same three lives is 21.429 years and under-charges maintenance by SAR 170,654 thousand a year - 2.6% on the life, in the direction that flatters the value - so the distinction is not pedantry. Weights are GROSS COST rather than carrying amount deliberately: an asset 90% written down still costs full price to replace, so net book value is the wrong base for a replacement charge; both are shown above and differ by under 2% on the band.",
+   "cross_check_prior_years": "Three filed years hold the life inside 19.5 - 20.9, a 6.8% spread, and every table foots. FY2025 (FY2025 filing) 134,634,729 / 6,453,343 = 20.86 y, age 15.23 y, 73.0% depreciated. FY2024 as ORIGINALLY REPORTED (FY2024 filing) 130,697,817 / 6,600,613 = 19.80 y, age 14.37 y. FY2024 as RESTATED in the FY2025 comparative 130,697,817 / 6,690,097 = 19.54 y, age 14.18 y. FY2023 as originally reported (FY2023 filing) 135,611,856 / 6,834,977 = 19.84 y, age 13.60 y; as restated in the FY2024 comparative 136,217,457 / 6,834,977 = 19.93 y. THE FY2024 CHARGE IS FILED TWICE AT TWO VALUES and point-in-time discipline needs that recorded: the 89,484 difference is offset exactly in the transfers/reclassifications line (+67,242 against -22,242) and both routes reach the identical closing accumulated of 94,847,791, so it is a reclassification between two lines of one note rather than a restated charge; it moves that year's implied life by 1.3% and both sit inside the band. The measured age moves the way a year passing should: 13.60 -> 14.18 -> 15.23.",
+   "the_cheap_cross_check_CANNOT_FIRE_HERE": "terminal_value.py prescribes comparing the identity's implied life against the life the DISCLOSED CLASS RATES weight to, and on AIRARABIA that comparison fired at +48% and stopped a wrong number shipping. ON THIS NAME IT CANNOT FIRE: the disclosed band is 3.21 - 30.28 years and would contain almost any answer, so 20.86 sitting inside it is close to no evidence at all. What does the work here is the policy note read directly, which is the order terminal_value.py insists on - the note is the test and the arithmetic is a corroborator that works only sometimes.",
+   "what_the_study_currently_commits": "20.862788 years, DERIVED BY IDENTITY and labelled as derived in its own terminal_record, which this reading reproduces exactly. WHAT THE LIFE ACTUALLY DOES IN THAT TERMINAL IS ALMOST NOTHING: the maintenance basis committed is book_dna_escalated over the MEASURED AGE of 15.225406 years (accumulated 98,254,770 over the charge 6,453,343, the same note, the same identity one column across), so the charge is 11,436.603 x 1.02^15.2254 = 15,461.02 and the life stands as the record and the corroborating cross-check rather than as a divisor. The cross-check between the two is CIRCULAR - one identity against another off the same two columns - which is why the policy-note reading above is what carries it.",
+   "priced_across_the_band_06-09-2026": "What the sanctioned terminal WOULD give, everything else held exactly as committed and the committed case reproduced bit-for-bit first (maintenance 15,461.02, TV 184,811.708 - identical to the study's own record, which is what makes the rest comparable): measured age 15.23 y gives TV 184,812; half the FY2025 identity life (10.43 y) 208,101 (+12.6%); half FY2024's 19.54 (9.77 y) 211,153 (+14.3%); half FY2023's 19.84 (9.92 y) 210,456 (+13.9%); the disclosed bands at their fast end (3.21 y, half 1.60) 245,606 (+32.9%) and at their slow end (30.28 y, half 15.14) 185,249 (+0.2%). THE DISCLOSED RANGES SPAN 33 POINTS OF TERMINAL VALUE, which is the whole argument for the identity, and the committed construction sits at the conservative end of every row. NOTHING HERE IS APPLIED AND NO PUBLISHED NUMBER MOVES - this is the size of the indeterminacy, not a correction, and the direction of any rebuild is not predicted either way per [R-TERM-01 CLAUSE TWO CORRECTED].",
+   "the_impairment_qualification": "The note's line is 'Depreciation AND IMPAIRMENT' and no impairment figure for property and equipment is separately disclosed, so both identities carry whatever impairment sits inside the charge. Its direction is known: impairment inflates the denominator, which SHORTENS the life and the age, which UNDER-states the escalation to current cost, which UNDER-states maintenance and OVER-states value - so using the note's own column is the optimistic of the two available readings, and it is used because it is the column that foots. The charge series is smooth (6,834,977 -> 6,690,097 -> 6,453,343, changes of -2.1% and -3.5% on a base that grew), so no material impairment spike is visible; and the depreciated share of 73.0%, which has no charge in it at all, is what independently establishes that the base is old. Note 10(3) allocates 6,085,426 (2024: 6,205,009) of depreciation and impairment to operating cost lines from CONTINUING operations against the roll-forward's 6,453,343 and 6,690,097; that is not an impairment split - note 10(3) is also 'depreciation and impairment' - and it is not adopted for anything.",
+   "negative_searches_actually_run": "A disclosed depreciation RATE by class, which would pin a life outright the way EGCH's 3.95% does - none, this company discloses lives and not rates. A disclosed maintenance or sustaining capex, which would remove the need for a life at all - none in any filing held. A residual-value percentage by class - none, and note 4.11 deducts none. A quantified change in accounting estimate on property and equipment - none; the only band movement is the FY2024 deconsolidation footnote quoted above.",
+   "record": "engine/stc_study/TERMINAL_LIFE_SOURCING_06-09-2026.md"
   }
  }
 }

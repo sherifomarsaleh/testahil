@@ -332,6 +332,9 @@ DIAG = {
         'value': r_latest['margin_T'],
         'study_value': STUDY_MARGIN_T,
         'study_value_range': [FILED_MARGIN['FY24'], FILED_MARGIN['FY23']],
+        'study_value_range_is': ('the lowest and highest of the three full years this study '
+                                'RECONSTRUCTS — not filed rates; see '
+                                'what_the_company_actually_disclosed below'),
         'value_at_the_strike_price': r_strike['margin_T'],
         'solved_on': (
             'this study\'s own compute.py, on the answer the study PUBLISHES — the four-lens '
@@ -375,8 +378,10 @@ DIAG = {
             'forecast sits below every one of them. At the EGP %.2f this study was struck '
             'against the same solve gives %.2f%%. The disagreement is one driver — how much '
             'cash a tonne of cable converts — and every other door is shut: at a risk-free rate '
-            'of zero on both legs the equity is still negative, at working capital of 5%% of '
-            'revenue the price is unreachable, growth moves the answer the wrong way because '
+            'of zero on the TERMINAL leg the equity is still negative, and zeroing the '
+            'explicit leg as well does not reach the price either; at working capital of '
+            '5%% of revenue the price is unreachable; growth moves the answer the wrong way '
+            'because '
             'the terminal return sits below the terminal cost of capital, and the price is '
             'payable on this balance sheet only if the company holds net cash. That is a more '
             'useful statement than "the study is %.1f%% below the price", and under [R-GAP-02] '
@@ -385,7 +390,7 @@ DIAG = {
                STUDY_PER_T_T, s_latest, 100 * STUDY_MARGIN_T,
                100 * FILED_MARGIN['FY23'], 100 * FILED_MARGIN['FY24'],
                100 * FILED_MARGIN['FY25'], STRIKE, 100 * r_strike['margin_T'],
-               100 * (PUBLISHED / LATEST_PRICE - 1))),
+               -100 * (PUBLISHED / LATEST_PRICE - 1))),
     },
     'other_quantities': OTHER,
     'the_lens_the_read_is_solved_on': (
@@ -418,8 +423,10 @@ SPECS = [
          why='The clamps are disclosed, argued and not careless — the study prints the '
              'unfloored bridge beside them. What they do to the answer is the point: they are '
              'worth EGP %(clamp_worth).4f a share, %(clamp_pc).0f%% of the published central, '
-             'and they are why sixteen of the nineteen corrections this study\'s own gap review '
-             'prices move the published number by exactly zero. Two of the four blended lenses '
+             'and they are why most corrections to this model reach a reader as nothing at '
+             'all: sixteen of the nineteen priced in this study\'s own gap review move the '
+             'published number by exactly zero, and so do eight of the nineteen judgements '
+             'recorded below. Two of the four blended lenses '
              'return the SAME figure in the bear, base and bull columns, which is the tell: a '
              'lens giving one answer in every state of the world is reporting a bound rather '
              'than reading a value. Correcting this moves the answer AWAY from the price, which '
@@ -572,8 +579,8 @@ SPECS = [
              'whenever a stock is posted and it shares constituents with the panel it prices. '
              'The conforming figure is produced here rather than asserted — %.4f against the '
              'EGX30 series, R-squared %.3f, standard error %.4f on %d weekly observations, '
-             'usable and not weak-flagged. The two are %.2f standard errors apart, so this model '
-             'cannot tell them far apart; the direction is nonetheless one way, because the '
+             'usable and not weak-flagged. The two are %.2f standard errors apart, so the '
+             'regression cannot tell them apart; the direction is nonetheless one way, because the '
              'composite gives the lower beta and therefore the higher value.'
              % (CONFORMING_BETA['beta'], CONFORMING_BETA['r2'], CONFORMING_BETA['se'],
                 CONFORMING_BETA['n'],
@@ -870,8 +877,10 @@ CJ = {
                  'clamp can point the OTHER WAY from the same judgement read beneath it, because '
                  'the cash-flow lens is pinned while the normalised and relative lenses are not: '
                  'raising forecast volumes by 15%, for instance, LOWERS this model\'s value — '
-                 'revenue and working capital rise faster than EBITDA — and RAISES the published '
-                 'central, because the loss happens behind a floor and the gain does not. A '
+                 'the working-capital build scales against a fixed opening balance while the '
+                 'earnings funding it are thin, so the first forecast year turns a release '
+                 'into a build — and RAISES the published central, because the loss happens '
+                 'behind a floor and the gain does not. A '
                  'reader auditing the published answer would therefore get some of these '
                  'directions backwards.'),
         'agree': agreed, 'inverted': inverted,

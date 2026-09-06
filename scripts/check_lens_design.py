@@ -87,6 +87,31 @@ def audit(sdir):
         return "fail", str(e).replace("\n", " ")
     except Exception as e:                                   # noqa: BLE001
         return "fail", "%s: %s" % (type(e).__name__, e)
+    # THE IDENTITY CLAUSE IS THE STRONGEST THING THIS RULE SAYS AND IT DOES NOT ALWAYS RUN.
+    # assert_lens_design() tests "the primary IS the central" only where the record EXPOSES a
+    # central or a containing range; where it exposes neither, the clause is skipped and the
+    # study returns ok. That skip is correct in the assertion — `central` is optional in this
+    # record's shape and an assertion may not invent a field requirement — and it is NOT
+    # correct to then count the study as conforming, because the clause that would have
+    # caught a blend never ran.
+    #
+    # MEASURED 06-09-2026, and the correlation is the finding rather than the count: NINE
+    # studies carry a record exposing no central, SEVEN carry no record at all, and only
+    # SEVEN of twenty-three were held to the identity test — while a book-wide census found
+    # NINE studies still publishing a weighted central, EVERY ONE of them in the unheld
+    # group. A study with nothing to be tested on is not a study that passed [R-ENF-04].
+    # THE CONDITION MUST MATCH THE ONE THAT ACTUALLY GATES THE CLAUSE. A first draft of this
+    # check asked for a missing central AND a missing primary value, and caught two studies
+    # where the real number is nine — because assert_lens_design() wraps the WHOLE identity
+    # test in `if central is not None`, so a record carrying a primary value and no central
+    # skips it just as completely. A check whose condition is narrower than the skip it is
+    # detecting reports most of the hole as clean, which is the failure it exists to close.
+    _c = rec.get("central")
+    if _c is None:
+        return ("no_central",
+                "record present and everything testable passes, but it exposes NO CENTRAL, "
+                "so THE IDENTITY CLAUSE NEVER RAN — the one clause that catches a weighted "
+                "blend")
     return "ok", "primary %s, %d cross-checks" % (out["primary"], len(out["cross_checks"]))
 
 
@@ -128,8 +153,12 @@ def main():
         else:
             (still if listed else hard).append((tk, detail))
 
-    print("studies examined: %d   conforming: %d   outstanding (allowed): %d"
-          % (len(sdirs), len(ok) + len(fixed), len(still)))
+    _untested = [t for t, d in still + hard if d.startswith("record present and")]
+    print("studies examined: %d   conforming AND held to the identity clause: %d   "
+          "outstanding (allowed): %d" % (len(sdirs), len(ok) + len(fixed), len(still)))
+    if _untested:
+        print("   of the outstanding, %d carry a record whose identity clause could not "
+              "run: %s" % (len(_untested), ", ".join(sorted(_untested))))
     for tk, detail in sorted(ok):
         print("   %-12s %s" % (tk, detail))
     if fixed:

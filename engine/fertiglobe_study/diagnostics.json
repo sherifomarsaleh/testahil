@@ -1,0 +1,109 @@
+{
+ "ticker": "FERTIGLOBE",
+ "as_of": "2026-09-06",
+ "spot": 2.67,
+ "spot_date": "close 3 September 2026",
+ "spot_at_strike": 2.54,
+ "published_central": 1.8105356735634544,
+ "published_spot": 2.54,
+ "published_answer_is_two_sided": {
+  "branch_A": 1.8105356735634544,
+  "branch_B": 2.6846415874479153
+ },
+ "why_this_file": "The reverse read — what the traded price must believe — is a DIAGNOSTIC and lives outside the numbers file every builder reads. A quantity solved from a price and then used anywhere in the valuation is the reverse-engineered rate the protocol prohibits outright, arriving through a side door. Nothing in this file is an input to anything and nothing reads it back: it is solved here by re-running the study's own model and written out, and diagnostics_fertiglobe.main() refuses to write if the solved value appears in study_numbers.json.",
+ "implied": {
+  "quantity": "the mid-cycle urea benchmark price — granular urea free on board Egypt, averaged over the last three forecast years — that reproduces the traded price on this study's own drivers",
+  "value": 549.7403754360909,
+  "study_value": 436.6666666666667,
+  "study_value_range": [
+   436.6666666666667,
+   551.6666666666666
+  ],
+  "company_disclosed": [
+   357.0,
+   440.0,
+   637.0,
+   555.0
+  ],
+  "company_disclosed_detail": [
+   {
+    "period": "FY2024 average, granular urea free on board Egypt",
+    "usd_per_tonne": 357.0
+   },
+   {
+    "period": "FY2025 average",
+    "usd_per_tonne": 440.0
+   },
+   {
+    "period": "first half 2026 average",
+    "usd_per_tonne": 637.0
+   },
+   {
+    "period": "July 2026",
+    "usd_per_tonne": 555.0
+   }
+  ],
+  "solved_on": "this study's own model, re-run end to end at every trial price through the same build_frame -> run_dcf -> bridge chain the study publishes on. The axis is the study's OWN two published price paths: the solve moves along the line between framing A and framing B, and off either end if it has to, so the only quantity varied is the nitrogen price basis. Tonnes, the calibrated cost pass-through, the cost-of-capital schedule, the terminal and the bridge all stay at their published values. The bracket is asserted, so a solve that ran off its own end raises rather than returning an endpoint that looks exactly like an answer.",
+  "reading": "At AED 2.67 — the latest known close, 3 September 2026 — the price is paying for urea at about US$550 a tonne from 2028 onward, with ammonia at about US$530. This study's framing A holds US$437 and its framing B US$552, so the market sits within a couple of dollars of framing B and US$113 above framing A. The company's own results reports put the benchmark at US$357 in 2024, US$440 in 2025, US$637 across the first half of 2026 and US$555 in July 2026 — so the price is paying for roughly the level printing today, held for the rest of the decade, and well below the first half's average. THE WHOLE DISAGREEMENT IS ONE QUESTION: at AED 1.81 a share this study's low branch asserts that nitrogen reverts toward the marginal cost of the swing supplier, and the market is not paying for that reversion. Struck instead at the study's own price date of 7 August 2026 (AED 2.54) the same solve gives US$533 a tonne."
+ },
+ "construction": {
+  "at_latest_price": {
+   "lam": 0.9832496414732537,
+   "value_reproduced": 2.6700000000000004,
+   "mid_cycle_urea": 549.7403754360909,
+   "mid_cycle_ammonia": 529.7403754360909,
+   "urea_2030": 552.9899569767904,
+   "ammonia_2030": 532.9899569767904
+  },
+  "at_strike_price": {
+   "lam": 0.8345262454464597,
+   "value_reproduced": 2.5399999999999983,
+   "mid_cycle_urea": 532.6371848930095,
+   "mid_cycle_ammonia": 512.6371848930095,
+   "urea_2030": 535.1431494535751,
+   "ammonia_2030": 515.1431494535751
+  },
+  "study_mid_cycle_urea": {
+   "framing_A": 436.6666666666667,
+   "framing_B": 551.6666666666666
+  },
+  "study_mid_cycle_ammonia": {
+   "framing_A": 416.6666666666667,
+   "framing_B": 531.6666666666666
+  },
+  "mid_cycle_definition": "the average of the last three forecast years, which is the study's own definition — it is what the relative lens applies its multiple to",
+  "note": "every figure here is a full re-run of the study's own chain, never an interpolation of a fixed cash-flow series"
+ },
+ "second_reading_flat_discount_rate": {
+  "why_kept": "the price axis cannot say whether the disagreement is about the business or about the price of time. This one can, and the answer is unusually clean: on framing B the market and this study differ by 4 basis points on a flat equivalent rate, which is nothing. The disagreement is not about risk or time — it is about the price of urea.",
+  "instrument": "engine/reverse_read.py, the shared construction, so the number is comparable with every other study rather than to this one alone",
+  "discounting_times": "recovered from the study's own factors",
+  "framing_A": {
+   "implied_by_price": 0.08809201921376253,
+   "study_flat_equivalent": 0.11238477056041762,
+   "terminal_cash_flow": 541.2466839177541,
+   "terminal_arrives_at_year": 5.0,
+   "enterprise_value_at_spot": 8070.19785743408,
+   "enterprise_value_in_study": 6139.568338749008
+  },
+  "framing_B": {
+   "implied_by_price": 0.11268352008196827,
+   "study_flat_equivalent": 0.1123236799910795,
+   "terminal_cash_flow": 854.6604627263773,
+   "terminal_arrives_at_year": 5.0,
+   "enterprise_value_at_spot": 8770.883802315282,
+   "enterprise_value_in_study": 8803.773452365744
+  },
+  "study_schedule": {
+   "explicit": 0.11897018221623164,
+   "terminal": 0.11109384650273706
+  },
+  "reading": "On framing A the price implies a flat 8.81% against this study's own flat equivalent of 11.24% — 243 basis points, which is a real disagreement about the price of time, and it is close to what one of the judgements below would supply on its own: pricing the equity risk premium on Abu Dhabi alone rather than on the countries the plants are in reaches AED 2.5783 a share against the AED 2.67 close. On framing B the price implies 11.27% against 11.23%, a difference of 4 basis points. A reader can therefore locate the disagreement precisely: it lives in the price path, and only secondarily in the rate."
+ },
+ "containment": {
+  "solved_value_in_numbers_file": false,
+  "asserted_by": "diagnostics_fertiglobe.main(), which refuses to write if the solved value appears in study_numbers.json",
+  "builders_reading_this_file": "none — no builder in this directory opens it",
+  "numbers_file_untouched": "compute.py writes study_numbers.json at import, so its bytes are held before the import and restored after, asserted byte-for-byte"
+ }
+}

@@ -117,9 +117,6 @@ FYE = "31 December"
 # first admissible FY2015, last scored FY2024, FY2025 struck but unresolved.
 ORIGINS = list(range(2015, 2026))
 
-# Which filing and which of its two columns each origin is read from.
-COLUMN = {y: (y, "own") for y in ORIGINS}
-COLUMN[2022] = (2023, "comparative")
 
 IR_URL = "https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter"
 
@@ -183,8 +180,8 @@ LABELS = {
  2020: {"adv_cust": "Advances from customers", "adv_inv": "Advance payments for investments acquisition", "ar": "Accounts receivable", "assoc": "Investments in associates b11 d8", "banks_credit": "Banks credit balances", "cash": "Cash and cash equivalents", "creditors": "Creditors & other credit balances", "debtors": "Debtors and other debit balances", "due_from_rp": "Due from related parties", "due_to_rp": "Due to related parties", "fixed": "Fixed assets (net)", "fvtpl": "Investments at fair value through profit and loss e11)", "htm": "Held-to-maturity investments d", "infra": "Completion of infrastructure liabilities", "inv_prop": "Investment property f11", "jsa_c": "Joint shares arrangement short term", "jsa_nc": "joint share arrangement– long terms", "land_c": "Current portion of land purchase liabilities a48", "land_nc": "Land purchase liabilities b", "loans_current": "Current portion of short term loans", "loans_lt": "long-term- loans", "nci": "Non-controlling interest", "np_long": "Notes payable long term b", "np_short": "Notes payable short term a", "nr_long": "Notes receivable long term", "nr_short": "Notes receivable short term", "overdraft": "Bank- overdraft", "provisions": "Provisions c)", "puc": "Projects under construction", "resid": "Other long-term liabilities – Residents’ Association", "share_capital": "Share capital", "supp_adv": "Suppliers advance payments", "suppliers": "Suppliers & Contractors", "tax_payable": "Income tax payable a", "tca": "Total current assets", "tcl": "Total current liabilities", "teal": "Total equity and non-current liabilities", "tle": "Total equity and non-current liabilities", "tnca": "Total non-current assets", "tncl": "Total non-current liabilities", "total_equity": "Total shareholders' equity", "total_investment": "Total investment", "total_liabs": "Total current liabilities", "treasury": "Treasury shares", "wc_printed": "Working capital", "wip": "Works in process", "capex_fixed": "Payments for purchase of fixed assets", "capex_puc": "Payments for projects under construction", "close": "Cash and cash equivalents as at December", "dep": "Administrative depreciation", "disposal": "Proceeds from sale of fixed assets", "net": "Net increase in cash and cash equivalents during the period", "open": "Cash and cash equivalents at beginning of the year"},
  2021: {"adv_cust": "Advances from customers", "adv_inv": "Advance payments for investments acquisition", "ar": "Accounts receivable", "assoc": "Investments in associates +b11+d8)", "banks_credit": "Banks credit balances", "cash": "Cash and cash equivalents +32)", "checks_liab": "liabilities for checks received from customers", "creditors": "Creditors & other credit balances", "debtors": "Debtors and other debit balances", "due_from_rp": "Due from related parties «72 +27)", "due_to_rp": "Due to related parties {57 +72 +27)", "fin_amort": "Financial investments at amortized cost (47,33/5)", "fixed": "Fixed assets (net)", "fvtpl": "Investments at fair value through profit and loss (33/5)", "infra": "Completion of infrastructure liabilities 2n", "inv_prop": "Investment property cll)", "inv_purch": "Investments purchase liabilities", "jsa_c": "Joint shares arrangement short term", "jsa_nc": "Joint shares arrangement long term", "land_c": "Current portion of land purchase liabilities +20)", "land_nc": "Land purchase liabilities — Long Term «20)", "lease_c": "Lease contract liabilities short term", "lease_nc": "Lease contract liabilities long term", "loans_current": "Current portion of Short-term loans Sl)", "loans_lt": "Loans long-term", "nci": "Non-controlling equites", "np_long": "Notes payable long term (b", "np_short": "Notes payable short term (a", "nr_long": "Notes receivable long term for undclivercd units", "nr_long_undel": "Notes receivable long term for undclivercd units", "nr_short": "Notes receivable short term +16)", "nr_short_undel": "Notes receivable short term for undelivered units", "overdraft": "Bank- overdraft {3}", "provisions": "Provisions", "puc": "Projects under construction My «12 ‘3", "resid": "Other long-term liabilities — Residents’ Association {63)", "rou": "Right of use asset", "share_capital": "Share capital", "supp_adv": "Suppliers advance payments", "suppliers": "Suppliers And contractors", "tax_payable": "Income tax payable (70«223)", "tca": "Total current assets", "tcl": "otal current liabilities", "teal": "Total equity and non-current liabilities", "tle": "Total equity and non-current liabilities", "tnca": "Total non-current assets", "tncl": "Total non-current liabilities", "total_equity": "Total sharcholders' equity", "total_investment": "Total investment", "total_liabs": "otal current liabilities", "treasury": "Treasury shares In Cost +17)", "wip": "Works in process «14)", "capex_fixed": "Payments for purchase fixed assets", "capex_puc": "Payments for projects under construction +12)", "close": "Cash and cash equivalents as of December «32)", "dep": "Depreciation and amortization (40:36 +37)", "disposal": "Proceeds from sale of fixed assets", "net": "Net increase in cash and cash equivalents during the year", "open": "Cash and cash equivalents at beginning of the year"},
  2023: {"adv_cust": "Advances from customers", "adv_inv": "Advance payments for investments acquisition", "ar": "Accounts receivable", "assoc": "Investments tn associates +b11«d8)", "banks_credit": "Banks credit balances", "cash": "Cash and cash equivalents", "checks_liab": "liabilities for checks received from customers", "creditors": "Creditors & other credit balances", "debtors": "Debtors and other debit balances", "due_from_rp": "Due from related parties +47 «27)", "due_to_rp": "Due to related parties +27)", "fin_amort": "Financial investments at amortized cost (48:33/5)", "fixed": "Fixed assets (net) +13)", "fvtpl": "Investments at fair value through profit and loss (33/5)", "inv_prop": "Investment property cll)", "inv_purch": "Investments purchase liabilities", "jsa_c": "Joint shares arrangement short term", "jsa_nc": "Joint shares arrangement long term", "land_c": "Current portion of land purchase liabilities (a57 «20)", "land_nc": "Land purchase liabilities Long Term (b57 «20)", "lease_c": "Lease contract liabilities short term (a56)", "lease_nc": "Lease contract liabilities long term", "loans_current": "Current portion of Short-term loans", "loans_lt": "Loans long-term {52)", "nci": "Non-controlling equities", "np_long": "Notes payable long term (b", "np_short": "Notes payable short term (a", "nr_long": "Notes receivable long term +16)", "nr_long_undel": "Notes receivable long term for undelivered units «16)", "nr_short": "Notes receivable short term +16)", "nr_short_undel": "Notes receivable short term for undelivered units", "overdraft": "Bank- overdraft", "provisions": "Provisions (19,30¢)", "puc": "Projects under construction «12)", "resid": "Other long-term liabilities Residents’ Association", "rou": "Right of use asset", "share_capital": "Share capital", "sukuk": "Partnership Sukuk", "supp_adv": "Suppliers advance payments", "suppliers": "Suppliers And contractors", "tax_payable": "Income tax payable (a23)", "tca": "Total Current Assets", "tcl": "Total current liabilities", "teal": "Total non-current liabilities", "tle": "Total equity and liabilities", "tnca": "Total non-current assets", "tncl": "Total non-current liabilities", "total_assets": "Total Assets", "total_equity": "Total shareholders' equity", "total_liabs": "Total liabilities", "treasury": "Treasury shares In Cost +17)", "wip": "Works in process {44 «14)", "capex_fixed": "Payments for purchase of assets", "capex_puc": "Payments for work under construction", "close": "Cash and cash equivalents as of December", "disposal": "Proceeds from sale of fixed assets", "net": "Net increase in cash and cash equivalents during the year", "open": "Cash and cash equivalents at beginning of the year"},
- 2024: {"adv_cust": "Advances from customers G3", "adv_inv": "payee payments tax asset for investments acquisition", "ar": "Accounts receivable “3", "assoc": "Investments in associates «bl 1«d8)", "cash": "Cash and cash equivalents", "checks_liab": "liabilities for checks received from customers", "creditors": "Creditors & other credit balances", "debtors": "Debtors and other debit balances", "due_from_rp": "Due from related parties +45 +27)", "due_to_rp": "Due from related parties +45 +27)", "fin_amort": "Financial investments at amortized cost (4633/5)", "jsa_c": "Joint shares arrangement short term", "jsa_nc": "Joint shares arrangement long term", "land_nc": "Land purchase liabilities Long Term _ +20)", "lease_c": "Lease contract liabilities short term (a54)", "lease_nc": "Lease contract liabilities long term {b54)", "loans_current": "Current portion of Short-term loans", "loans_lt": "Loans long-term", "nci": "Non-controlling equities", "np_long": "Notes payable short term (a", "np_short": "Notes payable short term (a", "nr_long": "Noles receivable long term", "nr_long_undel": "Notes receivable long term for undelivered units ia", "nr_short": "Noles receivable long term", "nr_short_undel": "Notes receivable short term for undelivered units", "overdraft": "Bank- overdraft (RG", "puc": "Projects under construction oo.", "resid": "Other long-term liabilities Residents’ Association", "rou": "Right of use assets (39,a28,", "share_capital": "Share capital", "supp_adv": "Suppliers advance payments", "suppliers": "Suppliers And contractors", "tax_payable": "Income tax payable (a23)", "tca": "Total Current Assets", "tcl": "Total current liabilities", "teal": "Total non-current liabilities", "tle": "Total equity and liabilities", "tnca": "Total non-current assets", "tncl": "Total non-current liabilities", "total_assets": "Total Assets", "total_liabs": "Total liabilities", "treasury": "Treasury Shares", "wip": "Works in process +14)", "capex_fixed": "(Payments) for purchase of fixed assets", "capex_puc": "(Payments) for projects under construction", "close": "Cash and cash equivalents as of Dec", "dep": "Depreciation & amortization «37 +36)", "disposal": "Proceeds from sale of fixed assets", "net": "Net increase in cash and cash equivalents during the Year", "open": "Cash and cash equivalents at beginning of the Year"},
- 2025: {"adv_cust": "Advances from customers", "adv_inv": "Advance payments for investments acquisition", "ar": "Accounts receivable", "assoc": "Investments in associates +b11+d8)", "banks_credit": "Banks credit balances", "cash": "Cash and cash equivalents +32)", "creditors": "Creditors & other credit balances", "debtors": "Debtors and other debit balances", "due_from_rp": "Due from related parties «45", "due_to_rp": "Due to related parties +56", "fin_amort": "Financial investments at amortized cost (46:33/5)", "fixed": "Fixed assets (net) «13)", "fvtpl": "Investments at fair value through profit and loss (33/5)", "inv_prop": "Investment property cll)", "inv_purch": "Investments purchase liabilities", "jsa_c": "Joint shares arrangement short term", "jsa_nc": "Joint shares arrangement long term", "land_c": "Current portion of land purchase liabilities (a55 «20)", "land_nc": "Land purchase liabilities Long Term (B55 «20)", "lease_c": "Lease contract liabilities short term (a54)", "lease_nc": "Lease contract liabilities long term (b54)", "loans_current": "Current portion of Short-term loans", "loans_lt": "Loans long-term", "nci": "Non-controlling equities", "np_long": "Notes payable long term", "np_short": "Notes payable short term (a51)", "nr_long": "Notes receivable long term +16)", "nr_long_undel": "Notes receivable long term for undelivered units +16)", "nr_short": "Notes receivable short term «16)", "nr_short_undel": "Notes receivable short term for undelivered units", "provisions": "Provisions", "puc": "Projects under construction «12)", "resid": "Other long-term liabilities Residents’ Association", "rou": "Right of use assets (39,a28)", "share_capital": "Share capital", "supp_adv": "Suppliers advance payments", "suppliers": "Suppliers And contractors", "tax_payable": "Income tax payable (69,a23)", "tca": "Total Current Assets", "tcl": "Total current liabilities", "teal": "Total non-current liabilities", "tle": "Total equity and liabilities", "tnca": "Total non-current assets", "tncl": "Total non-current liabilities", "total_assets": "Total Assets", "total_equity": "Total shareholders’ equity", "total_liabs": "Total liabilities", "wip": "Works in Progress +14)", "capex_fixed": "(Payments) for purchase of fixed assets", "capex_puc": "(Payments) from projects under construction", "close": "Cash and cash equivalents as of Dec", "dep": "Depreciation & amortization «36 «13)", "disposal": "Proceeds from sale of fixed assets", "net": "Net increase in cash and cash equivalents during the Year", "open": "Cash and cash equivalents at beginning of the Year"},
+ 2024: {"adv_cust": "Advances from customers G3", "adv_inv": "payee payments tax asset for investments acquisition", "ar": "Accounts receivable “3", "assoc": "Investments in associates «bl 1«d8)", "cash": "Cash and cash equivalents", "checks_liab": "liabilities for checks received from customers", "creditors": "Creditors & other credit balances", "debtors": "Debtors and other debit balances", "due_from_rp": "Due from related parties +45 +27)", "due_to_rp": "Due from related parties +45 +27)", "fin_amort": "Financial investments at amortized cost (4633/5)", "jsa_c": "Joint shares arrangement short term", "jsa_nc": "Joint shares arrangement long term", "land_nc": "Land purchase liabilities Long Term _ +20)", "lease_c": "Lease contract liabilities short term (a54)", "lease_nc": "Lease contract liabilities long term {b54)", "loans_current": "Current portion of Short-term loans", "loans_lt": "Loans long-term", "nci": "Non-controlling equities", "np_long": "Notes payable short term (a", "np_short": "Notes payable short term (a", "nr_long": "Noles receivable long term", "nr_long_undel": "Notes receivable long term for undelivered units ia", "nr_short": "Noles receivable long term", "nr_short_undel": "Notes receivable short term for undelivered units", "overdraft": "Bank- overdraft (RG", "puc": "Projects under construction oo.", "resid": "Other long-term liabilities Residents’ Association", "rou": "Right of use assets (39,a28,", "share_capital": "Share capital", "sukuk": "Sukuk partnership", "supp_adv": "Suppliers advance payments", "suppliers": "Suppliers And contractors", "tax_payable": "Income tax payable (a23)", "tca": "Total Current Assets", "tcl": "Total current liabilities", "teal": "Total non-current liabilities", "tle": "Total equity and liabilities", "tnca": "Total non-current assets", "tncl": "Total non-current liabilities", "total_assets": "Total Assets", "total_liabs": "Total liabilities", "treasury": "Treasury Shares", "wip": "Works in process +14)", "capex_fixed": "(Payments) for purchase of fixed assets", "capex_puc": "(Payments) for projects under construction", "close": "Cash and cash equivalents as of Dec", "dep": "Depreciation & amortization «37 +36)", "disposal": "Proceeds from sale of fixed assets", "net": "Net increase in cash and cash equivalents during the Year", "open": "Cash and cash equivalents at beginning of the Year"},
+ 2025: {"adv_cust": "Advances from customers", "adv_inv": "Advance payments for investments acquisition", "ar": "Accounts receivable", "assoc": "Investments in associates +b11+d8)", "banks_credit": "Banks credit balances", "cash": "Cash and cash equivalents +32)", "credit_facilities": "Credit facilities", "creditors": "Creditors & other credit balances", "debtors": "Debtors and other debit balances", "due_from_rp": "Due from related parties «45", "due_to_rp": "Due to related parties +56", "fin_amort": "Financial investments at amortized cost (46:33/5)", "fixed": "Fixed assets (net) «13)", "fvtpl": "Investments at fair value through profit and loss (33/5)", "inv_prop": "Investment property cll)", "inv_purch": "Investments purchase liabilities", "jsa_c": "Joint shares arrangement short term", "jsa_nc": "Joint shares arrangement long term", "land_c": "Current portion of land purchase liabilities (a55 «20)", "land_nc": "Land purchase liabilities Long Term (B55 «20)", "lease_c": "Lease contract liabilities short term (a54)", "lease_nc": "Lease contract liabilities long term (b54)", "loans_current": "Current portion of Short-term loans", "loans_lt": "Loans long-term", "nci": "Non-controlling equities", "np_long": "Notes payable long term", "np_short": "Notes payable short term (a51)", "nr_long": "Notes receivable long term +16)", "nr_long_undel": "Notes receivable long term for undelivered units +16)", "nr_short": "Notes receivable short term «16)", "nr_short_undel": "Notes receivable short term for undelivered units", "provisions": "Provisions", "puc": "Projects under construction «12)", "resid": "Other long-term liabilities Residents’ Association", "rou": "Right of use assets (39,a28)", "share_capital": "Share capital", "supp_adv": "Suppliers advance payments", "suppliers": "Suppliers And contractors", "tax_payable": "Income tax payable (69,a23)", "tca": "Total Current Assets", "tcl": "Total current liabilities", "teal": "Total non-current liabilities", "tle": "Total equity and liabilities", "tnca": "Total non-current assets", "tncl": "Total non-current liabilities", "total_assets": "Total Assets", "total_equity": "Total shareholders’ equity", "total_liabs": "Total liabilities", "wip": "Works in Progress +14)", "capex_fixed": "(Payments) for purchase of fixed assets", "capex_puc": "(Payments) from projects under construction", "close": "Cash and cash equivalents as of Dec", "dep": "Depreciation & amortization «36 «13)", "disposal": "Proceeds from sale of fixed assets", "net": "Net increase in cash and cash equivalents during the Year", "open": "Cash and cash equivalents at beginning of the Year"},
 }
 
 # Consolidated statement of financial position, at 31 December, as PRINTED.
@@ -276,9 +273,8 @@ BS = {
       provisions=182587332, puc=7640536, resid=3856263893, rou=15831709,
       share_capital=6162499270, supp_adv=657534518, suppliers=1130851889,
       tax_payable=166759387, tca=22364507586, tcl=23200391365, teal=17699666380,
-      tle=17699666380, tnca=13535750159, tncl=5108043119, total_equity=9591623261,
-      total_investment=17699666380, total_liabs=23200391365, treasury=-69839608,
-      wip=8698435064),
+      tle=17699666380, total_equity=9591623261, total_investment=17699666380,
+      total_liabs=23200391365, treasury=-69839608, wip=8698435064),
  2022: dict(src=2023, column='comparative', page=3,
       adv_cust=10214450435, adv_inv=59785558, ar=2707513377, assoc=382317406,
       banks_credit=180167719, cash=1165167798, checks_liab=9157333299, creditors=1384351547,
@@ -290,7 +286,7 @@ BS = {
       nr_short_undel=2548927764, overdraft=2403922276, provisions=183375011, puc=212133152,
       resid=5651066356, rou=7820596, share_capital=6003189778, sukuk=687264013,
       supp_adv=1603206733, suppliers=1268463740, tax_payable=420635260, tca=26017630209,
-      tcl=27266541709, teal=12067868775, tle=49505997212, tnca=23488367003, tncl=12067868775,
+      tcl=27266541709, tle=49505997212, tnca=23488367003, tncl=12067868775,
       total_assets=49505997212, total_equity=10171586728, total_liabs=39334410484,
       treasury=-90146032, wip=6286290907),
  2023: dict(src=2023, column='own', page=3,
@@ -298,39 +294,40 @@ BS = {
       banks_credit=234053719, cash=3189241596, checks_liab=6598857715, creditors=2653908991,
       debtors=3120372653, due_from_rp=368399961, due_to_rp=3823853, fin_amort=4445198927,
       fixed=2529549685, fvtpl=100784825, inv_prop=45830027, inv_purch=20717553,
-      jsa_c=1614008764, jsa_nc=4004246037, land_c=18416252, land_nc=-657, lease_c=9771222,
+      jsa_c=1614008764, jsa_nc=4004246037, land_c=18416252, lease_c=9771222,
       lease_nc=1296288, loans_current=510722537, loans_lt=3959030721, nci=562460975,
       np_long=2576202779, np_short=1858467641, nr_long=23096144962, nr_long_undel=4546630300,
       nr_short=8391624362, nr_short_undel=2052227415, overdraft=3362218151,
       provisions=136623346, puc=1002101616, resid=9428558877, rou=10923079,
       share_capital=5883189778, sukuk=1553426329, supp_adv=3931155595, suppliers=2504006437,
-      tax_payable=559929987, tca=42474426786, tcl=41069114014, teal=21507498684,
-      tle=74298460597, tnca=31824033811, tncl=21507498684, total_assets=74298460597,
-      total_equity=11721847899, total_liabs=62576612698, treasury=-62, wip=8788379627),
+      tax_payable=559929987, tca=42474426786, tcl=41069114014, tle=74298460597,
+      tnca=31824033811, tncl=21507498684, total_assets=74298460597, total_equity=11721847899,
+      total_liabs=62576612698, wip=8788379627),
  2024: dict(src=2025, column='comparative', page=3,
       adv_cust=47403775488, adv_inv=186946852, ar=15561060204, assoc=3379238461,
-      banks_credit=992413988, cash=6372384745, creditors=4677270651, debtors=7541532708,
-      due_from_rp=330505962, due_to_rp=15251549, fin_amort=6110080419, fixed=2847087324,
-      fvtpl=206202973, inv_prop=1057472496, inv_purch=20717553, jsa_c=2373133600,
-      jsa_nc=5458648290, land_c=13654439, land_nc=6288907, lease_c=26238462, lease_nc=36683385,
-      loans_current=776658181, loans_lt=6442508413, nci=702060505, np_long=2895314633,
-      np_short=1697081032, nr_long=43213421382, nr_long_undel=3095727858, nr_short=13429823887,
+      banks_credit=992413988, cash=6372384745, credit_facilities=7061638144,
+      creditors=4677270651, debtors=7541532708, due_from_rp=330505962, due_to_rp=15251549,
+      fin_amort=6110080419, fixed=2847087324, fvtpl=206202973, inv_prop=1057472496,
+      inv_purch=20717553, jsa_c=2373133600, jsa_nc=5458648290, land_c=13654439,
+      land_nc=6288907, lease_c=26238462, lease_nc=36683385, loans_current=776658181,
+      loans_lt=6442508413, nci=702060505, np_long=2895314633, np_short=1697081032,
+      nr_long=43213421382, nr_long_undel=3095727858, nr_short=13429823887,
       nr_short_undel=1718559879, provisions=157835844, puc=237622133, resid=19476257218,
       rou=61770489, share_capital=5759828346, supp_adv=4790975149, suppliers=3426676837,
-      tax_payable=1040307727, tca=69270914793, tcl=74496941232, teal=34315700846,
-      tle=123437324201, tnca=54166409408, tncl=34315700846, total_assets=123437324201,
-      total_equity=14624682123, total_liabs=108812642078, wip=13209788867),
+      tax_payable=1040307727, tca=69270914793, tcl=74496941232, tle=123437324201,
+      tnca=54166409408, tncl=34315700846, total_assets=123437324201, total_equity=14624682123,
+      total_liabs=108812642078, wip=13209788867),
  2025: dict(src=2025, column='own', page=3,
       adv_cust=69354084075, adv_inv=26864852, ar=28118116247, assoc=3611619739,
-      banks_credit=938770898, cash=9419526159, creditors=5121712447, debtors=12921978854,
-      due_from_rp=335661244, due_to_rp=29919710, fin_amort=9581528351, fixed=4521970936,
-      fvtpl=15270678, inv_prop=1032530185, inv_purch=20717553, jsa_c=2981872912,
-      jsa_nc=3991865312, land_c=12225, lease_c=41916627, lease_nc=60703816,
-      loans_current=1250040023, loans_lt=10543120329, nci=1334332140, np_long=4505024909,
-      np_short=4875673642, nr_long=54801316199, nr_long_undel=1518490219, nr_short=18137718924,
-      nr_short_undel=935259476, provisions=178137292, puc=182616883, resid=29122769947,
-      rou=102532491, share_capital=5719828346, supp_adv=9056244671, suppliers=3807042889,
-      tax_payable=1976557733, tca=106229649584, tcl=105098969636, teal=48265091319,
+      banks_credit=938770898, cash=9419526159, credit_facilities=11337976,
+      creditors=5121712447, debtors=12921978854, due_from_rp=335661244, due_to_rp=29919710,
+      fin_amort=9581528351, fixed=4521970936, fvtpl=15270678, inv_prop=1032530185,
+      inv_purch=20717553, jsa_c=2981872912, jsa_nc=3991865312, land_c=12225, lease_c=41916627,
+      lease_nc=60703816, loans_current=1250040023, loans_lt=10543120329, nci=1334332140,
+      np_long=4505024909, np_short=4875673642, nr_long=54801316199, nr_long_undel=1518490219,
+      nr_short=18137718924, nr_short_undel=935259476, provisions=178137292, puc=182616883,
+      resid=29122769947, rou=102532491, share_capital=5719828346, supp_adv=9056244671,
+      suppliers=3807042889, tax_payable=1976557733, tca=106229649584, tcl=105098969636,
       tle=172129812858, tnca=65900163274, tncl=48265091319, total_assets=172129812858,
       total_equity=18765751903, total_liabs=153364060955, wip=17570908880),
 }
@@ -356,17 +353,36 @@ CF = {
       capex_fixed=-52719316, capex_puc=-40528373, close=1579250273, dep=125124182,
       disposal=543372, net=204071883, open=1375178390),
  2021: dict(src=2021, column='own', page=6,
-      capex_fixed=-57798, capex_puc=-1.145, close=868885, dep=185914384, disposal=1303692,
-      net=-561298517, open=1579149924),
+      dep=185914384, disposal=1303692),
  2023: dict(src=2024, column='comparative', page=5,
       capex_fixed=-177431038, capex_puc=-789968464, close=3189241596, dep=201037444,
-      disposal=103916449, net=2020123987, open=3949811),
+      disposal=103916449, net=2020123987),
  2024: dict(src=2024, column='own', page=5,
       capex_fixed=-587649309, capex_puc=-128296234, close=6372384745, dep=270108689,
       disposal=7825972, net=3183143149),
  2025: dict(src=2025, column='own', page=6,
-      capex_fixed=-275221, capex_puc=-6766920, close=9419526159, dep=384527014,
-      disposal=9701497, net=3021279518, open=6372384745),
+      close=9419526159, dep=384527014, disposal=9701497, net=3021279518,
+      open=6372384745),
+}
+
+# THE COMPARATIVE COLUMN OF EACH FILING, for the three cash-flow rows this
+# record commits. Every filing restates the previous year beside its own, so a
+# figure appearing in TWO documents — read from two different renders, and in
+# several cases one by text layer and one by OCR — is corroborated rather than
+# merely extracted. foot() asserts the agreement, and it is what licenses the
+# FY2021, FY2024 and FY2025 depreciation figures whose own pages are otherwise
+# imperfectly read.
+CF_PRIOR = {
+ 2015: {"dep": 21467737, "capex_fixed": -12513982, "capex_puc": -80891934},
+ 2016: {"dep": 21874437, "capex_fixed": -44189940, "capex_puc": -1274994},
+ 2017: {"dep": 28961212, "capex_fixed": 51218379, "capex_puc": 19112467},
+ 2018: {"dep": 36819507, "capex_fixed": 38328773, "capex_puc": 24812079},
+ 2019: {"dep": 85077314, "capex_fixed": -52297290, "capex_puc": -9581362},
+ 2020: {"dep": 102205593, "capex_fixed": -35631944, "capex_puc": -10129973},
+ 2021: {"dep": 125124182, "capex_fixed": -52719316, "capex_puc": -40528373},
+ 2023: {"capex_fixed": -6644670007, "capex_puc": -201416124},
+ 2024: {"dep": 201037444, "capex_fixed": -177431038, "capex_puc": -789968464},
+ 2025: {"dep": 270108689, "capex_fixed": -587649309, "capex_puc": -128296234},
 }
 
 # The share count at each origin, recorded ONLY where the issued capital divided
@@ -552,18 +568,29 @@ PANEL_CASH = {
 # What each item is built from, stated once so the record cannot mean two
 # things in two years.
 # ---------------------------------------------------------------------------
-DEBT_LINES = ("banks_credit", "overdraft", "loans_current", "loans_lt")
+DEBT_LINES = ("banks_credit", "overdraft", "credit_facilities", "loans_current",
+              "loans_lt")
 DEBT_DEFINITION = (
     "banks credit balances, bank overdraft, the current portion of term loans "
     "and the long-term loans — the interest-bearing BORROWINGS this balance "
-    "sheet discloses. Land purchase liabilities are NOT folded in and are named "
+    "sheet discloses. FROM FY2025 THE OVERDRAFT LINE IS RENAMED 'Credit "
+    "facilities' and it is the same borrowing, so both names are in the "
+    "definition: reading only the old name would have dropped EGP 7,061,638,144 "
+    "out of FY2024's debt without anything saying so, which is exactly the "
+    "silent five-of-six this rule forbids. PARTNERSHIP SUKUK and the lease "
+    "liabilities are NOT folded in and are named beside, because a "
+    "profit-sharing instrument and a lease are valuation choices rather than "
+    "plain borrowings. Land purchase liabilities are NOT folded in and are named "
     "beside: they are deferred consideration that this company's own cash-flow "
     "statement charges interest on ('Interest on land purchase liabilities', "
     "'amortization of discount on land liability'), so whether they are debt is "
     "a valuation choice, and this record reads the page and makes neither "
     "choice. The joint-share-arrangement balances and the residents' "
     "association deposits are named beside for the same reason.")
-DEBT_BESIDE = (("land_c", "current portion of land purchase liabilities"),
+DEBT_BESIDE = (("sukuk", "partnership sukuk"),
+               ("lease_c", "lease contract liabilities, short term"),
+               ("lease_nc", "lease contract liabilities, long term"),
+               ("land_c", "current portion of land purchase liabilities"),
                ("land_nc", "land purchase liabilities, non-current"),
                ("jsa_c", "joint shares arrangement, short term"),
                ("jsa_nc", "joint share arrangement, long term"),
@@ -666,6 +693,15 @@ NOT_RECORDED = {
         "document. Dividing by the EGP 2 par of an EARLIER year would be exactly "
         "the fabricated vintage clause (ii) forbids — plausible on the page and "
         "invisible in the pooled error afterwards."),
+    "two cells screened out as truncated reads": (
+        "these statements are printed in EGP UNITS and every line on them runs "
+        "to millions or more, so a cell coming back under EGP 10,000 is a "
+        "truncated read rather than a small figure. Two did: the FY2023 filing's "
+        "own column returned -657 for the non-current land purchase liabilities "
+        "and -62 for treasury shares at cost. Both were dropped rather than "
+        "recorded, and neither enters a committed item — they sit in the "
+        "named-beside and informational fields. The screen is arithmetic about "
+        "the page's own unit rather than a judgement about the figures."),
     "engine/valuation_calibration/shares_phdc.json": (
         "That archive carries five counts for this name and TWO OF THEM DO NOT "
         "FOOT against the capital they are recorded with. FY2018 and FY2019 are "
@@ -785,7 +821,7 @@ def foot():
             if abs(b["tnca"] + (b["tca"] - b["tcl"]) - b["total_investment"]) > 5:
                 problems.append("%s: non-current assets plus working capital does "
                                 "not reproduce total investment" % tag)
-        if has("total_equity", "tncl", "teal"):
+        if has("total_equity", "tncl", "teal", "total_investment"):
             if abs(b["total_equity"] + b["tncl"] - b["teal"]) > 5:
                 problems.append("%s: equity plus non-current liabilities does not "
                                 "reproduce the printed total" % tag)
@@ -824,6 +860,24 @@ def foot():
             if abs(c["open"] / 1e6 - PANEL_CASH[y - 1]) > 0.0002:
                 problems.append("%s: the cash-flow statement's opening cash does "
                                 "not reproduce the previous origin's" % tag)
+
+    # THE CROSS-FILING CHECK. Each filing restates the previous year beside its
+    # own, so a committed figure must appear identically in TWO documents. This
+    # is what validates the depreciation figures on pages whose other rows read
+    # imperfectly, and it is stronger than any single extraction.
+    for y in sorted(CF_PRIOR):
+        prev = CF.get(y - 1)
+        if not prev or prev.get("column") != "own":
+            continue
+        for k, v in CF_PRIOR[y].items():
+            if prev.get(k) is None:
+                continue
+            if abs(abs(v) - abs(prev[k])) > 1:
+                problems.append(
+                    "FY%d: the FY%d filing's comparative column states %s of %d "
+                    "where the FY%d filing's own column states %d — two "
+                    "documents disagree about one figure"
+                    % (y - 1, y, k, v, y - 1, prev[k]))
 
     for y, s in sorted(SHARES.items()):
         implied = s["issued_capital"] / s["par_value"]
@@ -889,6 +943,13 @@ def build():
                        carried_beside_not_folded_in=beside)
             if absent:
                 rec["lines_this_year_does_not_print"] = absent
+                rec["lines_this_year_does_not_print_note"] = (
+                    "these are names in the definition that THIS year's balance "
+                    "sheet does not use, not borrowings left out of the figure: "
+                    "the overdraft line is called 'Bank overdraft' up to FY2023 "
+                    "and 'Credit facilities' from FY2024, so exactly one of the "
+                    "two names is absent in every year and the definition "
+                    "carries both.")
             block["debt"] = rec
         else:
             block["debt"] = _missing(miss.get("debt", "the balance sheet was not read"))
@@ -1016,10 +1077,18 @@ def build():
         s = SHARES.get(y)
         if s:
             extra = {k: v for k, v in s.items()
-                     if k not in ("count", "issued_capital", "par_value")}
-            block["shares"] = {"value": s["count"], "units": "shares", "as_at": at,
-                               "issued_capital": s["issued_capital"],
-                               "par_value": s["par_value"]}
+                     if k not in ("count", "issued_capital", "par_value",
+                                  "file", "page", "route", "how")}
+            block["shares"] = {
+                "value": s["count"], "units": "shares", "as_at": at,
+                "issued_capital": s["issued_capital"],
+                "par_value": s["par_value"],
+                "source": ("%s, %s, page %s — the company's own consolidated "
+                           "financial statements from its investor-relations "
+                           "archive at %s"
+                           % (s["file"], s["how"], s.get("page"), IR_URL)),
+                "route": s["route"],
+                "file": s["file"], "page": s.get("page")}
             block["shares"].update(extra)
         else:
             block["shares"] = _missing(miss.get("shares", "not recorded"))
@@ -1063,10 +1132,20 @@ def document():
                                           "statement_pages": f["stmt_pages"]}
                               for f in FILES.values()},
         "point_in_time": POINT_IN_TIME,
-        "sources": {"FY%d" % y: {"file": FILES[COLUMN[y][0]]["file"],
-                                 "column": COLUMN[y][1],
-                                 "filing_year": COLUMN[y][0]}
-                    for y in ORIGINS},
+        "sources": {"FY%d" % y: {
+            "balance_sheet": ({"filing_year": BS[y]["src"],
+                               "file": FILES[BS[y]["src"]]["file"],
+                               "column": BS[y]["column"],
+                               "page": BS[y].get("page")} if y in BS else None),
+            "cash_flow": ({"filing_year": CF[y]["src"],
+                           "file": FILES[CF[y]["src"]]["file"],
+                           "column": CF[y]["column"],
+                           "page": CF[y].get("page")} if y in CF else None),
+            "capital_note": ({"file": SHARES[y]["file"],
+                              "page": SHARES[y].get("page"),
+                              "route": SHARES[y].get("route")}
+                             if y in SHARES else None)}
+            for y in ORIGINS},
         "origins": build(),
         "not_recorded_and_why": NOT_RECORDED,
     }
