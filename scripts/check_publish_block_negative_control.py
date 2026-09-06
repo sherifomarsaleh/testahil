@@ -214,10 +214,30 @@ def main():
              74.0, 77.0, None, False),
             ("absent on main — a first publish", dict(LIVE, spot=98.52), None,
              74.0, 77.0, None, False),
-            ("price-only, but breaches the gap", dict(LIVE, spot=98.52), LIVE,
-             53.2, 77.0, None, False),
+            # [R-GAP-02 AMENDED 06-Sep-2026, SECOND] THIS CASE IS INVERTED RATHER
+            # THAN DELETED, on the precedent [R-GAP-01] set when its own trigger went
+            # two-sided: it asserted that a price-only publish breaching the gap must
+            # stay HELD, which was correct evidence for the FIRST amendment and must
+            # now go the other way. Keeping the construction and flipping its
+            # expectation is the sharpest available evidence the second amendment took
+            # effect; deleting it would have left the change untested exactly where it
+            # matters.
+            ("price-only, breaches the gap - released", dict(LIVE, spot=98.52), LIVE,
+             53.2, 77.0, None, True),
             ("price-only, breaches, dissent filed", dict(LIVE, spot=98.52), LIVE,
-             44.7, 77.0, DISSENT_OK, True)):
+             44.7, 77.0, DISSENT_OK, True),
+            # AND THE FOUR WAYS THE WIDENED EXEMPTION COULD BE ABUSED, each of which
+            # must still be HELD while breaching the gap - because what releases is the
+            # ARITHMETIC condition and nothing else. If any of these publishes, the
+            # exemption has stopped being about whether a valuation moves.
+            ("breaches + fair value moves - held", moved_fair, LIVE,
+             53.2, 77.0, None, False),
+            ("breaches + deliverables move - held", moved_files, LIVE,
+             53.2, 77.0, None, False),
+            ("breaches + nothing pending - held", dict(LIVE), LIVE,
+             53.2, 77.0, None, False),
+            ("breaches + first publish - held", dict(LIVE, spot=98.52), None,
+             53.2, 77.0, None, False)):
         tmp = tempfile.mkdtemp()
         try:
             eng = build(tmp, "TK", central, price, dissent, None)
