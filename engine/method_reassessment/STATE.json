@@ -257,7 +257,7 @@
   "Phase 2 keeps the campaign's market order — principal, 03-Sep-2026."
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-06T19:30:00Z",
+ "updated": "2026-09-06T19:15:00Z",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md — it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",
@@ -288,10 +288,19 @@
   "no_stop_is_machinery_now": "The instruction not to stop was given three times and re-given after each stop — the signature of a rule living in prose. Made arithmetic 03-Sep-2026: an HOURLY continuation tick fires into the working session (trig_01HvNidUqi7ps13sitnq6yxf), so stopping costs an hour rather than half a day; Part H now states that a progress report happens INSIDE a turn that continues, never instead of continuing, and that ending at a natural narrative beat is the specific failure it names. The bar for ending a turn is: blocked on something outside the repository, or the budget window is spent."
  },
  "routines": {
-  "hourly_continuation": "trig_01HvNidUqi7ps13sitnq6yxf — 0 * * * * (anchored :08), into this session",
-  "wake": "trig_01U15XntjFZbQaGYn7vFKW7M — 08:00 / 22:00 Cairo, into this session",
-  "safety_net": "trig_01LRF1v3vuQBjFnRMPoi3rmg — 22:05 Cairo, fresh session, acts only if STATE is >6h stale",
-  "question_slot": "trig_01KkkkWuNQvo54szxH3inKbQ — 09:00 Cairo Sun-Thu; silence is its correct output on most days"
+  "paced_continuous_work": {
+   "trigger_id": "trig_01U15XntjFZbQaGYn7vFKW7M",
+   "schedule": "0 5,13,19 * * * — three times a day, every day",
+   "enabled": false,
+   "disabled_on": "2026-09-06",
+   "why": "DISABLED ON THE PRINCIPAL'S 'do as you see fit', AND THE REASON IS TODAY'S OWN FINDING RATHER THAN CAUTION. This routine ran the programme unattended and its own prompt instructed silence — 'DO NOT SEND A MESSAGE unless something changed that the principal must decide' — so by construction nobody saw what it did. Four days of that produced 105 checks, 104 negative controls and 26,984 lines of gate code against a defect that today's audit shows was MISDIAGNOSED: the 45% under-forecast is not systematic, it is three origins, and ARCC and TMGH agree on that to the third decimal. Every turn that changed the direction of this programme came from the principal — 'why 24 and not 90', 'that is totally wrong', 'we are going in the wrong direction' — and none came from the loop. A process that optimises for what it can score, with nobody looking, is the exact failure the audit named; a silent unattended loop is that condition. Work now happens when the principal is present. Re-enable on their word."
+  },
+  "question_slot": {
+   "trigger_id": "trig_01KkkkWuNQvo54szxH3inKbQ",
+   "schedule": "0 6 * * 0-4 — 09:00 Cairo, Sunday to Thursday",
+   "enabled": true,
+   "why": "KEPT. It is the one channel for anything needing the principal, it is designed to send NOTHING on an ordinary day, and it starts no work. Removing it would close the only route a decision has to reach them between sessions."
+  }
  },
  "head": "13c7569f",
  "open_questions": [],
