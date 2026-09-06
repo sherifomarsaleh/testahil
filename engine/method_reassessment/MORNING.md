@@ -1369,3 +1369,26 @@ what it is rather than as a gap in the filings.
 Twice tonight a "cannot be obtained" turned out to be wrong on closer looking:
 the currency note itself, and now the balance split. Both times the first probe
 was the one that failed, and both times its failure read exactly like an absence.
+
+### Registered as an escalation rather than asked in a message
+
+Every remaining extraction route was run and failed on those two digit strings:
+450 and 500 dpi, magnified crops at x1.6 and x3, binarisation, and tesseract page
+segmentation modes 6, 7, 11 and 13 with a digit-only whitelist — four mutually
+inconsistent readings, none of which foots.
+
+So it is a genuine last resort, and under [R-IND-01] that means it becomes an
+artefact rather than a sentence in a message. Registered in
+`engine/escalations.json` with the five routes actually run and their outcomes,
+the sweep that succeeded marked as a re-run, 22 live refs searched, what was done
+meanwhile, and a default that fires on 13-09.
+
+**The default is to change nothing.** Leave EGCH's FX driver as it is and leave
+the run on the ratchet. A dollar weight invented to make the line behave is the
+free parameter the promotion rule forbids, and the refutation does not need it:
+four filings state the facility in both currencies, and the bound already puts
+the realised result outside every net-dollar construction in 9 of 12 years, so the
+sign is wrong whatever the split turns out to be.
+
+Gate green: 7 entries, every one shaped, searched, and still unanswered or written
+down.
