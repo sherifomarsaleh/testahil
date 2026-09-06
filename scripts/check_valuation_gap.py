@@ -71,8 +71,6 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(ROOT, 'engine'))
-import study_population  # noqa: E402  the population, resolved once for every gate
 ENGINE = os.path.join(ROOT, 'engine')
 OUTSTANDING = os.path.join(ENGINE, 'build_depth_audit', 'gap_outstanding.json')
 
@@ -472,7 +470,22 @@ def resolve_population():
     """THE SEAM. The gate resolves its population through one call so the
     negative control can substitute a fixture and test THIS gate's logic,
     while engine/study_population.py is negative-controlled separately on its
-    own eight conditions. Each instrument tested on what it decides."""
+    own eight conditions. Each instrument tested on what it decides.
+
+    THE IMPORT IS LAZY, AND THAT IS NOT TIDINESS. A first draft imported
+    study_population at module level behind a sys.path insert computed from
+    __file__, which broke every OTHER gate's sandbox that copies this script
+    without engine/ beside it: check_artefact_currency's negative control went
+    red on all ten of its cases with ModuleNotFoundError, and three of them
+    were scored 'ok' — a control reporting the right verdict for the wrong
+    reason, which reads exactly like the right one [R-ENF-07]. Importing here
+    means a caller that substitutes this function never needs the module at
+    all, which is what a seam is for.
+    """
+    engine = os.path.join(ROOT, 'engine')
+    if engine not in sys.path:
+        sys.path.insert(0, engine)
+    import study_population
     return study_population.population()
 
 

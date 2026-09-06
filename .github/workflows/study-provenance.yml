@@ -60,6 +60,8 @@ on:
       - 'scripts/check_valuation_gap.py'
       - 'scripts/check_valuation_gap_negative_control.py'
       - 'engine/build_depth_audit/gap_outstanding.json'
+      - 'engine/study_population.py'
+      - 'scripts/check_study_population_negative_control.py'
       - 'scripts/check_workbook_structure.py'
       - 'scripts/check_workbook_structure_negative_control.py'
       - 'scripts/check_document_structure.py'
@@ -174,6 +176,8 @@ on:
       - 'scripts/check_valuation_gap.py'
       - 'scripts/check_valuation_gap_negative_control.py'
       - 'engine/build_depth_audit/gap_outstanding.json'
+      - 'engine/study_population.py'
+      - 'scripts/check_study_population_negative_control.py'
       - 'scripts/check_workbook_structure.py'
       - 'scripts/check_workbook_structure_negative_control.py'
       - 'scripts/check_document_structure.py'
@@ -415,6 +419,18 @@ jobs:
       # exists is the permanently-red check everyone learns to ignore)
       - name: Valuation-gap gate — negative control
         run: python3 scripts/check_valuation_gap_negative_control.py
+
+      # THE POPULATION RESOLVER'S OWN CONTROL [wired 06-09-2026]. The gap gate above no
+      # longer globs engine/*_study; it takes its population from engine/study_population.py,
+      # which joins the 90 covered names to their delivered studies and REFUSES rather than
+      # returning a short list. That resolver decides what every re-pointed gate examines, so
+      # its eight conditions — a short alias table, an undeclared stem, an empty files/, a
+      # register exposing no tickers, no study directories, a record for a name the site does
+      # not carry, and two clean cases including the mixed-case stems whose case-sensitive
+      # miss started all of this — belong in CI rather than in a hand-run. It shipped
+      # correct and referenced by nothing, which an outside gate-runner found the same day.
+      - name: Study-population resolver — negative control
+        run: python3 scripts/check_study_population_negative_control.py
 
       # [R-ENF-01] the DELIVERED WORKBOOK's shape, read off the file itself. On
       # 01-Sep-2026 the AMOC rebuild shipped seven sheets against the model report's
