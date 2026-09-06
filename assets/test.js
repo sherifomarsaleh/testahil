@@ -173,3 +173,56 @@ window.initSearch = function(input, dd){
   document.addEventListener("click", function(e){ if(!input.parentElement.contains(e.target)){ dd.classList.remove("open"); input.setAttribute("aria-expanded","false"); } });
 };
 })();
+
+/* Sensitivity bar: keep the bear/full/spot labels inside the card and clear of
+   the bar. The shared renderer centres them on the bar's ends, which clips them
+   at the card edge on the new study pages; nudge rather than fork the renderer. */
+(function(){
+  function fixLeverBar(){
+    var host=document.getElementById("fl-lever-card");
+    if(!host) return false;
+    var bar=host.querySelector('div[style*="linear-gradient(90deg"]');
+    if(!bar) return false;
+    var wrap=bar.parentElement;
+    wrap.style.margin="42px 6px 46px";
+    var labels=[].slice.call(bar.children).filter(function(c){ return c.id!=="fl-marker"; });
+    labels.forEach(function(c){
+      c.style.lineHeight="1.25";
+      c.style.whiteSpace="nowrap";
+      var left=parseFloat(c.style.left);
+      if(c.style.top.indexOf("-")===0){          /* the two end labels */
+        c.style.top="-34px";
+        if(left<=0){ c.style.transform="none"; c.style.textAlign="left"; }
+        else if(left>=100){ c.style.transform="translateX(-100%)"; c.style.textAlign="right"; }
+      } else {                                    /* the spot marker label */
+        c.style.top="16px";
+        if(left<8){ c.style.transform="none"; c.style.textAlign="left"; }
+        else if(left>92){ c.style.transform="translateX(-100%)"; c.style.textAlign="right"; }
+      }
+    });
+    return true;
+  }
+  var tries=0;
+  var iv=setInterval(function(){ if(fixLeverBar()||++tries>40) clearInterval(iv); },100);
+  document.addEventListener("DOMContentLoaded",fixLeverBar);
+})();
+
+/* Bucket range labels: the odds buckets were written with an ellipsis for "to"
+   ("SMALL WIN 0…+10%"), which reads as truncated text rather than a range.
+   Spell it out wherever those labels render — tools page and every study. */
+(function(){
+  function normaliseRangeLabels(){
+    var n=0;
+    [].slice.call(document.querySelectorAll(".t-bucket .lb")).forEach(function(e){
+      if(e.textContent.indexOf("\u2026")>-1){
+        e.textContent=e.textContent.replace(/\s*\u2026\s*/," to ");
+        n++;
+      }
+    });
+    return n;
+  }
+  var tries=0;
+  var iv=setInterval(function(){ normaliseRangeLabels(); if(++tries>40) clearInterval(iv); },150);
+  document.addEventListener("click",function(){ setTimeout(normaliseRangeLabels,60); });
+  document.addEventListener("change",function(){ setTimeout(normaliseRangeLabels,60); });
+})();

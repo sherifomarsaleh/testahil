@@ -660,6 +660,12 @@ def run(market: str, series: str, key: str, today: str,
     d0 = pd.Timestamp(today.replace('-', ' '))
     out = bump_site_updated(out, d0.date().isoformat())
 
+    # Read the entry AS THE PARSER SEES IT BEFORE the write, so the horizons this
+    # strike carries through untouched can be asserted against what was actually
+    # there rather than against what this tool assumed was there.
+    obj = 'TICKERS' if key in site_data.read_object('TICKERS', DATA_JS) else 'METALS'
+    prior_dist = site_data.read(obj, key, DATA_JS).get('dist') or {}
+
     if write:
         open(DATA_JS, 'w', encoding='utf-8').write(out)
         # VERIFIED BY THE PARSER, NOT BY A SYNTAX CHECK [R-ENF-03]. `node --check` catches
@@ -670,12 +676,25 @@ def run(market: str, series: str, key: str, today: str,
         # to write, and the LEDGER's lifecycle invariant is asserted after the append,
         # which the protocol has required since 29-Jul-2026 and which executed nowhere.
         h1v, h3v = r['horizons']['1M'], r['horizons']['3M']
-        want = {'spot': float(fmt_spot(spot)),
-                'dist': {t: {'label': h['label'], 'resolve': h['grade_date'],
-                             **{q: float(fmt_price(h['pct'][q], spot))
-                                for q in ('p5', 'p25', 'p50', 'p75', 'p95')}}
-                         for t, h in (('t20', h1v), ('t60', h3v))}}
-        obj = 'TICKERS' if key in site_data.read_object('TICKERS', DATA_JS) else 'METALS'
+        dist_want = {t: {'label': h['label'], 'resolve': h['grade_date'],
+                         **{q: float(fmt_price(h['pct'][q], spot))
+                            for q in ('p5', 'p25', 'p50', 'p75', 'p95')}}
+                     for t, h in (('t20', h1v), ('t60', h3v))}
+        # A NAME MAY CARRY A HORIZON THIS STRIKE DOES NOT RE-STRIKE, and the assertion
+        # must cover it rather than trip over it. The metals 12-month cone (dist.t252)
+        # runs on its own annual clock -- STEP 0 decision (b) of the roll-forward
+        # protocol -- so the monthly metronome carries it through untouched, exactly as
+        # the transform above does. assert_written compares dicts by KEY SET, so a want
+        # holding only t20/t60 fails on the very key the writer deliberately preserved,
+        # and the failure looks identical to the duplicated-key defect this check exists
+        # for. The fix is NOT to relax the comparison: every carried-through horizon is
+        # asserted BYTE-FOR-BYTE against what the parser returned BEFORE the write, so an
+        # untouched cone that moved is now caught where previously it was not checked at
+        # all. On an equity, which carries no such horizon, this adds nothing and the
+        # assertion is identical to what it was.
+        carried = {t: v for t, v in (prior_dist or {}).items() if t not in dist_want}
+        dist_want.update(carried)
+        want = {'spot': float(fmt_spot(spot)), 'dist': dist_want}
         site_data.assert_written(obj, key, want, DATA_JS)
         pairs = site_data.assert_ledger_lifecycle(DATA_JS)
         print(f'  verified through a real parse; lifecycle invariant holds '

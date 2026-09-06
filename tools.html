@@ -28,7 +28,7 @@
     </div>
     <div id="howto" class="card" style="display:none;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:16px 20px;margin-top:12px;font-size:var(--fs-small);color:var(--muted)">
       Every figure on this page is read off the <b>published studies</b> — the same 50,000-path simulation each study froze on its run date; nothing is re-simulated here.
-      "Odds" are the share of those paths on each side of a level. The four buckets split the paths at ±10%, and always add to 100%.
+      "Odds" are the share of those paths on each side of a level. The four buckets split the paths at ±10% of today’s price — a "big win" is a finish more than 10% up, a "big loss" more than 10% down, the two "small" buckets sit between — and always add to 100%.
       The screener asks one question per name: can the study’s central fair value be reached inside the 3-month cone?
       None of this is advice — it’s the same math, arranged for a decision you’ve already framed. <a href="method.html">Full method →</a>
     </div>
@@ -40,7 +40,7 @@
     </div>
 
     <div class="t-pane" id="pane-screener">
-      <p class="muted" style="max-width:66ch">Rank the whole coverage by <b>reachability</b> — can the study’s central fair value be reached in 3 months, given how much the name actually moves?</p>
+      <p class="muted" style="max-width:66ch">Rank the whole coverage by <b>reachability</b> — can the study’s central fair value be reached in 3 months, given how much the name actually moves? <b>Big-win odds</b> is the share of the simulated 3-month paths that finish <b>more than 10% above today’s price</b> at the check date.</p>
       <div class="t-filters">
         <select id="sc-mkt" class="t-chip"></select>
         <label class="t-chip" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="sc-reach"> only in reach</label>
@@ -53,7 +53,7 @@
             <th class="sortable" data-s="reach">Reachability</th>
             <th class="sortable num" data-s="gap">Gap to fair value</th>
             <th class="sortable num" data-s="up">Odds up · 3 mo</th>
-            <th class="sortable num" data-s="big">Big-win odds</th>
+            <th class="sortable num" data-s="big" title="Share of simulated paths finishing more than 10% above today’s price at the 3-month check date">Big-win odds · ≥ +10%</th>
             <th></th>
           </tr></thead>
           <tbody id="sc-body"></tbody>
@@ -61,7 +61,7 @@
       </div>
       <p class="muted" style="font-size:var(--fs-small);margin-top:10px">The full list with prices → <a href="coverage.html">Coverage</a></p>
       <div class="t-accordion" id="sc-caveat"><button>Read this before ranking ▾</button><div class="muted" style="font-size:var(--fs-small)">
-        A big gap to fair value is not a recommendation — it can mean opportunity or a valuation that needs its next study cycle. Reachability only says whether the cone’s own 3-month spread covers the study’s central value ("in reach" = inside the middle half of paths, "stretch" = inside the 90% band, "out of reach" = beyond it). Rankings refresh whenever the studies do.
+        A big gap to fair value is not a recommendation — it can mean opportunity or a valuation that needs its next study cycle. Reachability only says whether the cone’s own 3-month spread covers the study’s central value ("in reach" = inside the middle half of paths, "stretch" = inside the 90% band, "out of reach" = beyond it). "Odds up" is the share of paths finishing above today’s price; "Big-win odds" is the share finishing more than 10% above it — the same ≥ +10% bucket the Odds tab shows. Rankings refresh whenever the studies do.
       </div></div>
     </div>
 
