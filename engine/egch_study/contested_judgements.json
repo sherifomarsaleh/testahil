@@ -1,18 +1,166 @@
 {
  "ticker": "EGCH",
  "as_of": "2026-09-03",
- "why_this_file": "Any single contested choice in a valuation is defensible. What is not is a study that resolves EVERY contested choice the same way and never notices. Each is recorded with BOTH framings' values, the side adopted and why, and the binomial sign test is printed.",
- "what_this_record_cannot_measure": "This study prices exactly ONE contested construction both ways in its committed numbers, so the sign test below rests on a single observation and is NOT a measurement of this study's lean. Three further constructions are contested and named in the study and none carries a committed per-share value on the other framing: the ANNA terminal margin, where the central takes the LOWER of a built and an assumed figure because a ~66% cash margin on a commodity fertiliser is not credible and the disclosed unit cost is almost certainly partial; the ANNA nameplate, which is DERIVED because no filing states it; and the equity-risk-premium basis, published on the CDS basis with the rating basis beside it. Pricing them is a re-issue, and until then this record says what it does not know rather than counting one judgement as a clean bill.",
+ "why_this_file": "Any single contested choice in a valuation is defensible. What is not is a study that resolves EVERY contested choice the same way and never notices. Each is recorded with BOTH framings' values — each a full re-run of this study's own model — the side adopted and why, and the binomial sign test is printed.",
+ "how_the_framings_were_valued": "Every alternative below is priced by alternatives.reprice(), which moves ONE component, rebuilds the rate structure where the component is a rate input, re-runs the case end to end and restores. No row is a hand-adjusted rate, an interpolation or a description of a direction.",
+ "what_this_record_measures": "17 judgements, 16 of them worth five per cent of value or more; 9 resolved toward the higher value and 7 toward the lower, two-sided binomial p=0.80. This study does NOT resolve its forks one way: it publishes a value -72% below the traded price while having taken the lower-value side of seven material judgements and the higher-value side of nine. The gap is therefore not a selection lean, which is what this instrument is for and is a finding about the study rather than an absence of one.",
  "judgements": [
   {
-   "name": "Is the ANNA capital programme carried through, or stopped?",
+   "name": "the capital programme — carried through or stopped",
    "adopted": "Cash-flow lens, capital programme carried through — the ANNA programme is completed and commissioned as the company is currently doing",
    "alternative": "Cash-flow lens, capital programme stopped — the programme is halted and the remaining spend is not committed",
    "value_adopted": 4.0395808164915605,
    "value_alternative": 8.038774888582243,
    "why": "the judgement is binary and its two answers straddle zero, so an average describes a half-built plant — a world nobody is proposing and the company is not in. Averaging would also hide the finding: that on the disclosed bank-approved cost and the derived nameplate, the programme does not earn the capital sunk into it, which is why stopping is worth more than finishing. Whether the plant, once built, earns a return above the cost of the capital sunk into it. On the disclosed bank-approved cost and the derived nameplate it does not, which is why stopping is worth more than finishing."
+  },
+  {
+   "name": "the country-risk premium's basis",
+   "adopted": "Country risk priced off the sovereign's traded default swap",
+   "alternative": "Priced off the sovereign's credit rating instead, which is the wider of the two spreads and gives a cost of capital 113 basis points higher",
+   "value_adopted": 4.0395808164915605,
+   "value_alternative": 2.509861939402812,
+   "why": "The swap basis is the market's own live pricing of this sovereign's credit, against a rating judgement updated in steps. It is the NARROWER spread, so this is not the conservative choice and is not made on that ground; the rating basis is priced here rather than argued about. Both are published in full in section 1.8 and neither is ever mixed with the other's risk-free rate."
+  },
+  {
+   "name": "the shape of the cost of capital",
+   "adopted": "A cost of capital that glides from its spot build to a terminal rate made from its own long-run components",
+   "alternative": "One flat spot rate applied to every explicit year and to the perpetuity",
+   "value_adopted": 4.0395808164915605,
+   "value_alternative": 1.4376463317023882,
+   "why": "A spot rate carries today's inflation print into a perpetuity growing at the central bank's target. That is a units mismatch, and on a company whose value sits in its terminal year it would be the largest single error in the study."
+  },
+  {
+   "name": "terminal growth",
+   "adopted": "Terminal growth at the central bank's medium-term inflation target",
+   "alternative": "Two percentage points below it, which is negative real maintenance growth",
+   "value_adopted": 4.0395808164915605,
+   "value_alternative": 2.4481349182458776,
+   "why": "Nominal maintenance growth with no real growth is the neutral assumption for a single plant at steady state. Below inflation implies the asset shrinks in real terms every year forever, which the maintenance capital expenditure in the model is sized to prevent."
+  },
+  {
+   "name": "the cost of debt",
+   "adopted": "The cost of debt at the company's own disclosed rates — 19.4% on the local facility, 11.7% in dollars on the project loan carried at local-equivalent cost on the derived currency path, 24.4% in year one gliding to 13.9% at the terminal",
+   "alternative": "Every leg floored at the 23.00% sovereign ten-year yield — the company's own facilities print no spread above the policy rate, so no spread is added",
+   "value_adopted": 4.0395808164915605,
+   "value_alternative": 2.8938288992332097,
+   "why": "A same-currency corporate cannot normally borrow below its sovereign, and the local facility does (its dollar leg sits below the normalised risk-free rate in 0 of the five explicit years). The disclosed rates are what the company actually pays on state-bank facilities and are used as disclosed; the floored construction is published beside them, not averaged in."
+  },
+  {
+   "name": "beta",
+   "adopted": "Beta from the five-year weekly regression of the share against the published EGX30 index",
+   "alternative": "The lower bound of that regression's own 90% confidence interval",
+   "value_adopted": 4.0395808164915605,
+   "value_alternative": 5.783551427853116,
+   "why": "The regression passes all three conditions of the usability test, so the point estimate is adopted; the interval is wide because the share is thinly traded, and the lower bound is priced here rather than argued away."
+  },
+  {
+   "name": "the gas price",
+   "adopted": "Gas at the realised price the company's own loss disclosure implies",
+   "alternative": "The contract formula price in the operating agreement, which is higher",
+   "value_adopted": 4.0395808164915605,
+   "value_alternative": 1.3268618893453399,
+   "why": "The realised price is what the company actually paid on its own numbers. The contract price is carried as the downside case rather than as the central assumption, because a company that has been paying less than its contract for three years is evidence, not an exception."
+  },
+  {
+   "name": "the new complex's terminal utilisation",
+   "adopted": "The new complex earning at half its derived nameplate in the terminal year",
+   "alternative": "Seventy per cent, which is what a well-run nitrate line achieves",
+   "value_adopted": 4.0395808164915605,
+   "value_alternative": 4.465410827653877,
+   "why": "Half is the observed record of the existing plant against its own plate under the same gas constraint. Assuming the new line does better than the old one on the same feedstock would need evidence no filing provides."
+  },
+  {
+   "name": "maintenance capital expenditure",
+   "adopted": "Maintenance capital expenditure at the company's own observed pre-project rate of 1.12% of revenue",
+   "alternative": "Replacement-rate maintenance: gross fixed assets at the disclosed 3.95% machinery depreciation rate, or 6.11% of revenue",
+   "value_adopted": 4.0395808164915605,
+   "value_alternative": 3.131128827595877,
+   "why": "The observed rate is what this company has actually paid to keep this plant running in the two years when it was not building anything. The replacement-rate framing is the honest upper bound — a plant cannot spend a fifth of its depreciation forever — and it is carried as the downside case rather than averaged into the central."
+  },
+  {
+   "name": "the age of the asset base in the terminal",
+   "adopted": "Capital maintenance charged at what replacing the plant costs today, on the 4.45-year average age the accounts MEASURE — accumulated depreciation over the year's own charge",
+   "alternative": "Half the 22.1-year life the same accounts imply, 11.04 years, which is what has to be assumed where a company does not disclose enough to measure it",
+   "value_adopted": 4.0395808164915605,
+   "value_alternative": 1.819746729021884,
+   "why": "This is the largest contested number inside the TERMINAL, and the third largest of the ten alternatives priced here — behind the gas price and the discount-rate glide, both of which are about the forecast rather than about the terminal. It is a question about THIS BASE rather than about method. Half the life is the right assumption for a plant in steady state, where the average asset is half worn out. This one is not: only 1.3% of the base is fully depreciated and still in production, and a second complex is still being built, so the measured age is a quarter of the life rather than half. The measured figure is adopted BECAUSE it is measured, and the assumed one is published beside it so a reader can see what the disclosure is worth. THIS ROW REPLACED THE TERMINAL REINVESTMENT ROW, which priced a return on capital that no longer enters the terminal at all: under the sanctioned construction there is no reinvestment rate to contest, and this module's own gate caught the dead alternative the moment it scored zero."
+  },
+  {
+   "name": "gas consumption per tonne of ammonia",
+   "adopted": "Gas consumption at 1,292 cubic metres a tonne of ammonia — the rate implied by allocating three quarters of the single disclosed materials line to gas, which carries the plant's disclosed losses as well as its standard usage",
+   "alternative": "The auditor's own disclosed STANDARD rate of 1,200 cubic metres a tonne, which is what the plant consumes when it runs to specification and excludes the losses",
+   "value_adopted": 4.0395808164915605,
+   "value_alternative": 4.88445528574309,
+   "why": "The disclosed standard is the cleaner number and it is not what this plant does: the same auditor's report discloses 38,480,270 cubic metres of gas LOST in FY2024/25, which over that year's ammonia output is a further 120.9 cubic metres a tonne. Standard plus disclosed loss is 1,320.9 and the modelled rate sits between the two. The higher figure is adopted because a model of what this plant actually consumes has to carry the losses; the standard is priced here because it is a disclosed primary figure and a reader is entitled to see what adopting it would be worth. It is the only alternative in this table that was found by an audit run from OUTSIDE the study rather than chosen by it, which is the argument for that audit."
+  },
+  {
+   "name": "the project's spending profile",
+   "adopted": "Project spending anchored on the observed run rate: the nine-month actual extended to a full year",
+   "alternative": "The faster profile the first issue of this study used, opening at EGP 3,000m",
+   "value_adopted": 4.0395808164915605,
+   "value_alternative": 3.832876428749209,
+   "why": "The company has never spent EGP 3,000m in a year on this project. The observed rate is a disclosed, dated figure and the total still completes the approved cost inside the forecast window."
+  },
+  {
+   "name": "the new complex's terminal margin — built or assumed",
+   "adopted": "The lower of two figures: a 32% conversion-margin assumption, against a terminal tonne BUILT from the auditor's own product-cost table",
+   "alternative": "The built figure itself — ammonia at the modelled gas cost plus the disclosed conversion cost escalated on domestic inflation, which is the method this study applies to every other tonne it values",
+   "value_adopted": 4.0395808164915605,
+   "value_alternative": 5.167721648446273,
+   "why": "The auditor discloses granulated ammonium nitrate at EGP 4,076.31 a tonne against a disclosed realised price near EGP 20,000, so the build produces a cash margin near two thirds. The study does not believe an 80%-of-price gross margin on a commodity fertiliser and reads the disclosed unit cost as partial — most likely ammonia transferred internally below its economic cost — so it takes the lower of the two. THE STUDY IS DECLINING THE NUMBER ITS OWN PRIMARY SOURCE PRODUCES, which is a defensible reading of a suspect disclosure and is recorded here as the downward judgement it is."
+  },
+  {
+   "name": "which printed price the flat dollar export price is held at",
+   "adopted": "Held FLAT in nominal dollars at US$530 a tonne, the level at which the path opens",
+   "alternative": "Held FLAT at the US$545 free-on-board Egypt front-month settlement registered on 7 August 2026",
+   "value_adopted": 4.0395808164915605,
+   "value_alternative": 4.813024665579237,
+   "why": "Holding a traded commodity price flat rather than forecasting it is settled house convention and is not contested. WHICH printed level to hold is a separate choice and the register states it in as many words — the path is 'deliberately NOT raised' to the August 2026 settlement, on the ground that declining to forecast a fall is not the same as adopting an improvement. Both are levels the market has actually printed and the study takes the lower."
+  },
+  {
+   "name": "whether the urea plant returns to its contractual plate",
+   "adopted": "A utilisation path of 91.3% to 94.8% of plate that never returns to it, because the summer gas curtailment is treated as structural",
+   "alternative": "A return to contractual plate across the window",
+   "value_adopted": 4.0395808164915605,
+   "value_alternative": 5.355588128671911,
+   "why": "The company's own audited output ran 586.4kt in FY2022/23, about 2% ABOVE plate, before falling to 521.9kt and 513.4kt as gas was curtailed. A return to plate is therefore a framing this company's own record supports and the study declines it on a structural reading of the curtailment; the study takes the lower value."
+  },
+  {
+   "name": "whether the domestic supply quota is met",
+   "adopted": "Subsidised deliveries held near the observed rate — 155kt rising to 175kt a year — so the shortfall against the quota persists",
+   "alternative": "The audited quota met in full: 276,000 tonnes a year, the disclosed 14-month requirement annualised",
+   "value_adopted": 4.0395808164915605,
+   "value_alternative": -0.637885191034188,
+   "why": "The auditor discloses 147kt delivered against a 322kt requirement over the fourteen months to August 2025, a 46% compliance rate the forecast does not assume away. Meeting the quota moves tonnes from export parity to an administered price near a third of it and is by a wide margin the largest single UPWARD judgement in this study. The study's side is the evidenced one — the delivered record is 46%, and the 2026 decree replaced the shortfall levy with the ad-valorem export duty this model already carries, so the quota is no longer enforced by the penalty that made it binding — but 'the forecast does not assume it away' is a choice and is recorded as one."
+  },
+  {
+   "name": "the abnormal gas and stoppage charge",
+   "adopted": "Decaying from EGP 150m to EGP 80m as gas supply normalises",
+   "alternative": "Held at the EGP 164.5m charged in FY2024/25 across the window",
+   "value_adopted": 4.0395808164915605,
+   "value_alternative": 3.8735933990228317,
+   "why": "The charge is disclosed for one year only and nothing states a path. Held flat it is worth less than five per cent of value, so it is recorded and does not enter the sign test; it is here because a hunt that reports only the material judgements cannot be told from a hunt that stopped early."
   }
  ],
+ "examined_not_priced": [
+  {
+   "name": "the new complex's nameplate capacity",
+   "status": "no longer contested",
+   "note": "The plate was derived from the ammonia surplus in the first editions and an external critique produced the EPC award stating 800 tonnes a day. The model uses the disclosed figure and the derived one is retained as a labelled cross-check, so there is no live fork to price."
+  },
+  {
+   "name": "the price of ammonium nitrate itself",
+   "status": "not solvable as a reverse read",
+   "note": "At US$2,500 a tonne — nine times the modelled price — the carried-through branch still reaches only about EGP 12.5 against a traded EGP 14.41, so the traded price cannot be reproduced on this lever at all. Recorded because an unreachable solve is a result, and an absent one is not a clean one."
+  }
+ ],
+ "sign_test": {
+  "material": 16,
+  "resolved_upward": 9,
+  "resolved_downward": 7,
+  "p_two_sided": 0.803619384765625,
+  "flagged": false
+ },
  "published_central": 4.0395808164915605,
  "published_spot": 14.41
 }

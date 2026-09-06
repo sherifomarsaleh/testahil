@@ -1,0 +1,265 @@
+{
+ "ticker": "DU",
+ "as_of": "2026-09-06",
+ "published_central": 16.577799870736467,
+ "published_spot": 11.36,
+ "the_answer_this_record_is_anchored_on": "The published central is a single lens — the cash-flow lens — so every row below is valued against AED 16.5778 and a driver change moves the published figure by its full effect, with nothing damped by a blend.",
+ "how_each_alternative_is_priced": "By RE-RUNNING this study's own model with that one choice changed and everything else held at its published value, through the same leases, cash, investees, share count, accretion and dividend deduction as the adopted figure — so what is measured is the CHOICE and not a second construction. Two routes are used and both are proved against the committed answer before any alternative is believed: compute.py's own audit-override harness, which re-derives the whole chain from a changed input, and the study's own scenario engine and terminal module called in process. WHERE THE STUDY PUBLISHES AN ALTERNATIVE COMPUTED ON THE TERMINAL CONSTRUCTION IT RETIRED, the like-for-like figure is computed here and the published one is named beside it, because comparing a sanctioned terminal against a retired one measures the terminal rather than the choice.",
+ "how_the_alternative_is_chosen": "The alternative is the competing construction THE STUDY ITSELF NAMES — in its input register, its derivation log, its critique response or its gap review — taken as that source states it. Where the study names two competing constructions for one input, the sign is taken on the methodologically stronger one and the other is recorded on the same row, so the choice of framing is visible rather than silently favourable.",
+ "materiality": "A judgement is material where the two framings differ by more than 5% of value, measured against the alternative. 7 of the 19 rows below clear that bar.",
+ "judgements": [
+  {
+   "name": "the central: one lens against the retired four-lens blend",
+   "adopted": "the cash-flow lens alone IS the central, AED 16.5778, with the relative multiple and the book floor published beside it as cross-checks",
+   "alternative": "the retired 45/25/20/10 blend of cash flow, relative multiple, normalised earnings power and book, AED 12.7448",
+   "value_adopted": 16.577799870736467,
+   "value_alternative": 12.74476657013216,
+   "share_of_value": 0.3007535116090054,
+   "direction": "the study adopted the higher-value framing",
+   "why": "The weights were typed, they had never cleared an out-of-sample test, and two of the four lenses they weighted are not among the permitted cross-checks for this class at all. This is the single largest fork in the record and the adopted side is the higher-value one by AED 3.83 a share. What the blend concealed here was the SIZE of the disagreement rather than its direction: it reported a fifth of the gap this study's own primary lens holds against the market.",
+   "material": true
+  },
+  {
+   "name": "the crux: the required return, as the study itself frames it",
+   "adopted": "du's own measured beta of 0.4880 sets the cost of equity and the terminal is capitalised at the resulting rate, whose exit multiple is 8.64x forward EBITDA",
+   "alternative": "no re-rating: du's OWN current trailing enterprise multiple of 6.97x held into perpetuity instead, which is the market's own required return revealed",
+   "value_adopted": 16.577799870736467,
+   "value_alternative": 13.892941327636125,
+   "share_of_value": 0.19325342847015167,
+   "direction": "the study adopted the higher-value framing",
+   "why": "The study names this \"the judgement that is live, and the one the whole study turns on\", computes both and publishes them side by side without averaging. The adopted side asks a reader to believe a +24% re-rating of the multiple du trades on today and is worth AED 2.68 a share more than refusing to. Both readings sit on the same explicit window, the same bridge and the same accretion, so this row measures the terminal capitalisation and nothing else.",
+   "material": true
+  },
+  {
+   "name": "the post-2029 fiscal regime",
+   "adopted": "the current construction persists — a 38% federal royalty plus 9% corporate income tax, a combined 43.57% of pre-royalty profit, which is the audited FY2025 rate and which the company itself disclosed as extended to 2027-2029 on the same structure",
+   "alternative": "reversion to the pre-2024 construction — 15% of regulated revenue plus 30% of regulated profit, an effective 51.1% falling to 50.9%, which is what it actually took in FY2023",
+   "value_adopted": 16.577799870736467,
+   "value_alternative": 14.042547082328396,
+   "share_of_value": 0.18054080741509615,
+   "direction": "the study adopted the higher-value framing",
+   "why": "The legislation runs to 2026 on the face of du's own H1-2026 notes, so the tail beyond the disclosed extension is genuinely open and the adopted side is the higher-value one by AED 2.54 a share. THE FIGURE RECORDED HERE IS NOT THE ONE THE STUDY PUBLISHES and the difference is a basis break rather than a disagreement: the study's published AED 14.7426 is computed on the terminal construction this house retired, whose own base case is AED 17.2419 rather than AED 16.5778, so comparing it with the adopted figure would measure the terminal rather than the regime. The like-for-like figure above holds the fiscal take flat at framing B's own first-year rate through the sanctioned terminal; at its last-year rate of 50.9% it is AED 14.0880, so nothing here turns on which year is used.",
+   "value_alternative_as_the_study_publishes_it": 14.742581056174174,
+   "like_for_like_note": "priced on the sanctioned terminal so the row measures the regime, not the terminal construction",
+   "material": true
+  },
+  {
+   "name": "the risk-free tenor",
+   "adopted": "the January-2031 federal AED Treasury bond at 4.48%, the live anchor at the valuation date",
+   "alternative": "the February-2033 AED Islamic Treasury Sukuk second tap at 4.13%, the longest federal AED tenor held and the one closest to matching a perpetual cash-flow stream",
+   "value_adopted": 16.577799870736467,
+   "value_alternative": 18.013369044561095,
+   "share_of_value": 0.0796946518040766,
+   "direction": "the study adopted the lower-value framing",
+   "why": "There is no liquid ten-year AED point, so the tenor choice is a real range and the study publishes it as one — the adopted rate sits BETWEEN its two alternatives, and the other reading, the peg-extrapolated 4.69%, is worth AED 15.8211, which puts the adopted side on the HIGHER-value half of that pair. The alternative recorded here is the longer-tenor one because a perpetuity is discounted at a tenor-matched rate, and on that reading the adopted side is the lower-value one by AED 1.44 a share. ONE THING CUTS FOR THE ADOPTED SIDE AND IT IS THIS STUDY'S OWN: run end to end, the longer-tenor rate nets to a real risk-free of 4.09%, below the matched-tenor US Treasury of 4.32%, which the study's own no-arbitrage floor refuses under a hard peg — so the figure above is what the alternative is worth, not a construction this study could adopt.",
+   "value_alternative_other_reading": 15.821088786237056,
+   "other_reading": "the peg-extrapolated ten-year AED proxy at 4.69%, the third rate the study prices",
+   "material": true
+  },
+  {
+   "name": "the equity-risk-premium basis",
+   "adopted": "the market-spread basis: a 4.29% premium against a 0.04% observed sovereign spread stripped from the risk-free rate, so country risk enters exactly once",
+   "alternative": "the credit-rating basis: a 4.87% premium against the 0.42% published adjusted default spread, stripped on the same basis",
+   "value_adopted": 16.577799870736467,
+   "value_alternative": 16.952105401966442,
+   "share_of_value": 0.02208017956203575,
+   "direction": "the study adopted the lower-value framing",
+   "why": "Both bases are published in the study's own cost-of-capital table, as the method requires, and the same basis is stripped as is added back on either side. The adopted one gives the HIGHER cost of equity — 6.53% against 6.44% — and therefore the LOWER value, by AED -0.37 a share. The alternative is nonetheless one the study refuses end to end: netting the 0.42% rating spread drives the real risk-free rate to 4.06%, through the matched-tenor US Treasury of 4.32%, which cannot happen under a hard peg.",
+   "material": false
+  },
+  {
+   "name": "the beta's regressor",
+   "adopted": "the FTSE ADX General Index, the registered regressor for this market, beta 0.4880 (R-squared 0.120, standard error 0.0827, 256 weekly observations) — carried with its own standing disclosure that it is an interim regressor for a Dubai-listed name",
+   "alternative": "the DFM General Index, du's OWN listing venue, beta 0.4716 at a tighter fit (R-squared 0.202, standard error 0.0584)",
+   "value_adopted": 16.577799870736467,
+   "value_alternative": 16.848402626962127,
+   "share_of_value": 0.01606103333455603,
+   "direction": "the study adopted the lower-value framing",
+   "why": "The listing venue's own index explains du better and gives a LOWER beta, so the adopted regressor is the lower-value side by AED 0.27 a share. The equal-weight library composite is lower still at 0.3997 and is a cross-check rather than a regressor. Every alternative here points the same way: none of them closes the disagreement with the price, all of them widen it.",
+   "value_alternative_composite": 18.143254488119137,
+   "material": false
+  },
+  {
+   "name": "the terminal debt weight",
+   "adopted": "a 5% terminal debt weight, one notch above the disclosed structure, on the reasoning that a leases-only balance sheet is not a permanent target",
+   "alternative": "the disclosed lease share of enterprise value, 3.63%, carried into the terminal",
+   "value_adopted": 16.577799870736467,
+   "value_alternative": 16.398493871511434,
+   "share_of_value": 0.010934296809814663,
+   "direction": "the study adopted the higher-value framing",
+   "why": "Lease debt is cheaper after tax than equity here, so a higher assumed debt weight lowers the terminal rate and raises the value; the adopted side is the higher-value one by AED 0.18 a share. The company has no drawn borrowings in any year studied, so neither figure rests on an observed capital structure.",
+   "material": false
+  },
+  {
+   "name": "terminal growth",
+   "adopted": "REAL growth of zero on the house inflation path, giving 2.00% nominal — and du's own audited note 9 discloses a terminal growth rate of 2% for its goodwill test",
+   "alternative": "the 2.50% nominal the previous edition carried, which against 2.0% terminal inflation is real growth of +0.49%",
+   "value_adopted": 16.577799870736467,
+   "value_alternative": 18.308194502599175,
+   "share_of_value": 0.09451476122438222,
+   "direction": "the study adopted the lower-value framing",
+   "why": "The adopted side is the LOWER-value one by AED -1.73 a share, and it is the one the company's own audited disclosure agrees with to the basis point. The alternative is a real growth rate nobody quantified — the previous edition argued the nominal figure as population growth plus inflation less price erosion, which names two real forces pointing opposite ways and puts a number on neither. A positive real terminal growth is a legitimate framing and it is priced here rather than dismissed; what it is not is a free one, because this model charges real growth for the capital it consumes at AED 10,430 per unit of growth.",
+   "material": true
+  },
+  {
+   "name": "the terminal asset life",
+   "adopted": "16.70 years, derived by identity from notes 6, 7 and 8 as the gross cost of every depreciable class over the year's own charge — a route that validates itself, since its right-of-use component derives 10.24 years against the 10.1-year average lease term note 7 states outright",
+   "alternative": "the second reading of the same notes: accumulated depreciation over the same charge says the base has already taken 11.49 years, which the escalation formula reaches at a life of 22.97 years",
+   "value_adopted": 16.577799870736467,
+   "value_alternative": 15.768346184605544,
+   "share_of_value": 0.051334088981454674,
+   "direction": "the study adopted the higher-value framing",
+   "why": "A longer life makes the asset base older, so the escalation of the book charge to replacement cost is larger and the terminal charge higher; the adopted side is the higher-value one by AED 0.81 a share. Both readings come out of the same audited notes and neither is arbitrary. The whole grid, from 10.7 to 22.7 years, moves the answer about 10% end to end on a terminal carrying 81% of enterprise value, which is the argument for sourcing the life rather than choosing it.",
+   "material": true
+  },
+  {
+   "name": "the lease renewal in the explicit window",
+   "adopted": "no lease-replacement capital charge in free cash flow, because the lease liability is deducted as debt in the bridge and charging renewal there too would bill the existing obligation twice; the renewal is carried instead inside the terminal's blended asset life, where the right-of-use book enters at its own 10.24 years",
+   "alternative": "the retired construction: a replacement charge equal to right-of-use depreciation in every explicit year, AED 355 falling to AED 335",
+   "value_adopted": 16.577799870736467,
+   "value_alternative": 16.245628803730405,
+   "share_of_value": 0.020446796551807644,
+   "direction": "the study adopted the higher-value framing",
+   "why": "The adopted side is the higher-value one by AED 0.33 a share. It is defensible on the double-charging argument and it is the looser of the two readings; the actual FY2025 lease additions were AED 96mn against a depreciation charge of AED 355, so the retired construction was itself well above what the company spent.",
+   "material": false
+  },
+  {
+   "name": "the mobile ARPU path against the mix decomposition",
+   "adopted": "the registered blended ARPU path, held with no drift — the disclosed subscriber and ARPU series carried forward as they stand",
+   "alternative": "the per-leg erosion the study's own mix decomposition implies, -2.39% a year, on the finding that the flat blended ARPU is a postpaid mix tailwind offsetting underlying erosion and that the tailwind exhausts as prepaid recovers",
+   "value_adopted": 16.577799870736467,
+   "value_alternative": 13.662411696778042,
+   "share_of_value": 0.21338752181256185,
+   "direction": "the study adopted the higher-value framing",
+   "why": "This is the largest operating fork in the study and the adopted side is the higher-value one by AED 2.92 a share. The decomposition is the study's own and it is explicit that the subscriber path assumes prepaid recovers, which is exactly what removes the tailwind — so the risk is identified, priced and then not taken into the base. The split it rests on is demonstrated UNIDENTIFIED across all 21 available quarter pairs, so neither side can be settled from what the company publishes.",
+   "material": true
+  },
+  {
+   "name": "the fixed-capacity unit cost",
+   "adopted": "held FLAT at the reviewed H1-2026 rate, with the measured improvement stopped dead rather than projected",
+   "alternative": "the improvement projected at the rate the audited full years measured, -8.24% a year (AED 79.71 per subscriber per month in FY2024 against AED 73.14 in FY2025)",
+   "value_adopted": 16.577799870736467,
+   "value_alternative": 17.10385139650719,
+   "share_of_value": 0.03075631994079111,
+   "direction": "the study adopted the lower-value framing",
+   "why": "The mechanism — fibre and fixed-wireless scale plus enterprise mix — is real and the study says so; what it declines to do is project a decay rate it cannot measure. The adopted side is the lower-value one by AED -0.53 a share.",
+   "material": false
+  },
+  {
+   "name": "the wholesale direct-cost rate",
+   "adopted": "held FLAT at the reviewed H1-2026 rate of 15.58%, the worst observation in the series, taking no credit for the recovery du's own commentary implies",
+   "alternative": "the FY2025 audited rate of 13.58%, the last full year",
+   "value_adopted": 16.577799870736467,
+   "value_alternative": 16.731745282953668,
+   "share_of_value": 0.00920079822001838,
+   "direction": "the study adopted the lower-value framing",
+   "why": "The series worsens at every observation and du attributes it to a conflict-hit roaming and transit mix. Anchoring on the latest reviewed period rather than the last audited year is the house rule and here it is the lower-value side, by AED -0.15 a share.",
+   "material": false
+  },
+  {
+   "name": "the ICT direct-cost rate",
+   "adopted": "held FLAT at the reviewed H1-2026 rate of 78.48%, the best observation in the series",
+   "alternative": "the FY2025 audited rate of 80.61%, the last full year",
+   "value_adopted": 16.577799870736467,
+   "value_alternative": 16.406327299462813,
+   "share_of_value": 0.01045161224348293,
+   "direction": "the study adopted the higher-value framing",
+   "why": "The same anchoring rule as the wholesale row, applied to a series that moves the other way — FY2024 79.25%, FY2025 80.61%, H1-2026 78.48%, no trend in either direction. Here the rule lands on the higher-value side, by AED 0.17 a share, which is the point of recording both: one rule, two directions.",
+   "material": false
+  },
+  {
+   "name": "capital intensity",
+   "adopted": "the registered path falling from 15.5% of revenue to 13.0% as the 5G build completes",
+   "alternative": "held flat at the FY2025 actual cash capital intensity of 14.80% of revenue",
+   "value_adopted": 16.577799870736467,
+   "value_alternative": 16.387575740007684,
+   "share_of_value": 0.011607826181659123,
+   "direction": "the study adopted the higher-value framing",
+   "why": "The adopted path opens ABOVE the trailing actual and ends below it, so it is not a uniformly generous assumption; over the five years together it spends less, and the adopted side is the higher-value one by AED 0.19 a share.",
+   "material": false
+  },
+  {
+   "name": "revenue against the company's own guidance",
+   "adopted": "the ground-up build at +4.3% FY2026 revenue growth, driven by disclosed subscriber and ARPU paths",
+   "alternative": "the midpoint of du's own guided 4-6% range, +5.0%, won on price",
+   "value_adopted": 16.577799870736467,
+   "value_alternative": 17.15687382944743,
+   "share_of_value": 0.033751717502116425,
+   "direction": "the study adopted the lower-value framing",
+   "why": "The adopted side is the lower-value one by AED -0.58 a share on the price route and AED -0.71 on the volume route. Guidance is scored here and never consumed: a driver that takes a management target as an input inherits its lean instead of measuring it, so the build stays where the disclosed drivers put it and the reader is shown what the midpoint would be worth.",
+   "value_alternative_won_on_volume": 17.28372726735544,
+   "material": false
+  },
+  {
+   "name": "working capital",
+   "adopted": "the FY2025 component days held constant, so net working capital stays at -6.68% of revenue and growth RELEASES cash",
+   "alternative": "the FY2024 audited level of -8.34% of revenue, the most negative of the three years studied",
+   "value_adopted": 16.577799870736467,
+   "value_alternative": 16.672718989666375,
+   "share_of_value": 0.005693079754342331,
+   "direction": "the study adopted the lower-value framing",
+   "why": "Both are audited outturns of the same structurally negative telecom working-capital cycle and the whole plausible range is worth well under a per cent; the adopted side is the lower-value one by AED -0.09 a share.",
+   "material": false
+  },
+  {
+   "name": "the discounting convention",
+   "adopted": "full-year end-of-period factors on the explicit window, with the terminal brought home on the year-five factor",
+   "alternative": "mid-year factors on the explicit window, the terminal unchanged",
+   "value_adopted": 16.577799870736467,
+   "value_alternative": 16.678182553349107,
+   "share_of_value": 0.006018802246080604,
+   "direction": "the study adopted the lower-value framing",
+   "why": "Cash arrives through the year rather than on its last day, so the mid-year reading is the more usual one and it is worth AED 0.10 a share more; the study calls it the less conservative choice and does not adopt it. The adopted side is the lower-value one. Computed on the study's own committed cash flows, forward rates and bridge.",
+   "material": false
+  },
+  {
+   "name": "the dividends stripped between the valuation date and the price anchor",
+   "adopted": "both distributions, AED 0.66 — the FY2025 final of AED 0.40 and the H1-2026 interim of AED 0.26, whose ex-date of 31 July 2026 falls before the anchor",
+   "alternative": "the FY2025 final alone, AED 0.40, on the reading that a declared but unpaid interim stays in the share",
+   "value_adopted": 16.577799870736467,
+   "value_alternative": 16.837799870736468,
+   "share_of_value": 0.015441447338489445,
+   "direction": "the study adopted the lower-value framing",
+   "why": "The ex-date settles it: a share bought at the anchor does not carry a distribution that already went ex. The adopted side is the lower-value one by AED -0.26 a share, and it is a correction the study made to itself.",
+   "material": false
+  }
+ ],
+ "sign_test": {
+  "material": 7,
+  "resolved_upward": 5,
+  "resolved_downward": 2,
+  "two_sided_binomial_p": 0.453125,
+  "flag": false,
+  "reading": "Of the 7 material contested judgements, 5 were resolved toward the higher-value framing and 2 toward the lower; the two-sided sign test gives p = 0.45. THAT IS NOT A LEAN. The three largest forks in the study all run the same way — the lens architecture, the terminal capitalisation and the fiscal tail — but the cost of capital, the terminal growth and the terminal asset life do not, and two of those three are the parameters the whole answer turns on. A study that resolved every fork one way would be flagged, not failed; this one is not flagged, and the instrument is reporting that the direction of the disagreement with the market is not the direction of this study's own choices."
+ },
+ "not_valued": [
+  {
+   "name": "the terminal maintenance basis",
+   "adopted": "the book depreciation charge escalated to current cost over half the derived life",
+   "alternative": "replacement-cost invested capital divided by the disclosed life",
+   "why_not_valued": "the sanctioned terminal module REFUSES the alternative on this study, in its own words, because maintenance on a disclosed life needs BOTH a replacement-cost capital base and the life, and this model commits no replacement-cost base: the notes give gross HISTORICAL cost on a base about 70% depreciated. A life this desk chose is not a disclosed life. Rather than invent the missing base to produce a number, the fork is recorded unvalued."
+  },
+  {
+   "name": "the balance-sheet date the bridge stands on",
+   "adopted": "the 31 December 2025 audited sheet, with the equity value accreted 246 days to the price anchor at the cost of equity and the dividends that went ex in between deducted",
+   "alternative": "the reviewed 30 June 2026 sheet, which shows term deposits run down to nil and lease liabilities of AED 1,735mn",
+   "why_not_valued": "moving the bridge onto the June sheet means re-cutting the explicit window to start mid-year and dropping the accretion and the dividend deduction with it. That is a rebuild of the model rather than one lever moved on it, so it cannot be priced on this study's own chain and is not guessed at. The study's own gap review addresses it in prose: sheet, valuation date and roll agree as they stand, and moving the sheet while still deducting the dividends would charge the same distribution twice."
+  },
+  {
+   "name": "the FY2026 EBITDA margin against the company's guided range",
+   "adopted": "the unit-built margin of 47.83%, above du's guided 46-47%, defended on the implied second half of 46.51%",
+   "alternative": "the guided full-year midpoint",
+   "why_not_valued": "the company guides ONE full year and every cost lever in this model moves the whole five-year window, so imposing the guided margin through the cost stack would price a permanent claim against a one-year target and the two are not the same proposition. The revenue half of the same guidance IS valued above. The study's own forecast-anchor record prints the implied second half instead, which is the testable form of the question."
+  }
+ ],
+ "not_treated_as_a_contested_judgement": [
+  {
+   "name": "the peer earnings multiple, the peer dividend yield and the sustainable return on equity",
+   "why": "they move only the cross-check lenses. The central here IS the cash-flow lens and nothing is blended into it, so these choices are worth exactly zero on the published answer; recording them as judgements at zero would pad the count with rows that cannot move it."
+  },
+  {
+   "name": "the payout ratio",
+   "why": "it moves the dividend and net-cash paths and therefore the profit line through interest income, but no line of free cash flow to the firm, which is what the central is built on."
+  }
+ ]
+}
