@@ -82,19 +82,28 @@
      "when": "2026-09-06",
      "outcome": "EGCH's half ARRIVED — the principal supplied a TradingView EGX_EGCH_1D export and 20 new sessions (09-08-2026 to 06-09-2026) were spliced, so EGCH's library now reaches 06-09-2026 at 14.23. ARCC, AMOC and the rest still stop at 06-08-2026, so this entry's own resolving condition (ARCC.csv carrying 09/01/2026) is NOT met and it stays OPEN. The upload's history before 15-06-2025 is back-adjusted on a different basis from the library and was NOT spliced.",
      "rerun": true
+    },
+    {
+     "route": "every live ref, re-run after the concurrent roll-forward sessions pushed",
+     "when": "2026-09-06",
+     "outcome": "ANSWERED IN FULL. This entry's own resolving marker — ARCC.csv carrying 09/01/2026 — is present on origin/claude/roll-forward-metals-publish-anp14k, where ARCC's library now reaches 06-09-2026 at 76.60. Read off the file on that ref, not off a manifest. The principal supplied the EGX exports across several parallel sessions on the same day; this session took EGCH's and the sibling sessions took the rest, so the entry was answered between the local run of this gate and CI, which is what CI caught.",
+     "rerun": true
     }
    ],
-   "refs_searched": 22,
+   "refs_searched": 24,
    "why_only_the_principal": "The OHLC libraries are supplied by the principal's own vendor export and always have been; this is the same shape of file they already send. No route available here produces one.",
    "done_meanwhile": "The gap gate was re-pointed at the latest known price per its own rule text rather than at the spot each study froze at strike, and it now prints the age of the library it compared against, so a stale comparison reports as stale instead of passing in silence. The finding on ARCC and AMOC is recorded with its arithmetic. On 06-09-2026 EGCH was rolled forward on its own fresh export: its 1-month cohort graded inside both bands, cycle 2 was struck, and its price basis is now current. The other EGX names remain on the 6-August library and their matured cohorts are BLOCKED, named with that reason at every sweep rather than skipped.",
    "default_if_no_answer": "Continue on the 6-August library and state its date wherever a gap is quoted; do NOT type the supplied prices into the library, and do not audit ARCC or AMOC at a price the house cannot date.",
    "default_date": "2026-09-10",
-   "status": "open",
+   "status": "resolved",
    "resolves_when": {
     "file": "engine/raw_ohlc/EG/ARCC.csv",
     "must_contain": "09/01/2026"
    },
-   "resolves_when_note": "the 1 September 2026 session, the date the principal's own quoted price carries. The first marker written here was '/2026', which the file already contained — the gate refused it immediately, which is the clause this register exists for working on the person writing the register."
+   "resolves_when_note": "the 1 September 2026 session, the date the principal's own quoted price carries. The first marker written here was '/2026', which the file already contained — the gate refused it immediately, which is the clause this register exists for working on the person writing the register.",
+   "resolved": "2026-09-06",
+   "answer_written_to": "engine/raw_ohlc/EG/ARCC.csv",
+   "resolution_note": "Closed from the EGCH session. EGCH's own half was spliced here (20 sessions to 06-09-2026); ARCC's and the rest arrived on the sibling branches. The default recorded against this entry — continue on the 6-August library and never type a chat-quoted price into it — was never needed, and no quoted price was ever written into any library."
   },
   {
    "key": "ELEC-primary-financial-statements",
