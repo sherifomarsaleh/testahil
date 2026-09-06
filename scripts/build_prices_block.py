@@ -110,13 +110,22 @@ def render(rows):
     return "%s\nconst PRICES = {\n%s\n};\n%s" % (MARK_A, body, MARK_B)
 
 
-def splice(path, block):
+def splice(path, block, mark_a=None, mark_b=None):
+    """Replace EVERY existing copy of the block, then insert once.
+
+    A JavaScript file takes the LAST declaration of a `const` and throws on the
+    second, so a splice that replaces only the first copy leaves a file that will
+    not load. Removing all of them and appending once is the only shape that is
+    idempotent however many times it has run before.
+    """
+    a_mark = mark_a or MARK_A
+    b_mark = mark_b or MARK_B
     s = io.open(path, encoding="utf-8").read()
-    if MARK_A in s and MARK_B in s:
-        a, b = s.index(MARK_A), s.index(MARK_B) + len(MARK_B)
-        s = s[:a] + block + s[b:]
-    else:
-        s = s.rstrip("\n") + "\n\n" + block + "\n"
+    while a_mark in s and b_mark in s[s.index(a_mark):]:
+        a = s.index(a_mark)
+        b = s.index(b_mark, a) + len(b_mark)
+        s = s[:a].rstrip("\n") + "\n" + s[b:].lstrip("\n")
+    s = s.rstrip("\n") + "\n\n" + block + "\n"
     io.open(path, "w", encoding="utf-8").write(s)
 
 

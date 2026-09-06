@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
-<title>Tools — screener, odds, head-to-head, sizing, portfolio | testahil?</title>
+<title>Tools — screener, funnel, odds, head-to-head, sizing, portfolio | testahil?</title>
 <meta name="description" content="Rank the coverage by reachability, read the odds buckets, compare two names, size a position by the loss you can accept, and check a portfolio mix.">
 <link rel="canonical" href="https://testahil.com/tools.html">
 <meta property="og:type" content="website"><meta property="og:title" content="Tools — screener, odds, head-to-head, sizing, portfolio | testahil?"><meta property="og:description" content="Rank the coverage by reachability, read the odds buckets, compare two names, size a position by the loss you can accept, and check a portfolio mix."><meta property="og:url" content="https://testahil.com/tools.html"><meta property="og:image" content="https://testahil.com/og/gold.png">
@@ -34,6 +34,7 @@
     </div>
     <div class="t-tabs">
       <button class="t-tab" data-t="screener">Screener</button>
+      <button class="t-tab" data-t="funnel">Funnel</button>
       <button class="t-tab" data-t="compare">Head-to-head</button>
       <button class="t-tab" data-t="odds">Odds</button>
       <button class="t-tab" data-t="portfolio">Portfolio</button>
@@ -64,6 +65,33 @@
       <p class="muted" style="font-size:var(--fs-small);margin-top:10px">The full list with prices → <a href="coverage.html">Coverage</a></p>
       <div class="t-accordion" id="sc-caveat"><button>Read this before ranking ▾</button><div class="muted" style="font-size:var(--fs-small)">
         A big gap to fair value is not a recommendation — it can mean opportunity or a valuation that needs its next study cycle. Reachability only says whether the cone’s own 3-month spread covers the study’s central value ("in reach" = inside the middle half of paths, "stretch" = inside the 90% band, "out of reach" = beyond it). "Odds up" is the share of paths finishing above today’s price; "Big-win odds" is the share finishing more than 10% above it — the same ≥ +10% bucket the Odds tab shows. Rankings refresh whenever the studies do, and whenever a fresher price is entered — each row states the date of the price it was ranked on.
+      </div></div>
+    </div>
+
+    <div class="t-pane" id="pane-funnel">
+      <p class="muted" style="max-width:70ch">The selection funnel run over the whole book: five gates in the order the evidence supports, and for each name <b>the first gate that stops it</b>. Gates that eliminate come before gates that only cap or time, and every threshold here is one already written down elsewhere — the 10% gap trigger, the momentum dead zone, the record-strength cuts. Nothing new was chosen for this table.</p>
+      <p class="muted" style="max-width:70ch;font-size:var(--fs-small)"><b>It does not gate on how old anything is.</b> Every row prints the date of the price it was ranked on and the last session of the library its momentum and tape were read from. Prices are entered by hand, so those dates lag — that is disclosed, never a blocker, and a name is never dropped for it.</p>
+      <div class="t-filters">
+        <select id="fn-mkt" class="t-chip"></select>
+        <label class="t-chip" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="fn-clear"> only names that clear every gate</label>
+      </div>
+      <div id="fn-tally" class="muted" style="font-size:var(--fs-small);margin:10px 0"></div>
+      <div class="t-tablewrap">
+        <table>
+          <thead><tr>
+            <th>Ticker</th>
+            <th>Price<br><span class="muted" style="font-weight:400;font-size:var(--fs-caption)">and its date</span></th>
+            <th class="num">Gap</th>
+            <th class="num">Momentum z</th>
+            <th>Tape</th>
+            <th>Stops at</th>
+            <th>Because</th>
+          </tr></thead>
+          <tbody id="fn-body"></tbody>
+        </table>
+      </div>
+      <div class="t-accordion" id="fn-caveat"><button>What each gate is doing ▾</button><div class="muted" style="font-size:var(--fs-small)">
+        <b>Inputs</b> — is there a dated fair value, a computable momentum reading and a band record at all? Age is reported, not judged. <b>Superseded</b> — a rebuilt study exists for this name and has not published, so the fair value on the page is one the work has already moved past; the rebuilt number is held and is deliberately not shown here. <b>Gap</b> — the fair value against the latest price we hold: more than 10% above is a candidate, more than 10% below is a name to audit rather than trade, and inside that band is neither. <b>Momentum</b> — a strong negative direction call vetoes; it never ranks, because ranking on it is refuted. <b>Lenses</b> — the fundamental, momentum and technical reads are built separately, so agreement is evidence rather than an echo; it decides <em>when</em>, never <em>which</em>. A name clearing every gate is a candidate on the published numbers and nothing more: the gap lens has no graded record yet, and none of this is a rating or a price target.
       </div></div>
     </div>
 
@@ -160,6 +188,62 @@ renderChrome("tools");
   function optList(sel, chosen){
     sel.innerHTML = KEYS.map(function(k){ return '<option value="'+k+'"'+(k===chosen?" selected":"")+'>'+ALL[k].name+' ('+ALL[k].code+')</option>'; }).join("");
   }
+
+  /* ---------- funnel ---------- */
+  (function(){
+    if(typeof SCREEN==="undefined"){ return; }
+    var LBL={inputs:"Inputs",superseded:"Superseded",gap:"Gap",momentum:"Momentum",lenses:"Lenses"};
+    var CLS={inputs:"mut",superseded:"warn",gap:"mut",momentum:"warn",lenses:"warn"};
+    var fnRows=Object.keys(SCREEN).filter(function(k){ return ALL[k]; }).map(function(k){
+      var r=SCREEN[k], t=ALL[k];
+      return {k:k, code:t.code, mkt:mktOf(t), r:r};
+    });
+    var fnState={mkt:"All", clear:false};
+    var mkts=["All"].concat([...new Set(fnRows.map(function(r){return r.mkt}))].sort());
+    var sel=document.getElementById("fn-mkt");
+    sel.innerHTML=mkts.map(function(m){ return '<option>'+m+'</option>'; }).join("");
+    sel.addEventListener("change", function(){ fnState.mkt=sel.value; paintFn(); });
+    document.getElementById("fn-clear").addEventListener("change", function(e){ fnState.clear=e.target.checked; paintFn(); });
+    function paintFn(){
+      var list=fnRows.filter(function(x){
+        if(fnState.mkt!=="All" && x.mkt!==fnState.mkt) return false;
+        if(fnState.clear && x.r.stop) return false;
+        return true;
+      }).sort(function(a,b){
+        var oa=a.r.stop?1:0, ob=b.r.stop?1:0;
+        if(oa!==ob) return oa-ob;
+        return (b.r.gap==null?-9:b.r.gap)-(a.r.gap==null?-9:a.r.gap);
+      });
+      var tally={};
+      list.forEach(function(x){ var s=x.r.stop||"clears"; tally[s]=(tally[s]||0)+1; });
+      document.getElementById("fn-tally").innerHTML =
+        Object.keys(tally).map(function(s){
+          return '<b>'+(s==="clears"?"clears every gate":("stops at "+(LBL[s]||s).toLowerCase()))+'</b> '+tally[s];
+        }).join(" &middot; ") + ' &middot; of ' + list.length + ' names';
+      document.getElementById("fn-body").innerHTML = list.map(function(x){
+        var r=x.r, t=ALL[x.k];
+        var stop = r.stop
+          ? '<span class="t-badge '+(CLS[r.stop]||"mut")+'">'+(LBL[r.stop]||r.stop)+'</span>'
+          : '<span class="t-badge good">clears</span>';
+        return '<tr class="rowlink" data-href="'+pageFor(x.k)+'">'+
+          '<td class="num"><b>'+r_code(x)+'</b></td>'+
+          '<td class="num">'+(r.px!=null?fmtPx(r.px,t.ccy):"—")+
+            '<br><span class="muted" style="font-size:var(--fs-caption)">'+(r.pxDate?fmtPxDate(r.pxDate):"—")+'</span></td>'+
+          '<td class="num">'+(r.gap!=null?fmtSPct(r.gap):"—")+'</td>'+
+          '<td class="num">'+(r.z!=null?(r.z>0?"+":"")+r.z.toFixed(2):"—")+'</td>'+
+          '<td>'+(r.trend===true?"up":(r.trend===false?"not up":"—"))+
+            '<br><span class="muted" style="font-size:var(--fs-caption)">'+(r.lib?fmtPxDate(r.lib):"no library")+'</span></td>'+
+          '<td>'+stop+'</td>'+
+          '<td class="muted" style="font-size:var(--fs-small)">'+(r.why||"")+'</td></tr>';
+      }).join("") || '<tr><td colspan="7" class="muted">Nothing matches those filters.</td></tr>';
+    }
+    function r_code(x){ return x.code || x.k; }
+    document.getElementById("fn-body").addEventListener("click", function(e){
+      if(e.target.closest("a")) return;
+      var tr=e.target.closest("tr.rowlink"); if(tr) location.href=tr.dataset.href;
+    });
+    paintFn();
+  })();
 
   /* ---------- screener ---------- */
   var scRows = KEYS.map(function(k){

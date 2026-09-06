@@ -27,6 +27,8 @@ on:
       - 'scripts/check_technical_read.py'
       - 'scripts/check_prices_block.py'
       - 'scripts/build_prices_block.py'
+      - 'scripts/check_screen_block.py'
+      - 'scripts/build_screen_block.py'
       - 'engine/prices/**'
       - 'scripts/coverage_floor.py'
       - 'scripts/check_coverage_floor_negative_control.py'
@@ -40,6 +42,8 @@ on:
       - 'scripts/check_technical_read.py'
       - 'scripts/check_prices_block.py'
       - 'scripts/build_prices_block.py'
+      - 'scripts/check_screen_block.py'
+      - 'scripts/build_screen_block.py'
       - 'engine/prices/**'
       - 'scripts/coverage_floor.py'
       - 'scripts/check_coverage_floor_negative_control.py'
@@ -97,6 +101,8 @@ jobs:
       # to ignore.
       - name: Prices block is what its readers produce now
         run: python3 scripts/check_prices_block.py
+      - name: Screen block is what its readers produce now
+        run: python3 scripts/check_screen_block.py
 
       # LEGACY/ IS SERVED CONTENT AND IT READS ITS OWN COPY OF data.js. The 30-Aug-2026
       # cutover left root ledger.html, picker.html, trade.html and portfolio.html as
