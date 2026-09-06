@@ -68,7 +68,7 @@ def make_study(engine, tk, central=None, spot=None, review=None, numbers=True):
     return d
 
 
-def run_case(name, build, outstanding, expect_fail):
+def run_case(name, build, outstanding, expect_fail, extra_names=()):
     tmp = tempfile.mkdtemp()
     try:
         build(tmp)
@@ -76,6 +76,28 @@ def run_case(name, build, outstanding, expect_fail):
         op = os.path.join(tmp, 'build_depth_audit', 'gap_outstanding.json')
         json.dump(outstanding, io.open(op, 'w', encoding='utf-8'))
         gate.ENGINE, gate.OUTSTANDING = tmp, op
+
+        # THE GATE NO LONGER GLOBS FOR ITS POPULATION [re-pointed 06-09-2026], so
+        # the sandbox has to supply one. It is built FROM THE SANDBOX'S OWN
+        # DIRECTORIES, never hand-written, so a case cannot accidentally test a
+        # population that does not match the fixture it planted; `extra_names`
+        # adds delivered studies that commit NO record, which is the condition
+        # the re-pointing exists to make visible and which no directory can
+        # express. study_population.py is negative-controlled separately on its
+        # own eight conditions -- each instrument tested on what it decides.
+        def _fixture_population(_tmp=tmp, _extra=extra_names):
+            out = {}
+            for d in sorted(os.listdir(_tmp)):
+                if d.endswith('_study') and os.path.isdir(os.path.join(_tmp, d)):
+                    out[d[:-len('_study')].upper()] = {
+                        'delivered': ['%s_Valuation_Study_01-09-2026_public.pdf'
+                                      % d[:-len('_study')].upper()],
+                        'record_dir': os.path.join(_tmp, d), 'readable': True}
+            for tk in (_extra or ()):
+                out[tk] = {'delivered': ['%s_Valuation_Study_01-09-2026_public.pdf' % tk],
+                           'record_dir': None, 'readable': False}
+            return out
+        gate.resolve_population = _fixture_population
 
         buf, real = [], sys.stdout
 
@@ -103,10 +125,16 @@ def run_case(name, build, outstanding, expect_fail):
         return ok
     finally:
         gate.ENGINE, gate.OUTSTANDING = REAL_ENGINE, REAL_OUTSTANDING
+        gate.resolve_population = REAL_POPULATION
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+REAL_POPULATION = gate.resolve_population
+
 EMPTY = {'breach_no_review': [], 'unreadable': [], 'exempt': {}}
+
+
+DECLARED_CASES = 27
 
 
 def main():
@@ -201,8 +229,39 @@ def main():
          {'breach_no_review': [], 'unreadable': [],
           'exempt': {'XPT': 'metals study - no issuer, no equity fair value of this shape'}},
          False),
+
+        # ---- THE POPULATION RE-POINTING [06-09-2026]. Until this date the gate
+        # globbed engine/*_study and audited 23 of 90 delivered studies while
+        # reporting itself population-anchored. These six cases are the conditions
+        # that re-pointing creates, and the two CLEAN ones matter most: a ratchet
+        # that cannot stay green is the permanently-red check [R-ENF-02] forbids.
+        ('a delivered study committing no record, not on the ratchet',
+         lambda e: make_study(e, 'AMOC', 9.00, 9.10), EMPTY, True, ('COMI',)),
+        ('CLEAN — the same study, ratcheted on no_record_dir, must PASS',
+         lambda e: make_study(e, 'AMOC', 9.00, 9.10),
+         {'breach_no_review': [], 'unreadable': [], 'exempt': {},
+          'no_record_dir': ['COMI']}, False, ('COMI',)),
+        ('a name excused on no_record_dir that DOES commit a record',
+         lambda e: make_study(e, 'AMOC', 9.00, 9.10),
+         {'breach_no_review': [], 'unreadable': [], 'exempt': {},
+          'no_record_dir': ['AMOC']}, True),
+        ('a name carrying BOTH allowances — the two are not interchangeable',
+         lambda e: make_study(e, 'AMOC', 9.00, 9.10),
+         {'breach_no_review': [], 'unreadable': ['COMI'], 'exempt': {},
+          'no_record_dir': ['COMI']}, True, ('COMI',)),
+        ('a ratcheted name that resolves to no covered name at all',
+         lambda e: make_study(e, 'AMOC', 9.00, 9.10),
+         {'breach_no_review': [], 'unreadable': [], 'exempt': {},
+          'no_record_dir': ['ZZNOTABOOKNAME']}, True),
+        ('names present and ZERO answers read — anchored the second way',
+         lambda e: None,
+         {'breach_no_review': [], 'unreadable': [], 'exempt': {},
+          'no_record_dir': ['COMI']}, True, ('COMI',)),
     ]
-    results = [run_case(n, b, o, f) for n, b, o, f in cases]
+    results = [run_case(*(c if len(c) == 5 else c + ((),))) for c in cases]
+    assert len(results) == DECLARED_CASES, (
+        'declared %d cases, ran %d — a control that quietly loses a case reports '
+        'clean for the wrong reason.' % (DECLARED_CASES, len(results)))
     print()
     if all(results):
         print('negative control OK — the gate goes red on every injected defect, on both '

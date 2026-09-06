@@ -24,7 +24,7 @@ WHY THIS EXISTS
     Every one of those is the model being wrong, not the company being cheap. The market
     price was the only thing in the room saying so.
 
-WHAT IT CHECKS, per study directory under engine/*_study/
+WHAT IT CHECKS, per covered name (the population is the book — see below)
     1. the study's own committed numbers resolve to a central fair value and the spot it
        was struck against — a study whose answer cannot be read is NOT clean [R-ENF-04]
     2. where the central sits more than GAP_LIMIT below OR GAP_LIMIT_ABOVE above that spot, a dated gap review
@@ -37,14 +37,27 @@ THE RATCHET
     with no entry either way. The list may only ever get SHORTER — --prune rewrites it.
     A permanently red check is one everyone learns to ignore.
 
-THE POPULATION IS ANCHORED ELSEWHERE  [R-ENF-04]
-    This gate globs engine/*_study, so a mis-resolved ENGINE or a bad pattern would find
-    nothing and report "no new violations" — an ABSENT answer wearing the costume of a
-    clean one. It therefore holds its own glob against a population counted somewhere
-    else: every ticker already named in gap_outstanding.json must resolve to a study
-    directory on disk. Defeating that would mean deleting the studies themselves, which is
-    a far louder failure than an empty listing. It is EXACT, never a threshold. An empty
-    outstanding list is not an escape either — a run that examined zero studies FAILS.
+THE POPULATION IS THE BOOK, NOT THE DIRECTORIES  [R-ENF-04, RE-POINTED 06-09-2026]
+    THIS GATE USED TO GLOB engine/*_study AND THAT WAS THE WRONG POPULATION. All 90
+    covered names carry a delivered valuation study under files/; 23 have a record
+    directory. So for its whole life this gate audited 23 fair values and reported
+    itself population-anchored — against gap_outstanding.json, which had itself been
+    seeded from the same glob. A population and the list that checks it, both derived
+    from one glob, agree with each other by construction and say nothing about the world.
+    Sixty-seven studies publish a fair value this gate had never once put against a price.
+
+    It now takes its population from engine/study_population.py: the covered names joined
+    to their delivered artefacts, resolved in BOTH directions and refusing rather than
+    returning a short list. Anchored both ways — a run that examined zero NAMES fails, and
+    a run that READ zero records across present names fails, which is the distinction an
+    absent answer hides behind.
+
+    TWO RATCHET GROUPS, NOT INTERCHANGEABLE, which is [R-TERM-01]'s own negative-control
+    lesson arriving again: `no_record_dir` excuses a study that commits no record for any
+    gate to read, `unreadable` excuses one whose committed numbers do not expose an
+    answer. A name in both, or moving between them, goes RED until the move is recorded —
+    otherwise a study escapes a real unreadable answer by being re-filed as merely
+    undirectoried.
 
 USAGE
     python3 scripts/check_valuation_gap.py          # gate; exit 1 on any hard fail
@@ -58,6 +71,8 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(ROOT, 'engine'))
+import study_population  # noqa: E402  the population, resolved once for every gate
 ENGINE = os.path.join(ROOT, 'engine')
 OUTSTANDING = os.path.join(ENGINE, 'build_depth_audit', 'gap_outstanding.json')
 
@@ -424,7 +439,7 @@ def _audited_gap(raw):
 def load_outstanding():
     d = json.load(open(OUTSTANDING, encoding='utf-8'))
     return (d, set(d.get('breach_no_review', [])), set(d.get('unreadable', [])),
-            set(d.get('review_central_unstated', [])))
+            set(d.get('review_central_unstated', [])), set(d.get('no_record_dir', [])))
 
 
 # A DIRECTORY THAT IS NOT AN EQUITY VALUATION IS EXEMPT, AND THE EXEMPTION IS EXECUTED
@@ -453,33 +468,68 @@ def exemptions(d):
     return ex, bad
 
 
+def resolve_population():
+    """THE SEAM. The gate resolves its population through one call so the
+    negative control can substitute a fixture and test THIS gate's logic,
+    while engine/study_population.py is negative-controlled separately on its
+    own eight conditions. Each instrument tested on what it decides."""
+    return study_population.population()
+
+
 def main(argv):
     prune = '--prune' in argv
-    d, known_breach, known_unreadable, known_unstated = load_outstanding()
+    (d, known_breach, known_unreadable, known_unstated,
+     known_no_record) = load_outstanding()
 
-    sdirs = sorted(glob.glob(os.path.join(ENGINE, '*_study')))
+    # THE POPULATION IS THE BOOK. Every covered name carries a delivered study;
+    # what varies is whether it also commits a record this gate can read.
+    pop = resolve_population()
     ok, breaches, unreadable, reviewed, new_fail = [], [], [], [], []
+    no_record = []
     exempt, exempt_no_reason = exemptions(d)
     exempted = []
     for k in sorted(exempt_no_reason):
         new_fail.append('%s is listed exempt with no reason. An exemption without one is '
                         'a name switched off, not a name excused.' % k)
 
-    # [R-ENF-04] the population, counted somewhere other than this gate's own glob
-    on_disk = {os.path.basename(s).replace('_study', '').upper() for s in sdirs}
-    vanished = sorted((known_breach | known_unreadable) - on_disk)
-    if not sdirs:
-        new_fail.append('this gate examined ZERO study directories. An empty result is not '
-                        'a clean result — re-run the glob before believing the absence.')
+    # [R-ENF-04] ANCHORED BOTH WAYS, against a population this gate does not own
+    if not pop:
+        new_fail.append('this gate examined ZERO covered names. An empty result is not '
+                        'a clean result — re-run the resolver before believing it.')
+    vanished = sorted((known_breach | known_unreadable | known_no_record) - set(pop))
     if vanished:
-        new_fail.append('%d study directory(ies) named in gap_outstanding.json do not resolve '
-                        'on disk (%s). Either the glob did not run or the studies were removed '
-                        'without pruning the list; neither is a pass.'
+        new_fail.append('%d name(s) in gap_outstanding.json resolve to no covered name '
+                        '(%s). Either the resolver did not run or the names left the '
+                        'book without the list being pruned; neither is a pass.'
                         % (len(vanished), ', '.join(vanished)))
+    # THE TWO GROUPS EXCUSE TWO DIFFERENT CONDITIONS AND ARE NOT INTERCHANGEABLE
+    both = sorted(known_unreadable & known_no_record)
+    if both:
+        new_fail.append('%s listed in BOTH no_record_dir and unreadable. They excuse '
+                        'different conditions — no record to read, versus a record whose '
+                        'numbers expose no answer — and a name carrying both allowances '
+                        'escapes whichever one it actually breaches.' % ', '.join(both))
 
     price_notes, price_basis = [], []
-    for sdir in sdirs:
-        tk = os.path.basename(sdir).replace('_study', '').upper()
+    for tk in sorted(pop):
+        sdir = pop[tk]['record_dir']
+        if sdir is None:
+            # DELIVERED, AND INVISIBLE TO EVERY RECORD-READING GATE. Not skipped and
+            # not silently narrowed away: this is the state the re-pointing exists to
+            # make countable, and under [R-ENF-04] it is UNREADABLE, which is not CLEAN.
+            no_record.append((tk, len(pop[tk]['delivered'])))
+            if tk not in known_no_record:
+                new_fail.append('%s: a delivered valuation study with no committed record '
+                                'directory, so no gate in this repository can put its fair '
+                                'value against a price. A study nothing can read is not a '
+                                'study that passed.' % tk)
+            continue
+        if tk in known_no_record:
+            new_fail.append('%s is excused on no_record_dir and DOES commit a record '
+                            'directory. The allowance is for a study nothing can read; '
+                            'a name that has acquired a record is audited on what the '
+                            'record says, and the move is recorded rather than inherited.'
+                            % tk)
         central, spot, route = read_answer(sdir)
         if tk in exempt:
             exempted.append((tk, exempt[tk]))
@@ -599,10 +649,18 @@ def main(argv):
             new_fail.append('%s: central is %.1f%% %s the spot it was struck at, and %s.'
                             % (tk, abs(100 * gap), side, why))
 
-    print('study directories: %d   readable: %d   reviewed: %d   breaching: %d   '
-          'unreadable: %d   exempt: %d'
-          % (len(sdirs), len(ok) + len(reviewed) + len(breaches), len(reviewed),
-             len(breaches), len(unreadable), len(exempted)))
+    print('covered names (every one carrying a delivered study): %d' % len(pop))
+    print('  answer READ and audited : %d   reviewed: %d   breaching: %d'
+          % (len(ok) + len(reviewed) + len(breaches), len(reviewed), len(breaches)))
+    print('  record present, answer unreadable : %d' % len(unreadable))
+    print('  NO RECORD DIRECTORY AT ALL        : %d   exempt: %d'
+          % (len(no_record), len(exempted)))
+    # [R-ENF-04] BOTH WAYS: zero names fails above, and zero answers READ across
+    # present names fails here — the distinction an absent answer hides behind
+    if pop and not (ok or reviewed or breaches):
+        new_fail.append('this gate READ zero answers across %d covered names. A run that '
+                        'examined a population and resolved nothing in it is an absent '
+                        'result, not a clean one.' % len(pop))
     for tk, why in sorted(exempted):
         # printed, never silent: an exemption a reader cannot see is indistinguishable
         # from a study this gate quietly skipped
@@ -633,9 +691,17 @@ def main(argv):
               'clean one:' % len(unreadable))
         for tk, why in unreadable:
             print('   %-12s %s' % (tk, why))
+    if no_record:
+        print('\nDELIVERED, WITH NO RECORD ANY GATE CAN READ (%d) — the fair value is '
+              'published and has never been put against a price by this gate:'
+              % len(no_record))
+        names = sorted(t for t, _ in no_record)
+        for i in range(0, len(names), 6):
+            print('   ' + ', '.join(names[i:i + 6]))
 
     now_passing = sorted(({b[0] for b in breaches} ^ known_breach) & known_breach) + \
-        sorted(({tk for tk, _ in unreadable} ^ known_unreadable) & known_unreadable)
+        sorted(({tk for tk, _ in unreadable} ^ known_unreadable) & known_unreadable) + \
+        sorted(({tk for tk, _ in no_record} ^ known_no_record) & known_no_record)
     if now_passing:
         print('\nNOW PASSING — remove from the list (%d): %s'
               % (len(now_passing), ', '.join(now_passing)))
@@ -643,9 +709,11 @@ def main(argv):
     if prune:
         d['breach_no_review'] = sorted({b[0] for b in breaches} & known_breach)
         d['unreadable'] = sorted({tk for tk, _ in unreadable} & known_unreadable)
+        d['no_record_dir'] = sorted({tk for tk, _ in no_record} & known_no_record)
         json.dump(d, open(OUTSTANDING, 'w'), indent=1)
-        print('\npruned; %d breach + %d unreadable remain'
-              % (len(d['breach_no_review']), len(d['unreadable'])))
+        print('\npruned; %d breach + %d unreadable + %d no-record remain'
+              % (len(d['breach_no_review']), len(d['unreadable']),
+                 len(d['no_record_dir'])))
         return 0
 
     if new_fail:
@@ -665,8 +733,8 @@ def main(argv):
     # comparison in silence, which is the staleness this reading was changed to end.
     if price_basis:
         print('\n  PRICE BASIS — [R-GAP-01] compares against the LATEST KNOWN price:')
-        print('    %d of %d studies compared against their own OHLC library'
-              % (len(price_basis), len(sdirs)))
+        print('    %d of %d readable studies compared against their own OHLC library'
+              % (len(price_basis), len(ok) + len(reviewed) + len(breaches)))
         for t, d in sorted(price_basis, key=lambda x: x[1])[:6]:
             print('      %-12s last close %s' % (t, d))
         print('    a library that has stopped is a stale comparison, not a passing one;'
