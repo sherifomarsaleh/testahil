@@ -1316,3 +1316,30 @@ on this line, not a number to estimate.
 answer could not be obtained. It was one OCR pass away, in a file this run had
 already parsed cell by cell — and the search that "found nothing" had searched for
 English words in a document written in Arabic.
+
+### What the filing does and does not disclose about the split
+
+Read the FY2020-21 annual's foreign-currency risk note (page 33) as well. It is
+**qualitative only** — "the principal risks are foreign-currency risk from changes
+in the exchange rate, affecting payments and receipts in foreign currency and the
+revaluation of monetary asset and liability balances in foreign currencies" — with
+**no currency table**.
+
+So the position is precise, and it is three things rather than one:
+
+1. **The 100%-dollar simplification is refuted.** The facility note gives the
+   loan as [X] million US dollars AND 1.887 billion Egyptian pounds, from six
+   Egyptian banks, with interest and instalments in both currencies.
+2. **The currency composition of the OUTSTANDING BALANCE is not disclosed.** The
+   note gives the facility as contracted, not the balance by currency at the
+   date, and the risk note carries no table. That is a named absence under SIGCM
+   clause 8, not a number to estimate.
+3. **The best sourced anchor is therefore the facility's original split**, and any
+   use of it must say that it is the drawdown composition rather than the
+   period-end one.
+
+The first OCR sweep of all ten filings died on a tesseract timeout at page 2 of
+the oldest — a probe failure, which is not an absence. Re-pointed at the back 45%
+of each document, where the notes sit, with a longer per-page limit and timed-out
+pages counted and named rather than dropped. Still running; whatever it returns
+adds to this rather than changing it.
