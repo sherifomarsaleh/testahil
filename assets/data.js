@@ -678,8 +678,8 @@ const TICKERS = {
     name: "Electro Cable Egypt",
     nameAr: "\u0627\u0644\u0643\u0627\u0628\u0644\u0627\u062a \u0627\u0644\u0643\u0647\u0631\u0628\u0627\u0626\u064a\u0629 \u0627\u0644\u0645\u0635\u0631\u064a\u0629",
     code: "EGX:ELEC",
-    spot: 2.19,
-    spotDate: "close 5 Aug 2026",
+    spot: 2.12,
+    spotDate: "close 06 Sep 2026",
     fairAsof: "2026-08-05",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 0.18, base: 0.34, full: 0.95 },          // 5 Aug 2026 \u2014 four-lens weighted central EGP 0.34 (\u221285% vs spot 2.19). Weights 40/20/20/20: FCFF DCF (floored at 0.01 \u2014 base EV 3,813 does NOT cover net debt 9,805, so intrinsic equity is \u22124.0bn, i.e. \u22121.81/share unfloored, disclosed in the bridge and floored only by limited liability) / relative EV\u2044EBITDA (also floored \u2014 debt exceeds EV at any peer multiple) / normalized earnings power 0.70 / justified P\u2044B on sustainable ROE 0.91. Forecast is BOTTOM-UP ON TONNAGE: revenue = volume \u00d7 (LME copper \u00d7 EGP\u2044USD \u00d7 1.387 fabrication uplift), EBITDA = volume \u00d7 conversion-EBITDA per tonne \u2014 margins are OUTPUTS. Implied volumes fell 24.0kt (96% of the parent plant\u2019s stated capacity, FY23\u201324) \u2192 15.8kt (63%) \u2192 ~9.3kt annualized in 1Q26 (~37%); the collapse is VOLUME, masked by record copper. Discount rate is a sliding schedule: WACC 21.53% explicit \u2192 15.00% terminal (terminal capital structure NORMALIZED to 40% debt, not today\u2019s ~59% distress weight, which would be circular), sovereign CDS netted out of the risk-free rate, own-stock beta 0.964 (R\u00b2 0.222, n 257). Terminal value is ROIC-consistent (g = ROIC \u00d7 RR exactly) and carries 82% of EV \u2014 high, and stated: the explicit years are working-capital-suppressed. Terminal ROIC 9.2% sits BELOW the 15.0% terminal WACC, so the growth gradient inverts (more growth subtracts value) \u2014 construction, not error. NET DEBT IS TRIANGULATED, NOT DISCLOSED: 9,805 = drawn debt 10,465 (FY25 total liabilities 12,360 less non-debt liabilities ~1,890) less cash ~665, cross-checked by a cash-flow roll-forward (9,803) and against the disclosed \u201cEGP 10.9bn facilities\u201d read as fully drawn (10,235); range 9,120\u201310,360 is worth ~\u00b10.19/share and the residual risk is SKEWED ADVERSE. Copper is held FLAT AT THE MARKET (~$14,000/t LME cash, 3\u20134 Aug) \u2014 a \u201cno house view\u201d forecast must anchor on the tape. Modelled book equity breaches solvency by FY29E on the base case. full = weighted bull central; even that sits 57% below spot.
@@ -7877,6 +7877,35 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 06-Sep-2026 — struck on the 06-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-06 and is graded in this same pass. The previous cone was anchored 2026-08-06; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.027344 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has cleared the 28-window history gate, so live_width_mult() returns 0.9000 on its OWN resolved 3-month residuals and the cone was simulated at an effective width_cal of 0.8559, not the pooled 0.951. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the carry drift and the tail nu are untouched by it. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +1.682 (outside the 0.25 dead zone); tilt +1.39% at 1M and +2.50% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 62) size the cone only.",
     p5:97.5, p25:120.91, p50:136.46, p75:154.0, p95:190.66,
     touch:{ "+5":82, "+10":66, "+15":52, "+20":40, "-5":62, "-10":40 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 2026-09-06 single-name roll-forward: ELEC, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"ELEC", asset_class:"equity",
+    anchor_date:"2026-09-06", run_date:"2026-09-06", anchor_price:2.12, ccy:"EGP",
+    horizon_label:"1 month", grade_date:"2026-10-06", grade_basis:"projected", horizon_days:20,
+    cycle_no:2, reanchor_from:"2026-08-05", anchor_vol:0.3667,
+    signal_z:-0.3806, signal_alpha:-0.002318,
+    note:"Cycle 2 roll-forward, 2026-09-06 — struck on the 06-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-06 and is graded in this same pass. The previous cone was anchored 2026-08-05; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. rf_live 19.50% CBE main operation rate. Direction call DOWN, from this name’s own mom_combo z of -0.381 (outside the 0.25 dead zone); tilt -0.23% at 1M and -0.49% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 62) size the cone only.",
+    p5:1.84, p25:2.03, p50:2.15, p75:2.27, p95:2.5,
+    touch:{ "+5":52, "+10":25, "+15":12, "+20":6, "-5":40, "-10":16 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ELEC", asset_class:"equity",
+    anchor_date:"2026-09-06", run_date:"2026-09-06", anchor_price:2.12, ccy:"EGP",
+    horizon_label:"3 months", grade_date:"2026-12-06", grade_basis:"projected", horizon_days:62,
+    cycle_no:2, reanchor_from:"2026-08-05", anchor_vol:0.3997,
+    signal_z:-0.3806, signal_alpha:-0.004881,
+    note:"Cycle 2 roll-forward, 2026-09-06 — struck on the 06-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-06 and is graded in this same pass. The previous cone was anchored 2026-08-05; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. rf_live 19.50% CBE main operation rate. Direction call DOWN, from this name’s own mom_combo z of -0.381 (outside the 0.25 dead zone); tilt -0.23% at 1M and -0.49% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 62) size the cone only.",
+    p5:1.65, p25:1.99, p50:2.21, p75:2.45, p95:2.96,
+    touch:{ "+5":77, "+10":58, "+15":43, "+20":30, "-5":61, "-10":38 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
