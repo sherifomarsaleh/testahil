@@ -2,6 +2,37 @@
 
 Questions and deliveries that arose overnight, each with the evidence and the recommended answer. Empty means nothing needs you.
 
+## 06 Sep 2026 — the valuation-input priority: three of the four already exist
+
+**Nothing here needs a decision.** You directed that PHDC, TMGH, EGCH and AMOC's per-origin
+valuation-input blocks be finished before further gate work, on the basis that only ARCC's had
+landed. Measured live before starting:
+
+| run | `valuation_inputs.json` | origins |
+|---|---|---|
+| AMOC | present | 5 — FY2021–FY2025 |
+| ARCC | present | 8 — FY2018–FY2025 |
+| EGCH | present | 13 — FY2012–FY2024 |
+| PHDC | present | 11 — FY2015–FY2025 |
+| **TMGH** | **absent** | **0** |
+
+All four landed today, in commits made alongside other work. The census figures move with
+them: **capex is present in 26 of 55 name-origin cells, not 0; cash in 62%, not 25%; a footed
+share count in 60%, not 16%; and 26 cells carry a complete bridge with a capex figure**, where
+the instruction has none. Those figures match the state recorded at `[R-FCAL-01 AMENDED]`'s
+adoption on 3 September, so the likeliest reading is that the instruction was written from the
+digest rather than from the live census — which is exactly what that rule tells everyone to
+avoid, and it is worth saying because the digest cannot carry a number that moves.
+
+**The priority is taken as given and the work is proceeding — on the one name that needs it.**
+TMGH's block is being built from its own six annual filings (FY2020–FY2025). Origins before
+FY2020 have no annual filing in that run's archive and will be recorded as missing with their
+reason rather than reconstructed, as ARCC refused its share count.
+
+Reported rather than silently re-scoped: a status that reports a closed blocker as open spends
+your time on work already delivered.
+
+
 ## 06 Sep 2026 — CONSUMPTION THROTTLED TO HALF THE WEEK, PER YOUR INSTRUCTION
 
 Your instruction of 06-Sep, stated four times — *"Get back to normal consumption pattern. Maximum
