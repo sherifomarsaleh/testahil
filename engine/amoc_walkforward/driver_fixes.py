@@ -7,21 +7,37 @@ from -0.707 to +0.327 -- while ARCC's is not macro at all. The transmission is
 sound; what is wrong is the KNOWABLE path.
 
 THE DEFECT, IN THE MODULE'S OWN CODE. bottom_up.brent_ratio() returns exactly 1.0
-outside foresight, so crude-in-EGP is held FLAT, while salaries, supporting
-materials, other cost of sales, G&A and marketing all compound cpi_path(). A
-refiner's revenue and feedstock are therefore frozen in pounds while every
-domestic cost escalates at Egyptian inflation. That is [L-048] in its purest
-form -- one event counted once and ignored once -- and it is what makes the
-perfect-CPI-only setting WORSE than knowing nothing (-1.136 against -0.707):
-turning inflation up while the currency stays frozen widens the very asymmetry
-that is doing the damage.
+outside foresight, so crude-in-EGP is held FLAT -- and crude is both this
+company's product and, as feedstock, most of its cost of sales. Only salaries,
+supporting materials, other cost of sales, G&A and marketing compound cpi_path().
 
-THE ASYMMETRY IS MEASURED SEPARATELY FROM THE REMEDY, because they are two
-different claims. asymmetry_cost() puts crude on the model's own inflation path
--- not a claim that consumer inflation is the right escalator for crude, simply
-one clock instead of two -- and that alone takes the bias from -0.774 to -0.258
-on 63 common cells. So most of this run's lean is the mismatch itself, before
-any question of which path is right.
+IT IS A NOMINAL FREEZE, NOT AN ASYMMETRY, AND THE FIRST DRAFT OF THIS FILE SAID
+OTHERWISE. That draft called it [L-048] -- costs escalating while revenue sits
+still, one event counted once and ignored once -- which is the shape this house
+has seen most often and is the wrong diagnosis here. Measured rather than read
+(engine/valuation_calibration/clock_test.py): over three years AMOC's projected
+revenue escalates x1.00 and its cost of sales x1.02, against the model's own
+cumulative inflation of x1.24. BOTH SIDES ARE FROZEN. The two clocks differ by
+two points; what differs by twenty-four is the whole model against the economy
+it says it believes in. Across the book no run has a two-clock gap wider than
+0.11, and AMOC alone sits near 0.82 on BOTH clocks where EGCH, ARCC and TMGH sit
+at or above 0.92 -- so the defect is a level, not a mismatch, and it is this run
+that carries it. A company standing still in nominal terms inside an
+economy inflating at 7.4% a year is declining in real terms by construction,
+which is [R-MACRO-01]'s terminal-growth-below-inflation defect arriving in the
+explicit window.
+
+That also explains the setting that looks strangest: perfect CPI alone is WORSE
+than knowing nothing (-1.136 against -0.707), because it raises the only lines
+that were moving and leaves the frozen 88% exactly where it was, widening the
+gap rather than closing it.
+
+THE DIAGNOSIS IS MEASURED SEPARATELY FROM THE REMEDY, because they are two
+different claims. Putting crude on the model's own inflation path -- not a claim
+that consumer inflation is the right escalator for crude, simply a path instead
+of a freeze -- takes the bias from -0.774 to -0.258 on 63 common cells. So most
+of this run's lean is the freeze itself, before any question of which path is
+right.
 
 THE REMEDY INVENTS NO PARAMETER. [R-MACRO-01] already states the house currency
 identity: relative purchasing-power parity on the path's own inflation against
@@ -43,8 +59,8 @@ commodity price has no drift, and assuming one would be a forecast rather than a
 rule.
 
 THE ADOPTED FIX SCORES WORSE THAN THE DIAGNOSTIC AND IS ADOPTED ANYWAY. On the
-63 cells scoreable in every variant the asymmetry test comes out at -0.258 and
-F8 at -0.443, both far better than the -0.774 as shipped. The asymmetry test is
+63 cells scoreable in every variant the freeze test comes out at -0.258 and
+F8 at -0.443, both far better than the -0.774 as shipped. The freeze test is
 NOT a candidate rule and must never become one: it escalates crude at Egyptian
 consumer inflation, which is not a claim anybody would defend, and it scores
 better only because that rate happens to compound faster than the PPP
@@ -167,7 +183,7 @@ def summarise(cells, keys):
 
 def main():
     variants = [("as shipped (crude frozen in EGP)", _as_shipped),
-                ("asymmetry test: crude on own CPI", _on_cpi),
+                ("freeze test: crude on own CPI", _on_cpi),
                 ("F8: crude on the PPP currency", _on_ppp)]
     got = {lab: _cells(fn) for lab, fn in variants}
     keys = [k for k in got[variants[0][0]]

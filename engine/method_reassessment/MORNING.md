@@ -727,3 +727,163 @@ Two bugs closed on the way: my own dump called ARCC's `cpi_only` without
 that combination instead of returning it.
 
 `MACRO_SHARE_06-09-2026.md`, `BREAK_EFFECT_FIVE_NAMES_06-09-2026.md`.
+
+### And the ranges themselves do not hold
+
+[R-FCAL-01]'s years-three-to-five ranges clause is honoured by all five runs —
+checked, clean, nothing to fix there. So the next question was whether those
+ranges hold, which nobody had asked.
+
+**They do not.** Walk-forward (band built from the origins strictly before each
+one): 259 cells, **55.6% coverage against an expected 63.5%, p=0.010**, and it
+degrades monotonically with the horizon — -1.9pp at one year to **-31.7pp at
+five, where the band catches 29% of outcomes and sixteen of its seventeen misses
+are on the low side.** Years three to five are exactly where the rule mandates
+ranges *because* points fail there.
+
+Not the break effect in a new costume: split by regime the bands under-cover in
+both, and MORE outside the devaluation years (-11.4pp against -6.6pp). The break
+effect is a lean on top of a band that is too narrow in both directions.
+
+**The first draft of this instrument measured nothing and that is the more useful
+half.** Leave-one-origin-out on a min-max band is an arithmetic identity —
+exactly two of every k+1 hold-outs fail whatever the data, so coverage is
+(k-1)/(k+1) by construction. It was caught only because the benchmark was
+computed rather than typed: observed and expected agreed to the last decimal on
+five names and five horizons, five rows too clean to be real.
+
+No widening. A factor chosen to make the table pass is the free parameter the
+promotion rule forbids. `BAND_HOLDOUT_06-09-2026.md`.
+
+### Correction: AMOC is a nominal freeze, not two clocks
+
+Built a clock test (`engine/valuation_calibration/clock_test.py`) so the
+transmission is measured rather than read module by module, and it corrected my
+own diagnosis from a few hours earlier. At three years AMOC's projected revenue
+escalates x1.00 and its cost of sales x1.02 against the model's own cumulative
+inflation of x1.24 — **both sides frozen**, clocks 0.81 and 0.83. It is not
+[L-048]; the two sides differ by two points and the whole model differs from its
+own economy by twenty-four. Crude is both AMOC's product and most of its cost, so
+freezing crude in pounds freezes nearly the whole income statement. EGCH (0.94 /
+1.00) and ARCC (1.03 / 0.92) are healthy, which is what makes AMOC's figure
+readable at all.
+
+The instrument's own first draft was wrong the same way twice over: it measured
+the ELASTICITY to a one-point inflation bump, which is a local slope and cannot
+see a level held still, and it reported AMOC as "one clock". Re-pointed at the
+escalation actually applied over the horizon, never widened.
+
+Extended the clock test to four of the five runs (PHDC prints its reason rather
+than being left off the list). **No run has a two-clock gap wider than 0.11**, so
+[L-048] is not present anywhere in this book; AMOC alone sits near 0.82 on BOTH
+clocks where EGCH, ARCC and TMGH are at or above 0.92. The defect is a level, not
+a mismatch. The gap is the robust column — volume cancels out of it — and the
+levels are not, which is why TMGH reads 1.9 on both sides: it forecasts a growing
+book, a forecast rather than a defect.
+
+### The clock test, and a reading I had to withdraw
+
+Wrote a general adapter so the test reads all five runs (PHDC's actual-at-origin
+is recoverable from the cell whose target IS that origin, so nothing is estimated).
+
+PHDC's raw gap came out at -0.44, four times the next widest, and three facts
+lined up behind it: PHDC is the one name of five that OVER-forecasts its own
+history, its central sits 24% above the market, and its revenue escalates far
+ahead of its cost. I wrote it up as [L-048] in mirror image.
+
+**It does not survive reading the projector.** PHDC escalates `asp` and `cogs`
+by the SAME inflation term in the same loop — there is no escalation asymmetry.
+The raw gap measures that revenue is a percentage release of a BACKLOG while cost
+follows DELIVERIES: two different volume drivers, so volume does not cancel and
+the difference is a developer's recognition mechanism, not a defect. The gap now
+prints `n/a` for both developers rather than a number, and the reason is in the
+module.
+
+The number was real and the reading of it was wrong — [R-TERM-01 CLAUSE TWO
+CORRECTED] in another costume: a ratio between two quantities defined differently
+is not evidence about either.
+
+**What survives is AMOC**: both clocks at 0.82, gap +0.02, frozen in nominal
+terms inside an economy the model puts at 7.4% a year. And no run in the book has
+an [L-048] gap — the widest readable one is ARCC at -0.11.
+
+Two earlier drafts were wrong too: a ratio of averages, and a filter requiring a
+positive base-year figure that dropped every cost line TMGH commits and reported
+it untestable. `CLOCK_TEST_06-09-2026.md`.
+
+### PHDC located: one driver on the wrong clock
+
+Followed the open question and it answered cleanly. PHDC over-forecasts by +0.468
+on 160 cells and **the bias does not compound** (+0.459 / +0.475 / +0.479 /
++0.484 / +0.439 at h=1..5) — a level error, not a rate error, which is the
+opposite signature to every under-forecasting name.
+
+The level is the recognition rate. `delta = revenue / (backlog + new sales)` is a
+trailing three-year mean held flat, which is the right mechanical choice a priori
+— but this company's realised delta fell monotonically from 0.3393 to 0.1104 as
+its backlog compounded 14.8x against revenue's 4.8x. **Every origin used a delta
+above what happened, eight of eight** (0.3336 against a realised 0.1436 three
+years out; 0.3244 against 0.1596).
+
+It is [R-FCAL-01]'s trap (ii) verbatim: revenue on a backlog-release clock, cost
+on a delivery clock. Revenue's own bias is only +0.107 while gross profit's is
++0.540 — operating leverage on a thin residual, exactly as the rule predicts.
+
+Both framings measured, **neither adopted**: revenue onto the delivery clock
+takes the pooled bias to +0.171 and gross profit to +0.028 at a cost in MAE; cost
+onto the revenue clock takes it to +0.383 and improves MAE. Choosing is a ruling
+on a delivered study, not a measurement.
+
+Neither fixes the residual, which sits BELOW gross profit — profit before tax is
+still +0.837 with gross profit at +0.028. That second defect is larger than the
+one located here and is not diagnosed.
+
+The measurement's own first draft negated the cost line, dropped 121 of 160 cells
+through the log score, and read as "no change". `build()` now raises when a
+mutation fails to land. `PHDC_RECOGNITION_CLOCK_06-09-2026.md`.
+
+### And in levels the ranking flips — plus trap (i), which resists a naive fix
+
+Decomposed PHDC's profit error in LEVELS on 26 cells where every line is present
+both sides, so the identity closes: **cost of sales under-forecast is 62% of the
+whole +3,612 profit over-forecast**, revenue over-forecast 26%, finance cost 21%.
+The log table put revenue at +0.107 against cost at -0.235, which reads as
+revenue being the larger problem. It is not — log weights small cells, levels
+weight large ones, and a fair value inherits the level ranking. That also bounds
+the clock fix: it removes the 947 of revenue over-forecast and leaves the 2,242
+of cost under-forecast standing.
+
+Then the finance cost, which is **[R-FCAL-01]'s trap (i) verbatim**:
+`kd = finance_cost / bs.total_current_liabs` on a developer whose current
+liabilities are mostly customer advances, which bear no interest. Measured on the
+run's own panel, interest-bearing borrowings are 0.9% to 35.8% of that total and
+the share moves by year. The panel already carries `bs.loans_current`,
+`bs.loans_lt`, `bs.overdraft` and `bs.banks_credit` — the right denominator
+needed no new data and was simply not used.
+
+**Correcting the denominator alone makes it WORSE** (-1.093 to -1.422). The rate
+rises but it is applied to a base FROZEN at the origin that swings thirty-fold
+across origins. Two defects in one line, and fixing one without the other is
+worse than leaving both; a proper fix needs a projected debt path this model does
+not build. Stop-and-inform rather than invent one — which is the digest's own
+warning about this trap, arriving as predicted.
+
+### The largest PHDC line, diagnosed: construction cost escalated at CPI
+
+`cogs = cpu0 x infl x deliveries` with `infl` the Egyptian consumer-price path.
+On the run's own panel, PHDC's realised unit cost compounded **5.40x over
+2015-2023 — 23.5% a year — against CPI's 3.10x at 15.2%. That is 7.2% a year in
+real terms.** Escalating construction cost at consumer inflation under-forecasts
+it by construction, and that under-forecast is 62% of the whole profit error.
+
+It is the cost-stack escalation rule the protocol already carries — one escalator
+per driver class, never one blended index. Construction cost is steel, cement,
+rebar and site labour, a different basket and on this company's record a
+materially faster-moving one.
+
+**PHDC's over-forecast is now fully accounted for, and all three defects are
+named in standing rules that no gate checks:** cost of sales escalated at CPI
+(62%), revenue and cost on different recognition clocks (26%), finance cost from
+a denominator of mostly non-interest-bearing customer advances on a frozen base
+(21%). Correcting any of them is a ruling on a delivered study, not a measurement,
+and none is made tonight.

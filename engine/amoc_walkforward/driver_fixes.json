@@ -12,7 +12,7 @@
    "bias_other": null,
    "mae_other": null
   },
-  "asymmetry test: crude on own CPI": {
+  "freeze test: crude on own CPI": {
    "n": 63,
    "bias": -0.2577855768240417,
    "mae": 0.46475008586128747,
