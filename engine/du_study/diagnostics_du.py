@@ -429,7 +429,7 @@ judge('the risk-free tenor',
       'the longer-tenor one because a perpetuity is discounted at a tenor-matched rate, and '
       'on that reading the adopted side is the lower-value one by AED %.2f a share. ONE '
       'THING CUTS FOR THE ADOPTED SIDE AND IT IS THIS STUDY\'S OWN: run end to end, the '
-      'longer-tenor rate nets to a real risk-free of %.2f%%, below the matched-tenor US '
+      'longer-tenor rate nets to a DEFAULT-FREE risk-free of %.2f%%, below the matched-tenor US '
       'Treasury of %.2f%%, which the study\'s own no-arbitrage floor refuses under a hard '
       'peg — so the figure above is what the alternative is worth, not a construction this '
       'study could adopt.'
@@ -457,31 +457,37 @@ judge('the equity-risk-premium basis',
       'requires, and the same basis is stripped as is added back on either side. The '
       'adopted one gives the HIGHER cost of equity — %.2f%% against %.2f%% — and therefore '
       'the LOWER value, by AED %.2f a share. The alternative is nonetheless one the study '
-      'refuses end to end: netting the %.2f%% rating spread drives the real risk-free rate '
-      'to %.2f%%, through the matched-tenor US Treasury of %.2f%%, which cannot happen '
+      'refuses end to end: netting the %.2f%% rating spread drives the DEFAULT-FREE '
+      'risk-free rate to %.2f%%, through the matched-tenor US Treasury of %.2f%%, which '
+      'cannot happen '
       'under a hard peg.'
-      % (100 * CP.ke_exp, 100 * _KE_ALT, BASE - _PS_ERP_ALT,
+      % (100 * CP.ke_exp, 100 * _KE_ALT, abs(BASE - _PS_ERP_ALT),
          100 * V['sov_spread_damodaran_rating'],
          100 * (V['rf'] - V['sov_spread_damodaran_rating']), 100 * V['ust_matched']))
 
+_BETA_MEASURED = N['wacc']['beta']['beta']
 _BETA_DFM = N['wacc']['beta']['dfm_alt']['beta']
 _BETA_COMP = N['wacc']['beta']['composite_alt']['beta']
+_PS_BETA_DFM = price_inputs(beta=_BETA_DFM)
+_PS_BETA_COMP = price_inputs(beta=_BETA_COMP)
 judge('the beta\'s regressor',
       'the FTSE ADX General Index, the registered regressor for this market, beta %.4f '
-      '(R-squared %.3f, standard error %.4f, %d weekly observations) — carried with its '
-      'own standing disclosure that it is an interim regressor for a Dubai-listed name'
-      % (V['beta'], N['wacc']['beta']['r2'], N['wacc']['beta']['se'], N['wacc']['beta']['n']),
+      '(R-squared %.3f, standard error %.4f, %d weekly observations), carried in the model '
+      'at the registered %.3f — with its own standing disclosure that this is an interim '
+      'regressor for a Dubai-listed name'
+      % (_BETA_MEASURED, N['wacc']['beta']['r2'], N['wacc']['beta']['se'],
+         N['wacc']['beta']['n'], V['beta']),
       'the DFM General Index, du\'s OWN listing venue, beta %.4f at a tighter fit '
       '(R-squared %.3f, standard error %.4f)'
       % (_BETA_DFM, N['wacc']['beta']['dfm_alt']['r2'], N['wacc']['beta']['dfm_alt']['se']),
-      price_inputs(beta=_BETA_DFM),
+      _PS_BETA_DFM,
       'The listing venue\'s own index explains du better and gives a LOWER beta, so the '
       'adopted regressor is the lower-value side by AED %.2f a share. The equal-weight '
-      'library composite is lower still at %.4f and is a cross-check rather than a '
-      'regressor. Every alternative here points the same way: none of them closes the '
-      'disagreement with the price, all of them widen it.'
-      % (price_inputs(beta=_BETA_DFM) - BASE, _BETA_COMP),
-      value_alternative_composite=float(price_inputs(beta=_BETA_COMP)))
+      'library composite is lower still at %.4f, worth AED %.4f, and is a cross-check '
+      'rather than a regressor. Every alternative here points the same way: none of them '
+      'closes the disagreement with the price, all of them widen it.'
+      % (_PS_BETA_DFM - BASE, _BETA_COMP, _PS_BETA_COMP),
+      value_alternative_composite=float(_PS_BETA_COMP))
 
 _PS_WD = price_inputs(wd_term=CP.wd_exp)
 judge('the terminal debt weight',
@@ -515,8 +521,8 @@ judge('terminal growth',
       'pointing opposite ways and puts a number on neither. A positive real terminal growth '
       'is a legitimate framing and it is priced here rather than dismissed; what it is not '
       'is a free one, because this model charges real growth for the capital it consumes at '
-      'AED %s per unit of growth.'
-      % (BASE - _PS_G_ALT, format(CP.INC_CAP, ',.0f')))
+      'AED %smn per unit of growth.'
+      % (abs(BASE - _PS_G_ALT), format(CP.INC_CAP, ',.0f')))
 
 _LIFE_ALT = N['sens']['life_variant_years']
 judge('the terminal asset life',
@@ -550,13 +556,14 @@ judge('the lease renewal in the explicit window',
       'blended asset life, where the right-of-use book enters at its own %.2f years'
       % ROU_LIFE_DERIVED,
       'the retired construction: a replacement charge equal to right-of-use depreciation in '
-      'every explicit year, AED %s falling to AED %s'
+      'every explicit year, AED %smn falling to AED %smn'
       % (format(CP.rou_repl_retired[0], ',.0f'), format(CP.rou_repl_retired[-1], ',.0f')),
       _PS_LEASE,
       'The adopted side is the higher-value one by AED %.2f a share. It is defensible on '
-      'the double-charging argument and it is the looser of the two readings; the actual '
-      'FY2025 lease additions were AED 96mn against a depreciation charge of AED %s, so '
-      'the retired construction was itself well above what the company spent.'
+      'the double-charging argument and it is the looser of the two readings; the study\'s '
+      'own register records actual FY2025 lease additions of AED 96mn against a right-of-'
+      'use depreciation charge of AED %smn, so the retired construction was itself well '
+      'above what the company spent.'
       % (BASE - _PS_LEASE, format(CP.V['rou_dep_path'][0], ',.0f')))
 
 # --- the operating drivers -------------------------------------------------
@@ -576,46 +583,56 @@ judge('the mobile ARPU path against the mix decomposition',
       'quarter pairs, so neither side can be settled from what the company publishes.'
       % (BASE - CP.dcf_mix_exhaust))
 
-_PS_FIXED = price_inputs(esc_dc_fixed=-0.0824)
+_UC = N['unitcost']['hist']
+_FIXED_MEASURED = _UC['FY25']['fixed_cap'] / _UC['FY24']['fixed_cap'] - 1.0
+_PS_FIXED = price_inputs(esc_dc_fixed=_FIXED_MEASURED)
 judge('the fixed-capacity unit cost',
       'held FLAT at the reviewed H1-2026 rate, with the measured improvement stopped dead '
       'rather than projected',
       'the improvement projected at the rate the audited full years measured, %.2f%% a year '
-      '(AED 79.71 per subscriber per month in FY2024 against AED 73.14 in FY2025)'
-      % (100 * -0.0824),
+      '(AED %.2f per subscriber per month in FY2024 against AED %.2f in FY2025)'
+      % (100 * _FIXED_MEASURED, _UC['FY24']['fixed_cap'], _UC['FY25']['fixed_cap']),
       _PS_FIXED,
       'The mechanism — fibre and fixed-wireless scale plus enterprise mix — is real and the '
       'study says so; what it declines to do is project a decay rate it cannot measure. The '
-      'adopted side is the lower-value one by AED %.2f a share.' % (BASE - _PS_FIXED))
+      'adopted side is the lower-value one by AED %.2f a share.' % abs(BASE - _PS_FIXED))
 
-_PS_WHOLE = price_inputs(dc_rate_wholesale=0.1358)
+_PS_WHOLE = price_inputs(dc_rate_wholesale=_UC['FY25']['whl_rate'])
 judge('the wholesale direct-cost rate',
       'held FLAT at the reviewed H1-2026 rate of %.2f%%, the worst observation in the '
       'series, taking no credit for the recovery du\'s own commentary implies'
       % (100 * V['dc_rate_wholesale']),
-      'the FY2025 audited rate of 13.58%, the last full year',
+      'the FY2025 audited rate of %.2f%%, the last full year' % (100 * _UC['FY25']['whl_rate']),
       _PS_WHOLE,
-      'The series worsens at every observation and du attributes it to a conflict-hit '
+      'The series worsens at every observation (FY2024 %.2f%%, FY2025 %.2f%%, H1-2025 '
+      '%.2f%%, H1-2026 %.2f%%) and du attributes it to a conflict-hit '
       'roaming and transit mix. Anchoring on the latest reviewed period rather than the '
       'last audited year is the house rule and here it is the lower-value side, by AED '
-      '%.2f a share.' % (BASE - _PS_WHOLE))
+      '%.2f a share.'
+      % (100 * _UC['FY24']['whl_rate'], 100 * _UC['FY25']['whl_rate'],
+         100 * _UC['H125']['whl_rate'], 100 * _UC['H126']['whl_rate'],
+         abs(BASE - _PS_WHOLE)))
 
-_PS_ICT = price_inputs(dc_rate_ict=0.8061)
+_PS_ICT = price_inputs(dc_rate_ict=_UC['FY25']['ict_rate'])
 judge('the ICT direct-cost rate',
       'held FLAT at the reviewed H1-2026 rate of %.2f%%, the best observation in the series'
       % (100 * V['dc_rate_ict']),
-      'the FY2025 audited rate of 80.61%, the last full year',
+      'the FY2025 audited rate of %.2f%%, the last full year' % (100 * _UC['FY25']['ict_rate']),
       _PS_ICT,
       'The same anchoring rule as the wholesale row, applied to a series that moves the '
-      'other way — FY2024 79.25%%, FY2025 80.61%%, H1-2026 78.48%%, no trend in either '
+      'other way — FY2024 %.2f%%, FY2025 %.2f%%, H1-2026 %.2f%%, no trend in either '
       'direction. Here the rule lands on the higher-value side, by AED %.2f a share, which '
-      'is the point of recording both: one rule, two directions.' % (BASE - _PS_ICT))
+      'is the point of recording both: one rule, two directions.'
+      % (100 * _UC['FY24']['ict_rate'], 100 * _UC['FY25']['ict_rate'],
+         100 * _UC['H126']['ict_rate'], BASE - _PS_ICT))
 
-_PS_CAPEX = price_inputs(capex_pct=[0.147950] * 5)
+_CAPEX_FY25 = V['capex_cash_hist']['FY25'] / V['rev_fy25']
+_PS_CAPEX = price_inputs(capex_pct=[_CAPEX_FY25] * 5)
 judge('capital intensity',
       'the registered path falling from %.1f%% of revenue to %.1f%% as the 5G build '
       'completes' % (100 * V['capex_pct'][0], 100 * V['capex_pct'][-1]),
-      'held flat at the FY2025 actual cash capital intensity of 14.80% of revenue',
+      'held flat at the FY2025 actual cash capital intensity of %.2f%% of revenue'
+      % (100 * _CAPEX_FY25),
       _PS_CAPEX,
       'The adopted path opens ABOVE the trailing actual and ends below it, so it is not a '
       'uniformly generous assumption; over the five years together it spends less, and the '
@@ -632,7 +649,7 @@ judge('revenue against the company\'s own guidance',
       'that takes a management target as an input inherits its lean instead of measuring '
       'it, so the build stays where the disclosed drivers put it and the reader is shown '
       'what the midpoint would be worth.'
-      % (BASE - N['sens']['cc3']['price'], BASE - N['sens']['cc3']['vol']),
+      % (abs(BASE - N['sens']['cc3']['price']), abs(BASE - N['sens']['cc3']['vol'])),
       value_alternative_won_on_volume=float(N['sens']['cc3']['vol']))
 
 _NWC_FY24 = N['nwc_hist']['FY24'] / V['rev_fy24']
@@ -645,7 +662,7 @@ judge('working capital',
       _PS_NWC,
       'Both are audited outturns of the same structurally negative telecom working-capital '
       'cycle and the whole plausible range is worth well under a per cent; the adopted side '
-      'is the lower-value one by AED %.2f a share.' % (BASE - _PS_NWC))
+      'is the lower-value one by AED %.2f a share.' % abs(BASE - _PS_NWC))
 
 # --- the conventions -------------------------------------------------------
 _EV_MID = sum(CP.fcff[i] * CP.df[i] * math.sqrt(1 + CP.fwd[i]) for i in range(5)) \
@@ -671,7 +688,7 @@ judge('the dividends stripped between the valuation date and the price anchor',
       _PS_DIV,
       'The ex-date settles it: a share bought at the anchor does not carry a distribution '
       'that already went ex. The adopted side is the lower-value one by AED %.2f a share, '
-      'and it is a correction the study made to itself.' % (BASE - _PS_DIV))
+      'and it is a correction the study made to itself.' % abs(BASE - _PS_DIV))
 
 
 # ===========================================================================
@@ -854,10 +871,14 @@ DIAG = {
             'quantity': 'the equity beta the traded price implies',
             'implied_by_price': BETA_IMPLIED,
             'study_value': V['beta'],
-            'measured': {'beta': V['beta'], 'r2': N['wacc']['beta']['r2'],
+            'measured': {'beta': _BETA_MEASURED, 'r2': N['wacc']['beta']['r2'],
                          'se': N['wacc']['beta']['se'], 'n': N['wacc']['beta']['n'],
                          'ci90': N['wacc']['beta']['ci90'],
-                         'window': '5 years of weekly returns'},
+                         'window': '5 years of weekly returns',
+                         'carried_in_the_model_at': V['beta'],
+                         'note': ('the register rounds the regression to three decimals '
+                                  'and the model runs on the rounded figure; both are '
+                                  'shown so neither stands in for the other')},
             'alternatives_the_study_holds': {
                 'dfm_general_own_listing_venue': _BETA_DFM,
                 'equal_weight_library_composite': _BETA_COMP},
@@ -868,7 +889,7 @@ DIAG = {
                 'rather than patched by the diagnostic. Every other input held at its '
                 'published value.'),
             'standard_errors_above_measured':
-                (BETA_IMPLIED - V['beta']) / N['wacc']['beta']['se'],
+                (BETA_IMPLIED - _BETA_MEASURED) / N['wacc']['beta']['se'],
             'reading': (
                 'At AED %.2f the price is paying for a beta of %.3f against a measured '
                 '%.4f — %.1f standard errors above it and outside the 90%% interval of '
@@ -879,8 +900,8 @@ DIAG = {
                 'nothing in the regressor choice moves toward the price. A beta near one '
                 'is an entirely ordinary telecom number, which is why this is recorded as '
                 'a disagreement a reader can judge rather than as a defect found.'
-                % (SPOT, BETA_IMPLIED, V['beta'],
-                   (BETA_IMPLIED - V['beta']) / N['wacc']['beta']['se'],
+                % (SPOT, BETA_IMPLIED, _BETA_MEASURED,
+                   (BETA_IMPLIED - _BETA_MEASURED) / N['wacc']['beta']['se'],
                    N['wacc']['beta']['ci90'][0], N['wacc']['beta']['ci90'][1],
                    N['wacc']['beta']['n'], _BETA_DFM, _BETA_COMP)),
         },

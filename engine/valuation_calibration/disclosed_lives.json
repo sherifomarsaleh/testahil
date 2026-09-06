@@ -3,53 +3,6 @@
  "_how": "Every entry names the FILE, the NOTE and the ROUTE the figure came by (text layer or OCR off the rendered pixels), on the same footing as the four-field rule. A RANGE IS RECORDED AS A RANGE: most policy notes give a band per asset class and not a single number, and collapsing that to one figure here would be this desk choosing the life under cover of a citation. The weighted life a terminal actually needs is derived at rebuild from the property, plant and equipment note's own composition, which is a further sourcing step and is NOT done here.",
  "_binds": "Nothing reads this yet except the census's 'disclosed' column. A rebuild that uses one of these lives commits it to its own terminal_record, which is what the gate and the census then read [R-ENF-01].",
  "lives": {
-  "AMR": {
-   "classes": [
-    {
-     "asset_class": "Leasehold improvements and furniture",
-     "years": [
-      5,
-      7
-     ]
-    },
-    {
-     "asset_class": "Buildings",
-     "years": [
-      7,
-      20
-     ],
-     "note": "the note breaks this down further: construction-related 20 years, electrical fitouts 10, building extensions 7"
-    },
-    {
-     "asset_class": "Cold rooms",
-     "years": [
-      5,
-      5
-     ]
-    },
-    {
-     "asset_class": "Equipment and tools",
-     "years": [
-      4,
-      7
-     ]
-    },
-    {
-     "asset_class": "Vehicles",
-     "years": [
-      4,
-      4
-     ]
-    }
-   ],
-   "longest_years": 20,
-   "shortest_years": 4,
-   "source": "AMR (Al Maha / Agthia group filing as committed in this study directory), FY2025 consolidated financial statements, property plant and equipment accounting policy: 'Depreciation on other assets is calculated using the straight-line method, at rates calculated to reduce the cost of assets to their estimated residual value over their expected useful lives, as follows'. Land is not depreciated.",
-   "file": "engine/amr_study/AMR_FY2025_Consolidated_FS.pdf",
-   "route": "text layer via pdftotext. The -layout rendering places the Years column beyond the extracted line width and drops it silently — the classes appear with no figures beside them, which reads like a table that has none. Re-extracted WITHOUT -layout, where the column follows the labels as a separate block. RECORDED BECAUSE THE FIRST EXTRACTION LOOKED COMPLETE AND WAS NOT.",
-   "read_on": "2026-09-03",
-   "against_the_terminal": "this study's terminal implies a replacement cycle of 33.3 years (1/g at g=3.0%) and charges 0.12x its own book depreciation. The LONGEST life the company discloses is 20 years and most of the base is 4 to 7 — so the terminal assumes an asset life the accounts do not support anywhere, in the direction that OVERSTATES value."
-  },
   "ADNOCDIST": {
    "classes": [
     {
@@ -263,204 +216,6 @@
    },
    "weighted_life_05-09-2026": "REFUSED. The weighting [R-TERM-01] needs is by the property, plant and equipment note's own carrying amounts, and note 11 carries SIX columns - buildings, VESSELS AND MARINE EQUIPMENT, plant, equipment and vehicles, furniture, and capital work in progress. 97.85% of depreciable net book value (95.85% of depreciable gross cost) sits in the single vessels-and-marine-equipment column, which spans six disclosed lives from 2 to 40 years and is disclosed at no finer level in any of the four years of statements, either annual report, the investor presentations or the management discussion. THE NOTE DISCLOSES THE LIVES AND IT DOES NOT DISCLOSE THE COMPOSITION THEY WOULD BE WEIGHTED BY. Any single figure is this desk choosing one, so none is recorded. What the accounts DO give, and it is a bound rather than a life: the vessel column's charge-implied composite is 20.14-22.49 years and the whole depreciable base's cost-over-charge is 19.70 years - both OVERSTATEMENTS, because this note depreciates to residual values and reassesses vessel salvage annually, so the charge is (cost - residual)/life and cost/charge exceeds the life."
   },
-  "SAVOLA": {
-   "classes": [
-    {
-     "asset_class": "Buildings",
-     "years": [
-      12.5,
-      50
-     ]
-    },
-    {
-     "asset_class": "Leasehold improvements",
-     "years": [
-      3,
-      33
-     ]
-    },
-    {
-     "asset_class": "Plant and equipment",
-     "years": [
-      3,
-      30
-     ]
-    },
-    {
-     "asset_class": "Furniture and office equipment",
-     "years": [
-      3,
-      16
-     ]
-    },
-    {
-     "asset_class": "Vehicles",
-     "years": [
-      4,
-      10
-     ]
-    }
-   ],
-   "longest_years": 50,
-   "shortest_years": 3,
-   "land_not_depreciated": true,
-   "source": "Savola Group Company, consolidated financial statements for the year ended 31 December 2024, audited, note 3(f) property, plant and equipment: 'Depreciation is charged to the profit or loss on a straight-line basis over the estimated useful lives of individual items of property, plant and equipment ... The estimated useful lives of assets for current and comparative year is as follow'. Land is not depreciated. Downloaded 04-Sep-2026 from the company's own investor-relations financial-statements page.",
-   "file": "engine/savola_study/SAVOLA_FY2024_Audited_FS.pdf",
-   "route": "Text layer via pdftotext -layout. The document carries a full text layer (369KB extracted across the statements), so no OCR was needed; the route is recorded either way because which route a figure came by is part of the record, not a detail of the day.",
-   "cross_check": "The FY2024 note states the table is 'for current and comparative year', which makes it its own one-year check. Checked further against the FY2020 ANNUAL audited statements (engine/savola_study/SAVOLA_FY2020_Annual_FS.pdf, note 3(g)): the table is IDENTICAL line for line — 12.5-50, 3-33, 3-30, 3-16, 4-10 — so these lives are stable across at least 2020 to 2024. THE FIRST CROSS-CHECK ATTEMPTED WAS THE WRONG DOCUMENT and is recorded rather than quietly replaced: the file the company labels 'q4-2023' is a CONDENSED CONSOLIDATED INTERIM statement, UNAUDITED, and carries no accounting-policies table at all. A fourth-quarter filing is not an annual one.",
-   "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE. The weighted life a terminal needs is derived at rebuild from this company's own property, plant and equipment note composition, which is a further sourcing step and is NOT done here — collapsing 3-50 to one figure here would be this desk choosing the life under cover of a citation.",
-   "vintage_note": "This study's valuation date is 31-Dec-2025 and the latest ANNUAL audited statements on the company's own financial-statements page at 04-Sep-2026 are FY2024; no FY2025 annual was listed there. The lives are unchanged 2020-2024, so the vintage gap is recorded rather than treated as material — but it is recorded."
-  },
-  "FERTIGLOBE": {
-   "classes": [
-    {
-     "asset_class": "Buildings",
-     "years": [
-      10,
-      50
-     ]
-    },
-    {
-     "asset_class": "Plant and equipment",
-     "years": [
-      5,
-      30
-     ]
-    },
-    {
-     "asset_class": "Fixtures and fittings",
-     "years": [
-      3,
-      10
-     ]
-    }
-   ],
-   "longest_years": 50,
-   "shortest_years": 3,
-   "land_not_depreciated": true,
-   "source": "Fertiglobe plc, 2025 Annual Report, note 3 material accounting policies, property, plant and equipment — depreciation: 'Items of property, plant and equipment are depreciated on a straight-line basis through profit or loss over the estimated useful lives of each component, taking into account any residual values. Land is not depreciated ... The estimated useful lives for items of property, plant and equipment are as follows'. Downloaded 04-Sep-2026 from the company's own investor-relations page, fertiglobe.com/wp-content/uploads/2026/03/Fertiglobe-2025-Annual-Report-vF.pdf; sha256 cbb8fdb171154dbe9adac7a0675271b53050d40fd58dfa5595d5ad4b0ff20b8f.",
-   "file": "engine/fertiglobe_study/FERTIGLOBE_2025_Annual_Report.pdf",
-   "sha256": "cbb8fdb171154dbe9adac7a0675271b53050d40fd58dfa5595d5ad4b0ff20b8f",
-   "route": "Text layer via pdftotext -layout, 1.39MB extracted. The report is the integrated annual report and carries the audited consolidated financial statements inside it, which is where this note sits.",
-   "cross_check": "NOT YET CROSS-CHECKED AGAINST A SECOND YEAR, and that is recorded rather than left to be assumed from the other entries here. Unlike SAVOLA's, this note does not describe its own table as covering the comparative year, so the one-document check SAVOLA's gave is not available; a prior-year annual report would supply it and was not fetched in this pass. The lives are usable and this is what is known about them.",
-   "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE. The weighted life a terminal needs is derived at rebuild from this company's own property, plant and equipment note composition — a further sourcing step, not done here.",
-   "weighted_life_derived": {
-    "years": 22.04,
-    "identity": "depreciable cost / the year's depreciation charge",
-    "arithmetic": {
-     "ppe_cost_total_31_12_2025": 6197.4,
-     "less_under_construction": 190.4,
-     "less_land_not_depreciated": 22.2,
-     "depreciable_cost": 5984.8,
-     "depreciation_2025": 271.6,
-     "years": 22.04,
-     "units": "USD millions"
-    },
-    "source": "Fertiglobe plc, 2025 Annual Report, note 7 property, plant and equipment — the cost and accumulated-depreciation table at 31 December 2025, and the 'Depreciation and impairment' movement row for the year.",
-    "why_derived_and_not_chosen": "THE DISCLOSED BANDS CANNOT BE COLLAPSED WITHOUT CHOOSING. Buildings 10-50, plant and equipment 5-30, fixtures 3-10: any single figure taken from those is this desk picking a life, which [R-TERM-01] refuses outright. What the note ALSO discloses is the composition at COST and the year's charge, and their ratio is an IDENTITY rather than an assumption — the composite life the company's own accounts are actually running. It is LABELLED derived, on the same footing as capex derived by dPPE + D&A and EGCH's years derived from disclosed rates.",
-    "the_impairment_caveat_and_why_it_does_not_bite": "The movement row is labelled 'Depreciation and impairment', so in a year carrying an impairment the ratio would understate the life. This report states at note 12 that 'no impairments were required for the year ended 31 December 2025', so the row is pure depreciation and the identity is exact. IN A YEAR WITH AN IMPAIRMENT THIS DERIVATION WOULD NOT BE AVAILABLE, and that is a property of the disclosure rather than of the method.",
-    "coherence_check": "The derived 22.04 years sits INSIDE the disclosed plant-and-equipment band of 5-30, and plant and equipment is 94.6% of the depreciable cost base — so the figure the arithmetic produces and the class that dominates the base agree. That is the check that makes a derived life usable rather than merely arithmetic.",
-    "against_the_retired_terminal": "The retired terminal charges g x IC, so it implies a replacement cycle of 1/g = 50.0 years at this study's 2% terminal — 2.27 TIMES the life this company's own accounts depreciate its assets over. That is the [R-TERM-01 CLAUSE TWO] direction reversal measured on one name with its own numbers: in a pegged market the identity does not starve the asset base, it flatters it, and correcting it moves the value DOWN."
-   }
-  },
-  "EGCH": {
-   "disclosure_is_rates_not_lives": true,
-   "classes": [
-    {
-     "asset_class": "Buildings — residential city buildings",
-     "disclosed_rate_pct": 2.0,
-     "years_derived": 50.0
-    },
-    {
-     "asset_class": "Buildings — water and sewage pipes",
-     "disclosed_rate_pct": 5.0,
-     "years_derived": 20.0
-    },
-    {
-     "asset_class": "Buildings — plants (al-masani')",
-     "disclosed_rate_pct": 6.0,
-     "years_derived": 16.67
-    },
-    {
-     "asset_class": "Buildings — urea/ammonia plant",
-     "disclosed_rate_pct": 6.0,
-     "years_derived": 16.67
-    },
-    {
-     "asset_class": "Buildings — air-conditioning units",
-     "disclosed_rate_pct": 10.0,
-     "years_derived": 10.0
-    },
-    {
-     "asset_class": "Buildings — overhead cranes",
-     "disclosed_rate_pct": 12.5,
-     "years_derived": 8.0
-    },
-    {
-     "asset_class": "Buildings — rest house building",
-     "disclosed_rate_pct": 16.5,
-     "years_derived": 6.06
-    },
-    {
-     "asset_class": "Machinery and equipment — plants",
-     "disclosed_rate_pct": 9.5,
-     "years_derived": 10.53
-    },
-    {
-     "asset_class": "Machinery and equipment — workshops",
-     "disclosed_rate_pct": 6.5,
-     "years_derived": 15.38
-    },
-    {
-     "asset_class": "Machinery and equipment — urea/ammonia plant",
-     "disclosed_rate_pct": 3.95,
-     "years_derived": 25.32
-    },
-    {
-     "asset_class": "Intangible assets — urea/ammonia plant",
-     "disclosed_rate_pct": 4.75,
-     "years_derived": 21.05
-    },
-    {
-     "asset_class": "Vehicles — cranes, loader, bulldozers",
-     "disclosed_rate_pct": 12.5,
-     "years_derived": 8.0
-    },
-    {
-     "asset_class": "Vehicles — lorry, bus, passenger cars, tractors",
-     "disclosed_rate_pct": 20.0,
-     "years_derived": 5.0
-    },
-    {
-     "asset_class": "Tools and implements",
-     "disclosed_rate_pct": 7.5,
-     "years_derived": 13.33
-    },
-    {
-     "asset_class": "Buildings — iron and steel buildings",
-     "disclosed_rate_pct": 10.0,
-     "years_derived": 10.0
-    },
-    {
-     "asset_class": "Furniture and fittings",
-     "disclosed_rate_pct": 10.0,
-     "years_derived": 10.0
-    },
-    {
-     "asset_class": "Computers",
-     "disclosed_rate_pct": 10.0,
-     "years_derived": 10.0
-    }
-   ],
-   "longest_years": 50.0,
-   "shortest_years": 5.0,
-   "source": "Egyptian Chemical Industries (KIMA), annual financial statements for the year ended 30 June 2025, notes to the financial statements, note 5-2 'الأصول الثابتة وإهلاكاتها' (fixed assets and their depreciation), sub-heading 'الإهلاك' (depreciation), page 31: 'يتم تحميل الإهلاك على قائمة الدخل وفقا لطريقة القسط الثابت وفقا لمعدلات تتماشي مع العمر الإنتاجي المقدر لكل أصل عدا الأراضي' — depreciation is charged on a straight-line basis at rates matching each asset's estimated useful life, land excepted — followed by a table of DEPRECIATION RATES per asset type.",
-   "file": "engine/egch_study/filings/EGCH_FY2024-25_Annual.pdf",
-   "route": "OCR OFF THE RENDERED PIXELS, then READ AS AN IMAGE. The filing carries NO text layer (48 bytes extracted across 48 pages), so pdftotext returns nothing. Tesseract at 200dpi and again at 450dpi located the note and read the asset-class names cleanly, and could NOT read the Arabic-Indic digits reliably at either resolution — one pass rendered 9.5 as '5 ث9' and 4.75 as 'د\" ؛/'. A RATES TABLE HAS NO INTERNAL ARITHMETIC TO FOOT AGAINST, so the usual arbiter is unavailable and the extractor's confidence is worth nothing on its own. The figures below were read from the rendered page as an image at 450dpi, which is the route recorded.",
-   "years_are_derived_not_disclosed": "THE COMPANY DISCLOSES RATES; THE YEARS BESIDE THEM ARE 100/rate AND ARE LABELLED DERIVED. An identity is not an assumption, and the label is what keeps the two apart — the same discipline [R-FCAL-01 AMENDED] applies to capex derived by ΔPPE + D&A.",
-   "cells_not_read": "ONE cell is still not read: the cinema-and-cafeteria building, which prints as +٣٠٪. A 30% rate is a 3.3-year building, implausible on its face, and A RATES TABLE HAS NO INTERNAL ARITHMETIC TO FOOT AGAINST, so the usual arbiter is unavailable and there is nothing to settle it against. Named rather than guessed (SIGCM clause 8); it is not a production asset and the band does not depend on it. TWO CELLS PREVIOUSLY CARRIED HERE AS UNREAD WERE READ CLEANLY AT 400dpi ON 6 SEPTEMBER 2026 and are now in the class list — iron and steel buildings at 10% and furniture and fittings at 10%, joined by computers at 10%. Both are 10%, so the 5-50 band is unchanged and nothing downstream moves.",
-   "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE, and on 6 September 2026 THE COLLAPSE WAS ATTEMPTED AND REFUSED. Weighting the disclosed rates by the property note's own carrying amounts needs ONE RATE PER PROPERTY-NOTE CLASS, and the two notes do not meet: note 6/1 (PDF p35) carries six classes — land, buildings/constructions, machinery and equipment, vehicles, tools, furniture and office equipment — while note 5-2 gives SEVERAL rates inside three of them, and those three are 95.32% of net book value. Machinery alone is 90.36% and spans 3.95% to 9.5%, i.e. 25.32 years to 10.53, and nothing in the filing apportions that column between the urea/ammonia plant, the older plants and the workshops. MEASURED RATHER THAN ASSERTED: holding every other class at the life its own disclosure gives and moving machinery across its own disclosed band takes the weighted life from 23.29 to 10.85 years and maintenance on the 17.02bn depreciable base from EGP 730.7mn to 1,568.2mn — 2.15x on the one number a terminal turns on. A LIFE THIS DESK CHOSE IS NOT A DISCLOSED LIFE (SIGCM clause 1), so none was chosen. What IS available is an IDENTITY off the note's own columns, because the charge column is itself the weighting: depreciable gross cost over the year's own charge, 17,020,830,289 / 771,213,489 = 22.07 years. That is DERIVED, is already committed by the study as fa_life_implied_years sourced to the note 6 register, and MUST NOT be cited to the accounting-policies note. Evidence and the footing record: engine/egch_study/DISCLOSED_LIFE_06-09-2026.md."
-  },
   "AIRARABIA": {
    "classes": [
     {
@@ -518,137 +273,52 @@
    "why_this_name_matters_here": "AIRARABIA is one of the seven terminals charging LESS than their own book depreciation and one of the three doing it while sitting more than 10% BELOW the price. Its retired terminal implies a replacement cycle of 1/g = 40 years against a DISCLOSED aircraft life of 20 — it charges roughly half the maintenance the disclosure implies, on the asset class that carries essentially all the value. Correcting it moves the value DOWN and therefore AWAY from the price, which is [R-TERM-01 CLAUSE TWO]'s point and the side of the correction this house has never measured.",
    "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE, though this one is unusually well determined: an airline's value sits in aircraft and engines, both disclosed at a single 20 years rather than a band. The weighting is still a further sourcing step, and the 7-8% residual belongs in it — maintenance at replacement cost over 20 years against a 7-8% residual is not the same charge as over 15 against 20%."
   },
-  "PHAR": {
+  "AMR": {
    "classes": [
     {
-     "asset_class": "Administration buildings & structures",
-     "years": [
-      50,
-      50
-     ]
-    },
-    {
-     "asset_class": "Factory buildings & structures",
-     "years": [
-      50,
-      50
-     ]
-    },
-    {
-     "asset_class": "Production activity machines",
-     "years": [
-      15,
-      15
-     ]
-    },
-    {
-     "asset_class": "Service machines & utilities",
-     "years": [
-      15,
-      15
-     ]
-    },
-    {
-     "asset_class": "Means of transportation",
+     "asset_class": "Leasehold improvements and furniture",
      "years": [
       5,
-      5
-     ]
-    },
-    {
-     "asset_class": "Tools",
-     "years": [
-      5,
-      5
-     ]
-    },
-    {
-     "asset_class": "Office furniture & equipment",
-     "years": [
-      10,
-      10
-     ]
-    }
-   ],
-   "longest_years": 50,
-   "shortest_years": 5,
-   "source": "EIPICO (PHAR) FY2024 audited consolidated financial statements, note 3.1 'Fixed assets and depreciation': 'The depreciable fixed asset value ... is depreciated according to the straight-line method over the estimated useful life of each type of fixed asset ... (land is not depreciated)', followed by the table of estimated lives. EVERY LIFE IS A SINGLE FIGURE, not a band, which is unusual in this file and makes the weighting unambiguous.",
-   "file": "engine/phar_study/source_FY2024_audited_consolidated.pdf",
-   "route": "text layer via pdftotext -layout",
-   "read_on": "2026-09-04",
-   "weighted_life_years": 13.8,
-   "weighted_from": "the gross cost by class in note 4.1 at 31-Dec-2024 — buildings 543,426,318 at 50 years, machines and equipment 1,701,915,589 at 15, transportation 107,581,637 at 5, tools 151,105,707 at 5, furniture 197,886,920 at 10 — on a depreciable base of EGP 2,701,916,171 which foots to the note's stated 2,785,102,203 once land of 83,186,032 is excluded. The rates add, not the lives, so the weighted life is the reciprocal of the weighted annual rate.",
-   "against_the_terminal": "this study's terminal implies a replacement cycle of 20.0 years (1/g at g=5.0%) against a disclosed weighted life of 13.80 — it charges maintenance over a life 45% longer than the accounts run, which UNDER-charges. THE DIRECTION IS SET BY THE TYPED GROWTH RATE AND NOT BY THE MARKET: [R-TERM-01 CLAUSE TWO] reasons from a terminal at zero real growth, where 1/g is the reciprocal of inflation and runs SHORT in a high-inflation economy. This study typed 5% nominal in a 7%-inflation economy — a real DECLINE — so its 1/g runs long in exactly the market the clause says it should run short. At the house terminal of 7% the implied cycle would be 14.3 years, close to the disclosed 13.80, which is a coincidence of magnitudes rather than a law and is recorded as one."
-  },
-  "MODON": {
-   "classes": [
-    {
-     "asset_class": "Plant",
-     "years": [
-      40,
-      40
+      7
      ]
     },
     {
      "asset_class": "Buildings",
      "years": [
-      2,
-      50
+      7,
+      20
+     ],
+     "note": "the note breaks this down further: construction-related 20 years, electrical fitouts 10, building extensions 7"
+    },
+    {
+     "asset_class": "Cold rooms",
+     "years": [
+      5,
+      5
      ]
     },
     {
-     "asset_class": "Machinery and equipment",
+     "asset_class": "Equipment and tools",
      "years": [
-      3,
-      4
+      4,
+      7
      ]
     },
     {
      "asset_class": "Vehicles",
      "years": [
-      3,
-      5
-     ]
-    },
-    {
-     "asset_class": "Office and computer equipment",
-     "years": [
-      2,
-      5
-     ]
-    },
-    {
-     "asset_class": "Furniture and fixtures",
-     "years": [
-      2,
-      5
-     ]
-    },
-    {
-     "asset_class": "Leasehold improvements",
-     "years": [
-      1,
-      10
-     ],
-     "note": "the lower of the lease term or 10 years, so the short end is the lease"
-    },
-    {
-     "asset_class": "Other assets",
-     "years": [
-      5,
-      5
+      4,
+      4
      ]
     }
    ],
-   "longest_years": 50,
-   "shortest_years": 2,
-   "source": "Modon Holding PSC FY2025 consolidated financial statements, property, plant and equipment accounting policy: 'The estimated useful lives for the current and the comparative periods are as follows', followed by the table. Land is not depreciated.",
-   "file": "engine/modon_study/sources/FS_FY2025.pdf",
-   "route": "text layer via pdftotext -layout",
-   "read_on": "2026-09-04",
-   "weighted_life_years": null,
-   "weighted_not_derivable": "THE WEIGHTED LIFE CANNOT BE DERIVED FROM THIS DISCLOSURE AND NO FIGURE IS CHOSEN INSTEAD. Two of the note's own columns each combine assets whose disclosed lives differ by an order of magnitude, and neither can be split from anything the filings publish. (1) LAND AND BUILDINGS ARE ONE COLUMN — AED 12,438,392 thousand, 73% of the gross cost — and LAND IS NOT DEPRECIATED AT ALL while buildings run 2 to 50 years, so the depreciable base inside the largest class is unknown. (2) PLANT (40 years) shares a column with MACHINERY AND EQUIPMENT (3 to 4 years), a more than tenfold spread on AED 883,217 thousand. THE CHARGE-IMPLIED ROUTE IS ALSO CLOSED and for a reason worth recording: FY2025 carried AED 832,492 thousand of assets acquired through business combinations, most of it into the plant column, so a full-year charge over an average base measures the timing of an acquisition rather than a life — the implied figures come out at 20.7 years on a class disclosed at 3 to 4, and 12.4 years on one disclosed at 2 to 5. Neither route is a disclosure and A LIFE THIS DESK CHOSE IS NOT A DISCLOSED LIFE (SIGCM clause 8), so MODON stays on the terminal ratchet WITH THIS REASON rather than being conformed on an invented number. Same disposition as ADNOCLS, for the same kind of gap.",
-   "against_the_terminal": "this study's terminal is BELOW ITS OWN NO-GROWTH FLOOR — the worst symptom the retired reinvestment identity produces, and the one that says the construction is charging more for growth than the growth is worth. Its implied replacement cycle is 1/g = 40.0 years, which happens to equal the disclosed life of PLANT alone while the rest of the base runs 2 to 5 years. Correcting it is worth at least +6.2% (3.54 -> 3.76 at the floor) and cannot be done until the weighted life can be sourced."
+   "longest_years": 20,
+   "shortest_years": 4,
+   "source": "AMR (Al Maha / Agthia group filing as committed in this study directory), FY2025 consolidated financial statements, property plant and equipment accounting policy: 'Depreciation on other assets is calculated using the straight-line method, at rates calculated to reduce the cost of assets to their estimated residual value over their expected useful lives, as follows'. Land is not depreciated.",
+   "file": "engine/amr_study/AMR_FY2025_Consolidated_FS.pdf",
+   "route": "text layer via pdftotext. The -layout rendering places the Years column beyond the extracted line width and drops it silently — the classes appear with no figures beside them, which reads like a table that has none. Re-extracted WITHOUT -layout, where the column follows the labels as a separate block. RECORDED BECAUSE THE FIRST EXTRACTION LOOKED COMPLETE AND WAS NOT.",
+   "read_on": "2026-09-03",
+   "against_the_terminal": "this study's terminal implies a replacement cycle of 33.3 years (1/g at g=3.0%) and charges 0.12x its own book depreciation. The LONGEST life the company discloses is 20 years and most of the base is 4 to 7 — so the terminal assumes an asset life the accounts do not support anywhere, in the direction that OVERSTATES value."
   },
   "BOROUGE": {
    "classes": [
@@ -829,6 +499,407 @@
    "the_measured_age_route_stays_closed": "[R-TERM-01] condition (i) is evidenced in the note's own words and then reinforced: depreciation allocates cost 'NET OF THEIR RESIDUAL VALUES', and the critical-estimates note 2.2(iv) says residual values are actively estimated — 'the Group uses historical sales and management's best estimate based on market prices of similar items'. So the charge is (cost - residual)/life rather than cost/life, and BOTH identity routes are biased UPWARD by the same mechanism: accumulated/charge (12.61 years) is not this base's age, and gross cost/charge OVERSTATES the life. This is the SAVOLA shape exactly — the arithmetic cross-check cannot catch it here because the disclosed band (3.00-23.93) contains the identity's answer trivially, so THE NOTE IS THE TEST AND THE ARITHMETIC IS SILENT. Conditions (ii) reassessment and (iii) business combination are both clean: no change-in-estimate language anywhere in the FY2025 filing, and no acquisition line in any of the three roll-forwards.",
    "against_the_terminal": "this study has ALREADY been rebuilt through terminal_value.py and commits a life of 16.6997 years, so the census reads that and not this band. THAT COMMITTED LIFE IS DERIVED, NOT DISCLOSED, and its own record says so: gross depreciable cost over the year's own charge, per note — PP&E (29,737,447 - 1,121,091 CWIP)/1,542,393 = 18.55, intangibles (4,071,746 - 571,459)/239,907 = 14.59, right-of-use 3,726,888/364,063 = 10.24, blended 16.6997, cross-checking to 15.9586 on FY2024's own columns. Every one of those reproduces exactly from the notes read here. The route's own self-validation also stands: the right-of-use component derives 10.24 years against the 10.1 years note 7 STATES as the average lease term, 1.4% apart. What this entry adds is the half the derivation could not supply — the DISCLOSED lives are a band 3.00 to 23.93 years wide, the committed 16.70 sits inside it and is therefore not contradicted by it, and the residual-value clause means the derived figure is an UPPER BOUND on the true life rather than a measurement of it. An overstated life understates maintenance under a replacement-cost basis, and DU's committed central of AED 16.5778 already sits 45.9% ABOVE the spot it was struck at — but the direction a rebuild would take is NOT predictable from that, because this study's terminal stands on 'book_dna_escalated' where a shorter life REDUCES the charge. The under-charging ratio is a flag, not an inference [R-TERM-01 clause two corrected]: the sign is measured per name, at a rebuild, and not before one.",
    "what_would_open_it": "(a) a carrying amount for any of the six plant-and-equipment sub-classes the FY2024 filing names — the lives are disclosed and only the weights are missing, so one disclosure closes it; (b) the residual values, in aggregate or by class, which would reopen both identity routes and convert the derived 18.55 into a measurement; (c) a narrower plant-and-equipment band in a later filing, that class being 98.9% of the base; (d) a replacement-cost capital base at the terminal year, which this study does not commit and which is why its terminal stands on 'book_dna_escalated' rather than 'disclosed_life'."
+  },
+  "EGCH": {
+   "disclosure_is_rates_not_lives": true,
+   "classes": [
+    {
+     "asset_class": "Buildings — residential city buildings",
+     "disclosed_rate_pct": 2.0,
+     "years_derived": 50.0
+    },
+    {
+     "asset_class": "Buildings — water and sewage pipes",
+     "disclosed_rate_pct": 5.0,
+     "years_derived": 20.0
+    },
+    {
+     "asset_class": "Buildings — plants (al-masani')",
+     "disclosed_rate_pct": 6.0,
+     "years_derived": 16.67
+    },
+    {
+     "asset_class": "Buildings — urea/ammonia plant",
+     "disclosed_rate_pct": 6.0,
+     "years_derived": 16.67
+    },
+    {
+     "asset_class": "Buildings — air-conditioning units",
+     "disclosed_rate_pct": 10.0,
+     "years_derived": 10.0
+    },
+    {
+     "asset_class": "Buildings — overhead cranes",
+     "disclosed_rate_pct": 12.5,
+     "years_derived": 8.0
+    },
+    {
+     "asset_class": "Buildings — rest house building",
+     "disclosed_rate_pct": 16.5,
+     "years_derived": 6.06
+    },
+    {
+     "asset_class": "Machinery and equipment — plants",
+     "disclosed_rate_pct": 9.5,
+     "years_derived": 10.53
+    },
+    {
+     "asset_class": "Machinery and equipment — workshops",
+     "disclosed_rate_pct": 6.5,
+     "years_derived": 15.38
+    },
+    {
+     "asset_class": "Machinery and equipment — urea/ammonia plant",
+     "disclosed_rate_pct": 3.95,
+     "years_derived": 25.32
+    },
+    {
+     "asset_class": "Intangible assets — urea/ammonia plant",
+     "disclosed_rate_pct": 4.75,
+     "years_derived": 21.05
+    },
+    {
+     "asset_class": "Vehicles — cranes, loader, bulldozers",
+     "disclosed_rate_pct": 12.5,
+     "years_derived": 8.0
+    },
+    {
+     "asset_class": "Vehicles — lorry, bus, passenger cars, tractors",
+     "disclosed_rate_pct": 20.0,
+     "years_derived": 5.0
+    },
+    {
+     "asset_class": "Tools and implements",
+     "disclosed_rate_pct": 7.5,
+     "years_derived": 13.33
+    },
+    {
+     "asset_class": "Buildings — iron and steel buildings",
+     "disclosed_rate_pct": 10.0,
+     "years_derived": 10.0
+    },
+    {
+     "asset_class": "Furniture and fittings",
+     "disclosed_rate_pct": 10.0,
+     "years_derived": 10.0
+    },
+    {
+     "asset_class": "Computers",
+     "disclosed_rate_pct": 10.0,
+     "years_derived": 10.0
+    }
+   ],
+   "longest_years": 50.0,
+   "shortest_years": 5.0,
+   "source": "Egyptian Chemical Industries (KIMA), annual financial statements for the year ended 30 June 2025, notes to the financial statements, note 5-2 'الأصول الثابتة وإهلاكاتها' (fixed assets and their depreciation), sub-heading 'الإهلاك' (depreciation), page 31: 'يتم تحميل الإهلاك على قائمة الدخل وفقا لطريقة القسط الثابت وفقا لمعدلات تتماشي مع العمر الإنتاجي المقدر لكل أصل عدا الأراضي' — depreciation is charged on a straight-line basis at rates matching each asset's estimated useful life, land excepted — followed by a table of DEPRECIATION RATES per asset type.",
+   "file": "engine/egch_study/filings/EGCH_FY2024-25_Annual.pdf",
+   "route": "OCR OFF THE RENDERED PIXELS, then READ AS AN IMAGE. The filing carries NO text layer (48 bytes extracted across 48 pages), so pdftotext returns nothing. Tesseract at 200dpi and again at 450dpi located the note and read the asset-class names cleanly, and could NOT read the Arabic-Indic digits reliably at either resolution — one pass rendered 9.5 as '5 ث9' and 4.75 as 'د\" ؛/'. A RATES TABLE HAS NO INTERNAL ARITHMETIC TO FOOT AGAINST, so the usual arbiter is unavailable and the extractor's confidence is worth nothing on its own. The figures below were read from the rendered page as an image at 450dpi, which is the route recorded.",
+   "years_are_derived_not_disclosed": "THE COMPANY DISCLOSES RATES; THE YEARS BESIDE THEM ARE 100/rate AND ARE LABELLED DERIVED. An identity is not an assumption, and the label is what keeps the two apart — the same discipline [R-FCAL-01 AMENDED] applies to capex derived by ΔPPE + D&A.",
+   "cells_not_read": "ONE cell is still not read: the cinema-and-cafeteria building, which prints as +٣٠٪. A 30% rate is a 3.3-year building, implausible on its face, and A RATES TABLE HAS NO INTERNAL ARITHMETIC TO FOOT AGAINST, so the usual arbiter is unavailable and there is nothing to settle it against. Named rather than guessed (SIGCM clause 8); it is not a production asset and the band does not depend on it. TWO CELLS PREVIOUSLY CARRIED HERE AS UNREAD WERE READ CLEANLY AT 400dpi ON 6 SEPTEMBER 2026 and are now in the class list — iron and steel buildings at 10% and furniture and fittings at 10%, joined by computers at 10%. Both are 10%, so the 5-50 band is unchanged and nothing downstream moves.",
+   "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE, and on 6 September 2026 THE COLLAPSE WAS ATTEMPTED AND REFUSED. Weighting the disclosed rates by the property note's own carrying amounts needs ONE RATE PER PROPERTY-NOTE CLASS, and the two notes do not meet: note 6/1 (PDF p35) carries six classes — land, buildings/constructions, machinery and equipment, vehicles, tools, furniture and office equipment — while note 5-2 gives SEVERAL rates inside three of them, and those three are 95.32% of net book value. Machinery alone is 90.36% and spans 3.95% to 9.5%, i.e. 25.32 years to 10.53, and nothing in the filing apportions that column between the urea/ammonia plant, the older plants and the workshops. MEASURED RATHER THAN ASSERTED: holding every other class at the life its own disclosure gives and moving machinery across its own disclosed band takes the weighted life from 23.29 to 10.85 years and maintenance on the 17.02bn depreciable base from EGP 730.7mn to 1,568.2mn — 2.15x on the one number a terminal turns on. A LIFE THIS DESK CHOSE IS NOT A DISCLOSED LIFE (SIGCM clause 1), so none was chosen. What IS available is an IDENTITY off the note's own columns, because the charge column is itself the weighting: depreciable gross cost over the year's own charge, 17,020,830,289 / 771,213,489 = 22.07 years. That is DERIVED, is already committed by the study as fa_life_implied_years sourced to the note 6 register, and MUST NOT be cited to the accounting-policies note. Evidence and the footing record: engine/egch_study/DISCLOSED_LIFE_06-09-2026.md."
+  },
+  "ELEC": {
+   "classes": [
+    {
+     "asset_class": "Buildings, constructions and utilities (مباني وإنشاءات ومرافق)",
+     "years": [
+      10,
+      50
+     ]
+    },
+    {
+     "asset_class": "Machinery and equipment (آلات ومعدات)",
+     "years": [
+      4,
+      25
+     ],
+     "note": "64.2% of the depreciable gross cost, and the class whose 6.25x band decides the answer"
+    },
+    {
+     "asset_class": "Vehicles and means of transport (وسائل نقل وانتقال)",
+     "years": [
+      5,
+      20
+     ]
+    },
+    {
+     "asset_class": "Tools and implements (عدد وأدوات)",
+     "years": [
+      5,
+      20
+     ]
+    },
+    {
+     "asset_class": "Computers (حاسبات الية)",
+     "years": [
+      5,
+      5
+     ],
+     "note": "the ONLY class disclosed as a single figure, which is what makes it the falsifier below"
+    },
+    {
+     "asset_class": "Furniture and office equipment (أثاث ومهمات مكاتب)",
+     "years": [
+      5,
+      10
+     ]
+    }
+   ],
+   "longest_years": 50.0,
+   "shortest_years": 4.0,
+   "land_not_depreciated": "Land (أراضي) carries no line in the policy table and no charge in the property note — zero accumulated depreciation and zero charge against a cost of EGP 250,643,846, which is 42.2% of total gross cost and is excluded from every weighting below.",
+   "source": "Electro Cable Egypt Company S.A.E. (شركة الكابلات الكهربائية المصرية), STANDALONE (المستقلة) financial statements for the year ended 31 December 2023 and the auditor's report thereon, notes to the standalone financial statements, note 2-4 'الأصول الثابتة' (fixed assets), printed page 13: 'ويتم حساب الإهلاك بإتباع طريقة القسط الثابت طبقا للعمر الافتراضي للأصل على النحو التالي' — depreciation is calculated on the straight-line method according to the estimated useful life of the asset, as follows — over a table headed 'سنوات' (years). Board approval of these statements 28 February 2024.",
+   "file": "engine/elec_study/filings/ELEC_FY2023_Standalone_Annual.pdf",
+   "sha256": "b48176013925a5ecbd2bdedec6f346131ee7986f669f02ac1320d3c1e55c4bab",
+   "route": "READ OFF THE RENDERED PIXELS. The filing carries NO TEXT LAYER AT ALL — zero font objects of any kind (/Font, /Type0, /TrueType, /Type1 all absent), 25 DCTDecode image XObjects, producer 'HP Scan' — so pdftotext returns nothing and there is nothing for a character map to get wrong. The page images were lifted straight out of the file by their own /Length headers rather than through the cross-reference table, because the archived copy is truncated and carries no trailer, and were then read as images. ARITHMETIC WAS THE ARBITER AND IT CAUGHT TWO MISREADS: the Arabic-Indic ٥ was read as ٠ twice, giving computers' closing cost as 4,100,509 against 4,155,509 and the year's depreciation charge as 14,246,081 against 14,246,581. Both were exposed by the note's own roll-forward, not by anything about the extraction looking wrong, and the corrected charge is independently confirmed by the note's own allocation block (cost of sales 13,642,676 + selling 215,910 + administrative 387,995 = 14,246,581 exactly).",
+   "read_on": "2026-09-06",
+   "the_note_foots": "THE PROPERTY NOTE FOOTS IN EVERY CELL — 21 independent identity checks, all zero. Cost: the six class columns plus land sum to each printed total (opening 581,667,408, additions 19,225,366, disposals (6,478,823), closing 594,413,951) and open+add+disp-close is zero for every class. Accumulated depreciation: the same four column sums (207,901,604 / 14,246,581 / 2,118,645 / 220,029,540) and a zero roll for every class. Net book value: cost less accumulated reproduces the printed figure for every class and the printed total 374,384,411.",
+   "prior_year_cross_check": "PASSES, and the record is more interesting than a pass. The FY2022 standalone annual (note 2-4, printed page 14) carries the IDENTICAL table — 10-50, 4-25, 5-20, 5-20, 5, 5-10, class for class and figure for figure — which is the cross-check [R-TERM-01]'s worked case ran, and the identity across two years is itself the evidence that no life was reassessed between them. The FY2021 standalone annual carries NO life table at all: its note 2-4 runs from the measurement paragraph straight to derecognition, subsequent costs and impairment with no 'سنوات' schedule. So the company ADDED this disclosure in FY2022 and repeated it unchanged in FY2023, and FY2023 is the most recent annual that exists anywhere for this issuer.",
+   "weighted_not_derivable": "THE COLLAPSE WAS ATTEMPTED AND REFUSED, AND THE PRICE OF THE REFUSAL IS 5.32x. Weighting the disclosed bands on the property note's OWN gross cost by class (land excluded), on the harmonic aggregate that a maintenance charge actually needs (total cost over the sum of cost/life), gives 4.79 years with every class at its shortest and 25.51 years with every class at its longest — a factor of 5.32, and EGP 208.59 against EGP 39.20 of annual maintenance per EGP 1,000 of replacement capital. Machinery alone is 64.2% of the base and its own band is 4 to 25 years, so the composition supplies WEIGHTS and cannot supply LIVES, and nothing in the filing apportions that column. A LIFE THIS DESK CHOSE IS NOT A DISCLOSED LIFE (SIGCM clause 1), so none was chosen. Net book value weights move it only to 4.95-26.68 and change nothing.",
+   "the_identity_route_is_closed_and_the_filing_says_so": "THE USUAL FALLBACK — depreciable gross cost over the year's own charge — FAILS ITS OWN PRECONDITION HERE, and the note discloses the reason on the same page. 'تكلفة الأصول المهلكة دفتريا بالكامل وما زالت تعمل' (cost of assets fully depreciated in the books and STILL IN USE) is EGP 93,877,527, which is 27.3% of the EGP 343,770,105 depreciable gross cost and 32.9% of machinery. Those assets carry no charge, so the denominator is not cost/life. MEASURED ON THE ONE CLASS THAT CAN FALSIFY IT: computers are disclosed as a single 5 years, and cost/charge returns 19.50 — 3.90x the disclosed life. Excluding the fully-depreciated cost gives 17.54 years overall and reproduces the bands well (computers 5.47 against 5, furniture 10.00 against 5-10), but that construction assumes the 27.3% that is fully written down AND STILL RUNNING never needs replacing, which is the opposite of what the disclosure says. The two constructions the same note supports differ by 38% (24.13 against 17.54 years) and the note does not choose between them. For scale, terminal_value.py's own re-pointing note records EGCH at 1.3% fully depreciated, where the proxy was usable; this is twenty-one times that.",
+   "wrong_entity_and_this_is_independent": "EVEN A COLLAPSED LIFE WOULD BE THE WRONG COMPANY'S. This is the STANDALONE parent statement and the study models the CONSOLIDATED group (Giza Power Industry, GPI Projects, Giza Egyptian Transport and Distribution). Every statement this issuer has published from mid-2021 onward is standalone; the most recent carrying the consolidated marker (المجمعة) is 30 September 2020, and every consolidated file is hosted on ece.allmediaegypt.com, which no longer resolves. The FY2020 consolidated annual survives in the web archive only as a 1,048,576-byte truncation that stops at printed page 6, the consolidated statement of comprehensive income, above its own line reading 'الإيضاحات المرفقة من إيضاح (١) إلى (٢٨)' — so not one of its 28 notes exists in anything obtainable. There is therefore NO consolidated property note for any year the model touches, and weighting the parent's class mix into a consolidated maintenance life is the substitution the exemplar refused.",
+   "no_replacement_base_to_charge_it_against": "A THIRD REFUSAL, ALSO SUFFICIENT ON ITS OWN. terminal_value.build() charges maintenance as IC_replacement / useful_life, and this study commits no property figure from any filing: dna_pct is 1.3% of revenue and its own source field reads 'House'; nwc_fy25_est carries 'PP&E ~680' as a house triangulation; capex_mn's source field states 'no disclosed capex any year (flagged gap)'; and terminal invested capital is working capital plus a typed 0.05 x revenue. Against the filing: the model's terminal property base of EGP 877.7mn is 7.09x the parent's filed depreciable net book value of EGP 123.7mn (374,384,411 less 250,643,846 of land); the model's FY2025 D&A of 75.7mn is 5.32x the filed FY2023 charge of 14.2mn and its terminal-year 228.2mn is 16.02x it; its year-five maintenance capex of 306.0mn is 21.48x it. Priced anyway for the record, on the model's own 877.7mn: EGP 183.2mn a year at the short end of the disclosed band and EGP 34.4mn at the long end. Neither is quotable — the base underneath both is a typed constant.",
+   "what_would_open_it": "The CONSOLIDATED annual statements for FY2023 or later, with their property note. They are not published: the issuer's index (www.ececables.com/financial-statements-2/, reachable, HTTP 200 on 6 September 2026) ends at 30 September 2025 and lists standalone files only from mid-2021, while every consolidated link points at a dead host. Failing that, a consolidated property note from any recent year plus a statement that the parent's class composition is representative — but that statement would have to come from the company, not from this desk.",
+   "against_the_terminal": "This study's terminal implies a replacement cycle of 20.0 years, which is 1/g at g = 5.0% to the decimal — the reciprocal-of-inflation artefact [R-TERM-01] retired, not a fact about a cable plant. It sits inside the 4.79-25.51 band the disclosure supports, which is not corroboration: a 5.32x band contains almost anything. The census also reads this terminal 28.4% BELOW its own floor, the largest such reading in the book. NOTHING HERE IS A PREDICTION OF WHICH WAY A REBUILD WOULD MOVE THE VALUE, per [R-TERM-01 CLAUSE TWO CORRECTED]: the sign is measured per name and never read off a ratio, and on this name it cannot be measured at all until there is a replacement base to charge.",
+   "route_that_found_these_filings": "THE WEB ARCHIVE, WHICH THE STANDING ESCALATION NEVER RAN. escalations.json entry ELEC-primary-financial-statements records six routes, all correctly exhausted — the issuer's own host serves 404 or a WAF challenge for every statement PDF (re-run 6 September 2026 and still true), the legacy host does not resolve, the exchange portal closes the tunnel, and no filing sits on any of the 241 live refs. web.archive.org is reachable and holds them: FY2021 complete at 3,687,574 bytes with a valid trailer, FY2022 and FY2023 as 5 MiB crawler truncations that nevertheless carry 17 and 24 complete page images including the policy note and, for FY2023, the property note. Its CDX endpoint is blocked by egress policy but the /web/ replay path is not, and range requests are honoured. Recorded here rather than only reported, because the container is rebuilt from the repository."
+  },
+  "FERTIGLOBE": {
+   "classes": [
+    {
+     "asset_class": "Buildings",
+     "years": [
+      10,
+      50
+     ]
+    },
+    {
+     "asset_class": "Plant and equipment",
+     "years": [
+      5,
+      30
+     ]
+    },
+    {
+     "asset_class": "Fixtures and fittings",
+     "years": [
+      3,
+      10
+     ]
+    }
+   ],
+   "longest_years": 50,
+   "shortest_years": 3,
+   "land_not_depreciated": true,
+   "source": "Fertiglobe plc, 2025 Annual Report, note 3 material accounting policies, property, plant and equipment — depreciation: 'Items of property, plant and equipment are depreciated on a straight-line basis through profit or loss over the estimated useful lives of each component, taking into account any residual values. Land is not depreciated ... The estimated useful lives for items of property, plant and equipment are as follows'. Downloaded 04-Sep-2026 from the company's own investor-relations page, fertiglobe.com/wp-content/uploads/2026/03/Fertiglobe-2025-Annual-Report-vF.pdf; sha256 cbb8fdb171154dbe9adac7a0675271b53050d40fd58dfa5595d5ad4b0ff20b8f.",
+   "file": "engine/fertiglobe_study/FERTIGLOBE_2025_Annual_Report.pdf",
+   "sha256": "cbb8fdb171154dbe9adac7a0675271b53050d40fd58dfa5595d5ad4b0ff20b8f",
+   "route": "Text layer via pdftotext -layout, 1.39MB extracted. The report is the integrated annual report and carries the audited consolidated financial statements inside it, which is where this note sits.",
+   "cross_check": "NOT YET CROSS-CHECKED AGAINST A SECOND YEAR, and that is recorded rather than left to be assumed from the other entries here. Unlike SAVOLA's, this note does not describe its own table as covering the comparative year, so the one-document check SAVOLA's gave is not available; a prior-year annual report would supply it and was not fetched in this pass. The lives are usable and this is what is known about them.",
+   "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE. The weighted life a terminal needs is derived at rebuild from this company's own property, plant and equipment note composition — a further sourcing step, not done here.",
+   "weighted_life_derived": {
+    "years": 22.04,
+    "identity": "depreciable cost / the year's depreciation charge",
+    "arithmetic": {
+     "ppe_cost_total_31_12_2025": 6197.4,
+     "less_under_construction": 190.4,
+     "less_land_not_depreciated": 22.2,
+     "depreciable_cost": 5984.8,
+     "depreciation_2025": 271.6,
+     "years": 22.04,
+     "units": "USD millions"
+    },
+    "source": "Fertiglobe plc, 2025 Annual Report, note 7 property, plant and equipment — the cost and accumulated-depreciation table at 31 December 2025, and the 'Depreciation and impairment' movement row for the year.",
+    "why_derived_and_not_chosen": "THE DISCLOSED BANDS CANNOT BE COLLAPSED WITHOUT CHOOSING. Buildings 10-50, plant and equipment 5-30, fixtures 3-10: any single figure taken from those is this desk picking a life, which [R-TERM-01] refuses outright. What the note ALSO discloses is the composition at COST and the year's charge, and their ratio is an IDENTITY rather than an assumption — the composite life the company's own accounts are actually running. It is LABELLED derived, on the same footing as capex derived by dPPE + D&A and EGCH's years derived from disclosed rates.",
+    "the_impairment_caveat_and_why_it_does_not_bite": "The movement row is labelled 'Depreciation and impairment', so in a year carrying an impairment the ratio would understate the life. This report states at note 12 that 'no impairments were required for the year ended 31 December 2025', so the row is pure depreciation and the identity is exact. IN A YEAR WITH AN IMPAIRMENT THIS DERIVATION WOULD NOT BE AVAILABLE, and that is a property of the disclosure rather than of the method.",
+    "coherence_check": "The derived 22.04 years sits INSIDE the disclosed plant-and-equipment band of 5-30, and plant and equipment is 94.6% of the depreciable cost base — so the figure the arithmetic produces and the class that dominates the base agree. That is the check that makes a derived life usable rather than merely arithmetic.",
+    "against_the_retired_terminal": "The retired terminal charges g x IC, so it implies a replacement cycle of 1/g = 50.0 years at this study's 2% terminal — 2.27 TIMES the life this company's own accounts depreciate its assets over. That is the [R-TERM-01 CLAUSE TWO] direction reversal measured on one name with its own numbers: in a pegged market the identity does not starve the asset base, it flatters it, and correcting it moves the value DOWN."
+   }
+  },
+  "MODON": {
+   "classes": [
+    {
+     "asset_class": "Plant",
+     "years": [
+      40,
+      40
+     ]
+    },
+    {
+     "asset_class": "Buildings",
+     "years": [
+      2,
+      50
+     ]
+    },
+    {
+     "asset_class": "Machinery and equipment",
+     "years": [
+      3,
+      4
+     ]
+    },
+    {
+     "asset_class": "Vehicles",
+     "years": [
+      3,
+      5
+     ]
+    },
+    {
+     "asset_class": "Office and computer equipment",
+     "years": [
+      2,
+      5
+     ]
+    },
+    {
+     "asset_class": "Furniture and fixtures",
+     "years": [
+      2,
+      5
+     ]
+    },
+    {
+     "asset_class": "Leasehold improvements",
+     "years": [
+      1,
+      10
+     ],
+     "note": "the lower of the lease term or 10 years, so the short end is the lease"
+    },
+    {
+     "asset_class": "Other assets",
+     "years": [
+      5,
+      5
+     ]
+    }
+   ],
+   "longest_years": 50,
+   "shortest_years": 2,
+   "source": "Modon Holding PSC FY2025 consolidated financial statements, property, plant and equipment accounting policy: 'The estimated useful lives for the current and the comparative periods are as follows', followed by the table. Land is not depreciated.",
+   "file": "engine/modon_study/sources/FS_FY2025.pdf",
+   "route": "text layer via pdftotext -layout",
+   "read_on": "2026-09-04",
+   "weighted_life_years": null,
+   "weighted_not_derivable": "THE WEIGHTED LIFE CANNOT BE DERIVED FROM THIS DISCLOSURE AND NO FIGURE IS CHOSEN INSTEAD. Two of the note's own columns each combine assets whose disclosed lives differ by an order of magnitude, and neither can be split from anything the filings publish. (1) LAND AND BUILDINGS ARE ONE COLUMN — AED 12,438,392 thousand, 73% of the gross cost — and LAND IS NOT DEPRECIATED AT ALL while buildings run 2 to 50 years, so the depreciable base inside the largest class is unknown. (2) PLANT (40 years) shares a column with MACHINERY AND EQUIPMENT (3 to 4 years), a more than tenfold spread on AED 883,217 thousand. THE CHARGE-IMPLIED ROUTE IS ALSO CLOSED and for a reason worth recording: FY2025 carried AED 832,492 thousand of assets acquired through business combinations, most of it into the plant column, so a full-year charge over an average base measures the timing of an acquisition rather than a life — the implied figures come out at 20.7 years on a class disclosed at 3 to 4, and 12.4 years on one disclosed at 2 to 5. Neither route is a disclosure and A LIFE THIS DESK CHOSE IS NOT A DISCLOSED LIFE (SIGCM clause 8), so MODON stays on the terminal ratchet WITH THIS REASON rather than being conformed on an invented number. Same disposition as ADNOCLS, for the same kind of gap.",
+   "against_the_terminal": "this study's terminal is BELOW ITS OWN NO-GROWTH FLOOR — the worst symptom the retired reinvestment identity produces, and the one that says the construction is charging more for growth than the growth is worth. Its implied replacement cycle is 1/g = 40.0 years, which happens to equal the disclosed life of PLANT alone while the rest of the base runs 2 to 5 years. Correcting it is worth at least +6.2% (3.54 -> 3.76 at the floor) and cannot be done until the weighted life can be sourced."
+  },
+  "PHAR": {
+   "classes": [
+    {
+     "asset_class": "Administration buildings & structures",
+     "years": [
+      50,
+      50
+     ]
+    },
+    {
+     "asset_class": "Factory buildings & structures",
+     "years": [
+      50,
+      50
+     ]
+    },
+    {
+     "asset_class": "Production activity machines",
+     "years": [
+      15,
+      15
+     ]
+    },
+    {
+     "asset_class": "Service machines & utilities",
+     "years": [
+      15,
+      15
+     ]
+    },
+    {
+     "asset_class": "Means of transportation",
+     "years": [
+      5,
+      5
+     ]
+    },
+    {
+     "asset_class": "Tools",
+     "years": [
+      5,
+      5
+     ]
+    },
+    {
+     "asset_class": "Office furniture & equipment",
+     "years": [
+      10,
+      10
+     ]
+    }
+   ],
+   "longest_years": 50,
+   "shortest_years": 5,
+   "source": "EIPICO (PHAR) FY2024 audited consolidated financial statements, note 3.1 'Fixed assets and depreciation': 'The depreciable fixed asset value ... is depreciated according to the straight-line method over the estimated useful life of each type of fixed asset ... (land is not depreciated)', followed by the table of estimated lives. EVERY LIFE IS A SINGLE FIGURE, not a band, which is unusual in this file and makes the weighting unambiguous.",
+   "file": "engine/phar_study/source_FY2024_audited_consolidated.pdf",
+   "route": "text layer via pdftotext -layout",
+   "read_on": "2026-09-04",
+   "weighted_life_years": 13.8,
+   "verified_on": "2026-09-06",
+   "verified_independently": "RE-SOURCED FROM THE FILINGS AND CONFIRMED. The gross-cost-weighted harmonic mean of the disclosed class lives computes to 13.7954 years (depreciable gross cost 2,701,916,171 over a weighted annual charge of 195,855,726), reproducing the 13.8 committed. Priced through terminal_value.py at the exact figure the terminal moves +0.0074% on frame A and +0.0058% on frame B — immaterial. RATES ADD AND LIVES DO NOT: weighting the LIVES arithmetically instead gives 20.7158 years, 50.2% too long. Weighting on NET BOOK VALUE rather than gross cost gives 15.1535, 9.8% longer, and is NOT adopted — net book value measures how much of an asset has been consumed rather than the rate at which it is consumed, and because the short-lived classes here are the most depreciated (transportation 89% written down) it lengthens the life and under-charges maintenance. Full working in engine/phar_study/useful_lives.json.",
+   "route_verified": "The text layer is FAITHFUL but the note DOES NOT FOOT in three places, so both property, plant and equipment pages were re-read by OCR off the rendered pixels (pdftoppm -r 300 -gray, pdf pages 27 and 28) and the pixels confirm the text layer figure for figure, including the failing cells. (i) note 4.1 transportation accumulated depreciation rolls to 95,515,215 against a stated 95,515,206, out by +9, and (ii) the same nine reappears in the disposals row, 957,912 against 957,921 — the defective cell is the disposals figure, where 57,465 rather than 57,456 makes both foot, a transposition. (iii) note 4.2 states accumulated depreciation at 31/12/2023 of 1,645,282,556 against columns summing to 1,645,282,546, confirmed three ways as the +10 error: the columns, the FY2024 note's own 1/1/2024 opening balance, and the FY2023 STANDALONE filing whose note 4 foots with zero failures. ALL THREE SIT IN ACCUMULATED DEPRECIATION; every COST row foots in both filings and ties 31/12/2023 to 1/1/2024 exactly, and cost is the only base the weighting reads.",
+   "prior_year_cross_check": "The FY2023 composition, agreeing class by class between the FY2024 comparative and the FY2023 standalone filing, weights to 14.2840 years on an IDENTICAL table of disclosed lives — so no life was reassessed between the two years. The 3.5% shortening into FY2024 is pure mix: additions of 89.2mn machines, 44.3mn tools and 42.6mn furniture against 0.6mn of buildings.",
+   "measured_age_refused": "THE MEASURED-AGE ROUTE IS RULED OUT BY THE COMPANY'S OWN POLICY NOTE. Note 3.1 depreciates 'the cost of the asset minus its residual value' — condition (i) in terminal_value.py, the SAVOLA and EMPOWER condition — so accumulated depreciation over the year's charge OVERSTATES the age and may not be read off the accounts. Here, unlike SAVOLA, the arithmetic corroborates the note rather than waving it through: the identity-implied life (2,701,916,171 / 95,547,071) is 28.28 years against the 13.7954 the class rates weight to, +105% apart. The declined age is 18.21 years against a half-life of 6.90; at the house 7% terminal that would move the escalator from 1.5947 to 3.4282, maintenance from EGP 722.0mn to 1,551.9mn, and the terminal DOWN 55.0% on frame A and 43.1% on frame B. Conditions (ii) and (iii) do not bite — no life reassessed, no business combination in the cost roll-forward.",
+   "census_reads_this_band_and_should_not": "PHAR HAS ALREADY BEEN REBUILT THROUGH terminal_value.py AND COMMITS 13.8, yet the census still prints 'sourced 5-50 yrs' for it. The reason is a resolver blind spot, not a gap in the study: terminal_census.disclosed_life() looks for terminal_record at the TOP LEVEL of study_numbers.json, and PHAR is a two-sided study whose terminals are committed per frame at dcf.frame_A.terminal_record and dcf.frame_B.terminal_record. This is the ARCC false negative that resolver's own docstring records, closed for the flat case and still open one level down for any two-sided study. Reported, not fixed here — a change to what a gate reports is its own decision.",
+   "weighted_from": "the gross cost by class in note 4.1 at 31-Dec-2024 — buildings 543,426,318 at 50 years, machines and equipment 1,701,915,589 at 15, transportation 107,581,637 at 5, tools 151,105,707 at 5, furniture 197,886,920 at 10 — on a depreciable base of EGP 2,701,916,171 which foots to the note's stated 2,785,102,203 once land of 83,186,032 is excluded. The rates add, not the lives, so the weighted life is the reciprocal of the weighted annual rate.",
+   "against_the_terminal": "this study's terminal implies a replacement cycle of 20.0 years (1/g at g=5.0%) against a disclosed weighted life of 13.80 — it charges maintenance over a life 45% longer than the accounts run, which UNDER-charges. THE DIRECTION IS SET BY THE TYPED GROWTH RATE AND NOT BY THE MARKET: [R-TERM-01 CLAUSE TWO] reasons from a terminal at zero real growth, where 1/g is the reciprocal of inflation and runs SHORT in a high-inflation economy. This study typed 5% nominal in a 7%-inflation economy — a real DECLINE — so its 1/g runs long in exactly the market the clause says it should run short. At the house terminal of 7% the implied cycle would be 14.3 years, close to the disclosed 13.80, which is a coincidence of magnitudes rather than a law and is recorded as one."
+  },
+  "SAVOLA": {
+   "classes": [
+    {
+     "asset_class": "Buildings",
+     "years": [
+      12.5,
+      50
+     ]
+    },
+    {
+     "asset_class": "Leasehold improvements",
+     "years": [
+      3,
+      33
+     ]
+    },
+    {
+     "asset_class": "Plant and equipment",
+     "years": [
+      3,
+      30
+     ]
+    },
+    {
+     "asset_class": "Furniture and office equipment",
+     "years": [
+      3,
+      16
+     ]
+    },
+    {
+     "asset_class": "Vehicles",
+     "years": [
+      4,
+      10
+     ]
+    }
+   ],
+   "longest_years": 50,
+   "shortest_years": 3,
+   "land_not_depreciated": true,
+   "source": "Savola Group Company, consolidated financial statements for the year ended 31 December 2024, audited, note 3(f) property, plant and equipment: 'Depreciation is charged to the profit or loss on a straight-line basis over the estimated useful lives of individual items of property, plant and equipment ... The estimated useful lives of assets for current and comparative year is as follow'. Land is not depreciated. Downloaded 04-Sep-2026 from the company's own investor-relations financial-statements page.",
+   "file": "engine/savola_study/SAVOLA_FY2024_Audited_FS.pdf",
+   "route": "Text layer via pdftotext -layout. The document carries a full text layer (369KB extracted across the statements), so no OCR was needed; the route is recorded either way because which route a figure came by is part of the record, not a detail of the day.",
+   "cross_check": "The FY2024 note states the table is 'for current and comparative year', which makes it its own one-year check. Checked further against the FY2020 ANNUAL audited statements (engine/savola_study/SAVOLA_FY2020_Annual_FS.pdf, note 3(g)): the table is IDENTICAL line for line — 12.5-50, 3-33, 3-30, 3-16, 4-10 — so these lives are stable across at least 2020 to 2024. THE FIRST CROSS-CHECK ATTEMPTED WAS THE WRONG DOCUMENT and is recorded rather than quietly replaced: the file the company labels 'q4-2023' is a CONDENSED CONSOLIDATED INTERIM statement, UNAUDITED, and carries no accounting-policies table at all. A fourth-quarter filing is not an annual one.",
+   "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE. The weighted life a terminal needs is derived at rebuild from this company's own property, plant and equipment note composition, which is a further sourcing step and is NOT done here — collapsing 3-50 to one figure here would be this desk choosing the life under cover of a citation.",
+   "vintage_note": "This study's valuation date is 31-Dec-2025 and the latest ANNUAL audited statements on the company's own financial-statements page at 04-Sep-2026 are FY2024; no FY2025 annual was listed there. The lives are unchanged 2020-2024, so the vintage gap is recorded rather than treated as material — but it is recorded."
   }
  }
 }

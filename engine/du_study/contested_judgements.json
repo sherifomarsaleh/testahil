@@ -51,7 +51,7 @@
    "value_alternative": 18.013369044561095,
    "share_of_value": 0.0796946518040766,
    "direction": "the study adopted the lower-value framing",
-   "why": "There is no liquid ten-year AED point, so the tenor choice is a real range and the study publishes it as one — the adopted rate sits BETWEEN its two alternatives, and the other reading, the peg-extrapolated 4.69%, is worth AED 15.8211, which puts the adopted side on the HIGHER-value half of that pair. The alternative recorded here is the longer-tenor one because a perpetuity is discounted at a tenor-matched rate, and on that reading the adopted side is the lower-value one by AED 1.44 a share. ONE THING CUTS FOR THE ADOPTED SIDE AND IT IS THIS STUDY'S OWN: run end to end, the longer-tenor rate nets to a real risk-free of 4.09%, below the matched-tenor US Treasury of 4.32%, which the study's own no-arbitrage floor refuses under a hard peg — so the figure above is what the alternative is worth, not a construction this study could adopt.",
+   "why": "There is no liquid ten-year AED point, so the tenor choice is a real range and the study publishes it as one — the adopted rate sits BETWEEN its two alternatives, and the other reading, the peg-extrapolated 4.69%, is worth AED 15.8211, which puts the adopted side on the HIGHER-value half of that pair. The alternative recorded here is the longer-tenor one because a perpetuity is discounted at a tenor-matched rate, and on that reading the adopted side is the lower-value one by AED 1.44 a share. ONE THING CUTS FOR THE ADOPTED SIDE AND IT IS THIS STUDY'S OWN: run end to end, the longer-tenor rate nets to a DEFAULT-FREE risk-free of 4.09%, below the matched-tenor US Treasury of 4.32%, which the study's own no-arbitrage floor refuses under a hard peg — so the figure above is what the alternative is worth, not a construction this study could adopt.",
    "value_alternative_other_reading": 15.821088786237056,
    "other_reading": "the peg-extrapolated ten-year AED proxy at 4.69%, the third rate the study prices",
    "material": true
@@ -64,18 +64,18 @@
    "value_alternative": 16.952105401966442,
    "share_of_value": 0.02208017956203575,
    "direction": "the study adopted the lower-value framing",
-   "why": "Both bases are published in the study's own cost-of-capital table, as the method requires, and the same basis is stripped as is added back on either side. The adopted one gives the HIGHER cost of equity — 6.53% against 6.44% — and therefore the LOWER value, by AED -0.37 a share. The alternative is nonetheless one the study refuses end to end: netting the 0.42% rating spread drives the real risk-free rate to 4.06%, through the matched-tenor US Treasury of 4.32%, which cannot happen under a hard peg.",
+   "why": "Both bases are published in the study's own cost-of-capital table, as the method requires, and the same basis is stripped as is added back on either side. The adopted one gives the HIGHER cost of equity — 6.53% against 6.44% — and therefore the LOWER value, by AED 0.37 a share. The alternative is nonetheless one the study refuses end to end: netting the 0.42% rating spread drives the DEFAULT-FREE risk-free rate to 4.06%, through the matched-tenor US Treasury of 4.32%, which cannot happen under a hard peg.",
    "material": false
   },
   {
    "name": "the beta's regressor",
-   "adopted": "the FTSE ADX General Index, the registered regressor for this market, beta 0.4880 (R-squared 0.120, standard error 0.0827, 256 weekly observations) — carried with its own standing disclosure that it is an interim regressor for a Dubai-listed name",
+   "adopted": "the FTSE ADX General Index, the registered regressor for this market, beta 0.4880 (R-squared 0.120, standard error 0.0827, 256 weekly observations), carried in the model at the registered 0.488 — with its own standing disclosure that this is an interim regressor for a Dubai-listed name",
    "alternative": "the DFM General Index, du's OWN listing venue, beta 0.4716 at a tighter fit (R-squared 0.202, standard error 0.0584)",
    "value_adopted": 16.577799870736467,
    "value_alternative": 16.848402626962127,
    "share_of_value": 0.01606103333455603,
    "direction": "the study adopted the lower-value framing",
-   "why": "The listing venue's own index explains du better and gives a LOWER beta, so the adopted regressor is the lower-value side by AED 0.27 a share. The equal-weight library composite is lower still at 0.3997 and is a cross-check rather than a regressor. Every alternative here points the same way: none of them closes the disagreement with the price, all of them widen it.",
+   "why": "The listing venue's own index explains du better and gives a LOWER beta, so the adopted regressor is the lower-value side by AED 0.27 a share. The equal-weight library composite is lower still at 0.3997, worth AED 18.1433, and is a cross-check rather than a regressor. Every alternative here points the same way: none of them closes the disagreement with the price, all of them widen it.",
    "value_alternative_composite": 18.143254488119137,
    "material": false
   },
@@ -98,7 +98,7 @@
    "value_alternative": 18.308194502599175,
    "share_of_value": 0.09451476122438222,
    "direction": "the study adopted the lower-value framing",
-   "why": "The adopted side is the LOWER-value one by AED -1.73 a share, and it is the one the company's own audited disclosure agrees with to the basis point. The alternative is a real growth rate nobody quantified — the previous edition argued the nominal figure as population growth plus inflation less price erosion, which names two real forces pointing opposite ways and puts a number on neither. A positive real terminal growth is a legitimate framing and it is priced here rather than dismissed; what it is not is a free one, because this model charges real growth for the capital it consumes at AED 10,430 per unit of growth.",
+   "why": "The adopted side is the LOWER-value one by AED 1.73 a share, and it is the one the company's own audited disclosure agrees with to the basis point. The alternative is a real growth rate nobody quantified — the previous edition argued the nominal figure as population growth plus inflation less price erosion, which names two real forces pointing opposite ways and puts a number on neither. A positive real terminal growth is a legitimate framing and it is priced here rather than dismissed; what it is not is a free one, because this model charges real growth for the capital it consumes at AED 10,430mn per unit of growth.",
    "material": true
   },
   {
@@ -115,12 +115,12 @@
   {
    "name": "the lease renewal in the explicit window",
    "adopted": "no lease-replacement capital charge in free cash flow, because the lease liability is deducted as debt in the bridge and charging renewal there too would bill the existing obligation twice; the renewal is carried instead inside the terminal's blended asset life, where the right-of-use book enters at its own 10.24 years",
-   "alternative": "the retired construction: a replacement charge equal to right-of-use depreciation in every explicit year, AED 355 falling to AED 335",
+   "alternative": "the retired construction: a replacement charge equal to right-of-use depreciation in every explicit year, AED 355mn falling to AED 335mn",
    "value_adopted": 16.577799870736467,
    "value_alternative": 16.245628803730405,
    "share_of_value": 0.020446796551807644,
    "direction": "the study adopted the higher-value framing",
-   "why": "The adopted side is the higher-value one by AED 0.33 a share. It is defensible on the double-charging argument and it is the looser of the two readings; the actual FY2025 lease additions were AED 96mn against a depreciation charge of AED 355, so the retired construction was itself well above what the company spent.",
+   "why": "The adopted side is the higher-value one by AED 0.33 a share. It is defensible on the double-charging argument and it is the looser of the two readings; the study's own register records actual FY2025 lease additions of AED 96mn against a right-of-use depreciation charge of AED 355mn, so the retired construction was itself well above what the company spent.",
    "material": false
   },
   {
@@ -139,10 +139,10 @@
    "adopted": "held FLAT at the reviewed H1-2026 rate, with the measured improvement stopped dead rather than projected",
    "alternative": "the improvement projected at the rate the audited full years measured, -8.24% a year (AED 79.71 per subscriber per month in FY2024 against AED 73.14 in FY2025)",
    "value_adopted": 16.577799870736467,
-   "value_alternative": 17.10385139650719,
-   "share_of_value": 0.03075631994079111,
+   "value_alternative": 17.104044305807744,
+   "share_of_value": 0.030767251631392736,
    "direction": "the study adopted the lower-value framing",
-   "why": "The mechanism — fibre and fixed-wireless scale plus enterprise mix — is real and the study says so; what it declines to do is project a decay rate it cannot measure. The adopted side is the lower-value one by AED -0.53 a share.",
+   "why": "The mechanism — fibre and fixed-wireless scale plus enterprise mix — is real and the study says so; what it declines to do is project a decay rate it cannot measure. The adopted side is the lower-value one by AED 0.53 a share.",
    "material": false
   },
   {
@@ -150,10 +150,10 @@
    "adopted": "held FLAT at the reviewed H1-2026 rate of 15.58%, the worst observation in the series, taking no credit for the recovery du's own commentary implies",
    "alternative": "the FY2025 audited rate of 13.58%, the last full year",
    "value_adopted": 16.577799870736467,
-   "value_alternative": 16.731745282953668,
-   "share_of_value": 0.00920079822001838,
+   "value_alternative": 16.731791880983184,
+   "share_of_value": 0.00920355759515155,
    "direction": "the study adopted the lower-value framing",
-   "why": "The series worsens at every observation and du attributes it to a conflict-hit roaming and transit mix. Anchoring on the latest reviewed period rather than the last audited year is the house rule and here it is the lower-value side, by AED -0.15 a share.",
+   "why": "The series worsens at every observation (FY2024 11.97%, FY2025 13.58%, H1-2025 13.94%, H1-2026 15.58%) and du attributes it to a conflict-hit roaming and transit mix. Anchoring on the latest reviewed period rather than the last audited year is the house rule and here it is the lower-value side, by AED 0.15 a share.",
    "material": false
   },
   {
@@ -161,8 +161,8 @@
    "adopted": "held FLAT at the reviewed H1-2026 rate of 78.48%, the best observation in the series",
    "alternative": "the FY2025 audited rate of 80.61%, the last full year",
    "value_adopted": 16.577799870736467,
-   "value_alternative": 16.406327299462813,
-   "share_of_value": 0.01045161224348293,
+   "value_alternative": 16.406327315712705,
+   "share_of_value": 0.01045161124266603,
    "direction": "the study adopted the higher-value framing",
    "why": "The same anchoring rule as the wholesale row, applied to a series that moves the other way — FY2024 79.25%, FY2025 80.61%, H1-2026 78.48%, no trend in either direction. Here the rule lands on the higher-value side, by AED 0.17 a share, which is the point of recording both: one rule, two directions.",
    "material": false
@@ -172,8 +172,8 @@
    "adopted": "the registered path falling from 15.5% of revenue to 13.0% as the 5G build completes",
    "alternative": "held flat at the FY2025 actual cash capital intensity of 14.80% of revenue",
    "value_adopted": 16.577799870736467,
-   "value_alternative": 16.387575740007684,
-   "share_of_value": 0.011607826181659123,
+   "value_alternative": 16.38751159999378,
+   "share_of_value": 0.011611785571078398,
    "direction": "the study adopted the higher-value framing",
    "why": "The adopted path opens ABOVE the trailing actual and ends below it, so it is not a uniformly generous assumption; over the five years together it spends less, and the adopted side is the higher-value one by AED 0.19 a share.",
    "material": false
@@ -186,7 +186,7 @@
    "value_alternative": 17.15687382944743,
    "share_of_value": 0.033751717502116425,
    "direction": "the study adopted the lower-value framing",
-   "why": "The adopted side is the lower-value one by AED -0.58 a share on the price route and AED -0.71 on the volume route. Guidance is scored here and never consumed: a driver that takes a management target as an input inherits its lean instead of measuring it, so the build stays where the disclosed drivers put it and the reader is shown what the midpoint would be worth.",
+   "why": "The adopted side is the lower-value one by AED 0.58 a share on the price route and AED 0.71 on the volume route. Guidance is scored here and never consumed: a driver that takes a management target as an input inherits its lean instead of measuring it, so the build stays where the disclosed drivers put it and the reader is shown what the midpoint would be worth.",
    "value_alternative_won_on_volume": 17.28372726735544,
    "material": false
   },
@@ -198,7 +198,7 @@
    "value_alternative": 16.672718989666375,
    "share_of_value": 0.005693079754342331,
    "direction": "the study adopted the lower-value framing",
-   "why": "Both are audited outturns of the same structurally negative telecom working-capital cycle and the whole plausible range is worth well under a per cent; the adopted side is the lower-value one by AED -0.09 a share.",
+   "why": "Both are audited outturns of the same structurally negative telecom working-capital cycle and the whole plausible range is worth well under a per cent; the adopted side is the lower-value one by AED 0.09 a share.",
    "material": false
   },
   {
@@ -220,7 +220,7 @@
    "value_alternative": 16.837799870736468,
    "share_of_value": 0.015441447338489445,
    "direction": "the study adopted the lower-value framing",
-   "why": "The ex-date settles it: a share bought at the anchor does not carry a distribution that already went ex. The adopted side is the lower-value one by AED -0.26 a share, and it is a correction the study made to itself.",
+   "why": "The ex-date settles it: a share bought at the anchor does not carry a distribution that already went ex. The adopted side is the lower-value one by AED 0.26 a share, and it is a correction the study made to itself.",
    "material": false
   }
  ],
@@ -230,7 +230,7 @@
   "resolved_downward": 2,
   "two_sided_binomial_p": 0.453125,
   "flag": false,
-  "reading": "Of the 7 material contested judgements, 5 were resolved toward the higher-value framing and 2 toward the lower; the two-sided sign test gives p = 0.45. THAT IS NOT A LEAN. The three largest forks in the study all run the same way — the lens architecture, the terminal capitalisation and the fiscal tail — but the cost of capital, the terminal growth and the terminal asset life do not, and two of those three are the parameters the whole answer turns on. A study that resolved every fork one way would be flagged, not failed; this one is not flagged, and the instrument is reporting that the direction of the disagreement with the market is not the direction of this study's own choices."
+  "reading": "Of the 7 material contested judgements, 5 were resolved toward the higher-value framing and 2 toward the lower; the two-sided sign test gives p = 0.45, so this study is NOT flagged. The four largest forks do all run the same way — the lens architecture, the mix decomposition, the terminal capitalisation and the fiscal tail — and that is worth seeing. The two that run the other way are the risk-free tenor and the terminal growth rate, and those are not minor rows: the terminal carries 81% of enterprise value and the discount rate is what this study's own gap review calls the single parameter of its disagreement with the market. A study resolving every material fork one way would be FLAGGED, not failed, because a company can genuinely deserve a consistent read; what this instrument reports here is that the choices are not uniform, on a name whose central sits +46% against the price."
  },
  "not_valued": [
   {
