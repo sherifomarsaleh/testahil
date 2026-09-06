@@ -5,7 +5,7 @@ probability cones, and a public ledger, published to the live site. Read this be
 doing any research, study-build, critique-response, or publishing work here.
 
 **Full governing rules — read before starting any study:**
-@engine/PROJECT_INSTRUCTIONS_04-09-2026.md
+@engine/PROJECT_INSTRUCTIONS_06-09-2026.md
 
 That file is the condensed, binding digest (rules only, never volatile numbers). The
 complete prose version, with the reasoning and the failures each rule was adopted from,

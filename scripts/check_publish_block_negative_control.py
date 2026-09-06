@@ -179,6 +179,99 @@ def main():
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 
+    # THE PRICE-ONLY EXEMPTION [R-GAP-02 AMENDED 06-Sep-2026], IN BOTH DIRECTIONS.
+    #
+    # An exemption is the most dangerous thing in a gate, because it is the one place
+    # the gate is designed to stop looking. Every condition below is run with the
+    # method stubbed NOT proven — the state the book is actually in — since an
+    # exemption that only matters while the hold is off is not an exemption at all.
+    # The pair of published entries is injected through _published_pair, and each
+    # fixture ASSERTS the injection changed what it meant to change rather than
+    # trusting that it did: a control that mutates nothing goes green for the wrong
+    # reason, which is the failure [R-ENF-04] is named for.
+    #
+    # CASE "nothing pending" IS THE ONE THAT MATTERS MOST. Run ON main the tree and
+    # origin/main are identical by construction, so a comparison that only asked
+    # "does fair{} differ?" would answer no for every study in the book and exempt
+    # all of them while reporting itself green. It must stay HELD.
+    LIVE = {"fair": {"bear": 46.84, "base": 53.12, "full": 59.1},
+            "files": {"pdf": "files/TK_06-08-2026.pdf"}, "spot": 79.0}
+
+    def pair(here, there):
+        return lambda: (({"TK": here} if here is not None else {}),
+                        ({"TK": there} if there is not None else {}))
+
+    moved_fair = dict(LIVE, spot=98.52, fair={"bear": 60.0, "base": 70.0, "full": 80.0})
+    moved_files = dict(LIVE, spot=98.52, files={"pdf": "files/TK_04-09-2026.pdf"})
+    for name, here, there, central, price, dissent, must in (
+            ("price-only, method unproven", dict(LIVE, spot=98.52), LIVE,
+             74.0, 77.0, None, True),
+            ("nothing pending — not a publish", dict(LIVE), LIVE,
+             74.0, 77.0, None, False),
+            ("fair value moves — a study publish", moved_fair, LIVE,
+             74.0, 77.0, None, False),
+            ("deliverables move — a study publish", moved_files, LIVE,
+             74.0, 77.0, None, False),
+            ("absent on main — a first publish", dict(LIVE, spot=98.52), None,
+             74.0, 77.0, None, False),
+            ("price-only, but breaches the gap", dict(LIVE, spot=98.52), LIVE,
+             53.2, 77.0, None, False),
+            ("price-only, breaches, dissent filed", dict(LIVE, spot=98.52), LIVE,
+             44.7, 77.0, DISSENT_OK, True)):
+        tmp = tempfile.mkdtemp()
+        try:
+            eng = build(tmp, "TK", central, price, dissent, None)
+            for m in ("check_publish_block", "check_valuation_gap"):
+                sys.modules.pop(m, None)
+            import check_valuation_gap as gap
+            gap.ENGINE = eng
+            import check_publish_block as blk
+            blk.ENGINE = eng
+            blk.gap = gap
+            blk._published_pair = pair(here, there)
+            blk.phase1_proven = lambda: (False, "Phase 1 is not proven — stubbed")
+            # the mutation must have LANDED: the two sides must stand in the
+            # relationship this case is about, before the gate is asked anything.
+            a, b = blk._published_pair()
+            assert a.get("TK") == here and b.get("TK") == there, \
+                "fixture did not land for %r" % name
+            got, why, _ = blk.verdict("TK")
+            if got != must:
+                failures.append("%-36s expected %s, got %s (%s)"
+                                % (name, "PUBLISH" if must else "HELD",
+                                   "PUBLISH" if got else "HELD", why))
+            else:
+                print("  ok  %-36s %s" % (name, "PUBLISH" if got else "HELD"))
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    # AND THE EXEMPTION'S OWN FAILURE MODE: an unreadable comparison releases NOTHING.
+    tmp = tempfile.mkdtemp()
+    try:
+        eng = build(tmp, "TK", 74.0, 77.0, None, None)
+        for m in ("check_publish_block", "check_valuation_gap"):
+            sys.modules.pop(m, None)
+        import check_valuation_gap as gap
+        gap.ENGINE = eng
+        import check_publish_block as blk
+        blk.ENGINE = eng
+        blk.gap = gap
+
+        def _boom():
+            raise RuntimeError("node is not available")
+        blk._published_pair = _boom
+        blk.phase1_proven = lambda: (False, "Phase 1 is not proven — stubbed")
+        ok_po, why_po = blk.price_only_publish("TK")
+        assert not ok_po and "not an exemption" in why_po, \
+            "an unreadable comparison did not fall to the strict side: %s" % why_po
+        got, why, _ = blk.verdict("TK")
+        if got:
+            failures.append("unreadable comparison released the method hold (%s)" % why)
+        else:
+            print("  ok  %-36s %s" % ("unreadable comparison", "HELD"))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
     # AND THE POPULATION GUARD: an empty tree must FAIL, not report clean.
     tmp = tempfile.mkdtemp()
     try:
@@ -203,7 +296,7 @@ def main():
         for f in failures:
             print("  " + f)
         return 1
-    print("\n%d conditions reinjected, every one behaved" % (len(CASES) + 8))
+    print("\n%d conditions reinjected, every one behaved" % (len(CASES) + 16))
     return 0
 
 
