@@ -61,11 +61,11 @@
     "width_cal": 0.951,
     "mle_scale": 0.93,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0102,
+    "market_skill": 0.0106,
     "market_skill_raw_basis": 0.0351,
     "market_ci90": [
       -0.003,
-      0.022
+      0.023
     ],
     "market_verdict": "PARITY",
     "top_name_weight_share": 0.067,
@@ -218,12 +218,12 @@
       "ELEC": {
         "nu": 5.0,
         "width_cal": 0.951,
-        "skill": 0.088,
-        "skill_raw_basis": 0.1188,
+        "skill": 0.1122,
+        "skill_raw_basis": 0.1284,
         "verdict": "PASS",
         "ci_block2": [
-          0.063,
-          0.136
+          0.076,
+          0.141
         ]
       },
       "EMFD": {
@@ -348,24 +348,24 @@
         ]
       },
       "OIH": {
-        "nu": 5.0,
-        "width_cal": 0.951,
-        "skill": -0.0183,
-        "skill_raw_basis": -0.0137,
+        "nu": 6.0,
+        "width_cal": 0.937,
+        "skill": -0.0195,
+        "skill_raw_basis": -0.0139,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.048,
-          0.018
+          -0.049,
+          0.014
         ]
       },
       "ORAS": {
         "nu": 5.0,
-        "width_cal": 0.951,
-        "skill": 0.0489,
-        "skill_raw_basis": 0.0458,
+        "width_cal": 0.944,
+        "skill": 0.0479,
+        "skill_raw_basis": 0.045,
         "verdict": "PASS",
         "ci_block2": [
-          0.014,
+          0.013,
           0.078
         ]
       },
@@ -394,22 +394,22 @@
       "PHAR": {
         "nu": 5.0,
         "width_cal": 0.958,
-        "skill": -0.0094,
-        "skill_raw_basis": -0.0086,
+        "skill": -0.0055,
+        "skill_raw_basis": 0.0022,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.033,
-          0.02
+          -0.047,
+          0.04
         ]
       },
       "PHDC": {
         "nu": 5.0,
-        "width_cal": 0.951,
-        "skill": 0.0145,
-        "skill_raw_basis": 0.0148,
+        "width_cal": 0.944,
+        "skill": 0.0137,
+        "skill_raw_basis": 0.014,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.029,
+          -0.03,
           0.044
         ]
       },
@@ -449,12 +449,12 @@
       "SCEM": {
         "nu": 6.0,
         "width_cal": 0.944,
-        "skill": -0.1256,
-        "skill_raw_basis": -0.065,
+        "skill": -0.1342,
+        "skill_raw_basis": -0.0736,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.638,
-          0.044
+          -0.667,
+          0.039
         ]
       },
       "SWDY": {

@@ -29,6 +29,25 @@ Two conditions of [R-GAP-02] were open at once:
 2. **The method.** Clause three's second condition: Phase 1 acceptance criteria #3 and #4
    open. Book-wide the gate cleared nobody.
 
+## HALF OF THIS WAS SETTLED AS A RULE THE SAME DAY, AND ONLY HALF
+
+While this branch was in flight, **[R-GAP-02 AMENDED 06-Sep-2026]** landed on main in
+#375 — adopted, per its own commit, on the identical instruction that produced this
+ruling: *"this is a MC calibration that has nothing to do with the fundamental
+analysis."* It exempts a publish that moves no fair value from the **METHOD** hold, on an
+arithmetic condition: the entry the publish would write must carry the same `fair{}` and
+the same `files{}` as the entry already on `origin/main`, read on both sides through a
+real JavaScript parse [R-ENF-03].
+
+**SWDY meets that condition and the gate now says so.** Re-run after merging the
+amendment, `check_publish_block.py --ticker SWDY` reports **`0 HELD on the method`** where
+it previously held on both. That half is no longer a ruling at all — it is the rule.
+
+**The amendment does NOT release the gap half, in terms, and SWDY is held on the gap.**
+The same gate still reports `1 HELD on the gap (more than 10% BELOW the price)`. So what
+this ruling actually covers, after the amendment, is narrower than when it was given: the
+gap half alone. The rest of this file is written against that narrower claim.
+
 ## The ruling's reasoning, which is a LENS argument and not an exception
 
 [R-LENS-01] holds that the fundamental study, the MC price engine and the technical read
