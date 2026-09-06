@@ -48,7 +48,61 @@ RUNS = [
       "claims_provision", "other_revenues", "pbt", "income_tax", "npat", "majority"]),
     ("ARCC", "arcc_walkforward", "module",
      ["revenue", "cogs", "gross_profit", "pbt", "tax", "pat", "majority"]),
+    # TMGH and PHDC expose no module-level cells(), so they are read from the
+    # per-cell files their own scoring passes now write. Same data, different
+    # route -- and a route that cannot be taken is REPORTED, never skipped.
+    ("TMGH", "tmgh_walkforward", "cells_file",
+     ["total_revenue", "dev_revenue", "dev_cost", "gross_profit", "net_profit",
+      "finance_cost", "new_sales", "ppe", "da"]),
+    ("PHDC", "phdc_walkforward", "cells_file",
+     ["is.revenue", "is.cogs", "is.gross_profit", "is.sga", "is.finance_cost",
+      "is.npbt", "is.npat_mi", "new_sales", "units_delivered"]),
 ]
+
+
+def cells_from_file(d, drivers):
+    """Taken-versus-total from a run's committed per-cell file.
+
+    The file records every cell the run built, with log_error null where the log
+    score could not take it, so the two counts come straight off it. PHDC nests
+    its rows by setting and names its fields differently; both shapes are read as
+    they are rather than renamed."""
+    path = os.path.join(ENG, d, "error_cells.json")
+    if not os.path.exists(path):
+        raise RuntimeError("no per-cell file at %s/error_cells.json" % d)
+    raw = json.load(open(path))
+    if isinstance(raw, dict):
+        rows = [r for r in raw.get("as_known", [])]
+        dk, ek, pk, ak = "field", "e", "proj", "actual"
+    else:
+        rows = [r for r in raw if r.get("setting") == "asknown"]
+        dk, ek, pk, ak = "driver", "log_error", "projected", "actual"
+    # A FILE THAT CANNOT EXPRESS A DROP CANNOT ANSWER THIS QUESTION, and reading
+    # one anyway returns 100% taken on every driver — a false clean of exactly the
+    # shape this whole file is about. TMGH's and PHDC's writers emit only the cells
+    # their score TOOK, so the count of dropped cells is unrecoverable from them.
+    # Detected rather than assumed: a file that records at least one unscoreable
+    # cell can express a drop; one that records none cannot be told apart from a
+    # run with nothing to drop, so it is REPORTED UNMEASURABLE [R-ENF-04].
+    if not any(r.get(ek) is None for r in rows):
+        raise RuntimeError("this run's per-cell file records only the cells its score "
+                           "TOOK, so the dropped count is unrecoverable from it")
+    # A 100% row from THIS route means "no cell was dropped among the cells this
+    # file records", which is a weaker statement than the module route's. It is
+    # true where the run's own scorer handles signs before scoring — TMGH's does,
+    # and its rows carry a rel_error and a sign_case beside the log one — and it
+    # would be FALSE for a writer that simply omits what it could not score. That
+    # is what the refusal above is for, and the distinction is stated rather than
+    # left for a reader to infer from a column of 100%s.
+    out = {k: [] for k in drivers}
+    for r in rows:
+        k = str(r.get(dk, ""))
+        if k not in out:
+            continue
+        pv, av = r.get(pk), r.get(ak)
+        rel = ((pv - av) / abs(av)) if (pv is not None and av not in (None, 0)) else None
+        out[k].append((r.get(ek), rel))
+    return {k: [(l, rr) for l, rr in v if rr is not None] for k, v in out.items()}
 
 
 def cells(d, drivers):
@@ -89,7 +143,7 @@ def main():
             notes.append((name, "no run directory on disk"))
             continue
         try:
-            got = cells(d, drivers)
+            got = cells_from_file(d, drivers) if _adapter == "cells_file" else cells(d, drivers)
         except Exception as e:
             notes.append((name, str(e)[:70]))
             continue

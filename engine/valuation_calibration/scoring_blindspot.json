@@ -250,5 +250,86 @@
   "bias_all": 1.3949077933483485,
   "bias_taken": 1.7123585161283406,
   "factor": 0.8146119987198993
+ },
+ {
+  "name": "TMGH",
+  "driver": "total_revenue",
+  "cells": 35,
+  "taken": 35,
+  "bias_all": 0.0016540071062963798,
+  "bias_taken": 0.0016540071062963798,
+  "factor": 1.0
+ },
+ {
+  "name": "TMGH",
+  "driver": "dev_revenue",
+  "cells": 35,
+  "taken": 35,
+  "bias_all": 0.005990302271167446,
+  "bias_taken": 0.005990302271167446,
+  "factor": 1.0
+ },
+ {
+  "name": "TMGH",
+  "driver": "dev_cost",
+  "cells": 35,
+  "taken": 35,
+  "bias_all": 0.03927746915518393,
+  "bias_taken": 0.03927746915518393,
+  "factor": 1.0
+ },
+ {
+  "name": "TMGH",
+  "driver": "gross_profit",
+  "cells": 35,
+  "taken": 35,
+  "bias_all": 0.04523758382646673,
+  "bias_taken": 0.04523758382646673,
+  "factor": 1.0
+ },
+ {
+  "name": "TMGH",
+  "driver": "net_profit",
+  "cells": 34,
+  "taken": 34,
+  "bias_all": 0.6096986798823547,
+  "bias_taken": 0.6096986798823547,
+  "factor": 1.0
+ },
+ {
+  "name": "TMGH",
+  "driver": "finance_cost",
+  "cells": 30,
+  "taken": 30,
+  "bias_all": 0.6425119812670929,
+  "bias_taken": 0.6425119812670929,
+  "factor": 1.0
+ },
+ {
+  "name": "TMGH",
+  "driver": "new_sales",
+  "cells": 33,
+  "taken": 33,
+  "bias_all": -0.3740577873802292,
+  "bias_taken": -0.3740577873802292,
+  "factor": 1.0
+ },
+ {
+  "name": "TMGH",
+  "driver": "ppe",
+  "cells": 30,
+  "taken": 30,
+  "bias_all": -0.20733114143005243,
+  "bias_taken": -0.20733114143005243,
+  "factor": 1.0
+ },
+ {
+  "name": "TMGH",
+  "driver": "da",
+  "cells": 30,
+  "taken": 30,
+  "bias_all": 0.06547428760479486,
+  "bias_taken": 0.06547428760479486,
+  "factor": 1.0
  }
 ]

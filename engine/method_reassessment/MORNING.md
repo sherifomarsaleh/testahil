@@ -1154,3 +1154,126 @@ first bracket had mixed the block's EGP with the panel's EGP-thousand and would
 have reported the actual comfortably inside in every year; the scale was then
 established on a like-for-like DEBT pair present on both sides, exactly 1000.0 on
 three origins.
+
+### The blindspot census extended, and one route had to be refused
+
+Extended to all five runs. TMGH and PHDC have no module-level `cells()`, so they
+are read from the per-cell files their scoring passes now write — and reading
+them naively returned **100% taken on every driver**, which is a false clean of
+exactly the shape the census exists to expose: those writers emit only the cells
+their score TOOK, so the dropped count is unrecoverable from them.
+
+PHDC is now REPORTED UNMEASURABLE rather than clean. TMGH's 100% survives and is
+genuine — its own scorer handles signs before scoring, and its rows carry a
+relative error and a sign case beside the log one — but the module records that a
+100% from that route is the weaker statement "no cell was dropped among the cells
+this file records".
+
+The headline is unchanged: **13 drivers lose cells, up to 5.3x disagreement, and
+EGCH's FX line is scored on none of its 50.**
+
+### TMGH's new sales: a rule meeting a company that changed, not a bad rule
+
+The driver is `new_sales = urban population x sales per urban head at the origin
+x inflation` — constant REAL intensity, growing only with population and prices.
+That is the no-judgement mechanical default [R-FCAL-01] requires at a historical
+origin, and it is defensible.
+
+Measured on TMGH's own record, real sales intensity was flat at 0.0001 from 2011
+to 2016, stepped to 0.0003 by 2018, and then **rose 3.15x in 2023 and 2.70x in
+2024** to 0.0023 — a **23-fold rise** in real per-capita sales over the window,
+the bulk of it in two years.
+
+The error splits on exactly that break:
+
+| targets | n | bias |
+|---|---:|---:|
+| 2022 and earlier | 18 | -0.215 |
+| 2023 onward | 15 | **-1.671** |
+
+**Nearly eight times worse, and the split is the company's expansion rather than
+the rule's specification.** Nothing knowable at a 2020 origin forecasts a 2023
+land bank. Under [R-FCAL-01] a correction resets after a structural break and a
+bias that changes across eras is reported rather than corrected for — so this is
+NOT a driver to fix, and attempting one would be fitting the last two years.
+
+**It is the clearest case in the book for ranges rather than points**, which is
+what the rule already mandates for years three to five and what L-354 is about:
+the honest output on this driver is a width, and the width this record implies is
+large.
+
+### TMGH's capital base is the same break — and the "stable" depreciation is not stable
+
+Split the rest of TMGH's drivers on the 2023 boundary:
+
+| driver | ≤2022 | ≥2023 |
+|---|---:|---:|
+| new sales | -0.215 | **-1.671** |
+| property, plant and equipment | **-0.068** | **-1.217** |
+| development properties | -0.411 | -0.606 |
+| depreciation | -0.397 | -0.342 |
+
+**Property, plant and equipment is essentially unbiased before the break and badly
+under-forecast after** — the same expansion arriving in the capital base, so this
+is one cause rather than two. Its rule holds capex at its trailing real level and
+escalates it by inflation, which is right for a company doing what it did before
+and wrong for one that started building.
+
+**I then wrote that depreciation was the exception and the one correctable shape,
+and that is withdrawn.** [R-FCAL-01] permits a correction only where the bias
+holds its sign across eras; -0.397 against -0.342 looks exactly like that. It is
+an artefact of where the boundary was drawn.
+
+The underlying ratio says so plainly: realised depreciation over PPE rose 0.0378
+to 0.0761 from 2017 to 2023 and then **collapsed to 0.0141 and 0.0060** as PPE
+jumped from 6,465 to 75,812 in 2024. **That driver's own break is a year later
+than the one I borrowed.** Moving the boundary to match it:
+
+| driver | cut at 2023 | cut at 2024 | cut at 2025 |
+|---|---|---|---|
+| depreciation | -0.397 / -0.342 | -0.393 / -0.322 | **-0.516 / +0.364** |
+| PPE | -0.068 / -1.217 | +0.007 / -1.943 | -0.434 / -1.686 |
+| new sales | -0.215 / -1.671 | -0.458 / -1.840 | -0.783 / -1.401 |
+
+**Depreciation FLIPS SIGN** at its own boundary. PPE and new sales are robust to
+the cut point; depreciation is not, and a bias that changes sign between eras is
+not a bias — report the instability, never correct for it.
+
+**So TMGH has no correctable driver at all**, which is the opposite of what I
+wrote an hour ago. The general point is worth more than the name: **an era
+boundary chosen for one driver does not test another driver's stability.** Every
+stability claim in this book was made at a boundary chosen for the market, and
+this is the first time one was tested against the driver's own break.
+
+### Run over the book: 42 of 66 testable driver biases flip sign
+
+Built `engine/valuation_calibration/boundary_sensitivity.py` — score every driver
+at every cut point the data admits, and report whether the sign survives.
+
+**42 drivers flip sign at some cut; 24 survive every cut; 22 more have too few
+cells to cut at all.** Under [R-FCAL-01] not one of the 42 is a bias. ARCC's
+gross profit runs +1.578 / -0.909 at a 2022 cut and -0.084 / -1.225 at a 2025
+one; its interest income +1.116 / -2.512 then -1.191 / -3.443.
+
+**The sign clause has been tested at one point per market and passes far less
+often when tested properly.** Any correction adopted on a boundary-sensitive bias
+is fitted to where a line was drawn.
+
+The break effect itself survives this: TMGH's new sales and PPE are robust at
+every cut, and the target-side cut used earlier is a calendar fact rather than a
+chosen line. `BOUNDARY_SENSITIVITY_06-09-2026.md`.
+
+### And the one adopted correction in the book survives the test
+
+Checked the question the boundary result raises: does any ADOPTED correction sit
+on a driver whose sign flips? **No.**
+
+Across the five runs there are twelve correction candidates, all in ARCC, and
+exactly one is ADOPTED — `mfg_dep`, which survives every cut (range -0.185 to
+-0.021). Seven of the eleven WATCH FLAGS sit on drivers that flip, and every one
+of them was already declined by the procedure's own two clauses.
+
+So the corrections machinery tested at one boundary and still adopted the one
+correction that also passes the full test. **That is the procedure holding, and
+there is now evidence for it rather than luck.** No live defect; the boundary
+result binds on what is adopted next, not on anything already in the book.
