@@ -31,6 +31,17 @@ on:
       # checked from OUTSIDE the thing it governs, and a gate is a thing.
       - 'scripts/check_*.py'
       - 'engine/*.py'
+      # AND THE DATA A GATE READS, WHICH IS THE SAME DEFECT ONE LEVEL OVER [ADDED
+      # 06-Sep-2026]. The 03-Sep glob above closed "a change to a GATE ITSELF ran
+      # nothing" and stopped exactly there: check_escalations.py is in this workflow
+      # and engine/escalations.json, the register it reads, was in no path list, so
+      # editing the register triggered NOTHING while editing its checker triggered
+      # everything. Measured the day it was found: four gate-input files at engine
+      # root were unwatched — escalations.json, fv_movement.json, fv_vintages.json
+      # and tech_records.json — each the sole input to a gate that runs here. A
+      # checker and its input are one instrument; watching half of it is watching
+      # none of it.
+      - 'engine/*.json'
       - 'engine/build_depth_audit/*.json'
       - 'engine/**_study/**'
       - 'engine/research_protocol.py'
@@ -143,6 +154,9 @@ on:
   pull_request:
     paths:
       - 'engine/**_study/**'
+      # the gate-input glob, same reason as the push list above: a checker and its
+      # input are one instrument, and a PR that moves only the register must run it.
+      - 'engine/*.json'
       - 'engine/research_protocol.py'
       - 'engine/wacc_builder.py'
       - 'engine/beta_regression.py'
