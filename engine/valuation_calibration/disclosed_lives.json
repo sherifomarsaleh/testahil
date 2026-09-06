@@ -320,6 +320,158 @@
    "read_on": "2026-09-03",
    "against_the_terminal": "this study's terminal implies a replacement cycle of 33.3 years (1/g at g=3.0%) and charges 0.12x its own book depreciation. The LONGEST life the company discloses is 20 years and most of the base is 4 to 7 — so the terminal assumes an asset life the accounts do not support anywhere, in the direction that OVERSTATES value."
   },
+  "ARCC": {
+   "classes": [
+    {
+     "asset_class": "Buildings",
+     "years": [
+      10,
+      20
+     ],
+     "entity": "Arabian Cement Company (parent)"
+    },
+    {
+     "asset_class": "Machinery and equipment",
+     "years": [
+      20,
+      20
+     ],
+     "entity": "Arabian Cement Company (parent)",
+     "note": "disclosed as a SINGLE figure, not a band — the class that carries a cement terminal, and the one this company's own delivered study adopted"
+    },
+    {
+     "asset_class": "Furniture and fixtures",
+     "years": [
+      16,
+      16
+     ],
+     "entity": "Arabian Cement Company (parent)",
+     "note": "16 is unusual for furniture and was read twice — the parent table here and the Andalus table on the next page state it independently, and the FY2024 filing's parent table states it again"
+    },
+    {
+     "asset_class": "Vehicles",
+     "years": [
+      10,
+      10
+     ],
+     "entity": "Arabian Cement Company (parent)"
+    },
+    {
+     "asset_class": "Other installations",
+     "years": [
+      20,
+      20
+     ],
+     "entity": "Arabian Cement Company (parent)"
+    },
+    {
+     "asset_class": "Computer and software",
+     "years": [
+      3,
+      5
+     ],
+     "entity": "Arabian Cement Company (parent)"
+    },
+    {
+     "asset_class": "Buildings",
+     "years": [
+      50,
+      50
+     ],
+     "entity": "Andalus Ready-Mix Concrete (subsidiary)"
+    },
+    {
+     "asset_class": "Machinery and equipment",
+     "years": [
+      20,
+      20
+     ],
+     "entity": "Andalus Ready-Mix Concrete (subsidiary)"
+    },
+    {
+     "asset_class": "Furniture, fixtures and office equipment",
+     "years": [
+      16,
+      16
+     ],
+     "entity": "Andalus Ready-Mix Concrete (subsidiary)"
+    },
+    {
+     "asset_class": "Other installations",
+     "years": [
+      5,
+      5
+     ],
+     "entity": "Andalus Ready-Mix Concrete (subsidiary)"
+    },
+    {
+     "asset_class": "Vehicles",
+     "years": [
+      10,
+      10
+     ],
+     "entity": "Andalus Ready-Mix Concrete (subsidiary)"
+    },
+    {
+     "asset_class": "Computer and software",
+     "years": [
+      3,
+      3
+     ],
+     "entity": "Andalus Ready-Mix Concrete (subsidiary)"
+    },
+    {
+     "asset_class": "Furniture, fixtures and office equipment",
+     "years": [
+      3,
+      3
+     ],
+     "entity": "Evolve for Investment and Project Management (subsidiary)"
+    },
+    {
+     "asset_class": "Vehicles",
+     "years": [
+      10,
+      10
+     ],
+     "entity": "Evolve for Investment and Project Management (subsidiary)"
+    },
+    {
+     "asset_class": "Computer and software",
+     "years": [
+      3,
+      3
+     ],
+     "entity": "Evolve for Investment and Project Management (subsidiary)"
+    }
+   ],
+   "intangibles": [
+    {
+     "asset_class": "Operating licence",
+     "years": [
+      20,
+      20
+     ]
+    },
+    {
+     "asset_class": "Electricity contract",
+     "years": [
+      10,
+      10
+     ]
+    }
+   ],
+   "longest_years": 50,
+   "shortest_years": 3,
+   "land_not_depreciated": "The policy note states it in terms: 'Freehold land is not depreciated.' Land therefore carries no life and is excluded from any weighting.",
+   "source": "Arabian Cement Company, consolidated financial statements for the year ended December 31, 2025, note 2.9 (property, plant and equipment) — 'The following estimated useful lives are used in the calculation of depreciation', the parent table on page 16 of the rendered PDF and the subsidiaries' tables on page 17; the intangibles above from note 2.10 on the same page 17. The company's own audited consolidated statements, held in this run's own filings archive.",
+   "file": "engine/arcc_walkforward/filings/ARCC_FY2025_Consolidated.pdf",
+   "sha256": "adebc342f7821136baded8d7db289eec37d49197c8e682e7e316c6d6be8ac18e",
+   "route": "OCR off the rendered pixels at 200 dpi — this filing carries NO TEXT LAYER on any page (pdftotext returns one character for page 1), which is the same route and the same reason this run's own valuation-input block records for every ARCC figure.",
+   "cross_check": "CROSS-CHECKED against the FY2024 consolidated filing, read the same way: its parent table on page 17 states Buildings 10~20, Machinery and equipment 20, Furniture and fixtures 16, Vehicles 10, Other installations 20, Computer and software 3-5 — identical to FY2025 — and its Andalus table opens on Buildings 50 years. Two independent documents, one read.",
+   "weighting_not_read": "THE GROSS COST BY CLASS IS NOT RECORDED HERE AND IS NOT GUESSED. A charge-weighted life needs the property note's cost table, which did not resolve in the OCR of pages 8-32 (note 13, projects under construction, and note 14, intangibles, both sit on page 30, so the property table is a wide landscape table nearby that this pass did not read). Recorded as missing with its reason rather than omitted, per SIGCM clause 8 and the same discipline the valuation-input blocks follow.",
+   "why_it_matters_here": "Measured 06-09-2026 by the valuation calibration's cash-flow lens: maintenance from a TRAILING CAPEX proxy came out at EGP 62.1mn against book depreciation of EGP 247.8mn at origin 2020, so terminal_value.build() refused the terminal on an implied payout of 264.9% — correctly, since a terminal charging less than its own book depreciation cannot be maintaining the asset base. This company's own delivered study, on the 20-year machinery life above, charges EGP 2,560mn a year against book depreciation of EGP 643mn. The proxy was an order of magnitude too small; the disclosed life is the input the rule has always required."
+  },
   "BOROUGE": {
    "classes": [
     {
