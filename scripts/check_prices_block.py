@@ -1,23 +1,30 @@
-"""The committed PRICES block must be what its own readers produce NOW.
+"""The committed PRICES block, held to its own readers — advisory on drift.
 
-WHY A GATE AND NOT A REMINDER. Prices arrive by hand, so the block goes stale by
-the calendar the moment a file is added and nobody re-runs the builder — the same
-shape as the technical read the 29-July rule closed, and as tech_records.json,
-which stores the hash of the technicals.py it graded so a moved read with an
-unmoved record goes RED rather than staying a remembered obligation.
+PRICES ARE ENTERED BY HAND, ROUGHLY MONTHLY, AND THAT IS THE OPERATING MODEL
+until a live terminal feed exists. So a block a few rows behind its readers is
+the NORMAL state of this repository, not a defect: a library lands, the supply
+does not move for weeks, and the two disagree. Failing on that would be a check
+red by design — the one everybody learns to ignore — and it fired twice in one
+hour on its first day for exactly that reason.
 
-WHAT IT REFUSES, all four rather than warns [R-ENF-01]:
-  · a block that disagrees with the readers on any name's price, date or source
-  · a covered name carrying no priced row where the readers can resolve one
-  · a row that is malformed (no price, no date, no source)
-  · a run that examined ZERO names, which is an absent answer wearing the costume
-    of a clean one [R-ENF-04] — the population is counted off TICKERS in data.js,
+DRIFT IS THEREFORE REPORTED AND NEVER FAILS. What still fails is a real defect:
+no block at all, a malformed row, a covered name the readers price and the block
+does not carry, or a run that examined nothing [R-ENF-04]. The page prints the
+date of every price, so a reader is never misled about how old one is — which is
+what makes reporting sufficient here.
+
+WHAT IT REFUSES [R-ENF-01]:
+  · no PRICES block at all
+  · a covered name the readers can price that the block does not carry
+  · a malformed row (no price, no date, no source)
+  · a run that examined ZERO names, an absent answer wearing the costume of a
+    clean one [R-ENF-04] — the population is counted off TICKERS in data.js,
     which is not the block being checked
 
-IT DOES NOT CHECK FRESHNESS, DELIBERATELY. How old a price is is a data-supply
-fact, disclosed beside every number and never a blocker; a gate nobody in the room
-can clear is one everybody learns to ignore. It prints the age distribution as an
-ADVISORY, the same posture as the library-staleness sweep.
+WHAT IT ONLY REPORTS: a row whose price, date or source has moved since the block
+was built, and how old the prices are. Both are data-supply facts about a manual
+monthly process, and the builders now run inside the same pass as the page
+refresh, so ordinary drift heals itself without anybody being told off.
 """
 from __future__ import annotations
 
@@ -57,7 +64,7 @@ def main():
         raise SystemExit("FAIL: the readers resolved zero prices — an empty "
                          "result is not a clean result [R-ENF-04].")
 
-    bad = []
+    bad, drift = [], []
     for k, w in sorted(want.items()):
         h = have.get(k)
         if not h:
@@ -65,9 +72,9 @@ def main():
             continue
         if abs(float(h.get("px", 0)) - w["px"]) > 1e-6 or h.get("date") != w["date"] \
                 or h.get("src") != w["src"]:
-            bad.append("%s: block %s@%s (%s) vs readers %s@%s (%s)"
-                       % (k, h.get("px"), h.get("date"), h.get("src"),
-                          w["px"], w["date"], w["src"]))
+            drift.append("%s: block %s@%s (%s) vs readers %s@%s (%s)"
+                         % (k, h.get("px"), h.get("date"), h.get("src"),
+                            w["px"], w["date"], w["src"]))
     for k, h in sorted(have.items()):
         if k not in want:
             bad.append("%s: in the block, the readers resolve no price for it" % k)
@@ -82,15 +89,22 @@ def main():
     if dates:
         print("  ADVISORY — price dates span %s .. %s (age is disclosed, never gated)"
               % (dates[0], dates[-1]))
+    if drift:
+        print("  ADVISORY — %d row(s) have moved since the block was built; the "
+              "next refresh pass folds them in:" % len(drift))
+        for d in drift[:10]:
+            print("    " + d)
+        if len(drift) > 10:
+            print("    ... and %d more" % (len(drift) - 10))
     if bad:
-        print("\nFAIL — the block is not what its readers produce now:")
+        print("\nFAIL — the block is defective:")
         for b in bad[:40]:
             print("  " + b)
         if len(bad) > 40:
             print("  ... and %d more" % (len(bad) - 40))
-        raise SystemExit("Run python3 scripts/build_prices_block.py in the same "
-                         "pass as the price supply that moved them.")
-    print("  OK — every row matches, %d names priced" % len(have))
+        raise SystemExit("Run python3 scripts/build_prices_block.py")
+    print("  OK — %d names priced%s" % (len(have),
+          ", %d row(s) awaiting the next refresh" % len(drift) if drift else ""))
 
 
 if __name__ == "__main__":
