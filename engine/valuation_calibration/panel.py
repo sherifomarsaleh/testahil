@@ -58,7 +58,52 @@ def _shares():
     return out
 
 
+def _block_shares():
+    """The FOOTED counts from the valuation-input blocks [R-FCAL-01 AMENDED].
+
+    The amendment requires the count to be committed WITH the par value it was
+    footed against — issued capital over par must reproduce the count the same
+    document states — which is a stricter record than the OCR files above, and it
+    is committed by the run rather than assembled beside it. So it is read FIRST.
+
+    A record carrying a count and no par value is NOT read, and that refusal is
+    the amendment's own clause (ii): the count is footed or it is not recorded.
+    A block that says `missing` is not a count either; recording the absence is
+    what makes it visible and crediting it would undo that.
+    """
+    out = {}
+    for d in sorted(glob.glob(os.path.join(ENGINE, "*_walkforward"))):
+        tk = os.path.basename(d).replace("_walkforward", "").upper()
+        p = os.path.join(d, "valuation_inputs.json")
+        if not os.path.exists(p):
+            continue
+        try:
+            doc = json.load(open(p, encoding="utf-8"))
+        except Exception:
+            continue
+        for key, block in (doc.get("origins") or {}).items():
+            rec = (block or {}).get("shares")
+            if not isinstance(rec, dict) or "missing" in rec:
+                continue
+            v, cap, par = (rec.get("value"), rec.get("issued_capital"),
+                           rec.get("par_value"))
+            if not (isinstance(v, (int, float)) and v > 0):
+                continue
+            if not (isinstance(cap, (int, float)) and isinstance(par, (int, float))
+                    and par > 0):
+                continue
+            # The footing is RE-RUN here rather than trusted: a record that states
+            # a check is not a record that passes one, and this costs one division.
+            if abs(cap / par - v) > max(1.0, 1e-6 * v):
+                continue
+            digits = "".join(ch for ch in str(key) if ch.isdigit())
+            if len(digits) == 4:
+                out.setdefault(tk, {})[digits] = float(v)
+    return out
+
+
 SHARES = _shares()
+BLOCK_SHARES = _block_shares()
 
 OHLC = os.path.join(ENGINE, "raw_ohlc")
 
@@ -159,7 +204,11 @@ def build(market="EG"):
             # read off that year's own filing and footed against it. Only if it
             # has nothing for this year does the panel look inside the run's own
             # artefacts — and today's count is never a fallback.
-            sh = SHARES.get(tk, {}).get(str(y))
+            sh = BLOCK_SHARES.get(tk, {}).get(str(y))
+            sh_src = "valuation_inputs.json" if sh else None
+            if sh is None:
+                sh = SHARES.get(tk, {}).get(str(y))
+                sh_src = "shares_%s.json" % tk.lower() if sh else None
             if sh is None and y in panel:
                 rec = panel[y]
                 cell = rec.get("cells") if isinstance(rec, dict) else None
@@ -175,8 +224,11 @@ def build(market="EG"):
                             break
                     if sh:
                         break
+            if sh and sh_src is None:
+                sh_src = panel_src
             cells[(tk, y)] = {
                 "shares": sh,
+                "shares_source": sh_src,
                 "macro": y in usable,
                 "statements": y in panel,
                 "statements_source": panel_src,

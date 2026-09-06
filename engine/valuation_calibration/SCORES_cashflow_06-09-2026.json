@@ -1,0 +1,522 @@
+{
+ "DECLARED": {
+  "score": {
+   "n": {
+    "cells": 5,
+    "origins": 5,
+    "names": 1
+   },
+   "mean": 0.9841988962395247,
+   "median": 1.175970372275377,
+   "mae": 0.9841988962395247,
+   "below": 0,
+   "above": 5,
+   "bootstrap": {
+    "2": {
+     "lo": 0.3262041231713845,
+     "hi": 1.5711646810490016,
+     "half_width": 0.6224802789388086,
+     "n_boot": 2000
+    },
+    "3": {
+     "lo": 0.558394390903013,
+     "hi": 1.4982929312213078,
+     "half_width": 0.4699492701591474,
+     "n_boot": 2000
+    },
+    "4": {
+     "lo": 0.7751668788170646,
+     "hi": 0.9841988962395248,
+     "half_width": 0.10451600871123012,
+     "n_boot": 2000
+    }
+   },
+   "lono": {
+    "PHDC": {
+     "left_out": "PHDC",
+     "cells": 0,
+     "mean": null,
+     "names_left": 0
+    }
+   },
+   "eras": {
+    "E1 pre-float": {
+     "cells": 0,
+     "mean": null
+    },
+    "E2 post-float": {
+     "cells": 5,
+     "mean": 0.9841988962395247
+    },
+    "E3 devaluation": {
+     "cells": 0,
+     "mean": null
+    }
+   }
+  },
+  "cells": [
+   {
+    "ticker": "PHDC",
+    "origin": 2017,
+    "fv": 6.083488219863592,
+    "price": 3.854,
+    "log": 0.4564666818435901,
+    "wacc": 0.1806929850627977,
+    "terminal_share": 1.0238979388384752,
+    "price_date": "2017-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 4.48%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2018,
+    "fv": 2.4846583419915858,
+    "price": 2.18,
+    "log": 0.13081028516307608,
+    "wacc": 0.2054423810993631,
+    "terminal_share": 1.2461851834398978,
+    "price_date": "2018-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 4.24%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2019,
+    "fv": 8.81002517713934,
+    "price": 1.748,
+    "log": 1.6174180205017323,
+    "wacc": 0.16210405091265478,
+    "terminal_share": 1.0754457190972673,
+    "price_date": "2019-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.90%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2020,
+    "fv": 6.364595509628946,
+    "price": 1.364,
+    "log": 1.5403291214138481,
+    "wacc": 0.15601813144225377,
+    "terminal_share": 1.0211546171917305,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 6.73%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2021,
+    "fv": 6.45988433933186,
+    "price": 1.993,
+    "log": 1.175970372275377,
+    "wacc": 0.1671680178901965,
+    "terminal_share": 1.0938124438245906,
+    "price_date": "2021-12-30",
+    "kd_bound": "FLOORED at the sovereign (effective 8.63%)",
+    "scale": 1000000.0
+   }
+  ],
+  "dropped": [
+   {
+    "ticker": "AMOC",
+    "origin": 2021,
+    "why": "the projection runs to horizon 3; the declared window is 5"
+   },
+   {
+    "ticker": "AMOC",
+    "origin": 2022,
+    "why": "the projection runs to horizon 3; the declared window is 5"
+   },
+   {
+    "ticker": "AMOC",
+    "origin": 2023,
+    "why": "the projection runs to horizon 3; the declared window is 5"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2017,
+    "why": "capex intensity needs 3 years and the block carries 0"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2018,
+    "why": "capex intensity needs 3 years and the block carries 1"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2019,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2020,
+    "why": "terminal refused: implied payout of terminal NOPAT is 264.9%, outside [0, 1]: the terminal distributes more than it earns"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2021,
+    "why": "terminal refused: implied payout of terminal NOPAT is 182.3%, outside [0, 1]: the terminal distributes more than it earns"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2022,
+    "why": "terminal refused: implied payout of terminal NOPAT is 110.0%, outside [0, 1]: the terminal distributes more than it earns"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2023,
+    "why": "terminal refused: implied payout of terminal NOPAT is 102.0%, outside [0, 1]: the terminal distributes more than it earns"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2013,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2015,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2016,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2017,
+    "why": "terminal refused: terminal free cash flow is -1,196,517,665.9, not positive: a going concern that consumes cash for ever is not a terminal"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2018,
+    "why": "terminal refused: terminal free cash flow is -2,909,781,169.3, not positive: a going concern that consumes cash for ever is not a terminal"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2019,
+    "why": "terminal refused: terminal free cash flow is -3,367,054,485.0, not positive: a going concern that consumes cash for ever is not a terminal"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2020,
+    "why": "terminal refused: terminal free cash flow is -4,153,885,783.0, not positive: a going concern that consumes cash for ever is not a terminal"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2021,
+    "why": "terminal refused: terminal free cash flow is -2,120,540,526.7, not positive: a going concern that consumes cash for ever is not a terminal"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2022,
+    "why": "terminal refused: implied payout of terminal NOPAT is 665.9%, outside [0, 1]: the terminal distributes more than it earns"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2023,
+    "why": "terminal refused: implied payout of terminal NOPAT is 574.6%, outside [0, 1]: the terminal distributes more than it earns"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2015,
+    "why": "the projection has no revenue or operating profit at h=1"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2016,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2022,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2023,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2020,
+    "why": "capex intensity needs 3 years and the block carries 1"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2021,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2022,
+    "why": "terminal refused: terminal free cash flow is -1,855,846,514.2, not positive: a going concern that consumes cash for ever is not a terminal"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2023,
+    "why": "no finance charge in the as-reported panel at this origin"
+   }
+  ]
+ },
+ "maintenance read as intensity x origin revenue": {
+  "score": {
+   "n": {
+    "cells": 5,
+    "origins": 5,
+    "names": 1
+   },
+   "mean": 0.9833919362431258,
+   "median": 1.1719362378705087,
+   "mae": 0.9833919362431258,
+   "below": 0,
+   "above": 5,
+   "bootstrap": {
+    "2": {
+     "lo": 0.31953589659747894,
+     "hi": 1.5781643759051107,
+     "half_width": 0.6293142396538158,
+     "n_boot": 2000
+    },
+    "3": {
+     "lo": 0.5539162176187256,
+     "hi": 1.502529679945678,
+     "half_width": 0.4743067311634762,
+     "n_boot": 2000
+    },
+    "4": {
+     "lo": 0.7742692095212533,
+     "hi": 0.9833919362431258,
+     "half_width": 0.10456136336093624,
+     "n_boot": 2000
+    }
+   },
+   "lono": {
+    "PHDC": {
+     "left_out": "PHDC",
+     "cells": 0,
+     "mean": null,
+     "names_left": 0
+    }
+   },
+   "eras": {
+    "E1 pre-float": {
+     "cells": 0,
+     "mean": null
+    },
+    "E2 post-float": {
+     "cells": 5,
+     "mean": 0.9833919362431258
+    },
+    "E3 devaluation": {
+     "cells": 0,
+     "mean": null
+    }
+   }
+  },
+  "cells": [
+   {
+    "ticker": "PHDC",
+    "origin": 2017,
+    "fv": 6.034278701270182,
+    "price": 3.854,
+    "log": 0.4483447581550339,
+    "wacc": 0.1806929850627977,
+    "terminal_share": 1.0240487537007938,
+    "price_date": "2017-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 4.48%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2018,
+    "fv": 2.4735329704325544,
+    "price": 2.18,
+    "log": 0.12632260426114647,
+    "wacc": 0.2054423810993631,
+    "terminal_share": 1.246926543552479,
+    "price_date": "2018-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 4.24%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2019,
+    "fv": 8.834978219304123,
+    "price": 1.748,
+    "log": 1.6202463632612674,
+    "wacc": 0.16210405091265478,
+    "terminal_share": 1.075252115388573,
+    "price_date": "2019-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.90%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2020,
+    "fv": 6.427150462328786,
+    "price": 1.364,
+    "log": 1.550109717667673,
+    "wacc": 0.15601813144225377,
+    "terminal_share": 1.0209692868152487,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 6.73%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2021,
+    "fv": 6.4338767919090945,
+    "price": 1.993,
+    "log": 1.1719362378705087,
+    "wacc": 0.1671680178901965,
+    "terminal_share": 1.0941441093295163,
+    "price_date": "2021-12-30",
+    "kd_bound": "FLOORED at the sovereign (effective 8.63%)",
+    "scale": 1000000.0
+   }
+  ],
+  "dropped": [
+   {
+    "ticker": "AMOC",
+    "origin": 2021,
+    "why": "the projection runs to horizon 3; the declared window is 5"
+   },
+   {
+    "ticker": "AMOC",
+    "origin": 2022,
+    "why": "the projection runs to horizon 3; the declared window is 5"
+   },
+   {
+    "ticker": "AMOC",
+    "origin": 2023,
+    "why": "the projection runs to horizon 3; the declared window is 5"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2017,
+    "why": "capex intensity needs 3 years and the block carries 0"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2018,
+    "why": "capex intensity needs 3 years and the block carries 1"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2019,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2020,
+    "why": "terminal refused: implied payout of terminal NOPAT is 274.2%, outside [0, 1]: the terminal distributes more than it earns"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2021,
+    "why": "terminal refused: implied payout of terminal NOPAT is 182.3%, outside [0, 1]: the terminal distributes more than it earns"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2022,
+    "why": "terminal refused: implied payout of terminal NOPAT is 109.6%, outside [0, 1]: the terminal distributes more than it earns"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2023,
+    "why": "terminal refused: implied payout of terminal NOPAT is 101.9%, outside [0, 1]: the terminal distributes more than it earns"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2013,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2015,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2016,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2017,
+    "why": "terminal refused: terminal free cash flow is -2,121,222,313.7, not positive: a going concern that consumes cash for ever is not a terminal"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2018,
+    "why": "terminal refused: terminal free cash flow is -2,726,856,207.2, not positive: a going concern that consumes cash for ever is not a terminal"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2019,
+    "why": "terminal refused: terminal free cash flow is -2,376,366,146.7, not positive: a going concern that consumes cash for ever is not a terminal"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2020,
+    "why": "terminal refused: terminal free cash flow is -4,153,885,783.0, not positive: a going concern that consumes cash for ever is not a terminal"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2021,
+    "why": "terminal refused: terminal free cash flow is -8,459,856,259.4, not positive: a going concern that consumes cash for ever is not a terminal"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2022,
+    "why": "terminal refused: implied payout of terminal NOPAT is 610.5%, outside [0, 1]: the terminal distributes more than it earns"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2023,
+    "why": "terminal refused: implied payout of terminal NOPAT is 535.5%, outside [0, 1]: the terminal distributes more than it earns"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2015,
+    "why": "the projection has no revenue or operating profit at h=1"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2016,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2022,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2023,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2020,
+    "why": "capex intensity needs 3 years and the block carries 1"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2021,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2022,
+    "why": "terminal refused: terminal free cash flow is -2,277,167,967.9, not positive: a going concern that consumes cash for ever is not a terminal"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2023,
+    "why": "no finance charge in the as-reported panel at this origin"
+   }
+  ]
+ }
+}

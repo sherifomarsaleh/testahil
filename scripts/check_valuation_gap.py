@@ -253,10 +253,26 @@ def _resolve_ticker(ticker):
         # the new-study gauntlet recorded on its own first run.
         import importlib.util
         here = os.path.dirname(os.path.abspath(__file__))
-        path = os.path.join(os.path.dirname(here), 'engine', 'campaign_queue.py')
+        engine_dir = os.path.join(os.path.dirname(here), 'engine')
+        path = os.path.join(engine_dir, 'campaign_queue.py')
+        # A MODULE LOADED BY PATH MUST STILL BE ABLE TO IMPORT ITS OWN NEIGHBOURS.
+        # campaign_queue imports study_aliases, which sits beside it; loading it
+        # under a sys.path that does not carry its directory raises
+        # ModuleNotFoundError five frames down, and the caller's negative control
+        # then goes red for the WRONG reason — the gauntlet's own first-run
+        # finding, and the fourth occurrence of this shape in one session. The
+        # directory of the file being loaded goes on the path for the load, and
+        # comes off afterwards so nothing else inherits it.
         spec = importlib.util.spec_from_file_location('_cq', path)
         mod = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(mod)          # a missing map is a FAILURE, never a
+        _added = engine_dir not in sys.path
+        if _added:
+            sys.path.insert(0, engine_dir)
+        try:
+            spec.loader.exec_module(mod)      # a missing map is a FAILURE, never a
+        finally:
+            if _added:
+                sys.path[:] = [x for x in sys.path if x != engine_dir]
         _ALIAS_CACHE = (mod.STUDY_ALIAS,      # silent fallback to the raw ticker:
                         mod.STUDY_NOT_IN_QUEUE)   # that is the mismatch it prevents
     alias, not_in_queue = _ALIAS_CACHE
