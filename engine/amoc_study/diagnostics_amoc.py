@@ -33,9 +33,59 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 NUM = os.path.join(HERE, "study_numbers.json")
 
 
+def _flat_rate(d):
+    """The same disagreement as a single flat discount rate, on the ONE shared
+    construction (engine/reverse_read.py) every study calls.
+
+    WHY THE SHARED MODULE RATHER THAN A LOCAL SOLVE. Written per study it would be
+    written differently per study, and a diagnostic that is not comparable across
+    names cannot be pooled later. The discounting convention is RECOVERED from this
+    study's own factors rather than assumed -- AMOC discounts to year ends and ARCC
+    to mid-period points, and assuming either would put a real error into the answer
+    silently, where it would read as a disagreement with the market rather than as a
+    bug. The module refuses if the recovered times do not reproduce the study's own
+    published factors, so this is the same model read backwards and not a second one.
+    """
+    import sys
+    sys.path.insert(0, os.path.dirname(HERE))
+    import reverse_read as RR
+
+    f, dcf, w, br = d["fcst"], d["dcf"], d["wacc"], d["bridge_record"]
+    t_mid, how = RR.resolve_times(d.get("cost_of_capital_record") or {},
+                                  f["df"], f["fwd_wacc"])
+    # the terminal is brought home on the LAST EXPLICIT YEAR'S factor -- one date, one
+    # price of time -- which is this study's own construction, so df_tv IS df[-1]
+    r = RR.read(f["fcff"], t_mid, dcf["tv"], w["wacc_term"], dcf["g"],
+                f["df"][-1], f["df"][-1], dcf["ev"], br["equity_value"],
+                br["shares_mn"], float(d["spot"]))
+    r["quantity"] = ("the single flat discount rate that reproduces the traded price "
+                     "on this study's own free cash flows, terminal and bridge")
+    r["study_value"] = r["implied_rate_at_study_value"]
+    r["study_schedule"] = {"explicit": w["wacc_exp"], "terminal": w["wacc_term"]}
+    r["discounting_times"] = t_mid
+    r["times_resolved"] = how
+    r["reading"] = (
+        "The price is paying for a flat %.2f%% on the same cash flows this study "
+        "discounts at a schedule worth a flat %.2f%%: a disagreement of %.0f basis "
+        "points on the price of time, against an explicit-window rate of %.2f%% "
+        "gliding to a terminal %.2f%%. Read as a margin instead, the same gap is "
+        "93 basis points of gross margin, and THAT is the form a reader can check "
+        "against the filed accounts."
+        % (100 * r["implied_rate_at_price"], 100 * r["implied_rate_at_study_value"],
+           10000 * (r["implied_rate_at_study_value"] - r["implied_rate_at_price"]),
+           100 * w["wacc_exp"], 100 * w["wacc_term"]))
+    return r
+
+
 def build():
     d = json.load(open(NUM, encoding="utf-8"))
-    dcf, gm, meta = d["dcf"], d["gm_required"], d["meta"]
+    dcf, meta = d["dcf"], d["meta"]
+    gm = json.load(open(os.path.join(HERE, "reverse_read.json"), encoding="utf-8"))
+    # The give-back stack and the retired blend are both priced by the study's OWN
+    # waterfall and both are already committed; they are read rather than re-derived,
+    # because a second arithmetic for a published figure is a second answer.
+    adv = json.load(open(os.path.join(HERE, "case_adversarial.json"), encoding="utf-8"))
+    lns, wac, brg = d["lenses"], d["wacc"], d["bridge_record"]
     spot, ps = float(d["spot"]), float(dcf["ps"])
 
     diag = {
@@ -86,6 +136,16 @@ def build():
                    "below" if gm["level"] < gm["filed_max_year"] else "above",
                    ps, 100 * (ps / spot - 1))),
         },
+        # THE SAME DISAGREEMENT IN THE UNITS THE REST OF THE BOOK USES.
+        # The margin above is the right quantity for THIS company -- a refiner's whole
+        # answer is the spread, and a margin is checkable against filed accounts, which
+        # is what caught a false claim in a previous edition. It is not comparable
+        # across names. engine/reverse_read.py is the one shared construction and it
+        # returns a flat rate for every study, so the two are reported together: the
+        # crux for a reader of this study, and the pooled quantity for the valuation
+        # calibration. Written once per study it would be written differently per
+        # study. Nothing here is an input to anything either.
+        "also_solved": _flat_rate(d),
     }
 
     # Both framings, priced through the study's own waterfall.
@@ -179,6 +239,108 @@ def build():
                 "because the cash flows, the tax and the debt are all struck in "
                 "pounds and a mixed-currency discount would price the same "
                 "inflation twice"),
+            # ---- FOUND 06-09-2026, READING THE STUDY'S OWN TEXT FOR FORKS ------------
+            # Section 1.13 prices five give-backs and section 1.5 publishes a retired
+            # blend, and NOT ONE of the six was in this record. Every one is a contested
+            # choice priced by the study's own waterfall; two of them clear the 5% line.
+            # A judgement the study itself computed and the record omitted is the
+            # cheapest kind of unmeasured lean there is.
+            row("the central lens",
+                "the cash-flow lens ALONE is the central, the other lenses published "
+                "beside it as cross-checks",
+                "the retired 45/20/20/15 blend of four lenses, which this study still "
+                "publishes unused",
+                lns["retired_blend"]["base"],
+                "the blend's weights never cleared an out-of-sample test; and this "
+                "study's own lens record marks the relative lens WITHDRAWN and "
+                "circular — its multiple is the company's own traded enterprise value "
+                "re-rated by zero, so a fifth of the blend values the company at what "
+                "it already costs. Recorded because the blend was the previous "
+                "edition's answer and a reader is entitled to the size of the change"),
+            row("the tax provision",
+                "the EGP 996.86mn provision disclosed in note 10-1 deducted at face in "
+                "the bridge",
+                "it settles for nothing",
+                adv["no_provision"]["central"],
+                "it is a disclosed claim on the very cash this bridge adds back at "
+                "face, so leaving it out hands a buyer a cash pile that is already "
+                "spoken for. What a critic can dispute is the SETTLEMENT, never the "
+                "disclosure, so the give-back is priced rather than argued with"),
+            row("the declared dividend payable",
+                "the EGP 258.30mn payable standing as a liability on the 30-Jun-2026 "
+                "sheet (note 11) deducted",
+                "it never leaves",
+                adv["no_divp"]["central"],
+                "no POST-balance-sheet declaration is deducted, which is the thing the "
+                "bridge rule prohibits; this is a liability ON the sheet whose cash is "
+                "inside the balance the bridge adds back, and the study's own bridge "
+                "record says so in as many words"),
+            row("the employees' statutory profit share",
+                "the 5.2% statutory appropriation charged",
+                "it is never paid",
+                adv["no_emp"]["central"],
+                "a statutory appropriation is not a discretionary distribution, and the "
+                "one delivered workbook in this book that omitted the same line "
+                "published an answer 14.4% too high; it is conceded here only to show "
+                "what disputing it is worth"),
+            row("the terminal risk-free anchor",
+                "the 7% terminal inflation in force on the house macro path, which is "
+                "the inflation inside the terminal risk-free of 12.5%",
+                "the softer 5% longer-dated target",
+                adv["terminal_rf_5pct_target"]["central"],
+                "the terminal is DERIVED from the market's dated path rather than "
+                "quoted, and a study may not carry an inflation number of its own; the "
+                "softer target is a real published objective a reader could reach for, "
+                "and it is the one row of the give-back stack where conceding LOWERS "
+                "the answer, which is why it is priced rather than assumed benign"),
+            row("the tax rate on operating profit",
+                "the statutory 22.5%",
+                "the interest-flattered effective 22.12% the group actually reports",
+                adv["effective_tax"]["central"],
+                "the reported effective rate is pulled below statutory by interest "
+                "income the operating lens does not capitalise, so using it would tax "
+                "the refinery at a rate the refinery does not earn. Priced through the "
+                "whole model it returns EXACTLY the published answer, and that null is "
+                "recorded rather than dropped: a reader would assume it mattered"),
+        ],
+        # NOT A JUDGEMENT ROW, AND THE REASON IS ARITHMETIC RATHER THAN TASTE.
+        # Section 1.13's last line concedes all five give-backs at once and reaches
+        # It is the UNION of five rows already listed, so entering it here
+        # would count the same forks twice and would put a sixth fake vote into a sign
+        # test of five real ones.
+        "excluded_composite": {
+            "name": "every contested charge conceded simultaneously",
+            "value": adv["ALL_GIVEBACKS"]["central"],
+            "why_not_a_row": ("the union of five judgements already recorded; counting "
+                              "it would vote the same forks twice"),
+        },
+        # [R-ENF-04] AN ABSENT ANSWER IS NOT A CLEAN ONE. This one is worth far more
+        # than 5% of value and is deliberately NOT given a number.
+        "unvalued": [
+            {
+                "name": "the terminal construction",
+                "adopted": "the retired reinvestment identity, growth over terminal "
+                           "return, which charges the terminal for capital every year "
+                           "in perpetuity",
+                "alternative": "maintenance at replacement cost on a DISCLOSED useful "
+                               "life through the sanctioned terminal module",
+                "why_unvalued": ("the alternative needs one sentence this repository "
+                                 "does not hold: whether the depreciation charge writes "
+                                 "off cost, or cost less an estimated residual. The "
+                                 "company's site and the exchange both refuse at the "
+                                 "proxy, re-run twice each, and no filing carrying the "
+                                 "accounting-policy note has ever been committed. It is "
+                                 "registered as an escalation with a default and a date, "
+                                 "and the study's own evidence note establishes "
+                                 "everything that can be established without it. A life "
+                                 "this desk chose is not a disclosed life, so no number "
+                                 "is invented for the sake of a complete-looking record "
+                                 "-- which is the whole reason this field exists"),
+                "size": ("larger than every valued row here: the retired identity's "
+                         "implied replacement cycle is 1/g, 14.3 years, a fact about "
+                         "the pound and not about a refinery"),
+                "direction": "unknown, and measured per name rather than predicted",
+            },
         ],
     }
     return diag, cj

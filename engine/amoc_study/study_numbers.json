@@ -11963,13 +11963,6 @@
   "[Fundamental walk-forward] LIGHT scope, 9 scoreable cells over five origins FY2021-FY2025. Majority profit was under-forecast in 100% of cells and the method scored -1.128 against assuming last year's profit repeats \u2014 it did NOT beat no change. No correction was adopted. What it changed in this edition is the volume driver, and the far-year bands it licenses are carried into Appendix A rather than a point.",
   "[Gates] beta 0.9080 vs raw_indices/EG/EGX30.csv (conforming=True); ground-up record covers 100% of revenue across 8 lines, all at 'derived' with the cost-disclosure gap stated; SIGCM and the model-report bar both pass. Study stamped to STANDARD_VERSION 2026.09.01."
  ],
- "gm_required": {
-  "shift": 0.009263812711366507,
-  "level": 0.10579793896150971,
-  "base": 0.09653412625014321,
-  "filed_max_year": 0.1384,
-  "filed_max_quarter": 0.1392
- },
  "walkforward": {
   "ran": true,
   "scope": "LIGHT",

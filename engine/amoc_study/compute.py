@@ -3025,7 +3025,19 @@ WALKFORWARD = dict(
                      'and the walk-forward measures the flat-volume rule as ALREADY '
                      'over-forecasting by 7.6% in eight of nine cells. The base path is now flat '
                      'and the bear leg reverts to the five-year mean.'))
-OUT['gm_required'] = OUT_GM_REQ
+# [R-ENF-05] THE SOLVED FIGURE LEAVES THE NUMBERS FILE, AND ONLY ITS ADDRESS CHANGES.
+# What is solved above is solved FROM THE TRADED PRICE, and the standing rule puts such a
+# quantity outside study_numbers.json -- "the numbers file builders read" -- precisely so it
+# cannot re-enter a valuation. It was committed into OUT until 06-09-2026 and
+# assert_reverse_dcf() found it there, at /gm_required/level; every use of it was DISPLAY, so
+# the rule's purpose was met and its device was broken, which is the state the ratchet
+# recorded. It now lives in its own artefact that the document and the figure read to print
+# it and that nothing computes from. THE VALUE DOES NOT MOVE: this changes where it is kept,
+# not what it is, and the solve itself is untouched a few lines above.
+# The vintage travels with it per [R-ENF-06] -- an artefact a builder reads declares the
+# answer it was built against, or a stale copy cannot be told from a current one.
+with open(os.path.join(HERE, 'reverse_read.json'), 'w') as _f:
+    json.dump(dict(OUT_GM_REQ, published_central=central, published_spot=SPOT), _f, indent=1)
 OUT['walkforward'] = WALKFORWARD
 say(f"[Fundamental walk-forward] LIGHT scope, {WALKFORWARD['cells']} scoreable cells over five "
     f"origins FY2021-FY2025. Majority profit was under-forecast in "

@@ -1,6 +1,6 @@
 {
  "ticker": "AIRARABIA",
- "as_of": "2026-09-05",
+ "as_of": "2026-09-06",
  "published_central": 4.7458743053797985,
  "published_spot": 4.97,
  "why_this_file": "Any single contested choice in a valuation is defensible. What is not is a study that resolves EVERY contested choice the same way and never notices — which is how a lean survives an audit of its steps. Each is recorded with BOTH framings' values, the side adopted and why, and the binomial sign test is printed. A study landing them all one way is FLAGGED, never failed: a company can genuinely deserve a consistent read, and a gate that failed on it would push studies to resolve judgements inconsistently to stay green.",
@@ -120,14 +120,14 @@
   {
    "name": "the forecast tax rate: the statutory top-up vs the audited effective rate",
    "adopted": "15%, the domestic minimum top-up rate the group provides at",
-   "alternative": "11.04%, the effective rate the audited FY2025 reconciliation shows",
+   "alternative": "11.60%, the effective rate the audited FY2025 tax note itself states",
    "value_adopted": 4.7458743053797985,
-   "value_alternative": 4.983140804346474,
-   "share_of_value": 0.04761384602251728,
+   "value_alternative": 4.94952243295682,
+   "share_of_value": 0.04114500546982325,
    "direction": "the study adopted the lower-value framing",
    "adopted_side_fixed_by": null,
    "rule_points_to_the_alternative": null,
-   "why": "The company's own audited effective rates are 11.04% for FY2025 and 8.79% for FY2024, both below the statutory top-up, because of exempt income and the opening of the nine-per-cent era; the reviewed first quarter of 2026 provides at the statutory rate. The study holds the statutory rate and calls it the conservative anchor, which it is — this is the one row where following the filing rather than the statute would RAISE the value, and the study goes the other way."
+   "why": "The company's own audited effective rates are 11.60% for FY2025 and 8.79% for FY2024, both below the statutory top-up, because of exempt income and the opening of the nine-per-cent era; the reviewed first quarter of 2026 provides at the statutory rate. The study holds the statutory rate and calls it the conservative anchor, which it is — this is the one row where following the filing rather than the statute would RAISE the value, and the study goes the other way. THE FILED RATE HAS TWO LEGITIMATE READINGS AND BOTH ARE STATED rather than one being chosen quietly: the tax note's own stated rate, 11.60%, is struck on the current year's tax expense, while the charge that actually reaches the income statement is that expense less a prior-period adjustment the note separates on its own line, which reads 11.04% over the same profit before tax. The note's figure is the one used here because a prior-period true-up is by construction not a forward rate, and the FY2024 pair agree to the basis point on both readings, which is what locates the difference in that one line rather than in the identity."
   },
   {
    "name": "the weighted useful life: every disclosed range at its longest end vs at its shortest",

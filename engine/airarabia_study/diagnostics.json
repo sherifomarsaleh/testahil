@@ -1,6 +1,6 @@
 {
  "ticker": "AIRARABIA",
- "as_of": "2026-09-05",
+ "as_of": "2026-09-06",
  "spot": 4.97,
  "spot_date": "close 2026-09-03, supplied 2026-09-03 (SUPPLIED_03-09-2026.json)",
  "published_central": 4.7458743053797985,
@@ -92,7 +92,7 @@
   "study_multiple_of_the_fy2025_profit_share_at_book": 1.9128095802079224,
   "study_joint_venture_network_value_capitalised": 2849.625,
   "study_multiple_capitalised": 15.0,
-  "reading": "The two rate reads agree, which is worth stating because they were solved on different machinery: the flat-rate read puts the disagreement at -22 basis points and a parallel shift of the study's own gliding schedule, solved on the study's own scenario engine, puts it at -22. In business units the same gap is 2.8% more passengers than this study forecasts (FY2030 18.03mn against 17.55mn, a compound 6.67% a year from the audited FY2025 13.06mn against this study's 6.09% — where the company's own disclosed record from FY2022 to FY2025 is 16.0% a year), or 0.7% more on the fare, or a jet price 2.2% below the path the study takes, or a fleet capital bill 8.7% lighter. THE ONE WORTH PAUSING ON IS THE VENTURE NETWORK. This study prices it BOTH ways and never averages: the audited carrying value, 1.91 times the FY2025 profit share, and the same share capitalised at 15 times. The price implies AED 1381mn, or 7.27 times — BETWEEN the study's own two published framings. So on the study's own reading of its own biggest contested judgement, the market is not disagreeing with this valuation; it is resolving a fork this study deliberately declines to resolve, and it is resolving it nearer the book end than the capitalised one. A reverse read landing between a study's own two published answers is evidence that the disagreement is the fork rather than the model."
+  "reading": "The two rate reads agree, which is worth stating because they were solved on different machinery: the flat-rate read puts the disagreement at -22 basis points and a parallel shift of the study's own gliding schedule, solved on the study's own scenario engine, puts it at -22. In business units the same gap is 2.8% more passengers than this study forecasts (FY2030 18.03mn against 17.55mn, a compound 6.67% a year from the audited FY2025 13.06mn against this study's 6.09% — where the company's own disclosed record from FY2022 to FY2025 is 16.0% a year), or 0.7% more on the fare, or a jet price 2.2% below the path the study takes, or a fleet capital bill 8.7% lighter. THE ONE WORTH PAUSING ON IS THE VENTURE NETWORK. This study prices it BOTH ways and never averages: the audited carrying value, 1.91 times the FY2025 profit share, and the same share capitalised at 15 times. The price implies AED 1381mn, or 7.27 times — BETWEEN the study's own two published framings, nearer the book end than the capitalised one. That does not prove the venture network is where the disagreement lives — every line above absorbs the same gap, and a gap this small is absorbed by almost any single driver — but it does mean the price sits INSIDE a bracket this study publishes and declines to close, which is a different thing from the price disagreeing with an answer the study committed to."
  },
  "company_disclosed": {
   "passengers_carried_mn": {
@@ -113,7 +113,10 @@
   "share_of_venture_profit_fy2025": 189.975,
   "carrying_value_of_the_venture_network_fy2025": 363.386,
   "effective_finance_cost_over_average_gross_debt_fy2025": 0.027308496058470456,
-  "audited_effective_tax_rate_fy2025": 0.11036443850165147,
+  "audited_effective_tax_rate_fy2025_as_the_tax_note_states_it": 0.11599999999999999,
+  "audited_effective_tax_rate_fy2025_income_statement_charge_over_pretax_profit": 0.11036443850165147,
+  "audited_effective_tax_rate_fy2024_both_readings_agree": 0.08789999999999999,
+  "why_the_fy2025_tax_rate_has_two_readings": "the tax note's stated rate is struck on the year's tax expense; the charge that reaches the income statement is that expense less a prior-period adjustment the note separates on its own line. Both are filed, both are published here, and the FY2024 pair agreeing to the basis point on both readings is what places the difference in that line rather than in the identity.",
   "net_cash_fy2025": 2417.297,
   "note": "every figure here is the company's own disclosure or an identity on the company's own disclosures, taken from this study's own four-field input register and recomputed by this study's own code. The fare and fuel per passenger are the disclosed revenue and cost lines over the disclosed passenger count; seat and available-seat-kilometre data is not disclosed, which the study flags, so per-passenger is the finest sourced level here."
  }

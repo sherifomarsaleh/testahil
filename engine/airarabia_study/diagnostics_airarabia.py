@@ -63,7 +63,7 @@ ENGINE = os.path.dirname(HERE)
 NUM = os.path.join(HERE, "study_numbers.json")
 COMPUTE = os.path.join(HERE, "compute.py")
 PRICE_FILE = os.path.join(ENGINE, "prices", "SUPPLIED_03-09-2026.json")
-AS_OF = "2026-09-05"
+AS_OF = "2026-09-06"
 
 SRC = open(COMPUTE, encoding="utf-8").read()
 ANCHOR = "V = {k: rec['value'] for k, rec in INP.items()}"
@@ -369,7 +369,7 @@ def forks(base, fig):
             name="the forecast tax rate: the statutory top-up vs the audited effective rate",
             adopted="%.0f%%, the domestic minimum top-up rate the group provides at"
                     % (100 * V["tax_stat"]),
-            alternative="%.2f%%, the effective rate the audited FY2025 reconciliation shows"
+            alternative="%.2f%%, the effective rate the audited FY2025 tax note itself states"
                         % (100 * fig["etr_fy25"]),
             ovr=dict(tax_eff=None),                # filled from fig, see build()
             why="The company's own audited effective rates are %.2f%% for FY2025 and %.2f%% "
@@ -378,8 +378,17 @@ def forks(base, fig):
                 "provides at the statutory rate. The study holds the statutory rate and "
                 "calls it the conservative anchor, which it is — this is the one row where "
                 "following the filing rather than the statute would RAISE the value, and the "
-                "study goes the other way."
-                % (100 * fig["etr_fy25"], 100 * fig["etr_fy24"])),
+                "study goes the other way. THE FILED RATE HAS TWO LEGITIMATE READINGS AND "
+                "BOTH ARE STATED rather than one being chosen quietly: the tax note's own "
+                "stated rate, %.2f%%, is struck on the current year's tax expense, while "
+                "the charge that actually reaches the income statement is that expense less "
+                "a prior-period adjustment the note separates on its own line, which reads "
+                "%.2f%% over the same profit before tax. The note's figure is the one used "
+                "here because a prior-period true-up is by construction not a forward rate, "
+                "and the FY2024 pair agree to the basis point on both readings, which is "
+                "what locates the difference in that one line rather than in the identity."
+                % (100 * fig["etr_fy25"], 100 * fig["etr_fy24"],
+                   100 * fig["etr_fy25"], 100 * fig["etr_fy25_income_statement"])),
         dict(
             name="the weighted useful life: every disclosed range at its longest end vs at "
                  "its shortest",
@@ -595,6 +604,7 @@ def build():
     assert base["dcf_ps"] == live["dcf"]["ps"], "the re-run does not reproduce the DCF lens"
 
     V = base["V"]
+    _TAX = _effective_tax_rates(base)
     A0 = live["central"]
     struck = float(live["spot"])
     spot, spot_date = _latest_close(live["meta"]["ticker"])
@@ -747,13 +757,13 @@ def build():
                 "NETWORK. This study prices it BOTH ways and never averages: the audited "
                 "carrying value, %.2f times the FY2025 profit share, and the same share "
                 "capitalised at %.0f times. The price implies AED %.0fmn, or %.2f times — "
-                "BETWEEN the study's own two published framings. So on the study's own "
-                "reading of its own biggest contested judgement, the market is not "
-                "disagreeing with this valuation; it is resolving a fork this study "
-                "deliberately declines to resolve, and it is resolving it nearer the book "
-                "end than the capitalised one. A reverse read landing between a study's own "
-                "two published answers is evidence that the disagreement is the fork rather "
-                "than the model."
+                "BETWEEN the study's own two published framings, nearer the book end than "
+                "the capitalised one. That does not prove the venture network is where the "
+                "disagreement lives — every line above absorbs the same gap, and a gap this "
+                "small is absorbed by almost any single driver — but it does mean the price "
+                "sits INSIDE a bracket this study publishes and declines to close, which is "
+                "a different thing from the price disagreeing with an answer the study "
+                "committed to."
                 % (10000 * (r_price - r_study),
                    10000 * imp["parallel_shift_in_the_schedule"],
                    100 * (imp["pax_multiplier"] - 1), pax_last, V["pax_path"][-1],
@@ -773,8 +783,17 @@ def build():
             "share_of_venture_profit_fy2025": float(V["assoc_fy25"]),
             "carrying_value_of_the_venture_network_fy2025": float(V["assoc_bv_fy25"]),
             "effective_finance_cost_over_average_gross_debt_fy2025": kd_eff,
-            "audited_effective_tax_rate_fy2025": base["hist_is"]["FY25"]["tax"] /
-                                                 base["hist_is"]["FY25"]["ebt"],
+            "audited_effective_tax_rate_fy2025_as_the_tax_note_states_it": _TAX[0],
+            "audited_effective_tax_rate_fy2025_income_statement_charge_over_pretax_profit":
+                _TAX[2],
+            "audited_effective_tax_rate_fy2024_both_readings_agree": _TAX[1],
+            "why_the_fy2025_tax_rate_has_two_readings": (
+                "the tax note's stated rate is struck on the year's tax expense; the charge "
+                "that reaches the income statement is that expense less a prior-period "
+                "adjustment the note separates on its own line. Both are filed, both are "
+                "published here, and the FY2024 pair agreeing to the basis point on both "
+                "readings is what places the difference in that line rather than in the "
+                "identity."),
             "net_cash_fy2025": -float(base["nd_fy25"]),
             "note": ("every figure here is the company's own disclosure or an identity on "
                      "the company's own disclosures, taken from this study's own four-field "
@@ -925,13 +944,49 @@ def _life_band(base):
     return short, float(a.group(1)) / 100.0
 
 
+def _effective_tax_rates(base):
+    """The filed effective tax rate, BOTH ways, because the filing carries both.
+
+    The income-statement charge over profit before tax is an identity on figures
+    this study commits. The TAX NOTE states its own effective rate, and for
+    FY2025 the two are not the same number: the note's rate is struck on the
+    year's tax expense, and the charge reaching the income statement is that
+    expense less a prior-period adjustment the note separates on its own line.
+    Neither is wrong and the dual-framing rule says to state both rather than
+    pick one quietly.
+
+    THE FY2024 PAIR IS THE CHECK THAT MAKES THE FY2025 DIVERGENCE LEGIBLE: on
+    that year the note's rate and the income-statement identity agree to the
+    basis point, which places the difference in that one reconciling line rather
+    than in the identity or in the register. A rate read off a note and a rate
+    computed off a statement that disagreed for an unknown reason would be a
+    figure nobody could check; this one is checkable and is checked.
+    """
+    import re as _re
+    src = base["INP"]["tax_eff"]["source"]
+    m = _re.search(r"FY2024\s+([\d.]+)%,\s*FY2025\s+([\d.]+)%", src)
+    assert m, ("the tax note no longer states the audited effective rates in the form this "
+               "reads. An absent figure is not a clean one: re-point this at the register.")
+    note24, note25 = float(m.group(1)) / 100.0, float(m.group(2)) / 100.0
+    is25 = base["hist_is"]["FY25"]["tax"] / base["hist_is"]["FY25"]["ebt"]
+    is24 = base["hist_is"]["FY24"]["tax"] / base["hist_is"]["FY24"]["ebt"]
+    assert abs(note24 - is24) < 5e-5, (
+        "the FY2024 effective rate the note states (%.4f%%) does not reproduce from this "
+        "study's own committed income statement (%.4f%%). That agreement is what licenses "
+        "reading the FY2025 rate off the note, so without it neither figure may be used."
+        % (100 * note24, 100 * is24))
+    assert note25 > is25, (
+        "the FY2025 note rate is not above the income-statement reading, so the prior-period "
+        "adjustment this record describes is not what separates them")
+    return note25, note24, is25, is24
+
+
 def _figures(base, live):
     """Every figure a reason or an alternative needs, computed here and never typed."""
     V = base["V"]
     neo_mult, neo_share = neo_multipliers(base)
     life_short, aircraft_share = _life_band(base)
-    etr_fy25 = base["hist_is"]["FY25"]["tax"] / base["hist_is"]["FY25"]["ebt"]
-    etr_fy24 = base["hist_is"]["FY24"]["tax"] / base["hist_is"]["FY24"]["ebt"]
+    etr_fy25, etr_fy24, etr_fy25_is, etr_fy24_is = _effective_tax_rates(base)
     ev_ret = base["pv_explicit"] + base["tv_retired"] * base["df"][-1]
     beta = json.load(open(os.path.join(HERE, "beta_result.json"), encoding="utf-8"))
     gross = V["ppe_fy25"] + V["rou_fy25"]
@@ -939,6 +994,8 @@ def _figures(base, live):
         neo_mult=neo_mult, neo_share=neo_share,
         life_short=life_short,
         etr_fy25=etr_fy25, etr_fy24=etr_fy24,
+        etr_fy25_income_statement=etr_fy25_is,
+        etr_fy24_income_statement=etr_fy24_is,
         blend=(live["lens_record"]["retired_blend"]["value"]),
         tv_retired_ps=base["to_anchor_split"](ev_ret, base["jv_book"]),
         fuel_share_of_direct=(V["dcost_lines_fy25"]["fuel"] / V["dcost_fy25"]),

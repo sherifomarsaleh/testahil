@@ -1049,7 +1049,7 @@ FORECAST_ANCHOR = dict(
         'by identity as the audited full year less that filed half, and the three '
         'audited years set out next. The register carries two filed halves and no more, '
         'so nothing is claimed about halves this study does not hold. '
-        f"the prolonged branch opens FY2026 at {_gp[0]:.2%}, "
+        f"The prolonged branch opens FY2026 at {_gp[0]:.2%}, "
         f"{(_gp[0] - LATEST_RATE) / LATEST_RATE:+.1%} relative, and the normalisation "
         f"branch at {_op[0]:.2%}, {(_op[0] - LATEST_RATE) / LATEST_RATE:+.1%}. THE FILED "
         f"RECORD ON THE SAME BASIS IS FY2023 {FILED_ADJ_MARGIN[2023]:.2%}, FY2024 "
