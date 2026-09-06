@@ -1147,3 +1147,17 @@ jobs:
 
       - name: Rebuild ledger — negative control
         run: python3 scripts/check_rebuild_ledger_negative_control.py
+
+      # [R-ENF-01] for L-353 — a driver wired to NOTHING must say so. Registered
+      # 06-09-2026 on three runs' own history: freezing was the worst of four
+      # knowable escalation rules on every name that could be measured, and one
+      # model freezes its main driver by construction, worth 0.52 log points of
+      # its bias alone. What is tested is CONNECTIVITY, not magnitude: every
+      # inflation rate a run carries is doubled at its source, and a line whose
+      # projection is unchanged is wired to none of them. Zero is not a threshold,
+      # so no free parameter enters.
+      - name: A frozen escalator is declared, or it is a defect
+        run: python3 scripts/check_frozen_escalator.py
+
+      - name: Frozen-escalator gate — negative control
+        run: python3 scripts/check_frozen_escalator_negative_control.py

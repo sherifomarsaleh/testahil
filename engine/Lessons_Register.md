@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**272 lessons**, of which 240 bind on every study, 25 on a class of company, and 7 on a single name.
+**275 lessons**, of which 243 bind on every study, 25 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 191 found while building.
+By how they were learned: 42 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 191 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2478,6 +2478,36 @@ Depth-bar standard 3 has required an independent recalculation of the delivered 
 > **What it cost, or how we know.** Running all twenty-two found two red. SWDY's delivered workbook publishes SAR 59.3132 where its delivered document publishes 55.4822, +6.9%, with ZERO formula errors: DCF!C25 still carries the g x IC terminal [R-TERM-01] retired, which the study's own compute.py computes and labels "published unused, feeds nothing" (-6.5% alone), and SOTP Bridge!C12 carries no line for the employees' statutory share of profit the model deducts at 12.19% (+14.4% alone) — with the builder's own expected-value map holding the RIGHT figure for both cells. Its recalc.py names all 27 disagreeing cells in under a second and had not been run since the rebuild. AMOC's refuses outright, still written for a nine-sheet workbook the study replaced with a sixteen-sheet one.
 
 > **What would overturn it.** It is overturned by evidence that these checks are in fact run at every rebuild without a gate — which the two red studies are direct evidence against. It would be strengthened, not overturned, by a study whose check is red for a reason the gate should not fire on: that is a re-pointing question about one instrument, not about whether the trigger is pulled.
+
+### L-352 · The gap between a company's prices and its costs barely moves; the rate they both rise at moves enormously.
+
+It is tempting to spend the work on margins — will this line squeeze, will that one improve. On the record, the gap between what a company charges and what it pays holds almost still, while the rate at which both climb runs anywhere from sixteen to forty-six per cent a year. Get the rate right first. Getting the gap right and the rate wrong is optimising the smaller of the two by a factor of about a hundred.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, the TMGH, PHDC and AMOC fundamental walk-forwards read together, method reassessment 06-09-2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** Realised escalation of revenue against cost, from each run's own filed accounts: TMGH 2011-2025, +16.0% a year against +15.5%, a drift of -0.37% a year; PHDC 2015-2023 per delivered unit, +22.7% against +23.5%, +0.61%; AMOC FY2021-FY2025 per tonne, +44.6% against +46.0%, +0.97%. Twenty-six name-years across two classes, drift inside one per cent a year and NOT one-signed — which is a flat spread rather than a slow trend. Over the same window AMOC's escalation rate was 44.6% a year and its model used zero, worth 0.52 log points of bias on its own.
+
+> **What would overturn it.** A long window — five years or more — where the cost drift exceeds two per cent a year, or a systematic difference in drift between classes. Two developers here run -0.37% and +0.61% and the one refiner +0.97%, which is no separation at all on three names, so a class split would overturn the scope rather than the finding.
+
+### L-353 · Holding a price or a cost still is the worst thing a forecast can do with it.
+
+Where a model cannot forecast something — a commodity price, an exchange rate — the cautious-looking move is to hold it where it is. That is not caution. Standing still inside an economy that is moving is a forecast too, and on the record it is the worst of the available ones, because it is the only rule that is guaranteed to be wrong by the whole of whatever happened.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, the TMGH, PHDC and AMOC fundamental walk-forwards read together, method reassessment 06-09-2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** Four rules a study could have followed at each origin, none of them fitted, scored against what the company then reported: freezing, the origin's last published consumer inflation, purchasing-power parity on the inflation differential, and the company's own trailing three-year escalation. Freezing was the WORST on every name that could be measured — mean absolute log error 0.346 on PHDC, 0.236 on AMOC, 0.364 on TMGH — and on the paired cells the trailing rule was 42% better, consumer inflation 27% and parity 23%. One of these models freezes its main driver by construction, and that alone is 0.52 log points of its bias.
+
+> **What would overturn it.** A name where freezing genuinely beats every alternative over a window of four years or more — which would most plausibly be a company on a hard peg selling a contractually fixed price, where standing still is what the contract actually says.
+
+### L-354 · A range built from a handful of past errors is not the interval it looks like.
+
+When a method publishes its far years as a range taken from how wrong it has been before, that range is the spread of four to eight observations. The chance the next outcome lands inside such a spread is around two in three, not nine in ten — and it gets worse further out, exactly where the range is doing the work. Say the count, and say what a spread of that count can mean.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, the TMGH, PHDC and AMOC fundamental walk-forwards read together, method reassessment 06-09-2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** Every published far-year range tested walk-forward, with the band built only from origins before the one being tested: 259 cells, 55.6% coverage against an expected 63.5% under exchangeability, p=0.010. It degrades monotonically — -1.9 points at one year to -31.7 at five, where the band catches 29% of outcomes and sixteen of its seventeen misses are on the low side. It under-covers in BOTH regimes, by more outside the devaluation years than inside them, so it is not one bad period.
+
+> **What would overturn it.** A range built from enough observations to be an interval rather than a span, or a construction other than min-max. The finding is about the min-max span of a small sample, and a different construction is a different claim.
 
 
 ---

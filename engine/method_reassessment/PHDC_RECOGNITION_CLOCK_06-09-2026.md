@@ -129,20 +129,41 @@ year:
 | 2023 | 11,907 | 1,500 | 7.9 | 1.125 | 1.339 |
 
 **Over 2015-2023 unit cost compounded 5.40x — 23.5% a year — against CPI's 3.10x
-at 15.2%. That is 7.2% a year in real terms, 1.74x over the window.**
+at 15.2%.** The model escalates it at CPI, so it under-forecasts unit cost by
+8.3 percentage points a year, compounding to the 25% level gap.
 
-This is the cost-stack escalation rule the standing protocol already carries:
-a per-unit cost stack gets one escalator per driver class, never one blended
-index. Construction cost is steel, cement, rebar and site labour — a different
-basket from consumer prices, and on this company's own record a materially
-faster-moving one. Escalating it at CPI under-forecasts cost by construction, and
-that under-forecast is **62% of the whole profit error** in levels.
+### But the price ran with the cost, and that changes what the fix is
 
-Whether to correct it is a ruling, not a measurement. The defensible alternatives
-each cost something: a construction-cost index is a new external source
-(stop-and-inform under SIGCM), and the company's own realised unit-cost trend is
-a trailing extrapolation, which this method's own evidence ranks as the weakest
-of the three benchmarks.
+The first version of this section called construction cost "a different basket,
+materially faster-moving", and stopped there. Putting the revenue side beside it
+says something more useful:
+
+| year | revenue per delivered unit | cost per delivered unit | gross margin |
+|---|---:|---:|---:|
+| 2015 | 2.26 | 1.47 | 0.350 |
+| 2017 | 3.71 | 2.46 | 0.336 |
+| 2019 | 6.46 | 4.01 | 0.379 |
+| 2021 | 5.90 | 3.83 | 0.350 |
+| 2023 | 11.64 | 7.94 | 0.318 |
+
+**Revenue per unit grew 22.7% a year and cost per unit 23.5% — a cost drift of
++0.61% a year, and a gross margin that moved from 0.350 to 0.318 over eight
+years.** Both sides ran about 7% a year above consumer prices, together.
+
+So this is not a cost basket outrunning a price. It is the same two-clock defect
+as everywhere else in this run: **cost is pinned to CPI while revenue is not**,
+so cost is under-forecast by the whole 8.3pp/yr gap and revenue, arriving through
+the backlog release, happens to track better. The honest fix is that the cost
+escalator must sit on the same path as the revenue it is matched against — which
+needs no external index and no new source.
+
+### It also evidences a decision the delivered study already took
+
+`engine/phdc_study/bottom_up_model.py` sets `COST_DRIFT = 0.0` and records
+`COST_DRIFT_MEASURED` beside it from a single quarter pair, declining to carry a
+drift and saying so. **Eight years of this company's own record put that drift at
++0.61% a year.** The study's decision was right and it was taken on one quarter's
+evidence; this record is what supports it.
 
 ## The finance cost is [R-FCAL-01]'s trap (i), and correcting it naively is worse
 

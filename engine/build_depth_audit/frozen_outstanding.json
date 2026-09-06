@@ -1,0 +1,6 @@
+{
+ "_rule": "[R-ENF-01] for L-353, enforced by scripts/check_frozen_escalator.py.",
+ "_ratchet": "[R-ENF-02]. Runs already carrying a frozen, undeclared escalator on the day this gate was adopted are listed here and allowed to fail. The build breaks on a NEW frozen line anywhere else. THIS LIST MAY ONLY EVER SHORTEN (--prune).",
+ "_why_not_declared": "AMOC's net_sales is frozen and it cannot honestly claim any reason on the closed list. Crude is dollar-priced, so 'foreign_currency_wired_to_the_currency_path' is the reason that would fit — and it would be FALSE, because the model wires the line to nothing at all rather than to a currency path. Declaring it would be the rename-to-satisfy-a-checker offence [R-ENF-01 EXTENDED, the sweep case]. It is listed as outstanding instead. The correction is measured (engine/amoc_walkforward/driver_fixes.py, F8: -0.774 to -0.443) and NOT adopted, because adopting it moves a delivered study's answer and that is a re-issue.",
+ "outstanding": ["AMOC"]
+}

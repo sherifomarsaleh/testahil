@@ -868,22 +868,155 @@ worse than leaving both; a proper fix needs a projected debt path this model doe
 not build. Stop-and-inform rather than invent one — which is the digest's own
 warning about this trap, arriving as predicted.
 
-### The largest PHDC line, diagnosed: construction cost escalated at CPI
+### The largest PHDC line: cost pinned to CPI while revenue is not
 
-`cogs = cpu0 x infl x deliveries` with `infl` the Egyptian consumer-price path.
-On the run's own panel, PHDC's realised unit cost compounded **5.40x over
-2015-2023 — 23.5% a year — against CPI's 3.10x at 15.2%. That is 7.2% a year in
-real terms.** Escalating construction cost at consumer inflation under-forecasts
-it by construction, and that under-forecast is 62% of the whole profit error.
+`cogs = cpu0 x infl x deliveries` with `infl` the consumer-price path. On the
+run's own panel PHDC's realised unit cost compounded **5.40x over 2015-2023 —
+23.5% a year — against CPI's 3.10x at 15.2%**, so the model under-forecasts unit
+cost by 8.3 percentage points a year and that compounds to the 25% level gap.
 
-It is the cost-stack escalation rule the protocol already carries — one escalator
-per driver class, never one blended index. Construction cost is steel, cement,
-rebar and site labour, a different basket and on this company's record a
-materially faster-moving one.
+**I first wrote this up as construction cost outrunning a consumer basket, and
+putting the revenue side beside it says otherwise.** Revenue per delivered unit
+grew 22.7% a year against cost's 23.5% — a cost drift of +0.61% a year, gross
+margin 0.350 to 0.318 over eight years. Both sides ran about 7% a year above
+consumer prices, together. So it is the same two-clock defect as everywhere else
+in this run: cost pinned to CPI while revenue arrives through the backlog release
+and happens to track better. The fix needs no external index and no new source —
+the cost escalator has to sit on the same path as the revenue it is matched
+against.
 
-**PHDC's over-forecast is now fully accounted for, and all three defects are
-named in standing rules that no gate checks:** cost of sales escalated at CPI
-(62%), revenue and cost on different recognition clocks (26%), finance cost from
-a denominator of mostly non-interest-bearing customer advances on a frozen base
-(21%). Correcting any of them is a ruling on a delivered study, not a measurement,
-and none is made tonight.
+It also evidences a decision the delivered study already took: PHDC's
+`bottom_up_model.py` sets `COST_DRIFT = 0.0`, records the measured drift from a
+single quarter pair beside it, and declines to carry one. Eight years of the
+company's own record put that drift at +0.61% a year. **The study was right, on
+one quarter's evidence; this record is what supports it.**
+
+### How far the two PHDC defects travel
+
+**Trap (i) is PHDC's alone.** TMGH and EGCH both build their rate on
+interest-bearing debt correctly (TMGH's module says so in its own docstring);
+ARCC holds finance costs flat and already carries that in its NOT_FIXED list with
+its reason.
+
+**The CPI-pinned cost escalator is established on one name only.** EGCH's urea
+tonnage series runs three years, giving 3.3% a year real over two — directionally
+the same and far too short to call. ARCC, AMOC and TMGH commit no unit-cost
+series that can answer it, so they are recorded as unmeasurable rather than clean.
+One name is not a pattern.
+
+### The night's generalisable result: the spread moves with the price
+
+Measured the realised escalation of revenue per unit against cost per unit on
+every run committing a volume series:
+
+| name | class | window | revenue | cost | cost drift |
+|---|---|---|---:|---:|---:|
+| TMGH | developer | **14 years** | +16.0%/yr | +15.5%/yr | **-0.37%/yr** |
+| PHDC | developer | 8 years | +22.7%/yr | +23.5%/yr | **+0.61%/yr** |
+| AMOC | refiner | 4 years | +44.6%/yr | +46.0%/yr | **+0.97%/yr** |
+| EGCH | fertiliser | 2 years | +21.9%/yr | +30.1%/yr | +6.76%/yr (too short) |
+
+**Twenty-six name-years across three windows and two classes: the drift is inside
+1% a year and NOT one-signed** (-0.37, +0.61, +0.97), which is what a genuinely
+flat spread looks like rather than a slow trend. Price and cost move
+together at whatever rate the economy is running, and the spread stays put.
+
+That reframes everything found tonight. **AMOC needed 44.6% a year and the model
+used zero** — and the house PPP identity supplies about 11%, which is why F8 only
+reaches -0.443 and no further: no currency rule this house has is within a factor
+of four of what happened, and that residual is the width the far years should
+carry rather than a rule waiting to be found. PHDC pinned cost to CPI at 15.2%
+while cost ran at 23.5%. ARCC's seven fixes were all of this family and its
+clocks are the healthiest in the book.
+
+**The escalation RATE is worth two orders of magnitude more than the spread.**
+AMOC's whole 0.52 log points comes from 0% against 44.6%; its spread moved 0.97%
+a year over the same window.
+
+So I asked which knowable rule gets closest — freeze, last-published CPI, PPP, or
+the company's own trailing three-year escalation. **Freezing is the worst on
+every name that can be measured**, and it is what AMOC's model does: trail3 is 42%
+better on the paired cells, cpi 27%, ppp 23%. No rule is selected — choosing one
+because it scores best here is the selection mistake the promotion rule forbids —
+but freezing is ruled out, which is a firm and useful thing to have established.
+
+Two caveats printed with it: TMGH is 30 of the 43 cells and is measured on totals,
+so its escalation carries volume growth and flatters a trailing rule; and this
+does NOT reverse the earlier finding that trailing trend is the weakest of the
+three benchmarks, because that pooled every driver and this scores only the
+escalation rate of one line.
+
+`SPREAD_DRIFT_06-09-2026.md`, `engine/valuation_calibration/escalation_rules.py`.
+
+### The three findings are registered, so they bind
+
+`L-352` the spread is flat and the rate is everything · `L-353` freezing a driver
+is the worst available rule · `L-354` a min-max range of a handful of errors is
+not the interval it looks like. All three at scope ALL, all PROVISIONAL under
+[R-LESSON-01], each with its measured evidence and its falsifier, drafted in
+`engine/valuation_calibration/lessons_draft.json` because they rest on three runs
+and belong to no single ticker. Register now holds 275. Gate green.
+
+L-353 deliberately says only what is RULED OUT. Nothing is selected — choosing an
+escalator because it scored best on this panel is the selection mistake the
+promotion rule forbids, and the lesson says so in its own scope note.
+
+### L-353 is made arithmetic: `scripts/check_frozen_escalator.py`
+
+A lesson that binds nothing is advice, so L-353 got a gate the same night it was
+registered. **What it tests is CONNECTIVITY, not magnitude**, and that
+distinction is the whole design: every inflation rate a run carries is doubled at
+its source, and a line whose projection comes back IDENTICAL is wired to none of
+them. Zero is not a threshold, so no free parameter enters.
+
+The instrument is the one the clock test discarded. An elasticity draft was
+abandoned there because a local slope cannot see a level held still — and that is
+exactly the right instrument for asking whether a line is wired at all. Wrong for
+one question, right for the other.
+
+A frozen line is not automatically a defect — a contractual price, a
+foreign-currency line wired to the currency path, a pure volume driver — so a run
+declares its frozen lines with a reason from a **closed list**. AMOC is on the
+ratchet rather than declaring, and the reason is written into the ratchet file:
+the reason that would fit is "wired to the currency path instead", and it would
+be **false**, because that model wires the line to nothing at all. Declaring it
+would be the rename-to-satisfy-a-checker offence.
+
+**Two drafts of the gate were wrong and the second was caught by a clean case.**
+The first doubled a named function and flagged EGCH's revenue as frozen — EGCH's
+revenue moves through a currency path derived from the CPI differential read
+straight off its own table, so the gate was firing on work that is right.
+Re-pointed at the source per [R-COC-01], never widened. The second could not read
+ARCC's table shape at all and reported it unprobeable, which the gate correctly
+treats as RED.
+
+Negative-controlled on **11 conditions, 7 red and 4 clean**, every mutation
+asserting it landed, the case count asserted against a declared constant. Two
+clean cases exist because a draft failed them: EGCH wired through the currency,
+and a run wired only to a cpi INDEX — where scaling every year by the same
+constant would leave every ratio unchanged and call a wired line frozen, so the
+bump rises with the year.
+
+### L-354 gets its instrument too: `engine/range_disclosure.py`
+
+The sentence a far-year range owes its reader, written once rather than
+hand-maintained in five studies with five different holes — the shared-instrument
+lesson this repository has now learned three times.
+
+**It quotes two numbers and quoting only the first would have been the flattering
+half.** The arithmetic one — the span of k readings is expected to contain the
+next about (k-1)/(k+1) of the time, computed from the study's own count and never
+typed. And the MEASURED one, read live from the band-holdout record: across the
+tested book those ranges contained the outcome 56 times in 100 against an
+expected 63, and fewer further out. A sentence quoting only the arithmetic figure
+would overstate the range, which is the cautious-sounding claim that never gets
+audited [R-CAL-02].
+
+A study whose record cannot be read gets the sentence WITHOUT a measured figure
+and a note saying so — never a typed one. Below four readings it says the range
+cannot carry a probability at all rather than quoting one derived from two
+observations. Checked clean of internal vocabulary.
+
+It widens nothing. A widening factor chosen to make the coverage table pass is
+the free parameter the promotion rule forbids; what was missing was the
+disclosure, and that is what this supplies.

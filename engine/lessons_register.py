@@ -6292,6 +6292,92 @@ LESSONS = [
       "gate should not fire on: that is a re-pointing question about "
       "one instrument, not about whether the trigger is pulled.",
       "adopted"),
+
+    L("L-352", "ALL", None,
+      "The gap between a company's prices and its costs barely moves; "
+      "the rate they both rise at moves enormously.",
+      "It is tempting to spend the work on margins — will this line "
+      "squeeze, will that one improve. On the record, the gap between "
+      "what a company charges and what it pays holds almost still, "
+      "while the rate at which both climb runs anywhere from sixteen "
+      "to forty-six per cent a year. Get the rate right first. "
+      "Getting the gap right and the rate wrong is optimising the "
+      "smaller of the two by a factor of about a hundred.",
+      "the TMGH, PHDC and AMOC fundamental walk-forwards read "
+      "together, method reassessment 06-09-2026",
+      "walk_forward_fundamental",
+      "Realised escalation of revenue against cost, from each run's "
+      "own filed accounts: TMGH 2011-2025, +16.0% a year against "
+      "+15.5%, a drift of -0.37% a year; PHDC 2015-2023 per delivered "
+      "unit, +22.7% against +23.5%, +0.61%; AMOC FY2021-FY2025 per "
+      "tonne, +44.6% against +46.0%, +0.97%. Twenty-six name-years "
+      "across two classes, drift inside one per cent a year and NOT "
+      "one-signed — which is a flat spread rather than a slow trend. "
+      "Over the same window AMOC's escalation rate was 44.6% a year "
+      "and its model used zero, worth 0.52 log points of bias on its "
+      "own.",
+      "A long window — five years or more — where the cost drift "
+      "exceeds two per cent a year, or a systematic difference in "
+      "drift between classes. Two developers here run -0.37% and "
+      "+0.61% and the one refiner +0.97%, which is no separation at "
+      "all on three names, so a class split would overturn the scope "
+      "rather than the finding."),
+
+    L("L-353", "ALL", None,
+      "Holding a price or a cost still is the worst thing a forecast "
+      "can do with it.",
+      "Where a model cannot forecast something — a commodity price, "
+      "an exchange rate — the cautious-looking move is to hold it "
+      "where it is. That is not caution. Standing still inside an "
+      "economy that is moving is a forecast too, and on the record it "
+      "is the worst of the available ones, because it is the only "
+      "rule that is guaranteed to be wrong by the whole of whatever "
+      "happened.",
+      "the TMGH, PHDC and AMOC fundamental walk-forwards read "
+      "together, method reassessment 06-09-2026",
+      "walk_forward_fundamental",
+      "Four rules a study could have followed at each origin, none of "
+      "them fitted, scored against what the company then reported: "
+      "freezing, the origin's last published consumer inflation, "
+      "purchasing-power parity on the inflation differential, and the "
+      "company's own trailing three-year escalation. Freezing was the "
+      "WORST on every name that could be measured — mean absolute log "
+      "error 0.346 on PHDC, 0.236 on AMOC, 0.364 on TMGH — and on the "
+      "paired cells the trailing rule was 42% better, consumer "
+      "inflation 27% and parity 23%. One of these models freezes its "
+      "main driver by construction, and that alone is 0.52 log points "
+      "of its bias.",
+      "A name where freezing genuinely beats every alternative over a "
+      "window of four years or more — which would most plausibly be a "
+      "company on a hard peg selling a contractually fixed price, "
+      "where standing still is what the contract actually says."),
+
+    L("L-354", "ALL", None,
+      "A range built from a handful of past errors is not the "
+      "interval it looks like.",
+      "When a method publishes its far years as a range taken from "
+      "how wrong it has been before, that range is the spread of four "
+      "to eight observations. The chance the next outcome lands "
+      "inside such a spread is around two in three, not nine in ten — "
+      "and it gets worse further out, exactly where the range is "
+      "doing the work. Say the count, and say what a spread of that "
+      "count can mean.",
+      "the TMGH, PHDC and AMOC fundamental walk-forwards read "
+      "together, method reassessment 06-09-2026",
+      "walk_forward_fundamental",
+      "Every published far-year range tested walk-forward, with the "
+      "band built only from origins before the one being tested: 259 "
+      "cells, 55.6% coverage against an expected 63.5% under "
+      "exchangeability, p=0.010. It degrades monotonically — -1.9 "
+      "points at one year to -31.7 at five, where the band catches "
+      "29% of outcomes and sixteen of its seventeen misses are on the "
+      "low side. It under-covers in BOTH regimes, by more outside the "
+      "devaluation years than inside them, so it is not one bad "
+      "period.",
+      "A range built from enough observations to be an interval "
+      "rather than a span, or a construction other than min-max. The "
+      "finding is about the min-max span of a small sample, and a "
+      "different construction is a different claim."),
 ]
 
 
