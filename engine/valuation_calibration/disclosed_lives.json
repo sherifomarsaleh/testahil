@@ -273,6 +273,57 @@
    "why_this_name_matters_here": "AIRARABIA is one of the seven terminals charging LESS than their own book depreciation and one of the three doing it while sitting more than 10% BELOW the price. Its retired terminal implies a replacement cycle of 1/g = 40 years against a DISCLOSED aircraft life of 20 — it charges roughly half the maintenance the disclosure implies, on the asset class that carries essentially all the value. Correcting it moves the value DOWN and therefore AWAY from the price, which is [R-TERM-01 CLAUSE TWO]'s point and the side of the correction this house has never measured.",
    "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE, though this one is unusually well determined: an airline's value sits in aircraft and engines, both disclosed at a single 20 years rather than a band. The weighting is still a further sourcing step, and the 7-8% residual belongs in it — maintenance at replacement cost over 20 years against a 7-8% residual is not the same charge as over 15 against 20%."
   },
+  "AMOC": {
+   "classes": [
+    {
+     "asset_class": "Machinery, equipment and devices",
+     "years": [
+      10,
+      30
+     ],
+     "note": "the class that carries a refinery terminal, and disclosed as a 3x BAND rather than a figure — recorded as the band it is"
+    },
+    {
+     "asset_class": "Buildings, constructions and utilities",
+     "years": [
+      10,
+      30
+     ]
+    },
+    {
+     "asset_class": "Vehicles",
+     "years": [
+      5,
+      15
+     ]
+    },
+    {
+     "asset_class": "Tools",
+     "years": [
+      5,
+      10
+     ]
+    },
+    {
+     "asset_class": "Furniture, fixtures and computers",
+     "years": [
+      4,
+      10
+     ]
+    }
+   ],
+   "longest_years": 30,
+   "shortest_years": 4,
+   "fiscal_year_end": "30 June — this company's year is not a calendar one, and a life read from a 30-June filing belongs to that year and not to the calendar year it mostly falls in",
+   "land_not_depreciated": "NOT STATED IN THIS NOTE. The policy table carries no land row and the note does not say in terms that land is not depreciated, unlike ARCC's and ELEC's. Recorded as unstated rather than assumed: the usual treatment is not a disclosure.",
+   "source": "Alexandria Mineral Oils Company S.A.E, consolidated financial statements for the year ended 30 June 2025, note 3/2 (fixed assets and their depreciation) — 'Depreciation is calculated using the straight-line method according to the assets estimated useful life as follows', the table headed 'Item / Estimated Useful Life (yearly)' on page 12 of the rendered PDF. The company's own audited consolidated statements, from its own investor-relations financial-statements page, held in this run's filings archive.",
+   "file": "engine/amoc_walkforward/filings/74-68a2dfafd04651755504559.pdf",
+   "sha256": "86644727bf942bec67136c458c00819ab5d36cfbba0f965ff0c6b6ee65634f68",
+   "route": "OCR off the rendered pixels. THE FIRST READ AT 200 dpi RETURNED THE TABLE'S LABELS AND LOST ITS NUMERIC COLUMN — 'Vehicles 5-5' and 'Tools 5-0', neither of which is a life — because a circular auditor's stamp overlaps the right-hand column. Re-rendered at 450 dpi and read off the enlarged image, which resolves every cell. ARITHMETIC IS THE ARBITER AND THERE IS NO ARITHMETIC IN A LIVES TABLE, so the check here is a second independent document rather than a footing.",
+   "cross_check": "CROSS-CHECKED against the prior year's consolidated filing (FY ended 30 June 2024, engine/amoc_walkforward/filings/54-66c5a239056101724228153.pdf, sha256 32f54e9f91dc83be493259d4cd6dc6e68648cee41928864000991b1aa7bb5ce6), read the same way at 450 dpi: its table is identical figure for figure — 10-30, 10-30, 5-15, 5-10, 4-10. Two independent documents, one read.",
+   "weighting_not_read": "THE GROSS COST BY CLASS IS NOT RECORDED HERE AND IS NOT GUESSED, the same state as ARCC. Without it the 10-30 machinery band cannot be collapsed to a charge-weighted life, and COLLAPSING IT BY JUDGEMENT WOULD BE THIS DESK CHOOSING THE LIFE UNDER COVER OF A CITATION — which is what [R-TERM-01] refuses. A band is recorded as a band.",
+   "why_it_matters_here": "AMOC contributes no cell to the valuation calibration's cash-flow lens for two independent reasons already recorded there — its own walk-forward projects three horizons against a declared window of five, and no quantity appears in both its exported panel and its valuation-input block, so the unit relating them cannot be measured. The life is read here anyway, because it is a fact about the company that does not depend on either, and because the run that lifts those two blockers should not have to go back to the filings for it."
+  },
   "AMR": {
    "classes": [
     {
