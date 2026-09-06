@@ -321,10 +321,10 @@
    "note": "THE LADDER FOUND ONE THING WORTH MORE THAN THE ANSWER. A control on a host curl reaches turned what looked like 'GB Corp blocks automated readers' into 'this container's browser cannot reach anything', which is a different fact with a different remedy — and without the control the first would have gone into the record as true. The same pass found another study's register carrying a stale negative about egx.com.eg. Both are [L-343]: a recorded failure is a fact about one attempt on one day, and it stops being true without anybody noticing."
   },
   {
-   "key": "EGX-ohlc-refresh-amoc-egch-and-the-stale-remainder",
+   "key": "OHLC-refresh-egch-and-qnb",
    "opened": "2026-09-06",
    "cls": "missing_data",
-   "question": "A fresh OHLC export for the EGX and GCC names whose libraries still stop in early August 2026 — AMOC, EGCH, SCEM, PHAR and ELEC (06-08), SWDY and QNB (05-08), Silver (03-08). Eight ledger rows matured on 2026-09-06 and could not be graded because each name's own library does not reach its stored grade date.",
+   "question": "A fresh OHLC export for EGCH (EGX) and QNB (QSE) — the only two covered names whose libraries reach nowhere near their stored grade dates on ANY live ref. EGCH stops at 06-08-2026 everywhere; QNB's newest is 06-08-2026, a month short of its 06-09-2026 grade date. Both have a matured 1-month row that cannot be graded.",
    "routes": [
     {
      "route": "the persistent libraries themselves, engine/raw_ohlc/*/*.csv, read newest-first",
@@ -343,16 +343,22 @@
      "when": "2026-09-06",
      "outcome": "the same proxy refusals; and a series assembled from a rendered page is not the vendor format the libraries and Step 0.0 expect.",
      "rerun": true
+    },
+    {
+     "route": "EVERY live ref searched for a fresher library, name by name, per [R-IND-01]'s 'the repository is not one ref' clause — not this checkout alone",
+     "when": "2026-09-06",
+     "outcome": "THIS CORRECTED THE ENTRY AND THE ENTRY WAS WRONG AS FIRST WRITTEN. It named eight stale names from a single checkout; six of them were already supplied on sibling branches, each mid roll-forward: AMOC, SCEM, PHAR, SWDY and ELEC all reach 06-09-2026, and Silver reaches 04-09-2026, past its own 03-09 grade date. Only EGCH and QNB survive the search. The gate refused the entry on exactly this ground and named the branch — the clause did its job on the person writing the register, which is the second time in one session.",
+     "rerun": true
     }
    ],
    "refs_searched": 22,
    "why_only_the_principal": "The OHLC libraries come from the principal's own vendor export and always have. No route available in this container produces one, and a price typed from a chat message is not a vendor export — it would enter a calibration panel as one.",
-   "done_meanwhile": "ARCC was rolled forward end to end on the export that did arrive: library spliced, Step 0.0 clean, EG materiality gate run on the full 37-name panel and non-material, the matured 1M graded, cycle 2 struck, technical read, chart, band record and per-name calibration record all refreshed in the same pass.",
-   "default_if_no_answer": "Leave the eight rows OPEN and ungraded — they are calendar commitments and grade on their own dates whenever their closes land. Quote every stale library's own end date wherever its price or gap is quoted. Never interpolate a close and never grade against a price the house cannot date.",
+   "done_meanwhile": "ARCC was rolled forward end to end on the export that did arrive. The six names wrongly listed here need nothing from the principal — their own sessions hold the exports and will grade their own rows.",
+   "default_if_no_answer": "Leave the EGCH and QNB rows OPEN and ungraded — they are calendar commitments and grade on their own dates whenever their closes land. Both are a month past their grade date, so [R-GRADE-01]'s 7-day early-grade bound cannot reach either. Quote each library's own end date wherever its price or gap is quoted; never interpolate a close.",
    "default_date": "2026-10-06",
    "status": "open",
    "resolves_when": {
-    "file": "engine/raw_ohlc/EG/AMOC.csv",
+    "file": "engine/raw_ohlc/EG/EGCH.csv",
     "must_contain": "09/01/2026"
    }
   },
@@ -379,19 +385,26 @@
      "when": "2026-09-06",
      "outcome": "criteria 1, 2, 5 and 6 MET; #3 (the valuation calibration's pooled bias CI including zero) RUNNING and #4 NOT MET. #3 cannot mature until the first vintages resolve, so no amount of work in this session closes it.",
      "rerun": true
+    },
+    {
+     "route": "diffed what a READER actually sees, this branch against origin/main, through a real JS parse",
+     "when": "2026-09-06",
+     "outcome": "fair{bear,base,full} is UNCHANGED at 49.53/54.65/61.71 — the held claim does not move one inch in this change. What moves is spot (59.00 -> 76.60), the cone, the technical read and one graded row. AND THE LIVE PAGE IS CURRENTLY DEFECTIVE BY THIS PROJECT'S OWN STANDING RULE: testahil.com carries an ARCC spot of 59.00 dated 6 August against a traded 76.60, a 1-month cone whose window expired on 06-09-2026, and three published resistances (60.34 / 62.00 / 63.00) ALL BELOW the actual price — which is the exact shape of the 29-Jul-2026 COMI defect the technicals rule was written to close. Holding this merge leaves that up; merging fixes it without advancing the held valuation.",
+     "rerun": true
     }
    ],
    "refs_searched": 22,
    "why_only_the_principal": "Both releases are the principal's and neither is available to this session. Closing the gap means rebuilding the valuation, which this task's own scope line puts behind STOP AND ASK. Filing a market dissent needs irrefutable evidence the market is wrong, and [R-GAP-02] states that a reverse read landing on a believable number is evidence AGAINST the dissent — ARCC's price rose 30% on heavy volume into a limit-up on 11-08-2026, which is an ordinary re-rating, not a hallucination. Writing a dissent here would be manufacturing the release rather than earning it.",
    "done_meanwhile": "The whole roll-forward was completed and is on the branch: library splice, Step 0.0, the EG materiality gate, the grade, cycle 2, technicals, chart, band record, CALIB, backtest figure and the cache-buster. [R-GAP-02] exempts internal work in terms, so none of that waited on this.",
-   "default_if_no_answer": "ARCC stays HELD and unpublished; the roll-forward stays on its branch and in its PR. The gate is re-read at the next roll-forward, when the gap may have closed on its own — the price moved 30% in a month and the central did not move at all.",
+   "default_if_no_answer": "ARCC stays HELD and unpublished; the roll-forward stays on its branch and in PR #374, green on all three CI workflows. The gate is re-read at the next roll-forward, when the gap may have closed on its own — the price moved 30% in a month and the central did not move at all. THE COST OF THIS DEFAULT IS STATED RATHER THAN DISCOVERED LATER: the live ARCC page stays a month stale, with an expired cone and a resistance ladder entirely below spot.",
    "default_date": "2026-10-06",
    "status": "open",
    "resolves_when": {
     "file": "engine/arcc_study/PUBLICATION_RULING.md",
     "must_contain": "PUBLICATION RULED ON"
    },
-   "resolves_when_note": "The first marker written here named a string inside THIS file and the gate refused it in the same minute — the identical trap the EG-sovereign entry records against itself. A marker has to live somewhere the answer lands, not somewhere the question is stored."
+   "resolves_when_note": "The first marker written here named a string inside THIS file and the gate refused it in the same minute — the identical trap the EG-sovereign entry records against itself. A marker has to live somewhere the answer lands, not somewhere the question is stored.",
+   "recommendation": "MERGE, on the principal's word. [R-GAP-02] exempts merging to main in terms; the quantity it holds does not move; the change strictly improves the live page. It was NOT taken unilaterally for one reason: the command the instruction named, `publish_site.py --ticker ARCC --ship --republish`, REFUSES at step 0/6 for this ticker, and routing around the tool the instruction named is not following the instruction."
   }
  ]
 }
