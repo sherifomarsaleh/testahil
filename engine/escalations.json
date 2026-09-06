@@ -369,6 +369,12 @@
      "when": "2026-09-06",
      "outcome": "the valuation calibration's pooled bias CI cannot mature until the first vintages resolve, so no action available in this session closes it — the digest states this holds every study in the book",
      "rerun": true
+    },
+    {
+     "route": "put to the principal with the arithmetic, and RULED ON",
+     "when": "2026-09-06",
+     "outcome": "RULING: publish — \"the cone refresh is not the study\". The ruling is consistent with what the change set actually contains, which was verified rather than assumed: no study document, workbook or bibliography is touched, no diff line matches fair{} or the slider factor-stack constants, and EGCH's published fair{bear:0, base:3.64, full:15.47} is BYTE-IDENTICAL on this branch and on main. What goes live is the price cone, the spot, the technical read, one graded ledger row and the cycle-2 strike. The held valuation reaches no reader it was not already reaching.",
+     "rerun": false
     }
    ],
    "refs_searched": 22,
@@ -376,12 +382,15 @@
    "done_meanwhile": "The whole roll-forward was completed and is on the branch: the library spliced, Step 0.0 clean, the materiality gate NOT MATERIAL on all nine markets, the EG fit adopted unchanged, the ledger swept and EGCH's matured 1-month graded inside both bands, cycle 2 struck at 14.23, the technical read and chart refreshed and the overlay gate passed on 186 pages, band and per-name calibration records regenerated, the backtest figure rebuilt off a superseded cone width, the derived surfaces and the legacy mirror brought into step, and every repository gate re-run green. Nothing about the fair value was touched.",
    "default_if_no_answer": "Leave EGCH HELD and unpublished, and leave the branch merged-to-main only when the principal releases it; the site keeps serving the previous edition, which is the state the rule intends.",
    "default_date": "2026-09-13",
-   "status": "open",
+   "status": "resolved",
    "resolves_when": {
-    "file": "engine/egch_study/MARKET_DISSENT_06-09-2026.md",
-    "must_contain": "DISSENT_AT_GAP"
+    "file": "engine/egch_study/PUBLICATION_RULING_06-09-2026.md",
+    "must_contain": "PUBLICATION RULING RECORDED"
    },
-   "resolves_when_note": "a filed dissent is the only artefact that releases the gap half; the method half is released by the acceptance record, which no file in this repository can fake."
+   "resolves_when_note": "Resolved by a principal RULING rather than by a filed dissent, so the marker is the ruling record. The originally-registered marker was MARKET_DISSENT_06-09-2026.md carrying DISSENT_AT_GAP — that artefact was never written and must not be implied: no dissent was filed, no claim that the market is wrong was made, and both holds still stand on the study itself.",
+   "resolved": "2026-09-06",
+   "answer_written_to": "engine/egch_study/PUBLICATION_RULING_06-09-2026.md",
+   "resolution_note": "Resolved by principal ruling, not by the gap closing or the method being proven. BOTH HOLDS STILL STAND ON THE STUDY ITSELF: [R-GAP-02] at -71.6%/-43.5% and clause three on the unproven method. The ruling scopes what [R-GAP-02] governs — issuing a valuation — and says a roll-forward that moves no valuation number is not that act. It was given for this action and is NOT recorded here as a standing amendment; making it bind generally is a rule change and needs its own instruction through the protocol path."
   }
  ]
 }
