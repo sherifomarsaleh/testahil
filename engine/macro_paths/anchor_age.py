@@ -170,15 +170,26 @@ def main():
                  if r["as_of"] and r["anchors"].get("inflation latest")
                  and (r["as_of"] - r["anchors"]["inflation latest"]).days > 60]
     if stale_inf:
-        print("\n  A LIMIT OF THIS CENSUS, AND IT IS NOT A SMALL ONE: it pairs studies to the")
-        print("  CURRENCY anchor only. A PEG FIXES THE CURRENCY, NOT THE INFLATION — the")
-        print("  escalators every cost line rides on come off the inflation ladder, whose own")
-        print("  'latest' anchor is stale in %d paths, pegged ones included:" % len(stale_inf))
+        # RAISED AS A FINDING AND THEN REFUTED, WITHIN THE HOUR, BY ASKING WHAT READS THE
+        # FIELD. The inflation "latest" anchor is stale by 246 days in six of the seven
+        # paths, which looked like the larger half of this census and is not: grep says
+        # inflation.latest is consumed in FOUR places and every one is display or
+        # provenance — a property, a source string, two print statements. No study and no
+        # escalator reads it. What drives every cost line is inflation.PATH, the forward
+        # ladder, and those are sourced 3 September 2026 in six paths and 11 May 2026 in
+        # EG's, which is the most recent Monetary Policy Report the central bank has
+        # published. A STALE REFERENCE PRINT IS NOT A STALE DRIVER, and the difference is
+        # one grep — the same discipline this file applies to the pegged rows above.
+        print("\n  A STALE FIELD THAT DRIVES NOTHING, reported so nobody re-raises it: the")
+        print("  inflation 'latest' anchor is %d+ days old in %d paths, and it is a DISPLAY"
+              % (min((r["as_of"] - r["anchors"]["inflation latest"]).days
+                     for _, r in stale_inf), len(stale_inf)))
+        print("  field — consumed only by a property, a source string and two prints. The")
+        print("  forward LADDER is what escalates every cost line, and those are current.")
         for m, r in stale_inf:
-            print("      %-4s %-11s inflation latest %s, %d days before the path's own stamp"
+            print("      %-4s %-11s latest %s (%d d) — ladder source is what matters, not this"
                   % (m, r.get("regime") or "?", r["anchors"]["inflation latest"],
                      (r["as_of"] - r["anchors"]["inflation latest"]).days))
-        print("  Those rows are NOT counted above and nothing here measures what they are worth.")
 
     print("\n  THIS IS A CENSUS, NOT A GATE. No rule yet says how old an anchor may be, and a")
     print("  check going red where no rule exists is the permanently-red check [R-ENF-02]")

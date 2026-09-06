@@ -67,7 +67,7 @@ FCFF_ASSERT = ("chk('capitalised-lease free cash flow reconciles to the publishe
 FCFF_OFF = "chk('reconciliation suspended in the measurement sandbox', True, ''); _ = ("
 
 
-def central_under(patches, label=''):
+def run_model(patches, label=''):
     """Re-run the study's own model with `patches` applied, and return what it publishes.
 
     Every patch is asserted to land exactly once: a substitution that matches
@@ -92,9 +92,17 @@ def central_under(patches, label=''):
             tail = (p.stderr.strip().splitlines() or ['(no traceback)'])[-1]
             raise RuntimeError('%s: the model refused — %s' % (label, tail))
         with open(os.path.join(d, 'study_numbers.json'), encoding='utf-8') as fh:
-            return json.load(fh)['central']
+            out = json.load(fh)
+        return {'central': out['central'],
+                'cash_flow_lens': out['lenses']['values']['Discounted cash flow']
+                * out['meta']['fx']}
     finally:
         shutil.rmtree(d, ignore_errors=True)
+
+
+def central_under(patches, label=''):
+    """The answer the study publishes, under `patches`."""
+    return run_model(patches, label)['central']
 
 
 # ==========================================================================
@@ -127,11 +135,11 @@ JUDGEMENTS = [
             'settles it: the company attributes the gain to procurement, menu engineering and '
             'delivery economics, and the same numbers are equally consistent with a friendly '
             'turn in traded food prices. A second construction of the same question — the food '
-            'and packaging line put back to the %.2f%% of revenue the FY2025 note discloses, '
-            'instead of the %.1f%% the reviewed half recorded — is worth 1.9611, so the '
-            'question costs about 0.19 a share however it is posed. The alternative trips this '
-            'study\'s own forecast-anchor assertion, which is stated rather than suppressed.'
-            % (100 * INV_PCT_FY25, 27.4)),
+            'and packaging line put back to the {food_pct_fy25:.2f} per cent of revenue the '
+            'FY2025 note discloses, instead of the 27.4 per cent the reviewed half recorded — '
+            'is worth {food_line_fy25:.4f}, so the question costs about the same either way it '
+            'is posed. The alternative trips this study\'s own forecast-anchor assertion, '
+            'which is stated rather than suppressed.'),
     dict(
         name='the justified enterprise multiple',
         adopted='8.5 times forward EBITDA, a deliberate discount to the peer set',
@@ -162,10 +170,12 @@ JUDGEMENTS = [
             'delivery-capable and above-restaurant staff" — a mix effect the model already '
             'carries separately through staff per restaurant falling 12.05 to 11.25, so the '
             'same shift is charged twice. The 6% is also a two-year average of two opposite '
-            'years: wage per full-time equivalent ran USD 10,959 (FY2023) to 11,042 (FY2024, '
-            '+0.76%) to 12,393 (FY2025, +12.22%). At a middle reading of 4.0% the alternative '
-            'is 2.3112, so this judgement is worth between 0.17 and 0.31 a share and its '
-            'direction does not depend on which reading is taken.'),
+            'years: wage per full-time equivalent ran USD {w23:,.0f} (FY2023) to {w24:,.0f} '
+            '(FY2024, {g24:+.2f} per cent) to {w25:,.0f} (FY2025, {g25:+.2f} per cent), every '
+            'figure from this study\'s own register. At a middle reading of 4.0% the '
+            'alternative is {wage_at_4pc:.4f}, so this judgement is worth between '
+            '{wage_low:.2f} and {wage_high:.2f} a share and its direction does not depend on '
+            'which reading is taken.'),
     dict(
         name='like-for-like sales growth',
         adopted='5.5% in FY2026 falling to 3.5%, set just below the filed half-year and, in '
@@ -176,10 +186,10 @@ JUDGEMENTS = [
                   'LFL_PATH = [0.063, 0.053, 0.048, 0.045, 0.043]')],
         why='Guidance is scored and never consumed, and half the stated reason for this level '
             'is management\'s own mid-single-digit guide. Moving only the first year to the '
-            'filed 6.3% and leaving the rest of the path where it is gives 2.1824, so the SIGN '
-            'of this judgement is the same either way and only its size turns on whether the '
-            'whole path travels with its anchor. Both numbers are given rather than the '
-            'convenient one.'),
+            'filed 6.3% and leaving the rest of the path where it is gives '
+            '{lfl_year_one_only:.4f}, so the SIGN of this judgement is the same either way and '
+            'only its size turns on whether the whole path travels with its anchor. Both '
+            'numbers are given rather than the convenient one.'),
     dict(
         name='staff per restaurant',
         adopted='falling 12.05 to 11.25 over five years, continuing the disclosed trend',
@@ -229,8 +239,8 @@ JUDGEMENTS = [
             'the reviewed half — and its direction depends on which endpoint is taken, so the '
             'endpoint is chosen by rule and not by preference: a near-term reviewed actual '
             'outranks a stale full-year rate. At the FY2025 endpoint instead the alternative '
-            'is 2.0142, which would be material and would resolve upward. Both are printed so '
-            'the choice is visible rather than only its result.'),
+            'is {rou_at_fy25:.4f}, which WOULD be material and WOULD resolve upward. Both are '
+            'printed so the choice is visible rather than only its result.'),
     dict(
         name='the terminal return on incremental capital',
         adopted='faded to 30%, anchored on the published store-payback table',
@@ -382,7 +392,44 @@ UNVALUED = [
 
 
 # ==========================================================================
-# 2. THE REVERSE READ
+# 3. SIDE CALCULATIONS
+#
+# Every figure quoted inside a judgement's `why` is computed here from the
+# study's own register or from a re-run of its own model. A number stated in
+# prose must be computed, not typed -- including in a diagnostic.
+# ==========================================================================
+FOOD_LINE_PATCH = [(ANCHOR_PATH_ASSERT, ANCHOR_OFF),
+                   ('[0.2740, 0.2725, 0.2715, 0.2710, 0.2705]', '[%r] * 5' % INV_PCT_FY25)]
+WAGE_4PC_PATCH = [("WAGE_G = inp('wage_growth', 0.06,", "WAGE_G = inp('wage_growth', 0.04,")]
+LFL_YEAR_ONE_PATCH = [('LFL_PATH = [0.055, 0.045, 0.040, 0.037, 0.035]',
+                       'LFL_PATH = [0.063, 0.045, 0.040, 0.037, 0.035]')]
+ROU_FY25_PATCH = [(FCFF_ASSERT, FCFF_OFF),
+                  ("ROU_ADD_PCT = inp('rou_additions_pct', 0.085,",
+                   "ROU_ADD_PCT = inp('rou_additions_pct', 0.102,")]
+
+
+def side_calcs(register, published_central):
+    """The figures the `why` texts quote, every one computed."""
+    w = [register['cost_staff_fy23']['value'] / (register['fte_fy23']['value'] / 1000.0),
+         register['cost_staff_fy24']['value'] / (register['fte_fy24']['value'] / 1000.0),
+         register['cost_staff_fy25']['value'] / (register['fte_fy25']['value'] / 1000.0)]
+    wage_at_4pc = central_under(WAGE_4PC_PATCH, 'wage at 4%')
+    wage_at_ladder = central_under(JUDGEMENTS[2]['patches'], 'wage at the house ladder')
+    return {
+        'food_pct_fy25': 100 * INV_PCT_FY25,
+        'food_line_fy25': central_under(FOOD_LINE_PATCH, 'food line at FY2025'),
+        'wage_at_4pc': wage_at_4pc,
+        'wage_low': abs(wage_at_4pc - published_central),
+        'wage_high': abs(wage_at_ladder - published_central),
+        'w23': 1000 * w[0], 'w24': 1000 * w[1], 'w25': 1000 * w[2],
+        'g24': 100 * (w[1] / w[0] - 1), 'g25': 100 * (w[2] / w[1] - 1),
+        'lfl_year_one_only': central_under(LFL_YEAR_ONE_PATCH, 'like-for-like, year one only'),
+        'rou_at_fy25': central_under(ROU_FY25_PATCH, 'right-of-use at the FY2025 rate'),
+    }
+
+
+# ==========================================================================
+# 4. THE REVERSE READ
 #
 # Solved on the answer the study PUBLISHES -- the four-lens central -- and not
 # on the cash-flow lens. Those are different numbers and solving on the wrong
@@ -396,9 +443,15 @@ def lfl_patches(shift):
     return [(LFL_LINE, 'LFL_PATH = %r' % ([round(b + shift, 12) for b in LFL_BASE],))]
 
 
-def solve(make_patches, lo, hi, target, label, tol=1e-7):
-    """Bisect until the study's published central reproduces `target`."""
-    f = lambda x: central_under(make_patches(x), label) - target          # noqa: E731
+def solve(make_patches, lo, hi, target, label, tol=1e-7, field='central'):
+    """Bisect until the model's answer on `field` reproduces `target`.
+
+    `field` is 'central' everywhere that matters. The one place it is not is the
+    measurement below of what the SAME solves return on the cash-flow lens alone,
+    which is how this record shows that solving a reverse read on a lens the study
+    does not publish understates the disagreement.
+    """
+    f = lambda x: run_model(make_patches(x), label)[field] - target       # noqa: E731
     flo, fhi = f(lo), f(hi)
     if flo * fhi >= 0:
         raise AssertionError('%s: the price is not reachable on this quantity between '
@@ -415,6 +468,21 @@ def solve(make_patches, lo, hi, target, label, tol=1e-7):
     return (lo + hi) / 2.0
 
 
+# the three quantities re-solved on the CASH-FLOW LENS ALONE, so the claim that a
+# reverse read struck on the wrong lens understates the disagreement is measured
+# rather than asserted
+LENS_SOLVES = (
+    ('wage escalator', 0.0, 0.06, 0.06,
+     lambda g: [("WAGE_G = inp('wage_growth', 0.06,",
+                 "WAGE_G = inp('wage_growth', %.12f," % g)]),
+    ('beta', 0.30, 0.93, 0.930,
+     lambda b: [("BETA = inp('beta', 0.930,", "BETA = inp('beta', %.12f," % b)]),
+    ('terminal growth', 0.030, 0.0444, 0.030,
+     lambda g: [("TERMINAL_G = inp('terminal_growth', 0.030,",
+                 "TERMINAL_G = inp('terminal_growth', %.12f," % g)]),
+)
+
+
 def main():
     with open(NUMBERS, encoding='utf-8') as fh:
         pub = json.load(fh)
@@ -428,6 +496,13 @@ def main():
         'the sandbox does not reproduce the committed answer')
 
     # ---- the reverse read --------------------------------------------------
+    cash_flow_lens = run_model([], 'cash-flow lens')['cash_flow_lens']
+    lens_solved = []
+    for label, lo, hi, _sv, mk in LENS_SOLVES:
+        v = solve(mk, lo, hi, LATEST_PRICE_AED, label + ' on the cash-flow lens',
+                  field='cash_flow_lens')
+        lens_solved.append(100 * v if label != 'beta' else v)
+
     shift = solve(lfl_patches, 0.0, 0.03, LATEST_PRICE_AED, 'like-for-like')
     shift_at_strike = solve(lfl_patches, 0.0, 0.03, published_spot, 'like-for-like at strike')
     implied = LFL_BASE[0] + shift
@@ -478,14 +553,16 @@ def main():
         },
         'other_quantities': [],
         'the_lens_the_read_is_solved_on': (
-            'This matters and it is measured rather than asserted. Solved on the CASH-FLOW '
-            'LENS ALONE (AED 2.2333) instead of the published central, the same three '
-            'quantities come back at a wage escalator of 4.8005%, a beta of 0.8544 and '
-            'terminal growth of 3.6477% — reproducing this study\'s gap review\'s own table to '
-            'four decimals and confirming that table was struck on a lens the study does not '
-            'publish as its answer. Every figure in the record above is solved on the answer '
-            'the study publishes, so it is a larger disagreement than the one already written '
-            'down.'),
+            'This matters, and it is measured rather than asserted. Solved on the CASH-FLOW '
+            'LENS ALONE (AED %.4f) instead of on the answer the study publishes (AED %.4f), '
+            'the same quantities come back at a wage escalator of %.4f per cent, a beta of '
+            '%.4f and terminal growth of %.4f per cent — every one of them a smaller '
+            'disagreement, and every one reproducing this study\'s own gap review\'s '
+            'reverse-read table to four decimals, which is how that table is shown to have '
+            'been struck on a lens the study does not publish as its answer. Terminal growth '
+            'is reachable there and is not reachable on the published central at all. Every '
+            'figure in the record above is solved on the published answer.'
+            % ((cash_flow_lens, published_central) + tuple(lens_solved))),
     }
 
     # the other quantities, all solved on the PUBLISHED central
@@ -535,6 +612,7 @@ def main():
                 'which is the figure the gap review published.')})
 
     # ---- the contested judgements -----------------------------------------
+    side = side_calcs(pub['inputs'], published_central)
     items, signs = [], []
     for j in JUDGEMENTS:
         alt = central_under(j['patches'], j['name'])
@@ -555,7 +633,7 @@ def main():
             'direction': ('the study adopted the HIGHER-value framing'
                           if published_central > alt else
                           'the study adopted the LOWER-value framing'),
-            'why': j['why'],
+            'why': j['why'].format(**side),
         })
 
     n = len([s for s in signs if s])

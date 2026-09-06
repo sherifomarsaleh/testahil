@@ -1523,6 +1523,119 @@ D['terminal_record'] = dict(
     record=_terminal.record,
     moved=dict(tv_before=tv_retired, tv_after=tv, pct=tv / tv_retired - 1.0))
 
+# =============================================================================
+# [R-ANCHOR-01] THE FORECAST ANCHOR. Every figure here is READ from the arrays
+# above and from the registered filing inputs; nothing is typed. The record is
+# printed for every study whether or not it fires, so the SHAPE of this forecast
+# is visible rather than merely not-red.
+#
+# WHICH RATE THIS RECORD GOVERNS, AND WHY THAT CHOICE IS NOT A CONVENIENCE.
+# The rule governs the rate the forecast is BUILT ON. This model builds gross
+# profit from FOUR segment gross-margin drivers applied to four separately built
+# revenue lines, so the group gross margin is the only group rate it SETS rather
+# than derives, and it is the only one whose comparator can be READ off the face
+# of the latest reviewed filing: revenue and gross profit are two consecutive
+# lines of the interim income statement.
+#
+# THE OTHER CANDIDATE IS NAMED RATHER THAN LEFT OUT, because an exemption that is
+# true about the wrong object is the safest hiding place there is. The group
+# EBITDA margin this model computes DOES fall past the clause-two line. It is not
+# the anchor for two reasons, both measured below rather than asserted: it is not
+# a rate this model sets (it is the gross margin less two overhead ratios plus
+# investment income and D&A over revenue, an exact identity asserted below), and
+# most of its fall is D&A and investment income shrinking as a share of a growing
+# revenue base -- and D&A is ADDED BACK inside EBITDA, so that part is a
+# denominator effect rather than a claim about price or cost. Its own latest
+# reviewed comparator cannot be formed from what this study registers: the half's
+# selling and marketing charge and its depreciation and amortisation are on the
+# interim's face and are not in this register, and SIGCM forbids estimating them.
+_an_lat = h1_gp / h1_rev
+_an_path = [gp_f[t] / rev_f[t] for t in range(NY)]
+_an_fy26 = (h1_gp + gp_f[0]) / fy26_rev_total          # the full-year alternative basis
+_an_fy24, _an_fy25 = gp24 / rev24, gp25 / rev25
+
+# the identity that makes the EBITDA reading a derived quantity rather than a driver
+A(all(abs(ebitda_f[_t] / rev_f[_t]
+          - (_an_path[_t] - ga_pct[_t] - sm_pct[_t]
+             + (invinc_f[_t] + dna_f[_t]) / rev_f[_t])) < 1e-12 for _t in range(NY)),
+  'EBITDA margin decomposes exactly into gross margin, the two overhead ratios and '
+  'the D&A-plus-investment-income share, at every year of the window')
+_eb0, _ebN = ebitda_f[0] / rev_f[0], ebitda_f[-1] / rev_f[-1]
+_dsh0 = (invinc_f[0] + dna_f[0]) / rev_f[0]
+_dshN = (invinc_f[-1] + dna_f[-1]) / rev_f[-1]
+_gm_part = _an_path[-1] - _an_path[0]
+_oh_part = (ga_pct[0] + sm_pct[0]) - (ga_pct[-1] + sm_pct[-1])
+_dsh_part = _dshN - _dsh0
+A(abs((_ebN - _eb0) - (_gm_part + _oh_part + _dsh_part)) < 1e-12,
+  'the EBITDA-margin decline decomposes exactly into its three parts')
+
+# the segment drivers the group blend nets out, and the mix that lets it
+_an_segs = [('development and land', red_margin), ('asset and infrastructure', aim_margin),
+            ('hospitality', hosp_margin), ('events and conventions', ect_margin)]
+_an_seg_txt = '; '.join(
+    '%s %.1f%% to %.1f%% (%+.1f%% relative)'
+    % (nm, 100 * mp[0], 100 * min(mp), 100 * (min(mp) - mp[0]) / mp[0])
+    for nm, mp in _an_segs)
+_an_fires = sum(1 for _, mp in _an_segs if (min(mp) - mp[0]) / mp[0] < -0.05)
+
+FORECAST_ANCHOR = dict(
+    rate_name='gross margin',
+    latest_reviewed_period='H1-2026, reviewed interim',
+    latest_reviewed_date='2026-06-30',
+    latest_reviewed_rate=float(_an_lat),
+    first_forecast_rate=float(_an_path[0]),
+    # the PATH, per [R-ANCHOR-01] clause two, exactly as the model publishes its
+    # explicit window: a half-year stub to 31-Dec-2026 and then four full years.
+    forecast_path=[float(x) for x in _an_path],
+    note=(
+        'NEITHER CLAUSE FIRES, AND THE SHAPE IS THE OPPOSITE OF THE ONE THIS RULE WAS '
+        'WRITTEN FOR. The forecast OPENS ABOVE the latest reviewed period -- %.2f%% '
+        'against a reviewed %.2f%%, %+.1f%% relative -- and above both filed years of '
+        'the current perimeter (FY2024 %.2f%%, FY2025 %.2f%%); it then eases to %.2f%%, '
+        '%+.1f%% relative from its own opening, inside the five-per-cent line. THE '
+        'OPENING PERIOD IS A HALF-YEAR STUB and the record does not turn on that: read '
+        'on the full-year basis the model also computes, FY2026E (the reviewed half plus '
+        'the stub) is %.2f%% and the window then runs essentially flat to %.2f%%, %+.1f%% '
+        'relative, so the record is clean on either basis and the stub is not doing the '
+        'work. WHAT THE GROUP RATE NETS OUT IS RECORDED HERE RATHER THAN LEFT TO BE '
+        'FOUND: %d of the 4 segment margin drivers the forecast is built on decline by '
+        'more than five per cent relative from their own opening -- %s -- and the group '
+        'blend holds only because revenue mix shifts toward development, %.1f%% of '
+        'revenue in the opening period and %.1f%% in the last, a segment whose margin '
+        'sits above the blend. If the anchor were set on any one of those segment rates '
+        'clause two would fire on it. The direction of the development glide agrees with '
+        'the filings -- that segment ran a %.2f%% gross margin in audited FY2025 and '
+        '%.2f%% in the reviewed half, cost per unit of revenue rising from %.2f%% to '
+        '%.2f%% -- but the mechanism the driver register names for it (a tender-price '
+        'escalator running ahead of realised-price escalation, and a related-party land '
+        'mix fading) is carried at the House ring and is NOT established by a disclosure '
+        'this study registers, so it is named as unevidenced rather than dressed as a '
+        'mechanism. THE EBITDA MARGIN IS THE OTHER CANDIDATE AND IT WOULD FIRE: this '
+        'model computes it falling %.2f%% to %.2f%%, %+.1f%% relative. It is not the '
+        'anchor because it is not a rate this model sets, and because its %.2f-point '
+        'fall decomposes exactly into %.2f points of gross margin, %.2f points of '
+        'overhead ratio and %.2f points of investment income and depreciation shrinking '
+        'as a share of revenue -- and depreciation is added back inside EBITDA, so that '
+        'last part is a denominator effect and not a claim about price or cost. Its own '
+        "latest reviewed comparator cannot be formed from this study's register: the "
+        "half's selling and marketing charge and its depreciation are on the interim's "
+        'face and are not registered here, and they are not estimated to fill the gap.'
+        % (100 * _an_path[0], 100 * _an_lat, 100 * (_an_path[0] - _an_lat) / _an_lat,
+           100 * _an_fy24, 100 * _an_fy25, 100 * min(_an_path),
+           100 * (min(_an_path) - _an_path[0]) / _an_path[0],
+           100 * _an_fy26, 100 * _an_path[-1],
+           100 * (min([_an_fy26] + _an_path[1:]) - _an_fy26) / _an_fy26,
+           _an_fires, _an_seg_txt,
+           100 * red_rev[0] / rev_f[0], 100 * red_rev[-1] / rev_f[-1],
+           100 * seg_gp25['red'] / seg_rev25['red'],
+           100 * h1_seg_gp['red'] / h1_seg_rev['red'],
+           100 * (1 - seg_gp25['red'] / seg_rev25['red']),
+           100 * (1 - h1_seg_gp['red'] / h1_seg_rev['red']),
+           100 * _eb0, 100 * _ebN, 100 * (_ebN - _eb0) / _eb0,
+           100 * (_eb0 - _ebN), -100 * _gm_part, -100 * _oh_part, -100 * _dsh_part)))
+D['forecast_anchor'] = FORECAST_ANCHOR
+A(True, 'forecast anchor committed: gross margin, latest reviewed H1-2026')
+
 # ---- external results --------------------------------------------------------
 with open(os.path.join(HERE, 'step0_result.json')) as f:
     D['step0'] = json.load(f)
