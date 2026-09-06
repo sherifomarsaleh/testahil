@@ -238,3 +238,23 @@ window.initSearch = function(input, dd){
   var iv=setInterval(function(){ if(fixLeverBar()||++tries>40) clearInterval(iv); },100);
   document.addEventListener("DOMContentLoaded",fixLeverBar);
 })();
+
+/* Bucket range labels: the odds buckets were written with an ellipsis for "to"
+   ("SMALL WIN 0…+10%"), which reads as truncated text rather than a range.
+   Spell it out wherever those labels render — tools page and every study. */
+(function(){
+  function normaliseRangeLabels(){
+    var n=0;
+    [].slice.call(document.querySelectorAll(".t-bucket .lb")).forEach(function(e){
+      if(e.textContent.indexOf("\u2026")>-1){
+        e.textContent=e.textContent.replace(/\s*\u2026\s*/," to ");
+        n++;
+      }
+    });
+    return n;
+  }
+  var tries=0;
+  var iv=setInterval(function(){ normaliseRangeLabels(); if(++tries>40) clearInterval(iv); },150);
+  document.addEventListener("click",function(){ setTimeout(normaliseRangeLabels,60); });
+  document.addEventListener("change",function(){ setTimeout(normaliseRangeLabels,60); });
+})();
