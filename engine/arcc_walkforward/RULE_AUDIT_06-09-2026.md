@@ -102,3 +102,97 @@ income follows the policy rate, which trebled.
 The rule was written. It was not implemented here. That is the defect — and it is a
 defect in the driver construction, not in the discount rate, the terminal, or the
 bridge.
+
+---
+
+# Part two — the two obvious fixes both fail, and the third finding is the real one
+
+## Fix A: give each line its own trailing rate. **Makes it worse.**
+
+Applied in the order the audit's own numbers fixed — largest measured cost first,
+net re-measured after each:
+
+| after applying | net profit miss (EGP) |
+|---|---|
+| nothing — the model as it stands | −13.5 bn |
+| + local price on its own premium over CPI | −24.0 bn |
+| + the volume mix on its own drift | −23.0 bn |
+| + coal on the currency | −29.6 bn |
+| + export price on its own premium | −36.1 bn |
+| + every remaining line on its own rate | **−37.0 bn** |
+
+The sequence never crosses zero; it walks steadily away from it. **Trailing history is
+a bad forecaster here because the window contains a regime break** — cement prices and
+volumes *fell* in 2019 and 2020 and then exploded from 2021. At every origin before
+2021 the trailing rate points downward. That is the same result the book-wide
+comparison already gave: a trailing three-year trend scores worse than the model on
+76 of 76 pooled drivers.
+
+## Fix B: blame the macro. **The numbers refuse it.**
+
+| | net profit miss | net revenue miss |
+|---|---|---|
+| as the model runs | −13.5 bn | −46.0 bn |
+| knowing inflation perfectly | −7.9 bn | −33.6 bn |
+| knowing inflation, currency **and** coal perfectly | −38.8 bn | −31.6 bn |
+
+**With perfect foresight of every macro input, 69% of the revenue miss remains.** The
+future being unknowable is not the explanation. Something structural is.
+
+## The real finding: eight of nineteen drivers were pre-declared to be "no change"
+
+The pre-registration says, in its own words:
+
+> **Declared in advance, so it is not later reported as a finding:** D2, D3, D10, D11,
+> D13, D14, D15 and D16 are level-persistence rules and are therefore **identical to
+> FREEZE by construction**. Their skill against FREEZE is zero by definition, not by
+> measurement.
+
+Against what those eight lines actually did:
+
+| | line | realised | |
+|---|---|---|---|
+| D14 | interest income | **+72.8%** a year | moves |
+| D13 | provisions | +64.9% | moves |
+| D15 | other income | +28.9% | moves |
+| D2 | export volume | **+18.1%** | moves |
+| D10 | manufacturing depreciation | +3.5% | genuinely stable |
+| D11 | amortisation | −8.1% | moves |
+| D16 | finance costs | −10.8% | moves |
+| D3 | export mix | **1% → 48% of tonnes** | moves |
+
+**Seven of the eight move materially. One does not.**
+
+And the run's own basis-break register already knew. B-9, written by this same run,
+records the export swing tonne by tonne and concludes: *"The channel mix is a
+pre-registered driver in its own right, not a residual."* **The register says it is a
+driver. The code freezes it. The pre-registration declares the freeze immune from
+being reported as a finding.**
+
+### Why this is the answer and not the gates
+
+The declaration itself is good practice — stating in advance which rules are
+level-persistence is exactly the transparency this protocol demands. **The failure is
+that it was read as a licence rather than as a warning.** Nobody went back to ask
+whether those eight *should* be frozen once the basis breaks documented that they
+moved, because the pre-registration had already said their skill would be zero "by
+definition, not by measurement" — and a thing declared not-a-finding does not get
+found.
+
+This is also why the method only beats "no change" on 58% of drivers book-wide.
+**A large part of the method is no change, by declaration.**
+
+### What it means for the fix
+
+Not a better statistical rule — Fix A shows extrapolation fails across the break.
+These lines need the **drivers they actually have**, each of them disclosed and
+knowable at the origin:
+
+- **export volume and mix** ← the company's own capacity, its export contracts, and
+  the cement production quota regime, a dated public fact this run already registered
+- **interest income** ← the policy rate × the cash balance, both point-in-time
+- **finance costs** ← the disclosed debt schedule
+- **amortisation** ← the disclosed asset schedule
+
+That is SIGCM clause 2 — build from the ground up, volume × price, at the finest
+sourced level — applied to the eight lines that opted out of it.
