@@ -132,7 +132,20 @@ window.bandTotals = function(){
 window.tNum = function(x){ return x.toLocaleString("en-US"); };
 window.renderChrome = function(active){
   var nav=document.querySelector(".t-nav");
-  if(nav&&active){ var on=nav.querySelector('[data-p="'+active+'"]'); if(on) on.classList.add("on"); }
+  /* Funnel is a tab INSIDE Tools but has its own nav entry, so the highlight
+     follows the hash: land on /tools.html#funnel and Funnel lights up, switch
+     tabs and it moves with you. Without this the nav would claim you are on
+     Tools while the Funnel entry is the one you clicked. */
+  function markNav(){
+    if(!nav) return;
+    var key = active;
+    if(active==="tools") key = (location.hash==="#funnel") ? "funnel" : "tools";
+    nav.querySelectorAll("[data-p]").forEach(function(a){ a.classList.remove("on"); });
+    var on = key && nav.querySelector('[data-p="'+key+'"]');
+    if(on) on.classList.add("on");
+  }
+  markNav();
+  if(active==="tools") window.addEventListener("hashchange", markNav);
   try{ var bt=bandTotals();
     var n=document.getElementById("ts-n"); if(n) n.textContent=tNum(bt.n);
     var h=document.getElementById("ts-h"); if(h) h.textContent=tNum(bt.hits);

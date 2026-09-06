@@ -254,8 +254,11 @@
    "exchange": "EGX",
    "currency": "EGP",
    "company": "Elsewedy Electric",
-   "price": 90.5,
-   "date": "2026-09-03"
+   "price": 130.0,
+   "date": "2026-09-03",
+   "supplied_as": 90.5,
+   "corrected": "2026-09-06",
+   "correction_note": "The supplied figure of EGP 90.50 is not this stock's 3-Sep-2026 close. Corrected to 130.00, the close on that session in engine/raw_ohlc/EG/SWDY.csv after the 6-Sep-2026 roll-forward merged the vendor export. THE CORRECTION IS EVIDENCED, NOT PREFERRED: the supplied file reconciles to its library for every other EG name in it (COMI 0.9999, EMFD 1.0073, ORHD 1.0120 against libraries that reach 1-Sep), so the file is sound and this one row is not; and three independent published anchors reproduce from the merged series to the cent — a previous close of 126.20 into 25-Aug-2026, a 52-week low of 62.03 and a 52-week high of 133.98 as it stood that day. 90.50/130.00 is 0.696, which no corporate action in this name's record explains and which the vendor export contradicts: it agrees with the held library to the cent on all 35 overlapping sessions after 14-Jun-2026, including the 5-Aug close of 105.20 the study was struck at. Left uncorrected it understates SWDY by a third and drives [R-GAP-01]'s audit against a price that never traded."
   },
   "TMGH": {
    "exchange": "EGX",
@@ -634,6 +637,16 @@
    "company": "Tesla Inc.",
    "price": 367.95,
    "date": "2026-09-03"
+  }
+ },
+ "corrections": {
+  "_": "Supplied figures found wrong against primary evidence and corrected, with the route recorded rather than the value silently replaced. Same discipline as the 3-Sep CBE correction noted in engine/escalations.json: a supplied number is a hand-off, not a source, and correcting one is only honest if what replaced it is named.",
+  "SWDY": {
+   "supplied": 90.5,
+   "corrected_to": 130.0,
+   "on": "2026-09-06",
+   "basis": "engine/raw_ohlc/EG/SWDY.csv close for 2026-09-03",
+   "by": "the 06-09-2026 SWDY roll-forward"
   }
  }
 }
