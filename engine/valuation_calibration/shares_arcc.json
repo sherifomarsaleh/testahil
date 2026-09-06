@@ -10,7 +10,7 @@
    "file": "FY-2017-Consolidated-Financials-English.pdf",
    "check": "capital 757479400 / par 2 = 378739700, matching the stated count",
    "how": "note 20.1 'Authorized and Issued capital' prints par value per share (EGP) 2, number of ordinary shares authorized, issued and fully paid 378 739 700 and issued capital (EGP) 757 479 400 in one table headed 2017 and 2016; note 20.2 on the following page recites the Extraordinary General Assembly resolution updating Article No. (6) of the Articles of Association to EGP 757 479 400 distributed among 378 739 700 shares with a par value amounting to EGP 2 each, so the table and the recital state the same identity two ways in the same document",
-   "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+   "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
    "origin_of_this_run": false
   },
   "2018": {
@@ -21,7 +21,7 @@
    "file": "ARCC_FY_2018_Consolidated_Financials-English.pdf",
    "check": "capital 757479400 / par 2 = 378739700, matching the stated count",
    "how": "note 20.1 'Authorized and Issued capital', the same three-row table headed 2018 and 2017, with note 20.2's recital of the Article 6 resolution on the page after it",
-   "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+   "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
    "origin_of_this_run": true
   },
   "2019": {
@@ -32,7 +32,7 @@
    "file": "FY_2019_Consolidated_Financials-English.pdf",
    "check": "capital 757479400 / par 2 = 378739700, matching the stated count",
    "how": "note 20 'Capital', the same three-row table. THE TABLE'S OWN COLUMN HEADERS READ 2018 AND 2017 while the notes around it read 2019 and 2018 — a stale header left in the filing, recorded as read rather than silently corrected. What settles the year is arithmetic and two other pages: the FY2019 balance sheet states issued and paid-up capital of EGP 757 479 400 at 31 December 2019 under this same note, 757 479 400 / 2 reproduces 378 739 700, and the FY2020 filing's own note 20 — properly headed 2020 and 2019 — states par 2, 378 739 700 shares and EGP 757 479 400 for the 2019 comparative",
-   "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+   "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
    "origin_of_this_run": true
   },
   "2020": {
@@ -43,7 +43,7 @@
    "file": "FY-2020-consolidated-financials-english.pdf",
    "check": "capital 757479400 / par 2 = 378739700, matching the stated count",
    "how": "note 20 'Capital', the three-row table headed 2020 and 2019",
-   "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+   "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
    "origin_of_this_run": true
   },
   "2021": {
@@ -54,7 +54,7 @@
    "file": "FY_2021_Consolidated_Financials-English.pdf",
    "check": "capital 757479400 / par 2 = 378739700, matching the stated count",
    "how": "note 20 'Capital', the three-row table headed 2021 and 2020",
-   "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+   "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
    "origin_of_this_run": true
   },
   "2022": {
@@ -65,7 +65,7 @@
    "file": "FY_2022_Consolidated_Financials-English.pdf",
    "check": "capital 757479400 / par 2 = 378739700, matching the stated count",
    "how": "note 20 'Issued and paid-up capital', the three-row table headed December 31, 2022 and December 31, 2021",
-   "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+   "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
    "origin_of_this_run": true
   },
   "2023": {
@@ -76,7 +76,7 @@
    "file": "4Q2023_ACC_Consolidated_Financials.pdf",
    "check": "capital 757479400 / par 2 = 378739700, matching the stated count",
    "how": "note 20 'Issued and paid-up capital', the three-row table headed December 31, 2023 and December 31, 2022",
-   "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+   "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
    "origin_of_this_run": true
   },
   "2024": {
@@ -87,7 +87,7 @@
    "file": "FY2024_Consolidated_Financials-English.pdf",
    "check": "capital 757479400 / par 2 = 378739700, matching the stated count",
    "how": "note 20 'Issued and paid-up capital', the three-row table headed December 31, 2024 and December 31, 2023",
-   "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+   "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
    "origin_of_this_run": true
   },
   "2025": {
@@ -98,7 +98,7 @@
    "file": "FY-2025-Consolidated-Financials-English.pdf",
    "check": "capital 757479400 / par 2 = 378739700, matching the stated count",
    "how": "note 20 'Issued and paid-up capital', the three-row table headed December 31, 2025 and December 31, 2024",
-   "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+   "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
    "origin_of_this_run": true
   }
  },

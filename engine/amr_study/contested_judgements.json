@@ -1,0 +1,278 @@
+{
+ "ticker": "AMR",
+ "as_of": "2026-09-06",
+ "published_central": 2.1455021608356137,
+ "published_spot": 2.23,
+ "currency": "AED per share",
+ "why_this_file": "Any single contested choice in a valuation is defensible; what is not defensible is a study that resolves EVERY one of them the same way and never notices. Each judgement here is valued BOTH ways by re-running this study's own model with one driver moved, and the sign test below counts which way they went. A study landing them all one way is FLAGGED, never failed — a company can genuinely deserve a consistent read. What it may not do is go unmeasured. Nothing here changes a driver, a forecast, a rate or the fair value.",
+ "judgements": [
+  {
+   "name": "the margin step-change: structural or cyclical",
+   "adopted": "structural — the gain shown in the reviewed first half of 2026 holds, and eases only as the delivery channel grows",
+   "alternative": "cyclical — the first half is banked and the margin reverts in a straight line to the three-year audited average of 22.79% by FY2030",
+   "value_adopted": 2.1455021608356137,
+   "value_alternative": 1.95554061015448,
+   "currency": "AED per share",
+   "worth_relative": 0.0971401717227071,
+   "material_at_5pc": true,
+   "direction": "the study adopted the HIGHER-value framing",
+   "why": "The study calls this the whole study and publishes both readings side by side, never averaged — but the central it actually publishes is struck on the structural path, and that is what this row measures. Nothing in the filings settles it: the company attributes the gain to procurement, menu engineering and delivery economics, and the same numbers are equally consistent with a friendly turn in traded food prices. A second construction of the same question — the food and packaging line put back to the 28.47% of revenue the FY2025 note discloses, instead of the 27.4% the reviewed half recorded — is worth 1.9611, so the question costs about 0.19 a share however it is posed. The alternative trips this study's own forecast-anchor assertion, which is stated rather than suppressed."
+  },
+  {
+   "name": "the justified enterprise multiple",
+   "adopted": "8.5 times forward EBITDA, a deliberate discount to the peer set",
+   "alternative": "the usable peer median the study itself calls the anchor",
+   "value_adopted": 2.1455021608356137,
+   "value_alternative": 2.6357452421649166,
+   "currency": "AED per share",
+   "worth_relative": 0.18599790051281015,
+   "material_at_5pc": true,
+   "direction": "the study adopted the LOWER-value framing",
+   "why": "The delivered document states the discount is deliberate — \"Americana is the operator, not the brand owner\" — and the study's own peer table runs the other way: the operator-franchisees closest to it in structure trade ABOVE the franchisors (Devyani 33.3x, Sapphire 27.6x, Jubilant 23.1x against Yum 17.6x, Domino's 16.2x). What survives as a reason for some discount is the lease-accounting basis the study flags on the Indian names, which is why this is a judgement and not a defect. It carries a fifth of the published central and it is the largest contested judgement in the study."
+  },
+  {
+   "name": "the wage escalator",
+   "adopted": "6.0% a year on wage per full-time equivalent, deliberately above Gulf consumer price inflation",
+   "alternative": "the house UAE inflation ladder, 2.5 / 2.0 / 2.0 / 2.0 / 2.0",
+   "value_adopted": 2.1455021608356137,
+   "value_alternative": 2.4563123837432412,
+   "currency": "AED per share",
+   "worth_relative": 0.12653529940437597,
+   "material_at_5pc": true,
+   "direction": "the study adopted the LOWER-value framing",
+   "why": "The study's own note sets 6% above Gulf inflation \"because the mix shifts toward delivery-capable and above-restaurant staff\" — a mix effect the model already carries separately through staff per restaurant falling 12.05 to 11.25, so the same shift is charged twice. The 6% is also a two-year average of two opposite years: wage per full-time equivalent ran USD 10,959 (FY2023) to 11,042 (FY2024, +0.76%) to 12,393 (FY2025, +12.22%). At a middle reading of 4.0% the alternative is 2.3112, so this judgement is worth between 0.17 and 0.31 a share and its direction does not depend on which reading is taken."
+  },
+  {
+   "name": "like-for-like sales growth",
+   "adopted": "5.5% in FY2026 falling to 3.5%, set just below the filed half-year and, in the study's own words, consistent with management guidance",
+   "alternative": "the same convergence shape anchored on the 6.3% the company actually filed for the first half of 2026",
+   "value_adopted": 2.1455021608356137,
+   "value_alternative": 2.286053927676101,
+   "currency": "AED per share",
+   "worth_relative": 0.061482262136906794,
+   "material_at_5pc": true,
+   "direction": "the study adopted the LOWER-value framing",
+   "why": "Guidance is scored and never consumed, and half the stated reason for this level is management's own mid-single-digit guide. Moving only the first year to the filed 6.3% and leaving the rest of the path where it is gives 2.1824, so the SIGN of this judgement is the same either way and only its size turns on whether the whole path travels with its anchor. Both numbers are given rather than the convenient one."
+  },
+  {
+   "name": "staff per restaurant",
+   "adopted": "falling 12.05 to 11.25 over five years, continuing the disclosed trend",
+   "alternative": "held at the 12.12 the FY2025 staff note actually discloses",
+   "value_adopted": 2.1455021608356137,
+   "value_alternative": 2.0274186344060987,
+   "currency": "AED per share",
+   "worth_relative": 0.05824328751131647,
+   "material_at_5pc": true,
+   "direction": "the study adopted the HIGHER-value framing",
+   "why": "The disclosed trend is real — 15.4 in FY2023, 13.3 in FY2024, 12.12 in FY2025 — and nothing in the filings commits the company to continuing it; the study's own register books the path as a house estimate while the level it starts from is a disclosure. The alternative trips this study's own forecast-anchor assertion, which is recorded rather than suppressed."
+  },
+  {
+   "name": "terminal growth",
+   "adopted": "3.0% — 2.0% pegged-market inflation plus a stated 1.0% real",
+   "alternative": "inflation only, zero real, which is the house default",
+   "value_adopted": 2.1455021608356137,
+   "value_alternative": 2.0396285311482574,
+   "currency": "AED per share",
+   "worth_relative": 0.05190829019623112,
+   "material_at_5pc": true,
+   "direction": "the study adopted the HIGHER-value framing",
+   "why": "Terminal growth is stored as a real rate on an inflation path with a default real of zero, and a point of real growth in perpetuity is a stated judgement about an estate that has to keep opening restaurants to earn it. Three-quarters of enterprise value sits beyond year five, so this is the second-largest single judgement in the model even though the number itself is small."
+  },
+  {
+   "name": "the central architecture",
+   "adopted": "a weighted blend of four lenses at 50 / 20 / 20 / 10",
+   "alternative": "the class primary alone, with the other lenses published as cross-checks",
+   "value_adopted": 2.1455021608356137,
+   "value_alternative": 2.2333080177520155,
+   "currency": "AED per share",
+   "worth_relative": 0.039316501001408946,
+   "material_at_5pc": false,
+   "direction": "the study adopted the LOWER-value framing",
+   "why": "A blend at typed weights that never cleared an out-of-sample test, and a tenth of it sits on the book lens the study's own document calls reported \"not because it is informative\". It falls below the five-per-cent bar only because the four lenses happen to straddle the blend."
+  },
+  {
+   "name": "right-of-use additions",
+   "adopted": "8.5% of revenue, set between two disclosed rates",
+   "alternative": "the 7.7% the reviewed first half of 2026 actually ran",
+   "value_adopted": 2.1455021608356137,
+   "value_alternative": 2.2072826810230675,
+   "currency": "AED per share",
+   "worth_relative": 0.02798940104890357,
+   "material_at_5pc": false,
+   "direction": "the study adopted the LOWER-value framing",
+   "why": "A midpoint judgement with two disclosed endpoints — 10.2% in FY2025 and 7.7% in the reviewed half — and its direction depends on which endpoint is taken, so the endpoint is chosen by rule and not by preference: a near-term reviewed actual outranks a stale full-year rate. At the FY2025 endpoint instead the alternative is 2.0142, which would be material and would resolve upward. Both are printed so the choice is visible rather than only its result."
+  },
+  {
+   "name": "the terminal return on incremental capital",
+   "adopted": "faded to 30%, anchored on the published store-payback table",
+   "alternative": "the model-implied 49.35% the forecast itself reaches",
+   "value_adopted": 2.1455021608356137,
+   "value_alternative": 2.1846902494502203,
+   "currency": "AED per share",
+   "worth_relative": 0.017937594871615448,
+   "material_at_5pc": false,
+   "direction": "the study adopted the LOWER-value framing",
+   "why": "The fade was conceded in the study's own expert cross-examination on the company's own disclosure that the marginal brands run past five years to payback against KFC at 2.4. The alternative is what the model's own FY2030 balance sheet produces, and it is the reading published as the bull case."
+  },
+  {
+   "name": "the terminal risk-free rate",
+   "adopted": "4.45% — the ten-year Treasury less the US default spread, rounded and held",
+   "alternative": "4.1751%, derived as terminal inflation plus the real-rate convention on the house United States path",
+   "value_adopted": 2.1455021608356137,
+   "value_alternative": 2.191123357863177,
+   "currency": "AED per share",
+   "worth_relative": 0.020820916752059958,
+   "material_at_5pc": false,
+   "direction": "the study adopted the LOWER-value framing",
+   "why": "A terminal rate quoted from today's market rather than derived from a terminal inflation is a different construction, not a different number; the house rule derives it. The gap is small here because the peg means the market rate and the derived rate are close."
+  },
+  {
+   "name": "the equity risk premium basis",
+   "adopted": "the ratings basis",
+   "alternative": "the credit-default-swap basis, which the study publishes beside it",
+   "value_adopted": 2.1455021608356137,
+   "value_alternative": 2.1945518495744074,
+   "currency": "AED per share",
+   "worth_relative": 0.0223506629603242,
+   "material_at_5pc": false,
+   "direction": "the study adopted the LOWER-value framing",
+   "why": "Both bases are built and published; the study names the ratings basis as central, and the house default is the market-priced one. The dual framing is honoured — neither is averaged into the other — and the choice is worth 0.05 a share."
+  },
+  {
+   "name": "the currency drag on Egypt",
+   "adopted": "2.5% a year on dollar revenue per restaurant",
+   "alternative": "zero, which is the direction the two most recent disclosed readings run",
+   "value_adopted": 2.1455021608356137,
+   "value_alternative": 2.1739766349815604,
+   "currency": "AED per share",
+   "worth_relative": 0.013097874966898224,
+   "material_at_5pc": false,
+   "direction": "the study adopted the LOWER-value framing",
+   "why": "The study sets the drag from projected inflation differentials and says in the same paragraph that Egypt dollar revenue grew 29% in FY2025 and 23% in the first half of 2026 — a mechanism the company's own filings measure in the opposite direction. The study calls it a judgement rather than a disclosure, which is exactly what it is."
+  },
+  {
+   "name": "FY2026 net new restaurants",
+   "adopted": "125, the midpoint of the company's published 120-130 guidance",
+   "alternative": "zero, against a first half that closed three restaurants net",
+   "value_adopted": 2.1455021608356137,
+   "value_alternative": 2.0625288148598817,
+   "currency": "AED per share",
+   "worth_relative": 0.04022893904702555,
+   "material_at_5pc": false,
+   "direction": "the study adopted the HIGHER-value framing",
+   "why": "The estate went 2,749 at 31 December 2025 to 2,746 at 30 June 2026, so half the guided year has to arrive in the second half. Openings are genuinely back-half weighted in this business, which is why the guidance is not simply discarded; the harshest available alternative is priced and it still does not reach the bar."
+  },
+  {
+   "name": "delivery cost per delivered dollar",
+   "adopted": "14.25% improving five basis points a year",
+   "alternative": "held at the 15.0% FY2025 actually ran",
+   "value_adopted": 2.1455021608356137,
+   "value_alternative": 2.077856255685727,
+   "currency": "AED per share",
+   "worth_relative": 0.03255562311626918,
+   "material_at_5pc": false,
+   "direction": "the study adopted the HIGHER-value framing",
+   "why": "The opening level is calibrated so the line reproduces the disclosed first-half margin at the disclosed 52% channel share, which is a fitted rather than a disclosed number; the improvement after it is the company's claim about its own unit economics, scored rather than consumed."
+  },
+  {
+   "name": "the delivery channel share",
+   "adopted": "rising from 52% to 56.5% of revenue",
+   "alternative": "held at the 52% the first half of 2026 disclosed",
+   "value_adopted": 2.1455021608356137,
+   "value_alternative": 2.2068151558740765,
+   "currency": "AED per share",
+   "worth_relative": 0.027783475600691117,
+   "material_at_5pc": false,
+   "direction": "the study adopted the LOWER-value framing",
+   "why": "The channel is dearer to serve than the counter, so continuing its rise is the punitive reading and the study takes it; the disclosed series (44%, 48%, 52%) supports continuation but does not say where it stops."
+  },
+  {
+   "name": "the recurring impairment charge",
+   "adopted": "0.31% of revenue charged every forecast year",
+   "alternative": "excluded, as the first edition of this study had it",
+   "value_adopted": 2.1455021608356137,
+   "value_alternative": 2.1851780147191056,
+   "currency": "AED per share",
+   "worth_relative": 0.018156806272184633,
+   "material_at_5pc": false,
+   "direction": "the study adopted the LOWER-value framing",
+   "why": "A 2,700-restaurant estate always carries some underperforming units, so charging the three-year audited average is the punitive and the more honest reading; it was adopted in the critique round against a first edition that excluded it."
+  },
+  {
+   "name": "the justified price-earnings multiple",
+   "adopted": "17 times",
+   "alternative": "the usable peer median",
+   "value_adopted": 2.1455021608356137,
+   "value_alternative": 2.190232575753015,
+   "currency": "AED per share",
+   "worth_relative": 0.020422678126784173,
+   "material_at_5pc": false,
+   "direction": "the study adopted the LOWER-value framing",
+   "why": "Set just below the peer median on the same reasoning as the enterprise multiple, but the gap is far smaller, so the same argument is worth a twentieth of what it is worth on the enterprise lens."
+  },
+  {
+   "name": "the normalised-earnings margin",
+   "adopted": "the midpoint of the structural and cyclical FY2028 readings",
+   "alternative": "the structural FY2028 margin alone, as the first edition had it",
+   "value_adopted": 2.1455021608356137,
+   "value_alternative": 2.16545430034304,
+   "currency": "AED per share",
+   "worth_relative": 0.009213835408240088,
+   "material_at_5pc": false,
+   "direction": "the study adopted the LOWER-value framing",
+   "why": "A lens whose purpose is to strip out the cycle cannot be struck on the peak of it; the midpoint was adopted in the critique round, and the alternative here is the construction that was retired rather than a new one."
+  },
+  {
+   "name": "the interim dividend in the anchor roll",
+   "adopted": "excluded — declared 28 July 2026 but unpaid at the 7 August anchor",
+   "alternative": "deducted in the roll, on the ground that it was declared before the anchor",
+   "value_adopted": 2.1455021608356137,
+   "value_alternative": 2.1058327055762818,
+   "currency": "AED per share",
+   "worth_relative": 0.018837894935474483,
+   "material_at_5pc": false,
+   "direction": "the study adopted the HIGHER-value framing",
+   "why": "A dividend declared before the bridge date is already out of the equity it would come out of; whether \"declared\" or \"paid\" is the event that matters here is a real question and the study answers it one way. USD 100.8 million is the company's own disclosed figure."
+  },
+  {
+   "name": "the lease estate",
+   "adopted": "capitalised, as the accounts present it",
+   "alternative": "treated as an operating cost, on the cash-flow lens",
+   "value_adopted": 2.1455021608356137,
+   "value_alternative": 2.1268103744291107,
+   "currency": "AED per share",
+   "worth_relative": 0.008788647371310847,
+   "material_at_5pc": false,
+   "direction": "the study adopted the HIGHER-value framing",
+   "why": "The study builds both readings in full and publishes the pair; the finding worth stating is that the accounting choice which dominates the balance sheet turns out not to decide the value. Measured here by substituting the operating-cost reading into the cash-flow lens, which is where the framing bites."
+  }
+ ],
+ "unvalued": [
+  {
+   "name": "the balance-sheet date the bridge stands on",
+   "adopted": "31 December 2025 audited, rolled 219 days to the price anchor at the cost of equity, net of the dividend paid inside the window",
+   "alternative": "the reviewed 30 June 2026 sheet, whose disclosed net debt is USD 258.449 million against USD 220.056 million in December",
+   "why_unvalued": "Substituting the June sheet without moving the discounting clock to 30 June would count the first half of 2026 twice — once in the cash flow discounted from December and again in the June net debt. Valuing this framing honestly is a re-strike of the model, not a driver swap, and this record does not change the model. It is reported unvalued rather than estimated."
+  },
+  {
+   "name": "a discount for the controlled structure",
+   "adopted": "none — the shares are valued as a proportionate claim on the whole firm",
+   "alternative": "a control or liquidity discount for a free float of about a third, Adeptio holding 66.03%",
+   "why_unvalued": "No disclosure supports any particular size of discount, and the study names the concentration in its caveats without pricing it. A percentage chosen here would be an invented number, so none is chosen."
+  }
+ ],
+ "sign_test": {
+  "material_at_5pc": 6,
+  "resolved_upward": 3,
+  "resolved_downward": 3,
+  "two_sided_binomial_p": 1.0,
+  "flagged": false,
+  "reading": "6 material contested judgements, 3 resolved toward the higher value and 3 toward the lower, two-sided p = 1.00. No lean: this study does not take every fork the same way."
+ },
+ "below_the_bar": {
+  "count": 14,
+  "resolved_upward": 4,
+  "resolved_downward": 10,
+  "note": "Below the five-per-cent bar the study leans the other way from a coin. That is reported because it is the pattern the sign test cannot see, and a lean living entirely in small decisions is still a lean."
+ }
+}

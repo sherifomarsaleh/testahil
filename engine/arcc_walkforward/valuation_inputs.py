@@ -50,9 +50,13 @@ extracted figure:
   FY2023 depreciation of property and plant    215 976 939 -> 215 376 939
   FY2023 amortisation of right-of-use assets   6 891 239   -> 6 891 333
 
-The first three were settled by the statement's own column, the last two by the
-FY2024 filing's comparative column, whose every line foots to the stated subtotal
-where the FY2023 page's own reading misses it by 599,906.
+The first three were settled by the statement's own column.  The last two were
+first settled by the FY2024 filing's comparative column, whose every line foots to
+the stated subtotal where the FY2023 page's own reading misses it by 599,906 —
+and re-reading the FY2023 page ITSELF at higher magnification then returned the
+same two figures, so they are that filing's own column after all and nothing is
+carried back from a later one.  A LOW-RESOLUTION READING THAT DOES NOT FOOT LOOKS
+EXACTLY LIKE A RE-PRESENTATION, and only re-reading the page tells them apart.
 
 POINT IN TIME IS ABSOLUTE.  Every year is carried AS FIRST REPORTED, from its own
 filing's own column.  One re-presentation falls inside this window and it is
@@ -60,6 +64,19 @@ recorded BESIDE the figure it would replace, never substituted: the FY2023 filin
 nets EGP 36,385,385 of debtors against trade and notes payable in its FY2022
 comparative, so an origin standing at FY2022 saw debtors of 235,320,162 and could
 not have seen the 198,934,777 the next filing showed for the same date.
+
+THE FILINGS ARE HELD AGAIN AND EVERY FIGURE WAS RE-READ.  `filings/` is
+gitignored, so the container that rebuilds this repository starts without the
+documents and a record that cannot be re-opened cannot be re-checked.  All nine
+annual filings were fetched again from the company's own investor-relations
+archive, at the URLs this run's own `fetch_attempts.json` already recorded, and
+every balance sheet and cash-flow figure below was read a second time off the
+pixels: 2017, 2018, 2019, 2020, 2021, 2022, 2024 and 2025 from each year's OWN
+column, and 2023 from its own column with the FY2024 filing's comparative
+settling the two figures its own page will not resolve.  Every line reproduced.
+The FY2017 creditors line came back 119 300 630 on the second reading as well and
+the column total again refuses it — the same misread twice, caught the same way,
+which is the argument for footing rather than for a better extractor.
 
 THE SHARE COUNT IS FOOTED NINE TIMES, NOT READ ONCE [clause (ii)].  Every one of
 these filings carries its own capital note — note 20 throughout, titled "Capital"
@@ -299,11 +316,16 @@ CF = {
             amort_other=0, amort_rou=6_891_333,
             capex_ppe=56_808_221, capex_auc=1_735_742, capex_other=0,
             cash_end=561_096_680,
-            note="the FY2023 page's own reading gave 215 976 939 and 6 891 239; "
-                 "neither foots the adjustments subtotal the same page states and "
-                 "the FY2024 filing's comparative column foots it exactly, so the "
-                 "comparative is what is carried and the difference is an OCR "
-                 "misread rather than a re-presentation"),
+            note="a first, lower-resolution reading of the FY2023 page gave "
+                 "215 976 939 and 6 891 239; neither foots the adjustments "
+                 "subtotal the same page states, and the FY2024 filing's "
+                 "comparative column foots exactly. RE-READING THE FY2023 PAGE "
+                 "ITSELF AT HIGHER MAGNIFICATION RETURNS 215 376 939 AND "
+                 "6 891 333 — that filing's OWN column, agreeing with the FY2024 "
+                 "comparative to the pound — so these are the figures as first "
+                 "reported and nothing is carried back from a later filing. The "
+                 "disagreement was the extractor's and not the company's, which is "
+                 "why arithmetic and not the extractor is the arbiter"),
  2024: dict(page=(9,), dep_ppe=221_562_864, amort_intangibles=28_156_249,
             amort_other=0, amort_rou=7_082_414,
             capex_ppe=206_542_630, capex_auc=705_472_770, capex_other=0,

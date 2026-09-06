@@ -8,7 +8,7 @@
  "basis": "consolidated",
  "fiscal_year_end": "31 December",
  "origins_declared_by": "PRE_REGISTRATION_01-09-2026.md",
- "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+ "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
  "point_in_time": "every year is carried AS FIRST REPORTED, from its own filing's own column. The one re-presentation inside this window is recorded beside the figure it would replace and never substituted.",
  "sources": {
   "2017": "FY-2017-Consolidated-Financials-English.pdf",
@@ -27,7 +27,7 @@
     "value": 184590855,
     "as_at": "2018-12-31",
     "source": "ARCC_FY_2018_Consolidated_Financials-English.pdf, consolidated statement of financial position, 'Cash and bank balances', page 5, 6 (the company's own audited consolidated financial statements for the year ended 31 December 2018, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "cash_and_bank_balances": 184590855
     },
@@ -37,7 +37,7 @@
     "value": 970566943,
     "as_at": "2018-12-31",
     "source": "ARCC_FY_2018_Consolidated_Financials-English.pdf, consolidated statement of financial position, borrowings (non-current), current portion of long-term borrowings and credit facilities, page 5, 6 (the company's own audited consolidated financial statements for the year ended 31 December 2018, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "definition": "long-term borrowings, their current portion and credit facilities — the three lines this run's own panel.py forms its effective rate on, so the block and the panel cannot disagree about what debt means",
     "lines": {
      "borrowings_non_current": 619160870,
@@ -56,7 +56,7 @@
     "value": 124075733,
     "period": "FY2018",
     "source": "ARCC_FY_2018_Consolidated_Financials-English.pdf, consolidated statement of cash flows, investing activities — payments for property, plant and equipment and payments for assets under construction, page 10, 11 (the company's own audited consolidated financial statements for the year ended 31 December 2018, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "derived": false,
     "disclosed": true,
     "lines": {
@@ -76,7 +76,7 @@
     "value": 2473177771,
     "as_at": "2018-12-31",
     "source": "ARCC_FY_2018_Consolidated_Financials-English.pdf, consolidated statement of financial position, 'Property, plant and equipment (net)', page 5, 6 (the company's own audited consolidated financial statements for the year ended 31 December 2018, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "property_plant_and_equipment_net": 2473177771,
      "assets_under_construction": 106904072,
@@ -89,7 +89,7 @@
     "value": 250545264,
     "period": "FY2018",
     "source": "ARCC_FY_2018_Consolidated_Financials-English.pdf, consolidated statement of cash flows, the depreciation and amortisation add-backs, page 10, 11 (the company's own audited consolidated financial statements for the year ended 31 December 2018, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "depreciation_of_property_plant_and_equipment": 199833161,
      "amortisation_of_intangible_assets": 50676251,
@@ -102,7 +102,7 @@
     "value": -329075634,
     "as_at": "2018-12-31",
     "source": "ARCC_FY_2018_Consolidated_Financials-English.pdf, consolidated statement of financial position, the trading lines of current assets and current liabilities, page 5, 6 (the company's own audited consolidated financial statements for the year ended 31 December 2018, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "definition": "inventories + trade receivables + debtors and other debit balances + due from related parties, less trade and notes payable, creditors and other credit balances and due to related parties",
     "lines": {
      "inventories": 287985828,
@@ -133,7 +133,7 @@
     "issued_capital": 757479400,
     "par_value": 2.0,
     "source": "ARCC_FY_2018_Consolidated_Financials-English.pdf, note 20.1, the capital note, page 35 (the company's own audited consolidated financial statements for the year ended 31 December 2018, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "check": "issued capital 757479400 / par 2 = 378739700, matching the count the same note states",
     "par_source": "note 20.1 'Authorized and Issued capital', the same three-row table headed 2018 and 2017, with note 20.2's recital of the Article 6 resolution on the page after it",
     "vintage": "read off the FY2018 filing's own note; no later count is carried back to this origin"
@@ -144,7 +144,7 @@
     "value": 101331254,
     "as_at": "2019-12-31",
     "source": "FY_2019_Consolidated_Financials-English.pdf, consolidated statement of financial position, 'Cash and bank balances', page 5, 6 (the company's own audited consolidated financial statements for the year ended 31 December 2019, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "cash_and_bank_balances": 101331254
     },
@@ -154,7 +154,7 @@
     "value": 644228779,
     "as_at": "2019-12-31",
     "source": "FY_2019_Consolidated_Financials-English.pdf, consolidated statement of financial position, borrowings (non-current), current portion of long-term borrowings and credit facilities, page 5, 6 (the company's own audited consolidated financial statements for the year ended 31 December 2019, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "definition": "long-term borrowings, their current portion and credit facilities — the three lines this run's own panel.py forms its effective rate on, so the block and the panel cannot disagree about what debt means",
     "lines": {
      "borrowings_non_current": 491836958,
@@ -173,7 +173,7 @@
     "value": 41817459,
     "period": "FY2019",
     "source": "FY_2019_Consolidated_Financials-English.pdf, consolidated statement of cash flows, investing activities — payments for property, plant and equipment and payments for assets under construction, page 10, 11 (the company's own audited consolidated financial statements for the year ended 31 December 2019, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "derived": false,
     "disclosed": true,
     "lines": {
@@ -193,7 +193,7 @@
     "value": 2408100199,
     "as_at": "2019-12-31",
     "source": "FY_2019_Consolidated_Financials-English.pdf, consolidated statement of financial position, 'Property, plant and equipment (net)', page 5, 6 (the company's own audited consolidated financial statements for the year ended 31 December 2019, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "property_plant_and_equipment_net": 2408100199,
      "assets_under_construction": 3777941,
@@ -206,7 +206,7 @@
     "value": 265662206,
     "period": "FY2019",
     "source": "FY_2019_Consolidated_Financials-English.pdf, consolidated statement of cash flows, the depreciation and amortisation add-backs, page 10, 11 (the company's own audited consolidated financial statements for the year ended 31 December 2019, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "depreciation_of_property_plant_and_equipment": 210637159,
      "amortisation_of_intangible_assets": 50676249,
@@ -219,7 +219,7 @@
     "value": -625107975,
     "as_at": "2019-12-31",
     "source": "FY_2019_Consolidated_Financials-English.pdf, consolidated statement of financial position, the trading lines of current assets and current liabilities, page 5, 6 (the company's own audited consolidated financial statements for the year ended 31 December 2019, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "definition": "inventories + trade receivables + debtors and other debit balances + due from related parties, less trade and notes payable, creditors and other credit balances and due to related parties",
     "lines": {
      "inventories": 162831419,
@@ -250,7 +250,7 @@
     "issued_capital": 757479400,
     "par_value": 2.0,
     "source": "FY_2019_Consolidated_Financials-English.pdf, note 20, the capital note, page 36 (the company's own audited consolidated financial statements for the year ended 31 December 2019, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "check": "issued capital 757479400 / par 2 = 378739700, matching the count the same note states",
     "par_source": "note 20 'Capital', the same three-row table. THE TABLE'S OWN COLUMN HEADERS READ 2018 AND 2017 while the notes around it read 2019 and 2018 — a stale header left in the filing, recorded as read rather than silently corrected. What settles the year is arithmetic and two other pages: the FY2019 balance sheet states issued and paid-up capital of EGP 757 479 400 at 31 December 2019 under this same note, 757 479 400 / 2 reproduces 378 739 700, and the FY2020 filing's own note 20 — properly headed 2020 and 2019 — states par 2, 378 739 700 shares and EGP 757 479 400 for the 2019 comparative",
     "vintage": "read off the FY2019 filing's own note; no later count is carried back to this origin"
@@ -261,7 +261,7 @@
     "value": 67032927,
     "as_at": "2020-12-31",
     "source": "FY-2020-consolidated-financials-english.pdf, consolidated statement of financial position, 'Cash and bank balances', page 5, 6 (the company's own audited consolidated financial statements for the year ended 31 December 2020, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "cash_and_bank_balances": 67032927
     },
@@ -271,7 +271,7 @@
     "value": 826729964,
     "as_at": "2020-12-31",
     "source": "FY-2020-consolidated-financials-english.pdf, consolidated statement of financial position, borrowings (non-current), current portion of long-term borrowings and credit facilities, page 5, 6 (the company's own audited consolidated financial statements for the year ended 31 December 2020, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "definition": "long-term borrowings, their current portion and credit facilities — the three lines this run's own panel.py forms its effective rate on, so the block and the panel cannot disagree about what debt means",
     "lines": {
      "borrowings_non_current": 387454349,
@@ -290,7 +290,7 @@
     "value": 5486809,
     "period": "FY2020",
     "source": "FY-2020-consolidated-financials-english.pdf, consolidated statement of cash flows, investing activities — payments for property, plant and equipment and payments for assets under construction, page 10, 11 (the company's own audited consolidated financial statements for the year ended 31 December 2020, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "derived": false,
     "disclosed": true,
     "lines": {
@@ -310,7 +310,7 @@
     "value": 2202003667,
     "as_at": "2020-12-31",
     "source": "FY-2020-consolidated-financials-english.pdf, consolidated statement of financial position, 'Property, plant and equipment (net)', page 5, 6 (the company's own audited consolidated financial statements for the year ended 31 December 2020, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "property_plant_and_equipment_net": 2202003667,
      "assets_under_construction": 7800244,
@@ -323,7 +323,7 @@
     "value": 253097905,
     "period": "FY2020",
     "source": "FY-2020-consolidated-financials-english.pdf, consolidated statement of cash flows, the depreciation and amortisation add-backs, page 10, 11 (the company's own audited consolidated financial statements for the year ended 31 December 2020, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "depreciation_of_property_plant_and_equipment": 210297525,
      "amortisation_of_intangible_assets": 40749783,
@@ -336,7 +336,7 @@
     "value": -318355526,
     "as_at": "2020-12-31",
     "source": "FY-2020-consolidated-financials-english.pdf, consolidated statement of financial position, the trading lines of current assets and current liabilities, page 5, 6 (the company's own audited consolidated financial statements for the year ended 31 December 2020, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "definition": "inventories + trade receivables + debtors and other debit balances + due from related parties, less trade and notes payable, creditors and other credit balances and due to related parties",
     "lines": {
      "inventories": 176470491,
@@ -367,7 +367,7 @@
     "issued_capital": 757479400,
     "par_value": 2.0,
     "source": "FY-2020-consolidated-financials-english.pdf, note 20, the capital note, page 37 (the company's own audited consolidated financial statements for the year ended 31 December 2020, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "check": "issued capital 757479400 / par 2 = 378739700, matching the count the same note states",
     "par_source": "note 20 'Capital', the three-row table headed 2020 and 2019",
     "vintage": "read off the FY2020 filing's own note; no later count is carried back to this origin"
@@ -378,7 +378,7 @@
     "value": 128250456,
     "as_at": "2021-12-31",
     "source": "FY_2021_Consolidated_Financials-English.pdf, consolidated statement of financial position, 'Cash and bank balances', page 5, 6 (the company's own audited consolidated financial statements for the year ended 31 December 2021, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "cash_and_bank_balances": 128250456
     },
@@ -388,7 +388,7 @@
     "value": 627482651,
     "as_at": "2021-12-31",
     "source": "FY_2021_Consolidated_Financials-English.pdf, consolidated statement of financial position, borrowings (non-current), current portion of long-term borrowings and credit facilities, page 5, 6 (the company's own audited consolidated financial statements for the year ended 31 December 2021, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "definition": "long-term borrowings, their current portion and credit facilities — the three lines this run's own panel.py forms its effective rate on, so the block and the panel cannot disagree about what debt means",
     "lines": {
      "borrowings_non_current": 272760907,
@@ -407,7 +407,7 @@
     "value": 19208760,
     "period": "FY2021",
     "source": "FY_2021_Consolidated_Financials-English.pdf, consolidated statement of cash flows, investing activities — payments for property, plant and equipment and payments for assets under construction, page 10, 11 (the company's own audited consolidated financial statements for the year ended 31 December 2021, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "derived": false,
     "disclosed": true,
     "lines": {
@@ -428,7 +428,7 @@
     "value": 2019945189,
     "as_at": "2021-12-31",
     "source": "FY_2021_Consolidated_Financials-English.pdf, consolidated statement of financial position, 'Property, plant and equipment (net)', page 5, 6 (the company's own audited consolidated financial statements for the year ended 31 December 2021, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "property_plant_and_equipment_net": 2019945189,
      "assets_under_construction": 3261312,
@@ -441,7 +441,7 @@
     "value": 258457314,
     "period": "FY2021",
     "source": "FY_2021_Consolidated_Financials-English.pdf, consolidated statement of cash flows, the depreciation and amortisation add-backs, page 10, 11 (the company's own audited consolidated financial statements for the year ended 31 December 2021, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "depreciation_of_property_plant_and_equipment": 217929493,
      "amortisation_of_intangible_assets": 34624973,
@@ -455,7 +455,7 @@
     "value": -307871397,
     "as_at": "2021-12-31",
     "source": "FY_2021_Consolidated_Financials-English.pdf, consolidated statement of financial position, the trading lines of current assets and current liabilities, page 5, 6 (the company's own audited consolidated financial statements for the year ended 31 December 2021, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "definition": "inventories + trade receivables + debtors and other debit balances + due from related parties, less trade and notes payable, creditors and other credit balances and due to related parties",
     "lines": {
      "inventories": 369730638,
@@ -486,7 +486,7 @@
     "issued_capital": 757479400,
     "par_value": 2.0,
     "source": "FY_2021_Consolidated_Financials-English.pdf, note 20, the capital note, page 35 (the company's own audited consolidated financial statements for the year ended 31 December 2021, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "check": "issued capital 757479400 / par 2 = 378739700, matching the count the same note states",
     "par_source": "note 20 'Capital', the three-row table headed 2021 and 2020",
     "vintage": "read off the FY2021 filing's own note; no later count is carried back to this origin"
@@ -497,7 +497,7 @@
     "value": 818442022,
     "as_at": "2022-12-31",
     "source": "FY_2022_Consolidated_Financials-English.pdf, consolidated statement of financial position, 'Cash and bank balances', page 5 (the company's own audited consolidated financial statements for the year ended 31 December 2022, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "cash_and_bank_balances": 818442022
     },
@@ -507,7 +507,7 @@
     "value": 701655075,
     "as_at": "2022-12-31",
     "source": "FY_2022_Consolidated_Financials-English.pdf, consolidated statement of financial position, borrowings (non-current), current portion of long-term borrowings and credit facilities, page 5 (the company's own audited consolidated financial statements for the year ended 31 December 2022, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "definition": "long-term borrowings, their current portion and credit facilities — the three lines this run's own panel.py forms its effective rate on, so the block and the panel cannot disagree about what debt means",
     "lines": {
      "borrowings_non_current": 177476090,
@@ -526,7 +526,7 @@
     "value": 28065197,
     "period": "FY2022",
     "source": "FY_2022_Consolidated_Financials-English.pdf, consolidated statement of cash flows, investing activities — payments for property, plant and equipment and payments for assets under construction, page 9 (the company's own audited consolidated financial statements for the year ended 31 December 2022, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "derived": false,
     "disclosed": true,
     "lines": {
@@ -546,7 +546,7 @@
     "value": 1839104558,
     "as_at": "2022-12-31",
     "source": "FY_2022_Consolidated_Financials-English.pdf, consolidated statement of financial position, 'Property, plant and equipment (net)', page 5 (the company's own audited consolidated financial statements for the year ended 31 December 2022, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "property_plant_and_equipment_net": 1839104558,
      "assets_under_construction": 3952133,
@@ -559,7 +559,7 @@
     "value": 241939385,
     "period": "FY2022",
     "source": "FY_2022_Consolidated_Financials-English.pdf, consolidated statement of cash flows, the depreciation and amortisation add-backs, page 9 (the company's own audited consolidated financial statements for the year ended 31 December 2022, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "depreciation_of_property_plant_and_equipment": 208215007,
      "amortisation_of_intangible_assets": 28156249,
@@ -572,7 +572,7 @@
     "value": -207501087,
     "as_at": "2022-12-31",
     "source": "FY_2022_Consolidated_Financials-English.pdf, consolidated statement of financial position, the trading lines of current assets and current liabilities, page 5 (the company's own audited consolidated financial statements for the year ended 31 December 2022, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "definition": "inventories + trade receivables + debtors and other debit balances + due from related parties, less trade and notes payable, creditors and other credit balances and due to related parties",
     "lines": {
      "inventories": 624486267,
@@ -606,7 +606,7 @@
      "working_capital_on_that_basis": -243886472,
      "adopted": "the figure as first reported, above",
      "source": "4Q2023_ACC_Consolidated_Financials.pdf, consolidated statement of financial position, the 2022-12-31 comparative column, page 5 (the company's own audited consolidated financial statements for the year ended 31 December 2023, from its own investor-relations archive)",
-     "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded"
+     "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement"
     }
    },
    "shares": {
@@ -615,7 +615,7 @@
     "issued_capital": 757479400,
     "par_value": 2.0,
     "source": "FY_2022_Consolidated_Financials-English.pdf, note 20, the capital note, page 33 (the company's own audited consolidated financial statements for the year ended 31 December 2022, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "check": "issued capital 757479400 / par 2 = 378739700, matching the count the same note states",
     "par_source": "note 20 'Issued and paid-up capital', the three-row table headed December 31, 2022 and December 31, 2021",
     "vintage": "read off the FY2022 filing's own note; no later count is carried back to this origin"
@@ -626,7 +626,7 @@
     "value": 561096680,
     "as_at": "2023-12-31",
     "source": "4Q2023_ACC_Consolidated_Financials.pdf, consolidated statement of financial position, 'Cash and bank balances', page 5 (the company's own audited consolidated financial statements for the year ended 31 December 2023, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "cash_and_bank_balances": 561096680
     },
@@ -636,7 +636,7 @@
     "value": 90074273,
     "as_at": "2023-12-31",
     "source": "4Q2023_ACC_Consolidated_Financials.pdf, consolidated statement of financial position, borrowings (non-current), current portion of long-term borrowings and credit facilities, page 5 (the company's own audited consolidated financial statements for the year ended 31 December 2023, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "definition": "long-term borrowings, their current portion and credit facilities — the three lines this run's own panel.py forms its effective rate on, so the block and the panel cannot disagree about what debt means",
     "lines": {
      "borrowings_non_current": 0,
@@ -655,7 +655,7 @@
     "value": 58543963,
     "period": "FY2023",
     "source": "4Q2023_ACC_Consolidated_Financials.pdf, consolidated statement of cash flows, investing activities — payments for property, plant and equipment and payments for assets under construction, page 9 (the company's own audited consolidated financial statements for the year ended 31 December 2023, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "derived": false,
     "disclosed": true,
     "lines": {
@@ -670,13 +670,13 @@
      "difference_from_disclosed": -190053,
      "note": "the two are not the same measurement and the gap is not a defect: disposals leave at net book value, additions can be unpaid at the year end, and assets move out of construction into property without cash. The DISCLOSED cash figure is what is committed; the identity is reported beside it so a later rebuild can see both rather than assume they agree"
     },
-    "note": "the FY2023 page's own reading gave 215 976 939 and 6 891 239; neither foots the adjustments subtotal the same page states and the FY2024 filing's comparative column foots it exactly, so the comparative is what is carried and the difference is an OCR misread rather than a re-presentation"
+    "note": "a first, lower-resolution reading of the FY2023 page gave 215 976 939 and 6 891 239; neither foots the adjustments subtotal the same page states, and the FY2024 filing's comparative column foots exactly. RE-READING THE FY2023 PAGE ITSELF AT HIGHER MAGNIFICATION RETURNS 215 376 939 AND 6 891 333 — that filing's OWN column, agreeing with the FY2024 comparative to the pound — so these are the figures as first reported and nothing is carried back from a later filing. The disagreement was the extractor's and not the company's, which is why arithmetic and not the extractor is the arbiter"
    },
    "ppe": {
     "value": 1683607099,
     "as_at": "2023-12-31",
     "source": "4Q2023_ACC_Consolidated_Financials.pdf, consolidated statement of financial position, 'Property, plant and equipment (net)', page 5 (the company's own audited consolidated financial statements for the year ended 31 December 2023, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "property_plant_and_equipment_net": 1683607099,
      "assets_under_construction": 2426563,
@@ -689,7 +689,7 @@
     "value": 250424521,
     "period": "FY2023",
     "source": "4Q2023_ACC_Consolidated_Financials.pdf, consolidated statement of cash flows, the depreciation and amortisation add-backs, page 9 (the company's own audited consolidated financial statements for the year ended 31 December 2023, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "depreciation_of_property_plant_and_equipment": 215376939,
      "amortisation_of_intangible_assets": 28156249,
@@ -697,13 +697,13 @@
      "amortisation_of_right_of_use_assets": 6891333
     },
     "note": "the whole charge, which is more than the cost-of-sales depreciation this run's panel.py carries: that one is the manufacturing share and this is the group total",
-    "route_dispute": "the FY2023 page's own reading gave 215 976 939 and 6 891 239; neither foots the adjustments subtotal the same page states and the FY2024 filing's comparative column foots it exactly, so the comparative is what is carried and the difference is an OCR misread rather than a re-presentation"
+    "route_dispute": "a first, lower-resolution reading of the FY2023 page gave 215 976 939 and 6 891 239; neither foots the adjustments subtotal the same page states, and the FY2024 filing's comparative column foots exactly. RE-READING THE FY2023 PAGE ITSELF AT HIGHER MAGNIFICATION RETURNS 215 376 939 AND 6 891 333 — that filing's OWN column, agreeing with the FY2024 comparative to the pound — so these are the figures as first reported and nothing is carried back from a later filing. The disagreement was the extractor's and not the company's, which is why arithmetic and not the extractor is the arbiter"
    },
    "wc": {
     "value": 86819530,
     "as_at": "2023-12-31",
     "source": "4Q2023_ACC_Consolidated_Financials.pdf, consolidated statement of financial position, the trading lines of current assets and current liabilities, page 5 (the company's own audited consolidated financial statements for the year ended 31 December 2023, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "definition": "inventories + trade receivables + debtors and other debit balances + due from related parties, less trade and notes payable, creditors and other credit balances and due to related parties",
     "lines": {
      "inventories": 986106029,
@@ -734,7 +734,7 @@
     "issued_capital": 757479400,
     "par_value": 2.0,
     "source": "4Q2023_ACC_Consolidated_Financials.pdf, note 20, the capital note, page 35 (the company's own audited consolidated financial statements for the year ended 31 December 2023, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "check": "issued capital 757479400 / par 2 = 378739700, matching the count the same note states",
     "par_source": "note 20 'Issued and paid-up capital', the three-row table headed December 31, 2023 and December 31, 2022",
     "vintage": "read off the FY2023 filing's own note; no later count is carried back to this origin"
@@ -745,7 +745,7 @@
     "value": 1687062873,
     "as_at": "2024-12-31",
     "source": "FY2024_Consolidated_Financials-English.pdf, consolidated statement of financial position, 'Cash and bank balances', page 5 (the company's own audited consolidated financial statements for the year ended 31 December 2024, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "cash_and_bank_balances": 1687062873
     },
@@ -755,7 +755,7 @@
     "value": 760917684,
     "as_at": "2024-12-31",
     "source": "FY2024_Consolidated_Financials-English.pdf, consolidated statement of financial position, borrowings (non-current), current portion of long-term borrowings and credit facilities, page 5 (the company's own audited consolidated financial statements for the year ended 31 December 2024, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "definition": "long-term borrowings, their current portion and credit facilities — the three lines this run's own panel.py forms its effective rate on, so the block and the panel cannot disagree about what debt means",
     "lines": {
      "borrowings_non_current": 120392380,
@@ -774,7 +774,7 @@
     "value": 912015400,
     "period": "FY2024",
     "source": "FY2024_Consolidated_Financials-English.pdf, consolidated statement of cash flows, investing activities — payments for property, plant and equipment and payments for assets under construction, page 9 (the company's own audited consolidated financial statements for the year ended 31 December 2024, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "derived": false,
     "disclosed": true,
     "lines": {
@@ -794,7 +794,7 @@
     "value": 1669630565,
     "as_at": "2024-12-31",
     "source": "FY2024_Consolidated_Financials-English.pdf, consolidated statement of financial position, 'Property, plant and equipment (net)', page 5 (the company's own audited consolidated financial statements for the year ended 31 December 2024, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "property_plant_and_equipment_net": 1669630565,
      "assets_under_construction": 706855633,
@@ -807,7 +807,7 @@
     "value": 256801527,
     "period": "FY2024",
     "source": "FY2024_Consolidated_Financials-English.pdf, consolidated statement of cash flows, the depreciation and amortisation add-backs, page 9 (the company's own audited consolidated financial statements for the year ended 31 December 2024, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "depreciation_of_property_plant_and_equipment": 221562864,
      "amortisation_of_intangible_assets": 28156249,
@@ -820,7 +820,7 @@
     "value": 461275797,
     "as_at": "2024-12-31",
     "source": "FY2024_Consolidated_Financials-English.pdf, consolidated statement of financial position, the trading lines of current assets and current liabilities, page 5 (the company's own audited consolidated financial statements for the year ended 31 December 2024, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "definition": "inventories + trade receivables + debtors and other debit balances + due from related parties, less trade and notes payable, creditors and other credit balances and due to related parties",
     "lines": {
      "inventories": 852490043,
@@ -851,7 +851,7 @@
     "issued_capital": 757479400,
     "par_value": 2.0,
     "source": "FY2024_Consolidated_Financials-English.pdf, note 20, the capital note, page 35 (the company's own audited consolidated financial statements for the year ended 31 December 2024, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "check": "issued capital 757479400 / par 2 = 378739700, matching the count the same note states",
     "par_source": "note 20 'Issued and paid-up capital', the three-row table headed December 31, 2024 and December 31, 2023",
     "vintage": "read off the FY2024 filing's own note; no later count is carried back to this origin"
@@ -862,7 +862,7 @@
     "value": 3459391229,
     "as_at": "2025-12-31",
     "source": "FY-2025-Consolidated-Financials-English.pdf, consolidated statement of financial position, 'Cash and bank balances', page 5 (the company's own audited consolidated financial statements for the year ended 31 December 2025, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "cash_and_bank_balances": 3459391229
     },
@@ -872,7 +872,7 @@
     "value": 1133932616,
     "as_at": "2025-12-31",
     "source": "FY-2025-Consolidated-Financials-English.pdf, consolidated statement of financial position, borrowings (non-current), current portion of long-term borrowings and credit facilities, page 5 (the company's own audited consolidated financial statements for the year ended 31 December 2025, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "definition": "long-term borrowings, their current portion and credit facilities — the three lines this run's own panel.py forms its effective rate on, so the block and the panel cannot disagree about what debt means",
     "lines": {
      "borrowings_non_current": 888522538,
@@ -891,7 +891,7 @@
     "value": 796470760,
     "period": "FY2025",
     "source": "FY-2025-Consolidated-Financials-English.pdf, consolidated statement of cash flows, investing activities — payments for property, plant and equipment and payments for assets under construction, page 9 (the company's own audited consolidated financial statements for the year ended 31 December 2025, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "derived": false,
     "disclosed": true,
     "lines": {
@@ -911,7 +911,7 @@
     "value": 2522323523,
     "as_at": "2025-12-31",
     "source": "FY-2025-Consolidated-Financials-English.pdf, consolidated statement of financial position, 'Property, plant and equipment (net)', page 5 (the company's own audited consolidated financial statements for the year ended 31 December 2025, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "property_plant_and_equipment_net": 2522323523,
      "assets_under_construction": 391543753,
@@ -924,7 +924,7 @@
     "value": 289771295,
     "period": "FY2025",
     "source": "FY-2025-Consolidated-Financials-English.pdf, consolidated statement of cash flows, the depreciation and amortisation add-backs, page 9 (the company's own audited consolidated financial statements for the year ended 31 December 2025, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "depreciation_of_property_plant_and_equipment": 259089682,
      "amortisation_of_intangible_assets": 28156249,
@@ -937,7 +937,7 @@
     "value": 869240966,
     "as_at": "2025-12-31",
     "source": "FY-2025-Consolidated-Financials-English.pdf, consolidated statement of financial position, the trading lines of current assets and current liabilities, page 5 (the company's own audited consolidated financial statements for the year ended 31 December 2025, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "definition": "inventories + trade receivables + debtors and other debit balances + due from related parties, less trade and notes payable, creditors and other credit balances and due to related parties",
     "lines": {
      "inventories": 1053646218,
@@ -968,7 +968,7 @@
     "issued_capital": 757479400,
     "par_value": 2.0,
     "source": "FY-2025-Consolidated-Financials-English.pdf, note 20, the capital note, page 33 (the company's own audited consolidated financial statements for the year ended 31 December 2025, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "check": "issued capital 757479400 / par 2 = 378739700, matching the count the same note states",
     "par_source": "note 20 'Issued and paid-up capital', the three-row table headed December 31, 2025 and December 31, 2024",
     "vintage": "read off the FY2025 filing's own note; no later count is carried back to this origin",
@@ -978,7 +978,7 @@
      "shares_in_issue_net_of_treasury": 374867445,
      "balance_sheet_check": "the deduction from equity on the same year's balance sheet is 143,327,985, the same figure",
      "source": "FY-2025-Consolidated-Financials-English.pdf, note 21, treasury shares, page 33 (the company's own audited consolidated financial statements for the year ended 31 December 2025, from its own investor-relations archive)",
-     "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+     "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
      "why": "note 21 'Treasury shares' states that on July 21, 2025 the Board approved acquiring treasury shares and that the Company acquired during 2025 3 872 255 shares amounting to EGP 143 327 985, which the balance sheet carries as a deduction from equity of the same amount. THE COUNT RECORDED ABOVE IS THE ISSUED COUNT, which is what the capital note states and what foots against par; the shares in issue net of treasury are 374 867 445 and are named here rather than substituted, because which of the two a value is divided by is a valuation choice and this record makes none. This is the case clause (ii) anticipates — the capital note cannot see a treasury movement, so the movement is read off its own note"
     }
    }
@@ -991,7 +991,7 @@
     "value": 133557621,
     "as_at": "2017-12-31",
     "source": "FY-2017-Consolidated-Financials-English.pdf, consolidated statement of financial position, 'Cash and bank balances', page 5, 6 (the company's own audited consolidated financial statements for the year ended 31 December 2017, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "cash_and_bank_balances": 133557621
     },
@@ -1001,7 +1001,7 @@
     "value": 1069055860,
     "as_at": "2017-12-31",
     "source": "FY-2017-Consolidated-Financials-English.pdf, consolidated statement of financial position, borrowings (non-current), current portion of long-term borrowings and credit facilities, page 5, 6 (the company's own audited consolidated financial statements for the year ended 31 December 2017, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "definition": "long-term borrowings, their current portion and credit facilities — the three lines this run's own panel.py forms its effective rate on, so the block and the panel cannot disagree about what debt means",
     "lines": {
      "borrowings_non_current": 601101209,
@@ -1020,7 +1020,7 @@
     "value": 259841287,
     "period": "FY2017",
     "source": "FY-2017-Consolidated-Financials-English.pdf, consolidated statement of cash flows, investing activities — payments for property, plant and equipment and payments for assets under construction, page 10, 11 (the company's own audited consolidated financial statements for the year ended 31 December 2017, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "derived": false,
     "disclosed": true,
     "lines": {
@@ -1033,7 +1033,7 @@
     "value": 2371924441,
     "as_at": "2017-12-31",
     "source": "FY-2017-Consolidated-Financials-English.pdf, consolidated statement of financial position, 'Property, plant and equipment (net)', page 5, 6 (the company's own audited consolidated financial statements for the year ended 31 December 2017, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "property_plant_and_equipment_net": 2371924441,
      "assets_under_construction": 249232824,
@@ -1046,7 +1046,7 @@
     "value": 237033453,
     "period": "FY2017",
     "source": "FY-2017-Consolidated-Financials-English.pdf, consolidated statement of cash flows, the depreciation and amortisation add-backs, page 10, 11 (the company's own audited consolidated financial statements for the year ended 31 December 2017, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "lines": {
      "depreciation_of_property_plant_and_equipment": 186297452,
      "amortisation_of_intangible_assets": 50676249,
@@ -1059,7 +1059,7 @@
     "value": -223789838,
     "as_at": "2017-12-31",
     "source": "FY-2017-Consolidated-Financials-English.pdf, consolidated statement of financial position, the trading lines of current assets and current liabilities, page 5, 6 (the company's own audited consolidated financial statements for the year ended 31 December 2017, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "definition": "inventories + trade receivables + debtors and other debit balances + due from related parties, less trade and notes payable, creditors and other credit balances and due to related parties",
     "lines": {
      "inventories": 257544521,
@@ -1090,7 +1090,7 @@
     "issued_capital": 757479400,
     "par_value": 2.0,
     "source": "FY-2017-Consolidated-Financials-English.pdf, note 20.1, the capital note, page 33 (the company's own audited consolidated financial statements for the year ended 31 December 2017, from its own investor-relations archive)",
-    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "route": "OCR off the rendered pixels — the filing carries no text layer on any page (nil extractable text across all 437 pages of the nine annual filings), so every figure was read from an image, at 200 to 300 dpi, with a table re-rendered at higher magnification wherever a small figure did not resolve; every figure footed against the statement's own arithmetic before it was recorded, and the arithmetic rather than the extractor's confidence is what settled every disagreement",
     "check": "issued capital 757479400 / par 2 = 378739700, matching the count the same note states",
     "par_source": "note 20.1 'Authorized and Issued capital' prints par value per share (EGP) 2, number of ordinary shares authorized, issued and fully paid 378 739 700 and issued capital (EGP) 757 479 400 in one table headed 2017 and 2016; note 20.2 on the following page recites the Extraordinary General Assembly resolution updating Article No. (6) of the Articles of Association to EGP 757 479 400 distributed among 378 739 700 shares with a par value amounting to EGP 2 each, so the table and the recital state the same identity two ways in the same document",
     "vintage": "read off the FY2017 filing's own note; no later count is carried back to this origin"
