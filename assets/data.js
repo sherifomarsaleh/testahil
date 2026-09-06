@@ -461,34 +461,30 @@ const TICKERS = {
     name: "Egyptian International Pharmaceutical Industries (EIPICO)",
     nameAr: "\u0627\u0644\u0634\u0631\u0643\u0629 \u0627\u0644\u0645\u0635\u0631\u064a\u0629 \u0627\u0644\u062f\u0648\u0644\u064a\u0629 \u0644\u0644\u0635\u0646\u0627\u0639\u0627\u062a \u0627\u0644\u062f\u0648\u0627\u0626\u064a\u0629 - \u0625\u064a\u0628\u064a\u0643\u0648",
     code: "EGX:PHAR",
-    spot: 130.05,
-    spotDate: "close 6 Aug 2026",
+    spot: 128.00,
+    spotDate: "close 06 Sep 2026",
     fairAsof: "2026-08-06",   // the close the FAIR VALUE is struck on — not the publication date in the filename
     ccy: "EGP",
     fair: { bear: 58.04, base: 61.21, full: 73.03 },   // 9 Aug 2026 - TWO centres, never one. The contested judgement (the credit-loss and provision charge) is carried both ways and weighting both frames inside a single number would average them, which this study says it never does. Frame A, the charge permanent at 5.25% of revenue, gives a weighted centre of 61.21; Frame B, the charge normalising to 2.5%, gives 68.70. `base` below carries the CONSERVATIVE reading. Field 58.04 to 73.03 across five readings on four methods: cash flow 58.04 / 73.03, book value and sustainable return 62.81, relative multiples 65.42, normalised earnings power 65.40. Built bottom up from THREE product lines, each a volume x a price, reconciling the board report's two different splits of the same revenue: own preparations domestic (291.8m packs at EGP 21.22), own preparations exported (60m packs at USD 0.9996), and contract manufacturing (5.49m packs at a EGP 9.00 fee plus product resold through own channels). THE CRUX IS THE PLANT: EGP 4,901mn of construction - larger than the entire depreciated property base - was licensed in Dec-2025 and starts depreciating, and the study charges every pound of that while crediting the plant with NO revenue, because the company has published none. At EGP 130.05 the market pays EGP 72.01 a share, 55% of the price, for that plant - roughly 2.1x its stated USD 100mn cost - which needs about USD 120mn a year of biosimilar revenue by FY2030 to justify. Terminal return on capital and the terminal debt weight are COMPUTED from the model's own final year, not assumed; free cash flow is taxed at the effective rate; the forecast balance sheet is funded and balances.
     dist: {
-      t20: { label:"1 month",   p5:103.80, p25:120.56, p50:131.69, p75:143.94, p95:167.17, resolve:"2026-09-06" },
-      t60: { label:"3 months",  p5:94.40, p25:118.42, p50:135.30, p75:154.39, p95:193.82, resolve:"2026-11-08" }
+      t20: { label:"1 month",   p5:106.97, p25:122.04, p50:131.42, p75:141.53, p95:161.41, resolve:"2026-10-06" },
+      t60: { label:"3 months",  p5:97.50, p25:120.91, p50:136.46, p75:154.00, p95:190.66, resolve:"2026-12-06" }
     },
     hz: { h1:20, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:5, cal:0.951, mult:0.9, eff:0.8559, on:"2026-09-06" },
     touch: [ /* level, P(touch) 1-month %, 3-month % - descending */
-      [156.06, 17, 39],
-      [149.56, 27, 50],
-      [143.06, 43, 64],
-      [136.55, 64, 80],
-      [123.55, 57, 69],
-      [117.05, 33, 48]
+      [156.06, 12, 36], [149.56, 20, 47], [143.06, 34, 61], [136.55, 56, 77], [123.55, 58, 70], [117.05, 29, 45]
     ],
-    levels: { res:[140, 150, 156], sup:[92.40, 88.49, 85.40] },
+    levels: { res:[130, 135.41, 140], sup:[88.49, 85.40, 83.42] },
     tech: {
-      trend: "Trading above the whole moving-average stack, on a rising 200-day",
-      summary: "The price closed 130.05 above a rising 20-day (101.58), a rising 50-day (92.49) and a rising 200-day (82.58). Momentum is very strong: RSI(14) is ~71 and the daily ATR near 7.84 (~6.0%) points to a volatile tape. MACD (12\u00b726\u00b79) is positive and rising (+11.68 / +7.24 / +4.44). Over the last year it has ranged 43.60\u2013156.00; the last close sits 17% below that high and 198% above that low.",
-      bull: "A daily close back above 140.00 would clear the nearest resistance; the next charted level above it is 156.00.",
-      bear: "A close below 92.40 would break the nearest support; the next charted level below it is 85.40."
+      trend: "Consolidating below the near-term moving averages, above a rising 200-day",
+      summary: "The price closed 128.00 above a rising 50-day (112.27) and a rising 200-day (88.40), but below a rising 20-day (135.41). Momentum is neutral: RSI(14) is ~52 and the daily ATR near 7.58 (~5.9%) points to a volatile tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+3.49 / +6.02 / \u22122.54). Over the last year it has ranged 53.10\u2013178.99; the last close sits 28% below that high and 141% above that low.",
+      bull: "A daily close back above 130.00 would clear the nearest resistance; the next charted level above it is 140.00.",
+      bear: "A close below 88.49 would break the nearest support; the next charted level below it is 83.42."
     },
     asof: {
-      mc:   { data:"2026-08-06", computed:"2026-08-06" },
-      tech: { data:"2026-08-06", computed:"2026-09-06" }
+      mc:   { data:"2026-09-06", computed:"2026-09-06" },
+      tech: { data:"2026-09-06", computed:"2026-09-06" }
     },
     files: {
       study: "files/PHAR_Valuation_Study_09-08-2026.pdf?v=0809b",
@@ -541,6 +537,7 @@ const TICKERS = {
     code: "EGX:SCEM",
     spot: 79.00,
     spotDate: "close 6 Aug 2026",
+    fairAsof: "2026-08-06",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 46.84, base: 53.12, full: 59.10 },       // 6 Aug 2026 \u2014 four-lens weighted central EGP 53.12 (\u221233% vs spot 79.00). Weights 48/21/23/8: FCFF DCF 43.81 / relative multiples 55.88 / normalised earnings power 58.10 / asset-replacement cost 87.37. Forecast is BOTTOM-UP ON THE KILN: clinker capacity 2.57Mt \u00d7 utilisation \u2192 clinker \u2192 cement at a 0.676 clinker factor \u2192 domestic and export tonnes \u2192 revenue; against it a physical cost stack \u2014 3.4 GJ/t clinker at USD 4.00/GJ, 100 kWh/t at EGP 2.60, raw materials, packaging on the bagged share, distribution, and fixed cash cost per tonne of INSTALLED capacity so it does not vanish when volume falls. EBITDA is an OUTPUT, not an assumption: the FY2025 build reproduces disclosed revenue to +0.01% and lands within 1.4% of the EBITDA implied by closing the disclosed profit at the 32.0% EFFECTIVE tax rate on reported cash. That distinction is the study\u2019s spine \u2014 a margin percentage applied to a price-inflated revenue line would have manufactured profit out of Egyptian inflation. Discount rate is a sliding schedule: WACC 28.30% explicit \u2192 19.01% terminal, each year discounted at its own forward rate with the glide inherited from the cost-of-debt path rather than invented, and the sovereign CDS spread netted OUT of the risk-free rate (22.31% \u2192 18.91%) so country risk is not counted twice. Own-stock beta FAILED the usability gate (R\u00b2 0.038 over 24 monthly observations, below the 5% floor) so \u03b2 = 1.00 is the protocol\u2019s tier-3 default, corroborated by a Dimson lead-lag sum; terminal \u03b2 1.194 is Hamada re-levered. Terminal value is ROIC-consistent (g = ROIC 9.31% \u00d7 reinvestment 53.7% = 5.0%) and carries 49.2% of enterprise value. TERMINAL ROIC SITS BELOW THE TERMINAL WACC, so the growth gradient INVERTS \u2014 more terminal growth subtracts value (43.81 at g=5% falls to 39.88 at g=7%). That is construction, not error: it follows from striking the terminal return on REPLACEMENT-COST invested capital (3.8Mt \u00d7 USD 130/t \u00d7 49.8 = EGP 24,601mn) instead of a depreciated book base, which would have printed a 171.6% terminal ROIC and a TV share of 59%. The balance sheet is NET CASH \u2014 EGP 4,930mn at the valuation date against EGP 36.8mn of gross debt \u2014 which is 43% of the market capitalisation and the single largest sensitivity: \u00b1EGP 750mn moves fair value \u00b12.88. Minorities of EGP 120mn are deducted; one reviewer proposed 2,008 but derived it from nothing, and the disclosed evidence puts the minority share of profit below 1%. Two dated headwinds are IN the forecast rather than argued around: the EU carbon border mechanism, which lifts the landed cost of Egyptian cement into Europe from 2026 and pushes the export FOB path down USD 48 \u2192 45/t, and the revival of roughly 12.6Mt of mothballed military-owned capacity into a market consuming 54Mt against 76Mt installed. Spot is EGP 79.00 \u2014 the close on 6 Aug 2026, open 81.80, range 78.30\u201382.50. full = weighted bull central.
     dist: {
@@ -573,29 +570,30 @@ const TICKERS = {
     name: "Arabian Cement",
     nameAr: "\u0627\u0644\u0639\u0631\u0628\u064a\u0629 \u0644\u0644\u0623\u0633\u0645\u0646\u062a",
     code: "EGX:ARCC",
-    spot: 59.00,
-    spotDate: "close 6 Aug 2026",
+    spot: 76.60,
+    spotDate: "close 06 Sep 2026",
     fairAsof: "2026-06-30",   // the date of the latest disclosed BALANCE SHEET, which is what the bridge stands on; the price it is compared against is the latest known close, 6 Aug 2026
     ccy: "EGP",
     fair: { bear: 49.53, base: 54.65, full: 61.71 },      // PRE-CALIBRATION. HELD BACK FROM THE SITE, DELIBERATELY. The fundamental-calibration rebuild of this name is COMPLETE and the number below is the number from BEFORE it; per instruction of 1 September 2026 nothing from the calibration campaign goes live one name at a time — the whole book publishes together at the end, in a new location, with the valuation report as a PDF and the workbook beside it. THE CALIBRATED RANGE IS DELIBERATELY NOT RESTATED HERE: it moves at every re-issue, and the three notes that used to carry it were all stale within two days (one naming a range two editions old, one naming a closing price 23% away). Read it live from engine/fv_movement.json, or with python3 engine/fv_movement.py check, which is generated from the study's own committed numbers and cannot drift from them. A FILE THAT STATES A FACT WHICH MOVES MUST NOT BE THE THING THAT REMEMBERS IT.
     dist: {
-      t20: { label:"1 month",   p5:50.44, p25:55.93, p50:59.45, p75:63.21, p95:70.09, resolve:"2026-09-06" },
-      t60: { label:"3 months",  p5:43.92, p25:53.71, p50:60.46, p75:67.97, p95:83.17, resolve:"2026-11-08" }
+      t20: { label:"1 month",   p5:60.77, p25:71.46, p50:78.28, p75:85.75, p95:100.80, resolve:"2026-10-06" },
+      t60: { label:"3 months",  p5:51.67, p25:69.08, p50:81.34, p75:95.76, p95:127.74, resolve:"2026-12-06" }
     },
     hz: { h1:20, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:5, cal:0.951, mult:0.985911, eff:0.937602, on:"2026-09-06" },
     touch: [ /* level, P(touch) 1-month %, 3-month % \u2014 descending */
-      [70.80, 7, 31], [67.85, 14, 43], [64.90, 28, 58], [61.95, 53, 76], [56.05, 46, 68], [53.10, 20, 46]
+      [70.80, 43, 62], [67.85, 28, 48], [64.90, 17, 37], [61.95, 10, 28], [56.05, 4, 15], [53.10, 2, 11]
     ],
-    levels: { res:[60.34, 62, 63], sup:[54.25, 52.99, 48.10] },
+    levels: { res:[78, 80, 91.72], sup:[58.65, 54.25, 52.99] },
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
-      summary: "The price closed 59.00 above a rising 20-day (56.27), a rising 50-day (56.25) and a rising 200-day (51.73). Momentum is firm: RSI(14) is ~65 and the daily ATR near 1.28 (~2.2%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.46 / +0.25 / +0.20). Over the last year it has ranged 35.01\u201360.40; the last close sits 2% below that high and 69% above that low.",
-      bull: "A daily close back above 60.34 would clear the nearest resistance; the next charted level above it is 63.00.",
-      bear: "A close below 54.25 would break the nearest support; the next charted level below it is 48.10."
+      summary: "The price closed 76.60 above a rising 20-day (74.47), a rising 50-day (63.38) and a rising 200-day (54.48). Momentum is firm: RSI(14) is ~62 and the daily ATR near 3.58 (~4.7%) points to a lively tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+4.27 / +4.53 / \u22120.27). Over the last year it has ranged 35.01\u201391.72; the last close sits 16% below that high and 119% above that low.",
+      bull: "A daily close back above 78.00 would clear the nearest resistance; the next charted level above it is 91.72.",
+      bear: "A close below 58.65 would break the nearest support; the next charted level below it is 52.99."
     },
     asof: {
-      mc:   { data:"2026-08-06", computed:"2026-08-06" },
-      tech: { data:"2026-08-06", computed:"2026-09-06" }
+      mc:   { data:"2026-09-06", computed:"2026-09-06" },
+      tech: { data:"2026-09-06", computed:"2026-09-06" }
     },
     files: {
       study: "files/ARCC_Valuation_Study_08-08-2026_public.docx?v=0808a",
@@ -647,6 +645,7 @@ const TICKERS = {
     code: "EGX:SWDY",
     spot: 105.2,
     spotDate: "close 5 Aug 2026",
+    fairAsof: "2026-08-05",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 19.95, base: 69.73, full: 138.73 },      // 5 Aug 2026 study, REBUILT 7 Aug on the audited FY2023-25 statements + Q1-2026 interim, then re-audited under four external critiques (102 findings enumerated, priced and dispositioned; every lens now dated at the 5-Aug anchor). Four-lens weighted central EGP 69.73 (\u221234% vs spot 105.20). Weights 45/20/20/15: FCFF DCF 56.08 / relative EV\u2044EBITDA 75.65 (6.5x on FY2027E EBITDA discounted back at the year-2 factor PLUS the interim FY26-27 cash flows) / normalized earnings power 108.17 (mid-cycle FY2028E margin at CURRENT FY2026E scale \u2014 the earlier FY2028-scale construction injected two undiscounted growth-years and was corrected) / justified P\u2044B on sustainable ROE 51.52. Forecast is built on the THREE segments the company itself discloses \u2014 Cables, Constructions & infrastructure, Electrical products & digital \u2014 whose Note 5-3 revenue ties EXACTLY to the consolidated P&L in all three audited years and whose Note 16 profit reconciles to EBIT through an exactly-reconciling corporate cost load (5.70% \u2192 4.30% \u2192 3.16% of revenue); a previous seven-way tonnage/backlog build appeared nowhere in the filings and was retired. Cables grows on copper \u00d7 FX \u00d7 a modest real-volume assumption; no order book is disclosed in the audited statements, so Constructions tapers on its own CAGR. Discount rate: WACC 26.63% explicit \u2192 15.93% terminal, each year at its own forward rate, glide inherited from the cost-of-debt path (9.5% \u2192 7.7% \u2014 the audited FY2025 note rates: EGP book 21.3%, hard-currency 5.3%, effective 9.84%); sovereign CDS netted from the risk-free rate; beta 1.009 (R\u00b2 0.291, n 258). Terminal debt weight CUT 25% \u2192 15% after review showed 25% contradicted the model\u2019s own deleveraging. Terminal value is ROIC-consistent (g = 20.4% \u00d7 24.5% = 5.0% exactly) and carries 85% of EV \u2014 high, and stated. Net financial debt 20,560 is the AUDITED balance-sheet computation (loans incl. leases 62,509 \u2212 cash 41,949; the company\u2019s release quotes 19,789 on its own narrower basis \u2014 both stated). EVERY VALUE IS DATED AT THE ANCHOR: the bridge is built at 31-Dec-2025 (49.93/share), rolled 217/365 of a year at the 28.4% cost of equity, less the EGP 1.85 FY2025 dividend actually paid in June (AGM 6-May-2026 \u2014 an earlier revision wrongly said no FY2025 dividend existed; corrected). THE OPEN QUESTION IS CURRENCY: ~51% of revenue is hard-currency-linked (the audited geographic split is 40.7% outside Egypt \u2014 different question), yet the company reports, lists and borrows in pounds. Discounting the hard-currency leg at a dollar rate \u2014 after first converting to dollars at the FX path, or depreciation is counted twice \u2014 gives 85.97. Three further contested choices published as VALUES: the rating column of the country-risk table gives 36.46, minorities charged before net debt 55.01, the UIP EGP-equivalent cost of debt 55.76; a sixth (the 24.5% tax rate vs FY2025\u2019s actual 22.6%) is priced at +2.5% on the central. Ownership: family 68.0%, Electra 18.87% (sold ~32mn shares during 2025), other 13.07% \u2014 an upper bound on the true float. full = weighted bull central; the market sits between the base and the bull.
     dist: {
@@ -679,8 +678,9 @@ const TICKERS = {
     name: "Electro Cable Egypt",
     nameAr: "\u0627\u0644\u0643\u0627\u0628\u0644\u0627\u062a \u0627\u0644\u0643\u0647\u0631\u0628\u0627\u0626\u064a\u0629 \u0627\u0644\u0645\u0635\u0631\u064a\u0629",
     code: "EGX:ELEC",
-    spot: 2.12,
-    spotDate: "close 06 Sep 2026",
+    spot: 2.19,
+    spotDate: "close 5 Aug 2026",
+    fairAsof: "2026-08-05",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 0.18, base: 0.34, full: 0.95 },          // 5 Aug 2026 \u2014 four-lens weighted central EGP 0.34 (\u221285% vs spot 2.19). Weights 40/20/20/20: FCFF DCF (floored at 0.01 \u2014 base EV 3,813 does NOT cover net debt 9,805, so intrinsic equity is \u22124.0bn, i.e. \u22121.81/share unfloored, disclosed in the bridge and floored only by limited liability) / relative EV\u2044EBITDA (also floored \u2014 debt exceeds EV at any peer multiple) / normalized earnings power 0.70 / justified P\u2044B on sustainable ROE 0.91. Forecast is BOTTOM-UP ON TONNAGE: revenue = volume \u00d7 (LME copper \u00d7 EGP\u2044USD \u00d7 1.387 fabrication uplift), EBITDA = volume \u00d7 conversion-EBITDA per tonne \u2014 margins are OUTPUTS. Implied volumes fell 24.0kt (96% of the parent plant\u2019s stated capacity, FY23\u201324) \u2192 15.8kt (63%) \u2192 ~9.3kt annualized in 1Q26 (~37%); the collapse is VOLUME, masked by record copper. Discount rate is a sliding schedule: WACC 21.53% explicit \u2192 15.00% terminal (terminal capital structure NORMALIZED to 40% debt, not today\u2019s ~59% distress weight, which would be circular), sovereign CDS netted out of the risk-free rate, own-stock beta 0.964 (R\u00b2 0.222, n 257). Terminal value is ROIC-consistent (g = ROIC \u00d7 RR exactly) and carries 82% of EV \u2014 high, and stated: the explicit years are working-capital-suppressed. Terminal ROIC 9.2% sits BELOW the 15.0% terminal WACC, so the growth gradient inverts (more growth subtracts value) \u2014 construction, not error. NET DEBT IS TRIANGULATED, NOT DISCLOSED: 9,805 = drawn debt 10,465 (FY25 total liabilities 12,360 less non-debt liabilities ~1,890) less cash ~665, cross-checked by a cash-flow roll-forward (9,803) and against the disclosed \u201cEGP 10.9bn facilities\u201d read as fully drawn (10,235); range 9,120\u201310,360 is worth ~\u00b10.19/share and the residual risk is SKEWED ADVERSE. Copper is held FLAT AT THE MARKET (~$14,000/t LME cash, 3\u20134 Aug) \u2014 a \u201cno house view\u201d forecast must anchor on the tape. Modelled book equity breaches solvency by FY29E on the base case. full = weighted bull central; even that sits 57% below spot.
     dist: {
@@ -716,6 +716,7 @@ const TICKERS = {
     code: "EGX:CLHO",
     spot: 17.71,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-12",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 6.51, base: 9.21, full: 11.05 },      // 13 Jul 2026 \u2014 four-lens weighted central EGP 9.21 (\u221244% vs spot 16.31). Lenses: rate-path FCFF DCF (40%) 7.17; relative multiples, FY27E EPS discounted back to today (25%) 13.21; normalized earnings power, interest re-priced not deleted (20%) 8.37; EV per operational bed, re-anchored to CLHO\u2019s own build cost and discounted from 2027 (15%) 9.08. THIS RANGE WAS REBUILT UNDER EXTERNAL AUDIT (13-Jul-2026): the prior version (central 13.29) capitalised terminal value directly (implied terminal ROIC 34.2%, above anything CLHO has ever earned), deducted minority interests at book value instead of fair value, and blended two forward-dated lenses into a same-day estimate without discounting them back \u2014 all three biased the same direction, upward. Corrected: terminal value now forces reinvestment to g/ROIC (ROIC 18%, inside CLHO\u2019s realized 17\u201323% range); non-controlling interest is a Cairo Specialized Hospital mini-SOTP at fair value (~EGP 782mn vs EGP 453mn book); both forward lenses are discounted to a present value. Discount rate: WACC 25.15% explicit \u2192 17.87% terminal, a sliding schedule glide-shaped off the CBE easing calendar, with the sovereign CDS spread netted out of the risk-free rate and beta floored at the house band minimum (0.80, vs a weak, wide-CI 0.446 regression). Cost of debt is audited, not assumed: CLHO\u2019s own FY2024 accounts show 28.90% contractual on loans against a 28.25% CBE corridor \u2014 a +65bp spread confirmed at two year-ends \u2014 and the debt book is 100% EGP, zero FX exposure. SPOT IS RICH ON EVERY FUNDAMENTAL LENS BUT ONE (EV/bed bull, which requires a takeout-style re-rating): the DCF bull case alone (8.12) is barely half of spot, so the market is pricing something closer to a strategic-review / per-bed transaction outcome than standalone cash-flow generation. Revenue itself is rebuilt bottom-up from disclosed KPI volumes and ARPs (77% of FY25 revenue, incl. laboratory and radiology), fading from each line\u2019s own FY24\u2192FY25 growth rate as the group\u2019s bed-capacity ramp (880\u21921,320 by 2027) completes \u2014 reaching 2.07\u00d7 FY2028E vs FY2025, almost exactly management\u2019s own \u201cmore than double by 2028\u201d guidance. Risk flagged but not yet in the base case: a developing 2026-27 El Ni\u00f1o carries a 96% NOAA probability and could keep global food inflation elevated into 2028 (Goldman Sachs, UniCredit), which would prevent the CBE easing this valuation\u2019s terminal WACC assumes.",
     levels: { res:[17.90, 19, 19.72], sup:[17.29, 13.02, 12.10] },
@@ -749,6 +750,7 @@ const TICKERS = {
     code: "EGX:RMDA",
     spot: 6.35,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-12",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 2.11, base: 2.77, full: 3.48 },      // 13 Jul 2026 \u2014 four-lens weighted central EGP 2.77 (\u221245% vs spot 5.00). Lenses: FCFF DCF (35%) 1.73; relative EV/EBITDA on RMDA\u2019s own trading band (25%) 4.40; normalized earnings power (25%) 3.65; dividend discount (15%) 1.00. bear/full = weighted bear/bull. THE DIVERGENCE IS THE FINDING AND WE REFUSE TO BLEND IT AWAY: the cash-flow lens discounted at Egypt\u2019s SOURCED cost of capital says 1.73, while the lenses that price the engine at market multiples say 3.65\u20134.40. A price of 5.00 is the market asserting that Egyptian discount rates normalise AND the balance sheet deleverages \u2014 both plausible, neither yet in the sourced numbers. WHY REVENUE DOUBLED, AND WHY IT WILL NOT DOUBLE AGAIN: FY23\u2192FY25 revenue went 1,922 \u2192 4,096 (+113%), but the decomposition says that was THREE ONE-OFFS stacked on a real engine \u2014 (1) the EDA pricing catch-up regime (40\u201350% approvals, now ~82% of market SKUs complete), (2) a shortage-driven private volume spike (2Q25 units +56% because rivals could not supply), and (3) export resumption from literally ZERO (the Iraq suspension made FY24 exports nil). The 1Q26 print is the proof the regime is over: revenue +23% but volumes ex-toll only +7% and PRIVATE VOLUMES \u22125%, with management stating growth came \u2018with limited reliance on pricing actions\u2019. None of the three repeats, so the forward path tapers +19% \u2192 +9%, it does not re-double. THE COST OF DEBT WAS AUDITED, NOT ASSUMED: the facility book is 100% EGP-denominated (Note 20 lists all 11 banks in EGP; FX exposure sits in import payables, not debt \u2014 there is no cheap-dollar blend available), and the rate Rameda ACTUALLY PAYS is 24.0% annualised in 1Q26 (interest \u00f7 average facilities), not the 20.5% midpoint of the disclosed contractual range \u2014 a 350bp understatement we caught and corrected. THE DISCOUNT RATE SLIDES, IT IS NOT FLAT: 26.6% in FY26E easing to a norm-built 18.8% terminal, on the same CBE calendar already used for the interest forecast \u2014 one price of time per date, so the terminal value is never quietly discounted at a rate the explicit years are denied. THE CRUX IS THE RATE PATH, IN REAL UNITS: every 100bp off the facility cost is EGP 21mn of pre-tax profit, and at a flat ~12.5% WACC the same cash flows are worth spot. This is a pharmaceutical manufacturer wearing the costume of a leveraged bet on Egyptian monetary policy, and the study says so in numbers rather than adjectives.
     levels: { res:[6.50, 6.60, 7.39], sup:[5.38, 5.17, 4.93] },
@@ -1189,6 +1191,7 @@ const TICKERS = {
     code: "EGX:GBCO",
     spot: 29.51,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-07",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 23.3, base: 35.7, full: 51.0 },      // AMENDED 09 Jul 2026 (replaces the prior 08-Jul draft; same study cycle, corrected leg build) — weighted central 35.7 (+14% vs spot 31.25). GB Corp's own 9-June-2026 press release ("MNT-Halan ... Closes Capital Increase Round Led by Al Ahly Capital Holding") confirms the current stake directly: "GB Corp's ownership stake in MNT-Halan will be adjusted to 41.61%, compared to 42.58% prior to the transaction" — a dated, current, company-confirmed figure, replacing both the original unsourced ~20% placeholder and the interim 42.58% correction. Four lenses: split-the-legs SOTP (primary) 38.4 (Auto FCFF DCF + GB Capital adjusted book ×1.0 + MNT-Halan at the confirmed 41.61% × the Jun-26 USD 1.4bn round, less a 10% complexity discount), pre-discount NAV 42.6, relative multiples 28.9 (floor, stake-blind), normalized mid-cycle earnings 32.9 (also stake-blind); blend 40/15/20/25. THE REAL OPEN QUESTION: with the stake now confirmed, applying it to the round's valuation implies MNT-Halan alone is worth ~73% of GB Corp's entire market cap — a genuine puzzle, not a sourcing gap. Either the market applies a far steeper discount to this private mark than this study's 10%, or GB Corp is meaningfully mispriced. Treat 35.7 as the read if the round's valuation holds at face value; the stake-blind relative/normalized lenses (28.9–32.9) are the more conservative anchor if you believe the market's skepticism is warranted. Swing factors, in order: the discount applied to the MNT-Halan mark (the stake itself is no longer in question), Auto working-capital release, the CBE rate path.
     levels: { res:[30.12, 32.47, 33.16], sup:[28.64, 25.36, 23.99] },
@@ -1256,6 +1259,7 @@ const TICKERS = {
     code: "EGX:ISPH",
     spot: 13.22,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-07",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 12.85, base: 17.78, full: 22.68 },      // 7 Jul 2026 \u2014 weighted central 17.78 (+52% vs spot 11.67). Four lenses: DCF (primary) 19.79, relative EV/EBITDA 16.71, normalized earnings 17.98, dividend-yield floor 11.00; blend 45/25/20/10. bear/full = weighted bear/bull of the football field. Swing: the thin net margin normalising as the CBE rate path eases finance costs and the drug-re-pricing cycle feeds through \u2014 on ~EGP 76.6bn FY25 revenue at an ~8% gross / ~5% EBITDA / ~1.2% net margin with a near-zero cash-conversion cycle.
     dist: {
@@ -1357,6 +1361,7 @@ const TICKERS = {
     code: "EGX:KABO",
     spot: 9.12,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-06",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 1.42, base: 2.39, full: 3.52 },      // 6 Jul 2026 — weighted central 2.39 (\u221266% vs spot 7.00). Four lenses: revalued NAV (primary) 3.28, going-concern DCF 0.54 (floor), relative price-to-book 2.65, normalized earnings 1.24. bear/full = weighted bear/bull of the football field. Swing: the realizable value of the legacy Alexandria land against a ~95%-collapsed earnings base — at 7.00 the market prices a ~EGP 2.8bn land re-mark that has not been disclosed or monetised.
     dist: {
@@ -1425,6 +1430,7 @@ const TICKERS = {
     code: "EGX:RAYA",
     spot: 7.07,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-01",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 4.77, base: 5.56, full: 8.22 },
     dist: {
@@ -1458,6 +1464,7 @@ const TICKERS = {
     code: "EGX:EFIH",
     spot: 24.65,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-01",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 10.20, base: 14.16, full: 23.60 },          // 03 Jul 2026 valuation — weighted four-lens central
     dist: {
@@ -1491,6 +1498,7 @@ const TICKERS = {
     code: "EGX:JUFO",
     spot: 26.88,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-01",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 22, base: 26, full: 33 },
     dist: {
@@ -1524,6 +1532,7 @@ const TICKERS = {
     code: "EGX:EGAL",
     spot: 330.00,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-01",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 183, base: 250, full: 358 },
     dist: {
@@ -1557,6 +1566,7 @@ const TICKERS = {
     code: "EGX:EFID",
     spot: 33.20,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-01",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 16.41, base: 27.68, full: 42.78 },
     dist: {
@@ -1590,6 +1600,7 @@ const TICKERS = {
     code: "EGX:BTFH",
     spot: 3.01,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-01",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 1.89, base: 2.88, full: 4.13 },
     dist: {
@@ -1623,6 +1634,7 @@ const TICKERS = {
     code: "EGX:ETEL",
     spot: 118.49,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-01",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 82, base: 118, full: 160 },
     dist: {
@@ -1656,6 +1668,7 @@ const TICKERS = {
     code: "EGX:FWRY",
     spot: 19.20,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-01",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 11.5, base: 14.7, full: 20.3 },
     dist: {
@@ -1689,6 +1702,7 @@ const TICKERS = {
     code: "EGX:ABUK",
     spot: 76.59,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-01",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 50, base: 60, full: 72 },
     dist: {
@@ -1722,6 +1736,7 @@ const TICKERS = {
     code: "EGX:ADIB",
     spot: 54.40,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-01",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 31.6, base: 54.3, full: 95.3 },
     dist: {
@@ -1788,6 +1803,7 @@ const TICKERS = {
     code: "EGX:HRHO",
     spot: 26.32,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-01",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 23, base: 27.7, full: 33.6 },
     dist: {
@@ -1821,6 +1837,7 @@ const TICKERS = {
     code: "EGX:ORWE",
     spot: 26.00,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-01",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 16.7, base: 20.9, full: 29.7 },
     dist: {
@@ -1854,6 +1871,7 @@ const TICKERS = {
     code: "EGX:LCSW",
     spot: 34.66,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-06",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 26, base: 37, full: 51 },      // 6 Jul 2026 — weighted central 37 (+26% vs spot 29.45). Lenses: FCFF DCF 37 (primary), relative multiples 39, normalized earnings 39, FCFE/owner-earnings 32 (floor), asset/reproduction 36. bear/full = weighted bear/bull of the football field. Swing factor: the EGP/USD path and whether booked earnings convert to cash.
     dist: {
@@ -1887,6 +1905,7 @@ const TICKERS = {
     code: "EGX:DSCW",
     spot: 1.96,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-19",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 0.59, base: 0.88, full: 1.20 },          // 20 Jul 2026 revision — terminal g set to 5% (explicit conservative override, below all reconciliation anchors, disclosed §1.7). weighted central: 35% FCFF DCF (floored at 0; raw −0.51 at sourced WACC 23.53%, TV 94% of EV) / 35% normalized earnings power (7.5% through-cycle margin) / 30% relative EV/EBITDA. full = weighted bull central.
     dist: {
@@ -1920,6 +1939,7 @@ const TICKERS = {
     code: "EGX:PHDC",
     spot: 15.20,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-06-11",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 7.62, base: 15.89, full: 24.92 },      // PRE-CALIBRATION. HELD BACK FROM THE SITE, DELIBERATELY. The fundamental-calibration rebuild of this name is COMPLETE and the number below is the number from BEFORE it; per instruction of 1 September 2026 nothing from the calibration campaign goes live one name at a time — the whole book publishes together at the end, in a new location, with the valuation report as a PDF and the workbook beside it. THE CALIBRATED RANGE IS DELIBERATELY NOT RESTATED HERE: it moves at every re-issue, and the three notes that used to carry it were all stale within two days (one naming a range two editions old, one naming a closing price 23% away). Read it live from engine/fv_movement.json, or with python3 engine/fv_movement.py check, which is generated from the study's own committed numbers and cannot drift from them. A FILE THAT STATES A FACT WHICH MOVES MUST NOT BE THE THING THAT REMEMBERS IT.
     dist: {
@@ -1953,6 +1973,7 @@ const TICKERS = {
     code: "EGX:TMGH",
     spot: 97.80,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-06-17",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 83.6, base: 147.12, full: 189.6 },      // PRE-CALIBRATION. HELD BACK FROM THE SITE, DELIBERATELY. The fundamental-calibration rebuild of this name is COMPLETE and the number below is the number from BEFORE it; per instruction of 1 September 2026 nothing from the calibration campaign goes live one name at a time — the whole book publishes together at the end, in a new location, with the valuation report as a PDF and the workbook beside it. THE CALIBRATED RANGE IS DELIBERATELY NOT RESTATED HERE: it moves at every re-issue, and the three notes that used to carry it were all stale within two days (one naming a range two editions old, one naming a closing price 23% away). Read it live from engine/fv_movement.json, or with python3 engine/fv_movement.py check, which is generated from the study's own committed numbers and cannot drift from them. A FILE THAT STATES A FACT WHICH MOVES MUST NOT BE THE THING THAT REMEMBERS IT.
     dist: {
@@ -1986,6 +2007,7 @@ const TICKERS = {
     code: "EGX:EMFD",
     spot: 13.70,
     spotDate: "close 01 Sep 2026",
+    fairAsof: "2026-06-17",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 13.71, base: 19.84, full: 23.43 },          // 17 Jun 2026 valuation — unchanged; separate clock, not touched by the 28 Jul roll-forward
     dist: {
@@ -2020,6 +2042,7 @@ const TICKERS = {
     code: "EGX:OCDI",
     spot: 31.01,
     spotDate: "close 01 Sep 2026",
+    fairAsof: "2026-06-23",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 16.72, base: 26.43, full: 30.77 },          // 24 Jun 2026 valuation — SOTP/RNAV risk-adjusted base; full execution 30.77; four-method synthesis ~27.7
     dist: {
@@ -2054,6 +2077,7 @@ const TICKERS = {
     code: "EGX:ORHD",
     spot: 41.50,
     spotDate: "close 01 Sep 2026",
+    fairAsof: "2026-06-24",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 22.5, base: 53.79, full: 70.52 },          // 24 Jun 2026 valuation — SOTP/RNAV risk-adjusted base; full execution 70.52; four-method synthesis ~55.8
     dist: {
@@ -2088,6 +2112,7 @@ const TICKERS = {
     code: "EGX:COMI",
     spot: 139.00,
     spotDate: "close 01 Sep 2026",
+    fairAsof: "2026-06-29",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 90.86, base: 123.30, full: 169.70 },          // 29 Jun 2026 — justified-P/B / residual-income primary; weighted central 123.3 (-5% vs spot); bear = excess-return DCF (spread fades without capital return) 90.9; full = RI bull 169.7. Deeper RI-bear ~53.5 (ROE≈CoE) covered in the study text.
     dist: {
@@ -2393,6 +2418,7 @@ const TICKERS = {
     code: "EGX:OIH",
     spot: 1.88,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-01",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 0.53, base: 0.78, full: 1.70 },           // 03 Jul 2026 study — four-lens weighted central 0.78 (−45% vs spot 1.41). Lenses: holdco NAV 0.81 (primary), consolidated DCF 0.48 (floor), relative P/NAV 0.72, normalized earnings 1.03 (ceiling). bear = weighted bear; full = weighted bull (DPRK cash recovered + OPE at maturity). USD marks at EGP/USD 49.09.
     dist: {
@@ -2426,6 +2452,7 @@ const TICKERS = {
     code: "EGX:ORAS",
     spot: 782.25,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-06-30",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 740, base: 928, full: 1272 },              // 30 Jun 2026 study — 5-lens weighted central 928 (+29% vs spot 720); bear = normalized-earnings low lens 740; full = SOTP bull 1272. USD fundamentals at USD/EGP 49.2.
     dist: {
@@ -2762,28 +2789,29 @@ const TICKERS = {
     name: "QNB Group",
     nameAr: "\u0645\u062c\u0645\u0648\u0639\u0629 QNB",
     code: "QSE:QNBK",
-    spot: 17.15,
-    spotDate: "close 05 Aug 2026",
+    spot: 16.67,
+    spotDate: "close 06 Sep 2026",
     ccy: "QAR",
     fair: { bear: 14.0, base: 18.76, full: 28.5 },      // 5 Jul 2026 — weighted central 18.76 (+7.0% vs spot 17.54). Lenses: two-stage DDM on actual policy (primary) 18.7, FCFE/distributable-capital 20.2 (full-capacity ceiling 22.0), relative P/B-RoTE + peer 18.2, normalized through-cycle 17.6. bear/full = weighted bear/bull of the football field. Swing factors: the permanent Pillar-Two tax step (FY25 net profit +1.7% on ~+10% pre-tax), the 2026 rate-cut path through NIM (the pegged riyal), and how much of a 19.3%-capitalised balance sheet is returned rather than retained.
     dist: {
-      t20: { label:"1 month",   p5:15.66, p25:16.62, p50:17.20, p75:17.81, p95:18.90, resolve:"2026-09-06" },
-      t60: { label:"3 months",  p5:14.75, p25:16.33, p50:17.33, p75:18.39, p95:20.36, resolve:"2026-11-05" }
+      t20: { label:"1 month",   p5:15.27, p25:16.17, p50:16.72, p75:17.29, p95:18.31, resolve:"2026-10-06" },
+      t60: { label:"3 months",  p5:14.36, p25:15.88, p50:16.85, p75:17.87, p95:19.76, resolve:"2026-12-06" }
     },
-    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:22, h3:64, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:6, cal:0.958, mult:1, eff:0.958, on:"2026-09-06" },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [19.50, 3, 17], [19.00, 7, 26], [18.50, 15, 40], [18.00, 32, 57], [17.00, 75, 84], [16.50, 37, 57], [15.50, 6, 21]
+      [19.50, 1, 11], [19.00, 3, 17], [18.50, 6, 26], [18.00, 14, 39], [17.00, 63, 79], [16.50, 72, 83], [15.50, 13, 34]
     ],
-    levels: { res:[17.54, 18.05, 18.60], sup:[16.79, 15.98, 15.54] },
+    levels: { res:[17.52, 18.05, 18.60], sup:[16.34, 15.54, 14.82] },
     tech: {
-      trend: "Mixed against the moving-average stack, below a falling 200-day",
-      summary: "The price closed 17.15 below a falling 50-day (17.37) and a falling 200-day (18.28), but above a falling 20-day (17.02). Momentum is neutral: RSI(14) is ~50 and the daily ATR near 0.33 (~1.9%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.12 / \u22120.18 / +0.06). Over the last year it has ranged 16.34\u201320.49; the last close sits 16% below that high and 5% above that low.",
-      bull: "A daily close back above 17.54 would clear the nearest resistance; the next charted level above it is 18.60.",
-      bear: "A close below 16.79 would break the nearest support; the next charted level below it is 15.54."
+      trend: "Trading below the whole moving-average stack, under a falling 200-day",
+      summary: "The price closed 16.67 below a falling 20-day (16.81), a falling 50-day (17.04) and a falling 200-day (18.10). Momentum is neutral: RSI(14) is ~45 and the daily ATR near 0.27 (~1.6%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.09 / \u22120.09 / +0.00). Over the last year it has ranged 16.34\u201320.42; the last close sits 18% below that high and 2% above that low.",
+      bull: "A daily close back above 17.52 would clear the nearest resistance; the next charted level above it is 18.60.",
+      bear: "A close below 16.34 would break the nearest support; the next charted level below it is 14.82."
     },
     asof: {
-      mc:   { data:"2026-08-05", computed:"2026-08-05" },
-      tech: { data:"2026-08-05", computed:"2026-09-06" }
+      mc:   { data:"2026-09-06", computed:"2026-09-06" },
+      tech: { data:"2026-09-06", computed:"2026-09-06" }
     },
     files: {
       study: "files/QNB_Valuation_Study_05-07-2026_public.docx?v=0705a",
@@ -3034,6 +3062,7 @@ const TICKERS = {
     code: "EGX:HELI",
     spot: 7.75,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-01",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 5.20, base: 8.40, full: 11.82 },          // 3 Jul 2026 valuation — weighted central 8.40 (RNAV 8.30 primary / DCF 8.30 / relative 7.45 / normalized 9.25; 40/20/15/25). bear 5.20, bull 11.82. Swing: partnership-annuity marks & the RNAV/state discount.
     dist: {
@@ -3067,6 +3096,7 @@ const TICKERS = {
     code: "EGX:PRDC",
     spot: 9.69,
     spotDate: "close 23 Aug 2026",
+    fairAsof: "2026-07-06",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 5.92, base: 8.23, full: 11.51 },          // 6 Jul 2026 valuation — split-leg RNAV primary lens
     dist: {
@@ -3211,7 +3241,7 @@ const BANDS = {
   AMOC: {mkt:"EG", n:57, hits:51, c50:0.5439, c80:0.8246, c90:0.8947, width:1.194, strength:"long", flag:null},
   AMR: {mkt:"AE", n:10, hits:10, c50:0.2000, c80:0.8000, c90:1.0000, width:0.899, strength:"market-only", flag:null},
   ARAMCO: {mkt:"SA", n:22, hits:20, c50:0.4091, c80:0.7727, c90:0.9091, width:1.004, strength:"short", flag:null},
-  ARCC: {mkt:"EG", n:44, hits:41, c50:0.5909, c80:0.9318, c90:0.9318, width:1.432, strength:"long", flag:null},
+  ARCC: {mkt:"EG", n:44, hits:41, c50:0.5909, c80:0.9318, c90:0.9318, width:1.445, strength:"long", flag:null},
   BOROUGE: {mkt:"AE", n:12, hits:12, c50:0.9167, c80:1.0000, c90:1.0000, width:1.249, strength:"market-only", flag:null},
   BTFH: {mkt:"EG", n:56, hits:47, c50:0.5893, c80:0.8036, c90:0.8393, width:1.370, strength:"long", flag:null},
   BURJEEL: {mkt:"AE", n:11, hits:10, c50:0.5455, c80:0.9091, c90:0.9091, width:1.071, strength:"market-only", flag:null},
@@ -3261,7 +3291,7 @@ const BANDS = {
   ORAS: {mkt:"EG", n:41, hits:36, c50:0.4390, c80:0.8293, c90:0.8780, width:1.366, strength:"long", flag:null},
   ORHD: {mkt:"EG", n:41, hits:38, c50:0.5366, c80:0.8537, c90:0.9268, width:1.505, strength:"long", flag:null},
   ORWE: {mkt:"EG", n:57, hits:52, c50:0.5789, c80:0.7719, c90:0.9123, width:1.355, strength:"long", flag:null},
-  PHAR: {mkt:"EG", n:56, hits:56, c50:0.5536, c80:0.9464, c90:1.0000, width:1.454, strength:"long", flag:"wide"},
+  PHAR: {mkt:"EG", n:56, hits:56, c50:0.5536, c80:0.9643, c90:1.0000, width:1.447, strength:"long", flag:"wide"},
   PHDC: {mkt:"EG", n:57, hits:52, c50:0.5088, c80:0.8596, c90:0.9123, width:1.469, strength:"long", flag:null},
   PRDC: {mkt:"EG", n:15, hits:15, c50:0.7333, c80:0.8000, c90:1.0000, width:1.218, strength:"market-only", flag:null},
   Platinum: {mkt:"XPT", n:58, hits:55, c50:0.5690, c80:0.8966, c90:0.9483, width:1.193, strength:"long", flag:null},
@@ -3444,8 +3474,8 @@ const LEDGER = [
     note:"First coverage, 6-Aug-2026 — struck on the production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF (the touch ladder below is read off the stored first-20,000-path subset; the percentiles are from the full 50,000). q_annual=0.0905 (the FY2025 distribution of EGP 5.34 against the 6-Aug close). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count — the 3-month calendar target 2026-11-06 falls on a non-trading day, so the grade date rolls FORWARD to 2026-11-08. Name-level calibration: BOUNDARY, flagged PARITY and published as such. 16 non-overlapping post-break quarterly origins (2022-06-15 → 2026-03-24), scale-normalized CRPS skill −1.78% against the carry-anchored random walk. The bootstrap CI90 straddles zero at block sizes 2 and 3 ([−7.6%,+0.9%] / [−8.3%,+0.4%]) but excludes it at block 4 ([−8.5%,−0.3%]), so the name is NOT robustly at parity across every block size and the weakest block is reported rather than the friendliest. THE FIVE-YEAR GATE-(d) BACK-TEST FAILS ON THE SKILL LIMB: 19 windows, −2.05%, PARITY at all three blocks, and the shape limb passes (chi2 p=0.117, KS p=0.107). The diagnosis is OVER-COVERAGE, not mis-centring: cov50/80/90 = 0.56/1.00/1.00 against nominal 0.50/0.80/0.90, PIT mean 0.672, and the cone runs 1.234x the benchmark's width — it is too WIDE, not misplaced. The full cleaned history is the friendlier read and is shown rather than hidden: 44 windows back to 2015, skill −0.63%, PARITY at every block, chi2 p=0.647, KS p=0.813. Tuning width_cal on this sample is prohibited by the PROMOTION RULE. What carries the cone is the MARKET-level gate: the 30-name EG panel scores +1.58% with a CI90 of [+0.9%, +2.2%] across 494 windows, which is PASS, and that panel is the standing gate. Price history 2,957 clean sessions over 12.2 years, zero repairs; largest single-session move 0.1815 in logs, inside the exchange's ±20% limit. READ THIS CONE AS ILLUSTRATIVE ONLY — no valuation conclusion in the study rests on it. The cone is a 1/3-month object and is NEVER blended with the undated fair-value zone.",
     p5:50.44, p25:55.93, p50:59.45, p75:63.21, p95:70.09,
     touch:{ "+5":53, "+10":28, "+15":14, "+20":7, "-5":46, "-10":20 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null, touch_hit:null,
+    realized_close:76.6, realized_high:91.72, realized_low:59,
+    in_90:false, in_50:false, realized_quantile:null, median_err:0.2885, touch_hit:{ "+5":true, "+10":true, "+15":true, "+20":true, "-5":false, "-10":false },
     reanchor_from:null
   },
   {
@@ -5582,9 +5612,9 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 05-Aug-2026 — struck on the 05-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-05 and is graded in this same pass. The previous cone was anchored 2026-07-05; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). QA live fit nu=6.0, width_cal=0.951; rf_live 4.25% profile rf_live. Horizons resolved by horizons.resolve() on QA’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
     p5:15.66, p25:16.62, p50:17.2, p75:17.81, p95:18.9,
     touch:{ "+5":32, "+10":8, "+15":2, "+20":1, "-5":26, "-10":5 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:16.67, realized_high:17.31, realized_low:16.36,
+    in_90:true, in_50:true, realized_quantile:0.272, median_err:-0.0308,
+    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"QNB", asset_class:"equity",
@@ -5624,9 +5654,8 @@ const LEDGER = [
     note:"First coverage, 9-Aug-2026 — cycle 1, struck on the study's own committed path arrays at the 2026-08-06 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Percentiles are the study's p5–p95; the touch ladder is read off those same path arrays at ±5/10/15/20% and −5/−10%, and its ±10% pair reconciles to the study's separately published figures to within 0.2 percentage points. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count. q_annual = 0.0269 — SOURCED, not defaulted: the board proposed EGP 3.50 a share for FY2025. EG live fit nu=6.0, width_cal=0.951; rf_live 19.50%. Name-level calibration: PARITY on every window set and every bootstrap block size tested. Five-year set: 19 non-overlapping quarterly origins, skill +0.0021, coverage 47% and 100% against the 50% and 90% bands, PIT mean 0.525, block-bootstrap intervals [-0.0299, 0.0265] / [-0.0194, 0.0271] / [-0.0184, 0.0210] at block sizes 2/3/4 — all straddling zero. Post-break set, which is the period the live bands are built on: 16 windows, skill -0.0109, same PARITY verdict at every block size. No single-name edge exists on this name and none is claimed. The price map is published as a map of dispersion around today's price, never as a forecast of value.",
     p5:103.80, p25:120.56, p50:131.69, p75:143.94, p95:167.17,
     touch:{ "+5":64, "+10":43, "+15":27, "+20":17, "-5":57, "-10":33 },
-    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null },
+    realized_close:128, realized_high:178.99, realized_low:124.5, in_90:true, in_50:true, realized_quantile:0.417, median_err:-0.0280,
+    touch_hit:{ "+5":true, "+10":true, "+15":true, "+20":true, "-5":false, "-10":false },
     reanchor_from:null },
   { instrument:"PHAR", asset_class:"equity", anchor_date:"2026-08-06", run_date:"2026-08-06", anchor_price:130.05, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-11-08", grade_basis:"projected", horizon_days:62, cycle_no:1,
@@ -7766,30 +7795,88 @@ const LEDGER = [
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
 
-  // ---- 2026-09-06 single-name roll-forward: ELEC, struck on its own
+  // ---- 2026-09-06 single-name roll-forward: ARCC, struck on its own
   //      latest library close. Append-only.
   {
-    instrument:"ELEC", asset_class:"equity",
-    anchor_date:"2026-09-06", run_date:"2026-09-06", anchor_price:2.12, ccy:"EGP",
+    instrument:"ARCC", asset_class:"equity",
+    anchor_date:"2026-09-06", run_date:"2026-09-06", anchor_price:76.6, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-10-06", grade_basis:"projected", horizon_days:20,
-    cycle_no:2, reanchor_from:"2026-08-05", anchor_vol:0.3667,
-    signal_z:-0.3806, signal_alpha:-0.002318,
-    note:"Cycle 2 roll-forward, 2026-09-06 — struck on the 06-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-06 and is graded in this same pass. The previous cone was anchored 2026-08-05; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. rf_live 19.50% CBE main operation rate. Direction call DOWN, from this name’s own mom_combo z of -0.381 (outside the 0.25 dead zone); tilt -0.23% at 1M and -0.49% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 62) size the cone only.",
-    p5:1.84, p25:2.03, p50:2.15, p75:2.27, p95:2.5,
-    touch:{ "+5":52, "+10":25, "+15":12, "+20":6, "-5":40, "-10":16 },
+    cycle_no:2, reanchor_from:"2026-08-06", anchor_vol:0.6183,
+    signal_z:0.6789, signal_alpha:0.006875,
+    note:"Cycle 2 roll-forward, 2026-09-06 — struck on the 06-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-06 and is graded in this same pass. The previous cone was anchored 2026-08-06; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has cleared the 28-window history gate, so live_width_mult() returns 0.9859 on its OWN resolved 3-month residuals and the cone was simulated at an effective width_cal of 0.9376, not the pooled 0.951. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the carry drift and the tail nu are untouched by it. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +0.679 (outside the 0.25 dead zone); tilt +0.69% at 1M and +1.36% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 62) size the cone only.",
+    p5:60.77, p25:71.46, p50:78.28, p75:85.75, p95:100.8,
+    touch:{ "+5":67, "+10":46, "+15":31, "+20":20, "-5":56, "-10":33 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
   {
-    instrument:"ELEC", asset_class:"equity",
-    anchor_date:"2026-09-06", run_date:"2026-09-06", anchor_price:2.12, ccy:"EGP",
+    instrument:"ARCC", asset_class:"equity",
+    anchor_date:"2026-09-06", run_date:"2026-09-06", anchor_price:76.6, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-12-06", grade_basis:"projected", horizon_days:62,
-    cycle_no:2, reanchor_from:"2026-08-05", anchor_vol:0.3997,
-    signal_z:-0.3806, signal_alpha:-0.004881,
-    note:"Cycle 2 roll-forward, 2026-09-06 — struck on the 06-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-06 and is graded in this same pass. The previous cone was anchored 2026-08-05; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. rf_live 19.50% CBE main operation rate. Direction call DOWN, from this name’s own mom_combo z of -0.381 (outside the 0.25 dead zone); tilt -0.23% at 1M and -0.49% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 62) size the cone only.",
-    p5:1.65, p25:1.99, p50:2.21, p75:2.45, p95:2.96,
-    touch:{ "+5":77, "+10":58, "+15":43, "+20":30, "-5":61, "-10":38 },
+    cycle_no:2, reanchor_from:"2026-08-06", anchor_vol:0.6271,
+    signal_z:0.6789, signal_alpha:0.013463,
+    note:"Cycle 2 roll-forward, 2026-09-06 — struck on the 06-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-06 and is graded in this same pass. The previous cone was anchored 2026-08-06; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has cleared the 28-window history gate, so live_width_mult() returns 0.9859 on its OWN resolved 3-month residuals and the cone was simulated at an effective width_cal of 0.9376, not the pooled 0.951. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the carry drift and the tail nu are untouched by it. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +0.679 (outside the 0.25 dead zone); tilt +0.69% at 1M and +1.36% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 62) size the cone only.",
+    p5:51.67, p25:69.08, p50:81.34, p75:95.76, p95:127.74,
+    touch:{ "+5":84, "+10":71, "+15":60, "+20":50, "-5":71, "-10":53 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 06-Sep-2026 single-name roll-forward: QNB, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"QNB", asset_class:"equity",
+    anchor_date:"2026-09-06", run_date:"2026-09-06", anchor_price:16.67, ccy:"QAR",
+    horizon_label:"1 month", grade_date:"2026-10-06", grade_basis:"projected", horizon_days:22,
+    cycle_no:3, reanchor_from:"2026-08-05", anchor_vol:0.2047,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 06-Sep-2026 — struck on the 06-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-06 and is graded in this same pass. The previous cone was anchored 2026-08-05; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) QA live fit nu=6.0, width_cal=0.958. rf_live 4.25% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on QA’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 64) size the cone only.",
+    p5:15.27, p25:16.17, p50:16.72, p75:17.29, p95:18.31,
+    touch:{ "+5":30, "+10":8, "+15":2, "+20":1, "-5":25, "-10":5 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"QNB", asset_class:"equity",
+    anchor_date:"2026-09-06", run_date:"2026-09-06", anchor_price:16.67, ccy:"QAR",
+    horizon_label:"3 months", grade_date:"2026-12-06", grade_basis:"projected", horizon_days:64,
+    cycle_no:3, reanchor_from:"2026-08-05", anchor_vol:0.2098,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 06-Sep-2026 — struck on the 06-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-06 and is graded in this same pass. The previous cone was anchored 2026-08-05; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) QA live fit nu=6.0, width_cal=0.958. rf_live 4.25% profile rf_live. No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on QA’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 64) size the cone only.",
+    p5:14.36, p25:15.88, p50:16.85, p75:17.87, p95:19.76,
+    touch:{ "+5":57, "+10":29, "+15":14, "+20":7, "-5":47, "-10":20 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 06-Sep-2026 single-name roll-forward: PHAR, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"PHAR", asset_class:"equity",
+    anchor_date:"2026-09-06", run_date:"2026-09-06", anchor_price:128.0, ccy:"EGP",
+    horizon_label:"1 month", grade_date:"2026-10-06", grade_basis:"projected", horizon_days:20,
+    cycle_no:2, reanchor_from:"2026-08-06", anchor_vol:0.5506,
+    signal_z:1.682, signal_alpha:0.013845,
+    note:"Cycle 2 roll-forward, 06-Sep-2026 — struck on the 06-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-06 and is graded in this same pass. The previous cone was anchored 2026-08-06; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.027344 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has cleared the 28-window history gate, so live_width_mult() returns 0.9000 on its OWN resolved 3-month residuals and the cone was simulated at an effective width_cal of 0.8559, not the pooled 0.951. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the carry drift and the tail nu are untouched by it. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +1.682 (outside the 0.25 dead zone); tilt +1.39% at 1M and +2.50% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 62) size the cone only.",
+    p5:106.97, p25:122.04, p50:131.42, p75:141.53, p95:161.41,
+    touch:{ "+5":65, "+10":41, "+15":24, "+20":14, "-5":47, "-10":24 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"PHAR", asset_class:"equity",
+    anchor_date:"2026-09-06", run_date:"2026-09-06", anchor_price:128.0, ccy:"EGP",
+    horizon_label:"3 months", grade_date:"2026-12-06", grade_basis:"projected", horizon_days:62,
+    cycle_no:2, reanchor_from:"2026-08-06", anchor_vol:0.509,
+    signal_z:1.682, signal_alpha:0.024714,
+    note:"Cycle 2 roll-forward, 06-Sep-2026 — struck on the 06-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-06 and is graded in this same pass. The previous cone was anchored 2026-08-06; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.027344 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. PER-NAME WIDTH OVERLAY APPLIED (engine/adaptive_width.py): this name has cleared the 28-window history gate, so live_width_mult() returns 0.9000 on its OWN resolved 3-month residuals and the cone was simulated at an effective width_cal of 0.8559, not the pooled 0.951. It is an OVERLAY, NOT A REFIT: the pooled (nu, width_cal), the carry drift and the tail nu are untouched by it. rf_live 19.50% CBE main operation rate. Direction call UP, from this name’s own mom_combo z of +1.682 (outside the 0.25 dead zone); tilt +1.39% at 1M and +2.50% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 62) size the cone only.",
+    p5:97.5, p25:120.91, p50:136.46, p75:154.0, p95:190.66,
+    touch:{ "+5":82, "+10":66, "+15":52, "+20":40, "-5":62, "-10":40 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -8052,7 +8139,7 @@ const CALIB = {
   "EGX:ABUK": {w: 57, in50: 54, in90: 91, through: "2026-08-18"},
   "EGX:ADIB": {w: 57, in50: 56, in90: 95, through: "2026-07-12"},
   "EGX:AMOC": {w: 57, in50: 47, in90: 84, through: "2026-07-12"},
-  "EGX:ARCC": {w: 44, in50: 59, in90: 93, through: "2026-06-24"},
+  "EGX:ARCC": {w: 44, in50: 57, in90: 93, through: "2026-06-24"},
   "EGX:BTFH": {w: 56, in50: 54, in90: 80, through: "2026-07-22"},
   "EGX:CCAP": {w: 57, in50: 51, in90: 84, through: "2026-07-12"},
   "EGX:CLHO": {w: 36, in50: 67, in90: 97, through: "2026-07-22"},
@@ -8078,7 +8165,7 @@ const CALIB = {
   "EGX:ORAS": {w: 41, in50: 44, in90: 88, through: "2026-07-12"},
   "EGX:ORHD": {w: 41, in50: 51, in90: 90, through: "2026-07-22"},
   "EGX:ORWE": {w: 57, in50: 54, in90: 88, through: "2026-07-22"},
-  "EGX:PHAR": {w: 56, in50: 52, in90: 100, through: "2026-06-24"},
+  "EGX:PHAR": {w: 56, in50: 54, in90: 98, through: "2026-06-24"},
   "EGX:PHDC": {w: 57, in50: 47, in90: 89, through: "2026-07-12"},
   "EGX:PRDC": {w: 15, in50: 60, in90: 93, through: "2026-08-11"},
   "EGX:RAYA": {w: 57, in50: 70, in90: 93, through: "2026-07-12"},
@@ -8113,3 +8200,192 @@ const CALIB = {
   "TADAWUL:7203": {w: 13, in50: 31, in90: 85, through: "2026-06-11"},
 };
 // ==== END NAME_CALIBRATION ====
+// ==== PRICES (generated by scripts/build_prices_block.py — do not hand-edit) ====
+const PRICES = {
+  "2POINTZERO": { px: 2.08, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  AAPL: { px: 325.31, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ABUK: { px: 94.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ACWA: { px: 192.7, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ADCB: { px: 15.14, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ADIB: { px: 52.05, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ADIBUAE: { px: 22.66, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ADNOCDIST: { px: 4.02, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ADNOCDRILL: { px: 5.8, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ADNOCGAS: { px: 3.2, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ADNOCLS: { px: 6.85, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  AGTHIA: { px: 3.29, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  AIRARABIA: { px: 4.97, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ALDAR: { px: 7.6, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ALINMA: { px: 25.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ALPHADHABI: { px: 7.3, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ALRAJHI: { px: 66.2, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  AMOC: { px: 13.54, date: "2026-09-06", src: "library" },
+  AMR: { px: 2.39, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ARAMCO: { px: 26.02, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ARCC: { px: 77.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  BOROUGE: { px: 2.35, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  BTFH: { px: 3.02, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  BURJEEL: { px: 1.24, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  CCAP: { px: 5.9, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  CLHO: { px: 17.88, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  COMI: { px: 138.98, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  DEWA: { px: 2.7, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  DIB: { px: 7.2, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  DSCW: { px: 2.03, date: "2026-09-02", src: "SUPPLIED_03-09-2026.json" },
+  DU: { px: 11.36, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  EAND: { px: 21.18, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  EFID: { px: 30.79, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  EFIH: { px: 22.97, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  EGAL: { px: 381.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  EGCH: { px: 14.41, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ELEC: { px: 2.08, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ELM: { px: 608.5, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  EMAAR: { px: 10.8, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  EMAARDEV: { px: 13.38, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  EMFD: { px: 13.8, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  EMPOWER: { px: 1.57, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ENBD: { px: 30.28, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ETEL: { px: 115.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  EXTRA: { px: 66.05, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  FAB: { px: 19.4, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  FERTIGLB: { px: 2.67, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  FWRY: { px: 18.95, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  GBCO: { px: 28.98, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  HELI: { px: 8.1, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  HRHO: { px: 25.7, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  IHC: { px: 369.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  INFY: { px: 1132.5, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  IQCD: { px: 13.17, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ISPH: { px: 12.95, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  JUFO: { px: 27.06, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  KABO: { px: 34.06, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  KAKAO: { px: 35100.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  LCSW: { px: 36.0, date: "2026-09-02", src: "SUPPLIED_03-09-2026.json" },
+  LGES: { px: 364000.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  LULU: { px: 0.94, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  MAADEN: { px: 65.7, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  MODON: { px: 2.83, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  NVDA: { px: 217.11, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  OCDI: { px: 33.52, date: "2026-09-02", src: "SUPPLIED_03-09-2026.json" },
+  OIH: { px: 2.01, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ORAS: { px: 831.5, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ORHD: { px: 42.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ORWE: { px: 26.76, date: "2026-09-02", src: "SUPPLIED_03-09-2026.json" },
+  PHAR: { px: 127.3, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  PHDC: { px: 14.4, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  PRDC: { px: 9.78, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  QGTS: { px: 4.85, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  QNB: { px: 16.66, date: "2026-09-02", src: "SUPPLIED_03-09-2026.json" },
+  RAYA: { px: 7.15, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  RELIANCE: { px: 1308.8, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  RIBL: { px: 20.48, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  RIYADHCABLE: { px: 104.8, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  RMDA: { px: 5.91, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  SABIC: { px: 81.4, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  SALIK: { px: 5.4, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  SAMSUNG: { px: 250000.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  SAVOLA: { px: 30.3, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  SCEM: { px: 100.5, date: "2026-09-02", src: "SUPPLIED_03-09-2026.json" },
+  SNB: { px: 42.14, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  STC: { px: 43.86, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  SWDY: { px: 90.5, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  TMGH: { px: 96.6, date: "2026-09-02", src: "SUPPLIED_03-09-2026.json" },
+  TMPV: { px: 310.1, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  TSLA: { px: 367.95, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" }
+};
+// ==== END PRICES ====
+
+// ==== SCREEN (generated by scripts/build_screen_block.py — do not hand-edit) ====
+const SCREEN = {
+  "2POINTZERO": { px: 2.08, pxDate: "2026-09-03", lib: "2026-08-31", z: -0.517, trend: false, gap: null, fair: 1.91, fairAsof: null, rebuilt: false, n: 14, c90: 0.7857, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  AAPL: { px: 325.31, pxDate: "2026-09-03", lib: "2026-09-01", z: 0.835, trend: true, gap: null, fair: 208, fairAsof: null, rebuilt: false, n: 58, c90: 0.8621, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  ABUK: { px: 94, pxDate: "2026-09-03", lib: "2026-08-23", z: -1.21, trend: true, gap: -0.3617, fair: 60, fairAsof: "2026-07-01", rebuilt: false, n: 57, c90: 0.9123, flag: null, cap: "full", stop: "gap", why: "sits more than 10% below the price \u2014 audited, not traded" },
+  ACWA: { px: 192.7, pxDate: "2026-09-03", lib: "2026-08-31", z: 0.478, trend: false, gap: null, fair: 195, fairAsof: null, rebuilt: false, n: 15, c90: 0.8667, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  ADCB: { px: 15.14, pxDate: "2026-09-03", lib: "2026-08-21", z: 0.345, trend: true, gap: null, fair: 19.7, fairAsof: null, rebuilt: false, n: 58, c90: 0.8621, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  ADIB: { px: 52.05, pxDate: "2026-09-03", lib: "2026-08-23", z: 1.067, trend: true, gap: 0.0432, fair: 54.3, fairAsof: "2026-07-01", rebuilt: false, n: 57, c90: 0.9474, flag: null, cap: "full", stop: "gap", why: "inside 10% of the price either way \u2014 no candidate" },
+  ADIBUAE: { px: 22.66, pxDate: "2026-09-03", lib: null, z: null, trend: null, gap: null, fair: 21.23, fairAsof: null, rebuilt: false, n: 58, c90: 0.8621, flag: null, cap: null, stop: "inputs", why: "fair value undated; momentum not computable" },
+  ADNOCDIST: { px: 4.02, pxDate: "2026-09-03", lib: "2026-08-07", z: 0.592, trend: true, gap: null, fair: 4.41, fairAsof: "2026-08-07", rebuilt: true, n: 30, c90: 1, flag: null, cap: null, stop: "superseded", why: "a rebuilt study supersedes the published fair value and has not published" },
+  ADNOCDRILL: { px: 5.8, pxDate: "2026-09-03", lib: "2026-08-07", z: 1.096, trend: false, gap: null, fair: 4.92, fairAsof: "2026-08-07", rebuilt: true, n: 15, c90: 1, flag: null, cap: null, stop: "superseded", why: "a rebuilt study supersedes the published fair value and has not published" },
+  ADNOCGAS: { px: 3.2, pxDate: "2026-09-03", lib: "2026-08-21", z: 0.274, trend: false, gap: null, fair: 3.79, fairAsof: null, rebuilt: false, n: 9, c90: 1, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  ADNOCLS: { px: 6.85, pxDate: "2026-09-03", lib: "2026-08-07", z: 1.312, trend: true, gap: null, fair: 7.05, fairAsof: "2026-08-07", rebuilt: true, n: 8, c90: 0.875, flag: null, cap: null, stop: "superseded", why: "a rebuilt study supersedes the published fair value and has not published" },
+  AGTHIA: { px: 3.29, pxDate: "2026-09-03", lib: "2026-08-21", z: -0.796, trend: false, gap: null, fair: 4.37, fairAsof: null, rebuilt: false, n: 58, c90: 0.9655, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  AIRARABIA: { px: 4.97, pxDate: "2026-09-03", lib: "2026-08-07", z: 0.897, trend: true, gap: null, fair: 4.17, fairAsof: "2026-08-07", rebuilt: true, n: 58, c90: 0.8621, flag: null, cap: null, stop: "superseded", why: "a rebuilt study supersedes the published fair value and has not published" },
+  ALDAR: { px: 7.6, pxDate: "2026-09-03", lib: "2026-08-21", z: -1.43, trend: false, gap: null, fair: 10.18, fairAsof: null, rebuilt: false, n: 58, c90: 0.8966, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  ALINMA: { px: 25, pxDate: "2026-09-03", lib: "2026-08-31", z: 0.7, trend: true, gap: null, fair: 27.32, fairAsof: null, rebuilt: false, n: 58, c90: 0.8621, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  ALPHADHABI: { px: 7.3, pxDate: "2026-09-03", lib: "2026-08-21", z: -1.342, trend: false, gap: null, fair: 7.13, fairAsof: null, rebuilt: false, n: 16, c90: 1, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  ALRAJHI: { px: 66.2, pxDate: "2026-09-03", lib: "2026-08-31", z: 0.077, trend: false, gap: null, fair: 70, fairAsof: null, rebuilt: false, n: 58, c90: 0.8621, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  AMOC: { px: 13.54, pxDate: "2026-09-06", lib: "2026-09-06", z: -1.031, trend: true, gap: null, fair: 5.95, fairAsof: "2026-08-06", rebuilt: true, n: 57, c90: 0.8947, flag: null, cap: null, stop: "superseded", why: "a rebuilt study supersedes the published fair value and has not published" },
+  AMR: { px: 2.39, pxDate: "2026-09-03", lib: "2026-08-07", z: 1.387, trend: true, gap: null, fair: 2.15, fairAsof: "2026-08-07", rebuilt: true, n: 10, c90: 1, flag: null, cap: null, stop: "superseded", why: "a rebuilt study supersedes the published fair value and has not published" },
+  ARAMCO: { px: 26.02, pxDate: "2026-09-03", lib: "2026-08-31", z: 0.404, trend: false, gap: null, fair: 25.04, fairAsof: null, rebuilt: false, n: 22, c90: 0.9091, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  ARCC: { px: 77, pxDate: "2026-09-03", lib: "2026-08-06", z: -0.387, trend: true, gap: null, fair: 54.65, fairAsof: "2026-06-30", rebuilt: true, n: 44, c90: 0.9318, flag: null, cap: null, stop: "superseded", why: "a rebuilt study supersedes the published fair value and has not published" },
+  BOROUGE: { px: 2.35, pxDate: "2026-09-03", lib: "2026-08-07", z: -0.146, trend: false, gap: null, fair: 1.48, fairAsof: "2026-08-07", rebuilt: true, n: 12, c90: 1, flag: null, cap: null, stop: "superseded", why: "a rebuilt study supersedes the published fair value and has not published" },
+  BTFH: { px: 3.02, pxDate: "2026-09-03", lib: "2026-08-23", z: -1.145, trend: false, gap: -0.0464, fair: 2.88, fairAsof: "2026-07-01", rebuilt: false, n: 56, c90: 0.8393, flag: null, cap: "full", stop: "gap", why: "inside 10% of the price either way \u2014 no candidate" },
+  BURJEEL: { px: 1.24, pxDate: "2026-09-03", lib: "2026-08-21", z: -0.124, trend: false, gap: null, fair: 1.85, fairAsof: null, rebuilt: false, n: 11, c90: 0.9091, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  CCAP: { px: 5.9, pxDate: "2026-09-03", lib: "2026-08-23", z: 0.515, trend: true, gap: null, fair: 5.89, fairAsof: null, rebuilt: false, n: 57, c90: 0.8421, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  CLHO: { px: 17.88, pxDate: "2026-09-03", lib: "2026-08-23", z: 0.312, trend: true, gap: -0.4849, fair: 9.21, fairAsof: "2026-07-12", rebuilt: false, n: 36, c90: 0.9722, flag: null, cap: "partial", stop: "gap", why: "sits more than 10% below the price \u2014 audited, not traded" },
+  COMI: { px: 138.98, pxDate: "2026-09-03", lib: "2026-09-01", z: -0.428, trend: true, gap: -0.1128, fair: 123.3, fairAsof: "2026-06-29", rebuilt: false, n: 57, c90: 0.9123, flag: null, cap: "full", stop: "gap", why: "sits more than 10% below the price \u2014 audited, not traded" },
+  DEWA: { px: 2.7, pxDate: "2026-09-03", lib: "2026-08-21", z: 0.069, trend: false, gap: null, fair: 3.32, fairAsof: null, rebuilt: false, n: 13, c90: 1, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  DIB: { px: 7.2, pxDate: "2026-09-03", lib: "2026-08-21", z: -0.766, trend: false, gap: null, fair: 10.18, fairAsof: null, rebuilt: false, n: 58, c90: 0.8621, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  DSCW: { px: 2.03, pxDate: "2026-09-02", lib: "2026-08-23", z: -0.793, trend: true, gap: -0.5665, fair: 0.88, fairAsof: "2026-07-19", rebuilt: false, n: 29, c90: 0.931, flag: null, cap: "partial", stop: "gap", why: "sits more than 10% below the price \u2014 audited, not traded" },
+  DU: { px: 11.36, pxDate: "2026-09-03", lib: "2026-08-07", z: 1.299, trend: true, gap: null, fair: 13.9, fairAsof: "2026-08-07", rebuilt: true, n: 58, c90: 0.9483, flag: null, cap: null, stop: "superseded", why: "a rebuilt study supersedes the published fair value and has not published" },
+  EAND: { px: 21.18, pxDate: "2026-09-03", lib: "2026-08-21", z: 0.784, trend: true, gap: null, fair: 22.72, fairAsof: null, rebuilt: false, n: 58, c90: 0.9138, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  EFID: { px: 30.79, pxDate: "2026-09-03", lib: "2026-08-23", z: -0.122, trend: true, gap: -0.101, fair: 27.68, fairAsof: "2026-07-01", rebuilt: false, n: 40, c90: 0.95, flag: null, cap: "full", stop: "gap", why: "sits more than 10% below the price \u2014 audited, not traded" },
+  EFIH: { px: 22.97, pxDate: "2026-09-03", lib: "2026-08-23", z: -0.152, trend: true, gap: -0.3835, fair: 14.16, fairAsof: "2026-07-01", rebuilt: false, n: 15, c90: 1, flag: null, cap: "thin record", stop: "gap", why: "sits more than 10% below the price \u2014 audited, not traded" },
+  EGAL: { px: 381, pxDate: "2026-09-03", lib: "2026-08-23", z: -0.406, trend: true, gap: -0.3438, fair: 250, fairAsof: "2026-07-01", rebuilt: false, n: 57, c90: 0.9123, flag: null, cap: "full", stop: "gap", why: "sits more than 10% below the price \u2014 audited, not traded" },
+  EGCH: { px: 14.41, pxDate: "2026-09-03", lib: "2026-08-06", z: -0.9, trend: true, gap: null, fair: 3.64, fairAsof: "2026-08-06", rebuilt: true, n: 57, c90: 0.9474, flag: null, cap: null, stop: "superseded", why: "a rebuilt study supersedes the published fair value and has not published" },
+  ELEC: { px: 2.08, pxDate: "2026-09-03", lib: "2026-08-05", z: -1.539, trend: false, gap: null, fair: 0.34, fairAsof: "2026-08-05", rebuilt: true, n: 57, c90: 0.9298, flag: null, cap: null, stop: "superseded", why: "a rebuilt study supersedes the published fair value and has not published" },
+  ELM: { px: 608.5, pxDate: "2026-09-03", lib: "2026-08-31", z: -0.076, trend: false, gap: null, fair: 620, fairAsof: null, rebuilt: false, n: 13, c90: 0.6923, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  EMAAR: { px: 10.8, pxDate: "2026-09-03", lib: "2026-08-27", z: -1.488, trend: false, gap: null, fair: 14.8, fairAsof: null, rebuilt: false, n: 58, c90: 0.7931, flag: "narrow", cap: null, stop: "inputs", why: "fair value undated" },
+  EMAARDEV: { px: 13.38, pxDate: "2026-09-03", lib: "2026-08-27", z: -1.199, trend: false, gap: null, fair: 17.29, fairAsof: null, rebuilt: false, n: 30, c90: 0.9333, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  EMFD: { px: 13.8, pxDate: "2026-09-03", lib: "2026-09-01", z: -0.289, trend: true, gap: 0.4377, fair: 19.84, fairAsof: "2026-06-17", rebuilt: false, n: 40, c90: 0.975, flag: null, cap: "full", stop: "lenses", why: "momentum call is down" },
+  EMPOWER: { px: 1.57, pxDate: "2026-09-03", lib: "2026-08-07", z: -0.156, trend: false, gap: null, fair: 1.84, fairAsof: "2026-08-07", rebuilt: true, n: 10, c90: 1, flag: null, cap: null, stop: "superseded", why: "a rebuilt study supersedes the published fair value and has not published" },
+  ENBD: { px: 30.28, pxDate: "2026-09-03", lib: "2026-08-27", z: 0.64, trend: true, gap: null, fair: 32.3, fairAsof: null, rebuilt: false, n: 57, c90: 0.9123, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  ETEL: { px: 115, pxDate: "2026-09-03", lib: "2026-08-23", z: 0.655, trend: true, gap: 0.0261, fair: 118, fairAsof: "2026-07-01", rebuilt: false, n: 57, c90: 0.9825, flag: "wide", cap: "full", stop: "gap", why: "inside 10% of the price either way \u2014 no candidate" },
+  EXTRA: { px: 66.05, pxDate: "2026-09-03", lib: "2026-08-31", z: -1.445, trend: false, gap: null, fair: 81, fairAsof: null, rebuilt: false, n: 54, c90: 0.8519, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  FAB: { px: 19.4, pxDate: "2026-09-03", lib: "2026-08-27", z: 0.846, trend: true, gap: null, fair: 19.9, fairAsof: null, rebuilt: false, n: 58, c90: 0.931, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  FERTIGLB: { px: 2.67, pxDate: "2026-09-03", lib: "2026-08-07", z: 0.589, trend: false, gap: -0.1948, fair: 2.15, fairAsof: "2026-08-07", rebuilt: false, n: 14, c90: 1, flag: null, cap: "thin record", stop: "gap", why: "sits more than 10% below the price \u2014 audited, not traded" },
+  FWRY: { px: 18.95, pxDate: "2026-09-03", lib: "2026-08-23", z: -0.66, trend: true, gap: -0.2243, fair: 14.7, fairAsof: "2026-07-01", rebuilt: false, n: 23, c90: 1, flag: null, cap: "partial", stop: "gap", why: "sits more than 10% below the price \u2014 audited, not traded" },
+  GBCO: { px: 28.98, pxDate: "2026-09-03", lib: "2026-08-23", z: -0.702, trend: true, gap: 0.2319, fair: 35.7, fairAsof: "2026-07-07", rebuilt: false, n: 57, c90: 0.9474, flag: null, cap: "full", stop: "lenses", why: "momentum call is down" },
+  HELI: { px: 8.1, pxDate: "2026-09-03", lib: "2026-08-23", z: 1.303, trend: true, gap: 0.037, fair: 8.4, fairAsof: "2026-07-01", rebuilt: false, n: 57, c90: 0.9123, flag: null, cap: "full", stop: "gap", why: "inside 10% of the price either way \u2014 no candidate" },
+  HRHO: { px: 25.7, pxDate: "2026-09-03", lib: "2026-08-23", z: -1.166, trend: false, gap: 0.0778, fair: 27.7, fairAsof: "2026-07-01", rebuilt: false, n: 57, c90: 0.9298, flag: null, cap: "full", stop: "gap", why: "inside 10% of the price either way \u2014 no candidate" },
+  IHC: { px: 369, pxDate: "2026-09-03", lib: "2026-08-31", z: 0.116, trend: false, gap: null, fair: 104.5, fairAsof: null, rebuilt: false, n: 47, c90: 0.8511, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  INFY: { px: 1132.5, pxDate: "2026-09-03", lib: "2026-09-01", z: -0.902, trend: false, gap: null, fair: 1242, fairAsof: null, rebuilt: false, n: 58, c90: 0.8966, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  IQCD: { px: 13.17, pxDate: "2026-09-03", lib: "2026-09-01", z: -1.08, trend: false, gap: null, fair: 10.9, fairAsof: null, rebuilt: false, n: 58, c90: 0.8966, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  ISPH: { px: 12.95, pxDate: "2026-09-03", lib: "2026-08-23", z: -0.5, trend: true, gap: 0.373, fair: 17.78, fairAsof: "2026-07-07", rebuilt: false, n: 30, c90: 0.7667, flag: "narrow", cap: "reduced", stop: "lenses", why: "momentum call is down" },
+  JUFO: { px: 27.06, pxDate: "2026-09-03", lib: "2026-08-23", z: -0.234, trend: true, gap: -0.0392, fair: 26, fairAsof: "2026-07-01", rebuilt: false, n: 57, c90: 0.9474, flag: null, cap: "full", stop: "gap", why: "inside 10% of the price either way \u2014 no candidate" },
+  KABO: { px: 34.06, pxDate: "2026-09-03", lib: "2026-08-23", z: 0.018, trend: true, gap: -0.9298, fair: 2.39, fairAsof: "2026-07-06", rebuilt: false, n: 57, c90: 0.9474, flag: null, cap: "full", stop: "gap", why: "sits more than 10% below the price \u2014 audited, not traded" },
+  KAKAO: { px: 35100, pxDate: "2026-09-03", lib: "2026-09-01", z: -0.733, trend: false, gap: null, fair: 34258, fairAsof: null, rebuilt: false, n: null, c90: null, flag: null, cap: null, stop: "inputs", why: "fair value undated; no band record" },
+  LCSW: { px: 36, pxDate: "2026-09-02", lib: "2026-08-23", z: -0.332, trend: true, gap: 0.0278, fair: 37, fairAsof: "2026-07-06", rebuilt: false, n: 57, c90: 0.9123, flag: null, cap: "full", stop: "gap", why: "inside 10% of the price either way \u2014 no candidate" },
+  LGES: { px: 364000, pxDate: "2026-09-03", lib: "2026-09-01", z: -0.403, trend: false, gap: null, fair: 248000, fairAsof: null, rebuilt: false, n: 14, c90: 0.9286, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  LULU: { px: 0.94, pxDate: "2026-09-03", lib: "2026-08-27", z: -0.661, trend: false, gap: null, fair: 1.28, fairAsof: null, rebuilt: false, n: 2, c90: 1, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  MAADEN: { px: 65.7, pxDate: "2026-09-03", lib: "2026-08-31", z: -0.179, trend: true, gap: null, fair: 42, fairAsof: null, rebuilt: false, n: 58, c90: 0.8793, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  MODON: { px: 2.83, pxDate: "2026-09-03", lib: "2026-08-07", z: -0.838, trend: false, gap: null, fair: 2.5, fairAsof: "2026-08-07", rebuilt: true, n: 23, c90: 0.8696, flag: null, cap: null, stop: "superseded", why: "a rebuilt study supersedes the published fair value and has not published" },
+  NVDA: { px: 217.11, pxDate: "2026-09-03", lib: "2026-08-31", z: 0.255, trend: true, gap: null, fair: 204, fairAsof: null, rebuilt: false, n: 58, c90: 0.8621, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  OCDI: { px: 33.52, pxDate: "2026-09-02", lib: "2026-09-01", z: 1.059, trend: true, gap: -0.2115, fair: 26.43, fairAsof: "2026-06-23", rebuilt: false, n: 57, c90: 0.9474, flag: null, cap: "full", stop: "gap", why: "sits more than 10% below the price \u2014 audited, not traded" },
+  OIH: { px: 2.01, pxDate: "2026-09-03", lib: "2026-08-23", z: -0.137, trend: true, gap: -0.6119, fair: 0.78, fairAsof: "2026-07-01", rebuilt: false, n: 53, c90: 0.9623, flag: null, cap: "full", stop: "gap", why: "sits more than 10% below the price \u2014 audited, not traded" },
+  ORAS: { px: 831.5, pxDate: "2026-09-03", lib: "2026-08-23", z: 0.582, trend: true, gap: 0.1161, fair: 928, fairAsof: "2026-06-30", rebuilt: false, n: 41, c90: 0.878, flag: null, cap: "full", stop: null, why: "clears every gate on the published numbers" },
+  ORHD: { px: 42, pxDate: "2026-09-03", lib: "2026-09-01", z: 1.04, trend: true, gap: 0.2807, fair: 53.79, fairAsof: "2026-06-24", rebuilt: false, n: 41, c90: 0.9268, flag: null, cap: "full", stop: null, why: "clears every gate on the published numbers" },
+  ORWE: { px: 26.76, pxDate: "2026-09-02", lib: "2026-08-23", z: -0.919, trend: true, gap: -0.219, fair: 20.9, fairAsof: "2026-07-01", rebuilt: false, n: 57, c90: 0.9123, flag: null, cap: "full", stop: "gap", why: "sits more than 10% below the price \u2014 audited, not traded" },
+  PHAR: { px: 127.3, pxDate: "2026-09-03", lib: "2026-08-06", z: 1.275, trend: true, gap: null, fair: 61.21, fairAsof: "2026-08-06", rebuilt: true, n: 56, c90: 1, flag: "wide", cap: null, stop: "superseded", why: "a rebuilt study supersedes the published fair value and has not published" },
+  PHDC: { px: 14.4, pxDate: "2026-09-03", lib: "2026-08-23", z: 1.174, trend: true, gap: null, fair: 15.89, fairAsof: "2026-06-11", rebuilt: true, n: 57, c90: 0.9123, flag: null, cap: null, stop: "superseded", why: "a rebuilt study supersedes the published fair value and has not published" },
+  PRDC: { px: 9.78, pxDate: "2026-09-03", lib: "2026-08-23", z: 2.847, trend: true, gap: -0.1585, fair: 8.23, fairAsof: "2026-07-06", rebuilt: false, n: 15, c90: 1, flag: null, cap: "thin record", stop: "gap", why: "sits more than 10% below the price \u2014 audited, not traded" },
+  QGTS: { px: 4.85, pxDate: "2026-09-03", lib: "2026-09-01", z: 0.185, trend: false, gap: null, fair: 4.29, fairAsof: null, rebuilt: false, n: 58, c90: 0.9483, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  QNB: { px: 16.66, pxDate: "2026-09-02", lib: "2026-08-05", z: 0.894, trend: false, gap: null, fair: 18.76, fairAsof: null, rebuilt: false, n: 58, c90: 0.9483, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  RAYA: { px: 7.15, pxDate: "2026-09-03", lib: "2026-08-23", z: 0.872, trend: true, gap: -0.2224, fair: 5.56, fairAsof: "2026-07-01", rebuilt: false, n: 57, c90: 0.9298, flag: null, cap: "full", stop: "gap", why: "sits more than 10% below the price \u2014 audited, not traded" },
+  RELIANCE: { px: 1308.8, pxDate: "2026-09-03", lib: "2026-09-01", z: 1.066, trend: false, gap: null, fair: 1395, fairAsof: null, rebuilt: false, n: 58, c90: 0.931, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  RIBL: { px: 20.48, pxDate: "2026-09-03", lib: "2026-08-31", z: 0.093, trend: true, gap: null, fair: 26.61, fairAsof: null, rebuilt: false, n: 58, c90: 0.7759, flag: "narrow", cap: null, stop: "inputs", why: "fair value undated" },
+  RIYADHCABLE: { px: 104.8, pxDate: "2026-09-03", lib: "2026-08-18", z: -1.115, trend: false, gap: null, fair: 109.35, fairAsof: "2026-08-18", rebuilt: true, n: 10, c90: 0.9, flag: null, cap: null, stop: "superseded", why: "a rebuilt study supersedes the published fair value and has not published" },
+  RMDA: { px: 5.91, pxDate: "2026-09-03", lib: "2026-08-23", z: 0.593, trend: true, gap: -0.5313, fair: 2.77, fairAsof: "2026-07-12", rebuilt: false, n: 22, c90: 0.9545, flag: null, cap: "partial", stop: "gap", why: "sits more than 10% below the price \u2014 audited, not traded" },
+  SABIC: { px: 81.4, pxDate: "2026-09-03", lib: "2026-09-01", z: -0.816, trend: false, gap: null, fair: 55.5, fairAsof: null, rebuilt: false, n: 58, c90: 0.9138, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  SALIK: { px: 5.4, pxDate: "2026-09-03", lib: "2026-08-27", z: -0.784, trend: false, gap: null, fair: 4.62, fairAsof: null, rebuilt: false, n: 11, c90: 1, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  SAMSUNG: { px: 250000, pxDate: "2026-09-03", lib: "2026-09-01", z: 1.136, trend: true, gap: null, fair: 296502, fairAsof: null, rebuilt: false, n: null, c90: null, flag: null, cap: null, stop: "inputs", why: "fair value undated; no band record" },
+  SAVOLA: { px: 30.3, pxDate: "2026-09-03", lib: "2026-08-18", z: 1.292, trend: false, gap: null, fair: 27.24, fairAsof: "2026-08-18", rebuilt: true, n: 58, c90: 0.9138, flag: null, cap: null, stop: "superseded", why: "a rebuilt study supersedes the published fair value and has not published" },
+  SCEM: { px: 100.5, pxDate: "2026-09-02", lib: "2026-08-06", z: -0.016, trend: true, gap: null, fair: 53.12, fairAsof: "2026-08-06", rebuilt: true, n: 57, c90: 0.9298, flag: null, cap: null, stop: "superseded", why: "a rebuilt study supersedes the published fair value and has not published" },
+  SNB: { px: 42.14, pxDate: "2026-09-03", lib: "2026-08-31", z: 0.234, trend: true, gap: null, fair: 45, fairAsof: null, rebuilt: false, n: 42, c90: 0.9286, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  STC: { px: 43.86, pxDate: "2026-09-03", lib: "2026-08-31", z: 0.353, trend: false, gap: null, fair: 47.11, fairAsof: null, rebuilt: true, n: 58, c90: 0.8793, flag: null, cap: null, stop: "inputs", why: "fair value undated" },
+  SWDY: { px: 90.5, pxDate: "2026-09-03", lib: "2026-08-05", z: -0.296, trend: true, gap: null, fair: 69.73, fairAsof: "2026-08-05", rebuilt: true, n: 57, c90: 0.9474, flag: null, cap: null, stop: "superseded", why: "a rebuilt study supersedes the published fair value and has not published" },
+  TMGH: { px: 96.6, pxDate: "2026-09-02", lib: "2026-08-23", z: 0.052, trend: true, gap: null, fair: 147.12, fairAsof: "2026-06-17", rebuilt: true, n: 57, c90: 0.9298, flag: null, cap: null, stop: "superseded", why: "a rebuilt study supersedes the published fair value and has not published" },
+  TMPV: { px: 310.1, pxDate: "2026-09-03", lib: "2026-09-01", z: -0.164, trend: false, gap: null, fair: 378, fairAsof: null, rebuilt: false, n: 58, c90: 0.8103, flag: "narrow", cap: null, stop: "inputs", why: "fair value undated" },
+  TSLA: { px: 367.95, pxDate: "2026-09-03", lib: "2026-09-01", z: -1.089, trend: false, gap: null, fair: 254, fairAsof: null, rebuilt: false, n: 58, c90: 0.8448, flag: null, cap: null, stop: "inputs", why: "fair value undated" }
+};
+// ==== END SCREEN ====

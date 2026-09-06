@@ -82,6 +82,12 @@
      "when": "2026-09-06",
      "outcome": "ARRIVED FOR AMOC AND FOR AMOC ONLY. 3,848 rows to 2026-09-06. Every CLOSE matches the held library to the 4th decimal over all 71 unadjusted-era overlapping sessions, so the 20 new sessions were spliced and AMOC's matured 1-month row graded. The file is a TradingView TOTAL-RETURN export, so the pre-2026-04-20 overlap is a dividend staircase and was NOT spliced; and its OPEN is the prior close on 70 of 70 sessions, which is a vendor convention and not this stock (the library's own real opens do it on 8 of 70). See the companion entry AMOC-real-open-ohlc-export. ARCC and EGCH are still unanswered, so this entry stays open.",
      "rerun": false
+    },
+    {
+     "route": "the principal's own vendor export, supplied in chat 06-09-2026 (EGX_ARCC_1D.csv)",
+     "when": "2026-09-06",
+     "outcome": "ARRIVED FOR ARCC. Twenty sessions after the library's own 06-08-2026 end were spliced to 2026-09-06 (76.60) and ARCC's matured 1-month cohort graded. THE HISTORICAL PORTION WAS NOT TAKEN: the export is back-adjusted (2014 closes 0.46x the library's, early-2026 0.91x, the ratio a step function of past distributions) against an unadjusted library, so splicing it wholesale would have back-adjusted twelve years of a calibration panel. One overlapping date disagreed and the library's own figure was kept: 15-07-2026, library 54.33 against the export's 54.48.",
+     "rerun": false
     }
    ],
    "refs_searched": 22,
@@ -356,12 +362,18 @@
      "when": "2026-09-06",
      "outcome": "Yahoo answers but its EGX mirror is frozen at 2024-07-23 (regularMarketPrice 9.08); stooq is JS-walled at the proxy, the same refusal the AMR critique response recorded. Neither yields a real-open series.",
      "rerun": true
+    },
+    {
+     "route": "the unattended pipeline's own commit, 4f1a6916 on main",
+     "when": "2026-09-06",
+     "outcome": "THE HOLD WAS OVERTAKEN BY AUTOMATION AND THIS IS RECORDED RATHER THAN DISCOVERED LATER. Merging the library fired the calibration workflow, whose mid-cycle pass refreshed spot/dist/touch/asof for the whole book — so the cone testahil.com now serves for AMOC IS built on the synthetic-open bars (spot 13.54, 1M p5 11.24 / p95 16.78) and is on this entry's own measurement 13-19% narrower than the name's bar structure supports. The PERMANENT record is intact: that pass strikes no LEDGER row, AMOC still carries only its cycle-1 pair, and the 06-Sep grade stands on exact closes.",
+     "rerun": true
     }
    ],
    "refs_searched": 241,
    "why_only_the_principal": "The OHLC libraries have always come from the principal's own vendor export, and the Investing.com-format file is the shape they already send — EG/EMFD.csv, supplied the same way, reaches 2026-09-01 with real opens. No route out of this container produces one, and an open cannot be derived from a close without inventing it.",
    "done_meanwhile": "The 20 new sessions were spliced (closes exact), Step 0.0 passed, the whole ledger was swept and AMOC's matured 1-month cohort graded — the grade window's running max (14.13, 2026-09-02) and min (9.03, 2026-08-09) both fall on bars where the synthetic open does not bind, so the grade is uncontaminated. The materiality gate came back NOT MATERIAL on all nine markets: the new bars are too recent to be resolved 3-month window origins, so they do not reach the pooled EG fit at all. A grade_ledger writer bug that refused the twelve first-coverage rows was fixed.",
-   "default_if_no_answer": "AMOC's cohort is NOT struck on the synthetic-open bars. Measured two independent ways, they understate the origin variance enough to publish a 90% band 16-19% too narrow (close-to-close route) or 13-16% (open-free Parkinson route) — past [R-CAL-01]'s own 5% materiality line, and a LEDGER row is permanent. The cone therefore stays at its 2026-08-06 strike, the divergence between asof.mc.data and the library is REPORTED rather than reconciled, and the cohort is struck the moment a real-open export arrives. Nothing publishes either way: [R-GAP-02] independently HOLDS AMOC at -15.8%.",
+   "default_if_no_answer": "AMOC's cohort is NOT struck on the synthetic-open bars. Measured two independent ways, they understate the origin variance enough to publish a 90% band 16-19% too narrow (close-to-close route) or 13-16% (open-free Parkinson route) — past [R-CAL-01]'s own 5% materiality line, and a LEDGER row is permanent. The cone therefore stays at its 2026-08-06 strike, the divergence between asof.mc.data and the library is REPORTED rather than reconciled, and the cohort is struck the moment a real-open export arrives. Nothing publishes either way: [R-GAP-02] independently HOLDS AMOC at -15.8%. NOT REVERTED, deliberately: rolling dist back would republish a cone anchored on the 6-August close of 9.10 against a market at 13.54, which is a larger and more visible error than a band that is too tight. dist is rewritten at every pass, so a real-open export fixes it in one run — but until one arrives the LIVE cone is too narrow and nothing on the page says so.",
    "default_date": "2026-09-13",
    "status": "open",
    "resolves_when": {
@@ -399,6 +411,12 @@
      "when": "2026-09-06",
      "outcome": "Yahoo's EGX mirror is frozen in 2024 and stooq is JS-walled at the proxy; neither yields a vendor-format series.",
      "rerun": false
+    },
+    {
+     "route": "every live ref again, after the merge of #377",
+     "when": "2026-09-06",
+     "outcome": "ANSWERED. origin/claude/roll-forward-egx-metals-fy8dha carries EGCH to 09/06/2026. That branch did not exist when this entry was written minutes earlier, and the gate found the marker on it before anyone read it in a conversation.",
+     "rerun": true
     }
    ],
    "refs_searched": 242,
@@ -406,12 +424,108 @@
    "done_meanwhile": "AMOC was rolled forward and its matured 1-month cohort graded; ARCC was answered on a sibling branch. EGCH's own matured 1-month row is reported BLOCKED by the sweep with its reason rather than graded early or quietly skipped.",
    "default_if_no_answer": "EGCH stays on the 6 August library and every gap quoted against it names that date, exactly as the closed entry's default said. It is not graded early and no price is typed into the library from a chat message.",
    "default_date": "2026-09-13",
-   "status": "open",
+   "status": "resolved",
    "resolves_when": {
     "file": "engine/raw_ohlc/EG/EGCH.csv",
     "must_contain": "09/01/2026"
    },
-   "resolves_when_note": "The 1 September 2026 session — a real EGX trading day that a refreshed export must carry and that the held file, ending 08/06/2026, cannot contain."
+   "resolves_when_note": "The 1 September 2026 session — a real EGX trading day that a refreshed export must carry and that the held file, ending 08/06/2026, cannot contain.",
+   "resolved": "2026-09-06",
+   "answer_written_to": "engine/raw_ohlc/EG/EGCH.csv on origin/claude/roll-forward-egx-metals-fy8dha, to 06-09-2026.",
+   "note": "OPEN FOR ELEVEN MINUTES. Written after EGX-ohlc-refresh-arcc-amoc-egch was closed on two names, and answered on a THIRD session's branch before its own CI run finished — three sessions refreshed three EGX names in one hour on three branches, and no single checkout could see more than its own. THE REPOSITORY IS NOT ONE REF, and the value of the clause is that it re-checks EVERY live ref on EVERY run rather than at the moment somebody happens to look: this entry was correct when written and stale before it was first read."
+  },
+  {
+   "key": "OHLC-refresh-qnb",
+   "opened": "2026-09-06",
+   "cls": "missing_data",
+   "question": "A fresh OHLC export for QNB (QSE) — the only covered name whose library reaches nowhere near its stored grade date on ANY live ref. Its newest anywhere is 06-08-2026, against a 06-09-2026 grade date on a matured 1-month row that therefore cannot be graded, and a month past is far outside [R-GRADE-01]'s 7-day early-grade bound.",
+   "routes": [
+    {
+     "route": "the persistent libraries themselves, engine/raw_ohlc/*/*.csv, read newest-first",
+     "when": "2026-09-06",
+     "outcome": "read file by file, not from a manifest: AMOC/EGCH/SCEM/PHAR end 06-08-2026, SWDY/QNB 05-08-2026, Silver 03-08-2026. The ARCC export supplied today covers ARCC alone.",
+     "rerun": true
+    },
+    {
+     "route": "scripts/sweep_ledger.py --today 2026-09-06, the grader's own blocked list",
+     "when": "2026-09-06",
+     "outcome": "8 matured rows blocked, every one for the same reason and each named with it. All eight are a month past their grade date, so the 7-day early-grade bound of [R-GRADE-01] cannot reach any of them either — early grading is not a route here.",
+     "rerun": true
+    },
+    {
+     "route": "every free web route to EGX/Tadawul/QSE closes, re-run as recorded on 03-09-2026",
+     "when": "2026-09-06",
+     "outcome": "the same proxy refusals; and a series assembled from a rendered page is not the vendor format the libraries and Step 0.0 expect.",
+     "rerun": true
+    },
+    {
+     "route": "EVERY live ref searched for a fresher library, name by name, per [R-IND-01]'s 'the repository is not one ref' clause — not this checkout alone",
+     "when": "2026-09-06",
+     "outcome": "THIS CORRECTED THE ENTRY AND THE ENTRY WAS WRONG AS FIRST WRITTEN. It named eight stale names from a single checkout; six of them were already supplied on sibling branches, each mid roll-forward: AMOC, SCEM, PHAR, SWDY and ELEC all reach 06-09-2026, and Silver reaches 04-09-2026, past its own 03-09 grade date. Only EGCH and QNB survive the search. The gate refused the entry on exactly this ground and named the branch — the clause did its job on the person writing the register, which is the second time in one session.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 22,
+   "why_only_the_principal": "The OHLC libraries come from the principal's own vendor export and always have. No route available in this container produces one, and a price typed from a chat message is not a vendor export — it would enter a calibration panel as one.",
+   "done_meanwhile": "ARCC was rolled forward end to end on the export that did arrive. Every other name once listed here needs nothing from the principal — their own sessions hold the exports and will grade their own rows.",
+   "narrowed_twice": "THIS ENTRY HAS BEEN NARROWED TWICE BY ITS OWN GATE AND THE SECOND TIME IT WENT RED IN CI. Written naming eight stale names read from one checkout; the gate cut it to two by finding six on sibling branches; then the CI run on the very commit that made this register CI-visible cut it to one, because EGCH's export had landed on origin/claude/roll-forward-egx-metals-fy8dha in the minutes between. THE LESSON IS ABOUT LATENCY, NOT CARE: with many sessions landing exports on their own branches, 'not supplied' is a claim with a shelf life of minutes, and no amount of diligence at the moment of writing makes it durable. Only a checker that re-runs the search on every build can hold it — which is exactly why [R-IND-01] puts the resolving condition in the register rather than trusting the author, and why the engine/*.json trigger glob added in the same commit matters: before it, this register could go stale in CI without CI ever running.",
+   "default_if_no_answer": "Leave the QNB row OPEN and ungraded — it is a calendar commitment and grades on its own date whenever its close lands. It is a month past that date, so [R-GRADE-01]'s 7-day early-grade bound cannot reach it. Quote the library's own end date wherever QNB's price or gap is quoted; never interpolate a close.",
+   "default_date": "2026-10-06",
+   "status": "resolved",
+   "resolved": "2026-09-06",
+   "answer_written_to": "engine/raw_ohlc/QA/QNB.csv",
+   "note": "CLOSED WITHOUT EVER REACHING THE PRINCIPAL, WHICH IS THE OUTCOME THIS RULE IS FOR. Every name it named turned out to be supplied on some sibling branch: AMOC, SCEM, PHAR, SWDY, ELEC and Silver at the first narrowing, EGCH at the second, and QNB — the last one standing, and the whole reason the entry still existed — on the third, its export landing on origin/claude/qatar-exchange-rollforward-vxwvsz in the minutes between the check that named it and the check that closed it. THE ENTRY WAS NEVER ASKED AND NOTHING WAS OWED. Had it been sent, it would have spent the principal's time on eight exports they had already supplied, which is precisely the failure [R-IND-01] was adopted on.",
+   "resolves_when": {
+    "file": "engine/raw_ohlc/QA/QNB.csv",
+    "must_contain": "09/01/2026"
+   }
+  },
+  {
+   "key": "ARCC-publication-held-by-R-GAP-02",
+   "opened": "2026-09-06",
+   "cls": "instruction",
+   "question": "ARCC was rolled forward and verified but MAY NOT PUBLISH. [R-GAP-02] holds it twice over: the study's central of 66.53 sits 13.1% BELOW the 06-09-2026 close of 76.60, past the 10% limit with no market dissent filed; and clause three's second condition, Phase 1 method proof, is not met. Which release does the principal want — a study rebuild to close the gap, a market dissent, or does ARCC stay held?",
+   "routes": [
+    {
+     "route": "scripts/check_publish_block.py --ticker ARCC, and book-wide",
+     "when": "2026-09-06",
+     "outcome": "ARCC HELD on the gap at -13.1%. Book-wide: 0 may publish, 11 held on the gap, 11 held on the method, 2 unreadable — which is the cost [R-GAP-02] clause three states in advance ('ON ADOPTION THIS HOLDS EVERY STUDY IN THE BOOK'), not a fault introduced here.",
+     "rerun": true
+    },
+    {
+     "route": "every live ref searched for an existing MARKET_DISSENT, for any name",
+     "when": "2026-09-06",
+     "outcome": "git ls-tree over all 22 live refs: none exists anywhere in the repository. The release [R-GAP-02] provides has never been exercised.",
+     "rerun": true
+    },
+    {
+     "route": "engine/method_reassessment/progress.acceptance(), the programme's own record",
+     "when": "2026-09-06",
+     "outcome": "criteria 1, 2, 5 and 6 MET; #3 (the valuation calibration's pooled bias CI including zero) RUNNING and #4 NOT MET. #3 cannot mature until the first vintages resolve, so no amount of work in this session closes it.",
+     "rerun": true
+    },
+    {
+     "route": "diffed what a READER actually sees, this branch against origin/main, through a real JS parse",
+     "when": "2026-09-06",
+     "outcome": "fair{bear,base,full} is UNCHANGED at 49.53/54.65/61.71 — the held claim does not move one inch in this change. What moves is spot (59.00 -> 76.60), the cone, the technical read and one graded row. AND THE LIVE PAGE IS CURRENTLY DEFECTIVE BY THIS PROJECT'S OWN STANDING RULE: testahil.com carries an ARCC spot of 59.00 dated 6 August against a traded 76.60, a 1-month cone whose window expired on 06-09-2026, and three published resistances (60.34 / 62.00 / 63.00) ALL BELOW the actual price — which is the exact shape of the 29-Jul-2026 COMI defect the technicals rule was written to close. Holding this merge leaves that up; merging fixes it without advancing the held valuation.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 22,
+   "why_only_the_principal": "Both releases are the principal's and neither is available to this session. Closing the gap means rebuilding the valuation, which this task's own scope line puts behind STOP AND ASK. Filing a market dissent needs irrefutable evidence the market is wrong, and [R-GAP-02] states that a reverse read landing on a believable number is evidence AGAINST the dissent — ARCC's price rose 30% on heavy volume into a limit-up on 11-08-2026, which is an ordinary re-rating, not a hallucination. Writing a dissent here would be manufacturing the release rather than earning it.",
+   "done_meanwhile": "The whole roll-forward was completed and is on the branch: library splice, Step 0.0, the EG materiality gate, the grade, cycle 2, technicals, chart, band record, CALIB, backtest figure and the cache-buster. [R-GAP-02] exempts internal work in terms, so none of that waited on this.",
+   "default_if_no_answer": "ARCC stays HELD and unpublished; the roll-forward stays on its branch and in PR #374, green on all three CI workflows. The gate is re-read at the next roll-forward, when the gap may have closed on its own — the price moved 30% in a month and the central did not move at all. THE COST OF THIS DEFAULT IS STATED RATHER THAN DISCOVERED LATER: the live ARCC page stays a month stale, with an expired cone and a resistance ladder entirely below spot.",
+   "default_date": "2026-10-06",
+   "status": "resolved",
+   "resolved": "2026-09-06",
+   "answer_written_to": "engine/arcc_study/PUBLICATION_RULING.md",
+   "note": "RULED ON BY THE PRINCIPAL, 6 September 2026: MERGE AND PUBLISH this roll-forward. The ruling covers the 6-September cone, grade, technical read and calibration record ONLY — it is not a release of the study, not a finding about the gap, and NOT A PRECEDENT for another name or a later edition. The block was not routed around: publish_site.py still refuses ARCC at step 0/6 and should, and no dissent was manufactured to clear it. What made the ruling askable in one line is that fair{} does not move in this change, so the quantity [R-GAP-02] holds is untouched, while the live page carried a month-stale spot, an expired cone and three resistances below the traded price.",
+   "resolves_when": {
+    "file": "engine/arcc_study/PUBLICATION_RULING.md",
+    "must_contain": "PUBLICATION RULED ON"
+   },
+   "resolves_when_note": "The first marker written here named a string inside THIS file and the gate refused it in the same minute — the identical trap the EG-sovereign entry records against itself. A marker has to live somewhere the answer lands, not somewhere the question is stored.",
+   "recommendation": "MERGE, on the principal's word. [R-GAP-02] exempts merging to main in terms; the quantity it holds does not move; the change strictly improves the live page. It was NOT taken unilaterally for one reason: the command the instruction named, `publish_site.py --ticker ARCC --ship --republish`, REFUSES at step 0/6 for this ticker, and routing around the tool the instruction named is not following the instruction."
   }
  ]
 }
