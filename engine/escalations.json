@@ -89,12 +89,15 @@
    "done_meanwhile": "The gap gate was re-pointed at the latest known price per its own rule text rather than at the spot each study froze at strike, and it now prints the age of the library it compared against, so a stale comparison reports as stale instead of passing in silence. The finding on ARCC and AMOC is recorded with its arithmetic. 06-09-2026: AMOC's library now reaches 2026-09-06 (13.54) and its matured 1-month cohort is graded — the first EGX name off this block.",
    "default_if_no_answer": "Continue on the 6-August library and state its date wherever a gap is quoted; do NOT type the supplied prices into the library, and do not audit ARCC or AMOC at a price the house cannot date.",
    "default_date": "2026-09-10",
-   "status": "open",
+   "status": "resolved",
    "resolves_when": {
     "file": "engine/raw_ohlc/EG/ARCC.csv",
     "must_contain": "09/01/2026"
    },
-   "resolves_when_note": "the 1 September 2026 session, the date the principal's own quoted price carries. The first marker written here was '/2026', which the file already contained — the gate refused it immediately, which is the clause this register exists for working on the person writing the register."
+   "resolves_when_note": "the 1 September 2026 session, the date the principal's own quoted price carries. The first marker written here was '/2026', which the file already contained — the gate refused it immediately, which is the clause this register exists for working on the person writing the register.",
+   "resolved": "2026-09-06",
+   "answer_written_to": "engine/raw_ohlc/EG/AMOC.csv (this branch, to 06-09-2026) and engine/raw_ohlc/EG/ARCC.csv (origin/claude/roll-forward-metals-publish-anp14k, to 06-09-2026). EGCH is re-asked on its own at EGCH-ohlc-refresh.",
+   "note": "CLOSED BY THE GATE, WHICH IS THE CLAUSE WORKING. Two of the three names were answered on two different branches and this entry went on asking for all three: AMOC arrived here on 06-09-2026 and ARCC on a sibling session's branch, and check_escalations found the ARCC marker on that live ref before anybody read it in a conversation. THE REPOSITORY IS NOT ONE REF. A three-name entry cannot be half-closed, so it is closed and the one name still outstanding is re-asked narrowly — an entry that keeps asking for what has arrived is the re-ask this register exists to stop."
   },
   {
    "key": "ELEC-primary-financial-statements",
@@ -260,13 +263,14 @@
    "done_meanwhile": "The other four names on the retired terminal construction were all re-tested and closed out with their reasons written into their own study directories (ADNOCLS, ADNOCDIST, BOROUGE, AMR), the valuation-gap gate's dead exemption block was found and enforced, and the seven studies unreadable to that gate were diagnosed into three groups with different fixes. AMOC's own arithmetic is recorded in its evidence file so the rebuild is one sentence away rather than a fresh start: depreciable gross cost 2,665,058,507 over an annualised charge of 135,494,744 gives an implied life of 19.67 years, and accumulated depreciation of 1,847,794,418 over the same charge gives a naive age of 13.64 against a half-life of 9.83.",
    "default_if_no_answer": "AMOC stays on the terminal ratchet with its reason, exactly as ADNOCLS and the other three do. It is NOT rebuilt on the naive age even though the error direction would be safe — an overstated age overstates maintenance and understates the value — because [L-328] already records a name where that argument was made and the figure was withdrawn anyway.",
    "default_date": "2026-09-12",
-   "status": "open",
+   "status": "resolved",
    "resolves_when": {
     "file": "engine/amoc_study/filings/AUDITED_EXTRACT.md",
     "must_contain": "DEPRECIATION POLICY NOTE RECEIVED"
    },
-   "answer_written_to": "engine/amoc_study/TERMINAL_EVIDENCE_05-09-2026.md",
-   "note": "The ARCC precedent is the pattern: the company's own site refused at the proxy, the attempt was logged either way, and the principal supplying the document IS the rule working rather than a failure of it."
+   "answer_written_to": "engine/amoc_study/TERMINAL_EVIDENCE_06-09-2026.md",
+   "note": "The ARCC precedent is the pattern: the company's own site refused at the proxy, the attempt was logged either way, and the principal supplying the document IS the rule working rather than a failure of it. CLOSED HERE BY PORTING THE ADJUDICATION FROM origin/claude/arcc-fundamental-calibration-ebhtjk, which holds the answer: that session obtained the filings, wrote DEPRECIATION POLICY NOTE RECEIVED into engine/amoc_study/filings/AUDITED_EXTRACT.md and recorded the reasoning in engine/amoc_study/TERMINAL_EVIDENCE_06-09-2026.md. Only the status, the resolved date and the answer_written_to are carried across — none of that branch's study rebuild is pulled into a roll-forward, and this closure no-ops the moment that branch merges. It is closed rather than left red because [R-IND-01] is explicit that an entry whose marker is already present on a live ref must not go on asking; the marker is on that ref, not on this one, and THE REPOSITORY IS NOT ONE REF.",
+   "resolved": "2026-09-06"
   },
   {
    "key": "GBCO-audited-statements-not-reachable-from-this-container",
@@ -365,6 +369,49 @@
     "must_contain": "REAL-OPEN EXPORT RECEIVED"
    },
    "resolves_when_note": "The marker goes in a comment line at the top of the library when a real-open export replaces the 20 synthetic-open sessions. A date marker would not do: the file ALREADY contains 09/06/2026, and the register's own history records a first marker refused for exactly that reason."
+  },
+  {
+   "key": "EGCH-ohlc-refresh",
+   "opened": "2026-09-06",
+   "cls": "missing_data",
+   "question": "A fresh OHLC export for EGCH, the last EGX name from the 03-09-2026 ask still on the 6 August library. ARCC and AMOC are both answered; EGCH is not, so [R-GAP-01] is still auditing it against a month-old price.",
+   "routes": [
+    {
+     "route": "engine/raw_ohlc/EG/EGCH.csv, read newest-first in this checkout",
+     "when": "2026-09-06",
+     "outcome": "stops at 08/06/2026. Read from the file, not a manifest.",
+     "rerun": true
+    },
+    {
+     "route": "every live ref, for any EGCH library reaching past 2026-08-06",
+     "when": "2026-09-06",
+     "outcome": "none — including origin/claude/roll-forward-metals-publish-anp14k, which carries a refreshed ARCC and leaves EGCH at 08/06/2026.",
+     "rerun": true
+    },
+    {
+     "route": "the 06-09-2026 upload itself",
+     "when": "2026-09-06",
+     "outcome": "one file, AMOC only. It resolves nothing for EGCH.",
+     "rerun": false
+    },
+    {
+     "route": "live external price sources (Yahoo, stooq), as recorded for AMOC the same day",
+     "when": "2026-09-06",
+     "outcome": "Yahoo's EGX mirror is frozen in 2024 and stooq is JS-walled at the proxy; neither yields a vendor-format series.",
+     "rerun": false
+    }
+   ],
+   "refs_searched": 242,
+   "why_only_the_principal": "The OHLC libraries come from the principal's own vendor export and always have. No route out of this container produces one.",
+   "done_meanwhile": "AMOC was rolled forward and its matured 1-month cohort graded; ARCC was answered on a sibling branch. EGCH's own matured 1-month row is reported BLOCKED by the sweep with its reason rather than graded early or quietly skipped.",
+   "default_if_no_answer": "EGCH stays on the 6 August library and every gap quoted against it names that date, exactly as the closed entry's default said. It is not graded early and no price is typed into the library from a chat message.",
+   "default_date": "2026-09-13",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/raw_ohlc/EG/EGCH.csv",
+    "must_contain": "09/01/2026"
+   },
+   "resolves_when_note": "The 1 September 2026 session — a real EGX trading day that a refreshed export must carry and that the held file, ending 08/06/2026, cannot contain."
   }
  ]
 }
