@@ -1,3 +1,19 @@
+"""RUN ORDER: compute.py THEN lenses.py. RUNNING THIS FILE ALONE DELETES THE
+STUDY'S OWN ANSWER.
+
+study_numbers.json is written whole by this script, and lenses.py then adds EIGHT
+top-level keys to it: central, central_two_sided, spot, fair, lens_record,
+bridge_record, macro_record and forecast_anchor. So a rebuild that runs only this
+file removes the central and the spot -- the two fields check_valuation_gap reads --
+along with three standing-rule records, and every gate downstream then reports on a
+file that has silently lost them.
+
+Found 06-09-2026 while closing the same defect on SWDY, whose forecast_anchor block
+vanished the same way. It is invisible to every gate, because a gate reads the file
+that is there and cannot know what a rebuild removed. BOROUGE, DU and EMPOWER carry
+the instrument that would catch it -- read the file, import the model, restore and
+REFUSE if the bytes moved -- three studies out of twenty-four.
+"""
 """EGCH (Egyptian Chemical Industries "KIMA", EGX: EGCH) — master computation.
 
 Ground-up, product-by-product, volume x price on the revenue side and cost-per-physical-
