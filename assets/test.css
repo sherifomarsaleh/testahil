@@ -139,3 +139,7 @@ a.t-chip:hover{text-decoration:none;border-color:var(--teal);color:var(--teal)}
 .t-filters label.t-chip{white-space:nowrap;flex:0 0 auto}
 .t-filters label.t-chip input{flex:0 0 auto;margin:0}
 .t-filters{flex-wrap:wrap}
+
+/* "From the written study": let the prose use the card's full width
+   (the shell caps each paragraph inline at 78ch, leaving a third of the card empty) */
+#prose-body p{max-width:none !important}
