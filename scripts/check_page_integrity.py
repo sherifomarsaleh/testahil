@@ -95,6 +95,10 @@ NON_TICKER_PAGES = {
     # is no static valuation table to clone wrong, so checks 1/2/4 do not
     # describe them.
     "coverage.html", "tools.html", "savings.html", "record.html", "study.html",
+    # funnel.html (06-Sep-2026) explains the selection procedure and renders its
+    # own figures from SCREEN/PRICES at load. It is an app page, not a five-lens
+    # ticker template, so the valuation-table checks do not describe it.
+    "funnel.html",
 }
 # Deliberate "coming soon" stubs — correctly minimal, not a bug.
 STUB_PAGES = {"copper.html", "mfpc.html"}

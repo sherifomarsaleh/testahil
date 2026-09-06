@@ -198,6 +198,164 @@ def phase1_proven():
                       "; ".join("#%s %s" % (i["n"], i["text"][:44]) for i in open_items)))
 
 
+# THIS RULE'S POPULATION IS STUDIES, AND A METAL IS NOT ONE — NAMED, NOT SKIPPED.
+#
+# [R-GAP-02] holds a STUDY whose fair value sits more than 10% below the price, and
+# clause three holds every study until the fundamental method is proven. Both halves
+# are statements about the fundamental valuation method: the deviation test compares a
+# DCF central against a quote, and the acceptance criteria clause three waits on are
+# the valuation calibration's pooled bias and the median |central/price - 1| of that
+# same method. The gate's own book-wide population says so in one line — it globs
+# engine/*_study and there has never been a metal in it.
+#
+# A metal has no study by construction and that is not an oversight anywhere: the
+# campaign prompt excludes metals "by construction (no issuer, no statements, no
+# drivers)", and there is no issuer to file, no statement to foot and no driver to
+# build, so there is no discounted cash flow for the method under test to have been
+# wrong about. What a metals page publishes is a price cone, a graded ledger row and a
+# technical read — governed by [R-CAL-01..03] and [R-TCAL-01], each with its own
+# calibration and its own evidence, none of which is the method clause three awaits.
+#
+# WHAT MADE THIS LOOK LIKE A HOLD RATHER THAN A NON-MEMBERSHIP is the --ticker path.
+# Run book-wide the gate takes its population from the study directories and a metal
+# never appears; --ticker FORCES a name into that population, and a name outside it
+# resolved to "no study directory on disk" — the same sentence an equity that lost its
+# study produces. Two different states wearing one message, which is the shape
+# [R-ENF-04] names: an absent answer in the costume of a measured one.
+#
+# THE EXCLUSION IS A CLOSED LIST RESOLVED FROM THE SITE ITSELF, NEVER A RULE OF THUMB.
+# "Any name with no study directory is out of scope" would make DELETING a directory
+# the cheapest way past this gate, which is precisely what the unreadable branch below
+# exists to stop. So membership is read from the METALS object in assets/data.js — the
+# keys that are not in TICKERS and carry no study — and an equity with no study
+# directory still FAILS as unreadable, unchanged.
+def _metal_keys():
+    """The registered METALS keys, read from the site rather than typed here.
+
+    Read live for the reason every population in this repo is read live: a typed list
+    goes stale the moment a metal is added or removed, and it would go stale silently
+    and in the PERMISSIVE direction. If the object cannot be read, NOTHING is excluded
+    — an unreadable roster excludes nobody, so the failure falls to the strict side.
+    """
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "engine"))
+        import site_data
+        return {k.upper() for k in site_data.read_object(
+            "METALS", os.path.join(ROOT, "assets", "data.js"))}
+    except Exception:
+        return set()
+
+
+# ---------------------------------------------------------------------------
+# [R-GAP-02 AMENDED 06-Sep-2026] A PUBLISH THAT MOVES NO FAIR VALUE IS EXEMPT FROM
+# THE METHOD HOLD, AND FROM NOTHING ELSE.
+#
+# Clause three holds every study until the fundamental method is proven, and its own
+# text says what it holds: ISSUING A REPORT and publishing to the live site. What it
+# did not anticipate is a PRICE-ONLY PUBLISH — a roll-forward that splices new
+# sessions, grades a matured cohort, strikes a fresh cone and refreshes the technical
+# read while the fundamental valuation stands exactly where it was. Such a publish
+# asserts NO new output of the method clause three is waiting on, so holding it
+# withholds nothing the acceptance criteria are about.
+#
+# THE COST OF HOLDING IT IS NOT NIL AND POINTS THE OTHER WAY. [R-GAP-01 AMENDED
+# 03-Sep-2026] says in its own words that a fair value published against a month-old
+# price is a comparison a reader cannot use, and that no study is delivered against a
+# stale price. While the book is held under clause three — which cannot lift until the
+# first valuation vintages resolve — the alternative to this exemption is that no
+# page's spot may ever refresh, for months. That is the gate with no release
+# [R-CAL-01], arriving through the back door.
+#
+# THE CONDITION IS ARITHMETIC AND NOT A JUDGEMENT, which is what stops it becoming a
+# route around the block: the entry this publish would write must carry the SAME
+# fair{} and the SAME files{} as the one already on origin/main, read on both sides
+# through a real JavaScript parse [R-ENF-03] rather than compared as text. Those two
+# fields are exactly what a reader receives of the fundamental valuation — the range
+# on the page and the documents behind it. If either moves, it is a study publish and
+# every clause applies unchanged.
+#
+# FOUR REFUSALS RIDE WITH IT, each closing a way the exemption could be widened:
+#   (i)   AN ENTRY THAT DOES NOT DIFFER AT ALL IS NOT A PUBLISH. Without this the gate
+#         would read every study as price-only when run ON main, where nothing differs
+#         from origin/main by construction — and would exempt the entire book from
+#         clause three while reporting itself green. The exemption releases a PENDING
+#         change, never a resting state.
+#   (ii)  A FIRST PUBLISH IS NEVER PRICE-ONLY. A name absent from origin/main is one
+#         whose fair value reaches a reader for the first time in this very publish.
+#   (iii) AN UNREADABLE COMPARISON IS NOT AN EXEMPTION [R-ENF-04]. If either side
+#         cannot be parsed, the answer is HELD, not released — the failure falls to
+#         the strict side, as it does everywhere else in this gate.
+#   (iv)  IT RELEASES THE METHOD HOLD ONLY. The deviation test, the dissent
+#         requirement, the two-sided branch rule and the unreadable-study branch are
+#         untouched and still measured exactly as before.
+#
+# WHAT THIS RULE DOES NOT FIX, STATED HERE RATHER THAN DISCOVERED LATER: while the
+# book is held, a page carries the fair value it carried BEFORE the rebuild, and this
+# gate measures the study's own committed central, so the gap a READER sees and the
+# gap this gate reports are two different numbers, each honest about a different
+# thing. Refreshing a spot moves the reader's number and not the gate's. That
+# divergence is a property of the hold rather than of this exemption, it is not closed
+# here, and it closes when the campaign publishes the book together.
+def _tickers_on(ref):
+    """TICKERS as it stands on a git ref, through a real parse [R-ENF-03]."""
+    import subprocess
+    import tempfile
+    sys.path.insert(0, os.path.join(ROOT, "engine"))
+    import site_data
+    blob = subprocess.run(["git", "-C", ROOT, "show", "%s:assets/data.js" % ref],
+                          capture_output=True, text=True)
+    if blob.returncode != 0:
+        raise RuntimeError("cannot read assets/data.js on %s" % ref)
+    fh = tempfile.NamedTemporaryFile("w", suffix=".js", delete=False, encoding="utf-8")
+    try:
+        fh.write(blob.stdout)
+        fh.close()
+        return site_data.read_object("TICKERS", fh.name)
+    finally:
+        os.unlink(fh.name)
+
+
+_PAIR = {}
+
+
+def _published_pair():
+    """(the entries this tree would publish, the entries already live on origin/main).
+
+    Cached because the book-wide run asks once per study and each side costs a git
+    show and a node evaluation; the answer cannot change inside one run.
+    """
+    if not _PAIR:
+        sys.path.insert(0, os.path.join(ROOT, "engine"))
+        import site_data
+        _PAIR["here"] = site_data.read_object(
+            "TICKERS", os.path.join(ROOT, "assets", "data.js"))
+        _PAIR["there"] = _tickers_on("origin/main")
+    return _PAIR["here"], _PAIR["there"]
+
+
+def price_only_publish(ticker):
+    """(is it, why) — does this publish leave the fundamental valuation where it was?"""
+    try:
+        here, there = _published_pair()
+    except Exception as e:
+        return False, ("the published entries could not be compared (%s), and an "
+                       "unreadable comparison is not an exemption [R-ENF-04]"
+                       % str(e)[:120])
+    a, b = here.get(ticker.upper()), there.get(ticker.upper())
+    if b is None:
+        return False, "not on origin/main — a first publish is never price-only"
+    if a is None:
+        return False, "no entry in the tree being published"
+    if a == b:
+        return False, "the published entry is unchanged — there is no publish to exempt"
+    if a.get("fair") != b.get("fair"):
+        return False, "the fair value moves, so this is a study publish"
+    if a.get("files") != b.get("files"):
+        return False, "the delivered documents move, so this is a study publish"
+    return True, ("a price-only publish — fair{} and files{} are identical to the ones "
+                  "already live, so no output of the method under test reaches a reader")
+
+
 def verdict(ticker):
     """(may_publish, reason, rows). An UNREADABLE study may not publish either.
 
@@ -207,6 +365,12 @@ def verdict(ticker):
     """
     sdir = os.path.join(ENGINE, "%s_study" % ticker.lower())
     if not os.path.isdir(sdir):
+        if ticker.upper() in _metal_keys():
+            return True, ("outside this rule's population — a metal publishes no "
+                          "fundamental valuation, so there is no central for the "
+                          "deviation test and no study for the method hold; its cone "
+                          "is governed by [R-CAL-01..03] and its read by "
+                          "[R-TCAL-01]"), []
         return False, "no study directory on disk", []
     px, pxdate, pxsrc, rows = _gap_rows(sdir, ticker)
     if px is None:
@@ -221,6 +385,57 @@ def verdict(ticker):
     # same answer for every name: a book-wide hold is reported once as a book-wide
     # hold rather than as ninety separate coincidences.
     proven, why_p = phase1_proven()
+    # [R-GAP-02 AMENDED 06-Sep-2026] A publish that moves no fair value asserts no
+    # output of the method under test, so the method hold does not reach it.
+    #
+    # [R-GAP-02 AMENDED 06-Sep-2026, SECOND] AND NEITHER DOES THE DEVIATION TEST,
+    # ON THE SAME CONDITION AND FOR THE SAME REASON [per instruction, given three
+    # times: "the cone refresh is not the study"; "this is an MC calibration that
+    # has nothing to do with the fundamental analysis — publish the prices to
+    # update the MC section and the ledger"].
+    #
+    # The first amendment released the method hold and its clause (iv) kept the
+    # deviation test, which left the exemption stopping one clause short of its own
+    # argument. THE ARGUMENT DOES NOT DISTINGUISH THEM. [R-GAP-02] blocks a study
+    # whose FAIR VALUE disagrees with the market by more than the limit; the thing
+    # it holds back is a valuation reaching a reader. Where fair{} and files{} are
+    # byte-identical to what is already live, THE DISAGREEMENT THIS RULE MEASURES IS
+    # ALREADY PUBLISHED, at exactly the number it already carried, and the publish
+    # adds nothing to it — so there is nothing for the block to withhold. Holding it
+    # withholds only the cone, the spot, the technical read and the graded ledger
+    # row, none of which this rule is about.
+    #
+    # AND THE COST OF HOLDING RUNS AGAINST THIS RULE'S OWN SIBLING. [R-GAP-01
+    # AMENDED 03-Sep-2026] says a fair value published against a month-old price is
+    # a comparison a reader cannot use and that no study is delivered against a
+    # stale price. A gap-held name refreshes its spot never — so the block was
+    # freezing the very price [R-GAP-01] requires to be current, and freezing it on
+    # the names whose disagreement is largest, which is where a reader most needs
+    # the comparison to be honest. Measured on adoption day: eleven names held on
+    # the gap, every one of them unable to correct a stale spot for as long as the
+    # hold stands.
+    #
+    # WHAT DOES NOT CHANGE, AND THIS IS THE WHOLE OF THE EXEMPTION'S SAFETY: the
+    # condition stays ARITHMETIC and is the same one, evaluated by the same
+    # function — same fair{}, same files{}, read on both sides through a real parse
+    # [R-ENF-03], with all four of the first amendment's refusals riding along
+    # unchanged (an unchanged entry is not a publish; a first publish is never
+    # price-only; an unreadable comparison is not an exemption; a metal is outside
+    # the population). THE MOMENT EITHER FIELD MOVES IT IS A STUDY PUBLISH and
+    # every clause applies exactly as before — the deviation test, the dissent
+    # requirement with its five headings and its DISSENT_AT_GAP tolerance, the
+    # two-sided branch rule and the method hold. NO DISSENT IS IMPLIED OR WAIVED BY
+    # THIS: a study released here has made no claim that the market is wrong,
+    # because it has made no new claim at all.
+    #
+    # THE GAP REVIEW IS NOT WAIVED EITHER. [R-GAP-01]'s eight-heading audit is a
+    # separate gate (scripts/check_valuation_gap.py) and is untouched: a study more
+    # than 10% from the price still owes its review, and still goes red without one.
+    # What is released here is PUBLICATION of a change that carries no valuation,
+    # never the obligation to audit the valuation itself.
+    price_only, why_po = price_only_publish(ticker)
+    if not proven and price_only:
+        proven, why_p = True, why_po
     nearest = max(rows, key=lambda r: r[2]) if BLOCK_BELOW_ONLY else min(
         rows, key=lambda r: abs(r[2]))
     breach = (nearest[2] < -BLOCK_AT) if BLOCK_BELOW_ONLY else abs(nearest[2]) > BLOCK_AT
@@ -232,6 +447,11 @@ def verdict(ticker):
             why = ("the central is %+.1f%% below the price of %.2f (%s), past the "
                    "%.0f%% publication limit" % (nearest[2] * 100, px, pxdate,
                                                  BLOCK_AT * 100))
+        if price_only:
+            return True, ("%s — but this publish moves no fair value: %s. The study "
+                          "itself stays held and the block still stands on it; what "
+                          "publishes is the cone, the spot, the technical read and "
+                          "the graded ledger row" % (why, why_po)), rows
         fn, covered, at = read_dissent(sdir)
         if fn is None:
             return False, why + " — and no market dissent is filed", rows

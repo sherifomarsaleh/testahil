@@ -74,15 +74,47 @@ window.fmtPx = function(v,ccy){
   var dp = v>=1000?0:(v>=100?1:2);
   return v.toLocaleString("en-US",{minimumFractionDigits:dp,maximumFractionDigits:dp})+(ccy?" "+ccy:"");
 };
-window.gapOf = function(t){ return (t.fair && t.fair.base) ? t.fair.base/t.spot - 1 : null; };
-window.verdictOf = function(t){
-  var g = gapOf(t); if(g==null) return {label:"—", cls:"mut"};
+/* ---------- the price a comparison is made against ----------
+   TICKERS[k].spot is the price a cone was STRUCK at, which is right for the
+   forecast and wrong for a gap: a fair value is measured against the LATEST
+   KNOWN price. PRICES carries the freshest price this repository holds for each
+   name WITH ITS OWN DATE — prices are entered by hand, so they lag, and the
+   honest answer is to print the date rather than to imply the number is today's.
+   One route, so every surface agrees; falls back to the strike when a name is
+   not in the block. */
+window.latestPx = function(k, t){
+  var p = (typeof PRICES !== "undefined") ? PRICES[k] : null;
+  if(p && p.px > 0) return {px:p.px, date:p.date, src:p.src, strike:false};
+  var d = (t && t.spotDate || "").replace(/^close\s+/i, "");
+  return {px: t && t.spot, date: d, src: "strike", strike: true};
+};
+window.pxAge = function(iso){            /* whole days, or null if undated */
+  if(!iso || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) return null;
+  return Math.max(0, Math.round((Date.now() - Date.parse(iso+"T00:00:00Z"))/864e5));
+};
+window.fmtPxDate = function(iso){        /* 2026-09-03 -> 3 Sep 2026 */
+  if(!iso) return "";
+  var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
+  if(!m) return iso;
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return (+m[3]) + " " + M[(+m[2])-1] + " " + m[1];
+};
+window.gapOf = function(t, k){
+  if(!(t && t.fair && t.fair.base)) return null;
+  var px = (k ? latestPx(k, t).px : t.spot);
+  return px > 0 ? t.fair.base/px - 1 : null;
+};
+window.verdictOf = function(t, k){
+  var g = gapOf(t, k); if(g==null) return {label:"—", cls:"mut"};
   if(g >= 0.15) return {label:"looks cheap", cls:"good"};
   if(g <= -0.15) return {label:"looks expensive", cls:"bad"};
   return {label:"near fair value", cls:"mut"};
 };
-window.reachOf = function(t){ /* can the central fair value be reached inside the 3-month cone? */
-  var g = gapOf(t), d = t.dist && t.dist.t60; if(g==null || !d) return null;
+window.reachOf = function(t, k){ /* can the central fair value be reached inside the 3-month cone? */
+  /* the percentiles stay on the CONE's own clock — it was built on the strike
+     spot and does not move when a fresher price arrives; only the direction of
+     the gap is taken from the latest price. Two clocks, kept apart on purpose. */
+  var g = gapOf(t, k), d = t.dist && t.dist.t60; if(g==null || !d) return null;
   var fv = t.fair.base;
   if(g >= 0){ if(fv <= d.p75) return {label:"IN REACH", cls:"good", rank:0};
     if(fv <= d.p95) return {label:"STRETCH", cls:"warn", rank:1};
@@ -100,7 +132,15 @@ window.bandTotals = function(){
 window.tNum = function(x){ return x.toLocaleString("en-US"); };
 window.renderChrome = function(active){
   var nav=document.querySelector(".t-nav");
-  if(nav&&active){ var on=nav.querySelector('[data-p="'+active+'"]'); if(on) on.classList.add("on"); }
+  /* Funnel is a tab inside Tools, not a top-level destination, so Tools stays
+     lit on every one of its tabs — including /tools.html#funnel. */
+  function markNav(){
+    if(!nav) return;
+    nav.querySelectorAll("[data-p]").forEach(function(a){ a.classList.remove("on"); });
+    var on = active && nav.querySelector('[data-p="'+active+'"]');
+    if(on) on.classList.add("on");
+  }
+  markNav();
   try{ var bt=bandTotals();
     var n=document.getElementById("ts-n"); if(n) n.textContent=tNum(bt.n);
     var h=document.getElementById("ts-h"); if(h) h.textContent=tNum(bt.hits);
@@ -172,4 +212,71 @@ window.initSearch = function(input, dd){
   });
   document.addEventListener("click", function(e){ if(!input.parentElement.contains(e.target)){ dd.classList.remove("open"); input.setAttribute("aria-expanded","false"); } });
 };
+})();
+
+/* Sensitivity bar: keep the bear/full/spot labels inside the card and clear of
+   the bar. The shared renderer centres them on the bar's ends, which clips them
+   at the card edge on the new study pages; nudge rather than fork the renderer. */
+(function(){
+  function fixLeverBar(){
+    var host=document.getElementById("fl-lever-card");
+    if(!host) return false;
+    var bar=host.querySelector('div[style*="linear-gradient(90deg"]');
+    if(!bar) return false;
+    var wrap=bar.parentElement;
+    wrap.style.margin="42px 6px 46px";
+    var labels=[].slice.call(bar.children).filter(function(c){ return c.id!=="fl-marker"; });
+    labels.forEach(function(c){
+      c.style.lineHeight="1.25";
+      c.style.whiteSpace="nowrap";
+      var left=parseFloat(c.style.left);
+      if(c.style.top.indexOf("-")===0){          /* the two end labels */
+        c.style.top="-34px";
+        if(left<=0){ c.style.transform="none"; c.style.textAlign="left"; }
+        else if(left>=100){ c.style.transform="translateX(-100%)"; c.style.textAlign="right"; }
+      } else {                                    /* the spot marker label */
+        c.style.top="16px";
+        if(left<8){ c.style.transform="none"; c.style.textAlign="left"; }
+        else if(left>92){ c.style.transform="translateX(-100%)"; c.style.textAlign="right"; }
+      }
+    });
+    return true;
+  }
+  var tries=0;
+  var iv=setInterval(function(){ if(fixLeverBar()||++tries>40) clearInterval(iv); },100);
+  document.addEventListener("DOMContentLoaded",fixLeverBar);
+})();
+
+/* Bucket range labels: the odds buckets were written with an ellipsis for "to"
+   ("SMALL WIN 0…+10%"), which reads as truncated text rather than a range.
+   Spell it out wherever those labels render — tools page and every study. */
+(function(){
+  function normaliseRangeLabels(){
+    var n=0;
+    [].slice.call(document.querySelectorAll(".t-bucket .lb")).forEach(function(e){
+      if(e.textContent.indexOf("\u2026")>-1){
+        e.textContent=e.textContent.replace(/\s*\u2026\s*/," to ");
+        n++;
+      }
+    });
+    return n;
+  }
+  var tries=0;
+  var iv=setInterval(function(){ normaliseRangeLabels(); if(++tries>40) clearInterval(iv); },150);
+  document.addEventListener("click",function(){ setTimeout(normaliseRangeLabels,60); });
+  document.addEventListener("change",function(){ setTimeout(normaliseRangeLabels,60); });
+})();
+
+/* The study shell caps each prose paragraph inline at 78ch, which leaves a third
+   of the card empty. Widen from JS as well as CSS so a cached stylesheet cannot
+   leave the old look in place. */
+(function(){
+  function widenProse(){
+    var h=document.getElementById("prose-body"); if(!h) return false;
+    var ps=h.querySelectorAll("p"); if(!ps.length) return false;
+    [].slice.call(ps).forEach(function(p){ p.style.maxWidth="none"; });
+    return true;
+  }
+  var n=0, iv=setInterval(function(){ if(widenProse()||++n>60) clearInterval(iv); },100);
+  document.addEventListener("DOMContentLoaded",widenProse);
 })();

@@ -210,6 +210,12 @@ EXCLUDED = {
     'check_lens_vocabulary.py': 'reads delivered PDFs; an empty study has none',
     'check_page_integrity.py': "its subject is the site's ticker pages; the only mention "
                                'of a study directory in it is a comment',
+    'check_screen_block.py': 'its subject is the SCREEN block in assets/data.js. It reads '
+                             'study directories only to ask whether a rebuilt central '
+                             'EXISTS — the answer for a new empty directory is no, which '
+                             'is the correct reading and not a refusal. Demanding a nonzero '
+                             'exit would make it claim a study is superseded on the '
+                             'strength of the directory being there',
     'check_published_coverage.py': 'holds PUBLISHED fair values against the studies behind '
                                    'them, so a study directory is its reference set rather '
                                    'than its subject — a new directory publishes nothing '

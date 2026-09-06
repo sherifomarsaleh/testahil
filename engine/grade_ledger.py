@@ -510,19 +510,41 @@ def apply_grade(src: str, row: dict, got: dict) -> str:
         f"realized_close:{num(got['realized_close'])}, "
         f"realized_high:{num(got['realized_high'])}, "
         f"realized_low:{num(got['realized_low'])},")
-    old_outcome = re.search(r'realized_close:null, realized_high:null, realized_low:null,', t)
+    # THE LINE BREAK IS NOT PART OF THE FIELD. Both patterns below used to hard-code
+    # ONE line-wrapping of the outcome and stats blocks, so a row that wrapped between
+    # `in_50:null,` and `realized_quantile:null,` was UNREACHABLE by the grader — it
+    # raised 'stats block not in the expected shape' and the matured row simply did not
+    # grade. Measured on the shipped ledger 06-Sep-2026: 234 open rows carry the block
+    # on one line and 12 wrap it, PHAR's two among them, so the metronome could not
+    # grade a name whose cone had resolved correctly. This is the layout-dependent-regex
+    # family the roll-forward protocol already names ("A LAYOUT MUST NEVER DECIDE
+    # WHETHER A FIELD GETS REFRESHED") — same defect as the `dist` span that closed on
+    # the first 4-space `},` and the `touch` ladder matched only in its multi-line form.
+    #
+    # \s+ spans the newline and the indent; the REPLACEMENT is emitted on one line, so
+    # every row the old code already handled comes out BYTE-IDENTICAL (asserted by the
+    # replay negative control in sweep(), and by scripts/check_grade_writer_layout.py).
+    old_outcome = re.search(r'realized_close:null,\s+realized_high:null,\s+realized_low:null,', t)
     if not old_outcome:
         raise SystemExit('outcome block not in the expected shape')
     t2 = t.replace(old_outcome.group(0), new_outcome)
 
-    old_stats = re.search(r'in_90:null, in_50:null, realized_quantile:null, median_err:null,', t2)
+    old_stats = re.search(r'in_90:null,\s+in_50:null,\s+realized_quantile:null,\s+median_err:null,', t2)
     if not old_stats:
         raise SystemExit('stats block not in the expected shape')
     t2 = t2.replace(old_stats.group(0),
                     f"in_90:{jb(got['in_90'])}, in_50:{jb(got['in_50'])}, "
                     f"realized_quantile:{rq}, median_err:{got['median_err']:.4f},")
 
-    old_th = re.search(r'touch_hit:\{[^}]*\}', t2)
+    # A FIRST-COVERAGE ROW WRITES touch_hit:null, NOT AN EMPTY OBJECT, and this
+    # matched only the object shape — so the twelve rows six names were published
+    # on (DU, MODON, ARCC, SCEM, AMOC, SWDY, both horizons) could be COMPUTED and
+    # not WRITTEN, and the sweep died on the write with 'touch_hit block not
+    # found' after reporting the grade. The grade itself is unaffected; what was
+    # missing is the null shape on the left-hand side. Both are accepted here and
+    # both are replaced by the computed object, so a graded row comes out
+    # identical whichever shape it started in.
+    old_th = re.search(r'touch_hit:(?:null|\{[^}]*\})', t2)
     if not old_th:
         raise SystemExit('touch_hit block not found')
     th = ', '.join(f'"{k}":{jb(got["touch_hit"][k])}' for k, _ in REL)
