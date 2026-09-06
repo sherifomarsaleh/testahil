@@ -1982,7 +1982,7 @@
   "year": 2018,
   "driver": "da",
   "setting": "asknown",
-  "projected": 144.8,
+  "projected": -144.8,
   "actual": -174.4,
   "era": "E2 post-float",
   "scored_on": "magnitude",
@@ -2006,10 +2006,10 @@
   "year": 2018,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 3978.7000000000003,
+  "projected": 3689.1,
   "actual": 4283.6,
   "era": "E2 post-float",
-  "log_error": -0.07383864477029722
+  "log_error": -0.1494112516802088
  },
  {
   "origin": 2017,
@@ -2040,11 +2040,11 @@
   "year": 2019,
   "driver": "da",
   "setting": "asknown",
-  "projected": 150.26885416938367,
+  "projected": -139.33114583061635,
   "actual": -261.6,
   "era": "E2 post-float",
   "scored_on": "magnitude",
-  "log_error": -0.5543905687199937
+  "log_error": -0.6299631756299053
  },
  {
   "origin": 2017,
@@ -2064,10 +2064,10 @@
   "year": 2019,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 4128.968854169384,
+  "projected": 3549.7688541693838,
   "actual": 5714.7,
   "era": "E2 post-float",
-  "log_error": -0.32501409874490533
+  "log_error": -0.4761593125647285
  },
  {
   "origin": 2017,
@@ -2098,11 +2098,11 @@
   "year": 2020,
   "driver": "da",
   "setting": "asknown",
-  "projected": 155.94425782720646,
+  "projected": -134.0688411496718,
   "actual": -302.3,
   "era": "E2 post-float",
   "scored_on": "magnitude",
-  "log_error": -0.6619212800109286
+  "log_error": -0.8130664938307518
  },
  {
   "origin": 2017,
@@ -2122,10 +2122,10 @@
   "year": 2020,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 4284.9131119965905,
+  "projected": 3415.700013019712,
   "actual": 6124.6,
   "era": "E2 post-float",
-  "log_error": -0.35721317357865046
+  "log_error": -0.5839309943083852
  },
  {
   "origin": 2017,
@@ -2156,11 +2156,11 @@
   "year": 2021,
   "driver": "da",
   "setting": "asknown",
-  "projected": 161.8340120026882,
+  "projected": -129.00528492794655,
   "actual": -317.3,
   "era": "E2 post-float",
   "scored_on": "magnitude",
-  "log_error": -0.6732765059032322
+  "log_error": -0.899994326632967
  },
  {
   "origin": 2017,
@@ -2180,10 +2180,10 @@
   "year": 2021,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 4446.747123999278,
+  "projected": 3286.6947280917657,
   "actual": 5412.1,
   "era": "E2 post-float",
-  "log_error": -0.1964643420867501
+  "log_error": -0.4987547697263962
  },
  {
   "origin": 2017,
@@ -2214,11 +2214,11 @@
   "year": 2022,
   "driver": "da",
   "setting": "asknown",
-  "projected": 167.9462123568939,
+  "projected": -124.13297076806586,
   "actual": -343.7,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.7161254202584366
+  "log_error": -1.0184158478980827
  },
  {
   "origin": 2017,
@@ -2238,10 +2238,10 @@
   "year": 2022,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 4614.693336356172,
+  "projected": 3162.5617573237,
   "actual": 6359.6,
   "era": "E3 devaluation",
-  "log_error": -0.3207200658723959
+  "log_error": -0.6985831004219534
  },
  {
   "origin": 2017,
@@ -2272,7 +2272,7 @@
   "year": 2018,
   "driver": "da",
   "setting": "foresight",
-  "projected": 144.8,
+  "projected": -144.8,
   "actual": -174.4,
   "era": "E2 post-float",
   "scored_on": "magnitude",
@@ -2296,10 +2296,10 @@
   "year": 2018,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 3978.7000000000003,
+  "projected": 3689.1,
   "actual": 4283.6,
   "era": "E2 post-float",
-  "log_error": -0.07383864477029722
+  "log_error": -0.1494112516802088
  },
  {
   "origin": 2017,
@@ -2330,11 +2330,11 @@
   "year": 2019,
   "driver": "da",
   "setting": "foresight",
-  "projected": 150.26885416938367,
+  "projected": -139.33114583061635,
   "actual": -261.6,
   "era": "E2 post-float",
   "scored_on": "magnitude",
-  "log_error": -0.5543905687199937
+  "log_error": -0.6299631756299053
  },
  {
   "origin": 2017,
@@ -2354,10 +2354,10 @@
   "year": 2019,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 4128.968854169384,
+  "projected": 3549.7688541693838,
   "actual": 5714.7,
   "era": "E2 post-float",
-  "log_error": -0.32501409874490533
+  "log_error": -0.4761593125647285
  },
  {
   "origin": 2017,
@@ -2388,11 +2388,11 @@
   "year": 2020,
   "driver": "da",
   "setting": "foresight",
-  "projected": 155.94425782720646,
+  "projected": -134.0688411496718,
   "actual": -302.3,
   "era": "E2 post-float",
   "scored_on": "magnitude",
-  "log_error": -0.6619212800109286
+  "log_error": -0.8130664938307518
  },
  {
   "origin": 2017,
@@ -2412,10 +2412,10 @@
   "year": 2020,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 4284.9131119965905,
+  "projected": 3415.700013019712,
   "actual": 6124.6,
   "era": "E2 post-float",
-  "log_error": -0.35721317357865046
+  "log_error": -0.5839309943083852
  },
  {
   "origin": 2017,
@@ -2446,11 +2446,11 @@
   "year": 2021,
   "driver": "da",
   "setting": "foresight",
-  "projected": 161.8340120026882,
+  "projected": -129.00528492794655,
   "actual": -317.3,
   "era": "E2 post-float",
   "scored_on": "magnitude",
-  "log_error": -0.6732765059032322
+  "log_error": -0.899994326632967
  },
  {
   "origin": 2017,
@@ -2470,10 +2470,10 @@
   "year": 2021,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 4446.747123999278,
+  "projected": 3286.6947280917657,
   "actual": 5412.1,
   "era": "E2 post-float",
-  "log_error": -0.1964643420867501
+  "log_error": -0.4987547697263962
  },
  {
   "origin": 2017,
@@ -2504,11 +2504,11 @@
   "year": 2022,
   "driver": "da",
   "setting": "foresight",
-  "projected": 167.9462123568939,
+  "projected": -124.13297076806586,
   "actual": -343.7,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.7161254202584366
+  "log_error": -1.0184158478980827
  },
  {
   "origin": 2017,
@@ -2528,10 +2528,10 @@
   "year": 2022,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 4614.693336356172,
+  "projected": 3162.5617573237,
   "actual": 6359.6,
   "era": "E3 devaluation",
-  "log_error": -0.3207200658723959
+  "log_error": -0.6985831004219534
  },
  {
   "origin": 2018,
@@ -2618,7 +2618,7 @@
   "year": 2019,
   "driver": "da",
   "setting": "asknown",
-  "projected": 168.09220897780327,
+  "projected": -168.09220897780327,
   "actual": -261.6,
   "era": "E2 post-float",
   "scored_on": "magnitude",
@@ -2642,10 +2642,10 @@
   "year": 2019,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 4692.597735134476,
+  "projected": 4432.054811218881,
   "actual": 1948.0,
   "era": "E2 post-float",
-  "log_error": 0.8791831119868312
+  "log_error": 0.8220601113004413
  },
  {
   "origin": 2018,
@@ -2686,10 +2686,10 @@
   "year": 2019,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 5195.87254474825,
+  "projected": 4859.688126792644,
   "actual": 5714.7,
   "era": "E2 post-float",
-  "log_error": -0.09517723341730304
+  "log_error": -0.1620675380191405
  },
  {
   "origin": 2018,
@@ -2776,11 +2776,11 @@
   "year": 2020,
   "driver": "da",
   "setting": "asknown",
-  "projected": 203.89058119662278,
+  "projected": -190.6984107236386,
   "actual": -302.3,
   "era": "E2 post-float",
   "scored_on": "magnitude",
-  "log_error": -0.39383641852048346
+  "log_error": -0.46072672312232094
  },
  {
   "origin": 2018,
@@ -2800,10 +2800,10 @@
   "year": 2020,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 6373.448536013427,
+  "projected": 6067.642067275226,
   "actual": 1650.4,
   "era": "E2 post-float",
-  "log_error": 1.3511230117512008
+  "log_error": 1.3019523900360566
  },
  {
   "origin": 2018,
@@ -2844,10 +2844,10 @@
   "year": 2020,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 6287.127926693814,
+  "projected": 5556.354516817946,
   "actual": 6124.6,
   "era": "E2 post-float",
-  "log_error": 0.026190908830069408
+  "log_error": -0.09737121739674917
  },
  {
   "origin": 2018,
@@ -2934,11 +2934,11 @@
   "year": 2021,
   "driver": "da",
   "setting": "asknown",
-  "projected": 246.71239642450263,
+  "projected": -218.03620893541023,
   "actual": -317.3,
   "era": "E2 post-float",
   "scored_on": "magnitude",
-  "log_error": -0.2516244273316695
+  "log_error": -0.3751865535584881
  },
  {
   "origin": 2018,
@@ -2958,10 +2958,10 @@
   "year": 2021,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 8553.819798555656,
+  "projected": 8193.639629401725,
   "actual": 1783.2,
   "era": "E2 post-float",
-  "log_error": 1.5679684401565717
+  "log_error": 1.524948695253729
  },
  {
   "origin": 2018,
@@ -3002,10 +3002,10 @@
   "year": 2021,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 7591.939081926555,
+  "projected": 6396.417066690775,
   "actual": 5412.1,
   "era": "E2 post-float",
-  "log_error": 0.3384498496978203
+  "log_error": 0.16710081267553298
  },
  {
   "origin": 2018,
@@ -3092,11 +3092,11 @@
   "year": 2022,
   "driver": "da",
   "setting": "asknown",
-  "projected": 297.91432689932543,
+  "projected": -251.0009978250474,
   "actual": -343.7,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.14296323231102342
+  "log_error": -0.314312269333311
  },
  {
   "origin": 2018,
@@ -3116,10 +3116,10 @@
   "year": 2022,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 11436.97571418867,
+  "projected": 11011.566337527282,
   "actual": 2230.0,
   "era": "E3 devaluation",
-  "log_error": 1.634850004882345
+  "log_error": 1.5969446201327113
  },
  {
   "origin": 2018,
@@ -3149,10 +3149,10 @@
   "year": 2022,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 9151.536295555903,
+  "projected": 7407.098955595751,
   "actual": 6359.6,
   "era": "E3 devaluation",
-  "log_error": 0.36395628405484237
+  "log_error": 0.15247337638970676
  },
  {
   "origin": 2018,
@@ -3239,11 +3239,11 @@
   "year": 2023,
   "driver": "da",
   "setting": "asknown",
-  "projected": 359.1142850547517,
+  "projected": -290.6610387438765,
   "actual": -491.8236,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.31447943501846715
+  "log_error": -0.5259623426836029
  },
  {
   "origin": 2018,
@@ -3263,10 +3263,10 @@
   "year": 2023,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 15311.20386434303,
+  "projected": 14807.627988399092,
   "actual": 3347.2823,
   "era": "E3 devaluation",
-  "log_error": 1.5204360762671365
+  "log_error": 1.4869936897550435
  },
  {
   "origin": 2018,
@@ -3307,10 +3307,10 @@
   "year": 2023,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 11015.0883218101,
+  "projected": 8620.875658051322,
   "actual": 6465.3027,
   "era": "E3 devaluation",
-  "log_error": 0.5328161660701054
+  "log_error": 0.2877368315035165
  },
  {
   "origin": 2018,
@@ -3397,7 +3397,7 @@
   "year": 2019,
   "driver": "da",
   "setting": "foresight",
-  "projected": 168.09220897780327,
+  "projected": -168.09220897780327,
   "actual": -261.6,
   "era": "E2 post-float",
   "scored_on": "magnitude",
@@ -3421,10 +3421,10 @@
   "year": 2019,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 4466.6305325021085,
+  "projected": 4206.087608586513,
   "actual": 1948.0,
   "era": "E2 post-float",
-  "log_error": 0.8298311232973566
+  "log_error": 0.7697297012741702
  },
  {
   "origin": 2018,
@@ -3465,10 +3465,10 @@
   "year": 2019,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 5132.9148312392645,
+  "projected": 4796.730413283658,
   "actual": 5714.7,
   "era": "E2 post-float",
-  "log_error": -0.10736811138456873
+  "log_error": -0.17510728051355012
  },
  {
   "origin": 2018,
@@ -3555,11 +3555,11 @@
   "year": 2020,
   "driver": "da",
   "setting": "foresight",
-  "projected": 201.42006547715383,
+  "projected": -188.22789500416968,
   "actual": -302.3,
   "era": "E2 post-float",
   "scored_on": "magnitude",
-  "log_error": -0.40602729648774927
+  "log_error": -0.4737664656167306
  },
  {
   "origin": 2018,
@@ -3579,10 +3579,10 @@
   "year": 2020,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 5582.215302231196,
+  "projected": 5280.23813285817,
   "actual": 1650.4,
   "era": "E2 post-float",
-  "log_error": 1.2185680223999764
+  "log_error": 1.162953514846357
  },
  {
   "origin": 2018,
@@ -3623,10 +3623,10 @@
   "year": 2020,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 6049.924743100939,
+  "projected": 5324.0923646640085,
   "actual": 6124.6,
   "era": "E2 post-float",
-  "log_error": -0.012267615367290577
+  "log_error": -0.1400711990586389
  },
  {
   "origin": 2018,
@@ -3713,11 +3713,11 @@
   "year": 2021,
   "driver": "da",
   "setting": "foresight",
-  "projected": 237.4043361231921,
+  "projected": -208.92203902750705,
   "actual": -317.3,
   "era": "E2 post-float",
   "scored_on": "magnitude",
-  "log_error": -0.2900829515290294
+  "log_error": -0.41788653522037794
  },
  {
   "origin": 2018,
@@ -3737,10 +3737,10 @@
   "year": 2021,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 6797.363056081982,
+  "projected": 6451.460115340189,
   "actual": 1783.2,
   "era": "E2 post-float",
-  "log_error": 1.3381252480138577
+  "log_error": 1.2858969765706718
  },
  {
   "origin": 2018,
@@ -3781,10 +3781,10 @@
   "year": 2021,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 7040.230133737237,
+  "projected": 5868.071380149608,
   "actual": 5412.1,
   "era": "E2 post-float",
-  "log_error": 0.26300367149163734
+  "log_error": 0.08088883691775413
  },
  {
   "origin": 2018,
@@ -3871,11 +3871,11 @@
   "year": 2022,
   "driver": "da",
   "setting": "foresight",
-  "projected": 276.264785435612,
+  "projected": -230.2682511739598,
   "actual": -343.7,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.21840941051720653
+  "log_error": -0.40052424509108975
  },
  {
   "origin": 2018,
@@ -3895,10 +3895,10 @@
   "year": 2022,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 8515.412997367614,
+  "projected": 8122.849893995193,
   "actual": 2230.0,
   "era": "E3 devaluation",
-  "log_error": 1.339876229799673
+  "log_error": 1.2926794792921312
  },
  {
   "origin": 2018,
@@ -3928,10 +3928,10 @@
   "year": 2022,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 8174.016551717253,
+  "projected": 6495.324761520052,
   "actual": 6359.6,
   "era": "E3 devaluation",
-  "log_error": 0.2509949277702086
+  "log_error": 0.021117168353778852
  },
  {
   "origin": 2018,
@@ -4018,11 +4018,11 @@
   "year": 2023,
   "driver": "da",
   "setting": "foresight",
-  "projected": 320.75555570064415,
+  "projected": -254.88222224113565,
   "actual": -491.8236,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.4274407913031009
+  "log_error": -0.6573185507195307
  },
  {
   "origin": 2018,
@@ -4042,10 +4042,10 @@
   "year": 2023,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 11831.70804996388,
+  "projected": 11385.588772059,
   "actual": 3347.2823,
   "era": "E3 devaluation",
-  "log_error": 1.2626342876285546
+  "log_error": 1.2241996500348218
  },
  {
   "origin": 2018,
@@ -4086,10 +4086,10 @@
   "year": 2023,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 9642.863026973162,
+  "projected": 7388.533458834182,
   "actual": 6465.3027,
   "era": "E3 devaluation",
-  "log_error": 0.39976822655416544
+  "log_error": 0.13347943337946946
  },
  {
   "origin": 2019,
@@ -4176,7 +4176,7 @@
   "year": 2020,
   "driver": "da",
   "setting": "asknown",
-  "projected": 236.69988275367328,
+  "projected": -236.69988275367328,
   "actual": -302.3,
   "era": "E2 post-float",
   "scored_on": "magnitude",
@@ -4200,10 +4200,10 @@
   "year": 2020,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 3826.949394995867,
+  "projected": 3460.064576727673,
   "actual": 1650.4,
   "era": "E2 post-float",
-  "log_error": 0.8410503004288601
+  "log_error": 0.7402695699146865
  },
  {
   "origin": 2019,
@@ -4244,10 +4244,10 @@
   "year": 2020,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 7314.685603329821,
+  "projected": 6841.285837822474,
   "actual": 6124.6,
   "era": "E2 post-float",
-  "log_error": 0.1775706056501163
+  "log_error": 0.11066225377686946
  },
  {
   "origin": 2019,
@@ -4346,11 +4346,11 @@
   "year": 2021,
   "driver": "da",
   "setting": "asknown",
-  "projected": 302.97044896287656,
+  "projected": -283.3624784672765,
   "actual": -317.3,
   "era": "E2 post-float",
   "scored_on": "magnitude",
-  "log_error": -0.04621242601128743
+  "log_error": -0.11312077788453419
  },
  {
   "origin": 2019,
@@ -4370,10 +4370,10 @@
   "year": 2021,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 5053.433424156339,
+  "projected": 4599.02540539797,
   "actual": 1783.2,
   "era": "E2 post-float",
-  "log_error": 1.0416583951515361
+  "log_error": 0.9474349095665031
  },
  {
   "origin": 2019,
@@ -4414,10 +4414,10 @@
   "year": 2021,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 9222.065544632846,
+  "projected": 8162.332851695345,
   "actual": 5412.1,
   "era": "E2 post-float",
-  "log_error": 0.5329618535845266
+  "log_error": 0.41089282921044934
  },
  {
   "origin": 2019,
@@ -4504,11 +4504,11 @@
   "year": 2022,
   "driver": "da",
   "setting": "asknown",
-  "projected": 381.9731277514628,
+  "projected": -338.079554306043,
   "actual": -343.7,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": 0.10558107607601787
+  "log_error": -0.016487948298059312
  },
  {
   "origin": 2019,
@@ -4528,10 +4528,10 @@
   "year": 2022,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 6626.407268313347,
+  "projected": 6068.366439718781,
   "actual": 2230.0,
   "era": "E3 devaluation",
-  "log_error": 1.089061181701398
+  "log_error": 1.00108786307009
  },
  {
   "origin": 2019,
@@ -4561,10 +4561,10 @@
   "year": 2022,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 11492.219396541896,
+  "projected": 9712.43402154689,
   "actual": 6359.6,
   "era": "E3 devaluation",
-  "log_error": 0.5917047498834188
+  "log_error": 0.4234414402299498
  },
  {
   "origin": 2019,
@@ -4663,11 +4663,11 @@
   "year": 2023,
   "driver": "da",
   "setting": "asknown",
-  "projected": 476.0017120305452,
+  "projected": -402.28393339159294,
   "actual": -491.8236,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.032698664689555505
+  "log_error": -0.20096197434302462
  },
  {
   "origin": 2019,
@@ -4687,10 +4687,10 @@
   "year": 2023,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 8671.0780747735,
+  "projected": 7990.406699571344,
   "actual": 3347.2823,
   "era": "E3 devaluation",
-  "log_error": 0.951844365618891
+  "log_error": 0.8700928966942824
  },
  {
   "origin": 2019,
@@ -4731,10 +4731,10 @@
   "year": 2023,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 14190.363562915647,
+  "projected": 11532.292542498502,
   "actual": 6465.3027,
   "era": "E3 devaluation",
-  "log_error": 0.7861132794355263
+  "log_error": 0.5787013148701743
  },
  {
   "origin": 2019,
@@ -4833,11 +4833,11 @@
   "year": 2024,
   "driver": "da",
   "setting": "asknown",
-  "projected": 587.7574311117173,
+  "projected": -477.6615207605747,
   "actual": -1066.4,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.5957294382035873
+  "log_error": -0.8031414027689391
  },
  {
   "origin": 2019,
@@ -4857,10 +4857,10 @@
   "year": 2024,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 11360.648294489914,
+  "projected": 10534.948606788888,
   "actual": 14467.5,
   "era": "E3 devaluation",
-  "log_error": -0.24174927462424883
+  "log_error": -0.31720658555203657
  },
  {
   "origin": 2019,
@@ -4890,10 +4890,10 @@
   "year": 2024,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 17393.29284925192,
+  "projected": 13669.802876962483,
   "actual": 75812.1,
   "era": "E3 devaluation",
-  "log_error": -1.472173247040945
+  "log_error": -1.7130686800034785
  },
  {
   "origin": 2019,
@@ -4980,7 +4980,7 @@
   "year": 2020,
   "driver": "da",
   "setting": "foresight",
-  "projected": 236.69988275367328,
+  "projected": -236.69988275367328,
   "actual": -302.3,
   "era": "E2 post-float",
   "scored_on": "magnitude",
@@ -5004,10 +5004,10 @@
   "year": 2020,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 3592.533302728126,
+  "projected": 3225.6484844599318,
   "actual": 1650.4,
   "era": "E2 post-float",
-  "log_error": 0.7778399262236305
+  "log_error": 0.6701163277115583
  },
  {
   "origin": 2019,
@@ -5048,10 +5048,10 @@
   "year": 2020,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 7168.240385348831,
+  "projected": 6694.840619841484,
   "actual": 6124.6,
   "era": "E2 post-float",
-  "log_error": 0.1573467628369691
+  "log_error": 0.0890237248350486
  },
  {
   "origin": 2019,
@@ -5150,11 +5150,11 @@
   "year": 2021,
   "driver": "da",
   "setting": "foresight",
-  "projected": 296.9047646879476,
+  "projected": -277.2967941923476,
   "actual": -317.3,
   "era": "E2 post-float",
   "scored_on": "magnitude",
-  "log_error": -0.06643626882443462
+  "log_error": -0.13475930682635515
  },
  {
   "origin": 2019,
@@ -5174,10 +5174,10 @@
   "year": 2021,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 4390.234924138366,
+  "projected": 3945.228716006138,
   "actual": 1783.2,
   "era": "E2 post-float",
-  "log_error": 0.9009732360369171
+  "log_error": 0.7940974257016881
  },
  {
   "origin": 2019,
@@ -5218,10 +5218,10 @@
   "year": 2021,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 8745.432317618886,
+  "projected": 7697.830993231243,
   "actual": 5412.1,
   "era": "E2 post-float",
-  "log_error": 0.4798943556303128
+  "log_error": 0.3523014123917009
  },
  {
   "origin": 2019,
@@ -5308,11 +5308,11 @@
   "year": 2022,
   "driver": "da",
   "setting": "foresight",
-  "projected": 362.2312289727502,
+  "projected": -318.8401304627413,
   "actual": -343.7,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": 0.05251357812180416
+  "log_error": -0.07507936511680785
  },
  {
   "origin": 2019,
@@ -5332,10 +5332,10 @@
   "year": 2022,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 5499.744378550822,
+  "projected": 4971.914074988315,
   "actual": 2230.0,
   "era": "E3 devaluation",
-  "log_error": 0.9027000290592028
+  "log_error": 0.8018033062467991
  },
  {
   "origin": 2019,
@@ -5365,10 +5365,10 @@
   "year": 2022,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 10565.855078519618,
+  "projected": 8837.182394696485,
   "actual": 6359.6,
   "era": "E3 devaluation",
-  "log_error": 0.5076621005236944
+  "log_error": 0.32900260991915564
  },
  {
   "origin": 2019,
@@ -5467,11 +5467,11 @@
   "year": 2023,
   "driver": "da",
   "setting": "foresight",
-  "projected": 437.6321868650843,
+  "projected": -366.03146914054696,
   "actual": -491.8236,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.11674131404927993
+  "log_error": -0.29540080465381874
  },
  {
   "origin": 2019,
@@ -5491,10 +5491,10 @@
   "year": 2023,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 7584.932649164058,
+  "projected": 6962.093315759693,
   "actual": 3347.2823,
   "era": "E3 devaluation",
-  "log_error": 0.8180149704224465
+  "log_error": 0.7323314300233081
  },
  {
   "origin": 2019,
@@ -5535,10 +5535,10 @@
   "year": 2023,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 12955.783736100513,
+  "projected": 10423.447396271747,
   "actual": 6465.3027,
   "era": "E3 devaluation",
-  "log_error": 0.6950924765151342
+  "log_error": 0.4776079933068652
  },
  {
   "origin": 2019,
@@ -5637,11 +5637,11 @@
   "year": 2024,
   "driver": "da",
   "setting": "foresight",
-  "projected": 536.6217809013489,
+  "projected": -431.73373520685317,
   "actual": -1066.4,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.6867502411239793
+  "log_error": -0.9042347243322482
  },
  {
   "origin": 2019,
@@ -5661,10 +5661,10 @@
   "year": 2024,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 10512.518610957884,
+  "projected": 9762.043085974028,
   "actual": 14467.5,
   "era": "E3 devaluation",
-  "log_error": -0.3193379588037549
+  "log_error": -0.3934030433685567
  },
  {
   "origin": 2019,
@@ -5694,10 +5694,10 @@
   "year": 2024,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 15996.627717214713,
+  "projected": 12495.935861277745,
   "actual": 75812.1,
   "era": "E3 devaluation",
-  "log_error": -1.5558799781645034
+  "log_error": -1.8028544501716763
  },
  {
   "origin": 2020,
@@ -5796,7 +5796,7 @@
   "year": 2021,
   "driver": "da",
   "setting": "asknown",
-  "projected": 277.33908843306034,
+  "projected": -277.33908843306034,
   "actual": -317.3,
   "era": "E2 post-float",
   "scored_on": "magnitude",
@@ -5820,10 +5820,10 @@
   "year": 2021,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 2903.639676133047,
+  "projected": 2473.7640890618036,
   "actual": 1783.2,
   "era": "E2 post-float",
-  "log_error": 0.4875555077080763
+  "log_error": 0.3273314102555993
  },
  {
   "origin": 2020,
@@ -5864,10 +5864,10 @@
   "year": 2021,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 7507.857945700778,
+  "projected": 6953.179768834658,
   "actual": 5412.1,
   "era": "E2 post-float",
-  "log_error": 0.32731301055845347
+  "log_error": 0.2505618880463166
  },
  {
   "origin": 2020,
@@ -5954,11 +5954,11 @@
   "year": 2022,
   "driver": "da",
   "setting": "asknown",
-  "projected": 339.9768929800416,
+  "projected": -314.85950736371376,
   "actual": -343.7,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.010891530378497426
+  "log_error": -0.0876426528906342
  },
  {
   "origin": 2020,
@@ -5978,10 +5978,10 @@
   "year": 2022,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 3348.4246431342285,
+  "projected": 2840.926432867818,
   "actual": 2230.0,
   "era": "E3 devaluation",
-  "log_error": 0.40648839397919423
+  "log_error": 0.24212862226285303
  },
  {
   "origin": 2020,
@@ -6011,10 +6011,10 @@
   "year": 2022,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 9059.18167149066,
+  "projected": 7849.667094280784,
   "actual": 6359.6,
   "era": "E3 devaluation",
-  "log_error": 0.35381331044805536
+  "log_error": 0.210505640230765
  },
  {
   "origin": 2020,
@@ -6113,11 +6113,11 @@
   "year": 2023,
   "driver": "da",
   "setting": "asknown",
-  "projected": 410.2251880483146,
+  "projected": -355.4549711704964,
   "actual": -491.8236,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.18141386755336128
+  "log_error": -0.3247215377706516
  },
  {
   "origin": 2020,
@@ -6137,10 +6137,10 @@
   "year": 2023,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 3832.5066670820465,
+  "projected": 3239.104543687468,
   "actual": 3347.2823,
   "era": "E3 devaluation",
-  "log_error": 0.13537030851804707
+  "log_error": -0.03285184666082926
  },
  {
   "origin": 2020,
@@ -6181,10 +6181,10 @@
   "year": 2023,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 10796.232186474524,
+  "projected": 8821.037450045838,
   "actual": 6465.3027,
   "era": "E3 devaluation",
-  "log_error": 0.5127473691641391
+  "log_error": 0.3106896553497616
  },
  {
   "origin": 2020,
@@ -6283,11 +6283,11 @@
   "year": 2024,
   "driver": "da",
   "setting": "asknown",
-  "projected": 488.88371372963303,
+  "projected": -399.4413488929236,
   "actual": -1066.4,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.7799191119034166
+  "log_error": -0.981976825717794
  },
  {
   "origin": 2020,
@@ -6307,10 +6307,10 @@
   "year": 2024,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 4361.86085699397,
+  "projected": 3673.4089334614873,
   "actual": 14467.5,
   "era": "E3 devaluation",
-  "log_error": -1.1990059860961702
+  "log_error": -1.3707846588238417
  },
  {
   "origin": 2020,
@@ -6340,10 +6340,10 @@
   "year": 2024,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 12738.42836242776,
+  "projected": 9874.908563376517,
   "actual": 75812.1,
   "era": "E3 devaluation",
-  "log_error": -1.7836346304281325
+  "log_error": -2.038260859176169
  },
  {
   "origin": 2020,
@@ -6442,11 +6442,11 @@
   "year": 2025,
   "driver": "da",
   "setting": "asknown",
-  "projected": 576.8318110742835,
+  "projected": -447.1635926144834,
   "actual": -427.334,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": 0.2999848265372527
+  "log_error": 0.0453585977892159
  },
  {
   "origin": 2020,
@@ -6466,10 +6466,10 @@
   "year": 2025,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 4942.880953229984,
+  "projected": 4149.28451537119,
   "actual": 18201.9815,
   "era": "E3 devaluation",
-  "log_error": -1.303582111658604
+  "log_error": -1.4785945483384781
  },
  {
   "origin": 2020,
@@ -6510,10 +6510,10 @@
   "year": 2025,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 14907.117873213427,
+  "projected": 11019.602670473418,
   "actual": 71519.688,
   "era": "E3 devaluation",
-  "log_error": -1.5681339599434938
+  "log_error": -1.870297020675818
  },
  {
   "origin": 2020,
@@ -6612,7 +6612,7 @@
   "year": 2021,
   "driver": "da",
   "setting": "foresight",
-  "projected": 277.33908843306034,
+  "projected": -277.33908843306034,
   "actual": -317.3,
   "era": "E2 post-float",
   "scored_on": "magnitude",
@@ -6636,10 +6636,10 @@
   "year": 2021,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 2853.4811731145783,
+  "projected": 2423.6055860433353,
   "actual": 1783.2,
   "era": "E2 post-float",
-  "log_error": 0.4701302100612171
+  "log_error": 0.3068468398501808
  },
  {
   "origin": 2020,
@@ -6680,10 +6680,10 @@
   "year": 2021,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 7464.250273926861,
+  "projected": 6909.572097060741,
   "actual": 5412.1,
   "era": "E2 post-float",
-  "log_error": 0.32148780619233813
+  "log_error": 0.24427052309469155
  },
  {
   "origin": 2020,
@@ -6770,11 +6770,11 @@
   "year": 2022,
   "driver": "da",
   "setting": "foresight",
-  "projected": 338.00221513357553,
+  "projected": -312.8848295172477,
   "actual": -343.7,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.016716734744612754
+  "log_error": -0.09393401784225933
  },
  {
   "origin": 2020,
@@ -6794,10 +6794,10 @@
   "year": 2022,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 3324.513641324462,
+  "projected": 2820.0761817200746,
   "actual": 2230.0,
   "era": "E3 devaluation",
-  "log_error": 0.3993218046509334
+  "log_error": 0.23476231390745453
  },
  {
   "origin": 2020,
@@ -6827,10 +6827,10 @@
   "year": 2022,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 9012.178835416706,
+  "projected": 7806.613613899763,
   "actual": 6359.6,
   "era": "E3 devaluation",
-  "log_error": 0.3486113842236875
+  "log_error": 0.20500579135757063
  },
  {
   "origin": 2020,
@@ -6929,11 +6929,11 @@
   "year": 2023,
   "driver": "da",
   "setting": "foresight",
-  "projected": 408.0967676273044,
+  "projected": -353.5053886667013,
   "actual": -491.8236,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.18661579377772916
+  "log_error": -0.33022138664384604
  },
  {
   "origin": 2020,
@@ -6953,10 +6953,10 @@
   "year": 2023,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 4153.537725406844,
+  "projected": 3563.2960542789897,
   "actual": 3347.2823,
   "era": "E3 devaluation",
-  "log_error": 0.21581167219378508
+  "log_error": 0.06253721160413435
  },
  {
   "origin": 2020,
@@ -6997,10 +6997,10 @@
   "year": 2023,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 11040.182785397667,
+  "projected": 9073.015407586718,
   "actual": 6465.3027,
   "era": "E3 devaluation",
-  "log_error": 0.5350917648867853
+  "log_error": 0.3388548358925599
  },
  {
   "origin": 2020,
@@ -7099,11 +7099,11 @@
   "year": 2024,
   "driver": "da",
   "setting": "foresight",
-  "projected": 499.9304819639738,
+  "projected": -410.8516184696489,
   "actual": -1066.4,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.7575747161807703
+  "log_error": -0.9538116451749957
  },
  {
   "origin": 2020,
@@ -7123,10 +7123,10 @@
   "year": 2024,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 5230.320965785507,
+  "projected": 4524.464837949449,
   "actual": 14467.5,
   "era": "E3 devaluation",
-  "log_error": -1.0174321081410227
+  "log_error": -1.162405452164637
  },
  {
   "origin": 2020,
@@ -7156,10 +7156,10 @@
   "year": 2024,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 13617.97776652089,
+  "projected": 10740.028288276317,
   "actual": 75812.1,
   "era": "E3 devaluation",
-  "log_error": -1.7168670961099097
+  "log_error": -1.9542801875206064
  },
  {
   "origin": 2020,
@@ -7258,11 +7258,11 @@
   "year": 2025,
   "driver": "da",
   "setting": "foresight",
-  "projected": 616.6602782334497,
+  "projected": -486.3386433752139,
   "actual": -427.334,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": 0.36675236085547547
+  "log_error": 0.12933926944477878
  },
  {
   "origin": 2020,
@@ -7282,10 +7282,10 @@
   "year": 2025,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 6313.262930189216,
+  "projected": 5458.438765942501,
   "actual": 18201.9815,
   "era": "E3 devaluation",
-  "log_error": -1.0588778142563564
+  "log_error": -1.204367653218301
  },
  {
   "origin": 2020,
@@ -7326,10 +7326,10 @@
   "year": 2025,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 16604.931088134497,
+  "projected": 12623.982688281263,
   "actual": 71519.688,
   "era": "E3 devaluation",
-  "log_error": -1.4602730636867163
+  "log_error": -1.7343743756709247
  },
  {
   "origin": 2021,
@@ -7416,7 +7416,7 @@
   "year": 2022,
   "driver": "da",
   "setting": "asknown",
-  "projected": 277.3933897981789,
+  "projected": -277.3933897981789,
   "actual": -343.7,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
@@ -7440,10 +7440,10 @@
   "year": 2022,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 3733.9139731241717,
+  "projected": 3303.9542189369945,
   "actual": 2230.0,
   "era": "E3 devaluation",
-  "log_error": 0.5154554205830093
+  "log_error": 0.3931184138367691
  },
  {
   "origin": 2021,
@@ -7473,10 +7473,10 @@
   "year": 2022,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 6402.739898754427,
+  "projected": 5847.953119158069,
   "actual": 6359.6,
   "era": "E3 devaluation",
-  "log_error": 0.00676052564099899
+  "log_error": -0.08387377643691009
  },
  {
   "origin": 2021,
@@ -7575,11 +7575,11 @@
   "year": 2023,
   "driver": "da",
   "setting": "asknown",
-  "projected": 328.16794303718314,
+  "projected": -299.7327357410414,
   "actual": -491.8236,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.4045946168166205
+  "log_error": -0.4952289188945298
  },
  {
   "origin": 2021,
@@ -7599,10 +7599,10 @@
   "year": 2023,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 4618.977863273374,
+  "projected": 4132.3548372202495,
   "actual": 3347.2823,
   "era": "E3 devaluation",
-  "log_error": 0.32202467603912455
+  "log_error": 0.21069866012538904
  },
  {
   "origin": 2021,
@@ -7643,10 +7643,10 @@
   "year": 2023,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 7490.305636295677,
+  "projected": 6307.618177921095,
   "actual": 6465.3027,
   "era": "E3 devaluation",
-  "log_error": 0.1471597701371215
+  "log_error": -0.024691695020587736
  },
  {
   "origin": 2021,
@@ -7745,11 +7745,11 @@
   "year": 2024,
   "driver": "da",
   "setting": "asknown",
-  "projected": 383.9103621656035,
+  "projected": -323.29254594817996,
   "actual": -1066.4,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -1.0216346753866372
+  "log_error": -1.1934861405443464
  },
  {
   "origin": 2021,
@@ -7769,10 +7769,10 @@
   "year": 2024,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 5495.575913400424,
+  "projected": 4947.493659612242,
   "actual": 14467.5,
   "era": "E3 devaluation",
-  "log_error": -0.9679613652958571
+  "log_error": -1.0730236375057494
  },
  {
   "origin": 2021,
@@ -7802,10 +7802,10 @@
   "year": 2024,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 8682.75134080954,
+  "projected": 6792.860974321175,
   "actual": 75812.1,
   "era": "E3 devaluation",
-  "log_error": -2.166919457321557
+  "log_error": -2.4123857065365746
  },
  {
   "origin": 2021,
@@ -7904,11 +7904,11 @@
   "year": 2025,
   "driver": "da",
   "setting": "asknown",
-  "projected": 445.0283304450843,
+  "projected": -348.1633251593116,
   "actual": -427.334,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": 0.040572035187625276
+  "log_error": -0.2048942140273923
  },
  {
   "origin": 2021,
@@ -7928,10 +7928,10 @@
   "year": 2025,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 6375.360334929717,
+  "projected": 5760.63680183631,
   "actual": 18201.9815,
   "era": "E3 devaluation",
-  "log_error": -1.049089849209472
+  "log_error": -1.1504824373115112
  },
  {
   "origin": 2021,
@@ -7973,10 +7973,10 @@
   "year": 2025,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 9988.632052651312,
+  "projected": 7305.550030558552,
   "actual": 71519.688,
   "era": "E3 devaluation",
-  "log_error": -1.9685251168217057
+  "log_error": -2.2813384309916214
  },
  {
   "origin": 2021,
@@ -8063,7 +8063,7 @@
   "year": 2022,
   "driver": "da",
   "setting": "foresight",
-  "projected": 277.3933897981789,
+  "projected": -277.3933897981789,
   "actual": -343.7,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
@@ -8087,10 +8087,10 @@
   "year": 2022,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 3860.792152014138,
+  "projected": 3430.832397826961,
   "actual": 2230.0,
   "era": "E3 devaluation",
-  "log_error": 0.5488707976788701
+  "log_error": 0.4308013278456137
  },
  {
   "origin": 2021,
@@ -8120,10 +8120,10 @@
   "year": 2022,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 6452.480422686571,
+  "projected": 5897.693643090213,
   "actual": 6359.6,
   "era": "E3 devaluation",
-  "log_error": 0.014499136247214724
+  "log_error": -0.07540411575598482
  },
  {
   "origin": 2021,
@@ -8222,11 +8222,11 @@
   "year": 2023,
   "driver": "da",
   "setting": "foresight",
-  "projected": 330.71735870649354,
+  "projected": -302.2821514103518,
   "actual": -491.8236,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.3968560062104049
+  "log_error": -0.48675925821360455
  },
  {
   "origin": 2021,
@@ -8246,10 +8246,10 @@
   "year": 2023,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 5365.007933672612,
+  "projected": 4874.433313332057,
   "actual": 3347.2823,
   "era": "E3 devaluation",
-  "log_error": 0.4717490920036628
+  "log_error": 0.3758550914127112
  },
  {
   "origin": 2021,
@@ -8290,10 +8290,10 @@
   "year": 2023,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 7804.721263661855,
+  "projected": 6616.934973948652,
   "actual": 6465.3027,
   "era": "E3 devaluation",
-  "log_error": 0.18827900832092773
+  "log_error": 0.023182435388448247
  },
  {
   "origin": 2021,
@@ -8392,11 +8392,11 @@
   "year": 2024,
   "driver": "da",
   "setting": "foresight",
-  "projected": 400.0255146351856,
+  "projected": -339.14636139349625,
   "actual": -1066.4,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.980515437202831
+  "log_error": -1.1456120101353102
  },
  {
   "origin": 2021,
@@ -8416,10 +8416,10 @@
   "year": 2024,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 7255.104657242775,
+  "projected": 6682.246453320547,
   "actual": 14467.5,
   "era": "E3 devaluation",
-  "log_error": -0.6901994427006342
+  "log_error": -0.7724505280446609
  },
  {
   "origin": 2021,
@@ -8449,10 +8449,10 @@
   "year": 2024,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 9515.060975299257,
+  "projected": 7588.102809557371,
   "actual": 75812.1,
   "era": "E3 devaluation",
-  "log_error": -2.075382001453866
+  "log_error": -2.301676309568152
  },
  {
   "origin": 2021,
@@ -8551,11 +8551,11 @@
   "year": 2025,
   "driver": "da",
   "setting": "foresight",
-  "projected": 487.68777703195184,
+  "projected": -388.92288769243066,
   "actual": -427.334,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": 0.13210949105531622
+  "log_error": -0.09418481705896975
  },
  {
   "origin": 2021,
@@ -8575,10 +8575,10 @@
   "year": 2025,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 9205.723795887008,
+  "projected": 8526.350530725613,
   "actual": 18201.9815,
   "era": "E3 devaluation",
-  "log_error": -0.6817050194571274
+  "log_error": -0.7583690311339022
  },
  {
   "origin": 2021,
@@ -8619,10 +8619,10 @@
   "year": 2025,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 11497.470196897637,
+  "projected": 8693.90136643137,
   "actual": 71519.688,
   "era": "E3 devaluation",
-  "log_error": -1.8278457401486803
+  "log_error": -2.107350980953336
  },
  {
   "origin": 2022,
@@ -8721,7 +8721,7 @@
   "year": 2023,
   "driver": "da",
   "setting": "asknown",
-  "projected": 343.4830438821567,
+  "projected": -343.4830438821567,
   "actual": -491.8236,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
@@ -8745,10 +8745,10 @@
   "year": 2023,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 4770.609152717109,
+  "projected": 4238.210434699768,
   "actual": 3347.2823,
   "era": "E3 devaluation",
-  "log_error": 0.3543252388575601
+  "log_error": 0.2359923499993633
  },
  {
   "origin": 2022,
@@ -8778,10 +8778,10 @@
   "year": 2023,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 7282.311374227392,
+  "projected": 6595.345286463079,
   "actual": 6465.3027,
   "era": "E3 devaluation",
-  "log_error": 0.11899847580362234
+  "log_error": 0.019914308119567768
  },
  {
   "origin": 2022,
@@ -8880,11 +8880,11 @@
   "year": 2024,
   "driver": "da",
   "setting": "asknown",
-  "projected": 393.31883724090767,
+  "projected": -356.21568564818125,
   "actual": -1066.4,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.9974231952243096
+  "log_error": -1.0965073629083644
  },
  {
   "origin": 2022,
@@ -8904,10 +8904,10 @@
   "year": 2024,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 5864.969845995299,
+  "projected": 5284.080590756254,
   "actual": 14467.5,
   "era": "E3 devaluation",
-  "log_error": -0.9029074137214098
+  "log_error": -1.0072061160757095
  },
  {
   "origin": 2022,
@@ -8937,10 +8937,10 @@
   "year": 2024,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 8301.495387456103,
+  "projected": 6864.994776802702,
   "actual": 75812.1,
   "era": "E3 devaluation",
-  "log_error": -2.211822244777793
+  "log_error": -2.4018226321404033
  },
  {
   "origin": 2022,
@@ -9039,11 +9039,11 @@
   "year": 2025,
   "driver": "da",
   "setting": "asknown",
-  "projected": 448.3651337280814,
+  "projected": -370.77949905203144,
   "actual": -427.334,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": 0.048042022227216166
+  "log_error": -0.14195836513539462
  },
  {
   "origin": 2022,
@@ -9063,10 +9063,10 @@
   "year": 2025,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 7039.400768867964,
+  "projected": 6404.563678463377,
   "actual": 18201.9815,
   "era": "E3 devaluation",
-  "log_error": -0.9500074132941446
+  "log_error": -1.0445196507743022
  },
  {
   "origin": 2022,
@@ -9096,10 +9096,10 @@
   "year": 2025,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 9426.11753071405,
+  "projected": 7170.472287280535,
   "actual": 71519.688,
   "era": "E3 devaluation",
-  "log_error": -2.0264884712364926
+  "log_error": -2.300001246083831
  },
  {
   "origin": 2022,
@@ -9198,7 +9198,7 @@
   "year": 2023,
   "driver": "da",
   "setting": "foresight",
-  "projected": 343.4830438821567,
+  "projected": -343.4830438821567,
   "actual": -491.8236,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
@@ -9222,10 +9222,10 @@
   "year": 2023,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 5333.158951833373,
+  "projected": 4800.76023381603,
   "actual": 3347.2823,
   "era": "E3 devaluation",
-  "log_error": 0.4657949736446415
+  "log_error": 0.3606255245564954
  },
  {
   "origin": 2022,
@@ -9255,10 +9255,10 @@
   "year": 2023,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 7420.794701429631,
+  "projected": 6733.828613665318,
   "actual": 6465.3027,
   "era": "E3 devaluation",
-  "log_error": 0.1378363215893182
+  "log_error": 0.04069403704540842
  },
  {
   "origin": 2022,
@@ -9357,11 +9357,11 @@
   "year": 2024,
   "driver": "da",
   "setting": "foresight",
-  "projected": 400.79834456123496,
+  "projected": -363.69519296850854,
   "actual": -1066.4,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": -0.978585349438614
+  "log_error": -1.0757276339825237
  },
  {
   "origin": 2022,
@@ -9381,10 +9381,10 @@
   "year": 2024,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 7428.514957470479,
+  "projected": 6836.032465884928,
   "actual": 14467.5,
   "era": "E3 devaluation",
-  "log_error": -0.6665787868476111
+  "log_error": -0.7496972399720452
  },
  {
   "origin": 2022,
@@ -9414,10 +9414,10 @@
   "year": 2024,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 8742.20602313924,
+  "projected": 7290.746397845185,
   "actual": 75812.1,
   "era": "E3 devaluation",
-  "log_error": -2.160095347303509
+  "log_error": -2.341651983200463
  },
  {
   "origin": 2022,
@@ -9516,11 +9516,11 @@
   "year": 2025,
   "driver": "da",
   "setting": "foresight",
-  "projected": 472.167987777972,
+  "projected": -393.77441425635794,
   "actual": -427.334,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": 0.09976891970149968
+  "log_error": -0.08178771619545393
  },
  {
   "origin": 2022,
@@ -9540,10 +9540,10 @@
   "year": 2025,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 9628.09561078479,
+  "projected": 8956.990249208186,
   "actual": 18201.9815,
   "era": "E3 devaluation",
-  "log_error": -0.63684501141849
+  "log_error": -0.7090962009128637
  },
  {
   "origin": 2022,
@@ -9573,10 +9573,10 @@
   "year": 2025,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 10264.549581202584,
+  "projected": 7947.147553874199,
   "actual": 71519.688,
   "era": "E3 devaluation",
-  "log_error": -1.9412765980154694
+  "log_error": -2.197159702411708
  },
  {
   "origin": 2023,
@@ -9675,7 +9675,7 @@
   "year": 2024,
   "driver": "da",
   "setting": "asknown",
-  "projected": 406.7610925441536,
+  "projected": -406.7610925441536,
   "actual": -1066.4,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
@@ -9699,10 +9699,10 @@
   "year": 2024,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 10591.468524138134,
+  "projected": 9960.988830694696,
   "actual": 14467.5,
   "era": "E3 devaluation",
-  "log_error": -0.3118559336318796
+  "log_error": -0.37322840760707127
  },
  {
   "origin": 2023,
@@ -9732,10 +9732,10 @@
   "year": 2024,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 7457.848847691701,
+  "projected": 6644.326662603393,
   "actual": 75812.1,
   "era": "E3 devaluation",
-  "log_error": -2.3189908961014027
+  "log_error": -2.4344945534163616
  },
  {
   "origin": 2023,
@@ -9834,11 +9834,11 @@
   "year": 2025,
   "driver": "da",
   "setting": "asknown",
-  "projected": 469.2066073435716,
+  "projected": -418.0242902626672,
   "actual": -427.334,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": 0.09347728995390119
+  "log_error": -0.022026367361057588
  },
  {
   "origin": 2023,
@@ -9858,10 +9858,10 @@
   "year": 2025,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 16447.62358912728,
+  "projected": 15760.019643482447,
   "actual": 18201.9815,
   "era": "E3 devaluation",
-  "log_error": -0.10134945767421014
+  "log_error": -0.14405413094000313
  },
  {
   "origin": 2023,
@@ -9903,10 +9903,10 @@
   "year": 2025,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 8616.318437885084,
+  "projected": 6915.565355190538,
   "actual": 71519.688,
   "era": "E3 devaluation",
-  "log_error": -2.1163148703682
+  "log_error": -2.3361980488643894
  },
  {
   "origin": 2023,
@@ -10005,7 +10005,7 @@
   "year": 2024,
   "driver": "da",
   "setting": "foresight",
-  "projected": 406.7610925441536,
+  "projected": -406.7610925441536,
   "actual": -1066.4,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
@@ -10029,10 +10029,10 @@
   "year": 2024,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 11237.828371040483,
+  "projected": 10607.348677597045,
   "actual": 14467.5,
   "era": "E3 devaluation",
-  "log_error": -0.2526191340903285
+  "log_error": -0.3103577220780722
  },
  {
   "origin": 2023,
@@ -10062,10 +10062,10 @@
   "year": 2024,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 7510.648791145048,
+  "projected": 6697.126606056741,
   "actual": 75812.1,
   "era": "E3 devaluation",
-  "log_error": -2.311936058172019
+  "log_error": -2.4265793408751026
  },
  {
   "origin": 2023,
@@ -10164,11 +10164,11 @@
   "year": 2025,
   "driver": "da",
   "setting": "foresight",
-  "projected": 472.5284878002056,
+  "projected": -421.3461707193013,
   "actual": -427.334,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
-  "log_error": 0.10053212788328511
+  "log_error": -0.014111154819798518
  },
  {
   "origin": 2023,
@@ -10188,10 +10188,10 @@
   "year": 2025,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 17359.000468216436,
+  "projected": 16666.24760786382,
   "actual": 18201.9815,
   "era": "E3 devaluation",
-  "log_error": -0.047419330923861996
+  "log_error": -0.08814488886705842
  },
  {
   "origin": 2023,
@@ -10233,10 +10233,10 @@
   "year": 2025,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 8711.633624584289,
+  "projected": 7004.2367809764755,
   "actual": 71519.688,
   "era": "E3 devaluation",
-  "log_error": -2.1053134378043534
+  "log_error": -2.323457548051697
  },
  {
   "origin": 2024,
@@ -10335,7 +10335,7 @@
   "year": 2025,
   "driver": "da",
   "setting": "asknown",
-  "projected": 3643.576951596635,
+  "projected": -3643.576951596635,
   "actual": -427.334,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
@@ -10359,10 +10359,10 @@
   "year": 2025,
   "driver": "net_profit",
   "setting": "asknown",
-  "projected": 27305.360276748208,
+  "projected": 21657.816001773426,
   "actual": 18201.9815,
   "era": "E3 devaluation",
-  "log_error": 0.40555256826815217
+  "log_error": 0.1738359437631879
  },
  {
   "origin": 2024,
@@ -10392,10 +10392,10 @@
   "year": 2025,
   "driver": "ppe",
   "setting": "asknown",
-  "projected": 109665.9132181017,
+  "projected": 102378.75931490843,
   "actual": 71519.688,
   "era": "E3 devaluation",
-  "log_error": 0.4274658232823691
+  "log_error": 0.3587064940841439
  },
  {
   "origin": 2024,
@@ -10494,7 +10494,7 @@
   "year": 2025,
   "driver": "da",
   "setting": "foresight",
-  "projected": 3643.576951596635,
+  "projected": -3643.576951596635,
   "actual": -427.334,
   "era": "E3 devaluation",
   "scored_on": "magnitude",
@@ -10518,10 +10518,10 @@
   "year": 2025,
   "driver": "net_profit",
   "setting": "foresight",
-  "projected": 25453.046763408864,
+  "projected": 19805.502488434082,
   "actual": 18201.9815,
   "era": "E3 devaluation",
-  "log_error": 0.3353049897029366
+  "log_error": 0.08442934076592315
  },
  {
   "origin": 2024,
@@ -10551,10 +10551,10 @@
   "year": 2025,
   "driver": "ppe",
   "setting": "foresight",
-  "projected": 106948.12518413327,
+  "projected": 99660.97128094,
   "actual": 71519.688,
   "era": "E3 devaluation",
-  "log_error": 0.40237113710000344
+  "log_error": 0.3318013703117462
  },
  {
   "origin": 2015,

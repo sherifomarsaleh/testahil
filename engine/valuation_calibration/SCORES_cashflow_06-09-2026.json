@@ -250,7 +250,7 @@
    {
     "ticker": "TMGH",
     "origin": 2022,
-    "why": "terminal refused: terminal free cash flow is -1,855,846,514.2, not positive: a going concern that consumes cash for ever is not a terminal"
+    "why": "terminal refused: terminal free cash flow is -1,894,150,885.2, not positive: a going concern that consumes cash for ever is not a terminal"
    },
    {
     "ticker": "TMGH",
@@ -510,7 +510,7 @@
    {
     "ticker": "TMGH",
     "origin": 2022,
-    "why": "terminal refused: terminal free cash flow is -2,277,167,967.9, not positive: a going concern that consumes cash for ever is not a terminal"
+    "why": "terminal refused: terminal free cash flow is -2,315,472,338.8, not positive: a going concern that consumes cash for ever is not a terminal"
    },
    {
     "ticker": "TMGH",
