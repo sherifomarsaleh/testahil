@@ -388,9 +388,10 @@
    "default_date": "2026-10-06",
    "status": "open",
    "resolves_when": {
-    "file": "engine/escalations.json",
-    "must_contain": "ARCC-publication-ruled-on"
-   }
+    "file": "engine/arcc_study/PUBLICATION_RULING.md",
+    "must_contain": "PUBLICATION RULED ON"
+   },
+   "resolves_when_note": "The first marker written here named a string inside THIS file and the gate refused it in the same minute — the identical trap the EG-sovereign entry records against itself. A marker has to live somewhere the answer lands, not somewhere the question is stored."
   }
  ]
 }
