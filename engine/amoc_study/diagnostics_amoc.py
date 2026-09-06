@@ -33,7 +33,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 NUM = os.path.join(HERE, "study_numbers.json")
 
 
-def _flat_rate(d):
+def _flat_rate(d, gm):
     """The same disagreement as a single flat discount rate, on the ONE shared
     construction (engine/reverse_read.py) every study calls.
 
@@ -69,11 +69,12 @@ def _flat_rate(d):
         "discounts at a schedule worth a flat %.2f%%: a disagreement of %.0f basis "
         "points on the price of time, against an explicit-window rate of %.2f%% "
         "gliding to a terminal %.2f%%. Read as a margin instead, the same gap is "
-        "93 basis points of gross margin, and THAT is the form a reader can check "
+        "%.0f basis points of gross margin, and THAT is the form a reader can check "
         "against the filed accounts."
         % (100 * r["implied_rate_at_price"], 100 * r["implied_rate_at_study_value"],
            10000 * (r["implied_rate_at_study_value"] - r["implied_rate_at_price"]),
-           100 * w["wacc_exp"], 100 * w["wacc_term"]))
+           100 * w["wacc_exp"], 100 * w["wacc_term"],
+           10000 * (gm["level"] - gm["base"])))
     return r
 
 
@@ -92,6 +93,14 @@ def build():
         "ticker": "AMOC",
         "as_of": meta.get("asof") or d.get("asof"),
         "spot": spot,
+        "spot_date": meta.get("spot_date") or meta.get("asof"),
+        # [R-ENF-06] AN ARTEFACT DECLARES THE ANSWER IT WAS BUILT AGAINST. A record a
+        # full edition behind is indistinguishable from a current one until it says what
+        # it was current WITH, which is exactly how a stale reverse read shipped on
+        # another study in this book while the document beside it published the
+        # re-solved figures.
+        "published_central": ps,
+        "published_spot": spot,
         "why_this_file": (
             "The reverse read — what the traded price must believe — is a "
             "DIAGNOSTIC and lives outside the numbers file every builder reads. A "
@@ -145,7 +154,7 @@ def build():
         # crux for a reader of this study, and the pooled quantity for the valuation
         # calibration. Written once per study it would be written differently per
         # study. Nothing here is an input to anything either.
-        "also_solved": _flat_rate(d),
+        "also_solved": _flat_rate(d, gm),
     }
 
     # Both framings, priced through the study's own waterfall.

@@ -2,6 +2,9 @@
  "ticker": "AMOC",
  "as_of": "2026-09-03",
  "spot": 13.5,
+ "spot_date": "2026-09-03",
+ "published_central": 11.401172768028045,
+ "published_spot": 13.5,
  "why_this_file": "The reverse read — what the traded price must believe — is a DIAGNOSTIC and lives outside the numbers file every builder reads. A quantity solved from a price and then used anywhere in the valuation is the reverse-engineered rate the protocol prohibits outright, arriving through a side door. Nothing here is an input to anything; it is written OUT of what compute.py already committed.",
  "implied": {
   "quantity": "the gross margin sustained in every forecast year AND in perpetuity that reproduces the traded price",
@@ -13,5 +16,30 @@
   ],
   "solved_on": "compute.py's own solve, holding every other driver at its base case and moving only the gross margin until the cash-flow lens reaches the market price",
   "reading": "At EGP 13.50 the price is paying for a gross margin of 10.58% held in every forecast year and in perpetuity, against a base year of 9.65% — 93 basis points ABOVE it. That is INSIDE the range this company has actually printed: it filed 13.84% for the full year to 30 June 2022 and 13.92% in the quarter to 30 June 2026. So the market is not pricing something the business has never done; it is pricing a margin above the base year and below the best the company has filed, and the study's answer of EGP 11.40 is -15.5% against the price."
+ },
+ "also_solved": {
+  "implied_rate_at_price": 0.17465860077756812,
+  "implied_rate_at_study_value": 0.19808777432489444,
+  "terminal_cash_flow": 2126.52738676623,
+  "terminal_growth": 0.07,
+  "terminal_arrives_at_year": 5.0,
+  "enterprise_value_at_spot": 15563.829286895925,
+  "enterprise_value_in_study": 12853.193916804146,
+  "bridge_delta_equity_less_ev": 1871.4207131040748,
+  "quantity": "the single flat discount rate that reproduces the traded price on this study's own free cash flows, terminal and bridge",
+  "study_value": 0.19808777432489444,
+  "study_schedule": {
+   "explicit": 0.2745428,
+   "terminal": 0.18138618580547197
+  },
+  "discounting_times": [
+   1.0,
+   2.0,
+   3.0,
+   4.0,
+   5.0
+  ],
+  "times_resolved": "recovered from the study's own factors",
+  "reading": "The price is paying for a flat 17.47% on the same cash flows this study discounts at a schedule worth a flat 19.81%: a disagreement of 234 basis points on the price of time, against an explicit-window rate of 27.45% gliding to a terminal 18.14%. Read as a margin instead, the same gap is 93 basis points of gross margin, and THAT is the form a reader can check against the filed accounts."
  }
 }
