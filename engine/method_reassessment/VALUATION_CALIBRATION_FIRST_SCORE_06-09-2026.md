@@ -275,15 +275,35 @@ the run's own forward model, not in the bridge: its projected **EBIT margin comp
 from 30.6% at horizon 1 to 60.1% at horizon 5**, against filed gross margins of 21.2%
 (FY2023) and 40.6% (FY2025).
 
-**No gate looks at this and the reason is structural.** [R-ANCHOR-01] tests a forecast
-that opens materially BELOW the filed record, and its second clause tests a rate that
-DECLINES from its own opening year; it says in terms that it does not fire on a forecast
-above the latest period. And the run's own scored record cannot see it either: cells are
-scored only where an actual exists, so horizons 4 and 5 from a 2023 origin are years
-that have not happened. **The walk-forward's error record is blind to the part of the
-projection a discounted cash flow leans on hardest** — which is [R-FCAL-01]'s own
-statement that the far years support ranges rather than points, arriving as a
-measurement rather than a caution.
+**No gate looks at this.** [R-ANCHOR-01] tests a forecast that opens materially BELOW
+the filed record, and its second clause tests a rate that DECLINES from its own opening
+year; it says in terms that it does not fire on a forecast above the latest period.
+
+**A first reading of this section added a second reason — that the run's own score
+cannot see horizons 4 and 5 from a 2023 origin, so the error record is blind to the part
+of the projection a discounted cash flow leans on hardest. The structural half is true;
+the attribution is not, and the census says so.**
+`engine/valuation_calibration/unscored_horizons.py` measures, per run and per origin,
+how far the projected operating margin travels from the first horizon to the last and
+how many of those horizons the run could grade:
+
+| | origins | mean \|drift\| |
+|---|---|---|
+| every horizon gradeable | 19 | **7.0 pp** |
+| at least one horizon ungradeable | 13 | **9.0 pp** |
+
+**The two are barely different, and the single largest drift in the book — ARCC 2017,
+22.3% to 55.7%, +33.4 points — sits on an origin where ALL FIVE horizons were graded.**
+So the drift is a property of these projections generally rather than an artefact of
+what could not be graded, and ARCC's is large at every origin, most of them graded. The
+run's own error record has seen it and reports revenue and cost UNDER-forecast, which is
+the direction a rising margin path produces.
+
+**What that leaves is a question about the driver rule, not about grading coverage:**
+whether a 60% EBIT margin at horizon 5 is credible for a cement company whose filed
+gross margin has ranged 21.2% to 40.6%. That is a question for a rebuild of that run.
+The blindness at recent origins is real and is worth naming — 2 of 5 horizons gradeable
+from a 2023 origin — but it is not what produced this number.
 
 Recorded here as a finding about that run. It is not corrected in this pass: changing a
 committed walk-forward's forward model is its own unit, as the depreciation-sign fix
