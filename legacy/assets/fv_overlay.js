@@ -6576,98 +6576,6 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
-   "ticker": "AMOC",
-   "name": "Alexandria Mineral Oils",
-   "code": "EGX:AMOC",
-   "ccy": "EGP",
-   "spot": 9.1,
-   "anchor_date": "2026-08-06",
-   "fv_asof": "2026-08-06",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 4.09,
-   "fv_base": 5.95,
-   "fv_full": 8.52,
-   "gap_base_pct": -34.6,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.111209,
-    "mu_h": 0.007663,
-    "G": {
-     "bear": -7.19,
-     "base": -3.82,
-     "full": -0.59
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0001,
-     "base": 0.002,
-     "full": 0.2162
-    },
-    "p_touch": {
-     "bear": 0.0002,
-     "base": 0.0028,
-     "full": 0.3787
-    },
-    "required_cagr": {
-     "bear": -0.9999,
-     "base": -0.9939,
-     "full": -0.5463
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.0016
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.1929,
-    "mu_h": 0.024961,
-    "G": {
-     "bear": -4.15,
-     "base": -2.2,
-     "full": -0.34
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0013,
-     "base": 0.0149,
-     "full": 0.2849
-    },
-    "p_touch": {
-     "bear": 0.0023,
-     "base": 0.0268,
-     "full": 0.5753
-    },
-    "required_cagr": {
-     "bear": -0.9592,
-     "base": -0.8172,
-     "full": -0.2316
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00293
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "BURJEEL",
    "name": "Burjeel Holdings PLC",
    "code": "ADX:BURJEEL",
@@ -7512,6 +7420,90 @@ const FV_OVERLAY = {
     "beats_cash": false,
     "asymmetry": "base below p5",
     "selftest_max_dev": 0.0036
+   },
+   "market": "EG"
+  },
+  {
+   "ticker": "AMOC",
+   "name": "Alexandria Mineral Oils",
+   "code": "EGX:AMOC",
+   "ccy": "EGP",
+   "spot": 13.54,
+   "anchor_date": "2026-09-06",
+   "fv_asof": "2026-08-06",
+   "fv_lag_days": 31,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 4.09,
+   "fv_base": 5.95,
+   "fv_full": 8.52,
+   "gap_base_pct": -56.1,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.128362,
+    "mu_h": 0.014663,
+    "G": {
+     "bear": -9.33,
+     "base": -6.41,
+     "full": -3.61
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -0.9999,
+     "full": -0.9961
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00177
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.214781,
+    "mu_h": 0.036974,
+    "G": {
+     "bear": -5.57,
+     "base": -3.83,
+     "full": -2.16
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0004,
+     "base": 0.0018,
+     "full": 0.0149
+    },
+    "p_touch": {
+     "bear": 0.0005,
+     "base": 0.003,
+     "full": 0.0272
+    },
+    "required_cagr": {
+     "bear": -0.9917,
+     "base": -0.9627,
+     "full": -0.8432
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00337
    },
    "market": "EG"
   },
