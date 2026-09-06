@@ -333,3 +333,95 @@ zero and labelled refused; provisions and other income scaled to the business.
 
 Two of those four are blocked by things this run could have committed and did not: the
 intangibles schedule, and average rather than year-end debt.
+
+---
+
+# Part six — a correction to part five, and the sixteenth defect
+
+## The correction: the profit improvement in part five was measured on a shrinking sample
+
+Part five scored profit on `log(projected / actual)`. **A log ratio cannot score a
+cell whose projection is negative, and it drops it silently.** The corrected rules
+turn four ordinary cells into projected losses, so those cells left the sample and
+the remaining bias looked better. The figure quoted there — +0.604 to +0.303 — was
+computed on eleven cells before and seven after.
+
+Re-scored on `(projected − actual) / |actual|`, which keeps every cell:
+
+| profit before tax, ordinary origins | cells | mean error | MAE | cells projecting a loss |
+|---|---|---|---|---|
+| the model as it stands | 13 | +3.18 | 3.44 | 3 of 25 |
+| the six corrected rules | 13 | **+0.81** | **1.73** | **10 of 25** |
+
+**The improvement is real on identical cells** — the over-forecast falls from +318%
+to +81% and the error halves. The revenue result of part five is unaffected: the same
+thirteen cells score before and after, and the bias goes from +10.8% to +0.9%.
+
+**But the fix triples the projected losses**, and that is the thread worth pulling.
+
+## The tested alternative, which is worse
+
+F2 ties the works price to the model's own **forecast** cost stack — and three lines
+in that stack still escalate at consumer inflation, because their fuel and wage
+shares are not disclosed. So the price inherits the very escalator errors F2 was
+meant to route around. A variant tying the price to the **marginal input** instead —
+imported energy on the currency, the one escalator properly specified after F1 — was
+built and is worse on everything:
+
+| | revenue bias | PBT mean | PBT MAE | losses |
+|---|---|---|---|---|
+| as the model stands | +0.108 | +3.18 | 3.44 | 3 |
+| **F2 on the forecast cost stack** | **+0.009** | **+0.81** | **1.73** | 10 |
+| F2 on imported energy alone | −0.143 | −2.32 | 2.47 | 18 |
+
+F2 as built stands. The alternative was tested rather than assumed away.
+
+## The sixteenth defect: nothing in this model reverts
+
+**All ten loss-projections come from the FY2019 and FY2020 origins. Nine of the ten
+are wrong** — the company's profit went on to multiply by thirty.
+
+| projected loss at origin | actual profit that year |
+|---|---|
+| FY2019, one year out | −137mn — **correct** |
+| FY2019, two to five years out | +55mn, +522mn, +930mn, +1,506mn |
+| FY2020, one to five years out | +55mn, +522mn, +930mn, +1,506mn, +4,725mn |
+
+**Every driver rule in this model is a level or an escalator. Not one of them
+reverts.** From a cyclical trough the model extrapolates the trough for five years
+and then capitalises it for ever; from a peak it would do the reverse. Mean reversion
+is the most ordinary assumption in equity valuation and this model has no term for it.
+
+**That is the real explanation for 2020–2022**, and it is a better one than "a break
+nobody could see". The company was at a cyclical floor. A model that reverted its
+margin toward mid-cycle would have been far less wrong without any foresight at all.
+
+## And reversion was tested, and the data will not support it yet
+
+Added with no new parameter — the contribution margin reverts linearly to its own
+trailing median, arriving by the last explicit year, because a terminal value is
+already a mid-cycle statement:
+
+| | revenue bias | PBT mean | PBT MAE | losses |
+|---|---|---|---|---|
+| the six corrected rules | +0.009 | +0.81 | 1.73 | 10 |
+| + margin reverts to its own median | +0.009 | +0.78 | 1.74 | 10 |
+
+**It changes almost nothing, and the reason is in the data:**
+
+| | margin | trailing median the origin can see |
+|---|---|---|
+| FY2019 | 15.1% | too short |
+| **FY2020** | **11.1%** | **15.1%** |
+| FY2021 | 17.3% | 16.2% |
+| FY2025 | **42.9%** | 22.7% |
+
+At the FY2020 origin the trailing median is 15.1% against a margin of 11.1%.
+Reversion pulls up four points while the margin actually went to 42.9%. **Eight years
+of history, most of it the trough, cannot locate a mid-cycle** — the median is
+dragged down by the same years the model is trying to escape.
+
+**So mean reversion is right in principle and needs an anchor from outside the
+company's own short record**: an industry mid-cycle margin, a replacement-cost
+return, a peer distribution. This run holds none of them. That is the largest single
+gap remaining, and it is the one that turns a hard forecast into a catastrophic one.
