@@ -930,6 +930,18 @@ ASP_CHG = v('asp_h126') / v('asp_h125') - 1.0
 # a relationship that only held in one direction would not be one
 COST_REV_FY = {y: 1.0 - FILED_ADJ_MARGIN[y] for y in HIST}
 
+# THE HALVES THIS STUDY ACTUALLY HOLDS, so a claim about the weakest half is one the
+# record can check rather than a superlative. The register carries exactly TWO filed
+# halves — the reviewed six months to 30 June 2026 and their own comparative column
+# — so H1 2023 and H1 2024 are outside anything this study can measure and nothing
+# is asserted about them. The second half of 2025 is DERIVED BY IDENTITY from two
+# filed figures, the audited full year less that filed half, and is labelled derived
+# wherever it is quoted; no figure here is estimated or interpolated.
+MARGIN_H125 = ADJ_H125 / REV_H125
+ADJ_H225_DERIVED = (hist[2025]['ebitda'] + hist[2025]['impairment']) - ADJ_H125
+REV_H225_DERIVED = hist[2025]['revenue'] - REV_H125
+MARGIN_H225_DERIVED = ADJ_H225_DERIVED / REV_H225_DERIVED
+
 # --- which framing governs the record ------------------------------------------------
 # The study is deliberately two-sided and never averages the branches. The anchor is
 # recorded on the branch that makes the claim this record exists to test — the one
@@ -955,8 +967,12 @@ FORECAST_ANCHOR = dict(
         f"{v('imp_h126') * USDm:,.3f} million, over revenue of USD {REV_H126:,.3f} "
         f"million. That reconstruction is USD {ADJ_H126:,.3f} million against the USD "
         f"{v('ebitda_adj_h126'):,} million the company publishes as adjusted EBITDA in "
-        'its own Q2 2026 Management Discussion & Analysis, and the margin against the '
-        f"{v('ebitda_adj_h126') / round(REV_H126):.0%} that document prints."),
+        'its own Q2 2026 Management Discussion & Analysis \u2014 a difference of USD '
+        f"{ADJ_H126 - v('ebitda_adj_h126'):,.3f} million, which is that document's own "
+        'rounding to the nearest million. THE MARGIN IS STRUCK ON THE RECONSTRUCTION AND '
+        'IS NOT READ OFF THE DOCUMENT: the register carries the adjusted EBITDA figure '
+        'and the revenue and no published margin, so quoting a printed margin here would '
+        "attribute this study's own arithmetic to the filing."),
     first_forecast_rate=_gp[0],
     forecast_path=_gp,
     mechanism=dict(
@@ -1027,7 +1043,12 @@ FORECAST_ANCHOR = dict(
         'BOTH BRANCHES OPEN WELL ABOVE THE LATEST REVIEWED PERIOD AND THAT IS THE FIRST '
         'THING A READER SHOULD SEE, because a record that only catches declines would say '
         f"nothing about it. The reviewed six months to 30 June 2026 carried an adjusted "
-        f"EBITDA margin of {LATEST_RATE:.2%}, the weakest half this company has filed; "
+        f"EBITDA margin of {LATEST_RATE:.2%}, below every period this study holds on "
+        f"that basis \u2014 H1 2025 {MARGIN_H125:.2%} from the same statements' own "
+        f"comparative column, the second half of 2025 {MARGIN_H225_DERIVED:.2%} DERIVED "
+        'by identity as the audited full year less that filed half, and the three '
+        'audited years set out next. The register carries two filed halves and no more, '
+        'so nothing is claimed about halves this study does not hold. '
         f"the prolonged branch opens FY2026 at {_gp[0]:.2%}, "
         f"{(_gp[0] - LATEST_RATE) / LATEST_RATE:+.1%} relative, and the normalisation "
         f"branch at {_op[0]:.2%}, {(_op[0] - LATEST_RATE) / LATEST_RATE:+.1%}. THE FILED "
