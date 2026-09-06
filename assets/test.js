@@ -74,15 +74,47 @@ window.fmtPx = function(v,ccy){
   var dp = v>=1000?0:(v>=100?1:2);
   return v.toLocaleString("en-US",{minimumFractionDigits:dp,maximumFractionDigits:dp})+(ccy?" "+ccy:"");
 };
-window.gapOf = function(t){ return (t.fair && t.fair.base) ? t.fair.base/t.spot - 1 : null; };
-window.verdictOf = function(t){
-  var g = gapOf(t); if(g==null) return {label:"—", cls:"mut"};
+/* ---------- the price a comparison is made against ----------
+   TICKERS[k].spot is the price a cone was STRUCK at, which is right for the
+   forecast and wrong for a gap: a fair value is measured against the LATEST
+   KNOWN price. PRICES carries the freshest price this repository holds for each
+   name WITH ITS OWN DATE — prices are entered by hand, so they lag, and the
+   honest answer is to print the date rather than to imply the number is today's.
+   One route, so every surface agrees; falls back to the strike when a name is
+   not in the block. */
+window.latestPx = function(k, t){
+  var p = (typeof PRICES !== "undefined") ? PRICES[k] : null;
+  if(p && p.px > 0) return {px:p.px, date:p.date, src:p.src, strike:false};
+  var d = (t && t.spotDate || "").replace(/^close\s+/i, "");
+  return {px: t && t.spot, date: d, src: "strike", strike: true};
+};
+window.pxAge = function(iso){            /* whole days, or null if undated */
+  if(!iso || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) return null;
+  return Math.max(0, Math.round((Date.now() - Date.parse(iso+"T00:00:00Z"))/864e5));
+};
+window.fmtPxDate = function(iso){        /* 2026-09-03 -> 3 Sep 2026 */
+  if(!iso) return "";
+  var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
+  if(!m) return iso;
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return (+m[3]) + " " + M[(+m[2])-1] + " " + m[1];
+};
+window.gapOf = function(t, k){
+  if(!(t && t.fair && t.fair.base)) return null;
+  var px = (k ? latestPx(k, t).px : t.spot);
+  return px > 0 ? t.fair.base/px - 1 : null;
+};
+window.verdictOf = function(t, k){
+  var g = gapOf(t, k); if(g==null) return {label:"—", cls:"mut"};
   if(g >= 0.15) return {label:"looks cheap", cls:"good"};
   if(g <= -0.15) return {label:"looks expensive", cls:"bad"};
   return {label:"near fair value", cls:"mut"};
 };
-window.reachOf = function(t){ /* can the central fair value be reached inside the 3-month cone? */
-  var g = gapOf(t), d = t.dist && t.dist.t60; if(g==null || !d) return null;
+window.reachOf = function(t, k){ /* can the central fair value be reached inside the 3-month cone? */
+  /* the percentiles stay on the CONE's own clock — it was built on the strike
+     spot and does not move when a fresher price arrives; only the direction of
+     the gap is taken from the latest price. Two clocks, kept apart on purpose. */
+  var g = gapOf(t, k), d = t.dist && t.dist.t60; if(g==null || !d) return null;
   var fv = t.fair.base;
   if(g >= 0){ if(fv <= d.p75) return {label:"IN REACH", cls:"good", rank:0};
     if(fv <= d.p95) return {label:"STRETCH", cls:"warn", rank:1};
