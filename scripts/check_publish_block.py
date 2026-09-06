@@ -198,6 +198,54 @@ def phase1_proven():
                       "; ".join("#%s %s" % (i["n"], i["text"][:44]) for i in open_items)))
 
 
+# THIS RULE'S POPULATION IS STUDIES, AND A METAL IS NOT ONE — NAMED, NOT SKIPPED.
+#
+# [R-GAP-02] holds a STUDY whose fair value sits more than 10% below the price, and
+# clause three holds every study until the fundamental method is proven. Both halves
+# are statements about the fundamental valuation method: the deviation test compares a
+# DCF central against a quote, and the acceptance criteria clause three waits on are
+# the valuation calibration's pooled bias and the median |central/price - 1| of that
+# same method. The gate's own book-wide population says so in one line — it globs
+# engine/*_study and there has never been a metal in it.
+#
+# A metal has no study by construction and that is not an oversight anywhere: the
+# campaign prompt excludes metals "by construction (no issuer, no statements, no
+# drivers)", and there is no issuer to file, no statement to foot and no driver to
+# build, so there is no discounted cash flow for the method under test to have been
+# wrong about. What a metals page publishes is a price cone, a graded ledger row and a
+# technical read — governed by [R-CAL-01..03] and [R-TCAL-01], each with its own
+# calibration and its own evidence, none of which is the method clause three awaits.
+#
+# WHAT MADE THIS LOOK LIKE A HOLD RATHER THAN A NON-MEMBERSHIP is the --ticker path.
+# Run book-wide the gate takes its population from the study directories and a metal
+# never appears; --ticker FORCES a name into that population, and a name outside it
+# resolved to "no study directory on disk" — the same sentence an equity that lost its
+# study produces. Two different states wearing one message, which is the shape
+# [R-ENF-04] names: an absent answer in the costume of a measured one.
+#
+# THE EXCLUSION IS A CLOSED LIST RESOLVED FROM THE SITE ITSELF, NEVER A RULE OF THUMB.
+# "Any name with no study directory is out of scope" would make DELETING a directory
+# the cheapest way past this gate, which is precisely what the unreadable branch below
+# exists to stop. So membership is read from the METALS object in assets/data.js — the
+# keys that are not in TICKERS and carry no study — and an equity with no study
+# directory still FAILS as unreadable, unchanged.
+def _metal_keys():
+    """The registered METALS keys, read from the site rather than typed here.
+
+    Read live for the reason every population in this repo is read live: a typed list
+    goes stale the moment a metal is added or removed, and it would go stale silently
+    and in the PERMISSIVE direction. If the object cannot be read, NOTHING is excluded
+    — an unreadable roster excludes nobody, so the failure falls to the strict side.
+    """
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "engine"))
+        import site_data
+        return {k.upper() for k in site_data.read_object(
+            "METALS", os.path.join(ROOT, "assets", "data.js"))}
+    except Exception:
+        return set()
+
+
 def verdict(ticker):
     """(may_publish, reason, rows). An UNREADABLE study may not publish either.
 
@@ -207,6 +255,12 @@ def verdict(ticker):
     """
     sdir = os.path.join(ENGINE, "%s_study" % ticker.lower())
     if not os.path.isdir(sdir):
+        if ticker.upper() in _metal_keys():
+            return True, ("outside this rule's population — a metal publishes no "
+                          "fundamental valuation, so there is no central for the "
+                          "deviation test and no study for the method hold; its cone "
+                          "is governed by [R-CAL-01..03] and its read by "
+                          "[R-TCAL-01]"), []
         return False, "no study directory on disk", []
     px, pxdate, pxsrc, rows = _gap_rows(sdir, ticker)
     if px is None:
