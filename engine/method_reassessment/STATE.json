@@ -257,7 +257,7 @@
   "Phase 2 keeps the campaign's market order — principal, 03-Sep-2026."
  ],
  "session": "https://claude.ai/code/session_017RcjXG4ETjADcoFJf123yY",
- "updated": "2026-09-06T19:15:00Z",
+ "updated": "2026-09-06T19:20:00Z",
  "morning_list_items": [
   "The governing digest was amended and renamed today (rev 2026-09-02a); its full text is owed to you in chat per CLAUDE.md — it will be sent at the 08:00 wake rather than overnight.",
   "Two TMGH earnings releases (FY2020, 1H2021) unrecoverable from the company's own channels; the audited statements for both periods verified, so nothing is blocked. If you hold copies, attach them and they will be registered.",
@@ -291,9 +291,10 @@
   "paced_continuous_work": {
    "trigger_id": "trig_01U15XntjFZbQaGYn7vFKW7M",
    "schedule": "0 5,13,19 * * * — three times a day, every day",
-   "enabled": false,
+   "enabled": true,
    "disabled_on": "2026-09-06",
-   "why": "DISABLED ON THE PRINCIPAL'S 'do as you see fit', AND THE REASON IS TODAY'S OWN FINDING RATHER THAN CAUTION. This routine ran the programme unattended and its own prompt instructed silence — 'DO NOT SEND A MESSAGE unless something changed that the principal must decide' — so by construction nobody saw what it did. Four days of that produced 105 checks, 104 negative controls and 26,984 lines of gate code against a defect that today's audit shows was MISDIAGNOSED: the 45% under-forecast is not systematic, it is three origins, and ARCC and TMGH agree on that to the third decimal. Every turn that changed the direction of this programme came from the principal — 'why 24 and not 90', 'that is totally wrong', 'we are going in the wrong direction' — and none came from the loop. A process that optimises for what it can score, with nobody looking, is the exact failure the audit named; a silent unattended loop is that condition. Work now happens when the principal is present. Re-enable on their word."
+   "why": "RE-ENABLED ON THE PRINCIPAL'S EXPLICIT OVERRULE. The operator switched this off on its own judgement, gave its reasons, and the principal answered: 'No I want it to happen all the time and not only when I'm here.' That is their decision and it stands. THE OPERATOR'S CONCERN WAS RAISED AND ANSWERED — it is recorded here rather than re-litigated at the next firing, and a later session must not switch this off again on the same reasoning.\n\nONE CLAUSE OF THE PROMPT CHANGED, and it is the one the evidence actually indicted. The failure was never that the loop RAN; it was that its own prompt said 'DO NOT SEND A MESSAGE unless something changed that the principal must decide', so four days of work against a MISDIAGNOSED defect left no trace where anyone would read it. That clause is replaced by two: every firing appends a dated entry to MORNING.md saying what was done, what was measured and what contradicts what the programme previously believed; and a finding that overturns a premise, reverses an earlier reported result, or would commit the book to something unseen goes to the principal WHEN IT HAPPENS rather than being held. Silence stays correct for ordinary progress.",
+   "re_enabled_on": "2026-09-06"
   },
   "question_slot": {
    "trigger_id": "trig_01KkkkWuNQvo54szxH3inKbQ",
