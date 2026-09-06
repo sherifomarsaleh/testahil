@@ -92,3 +92,53 @@ Practical consequence for the next runs, unchanged in substance: the valuation-i
 block is a COPY out of filings already parsed cell by cell, not new research —
 cash, interest-bearing debt, PPE, D&A, the working-capital lines, the share count
 footed against its par value, and capex disclosed or labelled as derived.
+
+---
+
+# Where this standard actually sits against a top-tier sell-side desk — 06-09-2026
+
+The principal asked whether the standard being built is high enough to compete
+with top-notch investment banks. The answer given, recorded here so the next
+session inherits the judgement rather than re-deriving it, and so nothing in the
+programme is built on a flattering version of it.
+
+## The split: checkable and uncheckable
+
+**Ahead, on the checkable half.**
+
+- PROVENANCE. Historicals from the company's own filings only (SIGCM clause 1),
+  arithmetic as the arbiter rather than the extractor's confidence, OCR off the
+  rendered pixels where a text layer lies, the route recorded per figure. Most
+  bank models begin at a data vendor.
+- ENFORCEMENT FROM OUTSIDE [R-ENF-01]. No self-attested boolean is a check; gates
+  run over the work rather than inside it, and FAIL rather than warn.
+- IT GRADES ITSELF. The band record [R-CAL-02], the three walk-forwards, and
+  criterion 3 mean the house publishes whether it was right before. Sell-side
+  almost never scores its own expired targets — and this programme's own scoring
+  of an outside house on ARCC found that house's capex forecast wrong by 64%.
+- THE ANSWER IS AUDITED, NOT ONLY THE STEPS [R-GAP-01, R-ENF-05]. Eight headings,
+  the reverse read, and a sign test on which way every contested judgement went.
+
+**Behind, on the uncheckable half — and this is STRUCTURAL, not a method gap.**
+
+- MANAGEMENT ACCESS. A top desk sits with the CFO, visits sites, runs channel
+  checks. No filing carries that, and much of a good analyst's edge lives there.
+- SECTOR DEPTH BUILT OVER A DECADE — which kiln is down, who is discounting this
+  quarter, what the informal market does.
+- PAID INDUSTRY DATA — Argus, Wood Mackenzie, proprietary volume feeds.
+
+## The realistic position, stated plainly
+
+This house can match or beat a top desk on RIGOUR AND HONESTY and will lose to it
+on PROPRIETARY INFORMATION. That is a fair trade for a published, calibrated range,
+which is a different product from a rating written partly to win banking business.
+
+## The caveat that binds the programme
+
+NONE OF IT IS PROVEN YET. Criterion 3 has not closed, so today the claim is
+"carefully built and enforced", not "measurably right". Phase 1 exists to convert
+the first into the second, and until it does the standard is an aspiration with
+good machinery behind it. No document, deck or page may describe it as more than
+that, which is the same discipline [R-FCAL-01] applies to a provisional lesson and
+[R-CAL-02] applies to a cautious label: understating in the wrong direction is not
+a safe error, and neither is overstating in the comfortable one.
