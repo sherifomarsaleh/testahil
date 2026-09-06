@@ -36,6 +36,10 @@ def build(tmp, names, studies, ratchet=None, raw=None):
     os.makedirs(os.path.join(tmp, 'engine', 'build_depth_audit'), exist_ok=True)
     os.makedirs(os.path.join(tmp, 'scripts'), exist_ok=True)
     shutil.copy(os.path.join(ROOT, GATE), os.path.join(tmp, GATE))
+    # the gate resolves the directory-to-ticker alias, and the table is
+    # dependency-free precisely so this sandbox can carry it in one line
+    shutil.copy(os.path.join(ROOT, 'engine', 'study_aliases.py'),
+                os.path.join(tmp, 'engine', 'study_aliases.py'))
     if raw is not None:
         open(os.path.join(tmp, 'assets', 'data.js'), 'w').write(raw)
     elif names is not None:

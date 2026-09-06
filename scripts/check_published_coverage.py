@@ -98,8 +98,13 @@ def main(argv):
     # FERTIGLB and that name sat on this gate's outstanding list as having no study
     # while its study directory existed. The list was stale by one and nothing could
     # see it until a second measurement of the same fact disagreed.
+    # engine/study_aliases.py is DEPENDENCY-FREE for exactly this reason: this gate
+    # runs inside a negative-control sandbox that builds a minimal tree, so importing
+    # the full resolver here would kill every case with ModuleNotFoundError — which
+    # it did, on the first attempt, and which is the third time today that adding an
+    # import broke somebody else's sandbox.
     sys.path.insert(0, ENGINE)
-    from study_population import DIR_ALIAS
+    from study_aliases import DIR_ALIAS
     studies = {DIR_ALIAS.get(t, t) for t in
                (os.path.basename(d)[:-len('_study')].upper()
                 for d in glob.glob(os.path.join(ENGINE, '*_study')))}

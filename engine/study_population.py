@@ -56,9 +56,21 @@ FILE_ALIAS = {
     'QALAA_HOLDINGS': 'CCAP',
 }
 
-# A STUDY DIRECTORY STEM THAT IS NOT ITS TICKER.  Mirrors
-# campaign_queue.STUDY_ALIAS, which is asserted against this at import.
-DIR_ALIAS = {'FERTIGLOBE': 'FERTIGLB'}
+# A STUDY DIRECTORY STEM THAT IS NOT ITS TICKER — imported, never declared here.
+# It lived in this file and was COPIED into campaign_queue.py, and the two were
+# compared only when this module ran as a script; the consumer that never imported
+# it at all got no alias and listed a studied name as unstudied for three days.
+# The copy is removed rather than checked: one table, every consumer imports it.
+try:                                    # noqa: E402
+    from study_aliases import DIR_ALIAS
+except ModuleNotFoundError:             # loaded by path, not from engine/ on sys.path
+    import importlib.util as _ilu
+    _spec = _ilu.spec_from_file_location(
+        'study_aliases', os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                      'study_aliases.py'))
+    _m = _ilu.module_from_spec(_spec)
+    _spec.loader.exec_module(_m)
+    DIR_ALIAS = _m.DIR_ALIAS
 
 # Delivered files that resolve to no covered EQUITY, each with its reason.
 # Metals are a separate register (METALS in data.js) and are excluded by
@@ -325,35 +337,13 @@ def unreadable(pop=None):
 
 
 def _assert_alias_agreement():
-    """campaign_queue keeps its own directory-alias table. Two tables for one
-    fact diverge the moment one is edited, so they are asserted equal at
-    import -- the LENS_REGISTRY/CLASSES precedent [R-LENS-03]."""
-    import importlib.util
-    p = os.path.join(ENGINE, 'campaign_queue.py')
-    if not os.path.exists(p):
-        return
-    spec = importlib.util.spec_from_file_location('_cq', p)
-    m = importlib.util.module_from_spec(spec)
-    try:
-        spec.loader.exec_module(m)
-    except Exception:
-        return
-    if getattr(m, 'STUDY_ALIAS', DIR_ALIAS) != DIR_ALIAS:
-        raise AssertionError(
-            'campaign_queue.STUDY_ALIAS %r and study_population.DIR_ALIAS %r '
-            'disagree. One fact, one table.' % (m.STUDY_ALIAS, DIR_ALIAS))
+    """RETIRED, AND KEPT AS A NAME SO NOTHING CALLING IT BREAKS. It compared this
+    module's table with campaign_queue's copy. There is no copy now — both import
+    engine/study_aliases.py — so there is nothing to compare and nothing to drift.
+    Removing the duplication is strictly better than checking it."""
+    return True
 
 
-# THE ALIAS TABLE IS HARDCODED AND ITS AGREEMENT IS CHECKED AT IMPORT, FOR EVERY
-# CONSUMER [06-09-2026, per instruction]. DIR_ALIAS is the one authoritative
-# statement that engine/fertiglobe_study belongs to the ticker FERTIGLB. It was
-# already written down here and campaign_queue.py kept its own copy; what was
-# missing is that the agreement was only asserted when THIS FILE was run as a
-# script, so a consumer importing the module got no check at all — and
-# check_published_coverage, which never imported it, spent three days listing
-# FERTIGLB as having no study while its directory sat on disk. A fact that is
-# hardcoded in one place and copied in another is not hardcoded; it is duplicated,
-# and the copy is only as good as whatever compares them.
 _assert_alias_agreement()
 
 
