@@ -535,7 +535,7 @@ def main(argv):
     # THE TWO GROUPS EXCUSE TWO DIFFERENT CONDITIONS AND ARE NOT INTERCHANGEABLE
     both = sorted(known_unreadable & known_no_record)   # noqa: E501  see note above
     if both:
-        new_fail.append('%s listed in BOTH no_record_dir and unreadable. They excuse '
+        new_fail.append('%s listed in BOTH the shared no-record ratchet and unreadable. They excuse '
                         'different conditions — no record to read, versus a record whose '
                         'numbers expose no answer — and a name carrying both allowances '
                         'escapes whichever one it actually breaches.' % ', '.join(both))

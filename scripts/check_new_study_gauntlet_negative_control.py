@@ -75,8 +75,33 @@ def _over_ratchet(*ratchets):
     return go
 
 
-case("1. the gap ratchet seeded one entry too generously — the gate then passes an "
-     "unknown study", True, _over_ratchet('gap_outstanding.json'), 'check_valuation_gap.py')
+# CASE 1 WAS RE-POINTED 06-09-2026, AND WHY IS THE INTERESTING PART.
+# It used to seed gap_outstanding.json with the unknown study, on the reasoning that a
+# ratchet seeded one entry too generously is the one-line edit anybody could make in
+# good faith. THAT ROUTE IS NOW CLOSED: check_valuation_gap resolves its population
+# through engine/study_population.py, which REFUSES a record directory naming a name
+# the site does not carry — before any ratchet is consulted. Measured in a probe
+# sandbox, one weakening at a time: seeding gap_outstanding.json does not smuggle the
+# study through, and neither does seeding the shared no-record ratchet, which only
+# excuses COVERED names with no directory.
+#
+# What DOES smuggle it through is switching off the resolver's own stray-directory
+# refusal — ONE LINE — and that is the honest falsifier now, because it is the single
+# edit that would let an unknown study past ALL TEN re-pointed gates at once. The
+# concentration is the cost of the shared instrument and this case is where it is
+# tested: closing the old route was a strengthening, and it moved the weak point
+# rather than removing it.
+def _weaken_resolver(repo):
+    p = os.path.join(repo, 'engine', 'study_population.py')
+    s = open(p).read()
+    old = "        if undeclared:\n            raise SystemExit("
+    assert s.count(old) == 1, 'the mutation did not land: the resolver refusal moved'
+    open(p, 'w').write(s.replace(old, "        if False:\n            raise SystemExit(", 1))
+
+
+case("1. the resolver's stray-directory refusal switched off — one line, and an "
+     "unknown study walks past every re-pointed gate", True, _weaken_resolver,
+     'check_valuation_gap.py')
 case('2. the document ratchet seeded with the unknown study', True,
      _over_ratchet('document_outstanding.json'), 'check_document_structure.py')
 case('3. the prose ratchet seeded with the unknown study', True,
