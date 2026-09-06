@@ -622,16 +622,16 @@ const TICKERS = {
     touch: [ /* level, P(touch) 1-month %, 3-month % \u2014 descending */
       [11.00, 7, 27], [10.50, 14, 40], [10.00, 30, 57], [8.50, 38, 58], [8.00, 15, 35], [7.50, 5, 20]
     ],
-    levels: { res:[9.20, 9.43, 9.86], sup:[7.84, 7.38, 6.81] },
+    levels: { res:[14.13, 15, 16], sup:[12.25, 9.81, 9.13] },
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
-      summary: "The price closed 9.10 above a rising 20-day (8.51), a rising 50-day (8.19) and a rising 200-day (7.66). Momentum is firm: RSI(14) is ~63 and the daily ATR near 0.28 (~3.1%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+0.30 / +0.21 / +0.09). Over the last year it has ranged 6.66\u20139.85; the last close sits 8% below that high and 37% above that low.",
-      bull: "A daily close back above 9.20 would clear the nearest resistance; the next charted level above it is 9.86.",
-      bear: "A close below 7.84 would break the nearest support; the next charted level below it is 6.81."
+      summary: "The price closed 13.54 above a rising 20-day (11.31), a rising 50-day (9.47) and a rising 200-day (8.10). Momentum is very strong: RSI(14) is ~83 and the daily ATR near 0.57 (~4.2%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+1.11 / +0.90 / +0.21). Over the last year it has ranged 6.66\u201314.13; the last close sits 4% below that high and 103% above that low.",
+      bull: "A daily close back above 14.13 would clear the nearest resistance; the next charted level above it is 16.00.",
+      bear: "A close below 12.25 would break the nearest support; the next charted level below it is 9.13."
     },
     asof: {
       mc:   { data:"2026-08-06", computed:"2026-08-06" },
-      tech: { data:"2026-08-06", computed:"2026-09-01" }
+      tech: { data:"2026-09-06", computed:"2026-09-06" }
     },
     files: {
       study: "files/AMOC_Valuation_Study_08-08-2026_public.docx?v=0808b",
@@ -3206,7 +3206,7 @@ const BANDS = {
   ALINMA: {mkt:"SA", n:58, hits:50, c50:0.3793, c80:0.6724, c90:0.8621, width:1.063, strength:"long", flag:null},
   ALPHADHABI: {mkt:"AE", n:16, hits:16, c50:0.6875, c80:0.8750, c90:1.0000, width:1.012, strength:"market-only", flag:null},
   ALRAJHI: {mkt:"SA", n:58, hits:50, c50:0.4483, c80:0.7069, c90:0.8621, width:1.071, strength:"long", flag:null},
-  AMOC: {mkt:"EG", n:57, hits:49, c50:0.5614, c80:0.8070, c90:0.8596, width:1.225, strength:"long", flag:null},
+  AMOC: {mkt:"EG", n:57, hits:51, c50:0.5439, c80:0.8246, c90:0.8947, width:1.194, strength:"long", flag:null},
   AMR: {mkt:"AE", n:10, hits:10, c50:0.2000, c80:0.8000, c90:1.0000, width:0.899, strength:"market-only", flag:null},
   ARAMCO: {mkt:"SA", n:22, hits:20, c50:0.4091, c80:0.7727, c90:0.9091, width:1.004, strength:"short", flag:null},
   ARCC: {mkt:"EG", n:44, hits:41, c50:0.5909, c80:0.9318, c90:0.9318, width:1.432, strength:"long", flag:null},
@@ -3286,7 +3286,7 @@ const BANDS = {
 // Pooled per-market record: what a market-only name is judged on.
 const BAND_MARKETS = {
   AE: {names:28, n:912, c90:0.9057, label:"UAE"},
-  EG: {names:37, n:1795, c90:0.9276, label:"Egyptian"},
+  EG: {names:37, n:1795, c90:0.9287, label:"Egyptian"},
   IN: {names:3, n:174, c90:0.8793, label:"Indian"},
   KR: {names:3, n:127, c90:0.8898, label:"Korean"},
   QA: {names:3, n:174, c90:0.9310, label:"Qatari"},
@@ -3518,8 +3518,8 @@ const LEDGER = [
     note:"First coverage, 6-Aug-2026 — struck on the production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0.0879 (declared DPS 0.80 against the 6-Aug close). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count — the 3-month calendar target 2026-11-06 falls on a non-trading day, so the grade date rolls FORWARD to 2026-11-08. Name-level calibration: PARITY — 17 non-overlapping post-break quarterly origins (2022-04-05 → 2026-04-12), scale-normalized CRPS skill +0.68% against the carry-anchored random walk, but the bootstrap CI90 straddles zero at every block size {2,3,4}, so no single-name edge is demonstrated and none is claimed. The two longer window sets are shown in the study rather than the flattering one alone: last five years of origins +0.92% PARITY (19 windows), full cleaned history +1.32% PASS (57 windows, back to 2012 — a period the current fit was not calibrated on). What carries the cone is the MARKET-level gate: the 30-name EG panel scores +1.58% with a CI90 of [+0.9%, +2.2%], which is PASS. Shape is sound even where sharpness is not: PIT mean 0.461, chi2(9) p=0.854, KS p=0.568, 90% band coverage 0.941, cone 0.969x the benchmark's width — whatever margin it earns comes from being better centred, not wider. Price history 3,754 clean sessions over 15.6 years; largest single-session move 0.1813 in logs, inside the exchange's ±20% limit (0.1823) by four ten-thousandths, so no unadjusted corporate action is hiding in the series. Read the bands as a probability map. The cone is a 1/3-month object and is NEVER blended with the undated fair-value zone.",
     p5:7.71, p25:8.60, p50:9.17, p75:9.79, p95:10.91,
     touch:{ "+5":55, "+10":30, "+15":15, "+20":8, "-5":48, "-10":22 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null, touch_hit:null,
+    realized_close:13.54, realized_high:14.13, realized_low:9.03,
+    in_90:false, in_50:false, realized_quantile:null, median_err:0.4766, touch_hit:{ "+5":true, "+10":true, "+15":true, "+20":true, "-5":false, "-10":false },
     reanchor_from:null
   },
   {
@@ -7988,7 +7988,7 @@ const CALIB = {
   "DFM:SALIK": {w: 11, in50: 27, in90: 100, through: "2026-07-15"},
   "EGX:ABUK": {w: 57, in50: 54, in90: 91, through: "2026-08-18"},
   "EGX:ADIB": {w: 57, in50: 56, in90: 95, through: "2026-07-12"},
-  "EGX:AMOC": {w: 57, in50: 46, in90: 84, through: "2026-07-12"},
+  "EGX:AMOC": {w: 57, in50: 47, in90: 84, through: "2026-07-12"},
   "EGX:ARCC": {w: 44, in50: 59, in90: 93, through: "2026-06-24"},
   "EGX:BTFH": {w: 56, in50: 54, in90: 80, through: "2026-07-22"},
   "EGX:CCAP": {w: 57, in50: 51, in90: 84, through: "2026-07-12"},
