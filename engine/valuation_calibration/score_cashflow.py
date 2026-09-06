@@ -154,6 +154,21 @@ READINGS = (
     ("DECLARED", dict(horizons=CL.HORIZONS, maintenance="amount")),
     ("maintenance read as intensity x origin revenue",
      dict(horizons=CL.HORIZONS, maintenance="intensity")),
+    # A SENSITIVITY, NOT THE DECLARED RUN, AND THE LABEL IS LOAD-BEARING. The sealed
+    # construction takes the disclosed_capex basis and says why: "only one of these
+    # five names has [a disclosed life] on file". That statement was true of the
+    # repository the morning it was sealed and is no longer — ARCC's and AMOC's lives
+    # were read from their own accounting-policies notes the same day, and the score
+    # this construction produced named the missing life as its binding blocker.
+    #
+    # The declaration ALSO bars a fourth construction if the third failed, and it did.
+    # Both readings of that bar are defensible, and resolving it in the direction that
+    # produces a better number is exactly the fitting this house forbids. So it is NOT
+    # resolved: the declared run stays the declared run, this is published BESIDE it as
+    # a third reading of the same surface, and the difference between them is reported
+    # rather than chosen between. Nothing here promotes anything.
+    ("maintenance on the DISCLOSED LIFE — A SENSITIVITY, NOT THE DECLARED RUN",
+     dict(horizons=CL.HORIZONS, maintenance="disclosed_life")),
 )
 
 
@@ -200,7 +215,7 @@ def report():
                      "—  NOTHING LEFT TO POOL" if v["mean"] is None
                      else "%+.4f" % v["mean"]))
         print()
-    # the drop taxonomy is the same for both readings' shared causes; print the
+    # the drop taxonomy is the same for every reading's shared causes; print the
     # declared run's
     print("  ---- WHY 28 OF 33 READY CELLS PRODUCED NO VALUE (declared run) ----")
     for cause, cells in sorted(drop_taxonomy(out["DECLARED"]["dropped"]).items(),

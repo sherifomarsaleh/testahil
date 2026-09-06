@@ -470,6 +470,61 @@ def terminal_inflation(market, origin):
 
 
 # --------------------------------------------------------------- one cell
+def study_life(tk):
+    """The useful life the name's OWN DELIVERED STUDY committed, with its source.
+
+    NOT A LIFE THIS MODULE CHOSE, and the distinction is the whole point [R-TERM-01]:
+    a life this desk picked is not a disclosed life. What is read here is the scalar
+    a study already committed to its own terminal_record, sourced to an
+    accounting-policies note and audited by that study's own gates. A name whose
+    record carries no scalar — because its note gives a BAND, and collapsing a band
+    is a judgement — returns None and is skipped, with the reason.
+    """
+    p = os.path.join(ENGINE, "%s_study" % tk.lower(), "study_numbers.json")
+    if not os.path.exists(p):
+        return None, "no delivered study to read a committed life from"
+    try:
+        doc = json.load(open(p, encoding="utf-8"))
+    except Exception:
+        return None, "the study's numbers file will not parse"
+    # A study's terminal record sits at the top level on some names and under each
+    # scenario on others (EGCH publishes a two-sided answer, so its record is per
+    # case). Search by SHAPE and require every occurrence to agree — a name whose
+    # cases disagree about the LIFE has not disclosed one thing, and taking the
+    # first would be picking.
+    found = {}
+
+    def walk(o):
+        if isinstance(o, dict):
+            if "useful_life_years" in o and "useful_life_source" in o:
+                v, sc = o.get("useful_life_years"), o.get("useful_life_source")
+                if isinstance(v, (int, float)):
+                    found[round(float(v), 6)] = sc or ""
+                return
+            for v in o.values():
+                walk(v)
+        elif isinstance(o, list):
+            for v in o:
+                walk(v)
+
+    walk(doc)
+    if len(found) > 1:
+        return None, ("the study commits %d different lives across its cases (%s) — "
+                      "taking one would be picking"
+                      % (len(found), ", ".join("%.4g" % k for k in sorted(found))))
+    rec = {}
+    if found:
+        k = next(iter(found))
+        rec = {"useful_life_years": k, "useful_life_source": found[k]}
+    life, src = rec.get("useful_life_years"), rec.get("useful_life_source") or ""
+    if not isinstance(life, (int, float)) or life <= 0:
+        return None, "the study commits no scalar useful life"
+    if not src:
+        return None, ("the study commits a life with no source — SIGCM clause 1, and "
+                      "a life with no note behind it is one somebody chose")
+    return float(life), src
+
+
 def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount"):
     panel, _src = P._panel(os.path.join(ENGINE, "%s_walkforward" % tk.lower()))
     blk = block(tk)
@@ -553,13 +608,25 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount"):
     maint_amount = (it["capex_amount"] or 0.0) * esc
     maint_intensity = it["capex"] * actual(panel, origin, REVENUE[tk]) * scale * esc
     maint = maint_intensity if maintenance == "intensity" else maint_amount
+    life, life_src = (None, "")
+    if maintenance == "disclosed_life":
+        life, life_src = study_life(tk)
+        if life is None:
+            return None, "disclosed-life sensitivity: %s" % life_src
+    ti = dict(nopat=last["nopat"], wacc=coc["wacc"], inflation=infl, real_growth=0.0,
+              dna_book=last["dna"], working_capital=last["wc"])
+    if maintenance == "disclosed_life":
+        # The module's own CROSS-CHECK basis: the book charge escalated to current cost
+        # over half the disclosed life, which is the age of the base under straight-line
+        # when the measured age is not to hand. It needs no replacement-cost capital, so
+        # it is computable from what these runs commit — which the disclosed_life basis
+        # proper is not, since ic_replacement exists at no past origin.
+        ti.update(maintenance_basis="book_dna_escalated", useful_life_years=life,
+                  useful_life_source=life_src)
+    else:
+        ti.update(maintenance_basis="disclosed_capex", maintenance_capex=maint)
     try:
-        t = TV.build(TV.TerminalInputs(
-            nopat=last["nopat"], wacc=coc["wacc"], inflation=infl, real_growth=0.0,
-            dna_book=last["dna"],
-            maintenance_basis="disclosed_capex",
-            maintenance_capex=maint,
-            working_capital=last["wc"]))
+        t = TV.build(TV.TerminalInputs(**ti))
     except TV.TerminalRefused as exc:
         return None, "terminal refused: %s" % str(exc)[:120]
 
@@ -576,7 +643,8 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount"):
              "kd_bound": coc["kd_bound"], "we": coc["we"], "tau": tau,
              "inflation": infl, "intensities": it, "rows": rows,
              "price_date": cellinfo["price_date"], "scale": scale,
-             "maintenance": maint, "maintenance_basis_reading": maintenance,
+             "maintenance": t.maintenance, "maintenance_basis_reading": maintenance,
+             "useful_life_years": life,
              "capex_route": it["capex_route"],
              "minority_book": actual(panel, origin, MINORITY[tk]),
              "horizons": hs}, None)

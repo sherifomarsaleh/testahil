@@ -221,3 +221,70 @@ alone. **On the measurement the guard is correct and the blocker is a missing in
 the disclosed asset life [R-TERM-01] has required since it was written. That is work
 this house can do from filings it already holds, rather than a question about a module
 that delivered studies depend on.
+
+
+---
+
+## THE SENSITIVITY ON A DISCLOSED LIFE — and the answer does not move
+
+The correction above named the binding blocker as a missing input. Two of the five
+lives were read from the companies' own accounting-policies notes the same day (ARCC's
+and AMOC's; EGCH already had one), so the question could be asked: **what does this
+instrument produce with the input [R-TERM-01] has always required?**
+
+It is run as a **third reading published beside the declared one, never as a replacement**.
+The sealed declaration bars a fourth construction if the third failed, and it did; it
+also justifies its own maintenance basis on a statement about the repository — *"only
+one of these five names has [a disclosed life] on file"* — that is no longer true. Both
+readings of that bar are defensible, and **resolving it in the direction that produces a
+better number is the fitting this house forbids**. So it is not resolved. The declared
+run stays the declared run.
+
+The life is not one this module chose: it is the **scalar each name's own delivered
+study already committed to its terminal record**, sourced to an accounting-policies
+note. ARCC 20.0 years; EGCH 22.07. AMOC, PHDC and TMGH commit no scalar — AMOC's note
+gives a 10–30 band and collapsing a band is a judgement — so they are skipped with that
+reason.
+
+**The panel is still one name.**
+
+| reading | cells | names | mean log(FV/P) |
+|---|---|---|---|
+| DECLARED (trailing capex, median amount) | 5 | **1** (PHDC) | +0.9842 |
+| maintenance as intensity × origin revenue | 5 | **1** (PHDC) | +0.9834 |
+| **maintenance on the disclosed life** | **3** | **1** (ARCC) | +1.1068 |
+
+**Three constructions, three answers, one name every time.** That is a stronger version
+of the finding than the declared run alone supports: the panel does not thin because of
+one construction choice, and no reading of the maintenance basis rescues it.
+
+**EGCH refuses on BOTH bases, in opposite directions.** On trailing capex its terminal
+free cash flow is negative because a build programme was charged as perpetual
+maintenance; on the disclosed life it is negative again because escalating a book charge
+of EGP 1,858mn over half a 22-year life at Egyptian inflation produces a maintenance
+requirement several times the company's terminal profit. **The second is not obviously
+an error** — replacing a 22-year-old asset base in that currency really does cost a
+multiple of its historical cost, and the module is saying that this company cannot
+sustain its asset base out of its earnings. Whether that is a defect or a finding about
+KIMA is a question for a rebuild of that name, not for this instrument.
+
+## What the sensitivity found in ARCC's own projection, which is not about this lens
+
+ARCC 2023 reads a fair value of **EGP 105.78 against a close of 10.00**. The cause is in
+the run's own forward model, not in the bridge: its projected **EBIT margin compounds
+from 30.6% at horizon 1 to 60.1% at horizon 5**, against filed gross margins of 21.2%
+(FY2023) and 40.6% (FY2025).
+
+**No gate looks at this and the reason is structural.** [R-ANCHOR-01] tests a forecast
+that opens materially BELOW the filed record, and its second clause tests a rate that
+DECLINES from its own opening year; it says in terms that it does not fire on a forecast
+above the latest period. And the run's own scored record cannot see it either: cells are
+scored only where an actual exists, so horizons 4 and 5 from a 2023 origin are years
+that have not happened. **The walk-forward's error record is blind to the part of the
+projection a discounted cash flow leans on hardest** — which is [R-FCAL-01]'s own
+statement that the far years support ranges rather than points, arriving as a
+measurement rather than a caution.
+
+Recorded here as a finding about that run. It is not corrected in this pass: changing a
+committed walk-forward's forward model is its own unit, as the depreciation-sign fix
+was, and it needs its own before-and-after on that run's scored record.

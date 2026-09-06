@@ -518,5 +518,246 @@
     "why": "no finance charge in the as-reported panel at this origin"
    }
   ]
+ },
+ "maintenance on the DISCLOSED LIFE \u2014 A SENSITIVITY, NOT THE DECLARED RUN": {
+  "score": {
+   "n": {
+    "cells": 3,
+    "origins": 3,
+    "names": 1
+   },
+   "mean": 1.106789807669932,
+   "median": 1.2582850659580793,
+   "mae": 1.3045567953213177,
+   "below": 1,
+   "above": 2,
+   "bootstrap": {
+    "2": {
+     "lo": 0.22166136766797395,
+     "hi": 1.6251016568149848,
+     "half_width": 0.7017201445735054,
+     "n_boot": 2000
+    },
+    "3": {
+     "lo": 1.106789807669932,
+     "hi": 1.106789807669932,
+     "half_width": 0.0,
+     "n_boot": 2000
+    },
+    "4": null
+   },
+   "lono": {
+    "ARCC": {
+     "left_out": "ARCC",
+     "cells": 0,
+     "mean": null,
+     "names_left": 0
+    }
+   },
+   "eras": {
+    "E1 pre-float": {
+     "cells": 0,
+     "mean": null
+    },
+    "E2 post-float": {
+     "cells": 1,
+     "mean": -0.2966504814770787
+    },
+    "E3 devaluation": {
+     "cells": 2,
+     "mean": 1.8085099522434374
+    }
+   }
+  },
+  "cells": [
+   {
+    "ticker": "ARCC",
+    "origin": 2021,
+    "fv": 3.359733019604432,
+    "price": 4.52,
+    "log": -0.2966504814770787,
+    "wacc": 0.17715479648936805,
+    "terminal_share": 0.22566208889329148,
+    "price_date": "2021-12-30",
+    "kd_bound": "FLOORED at the sovereign (effective 11.18%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2022,
+    "fv": 24.142952310037728,
+    "price": 6.86,
+    "log": 1.2582850659580793,
+    "wacc": 0.2844392187779406,
+    "terminal_share": 0.4454059104500589,
+    "price_date": "2022-12-29",
+    "kd_bound": "FLOORED at the sovereign (effective 8.28%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2023,
+    "fv": 105.77560661255441,
+    "price": 10.0,
+    "log": 2.3587348385287954,
+    "wacc": 0.30666173517412415,
+    "terminal_share": 0.5909887773415019,
+    "price_date": "2023-12-31",
+    "kd_bound": "the company's own effective rate",
+    "scale": 1.0
+   }
+  ],
+  "dropped": [
+   {
+    "ticker": "AMOC",
+    "origin": 2021,
+    "why": "the projection runs to horizon 3; the declared window is 5"
+   },
+   {
+    "ticker": "AMOC",
+    "origin": 2022,
+    "why": "the projection runs to horizon 3; the declared window is 5"
+   },
+   {
+    "ticker": "AMOC",
+    "origin": 2023,
+    "why": "the projection runs to horizon 3; the declared window is 5"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2017,
+    "why": "capex intensity needs 3 years and the block carries 0"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2018,
+    "why": "capex intensity needs 3 years and the block carries 1"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2019,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2020,
+    "why": "terminal refused: terminal free cash flow is -130,126,345.3, not positive: a going concern that consumes cash for ever is not a terminal, "
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2013,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2015,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2016,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2017,
+    "why": "terminal refused: terminal free cash flow is -452,273,896.0, not positive: a going concern that consumes cash for ever is not a terminal, "
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2018,
+    "why": "terminal refused: terminal free cash flow is -94,543,046.3, not positive: a going concern that consumes cash for ever is not a terminal, i"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2019,
+    "why": "terminal refused: terminal free cash flow is -404,227,285.7, not positive: a going concern that consumes cash for ever is not a terminal, "
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2020,
+    "why": "terminal refused: terminal free cash flow is -606,556,707.7, not positive: a going concern that consumes cash for ever is not a terminal, "
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2021,
+    "why": "terminal refused: terminal free cash flow is -1,547,362,496.9, not positive: a going concern that consumes cash for ever is not a terminal"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2022,
+    "why": "terminal refused: terminal free cash flow is -1,629,312,138.6, not positive: a going concern that consumes cash for ever is not a terminal"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2023,
+    "why": "terminal refused: terminal free cash flow is -1,607,296,053.7, not positive: a going concern that consumes cash for ever is not a terminal"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2015,
+    "why": "the projection has no revenue or operating profit at h=1"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2016,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2017,
+    "why": "disclosed-life sensitivity: the study commits no scalar useful life"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2018,
+    "why": "disclosed-life sensitivity: the study commits no scalar useful life"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2019,
+    "why": "disclosed-life sensitivity: the study commits no scalar useful life"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2020,
+    "why": "disclosed-life sensitivity: the study commits no scalar useful life"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2021,
+    "why": "disclosed-life sensitivity: the study commits no scalar useful life"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2022,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2023,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2020,
+    "why": "capex intensity needs 3 years and the block carries 1"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2021,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2022,
+    "why": "disclosed-life sensitivity: the study commits no scalar useful life"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2023,
+    "why": "no finance charge in the as-reported panel at this origin"
+   }
+  ]
  }
 }
