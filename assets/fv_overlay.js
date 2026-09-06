@@ -6032,98 +6032,6 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
-   "ticker": "SWDY",
-   "name": "Elsewedy Electric",
-   "code": "EGX:SWDY",
-   "ccy": "EGP",
-   "spot": 105.2,
-   "anchor_date": "2026-08-05",
-   "fv_asof": "2026-08-05",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 19.95,
-   "fv_base": 69.73,
-   "fv_full": 138.73,
-   "gap_base_pct": -33.7,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.127349,
-    "mu_h": 0.01397,
-    "G": {
-     "bear": -13.06,
-     "base": -3.23,
-     "full": 2.17
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0,
-     "base": 0.0038,
-     "full": 0.0224
-    },
-    "p_touch": {
-     "bear": 0.0,
-     "base": 0.0053,
-     "full": 0.0332
-    },
-    "required_cagr": {
-     "bear": -1.0,
-     "base": -0.9928,
-     "full": 26.6602
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00188
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.217073,
-    "mu_h": 0.043799,
-    "G": {
-     "bear": -7.66,
-     "base": -1.89,
-     "full": 1.27
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0001,
-     "base": 0.0212,
-     "full": 0.1123
-    },
-    "p_touch": {
-     "bear": 0.0001,
-     "base": 0.0385,
-     "full": 0.1815
-    },
-    "required_cagr": {
-     "bear": -0.9987,
-     "base": -0.807,
-     "full": 2.0243
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00289
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "DEWA",
    "name": "DEWA (Dubai Electricity and Water Authority)",
    "code": "DFM:DEWA",
@@ -7256,6 +7164,90 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "SWDY",
+   "name": "Elsewedy Electric",
+   "code": "EGX:SWDY",
+   "ccy": "EGP",
+   "spot": 136.2,
+   "anchor_date": "2026-09-06",
+   "fv_asof": "2026-08-05",
+   "fv_lag_days": 32,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 19.95,
+   "fv_base": 69.73,
+   "fv_full": 138.73,
+   "gap_base_pct": -48.8,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.127773,
+    "mu_h": 0.022434,
+    "G": {
+     "bear": -15.03,
+     "base": -5.24,
+     "full": 0.14
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -0.9997,
+     "full": 0.2472
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00152
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.216364,
+    "mu_h": 0.059501,
+    "G": {
+     "bear": -8.88,
+     "base": -3.09,
+     "full": 0.09
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.0037,
+     "full": 0.592
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.0064,
+     "full": 0.9072
+    },
+    "required_cagr": {
+     "bear": -0.9995,
+     "base": -0.9313,
+     "full": 0.0764
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00348
+   },
+   "market": "EG"
+  },
+  {
    "ticker": "PHAR",
    "name": "Egyptian International Pharmaceutical Industries (EIPICO)",
    "code": "EGX:PHAR",
@@ -7824,16 +7816,16 @@ const FV_OVERLAY = {
    "name": "Egyptian Chemical Industries (KIMA)",
    "code": "EGX:EGCH",
    "ccy": "EGP",
-   "spot": 13.98,
-   "anchor_date": "2026-08-06",
+   "spot": 14.23,
+   "anchor_date": "2026-09-06",
    "fv_asof": "2026-08-06",
-   "fv_lag_days": 0,
+   "fv_lag_days": 31,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 0,
    "fv_base": 3.64,
    "fv_full": 15.47,
-   "gap_base_pct": -74.0,
+   "gap_base_pct": -74.4,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
@@ -7847,12 +7839,12 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.105381,
-    "mu_h": 0.01491,
+    "sigma_h": 0.10173,
+    "mu_h": 0.018106,
     "G": {
      "bear": null,
-     "base": -12.77,
-     "full": 0.96
+     "base": -13.4,
+     "full": 0.82
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7862,21 +7854,21 @@ const FV_OVERLAY = {
     "required_cagr": {
      "bear": -1.0,
      "base": -1.0,
-     "full": 2.3713
+     "full": 1.7254
     },
     "hurdle_rf": 0.195,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00155
+    "selftest_max_dev": 0.00123
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.201308,
-    "mu_h": 0.04613,
+    "sigma_h": 0.193642,
+    "mu_h": 0.052698,
     "G": {
      "bear": null,
-     "base": -6.68,
-     "full": 0.5
+     "base": -7.04,
+     "full": 0.43
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7885,13 +7877,13 @@ const FV_OVERLAY = {
     "p_touch": null,
     "required_cagr": {
      "bear": -1.0,
-     "base": -0.9954,
-     "full": 0.4995
+     "base": -0.9957,
+     "full": 0.3968
     },
     "hurdle_rf": 0.195,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00264
+    "selftest_max_dev": 0.00298
    },
    "market": "EG"
   },

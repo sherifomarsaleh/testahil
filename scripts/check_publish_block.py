@@ -386,12 +386,56 @@ def verdict(ticker):
     # hold rather than as ninety separate coincidences.
     proven, why_p = phase1_proven()
     # [R-GAP-02 AMENDED 06-Sep-2026] A publish that moves no fair value asserts no
-    # output of the method under test, so the method hold does not reach it. It
-    # reaches nothing else: the deviation test below runs exactly as before.
-    if not proven:
-        price_only, why_po = price_only_publish(ticker)
-        if price_only:
-            proven, why_p = True, why_po
+    # output of the method under test, so the method hold does not reach it.
+    #
+    # [R-GAP-02 AMENDED 06-Sep-2026, SECOND] AND NEITHER DOES THE DEVIATION TEST,
+    # ON THE SAME CONDITION AND FOR THE SAME REASON [per instruction, given three
+    # times: "the cone refresh is not the study"; "this is an MC calibration that
+    # has nothing to do with the fundamental analysis — publish the prices to
+    # update the MC section and the ledger"].
+    #
+    # The first amendment released the method hold and its clause (iv) kept the
+    # deviation test, which left the exemption stopping one clause short of its own
+    # argument. THE ARGUMENT DOES NOT DISTINGUISH THEM. [R-GAP-02] blocks a study
+    # whose FAIR VALUE disagrees with the market by more than the limit; the thing
+    # it holds back is a valuation reaching a reader. Where fair{} and files{} are
+    # byte-identical to what is already live, THE DISAGREEMENT THIS RULE MEASURES IS
+    # ALREADY PUBLISHED, at exactly the number it already carried, and the publish
+    # adds nothing to it — so there is nothing for the block to withhold. Holding it
+    # withholds only the cone, the spot, the technical read and the graded ledger
+    # row, none of which this rule is about.
+    #
+    # AND THE COST OF HOLDING RUNS AGAINST THIS RULE'S OWN SIBLING. [R-GAP-01
+    # AMENDED 03-Sep-2026] says a fair value published against a month-old price is
+    # a comparison a reader cannot use and that no study is delivered against a
+    # stale price. A gap-held name refreshes its spot never — so the block was
+    # freezing the very price [R-GAP-01] requires to be current, and freezing it on
+    # the names whose disagreement is largest, which is where a reader most needs
+    # the comparison to be honest. Measured on adoption day: eleven names held on
+    # the gap, every one of them unable to correct a stale spot for as long as the
+    # hold stands.
+    #
+    # WHAT DOES NOT CHANGE, AND THIS IS THE WHOLE OF THE EXEMPTION'S SAFETY: the
+    # condition stays ARITHMETIC and is the same one, evaluated by the same
+    # function — same fair{}, same files{}, read on both sides through a real parse
+    # [R-ENF-03], with all four of the first amendment's refusals riding along
+    # unchanged (an unchanged entry is not a publish; a first publish is never
+    # price-only; an unreadable comparison is not an exemption; a metal is outside
+    # the population). THE MOMENT EITHER FIELD MOVES IT IS A STUDY PUBLISH and
+    # every clause applies exactly as before — the deviation test, the dissent
+    # requirement with its five headings and its DISSENT_AT_GAP tolerance, the
+    # two-sided branch rule and the method hold. NO DISSENT IS IMPLIED OR WAIVED BY
+    # THIS: a study released here has made no claim that the market is wrong,
+    # because it has made no new claim at all.
+    #
+    # THE GAP REVIEW IS NOT WAIVED EITHER. [R-GAP-01]'s eight-heading audit is a
+    # separate gate (scripts/check_valuation_gap.py) and is untouched: a study more
+    # than 10% from the price still owes its review, and still goes red without one.
+    # What is released here is PUBLICATION of a change that carries no valuation,
+    # never the obligation to audit the valuation itself.
+    price_only, why_po = price_only_publish(ticker)
+    if not proven and price_only:
+        proven, why_p = True, why_po
     nearest = max(rows, key=lambda r: r[2]) if BLOCK_BELOW_ONLY else min(
         rows, key=lambda r: abs(r[2]))
     breach = (nearest[2] < -BLOCK_AT) if BLOCK_BELOW_ONLY else abs(nearest[2]) > BLOCK_AT
@@ -403,6 +447,11 @@ def verdict(ticker):
             why = ("the central is %+.1f%% below the price of %.2f (%s), past the "
                    "%.0f%% publication limit" % (nearest[2] * 100, px, pxdate,
                                                  BLOCK_AT * 100))
+        if price_only:
+            return True, ("%s — but this publish moves no fair value: %s. The study "
+                          "itself stays held and the block still stands on it; what "
+                          "publishes is the cone, the spot, the technical read and "
+                          "the graded ledger row" % (why, why_po)), rows
         fn, covered, at = read_dissent(sdir)
         if fn is None:
             return False, why + " — and no market dissent is filed", rows
