@@ -199,6 +199,13 @@ def scan_file(path, claims):
     return out, unclaimed
 
 
+# Items a valuation-input block may legitimately carry that are not one of ITEMS.
+# Named rather than pattern-matched, for the reason the legacy map is named: a
+# pattern loose enough to forgive an unread key is a pattern that forgives the
+# one that matters.
+STANDARD_EXTRAS = {"cip", "minority", "associates", "nci"}
+
+
 def scan_standard(path):
     """{year: {item: [where]}} from the record [R-FCAL-01 AMENDED] defines.
 
@@ -208,27 +215,50 @@ def scan_standard(path):
     them. `cap` is credited from the share record's own issued capital, which is
     where the amendment puts it: the count and the capital it was footed against
     live in one record rather than two rows.
+
+    THE SECOND RETURN VALUE IS WHY THIS FUNCTION WAS WRONG FOR THREE DAYS. The
+    amendment names the items, so this path was written as if a run committing
+    the record could have no private vocabulary — and TMGH's block, committed
+    under the amendment and complete on the page, wrote `depreciation_amortisation`,
+    `working_capital_lines` and `share_count`. Every one was silently skipped by
+    the `item not in ITEMS` line, and the census went on reporting TMGH from its
+    LEGACY panels, so nothing looked wrong: the cells were full, sourced from a
+    file nobody had noticed answering. The legacy path has carried a guard for
+    exactly this since it was written; the standard path had none, because the
+    standard was assumed rather than checked [R-ENF-04]. It now returns every key
+    it did not claim, and the report prints them.
     """
     try:
         doc = json.load(open(path, encoding="utf-8"))
     except Exception:
-        return {}
-    out = {}
+        return {}, {}
+    out, unclaimed = {}, {}
     for key, block in (doc.get("origins") or {}).items():
         y = _year_of(key)
         if y is None or not isinstance(block, dict):
             continue
         for item, rec in block.items():
-            if item not in ITEMS or not isinstance(rec, dict):
+            if item not in ITEMS:
+                if item not in STANDARD_EXTRAS and not item.startswith("_"):
+                    unclaimed.setdefault(item, set()).add(y)
                 continue
-            if "missing" in rec or not _is_number(rec.get("value")):
+            if not isinstance(rec, dict):
+                unclaimed.setdefault(item, set()).add(y)
+                continue
+            if "missing" in rec:
+                continue
+            if not _is_number(rec.get("value")):
+                # A named item with no readable value is NOT the same as an item
+                # recorded missing: the first is a record nobody can use and the
+                # second is a gap somebody wrote down.
+                unclaimed.setdefault(item + " (no numeric value)", set()).add(y)
                 continue
             out.setdefault(y, {}).setdefault(item, []).append(
                 "/origins/%s/%s" % (key, item))
             if item == "shares" and _is_number(rec.get("issued_capital")):
                 out[y].setdefault("cap", []).append(
                     "/origins/%s/shares/issued_capital" % key)
-    return out
+    return out, unclaimed
 
 
 def census():
@@ -238,7 +268,10 @@ def census():
         agg, seen, un = {}, [], {}
         p = os.path.join(rundir, STANDARD)
         if os.path.exists(p):
-            got = scan_standard(p)
+            got, unc_std = scan_standard(p)
+            for leaf, years in unc_std.items():
+                un.setdefault("%s [%s]" % (leaf, ",".join(str(y) for y in sorted(years))),
+                              set()).add(STANDARD)
             if got:
                 seen.append(STANDARD)
                 for y, items in got.items():

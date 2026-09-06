@@ -91,6 +91,14 @@ DIRECTORY_GATES = [
     # instrument, neither has a ratchet entry, and each refuses BY NAME.
     'check_walkforward_scope.py',
     'check_workbook_values.py',
+    # ADDED 06-Sep-2026 IN THE COMMIT THAT ADOPTS THE GATE, per [R-ENF-01 EXT 04-Sep] and
+    # the precedent this file set on 5 September, when it refused two gates adopted the day
+    # before. DIRECTORY-scoped rather than artefact-scoped, and the reason is a clause the
+    # gate carries deliberately: it is anchored [R-ENF-04] BOTH ways, so a study directory
+    # for which it can find NO writer of the numbers file fails outright — a detector that
+    # cannot find a generator has not proved there is none. An empty directory is exactly
+    # that case, and the gate refuses it by name.
+    'check_numbers_generators.py',
 ]
 
 # ARTEFACT GATES: bite once the study produces the artefact they read, and are tested by
