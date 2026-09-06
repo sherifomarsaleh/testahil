@@ -168,6 +168,68 @@ def fix_nonop_scale(A, o, h, p):
     return "x%.2f with revenue" % k
 
 
+def fix_midcycle_reversion(A, o, h, p):
+    """F7 — the margin reverts toward mid-cycle, on the four years the model cannot see.
+
+    NOTHING IN THIS MODEL REVERTS. Every rule is a level or an escalator, so from a
+    cyclical trough it extrapolates the trough for five years and then capitalises it
+    for ever. That is what turns the FY2019 and FY2020 origins into permanent losses,
+    nine of which are wrong by a factor of thirty.
+
+    THE ANCHOR IS THE PART THAT TOOK LOOKING FOR, AND THE EXTERNAL ONES ALL FAILED.
+    Replacement cost at the study's own USD 130 a tonne needs an EBIT worth 97% of
+    revenue — it does not bind in an industry running 52-79% utilisation with 12.6 Mt
+    more capacity reviving. Capacity utilisation, the textbook driver, correlates
+    with margin at MINUS 0.50 over this window. The two peers are committed at one
+    year each. What works is four years of the company's OWN record that
+    bottom_up.actual() cannot see: it starts at FY2016 where the cost stack was
+    parsed, while panel_export.json carries the income statement from FY2014 — and
+    FY2014-FY2016, at 29.2%, 24.4% and 29.6%, are the only pre-trough normal period
+    in the record. The model's idea of mid-cycle is built entirely out of the decline
+    and the trough.
+
+    NO NEW PARAMETER. The margin reverts LINEARLY to the median of every year the
+    origin can see, arriving by the last explicit year — five, because the window is
+    five, and because a terminal value is already a mid-cycle statement.
+    """
+    oy = B._y(o)
+    hist = [y for y in sorted(_GM) if y <= oy]
+    if len(hist) < 3:
+        return None
+    v = sorted(_GM[y] for y in hist)
+    n = len(v)
+    med = v[n // 2] if n % 2 else (v[n // 2 - 1] + v[n // 2]) / 2
+    m0 = _GM.get(oy)
+    if m0 is None:
+        return None
+    tgt = m0 + (med - m0) * (h / 5.0)
+    vt = p["vol_local"] + p["vol_export"]
+    rev = (p["price_local"] * p["vol_local"] * 1000.0
+           + p["price_export"] * p["vol_export"] * 1000.0 + p["services"])
+    have = (p["raw_per_t"] + p["transport_per_t"] + p["overhead_per_t"]) * vt * 1000.0
+    if rev <= 0 or have <= 0 or tgt >= 1.0:
+        return None
+    k = (rev * (1 - tgt)) / have
+    for f in ("raw_per_t", "transport_per_t", "overhead_per_t"):
+        p[f] *= k
+    return "margin %.1f%% reverting to %.1f%% over %d years of record" % (
+        100 * m0, 100 * med, len(hist))
+
+
+def _gross_margins():
+    """Gross margin by year from panel_export — which reaches FOUR YEARS FURTHER BACK
+    than the driver panel, and those are the years that matter."""
+    out = {}
+    for y in range(2000, 2100):
+        r, g = pan(y, "is.revenue"), pan(y, "is.gross_profit")
+        if r and g and r > 0:
+            out[y] = g / r
+    return out
+
+
+_GM = _gross_margins()
+
+
 # NOT FIXED, AND THE REASON IS THE SAME EACH TIME.
 NOT_FIXED = {
     "transport_per_t":
@@ -200,6 +262,7 @@ FIXES = [
     ("F4  interest income is cash times a rate", fix_interest_income),
     ("F5  the euro book produces a currency result", fix_fx_result),
     ("F6  nominal non-operating lines grow with the business", fix_nonop_scale),
+    ("F7  the margin reverts toward mid-cycle", fix_midcycle_reversion),
 ]
 
 
