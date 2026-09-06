@@ -41,6 +41,11 @@ const STATIC = [
   ['',              '1.0', 'weekly'],
   ['coverage.html', '0.9', 'weekly'],
   ['tools.html',    '0.8', 'weekly'],
+  // The selection procedure. Weekly rather than monthly because its figures are
+  // computed from SCREEN/PRICES at load, so the page a crawler sees changes
+  // whenever a price is entered or a library lands — the prose is what is
+  // static here, not the content.
+  ['funnel.html',   '0.8', 'weekly'],
   ['savings.html',  '0.6', 'monthly'],
   ['record.html',   '0.9', 'weekly'],
   ['method.html',   '0.6', 'monthly'],
