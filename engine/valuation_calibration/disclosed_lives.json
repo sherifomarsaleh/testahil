@@ -634,6 +634,80 @@
    "weighted_life_years": null,
    "weighted_not_derivable": "THE WEIGHTED LIFE CANNOT BE DERIVED FROM THIS DISCLOSURE AND NO FIGURE IS CHOSEN INSTEAD. Two of the note's own columns each combine assets whose disclosed lives differ by an order of magnitude, and neither can be split from anything the filings publish. (1) LAND AND BUILDINGS ARE ONE COLUMN — AED 12,438,392 thousand, 73% of the gross cost — and LAND IS NOT DEPRECIATED AT ALL while buildings run 2 to 50 years, so the depreciable base inside the largest class is unknown. (2) PLANT (40 years) shares a column with MACHINERY AND EQUIPMENT (3 to 4 years), a more than tenfold spread on AED 883,217 thousand. THE CHARGE-IMPLIED ROUTE IS ALSO CLOSED and for a reason worth recording: FY2025 carried AED 832,492 thousand of assets acquired through business combinations, most of it into the plant column, so a full-year charge over an average base measures the timing of an acquisition rather than a life — the implied figures come out at 20.7 years on a class disclosed at 3 to 4, and 12.4 years on one disclosed at 2 to 5. Neither route is a disclosure and A LIFE THIS DESK CHOSE IS NOT A DISCLOSED LIFE (SIGCM clause 8), so MODON stays on the terminal ratchet WITH THIS REASON rather than being conformed on an invented number. Same disposition as ADNOCLS, for the same kind of gap.",
    "against_the_terminal": "this study's terminal is BELOW ITS OWN NO-GROWTH FLOOR — the worst symptom the retired reinvestment identity produces, and the one that says the construction is charging more for growth than the growth is worth. Its implied replacement cycle is 1/g = 40.0 years, which happens to equal the disclosed life of PLANT alone while the rest of the base runs 2 to 5 years. Correcting it is worth at least +6.2% (3.54 -> 3.76 at the floor) and cannot be done until the weighted life can be sourced."
+  },
+  "BOROUGE": {
+   "classes": [
+    {
+     "asset_class": "Buildings",
+     "years": [
+      15,
+      40
+     ],
+     "note": "reassessed in FY2025; applied prospectively from 1 July 2025"
+    },
+    {
+     "asset_class": "Plant and machinery",
+     "years": [
+      8,
+      35
+     ],
+     "note": "reassessed in FY2025 (FY2023 and FY2024 both disclose 8-30); applied prospectively from 1 July 2025. 93.9% of the depreciable net book value and 93.3% of depreciable gross cost, so this class alone decides the weighted life"
+    },
+    {
+     "asset_class": "Motor vehicles",
+     "years": [
+      4,
+      10
+     ],
+     "note": "unchanged in FY2025"
+    },
+    {
+     "asset_class": "Furniture, fixtures and equipment",
+     "years": [
+      3,
+      4
+     ],
+     "note": "unchanged in FY2025"
+    }
+   ],
+   "longest_years": 40,
+   "shortest_years": 3,
+   "land_not_depreciated": "no land is carried: the Ruwais site is held under a right and licence granted by the Supreme Petroleum Council (note 6). Capital work in progress is excluded from every weighting here because note 3 says outright that it is not depreciated.",
+   "source": "Borouge PLC, FY2025 audited consolidated financial statements, note 3 Material accounting policy information, under \"Change in estimate - useful life of property, plant and equipment\", printed page 22 (PDF page 28): \"The estimated useful lives of the Group's Property, Plant and Equipment is applied prospectively, in accordance with IAS 8, from 1 July 2025, as follows: Buildings 15 - 40 years / Plant and machinery 8 - 35 years\", and \"The estimated useful lives of the Group's remaining Property, Plant and Equipment where there is no change in useful life is as follows: Motor vehicles 4 - 10 years / Furniture, fixtures and equipment 3 - 4 years\". Depreciation is charged \"so as to write off the cost less estimated residual values ... using the straight-line method\".",
+   "file": "engine/borouge_study/src/FS_FY2025.pdf (gitignored; refetched from the company's own investor-relations site 6 September 2026 and hash-matched to source_access.json)",
+   "sha256": "988c90166c2e3a20f693145dd45bfdd8e78a949b5cd2b0e7ec69597f9dd6a83f",
+   "route": "FOUR READS, THREE OF THEM INDEPENDENT OF EACH OTHER. (1) text layer, pdftotext -layout, which carries the Years column; (2) text layer, pdftotext without -layout, which carries it too - the inverse of the AMR case, where -layout was the one that dropped it; (3) OCR OFF THE RENDERED PIXELS, pdftoppm -r 200 on PDF page 28 read as an image, which is the arbiter because a column of lives has no arithmetic to foot against; (4) the FY2024 filing, a separate document with its own Producer string, by text layer and by pixels. All four agree.",
+   "read_on": "2026-09-06",
+   "the_note_foots": "note 6 was footed cell by cell in both years and in all three directions against its printed totals - every movement row ACROSS to the Total column, every class column DOWN from opening to printed closing, and the identity cost less accumulated equals net book - plus the FY2025 opening row against the FY2024 filing's own printed closing row, and the year's charge against its allocation note (408,732 + 36,611 + 4,040 + 1 = 449,384). 78 tests, NO BREAK. So the text layer is arbitrated by arithmetic on the figures, and by pixels on the lives, which carry none.",
+   "prior_year_cross_check": "FY2024 and FY2023 filings both disclose Buildings 15-40, Motor vehicles 4-10 and Furniture 3-4 IDENTICALLY, and Plant and machinery at 8-30. Three filings, three documents, three years: the only figure that moved is the top of the plant-and-machinery range, 30 to 35, which is the FY2025 reassessment the note describes. THE CHANGE IS DISCLOSED AT BOTH ENDS - a decrease in the charge of USD 90,335 thousand in 2025 and an expected USD 179,198 thousand in 2026 - and the note says lives rose \"by up to an additional 10 years\" while the class range top rose 5, which is a tension the note does not resolve and this entry does not resolve either.",
+   "weighted_life_band": {
+    "method": "carrying-amount-weighted HARMONIC mean on note 6's own columns, capital work in progress excluded. maintenance = sum(IC_c / L_c) and terminal_value.build() charges IC_total / L, so the single life reproducing that charge is IC_total divided by that sum. An arithmetic mean would overstate the life and undercharge. This is an identity, not a choice.",
+    "FY2025_net_book_years": [
+     8.16,
+     34.19
+    ],
+    "FY2025_gross_cost_years": [
+     7.99,
+     31.62
+    ],
+    "FY2024_net_book_years": [
+     8.17,
+     34.34
+    ],
+    "FY2024_gross_cost_years": [
+     8.0,
+     31.64
+    ],
+    "on_the_pre_reassessment_lives_FY2025_net_book_years": [
+     8.16,
+     29.65
+    ],
+    "stability": "the band barely moves across weight base or year. Its WIDTH is not a weighting artefact - it is plant and machinery's own disclosed 8-to-35 range carrying 93.9% of the base."
+   },
+   "not_yet_collapsed": "THE CLASSES WEIGHT AND THE BAND DOES NOT COLLAPSE. The note discloses the split, so the weighting is available and is arithmetic; what it returns is 8.16 to 34.19 years, a factor of 4.2. Picking a point inside that is this desk choosing the life under cover of a citation, which [R-TERM-01] refuses outright (SIGCM clause 1). THE SPREAD IS NOT ACADEMIC: priced through terminal_value.build() on the study's own FY2030 figures, two of the four base-by-endpoint constructions REFUSE and the two that build straddle the published terminal from -12.9% to +16.3%, on a terminal holding 76.7% of enterprise value.",
+   "the_measured_age_route_stays_closed": "[L-328] conditions (i) and (ii) are both evidenced in the same note, and (ii) is quantified at both ends. Depreciation writes off \"cost less estimated residual values\"; and a life reassessed from 1 July 2025 means the FY2025 charge is half a year on the old lives and half on the new, so accumulated depreciation over that charge is nine years of one basis divided by half a year of another. The same accumulated balance supports 14.98 years (pre-change), 17.99 (as reported) and about 22.42 (go-forward) with nothing about the assets having moved. Not a measurement.",
+   "against_the_terminal": "this study's terminal carries the retired reinvestment identity: a replacement cycle of 50.0 years, which is 1/g at a pegged 2.0% terminal to the decimal, charging 16.7% of terminal profit. FIFTY YEARS IS A FACT ABOUT THE DIRHAM'S PEG, AND THE DISCLOSED LIVES DO NOT REACH IT ANYWHERE - the longest life the company discloses for any class is 40 years, for buildings, which are 5.7% of the depreciable base, and the weighted band tops out at 34.19. So the terminal assumes a life longer than the accounts support, in the direction that OVERSTATES value - and the priced range still spans both signs, because the band is too wide to settle it.",
+   "what_would_open_it": "(a) a narrower disclosure for plant and machinery, which is 93.9% of the base and whose own 8-to-35 range is the entire width of the band; (b) the residual values, in aggregate or by class, which would reopen the identity route; (c) the FY2026 charge as reported, the first full year on the new lives, which lands the go-forward denominator on the same basis as the accumulated column - a date rather than a hope; (d) a replacement-cost capital base at the terminal year, which this study does not commit and which the pricing above had to bracket with a net-book floor and a historical-cost ceiling."
   }
  }
 }

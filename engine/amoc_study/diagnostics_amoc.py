@@ -88,6 +88,9 @@ def build():
     adv = json.load(open(os.path.join(HERE, "case_adversarial.json"), encoding="utf-8"))
     lns, wac, brg = d["lenses"], d["wacc"], d["bridge_record"]
     spot, ps = float(d["spot"]), float(dcf["ps"])
+    gm_path = d["fcst"]["gm"]                  # the study's OWN forecast path
+    gm_fcst = sum(gm_path) / len(gm_path)
+    filed = d["audited"]["gm"]                 # what the company has actually filed
 
     diag = {
         "ticker": "AMOC",
@@ -112,8 +115,25 @@ def build():
             "quantity": ("the gross margin sustained in every forecast year AND in "
                          "perpetuity that reproduces the traded price"),
             "value": float(gm["level"]),
-            "study_value": float(gm["base"]),
-            "study_value_range": [float(gm["level"]), float(gm["filed_max_year"])],
+            # THE STUDY'S OWN FORECAST, NOT ITS BASE YEAR [corrected 06-09-2026].
+            # The rule asks for the implied figure BESIDE the study's own forecast
+            # and beside what the company has disclosed, and this field carried the
+            # BASE YEAR -- the anchor the forecast starts from, which is a third
+            # thing. On this name the two are 6 basis points apart so nothing a
+            # reader saw was wrong, and that is exactly why it would have survived:
+            # a comparison against the wrong quantity that happens to agree is the
+            # kind of error that only shows up on the name where it does not.
+            # Both are published, and the base year keeps its own field.
+            "study_value": float(sum(gm_path) / len(gm_path)),
+            "study_value_range": [float(min(gm_path)), float(max(gm_path))],
+            "study_value_path": [float(x) for x in gm_path],
+            "study_value_base_year": float(gm["base"]),
+            # WHAT THE COMPANY HAS ACTUALLY DISCLOSED, so a reader judges the
+            # DISAGREEMENT rather than the conclusion. These are filed facts and
+            # not a forecast of anything.
+            "company_disclosed": {k: float(v) for k, v in filed.items()},
+            "company_disclosed_best_full_year": float(gm["filed_max_year"]),
+            "company_disclosed_best_quarter": float(gm["filed_max_quarter"]),
             "solved_on": (
                 "compute.py's own solve, holding every other driver at its base "
                 "case and moving only the gross margin until the cash-flow lens "
@@ -129,21 +149,29 @@ def build():
             # Everything directional below now derives from the sign of the shift.
             "reading": (
                 "At EGP %.2f the price is paying for a gross margin of %.2f%% held "
-                "in every forecast year and in perpetuity, against a base year of "
-                "%.2f%% — %.0f basis points %s. That is INSIDE the range this "
-                "company has actually printed: it filed %.2f%% for the full year to "
-                "30 June 2022 and %.2f%% in the quarter to 30 June 2026. So the "
-                "market is not pricing something the business has never done; it is "
-                "pricing a margin %s the base year and %s the best the company has "
-                "filed, and the study's answer of EGP %.2f is %+.1f%% against the "
-                "price."
-                % (spot, 100 * gm["level"], 100 * gm["base"],
-                   abs(10000 * gm["shift"]),
-                   "ABOVE it" if gm["shift"] > 0 else "BELOW it",
-                   100 * gm["filed_max_year"], 100 * gm["filed_max_quarter"],
-                   "above" if gm["shift"] > 0 else "below",
+                "in every forecast year and in perpetuity. This study forecasts "
+                "%.2f%% to %.2f%%, a mean of %.2f%%, off a base year of %.2f%% — so "
+                "the price is %.0f basis points %s the study's own forecast. That "
+                "is INSIDE the range this company has actually filed: %.2f%% for "
+                "the full year to 30 June 2022, %.2f%% for the half to 30 June 2026 "
+                "and %.2f%% for that June quarter alone, against %.2f%% in the "
+                "worst quarter on the audited record. So the market is not pricing "
+                "something the business has never done, and it is not pricing a "
+                "re-rating, a capacity addition or a change in the business: it is "
+                "pricing a margin %s the study's forecast and %s the best the "
+                "company has filed. The study's answer of EGP %.2f is %+.1f%% "
+                "against the price, and the whole disagreement is those %.0f basis "
+                "points on ONE driver a reader can check against the accounts."
+                % (spot, 100 * gm["level"],
+                   100 * min(gm_path), 100 * max(gm_path), 100 * gm_fcst,
+                   100 * gm["base"], abs(10000 * (gm["level"] - gm_fcst)),
+                   "ABOVE" if gm["level"] > gm_fcst else "BELOW",
+                   100 * gm["filed_max_year"], 100 * filed["6M Jun-2026"],
+                   100 * gm["filed_max_quarter"], 100 * min(filed.values()),
+                   "above" if gm["level"] > gm_fcst else "below",
                    "below" if gm["level"] < gm["filed_max_year"] else "above",
-                   ps, 100 * (ps / spot - 1))),
+                   ps, 100 * (ps / spot - 1),
+                   abs(10000 * (gm["level"] - gm_fcst)))),
         },
         # THE SAME DISAGREEMENT IN THE UNITS THE REST OF THE BOOK USES.
         # The margin above is the right quantity for THIS company -- a refiner's whole

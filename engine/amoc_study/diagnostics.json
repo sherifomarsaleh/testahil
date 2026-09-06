@@ -9,13 +9,30 @@
  "implied": {
   "quantity": "the gross margin sustained in every forecast year AND in perpetuity that reproduces the traded price",
   "value": 0.10579793896150971,
-  "study_value": 0.09653412625014321,
+  "study_value": 0.09712582511158444,
   "study_value_range": [
-   0.10579793896150971,
-   0.1384
+   0.09683947132290448,
+   0.09733544915118685
   ],
+  "study_value_path": [
+   0.09683947132290448,
+   0.09703611860810313,
+   0.0971626438240551,
+   0.09725544265167264,
+   0.09733544915118685
+  ],
+  "study_value_base_year": 0.09653412625014321,
+  "company_disclosed": {
+   "6M Dec-2024": 0.06854307995628896,
+   "3M Mar-2025": 0.05053126981775711,
+   "6M Dec-2025": 0.06144829834037545,
+   "3M Mar-2026": 0.10189872213051045,
+   "6M Jun-2026": 0.12427806123173554
+  },
+  "company_disclosed_best_full_year": 0.1384,
+  "company_disclosed_best_quarter": 0.1392,
   "solved_on": "compute.py's own solve, holding every other driver at its base case and moving only the gross margin until the cash-flow lens reaches the market price",
-  "reading": "At EGP 13.50 the price is paying for a gross margin of 10.58% held in every forecast year and in perpetuity, against a base year of 9.65% — 93 basis points ABOVE it. That is INSIDE the range this company has actually printed: it filed 13.84% for the full year to 30 June 2022 and 13.92% in the quarter to 30 June 2026. So the market is not pricing something the business has never done; it is pricing a margin above the base year and below the best the company has filed, and the study's answer of EGP 11.40 is -15.5% against the price."
+  "reading": "At EGP 13.50 the price is paying for a gross margin of 10.58% held in every forecast year and in perpetuity. This study forecasts 9.68% to 9.73%, a mean of 9.71%, off a base year of 9.65% — so the price is 87 basis points ABOVE the study's own forecast. That is INSIDE the range this company has actually filed: 13.84% for the full year to 30 June 2022, 12.43% for the half to 30 June 2026 and 13.92% for that June quarter alone, against 5.05% in the worst quarter on the audited record. So the market is not pricing something the business has never done, and it is not pricing a re-rating, a capacity addition or a change in the business: it is pricing a margin above the study's forecast and below the best the company has filed. The study's answer of EGP 11.40 is -15.5% against the price, and the whole disagreement is those 87 basis points on ONE driver a reader can check against the accounts."
  },
  "also_solved": {
   "implied_rate_at_price": 0.17465860077756812,
