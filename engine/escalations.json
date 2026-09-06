@@ -362,12 +362,18 @@
      "when": "2026-09-06",
      "outcome": "Yahoo answers but its EGX mirror is frozen at 2024-07-23 (regularMarketPrice 9.08); stooq is JS-walled at the proxy, the same refusal the AMR critique response recorded. Neither yields a real-open series.",
      "rerun": true
+    },
+    {
+     "route": "the unattended pipeline's own commit, 4f1a6916 on main",
+     "when": "2026-09-06",
+     "outcome": "THE HOLD WAS OVERTAKEN BY AUTOMATION AND THIS IS RECORDED RATHER THAN DISCOVERED LATER. Merging the library fired the calibration workflow, whose mid-cycle pass refreshed spot/dist/touch/asof for the whole book — so the cone testahil.com now serves for AMOC IS built on the synthetic-open bars (spot 13.54, 1M p5 11.24 / p95 16.78) and is on this entry's own measurement 13-19% narrower than the name's bar structure supports. The PERMANENT record is intact: that pass strikes no LEDGER row, AMOC still carries only its cycle-1 pair, and the 06-Sep grade stands on exact closes.",
+     "rerun": true
     }
    ],
    "refs_searched": 241,
    "why_only_the_principal": "The OHLC libraries have always come from the principal's own vendor export, and the Investing.com-format file is the shape they already send — EG/EMFD.csv, supplied the same way, reaches 2026-09-01 with real opens. No route out of this container produces one, and an open cannot be derived from a close without inventing it.",
    "done_meanwhile": "The 20 new sessions were spliced (closes exact), Step 0.0 passed, the whole ledger was swept and AMOC's matured 1-month cohort graded — the grade window's running max (14.13, 2026-09-02) and min (9.03, 2026-08-09) both fall on bars where the synthetic open does not bind, so the grade is uncontaminated. The materiality gate came back NOT MATERIAL on all nine markets: the new bars are too recent to be resolved 3-month window origins, so they do not reach the pooled EG fit at all. A grade_ledger writer bug that refused the twelve first-coverage rows was fixed.",
-   "default_if_no_answer": "AMOC's cohort is NOT struck on the synthetic-open bars. Measured two independent ways, they understate the origin variance enough to publish a 90% band 16-19% too narrow (close-to-close route) or 13-16% (open-free Parkinson route) — past [R-CAL-01]'s own 5% materiality line, and a LEDGER row is permanent. The cone therefore stays at its 2026-08-06 strike, the divergence between asof.mc.data and the library is REPORTED rather than reconciled, and the cohort is struck the moment a real-open export arrives. Nothing publishes either way: [R-GAP-02] independently HOLDS AMOC at -15.8%.",
+   "default_if_no_answer": "AMOC's cohort is NOT struck on the synthetic-open bars. Measured two independent ways, they understate the origin variance enough to publish a 90% band 16-19% too narrow (close-to-close route) or 13-16% (open-free Parkinson route) — past [R-CAL-01]'s own 5% materiality line, and a LEDGER row is permanent. The cone therefore stays at its 2026-08-06 strike, the divergence between asof.mc.data and the library is REPORTED rather than reconciled, and the cohort is struck the moment a real-open export arrives. Nothing publishes either way: [R-GAP-02] independently HOLDS AMOC at -15.8%. NOT REVERTED, deliberately: rolling dist back would republish a cone anchored on the 6-August close of 9.10 against a market at 13.54, which is a larger and more visible error than a band that is too tight. dist is rewritten at every pass, so a real-open export fixes it in one run — but until one arrives the LIVE cone is too narrow and nothing on the page says so.",
    "default_date": "2026-09-13",
    "status": "open",
    "resolves_when": {
@@ -405,6 +411,12 @@
      "when": "2026-09-06",
      "outcome": "Yahoo's EGX mirror is frozen in 2024 and stooq is JS-walled at the proxy; neither yields a vendor-format series.",
      "rerun": false
+    },
+    {
+     "route": "every live ref again, after the merge of #377",
+     "when": "2026-09-06",
+     "outcome": "ANSWERED. origin/claude/roll-forward-egx-metals-fy8dha carries EGCH to 09/06/2026. That branch did not exist when this entry was written minutes earlier, and the gate found the marker on it before anyone read it in a conversation.",
+     "rerun": true
     }
    ],
    "refs_searched": 242,
@@ -419,8 +431,8 @@
    },
    "resolves_when_note": "The 1 September 2026 session — a real EGX trading day that a refreshed export must carry and that the held file, ending 08/06/2026, cannot contain.",
    "resolved": "2026-09-06",
-   "answer_written_to": "engine/raw_ohlc/EG/EGCH.csv",
-   "note": "CLOSED BY THE GATE RATHER THAN BY THE ASKER, and not by this session's research: EGCH's export had already landed on origin/claude/roll-forward-egx-metals-fy8dha when check_escalations re-ran the search on the ARCC branch. [R-IND-01]'s re-check clause is what found it — an open entry whose own resolving condition is already met on some live ref goes RED rather than reaching the principal a second time. Left open it would have asked for a file the repository already held."
+   "answer_written_to": "engine/raw_ohlc/EG/EGCH.csv on origin/claude/roll-forward-egx-metals-fy8dha, to 06-09-2026.",
+   "note": "OPEN FOR ELEVEN MINUTES. Written after EGX-ohlc-refresh-arcc-amoc-egch was closed on two names, and answered on a THIRD session's branch before its own CI run finished — three sessions refreshed three EGX names in one hour on three branches, and no single checkout could see more than its own. THE REPOSITORY IS NOT ONE REF, and the value of the clause is that it re-checks EVERY live ref on EVERY run rather than at the moment somebody happens to look: this entry was correct when written and stale before it was first read."
   },
   {
    "key": "OHLC-refresh-qnb",
