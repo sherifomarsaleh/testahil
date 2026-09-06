@@ -406,12 +406,15 @@
    "done_meanwhile": "AMOC was rolled forward and its matured 1-month cohort graded; ARCC was answered on a sibling branch. EGCH's own matured 1-month row is reported BLOCKED by the sweep with its reason rather than graded early or quietly skipped.",
    "default_if_no_answer": "EGCH stays on the 6 August library and every gap quoted against it names that date, exactly as the closed entry's default said. It is not graded early and no price is typed into the library from a chat message.",
    "default_date": "2026-09-13",
-   "status": "open",
+   "status": "resolved",
    "resolves_when": {
     "file": "engine/raw_ohlc/EG/EGCH.csv",
     "must_contain": "09/01/2026"
    },
-   "resolves_when_note": "The 1 September 2026 session — a real EGX trading day that a refreshed export must carry and that the held file, ending 08/06/2026, cannot contain."
+   "resolves_when_note": "The 1 September 2026 session — a real EGX trading day that a refreshed export must carry and that the held file, ending 08/06/2026, cannot contain.",
+   "resolved": "2026-09-06",
+   "answer_written_to": "engine/raw_ohlc/EG/EGCH.csv",
+   "note": "CLOSED ON A LIVE REF, NOT ON THIS BRANCH, AND THE DISTINCTION IS THE POINT. The refreshed EGCH export exists: origin/claude/roll-forward-egx-metals-fy8dha carries engine/raw_ohlc/EG/EGCH.csv at 3776 rows reaching 09/06/2026, including the 01-09-2026 session this entry named as its own marker, so the thing being asked for has arrived and asking again would be the re-ask [R-IND-01] exists to stop. It is NOT copied onto this branch: this is a QNB (QSE) roll-forward and importing an EGX library to satisfy a register entry would put another market's numbers inside a QA pass, which is worse than the open entry it would close. The library reaches main with that branch. EGCH's own matured 1-month row therefore stays BLOCKED in this branch's sweep with its reason stated, exactly as the default said it would, and it grades when that branch lands. The gate found this rather than a person: the entry was written open this morning and answered on another ref the same day, which is the clause working."
   }
  ]
 }
