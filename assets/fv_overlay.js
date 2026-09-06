@@ -1340,98 +1340,6 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
-   "ticker": "AMOC",
-   "name": "Alexandria Mineral Oils",
-   "code": "EGX:AMOC",
-   "ccy": "EGP",
-   "spot": 9.1,
-   "anchor_date": "2026-08-06",
-   "fv_asof": "2026-08-06",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 5.53,
-   "fv_base": 8.64,
-   "fv_full": 12.48,
-   "gap_base_pct": -5.1,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.111209,
-    "mu_h": 0.007663,
-    "G": {
-     "bear": -4.48,
-     "base": -0.47,
-     "full": 2.84
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.001,
-     "base": 0.2601,
-     "full": 0.008
-    },
-    "p_touch": {
-     "bear": 0.0015,
-     "base": 0.4642,
-     "full": 0.0124
-    },
-    "required_cagr": {
-     "bear": -0.9975,
-     "base": -0.4634,
-     "full": 43.2668
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0016
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.1929,
-    "mu_h": 0.024961,
-    "G": {
-     "bear": -2.58,
-     "base": -0.27,
-     "full": 1.64
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0086,
-     "base": 0.3145,
-     "full": 0.0546
-    },
-    "p_touch": {
-     "bear": 0.0161,
-     "base": 0.6419,
-     "full": 0.0905
-    },
-    "required_cagr": {
-     "bear": -0.8636,
-     "base": -0.1874,
-     "full": 2.5375
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00293
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "ALPHADHABI",
    "name": "Alpha Dhabi Holding",
    "code": "ADX:ALPHADHABI",
@@ -1898,8 +1806,8 @@ const FV_OVERLAY = {
    "ccy": "EGP",
    "spot": 59,
    "anchor_date": "2026-08-06",
-   "fv_asof": "2026-08-06",
-   "fv_lag_days": 0,
+   "fv_asof": "2026-06-30",
+   "fv_lag_days": 37,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 49.53,
@@ -5020,98 +4928,6 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
-   "ticker": "SCEM",
-   "name": "Sinai Cement Company S.A.E.",
-   "code": "EGX:SCEM",
-   "ccy": "EGP",
-   "spot": 79,
-   "anchor_date": "2026-08-06",
-   "fv_asof": "2026-08-06",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 46.84,
-   "fv_base": 53.12,
-   "fv_full": 59.1,
-   "gap_base_pct": -32.8,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.163431,
-    "mu_h": 0.014702,
-    "G": {
-     "bear": -3.2,
-     "base": -2.43,
-     "full": -1.78
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0041,
-     "base": 0.0113,
-     "full": 0.0305
-    },
-    "p_touch": {
-     "bear": 0.0056,
-     "base": 0.0175,
-     "full": 0.0479
-    },
-    "required_cagr": {
-     "bear": -0.9981,
-     "base": -0.9915,
-     "full": -0.9693
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00245
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.296033,
-    "mu_h": 0.046739,
-    "G": {
-     "bear": -1.77,
-     "base": -1.34,
-     "full": -0.98
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0278,
-     "base": 0.0554,
-     "full": 0.1008
-    },
-    "p_touch": {
-     "bear": 0.0508,
-     "base": 0.1026,
-     "full": 0.1892
-    },
-    "required_cagr": {
-     "bear": -0.8764,
-     "base": -0.7956,
-     "full": -0.6868
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00392
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "AIRARABIA",
    "name": "Air Arabia PJSC",
    "code": "DFM:AIRARABIA",
@@ -5940,6 +5756,98 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
+   "ticker": "SCEM",
+   "name": "Sinai Cement Company S.A.E.",
+   "code": "EGX:SCEM",
+   "ccy": "EGP",
+   "spot": 98.52,
+   "anchor_date": "2026-09-06",
+   "fv_asof": "2026-08-06",
+   "fv_lag_days": 31,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 46.84,
+   "fv_base": 53.12,
+   "fv_full": 59.1,
+   "gap_base_pct": -46.1,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.19664,
+    "mu_h": 0.025059,
+    "G": {
+     "bear": -3.78,
+     "base": -3.14,
+     "full": -2.6
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.002,
+     "base": 0.0042,
+     "full": 0.0085
+    },
+    "p_touch": {
+     "bear": 0.0027,
+     "base": 0.0058,
+     "full": 0.0128
+    },
+    "required_cagr": {
+     "bear": -0.9999,
+     "base": -0.9994,
+     "full": -0.9978
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.0024
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.359746,
+    "mu_h": 0.067693,
+    "G": {
+     "bear": -2.07,
+     "base": -1.72,
+     "full": -1.42
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0167,
+     "base": 0.0286,
+     "full": 0.0462
+    },
+    "p_touch": {
+     "bear": 0.0305,
+     "base": 0.053,
+     "full": 0.0857
+    },
+    "required_cagr": {
+     "bear": -0.9489,
+     "base": -0.9155,
+     "full": -0.8705
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00574
+   },
+   "market": "EG"
+  },
+  {
    "ticker": "ADCB",
    "name": "Abu Dhabi Commercial Bank",
    "code": "ADX:ADCB",
@@ -6666,6 +6574,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00174
    },
    "market": "AE"
+  },
+  {
+   "ticker": "AMOC",
+   "name": "Alexandria Mineral Oils",
+   "code": "EGX:AMOC",
+   "ccy": "EGP",
+   "spot": 9.1,
+   "anchor_date": "2026-08-06",
+   "fv_asof": "2026-08-06",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 4.09,
+   "fv_base": 5.95,
+   "fv_full": 8.52,
+   "gap_base_pct": -34.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.111209,
+    "mu_h": 0.007663,
+    "G": {
+     "bear": -7.19,
+     "base": -3.82,
+     "full": -0.59
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0001,
+     "base": 0.002,
+     "full": 0.2162
+    },
+    "p_touch": {
+     "bear": 0.0002,
+     "base": 0.0028,
+     "full": 0.3787
+    },
+    "required_cagr": {
+     "bear": -0.9999,
+     "base": -0.9939,
+     "full": -0.5463
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.0016
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.1929,
+    "mu_h": 0.024961,
+    "G": {
+     "bear": -4.15,
+     "base": -2.2,
+     "full": -0.34
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0013,
+     "base": 0.0149,
+     "full": 0.2849
+    },
+    "p_touch": {
+     "bear": 0.0023,
+     "base": 0.0268,
+     "full": 0.5753
+    },
+    "required_cagr": {
+     "bear": -0.9592,
+     "base": -0.8172,
+     "full": -0.2316
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00293
+   },
+   "market": "EG"
   },
   {
    "ticker": "BURJEEL",

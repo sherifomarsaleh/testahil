@@ -522,7 +522,15 @@ def apply_grade(src: str, row: dict, got: dict) -> str:
                     f"in_90:{jb(got['in_90'])}, in_50:{jb(got['in_50'])}, "
                     f"realized_quantile:{rq}, median_err:{got['median_err']:.4f},")
 
-    old_th = re.search(r'touch_hit:\{[^}]*\}', t2)
+    # A row may carry the ladder either as the six-key placeholder object or as a bare
+    # `touch_hit:null`. Both are ungraded and both must grade. The publish path has
+    # written the bare form since Aug-2026 (DU, MODON, ARCC, SCEM, AMOC, SWDY — 12 rows
+    # across six first-publish cohorts), and this matcher only knew the object form, so
+    # the FIRST of those to mature died here with 'touch_hit block not found' after the
+    # outcome and stats fields had already been rewritten in the working string. Matching
+    # the shape rather than one of its spellings is the fix; the emitted form is the
+    # object either way, so a graded row's shape does not depend on how it was struck.
+    old_th = re.search(r'touch_hit:(?:\{[^}]*\}|null)', t2)
     if not old_th:
         raise SystemExit('touch_hit block not found')
     th = ', '.join(f'"{k}":{jb(got["touch_hit"][k])}' for k, _ in REL)
