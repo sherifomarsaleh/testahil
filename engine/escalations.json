@@ -321,10 +321,10 @@
    "note": "THE LADDER FOUND ONE THING WORTH MORE THAN THE ANSWER. A control on a host curl reaches turned what looked like 'GB Corp blocks automated readers' into 'this container's browser cannot reach anything', which is a different fact with a different remedy — and without the control the first would have gone into the record as true. The same pass found another study's register carrying a stale negative about egx.com.eg. Both are [L-343]: a recorded failure is a fact about one attempt on one day, and it stops being true without anybody noticing."
   },
   {
-   "key": "OHLC-refresh-egch-and-qnb",
+   "key": "OHLC-refresh-qnb",
    "opened": "2026-09-06",
    "cls": "missing_data",
-   "question": "A fresh OHLC export for EGCH (EGX) and QNB (QSE) — the only two covered names whose libraries reach nowhere near their stored grade dates on ANY live ref. EGCH stops at 06-08-2026 everywhere; QNB's newest is 06-08-2026, a month short of its 06-09-2026 grade date. Both have a matured 1-month row that cannot be graded.",
+   "question": "A fresh OHLC export for QNB (QSE) — the only covered name whose library reaches nowhere near its stored grade date on ANY live ref. Its newest anywhere is 06-08-2026, against a 06-09-2026 grade date on a matured 1-month row that therefore cannot be graded, and a month past is far outside [R-GRADE-01]'s 7-day early-grade bound.",
    "routes": [
     {
      "route": "the persistent libraries themselves, engine/raw_ohlc/*/*.csv, read newest-first",
@@ -353,12 +353,16 @@
    ],
    "refs_searched": 22,
    "why_only_the_principal": "The OHLC libraries come from the principal's own vendor export and always have. No route available in this container produces one, and a price typed from a chat message is not a vendor export — it would enter a calibration panel as one.",
-   "done_meanwhile": "ARCC was rolled forward end to end on the export that did arrive. The six names wrongly listed here need nothing from the principal — their own sessions hold the exports and will grade their own rows.",
-   "default_if_no_answer": "Leave the EGCH and QNB rows OPEN and ungraded — they are calendar commitments and grade on their own dates whenever their closes land. Both are a month past their grade date, so [R-GRADE-01]'s 7-day early-grade bound cannot reach either. Quote each library's own end date wherever its price or gap is quoted; never interpolate a close.",
+   "done_meanwhile": "ARCC was rolled forward end to end on the export that did arrive. Every other name once listed here needs nothing from the principal — their own sessions hold the exports and will grade their own rows.",
+   "narrowed_twice": "THIS ENTRY HAS BEEN NARROWED TWICE BY ITS OWN GATE AND THE SECOND TIME IT WENT RED IN CI. Written naming eight stale names read from one checkout; the gate cut it to two by finding six on sibling branches; then the CI run on the very commit that made this register CI-visible cut it to one, because EGCH's export had landed on origin/claude/roll-forward-egx-metals-fy8dha in the minutes between. THE LESSON IS ABOUT LATENCY, NOT CARE: with many sessions landing exports on their own branches, 'not supplied' is a claim with a shelf life of minutes, and no amount of diligence at the moment of writing makes it durable. Only a checker that re-runs the search on every build can hold it — which is exactly why [R-IND-01] puts the resolving condition in the register rather than trusting the author, and why the engine/*.json trigger glob added in the same commit matters: before it, this register could go stale in CI without CI ever running.",
+   "default_if_no_answer": "Leave the QNB row OPEN and ungraded — it is a calendar commitment and grades on its own date whenever its close lands. It is a month past that date, so [R-GRADE-01]'s 7-day early-grade bound cannot reach it. Quote the library's own end date wherever QNB's price or gap is quoted; never interpolate a close.",
    "default_date": "2026-10-06",
-   "status": "open",
+   "status": "resolved",
+   "resolved": "2026-09-06",
+   "answer_written_to": "engine/raw_ohlc/QA/QNB.csv",
+   "note": "CLOSED WITHOUT EVER REACHING THE PRINCIPAL, WHICH IS THE OUTCOME THIS RULE IS FOR. Every name it named turned out to be supplied on some sibling branch: AMOC, SCEM, PHAR, SWDY, ELEC and Silver at the first narrowing, EGCH at the second, and QNB — the last one standing, and the whole reason the entry still existed — on the third, its export landing on origin/claude/qatar-exchange-rollforward-vxwvsz in the minutes between the check that named it and the check that closed it. THE ENTRY WAS NEVER ASKED AND NOTHING WAS OWED. Had it been sent, it would have spent the principal's time on eight exports they had already supplied, which is precisely the failure [R-IND-01] was adopted on.",
    "resolves_when": {
-    "file": "engine/raw_ohlc/EG/EGCH.csv",
+    "file": "engine/raw_ohlc/QA/QNB.csv",
     "must_contain": "09/01/2026"
    }
   },
@@ -398,7 +402,10 @@
    "done_meanwhile": "The whole roll-forward was completed and is on the branch: library splice, Step 0.0, the EG materiality gate, the grade, cycle 2, technicals, chart, band record, CALIB, backtest figure and the cache-buster. [R-GAP-02] exempts internal work in terms, so none of that waited on this.",
    "default_if_no_answer": "ARCC stays HELD and unpublished; the roll-forward stays on its branch and in PR #374, green on all three CI workflows. The gate is re-read at the next roll-forward, when the gap may have closed on its own — the price moved 30% in a month and the central did not move at all. THE COST OF THIS DEFAULT IS STATED RATHER THAN DISCOVERED LATER: the live ARCC page stays a month stale, with an expired cone and a resistance ladder entirely below spot.",
    "default_date": "2026-10-06",
-   "status": "open",
+   "status": "resolved",
+   "resolved": "2026-09-06",
+   "answer_written_to": "engine/arcc_study/PUBLICATION_RULING.md",
+   "note": "RULED ON BY THE PRINCIPAL, 6 September 2026: MERGE AND PUBLISH this roll-forward. The ruling covers the 6-September cone, grade, technical read and calibration record ONLY — it is not a release of the study, not a finding about the gap, and NOT A PRECEDENT for another name or a later edition. The block was not routed around: publish_site.py still refuses ARCC at step 0/6 and should, and no dissent was manufactured to clear it. What made the ruling askable in one line is that fair{} does not move in this change, so the quantity [R-GAP-02] holds is untouched, while the live page carried a month-stale spot, an expired cone and three resistances below the traded price.",
    "resolves_when": {
     "file": "engine/arcc_study/PUBLICATION_RULING.md",
     "must_contain": "PUBLICATION RULED ON"
