@@ -103,8 +103,9 @@ def run_case(name, build, outstanding, expect_fail, extra_names=()):
         # FIXTURE FILE, not by re-implementing its logic here: a control that reasons
         # about the ratchet in its own words tests its own reasoning. The cases keep
         # declaring their allowance under the key they always used.
-        _nrp = os.path.join(tmp, 'no_record_outstanding.json')
-        json.dump({'no_record': sorted(outstanding.get('no_record_dir') or [])},
+        _nrp = os.path.join(tmp, 'coverage_outstanding.json')
+        json.dump({'entries': {t: 'fixture' for t in
+                               sorted(outstanding.get('no_record_dir') or [])}},
                   io.open(_nrp, 'w', encoding='utf-8'))
         _sp.NO_RECORD_RATCHET = _nrp
 

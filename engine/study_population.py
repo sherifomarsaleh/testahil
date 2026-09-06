@@ -202,7 +202,25 @@ def population():
 # So the fact lives HERE, once, and every gate reads it. It stays a RATCHET rather
 # than a computed set, because the ratchet is what makes the debt only ever shorten:
 # a name that LOSES its record must go red, not become quietly excused.
-NO_RECORD_RATCHET = os.path.join(ENGINE, 'build_depth_audit', 'no_record_outstanding.json')
+# IT DEFERS TO THE LIST THAT ALREADY HELD THIS FACT [corrected 06-09-2026, hours
+# after the list below was created]. A first version of this module created
+# no_record_outstanding.json and argued for it: one list rather than ten. The
+# argument was right and the list was a DUPLICATE — coverage_outstanding.json has
+# held exactly this since 03-Sep-2026, in its own words, "names whose fair value the
+# site publishes with no study directory behind it ... examined by NONE of them".
+#
+# THE TWO DIVERGED ON DAY ONE AND THE DIVERGENCE WAS A REAL DEFECT IN THE OLDER
+# LIST: 68 entries against 67, the difference being FERTIGLB, which HAS a study
+# directory under the aliased name fertiglobe_study. check_published_coverage
+# derived its study set from raw directory names and could not see the alias, so it
+# had been listing a name that was not outstanding at all. Nothing could see that
+# until a second measurement disagreed — the one benefit of the duplication, and not
+# a reason to keep it.
+#
+# The precedent is this repository's own: check_artefact_currency DEFERS to
+# [R-GAP-01]'s unreadable list rather than writing the same fact into a second list,
+# because two records of one thing diverge the moment one is pruned.
+NO_RECORD_RATCHET = os.path.join(ENGINE, 'build_depth_audit', 'coverage_outstanding.json')
 
 
 def no_record_ratchet(pop=None):
@@ -219,7 +237,8 @@ def no_record_ratchet(pop=None):
     except FileNotFoundError:
         raise SystemExit('FATAL: %s does not exist. The no-record set is a ratchet and a '
                          'missing ratchet is not an empty one [R-ENF-04].' % NO_RECORD_RATCHET)
-    allowed = set(d.get('no_record') or [])
+    # `entries` is a dict of ticker -> reason; the older file's own shape
+    allowed = set(d.get('entries') or d.get('no_record') or [])
     # AN EMPTY LIST IS LEGITIMATE AND A MISSING FILE IS NOT. A first draft refused
     # an empty ratchet on the [R-ENF-04] instinct that emptiness is usually
     # truncation -- and that was wrong twice over. Empty is the GOAL STATE of a
@@ -323,6 +342,19 @@ def _assert_alias_agreement():
         raise AssertionError(
             'campaign_queue.STUDY_ALIAS %r and study_population.DIR_ALIAS %r '
             'disagree. One fact, one table.' % (m.STUDY_ALIAS, DIR_ALIAS))
+
+
+# THE ALIAS TABLE IS HARDCODED AND ITS AGREEMENT IS CHECKED AT IMPORT, FOR EVERY
+# CONSUMER [06-09-2026, per instruction]. DIR_ALIAS is the one authoritative
+# statement that engine/fertiglobe_study belongs to the ticker FERTIGLB. It was
+# already written down here and campaign_queue.py kept its own copy; what was
+# missing is that the agreement was only asserted when THIS FILE was run as a
+# script, so a consumer importing the module got no check at all — and
+# check_published_coverage, which never imported it, spent three days listing
+# FERTIGLB as having no study while its directory sat on disk. A fact that is
+# hardcoded in one place and copied in another is not hardcoded; it is duplicated,
+# and the copy is only as good as whatever compares them.
+_assert_alias_agreement()
 
 
 if __name__ == '__main__':
