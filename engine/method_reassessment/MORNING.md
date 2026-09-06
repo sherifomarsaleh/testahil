@@ -2,6 +2,38 @@
 
 Questions and deliveries that arose overnight, each with the evidence and the recommended answer. Empty means nothing needs you.
 
+## 06 Sep 2026 — CONSUMPTION THROTTLED TO HALF THE WEEK, PER YOUR INSTRUCTION
+
+Your instruction of 06-Sep, stated four times — *"Get back to normal consumption pattern. Maximum
+50 percent of the week consumption dedicated to this task and distributed over the whole week.
+Leave the other 50 percent limit to me. Apply immediately"* — is applied. **Nothing here needs a
+decision;** it is recorded so the next session inherits it rather than reverting to the old cadence.
+
+**What was actually changed** (acts, not intentions):
+
+| | Before | Now |
+|---|---|---|
+| Hourly auto-resume ×2 | every hour, two sessions | **deleted** |
+| Hourly backstop | every hour | **deleted** |
+| Fresh-session safety net | daily, took over on a 6h-stale state file | **deleted** |
+| Continuous wake | 08:00 and 22:00 Cairo | **once daily, 22:00 Cairo**, bounded |
+| Question slot | 09:00 Sun–Thu, then continued working | 09:00 Sun–Thu, **question only, no work** |
+| Self-re-invocation | armed at the end of every turn | **retired** — a turn that ends, ends |
+| Agent fan-out | fleets, to consume expiring capacity | outside-reader work only, never throughput |
+
+Wake-ups fell from roughly fifty a day to two. The 05-Sep boosted window and the
+100%-overnight/50%-by-day split are both retired; the binding rule is now weekly.
+
+**The cost, stated rather than discovered later.** At one bounded session a day the programme runs
+on the slowest row of the plan's own calendar table. Phase 2's 85 names are months of calendar at
+this cadence, not weeks. That is your call and it is taken as given — the honest response is to
+order the work so the most valuable findings land first, not to quietly run faster. Say the word
+and the cadence changes back.
+
+Recorded in `STATE.json` (clock block), `PLAN_02-09-2026.md` (Parts G and H) and the routine
+prompts themselves, so it binds on a session that starts cold.
+
+
 ## 02→03 Sep 2026
 
 1. **Digest amended and renamed** — `engine/PROJECT_INSTRUCTIONS_02-09-2026.md`, revision 2026-09-02a (the Day-0 merge took both sides' amendments: EGCH's [R-MERGE-01] from main and this branch's workbook-structure gate). CLAUDE.md asks that its full text be sent to you in chat after any edit; it will be sent at the 08:00 wake. No decision needed.
