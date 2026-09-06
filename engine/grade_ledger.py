@@ -535,7 +535,15 @@ def apply_grade(src: str, row: dict, got: dict) -> str:
                     f"in_90:{jb(got['in_90'])},{g[0]}in_50:{jb(got['in_50'])},{g[1]}"
                     f"realized_quantile:{rq},{g[2]}median_err:{got['median_err']:.4f},")
 
-    old_th = re.search(r'touch_hit:\{[^}]*\}', t2)
+    # A FIRST-COVERAGE ROW WRITES touch_hit:null, NOT AN EMPTY OBJECT, and this
+    # matched only the object shape — so the twelve rows six names were published
+    # on (DU, MODON, ARCC, SCEM, AMOC, SWDY, both horizons) could be COMPUTED and
+    # not WRITTEN, and the sweep died on the write with 'touch_hit block not
+    # found' after reporting the grade. The grade itself is unaffected; what was
+    # missing is the null shape on the left-hand side. Both are accepted here and
+    # both are replaced by the computed object, so a graded row comes out
+    # identical whichever shape it started in.
+    old_th = re.search(r'touch_hit:(?:null|\{[^}]*\})', t2)
     if not old_th:
         raise SystemExit('touch_hit block not found')
     th = ', '.join(f'"{k}":{jb(got["touch_hit"][k])}' for k, _ in REL)
