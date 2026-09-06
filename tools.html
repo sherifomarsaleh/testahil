@@ -70,11 +70,11 @@
 
     <div class="t-pane" id="pane-funnel">
       <p class="muted" style="max-width:70ch;margin-bottom:6px"><a href="/funnel.html"><b>How the funnel works →</b></a> the seven gates, what each is doing, and the strength of the evidence behind it.</p>
-      <p class="muted" style="max-width:70ch">The selection funnel run over the whole book: five gates in the order the evidence supports, and for each name <b>the first gate that stops it</b>. Gates that eliminate come before gates that only cap or time, and every threshold here is one already written down elsewhere — the 10% gap trigger, the momentum dead zone, the record-strength cuts. Nothing new was chosen for this table.</p>
+      <p class="muted" style="max-width:70ch">How this site reads its own numbers, applied across the whole book: five conditions in the order the evidence supports, and for each name <b>the first condition it fails</b>. Conditions that eliminate come before ones that only cap or time, and every threshold here is one already written down elsewhere — the 10% gap trigger, the momentum dead zone, the record-strength cuts. Nothing new was chosen for this table.</p>
       <p class="muted" style="max-width:70ch;font-size:var(--fs-small)"><b>Nothing is stopped for being old, or for being work in progress.</b> Every row prints the date of the price it was ranked on and the last session of the library its momentum and tape came from. Prices are entered by hand on a monthly rhythm and a fundamental rebuild takes days per name — so both are shown and neither drops a name, because a tool that dead-ends everything it has touched answers nothing on the day you ask it.</p>
       <div class="t-filters">
         <select id="fn-mkt" class="t-chip"></select>
-        <label class="t-chip" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="fn-clear"> only names that clear every gate</label>
+        <label class="t-chip" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="fn-clear"> only names meeting every condition</label>
       </div>
       <div id="fn-tally" class="muted" style="font-size:var(--fs-small);margin:10px 0"></div>
       <div class="t-tablewrap">
@@ -85,13 +85,13 @@
             <th class="num">Gap</th>
             <th class="num">Momentum z</th>
             <th>Tape</th>
-            <th>Stops at</th>
+            <th>First condition failed</th>
             <th>Because</th>
           </tr></thead>
           <tbody id="fn-body"></tbody>
         </table>
       </div>
-      <p class="muted" style="font-size:var(--fs-small);margin-top:12px">Each gate, its rule and the evidence behind it are set out in full on <a href="/funnel.html">the funnel page</a> — kept in one place so the two cannot drift apart. Nothing here is a rating or a price target.</p>
+      <p class="muted" style="font-size:var(--fs-small);margin-top:12px">A name meeting every condition is a description of what the published figures say about it against a stated rule — not a recommendation, a rating, or a suggestion to buy or sell. Each condition, its rule and the evidence behind it are set out in full on <a href="/funnel.html">the funnel page</a> — kept in one place so the two cannot drift apart. Nothing here is a rating or a price target.</p>
     </div>
 
     <div class="t-pane" id="pane-compare">
@@ -217,13 +217,13 @@ renderChrome("tools");
       list.forEach(function(x){ var s=x.r.stop||"clears"; tally[s]=(tally[s]||0)+1; });
       document.getElementById("fn-tally").innerHTML =
         Object.keys(tally).map(function(s){
-          return '<b>'+(s==="clears"?"clears every gate":("stops at "+(LBL[s]||s).toLowerCase()))+'</b> '+tally[s];
+          return '<b>'+(s==="clears"?"meet every condition":("stop at "+(LBL[s]||s).toLowerCase()))+'</b> '+tally[s];
         }).join(" &middot; ") + ' &middot; of ' + list.length + ' names';
       document.getElementById("fn-body").innerHTML = list.map(function(x){
         var r=x.r, t=ALL[x.k];
         var stop = r.stop
           ? '<span class="t-badge '+(CLS[r.stop]||"mut")+'">'+(LBL[r.stop]||r.stop)+'</span>'
-          : '<span class="t-badge good">clears</span>';
+          : '<span class="t-badge good">all conditions met</span>';
         return '<tr class="rowlink" data-href="'+pageFor(x.k)+'">'+
           '<td class="num"><b>'+r_code(x)+'</b></td>'+
           '<td class="num">'+(r.px!=null?fmtPx(r.px,t.ccy):"—")+
