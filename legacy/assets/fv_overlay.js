@@ -58,8 +58,8 @@ const FV_OVERLAY = {
    "ccy": "EGP",
    "spot": 54.4,
    "anchor_date": "2026-08-23",
-   "fv_asof": "2026-07-03",
-   "fv_lag_days": 51,
+   "fv_asof": "2026-07-01",
+   "fv_lag_days": 53,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 31.6,
@@ -150,8 +150,8 @@ const FV_OVERLAY = {
    "ccy": "EGP",
    "spot": 118.49,
    "anchor_date": "2026-08-23",
-   "fv_asof": "2026-07-03",
-   "fv_lag_days": 51,
+   "fv_asof": "2026-07-01",
+   "fv_lag_days": 53,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 82,
@@ -1070,8 +1070,8 @@ const FV_OVERLAY = {
    "ccy": "EGP",
    "spot": 3.01,
    "anchor_date": "2026-08-23",
-   "fv_asof": "2026-07-03",
-   "fv_lag_days": 51,
+   "fv_asof": "2026-07-01",
+   "fv_lag_days": 53,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 1.89,
@@ -1714,8 +1714,8 @@ const FV_OVERLAY = {
    "ccy": "EGP",
    "spot": 7.75,
    "anchor_date": "2026-08-23",
-   "fv_asof": "2026-07-03",
-   "fv_lag_days": 51,
+   "fv_asof": "2026-07-01",
+   "fv_lag_days": 53,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 5.2,
@@ -2726,8 +2726,8 @@ const FV_OVERLAY = {
    "ccy": "EGP",
    "spot": 31.01,
    "anchor_date": "2026-09-01",
-   "fv_asof": "2026-06-24",
-   "fv_lag_days": 69,
+   "fv_asof": "2026-06-23",
+   "fv_lag_days": 70,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 16.72,
@@ -3094,8 +3094,8 @@ const FV_OVERLAY = {
    "ccy": "EGP",
    "spot": 33.2,
    "anchor_date": "2026-08-23",
-   "fv_asof": "2026-07-03",
-   "fv_lag_days": 51,
+   "fv_asof": "2026-07-01",
+   "fv_lag_days": 53,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 16.41,
@@ -3272,98 +3272,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "QNB",
-   "name": "QNB Group",
-   "code": "QSE:QNBK",
-   "ccy": "QAR",
-   "spot": 17.15,
-   "anchor_date": "2026-08-05",
-   "fv_asof": "2026-07-05",
-   "fv_lag_days": 31,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 14,
-   "fv_base": 18.76,
-   "fv_full": 28.5,
-   "gap_base_pct": 9.4,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 6.0,
-    "width_cal": 0.958,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.059263,
-    "mu_h": 0.002911,
-    "G": {
-     "bear": -3.42,
-     "base": 1.51,
-     "full": 8.57
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0027,
-     "base": 0.0615,
-     "full": 0.0
-    },
-    "p_touch": {
-     "bear": 0.004,
-     "base": 0.0947,
-     "full": 0.0
-    },
-    "required_cagr": {
-     "bear": -0.9124,
-     "base": 1.9351,
-     "full": 442.5768
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00136
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.101579,
-    "mu_h": 0.010441,
-    "G": {
-     "bear": -2.0,
-     "base": 0.88,
-     "full": 5.0
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0211,
-     "base": 0.188,
-     "full": 0.0005
-    },
-    "p_touch": {
-     "bear": 0.0371,
-     "base": 0.321,
-     "full": 0.0009
-    },
-    "required_cagr": {
-     "bear": -0.5559,
-     "base": 0.4318,
-     "full": 6.6265
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00111
-   },
-   "market": "QA"
-  },
-  {
    "ticker": "DU",
    "name": "Emirates Integrated Telecommunications Company PJSC",
    "code": "DFM:DU",
@@ -3462,8 +3370,8 @@ const FV_OVERLAY = {
    "ccy": "EGP",
    "spot": 29.51,
    "anchor_date": "2026-08-23",
-   "fv_asof": "2026-07-08",
-   "fv_lag_days": 46,
+   "fv_asof": "2026-07-07",
+   "fv_lag_days": 47,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 23.3,
@@ -4106,8 +4014,8 @@ const FV_OVERLAY = {
    "ccy": "EGP",
    "spot": 330,
    "anchor_date": "2026-08-23",
-   "fv_asof": "2026-07-03",
-   "fv_lag_days": 51,
+   "fv_asof": "2026-07-01",
+   "fv_lag_days": 53,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 183,
@@ -4282,6 +4190,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00467
    },
    "market": "EG"
+  },
+  {
+   "ticker": "QNB",
+   "name": "QNB Group",
+   "code": "QSE:QNBK",
+   "ccy": "QAR",
+   "spot": 16.67,
+   "anchor_date": "2026-09-06",
+   "fv_asof": "2026-07-05",
+   "fv_lag_days": 63,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 14,
+   "fv_base": 18.76,
+   "fv_full": 28.5,
+   "gap_base_pct": 12.5,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 6.0,
+    "width_cal": 0.958,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.057216,
+    "mu_h": 0.002995,
+    "G": {
+     "bear": -3.05,
+     "base": 2.06,
+     "full": 9.37
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0045,
+     "base": 0.0244,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0067,
+     "base": 0.0373,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.8769,
+     "base": 3.1264,
+     "full": 622.6072
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00116
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.100597,
+    "mu_h": 0.01074,
+    "G": {
+     "bear": -1.74,
+     "base": 1.17,
+     "full": 5.33
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0325,
+     "base": 0.1195,
+     "full": 0.0003
+    },
+    "p_touch": {
+     "bear": 0.0577,
+     "base": 0.2045,
+     "full": 0.0006
+    },
+    "required_cagr": {
+     "bear": -0.5025,
+     "base": 0.6039,
+     "full": 7.5435
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00219
+   },
+   "market": "QA"
   },
   {
    "ticker": "FERTIGLB",
@@ -4750,8 +4750,8 @@ const FV_OVERLAY = {
    "ccy": "EGP",
    "spot": 41.5,
    "anchor_date": "2026-09-01",
-   "fv_asof": "2026-06-25",
-   "fv_lag_days": 68,
+   "fv_asof": "2026-06-24",
+   "fv_lag_days": 69,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 22.5,
@@ -6842,8 +6842,8 @@ const FV_OVERLAY = {
    "ccy": "EGP",
    "spot": 24.65,
    "anchor_date": "2026-08-23",
-   "fv_asof": "2026-07-03",
-   "fv_lag_days": 51,
+   "fv_asof": "2026-07-01",
+   "fv_lag_days": 53,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 10.2,
@@ -7178,8 +7178,8 @@ const FV_OVERLAY = {
    "ccy": "EGP",
    "spot": 17.71,
    "anchor_date": "2026-08-23",
-   "fv_asof": "2026-07-13",
-   "fv_lag_days": 41,
+   "fv_asof": "2026-07-12",
+   "fv_lag_days": 42,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 6.51,
@@ -7346,8 +7346,8 @@ const FV_OVERLAY = {
    "ccy": "EGP",
    "spot": 6.35,
    "anchor_date": "2026-08-23",
-   "fv_asof": "2026-07-13",
-   "fv_lag_days": 41,
+   "fv_asof": "2026-07-12",
+   "fv_lag_days": 42,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 2.11,
@@ -7514,8 +7514,8 @@ const FV_OVERLAY = {
    "ccy": "EGP",
    "spot": 1.88,
    "anchor_date": "2026-08-23",
-   "fv_asof": "2026-07-03",
-   "fv_lag_days": 51,
+   "fv_asof": "2026-07-01",
+   "fv_lag_days": 53,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 0.53,
