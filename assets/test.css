@@ -135,10 +135,14 @@ a.t-chip:hover{text-decoration:none;border-color:var(--teal);color:var(--teal)}
 .t-testflag{transition:opacity .25s}
 .t-testflag.hid{opacity:0;pointer-events:none}
 
-/* filter chips: keep labels on one line — the flex row let them wrap word by word */
-.t-filters label.t-chip{white-space:nowrap;flex:0 0 auto}
-.t-filters label.t-chip input{flex:0 0 auto;margin:0}
+/* Tick boxes and radios must not inherit the base form rule input,select{width:100%}
+   — inside a chip the box expanded to the full pill and pushed its label out of the
+   pill, which read as overlapping text. Site-wide so no future page repeats it. */
+input[type=checkbox],input[type=radio]{width:auto}
 .t-filters{flex-wrap:wrap}
+.t-filters > *{flex:0 0 auto}
+.t-filters label.t-chip{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;width:auto;margin-bottom:0}
+.t-filters select.t-chip{width:auto;max-width:100%;padding-right:32px}
 
 /* "From the written study": let the prose use the card's full width
    (the shell caps each paragraph inline at 78ch, leaving a third of the card empty) */
