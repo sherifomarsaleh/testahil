@@ -190,6 +190,60 @@ def population():
     return out
 
 
+# THE NO-RECORD SET IS ONE RATCHET, NOT ONE PER GATE [06-09-2026].
+# check_valuation_gap was re-pointed first and kept its own `no_record_dir` list
+# inside gap_outstanding.json. Wiring the other ten gates the same way would have
+# produced TEN lists carrying the SAME 67 names, and — because two of the three
+# closed REFERENCE_SET names are pattern references with no study directory —
+# twenty exemplar-debt entries recording one fact ten times. That is [L-084] and
+# the prose-figures finding, and it was caught by surveying the ten before editing
+# them rather than after.
+#
+# So the fact lives HERE, once, and every gate reads it. It stays a RATCHET rather
+# than a computed set, because the ratchet is what makes the debt only ever shorten:
+# a name that LOSES its record must go red, not become quietly excused.
+NO_RECORD_RATCHET = os.path.join(ENGINE, 'build_depth_audit', 'no_record_outstanding.json')
+
+
+def no_record_ratchet(pop=None):
+    """The covered names knowingly committing no record any gate can read.
+
+    Returns (allowed, problems). `problems` is non-empty when the list has stopped
+    describing the book — a listed name that HAS acquired a record (the debt
+    shortened and nobody pruned), or a name with no record that is not listed (a
+    NEW one, which is the violation this exists to surface).
+    """
+    pop = pop or population()
+    try:
+        d = json.load(open(NO_RECORD_RATCHET, encoding='utf-8'))
+    except FileNotFoundError:
+        raise SystemExit('FATAL: %s does not exist. The no-record set is a ratchet and a '
+                         'missing ratchet is not an empty one [R-ENF-04].' % NO_RECORD_RATCHET)
+    allowed = set(d.get('no_record') or [])
+    # AN EMPTY LIST IS LEGITIMATE AND A MISSING FILE IS NOT. A first draft refused
+    # an empty ratchet on the [R-ENF-04] instinct that emptiness is usually
+    # truncation -- and that was wrong twice over. Empty is the GOAL STATE of a
+    # ratchet that may only shorten, so refusing it makes the target unreachable,
+    # which is the permanently-red check [R-ENF-02] forbids wearing the opposite
+    # costume. And it was redundant: a truncated list does not go quiet, it
+    # produces one problem per unlisted name from the third clause below. Found by
+    # a fixture that legitimately carries none.
+    actual = {k for k, v in pop.items() if not v['readable']}
+    problems = []
+    for tk in sorted(allowed - set(pop)):
+        problems.append('%s is on the no-record ratchet and is not a covered name at all' % tk)
+    for tk in sorted(allowed & set(pop) - actual):
+        problems.append('%s is excused on the no-record ratchet and DOES commit a record '
+                        'directory. The allowance is for a study nothing can read; the debt '
+                        'has shortened and the list must be pruned, because a stale excuse '
+                        'is how a real breach hides.' % tk)
+    for tk in sorted(actual - allowed):
+        problems.append('%s is a covered name committing NO record directory and is not on '
+                        'the ratchet. A study nothing can read is not a study that passed '
+                        '[R-ENF-04].' % tk)
+    return allowed, problems
+
+
 def readable(pop=None):
     """The subset a record-reading gate can actually inspect. NEVER the
     population: narrowing to this silently is the defect this module closes."""

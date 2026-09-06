@@ -99,6 +99,15 @@ def run_case(name, build, outstanding, expect_fail, extra_names=()):
             return out
         gate.resolve_population = _fixture_population
 
+        # THE SHARED NO-RECORD RATCHET IS SUBSTITUTED BY POINTING THE RESOLVER AT A
+        # FIXTURE FILE, not by re-implementing its logic here: a control that reasons
+        # about the ratchet in its own words tests its own reasoning. The cases keep
+        # declaring their allowance under the key they always used.
+        _nrp = os.path.join(tmp, 'no_record_outstanding.json')
+        json.dump({'no_record': sorted(outstanding.get('no_record_dir') or [])},
+                  io.open(_nrp, 'w', encoding='utf-8'))
+        _sp.NO_RECORD_RATCHET = _nrp
+
         buf, real = [], sys.stdout
 
         class Tee:
@@ -126,10 +135,15 @@ def run_case(name, build, outstanding, expect_fail, extra_names=()):
     finally:
         gate.ENGINE, gate.OUTSTANDING = REAL_ENGINE, REAL_OUTSTANDING
         gate.resolve_population = REAL_POPULATION
+        _sp.NO_RECORD_RATCHET = REAL_NO_RECORD
         shutil.rmtree(tmp, ignore_errors=True)
 
 
 REAL_POPULATION = gate.resolve_population
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                                'engine'))
+import study_population as _sp                                          # noqa: E402
+REAL_NO_RECORD = _sp.NO_RECORD_RATCHET
 
 EMPTY = {'breach_no_review': [], 'unreadable': [], 'exempt': {}}
 

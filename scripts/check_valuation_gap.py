@@ -437,7 +437,7 @@ def _audited_gap(raw):
 def load_outstanding():
     d = json.load(open(OUTSTANDING, encoding='utf-8'))
     return (d, set(d.get('breach_no_review', [])), set(d.get('unreadable', [])),
-            set(d.get('review_central_unstated', [])), set(d.get('no_record_dir', [])))
+            set(d.get('review_central_unstated', [])))
 
 
 # A DIRECTORY THAT IS NOT AN EQUITY VALUATION IS EXEMPT, AND THE EXEMPTION IS EXECUTED
@@ -489,14 +489,29 @@ def resolve_population():
     return study_population.population()
 
 
+def resolve_no_record(pop):
+    """The shared no-record ratchet, read through the same lazy seam. A second
+    seam so the negative control can supply both halves of the fixture."""
+    engine = os.path.join(ROOT, 'engine')
+    if engine not in sys.path:
+        sys.path.insert(0, engine)
+    import study_population
+    return study_population.no_record_ratchet(pop)
+
+
 def main(argv):
     prune = '--prune' in argv
-    (d, known_breach, known_unreadable, known_unstated,
-     known_no_record) = load_outstanding()
+    (d, known_breach, known_unreadable, known_unstated) = load_outstanding()
 
     # THE POPULATION IS THE BOOK. Every covered name carries a delivered study;
     # what varies is whether it also commits a record this gate can read.
     pop = resolve_population()
+    # THE NO-RECORD SET IS SHARED, NOT THIS GATE'S. It was kept here for one day
+    # and moved the moment the ten sibling gates were surveyed: ten gates keeping
+    # ten copies of the same 67 names is the twenty-three-hand-maintained-sets
+    # mistake, and it would have written one fact into the exemplar ratchet ten
+    # times over. It stays a ratchet — a name that LOSES its record goes red.
+    known_no_record, _nr_problems = resolve_no_record(pop)
     ok, breaches, unreadable, reviewed, new_fail = [], [], [], [], []
     no_record = []
     exempt, exempt_no_reason = exemptions(d)
@@ -509,14 +524,16 @@ def main(argv):
     if not pop:
         new_fail.append('this gate examined ZERO covered names. An empty result is not '
                         'a clean result — re-run the resolver before believing it.')
-    vanished = sorted((known_breach | known_unreadable | known_no_record) - set(pop))
+    for _m in _nr_problems:
+        new_fail.append(_m)
+    vanished = sorted((known_breach | known_unreadable) - set(pop))
     if vanished:
         new_fail.append('%d name(s) in gap_outstanding.json resolve to no covered name '
                         '(%s). Either the resolver did not run or the names left the '
                         'book without the list being pruned; neither is a pass.'
                         % (len(vanished), ', '.join(vanished)))
     # THE TWO GROUPS EXCUSE TWO DIFFERENT CONDITIONS AND ARE NOT INTERCHANGEABLE
-    both = sorted(known_unreadable & known_no_record)
+    both = sorted(known_unreadable & known_no_record)   # noqa: E501  see note above
     if both:
         new_fail.append('%s listed in BOTH no_record_dir and unreadable. They excuse '
                         'different conditions — no record to read, versus a record whose '
@@ -531,18 +548,9 @@ def main(argv):
             # not silently narrowed away: this is the state the re-pointing exists to
             # make countable, and under [R-ENF-04] it is UNREADABLE, which is not CLEAN.
             no_record.append((tk, len(pop[tk]['delivered'])))
-            if tk not in known_no_record:
-                new_fail.append('%s: a delivered valuation study with no committed record '
-                                'directory, so no gate in this repository can put its fair '
-                                'value against a price. A study nothing can read is not a '
-                                'study that passed.' % tk)
+            # the shared reader above has already reported any name missing from the
+            # ratchet; reporting it again here would say one fact twice
             continue
-        if tk in known_no_record:
-            new_fail.append('%s is excused on no_record_dir and DOES commit a record '
-                            'directory. The allowance is for a study nothing can read; '
-                            'a name that has acquired a record is audited on what the '
-                            'record says, and the move is recorded rather than inherited.'
-                            % tk)
         central, spot, route = read_answer(sdir)
         if tk in exempt:
             exempted.append((tk, exempt[tk]))
@@ -713,8 +721,7 @@ def main(argv):
             print('   ' + ', '.join(names[i:i + 6]))
 
     now_passing = sorted(({b[0] for b in breaches} ^ known_breach) & known_breach) + \
-        sorted(({tk for tk, _ in unreadable} ^ known_unreadable) & known_unreadable) + \
-        sorted(({tk for tk, _ in no_record} ^ known_no_record) & known_no_record)
+        sorted(({tk for tk, _ in unreadable} ^ known_unreadable) & known_unreadable)
     if now_passing:
         print('\nNOW PASSING — remove from the list (%d): %s'
               % (len(now_passing), ', '.join(now_passing)))
@@ -722,11 +729,10 @@ def main(argv):
     if prune:
         d['breach_no_review'] = sorted({b[0] for b in breaches} & known_breach)
         d['unreadable'] = sorted({tk for tk, _ in unreadable} & known_unreadable)
-        d['no_record_dir'] = sorted({tk for tk, _ in no_record} & known_no_record)
         json.dump(d, open(OUTSTANDING, 'w'), indent=1)
-        print('\npruned; %d breach + %d unreadable + %d no-record remain'
-              % (len(d['breach_no_review']), len(d['unreadable']),
-                 len(d['no_record_dir'])))
+        print('\npruned; %d breach + %d unreadable remain (the no-record set is a '
+              'shared ratchet and is pruned where it lives)'
+              % (len(d['breach_no_review']), len(d['unreadable'])))
         return 0
 
     if new_fail:

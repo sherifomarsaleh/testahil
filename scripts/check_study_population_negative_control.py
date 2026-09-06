@@ -25,7 +25,7 @@ import sys
 import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DECLARED_CASES = 8
+DECLARED_CASES = 13
 
 
 def _load():
@@ -127,12 +127,54 @@ def main():
     case(8, 'mixed-case delivered stems (Aramco, Samsung, Aldar, Kakao) resolve',
          False, m8.population, lambda: all(t in pop8 for t in mixed))
 
+    # ---- THE SHARED NO-RECORD RATCHET [added 06-09-2026 with the refactor that
+    # moved it out of gap_outstanding.json before ten gates could each copy it].
+    # Its three problem classes are the whole of its job, and the fourth case is
+    # the one a first draft got wrong: an EMPTY ratchet is the GOAL STATE of a list
+    # that may only shorten, so refusing it would make the target unreachable.
+    import json as _j, tempfile as _t
+
+    def _ratchet(mod, names):
+        f = os.path.join(tempfile.mkdtemp(), 'nr.json')
+        _j.dump({'no_record': sorted(names)}, open(f, 'w'))
+        mod.NO_RECORD_RATCHET = f
+        return f
+
+    _base = _load()
+    _pop = _base.population()
+    _actual = sorted(k for k, v in _pop.items() if not v['readable'])
+    assert len(_actual) > 2, 'fixture stale: the book has almost no unrecorded names'
+
+    def _problems(names):
+        m = _load(); _ratchet(m, names)
+        return m.no_record_ratchet(m.population())[1]
+
+    def case2(n, name, expect_problem, names, landed):
+        assert landed(), 'case %d (%s): THE MUTATION DID NOT LAND.' % (n, name)
+        probs = _problems(names)
+        got = bool(probs)
+        results.append((n, name, 'PROBLEM' if got else 'clean',
+                        'PROBLEM' if expect_problem else 'clean', got == expect_problem))
+
+    case2(9, 'a name on the ratchet that is not a covered name at all', True,
+          _actual + ['ZZNOTABOOKNAME'], lambda: 'ZZNOTABOOKNAME' not in _pop)
+    _withrec = sorted(k for k, v in _pop.items() if v['readable'])
+    case2(10, 'a name excused on the ratchet that DOES commit a record', True,
+          _actual + [_withrec[0]], lambda: _pop[_withrec[0]]['readable'])
+    case2(11, 'a name with no record left OFF the ratchet — the new breach', True,
+          _actual[1:], lambda: len(_actual[1:]) == len(_actual) - 1)
+    case2(12, 'the book as it stands must be clean', False,
+          _actual, lambda: True)
+    case2(13, 'an EMPTY ratchet is the goal state, not a refusal — it reports every '
+              'unlisted name instead', True, [], lambda: True)
+    _base.NO_RECORD_RATCHET = _base.NO_RECORD_RATCHET
+
     assert len(results) == DECLARED_CASES, (
         'declared %d cases, ran %d. A control that quietly loses a case reports '
         'clean for the wrong reason.' % (DECLARED_CASES, len(results)))
 
     print('NEGATIVE CONTROL — engine/study_population.py')
-    print('%d cases: %d must REFUSE, %d must RESOLVE\n'
+    print('%d cases: %d must go red, %d must come back clean\n'
           % (len(results), sum(1 for r in results if r[3] == 'RED'),
              sum(1 for r in results if r[3] == 'green')))
     bad = 0
