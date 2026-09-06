@@ -128,7 +128,15 @@
     }
    },
    "shares": {
-    "missing": "the capital note of the FY2018 filing could not be read, so no count is recorded — a count that does not foot against its own issued capital and par value is not recorded at all"
+    "value": 378739700,
+    "as_at": "2018-12-31",
+    "issued_capital": 757479400,
+    "par_value": 2.0,
+    "source": "ARCC_FY_2018_Consolidated_Financials-English.pdf, note 20.1, the capital note, page 35 (the company's own audited consolidated financial statements for the year ended 31 December 2018, from its own investor-relations archive)",
+    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "check": "issued capital 757479400 / par 2 = 378739700, matching the count the same note states",
+    "par_source": "note 20.1 'Authorized and Issued capital', the same three-row table headed 2018 and 2017, with note 20.2's recital of the Article 6 resolution on the page after it",
+    "vintage": "read off the FY2018 filing's own note; no later count is carried back to this origin"
    }
   },
   "FY2019": {
@@ -237,7 +245,15 @@
     }
    },
    "shares": {
-    "missing": "the capital note of the FY2019 filing could not be read, so no count is recorded — a count that does not foot against its own issued capital and par value is not recorded at all"
+    "value": 378739700,
+    "as_at": "2019-12-31",
+    "issued_capital": 757479400,
+    "par_value": 2.0,
+    "source": "FY_2019_Consolidated_Financials-English.pdf, note 20, the capital note, page 36 (the company's own audited consolidated financial statements for the year ended 31 December 2019, from its own investor-relations archive)",
+    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "check": "issued capital 757479400 / par 2 = 378739700, matching the count the same note states",
+    "par_source": "note 20 'Capital', the same three-row table. THE TABLE'S OWN COLUMN HEADERS READ 2018 AND 2017 while the notes around it read 2019 and 2018 — a stale header left in the filing, recorded as read rather than silently corrected. What settles the year is arithmetic and two other pages: the FY2019 balance sheet states issued and paid-up capital of EGP 757 479 400 at 31 December 2019 under this same note, 757 479 400 / 2 reproduces 378 739 700, and the FY2020 filing's own note 20 — properly headed 2020 and 2019 — states par 2, 378 739 700 shares and EGP 757 479 400 for the 2019 comparative",
+    "vintage": "read off the FY2019 filing's own note; no later count is carried back to this origin"
    }
   },
   "FY2020": {
@@ -346,7 +362,15 @@
     }
    },
    "shares": {
-    "missing": "the capital note of the FY2020 filing could not be read, so no count is recorded — a count that does not foot against its own issued capital and par value is not recorded at all"
+    "value": 378739700,
+    "as_at": "2020-12-31",
+    "issued_capital": 757479400,
+    "par_value": 2.0,
+    "source": "FY-2020-consolidated-financials-english.pdf, note 20, the capital note, page 37 (the company's own audited consolidated financial statements for the year ended 31 December 2020, from its own investor-relations archive)",
+    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "check": "issued capital 757479400 / par 2 = 378739700, matching the count the same note states",
+    "par_source": "note 20 'Capital', the three-row table headed 2020 and 2019",
+    "vintage": "read off the FY2020 filing's own note; no later count is carried back to this origin"
    }
   },
   "FY2021": {
@@ -457,7 +481,15 @@
     }
    },
    "shares": {
-    "missing": "the capital note of the FY2021 filing could not be read, so no count is recorded — a count that does not foot against its own issued capital and par value is not recorded at all"
+    "value": 378739700,
+    "as_at": "2021-12-31",
+    "issued_capital": 757479400,
+    "par_value": 2.0,
+    "source": "FY_2021_Consolidated_Financials-English.pdf, note 20, the capital note, page 35 (the company's own audited consolidated financial statements for the year ended 31 December 2021, from its own investor-relations archive)",
+    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "check": "issued capital 757479400 / par 2 = 378739700, matching the count the same note states",
+    "par_source": "note 20 'Capital', the three-row table headed 2021 and 2020",
+    "vintage": "read off the FY2021 filing's own note; no later count is carried back to this origin"
    }
   },
   "FY2022": {
@@ -563,10 +595,30 @@
      "lease_liabilities_current": 6411505,
      "current_portion_of_long_term_other_liabilities": 0,
      "why": "a reader cannot tell an excluded line from an unread one, so every current line that is NOT in the working-capital figure is named here with its own amount"
+    },
+    "point_in_time": "AS FIRST REPORTED. The FY2022 filing's own statement of financial position states debtors and other debit balances (net) of 235,320,162 at 2022-12-31, and that is the figure in the working capital above. The FY2023 filing re-presents the same date at 198,934,777 — netting debtors against trade and notes payable — carrying total current assets to 1,721,494,081 and total assets to 3,771,380,478, the same 36,385,385 in all three. An origin standing at FY2022 could not have seen the later presentation, so it is recorded beside the figure it would replace and never substituted for it.",
+    "re_presented_by_a_later_filing": {
+     "debtors_and_other_debit_balances_net": 198934777,
+     "total_current_assets": 1721494081,
+     "total_assets": 3771380478,
+     "difference_on_each_of_the_three": 36385385,
+     "the_three_agree": true,
+     "working_capital_on_that_basis": -243886472,
+     "adopted": "the figure as first reported, above",
+     "source": "4Q2023_ACC_Consolidated_Financials.pdf, consolidated statement of financial position, the 2022-12-31 comparative column, page 5 (the company's own audited consolidated financial statements for the year ended 31 December 2023, from its own investor-relations archive)",
+     "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded"
     }
    },
    "shares": {
-    "missing": "the capital note of the FY2022 filing could not be read, so no count is recorded — a count that does not foot against its own issued capital and par value is not recorded at all"
+    "value": 378739700,
+    "as_at": "2022-12-31",
+    "issued_capital": 757479400,
+    "par_value": 2.0,
+    "source": "FY_2022_Consolidated_Financials-English.pdf, note 20, the capital note, page 33 (the company's own audited consolidated financial statements for the year ended 31 December 2022, from its own investor-relations archive)",
+    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "check": "issued capital 757479400 / par 2 = 378739700, matching the count the same note states",
+    "par_source": "note 20 'Issued and paid-up capital', the three-row table headed December 31, 2022 and December 31, 2021",
+    "vintage": "read off the FY2022 filing's own note; no later count is carried back to this origin"
    }
   },
   "FY2023": {
@@ -677,7 +729,15 @@
     }
    },
    "shares": {
-    "missing": "the capital note of the FY2023 filing could not be read, so no count is recorded — a count that does not foot against its own issued capital and par value is not recorded at all"
+    "value": 378739700,
+    "as_at": "2023-12-31",
+    "issued_capital": 757479400,
+    "par_value": 2.0,
+    "source": "4Q2023_ACC_Consolidated_Financials.pdf, note 20, the capital note, page 35 (the company's own audited consolidated financial statements for the year ended 31 December 2023, from its own investor-relations archive)",
+    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "check": "issued capital 757479400 / par 2 = 378739700, matching the count the same note states",
+    "par_source": "note 20 'Issued and paid-up capital', the three-row table headed December 31, 2023 and December 31, 2022",
+    "vintage": "read off the FY2023 filing's own note; no later count is carried back to this origin"
    }
   },
   "FY2024": {
@@ -786,7 +846,15 @@
     }
    },
    "shares": {
-    "missing": "the capital note of the FY2024 filing could not be read, so no count is recorded — a count that does not foot against its own issued capital and par value is not recorded at all"
+    "value": 378739700,
+    "as_at": "2024-12-31",
+    "issued_capital": 757479400,
+    "par_value": 2.0,
+    "source": "FY2024_Consolidated_Financials-English.pdf, note 20, the capital note, page 35 (the company's own audited consolidated financial statements for the year ended 31 December 2024, from its own investor-relations archive)",
+    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "check": "issued capital 757479400 / par 2 = 378739700, matching the count the same note states",
+    "par_source": "note 20 'Issued and paid-up capital', the three-row table headed December 31, 2024 and December 31, 2023",
+    "vintage": "read off the FY2024 filing's own note; no later count is carried back to this origin"
    }
   },
   "FY2025": {
@@ -895,7 +963,24 @@
     }
    },
    "shares": {
-    "missing": "the capital note of the FY2025 filing could not be read, so no count is recorded — a count that does not foot against its own issued capital and par value is not recorded at all"
+    "value": 378739700,
+    "as_at": "2025-12-31",
+    "issued_capital": 757479400,
+    "par_value": 2.0,
+    "source": "FY-2025-Consolidated-Financials-English.pdf, note 20, the capital note, page 33 (the company's own audited consolidated financial statements for the year ended 31 December 2025, from its own investor-relations archive)",
+    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "check": "issued capital 757479400 / par 2 = 378739700, matching the count the same note states",
+    "par_source": "note 20 'Issued and paid-up capital', the three-row table headed December 31, 2025 and December 31, 2024",
+    "vintage": "read off the FY2025 filing's own note; no later count is carried back to this origin",
+    "treasury": {
+     "shares_held": 3872255,
+     "at_cost": 143327985,
+     "shares_in_issue_net_of_treasury": 374867445,
+     "balance_sheet_check": "the deduction from equity on the same year's balance sheet is 143,327,985, the same figure",
+     "source": "FY-2025-Consolidated-Financials-English.pdf, note 21, treasury shares, page 33 (the company's own audited consolidated financial statements for the year ended 31 December 2025, from its own investor-relations archive)",
+     "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+     "why": "note 21 'Treasury shares' states that on July 21, 2025 the Board approved acquiring treasury shares and that the Company acquired during 2025 3 872 255 shares amounting to EGP 143 327 985, which the balance sheet carries as a deduction from equity of the same amount. THE COUNT RECORDED ABOVE IS THE ISSUED COUNT, which is what the capital note states and what foots against par; the shares in issue net of treasury are 374 867 445 and are named here rather than substituted, because which of the two a value is divided by is a valuation choice and this record makes none. This is the case clause (ii) anticipates — the capital note cannot see a treasury movement, so the movement is read off its own note"
+    }
    }
   }
  },
@@ -1000,7 +1085,15 @@
     }
    },
    "shares": {
-    "missing": "the capital note of the FY2017 filing could not be read, so no count is recorded — a count that does not foot against its own issued capital and par value is not recorded at all"
+    "value": 378739700,
+    "as_at": "2017-12-31",
+    "issued_capital": 757479400,
+    "par_value": 2.0,
+    "source": "FY-2017-Consolidated-Financials-English.pdf, note 20.1, the capital note, page 33 (the company's own audited consolidated financial statements for the year ended 31 December 2017, from its own investor-relations archive)",
+    "route": "OCR at 300 dpi off the rendered pixels — the filing carries no text layer on any page; every figure footed against the statement's own arithmetic before it was recorded",
+    "check": "issued capital 757479400 / par 2 = 378739700, matching the count the same note states",
+    "par_source": "note 20.1 'Authorized and Issued capital' prints par value per share (EGP) 2, number of ordinary shares authorized, issued and fully paid 378 739 700 and issued capital (EGP) 757 479 400 in one table headed 2017 and 2016; note 20.2 on the following page recites the Extraordinary General Assembly resolution updating Article No. (6) of the Articles of Association to EGP 757 479 400 distributed among 378 739 700 shares with a par value amounting to EGP 2 each, so the table and the recital state the same identity two ways in the same document",
+    "vintage": "read off the FY2017 filing's own note; no later count is carried back to this origin"
    }
   }
  }

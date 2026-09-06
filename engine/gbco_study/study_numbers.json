@@ -767,5 +767,20 @@
    "ce": 28513.0,
    "roce": 0.213
   }
+ },
+ "forecast_anchor": {
+  "rate_name": "Auto gross margin",
+  "latest_reviewed_period": "1Q26, company earnings release 14 May 2026 (unaudited interim)",
+  "latest_reviewed_date": "2026-03-31",
+  "latest_reviewed_rate": 0.124,
+  "first_forecast_rate": 0.138,
+  "forecast_path": [
+   0.138,
+   0.142,
+   0.145,
+   0.145,
+   0.145
+  ],
+  "note": "the rate the anchor governs is the Auto gross margin, the driver the cash-flow leg is built on (gross profit = Auto revenue x this rate) and the one the sensitivity grid shifts. The filed record the study holds is FY23 24.37%, FY24 19.24%, FY25 14.82% (Auto gross profit over Auto revenue, both committed for all three years), and 1Q26 12.4%, which the study states three times and names in its own words as the 1Q26 Auto gross margin. The forecast opens 1.40 points ABOVE that latest reviewed quarter, 11.3% relative, and rises monotonically to 14.5%, so it is not a decline away from the latest reviewed period and there is no mechanism to name. TWO THINGS ABOUT THE SHAPE ARE PRINTED HERE BECAUSE THE RECORD IS PRINTED WHETHER OR NOT IT FIRES. First, the filed record falls in every step - 24.37, 19.24, 14.82, 12.4 - and the forecast turns that trend upward from its first year; the whole forecast path nevertheless stays BELOW every filed full year, opening 6.9% relatively below FY25 and terminating at 14.5% against FY25's 14.82%, so against the annual record this is a decline and against the latest reviewed period, which is what the anchor is measured on, it is a recovery. The study says in its own text that the FY24 19.2% carried an FX-scarcity windfall that is normalising and that FY26E absorbs the regional drag visible in 1Q26; the upward turn from the quarter is not separately evidenced with a like-for-like measurement, and none is required here because the direction is the one this rule does not test. Second, the study's central sits above its price, so the upward turn runs the same way as the answer. PROVENANCE, STATED RATHER THAN IMPLIED: every figure above is taken as committed in this study's own artefacts and none is re-derived or estimated. The study directory holds NO filings - its own build notes record that the historical financials were gathered in conversation rather than by code - so the source discipline behind these rates rests on what the committed artefacts assert (GB Corp's own FY23-FY25 earnings releases and its 1Q26 release of 14 May 2026) and no such document is on disk to foot them against. That gap is already recorded in this directory's rebuild-readiness note and in the escalation register. The 12.4% is carried at the one decimal place the study states it to; the 1Q26 Auto revenue and Auto gross profit that would give it more precision are committed nowhere, and inventing them to gain a digit is exactly what is forbidden."
  }
 }

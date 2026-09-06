@@ -61,6 +61,27 @@ nets EGP 36,385,385 of debtors against trade and notes payable in its FY2022
 comparative, so an origin standing at FY2022 saw debtors of 235,320,162 and could
 not have seen the 198,934,777 the next filing showed for the same date.
 
+THE SHARE COUNT IS FOOTED NINE TIMES, NOT READ ONCE [clause (ii)].  Every one of
+these filings carries its own capital note — note 20 throughout, titled "Capital"
+to 2021 and "Issued and paid-up capital" from 2022 — and every one prints the same
+three rows: par value per share, the number of ordinary shares authorized, issued
+and fully paid, and the issued capital.  Nine pages, nine readings, and the count
+is the same on all of them because the CAPITAL is the same on all of them: the
+last resolution that moved it was the January 2014 stock split, recited in note
+20.2 of the 2017 and 2018 filings, which took EGP 757 479 400 from 7 574 794
+shares at EGP 100 to 378 739 700 at EGP 2.  An unchanged count read off nine pages
+is not today's count carried back; what clause (ii) forbids is the carrying, and
+the difference is that these are nine pages.  Each foots twice — issued capital
+divided by par reproduces the count the same note states, and the note's issued
+capital reproduces the issued and paid-up capital on that year's own balance
+sheet — and both run at import.  TWO THINGS ARE RECORDED RATHER THAN TIDIED AWAY:
+the FY2019 note's table is headed 2018 and 2017 where the notes around it read
+2019 and 2018, a stale header left in the filing, settled by the arithmetic and by
+the FY2020 filing's own properly-headed comparative; and the FY2025 count is the
+ISSUED count, with note 21's 3 872 255 treasury shares at EGP 143 327 985 named
+beside it rather than netted off, because which of the two a value is divided by
+is a valuation choice and this record makes none.
+
 WHAT IS DELIBERATELY NOT DECIDED HERE.  This module records; it values nothing.
 Where a figure could be defined two ways the record carries the disclosed lines
 and names the convention rather than resolving it — interest-bearing debt is the
@@ -95,9 +116,13 @@ FILES = {
     2025: ("FY-2025-Consolidated-Financials-English.pdf", "ARCC_FY2025_Consolidated.pdf"),
 }
 
-ROUTE = ("OCR at 300 dpi off the rendered pixels — the filing carries no text "
-         "layer on any page; every figure footed against the statement's own "
-         "arithmetic before it was recorded")
+ROUTE = ("OCR off the rendered pixels — the filing carries no text layer on any "
+         "page (nil extractable text across all 437 pages of the nine annual "
+         "filings), so every figure was read from an image, at 200 to 300 dpi, "
+         "with a table re-rendered at higher magnification wherever a small figure "
+         "did not resolve; every figure footed against the statement's own "
+         "arithmetic before it was recorded, and the arithmetic rather than the "
+         "extractor's confidence is what settled every disagreement")
 
 # ---------------------------------------------------------------------------
 # Consolidated statement of financial position, OWN column, at 31 December.
@@ -436,6 +461,17 @@ def foot():
             bad.append("%d capital %.0f / par %.4g = %.0f against a stated %.0f — the "
                        "document does not foot against itself" % (
                            y, k["issued_capital"], k["par_value"], implied, k["shares"]))
+        # the capital note and the balance sheet are two pages of one document and
+        # must agree, or one of them was read wrongly
+        if y in BS and not _close(k["issued_capital"], BS[y]["capital"]):
+            bad.append("%d the capital note's issued capital %d against the balance "
+                       "sheet's issued and paid-up capital %d"
+                       % (y, k["issued_capital"], BS[y]["capital"]))
+        if k.get("treasury_cost") and not _close(k["treasury_cost"],
+                                                 -BS[y]["treasury"]):
+            bad.append("%d the treasury note's cost %d against the balance sheet's "
+                       "deduction from equity %d"
+                       % (y, k["treasury_cost"], -BS[y]["treasury"]))
     return bad
 
 
@@ -715,8 +751,19 @@ def _shares(y):
                     "back to this origin" % y),
     }
     if k.get("treasury_cost"):
-        rec["treasury_shares_at_cost"] = k["treasury_cost"]
-        rec["note"] = k.get("treasury_note", "")
+        rec["treasury"] = {
+            "shares_held": k["treasury_shares"],
+            "at_cost": k["treasury_cost"],
+            "shares_in_issue_net_of_treasury": k["shares"] - k["treasury_shares"],
+            "balance_sheet_check": (
+                "the deduction from equity on the same year's balance sheet is %s, "
+                "the same figure"
+                % format(-BS[y]["treasury"], ",")),
+            "source": source(y, "note %s, treasury shares" % k["treasury_note"],
+                             (k["treasury_page"],)),
+            "route": ROUTE,
+            "why": k["treasury_why"],
+        }
     return rec
 
 
@@ -795,6 +842,11 @@ def shares_record():
                          k["issued_capital"] / k["par_value"])),
             "how": k["par_source"],
             "route": ROUTE,
+            # FY2017 is read and footed like the rest and is NOT an origin of this
+            # run — it is the prior-year anchor the capex identity needs. The count
+            # is a true dated fact either way; saying which is which here stops a
+            # later reader inferring an origin from the presence of a count.
+            "origin_of_this_run": ("FY%d" % y) in ORIGINS,
         }
     return out
 
