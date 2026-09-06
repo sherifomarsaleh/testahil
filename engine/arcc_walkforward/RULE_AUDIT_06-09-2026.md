@@ -425,3 +425,97 @@ dragged down by the same years the model is trying to escape.
 company's own short record**: an industry mid-cycle margin, a replacement-cost
 return, a peer distribution. This run holds none of them. That is the largest single
 gap remaining, and it is the one that turns a hard forecast into a catastrophic one.
+
+---
+
+# Part seven — looking for an external mid-cycle anchor
+
+Part six said mean reversion is right in principle and needs an anchor from outside
+the company's own short record. Three candidates exist, two of them genuinely
+external. **Only one works, and it is the one that is not external.**
+
+## Candidate 1 — replacement cost. External, already held, and it does not bind.
+
+The study commits **USD 130 per annual tonne** of cement capacity (a 120–150 band)
+and a replacement-cost invested capital of **EGP 51,191mn**. The textbook mid-cycle
+condition for a commodity industry is that producers earn their cost of capital on
+replacement cost — below it capacity closes, above it capacity is built.
+
+| | |
+|---|---|
+| required EBIT to earn 18.34% on replacement cost | **EGP 12,114mn** |
+| ARCC's FY2025 revenue | EGP 12,447mn |
+| **the hurdle as a share of revenue** | **97%** |
+
+**An impossible margin.** Egyptian cement runs at 52–79% domestic utilisation against
+76 Mt of nameplate capacity, with **12.6 Mt more under revival**. No producer earns a
+replacement-cost return and none will until capacity closes. Using this as a
+reversion target would make the model wildly optimistic.
+
+This is not a defect in the anchor — it is a fact about the industry, and it is the
+same one the terminal work already found: *building capacity here does not clear this
+company's cost of capital.*
+
+## Candidate 2 — capacity utilisation. Available, and it points the wrong way.
+
+Utilisation is the textbook driver of cement margins. Over this window it is
+**negatively** correlated with margin, at **−0.50**:
+
+| | utilisation | gross margin |
+|---|---|---|
+| FY2018 | 77% | 13.7% |
+| FY2020 | 74% | **1.0%** |
+| FY2024 | **52%** | 23.9% |
+| FY2025 | 58% | **40.6%** |
+
+Margin rose as domestic utilisation fell, because the company switched to export and
+the currency moved. **The textbook driver is not the driver here.**
+
+## Candidate 3 — peers. One year each, so no cycle.
+
+Sinai Cement and Misr Beni Suef are committed at FY2025 only: profit margins of 25.2%
+and 69.2% against ARCC's 28.9%. That places ARCC in the field. It says nothing about
+mid-cycle.
+
+## What works: the four years of its own history the model cannot see
+
+`bottom_up.actual()` starts at FY2016 because that is where the full cost stack was
+parsed. **`panel_export.json` carries the income statement from FY2014** — and those
+early years are the only pre-trough normal period in the record:
+
+| FY2014 | FY2015 | FY2016 | … | FY2020 |
+|---|---|---|---|---|
+| 29.2% | 24.4% | 29.6% | | **1.0%** |
+
+The model's idea of mid-cycle is built entirely out of the decline and the trough.
+Widening the window to twelve years moves the mid-cycle an origin can see from 6.7%
+to 14.3% at FY2020, and from 16.3% to 20.1% today.
+
+| | revenue bias | PBT mean | PBT MAE | at the break | losses |
+|---|---|---|---|---|---|
+| the model as it stands | +0.108 | +3.18 | 3.44 | −0.89 | 3 |
+| the six corrected rules | +0.009 | +0.81 | 1.73 | −1.04 | 10 |
+| **+ reversion to the twelve-year median** | **+0.009** | **+0.20** | **1.32** | −1.46 | 11 |
+
+**Profit error at ordinary origins falls 62% from where the model stands** — 3.44 to
+1.32 — and the over-forecast falls from +318% to +20%. The break origins get worse,
+because at FY2022 and FY2023 the twelve-year median sits *below* the actual margin, so
+reversion pulls down a margin that in fact kept climbing. That is mean reversion
+behaving correctly and being wrong, which is what it is for.
+
+## The honest answer to "find an external anchor"
+
+**There is no usable external mid-cycle anchor for ARCC in what this house holds, and
+each candidate fails for a stateable reason** — replacement cost does not bind in an
+over-capacitised industry, utilisation has the wrong sign over this window, peers
+carry one year. What works is four years of the company's own record that the model
+was not reading.
+
+Two things follow, and neither needs a new theory:
+
+1. **Parse the cost stack back to FY2014.** The filings are in this run's own archive
+   (`ARCC_FY2015_Consolidated.pdf` onward) and the income statement is already
+   extracted. The gap is the cost stack, and it is a parse.
+2. **A real external anchor needs peer history, not peer snapshots.** Sinai Cement and
+   Misr Beni Suef are both EGX-listed with public filings. Five years of each would
+   give an industry mid-cycle that does not depend on ARCC's own trough.
