@@ -1,0 +1,248 @@
+"""THE POPULATION OF STUDIES IS NOT THE POPULATION OF STUDY DIRECTORIES.
+
+Every gate in this repository resolves its population by globbing
+`engine/*_study/`.  That glob returns 24 directories.  The book carries 90
+covered names and ALL NINETY HAVE A DELIVERED VALUATION STUDY, under
+`files/`.  So 68 delivered studies sit outside the population of every gate
+that has ever reported on this book, and each of those gates reports itself
+population-anchored while doing it.
+
+That is [R-ENF-04] one level above where it looks.  The rule says a gate
+must be held against a population counted somewhere ELSE, and every gate
+obeys it -- against `gap_outstanding.json`, `lens_outstanding.json` and the
+rest, each of which was itself seeded from the same directory glob.  A
+population and its check derived from one list agree with each other by
+construction and say nothing about the world.  It is also [R-ENF-07]'s own
+claim -- a system of checks has properties no check in it can see -- and it
+was found the way that rule predicts: not by a gate, but by somebody asking
+why the number was 24 when the book is 90.
+
+WHAT THIS MODULE DOES AND DELIBERATELY DOES NOT DO.  It answers "what is
+the population of studies" once, from the DELIVERED artefacts joined to the
+covered names, and it says for each name whether a gate can actually READ
+it.  It does not pretend the 68 are checkable: a bridge record, a lens
+record and a committed numbers file live in `engine/{ticker}_study/`, and a
+study delivered without one exposes nothing for a record-reading gate to
+inspect.  THAT IS THE FINDING, NOT A LIMITATION OF THIS MODULE -- under
+[R-ENF-04] an unreadable study is not a clean study, and the honest state
+for those names is RED-AND-RATCHETED rather than absent from the count.
+
+Callers take `population()` and hold themselves against ALL of it, then
+list what they could not read.  A gate that silently narrows to
+`readable()` has rebuilt the defect this module exists to close.
+"""
+
+import json
+import os
+import subprocess
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ENGINE = os.path.join(ROOT, 'engine')
+FILES = os.path.join(ROOT, 'files')
+DATA_JS = os.path.join(ROOT, 'assets', 'data.js')
+
+# A DELIVERED FILE STEM THAT IS NOT ITS TICKER.  Kept explicit and asserted
+# in both directions below, never inferred by fuzzy matching: the first
+# measurement of this population used a case-sensitive pattern, silently
+# missed `Aramco_`, `Samsung_`, `Aldar_` and `Kakao_`, and reported sixteen
+# names as having no study at all.  An empty result is not a clean result
+# [R-ENF-04], and a NEAR-empty one is worse, because it looks like data.
+FILE_ALIAS = {
+    'ADIB_UAE': 'ADIBUAE',
+    'ADNOC_GAS': 'ADNOCGAS',
+    'AL_RAJHI': 'ALRAJHI',
+    'LG_ENERGY_SOLUTION': 'LGES',
+    'NAKILAT_QGTS': 'QGTS',
+    'QALAA_HOLDINGS': 'CCAP',
+}
+
+# A STUDY DIRECTORY STEM THAT IS NOT ITS TICKER.  Mirrors
+# campaign_queue.STUDY_ALIAS, which is asserted against this at import.
+DIR_ALIAS = {'FERTIGLOBE': 'FERTIGLB'}
+
+# Delivered files that resolve to no covered EQUITY, each with its reason.
+# Metals are a separate register (METALS in data.js) and are excluded by
+# construction, exactly as the campaign queue excludes them.
+NOT_AN_EQUITY = {
+    'XAUUSD': 'metals - GOLD, a separate register',
+    'XAUUSD_12M': 'metals - GOLD on its own 12-month clock',
+    'XAGUSD_COMBINED_1-3-12M': 'metals - SILVER',
+    'XPTUSD': 'metals - PLATINUM',
+}
+
+_NODE_READ = r'''
+const fs = require("fs"), vm = require("vm");
+const c = {}; vm.createContext(c);
+vm.runInContext(fs.readFileSync(process.argv[1], "utf8")
+  + "\n;this.__T=TICKERS;", c);
+console.log(JSON.stringify(Object.keys(c.__T)));
+'''
+
+
+def covered_names(path=None):
+    """The equity tickers the SITE publishes, through a real JS parse and
+    never a regex [R-ENF-03].
+
+    THE DEFAULT IS RESOLVED AT CALL TIME, NOT BOUND AT DEFINITION.  A first
+    draft wrote `path=DATA_JS`, which captures the module constant when the
+    function is defined, so a caller redirecting `DATA_JS` -- which is what
+    the negative control does to inject an empty register -- changed
+    nothing and the case reported green.  The refusal below was correct the
+    whole time and UNREACHABLE from outside, which is the shape this module
+    was written about: the check existed and the probe never reached it.
+    Caught by case 4 of the negative control on its first run.
+    """
+    path = path or DATA_JS
+    p = subprocess.run(['node', '-e', _NODE_READ, path],
+                       capture_output=True, text=True)
+    if p.returncode != 0:
+        raise SystemExit('FATAL: node could not load %s\n%s' % (path, p.stderr.strip()))
+    names = json.loads(p.stdout)
+    if not names:
+        raise SystemExit('FATAL: data.js exposed no TICKERS. An empty result is not a '
+                         'clean result [R-ENF-04] -- the probe did not run.')
+    return set(names)
+
+
+def delivered():
+    """ticker -> the delivered valuation artefacts carrying its name."""
+    if not os.path.isdir(FILES):
+        raise SystemExit('FATAL: %s does not exist. The delivered studies ARE the '
+                         'population; without them there is nothing to anchor on.' % FILES)
+    out = {}
+    orphans = {}
+    for f in sorted(os.listdir(FILES)):
+        stem = f.split('_Valuation_')[0] if '_Valuation_' in f else None
+        if stem is None:
+            continue
+        key = FILE_ALIAS.get(stem.upper(), stem.upper())
+        if key in NOT_AN_EQUITY:
+            orphans.setdefault(key, []).append(f)
+            continue
+        out.setdefault(key, []).append(f)
+    if not out:
+        raise SystemExit('FATAL: %s carries no delivered valuation study. An empty '
+                         'result is not a clean result [R-ENF-04].' % FILES)
+    return out, orphans
+
+
+def record_dirs():
+    """ticker -> engine/{x}_study directory, for the names that have one.
+    THIS IS THE OLD POPULATION and it is returned here as ONE FIELD of the
+    answer rather than as the answer."""
+    out = {}
+    for d in sorted(os.listdir(ENGINE)):
+        if not d.endswith('_study') or not os.path.isdir(os.path.join(ENGINE, d)):
+            continue
+        tk = d[:-len('_study')].upper()
+        out[DIR_ALIAS.get(tk, tk)] = os.path.join(ENGINE, d)
+    if not out:
+        raise SystemExit('FATAL: no engine/*_study directories. [R-ENF-04].')
+    return out
+
+
+def population():
+    """The population every gate over this book should be held against.
+
+    Returns ticker -> {'delivered': [files], 'record_dir': path or None,
+    'readable': bool}.  RAISES on any name that does not resolve in both
+    directions, because a resolver that quietly drops a name is how a
+    population shrinks without anybody deciding it should.
+    """
+    covered = covered_names()
+    deliv, orphans = delivered()
+    dirs = record_dirs()
+
+    missing = sorted(covered - set(deliv))
+    if missing:
+        raise SystemExit(
+            'FATAL: %d covered name(s) resolve to no delivered study: %s.\n'
+            'Every covered name has one; a name that will not resolve means the '
+            'ALIAS TABLE is short, not that the study is absent. Add the stem to '
+            'FILE_ALIAS rather than letting the name drop out of the population.'
+            % (len(missing), ', '.join(missing)))
+
+    extra = sorted(set(deliv) - covered)
+    if extra:
+        raise SystemExit(
+            'FATAL: %d delivered stem(s) resolve to no covered ticker: %s.\n'
+            'Either it is a covered name under another spelling (FILE_ALIAS) or it '
+            'is deliberately not an equity (NOT_AN_EQUITY, with its reason). A '
+            'stem matching nothing is not evidence that nothing is there.'
+            % (len(extra), ', '.join(extra)))
+
+    stray = sorted(set(dirs) - covered)
+    if stray:
+        # a record directory for a name the site does not carry: XPT (metals)
+        # is the standing case and is declared, anything else is a real join
+        # failure and says so rather than being skipped
+        undeclared = [t for t in stray if t not in ('XPT',)]
+        if undeclared:
+            raise SystemExit(
+                'FATAL: study record directory for a name the site does not carry: '
+                '%s. A record nothing joins to is invisible to every gate that '
+                'starts from the site.' % ', '.join(undeclared))
+
+    out = {}
+    for tk in sorted(covered):
+        d = dirs.get(tk)
+        out[tk] = {'delivered': deliv[tk], 'record_dir': d, 'readable': d is not None}
+    return out
+
+
+def readable(pop=None):
+    """The subset a record-reading gate can actually inspect. NEVER the
+    population: narrowing to this silently is the defect this module closes."""
+    pop = pop or population()
+    return {k: v for k, v in pop.items() if v['readable']}
+
+
+def unreadable(pop=None):
+    """The names a record-reading gate cannot inspect, which under
+    [R-ENF-04] are RED-and-ratcheted rather than absent."""
+    pop = pop or population()
+    return {k: v for k, v in pop.items() if not v['readable']}
+
+
+def _assert_alias_agreement():
+    """campaign_queue keeps its own directory-alias table. Two tables for one
+    fact diverge the moment one is edited, so they are asserted equal at
+    import -- the LENS_REGISTRY/CLASSES precedent [R-LENS-03]."""
+    import importlib.util
+    p = os.path.join(ENGINE, 'campaign_queue.py')
+    if not os.path.exists(p):
+        return
+    spec = importlib.util.spec_from_file_location('_cq', p)
+    m = importlib.util.module_from_spec(spec)
+    try:
+        spec.loader.exec_module(m)
+    except Exception:
+        return
+    if getattr(m, 'STUDY_ALIAS', DIR_ALIAS) != DIR_ALIAS:
+        raise AssertionError(
+            'campaign_queue.STUDY_ALIAS %r and study_population.DIR_ALIAS %r '
+            'disagree. One fact, one table.' % (m.STUDY_ALIAS, DIR_ALIAS))
+
+
+if __name__ == '__main__':
+    # a tool people will pipe into `head` should not print a traceback
+    try:
+        import signal
+        signal.signal(signal.SIGPIPE, signal.SIG_DFL)
+    except (ImportError, AttributeError, ValueError):
+        pass
+    _assert_alias_agreement()
+    pop = population()
+    r, u = readable(pop), unreadable(pop)
+    print('COVERED NAMES, EVERY ONE CARRYING A DELIVERED STUDY : %d' % len(pop))
+    print('  a record-reading gate CAN inspect (engine/ dir)   : %d' % len(r))
+    print('  a record-reading gate CANNOT inspect              : %d' % len(u))
+    print()
+    print('THE 77 GATES OVER THIS BOOK GLOB engine/*_study AND SO SEE %d OF %d.'
+          % (len(r), len(pop)))
+    print('Under [R-ENF-04] the other %d are UNREADABLE, which is not CLEAN.' % len(u))
+    print()
+    print('unreadable, in site order:')
+    names = sorted(u)
+    for i in range(0, len(names), 6):
+        print('  ' + ', '.join(names[i:i + 6]))
