@@ -174,6 +174,17 @@ ARTEFACT_GATES = {
                                 "inp('a', 1.0, FS25, '2025-12-31', 'COMPANY')\n"
                                 'FS25 = "Annual Report 2025, note 15"\n'
                                 "inp('b', 2.0, FS25, '2025-12-31', 'COMPANY')\n")}),
+    # ADDED 06-Sep-2026 IN THE COMMIT THAT ADOPTS THE GATE, which is the whole point of
+    # [R-ENF-01 EXT 04-Sep]: the two gates adopted on 5 September appeared in none of these
+    # lists and this file reported "29 of 29 refuse a new study" while two of the gates it
+    # was counting had been tested by nothing. This one is ARTEFACT-conditional rather than
+    # directory-conditional: an empty study directory commits no strike date and no
+    # currency, so there is nothing to hold against an anchor and refusing it would be a
+    # FALSE CLAIM about what this gate checks. It bites once the study commits both.
+    'check_macro_anchor_age.py': (
+        'a study struck long after the currency anchor its own path derives from',
+        lambda: {'study_numbers.json': ('json', {
+            'meta': {'spot_date': '2026-09-03', 'currency': 'EGP'}})}),
 }
 
 # NOT IN EITHER SET, and each with the reason, because a name in a list that resolves to

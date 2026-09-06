@@ -383,6 +383,123 @@ def main():
             "bridge_residual_all_drivers_correct": 0.130,
         },
     }
+    # ---- THE FORECAST ANCHOR: THE LATEST REVIEWED PERIOD, AND THE PATH -------
+    # PHDC IS THE SHAPE THE RULE ASKS FOR, AND IT DID NOT START THERE. The forward
+    # gross margin IS the latest reviewed period's rate: bottom_up_model sets the
+    # forward margin equal to the 1Q2026 margin and solves cost per delivered unit
+    # from it, so the opening forecast year and the latest reviewed period are the
+    # same number by construction and the path is flat across the whole explicit
+    # window. Neither clause fires and no mechanism is owed. The record is committed
+    # anyway, because it is printed for every study whether or not it fires -- which
+    # is how the shape of a forecast becomes visible rather than merely not-red.
+    #
+    # NOTHING BELOW IS TYPED. Every figure in the record and in its note is computed
+    # from this file's own registry, historical statements and projected rows, so a
+    # rebuild moves the record with the model instead of leaving prose behind it.
+    _FB = out["statements"]["framing_b"]
+    _GMP = [float(r["gross_margin"]) for r in _FB]
+    _HIS = out["historical_is"]
+
+    def _gm_hist(y):
+        return _HIS[y]["gross_profit"]["value"] / _HIS[y]["revenue"]["value"]
+
+    _REV1Q = out["registry"]["revenue_1q26"]["value"]
+    _GP1Q = out["registry"]["gross_profit_1q26"]["value"]
+    _GM1Q = _GP1Q / _REV1Q
+    _GM25 = _gm_hist("2025")
+    _CONV = out["statements"]["cash_conversion"]
+    _CONVF = float(_FB[0]["cash_conversion"])
+    _CS = out["cases"]
+    # the drift the two filed periods measure, and what carrying it would cost --
+    # computed here so the record states arithmetic rather than quoting a comment
+    _COSTDRIFT = ((1 - _GM1Q) / (1 - _GM25)) - 1.0
+    _c4 = (1 - _GM1Q) * (1 + _COSTDRIFT) ** 4
+    _c5 = (1 - _GM1Q) * (1 + _COSTDRIFT) ** 5
+    out["forecast_anchor"] = dict(
+        rate_name="gross margin",
+        latest_reviewed_period="1Q2026, three months ended 31 March 2026",
+        latest_reviewed_date="2026-03-31",
+        latest_reviewed_rate=float(_GM1Q),
+        first_forecast_rate=float(_GMP[0]),
+        forecast_path=_GMP,
+        note=(
+            "NEITHER CLAUSE FIRES AND THE ANCHOR IS EXACT. The forecast gross margin IS "
+            "the latest reviewed period's rate, %.4f%%, and it is held there for every "
+            "one of the %d explicit years: the model sets the forward margin equal to the "
+            "1Q2026 margin and solves cost per delivered unit from it, so the opening year "
+            "and the latest reviewed period are the same number by construction and the "
+            "path is flat. THE LATEST REVIEWED PERIOD IS THE NEWEST DISCLOSURE OF ANY "
+            "KIND: this study's own gap register records that no second-quarter or "
+            "half-year 2026 statements or release were posted to the company's result "
+            "centre at this build, so the information set ends at 1Q2026. The two figures "
+            "forming the rate are the company's own 1Q2026 earnings release of 20 May "
+            "2026 -- revenue EGP %s mn and gross profit EGP %s mn, the release itself "
+            "stating the margin as %.0f%% -- and the consolidated "
+            "statements for those same three months, which carry a limited review report, "
+            "are what the balance sheet in the bridge stands on. Nothing here is "
+            "estimated, interpolated or inferred. "
+            "WHAT THE RECORD MAKES VISIBLE, AND WHICH NO SENTENCE IN THE STUDY SAYS: "
+            "against the audited FULL YEAR the forecast sits %.2f%% relatively BELOW -- "
+            "FY2025 %.2f%% against a forecast %.2f%% -- and had the anchor been that full "
+            "year the opening-year clause would have fired and a mechanism would have "
+            "been owed. It is not the anchor precisely because the standing rule says a "
+            "near-term reviewed actual outranks a stale full-year rate, and this study "
+            "averaged the two until 03-Sep-2026, which took neither. The audited record "
+            "is FY2023 %.2f%%, FY2024 %.2f%%, FY2025 %.2f%%, so the forecast sits above "
+            "the first two audited years and below the third. "
+            "THE DRIFT THAT IS MEASURED AND NOT CARRIED, recorded rather than left out. "
+            "The FY2025-to-1Q2026 pair moves cost per unit of revenue from %.3f%% to "
+            "%.3f%%, a rise of %.2f%% -- a like-for-like direction that would support an "
+            "input-cost mechanism if a drift were being claimed. None is claimed: price "
+            "and cost escalate on the same path, so the margin neither rises nor falls, "
+            "and declining to extrapolate a drift is not a decline away from the anchor. "
+            "The model states why it is not extrapolated -- one quarter against one "
+            "audited year is a single observation on a developer whose margin moves with "
+            "which project happens to hand over. What carrying it would cost is arithmetic on "
+            "those two filed periods and is stated rather than asserted: cost per unit of "
+            "revenue compounding at that rate reaches %.2f%% of revenue after four years, "
+            "a gross margin of %.2f%%, and passes 100%% in the fifth -- a margin of %.2f%%, "
+            "which is a loss on every delivered unit. A rate that takes a company to a "
+            "loss inside its own explicit window on the strength of one quarterly print is "
+            "an extrapolation, not an anchor. "
+            "THE OTHER CANDIDATE RATE IS NAMED HERE BECAUSE IT IS THE ONE THAT CARRIES "
+            "THE VALUE. The published central does not stand on the gross margin. It "
+            "stands on the framing in which operating cash is set at a fixed share of "
+            "revenue and working capital is the derived line, and that share is %.3f%% -- "
+            "the MEAN of the company's three published years, FY2023 %.2f%%, FY2024 "
+            "%.2f%%, FY2025 %.2f%% -- held flat across the window. It sits %.1f%% "
+            "relatively ABOVE the latest disclosed year rather than below it, so no "
+            "clause of this rule reaches it: a rate above the latest period is what the "
+            "two-sided gap trigger and the sign test audit. It is recorded because the "
+            "same standing sentence the gross-margin anchor obeys -- a near-term actual "
+            "outranks a stale full-year rate, hold everything flat INCLUDING observed "
+            "improvements -- read on this rate would point at FY2025's %.2f%% and not at "
+            "a three-year mean, and the study's own grid prices the difference: EGP %.2f "
+            "a share at the FY2025 rate, EGP %.2f at the mean and EGP %.2f at the FY2024 "
+            "rate, on one discount schedule, with the rate the traded price implies, "
+            "%.2f%%, sitting between the first two. NO REVIEWED COMPARATOR FOR THIS RATE "
+            "CAN BE FORMED FROM WHAT THIS STUDY HOLDS -- 1Q2026 discloses revenue, gross "
+            "profit and net profit and no cash-flow statement -- and none is estimated to "
+            "fill the gap. The same model with the collection cycle held instead of the "
+            "conversion yields a NEGATIVE EGP %.2f a share and is published as a funding "
+            "statement rather than as a value, which is the disagreement this record sits "
+            "inside."
+            % (100 * _GMP[0], len(_GMP),
+               "{:,.0f}".format(_REV1Q), "{:,.0f}".format(_GP1Q), 100 * _GM1Q,
+               100 * (_GM25 - _GMP[0]) / _GM25, 100 * _GM25, 100 * _GMP[0],
+               100 * _gm_hist("2023"), 100 * _gm_hist("2024"), 100 * _GM25,
+               100 * (1 - _GM25), 100 * (1 - _GM1Q),
+               100 * _COSTDRIFT,
+               100 * _c4, 100 * (1 - _c4), 100 * (1 - _c5),
+               100 * _CONVF,
+               100 * _CONV["FY2023"], 100 * _CONV["FY2024"], 100 * _CONV["FY2025"],
+               100 * (_CONVF - _CONV["FY2025"]) / _CONV["FY2025"],
+               100 * _CONV["FY2025"],
+               _CS["low_conversion"]["per_share"], _CS["base"]["per_share"],
+               _CS["high_conversion"]["per_share"],
+               100 * out["derived"]["market_implied_cash_conversion"],
+               abs(out["statements"]["dcf_a"]["per_share"]))))
+
     # [R-LENS-03] the central IS the class primary, not a blend of lenses
     out["central"] = out["lens_record"]["primary"]["value"]
     out["standard_version"] = RP.STANDARD_VERSION   # read by campaign_queue.py; never typed

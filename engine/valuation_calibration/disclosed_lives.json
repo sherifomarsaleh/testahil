@@ -435,16 +435,31 @@
      "asset_class": "Tools and implements",
      "disclosed_rate_pct": 7.5,
      "years_derived": 13.33
+    },
+    {
+     "asset_class": "Buildings — iron and steel buildings",
+     "disclosed_rate_pct": 10.0,
+     "years_derived": 10.0
+    },
+    {
+     "asset_class": "Furniture and fittings",
+     "disclosed_rate_pct": 10.0,
+     "years_derived": 10.0
+    },
+    {
+     "asset_class": "Computers",
+     "disclosed_rate_pct": 10.0,
+     "years_derived": 10.0
     }
    ],
    "longest_years": 50.0,
    "shortest_years": 5.0,
-   "source": "Egyptian Chemical Industries (KIMA), annual financial statements for the year ended 30 June 2025, notes to the financial statements, note 1-5 'الأصول الثابتة وإهلاكاتها' (fixed assets and their depreciation), sub-heading 'الإهلاك' (depreciation), page 31: 'يتم تحميل الإهلاك على قائمة الدخل وفقا لطريقة القسط الثابت وفقا لمعدلات تتماشي مع العمر الإنتاجي المقدر لكل أصل عدا الأراضي' — depreciation is charged on a straight-line basis at rates matching each asset's estimated useful life, land excepted — followed by a table of DEPRECIATION RATES per asset type.",
+   "source": "Egyptian Chemical Industries (KIMA), annual financial statements for the year ended 30 June 2025, notes to the financial statements, note 5-2 'الأصول الثابتة وإهلاكاتها' (fixed assets and their depreciation), sub-heading 'الإهلاك' (depreciation), page 31: 'يتم تحميل الإهلاك على قائمة الدخل وفقا لطريقة القسط الثابت وفقا لمعدلات تتماشي مع العمر الإنتاجي المقدر لكل أصل عدا الأراضي' — depreciation is charged on a straight-line basis at rates matching each asset's estimated useful life, land excepted — followed by a table of DEPRECIATION RATES per asset type.",
    "file": "engine/egch_study/filings/EGCH_FY2024-25_Annual.pdf",
    "route": "OCR OFF THE RENDERED PIXELS, then READ AS AN IMAGE. The filing carries NO text layer (48 bytes extracted across 48 pages), so pdftotext returns nothing. Tesseract at 200dpi and again at 450dpi located the note and read the asset-class names cleanly, and could NOT read the Arabic-Indic digits reliably at either resolution — one pass rendered 9.5 as '5 ث9' and 4.75 as 'د\" ؛/'. A RATES TABLE HAS NO INTERNAL ARITHMETIC TO FOOT AGAINST, so the usual arbiter is unavailable and the extractor's confidence is worth nothing on its own. The figures below were read from the rendered page as an image at 450dpi, which is the route recorded.",
    "years_are_derived_not_disclosed": "THE COMPANY DISCLOSES RATES; THE YEARS BESIDE THEM ARE 100/rate AND ARE LABELLED DERIVED. An identity is not an assumption, and the label is what keeps the two apart — the same discipline [R-FCAL-01 AMENDED] applies to capex derived by ΔPPE + D&A.",
-   "cells_not_read": "Three cells in the buildings row are NOT recorded because their digits could not be read with confidence even from the rendered page: an entry for the cinema and cafeteria building, one for iron and steel buildings that appears to be a range, and the furniture and fittings row, which falls on a page boundary in the crop. They are named here rather than guessed — a figure this desk cannot read is a figure this desk does not use (SIGCM clause 8), and none of the three is a production asset the terminal turns on.",
-   "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE and here it is very wide — 5 to 50 years — because the table mixes a residential building at 2% with passenger cars at 20%. The weighted life a terminal needs comes from this company's own property, plant and equipment composition; on a fertiliser producer the classes that carry the value are the plants at 6% (buildings) and 3.95% to 9.5% (machinery), i.e. roughly 10 to 25 years, and establishing that weighting is a further sourcing step not done here."
+   "cells_not_read": "ONE cell is still not read: the cinema-and-cafeteria building, which prints as +٣٠٪. A 30% rate is a 3.3-year building, implausible on its face, and A RATES TABLE HAS NO INTERNAL ARITHMETIC TO FOOT AGAINST, so the usual arbiter is unavailable and there is nothing to settle it against. Named rather than guessed (SIGCM clause 8); it is not a production asset and the band does not depend on it. TWO CELLS PREVIOUSLY CARRIED HERE AS UNREAD WERE READ CLEANLY AT 400dpi ON 6 SEPTEMBER 2026 and are now in the class list — iron and steel buildings at 10% and furniture and fittings at 10%, joined by computers at 10%. Both are 10%, so the 5-50 band is unchanged and nothing downstream moves.",
+   "not_yet_collapsed": "A RANGE IS RECORDED AS A RANGE, and on 6 September 2026 THE COLLAPSE WAS ATTEMPTED AND REFUSED. Weighting the disclosed rates by the property note's own carrying amounts needs ONE RATE PER PROPERTY-NOTE CLASS, and the two notes do not meet: note 6/1 (PDF p35) carries six classes — land, buildings/constructions, machinery and equipment, vehicles, tools, furniture and office equipment — while note 5-2 gives SEVERAL rates inside three of them, and those three are 95.32% of net book value. Machinery alone is 90.36% and spans 3.95% to 9.5%, i.e. 25.32 years to 10.53, and nothing in the filing apportions that column between the urea/ammonia plant, the older plants and the workshops. MEASURED RATHER THAN ASSERTED: holding every other class at the life its own disclosure gives and moving machinery across its own disclosed band takes the weighted life from 23.29 to 10.85 years and maintenance on the 17.02bn depreciable base from EGP 730.7mn to 1,568.2mn — 2.15x on the one number a terminal turns on. A LIFE THIS DESK CHOSE IS NOT A DISCLOSED LIFE (SIGCM clause 1), so none was chosen. What IS available is an IDENTITY off the note's own columns, because the charge column is itself the weighting: depreciable gross cost over the year's own charge, 17,020,830,289 / 771,213,489 = 22.07 years. That is DERIVED, is already committed by the study as fa_life_implied_years sourced to the note 6 register, and MUST NOT be cited to the accounting-policies note. Evidence and the footing record: engine/egch_study/DISCLOSED_LIFE_06-09-2026.md."
   },
   "AIRARABIA": {
    "classes": [
