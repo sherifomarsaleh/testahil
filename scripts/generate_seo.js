@@ -41,11 +41,13 @@ const STATIC = [
   ['',              '1.0', 'weekly'],
   ['coverage.html', '0.9', 'weekly'],
   ['tools.html',    '0.8', 'weekly'],
-  // The selection procedure. Weekly rather than monthly because its figures are
-  // computed from SCREEN/PRICES at load, so the page a crawler sees changes
-  // whenever a price is entered or a library lands — the prose is what is
-  // static here, not the content.
-  ['funnel.html',   '0.8', 'weekly'],
+  // How the funnel works — a SUBPAGE of the Funnel tab, which is itself a tab of
+  // Tools, so it sits BELOW tools.html rather than beside it: 0.6 like the other
+  // explanatory pages, not 0.8 like a destination. Weekly rather than monthly
+  // because its figures are computed from SCREEN/PRICES at load, so what a
+  // crawler sees changes whenever a price is entered or a library lands — the
+  // prose is the static part here, not the content.
+  ['funnel.html',   '0.6', 'weekly'],
   ['savings.html',  '0.6', 'monthly'],
   ['record.html',   '0.9', 'weekly'],
   ['method.html',   '0.6', 'monthly'],
