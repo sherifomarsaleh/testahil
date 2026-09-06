@@ -7,7 +7,7 @@
  "both_framings_share_a_bridge": "Every alternative is computed by RE-RUNNING this study's own compute.py with that one choice changed and everything else held at its published value, through the same forecast, the same terminal and the same bridge as the adopted figure — so the difference measures the CHOICE and not the construction. The run happens in a scratch directory so the committed numbers file cannot move, each source substitution is asserted to have landed exactly once, and the re-run is proved against the committed answer before any alternative is believed. Two rows quote figures the study itself already computes both ways (the fuel path and the venture network) and take them unchanged rather than rebuilding them.",
  "the_answer_this_record_is_anchored_on": "The published central is the class primary alone — the cash-flow lens — so every row moves the answer by the full amount it moves that lens, with no weighting to damp it. That is a property of this study's architecture and it makes the materiality bar bite harder here than on a study publishing a weighted centre.",
  "materiality": "A judgement is material where the two framings differ by more than 5% of value. Rows below that bar are recorded rather than dropped: an absent answer is not a clean one, and a reader is entitled to see that a fork was measured and found small rather than never looked at.",
- "what_the_sign_test_reads": "15 judgements recorded, 7 material at the 5% bar, 5 resolved toward the higher value and 2 toward the lower. The study did NOT land its material forks one way. Three of the material rows are corrections the standing rules require rather than discretion this desk exercised — the retired lens blend, the retired terminal construction and the regressor the beta rule resolves — and all three run the same way, toward the higher value; the six discretionary rows split 2 up and 2 down. Both counts are stated so a reader can read the test either way, and neither was curated to move it.",
+ "what_the_sign_test_reads": "15 judgements recorded, 8 material at the 5% bar, 5 resolved toward the higher value and 3 toward the lower — a two-sided sign test the gate computes for itself from these rows. The study did NOT land its material forks one way. 3 of the material rows are corrections a standing rule REQUIRES rather than discretion this desk exercised, 3 of them running toward the higher value, so the discretionary material rows split 2 up and 3 down; and on 2 further rows a standing rule points at the ALTERNATIVE and the study went the other way with a stated reason, which is the same count read against this study rather than for it. Every one of these counts is computed from a per-row tag a reader can check against the rows themselves, and no row's direction was chosen to move any of them.",
  "judgements": [
   {
    "name": "the 2026-28 fuel path: the official energy-agency curve vs the airline association's high-fuel assumption held",
@@ -17,6 +17,8 @@
    "value_alternative": 2.6871456951307615,
    "share_of_value": 0.7661395561764861,
    "direction": "the study adopted the higher-value framing",
+   "adopted_side_fixed_by": null,
+   "rule_points_to_the_alternative": null,
    "why": "This is the study's own named central contested judgement and it is already published both ways and never averaged, which is the right treatment. It is recorded here because it is by far the largest fork in the valuation: the two paths open at USD 100.7 and USD 108.4 a barrel and end at USD 90.4 and USD 108.5, and fuel was 37.0% of the audited FY2025 direct-cost stack. The hedge ratios that would settle which path the company actually pays are disclosed as existing and not quantified (the swaps and collars note), which is why neither framing can be resolved from the filings and both are carried."
   },
   {
@@ -27,6 +29,8 @@
    "value_alternative": 3.8262252207929217,
    "share_of_value": 0.24035414318770676,
    "direction": "the study adopted the higher-value framing",
+   "adopted_side_fixed_by": "the standing beta rule, which resolves the regressor for this exchange and holds the other index as a published cross-check until an amendment registers it",
+   "rule_points_to_the_alternative": null,
    "why": "The adopted regressor is the one the rule resolves and it applies under a REGISTERED INTERIM SUBSTITUTION, which the study quotes in full. The alternative regression has 3.0 times the explanatory power (R-squared 0.402 against 0.135) and is the amendment the interim note itself anticipates. The study is right not to adopt it before it is registered, and the choice is worth 133 basis points of cost of equity, so it is a fork rather than a formality. An earlier edition of this study adopted the alternative; this one does not, and the direction of that correction is recorded here rather than only in the correction."
   },
   {
@@ -37,6 +41,8 @@
    "value_alternative": 4.156924786866145,
    "share_of_value": 0.14167913751397357,
    "direction": "the study adopted the higher-value framing",
+   "adopted_side_fixed_by": null,
+   "rule_points_to_the_alternative": null,
    "why": "Both are legitimate and the standing rule permits exactly these two, forbidding only the combination of them. The adopted construction is the one the study argues for and it is the lower discount rate: on this company's net cash the debt weight goes negative, the equity weight levers above one and the operating rate moves from 8.00% to 8.83%. The alternative discounts the whole firm at that higher rate and credits no cash. It is the larger of the two structural forks in the bridge and the adopted side is the higher value."
   },
   {
@@ -47,6 +53,8 @@
    "value_alternative": 5.293261086256813,
    "share_of_value": 0.10341201236006,
    "direction": "the study adopted the lower-value framing",
+   "adopted_side_fixed_by": null,
+   "rule_points_to_the_alternative": null,
    "why": "The study names this its single most consequential contested judgement and publishes both, never averaged, which is the right treatment. Five equity-accounted airlines sit on the balance sheet at 1.91 times the annual profit share they contribute, and the three disclosed in both years grew their combined hundred-per-cent-basis profits sharply in FY2025. Book is the lower value and it is the side the central adopts; every headline figure in the study is on it."
   },
   {
@@ -57,6 +65,8 @@
    "value_alternative": 4.368583218607343,
    "share_of_value": 0.08636463308411732,
    "direction": "the study adopted the higher-value framing",
+   "adopted_side_fixed_by": "the standing lens rule, which retires the typed blend outright: one class primary IS the central",
+   "rule_points_to_the_alternative": null,
    "why": "The standing rule retires the typed blend: one class primary IS the central and the other lenses are cross-checks, with book value a disclosed floor that is never weighted. Two further things were wrong with the blend here and both raise the answer when removed: normalised earnings power is not a permitted lens for an airline at all and carried a fifth of the weight at AED 3.45 against a cash-flow AED 4.75, and the weights had never cleared an out-of-sample test. The alternative is this study's own four readings at the weights it used to publish, unchanged, not a new model."
   },
   {
@@ -67,7 +77,21 @@
    "value_alternative": 4.371637792455566,
    "share_of_value": 0.08560556264978728,
    "direction": "the study adopted the higher-value framing",
+   "adopted_side_fixed_by": "the standing terminal rule, which retires the reinvestment identity and requires a disclosed asset life",
+   "rule_points_to_the_alternative": null,
    "why": "The alternative is retired by rule and this row prices what retiring it did. Its implied replacement cycle is one over the growth rate, 40.0 years here, against the 17.84 the company's own accounting-policies note supports — a fact about the currency rather than about the asset, and on a pegged terminal it runs LONG and under-charges the fleet. It moved the answer up, which could not have been read off the ratio in advance: the two charges are not like for like, one being a net charge on an implied capital base and the other gross at replacement cost with book depreciation added back."
+  },
+  {
+   "name": "fuel intensity held flat, with the new aircraft's disclosed burn advantage not credited",
+   "adopted": "intensity held at the FY2025 realised level for the whole window",
+   "alternative": "the disclosed burn advantage credited on the fleet share the study's own delivery plan builds",
+   "value_adopted": 4.7458743053797985,
+   "value_alternative": 5.169633725878572,
+   "share_of_value": 0.08197087897687681,
+   "direction": "the study adopted the lower-value framing",
+   "adopted_side_fixed_by": null,
+   "rule_points_to_the_alternative": null,
+   "why": "The study holds fuel per passenger per barrel flat and says in terms that the new type's roughly twenty per cent lower burn is an upside it does not credit. This row prices that sentence. The credit is a RECONSTRUCTION rather than a committed driver and is built as the floor of the effect: net additions rather than gross deliveries, because gross is not disclosed, and the FY2025 arrivals excluded because they are already inside the FY2025 realised intensity. On the study's own fleet plan that is 22.2% of the fleet by FY2030 and 4.4% off the fuel line in that year. It is the clearest single upside the study declines."
   },
   {
    "name": "the leased fleet: charged at its gross right-of-use value inside free cash flow vs treated as value-neutral financing",
@@ -77,6 +101,8 @@
    "value_alternative": 5.105522885760816,
    "share_of_value": 0.07044304538993829,
    "direction": "the study adopted the lower-value framing",
+   "adopted_side_fixed_by": null,
+   "rule_points_to_the_alternative": null,
    "why": "The adopted convention was taken from an external critique and it is the consistent one: a firm that leases capacity has still bought it. The alternative is the study's own stated counterfactual and it is priced here in full rather than quoted — the charge is AED 1575mn of gross right-of-use inception value across the window, against AED 9750mn of owned capex. The adopted side is the lower value."
   },
   {
@@ -87,6 +113,8 @@
    "value_alternative": 4.520824234395894,
    "share_of_value": 0.04978076105495337,
    "direction": "the study adopted the higher-value framing",
+   "adopted_side_fixed_by": null,
+   "rule_points_to_the_alternative": null,
    "why": "The line bundles other operating costs, wet-lease, insurance and amortisation, and the study holds it flat on a specific argument: the FY2025 wet-lease spike (AED 118.5mn against AED 15.0mn in FY2024) unwinds as owned aircraft arrive and absorbs the other components' inflation. The argument is real and it is still a forecast that one cost line alone does not inflate for five years, on a stack where every other class carries its own escalator. The alternative applies the tariff-class escalator two adjacent lines already take. The adopted side is the higher value."
   },
   {
@@ -97,6 +125,8 @@
    "value_alternative": 4.983140804346474,
    "share_of_value": 0.04761384602251728,
    "direction": "the study adopted the lower-value framing",
+   "adopted_side_fixed_by": null,
+   "rule_points_to_the_alternative": null,
    "why": "The company's own audited effective rates are 11.04% for FY2025 and 8.79% for FY2024, both below the statutory top-up, because of exempt income and the opening of the nine-per-cent era; the reviewed first quarter of 2026 provides at the statutory rate. The study holds the statutory rate and calls it the conservative anchor, which it is — this is the one row where following the filing rather than the statute would RAISE the value, and the study goes the other way."
   },
   {
@@ -107,6 +137,8 @@
    "value_alternative": 4.875891018057004,
    "share_of_value": 0.026665221227404712,
    "direction": "the study adopted the lower-value framing",
+   "adopted_side_fixed_by": null,
+   "rule_points_to_the_alternative": null,
    "why": "Both numbers are in the study's own input note and both are read off the same disclosure: the class lives in the property note weighted by that note's own gross carrying amounts. The band is narrow because aircraft and engines are 87.4% of the depreciable base at a single disclosed twenty years. It runs the opposite way to intuition and that is why it is recorded: the terminal escalates book depreciation over HALF the life, so the longer life charges MORE maintenance, and the adopted side is the lower value."
   },
   {
@@ -117,6 +149,8 @@
    "value_alternative": 4.825470085974271,
    "share_of_value": 0.016494927784512912,
    "direction": "the study adopted the lower-value framing",
+   "adopted_side_fixed_by": null,
+   "rule_points_to_the_alternative": null,
    "why": "An airline collects fares before it flies, so working capital is deeply negative and growth releases cash: the audited ratios are -65.3%, -62.2% and -66.6% of revenue across FY2023-25. The study takes the centre rather than the best year, which is the standing discipline and is the lower value; the latest audited year is the more negative and would release more."
   },
   {
@@ -127,6 +161,8 @@
    "value_alternative": 4.769285762126253,
    "share_of_value": 0.004908797231729923,
    "direction": "the study adopted the lower-value framing",
+   "adopted_side_fixed_by": null,
+   "rule_points_to_the_alternative": null,
    "why": "Adopted from an external critique, and right: cash does not compound at the cost of equity. It is recorded because it is a choice rather than an identity and it runs against the answer — 429 basis points of accretion over 246 days on AED 3850mn of cash and near-cash legs — and because the study would look better if it had not been made."
   },
   {
@@ -137,6 +173,8 @@
    "value_alternative": 4.759376830165565,
    "share_of_value": 0.002837036290168482,
    "direction": "the study adopted the lower-value framing",
+   "adopted_side_fixed_by": null,
+   "rule_points_to_the_alternative": "country risk must enter once on ONE basis, which is the rating basis on both sides; the study departs from it with a stated reason and publishes both",
    "why": "Country risk must enter exactly once and the same basis must be stripped as is added back, so the rating basis on both sides is the consistent reading and the study does not take it. Its reason is specific and good: under a hard peg, netting the table's spread out of a bond that actually priced four basis points over Treasuries puts the normalised rate BELOW the matched-tenor Treasury, which cannot be right. Both are published; the adopted side is the lower value and the difference is small."
   },
   {
@@ -147,17 +185,9 @@
    "value_alternative": 4.745344556595477,
    "share_of_value": 0.00011163547304180318,
    "direction": "the study adopted the higher-value framing",
+   "adopted_side_fixed_by": null,
+   "rule_points_to_the_alternative": "the bridge rule deducts the minority at its share of value rather than at historical cost; here the two are indistinguishable",
    "why": "The standing rule deducts the minority at its share of value rather than at historical cost, because the model capitalises the whole of subsidiary cash flow. Here the two are indistinguishable: the disclosed profit share is 0.0160% and the deduction moves by AED 2.3mn on an equity value of AED 22406mn. It is recorded rather than omitted so that a reader can see it was measured and not assumed away."
-  },
-  {
-   "name": "fuel intensity held flat, with the new aircraft's disclosed burn advantage not credited",
-   "adopted": "intensity held at the FY2025 realised level for the whole window",
-   "alternative": "the disclosed burn advantage credited on the fleet share the study's own delivery plan builds",
-   "value_adopted": 4.7458743053797985,
-   "value_alternative": 4.7458743053797985,
-   "share_of_value": 0.0,
-   "direction": "the study adopted the lower-value framing",
-   "why": "The study holds fuel per passenger per barrel flat and says in terms that the new type's roughly twenty per cent lower burn is an upside it does not credit. This row prices that sentence. The credit is a RECONSTRUCTION rather than a committed driver and is built as the floor of the effect: net additions rather than gross deliveries, because gross is not disclosed, and the FY2025 arrivals excluded because they are already inside the FY2025 realised intensity. On the study's own fleet plan that is 22.2% of the fleet by FY2030 and 4.4% off the fuel line in that year. It is the clearest single upside the study declines."
   }
  ],
  "not_valued": [

@@ -173,13 +173,22 @@ def neo_multipliers(base):
     """The fuel-intensity path if the neo's disclosed burn advantage WERE credited.
 
     An identity on this study's own committed fleet block and one percentage the
-    study committed inside the fuel-intensity input's own source field. Net
+    study committed inside the fuel-intensity input's own source field — READ off
+    that field rather than typed here, because a figure typed twice goes stale in
+    one of the two places and the register is the copy that is sourced. Net
     additions are used rather than gross deliveries because gross is not
     disclosed, so this is the FLOOR of the credit rather than the whole of it,
     and the FY2025 neo deliveries are excluded because they are already inside
     the FY2025 realised intensity this study anchors on. It is a
     RECONSTRUCTION and is labelled one.
     """
+    import re as _re
+    m = _re.search(r"neo's ~?([\d.]+)% lower burn",
+                   base["INP"]["fuel_intensity"]["source"])
+    assert m, ("the fuel-intensity note no longer states the burn advantage this reads. "
+               "An absent figure is not a clean one: re-point this at the register "
+               "rather than typing the percentage back.")
+    burn = float(m.group(1)) / 100.0
     FL = base["V"]["fleet_cons"]
     adds = [FL["owned_adds"][i] + FL["leased_adds"][i] for i in range(5)]
     cum, s = [], 0
@@ -187,7 +196,7 @@ def neo_multipliers(base):
         s += a
         cum.append(s)
     share = [cum[i] / FL["ends"][i] for i in range(5)]
-    return [1.0 - 0.20 * x for x in share], share
+    return [1.0 - burn * x for x in share], share
 
 
 def forks(base, fig):
@@ -225,6 +234,9 @@ def forks(base, fig):
             alternative="the same regression against the general index of the exchange the "
                         "share actually lists on, beta %.3f" % V["beta_alt_benchmark"],
             value=base["dcf_ps_beta_alt"],
+            adopted_side_fixed_by="the standing beta rule, which resolves the regressor for "
+                                  "this exchange and holds the other index as a published "
+                                  "cross-check until an amendment registers it",
             why="The adopted regressor is the one the rule resolves and it applies under a "
                 "REGISTERED INTERIM SUBSTITUTION, which the study quotes in full. The "
                 "alternative regression has %.1f times the explanatory power (R-squared "
@@ -274,6 +286,8 @@ def forks(base, fig):
                     "cross-checks",
             alternative="the weighted blend of four lenses the earlier editions carried",
             value=fig["blend"],
+            adopted_side_fixed_by="the standing lens rule, which retires the typed blend "
+                                  "outright: one class primary IS the central",
             why="The standing rule retires the typed blend: one class primary IS the "
                 "central and the other lenses are cross-checks, with book value a disclosed "
                 "floor that is never weighted. Two further things were wrong with the blend "
@@ -291,6 +305,8 @@ def forks(base, fig):
             alternative="the reinvestment identity, growth over return on capital, applied "
                         "to terminal profit",
             value=fig["tv_retired_ps"],
+            adopted_side_fixed_by="the standing terminal rule, which retires the reinvestment "
+                                  "identity and requires a disclosed asset life",
             why="The alternative is retired by rule and this row prices what retiring it "
                 "did. Its implied replacement cycle is one over the growth rate, %.1f years "
                 "here, against the %.2f the company's own accounting-policies note supports "
@@ -306,6 +322,7 @@ def forks(base, fig):
             adopted="intensity held at the FY2025 realised level for the whole window",
             alternative="the disclosed burn advantage credited on the fleet share the "
                         "study's own delivery plan builds",
+            patch=NEO_BURN,
             ovr_key="_neo",
             why="The study holds fuel per passenger per barrel flat and says in terms that "
                 "the new type's roughly twenty per cent lower burn is an upside it does not "
@@ -413,6 +430,10 @@ def forks(base, fig):
             alternative="the %.0f basis points the published country-risk table carries"
                         % (10000 * V["sov_spread_rating"]),
             ovr=dict(sov_spread_obs=None),         # filled from fig, see build()
+            rule_points_to_the_alternative="country risk must enter once on ONE basis, "
+                                           "which is the rating basis on both sides; the "
+                                           "study departs from it with a stated reason "
+                                           "and publishes both",
             why="Country risk must enter exactly once and the same basis must be stripped as "
                 "is added back, so the rating basis on both sides is the consistent reading "
                 "and the study does not take it. Its reason is specific and good: under a "
@@ -427,6 +448,9 @@ def forks(base, fig):
             alternative="the disclosed profit share of the equity value the model produces",
             patch=MINORITY_AT_VALUE,
             ovr_key="_ncis",
+            rule_points_to_the_alternative="the bridge rule deducts the minority at its "
+                                           "share of value rather than at historical "
+                                           "cost; here the two are indistinguishable",
             why="The standing rule deducts the minority at its share of value rather than at "
                 "historical cost, because the model capitalises the whole of subsidiary cash "
                 "flow. Here the two are indistinguishable: the disclosed profit share is "
@@ -779,17 +803,34 @@ def build():
             if f.get("ovr_key"):
                 ovr[f["ovr_key"]] = fig["override_values"][f["ovr_key"]]
             alt = run(ovr, f.get("patch") or (), f["name"])["dcf_ps"]
+            # EVERY MUTATION ASSERTS THAT IT LANDED. A fork whose alternative comes
+            # back EXACTLY equal to the adopted answer did not change the model: the
+            # first draft of this record carried the fuel-intensity row with an
+            # override the model never read, and it reported a 0.00% fork under a
+            # reason describing the clearest upside the study declines. A fixture that
+            # never injects its condition reads exactly like a fork found small.
+            assert alt != A0, (
+                "the alternative for %r came back identical to the adopted answer. Either "
+                "the substitution did not reach the model or this is not a fork; an "
+                "unmoved re-run is not evidence that a choice does not matter."
+                % f["name"])
         rows.append(dict(
             name=f["name"], adopted=f["adopted"], alternative=f["alternative"],
             value_adopted=A0, value_alternative=alt,
             share_of_value=abs(A0 - alt) / abs(alt),
             direction=("the study adopted the higher-value framing" if A0 > alt
                        else "the study adopted the lower-value framing"),
+            adopted_side_fixed_by=f.get("adopted_side_fixed_by"),
+            rule_points_to_the_alternative=f.get("rule_points_to_the_alternative"),
             why=f["why"]))
     rows.sort(key=lambda r: -r["share_of_value"])
 
     mat = [r for r in rows if r["share_of_value"] >= 0.05]
     up = len([r for r in mat if r["value_adopted"] > r["value_alternative"]])
+    # the split is COMPUTED from the per-row tags, never typed: a sentence carrying
+    # "three of the material rows" is right until one more row crosses the bar.
+    fixed_mat = [r for r in mat if r["adopted_side_fixed_by"]]
+    contrary = [r for r in rows if r["rule_points_to_the_alternative"]]
 
     cj = {
         "ticker": live["meta"]["ticker"],
@@ -828,15 +869,24 @@ def build():
             "and found small rather than never looked at."),
         "what_the_sign_test_reads": (
             "%d judgements recorded, %d material at the 5%% bar, %d resolved toward the "
-            "higher value and %d toward the lower. The study did NOT land its material "
-            "forks one way. Three of the material rows are corrections the standing rules "
-            "require rather than discretion this desk exercised — the retired lens blend, "
-            "the retired terminal construction and the regressor the beta rule resolves — "
-            "and all three run the same way, toward the higher value; the six discretionary "
-            "rows split %d up and %d down. Both counts are stated so a reader can read the "
-            "test either way, and neither was curated to move it."
+            "higher value and %d toward the lower — a two-sided sign test the gate "
+            "computes for itself from these rows. The study did NOT land its material "
+            "forks one way. %d of the material rows are corrections a standing rule "
+            "REQUIRES rather than discretion this desk exercised, %d of them running "
+            "toward the higher value, so the discretionary material rows split %d up and "
+            "%d down; and on %d further rows a standing rule points at the ALTERNATIVE "
+            "and the study went the other way with a stated reason, which is the same "
+            "count read against this study rather than for it. Every one of these counts "
+            "is computed from a per-row tag a reader can check against the rows "
+            "themselves, and no row's direction was chosen to move any of them."
             % (len(rows), len(mat), up, len(mat) - up,
-               up - 3, len(mat) - up)),
+               len(fixed_mat), len([r for r in fixed_mat
+                                    if r["value_adopted"] > r["value_alternative"]]),
+               up - len([r for r in fixed_mat
+                         if r["value_adopted"] > r["value_alternative"]]),
+               (len(mat) - up) - len([r for r in fixed_mat
+                                      if r["value_adopted"] <= r["value_alternative"]]),
+               len(contrary))),
         "judgements": rows,
         "not_valued": NOT_VALUED,
         "not_treated_as_a_contested_judgement": NOT_CONTESTED,
