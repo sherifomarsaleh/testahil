@@ -101,6 +101,12 @@ def run(overrides=None, patches=(), label=""):
             p = os.path.join(HERE, f)
             if os.path.exists(p):
                 shutil.copy(p, d)
+        # compute.py resolves the shared modules off its OWN __file__, which now points
+        # at the scratch directory, so the engine is put on the path here. Pointing
+        # __file__ at the scratch directory is what keeps the run from writing over the
+        # committed numbers file; it must not also cost the run its imports.
+        if ENGINE not in sys.path:
+            sys.path.insert(0, ENGINE)
         g = {"__name__": "_alt", "__file__": os.path.join(d, "compute.py"),
              "_OVR": dict(overrides or {})}
         with contextlib.redirect_stdout(io.StringIO()):
@@ -838,11 +844,42 @@ def build():
     return diag, cj
 
 
+def _life_band(base):
+    """The two ends of the disclosed useful-life band, READ off the study's own input
+    register rather than typed here.
+
+    A NUMBER STATED IN PROSE MUST BE COMPUTED, NOT TYPED, and that rule reaches an
+    input register's own justification text. Both ends of this band and the
+    aircraft share of the base are figures the study itself committed with the
+    note they came from; typing them a second time here would create a second
+    copy that goes stale silently the day the register moves. So they are parsed
+    out of the committed source field, and the LONGEST end parsed out of that
+    sentence is asserted to be the life the study actually adopted — which is
+    what proves the sentence describes the same quantity rather than merely
+    containing plausible numbers.
+    """
+    import re as _re
+    src = base["INP"]["asset_life_weighted"]["source"]
+    m = _re.search(r"([\d.]+)\s*years if every range is taken at its shortest end,\s*"
+                   r"([\d.]+) at its longest", src)
+    a = _re.search(r"Aircraft and engines are ([\d.]+)%", src)
+    assert m and a, ("the useful-life note no longer states its band and the aircraft "
+                     "share in the form this reads. An absent figure is not a clean one: "
+                     "re-point this at the register rather than typing the numbers back.")
+    short, long_ = float(m.group(1)), float(m.group(2))
+    adopted = float(base["V"]["asset_life_weighted"])
+    assert abs(long_ - adopted) < 1e-9, (
+        "the longest-end life the note states (%.4f) is not the life the study adopted "
+        "(%.4f) — this sentence is not describing the adopted quantity" % (long_, adopted))
+    assert 0 < short < adopted, "the shortest-end life must sit below the adopted one"
+    return short, float(a.group(1)) / 100.0
+
+
 def _figures(base, live):
     """Every figure a reason or an alternative needs, computed here and never typed."""
     V = base["V"]
     neo_mult, neo_share = neo_multipliers(base)
-    life_short = 14.55        # the shortest-end reading the study's own input note carries
+    life_short, aircraft_share = _life_band(base)
     etr_fy25 = base["hist_is"]["FY25"]["tax"] / base["hist_is"]["FY25"]["ebt"]
     etr_fy24 = base["hist_is"]["FY24"]["tax"] / base["hist_is"]["FY24"]["ebt"]
     ev_ret = base["pv_explicit"] + base["tv_retired"] * base["df"][-1]
@@ -863,7 +900,7 @@ def _figures(base, live):
         nwc_pct_fy24=base["nwc_fy24"] / V["rev_fy24"],
         cash_legs=(-base["nd_fy25"] + base["non_op"] + base["jv_book"]),
         nci_at_value=base["nci_share"] * base["eq_attr"],
-        aircraft_share_of_base=0.874,   # the study's own input note, from the property note
+        aircraft_share_of_base=aircraft_share,
         override_values=dict(
             _neo=neo_mult,
             _ncis=base["nci_share"],
