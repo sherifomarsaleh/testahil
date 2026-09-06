@@ -126,7 +126,11 @@ figure, which reads 36.5 years before the adjustment against a disclosed 5-15.
 - **(ii) reassessment — clean.** The prior year's filing (year ended 30 June 2025, page 12)
   carries the **identical** note 5/2: identical wording, identical five classes, identical
   ranges. Unchanged across two consecutive audited filings, so no life was reassessed and
-  the charge is level across the base's history.
+  the charge is level across the base's history. The **standalone** audited statements to
+  31-12-2025 carry it a third time at note **3-2** (page 11), same wording, same ranges —
+  so the disclosure is read in three separate audited documents and agrees in all three.
+  The only variation is a label: the consolidated note writes "Tools", the standalone
+  "Tools and equipment", which is the class Note 6 itself names.
 - **(iii) business combination — clean.** Note 6's movement table carries three movements
   only: additions, disposals and depreciation. There is no acquisition row. The subsidiary
   (Alexandria Wax Products S.A.E., 86.45%) was established in 1981 and is long held, so no
