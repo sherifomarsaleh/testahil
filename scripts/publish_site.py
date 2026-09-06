@@ -242,6 +242,19 @@ def surfaces(ticker: str) -> None:
     print(run(["node", "scripts/generate_seo.js"]).strip()[-300:])
     print(run(["node", "scripts/generate_feed.js"]).strip()[-200:])
     print(run(["python3", "scripts/build_market_registry.py", "--write"]).strip()[-200:])
+    # 6. THE PRICES BLOCK — the freshest price this repository HOLDS for each covered
+    # name, which is NOT TICKERS[k].spot: spot is the price a cone was struck at, and
+    # [R-GAP-01] measures a fair value against the LATEST KNOWN price. A roll-forward
+    # moves a library, so it moves the answer this block's own readers give, and the
+    # block goes stale in the same pass that made it stale.
+    #
+    # IT WAS MISSING FROM THIS LIST AND FOUR PUBLISHES IN ONE AFTERNOON WENT RED ON IT
+    # — ARCC, PHAR, QNB and SCEM, every one for the identical reason and every one
+    # after its surfaces had been "regenerated". That is the surface-4 defect exactly
+    # (the Ticker Picker overlay nothing rebuilt, three names live and invisible), and
+    # the answer is the same one: a generated surface that is not in this function is a
+    # surface somebody has to remember, and the record says nobody does.
+    print(run(["python3", "scripts/build_prices_block.py"]).strip()[-200:])
     # The Ticker Picker reads a GENERATED overlay that nothing here used to rebuild, so a
     # published name simply was not on that page — SWDY, SCEM and EGCH all shipped green
     # and invisible. The overlay now covers every fitted market (see step 5 below).
