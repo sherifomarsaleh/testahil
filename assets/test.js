@@ -271,3 +271,17 @@ window.initSearch = function(input, dd){
   document.addEventListener("click",function(){ setTimeout(normaliseRangeLabels,60); });
   document.addEventListener("change",function(){ setTimeout(normaliseRangeLabels,60); });
 })();
+
+/* The study shell caps each prose paragraph inline at 78ch, which leaves a third
+   of the card empty. Widen from JS as well as CSS so a cached stylesheet cannot
+   leave the old look in place. */
+(function(){
+  function widenProse(){
+    var h=document.getElementById("prose-body"); if(!h) return false;
+    var ps=h.querySelectorAll("p"); if(!ps.length) return false;
+    [].slice.call(ps).forEach(function(p){ p.style.maxWidth="none"; });
+    return true;
+  }
+  var n=0, iv=setInterval(function(){ if(widenProse()||++n>60) clearInterval(iv); },100);
+  document.addEventListener("DOMContentLoaded",widenProse);
+})();
