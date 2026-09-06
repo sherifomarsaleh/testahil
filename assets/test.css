@@ -134,3 +134,8 @@ a.t-chip:hover{text-decoration:none;border-color:var(--teal);color:var(--teal)}
 }
 .t-testflag{transition:opacity .25s}
 .t-testflag.hid{opacity:0;pointer-events:none}
+
+/* filter chips: keep labels on one line — the flex row let them wrap word by word */
+.t-filters label.t-chip{white-space:nowrap;flex:0 0 auto}
+.t-filters label.t-chip input{flex:0 0 auto;margin:0}
+.t-filters{flex-wrap:wrap}
