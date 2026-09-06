@@ -210,9 +210,10 @@ JUDGEMENTS = [
                   "TERMINAL_G = inp('terminal_growth', 0.020,")],
         why='Terminal growth is stored as a real rate on an inflation path with a default real '
             'of zero, and a point of real growth in perpetuity is a stated judgement about an '
-            'estate that has to keep opening restaurants to earn it. Three-quarters of '
-            'enterprise value sits beyond year five, so this is the second-largest single '
-            'judgement in the model even though the number itself is small.'),
+            'estate that has to keep opening restaurants to earn it. It clears the bar at all '
+            'only because {tv_share:.1f} per cent of enterprise value sits beyond year five: '
+            'one point of perpetual real growth is the smallest of this study\'s six material '
+            'judgements and it is still worth more than a twentieth of the answer.'),
 
     # ---- below the five-per-cent bar, recorded because a judgement that goes
     # ---- unmeasured is the thing this instrument exists to prevent
@@ -408,11 +409,18 @@ ROU_FY25_PATCH = [(FCFF_ASSERT, FCFF_OFF),
                    "ROU_ADD_PCT = inp('rou_additions_pct', 0.102,")]
 
 
+TERMINAL_G_CEILING = 0.0444          # the model refuses g >= the terminal risk-free rate
+IMPLIED_BETA = []                    # filled by the reverse read before side_calcs runs
+TV_SHARE = []                        # the study's own share of value beyond year five
+MARGIN_OPEN = []                     # the study's own opening forecast margin
+
+
 def side_calcs(register, published_central):
     """The figures the `why` texts quote, every one computed."""
     w = [register['cost_staff_fy23']['value'] / (register['fte_fy23']['value'] / 1000.0),
          register['cost_staff_fy24']['value'] / (register['fte_fy24']['value'] / 1000.0),
          register['cost_staff_fy25']['value'] / (register['fte_fy25']['value'] / 1000.0)]
+    beta = json.load(open(os.path.join(HERE, 'beta_result.json'), encoding='utf-8'))
     wage_at_4pc = central_under(WAGE_4PC_PATCH, 'wage at 4%')
     wage_at_ladder = central_under(JUDGEMENTS[2]['patches'], 'wage at the house ladder')
     return {
@@ -425,6 +433,15 @@ def side_calcs(register, published_central):
         'g24': 100 * (w[1] / w[0] - 1), 'g25': 100 * (w[2] / w[1] - 1),
         'lfl_year_one_only': central_under(LFL_YEAR_ONE_PATCH, 'like-for-like, year one only'),
         'rou_at_fy25': central_under(ROU_FY25_PATCH, 'right-of-use at the FY2025 rate'),
+        'beta_se': beta['se'],
+        'beta_sigma': abs(register['beta']['value'] - IMPLIED_BETA[0]) / beta['se'],
+        'margin_open': 100 * MARGIN_OPEN[0],
+        'terminal_rf': register['terminal_risk_free']['value'],
+        'tv_share': 100 * TV_SHARE[0],
+        'terminal_g_at_ceiling': central_under(
+            [("TERMINAL_G = inp('terminal_growth', 0.030,",
+              "TERMINAL_G = inp('terminal_growth', %.12f," % TERMINAL_G_CEILING)],
+            'terminal growth at the ceiling'),
     }
 
 
@@ -573,14 +590,16 @@ def main():
          'against the study\'s 6.0% and a house UAE ladder terminating at 2.0%'),
         ('the equity beta', 0.30, 0.93,
          lambda b: [("BETA = inp('beta', 0.930,", "BETA = inp('beta', %.12f," % b)], 0.930,
-         'against the study\'s 0.930, whose own standard error is 0.412, so the price\'s '
-         'figure is under half a standard error away and this model cannot tell the two apart'),
+         'against the study\'s 0.930, whose own regression standard error is {beta_se:.4f}, '
+         'so the price\'s figure is {beta_sigma:.2f} standard errors away and this model '
+         'cannot tell the two apart'),
         ('the EBITDA margin, moved in parallel', 0.0, 0.05,
          lambda m: [('ebitda_f = [rev_f[t] - cash_cost_f[t] + OTHINC[2] / REV[2] * rev_f[t] '
                      'for t in range(5)]',
                      'ebitda_f = [rev_f[t] - cash_cost_f[t] + OTHINC[2] / REV[2] * rev_f[t] '
                      '+ %.12f * rev_f[t] for t in range(5)]' % m)], 0.0,
-         'a parallel shift on the whole forecast margin path, which opens at 25.40%'),
+         'a parallel shift on the whole forecast margin path, which opens at '
+         '{margin_open:.2f} per cent'),
     ):
         try:
             v = solve(mk, lo, hi, LATEST_PRICE_AED, label)
@@ -589,14 +608,26 @@ def main():
                 {'quantity': label, 'value': None, 'not_reachable': str(e)})
             continue
         diag['other_quantities'].append(
-            {'quantity': label, 'value': v, 'study_value': study_value, 'note': note})
+            {'quantity': label, 'value': v, 'study_value': study_value,
+             'note': note})
+
+    # everything a `note` or a `why` quotes is computed, and it is computed here
+    # because two of those figures come out of the solves above
+    MARGIN_OPEN.append(pub['forecast']['ebitda_margin'][0])
+    TV_SHARE.append(pub['dcf']['tv_share'])
+    IMPLIED_BETA.append([q for q in diag['other_quantities']
+                         if q['quantity'] == 'the equity beta'][0]['value'])
+    side = side_calcs(pub['inputs'], published_central)
+    for q in diag['other_quantities']:
+        if q.get('note'):
+            q['note'] = q['note'].format(**side)
 
     # terminal growth cannot reach the price on the published central without
     # breaking the model's own ceiling, and saying so is the finding
     try:
         g = solve(lambda x: [("TERMINAL_G = inp('terminal_growth', 0.030,",
                               "TERMINAL_G = inp('terminal_growth', %.12f," % x)],
-                  0.030, 0.0444, LATEST_PRICE_AED, 'terminal growth')
+                  0.030, TERMINAL_G_CEILING, LATEST_PRICE_AED, 'terminal growth')
         diag['other_quantities'].append({'quantity': 'terminal growth', 'value': g,
                                          'study_value': 0.030, 'note': ''})
     except AssertionError:
@@ -606,13 +637,14 @@ def main():
             'study_value': 0.030,
             'not_reachable': (
                 'On the published central the price is NOT reachable through terminal growth '
-                'alone: at the model\'s own ceiling of 4.44% — terminal growth must stay below '
-                'the terminal risk-free rate of 4.45% — the central reaches only AED 2.3665 '
-                'against AED 2.39. On the cash-flow lens alone it is reachable at 3.6477%, '
-                'which is the figure the gap review published.')})
+                'alone: at the model\'s own ceiling of %.2f per cent — terminal growth must '
+                'stay below the terminal risk-free rate of %.2f per cent — the central reaches '
+                'only AED %.4f against AED %.2f. On the cash-flow lens alone it IS reachable, '
+                'at %.4f per cent, which is the figure this study\'s gap review published.'
+                % (100 * TERMINAL_G_CEILING, 100 * side['terminal_rf'],
+                   side['terminal_g_at_ceiling'], LATEST_PRICE_AED, lens_solved[2]))})
 
     # ---- the contested judgements -----------------------------------------
-    side = side_calcs(pub['inputs'], published_central)
     items, signs = [], []
     for j in JUDGEMENTS:
         alt = central_under(j['patches'], j['name'])

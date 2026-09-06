@@ -314,6 +314,15 @@ nwc24 = inv24 + dwip24 + recv24 + duefr24 - pay24 - dueto24
 D['hist_bs'] = dict(
     FY23=dict(ppe=789.463, ip=ip23, inv=inv23, recv=1039.926 + 645.607, cash=cash23,
               assets=assets23, debt=loans23, eqp=eqp23, nci=nci23,
+              # NOT A GAP IN THE READING — the FY2023 balance sheet does not disclose the
+              # four components the other two years are built from (development work in
+              # progress, due from and due to related parties, and payables), so working
+              # capital cannot be formed on the same basis. It is left NaN rather than
+              # computed on a narrower basis that would not be comparable, and rather than
+              # estimated to fill the gap [SIGCM clause 8]. It propagates nowhere: this is
+              # the only NaN leaf in the committed record and the central is a real number.
+              # THE REASON IS WRITTEN HERE because a bare NaN reads exactly like an
+              # omission [R-FCAL-01 AMENDED clause (i)].
               nd=loans23 - cash23, nwc=float('nan')),
     FY24=dict(ppe=ppe24, ip=ip24, inv=inv24, dwip=dwip24, recv=recv24, duefr=duefr24,
               cash=cash24, assets=assets24, debt=debt24, pay=pay24, dueto=dueto24,
@@ -1599,7 +1608,8 @@ FORECAST_ANCHOR = dict(
         'relative, so the record is clean on either basis and the stub is not doing the '
         'work. WHAT THE GROUP RATE NETS OUT IS RECORDED HERE RATHER THAN LEFT TO BE '
         'FOUND: %d of the 4 segment margin drivers the forecast is built on decline by '
-        'more than five per cent relative from their own opening -- %s -- and the group '
+        'more than five per cent relative from their own opening, and all four are '
+        'listed so the one that does not is visible too -- %s -- and the group '
         'blend holds only because revenue mix shifts toward development, %.1f%% of '
         'revenue in the opening period and %.1f%% in the last, a segment whose margin '
         'sits above the blend. If the anchor were set on any one of those segment rates '

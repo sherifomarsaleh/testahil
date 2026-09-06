@@ -30,19 +30,19 @@
    "quantity": "the equity beta",
    "value": 0.739060674905777,
    "study_value": 0.93,
-   "note": "against the study's 0.930, whose own standard error is 0.412, so the price's figure is under half a standard error away and this model cannot tell the two apart"
+   "note": "against the study's 0.930, whose own regression standard error is 0.4120, so the price's figure is 0.46 standard errors away and this model cannot tell the two apart"
   },
   {
    "quantity": "the EBITDA margin, moved in parallel",
    "value": 0.017563068866729738,
    "study_value": 0.0,
-   "note": "a parallel shift on the whole forecast margin path, which opens at 25.40%"
+   "note": "a parallel shift on the whole forecast margin path, which opens at 25.40 per cent"
   },
   {
    "quantity": "terminal growth",
    "value": null,
    "study_value": 0.03,
-   "not_reachable": "On the published central the price is NOT reachable through terminal growth alone: at the model's own ceiling of 4.44% — terminal growth must stay below the terminal risk-free rate of 4.45% — the central reaches only AED 2.3665 against AED 2.39. On the cash-flow lens alone it is reachable at 3.6477%, which is the figure the gap review published."
+   "not_reachable": "On the published central the price is NOT reachable through terminal growth alone: at the model's own ceiling of 4.44 per cent — terminal growth must stay below the terminal risk-free rate of 4.45 per cent — the central reaches only AED 2.3665 against AED 2.39. On the cash-flow lens alone it IS reachable, at 3.6477 per cent, which is the figure this study's gap review published."
   }
  ],
  "the_lens_the_read_is_solved_on": "This matters, and it is measured rather than asserted. Solved on the CASH-FLOW LENS ALONE (AED 2.2333) instead of on the answer the study publishes (AED 2.1455), the same quantities come back at a wage escalator of 4.8005 per cent, a beta of 0.8544 and terminal growth of 3.6477 per cent — every one of them a smaller disagreement, and every one reproducing this study's own gap review's reverse-read table to four decimals, which is how that table is shown to have been struck on a lens the study does not publish as its answer. Terminal growth is reachable there and is not reachable on the published central at all. Every figure in the record above is solved on the published answer."

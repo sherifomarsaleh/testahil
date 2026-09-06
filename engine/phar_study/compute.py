@@ -1970,6 +1970,145 @@ say(f"  Two things that must be published for that hurdle to be auditable, and w
     f"edition let it arrive free of both and published a hurdle of about USD 115 million; "
     f"charged properly it is USD {crux['required_rev_usd_mn']:,.0f} million.")
 
+
+# ======================= FORECAST ANCHOR ======================================
+# [R-ANCHOR-01] THE FORECAST IS ANCHORED ON THE LATEST REVIEWED PERIOD, AND A
+# DECLINE AWAY FROM IT NAMES ITS MECHANISM. The record is printed for every study
+# whether or not it fires. THIS ONE FIRES ON BOTH CLAUSES, and the record says so
+# rather than the study carrying the decline in silence.
+#
+# THE ANCHOR IS THE REVIEWED QUARTER, NOT THE AUDITED YEAR: a near-term reviewed
+# actual outranks a stale full-year rate, and the most recent period this model
+# consumes is the three months to 31 March 2026. Its gross margin is read straight
+# off the reviewed income statement -- gross profit over net sales -- and the same
+# statement carries the comparative quarter, which is where the like-for-like
+# measurement comes from. Nothing here is estimated: every figure below is a
+# committed input or a committed model series.
+_FA_Q1_GM      = V['q1_gp'] / V['q1_rev']
+_FA_Q1_GM_LY   = V['q1_gp_ly'] / V['q1_rev_ly']
+_FA_Q1_COST    = (V['q1_rev'] - V['q1_gp']) / V['q1_rev']
+_FA_Q1_COST_LY = (V['q1_rev_ly'] - V['q1_gp_ly']) / V['q1_rev_ly']
+_FA_Q1_DNA_R    = V['q1_dna'] / V['q1_rev']
+_FA_Q1_DNA_R_LY = V['q1_dna_ly'] / V['q1_rev_ly']
+# per-pack rates, filed against filed on both sides: packs from the Board of
+# Directors' report, revenue and cost of sales from the audited statements; the
+# forecast year uses the identical construction on the model's own series
+_FA_RPP24, _FA_RPP25 = (hist['FY2024']['revenue'] / V['packs_sold_fy24'],
+                        hist['FY2025']['revenue'] / V['packs_sold_fy25'])
+_FA_CPP24, _FA_CPP25 = (hist['FY2024']['cogs'] / V['packs_sold_fy24'],
+                        hist['FY2025']['cogs'] / V['packs_sold_fy25'])
+_FA_RPP26, _FA_CPP26 = revenue[0] / packs_total[0], cogs[0] / packs_total[0]
+# where the fall against the audited base year sits: the cash stack against the
+# production share of depreciation, both as a share of revenue. The audited note
+# gives the FY2025 split; the forecast year is the model's own.
+_FA_CASH25 = (hist['FY2025']['cogs'] - V['dep_in_cogs_fy25']) / hist['FY2025']['revenue']
+_FA_DEP25  = V['dep_in_cogs_fy25'] / hist['FY2025']['revenue']
+_FA_CASH26 = cogs_cash[0] / revenue[0]
+_FA_DEP26  = dna[0] * DEP_COGS_SHARE / revenue[0]
+# the domestic price leg against the house ladder it is escalated beside
+_FA_REAL_DOM = [(1 + V['dom_price_growth'][i]) / (1 + V['esc_domestic_cpi'][i]) - 1
+                for i in range(n)]
+_FA_REAL_CUM = 1.0
+for _r in _FA_REAL_DOM:
+    _FA_REAL_CUM *= (1 + _r)
+
+FORECAST_ANCHOR = dict(
+    rate_name='gross margin',
+    latest_reviewed_period='Q1-2026, reviewed interim',
+    latest_reviewed_date='2026-03-31',
+    latest_reviewed_rate=float(_FA_Q1_GM),
+    first_forecast_rate=float(gross_margin[0]),
+    forecast_path=[float(g) for g in gross_margin],
+    mechanism=dict(
+        name='input_cost_outpacing_price',
+        disclosure=(
+            'the audited FY2025 cost-of-sales note splits production cost by nature: raw '
+            'materials %.2f%%, packaging materials %.2f%%, labour %.2f%%, fuel, oils, '
+            'electricity, water and lighting %.2f%%, other consumables and services %.2f%%, '
+            'depreciation %.2f%%. The raw-material leg is imported active pharmaceutical '
+            'ingredient and part of the packaging leg is imported film, foil and closures, '
+            'so on the study\'s registered import share of packaging %.1f%% of the CASH cost '
+            'stack -- those same lines excluding the depreciation shown above -- is priced '
+            'abroad and reaches the income statement through the exchange '
+            'rate, which the FY2025 foreign-currency note states at EGP %.2f to the dollar on '
+            'average during the period. The output price is not on the same clock: the '
+            'domestic leg is administratively priced and moves in approved steps, and the '
+            'export leg is set in dollars. The two legs separate visibly in the '
+            'company\'s own filings twice over. In the reviewed first quarter of 2026 net '
+            'sales rose %.1f%% on the comparative quarter while cost of sales rose %.1f%%. '
+            'In the audited pair FY2024 to FY2025, on the pack counts the Board of '
+            'Directors\' report discloses, revenue per pack rose %.2f%% against cost of '
+            'sales per pack %.2f%%, and the audited gross margin fell from %.2f%% to %.2f%%.'
+            % (100 * cs_all['materials'], 100 * cs_all['packaging'], 100 * cs_all['labour'],
+               100 * cs_all['energy'], 100 * cs_all['services_other'],
+               100 * cs_all['depreciation'], 100 * fx_cost_share, V['fx_avg_fy25'],
+               100 * (V['q1_rev'] / V['q1_rev_ly'] - 1),
+               100 * ((V['q1_rev'] - V['q1_gp']) / (V['q1_rev_ly'] - V['q1_gp_ly']) - 1),
+               100 * (_FA_RPP25 / _FA_RPP24 - 1), 100 * (_FA_CPP25 / _FA_CPP24 - 1),
+               100 * hist['FY2024']['gross_margin'], 100 * hist['FY2025']['gross_margin'])),
+        like_for_like=dict(
+            measures='cost of sales per unit of revenue, the reviewed first quarter of 2026 '
+                     'against the comparative quarter presented in the same filing',
+            period_a='Q1-2025, the comparative quarter (three months ended 31 March 2025)',
+            value_a=float(_FA_Q1_COST_LY),
+            period_b='Q1-2026, reviewed (three months ended 31 March 2026)',
+            value_b=float(_FA_Q1_COST),
+            higher_is_worse=True)),
+    note=(
+        'BOTH CLAUSES FIRE AND THE RECORD SAYS SO. The forecast opens at %.2f%% against a '
+        'latest reviewed %.2f%%, %.2f points and %.1f%% relatively below it, and then falls '
+        'a further %.1f%% relative from its own opening year to %.2f%% in the final explicit '
+        'year. The audited record is FY2023 %.2f%%, FY2024 %.2f%%, FY2025 %.2f%%; the '
+        'reviewed first quarter of 2026 is %.2f%% against a comparative quarter of %.2f%%, '
+        'so the company was already running below its audited years before the forecast '
+        'starts. WHERE THE FALL SITS, against the audited base year: the cash cost stack '
+        'goes from %.2f%% of revenue to %.2f%% and the production share of depreciation '
+        'from %.2f%% to %.2f%%, so roughly three quarters of the %.2f-point fall is the '
+        'cost stack and the rest is the new facility beginning to depreciate. THE '
+        'COMMISSIONING STEP IS ALREADY PARTLY INSIDE THE ANCHOR and that is why it is not '
+        'the mechanism named: the reviewed quarter carries depreciation and amortisation of '
+        '%.2f%% of revenue against %.2f%% in the comparative quarter, the transfer out of '
+        'construction arriving on the company\'s own schedule. WHAT THE FILINGS DO NOT '
+        'ESTABLISH IS THE MAGNITUDE, and this record does not pretend otherwise. The '
+        'direction agrees with the company\'s own accounts on both measured pairs, but the '
+        'model opens a far wider wedge than the filings have ever shown: revenue per pack '
+        '%+.2f%% against cost of sales per pack %+.2f%% in the first forecast year, against '
+        'a filed FY2024-to-FY2025 pair of %+.2f%% and %+.2f%%. The domestic realised price '
+        'is escalated at %.1f%% in the first year against a house consumer-inflation ladder '
+        'of %.1f%%, and %.1f%% cumulatively in real terms across the explicit window, while '
+        'the domestic cost legs escalate on that same ladder and the labour and energy legs '
+        'above it. The company\'s own filed domestic realised price per pack rose %.2f%% in '
+        'FY2025. A real price cut compounding for five years is a claim about the world; the '
+        'filings give it a direction and they do not give it that size, and the input '
+        'register\'s own justification for the path says price growth tracks domestic '
+        'inflation with no real price gain, which these numbers are not. That is registered '
+        'here rather than corrected, because this record is a measurement of what the model '
+        'does and the correction is a rebuild.'
+        % (100 * gross_margin[0], 100 * _FA_Q1_GM,
+           100 * (_FA_Q1_GM - gross_margin[0]),
+           100 * (_FA_Q1_GM - gross_margin[0]) / _FA_Q1_GM,
+           100 * (gross_margin[0] - min(gross_margin)) / gross_margin[0],
+           100 * min(gross_margin),
+           100 * hist['FY2023']['gross_margin'], 100 * hist['FY2024']['gross_margin'],
+           100 * hist['FY2025']['gross_margin'], 100 * _FA_Q1_GM, 100 * _FA_Q1_GM_LY,
+           100 * _FA_CASH25, 100 * _FA_CASH26, 100 * _FA_DEP25, 100 * _FA_DEP26,
+           100 * (hist['FY2025']['gross_margin'] - gross_margin[0]),
+           100 * _FA_Q1_DNA_R, 100 * _FA_Q1_DNA_R_LY,
+           100 * (_FA_RPP26 / _FA_RPP25 - 1), 100 * (_FA_CPP26 / _FA_CPP25 - 1),
+           100 * (_FA_RPP25 / _FA_RPP24 - 1), 100 * (_FA_CPP25 / _FA_CPP24 - 1),
+           100 * V['dom_price_growth'][0], 100 * V['esc_domestic_cpi'][0],
+           100 * (_FA_REAL_CUM - 1),
+           100 * (dom_ppp25 / dom_ppp24 - 1))))
+
+say('')
+say('[Forecast anchor] gross margin: latest reviewed period Q1-2026 at '
+    f'{_FA_Q1_GM:.2%}, first forecast year {gross_margin[0]:.2%}, '
+    f'{100 * (gross_margin[0] - _FA_Q1_GM):+.2f} points and '
+    f'{100 * (gross_margin[0] - _FA_Q1_GM) / _FA_Q1_GM:+.1f}% relative. Path low '
+    f'{min(gross_margin):.2%}. Mechanism named: input cost outpacing price; measured '
+    f'cost per unit of revenue {_FA_Q1_COST_LY:.4f} -> {_FA_Q1_COST:.4f} in the '
+    f'company\'s own quarter pair.')
+
 # ============================ OUTPUT ==========================================
 step0 = json.load(open(os.path.join(HERE, 'step0_result.json')))
 bt5 = json.load(open(os.path.join(HERE, 'backtest_5y.json')))
@@ -2132,6 +2271,9 @@ OUT = dict(
                            "the currency devaluation"),
         ]),
     spot=V['spot'], spot_date=INP['spot']['date'],
+    # [R-ANCHOR-01]: the forecast rate against the latest reviewed period, printed
+    # for every study whether or not it fires. This one fires on both clauses.
+    forecast_anchor=FORECAST_ANCHOR,
     lens_record=dict(**{'class': 'pharmaceutical manufacturer, generic and branded'},
         primary=dict(kind='dcf', two_sided=True, value=None,
                      range=dict(low=min(centre_A, centre_B),
