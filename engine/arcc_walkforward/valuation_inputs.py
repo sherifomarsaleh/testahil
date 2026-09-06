@@ -383,3 +383,325 @@ def source(y, statement, page):
             "statements for the year ended 31 December %d, from its own "
             "investor-relations archive)"
             % (f, statement, ", ".join(str(p) for p in page), y))
+
+
+def _cash(y):
+    b, r = BS[y], dict(NOTES.get((y, "cash"), {}))
+    rec = {
+        "value": b["cash"],
+        "as_at": "%d-12-31" % y,
+        "source": source(y, "consolidated statement of financial position, "
+                            "'Cash and bank balances'", BS[y]["page"]),
+        "route": ROUTE,
+        "lines": {"cash_and_bank_balances": b["cash"]},
+        "check": ("the cash-flow statement closes on the same figure — "
+                  "%d" % CF[y]["cash_end"]),
+    }
+    rec.update(r)
+    return rec
+
+
+def _debt(y):
+    b = BS[y]
+    return {
+        "value": debt(y),
+        "as_at": "%d-12-31" % y,
+        "source": source(y, "consolidated statement of financial position, "
+                            "borrowings (non-current), current portion of long-term "
+                            "borrowings and credit facilities", BS[y]["page"]),
+        "route": ROUTE,
+        "definition": ("long-term borrowings, their current portion and credit "
+                       "facilities — the three lines this run's own panel.py forms "
+                       "its effective rate on, so the block and the panel cannot "
+                       "disagree about what debt means"),
+        "lines": {
+            "borrowings_non_current": b["borrowings_nc"],
+            "current_portion_of_long_term_borrowings": b["borrowings_cp"],
+            "credit_facilities": b["credit_facilities"],
+        },
+        "carried_beside_not_folded_in": {
+            "lease_liabilities_non_current": b["lease_nc"],
+            "lease_liabilities_current": b["lease_c"],
+            "notes_payable_non_current": b["notes_payable_nc"],
+            "why": ("whether a lease liability or a long-dated supplier balance is "
+                    "debt is a valuation choice; this record reads the page and "
+                    "makes neither choice, so both are named rather than folded in "
+                    "or dropped"),
+        },
+        "check": ("reproduces this run's own committed panel.DEBT total for the "
+                  "same year"),
+    }
+
+
+def _capex(y):
+    c = CF[y]
+    disclosed = c["capex_ppe"] + c["capex_auc"] + c["capex_other"]
+    rec = {
+        "value": disclosed,
+        "period": "FY%d" % y,
+        "source": source(y, "consolidated statement of cash flows, investing "
+                            "activities — payments for property, plant and equipment "
+                            "and payments for assets under construction", c["page"]),
+        "route": ROUTE,
+        "derived": False,
+        "disclosed": True,
+        "lines": {
+            "payments_for_property_plant_and_equipment": c["capex_ppe"],
+            "payments_for_assets_under_construction": c["capex_auc"],
+            "payments_for_other_assets": c["capex_other"],
+        },
+    }
+    if y - 1 in BS:
+        prior, now = BS[y - 1], BS[y]
+        ident = ((now["ppe"] + now["auc"]) - (prior["ppe"] + prior["auc"])
+                 + c["dep_ppe"])
+        rec["identity_cross_check"] = {
+            "identity": "capex = dPPE + D&A",
+            "value": ident,
+            "basis": ("property, plant and equipment plus assets under construction "
+                      "at both dates, and the depreciation of property, plant and "
+                      "equipment for the year"),
+            "difference_from_disclosed": ident - disclosed,
+            "note": ("the two are not the same measurement and the gap is not a "
+                     "defect: disposals leave at net book value, additions can be "
+                     "unpaid at the year end, and assets move out of construction "
+                     "into property without cash. The DISCLOSED cash figure is what "
+                     "is committed; the identity is reported beside it so a later "
+                     "rebuild can see both rather than assume they agree"),
+        }
+    if c.get("note"):
+        rec["note"] = c["note"]
+    return rec
+
+
+def _ppe(y):
+    b = BS[y]
+    return {
+        "value": b["ppe"],
+        "as_at": "%d-12-31" % y,
+        "source": source(y, "consolidated statement of financial position, "
+                            "'Property, plant and equipment (net)'", BS[y]["page"]),
+        "route": ROUTE,
+        "lines": {
+            "property_plant_and_equipment_net": b["ppe"],
+            "assets_under_construction": b["auc"],
+            "right_of_use_assets_net": b["rou"],
+            "intangible_assets_net": b["intangibles"],
+        },
+        "note": ("the identity capex = dPPE + D&A is run on property PLUS assets "
+                 "under construction, because this company's spending lands in "
+                 "construction first and moves across without cash; the intangible "
+                 "is the operating licence and amortises on its own line"),
+    }
+
+
+def _dep(y):
+    c = CF[y]
+    total = (c["dep_ppe"] + c["amort_intangibles"] + c["amort_other"]
+             + c["amort_rou"])
+    rec = {
+        "value": total,
+        "period": "FY%d" % y,
+        "source": source(y, "consolidated statement of cash flows, the "
+                            "depreciation and amortisation add-backs", c["page"]),
+        "route": ROUTE,
+        "lines": {
+            "depreciation_of_property_plant_and_equipment": c["dep_ppe"],
+            "amortisation_of_intangible_assets": c["amort_intangibles"],
+            "amortisation_of_other_assets": c["amort_other"],
+            "amortisation_of_right_of_use_assets": c["amort_rou"],
+        },
+        "note": ("the whole charge, which is more than the cost-of-sales "
+                 "depreciation this run's panel.py carries: that one is the "
+                 "manufacturing share and this is the group total"),
+    }
+    if c.get("note"):
+        rec["route_dispute"] = c["note"]
+    return rec
+
+
+def _wc(y):
+    b = BS[y]
+    rec = {
+        "value": working_capital(y),
+        "as_at": "%d-12-31" % y,
+        "source": source(y, "consolidated statement of financial position, the "
+                            "trading lines of current assets and current "
+                            "liabilities", BS[y]["page"]),
+        "route": ROUTE,
+        "definition": ("inventories + trade receivables + debtors and other debit "
+                       "balances + due from related parties, less trade and notes "
+                       "payable, creditors and other credit balances and due to "
+                       "related parties"),
+        "lines": {
+            "inventories": b["inventories"],
+            "trade_receivables_net": b["trade_receivables"],
+            "debtors_and_other_debit_balances_net": b["debtors"],
+            "due_from_related_parties": b["due_from_related"],
+            "trade_and_notes_payable": b["trade_payables"],
+            "creditors_and_other_credit_balances": b["creditors"],
+            "due_to_related_parties": b["due_to_related"],
+            "total_current_assets": b["tca"],
+            "total_current_liabilities": b["tcl"],
+        },
+        "excluded_and_named": {
+            "cash_and_bank_balances": b["cash"],
+            "credit_facilities": b["credit_facilities"],
+            "current_portion_of_long_term_borrowings": b["borrowings_cp"],
+            "current_income_tax_liability": b["tax_payable"],
+            "dividends_payable": b["dividends_payable"],
+            "provisions": b["provisions"],
+            "lease_liabilities_current": b["lease_c"],
+            "current_portion_of_long_term_other_liabilities": b["other_liab_cp"],
+            "why": ("a reader cannot tell an excluded line from an unread one, so "
+                    "every current line that is NOT in the working-capital figure "
+                    "is named here with its own amount"),
+        },
+    }
+    if (y, "wc") in NOTES:
+        rec.update(NOTES[(y, "wc")])
+    return rec
+
+
+def _shares(y):
+    if y not in CAPITAL:
+        return {"missing": ("the capital note of the FY%d filing could not be read, "
+                            "so no count is recorded — a count that does not foot "
+                            "against its own issued capital and par value is not "
+                            "recorded at all" % y)}
+    k = CAPITAL[y]
+    rec = {
+        "value": k["shares"],
+        "as_at": "%d-12-31" % y,
+        "issued_capital": k["issued_capital"],
+        "par_value": k["par_value"],
+        "source": source(y, "note %s, the capital note" % k["note"], (k["page"],)),
+        "route": ROUTE,
+        "check": ("issued capital %d / par %g = %d, matching the count the same "
+                  "note states" % (k["issued_capital"], k["par_value"],
+                                   k["issued_capital"] / k["par_value"])),
+        "par_source": k["par_source"],
+        "vintage": ("read off the FY%d filing's own note; no later count is carried "
+                    "back to this origin" % y),
+    }
+    if k.get("treasury_cost"):
+        rec["treasury_shares_at_cost"] = k["treasury_cost"]
+        rec["note"] = k.get("treasury_note", "")
+    return rec
+
+
+def block(y):
+    return {
+        "cash": _cash(y),
+        "debt": _debt(y),
+        "capex": _capex(y),
+        "ppe": _ppe(y),
+        "dep": _dep(y),
+        "wc": _wc(y),
+        "shares": _shares(y),
+    }
+
+
+def record():
+    """The valuation-input block, in the shape [R-FCAL-01 AMENDED] defines."""
+    return {
+        "_": ("The inputs a VALUE is rebuilt from at each of this run's origins, "
+              "committed beside the driver panel under [R-FCAL-01 AMENDED]. "
+              "GENERATED by engine/arcc_walkforward/valuation_inputs.py, which "
+              "foots every balance sheet against its own subtotals at import; "
+              "never hand-edited."),
+        "run": "ARCC",
+        "rule": "[R-FCAL-01 AMENDED] (03-09-2026)",
+        "company": "Arabian Cement Company S.A.E.",
+        "currency": "EGP",
+        "units": "as printed in the filings — units, not thousands or millions",
+        "basis": "consolidated",
+        "fiscal_year_end": "31 December",
+        "origins_declared_by": "PRE_REGISTRATION_01-09-2026.md",
+        "route": ROUTE,
+        "point_in_time": (
+            "every year is carried AS FIRST REPORTED, from its own filing's own "
+            "column. The one re-presentation inside this window is recorded beside "
+            "the figure it would replace and never substituted."),
+        "sources": {str(y): FILES[y][0] for y in sorted(FILES)},
+        "origins": {"FY%d" % y: block(y) for y in range(2018, 2026)},
+        "prior_year_anchor": {
+            "_": ("FY2017 is NOT an origin of this run. It is carried because the "
+                  "identity capex = dPPE + D&A needs property at two dates and "
+                  "FY2018 is the first origin; recording it inside `origins` would "
+                  "misstate what this run tested."),
+            "FY2017": block(2017),
+        },
+    }
+
+
+def shares_record():
+    """The point-in-time counts, in the shape the calibration panel reads.
+
+    engine/valuation_calibration/panel.py resolves a share count for an origin
+    from shares_{ticker}.json and from nothing else, so a count committed only
+    inside this run's own record would be invisible to the readiness matrix that
+    decides which origins the calibration can score. It is GENERATED here, from
+    the same footed reading, so the two cannot drift apart.
+    """
+    out = {
+        "_": ("GENERATED by engine/arcc_walkforward/valuation_inputs.py from that "
+              "run's own reading of each year's capital note — NOT by "
+              "extract_shares.py, whose scan this did not run. Never hand-edited."),
+        "ticker": "ARCC",
+        "shares_mn": {},
+        "rule": ("recorded only where issued capital divided by par value "
+                 "reproduces the share count the same document states"),
+    }
+    for y, k in sorted(CAPITAL.items()):
+        out["shares_mn"][str(y)] = {
+            "shares_mn": k["shares"] / 1e6,
+            "issued_capital": float(k["issued_capital"]),
+            "par_value": float(k["par_value"]),
+            "page": k["page"],
+            "file": FILES[y][0],
+            "check": ("capital %d / par %g = %d, matching the stated count"
+                      % (k["issued_capital"], k["par_value"],
+                         k["issued_capital"] / k["par_value"])),
+            "how": k["par_source"],
+            "route": ROUTE,
+        }
+    return out
+
+
+def main():
+    bad = foot()
+    if bad:
+        raise SystemExit("REFUSED — the block does not foot:\n  "
+                         + "\n  ".join(bad))
+    rec = record()
+    p = os.path.join(HERE, "valuation_inputs.json")
+    json.dump(rec, open(p, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    q = os.path.join(CALIB, "shares_arcc.json")
+    json.dump(shares_record(), open(q, "w", encoding="utf-8"), indent=1,
+              ensure_ascii=False)
+
+    print("valuation-input block — ARCC\n")
+    print("  %-8s %14s %14s %14s %12s %14s %14s %12s"
+          % ("origin", "cash", "debt", "capex", "ppe", "D&A", "working cap", "shares"))
+    print("  " + "-" * 108)
+    for y in range(2018, 2026):
+        b = block(y)
+        def v(i):
+            r = b[i]
+            return "MISSING" if "missing" in r else "%,.0f".replace(",", "") % 0 \
+                if r.get("value") is None else format(r["value"], ",.0f")
+        print("  FY%-6d %14s %14s %14s %14s %14s %14s %12s"
+              % (y, v("cash"), v("debt"), v("capex"), v("ppe"), v("dep"), v("wc"),
+                 v("shares")))
+    n_missing = sum(1 for y in range(2018, 2026) for i, r in block(y).items()
+                    if "missing" in r)
+    print("\n  %d origins x 7 items = %d cells, %d recorded missing"
+          % (8, 8 * 7, n_missing))
+    print("  wrote %s" % os.path.relpath(p, os.path.dirname(os.path.dirname(HERE))))
+    print("  wrote %s" % os.path.relpath(q, os.path.dirname(os.path.dirname(HERE))))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
