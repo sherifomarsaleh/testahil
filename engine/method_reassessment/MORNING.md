@@ -1020,3 +1020,137 @@ observations. Checked clean of internal vocabulary.
 It widens nothing. A widening factor chosen to make the coverage table pass is
 the free parameter the promotion rule forbids; what was missing was the
 disclosure, and that is what this supplies.
+
+## 06-09-2026, 20:15 firing
+
+### The frozen-escalator gate now covers all five runs, not three
+
+It shipped covering AMOC, EGCH and ARCC — the three whose projectors expose a
+module-level `cells()`. TMGH and PHDC were absent, which is the population
+problem [R-ENF-04] names: a gate over three of five runs while five exist reports
+clean about a book it has not read.
+
+Both are now driven through **adapters, never re-implementations** — TMGH's own
+projector run with the macro paths it is handed, PHDC's own projector run with
+its panel's own inflation rate doubled. A re-implementation would grade something
+other than what the run computes.
+
+Result unchanged in substance: **AMOC is still the only frozen line in the book**,
+10 lines probed across 5 runs. The negative control grows to **13 cases, 9 red
+and 4 clean**, with two new red cases that matter specifically — a frozen line on
+each of the two ADAPTER-driven runs, because otherwise the adapters would be a
+hole rather than a coverage extension, and nothing would have said so.
+
+### The score does not score the lines a valuation depends on
+
+Carrying the diagnosis to EGCH found something about the METHOD rather than about
+EGCH. Every driver bias this house publishes is a log error, and a log error needs
+both sides positive — so on a profit line every cell where a loss appears is
+dropped, silently, from a mean everyone reads as that driver's bias.
+
+**Thirteen of twenty-eight drivers lose cells; where it happens the two samples
+disagree by up to 5.3 times.** EGCH's profit before tax reads -0.298 on the 23
+cells the score takes and **-1.589 on all 48**. Its net profit reads -0.382
+against -1.496.
+
+**EGCH's foreign-exchange line has 50 cells and the score takes NONE.** It is
+declared, it drops out of the scores file because no cell is scoreable, and it
+appears in no table. Its bias on all fifty cells is -5.743, the worst driver in
+the run, sign right in 15 of 50. In levels it is 43% of that run's profit gap. The
+construction counts a translation loss on dollar BORROWINGS and nothing else — a
+dollar exporter also holds dollar receivables, so the model projects a loss where
+the company reported a gain.
+
+**The omission is not one-signed and the instrument's own first draft said it
+was.** Five of the thirteen show a larger bias on the full sample; eight show a
+smaller one. That is the worse outcome: a known lean can be corrected for, an
+unknown-direction discrepancy of up to five times cannot.
+
+What this does NOT overturn: the break effect, the spread result and the
+escalation ranking all rest on revenue and cost lines, which are always positive
+and lose nothing. What it does say is that the bottom-line figures were never as
+solid as the top-line ones, **and nothing distinguished them.**
+`SCORING_BLINDSPOT_06-09-2026.md`.
+
+### The PR went red on a missing tool, and the workflow's own comment predicted it
+
+`check_workbook_values` reported ELEC and STC as **NEW** failures — which reads
+exactly like two delivered workbooks disagreeing with their studies. Both are
+`FileNotFoundError: 'soffice'` and `'libreoffice'`: those two recalculators
+convert their workbook through LibreOffice before reading it, and neither binary
+is on the runner.
+
+**Both recalculate CLEAN locally**, and that is the whole point: `run_ci_gates.py`
+reported 104 green on a container that happens to carry LibreOffice, against a CI
+that did not. The workflow's own install block already carries that lesson in
+prose — "a local runner inherits the developer's environment and CI does not",
+written after poppler-utils and matplotlib did the same thing. **This is the third
+occurrence.**
+
+Fixed the environment, not the gate: `libreoffice-calc` added to the install
+block, which is what the conversion needs and provides both entry points those
+two scripts invoke under different names.
+
+### The gate widened to the finance line, and caught three more
+
+TMGH's income statement turns out to be near-unbiased — total revenue -0.090,
+gross profit -0.079, net profit +0.188 — and its errors sit somewhere else
+entirely: **finance cost -1.224 (its worst driver), new sales -0.877**, then the
+capital base (ppe -0.643, development properties -0.528).
+
+So I probed the finance line on all five runs. **Three of five wire their finance
+charge to no inflation path at all** — ARCC, TMGH and PHDC. It is not a
+fixed-rate book on any of them: TMGH's own filed finance cost went **29.6x on
+debt that grew 2.3x**, so the rate rose about thirteenfold while the Egyptian
+policy rate went from roughly 10% to 27%. PHDC's is 21% of its profit gap in
+levels; ARCC already carries "finance costs need average rather than year-end
+debt" in its own not-fixed list.
+
+All three go on the ratchet with their reasons rather than being corrected — a
+proper fix needs a projected debt path AND a rate path that none of these models
+builds, which is a stop-and-inform.
+
+**The ratchet is now keyed TICKER:LINE, not by ticker.** Keyed by ticker, AMOC
+would have been forgiven on every line it ever acquires, and widening the gate
+would have silently forgiven the three new ones. A new negative-control case
+re-keys it by ticker — a one-line edit anybody could make in good faith — and
+asserts the gate still refuses.
+
+**One control case caught itself.** The zero-lines-probed mutation matched each
+RUNS tuple as an exact string and stopped landing the moment a line was added to
+those tuples. It reported MUTATION DID NOT LAND — the control working — and it
+would have reported a false green had the landing assertion not been there.
+Rewritten to mutate by shape. 14 cases, 10 red and 4 clean.
+
+### EGCH's FX line: the stated simplification is refuted by the outcome
+
+The construction counts a translation loss on dollar BORROWINGS and nothing else,
+and `usd_borrowings()` says in its own docstring that the borrowings are "treated
+as dollar-denominated (stated simplification)".
+
+Bounded it without assuming a currency split: compute the FX result with 0% and
+with 100% of receivables-plus-cash treated as dollar-denominated, and ask whether
+the actual falls between. **The actual sits inside in only 3 of 12 years**, and
+from FY2017 on it is outside on the far side — FY2024's bounds are
+[-2,837,104, -1,866,498] against a reported **+278,839**. From FY2017 borrowings
+exceed receivables plus cash, so every construction of a net dollar position gives
+a LOSS in a depreciating pound, and the company reported a GAIN.
+
+**So the sign is wrong, not the weighting.** The most likely reading is the one
+the module itself flags: those bank borrowings are not dollar-denominated at all —
+which is ordinary for an Egyptian producer borrowing from Egyptian banks — and the
+entire line is a translation loss on debt carrying no translation exposure.
+Confirming it needs the filings' currency note; that is a stop-and-inform, not a
+correction to make tonight.
+
+**A finding I withdrew on the way, before it went anywhere.** I first read the
+receivables line as carrying no unit of its own, wrote it up as a gap in the
+[R-FCAL-01 AMENDED] block schema, and put a reporting clause into
+`bridge_inputs.py` that flagged all five runs. Checking a clean case refuted it:
+the `lines` sub-dictionaries sit on the record's own `value` scale, consistently,
+in every run — order-of-magnitude checked against each record's value. The clause
+was firing on work that is right, and it is removed rather than widened. My own
+first bracket had mixed the block's EGP with the panel's EGP-thousand and would
+have reported the actual comfortably inside in every year; the scale was then
+established on a like-for-like DEBT pair present on both sides, exactly 1000.0 on
+three origins.

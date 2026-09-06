@@ -1,6 +1,13 @@
 {
  "_rule": "[R-ENF-01] for L-353, enforced by scripts/check_frozen_escalator.py.",
- "_ratchet": "[R-ENF-02]. Runs already carrying a frozen, undeclared escalator on the day this gate was adopted are listed here and allowed to fail. The build breaks on a NEW frozen line anywhere else. THIS LIST MAY ONLY EVER SHORTEN (--prune).",
- "_why_not_declared": "AMOC's net_sales is frozen and it cannot honestly claim any reason on the closed list. Crude is dollar-priced, so 'foreign_currency_wired_to_the_currency_path' is the reason that would fit — and it would be FALSE, because the model wires the line to nothing at all rather than to a currency path. Declaring it would be the rename-to-satisfy-a-checker offence [R-ENF-01 EXTENDED, the sweep case]. It is listed as outstanding instead. The correction is measured (engine/amoc_walkforward/driver_fixes.py, F8: -0.774 to -0.443) and NOT adopted, because adopting it moves a delivered study's answer and that is a re-issue.",
- "outstanding": ["AMOC"]
+ "_ratchet": "[R-ENF-02]. Entries are keyed TICKER:LINE, not by ticker, so a name allowed to fail on one line is not forgiven on every line it later acquires and a name moving between lines reads as a change rather than as nothing. The build breaks on a NEW frozen line anywhere else. THIS LIST MAY ONLY EVER SHORTEN (--prune).",
+ "_seeded": "Four entries, all seeded in the commits that adopted and then widened this gate, per the discipline that a new standard is either MET by the existing work or CONSCIOUSLY ADDED in the commit that adopts it — the choice being made either way and the only question being whether anybody sees it.",
+ "_AMOC_net_sales": "Frozen and it cannot honestly claim any reason on the closed list. Crude is dollar-priced, so 'foreign_currency_wired_to_the_currency_path' is the reason that would fit — and it would be FALSE, because the model wires the line to nothing at all rather than to a currency path. Declaring it would be the rename-to-satisfy-a-checker offence. The correction is measured (engine/amoc_walkforward/driver_fixes.py, F8: -0.774 to -0.443) and NOT adopted, because adopting it moves a delivered study's answer and that is a re-issue.",
+ "_finance_lines": "ARCC, TMGH and PHDC all wire their finance charge to no inflation path at all, while the Egyptian policy rate went from about 10% to about 27% over the window. It is NOT a fixed-rate book on any of them: TMGH's own filed finance cost went 29.6x on debt that grew 2.3x, so the rate rose about thirteenfold. Each is measured and none is corrected — TMGH's finance cost is that run's WORST driver at -1.224; PHDC's is 21% of its profit gap in levels and correcting its denominator alone makes it WORSE because the base is frozen too; ARCC already carries 'finance costs need average rather than year-end debt' in its own not-fixed list. A proper fix needs a projected debt path and a rate path none of these models builds, which is a stop-and-inform rather than something to invent.",
+ "outstanding": [
+  "AMOC:net_sales",
+  "ARCC:finance_costs",
+  "PHDC:is.finance_cost",
+  "TMGH:finance_cost"
+ ]
 }

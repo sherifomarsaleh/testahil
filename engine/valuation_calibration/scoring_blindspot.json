@@ -1,0 +1,254 @@
+[
+ {
+  "name": "EGCH",
+  "driver": "revenue",
+  "cells": 55,
+  "taken": 55,
+  "bias_all": -0.19997281899293162,
+  "bias_taken": -0.19997281899293162,
+  "factor": 1.0
+ },
+ {
+  "name": "EGCH",
+  "driver": "cost_of_sales",
+  "cells": 55,
+  "taken": 55,
+  "bias_all": -0.2689810492793912,
+  "bias_taken": -0.2689810492793912,
+  "factor": 1.0
+ },
+ {
+  "name": "EGCH",
+  "driver": "gross_profit",
+  "cells": 55,
+  "taken": 34,
+  "bias_all": 0.3317706422711025,
+  "bias_taken": 0.4355557852195321,
+  "factor": 0.7617179096906748
+ },
+ {
+  "name": "EGCH",
+  "driver": "selling",
+  "cells": 35,
+  "taken": 21,
+  "bias_all": -0.4910890001664151,
+  "bias_taken": -0.1518150002773586,
+  "factor": 3.234785754169347
+ },
+ {
+  "name": "EGCH",
+  "driver": "provisions",
+  "cells": 47,
+  "taken": 38,
+  "bias_all": 2.090121153904276,
+  "bias_taken": 2.821991953513184,
+  "factor": 0.7406545405993168
+ },
+ {
+  "name": "EGCH",
+  "driver": "other_bucket",
+  "cells": 48,
+  "taken": 23,
+  "bias_all": 0.3407395634697648,
+  "bias_taken": 0.812854675909474,
+  "factor": 0.4191887843771379
+ },
+ {
+  "name": "EGCH",
+  "driver": "fx",
+  "cells": 50,
+  "taken": 0,
+  "bias_all": -5.743191423072508,
+  "bias_taken": null,
+  "factor": null
+ },
+ {
+  "name": "EGCH",
+  "driver": "debit_interest",
+  "cells": 41,
+  "taken": 28,
+  "bias_all": -0.6695735088483791,
+  "bias_taken": -0.5161612093851266,
+  "factor": 1.2972178007061086
+ },
+ {
+  "name": "EGCH",
+  "driver": "pbt",
+  "cells": 48,
+  "taken": 23,
+  "bias_all": -1.5887176807713281,
+  "bias_taken": -0.29840758789520255,
+  "factor": 5.323985532597342
+ },
+ {
+  "name": "EGCH",
+  "driver": "tax_current",
+  "cells": 44,
+  "taken": 21,
+  "bias_all": 0.07663015881291675,
+  "bias_taken": -0.327851382725303,
+  "factor": 0.23373443837851035
+ },
+ {
+  "name": "EGCH",
+  "driver": "net",
+  "cells": 48,
+  "taken": 23,
+  "bias_all": -1.4958170263551185,
+  "bias_taken": -0.38247042311197293,
+  "factor": 3.91093516247451
+ },
+ {
+  "name": "AMOC",
+  "driver": "net_sales",
+  "cells": 9,
+  "taken": 9,
+  "bias_all": -0.4077398987428262,
+  "bias_taken": -0.4077398987428262,
+  "factor": 1.0
+ },
+ {
+  "name": "AMOC",
+  "driver": "cost_of_sales",
+  "cells": 9,
+  "taken": 9,
+  "bias_all": -0.4122190452789938,
+  "bias_taken": -0.4122190452789938,
+  "factor": 1.0
+ },
+ {
+  "name": "AMOC",
+  "driver": "gross_profit",
+  "cells": 9,
+  "taken": 9,
+  "bias_all": -0.3417375735199747,
+  "bias_taken": -0.3417375735199747,
+  "factor": 1.0
+ },
+ {
+  "name": "AMOC",
+  "driver": "operating_profit",
+  "cells": 9,
+  "taken": 9,
+  "bias_all": -0.3884540335523987,
+  "bias_taken": -0.3884540335523987,
+  "factor": 1.0
+ },
+ {
+  "name": "AMOC",
+  "driver": "claims_provision",
+  "cells": 9,
+  "taken": 9,
+  "bias_all": 0.19055503649221656,
+  "bias_taken": 0.19055503649221656,
+  "factor": 1.0
+ },
+ {
+  "name": "AMOC",
+  "driver": "other_revenues",
+  "cells": 9,
+  "taken": 9,
+  "bias_all": -0.8246840970774305,
+  "bias_taken": -0.8246840970774305,
+  "factor": 1.0
+ },
+ {
+  "name": "AMOC",
+  "driver": "pbt",
+  "cells": 9,
+  "taken": 9,
+  "bias_all": -0.5932474155444797,
+  "bias_taken": -0.5932474155444797,
+  "factor": 1.0
+ },
+ {
+  "name": "AMOC",
+  "driver": "income_tax",
+  "cells": 9,
+  "taken": 9,
+  "bias_all": -0.6302862529647264,
+  "bias_taken": -0.6302862529647264,
+  "factor": 1.0
+ },
+ {
+  "name": "AMOC",
+  "driver": "npat",
+  "cells": 9,
+  "taken": 9,
+  "bias_all": -0.5798205603476124,
+  "bias_taken": -0.5798205603476124,
+  "factor": 1.0
+ },
+ {
+  "name": "AMOC",
+  "driver": "majority",
+  "cells": 9,
+  "taken": 9,
+  "bias_all": -0.5753134557314924,
+  "bias_taken": -0.5753134557314924,
+  "factor": 1.0
+ },
+ {
+  "name": "ARCC",
+  "driver": "revenue",
+  "cells": 25,
+  "taken": 25,
+  "bias_all": -0.12407959811037843,
+  "bias_taken": -0.12407959811037843,
+  "factor": 1.0
+ },
+ {
+  "name": "ARCC",
+  "driver": "cogs",
+  "cells": 25,
+  "taken": 25,
+  "bias_all": -0.15050084344697287,
+  "bias_taken": -0.15050084344697287,
+  "factor": 1.0
+ },
+ {
+  "name": "ARCC",
+  "driver": "gross_profit",
+  "cells": 25,
+  "taken": 25,
+  "bias_all": 2.0415966954055933,
+  "bias_taken": 2.0415966954055933,
+  "factor": 1.0
+ },
+ {
+  "name": "ARCC",
+  "driver": "pbt",
+  "cells": 25,
+  "taken": 20,
+  "bias_all": 1.225898319994808,
+  "bias_taken": 1.3994367657052496,
+  "factor": 0.8759940785012987
+ },
+ {
+  "name": "ARCC",
+  "driver": "tax",
+  "cells": 25,
+  "taken": 20,
+  "bias_all": 1.168738938770903,
+  "bias_taken": 0.8980623255630004,
+  "factor": 1.3014006995986764
+ },
+ {
+  "name": "ARCC",
+  "driver": "pat",
+  "cells": 25,
+  "taken": 20,
+  "bias_all": 1.384594996959517,
+  "bias_taken": 1.7006822156482961,
+  "factor": 0.8141409278109683
+ },
+ {
+  "name": "ARCC",
+  "driver": "majority",
+  "cells": 25,
+  "taken": 20,
+  "bias_all": 1.3949077933483485,
+  "bias_taken": 1.7123585161283406,
+  "factor": 0.8146119987198993
+ }
+]

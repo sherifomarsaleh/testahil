@@ -60,11 +60,139 @@ REASONS = {
 
 # (ticker, directory, the module attribute holding the cumulative inflation path,
 #  the lines to probe)
+# EVERY RUN ON DISK IS LISTED. Three of these expose a module-level cells() and
+# project() and are driven directly; two do not, and are driven through their own
+# projector with their own panel and macro paths -- an ADAPTER, never a
+# re-implementation, because a re-implementation grades something other than what
+# the run actually computes [R-ENF-03]. A gate covering three of five runs while
+# five exist is the population problem [R-ENF-04] names.
+# THE FINANCE LINE IS PROBED TOO, and it was added because the measurement asked
+# for it. TMGH's worst driver is its finance cost at -1.224; PHDC's is 21% of that
+# run's profit gap in levels; ARCC already carries "finance costs need average
+# rather than year-end debt" in its own not-fixed list. All three are wired to no
+# inflation path at all, while the Egyptian policy rate went from about 10% to
+# about 27% and TMGH's own finance charge went 29.6x on debt that grew 2.3x.
+#
+# A FROZEN FINANCE LINE IS NOT AUTOMATICALLY A DEFECT: a company on a fixed-rate
+# book genuinely has a nominal-constant charge, and `contractually_fixed` is on
+# the closed list for exactly that. What is forbidden is freezing it and saying
+# nothing.
 RUNS = [
-    ("AMOC", "amoc_walkforward", "cpi_path", ["net_sales", "cost_of_sales"]),
-    ("EGCH", "egch_walkforward", "cpi_path", ["revenue", "cost_of_sales"]),
-    ("ARCC", "arcc_walkforward", None, ["revenue", "cogs"]),
+    ("AMOC", "amoc_walkforward", "cpi_path",
+     ["net_sales", "cost_of_sales", "credit_interest"], "module"),
+    ("EGCH", "egch_walkforward", "cpi_path",
+     ["revenue", "cost_of_sales", "debit_interest"], "module"),
+    ("ARCC", "arcc_walkforward", None,
+     ["revenue", "cogs", "finance_costs"], "module"),
+    ("TMGH", "tmgh_walkforward", None,
+     ["dev_revenue", "dev_cost", "finance_cost"], "tmgh"),
+    ("PHDC", "phdc_walkforward", None,
+     ["is.revenue", "is.cogs", "is.finance_cost"], "phdc"),
 ]
+
+
+def probe_tmgh(d, lines, horizon=3):
+    """TMGH takes its panel and macro paths as ARGUMENTS and returns every horizon
+    at once, so there is no module-level cells() to drive. Its own projector is
+    still what runs; only the inflation it is handed changes."""
+    p = os.path.join(ENG, d)
+    sys.path.insert(0, p)
+    for m in ("bottom_up", "panel", "score"):
+        sys.modules.pop(m, None)
+    try:
+        import bottom_up as B
+        A, M = B.load()
+        cpi, urb = B.macro_paths(M)
+        origins = range(B.FIRST_ORIGIN, B.LAST_ORIGIN + 1)
+
+        def run(cp):
+            out = {}
+            for o in origins:
+                r, _ = B.project(A, cp, urb, o)
+                if r and str(horizon) in {str(k) for k in r["projection"]}:
+                    f = r["projection"].get(horizon) or r["projection"].get(str(horizon))
+                    if f:
+                        out[o] = f
+            return out
+
+        base = run(cpi)
+        if not base:
+            raise RuntimeError("no origin projects to horizon %d" % horizon)
+        bumped = run({y: v * 2.0 for y, v in cpi.items()})
+        out = {}
+        for ln in lines:
+            moved, probed = False, 0
+            for o in base:
+                a, b = base[o].get(ln), bumped.get(o, {}).get(ln)
+                if a is None or b is None:
+                    continue
+                probed += 1
+                if a != b:
+                    moved = True
+            if probed == 0:
+                raise RuntimeError("line %r present in no cell" % ln)
+            out[ln] = not moved
+        return out
+    finally:
+        sys.path.remove(p)
+
+
+def probe_phdc(d, lines, horizon=3):
+    """PHDC is panel-driven: the inflation it reads sits in the panel itself, so
+    the panel's own rate is doubled and its own projector re-run."""
+    p = os.path.join(ENG, d)
+    sys.path.insert(0, p)
+    for m in ("bottom_up", "panel", "score"):
+        sys.modules.pop(m, None)
+    try:
+        import bottom_up as B
+        panel = B.load()
+        origins = [o for o in sorted(panel) if o + horizon in panel]
+
+        def run():
+            out = {}
+            for o in origins:
+                try:
+                    pr = B.project(panel, o)
+                except Exception:
+                    continue
+                f = pr.get(horizon) if pr else None
+                if f:
+                    out[o] = f
+            return out
+
+        base = run()
+        if not base:
+            raise RuntimeError("no origin projects to horizon %d" % horizon)
+        saved = []
+        for y, v in panel.items():
+            r = v.get("macro.cpi_pct")
+            if isinstance(r, (int, float)):
+                saved.append((v, r))
+                v["macro.cpi_pct"] = r * 2.0
+        if not saved:
+            raise RuntimeError("no inflation rate in this run's panel")
+        try:
+            bumped = run()
+        finally:
+            for v, r in saved:
+                v["macro.cpi_pct"] = r
+        out = {}
+        for ln in lines:
+            moved, probed = False, 0
+            for o in base:
+                a, b = base[o].get(ln), bumped.get(o, {}).get(ln)
+                if a is None or b is None:
+                    continue
+                probed += 1
+                if a != b:
+                    moved = True
+            if probed == 0:
+                raise RuntimeError("line %r present in no cell" % ln)
+            out[ln] = not moved
+        return out
+    finally:
+        sys.path.remove(p)
 
 
 def probe(d, attr, lines, horizon=3):
@@ -173,18 +301,23 @@ def main(argv):
     ratchet = json.load(open(RATCHET)) if os.path.exists(RATCHET) else {"outstanding": []}
     allowed = set(ratchet.get("outstanding", []))
 
-    on_disk = [t for t, d, _, _ in RUNS if os.path.isdir(os.path.join(ENG, d))]
+    on_disk = [t for t, d, _, _, _ in RUNS if os.path.isdir(os.path.join(ENG, d))]
     if not on_disk:
         print("FAIL: no walk-forward directory on disk — the resolver is broken,")
         print("      not the book. An empty population is never a clean result.")
         return 1
 
     probed_lines, failures, still = 0, [], []
-    for ticker, d, attr, lines in RUNS:
+    for ticker, d, attr, lines, adapter in RUNS:
         if not os.path.isdir(os.path.join(ENG, d)):
             continue
         try:
-            res = probe(d, attr, lines)
+            if adapter == "tmgh":
+                res = probe_tmgh(d, lines)
+            elif adapter == "phdc":
+                res = probe_phdc(d, lines)
+            else:
+                res = probe(d, attr, lines)
         except Exception as e:
             failures.append("%s: could not be probed — %s" % (ticker, str(e)[:80]))
             continue
@@ -194,33 +327,40 @@ def main(argv):
         undeclared = []
         for ln in frozen:
             why = dec.get(ln)
+            key = "%s:%s" % (ticker, ln)
             if not why:
-                undeclared.append("%s (no declaration)" % ln)
+                undeclared.append((key, "%s (no declaration)" % ln))
             elif why not in REASONS:
-                undeclared.append("%s (reason %r not in the closed list)" % (ln, why))
+                undeclared.append((key, "%s (reason %r not in the closed list)" % (ln, why)))
         print("%-6s probed %d line(s); frozen: %s"
               % (ticker, len(res), ", ".join(frozen) if frozen else "none"))
-        if undeclared:
-            msg = "%s: frozen and undeclared — %s" % (ticker, "; ".join(undeclared))
-            (still if ticker in allowed else failures).append(msg)
+        # THE RATCHET IS KEYED TICKER:LINE, NOT BY TICKER. A name allowed to fail on
+        # one line would otherwise be allowed to fail on every line it ever acquires,
+        # so widening this gate's scope would silently forgive the new lines too --
+        # and a name moving between lines would read as nothing happening. Same
+        # reason [R-ENF-01 EXTENDED] keys the exemplar debt by ratchet AND list.
+        for key, msg in undeclared:
+            line = "%s: frozen and undeclared — %s" % (ticker, msg)
+            (still if key in allowed else failures).append((key, line))
 
     if probed_lines == 0:
         print("\nFAIL: %d run directories present and ZERO lines probed." % len(on_disk))
         print("      A run that could not be driven is not a run that came back clean.")
         return 1
 
-    for m in still:
+    for _key, m in still:
         print("  (on the ratchet) %s" % m)
     if prune:
-        cleared = sorted(allowed - {m.split(":")[0] for m in still})
-        ratchet["outstanding"] = sorted({m.split(":")[0] for m in still})
+        held = {k for k, _ in still}
+        cleared = sorted(allowed - held)
+        ratchet["outstanding"] = sorted(held)
         json.dump(ratchet, open(RATCHET, "w"), indent=1)
         print("\npruned: %s" % (", ".join(cleared) if cleared else "nothing to clear"))
         return 0
 
     if failures:
         print("\nRED — %d finding(s):" % len(failures))
-        for m in failures:
+        for _key, m in failures:
             print("  %s" % m)
         return 1
     # A ratcheted run is NOT a declared one and the closing line must not say it
@@ -228,9 +368,9 @@ def main(argv):
     # how a ratchet quietly becomes an exemption.
     if still:
         print("\nOK — %d line(s) probed across %d run(s); no NEW frozen line. "
-              "%d run(s) still outstanding on the ratchet: %s."
+              "%d line(s) still outstanding on the ratchet: %s."
               % (probed_lines, len(on_disk), len(still),
-                 ", ".join(sorted({m.split(":")[0] for m in still}))))
+                 ", ".join(sorted(k for k, _ in still))))
     else:
         print("\nOK — %d line(s) probed across %d run(s); every frozen line is declared."
               % (probed_lines, len(on_disk)))

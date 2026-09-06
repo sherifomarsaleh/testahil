@@ -327,6 +327,23 @@ jobs:
       - name: Install poppler-utils (pdftotext)
         run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
 
+      # THE SAME LESSON, A THIRD TIME, AND THE COMMENT ABOVE PREDICTED IT WORD FOR
+      # WORD. Two studies' recalculators convert their delivered workbook through
+      # LibreOffice before reading it -- ELEC shells out to `soffice`, STC to
+      # `libreoffice`. Neither binary was on the runner, so check_workbook_values
+      # reported both as NEW failures with FileNotFoundError, which reads exactly
+      # like two delivered workbooks disagreeing with their studies and is nothing
+      # of the kind. A LOCAL RUNNER INHERITS THE DEVELOPER'S ENVIRONMENT AND CI
+      # DOES NOT: run_ci_gates.py reported 104 green on a container that happens to
+      # carry LibreOffice, against a CI that did not, and both studies recalculate
+      # CLEAN once the tool exists. Fix the environment, not the gate.
+      #
+      # libreoffice-calc rather than the full suite: it is what the conversion
+      # needs and it provides both the `soffice` and `libreoffice` entry points
+      # those two scripts invoke by different names.
+      - name: Install libreoffice-calc (workbook recalculation)
+        run: sudo apt-get install -y -qq libreoffice-calc
+
       # VERIFY BY IMPORT, NOT BY PARSE. nu=Gaussian parsed cleanly and only died at
       # import, and that bug reached main while a regex check reported the file intact.
       - name: Import the modules the gate depends on
