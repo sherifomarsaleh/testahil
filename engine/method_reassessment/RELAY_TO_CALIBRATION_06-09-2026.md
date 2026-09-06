@@ -142,3 +142,60 @@ good machinery behind it. No document, deck or page may describe it as more than
 that, which is the same discipline [R-FCAL-01] applies to a provisional lesson and
 [R-CAL-02] applies to a cautious label: understating in the wrong direction is not
 a safe error, and neither is overstating in the comfortable one.
+
+---
+
+# PRIORITY FROM THE PRINCIPAL — 06-09-2026, and the pace that rides with it
+
+Given by the principal after reading the two sections above. Written here so it
+survives a container rebuild and binds on a session that starts cold [R-IND-01].
+
+## 1. What moves to the front
+
+Criterion 3 is the only Phase 1 item that is EVIDENCE rather than hygiene, and it
+is blocked on one thing: the per-origin valuation-input block. ARCC's landed
+overnight (`engine/arcc_walkforward/valuation_inputs.json`, 06-Sep 02:12).
+**PHDC, TMGH, EGCH and AMOC have not.**
+
+Measured, not asserted — `python3 engine/valuation_calibration/bridge_inputs.py`:
+across 55 name-origin cells, capex is present in 0, cash in 25%, a footed share
+count in 16%, and NOT ONE cell carries a complete bridge together with a capex
+figure. Until those four blocks exist, series (a) stays a contracted-order-book
+FLOOR and no pooled bias can be computed at all.
+
+**So: finish those four before further gate-conformance work on other names.**
+They are a COPY out of filings already parsed cell by cell — cash, interest-bearing
+debt, PPE, D&A, the working-capital lines, the share count footed against its par
+value, capex disclosed or LABELLED as derived. Refuse rather than invent, exactly
+as ARCC refused its share count.
+
+## 2. The escape hatch is real and is meant to be used
+
+If taking these four first genuinely damages the LOGIC or the ACCURACY — a
+dependency not visible from outside, a shared instrument that must land first, a
+correctness reason — **do not force it.** Record the reason in `STATE.json` and
+`MORNING.md`, proceed in the order you judge right, and say so at the next question
+slot. This is a priority from outside, not a claim to know the sequencing better
+than the session doing the work. What is NOT acceptable is silently
+deprioritising it.
+
+## 3. The pace — both halves bind
+
+- **WORK CONTINUOUSLY.** Do not end a turn idle with work outstanding, and do not
+  treat stopping as the goal.
+- **AT MOST 50% OF THE WEEK'S TOKEN BUDGET**, spread across the week. The other 50%
+  belongs to the principal and must be there when they want it. Running the week's
+  budget down early is a failure of the instruction even when the work is good.
+- **NO FLEETS.** Subagents only where the work genuinely needs an OUTSIDE READER —
+  a QC audit, a gate-runner confirmation, a census somebody who did not do the work
+  should check. Never for throughput, never to consume capacity before it expires.
+- **STEADY UNITS.** One coherent piece at a time, committed and pushed as it lands,
+  so the work survives any stop.
+
+## 4. When the four are in
+
+Rebuild series (a) as a real cash-flow lens on those inputs, run the pre-registered
+score, and report the pooled interval with its LONO stability — WHATEVER IT SAYS.
+If five names cannot carry a credible interval, say that plainly rather than
+reporting a weak one. [R-VCAL-01]'s guard is symmetric and a finding of bias in
+either direction is a successful measurement, not a failure.
