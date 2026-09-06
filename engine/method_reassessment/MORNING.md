@@ -1343,3 +1343,29 @@ the oldest — a probe failure, which is not an absence. Re-pointed at the back 
 of each document, where the notes sit, with a longer per-page limit and timed-out
 pages counted and named rather than dropped. Still running; whatever it returns
 adds to this rather than changing it.
+
+### The sweep finished clean, and it corrects what I wrote twenty minutes ago
+
+All ten filings read, **zero pages timed out**. Four of them state the facility in
+both currencies — FY2017-18, FY2018-19, FY2019-20 and FY2020-21 all give it as
+about 117 million US dollars **and** 1.887 billion Egyptian pounds — so the
+100%-dollar treatment is refuted on four filings rather than one. An earlier
+FY2012-13 note carries the same shape at a smaller size.
+
+**And the FY2019-20 note goes further than FY2020-21's.** It reads "... and an
+amount of [X] dollars **has been drawn** and an amount of [Y] Egyptian pounds has
+been drawn, for a total of [Z] Egyptian pounds (including debit interest in
+dollars and in pounds)". **That is a drawn balance by currency**, which is exactly
+what I recorded as not disclosed after reading only FY2020-21. The disclosure
+varies by year and I generalised from one.
+
+**What remains is a READING limit, not a disclosure limit, and the distinction
+matters.** The drawn figures are on the page and did not resolve through OCR at
+200, 450 or 500 dpi, nor from a magnified crop — Arabic-Indic digit strings in a
+scanned table. A person opening that page can read them; the extraction cannot.
+That is recoverable, where an absent disclosure would not be, so it is recorded as
+what it is rather than as a gap in the filings.
+
+Twice tonight a "cannot be obtained" turned out to be wrong on closer looking:
+the currency note itself, and now the balance split. Both times the first probe
+was the one that failed, and both times its failure read exactly like an absence.
