@@ -7900,16 +7900,16 @@ const FV_OVERLAY = {
    "name": "Electro Cable Egypt",
    "code": "EGX:ELEC",
    "ccy": "EGP",
-   "spot": 2.19,
-   "anchor_date": "2026-08-05",
+   "spot": 2.12,
+   "anchor_date": "2026-09-06",
    "fv_asof": "2026-08-05",
-   "fv_lag_days": 0,
+   "fv_lag_days": 32,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 0.18,
    "fv_base": 0.34,
    "fv_full": 0.95,
-   "gap_base_pct": -84.5,
+   "gap_base_pct": -84.0,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
@@ -7923,12 +7923,12 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.097561,
-    "mu_h": 0.013606,
+    "sigma_h": 0.098192,
+    "mu_h": 0.014052,
     "G": {
-     "bear": -25.61,
-     "base": -19.09,
-     "full": -8.56
+     "bear": -25.12,
+     "base": -18.64,
+     "full": -8.17
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7938,21 +7938,21 @@ const FV_OVERLAY = {
     "required_cagr": {
      "bear": -1.0,
      "base": -1.0,
-     "full": -1.0
+     "full": -0.9999
     },
     "hurdle_rf": 0.195,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00313
+    "selftest_max_dev": 0.00343
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.187457,
-    "mu_h": 0.04465,
+    "sigma_h": 0.18721,
+    "mu_h": 0.041576,
     "G": {
-     "bear": -13.33,
-     "base": -9.94,
-     "full": -4.46
+     "bear": -13.17,
+     "base": -9.78,
+     "full": -4.29
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7960,14 +7960,14 @@ const FV_OVERLAY = {
     "p_term": null,
     "p_touch": null,
     "required_cagr": {
-     "bear": -1.0,
-     "base": -0.9994,
-     "full": -0.9646
+     "bear": -0.9999,
+     "base": -0.9993,
+     "full": -0.9597
     },
     "hurdle_rf": 0.195,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.0017
+    "selftest_max_dev": 0.00225
    },
    "market": "EG"
   },
