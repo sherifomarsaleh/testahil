@@ -1815,6 +1815,21 @@
    119.18403670091477
   ]
  },
+ "forecast_anchor": {
+  "rate_name": "gross margin",
+  "latest_reviewed_period": "H1-2026, reviewed interim (six months to 30 June 2026, Tadawul-filed 29 July 2026)",
+  "latest_reviewed_date": "2026-06-30",
+  "latest_reviewed_rate": 0.15265182375957986,
+  "first_forecast_rate": 0.15222463963219868,
+  "forecast_path": [
+   0.15222463963219868,
+   0.15317039170797112,
+   0.15314376648784653,
+   0.15360404640823916,
+   0.1535741682932578
+  ],
+  "note": "the forecast opens at 15.22% against the H1-2026 reviewed actual of 15.27%, 0.28% relative below it, and rises from there to 15.36% by FY2030E, so the minimum of the explicit window is its opening year. The filed record is FY2023 12.43%, FY2024 14.28% and FY2025 16.24% audited, and H1-2025 16.72% against H1-2026 15.27% reviewed. The forecast therefore sits 1.02 points below the FY2025 audited year and does not return to it: that year carried the FY2024-25 metal tailwind, the company has since filed a half in which gross profit was flat on revenue up 9.5%, and the rule anchors on the reviewed half rather than the full year before it. The margin is an output of a metal-content-plus-conversion-spread stack, not an input; the driver is the cables conversion spread, and cables is 97.6% of FY2025 revenue."
+ },
  "step0": {
   "windows_scored": 10,
   "windows_prebreak_dropped": 0,

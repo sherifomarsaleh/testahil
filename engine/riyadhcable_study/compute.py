@@ -1118,6 +1118,61 @@ for _k, _v in _seg_gp.items():
     _m = _v / V['seg_rev_fy25'][_k]
     assert 0.0 < _m < 1.0, f'segment {_k} gross margin of {_m:.1%} is not possible'
 
+# ---- THE FORECAST ANCHOR, PRINTED WHETHER OR NOT IT FIRES --------------------
+# The rule is that a near-term REVIEWED actual outranks a stale full-year rate.
+# The latest reviewed period this study holds is the six months to 30 June 2026,
+# Tadawul-filed on 29 July 2026 -- not the FY2025 audited year, which is the
+# stale full-year print the rule is written against, and which is 97 basis points
+# HIGHER. This study already anchors there: the build calibrates the cables
+# conversion spread to the H1-2026 group margin and asserts, forty lines above,
+# that the FY2026E group margin lands within a point of it.
+#
+# Neither clause fires and the record exists so a reader can see that rather than
+# merely not-red. Clause one: the forecast opens 0.28% RELATIVE below the reviewed
+# actual, inside the 5% tolerance. Clause two: the path RISES from its opening
+# year, so its minimum IS its opening year and there is no decline to name.
+#
+# No mechanism is declared, and that is the finding rather than an omission: a
+# mechanism is owed only where the forecast reverses what the company has just
+# filed, and this one reproduces it.
+#
+# What the record does show plainly, because printing it for every study is the
+# point: the forecast sits well below the FY2025 AUDITED margin and does not
+# return to it. That is not an undeclared decline away from the latest reviewed
+# period -- it is the rule's own ordering, the reviewed half outranking the full
+# year that preceded it. The margin is an OUTPUT of a metal-content-plus-
+# conversion-spread stack, and cables is 97.6% of revenue, so the group's reviewed
+# margin is effectively the cable leg's.
+_FA_AUD = {y: hist_is[y]['gp'] / hist_is[y]['rev'] for y in ('FY23', 'FY24', 'FY25')}
+_FA_H1_25 = (H1['H1_2025_thousands']['gross_profit']
+             / H1['H1_2025_thousands']['revenue'])
+FORECAST_ANCHOR = dict(
+    rate_name='gross margin',
+    latest_reviewed_period='H1-2026, reviewed interim (six months to 30 June 2026, '
+                           'Tadawul-filed 29 July 2026)',
+    latest_reviewed_date='2026-06-30',
+    latest_reviewed_rate=float(h1_gm),
+    first_forecast_rate=float(gm[0]),
+    forecast_path=[float(x) for x in gm],
+    note=('the forecast opens at %.2f%% against the H1-2026 reviewed actual of %.2f%%, '
+          '%.2f%% relative below it, and rises from there to %.2f%% by FY2030E, so the '
+          'minimum of the explicit window is its opening year. The filed record is '
+          'FY2023 %.2f%%, FY2024 %.2f%% and FY2025 %.2f%% audited, and H1-2025 %.2f%% '
+          'against H1-2026 %.2f%% reviewed. The forecast therefore sits %.2f points '
+          'below the FY2025 audited year and does not return to it: that year carried '
+          'the FY2024-25 metal tailwind, the company has since filed a half in which '
+          'gross profit was flat on revenue up %.1f%%, and the rule anchors on the '
+          'reviewed half rather than the full year before it. The margin is an output '
+          'of a metal-content-plus-conversion-spread stack, not an input; the driver is '
+          'the cables conversion spread, and cables is %.1f%% of FY2025 revenue.'
+          % (100 * gm[0], 100 * h1_gm, -100 * (gm[0] - h1_gm) / abs(h1_gm),
+             100 * gm[-1], 100 * _FA_AUD['FY23'], 100 * _FA_AUD['FY24'],
+             100 * _FA_AUD['FY25'], 100 * _FA_H1_25, 100 * h1_gm,
+             100 * (_FA_AUD['FY25'] - gm[0]),
+             100 * (V['h1_26_rev'] / (H1['H1_2025_thousands']['revenue'] / 1000.0) - 1.0),
+             100 * V['seg_rev_fy25']['cables'] / V['rev_fy25'])))
+
+
 OUT = dict(
     meta=dict(ticker='RIYADHCABLE', tadawul_code='4142',
               company='Riyadh Cables Group Company', market='TADAWUL', currency='SAR',
@@ -1338,6 +1393,7 @@ OUT = dict(
               beta_grid=beta_grid, grid_beta=grid_beta, metal_grid=metal_grid, grid_metal=grid_metal,
               spread_grid=spread_grid, grid_spread=grid_spread, vol_grid=vol_grid, grid_vol=grid_vol,
               nwc_grid=nwc_grid, grid_nwc=grid_nwc),
+    forecast_anchor=FORECAST_ANCHOR,
     step0=step0, strike=strike, backtest=backtest,
     assert_log=LOG,
 )
