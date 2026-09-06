@@ -522,7 +522,21 @@ def apply_grade(src: str, row: dict, got: dict) -> str:
                     f"in_90:{jb(got['in_90'])}, in_50:{jb(got['in_50'])}, "
                     f"realized_quantile:{rq}, median_err:{got['median_err']:.4f},")
 
-    old_th = re.search(r'touch_hit:\{[^}]*\}', t2)
+    # AN UNGRADED ROW WRITES ITS OUTCOME PLACEHOLDER TWO WAYS AND ONLY ONE WAS
+    # ACCEPTED HERE. Every other outcome field on an open row is the scalar `null`
+    # (realized_close, in_90, realized_quantile, median_err); `touch_hit` is the one
+    # that is usually pre-seeded as a DICT instead. Measured 06-Sep-2026: 321 of 333
+    # ledger rows carry the dict shape and 12 carry `touch_hit:null` — DU, MODON,
+    # ARCC, SCEM, AMOC and SWDY, all first-coverage strikes of 5-7 Aug-2026, both
+    # horizons each. Every one of the twelve was UNGRADABLE: compute() priced the row
+    # correctly and the writer then refused the row it had just priced, so the defect
+    # surfaced only when the first of them matured. The placeholder's SHAPE carries no
+    # information about the outcome — it is the same empty slot either way — so both
+    # are accepted and both are replaced by the dict a graded row must carry. This
+    # changes NO computed value: `got` is untouched and the grade is what compute()
+    # returned. [R-ENF-04]: the previous regex returned an empty match and the row was
+    # skipped, which read as "nothing to do" rather than as a refusal.
+    old_th = re.search(r'touch_hit:(?:\{[^}]*\}|null)', t2)
     if not old_th:
         raise SystemExit('touch_hit block not found')
     th = ', '.join(f'"{k}":{jb(got["touch_hit"][k])}' for k, _ in REL)
