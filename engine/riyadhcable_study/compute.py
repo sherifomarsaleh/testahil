@@ -1326,6 +1326,13 @@ OUT = dict(
     lenses=lenses, central=central, span=[lo, hi], spot=SPOT,
     retired_blend_value=RETIRED_BLEND_VALUE,
     lens_record=dict(**{'class': 'cement and heavy industrial'},
+        # [R-LENS-03] THE RECORD DECLARES ITS CENTRAL, so the identity clause
+        # actually RUNS. assert_lens_design() wraps 'the primary's value IS the
+        # central' in `if central is not None`, so a record exposing no central
+        # skipped the one clause that catches a weighted blend -- eight studies
+        # were in that state and every blend-carrier sat among them. Computed
+        # from the same quantity the primary carries, never typed.
+        central=float(central),
         primary=dict(
             kind='dcf', two_sided=False, value=float(central),
             range={'low': float(lo), 'high': float(hi)},

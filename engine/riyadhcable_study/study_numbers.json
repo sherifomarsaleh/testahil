@@ -1541,6 +1541,7 @@
  "retired_blend_value": 107.99167420591954,
  "lens_record": {
   "class": "cement and heavy industrial",
+  "central": 124.89484596677892,
   "primary": {
    "kind": "dcf",
    "two_sided": false,

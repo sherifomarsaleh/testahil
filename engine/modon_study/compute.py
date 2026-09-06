@@ -1419,6 +1419,13 @@ D['panel_centre'] = sorted([e1_ps, e2_ps, e3_ps])[1]
 # policy note itself is not in this directory, so the basis is flagged for
 # confirmation from the filing at the next full pass.
 lens_record = dict(**{'class': 'real-estate developer, off-plan, percentage-of-completion'},
+    # [R-LENS-03] THE RECORD DECLARES ITS CENTRAL, so the identity clause
+    # actually RUNS. assert_lens_design() wraps 'the primary's value IS the
+    # central' in `if central is not None`, so a record exposing no central
+    # skipped the one clause that catches a weighted blend -- eight studies
+    # were in that state and every blend-carrier sat among them. Computed
+    # from the same quantity the primary carries, never typed.
+    central=float(central),
     class_evidence=(
         'the study models development revenue as a disclosed backlog converting at a '
         'steady rate anchored on the pace recognised in the half; the accounting-policy '

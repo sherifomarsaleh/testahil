@@ -2834,6 +2834,7 @@
  "retired_blend_value": 12.74476657013216,
  "lens_record": {
   "class": "telecom operator",
+  "central": 16.577799870736467,
   "primary": {
    "kind": "dcf",
    "two_sided": false,

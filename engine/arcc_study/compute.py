@@ -2697,6 +2697,13 @@ FORECAST_ANCHOR = dict(
 
 LENS_RECORD = {
     'class': 'cement and heavy industrial',
+    # [R-LENS-03] THE RECORD DECLARES ITS CENTRAL, so the identity clause
+    # actually RUNS. assert_lens_design() wraps 'the primary's value IS the
+    # central' in `if central is not None`, so a record exposing no central
+    # skipped the one clause that catches a weighted blend -- eight studies
+    # were in that state and every blend-carrier sat among them. Computed
+    # from the same quantity the primary carries, never typed.
+    'central': fv_dcf,
     'primary': dict(kind='dcf', value=fv_dcf,
                  range=dict(low=LR[PRIMARY]['bear'], high=LR[PRIMARY]['bull']),
                  range_note='the cash-flow lens with the EBITDA margin flexed across '

@@ -1997,6 +1997,7 @@
  "retired_blend_value": 71.20058620794018,
  "lens_record": {
   "class": "diversified industrial with a contracting arm",
+  "central": 55.48217612662315,
   "primary": {
    "kind": "dcf",
    "two_sided": false,
