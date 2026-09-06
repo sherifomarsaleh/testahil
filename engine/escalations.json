@@ -83,12 +83,14 @@
    "done_meanwhile": "The gap gate was re-pointed at the latest known price per its own rule text rather than at the spot each study froze at strike, and it now prints the age of the library it compared against, so a stale comparison reports as stale instead of passing in silence. The finding on ARCC and AMOC is recorded with its arithmetic.",
    "default_if_no_answer": "Continue on the 6-August library and state its date wherever a gap is quoted; do NOT type the supplied prices into the library, and do not audit ARCC or AMOC at a price the house cannot date.",
    "default_date": "2026-09-10",
-   "status": "open",
+   "status": "resolved",
    "resolves_when": {
     "file": "engine/raw_ohlc/EG/ARCC.csv",
     "must_contain": "09/01/2026"
    },
-   "resolves_when_note": "the 1 September 2026 session, the date the principal's own quoted price carries. The first marker written here was '/2026', which the file already contained \u2014 the gate refused it immediately, which is the clause this register exists for working on the person writing the register."
+   "resolved": "2026-09-06",
+   "answer_written_to": "engine/raw_ohlc/EG/ARCC.csv",
+   "note": "CLOSED BY THE ARCC EXPORT OF 6 SEPTEMBER 2026, AND CLOSED ONLY AS FAR AS IT ACTUALLY REACHES. The principal supplied a TradingView EGX_ARCC_1D export covering 2014-03-25 to 2026-09-06; twenty sessions after the library's own 06-08-2026 end were spliced (09/01/2026 among them, which is this entry's marker) and ARCC's latest known price is now the 06-09-2026 close of 76.60 rather than a figure typed from a chat message. THE HISTORICAL PORTION WAS NOT TAKEN: that export is back-adjusted (its 2014 closes run 0.46x the library's, its early-2026 closes 0.91x, the ratio a step function of past distributions) and the persistent library is unadjusted, so splicing it wholesale would have back-adjusted twelve years of a calibration panel \u2014 which the roll-forward protocol forbids in those words. AMOC and EGCH are NOT closed by this and their libraries still stop at 06-08-2026; they are carried forward as their own entry."
   },
   {
    "key": "ELEC-primary-financial-statements",
@@ -254,13 +256,14 @@
    "done_meanwhile": "The other four names on the retired terminal construction were all re-tested and closed out with their reasons written into their own study directories (ADNOCLS, ADNOCDIST, BOROUGE, AMR), the valuation-gap gate's dead exemption block was found and enforced, and the seven studies unreadable to that gate were diagnosed into three groups with different fixes. AMOC's own arithmetic is recorded in its evidence file so the rebuild is one sentence away rather than a fresh start: depreciable gross cost 2,665,058,507 over an annualised charge of 135,494,744 gives an implied life of 19.67 years, and accumulated depreciation of 1,847,794,418 over the same charge gives a naive age of 13.64 against a half-life of 9.83.",
    "default_if_no_answer": "AMOC stays on the terminal ratchet with its reason, exactly as ADNOCLS and the other three do. It is NOT rebuilt on the naive age even though the error direction would be safe \u2014 an overstated age overstates maintenance and understates the value \u2014 because [L-328] already records a name where that argument was made and the figure was withdrawn anyway.",
    "default_date": "2026-09-12",
-   "status": "open",
+   "status": "resolved",
    "resolves_when": {
     "file": "engine/amoc_study/filings/AUDITED_EXTRACT.md",
     "must_contain": "DEPRECIATION POLICY NOTE RECEIVED"
    },
-   "answer_written_to": "engine/amoc_study/TERMINAL_EVIDENCE_05-09-2026.md",
-   "note": "The ARCC precedent is the pattern: the company's own site refused at the proxy, the attempt was logged either way, and the principal supplying the document IS the rule working rather than a failure of it."
+   "answer_written_to": "engine/amoc_study/filings/AUDITED_EXTRACT.md",
+   "note": "CLOSED BY THE LADDER, NOT BY THE PRINCIPAL, AND THAT IS THE INSTRUCTIVE PART. The 5 September block rested on a probe pointed at a hostname that does not resolve; AMOC's investor site is amoceg.com, it answers 200 unauthenticated, and the audited statements are one click from its homepage. Note 5/2 was read by OCR off the rendered pixels (the filings carry a zero-character text layer) and is recorded in engine/amoc_study/filings/AUDITED_EXTRACT.md under this entry's own marker, on origin/claude/arcc-fundamental-calibration-ebhtjk, and reaches main with that branch. This entry was left OPEN for a day after it had been answered, and the gate \u2014 which re-checks every entry's marker across every live ref \u2014 is what caught it here rather than a person remembering. [R-IND-01]: THE REPOSITORY IS NOT ONE REF.",
+   "resolved": "2026-09-06"
   },
   {
    "key": "GBCO-audited-statements-not-reachable-from-this-container",
