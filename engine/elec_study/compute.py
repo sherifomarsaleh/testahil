@@ -794,8 +794,9 @@ FORECAST_ANCHOR = dict(
          'quoted above are not filed rates: revenue and net profit are vendor and press '
          'prints, and everything between them is solved or typed — the FY2025 EBITDA rests '
          'on a finance cost derived to close the profit and loss to a reported net profit, '
-         'and this study\'s own review prices that single unsourced input at about 40%% of '
-         'the FY2025 conversion rate the forecast is calibrated against. The comparison this '
+         'and this study\'s own review shows the FY2025 conversion rate the forecast is '
+         'calibrated against moving materially with that single unsourced input, which is '
+         'that review\'s arithmetic and not this model\'s. The comparison this '
          'record draws is therefore between a forecast and a reconstruction, and it is '
          'recorded in those terms.'
          % (100 * _fcst_mgn[0], 100 * _q1_mgn,
