@@ -176,6 +176,20 @@ jobs:
         # defaulting it to zero, and asserts the LEDGER is byte-identical across
         # the pass. A nonzero exit means a gate refused, not that nothing ran.
 
+      # A LIBRARY LANDING MOVES THE PRICE BLOCKS TOO, so they are regenerated in
+      # the SAME PASS as the pages that read them -- the discipline their own
+      # docstrings state and the one the 29-Jul technical-read rule closed a
+      # layer up. Measured twice on 06-09-2026: a fresh AMOC export, then a
+      # fresh ARCC one, each landed between a rebuild and a merge and left the
+      # committed block a row behind, red on the gate that exists to catch
+      # exactly that. Regenerating here is what stops it recurring; the gate
+      # then only ever fires on a pass somebody skipped.
+      - name: Regenerate the price and funnel blocks onto the current library
+        run: |
+          python3 scripts/build_prices_block.py
+          python3 scripts/build_screen_block.py
+          cp assets/data.js legacy/assets/data.js
+
       - name: Commit the refreshed pages
         run: |
           git config user.name "testahil-bot"

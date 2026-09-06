@@ -13,10 +13,14 @@ clip 2.5 are the engine's signal socket. The record-strength cuts 22 and 40 are
 new number chosen here would be a free parameter with no evidence behind it,
 which the promotion rule forbids.
 
-THERE IS DELIBERATELY NO STALENESS CUTOFF. How old a library or a price is gets
-REPORTED as a date and never decides anything: staleness is a data-supply fact, a
-stale library still yields a coherent read, and a rule carrying a threshold
-schedules its own staleness. Gate 1 asks only whether the inputs EXIST.
+NOTHING HERE IS STOPPED FOR BEING OLD OR FOR BEING IN PROGRESS, and both are
+deliberate. Prices are entered by hand roughly monthly and the fundamental
+rebuild takes days per name; a tool that dead-ends every name touched by either
+is a tool that answers nothing on the day it is asked. So AGE IS PRINTED, NOT
+JUDGED — the date of the price and the last session of the library sit on every
+row — and a name whose study is being rebuilt is FLAGGED and still evaluated on
+the published number, which is the number the site shows and the only one a
+reader can act on. Gate 1 asks only whether the inputs EXIST at all.
 
 NOT A RATING AND NOT A RECOMMENDATION. It records what the published numbers say
 about each name against the rules already written down; the gap lens has no
@@ -185,12 +189,10 @@ def classify(v, mom, pending):
            "fair": fair, "fairAsof": v["fairAsof"], "rebuilt": v["_k"] in pending,
            "n": band.get("n"), "c90": band.get("c90"), "flag": band.get("flag")}
 
-    # GATE 1 — do the inputs exist at all? (age is reported, never gated)
+    # GATE 1 — do the inputs EXIST? Age and work-in-progress are flags, not stops.
     missing = []
     if not fair:
         missing.append("no fair value")
-    if not v["fairAsof"]:
-        missing.append("fair value undated")
     if z is None:
         missing.append("momentum not computable")
     if not band.get("n"):
@@ -199,12 +201,12 @@ def classify(v, mom, pending):
         row.update(stop="inputs", why="; ".join(missing))
         return row
 
-    # A published fair value the house has already moved past cannot carry a
-    # candidate, whichever way it points.
+    notes = []
+    if not v["fairAsof"]:
+        notes.append("fair value carries no machine-readable date")
     if row["rebuilt"]:
-        row.update(stop="superseded",
-                   why="a rebuilt study supersedes the published fair value and has not published")
-        return row
+        notes.append("a rebuilt study is in progress; this is the published number")
+    row["notes"] = "; ".join(notes) or None
 
     # GATE 2 — the size cap this name's own record earns
     n = band["n"]
@@ -264,7 +266,7 @@ def js(v):
 
 
 FIELDS = ["px", "pxDate", "lib", "z", "trend", "gap", "fair", "fairAsof",
-          "rebuilt", "n", "c90", "flag", "cap", "stop", "why"]
+          "rebuilt", "notes", "n", "c90", "flag", "cap", "stop", "why"]
 
 
 def render(rows):
@@ -301,7 +303,7 @@ def main():
     for r in rows.values():
         tally[r["stop"] or "clears"] = tally.get(r["stop"] or "clears", 0) + 1
     print("SCREEN written: %d of %d covered names" % (got["s"], got["t"]))
-    for kk in ["inputs", "superseded", "gap", "momentum", "lenses", "clears"]:
+    for kk in ["inputs", "gap", "momentum", "lenses", "clears"]:
         if kk in tally:
             print("  stops at %-9s %3d" % (kk, tally[kk]))
     clear = sorted(k for k, r in rows.items() if r["stop"] is None)
