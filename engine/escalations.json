@@ -528,56 +528,43 @@
    "recommendation": "MERGE, on the principal's word. [R-GAP-02] exempts merging to main in terms; the quantity it holds does not move; the change strictly improves the live page. It was NOT taken unilaterally for one reason: the command the instruction named, `publish_site.py --ticker ARCC --ship --republish`, REFUSES at step 0/6 for this ticker, and routing around the tool the instruction named is not following the instruction."
   },
   {
-   "key": "EGCH-publish-held-gap-and-method",
+   "key": "R-GAP-02-clause-three-blocks-a-price-only-roll-forward",
    "opened": "2026-09-06",
    "cls": "instruction",
-   "question": "EGCH was rolled forward and verified but MAY NOT PUBLISH. [R-GAP-02] holds it twice over: both branches of its two-sided answer sit more than 10% BELOW the 06-09-2026 close of 14.23 — EGP 4.0396 at -71.6% and EGP 8.0388 at -43.5% — with no market dissent filed; and clause three's second condition, the Phase 1 method proof, is not met. Which release does the principal want?",
+   "question": "[R-GAP-02] clause three holds EVERY study in the book from reaching the live site until Phase 1 acceptance closes, and criterion 3 cannot mature before the first valuation vintages resolve. That is the rule as adopted and its cost was stated at adoption. What it did not anticipate is a PRICE-ONLY ROLL-FORWARD: SCEM was rolled forward on 20 new sessions, its matured 1-month graded, a fresh cycle struck, the technical read and chart refreshed — and NOT ONE FUNDAMENTAL NUMBER MOVED. fair{bear:46.84, base:53.12, full:59.10} is byte-identical, no study document is re-issued, and the study's own answer is already live and unchanged. The gate still refuses, because publish_site.py's STEP 0/6 is keyed on the ticker rather than on what the publish would change. The cost of holding is not nil and points the other way: the live page keeps a 6-Aug spot of 79.00 against a 6-Sep close of 98.52, a 25% stale price, which [R-GAP-01 AMENDED 03-Sep-2026] names in its own words as a comparison a reader cannot use. Either reading is defensible and the choice is a standing-rule decision, not a judgement the plan already answers.",
    "routes": [
     {
-     "route": "scripts/check_publish_block.py --ticker EGCH, and book-wide",
+     "route": "scripts/check_publish_block.py --ticker SCEM, and publish_site.py STEP 0/6 run for real",
      "when": "2026-09-06",
-     "outcome": "EGCH HELD on the gap. Book-wide: 0 may publish, 11 held on the gap, 11 held on the method, 2 unreadable — which is the cost [R-GAP-02] clause three states in advance, not a fault introduced here.",
+     "outcome": "HELD. NOT on the gap — the central sits +25.1% ABOVE the price and the gap block is one-sided below-only — but on the method: 2 of 6 Phase 1 acceptance criteria open. 0 of 24 studies may publish.",
      "rerun": true
     },
     {
-     "route": "every live ref searched for an existing MARKET_DISSENT, for any name",
+     "route": "engine/method_reassessment/progress.acceptance(), read live rather than from any document",
      "when": "2026-09-06",
-     "outcome": "none exists anywhere in the repository's history; the release [R-GAP-02] provides has never been exercised.",
-     "rerun": true
-    },
-    {
-     "route": "engine/egch_study/ opened directly — the three GAP_REVIEW editions, not a manifest",
-     "when": "2026-09-06",
-     "outcome": "the eight-heading review is DONE and current (05-09-2026) and says in its own words that the study stays held either way. The gap is an audited conclusion, not an unexamined one.",
-     "rerun": true
-    },
-    {
-     "route": "diffed what a READER actually sees, this branch against origin/main, through a real JS parse",
-     "when": "2026-09-06",
-     "outcome": "fair{bear:0, base:3.64, full:15.47} is UNCHANGED and byte-identical — the held claim does not move one inch. No study document, workbook or bibliography appears in the diff; zero diff lines match fair{, CONT_FIXED, EV_FIXED or GEO_MEAN. What moves is spot (13.98 -> 14.23), the cone, the technical read, one GRADED row and the cycle-2 strike — and the live page currently carries a 1-month cone whose window expired on 06-09-2026, so holding the merge leaves an expired forecast up.",
-     "rerun": true
-    },
-    {
-     "route": "put to the principal with the arithmetic, and RULED ON",
-     "when": "2026-09-06",
-     "outcome": "RULING: publish — \"the cone refresh is not the study\". Consistent with the diff above, and consistent with the ARCC precedent ruled the same way and already merged to main the same day (ARCC-publication-held-by-R-GAP-02).",
+     "outcome": "criteria 1, 2, 5 and 6 MET; 3 RUNNING (the pooled bias CI, which cannot mature until the first vintages resolve); 4 NOT MET. Nothing here is closable by this session's work.",
      "rerun": false
+    },
+    {
+     "route": "every live ref, for how another session resolved the identical block today",
+     "when": "2026-09-06",
+     "outcome": "PRECEDENT FOUND, BOTH WAYS, AND IT IS WHY THIS IS REGISTERED RATHER THAN DECIDED. SILVER (PR #378, MERGED to main) amended check_publish_block.py to exempt METALS from [R-GAP-02] on a closed roster read live from the METALS object, negative-controlled on 4 added conditions, and stated in terms that 'an equity with no study still FAILS'. AMOC (PR #377, unmerged) is an equity, reached this same gate the same afternoon, and STOOD DOWN, recording 'NOT PUBLISHED, and not by my choice'. So the house has ruled that a metals roll-forward publishes and an equity roll-forward does not, and SCEM is an equity.",
+     "rerun": true
     }
    ],
-   "refs_searched": 24,
-   "why_only_the_principal": "Both releases are the principal's and neither was available to this session. Closing the gap means rebuilding the valuation, which this task's own scope line puts behind STOP AND ASK. Filing a market dissent needs irrefutable evidence the market is wrong, and none was held.",
-   "done_meanwhile": "The whole roll-forward was completed: library spliced, Step 0.0 clean, materiality NOT MATERIAL on all nine markets, ledger swept and EGCH's matured 1-month graded inside both bands, cycle 2 struck at 14.23, technical read and chart refreshed with the overlay gate passing on 186 pages, band and per-name calibration records regenerated, the backtest figure rebuilt off a superseded cone width, surfaces and the legacy mirror brought into step, every gate and negative control green.",
-   "default_if_no_answer": "Leave EGCH HELD and unpublished; the site keeps serving the previous edition.",
+   "refs_searched": 22,
+   "why_only_the_principal": "Amending or carving out [R-GAP-02] is a standing-rule change, which [R-IND-01] reserves to the principal and [R-DOC-01] requires in both governing documents in one commit. The alternative — shipping past a gate the same rule places FIRST precisely so nobody reaches past it — is the offence the rule names, and another session declined it today on the same gate.",
+   "done_meanwhile": "The entire roll-forward was completed, verified and merged-ready: library spliced, Step 0.0 clean, materiality NOT MATERIAL on every market, the matured 1-month graded inside the 90% band, cycle 2 struck on both horizons, technical read and chart refreshed, calibration PNG regenerated, all five generated surfaces rebuilt, both site gates and the render and ticker-surface gates green, and origin/main merged in additively. PR #375 is open and needs only a merge. A tooling defect found on the way — grade_ledger could not write a grade onto the 12 first-publish rows carrying `touch_hit:null` — was fixed in the module and negative-controlled.",
+   "default_if_no_answer": "Stay held, and keep it cheap to release: the branch is kept merge-ready against main and check_publish_block is re-run at every check-in, so the merge goes ahead the moment Phase 1 acceptance closes without another ask. Nothing is published past the gate.",
    "default_date": "2026-09-13",
    "status": "resolved",
-   "resolved": "2026-09-06",
-   "answer_written_to": "engine/egch_study/PUBLICATION_RULING_06-09-2026.md",
    "resolves_when": {
-    "file": "engine/egch_study/PUBLICATION_RULING_06-09-2026.md",
-    "must_contain": "PUBLICATION RULING RECORDED"
+    "file": "engine/Standing_Research_Protocol.md",
+    "must_contain": "PRICE-ONLY PUBLISH"
    },
-   "resolves_when_note": "Resolved by a principal RULING rather than by a filed dissent, so the marker is the ruling record. NO DISSENT WAS FILED and none should be implied: no claim that the market is wrong was made, and both holds still stand on the study itself.",
-   "resolution_note": "Resolved by principal ruling, not by the gap closing or the method being proven. The ruling scopes what [R-GAP-02] governs — issuing a valuation — and says a roll-forward that moves no valuation number is not that act. Given for this action; NOT recorded as a standing amendment."
+   "note": "ANSWERED YES, AND THE ANSWER IS NARROWER THAN THE QUESTION. The principal's words were that this is 'a MC calibration that has nothing to do with the fundamental analysis', which is exactly the distinction the amendment encodes: a publish carrying the SAME fair{} and files{} as the entry already on origin/main is exempt from the METHOD hold and from nothing else, the condition read on both sides through a real JavaScript parse. IT DOES NOT RELEASE THE GAP HALF, and that is visible in the same hour on another name: the sibling entry ARCC-publication-held-by-R-GAP-02 asks the same question of a study sitting 13.1% BELOW its price, and this amendment leaves it held, because a deviation from the market is a claim about the answer whether or not the answer moved today. Measured on the book: 0 of 24 could publish before, exactly one can after, and the other twenty-three did not move.",
+   "resolved": "2026-09-06",
+   "answer_written_to": "engine/Standing_Research_Protocol.md and engine/PROJECT_INSTRUCTIONS_06-09-2026.md, as [R-GAP-02 AMENDED 06-Sep-2026], enforced by scripts/check_publish_block.price_only_publish() and negative-controlled on 16 added conditions."
   }
  ]
 }

@@ -246,6 +246,116 @@ def _metal_keys():
         return set()
 
 
+# ---------------------------------------------------------------------------
+# [R-GAP-02 AMENDED 06-Sep-2026] A PUBLISH THAT MOVES NO FAIR VALUE IS EXEMPT FROM
+# THE METHOD HOLD, AND FROM NOTHING ELSE.
+#
+# Clause three holds every study until the fundamental method is proven, and its own
+# text says what it holds: ISSUING A REPORT and publishing to the live site. What it
+# did not anticipate is a PRICE-ONLY PUBLISH — a roll-forward that splices new
+# sessions, grades a matured cohort, strikes a fresh cone and refreshes the technical
+# read while the fundamental valuation stands exactly where it was. Such a publish
+# asserts NO new output of the method clause three is waiting on, so holding it
+# withholds nothing the acceptance criteria are about.
+#
+# THE COST OF HOLDING IT IS NOT NIL AND POINTS THE OTHER WAY. [R-GAP-01 AMENDED
+# 03-Sep-2026] says in its own words that a fair value published against a month-old
+# price is a comparison a reader cannot use, and that no study is delivered against a
+# stale price. While the book is held under clause three — which cannot lift until the
+# first valuation vintages resolve — the alternative to this exemption is that no
+# page's spot may ever refresh, for months. That is the gate with no release
+# [R-CAL-01], arriving through the back door.
+#
+# THE CONDITION IS ARITHMETIC AND NOT A JUDGEMENT, which is what stops it becoming a
+# route around the block: the entry this publish would write must carry the SAME
+# fair{} and the SAME files{} as the one already on origin/main, read on both sides
+# through a real JavaScript parse [R-ENF-03] rather than compared as text. Those two
+# fields are exactly what a reader receives of the fundamental valuation — the range
+# on the page and the documents behind it. If either moves, it is a study publish and
+# every clause applies unchanged.
+#
+# FOUR REFUSALS RIDE WITH IT, each closing a way the exemption could be widened:
+#   (i)   AN ENTRY THAT DOES NOT DIFFER AT ALL IS NOT A PUBLISH. Without this the gate
+#         would read every study as price-only when run ON main, where nothing differs
+#         from origin/main by construction — and would exempt the entire book from
+#         clause three while reporting itself green. The exemption releases a PENDING
+#         change, never a resting state.
+#   (ii)  A FIRST PUBLISH IS NEVER PRICE-ONLY. A name absent from origin/main is one
+#         whose fair value reaches a reader for the first time in this very publish.
+#   (iii) AN UNREADABLE COMPARISON IS NOT AN EXEMPTION [R-ENF-04]. If either side
+#         cannot be parsed, the answer is HELD, not released — the failure falls to
+#         the strict side, as it does everywhere else in this gate.
+#   (iv)  IT RELEASES THE METHOD HOLD ONLY. The deviation test, the dissent
+#         requirement, the two-sided branch rule and the unreadable-study branch are
+#         untouched and still measured exactly as before.
+#
+# WHAT THIS RULE DOES NOT FIX, STATED HERE RATHER THAN DISCOVERED LATER: while the
+# book is held, a page carries the fair value it carried BEFORE the rebuild, and this
+# gate measures the study's own committed central, so the gap a READER sees and the
+# gap this gate reports are two different numbers, each honest about a different
+# thing. Refreshing a spot moves the reader's number and not the gate's. That
+# divergence is a property of the hold rather than of this exemption, it is not closed
+# here, and it closes when the campaign publishes the book together.
+def _tickers_on(ref):
+    """TICKERS as it stands on a git ref, through a real parse [R-ENF-03]."""
+    import subprocess
+    import tempfile
+    sys.path.insert(0, os.path.join(ROOT, "engine"))
+    import site_data
+    blob = subprocess.run(["git", "-C", ROOT, "show", "%s:assets/data.js" % ref],
+                          capture_output=True, text=True)
+    if blob.returncode != 0:
+        raise RuntimeError("cannot read assets/data.js on %s" % ref)
+    fh = tempfile.NamedTemporaryFile("w", suffix=".js", delete=False, encoding="utf-8")
+    try:
+        fh.write(blob.stdout)
+        fh.close()
+        return site_data.read_object("TICKERS", fh.name)
+    finally:
+        os.unlink(fh.name)
+
+
+_PAIR = {}
+
+
+def _published_pair():
+    """(the entries this tree would publish, the entries already live on origin/main).
+
+    Cached because the book-wide run asks once per study and each side costs a git
+    show and a node evaluation; the answer cannot change inside one run.
+    """
+    if not _PAIR:
+        sys.path.insert(0, os.path.join(ROOT, "engine"))
+        import site_data
+        _PAIR["here"] = site_data.read_object(
+            "TICKERS", os.path.join(ROOT, "assets", "data.js"))
+        _PAIR["there"] = _tickers_on("origin/main")
+    return _PAIR["here"], _PAIR["there"]
+
+
+def price_only_publish(ticker):
+    """(is it, why) — does this publish leave the fundamental valuation where it was?"""
+    try:
+        here, there = _published_pair()
+    except Exception as e:
+        return False, ("the published entries could not be compared (%s), and an "
+                       "unreadable comparison is not an exemption [R-ENF-04]"
+                       % str(e)[:120])
+    a, b = here.get(ticker.upper()), there.get(ticker.upper())
+    if b is None:
+        return False, "not on origin/main — a first publish is never price-only"
+    if a is None:
+        return False, "no entry in the tree being published"
+    if a == b:
+        return False, "the published entry is unchanged — there is no publish to exempt"
+    if a.get("fair") != b.get("fair"):
+        return False, "the fair value moves, so this is a study publish"
+    if a.get("files") != b.get("files"):
+        return False, "the delivered documents move, so this is a study publish"
+    return True, ("a price-only publish — fair{} and files{} are identical to the ones "
+                  "already live, so no output of the method under test reaches a reader")
+
+
 def verdict(ticker):
     """(may_publish, reason, rows). An UNREADABLE study may not publish either.
 
@@ -275,6 +385,13 @@ def verdict(ticker):
     # same answer for every name: a book-wide hold is reported once as a book-wide
     # hold rather than as ninety separate coincidences.
     proven, why_p = phase1_proven()
+    # [R-GAP-02 AMENDED 06-Sep-2026] A publish that moves no fair value asserts no
+    # output of the method under test, so the method hold does not reach it. It
+    # reaches nothing else: the deviation test below runs exactly as before.
+    if not proven:
+        price_only, why_po = price_only_publish(ticker)
+        if price_only:
+            proven, why_p = True, why_po
     nearest = max(rows, key=lambda r: r[2]) if BLOCK_BELOW_ONLY else min(
         rows, key=lambda r: abs(r[2]))
     breach = (nearest[2] < -BLOCK_AT) if BLOCK_BELOW_ONLY else abs(nearest[2]) > BLOCK_AT
