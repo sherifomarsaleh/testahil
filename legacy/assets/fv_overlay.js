@@ -1340,98 +1340,6 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
-   "ticker": "AMOC",
-   "name": "Alexandria Mineral Oils",
-   "code": "EGX:AMOC",
-   "ccy": "EGP",
-   "spot": 9.1,
-   "anchor_date": "2026-08-06",
-   "fv_asof": "2026-08-06",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 5.53,
-   "fv_base": 8.64,
-   "fv_full": 12.48,
-   "gap_base_pct": -5.1,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.111209,
-    "mu_h": 0.007663,
-    "G": {
-     "bear": -4.48,
-     "base": -0.47,
-     "full": 2.84
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.001,
-     "base": 0.2601,
-     "full": 0.008
-    },
-    "p_touch": {
-     "bear": 0.0015,
-     "base": 0.4642,
-     "full": 0.0124
-    },
-    "required_cagr": {
-     "bear": -0.9975,
-     "base": -0.4634,
-     "full": 43.2668
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0016
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.1929,
-    "mu_h": 0.024961,
-    "G": {
-     "bear": -2.58,
-     "base": -0.27,
-     "full": 1.64
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0086,
-     "base": 0.3145,
-     "full": 0.0546
-    },
-    "p_touch": {
-     "bear": 0.0161,
-     "base": 0.6419,
-     "full": 0.0905
-    },
-    "required_cagr": {
-     "bear": -0.8636,
-     "base": -0.1874,
-     "full": 2.5375
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00293
-   },
-   "market": "EG"
-  },
-  {
    "ticker": "ALPHADHABI",
    "name": "Alpha Dhabi Holding",
    "code": "ADX:ALPHADHABI",
@@ -1898,8 +1806,8 @@ const FV_OVERLAY = {
    "ccy": "EGP",
    "spot": 59,
    "anchor_date": "2026-08-06",
-   "fv_asof": "2026-08-06",
-   "fv_lag_days": 0,
+   "fv_asof": "2026-06-30",
+   "fv_lag_days": 37,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 49.53,
@@ -3456,98 +3364,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "QNB",
-   "name": "QNB Group",
-   "code": "QSE:QNBK",
-   "ccy": "QAR",
-   "spot": 17.15,
-   "anchor_date": "2026-08-05",
-   "fv_asof": "2026-07-05",
-   "fv_lag_days": 31,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 14,
-   "fv_base": 18.76,
-   "fv_full": 28.5,
-   "gap_base_pct": 9.4,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 6.0,
-    "width_cal": 0.958,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 22,
-    "sigma_h": 0.059263,
-    "mu_h": 0.002911,
-    "G": {
-     "bear": -3.42,
-     "base": 1.51,
-     "full": 8.57
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0027,
-     "base": 0.0615,
-     "full": 0.0
-    },
-    "p_touch": {
-     "bear": 0.004,
-     "base": 0.0947,
-     "full": 0.0
-    },
-    "required_cagr": {
-     "bear": -0.9124,
-     "base": 1.9351,
-     "full": 442.5768
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00136
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.101579,
-    "mu_h": 0.010441,
-    "G": {
-     "bear": -2.0,
-     "base": 0.88,
-     "full": 5.0
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0211,
-     "base": 0.188,
-     "full": 0.0005
-    },
-    "p_touch": {
-     "bear": 0.0371,
-     "base": 0.321,
-     "full": 0.0009
-    },
-    "required_cagr": {
-     "bear": -0.5559,
-     "base": 0.4318,
-     "full": 6.6265
-    },
-    "hurdle_rf": 0.0425,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00111
-   },
-   "market": "QA"
-  },
-  {
    "ticker": "DU",
    "name": "Emirates Integrated Telecommunications Company PJSC",
    "code": "DFM:DU",
@@ -4374,6 +4190,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00402
    },
    "market": "EG"
+  },
+  {
+   "ticker": "QNB",
+   "name": "QNB Group",
+   "code": "QSE:QNBK",
+   "ccy": "QAR",
+   "spot": 16.67,
+   "anchor_date": "2026-09-06",
+   "fv_asof": "2026-07-05",
+   "fv_lag_days": 63,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 14,
+   "fv_base": 18.76,
+   "fv_full": 28.5,
+   "gap_base_pct": 12.5,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 6.0,
+    "width_cal": 0.958,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.057216,
+    "mu_h": 0.002995,
+    "G": {
+     "bear": -3.05,
+     "base": 2.06,
+     "full": 9.37
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0045,
+     "base": 0.0244,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0067,
+     "base": 0.0373,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.8769,
+     "base": 3.1264,
+     "full": 622.6072
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00116
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.100597,
+    "mu_h": 0.01074,
+    "G": {
+     "bear": -1.74,
+     "base": 1.17,
+     "full": 5.33
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0325,
+     "base": 0.1195,
+     "full": 0.0003
+    },
+    "p_touch": {
+     "bear": 0.0577,
+     "base": 0.2045,
+     "full": 0.0006
+    },
+    "required_cagr": {
+     "bear": -0.5025,
+     "base": 0.6039,
+     "full": 7.5435
+    },
+    "hurdle_rf": 0.0425,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00219
+   },
+   "market": "QA"
   },
   {
    "ticker": "FERTIGLB",
@@ -6666,6 +6574,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00174
    },
    "market": "AE"
+  },
+  {
+   "ticker": "AMOC",
+   "name": "Alexandria Mineral Oils",
+   "code": "EGX:AMOC",
+   "ccy": "EGP",
+   "spot": 9.1,
+   "anchor_date": "2026-08-06",
+   "fv_asof": "2026-08-06",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 4.09,
+   "fv_base": 5.95,
+   "fv_full": 8.52,
+   "gap_base_pct": -34.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.111209,
+    "mu_h": 0.007663,
+    "G": {
+     "bear": -7.19,
+     "base": -3.82,
+     "full": -0.59
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0001,
+     "base": 0.002,
+     "full": 0.2162
+    },
+    "p_touch": {
+     "bear": 0.0002,
+     "base": 0.0028,
+     "full": 0.3787
+    },
+    "required_cagr": {
+     "bear": -0.9999,
+     "base": -0.9939,
+     "full": -0.5463
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.0016
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.1929,
+    "mu_h": 0.024961,
+    "G": {
+     "bear": -4.15,
+     "base": -2.2,
+     "full": -0.34
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0013,
+     "base": 0.0149,
+     "full": 0.2849
+    },
+    "p_touch": {
+     "bear": 0.0023,
+     "base": 0.0268,
+     "full": 0.5753
+    },
+    "required_cagr": {
+     "bear": -0.9592,
+     "base": -0.8172,
+     "full": -0.2316
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00293
+   },
+   "market": "EG"
   },
   {
    "ticker": "BURJEEL",
