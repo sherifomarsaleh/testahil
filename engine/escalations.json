@@ -471,12 +471,14 @@
    "narrowed_twice": "THIS ENTRY HAS BEEN NARROWED TWICE BY ITS OWN GATE AND THE SECOND TIME IT WENT RED IN CI. Written naming eight stale names read from one checkout; the gate cut it to two by finding six on sibling branches; then the CI run on the very commit that made this register CI-visible cut it to one, because EGCH's export had landed on origin/claude/roll-forward-egx-metals-fy8dha in the minutes between. THE LESSON IS ABOUT LATENCY, NOT CARE: with many sessions landing exports on their own branches, 'not supplied' is a claim with a shelf life of minutes, and no amount of diligence at the moment of writing makes it durable. Only a checker that re-runs the search on every build can hold it — which is exactly why [R-IND-01] puts the resolving condition in the register rather than trusting the author, and why the engine/*.json trigger glob added in the same commit matters: before it, this register could go stale in CI without CI ever running.",
    "default_if_no_answer": "Leave the QNB row OPEN and ungraded — it is a calendar commitment and grades on its own date whenever its close lands. It is a month past that date, so [R-GRADE-01]'s 7-day early-grade bound cannot reach it. Quote the library's own end date wherever QNB's price or gap is quoted; never interpolate a close.",
    "default_date": "2026-10-06",
-   "status": "open",
-   "note": "REOPENED 06-09-2026 BY THE GATE, AND THE GATE WAS RIGHT. This entry was opened and marked resolved the same day, and its own resolves_when marker is present on NO live ref: QNB's series was searched across all 241 remote refs and its newest session anywhere is 08/05/2026, against a marker looking for 09/01/2026. Nothing was written down, so nothing was answered. A CLOSURE IS A CLAIM AND THE MARKER IS WHAT MAKES IT CHECKABLE — this is the mirror image of the re-ask [R-IND-01] was written for: the register asserting an answer exists is worse than it asking twice, because the first stops anybody looking. The export is still needed; the entry stands open until the file carries it.",
+   "status": "resolved",
+   "note": "REOPENED IN ERROR AND RE-CLOSED THE SAME HOUR; THE ERROR IS RECORDED BECAUSE IT IS THE RULE POINTING AT ITS OWN OPERATOR. This entry was marked resolved, the gate found no marker on any ref, and it was reopened here on a hand-rolled search across 241 remote refs that read each file's SECOND LINE and reported its newest session. THAT ASSUMED THE CSV IS SORTED NEWEST-FIRST AND THIS ONE IS NOT: line 2 is 08/06/2026 and line 20 is 09/01/2026, so the answer was present and the probe could not see it. [R-ENF-04] verbatim, aimed at the desk that was applying it to everybody else the same afternoon — an empty result is first evidence THE PROBE did not run, and a probe that assumes a file's ordering is a probe with an unstated premise. The gate, which does a plain substring search and assumes nothing, was right both times: right that the closure was unevidenced when the branch did not yet exist, and right that it is evidenced now that it does.",
    "resolves_when": {
     "file": "engine/raw_ohlc/QA/QNB.csv",
     "must_contain": "09/01/2026"
-   }
+   },
+   "resolved": "2026-09-06",
+   "answer_written_to": "engine/raw_ohlc/QA/QNB.csv on origin/claude/qatar-exchange-rollforward-vxwvsz — the series carries the 09/01/2026 session the marker names."
   },
   {
    "key": "ARCC-publication-held-by-R-GAP-02",
