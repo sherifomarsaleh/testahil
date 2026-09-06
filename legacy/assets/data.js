@@ -52,7 +52,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-25" },
-      tech: { data:"2026-08-07", computed:"2026-09-01" }
+      tech: { data:"2026-08-07", computed:"2026-09-06" }
     },
     files: {
       study: "files/ADNOCDRILL_Valuation_Study_09-08-2026.pdf?v=0817a",
@@ -87,7 +87,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-25" },
-      tech: { data:"2026-08-07", computed:"2026-09-01" }
+      tech: { data:"2026-08-07", computed:"2026-09-06" }
     },
     files: {
       study: "files/ADNOCDIST_Valuation_Study_09-08-2026.pdf?v=0809a",
@@ -122,7 +122,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-25" },
-      tech: { data:"2026-08-07", computed:"2026-09-01" }
+      tech: { data:"2026-08-07", computed:"2026-09-06" }
     },
     files: {
       study: "files/ADNOCLS_Valuation_Study_09-08-2026.pdf?v=0809a",
@@ -161,7 +161,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-18", computed:"2026-08-19" },
-      tech: { data:"2026-08-18", computed:"2026-09-01" }
+      tech: { data:"2026-08-18", computed:"2026-09-06" }
     },
     files: {
       pdf:    "files/SAVOLA_Valuation_Study_19-08-2026.pdf?v=0819a",
@@ -201,7 +201,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-18", computed:"2026-08-19" },
-      tech: { data:"2026-08-18", computed:"2026-09-01" }
+      tech: { data:"2026-08-18", computed:"2026-09-06" }
     },
     files: {
       pdf:    "files/RIYADHCABLE_Valuation_Study_18-08-2026.pdf?v=0819a",
@@ -237,7 +237,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-25" },
-      tech: { data:"2026-08-07", computed:"2026-09-01" }
+      tech: { data:"2026-08-07", computed:"2026-09-06" }
     },
     files: {
       study: "files/BOROUGE_Valuation_Study_17-08-2026.pdf?v=0817b",
@@ -272,7 +272,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-25" },
-      tech: { data:"2026-08-07", computed:"2026-09-01" }
+      tech: { data:"2026-08-07", computed:"2026-09-06" }
     },
     files: {
       study: "files/DU_Valuation_Study_17-08-2026.pdf?v=0817d",
@@ -307,7 +307,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-25" },
-      tech: { data:"2026-08-07", computed:"2026-09-01" }
+      tech: { data:"2026-08-07", computed:"2026-09-06" }
     },
     files: {
       study: "files/EMPOWER_Valuation_Study_09-08-2026.pdf?v=0817a",
@@ -342,7 +342,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-25" },
-      tech: { data:"2026-08-07", computed:"2026-09-01" }
+      tech: { data:"2026-08-07", computed:"2026-09-06" }
     },
     files: {
       study: "files/AIRARABIA_Valuation_Study_09-08-2026.pdf?v=0817a",
@@ -377,7 +377,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-25" },
-      tech: { data:"2026-08-07", computed:"2026-09-01" }
+      tech: { data:"2026-08-07", computed:"2026-09-06" }
     },
     files: {
       study:  "files/FERTIGLB_Valuation_Study_09-08-2026.pdf?v=0810a",
@@ -412,7 +412,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-25" },
-      tech: { data:"2026-08-07", computed:"2026-09-01" }
+      tech: { data:"2026-08-07", computed:"2026-09-06" }
     },
     files: {
       study: "files/AMR_Valuation_Study_09-08-2026.pdf?v=0810c",
@@ -448,7 +448,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-25" },
-      tech: { data:"2026-08-07", computed:"2026-09-01" }
+      tech: { data:"2026-08-07", computed:"2026-09-06" }
     },
     files: {
       study: "files/MODON_Valuation_Study_10-08-2026_public.docx?v=0810c",
@@ -488,7 +488,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-06", computed:"2026-08-06" },
-      tech: { data:"2026-08-06", computed:"2026-09-01" }
+      tech: { data:"2026-08-06", computed:"2026-09-06" }
     },
     files: {
       study: "files/PHAR_Valuation_Study_09-08-2026.pdf?v=0809b",
@@ -527,7 +527,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-06", computed:"2026-08-06" },
-      tech: { data:"2026-08-06", computed:"2026-09-01" }
+      tech: { data:"2026-08-06", computed:"2026-09-06" }
     },
     files: {
       study: "files/EGCH_Valuation_Study_08-08-2026.pdf?v=0809a",
@@ -560,7 +560,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-06", computed:"2026-08-06" },
-      tech: { data:"2026-08-06", computed:"2026-09-01" }
+      tech: { data:"2026-08-06", computed:"2026-09-06" }
     },
     files: {
       study: "files/SCEM_Valuation_Study_06-08-2026_public.docx?v=0806a",
@@ -595,7 +595,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-06", computed:"2026-08-06" },
-      tech: { data:"2026-08-06", computed:"2026-09-01" }
+      tech: { data:"2026-08-06", computed:"2026-09-06" }
     },
     files: {
       study: "files/ARCC_Valuation_Study_08-08-2026_public.docx?v=0808a",
@@ -608,19 +608,20 @@ const TICKERS = {
     name: "Alexandria Mineral Oils",
     nameAr: "\u0627\u0644\u0625\u0633\u0643\u0646\u062f\u0631\u064a\u0629 \u0644\u0644\u0632\u064a\u0648\u062a \u0627\u0644\u0645\u0639\u062f\u0646\u064a\u0629",
     code: "EGX:AMOC",
-    spot: 9.10,
-    spotDate: "close 6 Aug 2026",
+    spot: 13.54,
+    spotDate: "close 06 Sep 2026",
     fairAsof: "2026-08-06",   // the close the FAIR VALUE is struck on — not the publication date in the filename
     ccy: "EGP",
     fair: { bear: 4.09, base: 5.95, full: 8.52 },      // PRE-CALIBRATION. HELD BACK FROM THE SITE, DELIBERATELY. The fundamental-calibration rebuild of this name is COMPLETE and the number below is the number from BEFORE it; per instruction of 1 September 2026 nothing from the calibration campaign goes live one name at a time — the whole book publishes together at the end, in a new location, with the valuation report as a PDF and the workbook beside it. THE CALIBRATED RANGE IS DELIBERATELY NOT RESTATED HERE: it moves at every re-issue, and the three notes that used to carry it were all stale within two days (one naming a range two editions old, one naming a closing price 23% away). Read it live from engine/fv_movement.json, or with python3 engine/fv_movement.py check, which is generated from the study's own committed numbers and cannot drift from them. A FILE THAT STATES A FACT WHICH MOVES MUST NOT BE THE THING THAT REMEMBERS IT.
       // 8 Aug 2026 - four-lens weighted central EGP 5.95 (-34.6% vs spot 9.10). Weights 45/20/20/15: FCFF DCF 5.50 / relative EV-to-EBITDA 8.14 / normalised earnings 5.83 / book 4.57. bear/full are the WEIGHTED bear and bull columns (4.09-8.52), not the min/max across lenses. Base year = twelve contiguous months to 30-Jun-2026 (audited half + REPORTED half, no scalar); the released H1-2026 gross profit is rejected on a coherence test and SOLVED from the release's own profit line. Give back every contested judgement simultaneously and the central still reaches only 7.47. Terminal value 44.8% of enterprise value; WACC 31.58% explicit to 18.34% terminal.
     dist: {
-      t20: { label:"1 month",   p5:7.71, p25:8.60, p50:9.17, p75:9.79, p95:10.91, resolve:"2026-09-06" },
-      t60: { label:"3 months",  p5:6.90, p25:8.34, p50:9.33, p75:10.42, p95:12.60, resolve:"2026-11-08" }
+      t20: { label:"1 month",   p5:11.24, p25:12.78, p50:13.74, p75:14.76, p95:16.78, resolve:"2026-10-06" },
+      t60: { label:"3 months",  p5:10.04, p25:12.45, p50:14.05, p75:15.86, p95:19.63, resolve:"2026-12-06" }
     },
     hz: { h1:20, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:5, cal:0.951, mult:0.98773, eff:0.939331, on:"2026-09-06" },
     touch: [ /* level, P(touch) 1-month %, 3-month % \u2014 descending */
-      [11.00, 7, 27], [10.50, 14, 40], [10.00, 30, 57], [8.50, 38, 58], [8.00, 15, 35], [7.50, 5, 20]
+      [11.00, 6, 19], [10.50, 3, 13], [10.00, 2, 9], [8.50, 0, 3], [8.00, 0, 2], [7.50, 0, 1]
     ],
     levels: { res:[14.13, 15, 16], sup:[12.25, 9.81, 9.13] },
     tech: {
@@ -630,7 +631,7 @@ const TICKERS = {
       bear: "A close below 12.25 would break the nearest support; the next charted level below it is 9.13."
     },
     asof: {
-      mc:   { data:"2026-08-06", computed:"2026-08-06" },
+      mc:   { data:"2026-09-06", computed:"2026-09-06" },
       tech: { data:"2026-09-06", computed:"2026-09-06" }
     },
     files: {
@@ -665,7 +666,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-05", computed:"2026-08-05" },
-      tech: { data:"2026-08-05", computed:"2026-09-01" }
+      tech: { data:"2026-08-05", computed:"2026-09-06" }
     },
     files: {
       study: "files/SWDY_Valuation_Study_05-08-2026_public.docx?v=0807",
@@ -699,7 +700,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-05", computed:"2026-08-05" },
-      tech: { data:"2026-08-05", computed:"2026-09-01" }
+      tech: { data:"2026-08-05", computed:"2026-09-06" }
     },
     files: {
       study: "files/ELEC_Valuation_Study_05-08-2026_public.docx?v=0508",
@@ -733,7 +734,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/CLHO_Valuation_Study_13-07-2026_public.docx?v=20260713d",
@@ -766,7 +767,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/RMDA_Valuation_Study_13-07-2026_public.docx?v=20260713c",
@@ -800,7 +801,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-21", computed:"2026-08-24" },
-      tech: { data:"2026-08-21", computed:"2026-09-01" }
+      tech: { data:"2026-08-21", computed:"2026-09-06" }
     },
     files: {
       study: "files/DEWA_Valuation_Study_11-07-2026_public.docx?v=20260713b",
@@ -834,7 +835,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-27", computed:"2026-08-31" },
-      tech: { data:"2026-08-27", computed:"2026-09-01" }
+      tech: { data:"2026-08-27", computed:"2026-09-06" }
     },
     files: {
       study: "files/LULU_Valuation_Study_13-07-2026_public.docx?v=20260713b",
@@ -869,7 +870,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-21", computed:"2026-08-24" },
-      tech: { data:"2026-08-21", computed:"2026-09-01" }
+      tech: { data:"2026-08-21", computed:"2026-09-06" }
     },
     files: {
       study: "files/BURJEEL_Valuation_Study_11-07-2026_public.docx?v=20260713b",
@@ -903,7 +904,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-27", computed:"2026-08-31" },
-      tech: { data:"2026-08-27", computed:"2026-09-01" }
+      tech: { data:"2026-08-27", computed:"2026-09-06" }
     },
     files: {
       study: "files/SALIK_Valuation_Study_11-07-2026_public.docx?v=20260713b",
@@ -937,7 +938,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-21", computed:"2026-08-24" },
-      tech: { data:"2026-08-21", computed:"2026-09-01" }
+      tech: { data:"2026-08-21", computed:"2026-09-06" }
     },
     files: {
       study: "files/DIB_Valuation_Study_11-07-2026_public.docx?v=0711g",
@@ -971,7 +972,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-31", computed:"2026-09-01" },
-      tech: { data:"2026-08-31", computed:"2026-09-01" }
+      tech: { data:"2026-08-31", computed:"2026-09-06" }
     },
     files: {
       study: "files/2POINTZERO_Valuation_Study_11-07-2026_public.docx?v=20260711f",
@@ -1005,7 +1006,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-21", computed:"2026-08-24" },
-      tech: { data:"2026-08-21", computed:"2026-09-01" }
+      tech: { data:"2026-08-21", computed:"2026-09-06" }
     },
     files: {
       study: "files/EAND_Valuation_Study_10-07-2026_public.docx?v=0711a",
@@ -1038,7 +1039,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-21", computed:"2026-08-21" },
-      tech: { data:"2026-08-21", computed:"2026-09-01" }
+      tech: { data:"2026-08-21", computed:"2026-09-06" }
     },
     files: {
       study: "files/ADCB_Valuation_Study_10-07-2026_public.docx?v=0711a",
@@ -1072,7 +1073,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-31", computed:"2026-09-01" },
-      tech: { data:"2026-08-31", computed:"2026-09-01" }
+      tech: { data:"2026-08-31", computed:"2026-09-06" }
     },
     files: {
       study: "files/Elm_Valuation_Study_10-07-2026_public.docx?v=0710b",
@@ -1105,7 +1106,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-21", computed:"2026-08-24" },
-      tech: { data:"2026-08-21", computed:"2026-09-01" }
+      tech: { data:"2026-08-21", computed:"2026-09-06" }
     },
     files: {
       study: "files/ALPHADHABI_Valuation_Study_10-07-2026_public.docx?v=0711c",
@@ -1139,7 +1140,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-31", computed:"2026-09-01" },
-      tech: { data:"2026-08-31", computed:"2026-09-01" }
+      tech: { data:"2026-08-31", computed:"2026-09-06" }
     },
     files: {
       study: "files/eXtra_Valuation_Study_10-07-2026_public.docx?v=0710d",
@@ -1173,7 +1174,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-31", computed:"2026-09-01" },
-      tech: { data:"2026-08-31", computed:"2026-09-01" }
+      tech: { data:"2026-08-31", computed:"2026-09-06" }
     },
     files: {
       study: "files/Alinma_Valuation_Study_10-07-2026_public.docx?v=0710a",
@@ -1206,7 +1207,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/GBCO_Valuation_Study_08-07-2026_public.docx?v=0709c",
@@ -1240,7 +1241,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-27", computed:"2026-08-30" },
-      tech: { data:"2026-08-27", computed:"2026-09-01" }
+      tech: { data:"2026-08-27", computed:"2026-09-06" }
     },
     files: {
       study: "files/EMAARDEV_Valuation_Study_08-07-2026_public.docx?v=0708a",
@@ -1273,7 +1274,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/ISPH_Valuation_Study_07-07-2026_public.docx?v=0707a",
@@ -1307,7 +1308,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-09-01", computed:"2026-09-01" },
-      tech: { data:"2026-09-01", computed:"2026-09-01" }
+      tech: { data:"2026-09-01", computed:"2026-09-06" }
     },
     files: {
       study: "files/RELIANCE_Valuation_Study_06-07-2026_public.docx?v=0706i",
@@ -1341,7 +1342,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-31", computed:"2026-09-01" },
-      tech: { data:"2026-08-31", computed:"2026-09-01" }
+      tech: { data:"2026-08-31", computed:"2026-09-06" }
     },
     files: {
       study: "files/NVDA_Valuation_Study_06-07-2026_public.docx?v=0706",
@@ -1374,7 +1375,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/KABO_Valuation_Study_06-07-2026_public.docx?v=0706",
@@ -1409,7 +1410,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-09-01", computed:"2026-09-01" },
-      tech: { data:"2026-09-01", computed:"2026-09-01" }
+      tech: { data:"2026-09-01", computed:"2026-09-06" }
     },
     files: {
       study: "files/IQCD_Valuation_Study_05-07-2026_public.docx?v=0705g",
@@ -1442,7 +1443,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/RAYA_Valuation_Study_01-07-2026_public.docx?v=0703",
@@ -1475,7 +1476,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/EFIH_Valuation_Study_03-07-2026_public.docx?v=0307",
@@ -1508,7 +1509,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/JUFO_Valuation_Study_01-07-2026_public.docx?v=0704",
@@ -1541,7 +1542,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/EGAL_Valuation_Study_03-07-2026_public.docx?v=0703",
@@ -1574,7 +1575,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/EFID_Valuation_Study_03-07-2026_public.docx?v=0704",
@@ -1607,7 +1608,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-23" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/BTFH_Valuation_Study_03-07-2026_public.docx?v=0703",
@@ -1640,7 +1641,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/ETEL_Valuation_Study_03-07-2026_public.docx?v=0704",
@@ -1673,7 +1674,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/FWRY_Valuation_Study_01-07-2026_public.docx?v=0703",
@@ -1706,7 +1707,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-23" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/ABUK_Valuation_Study_01-07-2026_public.docx?v=0703",
@@ -1739,7 +1740,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-23" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/ADIB_Valuation_Study_03-07-2026_public.docx?v=0703",
@@ -1772,7 +1773,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-21", computed:"2026-08-24" },
-      tech: { data:"2026-08-21", computed:"2026-09-01" }
+      tech: { data:"2026-08-21", computed:"2026-09-06" }
     },
     files: {
       study: "files/ADIB_Valuation_Study_11-07-2026_public.docx?v=0719a",
@@ -1805,7 +1806,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/HRHO_Valuation_Study_01-07-2026_public.docx?v=0703",
@@ -1838,7 +1839,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/ORWE_Valuation_Study_01-07-2026_public.docx?v=0703",
@@ -1871,7 +1872,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/LCSW_Valuation_Study_06-07-2026_public.docx?v=0706",
@@ -1904,7 +1905,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/DSCW_Valuation_Study_19-07-2026_public.docx?v=1907",
@@ -1937,7 +1938,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/PHDC_Valuation_Study_11-06-2026_public.docx?v=1106",
@@ -1970,7 +1971,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/TMGH_Valuation_Study_17-06-2026_public.docx?v=1706b",
@@ -2004,7 +2005,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-09-01", computed:"2026-09-01" },
-      tech: { data:"2026-09-01", computed:"2026-09-01" }
+      tech: { data:"2026-09-01", computed:"2026-09-06" }
     },
     files: {
       study: "files/EMFD_Valuation_Study_17-06-2026_public.docx?v=1706",
@@ -2038,7 +2039,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-09-01", computed:"2026-09-01" },
-      tech: { data:"2026-09-01", computed:"2026-09-01" }
+      tech: { data:"2026-09-01", computed:"2026-09-06" }
     },
     files: {
       study: "files/OCDI_Valuation_Study_24-06-2026_public.docx?v=2406",
@@ -2072,7 +2073,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-09-01", computed:"2026-09-01" },
-      tech: { data:"2026-09-01", computed:"2026-09-01" }
+      tech: { data:"2026-09-01", computed:"2026-09-06" }
     },
     files: {
       study: "files/ORHD_Valuation_Study_25-06-2026_public.docx?v=2506",
@@ -2106,7 +2107,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-09-01", computed:"2026-09-01" },
-      tech: { data:"2026-09-01", computed:"2026-09-01" }
+      tech: { data:"2026-09-01", computed:"2026-09-06" }
     },
     files: {
       study: "files/COMI_Valuation_Study_29-06-2026_public.docx?v=2906",
@@ -2140,7 +2141,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-09-01", computed:"2026-09-01" },
-      tech: { data:"2026-09-01", computed:"2026-09-01" }
+      tech: { data:"2026-09-01", computed:"2026-09-06" }
     },
     files: {
       study: "files/Samsung_Valuation_Study_27-06-2026_public.docx?v=2706",
@@ -2174,7 +2175,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-09-01", computed:"2026-09-01" },
-      tech: { data:"2026-09-01", computed:"2026-09-01" }
+      tech: { data:"2026-09-01", computed:"2026-09-06" }
     },
     files: {
       study: "files/Kakao_Valuation_Study_28-06-2026_public.docx?v=2806",
@@ -2208,7 +2209,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-09-01", computed:"2026-09-01" },
-      tech: { data:"2026-09-01", computed:"2026-09-01" }
+      tech: { data:"2026-09-01", computed:"2026-09-06" }
     },
     files: {
       study: "files/LG_Energy_Solution_Valuation_Study_28-06-2026_public.docx?v=2806",
@@ -2242,7 +2243,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-09-01", computed:"2026-09-01" },
-      tech: { data:"2026-09-01", computed:"2026-09-01" }
+      tech: { data:"2026-09-01", computed:"2026-09-06" }
     },
     files: {
       study: "files/TMPV_Valuation_Study_30-06-2026_public.docx?v=3006",
@@ -2276,7 +2277,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-09-01", computed:"2026-09-01" },
-      tech: { data:"2026-09-01", computed:"2026-09-01" }
+      tech: { data:"2026-09-01", computed:"2026-09-06" }
     },
     files: {
       study: "files/INFY_Valuation_Study_06-07-2026_public.docx?v=0706",
@@ -2310,7 +2311,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-21", computed:"2026-08-24" },
-      tech: { data:"2026-08-21", computed:"2026-09-01" }
+      tech: { data:"2026-08-21", computed:"2026-09-06" }
     },
     files: {
       study: "files/Aldar_Valuation_Study_08-07-2026_public.docx?v=0709b",
@@ -2344,7 +2345,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-27", computed:"2026-08-30" },
-      tech: { data:"2026-08-27", computed:"2026-09-01" }
+      tech: { data:"2026-08-27", computed:"2026-09-06" }
     },
     files: {
       study: "files/Emaar_Valuation_Study_01-07-2026_public.docx?v=0107b",
@@ -2377,7 +2378,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/Qalaa_Holdings_Valuation_Study_30-06-2026_public.docx?v=3006",
@@ -2410,7 +2411,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/OIH_Valuation_Study_03-07-2026_public.docx?v=0407",
@@ -2443,7 +2444,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/ORAS_Valuation_Study_30-06-2026_public.docx?v=3006",
@@ -2477,7 +2478,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-31", computed:"2026-09-01" },
-      tech: { data:"2026-08-31", computed:"2026-09-01" }
+      tech: { data:"2026-08-31", computed:"2026-09-06" }
     },
     files: {
       study: "files/Aramco_Valuation_Study_01-07-2026_public.docx?v=0107b",
@@ -2511,7 +2512,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-09-01", computed:"2026-09-01" },
-      tech: { data:"2026-09-01", computed:"2026-09-01" }
+      tech: { data:"2026-09-01", computed:"2026-09-06" }
     },
     files: {
       study: "files/SABIC_Valuation_Study_07-07-2026_public.docx?v=0707",
@@ -2545,7 +2546,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-31", computed:"2026-09-01" },
-      tech: { data:"2026-08-31", computed:"2026-09-01" }
+      tech: { data:"2026-08-31", computed:"2026-09-06" }
     },
     files: {
       study: "files/Maaden_Valuation_Study_05-07-2026_public.docx?v=0507",
@@ -2578,7 +2579,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-21", computed:"2026-08-24" },
-      tech: { data:"2026-08-21", computed:"2026-09-01" }
+      tech: { data:"2026-08-21", computed:"2026-09-06" }
     },
     files: {
       study: "files/ADNOC_Gas_Valuation_Study_04-07-2026_public.docx?v=0704",
@@ -2612,7 +2613,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-31", computed:"2026-09-01" },
-      tech: { data:"2026-08-31", computed:"2026-09-01" }
+      tech: { data:"2026-08-31", computed:"2026-09-06" }
     },
     files: {
       study: "files/Al_Rajhi_Valuation_Study_02-07-2026_public.docx?v=0207a",
@@ -2646,7 +2647,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-31", computed:"2026-09-01" },
-      tech: { data:"2026-08-31", computed:"2026-09-01" }
+      tech: { data:"2026-08-31", computed:"2026-09-06" }
     },
     files: {
       study: "files/STC_Valuation_Study_09-07-2026_public.docx?v=0709a",
@@ -2680,7 +2681,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-31", computed:"2026-09-01" },
-      tech: { data:"2026-08-31", computed:"2026-09-01" }
+      tech: { data:"2026-08-31", computed:"2026-09-06" }
     },
     files: {
       study: "files/RIBL_Valuation_Study_09-07-2026_public.docx?v=0709d",
@@ -2714,7 +2715,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-31", computed:"2026-09-01" },
-      tech: { data:"2026-08-31", computed:"2026-09-01" }
+      tech: { data:"2026-08-31", computed:"2026-09-06" }
     },
     files: {
       study: "files/SNB_Valuation_Study_04-07-2026_public.docx?v=0407j",
@@ -2748,7 +2749,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-27", computed:"2026-08-30" },
-      tech: { data:"2026-08-27", computed:"2026-09-01" }
+      tech: { data:"2026-08-27", computed:"2026-09-06" }
     },
     files: {
       study: "files/ENBD_Valuation_Study_03-07-2026_public.docx?v=0307a",
@@ -2781,7 +2782,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-05", computed:"2026-08-05" },
-      tech: { data:"2026-08-05", computed:"2026-09-01" }
+      tech: { data:"2026-08-05", computed:"2026-09-06" }
     },
     files: {
       study: "files/QNB_Valuation_Study_05-07-2026_public.docx?v=0705a",
@@ -2815,7 +2816,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-09-01", computed:"2026-09-01" },
-      tech: { data:"2026-09-01", computed:"2026-09-01" }
+      tech: { data:"2026-09-01", computed:"2026-09-06" }
     },
     files: {
       study: "files/Nakilat_QGTS_Valuation_Study_05-07-2026_public.docx?v=0705a",
@@ -2849,7 +2850,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-27", computed:"2026-08-30" },
-      tech: { data:"2026-08-27", computed:"2026-09-01" }
+      tech: { data:"2026-08-27", computed:"2026-09-06" }
     },
     files: {
       study: "files/FAB_Valuation_Study_03-07-2026_public.docx?v=0705",
@@ -2883,7 +2884,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-31", computed:"2026-09-01" },
-      tech: { data:"2026-08-31", computed:"2026-09-01" }
+      tech: { data:"2026-08-31", computed:"2026-09-06" }
     },
     files: {
       study: "files/ACWA_Valuation_Study_05-07-2026_public.docx?v=0705a",
@@ -2916,7 +2917,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-21", computed:"2026-08-24" },
-      tech: { data:"2026-08-21", computed:"2026-09-01" }
+      tech: { data:"2026-08-21", computed:"2026-09-06" }
     },
     files: {
       study: "files/Agthia_Valuation_Study_06-07-2026_public.docx?v=0607a",
@@ -2950,7 +2951,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-09-01", computed:"2026-09-01" },
-      tech: { data:"2026-09-01", computed:"2026-09-01" }
+      tech: { data:"2026-09-01", computed:"2026-09-06" }
     },
     files: {
       study: "files/AAPL_Valuation_Study_06-07-2026_public.docx?v=20260706j",
@@ -2984,7 +2985,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-09-01", computed:"2026-09-01" },
-      tech: { data:"2026-09-01", computed:"2026-09-01" }
+      tech: { data:"2026-09-01", computed:"2026-09-06" }
     },
     files: {
       study: "files/TSLA_Valuation_Study_30-06-2026_public.docx?v=0108",
@@ -3018,7 +3019,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-31", computed:"2026-08-31" },
-      tech: { data:"2026-08-31", computed:"2026-09-01" }
+      tech: { data:"2026-08-31", computed:"2026-09-06" }
     },
     files: {
       study: "files/IHC_Valuation_Study_04-07-2026_public.docx?v=0407",
@@ -3051,7 +3052,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/HELI_Valuation_Study_03-07-2026_public.docx?v=0307",
@@ -3084,7 +3085,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-23", computed:"2026-08-24" },
-      tech: { data:"2026-08-23", computed:"2026-09-01" }
+      tech: { data:"2026-08-23", computed:"2026-09-06" }
     },
     files: {
       study: "files/PRDC_Valuation_Study_06-07-2026_public.docx?v=0706",
@@ -7911,7 +7912,7 @@ const METALS = {
  },
  asof: {
    mc:   { data:"2026-09-01", computed:"2026-09-01" },
-   tech: { data:"2026-09-01", computed:"2026-09-01" }
+   tech: { data:"2026-09-01", computed:"2026-09-06" }
  },
  files:{
    study:"files/XAUUSD_Valuation_Study_25-06-2026_public.docx?v=2506",
@@ -7978,7 +7979,7 @@ const METALS = {
  },
  asof: {
    mc:   { data:"2026-08-21", computed:"2026-08-23" },
-   tech: { data:"2026-08-21", computed:"2026-09-01" }
+   tech: { data:"2026-08-21", computed:"2026-09-06" }
  },
  files:{
    study:"files/XPTUSD_Valuation_Study_20-07-2026_public.docx?v=2007",
