@@ -36,14 +36,47 @@ ALIAS = {"FERTIGLOBE": "FERTIGLB"}
 TRIGGER = 0.10          # [R-GAP-01], both sides since 02-09-2026
 
 
-def latest_prices():
-    files = sorted(glob.glob(os.path.join(HERE, "SUPPLIED_*.json")))
+def _supplied_files():
+    files = glob.glob(os.path.join(HERE, "SUPPLIED_*.json"))
     if not files:
         raise SystemExit("REFUSED: no supplied price file under engine/prices/. An "
                          "empty population is not a clean result [R-ENF-04].")
-    p = files[-1]
-    d = json.load(open(p, encoding="utf-8"))
-    return d["prices"], os.path.basename(p), d.get("supplied")
+    return files
+
+
+def latest_price_per_ticker():
+    """The freshest price held for each name, merged across EVERY supplied file.
+
+    PRICES ARRIVE BY HAND, SO THEY ARRIVE WITH LAGS AND GAPS, and one file is not
+    the state of the book: a name priced on Tuesday and absent from Thursday's
+    file is still priced on Tuesday, and reading only the newest file would drop
+    it. Each entry therefore carries the DATE OF THE PRICE ITSELF and the file it
+    came from, so a reader is told how old the number is rather than being left
+    to assume it is today's.
+
+    Returns {ticker: {"price": float, "date": "YYYY-MM-DD", "file": str}}.
+    """
+    out = {}
+    for f in sorted(_supplied_files()):
+        d = json.load(open(f, encoding="utf-8"))
+        base = os.path.basename(f)
+        for tk, row in (d.get("prices") or {}).items():
+            px, when = row.get("price"), row.get("date") or d.get("supplied")
+            if px is None or not when:
+                continue
+            prev = out.get(tk)
+            if prev is None or when > prev["date"]:
+                out[tk] = {"price": float(px), "date": when, "file": base}
+    return out
+
+
+def latest_prices():
+    """Back-compatible view: the merged map, plus the newest file's provenance."""
+    files = sorted(_supplied_files())
+    d = json.load(open(files[-1], encoding="utf-8"))
+    merged = latest_price_per_ticker()
+    return ({tk: {"price": v["price"], "date": v["date"]} for tk, v in merged.items()},
+            os.path.basename(files[-1]), d.get("supplied"))
 
 
 def _num(x):
