@@ -622,16 +622,16 @@ const TICKERS = {
     touch: [ /* level, P(touch) 1-month %, 3-month % \u2014 descending */
       [11.00, 7, 27], [10.50, 14, 40], [10.00, 30, 57], [8.50, 38, 58], [8.00, 15, 35], [7.50, 5, 20]
     ],
-    levels: { res:[9.20, 9.43, 9.86], sup:[7.84, 7.38, 6.81] },
+    levels: { res:[14.13, 15, 16], sup:[12.25, 9.81, 9.13] },
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day",
-      summary: "The price closed 9.10 above a rising 20-day (8.51), a rising 50-day (8.19) and a rising 200-day (7.66). Momentum is firm: RSI(14) is ~63 and the daily ATR near 0.28 (~3.1%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+0.30 / +0.21 / +0.09). Over the last year it has ranged 6.66\u20139.85; the last close sits 8% below that high and 37% above that low.",
-      bull: "A daily close back above 9.20 would clear the nearest resistance; the next charted level above it is 9.86.",
-      bear: "A close below 7.84 would break the nearest support; the next charted level below it is 6.81."
+      summary: "The price closed 13.54 above a rising 20-day (11.31), a rising 50-day (9.47) and a rising 200-day (8.10). Momentum is very strong: RSI(14) is ~83 and the daily ATR near 0.57 (~4.2%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+1.11 / +0.90 / +0.21). Over the last year it has ranged 6.66\u201314.13; the last close sits 4% below that high and 103% above that low.",
+      bull: "A daily close back above 14.13 would clear the nearest resistance; the next charted level above it is 16.00.",
+      bear: "A close below 12.25 would break the nearest support; the next charted level below it is 9.13."
     },
     asof: {
       mc:   { data:"2026-08-06", computed:"2026-08-06" },
-      tech: { data:"2026-08-06", computed:"2026-09-06" }
+      tech: { data:"2026-09-06", computed:"2026-09-06" }
     },
     files: {
       study: "files/AMOC_Valuation_Study_08-08-2026_public.docx?v=0808b",
@@ -3207,7 +3207,7 @@ const BANDS = {
   ALINMA: {mkt:"SA", n:58, hits:50, c50:0.3793, c80:0.6724, c90:0.8621, width:1.063, strength:"long", flag:null},
   ALPHADHABI: {mkt:"AE", n:16, hits:16, c50:0.6875, c80:0.8750, c90:1.0000, width:1.012, strength:"market-only", flag:null},
   ALRAJHI: {mkt:"SA", n:58, hits:50, c50:0.4483, c80:0.7069, c90:0.8621, width:1.071, strength:"long", flag:null},
-  AMOC: {mkt:"EG", n:57, hits:49, c50:0.5614, c80:0.8070, c90:0.8596, width:1.225, strength:"long", flag:null},
+  AMOC: {mkt:"EG", n:57, hits:51, c50:0.5439, c80:0.8246, c90:0.8947, width:1.194, strength:"long", flag:null},
   AMR: {mkt:"AE", n:10, hits:10, c50:0.2000, c80:0.8000, c90:1.0000, width:0.899, strength:"market-only", flag:null},
   ARAMCO: {mkt:"SA", n:22, hits:20, c50:0.4091, c80:0.7727, c90:0.9091, width:1.004, strength:"short", flag:null},
   ARCC: {mkt:"EG", n:44, hits:41, c50:0.5909, c80:0.9318, c90:0.9318, width:1.432, strength:"long", flag:null},
@@ -3287,7 +3287,7 @@ const BANDS = {
 // Pooled per-market record: what a market-only name is judged on.
 const BAND_MARKETS = {
   AE: {names:28, n:912, c90:0.9057, label:"UAE"},
-  EG: {names:37, n:1795, c90:0.9276, label:"Egyptian"},
+  EG: {names:37, n:1795, c90:0.9287, label:"Egyptian"},
   IN: {names:3, n:174, c90:0.8793, label:"Indian"},
   KR: {names:3, n:127, c90:0.8898, label:"Korean"},
   QA: {names:3, n:174, c90:0.9310, label:"Qatari"},
@@ -3519,8 +3519,8 @@ const LEDGER = [
     note:"First coverage, 6-Aug-2026 — struck on the production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0.0879 (declared DPS 0.80 against the 6-Aug close). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count — the 3-month calendar target 2026-11-06 falls on a non-trading day, so the grade date rolls FORWARD to 2026-11-08. Name-level calibration: PARITY — 17 non-overlapping post-break quarterly origins (2022-04-05 → 2026-04-12), scale-normalized CRPS skill +0.68% against the carry-anchored random walk, but the bootstrap CI90 straddles zero at every block size {2,3,4}, so no single-name edge is demonstrated and none is claimed. The two longer window sets are shown in the study rather than the flattering one alone: last five years of origins +0.92% PARITY (19 windows), full cleaned history +1.32% PASS (57 windows, back to 2012 — a period the current fit was not calibrated on). What carries the cone is the MARKET-level gate: the 30-name EG panel scores +1.58% with a CI90 of [+0.9%, +2.2%], which is PASS. Shape is sound even where sharpness is not: PIT mean 0.461, chi2(9) p=0.854, KS p=0.568, 90% band coverage 0.941, cone 0.969x the benchmark's width — whatever margin it earns comes from being better centred, not wider. Price history 3,754 clean sessions over 15.6 years; largest single-session move 0.1813 in logs, inside the exchange's ±20% limit (0.1823) by four ten-thousandths, so no unadjusted corporate action is hiding in the series. Read the bands as a probability map. The cone is a 1/3-month object and is NEVER blended with the undated fair-value zone.",
     p5:7.71, p25:8.60, p50:9.17, p75:9.79, p95:10.91,
     touch:{ "+5":55, "+10":30, "+15":15, "+20":8, "-5":48, "-10":22 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null, touch_hit:null,
+    realized_close:13.54, realized_high:14.13, realized_low:9.03,
+    in_90:false, in_50:false, realized_quantile:null, median_err:0.4766, touch_hit:{ "+5":true, "+10":true, "+15":true, "+20":true, "-5":false, "-10":false },
     reanchor_from:null
   },
   {
@@ -5554,9 +5554,9 @@ const LEDGER = [
     horizon_label:"1 month", grade_date:"2026-09-03", grade_basis:"projected", horizon_days:23, cycle_no:2, reanchor_from:"2026-07-03",
     p5:46.91, p25:53.65, p50:58.44, p75:63.69, p95:72.9,
     touch:{ "+5":62, "+10":40, "+15":24, "+20":14, "-5":59, "-10":34 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null },
+    realized_close:66.9785, realized_high:71.1766, realized_low:57.995,
+    in_90:true, in_50:false, realized_quantile:0.821, median_err:0.1461,
+    touch_hit:{ "+5":true, "+10":true, "+15":true, "+20":true, "-5":false, "-10":false },
     note:"Cycle 2 strike, 2026-08-04 -- struck on the 03-Aug-2026 close of 58.266, the latest completed session in the library, at the monthly metronome: cycle 1\u2019s 1-month matured 03-Aug and was graded in this same pass. The cycle-1 3-month (grades 2026-10-05) is demoted to an aging calibration tail and runs untouched to its own date; the 12-month stays on its own annual clock (grades 2027-07-05), per the metals carve-out. Production chain, no approximation: Step 0.0 data-quality gate (3 interior stale/no-trade rows dropped) -> YZ variance proxy -> fit_har_v3 -> har_forecast_v3 -> carry drift -> simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (metal, no yield). XAU live fit nu=12.0, width_cal=0.958 -- SILVER STILL HAS NO FIT OF ITS OWN, it borrows gold\u2019s, the standing weakest-calibration caveat. Horizons by horizons.resolve() on the metals calendar: 1M h=23 grading 2026-09-03, 3M h=66 grading 2026-11-03. The upload\u2019s 04-Aug row (an in-progress session dated the day of the post) and its 02-Aug Sunday print (the library\u2019s 15-year convention is Mon-Fri) were excluded from the library; its revised 27/28-Jul bars were NOT taken -- published bars stay frozen, merge-never-overwrite."
   },
   {
@@ -7736,30 +7736,30 @@ const LEDGER = [
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
 
-  // ---- 2026-09-06 single-name roll-forward: ELEC, struck on its own
+  // ---- 06-Sep-2026 single-name roll-forward: SILVER, struck on its own
   //      latest library close. Append-only.
   {
-    instrument:"ELEC", asset_class:"equity",
-    anchor_date:"2026-09-06", run_date:"2026-09-06", anchor_price:2.12, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-10-06", grade_basis:"projected", horizon_days:20,
-    cycle_no:2, reanchor_from:"2026-08-05", anchor_vol:0.3667,
-    signal_z:-0.3806, signal_alpha:-0.002318,
-    note:"Cycle 2 roll-forward, 2026-09-06 — struck on the 06-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-06 and is graded in this same pass. The previous cone was anchored 2026-08-05; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. rf_live 19.50% CBE main operation rate. Direction call DOWN, from this name’s own mom_combo z of -0.381 (outside the 0.25 dead zone); tilt -0.23% at 1M and -0.49% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 62) size the cone only.",
-    p5:1.84, p25:2.03, p50:2.15, p75:2.27, p95:2.5,
-    touch:{ "+5":52, "+10":25, "+15":12, "+20":6, "-5":40, "-10":16 },
+    instrument:"Silver", asset_class:"metal",
+    anchor_date:"2026-09-04", run_date:"2026-09-06", anchor_price:66.2115, ccy:"USD",
+    horizon_label:"1 month", grade_date:"2026-10-05", grade_basis:"projected", horizon_days:22,
+    cycle_no:3, reanchor_from:"2026-08-03", anchor_vol:0.4385,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 06-Sep-2026 — struck on the 04-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-03 and is graded in this same pass. The previous cone was anchored 2026-08-03; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (q=0 is SOURCED, not defaulted: a spot metal pays no holder yield — the lease rate is a borrower’s cost, not a return to the holder — so the carry is rf alone.) XAU live fit nu=12.0, width_cal=0.958. rf_live 3.63% Fed funds midpoint schedule (USD cost-of-carry anchor). No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on XAU’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 65) size the cone only.",
+    p5:54.38, p25:61.46, p50:66.38, p75:71.78, p95:81.22,
+    touch:{ "+5":60, "+10":36, "+15":20, "+20":11, "-5":56, "-10":30 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
   {
-    instrument:"ELEC", asset_class:"equity",
-    anchor_date:"2026-09-06", run_date:"2026-09-06", anchor_price:2.12, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-12-06", grade_basis:"projected", horizon_days:62,
-    cycle_no:2, reanchor_from:"2026-08-05", anchor_vol:0.3997,
-    signal_z:-0.3806, signal_alpha:-0.004881,
-    note:"Cycle 2 roll-forward, 2026-09-06 — struck on the 06-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-06 and is graded in this same pass. The previous cone was anchored 2026-08-05; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. rf_live 19.50% CBE main operation rate. Direction call DOWN, from this name’s own mom_combo z of -0.381 (outside the 0.25 dead zone); tilt -0.23% at 1M and -0.49% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 62) size the cone only.",
-    p5:1.65, p25:1.99, p50:2.21, p75:2.45, p95:2.96,
-    touch:{ "+5":77, "+10":58, "+15":43, "+20":30, "-5":61, "-10":38 },
+    instrument:"Silver", asset_class:"metal",
+    anchor_date:"2026-09-04", run_date:"2026-09-06", anchor_price:66.2115, ccy:"USD",
+    horizon_label:"3 months", grade_date:"2026-12-04", grade_basis:"projected", horizon_days:65,
+    cycle_no:3, reanchor_from:"2026-08-03", anchor_vol:0.438,
+    signal_z:0.0, signal_alpha:0.0,
+    note:"Cycle 3 roll-forward, 06-Sep-2026 — struck on the 04-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-03 and is graded in this same pass. The previous cone was anchored 2026-08-03; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (q=0 is SOURCED, not defaulted: a spot metal pays no holder yield — the lease rate is a borrower’s cost, not a return to the holder — so the carry is rf alone.) XAU live fit nu=12.0, width_cal=0.958. rf_live 3.63% Fed funds midpoint schedule (USD cost-of-carry anchor). No direction call: this market carries no surviving momentum cell, so the cone is carry-centered. Horizons resolved by horizons.resolve() on XAU’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 65) size the cone only.",
+    p5:47.46, p25:58.45, p50:66.89, p75:76.62, p95:94.26,
+    touch:{ "+5":76, "+10":60, "+15":46, "+20":35, "-5":73, "-10":53 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -7925,25 +7925,28 @@ const METALS = {
     unit: "دولار للأونصة",   // Arabic unit (AR feed)
     unitEn: "USD/oz",         // English unit (EN feed)
     nameAr: "الفضة",          // Arabic display name (AR feed)
- name:"Silver", code:"XAG/USD", spot:58.266, spotDate:"close 03 Aug 2026", ccy:"USD",
+ name:"Silver", code:"XAG/USD", spot:66.21, spotDate:"close 04 Sep 2026", ccy:"USD",
  fair:{ bear:58, base:68, full:78 },
- dist:{
-   t20:{ label:"1 month",  p5:46.91, p25:53.65, p50:58.44, p75:63.69, p95:72.90, resolve:"2026-09-03" },
-   t60:{ label:"3 months", p5:40.80, p25:50.96, p50:58.85, p75:67.93, p95:85.03, resolve:"2026-11-03" },
+ dist: {
+   t20: { label:"1 month",   p5:54.38, p25:61.46, p50:66.38, p75:71.78, p95:81.22, resolve:"2026-10-05" },
+   t60: { label:"3 months",  p5:47.46, p25:58.45, p50:66.89, p75:76.62, p95:94.26, resolve:"2026-12-04" },
    t252:{ label:"12 months", p5:30.8, p25:46.12, p50:59.36, p75:76.36, p95:113.99, resolve:"2027-07-02" }
  },
- hz: { h1:23, h3:66, l1:"1 month", l3:"3 months", cal:true },
- touch:[[85,1,9],[78,3,17],[72,9,31],[68,20,44],[58,86,91],[55,56,72],[50,19,42],[45,4,20]],
- levels: { res:[61.27, 63.28, 71.23], sup:[55.62, 54.45, 39.15] },
+ hz: { h1:22, h3:65, l1:"1 month", l3:"3 months", cal:true },
+ fit: { nu:12, cal:0.958, mult:1, eff:0.958, on:"2026-09-06" },
+ touch: [ /* descending high -> low */
+   [85.00, 4, 21], [78.00, 14, 39], [72.00, 41, 64], [68.00, 73, 84], [58.00, 21, 45], [55.00, 10, 31], [50.00, 2, 14], [45.00, 0, 6]
+ ],
+ levels: { res:[71.23, 73.08, 83.31], sup:[62.56, 61.27, 54.45] },
  tech: {
-   trend: "Mixed against the moving-average stack, below a rising 200-day; fresh death-cross",
-   summary: "The price closed 58.27 below a falling 50-day (62.93) and a rising 200-day (71.14), but above a falling 20-day (58.15). Momentum is neutral: RSI(14) is ~46 and the daily ATR near 2.60 (~4.5%) points to a lively tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22121.28 / \u22121.72 / +0.44). The 50-day crossed beneath the 200-day 19 sessions ago. Over the last year it has ranged 36.96\u2013121.67; the last close sits 52% below that high and 58% above that low.",
-   bull: "A daily close back above 61.27 would clear the nearest resistance; the next charted level above it is 71.23.",
-   bear: "A close below 55.62 would break the nearest support; the next charted level below it is 39.15."
+   trend: "Mixed against the moving-average stack, below a rising 200-day",
+   summary: "The price closed 66.21 below a rising 20-day (66.43) and a rising 200-day (72.97), but above a rising 50-day (62.00). Momentum is neutral: RSI(14) is ~53 and the daily ATR near 2.63 (~4.0%) points to a lively tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+1.14 / +1.47 / \u22120.33). Over the last year it has ranged 41.19\u2013121.67; the last close sits 46% below that high and 61% above that low.",
+   bull: "A daily close back above 71.23 would clear the nearest resistance; the next charted level above it is 83.31.",
+   bear: "A close below 62.56 would break the nearest support; the next charted level below it is 54.45."
  },
  asof: {
-   mc:   { data:"2026-08-03", computed:"2026-08-04" },
-   tech: { data:"2026-08-03", computed:"2026-09-06" }
+   mc:   { data:"2026-09-04", computed:"2026-09-06" },
+   tech: { data:"2026-09-04", computed:"2026-09-06" }
  },
  files:{
    study:"files/XAGUSD_Combined_1-3-12M_Valuation_Study_05-07-2026_public.docx?v=2607",
@@ -8018,7 +8021,7 @@ const CALIB = {
   "DFM:SALIK": {w: 11, in50: 27, in90: 100, through: "2026-07-15"},
   "EGX:ABUK": {w: 57, in50: 54, in90: 91, through: "2026-08-18"},
   "EGX:ADIB": {w: 57, in50: 56, in90: 95, through: "2026-07-12"},
-  "EGX:AMOC": {w: 57, in50: 46, in90: 84, through: "2026-07-12"},
+  "EGX:AMOC": {w: 57, in50: 47, in90: 84, through: "2026-07-12"},
   "EGX:ARCC": {w: 44, in50: 59, in90: 93, through: "2026-06-24"},
   "EGX:BTFH": {w: 56, in50: 54, in90: 80, through: "2026-07-22"},
   "EGX:CCAP": {w: 57, in50: 51, in90: 84, through: "2026-07-12"},

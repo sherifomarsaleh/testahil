@@ -940,6 +940,7 @@ function renderStaticFan(elId, T){
      Reversible on an instruction by restoring this call.
   stampOwnRecordWhenReady(T);  */
   whenReady(refreshBandRecords);
+  whenReady(refreshLiveFigures);
 }
 
 /* ============ [R-CAL-02] band records, refreshed at render time ============ */
@@ -996,6 +997,81 @@ function refreshBandRecords(){
   document.querySelectorAll('[data-band-record]').forEach(function(el){
     const s = bandRecordSentence(el.getAttribute('data-band-record'));
     if (s) el.textContent = s;   // no record -> leave the built-in fallback
+  });
+}
+
+/* ============ spot-dependent prose, refreshed at render time ============ */
+/* THE SAME DEFECT AS THE BAND RECORD ABOVE, ONE CLOCK OVER, AND FOUND THE SAME
+   WAY. A roll-forward moves `spot` and every surface that reads T.spot follows
+   it — the header badge, the gauge, the slider, the cone. Hand-typed PROSE
+   about that spot does not, and nothing was looking: on 6-Sep-2026 silver.html
+   carried "Spot ~$62 sits in the lower half of the $58-78 zone" and a "+9% vs
+   latest" cell against a published spot of 66.21, which had been struck twice
+   since that sentence was written — so the page contradicted its own badge four
+   lines apart, exactly the COMI shape the as-of stamps were adopted for.
+
+   THE FIX IS THE ONE THIS FILE ALREADY MAKES TWICE: the page must not be the
+   thing that remembers a fact that moves. Retyping the number is not a fix, it
+   is the same defect with a later date on it. So a volatile clause is marked
+   with one of the attributes below and rewritten here from the same objects
+   every other surface reads. The static text stays CORRECT AT BUILD TIME and is
+   the fallback when data.js has not loaded — never a placeholder, because a page
+   whose fallback is wrong has simply moved the staleness somewhere quieter.
+
+   These read TICKERS or METALS, so they work on an equity page and a metals page
+   without either knowing which it is. A name that resolves to neither leaves its
+   fallback alone rather than rendering an empty span or a NaN. */
+function _liveEntry(k){
+  if (typeof TICKERS !== 'undefined' && TICKERS[k]) return TICKERS[k];
+  if (typeof METALS  !== 'undefined' && METALS[k])  return METALS[k];
+  return null;
+}
+/* "$66" / "EGP 15.20" — the page's own currency, and the same 2dp-or-whole
+   convention the badge uses, so the sentence and the badge cannot disagree. */
+function _liveMoney(e, v){
+  const n = v >= 100 ? Math.round(v).toLocaleString('en-US')
+                     : (Math.round(v * 100) / 100).toString();
+  return e.ccy === 'USD' ? '$' + n : (e.ccy ? e.ccy + ' ' + n : n);
+}
+/* Where the spot sits in the published fair-value zone, in words. The zone is
+   the fundamental clock and does NOT move here — only the spot's position in it
+   does, which is precisely the half that was wrong. */
+function _liveZoneClause(e){
+  const f = e.fair; if (!f || !e.spot) return null;
+  const lo = f.bear, hi = f.full, mid = f.base, s = e.spot;
+  let where;
+  if (s < lo)              where = 'sits below the ' + lo + '–' + hi + ' zone';
+  else if (s > hi)         where = 'sits above the ' + lo + '–' + hi + ' zone';
+  else if (Math.abs(s - mid) / mid < 0.02)
+                           where = 'sits essentially on the centre of the ' + lo + '–' + hi + ' zone';
+  else if (s < mid)        where = 'sits in the lower half of the ' + lo + '–' + hi + ' zone';
+  else                     where = 'sits in the upper half of the ' + lo + '–' + hi + ' zone';
+  return 'Spot ' + _liveMoney(e, s) + ' ' + where + '.';
+}
+function refreshLiveFigures(){
+  /* the current spot, on its own */
+  document.querySelectorAll('[data-live-spot]').forEach(function(el){
+    const e = _liveEntry(el.getAttribute('data-live-spot'));
+    if (e && e.spot) el.textContent = _liveMoney(e, e.spot);
+  });
+  /* the whole "spot sits ... in the zone" sentence */
+  document.querySelectorAll('[data-live-zone]').forEach(function(el){
+    const e = _liveEntry(el.getAttribute('data-live-zone'));
+    const s = e && _liveZoneClause(e);
+    if (s) el.textContent = s;
+  });
+  /* the fair-value centre against the latest price, as a signed percentage */
+  document.querySelectorAll('[data-live-gap]').forEach(function(el){
+    const e = _liveEntry(el.getAttribute('data-live-gap'));
+    if (!e || !e.spot || !e.fair) return;
+    const g = Math.round((e.fair.base / e.spot - 1) * 100);
+    el.textContent = (g >= 0 ? '+' : '') + g + '% vs latest';
+  });
+  /* the gold-silver ratio, from the two published spots rather than typed */
+  document.querySelectorAll('[data-live-ratio]').forEach(function(el){
+    if (typeof METALS === 'undefined' || !METALS.GOLD || !METALS.SILVER) return;
+    const r = METALS.GOLD.spot / METALS.SILVER.spot;
+    if (isFinite(r) && r > 0) el.textContent = '~' + Math.round(r) + '×';
   });
 }
 
