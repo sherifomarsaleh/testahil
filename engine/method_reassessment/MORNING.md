@@ -551,3 +551,39 @@ it happened, not because it is asking.
 29. **The negative control would have broken, in the way that looks like working.** The sandbox stages only what the gate reads, and it staged no workbook — so the new arm would have refused an empty population on *every* case, the clean ones included, going red for the **wrong** reason, which reads exactly like going red for the right one. One workbook is now staged; three injected defects are caught in it, two legitimate constructions allowed through, every injection verified to have **landed in the saved file** before its result is believed, and a further case removes every workbook and requires the gate to refuse *and to name the population as the reason*.
 
 30. **Two lessons registered, both ALL scope.** [L-344] a build reads the line it expects and not the note the line points at — three defects of that shape in one study, and the same shape already on AMOC and SCEM, so three companies rather than one quirk; what makes it invisible is that the figure that *was* read is correct, so every gate is clean and the defect is an **absence**, which has no cell to check. [L-345] a rule that enumerates its surfaces is only checked on the surfaces somebody wired up.
+
+---
+
+## 6 September 2026, 02:15 UTC — THE ACCOUNT IS OUT OF USAGE CREDITS
+
+**This is a report, not an escalation** [R-IND-01]: the work routes around it, so nothing is
+blocked and nothing is owed. It is here because it contradicts a plan the principal set —
+"we have tokens that will expire tomorrow at 6AM and we have to finish them as soon as
+possible" — and only they can act on it.
+
+**What happened, in order.** Ten workflows were launched (~300 agents). They hit the
+*session* limit, which reset at 02:00 UTC as advertised. On relaunch every agent returned
+**"You're out of usage credits"**, which is the *account balance* and a different limit. Six
+of ten workflows had already reported; the rest died within seconds of relaunch.
+
+**What survived and is committed:**
+
+- ARCC's walk-forward now carries its [R-FCAL-01 AMENDED] valuation-input block — eight
+  origins, seven items, every figure OCR'd off the rendered pixels because those filings
+  carry no text layer, every one footed. Eight cells recorded MISSING, all of them the share
+  count, refused rather than carried back.
+- AMR's terminal evidence note, which **stops** rather than conforming: its own note
+  depreciates to an estimated residual value, closing the measured-age route, and a life
+  this desk chose is not a disclosed life.
+- Four studies read page by page as rendered images — 234 pages, ADNOCDIST, ADNOCDRILL,
+  ADNOCLS, AIRARABIA — 83 candidate findings raised and **all 83 refuted on verification**.
+- Two answer audits, ADNOCDIST and ADNOCDRILL, whose substance is below.
+
+**The one finding verified by hand, because its verifiers could not run:** ADNOCDIST applies
+its 17% FY2026 commercial-margin step to an anchor that already contains it, and the study's
+own input register says so in as many words. Written up as finding 7 of
+`engine/adnocdist_study/AUDIT_05-09-2026.md`.
+
+**No decision is needed tonight.** Hand work continues without credits. If they are topped
+up, every workflow resumes from `resumeFromRunId` with completed agents replaying from cache
+— nothing already done is repeated or paid for twice.
