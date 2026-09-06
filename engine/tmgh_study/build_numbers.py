@@ -68,7 +68,10 @@ def build():
         "per_share_nci_book": per_share,
         "per_share_nci_proportional": ps_prop,
         "per_share_nci_value_share": ps_value,
-        # ---- the four records the outside gates read ------------------------
+        # ---- the records the outside gates read ------------------------------
+        # (the count is deliberately not written here: a comment carrying a
+        # tally goes stale the first time a gate is added, which is what a
+        # sixth record arriving beside a comment reading "four" would have done)
         # [R-COC-01] the schedule, on the CENTRAL premium basis
         "cost_of_capital_record": w["cost_of_capital_record"],
         # [R-MACRO-01] every growth rate in the model, stored so it recomputes
@@ -79,6 +82,9 @@ def build():
         # [R-BRIDGE-01] the bridge as a RECORD, checked from outside the study.
         # The central case is the one the exposed central is taken from.
         "bridge_record": _bridge_record(cases, sh),
+        # [R-ANCHOR-01] the rate this forecast is anchored on, the reviewed
+        # actual it is anchored ON, and the whole explicit path
+        "forecast_anchor": _forecast_anchor(),
         "nci_basis_adopted": "value share (filed profit share proxy, 20.98%); book and proportional shown as the more punitive reads",
         "fair_value_range": {"low": lo, "high": hi,
                              "note": ("the envelope of four published cases — two ERP "
@@ -109,6 +115,119 @@ def build():
                                   "eras": scores["by_era"].get(k, {})}
                               for k, v in scores["by_driver"].items()},
         },
+    }
+
+
+def _forecast_anchor():
+    """[R-ANCHOR-01]. The rate the forecast is anchored on, and the whole path.
+
+    A near-term reviewed actual outranks a stale full-year rate, and this model
+    obeys that by construction rather than by assertion: every cost line is a
+    disclosed ratio of its own segment's revenue taken from the reviewed half
+    just filed, so each SEGMENT margin is held at its 30-June-2026 actual for the
+    whole explicit window and no segment rate drifts anywhere.
+
+    The rate recorded here is therefore the GROUP gross margin, not one of the
+    three segment rates, and that choice is the point. The segment rates cannot
+    move — recording one of them would be a true statement about an object that
+    is constant by construction, which is the safest place a claim can hide from
+    a checker. The group rate is the one a reader is shown in the projected
+    income statement, and it is the one that moves: it moves on MIX, as the
+    lowest-margin leg takes a different share of revenue.
+
+    THE PATH COMMITTED IS THE STEEPER OF THE TWO THIS STUDY PUBLISHES. The crux
+    is how fast the order book converts and it is computed both ways and never
+    averaged, so there is no single path to commit. Choosing the flatter reading
+    would satisfy clause two on a shape the study does not solely claim; the
+    steeper one is selected mechanically below, so if it clears, both do.
+
+    Nothing is typed here. Every figure is read from the reviewed statements in
+    the input registry or computed from the model's own projection.
+    """
+    h = IN.H1_26
+    rev_h1 = sum(_v(h, k) for k in ("dev_revenue", "hosp_revenue", "other_revenue"))
+    gp_h1 = _v(h, "gross_profit")
+    # THE DISCLOSED GROSS PROFIT MUST FOOT TO THE THREE SEGMENT LINES. Arithmetic
+    # is the arbiter: an anchor standing on a figure the statement's own segments
+    # do not reproduce is an anchor standing on a transcription.
+    seg = sum(_v(h, r) - _v(h, c)
+              for r, c in (("dev_revenue", "dev_cost"),
+                           ("hosp_revenue", "hosp_cost"),
+                           ("other_revenue", "other_cost")))
+    assert abs(seg - gp_h1) < 1e-6, "H1-2026 gross profit does not foot to its segments"
+    latest = gp_h1 / rev_h1
+
+    paths, years = {}, {}
+    for m in ("capacity", "recovery"):
+        rows = M.project(m)["rows"]
+        paths[m] = [r["gross_margin"] for r in rows]
+        years[m] = [r["year"] for r in rows]
+    # the two readings share their first year: FY2026 is anchored on the reviewed
+    # half in both, so the opening rate is not a function of the crux
+    assert paths["capacity"][0] == paths["recovery"][0]
+    first = paths["capacity"][0]
+    drop = {m: (min(paths[m]) - paths[m][0]) / paths[m][0] for m in paths}
+    steep = min(drop, key=drop.get)
+    flat = "capacity" if steep == "recovery" else "recovery"
+
+    # the group rate is a revenue-weighted mean of three CONSTANT segment rates,
+    # so the whole movement — into the first forecast year and along the path —
+    # is mix and nothing else. Asserted rather than asserted-in-prose.
+    r = M.ratios()
+    gm = (r["gm_dev_h1_26"], r["gm_hosp_h1_26"], r["gm_other_h1_26"])
+    w_h1 = tuple(_v(h, k) / rev_h1 for k in
+                 ("dev_revenue", "hosp_revenue", "other_revenue"))
+    row0 = M.project("capacity")["rows"][0]
+    w_f = tuple(row0[k] / row0["revenue"] for k in
+                ("dev_revenue", "hosp_revenue", "other_revenue"))
+    assert abs(sum(a * b for a, b in zip(w_h1, gm)) - latest) < 1e-12
+    assert abs(sum(a * b for a, b in zip(w_f, gm)) - first) < 1e-12
+
+    rep = ST.build()["reported"]
+
+    def _gm(y, restated=False):
+        v = rep[y]
+        rv = v["dev_revenue"] + v["hosp_revenue"] + v["other_revenue"]
+        return (v["restated"]["gross_profit"] if restated else v["gross_profit"]) / rv
+
+    return {
+        "rate_name": "group gross margin",
+        "latest_reviewed_period": "H1 2026, six months to 30 June, reviewed",
+        # the date the input registry carries on the figure itself, never typed
+        # here — the record and the source cannot then disagree about the vintage
+        "latest_reviewed_date": h["gross_profit"]["date"],
+        "latest_reviewed_rate": latest,
+        "first_forecast_rate": first,
+        "forecast_path": paths[steep],
+        "note": (
+            "No margin in this model is an input. Each cost line is a disclosed ratio of "
+            "its own segment's revenue taken from the reviewed half just filed, so the "
+            "three segment rates are held at their 30-June-2026 actuals for the whole "
+            "explicit window and none of them drifts: development %.2f%%, hospitality "
+            "%.2f%%, other recurring %.2f%%. The group rate is a revenue-weighted mean of "
+            "those three constants, so every movement in it is MIX and nothing else. It "
+            "opens at %.2f%% against the reviewed half's %.2f%%, %.2f%% relative below it, "
+            "because development — the lowest-margin leg — is %.1f%% of the first forecast "
+            "year's revenue against %.1f%% of the reviewed half's. The filed group record "
+            "is FY2023 %.2f%%, FY2024 %.2f%% as first reported and %.2f%% restated, FY2025 "
+            "%.2f%%, and the reviewed H1 2026 %.2f%%; the forecast opens below all of them "
+            "but FY2023. The path recorded here is the slower-conversion reading of the "
+            "crux, the steeper of the two this study publishes and never averages: it "
+            "falls to %.2f%% in %d, %.2f%% relative below its own opening year. The faster "
+            "reading falls only to %.2f%%, %.2f%% relative below its own. Both movements are "
+            "the same "
+            "mix effect — handovers grow faster than the two recurring legs, so the "
+            "lowest-margin business takes share. Neither the opening year nor either path "
+            "reaches the materiality line, so no mechanism is claimed; the steeper reading "
+            "sits inside it rather than clear of it, and this record says so rather than "
+            "reporting a pass."
+            % (100 * gm[0], 100 * gm[1], 100 * gm[2],
+               100 * first, 100 * latest, abs(100 * (first - latest) / latest),
+               100 * w_f[0], 100 * w_h1[0],
+               100 * _gm("2023"), 100 * _gm("2024"), 100 * _gm("2024", True),
+               100 * _gm("2025"), 100 * latest,
+               100 * min(paths[steep]), years[steep][paths[steep].index(min(paths[steep]))],
+               abs(100 * drop[steep]), 100 * min(paths[flat]), abs(100 * drop[flat]))),
     }
 
 

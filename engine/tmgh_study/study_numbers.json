@@ -6467,6 +6467,26 @@
   "shares_mn": 2060.6538,
   "per_share": 65.16331605181323
  },
+ "forecast_anchor": {
+  "rate_name": "group gross margin",
+  "latest_reviewed_period": "H1 2026, six months to 30 June, reviewed",
+  "latest_reviewed_date": "2026-06-30",
+  "latest_reviewed_rate": 0.3226384472708002,
+  "first_forecast_rate": 0.316306164450336,
+  "forecast_path": [
+   0.316306164450336,
+   0.3112046390745214,
+   0.307697821366553,
+   0.30541774458623433,
+   0.3040261360444373,
+   0.3032755472384493,
+   0.3029935587615402,
+   0.30306005466841585,
+   0.3033900226275268,
+   0.30392205071916634
+  ],
+  "note": "No margin in this model is an input. Each cost line is a disclosed ratio of its own segment's revenue taken from the reviewed half just filed, so the three segment rates are held at their 30-June-2026 actuals for the whole explicit window and none of them drifts: development 26.58%, hospitality 45.37%, other recurring 31.91%. The group rate is a revenue-weighted mean of those three constants, so every movement in it is MIX and nothing else. It opens at 31.63% against the reviewed half's 32.26%, 1.96% relative below it, because development \u2014 the lowest-margin leg \u2014 is 61.3% of the first forecast year's revenue against 56.2% of the reviewed half's. The filed group record is FY2023 30.38%, FY2024 35.86% as first reported and 32.81% restated, FY2025 33.37%, and the reviewed H1 2026 32.26%; the forecast opens below all of them but FY2023. The path recorded here is the slower-conversion reading of the crux, the steeper of the two this study publishes and never averages: it falls to 30.30% in 2032, 4.21% relative below its own opening year. The faster reading falls only to 31.48%, 0.49% relative below its own. Both movements are the same mix effect \u2014 handovers grow faster than the two recurring legs, so the lowest-margin business takes share. Neither the opening year nor either path reaches the materiality line, so no mechanism is claimed; the steeper reading sits inside it rather than clear of it, and this record says so rather than reporting a pass."
+ },
  "nci_basis_adopted": "value share (filed profit share proxy, 20.98%); book and proportional shown as the more punitive reads",
  "fair_value_range": {
   "low": 63.695974064510004,

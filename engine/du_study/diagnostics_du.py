@@ -193,14 +193,36 @@ assert abs(price_inputs(beta=V['beta']) - BASE) < 1e-12
 # ---------------------------------------------------------------------------
 # what the company itself discloses, read out of its own audited filing
 # ---------------------------------------------------------------------------
+with open(FS_FY2025_TEXT, encoding='utf-8', errors='ignore') as _fh:
+    FILING_TEXT = _fh.read()
+
+
+def in_filing(x):
+    """A figure this record quotes from the accounts must appear IN the accounts, printed
+    as the filing prints it. Cheaper than re-parsing a table and it fails just as loudly:
+    a remembered number that has drifted stops the build instead of reaching a reader."""
+    s = format(x, ',.0f')
+    assert s in FILING_TEXT, 'the FY2025 filing does not print %s' % s
+    return x
+
+
+# Note 7's own figures for the right-of-use book, verified against the filing, and the
+# life they imply on the same identity the study uses for every other asset class.
+ROU_GROSS = in_filing(3726888.0)
+ROU_CHARGE = in_filing(364063.0)
+ROU_LIFE_DERIVED = ROU_GROSS / ROU_CHARGE
+_lt = re.search(r'average lease term is ([\d.]+) years', FILING_TEXT)
+assert _lt, 'note 7 no longer states an average lease term; do not carry a remembered one'
+LEASE_TERM_DISCLOSED = float(_lt.group(1))
+
+
 def _disclosed_note9():
     """Note 9, FY2025 audited consolidated financial statements, read at run time.
 
     Typed here the figures would be a memory; read out of the filing they break the build
     if the filing changes. SIGCM clause 1: the company's own statements, never a vendor.
     """
-    with open(FS_FY2025_TEXT, encoding='utf-8', errors='ignore') as fh:
-        txt = fh.read()
+    txt = FILING_TEXT
     m = re.search(r'pre-tax discount rate of ([\d.]+)%\s*\((\d{4}):\s*([\d.]+)%\)', txt)
     g = re.search(r'terminal growth rate of ([\d.]+)%', txt)
     assert m and g, 'note 9 no longer reads as it did; do not carry a remembered figure'
@@ -502,7 +524,7 @@ judge('the terminal asset life',
       'depreciable class over the year\'s own charge — a route that validates itself, since '
       'its right-of-use component derives %.2f years against the %.1f-year average lease '
       'term note 7 states outright'
-      % (V['asset_life_years'], 3726888.0 / 364063.0, 10.1),
+      % (V['asset_life_years'], ROU_LIFE_DERIVED, LEASE_TERM_DISCLOSED),
       'the second reading of the same notes: accumulated depreciation over the same charge '
       'says the base has already taken %.2f years, which the escalation formula reaches at '
       'a life of %.2f years'
@@ -526,7 +548,7 @@ judge('the lease renewal in the explicit window',
       'is deducted as debt in the bridge and charging renewal there too would bill the '
       'existing obligation twice; the renewal is carried instead inside the terminal\'s '
       'blended asset life, where the right-of-use book enters at its own %.2f years'
-      % (3726888.0 / 364063.0),
+      % ROU_LIFE_DERIVED,
       'the retired construction: a replacement charge equal to right-of-use depreciation in '
       'every explicit year, AED %s falling to AED %s'
       % (format(CP.rou_repl_retired[0], ',.0f'), format(CP.rou_repl_retired[-1], ',.0f')),
@@ -939,15 +961,19 @@ CJ = {
         'reading': (
             'Of the %d material contested judgements, %d were resolved toward the '
             'higher-value framing and %d toward the lower; the two-sided sign test gives '
-            'p = %.2f. THAT IS NOT A LEAN. The three largest forks in the study all run '
-            'the same way — the lens architecture, the terminal capitalisation and the '
-            'fiscal tail — but the cost of capital, the terminal growth and the terminal '
-            'asset life do not, and two of those three are the parameters the whole answer '
-            'turns on. A study that resolved every fork one way would be flagged, not '
-            'failed; this one is not flagged, and the instrument is reporting that the '
-            'direction of the disagreement with the market is not the direction of this '
-            'study\'s own choices.'
-            % (_n, _k, _n - _k, SIGN_P if SIGN_P is not None else float('nan'))),
+            'p = %.2f, so this study is NOT flagged. The four largest forks do all run the '
+            'same way — the lens architecture, the mix decomposition, the terminal '
+            'capitalisation and the fiscal tail — and that is worth seeing. The two that '
+            'run the other way are the risk-free tenor and the terminal growth rate, and '
+            'those are not minor rows: the terminal carries %.0f%% of enterprise value and '
+            'the discount rate is what this study\'s own gap review calls the single '
+            'parameter of its disagreement with the market. A study resolving every '
+            'material fork one way would be FLAGGED, not failed, because a company can '
+            'genuinely deserve a consistent read; what this instrument reports here is '
+            'that the choices are not uniform, on a name whose central sits %+.0f%% against '
+            'the price.'
+            % (_n, _k, _n - _k, SIGN_P if SIGN_P is not None else float('nan'),
+               100 * CP.tv_share, 100 * (CENTRAL / SPOT - 1))),
     },
     'not_valued': NOT_VALUED,
     'not_treated_as_a_contested_judgement': NOT_A_JUDGEMENT,
