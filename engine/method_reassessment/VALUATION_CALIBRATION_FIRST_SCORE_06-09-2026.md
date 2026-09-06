@@ -94,23 +94,45 @@ asked of it later.* The blocks were built to cover each run's own recent origins
 calibration asks about 2013 onward, and nobody was wrong — the question simply arrived
 after the record was designed.
 
-### 6 cells: the terminal module refuses a legitimate negative working capital
+### 6 cells: the maintenance charge falls BELOW book depreciation — the same proxy, failing the other way
 
 ARCC 2020–2023 and EGCH 2022–2023 are refused with *implied payout of terminal NOPAT is
-102% to 665%, outside [0,1]*. On ARCC the cause is exact and it is not a defect in the
-study: **ARCC's working capital is genuinely NEGATIVE** — −10.1%, −20.2%, −12.8%,
-−12.6% and −4.4% of revenue in FY2018–FY2022 — because a cement company collects from
-customers before it pays its suppliers. A negative working capital that holds as a
-constant fraction of revenue throws off cash every year as prices rise, for ever, and
-that is a real perpetual source; the module's payout guard reads it as a company
-distributing more than it earns.
+102% to 665%, outside [0,1]*.
 
-**Per [R-COC-01] the answer to a check firing on work that is right is to RE-POINT it,
-never to widen it — and that is deliberately NOT done here.** `terminal_value.py` is a
-shared sanctioned module that delivered studies call; re-pointing its payout guard is
-its own act, with its own evidence and its own negative control, and doing it in this
-pass *because it would unblock six of my cells* is the fitting this house forbids
-everywhere else. **It is recorded as a finding and left alone.**
+**A first reading of this section attributed the refusals to ARCC's negative working
+capital, and that was wrong.** ARCC's working capital IS negative — −10.1%, −20.2%,
+−12.8%, −12.6% and −4.4% of revenue in FY2018–FY2022, because a cement company collects
+from customers before it pays its suppliers — but it is not what the guard is firing on.
+Re-running every refused ARCC origin with working capital set to **zero** leaves the
+payout at **238.9%, 172.5%, 107.0% and 101.1%**, against 264.9%, 182.3%, 110.0% and
+102.0% with its own. The working capital moves it by a few points; it does not cause it.
+
+**The cause is that maintenance at trailing capex comes out BELOW book depreciation.**
+With zero real growth the module charges `fcff = nopat + dna_book − maintenance`, so the
+payout exceeds one exactly when `maintenance < dna_book`. On ARCC 2020 the trailing
+capex proxy gives maintenance of EGP 62.1mn against book depreciation of EGP 247.8mn;
+on EGCH 2022, EGP 113.3mn against EGP 1,858mn.
+
+**This is [R-TERM-01 CLAUSE TWO]'s inference, and the module is right to refuse: a
+terminal charging less than its own book depreciation cannot be maintaining the asset
+base, because book depreciation is struck on historical cost and replacement costs
+more.** ARCC's own delivered study, on the **disclosed 20-year machinery life from its
+audited accounting-policies note**, charges maintenance of **EGP 2,560mn a year against
+book depreciation of EGP 643mn** — four times the book charge. The trailing-capex proxy
+gave a figure an order of magnitude too small.
+
+**So the proxy fails in BOTH directions and has no consistent sign:** catastrophically
+too HIGH on a company mid-build (EGCH 2017–2021, capex at 2.1x–7.8x revenue), and far
+too LOW on a company harvesting a built-out base whose recent capex is small against its
+depreciation (ARCC, EGCH 2022–2023). That is [R-TERM-01 CLAUSE TWO CORRECTED]'s own
+general lesson arriving on a new object: *where a cheap proxy is adopted because the
+real calculation is expensive, the proxy is a hypothesis until the real calculation has
+been run on at least one case.* It has now been run on two, and the proxy loses both.
+
+**`terminal_value.py` is NOT changed, and the reason is not that it is right by
+accident — it is right.** The refusals are the module doing the job [R-TERM-01] built it
+for. What is missing is the input the rule has demanded all along: **a disclosed useful
+life.**
 
 ### 6 cells: the construction's own declared bias, and it is not mild
 
@@ -125,8 +147,8 @@ small error on a company mid-build; it makes the terminal negative.
 **The declaration also barred a fourth construction, and that bar holds.** The honest
 reading is not that a better maintenance proxy should now be invented — it is that
 **maintenance needs a disclosed asset life**, which is what [R-TERM-01] has required all
-along, and which `engine/valuation_calibration/disclosed_lives.json` carries for exactly
-one of these five names.
+along, and which `engine/valuation_calibration/disclosed_lives.json` carried for exactly
+one of these five names when this was written.
 
 ### 3 cells: AMOC is blocked twice over, and both are recorded
 
@@ -173,9 +195,29 @@ magnitude, which is both the panel's convention and the run's own scoring conven
   consecutive years, read almost entirely off a terminal the construction cannot build
   properly, and the pre-registration prohibits reading a level from an instrument this
   thin.
-- **It does not retire the instrument.** Ten more origin-years of block close eleven
-  cells; a disclosed asset life for four more names closes six; and the negative
-  working-capital guard is a separate, stateable question about a shared module.
+- **It does not retire the instrument.** The two blockers are now separated and their
+  sizes are known: nine more block-years would close eleven cells, and a **disclosed
+  useful life** for the four names that lack one would close twelve — the six refused
+  for maintenance below book depreciation and the six refused for a terminal free cash
+  flow the build-programme proxy drove negative. **The second is the binding one**, and
+  it is not a question about the module.
 - **It does not license a fourth declaration.** The sealed bar stands: if this failed,
   the finding is that a mechanical valuation is not yet constructible from what these
   runs commit. **That is the finding, and it now has a price list.**
+
+
+---
+
+## CORRECTION, later the same day — the six payout refusals
+
+The section above originally read that the module refused ARCC's and EGCH's
+*legitimately negative working capital*. **It does not.** Setting working capital to
+zero leaves every one of those origins refused, at 238.9%, 172.5%, 107.0% and 101.1%.
+The cause is `maintenance < dna_book`, measured and stated above.
+
+The correction matters because it reverses what the finding asks for. On the first
+reading the blocker was a shared module's guard, and the recommendation was to leave it
+alone. **On the measurement the guard is correct and the blocker is a missing input** —
+the disclosed asset life [R-TERM-01] has required since it was written. That is work
+this house can do from filings it already holds, rather than a question about a module
+that delivered studies depend on.
