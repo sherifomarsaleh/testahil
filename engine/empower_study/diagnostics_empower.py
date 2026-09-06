@@ -59,17 +59,18 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.dirname(HERE))
 
 NUMBERS = os.path.join(HERE, 'study_numbers.json')
-_BEFORE = open(NUMBERS, 'rb').read()
+import numbers_generators as NG                                          # noqa: E402
+
+_BEFORE = NG.guard(NUMBERS)
 
 import compute as C                                                     # noqa: E402
 import terminal_value as TERMVAL                                        # noqa: E402
 
 # (ii) the model is deterministic and rebuilds the numbers file unchanged; if it ever
 # stops being, this diagnostic must not be the thing that moves a delivered artefact.
-if open(NUMBERS, 'rb').read() != _BEFORE:
-    open(NUMBERS, 'wb').write(_BEFORE)
-    raise SystemExit('REFUSED: importing the model moved study_numbers.json. Restored. '
-                     'A diagnostic may not move the valuation it is measuring.')
+# THROUGH THE SHARED INSTRUMENT rather than a local copy — this study wrote the
+# restore-and-refuse first and it bound only here.
+NG.guard(NUMBERS, _BEFORE)
 
 V, W = C.V, C.WACC
 SPOT = float(V['spot'])
@@ -656,7 +657,7 @@ json.dump(diag, open(os.path.join(HERE, 'diagnostics.json'), 'w', encoding='utf-
 json.dump(cj, open(os.path.join(HERE, 'contested_judgements.json'), 'w', encoding='utf-8'),
           indent=1, ensure_ascii=False, default=float)
 
-assert open(NUMBERS, 'rb').read() == _BEFORE, 'study_numbers.json moved — refusing'
+NG.guard(NUMBERS, _BEFORE)
 
 print('diagnostics.json + contested_judgements.json written')
 print('implied pipeline %+.2f k RT/yr (floored %+.2f, primary lens %+.2f) vs study %+.2f'

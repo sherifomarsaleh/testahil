@@ -87,7 +87,9 @@ def _numbers_bytes():
 # compute.py writes its numbers file at import; DU_OUT redirects that write to a scratch
 # path so the committed file is not touched at all, and the two are then compared — if
 # importing the model to measure it failed to reproduce the model, this stops.
-_BEFORE = _numbers_bytes()
+import numbers_generators as NG                                        # noqa: E402
+
+_BEFORE = NG.guard(NUMBERS)
 os.environ['DU_OUT'] = os.path.join(TMP, 'import_check.json')
 _cwd = os.getcwd()
 os.chdir(HERE)
@@ -96,9 +98,7 @@ with contextlib.redirect_stdout(io.StringIO()):
 os.chdir(_cwd)
 import reverse_read as RR                                             # noqa: E402
 
-assert _numbers_bytes() == _BEFORE, (
-    'importing compute.py changed study_numbers.json. This record measures the study; it '
-    'does not move it.')
+NG.guard(NUMBERS, _BEFORE)
 with open(os.environ['DU_OUT'], 'rb') as fh:
     assert fh.read() == _BEFORE, (
         'importing compute.py does not reproduce the committed study byte for byte, so '
@@ -1006,7 +1006,7 @@ for path, doc in ((os.path.join(HERE, 'diagnostics.json'), DIAG),
         json.dump(doc, fh, indent=1, ensure_ascii=False, default=float)
     print('wrote %s' % os.path.basename(path))
 
-assert _numbers_bytes() == _BEFORE, 'the committed numbers file moved. It must not.'
+NG.guard(NUMBERS, _BEFORE)
 print('reverse read: the price implies a flat %.4f%% against the study\'s %.4f%%; '
       'a beta of %.4f against a measured %.4f; terminal growth of %.4f%% nominal against '
       '%.4f%% and the company\'s own disclosed %.2f%%'

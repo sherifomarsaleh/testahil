@@ -65,14 +65,19 @@ def _load_numbers():
 # study_numbers.json at import. This record may not move a driver, a rate or a fair value,
 # so the file is read before and after and required to be byte-identical: if importing the
 # model to measure it changed the model, this stops.
-_BEFORE = _load_numbers()
+# THROUGH THE SHARED INSTRUMENT, NOT A LOCAL COPY. Three studies each wrote this
+# guard for themselves and it bound nowhere else — the prose-figures finding, and
+# L-084: a rule one study implements is a rule one study obeys. The shared version
+# also RESTORES rather than merely asserting, which matters: an assert that fires
+# leaves the moved file in place, so the delivered artefact stays moved.
+import numbers_generators as NG                                      # noqa: E402
+
+_BEFORE = NG.guard(NUMBERS)
 with contextlib.redirect_stdout(io.StringIO()):
     import compute as CP                                             # noqa: E402
 import reverse_read as RR                                            # noqa: E402
 
-assert _load_numbers() == _BEFORE, (
-    "importing compute.py changed study_numbers.json. This record measures the study; it "
-    "does not move it.")
+NG.guard(NUMBERS, _BEFORE)
 
 N = json.loads(_BEFORE)
 F = CP.FRAMINGS
@@ -866,7 +871,7 @@ def main():
                           ('contested_judgements.json', CJ)):
         with open(os.path.join(HERE, name), 'w', encoding='utf-8') as fh:
             json.dump(payload, fh, indent=1, ensure_ascii=False)
-    assert _load_numbers() == _BEFORE, 'study_numbers.json moved. Nothing here may move it.'
+    NG.guard(NUMBERS, _BEFORE)
     print(DIAG['implied']['reading'])
     print()
     print(DIAG['also_solved_on_the_shared_instrument']['reading'])
