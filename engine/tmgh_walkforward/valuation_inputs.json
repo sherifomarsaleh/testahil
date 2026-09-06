@@ -1,0 +1,157 @@
+{
+ "_": "The inputs a VALUE is rebuilt from at each of this run's origins, committed beside the driver panel under [R-FCAL-01 AMENDED]. A driver panel is not a record a value can be rebuilt from, and the difference is invisible until something tries.",
+ "run": "TMGH",
+ "rule": "[R-FCAL-01 AMENDED] (03-09-2026)",
+ "company": "Talaat Mostafa Group Holding Company \"TMG Holding\" S.A.E",
+ "currency": "EGP",
+ "units": "as printed in the filings — units, not thousands or millions",
+ "basis": "consolidated",
+ "fiscal_year_end": "31 December",
+ "point_in_time": "every origin is carried AS FIRST REPORTED, from its own filing's own current-year column; where a later filing restates a figure the difference is recorded beside it and never substituted.",
+ "route": "text layer where the page carries one and OCR off the rendered pixels at 300 dpi where it does not — this issuer's balance-sheet continuation pages carry no text layer in several years. ARITHMETIC IS THE ARBITER: every page was footed against its own printed totals before any figure from it was kept, and the two OCR splits that occurred (a thousands group broken by a space in FY2024) were caught by that footing rather than by inspection.",
+ "origins_held": [
+  "FY2020",
+  "FY2021"
+ ],
+ "origins_not_held": {
+  "FY2011 … FY2019": "NO ANNUAL FILING IN THIS RUN'S OWN ARCHIVE. The 25 documents held are the FY2020–FY2025 annuals and interim statements from 2020 onward, plus one Arabic interim from 2016. RECORDED AS MISSING WITH ITS REASON rather than reconstructed from the driver panel or from a later filing's comparative column [SIGCM clause 8]: a figure carried back from a restated comparative is fabricated in vintage, plausible on the page and invisible in the pooled error afterwards.",
+  "FY2022 … FY2025": "EXTRACTION IN PROGRESS. The filings are held and the pages located; the labels vary between years (the capex line is worded differently in each, one year splits a thousands group across a space, and one prints its loan current portion under a label that collides with the non-current line), so each is being read and footed individually rather than swept. NOT GUESSED AND NOT PARTIALLY COMMITTED."
+ },
+ "origins": {
+  "FY2020": {
+   "cash": {
+    "value": 2705091404,
+    "as_at": "2020-12-31",
+    "source": "TMG Consolidated FS 12-2020 _ Final _ Eng.pdf, consolidated statement of financial position, 'Cash on hand and at banks' (note 17), page 3 (the company's own audited consolidated financial statements, from its own investor-relations archive)",
+    "route": "text layer",
+    "check": "the statement foots: non-current 28,512,069,084 + current 89,383,416,571 = total assets 117,895,485,655"
+   },
+   "debt": {
+    "value": 6705545718,
+    "as_at": "2020-12-31",
+    "source": "TMG Consolidated FS 12-2020 _ Final _ Eng.pdf, consolidated statement of financial position (continued), the five NAMED borrowing lines, page 4 (the company's own audited consolidated financial statements, from its own investor-relations archive)",
+    "route": "OCR off the rendered pixels at 300 dpi — this page carries no text layer; every figure was footed against the statement's own printed totals before it was kept, and the arithmetic rather than the extractor's confidence is what settled it",
+    "lines": {
+     "loans_non_current": 3127439205,
+     "sukuk_ijarah": 2000000000,
+     "banks_overdraft": 21097833,
+     "credit_facilities": 1544486575,
+     "loans_and_facilities_current_portion": 12522105
+    },
+    "check": "total liabilities foot to the pound: 11,647,304,901 + 72,631,897,184 = 84,279,202,085, and 84,279,202,085 + total equity 33,616,283,570 = total assets 117,895,485,655",
+    "note": "BUILT FROM THE BORROWINGS THAT ACTUALLY BEAR INTEREST and from nothing else. 'Other long-term liabilities' of 6,514,781,555 is NOT included: it is not a borrowing line and dividing a finance charge by a total that included it would understate the rate by a multiple and manufacture a bias that looks exactly like evidence [R-FCAL-01 trap (i)]."
+   },
+   "ppe": {
+    "value": 6124581393,
+    "as_at": "2020-12-31",
+    "source": "TMG Consolidated FS 12-2020 _ Final _ Eng.pdf, consolidated statement of financial position, 'Fixed Assets' (note 4), page 3 (the company's own audited consolidated financial statements, from its own investor-relations archive)",
+    "route": "text layer",
+    "note": "fixed assets under construction of 5,824,104,060 is a SEPARATE disclosed line and is recorded beside rather than added, because the two are not the same asset base and a capex identity run on a mixed base is not the identity"
+   },
+   "cip": {
+    "value": 5824104060,
+    "as_at": "2020-12-31",
+    "source": "TMG Consolidated FS 12-2020 _ Final _ Eng.pdf, consolidated statement of financial position, 'Fixed assets under construction' (note 7), page 3 (the company's own audited consolidated financial statements, from its own investor-relations archive)",
+    "route": "text layer"
+   },
+   "depreciation_amortisation": {
+    "value": 302262980,
+    "as_at": "2020-12-31",
+    "source": "TMG Consolidated FS 12-2020 _ Final _ Eng.pdf, consolidated statement of cash flows, 'Depreciation & amortization' (notes 4,5,6), page 9 (the company's own audited consolidated financial statements, from its own investor-relations archive)",
+    "route": "text layer"
+   },
+   "capex": {
+    "value": 2379865913,
+    "as_at": "2020-12-31",
+    "source": "TMG Consolidated FS 12-2020 _ Final _ Eng.pdf, consolidated statement of cash flows, 'Payment to acquire fixed assets, intangible assets and fixed assets under construction' (notes 4,6,7), page 9 (the company's own audited consolidated financial statements, from its own investor-relations archive)",
+    "route": "text layer",
+    "note": "DISCLOSED, not derived. Cross-checked against the FY2021 filing, which carries the same figure as its comparative column — two filings, read independently, agreeing."
+   },
+   "working_capital_lines": {
+    "inventory": 1119398991,
+    "accounts_and_notes_receivable": 31112105729,
+    "development_properties": 46202851945,
+    "creditors_and_notes_payable": 22363371331,
+    "customers_advance_payments": 37870038187,
+    "_source": "TMG Consolidated FS 12-2020 _ Final _ Eng.pdf, consolidated statement of financial position, pages 3 and 4",
+    "_route": "the asset lines from the text layer, the liability lines by OCR off the pixels",
+    "_note": "ACCOUNTS AND NOTES RECEIVABLE CARRIES A BASIS BREAK INTO FY2021 and is recorded AS FIRST REPORTED rather than reconciled: this filing states 31,112,105,729 at 31 December 2020, and the FY2021 filing states 8,393,001,058 for the same date in its comparative column. Point-in-time discipline is absolute — each origin sees its own filing as originally reported, restatements noted beside and never substituted — so the difference is registered here as a break to be understood before either figure is used in a bridge, not averaged or silently preferred."
+   },
+   "share_count": {
+    "value": 2063562286,
+    "as_at": "2020-12-31",
+    "source": "TMG Consolidated FS 12-2020 _ Final _ Eng.pdf, note (22), issued and paid up capital, read against the capital recital in the same note, page 3 and the capital note (the company's own audited consolidated financial statements, from its own investor-relations archive)",
+    "route": "text layer",
+    "check": "FOOTED: issued and paid up capital 20,635,622,860 over the LE 10 par value the recital states throughout reproduces 2,063,562,286",
+    "note": "the note is a CHRONOLOGY of resolutions rather than one current-capital sentence, so the recital establishes the par value and the identity and the count is this year's own committed capital divided by that par. The recital stops at the last resolution that CHANGED the capital and cannot see a later treasury movement; it does record a treasury holding of LE 169,720,520 par value used in an earlier reduction, so the count is the ISSUED count and is labelled as such."
+   }
+  },
+  "FY2021": {
+   "cash": {
+    "value": 3293464398,
+    "as_at": "2021-12-31",
+    "source": "TMG Conso  FSs 31 December 2021 Final.pdf, consolidated statement of financial position, 'Cash on hand and at banks' (note 19), page 4 (the company's own audited consolidated financial statements, from its own investor-relations archive)",
+    "route": "OCR off the rendered pixels at 300 dpi — this page carries no text layer; every figure was footed against the statement's own printed totals before it was kept, and the arithmetic rather than the extractor's confidence is what settled it",
+    "check": "the statement foots: 32,141,360,888 + 106,576,480,595 = total assets 138,717,841,483"
+   },
+   "debt": {
+    "value": 9165843742,
+    "as_at": "2021-12-31",
+    "source": "TMG Conso  FSs 31 December 2021 Final.pdf, consolidated statement of financial position (continued), the five NAMED borrowing lines, page 5 (the company's own audited consolidated financial statements, from its own investor-relations archive)",
+    "route": "OCR off the rendered pixels at 300 dpi — this page carries no text layer; every figure was footed against the statement's own printed totals before it was kept, and the arithmetic rather than the extractor's confidence is what settled it",
+    "lines": {
+     "loans_non_current": 4307164817,
+     "sukuk_al_ijarah": 1750000000,
+     "banks_overdraft": 5972470,
+     "credit_facilities": 1522717934,
+     "loans_current_portion": 1579988521
+    },
+    "check": "total liabilities foot: 28,380,285,329 + 75,294,060,779 = 103,674,346,108",
+    "note": "the borrowings that actually bear interest, as FY2020 [R-FCAL-01 trap (i)]"
+   },
+   "ppe": {
+    "value": 5412067946,
+    "as_at": "2021-12-31",
+    "source": "TMG Conso  FSs 31 December 2021 Final.pdf, consolidated statement of financial position, 'Fixed Assets' (note 4), page 4 (the company's own audited consolidated financial statements, from its own investor-relations archive)",
+    "route": "OCR off the rendered pixels at 300 dpi — this page carries no text layer; every figure was footed against the statement's own printed totals before it was kept, and the arithmetic rather than the extractor's confidence is what settled it"
+   },
+   "cip": {
+    "value": 8603208774,
+    "as_at": "2021-12-31",
+    "source": "TMG Conso  FSs 31 December 2021 Final.pdf, consolidated statement of financial position, 'Fixed assets under construction' (note 8), page 4 (the company's own audited consolidated financial statements, from its own investor-relations archive)",
+    "route": "OCR off the rendered pixels at 300 dpi — this page carries no text layer; every figure was footed against the statement's own printed totals before it was kept, and the arithmetic rather than the extractor's confidence is what settled it"
+   },
+   "depreciation_amortisation": {
+    "value": 317258586,
+    "as_at": "2021-12-31",
+    "source": "TMG Conso  FSs 31 December 2021 Final.pdf, consolidated statement of cash flows, 'Depreciation & amortization' (notes 4,5,7), page 10 (the company's own audited consolidated financial statements, from its own investor-relations archive)",
+    "route": "text layer",
+    "check": "read twice by two routes — OCR off the pixels and the text layer — and the two agree"
+   },
+   "capex": {
+    "value": 3053839332,
+    "as_at": "2021-12-31",
+    "source": "TMG Conso  FSs 31 December 2021 Final.pdf, consolidated statement of cash flows, '(Payment) to acquire fixed assets, investment in property, intangible assets and fixed assets under construction', page 10 (the company's own audited consolidated financial statements, from its own investor-relations archive)",
+    "route": "text layer",
+    "note": "DISCLOSED, not derived. Its comparative column carries 2,379,865,913, which is the figure FY2020's own filing states — the two filings agree."
+   },
+   "working_capital_lines": {
+    "inventory": 1095952748,
+    "accounts_and_notes_receivable": 4029242525,
+    "development_properties": 58839947633,
+    "creditors_and_notes_payable": 7775393539,
+    "customers_advance_payments": 20017539862,
+    "_source": "TMG Conso  FSs 31 December 2021 Final.pdf, consolidated statement of financial position, pages 4 and 5",
+    "_route": "OCR off the rendered pixels at 300 dpi, every line footed against the statement's own totals",
+    "_note": "see the FY2020 note on accounts and notes receivable: the two filings disagree about 31 December 2020 and both are recorded as first reported."
+   },
+   "share_count": {
+    "value": 2063562286,
+    "as_at": "2021-12-31",
+    "source": "TMG Conso  FSs 31 December 2021 Final.pdf, issued and paid-up capital (note 24) against the LE 10 par value, page 4 and the capital note (the company's own audited consolidated financial statements, from its own investor-relations archive)",
+    "route": "OCR off the rendered pixels at 300 dpi — this page carries no text layer; every figure was footed against the statement's own printed totals before it was kept, and the arithmetic rather than the extractor's confidence is what settled it",
+    "check": "FOOTED: 20,635,622,860 over LE 10 par reproduces 2,063,562,286"
+   }
+  }
+ }
+}
