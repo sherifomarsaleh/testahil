@@ -1,0 +1,193 @@
+<title>TESTAHIL Agent Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --ground:#F2F4F7; --surface:#FFFFFF; --sunk:#E8EBF0;
+    --ink:#141C26; --ink2:#3D4855; --muted:#697687;
+    --line:#D8DDE5; --line2:#EBEEF3;
+    --a:#0E6B5E; --a-soft:#E3F0ED; --on-a:#FFFFFF;
+    --stop:#A4552F; --stop-soft:#F6E9E1;
+    --serif:"Newsreader",Georgia,"Times New Roman",serif;
+    --sans:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0F151D; --surface:#161E28; --sunk:#1C2632;
+      --ink:#E6EAF0; --ink2:#B7C0CC; --muted:#8A97A7;
+      --line:#2A3542; --line2:#222C38;
+      --a:#3FB39E; --a-soft:#173129; --on-a:#0F151D;
+      --stop:#E0895F; --stop-soft:#3A241A;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0F151D; --surface:#161E28; --sunk:#1C2632;
+    --ink:#E6EAF0; --ink2:#B7C0CC; --muted:#8A97A7;
+    --line:#2A3542; --line2:#222C38;
+    --a:#3FB39E; --a-soft:#173129; --on-a:#0F151D;
+    --stop:#E0895F; --stop-soft:#3A241A;
+  }
+  html{color-scheme:light dark}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.5;
+       -webkit-font-smoothing:antialiased}
+  .page{max-width:940px;margin:0 auto;padding:40px 28px 64px}
+  header{display:grid;grid-template-columns:1fr auto;gap:16px 32px;align-items:end;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:24px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+  h1{font-family:var(--serif);font-weight:600;font-size:34px;line-height:1.1;margin:0;text-wrap:balance;letter-spacing:-.01em}
+  .brief{max-width:62ch;color:var(--ink2);margin:10px 0 0}
+  .where{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:right;line-height:1.7}
+  .where b{color:var(--ink);font-weight:500}
+  h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:34px 0 12px;letter-spacing:-.005em}
+  h2 small{font-family:var(--sans);font-weight:400;font-size:13px;color:var(--muted);margin-left:10px}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow-x:auto}
+  table{border-collapse:collapse;width:100%;min-width:760px;font-size:13px}
+  thead th{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+           text-align:left;font-weight:500;padding:12px 14px 10px;border-bottom:1px solid var(--line);background:var(--sunk)}
+  tbody td{padding:11px 14px;border-bottom:1px solid var(--line2);vertical-align:top}
+  tbody tr:last-child td{border-bottom:0}
+  td.task{width:14%;font-weight:600;color:var(--ink)}
+  td.say{width:29%}
+  td.agent{width:22%}
+  td.back{width:35%;color:var(--ink2)}
+  .say code, .agent code{font-family:var(--mono);font-size:12.5px;display:block;margin:0 0 4px;color:var(--ink)}
+  .say code:last-child{margin-bottom:0}
+  .say code::before{content:"› ";color:var(--muted)}
+  .agent code{color:var(--a);font-weight:500}
+  .agent .rule{font-family:var(--mono);font-size:11px;color:var(--muted);display:block;margin-top:2px}
+  .agent .rule span{white-space:nowrap}
+  .stop{display:inline-block;padding:1px 6px;border-radius:3px;background:var(--stop-soft);color:var(--stop);font-size:12px;font-weight:500;margin-top:4px}
+  .ro{display:inline-block;padding:1px 6px;border-radius:3px;background:var(--a-soft);color:var(--a);font-size:12px;font-weight:500;margin-top:4px}
+
+  .notes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+  .note{border-top:2px solid var(--a);padding-top:10px;font-size:13px;color:var(--ink2)}
+  .note h3{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.02em;margin:0 0 6px;color:var(--ink)}
+  .note p{margin:0 0 6px}
+  .note code{font-family:var(--mono);font-size:12px;color:var(--ink)}
+  @media (max-width:720px){.notes{grid-template-columns:1fr}header{grid-template-columns:1fr}.where{text-align:left}}
+
+  figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 18px 12px;overflow-x:auto}
+  figure svg{display:block;width:100%;max-width:100%;height:auto;min-width:760px;font-family:var(--sans);color:var(--ink)}
+  figcaption{font-size:13px;color:var(--ink2);max-width:76ch;margin:12px 4px 4px}
+  .n{fill:var(--surface);stroke:currentColor;stroke-width:1}
+  .n.agent{stroke:var(--a);stroke-width:1.5}
+  .n.main{stroke-dasharray:4 3}
+  .lbl{font-family:var(--mono);font-size:12.5px;fill:var(--ink)}
+  .lbl.a{fill:var(--a);font-weight:500}
+  .sub{font-size:11px;fill:var(--muted)}
+  .arrow{font-size:12px;fill:var(--ink2)}
+  .lane{font-size:13px;fill:var(--muted)}
+  .head{font-family:var(--mono);font-size:11px;letter-spacing:.08em;fill:var(--muted)}
+  .stopd{fill:var(--stop);stroke:none}
+  .stopl{font-size:12px;fill:var(--stop);font-weight:600}
+  .tail{font-size:12.5px;fill:var(--ink2);font-style:italic}
+  line,path.edge{stroke:currentColor;stroke-width:1;fill:none}
+  .rule-line{stroke:var(--line);stroke-width:1}
+  @media print{body{background:#fff}.page{padding:0}figure,.card{border-color:#bbb}}
+</style>
+
+<div class="page">
+  <header>
+    <div>
+      <p class="eyebrow">Operating card · nine subagents</p>
+      <h1>TESTAHIL Agent Card</h1>
+      <p class="brief">Say the task in plain words; the main session routes it to the agent whose description matches, the agent works alone in a fresh context with only its own tools, and its report comes back to you. Name the agent only where a request reads two ways.</p>
+    </div>
+    <div class="where">
+      stored in <b>.claude/agents/</b><br>
+      loaded from <b>main</b> at session start<br>
+      inspect or edit with <b>/agents</b>
+    </div>
+  </header>
+
+  <h2>What to say <small>the words in the middle column are what the router matches on</small></h2>
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>Task</th><th>Say this</th><th>Agent</th><th>What comes back · where it stops</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="task">Is the repo clean?</td>
+          <td class="say"><code>Run the gates before I commit</code><code>Is the repo clean?</code></td>
+          <td class="agent"><code>testahil-<wbr>gate-runner</code><span class="rule"><span>R-ENF-04</span> · <span>mirrors both CI workflows</span></span></td>
+          <td class="back">One table: gate · population examined · PASS / FAIL / UNRUNNABLE · the command's own output. <span class="ro">read-only, never fixes</span></td>
+        </tr>
+        <tr>
+          <td class="task">Is a study deliverable?</td>
+          <td class="say"><code>Audit the PHDC study</code><code>Is the AMOC study deliverable?</code></td>
+          <td class="agent"><code>testahil-<wbr>qc-auditor</code><span class="rule"><span>R-ENF-02</span> · <span>R-GAP-01</span> · <span>depth bar</span></span></td>
+          <td class="back">The filled QC table as <code>QC_GATE_{date}.md</code>, every row naming its artefact, plus one row about the answer against the price. <span class="ro">writes nothing else</span></td>
+        </tr>
+        <tr>
+          <td class="task">The answer looks wrong</td>
+          <td class="say"><code>How come ARCC's fair value is half what it trades at?</code><code>Challenge the ARCC answer</code></td>
+          <td class="agent"><code>testahil-<wbr>answer-challenger</code><span class="rule"><span>R-GAP-01</span> · <span>R-GAP-02</span></span></td>
+          <td class="back">Every candidate defect priced as a number, ours hunted before the market's — the terminal reinvestment identity, capex against the volume it buys, and what the price must believe. <span class="ro">never edits the study</span></td>
+        </tr>
+        <tr>
+          <td class="task">Sources before drivers</td>
+          <td class="say"><code>Run the sweep for ELEC</code><code>Start the information sweep on ELEC</code></td>
+          <td class="agent"><code>testahil-<wbr>sweep-researcher</code><span class="rule"><span>Step 2A</span> · <span>four rings</span></span></td>
+          <td class="back">The study's <code>sweep.py</code> and <code>sweep_register.json</code>, IR attempt logged either way. <span class="stop">stops and asks if official statements can't be got</span></td>
+        </tr>
+        <tr>
+          <td class="task">Fresh prices, covered name</td>
+          <td class="say"><code>Roll forward COMI</code> (attach the export)<code>Recalibrate and forecast COMI</code></td>
+          <td class="agent"><code>testahil-<wbr>rollforward-operator</code><span class="rule"><span>trigger (b)</span> · <span>R-GRADE-01</span> · <span>R-WIDTH-01</span></span></td>
+          <td class="back">Updated page, ledger, technical read, chart, per-name record; lifecycle invariant asserted. <span class="ro">never publishes · fair{} untouched</span></td>
+        </tr>
+        <tr>
+          <td class="task">Campaign name</td>
+          <td class="say"><code>Run the fundamental walk-forward on AMOC</code><code>Next name in the campaign</code></td>
+          <td class="agent"><code>testahil-<wbr>walkforward-runner</code><span class="rule"><span>R-FCAL-01</span> · <span>R-GAP-01</span> · <span>R-MERGE-01</span></span></td>
+          <td class="back">Training record, rebuilt study, lesson drafts. <span class="stop">stops before lessons_add.py for your scope ruling</span> — then closes: PR, merge on green, gap reported only past 10%.</td>
+        </tr>
+        <tr>
+          <td class="task">A rule changes</td>
+          <td class="say"><code>Add this rule to the project instructions: …</code><code>Amend [R-CAL-02]: …</code></td>
+          <td class="agent"><code>testahil-<wbr>protocol-scribe</code><span class="rule"><span>R-DOC-01</span> · <span>R-DOC-02</span></span></td>
+          <td class="back">Both governing documents amended in one commit, id assigned, stamps bumped, gates green. <span class="stop">hands you the full digest text to paste</span></td>
+        </tr>
+        <tr>
+          <td class="task">A critique arrives</td>
+          <td class="say"><code>Here is a critique of the ADNOCLS study — respond</code><code>Approved: implement rows CC-5, CW-20</code></td>
+          <td class="agent"><code>testahil-<wbr>critique-responder</code><span class="rule"><span>Critique_Response v2</span> · <span>R-GAP-01</span></span></td>
+          <td class="back">Every finding on its own row, priced before judged, receipts on every rejection. <span class="stop">stops at the report; implements only on your approval</span></td>
+        </tr>
+        <tr>
+          <td class="task">Composite-beta backlog</td>
+          <td class="say"><code>Re-issue the beta on SCEM</code><code>Clear the next name in the beta backlog</code></td>
+          <td class="agent"><code>testahil-<wbr>beta-reissuer</code><span class="rule"><span>R-BETA-04</span> · <span>R-IDX-01</span> · <span>R-GAP-01</span></span></td>
+          <td class="back">Before/after: regressor, beta, R², tier, Ke, WACC, each lens, the centre. <span class="stop">stops and asks where v2 sovereign inputs can't be sourced live</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="notes">
+    <div class="note">
+      <h3>Name the agent in two cases</h3>
+      <p><b>Fresh OHLC for a ticker.</b> The protocol warns it has the same input shape as a new study. Say <code>roll forward</code>, or name <code>testahil-<wbr>rollforward-operator</code>.</p>
+      <p><b>“Check the study.”</b> Repo gates → <code>gate-runner</code>. A delivered study → <code>qc-auditor</code>. Say which.</p>
+    </div>
+    <div class="note">
+      <h3>Three routes</h3>
+      <p><b>Plain ask</b> — the default; the description does the routing.</p>
+      <p><b>Name it</b> — <code>use testahil-qc-auditor on PHDC</code> when it could go two ways.</p>
+      <p><b>/agents</b> — list, inspect or edit a definition. Not for running one.</p>
+    </div>
+    <div class="note">
+      <h3>What every agent has in common</h3>
+      <p>Reads the live state, never a remembered number. Declares what it examined. Reports evidence, never a verdict on itself. Publishing to the site stays a separate, explicit ask for all nine.</p>
+    </div>
+  </div>
+
+  <h2>How a prompt travels, and where each agent sits</h2>
+  <figure>
+    <svg viewBox="0 0 1280 844" role="img" aria-label="Every prompt goes through the main session to one agent, which works in a fresh context and hands back a report. Seven workflows show where each agent sits, what it passes to the next step, and the three points only the user can pass: the lesson-scope ruling, approval of a critique response, and pasting the digest."><defs><marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4 L0,8 z" fill="currentColor"/></marker></defs><text x="20" y="24" class="head">HOW A PROMPT TRAVELS</text><rect x="20" y="40" width="130" height="40" rx="5" class="n "/><text x="85.0" y="58" text-anchor="middle" class="lbl">you</text><text x="85.0" y="72" text-anchor="middle" class="sub">one sentence</text><line x1="150" y1="62" x2="312" y2="62" marker-end="url(#arr)"/><text x="235.0" y="52" text-anchor="middle" class="arrow">routed on its description</text><rect x="320" y="40" width="150" height="40" rx="5" class="n main"/><text x="395.0" y="58" text-anchor="middle" class="lbl">main session</text><text x="395.0" y="72" text-anchor="middle" class="sub">picks the agent</text><line x1="470" y1="62" x2="632" y2="62" marker-end="url(#arr)"/><text x="555.0" y="52" text-anchor="middle" class="arrow">fresh context · own tools</text><rect x="640" y="40" width="150" height="40" rx="5" class="n agent"/><text x="715.0" y="58" text-anchor="middle" class="lbl a">agent</text><text x="715.0" y="72" text-anchor="middle" class="sub">one of nine</text><path d="M715,84 L715,112 L85,112 L85,92" class="edge" marker-end="url(#arr)"/><text x="400" y="128" text-anchor="middle" class="arrow">report: evidence, never a verdict on itself · relayed by the main session</text><line x1="20" y1="150" x2="1260" y2="150" class="rule-line"/><text x="20" y="176" class="head">WHERE EACH AGENT SITS · ◆ = A POINT ONLY YOU CAN PASS</text><text x="20" y="236" class="lane">New study</text><rect x="180" y="212" width="165" height="40" rx="5" class="n agent"/><text x="262.5" y="236" text-anchor="middle" class="lbl a">sweep-researcher</text><line x1="345" y1="232" x2="417" y2="232" marker-end="url(#arr)"/><text x="385.0" y="222" text-anchor="middle" class="arrow">register</text><rect x="425" y="212" width="165" height="40" rx="5" class="n main"/><text x="507.5" y="230" text-anchor="middle" class="lbl">build the study</text><text x="507.5" y="244" text-anchor="middle" class="sub">main session</text><line x1="590" y1="232" x2="662" y2="232" marker-end="url(#arr)"/><text x="630.0" y="222" text-anchor="middle" class="arrow">delivered</text><rect x="670" y="212" width="165" height="40" rx="5" class="n agent"/><text x="752.5" y="236" text-anchor="middle" class="lbl a">qc-auditor</text><line x1="835" y1="232" x2="907" y2="232" marker-end="url(#arr)"/><text x="875.0" y="222" text-anchor="middle" class="arrow">QC table</text><rect x="915" y="212" width="165" height="40" rx="5" class="n agent"/><text x="997.5" y="236" text-anchor="middle" class="lbl a">gate-runner</text><line x1="1080" y1="232" x2="1074" y2="232" marker-end="url(#arr)"/><text x="1090" y="236" class="tail">publish — separate ask</text><text x="20" y="312" class="lane">Covered name,</text><text x="20" y="327" class="lane">fresh prices</text><rect x="180" y="296" width="165" height="40" rx="5" class="n agent"/><text x="262.5" y="320" text-anchor="middle" class="lbl a">rollforward-operator</text><line x1="345" y1="316" x2="417" y2="316" marker-end="url(#arr)"/><text x="385.0" y="306" text-anchor="middle" class="arrow">page · ledger</text><rect x="425" y="296" width="165" height="40" rx="5" class="n agent"/><text x="507.5" y="320" text-anchor="middle" class="lbl a">gate-runner</text><line x1="590" y1="316" x2="654" y2="316" marker-end="url(#arr)"/><text x="670" y="320" class="tail">commit · fair{} untouched</text><text x="20" y="404" class="lane">Campaign name</text><rect x="180" y="380" width="165" height="40" rx="5" class="n agent"/><text x="262.5" y="398" text-anchor="middle" class="lbl a">walkforward-runner</text><text x="262.5" y="412" text-anchor="middle" class="sub">freeze · build · score</text><line x1="345" y1="400" x2="483.5" y2="400" marker-end="url(#arr)"/><text x="418.25" y="390" text-anchor="middle" class="arrow">lesson drafts</text><polygon points="507.5,384 523.5,400 507.5,416 491.5,400" class="stopd"/><text x="507.5" y="434" text-anchor="middle" class="stopl">you rule the scope</text><line x1="523.5" y1="400" x2="662" y2="400" marker-end="url(#arr)"/><text x="596.75" y="390" text-anchor="middle" class="arrow">your ruling</text><rect x="670" y="380" width="165" height="40" rx="5" class="n agent"/><text x="752.5" y="398" text-anchor="middle" class="lbl a">walkforward-runner</text><text x="752.5" y="412" text-anchor="middle" class="sub">register · record · close</text><line x1="835" y1="400" x2="867" y2="400" marker-end="url(#arr)"/><text x="855.0" y="390" text-anchor="middle" class="arrow">PR</text><text x="885" y="404" class="tail">merge on green · gap told only past 10%</text><text x="20" y="480" class="lane">The answer</text><text x="20" y="495" class="lane">looks wrong</text><rect x="180" y="464" width="165" height="40" rx="5" class="n agent"/><text x="262.5" y="482" text-anchor="middle" class="lbl a">answer-challenger</text><text x="262.5" y="496" text-anchor="middle" class="sub">hunts OUR defect first</text><line x1="345" y1="484" x2="417" y2="484" marker-end="url(#arr)"/><text x="385.0" y="474" text-anchor="middle" class="arrow">priced</text><rect x="425" y="464" width="165" height="40" rx="5" class="n main"/><text x="507.5" y="482" text-anchor="middle" class="lbl">fix and restrike</text><text x="507.5" y="496" text-anchor="middle" class="sub">main session</text><line x1="590" y1="484" x2="654" y2="484" marker-end="url(#arr)"/><text x="670" y="488" class="tail">R-GAP-02 holds publication until the gap closes</text><text x="20" y="572" class="lane">Critique arrives</text><rect x="180" y="548" width="165" height="40" rx="5" class="n agent"/><text x="262.5" y="566" text-anchor="middle" class="lbl a">critique-responder</text><text x="262.5" y="580" text-anchor="middle" class="sub">phase A · the report</text><line x1="345" y1="568" x2="483.5" y2="568" marker-end="url(#arr)"/><text x="418.25" y="558" text-anchor="middle" class="arrow">ledger, priced</text><polygon points="507.5,552 523.5,568 507.5,584 491.5,568" class="stopd"/><text x="507.5" y="602" text-anchor="middle" class="stopl">you approve rows</text><line x1="523.5" y1="568" x2="662" y2="568" marker-end="url(#arr)"/><text x="596.75" y="558" text-anchor="middle" class="arrow">approved rows</text><rect x="670" y="548" width="165" height="40" rx="5" class="n agent"/><text x="752.5" y="566" text-anchor="middle" class="lbl a">critique-responder</text><text x="752.5" y="580" text-anchor="middle" class="sub">phase B · implement</text><line x1="835" y1="568" x2="907" y2="568" marker-end="url(#arr)"/><text x="875.0" y="558" text-anchor="middle" class="arrow">restruck</text><rect x="915" y="548" width="165" height="40" rx="5" class="n agent"/><text x="997.5" y="572" text-anchor="middle" class="lbl a">qc-auditor</text><text x="20" y="656" class="lane">Beta backlog</text><rect x="180" y="632" width="165" height="40" rx="5" class="n agent"/><text x="262.5" y="656" text-anchor="middle" class="lbl a">beta-reissuer</text><line x1="345" y1="652" x2="417" y2="652" marker-end="url(#arr)"/><text x="385.0" y="642" text-anchor="middle" class="arrow">rebuilt study</text><rect x="425" y="632" width="165" height="40" rx="5" class="n agent"/><text x="507.5" y="656" text-anchor="middle" class="lbl a">qc-auditor</text><line x1="590" y1="652" x2="654" y2="652" marker-end="url(#arr)"/><text x="670" y="656" class="tail">PR · backlog shortens by one</text><text x="20" y="740" class="lane">A rule changes</text><rect x="180" y="716" width="165" height="40" rx="5" class="n agent"/><text x="262.5" y="734" text-anchor="middle" class="lbl a">protocol-scribe</text><text x="262.5" y="748" text-anchor="middle" class="sub">both docs · stamps · gates</text><line x1="345" y1="736" x2="483.5" y2="736" marker-end="url(#arr)"/><text x="418.25" y="726" text-anchor="middle" class="arrow">digest text</text><polygon points="507.5,720 523.5,736 507.5,752 491.5,736" class="stopd"/><text x="507.5" y="770" text-anchor="middle" class="stopl">you paste the digest</text><text x="537.5" y="740" class="tail">into your external project files</text><line x1="20" y1="790" x2="1260" y2="790" class="rule-line"/><rect x="20" y="808" width="26" height="16" rx="3" class="n agent"/><text x="54" y="820" class="arrow">agent, fresh context</text><rect x="200" y="808" width="26" height="16" rx="3" class="n main"/><text x="234" y="820" class="arrow">main session, this conversation</text><polygon points="430,808 438,816 430,824 422,816" class="stopd"/><text x="448" y="820" class="arrow">only you can pass</text><text x="620" y="820" class="arrow">gate-runner also runs before any commit or publish, in every lane</text></svg>
+    <figcaption>Every prompt goes through the main session to one agent, which works alone and hands back evidence. Seven workflows show what each agent passes to the next step and the three points only you can pass: ruling on a lesson's scope, approving a critique response, and pasting the digest into your own files.</figcaption>
+  </figure>
+</div>
