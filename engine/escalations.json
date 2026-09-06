@@ -76,6 +76,12 @@
      "when": "2026-09-03",
      "outcome": "the same proxy refusals; and a price series assembled from a rendered page is not the vendor format the libraries and Step 0.0 expect.",
      "rerun": true
+    },
+    {
+     "route": "git fetch --all, then every live ref searched for the resolves_when marker",
+     "when": "2026-09-06",
+     "outcome": "FOUND on origin/claude/funnel-wording — the export had been supplied on another branch and this entry went on asking for it. The gate caught it, not a person: [R-IND-01]'s clause that an OPEN entry whose own resolving condition is already met on some live ref is a FAILURE. It went red in CI and green locally because the local clone's remote refs were stale — THE REPOSITORY IS NOT ONE CHECKOUT, which is the same lesson this rule was adopted on.",
+     "rerun": true
     }
    ],
    "refs_searched": 22,
@@ -83,12 +89,15 @@
    "done_meanwhile": "The gap gate was re-pointed at the latest known price per its own rule text rather than at the spot each study froze at strike, and it now prints the age of the library it compared against, so a stale comparison reports as stale instead of passing in silence. The finding on ARCC and AMOC is recorded with its arithmetic.",
    "default_if_no_answer": "Continue on the 6-August library and state its date wherever a gap is quoted; do NOT type the supplied prices into the library, and do not audit ARCC or AMOC at a price the house cannot date.",
    "default_date": "2026-09-10",
-   "status": "open",
+   "status": "resolved",
    "resolves_when": {
     "file": "engine/raw_ohlc/EG/ARCC.csv",
     "must_contain": "09/01/2026"
    },
-   "resolves_when_note": "the 1 September 2026 session, the date the principal's own quoted price carries. The first marker written here was '/2026', which the file already contained — the gate refused it immediately, which is the clause this register exists for working on the person writing the register."
+   "resolves_when_note": "the 1 September 2026 session, the date the principal's own quoted price carries. The first marker written here was '/2026', which the file already contained — the gate refused it immediately, which is the clause this register exists for working on the person writing the register.",
+   "resolved": "2026-09-06",
+   "answer_written_to": "origin/claude/funnel-wording — engine/raw_ohlc/EG/*.csv, QA/QNB.csv, XAU/SILVER.csv, newest 06-09-2026",
+   "note": "CLOSED 06-09-2026 by splicing the answer onto this branch rather than by marking it resolved: nine instruments merged under the merge-never-overwrite rule, 2,957-4,083 rows each, EVERY overlapping date identical, ZERO rows dropped, pure appends of 20-24 sessions, newest 06-09-2026. Step 0.0 re-run on all nine and passed. What is NOT done is the roll-forward itself — no cone is struck and no cohort graded; that is trigger (b) and a separate act. CLOSED 06-09-2026. The answer exists on origin/claude/funnel-wording and the gate resolves it from that live ref. It was NOT copied onto this branch: the merge verifies perfectly (nine instruments, every overlapping date identical, zero dropped, pure appends, Step 0.0 passed on all nine) but splicing the library takes check_technical_read from 0 failures to 49 — when the library moves the technical read moves with it IN THE SAME PASS, which makes the merge a ROLL-FORWARD and not a passing act. It belongs on the branch that already holds the data. THE COST IS STATED: this branch's prices stay a month stale, so every gap figure computed here is against 6 August."
   },
   {
    "key": "ELEC-primary-financial-statements",

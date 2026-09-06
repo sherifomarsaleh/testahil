@@ -1392,3 +1392,50 @@ sign is wrong whatever the split turns out to be.
 
 Gate green: 7 entries, every one shaped, searched, and still unanswered or written
 down.
+
+## 06-09-2026, 23:15 firing
+
+### The PR went red, and the gate was right: this branch was asking for data it already had
+
+`check_escalations.py` failed CI on `EGX-ohlc-refresh-arcc-amoc-egch` — **"STILL
+OPEN AND ALREADY ANSWERED — its own resolves_when marker is present on
+origin/claude/funnel-wording."** That is [R-IND-01]'s clause that catches a re-ask
+mechanically rather than by anyone remembering, and it is the first time it has
+fired on a live entry.
+
+**It went green locally and red in CI, and the reason is the lesson the rule was
+adopted on.** My local clone's remote refs were stale; CI checks out fresh and
+sees every ref. THE REPOSITORY IS NOT ONE CHECKOUT.
+
+It also means this branch's prices were **a month stale** — 6 August against a
+supplied 6 September — which matters, because [R-GAP-01] audits against the
+LATEST KNOWN price and every gap figure computed here was against the older one.
+
+**Closed without copying the data, and the attempt to copy it is why.** The merge
+itself verifies perfectly — nine instruments, 2,957 to 4,083 rows each, EVERY
+overlapping date identical, ZERO rows dropped, pure appends of 20-24 sessions,
+newest 06-09-2026, and Step 0.0 re-run and passed on all nine (it removed one
+placeholder row on five of them and three on two others — the gate working).
+
+**But splicing the library turned `check_technical_read.py` from 0 failures to
+49.** The standing rule is that when the library moves, the technical read moves
+with it IN THE SAME PASS — levels, narrative and the chart underneath them — and
+the gate says so exactly: "tech.data 2026-08-05 but the library ends 2026-09-06".
+Verified by stashing: green before the splice, red after, so it is the splice and
+not a pre-existing state.
+
+**That makes the library merge a roll-forward, not a passing act**, and it is
+reverted. Refreshing 49 names' technical reads and charts changes what the site
+would publish next and belongs with the roll-forward that owns it — on the branch
+that already holds the data — rather than bolted onto a method-reassessment
+branch at midnight.
+
+**The escalation stays closed regardless**, and that is not a workaround: the gate
+resolves it from the live ref where the answer actually is, printing "resolved
+(answer on origin/claude/funnel-wording)". The question was answered; it simply
+was not answered here.
+
+**What this leaves standing, and it is worth stating plainly:** this branch's
+prices remain a month stale, so every gap figure computed here is against 6 August
+rather than 6 September. That is a real limitation on anything [R-GAP-01] touches,
+and the fix is the roll-forward, not a copy.
