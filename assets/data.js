@@ -678,29 +678,30 @@ const TICKERS = {
     name: "Electro Cable Egypt",
     nameAr: "\u0627\u0644\u0643\u0627\u0628\u0644\u0627\u062a \u0627\u0644\u0643\u0647\u0631\u0628\u0627\u0626\u064a\u0629 \u0627\u0644\u0645\u0635\u0631\u064a\u0629",
     code: "EGX:ELEC",
-    spot: 2.19,
-    spotDate: "close 5 Aug 2026",
+    spot: 2.12,
+    spotDate: "close 06 Sep 2026",
     fairAsof: "2026-08-05",   // the close the FAIR VALUE is struck on, per the study
     ccy: "EGP",
     fair: { bear: 0.18, base: 0.34, full: 0.95 },          // 5 Aug 2026 \u2014 four-lens weighted central EGP 0.34 (\u221285% vs spot 2.19). Weights 40/20/20/20: FCFF DCF (floored at 0.01 \u2014 base EV 3,813 does NOT cover net debt 9,805, so intrinsic equity is \u22124.0bn, i.e. \u22121.81/share unfloored, disclosed in the bridge and floored only by limited liability) / relative EV\u2044EBITDA (also floored \u2014 debt exceeds EV at any peer multiple) / normalized earnings power 0.70 / justified P\u2044B on sustainable ROE 0.91. Forecast is BOTTOM-UP ON TONNAGE: revenue = volume \u00d7 (LME copper \u00d7 EGP\u2044USD \u00d7 1.387 fabrication uplift), EBITDA = volume \u00d7 conversion-EBITDA per tonne \u2014 margins are OUTPUTS. Implied volumes fell 24.0kt (96% of the parent plant\u2019s stated capacity, FY23\u201324) \u2192 15.8kt (63%) \u2192 ~9.3kt annualized in 1Q26 (~37%); the collapse is VOLUME, masked by record copper. Discount rate is a sliding schedule: WACC 21.53% explicit \u2192 15.00% terminal (terminal capital structure NORMALIZED to 40% debt, not today\u2019s ~59% distress weight, which would be circular), sovereign CDS netted out of the risk-free rate, own-stock beta 0.964 (R\u00b2 0.222, n 257). Terminal value is ROIC-consistent (g = ROIC \u00d7 RR exactly) and carries 82% of EV \u2014 high, and stated: the explicit years are working-capital-suppressed. Terminal ROIC 9.2% sits BELOW the 15.0% terminal WACC, so the growth gradient inverts (more growth subtracts value) \u2014 construction, not error. NET DEBT IS TRIANGULATED, NOT DISCLOSED: 9,805 = drawn debt 10,465 (FY25 total liabilities 12,360 less non-debt liabilities ~1,890) less cash ~665, cross-checked by a cash-flow roll-forward (9,803) and against the disclosed \u201cEGP 10.9bn facilities\u201d read as fully drawn (10,235); range 9,120\u201310,360 is worth ~\u00b10.19/share and the residual risk is SKEWED ADVERSE. Copper is held FLAT AT THE MARKET (~$14,000/t LME cash, 3\u20134 Aug) \u2014 a \u201cno house view\u201d forecast must anchor on the tape. Modelled book equity breaches solvency by FY29E on the base case. full = weighted bull central; even that sits 57% below spot.
     dist: {
-      t20: { label:"1 month",   p5:1.91, p25:2.10, p50:2.22, p75:2.35, p95:2.59, resolve:"2026-09-06" },
-      t60: { label:"3 months",  p5:1.71, p25:2.06, p50:2.29, p75:2.55, p95:3.07, resolve:"2026-11-05" }
+      t20: { label:"1 month",   p5:1.84, p25:2.03, p50:2.15, p75:2.27, p95:2.50, resolve:"2026-10-06" },
+      t60: { label:"3 months",  p5:1.65, p25:1.99, p50:2.21, p75:2.45, p95:2.96, resolve:"2026-12-06" }
     },
     hz: { h1:20, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:5, cal:0.951, mult:1, eff:0.951, on:"2026-09-06" },
     touch: [ /* level, P(touch) 1-month %, 3-month % \u2014 descending */
-      [2.75, 3, 22], [2.50, 14, 47], [2.35, 40, 70], [2.05, 31, 54], [1.90, 8, 27], [1.70, 1, 9]
+      [2.75, 2, 15], [2.50, 8, 35], [2.35, 22, 55], [2.05, 54, 71], [1.90, 14, 36], [1.70, 2, 13]
     ],
-    levels: { res:[2.31, 2.42, 2.67], sup:[2.15, 2.05, 1.90] },
+    levels: { res:[2.20, 2.28, 2.67], sup:[2.10, 2.05, 1.90] },
     tech: {
-      trend: "Mixed against the moving-average stack, below a falling 200-day",
-      summary: "The price closed 2.19 above a rising 20-day (2.18) and a flat 50-day (2.14), but below a falling 200-day (2.40). Momentum is neutral: RSI(14) is ~54 and the daily ATR near 0.05 (~2.3%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.01 / +0.01 / \u22120.00). Over the last year it has ranged 1.90\u20133.36; the last close sits 35% below that high and 15% above that low.",
-      bull: "A daily close back above 2.31 would clear the nearest resistance; the next charted level above it is 2.67.",
-      bear: "A close below 2.15 would break the nearest support; the next charted level below it is 1.90."
+      trend: "Trading below the whole moving-average stack, under a falling 200-day",
+      summary: "The price closed 2.12 below a falling 20-day (2.13), a flat 50-day (2.15) and a falling 200-day (2.33). Momentum is neutral: RSI(14) is ~48 and the daily ATR near 0.05 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.02 / \u22120.02 / +0.00). Over the last year it has ranged 1.90\u20133.36; the last close sits 37% below that high and 12% above that low.",
+      bull: "A daily close back above 2.20 would clear the nearest resistance; the next charted level above it is 2.67.",
+      bear: "A close below 2.10 would break the nearest support; the next charted level below it is 1.90."
     },
     asof: {
-      mc:   { data:"2026-08-05", computed:"2026-08-05" },
-      tech: { data:"2026-08-05", computed:"2026-09-06" }
+      mc:   { data:"2026-09-06", computed:"2026-09-06" },
+      tech: { data:"2026-09-06", computed:"2026-09-06" }
     },
     files: {
       study: "files/ELEC_Valuation_Study_05-08-2026_public.docx?v=0508",
@@ -3256,7 +3257,7 @@ const BANDS = {
   EFIH: {mkt:"EG", n:15, hits:15, c50:0.5333, c80:0.9333, c90:1.0000, width:1.124, strength:"market-only", flag:null},
   EGAL: {mkt:"EG", n:57, hits:52, c50:0.5789, c80:0.8070, c90:0.9123, width:1.270, strength:"long", flag:null},
   EGCH: {mkt:"EG", n:57, hits:54, c50:0.5614, c80:0.8772, c90:0.9474, width:1.446, strength:"long", flag:null},
-  ELEC: {mkt:"EG", n:57, hits:53, c50:0.5789, c80:0.8772, c90:0.9298, width:1.471, strength:"long", flag:null},
+  ELEC: {mkt:"EG", n:57, hits:53, c50:0.6140, c80:0.8947, c90:0.9298, width:1.460, strength:"long", flag:null},
   ELM: {mkt:"SA", n:13, hits:9, c50:0.3077, c80:0.5385, c90:0.6923, width:1.014, strength:"market-only", flag:null},
   EMAAR: {mkt:"AE", n:58, hits:46, c50:0.4828, c80:0.7241, c90:0.7931, width:0.957, strength:"long", flag:"narrow"},
   EMAARDEV: {mkt:"AE", n:30, hits:28, c50:0.4667, c80:0.8000, c90:0.9333, width:1.045, strength:"short", flag:null},
@@ -3599,9 +3600,9 @@ const LEDGER = [
     note:"First coverage, 5-Aug-2026 — struck on the production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry, immaterial here — ELEC has never distributed in the disclosed record). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count. Name-level calibration: robust PASS — 17 non-overlapping post-break quarterly origins, scale-normalized CRPS skill +8.8% vs the carry-anchored random walk, bootstrap CI90 entirely above zero at block sizes {2,3,4}; PIT mean 0.555, chi2(9)=9.5 p~0.40.",
     p5:1.91, p25:2.1, p50:2.22, p75:2.35, p95:2.59,
     touch:{ "+5":54, "+10":27, "+15":12, "+20":6, "-5":40, "-10":15 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:2.12, realized_high:2.26, realized_low:2.04,
+    in_90:true, in_50:true, realized_quantile:0.292, median_err:-0.0450,
+    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":true, "-10":false }
   },
   {
     instrument:"ELEC", asset_class:"equity",
@@ -7879,6 +7880,35 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 2026-09-06 single-name roll-forward: ELEC, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"ELEC", asset_class:"equity",
+    anchor_date:"2026-09-06", run_date:"2026-09-06", anchor_price:2.12, ccy:"EGP",
+    horizon_label:"1 month", grade_date:"2026-10-06", grade_basis:"projected", horizon_days:20,
+    cycle_no:2, reanchor_from:"2026-08-05", anchor_vol:0.3667,
+    signal_z:-0.3806, signal_alpha:-0.002318,
+    note:"Cycle 2 roll-forward, 2026-09-06 — struck on the 06-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-06 and is graded in this same pass. The previous cone was anchored 2026-08-05; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. rf_live 19.50% CBE main operation rate. Direction call DOWN, from this name’s own mom_combo z of -0.381 (outside the 0.25 dead zone); tilt -0.23% at 1M and -0.49% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 62) size the cone only.",
+    p5:1.84, p25:2.03, p50:2.15, p75:2.27, p95:2.5,
+    touch:{ "+5":52, "+10":25, "+15":12, "+20":6, "-5":40, "-10":16 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ELEC", asset_class:"equity",
+    anchor_date:"2026-09-06", run_date:"2026-09-06", anchor_price:2.12, ccy:"EGP",
+    horizon_label:"3 months", grade_date:"2026-12-06", grade_basis:"projected", horizon_days:62,
+    cycle_no:2, reanchor_from:"2026-08-05", anchor_vol:0.3997,
+    signal_z:-0.3806, signal_alpha:-0.004881,
+    note:"Cycle 2 roll-forward, 2026-09-06 — struck on the 06-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-06 and is graded in this same pass. The previous cone was anchored 2026-08-05; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) EG live fit nu=5.0, width_cal=0.951. rf_live 19.50% CBE main operation rate. Direction call DOWN, from this name’s own mom_combo z of -0.381 (outside the 0.25 dead zone); tilt -0.23% at 1M and -0.49% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on EG’s own realized calendar — a calendar commitment, not a session count; the session counts (h=20 / 62) size the cone only.",
+    p5:1.65, p25:1.99, p50:2.21, p75:2.45, p95:2.96,
+    touch:{ "+5":77, "+10":58, "+15":43, "+20":30, "-5":61, "-10":38 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
@@ -8148,7 +8178,7 @@ const CALIB = {
   "EGX:EFIH": {w: 15, in50: 53, in90: 100, through: "2026-08-18"},
   "EGX:EGAL": {w: 57, in50: 56, in90: 89, through: "2026-07-22"},
   "EGX:EGCH": {w: 57, in50: 53, in90: 95, through: "2026-07-12"},
-  "EGX:ELEC": {w: 57, in50: 51, in90: 93, through: "2026-07-12"},
+  "EGX:ELEC": {w: 57, in50: 49, in90: 93, through: "2026-07-12"},
   "EGX:EMFD": {w: 40, in50: 60, in90: 95, through: "2026-08-11"},
   "EGX:ETEL": {w: 57, in50: 40, in90: 95, through: "2026-07-12"},
   "EGX:FWRY": {w: 23, in50: 48, in90: 100, through: "2026-06-10"},
