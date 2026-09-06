@@ -275,7 +275,7 @@
     "must_contain": "DEPRECIATION POLICY NOTE RECEIVED"
    },
    "answer_written_to": "engine/amoc_study/TERMINAL_EVIDENCE_06-09-2026.md",
-   "note": "The ARCC precedent is the pattern: the company's own site refused at the proxy, the attempt was logged either way, and the principal supplying the document IS the rule working rather than a failure of it. CLOSED HERE BY PORTING THE ADJUDICATION FROM origin/claude/arcc-fundamental-calibration-ebhtjk, which holds the answer: that session obtained the filings, wrote DEPRECIATION POLICY NOTE RECEIVED into engine/amoc_study/filings/AUDITED_EXTRACT.md and recorded the reasoning in engine/amoc_study/TERMINAL_EVIDENCE_06-09-2026.md. Only the status, the resolved date and the answer_written_to are carried across — none of that branch's study rebuild is pulled into a roll-forward, and this closure no-ops the moment that branch merges. It is closed rather than left red because [R-IND-01] is explicit that an entry whose marker is already present on a live ref must not go on asking; the marker is on that ref, not on this one, and THE REPOSITORY IS NOT ONE REF.",
+   "note": "CORRECTED 06-09-2026 AGAINST THE DOCUMENT THIS ENTRY POINTS AT. The note first written here said the company's site refused at the proxy and that the principal supplying the document was the rule working — and the answer's own text says the opposite in terms: 'The document was NOT supplied by the principal: the 5 September block rested on a probe pointed at a hostname that does not resolve.' AMOC's investor site is amoceg.com, not amoc.com.eg; it answers 200 unauthenticated with the audited statements one click from the homepage. This is [R-ENF-04] exactly — an empty result was first evidence the probe did not run, and one failed hostname became 'cannot be obtained' for a day. Recording it as an access refusal would have filed a search failure as a supply failure, which is the more comfortable of the two and the wrong one. CLOSED HERE BY PORTING THE ADJUDICATION FROM origin/claude/arcc-fundamental-calibration-ebhtjk, which holds the answer: that session obtained the filings, wrote DEPRECIATION POLICY NOTE RECEIVED into engine/amoc_study/filings/AUDITED_EXTRACT.md and recorded the reasoning in engine/amoc_study/TERMINAL_EVIDENCE_06-09-2026.md. Only the status, the resolved date and the answer_written_to are carried across — none of that branch's study rebuild is pulled into a roll-forward, and this closure no-ops the moment that branch merges. It is closed rather than left red because [R-IND-01] is explicit that an entry whose marker is already present on a live ref must not go on asking; the marker is on that ref, not on this one, and THE REPOSITORY IS NOT ONE REF.",
    "resolved": "2026-09-06"
   },
   {
@@ -465,20 +465,20 @@
      "rerun": true
     }
    ],
-   "refs_searched": 22,
+   "refs_searched": 241,
    "why_only_the_principal": "The OHLC libraries come from the principal's own vendor export and always have. No route available in this container produces one, and a price typed from a chat message is not a vendor export — it would enter a calibration panel as one.",
    "done_meanwhile": "ARCC was rolled forward end to end on the export that did arrive. Every other name once listed here needs nothing from the principal — their own sessions hold the exports and will grade their own rows.",
    "narrowed_twice": "THIS ENTRY HAS BEEN NARROWED TWICE BY ITS OWN GATE AND THE SECOND TIME IT WENT RED IN CI. Written naming eight stale names read from one checkout; the gate cut it to two by finding six on sibling branches; then the CI run on the very commit that made this register CI-visible cut it to one, because EGCH's export had landed on origin/claude/roll-forward-egx-metals-fy8dha in the minutes between. THE LESSON IS ABOUT LATENCY, NOT CARE: with many sessions landing exports on their own branches, 'not supplied' is a claim with a shelf life of minutes, and no amount of diligence at the moment of writing makes it durable. Only a checker that re-runs the search on every build can hold it — which is exactly why [R-IND-01] puts the resolving condition in the register rather than trusting the author, and why the engine/*.json trigger glob added in the same commit matters: before it, this register could go stale in CI without CI ever running.",
    "default_if_no_answer": "Leave the QNB row OPEN and ungraded — it is a calendar commitment and grades on its own date whenever its close lands. It is a month past that date, so [R-GRADE-01]'s 7-day early-grade bound cannot reach it. Quote the library's own end date wherever QNB's price or gap is quoted; never interpolate a close.",
    "default_date": "2026-10-06",
    "status": "resolved",
-   "resolved": "2026-09-06",
-   "answer_written_to": "engine/raw_ohlc/QA/QNB.csv",
-   "note": "CLOSED WITHOUT EVER REACHING THE PRINCIPAL, WHICH IS THE OUTCOME THIS RULE IS FOR. Every name it named turned out to be supplied on some sibling branch: AMOC, SCEM, PHAR, SWDY, ELEC and Silver at the first narrowing, EGCH at the second, and QNB — the last one standing, and the whole reason the entry still existed — on the third, its export landing on origin/claude/qatar-exchange-rollforward-vxwvsz in the minutes between the check that named it and the check that closed it. THE ENTRY WAS NEVER ASKED AND NOTHING WAS OWED. Had it been sent, it would have spent the principal's time on eight exports they had already supplied, which is precisely the failure [R-IND-01] was adopted on.",
+   "note": "REOPENED IN ERROR AND RE-CLOSED THE SAME HOUR; THE ERROR IS RECORDED BECAUSE IT IS THE RULE POINTING AT ITS OWN OPERATOR. This entry was marked resolved, the gate found no marker on any ref, and it was reopened here on a hand-rolled search across 241 remote refs that read each file's SECOND LINE and reported its newest session. THAT ASSUMED THE CSV IS SORTED NEWEST-FIRST AND THIS ONE IS NOT: line 2 is 08/06/2026 and line 20 is 09/01/2026, so the answer was present and the probe could not see it. [R-ENF-04] verbatim, aimed at the desk that was applying it to everybody else the same afternoon — an empty result is first evidence THE PROBE did not run, and a probe that assumes a file's ordering is a probe with an unstated premise. The gate, which does a plain substring search and assumes nothing, was right both times: right that the closure was unevidenced when the branch did not yet exist, and right that it is evidenced now that it does.",
    "resolves_when": {
     "file": "engine/raw_ohlc/QA/QNB.csv",
     "must_contain": "09/01/2026"
-   }
+   },
+   "resolved": "2026-09-06",
+   "answer_written_to": "engine/raw_ohlc/QA/QNB.csv on origin/claude/qatar-exchange-rollforward-vxwvsz — the series carries the 09/01/2026 session the marker names."
   },
   {
    "key": "ARCC-publication-held-by-R-GAP-02",
