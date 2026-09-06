@@ -196,3 +196,81 @@ knowable at the origin:
 
 That is SIGCM clause 2 — build from the ground up, volume × price, at the finest
 sourced level — applied to the eight lines that opted out of it.
+
+---
+
+# Part four — the lean is not systematic. It is three origins.
+
+Every fix above failed, and the reason is that they were all fixing the wrong thing.
+Group the error by the ORIGIN it was forecast from, rather than by the driver:
+
+| | ARCC revenue | TMGH, all drivers |
+|---|---|---|
+| **every origin** | −0.278 · actuals **32%** above | −0.280 · actuals **32%** above |
+| **origins 2020, 2021, 2022** | −0.695 · actuals **100%** above | −0.692 · actuals **100%** above |
+| **every other origin** | **+0.108 · actuals 10% BELOW** | **−0.041 · actuals 4% above** |
+
+**Two companies, two different models, two different sectors, measured
+independently — and they agree to the third decimal.** Thirty-two per cent under
+overall. A hundred per cent under at the 2020–2022 origins. And essentially
+unbiased everywhere else, one slightly over and one slightly under.
+
+On ARCC those three origins account for **more than the whole lean** — take them out
+and the model forecasts revenue 10% too HIGH. On TMGH they account for 91% of it,
+and a block bootstrap over the remaining origins gives an interval of
+[−0.222, +0.119] — **covering zero**.
+
+## What those origins were
+
+ARCC's own history, which the model was forecasting from:
+
+| | total volume | export share | local price |
+|---|---|---|---|
+| FY2019 | 4,558 kt | 13% | 660 |
+| **FY2020** | 4,078 kt | 9% | **581** |
+| **FY2021** | 3,208 kt | 15% | 757 |
+| FY2022 | 4,561 kt | 22% | 1,074 |
+| FY2023 | 4,376 kt | 39% | 1,460 |
+| FY2024 | 5,054 kt | 48% | 1,796 |
+| FY2025 | 4,854 kt | 40% | **2,856** |
+
+FY2020 and FY2021 are the floor — the lowest volume and the lowest price in the
+record. Forecasting forward from there, on any rule, missed a price that quintupled
+and an export share that went from 9% to 48%. **Egypt devalued, the cement quota
+regime changed, and the export market opened.** No rule available at those origins
+saw it, which is what a structural break is.
+
+## What this means, and it is not what this programme assumed
+
+**The 45% under-forecast that launched this reassessment is not a systematic lean.**
+It is a regime break sitting inside the sample, and outside it the method is
+unbiased on both names that can be measured this way.
+
+That reframes every conclusion drawn from it:
+
+- **The driver rules are broadly sound at ordinary origins.** Part one found fifteen
+  of them mis-specified against realised rates, and that is still true — but the
+  mis-specification does not produce a lean except across the break.
+- **The three fixes in parts two and three all failed for one reason**: each tried to
+  extrapolate through a break from data on the wrong side of it.
+- **Perfect macro foresight leaves 69% of the miss** because the break was not only
+  macro. The quota regime and the export market moved too.
+- **Corrections already made stay right.** AMOC's six defects, the terminal, the
+  macro path — those were found by auditing answers, not by chasing this lean, and
+  they were real.
+
+## What should change instead
+
+Not the driver rules. **The claim.** [R-FCAL-01] already says the far years of a
+projection support ranges and never points; this measurement says what the range has
+to carry. A study struck from an ordinary origin is about right. A study struck at a
+trough, before a devaluation or a regulatory change, can be **out by a factor of
+two** — and nothing in the method will tell you in advance which one you are writing.
+
+## Three of the five runs cannot be read this way at all
+
+AMOC, EGCH and PHDC commit no per-cell error list, so the error cannot be grouped by
+origin for them. **The single most valuable thing those runs could add is not another
+driver — it is their own cells.** That is the same class of gap as the
+valuation-input block: the run answered the question it was built for and left no
+trace of the one asked next.

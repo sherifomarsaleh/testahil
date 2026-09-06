@@ -284,3 +284,129 @@ def report():
 
 if __name__ == "__main__":
     report()
+
+
+# ---------------------------------------------------------------------------
+# PART THREE — the drivers those lines actually have, rather than a statistical
+# rule laid over them. Fix A failed because extrapolation cannot cross a regime
+# break. These do not extrapolate the line; they name what moves it.
+# ---------------------------------------------------------------------------
+
+def real_volume_mix(A, o, h, p, ctx):
+    """The kiln runs; local demand decides how much stays home; export takes the rest.
+
+    That is the physical fact this plant operates under and it is what the run's own
+    B-9 records: exports went from 1% of tonnes to 48% while local sales FELL. The
+    model grows local at POPULATION GROWTH and freezes export, which asserts the
+    opposite of both.
+
+    Total volume is forecast on its own trailing rate — the one volume quantity the
+    model already gets right, at a bias of -0.019 — and the EXPORT SHARE drifts at
+    the rate it has been drifting, bounded to [0,1] because a share cannot leave it.
+    Knowable at the origin: both series are the company's own disclosed tonnages."""
+    ys = [x for x in sorted(A) if B._y(x) <= B._y(o)]
+    if len(ys) < 3:
+        return None
+    tot = [A[x]["vol_local"] + A[x]["vol_export"] for x in ys]
+    sh = [A[x]["vol_export"] / t if t else None for x, t in zip(ys, tot)]
+    if any(t is None or t <= 0 for t in tot) or any(s is None for s in sh):
+        return None
+    g = (tot[-1] / tot[0]) ** (1.0 / (len(tot) - 1)) - 1.0
+    d = (sh[-1] - sh[0]) / (len(sh) - 1)          # share drift, per year, LINEAR
+    s_h = min(1.0, max(0.0, sh[-1] + d * h))
+    v = tot[-1] * (1 + g) ** h
+    p["vol_export"] = v * s_h
+    p["vol_local"] = v * (1 - s_h)
+    return "total %+.1f%% a year, export share %.0f%% drifting %+.1f pts a year" % (
+        100 * g, 100 * sh[-1], 100 * d)
+
+
+def real_nonop_scales(A, o, h, p, ctx):
+    """A company twice the size in nominal pounds earns about twice the interest.
+
+    Freezing a nominal non-operating line asserts the opposite — that it stays the
+    same number of pounds while the business it sits inside trebles. This does not
+    extrapolate those lines' own noisy histories (Fix A showed that fails); it ties
+    them to the size of the business the model is already forecasting."""
+    r0 = A[o].get("revenue")
+    if not r0 or not p.get("revenue"):
+        return None
+    k = p["revenue"] / r0
+    for f in ("interest_income", "other_income", "provisions"):
+        if A[o].get(f) is not None:
+            p[f] = A[o][f] * k
+    return "scaled with revenue, x%.2f at this horizon" % k
+
+
+def real_amortisation(A, o, h, p, ctx):
+    """DECLINED, AND THE REASON IS THE FINDING.
+
+    Amortisation is the one line here that is fully deterministic: the intangibles
+    note gives cost and accumulated amortisation per asset, so the remaining life —
+    and the exact year the charge steps down — is arithmetic. ARCC's FY2025 note
+    shows the operating licence at cost 563,204,713 against accumulated 428,248,847
+    and a charge of 28,156,249, and the electricity contract fully amortised. That
+    is a schedule, not a forecast.
+
+    THE RUN DOES NOT COMMIT IT. Its panel carries the amortisation CHARGE and not
+    the schedule behind it, so the driver cannot be built from what this run holds —
+    the same class of gap the valuation-input block was created to close, arriving
+    on a different line. Recorded as declined with its reason rather than replaced
+    by something that merely looks like a driver."""
+    return None
+
+
+REAL = [
+    ("the volume mix, on the kiln's own physics", real_volume_mix),
+    ("non-operating lines scaled to the business", real_nonop_scales),
+    ("amortisation from the disclosed schedule", real_amortisation),
+]
+
+
+def net_real(A, upto):
+    tot = 0.0
+    n = 0
+    dec = {}
+    notes = {}
+    for o in B.ORIGINS:
+        for h in B.HORIZONS:
+            ty = "FY%d" % (B._y(o) + h)
+            if ty not in A:
+                continue
+            try:
+                p = dict(B.project(o, h))
+            except Exception:
+                continue
+            for name, fn in REAL[:upto]:
+                r = fn(A, o, h, p, None)
+                if r is None:
+                    dec[name] = dec.get(name, 0) + 1
+                else:
+                    notes.setdefault(name, r)
+            if upto:
+                p = rebuild(p, A, o)
+            tot += p["pbt"] - A[ty]["pbt"]
+            n += 1
+    return tot, n, dec, notes
+
+
+def report_real():
+    A = actuals()
+    print("\n\nPART THREE — THE DRIVERS THOSE LINES ACTUALLY HAVE\n")
+    base, n, _d, _x = net_real(A, 0)
+    print("  %-46s %16s %14s" % ("after applying", "net PBT miss", "move"))
+    print("  %-46s %16s" % ("(nothing — the model as it stands)",
+                            "{:+,.0f}".format(base)))
+    prev = base
+    for i, (name, _fn) in enumerate(REAL, start=1):
+        cur, n2, dec, notes = net_real(A, i)
+        print("  %-46s %16s %14s"
+              % ("+ " + name, "{:+,.0f}".format(cur), "{:+,.0f}".format(cur - prev)))
+        if name in notes:
+            print("  %-46s %s" % ("", notes[name]))
+        if name in dec:
+            print("  %-46s DECLINED on %d of %d cells" % ("", dec[name], n2))
+        prev = cur
+    print("\n  %d matured cells. Negative = the model forecast LESS profit than the"
+          % n)
+    print("  company earned. Compare with Fix A, which reached -37.0bn.")
