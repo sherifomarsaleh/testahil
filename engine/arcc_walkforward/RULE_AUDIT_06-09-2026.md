@@ -274,3 +274,62 @@ origin for them. **The single most valuable thing those runs could add is not an
 driver — it is their own cells.** That is the same class of gap as the
 valuation-input block: the run answered the question it was built for and left no
 trace of the one asked next.
+
+---
+
+# Part five — the rules fixed anyway, and what that is worth
+
+The rules are mis-specified whether or not they net out. A rule that escalates road
+haulage at consumer inflation while haulage runs at 35% a year is wrong, and the next
+break will not be kind in the same direction. Fixed in `driver_fixes.py`.
+
+**The test changed, and that is why this comes after part four rather than before.**
+Judging a rule on the pooled error judges it on three origins that dominate
+everything — which is how all three earlier attempts failed. A well-specified rule
+should show at **ordinary** origins, so that is where it is scored, with the break
+origins printed beside it and never hidden.
+
+| | ordinary: revenue bias | ordinary: PBT bias · MAE | break: revenue bias | break: PBT MAE |
+|---|---|---|---|---|
+| the model as it stands | **+0.108** | +0.604 · 1.019 | −0.695 | 1.822 |
+| F1 imported coal carries the currency | +0.108 | +0.600 · 1.016 | −0.695 | **1.659** |
+| **F2 the works price follows the cost stack** | **+0.011** | **+0.341 · 0.841** | −0.747 | 1.827 |
+| F3 the export share is held, not the tonnage | +0.009 | +0.315 · 0.852 | −0.749 | 1.870 |
+| F4–F6 interest, the euro book, the nominal lines | **+0.009** | **+0.303 · 0.866** | −0.749 | 1.861 |
+
+**At ordinary origins the revenue lean goes from +10.8% to +0.9%, and the profit lean
+halves while its error falls 15%.** At the break origins everything is marginally
+worse. Both facts are the honest result: correcting a mis-specification removes the
+residual lean where a forecast can be judged, and **nothing rescues a structural
+break** — which part four already established.
+
+**F2 is most of it.** Cement is a cost-plus commodity: its works price tracks the cost
+of making it, not the consumer basket. Escalating it at CPI while its costs ride coal
+and diesel is the single largest mis-specification in the model, and it is the one the
+protocol already forbids in words — *one escalator per driver class, never one blended
+index across physically distinct cost lines*.
+
+## What was fixed, and what was left alone on purpose
+
+**Fixed, each naming its driver and inventing no parameter:** imported coal on the
+currency; the works price on the cost stack at the pass-through of 1.0 the
+pre-registration already declares; the export share held rather than the tonnage;
+interest income on cash and the policy rate from the point-in-time archive; the
+currency result on the 91.1% euro book note 25 discloses, which the model had set to
+zero and labelled refused; provisions and other income scaled to the business.
+
+**Left alone, with the reason recorded rather than papered over:**
+
+- **transport, overhead, general and administrative** — each follows fuel and wages in
+  a mix nobody disclosed. A better escalator needs a weight, and inventing one is the
+  free parameter the promotion rule forbids.
+- **amortisation** — fully deterministic from the intangibles note, and **this run does
+  not commit that table**. The driver exists; the data to build it does not.
+- **finance costs** — debt times a rate, and the effective rate off the disclosed book
+  swings from 4.4% to 85.5% year to year because year-end debt is the wrong
+  denominator. That is [R-FCAL-01] trap (i), and building on a denominator known to be
+  wrong is worse than leaving the line frozen.
+- **manufacturing depreciation** — runs at +3.5% a year. Freezing it is defensible.
+
+Two of those four are blocked by things this run could have committed and did not: the
+intangibles schedule, and average rather than year-end debt.
