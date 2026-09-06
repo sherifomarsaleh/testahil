@@ -7260,16 +7260,16 @@ const FV_OVERLAY = {
    "name": "Egyptian International Pharmaceutical Industries (EIPICO)",
    "code": "EGX:PHAR",
    "ccy": "EGP",
-   "spot": 130.05,
-   "anchor_date": "2026-08-06",
+   "spot": 128,
+   "anchor_date": "2026-09-06",
    "fv_asof": "2026-08-06",
-   "fv_lag_days": 0,
+   "fv_lag_days": 31,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 58.04,
    "fv_base": 61.21,
    "fv_full": 73.03,
-   "gap_base_pct": -52.9,
+   "gap_base_pct": -52.2,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 5.0,
@@ -7283,12 +7283,12 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.152656,
-    "mu_h": 0.012532,
+    "sigma_h": 0.131787,
+    "mu_h": 0.026368,
     "G": {
-     "bear": -5.29,
-     "base": -4.94,
-     "full": -3.78
+     "bear": -6.0,
+     "base": -5.6,
+     "full": -4.26
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7298,44 +7298,44 @@ const FV_OVERLAY = {
     "required_cagr": {
      "bear": -0.9999,
      "base": -0.9999,
-     "full": -0.999
+     "full": -0.9988
     },
     "hurdle_rf": 0.195,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00226
+    "selftest_max_dev": 0.00156
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.230448,
-    "mu_h": 0.039576,
+    "sigma_h": 0.214831,
+    "mu_h": 0.064001,
     "G": {
-     "bear": -3.5,
-     "base": -3.27,
-     "full": -2.5
+     "bear": -3.68,
+     "base": -3.43,
+     "full": -2.61
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0026,
-     "base": 0.0034,
-     "full": 0.0091
+     "bear": 0.0018,
+     "base": 0.0024,
+     "full": 0.0066
     },
     "p_touch": {
-     "bear": 0.0043,
-     "base": 0.0057,
-     "full": 0.0171
+     "bear": 0.0032,
+     "base": 0.0041,
+     "full": 0.0125
     },
     "required_cagr": {
-     "bear": -0.9603,
-     "base": -0.9509,
-     "full": -0.9006
+     "bear": -0.9577,
+     "base": -0.9477,
+     "full": -0.894
     },
     "hurdle_rf": 0.195,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00301
+    "selftest_max_dev": 0.00343
    },
    "market": "EG"
   },
