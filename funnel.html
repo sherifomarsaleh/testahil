@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="favicon.png?v=2">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+<title>The selection funnel — how a name gets picked | testahil?</title>
+<meta name="description" content="Seven gates for putting money into an Egyptian name, ordered so the decisions with a track record run before the ones without, with the strength of the evidence marked on each.">
+<link rel="canonical" href="https://testahil.com/funnel.html">
+<meta property="og:type" content="website"><meta property="og:title" content="The selection funnel — how a name gets picked | testahil?"><meta property="og:description" content="Seven gates for putting money into an Egyptian name, ordered so the decisions with a track record run before the ones without."><meta property="og:url" content="https://testahil.com/funnel.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}});})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="assets/test.css?v=0827f">
+<style>
+  .fn-gate{border:1px solid var(--line);border-left:4px solid var(--muted);border-radius:3px;
+    background:var(--card);padding:15px 18px 16px;margin-bottom:14px}
+  .fn-gate.pv{border-left-color:var(--teal)}
+  .fn-gate.th{border-left-color:#a8760f}
+  .fn-gate.op{border-left-color:var(--muted);border-left-style:dashed}
+  .fn-gate.rq{border-left-color:var(--accent,#27418c)}
+  .fn-h{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap;margin-bottom:7px}
+  .fn-h .no{font-family:var(--mono,monospace);font-size:.68rem;letter-spacing:.1em;color:var(--muted)}
+  .fn-h h3{margin:0;font-size:1.02rem;flex:1;min-width:190px}
+  .fn-gate p{margin:0;color:var(--muted);font-size:.96rem}
+  .fn-rule{margin-top:10px;padding-top:9px;border-top:1px dotted var(--line);
+    font-family:var(--mono,monospace);font-size:.78rem;color:var(--fg)}
+  .fn-rule .k{color:var(--muted);font-size:.66rem;letter-spacing:.1em;margin-right:8px}
+  .fn-live{font-family:var(--mono,monospace);font-size:.7rem;letter-spacing:.05em;color:var(--muted);display:block;margin-top:8px}
+  .fn-legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:18px 0 26px}
+  .fn-legend div{border:1px solid var(--line);border-radius:3px;padding:12px 14px;background:var(--card)}
+  .fn-legend b{display:block;font-family:var(--mono,monospace);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+  .fn-tally{display:flex;flex-wrap:wrap;gap:10px 20px;font-family:var(--mono,monospace);font-size:.8rem;margin:6px 0 16px}
+  .fn-tally span b{font-size:1.05rem}
+  #fn-ladder td{padding:5px 8px 5px 0;font-family:var(--mono,monospace);font-size:.85rem}
+  #fn-ladder .bar{display:inline-block;height:12px;background:var(--teal);border-radius:2px;vertical-align:middle}
+  .fn-refuted li{margin-bottom:8px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="nav t-nav"><div class="wrap"><a class="brand" href="/">testahil?</a><nav><a href="/coverage.html" data-p="coverage">Coverage</a><a href="/tools.html" data-p="tools">Tools</a><a href="/tools.html#funnel" data-p="funnel" class="on">Funnel</a><a href="/savings.html" data-p="savings">Savings check</a><a href="/record.html" data-p="record">Track record</a><a href="/method.html" data-p="method">Method</a></nav><div class="t-right"><div class="t-search"><input id="t-q" type="search" placeholder="🔍 Search a stock…" autocomplete="off" aria-label="Search a stock"><div class="t-dd" id="t-qq"></div></div><button class="t-theme" id="theme-toggle" title="Light / dark" aria-label="Toggle theme">◐</button></div></div></header><a class="t-strip" href="/record.html"><span class="wrap"><b>Track record:</b>&nbsp;<span class="num" id="ts-n">…</span>&nbsp;3-month windows checked ·&nbsp;<span class="num" id="ts-h">…</span>&nbsp;inside the 90% band (<span class="num" id="ts-p">…</span>) → every one dated, right or wrong</span></a>
+
+
+<main class="wrap">
+  <section class="t-sec" style="margin-top:26px">
+    <h1>The selection funnel</h1>
+    <p class="muted" style="max-width:68ch;font-size:1.06rem">Seven gates for putting money into an Egyptian name, ordered so the decisions that have a track record run before the ones that do not. Size is set first; names are picked last.</p>
+    <p class="muted" style="max-width:68ch">Every gate below carries the strength of the evidence behind it, and the numbers on this page are computed from the published data each time it loads — never typed. <a href="/tools.html#funnel">Run it over the whole book →</a></p>
+    <div class="fn-tally" id="fn-tally"></div>
+  </section>
+
+  <section class="t-sec">
+    <h2>What the coloured rail means</h2>
+    <div class="fn-legend">
+      <div><b style="color:var(--teal)">Proven</b><span class="muted">Measured on our own resolved record. Does most of the work.</span></div>
+      <div><b style="color:#a8760f">Thin</b><span class="muted">Real but small. Sized as a filter, never as a thesis.</span></div>
+      <div><b style="color:var(--muted)">Ungraded</b><span class="muted">Largest claimed edge, no track record yet. Selects candidates only.</span></div>
+      <div><b>Prerequisite</b><span class="muted">Not an edge. Without it the gates downstream read noise.</span></div>
+    </div>
+  </section>
+
+  <section class="t-sec">
+    <h2>Zone 1 — set the exposure</h2>
+    <div class="fn-gate pv">
+      <div class="fn-h"><span class="no">GATE 0</span><h3>Size the whole position before naming anything</h3><span class="t-badge good">proven</span></div>
+      <p>Choose total equity weight so the book's own worst case is one you can hold through. If it is not, cut the weight — never the discipline below. Being in the market at a survivable size has been worth more than every selection rule combined.</p>
+      <p class="fn-rule"><span class="k">RULE</span> Weight such that the median published 3-month p5 does not force a sale.</p>
+      <span class="fn-live" id="fn-p5"></span>
+    </div>
+  </section>
+
+  <section class="t-sec">
+    <h2>Zone 2 — narrow the universe</h2>
+
+    <div class="fn-gate rq">
+      <div class="fn-h"><span class="no">GATE 1</span><h3>Keep only what can be read at all</h3><span class="t-badge">prerequisite</span></div>
+      <p>Drop a name only where an input does not <em>exist</em>: no fair value, no computable momentum, no band record. Nothing is dropped for being old or for being work in progress. Prices are entered by hand on a monthly rhythm and a study rebuild takes days, so both are printed on the row and neither ends the name — a tool that dead-ends everything it has touched answers nothing on the day you ask it.</p>
+      <p class="fn-rule"><span class="k">RULE</span> Stop only on a missing input. Age and rebuild-in-progress are flags.</p>
+      <span class="fn-live" id="fn-g1"></span>
+    </div>
+
+    <div class="fn-gate pv">
+      <div class="fn-h"><span class="no">GATE 2</span><h3>Cap each name from its own band record</h3><span class="t-badge good">proven</span></div>
+      <p>Set the maximum before forming a view, so the risk budget cannot be argued backwards from conviction. A name whose own 90% band has historically under-covered gets a smaller cap than one whose bands held.</p>
+      <p class="fn-rule"><span class="k">RULE</span> A name flagged "bands ran narrow" sizes down. Caps, cuts nothing.</p>
+      <span class="fn-live" id="fn-g2"></span>
+    </div>
+
+    <div class="fn-gate op">
+      <div class="fn-h"><span class="no">GATE 3</span><h3>Rank on the gap — and read the two sides differently</h3><span class="t-badge">ungraded</span></div>
+      <p>A fair value well <em>above</em> the price is the ordinary shape of finding something cheap: that is a candidate. A fair value well <em>below</em> the price is a high-prior-of-defect region — historically our own model missing something rather than a short — so those go to an investigation queue, never to a position.</p>
+      <p class="fn-rule"><span class="k">RULE</span> Candidate = gap above +10% against the latest price held. Below −10% → audit, do not trade.</p>
+      <p class="fn-rule" style="border-top:none;padding-top:4px"><span class="k">FLAG</span> A name whose study is being rebuilt is evaluated on the <em>published</em> fair value — the only number a reader can act on — and its row says so.</p>
+      <span class="fn-live" id="fn-g3"></span>
+    </div>
+
+    <div class="fn-gate th">
+      <div class="fn-h"><span class="no">GATE 4</span><h3>Use momentum as a veto, not a ranking</h3><span class="t-badge warn">thin</span></div>
+      <p>The lean is right about 53 times in 100 against a base rate near 51 — enough to refuse a name, not enough to order a list. It is not used to rank: the cross-sectional version is refuted, and in a tape where most names print up, the sign is nearly free.</p>
+      <p class="fn-rule"><span class="k">RULE</span> Reject a strong negative call. It vetoes; it never justifies a size.</p>
+      <span class="fn-live" id="fn-g4"></span>
+    </div>
+
+    <div class="fn-gate op">
+      <div class="fn-h"><span class="no">GATE 5</span><h3>Require all three lenses before deploying</h3><span class="t-badge">ungraded</span></div>
+      <p>The fundamental, momentum and technical reads are built independently, so agreement is evidence rather than an echo — but tested as a stock picker it earned nothing. Its job is timing: it stops you buying early. Two of three is a watch-list entry, not a smaller position.</p>
+      <p class="fn-rule"><span class="k">RULE</span> All three constructive → deploy. Otherwise wait. Decides when, never which.</p>
+      <span class="fn-live" id="fn-g5"></span>
+    </div>
+  </section>
+
+  <section class="t-sec">
+    <h2>Zone 3 — act, then loop</h2>
+    <div class="fn-gate pv">
+      <div class="fn-h"><span class="no">GATE 6</span><h3>Enter and exit off the touch ladder</h3><span class="t-badge good">proven</span></div>
+      <p>The bands are calibrated, so a level is a probability rather than a chart line. Stagger the entry below the price, stage the exits above it, and control risk with size — a tight stop on an EGX name is noise dressed as prudence.</p>
+      <p class="fn-rule"><span class="k">RULE</span> Nothing above the name's own p95. Use size, not stops.</p>
+    </div>
+    <p class="muted" style="margin:14px 0 8px">How often a level is actually reached inside three months, by how far it sits from the price — every published rung across the covered book:</p>
+    <table id="fn-ladder" style="width:100%;max-width:560px"><tbody></tbody></table>
+
+    <div class="fn-gate pv" style="margin-top:20px">
+      <div class="fn-h"><span class="no">GATE 7</span><h3>Rebalance quarterly and grade every decision</h3><span class="t-badge good">proven</span></div>
+      <p>Monthly rebalancing is net-negative: the round trip is larger than the signal. Record the gap and the direction call acted on, and what happened — that record is the only thing that can move Gate 3 from hypothesis to edge.</p>
+      <p class="fn-rule"><span class="k">RULE</span> Quarterly or not at all. Re-run Gates 1–5 on the current state each quarter.</p>
+    </div>
+  </section>
+
+  <section class="t-sec">
+    <h2>Tested, and it did not work</h2>
+    <ul class="fn-refuted">
+      <li><b>Monthly rebalancing.</b> Every one-month construction is net-negative after the round trip. The commission is larger than the signal.</li>
+      <li><b>Sizing by cone width.</b> Inverse-volatility weighting did not beat equal weight; the names co-move too hard for it to bite.</li>
+      <li><b>Trading the centre of the cone.</b> The centre is the carry — the same for every name. Reading it as a target is reading the risk-free rate as a forecast.</li>
+      <li><b>Momentum as a ranking.</b> Sign-unstable across samples. It survives as a veto and nothing more.</li>
+      <li><b>Lens agreement as a stock picker.</b> Zero excess over the panel. It is a timing gate, not a selector.</li>
+    </ul>
+  </section>
+
+  <section class="t-sec">
+    <h2 id="honest">What actually earns the money</h2>
+    <p class="muted" style="max-width:68ch">Gates 0, 2, 6 and 7 do most of the work and all of them are proven — exposure at a survivable size, a cap from each name's own record, execution off the ladder, and a quarterly clock. None of them picks a stock. Gate 4 is a small measured filter. Gates 3 and 5 are where the upside lives and neither has a graded record, so they select candidates and set timing, and never justify a size that Gates 0 and 2 had not already allowed.</p>
+    <p class="muted" style="max-width:68ch;font-size:var(--fs-small)">Nothing here is a rating or a price target. The procedure produces fair-value ranges, distributions, and a decision about size. Every figure on this page is computed from the published data at load — see <a href="/tools.html#funnel">the live table</a> for the current state of every name, and <a href="/method.html">Method</a> for how the numbers underneath are built.</p>
+  </section>
+</main>
+<footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/legacy/">legacy site ↗</a></span></div></footer>
+
+<script src="../assets/data.js"></script>
+<script src="assets/test.js"></script>
+<script>
+renderChrome("funnel");
+(function(){
+  /* EVERY NUMBER ON THIS PAGE IS COMPUTED HERE, NEVER TYPED. The prose above is
+     the procedure and does not move; the counts, names, dates and probabilities
+     do, on their own, whenever a price is entered or a library lands. A page
+     that states a fact which moves must not be the thing that remembers it. */
+  if(typeof SCREEN==="undefined"){ return; }
+  var EG = Object.keys(SCREEN).filter(function(k){ return ALL[k] && (ALL[k].code||"").indexOf("EGX:")===0; });
+  function stops(list, s){ return list.filter(function(k){ return (SCREEN[k].stop||"clears")===s; }); }
+  function names(a){ return a.join(" · ") || "none"; }
+  function pct(x){ return (x>=0?"+":"")+(x*100).toFixed(1)+"%"; }
+
+  var clears = stops(EG,"clears");
+  var dates = EG.map(function(k){return SCREEN[k].pxDate;}).filter(Boolean).sort();
+  document.getElementById("fn-tally").innerHTML =
+    '<span><b>'+EG.length+'</b> EGX names</span>'+
+    '<span><b>'+clears.length+'</b> clear every gate</span>'+
+    '<span>prices '+(dates.length?fmtPxDate(dates[0])+' – '+fmtPxDate(dates[dates.length-1]):'—')+'</span>';
+
+  /* Gate 0 — the median published 3-month p5, as a share of the price */
+  var p5s = EG.map(function(k){ var t=ALL[k], d=t.dist&&t.dist.t60; return (d&&t.spot)?(d.p5/t.spot-1):null; })
+              .filter(function(x){return x!=null;}).sort(function(a,b){return a-b;});
+  if(p5s.length) document.getElementById("fn-p5").textContent =
+    "LIVE · median 3-month p5 across the book is "+pct(p5s[Math.floor(p5s.length/2)])+" of price";
+
+  document.getElementById("fn-g1").textContent =
+    "LIVE · "+stops(EG,"inputs").length+" of "+EG.length+" stopped for a missing input";
+
+  var flagged = EG.filter(function(k){ return SCREEN[k].flag==="narrow"; });
+  document.getElementById("fn-g2").textContent =
+    "LIVE · sizes down: "+names(flagged);
+
+  var cand = EG.filter(function(k){ var g=SCREEN[k].gap; return g!=null && g>=0.10; });
+  var audit = EG.filter(function(k){ var g=SCREEN[k].gap; return g!=null && g<=-0.10; });
+  document.getElementById("fn-g3").textContent =
+    "LIVE · "+cand.length+" candidates above +10% · "+audit.length+" below −10%, audited not traded";
+
+  document.getElementById("fn-g4").textContent =
+    "LIVE · "+stops(EG,"momentum").length+" vetoed on a strong negative call";
+
+  var wait = stops(EG,"lenses");
+  document.getElementById("fn-g5").textContent =
+    "LIVE · clears: "+names(clears)+" · waiting: "+names(wait);
+
+  /* Gate 6 — the ladder.
+     THE PUBLISHED LEVELS ARE BESPOKE PER NAME, not a fixed grid: one name's
+     first rung sits +22% away and another's +3%, and some carry five rungs
+     rather than six. So a median taken down the column index would be
+     comparing +22% against +3% and calling it one number -- a chart that
+     computes cleanly and means nothing. Every rung is therefore placed by HOW
+     FAR IT ACTUALLY SITS from the price the cone was struck at, and grouped
+     into five-point bands; a band is printed only where enough rungs land in
+     it to be worth reading. */
+  var pts = [];
+  EG.forEach(function(k){
+    var t = ALL[k]; if(!t.touch || !t.spot) return;
+    t.touch.forEach(function(r){
+      if(r[0]==null || r[2]==null) return;
+      pts.push({d:(r[0]/t.spot-1)*100, p:r[2]});
+    });
+  });
+  var bands = [];
+  for(var lo=-30; lo<30; lo+=5){
+    var inb = pts.filter(function(x){ return x.d>=lo && x.d<lo+5; }).map(function(x){return x.p;})
+                 .sort(function(a,b){return a-b;});
+    if(inb.length>=5) bands.push({lo:lo, hi:lo+5, p:inb[Math.floor(inb.length/2)], n:inb.length});
+  }
+  bands.reverse();
+  document.querySelector("#fn-ladder tbody").innerHTML = bands.map(function(b){
+    var lab = (b.lo>=0?"+":"") + b.lo + " to " + (b.hi>=0?"+":"") + b.hi + "%";
+    return '<tr><td style="width:104px">'+lab.replace(/-/g,"\u2212")+'</td>'+
+           '<td style="width:100%"><span class="bar" style="width:'+Math.max(2,Math.round(b.p*2.4))+'px"></span></td>'+
+           '<td style="text-align:right;white-space:nowrap">'+Math.round(b.p)+'%</td>'+
+           '<td style="text-align:right;color:var(--muted)">n='+b.n+'</td></tr>';
+  }).join("") +
+  '<tr><td colspan="4" class="muted" style="font-family:inherit;font-size:var(--fs-caption);padding-top:8px">'+
+  'Median across '+pts.length+' published rungs on '+EG.length+' EGX names, grouped by how far each sits from the price its cone was struck at. '+
+  'The levels are chosen per name, so this is the shape of the relationship, not a fixed ladder.</td></tr>';
+})();
+</script>
+</body>
+</html>
