@@ -36,3 +36,59 @@ its own. It is recorded here so it is visible rather than discovered later. Note
 that [R-GAP-02] clause three holds ISSUING AND PUBLISHING, not internal work, so
 running backtests on further names is not itself blocked by that gate — what is
 sequenced is the plan's own Part D ordering.
+
+---
+
+# Correction to item 1 above — 06-09-2026, on the principal's challenge
+
+The principal read the relay and objected, correctly: *"that is strange as we have
+IS, BS and CF statements forecasted in all tickers."* The objection stands and the
+first framing above was too broad. What follows is measured, not argued —
+`python3 engine/valuation_calibration/bridge_inputs.py`.
+
+## Two different artefacts were being conflated
+
+- **The delivered study** forecasts a full three-statement model. That is mandatory
+  (Appendix A.1/A.2/A.3, and the Balance Sheet and Cash Flow sheets of the 16-sheet
+  workbook). Nothing is missing there.
+- **The walk-forward run** is a separate artefact. It commits a panel of FILED
+  ACTUALS at each past year, which is what the forecasts are scored against. That
+  panel is what is patchy.
+
+So "the balance sheet was never forecast" is WRONG and should not be repeated.
+PHDC's own panel carries eighteen balance-sheet lines — cash, banks credit, fixed
+assets, receivables, payables, equity, the lot.
+
+## What is actually absent, across 55 name-origin cells
+
+| item | present | direction when absent |
+|---|---|---|
+| debt | 33 (60%) | overstates equity value |
+| depreciation | 23 (42%) | what a declared capex substitution would use |
+| PPE | 15 (27%) | makes capex derivable by identity |
+| working capital | 15 (27%) | sign depends on growth |
+| cash | 14 (25%) | understates equity value |
+| share count (footed) | 9 (16%) | no comparison with a price is possible at all |
+| **capex** | **0 (0%)** | **overstates equity value** |
+
+Cells with a complete bridge AND a capex figure: **0 of 55**.
+Cells where capex is DERIVABLE by identity (ΔPPE + D&A) on top of a complete
+bridge: **3 of 55** — TMGH 2020, 2021, 2022.
+Cells with a bridge but no route to capex at all: **5 of 55** — PHDC 2015-2019.
+
+**No cash-flow statement was committed at any origin, on any of the five names.**
+
+## The sharpened statement of the blocker
+
+The gap is not a missing FORECAST. It is a missing HISTORICAL record. The studies
+model the future correctly; what nobody wrote down is the company's own cash-flow
+statement, and in most cells its cash and share count, AS THEY STOOD at 2016, 2017,
+2018. A past valuation cannot be rebuilt without them, which is exactly
+[R-FCAL-01 AMENDED]'s general lesson: what a process commits decides what can ever
+be asked of it later, and nobody notices the missing field until the question
+arrives.
+
+Practical consequence for the next runs, unchanged in substance: the valuation-input
+block is a COPY out of filings already parsed cell by cell, not new research —
+cash, interest-bearing debt, PPE, D&A, the working-capital lines, the share count
+footed against its par value, and capex disclosed or labelled as derived.
