@@ -35,14 +35,14 @@
     {
      "route": "web.archive.org snapshot of the CBE statistics pages",
      "when": "2026-09-03",
-     "outcome": "404 \u2014 no snapshot held",
+     "outcome": "404 — no snapshot held",
      "rerun": true
     }
    ],
    "refs_searched": 22,
    "why_only_the_principal": "Both are OBSERVED figures, so this is pure access and not a point-in-time problem. Every free route refuses at the proxy; the principal holds the CBE / Ministry of Finance export.",
    "done_meanwhile": "The archive's other four required figures were sourced point-in-time (ERP and default spread from the Damodaran vintages published AT each origin, inflation from six IMF WEO editions published before their origins), so the archive was complete except for these two and closed the moment they arrived.",
-   "default_if_no_answer": "Drop every origin that lacks them and shorten the window \u2014 never interpolate, never carry a neighbouring year.",
+   "default_if_no_answer": "Drop every origin that lacks them and shorten the window — never interpolate, never carry a neighbouring year.",
    "default_date": "2026-09-10",
    "status": "resolved",
    "resolved": "2026-09-03",
@@ -57,7 +57,7 @@
    "key": "EGX-ohlc-refresh-arcc-amoc-egch",
    "opened": "2026-09-03",
    "cls": "missing_data",
-   "question": "A fresh OHLC export for the EGX names whose libraries stop at 6 August 2026 \u2014 ARCC, AMOC, EGCH and the others listed by the gap gate's price basis. Without it the house's LATEST KNOWN price is four weeks old and [R-GAP-01] cannot audit a gap it cannot see.",
+   "question": "A fresh OHLC export for the EGX names whose libraries stop at 6 August 2026 — ARCC, AMOC, EGCH and the others listed by the gap gate's price basis. Without it the house's LATEST KNOWN price is four weeks old and [R-GAP-01] cannot audit a gap it cannot see.",
    "routes": [
     {
      "route": "the persistent library itself, engine/raw_ohlc/EG/*.csv, read newest-first",
@@ -68,7 +68,7 @@
     {
      "route": "the principal's own figures, supplied in chat 03-09-2026",
      "when": "2026-09-03",
-     "outcome": "ARCC 76.81 and AMOC 13.43 at 01-09, against library closes of 59.00 and 9.10 \u2014 moves of +30.2% and +47.6% the library never saw. Recorded as evidence of the gap, NOT written into the library: a price typed from a chat message is not a vendor export and would enter a calibration panel as one.",
+     "outcome": "ARCC 76.81 and AMOC 13.43 at 01-09, against library closes of 59.00 and 9.10 — moves of +30.2% and +47.6% the library never saw. Recorded as evidence of the gap, NOT written into the library: a price typed from a chat message is not a vendor export and would enter a calibration panel as one.",
      "rerun": false
     },
     {
@@ -83,21 +83,24 @@
    "done_meanwhile": "The gap gate was re-pointed at the latest known price per its own rule text rather than at the spot each study froze at strike, and it now prints the age of the library it compared against, so a stale comparison reports as stale instead of passing in silence. The finding on ARCC and AMOC is recorded with its arithmetic.",
    "default_if_no_answer": "Continue on the 6-August library and state its date wherever a gap is quoted; do NOT type the supplied prices into the library, and do not audit ARCC or AMOC at a price the house cannot date.",
    "default_date": "2026-09-10",
-   "status": "open",
+   "status": "resolved",
    "resolves_when": {
     "file": "engine/raw_ohlc/EG/ARCC.csv",
     "must_contain": "09/01/2026"
    },
-   "resolves_when_note": "the 1 September 2026 session, the date the principal's own quoted price carries. The first marker written here was '/2026', which the file already contained \u2014 the gate refused it immediately, which is the clause this register exists for working on the person writing the register."
+   "resolves_when_note": "the 1 September 2026 session, the date the principal's own quoted price carries. The first marker written here was '/2026', which the file already contained — the gate refused it immediately, which is the clause this register exists for working on the person writing the register.",
+   "resolved": "2026-09-06",
+   "answer_written_to": "engine/raw_ohlc/EG/ARCC.csv",
+   "note": "Closed on its own marker: the refreshed EGX series carrying 09/01/2026 is committed on origin/claude/roll-forward-metals-publish-anp14k. Registered here so a session reading the register from another ref does not re-ask [R-IND-01]."
   },
   {
    "key": "ELEC-primary-financial-statements",
    "opened": "2026-09-04",
    "cls": "missing_data",
-   "question": "Electro Cable Egypt (EGX: ELEC) audited financial statements \u2014 FY2023, FY2024 and every disclosed 2025 period (Q1, H1, 9M), consolidated where issued and standalone otherwise. The company's own website LISTS all of them and SERVES none of them; without them SIGCM clause 1 blocks this study outright, because its entire income statement and balance sheet currently rest on data vendors and press.",
+   "question": "Electro Cable Egypt (EGX: ELEC) audited financial statements — FY2023, FY2024 and every disclosed 2025 period (Q1, H1, 9M), consolidated where issued and standalone otherwise. The company's own website LISTS all of them and SERVES none of them; without them SIGCM clause 1 blocks this study outright, because its entire income statement and balance sheet currently rest on data vendors and press.",
    "routes": [
     {
-     "route": "the company's own website, www.ececables.com \u2014 homepage, investor-relations, shareholder-structure and the financial-statements index",
+     "route": "the company's own website, www.ececables.com — homepage, investor-relations, shareholder-structure and the financial-statements index",
      "when": "2026-09-04",
      "outcome": "HTTP 200 on every page. THE STUDY'S RECORDED REASON ('the egress proxy blocked the company website') IS FALSE as of today and was re-tested rather than believed [R-ENF-04]. The index lists ~60 audited statements.",
      "rerun": true
@@ -105,7 +108,7 @@
     {
      "route": "every statement PDF the index links, and the same URLs as the WordPress media API returns them",
      "when": "2026-09-04",
-     "outcome": "HTTP 404 on all of them. Not an encoding problem: a non-Arabic PDF in the same tree 404s too, while a 2020-vintage asset in that tree returns 200 \u2014 so the host serves the path and not the files. Everything uploaded after August 2020 is listed and unserved.",
+     "outcome": "HTTP 404 on all of them. Not an encoding problem: a non-Arabic PDF in the same tree 404s too, while a 2020-vintage asset in that tree returns 200 — so the host serves the path and not the files. Everything uploaded after August 2020 is listed and unserved.",
      "rerun": true
     },
     {
@@ -121,7 +124,7 @@
      "rerun": true
     },
     {
-     "route": "the EGX disclosure portal \u2014 www.egx.com.eg, disclosure.egx.com.eg, mist.com.eg",
+     "route": "the EGX disclosure portal — www.egx.com.eg, disclosure.egx.com.eg, mist.com.eg",
      "when": "2026-09-04",
      "outcome": "tunnel closed mid-exchange on nine attempts across three hosts. The proxy's own status endpoint records data received before the close, so it is a relay failure rather than a policy denial. Reported, not routed around.",
      "rerun": true
@@ -133,9 +136,9 @@
      "rerun": true
     },
     {
-     "route": "the statement index at www.ececables.com/financial-statements-2/ ENUMERATED rather than counted \u2014 every linked file parsed for the Arabic type marker in its own filename and for its host",
+     "route": "the statement index at www.ececables.com/financial-statements-2/ ENUMERATED rather than counted — every linked file parsed for the Arabic type marker in its own filename and for its host",
      "when": "2026-09-05",
-     "outcome": "61 linked statement files, and three facts the earlier routes did not carry. THE INDEX ENDS AT 30 SEPTEMBER 2025 \u2014 there is no FY2025 annual, no Q1-2026 and no H1-2026 listed at all, so the missing periods are not merely unserved, they are unpublished. EVERY FILE LISTED FROM MID-2021 ONWARD IS STANDALONE (\u0627\u0644\u0645\u0633\u062a\u0642\u0644\u0629); the latest carrying the consolidated marker (\u0627\u0644\u0645\u062c\u0645\u0639\u0629) is 30-09-2020, and the 31-12-2020 entry beside it is the standalone one. AND EVERY CONSOLIDATED STATEMENT SITS ON THE DEAD LEGACY HOST \u2014 42 of the 61 links point at ece.allmediaegypt.com, which does not resolve, while all 19 on the live host are standalone. So the consolidated series is unreachable by construction rather than by outage. This study models CONSOLIDATED figures.",
+     "outcome": "61 linked statement files, and three facts the earlier routes did not carry. THE INDEX ENDS AT 30 SEPTEMBER 2025 — there is no FY2025 annual, no Q1-2026 and no H1-2026 listed at all, so the missing periods are not merely unserved, they are unpublished. EVERY FILE LISTED FROM MID-2021 ONWARD IS STANDALONE (المستقلة); the latest carrying the consolidated marker (المجمعة) is 30-09-2020, and the 31-12-2020 entry beside it is the standalone one. AND EVERY CONSOLIDATED STATEMENT SITS ON THE DEAD LEGACY HOST — 42 of the 61 links point at ece.allmediaegypt.com, which does not resolve, while all 19 on the live host are standalone. So the consolidated series is unreachable by construction rather than by outage. This study models CONSOLIDATED figures.",
      "rerun": true
     }
    ],
@@ -149,16 +152,16 @@
     "file": "engine/elec_study/PRIMARY_SOURCES.md",
     "must_contain": "AUDITED STATEMENTS RECEIVED"
    },
-   "note": "The correction this entry carries is not that the documents are unobtainable \u2014 they are \u2014 but that the RECORDED REASON was wrong for a month, and a wrong reason is actionable in the wrong direction: 'the proxy blocked it' invites trying again, 'the issuer does not serve its own archive' does not."
+   "note": "The correction this entry carries is not that the documents are unobtainable — they are — but that the RECORDED REASON was wrong for a month, and a wrong reason is actionable in the wrong direction: 'the proxy blocked it' invites trying again, 'the issuer does not serve its own archive' does not."
   },
   {
    "key": "lens-registry-has-no-row-for-a-food-and-grocery-group",
    "opened": "2026-09-04",
    "cls": "instruction",
-   "question": "[R-LENS-03]'s LENS_REGISTRY is a CLOSED enumeration keyed on the lessons register's own class list, and a study must map into one of its thirteen rows to publish a lens record. SAVOLA \u2014 food manufacturing, grocery retail and a listed quick-service stake \u2014 maps to none of them, and BOTH available routes are barred by rules this house already holds. Adding a row is barred because the rule says in terms that a class is added when a DIFFERENT LENS carries the weight and never merely when the industry differs, and a grocer's lens set is identical to three rows already there (primary cash flow; cross-checks own-history EV/EBITDA, a relative multiple and book). Mapping it to one of those rows is barred because a name resolving to the wrong subject is worse than an absence \u2014 calling a supermarket group a telecom operator would put that label in the study's own record. So SAVOLA cannot retire its typed 45/25/15/15 blend under [R-LENS-03] without one of the two being decided.",
+   "question": "[R-LENS-03]'s LENS_REGISTRY is a CLOSED enumeration keyed on the lessons register's own class list, and a study must map into one of its thirteen rows to publish a lens record. SAVOLA — food manufacturing, grocery retail and a listed quick-service stake — maps to none of them, and BOTH available routes are barred by rules this house already holds. Adding a row is barred because the rule says in terms that a class is added when a DIFFERENT LENS carries the weight and never merely when the industry differs, and a grocer's lens set is identical to three rows already there (primary cash flow; cross-checks own-history EV/EBITDA, a relative multiple and book). Mapping it to one of those rows is barred because a name resolving to the wrong subject is worse than an absence — calling a supermarket group a telecom operator would put that label in the study's own record. So SAVOLA cannot retire its typed 45/25/15/15 blend under [R-LENS-03] without one of the two being decided.",
    "routes": [
     {
-     "route": "research_protocol.LENS_REGISTRY and lessons_register.CLASSES, read live and compared \u2014 the registry asserts on the class list at import, so the two cannot be changed independently",
+     "route": "research_protocol.LENS_REGISTRY and lessons_register.CLASSES, read live and compared — the registry asserts on the class list at import, so the two cannot be changed independently",
      "when": "2026-09-04",
      "outcome": "13 classes; three rows (telecom operator, airline, pharmaceutical manufacturer) carry an IDENTICAL lens set. The duplication is the evidence: the registry keys on an industry NAME while the thing it stores is a lens SET.",
      "rerun": true
@@ -166,7 +169,7 @@
     {
      "route": "every study directory's committed lens_record, for a precedent mapping an operating company to a row named for another industry",
      "when": "2026-09-04",
-     "outcome": "none \u2014 every conforming study's declared class matches its actual industry, so there is no house precedent for borrowing a row.",
+     "outcome": "none — every conforming study's declared class matches its actual industry, so there is no house precedent for borrowing a row.",
      "rerun": true
     },
     {
@@ -176,50 +179,50 @@
      "rerun": true
     },
     {
-     "route": "research_protocol.LENS_REGISTRY read against a SECOND name that meets the same wall \u2014 EMPOWER, a regulated district-cooling utility on the DFM",
+     "route": "research_protocol.LENS_REGISTRY read against a SECOND name that meets the same wall — EMPOWER, a regulated district-cooling utility on the DFM",
      "when": "2026-09-04",
-     "outcome": "no row either, and the wall is the same one: a chilled-water network's lens set is a cash-flow primary cross-checked on its own EV/EBITDA history, a relative multiple and book \u2014 identical to the three duplicate rows already there \u2014 so adding a class would again be adding it for an INDUSTRY difference, which the rule forbids in terms. TWO INDEPENDENT NAMES IN ONE WEEK IS THE SECOND OBSERVATION [R-LESSON-01] asks for before widening a finding.",
+     "outcome": "no row either, and the wall is the same one: a chilled-water network's lens set is a cash-flow primary cross-checked on its own EV/EBITDA history, a relative multiple and book — identical to the three duplicate rows already there — so adding a class would again be adding it for an INDUSTRY difference, which the rule forbids in terms. TWO INDEPENDENT NAMES IN ONE WEEK IS THE SECOND OBSERVATION [R-LESSON-01] asks for before widening a finding.",
      "rerun": true
     },
     {
-     "route": "every study UNREADABLE to the valuation-gap gate, read to the leaf that carries its arithmetic \u2014 checking whether this wall is one name's problem or the group's",
+     "route": "every study UNREADABLE to the valuation-gap gate, read to the leaf that carries its arithmetic — checking whether this wall is one name's problem or the group's",
      "when": "2026-09-05",
-     "outcome": "IT IS THE GROUP'S, and the group is larger than anyone had counted. All SEVEN studies invisible to [R-GAP-01] are invisible for this exact reason: each publishes a multi-lens combination [R-LENS-03] retired and therefore no single central. ADNOCDIST 40/25/20/15 twice (lenses.items_A), ADNOCDRILL 25/25/20/15/15 (fair_value.weights), ELEC 40/20/20/20 (compute.py:505, and its delivered document prints the words), GBCO 40/15/20/25 (compute.py:258-260), STC 35/25/20/20 (stc_compute.py:277), AMR 50/20/20/10 (lenses.weights), BOROUGE the MEDIAN of nine readings across two beta framings and two scenarios (compute.py:722). AND FOUR OF THE SEVEN MEET THE SAME WALL AS SAVOLA AND EMPOWER: fuel retail, restaurants, offshore drilling and cable manufacturing are in no row of the registry, and none of them is a DIFFERENT LENS \u2014 every one is a cash-flow primary with a relative multiple and book beside it. So the count of names this gap blocks is now NINE, not two, and eight of them cannot publish a readable answer until it is settled.",
+     "outcome": "IT IS THE GROUP'S, and the group is larger than anyone had counted. All SEVEN studies invisible to [R-GAP-01] are invisible for this exact reason: each publishes a multi-lens combination [R-LENS-03] retired and therefore no single central. ADNOCDIST 40/25/20/15 twice (lenses.items_A), ADNOCDRILL 25/25/20/15/15 (fair_value.weights), ELEC 40/20/20/20 (compute.py:505, and its delivered document prints the words), GBCO 40/15/20/25 (compute.py:258-260), STC 35/25/20/20 (stc_compute.py:277), AMR 50/20/20/10 (lenses.weights), BOROUGE the MEDIAN of nine readings across two beta framings and two scenarios (compute.py:722). AND FOUR OF THE SEVEN MEET THE SAME WALL AS SAVOLA AND EMPOWER: fuel retail, restaurants, offshore drilling and cable manufacturing are in no row of the registry, and none of them is a DIFFERENT LENS — every one is a cash-flow primary with a relative multiple and book beside it. So the count of names this gap blocks is now NINE, not two, and eight of them cannot publish a readable answer until it is settled.",
      "rerun": false
     },
     {
-     "route": "GBCO's own delivered document and committed numbers, opened rather than inferred \u2014 the one name of the nine the count had placed on the OTHER side",
+     "route": "GBCO's own delivered document and committed numbers, opened rather than inferred — the one name of the nine the count had placed on the OTHER side",
      "when": "2026-09-05",
-     "outcome": "IT IS THE FIFTH INSTANCE, NOT ONE OF THE THREE THAT CAN PROCEED, and it is the SHARPEST case for the default fix rather than a complication of it. The 5-Sep count above put GBCO among the three studies with a registered class; its own masthead and section 1.1 say otherwise in terms \u2014 'we value GB Corp as an operating company with a captive finance arm and split the legs', primary lens 'split-the-legs sum-of-the-parts (operating company + captive lender)'. THERE IS NO ROW FOR THAT. What makes it the sharpest case is what happens next: the registry's holding-company row stores EXACTLY the lens set GBCO needs \u2014 an SOTP primary with a relative multiple and book beside it \u2014 so the registry already contains the right answer and refuses it on the ROW'S NAME ALONE. GB Corp is not a holding company by the rule's own test (a holdco IS its stakes; this is an auto assembler-distributor with a captive lender and one large associate), and filing it as one would put that label in its committed record, which is the 'wrong subject is worse than an absence' bar. Under the default fix \u2014 rows named for their lens sets \u2014 GBCO maps with nobody inventing a fit, exactly as SAVOLA does. So the affected count is FIVE of the seven unreadable studies and NINE names in total, and the only one of the seven that can take the lever today is STC (telecom operator, a row that exists).",
+     "outcome": "IT IS THE FIFTH INSTANCE, NOT ONE OF THE THREE THAT CAN PROCEED, and it is the SHARPEST case for the default fix rather than a complication of it. The 5-Sep count above put GBCO among the three studies with a registered class; its own masthead and section 1.1 say otherwise in terms — 'we value GB Corp as an operating company with a captive finance arm and split the legs', primary lens 'split-the-legs sum-of-the-parts (operating company + captive lender)'. THERE IS NO ROW FOR THAT. What makes it the sharpest case is what happens next: the registry's holding-company row stores EXACTLY the lens set GBCO needs — an SOTP primary with a relative multiple and book beside it — so the registry already contains the right answer and refuses it on the ROW'S NAME ALONE. GB Corp is not a holding company by the rule's own test (a holdco IS its stakes; this is an auto assembler-distributor with a captive lender and one large associate), and filing it as one would put that label in its committed record, which is the 'wrong subject is worse than an absence' bar. Under the default fix — rows named for their lens sets — GBCO maps with nobody inventing a fit, exactly as SAVOLA does. So the affected count is FIVE of the seven unreadable studies and NINE names in total, and the only one of the seven that can take the lever today is STC (telecom operator, a row that exists).",
      "rerun": false
     },
     {
      "route": "the four eight-heading gap reviews written on 5 September, read for what each one names as its LARGEST priced correction",
      "when": "2026-09-05",
-     "outcome": "ALL FOUR NAME THE SAME ONE, AND ALL FOUR ARE BLOCKED BY THIS ESCALATION. Until tonight the cost of this delay was measured in readability \u2014 seven studies the valuation-gap gate could say nothing about. Four of those are now readable and audited, and every one of the four reviews reaches the same verdict: the gap is OURS and the single largest correction is retiring the typed multi-lens blend under [R-LENS-03]. AMR: the class primary alone is 2.2333 against a published 2.1455, closing 36% of a -10.2% gap and clearing the publication block on its own. ADNOCDRILL: the two cash-flow framings STRADDLE the price and their midpoint lands 0.04% from it, so three-quarters of a -15.2% gap is the blend and nothing else \u2014 worth +0.88 to +1.29 a share. ADNOCDIST: the blend is DAMPING a premium, and the primary alone is +19.0% / +26.9% rather than +9.7% / +14.0%, which is the correction running the OTHER way and is worth +0.37 / +0.52. ELEC: two of its four lenses are pinned at floors carrying 60% of the weight, so the blend is not merely a blend, it is what makes a clamped model publishable at all.\nNONE OF THE FOUR CAN TAKE IT. Restaurants, offshore drilling, fuel retail and cable manufacturing are in no row of the registry, and not one of them needs a LENS the registry lacks \u2014 every one is a cash-flow primary with a relative multiple and book beside it, exactly as the default fix describes. So the delay now blocks the largest identified correction on four audited studies simultaneously, and on two of them it blocks a correction that would move the answer AWAY from the price, which is the shape that proves the answer is not being chosen for where it lands.",
+     "outcome": "ALL FOUR NAME THE SAME ONE, AND ALL FOUR ARE BLOCKED BY THIS ESCALATION. Until tonight the cost of this delay was measured in readability — seven studies the valuation-gap gate could say nothing about. Four of those are now readable and audited, and every one of the four reviews reaches the same verdict: the gap is OURS and the single largest correction is retiring the typed multi-lens blend under [R-LENS-03]. AMR: the class primary alone is 2.2333 against a published 2.1455, closing 36% of a -10.2% gap and clearing the publication block on its own. ADNOCDRILL: the two cash-flow framings STRADDLE the price and their midpoint lands 0.04% from it, so three-quarters of a -15.2% gap is the blend and nothing else — worth +0.88 to +1.29 a share. ADNOCDIST: the blend is DAMPING a premium, and the primary alone is +19.0% / +26.9% rather than +9.7% / +14.0%, which is the correction running the OTHER way and is worth +0.37 / +0.52. ELEC: two of its four lenses are pinned at floors carrying 60% of the weight, so the blend is not merely a blend, it is what makes a clamped model publishable at all.\nNONE OF THE FOUR CAN TAKE IT. Restaurants, offshore drilling, fuel retail and cable manufacturing are in no row of the registry, and not one of them needs a LENS the registry lacks — every one is a cash-flow primary with a relative multiple and book beside it, exactly as the default fix describes. So the delay now blocks the largest identified correction on four audited studies simultaneously, and on two of them it blocks a correction that would move the answer AWAY from the price, which is the shape that proves the answer is not being chosen for where it lands.",
      "rerun": false
     }
    ],
    "refs_searched": 4,
    "why_only_the_principal": "Both routes require changing a standing rule rather than applying one: either [R-LENS-03]'s bar on adding a class for an industry difference, or the taxonomy the lessons register and the lens registry share. A rule amendment is the principal's, and taking it inside a study rebuild is exactly the per-name exception this house forbids everywhere else.",
-   "done_meanwhile": "SAVOLA's two terminal levers were taken in full \u2014 growth stored as a real rate on the house Saudi path, and the terminal rebuilt through the sanctioned module on an asset life DERIVED by identity from note 6's own cost and depreciation columns. The blend is left standing and SAVOLA stays on the lens ratchet, where it already sat legitimately. The cost of leaving it is measured and stated rather than implied: the blend publishes 27.28 against a cash-flow lens of 25.02, so retiring it would move the central 8.3% DOWN and the gap against the latest price from -10.0% to -17.4%. EMPOWER meets the identical wall and is left standing for the identical reason: its terminal was rebuilt in full through the sanctioned module on a derived 28.10-year life, and its typed 50/20/15/15 blend stays, with the cost measured rather than implied \u2014 the blend publishes 1.8523 against a cash-flow lens of 2.1335, so retiring it would move the central 15.2% UP and the gap against the latest 1.57 from +18.0% to +35.9%. THE TWO NAMES MOVE IN OPPOSITE DIRECTIONS, which is the strongest evidence available that this is a taxonomy question and not a valuation one: on SAVOLA the blend flatters and on EMPOWER it discounts, so no answer to it can be chosen for the number it produces.",
-   "default_if_no_answer": "RENAME THE REGISTRY'S ROWS FOR THEIR LENS SETS RATHER THAN FOR INDUSTRIES, and merge the three duplicates into one row \u2014 an operating company valued on its own cash flows and cross-checked on its own EV/EBITDA history, a relative multiple and book. That is not adding a class for an industry: it is naming the registry for the thing it actually stores, which makes the closed enumeration closable. SAVOLA then maps to it without anybody inventing a fit.",
+   "done_meanwhile": "SAVOLA's two terminal levers were taken in full — growth stored as a real rate on the house Saudi path, and the terminal rebuilt through the sanctioned module on an asset life DERIVED by identity from note 6's own cost and depreciation columns. The blend is left standing and SAVOLA stays on the lens ratchet, where it already sat legitimately. The cost of leaving it is measured and stated rather than implied: the blend publishes 27.28 against a cash-flow lens of 25.02, so retiring it would move the central 8.3% DOWN and the gap against the latest price from -10.0% to -17.4%. EMPOWER meets the identical wall and is left standing for the identical reason: its terminal was rebuilt in full through the sanctioned module on a derived 28.10-year life, and its typed 50/20/15/15 blend stays, with the cost measured rather than implied — the blend publishes 1.8523 against a cash-flow lens of 2.1335, so retiring it would move the central 15.2% UP and the gap against the latest 1.57 from +18.0% to +35.9%. THE TWO NAMES MOVE IN OPPOSITE DIRECTIONS, which is the strongest evidence available that this is a taxonomy question and not a valuation one: on SAVOLA the blend flatters and on EMPOWER it discounts, so no answer to it can be chosen for the number it produces.",
+   "default_if_no_answer": "RENAME THE REGISTRY'S ROWS FOR THEIR LENS SETS RATHER THAN FOR INDUSTRIES, and merge the three duplicates into one row — an operating company valued on its own cash flows and cross-checked on its own EV/EBITDA history, a relative multiple and book. That is not adding a class for an industry: it is naming the registry for the thing it actually stores, which makes the closed enumeration closable. SAVOLA then maps to it without anybody inventing a fit.",
    "default_date": "2026-09-18",
    "status": "open",
    "resolves_when": {
     "file": "engine/savola_study/study_numbers.json",
     "must_contain": "lens_record"
    },
-   "note": "The gap is worth naming beyond this one name: the registry is keyed on an industry NAME and stores a lens SET, and three of its thirteen rows already store the same set. A taxonomy that must grow per industry, under a rule that forbids growing per industry, has no state in which a new operating company can be added \u2014 which is a property of the design rather than of any study that meets it. EMPOWER adds one thing the first instance could not show: its blend carries a NORMALISED EARNINGS lens at 15%, and normalised earnings appears in no row of the registry at all. So even under the default fix \u2014 rename the rows for their lens sets and merge the duplicates \u2014 that lens still has to go, which is the rule working as intended rather than a further gap in it. [5-Sep-2026] The evidence has widened from two names to nine and the shape has not changed, which is what makes the default fix look right rather than expedient: not one of the seven added today needs a lens the registry lacks \u2014 they need a ROW WHOSE NAME IS NOT AN INDUSTRY. And the cost of the delay is now measurable in a second currency: these seven are exactly the studies the valuation-gap gate can say nothing about, so a taxonomy question is holding a PUBLICATION gate blind over a third of the book. [5-Sep-2026, second reading] GBCO was counted on the wrong side of this wall for a day and the correction matters twice over. It raises the blocked count from four of the seven to five, and it supplies the case that settles the DESIGN question rather than adding another instance of it: every earlier name needed a row whose NAME is not an industry while the LENS SET was already there three times over; GBCO needs a row whose name is not an industry while the lens set is there ONCE, under a name that is a real and different subject. A taxonomy keyed on industry cannot express 'an operating company valued on its parts' without either inventing a class for every industry that is one, or calling an auto assembler a holding company. THE OBSERVATION THAT WAS MISSED IS ALSO WORTH KEEPING: this session asserted GBCO could proceed and wrote it into the programme state before opening GBCO's own document, which is L-334 and L-335 for the sixth time in one session."
+   "note": "The gap is worth naming beyond this one name: the registry is keyed on an industry NAME and stores a lens SET, and three of its thirteen rows already store the same set. A taxonomy that must grow per industry, under a rule that forbids growing per industry, has no state in which a new operating company can be added — which is a property of the design rather than of any study that meets it. EMPOWER adds one thing the first instance could not show: its blend carries a NORMALISED EARNINGS lens at 15%, and normalised earnings appears in no row of the registry at all. So even under the default fix — rename the rows for their lens sets and merge the duplicates — that lens still has to go, which is the rule working as intended rather than a further gap in it. [5-Sep-2026] The evidence has widened from two names to nine and the shape has not changed, which is what makes the default fix look right rather than expedient: not one of the seven added today needs a lens the registry lacks — they need a ROW WHOSE NAME IS NOT AN INDUSTRY. And the cost of the delay is now measurable in a second currency: these seven are exactly the studies the valuation-gap gate can say nothing about, so a taxonomy question is holding a PUBLICATION gate blind over a third of the book. [5-Sep-2026, second reading] GBCO was counted on the wrong side of this wall for a day and the correction matters twice over. It raises the blocked count from four of the seven to five, and it supplies the case that settles the DESIGN question rather than adding another instance of it: every earlier name needed a row whose NAME is not an industry while the LENS SET was already there three times over; GBCO needs a row whose name is not an industry while the lens set is there ONCE, under a name that is a real and different subject. A taxonomy keyed on industry cannot express 'an operating company valued on its parts' without either inventing a class for every industry that is one, or calling an auto assembler a holding company. THE OBSERVATION THAT WAS MISSED IS ALSO WORTH KEEPING: this session asserted GBCO could proceed and wrote it into the programme state before opening GBCO's own document, which is L-334 and L-335 for the sixth time in one session."
   },
   {
    "key": "AMOC-depreciation-policy-note",
    "opened": "2026-09-05",
    "cls": "missing_data",
-   "question": "AMOC's fixed-asset accounting policy note \u2014 the depreciation basis and the disclosed useful lives or rates \u2014 from the audited consolidated statements (Crowe, unqualified, signed Giza 18 February 2026). Specifically: does the charge write off COST, or cost less an estimated residual value? That one sentence decides whether AMOC's terminal can be rebuilt through the sanctioned construction [R-TERM-01], because the maintenance escalator rests on the average age of the base and the age identity is broken by a residual [L-328].",
+   "question": "AMOC's fixed-asset accounting policy note — the depreciation basis and the disclosed useful lives or rates — from the audited consolidated statements (Crowe, unqualified, signed Giza 18 February 2026). Specifically: does the charge write off COST, or cost less an estimated residual value? That one sentence decides whether AMOC's terminal can be rebuilt through the sanctioned construction [R-TERM-01], because the maintenance escalator rests on the average age of the base and the age identity is broken by a residual [L-328].",
    "routes": [
     {
-     "route": "engine/amoc_study/filings/ \u2014 the study's own filings directory",
+     "route": "engine/amoc_study/filings/ — the study's own filings directory",
      "when": "2026-09-05",
      "outcome": "holds AUDITED_EXTRACT.md only, a hand-made summary whose own header says the figures were 'read visually from scanned filings (no text layer)'. The note-6 movement table is there; the accounting-policy note is not.",
      "rerun": false
@@ -227,7 +230,7 @@
     {
      "route": "every live ref, for any AMOC filing ever committed",
      "when": "2026-09-05",
-     "outcome": "git rev-list --all --objects returns exactly two objects under engine/amoc_study/filings \u2014 the directory and the extract. No AMOC PDF has ever been committed on any branch.",
+     "outcome": "git rev-list --all --objects returns exactly two objects under engine/amoc_study/filings — the directory and the extract. No AMOC PDF has ever been committed on any branch.",
      "rerun": false
     },
     {
@@ -245,33 +248,34 @@
     {
      "route": "the study's own committed input register",
      "when": "2026-09-05",
-     "outcome": "carries the charge, the accumulated balance and the per-class net book values, and NO depreciation rate, life or policy quote \u2014 so the figure cannot be recovered from what the study already holds.",
+     "outcome": "carries the charge, the accumulated balance and the per-class net book values, and NO depreciation rate, life or policy quote — so the figure cannot be recovered from what the study already holds.",
      "rerun": false
     }
    ],
    "refs_searched": 2,
-   "why_only_the_principal": "Pure access. The document exists, is public and was read visually by whoever built the extract; every route out of this container refuses at the proxy. Nothing about the question is a judgement \u2014 it is one sentence in a note.",
+   "why_only_the_principal": "Pure access. The document exists, is public and was read visually by whoever built the extract; every route out of this container refuses at the proxy. Nothing about the question is a judgement — it is one sentence in a note.",
    "done_meanwhile": "The other four names on the retired terminal construction were all re-tested and closed out with their reasons written into their own study directories (ADNOCLS, ADNOCDIST, BOROUGE, AMR), the valuation-gap gate's dead exemption block was found and enforced, and the seven studies unreadable to that gate were diagnosed into three groups with different fixes. AMOC's own arithmetic is recorded in its evidence file so the rebuild is one sentence away rather than a fresh start: depreciable gross cost 2,665,058,507 over an annualised charge of 135,494,744 gives an implied life of 19.67 years, and accumulated depreciation of 1,847,794,418 over the same charge gives a naive age of 13.64 against a half-life of 9.83.",
-   "default_if_no_answer": "AMOC stays on the terminal ratchet with its reason, exactly as ADNOCLS and the other three do. It is NOT rebuilt on the naive age even though the error direction would be safe \u2014 an overstated age overstates maintenance and understates the value \u2014 because [L-328] already records a name where that argument was made and the figure was withdrawn anyway.",
+   "default_if_no_answer": "AMOC stays on the terminal ratchet with its reason, exactly as ADNOCLS and the other three do. It is NOT rebuilt on the naive age even though the error direction would be safe — an overstated age overstates maintenance and understates the value — because [L-328] already records a name where that argument was made and the figure was withdrawn anyway.",
    "default_date": "2026-09-12",
-   "status": "open",
+   "status": "resolved",
    "resolves_when": {
     "file": "engine/amoc_study/filings/AUDITED_EXTRACT.md",
     "must_contain": "DEPRECIATION POLICY NOTE RECEIVED"
    },
-   "answer_written_to": "engine/amoc_study/TERMINAL_EVIDENCE_05-09-2026.md",
-   "note": "The ARCC precedent is the pattern: the company's own site refused at the proxy, the attempt was logged either way, and the principal supplying the document IS the rule working rather than a failure of it."
+   "answer_written_to": "engine/amoc_study/filings/AUDITED_EXTRACT.md",
+   "note": "CLOSED BY THE SEARCH, NOT BY THE PRINCIPAL, AND THE BLOCK WAS THE PROBE'S FAULT. The 5-September entry rested on a probe pointed at amoc.com.eg, a hostname that does not resolve; AMOC's investor site is amoceg.com, answers 200 unauthenticated, and the audited statements are one click from its homepage. Three filings are now held beside the extract, each with a zero-character text layer across 154 pages, so note 5/2 was read by OCR off the rendered pixels: fixed assets at historical cost less accumulated depreciation and impairment, straight-line over estimated useful lives. This is [R-ENF-04] exactly — an empty result was first evidence the probe did not run, and one failed hostname was generalised into 'cannot be obtained' for a day.",
+   "resolved": "2026-09-06"
   },
   {
    "key": "GBCO-audited-statements-not-reachable-from-this-container",
    "opened": "2026-09-05",
    "cls": "missing_data",
-   "question": "GB Corp's own audited financial statements \u2014 any two consecutive full fiscal years, and ideally the accounting-policies note that discloses useful lives. This study holds NO FILINGS AT ALL: its README records that the historical financials were gathered in conversation rather than by code, so SIGCM clause 1 has nothing behind it here.",
+   "question": "GB Corp's own audited financial statements — any two consecutive full fiscal years, and ideally the accounting-policies note that discloses useful lives. This study holds NO FILINGS AT ALL: its README records that the historical financials were gathered in conversation rather than by code, so SIGCM clause 1 has nothing behind it here.",
    "routes": [
     {
-     "route": "GB Corp's own domain \u2014 five candidate hostnames (ghabbourauto.com with and without www, gb-corp.com, gbcorp.com.eg, gb.com.eg, gbautogroup.com, ghabbour.com, gbcorp-eg.com)",
+     "route": "GB Corp's own domain — five candidate hostnames (ghabbourauto.com with and without www, gb-corp.com, gbcorp.com.eg, gb.com.eg, gbautogroup.com, ghabbour.com, gbcorp-eg.com)",
      "when": "2026-09-05",
-     "outcome": "every one fails to connect (curl 000) EXCEPT gbauto.com, which returns 403 with a 5,900-byte 'Just a moment...' body \u2014 a Cloudflare JavaScript bot challenge rather than a refusal. The host exists and the challenge cannot be solved by curl.",
+     "outcome": "every one fails to connect (curl 000) EXCEPT gbauto.com, which returns 403 with a 5,900-byte 'Just a moment...' body — a Cloudflare JavaScript bot challenge rather than a refusal. The host exists and the challenge cannot be solved by curl.",
      "rerun": true
     },
     {
@@ -281,13 +285,13 @@
      "rerun": true
     },
     {
-     "route": "the Egyptian Exchange's own site, egx.com.eg \u2014 a REGULATOR_OFFICIAL route and where a listed company's disclosures are lodged",
+     "route": "the Egyptian Exchange's own site, egx.com.eg — a REGULATOR_OFFICIAL route and where a listed company's disclosures are lodged",
      "when": "2026-09-05",
-     "outcome": "HTTP 200 with 47KB, and the body is an F5 '/TSPD/' bot-defence interstitial carrying three links, none of them content. Reachable and unusable without JavaScript. WORTH RECORDING SEPARATELY: another study's sweep register has this host down as 'connect_rejected at the proxy', which has stopped being true \u2014 the reason changed even though the outcome did not [L-343].",
+     "outcome": "HTTP 200 with 47KB, and the body is an F5 '/TSPD/' bot-defence interstitial carrying three links, none of them content. Reachable and unusable without JavaScript. WORTH RECORDING SEPARATELY: another study's sweep register has this host down as 'connect_rejected at the proxy', which has stopped being true — the reason changed even though the outcome did not [L-343].",
      "rerun": false
     },
     {
-     "route": "the Egyptian financial regulator \u2014 disclosure.efsa.gov.eg and mist.gov.eg",
+     "route": "the Egyptian financial regulator — disclosure.efsa.gov.eg and mist.gov.eg",
      "when": "2026-09-05",
      "outcome": "neither host resolves (curl 000)",
      "rerun": false
@@ -306,16 +310,16 @@
     }
    ],
    "refs_searched": 239,
-   "why_only_the_principal": "Pure access, not judgement. Both routes that would carry the documents \u2014 the company's own site and the exchange's \u2014 sit behind JavaScript bot challenges, and the one tool that defeats those has its tunnels dropped by the relay, which is established by a CONTROL rather than assumed. The principal can attach the PDFs, as they did for the Egyptian rate series on 3 September.",
+   "why_only_the_principal": "Pure access, not judgement. Both routes that would carry the documents — the company's own site and the exchange's — sit behind JavaScript bot challenges, and the one tool that defeats those has its tunnels dropped by the relay, which is established by a CONTROL rather than assumed. The principal can attach the PDFs, as they did for the Egyptian rate series on 3 September.",
    "done_meanwhile": "The rebuild proceeds on the three levers that need no filing: the cost-of-capital schedule on the house Egyptian path [R-COC-01], growth stored as a real rate on that path [R-MACRO-01], and the re-strike with its eight-heading review [R-GAP-01]. The terminal [R-TERM-01] is the one lever that needs a DISCLOSED useful life and it stays on the ratchet with this as its reason, because a life this desk chose is not a disclosed life.",
-   "default_if_no_answer": "Rebuild on those three levers and leave the terminal on the ratchet, with the study stating in its own record that SIGCM clause 1 is unmet \u2014 the historicals were gathered in conversation and no filing backs them. Do not substitute an aggregator, and do not choose a useful life.",
+   "default_if_no_answer": "Rebuild on those three levers and leave the terminal on the ratchet, with the study stating in its own record that SIGCM clause 1 is unmet — the historicals were gathered in conversation and no filing backs them. Do not substitute an aggregator, and do not choose a useful life.",
    "default_date": "2026-09-19",
    "status": "open",
    "resolves_when": {
     "file": "engine/gbco_study/src/SOURCES.md",
     "must_contain": "audited"
    },
-   "note": "THE LADDER FOUND ONE THING WORTH MORE THAN THE ANSWER. A control on a host curl reaches turned what looked like 'GB Corp blocks automated readers' into 'this container's browser cannot reach anything', which is a different fact with a different remedy \u2014 and without the control the first would have gone into the record as true. The same pass found another study's register carrying a stale negative about egx.com.eg. Both are [L-343]: a recorded failure is a fact about one attempt on one day, and it stops being true without anybody noticing."
+   "note": "THE LADDER FOUND ONE THING WORTH MORE THAN THE ANSWER. A control on a host curl reaches turned what looked like 'GB Corp blocks automated readers' into 'this container's browser cannot reach anything', which is a different fact with a different remedy — and without the control the first would have gone into the record as true. The same pass found another study's register carrying a stale negative about egx.com.eg. Both are [L-343]: a recorded failure is a fact about one attempt on one day, and it stops being true without anybody noticing."
   }
  ]
 }
