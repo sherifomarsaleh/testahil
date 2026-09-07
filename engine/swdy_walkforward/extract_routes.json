@@ -1182,6 +1182,13 @@
   "sha256": "7a984fa36083379c",
   "text_layer_chars": 43344
  },
+ "2023Q4__EE-Consolidation-English-31-12-2023.pdf": {
+  "chars": 181439,
+  "pages": 68,
+  "route": "ocr_200dpi",
+  "sha256": "f78c33dcc54c6b16",
+  "text_layer_chars": 68
+ },
  "2023Q4__Earnings-Presentation-Q4-2023.pdf": {
   "chars": 38953,
   "pages": 14,
