@@ -25,9 +25,9 @@ ROOT = os.path.dirname(HERE)
 TARGET = os.path.join(HERE, "check_figure_opacity.py")
 SRC_ENGINE = os.path.join(ROOT, "engine")
 
-CASES_EXPECTED = 9
+CASES_EXPECTED = 10
 RED_EXPECTED = 5
-CLEAN_EXPECTED = 4
+CLEAN_EXPECTED = 5
 
 
 def _png(mode, alpha=None):
@@ -73,6 +73,16 @@ def _sandbox(studies=None):
                                 "figure_opacity_outstanding.json"), "w"))
     os.makedirs(os.path.join(tmp, "scripts"))
     shutil.copy(TARGET, os.path.join(tmp, "scripts", "check_figure_opacity.py"))
+    # THE MODULE THE GATE IMPORTS MUST TRAVEL WITH THE FIXTURE. The gate resolves the
+    # latest delivered edition by DATE rather than by filename string, and it imports
+    # that parser from check_calibration_deliverables rather than keeping a second copy
+    # [R-ENF-03]. A sandbox carrying only the gate makes it die on the import — which is
+    # this control catching a real dependency rather than a defect, and the fix is to
+    # carry the dependency, not to inline the parser back into the gate.
+    shutil.copy(os.path.join(os.path.dirname(TARGET), "check_calibration_deliverables.py"),
+                os.path.join(tmp, "scripts", "check_calibration_deliverables.py"))
+    shutil.copy(os.path.join(os.path.dirname(TARGET), "check_bibliography.py"),
+                os.path.join(tmp, "scripts", "check_bibliography.py"))
     return tmp
 
 
@@ -81,6 +91,28 @@ def _run(tmp):
                         os.path.join(tmp, "scripts", "check_figure_opacity.py")],
                        capture_output=True, text=True, timeout=300)
     return r.returncode, r.stdout + r.stderr
+
+
+
+def superseded_is_not_latest(tmp_unused):
+    """THE EDITION SORT. A study whose SUPERSEDED edition is translucent and whose
+    CURRENT one is opaque must read as clean — and a filename sort gets this exactly
+    backwards, because "08-07-2026" beats "07-09-2026" on the day before the month is
+    ever compared. That is how this gate came to open a two-month-old document and
+    report its figures as delivered, putting a study on this ratchet for a defect it
+    had already fixed. The dates below are the real ones."""
+    tmp = _sandbox({"clean": [_png("RGB")]})
+    d = os.path.join(tmp, "engine", "editioned_study")
+    os.makedirs(d)
+    _docx(os.path.join(d, "EDITIONED_Valuation_Study_08-07-2026.docx"),
+          [_png("RGBA", 0)])                      # superseded, translucent
+    _docx(os.path.join(d, "EDITIONED_Valuation_Study_07-09-2026.docx"),
+          [_png("RGBA", 255)])                    # current, opaque
+    names = sorted(os.path.basename(x) for x in glob.glob(os.path.join(d, "*.docx")))
+    assert names[-1].endswith("08-07-2026.docx"), (
+        "MUTATION DID NOT LAND: a string sort no longer puts the superseded edition "
+        "last, so this fixture would not exercise the defect")
+    return tmp, None
 
 
 # ------------------------------------------------------------------ red cases
@@ -178,6 +210,8 @@ CLEAN = [
     ("a plain RGB image", plain_rgb),
     ("the known breach, on the ratchet", ratcheted_offender),
     ("a directory delivering no study document", study_with_no_document),
+    ("a SUPERSEDED translucent edition beside a current opaque one",
+     superseded_is_not_latest),
 ]
 
 

@@ -60,10 +60,39 @@ def load_ratchet():
     return json.load(open(OUTSTANDING, encoding='utf-8')).get('outstanding', [])
 
 
+# THE LATEST EDITION IS THE LATEST DATE, NOT THE LAST STRING. This function sorted
+# filenames and took the last, and a filename sort is not a date sort: GBCO's superseded
+# "08-07-2026" edition sorts ABOVE its current "07-09-2026" one, because "08" beats "07"
+# before the month is ever reached. So this gate opened a document two months superseded
+# and reported ITS eight translucent figures as delivered, while the eight actually
+# delivered are opaque to the pixel. That is L-066/L-067 exactly — a check that opens a
+# delivered file by name must move with the re-issue — and it put a study on this
+# ratchet for a defect it had already fixed.
+#
+# The date parser is IMPORTED from check_calibration_deliverables rather than written
+# again [R-ENF-03]: two gates keeping two readings of one filename convention is how the
+# convention stops being tested the moment one of them moves.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import check_calibration_deliverables as _cal  # noqa: E402
+
+
 def latest_study_doc(study_dir):
-    docs = sorted(p for p in glob.glob(os.path.join(study_dir, '*.docx'))
-                  if 'valuation_study' in os.path.basename(p).lower())
-    return docs[-1] if docs else None
+    dated = []
+    for p in glob.glob(os.path.join(study_dir, '*.docx')):
+        name = os.path.basename(p)
+        if 'valuation_study' not in name.lower():
+            continue
+        d = _cal._date(name)
+        # A DELIVERED DOCUMENT WITH NO PARSEABLE DATE IS NOT SILENTLY SORTED. It cannot
+        # be ranked against the others, and guessing its place is how the wrong edition
+        # gets opened in the first place; it is carried last so it is never chosen over
+        # a dated one, and a directory holding ONLY undated documents falls through to
+        # None, which this gate reports rather than skips [R-ENF-04].
+        if d:
+            dated.append((d, p))
+    if not dated:
+        return None
+    return max(dated)[1]
 
 
 def scan(path):
