@@ -2819,6 +2819,40 @@ OUT = dict(
     # The reading this study claims, stated once so the asset base can be ordered against
     # it rather than against an assumption about what a study of this date must have read.
     information_set_ends='1Q2026',
+    # [R-ANCHOR-01] / the anchor-ordering half of [R-BRIDGE-01]. The bridge stands on the
+    # reviewed 31 March 2026 sheet and the margin is anchored on the AUDITED FY2025 year,
+    # 90 days behind it, and the record has to say why rather than leave a reader to
+    # assume the study opened that filing and took half of it. It did not: every line of
+    # the Q1 2026 income statement is registered above and consumed.
+    #
+    # THE MEASUREMENT IS WHAT MAKES THIS A DECLARATION RATHER THAN A SENTENCE, and it is
+    # computed here from the study's own committed figures rather than typed. Q1 2026's
+    # own EBITDA margin runs ABOVE the audited FY2025 year, so anchoring on the audited
+    # year holds this forecast to the STRICTER of the two comparisons it could have used
+    # — the choice cannot be flattering the study, which is the direction that matters.
+    anchor_ordering_reason=dict(
+        reason='the rate anchored is a MARGIN and a single quarter is not a year. This '
+               'fleet earns on charters that begin and end on their own dates and on spot '
+               'rates that move within a year, so one reviewed quarter is a point on a '
+               'seasonal path rather than a rate the business runs at. The audited FY2025 '
+               'year is the last period over which the margin is a full cycle of the '
+               'company\'s own contract book. THE QUARTER WAS NOT SKIPPED: every line of '
+               'the Q1 2026 income statement is registered and consumed, and the bridge '
+               'stands on that quarter\'s balance sheet.',
+        later_period='1Q2026, reviewed',
+        later_rate=float(
+            (INPUTS['q1_26_op']['value'] + INPUTS['q1_26_dep_ppe']['value']
+             + INPUTS['q1_26_dep_ip']['value'] + INPUTS['q1_26_dep_rou']['value']
+             + INPUTS['q1_26_amort']['value']) / INPUTS['q1_26_rev']['value']),
+        anchor_rate=float(hist_is['ebitda_margin'][2]),
+        later_rate_basis='operating profit plus depreciation of property, plant and '
+                         'equipment, investment property and right-of-use assets plus '
+                         'amortisation, over revenue — the same construction as the '
+                         'anchor, on the reviewed three months to 31 March 2026',
+        direction_note='THE GATE READS THE DIRECTION, NOT THIS SENTENCE. The later '
+                       'quarter is the HIGHER of the two, so the anchor adopted is the '
+                       'lower and the forecast is held to the stricter comparison.',
+    ),
     cost_of_capital_record=dict(
         market='AE', regime=_PATH.regime, years=5,
         rf_observed=V['rf_observed'], default_spread=V['sov_spread'], rf_star=rf_star,

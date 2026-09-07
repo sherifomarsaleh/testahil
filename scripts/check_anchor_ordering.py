@@ -64,6 +64,70 @@ ANCHOR_KEYS = ("latest_reviewed_date", "latest_reviewed_period", "anchor_date")
 DECLARE_KEY = "anchor_ordering_reason"
 
 
+# STRENGTHENED 07-09-2026, ON THE FIRST STUDY THAT ACTUALLY EARNED THE RELEASE. As first
+# written this gate accepted ANY non-empty string as the declaration, which is an assertion
+# rather than a measurement — and [R-ANCHOR-01], the rule this half enforces, says of its
+# own mechanism clause that THE MEASUREMENT IS THE CLAUSE THAT DOES THE WORK, and records
+# that it refused the desk that wrote it on a pair of figures supplied beside a claim.
+#
+# WHAT THE RELEASE MUST NOW CARRY, and it is arithmetic rather than prose: the RATE at the
+# later period, from the study's own committed figures, beside the rate at the anchor it
+# adopted. THE GATE READS THE DIRECTION ITSELF RATHER THAN THE STUDY'S WORD FOR IT. There
+# are exactly two directions and only one of them is innocent:
+#
+#   * the later period reads HIGHER than the adopted anchor — the study anchored on the
+#     LOWER of the two, so its forecast is held to the STRICTER test and the choice cannot
+#     be flattering it. Released.
+#   * the later period reads LOWER — the study anchored on the HIGHER of two figures it
+#     held, which is the cherry-pick this rule exists to catch, and it is released only by
+#     a MECHANISM naming why the later period is not comparable, from the same closed list
+#     discipline [R-ANCHOR-01] and [R-COC-01 AMENDED] use, because an open one lets any
+#     study opt out by inventing a reason.
+#
+# A REASON WITH NO MEASUREMENT NO LONGER RELEASES ANYTHING. Nothing goes newly red on this:
+# every study carrying the condition today is on the ratchet.
+
+MECHANISMS = ("seasonality", "one_off_in_the_later_period", "period_not_comparable",
+              "definition_changed_in_period")
+
+
+def declaration_fails(rel):
+    """None if the declaration releases the study; otherwise WHY it does not."""
+    if isinstance(rel, str):
+        if not rel.strip():
+            return "no %s declares why" % DECLARE_KEY
+        return ("%s is a sentence and not a measurement. It must carry the later period, "
+                "the RATE there from this study's own figures, and the rate at the anchor "
+                "adopted, so the direction can be read rather than asserted" % DECLARE_KEY)
+    if not isinstance(rel, dict):
+        return "no %s declares why" % DECLARE_KEY
+    reason = (rel.get("reason") or "").strip()
+    later = (rel.get("later_period") or "").strip()
+    lr, ar = rel.get("later_rate"), rel.get("anchor_rate")
+    miss = []
+    if not reason:
+        miss.append("an EMPTY reason, which switches the check off rather than declaring it")
+    if not later:
+        miss.append("no later_period named")
+    if not isinstance(lr, (int, float)) or not isinstance(ar, (int, float)):
+        miss.append("no later_rate and anchor_rate to read a direction from")
+    if miss:
+        return "%s carries %s" % (DECLARE_KEY, "; ".join(miss))
+    if float(lr) >= float(ar):
+        return None                    # anchored on the lower of the two — the strict side
+    mech = (rel.get("mechanism") or "").strip()
+    if mech not in MECHANISMS:
+        return ("the later period %s reads %.4f against the anchor's %.4f, so this study "
+                "anchored on the HIGHER of two figures it holds — which is the choice this "
+                "rule exists to catch. Releasing it needs a mechanism from %s, and the "
+                "record names %r" % (later, float(lr), float(ar), list(MECHANISMS),
+                                     mech or None))
+    if not (rel.get("mechanism_disclosure") or "").strip():
+        return ("mechanism %r is named with no disclosure from the filings establishing "
+                "it — a mechanism asserted is the assumption wearing one" % mech)
+    return None
+
+
 def _date(s):
     if not isinstance(s, str):
         return None
@@ -117,14 +181,15 @@ def measure():
         read += 1
         if anchor >= sheet:
             continue
-        if (doc.get(DECLARE_KEY) or "").strip():
+        rel = doc.get(DECLARE_KEY)
+        why = declaration_fails(rel)
+        if why is None:
             continue
         bad[tk] = ((sheet - anchor).days,
                    "the bridge stands on %s %s while the forecast is anchored on %s %s — "
                    "%d days BEHIND its own balance sheet. Both come out of the same "
-                   "reviewed filing, so the study opened it and took half of it, and no %s "
-                   "declares why" % (sk, sheet, ak, anchor, (sheet - anchor).days,
-                                     DECLARE_KEY))
+                   "reviewed filing, so the study opened it and took half of it, and %s"
+                   % (sk, sheet, ak, anchor, (sheet - anchor).days, why))
     return bad, read
 
 

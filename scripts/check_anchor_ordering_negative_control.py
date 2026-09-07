@@ -24,7 +24,15 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 ENGINE = os.path.join(ROOT, "engine")
-CASES = 10
+CASES = 16
+
+# The closed mechanism list is IMPORTED from the gate rather than copied here: a control
+# holding its own copy of a standard stops testing the standard the moment one of them
+# moves, which is this repository's own rule about a check that keeps a copy of a key set.
+_spec = __import__("importlib.util", fromlist=["util"]).spec_from_file_location(
+    "_ca", os.path.join(HERE, "check_anchor_ordering.py"))
+ca = __import__("importlib.util", fromlist=["util"]).module_from_spec(_spec)
+_spec.loader.exec_module(ca)
 
 
 def real(tk):
@@ -61,7 +69,11 @@ def run(repo):
     return p.returncode != 0, (p.stdout + p.stderr)
 
 
+RAN = []            # what ACTUALLY ran, counted rather than declared
+
+
 def case(name, docs, ratchet, expect_red, landed, results):
+    RAN.append((name, expect_red))
     tmp = tempfile.mkdtemp(prefix="anchord_nc_")
     try:
         repo = build(tmp, docs, ratchet)
@@ -126,13 +138,76 @@ def main():
                     > AHEAD["bridge_record"]["balance_sheet_date"],
                     "the anchor is not ahead"), results)
 
+    # INVERTED 07-09-2026 rather than deleted, the precedent [R-GAP-01] set when its
+    # trigger went two-sided. This case asserted that a bare SENTENCE releases the study,
+    # which was correct evidence for the gate as first written and is exactly what the
+    # strengthening removed: a reason with no measurement is an assertion, and this rule's
+    # own parent says THE MEASUREMENT IS THE CLAUSE THAT DOES THE WORK.
     DECL = copy.deepcopy(ADN)
     DECL["anchor_ordering_reason"] = ("the 31-March filing is a balance-sheet-only interim "
                                       "under the exchange's quarterly rule; no income "
                                       "statement for the quarter was published")
-    case("9 the same lag, DECLARED with a mechanism",
-         {"FFF": DECL, "GGG": PHDC}, {}, False,
-         lambda r: (bool(DECL.get("anchor_ordering_reason")), "no reason set"), results)
+    case("9 a bare SENTENCE no longer releases — it is an assertion, not a measurement",
+         {"FFF": DECL, "GGG": PHDC}, {}, True,
+         lambda r: (isinstance(DECL.get("anchor_ordering_reason"), str)
+                    and DECL["anchor_ordering_reason"].strip() != "", "no reason set"),
+         results)
+
+    def declared(later, anchor, **kw):
+        d = copy.deepcopy(ADN)
+        d["anchor_ordering_reason"] = dict(
+            {"reason": "a single reviewed quarter is a point on a seasonal path rather "
+                       "than a rate the business runs at",
+             "later_period": "1Q2026, reviewed",
+             "later_rate": later, "anchor_rate": anchor}, **kw)
+        return d
+
+    # THE DECISIVE CLEAN CASE — anchored on the LOWER of the two figures the study holds,
+    # so the forecast faces the stricter comparison and the choice cannot be flattering it.
+    LOWER = declared(0.3273, 0.2928)
+    case("11 anchored on the LOWER of two figures held — the strict side, must stay green",
+         {"III": LOWER}, {}, False,
+         lambda r: (LOWER["anchor_ordering_reason"]["later_rate"]
+                    > LOWER["anchor_ordering_reason"]["anchor_rate"],
+                    "the later rate is not the higher one"), results)
+
+    # THE CASE THE RULE EXISTS FOR: two figures held, the HIGHER one adopted as the anchor.
+    HIGHER = declared(0.2100, 0.2928)
+    case("12 anchored on the HIGHER of two figures held, with no mechanism",
+         {"JJJ": HIGHER}, {}, True,
+         lambda r: (HIGHER["anchor_ordering_reason"]["later_rate"]
+                    < HIGHER["anchor_ordering_reason"]["anchor_rate"],
+                    "the later rate is not the lower one"), results)
+
+    OFFLIST = declared(0.2100, 0.2928, mechanism="the quarter looked unrepresentative",
+                       mechanism_disclosure="stated in the body")
+    case("13 the higher anchor released by a mechanism off the closed list",
+         {"KKK": OFFLIST}, {}, True,
+         lambda r: (OFFLIST["anchor_ordering_reason"]["mechanism"] not in ca.MECHANISMS,
+                    "the mechanism is on the list"), results)
+
+    NODISC = declared(0.2100, 0.2928, mechanism="seasonality", mechanism_disclosure="  ")
+    case("14 a mechanism named with no disclosure establishing it from the filings",
+         {"LLL": NODISC}, {}, True,
+         lambda r: (not NODISC["anchor_ordering_reason"]["mechanism_disclosure"].strip(),
+                    "the disclosure is not empty"), results)
+
+    OK_MECH = declared(0.2100, 0.2928, mechanism="seasonality",
+                       mechanism_disclosure="the segment note discloses the quarter's "
+                                            "dry-docking days against the year's average")
+    case("15 the higher anchor released by a mechanism WITH its disclosure",
+         {"MMM": OK_MECH}, {}, False,
+         lambda r: (OK_MECH["anchor_ordering_reason"]["mechanism"] in ca.MECHANISMS
+                    and bool(OK_MECH["anchor_ordering_reason"]["mechanism_disclosure"]
+                             .strip()), "the mechanism case was not built"), results)
+
+    # NO measurement at all, only a reason — the shape case 9 used to release on.
+    NOMEAS = copy.deepcopy(ADN)
+    NOMEAS["anchor_ordering_reason"] = {"reason": "a quarter is not a year"}
+    case("9b a dict reason with no rates to read a direction from",
+         {"NNN": NOMEAS}, {}, True,
+         lambda r: ("later_rate" not in NOMEAS["anchor_ordering_reason"],
+                    "the rates were not removed"), results)
 
     EMPTY = copy.deepcopy(ADN)
     EMPTY["anchor_ordering_reason"] = "  "
@@ -141,13 +216,23 @@ def main():
          lambda r: (EMPTY.get("anchor_ordering_reason", "x").strip() == "",
                     "the reason is not empty"), results)
 
-    print("cases run: %d (declared %d)" % (CASES, CASES))
+    # COUNTED, NOT DECLARED. This line used to print the declared constant TWICE — "cases
+    # run: 15 (declared 15)" — which is true whatever ran, so deleting a case left the
+    # control reporting a full house. That is the shape this repository has caught four
+    # times: a control whose own report proves nothing about what it did.
+    nred = sum(1 for _, e in RAN if e)
+    print("cases run: %d (declared %d)" % (len(RAN), CASES))
+    if len(RAN) != CASES:
+        print("FAIL — the case count moved: %d ran, %d declared. A control that quietly "
+              "loses cases reports fewer-of-fewer and reads as clean." % (len(RAN), CASES))
+        return 1
     if results:
         for n, why in results:
             print("  FAIL  %s\n        %s" % (n, why))
         print("\nFAIL — the gate does not behave as the rule says.")
         return 1
-    print("OK — 6 red conditions fire, 4 clean conditions do not.")
+    print("OK — %d red conditions fire, %d clean conditions do not."
+          % (nred, len(RAN) - nred))
     return 0
 
 

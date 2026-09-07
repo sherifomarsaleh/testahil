@@ -26,6 +26,16 @@ ROOT = os.path.dirname(HERE)
 ENGINE = os.path.join(ROOT, "engine")
 CASES = 11
 
+# THE TALLY IS A SHARED INSTRUMENT, NOT A LINE EACH CONTROL PRINTS FOR ITSELF.
+# Six controls here printed the DECLARED CONSTANT twice — "cases run: N
+# (declared N)" — which is true whatever ran, and beside it a hand-typed red/clean
+# split that had stopped matching. engine/control_tally.py counts what actually
+# ran and refuses a count that moved [R-ENF-04].
+sys.path.insert(0, ROOT)
+from engine.control_tally import Tally          # noqa: E402
+
+T = Tally(CASES, subject="check_ground_up.py")
+
 
 def real_lines():
     d = json.load(open(os.path.join(ENGINE, "stc_study", "study_numbers.json"),
@@ -72,6 +82,7 @@ def run(repo):
 
 
 def case(name, docs, bad, unread, expect_red, landed, results):
+    T.case(name, expect_red)
     tmp = tempfile.mkdtemp(prefix="gu_nc_")
     try:
         repo = build(tmp, docs, bad, unread)
@@ -162,14 +173,7 @@ def main():
          lambda r_: (abs(sum(x["share_of_revenue"] for x in short) - 1.0) > 0.01,
                      "the shares still sum to one"), r)
 
-    print("cases run: %d (declared %d)" % (CASES, CASES))
-    if r:
-        for n, why in r:
-            print("  FAIL  %s\n        %s" % (n, why))
-        print("\nFAIL — the gate does not behave as the rule says.")
-        return 1
-    print("OK — 7 red conditions fire, 4 clean conditions do not.")
-    return 0
+    return T.report(r)
 
 
 if __name__ == "__main__":

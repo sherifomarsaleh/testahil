@@ -7287,6 +7287,14 @@
   "note": "THE BASE IS NEWER THAN THE INFORMATION SET AND THAT IS THE POINT OF THE ORDERING. The statements this study reads end at 31 March 2026; the fleet is carried to 7 August 2026 because the company disclosed a movement in it after that date and the price this value is compared against already contains it. The first edition omitted that purchase, which valued a fleet the market was not pricing."
  },
  "information_set_ends": "1Q2026",
+ "anchor_ordering_reason": {
+  "reason": "the rate anchored is a MARGIN and a single quarter is not a year. This fleet earns on charters that begin and end on their own dates and on spot rates that move within a year, so one reviewed quarter is a point on a seasonal path rather than a rate the business runs at. The audited FY2025 year is the last period over which the margin is a full cycle of the company's own contract book. THE QUARTER WAS NOT SKIPPED: every line of the Q1 2026 income statement is registered and consumed, and the bridge stands on that quarter's balance sheet.",
+  "later_period": "1Q2026, reviewed",
+  "later_rate": 0.32725517814671995,
+  "anchor_rate": 0.2927707754531797,
+  "later_rate_basis": "operating profit plus depreciation of property, plant and equipment, investment property and right-of-use assets plus amortisation, over revenue \u2014 the same construction as the anchor, on the reviewed three months to 31 March 2026",
+  "direction_note": "THE GATE READS THE DIRECTION, NOT THIS SENTENCE. The later quarter is the HIGHER of the two, so the anchor adopted is the lower and the forecast is held to the stricter comparison."
+ },
  "cost_of_capital_record": {
   "market": "AE",
   "regime": "pegged",
