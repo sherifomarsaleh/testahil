@@ -69,6 +69,36 @@ CLAUSES = [
     ("F", "the decomposition attributes any residual bias to a named lever"),
 ]
 
+# WHICH PHASE EACH CLAUSE BELONGS TO [CORRECTED 07-09-2026, per instruction — "we chose
+# backtesting for that particular purpose. We back test and in the future we calibrate and
+# enhance as we go along and compare our predictions now with what the future unfolds. So
+# as far as my rule is concerned. We backtest."]
+#
+# THE PLAN ALREADY SAID THIS AND CRITERION 3 WAS WRITTEN AS THOUGH IT DID NOT. Part D
+# separates the phases in terms: Phase 1 and 2a are the BACKTEST — "it is finished when its
+# names are also backtested" — while Phase 2b is "the live test, going forward: from the
+# day 2a closes, every fair value the house publishes is a dated claim graded against what
+# actually happens". Clauses D and E score exactly that forward series, and criterion 3
+# gated PHASE 1 on it.
+#
+# THE ARGUMENT IS STRONGER THAN THE INSTRUCTION AND IT IS THE PLAN'S OWN. 2b says in terms
+# that it "grades ONLY claims struck after 2a closed", and gives the reason: "no claim
+# inside 2b was made by a method that had not already passed its historical test, so a 2b
+# result cannot be explained away as the old method's residue." EVERY ONE OF THE 103
+# VINTAGES NOW HELD WAS STRUCK BEFORE 2a — so clause D, read as a Phase 1 gate, demands
+# evidence the programme's own design declares INADMISSIBLE. It was not merely early; it
+# was asking the wrong question of the wrong sample.
+#
+# WHAT THIS DOES NOT DO, STATED RATHER THAN DISCOVERED LATER: Phase 1 now closes with NO
+# evidence that this house's lean is INFORMATION rather than merely a lean. That is a real
+# loss and it is not softened here — it is precisely what Phase 2b exists to supply, on a
+# sample that can actually answer it, and [R-VCAL-01]'s promotion guard stays symmetric in
+# the meantime. D and E are REPORTED at every run with their maturity date, so the debt is
+# visible rather than dropped; what changes is that they no longer hold the book.
+# [R-VCAL-02] is the rule this map implements.
+PHASE = {"A": 1, "B": 1, "C": 1, "F": 1, "D": "2b", "E": "2b"}
+GATING = [c for c in "ABCF"]
+
 
 def _cashflow():
     with open(CASHFLOW_SCORES, encoding="utf-8") as fh:
@@ -256,12 +286,29 @@ def main():
     print("  it further back is a copy out of filings each run has parsed.")
 
     print("\n" + "=" * 74)
+    print("PHASE — WHICH CLAUSES GATE PHASE 1 AND WHICH BELONG TO 2b")
+    print("  GATING (Phase 1, the BACKTEST): %s" % ", ".join(GATING))
+    print("  REPORTED (Phase 2b, the LIVE forward record): D, E")
+    print("  Part D of the plan separates these in terms and 2b grades ONLY claims")
+    print("  struck after 2a closed. All 103 vintages held were struck BEFORE it, so")
+    print("  clause D as a Phase 1 gate asks for evidence 2b itself declares")
+    print("  inadmissible. Reported here with their date; they no longer hold the book.")
+    print("  THE COST IS STATED: Phase 1 closes with no evidence that the house lean is")
+    print("  INFORMATION rather than merely a lean. That is what 2b supplies.")
+
+    print("\n" + "=" * 74)
     print("VERDICT")
-    print("  criterion 3 is NOT MET.")
-    print("  It is not met because the mechanical series scores on ONE name,")
-    print("  which is work with a rate — not because of the 2027 maturity date")
-    print("  that clauses D and E carry and that acceptance.py reported for the")
-    print("  whole criterion.")
+    gating_met = [verdicts.get(c) for c in GATING]
+    if all(v is True for v in gating_met):
+        print("  criterion 3 is MET on its Phase 1 clauses (%s)." % ", ".join(GATING))
+        print("  D and E stay OPEN as Phase 2b's subject, with their maturity date.")
+    else:
+        bad = [c for c in GATING if verdicts.get(c) is not True]
+        print("  criterion 3 is NOT MET on its Phase 1 clauses: %s." % ", ".join(bad))
+        print("  It is not met because the mechanical series scores on ONE name,")
+        print("  which is WORK WITH A RATE — not because of the 2027 maturity date")
+        print("  that D and E carry and that acceptance.py once reported for the")
+        print("  whole criterion. That date is now recorded where it belongs.")
     return 0
 
 
