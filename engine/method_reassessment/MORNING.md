@@ -3292,3 +3292,39 @@ nothing reads them. They were last re-committed by the **unattended pipeline**, 
 that at the source.
 
 Gate green locally after a deliberate re-import of all three modules.
+
+---
+
+## 07-09-2026 — the tracked bytecode had disabled the pipeline's own guard, and produced 17 empty commits
+
+Following the `.pyc` untracking to its source rather than stopping at the fix.
+
+The unattended calibration workflow stages with `git add engine/`, and **it already carries
+exactly the right guard** immediately above it:
+
+```bash
+if git diff --quiet -- engine/ && [ -z "$(git status --porcelain engine/)" ]; then
+    echo "Nothing changed."; exit 0
+fi
+```
+
+**The tracked `.pyc` files are what defeated it.** Those five are the pipeline's own modules
+(`auto_refresh`, `panel_refresh`, `mc_v3`, `data_quality`, `market_profiles`); importing them
+rewrites the cache, and a `.pyc` header embeds the source mtime, which on a fresh checkout is
+the checkout time. So `git diff -- engine/` was **never quiet**, the guard could never fire,
+and every run proceeded to commit.
+
+**Measured on main — 2,612 commits, 138 touching any `.pyc`, and 17 whose *entire content* is
+recompiled bytecode**, each announcing *"Auto-refresh: non-material calibration update"* at
+0 insertions and 0 deletions. `94ceedac` (06-09), `8083d864`, `f70f4e40`, `6e60d3a6`,
+`8b393f7e`, `21a8e219`, `879e63bf` (all 01-09), and back to 03-08.
+
+**Why that is more than untidiness:** [R-CAL-01] makes the commit message part of the
+announcement — *"the reasons repeated verbatim in the commit message"*, and *"reverting that
+ONE commit restores market_profiles.py and fitted_configs.json together"*. Seventeen commits
+carry that message with no config in them, so **reading main's history to find when a fit
+last moved returns seventeen false positives**, and reverting one of them restores nothing.
+
+**Fixed at the source by the untracking**, verified rather than reasoned about: bytecode
+regenerated, `git status --porcelain engine/` returns 0 lines (33 under `--ignored`), and the
+guard fires — *"Nothing changed." → exit 0, no commit*.
