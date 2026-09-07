@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-07i — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-07j — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -4627,3 +4627,65 @@ staleness, a named absence — was written down against one particular thing bei
 every one of them is keyed to the name of the work rather than to the fault. Where a list
 excuses work, ask whether it excuses the thing it recorded or everything that thing could ever
 do.
+
+## [R-ASSET-02] The operating asset base is read by arithmetic, not merely recorded and printed (7-Sep-2026)
+
+**This corrects a claim made the same morning.** [R-ASSET-01] and `check_asset_base.py` were
+built against the principal's own words — a study that "takes into consideration current
+landbank of a developer but does not account for new land added" — and the error was reported
+caught. It is caught for VINTAGE ONLY. The gate establishes that the quantity is no older than
+the information set the study says it read, and says nothing whatever about whether any
+arithmetic in the study consumes it.
+
+**The two halves are different failures and only one was closed.** A land bank registered at
+last year's date and driving the revenue model is stale, and that is what [R-ASSET-01] refuses.
+A land bank registered at TODAY's date, printed in a table, and read by no line of the model is
+DECORATIVE: new land raises the value by zero and exhausted land lowers it by zero, and the
+vintage gate passes it with the date perfectly fresh. The principal's sentence covers both, and
+reporting the error closed on the strength of the first is the mistake this rule exists to
+correct.
+
+**Measured**: `PHDC` commits `land_bank_sqm_mn`, prints it to the delivered workbook as "Land
+bank (mn sqm)", and no arithmetic anywhere reads it; `TMGH` binds `landbank` out of its own key
+performance indicators and then uses the local name sixteen lines later as a `%` format
+argument inside a sentence — the quantity reaches a reader and reaches nothing else.
+
+**The test is USE, and use is harder to read than presence.** `scripts/check_asset_base_wired.py`
+requires a committed asset-base quantity to appear in a line that is CODE rather than prose, in
+a file that is not a document or figure builder, and — where the line only BINDS the quantity to
+a local name — follows that local name: if every one of ITS uses is presentational too, the site
+is presentational. The first draft stopped at the binding and called TMGH wired.
+
+**The general lesson, which is not about land: a rule can be enforced on the half of itself that
+is easy to measure, and the gate will then be correct, negative-controlled and beside the
+point.** Vintage is a date comparison; consumption is a question about the model. Where an
+instruction names a quantity, ask both whether it is current and whether anything reads it.
+
+## [R-STD-02] A standard version is a conformance claim, and a rebuild may not re-assert it (7-Sep-2026)
+
+[R-STD-01] stamps every study with the standard it was built to, so a book-wide re-issue has a
+finite queue and a countable remainder. `research_protocol.STANDARD_VERSION_NOTE` enumerates what
+a study at that version DOES — a v2 cost of capital, a conforming beta, a ground-up forecast, the
+three gates called in its own code, a dated gap review, and since 07-09-2026 an asset-base record
+and a declared terminal construction.
+
+**A study that takes the stamp from the live constant re-asserts every one of those claims on
+every rebuild, with nobody deciding.** The stamp is written by the generator; the requirements are
+recorded in the ratchets; and nothing compared them. A study listed as not meeting a requirement
+could carry a stamp saying it does, and both records were individually correct.
+
+**The rule**: `scripts/check_standard_claim.py` refuses a study whose claimed version is at or
+above a version whose requirements that study is RATCHETED AGAINST. Requirements are keyed to the
+ratchet that records who does not meet them, and the mapping is added by whoever bumps the
+version, in the same commit — [R-ENF-02]'s discipline applied to a claim instead of to a debt. A
+study reading zero claims across the book FAILS [R-ENF-04], and a named ratchet that is not on
+disk FAILS, because a gate measuring against nothing reports clean.
+
+**It is EXCLUDED from the new-study gauntlet with its reason**: its subject is the RELATION
+between a claim and a ratchet elsewhere, and a planted study is on no ratchet, so it conforms by
+construction — correctly, since a new study owes no debt.
+
+**The general lesson, which is not about version numbers: a stamp taken from a live constant is
+not a record, it is a re-assertion.** It says what the code believes today rather than what the
+work was held to, and the difference is invisible until somebody asks which of the two the reader
+is entitled to rely on.
