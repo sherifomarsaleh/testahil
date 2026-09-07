@@ -3364,98 +3364,6 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
-   "ticker": "DU",
-   "name": "Emirates Integrated Telecommunications Company PJSC",
-   "code": "DFM:DU",
-   "ccy": "AED",
-   "spot": 12.3,
-   "anchor_date": "2026-08-07",
-   "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 9.74,
-   "fv_base": 13.9,
-   "fv_full": 20.28,
-   "gap_base_pct": 13.0,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.075453,
-    "mu_h": 0.008097,
-    "G": {
-     "bear": -3.09,
-     "base": 1.62,
-     "full": 6.63
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0049,
-     "base": 0.0522,
-     "full": 0.0003
-    },
-    "p_touch": {
-     "bear": 0.0078,
-     "base": 0.0807,
-     "full": 0.0003
-    },
-    "required_cagr": {
-     "bear": -0.9392,
-     "base": 3.3383,
-     "full": 402.6027
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0005
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.135672,
-    "mu_h": 0.024891,
-    "G": {
-     "bear": -1.72,
-     "base": 0.9,
-     "full": 3.69
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0282,
-     "base": 0.1922,
-     "full": 0.0035
-    },
-    "p_touch": {
-     "bear": 0.052,
-     "base": 0.3145,
-     "full": 0.0062
-    },
-    "required_cagr": {
-     "bear": -0.6068,
-     "base": 0.6309,
-     "full": 6.3901
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00073
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "GBCO",
    "name": "GB Corp (Ghabbour)",
    "code": "EGX:GBCO",
@@ -5294,6 +5202,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00226
    },
    "market": "EG"
+  },
+  {
+   "ticker": "DU",
+   "name": "Emirates Integrated Telecommunications Company PJSC",
+   "code": "DFM:DU",
+   "ccy": "AED",
+   "spot": 11.38,
+   "anchor_date": "2026-09-07",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 31,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 9.74,
+   "fv_base": 13.9,
+   "fv_full": 20.28,
+   "gap_base_pct": 22.1,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.965,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.085729,
+    "mu_h": 0.004384,
+    "G": {
+     "bear": -1.82,
+     "base": 2.33,
+     "full": 6.74
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0298,
+     "base": 0.0161,
+     "full": 0.0002
+    },
+    "p_touch": {
+     "bear": 0.0468,
+     "base": 0.0248,
+     "full": 0.0004
+    },
+    "required_cagr": {
+     "bear": -0.8455,
+     "base": 10.0273,
+     "full": 1024.9076
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00134
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.14088,
+    "mu_h": 0.013962,
+    "G": {
+     "bear": -1.1,
+     "base": 1.42,
+     "full": 4.1
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0868,
+     "base": 0.0715,
+     "full": 0.0021
+    },
+    "p_touch": {
+     "bear": 0.157,
+     "base": 0.1194,
+     "full": 0.0033
+    },
+    "required_cagr": {
+     "bear": -0.4634,
+     "base": 1.2258,
+     "full": 9.0856
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00501
+   },
+   "market": "AE"
   },
   {
    "ticker": "LGES",
