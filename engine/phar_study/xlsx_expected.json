@@ -343,6 +343,16 @@
   "Income Statement!G27": 7.9088638969436635,
   "Income Statement!H27": 9.837916307877338,
   "Income Statement!I27": 11.621131155909962,
+  "Income Statement!G31": 25317.559608763735,
+  "Income Statement!G32": 29585.93776051655,
+  "Income Statement!G33": -15199.466800013659,
+  "Income Statement!G34": -17972.550313224132,
+  "Income Statement!G35": 9866.016334820371,
+  "Income Statement!G36": 11481.254474339024,
+  "Income Statement!G37": 2325.5211507761214,
+  "Income Statement!G38": 4605.846988356466,
+  "Income Statement!G39": 250.41276256953068,
+  "Income Statement!G40": 268.92929301100355,
   "Balance Sheet!D2": 3069.747924,
   "Balance Sheet!D3": 4901.223806,
   "Balance Sheet!D5": 3887.077629,
@@ -878,6 +888,7 @@
   "audited": 321,
   "unit_build": 5,
   "grid": 136,
-  "label": 577
+  "measured_error": 20,
+  "label": 614
  }
 }

@@ -133,8 +133,10 @@ for name, got, exp in checks:
         bad.append(name)
 
 print(f'\npasted cells by permitted class: {PASTE}')
+# every pasted class except the labels, summed from the record rather than from a list of
+# three names typed here — a fourth class was added and this line went on reporting three.
 print(f'formula cells {nform} against pasted value cells '
-      f'{PASTE["audited"] + PASTE["unit_build"] + PASTE["grid"]}')
+      f'{sum(v for k, v in PASTE.items() if k != "label")}')
 
 json.dump(dict(formulas=nform, checked=checked, unresolvable=len(unresolvable),
                unchecked=unchecked, mismatched=len(mismatches),

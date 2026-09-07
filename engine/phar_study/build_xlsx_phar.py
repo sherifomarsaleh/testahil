@@ -8,12 +8,15 @@ derived from the cost-of-debt path; the discount factors compound; the DCF water
 chains; the terminal block chains; the statements roll forward; every ratio and per-share
 figure is a formula.
 
-Only three classes of cell are pasted, and READ FIRST names them:
+Only four classes of cell are pasted, and READ FIRST names them:
   (1) audited and disclosed history — where a line is both disclosed and derivable, the
       DISCLOSED figure is carried;
   (2) the output of the unit build, which would be unreadable flattened into a grid;
   (3) whole-model re-runs — the Monte Carlo map and the sensitivity grids, where each cell
-      is a complete revaluation and which therefore do NOT redraw when a driver changes.
+      is a complete revaluation and which therefore do NOT redraw when a driver changes;
+  (4) the measured-error multipliers behind the far-year ranges, which are a MEASUREMENT of
+      how far this method's own projections have landed from what was later reported and
+      are therefore an observation rather than anything the model can derive.
 
 Every formula the builder writes is recorded with the model's own value for that cell in
 xlsx_expected.json; recalc.py then evaluates the DELIVERED file independently and asserts
@@ -56,7 +59,8 @@ BOX = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 wb = openpyxl.Workbook()
 wb.remove(wb.active)
 EXPECT = {}      # "Sheet!A1" -> the model's own value for that formula cell
-NPASTE = {'audited': 0, 'unit_build': 0, 'grid': 0, 'label': 0}
+NPASTE = {'audited': 0, 'unit_build': 0, 'grid': 0, 'measured_error': 0,
+          'label': 0}
 
 
 def sheet(name, widths):
@@ -121,21 +125,26 @@ rows = [
   'waterfall, the terminal block, the three statements, the bridge and every ratio all move. '
   'This claim is tested, not asserted: a driver test perturbs each input in place, '
   're-evaluates the whole workbook and checks the headline moves in the right direction.'),
- ('Pasted cell class 1 of 3 — audited and disclosed history',
+ ('Pasted cell class 1 of 4 — audited and disclosed history',
   'The FY2023, FY2024 and FY2025 columns of the Income Statement, Balance Sheet and Cash '
   'Flow sheets, and the disclosed operating statistics on Segments. Where a line is both '
   'disclosed and derivable, the DISCLOSED figure is carried. Blue type marks a pasted cell.'),
- ('Pasted cell class 2 of 3 — the unit build\'s output',
+ ('Pasted cell class 2 of 4 — the unit build\'s output',
   'The FY2024 and FY2025 pack volumes and realised prices per pack on the Segments sheet. '
   'These come from reconciling the board\'s disclosed pack counts against the revenue note\'s '
   'channel split; flattened into a grid the reconciliation would be unreadable. Everything '
   'downstream of them — every forecast year — is a formula.'),
- ('Pasted cell class 3 of 3 — whole-model re-runs',
+ ('Pasted cell class 3 of 4 — whole-model re-runs',
   'The Monte Carlo percentile map and touch ladder, and the Sensitivity grids. Each of those '
   'cells is a COMPLETE revaluation of the model at a different input, or a full '
     f'{PATHS:,}-path '
   'simulation. THEY DO NOT REDRAW WHEN A DRIVER CHANGES. Everything else on those two sheets '
   'is a formula.'),
+ ('Pasted cell class 4 of 4 — the measured-error multipliers',
+  'The factors behind the far-year ranges at the foot of the Income Statement sheet. They '
+  'are a measurement of how far this method\'s own projections have landed from what the '
+  'company later reported, so they are an observation and not something the model can '
+  'derive. The ranges they produce ARE formulas and move with the projection above them.'),
  ('Blue means input, black means formula',
   'Blue type is a pasted number. Black type is calculated in the sheet.'),
  ('The contested judgement is carried both ways',
@@ -970,6 +979,50 @@ for j in range(5):
     col = get_column_letter(5 + j)
     f(wi, r, 5 + j, f'={col}{IS["parent"]}/Assumptions!{c("shares")}', par_f[j] / SH, fmt=PS,
       bold=True)
+
+
+# ---- years three to five as RANGES, from the method's own measured error ----------
+# [R-FCAL-01]: the far forecast years are published as ranges rather than as points. The
+# multipliers are read from the committed record and pasted; the low and high rows are live
+# formulas off the point rows above them, so a reader who moves a driver watches the range
+# move with it. The record covers three years ahead, so the fourth and fifth forecast years
+# carry NO measured range and say so rather than borrowing the third year's.
+FYR = json.load(open(os.path.join(HERE, 'far_year_ranges.json')))
+FYR_H3 = FYR['far_years'][0]
+FYR_I = FYR_H3['index']
+FYR_COL = get_column_letter(5 + FYR_I)
+FYR_NONE = 'no measured range'
+r += 2
+lbl(wi, r, 1, 'YEARS THREE TO FIVE AS RANGES — the method replayed on this company\'s own '
+              'past, year by year, and scored against what was later reported', bold=True,
+    fill=FILL_C)
+lbl(wi, r, 11, 'Factor', bold=True, fill=FILL_C)
+lbl(wi, r, 12, 'Readings', bold=True, fill=FILL_C)
+r += 1
+lbl(wi, r, 1, 'MULTIPLY the projection by the factor: above one means the outturn came in '
+              'ABOVE the projection. The basis is a SPAN — the widest and the narrowest of '
+              'the readings behind it, never a percentile.', note=True)
+r += 1
+# The cost-of-sales row is carried NEGATIVE on this sheet, so the range multiplied off it
+# comes out negative too; the sign is taken from the row rather than assumed.
+FYR_LINES = (('revenue', IS['rev'], 'Revenue', 1),
+             ('cogs', IS['cogs'], 'Cost of sales', -1),
+             ('gross_profit', IS['gp'], 'Gross profit', 1),
+             ('net_profit', IS['np'], 'Profit for the year', 1),
+             ('dna', IS['dna'], 'Depreciation and amortisation', 1))
+for _key, _prow, _label, _sgn in FYR_LINES:
+    _cell = FYR_H3['lines'][_key]
+    for _side in ('low', 'high'):
+        lbl(wi, r, 1, f'{_label} — {_side} of the range')
+        f(wi, r, 5 + FYR_I, f'={FYR_COL}{_prow}*K{r}', _sgn * _cell[_side], fmt=MONEY)
+        for _j in (FYR_I + 1, FYR_I + 2):
+            lbl(wi, r, 5 + _j, FYR_NONE, note=True)
+        val(wi, r, 11, _cell[f'factor_{_side}'], fmt=PS, kind='measured_error')
+        val(wi, r, 12, _cell['n'], fmt='#,##0', kind='measured_error')
+        r += 1
+lbl(wi, r, 1, 'The fourth and fifth forecast years carry no measured range: the replay '
+              'covers three years ahead and no further, and none is invented for them.',
+    note=True)
 
 # ============================================================= 10. BALANCE SHEET
 wb_ = sheet('Balance Sheet', [40, 13, 13, 13, 13, 13, 13, 13, 13])

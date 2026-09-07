@@ -39,12 +39,29 @@ ERA_FLIP = True           # a bias that changes sign between eras is not a bias
 # three scopes and calls it a completed queue position, so a SKIP that harvested
 # nothing would read as a clean result rather than as the finding it usually is: the
 # reason a walk-forward cannot run is almost always a fact about the archive or about
-# the study's own panel, and both are worth a lesson. The thresholds below are stated
-# here, ahead of any run, for the same reason the ones above are.
+# the study's own panel, and both are worth a lesson.
+#
+# THREE OF THE FOUR THRESHOLDS BELOW WERE STATED AHEAD OF ANY RUN. PANEL_WEDGE WAS NOT,
+# AND SAYING SO IS THE POINT — this comment read "the thresholds below are stated here,
+# ahead of any run" until 7 September 2026, which was true of the others and false of
+# that one: it was set with ELEC's measured 1.5130 already in view. A comment asserting
+# a discipline that was not followed is worse than no comment, because it stops the next
+# reader looking.
+#
+# WHAT IT COSTS, MEASURED RATHER THAN ASSERTED: exactly ONE run in the book computes
+# profit_beyond_wedge_by at all, so ANY cutoff between 1.0 and 1.5130 classifies every
+# run in the book identically and no cutoff classifies a second run either way. THE
+# THRESHOLD DOES NO WORK — which is [R-ANCHOR-01]'s own test of whether a cutoff does
+# work or merely exists, applied here and failed. It is left at 1.30 rather than quietly
+# re-derived, because inventing a justification for a number somebody chose is the
+# free-parameter offence in better clothes, and moving it would change nothing while
+# looking like a correction. Registered for a ruling; revisit when a second run measures
+# the quantity, which is the first moment the choice can be tested at all.
 SKIP_SHORTFALL = 1        # sourceable years at least this far below the LIGHT bar
 UNSERVED_ARCHIVE = True   # an issuer that lists statements and serves none of them
 PANEL_WEDGE = 1.30        # a study panel this many times beyond the MEASURED
-                          # consolidation wedge is unreconciled, not merely bigger
+                          # consolidation wedge is unreconciled, not merely bigger.
+                          # CHOSEN WITH ONE RUN'S FIGURE IN VIEW — see above.
 KD_BELOW_SOVEREIGN = 1    # trap (i)'s broad denominator landing under the sovereign
                           # in at least this many years
 

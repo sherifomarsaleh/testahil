@@ -805,6 +805,43 @@
    "resolved": "2026-09-07",
    "answer": "COMMENCEMENTS. The adopted reading was already the right one, so no value moves: the central stands at AED 5.3385.",
    "answer_written_to": "engine/adnocls_study/compute.py, in the contested-judgement note that generates contested_judgements.json, quoting the transcript. The alternative is RETAINED rather than deleted — it is still a legitimate downside framing of a path the company has not disclosed vessel by vessel, and dropping a judgement would shrink the population [R-ENF-05]'s sign test is computed over."
+  },
+  {
+   "key": "PANEL_WEDGE-chosen-after-the-fact",
+   "opened": "2026-09-07",
+   "cls": "instruction",
+   "question": "engine/lessons_harvest.py carries PANEL_WEDGE = 1.30, the multiple of a company's MEASURED consolidation wedge beyond which its study panel is called unreconciled rather than merely bigger. Its own comment claimed the thresholds there were stated ahead of any run; this one was not — it was set with ELEC's measured 1.5130 already in view, which is the selection [R-LESSON-01] keeps out of the harvest by fixing the rules in the module BEFORE a run so they cannot be tuned after seeing its numbers. Does the principal want it kept, re-pointed at the measured wedge itself, or dropped?",
+   "routes": [
+    {
+     "route": "every *_walkforward directory on disk, for any run computing profit_beyond_wedge_by",
+     "when": "2026-09-07",
+     "outcome": "EXACTLY ONE run measures the quantity at all — ELEC, at 1.5130. So any cutoff between 1.0 and 1.5130 classifies every run in the book identically, and no cutoff anywhere classifies a second run either way. THE THRESHOLD DOES NO WORK, which is [R-ANCHOR-01]'s own test of whether a cutoff does work or merely exists.",
+     "rerun": true
+    },
+    {
+     "route": "every live ref, for a prior ruling on this constant or on the harvest's other thresholds",
+     "when": "2026-09-07",
+     "outcome": "none. The other three constants there were genuinely pre-registered and are not in question.",
+     "rerun": true
+    },
+    {
+     "route": "the standing protocol, for a house rule that would settle it without a ruling — the PROMOTION RULE and [R-ANCHOR-01]'s threshold discipline",
+     "when": "2026-09-07",
+     "outcome": "Both bear on it and neither decides it. The PROMOTION RULE forbids a free parameter with no out-of-sample evidence, which this is; [R-COC-01] says re-point rather than widen. Together they point at the measured wedge itself as the bound, but choosing to make that change is a method decision rather than a repair.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 260,
+   "why_only_the_principal": "It is a METHOD choice rather than a defect: the constant is not wrong today, it is untestable today, and the three available answers — keep, re-point, drop — are all defensible. Changing a harvest threshold changes which lessons this book draws, which is the principal's to settle rather than the operator's.",
+   "done_meanwhile": "The false claim in the comment was corrected — it now records that this one constant was chosen with a figure in view, and that the threshold does no work, measured. The VALUE was deliberately NOT moved: re-deriving it would change nothing while looking like a correction, and inventing a justification for a chosen number is the free-parameter offence in better clothes.",
+   "default_if_no_answer": "Keep 1.30 with its comment recording how it was chosen, and revisit at the first run that measures the quantity a second time — which is the first moment the choice can be tested at all.",
+   "default_date": "2026-12-31",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/lessons_harvest.py",
+    "must_contain": "PANEL_WEDGE_RULED_"
+   },
+   "recommendation": "Re-point it at the measured wedge itself rather than a multiple of it. The wedge is computed from the company's own overlap year, so 'beyond what consolidation explains' is a measured line; '1.30 times what consolidation explains' is a chosen one, and the house forbids the second wherever it can have the first."
   }
  ]
 }
