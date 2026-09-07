@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-09-06", latest: "SAVOLA" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-09-07", latest: "SAVOLA" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ----------
    HORIZON FIELDS (see the HORIZON CONVENTION block above the LEDGER):
@@ -28,31 +28,31 @@ const TICKERS = {
     name: "ADNOC Drilling Company P.J.S.C.",
     nameAr: "\u0634\u0631\u0643\u0629 \u0623\u062f\u0646\u0648\u0643 \u0644\u0644\u062d\u0641\u0631",
     code: "ADX:ADNOCDRILL",
-    spot: 5.94,
-    spotDate: "close 07 Aug 2026",
+    spot: 5.85,
+    spotDate: "close 07 Sep 2026",
     fairAsof: "2026-08-07",
     ccy: "AED",
     fair: { bear: 3.46, base: 4.92, full: 6.21 },
   // 17 Aug 2026 — five readings, one field, AED 3.46 to AED 6.21, weighted central 4.92 against a close of 5.94. ADNOC Drilling is a single-customer contract driller: every rig works for ADNOC Onshore, ADNOC Offshore and their affiliates, and the controlling shareholder is the same group. It reports in US dollars and trades in dirhams, so the valuation runs in dollars and converts at the 3.6725 peg only at the last step. Revenue is built BOTTOM-UP from five rig classes on their own counts and their own realised rates — Abu Dhabi onshore, regional onshore, jack-up, island and oilfield services — and OILFIELD SERVICES CARRIES TWO DISCLOSED RIG POPULATIONS, not one: the integrated fleet AND the rigs given at least one discrete service. The one-driver build the first edition used is refuted by the company's own numbers, which imply an integrated rate of MINUS $6.8m a rig. The unit build is reconciled to the company's FY2026 guidance BY SEGMENT (onshore -10.0%, offshore +2.5%, oilfield services +8.0%) rather than at group, where the same two errors were cancelling inside 1.9%; the rates therefore set the growth path and the guidance sets the FY2026 level. The two 2026 business combinations are consolidated on BOTH sides of the balance sheet from a note-5 entry that closes to zero against owners' equity. THE CRUX IS THE TERMINAL QUESTION: Abu Dhabi's production-capacity target is met in 2027 and the customer has not extended the programme beyond it, so the study computes BOTH futures in full — continued expansion 6.21, capacity plateau 5.40 — and publishes them as separate lines rather than averaging them into one. Terminal value is 76.0% and 72.3% of enterprise value respectively, a stated line of the bridge. Cost of capital 8.01% on a tier-1 own-stock weekly beta of 0.795 measured against the published FTSE ADX General Index; weights on GROSS debt. The minority is deducted ONCE, through the put liability the company recognised over it, because it has already charged a matching investment reserve against owners' equity. Enterprise value and the bridge are dated the same day: EV rolled from 31-Dec-2025 to 30-Jun-2026 at the cost of capital, less the free cash flow actually generated, then accreted 38 days to the price anchor.
     dist: {
-      t20: { label:"1 month",   p5:5.31, p25:5.70, p50:5.94, p75:6.18, p95:6.66, resolve:"2026-09-07" },
-      t60: { label:"3 months",  p5:4.81, p25:5.51, p50:5.94, p75:6.39, p95:7.34, resolve:"2026-11-09" }
+      t20: { label:"1 month",   p5:5.22, p25:5.63, p50:5.88, p75:6.14, p95:6.63, resolve:"2026-10-07" },
+      t60: { label:"3 months",  p5:4.83, p25:5.51, p50:5.95, p75:6.40, p95:7.31, resolve:"2026-12-07" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
+    hz: { h1:21, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-09-07" },
     touch: [ /* descending high -> low */
-      [7.13, 2, 12], [6.83, 4, 21], [6.53, 12, 36], [6.24, 35, 60], [5.64, 33, 58], [5.35, 10, 32]
+      [7.13, 2, 12], [6.83, 4, 20], [6.53, 11, 34], [6.24, 29, 56], [5.64, 46, 64], [5.35, 14, 34]
     ],
-    levels: { res:[6, 6.31, 6.67], sup:[5.86, 5.48, 5.17] },
+    levels: { res:[5.98, 6.28, 6.67], sup:[5.48, 5.17, 4.52] },
     tech: {
-      trend: "Trading above the whole moving-average stack, on a flat 200-day",
-      summary: "The price closed 5.94 above a rising 20-day (5.78), a falling 50-day (5.81) and a flat 200-day (5.51). Momentum is neutral: RSI(14) is ~57 and the daily ATR near 0.12 (~2.0%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.06 / +0.02 / +0.04). Over the last year it has ranged 4.51\u20136.67; the last close sits 11% below that high and 32% above that low.",
-      bull: "A daily close back above 6.00 would clear the nearest resistance; the next charted level above it is 6.67.",
-      bear: "A close below 5.86 would break the nearest support; the next charted level below it is 5.17."
+      trend: "Consolidating below the near-term moving averages, above a rising 200-day",
+      summary: "The price closed 5.85 above a falling 50-day (5.84) and a rising 200-day (5.54), but below a flat 20-day (5.95). Momentum is neutral: RSI(14) is ~46 and the daily ATR near 0.13 (~2.2%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.02 / +0.01 / \u22120.03). Over the last year it has ranged 4.51\u20136.67; the last close sits 12% below that high and 30% above that low.",
+      bull: "A daily close back above 5.98 would clear the nearest resistance; the next charted level above it is 6.67.",
+      bear: "A close below 5.48 would break the nearest support; the next charted level below it is 4.52."
     },
     asof: {
-      mc:   { data:"2026-08-07", computed:"2026-08-25" },
-      tech: { data:"2026-08-07", computed:"2026-09-06" }
+      mc:   { data:"2026-09-07", computed:"2026-09-07" },
+      tech: { data:"2026-09-07", computed:"2026-09-07" }
     },
     files: {
       study: "files/ADNOCDRILL_Valuation_Study_09-08-2026.pdf?v=0817a",
@@ -3227,7 +3227,7 @@ const BANDS = {
   ADIB: {mkt:"EG", n:57, hits:54, c50:0.6140, c80:0.8772, c90:0.9474, width:1.388, strength:"long", flag:null},
   ADIBUAE: {mkt:"AE", n:58, hits:50, c50:0.5345, c80:0.7586, c90:0.8621, width:1.140, strength:"long", flag:null},
   ADNOCDIST: {mkt:"AE", n:30, hits:30, c50:0.6667, c80:0.9333, c90:1.0000, width:1.100, strength:"short", flag:null},
-  ADNOCDRILL: {mkt:"AE", n:15, hits:15, c50:0.6000, c80:1.0000, c90:1.0000, width:1.114, strength:"market-only", flag:null},
+  ADNOCDRILL: {mkt:"AE", n:15, hits:15, c50:0.6000, c80:1.0000, c90:1.0000, width:1.124, strength:"market-only", flag:null},
   ADNOCGAS: {mkt:"AE", n:9, hits:9, c50:0.4444, c80:1.0000, c90:1.0000, width:1.072, strength:"market-only", flag:null},
   ADNOCLS: {mkt:"AE", n:8, hits:7, c50:0.3750, c80:0.7500, c90:0.8750, width:1.177, strength:"market-only", flag:null},
   AGTHIA: {mkt:"AE", n:58, hits:56, c50:0.7586, c80:0.9138, c90:0.9655, width:1.555, strength:"long", flag:null},
@@ -3338,7 +3338,7 @@ const LEDGER = [
     note:"First coverage, 7-Aug-2026 \u2014 struck on the production chain: Step 0.0 gate -> YZ variance proxy -> fit_har_v3 -> har_forecast_v3 -> carry drift ln(1+rf_live)-ln(1+q) -> simulate_paths_v3, 50,000 paths, seed 42 (touch ladder off the stored 20,000-path subset; percentiles from the full 50,000). q_annual=0.0406. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE Base Rate. Horizons from horizons.resolve() on ADX's own calendar, not a session count. NAME-LEVEL CALIBRATION: FAIL, robustly \u2014 skill -0.0165 over 15 three-month windows, negative under every bootstrap block size {2,3,4} (block-2 CI [-0.0289,-0.0034], block-3 [-0.0291,-0.0053], block-4 [-0.0303,-0.0047]). The one-month horizon is PARITY (-0.0006 over 44 windows). The cone is TOO WIDE, not mis-centred: 100% coverage against a 90% target and 100% against 80%, PIT mean 0.551 where 0.5 is centred, width 1.10x the carry-anchored benchmark. Own annualised volatility 25.2% sits at the 28th percentile of the 18-name UAE panel, below its median of 27.1%, while width is fitted across the whole panel at once \u2014 narrowing to 0.80x would turn skill positive (+0.0085) and is deliberately NOT published, because a width chosen after seeing the outcomes it is scored on is not evidence. Market panel gate: PARITY (+0.0068, CI90 [-0.001, 0.014]). Read the bands as an OUTER bound.",
     p5:5.26, p25:5.67, p50:5.94, p75:6.22, p95:6.69,
     touch:[ [7.13,2], [6.83,5], [6.53,15], [6.24,41], [5.64,39], [5.35,12] ],
-    realized_close:null, realized_date:null
+    realized_close:5.85, realized_high:6.24, realized_low:5.68, in_90:true, in_50:true, realized_quantile:0.417, median_err:-0.0152, touch_hit:{ "+5":true, "+10":false, "+15":false, "+20":false, "-5":false, "-10":false }, realized_date:"2026-09-07"
   },
   {
     instrument:"ADNOCDRILL", asset_class:"equity",
@@ -7992,6 +7992,35 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 07-Sep-2026 single-name roll-forward: ADNOCDRILL, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"ADNOCDRILL", asset_class:"equity",
+    anchor_date:"2026-09-07", run_date:"2026-09-07", anchor_price:5.85, ccy:"AED",
+    horizon_label:"1 month", grade_date:"2026-10-07", grade_basis:"projected", horizon_days:21,
+    cycle_no:2, reanchor_from:"2026-08-07", anchor_vol:0.2815,
+    signal_z:0.6512, signal_alpha:0.005515,
+    note:"Cycle 2 roll-forward, 07-Sep-2026 — struck on the 07-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-07 and is graded in this same pass. The previous cone was anchored 2026-08-07; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.0412168 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call UP, from this name’s own mom_combo z of +0.651 (outside the 0.25 dead zone); tilt +0.55% at 1M and +1.66% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
+    p5:5.22, p25:5.63, p50:5.88, p75:6.14, p95:6.63,
+    touch:{ "+5":40, "+10":15, "+15":6, "+20":3, "-5":34, "-10":10 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ADNOCDRILL", asset_class:"equity",
+    anchor_date:"2026-09-07", run_date:"2026-09-07", anchor_price:5.85, ccy:"AED",
+    horizon_label:"3 months", grade_date:"2026-12-07", grade_basis:"projected", horizon_days:62,
+    cycle_no:2, reanchor_from:"2026-08-07", anchor_vol:0.2855,
+    signal_z:0.6512, signal_alpha:0.016462,
+    note:"Cycle 2 roll-forward, 07-Sep-2026 — struck on the 07-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-07 and is graded in this same pass. The previous cone was anchored 2026-08-07; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.0412168 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call UP, from this name’s own mom_combo z of +0.651 (outside the 0.25 dead zone); tilt +0.55% at 1M and +1.66% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
+    p5:4.83, p25:5.51, p50:5.95, p75:6.4, p95:7.31,
+    touch:{ "+5":65, "+10":40, "+15":24, "+20":14, "-5":54, "-10":28 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
@@ -8224,7 +8253,7 @@ const CALIB = {
   "ADX:ADCB": {w: 58, in50: 48, in90: 86, through: "2026-07-28"},
   "ADX:ADIB": {w: 58, in50: 47, in90: 83, through: "2026-08-05"},
   "ADX:ADNOCDIST": {w: 30, in50: 63, in90: 97, through: "2026-07-06"},
-  "ADX:ADNOCDRILL": {w: 15, in50: 60, in90: 100, through: "2026-07-20"},
+  "ADX:ADNOCDRILL": {w: 15, in50: 53, in90: 100, through: "2026-07-20"},
   "ADX:ADNOCGAS": {w: 9, in50: 44, in90: 100, through: "2026-06-26"},
   "ADX:ADNOCLS": {w: 8, in50: 38, in90: 88, through: "2026-06-24"},
   "ADX:AGTHIA": {w: 58, in50: 64, in90: 97, through: "2026-08-13"},
@@ -8312,101 +8341,6 @@ const CALIB = {
   "TADAWUL:7203": {w: 13, in50: 31, in90: 85, through: "2026-06-11"},
 };
 // ==== END NAME_CALIBRATION ====
-// ==== PRICES (generated by scripts/build_prices_block.py — do not hand-edit) ====
-const PRICES = {
-  "2POINTZERO": { px: 2.08, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  AAPL: { px: 325.31, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ABUK: { px: 94.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ACWA: { px: 192.7, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ADCB: { px: 15.14, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ADIB: { px: 52.05, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ADIBUAE: { px: 22.66, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ADNOCDIST: { px: 4.02, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ADNOCDRILL: { px: 5.8, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ADNOCGAS: { px: 3.2, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ADNOCLS: { px: 6.85, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  AGTHIA: { px: 3.29, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  AIRARABIA: { px: 4.97, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ALDAR: { px: 7.6, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ALINMA: { px: 25.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ALPHADHABI: { px: 7.3, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ALRAJHI: { px: 66.2, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  AMOC: { px: 13.54, date: "2026-09-06", src: "library" },
-  AMR: { px: 2.39, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ARAMCO: { px: 26.02, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ARCC: { px: 76.6, date: "2026-09-06", src: "library" },
-  BOROUGE: { px: 2.35, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  BTFH: { px: 3.02, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  BURJEEL: { px: 1.24, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  CCAP: { px: 5.9, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  CLHO: { px: 17.88, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  COMI: { px: 138.98, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  DEWA: { px: 2.7, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  DIB: { px: 7.2, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  DSCW: { px: 2.03, date: "2026-09-02", src: "SUPPLIED_03-09-2026.json" },
-  DU: { px: 11.36, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  EAND: { px: 21.18, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  EFID: { px: 30.79, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  EFIH: { px: 22.97, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  EGAL: { px: 381.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  EGCH: { px: 14.41, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ELEC: { px: 2.12, date: "2026-09-06", src: "library" },
-  ELM: { px: 608.5, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  EMAAR: { px: 10.8, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  EMAARDEV: { px: 13.38, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  EMFD: { px: 13.8, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  EMPOWER: { px: 1.57, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ENBD: { px: 30.28, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ETEL: { px: 115.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  EXTRA: { px: 66.05, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  FAB: { px: 19.4, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  FERTIGLB: { px: 2.67, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  FWRY: { px: 18.95, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  GBCO: { px: 28.98, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  HELI: { px: 8.1, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  HRHO: { px: 25.7, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  IHC: { px: 369.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  INFY: { px: 1132.5, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  IQCD: { px: 13.17, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ISPH: { px: 12.95, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  JUFO: { px: 27.06, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  KABO: { px: 34.06, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  KAKAO: { px: 35100.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  LCSW: { px: 36.0, date: "2026-09-02", src: "SUPPLIED_03-09-2026.json" },
-  LGES: { px: 364000.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  LULU: { px: 0.94, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  MAADEN: { px: 65.7, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  MODON: { px: 2.83, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  NVDA: { px: 217.11, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  OCDI: { px: 33.52, date: "2026-09-02", src: "SUPPLIED_03-09-2026.json" },
-  OIH: { px: 2.01, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ORAS: { px: 831.5, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ORHD: { px: 42.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ORWE: { px: 26.76, date: "2026-09-02", src: "SUPPLIED_03-09-2026.json" },
-  PHAR: { px: 128.0, date: "2026-09-06", src: "library" },
-  PHDC: { px: 14.4, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  PRDC: { px: 9.78, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  QGTS: { px: 4.85, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  QNB: { px: 16.67, date: "2026-09-06", src: "library" },
-  RAYA: { px: 7.15, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  RELIANCE: { px: 1308.8, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  RIBL: { px: 20.48, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  RIYADHCABLE: { px: 104.8, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  RMDA: { px: 5.91, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  SABIC: { px: 81.4, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  SALIK: { px: 5.4, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  SAMSUNG: { px: 250000.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  SAVOLA: { px: 30.3, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  SCEM: { px: 98.52, date: "2026-09-06", src: "library" },
-  SNB: { px: 42.14, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  STC: { px: 43.86, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  SWDY: { px: 136.2, date: "2026-09-06", src: "library" },
-  TMGH: { px: 96.6, date: "2026-09-02", src: "SUPPLIED_03-09-2026.json" },
-  TMPV: { px: 310.1, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  TSLA: { px: 367.95, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" }
-};
-// ==== END PRICES ====
-
 // ==== SCREEN (generated by scripts/build_screen_block.py — do not hand-edit) ====
 const SCREEN = {
   "2POINTZERO": { px: 2.08, pxDate: "2026-09-03", lib: "2026-08-31", z: -0.517, trend: false, gap: -0.0817, fair: 1.91, fairAsof: null, rebuilt: false, notes: "fair value carries no machine-readable date", n: 14, c90: 0.7857, flag: null, cap: "thin record", stop: "gap", why: "inside 10% of the price either way \u2014 no candidate" },
@@ -8501,3 +8435,98 @@ const SCREEN = {
   TSLA: { px: 367.95, pxDate: "2026-09-03", lib: "2026-09-01", z: -1.089, trend: false, gap: -0.3097, fair: 254, fairAsof: null, rebuilt: false, notes: "fair value carries no machine-readable date", n: 58, c90: 0.8448, flag: null, cap: "full", stop: "gap", why: "sits more than 10% below the price \u2014 audited, not traded" }
 };
 // ==== END SCREEN ====
+
+// ==== PRICES (generated by scripts/build_prices_block.py — do not hand-edit) ====
+const PRICES = {
+  "2POINTZERO": { px: 2.08, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  AAPL: { px: 325.31, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ABUK: { px: 94.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ACWA: { px: 192.7, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ADCB: { px: 15.14, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ADIB: { px: 52.05, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ADIBUAE: { px: 22.66, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ADNOCDIST: { px: 4.02, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ADNOCDRILL: { px: 5.85, date: "2026-09-07", src: "library" },
+  ADNOCGAS: { px: 3.2, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ADNOCLS: { px: 6.85, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  AGTHIA: { px: 3.29, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  AIRARABIA: { px: 4.97, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ALDAR: { px: 7.6, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ALINMA: { px: 25.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ALPHADHABI: { px: 7.3, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ALRAJHI: { px: 66.2, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  AMOC: { px: 13.54, date: "2026-09-06", src: "library" },
+  AMR: { px: 2.39, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ARAMCO: { px: 26.02, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ARCC: { px: 76.6, date: "2026-09-06", src: "library" },
+  BOROUGE: { px: 2.35, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  BTFH: { px: 3.02, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  BURJEEL: { px: 1.24, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  CCAP: { px: 5.9, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  CLHO: { px: 17.88, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  COMI: { px: 138.98, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  DEWA: { px: 2.7, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  DIB: { px: 7.2, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  DSCW: { px: 2.03, date: "2026-09-02", src: "SUPPLIED_03-09-2026.json" },
+  DU: { px: 11.36, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  EAND: { px: 21.18, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  EFID: { px: 30.79, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  EFIH: { px: 22.97, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  EGAL: { px: 381.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  EGCH: { px: 14.23, date: "2026-09-06", src: "library" },
+  ELEC: { px: 2.12, date: "2026-09-06", src: "library" },
+  ELM: { px: 608.5, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  EMAAR: { px: 10.8, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  EMAARDEV: { px: 13.38, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  EMFD: { px: 13.8, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  EMPOWER: { px: 1.57, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ENBD: { px: 30.28, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ETEL: { px: 115.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  EXTRA: { px: 66.05, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  FAB: { px: 19.4, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  FERTIGLB: { px: 2.67, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  FWRY: { px: 18.95, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  GBCO: { px: 28.98, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  HELI: { px: 8.1, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  HRHO: { px: 25.7, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  IHC: { px: 369.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  INFY: { px: 1132.5, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  IQCD: { px: 13.17, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ISPH: { px: 12.95, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  JUFO: { px: 27.06, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  KABO: { px: 34.06, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  KAKAO: { px: 35100.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  LCSW: { px: 36.0, date: "2026-09-02", src: "SUPPLIED_03-09-2026.json" },
+  LGES: { px: 364000.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  LULU: { px: 0.94, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  MAADEN: { px: 65.7, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  MODON: { px: 2.83, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  NVDA: { px: 217.11, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  OCDI: { px: 33.52, date: "2026-09-02", src: "SUPPLIED_03-09-2026.json" },
+  OIH: { px: 2.01, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ORAS: { px: 831.5, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ORHD: { px: 42.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ORWE: { px: 26.76, date: "2026-09-02", src: "SUPPLIED_03-09-2026.json" },
+  PHAR: { px: 128.0, date: "2026-09-06", src: "library" },
+  PHDC: { px: 14.4, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  PRDC: { px: 9.78, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  QGTS: { px: 4.85, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  QNB: { px: 16.67, date: "2026-09-06", src: "library" },
+  RAYA: { px: 7.15, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  RELIANCE: { px: 1308.8, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  RIBL: { px: 20.48, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  RIYADHCABLE: { px: 104.8, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  RMDA: { px: 5.91, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  SABIC: { px: 81.4, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  SALIK: { px: 5.4, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  SAMSUNG: { px: 250000.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  SAVOLA: { px: 30.3, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  SCEM: { px: 98.52, date: "2026-09-06", src: "library" },
+  SNB: { px: 42.14, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  STC: { px: 43.86, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  SWDY: { px: 136.2, date: "2026-09-06", src: "library" },
+  TMGH: { px: 96.6, date: "2026-09-02", src: "SUPPLIED_03-09-2026.json" },
+  TMPV: { px: 310.1, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  TSLA: { px: 367.95, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" }
+};
+// ==== END PRICES ====
