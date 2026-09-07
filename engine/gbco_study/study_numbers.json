@@ -972,6 +972,7 @@
    "source": "GB Corp's own 4Q23 earnings release, published on ir.gb-corporation.com and committed under engine/gbco_study/src/",
    "date": "2024-03-01",
    "tier": "A",
+   "layer": "Company (investor relations)",
    "unit": "EGP mn",
    "route": "PDF text layer (pymupdf)"
   },
@@ -980,6 +981,7 @@
    "source": "GB Corp's own 4Q24 earnings release, published on ir.gb-corporation.com and committed under engine/gbco_study/src/",
    "date": "2025-02-01",
    "tier": "A",
+   "layer": "Company (investor relations)",
    "unit": "EGP mn",
    "route": "PDF text layer (pymupdf)"
   },
@@ -988,6 +990,7 @@
    "source": "GB Corp's own 4Q25 earnings release, published on ir.gb-corporation.com and committed under engine/gbco_study/src/; footed against the FY2025 audited consolidated statement of income, operating revenue 80,229,809 (EGP thousand)",
    "date": "2026-02-26",
    "tier": "A",
+   "layer": "Company (investor relations)",
    "unit": "EGP mn",
    "route": "PDF text layer (pymupdf)"
   },
@@ -996,6 +999,7 @@
    "source": "GB Corp's own 2Q/1H26 earnings release, published on ir.gb-corporation.com and committed under engine/gbco_study/src/, 13 August 2026",
    "date": "2026-08-13",
    "tier": "A",
+   "layer": "Company (investor relations)",
    "unit": "EGP mn",
    "route": "PDF text layer (pymupdf)"
   },
@@ -1004,6 +1008,7 @@
    "source": "GB Corp / GB Auto audited consolidated statement of income for the year, as reproduced in the company's own annual report for that year (engine/gbco_study/src/)",
    "date": "2026-02-26",
    "tier": "A",
+   "layer": "Company",
    "unit": "EGP mn",
    "route": "PDF text layer (pymupdf)"
   },
@@ -1012,6 +1017,7 @@
    "source": "GB Corp's own 2Q/1H26 earnings release, published on ir.gb-corporation.com and committed under engine/gbco_study/src/",
    "date": "2026-08-13",
    "tier": "A",
+   "layer": "Company (investor relations)",
    "unit": "EGP mn",
    "route": "PDF text layer (pymupdf)"
   },
@@ -1020,6 +1026,7 @@
    "source": "GB Corp's own 2Q/1H26 earnings release, published on ir.gb-corporation.com and committed under engine/gbco_study/src/, Table 11 income statement BY SEGMENT: GB Auto total revenue 40,021.5, gross profit 5,722.1",
    "date": "2026-08-13",
    "tier": "A",
+   "layer": "Company (investor relations)",
    "unit": "EGP mn",
    "route": "PDF text layer (pymupdf)"
   },
@@ -1028,6 +1035,7 @@
    "source": "GB Corp / GB Auto audited consolidated statement of income for the year, as reproduced in the company's own annual report for that year (engine/gbco_study/src/)",
    "date": "2026-02-26",
    "tier": "A",
+   "layer": "Company",
    "unit": "EGP mn",
    "route": "PDF text layer (pymupdf)"
   },
@@ -1036,6 +1044,7 @@
    "source": "GB Corp / GB Auto audited consolidated statement of income for the year, as reproduced in the company's own annual report for that year (engine/gbco_study/src/) \u2014 attributable to the parent; the FY2025 opinion is QUALIFIED on the MNT-BV associate",
    "date": "2026-02-26",
    "tier": "A",
+   "layer": "Company",
    "unit": "EGP mn",
    "route": "PDF text layer (pymupdf)"
   },
@@ -1044,6 +1053,7 @@
    "source": "GB Corp / GB Auto audited consolidated statement of income for the year, as reproduced in the company's own annual report for that year (engine/gbco_study/src/)",
    "date": "2025-02-01",
    "tier": "A",
+   "layer": "Company",
    "unit": "EGP mn",
    "route": "PDF text layer (pymupdf)"
   },
@@ -1052,6 +1062,7 @@
    "source": "GB Corp / GB Auto audited consolidated statement of income for the year, as reproduced in the company's own annual report for that year (engine/gbco_study/src/) \u2014 note 16, cash and cash equivalents",
    "date": "2026-02-26",
    "tier": "A",
+   "layer": "Company",
    "unit": "EGP mn",
    "route": "PDF text layer (pymupdf)"
   },
@@ -1060,6 +1071,7 @@
    "source": "GB Corp's own 2Q/1H26 earnings release, published on ir.gb-corporation.com and committed under engine/gbco_study/src/, Table 12 balance sheet by segment",
    "date": "2026-08-13",
    "tier": "A",
+   "layer": "Company (investor relations)",
    "unit": "EGP mn",
    "route": "PDF text layer (pymupdf)"
   },
@@ -1068,6 +1080,7 @@
    "source": "GB Corp / GB Auto audited consolidated statement of income for the year, as reproduced in the company's own annual report for that year (engine/gbco_study/src/) \u2014 notes 26 and 38: loans 10,721,880 + bonds 40,000 + loans, borrowings and overdrafts 27,199,462 + bonds 80,000",
    "date": "2026-02-26",
    "tier": "A",
+   "layer": "Company",
    "unit": "EGP mn",
    "route": "PDF text layer (pymupdf)"
   },
@@ -1076,6 +1089,7 @@
    "source": "GB Corp's own 2Q/1H26 earnings release, published on ir.gb-corporation.com and committed under engine/gbco_study/src/, Table 12: loans and overdraft 28,703.7 + loans 13,772.3",
    "date": "2026-08-13",
    "tier": "A",
+   "layer": "Company (investor relations)",
    "unit": "EGP mn",
    "route": "PDF text layer (pymupdf)"
   },
@@ -1084,6 +1098,7 @@
    "source": "GB Corp's own 2Q/1H26 earnings release, published on ir.gb-corporation.com and committed under engine/gbco_study/src/, Table 12, GB Auto column: 20,943.0 + 1,790.1 \u2014 THE BORROWINGS THAT ACTUALLY BEAR THE ASSEMBLER'S INTEREST",
    "date": "2026-08-13",
    "tier": "A",
+   "layer": "Company (investor relations)",
    "unit": "EGP mn",
    "route": "PDF text layer (pymupdf)"
   },
@@ -1092,6 +1107,7 @@
    "source": "GB Corp / GB Auto audited consolidated statement of income for the year, as reproduced in the company's own annual report for that year (engine/gbco_study/src/) \u2014 consolidated cash-flow statement, depreciation and amortisation for the year",
    "date": "2026-02-26",
    "tier": "A",
+   "layer": "Company",
    "unit": "EGP mn",
    "route": "PDF text layer (pymupdf)"
   },
@@ -1100,6 +1116,7 @@
    "source": "GB Corp / GB Auto audited consolidated statement of income for the year, as reproduced in the company's own annual report for that year (engine/gbco_study/src/) \u2014 consolidated cash-flow statement, payment for acquisition of property, plant, equipment and projects under construction",
    "date": "2026-02-26",
    "tier": "A",
+   "layer": "Company",
    "unit": "EGP mn",
    "route": "PDF text layer (pymupdf)"
   },
@@ -1108,6 +1125,7 @@
    "source": "GB Corp's own 2Q/1H26 earnings release, published on ir.gb-corporation.com and committed under engine/gbco_study/src/, Table 12 total equity",
    "date": "2026-08-13",
    "tier": "A",
+   "layer": "Company (investor relations)",
    "unit": "EGP mn",
    "route": "PDF text layer (pymupdf)"
   },
@@ -1116,6 +1134,7 @@
    "source": "GB Corp's own 2Q/1H26 earnings release, published on ir.gb-corporation.com and committed under engine/gbco_study/src/",
    "date": "2026-08-13",
    "tier": "A",
+   "layer": "Company (investor relations)",
    "unit": "EGP mn",
    "route": "PDF text layer (pymupdf)"
   }

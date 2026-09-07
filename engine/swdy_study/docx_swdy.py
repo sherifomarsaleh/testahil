@@ -31,7 +31,10 @@ def to_anchor_docx(v):
     return v * DCF['roll'] - IN['dps_fy25']
 
 # =========================== MASTHEAD / TITLE ================================
-masthead()
+# ONE literal for the delivered filename: the masthead's edition date is derived
+# from it, so the two cannot state different days.
+DELIVERED = 'SWDY_Valuation_Study_05-08-2026_public.docx'
+masthead(edition_from_filename(DELIVERED))
 H2('Independent Valuation Study — Educational Analysis')
 H1('Elsewedy Electric Company S.A.E. (EGX: SWDY)')
 P(f"Diversified industrial group — wires and cables, engineering and construction, electrical "
@@ -1493,6 +1496,6 @@ P("This document is educational analysis and is not investment advice, an offer,
   "their own conclusions and should consider taking independent advice. No liability is accepted "
   "for any loss arising from use of this material.", size=9.2, color=GREY)
 
-out = os.path.join(HERE, 'SWDY_Valuation_Study_05-08-2026_public.docx')
+out = os.path.join(HERE, DELIVERED)
 doc.save(out)
 print(f"wrote {out} | {len(doc.paragraphs)} paragraphs | {len(doc.tables)} tables")

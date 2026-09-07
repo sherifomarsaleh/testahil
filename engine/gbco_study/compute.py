@@ -360,8 +360,32 @@ _AUD = ('GB Corp / GB Auto audited consolidated statement of income for the year
 _REL = ('GB Corp\'s own %s earnings release, published on ir.gb-corporation.com and '
         'committed under engine/gbco_study/src/')
 def _i(v, src, date, tier='A'):
-    return dict(value=v, source=src, date=date, tier=tier, unit='EGP mn',
-                route='PDF text layer (pymupdf)')
+    """One input, FOUR-FIELD complete: value, source, date and the RESEARCH LAYER.
+
+    Depth-bar standard 2 requires the fourth field and this register carried
+    `tier` instead — a source-QUALITY grade, which is a different quantity and
+    does not answer which of the four rings the figure came from. All nineteen
+    inputs here are GB Corp's own, so the ring is Company either way; what
+    separates them is the channel, and the sweep register is required to tag the
+    investor-relations channel DISTINCTLY from the audited statements.
+
+    The layer is DERIVED from which source constant built the string rather than
+    typed nineteen times, so it cannot drift from the source it describes, and a
+    source matching neither constant RAISES instead of defaulting to Company —
+    a default here would be this function quietly asserting a provenance nobody
+    established.
+    """
+    if src.startswith(_AUD):
+        layer = 'Company'
+    elif src.startswith(_REL.split('%s')[0]):
+        layer = 'Company (investor relations)'
+    else:
+        raise AssertionError(
+            'this input names a source built from neither the audited-statement '
+            'nor the earnings-release constant, so its research layer cannot be '
+            'derived: %r' % (src[:120],))
+    return dict(value=v, source=src, date=date, tier=tier, layer=layer,
+                unit='EGP mn', route='PDF text layer (pymupdf)')
 _INPUTS = {
     'rev_fy2023':  _i(28317.2, _REL % '4Q23', '2024-03-01'),
     'rev_fy2024':  _i(53969.5, _REL % '4Q24', '2025-02-01'),
