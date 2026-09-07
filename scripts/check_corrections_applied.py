@@ -149,6 +149,23 @@ ADAPTERS = {
     # result. Empty, and pre-registered empty — nine cells admit no era boundary, so
     # nothing from that run could be promoted whatever its biases turned out to be.
     "SCEM": _adopt_listed,
+    # THE THREE RUNS OF 07-09-2026 ALL KEEP THAT SAME TOP-LEVEL `adopted` LIST, and
+    # that is a decision rather than a coincidence: the alternative is a seventh
+    # record shape, which makes this gate report UNKNOWN RECORD SHAPE — the correct
+    # behaviour, and nobody's idea of a result. Registering an adapter is the gate's
+    # own extension point and is not a widening: an unregistered run is still
+    # REPORTED, never read as having adopted nothing [R-ENF-04].
+    #
+    # All three are empty, each for a measured reason rather than by omission:
+    # SWDY's 19 drivers give 13 watch flags and no adoption; PHAR's 14 likewise;
+    # GBCO's seven were measured over 225 cells and the two that are robust at every
+    # block size are both AGGREGATES, which corrections may not be applied to, while
+    # the one driver stable at all six admissible cuts covers zero at block two.
+    # ELEC needs no adapter and is not listed: it is a SCOPE SKIP under [R-FCAL-01]
+    # at four sourceable years, so it commits no corrections record at all.
+    "SWDY": _adopt_listed,
+    "PHAR": _adopt_listed,
+    "GBCO": _adopt_listed,
 }
 
 

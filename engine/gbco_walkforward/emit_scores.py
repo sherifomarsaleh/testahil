@@ -27,13 +27,28 @@ def main():
             continue
         e = [r['err'] for r in sub]
         bias = sum(e) / len(e)
-        lo, hi = S.boot([(r['origin'], r['err']) for r in sub])
+        pairs = [(r['origin'], r['err']) for r in sub]
+        lo, hi = S.boot(pairs)
+        # THE PRE-REGISTERED DECISION RULE ASKS A QUESTION THIS RUN WAS NOT ANSWERING.
+        # score.boot() draws a block length at random from {2,3,4} per resample and
+        # returns ONE pooled interval; decision_rule.is_robust() requires the interval
+        # to exclude zero at EVERY block, and se_from_bootstrap() scales the correction
+        # by the WIDEST of the three. A pooled interval cannot answer either, so the
+        # rule read no standard error at all and declined every driver for want of
+        # evidence — which is not the same finding as declining one ON evidence
+        # [R-ENF-04]. Each block is now run and recorded separately, under the `boot`
+        # key that rule reads, with the pooled interval kept beside it unchanged.
+        boot = {}
+        for _b in (2, 3, 4):
+            _lo, _hi = S.boot(pairs, blocks=(_b,))
+            boot[str(_b)] = {'lo': _lo, 'hi': _hi}
         cells = [(r['origin'] + r['h'], r['err']) for r in sub]
         cuts, flipped = B.cuts_for(cells)
         robust = bool(cuts) and not flipped and lo is not None and (lo > 0) == (hi > 0)
         by_driver[d] = {'bias': bias, 'mae': sum(abs(x) for x in e) / len(e),
                         'over': sum(1 for x in e if x > 0) / len(e), 'n': len(e),
-                        'ci': [lo, hi], 'cuts': len(cuts), 'sign_flips': len(flipped),
+                        'ci': [lo, hi], 'boot': boot,
+                        'cuts': len(cuts), 'sign_flips': len(flipped),
                         'robust_sign': robust}
         by_horizon[d] = {}
         for h in S.HOR:

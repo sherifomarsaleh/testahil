@@ -1,4 +1,6 @@
 {
+ "adopted_corrections": [],
+ "adopted_corrections_note": "the walk-forward on this name is a SCOPE SKIP under [R-FCAL-01] \u2014 four sourceable fiscal years against the five a LIGHT scope needs, recorded in engine/elec_walkforward/skip_record.json in the rule's own words. It scores nothing, so it adopts nothing, and this list is EMPTY rather than ABSENT: silence and 'none adopted' are the same file to a reader and different facts about the work.",
  "central": 0.3357186228503667,
  "spot": 2.19,
  "spot_date": "2026-08-05",

@@ -10,7 +10,7 @@
   "fx": 3.6725,
   "asof": "2026-09-07",
   "price_date": "2026-09-07",
-  "valuation_date": "2026-03-31",
+  "valuation_date": "2026-06-30",
   "spot_aed": 6.8,
   "spot_usd": 1.8515997277059224,
   "spot": 6.8,
@@ -4694,6 +4694,18 @@
    "source": "Study judgement \u2014 see the judgements table",
    "date": "2026-08-09",
    "layer": "Industry"
+  },
+  "gas_vy_alt_fv": {
+   "value": 4.5614,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 fair value per share on the first-half deck's own reading of the gas contract table, computed through the same model. Published beside the adopted figure; an input to nothing",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "tnk_leverage_alt_fv": {
+   "value": 4.5244,
+   "source": "Fair value per share if the tanker unit's earnings leverage on its own fleet's charter-equivalent revenue were 1.0 \u2014 the delivered edition's construction \u2014 with the fixed base re-solved on the audited 2025 year at that leverage. Computed through the same model; an input to nothing",
+   "date": "2026-06-30",
+   "layer": "Company"
   }
  },
  "hist_is": {
@@ -5859,6 +5871,14 @@
    "FY2029",
    "FY2030"
   ],
+  "dna_share": [
+   0.21623621384195046,
+   0.21495811387771338,
+   0.24517435007883764,
+   0.3054063497612321,
+   0.39708527260410126
+  ],
+  "dna_share_avg": 0.27577206003276694,
   "revenue": [
    6981777.9023008505,
    7689881.704008308,
@@ -8079,6 +8099,26 @@
  },
  "contested": [
   {
+   "choice": "the gas fleet's contracted vessel-year path",
+   "adopted": "the composition the April 2026 contract table gives, whose components this study states and which foots",
+   "alternative": "the same table as printed in the first-half 2026 deck, where the four liquefied-natural-gas carriers' firm period ends in June 2026 and the consolidated path falls to 10.0, 13.0, 17.5, 20.75 and 20.0 vessel-years",
+   "fv_adopted": 5.338494934992969,
+   "fv_alternative": 4.5613909296036885,
+   "effect": 0.14556612207225106,
+   "direction": "the adopted side is HIGHER",
+   "note": "WHAT THE TABLE COUNTS IS AMBIGUOUS AND THE DIFFERENCE IS LARGE, so it is priced rather than decided. Its own column heading reads \"No. of Vessels Contracted\" rather than vessels in service, and a bullet on the same slide says five Das carriers were progressively moved to long-term contracts with the parent from June 2026 \u2014 so whether those four ships stop EARNING or merely stop being counted as contracted is not decidable from the page. The total row foots with both rows populated in the second quarter, which is consistent with two separate sets of ships and equally with one set counted twice. SIGCM clause 8: the coarser reading is kept, the finer one is published, and neither is invented."
+  },
+  {
+   "choice": "the earnings leverage of the tanker unit on its own fleet's rate",
+   "adopted": "solved from two disclosed periods together \u2014 the audited 2025 year and the reviewed six months to 30 June 2026 \u2014 with the reviewed six months to 30 June 2025 held out",
+   "alternative": "exactly one, which is what the delivered edition assumed by setting earnings equal to the owned fleet's charter-equivalent revenue less a single running cost",
+   "fv_adopted": 5.338494934992969,
+   "fv_alternative": 4.524403960906954,
+   "effect": 0.15249447344227685,
+   "direction": "the adopted side is HIGHER",
+   "note": "THE ALTERNATIVE IS NOT A VIEW, IT IS A CONSTRUCTION THAT THE COMPANY'S OWN HALF FALSIFIES: at the published rates the 52 owned tankers earned charter-equivalent revenue of USD 805.8 million in the six months to 30 June 2026 and the unit reported earnings of USD 994.2 million, more than the ships it owns can earn before any cost at all. A leverage of one cannot reproduce that. It is priced here because it is the construction this study shipped three weeks ago and a reader is entitled to see what it was worth."
+  },
+  {
    "choice": "how the market is measured for the beta regression",
    "adopted": "the published index of the exchange this company is listed on",
    "alternative": "an equal-weight composite of the same exchange's names",
@@ -8268,6 +8308,7 @@
    {
     "kind": "sotp",
     "value": 13.52919504747965,
+    "present_value": false,
     "note": "the three legs summed on their own multiples \u2014 a contracted-fleet multiple where the leg earns under long-term contracts and a blend of contracted and spot where it does not, weighted by the company's own disclosed share of earnings exposed to spot rates. It is a cross-check rather than the answer because the legs share one balance sheet, one crew pool and one management."
    },
    {
@@ -12473,6 +12514,16 @@
    "detail": "rel_weight_ev_ebitda"
   },
   {
+   "check": "four fields complete: gas_vy_alt_fv",
+   "passed": true,
+   "detail": "gas_vy_alt_fv"
+  },
+  {
+   "check": "four fields complete: tnk_leverage_alt_fv",
+   "passed": true,
+   "detail": "tnk_leverage_alt_fv"
+  },
+  {
    "check": "income statement ties fy23",
    "passed": true,
    "detail": ""
@@ -12725,7 +12776,7 @@
   {
    "check": "the external-reader scrub is MEASURED on the delivered documents, not attested",
    "passed": true,
-   "detail": "51 patterns scanned across 424,296 characters of delivered text, 0 hits; column audit and figure canvases clean"
+   "detail": "51 patterns scanned across 475,000 characters of delivered text, 0 hits; column audit and figure canvases clean"
   },
   {
    "check": "the three standing gates are called in this study's own code [R-ENF-02]",

@@ -346,7 +346,7 @@ OWN_PE_FWD = M['mktcap_usd000'] / REL['npa_ord_26']
 # ---- price to book on the book the asset lens actually uses -------------------
 # The market multiple must be struck on the SAME denominator as the justified multiple it
 # is printed beside, or the comparison reverses its own sign.
-PB_MARKET_ORD = W['mktcap'] / IN['q1_26_eqp']
+PB_MARKET_ORD = W['mktcap'] / IN['h1_26_eqp']
 PB_MARKET_WIDE = REL['own_pb']
 
 # ---- one return-on-equity convention, end to end ------------------------------
@@ -371,8 +371,8 @@ Q1_YOY_UNITS = Q1_REV_26_UNITS / Q1_REV_25_UNITS - 1
 Q1_YOY_STAT = IN['q1_26_rev'] / IN['q1_25_rev'] - 1
 
 # ---- depreciation against earnings, across the forecast and not just year one -
-DNA_SHARE = [d / e for d, e in zip(F['dna'], F['ebitda'])]
-DNA_SHARE_AVG = sum(DNA_SHARE) / len(DNA_SHARE)
+DNA_SHARE = F['dna_share']
+DNA_SHARE_AVG = F['dna_share_avg']
 
 # ---- the sum of the parts, with the exposure share re-based to its own leg -----
 # The disclosed spot share is a GROUP share, and every dollar of spot exposure sits inside
@@ -537,7 +537,7 @@ _EDN = __import__('re').search(r'_(\d{2})-(\d{2})-(\d{4})_', OUT_NAME)
 assert _EDN, 'the delivered filename carries no edition date to read'
 EDITION = __import__('datetime').date(int(_EDN.group(3)), int(_EDN.group(2)),
                                       int(_EDN.group(1))).strftime('%-d %B %Y')
-masthead(EDITION)
+masthead(EDITION, restruck='7 September 2026, on the reviewed six months to 30 June 2026')
 H2('Independent Valuation Study — Educational Analysis')
 H1('ADNOC Logistics & Services plc (ADX: ADNOCLS)')
 P(f"Marine logistics and shipping group — integrated logistics, shipping and services "
@@ -655,25 +655,30 @@ P(f"That merchant half is having an extraordinary year, and reading how extraord
   f"by exactly the drag of the vessels inside it that are not free to earn it. Very large "
   f"crude carriers earned a published average of USD {n0(FLT['blend_fy25']['vlcc'])} a day "
   f"across {HYRS[2]}; the published figure was USD {n0(VS_BLEND)} for the first quarter of "
-  f"{YRL[0][:4]} and USD {n0(FLT['blend_q2_26']['vlcc'])} was indicated for the second. "
+  f"{YRL[0][:4]}, USD {n0(FLT['blend_q2_26']['vlcc'])} for the second, and USD "
+  f"{n0(IN['tce_vlcc_q3_26'])} for the third to 11 August on "
+  f"{pc(IN['cover_vlcc_q3_26'], 0)} of available vessel days. THE PEAK IS ALREADY BEHIND "
+  f"THE COMPANY on its own disclosure: the third quarter is "
+  f"{pc(1 - IN['tce_vlcc_q3_26']/IN['tce_vlcc_q2_26_actual'], 0)} below the second. "
   f"Strip out the {n0(fixed_by_class['vlcc'])} of {n0(FLT['owned']['vlcc'])} vessels in "
   f"that class already on charter out, each at its own disclosed rate, and the rate the "
   f"remaining vessels must have earned in the first quarter is USD {n0(VS_SPOT)} a day. "
-  f"The long-range classes moved the same way. The first quarter as a whole showed revenue of USD "
-  f"{m0(Q1_REV_26_UNITS)} million ({sgn(Q1_YOY_UNITS)} year on year, because low-margin "
-  f"chartered-in trading fell away), earnings before interest, tax, depreciation and "
-  f"amortisation of USD {m0(IN['q1_26_ebitda_group'])} million "
-  f"({sgn(IN['q1_26_ebitda_group']/q1_25_ebitda-1)}) and attributable profit of USD "
-  f"{m0(IN['q1_26_npa'])} million ({sgn(IN['q1_26_npa']/IN['q1_25_npa']-1)}). All three of "
-  f"those movements are on the basis the company's own commentary uses, which is the basis "
-  f"its business-unit table is on. The reviewed statements carry a different first-quarter "
-  f"{HYRS[2][2:]} revenue comparative — tanker revenue and direct costs for the first three "
-  f"quarters of that year were re-presented, with no effect on profit — and on the "
-  f"statutory comparative the same revenue movement is {sgn(Q1_YOY_STAT)} rather than "
-  f"{sgn(Q1_YOY_UNITS)}. The statements are what every historical line in this study is "
-  f"built from; the commentary basis is the only one on which the two years are comparable "
-  f"unit by unit, so it is the one quoted beside unit figures, and the difference is stated "
-  f"rather than left to be discovered. Whether those rates hold is the whole valuation.")
+  f"The long-range classes moved the same way. THE REVIEWED SIX MONTHS TO 30 JUNE 2026 "
+  f"showed revenue of USD {m0(IN['h1_26_rev'])} million against USD {m0(IN['h1_25_rev'])} "
+  f"million, earnings before interest, tax, depreciation and amortisation of USD "
+  f"{m0(IN['h1_26_ebitda_group'])} million against USD {m0(IN['h1_25_ebitda_group'])} "
+  f"million, and attributable profit of USD {m0(IN['h1_26_npa'])} million against USD "
+  f"{m0(IN['h1_25_npa'])} million — every figure on the reviewed statements' own basis, "
+  f"and every one a fact rather than a forecast. The second quarter alone carried revenue "
+  f"of USD {m0(IN['q2_26_rev_group'])} million and earnings of USD "
+  f"{m0(IN['q2_26_ebitda_group'])} million. The company's own management commentary "
+  f"carries a DIFFERENT prior-year revenue comparative — tanker revenue and direct costs "
+  f"for the first three quarters of {HYRS[2][2:]} were re-presented, with no effect on "
+  f"gross profit, net profit or earnings — so its half-year revenue growth reads 46 per "
+  f"cent where the statements give {sgn(IN['h1_26_rev']/IN['h1_25_rev']-1)}. The "
+  f"statements are what every historical and forecast line in this study is built from, "
+  f"and the difference is stated rather than left to be discovered. Whether those rates "
+  f"hold is the whole valuation.")
 P(f"This study says they do not hold, and prices the fleet reverting over five years to "
   f"the average of what it earned in {HYRS[1]} and {HYRS[2]}. That is a judgement, and "
   f"section 1.7 sets out the outside evidence for it. On that base the lenses centre "
@@ -872,8 +877,8 @@ rows = [['Item', 'Detail'],
          f"USD {m0(M['mktcap_usd000'])} million at the anchor price, or AED "
          f"{m0(M['mktcap_usd000']*PEG)} million"],
         ['Net debt',
-         f"USD {m0(IN['q1_26_netdebt'])} million at 31 March 2026 — "
-         f"{xt(IN['q1_26_netdebt']/F['ebitda'][0], 2)} the {YRL[0]} earnings this study "
+         f"USD {m0(IN['h1_26_netdebt'])} million at 30 June 2026 — "
+         f"{xt(IN['h1_26_netdebt']/F['ebitda'][0], 2)} the {YRL[0]} earnings this study "
          f"forecasts, against the company's own stated medium-term target range of "
          f"{xt(IN['nd_ebitda_target_lo'], 1)} to {xt(IN['nd_ebitda_target_hi'], 1)}. The "
          f"bridge in section 1.1 deducts USD {m0(NET_DEBT_TOTAL)} million, which is that "
@@ -881,7 +886,7 @@ rows = [['Item', 'Detail'],
          f"the USD {b1(ACQ_COST)} billion committed to the August purchase"],
         ['Perpetual capital securities',
          f"USD {b1(IN['hybrid_face'])} billion of perpetual capital securities were "
-         f"issued in {HYRS[2]}, carried at USD {m0(IN['q1_26_hybrid'])} million and priced "
+         f"issued in {HYRS[2]}, carried at USD {m0(IN['h1_26_hybrid'])} million and priced "
          f"at the secured overnight financing rate plus "
          f"{IN['hybrid_margin']*10000:,.0f} basis points. They sit inside total equity in "
          f"the accounts but rank ahead of the ordinary shares, so this study deducts them "
@@ -914,9 +919,10 @@ P(f"Two structural facts govern everything that follows. First, this is two busi
   f"{m0(GRPH['Shipping']['ebitda'][2])} million, a margin of "
   f"{pc(GRPH['Shipping']['margin'][2])}. Second, the balance sheet is unusually light for "
   f"an asset-heavy fleet owner: property, plant and equipment of USD {m0(HB['ppe'][2])} "
-  f"million is funded with net debt of only USD {m0(IN['q1_26_netdebt'])} million, because "
-  f"USD {b1(IN['hybrid_face'])} billion of perpetual capital securities and a USD "
-  f"{b1(IN['q1_26_shldr_loan'])} billion parent facility sit between the fleet and the "
+  f"million is funded with net debt of only USD {m0(IN['h1_26_netdebt'])} million, because "
+  f"USD {b1(IN['hybrid_face'])} billion of perpetual capital securities and a parent "
+  f"revolving facility drawn to USD {m0(IN['h1_26_shldr_loan'])} million sit between the "
+  f"fleet and the "
   f"ordinary shares. How those securities are treated is the second contested judgement in "
   f"this study, and it too is published both ways.", space_after=10)
 
@@ -976,9 +982,10 @@ caption(f"Every line is computed, not typed. The waterfall runs earnings before 
         f"add back depreciation → less capital expenditure → less the change in "
         f"working capital → free cash flow to the firm → discount factor → "
         f"present value. Two conventions are visible in the first column and both are "
-        f"deliberate. The valuation date is {M['valuation_date']}, so only three quarters "
-        f"of {YRL[0][:4]} are discounted and the first quarter's own free cash flow of USD "
-        f"{m0(F['fcff'][0]-DCF['fcff'][0])} million is removed rather than counted twice — "
+        f"deliberate. The valuation date is {M['valuation_date']}, so only the second half "
+        f"of {YRL[0][:4]} is discounted and the reviewed first half's own free cash flow "
+        f"of USD {m0(F['fcff'][0]-DCF['fcff'][0])} million is removed rather than counted "
+        f"twice — "
         f"it is already inside the net debt the bridge subtracts. And tax is charged unit "
         f"by unit at each unit's own disclosed effective rate, which is why the group rate "
         f"runs near {pc(F['tax_rate'][0])} rather than the "
@@ -1196,8 +1203,8 @@ caption(f"Identical cash flows, identical bridge, one input different — and th
 
 # ---- 1.2 book ---------------------------------------------------------------
 H2('1.2  Book value and sustainable return — the asset lens')
-P(f"Equity attributable to ordinary shareholders was USD {m0(IN['q1_26_eqp'])} million at "
-  f"31 March 2026, or AED {p2(BK['bvps_aed'])} a share — the figure excludes the perpetual "
+P(f"Equity attributable to ordinary shareholders was USD {m0(IN['h1_26_eqp'])} million at "
+  f"30 June 2026, or AED {p2(BK['bvps_aed'])} a share — the figure excludes the perpetual "
   f"capital securities, which the accounts include inside total equity but which do not "
   f"belong to the ordinary shareholder. The return earned on that equity, struck after the "
   f"coupon those securities take ahead of it, runs {pc(BK['roe_path'][0])} in {YRL[0]} and "
@@ -1263,8 +1270,8 @@ caption(f"Residual income is what the ordinary shareholder earns above the "
         f"model's own rolled-forward balance sheet, so this lens and Appendix A.2 cannot "
         f"disagree.")
 rows = [['Line', 'Value'],
-        ['Equity attributable to ordinary shareholders at 31 March 2026 (USD mn)',
-         m0(IN['q1_26_eqp'])],
+        ['Equity attributable to ordinary shareholders at 30 June 2026 (USD mn)',
+         m0(IN['h1_26_eqp'])],
         ['Book value per share (USD)', f"{BK['bvps_usd']:.4f}"],
         ['Book value per share (AED, at the peg)', p2(BK['bvps_aed'])],
         ['Plus the present value of five years of residual income (USD mn)',
@@ -1753,19 +1760,19 @@ rows.append(['Group earnings before interest, tax, depreciation and amortisation
             [m0(x) for x in F['ebitda']])
 rows.append(['Group margin'] + [pc(x) for x in F['ebitda_margin']])
 table(rows, [2.20, 0.96, 0.96, 0.96, 0.96, 0.96], size=8.2, band_rows={7, 8, 9})
-caption(f"No margin in this table is an assumption applied to the group. For the two "
-        f"shipping units that carry the rate risk, the margin is a pure arithmetic output: "
-        f"rate per vessel-day less running cost per vessel-day. For the contracted units "
-        f"the unit margin is set from what that unit itself earned in the first quarter of "
-        f"{YRL[0][:4]}, and the group margin — which moves from {pc(F['ebitda_margin'][0])} "
-        f"to {pc(F['ebitda_margin'][4])} across the forecast — is an output of the changing "
-        f"mix, not a path anyone chose. The margin rises against {HYRS[2]}'s "
-        f"{pc(EBITDA_H[2]/REV[2])} mainly because the low-margin chartered-in trading that "
-        f"grossed up {HYRS[2]} revenue is not repeated: the first quarter of {YRL[0][:4]} "
-        f"showed revenue {sgn(Q1_YOY_UNITS)} year on year while "
-        f"earnings rose {sgn(IN['q1_26_ebitda_group']/q1_25_ebitda-1)} — both movements on "
-        f"the business-unit basis this table is built on, which is the basis the company's "
-        f"own commentary uses.")
+caption(f"No margin in this table is an assumption applied to the group. For the tanker "
+        f"unit that carries most of the rate risk, the margin is an arithmetic output: "
+        f"charter-equivalent revenue times a gross-up MEASURED on the reviewed half, less "
+        f"a fixed cost base and a variable cost per unit of that revenue, both SOLVED from "
+        f"the audited {HYRS[2]} year and the reviewed half together. For every other unit "
+        f"the 2026 figure is the REPORTED first half plus a second half at the margin that "
+        f"half itself delivered, and the years after it grow on the unit's own driver. The "
+        f"group margin — which moves from {pc(F['ebitda_margin'][0])} to "
+        f"{pc(F['ebitda_margin'][4])} across the forecast — is an output of the changing "
+        f"mix, not a path anyone chose. It sits above {HYRS[2]}'s {pc(EBITDA_H[2]/REV[2])} "
+        f"because the reviewed half printed {pc(IN['h1_26_ebitda_group']/IN['h1_26_rev'])} "
+        f"and the forecast opens {pc(F['ebitda_margin'][0])}, and it falls back as the "
+        f"charter rates the half earned revert.")
 
 figure(os.path.join(HERE, 'fig7_mix.png'), 6.9,
        "Figure 2 — earnings by business unit, reported and forecast, with the group "

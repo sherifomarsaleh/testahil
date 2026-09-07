@@ -423,6 +423,13 @@ _INPUTS = {
 }
 
 out = dict(
+    # [R-FCAL-01] WHAT THIS NAME'S WALK-FORWARD ADOPTED, STATED RATHER THAN LEFT
+    # TO SILENCE. scripts/check_corrections_applied.py reads this; a study with a
+    # run behind it and no statement either way is SILENT, which is a different
+    # fact from 'none adopted' and reads identically.
+    adopted_corrections=[],
+    adopted_corrections_note=(
+        'the walk-forward on this name measured seven drivers over 225 cells and adopted NONE of them. Two drivers are robust at every block size and both are aggregates, which corrections may not be applied to; the one driver passing the cut-invariance clause at all six admissible boundaries (sga) has its block-2 bootstrap interval covering zero. Recorded in engine/gbco_walkforward/corrections_log.json; empty rather than absent.'),
     # THE ANSWER, WHERE THE SHARED READER LOOKS. Until this rebuild the study's central sat
     # at lenses.central.base and scripts/check_valuation_gap.py reads a top-level `central`,
     # so GBCO read as UNREADABLE — and an unreadable answer is not a clean answer [R-ENF-04];

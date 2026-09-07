@@ -813,6 +813,13 @@ FORECAST_ANCHOR = dict(
 
 # ============================ EMIT ===========================================
 out = dict(
+    # [R-FCAL-01] WHAT THIS NAME'S WALK-FORWARD ADOPTED, STATED RATHER THAN LEFT
+    # TO SILENCE. scripts/check_corrections_applied.py reads this; a study with a
+    # run behind it and no statement either way is SILENT, which is a different
+    # fact from 'none adopted' and reads identically.
+    adopted_corrections=[],
+    adopted_corrections_note=(
+        "the walk-forward on this name is a SCOPE SKIP under [R-FCAL-01] — four sourceable fiscal years against the five a LIGHT scope needs, recorded in engine/elec_walkforward/skip_record.json in the rule's own words. It scores nothing, so it adopts nothing, and this list is EMPTY rather than ABSENT: silence and 'none adopted' are the same file to a reader and different facts about the work."),
     # THE ANSWER, WHERE THE SHARED READER LOOKS FOR IT. [R-GAP-01]'s gate reads a study's
     # own numbers for a central; this study carried its spot at the top level and its
     # central at lenses.central.base, so the gate could see neither pair and THE LARGEST

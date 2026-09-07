@@ -1,4 +1,6 @@
 {
+ "adopted_corrections": [],
+ "adopted_corrections_note": "the walk-forward on this name adopted NO correction \u2014 see engine/phar_walkforward/corrections_log.json. Empty rather than absent: silence and 'none adopted' are the same file to a reader and different facts about the work.",
  "meta": {
   "company": "Egyptian International Pharmaceutical Industries Company",
   "short": "EIPICO",

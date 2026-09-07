@@ -1810,6 +1810,13 @@ strike = json.load(open(os.path.join(HERE, 'strike_result.json')))
 beta_res = json.load(open(os.path.join(HERE, 'beta_result.json')))
 
 OUT = dict(
+    # [R-FCAL-01] WHAT THIS NAME'S WALK-FORWARD ADOPTED, STATED RATHER THAN LEFT
+    # TO SILENCE. scripts/check_corrections_applied.py reads this; a study with a
+    # run behind it and no statement either way is SILENT, which is a different
+    # fact from 'none adopted' and reads identically.
+    adopted_corrections=[],
+    adopted_corrections_note=(
+        "the walk-forward on this name adopted NO correction — see engine/swdy_walkforward/corrections_log.json. Empty rather than absent: silence and 'none adopted' are the same file to a reader and different facts about the work."),
     meta=dict(ticker='SWDY', company='Elsewedy Electric Company S.A.E.', market='EGX',
               currency='EGP', asof='2026-09-03', spot=SPOT, shares_mn=SH, mktcap=MKTCAP,
               ev_trailing=ev_trailing, klass='diversified industrial operating company'),

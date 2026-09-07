@@ -1,0 +1,348 @@
+{
+ "_rule": "[R-FCAL-01] expanding window only, half strength by default, applied only where the bias holds its sign at EVERY cut the data admits, and consistent with how the driver class is built across the market's book.",
+ "built": "2026-09-07",
+ "half_strength": 0.5,
+ "candidates": {
+  "finance_cost": {
+   "n": 35,
+   "bias": 0.4006779477092797,
+   "admissible_cuts": 6,
+   "flips": 4,
+   "clause_one": false,
+   "clause_one_reason": "the sign depends on where the line is drawn",
+   "clause_two": "THE TRAP THIS RULE NAMES BY NAME. Interest comes from the borrowings that actually bear it, and GB Corp carries a captive lender whose funding sits beside trade balances that pay nothing. A correction on this line is refused until the denominator is established from the facility note, because a bias measured on the wrong denominator looks exactly like evidence.",
+   "by_origin": {
+    "2016": {
+     "prior_cells": 0,
+     "adjustment_log": 0.0
+    },
+    "2017": {
+     "prior_cells": 5,
+     "adjustment_log": -0.2816090506579999
+    },
+    "2018": {
+     "prior_cells": 10,
+     "adjustment_log": -0.3578529813194249
+    },
+    "2019": {
+     "prior_cells": 15,
+     "adjustment_log": -0.512168945255464
+    },
+    "2020": {
+     "prior_cells": 20,
+     "adjustment_log": -0.5039290798940572
+    },
+    "2021": {
+     "prior_cells": 25,
+     "adjustment_log": -0.4108896639149394
+    },
+    "2022": {
+     "prior_cells": 29,
+     "adjustment_log": -0.34244247694480123
+    },
+    "2023": {
+     "prior_cells": 32,
+     "adjustment_log": -0.2686061343009498
+    },
+    "2024": {
+     "prior_cells": 34,
+     "adjustment_log": -0.21378335976982282
+    }
+   },
+   "promoted": false,
+   "disposition": "watch_flag",
+   "verdict": "WATCH FLAG \u2014 the sign flips at 4 of 6 admissible cuts"
+  },
+  "gross_margin": {
+   "n": 35,
+   "bias": -0.2231532337706122,
+   "admissible_cuts": 6,
+   "flips": 2,
+   "clause_one": false,
+   "clause_one_reason": "the sign depends on where the line is drawn",
+   "clause_two": "Margins are OUTPUTS of the cost build in this house and never inputs. Correcting a margin directly reverses that and would make the cost side unfalsifiable.",
+   "by_origin": {
+    "2016": {
+     "prior_cells": 0,
+     "adjustment_log": 0.0
+    },
+    "2017": {
+     "prior_cells": 5,
+     "adjustment_log": 0.07722442198914406
+    },
+    "2018": {
+     "prior_cells": 10,
+     "adjustment_log": 0.13356891559354184
+    },
+    "2019": {
+     "prior_cells": 15,
+     "adjustment_log": 0.16774600012045363
+    },
+    "2020": {
+     "prior_cells": 20,
+     "adjustment_log": 0.18937656595720104
+    },
+    "2021": {
+     "prior_cells": 25,
+     "adjustment_log": 0.17570064847460837
+    },
+    "2022": {
+     "prior_cells": 29,
+     "adjustment_log": 0.1606650763086243
+    },
+    "2023": {
+     "prior_cells": 32,
+     "adjustment_log": 0.13858100470161852
+    },
+    "2024": {
+     "prior_cells": 34,
+     "adjustment_log": 0.12109357190521977
+    }
+   },
+   "promoted": false,
+   "disposition": "watch_flag",
+   "verdict": "WATCH FLAG \u2014 the sign flips at 2 of 6 admissible cuts"
+  },
+  "gross_profit": {
+   "n": 35,
+   "bias": -0.22755894268922866,
+   "admissible_cuts": 6,
+   "flips": 0,
+   "clause_one": true,
+   "clause_one_reason": "stable at every admissible cut",
+   "clause_two": "An AGGREGATE. Corrections are applied to drivers and aggregates are REBUILT from them; correcting an aggregate directly is forbidden.",
+   "by_origin": {
+    "2016": {
+     "prior_cells": 0,
+     "adjustment_log": 0.0
+    },
+    "2017": {
+     "prior_cells": 5,
+     "adjustment_log": 0.057753111774312714
+    },
+    "2018": {
+     "prior_cells": 10,
+     "adjustment_log": 0.1345102699234278
+    },
+    "2019": {
+     "prior_cells": 15,
+     "adjustment_log": 0.05940719860210777
+    },
+    "2020": {
+     "prior_cells": 20,
+     "adjustment_log": 0.07549683170521344
+    },
+    "2021": {
+     "prior_cells": 25,
+     "adjustment_log": 0.11060622059825902
+    },
+    "2022": {
+     "prior_cells": 29,
+     "adjustment_log": 0.11344731066280202
+    },
+    "2023": {
+     "prior_cells": 32,
+     "adjustment_log": 0.11415827824834009
+    },
+    "2024": {
+     "prior_cells": 34,
+     "adjustment_log": 0.12017979360390925
+    }
+   },
+   "promoted": false,
+   "disposition": "refused",
+   "verdict": "REFUSED \u2014 an aggregate; corrections apply to drivers"
+  },
+  "net_profit": {
+   "n": 15,
+   "bias": -0.691661811240971,
+   "admissible_cuts": 2,
+   "flips": 0,
+   "clause_one": true,
+   "clause_one_reason": "stable at every admissible cut",
+   "clause_two": "An AGGREGATE, and the same refusal.",
+   "by_origin": {
+    "2020": {
+     "prior_cells": 0,
+     "adjustment_log": 0.0
+    },
+    "2021": {
+     "prior_cells": 5,
+     "adjustment_log": 0.6394140894059135
+    },
+    "2022": {
+     "prior_cells": 9,
+     "adjustment_log": 0.5501738866116068
+    },
+    "2023": {
+     "prior_cells": 12,
+     "adjustment_log": 0.4302525322434671
+    },
+    "2024": {
+     "prior_cells": 14,
+     "adjustment_log": 0.3863637143939854
+    }
+   },
+   "promoted": false,
+   "disposition": "refused",
+   "verdict": "REFUSED \u2014 an aggregate; corrections apply to drivers"
+  },
+  "operating_profit": {
+   "n": 35,
+   "bias": -0.37878373712520425,
+   "admissible_cuts": 6,
+   "flips": 0,
+   "clause_one": true,
+   "clause_one_reason": "stable at every admissible cut",
+   "clause_two": "An AGGREGATE, and the same refusal.",
+   "by_origin": {
+    "2016": {
+     "prior_cells": 0,
+     "adjustment_log": 0.0
+    },
+    "2017": {
+     "prior_cells": 5,
+     "adjustment_log": 0.05788869522655282
+    },
+    "2018": {
+     "prior_cells": 10,
+     "adjustment_log": 0.1959399121254416
+    },
+    "2019": {
+     "prior_cells": 15,
+     "adjustment_log": 0.13014580999904815
+    },
+    "2020": {
+     "prior_cells": 20,
+     "adjustment_log": 0.1571940683699648
+    },
+    "2021": {
+     "prior_cells": 25,
+     "adjustment_log": 0.18782555604773335
+    },
+    "2022": {
+     "prior_cells": 29,
+     "adjustment_log": 0.19242663415695402
+    },
+    "2023": {
+     "prior_cells": 32,
+     "adjustment_log": 0.19313577976670704
+    },
+    "2024": {
+     "prior_cells": 34,
+     "adjustment_log": 0.19772987870428452
+    }
+   },
+   "promoted": false,
+   "disposition": "refused",
+   "verdict": "REFUSED \u2014 an aggregate; corrections apply to drivers"
+  },
+  "revenue": {
+   "n": 35,
+   "bias": -0.004405708918616535,
+   "admissible_cuts": 6,
+   "flips": 5,
+   "clause_one": false,
+   "clause_one_reason": "the sign depends on where the line is drawn",
+   "clause_two": "Revenue is built bottom-up from volume and price on every name in this book, so a scalar applied to the revenue LINE would sit on top of drivers that are themselves corrected \u2014 the same error counted twice.",
+   "by_origin": {
+    "2016": {
+     "prior_cells": 0,
+     "adjustment_log": 0.0
+    },
+    "2017": {
+     "prior_cells": 5,
+     "adjustment_log": -0.01947131021483136
+    },
+    "2018": {
+     "prior_cells": 10,
+     "adjustment_log": 0.0009413543298859905
+    },
+    "2019": {
+     "prior_cells": 15,
+     "adjustment_log": -0.10833880151834589
+    },
+    "2020": {
+     "prior_cells": 20,
+     "adjustment_log": -0.11387973425198758
+    },
+    "2021": {
+     "prior_cells": 25,
+     "adjustment_log": -0.06509442787634934
+    },
+    "2022": {
+     "prior_cells": 29,
+     "adjustment_log": -0.047217765645822266
+    },
+    "2023": {
+     "prior_cells": 32,
+     "adjustment_log": -0.024422726453278414
+    },
+    "2024": {
+     "prior_cells": 34,
+     "adjustment_log": -0.0009137783013104903
+    }
+   },
+   "promoted": false,
+   "disposition": "watch_flag",
+   "verdict": "WATCH FLAG \u2014 the sign flips at 5 of 6 admissible cuts"
+  },
+  "sga": {
+   "n": 35,
+   "bias": -0.17951759168873638,
+   "admissible_cuts": 6,
+   "flips": 0,
+   "clause_one": true,
+   "clause_one_reason": "stable at every admissible cut",
+   "clause_two": "An overhead line carried per unit of revenue across the book, so a correction here is admissible in principle \u2014 and this is the ONLY driver in this run that passes clause one, stable at all six admissible cuts. It is still not promoted, and the reason is a gap in the run rather than a verdict on the driver: scores.json carries no block-bootstrap standard error, so the pre-registered decision rule cannot establish robustness and declines. UNESTABLISHED IS NOT REFUTED, and recording it as though the evidence were against the driver would misstate what was measured [R-ENF-04]. The CI is owed to this run.",
+   "by_origin": {
+    "2016": {
+     "prior_cells": 0,
+     "adjustment_log": 0.0
+    },
+    "2017": {
+     "prior_cells": 5,
+     "adjustment_log": 0.0919287784325363
+    },
+    "2018": {
+     "prior_cells": 10,
+     "adjustment_log": 0.1285079936625153
+    },
+    "2019": {
+     "prior_cells": 15,
+     "adjustment_log": 0.0502232713861257
+    },
+    "2020": {
+     "prior_cells": 20,
+     "adjustment_log": 0.05698589672374342
+    },
+    "2021": {
+     "prior_cells": 25,
+     "adjustment_log": 0.09062464921564256
+    },
+    "2022": {
+     "prior_cells": 29,
+     "adjustment_log": 0.08933040865318319
+    },
+    "2023": {
+     "prior_cells": 32,
+     "adjustment_log": 0.0885831430922979
+    },
+    "2024": {
+     "prior_cells": 34,
+     "adjustment_log": 0.09457135588060908
+    }
+   },
+   "promoted": false,
+   "disposition": "watch_flag",
+   "verdict": "clause one PASSES at 6 of 6 cuts; clause two decides"
+  }
+ },
+ "adopted": [],
+ "promoted": [],
+ "summary": "7 candidates measured, 0 promoted, 4 recorded as watch flags, 3 refused as aggregates. Nothing from this run enters the live drivers.",
+ "guidance_ledger": {
+  "entries": [],
+  "note": "EMPTY. GB Corp publishes quarterly earnings releases with an operating review but no forward numeric guidance in any of the releases this run parsed, so the guidance-is-scored-never-consumed clause has nothing to score and no driver here can have inherited a management lean."
+ }
+}

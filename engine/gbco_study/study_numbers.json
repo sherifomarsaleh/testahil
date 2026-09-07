@@ -1,4 +1,6 @@
 {
+ "adopted_corrections": [],
+ "adopted_corrections_note": "the walk-forward on this name measured seven drivers over 225 cells and adopted NONE of them. Two drivers are robust at every block size and both are aggregates, which corrections may not be applied to; the one driver passing the cut-invariance clause at all six admissible boundaries (sga) has its block-2 bootstrap interval covering zero. Recorded in engine/gbco_walkforward/corrections_log.json; empty rather than absent.",
  "central": 44.329496406267786,
  "central_bear": 27.400479675581863,
  "central_full": 67.64860887942503,

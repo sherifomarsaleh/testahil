@@ -2373,6 +2373,48 @@ for _lab, _dcfkey in (('central', 'dcf'), ('central_beta_alt', 'dcf_beta_alt')):
                         bull=lenses[_dcfkey]['bull'])
 central = lenses['central']['base']
 central_alt = lenses['central_beta_alt']['base']
+
+# --- the two judgements the half-year filings created, priced -------------------
+# Each is re-run through the SAME machinery, so the alternative is a value this model
+# actually produces rather than a scaled guess at one.
+def _refit_gas(vy):
+    _old = list(GAS_VY)
+    GAS_VY[:] = list(vy)
+    try:
+        return dcf(project('reversion'), hybrid_as_debt=True)['fv_aed']
+    finally:
+        GAS_VY[:] = _old
+
+
+GAS_ALT_FV = _refit_gas([v + a for v, a in
+                         zip(GAS_VY_H1D, [3 * (4 / 12.0) + 2 * (1.5 / 12.0), 5, 5, 5, 5])])
+IN('gas_vy_alt_fv', round(GAS_ALT_FV, 4), IPH126 + " — fair value per share on the "
+   "first-half deck's own reading of the gas contract table, computed through the same "
+   "model. Published beside the adopted figure; an input to nothing", '2026-08-11', 'Company')
+
+
+def _refit_leverage(lev):
+    _oldl, _oldv = TNK_LEV, TNK_VAR
+    globals()['TNK_LEV'] = lev
+    globals()['TNK_VAR'] = gross_up_26 - lev
+    globals()['TNK_FIXED'] = lev * tce_rev_25 - V['seg_ebitda_tankers_fy25']
+    try:
+        return dcf(project('reversion'), hybrid_as_debt=True)['fv_aed']
+    finally:
+        globals()['TNK_LEV'] = _oldl
+        globals()['TNK_VAR'] = _oldv
+        globals()['TNK_FIXED'] = _oldl * tce_rev_25 - V['seg_ebitda_tankers_fy25']
+
+
+# The delivered edition's construction: earnings equal to the owned fleet's own
+# charter-equivalent revenue less a running cost, which is an earnings leverage of
+# EXACTLY ONE on the rate.
+LEV_ALT_FV = _refit_leverage(1.0)
+IN('tnk_leverage_alt_fv', round(LEV_ALT_FV, 4), "Fair value per share if the tanker unit's "
+   "earnings leverage on its own fleet's charter-equivalent revenue were 1.0 — the "
+   "delivered edition's construction — with the fixed base re-solved on the audited 2025 "
+   "year at that leverage. Computed through the same model; an input to nothing",
+   '2026-06-30', 'Company')
 RETIRED_BLEND = sum(RETIRED_W[k] * lenses['dcf' if k == 'dcf' else k]['base']
                     for k in RETIRED_W)
 
@@ -2868,7 +2910,7 @@ OUT = dict(
               isin='AEE01268A239',
               reporting_currency='USD', listing_currency='AED', fx=peg,
               asof='2026-09-07', price_date=_LATEST['date'],
-              valuation_date='2026-03-31',
+              valuation_date='2026-06-30',
               spot_aed=spot_aed, spot_usd=spot_usd,
               # THE ANSWER, IN THE PAIR THE SHARED READER LOOKS FOR. This study committed
               # a central at the top level and its price only as spot_aed, so the
@@ -2916,8 +2958,15 @@ OUT = dict(
                vessel_days_25=vessel_days_25, tce_rev_25=tce_rev_25,
                tce_rev_h125=tce_rev_h125, tce_rev_h126=tce_rev_h126),
     drivers=DRV, driver_why=DRV_WHY,
-    fcst=dict(years=YF, **{k: v for k, v in BASE.items()
-                           if k not in ('seg', 'group', 'tce', 'mode', 'years')}),
+    fcst=dict(years=YF,
+              # the depreciation share of earnings, and its five-year MEAN. The mean was
+              # computed inside the document builder and matched nothing committed, which
+              # is the prose-figure rule's own case: a figure that is real and that the
+              # model does not produce means the MODEL is what is missing.
+              dna_share=[d / e for d, e in zip(BASE['dna'], BASE['ebitda'])],
+              dna_share_avg=sum(d / e for d, e in zip(BASE['dna'], BASE['ebitda'])) / 5.0,
+              **{k: v for k, v in BASE.items()
+                 if k not in ('seg', 'group', 'tce', 'mode', 'years')}),
     fcst_seg={s: BASE['seg'][s] for s in SEGS},
     fcst_group=BASE['group'],
     fcst_sustained=dict(years=YF, revenue=GUID['revenue'], ebitda=GUID['ebitda'],
@@ -3015,7 +3064,49 @@ OUT = dict(
     # resolving all of them the same way and never noticing. Each alternative below is
     # computed by this file's own dcf(), so the difference measures THE CHOICE and not
     # the construction.
+    # THE TWO JUDGEMENTS THE HALF-YEAR FILINGS CREATED, PRICED BOTH WAYS RATHER THAN
+    # RESOLVED SILENTLY. Both are computed above and both are published beside the answer.
     contested=[
+        dict(choice='the gas fleet\'s contracted vessel-year path',
+             adopted='the composition the April 2026 contract table gives, whose components '
+                     'this study states and which foots',
+             alternative='the same table as printed in the first-half 2026 deck, where the '
+                         'four liquefied-natural-gas carriers\' firm period ends in June '
+                         '2026 and the consolidated path falls to 10.0, 13.0, 17.5, 20.75 '
+                         'and 20.0 vessel-years',
+             fv_adopted=float(central), fv_alternative=float(GAS_ALT_FV),
+             effect=abs(GAS_ALT_FV - central) / central,
+             direction='the adopted side is HIGHER',
+             note='WHAT THE TABLE COUNTS IS AMBIGUOUS AND THE DIFFERENCE IS LARGE, so it '
+                  'is priced rather than decided. Its own column heading reads "No. of '
+                  'Vessels Contracted" rather than vessels in service, and a bullet on the '
+                  'same slide says five Das carriers were progressively moved to long-term '
+                  'contracts with the parent from June 2026 — so whether those four ships '
+                  'stop EARNING or merely stop being counted as contracted is not '
+                  'decidable from the page. The total row foots with both rows populated '
+                  'in the second quarter, which is consistent with two separate sets of '
+                  'ships and equally with one set counted twice. SIGCM clause 8: the '
+                  'coarser reading is kept, the finer one is published, and neither is '
+                  'invented.'),
+        dict(choice='the earnings leverage of the tanker unit on its own fleet\'s rate',
+             adopted='solved from two disclosed periods together — the audited 2025 year '
+                     'and the reviewed six months to 30 June 2026 — with the reviewed six '
+                     'months to 30 June 2025 held out',
+             alternative='exactly one, which is what the delivered edition assumed by '
+                         'setting earnings equal to the owned fleet\'s charter-equivalent '
+                         'revenue less a single running cost',
+             fv_adopted=float(central), fv_alternative=float(LEV_ALT_FV),
+             effect=abs(LEV_ALT_FV - central) / central,
+             direction='the adopted side is HIGHER' if central > LEV_ALT_FV
+                       else 'the adopted side is LOWER',
+             note='THE ALTERNATIVE IS NOT A VIEW, IT IS A CONSTRUCTION THAT THE COMPANY\'S '
+                  'OWN HALF FALSIFIES: at the published rates the 52 owned tankers earned '
+                  'charter-equivalent revenue of USD 805.8 million in the six months to 30 '
+                  'June 2026 and the unit reported earnings of USD 994.2 million, more '
+                  'than the ships it owns can earn before any cost at all. A leverage of '
+                  'one cannot reproduce that. It is priced here because it is the '
+                  'construction this study shipped three weeks ago and a reader is '
+                  'entitled to see what it was worth.'),
         dict(choice='how the market is measured for the beta regression',
              adopted='the published index of the exchange this company is listed on',
              alternative='an equal-weight composite of the same exchange\'s names',
@@ -3330,7 +3421,17 @@ OUT = dict(
             note='vessel-days times day rates, vessel by vessel, discounted on a schedule '
                  'that is flat by construction of the currency peg'),
         cross_checks=[
+            # NOT A PRESENT-VALUE READ, and the record now says so. Every leg of this
+            # sum is a MULTIPLE applied to one forecast year's earnings — the same
+            # construction the relative lens already declares present_value False for —
+            # so putting it inside an envelope of present-value reads on one clock would
+            # be mixing two clocks in the one field that exists to keep them apart. The
+            # correction was forced by the gate rather than volunteered, and the honest
+            # reading is that the classification was wrong from the first edition and only
+            # became visible when this lens rose above the primary's own bull corner: an
+            # unmarked field defaults to True and nothing had been high enough to test it.
             dict(kind='sotp', value=float(sotp['fv_aed']),
+                 present_value=False,
                  note='the three legs summed on their own multiples — a contracted-fleet '
                       'multiple where the leg earns under long-term contracts and a blend '
                       'of contracted and spot where it does not, weighted by the '

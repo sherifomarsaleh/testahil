@@ -41,7 +41,7 @@ def build():
     dcf, coc = d["dcf"], d["cost_of_capital_record"]
     mac, br, meta = d["macro_record"], d["bridge_record"], d["meta"]
     fcff = list(d["fcst"]["fcff"])
-    fcff[0] -= d["inputs"]["q1_26_fcf"]["value"]      # already inside net debt at the date
+    fcff[0] -= d["inputs"]["h1_26_fcf"]["value"]      # already inside net debt at the date
 
     t_mid, how = RR.resolve_times(coc, dcf["df"], coc["forward_wacc"])
     # THE UNIT IS THE THING TO CHECK. The bridge is in USD THOUSANDS and its share count

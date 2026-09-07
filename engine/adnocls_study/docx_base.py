@@ -134,7 +134,7 @@ def box(lines, fill=F_CREAM):
         p.paragraph_format.space_after = Pt(5)
     doc.add_paragraph().paragraph_format.space_after = Pt(2)
 
-def masthead(edition=None):
+def masthead(edition=None, restruck=None):
     """The banner, and the EDITION DATE a reader needs before anything else.
 
     A reader receiving a valuation has to be able to tell how old it is without hunting,
@@ -159,7 +159,13 @@ def masthead(edition=None):
     # rather than a formality and is the only thing that could have caught it.
     p2_ = c.add_paragraph() if edition else p
     if edition:
-        r3 = p2_.add_run('Edition of %s' % edition)
+        # THE EDITION AND THE STRIKE ARE TWO DATES AND A READER NEEDS BOTH. An edition
+        # re-struck on filings it did not previously hold is not the document it was, and
+        # a masthead carrying only the original date tells a reader it is older than the
+        # figures inside it. The edition date is still read out of the delivered filename,
+        # never from the clock.
+        r3 = p2_.add_run('Edition of %s' % edition
+                         + ('   ·   re-struck %s' % restruck if restruck else ''))
         r3.font.size = Pt(9.5); r3.font.color.rgb = WHITE
     r2 = p2_.add_run('   ·   Not investment advice' if edition else '   Not investment advice')
     r2.font.size = Pt(9.5); r2.font.color.rgb = RGBColor(0x9F, 0xB0, 0xAC)

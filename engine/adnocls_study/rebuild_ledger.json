@@ -3,112 +3,96 @@
  "started_at": "2026-09-07",
  "start_value": 5.605379,
  "start_spot": 6.8,
- "start_gap": -0.17567955882352937,
- "audit_after": "the cost-of-capital lever. THIS REBUILD IS MOSTLY RECORD-SHAPE AND THAT IS THE REASON THE AUDIT POINT SITS WHERE IT DOES. Of the exemplar's outstanding entries, nine close by committing a record the sanctioned modules already emit \u2014 the driver lines, the asset base, the anchor ordering, the rebuild ledger itself \u2014 and NONE OF THOSE CAN MOVE THE CENTRAL, because under [R-LENS-03] the class primary IS the central and a record commit does not touch the cash-flow lens. The circularity-block unit correction feeds a CROSS-CHECK, which by the same rule is published beside the answer and never averaged into it. So exactly one lever has a route to the number: rebuilding the cost of capital through cost_of_capital.py, which moves the discount rate and therefore the DCF. The place to stop and look is after that lever and BEFORE the document is rebuilt \u2014 because once a figure is written into a delivered document the next reader takes it as settled, and because the terminal is STOPPED (TERMINAL_EVIDENCE_05-09-2026.md, three independent disclosure gaps), so the single largest construction in this study is NOT among the levers and cannot offset whatever the discount rate does.",
+ "audit_after": "the tanker cost and scale rebuild \u2014 lever five \u2014 and BEFORE any smaller unit is touched. DECLARED BEFORE THE FIRST LEVER RAN, and the reasoning is that levers one to three are record and balance-sheet moves whose direction is known and bounded (net debt falls 162,549 thousand, which is about eight fils a share), while levers four and five carry the whole scale correction and PULL OPPOSITE WAYS: the second quarter the company actually reported is far above the estimate the delivered edition carried for it, and the third quarter it has disclosed is far BELOW the second, so the reversion now starts lower; and the cost rebuild moves the tanker unit's earnings leverage off the 1.0 the delivered construction assumed. The place to stop is where the scale correction has landed and before anything smaller is touched, because if the answer has moved a long way it must be the tanker leg and nothing else, and that is only checkable at that point.",
  "levers": [
   {
-   "name": "relative-lens circularity block put on one basis",
-   "rule": "R-LENS-03",
+   "name": "the four half-year documents swept in",
+   "rule": "SIGCM clause 1 / Step 2A",
    "before": 5.605379,
    "after": 5.605379,
-   "why": "The non-circularity block compared an AED spot with a share count in millions against an equity value in USD thousands, so the traded multiple it published was 0.9909x \u2014 a number in no units at all. Put on one basis it is 6.92x. This feeds a CROSS-CHECK, which under [R-LENS-03] is published beside the central and never averaged into it, so the central does not move.",
-   "evidence": "lens_record.cross_checks[1].circularity now carries spot 1.6773 USD, shares 7,398,499 thousand and a basis field naming the units",
+   "why": "The reviewed six-month statements, the management discussion, the earnings release and the first-half earnings presentation \u2014 all dated 10 or 11 August 2026 and public for twenty-seven days \u2014 were registered, read and footed. THE RULE IS THAT EVERY DISCLOSED QUARTER IS SWEPT IN BEFORE THE BUILD STARTS, and the edition delivered earlier the same day declared its information set closed at the first quarter. The sweep is a record move and moves no number by itself.",
+   "evidence": "sweep_register.json: findings P3b, P3c, P3d and P4b; study year FY2026 declared with quarters Q1 2026 and Q2 2026; a fourth primary-access attempt logged with the miss stated in it",
    "move": 0.0
   },
   {
-   "name": "the bridge declares its currency, scale and peg",
-   "rule": "R-BRIDGE-01",
-   "before": 5.605379,
-   "after": 5.605379,
-   "why": "The bridge divides USD thousands by a share count the field name calls millions, and converts to dirhams at the peg only at the per-share step. The generator said so IN A COMMENT and a gate reading the record reported the exemplar as carrying the largest bridge disagreement in the book \u2014 1.5263 against a published 5.6054, which are the same number either side of the 3.6725 peg. A comment in a builder is not a declaration a reader or a checker can use.",
-   "evidence": "bridge_record.units: currency USD, scale thousands, per_share USD, published AED, fx 3.6725",
-   "move": 0.0
-  },
-  {
-   "name": "the third tranche of the capital structure is declared",
-   "rule": "R-COC-02",
-   "before": 5.605379,
-   "after": 5.605379,
-   "why": "Equity 0.800444 and drawn debt 0.071933 sum to 0.872377, and the remaining 0.127635 is the perpetual capital securities \u2014 real, priced at their own disclosed coupon and in this model since the first edition, but committed in a different object. The three weights sum to one EXACTLY and reproduce the published WACC to zero, so no rate and no value moves; what was missing was the declaration. The gate was re-pointed rather than the number changed [R-COC-01].",
-   "evidence": "cost_of_capital_record.other_tranches + beta_source; check_ke_reproduction now reproduces ADNOCLS and it is off that ratchet",
-   "move": 0.0
-  },
-  {
-   "name": "the fleet is committed with the date it was true on",
-   "rule": "R-ASSET-01",
-   "before": 5.605379,
-   "after": 5.605379,
-   "why": "On a chartered fleet valued with replacement cost beside the cash-flow lens the fleet IS the asset base. The study already held it at three sourced vintages \u2014 53 owned tankers at 31 December 2025, one very large crude carrier sold in January 2026, eleven vessels bought on 7 August 2026 \u2014 and stated the vintage of none of them where anything outside the study could read it. 156 owned vessels as at 7 August 2026, components footing to the total, against an information set ending 1Q2026.",
-   "evidence": "asset_base_record + information_set_ends; off the asset-base ratchet",
-   "move": 0.0
-  },
-  {
-   "name": "the profit anchor ordering, measured rather than asserted",
+   "name": "the base period moves from the quarter to the reviewed half",
    "rule": "R-ANCHOR-01",
    "before": 5.605379,
-   "after": 5.605379,
-   "why": "The bridge stands on the reviewed 31 March 2026 sheet and the margin is anchored on the AUDITED FY2025 year, 90 days behind it, and the record did not say why \u2014 leaving a reader to assume the study opened that filing and took half of it. It did not: every line of the Q1 2026 income statement is registered and consumed. A margin is a rate over a full cycle of this company's own contract book and one reviewed quarter is a point on a seasonal path.",
-   "evidence": "1Q2026 computes 32.73% on the same construction against the 29.28% anchored \u2014 the LOWER of the two is adopted, so the forecast faces the stricter comparison and the choice cannot be flattering it",
-   "move": 0.0
+   "after": 5.484,
+   "why": "Valuation date 31 March 2026 \u2192 30 June 2026, so the discounting stub falls from 0.75 of a year to 0.50 and the free cash flow already inside the balance sheet rises from the quarter's 130,000 to the half's 598,095. The depreciation rate and the non-vessel depreciation run rate are re-solved on the half rather than the quarter. IT COSTS 0.12 A SHARE AND THE REASON IS THE COMPANY DISTRIBUTING CASH: the half generated 598,095 and paid out 166,563 of dividends, 49,633 of perpetual coupons and 28,530 to minorities, and a buyer at 30 June does not receive what was paid before it.",
+   "evidence": "STUB 0.50, BASE_FCF = h1_26_fcf = 598,095; dep_rate_ppe re-solved on the half's own average balance",
+   "move": -0.02165402196711408
   },
   {
-   "name": "the driver lines and the cost basis behind them",
-   "rule": "R-SIGCM-02",
-   "before": 5.605379,
-   "after": 5.605379,
-   "why": "The study built seven driver lines, ran the ground-up assertion on them and committed only what the assertion RETURNED. Running it from outside found a real gap on the exemplar: four of the seven named how revenue was built and nothing about how cost was \u2014 the margin-is-the-input treatment written into each gap note and not into the field a checker reads.",
-   "evidence": "driver_lines committed; 2 ground-up assertions now actually run across the book where 1 did",
-   "move": 0.0
+   "name": "the bridge onto the 30 June 2026 balance sheet",
+   "rule": "R-BRIDGE-01",
+   "before": 5.484,
+   "after": 5.353,
+   "why": "Net debt 419,867 \u2192 257,318, deferred consideration 301,462 \u2192 304,297, perpetual securities, minorities, joint ventures at book, cash, intangibles, goodwill and working capital all re-read at 30 June. THE VALUE FALLS DESPITE NET DEBT FALLING 162,549, and the reason is worth stating because it is the opposite of the obvious reading: the drawn debt in the market-value weights falls from 1,115,212 to 800,000, so the equity weight rises, so the weighted cost of capital rises \u2014 and on a company this lightly levered that is worth more than the debt reduction.",
+   "evidence": "bridge_record.balance_sheet_date 2026-06-30; the disclosed net debt is FOOTED rather than taken \u2014 the stated definition omits loans and other borrowings and only including them reproduces the published 257,318",
+   "move": -0.0238876732312181
   },
   {
-   "name": "the reporting scale, so the earnings reconciliation can be read",
-   "rule": "R-ENF-04",
-   "before": 5.605379,
-   "after": 5.605379,
-   "why": "shares_mn carries its scale in its name and npa_fy25 carries none, so an instrument dividing one into the other lands a factor of a thousand out \u2014 which the gate reported, correctly, as a reconciliation it could not read rather than a defect it could see. A magnitude test would have \"resolved\" a real error as cleanly as a scale.",
-   "evidence": "reporting_units{USD, thousands, millions, AED, 3.6725}; EPS now reconciles at 0.1133 computed against 0.1100 reported",
-   "move": 0.0
+   "name": "the tanker price driver: the reported quarters and the disclosed third",
+   "rule": "R-ANCHOR-01",
+   "before": 5.353,
+   "after": 5.66,
+   "why": "The delivered edition estimated the second quarter of 2026 off the May earnings call \u2014 260,000 a day for a very large crude carrier against a published 291,145, and 55,000 for an LR1 against 80,206. Those are now reported. The third quarter is DISCLOSED to 11 August with the share of vessel days already contracted, and is taken on those days with the balance at the mid-cycle rate; the fourth reverts halfway from there on the SAME reversion weight of 0.50 the delivered edition carried \u2014 the parameter is unchanged and only its anchor moved. The charter book is re-read: eight of the eleven fixtures carry LATER expiries in the first-half deck.",
+   "evidence": "tce_*_q2_26_actual, tce_*_q3_26 with cover_*_q3_26; CHARTER_TABLE rebuilt from the first-half deck; measured with the delivered cost construction held fixed, so this lever is the price move alone",
+   "move": 0.05735101812068
   },
   {
-   "name": "the delivered pages: retired blend, retired verdict, edition date, both prices",
-   "rule": "R-CAL-02",
-   "before": 5.605379,
-   "after": 5.605379,
-   "why": "The numbers file had retired the blend for weeks and the DOCUMENTS had not: five assertions of a weighted central, three of a skill score against a random-walk benchmark that [R-CAL-03] retired outright, a caption claiming contributions that add to a central they no longer build, no edition date in the masthead at all, and one price on a page where the rule asks for two.",
-   "evidence": "off the lens-vocabulary, band and edition ratchets; the study's own four stale label expectations re-pointed; 813 prose figures, 63 tables, 169 labels, 111 drivers and 119 recalculations all green",
+   "name": "the tanker cost stack and the revenue gross-up, both measured",
+   "rule": "R-ANCHOR-01 / margins-are-outputs",
+   "before": 5.66,
+   "after": 6.61,
+   "why": "THE DELIVERED CONSTRUCTION IS FALSIFIED BY THE COMPANY'S OWN HALF. It set tanker earnings equal to the owned fleet's charter-equivalent revenue less one running cost per vessel-day solved on 2025 \u2014 an earnings leverage of exactly 1.0 on the rate. At the published rates those 52 ships earned 805,808 in the six months to 30 June 2026 and the unit reported EARNINGS of 994,166, more than the fleet can earn before any cost at all, because it also trades chartered-in tonnage and serves the parent. The cost side is rebuilt as a fixed base plus a variable component per unit of fleet charter-equivalent revenue, both solved from the audited 2025 year and the reviewed half TOGETHER, with the reviewed first half of 2025 HELD OUT and reproduced to within 10.7 per cent, understating it. The revenue gross-up moves from 1.60 \u2014 inferred from one quarter \u2014 to the half's measured 2.609; the year says 2.734 and the prior half 2.794, so THE QUARTER WAS THE OUTLIER, at 1.51 against the second quarter's 3.16.",
+   "evidence": "tnk_cost_fixed, tnk_cost_var, tnk_grossup_26, tnk_holdout_ebitda_error; four assertions in compute.py, including that the reviewed half earned more than its owned fleet could",
+   "move": 0.16784452296819796
+  },
+  {
+   "name": "the remaining units re-anchored on the reviewed half",
+   "rule": "R-ANCHOR-01",
+   "before": 6.61,
+   "after": 6.27,
+   "why": "Every unit's 2026 is now the REPORTED half plus a second half at the margin that half itself delivered. Four typed margins meet four measured ones and they move in both directions: Offshore Contracting 0.385 against a half of 0.316 (0.388 before the disclosed credit-loss provision, which is named and removed), Offshore Services 0.287 against 0.241, Dry-Bulk 0.184 against 0.355, Services 0.200 against 0.275. OFFSHORE PROJECTS IS THE LARGE ONE: the delivered edition carried 125,000 of 2026 revenue recovering to 300,000 by 2030 on a company range the half has falsified \u2014 the unit earned 1,884 in six months and lost 16,959 \u2014 so it is held flat at the half's own level with no margin, because NO NEW AWARD IS DISCLOSED and a recovery nothing discloses is not forecast. Dry-bulk reverts to its 2025 outcome by 2030 on the same mechanism as the charter rates, because its rates spiked the same way and the company publishes the series that shows it.",
+   "evidence": "DRV rebuilt from H1_SEG; SEG_ONEOFF_26 names the one removal; SEG_REVERT_FY25 names the one reverting unit",
+   "move": -0.05143721633888054
+  },
+  {
+   "name": "the gas unit: the margin measured, the volume path held and priced both ways",
+   "rule": "R-ANCHOR-01 / SIGCM clause 8",
+   "before": 6.27,
+   "after": 5.339,
+   "why": "THE MARGIN WAS A TYPED INPUT AND IS NOW MEASURED: 0.70, set \"near the 2025 outcome\", against a reviewed half of 0.4966 on revenue up 128 per cent \u2014 the new carriers entered on chartering terms rather than the 2025 book's. That is most of this lever. THE VOLUME PATH IS NOT REBUILT and the reason is SIGCM clause 8: the first-half deck prints the same contract table as April with the four liquefied-natural-gas carriers' firm period ending in June 2026, which would cut consolidated vessel-years from 12.0/18.0/26.25/30.0 to 10.0/13.0/17.5/20.75 \u2014 but the table's own heading reads \"No. of Vessels CONTRACTED\" and a bullet on the same slide describes five Das carriers being moved onto long-term contracts from the same month, so whether those ships stop EARNING or stop being COUNTED is not decidable from the page. The April composition is kept, the first half is taken from the two quarters the tables agree on, and the difference is priced as a contested judgement at -14.6 per cent rather than resolved silently.",
+   "evidence": "gas_margin measured on the half; GAS_VY_H1D published beside GAS_VY; gas_vy_alt_fv 4.5614 in the contested record",
+   "move": -0.14848484848484833
+  },
+  {
+   "name": "the strike moves to the latest known price",
+   "rule": "R-GAP-01 AMENDED",
+   "before": 5.339,
+   "after": 5.338,
+   "why": "AED 6.16 as at 7 August 2026 \u2192 AED 6.80 as at 7 September 2026, read from engine/prices/SUPPLIED_07-09-2026.json rather than typed. A higher price raises the market-value equity weight and therefore the cost of capital, which is why moving the strike moves the value at all. TWO CLOCKS ARE KEPT APART: the probability cone and the technical read stand on the daily series this repository holds, which ends 7 August 2026, and a fundamental rebuild does not re-strike a cone. Both dates are published.",
+   "evidence": "spot_aed read from the committed price file; price_close_engine carries the cone's own close of 6.16 with its date",
+   "move": -0.0001873009926953717
+  },
+  {
+   "name": "the interim dividend declared after the balance-sheet date",
+   "rule": "R-BRIDGE-01",
+   "before": 5.338,
+   "after": 5.338,
+   "why": "The board approved an interim cash dividend of USD 85.3 million for the second quarter on a record date of 20 August 2026 \u2014 after the sheet this bridge stands on and before the price this study is delivered against, so a buyer at that price does not receive it. Worth about two fils a share and deducted from EQUITY value rather than from enterprise value.",
+   "evidence": "div_declared_q2_26; a printed line in the bridge, the sum-of-the-parts bridge and both alternative bridges, all of which foot",
    "move": 0.0
   }
  ],
- "value": 5.605379,
- "cumulative_move": 0.0,
+ "value": 5.338,
+ "cumulative_move": -0.047700432031446915,
  "rules": {
-  "R-LENS-03": {
+  "SIGCM clause 1 / Step 2A": {
    "levers": [
-    "relative-lens circularity block put on one basis"
-   ],
-   "first_before": 5.605379,
-   "last_after": 5.605379,
-   "move": 0.0
-  },
-  "R-BRIDGE-01": {
-   "levers": [
-    "the bridge declares its currency, scale and peg"
-   ],
-   "first_before": 5.605379,
-   "last_after": 5.605379,
-   "move": 0.0
-  },
-  "R-COC-02": {
-   "levers": [
-    "the third tranche of the capital structure is declared"
-   ],
-   "first_before": 5.605379,
-   "last_after": 5.605379,
-   "move": 0.0
-  },
-  "R-ASSET-01": {
-   "levers": [
-    "the fleet is committed with the date it was true on"
+    "the four half-year documents swept in"
    ],
    "first_before": 5.605379,
    "last_after": 5.605379,
@@ -116,50 +100,55 @@
   },
   "R-ANCHOR-01": {
    "levers": [
-    "the profit anchor ordering, measured rather than asserted"
+    "the base period moves from the quarter to the reviewed half",
+    "the tanker price driver: the reported quarters and the disclosed third",
+    "the remaining units re-anchored on the reviewed half"
    ],
    "first_before": 5.605379,
-   "last_after": 5.605379,
-   "move": 0.0
+   "last_after": 6.27,
+   "move": 0.11856843221484215
   },
-  "R-SIGCM-02": {
+  "R-BRIDGE-01": {
    "levers": [
-    "the driver lines and the cost basis behind them"
+    "the bridge onto the 30 June 2026 balance sheet",
+    "the interim dividend declared after the balance-sheet date"
    ],
-   "first_before": 5.605379,
-   "last_after": 5.605379,
-   "move": 0.0
+   "first_before": 5.484,
+   "last_after": 5.338,
+   "move": -0.026622902990517838
   },
-  "R-ENF-04": {
+  "R-ANCHOR-01 / margins-are-outputs": {
    "levers": [
-    "the reporting scale, so the earnings reconciliation can be read"
+    "the tanker cost stack and the revenue gross-up, both measured"
    ],
-   "first_before": 5.605379,
-   "last_after": 5.605379,
-   "move": 0.0
+   "first_before": 5.66,
+   "last_after": 6.61,
+   "move": 0.16784452296819796
   },
-  "R-CAL-02": {
+  "R-ANCHOR-01 / SIGCM clause 8": {
    "levers": [
-    "the delivered pages: retired blend, retired verdict, edition date, both prices"
+    "the gas unit: the margin measured, the volume path held and priced both ways"
    ],
-   "first_before": 5.605379,
-   "last_after": 5.605379,
-   "move": 0.0
+   "first_before": 6.27,
+   "last_after": 5.339,
+   "move": -0.14848484848484833
+  },
+  "R-GAP-01 AMENDED": {
+   "levers": [
+    "the strike moves to the latest known price"
+   ],
+   "first_before": 5.339,
+   "last_after": 5.338,
+   "move": -0.0001873009926953717
   }
  },
- "distinct_rules": 8,
- "note": "Declared 07-09-2026 BEFORE any lever was applied, per [R-REBUILD-01]. The start spot is the LATEST KNOWN price of 6.80 (07-09-2026, supplied by the principal and committed to engine/prices/SUPPLIED_07-09-2026.json) rather than the 6.16 this study was struck at: the committed central of 5.6054 sat 9.0% below the struck price and sits 17.6% below the latest, so this study acquired a gap breach WITHOUT ANY LEVER MOVING, which is [R-GAP-01 AMENDED]'s own finding and is recorded here as the starting condition rather than discovered at the end.",
- "stopped": [
-  {
-   "lever": "the terminal on a disclosed asset life",
-   "rule": "R-TERM-01",
-   "why": "STOPPED, not deferred. TERMINAL_EVIDENCE_05-09-2026.md records three independent reasons the accounts yield no usable life: dry-docking is capitalised and amortised over two to five years while the vessel line is not split by component; one vessel class prints its age as an unfilled placeholder; and 97.85% of depreciable net book value sits in a single column spanning six disclosed lives from 2 to 40 years. A LIFE THIS DESK CHOSE IS NOT A DISCLOSED LIFE (SIGCM clause 1), so this rebuild does not touch the terminal and the ratchet entry stands."
-  }
- ],
+ "distinct_rules": 6,
+ "start_gap": -0.17567955882352937,
+ "note": "A RE-STRIKE ON FILINGS THE PREVIOUS EDITION NEVER OPENED. Nine levers, five rules. The cumulative move is small \u2014 5.6054 to 5.3385, minus 4.8 per cent \u2014 and that is the least interesting thing in this ledger, because the route runs 5.6054 down to 5.3530 on the balance sheet, up to 6.6100 on the tanker rebuild and back down to 5.3385 on the smaller units. TWO CORRECTIONS OF SIMILAR SIZE PULLING OPPOSITE WAYS IS NOT THE SAME EVIDENCE AS TWO SMALL ONES, and a rebuild reporting only the net would have published a number nobody could decompose.",
  "audit": {
-  "reached": "the declared audit point \u2014 after the cost-of-capital lever and before the document is rebuilt.",
-  "finding": "EVERY LEVER SO FAR HAS MOVED THE RECORD AND NONE HAS MOVED THE ANSWER. The central is 5.605379 after four levers exactly as it was before the first, and that is the honest result rather than a disappointing one: four standing rules were breached by this study, all four are now met, and not one of them was a wrong number. The cost-of-capital lever was expected to be the only one with a route to the central and it turned out to have none either \u2014 the weights were already right and only undeclared.",
-  "consequence": "The gap is therefore unchanged by the rebuild and is entirely the price moving: 5.6054 against 6.80 is -17.6%, past [R-GAP-01]'s ten per cent trigger, so this study owes its eight-heading review before any file is staged, and [R-GAP-02] holds it from publishing either way. THE REVIEW IS NOT A FORMALITY HERE: the largest single construction in this study, the terminal, is STOPPED for want of a disclosed asset life, so the one place a defect of this size would most likely sit is the one place this rebuild could not look.",
-  "after_the_audit_point": "FOUR FURTHER LEVERS, and the audit point held: the finding it recorded \u2014 that every lever moves the record and none moves the answer \u2014 survived all four. Recorded here rather than folded into the levers above, because a route walked after the stop is still a route somebody chose to keep walking."
+  "reached": "the declared audit point \u2014 after the tanker cost and scale rebuild and before any smaller unit was touched.",
+  "finding": "THE SCALE CORRECTION LANDED WHERE IT WAS PREDICTED TO AND NOWHERE ELSE. At the audit point the answer stood at 6.610 against a start of 5.6054, and the whole of the rise is levers four and five: +0.31 from the rates the company has published since, +0.95 from the cost stack. Levers one to three moved it DOWN by 0.25, which was not predicted in direction \u2014 the base-period move costs 0.12 because the company distributed cash in the second quarter, and the bridge costs another 0.13 because de-levering raises a market-value weighted cost of capital by more than the debt reduction is worth. THE PREDICTION THAT LEVERS 4 AND 5 WOULD PULL OPPOSITE WAYS WAS WRONG: both raised the answer, because the disclosed third-quarter rate is still far above mid-cycle and the leverage correction reaches every forecast year.",
+  "consequence": "At the audit point the gap was -2.8 per cent against 6.80 \u2014 inside [R-GAP-01]'s band. It did not stay there, and that is the reason the audit point is declared in advance rather than chosen: the four levers after it took the answer to 5.3385 and the gap to -21.5 per cent. NOTHING WAS FITTED TO THE PRICE IN EITHER DIRECTION \u2014 the price enters no driver, every parameter is solved from the audited 2025 year or the reviewed 2026 half, the one free parameter in the rate path was left at its delivered value of 0.50 and only its anchor moved, and the held-out half is UNDER-reproduced by 10.7 per cent. The gap owes its eight-heading review and gets one.",
+  "after_the_audit_point": "FOUR FURTHER LEVERS, and the audit point earned its place. Two of them \u2014 the remaining units and the gas margin \u2014 took 1.27 off the answer between them, more than the balance-sheet levers and the price move combined, and neither was expected to be material when the order was fixed. A ledger that recorded only the net would have shown a -4.8 per cent rebuild and hidden a 1.27 swing inside it."
  }
 }

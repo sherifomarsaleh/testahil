@@ -2115,6 +2115,13 @@ bt5 = json.load(open(os.path.join(HERE, 'backtest_5y.json')))
 beta_res = json.load(open(os.path.join(HERE, 'beta_result.json')))
 
 OUT = dict(
+    # [R-FCAL-01] WHAT THIS NAME'S WALK-FORWARD ADOPTED, STATED RATHER THAN LEFT
+    # TO SILENCE. scripts/check_corrections_applied.py reads this; a study with a
+    # run behind it and no statement either way is SILENT, which is a different
+    # fact from 'none adopted' and reads identically.
+    adopted_corrections=[],
+    adopted_corrections_note=(
+        "the walk-forward on this name adopted NO correction — see engine/phar_walkforward/corrections_log.json. Empty rather than absent: silence and 'none adopted' are the same file to a reader and different facts about the work."),
     meta=dict(company='Egyptian International Pharmaceutical Industries Company',
               short='EIPICO', ticker='PHAR', market='EG', exchange='The Egyptian Exchange',
               currency='EGP', sector='Pharmaceuticals — generic and branded manufacturing',
