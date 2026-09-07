@@ -13,7 +13,9 @@
    "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
    "origin": "walk_forward_fundamental",
    "rule": "robust_bias",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "REGISTER \u00b7 ALL",
+   "proposed_reason": "A PP&E roll-forward that models additions and not the translation of a foreign asset base must under-forecast depreciation on a currency that moves, and the error is arithmetic rather than evidence. Note 17 adds EGP 9,941,876,468 to machinery cost in FY2024 as an exchange movement alone, against additions of EGP 2,061,542,102 \u2014 four and a half times the real spend. This is a METHOD defect: every PP&E roll-forward in this book omits the translation term, so it binds on every study with a foreign asset base rather than on this one. It is the reason the correction was refused despite the largest clause-1 improvement any candidate offered."
   },
   {
    "proposed_id": "DRAFT-SWDY-02",
@@ -26,7 +28,9 @@
    "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
    "origin": "walk_forward_fundamental",
    "rule": "robust_bias",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "DECLINE",
+   "proposed_reason": "Capex under-forecasts by 0.679 log, and the driver is capex escalated at inflation from the origin's own level \u2014 which under-forecasts for the same reason depreciation does, and for the reason a company in a capacity build spends more than last year plus inflation. It is the same finding as DRAFT-01 seen from the input side rather than a second observation, and clause 1 fails anyway (four origins of eight)."
   },
   {
    "proposed_id": "DRAFT-SWDY-03",
@@ -39,7 +43,9 @@
    "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
    "origin": "walk_forward_fundamental",
    "rule": "robust_bias",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "DECLINE",
+   "proposed_reason": "Other operating income is a residual of disposals, grants and reversals held flat by a rule DECLARED equal to FREEZE in advance. A bias on a line the pre-registration said would equal the benchmark is a restatement of the rule, not a finding about it. Carried as a WATCH FLAG in corrections_log.json rather than as a lesson."
   },
   {
    "proposed_id": "DRAFT-SWDY-04",
@@ -52,7 +58,9 @@
    "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
    "origin": "walk_forward_fundamental",
    "rule": "robust_bias",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "REGISTER \u00b7 ALL",
+   "proposed_reason": "A finance-cost driver that holds the CHARGE flat is holding the DEBT BOOK flat, and on an issuer whose interest-bearing borrowings went from EGP 6.6bn to EGP 62.5bn \u2014 nine and a half times \u2014 the 88 log points of 'bias' are the growth of the book. This is [L-002] arriving in a new costume and it is worth registering separately, because [L-002] is about the DENOMINATOR of the rate and this is about the QUANTITY the rate is applied to. The house builds finance cost as rate x interest-bearing borrowings everywhere; a level-persistence rule is inconsistent with that, and the correction it invites would have hidden the inconsistency."
   },
   {
    "proposed_id": "DRAFT-SWDY-05",
@@ -65,7 +73,9 @@
    "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
    "origin": "walk_forward_fundamental",
    "rule": "robust_bias",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "DECLINE",
+   "proposed_reason": "Finance income held flat under-forecasts for the mirror reason \u2014 a cash pile that grew with the book. Same finding as DRAFT-04 on the other side of the ledger, and clause 1 fails (four origins of eight). Nothing is added by filing it twice."
   },
   {
    "proposed_id": "DRAFT-SWDY-06",
@@ -78,7 +88,9 @@
    "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
    "origin": "walk_forward_fundamental",
    "rule": "robust_bias",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "REGISTER \u00b7 CLASS",
+   "proposed_reason": "Cable tonnage over-forecasts by 28% in nineteen cells of twenty, the ONLY driver in the table that runs the other way, and it LOSES to freeze by 38%. Real GDP is the wrong exogenous anchor for a metal-goods volume: tonnage is rationed by the copper price and by which projects are being wired, not by activity in aggregate. Scoped to the class rather than to ALL because the finding is about a PHYSICAL volume anchored on activity, which is how this book builds a manufacturer and not how it builds a bank or a developer. Filed at the narrower scope on three expanding-window origins \u2014 widen it when a second manufacturer shows the same thing."
   },
   {
    "proposed_id": "DRAFT-SWDY-07",
@@ -91,7 +103,9 @@
    "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
    "origin": "walk_forward_fundamental",
    "rule": "robust_bias",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "REGISTER \u00b7 CLASS",
+   "proposed_reason": "Contracting revenue under-forecasts by 0.326 log with a bootstrap interval that excludes zero and a sign that survives every admissible cut. An activity anchor cannot see a contractor taking share of a market that is itself being built \u2014 EGP 2.7bn to EGP 87.1bn against Egyptian real GDP. This is the class's own economics rather than the method's arithmetic, which is why it is CLASS and DRAFT-01 is ALL. The correction was still refused: five origins of eight improve while the MEAN error rises."
   },
   {
    "proposed_id": "DRAFT-SWDY-08",
@@ -104,7 +118,9 @@
    "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
    "origin": "walk_forward_fundamental",
    "rule": "robust_bias",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "DECLINE",
+   "proposed_reason": "Contracting cost under-forecasts by 0.358 because contracting REVENUE does and the two sit on the same clock by construction. It is the matched half of DRAFT-07, not a second observation; filing both would count one finding twice."
   },
   {
    "proposed_id": "DRAFT-SWDY-09",
@@ -117,7 +133,9 @@
    "overturned_by": "A later run where the model beats the freeze benchmark at a majority of horizons.",
    "origin": "walk_forward_fundamental",
    "rule": "beaten_by_naive",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "DECLINE",
+   "proposed_reason": "Depreciation losing to freeze is the consequence of the specification defect DRAFT-01 names, not an independent finding about naive benchmarks. Registering it separately would let a reader take it as evidence that the method is weak where it is in fact evidence that one driver is wired wrong."
   },
   {
    "proposed_id": "DRAFT-SWDY-10",
@@ -130,7 +148,9 @@
    "overturned_by": "A later run where the model beats the freeze benchmark at a majority of horizons.",
    "origin": "walk_forward_fundamental",
    "rule": "beaten_by_naive",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "DECLINE",
+   "proposed_reason": "Cable volume losing to freeze is the consequence of the wrong exogenous anchor DRAFT-06 names. Same reasoning as DRAFT-09."
   },
   {
    "proposed_id": "DRAFT-SWDY-11",
@@ -143,7 +163,9 @@
    "overturned_by": "A market or period where the same decomposition puts most of the error on the macro path.",
    "origin": "walk_forward_fundamental",
    "rule": "company_not_macro",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "REGISTER \u00b7 ALL",
+   "proposed_reason": "Perfect foresight of inflation and the currency removes AT MOST 28% of the error on a company whose currency lost eighty-five per cent of its value inside the window. That is the strongest form this negative result has been measured in: if devaluation does not explain the misses HERE, an assumption that it explains them elsewhere needs measuring rather than asserting. The general rule \u2014 check whether the macro explains it before assuming it does \u2014 is a method rule and binds on every study. This one draft carries the finding; DRAFT-12 through DRAFT-17 are the same measurement on individual drivers."
   },
   {
    "proposed_id": "DRAFT-SWDY-12",
@@ -156,7 +178,9 @@
    "overturned_by": "A market or period where the same decomposition puts most of the error on the macro path.",
    "origin": "walk_forward_fundamental",
    "rule": "company_not_macro",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "DECLINE",
+   "proposed_reason": "The same macro/company split as DRAFT-11, on one driver."
   },
   {
    "proposed_id": "DRAFT-SWDY-13",
@@ -169,7 +193,9 @@
    "overturned_by": "A market or period where the same decomposition puts most of the error on the macro path.",
    "origin": "walk_forward_fundamental",
    "rule": "company_not_macro",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "DECLINE",
+   "proposed_reason": "The same macro/company split as DRAFT-11, on one driver."
   },
   {
    "proposed_id": "DRAFT-SWDY-14",
@@ -182,7 +208,9 @@
    "overturned_by": "A market or period where the same decomposition puts most of the error on the macro path.",
    "origin": "walk_forward_fundamental",
    "rule": "company_not_macro",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "DECLINE",
+   "proposed_reason": "The same macro/company split as DRAFT-11, on one driver."
   },
   {
    "proposed_id": "DRAFT-SWDY-15",
@@ -195,7 +223,9 @@
    "overturned_by": "A market or period where the same decomposition puts most of the error on the macro path.",
    "origin": "walk_forward_fundamental",
    "rule": "company_not_macro",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "DECLINE",
+   "proposed_reason": "A driver held flat by rule carries no inflation term, so a zero macro share on it is true BY CONSTRUCTION and is the split's own check rather than a finding."
   },
   {
    "proposed_id": "DRAFT-SWDY-16",
@@ -208,7 +238,9 @@
    "overturned_by": "A market or period where the same decomposition puts most of the error on the macro path.",
    "origin": "walk_forward_fundamental",
    "rule": "company_not_macro",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "DECLINE",
+   "proposed_reason": "As DRAFT-15 \u2014 zero macro share by construction."
   },
   {
    "proposed_id": "DRAFT-SWDY-17",
@@ -221,7 +253,9 @@
    "overturned_by": "A market or period where the same decomposition puts most of the error on the macro path.",
    "origin": "walk_forward_fundamental",
    "rule": "company_not_macro",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "DECLINE",
+   "proposed_reason": "As DRAFT-15 \u2014 zero macro share by construction."
   },
   {
    "proposed_id": "DRAFT-SWDY-18",
@@ -234,7 +268,9 @@
    "overturned_by": "A longer record in which one sign dominates across all regimes.",
    "origin": "walk_forward_fundamental",
    "rule": "era_flip",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "REGISTER \u00b7 ALL",
+   "proposed_reason": "The cost-of-revenue bias runs +0.021 before the 2016 float, \u22120.161 through the first float and \u22120.538 through the second. A bias that changes direction between regimes is not a bias, and the average of three regimes was true in none of them. Registering ONE instability lesson from this run rather than eight: what generalises is that this book's single largest sample produced five sign-flipping drivers out of nineteen, and that the cut-invariant test [R-FCAL-01 AMENDED 07-09-2026] \u2014 not the market's own currency boundary \u2014 is what separated them. DRAFT-19 through DRAFT-25 are the same phenomenon on other lines."
   },
   {
    "proposed_id": "DRAFT-SWDY-19",
@@ -247,7 +283,9 @@
    "overturned_by": "A longer record in which one sign dominates across all regimes.",
    "origin": "walk_forward_fundamental",
    "rule": "era_flip",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "DECLINE",
+   "proposed_reason": "The same instability as DRAFT-18, on another line."
   },
   {
    "proposed_id": "DRAFT-SWDY-20",
@@ -260,7 +298,9 @@
    "overturned_by": "A longer record in which one sign dominates across all regimes.",
    "origin": "walk_forward_fundamental",
    "rule": "era_flip",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "DECLINE",
+   "proposed_reason": "The same instability as DRAFT-18, on another line."
   },
   {
    "proposed_id": "DRAFT-SWDY-21",
@@ -273,7 +313,9 @@
    "overturned_by": "A longer record in which one sign dominates across all regimes.",
    "origin": "walk_forward_fundamental",
    "rule": "era_flip",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "DECLINE",
+   "proposed_reason": "Cable price per tonne flips sign at three of three admissible cuts. Same phenomenon as DRAFT-18, and the driver's own bias is 0.026 log \u2014 immaterial as well as unstable."
   },
   {
    "proposed_id": "DRAFT-SWDY-22",
@@ -286,7 +328,9 @@
    "overturned_by": "A longer record in which one sign dominates across all regimes.",
    "origin": "walk_forward_fundamental",
    "rule": "era_flip",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "DECLINE",
+   "proposed_reason": "As DRAFT-21, the cost side of the same pair."
   },
   {
    "proposed_id": "DRAFT-SWDY-23",
@@ -299,7 +343,9 @@
    "overturned_by": "A longer record in which one sign dominates across all regimes.",
    "origin": "walk_forward_fundamental",
    "rule": "era_flip",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "DECLINE",
+   "proposed_reason": "The same instability as DRAFT-18, on the cables leg."
   },
   {
    "proposed_id": "DRAFT-SWDY-24",
@@ -312,7 +358,9 @@
    "overturned_by": "A longer record in which one sign dominates across all regimes.",
    "origin": "walk_forward_fundamental",
    "rule": "era_flip",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "DECLINE",
+   "proposed_reason": "The same instability as DRAFT-18, on the cables cost leg."
   },
   {
    "proposed_id": "DRAFT-SWDY-25",
@@ -325,7 +373,10 @@
    "overturned_by": "A longer record in which one sign dominates across all regimes.",
    "origin": "walk_forward_fundamental",
    "rule": "era_flip",
-   "confirmed": false
+   "confirmed": false,
+   "proposed_ruling": "DECLINE",
+   "proposed_reason": "The same instability as DRAFT-18, on the other-cost leg."
   }
- ]
+ ],
+ "_proposals": "Every draft carries a proposed_ruling and a proposed_reason and NOTHING is confirmed. The scope is the judgement and it is not automated; lessons_add.py refuses every entry here until each is signed."
 }
