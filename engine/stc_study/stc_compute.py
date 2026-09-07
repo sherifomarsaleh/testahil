@@ -21,6 +21,11 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'
 
 import income_statement as ISTMT_EARLY          # noqa: E402  (after the path insert)
 import strike_cohorts as SC                     # noqa: E402
+# [R-LENS-01] presentational: this study RENDERS the committed cone in its own §3
+# probabilistic price map and in Step 0.0. It does not take a cone value as an
+# input to the fair value — the lenses are shown side by side, which is what the
+# rule requires; what it forbids is one being an input to another. Re-deriving a
+# cone here instead is the defect the comment below records.
 from wacc_builder import WaccInputs, build_wacc, RegressionBetaAttempt  # noqa: E402
 
 # Imported here rather than beside the cost-of-capital block because the LATEST KNOWN

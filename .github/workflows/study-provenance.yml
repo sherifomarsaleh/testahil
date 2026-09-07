@@ -1336,6 +1336,16 @@ jobs:
       - name: Standard-claim gate — negative control
         run: python3 scripts/check_standard_claim_negative_control.py
 
+      # [R-LENS-01], adopted 23-Aug-2026 from an investor-critique session and enforced by
+      # nothing until today. It is the claim an outside reader probes hardest, because it
+      # is what makes the three-lens presentation worth anything: if a cone leans on a fair
+      # value, three lenses agreeing is one lens counted three times.
+      - name: The three lenses do not feed each other
+        run: python3 scripts/check_lens_independence.py
+
+      - name: Lens-independence gate — negative control
+        run: python3 scripts/check_lens_independence_negative_control.py
+
       # [R-COC-02]. check_cost_of_capital enforces the CONSTRUCTION thoroughly and never
       # reproduced Ke, so a cost of equity typed 300bp high passed everything here. The
       # book runs two terminal constructions and no record said which.
