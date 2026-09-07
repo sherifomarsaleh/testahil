@@ -167,6 +167,21 @@ ARTEFACT_GATES = {
     # them is legitimate, so an empty study directory is not a violation here and
     # demanding that this gate refuse one would be a FALSE CLAIM about what it checks.
     # It bites on a record that EXISTS and is short of the field set the module emits.
+    # ARTEFACT-CONDITIONAL, LISTED IN THE COMMIT THAT ADOPTS THE GATE [R-ENF-07].
+    # An empty study directory delivers no valuation document, so it has nothing to be
+    # missing a bibliography FROM — refusing it would be a FALSE CLAIM about what this
+    # gate checks. It bites on a study that DELIVERS a document and ships no
+    # bibliography-class artefact beside it.
+    # ARTEFACT-CONDITIONAL [R-ENF-07]: an empty study directory delivers no document
+    # and so embeds no figure — there is nothing that could be translucent, and
+    # refusing it would be a false claim about what this gate checks.
+    'check_figure_opacity.py': (
+        'a delivered document embedding a translucent figure',
+        lambda: {'%s_Valuation_Study_03-09-2026.docx' % TICKER: ('docx_media', None)}),
+    'check_bibliography.py': (
+        'a delivered study with no standalone bibliography document',
+        lambda: {'%s_Valuation_Study_03-09-2026.docx' % TICKER: ('docx', 'A study a '
+                 'reader receives, with no bibliography beside it.')}),
     'check_terminal_record_shape.py': (
         'a committed terminal record short of the field set terminal_value.py emits',
         lambda: {'study_numbers.json': ('json', {
@@ -419,6 +434,20 @@ def plant(sdir, files):
                         t.cell(i, j).text = str(cell)
             else:
                 d.add_paragraph(payload)
+            d.save(path)
+        elif kind == 'docx_media':
+            # A document EMBEDDING A TRANSLUCENT IMAGE. A gate whose subject is the
+            # pixel data of a delivered figure cannot be tested by a paragraph.
+            import io as _io
+            import docx
+            from PIL import Image
+            im = Image.new('RGBA', (12, 12), (255, 255, 255, 0))   # fully transparent
+            buf = _io.BytesIO()
+            im.save(buf, format='PNG')
+            buf.seek(0)
+            d = docx.Document()
+            d.add_paragraph('A delivered study with a figure in it.')
+            d.add_picture(buf)
             d.save(path)
         elif kind == 'json':
             json.dump(payload, open(path, 'w', encoding='utf-8'))

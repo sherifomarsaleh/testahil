@@ -1,0 +1,5 @@
+{
+ "rule": "R-ENF-01/depth-bar standard 1",
+ "note": "Studies delivering a valuation document with no standalone bibliography-class document. GBCO predates the depth bar and is already listed on four other ratchets (source unreadable, cost of capital, output records, rebuild ledger); its own open item records that a re-issue there is a REBUILD rather than a patch, because its compute.py raises on a retired keyword into a v2 cost-of-capital input. Producing a bibliography for it is part of that re-issue, not a passing edit. The list may only ever SHORTEN [R-ENF-02].",
+ "outstanding": ["GBCO"]
+}

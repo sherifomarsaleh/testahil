@@ -1,0 +1,5 @@
+{
+ "rule": "R-ENF-01/depth-bar standard 5",
+ "note": "Studies delivering a figure with transparent pixels. GBCO's eight figures carry fully transparent regions (minimum alpha 0) and it predates the depth bar; it is already listed on five other ratchets, and its own open item records that a re-issue there is a REBUILD rather than a patch because its compute.py raises on a retired keyword into a v2 cost-of-capital input. Rebuilding its figures is part of that re-issue. The list may only ever SHORTEN [R-ENF-02].",
+ "outstanding": ["GBCO"]
+}

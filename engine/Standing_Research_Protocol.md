@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-07c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-07e — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -3954,3 +3954,111 @@ still unenforced, and the two are not the same claim.** Finding nothing wrong is
 ordinary outcome of a first run, and it says only that today's book is sound. What the
 gate buys is that tomorrow's entry cannot be the first exception. Ask which of the
 standards that have never failed are still running on trust.
+
+
+## [R-ENF-01 EXTENDED 07-09-2026] Depth-bar standard 1 is checked over every study, and the artefact has three names
+
+Standard 1 requires a standalone bibliography document beside every delivered study, and
+the bar says of its own list that each item is a QC item and **missing one is a FAIL, not
+a noted limitation**.
+
+What checked it was `check_calibration_deliverables`, whose population is the walk-forward
+run directories — five names. The other nineteen studies were covered by
+`bibliography_document`, a boolean each study sets on itself. **The standard was enforced
+on a fifth of the book and attested on the rest, and the breach is in the rest:** one study
+ships a valuation document and a workbook and no bibliography-class document at all. It
+predates the bar and already sits on four other ratchets, so nothing has to be fixed
+tonight. What was found is that nothing was looking.
+
+### The artefact ships under three names
+
+Twenty-one studies use the obvious one; one uses a source-register name; one uses a
+sources name; and one study's file carries **the company's other name rather than its
+ticker**. A check written against the obvious convention would have condemned three
+compliant studies, and one keyed on the ticker prefix a fourth. The variants are named in
+code, from what the book actually ships, rather than inferred.
+
+It deliberately does not read the document's contents. Whether a bibliography carries its
+four tables is depth-bar content, checked inside the study and at the QC gate; this asks
+only whether the artefact a reader is supposed to *receive* exists — a gate judging depth
+from outside would make a claim it cannot support, which is worse than the narrow claim it
+can.
+
+A study delivering no document is not in scope, and that is not a loophole: a metals
+directory delivers no valuation study, and an empty directory has nothing to be missing a
+bibliography from. That is why it is artefact-conditional in the gauntlet [R-ENF-07].
+Ratcheted at one with its reason; population-anchored [R-ENF-04] both ways — zero
+directories fails, and so does zero *delivered study documents* across present
+directories, because a matcher that stopped matching reads exactly like a clean book.
+Negative-controlled on ten conditions, five red and five clean, the clean half carrying
+all three artefact names and the company-named file.
+
+### The general lesson, which is not about bibliographies
+
+**A reader that guesses a naming convention silently finds nothing, and it reports that as
+a result.** Five separate first-attempt measurements were wrong on the day this rule was
+adopted, and every one failed the same way:
+
+- a probe excluding a directory by substring rather than by name, which swallowed
+  `.github` and condemned two files that were on disk;
+- a field read under one of its two spellings, which reported most of the book missing a
+  provenance field that was there;
+- an artefact grepped for under one of its three names, which reported two breaches where
+  there is one;
+- a filename assumed to carry a ticker, which would have condemned a fourth compliant
+  study;
+- a check whose matcher required a path prefix nobody had ever decided on.
+
+None of them produced an error. Every one produced a *number* — which is what makes this
+failure mode survive, because it looks exactly like a measurement. Where a probe reads a
+name, ask what else the thing is called, and prefer a matcher built from what the
+repository actually contains over one built from what it ought to.
+
+
+## [R-ENF-01 EXTENDED 07-09-2026] Standard 5 says "zero transparency verified programmatically", and nothing verified it
+
+What verified it was `figure_discipline`, a boolean each study sets on itself.
+
+**The other figure gate is not this one.** `check_figure_axes` runs each figure *script*
+under a guard and refuses a mark drawn outside its own axis. Transparency belongs to the
+file a reader receives: a script that sets a solid facecolor can still ship a translucent
+PNG inside a document, and only the delivered file can say so. This is the
+builder-versus-page distinction already recorded of tables — a check that needs the
+builder is a check about the builder, and the reader does not have the builder.
+
+Measured across every delivered study document: of 176 embedded images, **eight are
+translucent, all eight in one study**, every one with fully transparent pixels. Every
+other study is opaque to the pixel. That study predates the bar and already sits on
+several ratchets, so nothing must be fixed tonight. What was found is that the clause was
+verified by nobody.
+
+### The mode is not the measurement
+
+This gate exists in its corrected form because the first pass got that wrong. Reading the
+colour **mode** reported 160 of 176 images as carrying transparency — matplotlib writes an
+RGBA channel that is fully opaque, so the mode says almost nothing. The honest test is the
+**minimum alpha actually present in the pixels**. The first figure was twenty times the
+real one and would have condemned twenty-two compliant studies.
+
+It deliberately does not check whether the canvas is *light*. That is a judgement about a
+palette; a dark figure can be a deliberate design and a gate cannot tell one from an
+accident, so it would be making a claim it cannot support. Opacity is arithmetic about the
+file and lightness is not, and the two are not bundled merely because one sentence of the
+bar names both.
+
+Ratcheted at one with its reason; population-anchored [R-ENF-04] both ways — zero
+directories fails, and so does zero *images* read across present documents, because a
+reader that stopped finding media reads exactly like a book of opaque figures.
+Artefact-conditional in the gauntlet [R-ENF-07], since an empty directory embeds no
+figure. Negative-controlled on nine conditions, five red and four clean, the decisive
+clean case being an **opaque RGBA image** — the shape most of the book ships and the one a
+mode-reading gate condemns. Its own fixture failed first, and that is recorded: two clean
+sandboxes omitted the ratcheted study while the ratchet still named it, so the gate
+refused them on the anchored-on-nothing clause and *was right* — the scaffolding was
+wrong, not the subject.
+
+**The general lesson, which is not about figures: a property and its container are not the
+same measurement.** RGBA is a container that can hold transparency and almost always holds
+none, so asking whether the container exists answers a question nobody had. Where a check
+can read either a declaration or the quantity, read the quantity — which is this
+protocol's own rule about inflation inputs, arriving somewhere nobody had connected to it.

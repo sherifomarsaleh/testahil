@@ -96,11 +96,22 @@ def main(argv):
               'An unanswerable check is not a clean one [R-ENF-04].' % exc)
         return 1
 
+    rc_h, head_now, _ = git('rev-parse', 'HEAD')
+    head_now = head_now.strip()
+
     if record:
+        # THE BASELINE DECLARES THE HEAD IT WAS TAKEN AT [R-ENF-06 applied to this gate].
+        # The baseline lives at a fixed path, so an ABORTED run leaves one behind and the
+        # next comparison reads it as though it described this run — reporting files as
+        # "reverted" that were simply staged since. A MISSING baseline already fails
+        # loudly; a STALE one failed MISLEADINGLY, which is worse, and it was found
+        # within an hour of this gate being written by running it standalone.
         with open(baseline, 'w', encoding='utf-8') as fh:
+            fh.write('# head %s\n' % (head_now or 'unknown'))
             fh.write('\n'.join(state) + ('\n' if state else ''))
-        print('   baseline recorded: %d tracked file(s) already modified before the '
-              'checks ran -> %s' % (len(state), baseline))
+        print('   baseline recorded at %s: %d tracked file(s) already modified before '
+              'the checks ran -> %s'
+              % (head_now[:8] or 'an unknown head', len(state), baseline))
         return 0
 
     if not os.path.exists(baseline):
@@ -110,8 +121,19 @@ def main(argv):
               % baseline)
         return 1
 
-    before = sorted(ln for ln in
-                    open(baseline, encoding='utf-8').read().splitlines() if ln.strip())
+    raw = open(baseline, encoding='utf-8').read().splitlines()
+    head_was = ''
+    for ln in raw:
+        if ln.startswith('# head '):
+            head_was = ln[len('# head '):].strip()
+    before = sorted(ln for ln in raw if ln.strip() and not ln.startswith('# head '))
+    if head_was and head_now and head_was != head_now:
+        print('\nFAIL — the baseline was recorded at %s and HEAD is now %s, so it '
+              'describes a different tree. A comparison against a baseline from another '
+              'commit is not a clean result, it is a confident wrong one: re-run the '
+              '--record step first. (An aborted earlier run leaves a baseline behind at '
+              'the same path.)' % (head_was[:8], head_now[:8]))
+        return 1
     rc2, head, _ = git('rev-parse', '--short', 'HEAD')
     appeared = [ln for ln in state if ln not in before]
     vanished = [ln for ln in before if ln not in state]

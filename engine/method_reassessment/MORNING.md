@@ -2524,3 +2524,84 @@ all** — verified against the raw HTML, not just a rendered fetch, and not a Ja
 problem. The EGX and EFSA disclosure portals both return `connect_rejected` at the proxy —
 a policy denial, not retried. Aggregators are barred for historicals. Routes run and
 recorded; this needs the filings supplied or another primary route.
+
+## 07-09-2026 — a reader that guesses a naming convention silently finds nothing
+
+Depth-bar standard 1 (a standalone bibliography beside every delivered study) was enforced
+by `check_calibration_deliverables` over the **five calibrated names** and by a self-set
+boolean over the other nineteen. **The one breach is in the nineteen:** GBCO ships a
+valuation document and a workbook and no bibliography-class document at all. It predates
+the bar and already sits on four other ratchets, so nothing needs fixing tonight — what was
+found is that nothing was looking.
+
+**The artefact ships under three names**, which is the part that generalises: twenty-one
+studies use `Bibliography`, ELEC uses `Source_Register`, TMGH uses `Sources`, and PHAR's
+file is named for the company (`EIPICO_`) rather than the ticker. A check on the obvious
+convention would have condemned three compliant studies; one keyed on the ticker prefix, a
+fourth. Named in code from what the book ships. `check_bibliography.py`, ratcheted at one,
+10 conditions (5 red, 5 clean), artefact-conditional in the gauntlet, 37/37. Stamps
+`2026-09-07d`.
+
+### The finding that outlasts the three gates
+
+**Five first-attempt measurements were wrong today and every one failed the same way.**
+
+| probe | how it was wrong | what it reported |
+|---|---|---|
+| repo file index | excluded `.git` by substring, so it swallowed `.github` | 2 workflow files "missing" that were on disk |
+| four-field audit | read `layer`, not `layer`/`ring` | "58% of inputs missing a field" — it was 0% |
+| bibliography sweep | grepped `bibliograph` only | 2 breaches — there is 1 |
+| (same, next step) | would have assumed a ticker prefix | would have condemned PHAR |
+| `check_protocol_text` | matcher required a path prefix nobody decided on | "names nothing that does not exist" for months |
+
+**None produced an error. Every one produced a number.** That is what makes this failure
+mode survive — it is indistinguishable from a measurement, and it is the same shape as
+[R-ENF-04]'s empty probe one level up: not an absent answer this time, but a *confident
+wrong* one, arrived at by guessing what something is called.
+
+The three gates written today all encode the same correction: name the variants in code,
+from what the repository actually contains, never from what it ought to contain.
+
+**Postscript, within the hour, on the gate written this morning.** `check_tree_unmodified`
+keeps its baseline at a fixed path, so an aborted run leaves one behind and the next
+comparison reads it as describing *this* run — reporting files staged since as "reverted".
+A **missing** baseline already failed loudly; a **stale** one failed *misleadingly*, which
+is worse and is the same species as everything else recorded today. Fixed by [R-ENF-06]
+applied to my own gate: the baseline now declares the HEAD it was taken at, and a
+comparison against a baseline from another commit refuses instead of comparing. Sixth
+control case added; 10 of 10.
+
+
+## 07-09-2026 (03:15 firing) — a property and its container are not the same measurement
+
+Depth-bar standard 5 says every figure sits on a solid canvas with **"zero transparency
+verified programmatically"**. Nothing verified it — `figure_discipline` is a boolean each
+study sets on itself, and the other figure gate (`check_figure_axes`) runs the figure
+*scripts*, not the delivered images. A script that sets a solid facecolor can still ship a
+translucent PNG inside a document.
+
+**Measured across every delivered study document: 176 embedded images, 8 translucent, all
+eight in GBCO**, every one with fully transparent pixels. Every other study is opaque to the
+pixel. GBCO predates the bar and already sits on five other ratchets.
+
+**My first pass reported 160 of 176.** It read the colour *mode*: matplotlib writes an RGBA
+channel that is fully opaque, so the mode says almost nothing. Twenty times the real figure,
+and it would have condemned twenty-two compliant studies. Sixth instance of the same probe
+error today — and the first one I caught before reporting it.
+
+The gate deliberately does not check whether the canvas is *light*: a dark figure can be a
+deliberate design and a gate cannot tell one from an accident. Opacity is arithmetic about
+the file; lightness is not, and they are not bundled merely because one sentence names both.
+
+`check_figure_opacity.py`, ratcheted at one, 9 conditions (5 red, 4 clean), artefact-
+conditional, gauntlet 38/38. Stamps `2026-09-07e`. **Its own control failed first** — two
+clean sandboxes omitted the ratcheted study while the ratchet still named it, so the gate
+refused them and was right; the scaffolding was wrong, not the subject.
+
+### One operational decision, taken and recorded
+
+I have aborted the local `run_ci_gates.py` sweep four times tonight to make edits, so it has
+not completed once. **CI runs the identical step list on a clean checkout on every push**,
+which is strictly the better test. From here I run the affected gates and the gauntlet
+locally and let CI be the full-suite authority, rather than continuing a ritual that never
+finishes and cannot be honestly claimed.

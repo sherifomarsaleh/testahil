@@ -1267,6 +1267,28 @@ jobs:
       - name: Four-field gate — negative control
         run: python3 scripts/check_four_field_negative_control.py
 
+      # Depth-bar standard 1 was enforced on the five CALIBRATED names and attested
+      # by a self-set boolean on the other nineteen — and the one breach sits in the
+      # nineteen. The artefact ships under three names in this book, and one study's
+      # file carries the company's other name rather than its ticker, so the variants
+      # are named in code rather than inferred from the obvious convention.
+      - name: Every delivered study ships a standalone bibliography
+        run: python3 scripts/check_bibliography.py
+
+      - name: Bibliography gate — negative control
+        run: python3 scripts/check_bibliography_negative_control.py
+
+      # Standard 5 says "zero transparency verified programmatically" and nothing
+      # verified it. Its sibling check_figure_axes reads the BUILDER; this reads the
+      # file a reader receives, and the two are different objects. The measurement is
+      # the MINIMUM ALPHA PRESENT, never the colour mode — matplotlib writes an opaque
+      # RGBA channel, so the mode reported 160 of 176 images as transparent when 8 are.
+      - name: Every delivered figure is opaque to the pixel
+        run: python3 scripts/check_figure_opacity.py
+
+      - name: Figure-opacity gate — negative control
+        run: python3 scripts/check_figure_opacity_negative_control.py
+
       - name: A frozen escalator is declared, or it is a defect
         run: python3 scripts/check_frozen_escalator.py
 

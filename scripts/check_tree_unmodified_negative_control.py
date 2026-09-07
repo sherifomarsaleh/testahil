@@ -26,8 +26,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 TARGET = os.path.join(HERE, "check_tree_unmodified.py")
 
-CASES_EXPECTED = 9
-RED_EXPECTED = 5
+CASES_EXPECTED = 10
+RED_EXPECTED = 6
 CLEAN_EXPECTED = 4
 
 
@@ -172,8 +172,27 @@ def already_dirty_and_unchanged(tmp):
     return None
 
 
+def stale_baseline(tmp):
+    """A baseline left behind by an ABORTED earlier run, at a different commit.
+
+    The baseline lives at a fixed path, so this is not hypothetical — it happened
+    within an hour of the gate being written. A MISSING baseline already failed
+    loudly; a STALE one compared against a different tree and reported staged files
+    as "reverted", which is a confident wrong answer rather than an absent one.
+    """
+    p = _baseline(tmp)
+    assert os.path.exists(p), "MUTATION DID NOT LAND: there is no baseline to stale"
+    body = open(p).read()
+    assert body.startswith("# head "), "MUTATION DID NOT LAND: baseline declares no head"
+    open(p, "w").write("# head 0000000000000000000000000000000000000000\n"
+                       + body.split("\n", 1)[1])
+    assert open(p).read().startswith("# head 0000"), "MUTATION DID NOT LAND"
+    return "describes a different tree"
+
+
 RED = [
     ("a committed register rewritten while checks ran", register_rewritten, {}),
+    ("a baseline left behind by an aborted run", stale_baseline, {}),
     ("the --record step is missing from the run", no_baseline, {"skip_record": True}),
     ("a tracked file deleted", tracked_file_deleted, {}),
     ("not a git work tree", not_a_work_tree, {}),
