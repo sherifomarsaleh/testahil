@@ -314,7 +314,29 @@ def main():
         src = open(dj, encoding='utf-8').read()
         j = src.index('\n];', src.index('const LEDGER'))
         row = _SD.read_list('LEDGER', dj)
-        dup = next(r for r in row if r.get('realized_close') in (None, ''))
+        # THE FIXTURE HAS TO INJECT THE CONDITION THE INVARIANT ACTUALLY FORBIDS, WHICH
+        # IS A SECOND OPEN ROW AT THE **LATEST** ANCHOR — not merely a second open row.
+        # This took `next(open row)`, i.e. whichever open row happened to sort first in
+        # the file, and that is an ORDERING ACCIDENT: under the lifecycle a name carries
+        # up to four open rows and three of them are AGING TAILS, which are supposed to
+        # sit open beside the current strike. Duplicating a tail is not a breach, so the
+        # invariant correctly stayed silent and the control read that silence as the
+        # check having failed. It went red the moment a metronome strike pushed a tail
+        # ahead of any latest-anchor row in the file (07-Sep-2026: ADNOCLS 3 months,
+        # anchor 2026-08-07, superseded by the 2026-09-07 strike beside it).
+        #
+        # A NEGATIVE CONTROL THAT FIRES ON THE WRONG FIXTURE IS WORSE THAN ONE THAT DOES
+        # NOT FIRE: it reports a working check as broken, and the next reader either
+        # loosens a check that was right or learns to ignore the red. Pick the row by
+        # the PROPERTY under test rather than by position.
+        latest = {}
+        for r in row:
+            if r.get('realized_close') in (None, ''):
+                k = (r['instrument'], r['horizon_label'])
+                latest[k] = max(latest.get(k, ''), r['anchor_date'])
+        dup = next(r for r in row
+                   if r.get('realized_close') in (None, '')
+                   and r['anchor_date'] == latest[(r['instrument'], r['horizon_label'])])
         cell = ('  {instrument:"%s", horizon_label:"%s", anchor_date:"%s", '
                 'realized_close:null}' % (dup['instrument'], dup['horizon_label'],
                                           dup['anchor_date']))
