@@ -20,9 +20,18 @@ multi-line form. Per [R-ENF-01] the fix is checked from OUTSIDE the module.
 
 WHAT IT ASSERTS, BOTH WAYS
 --------------------------
-1. REACH — every open row is writable by apply_grade(), or is NAMED with the field
-   set it is actually missing. A row that cannot be graded is reported, never
-   silently skipped: an ungradable row looks exactly like a row nobody graded.
+1. REACH — every open row is writable by apply_grade(). This used to be REPORTED and
+   not fatal, because fourteen rows across seven names carried no realized_high /
+   realized_low / in_90 / in_50 slots at all and filling them would have changed the
+   structure of a published forecast row. That was the right call and it was not the
+   only option: 07-Sep-2026 the writer was taught to grade a row INTO THE FIELDS IT
+   CARRIES rather than to invent the ones it does not, and the last six of those rows
+   turned out to be missing nothing at all — they simply wrote `realized_close: null`
+   with a space. Reach is now 267 of 267 with nothing outstanding, so an unreachable
+   row FAILS. There is no ratchet because there is nothing to excuse, and a reported
+   gap nobody has to clear is how this one survived a month: BOROUGE's 1-month cone
+   resolved dead centre of its own 50% band and could not be recorded, and because the
+   raise is a SystemExit it would have killed the whole sweep behind it.
 2. BYTE-IDENTITY — on every row the OLD one-line patterns matched, the new
    whitespace-tolerant patterns must produce a byte-identical rewrite. This is the
    half that matters: a widened pattern that also changes existing output has not
@@ -105,11 +114,11 @@ def main() -> int:
         print('FAIL: the writer reached zero open rows')
         bad = True
     if unreachable:
-        # Reported, not fatal: these rows are short a FIELD, not a line break, and
-        # inventing the missing fields would edit a published forecast's structure.
-        # They are named here so the gap is visible rather than absent.
-        print('NOTE: the rows above are missing outcome FIELDS, not merely wrapped — '
-              'a schema gap, recorded rather than silently patched.')
+        print('FAIL: the writer cannot reach the rows above. A row it cannot write is a '
+              'row that cannot be graded, and an ungradable row looks exactly like a row '
+              'nobody graded. Teach apply_grade() the shape — writing the fields the row '
+              'CARRIES — never invent fields onto a published forecast row.')
+        bad = True
     print('OK' if not bad else 'FAILED')
     return 1 if bad else 0
 
