@@ -122,6 +122,48 @@ def share_count(D):
     return None
 
 
+# THE SHARE COUNT CARRIES ITS SCALE IN ITS NAME AND THE PROFIT DOES NOT, WHICH IS THE
+# WHOLE OF THIS. `shares_mn` says millions; `npa_fy25` says nothing at all, and a book that
+# keeps its statements in thousands divides one by the other and lands a factor of a
+# thousand out — which is what this gate reported on the exemplar, correctly, as a
+# reconciliation it could not read. THE FIX IS THE DECLARATION, not a guess: a magnitude
+# test would "resolve" a real error as cleanly as a scale, and this repository has already
+# paid for reading a container instead of the quantity.
+#
+# THE LIST IS CLOSED because a scale is a FACT WITH A MULTIPLIER, not a reason — closing it
+# costs a study nothing it can honestly want, and leaving it open would let one declare a
+# scale nobody can check. A study declaring nothing is read exactly as before.
+STATEMENT_SCALES = {'units': 1.0, 'thousands': 1e3, 'millions': 1e6, 'billions': 1e9}
+
+
+# THE UNDECLARED DEFAULT IS MILLIONS AND IT IS AN OBSERVED FACT ABOUT THIS BOOK RATHER
+# THAN A CHOICE: share_count() returns a count in millions and this gate divided profit
+# straight into it, so every study it has ever reconciled was keeping profit in millions
+# too. Making the default anything else would break the studies that read correctly, which
+# is the widening [R-COC-01] forbids arriving from the other direction.
+DEFAULT_SCALE = 'millions'
+
+
+def statement_scale(D):
+    """(multiplier relative to MILLIONS, failure) for the committed profit figures.
+
+    Returns 1.0 where a study declares nothing, so nothing that read before stops
+    reading now.
+    """
+    u = D.get('reporting_units')
+    if u is None:
+        return 1.0, None
+    if not isinstance(u, dict):
+        return 1.0, 'reporting_units is not a record'
+    s = u.get('statement_scale')
+    if s is None:
+        return 1.0, None
+    if s not in STATEMENT_SCALES:
+        return 1.0, ('reporting_units declares statement_scale %r, which is not one of %s'
+                     % (s, sorted(STATEMENT_SCALES)))
+    return STATEMENT_SCALES[s] / STATEMENT_SCALES[DEFAULT_SCALE], None
+
+
 def read(path):
     """(reported eps, attributable profit, shares, year) for the LATEST year both exist."""
     D = json.load(open(path, encoding='utf-8'))
@@ -186,7 +228,14 @@ def main(argv):
         if not eps_v:
             unreadable.append((tk, 'reported earnings per share is zero'))
             continue
-        computed = npa_v / sh
+        # SCALE FIRST, THEN THE ARITHMETIC. `shares_mn` names its scale and a profit key
+        # names none, so a study keeping statements in thousands has to SAY SO or the
+        # division is a thousand out. A study declaring nothing divides exactly as before.
+        mult, scale_why = statement_scale(D)
+        if scale_why:
+            unreadable.append((tk, scale_why))
+            continue
+        computed = npa_v * mult / sh
         # tolerance from the PRINTED rounding of the EPS, never chosen: half a unit in the
         # last decimal it is stated to, plus a share-count rounding allowance.
         dec = len((('%r' % eps_v).split('.') + [''])[1])

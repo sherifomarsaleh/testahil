@@ -13,6 +13,7 @@ fleet earns in — and converts to dirhams at the peg only at the per-share step
 Amounts are USD thousand unless a name says otherwise.
 """
 import json, os, math
+import dataclasses as _dc
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 # ============================================================================
@@ -2138,6 +2139,16 @@ _gu = [
     RP.DriverLine(
         name='Offshore Contracting', level='segment',
         share_of_revenue=_SEGR['Offshore Contracting'] / _REVT,
+        # THE COST BASIS ON A SEGMENT LINE IS THE MARGIN, AND THE RECORD HAS TO SAY SO.
+        # It was written into the gap note below and nowhere a checker could point at it —
+        # the study holding the fact and stating it where nothing could read it, which is
+        # the same shape as every other record this rebuild closed. The reason is READ FROM
+        # THE FORECAST'S OWN DRV_WHY rather than retyped, so the line and the model cannot
+        # drift apart.
+        cost_basis=('no unit is disclosed for this leg, so no cost per unit can be built '
+                    'and the MARGIN is the input with cost as the residual — which the '
+                    'rule permits at the segment level and forbids wherever the filings '
+                    'support a unit. ' + DRV_WHY['Offshore Contracting']),
         gap_note='THE DISCLOSURE STOPS AT THE SEGMENT AND THE GAP IS STATED RATHER THAN '
                  'FILLED. This leg earns under long-term integrated logistics contracts '
                  'whose scope, duration and pricing are commercially confidential; the '
@@ -2149,12 +2160,32 @@ _gu = [
     RP.DriverLine(
         name='Offshore Services', level='segment',
         share_of_revenue=_SEGR['Offshore Services'] / _REVT,
+        # THE COST BASIS ON A SEGMENT LINE IS THE MARGIN, AND THE RECORD HAS TO SAY SO.
+        # It was written into the gap note below and nowhere a checker could point at it —
+        # the study holding the fact and stating it where nothing could read it, which is
+        # the same shape as every other record this rebuild closed. The reason is READ FROM
+        # THE FORECAST'S OWN DRV_WHY rather than retyped, so the line and the model cannot
+        # drift apart.
+        cost_basis=('no unit is disclosed for this leg, so no cost per unit can be built '
+                    'and the MARGIN is the input with cost as the residual — which the '
+                    'rule permits at the segment level and forbids wherever the filings '
+                    'support a unit. ' + DRV_WHY['Offshore Services']),
         gap_note='as Offshore Contracting: segment revenue and backlog are disclosed and '
                  'no physical unit is. Flagged rather than modelled at a level the '
                  'filings do not support.'),
     RP.DriverLine(
         name='Offshore Projects', level='segment',
         share_of_revenue=_SEGR['Offshore Projects'] / _REVT,
+        # THE COST BASIS ON A SEGMENT LINE IS THE MARGIN, AND THE RECORD HAS TO SAY SO.
+        # It was written into the gap note below and nowhere a checker could point at it —
+        # the study holding the fact and stating it where nothing could read it, which is
+        # the same shape as every other record this rebuild closed. The reason is READ FROM
+        # THE FORECAST'S OWN DRV_WHY rather than retyped, so the line and the model cannot
+        # drift apart.
+        cost_basis=('no unit is disclosed for this leg, so no cost per unit can be built '
+                    'and the MARGIN is the input with cost as the residual — which the '
+                    'rule permits at the segment level and forbids wherever the filings '
+                    'support a unit. ' + DRV_WHY['Offshore Projects']),
         gap_note='as Offshore Contracting. This is the smallest leg and the least '
                  'disclosed: project revenue is recognised as work completes and the '
                  'project list is not published, so even the backlog run-off is coarser '
@@ -2162,6 +2193,16 @@ _gu = [
     RP.DriverLine(
         name='Services', level='segment',
         share_of_revenue=_SEGR['Services'] / _REVT,
+        # THE COST BASIS ON A SEGMENT LINE IS THE MARGIN, AND THE RECORD HAS TO SAY SO.
+        # It was written into the gap note below and nowhere a checker could point at it —
+        # the study holding the fact and stating it where nothing could read it, which is
+        # the same shape as every other record this rebuild closed. The reason is READ FROM
+        # THE FORECAST'S OWN DRV_WHY rather than retyped, so the line and the model cannot
+        # drift apart.
+        cost_basis=('no unit is disclosed for this leg, so no cost per unit can be built '
+                    'and the MARGIN is the input with cost as the residual — which the '
+                    'rule permits at the segment level and forbids wherever the filings '
+                    'support a unit. ' + DRV_WHY['Services']),
         gap_note='a portfolio of shore-based and marine support activities disclosed only '
                  'in aggregate. No unit is published for any of them and none is '
                  'invented; the leg is grown on the disclosed segment and its margin is '
@@ -3000,7 +3041,29 @@ OUT = dict(
             'manufactured.',
         ],
     ),
+    # THE SCALE THIS STUDY'S STATEMENTS ARE KEPT IN, DECLARED. `shares_mn` carries its
+    # scale in its name and `npa_fy25` carries none, so an instrument dividing one into
+    # the other lands a factor of a thousand out — which is exactly what the earnings
+    # reconciliation reported, correctly, as a reconciliation it could not read. The
+    # company reports in US dollars and files in thousands; the per-share figures a
+    # reader sees are converted to dirhams at the peg at the last step.
+    reporting_units=dict(currency='USD', statement_scale='thousands',
+                         share_scale='millions', per_share_currency='AED',
+                         fx=float(peg),
+                         note='every income-statement and balance-sheet figure committed '
+                              'here is in USD thousands, as filed. The share count is in '
+                              'millions, as its own key name says. A per-share figure is '
+                              'USD until it is multiplied by the peg.'),
     ground_up=GROUND_UP,
+    # THE LINES THE ASSERTION WAS COMPUTED FROM, not only what it returned. Until this
+    # was committed the study published share_by_level — the assertion's OUTPUT — and
+    # nothing outside the study could RE-RUN assert_ground_up() to see whether that
+    # output followed from anything. A committed conclusion with no committed inputs is
+    # the self-attested boolean [R-ENF-01] closes everywhere else, wearing a summary's
+    # clothes. Seven lines, covering 100 per cent of forecast revenue, each naming its
+    # level, its unit, the disclosure the unit came from, the price basis and the cost
+    # basis — and every line below `unit` carrying the gap note the rule requires.
+    driver_lines=[_dc.asdict(_l) for _l in _gu],
     assert_log=assert_log,
 )
 OUT['meta']['central'] = central

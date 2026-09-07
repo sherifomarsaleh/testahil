@@ -5,7 +5,6 @@
  "unreadable": {
   "ADNOCDIST": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",
   "ADNOCDRILL": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",
-  "ADNOCLS": "commits the assertion's OUTPUT (share_by_level) and not the driver lines it was computed from, so nothing outside the study can re-run it",
   "AIRARABIA": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",
   "AMOC": "commits the assertion's OUTPUT (share_by_level) and not the driver lines it was computed from, so nothing outside the study can re-run it",
   "AMR": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",

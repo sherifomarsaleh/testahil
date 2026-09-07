@@ -263,6 +263,66 @@ case('a share count committed under a THOUSANDS key is read, not missed',
                 and 'shares_issued_k' in (json.load(open(nf(d, 'du'))).get('meta') or {})))
 
 
+# --- the SCALE declaration, added 07-09-2026 -------------------------------------------
+# The exemplar keeps its statements in USD THOUSANDS and its share count in MILLIONS, so
+# dividing one straight into the other lands a factor of a thousand out — which this gate
+# reported, correctly, as a reconciliation it could not read. What was missing was the
+# DECLARATION, and these five cases are what keep the declaration from becoming a dial.
+
+
+def _adn_units(d, **kw):
+    put(d, 'adnocls', reporting_units=dict({'currency': 'USD',
+                                            'statement_scale': 'thousands',
+                                            'share_scale': 'millions'}, **kw))
+
+
+def _adn_ratio(d):
+    """The factor between the study's own profit-over-shares and its reported EPS."""
+    D = json.load(open(nf(d, 'adnocls')))
+    ins = D.get('inputs', {})
+    npa = ins.get('npa_fy25', {}).get('value')
+    eps = ins.get('eps_fy25', {}).get('value')
+    sh = ins.get('shares_mn', {}).get('value')
+    if not (npa and eps and sh):
+        return None
+    return abs((npa / sh) / eps)
+
+
+# THE DECISIVE CLEAN CASE — the exemplar as it stands, thousands DECLARED, must reconcile.
+case("the exemplar's thousands-over-millions, DECLARED — must stay green",
+     lambda d: _adn_units(d), False,
+     lambda d: (json.load(open(nf(d, 'adnocls'))).get('reporting_units') or {})
+               .get('statement_scale') == 'thousands' and (_adn_ratio(d) or 0) > 100)
+
+# ...and the same study with the declaration REMOVED is unreadable again, which is the
+# before-and-after this rule turns on: the arithmetic did not change, the record did.
+case("the same study with the scale declaration removed — unreadable again",
+     lambda d: put(d, 'adnocls', reporting_units=None), True,
+     lambda d: json.load(open(nf(d, 'adnocls'))).get('reporting_units') is None
+               and (_adn_ratio(d) or 0) > 100)
+
+# A SCALE OFF THE CLOSED LIST IS NOT A SCALE. The list is closed because a scale is a fact
+# with a multiplier rather than a reason, so closing it costs a study nothing it can
+# honestly want and leaving it open would let one declare a scale nobody can check.
+case("a statement_scale off the closed list",
+     lambda d: _adn_units(d, statement_scale='lakhs'), True,
+     lambda d: (json.load(open(nf(d, 'adnocls'))).get('reporting_units') or {})
+               .get('statement_scale') == 'lakhs')
+
+# A DECLARATION THAT IS NOT A RECORD IS NOT A DECLARATION.
+case("reporting_units that is not a record",
+     lambda d: put(d, 'adnocls', reporting_units='thousands'), True,
+     lambda d: json.load(open(nf(d, 'adnocls'))).get('reporting_units') == 'thousands')
+
+# THE DECLARATION CANNOT BE USED TO HIDE A REAL GAP, which is the abuse worth proving
+# impossible: declaring MILLIONS on a study that files in thousands does not make the
+# figures agree, it moves them a thousand the other way and the gate still refuses.
+case("the wrong scale declared — the gate is not satisfied by a declaration alone",
+     lambda d: _adn_units(d, statement_scale='millions'), True,
+     lambda d: (json.load(open(nf(d, 'adnocls'))).get('reporting_units') or {})
+               .get('statement_scale') == 'millions' and (_adn_ratio(d) or 0) > 100)
+
+
 def main():
     base = sandbox()
     rc, out = run(base)

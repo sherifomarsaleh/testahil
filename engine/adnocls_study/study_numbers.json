@@ -7421,6 +7421,14 @@
    "the schedule is FLAT by construction of the peg [R-COC-01]. A pegged market is already terminal, so no disinflation glide applies and none is manufactured."
   ]
  },
+ "reporting_units": {
+  "currency": "USD",
+  "statement_scale": "thousands",
+  "share_scale": "millions",
+  "per_share_currency": "AED",
+  "fx": 3.6725,
+  "note": "every income-statement and balance-sheet figure committed here is in USD thousands, as filed. The share count is in millions, as its own key name says. A per-share figure is USD until it is multiplied by the peg."
+ },
  "ground_up": {
   "ticker": "ADNOCLS",
   "lines": 7,
@@ -7433,6 +7441,78 @@
   "unit_share": 0.5220918589567931,
   "standard_version": "2026.09.07"
  },
+ "driver_lines": [
+  {
+   "name": "Tankers",
+   "level": "unit",
+   "share_of_revenue": 0.4274468391366116,
+   "unit": "vessel-days by class, at the day rate each vessel actually earns",
+   "unit_source": "the fleet list and charter register in the FY2025 annual report and the Q1-2026 investor presentation: every chartered vessel with its own contracted rate and the exact dates its charter runs, every other vessel on the implied spot rate for its class",
+   "price_basis": "the company's own disclosed quarterly time-charter-equivalent rates by vessel class, reverting toward the mid-cycle average of the same disclosed series",
+   "cost_basis": "running cost per vessel-day, solved so the owned fleet reproduces the reported FY2025 earnings, escalated on the house inflation ladder",
+   "gap_note": null
+  },
+  {
+   "name": "Gas Carriers",
+   "level": "unit",
+   "share_of_revenue": 0.05524320804280955,
+   "unit": "vessel-years in service times the day rate",
+   "unit_source": "the vessel count in service through 2025 and the newbuild delivery schedule, both disclosed",
+   "price_basis": "the disclosed day rate, escalated on the house inflation ladder \u2014 these vessels earn under long-term contracts rather than at spot",
+   "cost_basis": "the disclosed joint-venture charge per vessel-year, escalated on the same ladder",
+   "gap_note": null
+  },
+  {
+   "name": "Dry-Bulk and Containers",
+   "level": "unit",
+   "share_of_revenue": 0.03940181177737196,
+   "unit": "vessel-days at the class day rate",
+   "unit_source": "the fleet list in the FY2025 annual report",
+   "price_basis": "the disclosed class rate on the same reversion path as the tankers",
+   "cost_basis": "the same per-vessel-day running cost stack",
+   "gap_note": null
+  },
+  {
+   "name": "Offshore Contracting",
+   "level": "segment",
+   "share_of_revenue": 0.24944222193717647,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "no unit is disclosed for this leg, so no cost per unit can be built and the MARGIN is the input with cost as the residual \u2014 which the rule permits at the segment level and forbids wherever the filings support a unit. First-quarter revenue annualised, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The 2026 margin is the first quarter's own margin before the one-off receivable provision, recovering toward the 2025 level as utilisation normalises.",
+   "gap_note": "THE DISCLOSURE STOPS AT THE SEGMENT AND THE GAP IS STATED RATHER THAN FILLED. This leg earns under long-term integrated logistics contracts whose scope, duration and pricing are commercially confidential; the company discloses segment revenue and the contracted backlog but no unit \u2014 no vessel-days, no tonne-miles, no day rate. Building a unit economics on an invented unit would add an unsourced driver and no information while looking more precise, which is the offence the rule names. It is grown on the disclosed backlog and its stated run-off."
+  },
+  {
+   "name": "Offshore Services",
+   "level": "segment",
+   "share_of_revenue": 0.13246701906789105,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "no unit is disclosed for this leg, so no cost per unit can be built and the MARGIN is the input with cost as the residual \u2014 which the rule permits at the segment level and forbids wherever the filings support a unit. First-quarter revenue annualised, then 5% a year on the support-vessel fleet growth already under way. Margin held at the level the first quarter delivered.",
+   "gap_note": "as Offshore Contracting: segment revenue and backlog are disclosed and no physical unit is. Flagged rather than modelled at a level the filings do not support."
+  },
+  {
+   "name": "Offshore Projects",
+   "level": "segment",
+   "share_of_revenue": 0.024980353777421308,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "no unit is disclosed for this leg, so no cost per unit can be built and the MARGIN is the input with cost as the residual \u2014 which the rule permits at the segment level and forbids wherever the filings support a unit. The company's own stated range of USD 100-150 million of engineering and construction revenue for 2026 after the large island project completed, then a recovery as new awards replace it. This is the least visible line in the model.",
+   "gap_note": "as Offshore Contracting. This is the smallest leg and the least disclosed: project revenue is recognised as work completes and the project list is not published, so even the backlog run-off is coarser here than elsewhere. Stated, not smoothed over."
+  },
+  {
+   "name": "Services",
+   "level": "segment",
+   "share_of_revenue": 0.07101854626071813,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "no unit is disclosed for this leg, so no cost per unit can be built and the MARGIN is the input with cost as the residual \u2014 which the rule permits at the segment level and forbids wherever the filings support a unit. First-quarter revenue annualised and grown 4% a year. The margin reflects the warehouse activity moved into this unit and the growing profit share from the bunkering associate.",
+   "gap_note": "a portfolio of shore-based and marine support activities disclosed only in aggregate. No unit is published for any of them and none is invented; the leg is grown on the disclosed segment and its margin is held at the disclosed level."
+  }
+ ],
  "assert_log": [
   {
    "check": "four fields complete: spot_aed",
