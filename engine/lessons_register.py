@@ -6741,6 +6741,56 @@ LESSONS = [
       "-0.460.",
       "A longer record in which one sign dominates across all "
       "regimes."),
+
+    L("L-376", "CLASS", "automotive assembler and distributor with a captive lender",
+      "A captive lender's own equity is not a valuation base until "
+      "what that equity holds has been taken out of it.",
+      "A financing arm inside an operating group usually holds the "
+      "group's investments as well as its loan book, so its reported "
+      "equity funds two different things. Value the leg on that whole "
+      "figure and you have paid for the investments twice — once "
+      "inside the lender and once when the sum of the parts adds them "
+      "back at their own mark. Take the investments out of the equity "
+      "first, and take their income out of the return you measure on "
+      "it.",
+      "GBCO walk-forward, date not recorded",
+      "build",
+      "GB Capital's segment shareholders' equity before non- "
+      "controlling interests was EGP 22,497.8mn at 30 June 2026 and "
+      "the associates carried inside it were EGP 16,230.5mn, so the "
+      "equity actually funding the lending business was 6,267.3mn — "
+      "28% of the reported figure. The company's own adjusted return "
+      "on average equity implies a base near 9,046mn whose NUMERATOR "
+      "carries EGP 986.4mn of associate income, and the delivered "
+      "study used a typed 9,500 taken from that basis.",
+      "A group of this class whose financing segment carries no "
+      "investments inside its own equity, so the identity returns the "
+      "same base the company's own return measure implies and there "
+      "is nothing to remove."),
+
+    L("L-377", "CLASS", "automotive assembler and distributor with a captive lender",
+      "Group earnings in this class cannot be normalised, because the "
+      "associate marks move them more than the operating business "
+      "does.",
+      "A normalised-earnings lens asks what the company earns in an "
+      "ordinary year. Where a large minority holding is equity- "
+      "accounted, the reported line swings on that holding's results "
+      "and on revaluations, so an average of it is an average of "
+      "something the operating business does not control. Publish the "
+      "operating legs and the holding separately instead.",
+      "GBCO walk-forward, date not recorded",
+      "build",
+      "Investment gains from associates ran EGP 451.6mn, 294.6mn and "
+      "131.6mn across three consecutive quarters to 2Q26 while GB "
+      "Capital's own operating profit over the same quarters ran "
+      "156.5mn, 187.0mn and 387.4mn — the associate line was larger "
+      "than the operating line in two of the three and moved in the "
+      "opposite direction. The delivered study gave a normalised lens "
+      "a quarter of its weight on six typed figures.",
+      "A company of this class whose equity-accounted holdings are "
+      "small enough that the reported earnings track the operating "
+      "legs, which would make a normalised read of the group "
+      "meaningful again."),
 ]
 
 
