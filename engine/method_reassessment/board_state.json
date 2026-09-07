@@ -14,7 +14,7 @@
    "title": "It catches the errors that actually happen",
    "test": "Every confirmed gap is closed by a gate or listed with a reason, and every closed gap has a negative control that re-plants the real defect.",
    "state": "IN FLIGHT",
-   "note": "All three named errors are gated, and the census then found the landbank gate was checking the wrong half \u2014 the vintage, not whether any arithmetic reads the quantity. Corrected. 40 verified gaps remain as the work list; three of the sharpest are closed."
+   "note": "All three named errors are gated and proved by planting them. Of the census's 40 verified gaps, ten families are closed or partly closed and five remain. The sharpest finds today were reader-facing: 93 pages naming a retired construction, two studies publishing a central beneath their own disclosed floor, and four anchoring profit behind their own balance sheet."
   },
   {
    "id": "P3",
@@ -122,24 +122,27 @@
    "title": "Reach, repair, proof",
    "families": [
     "asset-base-landbank",
-    "cost-of-capital-level (weights, beta provenance)",
-    "lens-architecture (the published page)",
-    "output-sanity (2 of 3 claims)",
-    "share-count (1 of 3 forms)"
+    "cost-of-capital-level",
+    "lens-architecture (the page)",
+    "output-sanity",
+    "share-count",
+    "terminal-value (the spread)",
+    "base-year (the anchor ordering)",
+    "record survival"
    ],
    "state": "DONE",
-   "detail": "P1 and P3 closed. Eight gates: asset-base vintage and wiring, Ke reproduction, weights and beta provenance, lens independence, the reader-side gap, the retired blend on all 93 pages, the relationship between a study's own figures, and the per-share gate's free escape."
+   "detail": "P1 and P3 closed. Twelve gates: asset-base vintage and wiring, Ke reproduction with weights and beta provenance, lens independence, the reader-side gap, the retired blend on all 93 pages, the relationship between a study's own figures, the per-share gate's free escape, the spread a terminal reinvests at, the profit anchor against the study's own balance sheet, a record surviving its own rebuild, the terminal's maintenance override and its unsourced working capital. [R-ASSET-02] and [R-STD-02] adopted in both governing documents."
   },
   {
    "start": "2026-09-08",
    "end": "2026-09-08",
-   "title": "Finish the answer's own audit",
+   "title": "Revenue and cost, built or asserted",
    "families": [
-    "output-sanity (net cash per share)",
-    "share-count (the 67 with no divisor; a capital increase mid-period)"
+    "cost-drivers-and-margin",
+    "revenue-drivers"
    ],
    "state": "NEXT",
-   "detail": "Brought forward on the 7th: a central beneath the study's own published floor (AIRARABIA -8.8%, EGCH -50%), a cross-check that does not reproduce from its own operands (ADNOCLS the exemplar at 330x, a unit error its circularity block hid), and the per-share gate's twenty-one free passes. What remains: the envelope's low leg against net cash per share, which needs the money unit the circularity block must now declare; and tying the divisor to the DATE of the equity value it divides."
+   "detail": "Brought forward from the 12th, because the 8th's own two families closed on the 7th. Gross margin held as an input where the filings disclose cost per unit; one blended domestic index on physically distinct cost lines; a globally-traded input escalated on the house domestic ladder; the ground-up build that is still a self-attested boolean; a volume ladder outrunning the plant that produces it."
   },
   {
    "start": "2026-09-09",
@@ -177,13 +180,13 @@
   {
    "start": "2026-09-12",
    "end": "2026-09-12",
-   "title": "Revenue and cost, built or asserted",
+   "title": "Macro, currency and what the study read",
    "families": [
-    "cost-drivers-and-margin",
-    "revenue-drivers"
+    "macro-and-fx",
+    "base-year (the filings index)"
    ],
    "state": "QUEUED",
-   "detail": "Gross margin held as an input; one blended domestic index on physically distinct cost lines; a globally-traded input escalated on the house domestic ladder; the ground-up build that is still a self-attested boolean."
+   "detail": "Moved here from the 9th. The derived-currency check that runs only when fx is present; an inflation input registered under a key the book does not use; and the half of 'latest disclosed period' that needs a filings index rather than a comparison between two fields the study wrote itself."
   },
   {
    "start": "2026-09-13",

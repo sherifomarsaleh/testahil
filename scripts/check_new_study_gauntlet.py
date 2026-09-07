@@ -146,6 +146,15 @@ ARTEFACT_GATES = {
                                 'from engine.mc_v3 import simulate_paths_v3\n'
                                 'def build():\n'
                                 '    json.dump({"central": 17.85}, open("study_numbers.json", "w"))\n')}),
+    'check_ground_up.py': (
+        # An empty study commits no driver lines and no summary, so it is in the unreadable
+        # group by construction — which IS a refusal, and the right one. Planted with the
+        # sharper case anyway: committed lines that fail the assertion when it is run.
+        'driver lines that do not cover the revenue they claim to build',
+        lambda: {'study_numbers.json': ('json', {
+            'driver_lines': [{'name': 'one', 'level': 'unit', 'share_of_revenue': 0.4,
+                              'unit': 'tonnes', 'unit_source': 'note 7',
+                              'price_basis': 'realised price per tonne'}]})}),
     'check_record_survives_rebuild.py': (
         # An empty study has no generator, so there is no rebuild to attempt and refusing
         # a bare directory would be a false claim [R-ENF-07]. Planted with the defect: a

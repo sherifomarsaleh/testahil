@@ -166,6 +166,8 @@ on:
       - 'scripts/check_terminal_spread.py'
       - 'scripts/check_anchor_ordering.py'
       - 'scripts/check_record_survives_rebuild.py'
+      - 'scripts/check_ground_up.py'
+      - 'scripts/check_ground_up_negative_control.py'
       - 'scripts/check_record_survives_rebuild_negative_control.py'
       - 'scripts/check_anchor_ordering_negative_control.py'
       - 'scripts/check_terminal_spread_negative_control.py'
@@ -307,6 +309,8 @@ on:
       - 'scripts/check_terminal_spread.py'
       - 'scripts/check_anchor_ordering.py'
       - 'scripts/check_record_survives_rebuild.py'
+      - 'scripts/check_ground_up.py'
+      - 'scripts/check_ground_up_negative_control.py'
       - 'scripts/check_record_survives_rebuild_negative_control.py'
       - 'scripts/check_anchor_ordering_negative_control.py'
       - 'scripts/check_terminal_spread_negative_control.py'
@@ -1157,6 +1161,14 @@ jobs:
 
       - name: Record survival — negative control
         run: python3 scripts/check_record_survives_rebuild_negative_control.py
+
+      # [R-SIGCM-02]. assert_ground_up() has existed since the boolean was retired and no
+      # gate anywhere called it. The gate RUNS the instrument; it does not count the file.
+      - name: The ground-up clause, run rather than counted
+        run: python3 scripts/check_ground_up.py
+
+      - name: The ground-up clause — negative control
+        run: python3 scripts/check_ground_up_negative_control.py
 
       # [R-TERM-01]. The reinvestment identity rr = g/ROIC collapses to
       # TV = [NOPAT - g.IC]/(W-g), so it charges g x IC for ever and the implied
