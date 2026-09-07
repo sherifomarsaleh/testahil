@@ -1,0 +1,1311 @@
+{
+ "2007Q1__Consolidated-Financial-Statement-for-the-period-of-Jan-Mar07.pdf": {
+  "chars": 96385,
+  "pages": 29,
+  "route": "text_layer",
+  "sha256": "c5bb03298044a4e3",
+  "text_layer_chars": 96385
+ },
+ "2007Q2__Consolidated-Financial-Statement-for-the-period-of-Jan-Jun-07.pdf": {
+  "chars": 92445,
+  "pages": 27,
+  "route": "text_layer",
+  "sha256": "f035955566cafe50",
+  "text_layer_chars": 92445
+ },
+ "2008Q1__Elsewedy-Cables-Audited-Consolidated-Results-for-Q1-08.pdf": {
+  "chars": 3975,
+  "pages": 2,
+  "route": "text_layer",
+  "sha256": "23f7fab8e5ab0555",
+  "text_layer_chars": 3975
+ },
+ "2010Q2__Elsewedy-Electric-reports-second-quarter-2010-results.pdf": {
+  "chars": 22303,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "1ef8d6a522cccbae",
+  "text_layer_chars": 22303
+ },
+ "2010Q3__El-Sewedy-Electric-reports-third-quarter-2010-results.pdf": {
+  "chars": 13242,
+  "pages": 7,
+  "route": "text_layer",
+  "sha256": "8aa2b5b674b66c1f",
+  "text_layer_chars": 13242
+ },
+ "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.pdf": {
+  "chars": 19824,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "fda206949d61796d",
+  "text_layer_chars": 19824
+ },
+ "2011Q1__Q1-2011-Earnings-Press-release.pdf": {
+  "chars": 21538,
+  "pages": 8,
+  "route": "text_layer",
+  "sha256": "e5607819f57522d0",
+  "text_layer_chars": 21538
+ },
+ "2011Q2__Q2-2011-Earnings-Press-release.pdf": {
+  "chars": 22695,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "b4018616237ca605",
+  "text_layer_chars": 22695
+ },
+ "2011Q3__Consolidated-Q3-2011.pdf": {
+  "chars": 159929,
+  "pages": 36,
+  "route": "text_layer",
+  "sha256": "9b82e692ef9eb876",
+  "text_layer_chars": 159929
+ },
+ "2011Q3__Q3-2011-Earnings-Press-release.pdf": {
+  "chars": 22748,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "015e855f4d5f813f",
+  "text_layer_chars": 22748
+ },
+ "2011Q4__Consolidated-Q4-2011-English.pdf": {
+  "chars": 137201,
+  "pages": 38,
+  "route": "text_layer",
+  "sha256": "c9fcd66d3984d371",
+  "text_layer_chars": 137201
+ },
+ "2011Q4__FY-2011-Earnings-Press-Release.pdf": {
+  "chars": 23466,
+  "pages": 10,
+  "route": "text_layer",
+  "sha256": "9591b811163f7160",
+  "text_layer_chars": 23466
+ },
+ "2012Q1__Consolidated-Q1-2012.pdf": {
+  "chars": 150687,
+  "pages": 37,
+  "route": "text_layer",
+  "sha256": "218ab110f7fe92f7",
+  "text_layer_chars": 150687
+ },
+ "2012Q1__Q1-2012-Earnings-Press-release.pdf": {
+  "chars": 23054,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "69d74aa7bf2ccdc2",
+  "text_layer_chars": 23054
+ },
+ "2012Q1__RAP-Quarter-Investrors-Q1-2012.pdf": {
+  "chars": 13781,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "640fad720cd9902e",
+  "text_layer_chars": 13781
+ },
+ "2012Q2__Consolidated-Q2-2012.pdf": {
+  "chars": 149056,
+  "pages": 37,
+  "route": "text_layer",
+  "sha256": "6cec3e239e3af59b",
+  "text_layer_chars": 149056
+ },
+ "2012Q2__Q2-2012-Earnings-Press-Release.pdf": {
+  "chars": 23659,
+  "pages": 10,
+  "route": "text_layer",
+  "sha256": "ee5e9076893d3995",
+  "text_layer_chars": 23659
+ },
+ "2012Q2__RAP-Quarter-Investrors-Q2-2012.pdf": {
+  "chars": 14922,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "d5b848c1980d355e",
+  "text_layer_chars": 14922
+ },
+ "2012Q3__Consolidated-Q3-2012.pdf": {
+  "chars": 157297,
+  "pages": 37,
+  "route": "text_layer",
+  "sha256": "59c5ba24db14e228",
+  "text_layer_chars": 157297
+ },
+ "2012Q3__Q3-2012-Earnings-Press-Release.pdf": {
+  "chars": 24483,
+  "pages": 10,
+  "route": "text_layer",
+  "sha256": "ea12e78d5b1fc451",
+  "text_layer_chars": 24483
+ },
+ "2012Q3__RAP-Quarter-Investors-Q3-2012.pdf": {
+  "chars": 16043,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "dff1e940667b085c",
+  "text_layer_chars": 16043
+ },
+ "2012Q4__FY-2012-Earnings-Press-Release.pdf": {
+  "chars": 23004,
+  "pages": 10,
+  "route": "text_layer",
+  "sha256": "f5138b9a51ffbb48",
+  "text_layer_chars": 23004
+ },
+ "2012Q4__RAP-Quarter-Investors-FY-2012.pdf": {
+  "chars": 18289,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "928d49001d6c42df",
+  "text_layer_chars": 18289
+ },
+ "2013Q1__Q1-2013-Earnings-Press-Release.pdf": {
+  "chars": 28608,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "3eda453847c8b011",
+  "text_layer_chars": 28608
+ },
+ "2013Q1__RAP-Quarter-Investors-Q1-2013.pdf": {
+  "chars": 12533,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "d32790d97b458a2f",
+  "text_layer_chars": 12533
+ },
+ "2013Q1__consolidated-Q1-2013-eng.pdf": {
+  "chars": 139081,
+  "pages": 38,
+  "route": "text_layer",
+  "sha256": "e4a9f6c23c902253",
+  "text_layer_chars": 139081
+ },
+ "2013Q2__EE-consolidated-Q2-2013-eng.pdf": {
+  "chars": 148270,
+  "pages": 36,
+  "route": "text_layer",
+  "sha256": "5dba57ebb647b912",
+  "text_layer_chars": 148270
+ },
+ "2013Q2__Q2-2013-Earnings-Press-Release-final.pdf": {
+  "chars": 29397,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "29e2790a529103eb",
+  "text_layer_chars": 29397
+ },
+ "2013Q2__RAP-Quarter-Investors-Q2-2013.pdf": {
+  "chars": 13690,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "56fdd7f6851b0085",
+  "text_layer_chars": 13690
+ },
+ "2013Q3__EE-Consolidated-Eng.-Q3-2013.pdf": {
+  "chars": 148397,
+  "pages": 36,
+  "route": "text_layer",
+  "sha256": "c50e2c0a4bd92ecd",
+  "text_layer_chars": 148397
+ },
+ "2013Q3__Q3-2013-Earnings-Press-Release.pdf": {
+  "chars": 27768,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "93b035811e85221a",
+  "text_layer_chars": 27768
+ },
+ "2013Q3__RAP-Quarter-Investors-Q3-2013.pdf": {
+  "chars": 14811,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "69ff636b88af20ca",
+  "text_layer_chars": 14811
+ },
+ "2013Q4__EE-consolidated-Q4-2013-eng.pdf": {
+  "chars": 145740,
+  "pages": 37,
+  "route": "text_layer",
+  "sha256": "d3e0391137112297",
+  "text_layer_chars": 145740
+ },
+ "2013Q4__FY-2013-Earnings-Press-Release.pdf": {
+  "chars": 27579,
+  "pages": 8,
+  "route": "text_layer",
+  "sha256": "02bf4bdac62dd295",
+  "text_layer_chars": 27579
+ },
+ "2013Q4__RAP-Sheets-FY2013.pdf": {
+  "chars": 17100,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "aa22af30cb1f21d7",
+  "text_layer_chars": 17100
+ },
+ "2014Q1__EE-consolidated-eng-Q1-2014.pdf": {
+  "chars": 26349,
+  "pages": 35,
+  "route": "text_layer",
+  "sha256": "df3310bcf38ac9ba",
+  "text_layer_chars": 26349
+ },
+ "2014Q1__Q1-2014-Earnings-Press-Release.pdf": {
+  "chars": 24947,
+  "pages": 8,
+  "route": "text_layer",
+  "sha256": "a2e573847b13f6e0",
+  "text_layer_chars": 24947
+ },
+ "2014Q1__RAP-Quarter-Investors-Q1-2014.pdf": {
+  "chars": 17029,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "fbd5f0d9edd5dd6c",
+  "text_layer_chars": 17029
+ },
+ "2014Q2__Consolidated-EE-Q2-2014-eng.pdf": {
+  "chars": 141000,
+  "pages": 35,
+  "route": "text_layer",
+  "sha256": "c0f4e27f3e2b04b0",
+  "text_layer_chars": 141000
+ },
+ "2014Q2__H1-2014-Earnings-Press-Release.pdf": {
+  "chars": 28341,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "f91853ac5d23800b",
+  "text_layer_chars": 28341
+ },
+ "2014Q2__RAP-Quarter-Investors-Q2-2014.pdf": {
+  "chars": 13140,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "887005d90b94fec1",
+  "text_layer_chars": 13140
+ },
+ "2014Q3__9M-2014-Earnings-Press-Release.pdf": {
+  "chars": 22155,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "94a48bfe8d150b1b",
+  "text_layer_chars": 22155
+ },
+ "2014Q3__EE-Consolidated-english-Q3-2014.pdf": {
+  "chars": 143453,
+  "pages": 35,
+  "route": "text_layer",
+  "sha256": "977567e454666258",
+  "text_layer_chars": 143453
+ },
+ "2014Q3__RAP-Quarter-Investors-Q3-2014.pdf": {
+  "chars": 13108,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "a8c26669f98d9bde",
+  "text_layer_chars": 13108
+ },
+ "2014Q4__EE-consolidation-english-Q4-2014.pdf": {
+  "chars": 153716,
+  "pages": 36,
+  "route": "text_layer",
+  "sha256": "8f8548907c8b9706",
+  "text_layer_chars": 153716
+ },
+ "2014Q4__FY-2014-Earnings-Press-Release.pdf": {
+  "chars": 28811,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "bf603c8901c685af",
+  "text_layer_chars": 28811
+ },
+ "2014Q4__RAP-Investors-FY-2014.pdf": {
+  "chars": 15396,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "fcc7aa84eba6564a",
+  "text_layer_chars": 15396
+ },
+ "2014Q4__Segment-analysis-FY-2014.pdf": {
+  "chars": 1901,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "de056aa4b68a08a5",
+  "text_layer_chars": 1901
+ },
+ "2015Q1__EE-Consolidated-Q1-2015-eng.pdf": {
+  "chars": 134318,
+  "pages": 36,
+  "route": "text_layer",
+  "sha256": "7ba11701d49f0fe8",
+  "text_layer_chars": 134318
+ },
+ "2015Q1__Q1-2015-Earnings-Press-Release.pdf": {
+  "chars": 27550,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "f2960a5e327d51fd",
+  "text_layer_chars": 27550
+ },
+ "2015Q1__RAP-Quarter-Investors-Q1-2015.pdf": {
+  "chars": 12017,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "46e1ada190002184",
+  "text_layer_chars": 12017
+ },
+ "2015Q1__Segment-analysis-Q1-2015.pdf": {
+  "chars": 1793,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "b72bee7c2dd0eee9",
+  "text_layer_chars": 1793
+ },
+ "2015Q2__EE-Consolidated-Q2-2015-eng.pdf": {
+  "chars": 154221,
+  "pages": 36,
+  "route": "text_layer",
+  "sha256": "4f511c33f44e9754",
+  "text_layer_chars": 154221
+ },
+ "2015Q2__ELSEWEDY-ELECTRIC-Q2-2015-Earnings-Press-Release.pdf": {
+  "chars": 26164,
+  "pages": 10,
+  "route": "text_layer",
+  "sha256": "c85210174b72ac94",
+  "text_layer_chars": 26164
+ },
+ "2015Q2__RAP-Quarter-Investors-Q2-2015.pdf": {
+  "chars": 13145,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "6fd1715635433cd2",
+  "text_layer_chars": 13145
+ },
+ "2015Q2__Segment-analysis-H1-2015.pdf": {
+  "chars": 3692,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "6bc38e18eab3577e",
+  "text_layer_chars": 3692
+ },
+ "2015Q3__EE-Consolidated-Q3-2015-eng.pdf": {
+  "chars": 148649,
+  "pages": 36,
+  "route": "text_layer",
+  "sha256": "9de2990cb00882ba",
+  "text_layer_chars": 148649
+ },
+ "2015Q3__Q3-2015-ELSewedy-Electric-Earnings.pdf": {
+  "chars": 34344,
+  "pages": 10,
+  "route": "text_layer",
+  "sha256": "0cb73f02cdebe05a",
+  "text_layer_chars": 34344
+ },
+ "2015Q3__RAP-Quarter-Investors-Q3-2015.pdf": {
+  "chars": 13120,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "13b01976d816f4bc",
+  "text_layer_chars": 13120
+ },
+ "2015Q3__Segment-analysis-Q3-2015.pdf": {
+  "chars": 1927,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "7762f90439697e56",
+  "text_layer_chars": 1927
+ },
+ "2015Q4__Consolidated-Q4-2015-eng.pdf": {
+  "chars": 173696,
+  "pages": 42,
+  "route": "text_layer",
+  "sha256": "3e0fd92369d7b436",
+  "text_layer_chars": 173696
+ },
+ "2015Q4__FY-2015-Earnings-Press-Release.pdf": {
+  "chars": 25568,
+  "pages": 10,
+  "route": "text_layer",
+  "sha256": "128f51af523eae60",
+  "text_layer_chars": 25568
+ },
+ "2015Q4__RAP-Sheet-Investors-FY-2015.pdf": {
+  "chars": 15018,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "4fd41d5b16ecc2e0",
+  "text_layer_chars": 15018
+ },
+ "2015Q4__Segment-Analysis-FY-2015.pdf": {
+  "chars": 1929,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "7d3cfe53f2c61853",
+  "text_layer_chars": 1929
+ },
+ "2016Q1__EE-Consolidated-Q1-2016-eng.pdf": {
+  "chars": 151221,
+  "pages": 43,
+  "route": "text_layer",
+  "sha256": "24ca4a59e2a0ad8b",
+  "text_layer_chars": 151221
+ },
+ "2016Q1__Q1-2016-Earnings-Press-Release.pdf": {
+  "chars": 19110,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "8dfea586b72f3359",
+  "text_layer_chars": 19110
+ },
+ "2016Q1__RAP-Sheet-Investors-Q1-2016.pdf": {
+  "chars": 8788,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "826e7ad5b365eb3f",
+  "text_layer_chars": 8788
+ },
+ "2016Q1__Segment-analysis-Q1-2016.pdf": {
+  "chars": 1809,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "c52ba5a5e56ae030",
+  "text_layer_chars": 1809
+ },
+ "2016Q2__EE-Consolidated-Q2-2016-eng.pdf": {
+  "chars": 148905,
+  "pages": 43,
+  "route": "text_layer",
+  "sha256": "40e72ef7b1ecaa2c",
+  "text_layer_chars": 148905
+ },
+ "2016Q2__El-Sewedy-Electric-Q2-2016-Earnings-Release.pdf": {
+  "chars": 21494,
+  "pages": 8,
+  "route": "text_layer",
+  "sha256": "660e3b56a926d527",
+  "text_layer_chars": 21494
+ },
+ "2016Q2__RAP-Sheet-Investors-H1-2016.pdf": {
+  "chars": 11254,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "33fc41d19ff5cf0a",
+  "text_layer_chars": 11254
+ },
+ "2016Q2__Segment-analysis-H1-2016.pdf": {
+  "chars": 5350,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "576bdcf253b08d5a",
+  "text_layer_chars": 5350
+ },
+ "2016Q3__EE-Consolidated-eng-Q3-2016.pdf": {
+  "chars": 10511,
+  "pages": 43,
+  "route": "text_layer",
+  "sha256": "8b3229977e32bddd",
+  "text_layer_chars": 10511
+ },
+ "2016Q3__El-Sewedy-9M-2016-Earnings-Release.pdf": {
+  "chars": 24311,
+  "pages": 8,
+  "route": "text_layer",
+  "sha256": "00592ead994a70bf",
+  "text_layer_chars": 24311
+ },
+ "2016Q3__RAP-Sheet-Investors-9M-2016.pdf": {
+  "chars": 13105,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "511967ecd289ffc4",
+  "text_layer_chars": 13105
+ },
+ "2016Q3__Segment-Analysis-9M-2016.pdf": {
+  "chars": 1785,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "51eb4d9b9d97ff58",
+  "text_layer_chars": 1785
+ },
+ "2016Q4__El-Sewedy-FY-2016-Earnings-Release.pdf": {
+  "chars": 31310,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "5de5c7233abc6e98",
+  "text_layer_chars": 31310
+ },
+ "2016Q4__RAP-Sheet-Investors-FY-2016.pdf": {
+  "chars": 18369,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "6c89d19104837b53",
+  "text_layer_chars": 18369
+ },
+ "2016Q4__Segment-analysis-FY-2016.pdf": {
+  "chars": 8938,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "d0ef70aae99ef6a6",
+  "text_layer_chars": 8938
+ },
+ "2017Q1__El-Sewedy-Q1-2017-Earnings-Release.pdf": {
+  "chars": 29246,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "9a1f26fbbe0aec88",
+  "text_layer_chars": 29246
+ },
+ "2017Q1__RAP-Sheet-Investors-Q1-2017.pdf": {
+  "chars": 13130,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "9e935534273a7c6a",
+  "text_layer_chars": 13130
+ },
+ "2017Q1__Segment-analysis-Q1-2017.pdf": {
+  "chars": 1733,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "ceaab2e3e09d437b",
+  "text_layer_chars": 1733
+ },
+ "2017Q2__El-Sewedy-2Q-2017-Earnings-Release-Final-2.pdf": {
+  "chars": 32344,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "98810f45a1fb6290",
+  "text_layer_chars": 32344
+ },
+ "2017Q2__RAP-Sheet-Investors-H1-2017.pdf": {
+  "chars": 11554,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "1a3df4a5fd8f568d",
+  "text_layer_chars": 11554
+ },
+ "2017Q2__Segment-analysis-H1-2017.pdf": {
+  "chars": 5220,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "f3f8bc706332a70f",
+  "text_layer_chars": 5220
+ },
+ "2017Q3__El-Sewedy-3Q-2017-Earnings-Release-Final-1.pdf": {
+  "chars": 31889,
+  "pages": 10,
+  "route": "text_layer",
+  "sha256": "8299aa36d932cb62",
+  "text_layer_chars": 31889
+ },
+ "2017Q3__RAP-Sheet-Investors-9M-2017.pdf": {
+  "chars": 13152,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "9dd5e65350d52468",
+  "text_layer_chars": 13152
+ },
+ "2017Q3__Segment-Analysis-9M-2017.pdf": {
+  "chars": 1784,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "37db24fd263ca5bd",
+  "text_layer_chars": 1784
+ },
+ "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.pdf": {
+  "chars": 31222,
+  "pages": 10,
+  "route": "text_layer",
+  "sha256": "4e8c3a26502c773d",
+  "text_layer_chars": 31222
+ },
+ "2017Q4__RAP-Sheet-Investors-FY-2017..pdf": {
+  "chars": 14952,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "daa8119836cf1a87",
+  "text_layer_chars": 14952
+ },
+ "2017Q4__Segment-Analysis-FY-2017.pdf": {
+  "chars": 10032,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "6e4a21f7b1677199",
+  "text_layer_chars": 10032
+ },
+ "2018Q1__EE-Consolidated-Q1-2018-eng-1-.pdf": {
+  "chars": 139102,
+  "pages": 38,
+  "route": "text_layer",
+  "sha256": "7e54e4d122071624",
+  "text_layer_chars": 139102
+ },
+ "2018Q1__El-Sewedy-1Q-2018-Earnings-Release-Final-1.pdf": {
+  "chars": 28405,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "c611718ffc5b40d0",
+  "text_layer_chars": 28405
+ },
+ "2018Q1__RAP-Sheet-Investors-Q1-2018..pdf": {
+  "chars": 11677,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "b44bfb088ec92343",
+  "text_layer_chars": 11677
+ },
+ "2018Q1__Segment-analysis-Q1-2018.pdf": {
+  "chars": 1710,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "8deeb1ff421ff77c",
+  "text_layer_chars": 1710
+ },
+ "2018Q2__El-Sewedy-1h-2018-Earnings-Release-Final.pdf": {
+  "chars": 30173,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "2d0a1f39f717b63f",
+  "text_layer_chars": 30173
+ },
+ "2018Q2__RAP-Sheet-Investors-H1-2018.pdf": {
+  "chars": 12777,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "b1fa715a028b55d3",
+  "text_layer_chars": 12777
+ },
+ "2018Q2__Segment-Analysis-H1-2018.pdf": {
+  "chars": 5033,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "9db1c31986aa10c3",
+  "text_layer_chars": 5033
+ },
+ "2018Q3__3Q-Earnings-Release-E-7.pdf": {
+  "chars": 30632,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "0374e7c2fa1f834e",
+  "text_layer_chars": 30632
+ },
+ "2018Q3__RAP-Sheet-Investors-9M-2018.pdf": {
+  "chars": 14580,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "4c187e143e54d99c",
+  "text_layer_chars": 14580
+ },
+ "2018Q3__Segment-Analysis-9M-2018.pdf": {
+  "chars": 8337,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "5d4cb5a3f0471524",
+  "text_layer_chars": 8337
+ },
+ "2018Q4__4Q-Earnings-Release-E-FINAL.pdf": {
+  "chars": 30962,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "b5ea17e398468ccb",
+  "text_layer_chars": 30962
+ },
+ "2018Q4__RAP-Investors-FY-2018.pdf": {
+  "chars": 14947,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "827bc1ea69c66bc3",
+  "text_layer_chars": 14947
+ },
+ "2018Q4__Segment-Analysis-FY-2018..pdf": {
+  "chars": 11646,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "82c69adb75b02275",
+  "text_layer_chars": 11646
+ },
+ "2019Q1__1Q19-Earnings-Release-E-FINAL.pdf.pdf": {
+  "chars": 42687,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "0c5a20cb0e9ef016",
+  "text_layer_chars": 42687
+ },
+ "2019Q1__RAP-Sheet-Investors-Q1-2019.pdf": {
+  "chars": 16574,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "21719eceb65b950c",
+  "text_layer_chars": 16574
+ },
+ "2019Q1__Segment-Analysis-Q1-2019.pdf": {
+  "chars": 1721,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "3c755c31052ad963",
+  "text_layer_chars": 1721
+ },
+ "2019Q2__1H19-Earnings-Release-E-FINAL.pdf": {
+  "chars": 31059,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "3220221dea124f8f",
+  "text_layer_chars": 31059
+ },
+ "2019Q2__RAP-Sheet-Investors-H1-2019.pdf": {
+  "chars": 12794,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "b2e6865f66c8d54d",
+  "text_layer_chars": 12794
+ },
+ "2019Q2__Segment-Analysis-H1-2019.pdf": {
+  "chars": 5497,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "417fdc8ba6a0da67",
+  "text_layer_chars": 5497
+ },
+ "2019Q3__EE-Consolidated-Q3-2019.En-1-.pdf": {
+  "chars": 166724,
+  "pages": 46,
+  "route": "text_layer",
+  "sha256": "1054ceb8721de744",
+  "text_layer_chars": 166724
+ },
+ "2019Q3__El-Sewedy-9M-2019-Earnings-Release.pdf": {
+  "chars": 29967,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "b6fc506b04813162",
+  "text_layer_chars": 29967
+ },
+ "2019Q3__RAP-Sheet-Investors-9M-2019-sent.pdf": {
+  "chars": 16632,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "05bbb6231014ff28",
+  "text_layer_chars": 16632
+ },
+ "2019Q3__Segment-Analysis-9M-2019.pdf": {
+  "chars": 9198,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "167250bb4e25bf79",
+  "text_layer_chars": 9198
+ },
+ "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.pdf": {
+  "chars": 30056,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "8af4193b8809df62",
+  "text_layer_chars": 30056
+ },
+ "2019Q4__RAP-Sheet-Investors-FY-2019.pdf": {
+  "chars": 20187,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "17cee0259d2f5e45",
+  "text_layer_chars": 20187
+ },
+ "2019Q4__Segment-Analysis-FY-2019.pdf": {
+  "chars": 12836,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "4629b2d88d05de72",
+  "text_layer_chars": 12836
+ },
+ "2020Q1__El-Sewedy-1Q20-Earnings-Release-E-Final.pdf": {
+  "chars": 29529,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "10d7009b5c47a02f",
+  "text_layer_chars": 29529
+ },
+ "2020Q1__RAP-Sheet-Investors-Q1-2020.pdf": {
+  "chars": 19096,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "430ee44c21ad3b1e",
+  "text_layer_chars": 19096
+ },
+ "2020Q1__Segment-Analysis-Q1-2020.pdf": {
+  "chars": 2047,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "b682156543d053a0",
+  "text_layer_chars": 2047
+ },
+ "2020Q2__01-Elsewedy-Electric-Cons-F-S-30-6-2020-1-.pdf": {
+  "chars": 162523,
+  "pages": 41,
+  "route": "text_layer",
+  "sha256": "2a8a358ba527347d",
+  "text_layer_chars": 162523
+ },
+ "2020Q2__El-Sewedy-2Q20-Earnings-Release-E-Final.pdf": {
+  "chars": 32729,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "e25c04cadd5a7972",
+  "text_layer_chars": 32729
+ },
+ "2020Q2__RAP-Sheet-Investors-H1-2020...pdf": {
+  "chars": 16387,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "864f49a47ef04782",
+  "text_layer_chars": 16387
+ },
+ "2020Q2__Segment-Analysis-H1-2020...pdf": {
+  "chars": 6035,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "c21a3a996a230fcc",
+  "text_layer_chars": 6035
+ },
+ "2020Q3__El-Sewedy-3Q20-Earnings-Release-E-Final-1.pdf": {
+  "chars": 32895,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "0673d5a57b75126c",
+  "text_layer_chars": 32895
+ },
+ "2020Q3__RAP-Sheet-Investors-9M-2020.pdf": {
+  "chars": 17058,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "256c59f3b0fd29d4",
+  "text_layer_chars": 17058
+ },
+ "2020Q3__Segment-Analysis-9M-2020.pdf": {
+  "chars": 10046,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "7363e58a8cbd2b3d",
+  "text_layer_chars": 10046
+ },
+ "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.pdf": {
+  "chars": 34538,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "6dabd4a3752e3450",
+  "text_layer_chars": 34538
+ },
+ "2020Q4__RAP-Sheet-Investors-FY-2020.pdf": {
+  "chars": 16916,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "df276df5c8912dc7",
+  "text_layer_chars": 16916
+ },
+ "2020Q4__Segment-Analysis-FY-2020.pdf": {
+  "chars": 10039,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "882b88695869a237",
+  "text_layer_chars": 10039
+ },
+ "2021Q1__El-Sewedy-1Q21-Earnings-Release-E-Final-1.pdf": {
+  "chars": 31291,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "8a8c32326203e017",
+  "text_layer_chars": 31291
+ },
+ "2021Q1__RAP-Sheet-Investors-Q1-2021.pdf": {
+  "chars": 13300,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "b420464febe67b91",
+  "text_layer_chars": 13300
+ },
+ "2021Q1__Segment-Analysis-Q1-2021.pdf": {
+  "chars": 1932,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "e421d026b900df8d",
+  "text_layer_chars": 1932
+ },
+ "2021Q2__El-Sewedy-2Q21-Earnings-Release-E-Final-3.pdf": {
+  "chars": 34033,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "63f4ac970f969674",
+  "text_layer_chars": 34033
+ },
+ "2021Q2__RAP-Sheet-Investors-H1-2021.pdf": {
+  "chars": 16684,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "0b6c4b8f6215081c",
+  "text_layer_chars": 16684
+ },
+ "2021Q2__Segment-Analysis-H1-2021.pdf": {
+  "chars": 5594,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "9ed095e96f042b67",
+  "text_layer_chars": 5594
+ },
+ "2021Q3__EE-Cons.-English-9M-2021.pdf": {
+  "chars": 217006,
+  "pages": 53,
+  "route": "text_layer",
+  "sha256": "ff0c79cba9cd1b52",
+  "text_layer_chars": 217006
+ },
+ "2021Q3__El-Sewedy-3Q21-Earnings-Release-E-Final.pdf": {
+  "chars": 33744,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "3b5081eecc5d774e",
+  "text_layer_chars": 33744
+ },
+ "2021Q3__RAP-Sheet-Investors-9M-2021.xlsx.pdf": {
+  "chars": 17306,
+  "pages": 4,
+  "route": "text_layer",
+  "sha256": "a20671399f61df97",
+  "text_layer_chars": 17306
+ },
+ "2021Q3__Segment-Analysis-9M-2021.pdf": {
+  "chars": 9197,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "983073625b22dc90",
+  "text_layer_chars": 9197
+ },
+ "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.pdf": {
+  "chars": 43020,
+  "pages": 11,
+  "route": "text_layer",
+  "sha256": "97645e3cf470019c",
+  "text_layer_chars": 43020
+ },
+ "2021Q4__Segment-Analysis-FY-2021-Final.pdf": {
+  "chars": 13444,
+  "pages": 1,
+  "route": "text_layer",
+  "sha256": "f42810f3857e5b36",
+  "text_layer_chars": 13444
+ },
+ "2022Q1__Elsewedy-Electric-ER-1Q2022-En-.pdf": {
+  "chars": 41142,
+  "pages": 11,
+  "route": "text_layer",
+  "sha256": "955ec0340562f2f9",
+  "text_layer_chars": 41142
+ },
+ "2022Q1__Quarterly-A-I-Presentation-Q1-22.pdf": {
+  "chars": 64015,
+  "pages": 21,
+  "route": "text_layer",
+  "sha256": "54b55760ce07aa9b",
+  "text_layer_chars": 64015
+ },
+ "2022Q2__Elsewedy-Electric-ER-2Q2022-En-final.pdf": {
+  "chars": 45408,
+  "pages": 11,
+  "route": "text_layer",
+  "sha256": "1bf4cafa1813cb92",
+  "text_layer_chars": 45408
+ },
+ "2022Q2__Quarterly-A-I-Presentation-Q2-22.pdf": {
+  "chars": 54824,
+  "pages": 18,
+  "route": "text_layer",
+  "sha256": "7267bc695d1de976",
+  "text_layer_chars": 54824
+ },
+ "2022Q3__Elsewedy-Electric-ER-3Q2022-En-.pdf": {
+  "chars": 45781,
+  "pages": 11,
+  "route": "text_layer",
+  "sha256": "9359e52ebc4f111f",
+  "text_layer_chars": 45781
+ },
+ "2022Q3__Quarterly-Earnings-Presentation-Q3-2022.pdf": {
+  "chars": 45647,
+  "pages": 17,
+  "route": "text_layer",
+  "sha256": "3e5aed95ef2a0f29",
+  "text_layer_chars": 45647
+ },
+ "2022Q4__Elsewedy-Electric-ER-FY2022-En-.pdf": {
+  "chars": 46327,
+  "pages": 12,
+  "route": "text_layer",
+  "sha256": "59b19cd4049851b7",
+  "text_layer_chars": 46327
+ },
+ "2022Q4__Quarterly-Earnings-Presentation-Q4-2022.pdf": {
+  "chars": 44659,
+  "pages": 17,
+  "route": "text_layer",
+  "sha256": "137410fcf57f4e3a",
+  "text_layer_chars": 44659
+ },
+ "2023Q1__Earnings-Presentation-Q1-2023.pdf": {
+  "chars": 49424,
+  "pages": 14,
+  "route": "text_layer",
+  "sha256": "9033eb4c47341a6f",
+  "text_layer_chars": 49424
+ },
+ "2023Q1__Elsewedy-Electric-ER-1Q2023-En-.pdf": {
+  "chars": 39445,
+  "pages": 12,
+  "route": "text_layer",
+  "sha256": "30d6ba78fbe20a23",
+  "text_layer_chars": 39445
+ },
+ "2023Q2__Earnings-Presentation-Q2-2023.pdf": {
+  "chars": 41060,
+  "pages": 14,
+  "route": "text_layer",
+  "sha256": "8abd8968d35351ac",
+  "text_layer_chars": 41060
+ },
+ "2023Q2__Elsewedy-Electric-ER-2Q2023-En-.pdf": {
+  "chars": 42282,
+  "pages": 12,
+  "route": "text_layer",
+  "sha256": "565d3c64d8c4f206",
+  "text_layer_chars": 42282
+ },
+ "2023Q3__EE-Consolidation-Q3-2023-English.pdf": {
+  "chars": 281862,
+  "pages": 61,
+  "route": "text_layer",
+  "sha256": "31997b52dd096f9b",
+  "text_layer_chars": 281862
+ },
+ "2023Q3__Earnings-Presentation-Q3-2023.pdf": {
+  "chars": 41155,
+  "pages": 14,
+  "route": "text_layer",
+  "sha256": "6b60f87890ceafb7",
+  "text_layer_chars": 41155
+ },
+ "2023Q3__Elsewedy-Electric-ER-3Q2023-En-.pdf": {
+  "chars": 43344,
+  "pages": 13,
+  "route": "text_layer",
+  "sha256": "7a984fa36083379c",
+  "text_layer_chars": 43344
+ },
+ "2023Q4__Earnings-Presentation-Q4-2023.pdf": {
+  "chars": 38953,
+  "pages": 14,
+  "route": "text_layer",
+  "sha256": "f7295af951258115",
+  "text_layer_chars": 38953
+ },
+ "2023Q4__Elsewedy-Electric-ER-4Q2023-E-Final.pdf": {
+  "chars": 44184,
+  "pages": 13,
+  "route": "text_layer",
+  "sha256": "c09241ff86c07bd9",
+  "text_layer_chars": 44184
+ },
+ "2024Q1__Earnings-Presentation-Q1-2024.pdf": {
+  "chars": 40929,
+  "pages": 14,
+  "route": "text_layer",
+  "sha256": "feb69592539acbf1",
+  "text_layer_chars": 40929
+ },
+ "2024Q1__Elsewedy-Electric-ER-1Q24-En-.pdf": {
+  "chars": 40608,
+  "pages": 13,
+  "route": "text_layer",
+  "sha256": "7cfd8318dcce2f86",
+  "text_layer_chars": 40608
+ },
+ "2024Q2__EE-Earnings-Presentation-Q2-2024.pdf": {
+  "chars": 41078,
+  "pages": 14,
+  "route": "text_layer",
+  "sha256": "cda870af44975a3d",
+  "text_layer_chars": 41078
+ },
+ "2024Q2__EE-consalidation-FS-30-June-2024-En-.pdf": {
+  "chars": 179190,
+  "pages": 40,
+  "route": "text_layer",
+  "sha256": "04593f41c117f9fb",
+  "text_layer_chars": 179190
+ },
+ "2024Q2__Elsewedy-Electric-ER-2Q2024-En.pdf": {
+  "chars": 38315,
+  "pages": 12,
+  "route": "text_layer",
+  "sha256": "aac7c53c1b4fb102",
+  "text_layer_chars": 38315
+ },
+ "2024Q3__EE-Consalidated-English-FS-30-September-2024.pdf": {
+  "chars": 182960,
+  "pages": 39,
+  "route": "text_layer",
+  "sha256": "fee322ebdff062e0",
+  "text_layer_chars": 182960
+ },
+ "2024Q3__EE-Earnings-Presentation-Q3-2024.pdf": {
+  "chars": 50500,
+  "pages": 14,
+  "route": "text_layer",
+  "sha256": "20009cfb210fdc8f",
+  "text_layer_chars": 50500
+ },
+ "2024Q3__Elsewedy-Electric-ER-3Q2024-En-.pdf": {
+  "chars": 37614,
+  "pages": 12,
+  "route": "text_layer",
+  "sha256": "2a0e71a50400f9f3",
+  "text_layer_chars": 37614
+ },
+ "2024Q4__EE-Consalidated-English-FS-31-December-2024.pdf": {
+  "chars": 343160,
+  "pages": 70,
+  "route": "text_layer",
+  "sha256": "4c8ccef1b788d4da",
+  "text_layer_chars": 343160
+ },
+ "2024Q4__EE-Earnings-Presentation-Q4-2024.pdf": {
+  "chars": 49872,
+  "pages": 14,
+  "route": "text_layer",
+  "sha256": "3fe1badcc4be30ee",
+  "text_layer_chars": 49872
+ },
+ "2024Q4__Elsewedy-Electric-ER-4Q2024-En.pdf": {
+  "chars": 39555,
+  "pages": 12,
+  "route": "text_layer",
+  "sha256": "bb43bfd6ea8a8aee",
+  "text_layer_chars": 39555
+ },
+ "2025Q1__EE-Consolidated-FS-English-31-march-2025.pdf": {
+  "chars": 246662,
+  "pages": 52,
+  "route": "text_layer",
+  "sha256": "3bf74374e63db9c1",
+  "text_layer_chars": 246662
+ },
+ "2025Q1__EE-Earnings-Presentation-Q1-2025.pdf": {
+  "chars": 39337,
+  "pages": 12,
+  "route": "text_layer",
+  "sha256": "d19f6eef46914de8",
+  "text_layer_chars": 39337
+ },
+ "2025Q1__Elsewedy-Electric-ER-1Q2025-E-.pdf": {
+  "chars": 33599,
+  "pages": 10,
+  "route": "text_layer",
+  "sha256": "f16f078be317472c",
+  "text_layer_chars": 33599
+ },
+ "2025Q2__EE-Consalidated-English-FS-30-June-2025.pdf": {
+  "chars": 244867,
+  "pages": 53,
+  "route": "text_layer",
+  "sha256": "2da64c4050690b72",
+  "text_layer_chars": 244867
+ },
+ "2025Q2__EE-Earnings-Presentation-Q2-2025.pdf": {
+  "chars": 39444,
+  "pages": 12,
+  "route": "text_layer",
+  "sha256": "751cd562c3090aa3",
+  "text_layer_chars": 39444
+ },
+ "2025Q2__Elsewedy-Electric-ER-2Q2025-E-.pdf": {
+  "chars": 36074,
+  "pages": 10,
+  "route": "text_layer",
+  "sha256": "564a3e380cfd52f5",
+  "text_layer_chars": 36074
+ },
+ "2025Q3__EE-Signed-English-consolidated-FS-30-September-2025.pdf": {
+  "chars": 228606,
+  "pages": 48,
+  "route": "text_layer",
+  "sha256": "8d9b6569fe8b91bd",
+  "text_layer_chars": 228606
+ },
+ "2025Q3__Elsewedy-Electric-ER-3Q2025-E-.pdf": {
+  "chars": 36039,
+  "pages": 10,
+  "route": "text_layer",
+  "sha256": "d8f0fe36b2eb4a01",
+  "text_layer_chars": 36039
+ },
+ "2025Q4__EE-Consolidated-En-FS-31-December-2025.pdf": {
+  "chars": 328546,
+  "pages": 70,
+  "route": "text_layer",
+  "sha256": "44f875c205f3df47",
+  "text_layer_chars": 328546
+ },
+ "2025Q4__EE-Earnings-Presentation-Q4-2025.pdf": {
+  "chars": 41536,
+  "pages": 12,
+  "route": "text_layer",
+  "sha256": "5b9c56e530ad4c3b",
+  "text_layer_chars": 41536
+ },
+ "2025Q4__Elsewedy-Electric-ER-4Q2025-E-.pdf": {
+  "chars": 38732,
+  "pages": 10,
+  "route": "text_layer",
+  "sha256": "7b94ed237e813c42",
+  "text_layer_chars": 38732
+ },
+ "2026Q1__EE-Consolidation-FS-31-3-26-EN.pdf": {
+  "chars": 208053,
+  "pages": 45,
+  "route": "text_layer",
+  "sha256": "9a392a3e8f6c3f82",
+  "text_layer_chars": 208053
+ },
+ "2026Q1__EE-Earnings-Presentation-Q1-2026.pdf": {
+  "chars": 38634,
+  "pages": 12,
+  "route": "text_layer",
+  "sha256": "e39ed4bc1dee68af",
+  "text_layer_chars": 38634
+ },
+ "2026Q1__Elsewedy-Electric-ER-1Q2026-E-.pdf": {
+  "chars": 35031,
+  "pages": 10,
+  "route": "text_layer",
+  "sha256": "d61ac8a663f84cf3",
+  "text_layer_chars": 35031
+ },
+ "2026Q2__EE-Consolidation-FS-EN-30-6-2026.pdf": {
+  "chars": 230768,
+  "pages": 47,
+  "route": "text_layer",
+  "sha256": "6a33960f03af6a3f",
+  "text_layer_chars": 230768
+ },
+ "2026Q2__EE-Earnings-Presentation-Q2-2026-v2.pdf": {
+  "chars": 30915,
+  "pages": 12,
+  "route": "text_layer",
+  "sha256": "e3b3fd4fdc2db6be",
+  "text_layer_chars": 30915
+ },
+ "2026Q2__Elsewedy-Electric-ER-2Q2026-E-v2.pdf": {
+  "chars": 34558,
+  "pages": 9,
+  "route": "text_layer",
+  "sha256": "d996a227d6f3493a",
+  "text_layer_chars": 34558
+ }
+}

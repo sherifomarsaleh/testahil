@@ -1,0 +1,1364 @@
+  El Sewedy Cables Company
+Consolidated Financial Statements
+  For the financial period from
+1 January 2007 to 31 March 2007
+   and Limited Review Report
+                                                                                Translated form Arabic
+
+
+                                    LIMITED REVIEW REPORT
+
+                       TO THE MEMBERS OF THE BOARD OF DIRECTORS
+                             OF EL SEWEDY CABLES COMPANY
+
+
+
+We have reviewed the accompanying Consolidated Balance Sheet of El sewedy Cables Company as of
+31 March 2007, and the related Consolidated Statements of Income, Changes in Shareholders Equity and
+Cash Flows for the financial period then ended. These consolidated financial statements are the
+responsibility of the company’s management. Our responsibility is to issue a report on these financial
+statements based on our review.
+
+
+We conducted our review in accordance with the Egyptian Standard on Auditing applicable to review
+engagements. This standard requires that we plan and perform the review to obtain moderate assurance
+about whether the financial statements are free of material misstatements. A review is limited primarily to
+inquiries of the company personal and analytical procedures applied to the financial data and thus less in
+scope than an audit which is performed in accordance with Egyptian Standards on Auditing. We have not
+performed an audit and accordingly, we do not express an audit opinion.
+
+
+Based on our review of the financial statements of El sewedy Cables Company for the financial period
+ended 31 March 2007, we are not aware of any material modifications that should be made to the
+financial statements in order for them to be in conformity with Egyptian Accounting Standards.
+
+
+Without considering the following a qualification, as discussed in Note (34) of the notes to the financial
+statements the comparative figures for the financial period ended 31 March 2006 included in the income
+statement, cash flows and the notes to the financial statements were not audited or subject to limited
+review procedures.
+
+
+
+
+                                                                KPMG Hazem Hassan
+                                                          Public Accountants and Consultants
+
+
+Cairo, 15 May 2007
+                                                                                                    Translated from Arabic
+                                                   EL Sewedy Cables Company
+                                                   Consolidated Balance Sheet
+                                                      As of 31 March 2007
+                                                                                    31/3/2007             31/12/2006
+                                                                       Note            L.E                   L.E
+Assets
+       Fixed assets                                                    (3-4),(4)     612 543 454                 557 878 545
+       Assets under construction                                       (3-5),(5)     122 805 920                 145 516 030
+       Investments available for sale                                  (3-6),(6)       4 284 000                   4 284 000
+       Paid on account of investments                                     (7)         88 474 000                  13 230 000
+       Debit balances and advances                                        (8)        145 722 207                 185 095 512
+       Other intangible assets                                         (3-7),(9)         211 420                     267 395
+       Deferred tax assets                                                                79 249                      58 800
+       Goodwill                                                       (3-7),(31)       8 005 922                      -
+Total long term assets                                                               982 126 172                 906 330 282
+Current assets
+       Inventories                                                     (3-8),(10)   1 561 056 944           1 746 371 374
+       Trade, notes and other receivables                              (3-9),(11)   1 444 166 260           1 211 218 533
+       Due from related parties                                           (29)         33 641 161              21 984 047
+       Investments in treasury bills                                   (3-10),(6)     270 868 986             266 643 827
+       Central bank certificates                                      (3-10),(12)     277 313 544             330 987 183
+       Cash and cash equivalents                                          (13)        430 570 974             396 786 135
+Total current assets                                                                4 017 617 869           3 973 991 099
+Current liabilities
+       Banks overdraft                                                   (14)         353 904 707             245 689 887
+       Short term loans and long term due within one year                (15)       1 613 462 694           1 709 676 781
+       Trade, notes and other payables                                (3-12),(16)     356 194 859             401 638 622
+       Due to related parties                                            (29)          16 141 746              13 484 464
+       Provisions                                                     (3-13),(17)      26 157 654              28 911 005
+Total current liabilities                                                           2 365 861 660           2 399 400 759
+Working capital                                                                     1 651 756 209           1 574 590 340
+Total investments                                                                   2 633 882 381           2 480 920 622
+These investments are financed as follows:
+Equity
+       Issued and paid capital                                           (18)       1 200 000 000           1 200 000 000
+       Treasury stocks                                                (3-15),(20)    (92 481 858)            (92 481 858)
+       Retained earnings                                                              553 746 533                -
+       Increase in the equity of the acquired subsidiaries over the
+       consideration paid for the investment                             (31)         585 332 057             585 332 057
+       Net profit for the period/ first financial year                                146 379 385             553 746 533
+       Other comprehensive income                                                       9 007 146               6 992 059
+Total parent’s shareholders’ equity                                                 2 401 983 263           2 253 588 791
+Minority interest                                                                     167 935 763             158 450 988
+Total equity                                                                        2 569 919 026           2 412 039 779
+Long term liabilities
+       Long term loans                                                   (15)          16 747 752              19 142 105
+       Deferred tax liabilities                                       (3-21),(21)       4 219 673               4 167 516
+       Other long term liabilities                                       (22)          42 995 930              45 571 222
+Total long term liabilities                                                            63 963 355              68 880 843
+                                                                                    2 633 882 381           2 480 920 622
+ The accompanying notes are part of these consolidated financial statements.
+
+ Chairman                                    Managing Director                         Chief Financial Officer
+
+ “ Limited review report attached”
+                                                                                                  Translated from Arabic
+
+                                                EL Sewedy Cables Company
+                                               Consolidated Income Statement
+
+                                  For the period from 1 January 2007 to 31 March 2007
+
+                                                                                                          Not audited
+                                                                          From     1/1/2007                1/1/2006
+                                                           Note           To      31/3/2007                31/3/2006
+
+
+                                                                                      L.E                     L.E
+Operational revenues                                      (3-16),(23)             1 995 225 400            1 013 841 209
+Operational costs                                           (3-18)               (1 762 320 685)            (870 884 457)
+Gross profit                                                                        232 904 715              142 956 752
+
+
+Other operating income                                       (24)                     7 209 930                432 345
+Selling and distribution expenses                           (3-18)                 (20 405 425)             (14 695 184)
+Administrative expenses                                     (3-18)                 (20 634 254)              (6 491 646)
+Other operating expenses                                     (25)                     (968 045)              (4 000 000)
+Operating profit                                                                   198 106 921              118 202 267
+
+Financing revenue                                                                    17 152 261                3 440 727
+Financing costs                                                                    (53 211 502)             (17 834 781)
+Net financing costs                                           (26)                 (36 059 241)             (14 394 054)
+Profit before tax                                                                  162 047 680              103 808 213
+
+Income tax
+Current income tax                                                                  (6 137 599)               (2 999 700)
+Deferred income tax                                                                   (152 533)                     (962)
+Profit for the period after income tax                                             155 757 548               100 807 551
+
+Attributable to :
+
+Equity holders of the parent company                                               146 379 385                95 558 510
+Minority interest                                                                    9 378 163                 5 249 041
+                                                                                   155 757 548               100 807 551
+Earnings per share                                            (32)                  1.25                     2.89
+
+
+
+
+The accompanying notes are part of these consolidated financial statements.
+
+
+                                                                  -2-
+                                                                                             Translated from Arabic
+
+                                            El Sewedy Cables Company
+                                         Consolidated Cash Flows Statement
+
+                                  For the period from 1 January 2007 to 31 March 2007
+
+                                                                                                  Not audited
+                                                              Note From       1/1/2007             1/1/2006
+                                                                   To        31/3/2007             31/3/2006
+
+                                                                               L.E                   L.E
+Cash flows from operating activities:
+Profit before tax                                                             162 047 680           103 808 213
+Adjustments for:
+Depreciation and amortization                                (4),(9)           19 823 674             8 650 884
+Provisions and receivable impairment loss                                      (3 455 181)            -
+Income from treasury bills and central bank
+certificates                                                                  (13 021 097)            -
+Gain on sale of fixed assets                                                     (105 926)            -
+Operating income before changes in working                                    165 289 150           112 459 097
+capital
+
+Increase in trade and other receivables                                      (194 217 452)        (194 799 316)
+Decrease (increase) in inventories                                             185 314 430        (149 385 358)
+Decrease in related parties                                                   (14 314 396)         (32 113 216)
+(Decrease) increase in trade and other payables                               (26 283 593)           24 763 040
+Net cash provided by (used in) operating activities                            115 788 139        (239 075 753)
+
+Cash flows from investing activities
+
+Payments for purchase of fixed assets                                         (47 180 784)          (26 308 890)
+Consideration paid for acquired investments, net of
+cash acquired                                                                    -                (187 120 000)
+Paid on account of investments                                                (88 474 000)            -
+Proceeds from fixed assets sales                                                   788 290            -
+Net proceeds from (payments for) treasury bills and
+central bank certificates                                                      62 469 575           (39 423 760)
+
+Net cash flows used in investing activities                                   (72 396 919)        (252 852 650)
+
+Cash flows from financing activities
+
+Proceeds from issuing capital                                                    -                  200 000 000
+(Payments for) Proceeds from loans                                             (9 606 381)          278 446 367
+Net cash flows (used in) provided by financing                                 (9 606 381)          478 446 367
+activities
+Net change in cash and cash equivalents                                        33 784 839           (13 482 036)
+Cash and cash equivalents at the beginning of the
+period                                                                        396 786 135           135 163 589
+Cash and cash equivalents at the end of the period                            430 570 974           121 681 553
+
+
+
+The accompanying notes are part of the consolidated financial statements
+
+                                                                 -4-
+                                                                                                                                                                    Translated from Arabic
+                                                                                 El Sewedy Cables Company
+                                                                         Consolidated Changes in Shareholders Equity
+                                                                   For the period from 1 January 2007 to 31 March 2007
+
+
+                                                                                                   Increase in
+                                                                                                  the equity of
+                                                                                                 the acquired                        Foreign
+                                                                                                  subsidiaries                      exchange
+                                                                                                     over the                      differences
+                                                                                                                                                  Total parent’s
+                                            Issued and paid                        Retained      consideration                    resulted from
+                                       Note                                                                                                       shareholders’
+                                                 capital    Treasury bills         earnings       paid for the         Profit        foreign                       Minority
+                                                                                                   investment     attributable to    entities        equity        interest
+                                                                                                                    the parent     translation                                      Total
+                                                    L.E             L.E              L.E                L.E             L.E            L.E             L.E            L.E            L.E
+Issued and paid-up capital               (18)   1 200 000 000        -                -                  -               -               -         1 200 000 000       -         1 200 000 000
+Purchase of treasury bills                           -          (92 481 858)          -                  -               -               -          (92 481 858)       -          (92 481 858)
+Minority share in subsidiaries’ equity               -               -                -                  -               -               -              -          122 727 091     122 727 091
+Profit for the first financial year                  -               -                -                  -           558 910 208         -           558 910 208    35 723 897     594 634 105
+Acquisition for subsidiaries under the                                                -
+control oh holders of the parent company (31)        -               -                            585 332 057           -              -            585 332 057        -          585 332 057
+Dividends to employees                               -               -                 -              -              (5 163 675)       -             (5 163 675)       -           (5 163 675)
+Foreign exchange differences resulted                -               -                 -              -                 -            6 992 059         6 992 059       -             6 992 059
+from foreign entities translation
+Balance at 31 December 2006                     1 200 000 000   (92 481 858)                 -    585 332 057        553 746 533     6 992 059     2 253 588 791   158 450 988   2 412 039 779
+Transferred to retained earnings                     -               -             553 746 533        -            (553 746 533)       -                -              -                 -
+Foreign exchange differences resulted                -               -                 -              -                 -            2 015 087         2 015 087       -             2 015 087
+from foreign entities translation
+Minority share in subsidiaries’ equity               -               -                 -              -                -               -                -              106 612         106 612
+Profit for the period                                -               -                 -              -             146 379 385        -             146 379 385     9 378 163     155 757 548
+Balance at 31 March 2007                        1 200 000 000   (92 481 858)       553 746 533    585 332 057       146 379 385      9 007 146     2 401 983 263   167 935 763   2 569 919 026
+
+
+
+        The accompanying notes are part of the consolidated financial statements
+                                                                                                    -
+                                                                                                    Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements - 31 March 2007
+_________________________________________________________________________________________________
+
+1. Company background
+
+   El Sewedy Cables Company (“the Parent Company”) is an Egyptian Joint Stock Company, established under the
+   Investment Incentives and Guarantees Law No. 8 of 1997 and was registered in the commercial registration under
+   No. 14584 on 1 June 2005. The Company’s purpose is to establish and operates a production facility for power
+   cables, transformers, terminators, joint accessories, copper and aluminum terminators either coated or not coated
+   and PVC production. In addition to designing, building, managing, operating and maintaining power generation
+   units and power nets.
+
+   El sewedy Cables Company- hereunder referred to as the “Company”- consolidated financial statements comprise
+   the company and its subsidiaries “together referred to as the Group”
+
+   The Company's duration is 25 years commencing from the date of registration in the Commercial Registry.
+
+
+1. Basis of preparation
+   The consolidated financial statements include the financial statements for all subsidiaries that are controlled by El
+   Sewedy Cables Company (“the Group”). The financial statements of the Company and its subsidiaries are prepared
+   in accordance with Egyptian Accounting Standards and applicable Egyptian laws and regulations.
+
+   The financial statements were approved for issuance on 15 May 2007
+   Basis of measurement
+
+   The consolidated financial statements have been prepared on the historical cost basis except for the following:
+
+       •   Derivative financial statements are measured at fair value
+       •   Financial instruments at fair value through profit and loss are measured at fair value
+       •   Available for sale financial assets are measured at fair value
+       •   The methods used to measure fair values are discussed further in note No. 33 below
+
+     Use of estimates and judgments
+
+     The preparation of the financial statements requires management to make judgments, estimates and assumptions
+     that affect reported amounts of assets and liabilities, income and expenses during the financial periods. Actual
+     results may differ from these estimates. Estimates and underlying assumptions are reviewed on an ongoing basis.
+     Revisions to accounting estimates are recognized in the period in which the estimate is revised and in any future
+     periods affected. In particular, information about significant areas of estimation uncertainty and critical judgments
+     in applying accounting policies that have the most significant effect on the amount recognized in the financial
+     statements are described in the following notes:
+
+     Note 23 - contract revenue
+     Note 21 - deferred tax
+     Note 31 - business combinations
+     Note 17 - provisions
+     Note 33 - valuation of financial instruments
+
+
+
+
+                                                          -5-
+                                                                                                      Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements - 31 March 2007
+________________________________________________________________________________________________
+
+3. Significant accounting policies
+
+3-1Basis of consolidation
+   Subsidiaries
+   Subsidiaries are entities controlled by the Group. Control exists when the Group has the power to govern the
+   financial and operating policies of an entity so as to obtain benefits from its activities. In assessing control, potential
+   voting rights that presently are exercisable are taken into account. The financial statements of subsidiaries are
+   included in the consolidated financial statements from the date that control commences until the date that control
+   ceases.
+
+   Acquisitions from entities under common control
+   Business combinations arising from transfers of interests in entities that are under the control of the shareholder that
+   controls the Group are accounted for as of the acquisition date. The assets and liabilities acquired are recognized at
+   the carrying amounts recognized previously in the Group’s controlling shareholder’s consolidated financial
+   statements. The components of equity of the acquired entities are added to the same components within Group equity
+   except that any share capital of the acquired entities is recognized as part of equity. Any cash paid for the acquisition
+   is recognized directly in equity.
+
+   Transactions eliminated on consolidation
+   Intra-group balances, and any unrealized income and expenses arising from intra-group transactions, are eliminated
+   in preparing the consolidated financial statements.
+
+3-2 Foreign currency
+    Foreign currency transactions
+    The Company and some subsidiaries maintain its accounts in Egyptian Pound. Transactions in foreign currencies
+    are translated at the foreign exchange rates ruling at the date of the transactions. Monetary assets and liabilities
+    denominated in foreign currencies at the balance sheet date are translated to Egyptian Pound at the prevailing
+    exchange rates. Foreign exchange differences arising on translation are recognized in the income statement.
+
+    Foreign operations
+    At the balance sheet date, the assets and liabilities of foreign subsidiaries are translated to Egyptian Pound at the
+    prevailing exchange rates ruling at the balance sheet date and the income and expenses reported in the income
+    statement are translated at the average exchange rate prevailing during the financial period. Currency translation
+    differences are recorded in the balance sheet as cumulative translation adjustments.
+
+3-3 Financial instruments
+    Non derivative financial instruments
+    Non derivative financial instruments comprise cash and cash equivalents, investments, trade and other receivables,
+    loans and borrowings, and trade and other payables. These financial assets and liabilities are recognized in the
+    balance sheet when the Group becomes a party to the contractual provisions of the financial instruments.
+
+     Non-derivative financial instruments are recognized initially at fair value plus, for instruments not at fair value
+     through profit or loss, any directly attributable transaction costs.
+
+     Derivative financial instruments
+     The Group uses derivatives instruments to hedge its exposure to foreign currency risk and price risk related to
+     fluctuations in copper prices. Derivatives are recognized initially at fair value; attributable transaction costs are
+     recognized in profit or loss when incurred. Subsequent to initial recognition, derivatives are measured at fair value.
+
+
+
+
+                                                            -6-
+                                                                                                    Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements - 31 March 2007
+________________________________________________________________________________________________
+
+
+3-4   Property, plant and equipment
+      Recognition and measurement
+      Items of property, plant and equipment are measured at cost less accumulated depreciation and impairment loss.
+      Cost includes expenditure that is directly attributable to the acquisition of the asset. When part of an item of
+      property, plant and equipment have different useful lives they are accounted for as separate items of property,
+      plant and equipment.
+
+      Subsequent costs
+      The cost of replacing part of an item of property, plant and equipment is recognized in the carrying amount of the
+      item if it is probable that the future economic benefits embodied within the part will flow to the Group and its cost
+      can be measured reliably. The costs of day to day servicing of property, plant and equipment are recognized in
+      profit or loss as incurred.
+
+      Depreciation
+      Depreciation is recognized in profit or loss on a straight-line basis over the estimated useful lives of each part of
+      property plant and equipment. The estimated useful lives are as follows:
+
+                    Buildings                                            8 -50 years
+                    Machinery and equipment                               5-10 years
+                    Furniture                                            4 -17 years
+                    Vehicles                                               5-8 years
+
+3-5   Assets under construction
+      The amounts spent on the construction of fixed assets are initially recorded in assets under construction and are
+      measured at cost less impairment, if any. When projects are completed and become ready for use, the related costs
+      are transferred to fixed assets.
+
+3-6   Investment available-for-sale
+      The Group’s investments in equity securities are classified as available-for-sale financial assets. Subsequent to
+      initial recognition, they are measured at fair value and changes therein, other than impairment losses, and foreign
+      exchange gains and losses on available-for-sale monetary items are recognized directly in equity. When an
+      investment is derecognized, the cumulative gain or loss in equity is transferred to income statement.
+
+3-7    Other assets
+       Goodwill
+       Goodwill is initially measured at its cost, being the excess of the cost of the business combination over the
+       Group’s interest in the net fair value of identifiable assets, liabilities and contingent liabilities. After initial
+       recognition the Group measure goodwill acquired at cost less any impairment losses. Recognized goodwill
+       impairment losses are not subsequently reversed.
+
+      Intangible assets
+      Intangible assets that are acquired by the Group, which have finite useful lives, are measured at cost less
+      accumulated amortization and accumulated impairment losses.
+
+3-8   Inventories
+      Inventories are measured at the lower of cost and net realizable value. An inventory of raw materials cost is based
+      on weighted average principle, and includes expenditure incurred in acquiring the inventories and bringing them
+      to their existing location and condition. In case of manufactured inventories and work in progress, cost includes an
+
+
+
+                                                           -7-
+                                                                                                   Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements - 31 March 2007
+________________________________________________________________________________________________
+
+      appropriate share of production overheads based on normal operating capacity. Net realizable value is the
+      estimated selling price in the ordinary course of business, less the estimated costs of completion and selling
+      expenses.
+
+3-9   Trade, notes, other receivables and other debit balances
+      Trade, notes, other receivables and other short-term debit balances are non-interest bearing and are stated at their
+      nominal value, the long term debit balances are stated at their initial nominal value and re-measured according to
+      their present value with difference charged to net financing cost in the income statement. The other debit balances
+      is presented in the balance sheet less impairment loss.
+
+3-10 Treasury bills and central bank certificates
+     Where the Group has the positive intent and ability to hold treasury bills and Central Bank certificates to maturity,
+     then they are classified as held-to-maturity. Held-to-maturity investments are measured at amortized cost using
+     the effective interest method, less any impairment losses.
+
+3-11 Impairment
+      The carrying amounts of the Group’s assets (except inventory and deferred tax assets) are reviewed at each
+      financial reporting date to determine whether there is any indication of impairment. If such indication exists, the
+      asset’s recoverable amount is estimated and an impairment loss is recognized whenever the carrying amount of an
+      asset exceeds its recoverable amount. Impairment losses are recognized in the consolidated income statement. An
+      impairment loss is reversed if there has been a change in the estimates used to determine the recoverable amount.
+      An impairment loss is reversed only to the extent that the asset’s carrying amount does not exceed the carrying
+      amount that would have been determined, net of depreciation or amortization, if no impairment loss had been
+      recognized.
+
+3-12 Trade, notes, other payables and accruals
+      Trade, notes, other payables and accruals are non-interest bearing and are stated at their nominal value
+      representing the amount expected be paid in future for the goods received and services rendered.
+
+3-13 Provisions
+      A provision is recognized if as a result of past event the Group has a present legal or constructive obligation that
+      can be estimated reliably and it is probable that an outflow of economic benefits will be required to settle the
+      obligation. Provisions are determined by discounting the expected future cash flows at a pre- tax rate that reflects
+      current market assessments of the time value of money and the risks specific to the liability.
+
+3-14 Dividends
+      Dividends are recognized as a liability in the financial period in which the dividends are approved by the
+      shareholders general meeting.
+
+3-15 Treasury shares
+      Repurchased shares are classified as treasury shares and are presented as a deduction from shareholders’ equity at
+      their acquisition cost. Gain or loss from transactions relating to the treasury stock is reflected in shareholders’
+      equity.
+
+
+3-16 Revenue
+      Goods sold
+      Revenue from sale of goods is measured at the fair value of the consideration received or receivable, net of returns
+      and allowances, trade discounts and volume rebates. Revenue is recognized when the significant risks and rewards
+
+
+
+                                                          -8-
+                                                                                                    Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements - 31 March 2007
+________________________________________________________________________________________________
+
+      of ownership have been transferred to the buyer, recovery of the consideration is probable, the associated costs
+      and possible return of goods can be estimated reliably, and there is no continuing management involvement with
+      the goods. Risk and rewards of ownership are transferred when goods are received at the customer’s warehouse;
+      however, for some international shipments transfer occurs upon loading the goods onto the relevant carrier.
+
+      Construction contracts
+      As soon as the outcome of the construction contract is estimated reliably, contract revenues and expenses are
+      recognized in profit or loss in proportion to the stage of completion of the contract. Contract revenue includes the
+      initial amount agreed in the contract plus any variations in contract work, claims and incentive payments to the
+      extent that is probable that they will result in revenue and can be measured reliably.
+
+      The stage of completion is assessed by reference to surveys of work performed. When the outcome of a
+      construction contract can not be estimated reliably, contract revenue is recognized only to the extent of contract
+      costs incurred that are likely to be recoverable. An expected loss on contract is recognized immediately in profit
+      or loss.
+
+      Investment income
+      Income from available-for-sale investments are recognized when the Group’s right to the income is established.
+
+3-17 Segment reporting
+`     A segment is a distinguishable component of the Group that is engaged either in providing related products or
+      services (business segment), or in providing products or services within a particular economic environment
+      (geographical segment), which is subject to risks and rewards that are different from those of other segments. The
+      Group’s primary format for segment reporting is based on business segments.
+
+3-18 Expenses
+      Operating expenses, selling and distribution, general administrative expenses and other expenses are recognized
+      using the accrual basis of accounting and as such are recognized in the income statement as incurred.
+
+3-19 Interest bearing borrowings
+      Interest bearing borrowings are recognized initially at fair value less attributable transaction costs. Subsequent to
+      initial recognition, interest bearing borrowings are stated at amortized cost with any difference between cost and
+      redemption value been recognized in the income statement over the period of borrowing on an effective interest
+      basis.
+
+3-20 Employees pensions
+      The Group contributes in the governmental social insurance system for the benefits of its employees according to
+      the social insurance Law No. 79 of 1975 and its amendments. The Group’s contributions are recognized in
+      income statement using the accrual basis of accounting. The Group’s obligation in respect of employees’ pensions
+      is confined to the amount of the aforementioned contributions.
+
+
+3-21 Income tax
+      Income tax in the parent and its subsidiaries’ includes income tax for the current period and the deferred tax.
+      Income tax is recognized in the consolidated income statement except for the income tax related to the equity
+      items which is stated directly in the equity in the consolidated financial statements.
+
+      Income tax is recognized on net taxable income using tax rates enacted at the consolidated financial statements
+      date and in addition to any tax differences related to the previous years.
+
+
+
+                                                           -9-
+                                                                                                    Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements - 31 March 2007
+________________________________________________________________________________________________
+
+
+     Deferred income tax is provided using the balance sheet liability method, providing for temporary differences
+     between the carrying amounts of assets and liabilities for financial reporting purposes and the amounts used for
+     taxation purposes. The amount of deferred tax provided is based on the expected manner of realization or
+     settlement of the carrying amount of assets and liabilities, using tax rates enacted or substantively enacted at the
+     consolidated balance sheet date.
+
+     A deferred tax asset is recognized only to the extent that it is probable that future taxable profits will be available
+     against which the asset can be utilized. Deferred tax assets are reduced to the extent that it is no longer probable
+     that the related tax benefit will be realized.
+
+3-22 Statement of cash flows
+      The statement of cash flows is prepared using the indirect method. For the purpose of preparing the statement of
+      cash flows, cash equivalent comprise current account at banks and time deposits with maturity of less than three
+      months which represent integral part of the Group’s policy to manage the cash.
+
+
+
+
+                                                          - 10 -
+                                                                                                                              Translated From Arabic
+
+             EL SEWEDY CABLES COMPANY
+             Notes to the consolidated financial statements - 31 March 2007
+             ________________________________________________________________________________________________
+
+             4. Fixed assets
+
+                                                                             Machinery &
+                                                  Land          Buildings     equipment         Furniture          Vehicles                   Total
+                                                    LE                 LE            LE               LE               LE                      LE
+Cost
+1 January 2007                               46 580 154       97 665 000         433 938 606   13 447 513       26 202 379             617 833 653
+Additions                                     1 113 585       14 226 633          53 508 096    1 568 466        3 573 094              73 989 873
+Disposals                                       -              -                   (238 066)     (39 940)        (530 584)               (808 590)
+Adjustments                                      71 199          200 317           1 439 777    (220 631)          112 181               1 602 843
+Cost at 31 March 2007                        47 764 938      112 091 950         488 648 413   14 755 408       29 357 070             692 617 779
+
+Depreciation
+1 January 2007                                  -              4 321 459          49 665 148    2 356 578        3 611 924              59 955 109
+Additions                                       -              1 170 270          16 348 794      824 688        1 423 947              19 767 699
+Disposals                                       -              -                    (44 044)     (13 121)         (69 061)               (126 226)
+Adjustments                                     -              (140 103)             510 329       75 400           32 117                 477 743
+Accumulated depreciation at 31 March 2007       -              5 351 626          66 480 227    3 243 545        4 998 927              80 074 325
+Carrying amount 31/3/2007                    47 764 938      106 740 324         422 168 186   11 511 863       24 358 143             612 543 454
+Carrying amount 31/12/2006                   46 580 154       93 343 541         384 273 458   11 090 937       22 590 455             557 878 545
+
+
+
+
+                                                                            11
+                                                                                                 Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements - 31 March 2007
+________________________________________________________________________________________________
+
+5. Projects in progress
+
+                                                                          31/3/2007              31/12/2006
+                                                                             LE                      LE
+
+    Land                                                                    45 705 495              40 340 461
+    Buildings                                                               22 400 439              25 699 301
+    Machinery & equipment                                                   54 015 668              78 821 337
+    Furniture                                                                  684 318                 654 931
+                                                                           122 805 920             145 516 030
+
+6. Investments
+                                                                          31/3/2007              31/12/2006
+                                                                             LE                      LE
+   Long term investments
+   Investments available-for-sale (42 840 shares represent 3.57% of           4 284 000               4 284 000
+   Oriental Petrochemical Company’s share capital)
+                                                                              4 284 000               4 284 000
+   Current investments
+   Treasury bills (*)                                                       270 868 986            266 643 827
+                                                                            270 868 986            266 643 827
+
+ (*) Amount paid for purchase of treasury bills in-addition to the related accrued interest as at 31 March 2007
+     amounted to LE 31 206 798 (31 December 2006: LE 24 952 908). The interest rate on treasury bills ranges
+     between 8.70% and 10.10 %. The treasury bills held as a guarantee for loans and facilities amounted to LE 235
+     million at 31 March 2007 (31 December 2006: LE 230 million).
+
+7. Amounts paid for purchase of investments
+   The Group paid an amount of LE 88 474 000 as initial share capital in two new companies under establishment in
+   Libya and Yemen during the period ended 31 March 2007. The amount paid under the account of investments at 31
+   December 2006 represents the purchase consideration for the group’s interest in Modern National Company for
+   Cables and Metals.
+
+
+8. Other receivables – Long term
+                                                                           31/3/2007             31/12/2006
+                                                                              LE                     LE
+
+    Other receivables – Sudanese Electricity Authority                       14 155 052             18 277 456
+    Due from client- (*)                                                    131 567 155            166 818 056
+                                                                            145 722 207            185 095 512
+
+ (*) This amount will be collected on installments starting from 2008 to 2013 according to the contract with one of the
+     company’s clients. The company obtained a letter of guarantee from the client bank in its favor with the total
+     contract amount with that client.
+
+
+
+
+                                                         12
+                                                                                                  Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements - 31 March 2007
+________________________________________________________________________________________________
+
+
+9. Intangible assets
+    Intangible assets represent know-how for high voltage cables and fiber cables and are amortized over their legal life
+    from 5 to 10 years.
+
+                                                                             31/3/2007             31/12/2006
+                                                                                LE                     LE
+   Beginning Balance                                                               267 395            -
+   Acquisition                                                                        -                   491 294
+   Amortization                                                                   (55 975)              (223 899)
+   Net book value                                                                  211 420                267 395
+
+10. Inventories
+                                                                             31/3/2007             31/12/2006
+                                                                                LE                     LE
+    Raw material and consumables                                              478 950 044            752 530 015
+    Work in progress                                                          194 617 799            214 350 099
+    Finished goods                                                            546 349 256            586 314 762
+    Goods in transit                                                          341 139 845            193 176 498
+                                                                            1 561 056 944          1 746 371 374
+
+    Inventories are shown net of write down to their net realizable value. The write down at 31 December 2006
+    amounted to LE 5 465 919 at 31 December 2006. There isn’t any write down in 31 March 2007.
+
+11. Trade, notes and other receivables
+                                                                            31/3/2007              31/12/2006
+                                                                               LE                      LE
+    Trade receivables                                                         966 136 771            790 585 791
+    Notes receivable                                                          114 857 289             92 561 620
+    Other receivables                                                         363 172 200            328 071 122
+                                                                            1 444 166 260          1 211 218 533
+
+    Trade receivable and other receivables are shown net of impairment losses amounting to LE 26 920 567 at 31 March
+    2007 (December 2006: LE 27 484 572).
+
+12. Central bank certificates
+    The company acquired certificates issued by the Central Bank of Egypt amounting to LE 277 313 544. The interest
+    rate ranges between 8.25 % and 10.13 %.
+
+13. Cash and cash equivalents
+                                                                             31/3/2007             31/12/2006
+                                                                                LE                     LE
+    Time deposits (*)                                                         27 187 457              47 932 214
+    Bank current accounts (**)                                               397 197 459            347 389 706
+    Cash on hand                                                                6 186 058              1 464 215
+                                                                             430 570 974            396 786 135
+
+ (*) Time deposits include LE 6 056 941 as at 31 March 2007 (31 December 2006: LE 7 447 043) blocked as security
+     for the long term loans.
+
+
+
+                                                           13
+                                                                                                Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements - 31 March 2007
+________________________________________________________________________________________________
+
+
+(**)Banks current accounts include LE 212 770 as at 31 March 2007 (31 December 2006: LE 496 547) blocked as
+    security against banks overdraft.
+
+14. Banks overdraft
+    The banks overdraft item amounting to LE 353 904 707 and stated under current liabilities in the balance sheet are
+    secured by promissory notes and part of the Company’s current accounts with banks. The average interest rate
+    ranges between 10.16 % to 10.5 % for the Egyptian Pound, 0.75 % and 1% over Libor for US Dollar and 0.65%
+    over Libor for the EURO.
+
+15. Loans
+
+                                                                           31/3/2007            31/12/2006
+                                                                              LE                    LE
+    Current liabilities
+    Secured bank facilities                                               1 424 735 294         1 576 036 507
+    Unsecured bank facilities                                               152 313 215           106 110 160
+    Secured long-term loan installments due within one year                  36 414 185            27 530 114
+                                                                          1 613 462 694         1 709 676 781
+    Long-term liabilities
+    Secured bank loans                                                       16 447 990            10 739 990
+    Unsecured bank loans                                                        299 762             8 402 115
+                                                                             16 747 752            19 142 105
+
+   The average interest rates on loans and facilities are 10.5% for the Egyptian pounds, and 1% plus Libor for the US
+   Dollars.
+   Loans granted to the company and its subsidiaries are secured by promissory notes and joint guarantees from the
+   subsidiaries that approximate LE 620 million, USD 48.8 million, treasury bills amounted to LE 235 million and
+   joint guarantees amounted to LE 761.7 million.
+
+16. Trade, notes and other payables
+                                                                            31/3/2007           31/12/2006
+                                                                               LE                   LE
+     Trade and notes payables                                               203 826 764          222 712 974
+     Advances from clients                                                   90 562 643            77 279 137
+     Non-trade payables and accrued expenses                                 61 805 452          101 646 511
+                                                                            356 194 859          401 638 622
+17. Provisions
+                                                                            31/3/2007           31/12/2006
+                                                                                LE                  LE
+     Beginning Balance                                                       28 911 005              -
+     Acquired in a business combination                                          -                 33 374 521
+     Formed                                                                      112 473              854 154
+     Used                                                                        -                (1 008 703)
+     Reversed                                                                (2 868 812)          (4 434 803)
+     Adjustments                                                                   2 988              125 836
+                                                                             26 157 654            28 911 005
+
+
+
+
+                                                         14
+                                                                                                   Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements - 31 March 2007
+________________________________________________________________________________________________
+
+
+18. Share Capital
+    Authorized share capital
+     The Parent Company’s authorized share capital is LE 500 million. On 1 March 2006 the Extraordinary General
+    Assembly approved the increase of the authorized capital to L.E 1 billion.
+
+    On 26 April 2006 the Extraordinary General Assembly approved the increase of the authorized share capital to LE
+    1.5 billion and this increase was authenticated in the commercial register on 19 July 2006.
+
+     Issued and paid in share capital
+     The original issued and fully paid-in share capital of the Company was LE 125 million represented in 12.5 million
+     shares with a par value LE 10 each.
+
+     The shareholders in their meeting held on 17 July 2005 approved the increase of the issued share capital from LE
+     125 million to LE 500 million by issuing 37.5 million ordinary shares. The number of shares, following this
+     increase, became 50 million shares of a par value LE 10 each. The share capital increase was authenticated in the
+     commercial register on 26 February 2006.
+
+     The shareholders in their meeting held on 1 March 2006 approved the increase of the issued share capital by LE
+     100 million to become LE 600 million represented in 60 million shares of a par value LE 10 each. The increase in
+     the issued capital was fully paid in and authenticated in the commercial register on 26 April 2006.
+
+     On 26 April 2006, the Extraordinary General Assembly approved the increase of the issued share capital from LE
+     600 million to LE 1 200 million. The increase in the issued share capital was fully paid on 31 May 2006 and
+     authenticated in the commercial register on 19 July 2006.
+
+
+19. Legal reserve
+    According to the Companies Law requirements and the statutes of the Company and its subsidiaries, 5% of the
+    annual net profit is set aside to form a legal reserve. The transfer to legal reserve cease once the reserve reach 50%
+    of the issued share capital. The reserve is undistributable, however, it can be used to increase the share capital or
+    offset losses. If the reserve falls below the defined level (50% of the issued share capital), then the Company is
+    required to resume setting aside 5% of the annual profit until it reaches 50% of the issued share capital.
+
+
+20. Treasury shares
+    The company acquired at different dates during the period 2.5 million of its own shares representing 2.08 % of the
+    its issued capital at a cost of LE 92 481 858. The own shares are reduced in the company’s equity. These shares
+    should either be sold or charged as a decrease to capital within one year of their acquisition.
+
+21. Deferred Tax
+                                                                            (Liabilities)          (Liabilities)
+                                                                              31/3/2007             31/12/2006
+                                                                                 LE                      LE
+     Deferred tax asset (inventory)                                               79 249                  58 800
+     Deferred tax liability (liability)                                       (4 219 673)             (4 167 516)
+
+
+
+
+                                                           15
+                                                                                               Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements - 31 March 2007
+________________________________________________________________________________________________
+
+   Unrecognized deferred tax assets
+                                                                           31/3/2007            31/12/2006
+                                                                              LE                    LE
+     Clients                                                                 1 903 329             4 725 912
+     Debtors                                                                    54 146               271 057
+     Provisions                                                                423 007               423 007
+                                                                             2 380 482             5 419 976
+
+   Deferred tax assets relating to these items have not been recognized because the necessary conditions for the
+   reversal of the temporary differences have not been met.
+
+
+22. Other liabilities – Long term
+                                                                         31/3/2007             31/12/2006
+                                                                            LE                     LE
+     Sales tax on imported machines                                         3 966 129              4 624 657
+     Creditors                                                             39 029 801             40 946 565
+                                                                           42 995 930             45 571 222
+
+23. Segment reporting
+    Segment information is presented in respect of the Group’s business and geographical segments. The primary
+    format, business segments, is based on the Group’s management and internal reporting structure. Segment results
+    include items directly attributable to each segment as well as those that can be allocated on a reasonable basis.
+
+
+
+
+                                                         16
+                                                                                                                                                        Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements- 31 March 2007
+_________________________________________________________________________________________________
+
+ 23-1 Primary Reporting Format – Business Segments
+ Expressed in Egyptian Pounds
+                                                                                                                                                                    Consolidated
+                                      Raw materials   Power and Special Cables          Turn Key projects     Electric Products and Accessories   Elimination
+                                                                                                                                                                    31 March 2007
+                                                       (Egypt)       (International)                              (Egypt)       (International)
+
+ Local Sales                            164 215 511   356 326 100       219 051 119             23 292 437        20 771 731        25 264 109                          808 921 008
+ Export Sales and construction work     636 555 696   424 869 852          -                   123 143 372         1 735 472          -                               1 186 304 392
+ Total revenue without inter            800 771 207   781 195 952       219 051 119            146 435 809        22 507 203        25 264 109                        1 995 225 400
+ segment revenue
+ Inter segment revenues                 539 570 778   112 871 552          -                   -                   4 391 047          -             (656 833 377)          -
+ Total revenues                       1 340 341 985   894 067 504       219 051 119            146 435 809        26 898 250        25 264 109      (656 833 377)     1 995 225 400
+ Gross margins                           43 464 976    99 899 869        26 949 222             48 475 318        10 215 416         3 899 914          -               232 904 715
+ Other operating income                                                                                                                                                   7 209 930
+ Selling and distribution expenses                                                                                                                                     (20 405 425)
+ Administrative expenses                                                                                                                                                (20 634 254)
+ Other operating expenses                                                                                                                                                 (968 045)
+ Net financing costs                                                                                                                                                    (36 059 241)
+ Current income tax                                                                                                                                                      (6 137 599)
+ Deferred income tax expense                                                                                                                                              (152 533)
+ Net profit for the period                                                                                                                                              155 757 547
+                                                                                                                                                  Unallocated
+ Assets                               1 358 188 811    405 045 035      860 559 351             400 843 461      104 495 781        113 808 781    1 758 802 821       4 999 744 041
+ Liabilities                          (863 279 047)   (88 640 011)    (361 086 624)           (175 561 715)     (11 337 913)       (19 612 719)    (910 306 986)     (2 429 825 015)
+
+
+
+
+                                                                                       17
+                                                                                                                                                      Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements- 31 March 2007
+_________________________________________________________________________________________________
+
+ Expressed in Egyptian Pounds
+
+                                                                                                                                                                  Consolidated
+                                      Raw materials   Power and Special Cables         Turn Key projects    Electric Products and Accessories   Elimination
+                                                                                                                                                                    31 March 2007
+                                                       (Egypt)      (International)                             (Egypt)       (International)
+
+ Local Sales                            102 409 618   260 001 119          -                   12 807 872        9 437 939           -                -               384 656 548
+ Export Sales and construction work     263 276 932   330 308 175          -                   34 345 753        1 253 800           -                -               629 184 660
+ Total revenue without inter            365 686 550   590 309 294          -                   47 153 625       10 691 739           -                -             1 013 841 209
+ segment revenue
+ Inter segment revenues                 359 645 753    92 640 248          -                      -              8 627 054           -            (460 913 054)          -
+ Total revenues                         725 332 303   682 949 542          -                   47 153 625       19 318 793           -            (460 913 054)     1 013 841 209
+ Gross margins                           38 897 649    83 753 427          -                   12 866 225        7 439 451           -                -               142 956 752
+ Other operating income                                                                                                                                                    432 345
+ Selling and distribution expenses                                                                                                                                   (14 695 184)
+ Administrative expenses                                                                                                                                               (6 491 646)
+ Other operating expenses                                                                                                                                              (4 000 000)
+ Net financing costs                                                                                                                                                  (14 394 054)
+ Current income tax                                                                                                                                                    (2 999 700)
+ Deferred income tax expense                                                                                                                                                (962)
+ Net profit for the period                                                                                                                                            100 807 551
+                                                                                                                                                Unallocated
+ Assets                                 840 929 252   413 444 493          -                   -              100 989 036            -           1 598 439 854      2 953 802 635
+ Liabilities                            602 467 475    55 547 863          -                   -               34 886 041            -             789 430 709      1 482 332 088
+
+
+
+
+                                                                                      18
+                                                                                                                                                   Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements- 31 March 2007
+_________________________________________________________________________________________________
+
+
+23-2 Secondary Reporting Format - Geographical segments by location
+
+The Group subsidiaries are located in Egypt, Syria, Sudan, Qatar, Ghana, Saudi Arabia and Algeria.
+
+ Expressed in Egyptian Pounds
+                       Egypt             Syria         Sudan           Qatar         Ghana (*)        Saudi Arabia (*)    Algeria (*)     Elimination          Total
+
+Total revenues     2 407 743 548     122 003 392      91 274 178      31 037 658           -                 -                 -          (656 833 377)   1 995 225 400
+
+
+Assets              4 025 375 910   452 165 566   299 081 770          87 870 160        15 543 611         115 116 991       4 590 033                     4 999 744 041
+Liabilities       (2 049 125 672) (220 412 910) (105 795 580)        (54 300 102)         (149 844)            (40 907)         -                         (2 429 825 015)
+
+(*) These subsidiaries have not commenced their operations yet.
+
+
+
+
+                                                                                    19
+                                                                                                                       Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements- 31 March 2007
+_________________________________________________________________________________________________
+
+
+
+ Expressed in Egyptian Pounds
+                       Egypt       Syria     Sudan       Qatar          Ghana    Saudi Arabia       Algeria   Elimination          Total
+
+Total revenues     1 467 336 919   -           -            -             -            -               -      (460 913 054)   1 006 423 865
+
+
+Assets             2 953 802 635   -           -            -             -            -               -           -          2 953 802 635
+Liabilities        1 482 332 088   -           -            -             -            -               -           -          1 482 332 088
+
+
+
+
+                                                                   20
+                                                                                                       Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements- 31 March 2007
+_________________________________________________________________________________________________
+
+24. Other operating income
+                                                                        From          1/1/2007              1/1/2006
+                                                                         To          31/3/2007             31/3/2006
+                                                                                          LE                    LE
+     Reversal of provisions (Note 17)                                                   2 868 812               -
+     Gain on sale of fixed assets & others                                              4 341 118                432 345
+                                                                                        7 209 930               432 345
+
+25. Other operating expenses
+                                                                        From         1/1/2007              1/1/2006
+                                                                         To         31/3/2007             31/3/2006
+                                                                                        LE                     LE
+                                                                                        112 473                -
+     Provisions formed (Note 17)
+     Changes in the fair value of future contracts                                       -                    4 000 000
+     Others                                                                              855 572               -
+                                                                                         968 045              4 000 000
+
+
+26. Net financing cost
+                                                                       From        1/1/2007               1/1/2006
+                                                                        To        31/3/2007              31/3/2006
+                                                                                      LE                      LE
+     Finance income
+     Interest income                                                                 2 274 140               3 259 924
+     Interest on treasury bills and central bank certificates                       13 021 097                -
+     Foreign exchange differences                                                    1 857 024                 180 803
+                                                                                    17 152 261               3 440 727
+     Finance cost
+     Interest expense and finance charges                                         (53 211 502)            (17 834 781)
+     Net financing cost                                                           (36 059 241)            (14 394 054)
+
+
+27. Capital commitments
+    The Group’s capital commitments as at 31 March 2007 amounted to LE 138 million, and amounted to LE 26.7
+    million as at 31 December 2006. These commitments are expected to be settled in the next financial year.
+
+28. Contingencies
+                                                                                    31/3/2007                31/12/2006
+                                                                                       LE                        LE
+     Uncovered portion of letters of guarantee                                       412 161 282              350 712 346
+
+29. Related parties
+    Related parties are represented in the Company’s shareholders and the companies in which the shareholders own
+    directly or indirectly shares giving them the ability to control or significantly influence these parties. The main
+    transactions with the related parties are sale of finished products to affiliates. The total value of sales to those related
+    parties during the financial period ended 31 March 2007 is LE 40.7 million.
+
+
+
+
+                                                                21
+                                                                                          Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements- 31 March 2007
+_________________________________________________________________________________________________
+
+
+    The following are balances of related parties:
+                                                                        31/3/2007            31/12/2006
+                                                                           LE                    LE
+included in current assets
+“Due from related parties”
+El Sewedy for Tools & Cables                                              15 216 236          21 549 050
+Thomas & Bits                                                                      -             206 112
+El Sewedy for Cables                                                      12 918 476              -
+El Sewedy BVI                                                              5 158 500              -
+Euro-mold                                                                      -                  11 487
+Etalsamia                                                                    278 453              -
+Others                                                                        69 496             217 398
+                                                                          33 641 161          21 984 047
+                                                                           LE                    LE
+Included in current liabilities
+“Due to related parties”
+Due to shareholders                                                       14 728 946          12 516 164
+El sewedy Electrical Industries Co.                                         -                    696 909
+Arab Steel Fabrication Co                                                    700 930             259 328
+El sewedy Electrical Industries Co.                                          700 000              -
+Others                                                                        11 870              12 063
+                                                                          16 141 746          13 484 464
+ Subsidiary Companies
+ As at 31 March 2007 El Sewedy Cables Company owns the following subsidiaries:
+
+                                                          Date of          Country        Type of         % of
+                                                        acquisition                     investment        share
+  Egyptian Company For Advanced Industries                21/6/2005            Egypt       Direct           98.00
+  United Metals Co.                                       23/6/2005            Egypt       Direct           99.80
+  Arab cables Co.                                          3/7/2005            Egypt       Direct           99.99
+  Sedplast Co.                                            25/8/2005            Egypt       Direct           99.90
+  Egytec Cables Co.                                      25/12/2005            Egypt       Direct           99.98
+  United Industries Co.                                 25/12/2005             Egypt       Direct           99.98
+  Elsaty- mould                                           22/2/2006            Egypt      Indirect          48.60
+  El Sewedy Electric Co.                                  19/4/2006            Egypt       Direct           99.96
+  United Wires Co.                                        2/11/2006            Egypt       Direct           99.94
+  Egyplast Co.                                          24/12/2006             Egypt       Direct           99.93
+  Modern National Co.
+  El sewedy Electric’s subsidiary companies
+  El Sewedy Cables – Syria                                  19/4/2006           Syria    Indirect          91.93
+  Sudanese Egyptian Electric                                19/4/2006          Sudan     Indirect           69.97
+  Giyad Cables Co.                                          19/4/2006          Sudan     Indirect           44.98
+  Giyad El Sewedy for Transport Limited                     19/4/2006          Sudan     Indirect           79.97
+  El Sewedy Electric Ghana*                                 19/4/2006          Ghana     Indirect          70.80
+  El Sewedy Cables – Qatar                                  20/4/2006           Qatar    Indirect           48.98
+  El Sewedy Cables – Algeria                                3/10/2006         Algeria    Indirect          93.96
+  El Sewedy Electric – Syria                               30/10/2006           Syria    Indirect          94.10
+  El Sewedy Cables – Saudi Arabia                          24/12/2006    Saudi Arabia    Indirect          60,00.
+
+
+
+                                                      22
+                                                                                                 Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements- 31 March 2007
+_________________________________________________________________________________________________
+
+
+30. Tax status
+     El sewedy for Cables Company
+     The Company is established on 1 June 2005 under the Investment Incentives and Guarantees Law No. (8) of 1997
+     and the company enjoys a ten years corporate tax exemption effective of the financial year following that in which
+     operations commence as determined by the General Authority for Investment and Free Zone. In order for the
+     company to enjoy this tax holiday the company has to start its operations specified in its objective before 9 June
+     2008.
+
+     Subsidiaries in Egypt
+
+     Subsidiaries in Egypt subject to corporate tax
+     Arab Cables Company and Sedplast Co. are the only two subsidiaries not enjoying an exemption from
+     corporate tax in Egypt. The records of Arab Cables Co. were inspected by the tax authority for corporate tax
+     up to the tax year 1999. Arab cables records for 2000 to 2003 are currently under inspection by the tax
+     authority.
+     Arab cables filed a lawsuit against the tax authority claiming a right to enjoy an exemption from corporate tax
+     for five years, starting from 1 March 1999 to 28 February 2000 according to Article 120 of the Tax Law No
+     157 of 1981. The court has not yet issued its ruling.
+     Arab Cables records for 2004 and 2005 have not yet been inspected by the tax authority. Arab Cables files its
+     tax return within the timeframe prescribed by the Tax Law.
+      Sedplast is subject to corporate tax starting from 1 January 2007.
+
+    Subsidiaries in Egypt enjoying exemption from corporate tax
+    All Egyptian subsidiaries, except Arab Cables Company and El Sewedy Electric Company, are enjoying a
+    corporate tax exemption as follows:
+                                                                          End of tax
+        Subsidiary                                                        exemption
+
+      Sedplast Co.                                                                 31/12/2006
+      Egytech Cables Company                                                       31/12/2008
+      United Industries Company                                                    31/12/2009
+      Egyptian Company for Advanced Industries                                     31/12/2009
+      Elsaty – mould                                                               31/12/2009
+      United Metals Company                                                        31/12/2010
+      Modern National Co. (not yet starts its activities and it is exempted for
+      10 years)
+
+     Subsidiaries in Egypt not subject to tax
+     El Sewedy Electric Company is the only Egyptian subsidiary not subject to corporate tax. The Company is
+     established according to the Investment Incentives and Guarantee Law No. (8) of 1997 under to the Free Zone
+     System. According to this system, the Company pays a duty, 1% of revenues, to the General Authority for
+     Investment and Free Zone.
+
+     Subsidiaries outside Egypt
+     All subsidiaries incorporated outside Egypt except El sewedy Cables Qatar, El sewedy Cables Algeria and El
+     sewedy Cables- Saudi Arabia are currently exempted from corporate tax in their country of incorporation.
+
+
+
+
+                                                            23
+                                                                                                     Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements- 31 March 2007
+_________________________________________________________________________________________________
+
+
+                                                                                       End of tax
+          Subsidiary                                                                   exemption
+       The Egyptian Sudanese Company for Electric Industries                           31/12/2009
+       Giyad El Sewedy for Transport Limited -Sudan                                    31/12/2011
+       El Sewedy Cables Syria                                                          31/12/2012
+       Giyad Cables Company –Sudan                                                     31/12/2012
+       El Sewedy Electric Ghana                                                        31/12/2015
+       El Sewedy Electric Syria- (haven’t started operation yet to obtain a 5
+       years tax holiday)
+
+31. Acquisition of subsidiaries
+
+   Subsidiaries under the control of holders of the parent company
+   The company acquired during the financial year ended December 31, 2006 the shares of the subsidiaries included in
+   note No. (29) at their book value which are under common control by shareholders of El sewedy cables. These
+   acquisitions had the following effects on El Sewedy Cables Company assets and liabilities:
+
+                                                                                          LE
+      Net assets and liabilities                                                      1 217 244 109
+      Increase in the acquired subsidiaries than consideration paid                    (585 332 057)
+      Consideration for acquiring subsidiaries                                          631 912 052
+      Cash and banks at acquisition                                                    (185 093 065)
+      Net cash paid in acquisition                                                      446 818 987
+
+    Acquired subsidiaries
+    The company acquired 98% of the shares of the National Modern Company for Cables and Metals. The excess of
+    the acquisition consideration and the value of the assets, liabilities and contingent liabilities determined
+    provisionally at their book values are initially recognized as goodwill. The Group shall recognize any adjustments
+    to those provisional values within twelve months from the acquisition date upon determining the fair values of
+    these assets, liabilities and contingent liabilities. The effect of this acquisition on the Group’s assets and liabilities
+    are as follows:
+                                                                                             LE
+     Purchase consideration                                                                13 230 000
+     Net assets                                                                             5 437 306
+     Minority interest                                                                        106 614
+     Goodwill                                                                               8 005 922
+
+
+
+
+                                                            24
+                                                                                                    Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements- 31 March 2007
+_________________________________________________________________________________________________
+
+
+32. Earnings per share
+    The calculation of basic earnings per share at 31 March 2007 was based on the profit attributable to ordinary
+    shareholders and the weighted average number of ordinary shares outstanding.
+
+     Profits available to shareholders
+
+                                                                             31 March 2007            31 March2006
+                                                                                  LE                      LE
+           Net profit available for equity holders                               146 379 385              95 558 510
+
+
+     Weighted average number of shares
+
+                                                                   Note     Weighted average       Weighted average
+                                                                   No.      number of shares       number of shares
+                                                                                   31/3/2007              31/3/2006
+
+           Issue of share capital of LE 125 M                      (18)              12 500 000            12 500 000
+           Increase in the issued share capital to LE 500 M        (18)              37 500 000            20 532 787
+           Increase in the issued share capital to LE 600 M        (18)              10 000 000                -
+           Increase in the issued share capital to LE 1200 M       (18)              60 000 000                -
+           Own shares                                                               (2 500 000)                -
+           Weighted average number of shares                                       117 500 000             33 032 787
+
+33. Financial instruments and the related risks
+
+   The Group’s financial instruments comprise the financial assets (cash and cash equivalents, investments in
+   securities, trade receivable and some debtors and debit balances) and financial liabilities (banks overdraft, interest
+   bearing loans and facilities, trade payables and some creditors and credit balances). The Group is exposed to
+   different risks, including the foreign currencies risk, commodity price risk and interest rate risks. The Group’s
+   overall risk management policies and procedures aim at minimizing potential adverse effects on the financial
+   performance of the Group. The Group enters into derivative agreements to hedge exposure to currencies risk and
+   commodity price risks; also the group does not enter in derivatives for speculative purposes.
+
+   The main risks that related to the group’s activities as follows:
+
+   Credit risk
+   Credit risk is the risk that one party to a financial instrument fails to discharge an obligation and cause the other
+   party to incur financial loss. The amounts due from customers do not represent a significant concentration of
+   risk as trade receivable is widely spread among customers segments except one of the construction clients
+   whose receivable amounted to LE 131.5 million at 31 March 2007 (LE 166 million at 31 December 2006) of
+   which the company obtained a bank guarantee with the total contract value due from that client. Strict credit
+   control is maintained and further appropriate level of impairment loss is recognized.
+
+
+
+
+                                                            25
+                                                                                                 Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements- 31 March 2007
+_________________________________________________________________________________________________
+
+   Foreign currency risk
+
+   Foreign currency risk is the risk that the value of financial instruments will fluctuate due to change in the
+   foreign exchange rates. The Group is exposed to foreign currency risk on purchases from foreign suppliers and
+   loans denominated in foreign currency. The currencies giving rise to this risk are primarily US Dollar, Euro,
+   Sterling Pound, Qatar dinar, Swiss Francs and Emirates dirham.
+
+   As of 31 March 2007, the Group’s assets and liabilities denominated in foreign currencies amount to the
+   equivalent of LE 798.4 million, and LE 1.597 million, (as at 31 December 2006 of LE 666.125 million, and LE
+   1.696 billion) is respectively. The Group’s net foreign currencies exposure as at 31 March 2007 is as follows:
+
+
+                                                          31/3/2007                         31/12/2006
+            Foreign currency                                 LE                                 LE
+                                                         Surplus/(deficit)                Surplus/(deficit)
+
+            US Dollar                                          (183 666 358)                   (200 815 835)
+            Euro                                                  20 738 238                       9 934 212
+            Sterling Pound                                         3 393 966                       2 028 250
+            QD                                                     2 431 354                       7 457 822
+            CHF                                                       52 603                     -
+            AED                                                    2 078 926                     -
+
+
+   Foreign currencies exchange contracts
+
+   Some subsidiaries make foreign currencies exchange contracts in order to secure US Dollar and Euro to settle
+   their liabilities in foreign currencies for commitments denominated in foreign currencies. The exchange
+   contracts are recorded at their fair value included in other debt or credit balances in the consolidated balance
+   sheet, the fair value is determined for these contracts at the consolidated balance sheet date and the changes in
+   the fair value are charged in the consolidated income statement.
+
+   Interest rate risk
+
+   Interest rate risk is the risk that the value of financial instruments will fluctuate due to changes in market
+   interest rates which may adversely affect the operation of the Group. The major loans and facilities are
+   denominated in foreign currencies. The interest rates applicable to these loans, overdrafts and credit facilities
+   are disclosed.
+
+   Commodity price risk
+
+   The Group is exposed to commodity price risk arising from fluctuations in copper prices, the Group uses
+   commodities futures to hedge that risk. The hedging instruments are -measured at fair value in respect of the
+   hedged risk with any resulting adjustments recognized in the income statement. The unrealized losses from
+   changes in future contracts fair value amounted to L.E 4.00 million at 31 March 2007 included in the
+   consolidated income statement under the other operating expenses.
+
+
+
+
+                                                          26
+                                                                                                      Translated From Arabic
+
+EL SEWEDY CABLES COMPANY
+Notes to the consolidated financial statements- 31 March 2007
+_________________________________________________________________________________________________
+
+
+    Fair value of financial instruments
+
+    The fair value is the amount for which an asset could be exchanged or a liability settled between knowledgeable
+    willing parties on an arm’s length basis. The following summarizes the major methods and assumptions used in
+    estimating the fair values of financial instruments:
+
+    Investments
+
+    Fair value is based on quoted market price at the balance sheet date without any deduction for transaction costs
+    except for the unquoted equity security, referred to above, which is stated at cost less impairment loss, if any.
+
+    Receivables and payables
+
+    Receivables and payables with a remaining life of less than one year, the notional amount is deemed to reflect the
+    fair value.
+
+    Facilities and loans
+
+    Facilities and loans are included at amortized cost determined at the effective interest rates.
+
+    Foreign currencies contracts and raw materials
+
+    The company uses financial derivatives to cover the fluctuation in foreign currencies prices and its raw materials.
+    The future contracts are recorded at their fair value and the changes in the fair value are charged to the consolidated
+    income statement.
+
+34. Comparative figures
+
+   The comparative figures for the financial period ended 31 March 2006 included in the income statement, cash flows
+   and the notes to the financial statements are not audited and were not subject to a limited review.
+
+35. Subsequent events
+
+   The company ex-ordinary General Assembly on 16 April 2007 decided to split El sewedy Cables Company into two
+   separate companies, in order to separate manufacturing activities from the holding company. The shareholders will
+   maintain their same percentage of owner ship in both companies issued capital on the date of the split.
+
+
+
+
+                                                            27
+
