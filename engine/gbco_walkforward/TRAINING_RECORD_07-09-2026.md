@@ -134,13 +134,19 @@ orientation declared:
 
 | driver | h=3 | h=4 | h=5 | basis | orientation | n |
 |---|---|---|---|---|---|---|
-| revenue | 0.74 – 1.35 | 0.63 – 1.61 | 0.66 – 1.66 | **span** | **actual over forecast** | 7 / 6 / 5 |
-| gross_profit | 0.72 – 1.05 | 0.68 – 1.09 | 0.60 – 1.14 | **span** | **actual over forecast** | 7 / 6 / 5 |
-| operating_profit | 0.61 – 1.06 | 0.53 – 1.05 | 0.47 – 1.09 | **span** | **actual over forecast** | 7 / 6 / 5 |
+| revenue | 0.59 – 2.23 | 0.45 – 1.80 | 0.34 – 2.04 | **span** | **actual over forecast** | 7 / 6 / 5 |
+| gross_profit | 0.91 – 1.53 | 0.93 – 1.83 | 0.63 – 1.93 | **span** | **actual over forecast** | 7 / 6 / 5 |
+| operating_profit | 1.04 – 1.96 | 1.06 – 2.26 | 0.85 – 2.29 | **span** | **actual over forecast** | 7 / 6 / 5 |
 
 **BASIS IS `span`, NOT `percentile`, AND THE DIFFERENCE IS THE WHOLE POINT.** Seven, six and
 five observations is the range of seven, six and five numbers. Calling it a p10–p90 would be
 the free parameter the promotion rule forbids.
+
+**ORIENTATION IS DECLARED BECAUSE A RECIPROCAL IS THE MOST DANGEROUS UNIT ERROR THERE IS.**
+These are ACTUAL OVER FORECAST: a cell of 2.29 means the outturn came in 2.29 times the
+projection, so the operating-profit band says the method's far years should be scaled UP.
+Read the other way up they would say the opposite, and 0.44 and 2.29 are each an ordinary
+number to meet in a band.
 
 ## 9 · Limits, stated
 

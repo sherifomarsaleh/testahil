@@ -22,6 +22,7 @@ ENG = os.path.dirname(HERE)
 sys.path.insert(0, ENG)
 import cost_of_capital as COC
 import macro_path as MP
+import rebuild_ledger as RL   # the SHARED instrument [R-ENF-03], never a hand-rolled record
 
 SH = 1085.5
 SPOT = 28.98                     # LATEST KNOWN price, supplied close of 3 September 2026
@@ -134,30 +135,40 @@ def main():
                    "the AUTO leg and that leg's own non-controlling interest",
                    "[R-BRIDGE-01]", prev, v4)); prev = v4
 
+    led = RL.Ledger(ticker="GBCO",
+                    started_at="the delivered 08-07-2026 edition, restruck on the same drivers",
+                    start_value=v0, start_spot=SPOT,
+                    audit_after=("L4 — declared IN ADVANCE: the running total is looked at once "
+                                 "the four rule-driven corrections have landed and BEFORE the "
+                                 "price is consulted"))
+    for name, rule, a, b in levers[1:]:
+        led.apply(name=name.split(" · ")[0], rule=rule, after=b,
+                  why=name.split("· ", 1)[1], evidence="engine/gbco_study/compute.py")
+
+    print(RL.render(led.record()) if hasattr(RL, "render") else "")
     print("GBCO REBUILD LEDGER — the levers in the ORDER APPLIED\n")
-    print("  audit point declared IN ADVANCE: after L4, before the price is consulted\n")
-    print("  %-4s %-11s %-11s %-9s  %s" % ("", "before", "after", "move", "rule"))
-    for name, rule, a, b in levers:
-        mv = "—" if a is None else "%+.1f%%" % (100 * (b / a - 1))
-        print("  %-4s %-11s %-11s %-9s  %s" % (name.split(" ·")[0],
-              "—" if a is None else "%.2f" % a, "%.2f" % b, mv, rule))
-        print("        %s\n" % name.split("· ", 1)[1])
-    print("  running total L0 -> L4:  %.2f -> %.2f   %+.1f%%" % (v0, prev, 100 * (prev / v0 - 1)))
-    print("  and the individual moves do NOT sum to it: two of the four pull opposite ways —")
-    print("  the discount-rate correction RAISES the value and the growth correction LOWERS it.")
+    print("  audit point declared IN ADVANCE: %s\n" % led.audit_after)
+    for lv in led.levers:
+        print("  %-4s %8.2f -> %8.2f  %+7.1f%%   %s" %
+              (lv.name, lv.before, lv.after, 100 * lv.move, lv.rule))
+        print("        %s\n" % lv.why)
+    print("  running total: %.2f -> %.2f   %+.1f%%" % (v0, led.value, 100 * led.cumulative))
+    print("  BY RULE, which is the point — several levers serving one rule are ONE piece")
+    print("  of evidence, and here the four rules pull in opposite directions:")
+    for rule, g in led.by_rule().items():
+        print("    %-45s %+7.1f%%" % (rule[:45], 100 * g["move"]))
 
     committed = json.load(open(os.path.join(HERE, "study_numbers.json")))["central"]
-    assert abs(prev - committed) < 0.01, (
+    assert abs(led.value - committed) < 0.01, (
         "the ledger's fully-levered answer %.4f does not reproduce the committed central "
-        "%.4f — a ledger that cannot be WALKED is refused [R-REBUILD-01]" % (prev, committed))
-    print("\n  the last lever reaches the published central: %.4f == %.4f  OK" % (prev, committed))
-
-    json.dump({"_rule": "[R-REBUILD-01]", "ticker": "GBCO", "date": "2026-09-07",
-               "audit_point": "after L4, before the price is consulted — declared in advance",
-               "published_central": committed, "published_spot": SPOT,
-               "levers": [{"lever": n, "rule": r, "before": a, "after": b} for n, r, a, b in levers]},
-              open(os.path.join(HERE, "rebuild_ledger.json"), "w", encoding="utf-8"),
+        "%.4f — a ledger that cannot be WALKED is refused [R-REBUILD-01]"
+        % (led.value, committed))
+    rec = led.record()
+    RL.assert_rebuild(rec, "GBCO")
+    json.dump(rec, open(os.path.join(HERE, "rebuild_ledger.json"), "w", encoding="utf-8"),
               indent=1, ensure_ascii=False)
+    print("\n  the last lever reaches the published central: %.4f == %.4f  OK"
+          % (led.value, committed))
 
 
 if __name__ == "__main__":

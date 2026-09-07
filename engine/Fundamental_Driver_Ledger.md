@@ -834,3 +834,55 @@ horizons cannot admit a single cut under the cut-invariance clause and untestabl
 stable. Fair value unchanged at EGP 36.64 (Frame A) / 54.24 (Frame B). Far-year bands
 published for horizons one to three only, declared as SPANS over three to five
 observations rather than percentiles, oriented actual-over-forecast.
+
+---
+
+## GBCO — GB Corp S.A.E (EGX) — fundamental walk-forward, 07-09-2026
+
+**Class: no registered row.** GB Corp is an automotive assembler-distributor (GB Auto) with a
+**captive non-bank lender** (GB Capital) and one large unlisted associate. `LENS_REGISTRY` has
+thirteen rows and none of them is this: `holding company` stores exactly the lens set the name
+needs (SOTP primary, relative multiple and book beside it) and refuses it on the ROW'S NAME
+alone, and GB Corp is not a holdco by that rule's own test — a holdco IS its stakes; this is an
+assembler with a finance arm. Filing it as one would put a wrong label in the committed record.
+**Proposed for registration:** `automotive assembler-distributor with a captive lender` →
+`('sotp', ('relative_multiple', 'book_value', 'ev_ebitda_own_history'))`. Not registered in
+this run because `lessons_register.py` is a shared register and four other runs are in flight.
+The name is the fifth on the lens-registry escalation and stays on the [R-LENS-03] ratchet.
+
+**Scope: FULL.** FY2012–FY2025, fourteen sourceable fiscal years, all tier A from GB Corp's own
+documents, all footed. Nine origins FY2016–FY2024, horizons 1–5, 245 scored cells.
+
+| driver | mechanical rule at the origin | outcome |
+|---|---|---|
+| revenue | trailing 3-year CAGR damped 20% a year toward the trailing 5-year CAGR | bias −0.004; **flips sign at 6 of 6 admissible cuts** — a mean, not a bias. Beats freeze at every horizon. |
+| gross_margin | trailing 3-year mean, held flat | bias −0.223; flips at 2 of 6 cuts; **LOSES to freeze at h1–h4** |
+| sga_ratio | trailing 3-year mean of (selling + admin) / revenue | bias −0.180; sign holds at every cut |
+| operating_profit | built from the above, margins an OUTPUT | bias −0.379; sign holds at every cut; CI excludes zero at every horizon |
+| finance_cost | *as scored*: net finance cost as a ratio to revenue | bias +0.401, MAE 0.890, CI straddles zero at every horizon, **LOSES to freeze at four of five** |
+| tax | Egyptian statutory rate known at the origin (22.5% from FY2015) | — |
+| net_profit | operating profit less finance cost, taxed | bias −0.692, n=15, thin |
+
+**THE FINANCE-COST DRIVER IS THE ENTRY WORTH READING.** Built as a ratio to revenue it
+inherits the 2016–17 float's funding shock and carries it forward five years, forecasting
+LOSSES at the FY2016, FY2017 and FY2018 origins for years GB Corp was profitable. The correct
+construction is the borrowings that actually bear the interest — and on this name the leak runs
+the OPPOSITE way from trap (i)'s usual shape: the numerator is too NARROW, because **GB
+Capital's cost of funds (EGP 3,756.9mn in FY2025) is booked in that segment's cost of revenue**
+rather than in the group finance line. Group charge over total liabilities reads 7.05%, over
+group borrowings 11.27%, and over the whole interest actually incurred **26.53%** — which
+reproduces the disclosed CBE lending rate, and which the study now adopts.
+
+**Corrections: none promoted; four watch flags** (gross_profit, operating_profit, sga,
+net_profit — all pass the cut-invariance clause and all are OUTPUTS of two inputs whose own
+signs are unstable, so a correction on them would be a multiplier standing in for a
+mis-specified margin rule).
+
+**Macro/company split:** 22.1% macro, 77.9% company, over 23 revenue cells against Egypt's own
+point-in-time IMF WEO vintages. The split's own check is inverted here and worth more than the
+split: **the model carries no inflation term at all**, so the attribution is after the fact.
+
+**Not built, and flagged rather than filled:** a volume-anchored revenue driver. Unit volumes
+are disclosed from FY2019 and in the annual-report business reviews before that, but an
+exogenous Egyptian market-size series dated at every origin was not obtained from company
+documents inside this run.

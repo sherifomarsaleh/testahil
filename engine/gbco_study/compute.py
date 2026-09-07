@@ -355,6 +355,49 @@ exp3 = dict(base=(exp3_ev-auto_nd-auto_nci + cap_book*0.90 + assoc*0.85)/SH)
 exp2 = dict(base=norm['base'], rng=(norm['bear'], norm['bull']))
 roce, ce = 0.213, 28513.0
 
+_AUD = ('GB Corp / GB Auto audited consolidated statement of income for the year, as '
+        'reproduced in the company\'s own annual report for that year (engine/gbco_study/src/)')
+_REL = ('GB Corp\'s own %s earnings release, published on ir.gb-corporation.com and '
+        'committed under engine/gbco_study/src/')
+def _i(v, src, date, tier='A'):
+    return dict(value=v, source=src, date=date, tier=tier, unit='EGP mn',
+                route='PDF text layer (pymupdf)')
+_INPUTS = {
+    'rev_fy2023':  _i(28317.2, _REL % '4Q23', '2024-03-01'),
+    'rev_fy2024':  _i(53969.5, _REL % '4Q24', '2025-02-01'),
+    'rev_fy2025':  _i(80229.8, _REL % '4Q25' + '; footed against the FY2025 audited '
+                     'consolidated statement of income, operating revenue 80,229,809 '
+                     '(EGP thousand)', '2026-02-26'),
+    'rev_h1_2026': _i(48474.4, _REL % '2Q/1H26' + ', 13 August 2026', '2026-08-13'),
+    'gp_fy2025':   _i(12431.1, _AUD, '2026-02-26'),
+    'gp_h1_2026':  _i(7421.9, _REL % '2Q/1H26', '2026-08-13'),
+    'gross_auto_h1_2026': _i(5722.1, _REL % '2Q/1H26' + ', Table 11 income statement BY '
+                             'SEGMENT: GB Auto total revenue 40,021.5, gross profit 5,722.1',
+                             '2026-08-13'),
+    'ebit_fy2025': _i(6631.0, _AUD, '2026-02-26'),
+    'pat_fy2025':  _i(2880.0, _AUD + ' — attributable to the parent; the FY2025 opinion is '
+                     'QUALIFIED on the MNT-BV associate', '2026-02-26'),
+    'pat_fy2024':  _i(2928.1, _AUD, '2025-02-01'),
+    'cash_dec2025': _i(9523.6, _AUD + ' — note 16, cash and cash equivalents', '2026-02-26'),
+    'cash_jun2026': _i(10951.5, _REL % '2Q/1H26' + ', Table 12 balance sheet by segment',
+                       '2026-08-13'),
+    'debt_dec2025': _i(38041.4, _AUD + ' — notes 26 and 38: loans 10,721,880 + bonds '
+                       '40,000 + loans, borrowings and overdrafts 27,199,462 + bonds 80,000',
+                       '2026-02-26'),
+    'debt_jun2026': _i(42476.0, _REL % '2Q/1H26' + ', Table 12: loans and overdraft 28,703.7 '
+                       '+ loans 13,772.3', '2026-08-13'),
+    'debt_auto_jun2026': _i(22733.1, _REL % '2Q/1H26' + ', Table 12, GB Auto column: '
+                            '20,943.0 + 1,790.1 — THE BORROWINGS THAT ACTUALLY BEAR THE '
+                            'ASSEMBLER\'S INTEREST', '2026-08-13'),
+    'dep_fy2025':  _i(999.3, _AUD + ' — consolidated cash-flow statement, depreciation and '
+                     'amortisation for the year', '2026-02-26'),
+    'capex_fy2025': _i(3664.2, _AUD + ' — consolidated cash-flow statement, payment for '
+                       'acquisition of property, plant, equipment and projects under '
+                       'construction', '2026-02-26'),
+    'eq_jun2026':  _i(35127.9, _REL % '2Q/1H26' + ', Table 12 total equity', '2026-08-13'),
+    'ni_h1_2026':  _i(1262.0, _REL % '2Q/1H26', '2026-08-13'),
+}
+
 out = dict(
     # THE ANSWER, WHERE THE SHARED READER LOOKS. Until this rebuild the study's central sat
     # at lenses.central.base and scripts/check_valuation_gap.py reads a top-level `central`,
@@ -435,6 +478,12 @@ out = dict(
                          "domestic CPI series escalates any line in this model. The ASP growth "
                          "rates are company drivers, not an inflation path, and are registered "
                          "as such in the forecast block."))),
+    # THE INPUT REGISTER, four-field, committed where a checker can reach it. Until this
+    # rebuild this directory held NO FILINGS AT ALL and the register lived nowhere, so
+    # SIGCM clause 1 had nothing behind it and scripts/check_source_integrity.py read the
+    # study as UNREADABLE. Every source below is a document GB Corp published itself, now
+    # committed under engine/gbco_study/src/; the route is the PDF text layer in every case.
+    inputs=_INPUTS,
     forecast_anchor=dict(
         rate_name="GB Auto gross margin",
         latest_reviewed_period=("1H2026 — GB Corp's own 2Q/1H26 earnings release, 13 August "

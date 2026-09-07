@@ -1,40 +1,84 @@
 {
- "_rule": "[R-REBUILD-01]",
  "ticker": "GBCO",
- "date": "2026-09-07",
- "audit_point": "after L4, before the price is consulted — declared in advance",
- "published_central": 44.329496406267786,
- "published_spot": 28.98,
+ "started_at": "the delivered 08-07-2026 edition, restruck on the same drivers",
+ "start_value": 35.746804894778066,
+ "start_spot": 28.98,
+ "start_gap": 0.23349913370524722,
+ "audit_after": "L4 — declared IN ADVANCE: the running total is looked at once the four rule-driven corrections have landed and BEFORE the price is consulted",
  "levers": [
   {
-   "lever": "L0 · as delivered (08-07-2026 edition, restruck on the same drivers)",
-   "rule": "—",
-   "before": null,
-   "after": 35.746804894778066
-  },
-  {
-   "lever": "L1 · cost of capital rebuilt through engine/cost_of_capital.py — country risk counted ONCE (rf* = 23.00% - 3.41%), a conforming tier-1 beta of 0.8907 in place of an assumed 1.0, Kd re-derived at 26.53% on the borrowings that actually bear the interest, and a glide from 22.91% to a norm-built terminal of 14.21% in place of one crisis rate for ever",
+   "name": "L1",
    "rule": "[R-COC-01] · [R-COC-02] · [L-004]",
    "before": 35.746804894778066,
-   "after": 73.71156579442516
+   "after": 73.71156579442516,
+   "why": "cost of capital rebuilt through engine/cost_of_capital.py — country risk counted ONCE (rf* = 23.00% - 3.41%), a conforming tier-1 beta of 0.8907 in place of an assumed 1.0, Kd re-derived at 26.53% on the borrowings that actually bear the interest, and a glide from 22.91% to a norm-built terminal of 14.21% in place of one crisis rate for ever",
+   "evidence": "engine/gbco_study/compute.py",
+   "move": 1.0620462727059845
   },
   {
-   "lever": "L2 · terminal growth stored as (real 0.0%, inflation path EG) and recomputed to its nominal 7.00%, replacing a TYPED nominal 11.5% nobody could falsify",
+   "name": "L2",
    "rule": "[R-MACRO-01]",
    "before": 73.71156579442516,
-   "after": 43.955512067253494
+   "after": 43.955512067253494,
+   "why": "terminal growth stored as (real 0.0%, inflation path EG) and recomputed to its nominal 7.00%, replacing a TYPED nominal 11.5% nobody could falsify",
+   "evidence": "engine/gbco_study/compute.py",
+   "move": -0.403682290648371
   },
   {
-   "lever": "L3 · terminal through engine/terminal_value.py on a DISCLOSED useful life — NOT APPLIED. Both admissible routes were run and both failed: the policy note discloses RATE RANGES only (2%-33%, a 3-to-50-year span) and the derived identity returns 10.9-17.1 years depending on an undisclosed land split, with per-class rates that contradict the disclosed bands. A life this desk chose is not a disclosed life. See useful_lives.json.",
+   "name": "L3",
    "rule": "[R-TERM-01] — STOP AND INFORM, SIGCM clause 8",
    "before": 43.955512067253494,
-   "after": 43.955512067253494
+   "after": 43.955512067253494,
+   "why": "terminal through engine/terminal_value.py on a DISCLOSED useful life — NOT APPLIED. Both admissible routes were run and both failed: the policy note discloses RATE RANGES only (2%-33%, a 3-to-50-year span) and the derived identity returns 10.9-17.1 years depending on an undisclosed land split, with per-class rates that contradict the disclosed bands. A life this desk chose is not a disclosed life. See useful_lives.json.",
+   "evidence": "engine/gbco_study/compute.py",
+   "move": 0.0
   },
   {
-   "lever": "L4 · the enterprise-to-equity bridge moved from 31-Dec-2025 onto the reviewed 30-June-2026 balance sheet, GB Corp's own segmented net debt for the AUTO leg and that leg's own non-controlling interest",
+   "name": "L4",
    "rule": "[R-BRIDGE-01]",
    "before": 43.955512067253494,
-   "after": 44.329496406267786
+   "after": 44.329496406267786,
+   "why": "the enterprise-to-equity bridge moved from 31-Dec-2025 onto the reviewed 30-June-2026 balance sheet, GB Corp's own segmented net debt for the AUTO leg and that leg's own non-controlling interest",
+   "evidence": "engine/gbco_study/compute.py",
+   "move": 0.008508246666358632
   }
- ]
+ ],
+ "value": 44.329496406267786,
+ "cumulative_move": 0.24009674533858805,
+ "rules": {
+  "[R-COC-01] · [R-COC-02] · [L-004]": {
+   "levers": [
+    "L1"
+   ],
+   "first_before": 35.746804894778066,
+   "last_after": 73.71156579442516,
+   "move": 1.0620462727059845
+  },
+  "[R-MACRO-01]": {
+   "levers": [
+    "L2"
+   ],
+   "first_before": 73.71156579442516,
+   "last_after": 43.955512067253494,
+   "move": -0.403682290648371
+  },
+  "[R-TERM-01] — STOP AND INFORM, SIGCM clause 8": {
+   "levers": [
+    "L3"
+   ],
+   "first_before": 43.955512067253494,
+   "last_after": 43.955512067253494,
+   "move": 0.0
+  },
+  "[R-BRIDGE-01]": {
+   "levers": [
+    "L4"
+   ],
+   "first_before": 43.955512067253494,
+   "last_after": 44.329496406267786,
+   "move": 0.008508246666358632
+  }
+ },
+ "distinct_rules": 4,
+ "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked."
 }
