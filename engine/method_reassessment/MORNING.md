@@ -3027,3 +3027,42 @@ beats reporting 18 of 18, which is what the first probe was ready to say.** Thir
 first-attempt error of the day, and the first caught by a *placebo* rather than by a
 fixture or a disagreement — which is the null-first discipline [R-TCAL-01] already runs on
 the technical read, arriving somewhere nobody had connected it to.
+
+---
+
+## 07-09-2026, later still — depth-bar standard 7, three real gaps and one false positive
+
+The other self-attested field. `check_document_structure` verifies that C.1–C.6 *exist*;
+standard 7's per-expert content — "worldview, when-it-works/when-it-fails, **worked
+valuation table with every intermediate line**, named sensitivity with numbers, **falsifier
+stated in advance**" — is checked by nobody.
+
+Segmenting each delivered document at its C.n boundaries and asking two structural
+questions of each expert block flagged four studies. **Every one was spot-checked by
+reading the appendix, and that changed the answer.**
+
+| | reading |
+|---|---|
+| RIYADHCABLE | C.1/C.2/C.3 are **prose only** — no worked table for any expert, one figure instead, under an intro claiming "each worked in full". Real gap. |
+| ARCC | Same, and the probe **under-stated it**: the single table it credited to C.3 is the shared panel summary that follows it, not Expert 3's working. Real gap, 0 of 3 rather than 1 of 3. |
+| AMOC | All three tables present; **no falsifier in any of the three blocks**. Corroborated independently — its whole-document scan carries the fewest falsification hits in the book and no occurrence of "falsifier" at all. Real gap. |
+| PHDC | C.3 is the market-implied analyst: a reverse-solve holding every input at the audited base. **It genuinely has one line**, and a one-row table would be theatre. **Not a gap** — the probe was wrong. |
+
+GBCO and SCEM carry no C.1–C.6 at all, which `check_document_structure` already reports.
+
+### Why no gate tonight, said rather than left implicit
+
+Both halves need the `prose_figures` architecture — a shared instrument plus per-study
+declared exceptions — rather than a matcher:
+
+- **The falsifier half needs a vocabulary that cannot be complete.** The book states it
+  twelve ways ("falsifier", "what would change our mind", "prove this wrong", "would
+  overturn", "refutation", …). A required-statement check fails in the *dangerous*
+  direction: a study phrasing it a thirteenth way is condemned for doing right work.
+- **The table half has a legitimate exception class**, and PHDC is it. A method whose
+  working is one solved line owes no table, and a gate that could not tell that from an
+  omission would push studies to print one-row tables to stay green — the
+  move-the-work-to-satisfy-the-check offence.
+
+That is a real piece of work and not a passing one. **Three gaps recorded, one false
+positive identified with its reason, no gate adopted.**
