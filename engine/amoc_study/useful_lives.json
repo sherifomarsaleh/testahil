@@ -1,0 +1,297 @@
+{
+  "_rule": "R-TERM-01 — a terminal's maintenance capital rests on a DISCLOSED useful life. A life this desk chooses is not a disclosed life (SIGCM clause 1), and engine/terminal_value.py refuses one without a source. This file is a COPY out of filings already parsed cell by cell, not new research.",
+  "_source": "TWO notes of the same filing, because the policy note does not yield a scalar. POLICY (note 5/2, 'Fixed assets and their depreciation', A - Initial measurement and recognition): 'Depreciation is calculated using the straight-line method according to the assets estimated useful life as follows:' followed by a table headed 'Item | Estimated Useful Life (yearly)' whose every row is a RANGE. FIXED-ASSET NOTE (note 6, 'Fixed assets'): 'The net book value of fixed assets on 31/12/2025 amounted to EGP 893,016,274 after deducting the accumulated depreciation of EGP 1,847,794,418 detailed as follows:' followed by the cost / accumulated-depreciation movement table by class from which the adopted scalar is DERIVED.",
+  "_file": "engine/amoc_study/filings/AMOC_CONSOL_31-12-2025.pdf",
+  "_route": "OCR off the rendered pixels. The filing carries NO usable text layer — pdftotext returns 50 characters across 50 pages, one form feed per page — so under [R-FCAL-01] the route is recorded and ARITHMETIC IS THE ARBITER. Pages rendered with pdftoppm at 200dpi (the scans' own native resolution; 1-bit CCITT 2338x1653 at 200ppi) and at 300dpi for the two note pages, read with tesseract 5 (eng), and BOTH tables additionally read visually off the rendered image. Note 6 sits on a landscape page inside a portrait-rotated file: rendered portrait it OCRs as reversed digit strings, and it was rotated 90 degrees clockwise before reading. Every figure in note 6 foots — see arithmetic_checks.",
+  "_extracted": "2026-09-07",
+  "_period_caveat": "THE LATEST FILING COVERS SIX MONTHS, NOT A YEAR, and that governs the derivation. AMOC's fiscal year ended 30 June; the company moved to a December year-end and this filing is the TRANSITION PERIOD 1 July 2025 to 31 December 2025. The depreciation column in note 6 is therefore a HALF-YEAR charge and is annualised by doubling. On the adopted class that doubling is exact rather than an approximation: machinery and equipment took ZERO additions and ZERO disposals in the period (note 6, both rows disclosed as dashes), so under the straight-line method the note itself states, a six-month charge on an unchanged base is exactly half the annual charge. The annualisation is stated on every derived figure below and never buried.",
+  "route_1_policy_lives": {
+    "verdict": "DISCLOSED BUT NOT A SCALAR — recorded as the governing BOUND, not adopted as the life.",
+    "note": "note 5/2, 'Fixed assets and their depreciation', A - Initial measurement and recognition",
+    "pdf_page": "PDF page 12 of 50",
+    "quoted": "Depreciation is calculated using the straight-line method according to the assets estimated useful life as follows:",
+    "table_header": "Item | Estimated Useful Life (yearly)",
+    "lives_years": {
+      "machinery_equipment_and_devices": [
+        10,
+        30
+      ],
+      "buildings_constructions_and_utilities": [
+        10,
+        30
+      ],
+      "vehicles": [
+        5,
+        15
+      ],
+      "tools": [
+        5,
+        10
+      ],
+      "furniture_fixtures_and_computers": [
+        4,
+        10
+      ]
+    },
+    "why_no_scalar": "Every row is a range and the dominant class spans 10 to 30 years — a factor of three, which on a terminal is the difference between two entirely different valuations. Any point inside it is a number this desk picked, which is exactly what SIGCM clause 1 and R-TERM-01 forbid. The company discloses no weighted rate, no per-class rate and no split of the machinery column by sub-class, so no scalar can be recovered from this note by arithmetic. Route 2 supplies the scalar; this range is what tests it.",
+    "prior_year_cross_check": "IDENTICAL in the consolidated financial statements for the year ended 30 June 2024 (engine/amoc_walkforward/filings/54-66c5a239056101724228153.pdf, PDF page 12), verified visually off the rendered pixels row by row: 10-30 / 10-30 / 5-15 / 5-10 / 4-10. Also identical in the standalone statements for the period ended 31 December 2025 (engine/amoc_study/filings/AMOC_STANDALONE_31-12-2025.pdf, PDF page 11), where the 'Tools' row is captioned 'Tools and equipment'. The table has not moved."
+  },
+  "route_2_derived_life": {
+    "verdict": "ADOPTED. Labelled DERIVED, as the identity it is.",
+    "note": "note 6, 'Fixed assets'",
+    "pdf_page": "PDF page 27 of 50 (the movement table); PDF page 28 carries the lands, fully-depreciated and idle-asset disclosures and note 6-1 intangibles",
+    "identity": "useful life = gross cost / annual depreciation charge, both from the fixed-asset note. An identity from disclosed figures, not an assumption.",
+    "machinery_and_equipment": {
+      "gross_cost_at_31_12_2025": 2067415318,
+      "depreciation_charge_six_months": 47110162,
+      "annualised_charge": 94220324,
+      "annualisation": "x2. Exact on this class: zero additions and zero disposals in the period, straight-line method.",
+      "derived_life_years": 21.942349911681475,
+      "accumulated_depreciation_at_31_12_2025": 1507453016,
+      "implied_average_age_years": 15.999234050606747,
+      "pct_depreciated": 0.7291486151211732
+    },
+    "all_depreciable_assets_excluding_land": {
+      "gross_cost_at_31_12_2025": 2665058507,
+      "basis": "total gross cost 2,740,810,692 LESS land 75,752,185. Land is excluded because its depreciation row in note 6 is a DISCLOSED ZERO — land is not depreciated — so carrying it in the numerator against a charge it does not contribute to would inflate the life. Excluding it is arithmetic, not a choice.",
+      "depreciation_charge_six_months": 67747372,
+      "annualised_charge": 135494744,
+      "derived_life_years": 19.669091422468757
+    },
+    "per_class_derived_lives_years": {
+      "machinery_and_equipment": 21.942349911681475,
+      "buildings_constructions_and_facilities": 22.94525533165977,
+      "vehicles": 36.50641390814571,
+      "tools_and_equipment": 10.259527375765211,
+      "furniture_and_office_equipment": 5.921399054099644,
+      "lands": null
+    }
+  },
+  "route_2_tested_against_route_1": {
+    "_": "The disclosed policy range is what the derived scalar is held to. This is the whole reason both notes are recorded.",
+    "machinery_and_equipment": {
+      "derived": 21.942349911681475,
+      "disclosed_range": [
+        10,
+        30
+      ],
+      "inside": true
+    },
+    "buildings_constructions_and_facilities": {
+      "derived": 22.94525533165977,
+      "disclosed_range": [
+        10,
+        30
+      ],
+      "inside": true
+    },
+    "furniture_and_office_equipment": {
+      "derived": 5.921399054099644,
+      "disclosed_range": [
+        4,
+        10
+      ],
+      "inside": true
+    },
+    "vehicles": {
+      "derived": 36.50641390814571,
+      "disclosed_range": [
+        5,
+        15
+      ],
+      "inside": false
+    },
+    "tools_and_equipment": {
+      "derived": 10.259527375765211,
+      "disclosed_range": [
+        5,
+        10
+      ],
+      "inside": false
+    },
+    "what_the_two_failures_mean": "THEY ARE THE LIMIT OF THE DERIVED ROUTE AND THEY POINT AT THE ADOPTED CLASS RATHER THAN AWAY FROM IT. A fully depreciated asset still in use sits in gross cost and contributes nothing to the charge, so it stretches the derived life without limit. Note 6 discloses exactly how much of each class that is: of vehicles' 24,992,510 of cost, 21,569,483 is fully depreciated and still in use — 86% — and the class reads 36.5 years against a disclosed 5-15; tools are 37% fully depreciated and read 10.26 against 5-10, just outside. Machinery is 7.5% fully depreciated, the least affected class in the note, and it lands mid-range of its disclosed 10-30. The classes the test rejects are the ones the effect dominates, and the class adopted is the one it barely touches."
+  },
+  "residual_value_test": {
+    "_": "THE CONDITION engine/terminal_value.py NAMES AS DECISIVE FOR THIS IDENTITY: where the policy note writes off cost LESS a residual value, gross cost over the charge is NOT the useful life and must not be read as one. The note settles it; the arithmetic only corroborates. AMOC PASSES, on the RIYADHCABLE/EGCH pattern rather than the AIRARABIA/SAVOLA/EMPOWER one.",
+    "depreciable_amount": "Note 5/2 states the depreciable amount without any residual deduction: fixed assets are 'stated according to the historical cost after deducting the accumulated depreciation and impairment loss', and 'Depreciation is calculated using the straight-line method according to the assets estimated useful life'. Cost over life, nothing deducted.",
+    "where_residual_value_does_appear": "Twice, and both times in the annual-review boilerplate, never in the depreciable amount: note 5/2 continued (PDF page 13) 'The remaining values of assets, their useful lives and depreciation methods are reviewed at the end of each financial year'; and note 23 'Main sources for uncertainty estimates', part C 'Machines and equipment useful lives' (PDF pages 47-48), 'Management reviews the residual value and useful lives on an annual basis, and the future depreciation provision is adjusted when management believes that the useful lives differ from previous estimates.'",
+    "measured": "The word 'residual' occurs exactly ONCE in the whole consolidated filing's OCR, in that note 23-C sentence. It never qualifies the depreciable amount.",
+    "business_combination_test": "The other condition that voids the identity — an accumulated column carrying an acquiree's history against a charge covering only the period since acquisition — does not bite either, and the evidence is arithmetic rather than assertion: the STANDALONE statements (note 4, PDF page 24) carry machinery cost 2,067,415,318, accumulated depreciation 1,460,342,854 / 1,507,453,016 and a charge of 47,110,162 — IDENTICAL to the consolidated figures to the pound. The subsidiary (Alexandria Wax Products S.A.E., 86.45% held) contributes no machinery at all, so the machinery column is one company's own history throughout."
+  },
+  "ppe": {
+    "note_reference": "note 6 'Fixed assets', consolidated statements for the period ended 31 December 2025, PDF page 27 of 50",
+    "as_at": "2025-12-31",
+    "gross_cost": 2740810692,
+    "accumulated_depreciation": 1847794418,
+    "carrying_value": 893016274,
+    "carrying_value_prior": {
+      "as_at": "2025-06-30",
+      "value": 937851261
+    },
+    "quoted": "The net book value of fixed assets on 31/12/2025 amounted to EGP 893,016,274 after deducting the accumulated depreciation of EGP 1,847,794,418 detailed as follows:",
+    "machinery_and_equipment_carrying_value": 559962302,
+    "projects_under_construction": {
+      "value": 407323203,
+      "note_reference": "note 7 'Projects under Construction', PDF page 29",
+      "why_named": "Named beside rather than folded in. It is not depreciating and carries no life; it is recorded so a later reader does not have to ask whether the fixed-asset note is the whole property base."
+    },
+    "currency": "EGP",
+    "units": "as printed in the filing — units, not thousands or millions",
+    "basis": "consolidated"
+  },
+  "fixed_asset_note_as_disclosed": {
+    "cost_at_01_07_2025": {
+      "lands": 75752185,
+      "buildings_constructions_and_facilities": 396322998,
+      "machinery_and_equipment": 2067415318,
+      "vehicles": 24992510,
+      "tools_and_equipment": 66677995,
+      "furniture_and_office_equipment": 88184909,
+      "total": 2719345915
+    },
+    "additions": {
+      "lands": 0,
+      "buildings_constructions_and_facilities": 9505144,
+      "machinery_and_equipment": 0,
+      "vehicles": 0,
+      "tools_and_equipment": 8192377,
+      "furniture_and_office_equipment": 5214864,
+      "total": 22912385
+    },
+    "disposals": {
+      "lands": 0,
+      "buildings_constructions_and_facilities": 0,
+      "machinery_and_equipment": 0,
+      "vehicles": 0,
+      "tools_and_equipment": 1072422,
+      "furniture_and_office_equipment": 375186,
+      "total": 1447608
+    },
+    "cost_at_31_12_2025": {
+      "lands": 75752185,
+      "buildings_constructions_and_facilities": 405828142,
+      "machinery_and_equipment": 2067415318,
+      "vehicles": 24992510,
+      "tools_and_equipment": 73797950,
+      "furniture_and_office_equipment": 93024587,
+      "total": 2740810692
+    },
+    "accumulated_depreciation_at_01_07_2025": {
+      "lands": 0,
+      "buildings_constructions_and_facilities": 223985530,
+      "machinery_and_equipment": 1460342854,
+      "vehicles": 23050041,
+      "tools_and_equipment": 39300343,
+      "furniture_and_office_equipment": 34815886,
+      "total": 1781494654
+    },
+    "depreciation_for_the_six_month_period": {
+      "lands": 0,
+      "buildings_constructions_and_facilities": 8843400,
+      "machinery_and_equipment": 47110162,
+      "vehicles": 342303,
+      "tools_and_equipment": 3596557,
+      "furniture_and_office_equipment": 7854950,
+      "total": 67747372
+    },
+    "accumulated_depreciation_of_disposals": {
+      "lands": 0,
+      "buildings_constructions_and_facilities": 0,
+      "machinery_and_equipment": 0,
+      "vehicles": 0,
+      "tools_and_equipment": 1072422,
+      "furniture_and_office_equipment": 375186,
+      "total": 1447608
+    },
+    "accumulated_depreciation_at_31_12_2025": {
+      "lands": 0,
+      "buildings_constructions_and_facilities": 232828930,
+      "machinery_and_equipment": 1507453016,
+      "vehicles": 23392344,
+      "tools_and_equipment": 41824478,
+      "furniture_and_office_equipment": 42295650,
+      "total": 1847794418
+    },
+    "net_book_value_at_31_12_2025": {
+      "lands": 75752185,
+      "buildings_constructions_and_facilities": 172999212,
+      "machinery_and_equipment": 559962302,
+      "vehicles": 1600166,
+      "tools_and_equipment": 31973472,
+      "furniture_and_office_equipment": 50728937,
+      "total": 893016274
+    },
+    "net_book_value_at_30_06_2025": {
+      "lands": 75752185,
+      "buildings_constructions_and_facilities": 172337468,
+      "machinery_and_equipment": 607072464,
+      "vehicles": 1942469,
+      "tools_and_equipment": 27377652,
+      "furniture_and_office_equipment": 53369023,
+      "total": 937851261
+    }
+  },
+  "fully_depreciated_still_in_use": {
+    "note_reference": "note 6, PDF page 28 of 50",
+    "quoted": "The total value of fully depreciated assets and still in use on 31/12/2025 amounted to EGP 273,466,121.",
+    "as_at": "2025-12-31",
+    "by_class": {
+      "vehicles": 21569483,
+      "furniture": 17125931,
+      "tools_and_equipment": 27241071,
+      "buildings": 51657492,
+      "machinery": 155841232,
+      "intangible_assets": 30912,
+      "total": 273466121
+    },
+    "idle_assets": "At present, there are no assets that are completely idle. (note 6, PDF page 28)",
+    "prior_periods": {
+      "2025-06-30": {
+        "total": 254111081,
+        "machinery": 146511147,
+        "source": "consolidated statements for the year ended 30 June 2025, engine/amoc_study/filings/AMOC_CONSOL_30-06-2025.pdf, PDF page 34"
+      },
+      "2024-06-30": {
+        "total": 261354943,
+        "machinery": 154073811,
+        "source": "consolidated statements for the year ended 30 June 2024, engine/amoc_walkforward/filings/54-66c5a239056101724228153.pdf, PDF page 32"
+      }
+    }
+  },
+  "arithmetic_checks": {
+    "_": "ARITHMETIC IS THE ARBITER. Every one of these was run on the figures as read, before any of them was used.",
+    "column_footings": "All TEN columns of note 6 sum across the six classes to the printed Total, exactly: cost at 01/07 (2,719,345,915), additions (22,912,385), disposals (1,447,608), cost at 31/12 (2,740,810,692), accumulated depreciation at 01/07 (1,781,494,654), the period charge (67,747,372), accumulated depreciation of disposals (1,447,608), accumulated depreciation at 31/12 (1,847,794,418), net book value at 31/12 (893,016,274) and net book value at 30/06 (937,851,261).",
+    "row_identities": "For all six classes and for the Total: opening cost + additions - disposals = closing cost; opening accumulated + charge - accumulated depreciation of disposals = closing accumulated; closing cost - closing accumulated = net book value at 31/12; opening cost - opening accumulated = net book value at 30/06. Twenty-eight identities, zero disagreements.",
+    "agreement_with_the_balance_sheet": "Net book value 893,016,274 is the fixed-assets line of the consolidated balance sheet at 31/12/2025, and 937,851,261 its comparative — the same two figures the house's own walk-forward record already commits for 30 June 2025.",
+    "agreement_with_the_standalone_filing": "The standalone statements' note 4 foots the same way on its own totals (cost 2,736,545,687, charge 67,581,305, net book value 891,723,845) and carries the machinery column identical to the consolidated to the pound.",
+    "annualisation_sanity": "The whole-company charge annualised from this half is 135,494,744 against a full FY2025 group charge of 127,506,241 (that figure including right-of-use amortisation), +10.0%. The increase is where the additions were — buildings +9,505,144, tools +8,192,377, furniture +5,214,864 in the half — and machinery, which took no additions, is the class whose annualisation carries none of that growth. Machinery's annualised charge is 69.5% of the annualised total against a 77.6% share of depreciable gross cost, the gap being the short-lived classes.",
+    "internal_consistency_of_the_derived_pair": "Implied average age / derived life = 0.72915 and accumulated depreciation / gross cost = 0.72915 for machinery — the same ratio by construction, which is a check that the two derived figures were computed off the same base and not a second piece of evidence."
+  },
+  "adopted_for_terminal": {
+    "years": 21.942349911681475,
+    "basis": "DERIVED — machinery and equipment, the dominant class. Gross cost at 31/12/2025 of EGP 2,067,415,318 divided by the annualised depreciation charge of EGP 94,220,324 (the disclosed six-month charge of EGP 47,110,162, doubled).",
+    "class_adopted": "machinery_and_equipment",
+    "class_share_of_gross_cost": {
+      "of_depreciable_gross_cost_excluding_land": 0.7757485670838971,
+      "of_total_gross_cost": 0.7543079586030745,
+      "of_net_book_value": 0.627046021783921,
+      "disclosed": "Yes — note 6 discloses cost by class, so the share is read rather than estimated."
+    },
+    "source_string_to_commit": "Audited consolidated financial statements for the period ended 31 December 2025 (Crowe — Dr A.M. Hegazy & Co, unqualified opinion signed 18 February 2026), note 6 fixed assets, the machinery and equipment column — gross cost EGP 2,067,415,318 at 31/12/2025 over the disclosed six-month depreciation charge of EGP 47,110,162 annualised to EGP 94,220,324, the class having taken no additions and no disposals in the period; read by OCR off the rendered pixels because the filing carries no text layer, the movement table footing in every column and row, and the DERIVED life sitting inside the 10-30 year range note 5/2 discloses for that class",
+    "reasoning": "The terminal is built on a petrochemical plant and machinery and equipment is what that plant is: 77.6% of depreciable gross cost, 75.4% of total gross cost, 62.7% of net book value, all disclosed in note 6 rather than estimated. The policy note is the DISCLOSED source R-TERM-01 asks for but it gives a 10-30 year range and no scalar, and any point inside a range is a life this desk chose — so the scalar is derived by the identity, labelled as derived, and then held to the disclosed range, which it passes at 21.94 years. Three further conditions were tested rather than assumed: the policy note deducts no residual value from the depreciable amount, so the charge is cost over life and the identity means what it says; the machinery column is not contaminated by a business combination, proven by the standalone filing carrying it identically; and the class is the least affected in the note by fully-depreciated assets still in use, at 7.5% of its cost, which is the effect that makes the identity fail on vehicles and tools. The whole-firm alternative, 19.67 years over all depreciable assets, is recorded beside it and is 10.4% shorter — a shorter life charges MORE maintenance and produces a LOWER value, so adopting the machinery figure is the less conservative of the two and is adopted on what the base actually is, not on which way it moves the answer.",
+    "what_would_overturn_it": "(1) A later filing revising the lives: note 23-C states management reviews the residual value and useful lives annually and adjusts prospectively where they differ from previous estimates, so a December-2026 filing could move this without restating anything. (2) The company disclosing machinery cost split by sub-class, or a per-class depreciation RATE, either of which would give a scalar directly from the policy note and displace the derivation. (3) A policy note that begins to deduct a residual value from the depreciable amount, which would void the identity outright — the test is the note and not the arithmetic. (4) A material acquisition bringing in machinery with its own accumulated history, which would break the standalone-equals-consolidated evidence this record rests on. (5) Evidence that the plant's replacement base is not proportioned like its historical-cost base — the shares above are read off historical cost, and a replacement-cost base weighted differently across buildings and machinery would move the class weighting even though neither class's own life changed.",
+    "sensitivity": "The defensible readings sit in a narrow band and it is worth stating because the terminal is proportional to 1/life: 21.94 years on gross cost as adopted; 20.29 years if the EGP 155,841,232 of machinery that is fully depreciated and still in use is stripped from the numerator, which is a legitimate second reading of 'the base that is actually depreciating' and is 7.5% shorter; 19.67 years across all depreciable assets. All three sit inside the disclosed 10-30 range and the spread between them is 10.4%, against the 3x span of the policy range itself — which is the argument for deriving the scalar rather than choosing inside the range."
+  },
+  "average_age": {
+    "years": 15.999234050606747,
+    "basis": "machinery and equipment — accumulated depreciation EGP 1,507,453,016 at 31/12/2025 over the annualised charge of EGP 94,220,324, which under the straight-line method note 5/2 states is the charge-weighted average age of the base.",
+    "source_string_to_commit": "Audited consolidated financial statements for the period ended 31 December 2025 (Crowe — Dr A.M. Hegazy & Co, unqualified opinion signed 18 February 2026), note 6 fixed assets, accumulated depreciation on the machinery and equipment column at 31/12/2025 over the same column's disclosed six-month charge annualised; read by OCR off the rendered pixels, cost less accumulated reproducing the balance-sheet net book value of EGP 893,016,274 in total and EGP 559,962,302 for the class",
+    "admissible_because": "The policy note deducts no residual value from the depreciable amount — see residual_value_test. That is what makes the age a measurement rather than an artefact, and it is the note that settles it, not the arithmetic, which is circular here because the life was derived by the same identity.",
+    "caveat": "Slightly OVERSTATED, in the direction that errs toward charging more maintenance and a lower value: EGP 155,841,232 of machinery (7.5% of the class's cost) is fully depreciated and still in use, carrying full accumulated depreciation against no charge.",
+    "not_adopted_here": "Recorded, not adopted. This file's deliverable is the life; whether the terminal consumes the measured age or half the life is the wiring step's decision and is made on the record, not in this file."
+  },
+  "_not_used_and_why": {
+    "annual_filings_do_not_carry_the_movement_table": "The consolidated statements for the years ended 30 June 2025 and 30 June 2024 — the two obvious places to look for a full-year charge — DO NOT CONTAIN THE FIXED-ASSET MOVEMENT TABLE. In both, the notes run straight from the tail of the new-and-amended-standards table to the 'Lands:' paragraph that in the December filing FOLLOWS the table (30 June 2025 file, PDF pages 33 then 34; 30 June 2024 file, PDF pages 31 then 32). Verified by rendering and reading those pages, not inferred from a failed search. The landscape table page is absent from the scan in both. That is why the derivation runs off the six-month transition filing and is annualised, rather than off a full year, and it is recorded so the next reader does not repeat the search.",
+    "what_the_annual_filings_do_give": "The full-year GROUP depreciation-and-amortisation charge, from each year's cash-flow statement, already committed by this house in engine/amoc_walkforward/valuation_inputs.json: FY2022 83,807,680 / FY2023 92,933,870 / FY2024 97,994,727 / FY2025 127,506,241. Used above only as the annualisation sanity check; it is a whole-company figure including right-of-use amortisation and carries no split by class, so no life can be derived from it."
+  }
+}
