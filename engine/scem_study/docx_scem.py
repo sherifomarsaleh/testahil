@@ -89,9 +89,13 @@ box([('What this is. ', 'An independent valuation of Sinai Cement, an educationa
      ('Where the value lands. ',
       f'The cash-flow lens is the answer: EGP {n2(LN["central"])} a share against a market '
       f'price of EGP {n2(SPOT)}, {sg(LN["central"]/SPOT-1)}. Flexing the operating margin '
-      f'down to the lowest the company has ever filed takes it to EGP '
-      f'{n2(LREC["primary"]["range"]["low"])}, and the forecast opens above the best year '
-      f'it has filed, so essentially the whole of that range is downside. The other lenses '
+      f'down to {pc(LREC["primary"]["range_basis"]["low"])} takes it to EGP '
+      f'{n2(LREC["primary"]["range"]["low"])} — and that is not the lowest margin the '
+      f'company has filed but the lowest at which this remains a GOING CONCERN, because '
+      f'below it the terminal consumes cash for ever and would have to be valued as a '
+      f'liquidation rather than at a smaller number. The forecast opens above the best '
+      f'year the company has filed, so essentially the whole of that range is downside. '
+      f'The other lenses '
       f'are published beside it rather than averaged into it: replacement cost EGP '
       f'{n2(LN["values"]["Asset / replacement cost"])}, an enterprise multiple EGP '
       f'{n2(LN["values"]["Relative multiples"])}, and a disclosed book floor of EGP '
@@ -459,9 +463,15 @@ rows.append(['MEMO — the retired four-lens blend', '—',
 table(rows, [1.62, 0.72, 0.72, 0.72, 0.78, 2.39], band_rows={1})
 caption('Table 8 — The lenses side by side. NOTHING IS WEIGHTED: the cash-flow read is the '
         'central and the others are cross-checks. Its bear corner flexes the operating '
-        'margin down to the lowest the company has filed and holds the macro path still; '
-        'its bull corner is the base case, because the forecast already opens above the '
-        'best margin the company has ever filed and this driver has no upside left '
+        f'margin down to {pc(LREC["primary"]["range_basis"]["low"])} and holds the macro '
+        'path still. THAT IS NOT THE LOWEST MARGIN THE COMPANY HAS FILED, which is '
+        f'{pc(LREC["primary"]["range_basis"]["filed_minimum"])}: at that margin terminal '
+        'free cash flow on the disclosed twenty-year machinery life is negative, and a '
+        'going concern consuming cash for ever is a liquidation rather than a lower '
+        'valuation — so the bound published is the lowest margin at which the '
+        'going-concern reading survives, and below it the disclosed book value is the '
+        'floor. Its bull corner is the base case, because the forecast already opens above '
+        'the best margin the company has ever filed and this driver has no upside left '
         'against its own record.')
 
 # ---- 1.6 --------------------------------------------------------------------
