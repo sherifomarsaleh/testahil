@@ -14,7 +14,7 @@
    "title": "It catches the errors that actually happen",
    "test": "Every confirmed gap is closed by a gate or listed with a reason, and every closed gap has a negative control that re-plants the real defect.",
    "state": "IN FLIGHT",
-   "note": "All three named errors are now caught. The asset-base and cost-of-equity gates were built today; the 14-lens census of every OTHER way a fair value goes wrong is still running and supplies the rest."
+   "note": "All three named errors are gated, and the census then found the landbank gate was checking the wrong half — the vintage, not whether any arithmetic reads the quantity. Corrected. 40 verified gaps remain as the work list; three of the sharpest are closed."
   },
   {
    "id": "P3",
@@ -58,8 +58,8 @@
   {
    "day": "2",
    "item": "Close the census's confirmed gaps",
-   "state": "NEXT",
-   "detail": "Each one a gate or a listed reason. Ranked by value at risk, not by tidiness."
+   "state": "IN FLIGHT",
+   "detail": "The census returned 14 lenses, 42 gap claims adversarially refuted, 40 surviving. Its first finding CORRECTED THIS SESSION: [R-ASSET-01] checks the asset base's VINTAGE and nothing checked that any arithmetic READS it — both developers register, commit and PRINT a land bank no calculation touches. Closed by [R-ASSET-02]. Two more verified and closed: the exemplar's own weights sum to 0.872 and its WACC reproduces from neither reading, and no record named where its beta came from."
   },
   {
    "day": "3",

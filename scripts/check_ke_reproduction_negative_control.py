@@ -28,7 +28,7 @@ for p in (ENGINE, ROOT):
 
 import ke_reproduction as kr                 # noqa: E402
 
-DECLARED_CASES = 14
+DECLARED_CASES = 20
 
 # ARCC's record, the fields this gate reads, exactly as committed.
 ARCC = {
@@ -38,6 +38,10 @@ ARCC = {
     "ke_terminal": 0.20021378024369318,
     "weight_equity": 0.9621629210350936, "weight_debt": 0.03783707896490645,
     "weight_debt_terminal": 0.2,
+    "kd_aftertax": 0.10352275371182129,
+    "wacc_exp": 0.9621629210350936 * 0.28277982632155385
+                + 0.03783707896490645 * 0.10352275371182129,
+    "beta_source": "own_stock_regression",
 }
 # ADNOCLS's shape: a plain same_beta terminal on a pegged market.
 PLAIN = {
@@ -46,6 +50,9 @@ PLAIN = {
     "rf_terminal": 0.042, "erp_terminal": 0.0858,
     "ke_terminal": 0.042 + 0.6 * 0.0858,
     "weight_equity": 0.9, "weight_debt": 0.1, "weight_debt_terminal": 0.1,
+    "kd_aftertax": 0.03,
+    "wacc_exp": 0.9 * (0.0424 + 0.6 * 0.0866) + 0.1 * 0.03,
+    "beta_source": "own_stock_regression",
 }
 
 
@@ -117,8 +124,45 @@ case("a plain same_beta terminal, DECLARED",
 
 case("a record with an explicit Ke and NO terminal — not this test's subject",
      {"rf_star": 0.1955, "beta": 0.9275220650537075, "erp": 0.0941,
-      "ke_exp": 0.28277982632155385},
+      "ke_exp": 0.28277982632155385, "beta_source": "own_stock_regression",
+      "weight_equity": 0.96, "weight_debt": 0.04, "kd_aftertax": 0.10,
+      "wacc_exp": 0.96 * 0.28277982632155385 + 0.04 * 0.10},
      False, lambda r: "ke_terminal" not in r)
+
+# ---- the weights and the beta's provenance, added 07-09-2026 ------------
+case("THE EXEMPLAR'S DEFECT — weights that do not sum to one",
+     d(ARCC, weight_equity=0.800444, weight_debt=0.071933,
+       ke_terminal_construction="relevered", relevering_tax_rate=0.225),
+     True, lambda r: abs(r["weight_equity"] + r["weight_debt"] - 1.0) > 1e-6)
+
+case("a WACC that does not reproduce from its own weights and rates",
+     d(ARCC, wacc_exp=0.35, ke_terminal_construction="relevered",
+       relevering_tax_rate=0.225),
+     True, lambda r: r["wacc_exp"] == 0.35)
+
+case("a beta with no source — a priced fallback and a typed number look the same",
+     d(ARCC, beta_source=None, ke_terminal_construction="relevered",
+       relevering_tax_rate=0.225),
+     True, lambda r: "beta_source" not in r)
+
+case("a beta_source off the closed list",
+     d(ARCC, beta_source="looked about right", ke_terminal_construction="relevered",
+       relevering_tax_rate=0.225),
+     True, lambda r: r["beta_source"] == "looked about right")
+
+case("SCEM's shape — a PRICED tier-3 fallback, declared, must stay green",
+     d(PLAIN, beta=1.0,
+       ke_exp=PLAIN["rf_star"] + 1.0 * PLAIN["erp"],
+       ke_terminal=PLAIN["rf_terminal"] + 1.0 * PLAIN["erp_terminal"],
+       wacc_exp=0.9 * (PLAIN["rf_star"] + 1.0 * PLAIN["erp"]) + 0.1 * 0.03,
+       beta_source="tier3_fallback", ke_terminal_construction="same_beta"),
+     False, lambda r: r["beta"] == 1.0 and r["beta_source"] == "tier3_fallback")
+
+case("NET weights on a net-cash company still sum to one",
+     d(PLAIN, weight_equity=1.08, weight_debt=-0.08,
+       wacc_exp=1.08 * (PLAIN["rf_star"] + 0.6 * PLAIN["erp"]) + (-0.08) * 0.03,
+       ke_terminal_construction="same_beta"),
+     False, lambda r: r["weight_debt"] < 0)
 
 
 def main():

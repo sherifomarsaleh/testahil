@@ -155,6 +155,9 @@ def check(rec):
             fails.append("ke_exp %.10f does not reproduce from rf_star + beta x erp "
                          "= %.10f (%+.2f bp)" % (ke, want, (ke - want) * 1e4))
 
+    fails.extend(check_weights(rec))
+    fails.extend(check_beta_source(rec))
+
     ket = rec.get("ke_terminal")
     if ket is None:
         return fails                      # a record with no terminal is not this test's subject
@@ -194,3 +197,66 @@ def check(rec):
                      "construction %r = %.10f (%+.2f bp)"
                      % (ket, cons, want, (ket - want) * 1e4))
     return fails
+
+# ---------------------------------------------------------------- the weights
+
+# EXTENDED 07-09-2026, on the census's own finding, verified by hand. [R-COC-01] requires
+# MARKET-VALUE weights and a WACC built from them, and nothing reproduced the WACC either.
+# THE EXEMPLAR IS THE WORKED CASE AND THAT IS WHY IT MATTERS: ADNOCLS's committed weights
+# are 0.800444 and 0.071933, WHICH SUM TO 0.872377 RATHER THAN ONE, and its committed
+# wacc_exp of 8.5484% does not reproduce from them — we*ke + wd*kd_after_tax gives 7.9230%,
+# 62.5bp adrift, and renormalising the weights gives 9.0821%, adrift the other way. Neither
+# reading reaches the published figure. This is the document every new study is built by
+# copying [R-ENF-01 EXTENDED 04-Sep], so a construction it carries propagates looking
+# exactly like the house standard.
+#
+# THE BETA'S PROVENANCE RIDES WITH IT, and the census was half right about SCEM in a way
+# worth recording. Its record carries beta = 1.0 where the own-stock regression measures
+# far lower — which reads like a typed number and is NOT one: the study's own input register
+# says the regression FAILS the usability gate at R-squared 0.038 against the 0.05 floor,
+# that the lead-lag estimate is 0.837 with a 90% interval containing 1.00, and that rounding
+# to 1.00 costs 1.84% of the central, "stated rather than left implicit". That is the
+# sanctioned tier-3 fallback, done properly. WHAT IS MISSING IS THAT THE RECORD CANNOT SAY
+# SO: beta_source is None, the justification lives on a different object, and a reader of
+# the cost-of-capital record sees 1.0 with no provenance — so nothing distinguishes a
+# priced fallback from a number somebody typed.
+
+BETA_SOURCES = ("own_stock_regression", "peer_relevered", "tier3_fallback", "shrunk")
+
+
+def check_weights(rec):
+    """Failures in the weights and the WACC they are supposed to build."""
+    fails = []
+    we, wd = rec.get("weight_equity"), rec.get("weight_debt")
+    if not isinstance(we, (int, float)) or not isinstance(wd, (int, float)):
+        return ["record carries no market-value weights"]
+
+    # NET WEIGHTS ARE A LEGITIMATE CONSTRUCTION on a net-cash company — [R-BRIDGE-01]'s own
+    # negative control keeps a clean case for exactly that — so a NEGATIVE debt weight is
+    # not the defect. Weights that do not SUM TO ONE are, whatever their signs.
+    if abs((we + wd) - 1.0) > 1e-6:
+        fails.append("weight_equity %.6f + weight_debt %.6f = %.6f, not one — a weighted "
+                     "average over weights that do not sum to one is not an average of "
+                     "anything" % (we, wd, we + wd))
+
+    wacc, ke, kd_at = rec.get("wacc_exp"), rec.get("ke_exp"), rec.get("kd_aftertax")
+    if all(isinstance(x, (int, float)) for x in (wacc, ke, kd_at)):
+        want = we * ke + wd * kd_at
+        if abs(want - wacc) > 1e-6:
+            fails.append("wacc_exp %.6f does not reproduce from its own weights and rates "
+                         "(%.6f, %+.1f bp)" % (wacc, want, (wacc - want) * 1e4))
+    return fails
+
+
+def check_beta_source(rec):
+    """The record must say WHERE its beta came from."""
+    if rec.get("beta") is None:
+        return []
+    src = rec.get("beta_source")
+    if src is None:
+        return ["the record names no beta_source, so nothing distinguishes a measured "
+                "regression from a priced tier-3 fallback from a number somebody typed. "
+                "One of %s" % list(BETA_SOURCES)]
+    if src not in BETA_SOURCES:
+        return ["beta_source %r is not on the closed list %s" % (src, list(BETA_SOURCES))]
+    return []
