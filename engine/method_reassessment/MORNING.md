@@ -2715,3 +2715,20 @@ Treating every exclusion as equivalent **overstates** the finding; reporting onl
 reading **understates** it. Calling a span from three observations a p10–p90 would be the free
 parameter this house forbids. My earlier message gave the broad number alone, which read as a
 stronger claim about the method than the evidence supports.
+
+### [R-FCAL-01] amended, and the queue rewritten
+
+**A published band declares its basis and its count, and a span is not a percentile.**
+[R-FCAL-01] asks for ranges and Part E asks whether drivers sit inside a p10–p90; neither
+says what the band *is*, and the five runs answered differently — one names percentiles, two
+publish factors, one a span, one a low/high around a level. A run's band now carries its
+basis from a closed list (percentile / span / factor) and the count behind it, **in the file
+rather than in a note**, and any instrument reading bands reports both beside its verdict.
+One file shape is *not* required — the five differ for reasons of their own and rewriting
+delivered runs is a re-issue; what is required is that a reader can tell what it is holding.
+Binds forward: the five declare at their next run. Stamps `2026-09-07f`.
+
+`STATE.json`'s `next` list was stale — it still led with items I have since reported or
+escalated, and the routine reads it first, so a stale queue misdirects the next firing. Rewritten
+to the real state, with each item marked reported / blocked / the principal's call, and the
+standing line about the local gate sweep corrected to what I actually do now.

@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-07e — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-07f — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -4062,3 +4062,46 @@ same measurement.** RGBA is a container that can hold transparency and almost al
 none, so asking whether the container exists answers a question nobody had. Where a check
 can read either a declaration or the quantity, read the quantity — which is this
 protocol's own rule about inflation inputs, arriving somewhere nobody had connected to it.
+
+
+## [R-FCAL-01 AMENDED 07-09-2026] A published band declares its basis and its count, and a span is not a percentile
+
+[R-FCAL-01] requires every run to publish years 3–5 as ranges from its own driver-error
+distribution, and Part E's second acceptance criterion asks whether a study's forward
+drivers sit inside its own walk-forward p10–p90. **Neither sentence says what the band
+is**, and the five runs answered differently: one publishes `p10`/`p90` by name, two
+publish factors, one a span, and the fifth a low/high around a level — in five
+incompatible file shapes for one artefact. A single reader finds one of them and reports
+the other four as empty, which is what the first pass at measuring that criterion printed.
+
+**The bases are not interchangeable, and the runs themselves say so.** One records that
+percentiles are printed only at nine observations or more; another that on four, three and
+two observations "no percentile is computed — the span and the bias/MAE band are what the
+record supports". A span over three observations is the range of three numbers. Calling it
+a p10–p90 would be the free parameter the promotion rule forbids, and treating the two as
+equivalent turns a thin record into a finding about the method.
+
+Measured: of the driver-horizon cells placing a run's own forward driver outside its own
+band, **none** sits on a figure its run calls a percentile, and most rest on fewer than
+nine observations. The same evidence therefore reads NOT MET on the broad reading and
+UNMEASURED on the criterion's literal one — and reporting either alone misstates it.
+
+**The rule.** A run's published band carries, per driver and horizon, its **basis** from a
+closed list — percentile, span, factor — and the **count** behind it, in the file rather
+than in a note; and any instrument reading those bands reports the basis and count beside
+the verdict. The list is closed for [R-COC-01 AMENDED]'s reason: an open one lets a run
+name a basis nobody can check.
+
+What is **not** required is one file shape. The five differ for reasons of their own, and
+rewriting delivered runs to a common schema is a re-issue. What is required is that a
+reader can tell what it is holding — which is why the criterion instrument uses one named
+adapter per run and reports a run it cannot read rather than skipping it [R-ENF-04].
+
+It binds forward, not backward, per the ratchet discipline: the five completed runs are
+read through named adapters and declare their basis at their next run.
+
+**The general lesson, which is not about bands: a number's basis is part of the number, and
+a range is the easiest place to lose it.** Two figures printed in the same columns, meaning
+a percentile in one file and the span of three observations in another, compare cleanly and
+mean different things — and every instrument downstream inherits the confusion without ever
+seeing it. Where a rule asks for a range, ask what kind.
