@@ -971,3 +971,88 @@ blending them disagree by a quarter.
 **GUIDANCE LEDGER: EMPTY, and that is a finding.** This issuer publishes no forward
 guidance, no results presentation and no earnings call, so no driver here can have
 inherited a management lean.
+
+---
+
+## SWDY — Elsewedy Electric Company S.A.E. (EGX) — 7 September 2026
+
+**Class: diversified industrial with a contracting arm.** Fundamental walk-forward
+[R-FCAL-01], FULL scope: seventeen sourceable fiscal years FY2009–FY2025 from the company's
+own investor-relations archive (233 documents retrieved), twelve origins FY2014–FY2025,
+horizons 1–5, **750 scoreable driver cells and 105 recorded unscoreable** — the largest
+fundamental sample this book holds and still one company.
+
+**THE DRIVER ARCHITECTURE, AND WHY IT IS THREE LEGS.** [L-295], produced by this issuer,
+says a group whose legs sit on different contract structures cannot be forecast on one
+margin path. The scored revenue drivers are therefore the three groupings that survive both
+segment re-cuts — CABLES, CONTRACTING, OTHER — each paired with its own cost driver on the
+same recognition clock, and **there is no group-level cost driver in the table at all**.
+One would break the matching by construction, and this issuer's contracting leg recognises
+revenue over time (EGP 29.9bn of contract assets against EGP 81.3bn of contract liabilities
+at FY2025), so trap (ii) is live here in a way it is not on a point-in-time seller.
+
+**THE UNIT BUILD IS POSSIBLE ON THIS NAME AND ONLY INSIDE A WINDOW.** The company's own
+"results at a glance" investor sheets publish cable tonnage, price per tonne and cost per
+tonne from FY2012 to 3Q2022 and then stop. The unit drivers are scored only inside
+FY2012–FY2020 and their cell count (20) is published against the rest (45). **The next name
+of this class should look for the investor sheet before assuming the statements are the
+finest level** — the audited statements carry no tonne and never did.
+
+**THE BORROWING RATE, AND WHY THIS NAME MAKES TRAP (i) EASY.** At FY2025 total liabilities
+are EGP 239.1bn of which loans and borrowings are EGP 62.5bn: trade and other payables,
+contract liabilities, related-party balances and provisions together are more than TWO AND
+A HALF TIMES the borrowings and none bears interest. Dividing the finance charge by the
+liabilities total gives about 2.4% against a real 9.4%. The rate is formed on loans and
+borrowings alone at every origin: 3.70% to 13.14% across the twelve.
+
+**SKILL: BEATS "NO CHANGE" EVERYWHERE, LOSES TO A TRAILING CAGR ON THE TOP LINE.** Revenue
+skill against FREEZE +15.7% / +19.5% / +17.7% / +30.3% / +46.0% at h=1..5; against TREND
++0.0% / **−3.3%** / **−13.1%** / **−6.4%** / **−5.2%**. Gross profit beats both. What the
+ground-up build buys on this name is the MARGIN, not the scale, and the reason is that an
+exogenous activity anchor cannot see a company taking share of a market being built —
+contracting revenue went from EGP 2.7bn to EGP 87.1bn against Egyptian real GDP.
+
+**BIAS: THE POOLED CENSUS SIGNATURE AGAIN.** Revenue −0.222 and cost of revenue −0.215 —
+both under-forecast by nearly the same amount, so the margin is roughly right and the SCALE
+is too low. Perfect foresight of inflation and the currency removes at most 28% of the
+error on a company whose currency lost 85% of its value inside the window.
+
+**CORRECTIONS: NONE ADOPTED. Two watch flags, two specification defects named.**
+Depreciation offers the largest improvement any candidate makes (five origins of five, MAE
+0.820 → 0.373) and is REFUSED: the roll-forward models additions and not the translation of
+foreign subsidiaries, and note 17 adds EGP 9.94bn to machinery cost in FY2024 as an exchange
+movement alone against additions of EGP 2.06bn. Finance costs pass on seven of eight and are
+REFUSED for the same species of reason — the rule holds a flat charge on a debt book that
+grew nine and a half times. **The next name of this class inherits both: a PP&E roll-forward
+with no translation term and a level-persistent finance charge will under-forecast on any
+issuer with a foreign asset base and a growing book, and the bias is arithmetic rather than
+evidence.**
+
+**THE DISCLOSED USEFUL LIFE: ROUTE ONE FAILS AND THE IDENTITY IS CORROBORATED TWICE.** The
+policy note discloses five RANGES and no scalar — buildings 8–50, machinery 5–15, furniture
+4–17, vehicles 5–8, leasehold "over 3 years or the lease period". The identity gives
+**17.2627 years** (average depreciable gross cost over the year's own charge), and it is
+confirmed by a second fiscal year of the same note (17.9761) and by the composite implied
+by charging every class at the LONG END of its own range (17.3041, agreement to 0.24%).
+**The company depreciates at the top of every range it discloses and the identity recovers
+that without anybody choosing a point** — which is the reading to try first on the next
+name whose per-component figures sit outside their disclosed ranges.
+
+**THE LEVERS THIS RUN APPLIED TO THE DELIVERED STUDY** (`swdy_study/rebuild_ledger.json`,
+four levers, three rules, cumulative −5.02%): the disclosed life at full precision
+(−0.00%); the strike moved to the latest known price (+1.42%); **terminal flows put on the
+LAST EXPLICIT YEAR'S basis (−6.34%)**; and the workbook made to publish the study's answer
+(central unmoved, workbook 59.3132 → 52.6969).
+
+**THE ONE TO CARRY FORWARD IS THE THIRD.** `terminal_value.TerminalInputs` takes the last
+explicit year's flows and grows them one year itself; this study passed NOPAT, book
+depreciation AND the working-capital base all pre-grown by (1+g), so the terminal was
+overstated by exactly (1+g) — a year-seven flow discounted at the year-five factor, on a
+terminal carrying 84% of enterprise value. The module's own note records six of eight
+callers reading the field that way. **And the same construction was re-implemented inline in
+three more files of this one study** — the base case, the reverse read and the cost-of-debt
+sensitivity — each with its own omissions, and in two of them the errors CANCELLED so their
+reproduce-the-base asserts passed. Correcting one made the others visible.
+
+**GUIDANCE LEDGER: the earnings releases carry forward statements and no driver reads
+them.** Guidance is scored and never consumed.
