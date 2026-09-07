@@ -161,6 +161,8 @@ on:
       - 'scripts/check_calibration_deliverables_negative_control.py'
       - 'engine/build_depth_audit/deliverables_outstanding.json'
       - 'scripts/check_lens_vocabulary.py'
+      - 'scripts/check_published_lens_vocabulary.py'
+      - 'scripts/check_published_lens_vocabulary_negative_control.py'
       - 'scripts/check_lens_vocabulary_negative_control.py'
       - 'engine/build_depth_audit/lens_vocabulary_outstanding.json'
       - 'engine/valuation_calibration/**'
@@ -292,6 +294,8 @@ on:
       - 'scripts/check_calibration_deliverables_negative_control.py'
       - 'engine/build_depth_audit/deliverables_outstanding.json'
       - 'scripts/check_lens_vocabulary.py'
+      - 'scripts/check_published_lens_vocabulary.py'
+      - 'scripts/check_published_lens_vocabulary_negative_control.py'
       - 'scripts/check_lens_vocabulary_negative_control.py'
       - 'engine/build_depth_audit/lens_vocabulary_outstanding.json'
       - 'engine/valuation_calibration/**'
@@ -1091,6 +1095,15 @@ jobs:
 
       - name: Lens architecture in the documents — negative control
         run: python3 scripts/check_lens_vocabulary_negative_control.py
+
+      # [R-LENS-03] on the artefact a READER actually opens. The three lens gates all
+      # take a STUDY as their subject and 68 of the 90 published names have no study
+      # directory, so every one of them is silent about the pages by construction.
+      - name: Lens architecture on the published page
+        run: python3 scripts/check_published_lens_vocabulary.py
+
+      - name: Lens architecture on the page — negative control
+        run: python3 scripts/check_published_lens_vocabulary_negative_control.py
 
       # [R-TERM-01]. The reinvestment identity rr = g/ROIC collapses to
       # TV = [NOPAT - g.IC]/(W-g), so it charges g x IC for ever and the implied

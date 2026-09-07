@@ -177,9 +177,15 @@ def text_of(path):
         return ""
 
 
-def scan(pdf):
-    """(hits asserting the blend, hits explained as retired)."""
-    t = text_of(pdf)
+def scan_text(t):
+    """(hits asserting the blend, hits explained as retired) — from TEXT.
+
+    Split out of scan() so a second gate whose subject is the SITE rather than the
+    delivered document can hold the same claim through the same instrument rather
+    than re-implementing this window logic [R-ENF-03]. Two readers of one rule
+    drift into two notions of what the rule says; the sentence-window discount
+    above was re-pointed twice already and only one copy of it may exist.
+    """
     asserting, explained = [], 0
     for m in BLEND.finditer(t):
         lo = max(0, m.start() - WINDOW)
@@ -194,6 +200,11 @@ def scan(pdf):
         asserting.append(re.sub(r"\s+", " ", t[max(0, m.start() - 90):
                                               m.end() + 90]).strip())
     return asserting, explained
+
+
+def scan(pdf):
+    """(hits asserting the blend, hits explained as retired) — from a FILE."""
+    return scan_text(text_of(pdf))
 
 
 def load_outstanding():

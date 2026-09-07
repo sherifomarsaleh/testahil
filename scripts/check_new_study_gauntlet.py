@@ -277,6 +277,7 @@ EXCLUDED = {
                                  'directories',
     'check_calibration_deliverables.py': "anchors on the campaign queue's calibrated names",
     'check_lens_vocabulary.py': 'reads delivered PDFs; an empty study has none',
+    'check_published_lens_vocabulary.py': 'its subject is the reader-facing SITE — the ticker pages and the coverage grid. A study directory planted in a sandbox publishes no page, so demanding a nonzero exit would be a FALSE claim about what this gate checks',
     'check_page_integrity.py': "its subject is the site's ticker pages; the only mention "
                                'of a study directory in it is a comment',
     'check_screen_block.py': 'its subject is the SCREEN block in assets/data.js. It reads '
