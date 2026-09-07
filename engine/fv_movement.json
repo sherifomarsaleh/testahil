@@ -820,6 +820,32 @@
       "bear": -53.9,
       "full": 97.8
      }
+    },
+    {
+     "delivered": "2026-09-07",
+     "edition": 2,
+     "fair": {
+      "base": 111.62128401804542,
+      "bear": 27.118642954954954,
+      "full": 111.62128401804542
+     },
+     "lessons": [
+      "L-367",
+      "L-368",
+      "L-369"
+     ],
+     "origins": "2020-2025",
+     "scope": "light",
+     "vs_baseline_pct": {
+      "base": 110.1,
+      "bear": -42.1,
+      "full": 88.9
+     },
+     "vs_previous_pct": {
+      "base": -4.5,
+      "bear": 25.6,
+      "full": -4.5
+     }
     }
    ],
    "exchange": "EGX",
