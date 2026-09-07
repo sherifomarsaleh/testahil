@@ -14,7 +14,7 @@
    "title": "It catches the errors that actually happen",
    "test": "Every confirmed gap is closed by a gate or listed with a reason, and every closed gap has a negative control that re-plants the real defect.",
    "state": "IN FLIGHT",
-   "note": "All three named errors are gated and proved by planting them. Of the census's 40 verified gaps, ten families are closed or partly closed and five remain. The sharpest finds today were reader-facing: 93 pages naming a retired construction, two studies publishing a central beneath their own disclosed floor, and four anchoring profit behind their own balance sheet."
+   "note": "All three named errors are gated and PROVED by planting them, and the injection catalogue now carries nine named errors, nine caught. Of the census's fifteen gate families, ten are closed or partly closed. The sharpest finds were the ones nobody was looking for: the exemplar's own bridge is 73% away from the answer it publishes, and the ground-up assertion \u2014 the clause deciding whether revenue was built or asserted \u2014 was called by no gate at all."
   },
   {
    "id": "P3",
@@ -121,28 +121,30 @@
    "end": "2026-09-07",
    "title": "Reach, repair, proof",
    "families": [
-    "asset-base-landbank",
+    "asset-base",
     "cost-of-capital-level",
     "lens-architecture (the page)",
     "output-sanity",
     "share-count",
-    "terminal-value (the spread)",
-    "base-year (the anchor ordering)",
+    "terminal-value",
+    "base-year",
+    "revenue-drivers (ground-up)",
+    "bridge-and-equity-value",
     "record survival"
    ],
    "state": "DONE",
-   "detail": "P1 and P3 closed. Twelve gates: asset-base vintage and wiring, Ke reproduction with weights and beta provenance, lens independence, the reader-side gap, the retired blend on all 93 pages, the relationship between a study's own figures, the per-share gate's free escape, the spread a terminal reinvests at, the profit anchor against the study's own balance sheet, a record surviving its own rebuild, the terminal's maintenance override and its unsourced working capital. [R-ASSET-02] and [R-STD-02] adopted in both governing documents."
+   "detail": "P1 and P3 closed, and ten of the census's fifteen families opened or closed. Fourteen gates, every one finding something live: a central beneath the study's own floor, a terminal reinvesting at -707bp, four studies reading half a filing, 93 pages naming a retired construction, the ground-up assertion run by nobody, and an equity bridge 73% away from the answer its own study publishes."
   },
   {
    "start": "2026-09-08",
    "end": "2026-09-08",
-   "title": "Revenue and cost, built or asserted",
+   "title": "Cost drivers, and what a study reads",
    "families": [
     "cost-drivers-and-margin",
-    "revenue-drivers"
+    "base-year (the filings index)"
    ],
    "state": "NEXT",
-   "detail": "Brought forward from the 12th, because the 8th's own two families closed on the 7th. Gross margin held as an input where the filings disclose cost per unit; one blended domestic index on physically distinct cost lines; a globally-traded input escalated on the house domestic ladder; the ground-up build that is still a self-attested boolean; a volume ladder outrunning the plant that produces it."
+   "detail": "One blended domestic index across physically distinct cost lines; a globally-traded input escalated on the house domestic ladder; and the half of 'latest disclosed period' that needs a filings index rather than a comparison between two fields the study wrote itself."
   },
   {
    "start": "2026-09-09",

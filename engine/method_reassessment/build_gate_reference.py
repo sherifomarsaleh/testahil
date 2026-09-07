@@ -53,7 +53,7 @@ MEMBERS = {
         "terminal_floor", "terminal_spread", "terminal_record_shape", "bridge",
         "lens_design", "lens_independence", "asset_base", "asset_base_wired",
         "forecast_anchor", "anchor_ordering", "corrections_applied",
-        "correction_boundary",
+        "correction_boundary", "ground_up", "bridge_reaches_answer",
     ],
     "what the study says about itself": [
         "study_provenance", "standard_claim", "numbers_generators",
