@@ -36,8 +36,17 @@ AUDIT = ("the levers serving [R-MACRO-01] are complete — the house inflation l
          "is consulted for the gap review.")
 
 
+WF_LEVER = "the fundamental walk-forward ran and adopted no correction"
+
+
 def build():
     old = json.load(open(LEDGER, encoding="utf-8"))
+    # IDEMPOTENT, AND IT WAS NOT ON ITS FIRST RUN. A generator that appends every
+    # time it is invoked does not reproduce its own committed output, which is the
+    # drift a committed record is checked against — running it twice added the same
+    # lever twice, with a zero move, and the ledger still WALKED, so nothing would
+    # have caught it. The append is now keyed on the lever's own name.
+    old["levers"] = [lv for lv in old["levers"] if lv["name"] != WF_LEVER]
     led = RL.Ledger(ticker=old["ticker"], started_at=old["started_at"],
                     start_value=old["start_value"], start_spot=old["start_spot"],
                     audit_after=AUDIT)
@@ -52,7 +61,7 @@ def build():
         % (led.value, central))
 
     led.apply(
-        "the fundamental walk-forward ran and adopted no correction",
+        WF_LEVER,
         "R-FCAL-01",
         central,
         why=("the LIGHT run's five origins at horizons one to three give nine cells on every "
