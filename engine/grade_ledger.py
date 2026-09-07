@@ -525,69 +525,46 @@ def apply_grade(src: str, row: dict, got: dict) -> str:
     # every row the old code already handled comes out BYTE-IDENTICAL (asserted by the
     # replay negative control in sweep(), and by scripts/check_grade_writer_layout.py).
     #
-    # A ROW IS GRADED INTO THE FIELDS IT CARRIES, AND NO OTHERS. Fourteen rows across
-    # seven names (ADNOCLS, ADNOCDIST, ADNOCDRILL, DU, BOROUGE, SAVOLA, RIYADHCABLE)
-    # were published by their studies' OWN first-coverage writers and carry
-    # `realized_close:null` with NO realized_high / realized_low / in_90 / in_50 slots
-    # beside it. The writer required the full triple, so every one of them raised
-    # 'outcome block not in the expected shape' — and because that is a SystemExit, ONE
-    # such row killed the entire sweep, including grades for every other name queued
-    # behind it. Measured 07-Sep-2026: BOROUGE's 1-month cone resolved dead centre of
-    # its own 50% band (realized quantile 0.500) and could not be recorded.
+    # A ROW DECLARES THE FIELDS ITS WRITER HAPPENED TO WRITE, AND THREE WRITERS WROTE
+    # THREE SHAPES. The strike path (strike_cohorts) emits the full placeholder set;
+    # the PUBLISH path's cycle-1 registration emits only `realized_close:null,
+    # realized_date:null`; one older publish emitted `realized_close:null,
+    # realized_quantile:null, median_err:null, touch_hit:null`. Matching one shape and
+    # dying on the others meant A FIRST-PUBLISHED NAME COULD NEVER BE GRADED BY THE
+    # METRONOME THAT EXISTS TO GRADE IT — measured on the shipped ledger 07-Sep-2026,
+    # 253 open rows carry the full shape, 12 the publish shape and 2 the third, so six
+    # names (ADNOCLS, ADNOCDRILL, ADNOCDIST, BOROUGE, SAVOLA, RIYADHCABLE) plus DU were
+    # unreachable, and ADNOCDRILL's 1M resolving inside its band was COMPUTED and could
+    # not be WRITTEN. Same family as the touch_hit null shape below and the line wrap
+    # above.
     #
-    # This is the fix above one level deeper: there the LAYOUT decided whether a field
-    # got written, here the FIELD SET does. The resolution is the one
-    # scripts/check_grade_writer_layout.py already argued for when it named these rows —
-    # THE MISSING FIELDS ARE NOT INVENTED, because inventing them would change the
-    # structure of a published forecast row. Each block is written where the row has
-    # somewhere to put it and skipped where it has not, so a row that never carried
-    # in_90 is graded on its close alone rather than not graded at all. A block whose
-    # field IS present but whose text does not match still raises: that is the layout
-    # bug, and it has to stay loud.
-    #
-    # Rows carrying the full shape take the same branch they always did, so their output
-    # is byte-identical — asserted by the replay negative control in sweep() and by
-    # check_grade_writer_layout.py against the pre-fix writer.
-    if _field(t, 'realized_close') is None:
-        raise SystemExit('row carries no realized_close field — not a gradable row')
+    # The canonical GRADED shape is one thing wherever a row started, so a row is
+    # brought TO it: fields it already declares are replaced in place, fields it lacks
+    # are inserted where the canonical shape puts them. A row carrying the full
+    # placeholder set takes the first branch and comes out BYTE-IDENTICAL.
+    stats = (f"in_90:{jb(got['in_90'])}, in_50:{jb(got['in_50'])}, "
+             f"realized_quantile:{rq}, median_err:{got['median_err']:.4f},")
 
-    # THE SPACE AFTER THE COLON IS NOT PART OF THE FIELD EITHER. Six of the fourteen
-    # rows above (ADNOCLS, SAVOLA, RIYADHCABLE, both horizons) write `realized_close:
-    # null` with a space, the house style of the builder that emitted them — so even
-    # the widened field-set branch missed them. `\s*` around every colon closes the
-    # last of it; the SEPARATOR EACH ROW USES IS PRESERVED rather than normalised, so
-    # a row written in spaced style stays in spaced style and the diff is the grade
-    # and nothing else.
-    sep = lambda m: m.group(1)                       # the row's own ':' or ': '
-    if _field(t, 'realized_high') is None and _field(t, 'realized_low') is None:
-        # Abbreviated shape: the close is the only outcome slot this row has.
-        old_outcome = re.search(r'realized_close(\s*:\s*)null,', t)
-        if not old_outcome:
-            raise SystemExit('outcome block not in the expected shape')
-        t2 = t.replace(old_outcome.group(0),
-                       f"realized_close{sep(old_outcome)}{num(got['realized_close'])},", 1)
-    else:
-        old_outcome = re.search(r'realized_close\s*:\s*null,\s+realized_high\s*:\s*null,'
-                                r'\s+realized_low\s*:\s*null,', t)
-        if not old_outcome:
-            raise SystemExit('outcome block not in the expected shape')
+    old_outcome = re.search(r'realized_close:\s*null,\s+realized_high:\s*null,\s+realized_low:\s*null,', t)
+    if old_outcome:
         t2 = t.replace(old_outcome.group(0), new_outcome)
+    else:
+        bare = re.search(r'realized_close:\s*null,', t)
+        if not bare:
+            raise SystemExit('outcome block not in the expected shape')
+        t2 = t.replace(bare.group(0), new_outcome, 1)
 
-    # `realized_date` exists only on the abbreviated rows and no page reads it; it is
-    # filled where present so the row does not record a close that arrived on no day.
-    old_rd = re.search(r'realized_date(\s*:\s*)null', t2)
-    if old_rd:
-        t2 = t2.replace(old_rd.group(0),
-                        f'realized_date{sep(old_rd)}"{got["_graded_on"]}"', 1)
-
-    if _field(t2, 'in_90') is not None:
-        old_stats = re.search(r'in_90\s*:\s*null,\s+in_50\s*:\s*null,'
-                              r'\s+realized_quantile\s*:\s*null,\s+median_err\s*:\s*null,', t2)
-        if not old_stats:
-            raise SystemExit('stats block not in the expected shape')
-        t2 = t2.replace(old_stats.group(0),
-                        f"in_90:{jb(got['in_90'])}, in_50:{jb(got['in_50'])}, "
-                        f"realized_quantile:{rq}, median_err:{got['median_err']:.4f},")
+    old_stats = re.search(r'in_90:\s*null,\s+in_50:\s*null,\s+realized_quantile:\s*null,\s+median_err:\s*null,', t2)
+    if old_stats:
+        t2 = t2.replace(old_stats.group(0), stats)
+    else:
+        partial = re.search(r'realized_quantile:\s*null,\s*median_err:\s*null,', t2)
+        if partial:
+            # in_90 / in_50 were never declared; the canonical order puts them first.
+            t2 = t2.replace(partial.group(0), stats, 1)
+        else:
+            # No stats fields at all — they follow the outcome triple.
+            t2 = t2.replace(new_outcome, new_outcome + ' ' + stats, 1)
 
     # A FIRST-COVERAGE ROW WRITES touch_hit:null, NOT AN EMPTY OBJECT, and this
     # matched only the object shape — so the twelve rows six names were published
@@ -597,15 +574,19 @@ def apply_grade(src: str, row: dict, got: dict) -> str:
     # missing is the null shape on the left-hand side. Both are accepted here and
     # both are replaced by the computed object, so a graded row comes out
     # identical whichever shape it started in.
-    # ...and on the same terms as the outcome block above, a row with no touch_hit
-    # FIELD AT ALL has nowhere to put the ladder and is graded without it, while a row
-    # that HAS the field and does not match still raises.
-    old_th = re.search(r'touch_hit\s*:\s*(?:null|\{[^}]*\})', t2)
+    th = ', '.join(f'"{k}":{jb(got["touch_hit"][k])}' for k, _ in REL)
+    old_th = re.search(r'touch_hit:\s*(?:null|\{[^}]*\})', t2)
     if old_th:
-        th = ', '.join(f'"{k}":{jb(got["touch_hit"][k])}' for k, _ in REL)
         t2 = t2.replace(old_th.group(0), 'touch_hit:{ ' + th + ' }')
-    elif _field(t2, 'touch_hit') is not None:
-        raise SystemExit('touch_hit block not found')
+    else:
+        # The publish registration declares no touch_hit at all; it belongs after
+        # median_err, which the stats block above has just written.
+        t2 = t2.replace(stats, stats + ' touch_hit:{ ' + th + ' },', 1)
+
+    # `realized_date` is not part of the canonical graded set, but the publish
+    # registration declares it — a graded row still saying null there is a falsehood
+    # on the page, so it carries the session actually graded.
+    t2 = re.sub(r'realized_date:\s*null', f'realized_date:"{got["_graded_on"]}"', t2, count=1)
 
     # A closure/suspension that pushed the graded session past the stored date is
     # ANNOTATED, never overwritten (STEP 3.3).

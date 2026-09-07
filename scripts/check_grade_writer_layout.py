@@ -21,17 +21,21 @@ multi-line form. Per [R-ENF-01] the fix is checked from OUTSIDE the module.
 WHAT IT ASSERTS, BOTH WAYS
 --------------------------
 1. REACH — every open row is writable by apply_grade(). This used to be REPORTED and
-   not fatal, because fourteen rows across seven names carried no realized_high /
-   realized_low / in_90 / in_50 slots at all and filling them would have changed the
-   structure of a published forecast row. That was the right call and it was not the
-   only option: 07-Sep-2026 the writer was taught to grade a row INTO THE FIELDS IT
-   CARRIES rather than to invent the ones it does not, and the last six of those rows
-   turned out to be missing nothing at all — they simply wrote `realized_close: null`
-   with a space. Reach is now 267 of 267 with nothing outstanding, so an unreachable
-   row FAILS. There is no ratchet because there is nothing to excuse, and a reported
-   gap nobody has to clear is how this one survived a month: BOROUGE's 1-month cone
-   resolved dead centre of its own 50% band and could not be recorded, and because the
-   raise is a SystemExit it would have killed the whole sweep behind it.
+   NOT FATAL, on the reasoning that the rows it named were short a FIELD rather than a
+   line break and that filling one in would change the structure of a published
+   forecast row. That reasoning was sound and it stopped one step early: the fields
+   are placeholders a writer forgot, not published content, and 07-Sep-2026
+   apply_grade() was taught to bring a row TO the canonical graded shape — replacing
+   the fields it declares, inserting the ones it lacks where the canonical order puts
+   them — so a row comes out the same whichever of the three writers emitted it.
+   Reach went 253 -> 267 of 267 open rows with nothing outstanding, so an unreachable
+   row now FAILS. There is no ratchet because there is nothing left to excuse.
+
+   A REPORTED GAP NOBODY HAS TO CLEAR IS HOW THIS ONE SURVIVED A MONTH. Both cones
+   that resolved while it stood — ADNOCDRILL's and BOROUGE's 1-month, the latter dead
+   centre of its own 50% band — were COMPUTED and could not be WRITTEN, and because
+   the refusal is a SystemExit one such row killed the whole sweep queued behind it.
+   The note said the gap was visible; what it was not was blocking.
 2. BYTE-IDENTITY — on every row the OLD one-line patterns matched, the new
    whitespace-tolerant patterns must produce a byte-identical rewrite. This is the
    half that matters: a widened pattern that also changes existing output has not
@@ -116,8 +120,8 @@ def main() -> int:
     if unreachable:
         print('FAIL: the writer cannot reach the rows above. A row it cannot write is a '
               'row that cannot be graded, and an ungradable row looks exactly like a row '
-              'nobody graded. Teach apply_grade() the shape — writing the fields the row '
-              'CARRIES — never invent fields onto a published forecast row.')
+              'nobody graded. Teach apply_grade() the shape — bring the row to the '
+              'canonical graded set — never widen a tolerance until the miss disappears.')
         bad = True
     print('OK' if not bad else 'FAILED')
     return 1 if bad else 0
