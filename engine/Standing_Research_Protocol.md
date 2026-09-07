@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-07f — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-07g — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -4105,3 +4105,39 @@ a range is the easiest place to lose it.** Two figures printed in the same colum
 a percentile in one file and the span of three observations in another, compare cleanly and
 mean different things — and every instrument downstream inherits the confusion without ever
 seeing it. Where a rule asks for a range, ask what kind.
+
+### And the orientation too, which is the half that was actually broken
+
+The clause above requires a basis and a count, and stopped one step short.
+
+Measured against each run's own scored bias: **one run publishes its multipliers as
+actual/forecast** — a band near 1.7 where its error says the outturn came in 1.4 to 1.8
+times the forecast — while **two publish forecast/actual**, bands near 0.4 where the error
+says the forecast was a third to two-thirds of the outturn. They are reciprocals, and all
+three are labelled "multipliers to apply to a point projection". Two carry a note stating
+their convention correctly; the third carries **no note at all**, and is the one running the
+other way up.
+
+Applying one run's band as another's prose instructs moves a forecast **the wrong way** —
+halving a cost line the record says should roughly double — and nothing in either file would
+tell you.
+
+**It did not move the criterion and it did move the finding**, which is the distinction worth
+keeping. Containment of the point is orientation-independent, because reciprocation maps 1.0
+to itself, so no verdict changed. What changed is the direction every outside cell is
+reported in: the first reading of these bands called a cost line *over*-forecast at five
+years when that run's own scores say it was **under**-forecast by about two and a half times.
+Read correctly, every multiplier cell outside its band is an under-forecast — which agrees
+with the pooled driver-bias census this house already holds, rather than contradicting it.
+
+**The rule gains one field.** A published band declares its **orientation** as well as its
+basis and count — actual-over-forecast or forecast-over-actual, from that closed pair — and
+an instrument reading bands states the direction it inferred and from what. A convention
+stated in prose beside the number is not a declaration a reader can use: two of these runs
+had one, the third did not, and the prose was identical wherever it appeared.
+
+**The general lesson, which is not about multipliers: a reciprocal is the most dangerous kind
+of unit error, because both values are plausible.** A factor of 0.4 and a factor of 2.5 are
+each an ordinary thing to read in a band; neither looks wrong on the page, and only the
+arithmetic behind them says which is meant. So the check is never "does this number look
+sensible" but "against what was it computed".

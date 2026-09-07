@@ -2732,3 +2732,39 @@ Binds forward: the five declare at their next run. Stamps `2026-09-07f`.
 escalated, and the routine reads it first, so a stale queue misdirects the next firing. Rewritten
 to the real state, with each item marked reported / blocked / the principal's call, and the
 standing line about the local gate sweep corrected to what I actually do now.
+
+## 07-09-2026 — two runs publish their forward bands the other way up
+
+Chasing the one criterion-2 cell that rests on a sufficient count (EGCH `cost_of_sales`
+h=5, n=9) against the pooled driver-bias census, the two disagreed in **direction**. They
+should not, so I checked each run's band against its own scored bias.
+
+| run | band | its own bias at that cell | orientation |
+|---|---|---|---|
+| ARCC | revenue h=3 `[0.49, 2.99]`, median 1.68 | −0.353 → outturn ≈ 1.42× forecast | **actual / forecast** |
+| AMOC | net_sales h=1 `[0.52, 1.09]` | −0.327 → forecast ≈ 0.72× outturn | **forecast / actual** |
+| EGCH | cost_of_sales h=5 `[0.145, 0.846]` | −0.907 → forecast ≈ 0.40× outturn | **forecast / actual** |
+
+**They are reciprocals, and all three are labelled "MULTIPLIERS to apply to a point
+projection."** AMOC and EGCH carry a note stating their convention correctly. ARCC carries
+**no note at all**, and is the one running the other way up. Applying one run's band as the
+other's prose instructs moves a forecast the wrong way — halving a cost line the record says
+should roughly double.
+
+**It did not move the criterion and it did move the finding.** Containment of the point is
+orientation-independent (reciprocation maps 1.0 to itself), so no verdict changed. What
+changed is the direction each outside cell is reported in — and **I reported EGCH's
+`cost_of_sales` as over-forecast when its own scores say it was under-forecast by ~2.5×.**
+Read correctly, every multiplier cell outside its band is an **under**-forecast, which
+*agrees* with the pooled census rather than contradicting it.
+
+[R-FCAL-01]'s new clause gains a field: a band declares its **orientation** as well as its
+basis and count, and an instrument reading bands states the direction it inferred and from
+what. A convention in prose beside the number is not a declaration a reader can use — two
+runs had one, the third did not, and the prose was identical wherever it appeared. Stamps
+`2026-09-07g`.
+
+**The general lesson: a reciprocal is the most dangerous unit error, because both values are
+plausible.** 0.4 and 2.5 are each ordinary things to read in a band; neither looks wrong, and
+only the arithmetic behind them says which is meant. The check is never "does this look
+sensible" but "against what was it computed".

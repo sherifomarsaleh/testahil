@@ -85,6 +85,37 @@ def _mult_band(o, key, lo_k, hi_k):
     return out
 
 
+# THE ORIENTATION IS PART OF THE BAND AND TWO RUNS PUBLISH IT THE OTHER WAY UP.
+# Measured 07-09-2026 against each run's OWN scored bias: ARCC's multipliers are
+# actual/forecast (a band near 1.7 where its error says the outturn came in 1.4-1.8x
+# the forecast), while AMOC's and EGCH's are forecast/actual (bands near 0.4 where the
+# error says the forecast was 0.3-0.7x the outturn). THEY ARE RECIPROCALS AND BOTH ARE
+# LABELLED "MULTIPLIERS TO APPLY TO A POINT PROJECTION". AMOC and EGCH carry a note
+# stating their convention correctly; ARCC carries no note at all.
+#
+# Applying one run's band as the other's instructs would move a forecast THE WRONG WAY —
+# halving a cost line the record says should roughly double. Containment of the point is
+# unaffected (a band excluding 1.0 excludes it in either orientation, since reciprocation
+# maps 1.0 to itself), so the criterion 2 verdict does not move; WHAT MOVES IS THE
+# DIRECTION each outside cell is reported in, and the first pass here reported EGCH's
+# cost_of_sales as over-forecast when its own scores say it was under-forecast by 2.5x.
+FORECAST_OVER_ACTUAL = ('AMOC', 'EGCH')     # factor = forecast / actual
+ACTUAL_OVER_FORECAST = ('ARCC',)            # factor = actual / forecast
+
+
+def direction(tk, lo, hi, family):
+    """Which way the method erred, in the run's OWN orientation. Never inferred from
+    the number alone, because the two conventions are reciprocals."""
+    if family != 'multiplier':
+        return ''
+    mid = (lo + hi) / 2.0
+    if tk in FORECAST_OVER_ACTUAL:
+        return 'UNDER-forecast' if mid < 1 else 'OVER-forecast'
+    if tk in ACTUAL_OVER_FORECAST:
+        return 'UNDER-forecast' if mid > 1 else 'OVER-forecast'
+    return 'orientation not declared for this run'
+
+
 def adapt_amoc(o):
     return _mult_band(o, 'published_band', 'low_factor', 'high_factor')
 
@@ -187,9 +218,11 @@ def main(argv):
         print('  %-6s %3d driver-horizon bands (%s)  %d OUTSIDE'
               % (tk, len(cells), fam, len(outside)))
         for c in sorted(outside)[:6]:
-            drv, h, lo, hi, pt, _f, n, named = c
-            print('           %-18s h=%-5s band [%.4g, %.4g]  point %.4g  n=%s (%s)'
-                  % (drv, h, lo, hi, pt, n if n is not None else '?', named))
+            drv, h, lo, hi, pt, fam, n, named = c
+            dirn = direction(tk, lo, hi, fam)
+            print('           %-18s h=%-5s band [%.4g, %.4g]  point %.4g  n=%s (%s)%s'
+                  % (drv, h, lo, hi, pt, n if n is not None else '?', named,
+                     '  ' + dirn if dirn else ''))
     print('\n  %d bands read across %d run(s); %d place the run\'s own forward driver '
           'OUTSIDE its own band' % (tot, len(FIVE) - len(unread), out))
     if unread:
