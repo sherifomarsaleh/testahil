@@ -2128,3 +2128,47 @@ THE PROJECT.** Every rule here is enforced from outside by something; the docume
 that says when the work is finished was enforced by nobody, and it named an
 instrument that did not exist for five days without anyone noticing — including on
 the days its own list was read aloud to decide what to do next.
+
+### Part E, printed for the first time: criterion 1 is not met, by 52 entries
+
+The criteria say in their own first line that the plan is complete when all of them
+hold **"and are printed by the gates, not attested."** Nothing printed them. Printed
+now, `engine/method_reassessment/acceptance.py`:
+
+**All seven gates are green with negative controls** — the seventh built an hour
+ago. **And the ratchet half is not met, by a wide margin.** Criterion 1 requires the
+ratchet lists to carry *only names not yet re-issued*; the five re-issued names
+carry **52 entries across 41 lists**:
+
+| name | lists |
+|---|---|
+| PHDC | **15** |
+| AMOC | 12 |
+| TMGH | 12 |
+| ARCC | 7 |
+| EGCH | 6 |
+
+Every one of the five is on `walkforward_scope`; four are on `frozen`, `output`,
+`rebuild` and `actuation`. **The programme has been treating these five as
+re-issued and behind it, while its own completion test says a re-issued name
+carries no ratchet debt.**
+
+**Three probes gave three different numbers before one was right**, which is the
+day's theme arriving in my own measurement. Matching the ticker anywhere in the file
+counted prose inside `_why` fields (22 lists). Matching only ticker-shaped keys
+missed the ratchets keyed by document **path** — `engine/arcc_study/ARCC_Bibliography…docx::Date`
+— and returned 20. Reading both shapes gives 21 lists and 52 entries. The two wrong
+answers erred in opposite directions, so neither could have been caught by
+plausibility.
+
+The instrument **prints and does not gate**, deliberately: a check red until the
+programme finishes is the permanently-red check [R-ENF-02] forbids. And it **refuses
+to report on what it cannot measure** — criteria 2, 3, 5 and 6 are listed as
+unmeasured rather than passed, criterion 3 because its own scorer returns a date
+until vintages mature, criterion 6 because "each opened and read" is a human act no
+script may attest.
+
+THE GENERAL LESSON: **THE DOCUMENT THAT SAYS WHEN THE WORK IS FINISHED IS THE ONE
+NOBODY CHECKS.** It names instruments, sets conditions and is read aloud to decide
+what to do next — and it was the last prose in this project to get an instrument of
+its own, five days after a gate it names stopped existing.
