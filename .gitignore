@@ -56,3 +56,8 @@ engine/*_walkforward/filings/
 # generator (build_board.py) and its state (board_state.json). Rendered: to a scratch
 # path, and published from there as an artefact.
 engine/method_reassessment/board.html
+
+# session tokens and fetch scratch — never committed, the repository is public
+**/.cookies
+**/.rc.html
+**/text/.ocrtmp-*.png
