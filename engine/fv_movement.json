@@ -842,7 +842,37 @@
     "unrecoverable": null
    },
    "ccy": "EGP",
-   "editions": [],
+   "editions": [
+    {
+     "delivered": "2026-09-07",
+     "edition": 1,
+     "fair": {
+      "base": 52.69688996099238,
+      "bear": 19.63802419176771,
+      "full": 101.30675843431828
+     },
+     "lessons": [
+      "L-370",
+      "L-371",
+      "L-372",
+      "L-373",
+      "L-374",
+      "L-375"
+     ],
+     "origins": "2014-2025",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -24.4,
+      "bear": -1.6,
+      "full": -27.0
+     },
+     "vs_previous_pct": {
+      "base": -24.4,
+      "bear": -1.6,
+      "full": -27.0
+     }
+    }
+   ],
    "exchange": "EGX",
    "market": "EG",
    "ticker": "SWDY",
