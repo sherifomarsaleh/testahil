@@ -2009,3 +2009,45 @@ driver's history shows; a gate on a point-in-time method needs the vantage of th
 origin, and reusing the instrument imported its viewpoint along with its arithmetic.
 Where an instrument is borrowed, the arithmetic travels and so does the question it
 was written to answer.
+
+### The gate now asks each correction the question its own vantage allows
+
+Reworked, and the distinction it draws is the whole point: **an act at an origin is
+judged on what that origin could see; a claim about a driver is judged on the whole
+record.** An expanding-window correction is tested on the resolved history available
+at its origin — the run's own definition, reconstructed from its committed cells
+and **verified against the counts the run itself recorded, 50 of 50 windows
+matching** — while an adopted disposition is tested on everything. The whole-record
+reading is printed beside every act and never gates, because condemning a method
+for not knowing the future is exactly what point-in-time discipline forbids.
+
+What that changes, read off the gate:
+
+```
+PHDC   asp as at 2023               FLIPS at 2 of 4 cuts   [whole record: 4 of 5 flip]
+PHDC   is.finance_cost as at 2023   survives all 3 cuts    [whole record: 0 of 5 flip]
+PHDC   is.finance_cost as at 2024   survives all 3 cuts    [whole record: 0 of 5 flip]
+PHDC   units_delivered as at 2023   survives all 4 cuts    [whole record: 2 of 5 flip]
+PHDC   units_sold as at 2023        FLIPS at 1 of 4 cuts   [whole record: 1 of 5 flip]
+```
+
+**`units_delivered` came off the ratchet the same day it went on, and not because
+anything in the run was fixed.** Judged on the whole record it flips at two of five
+cuts; judged on what origin 2023 could actually see, it survives all four. *The act
+was sound on its own information and the driver is unstable in hindsight* — two
+different findings, and the first draft of the gate could only express the second.
+
+**A negative-control case moved from clean to red, and the move is the finding.**
+The first draft asserted that adopting a driver too thin to cut must stay green, on
+the reasoning that untestable is not a failure. For an *adoption* it is: adopting a
+correction is a claim the sign is stable, and a driver with no admissible cut
+carries no evidence of stability at all — [R-ENF-04]'s own clause, and the stronger
+objection rather than the weaker one. The fixture was kept and its expectation
+inverted rather than deleted, which is the sharpest evidence the change took effect.
+Both docstrings corrected to what the code now does; **6 red, 2 clean.**
+
+THE GENERAL LESSON: **THE SAME MEASUREMENT ANSWERS TWO QUESTIONS AND ONLY ONE OF
+THEM IS ABOUT THE METHOD.** "Is this driver's bias stable?" and "was applying this
+correction defensible?" run the same arithmetic over different windows, and a check
+that picks the wider window every time is not stricter — it is answering the
+question the method was never asked.

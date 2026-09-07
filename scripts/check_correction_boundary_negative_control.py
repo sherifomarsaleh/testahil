@@ -4,10 +4,18 @@ Every mutation ASSERTS THAT IT LANDED before the gate runs, and the case count i
 asserted against a declared constant — four negative controls in this repository
 have been caught passing a fixture that never injected its condition.
 
-THE CLEAN HALF IS THE ONE THAT MATTERS. This gate must not fire on a driver too
-thin to cut, on a run that adopts nothing, or on a correction whose sign genuinely
-survives — a check that did would push a run to stop declaring its corrections,
-which is the opposite of what it is for.
+THE CLEAN HALF IS THE ONE THAT MATTERS. This gate must not fire on a run that
+adopts nothing, or on a correction whose sign genuinely survives the cuts its own
+vantage admits — a check that did would push a run to stop declaring its
+corrections, which is the opposite of what it is for.
+
+A CASE MOVED FROM CLEAN TO RED ON 07-09-2026 AND THE MOVE IS THE FINDING: the first
+draft asserted that adopting a driver too thin to cut must stay green, on the
+reasoning that untestable is not a failure. For an ADOPTION it is — adopting a
+correction is a claim the sign is stable, and a driver with no admissible cut
+carries no evidence of stability at all. The gate's rework refused it and was
+right to; the fixture was kept and its expectation inverted, which is the sharpest
+available evidence the change took effect.
 """
 import importlib.util
 import json
@@ -150,33 +158,8 @@ def empty_population(tmp):
     return "REFUSED"
 
 
-RED = [
-    ("a correction adopted on a sign that flips", adopt_a_flipper),
-    ("a correction adopted on a driver in no cell", adopt_a_phantom),
-    ("a ratchet entry that stopped flipping", stale_ratchet),
-    ("a run with no corrections record", no_record),
-    ("an emptied population", empty_population),
-]
-
-
-def clean_untouched(tmp):
-    return None
-
-
-def clean_adopt_a_survivor(tmp):
-    """Adopting a driver whose sign genuinely survives must stay GREEN."""
-    drv = _arcc_candidate(tmp, "stable")
-    p = _log(tmp, "arcc_walkforward")
-    o = json.load(open(p))
-    for c in o["candidates"]:
-        if c["driver"] == drv:
-            c["disposition"] = "ADOPTED"
-    json.dump(o, open(p, "w"))
-    return None
-
-
 def clean_adopt_a_thin_driver(tmp):
-    """A driver too thin to cut is untestable, and untestable is not a failure.
+    """Adopting a driver too thin to cut — UNTESTABLE, and untestable is not stable.
 
     THE CONDITION IS CREATED RATHER THAN FOUND, because no ARCC driver is currently
     thin enough and the only run that has thin drivers adopts nothing — so a fixture
@@ -216,13 +199,45 @@ def clean_adopt_a_thin_driver(tmp):
     return None
 
 
+RED = [
+    ("a correction adopted on a sign that flips", adopt_a_flipper),
+    ("a correction adopted on a driver in no cell", adopt_a_phantom),
+    ("a ratchet entry that stopped flipping", stale_ratchet),
+    # MOVED FROM THE CLEAN HALF 07-09-2026, and the move is the finding. The first
+    # draft asserted that adopting a driver too thin to cut must stay GREEN, on the
+    # reasoning that untestable is not a failure. It is, for an ADOPTION: adopting a
+    # correction is a claim the sign is stable, and a driver with no admissible cut
+    # carries no evidence of stability at all — [R-ENF-04]'s own clause, that an
+    # absence of contrary evidence is not evidence, and the stronger objection
+    # rather than the weaker one. The gate's rework refused it and was right to.
+    ("adopting a driver too thin to cut", clean_adopt_a_thin_driver),
+    ("a run with no corrections record", no_record),
+    ("an emptied population", empty_population),
+]
+
+
+def clean_untouched(tmp):
+    return None
+
+
+def clean_adopt_a_survivor(tmp):
+    """Adopting a driver whose sign genuinely survives must stay GREEN."""
+    drv = _arcc_candidate(tmp, "stable")
+    p = _log(tmp, "arcc_walkforward")
+    o = json.load(open(p))
+    for c in o["candidates"]:
+        if c["driver"] == drv:
+            c["disposition"] = "ADOPTED"
+    json.dump(o, open(p, "w"))
+    return None
+
+
 CLEAN = [
     ("the records exactly as they ship", clean_untouched),
     ("adopting a driver whose sign survives every cut", clean_adopt_a_survivor),
-    ("adopting a driver too thin to cut", clean_adopt_a_thin_driver),
 ]
 
-EXPECTED_RED, EXPECTED_CLEAN = 5, 3
+EXPECTED_RED, EXPECTED_CLEAN = 6, 2
 assert len(RED) == EXPECTED_RED and len(CLEAN) == EXPECTED_CLEAN, (
     "CASE COUNT CHANGED — update the declared constants deliberately.")
 
@@ -256,5 +271,5 @@ print("\n%d/%d defects caught, %d/%d clean cases passed"
 if caught != EXPECTED_RED or passed != EXPECTED_CLEAN:
     print("FAIL — the boundary gate does not do what it claims.")
     sys.exit(1)
-print("OK — a correction adopted on an unstable sign is refused; a stable or "
-      "untestable one is not.")
+print("OK — a correction adopted on an unstable OR UNTESTABLE sign is refused; one "
+      "whose sign survives every cut its own vantage admits is not.")
