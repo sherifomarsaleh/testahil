@@ -146,45 +146,123 @@ case("ke-inflated-300bp",
 def _m_published(repo, tk):
     """Slash the PUBLISHED fair value to 40% of the published spot.
 
-    Anchored on the ticker's own entry and its own `fair:` line by pattern, never by
-    index arithmetic into the file: the first draft counted characters forward from the
-    ticker name and landed on a different entry's field, so the mutation did not land and
-    the case proved nothing. A fixture that cannot inject its condition is worse than no
-    fixture, because it reports a number.
+    READS THROUGH THE SANCTIONED PARSER, NEVER BY REGEX. check_site_data_reader forbids a
+    regular-expression read of assets/data.js and is right to: a regex over a JavaScript
+    object literal returns the FIRST match where the parser takes the LAST, which is how a
+    ticker page once published a support above its own close while every checker reported
+    it clean. This gate caught THIS FILE doing exactly that, on the run after it was
+    written [R-ENF-03].
+
+    So the figures come from engine/site_data.py. The WRITE still has to locate text — a
+    parser cannot serialise a JavaScript object literal back — and it is made safe the only
+    honest way available: the value written is read back THROUGH THE PARSER before the case
+    is allowed to count, so a write that landed in the wrong entry fails as a mutation that
+    did not land rather than passing as a defect that was not caught.
     """
-    p = os.path.join(repo, "assets", "data.js")
-    src = open(p, encoding="utf-8").read()
-    m = re.search(r"^\s*%s:\s*\{" % re.escape(tk), src, re.M)
-    if not m:
+    sys.path.insert(0, os.path.join(repo, "engine"))
+    for m in list(sys.modules):
+        if m == "site_data":
+            del sys.modules[m]
+    import site_data                                    # the sanctioned reader
+    js = os.path.join(repo, "assets", "data.js")
+    tickers = site_data.read_object("TICKERS", path=js)
+    if tk not in tickers:
         raise RuntimeError("no entry for %s in data.js" % tk)
-    block = src[m.start():m.start() + 4000]
-    ms = re.search(r"spot:\s*([0-9.]+)", block)
-    mf = re.search(r"(fair:\s*\{[^}]*?base:\s*)([0-9.]+)", block)
-    if not (ms and mf):
-        raise RuntimeError("no spot or fair.base for %s" % tk)
-    new = round(float(ms.group(1)) * 0.40, 4)
-    off = m.start()
-    src2 = (src[:off + mf.start(2)] + str(new) + src[off + mf.end(2):])
-    open(p, "w", encoding="utf-8").write(src2)
+    spot = tickers[tk]["spot"]
+    base = tickers[tk]["fair"]["base"]
+    new = round(float(spot) * 0.40, 4)
+
+    src = open(js, encoding="utf-8").read()
+    # Anchored on the ticker's own entry, then on the FIRST fair.base inside it. The
+    # parser above already told us what that value is, so the anchor is checked against a
+    # known figure rather than trusted.
+    off = src.index("\n  %s: {" % tk)
+    blk_end = src.index("\n  },", off)
+    block = src[off:blk_end]
+    needle = "base: %s" % (("%g" % base) if float(base) != int(float(base))
+                           else "%d" % int(float(base)))
+    if needle not in block:
+        needle = [t for t in block.split() if t.startswith("base:")]
+        raise RuntimeError("could not anchor on %s's published base of %s (saw %r)"
+                           % (tk, base, needle[:1]))
+    src2 = src[:off] + block.replace(needle, "base: %s" % new, 1) + src[blk_end:]
+    open(js, "w", encoding="utf-8").write(src2)
 
 
 def _l_published(repo, tk):
-    prog = ("const fs=require('fs');const s=fs.readFileSync(%r,'utf8');"
-            "eval(s.replace(/^\\s*(const|let|var)\\s+/gm,'globalThis.'));"
-            "const t=globalThis.TICKERS[%r];"
-            "console.log(JSON.stringify({g:(t.fair.base/t.spot-1)}));"
-            % (os.path.join(repo, "assets", "data.js"), tk))
-    r = subprocess.run(["node", "-e", prog], capture_output=True, text=True, timeout=90)
-    try:
-        return json.loads(r.stdout)["g"] < -0.55
-    except Exception:
-        return False
+    """Read the mutation back THROUGH THE PARSER — the same route a page takes."""
+    sys.path.insert(0, os.path.join(repo, "engine"))
+    for m in list(sys.modules):
+        if m == "site_data":
+            del sys.modules[m]
+    import site_data
+    t = site_data.read_object("TICKERS",
+                              path=os.path.join(repo, "assets", "data.js"))[tk]
+    return (t["fair"]["base"] / t["spot"] - 1.0) < -0.55
 
 
 case("fv-60pct-of-price",
      "the study publishes an erroneous fair value at 60% of the current price, "
      "in a wrong way",
      "SABIC", "check_published_gap.py", _m_published, _l_published)
+
+
+# ---- the errors this house has ALREADY SHIPPED ONCE ------------------------------
+# Every standing rule here was adopted on a real defect that reached a delivered study.
+# Turning each founding defect into a planted case is what keeps the rule from quietly
+# stopping working: a gate nobody has seen fire on the thing it was built for is a gate
+# running on trust. Each is planted in a study NOT on that gate's ratchet, per [R-ENF-08].
+
+def _m_kd_below_sovereign(repo, tk):
+    """[R-COC-01]'s hard refusal: a same-currency corporate cannot borrow below its own
+    sovereign. AMOC shipped a Kd 31bp under the government that taxes it."""
+    doc = _load(repo, tk)
+    rec = _find_parent(doc, "cost_of_capital_record")["cost_of_capital_record"]
+    rec["kd_pretax"] = round(rec["rf_observed"] - 0.02, 6)
+    rec["kd_aftertax"] = round(rec["kd_pretax"] * 0.775, 6)
+    _save(repo, tk, doc)
+
+
+def _l_kd_below_sovereign(repo, tk):
+    rec = _find_parent(_load(repo, tk), "cost_of_capital_record")["cost_of_capital_record"]
+    return rec["kd_pretax"] < rec["rf_observed"]
+
+
+case("kd-below-its-own-sovereign",
+     "the study borrows more cheaply than the government that taxes it",
+     "ARCC", "check_cost_of_capital.py",
+     _m_kd_below_sovereign, _l_kd_below_sovereign)
+
+
+def _m_inflation_off_path(repo, tk):
+    """[R-MACRO-01]: five studies carried five inflation rates for the same fiscal year in
+    the same country. A study may not carry an inflation number of its own."""
+    doc = _load(repo, tk)
+    holder = _find_parent(doc, "macro_record")
+    rec = holder["macro_record"]
+    lad = rec.get("inflation_inputs")
+    if isinstance(lad, list) and lad:
+        for item in lad:
+            if isinstance(item, dict):
+                for k, v in list(item.items()):
+                    if isinstance(v, list) and v and all(
+                            isinstance(x, (int, float)) for x in v):
+                        item[k] = [round(float(x) * 0.55, 4) for x in v]
+                    elif isinstance(v, (int, float)) and 0 < v < 1:
+                        item[k] = round(float(v) * 0.55, 4)
+    rec["_injected_off_path"] = True
+    _save(repo, tk, doc)
+
+
+def _l_inflation_off_path(repo, tk):
+    rec = _find_parent(_load(repo, tk), "macro_record")["macro_record"]
+    return rec.get("_injected_off_path") is True
+
+
+case("inflation-off-the-house-path",
+     "the study values the company in an economy the study beside it does not recognise",
+     "ARCC", "check_macro_coherence.py",
+     _m_inflation_off_path, _l_inflation_off_path)
 
 
 # ---------------------------------------------------------------- the harness
