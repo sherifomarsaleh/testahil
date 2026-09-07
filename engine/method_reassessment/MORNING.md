@@ -2768,3 +2768,31 @@ runs had one, the third did not, and the prose was identical wherever it appeare
 plausible.** 0.4 and 2.5 are each ordinary things to read in a band; neither looks wrong, and
 only the arithmetic behind them says which is meant. The check is never "does this look
 sensible" but "against what was it computed".
+
+### Follow-through: the orientation confusion reaches no reader, and two near-misses on the way
+
+**Did any study compute a valuation from one of those bands?** No — verified three ways.
+Only two studies read a `forward_ranges.json` at all (AMOC, ARCC), both carry it for
+**display**, neither multiplies a forecast by it, and AMOC's delivered document mentions
+"walk-forward" **zero times**. So no fair value moves and no reader has seen a band stated
+the wrong way up. **The risk is prospective only.**
+
+**Two things I nearly reported and did not:**
+
+1. I measured "which studies state their scope in the delivered document" and found 5 of 6
+   say "walk-forward" zero times — which looked like an [R-FCAL-01] gap. **It is the
+   opposite:** "walk-forward" is exactly the internal-procedure vocabulary depth-bar
+   standard 4 *forbids* in a delivered document, and [R-FCAL-01] says the training record is
+   internal and never shown. The absence is the rule working. The real question is whether
+   the far years are published as ranges in **plain language** — EGCH and PHDC do so
+   explicitly; ARCC and TMGH returned nothing to my regex, and per tonight's own lesson that
+   means the probe may be wrong, not that the thing is absent. **Left unmeasured rather than
+   reported.**
+
+2. Before that, my document picker sorted `DD-MM-YYYY` filenames **lexicographically** and
+   read AMOC's superseded 08-08 edition instead of its 03-09 one. Caught only because the
+   filename disagreed with a document I had opened minutes earlier. Ninth instance today, same
+   family: a reader that guesses at a convention. (The answer happened not to change.)
+
+The reader-side question — do the delivered documents publish far years as ranges — wants a
+real instrument rather than an ad-hoc regex, and is left for the next firing.
