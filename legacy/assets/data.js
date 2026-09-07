@@ -214,30 +214,30 @@ const TICKERS = {
     name: "Borouge plc",
     nameAr: "بروج",
     code: "ADX:BOROUGE",
-    spot: 2.40,
-    spotDate: "close 07 Aug 2026",
+    spot: 2.39,
+    spotDate: "close 07 Sep 2026",
     fairAsof: "2026-08-07",
     ccy: "AED",
     fair: { bear: 1.30, base: 1.48, full: 2.55 },   // 17 Aug 2026 — four lenses, one field, AED 1.30 to 2.55, median 1.48 against a close of 2.40. Borouge is a single-segment polyolefin operating company: polyethylene and polypropylene from one integrated complex at Ruwais, sold in over ninety countries. It reports in US dollars and trades in dirhams, so the valuation runs in dollars and converts at the 3.6725 peg only at the last step. Revenue is built BOTTOM-UP — nameplate capacity x a disclosed utilisation path, priced off published benchmarks plus the company's own disclosed premium x a realisation residual measured over three audited years — and PRODUCTION drives cost while SALES drive revenue and freight, because Borouge sources product from partners and sells about 3% more than it makes. Every cost class carries ITS OWN escalator: contracted ethane on its own terms, purchased propylene on the propylene benchmark, and only the genuinely domestic fixed leg on UAE inflation. Margins are OUTPUTS of that build. TWO JUDGEMENTS ARE COMPUTED BOTH WAYS AND NEVER AVERAGED. The beta: 0.415 from the share's own five-year weekly history against the FTSE ADX General Index gives a 6.09% cost of capital and AED 2.55; a sector bottom-up beta of 1.018 gives 8.60% and AED 1.48 — worth 1.07 a share, more than every other disagreement combined. And the Strait of Hormuz disruption: normalisation gives AED 2.55, a genuine prolonged-disruption case that varies ONLY the disrupted drivers gives 2.35. BOROUGE 4 IS NOT OWNED — the 1.4mtpa expansion next door belongs 70% to ADNOC and 30% to OMV; Borouge operates it and PAYS an at-cost utilisation fee, so it is valued as a net benefit stream that ENDS at recontribution rather than capitalised to perpetuity, and it is carried in all four lenses rather than one. Terminal value is 76.7% of enterprise value and the study says so. This edition follows a forensic critique: eight model defects were implemented and the field moved from 1.29-2.79 to 1.30-2.55.
     dist: {
-      t20: { label:"1 month",   p5:2.23, p25:2.33, p50:2.39, p75:2.45, p95:2.56, resolve:"2026-09-07" },
-      t60: { label:"3 months",  p5:2.07, p25:2.26, p50:2.36, p75:2.47, p95:2.69, resolve:"2026-11-09" }
+      t20: { label:"1 month",   p5:2.19, p25:2.30, p50:2.37, p75:2.44, p95:2.57, resolve:"2026-10-07" },
+      t60: { label:"3 months",  p5:2.04, p25:2.22, p50:2.34, p75:2.45, p95:2.67, resolve:"2026-12-07" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
+    hz: { h1:21, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-09-07" },
     touch: [ /* descending high -> low */
-      [2.88, 0, 3], [2.76, 1, 6], [2.64, 3, 14], [2.52, 15, 36], [2.28, 19, 49], [2.16, 3, 18]
+      [2.88, 0, 3], [2.76, 1, 5], [2.64, 4, 13], [2.52, 17, 32], [2.28, 30, 58], [2.16, 5, 24]
     ],
-    levels: { res:[2.43, 2.49, 2.61], sup:[2.38, 2.29, 2.20] },
+    levels: { res:[2.48, 2.59, 2.63], sup:[2.33, 2.29, 2.20] },
     tech: {
-      trend: "Trading below the whole moving-average stack, under a falling 200-day",
-      summary: "The price closed 2.40 below a falling 20-day (2.41), a falling 50-day (2.48) and a falling 200-day (2.54). Momentum is soft: RSI(14) is ~39 and the daily ATR near 0.03 (~1.1%) points to an orderly tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.02 / \u22120.03 / +0.00). Over the last year it has ranged 2.38\u20132.68; the last close sits 10% below that high and 1% above that low.",
-      bull: "A daily close back above 2.43 would clear the nearest resistance; the next charted level above it is 2.61.",
-      bear: "A close below 2.38 would break the nearest support; the next charted level below it is 2.20."
+      trend: "Trading below the whole moving-average stack, under a flat 200-day",
+      summary: "The price closed 2.39 below a falling 20-day (2.40), a falling 50-day (2.43) and a flat 200-day (2.53). Momentum is neutral: RSI(14) is ~48 and the daily ATR near 0.03 (~1.4%) points to an orderly tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.02 / \u22120.01 / \u22120.00). Over the last year it has ranged 2.33\u20132.68; the last close sits 11% below that high and 3% above that low.",
+      bull: "A daily close back above 2.48 would clear the nearest resistance; the next charted level above it is 2.63.",
+      bear: "A close below 2.33 would break the nearest support; the next charted level below it is 2.20."
     },
     asof: {
-      mc:   { data:"2026-08-07", computed:"2026-08-25" },
-      tech: { data:"2026-08-07", computed:"2026-09-07" }
+      mc:   { data:"2026-09-07", computed:"2026-09-07" },
+      tech: { data:"2026-09-07", computed:"2026-09-07" }
     },
     files: {
       study: "files/BOROUGE_Valuation_Study_17-08-2026.pdf?v=0817b",
@@ -3249,7 +3249,7 @@ const BANDS = {
   DEWA: {mkt:"AE", n:13, hits:13, c50:0.6154, c80:0.8462, c90:1.0000, width:1.079, strength:"market-only", flag:null},
   DIB: {mkt:"AE", n:58, hits:50, c50:0.6034, c80:0.8103, c90:0.8621, width:1.103, strength:"long", flag:null},
   DSCW: {mkt:"EG", n:29, hits:27, c50:0.5862, c80:0.8621, c90:0.9310, width:1.259, strength:"short", flag:null},
-  DU: {mkt:"AE", n:58, hits:55, c50:0.7069, c80:0.9138, c90:0.9483, width:1.443, strength:"long", flag:null},
+  DU: {mkt:"AE", n:58, hits:55, c50:0.6724, c80:0.9138, c90:0.9483, width:1.441, strength:"long", flag:null},
   EAND: {mkt:"AE", n:58, hits:53, c50:0.6897, c80:0.8448, c90:0.9138, width:1.037, strength:"long", flag:null},
   EFID: {mkt:"EG", n:40, hits:38, c50:0.6000, c80:0.9250, c90:0.9500, width:1.713, strength:"long", flag:null},
   EFIH: {mkt:"EG", n:15, hits:15, c50:0.5333, c80:0.9333, c90:1.0000, width:1.124, strength:"market-only", flag:null},
@@ -3386,7 +3386,8 @@ const LEDGER = [
     p5:9.82, p25:11.26, p50:12.26, p75:13.35, p95:15.32,
     touch:{ "+5":64, "+10":40, "+15":24, "+20":14, "-5":64, "-10":38 },
     realized_close:null, realized_quantile:null, median_err:null, touch_hit:null },
-  {instrument:"BOROUGE", asset_class:"equity", anchor_date:"2026-08-07", run_date:"2026-08-17", anchor_price:2.4, ccy:"AED", horizon_label:"1 month", grade_date:"2026-09-07", grade_basis:"projected", horizon_days:20, cycle_no:1, anchor_vol:0.1676, note:"First coverage, 17-Aug-2026 \u2014 cycle 1, struck on the study's own committed path arrays at the 2026-08-07 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Production chain, no approximation: data-quality gate (1048 sessions, zero drops or repairs) \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF per the AE profile. q_annual = 0.0675, SOURCED from the company's own restated annual dividend intention of 16.2 fils a share, not defaulted \u2014 and it exceeds the risk-free rate, so the carry drift is NEGATIVE at -3.10% a year. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65%. Horizons resolved by horizons.resolve() on the UAE's own realized calendar, not a session count. NAME-LEVEL CALIBRATION FAILS, and the study says so rather than burying it: scale-normalized CRPS skill -0.0901 against the carry-anchored random walk, ROBUSTLY negative across every bootstrap block size (CI90 [-0.154,-0.045] / [-0.165,-0.054] / [-0.172,-0.062] at blocks 2/3/4). The diagnosis is specific and it is over-coverage, not mis-centring: 100% of outcomes landed inside the 80% band and 100% inside the 90%, the band running 1.24x the benchmark's width, with a PIT mean of 0.520 \u2014 well centred, simply too wide for a share this calm. A five-year test is also IMPOSSIBLE: Borouge listed 3-Jun-2022, so only 4.17 years and 12 independent three-month windows exist. The governing market-level fit is unchanged and remains PARITY (+0.0068, CI90 [-0.001,0.014], 18 names, 261 windows). Nothing was tuned to make this pass.", p5:2.22, p25:2.33, p50:2.39, p75:2.46, p95:2.58, touch_up5:20.2, touch_up10:3.0, touch_up15:0.4, touch_up20:0.1, touch_dn5:21.1, touch_dn10:2.4, realized_close:null, realized_date:null},
+  {instrument:"BOROUGE", asset_class:"equity", anchor_date:"2026-08-07", run_date:"2026-08-17", anchor_price:2.4, ccy:"AED", horizon_label:"1 month", grade_date:"2026-09-07", grade_basis:"projected", horizon_days:20, cycle_no:1, anchor_vol:0.1676, note:"First coverage, 17-Aug-2026 \u2014 cycle 1, struck on the study's own committed path arrays at the 2026-08-07 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Production chain, no approximation: data-quality gate (1048 sessions, zero drops or repairs) \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF per the AE profile. q_annual = 0.0675, SOURCED from the company's own restated annual dividend intention of 16.2 fils a share, not defaulted \u2014 and it exceeds the risk-free rate, so the carry drift is NEGATIVE at -3.10% a year. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65%. Horizons resolved by horizons.resolve() on the UAE's own realized calendar, not a session count. NAME-LEVEL CALIBRATION FAILS, and the study says so rather than burying it: scale-normalized CRPS skill -0.0901 against the carry-anchored random walk, ROBUSTLY negative across every bootstrap block size (CI90 [-0.154,-0.045] / [-0.165,-0.054] / [-0.172,-0.062] at blocks 2/3/4). The diagnosis is specific and it is over-coverage, not mis-centring: 100% of outcomes landed inside the 80% band and 100% inside the 90%, the band running 1.24x the benchmark's width, with a PIT mean of 0.520 \u2014 well centred, simply too wide for a share this calm. A five-year test is also IMPOSSIBLE: Borouge listed 3-Jun-2022, so only 4.17 years and 12 independent three-month windows exist. The governing market-level fit is unchanged and remains PARITY (+0.0068, CI90 [-0.001,0.014], 18 names, 261 windows). Nothing was tuned to make this pass.", p5:2.22, p25:2.33, p50:2.39, p75:2.46, p95:2.58, touch_up5:20.2, touch_up10:3.0, touch_up15:0.4, touch_up20:0.1, touch_dn5:21.1, touch_dn10:2.4, realized_close:2.39, realized_high:2.46, realized_low:2.33, in_90:true, in_50:true, realized_quantile:0.500, median_err:0.0000, touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":false, "-10":false }
+  },
   {instrument:"BOROUGE", asset_class:"equity", anchor_date:"2026-08-07", run_date:"2026-08-17", anchor_price:2.4, ccy:"AED", horizon_label:"3 months", grade_date:"2026-11-09", grade_basis:"projected", horizon_days:63, cycle_no:1, anchor_vol:0.1758, note:"First coverage, 17-Aug-2026 \u2014 cycle 1, struck on the study's own committed path arrays at the 2026-08-07 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Production chain, no approximation: data-quality gate (1048 sessions, zero drops or repairs) \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF per the AE profile. q_annual = 0.0675, SOURCED from the company's own restated annual dividend intention of 16.2 fils a share, not defaulted \u2014 and it exceeds the risk-free rate, so the carry drift is NEGATIVE at -3.10% a year. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65%. Horizons resolved by horizons.resolve() on the UAE's own realized calendar, not a session count. NAME-LEVEL CALIBRATION FAILS, and the study says so rather than burying it: scale-normalized CRPS skill -0.0901 against the carry-anchored random walk, ROBUSTLY negative across every bootstrap block size (CI90 [-0.154,-0.045] / [-0.165,-0.054] / [-0.172,-0.062] at blocks 2/3/4). The diagnosis is specific and it is over-coverage, not mis-centring: 100% of outcomes landed inside the 80% band and 100% inside the 90%, the band running 1.24x the benchmark's width, with a PIT mean of 0.520 \u2014 well centred, simply too wide for a share this calm. A five-year test is also IMPOSSIBLE: Borouge listed 3-Jun-2022, so only 4.17 years and 12 independent three-month windows exist. The governing market-level fit is unchanged and remains PARITY (+0.0068, CI90 [-0.001,0.014], 18 names, 261 windows). Nothing was tuned to make this pass.", p5:2.07, p25:2.26, p50:2.38, p75:2.51, p95:2.74, touch_up5:46.4, touch_up10:19.6, touch_up15:7.7, touch_up20:3.0, touch_dn5:50.3, touch_dn10:19.5, realized_close:null, realized_date:null},
   {
     instrument:"EMPOWER", asset_class:"equity",
@@ -8110,6 +8111,35 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 07-Sep-2026 single-name roll-forward: BOROUGE, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"BOROUGE", asset_class:"equity",
+    anchor_date:"2026-09-07", run_date:"2026-09-07", anchor_price:2.39, ccy:"AED",
+    horizon_label:"1 month", grade_date:"2026-10-07", grade_basis:"projected", horizon_days:21,
+    cycle_no:2, reanchor_from:"2026-08-07", anchor_vol:0.1922,
+    signal_z:-0.9766, signal_alpha:-0.005648,
+    note:"Cycle 2 roll-forward, 07-Sep-2026 — struck on the 07-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-07 and is graded in this same pass. The previous cone was anchored 2026-08-07; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.067782 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. NAME-LEVEL CALIBRATION: FAIL, robustly — skill -0.0542 over 12 scored windows, negative under every bootstrap block size {2,3,4} (block-2 CI [-0.095,-0.020]). The cone is MIS-CENTRED: PIT mean 0.448 where 0.5 is centred, with 100% coverage against a 90% target and 92% against 50%. Read the bands as an OUTER bound. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN, from this name’s own mom_combo z of -0.977 (outside the 0.25 dead zone); tilt -0.56% at 1M and -1.59% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
+    p5:2.19, p25:2.3, p50:2.37, p75:2.44, p95:2.57,
+    touch:{ "+5":19, "+10":4, "+15":1, "+20":1, "-5":26, "-10":5 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"BOROUGE", asset_class:"equity",
+    anchor_date:"2026-09-07", run_date:"2026-09-07", anchor_price:2.39, ccy:"AED",
+    horizon_label:"3 months", grade_date:"2026-12-07", grade_basis:"projected", horizon_days:62,
+    cycle_no:2, reanchor_from:"2026-08-07", anchor_vol:0.1852,
+    signal_z:-0.9766, signal_alpha:-0.016013,
+    note:"Cycle 2 roll-forward, 07-Sep-2026 — struck on the 07-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-07 and is graded in this same pass. The previous cone was anchored 2026-08-07; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.067782 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. NAME-LEVEL CALIBRATION: FAIL, robustly — skill -0.0542 over 12 scored windows, negative under every bootstrap block size {2,3,4} (block-2 CI [-0.095,-0.020]). The cone is MIS-CENTRED: PIT mean 0.448 where 0.5 is centred, with 100% coverage against a 90% target and 92% against 50%. Read the bands as an OUTER bound. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN, from this name’s own mom_combo z of -0.977 (outside the 0.25 dead zone); tilt -0.56% at 1M and -1.59% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
+    p5:2.04, p25:2.22, p50:2.34, p75:2.45, p95:2.67,
+    touch:{ "+5":35, "+10":14, "+15":6, "+20":3, "-5":54, "-10":22 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
@@ -8360,7 +8390,7 @@ const CALIB = {
   "DFM:AIRARABIA": {w: 58, in50: 47, in90: 86, through: "2026-07-28"},
   "DFM:DEWA": {w: 13, in50: 54, in90: 100, through: "2026-07-28"},
   "DFM:DIB": {w: 58, in50: 53, in90: 84, through: "2026-07-28"},
-  "DFM:DU": {w: 58, in50: 66, in90: 93, through: "2026-07-29"},
+  "DFM:DU": {w: 58, in50: 64, in90: 93, through: "2026-07-29"},
   "DFM:EMAAR": {w: 58, in50: 45, in90: 79, through: "2026-07-28"},
   "DFM:EMAARDEV": {w: 30, in50: 43, in90: 87, through: "2026-06-17"},
   "DFM:EMIRATESNBD": {w: 57, in50: 60, in90: 88, through: "2026-06-01"},
