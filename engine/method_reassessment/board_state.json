@@ -21,7 +21,7 @@
    "title": "A red gate is worked until it is green",
    "test": "Run against studies with defects deliberately planted, it fixes the fixable, escalates the rest, and leaves every gate, control and ratchet byte-identical.",
    "state": "DONE",
-   "note": "Built. It runs every gate, ranks what is red, and refuses to touch a gate, a ratchet or a fair value — asserted after every run, not promised. Its first run found three reds and every one was this session's own debt."
+   "note": "Built, including the fixing half. It runs every gate, reads the RATCHETED debt as work as well as new breaches — a ratchet suppresses the build, not the work — repairs only where the gate itself has solved the fix, and reverts on any surprise. Latest sweep: 68 green, 0 red, 0 broken, and 136 known items of debt that no gate was reporting because every one of them is allowed."
   }
  ],
  "queue": [
@@ -78,6 +78,12 @@
    "item": "The injection harness",
    "state": "DONE",
    "detail": "BUILT and PASSING 5 of 5. Three are the principal's own named errors; two are defects this house has ALREADY SHIPPED ONCE, so the rules adopted on them cannot quietly stop working. Each is planted in a real study that is NOT on that gate's ratchet, the gate is proved green on the unmutated copy first, the mutation asserts it landed, and the gate must go red NAMING the study."
+  },
+  {
+   "day": "done",
+   "item": "Wire the new gates into CI",
+   "state": "DONE",
+   "detail": "All four run in study-provenance.yml, before check_tree_unmodified which stays last. A check somebody has to remember to run is run until the day it matters."
   }
  ],
  "errors": [

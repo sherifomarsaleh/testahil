@@ -140,6 +140,15 @@ def failures(out):
             m = TICKER_RX.match(line)
             if m:
                 rows.append((m.group(1), m.group(2).strip(), mode == "ratcheted"))
+    # A GATE THAT TRUNCATES ITS OWN LIST MAKES THIS LOOP UNDERCOUNT, AND AN UNDERCOUNT
+    # READS AS PROGRESS. check_published_gap prints twelve and then "... and 44 more";
+    # the first draft counted twelve and reported 92 items of debt where there were 136.
+    # The elision is detected and recorded rather than silently dropped [R-ENF-04].
+    m = re.search(r"\.\.\. and (\d+) more", out)
+    if m:
+        rows.append(("(elided)", "%s further entries the gate did not print; run it "
+                                 "directly, or with --list where it offers one"
+                     % m.group(1), True))
     return rows
 
 
@@ -231,9 +240,14 @@ def main(argv=None):
         for o in orders:
             by_gate.setdefault(o["gate"], []).append(o)
         n_new = sum(1 for o in orders if not o.get("ratcheted"))
+        elided = sum(int(re.match(r"(\d+)", o["reason"]).group(1))
+                     for o in orders if o["subject"] == "(elided)")
         print("\nWORK ORDERS — %d across %d gates: %d NEW (breaking the build), "
               "%d ratcheted (known debt nobody has closed)"
-              % (len(orders), len(by_gate), n_new, len(orders) - n_new))
+              % (len(orders), len(by_gate), n_new, len(orders) - n_new)
+              + ("" if not elided else
+                 "\n  plus %d entries a gate printed as elided — %d known items in all"
+                 % (elided, len(orders) - 1 + elided)))
         for g in sorted(by_gate):
             print("\n  %s" % g)
             for o in by_gate[g][:8]:
