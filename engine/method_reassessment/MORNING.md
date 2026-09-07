@@ -3121,3 +3121,50 @@ caught by pushing on a suspicious number rather than by a control.
 
 So the seven are not seven of one thing, and a gate treating them alike would be wrong
 about at least three of them. **No gate. Measurement recorded with its limits.**
+
+---
+
+## 07-09-2026, 04:15 firing — a direction-changing finding that dissolved when asked for its confound
+
+Tonight's far-year gate says three of the five runs print their years-3-to-5 ranges and two
+print points. The programme's live finding (C) is that those ranges under-cover at −7.9pp
+pooled. **Cutting the coverage by whether the range reaches a reader:**
+
+| | n | coverage | expected | skill | p |
+|---|---|---|---|---|---|
+| PUBLISHED (EGCH, PHDC, TMGH) | 212 | 51.9% | 65.2% | **−13.4pp** | 0.000 |
+| WITHHELD (ARCC, AMOC) | 47 | 72.3% | 55.8% | **+16.5pp** | 0.027 |
+| POOLED | 259 | 55.6% | 63.5% | −7.9pp | 0.010 |
+
+Both individually significant, pointing **opposite ways**, with the pooled figure averaging
+them — which is [R-TERM-01 CLAUSE TWO]'s error exactly, and which would have read as: *what
+readers are actually shown is nearly twice as bad as the programme has been saying.*
+
+**It is not that.** The withheld pair also holds the thinnest records, and a thin record
+sets a lower bar, because expected coverage is (k−1)/(k+1) on that cell's own k. Tested
+directly:
+
+```
+k=3   n=73  56.2%  vs 50.0%   +6.2pp
+k=4   n=57  56.1%  vs 60.0%   -3.9pp
+k=5   n=43  51.2%  vs 66.7%  -15.5pp
+k=6   n=30  50.0%  vs 71.4%  -21.4pp
+k=7   n=21  47.6%  vs 75.0%  -27.4pp
+k=8   n=14  21.4%  vs 77.8%  -56.3pp
+```
+
+**Skill falls monotonically with record length across all five names**, and restricting the
+publication split to k≥6 leaves the withheld side with **three cells**. So the contrast is a
+length artefact and the split is a proxy for which names happen to have long records.
+Seventeenth first-attempt error of the day, and the first caught by asking for the confound
+*before* writing rather than after.
+
+### What is underneath it, which is not new but arrives from a new direction
+
+**Realised coverage is roughly flat near 50% while the null's bar rises with k.** A min–max
+span of k exchangeable draws should catch (k−1)/(k+1) and widen as k grows; these do not.
+That is **drift, not band width** — and 87 of the 115 pooled misses fall on one side. It
+agrees with the programme's finding (A): a rate error that compounds, not a level shock.
+
+**Nothing here changes the programme's direction**, which is the honest report, and it is
+worth as much as the finding would have been.
