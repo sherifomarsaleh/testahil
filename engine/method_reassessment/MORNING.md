@@ -3202,3 +3202,29 @@ survived"* — standing in this protocol, and committed by me anyway.
 `module 'engine.range_disclosure' has no attribute …`. Recovered from `HEAD`, both gates
 green, diff back to the intended +52/−17. Had that gate not existed the deletion would have
 been invisible until something needed the detector.
+
+---
+
+## 07-09-2026 — the same confound applied to finding (C), which survives it
+
+Having killed my own publication split on the record-length confound, the honest next
+question is whether finding **(C)** — the published far-year ranges degrade with horizon,
+−1.9pp at one year to −31.7pp at five — is confounded the same way. **It is not, and the
+reason is that the confound runs the wrong way.**
+
+Mean k *falls* with horizon (5.40 at h=1 to 4.50 at h=5), so the null's bar falls too
+(65.0% → 60.9%). Record length should therefore make far horizons look **better**. Skill
+degrades anyway. At fixed k, in both rows with enough cells:
+
+```
+        h=1     h=2     h=3     h=4     h=5
+k=3     +9pp    +3pp   +23pp    -4pp   -12pp
+k=4    +13pp   +25pp    +9pp   -48pp   -60pp
+```
+
+Both collapse at h=4–5. **The horizon degradation is real at fixed record length**, and the
+two effects are separable — the k=5 and k=6 rows are negative at h=1 and h=2, which is the
+length effect showing through on its own.
+
+Worth stating because it cuts the other way from an hour ago: the confound test is not a
+finding-killer, it is a test, and finding (C) passes it.
