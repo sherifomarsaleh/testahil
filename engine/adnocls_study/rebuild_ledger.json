@@ -41,6 +41,42 @@
    "why": "On a chartered fleet valued with replacement cost beside the cash-flow lens the fleet IS the asset base. The study already held it at three sourced vintages \u2014 53 owned tankers at 31 December 2025, one very large crude carrier sold in January 2026, eleven vessels bought on 7 August 2026 \u2014 and stated the vintage of none of them where anything outside the study could read it. 156 owned vessels as at 7 August 2026, components footing to the total, against an information set ending 1Q2026.",
    "evidence": "asset_base_record + information_set_ends; off the asset-base ratchet",
    "move": 0.0
+  },
+  {
+   "name": "the profit anchor ordering, measured rather than asserted",
+   "rule": "R-ANCHOR-01",
+   "before": 5.605379,
+   "after": 5.605379,
+   "why": "The bridge stands on the reviewed 31 March 2026 sheet and the margin is anchored on the AUDITED FY2025 year, 90 days behind it, and the record did not say why \u2014 leaving a reader to assume the study opened that filing and took half of it. It did not: every line of the Q1 2026 income statement is registered and consumed. A margin is a rate over a full cycle of this company's own contract book and one reviewed quarter is a point on a seasonal path.",
+   "evidence": "1Q2026 computes 32.73% on the same construction against the 29.28% anchored \u2014 the LOWER of the two is adopted, so the forecast faces the stricter comparison and the choice cannot be flattering it",
+   "move": 0.0
+  },
+  {
+   "name": "the driver lines and the cost basis behind them",
+   "rule": "R-SIGCM-02",
+   "before": 5.605379,
+   "after": 5.605379,
+   "why": "The study built seven driver lines, ran the ground-up assertion on them and committed only what the assertion RETURNED. Running it from outside found a real gap on the exemplar: four of the seven named how revenue was built and nothing about how cost was \u2014 the margin-is-the-input treatment written into each gap note and not into the field a checker reads.",
+   "evidence": "driver_lines committed; 2 ground-up assertions now actually run across the book where 1 did",
+   "move": 0.0
+  },
+  {
+   "name": "the reporting scale, so the earnings reconciliation can be read",
+   "rule": "R-ENF-04",
+   "before": 5.605379,
+   "after": 5.605379,
+   "why": "shares_mn carries its scale in its name and npa_fy25 carries none, so an instrument dividing one into the other lands a factor of a thousand out \u2014 which the gate reported, correctly, as a reconciliation it could not read rather than a defect it could see. A magnitude test would have \"resolved\" a real error as cleanly as a scale.",
+   "evidence": "reporting_units{USD, thousands, millions, AED, 3.6725}; EPS now reconciles at 0.1133 computed against 0.1100 reported",
+   "move": 0.0
+  },
+  {
+   "name": "the delivered pages: retired blend, retired verdict, edition date, both prices",
+   "rule": "R-CAL-02",
+   "before": 5.605379,
+   "after": 5.605379,
+   "why": "The numbers file had retired the blend for weeks and the DOCUMENTS had not: five assertions of a weighted central, three of a skill score against a random-walk benchmark that [R-CAL-03] retired outright, a caption claiming contributions that add to a central they no longer build, no edition date in the masthead at all, and one price on a page where the rule asks for two.",
+   "evidence": "off the lens-vocabulary, band and edition ratchets; the study's own four stale label expectations re-pointed; 813 prose figures, 63 tables, 169 labels, 111 drivers and 119 recalculations all green",
+   "move": 0.0
   }
  ],
  "value": 5.605379,
@@ -77,9 +113,41 @@
    "first_before": 5.605379,
    "last_after": 5.605379,
    "move": 0.0
+  },
+  "R-ANCHOR-01": {
+   "levers": [
+    "the profit anchor ordering, measured rather than asserted"
+   ],
+   "first_before": 5.605379,
+   "last_after": 5.605379,
+   "move": 0.0
+  },
+  "R-SIGCM-02": {
+   "levers": [
+    "the driver lines and the cost basis behind them"
+   ],
+   "first_before": 5.605379,
+   "last_after": 5.605379,
+   "move": 0.0
+  },
+  "R-ENF-04": {
+   "levers": [
+    "the reporting scale, so the earnings reconciliation can be read"
+   ],
+   "first_before": 5.605379,
+   "last_after": 5.605379,
+   "move": 0.0
+  },
+  "R-CAL-02": {
+   "levers": [
+    "the delivered pages: retired blend, retired verdict, edition date, both prices"
+   ],
+   "first_before": 5.605379,
+   "last_after": 5.605379,
+   "move": 0.0
   }
  },
- "distinct_rules": 4,
+ "distinct_rules": 8,
  "note": "Declared 07-09-2026 BEFORE any lever was applied, per [R-REBUILD-01]. The start spot is the LATEST KNOWN price of 6.80 (07-09-2026, supplied by the principal and committed to engine/prices/SUPPLIED_07-09-2026.json) rather than the 6.16 this study was struck at: the committed central of 5.6054 sat 9.0% below the struck price and sits 17.6% below the latest, so this study acquired a gap breach WITHOUT ANY LEVER MOVING, which is [R-GAP-01 AMENDED]'s own finding and is recorded here as the starting condition rather than discovered at the end.",
  "stopped": [
   {
@@ -91,6 +159,7 @@
  "audit": {
   "reached": "the declared audit point \u2014 after the cost-of-capital lever and before the document is rebuilt.",
   "finding": "EVERY LEVER SO FAR HAS MOVED THE RECORD AND NONE HAS MOVED THE ANSWER. The central is 5.605379 after four levers exactly as it was before the first, and that is the honest result rather than a disappointing one: four standing rules were breached by this study, all four are now met, and not one of them was a wrong number. The cost-of-capital lever was expected to be the only one with a route to the central and it turned out to have none either \u2014 the weights were already right and only undeclared.",
-  "consequence": "The gap is therefore unchanged by the rebuild and is entirely the price moving: 5.6054 against 6.80 is -17.6%, past [R-GAP-01]'s ten per cent trigger, so this study owes its eight-heading review before any file is staged, and [R-GAP-02] holds it from publishing either way. THE REVIEW IS NOT A FORMALITY HERE: the largest single construction in this study, the terminal, is STOPPED for want of a disclosed asset life, so the one place a defect of this size would most likely sit is the one place this rebuild could not look."
+  "consequence": "The gap is therefore unchanged by the rebuild and is entirely the price moving: 5.6054 against 6.80 is -17.6%, past [R-GAP-01]'s ten per cent trigger, so this study owes its eight-heading review before any file is staged, and [R-GAP-02] holds it from publishing either way. THE REVIEW IS NOT A FORMALITY HERE: the largest single construction in this study, the terminal, is STOPPED for want of a disclosed asset life, so the one place a defect of this size would most likely sit is the one place this rebuild could not look.",
+  "after_the_audit_point": "FOUR FURTHER LEVERS, and the audit point held: the finding it recorded \u2014 that every lever moves the record and none moves the answer \u2014 survived all four. Recorded here rather than folded into the levers above, because a route walked after the stop is still a route somebody chose to keep walking."
  }
 }
