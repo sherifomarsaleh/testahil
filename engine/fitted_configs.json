@@ -1111,12 +1111,12 @@
       "BOROUGE": {
         "nu": 10.0,
         "width_cal": 0.923,
-        "skill": -0.0542,
-        "skill_raw_basis": -0.0522,
+        "skill": -0.0535,
+        "skill_raw_basis": -0.0516,
         "verdict": "FAIL",
         "ci_block2": [
-          -0.095,
-          -0.02
+          -0.091,
+          -0.023
         ]
       },
       "BURJEEL": {
