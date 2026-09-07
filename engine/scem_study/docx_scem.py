@@ -777,13 +777,17 @@ for head, body in [
      'press and are industry-ring forecast drivers, not the company\'s own reported '
      'numbers. Capacity and the kiln utilisation path are the single largest judgement in '
      'this study and are priced both ways in the contested-judgements table.'),
-    ('The equity roll does not close, and it is carried rather than plugged. ',
+    ('The equity roll closes, and the earlier edition\'s gap was a sourcing error rather '
+     'than a distribution. ',
      f'Rolling FY2024 equity forward by FY2025 profit with no distribution gives EGP '
-     f'{n0(D["equity_gap"]["rolled"])} million against the filed EGP '
-     f'{n0(D["equity_gap"]["reported"])} million. The EGP {n0(D["equity_gap"]["gap"])} '
-     'million difference is consistent with a distribution the statements do not itemise. '
-     'It is left open rather than closed on an assumption, and it bears on the cash the '
-     'valuation adds back.'),
+     f'{n2(D["equity_gap"]["rolled"])} million against the filed EGP '
+     f'{n2(D["equity_gap"]["reported"])} million — the two agree to the pound. Earlier '
+     f'editions of this study showed a gap here and read it as a distribution the '
+     f'statements do not itemise, because the FY2024 totals they carried came from trade '
+     f'press relaying the filing rather than from the filing itself; on the audited '
+     f'figures there is nothing left to explain. Nothing in the valuation turns on it '
+     f'either way, since the cash the valuation adds back is read off the reviewed '
+     f'balance sheet directly.'),
     ('The forecast margin is an output of a disclosed cost stack, and it rises. ',
      f'FY2026 opens at {pc(D["forecast"]["margin"][0])} against a filed FY2025 of '
      f'{pc(D["history"]["ebitda"][-1] / D["history"]["revenue"][-1])} and a reviewed first '
@@ -929,19 +933,26 @@ rows.append(['Net cash',
              n0(DCF['cash_fy25'] / IN['cash_growth_fy25'] * 0.35 - IN['debt_fy25']),
              n0(DCF['cash_fy25'] / IN['cash_growth_fy25'] - IN['debt_fy25']),
              n0(DCF['net_cash'])] + [n0(v - IN['debt_fy25']) for v in F['cash']])
+# FY2023 EQUITY IS THE FIGURE THE FILING PRINTS, NOT A ROLL-BACK. Rolling FY2024 equity
+# back through FY2024 profit alone omits the capital increase paid in during that year and
+# returns a positive figure where the audited comparative column shows a negative one.
+_eq23 = IN['eq_fy23_rep']
+_eq24 = D['inputs']['ta_fy24']['value'] - D['inputs']['tl_fy24']['value']
 rows.append(['Shareholders\' equity',
-             n0(D['inputs']['ta_fy24']['value'] - D['inputs']['tl_fy24']['value'] - IN['pat_fy24']),
-             n0(D['inputs']['ta_fy24']['value'] - D['inputs']['tl_fy24']['value']),
+             n0(_eq23), n0(_eq24),
              n0(LN['eq_fy25_roll'])] + [n0(v) for v in F['equity']])
 rows.append(['Book value per share (EGP)',
-             n2((D['inputs']['ta_fy24']['value'] - D['inputs']['tl_fy24']['value'] - IN['pat_fy24']) / SH),
-             n2((D['inputs']['ta_fy24']['value'] - D['inputs']['tl_fy24']['value']) / SH),
+             n2(_eq23 / SH), n2(_eq24 / SH),
              n2(LN['bvps'])] + [n2(v / SH) for v in F['equity']])
 table(rows, [2.02, 0.60, 0.60, 0.60, 0.60, 0.60, 0.60, 0.60, 0.60], size=8.4)
-caption('Table A2 — Balance sheet. FY2024 is the disclosed column: total assets of EGP '
-        '6,385.9 million less total liabilities of EGP 1,610.9 million closes to equity of '
-        'EGP 4,775.1 million exactly. FY2025 equity is rolled forward and does not '
-        'reconcile to the reported figure; see section 7.')
+caption(f'Table A2 — Balance sheet. FY2024 is the disclosed column, taken from the '
+        f'audited statements for that year: total assets of EGP '
+        f'{n1(D["inputs"]["ta_fy24"]["value"])} million less total liabilities of EGP '
+        f'{n1(D["inputs"]["tl_fy24"]["value"])} million closes to equity of EGP '
+        f'{n1(_eq24)} million exactly, and that equity is FY2023\'s EGP {n1(_eq23)} '
+        f'million plus the year\'s profit of EGP {n1(IN["pat_fy24"])} million plus the '
+        f'EGP {n1(IN["cap_increase_fy24"])} million paid in under the capital increase. '
+        f'FY2023 equity is negative because losses had exhausted it before that increase.')
 
 H2('Cash flow (EGP million)')
 rows = [['', ] + YF]

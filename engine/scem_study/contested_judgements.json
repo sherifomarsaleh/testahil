@@ -1,7 +1,7 @@
 {
  "ticker": "SCEM",
  "as_of": "2026-09-07",
- "published_central": 116.92805935691362,
+ "published_central": 111.62128401804542,
  "published_spot": 100.5,
  "why_this_file": "Any single contested choice in a valuation is defensible. What is not is a study that resolves EVERY contested choice the same way and never notices \u2014 which is how a lean survives an audit of its steps. Each is recorded with BOTH framings' values, the side adopted and why, and the binomial sign test is printed. A study landing them all one way is FLAGGED, never failed: a company can genuinely deserve a consistent read, and a gate that failed on it would push studies to resolve judgements inconsistently to stay green.",
  "both_framings_share_a_bridge": "Every alternative below is computed by this study's own build_dcf() \u2014 the same function that produces the published figure \u2014 so the difference between them measures the CHOICE and not the construction. That is L-070, found on AMOC, and it is why the bottom-up build and the cash-flow chain were both refactored into functions before any of these were priced.",
@@ -10,40 +10,40 @@
    "name": "kiln utilisation through the forecast",
    "adopted": "ramps from 71.7% of clinker capacity to 79.1%",
    "alternative": "held flat at the filed FY2025 rate of 71.0%",
-   "value_adopted": 116.92805935691362,
-   "value_alternative": 102.84618679796417,
+   "value_adopted": 111.62128401804542,
+   "value_alternative": 98.24989723865744,
    "why": "the company's own filed volumes ran 53.2%, 62.7% and 71.0% of clinker capacity across FY2023-25, so the ramp is a DECELERATING extrapolation of its own three-year trend rather than a new claim \u2014 but it is an extrapolation and not a disclosure, and roughly 12.6Mt of dormant Egyptian capacity is queuing to restart against it. This is the single largest judgement in the study and the one a reader should contest first."
   },
   {
    "name": "the depreciable life behind the terminal maintenance charge",
    "adopted": "the 20.0-year MACHINERY life, note 3/2, disclosed as a scalar for the class that is 69.5% of gross cost",
    "alternative": "the weighted 25.9-year life across all five classes",
-   "value_adopted": 116.92805935691362,
-   "value_alternative": 123.27165156625448,
+   "value_adopted": 111.62128401804542,
+   "value_alternative": 117.97484340665409,
    "why": "note 3/2 discloses 2-2.5% on buildings and utilities, 5% on machinery, 20% on vehicles and tools and 10-25% on furniture. TWO OF THE FIVE CLASSES ARE RANGES, so any single blended life has to resolve them by choosing a point inside, and the two ordinary ways of blending disagree by a quarter on the same table: a cost-weighted mean of LIVES gives 25.9 years and the charge-reproducing harmonic mean gives 20.7. Machinery needs neither - it is 69.5 per cent of gross cost and its rate is disclosed as a scalar - so it is adopted. The blend is published beside it because a reader may reasonably prefer a whole-plant average, and the buildings that carry most of its weighting genuinely do last longer than the kilns."
   },
   {
    "name": "replacement cost per annual tonne of cement capacity",
    "adopted": "USD 130 per tonne",
    "alternative": "USD 120 per tonne, the bottom of the industry band",
-   "value_adopted": 116.92805935691362,
-   "value_alternative": 119.07316499911407,
+   "value_adopted": 111.62128401804542,
+   "value_alternative": 113.76976009324011,
    "why": "the greenfield band for an integrated plant in this region is USD 120-150 a tonne. It sets the maintenance charge in BOTH windows, so it is the input the whole capital-charge argument turns on."
   },
   {
    "name": "the explicit window's capital charge",
    "adopted": "glides from the company's own disclosed spend to the terminal's current-cost maintenance by FY2030",
    "alternative": "the company's own three-year average spend, escalated and held",
-   "value_adopted": 116.92805935691362,
-   "value_alternative": 123.69207979273737,
+   "value_adopted": 111.62128401804542,
+   "value_alternative": 118.41841620891495,
    "why": "the company spent EGP 120.8mn, 526.4mn and 262.4mn across FY2023-25 against a current-cost maintenance requirement of EGP 1241mn. The plant is 59.7 per cent written down on cost and its machinery 68.4 per cent, with EGP 379.4mn fully depreciated AND STILL IN USE, so this is deferral rather than a young plant spending less. Holding the recent rate while running the kilns HARDER is two assumptions that cannot both be true."
   },
   {
    "name": "the adopted beta",
    "adopted": "1.00, the tier-3 default",
    "alternative": "0.837, the lead-lag corrected own-stock estimate",
-   "value_adopted": 116.92805935691362,
-   "value_alternative": 126.45960175232825,
+   "value_adopted": 111.62128401804542,
+   "value_alternative": 120.3844455455019,
    "why": "the own-stock regression against EGX30 returns an R-squared of 0.038 against the 0.05 usability floor, so it is NOT usable and the hierarchy falls to unity. The lead-lag corrected point estimate is 0.837 and its 90 per cent interval contains 1.00. Rounding UP to unity COSTS value rather than adding it, which is the direction worth stating."
   }
  ]

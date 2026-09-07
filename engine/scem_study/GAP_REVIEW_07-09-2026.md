@@ -1,9 +1,20 @@
 # SCEM — GAP REVIEW, 07-09-2026  [R-GAP-01]
 
-[R-GAP-01] AUDITED CENTRAL: 116.93 — EGP 116.93 a share.
-[R-GAP-01] AUDITED GAP: +16.3 per cent against the latest known price of EGP 100.50
-(close of 2026-09-02, from the price file committed at
-engine/prices/SUPPLIED_03-09-2026.json, read live through engine/prices/gap_today.py).
+[R-GAP-01] AUDITED CENTRAL: 111.62 — EGP 111.62 a share.
+[R-GAP-01] AUDITED GAP: +11.1 per cent against the price this edition is STRUCK at,
+EGP 100.50, the close of 2026-09-02 from the price file committed at
+engine/prices/SUPPLIED_03-09-2026.json, read live through engine/prices/gap_today.py.
+
+THE NEWEST PRICE THIS REPOSITORY HOLDS IS NEWER STILL AND IS DISCLOSED RATHER THAN
+QUIETLY IGNORED: the persistent library at engine/raw_ohlc/EG/SCEM.csv closed at EGP 98.52 on 2026-09-06,
+which puts the same central at +13.3 per cent. The audit below is unchanged by the
+difference — both figures sit on the SAME side of the price and inside the same band,
+so no heading of this review answers differently against one than against the other,
+and neither is close to the ten-point trigger from the other direction. RE-STRIKING
+THE STUDY ON THE LIBRARY CLOSE IS A SEPARATE LEVER: the spot enters the market
+capitalisation and therefore the equity weight in the cost of capital, so moving it
+moves the answer, and it is recorded in the rebuild ledger when it is taken rather
+than folded silently into an edition that was struck on the supplied file.
 
 THE TRIGGER IS TWO-SIDED AND THIS ONE FIRES ON THE HIGH SIDE. Since 02-Sep-2026 a central
 more than ten per cent from the latest known price owes this review in EITHER direction,
@@ -11,14 +22,19 @@ because a gate that can only fire one way teaches the work to drift the other, a
 so while looking rigorous. The question below is not whether the market is right. It is
 whether WE made a mistake, and here the mistake would have to be an OPTIMISTIC one.
 
-WHAT MOVED SINCE THE LAST REVIEW, AND IT IS ONE THING
+WHAT MOVED SINCE THE LAST REVIEW, AND BOTH LEVERS SERVE ONE RULE
   123.27   the 04-09-2026 edition, audited at +22.7 per cent
-  −5.1%    the terminal life: the disclosed SCALAR of the dominant class, 20 years, in
+  -5.1%    the terminal LIFE: the disclosed SCALAR of the dominant class, 20 years, in
            place of a 25.89-year figure that resolved two disclosed RANGES at their
-           midpoints and then averaged the five classes' LIVES arithmetically. See
-           heading 5 — this is the only lever this edition applies and it runs AGAINST
-           the value.
-  116.93   this edition
+           midpoints and then averaged the five classes' LIVES arithmetically.
+  -4.5%    the terminal BASIS: the flow inputs are handed to the sanctioned module in the
+           LAST EXPLICIT YEAR's money, as that module's own contract requires, instead of
+           pre-grown by (1+g). See heading 5.
+  111.62   this edition
+
+  Both levers serve [R-TERM-01] and together they are ONE piece of evidence, not two:
+  read as a rule rather than as a pair of coincidences the terminal correction is worth
+  -9.5 per cent on this study, and the rebuild ledger groups them that way.
 
 THE REST OF THIS EDITION IS EVIDENCE RATHER THAN ARITHMETIC. It is the output of the
 FUNDAMENTAL walk-forward [R-FCAL-01] — the forecasting method rebuilt at five past
@@ -153,9 +169,22 @@ rate that UNDERSTATES the disclosed rates' own product of EGP 151.5mn, while the
 includes intangible amortisation against a filed FIXED-ASSET charge of EGP 99.2mn. An
 understated rate was compared with an overstated total and they agreed to 1.2 per cent.
 
-Terminal free cash flow is EGP 4,024.9mn, positive, and the terminal
-sits above the NOPAT-perpetuity floor. The implied replacement cycle is
-20.0 years against 1/g of 14.3 — an
+**AND THE BASIS THE MODULE IS FED ON WAS WRONG IN THE SAME BLOCK, WHICH THIS REVIEW
+FOUND AFTER THE LIFE WAS FIXED.** `terminal_value.py` states its contract in terms: the
+inputs are in the LAST EXPLICIT YEAR's money, because the module grows the free cash flow
+one year itself — the capitalisation puts the first perpetuity year in the numerator and
+values the result at the end of FY2030, which is where the year-five discount factor puts
+it. Both of this study's call sites handed in a profit and a book depreciation already
+multiplied by (1+g). What makes that an error rather than a convention is that it was not
+done to the whole flow: the maintenance charge and the working-capital charge in the SAME
+call went in ungrown, so the waterfall deducted one year's costs from the next year's
+profit. Corrected on both sites together, so the sensitivity grid still centres on the
+published answer, which that grid's own assertion enforces. Worth -4.5 per cent: the
+terminal falls 8.6 per cent, enterprise value 5.8 per cent.
+
+Terminal free cash flow is EGP 3,677.1mn, positive, and the terminal
+sits above the NOPAT-perpetuity floor of EGP 24,378.4mn. The implied replacement cycle is
+26.1 years against 1/g of 14.3 — an
 asset fact rather than a currency fact.
 
 **AND THE SHORTER LIFE PRODUCED A REFUSAL WORTH REPORTING.** At this company's worst filed
@@ -167,7 +196,7 @@ charged a fifth less maintenance. The bear bound of the range is therefore publi
 what it is — the lowest margin at which the going-concern reading survives, solved on the
 refusal itself and never on a value — and below it the disclosed book value is the floor.
 
-The terminal is 66.6 per cent of enterprise value and that remains the
+The terminal is 64.5 per cent of enterprise value and that remains the
 structural weak point of this answer.
 
 ## 6. BALANCE SHEET
@@ -186,6 +215,33 @@ the share count — and the share count is footed TWICE at each: issued capital 
 share. It changes three times over the panel, 68,058,443 to 133,065,867 to 260,812,477, so
 a count carried back would have been visible as an EPS that did not reproduce.
 
+**AND TWO BALANCE-SHEET FIGURES IN THE INPUT REGISTER WERE STILL COMING FROM THE TRADE
+PRESS.** FY2024 total assets and total liabilities were sourced to "EGX filing reported by
+Global Cement, cemnet/International Cement Review, Daily News Egypt and Arab Finance" —
+a VENUE rather than a document, which names where the statements were lodged and did not
+read them, and a plain breach of the source-integrity rule that governs every historical
+this house uses. The audited FY2024 statements have been in this study's own directory
+since the 04-09-2026 rebuild. Read off the balance sheet on their printed page 5, by OCR
+off the rendered pixels because that filing carries no text layer at all, and footed
+against the page's own arithmetic: total assets EGP 5,695.61mn, total liabilities EGP 1,959.81mn and
+total equity EGP 3,735.80mn, which add exactly, as do the non-current and current subtotals.
+
+**THE FILED FIGURES DIFFER MATERIALLY AND IN BOTH DIRECTIONS.** The relayed pair ran
+12.1 per cent HIGH on assets and 17.8 per cent LOW on liabilities, so the equity they
+closed to was EGP 4,775.06mn against a filed EGP 3,735.80mn — overstated by 27.8 per cent. Two
+consequences follow and both are findings rather than repairs. First, FY2023 equity was
+DERIVED here by rolling FY2024 equity back through FY2024 profit alone, which omits the
+EGP 1,277.47mn paid in under the capital increase during that year; the filing's own comparative
+column prints NEGATIVE EGP 614.03mn and the roll-back returned a positive figure whichever
+totals it started from. It now carries the capital increase and reproduces the filed
+number. Second, the caveat this study had carried for three editions — that the equity
+roll does not close and the difference is consistent with an unitemised distribution —
+was an artefact of the relayed figures: on the audited ones, FY2024 equity plus FY2025
+profit gives EGP 6,020.34mn against a reported EGP 6,020.34mn, agreeing to the pound, and there is
+nothing left to explain. NONE OF IT REACHES THE FAIR VALUE, which stands on the reviewed
+31-March-2026 sheet and never on FY2024; what it reaches is what a reader is told about
+this company's balance-sheet history.
+
 **WHAT THE PANEL ADDS THAT THE BRIDGE DOES NOT SHOW:** in FY2023 this company carried EGP
 2,608.0mn of interest-bearing debt and NEGATIVE equity of EGP 614.0mn. Three years later it
 has EGP 4,762.3mn of cash and EGP 6,020.3mn of equity. The balance sheet the bridge stands
@@ -195,7 +251,7 @@ know that before treating the net cash as structural.
 ## 7. CLAIMS AGAINST THE RECORD
 
 Every superlative and every 'never' in the delivered documents is computed rather than
-typed: `prose_check.py` reconciles 284 figures in the two delivered documents against the
+typed: `prose_check.py` reconciles 289 figures in the two delivered documents against the
 model's own committed outputs and reports zero unmatched. Two figures that are real and are
 not model outputs — Vicat's 77.6 per cent holding and the
 corresponding 22.4 per cent float — were TYPED in nine places
@@ -219,22 +275,22 @@ because a reader trusts it most.**
 
 Two of this study's own gates were opening the SUPERSEDED workbook by name — `recalc.py`
 and `driver_test.py` both named the 04-09-2026 file while the delivered one had moved — so
-the driver test was reporting 51 green drivers against a workbook nobody ships. That is
+the driver test was reporting green drivers against a workbook nobody ships (it now reports 52 against the delivered one). That is
 L-066/L-067 recurring. Both now resolve the latest edition by date and refuse an empty
 glob rather than skipping.
 
 ## 8. MULTIPLE CROSS-CHECK
 
-At the fair value the company trades on 7.0x enterprise value to
-FY2025 EBITDA and 5.9x FY2026; at the market price,
+At the fair value the company trades on 6.6x enterprise value to
+FY2025 EBITDA and 5.6x FY2026; at the market price,
 5.7x and 4.9x. On earnings the fair value
-implies 13.3x FY2025 and 8.1x FY2026 against
+implies 12.7x FY2025 and 7.8x FY2026 against
 11.5x and 7.0x at the market.
 
-**THESE ARE NOT DEMANDING MULTIPLES AND THAT IS THE HONEST READING OF THE GAP.** A seven
+**THESE ARE NOT DEMANDING MULTIPLES AND THAT IS THE HONEST READING OF THE GAP.** A 6.6
 times enterprise-to-EBITDA on a plant whose replacement cost is several times its book, in
 a market where domestic consumption rose 13.4 per cent in 2025 and the production quota
-regime was permanently lifted in July 2025, is not a heroic number. Roughly a quarter of
+regime was permanently lifted in July 2025, is not a heroic number. Some 25 per cent of
 the market capitalisation is net cash, so the operating business is being asked to justify
 less than it appears. Against that, seven to nine dormant Egyptian lines are under study
 for revival — up to 12.6Mt, some 23 per cent of 2025 domestic consumption — landing INSIDE
@@ -243,13 +299,23 @@ judgement, priced at 12.0 per cent of value both ways.
 
 ## VERDICT
 
-**THE ANSWER IS AUDITED AND ONE THING IN IT CHANGED.** The terminal now stands on the
-disclosed scalar life of the class that dominates its own capital base, which took the
-central from EGP 123.27 to EGP 116.93 and the gap from +22.7 per cent to
-+16.3 per cent. That correction moved the answer TOWARD the price, and that is neither a
-reason to have made it nor a reason to distrust it: the disclosed figure decided it, and
-this house has recorded before that a correction moving the answer away from the price is
-not a reason to reconsider the correction either.
+**THE ANSWER IS AUDITED AND ONE RULE MOVED IT, IN TWO PLACES.** The terminal now stands on
+the disclosed scalar life of the class that dominates its own capital base, and it is now
+fed on the basis the sanctioned module's own contract states — the last explicit year's
+money rather than a profit already grown a year. Together those took the central from EGP
+123.27 to EGP 111.62, -9.5 per cent, and the gap from +22.7 per cent to +11.1 per cent.
+Both corrections moved the answer TOWARD the price, and that is neither a reason to have
+made them nor a reason to distrust them: a disclosed figure decided the first and a
+documented contract decided the second, and this house has recorded before that a
+correction moving the answer away from the price is not a reason to reconsider it either.
+The converse of that sentence is the one that binds here.
+
+One further defect was found and it does not touch the number: two FY2024 balance-sheet
+inputs were still sourced to trade press relaying an exchange filing rather than to the
+filing itself, while the audited statements sat in this study's own directory. They are
+re-sourced, the filed figures differ by up to 28 per cent on the equity they close to, and
+the equity-roll caveat this study had carried for three editions turns out to have been an
+artefact of the relayed numbers rather than a distribution. See heading 6.
 
 Nothing else in the eight headings produced a defect that changes the number. What they
 produced instead is a set of things a reader should know: that this issuer discloses no

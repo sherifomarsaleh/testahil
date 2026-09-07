@@ -100,6 +100,10 @@ def read(overrides=None):
                 tax24=bk.cell_value('Income Statement', 'C13'),
                 ta24=bk.cell_value('Balance Sheet', 'C8'),
                 eq24=bk.cell_value('Balance Sheet', 'C12'),
+                # THE FY2023 EQUITY LINE, which the roll-back reaches through the capital
+                # increase paid in during FY2024. Until this probe existed that input fed
+                # only a printed cell and read as dead — not dead, uncovered.
+                eq23=bk.cell_value('Balance Sheet', 'B12'),
                 bvps=bk.cell_value('Relative & Normalized', 'B41'))
 
 

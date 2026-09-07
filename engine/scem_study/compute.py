@@ -51,8 +51,8 @@ def say(s):
 def I(value, source, date, ring):
     return dict(value=value, source=source, date=date, ring=ring)
 
-EGX = ("EGX filing reported by Global Cement, cemnet/International Cement Review, Daily "
-       "News Egypt and Arab Finance")
+FY24 = "Audited independent balance sheet as of 31 December 2024, printed page 5 of the FY2024 audited statements (SCC-AFS-E-1224.pdf), read from the company's own website. ROUTE: OCR off the rendered pixels — that filing carries no text layer at all (zero bytes across its 36 pages), so no extraction confidence exists to trust and ARITHMETIC IS THE ARBITER: the page's own total liabilities of EGP 1,959,808,479 plus its own total equity of EGP 3,735,799,731 foot to its printed total assets of EGP 5,695,608,210 exactly, and its non-current total of 1,703,837,097 plus current total of 3,991,771,113 foot to the same figure. Cross-checked against the FY2025 filing's own comparative column at printed page 2, committed in filings_extract.py, which agrees to the pound on liabilities and prints total assets one pound higher at 5,695,608,211 — the filings' own additive rounding, disclosed rather than reconciled away"
+
 SP = ("FY2025 balance-sheet data from S&P Global Market Intelligence as carried by two "
       "independent aggregations (stockanalysis.com, simplywall.st), which agree")
 
@@ -97,9 +97,35 @@ INP = dict(
     pat_fy25=I(2284.539004, "Audited statement of profit or loss for the year ended 31 December 2025, printed page 3, read from the company's own website and committed with its footings in filings_extract.py. Revision 2 used a trade-press figure relayed from an EGX filing it had not read", "2025-12-31", "Company"),
     ebitda_fy24=I(1590.0, "FY2024 EBITDA, the one disclosed margin anchor",
                   "2026-03-10", "Company"),
-    ta_fy24=I(6385.92, EGX + " — FY2024 total assets", "2025-03-16", "Company"),
-    tl_fy24=I(1610.86, EGX + " — FY2024 total liabilities; the triple closes to equity of "
-              "4,775.06 exactly", "2025-03-16", "Company"),
+    # SIGCM CLAUSE 1: THESE TWO CAME FROM THE TRADE PRESS AND THE FILING WAS ALREADY IN
+    # THIS DIRECTORY. Both were sourced to "EGX filing reported by Global Cement,
+    # cemnet/International Cement Review, Daily News Egypt and Arab Finance" — a VENUE,
+    # not a document: it names where the statements were lodged and did not read them.
+    # The audited FY2024 statements sit at filings/SCC-AFS-E-1224.pdf, committed in this
+    # study since the 04-09-2026 rebuild, and the balance sheet is on its printed page 5.
+    # THE FILED FIGURES DIFFER MATERIALLY AND IN BOTH DIRECTIONS: total assets 5,695.61
+    # against 6,385.92 used (the relayed figure ran 12.1 per cent HIGH) and total
+    # liabilities 1,959.81 against 1,610.86 (the relayed figure ran 17.8 per cent BELOW
+    # the filed one), so the equity the pair
+    # closed to was 4,775.06 against a FILED 3,735.80 — overstated by 27.8 per cent. The
+    # relayed pair also carried a date of 16 March 2025, which is when the trade press
+    # wrote; the filing itself is dated 13 March 2025 and reports on 31 December 2024.
+    ta_fy24=I(5695.608210, FY24 + " — total assets", "2024-12-31", "Company"),
+    tl_fy24=I(1959.808479, FY24 + " — total liabilities", "2024-12-31", "Company"),
+    # THE TWO LINES THAT MAKE THE EQUITY ROLL FOOT, off the same page and its own
+    # comparative column. Without them FY2023 equity was DERIVED by rolling FY2024 equity
+    # back through FY2024 profit, which ignores the capital increase paid in during 2024
+    # and is wrong whichever total-asset figure it starts from.
+    eq_fy23_rep=I(-614.028180, FY24 + " — total equity at 31 December 2023, the "
+                  "comparative column of the same page. It is NEGATIVE, and the filing's "
+                  "own totals foot: liabilities of 4,116,928,922 plus equity of "
+                  "(614,028,180) give total assets of 3,502,900,742, which is also that "
+                  "column's non-current 1,232,905,958 plus current 2,269,994,784",
+                  "2023-12-31", "Company"),
+    cap_increase_fy24=I(1277.466100, FY24 + " — \"Paid under capital increase\", note 17, "
+                        "nil in the comparative column and EGP 1,277,466,100 at 31 "
+                        "December 2024. This is the line the equity roll was missing",
+                        "2024-12-31", "Company"),
     # ---- THE COST STACK, FROM THE COMPANY'S OWN NOTES 24, 25 AND 26 ----------------
     cost_materials_fy25=I(3592.466202, "Note 24, 'Raw materials, Supplies, fuel, power, "
         "packing sacks', FY2025 " + "audited statements for the year ended 31 December 2025, read from the company's own website; committed with its footings in filings_extract.py" + ". Revision 2 built this from four industry "
@@ -701,13 +727,27 @@ def build_dcf(bu=None, life=None, repl_usd_t=None, conv=None, df_over=None):
     # rates and note 4 the gross-cost mix they apply to; weighted, the plant life is 25.9
     # years. THE MACHINERY LIFE ALONE IS 20 YEARS and that is the contested judgement, priced
     # both ways in section 6 rather than chosen silently.
+    #
+    # THE INPUTS ARE IN THE LAST EXPLICIT YEAR'S MONEY, AND REVISION 3 GREW TWO OF THEM
+    # FIRST. engine/terminal_value.py states the contract on TerminalInputs in terms: the
+    # figures are "IN THE LAST EXPLICIT YEAR'S money - not the terminal year's. The module
+    # grows the free cash flow one year itself", and "Pass a NOPAT already grown by (1+g)
+    # and the terminal is overstated by exactly (1+g) - a year-seven flow discounted at the
+    # year-five factor." tv = fcff x (1+g) / (wacc - g) already puts the first perpetuity
+    # year in the numerator and values the terminal AT THE END OF THE LAST EXPLICIT YEAR,
+    # which is where df_l[-1] discounts it. What made this an error rather than a
+    # convention is that it was not applied to the whole flow: working_capital and
+    # ic_replacement in the SAME call were passed ungrown, so the charge sat in year five's
+    # money while the profit it was deducted from sat in year six's. Corrected on both call
+    # sites at once - the base case here and the sensitivity grid below - so the grid still
+    # centres on the published answer, which its own assertion enforces.
     _life = life_
     _tin = TV.TerminalInputs(
-        nopat=nopat[-1] * (1 + V['g_term']),
+        nopat=nopat[-1],
         wacc=wacc_term,
         inflation=V['g_term'],          # the terminal rate IS inflation at zero real growth
         real_growth=0.0,
-        dna_book=dna_f[-1] * (1 + V['g_term']),
+        dna_book=dna_f[-1],
         ic_replacement=ic_repl,
         useful_life_years=_life,
         useful_life_source=(
@@ -822,9 +862,13 @@ def reval(nc=None, g=None, we=None, beta_=None, mgn_shift=0.0):
     # THE SENSITIVITY REVALUES THROUGH THE SAME TERMINAL THE MODEL PUBLISHES. Revision 2's
     # grid re-derived the retired reinvestment identity inline, so every sensitivity in the
     # study answered a question about a construction the study no longer uses.
+    # ON THE LAST EXPLICIT YEAR'S BASIS, exactly as the base case above: the module's own
+    # contract says it grows the free cash flow one year itself, so a pre-grown NOPAT
+    # overstates the terminal by (1+g). Both call sites moved together, which is why the
+    # grid's centre still reproduces the published central.
     tvl = TV.build(TV.TerminalInputs(
-        nopat=np_[-1] * (1 + g), wacc=wt, inflation=g, real_growth=0.0,
-        dna_book=dna_f[-1] * (1 + g), ic_replacement=ic_repl,
+        nopat=np_[-1], wacc=wt, inflation=g, real_growth=0.0,
+        dna_book=dna_f[-1], ic_replacement=ic_repl,
         useful_life_years=_life, useful_life_source=_tin.useful_life_source,
         maintenance_basis='disclosed_life',
         working_capital=V['rev_fy25'] * V['wc_pct_drev'])).tv
@@ -1405,6 +1449,21 @@ assert abs((ev + net_cash - V['nci']) - eq_dcf) < 1e-6
 say(f"  bridge closes: EV {ev:,.2f} + net cash {net_cash:,.2f} - NCI {V['nci']:,.2f} "
     f"= {eq_dcf:,.2f}")
 assert net_cash > 0 and V['nci'] >= 0
+# SIGCM CLAUSE 1 — THE FILED BALANCE SHEET FOOTS, AND THAT IS WHAT MAKES THE READ SAFE.
+# Both FY2024 totals now come from the audited statements themselves by OCR off the
+# rendered pixels, and a misread digit breaks one of the two identities below rather than
+# passing quietly. The equity the pair closes to is the figure the same page prints.
+_eq24_filed = 3735.799731
+assert abs((V['ta_fy24'] - V['tl_fy24']) - _eq24_filed) < 1e-5, \
+    'filed total assets less filed total liabilities does not reproduce the filed equity'
+assert abs((V['eq_fy23_rep'] + V['pat_fy24'] + V['cap_increase_fy24']) - _eq24_filed) < 1e-5, \
+    'the equity roll from 31-Dec-2023 does not close on the filed FY2024 equity'
+say(f"  filed FY2024 balance sheet foots: total assets {V['ta_fy24']:,.2f} - total "
+    f"liabilities {V['tl_fy24']:,.2f} = equity {_eq24_filed:,.2f}, and that equity is "
+    f"FY2023's {V['eq_fy23_rep']:,.2f} plus the year's profit {V['pat_fy24']:,.2f} plus "
+    f"the capital increase {V['cap_increase_fy24']:,.2f}")
+say(f"  the relayed pair this replaced closed to {6385.92 - 1610.86:,.2f}, which is "
+    f"{100 * ((6385.92 - 1610.86) / _eq24_filed - 1):.1f} per cent above the filed equity")
 assert 0 < tv_share < 0.95
 say(f"  terminal value {tv_share:.1%} of enterprise value")
 # THE RETIRED HURDLE IS RECORDED AS RETIRED, NOT QUIETLY REPLACED. Revision 2 asserted
@@ -1421,13 +1480,18 @@ assert abs(_term.maintenance - ic_repl / _life) < 1e-6, \
 # the retired construction's signature.
 assert abs(_term.implied_cycle_years - 1.0 / V['g_term']) > 1.0, \
     'the implied cycle equals 1/g, which is the retired construction'
-assert abs((nopat[-1] * (1 + V['g_term']) + _term.dna_addback - _term.maintenance
+# ON THE MODULE'S OWN BASIS, WHICH IS THE LAST EXPLICIT YEAR'S. This assertion used to
+# reproduce the flow from a NOPAT grown by (1+g) and passed, because the call site handed
+# in the same grown figure; both are now the last explicit year's, per the contract quoted
+# at the call site. _tin.nopat is read back off the inputs actually passed rather than
+# recomputed here, so the two cannot drift apart again.
+assert abs((_tin.nopat + _term.dna_addback - _term.maintenance
             - _term.growth_capex - _term.wc_charge) - _term.fcff) < 1e-6, \
     'the terminal free cash flow does not reproduce from its own components'
 say(f"  terminal on the DISCLOSED life: maintenance {_term.maintenance:,.0f} = "
     f"replacement capital {ic_repl:,.0f} over {_life:.1f} years, which is "
-    f"{_term.maintenance/(nopat[-1]*(1+V['g_term'])):.1%} of terminal profit against the "
-    f"retired identity's {V['g_term']*ic_repl/(nopat[-1]*(1+V['g_term'])):.1%}")
+    f"{_term.maintenance/_tin.nopat:.1%} of the last explicit year's profit against the "
+    f"retired identity's {V['g_term']*ic_repl/_tin.nopat:.1%}")
 say(f"  implied replacement cycle {_term.implied_cycle_years:.1f} years, against 1/g of "
     f"{1.0/V['g_term']:.1f} — an asset fact rather than a currency fact")
 say(f"  terminal free cash flow {_term.fcff:,.0f}; the NOPAT-perpetuity floor is "

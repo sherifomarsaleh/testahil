@@ -270,8 +270,14 @@ inp(65, 'FY2023 profit after tax', 'pat23', IN['pat_fy23'], NUM0)
 inp(66, 'FY2024 profit after tax', 'pat24', IN['pat_fy24'], NUM0)
 inp(67, 'FY2025 profit after tax', 'pat25', IN['pat_fy25'], NUM0)
 
-inp(69, 'FY2024 total assets', 'ta24', IN['ta_fy24'], NUM1)
-inp(70, 'FY2024 total liabilities', 'tl24', IN['tl_fy24'], NUM1)
+inp(69, 'FY2024 total assets  (audited, as filed)', 'ta24', IN['ta_fy24'], NUM1)
+inp(70, 'FY2024 total liabilities  (audited, as filed)', 'tl24', IN['tl_fy24'], NUM1)
+# THE TWO LINES THAT CLOSE THE EQUITY ROLL, off the same audited page. FY2023 equity was
+# DERIVED here by rolling FY2024 equity back through FY2024 profit alone, which ignores
+# the capital increase paid in during 2024 and is wrong whatever the totals above are:
+# the filed FY2023 equity is NEGATIVE and the roll-back returned a positive figure.
+inp(75, 'Paid under capital increase during FY2024  (audited, as filed)', 'capinc24',
+    IN['cap_increase_fy24'], NUM1)
 
 inp(72, 'FY2023 weighted-average shares', 'sh23', IN['shares_fy23'], NUM2, 'mn')
 inp(73, 'FY2024 weighted-average shares', 'sh24', IN['shares_fy24'], NUM2, 'mn')
@@ -507,7 +513,18 @@ TB = [('Replacement-cost invested capital (EGP mn)', 'B22',
        (D['history']['ebitda'][2] - D['history']['dna'][2]) * (1 - TAX), NUM0),
       ('Terminal return on invested capital', 'B24',
        f"=F11*(1+{A['g']})/B22", DCF['roic_term'], PCT),
-      ('Terminal NOPAT', 'B28', f"=F11*(1+{A['g']})", DCF['nopat_term'], NUM0),
+      ('Terminal NOPAT — the first perpetuity year, a diagnostic beside the return above',
+       'B28', f"=F11*(1+{A['g']})", DCF['nopat_term'], NUM0),
+      # THE TERMINAL IS FED ON THE LAST EXPLICIT YEAR, NOT THE TERMINAL YEAR. The
+      # capitalisation B26 = B48*(1+g)/(WACC-g) already grows the flow one year and values
+      # the result at the END of FY2030, which is where F18 discounts it. Building B48 off
+      # a NOPAT already grown by (1+g) grew it twice — and did so only for the profit and
+      # the depreciation, while the maintenance charge B25 and the working-capital charge
+      # B47 stayed in FY2030 money, so the waterfall subtracted one year's costs from the
+      # next year's profit. B28 stays as the diagnostic it is (it is what B24's return is
+      # struck on) and no longer feeds the waterfall.
+      ('FY2030E NOPAT — the last explicit year, the basis the terminal is fed on',
+       'B44', "=F11", F['nopat'][-1], NUM0),
       # [R-TERM-01] MAINTENANCE AT CURRENT COST OVER THE DISCLOSED LIFE, not the
       # reinvestment identity. The retired construction charged g x invested capital every
       # year for ever, which is an implied replacement cycle of 1/g — a fact about the
@@ -517,11 +534,11 @@ TB = [('Replacement-cost invested capital (EGP mn)', 'B22',
        IN['useful_life_disclosed'], NUM1),
       ('Maintenance at current cost  (invested capital / life)', 'B25',
        "=B22/B23b", DCF['term_maintenance'], NUM0),
-      ('Book depreciation added back', 'B25b', f"=DCF!F8*(1+{A['g']})",
+      ('Book depreciation added back', 'B25b', "=DCF!F8",
        DCF['term_dna_addback'], NUM0),
       ('Working capital charged with inflation', 'B25c',
        f"={A['rev25']}*{A['wcp']}*{A['g']}", DCF['term_wc_charge'], NUM0),
-      ('Terminal free cash flow', 'B25d', "=B28+B25b-B25-B25c", DCF['term_fcff'], NUM0),
+      ('Terminal free cash flow', 'B25d', "=B44+B25b-B25-B25c", DCF['term_fcff'], NUM0),
       ('Terminal value', 'B26', f"=B25d*(1+{A['g']})/($C$53-{A['g']})", DCF['tv'], NUM0),
       ('Present value of terminal value', 'B27', "=B26*F18", DCF['pv_tv'], NUM0)]
 _ROWMAP = {'B23b': 'B45', 'B25b': 'B46', 'B25c': 'B47', 'B25d': 'B48'}
@@ -682,7 +699,7 @@ ppe24 = (_FB24['fixed_assets'] + _FB24['intangibles'] + _FB24['cwip']) / 1e6
 inp(97, 'Operating assets at 31-Dec-2024 (fixed assets net, intangibles, CWIP)',
     'ppe24f', ppe24, NUM0, 'EGP mn, as filed')
 cash23 = IN['cash_fy25']/1.25*0.35
-eq23 = (IN['ta_fy24'] - IN['tl_fy24']) - IN['pat_fy24']
+eq23 = IN['eq_fy23_rep']
 ta23 = ppe24 * 0.95 + 850.0 + cash23
 TL_EXP = [ta23 - eq23, IN['tl_fy24'],
           (ppe24 + 900.0 + IN['cash_fy25']) - IN['eq_fy25_rep']]
@@ -706,9 +723,11 @@ for i in range(3):
         put(wsBS, f'{c}7', IN['cash_fy25']/1.25*0.35, BLUE, NUM0)
         putf(wsBS, f'{c}8', f"=SUM({c}5:{c}7)", ppe24 * 0.95 + 850.0 + IN['cash_fy25']/1.25*0.35, NUM0, bold=True)
         putf(wsBS, f'{c}11', f"={c}8-{c}12",
-             (ppe24 * 0.95 + 850.0 + IN['cash_fy25']/1.25*0.35)
-             - ((IN['ta_fy24'] - IN['tl_fy24']) - IN['pat_fy24']), NUM0)
-        putf(wsBS, f'{c}12', f"=C12-{PATK[1]}", (IN['ta_fy24'] - IN['tl_fy24']) - IN['pat_fy24'], NUM0, bold=True)
+             (ppe24 * 0.95 + 850.0 + IN['cash_fy25']/1.25*0.35) - eq23, NUM0)
+        # THE ROLL BACK TO 31-DEC-2023 CARRIES THE CAPITAL INCREASE, so the line reads as
+        # the filing's own comparative column does rather than as a subtraction that
+        # happens to be positive.
+        putf(wsBS, f'{c}12', f"=C12-{PATK[1]}-{A['capinc24']}", eq23, NUM0, bold=True)
     else:
         putf(wsBS, f'{c}5', f"=C5", ppe24, NUM0)
         putf(wsBS, f'{c}6', f"=C6", 900.0, NUM0)
@@ -735,11 +754,15 @@ for i in range(5):
     putf(wsBS, f'{c}12', f"={p}12+'Income Statement'!{c}14-'Cash Flow'!{c}11", F['equity'][i], NUM0, bold=True)
     putf(wsBS, f'{c}14', f"={c}7-{c}9", F['cash'][i] - IN['debt_fy25'], NUM0)
     putf(wsBS, f'{c}15', f"='Income Statement'!{c}14/{c}12", F['pat'][i] / F['equity'][i], PCT)
-note(wsBS, 17, 'The FY2024 column is the DISCLOSED triple — total assets EGP 6,385.92mn less total liabilities EGP')
-note(wsBS, 18, '1,610.86mn closes to equity of EGP 4,775.06mn exactly. Equity then ROLLS FORWARD: prior equity plus')
-note(wsBS, 19, 'profit less dividends. Row 13 carries the REPORTED FY2025 equity beside the rolled figure: the two do')
-note(wsBS, 20, 'not agree, and the gap implies a FY2025 distribution that no retrievable source reports. Disclosed, not')
-note(wsBS, 21, 'plugged. Row 11 is the residual liability block, not an independently sourced line.')
+# THE NOTE IS COMPUTED, NOT TYPED. It carried the trade-press triple as three numerals
+# long after the audited statements were in this directory.
+_eq24f = IN['ta_fy24'] - IN['tl_fy24']
+_roll25 = _eq24f + IN['pat_fy25']
+note(wsBS, 17, 'The FY2024 column is the DISCLOSED triple, taken from the audited statements for that year: total assets')
+note(wsBS, 18, f"EGP {IN['ta_fy24']:,.2f}mn less total liabilities EGP {IN['tl_fy24']:,.2f}mn closes to equity of EGP {_eq24f:,.2f}mn exactly.")
+note(wsBS, 19, f"FY2023 rolls BACK through the year's profit AND the EGP {IN['cap_increase_fy24']:,.2f}mn paid in under the capital increase, to the")
+note(wsBS, 20, f"filed EGP {IN['eq_fy23_rep']:,.2f}mn. Rolling FY2024 forward by FY2025 profit gives EGP {_roll25:,.2f}mn against a reported EGP")
+note(wsBS, 21, f"{IN['eq_fy25_rep']:,.2f}mn — they agree to the pound. Row 11 is the residual liability block, not an independently sourced line.")
 
 # ============ 11 CASH FLOW ====================================================
 wsC = sheet('Cash Flow')
@@ -823,7 +846,7 @@ for j, l in enumerate(['Earnings per share (EGP)', 'Dividend per share (EGP)',
                        'EV / EBITDA (at spot)']):
     wsR.cell(row=5 + j, column=1, value=l)
 allpat = D['history']['pat'] + F['pat']
-alleq = [(IN['ta_fy24'] - IN['tl_fy24']) - IN['pat_fy24'], IN['ta_fy24'] - IN['tl_fy24'],
+alleq = [IN['eq_fy23_rep'], IN['ta_fy24'] - IN['tl_fy24'],
          IN['eq_fy25_rep']] + F['equity']
 allcash = [IN['cash_fy25']/1.25*0.35, IN['cash_fy25']/1.25, IN['cash_fy25']] + F['cash']
 alleb = H['ebitda'] + F['ebitda']

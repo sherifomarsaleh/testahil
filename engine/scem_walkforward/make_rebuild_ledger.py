@@ -24,11 +24,16 @@ LED = RL.Ledger(
     start_value=53.1169974189689,
     start_spot=79.00,
     audit_after=(
-        "the lever serving [R-TERM-01] — the only lever THIS run applies, so the audit "
-        "point is where that rule finishes moving the answer. Declared before the lever "
-        "was applied. [R-GAP-01]'s eight-heading review then runs on what it leaves, in "
-        "either direction, because the trigger has been two-sided since 02-Sep-2026 and "
-        "this central sits ABOVE the price."),
+        "the levers serving [R-TERM-01] — the only rule THIS run applies, so the audit "
+        "point is where that rule finishes moving the answer, however many places it "
+        "turns out to reach. Declared before the first of them was applied, and it now "
+        "carries two: the disclosed life behind the maintenance charge, and the basis "
+        "the terminal is fed on. THAT IS THE MODULE'S OWN POINT — two levers serving one "
+        "rule are ONE piece of evidence, and reading them as two independent "
+        "confirmations that the study was too high would be counting one rule twice. "
+        "[R-GAP-01]'s eight-heading review then runs on what the group leaves, in either "
+        "direction, because the trigger has been two-sided since 02-Sep-2026 and this "
+        "central sits ABOVE the price."),
 )
 
 LED.apply(
@@ -106,6 +111,38 @@ LED.apply(
               'of the FY2025 audited statements, cross-checked against the IDENTICAL '
               'table in the FY2022, FY2023 and FY2024 filings, each stating the rates '
               'are "consistent with preceeding year"'))
+
+LED.apply(
+    name='the terminal fed on the last explicit year\'s basis, not the terminal year\'s',
+    rule='R-TERM-01',
+    after=111.62128401804542,
+    why=("engine/terminal_value.py states the contract on TerminalInputs in terms: the "
+         "figures are IN THE LAST EXPLICIT YEAR'S money, not the terminal year's, because "
+         "the module grows the free cash flow one year itself — tv = fcff x (1+g) / "
+         "(wacc - g) already puts the first perpetuity year in the numerator and values "
+         "the terminal AT THE END OF THE LAST EXPLICIT YEAR, which is where the year-five "
+         "discount factor puts it. Its own words: pass a NOPAT already grown by (1+g) and "
+         "the terminal is overstated by exactly (1+g), a year-seven flow discounted at "
+         "the year-five factor. BOTH of this study's call sites did exactly that, "
+         "multiplying nopat and dna_book by (1 + g_term) before handing them in. WHAT "
+         "MAKES IT AN ERROR RATHER THAN A CONVENTION IS THAT IT WAS NOT APPLIED TO THE "
+         "WHOLE FLOW: working_capital and ic_replacement in the SAME call went in "
+         "ungrown, so the maintenance charge and the working-capital charge sat in year "
+         "five's money while the profit they were deducted from sat in year six's. The "
+         "terminal falls 8.64 per cent, enterprise value 5.75 per cent and the central "
+         "4.54 per cent. Nothing else in the model moves: the explicit window's present "
+         "value and the bridge are untouched, and the terminal-year diagnostics "
+         "(terminal NOPAT, terminal return on capital, the reinvestment share) are "
+         "terminal-year ratios by their own definition and are unchanged to the last "
+         "decimal. THE CORRECTION MOVES THE ANSWER TOWARD THE PRICE AND THAT IS NEITHER "
+         "A REASON TO LIKE IT NOR A REASON TO DOUBT IT — the standing rule that a "
+         "correction moving the answer away from the price is not a reason to reconsider "
+         "it holds equally in the other direction."),
+    evidence=("engine/terminal_value.py, the TerminalInputs docstring and the nopat field "
+              "comment; engine/scem_study/compute.py, the base-case terminal in "
+              "build_dcf() and the terminal inside reval(), both corrected in the same "
+              "pass so the sensitivity grid still centres on the published central, which "
+              "that grid's own assertion enforces"))
 
 if __name__ == '__main__':
     rec = LED.record()

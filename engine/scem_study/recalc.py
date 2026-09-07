@@ -145,7 +145,11 @@ checks = [
     ('Observed clinker factor', ('Unit Build', 'B9'), D['clinker_factor'], 0.001),
     ('Income statement FY2025 EBITDA', ('Income Statement', 'D6'), H['ebitda'][2], 1.0),
     ('Income statement FY2030E profit after tax', ('Income Statement', 'I14'), F['pat'][4], 1.0),
-    ('Balance sheet FY2024 equity (disclosed triple)', ('Balance Sheet', 'C12'), 4775.06, 0.05),
+    # THE TRIPLE IS THE FILING'S OWN: total assets less total liabilities IS the equity the
+    # audited page prints. Read out of the committed inputs rather than typed here — the
+    # figure this line carried was a numeral, and it was the trade-press one.
+    ('Balance sheet FY2024 equity (disclosed triple)', ('Balance Sheet', 'C12'),
+     D['inputs']['ta_fy24']['value'] - D['inputs']['tl_fy24']['value'], 0.05),
     ('Balance sheet FY2030E equity', ('Balance Sheet', 'I12'), F['equity'][4], 1.0),
     ('Cash flow FY2026E free cash flow to the firm', ('Cash Flow', 'E11'), F['fcff'][0], 1.0),
     ('Relative lens implied value', ('Relative & Normalized', 'B15'),
