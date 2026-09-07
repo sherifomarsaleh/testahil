@@ -330,18 +330,33 @@ def block(tk):
     except Exception:
         return {}
     out = {}
-    for key, b in (doc.get("origins") or {}).items():
-        digits = "".join(c for c in str(key) if c.isdigit())
-        if len(digits) != 4 or not isinstance(b, dict):
-            continue
-        row = {}
-        for item, rec in b.items():
-            if not isinstance(rec, dict) or "missing" in rec:
+    # TWO KEYS, AND READING ONLY THE FIRST WAS A READER DEFECT RATHER THAN A
+    # CONSTRUCTION CHOICE [L-355]. A run's `origins` are the years it TESTED;
+    # `prior_year_anchor` is a year it committed for the express purpose of
+    # feeding a window that reaches back past the first origin. ARCC's own record
+    # says so in its own words -- "FY2017 is NOT an origin of this run. It is
+    # carried because the identity capex = dPPE + D&A needs property at two dates
+    # and FY2018 is the first origin; recording it inside `origins` would misstate
+    # what this run tested." The instrument read `origins` alone, found nothing
+    # under the other key, and reported that as a dropped cell.
+    #
+    # THIS ADDS NO ORIGIN AND CANNOT: origins come from panel.build(), never from
+    # this block, so an anchor year supplies trailing-window figures and is never
+    # itself scored. `origins` WINS on any collision, because what a run tested is
+    # what it tested.
+    for source in ("prior_year_anchor", "origins"):
+        for key, b in (doc.get(source) or {}).items():
+            digits = "".join(c for c in str(key) if c.isdigit())
+            if len(digits) != 4 or not isinstance(b, dict):
                 continue
-            v = rec.get("value")
-            if isinstance(v, (int, float)):
-                row[item] = float(v)
-        out[int(digits)] = row
+            row = {}
+            for item, rec in b.items():
+                if not isinstance(rec, dict) or "missing" in rec:
+                    continue
+                v = rec.get("value")
+                if isinstance(v, (int, float)):
+                    row[item] = float(v)
+            out[int(digits)] = row
     return out
 
 
