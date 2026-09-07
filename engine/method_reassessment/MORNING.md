@@ -3228,3 +3228,33 @@ length effect showing through on its own.
 
 Worth stating because it cuts the other way from an hour ago: the confound test is not a
 finding-killer, it is a test, and finding (C) passes it.
+
+---
+
+## 07-09-2026 — of the three studies that publish far-year ranges, one publishes no count
+
+The k-finding says the count behind a band decides what it can honestly promise. So: do the
+three studies that print their ranges print the count?
+
+- **EGCH** — "Tested cases behind the revenue band | 11 | 10 | 9". Yes, per far year.
+- **TMGH** — "Tests behind the range | 7 | 6 | 5". Yes, per far year.
+- **PHDC** — **no count column.** Its nearest statement is *"taken from testing it across ten
+  annual starting points"*, which is the number of **origins**; the bands themselves rest on
+  **7, 6 and 5** observations.
+
+Not wrong — the sentence describes the test accurately — but a reader takes "ten" as the
+count, and the arithmetic expectation at k=7 is 75 in 100 against 82 at k=10, on bands whose
+measured coverage at those lengths is worse than half. **It overstates the band's implied
+reliability, modestly.**
+
+**Reported, not gated and not amended.** Correcting a delivered table is a re-issue;
+[R-FCAL-01 AMENDED 07-09-2026] already binds the count forward *in the record*, and extending
+it to the page on a single instance would be minting a clause from one case.
+
+### And a note on this session's own mechanics, so the next firing does not repeat it
+
+I said three times that I would hold commits until CI cleared on a head, and each time the
+stop hook required the push, which restarts CI. **The plan does not survive the harness.**
+The workable discipline is the one already recorded: run the *affected* gates and the
+gauntlet locally, push, and let whichever head is last before a quiet period be the one CI
+completes on — never claiming a local full sweep that did not finish.
