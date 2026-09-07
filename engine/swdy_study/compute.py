@@ -1918,6 +1918,32 @@ OUT = dict(
         # were in that state and every blend-carrier sat among them. Computed
         # from the same quantity the primary carries, never typed.
         central=float(central),
+        # [R-LENS-03] / check_output_sanity — THE CENTRAL SITS BELOW THE FIGURE THIS RECORD
+        # PUBLISHES AS A FLOOR, AND THE REASON IS THAT THE FIGURE IS NOT A DISCLOSED FLOOR.
+        # The gate does not require the central to exceed the floor; it requires the study
+        # to say so when it does not, and an empty reason switches the check off rather
+        # than declaring it. Every number in this sentence is COMPUTED from the same
+        # committed operands the lens table prints, never typed beside them.
+        below_floor_reason=(
+            'The cross-check labelled a floor is the book lens AT ITS JUSTIFIED '
+            'PRICE-TO-BOOK of %.4fx (EGP %.4f), a construction from a sustainable return '
+            'of %.1f%% against the perpetual cost of equity — not a disclosed figure. The '
+            'floor that IS disclosed is equity attributable to the parent over shares in '
+            'issue, EGP %.4f per share at 31-Dec-2025, rolled to the anchor on the same '
+            'clock as every other lens = EGP %.4f. The central of EGP %.4f sits %.1f%% '
+            'ABOVE that disclosed floor and %.1f%% below the justified-multiple read. The '
+            'gap widened on 7 September 2026 when the terminal was rebuilt onto the '
+            'last-explicit-year basis the sanctioned module specifies (-6.34%%): the '
+            'correction moved the cash-flow lens and left the justified multiple where it '
+            'was, so what this records is two lenses disagreeing, which [R-LENS-03] says '
+            'to PUBLISH rather than average. Registered for the next re-issue: a '
+            'book_value cross-check should carry the disclosed book value and the '
+            'sustainable-return read should be published beside it as its own lens, which '
+            'this record conflates into one entry.'
+            % (pb_just, lenses['book']['base'], V['roe_sust'] * 100, bvps,
+               to_anchor(bvps), central,
+               (central / to_anchor(bvps) - 1) * 100,
+               (1 - central / lenses['book']['base']) * 100)),
         primary=dict(
             kind='dcf', two_sided=False, value=float(central),
             range={'low': float(lo), 'high': float(hi)},
@@ -1943,10 +1969,69 @@ OUT = dict(
                  circularity=dict(spot=float(SPOT), shares=float(SH),
                                   net_debt=float(V['nd_fy25']),
                                   metric_value=float(ebitda[1])),
+                 # THE OPERANDS ABOVE DO NOT MULTIPLY OUT TO THE FIGURE PUBLISHED, AND
+                 # UNTIL 7 SEPTEMBER 2026 NOTHING SAID SO. Taken at face value they give
+                 # the naive identity (multiple x metric - net debt) / shares, which is a
+                 # SIMPLER lens than this study performs: the multiple is struck on FY2027
+                 # EBITDA, so the enterprise value it produces stands at end-FY2027 and has
+                 # to be discounted back and the interim flows added, and the equity it
+                 # bridges to is shared with a minority and with the employees' statutory
+                 # claim before an ordinary shareholder sees any of it [L-294]. A reader
+                 # multiplying the printed operands lands 71% high. Every figure in the
+                 # bridge below is COMPUTED from the same quantities the model uses.
+                 value_adjustment=(
+                     'THE NAIVE IDENTITY IS NOT THIS LENS. (%.4fx x EGP %.0fmn FY2027E '
+                     'EBITDA - EGP %.0fmn net debt) / %.4fmn shares = EGP %.4f, which is '
+                     'the forward enterprise value treated as though it stood at the '
+                     'valuation date and the equity treated as though it were all the '
+                     'ordinary shareholders\'. The lens actually published runs: '
+                     'forward EV EGP %.0fmn at end-FY2027, discounted at the year-two '
+                     'factor %.4f = EGP %.0fmn; plus the present value of the interim '
+                     'FY2026-27 free cash flows EGP %.0fmn = EGP %.0fmn of enterprise '
+                     'value at 31-Dec-2025; less net debt EGP %.0fmn; plus associates at '
+                     'carrying value EGP %.0fmn = EGP %.0fmn; less the minority\'s %.2f%% '
+                     'share and the employees\' statutory %.2f%% share = EGP %.0fmn '
+                     'attributable to ordinary shareholders, over %.4fmn shares = EGP '
+                     '%.4f at 31-Dec-2025; rolled to the anchor at the cost of equity '
+                     '(x%.4f) less the EGP %.2f dividend paid inside the window = EGP '
+                     '%.4f. The two differ by %.3fx and every step of the difference is '
+                     'named here.'
+                     % (V['ev_ebitda_just'], ebitda[1], V['nd_fy25'], SH,
+                        (V['ev_ebitda_just'] * ebitda[1] - V['nd_fy25']) / SH,
+                        V['ev_ebitda_just'] * ebitda_mid, df_rel,
+                        V['ev_ebitda_just'] * ebitda_mid * df_rel,
+                        pv[0] + pv[1],
+                        V['ev_ebitda_just'] * ebitda_mid * df_rel + pv[0] + pv[1],
+                        V['nd_fy25'], assoc_val,
+                        V['ev_ebitda_just'] * ebitda_mid * df_rel + pv[0] + pv[1]
+                        - V['nd_fy25'] + assoc_val,
+                        nci_share * 100, emp_rate * 100,
+                        (V['ev_ebitda_just'] * ebitda_mid * df_rel + pv[0] + pv[1]
+                         - V['nd_fy25'] + assoc_val) * (1 - nci_share) * (1 - emp_rate),
+                        SH,
+                        (V['ev_ebitda_just'] * ebitda_mid * df_rel + pv[0] + pv[1]
+                         - V['nd_fy25'] + assoc_val) * (1 - nci_share) * (1 - emp_rate) / SH,
+                        ROLL, V['dps_fy25'], lenses['relative']['base'],
+                        ((V['ev_ebitda_just'] * ebitda[1] - V['nd_fy25']) / SH)
+                        / lenses['relative']['base'])),
                  note='mid-cycle FY2027E EBITDA on a peer-anchored enterprise multiple'),
             dict(kind='book_value', value=float(lenses['book']['base']),
                  present_value=False, floor=True,
-                 note='a disclosed FLOOR, published as such and never weighted'),
+                 note=('the book lens at its JUSTIFIED price-to-book of %.4fx — the '
+                       'model report\'s "book value and sustainable return" read, built '
+                       'from a sustainable return of %.1f%% against the perpetual cost of '
+                       'equity, rolled to the anchor. Never weighted. It is a construction '
+                       'and not a disclosed figure, and the note said "a disclosed FLOOR" '
+                       'until 7 September 2026, which described the DISCLOSED BOOK VALUE '
+                       'sitting inside it rather than the number published here.'
+                       % (pb_just, V['roe_sust'] * 100)),
+                 disclosed_book_value_per_share=float(to_anchor(bvps)),
+                 disclosed_book_value_note=(
+                     'the floor that IS disclosed: equity attributable to the parent at '
+                     '31-Dec-2025 over shares in issue, EGP %.4f per share, rolled to the '
+                     'anchor on the same clock as every other lens (x%.4f less the EGP '
+                     '%.2f dividend paid inside the window) = EGP %.4f.'
+                     % (bvps, ROLL, V['dps_fy25'], to_anchor(bvps)))),
         ],
         cross_checks_not_built=[
             dict(kind='ev_ebitda_own_history',

@@ -98,15 +98,6 @@
     }
    },
    "reason": "measured on adoption day; the fix is the study's own record, at its next re-issue"
-  },
-  "SWDY": {
-   "claims": {
-    "reproduce": {
-     "ratio": 1.5179307066986658,
-     "why": "the relative lens publishes 80.5790; its own committed operands give 122.3134 (1.518x, against 1.0147 allowed by their own printed precision), and no value_adjustment names the difference"
-    }
-   },
-   "reason": "measured on adoption day; the fix is the study's own record, at its next re-issue"
   }
  },
  "rule": "R-LENS-03 \u2014 the relationship between a study's own figures"
