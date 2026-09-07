@@ -2975,3 +2975,55 @@ declared, under names that say which is which.
 
 Twelfth instance today of a first-attempt measurement being wrong, and the second of the
 night caught by a fixture rather than by a reader.
+
+---
+
+## 07-09-2026, later still — depth-bar standard 8, and a probe that failed its own placebo
+
+Continuing the "which standards are still verified by a boolean" thread. Of
+`assert_model_study()`'s nine fields, seven are now measured from outside — the workbook
+half of `structure_matches_model` by `check_workbook_structure`, its Word half by
+`check_document_structure`, and this week's four. **Two remain self-attested:**
+`expert_appendix_max_detail` and `contested_judgement_both_ways`.
+
+`contested_judgement_both_ways` is half-covered: [R-ENF-05]'s `check_output_records`
+enforces the RECORD (16 conforming, 8 on the ratchet). What nothing checks is standard 8's
+other half — that the judgement is **published** side by side in the document.
+
+### The first probe said 18 of 18, and it was worthless
+
+Searching each delivered document for both per-share values of the judgement with the
+largest |Δvalue| returned **18 of 18**. Suspiciously perfect, so it got a null: the same
+two values shifted by an arbitrary offset. **The placebo also scored 18 of 18.** The
+rendering set included a 0-decimal form, so "66.53" was being matched as "67" — a
+two-digit integer that appears in any document. It measured the size of the number pool,
+not the state of the page, which is the coincidence the waterfall instrument measured at
+42.4% of all tables, here arriving at 100%.
+
+Restricted to the two-decimal house convention and re-run against twenty shifted pairs per
+study:
+
+| | |
+|---|---|
+| REAL, both values printed | **11 of 18** |
+| PLACEBO | **0 of 360 draws** |
+
+The null is clean, so the signal is real. **Seven studies do not print both per-share
+values of the judgement that moves their value most**: ADNOCDRILL, AMR, EGCH, ELEC, GBCO,
+PHDC, SCEM.
+
+### What that does and does not establish, before anyone builds a gate on it
+
+It does **not** yet establish seven breaches of standard 8. The standard says the
+judgement is published side by side across "summary table, body, workbook, an expert's
+range", and this probe reads the *document* only — a study publishing the two *framings*
+rather than the two values, or carrying them in the workbook, would read as a miss. And
+"the study's single most consequential contested judgement" is the study's own
+nomination, not necessarily the largest |Δvalue|.
+
+So the honest statement is the narrow one, and the adjudication waits for a firing that
+can check the workbook and the nomination. **Recording the measurement with its caveats
+beats reporting 18 of 18, which is what the first probe was ready to say.** Thirteenth
+first-attempt error of the day, and the first caught by a *placebo* rather than by a
+fixture or a disagreement — which is the null-first discipline [R-TCAL-01] already runs on
+the technical read, arriving somewhere nobody had connected it to.
