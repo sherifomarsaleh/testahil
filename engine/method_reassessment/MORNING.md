@@ -2642,3 +2642,45 @@ debt groups spelled `unscored`, `signature` and `failing`. Printing the exact ke
 every match gave 11 of 12. **I nearly reported a large correction to the programme's
 headline number on the strength of a bad probe**, which is the seventh instance today and
 the one that would have mattered most.
+
+## 07-09-2026 — Part E criterion 2 measured for the first time: 11 cells outside
+
+Criterion 2 reads: *"On the five re-issued names, forward drivers sit inside each name's own
+walk-forward p10–p90 or carry a priced exception; every claimed correction reconciles to its
+log."* The second half is gated. **The first half had never been measured**, and
+`acceptance.py` said so in its own words — "needs a per-name driver comparison this file does
+not build".
+
+**The obstacle was not effort.** All five runs commit `forward_ranges.json`, and it has
+**five incompatible shapes**:
+
+| run | where the band lives | family |
+|---|---|---|
+| AMOC | `published_band[h][driver]` → `low_factor`/`high_factor` | multiplier |
+| ARCC | `[driver][h]` at top level → `mult_low`/`mult_high` | multiplier |
+| EGCH | `published_band[h][driver]` → `low_factor`/`high_factor` | multiplier |
+| PHDC | `years[driver][h]` → `p10`/`p90` around a level | level |
+| TMGH | `projection[year][driver]` → `low`/`high` around a level | level |
+
+A single reader finds ARCC and reports the other four as having no bands at all — **which is
+exactly what my first pass printed**, "0 driver-horizon bands" for four runs whose files were
+full of them. Eighth instance today. `criterion2.py` therefore uses one **named adapter per
+run**, the `check_correction_boundary` pattern, and a run without one is reported, never
+skipped.
+
+**The two families reduce to one question**: does the run's own band contain the run's own
+forward driver? For a multiplier band that means the band contains 1.0; for a level band,
+that the central lies between p10 and p90.
+
+**Measured: 137 bands, 11 outside** — ARCC 5 (cogs, price_export ×2, price_local, raw_per_t,
+all at h=4–5), EGCH 1 (cost_of_sales h=5, band 0.14–0.85 — the method over-forecast that line
+every time it was scored at five years), TMGH 5 (new_sales ×3, dev_revenue, net_profit). AMOC
+and PHDC are clean.
+
+**No run commits a priced exception** in its ranges file — measured, not assumed. Whether one
+is argued in prose is not something this instrument reads, and it says so rather than
+reporting an absence it never looked for. So criterion 2's first half is **NOT MET**, with the
+reason recorded rather than asserted.
+
+It is a **measurement, not a gate**: pricing an exception is a judgement, and a gate would
+have to define "priced" in code.
