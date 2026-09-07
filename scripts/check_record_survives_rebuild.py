@@ -82,7 +82,14 @@ def generator_chain(study_dir):
     than guessed at. Per [R-COC-01]: when a check fires on work that is right, re-point it.
     """
     import numbers_generators as ng
-    w = ng.writers(study_dir)
+    # A RESTORE IS NOT A GENERATOR, and the shared module already classifies them —
+    # FERTIGLOBE's diagnostics script writes the numbers file to put back the bytes
+    # importing the model moved. A first draft here counted it as a second writer and
+    # reported the study unreadable for having no declared run order, which is the
+    # classification numbers_generators.restorers() exists to make and which that gate
+    # makes correctly. Two readers of one question drift; this one calls the module
+    # [R-ENF-03].
+    w = [f for f in ng.writers(study_dir) if f not in set(ng.restorers(study_dir))]
     if not w:
         return None, "no script in this directory writes its numbers file"
     main, named = _declared_order(study_dir, w)
