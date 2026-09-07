@@ -3258,3 +3258,37 @@ stop hook required the push, which restarts CI. **The plan does not survive the 
 The workable discipline is the one already recorded: run the *affected* gates and the
 gauntlet locally, push, and let whichever head is last before a quiet period be the one CI
 completes on — never claiming a local full sweep that did not finish.
+
+---
+
+## 07-09-2026 — the tree-unmodified gate went red on its first CI run, and it was right
+
+**CI failed on `9ed2e706` at step 129 of 133** — `check_tree_unmodified`, the gate adopted
+earlier tonight. All 128 checks before it passed; the question it asks — *did running the
+checks change anything?* — answered yes:
+
+```
+appeared   M engine/__pycache__/data_quality.cpython-312.pyc
+appeared   M engine/__pycache__/market_profiles.cpython-312.pyc
+appeared   M engine/__pycache__/mc_v3.cpython-312.pyc
+```
+
+**Six compiled `.pyc` files were tracked in git.** A `.pyc` header embeds its source's
+mtime, which on a fresh checkout is the checkout time, so every CI run recompiles them and
+the tracked tree changes. **This would have failed every run from the moment the gate was
+wired in** — and nobody knew, because every earlier run tonight was cancelled by the next
+push before reaching step 129. *A gate nobody has seen complete is not a gate that passes.*
+
+`.gitignore` already carried an accurate note: the files "are already TRACKED … untracking
+is a separate decision". That was right to leave open and is now **forced**: leaving them is
+the permanently-red check [R-ENF-02] forbids, and teaching the gate to skip `.pyc` would
+suppress a true report — the tree *did* change.
+
+**Untracked, with the decision and its reason written into `.gitignore` in place of the
+note.** Safe on evidence rather than assumption: all six sources are present, and *every*
+reference to `__pycache__` in this repository is an **exclusion** in a sandbox or a walker —
+nothing reads them. They were last re-committed by the **unattended pipeline**, whose
+`git add -A` sweeps them back because a tracked file ignores `.gitignore`; untracking stops
+that at the source.
+
+Gate green locally after a deliberate re-import of all three modules.
