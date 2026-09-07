@@ -99,30 +99,30 @@ const TICKERS = {
     name: "ADNOC Logistics & Services plc",
     nameAr: "\u0623\u062f\u0646\u0648\u0643 \u0644\u0644\u0625\u0645\u062f\u0627\u062f \u0648\u0627\u0644\u062e\u062f\u0645\u0627\u062a",
     code: "ADX:ADNOCLS",
-    spot: 6.16,
-    spotDate: "close 07 Aug 2026",
+    spot: 6.80,
+    spotDate: "close 07 Sep 2026",
     fairAsof: "2026-08-07",   // the close the FAIR VALUE is struck on — not the publication date in the filename
     ccy: "AED",
     fair: { bear: 5.02, base: 7.05, full: 10.80 },   // 9 Aug 2026 - four lenses on one field, AED 3.66 to 8.91, weighted to a central of 7.05 on FCFF DCF 40% / relative 25% / normalised 20% / book 15%. Lenses: cash flow 6.40, relative multiples 8.64, normalised earnings power 8.91, book value on a RESIDUAL-INCOME construction 3.66 - the single-stage justified multiple is undefined for a company compounding book value above its own cost of equity, so the lens is built as residual income instead of forced through a formula that does not hold. Reports in USD, trades in AED at the dirham's fixed 3.6725 parity. TWO CENTRES, NEVER ONE, on the study's most consequential contested judgement - HOW THE MARKET IS MEASURED FOR BETA: against the FTSE ADX General Index, the published index of the share's own exchange and the one the engine's sanctioned routine resolves, beta is 1.1032 (159 weekly observations, R2 0.181, SE 0.315, 90% interval 0.59-1.62) and the weighted central is 7.05; against an equal-weight composite of the same exchange's names beta is 0.705 and the central is 8.24. `base` carries the PUBLISHED-INDEX reading, which is the one the rule asks for. Built BOTTOM UP: the tanker leg VESSEL BY VESSEL off the disclosed charter table, each class at its own day rate, with the SPOT RATE SOLVED out of the company's own published per-class blend rather than assumed - the CFO stated on the Q1-2026 call that the published rate is a fleet blend including vessels on long-term charter, so backing those out of a published VLCC blend of 145,000/day implies a spot of 199,838/day. About half of revenue is contracted to the parent group (roughly USD 25bn of long-term contracted revenue) and half is a merchant fleet at market rates. The USD 1.3bn, eleven-vessel purchase announced 7 Aug 2026 - the study's own anchor date - is INSIDE the model, not an upside case beside it. The perpetual capital securities are carried BOTH ways they bite: as a 12.8% weight in the cost of capital at SOFR+125bp AND as a deduction in the equity bridge. Cost of capital 8.56% gliding to 7.80% terminal; terminal value 75% of enterprise value. OPEN JUDGEMENT, stated rather than buried: the relative and normalised lenses share all three multiples, so 45% of the weighted central rests on one method presented as two. Rebuilt under four independent external reviews raising 166 findings, every one priced and adjudicated.
     dist: {
-      t20: { label:"1 month",   p5:5.55, p25:5.96, p50:6.20, p75:6.45, p95:6.93, resolve:"2026-09-07" },
-      t60: { label:"3 months",  p5:5.10, p25:5.85, p50:6.29, p75:6.77, p95:7.76, resolve:"2026-11-09" }
+      t20: { label:"1 month",   p5:6.10, p25:6.57, p50:6.84, p75:7.13, p95:7.68, resolve:"2026-10-07" },
+      t60: { label:"3 months",  p5:5.64, p25:6.43, p50:6.93, p75:7.46, p95:8.51, resolve:"2026-12-07" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
+    hz: { h1:21, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-09-07" },
     touch: [ /* level, P(touch) 1-month %, 3-month % - descending */
-      [7.39, 2, 15], [7.08, 5, 25], [6.78, 13, 41], [6.47, 38, 66], [5.85, 29, 52], [5.54, 8, 26]
+      [7.39, 18, 47], [7.08, 46, 71], [6.78, 83, 89], [6.47, 33, 54], [5.85, 3, 15], [5.54, 1, 8]
     ],
-    levels: { res:[6.30, 6.43, 6.60], sup:[5.93, 5.56, 5.26] },
+    levels: { res:[6.99, 7.10, 7.30], sup:[6.12, 5.93, 5.56] },
     tech: {
-      trend: "Consolidating below the near-term moving averages, above a flat 200-day",
-      summary: "The price closed 6.16 above a rising 50-day (6.03) and a flat 200-day (5.70), but below a rising 20-day (6.19). Momentum is neutral: RSI(14) is ~52 and the daily ATR near 0.11 (~1.9%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.05 / +0.07 / \u22120.01). Over the last year it has ranged 4.65\u20136.44; the last close sits 4% below that high and 32% above that low.",
-      bull: "A daily close back above 6.30 would clear the nearest resistance; the next charted level above it is 6.60.",
-      bear: "A close below 5.93 would break the nearest support; the next charted level below it is 5.26."
+      trend: "Trading above the whole moving-average stack, on a rising 200-day",
+      summary: "The price closed 6.80 above a rising 20-day (6.69), a rising 50-day (6.34) and a rising 200-day (5.80). Momentum is firm: RSI(14) is ~60 and the daily ATR near 0.13 (~2.0%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.16 / +0.17 / \u22120.01). Over the last year it has ranged 4.80\u20136.99; the last close sits 3% below that high and 42% above that low.",
+      bull: "A daily close back above 6.99 would clear the nearest resistance; the next charted level above it is 7.30.",
+      bear: "A close below 6.12 would break the nearest support; the next charted level below it is 5.56."
     },
     asof: {
-      mc:   { data:"2026-08-07", computed:"2026-08-25" },
-      tech: { data:"2026-08-07", computed:"2026-09-07" }
+      mc:   { data:"2026-09-07", computed:"2026-09-07" },
+      tech: { data:"2026-09-07", computed:"2026-09-07" }
     },
     files: {
       study: "files/ADNOCLS_Valuation_Study_09-08-2026.pdf?v=0809a",
@@ -214,30 +214,30 @@ const TICKERS = {
     name: "Borouge plc",
     nameAr: "بروج",
     code: "ADX:BOROUGE",
-    spot: 2.39,
-    spotDate: "close 07 Sep 2026",
+    spot: 2.40,
+    spotDate: "close 07 Aug 2026",
     fairAsof: "2026-08-07",
     ccy: "AED",
     fair: { bear: 1.30, base: 1.48, full: 2.55 },   // 17 Aug 2026 — four lenses, one field, AED 1.30 to 2.55, median 1.48 against a close of 2.40. Borouge is a single-segment polyolefin operating company: polyethylene and polypropylene from one integrated complex at Ruwais, sold in over ninety countries. It reports in US dollars and trades in dirhams, so the valuation runs in dollars and converts at the 3.6725 peg only at the last step. Revenue is built BOTTOM-UP — nameplate capacity x a disclosed utilisation path, priced off published benchmarks plus the company's own disclosed premium x a realisation residual measured over three audited years — and PRODUCTION drives cost while SALES drive revenue and freight, because Borouge sources product from partners and sells about 3% more than it makes. Every cost class carries ITS OWN escalator: contracted ethane on its own terms, purchased propylene on the propylene benchmark, and only the genuinely domestic fixed leg on UAE inflation. Margins are OUTPUTS of that build. TWO JUDGEMENTS ARE COMPUTED BOTH WAYS AND NEVER AVERAGED. The beta: 0.415 from the share's own five-year weekly history against the FTSE ADX General Index gives a 6.09% cost of capital and AED 2.55; a sector bottom-up beta of 1.018 gives 8.60% and AED 1.48 — worth 1.07 a share, more than every other disagreement combined. And the Strait of Hormuz disruption: normalisation gives AED 2.55, a genuine prolonged-disruption case that varies ONLY the disrupted drivers gives 2.35. BOROUGE 4 IS NOT OWNED — the 1.4mtpa expansion next door belongs 70% to ADNOC and 30% to OMV; Borouge operates it and PAYS an at-cost utilisation fee, so it is valued as a net benefit stream that ENDS at recontribution rather than capitalised to perpetuity, and it is carried in all four lenses rather than one. Terminal value is 76.7% of enterprise value and the study says so. This edition follows a forensic critique: eight model defects were implemented and the field moved from 1.29-2.79 to 1.30-2.55.
     dist: {
-      t20: { label:"1 month",   p5:2.19, p25:2.30, p50:2.37, p75:2.44, p95:2.57, resolve:"2026-10-07" },
-      t60: { label:"3 months",  p5:2.04, p25:2.22, p50:2.34, p75:2.45, p95:2.67, resolve:"2026-12-07" }
+      t20: { label:"1 month",   p5:2.23, p25:2.33, p50:2.39, p75:2.45, p95:2.56, resolve:"2026-09-07" },
+      t60: { label:"3 months",  p5:2.07, p25:2.26, p50:2.36, p75:2.47, p95:2.69, resolve:"2026-11-09" }
     },
-    hz: { h1:21, h3:62, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-09-07" },
+    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
     touch: [ /* descending high -> low */
-      [2.88, 0, 3], [2.76, 1, 5], [2.64, 4, 13], [2.52, 17, 32], [2.28, 30, 58], [2.16, 5, 24]
+      [2.88, 0, 3], [2.76, 1, 6], [2.64, 3, 14], [2.52, 15, 36], [2.28, 19, 49], [2.16, 3, 18]
     ],
-    levels: { res:[2.48, 2.59, 2.63], sup:[2.33, 2.29, 2.20] },
+    levels: { res:[2.43, 2.49, 2.61], sup:[2.38, 2.29, 2.20] },
     tech: {
-      trend: "Trading below the whole moving-average stack, under a flat 200-day",
-      summary: "The price closed 2.39 below a falling 20-day (2.40), a falling 50-day (2.43) and a flat 200-day (2.53). Momentum is neutral: RSI(14) is ~48 and the daily ATR near 0.03 (~1.4%) points to an orderly tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.02 / \u22120.01 / \u22120.00). Over the last year it has ranged 2.33\u20132.68; the last close sits 11% below that high and 3% above that low.",
-      bull: "A daily close back above 2.48 would clear the nearest resistance; the next charted level above it is 2.63.",
-      bear: "A close below 2.33 would break the nearest support; the next charted level below it is 2.20."
+      trend: "Trading below the whole moving-average stack, under a falling 200-day",
+      summary: "The price closed 2.40 below a falling 20-day (2.41), a falling 50-day (2.48) and a falling 200-day (2.54). Momentum is soft: RSI(14) is ~39 and the daily ATR near 0.03 (~1.1%) points to an orderly tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.02 / \u22120.03 / +0.00). Over the last year it has ranged 2.38\u20132.68; the last close sits 10% below that high and 1% above that low.",
+      bull: "A daily close back above 2.43 would clear the nearest resistance; the next charted level above it is 2.61.",
+      bear: "A close below 2.38 would break the nearest support; the next charted level below it is 2.20."
     },
     asof: {
-      mc:   { data:"2026-09-07", computed:"2026-09-07" },
-      tech: { data:"2026-09-07", computed:"2026-09-07" }
+      mc:   { data:"2026-08-07", computed:"2026-08-25" },
+      tech: { data:"2026-08-07", computed:"2026-09-07" }
     },
     files: {
       study: "files/BOROUGE_Valuation_Study_17-08-2026.pdf?v=0817b",
@@ -3229,7 +3229,7 @@ const BANDS = {
   ADNOCDIST: {mkt:"AE", n:30, hits:29, c50:0.7000, c80:0.9333, c90:0.9667, width:1.096, strength:"short", flag:null},
   ADNOCDRILL: {mkt:"AE", n:15, hits:15, c50:0.6000, c80:1.0000, c90:1.0000, width:1.124, strength:"market-only", flag:null},
   ADNOCGAS: {mkt:"AE", n:9, hits:9, c50:0.4444, c80:1.0000, c90:1.0000, width:1.072, strength:"market-only", flag:null},
-  ADNOCLS: {mkt:"AE", n:8, hits:7, c50:0.3750, c80:0.7500, c90:0.8750, width:1.177, strength:"market-only", flag:null},
+  ADNOCLS: {mkt:"AE", n:8, hits:7, c50:0.3750, c80:0.6250, c90:0.8750, width:1.182, strength:"market-only", flag:null},
   AGTHIA: {mkt:"AE", n:58, hits:56, c50:0.7586, c80:0.9138, c90:0.9655, width:1.555, strength:"long", flag:null},
   AIRARABIA: {mkt:"AE", n:58, hits:50, c50:0.5690, c80:0.7931, c90:0.8621, width:1.142, strength:"long", flag:null},
   ALDAR: {mkt:"AE", n:58, hits:52, c50:0.5172, c80:0.7586, c90:0.8966, width:1.099, strength:"long", flag:null},
@@ -3328,7 +3328,8 @@ const BAND_MARKETS = {
 // ---- end BANDS ----
 
 const LEDGER = [
-  {instrument: "ADNOCLS", asset_class: "equity", anchor_date: "2026-08-07", run_date: "2026-08-09", anchor_price: 6.16, ccy: "AED", horizon_label: "1 month", grade_date: "2026-09-07", grade_basis: "projected", horizon_days: 20, cycle_no: 1, anchor_vol: 0.2663, note: "First coverage, 9-Aug-2026 — cycle 1, struck on the production chain: Step 0.0 gate -> YZ variance proxy -> fit_har_v3 -> har_forecast_v3 -> carry drift ln(1+rf_live)-ln(1+q) -> simulate_paths_v3, 50,000 paths, seed 42, and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Percentiles are the study's own p5-p95 from the full 50,000; the touch ladder is read off the stored 20,000-path subset and its ±10% pair reconciles to the study's separately published figures within 0.16 percentage points. q_annual=0.0275 on the declared distribution over market capitalisation at the anchor close. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE Base Rate. Horizons from horizons.resolve() on ADX's own calendar, not a session count. NAME-LEVEL CALIBRATION: PARITY — scale-normalised CRPS skill +2.95% against a carry-anchored random walk over 8 independent non-overlapping three-month windows, coverage 38/75/88 against 50/80/90, PIT mean 0.549 with uniformity p=0.64 and Kolmogorov-Smirnov p=0.53. The share listed 02-Jun-2023, so only 3.2 years of origins exist and a five-year name-level set does not: the five-year requirement is met at the market-panel level that sets the width — 18 Abu Dhabi names, 261 windows, skill +0.68%, 90% interval -0.1% to +1.4%, which straddles zero. No single-name edge is claimed.", p5: 5.47, p25: 5.89, p50: 6.16, p75: 6.45, p95: 6.93, touch: [[7.39, 1], [7.08, 5], [6.78, 14], [6.47, 40], [5.85, 38], [5.54, 11]], realized_close: null, realized_date: null},
+  {instrument: "ADNOCLS", asset_class: "equity", anchor_date: "2026-08-07", run_date: "2026-08-09", anchor_price: 6.16, ccy: "AED", horizon_label: "1 month", grade_date: "2026-09-07", grade_basis: "projected", horizon_days: 20, cycle_no: 1, anchor_vol: 0.2663, note: "First coverage, 9-Aug-2026 — cycle 1, struck on the production chain: Step 0.0 gate -> YZ variance proxy -> fit_har_v3 -> har_forecast_v3 -> carry drift ln(1+rf_live)-ln(1+q) -> simulate_paths_v3, 50,000 paths, seed 42, and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Percentiles are the study's own p5-p95 from the full 50,000; the touch ladder is read off the stored 20,000-path subset and its ±10% pair reconciles to the study's separately published figures within 0.16 percentage points. q_annual=0.0275 on the declared distribution over market capitalisation at the anchor close. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE Base Rate. Horizons from horizons.resolve() on ADX's own calendar, not a session count. NAME-LEVEL CALIBRATION: PARITY — scale-normalised CRPS skill +2.95% against a carry-anchored random walk over 8 independent non-overlapping three-month windows, coverage 38/75/88 against 50/80/90, PIT mean 0.549 with uniformity p=0.64 and Kolmogorov-Smirnov p=0.53. The share listed 02-Jun-2023, so only 3.2 years of origins exist and a five-year name-level set does not: the five-year requirement is met at the market-panel level that sets the width — 18 Abu Dhabi names, 261 windows, skill +0.68%, 90% interval -0.1% to +1.4%, which straddles zero. No single-name edge is claimed.", p5: 5.47, p25: 5.89, p50: 6.16, p75: 6.45, p95: 6.93, touch: [[7.39, 1], [7.08, 5], [6.78, 14], [6.47, 40], [5.85, 38], [5.54, 11]], realized_close:6.8, realized_high:6.99, realized_low:6.1, in_90:true, in_50:false, realized_quantile:0.896, median_err:0.1039, touch_hit:{ "+5":true, "+10":true, "+15":false, "+20":false, "-5":false, "-10":false }
+  },
   {instrument: "ADNOCLS", asset_class: "equity", anchor_date: "2026-08-07", run_date: "2026-08-09", anchor_price: 6.16, ccy: "AED", horizon_label: "3 months", grade_date: "2026-11-09", grade_basis: "projected", horizon_days: 63, cycle_no: 1, anchor_vol: 0.2817, note: "First coverage, 9-Aug-2026 — cycle 1, struck on the production chain: Step 0.0 gate -> YZ variance proxy -> fit_har_v3 -> har_forecast_v3 -> carry drift ln(1+rf_live)-ln(1+q) -> simulate_paths_v3, 50,000 paths, seed 42, and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Percentiles are the study's own p5-p95 from the full 50,000; the touch ladder is read off the stored 20,000-path subset and its ±10% pair reconciles to the study's separately published figures within 0.16 percentage points. q_annual=0.0275 on the declared distribution over market capitalisation at the anchor close. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE Base Rate. Horizons from horizons.resolve() on ADX's own calendar, not a session count. NAME-LEVEL CALIBRATION: PARITY — scale-normalised CRPS skill +2.95% against a carry-anchored random walk over 8 independent non-overlapping three-month windows, coverage 38/75/88 against 50/80/90, PIT mean 0.549 with uniformity p=0.64 and Kolmogorov-Smirnov p=0.53. The share listed 02-Jun-2023, so only 3.2 years of origins exist and a five-year name-level set does not: the five-year requirement is met at the market-panel level that sets the width — 18 Abu Dhabi names, 261 windows, skill +0.68%, 90% interval -0.1% to +1.4%, which straddles zero. No single-name edge is claimed.", p5: 4.95, p25: 5.67, p50: 6.18, p75: 6.73, p95: 7.73, touch: [[7.39, 15], [7.08, 25], [6.78, 42], [6.47, 66], [5.85, 63], [5.54, 36]], realized_close: null, realized_date: null},
   {
     instrument:"ADNOCDRILL", asset_class:"equity",
@@ -3384,8 +3385,7 @@ const LEDGER = [
     p5:9.82, p25:11.26, p50:12.26, p75:13.35, p95:15.32,
     touch:{ "+5":64, "+10":40, "+15":24, "+20":14, "-5":64, "-10":38 },
     realized_close:null, realized_quantile:null, median_err:null, touch_hit:null },
-  {instrument:"BOROUGE", asset_class:"equity", anchor_date:"2026-08-07", run_date:"2026-08-17", anchor_price:2.4, ccy:"AED", horizon_label:"1 month", grade_date:"2026-09-07", grade_basis:"projected", horizon_days:20, cycle_no:1, anchor_vol:0.1676, note:"First coverage, 17-Aug-2026 \u2014 cycle 1, struck on the study's own committed path arrays at the 2026-08-07 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Production chain, no approximation: data-quality gate (1048 sessions, zero drops or repairs) \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF per the AE profile. q_annual = 0.0675, SOURCED from the company's own restated annual dividend intention of 16.2 fils a share, not defaulted \u2014 and it exceeds the risk-free rate, so the carry drift is NEGATIVE at -3.10% a year. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65%. Horizons resolved by horizons.resolve() on the UAE's own realized calendar, not a session count. NAME-LEVEL CALIBRATION FAILS, and the study says so rather than burying it: scale-normalized CRPS skill -0.0901 against the carry-anchored random walk, ROBUSTLY negative across every bootstrap block size (CI90 [-0.154,-0.045] / [-0.165,-0.054] / [-0.172,-0.062] at blocks 2/3/4). The diagnosis is specific and it is over-coverage, not mis-centring: 100% of outcomes landed inside the 80% band and 100% inside the 90%, the band running 1.24x the benchmark's width, with a PIT mean of 0.520 \u2014 well centred, simply too wide for a share this calm. A five-year test is also IMPOSSIBLE: Borouge listed 3-Jun-2022, so only 4.17 years and 12 independent three-month windows exist. The governing market-level fit is unchanged and remains PARITY (+0.0068, CI90 [-0.001,0.014], 18 names, 261 windows). Nothing was tuned to make this pass.", p5:2.22, p25:2.33, p50:2.39, p75:2.46, p95:2.58, touch_up5:20.2, touch_up10:3.0, touch_up15:0.4, touch_up20:0.1, touch_dn5:21.1, touch_dn10:2.4, realized_close:2.39, realized_high:2.46, realized_low:2.33, in_90:true, in_50:true, realized_quantile:0.500, median_err:0.0000, touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":false, "-10":false }
-  },
+  {instrument:"BOROUGE", asset_class:"equity", anchor_date:"2026-08-07", run_date:"2026-08-17", anchor_price:2.4, ccy:"AED", horizon_label:"1 month", grade_date:"2026-09-07", grade_basis:"projected", horizon_days:20, cycle_no:1, anchor_vol:0.1676, note:"First coverage, 17-Aug-2026 \u2014 cycle 1, struck on the study's own committed path arrays at the 2026-08-07 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Production chain, no approximation: data-quality gate (1048 sessions, zero drops or repairs) \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF per the AE profile. q_annual = 0.0675, SOURCED from the company's own restated annual dividend intention of 16.2 fils a share, not defaulted \u2014 and it exceeds the risk-free rate, so the carry drift is NEGATIVE at -3.10% a year. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65%. Horizons resolved by horizons.resolve() on the UAE's own realized calendar, not a session count. NAME-LEVEL CALIBRATION FAILS, and the study says so rather than burying it: scale-normalized CRPS skill -0.0901 against the carry-anchored random walk, ROBUSTLY negative across every bootstrap block size (CI90 [-0.154,-0.045] / [-0.165,-0.054] / [-0.172,-0.062] at blocks 2/3/4). The diagnosis is specific and it is over-coverage, not mis-centring: 100% of outcomes landed inside the 80% band and 100% inside the 90%, the band running 1.24x the benchmark's width, with a PIT mean of 0.520 \u2014 well centred, simply too wide for a share this calm. A five-year test is also IMPOSSIBLE: Borouge listed 3-Jun-2022, so only 4.17 years and 12 independent three-month windows exist. The governing market-level fit is unchanged and remains PARITY (+0.0068, CI90 [-0.001,0.014], 18 names, 261 windows). Nothing was tuned to make this pass.", p5:2.22, p25:2.33, p50:2.39, p75:2.46, p95:2.58, touch_up5:20.2, touch_up10:3.0, touch_up15:0.4, touch_up20:0.1, touch_dn5:21.1, touch_dn10:2.4, realized_close:null, realized_date:null},
   {instrument:"BOROUGE", asset_class:"equity", anchor_date:"2026-08-07", run_date:"2026-08-17", anchor_price:2.4, ccy:"AED", horizon_label:"3 months", grade_date:"2026-11-09", grade_basis:"projected", horizon_days:63, cycle_no:1, anchor_vol:0.1758, note:"First coverage, 17-Aug-2026 \u2014 cycle 1, struck on the study's own committed path arrays at the 2026-08-07 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Production chain, no approximation: data-quality gate (1048 sessions, zero drops or repairs) \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF per the AE profile. q_annual = 0.0675, SOURCED from the company's own restated annual dividend intention of 16.2 fils a share, not defaulted \u2014 and it exceeds the risk-free rate, so the carry drift is NEGATIVE at -3.10% a year. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65%. Horizons resolved by horizons.resolve() on the UAE's own realized calendar, not a session count. NAME-LEVEL CALIBRATION FAILS, and the study says so rather than burying it: scale-normalized CRPS skill -0.0901 against the carry-anchored random walk, ROBUSTLY negative across every bootstrap block size (CI90 [-0.154,-0.045] / [-0.165,-0.054] / [-0.172,-0.062] at blocks 2/3/4). The diagnosis is specific and it is over-coverage, not mis-centring: 100% of outcomes landed inside the 80% band and 100% inside the 90%, the band running 1.24x the benchmark's width, with a PIT mean of 0.520 \u2014 well centred, simply too wide for a share this calm. A five-year test is also IMPOSSIBLE: Borouge listed 3-Jun-2022, so only 4.17 years and 12 independent three-month windows exist. The governing market-level fit is unchanged and remains PARITY (+0.0068, CI90 [-0.001,0.014], 18 names, 261 windows). Nothing was tuned to make this pass.", p5:2.07, p25:2.26, p50:2.38, p75:2.51, p95:2.74, touch_up5:46.4, touch_up10:19.6, touch_up15:7.7, touch_up20:3.0, touch_dn5:50.3, touch_dn10:19.5, realized_close:null, realized_date:null},
   {
     instrument:"EMPOWER", asset_class:"equity",
@@ -8053,30 +8053,30 @@ const LEDGER = [
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
 
-  // ---- 07-Sep-2026 single-name roll-forward: BOROUGE, struck on its own
+  // ---- 2026-09-07 single-name roll-forward: ADNOCLS, struck on its own
   //      latest library close. Append-only.
   {
-    instrument:"BOROUGE", asset_class:"equity",
-    anchor_date:"2026-09-07", run_date:"2026-09-07", anchor_price:2.39, ccy:"AED",
+    instrument:"ADNOCLS", asset_class:"equity",
+    anchor_date:"2026-09-07", run_date:"2026-09-07", anchor_price:6.8, ccy:"AED",
     horizon_label:"1 month", grade_date:"2026-10-07", grade_basis:"projected", horizon_days:21,
-    cycle_no:2, reanchor_from:"2026-08-07", anchor_vol:0.1922,
-    signal_z:-0.9766, signal_alpha:-0.005648,
-    note:"Cycle 2 roll-forward, 07-Sep-2026 — struck on the 07-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-07 and is graded in this same pass. The previous cone was anchored 2026-08-07; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.067782 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. NAME-LEVEL CALIBRATION: FAIL, robustly — skill -0.0542 over 12 scored windows, negative under every bootstrap block size {2,3,4} (block-2 CI [-0.095,-0.020]). The cone is MIS-CENTRED: PIT mean 0.448 where 0.5 is centred, with 100% coverage against a 90% target and 92% against 50%. Read the bands as an OUTER bound. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN, from this name’s own mom_combo z of -0.977 (outside the 0.25 dead zone); tilt -0.56% at 1M and -1.59% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
-    p5:2.19, p25:2.3, p50:2.37, p75:2.44, p95:2.57,
-    touch:{ "+5":19, "+10":4, "+15":1, "+20":1, "-5":26, "-10":5 },
+    cycle_no:2, reanchor_from:null, anchor_vol:0.269,
+    signal_z:0.6034, signal_alpha:0.004884,
+    note:"Cycle 2 roll-forward, 2026-09-07 — struck on the 07-Sep-2026 close, the latest session in this name’s library, off the monthly metronome — the prior cycle’s 1-month has not yet matured, so no cohort of that horizon is graded here. The previous cone was anchored ?; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.0249105 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call UP, from this name’s own mom_combo z of +0.603 (outside the 0.25 dead zone); tilt +0.49% at 1M and +1.53% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
+    p5:6.1, p25:6.57, p50:6.84, p75:7.13, p95:7.68,
+    touch:{ "+5":39, "+10":14, "+15":5, "+20":2, "-5":32, "-10":9 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
   {
-    instrument:"BOROUGE", asset_class:"equity",
-    anchor_date:"2026-09-07", run_date:"2026-09-07", anchor_price:2.39, ccy:"AED",
+    instrument:"ADNOCLS", asset_class:"equity",
+    anchor_date:"2026-09-07", run_date:"2026-09-07", anchor_price:6.8, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-12-07", grade_basis:"projected", horizon_days:62,
-    cycle_no:2, reanchor_from:"2026-08-07", anchor_vol:0.1852,
-    signal_z:-0.9766, signal_alpha:-0.016013,
-    note:"Cycle 2 roll-forward, 07-Sep-2026 — struck on the 07-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-07 and is graded in this same pass. The previous cone was anchored 2026-08-07; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.067782 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. NAME-LEVEL CALIBRATION: FAIL, robustly — skill -0.0542 over 12 scored windows, negative under every bootstrap block size {2,3,4} (block-2 CI [-0.095,-0.020]). The cone is MIS-CENTRED: PIT mean 0.448 where 0.5 is centred, with 100% coverage against a 90% target and 92% against 50%. Read the bands as an OUTER bound. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN, from this name’s own mom_combo z of -0.977 (outside the 0.25 dead zone); tilt -0.56% at 1M and -1.59% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
-    p5:2.04, p25:2.22, p50:2.34, p75:2.45, p95:2.67,
-    touch:{ "+5":35, "+10":14, "+15":6, "+20":3, "-5":54, "-10":22 },
+    cycle_no:2, reanchor_from:null, anchor_vol:0.2839,
+    signal_z:0.6034, signal_alpha:0.015169,
+    note:"Cycle 2 roll-forward, 2026-09-07 — struck on the 07-Sep-2026 close, the latest session in this name’s library, off the monthly metronome — the prior cycle’s 1-month has not yet matured, so no cohort of that horizon is graded here. The previous cone was anchored ?; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.0249105 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call UP, from this name’s own mom_combo z of +0.603 (outside the 0.25 dead zone); tilt +0.49% at 1M and +1.53% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
+    p5:5.64, p25:6.43, p50:6.93, p75:7.46, p95:8.51,
+    touch:{ "+5":66, "+10":41, "+15":24, "+20":14, "-5":53, "-10":27 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -8507,7 +8507,7 @@ const PRICES = {
   ADNOCDIST: { px: 4.03, date: "2026-09-07", src: "library" },
   ADNOCDRILL: { px: 5.85, date: "2026-09-07", src: "library" },
   ADNOCGAS: { px: 3.2, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ADNOCLS: { px: 6.85, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ADNOCLS: { px: 6.8, date: "2026-09-07", src: "library" },
   AGTHIA: { px: 3.29, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
   AIRARABIA: { px: 4.97, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
   ALDAR: { px: 7.6, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },

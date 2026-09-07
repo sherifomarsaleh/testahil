@@ -7,7 +7,6 @@
   "AE_ADNOCDRILL_3m": "c4c8335f21c5ea31",
   "AE_ADNOCGAS": "79c65851f6dc3535",
   "AE_ADNOCGAS_3m": "e255d3e44e2e4b4c",
-  "AE_ADNOCLS_3m": "16307aebc6c484ad",
   "AE_AGTHIA": "a4c17c333ea45e98",
   "AE_AGTHIA_3m": "ae80943c34b1cdf1",
   "AE_AIRARABIA_3m": "c729864e257733cf",
@@ -165,5 +164,6 @@
   "XAU_SILVER_3m": "21068e8fb9c19182",
   "XPT_PLATINUM": "2bdc24b4aa1fa9d4",
   "XPT_PLATINUM_3m": "d312a2e515aa5385",
-  "QA_IQCD_3m": "d7cab64c4fe306ee"
+  "QA_IQCD_3m": "d7cab64c4fe306ee",
+  "AE_ADNOCLS_3m": "5aca5ff933bf15de"
 }
