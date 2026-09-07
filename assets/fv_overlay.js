@@ -4652,6 +4652,98 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "ADNOCDRILL",
+   "name": "ADNOC Drilling Company P.J.S.C.",
+   "code": "ADX:ADNOCDRILL",
+   "ccy": "AED",
+   "spot": 5.85,
+   "anchor_date": "2026-09-07",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 31,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 3.46,
+   "fv_base": 4.92,
+   "fv_full": 6.21,
+   "gap_base_pct": -15.9,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.965,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.077653,
+    "mu_h": 0.005115,
+    "G": {
+     "bear": -6.76,
+     "base": -2.23,
+     "full": 0.77
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0002,
+     "base": 0.0158,
+     "full": 0.1967
+    },
+    "p_touch": {
+     "bear": 0.0003,
+     "base": 0.0247,
+     "full": 0.3181
+    },
+    "required_cagr": {
+     "bear": -0.9982,
+     "base": -0.8748,
+     "full": 1.0475
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00132
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.13458,
+    "mu_h": 0.01695,
+    "G": {
+     "bear": -3.9,
+     "base": -1.29,
+     "full": 0.44
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.002,
+     "base": 0.0615,
+     "full": 0.3447
+    },
+    "p_touch": {
+     "bear": 0.0032,
+     "base": 0.1121,
+     "full": 0.5858
+    },
+    "required_cagr": {
+     "bear": -0.8776,
+     "base": -0.4997,
+     "full": 0.2698
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00513
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "RAYA",
    "name": "Raya Holding",
    "code": "EGX:RAYA",
@@ -5110,98 +5202,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00316
    },
    "market": "US"
-  },
-  {
-   "ticker": "ADNOCDRILL",
-   "name": "ADNOC Drilling Company P.J.S.C.",
-   "code": "ADX:ADNOCDRILL",
-   "ccy": "AED",
-   "spot": 5.94,
-   "anchor_date": "2026-08-07",
-   "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 3.46,
-   "fv_base": 4.92,
-   "fv_full": 6.21,
-   "gap_base_pct": -17.2,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.073568,
-    "mu_h": 0.0,
-    "G": {
-     "bear": -7.35,
-     "base": -2.56,
-     "full": 0.6
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0002,
-     "base": 0.0109,
-     "full": 0.2291
-    },
-    "p_touch": {
-     "bear": 0.0002,
-     "base": 0.0167,
-     "full": 0.3869
-    },
-    "required_cagr": {
-     "bear": -0.9985,
-     "base": -0.8957,
-     "full": 0.7048
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00061
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.137258,
-    "mu_h": 0.0,
-    "G": {
-     "bear": -3.94,
-     "base": -1.37,
-     "full": 0.32
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0022,
-     "base": 0.0657,
-     "full": 0.342
-    },
-    "p_touch": {
-     "bear": 0.0038,
-     "base": 0.1144,
-     "full": 0.6327
-    },
-    "required_cagr": {
-     "bear": -0.8849,
-     "base": -0.5293,
-     "full": 0.1946
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00099
-   },
-   "market": "AE"
   },
   {
    "ticker": "ORWE",
