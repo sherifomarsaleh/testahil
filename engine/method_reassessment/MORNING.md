@@ -3370,3 +3370,43 @@ unevaluable.** That is a rule question.
 
 Record: `engine/method_reassessment/CRITERION2_PRICED_07-09-2026.md`. Nothing in the
 delivered study was touched.
+
+---
+
+## 07-09-2026 — the Phase 1 date, and a schedule I could not honestly produce
+
+**The principal asked when Phase 1 finishes.** The answer is read from the scorer, not
+estimated: **2027-06-11, 277 days away.** The vintage archive holds 103 fair values and
+**not one has reached the one-year horizon the fundamental lens claims** [R-LENS-02]; the
+earliest matures on that date, two-year 2028-06-11, three-year 2029-06-11. A one-to-three
+month score exists and would answer the *price cone's* question — the scorer refuses it for
+that reason, and should.
+
+So Phase 1 as written mixes four criteria that are **work** with one that is a **clock**.
+Registered as escalation `phase1-one-gate-or-two` with the recommendation to split, and
+**the default is NO CHANGE** — a default that overrode a standing instruction by silence
+would be the wrong way round. Default date 14-09-2026.
+
+### The schedule I tried to build for criterion 1, and why it is not here
+
+47 entries, exact, from `acceptance.py`. To turn that into a date I tried to split them into
+records I can write against re-issues that rebuild a delivered document. **Three attempts,
+none trustworthy:**
+
+1. A walker over the ratchet files counted **60**, not 47 — it swept in `coc_state`,
+   `arcc_scem_peer_input`, and entries explicitly marked *CLEARED* and *FIXED*. The same
+   debt-versus-its-opposite error corrected earlier tonight, committed again.
+2. Resolving each list name to its gate by name fragment landed on **negative controls** and
+   on the wrong gates — `anchor` to the anchor-*age* gate, `lens_vocabulary` to the lens
+   *design* gate, four wrong of twenty.
+3. Mapping each ratchet file to the gate that actually opens it *is* exact — but it answers
+   **whether the gate reads a document, not what clearing the entry costs.** A terminal entry
+   is cleared by committing a record built on a disclosed life, however its gate reads.
+
+**No split is published.** A fake schedule is worse than none, and the split does not change
+the answer anyway: criterion 1 is finishable long before June 2027 either way.
+
+What would produce a real schedule is reading each of the 47 entries against its own gate's
+refusal and asking what the gate would need — 47 individual readings, not a classifier. That
+is a day's work and it is worth doing only if the principal keeps Phase 1 as one gate, in
+which case the date is fixed regardless.

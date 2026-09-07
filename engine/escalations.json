@@ -704,6 +704,51 @@
     "must_contain": "CRITERION 1 RATCHET CLAUSE RULED"
    },
    "note": "REWRITTEN 07-09-2026. The original entry was registered in f213fdc1 and never reached the commit: this register's own negative control wrote its fixture into the real file and the restore did not run, so thirteen live entries plus this one were replaced by a single case called NC-example. Recovered from f213fdc1^ and this entry rewritten from the routes actually run, recorded here rather than presented as the original text. The mechanism is closed — the gate now reads TESTAHIL_ESCALATIONS_REGISTER and the control asserts, every case, that engine/escalations.json is byte-identical after it runs. [07-09-2026] The figure in this question was 49 when the entry was written and is 45 on a corrected count; the DECISION is unchanged and so is the default. The number is amended here rather than left wrong, because a register carrying a figure its own author knows to be wrong is worse than one carrying none."
+  },
+  {
+   "key": "phase1-one-gate-or-two",
+   "opened": "2026-09-07",
+   "cls": "instruction",
+   "question": "Phase 1 mixes four criteria that are WORK with one that is a CLOCK. Criterion 3 cannot be met before 2027-06-11 (277 days) because no published fair value has reached the one-year horizon [R-LENS-02] and the archive's earliest matures then. Should Phase 1 be declared complete on criteria 1, 2, 5 and 6, with criterion 3 carried as an open dated commitment maturing on its own clock?",
+   "why_only_the_principal": "It contradicts a standing instruction of theirs [R-GAP-02 CLAUSE THREE, 03-Sep-2026]: 'do not issue the reports before the deviation is sorted AND phase 1 proof the methods is done'. Splitting the gate changes what that instruction holds, which is authority rather than difficulty.",
+   "routes": [
+    {
+     "route": "engine/valuation_calibration/score.py, the scorer's own refusal",
+     "when": "2026-09-07",
+     "outcome": "REFUSED with a date rather than a number: 103 vintages held, none matured; first scoreable 2027-06-11, then 2028-06-11 and 2029-06-11. This is the binding constraint and it is arithmetic, not an estimate."
+    },
+    {
+     "route": "engine/method_reassessment/acceptance.py, read live",
+     "when": "2026-09-07",
+     "outcome": "criterion 1 NOT MET (7 gates green, 47 ratchet entries across 45 lists on the five names); criteria 2, 3, 5, 6 not measured there. Criterion 6 states in its own words that the reading is a human act and no script may attest it."
+    },
+    {
+     "route": "engine/method_reassessment/criterion2.py",
+     "when": "2026-09-07",
+     "outcome": "137 bands, 11 outside, no run commits a priced exception. The decisive cell is now priced (CRITERION2_PRICED_07-09-2026.md); ten remain, all on n<9."
+    },
+    {
+     "route": "re-run of the scorer's short-horizon option, to check the work cannot route around the wait",
+     "when": "2026-09-07",
+     "outcome": "RE-RUN and refused deliberately: a one-to-three-month score exists and would answer the PRICE CONE's question, not this one. Scoring a lens over a horizon it does not speak to is the mistake [R-TCAL-01] caught in its own first edition. There is no honest short cut."
+    },
+    {
+     "route": "every live ref, for a prior ruling on splitting Phase 1",
+     "when": "2026-09-07",
+     "outcome": "none; the clause has been read as one gate since adoption on 03-Sep-2026."
+    }
+   ],
+   "refs_searched": 2,
+   "done_meanwhile": "Criterion 2's decisive cell priced end to end (-60.6% of EGCH's base branch at the nearest band edge; the far edge is unevaluable and terminal_value refuses it). Criterion 1's 47 entries are being classified into cheap declarations versus full re-issues so the remaining work carries a real number rather than 'weeks'.",
+   "recommendation": "SPLIT: declare Phase 1 complete on criteria 1, 2, 5 and 6 and carry criterion 3 as an open dated commitment maturing 2027-06-11 — the same reasoning the price-only publish exemption already uses, that a change asserting no valuation is not held by a gate about valuations. NOT proposed: weakening criterion 3, scoring it early on a shorter horizon, or publishing past the gap block.",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/method_reassessment/STATE.json",
+    "must_contain": "PHASE1_GATE_RULING_"
+   },
+   "answer_goes_to": "engine/method_reassessment/STATE.json, as a PHASE1_GATE_RULING_{DD-MM-YYYY} block, and into the Part E acceptance text the instrument prints — an answer living only in a conversation binds nothing, because the container is rebuilt from the repository [R-IND-01].",
+   "default_if_no_answer": "NO CHANGE — Phase 1 stays one gate and their standing instruction holds. A default that overrode a standing instruction by silence would be the wrong way round; so the work continues on criteria 1 and 2 and the wait runs to 2027-06-11.",
+   "default_date": "2026-09-14"
   }
  ]
 }
