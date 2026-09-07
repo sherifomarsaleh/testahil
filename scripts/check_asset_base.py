@@ -38,6 +38,7 @@ for p in (ENGINE, ROOT):
         sys.path.insert(0, p)
 
 import asset_base as ab                      # noqa: E402
+import ratchet_shape as rshape               # noqa: E402  [R-ENF-08]
 import research_protocol as rp               # noqa: E402
 
 RATCHET = os.path.join(ENGINE, "build_depth_audit", "asset_base_outstanding.json")
@@ -144,10 +145,13 @@ def main(argv=None):
 
         if not problems:
             conforming.append(tk)
-        elif tk in known:
-            listed_fail.append((tk, "; ".join(problems)))
         else:
-            fresh_fail.append((tk, "; ".join(problems)))
+            msg = "; ".join(problems)
+            ok, note = rshape.excused(known.get(tk), msg)   # [R-ENF-08]
+            if tk in known and ok:
+                listed_fail.append((tk, msg))
+            else:
+                fresh_fail.append((tk, msg if ok else "%s — %s" % (msg, note)))
 
     print("[R-ASSET-01] the operating asset base's vintage, checked from outside")
     print("  study directories examined : %d" % len(examined))

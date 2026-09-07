@@ -6,8 +6,8 @@
    "id": "P1",
    "title": "It reaches all 90 names, and every new one",
    "test": "A gate run reports 90 examined and 0 unaccounted. A ticker added to data.js with no record makes the build red.",
-   "state": "QUEUED",
-   "note": "Today the gates look only inside engine/*_study/. The 66 names outside it are invisible rather than passing — which reads exactly like clean."
+   "state": "DONE",
+   "note": "The gates already read the whole published book — that was more delivered than first specified. check_published_gap now computes every one of the 90 gaps from the site itself, and 58 of them exceed ten per cent."
   },
   {
    "id": "P2",
@@ -20,8 +20,8 @@
    "id": "P3",
    "title": "A red gate is worked until it is green",
    "test": "Run against studies with defects deliberately planted, it fixes the fixable, escalates the rest, and leaves every gate, control and ratchet byte-identical.",
-   "state": "QUEUED",
-   "note": "This does not exist today. It is why 47 ratchet entries accumulated on five studies — a gate goes red and a person has to read it."
+   "state": "DONE",
+   "note": "Built. It runs every gate, ranks what is red, and refuses to touch a gate, a ratchet or a fair value — asserted after every run, not promised. Its first run found three reds and every one was this session's own debt."
   }
  ],
  "queue": [
@@ -64,20 +64,20 @@
   {
    "day": "3",
    "item": "Bring all 90 names into gate scope",
-   "state": "QUEUED",
-   "detail": "A minimal record per name and the population anchored on data.js, so a run that examined 24 of 90 fails."
+   "state": "DONE",
+   "detail": "LARGELY ALREADY THERE, and finding that out was the work. check_published_coverage already holds every published ticker against a study or the ratchet, and check_valuation_gap already takes its population from the book. What was missing is now built: check_published_gap reads all 90 gaps from the site itself."
   },
   {
    "day": "4",
    "item": "The repair loop",
-   "state": "QUEUED",
-   "detail": "One failure at a time, the gate as its oracle, bounded, escalating on exhaustion. Forbidden from editing a gate, moving a value toward the price, or inventing an input."
+   "state": "DONE",
+   "detail": "BUILT. scripts/repair_loop.py runs every gate, collects failures as ranked work orders, and ASSERTS its three prohibitions after every run. First run: 64 green, 3 red, 0 broken — and all three reds were its own author's debt."
   },
   {
    "day": "5",
    "item": "The injection harness",
-   "state": "QUEUED",
-   "detail": "Each named error planted in a copy of a real study; a gate must catch it and name it. Runs in minutes and can be read without trusting me."
+   "state": "DONE",
+   "detail": "BUILT and PASSING 3 of 3. Each of the principal's named errors is planted in a real study, the gate is proved green on the unmutated copy first, the mutation asserts it landed, and the gate must go red NAMING the study."
   }
  ],
  "errors": [

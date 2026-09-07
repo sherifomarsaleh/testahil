@@ -55,6 +55,7 @@ for p in (HERE, ENGINE, ROOT):
         sys.path.insert(0, p)
 
 import check_valuation_gap as vg             # noqa: E402  [R-ENF-03]
+import ratchet_shape as rshape              # noqa: E402  [R-ENF-08]
 
 DATA_JS = os.path.join(ROOT, "assets", "data.js")
 RATCHET = os.path.join(ENGINE, "build_depth_audit", "published_gap_outstanding.json")
@@ -132,7 +133,11 @@ def main(argv=None):
         sdir = study_dir(tk)
         if not sdir:
             why = "no study directory, so nothing can carry a review"
-            (listed if tk in known else fresh).append((tk, gap, why))
+            worse, note = rshape.worsened(known.get(tk), gap, GAP_STALE)
+            if tk in known and not worse:
+                listed.append((tk, gap, why))
+            else:
+                fresh.append((tk, gap, why if not worse else "%s — %s" % (why, note)))
             continue
         name, covered, ac, acs, ag = vg.read_review(sdir)
         if not name:
@@ -150,7 +155,11 @@ def main(argv=None):
         else:
             audited.append(tk)
             continue
-        (listed if tk in known else fresh).append((tk, gap, why))
+        worse, note = rshape.worsened(known.get(tk), gap, GAP_STALE)
+        if tk in known and not worse:
+            listed.append((tk, gap, why))
+        else:
+            fresh.append((tk, gap, why if not worse else "%s — %s" % (why, note)))
 
     print("[R-GAP-03] the gap a READER sees, audited")
     print("  published names read        : %d" % len(book))

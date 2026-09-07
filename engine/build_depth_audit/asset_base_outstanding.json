@@ -1,18 +1,51 @@
 {
- "why": "[R-ASSET-01] with the ratchet of [R-ENF-02]. Every study in scope on the day the rule was adopted (07-09-2026) predates it and commits no asset_base_record; each is allowed to fail while it waits its turn in the rebuild queue. Entries carry the MEASUREMENT where one was taken, so the debt is countable rather than remembered. The build breaks on a NEW in-scope study with no entry either way, on a listed study whose record has appeared and is wrong, or on a committed class that resolves to nothing. This list may only ever get SHORTER (--prune).",
+ "why": "[R-ASSET-01] with the ratchet of [R-ENF-02]. Every study in scope on the day the rule was adopted (07-09-2026) predates it and commits no asset_base_record; each is allowed to fail while it waits its turn in the rebuild queue. Entries carry the MEASUREMENT where one was taken, so the debt is countable rather than remembered. The build breaks on a NEW in-scope study with no entry either way, on a listed study whose record has appeared and is wrong, or on a committed class that resolves to nothing. This list may only ever get SHORTER (--prune). [R-ENF-08, 07-09-2026]: each entry now carries the SIGNATURE of the failure it excuses. A ratchet entry is a ticker, so before this a listed study was excused from the whole gate and could acquire a SECOND, DIFFERENT defect of the same class unseen — which the injection harness demonstrated by planting a stale land base in a study already listed and being ignored. Comparison is on the failure's SHAPE with live figures stripped, because an exact-text match would go red every time a date moved.",
  "adopted": "2026-09-07",
  "outstanding": {
-  "PHDC": "MEASURED: commits land_bank_sqm_mn = 33.0 dated 2024-12-31, sourced to the FY2024 earnings release, in a study edition-dated 2026-09-02 whose information set ends 1Q2026 and whose bridge stands on the 31-March-2026 balance sheet. Printed to the delivered workbook at build_xlsx_phdc.py:336. This is the defect the rule was adopted on and it comes off at PHDC's next rebuild.",
-  "TMGH": "commits landbank_msqm = 20.0 from the 1H 2026 earnings release, which is current — but carries no asset_base_record, so nothing states its vintage in a form a gate can read.",
-  "MODON": "no asset_base_record; developer.",
-  "ARCC": "no asset_base_record; cement, replacement cost and EV per tonne both asset-based.",
-  "SCEM": "no asset_base_record; cement.",
-  "RIYADHCABLE": "no asset_base_record; filed under cement and heavy industrial.",
-  "AMOC": "no asset_base_record; refiner, replacement cost.",
-  "EGCH": "no asset_base_record; petrochemical, replacement cost.",
-  "BOROUGE": "no asset_base_record; petrochemical.",
-  "FERTIGLOBE": "no asset_base_record; petrochemical.",
-  "ADNOCLS": "no asset_base_record; chartered fleet, replacement cost on an observed secondhand market."
+  "PHDC": {
+   "reason": "MEASURED: commits land_bank_sqm_mn = 33.0 dated 2024-12-31, sourced to the FY2024 earnings release, in a study edition-dated 2026-09-02 whose information set ends 1Q2026 and whose bridge stands on the 31-March-2026 balance sheet. Printed to the delivered workbook at build_xlsx_phdc.py:336. This is the defect the rule was adopted on and it comes off at PHDC's next rebuild.",
+   "signature": "no asset_base_record committed"
+  },
+  "TMGH": {
+   "reason": "commits landbank_msqm = 20.0 from the 1H 2026 earnings release, which is current — but carries no asset_base_record, so nothing states its vintage in a form a gate can read.",
+   "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
+  },
+  "MODON": {
+   "reason": "no asset_base_record; developer.",
+   "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
+  },
+  "ARCC": {
+   "reason": "no asset_base_record; cement, replacement cost and EV per tonne both asset-based.",
+   "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
+  },
+  "SCEM": {
+   "reason": "no asset_base_record; cement.",
+   "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
+  },
+  "RIYADHCABLE": {
+   "reason": "no asset_base_record; filed under cement and heavy industrial.",
+   "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
+  },
+  "AMOC": {
+   "reason": "no asset_base_record; refiner, replacement cost.",
+   "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
+  },
+  "EGCH": {
+   "reason": "no asset_base_record; petrochemical, replacement cost.",
+   "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
+  },
+  "BOROUGE": {
+   "reason": "no asset_base_record; petrochemical.",
+   "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
+  },
+  "FERTIGLOBE": {
+   "reason": "no asset_base_record; petrochemical.",
+   "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
+  },
+  "ADNOCLS": {
+   "reason": "no asset_base_record; chartered fleet, replacement cost on an observed secondhand market.",
+   "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
+  }
  },
  "pruned_on": []
 }

@@ -183,7 +183,11 @@ def run_gate_ghost():
         os.makedirs(os.path.join(repo, "engine", "build_depth_audit"))
         shutil.copy(os.path.join(HERE, "check_asset_base.py"),
                     os.path.join(repo, "scripts", "check_asset_base.py"))
-        for m in ("asset_base.py", "research_protocol.py", "lessons_register.py"):
+        # EVERY module the gate imports, or it crashes on the absence and exits 1 for the
+        # WRONG reason — which reads exactly like exiting 1 for the right one. The gauntlet
+        # learned this the same way and it cost a case there too.
+        for m in ("asset_base.py", "research_protocol.py", "lessons_register.py",
+                  "ratchet_shape.py"):
             src = os.path.join(ENGINE, m)
             if os.path.exists(src):
                 shutil.copy(src, os.path.join(repo, "engine", m))

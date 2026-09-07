@@ -36,6 +36,7 @@ for p in (ENGINE, ROOT):
         sys.path.insert(0, p)
 
 import ke_reproduction as kr                 # noqa: E402
+import ratchet_shape as rshape               # noqa: E402  [R-ENF-08]
 
 RATCHET = os.path.join(ENGINE, "build_depth_audit", "ke_outstanding.json")
 RECORD_KEYS = ("cost_of_capital_record", "coc_record", "wacc_record")
@@ -100,10 +101,13 @@ def main(argv=None):
         problems = kr.check(rec)
         if not problems:
             conforming.append(tk)
-        elif tk in known:
-            listed.append((tk, "; ".join(problems)))
         else:
-            fresh.append((tk, "; ".join(problems)))
+            msg = "; ".join(problems)
+            ok, note = rshape.excused(known.get(tk), msg)   # [R-ENF-08]
+            if tk in known and ok:
+                listed.append((tk, msg))
+            else:
+                fresh.append((tk, msg if ok else "%s — %s" % (msg, note)))
 
     print("[R-COC-02] the cost of equity reproduces from its own inputs")
     print("  study directories examined  : %d" % len(dirs))

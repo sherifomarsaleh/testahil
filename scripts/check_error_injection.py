@@ -35,6 +35,7 @@ import argparse
 import copy
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -108,10 +109,17 @@ def _l_landbank(repo, tk):
     return bool(r) and r["asset_base_record"]["as_at"] == "2024-12-31"
 
 
+# PLANTED IN A STUDY THAT IS NOT ON THE ASSET-BASE RATCHET, and the reason is the
+# harness's own first finding rather than a convenience. The first draft planted it in
+# PHDC — the study the rule was adopted on — and the gate did NOT go red, because a
+# RATCHET EXCUSES THE WHOLE GATE FOR THAT NAME rather than the specific failure it
+# recorded. So a NEW error of a ratcheted class, in a ratcheted study, is invisible.
+# That is true of every ratchet in this repository and it is recorded as a finding of
+# its own; here the case is planted where it tests what it claims to test.
 case("landbank-stale",
      "the study takes the current landbank of a developer but does not account for "
      "new land added to it",
-     "PHDC", "check_asset_base.py", _m_landbank, _l_landbank)
+     "SAVOLA", "check_asset_base.py", _m_landbank, _l_landbank)
 
 
 # 2 — the principal's third error
@@ -136,26 +144,28 @@ case("ke-inflated-300bp",
 
 # 3 — the principal's first error, on the page a reader actually sees
 def _m_published(repo, tk):
+    """Slash the PUBLISHED fair value to 40% of the published spot.
+
+    Anchored on the ticker's own entry and its own `fair:` line by pattern, never by
+    index arithmetic into the file: the first draft counted characters forward from the
+    ticker name and landed on a different entry's field, so the mutation did not land and
+    the case proved nothing. A fixture that cannot inject its condition is worse than no
+    fixture, because it reports a number.
+    """
     p = os.path.join(repo, "assets", "data.js")
     src = open(p, encoding="utf-8").read()
-    prog = ("const fs=require('fs');const s=fs.readFileSync(%r,'utf8');"
-            "eval(s.replace(/^\\s*(const|let|var)\\s+/gm,'globalThis.'));"
-            "const T=globalThis.TICKERS;const t=T[%r];"
-            "console.log(JSON.stringify({base:t.fair.base,spot:t.spot}));" % (p, tk))
-    got = json.loads(subprocess.run(["node", "-e", prog], capture_output=True,
-                                    text=True, timeout=90).stdout)
-    # 40% of spot: the principal's "60% of the current price" exactly
-    new = round(got["spot"] * 0.40, 4)
-    old = got["base"]
-    # Replace the FIRST fair base under this ticker's entry, structurally rather than by
-    # a blind global substitution.
-    i = src.index('"%s"' % tk) if '"%s"' % tk in src else src.index("%s:" % tk)
-    j = src.index("fair", i)
-    k = src.index("base", j)
-    end = src.index(",", k)
-    src2 = src[:k] + ("base: %s" % new) + src[end:]
+    m = re.search(r"^\s*%s:\s*\{" % re.escape(tk), src, re.M)
+    if not m:
+        raise RuntimeError("no entry for %s in data.js" % tk)
+    block = src[m.start():m.start() + 4000]
+    ms = re.search(r"spot:\s*([0-9.]+)", block)
+    mf = re.search(r"(fair:\s*\{[^}]*?base:\s*)([0-9.]+)", block)
+    if not (ms and mf):
+        raise RuntimeError("no spot or fair.base for %s" % tk)
+    new = round(float(ms.group(1)) * 0.40, 4)
+    off = m.start()
+    src2 = (src[:off + mf.start(2)] + str(new) + src[off + mf.end(2):])
     open(p, "w", encoding="utf-8").write(src2)
-    return old, new
 
 
 def _l_published(repo, tk):

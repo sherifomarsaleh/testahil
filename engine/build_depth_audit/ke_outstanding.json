@@ -1,13 +1,31 @@
 {
- "why": "[R-COC-02] with the ratchet of [R-ENF-02]. Every study carrying a cost-of-capital record on the day the rule was adopted (07-09-2026) predates it and declares no terminal construction. Each entry names WHAT THE RECORD ACTUALLY REPRODUCES UNDER, because the fix is a single declared field rather than a rebuild and an entry that names the fix is an entry somebody can close. NONE of these is a wrong number: all five reproduce exactly, three under same_beta and two under a Hamada relevering at 22.50%. What is outstanding is that the record does not SAY WHICH, so a reader cannot tell a relevered beta from a typo and neither could any instrument. The list may only ever get SHORTER (--prune).",
+ "why": "[R-COC-02] with the ratchet of [R-ENF-02]. Every study carrying a cost-of-capital record on the day the rule was adopted (07-09-2026) predates it and declares no terminal construction. Each entry names WHAT THE RECORD ACTUALLY REPRODUCES UNDER, because the fix is a single declared field rather than a rebuild and an entry that names the fix is an entry somebody can close. NONE of these is a wrong number: all five reproduce exactly, three under same_beta and two under a Hamada relevering at 22.50%. What is outstanding is that the record does not SAY WHICH, so a reader cannot tell a relevered beta from a typo and neither could any instrument. The list may only ever get SHORTER (--prune). [R-ENF-08, 07-09-2026]: each entry now carries the SIGNATURE of the failure it excuses. A ratchet entry is a ticker, so before this a listed study was excused from the whole gate and could acquire a SECOND, DIFFERENT defect of the same class unseen — which the injection harness demonstrated by planting a stale land base in a study already listed and being ignored. Comparison is on the failure's SHAPE with live figures stripped, because an exact-text match would go red every time a date moved.",
  "adopted": "2026-09-07",
  "outstanding": {
-  "PHDC": "reproduces exactly under 'same_beta'; declare ke_terminal_construction.",
-  "TMGH": "reproduces exactly under 'same_beta'; declare ke_terminal_construction.",
-  "ARCC": "reproduces exactly under 'relevered' at an implied 22.50% — beta 0.927522 unlevers to 0.900090 at a debt weight of 0.0378 and relevers to 1.074483 at a terminal 0.20. Declare ke_terminal_construction and relevering_tax_rate; the rate must be STATED, never solved out of the answer it explains.",
-  "SCEM": "reproduces exactly under 'relevered' at an implied 22.50% — beta 1.000000 unlevers to 0.995949 and relevers to 1.188914 at a terminal debt weight of 0.20. Same fix as ARCC.",
-  "FERTIGLOBE": "UNREADABLE rather than clean: commits a cost-of-capital record carrying no rf_star, beta, erp or ke_exp, so the explicit cost of equity cannot be reproduced at all.",
-  "STC": "reproduces exactly under 'same_beta'; declare ke_terminal_construction. FOUND BY THE GATE AND NOT BY THE MEASUREMENT THAT PRECEDED IT: the hand-written probe looked for cost_of_capital_record alone and reported six studies; the gate searches three spellings and reads seven. L-355 exactly, caught by the instrument rather than by a person."
+  "PHDC": {
+   "reason": "reproduces exactly under 'same_beta'; declare ke_terminal_construction.",
+   "signature": "ke_terminal names no construction. The record must declare one of ['same_beta', 'relevered']; it reproduces under 'same_beta'"
+  },
+  "TMGH": {
+   "reason": "reproduces exactly under 'same_beta'; declare ke_terminal_construction.",
+   "signature": "ke_terminal names no construction. The record must declare one of ['same_beta', 'relevered']; it reproduces under 'same_beta'"
+  },
+  "ARCC": {
+   "reason": "reproduces exactly under 'relevered' at an implied 22.50% — beta 0.927522 unlevers to 0.900090 at a debt weight of 0.0378 and relevers to 1.074483 at a terminal 0.20. Declare ke_terminal_construction and relevering_tax_rate; the rate must be STATED, never solved out of the answer it explains.",
+   "signature": "ke_terminal names no construction. The record must declare one of ['same_beta', 'relevered']; it reproduces under 'relevered' at an implied tax rate of 22.50%, which the record does not state — declare it, do not let it be solved out of the answer"
+  },
+  "SCEM": {
+   "reason": "reproduces exactly under 'relevered' at an implied 22.50% — beta 1.000000 unlevers to 0.995949 and relevers to 1.188914 at a terminal debt weight of 0.20. Same fix as ARCC.",
+   "signature": "ke_terminal names no construction. The record must declare one of ['same_beta', 'relevered']; it reproduces under 'relevered' at an implied tax rate of 22.50%, which the record does not state — declare it, do not let it be solved out of the answer"
+  },
+  "FERTIGLOBE": {
+   "reason": "UNREADABLE rather than clean: commits a cost-of-capital record carrying no rf_star, beta, erp or ke_exp, so the explicit cost of equity cannot be reproduced at all.",
+   "signature": "record carries no rf_star, beta, erp or ke_exp, so the explicit cost of equity cannot be reproduced at all"
+  },
+  "STC": {
+   "reason": "reproduces exactly under 'same_beta'; declare ke_terminal_construction. FOUND BY THE GATE AND NOT BY THE MEASUREMENT THAT PRECEDED IT: the hand-written probe looked for cost_of_capital_record alone and reported six studies; the gate searches three spellings and reads seven. L-355 exactly, caught by the instrument rather than by a person.",
+   "signature": "ke_terminal names no construction. The record must declare one of ['same_beta', 'relevered']; it reproduces under 'same_beta'"
+  }
  },
  "pruned_on": [
   {
