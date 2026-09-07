@@ -2824,3 +2824,30 @@ That makes three corrections to one figure in one firing — counts, orientation
 basis — each found by pushing on the previous answer rather than by anything catching it. The
 instrument is stronger for it, and the record of what I told you and when should stand as it
 is.
+
+### The session's own pattern, registered as a lesson rather than left in a commit message
+
+Ten first-attempt measurements were wrong tonight and every one failed the same way — a
+reader disagreeing with a record about a **name**. [R-ENF-01] says to close the class, not
+the instance, and the four gates written today each close one instance. The class itself is
+about how a measurement is taken, so it goes where [R-LESSON-01] puts findings that bind
+everywhere: **L-355, scope ALL, origin `build`, status adopted.**
+
+> *A probe that guesses what something is called returns a number, not an error — which is
+> why the guess survives.*
+
+Its evidence clause is the session's own working, and it is deliberately specific: `.git`
+excluded by substring swallowing `.github`; a provenance field read under one of two
+spellings reporting 58% of 3,862 inputs missing something none of them lacked; an artefact
+grepped under one of three names; a ratchet walked without distinguishing debt from its
+opposite, inflating the headline count 49 against 45; a band read for its key names rather
+than its own declared `basis`, reporting an acceptance criterion MET that is NOT MET; and a
+picker sorting `DD-MM-YYYY` strings lexicographically onto superseded editions. **None
+raised. Every one produced a plausible figure. Three were reported before being corrected.**
+
+Its falsifier is stated and is not a formality: a session whose first-attempt errors come
+from *arithmetic* or a *wrong population* rather than from a name would say this is not the
+dominant hazard it looked like tonight.
+
+Register regenerated (276 lessons), gate and negative control green, `engine/lessons.py`
+returns it.

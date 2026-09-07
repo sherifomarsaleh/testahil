@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**275 lessons**, of which 243 bind on every study, 25 on a class of company, and 7 on a single name.
+**276 lessons**, of which 244 bind on every study, 25 on a class of company, and 7 on a single name.
 
-By how they were learned: 42 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 191 found while building.
+By how they were learned: 42 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 192 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2508,6 +2508,16 @@ When a method publishes its far years as a range taken from how wrong it has bee
 > **What it cost, or how we know.** Every published far-year range tested walk-forward, with the band built only from origins before the one being tested: 259 cells, 55.6% coverage against an expected 63.5% under exchangeability, p=0.010. It degrades monotonically — -1.9 points at one year to -31.7 at five, where the band catches 29% of outcomes and sixteen of its seventeen misses are on the low side. It under-covers in BOTH regimes, by more outside the devaluation years than inside them, so it is not one bad period.
 
 > **What would overturn it.** A range built from enough observations to be an interval rather than a span, or a construction other than min-max. The finding is about the min-max span of a small sample, and a different construction is a different claim.
+
+### L-355 · A probe that guesses what something is called returns a number, not an error — which is why the guess survives.
+
+Reading a record means agreeing with it about names: the key a field is under, the spelling of a label, the way a file is dated, which direction a ratio runs. Where a reader assumes one of those and the record uses another, nothing raises. The reader finds less than is there and prints the smaller figure, and that figure is indistinguishable from a measurement. Read what the record DECLARES about itself before inferring anything from its shape, and where a reader finds nothing, treat that as evidence about the reader first.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ten first-attempt measurements across one working session, 07-09-2026, every one wrong the same way
+
+> **What it cost, or how we know.** Measured on the session's own working: a directory excluded by substring swallowed .github and condemned two files that were on disk; a provenance field read under one of its two spellings reported 58% of 3,862 inputs missing something none of them lacked; an artefact grepped under one of its three names reported two breaches where there is one; a ratchet walked without distinguishing debt from its opposite inflated the programme's headline count 49 against 45; a band read for its key names rather than its own declared basis field reported an acceptance criterion MET that is NOT MET; and a document picker sorting DD-MM-YYYY strings lexicographically read superseded editions. NONE raised. Every one produced a plausible figure, and three of them were reported before being corrected.
+
+> **What would overturn it.** A session in which a first-attempt measurement is wrong for some OTHER reason — an arithmetic slip, a wrong population, a bad assumption about the world rather than about a name. The claim is about naming specifically; a different failure mode would say this one is not the dominant hazard it appeared to be.
 
 
 ---
