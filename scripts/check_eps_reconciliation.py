@@ -71,11 +71,62 @@ def _year(key):
     return int(y) if len(y) == 4 else 2000 + int(y)
 
 
+# THE COUNT IS COMMITTED UNDER SEVERAL NAMES AND THE FIRST READER KNEW ONE OF THEM.
+# `meta.shares_mn` alone leaves seven studies with no count at all — ADNOCDRILL commits
+# `shares_issued_k`, BOROUGE `shares_out_bn`, PHDC `shares_outstanding_bn`, GBCO a bare
+# `shares` — and every one of them was then reported as "registers no reported earnings per
+# share", which is the WRONG REASON stated confidently. That is [L-355] reproduced inside
+# the gate written to catch this class: a reader that guesses a naming convention silently
+# finds nothing and reports it as a result.
+#
+# The names are taken from what the repository ACTUALLY CONTAINS rather than from what it
+# ought to, and the SCALE SUFFIX IS PART OF THE NAME — a count in thousands read as
+# millions is wrong by a thousand and every downstream figure still divides cleanly.
+SHARE_KEYS = (
+    ('shares_mn', 1.0), ('shares_wavg_mn', 1.0), ('shares_issued_mn', 1.0),
+    ('shares_outstanding_mn', 1.0),
+    ('shares_bn', 1000.0), ('shares_out_bn', 1000.0), ('shares_outstanding_bn', 1000.0),
+    ('shares_k', 1e-3), ('shares_issued_k', 1e-3), ('shares_outstanding_k', 1e-3),
+    ('shares_out', None), ('shares_outstanding', None), ('shares_issued', None),
+    ('shares', None),
+)
+
+
+def _num(v):
+    if isinstance(v, dict):
+        v = v.get('value')
+    return float(v) if isinstance(v, (int, float)) else None
+
+
+def share_count(D):
+    """The count in MILLIONS, from any key the book uses, scale carried with the name.
+
+    A bare `shares` carries no scale in its name, so it is accepted only where it is
+    plausibly already in millions — between one and a hundred thousand million shares.
+    Guessing a scale is how a count in thousands becomes a count in millions with every
+    downstream figure still dividing cleanly, so where the magnitude does not settle it
+    the count is treated as ABSENT and said to be, rather than assumed.
+    """
+    pools = [D.get('meta') or {}, D.get('inputs') or {}, D]
+    for key, scale in SHARE_KEYS:
+        for pool in pools:
+            if not isinstance(pool, dict) or key not in pool:
+                continue
+            v = _num(pool[key])
+            if v is None or v <= 0:
+                continue
+            if scale is not None:
+                return v * scale
+            if 1.0 <= v <= 1e5:          # already a count in millions
+                return v
+    return None
+
+
 def read(path):
     """(reported eps, attributable profit, shares, year) for the LATEST year both exist."""
     D = json.load(open(path, encoding='utf-8'))
     I = D.get('inputs') or {}
-    sh = (D.get('meta') or {}).get('shares_mn')
+    sh = share_count(D)
     eps, npa = {}, {}
     for k, v in I.items():
         val = v.get('value') if isinstance(v, dict) else None
@@ -97,10 +148,11 @@ def read(path):
 
 def main(argv):
     prune = '--prune' in argv
-    d, known = {}, set()
+    d, known, known_unread = {}, set(), set()
     if os.path.exists(OUTSTANDING):
         d = json.load(open(OUTSTANDING, encoding='utf-8'))
         known = set(d.get('outstanding', []))
+        known_unread = set(d.get('unreadable', []))
 
     dirs = sorted(glob.glob(os.path.join(ENGINE, '*_study')))
     if not dirs:
@@ -121,6 +173,10 @@ def main(argv):
             unreadable.append((tk, 'numbers file will not parse: %s' % e))
             continue
         read_n += 1
+        if sh is None:
+            unreadable.append((tk, 'commits no share count this gate can read under any '
+                                   'name the book uses, so nothing can be divided'))
+            continue
         if eps is None:
             unreadable.append((tk, 'registers no reported earnings per share beside its '
                                    'attributable profit, so the gap cannot be seen'))
@@ -183,10 +239,24 @@ def main(argv):
 
     if prune:
         still = sorted(t for t in known if t in bad)
-        json.dump({'outstanding': still, 'note': d.get('note', '')},
+        still_un = sorted({tk for tk, _ in unreadable})
+        json.dump({'outstanding': still, 'unreadable': still_un,
+                   'note': d.get('note', '')},
                   open(OUTSTANDING, 'w', encoding='utf-8'), indent=1)
-        print('\npruned: %d -> %d' % (len(known), len(still)))
+        print('\npruned: unreconciled %d -> %d, unreadable %d -> %d'
+              % (len(known), len(still), len(known_unread), len(still_un)))
         return 0
+
+    # AN UNREADABLE STUDY IS NOT A CLEAN STUDY, AND UNTIL NOW IT WAS FREE. Twenty-one of
+    # twenty-four registered no reported earnings per share, or no share count, and every
+    # one was PRINTED and none could fail — so the cheapest route past this gate was to
+    # commit less, and a NEW study taking that route would have passed silently. Ratcheted
+    # in a SECOND GROUP because the two conditions are not interchangeable [R-TERM-01]: one
+    # excuses a study that cannot be read, the other a study whose reconciliation is red,
+    # and a study MOVING between them goes red until the move is recorded — otherwise a
+    # real gap is escaped by re-filing the study as merely unchecked.
+    new_unread = sorted({tk for tk, _ in unreadable} - known_unread)
+    moved = sorted((set(bad) & known_unread) | ({tk for tk, _ in unreadable} & known))
 
     new = {t: v for t, v in bad.items() if t not in known}
     if bad:
@@ -194,11 +264,28 @@ def main(argv):
     for t in sorted(bad):
         for line in bad[t]:
             print('   %-12s %s   %s' % (t, line, '[outstanding]' if t in known else '[NEW]'))
+    rc = 0
     if new:
         print('\nFAIL - %d study/studies newly unreconciled: %s'
               % (len(new), ', '.join(sorted(new))))
-        return 1
-    print('\nOK - no new violations. %d on the ratchet, which may only SHORTEN.' % len(known))
+        rc = 1
+    if new_unread:
+        print('\nFAIL - %d study/studies newly UNREADABLE to this gate: %s'
+              % (len(new_unread), ', '.join(new_unread)))
+        print('   An absent answer is not a clean one [R-ENF-04]. Commit the reported '
+              'earnings per share beside the attributable profit, and the share count '
+              'under a name that carries its scale.')
+        rc = 1
+    if moved:
+        print('\nFAIL - %d study/studies MOVED between the two groups: %s'
+              % (len(moved), ', '.join(moved)))
+        print('   The groups excuse different conditions and are not interchangeable '
+              '[R-ENF-08]. Record the move.')
+        rc = 1
+    if rc:
+        return rc
+    print('\nOK - no new violations. %d unreconciled and %d unreadable on the ratchet, '
+          'which may only SHORTEN.' % (len(known), len(known_unread)))
     return 0
 
 

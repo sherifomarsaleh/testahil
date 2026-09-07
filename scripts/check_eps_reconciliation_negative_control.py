@@ -188,6 +188,81 @@ case('a gap smaller than the EPS is printed to — rounding, not a claim',
                                / json.load(open(nf(d, 'arcc')))['meta']['shares_mn'] - 4.0002) < 1e-6)
 
 
+# --- the UNREADABLE ratchet, added when the escape stopped being free -------------
+# Until this was closed, twenty-one of twenty-four studies were PRINTED as unreadable and
+# not one could fail, so the cheapest route past this gate was to commit less. These three
+# cases hold the closure: a NEW unreadable study fails, a study moving between the two
+# groups fails, and the widened share reader actually reads.
+
+def _ratchet(d):
+    return os.path.join(d, 'engine', 'build_depth_audit', 'eps_outstanding.json')
+
+
+def _load_ratchet(d):
+    return json.load(open(_ratchet(d), encoding='utf-8'))
+
+
+def _save_ratchet(d, obj):
+    json.dump(obj, open(_ratchet(d), 'w', encoding='utf-8'), indent=1)
+
+
+def c_new_unreadable(d):
+    """DU reconciles today. Strip its reported EPS and it becomes unreadable — and it is
+    on neither ratchet group, so it is a NEW unreadable study."""
+    P = nf(d, 'du')
+    D = json.load(open(P))
+    for k in [k for k in D.get('inputs', {}) if 'eps' in k.lower()]:
+        D['inputs'].pop(k)
+    json.dump(D, open(P, 'w'), indent=1, default=float)
+    r = _load_ratchet(d)
+    r['unreadable'] = [x for x in r.get('unreadable', []) if x != 'DU']
+    _save_ratchet(d, r)
+
+
+case('a study that becomes UNREADABLE and is on neither ratchet group',
+     c_new_unreadable, True,
+     lambda d: (not any('eps' in k.lower()
+                        for k in json.load(open(nf(d, 'du'))).get('inputs', {}))
+                and 'DU' not in _load_ratchet(d).get('unreadable', [])))
+
+
+def c_moved(d):
+    """The same study, but re-filed onto the UNRECONCILED list instead. The two groups
+    excuse different conditions, so a study arriving in one while listed in the other is a
+    move and must be recorded rather than absorbed."""
+    c_new_unreadable(d)
+    r = _load_ratchet(d)
+    r['outstanding'] = sorted(set(r.get('outstanding', [])) | {'DU'})
+    _save_ratchet(d, r)
+
+
+case('a study MOVED between the unreconciled and unreadable groups',
+     c_moved, True,
+     lambda d: ('DU' in _load_ratchet(d).get('outstanding', [])
+                and 'DU' not in _load_ratchet(d).get('unreadable', [])
+                and not any('eps' in k.lower()
+                            for k in json.load(open(nf(d, 'du'))).get('inputs', {}))))
+
+
+def c_scaled_key(d):
+    """DU's count moved to a THOUSANDS key, scaled correctly. The widened reader carries
+    the scale with the name, so the reconciliation is unchanged and this must stay GREEN —
+    a reader that only knew `meta.shares_mn` reported this study as registering no earnings
+    per share, which was the wrong reason stated confidently [L-355]."""
+    P = nf(d, 'du')
+    D = json.load(open(P))
+    n = (D.get('meta') or {}).get('shares_mn')
+    D['meta'].pop('shares_mn')
+    D['meta']['shares_issued_k'] = float(n) * 1000.0
+    json.dump(D, open(P, 'w'), indent=1, default=float)
+
+
+case('a share count committed under a THOUSANDS key is read, not missed',
+     c_scaled_key, False,
+     lambda d: ('shares_mn' not in (json.load(open(nf(d, 'du'))).get('meta') or {})
+                and 'shares_issued_k' in (json.load(open(nf(d, 'du'))).get('meta') or {})))
+
+
 def main():
     base = sandbox()
     rc, out = run(base)
