@@ -3168,3 +3168,37 @@ agrees with the programme's finding (A): a rate error that compounds, not a leve
 
 **Nothing here changes the programme's direction**, which is the honest report, and it is
 worth as much as the finding would have been.
+
+---
+
+## 07-09-2026 — the disclosure sentence now quotes its measurement at the reader's own record length
+
+Following the k-structure straight into the module it affects. `range_disclosure.sentence(k)`
+quoted a **k-varying expectation** beside a **pooled-across-k measured figure** — two numbers
+on two bases, which is this house's own basis-and-count rule turned on its own disclosure
+sentence. At k=8 it would have said "expected about 78 in 100 … tested, 56 in 100" when the
+measurement **at k=8 is 21 in 100**.
+
+`band_holdout.py` now writes a `by_k` block (pooled and per-name figures byte-identical —
+checked, not assumed) and `measured(k)` reads the reader's own k, **with its count**, falling
+back to pooled and *saying* it fell back. **No threshold on thin cells, deliberately:**
+[R-CAL-02] already answers that by printing the count beside every percentage, so a thin
+per-k cell discloses itself rather than being suppressed by a cutoff nobody could justify.
+
+**A pre-existing bug surfaced doing it:** the "— not 90" contrast was unconditional, and
+(k−1)/(k+1) *reaches* 90 at k=19 — so a long record produced *"about 90 times in 100 — not
+90"*. It would have shipped the first time anything called this module. Now conditional.
+
+### And I committed the defect the digest names, one hour after writing the gate that caught it
+
+The edit replaced a slice running from the sentence tail to `def audit(k):` — which **silently
+deleted the 5,828-character detector block added tonight**, including `far_year_range_shapes`
+and every regex the far-year gate depends on. The assert verified the old text existed; it
+could not see what else lived between the endpoints. That is *"an assert-guarded string
+replacement verifies the old text existed, it cannot see whether the surrounding structure
+survived"* — standing in this protocol, and committed by me anyway.
+
+**What caught it was the gate written an hour earlier**, failing with
+`module 'engine.range_disclosure' has no attribute …`. Recovered from `HEAD`, both gates
+green, diff back to the intended +52/−17. Had that gate not existed the deletion would have
+been invisible until something needed the detector.

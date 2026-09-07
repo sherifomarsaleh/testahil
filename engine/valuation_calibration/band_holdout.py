@@ -190,8 +190,36 @@ def main():
               (lab, s2["n"], s2["inside"], 100 * s2["cov"], 100 * s2["expected"],
                s2["skill_pp"], s2["below"], s2["above"]))
 
+    # BY THE NUMBER OF PRIOR ORIGINS THE BAND WAS BUILT FROM, and this is the cut
+    # that turned out to matter [07-09-2026]. Realised coverage sits roughly flat
+    # near half however many observations a band rests on, while the null's bar
+    # (k-1)/(k+1) RISES with k -- so the shortfall grows with record length by
+    # construction of the null rather than because longer-record bands are worse.
+    # It is also the confound that dissolved a finding: cutting these cells by
+    # whether the range reaches a reader gave -13.4pp against +16.5pp, both
+    # significant and opposite, and the two subsets differ mostly in k.
+    #
+    # A POOLED COVERAGE FIGURE IS THEREFORE A MIXTURE ACROSS k, and quoting it
+    # beside a k-varying expectation states two numbers on two bases. The block
+    # below lets range_disclosure quote the measurement at the reader's own k,
+    # with its count, and say so when it has to fall back.
+    by_k = {}
+    for rec in allrecs:
+        by_k.setdefault(rec["k"], []).append(rec)
+    print("\nBy the number of prior origins the band rests on:")
+    print("%-6s %6s %7s %9s %9s %8s" %
+          ("k", "n", "inside", "coverage", "expected", "skill"))
+    k_block = {}
+    for k in sorted(by_k):
+        s2 = summarise(by_k[k])
+        k_block[str(k)] = s2
+        print("k=%-4d %6d %7d %8.1f%% %8.1f%% %+7.1fpp" %
+              (k, s2["n"], s2["inside"], 100 * s2["cov"], 100 * s2["expected"],
+               s2["skill_pp"]))
+
     print("\nEXPECTED is not 90%, and reading it as 90% is the mistake this guards against.")
     json.dump({"pooled": p, "per_name": {k: v[0] for k, v in per_name.items()},
+               "by_k": k_block,
                "untestable": thin_total, "min_prior": MIN_PRIOR},
               open(os.path.join(HERE, "band_holdout.json"), "w"), indent=1)
     return p

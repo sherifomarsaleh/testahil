@@ -40,10 +40,26 @@ _RECORD = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                        "valuation_calibration", "band_holdout.json")
 
 
-def measured():
-    """The house's own tested coverage of these ranges, read live. None where the
-    record is absent or unreadable -- an absent figure is never replaced by a
-    typed one.
+def measured(k=None):
+    """The house's own tested coverage of these ranges, read live, AT THE READER'S
+    OWN RECORD LENGTH where the record supports it.
+
+    Returns (coverage, n, basis) or None. None where the record is absent or
+    unreadable -- an absent figure is never replaced by a typed one.
+
+    WHY k MATTERS AND WHY THE POOLED FIGURE ALONE WOULD MISLEAD [07-09-2026]:
+    realised coverage sits roughly flat near half however many observations a band
+    rests on, while the arithmetic expectation (k-1)/(k+1) RISES with k. So the
+    pooled figure is a MIXTURE ACROSS RECORD LENGTHS spanning +6.2pp at k=3 to
+    -56.3pp at k=8, and quoting it beside a k-varying expectation states two
+    numbers on two different bases -- which is this house's own basis-and-count
+    rule turned on its own disclosure sentence.
+
+    THE COUNT TRAVELS WITH THE FIGURE and there is NO THRESHOLD, deliberately:
+    [R-CAL-02] already answers this by printing the count beside every percentage,
+    so a thin per-k cell discloses itself rather than being suppressed by a cutoff
+    nobody could justify. Where that k has no cell at all the pooled figure is
+    used and the sentence SAYS it is pooled.
 
     THE RECORD IS ONLY AS CURRENT AS ITS LAST RUN. band_holdout.py must be re-run
     in the same pass as any change to a run's scored cells, exactly as the
@@ -51,11 +67,18 @@ def measured():
     built on a stale record is a page that states a fact which moves, remembering
     it -- the defect the two-part as-of stamps were adopted to close."""
     try:
-        d = json.load(open(_RECORD))["pooled"]
-        n, inside = d["n"], d["inside"]
-        return (inside / n, n) if n else None
+        rec = json.load(open(_RECORD))
     except Exception:
         return None
+    if k is not None:
+        cell = (rec.get("by_k") or {}).get(str(int(k)))
+        if cell and cell.get("n"):
+            return (cell["inside"] / cell["n"], cell["n"], "at k=%d" % int(k))
+    d = rec.get("pooled") or {}
+    n, inside = d.get("n"), d.get("inside")
+    if not n:
+        return None
+    return (inside / n, n, "pooled across record lengths")
 
 
 def expected_coverage(k):
@@ -76,22 +99,33 @@ def sentence(k, horizon=None):
                 "been on this company, not a confidence interval."
                 % (where, "no" if not k else str(k), "" if k == 1 else "s"))
     p = expected_coverage(k)
+    pct = round(100 * p)
+    # THE "not 90" CONTRAST IS CONDITIONAL, AND IT WAS NOT [FIXED 07-09-2026]. The
+    # clause was hardcoded to contrast the span's own expectation with a ninety
+    # per cent interval, and (k-1)/(k+1) REACHES 90 at k=19 — so a long record
+    # produced "about 90 times in 100 — not 90", which is self-contradictory and
+    # would have shipped the first time anything called this. The point the clause
+    # exists to make survives without it: the MEASURED figure beside it is what
+    # tells a reader this is not a confidence interval.
+    contrast = " — not 90" if pct < 90 else ""
     core = ("The range%s is the full span of %d past readings of how far out this "
             "method has been on this company. A span of %d readings would be "
-            "expected to contain the next one about %d times in 100 — not 90."
-            % (where, k, k, round(100 * p)))
-    m = measured()
+            "expected to contain the next one about %d times in 100%s."
+            % (where, k, k, pct, contrast))
+    m = measured(k)
     if m is None:
         return core + (" We hold no tested record of how often these ranges have "
                        "actually contained the outcome, so no measured figure is "
                        "quoted here.")
-    cov, n = m
-    return core + (" Tested against %d resolved readings across the companies we "
-                   "cover, ranges of this kind contained the outcome %d times in "
-                   "100, and fewer the further out the year. Read it as the "
-                   "widest and narrowest we have been, which is narrower than a "
+    cov, n, basis = m
+    where_from = ("on bands resting on the same %d readings" % k
+                  if basis.startswith("at k=") else
+                  "pooled across bands of every record length, which spread widely")
+    return core + (" Tested against %d resolved readings %s, ranges of this kind "
+                   "contained the outcome %d times in 100. Read it as the widest "
+                   "and narrowest we have been, which is narrower than a "
                    "confidence interval rather than wider."
-                   % (n, round(100 * cov)))
+                   % (n, where_from, round(100 * cov)))
 
 
 # ---------------------------------------------------------------------------
@@ -209,10 +243,11 @@ def far_year_range_shapes(tables, study_year):
 
 def audit(k):
     """The figures behind the sentence, for a study's own record."""
-    m = measured()
+    m = measured(k)
     return {"observations": k, "expected_coverage": expected_coverage(k),
             "measured_coverage": (m[0] if m else None),
             "measured_n": (m[1] if m else None),
+            "measured_basis": (m[2] if m else None),
             "min_meaningful": MIN_MEANINGFUL, "sentence": sentence(k)}
 
 
