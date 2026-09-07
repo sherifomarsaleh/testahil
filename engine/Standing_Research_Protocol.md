@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-06c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-06d — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -1050,7 +1050,37 @@ rounds of "is this the version to adopt?" that same day each pasted back a copy 
 every revision of a 54,000-character block looks identical to every other. **Both documents therefore
 carry a REVISION STAMP as their first line** — a copy that does not carry the current stamp is stale on
 its face, without reading a word of it. Bump the stamp on every edit, however small: an unbumped stamp
-is worse than none, because it certifies a copy that has moved. The
+is worse than none, because it certifies a copy that has moved.
+
+**[R-DOC-01 AMENDED 07-09-2026] EXACTLY ONE STAMP, AND THE GATE HAD NEVER COUNTED THEM.**
+A DOCUMENT THAT STATES TWO REVISIONS STATES NONE — the same defect as the rule that stated two
+limits, arriving in the one sentence written to prevent it. Found by reading the digest's own
+opening characters while `check_protocol_sync` reported it green: a union merge of the
+single-line digest kept BOTH sides' opening sentences, so the file opened with its current stamp sentence immediately followed by the
+superseded one, and every check in the repository passed it. The two stamps are not
+reproduced here: this rule now refuses a second stamp anywhere in either document, and a
+document quoting the defect it forbids would fire its own gate — the verbatim fixtures live
+in the negative control, which is where a reproduced defect belongs.
+THE REASON THE GATE WAS BLIND IS A PROPERTY OF THE FILE RATHER THAN AN OVERSIGHT IN THE GATE:
+the digest is a single line, so `readline()` returns the whole 265KB document and a match
+anchored at position 0 is satisfied by the first stamp however many follow it — the check was
+correct, and it was reading a different question from the one the rule asks. The stamp exists
+so a copy pasted into somebody's own project files can declare its own age, and A COPY
+CARRYING TWO AGES DECLARES NEITHER; the reader it was written for is the one person who cannot
+run this gate. So `check_protocol_sync` now REFUSES a second stamp anywhere in either
+document, shape-matched rather than word-listed and safe for the reason rule identifiers and
+repository paths are — `DIGEST REVISION` followed by an ISO date is not a phrase that occurs
+innocently in prose written for anyone. Negative-controlled by
+`scripts/check_protocol_sync_negative_control.py` on the merge artefact EXACTLY as it shipped,
+a superseded stamp buried mid-document, the other document's prefix, and a three-stamp file,
+each mutation asserting that it LANDED before the gate runs; and on five clean cases, among
+them the prose that describes this very rule, the full protocol's own `rev. N` edition history
+and a bracketed `[R-MACRO-01 AMENDED 06-09-2026]` note, none of which may fire. THE GENERAL
+LESSON, WHICH IS NOT ABOUT STAMPS: A MERGE CAN SATISFY EVERY CHECK AND STILL PRODUCE A
+DOCUMENT NEITHER SIDE WROTE. Both stamps were real, both had been correct, and the union that
+kept them is exactly the resolution that saved two standing rules from being dropped the same
+day — so the safe merge and the defect are the SAME OPERATION, and the only thing that
+separates them is a check that counts. The
 identifier also gives an amendment one obvious place to land, and lets a QC gate cite the rule it
 is testing rather than paraphrasing it.
 

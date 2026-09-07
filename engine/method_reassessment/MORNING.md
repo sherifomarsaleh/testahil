@@ -1474,3 +1474,194 @@ THE GENERAL LESSON, WHICH IS NOT ABOUT MERGING: A DOCUMENT WITH NO LINE BREAKS H
 NO MERGE GRANULARITY. Every prose safeguard in this house assumes a reviewer can
 see what changed; a single-line file defeats that completely, and the only thing
 that caught it was asking whether specific named rules were still there.
+
+## 07-09-2026 — the merge retired the price limitation, and put a second price source in the room
+
+**The staleness limitation recorded yesterday is RETIRED.** After merging main this
+branch's EGX/QA libraries run to 06-09-2026 and `check_technical_read` returns
+0 failures across 93 entries — because main had done the roll-forward properly,
+library and technical read moving in the same pass. Nothing here spliced anything.
+
+**Two names are NEW breaches against the current price, inside the band when
+struck:** ADNOCLS at **-18.2%** (struck at -9.0%) and AMR at **-10.2%** (struck at
+-3.8%). Both already carry a GAP_REVIEW (04-09 and 05-09), so neither is owed one
+from nothing — but each review was written at a gap roughly nine and six points
+smaller than the one the study now carries, which is past [R-GAP-01 AMENDED]'s
+five-point staleness tolerance. `check_valuation_gap` is green on both and is
+right to be: it audits a study against its own STRIKE price, deliberately, and
+the strike gap has not moved. **So a review can go stale purely because the market
+moved and nothing anywhere goes red.** That is the two-instrument split the rule
+already states rather than a hole in it — the obligation binds at each study's
+next delivery, which is when the strike is re-taken.
+
+### The repository holds a later price than the instrument that reads prices
+
+`gap_today.py` reads only `engine/prices/SUPPLIED_*.json` and calls the answer
+"the latest known price". After the merge that is no longer true for seven
+studies: `engine/raw_ohlc/` — the exchange series every cone is struck on — runs
+three days ahead of the 03-09 supplied file.
+
+**The two sources genuinely disagree on a SHARED date, and not by a lag.** Five
+EGX names differ by 0.6% to 1.9% in BOTH directions (ARCC +0.65%, EGCH +0.62%,
+ELEC +1.44%, PHAR +1.89%, SCEM -1.48%), and **two of the supplied figures match no
+session in the library at all** — EGCH's 14.41 sits between the 09/02 close of
+14.36 and the 09/03 close of 14.50, SCEM's 100.50 between 99.01 and 102.00. Two
+others match an EARLIER session exactly (ARCC's 77.00 is the 31 August close,
+PHAR's 127.30 the 1 September close) while SWDY's and AMOC's agree with 09/03 to
+the cent. **No single explanation covers all five**, so neither source is simply
+the other one lagged and neither can be dismissed.
+
+**Measured before it was claimed: no name changes side.** Recomputed on the
+freshest library close, AMOC -15.8%, ARCC -13.1%, EGCH -71.6%, ELEC -84.2%,
+PHAR -71.4%, SCEM +25.1%, SWDY -59.3% — every one on the same side of the 10%
+trigger as the supplied-price figure. The breach set of 18 stands exactly as
+reported.
+
+**WHAT WAS CHANGED, AND WHAT DELIBERATELY WAS NOT.** `gap_today.py` now prints an
+ADVISORY naming every study whose library carries a later close, with the gap
+under each and whether the side changes. **It substitutes nothing.** Which series
+measures [R-GAP-01]'s trigger across the whole book is a method question, not a
+maintenance one, and the disagreement above is exactly why it cannot be settled in
+passing — swapping the source would move every EGX gap figure on the strength of a
+choice nobody has tested. What the advisory buys is that the tool stops asserting
+something it did not check. Guarded [R-ENF-04] both ways: zero libraries resolving
+REFUSES rather than printing "none", and the refusal is negative-controlled by
+running the module against a tree with the libraries removed, asserting the
+condition landed before believing the red.
+
+**CORRECTION TO THE PARAGRAPH ABOVE, FOUND WHILE CHECKING WHAT IMPORTS THIS MODULE.**
+I wrote that which series measures the trigger "is a method question, not a
+maintenance one". **The house has already answered it — for the site.**
+`scripts/build_prices_block.py` imports `gap_today` and then resolves the price
+itself as `max(cands, key=date)` across the supplied file AND the name's own OHLC
+library, recording `src` on every row; the site's PRICES block already carries
+`AMOC { px: 13.54, date: "2026-09-06", src: "library" }`. So the repository holds
+two instruments that answer "the latest known price" differently, one of them
+importing the other, and the screener a reader sees is on the fresher side.
+
+**Left as it stands, deliberately, and the reason is not inertia.** The supplied
+file is the principal's own instrument, and where it disagrees with the library on
+a shared date — which it does, five names, both directions, unexplained — silently
+preferring the other one is the quiet substitution SIGCM clause 1 forbids. The two
+jobs are genuinely different: the screener ranks and wants freshness; this report
+audits an answer against the price it was compared with. **What was actually wrong
+was that neither said so.** Now both do — the block names its `src` per row, and
+this report names every name where the other source is later. The disagreement is
+visible from either end instead of being resolved by whichever script you happened
+to run.
+
+One consequence recorded rather than acted on: the committed PRICES block predates
+this branch's EGCH library and still carries `14.41 @ 03-09` where the builder now
+resolves `14.23 @ 06-09`. **Regenerating it here was reverted** — it also relocates
+the whole block within `data.js`, and a site-data churn from a method branch is the
+same call made yesterday on the OHLC splice: it belongs to whoever does the
+roll-forward. **Nothing is silently behind:** `scripts/check_prices_block.py`
+already prints the drift by name — `EGCH: block 14.41@2026-09-03 (SUPPLIED) vs
+readers 14.23@2026-09-06 (library)` — and stays green, because a price arriving by
+hand is a data-supply fact and a gate nobody can clear is one everybody learns to
+ignore. The disclosure was there before I looked; what was missing was only that
+`gap_today` did not carry the same sentence.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT PRICES: AN INSTRUMENT NAMED FOR A QUANTITY
+IS TRUSTED FOR THAT QUANTITY, WHATEVER IT ACTUALLY READS. `gap_today` says "the
+latest known price" in its first line and reads one directory; it was correct on
+the day it was written and stopped being correct the moment a roll-forward landed
+somewhere else in the same repository. Where a tool's name makes a claim about the
+world, the thing to check is not its arithmetic but its INPUTS — and the cheapest
+honest fix is usually to make it say what it did not look at, rather than to widen
+what it reads.
+
+### The digest carried TWO revision stamps and every check in the repository was green
+
+Reading the digest's own opening characters — not a diff, not a gate — showed it
+opened with its current stamp sentence **immediately followed by the superseded
+one**. `check_protocol_sync` passed it, and the reason is a property of the file
+rather than an oversight in the gate: **the digest is a single line**, so
+`readline()` returns the whole 265KB document and a match anchored at position 0
+is satisfied by the first stamp however many follow it. The check was correct and
+was reading a different question from the one [R-DOC-01] asks.
+
+**A DOCUMENT THAT STATES TWO REVISIONS STATES NONE** — the same defect as the rule
+that stated two limits, arriving in the one sentence written to prevent it. The
+stamp exists so a copy pasted into the principal's own project files can declare
+its own age, and a copy carrying two ages declares neither; the reader it was
+written for is the one person who cannot run this gate.
+
+**The safe merge and the defect are the SAME OPERATION.** The union that kept both
+opening sentences is exactly the resolution that saved `[R-MACRO-01 AMENDED
+06-09-2026]` and `[R-GAP-02 AMENDED]` from being dropped yesterday. Nothing about
+it was careless. The only thing separating the two outcomes is a check that counts.
+
+Closed: `check_protocol_sync` refuses a second stamp anywhere in either document,
+shape-matched rather than word-listed and safe for the reason rule identifiers and
+repository paths are — `DIGEST REVISION` followed by an ISO date is not a phrase
+that occurs innocently in prose written for anyone. Negative-controlled on the
+merge artefact exactly as it shipped, a superseded stamp buried mid-document, the
+other document's prefix and a three-stamp file, **every mutation asserting that it
+landed** before the gate runs, plus five clean cases among them the full protocol's
+own `rev. N` edition history and a bracketed `[R-MACRO-01 AMENDED 06-09-2026]`
+note. Both documents amended in the same commit, both stamps bumped to `2026-09-06d`.
+
+**THE GATE'S FIRST LIVE CONSEQUENCE WAS TO REFUSE THE DOCUMENT THAT ADOPTS IT.**
+The amendment quoted both stamps as evidence, which is exactly what the new rule
+forbids. Two ways out, and the choice matters: exempt a stamp inside quotation
+marks — which invents an exemption, and [R-MACRO-01]'s own lesson is that every
+exemption is a place where the gate stops looking — or take the verbatim defect
+out of the prose and leave it in the negative control. **Re-pointed rather than
+widened, per [R-COC-01].** The fixtures live in the control, which is where a
+reproduced defect belongs; the prose describes it.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT STAMPS: A MERGE CAN SATISFY EVERY CHECK AND
+STILL PRODUCE A DOCUMENT NEITHER SIDE WROTE. Both stamps were real and both had
+been correct; what was wrong was a thing that existed only after they were put
+together, and no check on either side could have seen it. Where two correct inputs
+are combined, ask what the combination asserts that neither input did.
+
+### PHDC is not unmeasurable — it has nothing to drop, and the census could not tell the difference
+
+`scoring_blindspot.py` reports PHDC as NOT MEASURED, with the reason *"this run's
+per-cell file records only the cells its score TOOK, so the dropped count is
+unrecoverable from it."* **That reason is false, and the verdict is a false
+unmeasurable — the exact "absent answer wearing the costume of a clean one" this
+protocol names.** Measured by running PHDC's own writer rather than reading its
+output: `cells()` returns **403 rows, 403 with a log error, zero sign cases**, and
+the writer demonstrably CAN express a drop — it sets `sign_case` and `rel_error`
+and omits `e` whenever either side is non-positive. TMGH's `_cell()` does the same.
+So both writers are complete, and PHDC's file records no dropped cell **because
+PHDC drops none**.
+
+The census's detection rule — *a file with no null error cannot be told apart from
+a run with nothing to drop* — is right in general and is exactly what costs the
+answer here. And the comment above it asserts something else that is simply wrong:
+*"TMGH and PHDC expose no module-level cells()"*. **Both do**; I called PHDC's
+directly. A comment asserting a property the code does not have is worse than no
+comment, because it stops the next reader looking — which is the finding written
+into [R-ENF-07] a few days ago, arriving in my own file.
+
+**Not fixed in passing, and the fix is a declaration rather than a cleverer
+inference.** An absence cannot be disambiguated by staring at it harder: the writer
+should say so. One field in the committed file — *this run records its unscoreable
+cells* — turns a guess into a read, which is [R-ENF-06]'s own shape applied to a
+per-cell dump. That touches five runs' writers and their committed files, so it
+lands as its own piece rather than inside this one.
+
+**One thing I nearly recorded as a defect and withdrew on checking the route.**
+The census reports AMOC at 9/9, 100%, on every driver, and AMOC's own
+`flatten_cells` skips unscoreable cells outright (`if le is None: continue`) — which
+looks exactly like a false clean. It is not: AMOC is read through the MODULE route,
+which recomputes from the live builder and sees every cell, so the 100% is real.
+**The route decides whether a number means anything, and the route is not visible in
+the row.**
+
+What IS a defect, and it is mine from earlier in this session: the three flat writers
+disagree with each other. ARCC and EGCH write an unscoreable cell as
+`log_error: null, dropped: "non_positive"` — 99 and 770 such rows respectively —
+while **AMOC skips it**. AMOC's committed artefact therefore cannot answer the
+question the other two can; today the module route rescues the census, and the day
+AMOC acquires an unscoreable cell its file loses it silently and nothing says so.
+One line, and it goes with the declaration fix.
+
+What this does NOT change: the census's substantive finding stands unaltered — 13 of
+37 drivers lose cells, the omission is not one-signed (5 larger on the full sample,
+8 smaller), and **EGCH's `fx` is scored on NONE of its 50 cells while its bias over
+all of them is -5.743, appearing in no table this house publishes.**

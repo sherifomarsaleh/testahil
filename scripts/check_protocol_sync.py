@@ -68,6 +68,7 @@ def ids_in_code():
 
 
 REV = re.compile(r'^(?:DIGEST|PROTOCOL) REVISION (\d{4}-\d{2}-\d{2}[a-z]?)\b')
+REV_ANY = re.compile(r'(?:DIGEST|PROTOCOL) REVISION (\d{4}-\d{2}-\d{2}[a-z]?)\b')
 
 
 def revision(path):
@@ -83,6 +84,30 @@ def revision(path):
     return m.group(1) if m else None
 
 
+def extra_stamps(path):
+    """Every stamp in the document BEYOND the one it opens with.  [R-DOC-01]
+
+    A DOCUMENT THAT STATES TWO REVISIONS STATES NONE, which is the same defect as the
+    rule stating two limits, and this gate could not see it: the digest is a SINGLE
+    LINE, so readline() returns the whole document and the opening match is satisfied
+    by the first stamp however many follow it.
+
+    Found 07-09-2026, on this gate's own output being green. A union merge of the
+    single-line digest kept both sides' opening sentences, so the file carried
+    "DIGEST REVISION 2026-09-06c ... DIGEST REVISION 2026-09-06b ..." and every check
+    in the repository read the first one and passed. The stamp exists so a pasted copy
+    can declare its own age; a copy carrying two ages declares neither, and the reader
+    it was written for is the one person who cannot run this gate.
+
+    Shape-matched rather than word-listed, and safe for the same reason rule ids and
+    repository paths are: "DIGEST REVISION" followed by an ISO date is not a phrase
+    that occurs innocently in prose written for anyone.
+    """
+    txt = open(path, encoding='utf-8').read()
+    hits = list(REV_ANY.finditer(txt))
+    return [(m.group(1), m.start()) for m in hits[1:]]
+
+
 def main():
     full, digest = ids_in(FULL), ids_in(DIGEST)
     rf, rd = revision(FULL), revision(DIGEST)
@@ -95,7 +120,16 @@ def main():
         print(f'FAIL — revision stamps disagree: full protocol {rf}, digest {rd}. '
               f'Amend both in the same commit and bump both.')
         return 1
-    print(f'revision stamp: {rf} (both documents agree)')
+    dupes = {os.path.basename(p): extra_stamps(p) for p in (FULL, DIGEST)}
+    if any(dupes.values()):
+        for name, extra in dupes.items():
+            for rev, at in extra:
+                print(f'FAIL — {name} carries a SECOND revision stamp ({rev}) at '
+                      f'character {at}. A document that states two revisions states '
+                      f'none; the stamp exists so a pasted copy can declare its own '
+                      f'age. Delete the superseded sentence and bump.')
+        return 1
+    print(f'revision stamp: {rf} (both documents agree, one stamp each)')
     code = ids_in_code()
 
     only_full = sorted(full - digest)

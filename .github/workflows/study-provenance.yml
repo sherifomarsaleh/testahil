@@ -393,6 +393,13 @@ jobs:
       - name: Protocol sync gate
         run: python3 scripts/check_protocol_sync.py
 
+      # [R-DOC-01] A DOCUMENT THAT STATES TWO REVISIONS STATES NONE. The digest is
+      # a single line, so readline() returns the whole file and the opening match is
+      # satisfied by the first stamp however many follow it -- which is exactly how a
+      # union merge left two stamps in the file on 07-09-2026 with every check green.
+      - name: Protocol sync gate — negative control
+        run: python3 scripts/check_protocol_sync_negative_control.py
+
       # [R-ENF-01] the four defects that reached a reader on 23-Aug-2026, checked
       # mechanically before delivery instead of by the reader pasting the block back
       - name: Protocol text gate
