@@ -39,6 +39,7 @@ import hashlib
 import json
 import os
 import re
+import sys
 from math import comb
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -69,22 +70,26 @@ def _sha(path):
 
 
 def latest_supplied_prices():
-    """The latest known close, from the committed price artefact rather than typed.
+    """The latest known close for this name, through the HOUSE reader.
 
-    Resolved BY PATTERN and by the date the filename carries, so a later supply
-    is picked up instead of this file freezing on one filename.
+    This function once resolved the newest SUPPLIED_*.json by the date in its
+    filename and read the price out of that one file. That is not the same
+    quantity: prices arrive by hand, so they arrive with lags and gaps, and a
+    file supplying one name does not un-price the other eighty-nine. On
+    7 September 2026 the newest file carried a single ticker and this study
+    raised a KeyError on its own name while a perfectly good 3 September close
+    sat in the file before it.
+
+    engine/prices/gap_today.latest_price_per_ticker() already merges every
+    supplied file on each price's OWN date and returns that date beside the
+    figure, which is what [R-GAP-01 AMENDED] requires a study to be delivered
+    against. It is imported rather than reimplemented [R-ENF-03] — a second
+    reader of one artefact is a second answer waiting to happen.
     """
-    files = glob.glob(os.path.join(ENGINE, 'prices', 'SUPPLIED_*.json'))
-    if not files:
-        raise SystemExit('no supplied-price artefact found under engine/prices/')
-
-    def key(p):
-        m = re.search(r'SUPPLIED_(\d{2})-(\d{2})-(\d{4})\.json$', os.path.basename(p))
-        return (m.group(3), m.group(2), m.group(1)) if m else ('', '', '')
-
-    path = sorted(files, key=key)[-1]
-    doc = json.load(open(path, encoding='utf-8'))
-    return path, doc
+    sys.path.insert(0, os.path.join(ENGINE, 'prices'))
+    import gap_today
+    merged = gap_today.latest_price_per_ticker()
+    return merged
 
 
 class Model:
@@ -113,6 +118,9 @@ class Model:
         self.wacc = N['dcf']['wacc']
         self.tg = N['dcf']['tg']
         self.wb = N['dcf']['wacc_build']
+        # the committed cost-of-capital ladder [R-COC-01]: one forward rate per
+        # explicit year, the last of which IS the norm-built terminal rate
+        self.wb_forward = N['dcf']['forward_wacc']
         self.fx = N['sotp']['egp_usd']
         self.stake = N['sotp']['mnt_halan_stake']
         self.round_usd = N['sotp']['mnt_halan_round_usd']
@@ -138,9 +146,44 @@ class Model:
             prev = wc
         return out
 
+    def schedule(self, w=None):
+        """The committed cost-of-capital LADDER, or a declared parallel shift of it.
+
+        [R-COC-01] built this study's discount rate as a GLIDE — one forward rate
+        per explicit year falling to a norm-built terminal, with the terminal
+        brought home on the SAME cumulative factor as the last explicit year, so
+        that one date carries one price of time. Discounting the whole path at a
+        single flat rate is the construction that lever REPLACED, and it is not a
+        thing this class may express.
+
+        Called with no argument the ladder is the committed one and the answer
+        reproduces the published figure exactly. Called with a rate, that rate is
+        read as an alternative FIRST-YEAR rate and the WHOLE ladder is shifted by
+        the difference — terminal included. That is a PROXY and is labelled one
+        wherever it is published: the two alternative bases this study prices (a
+        rating-basis equity premium and a beta moved inside its own confidence
+        interval) each move the terminal too, since [R-COC-02] builds the terminal
+        cost of equity from the same beta and the same premium — but the committed
+        record carries no terminal counterpart for either, and a terminal this desk
+        solved for itself is not a committed one. A parallel shift moves the
+        terminal by the same amount as the explicit window rather than by its own
+        rebuilt amount, so the figures below price the DIRECTION and the rough size
+        of each disagreement and are not a re-derivation of the alternative basis.
+        """
+        fw = list(self.wb_forward)
+        if w is not None:
+            fw = [r + (w - fw[0]) for r in fw]
+        factors, c = [], 1.0
+        for r in fw:
+            c /= (1.0 + r)
+            factors.append(c)
+        return fw, factors
+
     def auto_ev(self, fcff, w, g):
-        pv = sum(f / (1.0 + w) ** (i + 1) for i, f in enumerate(fcff))
-        return pv + fcff[-1] * (1.0 + g) / (w - g) / (1.0 + w) ** len(fcff)
+        fw, factors = self.schedule(w)
+        pv = sum(f * d for f, d in zip(fcff, factors))
+        tv = fcff[-1] * (1.0 + g) / (fw[-1] - g)
+        return pv + tv * factors[-1]
 
     # -- the whole answer ---------------------------------------------------
     def legs(self, fcff=None, w=None, g=None, mark=None, cap=None):
@@ -172,7 +215,30 @@ class Model:
                 + self.W['normalized'] * nrm)
 
     def wacc_at(self, beta, erp):
-        return self.wb['we'] * (self.wb['rf'] + beta * erp) + self.wb['wd'] * self.wb['kd_aftertax']
+        """The explicit-window cost of capital at a moved beta, on ONE premium basis.
+
+        rf* is the NORMALISED risk-free — the local yield less this sovereign's own
+        default spread — so country risk is counted exactly once [R-COC-01]. This
+        line read self.wb['rf'] until 7 September 2026 and raised on the rebuilt
+        record, which names the field rf_star for that reason. The identity is
+        asserted rather than trusted, so the next rename fails loudly instead of
+        returning a plausible number built on a field that means something else.
+
+        THE TWO PREMIUM BASES ARE NOT INTERCHANGEABLE IN THIS FUNCTION and the
+        caller supplies the matched pair: [R-COC-01] requires the SAME basis of
+        default spread to be stripped as the premium added back, so a rating-basis
+        premium belongs with a rating-basis rf*, which this record does not carry —
+        its single `default_spread` field is the CDS basis. Passing erp_rating here
+        would silently mix the two and understate the rate. The committed
+        ke_rating / wacc_rating are the rating-basis figures; read them, do not
+        rebuild them here.
+        """
+        ke = self.wb['rf_star'] + beta * erp
+        if abs(beta - self.wb['beta']) < 1e-12 and abs(erp - self.wb['erp_cds']) < 1e-12:
+            assert abs(ke - self.wb['ke_cds']) < 1e-12, (
+                'the CAPM identity no longer reproduces this study\'s own committed '
+                'cost of equity (%.12f vs %.12f)' % (ke, self.wb['ke_cds']))
+        return self.wb['we'] * ke + self.wb['wd'] * self.wb['kd_aftertax']
 
     # -- the reverse read ---------------------------------------------------
     def implied_mark(self, price, on_primary=False):
@@ -217,9 +283,16 @@ def main():
         'because it has the shape of a computed record.' % (M.central(), published))
     assert abs(M.primary() - N['sotp']['ps']) < 1e-9
 
-    price_path, prices = latest_supplied_prices()
-    row = prices['prices'][N.get('ticker', 'GBCO')] if 'ticker' in N else prices['prices']['GBCO']
-    spot, spot_date = float(row['price']), row['date']
+    merged = latest_supplied_prices()
+    ticker = N.get('ticker', 'GBCO')
+    if ticker not in merged:
+        raise SystemExit(
+            'no supplied close is held for %s in any engine/prices/SUPPLIED_*.json. '
+            'An absent price is not a clean price [R-ENF-04]: this study is '
+            'delivered against the LATEST KNOWN price, so it stops here rather '
+            'than falling back to the one it was struck at.' % ticker)
+    row = merged[ticker]
+    spot, spot_date, price_path = float(row['price']), row['date'], row['file']
 
     # ---------------- 1. THE REVERSE READ ---------------------------------
     mark_now = M.implied_mark(spot)
