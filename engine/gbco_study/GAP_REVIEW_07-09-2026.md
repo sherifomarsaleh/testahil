@@ -236,12 +236,22 @@ A discount of 90% to a private round is arguable. **A discount of 83% to a figur
 accountant has signed a balance sheet on is a different claim**, and it is the one the market
 is making.
 
-**SO THE GAP IS ONE LINE, AND THE STUDY SAYS WHICH.** Either the market is marking a stake
-carried at EGP 14.95 per share at roughly EGP 2.58, or one of the two operating legs above is
-worth materially less than this study says. **Both are live and this review does not resolve
-them**, which is the honest state of it; what it does is stop the question being invisible.
-The place to look if the second is true is the auto leg's terminal, which carries 84% of that
-leg's enterprise value.
+**SO THE GAP IS ONE LINE, AND THE STUDY SAYS WHICH.** Either the market is marking an
+interest carried at EGP 14.95 per share at roughly EGP 2.58, or one of the two operating legs
+above is worth materially less than this study says. **Both are live and this review does not
+resolve them**, which is the honest state of it; what it does is stop the question being
+invisible. The place to look if the second is true is the auto leg's terminal, which carries
+84% of that leg's enterprise value.
+
+**AND THE SAME GAP ASKED OF A DIFFERENT INPUT DOES NOT LOOK NEARLY SO STARK, which is
+recorded here because the binary above is too neat.** Solve for the auto leg's discount rate
+instead of the associate mark, holding every other line at its published value, and the
+traded price implies **31.28% against this study's 22.88% on the round-price branch — 8.4
+points, a stretch — but only 25.71% on the carrying-value branch, 2.8 points, which is an
+ordinary disagreement about the cost of capital in this market.** The mark is the quantity
+solved above because it is the input the two branches actually differ in, not because the
+rate reading is absurd; a reader is entitled to both, and on the branch this study can most
+easily defend the market is not making an extraordinary claim at all.
 
 ---
 
@@ -270,6 +280,16 @@ own wording and its EGP 409.9mn figure, and the **42.93% from 44.01%** ownership
 reviewed statements state for the same transaction the press release states as 41.61% from
 42.58%. Both are now in the record. The overstatement was mine and it is corrected where a
 reader of this study will see it.
+
+**THE SIGN TEST DOES NOT FIND A LEAN** [R-ENF-05]. Seven contested judgements, four of them
+material on the lower branch, three resolved upward and one down — two-sided p = 0.6250, not
+flagged. Four judgements the delivered edition counted have been REMOVED rather than
+re-scored, because each computed on a lever a standing rule has since retired and a
+construction a rule forbids has no defensible alternative framing; **that removal is not
+one-sided and the record says so** — of the three that are priceable, counting them would
+have added one upward and two downward. The associate mark is deliberately NOT in the signed
+list: it is the answer rather than a fork this study resolved, and putting an unresolved fork
+into a test that measures which way forks were resolved would manufacture a count.
 
 **What would overturn the whole thing:** an audited MNT-Halan financial statement, or any
 subsequent round or transaction repricing the interest. On the round-price branch that line
