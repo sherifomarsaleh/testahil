@@ -146,6 +146,15 @@ ARTEFACT_GATES = {
                                 'from engine.mc_v3 import simulate_paths_v3\n'
                                 'def build():\n'
                                 '    json.dump({"central": 17.85}, open("study_numbers.json", "w"))\n')}),
+    'check_anchor_ordering.py': (
+        # An empty study commits neither date, so there is no ordering to violate and
+        # refusing a bare directory would be a false claim [R-ENF-07]. Planted with the
+        # defect as it stands on the exemplar: a bridge on a later sheet than the profit
+        # anchor, out of one filing.
+        "a profit anchor behind the study's own balance sheet",
+        lambda: {'study_numbers.json': ('json', {
+            'bridge_record': {'balance_sheet_date': '2026-06-30'},
+            'forecast_anchor': {'latest_reviewed_date': '2025-12-31'}})}),
     'check_terminal_spread.py': (
         # An empty study commits no terminal that reinvests, so there is no spread to earn
         # and refusing a bare directory would be a false claim about what this gate checks

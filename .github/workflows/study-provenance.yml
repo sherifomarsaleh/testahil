@@ -164,6 +164,8 @@ on:
       - 'scripts/check_published_lens_vocabulary.py'
       - 'scripts/check_output_sanity.py'
       - 'scripts/check_terminal_spread.py'
+      - 'scripts/check_anchor_ordering.py'
+      - 'scripts/check_anchor_ordering_negative_control.py'
       - 'scripts/check_terminal_spread_negative_control.py'
       - 'scripts/check_output_sanity_negative_control.py'
       - 'scripts/check_published_lens_vocabulary_negative_control.py'
@@ -301,6 +303,8 @@ on:
       - 'scripts/check_published_lens_vocabulary.py'
       - 'scripts/check_output_sanity.py'
       - 'scripts/check_terminal_spread.py'
+      - 'scripts/check_anchor_ordering.py'
+      - 'scripts/check_anchor_ordering_negative_control.py'
       - 'scripts/check_terminal_spread_negative_control.py'
       - 'scripts/check_output_sanity_negative_control.py'
       - 'scripts/check_published_lens_vocabulary_negative_control.py'
@@ -1130,6 +1134,15 @@ jobs:
 
       - name: The terminal spread — negative control
         run: python3 scripts/check_terminal_spread_negative_control.py
+
+      # [R-BRIDGE-01]/[R-ANCHOR-01]. Each gate reads its own date and neither reads the
+      # other's, so a study standing its bridge on a filing while anchoring its margins on
+      # the one before passed both. The joint condition was owned by neither.
+      - name: The profit anchor against the study's own balance sheet
+        run: python3 scripts/check_anchor_ordering.py
+
+      - name: The anchor ordering — negative control
+        run: python3 scripts/check_anchor_ordering_negative_control.py
 
       # [R-TERM-01]. The reinvestment identity rr = g/ROIC collapses to
       # TV = [NOPAT - g.IC]/(W-g), so it charges g x IC for ever and the implied
