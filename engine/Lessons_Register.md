@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**282 lessons**, of which 249 bind on every study, 25 on a class of company, and 8 on a single name.
+**287 lessons**, of which 252 bind on every study, 26 on a class of company, and 9 on a single name.
 
-By how they were learned: 48 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 192 found while building.
+By how they were learned: 53 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 192 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2569,6 +2569,36 @@ Dividing the finance charge by a liabilities total that includes trade payables,
 
 > **What would overturn it.** A jurisdiction where a corporate genuinely funds below its sovereign, which would make the check fire on work that is right.
 
+### L-362 · Operating profit forecasts run about 46% too low for GBCO.
+
+The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise — find what is wired wrong before adding any correction factor.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, GBCO walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -0.379 log (about 46% too low), average miss 0.436, wrong in the same direction in 89% of cases, and the sign holds across every bootstrap block tested (n=35).
+
+> **What would overturn it.** A later run of the same name where the sign no longer holds across bootstrap blocks.
+
+### L-364 · The revenue bias changes direction between regimes.
+
+It runs one way in one period and the other way in the next. Averaging them produces a correction that is wrong in both. Record it, do not correct for it.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, GBCO walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** By era: post-float 2017-2021 +0.093; devaluation cycle 2022-2025 -0.078.
+
+> **What would overturn it.** A longer record in which one sign dominates across all regimes.
+
+### L-365 · Dna forecasts run about 1.6 times too high for PHAR.
+
+The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise — find what is wired wrong before adding any correction factor.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, PHAR walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias +0.499 log (about 1.6 times too high), average miss 0.499, wrong in the same direction in 100% of cases, and the sign holds across every bootstrap block tested (n=9).
+
+> **What would overturn it.** A later run of the same name where the sign no longer holds across bootstrap blocks.
+
 
 ---
 
@@ -2792,6 +2822,16 @@ Active pharmaceutical ingredients are imported and priced in dollars almost ever
 
 > **What would overturn it.** A manufacturer of this class whose imported-input share of cost of sales, times its cost ratio, is SMALLER than its hard-currency revenue share — where it is, the ordinary exporter intuition holds and this lesson does not apply.
 
+### L-366 · Price per pack forecasts run about 42% too low for PHAR.
+
+The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise — find what is wired wrong before adding any correction factor.
+
+**Applies to:** every pharmaceutical manufacturer, generic and branded  ·  *Learned from:* fundamental walk-forward test, PHAR walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -0.352 log (about 42% too low), average miss 0.375, wrong in the same direction in 89% of cases, and the sign holds across every bootstrap block tested (n=9).
+
+> **What would overturn it.** A later run of the same name where the sign no longer holds across bootstrap blocks.
+
 
 ## Real-estate developer, off-plan, point-in-time on handover
 
@@ -2905,6 +2945,19 @@ A walk-forward needs an origin to project from and a later actual to score again
 > **What it cost, or how we know.** 4 sourceable fiscal years on the best available basis against a bar of 5, and 0 scoreable origins: the last sourceable actual is FY2023, so the last possible origin is FY2022 at h=1, and FY2022 needs five years of history to it (FY2018-FY2022) which do not exist on any basis in hand.
 
 > **What would overturn it.** A filing archive that becomes reachable, or filings supplied directly, taking the sourceable span to five years or more on one basis.
+
+
+## GBCO
+
+### L-363 · The finance cost forecast loses to assuming no change.
+
+At 5 of 5 horizons, simply carrying last year's number forward beat the model. A method that cannot beat 'no change' has not earned the precision it displays, and should be published as a range or not at all.
+
+**Applies to:** GBCO only  ·  *Learned from:* fundamental walk-forward test, GBCO walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Negative skill against the freeze benchmark at horizons h1, h2, h3, h4, h5, worst -0.485.
+
+> **What would overturn it.** A later run where the model beats the freeze benchmark at a majority of horizons.
 
 
 ## PHDC
