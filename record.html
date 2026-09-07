@@ -16,6 +16,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/style.css">
 <link rel="stylesheet" href="assets/test.css?v=0827f">
+<style>
+.t-rowlink{color:inherit;text-decoration:none;display:block}
+.t-rowlink:hover b,.t-rowlink:focus-visible b{text-decoration:underline;color:var(--teal2)}
+</style>
 </head>
 <body>
 <header class="nav t-nav"><div class="wrap"><a class="brand" href="/">testahil?</a><nav><a href="/coverage.html" data-p="coverage">Coverage</a><a href="/tools.html" data-p="tools">Tools</a><a href="/savings.html" data-p="savings">Savings check</a><a href="/record.html" data-p="record" class="on">Track record</a><a href="/method.html" data-p="method">Method</a></nav><div class="t-right"><div class="t-search"><input id="t-q" type="search" placeholder="🔍 Search a stock…" autocomplete="off" aria-label="Search a stock"><div class="t-dd" id="t-qq"></div></div><button class="t-theme" id="theme-toggle" title="Light / dark" aria-label="Toggle theme">◐</button></div></div></header><a class="t-strip" href="/record.html"><span class="wrap"><b>Track record:</b>&nbsp;<span class="num" id="ts-n">…</span>&nbsp;3-month windows checked ·&nbsp;<span class="num" id="ts-h">…</span>&nbsp;inside the 90% band (<span class="num" id="ts-p">…</span>) → every one dated, right or wrong</span></a>
@@ -113,7 +117,10 @@ renderChrome("record");
   function pendRow(r){
     var k=keyByInstrument(r.instrument), nm=k?ALL[k].name:r.instrument;
     var link=k?'<a href="'+pageFor(k)+'">study →</a>':'';
-    return '<tr><td><b>'+nm+'</b><br><span class="num" style="font-size:var(--fs-caption);color:var(--muted)">'+r.instrument+'</span></td>'+
+    var nameCell = k
+      ? '<a class="t-rowlink" href="'+pageFor(k)+'"><b>'+nm+'</b><br><span class="num" style="font-size:var(--fs-caption);color:var(--muted)">'+r.instrument+'</span></a>'
+      : '<b>'+nm+'</b><br><span class="num" style="font-size:var(--fs-caption);color:var(--muted)">'+r.instrument+'</span>';
+    return '<tr><td>'+nameCell+'</td>'+
       '<td class="num">'+r.anchor_date+'</td><td class="num">'+fmtPx(r.anchor_price,r.ccy)+'</td><td>'+r.horizon_label+'</td>'+
       '<td class="num">'+fmtPx(r.p5)+' – '+fmtPx(r.p95)+'</td><td class="num">'+r.grade_date+(r.grade_basis==="projected"?'<span class="muted" style="font-size:var(--fs-caption)"> (projected)</span>':'')+'</td>'+
       '<td>'+link+'</td></tr>';
@@ -152,7 +159,13 @@ renderChrome("record");
   document.getElementById("r-graded").innerHTML = graded.map(function(r){
     var k=keyByInstrument(r.instrument), nm=k?ALL[k].name:r.instrument;
     var inBand = r.realized_close>=r.p5 && r.realized_close<=r.p95;
-    return '<tr><td><b>'+nm+'</b><br><span class="num" style="font-size:var(--fs-caption);color:var(--muted)">'+r.instrument+' · '+r.anchor_date+'</span></td>'+
+    /* The name cell is the way into the name: every graded row links to that
+       ticker's own study page, so a result you spot here is one click from the
+       forecast that produced it. */
+    var nameCell = k
+      ? '<a class="t-rowlink" href="'+pageFor(k)+'"><b>'+nm+'</b><br><span class="num" style="font-size:var(--fs-caption);color:var(--muted)">'+r.instrument+' · '+r.anchor_date+'</span></a>'
+      : '<b>'+nm+'</b><br><span class="num" style="font-size:var(--fs-caption);color:var(--muted)">'+r.instrument+' · '+r.anchor_date+'</span>';
+    return '<tr><td>'+nameCell+'</td>'+
       '<td>'+r.horizon_label+'</td><td class="num">'+fmtPx(r.p5)+' – '+fmtPx(r.p95)+'</td><td class="num">'+fmtPx(r.realized_close,r.ccy)+'</td>'+
       '<td><span class="t-badge '+(inBand?'good':'bad')+'">'+(inBand?'inside the band':'outside the band')+'</span></td></tr>';
   }).join("") || '<tr><td colspan="5" class="muted">The first live forecasts are still running toward their check dates — the backtest tally above is the record so far.</td></tr>';
