@@ -26,8 +26,18 @@ import json, os
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 # --------------------------------------------------------------------------
-# The filings.  Each is a page extract of the named annual report, committed
-# beside this file; the URL is the original the extract was taken from.
+# The filings.  Each is the named annual report, or a page extract of it, held
+# in filings/ beside this file.
+#
+# THAT DIRECTORY IS NOT COMMITTED — `.gitignore` line 51 excludes
+# engine/*_walkforward/filings/ across the repository — so a fresh clone does
+# NOT carry these PDFs, and saying so here is the point: every record below
+# names the ORIGINAL annual report and the EXACT URL it was downloaded from, so
+# the extraction is reproducible from EIPICO's own investor-relations page
+# rather than from a local copy nobody else has. The FY2021-FY2025 files are
+# page extracts because the seven whole reports run to 107MB; the extract's own
+# filename carries the page span, the record carries the page, and the source of
+# record is the URL.
 # --------------------------------------------------------------------------
 FILINGS = {
     "AR2019": dict(file="filings/PHAR_AR2019_BoD_Report.pdf",
