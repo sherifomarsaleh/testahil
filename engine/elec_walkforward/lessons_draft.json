@@ -13,7 +13,9 @@
    "overturned_by": "A filing archive that becomes reachable, or filings supplied directly, taking the sourceable span to five years or more on one basis.",
    "origin": "walk_forward_fundamental",
    "rule": "skip_insufficient_history",
-   "confirmed": false
+   "confirmed": true,
+   "applies_to": "ELEC",
+   "registered": "L-356"
   },
   {
    "proposed_id": "DRAFT-ELEC-02",
@@ -26,7 +28,8 @@
    "overturned_by": "An index whose listings are shown to be reliably fetchable, making the per-file probe redundant.",
    "origin": "walk_forward_fundamental",
    "rule": "unserved_archive",
-   "confirmed": false
+   "confirmed": true,
+   "registered": "L-357"
   },
   {
    "proposed_id": "DRAFT-ELEC-03",
@@ -39,7 +42,8 @@
    "overturned_by": "A study whose vendor panel is later reconciled line by line to filings on the same basis, showing the check adds nothing.",
    "origin": "walk_forward_fundamental",
    "rule": "panel_unreconciled",
-   "confirmed": false
+   "confirmed": true,
+   "registered": "L-358"
   },
   {
    "proposed_id": "DRAFT-ELEC-04",
@@ -52,7 +56,8 @@
    "overturned_by": "A house convention that tags every committed historical with whether it came from a filing, making the confusion impossible to make.",
    "origin": "walk_forward_fundamental",
    "rule": "filed_record_that_was_not_filed",
-   "confirmed": false
+   "confirmed": true,
+   "registered": "L-359"
   },
   {
    "proposed_id": "DRAFT-ELEC-05",
@@ -65,7 +70,8 @@
    "overturned_by": "A run of filings that do disclose a scalar or a dominant class, making route (1) the normal case rather than the exception.",
    "origin": "walk_forward_fundamental",
    "rule": "useful_life_route_one_fails",
-   "confirmed": false
+   "confirmed": true,
+   "registered": "L-360"
   },
   {
    "proposed_id": "DRAFT-ELEC-06",
@@ -78,7 +84,8 @@
    "overturned_by": "A jurisdiction where a corporate genuinely funds below its sovereign, which would make the check fire on work that is right.",
    "origin": "walk_forward_fundamental",
    "rule": "trap_i_below_sovereign",
-   "confirmed": false
+   "confirmed": true,
+   "registered": "L-361"
   }
  ]
 }

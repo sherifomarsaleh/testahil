@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**276 lessons**, of which 244 bind on every study, 25 on a class of company, and 7 on a single name.
+**282 lessons**, of which 249 bind on every study, 25 on a class of company, and 8 on a single name.
 
-By how they were learned: 42 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 192 found while building.
+By how they were learned: 48 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 192 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -66,10 +66,10 @@ They test different machinery on different evidence, and the first edition of th
 
 | | what it tests | names | resolved forecasts |
 |---|---|---|---|
-| **Fundamental** | the forecasting method — project each driver from a past origin, score revenue, cost and profit against what happened | 5 (AMOC, ARCC, EGCH, PHDC, TMGH) | 10 origins x 5 horizons |
-| **Price engine** | the probability cone — strike it at a past origin and score band coverage and a proper score against a naive rule | 20 | 375 |
+| **Fundamental** | the forecasting method — project each driver from a past origin, score revenue, cost and profit against what happened | 10 (AMOC, ARCC, EGCH, ELEC, GBCO, PHAR, PHDC, SCEM, SWDY, TMGH) | 10 origins x 5 horizons |
+| **Price engine** | the probability cone — strike it at a past origin and score band coverage and a proper score against a naive rule | 20 | 414 |
 
-**The price engine is well tested; the fundamental method is not.** 20 names carry price-engine evidence, including DU (18 forecasts) and GBCO (17). The fundamental method has been through a full training run on AMOC and ARCC and EGCH and PHDC and TMGH alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 375 forecasts across 20 names.
+**The price engine is well tested; the fundamental method is not.** 20 names carry price-engine evidence, including DU (18 forecasts) and GBCO (56). The fundamental method has been through a full training run on AMOC and ARCC and EGCH and ELEC and GBCO and PHAR and PHDC and SCEM and SWDY and TMGH alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 414 forecasts across 20 names.
 
 **Not yet acted on (2):** L-104 (Deliveries must be constrained by what has actually been sold), L-203 (Palm Hills' 2025 balance sheet and cash-flow statement disagree by 47% of revenue). These are recorded as open rather than quietly carried as done.
 
@@ -2519,6 +2519,56 @@ Reading a record means agreeing with it about names: the key a field is under, t
 
 > **What would overturn it.** A session in which a first-attempt measurement is wrong for some OTHER reason — an arithmetic slip, a wrong population, a bad assumption about the world rather than about a name. The claim is about naming specifically; a different failure mode would say this one is not the dominant hazard it appeared to be.
 
+### L-357 · An index of filings is not an archive of filings.
+
+A company can list its statements on its own website and serve none of them. The list looks like evidence the documents exist and are obtainable; only fetching each one tells you which. Record the outcome per file, not per page.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, ELEC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** 61 statement files listed; 19 on the live host and 0 of those fetchable; 42 on a host whose DNS does not resolve; the index's last period is 2025-09-30 while the last statement on the basis the study models is FY2020.
+
+> **What would overturn it.** An index whose listings are shown to be reliably fetchable, making the per-file probe redundant.
+
+### L-358 · A study's historicals can be unverifiable and still pass every gate.
+
+Where a company stops publishing on the basis a study models, the study's history quietly becomes a vendor's account of it. Every arithmetic check still passes, because the numbers are internally consistent — they are simply nobody's filed numbers. The test is to measure the study's panel against the filings that DO exist and against the wedge between the two bases, rather than to assume the difference is the consolidation.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, ELEC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** At the one year existing on both bases the group is 1.73x the parent on revenue and 2.04x on net profit. The study's FY2023 revenue is 1.79x the parent — consistent with a consolidated figure — while its net profit is 3.09x, 1.51 times beyond what the measured wedge delivers.
+
+> **What would overturn it.** A study whose vendor panel is later reconciled line by line to filings on the same basis, showing the check adds nothing.
+
+### L-359 · Check that a "filed record" was filed before reasoning from it.
+
+A review can reach the right conclusion about a study and still take its benchmark from the study's own inputs. Calling a number the company's own record makes it read as external evidence when it is the thing under test, and the argument then runs in a circle nobody can see.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, ELEC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** A review described a terminal-margin range of 25.33%-30.68% as the company's own filed record; it is the study's committed hist_is, and two of its three years have no filing at all. The filed range on the basis that can be checked is 1.43%-17.49%, which puts the forecast of 12.30% INSIDE it rather than at half the lowest filed year, and puts the price's reverse read at 1.6 times the highest filed margin.
+
+> **What would overturn it.** A house convention that tags every committed historical with whether it came from a filing, making the confusion impossible to make.
+
+### L-360 · The accounting-policies note usually gives a range, not a life.
+
+[R-TERM-01] needs one disclosed useful life and the policy note rarely supplies one. Reading a span and picking a point inside it is the choice the rule exists to forbid, so the honest output is the derived identity and a band.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, ELEC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Route (1) gave spans only (10-50, 4-25, 5-20, 5-20, 5, 5-10); no dominant class, no weighting. Route (2) — depreciable gross cost over the annual charge — gives 24.13 years on the full base and 17.54 excluding the 27.3% of that base the note itself discloses as fully depreciated and still in use, with a prior-year control at 24.99.
+
+> **What would overturn it.** A run of filings that do disclose a scalar or a dominant class, making route (1) the normal case rather than the exception.
+
+### L-361 · A borrowing rate below the sovereign is the arithmetic failing, not the company borrowing cheaply.
+
+Dividing the finance charge by a liabilities total that includes trade payables, related-party balances, tax and provisions understates the rate. The useful part is that the error announces itself: a corporate cannot fund below its own government, so a rate under the sovereign is a denominator problem and can be caught without knowing the right answer.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, ELEC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** On the borrowings that actually bear interest the rate runs 8.49%, 8.98%, 18.25%; on total liabilities 4.48%, 5.88%, 14.10% — understated by 3.09 to 4.15 points, and below the Egyptian sovereign in 2 of 3 years.
+
+> **What would overturn it.** A jurisdiction where a corporate genuinely funds below its sovereign, which would make the check fire on work that is right.
+
 
 ---
 
@@ -2842,6 +2892,19 @@ The 1960 electrolytic plant was shut inside the window and replaced by a gas-fed
 > **What it cost, or how we know.** Bias -0.596 log (about 1.8 times too low), average miss 0.812, wrong in the same direction in 67% of cases, and the sign holds across every bootstrap block tested (n=55).
 
 > **What would overturn it.** A re-run of the same rules on origins FY2020 onward only, where the revenue bias no longer holds its sign across bootstrap blocks.
+
+
+## ELEC
+
+### L-356 · The forecasting method could not be tested on ELEC at all.
+
+A walk-forward needs an origin to project from and a later actual to score against. Where the archive is too short there is no test to run, and saying so is the result — not a gap to be filled by stretching the window.
+
+**Applies to:** ELEC only  ·  *Learned from:* fundamental walk-forward test, ELEC walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** 4 sourceable fiscal years on the best available basis against a bar of 5, and 0 scoreable origins: the last sourceable actual is FY2023, so the last possible origin is FY2022 at h=1, and FY2022 needs five years of history to it (FY2018-FY2022) which do not exist on any basis in hand.
+
+> **What would overturn it.** A filing archive that becomes reachable, or filings supplied directly, taking the sourceable span to five years or more on one basis.
 
 
 ## PHDC
