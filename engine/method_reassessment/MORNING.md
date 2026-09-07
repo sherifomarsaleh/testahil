@@ -2684,3 +2684,34 @@ reason recorded rather than asserted.
 
 It is a **measurement, not a gate**: pricing an exception is a judgement, and a gate would
 have to define "priced" in code.
+
+### Correction to the entry above, within the hour: the counts change what it says
+
+I reported "137 bands, 11 outside" without the observation count behind each band. **With
+the counts, the finding is much weaker than I stated:**
+
+| run | cells outside | n behind them |
+|---|---|---|
+| ARCC | 5 | **3, 4, 3, 3, 3** |
+| EGCH | 1 | 9 |
+| TMGH | 5 | 5–8 |
+
+**Two of the runs say in their own notes why this matters.** EGCH: "percentiles are printed
+only at n ≥ 9". AMOC: on 4, 3 and 2 observations "no percentile is computed … the span and
+the bias/MAE band are what the record supports."
+
+So of the eleven, **none sits on a figure its own run calls a p10–p90**, one sits on a factor
+at n=9, and ten rest on fewer than nine observations. The criterion says *p10–p90*, and only
+PHDC publishes one — PHDC has zero cells outside.
+
+Both readings are now printed and neither is chosen silently:
+
+- **BROAD** (any published band, however thin): NOT MET — 11 cells outside.
+- **STRICT** (only a figure the run itself calls a p10–p90): MET on the one run that
+  publishes percentiles, and **untestable on the four that do not** — and an untestable
+  criterion is UNMEASURED, never met.
+
+Treating every exclusion as equivalent **overstates** the finding; reporting only the strict
+reading **understates** it. Calling a span from three observations a p10–p90 would be the free
+parameter this house forbids. My earlier message gave the broad number alone, which read as a
+stronger claim about the method than the evidence supports.

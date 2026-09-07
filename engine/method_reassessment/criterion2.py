@@ -63,6 +63,13 @@ def _load(tk):
 # ---------------------------------------------------------------- named adapters
 # Each returns [(driver, horizon, low, high, point, family)] or raises.
 
+def _n_of(v):
+    for k in ('n', 'n_full', 'n_kima2', 'n_observations'):
+        if isinstance(v.get(k), (int, float)):
+            return int(v[k])
+    return None
+
+
 def _mult_band(o, key, lo_k, hi_k):
     """published_band[horizon][driver] -> factors. The point of a multiplier is 1.0."""
     out = []
@@ -73,7 +80,8 @@ def _mult_band(o, key, lo_k, hi_k):
         for drv, v in drivers.items():
             if not isinstance(v, dict) or lo_k not in v:
                 continue
-            out.append((drv, str(h), float(v[lo_k]), float(v[hi_k]), 1.0, 'multiplier'))
+            out.append((drv, str(h), float(v[lo_k]), float(v[hi_k]), 1.0,
+                        'multiplier', _n_of(v), 'factor'))
     return out
 
 
@@ -95,7 +103,7 @@ def adapt_arcc(o):
             if not isinstance(v, dict) or 'mult_low' not in v:
                 continue
             out.append((drv, str(h), float(v['mult_low']), float(v['mult_high']),
-                        1.0, 'multiplier'))
+                        1.0, 'multiplier', _n_of(v), 'factor'))
     return out
 
 
@@ -112,7 +120,7 @@ def adapt_phdc(o):
             if point is None:
                 continue
             out.append((drv, str(h), float(v['p10']), float(v['p90']),
-                        float(point), 'level'))
+                        float(point), 'level', _n_of(v), 'percentile'))
     return out
 
 
@@ -129,7 +137,7 @@ def adapt_tmgh(o):
             if point is None:
                 continue
             out.append((drv, str(year), float(v['low']), float(v['high']),
-                        float(point), 'level'))
+                        float(point), 'level', _n_of(v), 'span'))
     return out
 
 
@@ -178,29 +186,49 @@ def main(argv):
         fam = cells[0][5]
         print('  %-6s %3d driver-horizon bands (%s)  %d OUTSIDE'
               % (tk, len(cells), fam, len(outside)))
-        for drv, h, lo, hi, pt, _f in sorted(outside)[:6]:
-            print('           %-20s h=%-4s band [%.4g, %.4g]  point %.4g'
-                  % (drv, h, lo, hi, pt))
+        for c in sorted(outside)[:6]:
+            drv, h, lo, hi, pt, _f, n, named = c
+            print('           %-18s h=%-5s band [%.4g, %.4g]  point %.4g  n=%s (%s)'
+                  % (drv, h, lo, hi, pt, n if n is not None else '?', named))
     print('\n  %d bands read across %d run(s); %d place the run\'s own forward driver '
           'OUTSIDE its own band' % (tot, len(FIVE) - len(unread), out))
     if unread:
         print('  UNREAD: %s — an unread run is not a passing one [R-ENF-04]'
               % ', '.join(unread))
-    # THE CRITERION ALLOWS AN EXCEPTION AND THE EXCEPTION MUST BE PRICED. No run
-    # commits one in its forward_ranges.json — measured, not assumed. Whether a study
-    # argues one in PROSE is not something this instrument reads, and it says so
-    # rather than reporting an absence it did not look for [R-ENF-04].
+    # BOTH READINGS ARE REPORTED AND NEITHER IS CHOSEN SILENTLY. The criterion says
+    # "p10-p90", and only ONE run publishes a figure it calls a percentile: PHDC's
+    # p10/p90. The others publish a FACTOR or a SPAN, and two of them say in their own
+    # notes why — EGCH prints percentiles only at n>=9, and AMOC states that on 4, 3 and
+    # 2 observations "no percentile is computed ... the span and the bias/MAE band are
+    # what the record supports". A band from three observations is not a p10-p90 and
+    # calling it one would be the free parameter this house forbids; treating every
+    # exclusion as equivalent would OVERSTATE the finding, and reporting only the
+    # percentile reading would UNDERSTATE it. So both are printed with their counts.
+    strict = [c for _t, st, cs, o_ in rows if st == 'read'
+              for c in o_ if c[7] == 'percentile']
+    thin = [c for _t, st, cs, o_ in rows if st == 'read'
+            for c in o_ if c[7] != 'percentile' and (c[6] or 0) < 9]
+    firm = [c for _t, st, cs, o_ in rows if st == 'read'
+            for c in o_ if c[7] != 'percentile' and (c[6] or 0) >= 9]
+    print('\n  OF THE %d OUTSIDE: %d on a figure the run CALLS a percentile, '
+          '%d on a factor or span at n>=9, %d on fewer than nine observations'
+          % (out, len(strict), len(firm), len(thin)))
+    print('\n  CRITERION 2 (first half), BOTH READINGS:')
     if unread:
-        verdict = ('UNMEASURED on %s — an unread run is not a passing one'
-                   % ', '.join(unread))
-    elif out:
-        verdict = ('NOT MET — %d driver-horizon cells place the run\'s own forward '
-                   'driver outside its own band, and NO run commits a priced exception '
-                   'in its ranges file. Whether one is argued in prose is not read '
-                   'here, and prose is not a price.' % out)
+        print('    UNMEASURED on %s — an unread run is not a passing one [R-ENF-04].'
+              % ', '.join(unread))
+    print('    BROAD  (any published band, however few observations behind it): '
+          '%s — %d cell(s) outside.'
+          % ('NOT MET' if out else 'MET', out))
+    if strict:
+        print('    STRICT (only a figure the run itself calls a p10-p90): NOT MET — '
+              '%d cell(s) outside.' % len(strict))
     else:
-        verdict = 'every forward driver sits inside its own record'
-    print('\n  CRITERION 2 (first half): %s' % verdict)
+        print('    STRICT (only a figure the run itself calls a p10-p90): MET on the '
+              'ONE run that publishes percentiles, and UNTESTABLE on the four that do '
+              'not — an untestable criterion is UNMEASURED, never met [R-ENF-04].')
+    print('    NO run commits a priced exception in its ranges file — measured, not '
+          'assumed. Whether one is argued in prose is not read here.')
     print('  The second half (every claimed correction reconciles to its log) is gated '
           'by\n  scripts/check_corrections_applied.py and is not restated here.')
     return 0
