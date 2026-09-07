@@ -850,6 +850,29 @@ assembler with a finance arm. Filing it as one would put a wrong label in the co
 this run because `lessons_register.py` is a shared register and four other runs are in flight.
 The name is the fifth on the lens-registry escalation and stays on the [R-LENS-03] ratchet.
 
+**REGISTERED, 07-09-2026, later the same day — appended rather than rewritten, because a
+dated record says what was true when it was written.** The principal ruled: build a model
+for this company rather than adopting the holding-company lens, and fall back to that lens
+only if the bespoke one fails. It did not fail. The row registered is
+`automotive assembler and distributor with a captive lender` →
+`('sotp', ('dcf', 'residual_income', 'relative_multiple', 'book_value'))`.
+
+**IT IS NOT THE SET PROPOSED ABOVE AND THE DIFFERENCE IS THE WHOLE POINT.** The proposal
+carried neither `dcf` nor `residual_income`, and both turned out to be the reason a new row
+was owed at all rather than a rename. A group cash flow cannot reach a 41.61% interest in an
+unlisted company the group does not consolidate, so the sum of the parts must be the primary
+with the cash-flow lens INSIDE it as one of the parts — which is what `sotp` has always meant
+in `LENS_KINDS`. And the lender has to be valued on its own equity against what that equity
+earns, which is residual income arriving as a PART; the delivered study carried it at book
+times one, and book times one is the weighting of book value [R-LENS-03] forbids outright.
+`ev_ebitda_own_history` is NOT in the registered set: an enterprise multiple on a group whose
+reported earnings swing on associate marks measures the marks rather than the business.
+
+The escalation `lens-registry-has-no-row-for-an-auto-assembler-with-a-captive-lender` is
+closed with the answer written into `research_protocol.py` and `lessons_register.py`. The
+name is OFF the [R-LENS-03] ratchet. The SAVOLA escalation beside it is untouched and is a
+different question, as that escalation's own recommendation said it should be.
+
 **Scope: FULL.** FY2012–FY2025, fourteen sourceable fiscal years, all tier A from GB Corp's own
 documents, all footed. Nine origins FY2016–FY2024, horizons 1–5, 245 scored cells.
 
