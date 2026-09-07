@@ -21,10 +21,21 @@ a rounding error; it is most of the bridge.
 WHAT IS HERE.  For every origin the run declares — FY2018 to FY2025, fiscal years
 ending 31 December — cash and equivalents, interest-bearing debt, property plant
 and equipment, depreciation and amortisation, the working-capital lines, capital
-expenditure, and the share count with the par value it was footed against.  FY2017
-is carried too, OUTSIDE the origin list and labelled as what it is: the prior-year
-anchor the identity capex = dPPE + D&A needs at the first origin.  It is not an
-origin of this run and is not recorded as one.
+expenditure, and the share count with the par value it was footed against.  FY2015,
+FY2016 and FY2017 are carried too, OUTSIDE the origin list and labelled as what they
+are: the prior-year anchors a trailing window reaches back into.  None of them is an
+origin of this run and none is recorded as one.
+
+WHY THE ANCHOR RUNS BACK THREE YEARS AND NOT ONE.  The identity capex = dPPE + D&A
+needs property at two dates, which is why FY2017 was carried when FY2018 was the
+first origin.  A capital-spending INTENSITY is a different shape of question: it is
+taken over the three fiscal years to a date, so a rebuild standing at FY2017 reads
+FY2015, FY2016 and FY2017 and one standing at FY2018 reads FY2016, FY2017 and
+FY2018.  With the block starting at FY2017 neither of those windows could be filled
+and both dates were unanswerable — not because the figures were disputed but because
+nobody had copied them out.  This is [R-FCAL-01 AMENDED]'s own lesson arriving one
+turn later: WHAT A PROCESS COMMITS DECIDES WHAT CAN EVER BE ASKED OF IT, and the
+question that arrived needed one more year of the same copying.
 
 EVERY FIGURE IS A COPY, NOT NEW RESEARCH.  Each one sits on a balance sheet or a
 cash-flow statement in a filing this run had already parsed cell by cell; carrying
@@ -33,22 +44,47 @@ company could ever be rebuilt at a past origin, permanently, for any year whose
 filings are no longer to hand.
 
 ROUTE, AND WHY ARITHMETIC DECIDES [clause (iii)].  ARCC files every statement as
-an image: across the nine annual filings read here, not one page of 437 carried a
-text layer worth reading, so every figure arrived by OCR at 300 dpi off the
+an image: across the eleven annual filings read here, not one page carried a text
+layer worth reading — the two added last, FY2015 and FY2016, return NIL extractable
+text across all 36 and 47 of their pages — so every figure arrived by OCR off the
 rendered pixels and NOT ONE is believed because it looked clean.  Every balance
-sheet foots — components to their subtotals, subtotals to total assets, assets to
-equity and liabilities — and the footing runs at import as assertions rather than
-living in a comment, which is this run's own house discipline from `panel.py`.
+sheet foots against the identities ITS OWN PAGE states, and the footing runs at
+import as assertions rather than living in a comment, which is this run's own house
+discipline from `panel.py`.
 
-FIVE FIGURES WERE READ WRONGLY AND ARITHMETIC CAUGHT ALL FIVE.  Each looked
+TWO PRESENTATIONS, AND THE CHECK FOLLOWS THE PAGE.  FY2016 onwards print assets =
+equity + liabilities.  FY2015 prints a WORKING-CAPITAL balance sheet and states no
+total-assets line and no total-liabilities line at all, so a checker demanding them
+would be condemning a page for not printing something the company never printed.
+What is tested instead is every identity that page DOES assert — current assets less
+current liabilities to its stated deficit, non-current assets plus that deficit to
+its stated total investment, equity plus non-current liabilities to its stated total
+finance, and the two sides against each other — which is the same number of tests
+and the honest ones.  A GATE THAT FIRES ON A DIFFERENT PRESENTATION HAS FOUND A
+PRESENTATION, NOT A DEFECT.
+
+SEVEN FIGURES WERE READ WRONGLY AND ARITHMETIC CAUGHT ALL SEVEN.  Each looked
 perfectly clean on the page and none would have been visible to a reader of the
 extracted figure:
 
+  FY2015 total non-current liabilities         1 688 590 700 -> 1 088 590 700
+  FY2016 investments in a joint venture        2 445 783   -> 1 445 783
+  FY2016 current income tax payable            116 577 542 -> 116 577 541
   FY2017 creditors and other credit balances   119 300 630 -> 119 240 630
   FY2018 trade receivables                     illegible   -> 92 994 532
   FY2019 total non-current assets              2 712 684 353 -> 2 712 084 353
   FY2023 depreciation of property and plant    215 976 939 -> 215 376 939
   FY2023 amortisation of right-of-use assets   6 891 239   -> 6 891 333
+
+The FY2015 one is the argument for footing in one line: a six-hundred-million error
+in a single digit, on a page whose every other figure was read correctly, refused by
+the page's own three components AND by its own total-finance line, and returning the
+right figure when the same page was re-rendered at 600 dpi.  The FY2016 tax figure
+is the harder shape — the LAST digit, printing ...541 at one magnification and ...542
+at another in BOTH the balance sheet and note 10.2, so no amount of re-rendering
+settles it; what settles it is that the column requires 541, note 10.2's own two
+components give 541, and the FY2017 filing's comparative prints 541.  THREE ROUTES
+TO A DIGIT NO SCAN WILL RESOLVE.
 
 The first three were settled by the statement's own column.  The last two were
 first settled by the FY2024 filing's comparative column, whose every line foots to
@@ -78,17 +114,21 @@ The FY2017 creditors line came back 119 300 630 on the second reading as well an
 the column total again refuses it — the same misread twice, caught the same way,
 which is the argument for footing rather than for a better extractor.
 
-THE SHARE COUNT IS FOOTED NINE TIMES, NOT READ ONCE [clause (ii)].  Every one of
-these filings carries its own capital note — note 20 throughout, titled "Capital"
-to 2021 and "Issued and paid-up capital" from 2022 — and every one prints the same
-three rows: par value per share, the number of ordinary shares authorized, issued
-and fully paid, and the issued capital.  Nine pages, nine readings, and the count
-is the same on all of them because the CAPITAL is the same on all of them: the
+THE SHARE COUNT IS FOOTED ELEVEN TIMES, NOT READ ONCE [clause (ii)].  Every one of
+these filings carries its own capital note — note 16 in FY2015 and note 20 from
+FY2016 on, titled "Capital" to 2021 and "Issued and paid-up capital" from 2022 — and
+every one prints the same three rows: par value per share, the number of ordinary
+shares authorized, issued and fully paid, and the issued capital.  Eleven pages,
+eleven readings, and the count is the same on all of them because the CAPITAL is the
+same on all of them: the
 last resolution that moved it was the January 2014 stock split, recited in note
-20.2 of the 2017 and 2018 filings, which took EGP 757 479 400 from 7 574 794
-shares at EGP 100 to 378 739 700 at EGP 2.  An unchanged count read off nine pages
-is not today's count carried back; what clause (ii) forbids is the carrying, and
-the difference is that these are nine pages.  Each foots twice — issued capital
+20.2 of the 2016, 2017 and 2018 filings and in note 16 of the FY2015 filing itself,
+which took EGP 757 479 400 from 7 574 794 shares at EGP 100 to 378 739 700 at EGP 2 —
+and which is INSIDE this window at its near end, so the two years added here are the
+two closest to the event that last moved the count and are read on their own pages
+rather than assumed from the years after them.  An unchanged count read off eleven
+pages is not today's count carried back; what clause (ii) forbids is the carrying, and
+the difference is that these are eleven pages.  Each foots twice — issued capital
 divided by par reproduces the count the same note states, and the note's issued
 capital reproduces the issued and paid-up capital on that year's own balance
 sheet — and both run at import.  TWO THINGS ARE RECORDED RATHER THAN TIDIED AWAY:
@@ -122,6 +162,8 @@ ORIGINS = ["FY%d" % y for y in range(2018, 2026)]
 # The file names are the company's own, as published on its investor-relations
 # archive and as this run's `panel.py` SOURCES already records them.
 FILES = {
+    2015: ("ACC-2015-Consolidated-Financials-English.pdf", "ARCC_FY2015_Consolidated.pdf"),
+    2016: ("FY-2016-Consolidated-Financials-English.pdf", "ARCC_FY2016_Consolidated.pdf"),
     2017: ("FY-2017-Consolidated-Financials-English.pdf", "ARCC_FY2017_Consolidated.pdf"),
     2018: ("ARCC_FY_2018_Consolidated_Financials-English.pdf", "ARCC_FY2018_Consolidated.pdf"),
     2019: ("FY_2019_Consolidated_Financials-English.pdf", "ARCC_FY2019_Consolidated.pdf"),
@@ -134,12 +176,14 @@ FILES = {
 }
 
 ROUTE = ("OCR off the rendered pixels — the filing carries no text layer on any "
-         "page (nil extractable text across all 437 pages of the nine annual "
-         "filings), so every figure was read from an image, at 200 to 300 dpi, "
-         "with a table re-rendered at higher magnification wherever a small figure "
-         "did not resolve; every figure footed against the statement's own "
-         "arithmetic before it was recorded, and the arithmetic rather than the "
-         "extractor's confidence is what settled every disagreement")
+         "page (nil extractable text across all 520 pages of the eleven annual "
+         "filings, re-measured when FY2015 and FY2016 were added and nil on both "
+         "of those too), so every figure was read from an image, at 200 to 300 dpi, "
+         "with a table re-rendered at higher magnification — 600, 1200, up to 2400 "
+         "dpi on the digits that would not resolve — wherever a small figure did "
+         "not settle; every figure footed against the statement's own arithmetic "
+         "before it was recorded, and the arithmetic rather than the extractor's "
+         "confidence is what settled every disagreement")
 
 # ---------------------------------------------------------------------------
 # Consolidated statement of financial position, OWN column, at 31 December.
@@ -147,6 +191,76 @@ ROUTE = ("OCR off the rendered pixels — the filing carries no text layer on an
 # statement's own subtotals in `foot()`.
 # ---------------------------------------------------------------------------
 BS = {
+ # FY2015 IS A DIFFERENT STATEMENT ALTOGETHER AND THE RECORD SAYS SO RATHER THAN
+ # FLATTENING IT.  This filing presents a WORKING-CAPITAL balance sheet — non-current
+ # assets, then current assets less current liabilities to a "(Deficit in) working
+ # capital", then "Total investment", then "Financed by:" equity and non-current
+ # liabilities — so there is no total-assets line and no total-liabilities line on the
+ # page at all.  `fmt` names which presentation each year carries and `foot()` runs the
+ # identities the page itself states.  Two further presentation facts ride with it: the
+ # trade receivable is INSIDE "Debtors and other debit balances" (note 9 splits it at
+ # EGP 5 500 032) and the trade payable is INSIDE "Creditors and other credit balances"
+ # (note 13 splits it at EGP 289 654 854), where 2016 onwards print both on their own
+ # lines — so the aggregates are carried on the page's own lines with `trade_receivables`
+ # and `trade_payables` at nil, the disclosed splits named in NOTES, and the working
+ # capital TOTAL on the same definition as every other year because the definition sums
+ # all of them.  Equity carries a fourth line, "Net profits for the year", which later
+ # years fold into retained earnings; `profit_for_year` keeps the page's own line.
+ 2015: dict(page=(4,), fmt="working_capital",
+   ppe=2_546_154_219, auc=124_756_807, intangibles=109_142_259, other_assets=0,
+   rou=0, jv=0, tnca=2_780_053_285,
+   inventories=198_339_836, trade_receivables=0, debtors=66_249_751,
+   due_from_related=0, cash=379_206_624, tca=643_796_211,
+   capital=757_479_400, treasury=0, legal_reserve=156_122_086, retained=181_155_133,
+   profit_for_year=277_224_384,
+   parent_equity=1_371_981_003, nci=13_702, total_equity=1_371_994_705,
+   borrowings_nc=357_584_237, notes_payable_nc=0, dtl=330_616_463,
+   other_liab_nc=400_390_000, lease_nc=0, tncl=1_088_590_700,
+   trade_payables=0, credit_facilities=1_714_317, tax_payable=71_766_122,
+   borrowings_cp=206_297_400, other_liab_cp=86_430_000, creditors=529_421_515,
+   lease_c=0, due_to_related=51_765_814, provisions=15_868_923, dividends_payable=0,
+   tcl=963_264_091,
+   wc_deficit=-319_467_880, total_investment=2_460_585_405,
+   total_finance=2_460_585_405,
+   facility_label="bank_overdraft",
+   read_dispute=("a first reading at 300 dpi returned total non-current liabilities of "
+                 "1 688 590 700, which the page's own three components (357 584 237 + "
+                 "400 390 000 + 330 616 463 = 1 088 590 700) refuse and which the "
+                 "page's own 'Total finance of working capital and non-current assets' "
+                 "of 2 460 585 405 refuses a second time. RE-READING THE SAME PAGE AT "
+                 "600 dpi RETURNS 1 088 590 700 — this filing's own figure, and nothing "
+                 "is carried in from another document. The disagreement was the "
+                 "extractor's and not the company's")),
+ # FY2016 returns to the assets = equity + liabilities presentation the later years use,
+ # bilingual, and it is the devaluation year: note 12 capitalises EGP 372 983 255 of
+ # foreign-currency exchange differences into the cost of property, which is why this
+ # year's capex identity runs far above its disclosed cash figure (see `_capex`).
+ 2016: dict(page=(5, 6),
+   ppe=2_890_580_340, auc=17_670_237, intangibles=86_622_259, other_assets=0,
+   rou=0, jv=1_445_783, tnca=2_996_318_619,
+   inventories=280_626_750, trade_receivables=20_165_342, debtors=97_645_204,
+   due_from_related=1_910_248, cash=136_820_111, tca=537_167_655,
+   total_assets=3_533_486_274,
+   capital=757_479_400, treasury=0, legal_reserve=185_127_989, retained=339_205_125,
+   parent_equity=1_281_812_514, nci=19_114, total_equity=1_281_831_628,
+   borrowings_nc=463_562_238, notes_payable_nc=0, dtl=340_285_124,
+   other_liab_nc=196_149_919, lease_nc=0, tncl=999_997_281,
+   trade_payables=353_637_901, credit_facilities=66_116_749, tax_payable=116_577_541,
+   borrowings_cp=371_986_732, other_liab_cp=146_462_000, creditors=179_279_676,
+   lease_c=0, due_to_related=8_413_626, provisions=9_183_140, dividends_payable=0,
+   tcl=1_251_657_365, total_liabilities=2_251_654_646, teal=3_533_486_274,
+   read_dispute=("this scan does not resolve two digits and ARITHMETIC SETTLED BOTH "
+                 "rather than the extractor. (i) The current income tax payable prints "
+                 "as ...541 at one magnification and ...542 at another, on the balance "
+                 "sheet AND in note 10.2; the current-liabilities column requires "
+                 "116 577 541 given the seven other lines, note 10.2's own two "
+                 "components (115 020 127 + 1 557 414) give 116 577 541, and the FY2017 "
+                 "filing's 2016 comparative column prints 116 577 541. (ii) The "
+                 "investment in a joint venture read 2 445 783 at 600 dpi and 1 445 783 "
+                 "at 1200 dpi; only 1 445 783 foots the stated total non-current assets "
+                 "of 2 996 318 619, and note 15 and the FY2017 comparative both print "
+                 "1 445 783. Every other line on this page reproduced on a second "
+                 "reading")),
  2017: dict(page=(5, 6),
    ppe=2_371_924_441, auc=249_232_824, intangibles=396_151_869, other_assets=83_653,
    rou=0, jv=2_023_874, tnca=3_019_416_661,
@@ -284,6 +398,57 @@ BS = {
 # accrual/cash difference a reader should see rather than a defect.
 # ---------------------------------------------------------------------------
 CF = {
+ 2015: dict(page=(7,), dep_ppe=175_412_201, amort_intangibles=22_520_000,
+            amort_other=0, amort_rou=0,
+            capex_ppe=17_479_672, capex_auc=52_700_132, capex_other=0,
+            cash_end=379_206_624,
+            impairment_goodwill=8_274_220,
+            impairment_note=(
+                "this filing's cash-flow statement carries ONE add-back line, "
+                "\"Intangible assets' amortization\" of 30 794 220, and note 7 splits it: "
+                "22 520 000 of amortisation of the electricity-supply agreement and "
+                "8 274 220 of IMPAIRMENT of the Andalus goodwill, which the note writes "
+                "on its own row and which reduces the goodwill to nil. An impairment is "
+                "not an amortisation charge, so the depreciation-and-amortisation figure "
+                "recorded here is 175 412 201 + 22 520 000 and the impairment is carried "
+                "BESIDE it rather than folded in or dropped. Two independent grounds: the "
+                "company's own note 7, and the FY2016 filing, which prints \"Impairment of "
+                "goodwill 8 274 220\" as its own line in the 2015 comparative. The three "
+                "still foot to the 30 794 220 this page states"),
+            note=("capital expenditure is DISCLOSED on this statement as two lines and "
+                  "both are confirmed twice over: the FY2016 filing's 2015 comparative "
+                  "column prints the same 17 479 672 and 52 700 132, and note 6's "
+                  "projects-under-construction roll-forward states additions of "
+                  "51 381 120 plus advances to suppliers of 1 319 012, which is the "
+                  "52 700 132 exactly")),
+ 2016: dict(page=(10, 11), dep_ppe=183_571_516, amort_intangibles=22_520_000,
+            amort_other=0, amort_rou=0,
+            capex_ppe=17_581_585, capex_auc=22_111_253, capex_other=0,
+            cash_end=136_820_111,
+            note=("the depreciation figure is the one the CASH-FLOW page states and note "
+                  "12's own accumulated-depreciation roll-forward reproduces it "
+                  "independently (1 142 761 518 closing less 963 832 740 opening plus "
+                  "4 642 738 eliminated on disposals = 183 571 516); the two payment "
+                  "lines reproduce from this page's own investing subtotal of "
+                  "(24 743 153) and are printed identically in the FY2017 filing's 2016 "
+                  "comparative"),
+            identity_note=(
+                "this year the identity runs FAR above the disclosed cash figure — "
+                "420 911 067 against 39 692 838 — and the reason is on the company's own "
+                "note 12: the Central Bank floated the pound on 3 November 2016, and the "
+                "note CAPITALISES EGP 372 983 255 of foreign-currency exchange "
+                "differences into the cost of property. Adding the EGP 31 466 760 "
+                "transferred in from inventory and taking out the disposals leaves the "
+                "residue inside the reading tolerance of these scans. NONE OF IT IS "
+                "SPENDING, which is exactly why the disclosed cash figure is what is "
+                "committed and the identity is only ever reported beside it"),
+            restatement_note=(
+                "THE FY2017 FILING RESTATES THIS YEAR'S SPLIT — it shows "
+                  "depreciation of 155 415 267 and amortisation of 50 676 249 for 2016, "
+                  "28 156 249 moved from one line to the other, TOTALLING THE SAME "
+                  "206 091 516 — because that filing reclassified the operating licence "
+                "between property and intangibles. The figures recorded here are this "
+                "filing's own, as first reported")),
  2017: dict(page=(10, 11), dep_ppe=186_297_452, amort_intangibles=50_676_249,
             amort_other=59_752, amort_rou=0,
             capex_ppe=17_594_103, capex_auc=242_103_780, capex_other=143_404,
@@ -358,6 +523,22 @@ CF = {
 # origin; it is not a prohibition on a count that is genuinely unchanged and read
 # nine times, and the difference is exactly that these are nine pages.
 CAPITAL = {
+ 2015: dict(shares=378_739_700, issued_capital=757_479_400, par_value=2.0,
+            page=29, note="16",
+            par_source=(
+                "note 16 'Capital' prints authorized capital 757 479 400, issued and "
+                "paid up capital 757 479 400, number of shares 378 739 700 and par value "
+                "per share 2, in one table headed December 31, 2015 and December 31, "
+                "2014; the same note then recites the 23 January 2014 Extraordinary "
+                "General Assembly resolution updating Article No. (6) from 7 574 794 "
+                "shares at EGP 100 to 378 739 700 shares at EGP 2, so the table and the "
+                "recital state the same identity two ways in the same document")),
+ 2016: dict(shares=378_739_700, issued_capital=757_479_400, par_value=2.0,
+            page=35, note="20.1",
+            par_source=(
+                "note 20.1 'Authorized and Issued capital', the same three-row table "
+                "headed 2016 and 2015, with note 20.2's recital of the Article 6 "
+                "resolution beneath it")),
  2017: dict(shares=378_739_700, issued_capital=757_479_400, par_value=2.0,
             page=33, note="20.1",
             par_source=(
@@ -429,10 +610,70 @@ CAPITAL = {
                 "a treasury movement, so the movement is read off its own note")),
 }
 
+# PROPERTY AT THE DATE BEFORE THE FIRST YEAR CARRIED. FY2014 is NOT a year of this
+# record and no block is built for it: the only thing needed of it is property at
+# 31 December 2014, so that FY2015's disclosed capital expenditure has an identity to
+# be checked against. It is read from the FY2015 filing's OWN comparative column, which
+# is that filing's own page and the right vintage for a comparative — unlike a figure
+# lifted out of a LATER year's comparative, which is a restatement wearing an original's
+# clothes.
+PRIOR_PPE = {
+ 2014: dict(ppe=2_676_733_351, auc=99_410_072, year_read=2015, page=(4,),
+            what=("'Fixed assets (net)' and 'Projects under construction' in the "
+                  "31 December 2014 comparative column of the FY2015 consolidated "
+                  "balance sheet"),
+            check=("that column foots on its own terms — non-current assets "
+                   "2 676 733 351 + 99 410 072 + 139 936 479 = 2 916 079 902, the "
+                   "stated total — and note 6's roll-forward opens 2015 on the same "
+                   "99 410 072")),
+}
+
+# WHERE ONE YEAR AND THE NEXT ARE NOT ON ONE BASIS. The identity capex = dPPE + D&A
+# compares property at two dates, so a RECLASSIFICATION between those dates makes the
+# identity measure the reclassification rather than the spending. Where a break is
+# declared here the cross-check is NOT RUN and the reason is recorded, because a number
+# that cannot mean what it appears to mean is worse than no number. This changes no
+# committed figure anywhere: capital expenditure is DISCLOSED on every one of these
+# cash-flow statements and the identity is only ever reported beside it.
+BASIS_BREAKS = {
+ (2016, 2017): (
+     "the FY2017 filing moves EGP 360 205 859 of the operating licence OUT of property, "
+     "plant and equipment and INTO intangible assets: its 2016 comparative column prints "
+     "property of 2 530 374 481 and intangibles of 446 828 118 against the 2 890 580 340 "
+     "and 86 622 259 the FY2016 filing itself printed for the same date, the two "
+     "differences equal and opposite to the pound and total non-current assets unchanged "
+     "at 2 996 318 619. Run across that boundary on the figures AS FIRST REPORTED the "
+     "identity returns -100 795 860 against a disclosed 259 841 287, which is the "
+     "reclassification and not the spending; run on the re-presented base it returns "
+     "259 409 999, within 431 288 of the disclosed figure — which is what establishes "
+     "the diagnosis rather than asserting it. FY2017's committed capital expenditure is "
+     "the DISCLOSED cash figure either way and does not move"),
+}
+
 # Disclosures that ride beside a figure and change how it should be read. Only the
 # figures READ off a page are typed here; everything a reader would compare them
 # against is computed in `_wc` from the committed lines, so no arithmetic is typed.
 NOTES = {
+ (2015, "wc"): dict(
+     presentation=(
+         "this filing prints NO separate trade receivable and NO separate trade payable: "
+         "the trade debtor sits inside 'Debtors and other debit balances (net)' and note "
+         "9 splits it at EGP 5 500 032 of a 66 249 751 total; the trade payable sits "
+         "inside 'Creditors and other credit balances' and note 13 splits it at EGP "
+         "289 654 854 of a 529 421 515 total. The two aggregate lines are carried on the "
+         "page's own terms with the separate lines at nil, so the working-capital TOTAL "
+         "is on the same definition as every other year — the definition sums all of "
+         "them — while the disclosed split is named here rather than silently "
+         "redistributed across lines this page does not carry"),
+     trade_debtors_inside_debtors=5_500_032,
+     trade_payable_inside_creditors=289_654_854,
+ ),
+ (2016, "wc"): dict(
+     presentation=(
+         "the trade receivable and the trade payable are back on their own lines from "
+         "this filing onwards, so this year is on the same presentation as FY2017 and "
+         "after"),
+ ),
  (2022, "wc"): dict(
      re_presented_debtors=198_934_777,
      re_presented_tca=1_721_494_081,
@@ -448,7 +689,17 @@ def _close(a, b, tol=1):
 
 
 def foot():
-    """Every balance sheet against its own subtotals. Returns the failures."""
+    """Every balance sheet against ITS OWN subtotals — the ones the page prints.
+
+    TWO PRESENTATIONS SIT IN THIS WINDOW AND THE CHECK FOLLOWS THE PAGE RATHER THAN
+    THE OTHER WAY ROUND. FY2016 onwards print assets = equity + liabilities. FY2015
+    prints a WORKING-CAPITAL balance sheet: non-current assets, current assets less
+    current liabilities to a stated deficit, a stated 'Total investment', and then
+    equity plus non-current liabilities to a stated total finance. That page states
+    no total assets and no total liabilities, so demanding them would be checking a
+    line the company never printed; what is checked instead is every identity the
+    page DOES assert, which is the same number of them.
+    """
     bad = []
     for y, b in sorted(BS.items()):
         nca = sum(b[k] for k in ("ppe", "auc", "intangibles", "other_assets", "rou", "jv"))
@@ -459,18 +710,32 @@ def foot():
         cl = sum(b[k] for k in ("trade_payables", "credit_facilities", "tax_payable",
                                 "borrowings_cp", "other_liab_cp", "creditors", "lease_c",
                                 "due_to_related", "provisions", "dividends_payable"))
-        eq = b["capital"] + b["treasury"] + b["legal_reserve"] + b["retained"]
-        for what, got, want in (
-                ("non-current assets", nca, b["tnca"]),
-                ("current assets", ca, b["tca"]),
+        eq = (b["capital"] + b["treasury"] + b["legal_reserve"] + b["retained"]
+              + b.get("profit_for_year", 0))
+        tests = [
+            ("non-current assets", nca, b["tnca"]),
+            ("current assets", ca, b["tca"]),
+            ("non-current liabilities", ncl, b["tncl"]),
+            ("current liabilities", cl, b["tcl"]),
+            ("equity attributable to owners", eq, b["parent_equity"]),
+            ("total equity", b["parent_equity"] + b["nci"], b["total_equity"]),
+        ]
+        if b.get("fmt") == "working_capital":
+            tests += [
+                ("working capital", b["tca"] - b["tcl"], b["wc_deficit"]),
+                ("total investment", b["tnca"] + b["wc_deficit"], b["total_investment"]),
+                ("total finance of working capital and non-current assets",
+                 b["total_equity"] + b["tncl"], b["total_finance"]),
+                ("the two sides of the page", b["total_investment"], b["total_finance"]),
+            ]
+        else:
+            tests += [
                 ("total assets", nca + ca, b["total_assets"]),
-                ("non-current liabilities", ncl, b["tncl"]),
-                ("current liabilities", cl, b["tcl"]),
                 ("total liabilities", ncl + cl, b["total_liabilities"]),
-                ("equity attributable to owners", eq, b["parent_equity"]),
-                ("total equity", b["parent_equity"] + b["nci"], b["total_equity"]),
                 ("equity and liabilities", b["total_equity"] + b["total_liabilities"],
-                 b["teal"])):
+                 b["teal"]),
+            ]
+        for what, got, want in tests:
             if not _close(got, want):
                 bad.append("%d %s: %d against a stated %d" % (y, what, got, want))
     for y, c in sorted(CF.items()):
@@ -570,7 +835,7 @@ def _debt(y):
         "lines": {
             "borrowings_non_current": b["borrowings_nc"],
             "current_portion_of_long_term_borrowings": b["borrowings_cp"],
-            "credit_facilities": b["credit_facilities"],
+            b.get("facility_label", "credit_facilities"): b["credit_facilities"],
         },
         "carried_beside_not_folded_in": {
             "lease_liabilities_non_current": b["lease_nc"],
@@ -604,8 +869,23 @@ def _capex(y):
             "payments_for_other_assets": c["capex_other"],
         },
     }
-    if y - 1 in BS:
-        prior, now = BS[y - 1], BS[y]
+    prior = None
+    if (y - 1, y) in BASIS_BREAKS:
+        rec["identity_cross_check_not_run"] = {
+            "identity": "capex = dPPE + D&A",
+            "why": BASIS_BREAKS[(y - 1, y)],
+            "what_is_committed": ("the DISCLOSED cash figure above, which this break "
+                                  "does not touch"),
+        }
+    elif y - 1 in BS:
+        prior = dict(BS[y - 1])
+        prior_src = "the FY%d filing's own balance sheet" % (y - 1)
+    elif y - 1 in PRIOR_PPE:
+        pp = PRIOR_PPE[y - 1]
+        prior = dict(pp)
+        prior_src = ("%s (%s)" % (pp["what"], FILES[pp["year_read"]][0]))
+    if prior is not None:
+        now = BS[y]
         ident = ((now["ppe"] + now["auc"]) - (prior["ppe"] + prior["auc"])
                  + c["dep_ppe"])
         rec["identity_cross_check"] = {
@@ -614,6 +894,8 @@ def _capex(y):
             "basis": ("property, plant and equipment plus assets under construction "
                       "at both dates, and the depreciation of property, plant and "
                       "equipment for the year"),
+            "prior_year_property": prior["ppe"] + prior["auc"],
+            "prior_year_source": prior_src,
             "difference_from_disclosed": ident - disclosed,
             "note": ("the two are not the same measurement and the gap is not a "
                      "defect: disposals leave at net book value, additions can be "
@@ -622,6 +904,8 @@ def _capex(y):
                      "is committed; the identity is reported beside it so a later "
                      "rebuild can see both rather than assume they agree"),
         }
+        if c.get("identity_note"):
+            rec["identity_cross_check"]["why_they_differ_this_year"] = c["identity_note"]
     if c.get("note"):
         rec["note"] = c["note"]
     return rec
@@ -668,6 +952,12 @@ def _dep(y):
                  "depreciation this run's panel.py carries: that one is the "
                  "manufacturing share and this is the group total"),
     }
+    if c.get("impairment_goodwill"):
+        rec["carried_beside_not_folded_in"] = {
+            "impairment_of_goodwill": c["impairment_goodwill"],
+            "why": c["impairment_note"],
+            "the_three_foot": (total + c["impairment_goodwill"]),
+        }
     if c.get("note"):
         rec["route_dispute"] = c["note"]
     return rec
@@ -711,8 +1001,13 @@ def _wc(y):
                     "is named here with its own amount"),
         },
     }
-    n = NOTES.get((y, "wc"))
-    if n:
+    n = NOTES.get((y, "wc")) or {}
+    if n.get("presentation"):
+        rec["presentation"] = n["presentation"]
+        for k in ("trade_debtors_inside_debtors", "trade_payable_inside_creditors"):
+            if k in n:
+                rec.setdefault("disclosed_split_named_not_redistributed", {})[k] = n[k]
+    if n.get("re_presented_debtors"):
         b2 = dict(b)
         b2["debtors"] = n["re_presented_debtors"]
         alt = ((b2["inventories"] + b2["trade_receivables"] + b2["debtors"]
@@ -820,15 +1115,63 @@ def record():
         "route": ROUTE,
         "point_in_time": (
             "every year is carried AS FIRST REPORTED, from its own filing's own "
-            "column. The one re-presentation inside this window is recorded beside "
-            "the figure it would replace and never substituted."),
+            "column. Re-presentations inside this window are recorded beside the "
+            "figure they would replace and never substituted — the FY2023 filing's "
+            "netting of debtors in its FY2022 comparative, and the FY2017 filing's "
+            "reclassification of EGP 360 205 859 of operating licence out of property "
+            "and into intangibles in its FY2016 comparative, which also moves "
+            "EGP 28 156 249 of FY2016's charge from depreciation to amortisation while "
+            "leaving the total unchanged. The FY2016 filing likewise restates FY2015 "
+            "(property by 1 253, depreciation by 453, deferred tax by 5 273, cash by "
+            "919 730) and recognises a joint venture FY2015's own page does not carry; "
+            "FY2015 is committed on its OWN page throughout. THE ONE FIGURE READ OUT "
+            "OF A COMPARATIVE COLUMN IS PROPERTY AT 31 DECEMBER 2014, which is not a "
+            "year of this record and exists only so FY2015's disclosed capital "
+            "expenditure has an identity to be checked against; it is read from the "
+            "FY2015 filing's OWN comparative, which is that filing's own page."),
         "sources": {str(y): FILES[y][0] for y in sorted(FILES)},
+        "basis_breaks": dict({"FY%d to FY%d" % k: v
+                              for k, v in sorted(BASIS_BREAKS.items())}, **{
+            "_": ("Where one year and the next are NOT on one basis, so the identity "
+                  "capex = dPPE + D&A would measure a reclassification rather than "
+                  "spending. The cross-check is declined at these boundaries and the "
+                  "reason is recorded; no committed figure moves, because capital "
+                  "expenditure is DISCLOSED on every one of these cash-flow "
+                  "statements."),
+        }),
+        "presentation_changes": {
+            "_": ("Two balance-sheet presentations sit in this window and neither is "
+                  "flattened into the other. FY2015 prints a WORKING-CAPITAL balance "
+                  "sheet — non-current assets, current assets less current liabilities "
+                  "to a stated deficit, a stated total investment, then 'Financed by:' "
+                  "equity and non-current liabilities — and states no total-assets and "
+                  "no total-liabilities line at all; FY2016 onwards print assets = "
+                  "equity + liabilities. The footing check follows the page: every "
+                  "identity FY2015 asserts is tested, and a line it never printed is "
+                  "not demanded of it."),
+            "FY2015": ("working-capital format; trade receivable inside 'Debtors and "
+                       "other debit balances' and trade payable inside 'Creditors and "
+                       "other credit balances', both split in the notes and named in "
+                       "the working-capital record; the interest-bearing facility is a "
+                       "BANK OVERDRAFT rather than the 'credit facilities' line the "
+                       "later years carry, and it is recorded under the page's own "
+                       "name; equity carries a fourth line, 'Net profits for the year', "
+                       "which later filings fold into retained earnings"),
+            "FY2016": ("assets = equity + liabilities, the presentation FY2017 onwards "
+                       "use; the trade receivable and trade payable are on their own "
+                       "lines from this filing"),
+        },
         "origins": {"FY%d" % y: block(y) for y in range(2018, 2026)},
         "prior_year_anchor": {
-            "_": ("FY2017 is NOT an origin of this run. It is carried because the "
-                  "identity capex = dPPE + D&A needs property at two dates and "
-                  "FY2018 is the first origin; recording it inside `origins` would "
+            "_": ("FY2015, FY2016 and FY2017 are NOT origins of this run. They are "
+                  "carried because a trailing window reaches back past the first "
+                  "origin — the identity capex = dPPE + D&A needs property at two "
+                  "dates, and a capital-spending intensity is taken over the three "
+                  "fiscal years to an origin, so an origin at FY2017 reads FY2015, "
+                  "FY2016 and FY2017. Recording any of them inside `origins` would "
                   "misstate what this run tested."),
+            "FY2015": block(2015),
+            "FY2016": block(2016),
             "FY2017": block(2017),
         },
     }
@@ -887,21 +1230,34 @@ def main():
 
     print("valuation-input block — ARCC\n")
     print("  %-8s %14s %14s %14s %12s %14s %14s %12s"
-          % ("origin", "cash", "debt", "capex", "ppe", "D&A", "working cap", "shares"))
+          % ("year", "cash", "debt", "capex", "ppe", "D&A", "working cap", "shares"))
     print("  " + "-" * 108)
-    for y in range(2018, 2026):
+
+    def row(y, tag=""):
         b = block(y)
         def v(i):
             r = b[i]
             return "MISSING" if "missing" in r else "%,.0f".replace(",", "") % 0 \
                 if r.get("value") is None else format(r["value"], ",.0f")
-        print("  FY%-6d %14s %14s %14s %14s %14s %14s %12s"
+        print("  FY%-6d %14s %14s %14s %14s %14s %14s %12s%s"
               % (y, v("cash"), v("debt"), v("capex"), v("ppe"), v("dep"), v("wc"),
-                 v("shares")))
+                 v("shares"), tag))
+
+    for y in (2015, 2016, 2017):
+        row(y, "   anchor")
+    for y in range(2018, 2026):
+        row(y)
     n_missing = sum(1 for y in range(2018, 2026) for i, r in block(y).items()
                     if "missing" in r)
+    n_anchor_missing = sum(1 for y in (2015, 2016, 2017) for i, r in block(y).items()
+                           if "missing" in r)
     print("\n  %d origins x 7 items = %d cells, %d recorded missing"
           % (8, 8 * 7, n_missing))
+    print("  3 prior-year anchors x 7 items = 21 cells, %d recorded missing "
+          "(FY2015, FY2016 and FY2017 are NOT origins of this run)" % n_anchor_missing)
+    for k, why in sorted(BASIS_BREAKS.items()):
+        print("  basis break FY%d to FY%d — the capex identity is declined across it"
+              % k)
     print("  wrote %s" % os.path.relpath(p, os.path.dirname(os.path.dirname(HERE))))
     print("  wrote %s" % os.path.relpath(q, os.path.dirname(os.path.dirname(HERE))))
     return 0
