@@ -99,7 +99,7 @@ checks = [
      DCF['tv_share'], 0.0005),
     ('DCF enterprise value', g('DCF', f"C{DF_['ev']}"), DCF['ev'], 1.0),
     ('DCF equity value before the minorities', g('DCF', f"C{DF_['prenci']}"),
-     DCF['ev'] - DCF['net_debt'], 1.0),
+     DCF['ev'] - DCF['net_debt'] - DCF['dividend_declared'], 1.0),
     ('DCF minority deduction — the contracted slice plus the rest at value',
      g('DCF', f"C{DF_['nci']}"), -DCF['nci'], 1.0),
     ('DCF equity attributable to ordinary shareholders', g('DCF', f"C{DF_['eq']}"),
@@ -168,15 +168,22 @@ checks = [
      g("Segments", f"F{SG['sp25']}"), FL['spot_fy25']['vlcc'], 0.5),
     ('Implied VLCC mid-cycle spot anchor', g('Segments', f"F{SG['spmid']}"),
      FL['spot_mid']['vlcc'], 0.5),
-    ('Charter vessel-days, long range 2, FY2026', g('Segments', f"B{SG['ycd0'] + 3}"),
+    # THE FIRST FORECAST COLUMN IS THE SECOND HALF OF 2026, not the year: the first half
+    # is reported and is added to the column rather than forecast.
+    ('Charter vessel-days, long range 2, second half of 2026',
+     g('Segments', f"B{SG['ycd0'] + 3}"),
      sum(max(0, (min(dt.date(2027, 1, 1), dt.date(*map(int, c['end'].split('-'))))
-                 - max(dt.date(2026, 1, 1),
+                 - max(dt.date(2026, 7, 1),
                        dt.date(*map(int, c['start'].split('-'))))).days)
          for c in FL['charters'] if c['klass'] == 'lr2'), 0.5),
-    ('Vessel-days in 2025, the basis the running cost was solved on',
-     g('Segments', f"B{SG['vdays25']}"), FL['vessel_days_25'], 0.5),
-    ('Implied all-in running cost per vessel-day, solved',
-     g('Segments', f"B{SG['opexd0']}"), FL['opex_day'], 0.005),
+    ('2025 charter-equivalent revenue, one of the two periods the cost stack is solved on',
+     g('Segments', f"B{SG['tcerev25']}"), FL['tce_rev_25'], 1.0),
+    ('First-half 2026 charter-equivalent revenue, the other period',
+     g('Segments', f"B{SG['tceh1']}"), FL['tce_rev_h126'], 1.0),
+    ('Tanker earnings leverage on charter-equivalent revenue, solved from the two',
+     g('Segments', f"B{SG['lev0']}"), FL['leverage'], 1e-6),
+    ('Tanker fixed cost base a year, solved from the same two',
+     g('Segments', f"B{SG['fixed0']}"), FL['cost_fixed'], 0.5),
     ('Implied gas-carrier revenue per vessel-day, solved',
      g('Segments', f"B{SG['gasrate0']}"), FL['gas_rate_day'], 0.005),
     ('Segments FY2026E Tankers EBITDA', g('Segments', f"B{SG['teb']}"),
@@ -280,8 +287,8 @@ checks = [
     ('Summary financials FY2030E revenue', g('Summary Financials', 'I5'), FC['revenue'][4],
      1.0),
     # ---- the three derived cells that now sit on the driver sheet as formulas ----
-    ('Assumptions running cost per vessel-day is a link, not a pasted result',
-     g('Assumptions', f"C{ROWS['Assumptions']['opex_day']}"), FL['opex_day'], 0.005),
+    ('Assumptions tanker fixed cost base is a link, not a pasted result',
+     g('Assumptions', f"C{ROWS['Assumptions']['tnk_fixed']}"), FL['cost_fixed'], 0.5),
     ('Assumptions days sales outstanding on REPORTED revenue is derived from the audited '
      'columns', g('Assumptions', f"C{ROWS['Assumptions']['dso_rep']}"), D['ccc']['dso'][2],
      0.005),
@@ -328,13 +335,13 @@ checks = [
      g('Balance Sheet', f"B{ROWS['Balance Sheet']['ppeacq']}"), V_['acq_2026_cost'], 1.0),
     ('The purchase price is carried in the opening net debt',
      g('Balance Sheet', f"B{ROWS['Balance Sheet']['ndopen']}"),
-     V_['q1_26_netdebt'] + V_['q1_26_pcp'] + V_['acq_2026_cost'], 1.0),
+     V_['h1_26_netdebt'] + V_['h1_26_pcp'] + V_['acq_2026_cost'], 1.0),
     # ---- the smallest tankers, scaled rather than substituted -----------------
     ('Handysize published blend, first quarter 2026 — the medium-range rate scaled by the '
      'disclosed relative move', g('Segments', f"F{SG['blend0']}"),
      FL['blend_q1_26']['mr'] * V_['handysize_relative'], 0.5),
-    ('Handysize 2025 blend, the same scaling', g('Segments', f"B{SG['blend0']}"),
-     FL['blend_fy25']['hs'], 0.5),
+    ('Handysize first-quarter 2025 blend, the same scaling', g('Segments', f"B{SG['blend0']}"),
+     V_['tce_mr_25q1'] * V_['handysize_relative'], 0.5),
     # ---- the cost of debt, labelled for what each figure is -------------------
     ('Cost of debt — MEMORANDUM, the retired average of three constructions',
      g('DCF', f"C{DF_['kdbal']}"), WACC['kd_retired_average'], 0.00005),

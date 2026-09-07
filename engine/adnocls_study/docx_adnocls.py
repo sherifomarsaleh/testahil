@@ -205,6 +205,17 @@ _anch = sorted(SN['anchor'].items(), key=lambda kv: float(kv[0]))
 anchor_cross = next(((float(_anch[i][0]), float(_anch[i + 1][0]))
                      for i in range(len(_anch) - 1)
                      if _anch[i][1] <= SPOT <= _anch[i + 1][1]), None)
+# WHETHER IT CROSSES AT ALL IS ITSELF COMPUTED. A previous edition's sentence asserted that
+# the tested range carries fair value across the market price; on a higher market price it
+# does not, and a sentence that cannot be false is not a finding.
+ANCHOR_CROSS_WORDS = (
+    f"wide enough to carry fair value across the market price, which it reaches between "
+    f"the {pc(anchor_cross[0], 0)} and {pc(anchor_cross[1], 0)} anchors"
+    if anchor_cross else
+    f"NOT wide enough to carry fair value across the market price: the highest anchor "
+    f"tested, {pc(max(float(k) for k in SN['anchor']))} of the base, still gives AED "
+    f"{p2(max(_anch, key=lambda kv: kv[1])[1])} a share against a market price of AED "
+    f"{p2(SPOT)}")
 # and which two beta columns it falls between, on the adopted terminal growth row
 _bcol = SN['gs'].index(IN['g_terminal'])
 _bser = [(b, SN['grid_beta_g'][i][_bcol]) for i, b in enumerate(SN['betas'])]
@@ -433,9 +444,10 @@ RF_READACROSS = (SN['grid_beta_g'][_rf_i][g_col] - SN['grid_beta_g'][_rf_i + 1][
 # dollars at the midpoint of the band, applied to the reported figure it grows from. The
 # three unit rows and the group row do not reconcile, and that is a property of the
 # guidance rather than of the conversion.
-GPCT = {'Integrated Logistics': ('g26_rev_il', 'g26_ebitda_il'),
-        'Shipping': ('g26_rev_ship', 'g26_ebitda_ship'),
-        'Services': ('g26_rev_serv', 'g26_ebitda_serv')}
+# READ AGAINST THE RAISED GUIDANCE OF 11 AUGUST 2026, not the superseded May figures.
+GPCT = {'Integrated Logistics': ('g26h_rev_il', 'g26h_ebitda_il'),
+        'Shipping': ('g26h_rev_shipping', 'g26h_ebitda_shipping'),
+        'Services': ('g26h_rev_services', 'g26h_ebitda_services')}
 GUID_UNITS_REV = sum(GD[g]['guided_revenue'] for g in GROUPS)
 GUID_UNITS_EBITDA = sum(GD[g]['guided_ebitda'] for g in GROUPS)
 GUID_REV_GAP = GD['Group']['guided_revenue'] - GUID_UNITS_REV
@@ -493,11 +505,15 @@ def zone3m(x):
 # The committed rationale for this unit still credits the margin to a profit share the
 # forecast explicitly removes and adds once in the bridge instead. Guarded, so a later
 # rewrite of the rationale cannot leave a silent no-op behind.
-_SERV_OLD = 'and the growing profit share from the bunkering associate'
-_SERV_NEW = ('and the warehouse activity moved into it. The group’s share of the '
-             'bunkering associate is NOT in this line: it is taken out of the unit before '
-             'the forecast starts and the stake is added once, at book value, in the '
-             'bridge')
+_SERV_OLD = ("The margin is the half's own and reflects the warehouse "
+             'activity moved into this unit; the profit share from the bunkering '
+             'associate is removed separately so it is not counted twice.')
+_SERV_NEW = ('The margin is the reviewed half\u2019s own and reflects the warehouse '
+             'activity moved into this unit. The group\u2019s share of the bunkering '
+             'associate is NOT in this line: it is taken out of the unit before the '
+             'forecast starts \u2014 at the half\u2019s own annualised figure rather than '
+             'last year\u2019s, because it more than trebled \u2014 and the stake is '
+             'added once, at book value, in the bridge.')
 assert _SERV_OLD in WHY['Services'], \
     'the Services rationale no longer carries the clause this correction replaces'
 WHY = dict(WHY)
@@ -1024,8 +1040,12 @@ rows = [['Line', 'USD mn', 'Note'],
          f"adding the stakes here counts them once and not twice"],
         ['Enterprise value', m0(DCF['ev']), ''],
         ['Less net debt', neg(m0(BR['net_debt_company'])),
-         'the reviewed 31 March 2026 figure: the parent facility, third-party borrowings '
-         'and lease liabilities less cash'],
+         'the reviewed 30 June 2026 figure: the parent facility, third-party borrowings '
+         'and lease liabilities less cash. It is USD '
+         + m0(IN['q1_26_netdebt'] - BR['net_debt_company'])
+         + ' million lower than the 31 March figure the previous edition stood on, the '
+           'company having generated USD ' + m0(IN['h1_26_fcf'])
+         + ' million of free cash flow in the half and repaid the parent term facility'],
         ['Less deferred consideration', neg(m0(BR['deferred'])),
          'the contracted price of the remaining 20% of the acquired tanker business, '
          'payable in mid-2027 and carried against the investment reserve — a real claim '
@@ -1058,6 +1078,13 @@ rows = [['Line', 'USD mn', 'Note'],
          f"lift costs AED {p2(NCI_LIFT)} a share, against the AED {p2(NCI_FLAT_COST)} it "
          f"would cost to apply the {pc(IN['nci_share'])} profit share to the whole equity "
          f"value and net nothing off"],
+        ['Less the interim dividend declared after the balance-sheet date',
+         neg(m0(DCF['dividend_declared'])),
+         'the board approved an interim cash dividend of USD '
+         + m0(DCF['dividend_declared']) + ' million for the second quarter on a record '
+           'date of 20 August 2026 — after the sheet this bridge stands on and before the '
+           'price this study is delivered against, so a buyer at that price does not '
+           'receive it and it is not in the equity being bought'],
         ['Equity value attributable to ordinary shareholders', m0(DCF['equity']), ''],
         ['Fair value per share (USD)', p2(DCF['fv_usd']),
          f"against a market price of USD {p2(SPOT_USD)}"],
@@ -1080,7 +1107,7 @@ rows = [['Line', 'USD mn', 'Note'],
 # nothing in the document would have shown it: every figure in the table was individually
 # correct and the column simply did not add up to the equity value printed under it.
 _bridge_sum = (DCF['ev'] - BR['net_debt_company'] - BR['deferred'] - ACQ_COST
-               - BR['hybrid'] - DCF['nci'])
+               - BR['hybrid'] - DCF['dividend_declared'] - DCF['nci'])
 assert abs(_bridge_sum - DCF['equity']) < 1.0, (
     f'the bridge table does not foot: the deductions shown leave '
     f'{_bridge_sum:,.0f} against a published equity value of {DCF["equity"]:,.0f}')
@@ -1660,22 +1687,35 @@ rows.append(['Tankers',
              f"other. The remaining {n0(spot_total)} earn the open-market rate, which is "
              f"not assumed but solved out of the company's own published class average by "
              f"removing the chartered vessels from it — section 1.7 shows the arithmetic. "
-             f"{YRL[0][:4]} is built from the market rate implied by the first quarter, "
-             f"the level implied by the second, and a second half stepped halfway back "
-             f"toward the {HYRS[2]} implied rate; from {YRL[1]} the market rate glides "
-             f"over four years to the mid-cycle anchor, the average of the {HYRS[1]} and "
+             f"{YRL[0][:4]} is the six months the company has REPORTED plus a second "
+             f"half built at the rates it has published for it: the third quarter to 11 "
+             f"August on the share of vessel days already contracted, with the balance at "
+             f"the mid-cycle rate, and a fourth quarter stepped halfway back from there. "
+             f"From {YRL[1]} the market rate glides over four years to that mid-cycle "
+             f"anchor, the average of the {HYRS[1]} and "
              f"{HYRS[2]} outcomes. The {n0(ACQ_VLCC)} very large crude carriers bought on "
              f"{ACQ_DATE} join the fleet on their announced delivery date and trade at that "
              f"same market rate from it, so they earn part of {YRL[0]} and all of every "
              f"year after. The smallest class is not broken out in any published rate "
              f"table, so it is carried at the medium-range rate scaled by "
              f"{xt(IN['handysize_relative'], 2)} — the relative move the company itself "
-             f"disclosed for it, not a substitution. Running cost is USD "
-             f"{n0(FLT['opex_day'])} a vessel-day, solved so that the owned fleet's "
-             f"earnings reproduce the reported {HYRS[2]} result, escalated "
-             f"{pc(IN['opex_escalation'], 0)} a year on wages and technical management "
-             f"— a services escalator, not a commodity index, because those are the "
-             f"physical drivers of the line"])
+             f"disclosed for it, not a substitution. The cost side is a STACK rather "
+             f"than one solved number: a fixed base of USD {m0(FLT['cost_fixed'])} "
+             f"million a year, escalated {pc(IN['opex_escalation'], 0)} a year on wages "
+             f"and technical management — a services escalator, not a commodity index — "
+             f"and a variable component of {xt(FLT['cost_var'], 2)} for every dollar the "
+             f"owned fleet earns on a charter-equivalent basis, which is the voyage cost, "
+             f"the charter-in hire and the cost of the relet book. BOTH ARE SOLVED FROM "
+             f"TWO DISCLOSED PERIODS TOGETHER — the audited {HYRS[2]} year and the "
+             f"reviewed six months to 30 June 2026 — and the reviewed six months to 30 "
+             f"June 2025 are HELD OUT: the stack reproduces that period's earnings to "
+             f"within {pc(abs(IN['tnk_holdout_ebitda_error']), 1)}, understating them. A "
+             f"single running cost solved on one year cannot reproduce this business: at "
+             f"the published rates the owned fleet's charter-equivalent revenue in the "
+             f"reviewed half was USD {m0(FLT['tce_rev_h126'])} million and the unit "
+             f"reported earnings of USD {m0(IN['h1_26_ebitda_tankers'])} million, MORE "
+             f"than the ships it owns can earn before any cost at all, because it also "
+             f"trades chartered-in tonnage and serves the parent group"])
 rows.append(['Gas Carriers',
              f"Contracted vessel-years × day rate. The company's own contract table "
              f"gives {n1(FLT['gas_vessel_years'][0])} consolidated vessel-years in "
@@ -1960,9 +2000,7 @@ P(f"One more comparison puts the crux in proportion, and it is worth being caref
   f"what it does and does not show. Moving the mid-cycle rate anchor across the whole "
   f"tested range, from {pc(min(float(k) for k in SN['anchor']))} to "
   f"{pc(max(float(k) for k in SN['anchor']))} of the base, moves fair value by AED "
-  f"{p2(anchor_span)} a share — and that range is wide enough to carry fair value across "
-  f"the market price, which it reaches between the {pc(anchor_cross[0], 0)} and "
-  f"{pc(anchor_cross[1], 0)} anchors. "
+  f"{p2(anchor_span)} a share — and that range is {ANCHOR_CROSS_WORDS}. "
   f"Widening the beta across the {p3(SN['betas'][0])}-to-{p3(SN['betas'][-1])} range "
   f"tested in section 1.9 moves it by AED {p2(max(beta_span)-min(beta_span))}, which is "
   f"{(max(beta_span)-min(beta_span))/anchor_span:.1f} times as much and remains the "

@@ -8,14 +8,16 @@
   "reporting_currency": "USD",
   "listing_currency": "AED",
   "fx": 3.6725,
-  "asof": "2026-08-09",
-  "price_date": "2026-08-07",
+  "asof": "2026-09-07",
+  "price_date": "2026-09-07",
   "valuation_date": "2026-03-31",
-  "spot_aed": 6.16,
-  "spot_usd": 1.6773315180394828,
-  "spot": 6.16,
-  "spot_date": "2026-08-07",
-  "central": 5.351958040528197,
+  "spot_aed": 6.8,
+  "spot_usd": 1.8515997277059224,
+  "spot": 6.8,
+  "spot_date": "2026-09-07",
+  "engine_close": 6.16,
+  "engine_close_date": "2026-08-07",
+  "central": 5.338494934992969,
   "latest_known_price": {
    "value": 6.85,
    "date": "2026-09-03",
@@ -25,15 +27,21 @@
   },
   "shares_mn": 7398.498764,
   "shares_wavg_mn": 7393.482,
-  "mktcap_usd000": 12409735.163033357,
-  "ev_usd000": 14271350.163033357,
+  "mktcap_usd000": 13699058.296855003,
+  "ev_usd000": 15560673.296855003,
   "klass": "asset-heavy marine logistics and shipping operating company",
   "sector": "Marine transportation and energy logistics"
  },
  "inputs": {
   "spot_aed": {
+   "value": 6.8,
+   "source": "The latest known close for ADNOCLS, supplied by the principal and committed at engine/prices/SUPPLIED_07-09-2026.json. This study is DELIVERED against it: a fair value published against a month-old price is a comparison a reader cannot use",
+   "date": "2026-09-07",
+   "layer": "Market"
+  },
+  "price_close_engine": {
    "value": 6.16,
-   "source": "ADX daily price history for ADNOCLS, last close in the series used throughout this study",
+   "source": "ADX daily price history for ADNOCLS, last close in the series this repository holds \u2014 the close the probability cone and the technical read were struck on, and a different clock from the valuation strike above",
    "date": "2026-08-07",
    "layer": "Market"
   },
@@ -2947,6 +2955,42 @@
    "date": "2025-12-31",
    "layer": "Company"
   },
+  "fleet_tankers_30jun26": {
+   "value": 52,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 owned shipping fleet as at 30 June 2026: Handysize 2, MR 16, LR1 9, LR2 17, VLCC 8, footing to a stated 52",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "fleet_gas_30jun26": {
+   "value": 22,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 the same slide: floating storage 2, LNG 10, VLGC 7, VLEC 2, molten sulphur 1, footing to a stated 22",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "fleet_dry_bulk_30jun26": {
+   "value": 11,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 the same slide: Handysize 3, Supramax 4, Ultramax 4, footing to a stated 11",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "fleet_container_30jun26": {
+   "value": 3,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 the same slide: 3 feeder vessels",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "fleet_shipping_30jun26": {
+   "value": 88,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 owned shipping fleet total as at 30 June 2026; the four class subtotals foot to the printed 88",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h2_26_deliveries": {
+   "value": 14,
+   "source": "ADNOC L&S plc, Management Discussion and Analysis, First Half 2026 (11 Aug 2026) \u2014 scheduled second-half 2026 deliveries: one very large ammonia carrier, six very large crude carriers and three very large gas carriers in the third quarter, then one ethane carrier, one ammonia carrier and two gas carriers in the fourth",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
   "gas_lt_contracted": {
    "value": 15,
    "source": "ADNOC L&S plc, Investor Presentation April 2026 \u2014 gas fleet: 15 of 20 owned vessels on long-term contracts",
@@ -3661,6 +3705,24 @@
    "date": "2026-08-11",
    "layer": "Company"
   },
+  "g26h_ebitda_il": {
+   "value": -0.25,
+   "source": "ADNOC L&S plc, Management Discussion and Analysis, First Half 2026 (11 Aug 2026) \u2014 raised 2026 segment guidance: a mid 20 per cent reduction in Integrated Logistics earnings",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "g26h_ebitda_shipping": {
+   "value": 1.9,
+   "source": "ADNOC L&S plc, Management Discussion and Analysis, First Half 2026 (11 Aug 2026) \u2014 raised 2026 segment guidance: low 190 per cent growth in Shipping earnings",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "g26h_ebitda_services": {
+   "value": 0.2,
+   "source": "ADNOC L&S plc, Management Discussion and Analysis, First Half 2026 (11 Aug 2026) \u2014 raised 2026 segment guidance: low 20 per cent growth in Services earnings",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
   "contracted_revenue_h126": {
    "value": 25000000,
    "source": "ADNOC L&S plc, Management Discussion and Analysis, First Half 2026 (11 Aug 2026) \u2014 forward-contracted revenue of about USD 25 billion at 30 June 2026",
@@ -3811,16 +3873,22 @@
    "date": "2026-09-03",
    "layer": "Country"
   },
+  "nwc_h126": {
+   "value": 718017,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 inventories plus trade and other receivables plus amounts due from related parties, less trade and other payables and amounts due to related parties, at 30 June 2026. DERIVED: the same construction as every historical year in this study",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
   "charter_navig8_macallister": {
    "value": 19750,
-   "source": "ADNOC L&S plc, Investor Presentation April 2026 \u2014 charters out: Navig8 Macallister, a LR1 fixed for 20 months to 28 Mar 2027",
-   "date": "2026-04-30",
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 charters out: Navig8 Macallister, a LR1 fixed for 18 months to 28 Mar 2027",
+   "date": "2026-08-11",
    "layer": "Company"
   },
   "charter_navig8_martinez": {
    "value": 19750,
-   "source": "ADNOC L&S plc, Investor Presentation April 2026 \u2014 charters out: Navig8 Martinez, a LR1 fixed for 32 months to 28 Mar 2028",
-   "date": "2026-04-30",
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 charters out: Navig8 Martinez, a LR1 fixed for 32 months to 28 Jul 2028",
+   "date": "2026-08-11",
    "layer": "Company"
   },
   "charter_navig8_prosperity": {
@@ -3831,56 +3899,56 @@
   },
   "charter_navig8_promise": {
    "value": 32125,
-   "source": "ADNOC L&S plc, Investor Presentation April 2026 \u2014 charters out: Navig8 Promise, a LR2 fixed for 12 months to 02 Jul 2026",
-   "date": "2026-04-30",
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 charters out: Navig8 Promise, a LR2 fixed for 12 months to 27 Aug 2026",
+   "date": "2026-08-11",
    "layer": "Company"
   },
   "charter_navig8_pride": {
    "value": 32125,
-   "source": "ADNOC L&S plc, Investor Presentation April 2026 \u2014 charters out: Navig8 Pride, a LR2 fixed for 12 months to 09 Jul 2026",
-   "date": "2026-04-30",
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 charters out: Navig8 Pride, a LR2 fixed for 12 months to 07 Oct 2026",
+   "date": "2026-08-11",
    "layer": "Company"
   },
   "charter_navig8_prestige": {
    "value": 36850,
-   "source": "ADNOC L&S plc, Investor Presentation April 2026 \u2014 charters out: Navig8 Prestige, a LR2 fixed for 12 months to 08 Oct 2026",
-   "date": "2026-04-30",
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 charters out: Navig8 Prestige, a LR2 fixed for 12 months to 07 Dec 2026",
+   "date": "2026-08-11",
    "layer": "Company"
   },
   "charter_navig8_providence": {
    "value": 42000,
-   "source": "ADNOC L&S plc, Investor Presentation April 2026 \u2014 charters out: Navig8 Providence, a LR2 fixed for 12 months to 31 Jan 2027",
-   "date": "2026-04-30",
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 charters out: Navig8 Providence, a LR2 fixed for 12 months to 18 Apr 2027",
+   "date": "2026-08-11",
    "layer": "Company"
   },
   "charter_navig8_passion": {
    "value": 42000,
-   "source": "ADNOC L&S plc, Investor Presentation April 2026 \u2014 charters out: Navig8 Passion, a LR2 fixed for 12 months to 06 Feb 2027",
-   "date": "2026-04-30",
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 charters out: Navig8 Passion, a LR2 fixed for 12 months to 20 Jun 2027",
+   "date": "2026-08-11",
    "layer": "Company"
   },
   "charter_zakum": {
    "value": 50633,
-   "source": "ADNOC L&S plc, Investor Presentation April 2026 \u2014 charters out: Zakum, a VLCC fixed for 22 months to 02 Sep 2027",
-   "date": "2026-04-30",
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 charters out: Zakum, a VLCC fixed for 22 months to 02 Jan 2028",
+   "date": "2026-08-11",
    "layer": "Company"
   },
   "charter_hili": {
    "value": 50633,
-   "source": "ADNOC L&S plc, Investor Presentation April 2026 \u2014 charters out: Hili, a VLCC fixed for 22 months to 16 Sep 2027",
-   "date": "2026-04-30",
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 charters out: Hili, a VLCC fixed for 22 months to 16 Jan 2028",
+   "date": "2026-08-11",
    "layer": "Company"
   },
   "charter_arzanah": {
    "value": 70000,
-   "source": "ADNOC L&S plc, Investor Presentation April 2026 \u2014 charters out: Arzanah, a VLCC fixed for 12 months to 01 Feb 2027",
-   "date": "2026-04-30",
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 charters out: Arzanah, a VLCC fixed for 12 months to 20 Apr 2027",
+   "date": "2026-08-11",
    "layer": "Company"
   },
   "charter_habshan": {
    "value": 72500,
-   "source": "ADNOC L&S plc, Investor Presentation April 2026 \u2014 charters out: Habshan, a VLCC fixed for 12 months to 21 Feb 2027",
-   "date": "2026-04-30",
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 charters out: Habshan, a VLCC fixed for 12 months to 21 May 2027",
+   "date": "2026-08-11",
    "layer": "Company"
   },
   "acq_2026_cost": {
@@ -3913,22 +3981,82 @@
    "date": "2026-05-14",
    "layer": "Company"
   },
-  "tnk_opex_day": {
-   "value": 9164.0,
-   "source": "Implied all-in running cost per vessel per day, solved so that the owned fleet's charter-equivalent revenue less running cost reproduces the reported Tankers earnings before interest, tax, depreciation and amortisation for 2025",
+  "tce_mr_q3_26_built": {
+   "value": 28235.0,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 the disclosed third-quarter rate on the disclosed share of contracted days, with the uncovered balance at the 2024-25 mid-cycle rate for the class",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "tce_lr1_q3_26_built": {
+   "value": 67854.0,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 the disclosed third-quarter rate on the disclosed share of contracted days, with the uncovered balance at the 2024-25 mid-cycle rate for the class",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "tce_lr2_q3_26_built": {
+   "value": 80179.0,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 the disclosed third-quarter rate on the disclosed share of contracted days, with the uncovered balance at the 2024-25 mid-cycle rate for the class",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "tce_vlcc_q3_26_built": {
+   "value": 134967.0,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 the disclosed third-quarter rate on the disclosed share of contracted days, with the uncovered balance at the 2024-25 mid-cycle rate for the class",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "tnk_tce_rev_fy25": {
+   "value": 629019.0,
+   "source": "Charter-equivalent revenue the owned tanker fleet earned in 2025 \u2014 the fleet at 31 December 2025 priced quarter by quarter on the company's own published time-charter-equivalent rates for its classes",
    "date": "2025-12-31",
    "layer": "Company"
   },
+  "tnk_tce_rev_h126": {
+   "value": 805808.0,
+   "source": "The same construction over the six months to 30 June 2026, on the fleet the company owned at that date and the published second-quarter rates",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "tnk_tce_rev_h125": {
+   "value": 285223.0,
+   "source": "The same construction over the six months to 30 June 2025 \u2014 the HELD-OUT period, used to test the stack and not to fit it",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "tnk_cost_fixed": {
+   "value": 529987.3891354435,
+   "source": "The fixed component of the Tankers cost stack, USD thousand a year before escalation \u2014 crew, technical management, insurance, repairs and the shore organisation that do not move with the rate. SOLVED SIMULTANEOUSLY with the variable component from two disclosed periods: the audited 2025 year and the reviewed six months to 30 June 2026",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "tnk_cost_var": {
+   "value": 1.0486665765671859,
+   "source": "The variable component of the Tankers cost stack, per unit of the owned fleet's charter-equivalent revenue \u2014 voyage costs, charter-in hire and the cost of the relet and parent-facing book, all of which scale with the tonnage traded. Solved with the fixed component from the same two periods",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
   "tnk_grossup_25": {
-   "value": 2.736,
+   "value": 2.734,
    "source": "Ratio of reported Tankers revenue to owned-fleet charter-equivalent revenue in 2025 \u2014 the voyage-cost and low-margin relet and third-party trading content of gross revenue",
    "date": "2025-12-31",
    "layer": "Company"
   },
+  "tnk_grossup_h125": {
+   "value": 2.794,
+   "source": "The same ratio over the six months to 30 June 2025",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
   "tnk_grossup_26": {
-   "value": 1.6,
-   "source": "The same ratio for 2026 onward. Reported first-quarter revenue was flat year on year while the rate earned per vessel more than doubled, because low-margin relet and third-party trading fell away; the ratio is set well below the 2025 level to reflect that and is presentational only \u2014 it moves revenue, never earnings",
-   "date": "2026-03-31",
+   "value": 2.608567993323544,
+   "source": "The same ratio for 2026 onward, MEASURED on the reviewed six months to 30 June 2026 rather than assumed. The delivered edition carried 1.60, inferred from a single quarter in which reported revenue was flat year on year while the rate earned per vessel more than doubled. The half says 2.61, the 2025 year 2.73 and the first half of 2025 2.79 \u2014 the quarter was the outlier, and its own ratio of 1.51 against the second quarter's 3.16 is why one quarter is not an anchor for this line. The LATEST REVIEWED period is adopted and it is the LOWEST of the three, so the forecast faces the stricter comparison",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "tnk_holdout_ebitda_error": {
+   "value": -0.1067,
+   "source": "The stack's error on the HELD-OUT reviewed six months to 30 June 2025: it reproduces that period's Tankers earnings to within this fraction, understating them. Two parameters fitted on two periods and tested on a third",
+   "date": "2025-06-30",
    "layer": "Company"
   },
   "opex_escalation": {
@@ -3951,13 +4079,19 @@
   },
   "h2_2026_reversion": {
    "value": 0.5,
-   "source": "Weight placed on the 2025 implied spot rate, against the rate implied by the first quarter of 2026, in setting the second half of 2026",
-   "date": "2026-08-09",
+   "source": "Weight placed on the 2024-25 mid-cycle rate, against the disclosed third-quarter 2026 rate, in setting the fourth quarter of 2026. The value is unchanged from the delivered edition; the rate it reverts FROM is the latest disclosed quarter rather than the first",
+   "date": "2026-08-11",
    "layer": "Industry"
+  },
+  "gas_vessel_years_h126": {
+   "value": 9.5,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 the gas fleet contract table's own first and second quarters of 2026, consolidated of the joint venture: seven vessels and then twelve as the five Das carriers enter. DERIVED from the disclosed table rather than assumed",
+   "date": "2026-06-30",
+   "layer": "Company"
   },
   "gas_vessel_years_26": {
    "value": 12.0,
-   "source": "ADNOC L&S plc, Investor Presentation April 2026 \u2014 gas fleet contract table, consolidated vessel-quarters averaged over the year (floating storage 2, the four spot liquefied natural gas carriers to mid-year, one very large gas carrier, the ethane carrier ramp and five Das carriers from the second quarter)",
+   "source": "ADNOC L&S plc, Investor Presentation April 2026 \u2014 gas fleet contract table, consolidated vessel-quarters averaged over the year (floating storage 2, four liquefied natural gas carriers, one very large gas carrier and five Das carriers from the second quarter), plus the part-year on the August purchase",
    "date": "2026-04-30",
    "layer": "Company"
   },
@@ -3985,15 +4119,45 @@
    "date": "2026-04-30",
    "layer": "Company"
   },
+  "gas_vessel_years_contracted_2026": {
+   "value": 8.75,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 the SAME table as read in the first-half deck, whose heading is 'No. of Vessels Contracted' and which shows the four liquefied-natural-gas carriers' firm period ending in June 2026. Published beside the adopted figure and priced as a contested judgement; an input to nothing",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "gas_vessel_years_contracted_2027": {
+   "value": 8.0,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 the SAME table as read in the first-half deck, whose heading is 'No. of Vessels Contracted' and which shows the four liquefied-natural-gas carriers' firm period ending in June 2026. Published beside the adopted figure and priced as a contested judgement; an input to nothing",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "gas_vessel_years_contracted_2028": {
+   "value": 12.5,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 the SAME table as read in the first-half deck, whose heading is 'No. of Vessels Contracted' and which shows the four liquefied-natural-gas carriers' firm period ending in June 2026. Published beside the adopted figure and priced as a contested judgement; an input to nothing",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "gas_vessel_years_contracted_2029": {
+   "value": 15.75,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 the SAME table as read in the first-half deck, whose heading is 'No. of Vessels Contracted' and which shows the four liquefied-natural-gas carriers' firm period ending in June 2026. Published beside the adopted figure and priced as a contested judgement; an input to nothing",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "gas_vessel_years_contracted_2030": {
+   "value": 15.0,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 the SAME table as read in the first-half deck, whose heading is 'No. of Vessels Contracted' and which shows the four liquefied-natural-gas carriers' firm period ending in June 2026. Published beside the adopted figure and priced as a contested judgement; an input to nothing",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
   "gas_vessel_years_25": {
    "value": 8.0,
    "source": "ADNOC L&S plc, Investor Presentation April 2026 \u2014 consolidated gas vessels in service through 2025 (two floating storage units, four liquefied natural gas carriers, one very large gas carrier and the first ethane carrier), excluding the six gas carriers held in the 50% joint venture",
    "date": "2025-12-31",
    "layer": "Company"
   },
-  "gas_rate_day": {
+  "gas_rate_day_fy25": {
    "value": 61573.0,
-   "source": "Implied average charter revenue per gas vessel per day, solved from reported 2025 Gas Carriers revenue over consolidated vessel-years. Per-vessel rates are not disclosed, so this is the finest level the disclosure supports",
+   "source": "Implied average charter revenue per gas vessel per day over 2025 \u2014 a MEMORANDUM, published so the step to the half below can be read, and an input to nothing",
    "date": "2025-12-31",
    "layer": "Company"
   },
@@ -4010,309 +4174,333 @@
    "layer": "Company"
   },
   "gas_margin": {
-   "value": 0.7,
-   "source": "Gas Carriers earnings margin held near the 2025 outcome of 72% net of joint-venture profit, reflecting that fifteen of twenty owned vessels sit on long-term contracts",
-   "date": "2026-08-09",
+   "value": 0.4966,
+   "source": "Gas Carriers earnings margin, MEASURED on the reviewed six months to 30 June 2026 rather than typed. The delivered edition carried 0.70 on the 2025 outcome; the half printed this, on revenue up 128 per cent",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "jv_gas_h126": {
+   "value": 24880,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note: the share of profit from joint ventures and associates carried inside the disclosed Gas Carriers earnings for the half, annualised",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "jv_services_h126": {
+   "value": 52160,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note: the share of profit from joint ventures and associates carried inside the disclosed Services earnings for the half, annualised",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "gas_rate_day": {
+   "value": 61573.28767123288,
+   "source": "Implied average charter revenue per gas vessel per day, solved from reported 2025 Gas Carriers revenue over consolidated vessel-years. Per-vessel rates are not disclosed, so this is the finest level the disclosure supports, and it is UNCHANGED from the delivered edition",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gas_rate_day_h126": {
+   "value": 108552.0,
+   "source": "The same construction on the reviewed six months to 30 June 2026 \u2014 a MEMORANDUM, not adopted, because its denominator counts CONTRACTED vessels while its numerator is the whole unit's revenue",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_offshore_contracting_2026": {
-   "value": 1248192,
-   "source": "First-quarter revenue annualised, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The 2026 margin is the first quarter's own margin before the one-off receivable provision, recovering toward the 2025 level as utilisation normalises.",
-   "date": "2026-08-09",
+   "value": 1334004.0,
+   "source": "The reviewed six months to 30 June 2026 as reported, plus a second half at the same revenue and at the margin the half itself delivered BEFORE the expected-credit-loss provision disclosed in the segment note, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The margin is held flat rather than recovering toward the 2025 level, because nothing disclosed measures a recovery in jack-up utilisation or pricing.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_offshore_contracting_2026": {
-   "value": 0.385,
-   "source": "First-quarter revenue annualised, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The 2026 margin is the first quarter's own margin before the one-off receivable provision, recovering toward the 2025 level as utilisation normalises.",
-   "date": "2026-08-09",
+   "value": 0.38755655905079744,
+   "source": "The reviewed six months to 30 June 2026 as reported, plus a second half at the same revenue and at the margin the half itself delivered BEFORE the expected-credit-loss provision disclosed in the segment note, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The margin is held flat rather than recovering toward the 2025 level, because nothing disclosed measures a recovery in jack-up utilisation or pricing.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_offshore_contracting_2027": {
-   "value": 1298120,
-   "source": "First-quarter revenue annualised, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The 2026 margin is the first quarter's own margin before the one-off receivable provision, recovering toward the 2025 level as utilisation normalises.",
-   "date": "2026-08-09",
+   "value": 1387364.1600000001,
+   "source": "The reviewed six months to 30 June 2026 as reported, plus a second half at the same revenue and at the margin the half itself delivered BEFORE the expected-credit-loss provision disclosed in the segment note, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The margin is held flat rather than recovering toward the 2025 level, because nothing disclosed measures a recovery in jack-up utilisation or pricing.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_offshore_contracting_2027": {
-   "value": 0.415,
-   "source": "First-quarter revenue annualised, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The 2026 margin is the first quarter's own margin before the one-off receivable provision, recovering toward the 2025 level as utilisation normalises.",
-   "date": "2026-08-09",
+   "value": 0.38755655905079744,
+   "source": "The reviewed six months to 30 June 2026 as reported, plus a second half at the same revenue and at the margin the half itself delivered BEFORE the expected-credit-loss provision disclosed in the segment note, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The margin is held flat rather than recovering toward the 2025 level, because nothing disclosed measures a recovery in jack-up utilisation or pricing.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_offshore_contracting_2028": {
-   "value": 1350044,
-   "source": "First-quarter revenue annualised, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The 2026 margin is the first quarter's own margin before the one-off receivable provision, recovering toward the 2025 level as utilisation normalises.",
-   "date": "2026-08-09",
+   "value": 1442858.7264,
+   "source": "The reviewed six months to 30 June 2026 as reported, plus a second half at the same revenue and at the margin the half itself delivered BEFORE the expected-credit-loss provision disclosed in the segment note, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The margin is held flat rather than recovering toward the 2025 level, because nothing disclosed measures a recovery in jack-up utilisation or pricing.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_offshore_contracting_2028": {
-   "value": 0.43,
-   "source": "First-quarter revenue annualised, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The 2026 margin is the first quarter's own margin before the one-off receivable provision, recovering toward the 2025 level as utilisation normalises.",
-   "date": "2026-08-09",
+   "value": 0.38755655905079744,
+   "source": "The reviewed six months to 30 June 2026 as reported, plus a second half at the same revenue and at the margin the half itself delivered BEFORE the expected-credit-loss provision disclosed in the segment note, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The margin is held flat rather than recovering toward the 2025 level, because nothing disclosed measures a recovery in jack-up utilisation or pricing.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_offshore_contracting_2029": {
-   "value": 1404046,
-   "source": "First-quarter revenue annualised, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The 2026 margin is the first quarter's own margin before the one-off receivable provision, recovering toward the 2025 level as utilisation normalises.",
-   "date": "2026-08-09",
+   "value": 1500573.0754560002,
+   "source": "The reviewed six months to 30 June 2026 as reported, plus a second half at the same revenue and at the margin the half itself delivered BEFORE the expected-credit-loss provision disclosed in the segment note, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The margin is held flat rather than recovering toward the 2025 level, because nothing disclosed measures a recovery in jack-up utilisation or pricing.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_offshore_contracting_2029": {
-   "value": 0.43,
-   "source": "First-quarter revenue annualised, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The 2026 margin is the first quarter's own margin before the one-off receivable provision, recovering toward the 2025 level as utilisation normalises.",
-   "date": "2026-08-09",
+   "value": 0.38755655905079744,
+   "source": "The reviewed six months to 30 June 2026 as reported, plus a second half at the same revenue and at the margin the half itself delivered BEFORE the expected-credit-loss provision disclosed in the segment note, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The margin is held flat rather than recovering toward the 2025 level, because nothing disclosed measures a recovery in jack-up utilisation or pricing.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_offshore_contracting_2030": {
-   "value": 1460208,
-   "source": "First-quarter revenue annualised, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The 2026 margin is the first quarter's own margin before the one-off receivable provision, recovering toward the 2025 level as utilisation normalises.",
-   "date": "2026-08-09",
+   "value": 1560595.9984742403,
+   "source": "The reviewed six months to 30 June 2026 as reported, plus a second half at the same revenue and at the margin the half itself delivered BEFORE the expected-credit-loss provision disclosed in the segment note, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The margin is held flat rather than recovering toward the 2025 level, because nothing disclosed measures a recovery in jack-up utilisation or pricing.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_offshore_contracting_2030": {
-   "value": 0.43,
-   "source": "First-quarter revenue annualised, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The 2026 margin is the first quarter's own margin before the one-off receivable provision, recovering toward the 2025 level as utilisation normalises.",
-   "date": "2026-08-09",
+   "value": 0.38755655905079744,
+   "source": "The reviewed six months to 30 June 2026 as reported, plus a second half at the same revenue and at the margin the half itself delivered BEFORE the expected-credit-loss provision disclosed in the segment note, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The margin is held flat rather than recovering toward the 2025 level, because nothing disclosed measures a recovery in jack-up utilisation or pricing.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_offshore_services_2026": {
-   "value": 662856,
-   "source": "First-quarter revenue annualised, then 5% a year on the support-vessel fleet growth already under way. Margin held at the level the first quarter delivered.",
-   "date": "2026-08-09",
+   "value": 742314.0,
+   "source": "The reviewed half as reported plus a second half at the same revenue and the same margin, then 5% a year on the support-vessel fleet growth already under way. The margin is the half's own.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_offshore_services_2026": {
-   "value": 0.287,
-   "source": "First-quarter revenue annualised, then 5% a year on the support-vessel fleet growth already under way. Margin held at the level the first quarter delivered.",
-   "date": "2026-08-09",
+   "value": 0.2404966092516105,
+   "source": "The reviewed half as reported plus a second half at the same revenue and the same margin, then 5% a year on the support-vessel fleet growth already under way. The margin is the half's own.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_offshore_services_2027": {
-   "value": 696000,
-   "source": "First-quarter revenue annualised, then 5% a year on the support-vessel fleet growth already under way. Margin held at the level the first quarter delivered.",
-   "date": "2026-08-09",
+   "value": 779429.7000000001,
+   "source": "The reviewed half as reported plus a second half at the same revenue and the same margin, then 5% a year on the support-vessel fleet growth already under way. The margin is the half's own.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_offshore_services_2027": {
-   "value": 0.29,
-   "source": "First-quarter revenue annualised, then 5% a year on the support-vessel fleet growth already under way. Margin held at the level the first quarter delivered.",
-   "date": "2026-08-09",
+   "value": 0.2404966092516105,
+   "source": "The reviewed half as reported plus a second half at the same revenue and the same margin, then 5% a year on the support-vessel fleet growth already under way. The margin is the half's own.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_offshore_services_2028": {
-   "value": 730800,
-   "source": "First-quarter revenue annualised, then 5% a year on the support-vessel fleet growth already under way. Margin held at the level the first quarter delivered.",
-   "date": "2026-08-09",
+   "value": 818401.185,
+   "source": "The reviewed half as reported plus a second half at the same revenue and the same margin, then 5% a year on the support-vessel fleet growth already under way. The margin is the half's own.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_offshore_services_2028": {
-   "value": 0.29,
-   "source": "First-quarter revenue annualised, then 5% a year on the support-vessel fleet growth already under way. Margin held at the level the first quarter delivered.",
-   "date": "2026-08-09",
+   "value": 0.2404966092516105,
+   "source": "The reviewed half as reported plus a second half at the same revenue and the same margin, then 5% a year on the support-vessel fleet growth already under way. The margin is the half's own.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_offshore_services_2029": {
-   "value": 767340,
-   "source": "First-quarter revenue annualised, then 5% a year on the support-vessel fleet growth already under way. Margin held at the level the first quarter delivered.",
-   "date": "2026-08-09",
+   "value": 859321.2442500001,
+   "source": "The reviewed half as reported plus a second half at the same revenue and the same margin, then 5% a year on the support-vessel fleet growth already under way. The margin is the half's own.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_offshore_services_2029": {
-   "value": 0.29,
-   "source": "First-quarter revenue annualised, then 5% a year on the support-vessel fleet growth already under way. Margin held at the level the first quarter delivered.",
-   "date": "2026-08-09",
+   "value": 0.2404966092516105,
+   "source": "The reviewed half as reported plus a second half at the same revenue and the same margin, then 5% a year on the support-vessel fleet growth already under way. The margin is the half's own.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_offshore_services_2030": {
-   "value": 805707,
-   "source": "First-quarter revenue annualised, then 5% a year on the support-vessel fleet growth already under way. Margin held at the level the first quarter delivered.",
-   "date": "2026-08-09",
+   "value": 902287.3064625001,
+   "source": "The reviewed half as reported plus a second half at the same revenue and the same margin, then 5% a year on the support-vessel fleet growth already under way. The margin is the half's own.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_offshore_services_2030": {
-   "value": 0.29,
-   "source": "First-quarter revenue annualised, then 5% a year on the support-vessel fleet growth already under way. Margin held at the level the first quarter delivered.",
-   "date": "2026-08-09",
+   "value": 0.2404966092516105,
+   "source": "The reviewed half as reported plus a second half at the same revenue and the same margin, then 5% a year on the support-vessel fleet growth already under way. The margin is the half's own.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_offshore_projects_2026": {
-   "value": 125000,
-   "source": "The company's own stated range of USD 100-150 million of engineering and construction revenue for 2026 after the large island project completed, then a recovery as new awards replace it. This is the least visible line in the model.",
-   "date": "2026-08-09",
+   "value": 3768.0,
+   "source": "The reviewed half as reported plus a second half at the same revenue and no margin, held FLAT thereafter. The large island project completed in the fourth quarter of 2025 and NO NEW AWARD IS DISCLOSED; the two projects the company names are loss-making. The delivered edition carried USD 125 million of 2026 revenue recovering to 300 million by 2030 on a company range the half has since falsified \u2014 the unit earned USD 1.9 million in six months. A recovery nothing discloses is not forecast.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_offshore_projects_2026": {
-   "value": -0.02,
-   "source": "The company's own stated range of USD 100-150 million of engineering and construction revenue for 2026 after the large island project completed, then a recovery as new awards replace it. This is the least visible line in the model.",
-   "date": "2026-08-09",
+   "value": 0.0,
+   "source": "The reviewed half as reported plus a second half at the same revenue and no margin, held FLAT thereafter. The large island project completed in the fourth quarter of 2025 and NO NEW AWARD IS DISCLOSED; the two projects the company names are loss-making. The delivered edition carried USD 125 million of 2026 revenue recovering to 300 million by 2030 on a company range the half has since falsified \u2014 the unit earned USD 1.9 million in six months. A recovery nothing discloses is not forecast.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_offshore_projects_2027": {
-   "value": 200000,
-   "source": "The company's own stated range of USD 100-150 million of engineering and construction revenue for 2026 after the large island project completed, then a recovery as new awards replace it. This is the least visible line in the model.",
-   "date": "2026-08-09",
+   "value": 3768.0,
+   "source": "The reviewed half as reported plus a second half at the same revenue and no margin, held FLAT thereafter. The large island project completed in the fourth quarter of 2025 and NO NEW AWARD IS DISCLOSED; the two projects the company names are loss-making. The delivered edition carried USD 125 million of 2026 revenue recovering to 300 million by 2030 on a company range the half has since falsified \u2014 the unit earned USD 1.9 million in six months. A recovery nothing discloses is not forecast.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_offshore_projects_2027": {
-   "value": 0.06,
-   "source": "The company's own stated range of USD 100-150 million of engineering and construction revenue for 2026 after the large island project completed, then a recovery as new awards replace it. This is the least visible line in the model.",
-   "date": "2026-08-09",
+   "value": 0.0,
+   "source": "The reviewed half as reported plus a second half at the same revenue and no margin, held FLAT thereafter. The large island project completed in the fourth quarter of 2025 and NO NEW AWARD IS DISCLOSED; the two projects the company names are loss-making. The delivered edition carried USD 125 million of 2026 revenue recovering to 300 million by 2030 on a company range the half has since falsified \u2014 the unit earned USD 1.9 million in six months. A recovery nothing discloses is not forecast.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_offshore_projects_2028": {
-   "value": 250000,
-   "source": "The company's own stated range of USD 100-150 million of engineering and construction revenue for 2026 after the large island project completed, then a recovery as new awards replace it. This is the least visible line in the model.",
-   "date": "2026-08-09",
+   "value": 3768.0,
+   "source": "The reviewed half as reported plus a second half at the same revenue and no margin, held FLAT thereafter. The large island project completed in the fourth quarter of 2025 and NO NEW AWARD IS DISCLOSED; the two projects the company names are loss-making. The delivered edition carried USD 125 million of 2026 revenue recovering to 300 million by 2030 on a company range the half has since falsified \u2014 the unit earned USD 1.9 million in six months. A recovery nothing discloses is not forecast.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_offshore_projects_2028": {
-   "value": 0.065,
-   "source": "The company's own stated range of USD 100-150 million of engineering and construction revenue for 2026 after the large island project completed, then a recovery as new awards replace it. This is the least visible line in the model.",
-   "date": "2026-08-09",
+   "value": 0.0,
+   "source": "The reviewed half as reported plus a second half at the same revenue and no margin, held FLAT thereafter. The large island project completed in the fourth quarter of 2025 and NO NEW AWARD IS DISCLOSED; the two projects the company names are loss-making. The delivered edition carried USD 125 million of 2026 revenue recovering to 300 million by 2030 on a company range the half has since falsified \u2014 the unit earned USD 1.9 million in six months. A recovery nothing discloses is not forecast.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_offshore_projects_2029": {
-   "value": 275000,
-   "source": "The company's own stated range of USD 100-150 million of engineering and construction revenue for 2026 after the large island project completed, then a recovery as new awards replace it. This is the least visible line in the model.",
-   "date": "2026-08-09",
+   "value": 3768.0,
+   "source": "The reviewed half as reported plus a second half at the same revenue and no margin, held FLAT thereafter. The large island project completed in the fourth quarter of 2025 and NO NEW AWARD IS DISCLOSED; the two projects the company names are loss-making. The delivered edition carried USD 125 million of 2026 revenue recovering to 300 million by 2030 on a company range the half has since falsified \u2014 the unit earned USD 1.9 million in six months. A recovery nothing discloses is not forecast.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_offshore_projects_2029": {
-   "value": 0.065,
-   "source": "The company's own stated range of USD 100-150 million of engineering and construction revenue for 2026 after the large island project completed, then a recovery as new awards replace it. This is the least visible line in the model.",
-   "date": "2026-08-09",
+   "value": 0.0,
+   "source": "The reviewed half as reported plus a second half at the same revenue and no margin, held FLAT thereafter. The large island project completed in the fourth quarter of 2025 and NO NEW AWARD IS DISCLOSED; the two projects the company names are loss-making. The delivered edition carried USD 125 million of 2026 revenue recovering to 300 million by 2030 on a company range the half has since falsified \u2014 the unit earned USD 1.9 million in six months. A recovery nothing discloses is not forecast.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_offshore_projects_2030": {
-   "value": 300000,
-   "source": "The company's own stated range of USD 100-150 million of engineering and construction revenue for 2026 after the large island project completed, then a recovery as new awards replace it. This is the least visible line in the model.",
-   "date": "2026-08-09",
+   "value": 3768.0,
+   "source": "The reviewed half as reported plus a second half at the same revenue and no margin, held FLAT thereafter. The large island project completed in the fourth quarter of 2025 and NO NEW AWARD IS DISCLOSED; the two projects the company names are loss-making. The delivered edition carried USD 125 million of 2026 revenue recovering to 300 million by 2030 on a company range the half has since falsified \u2014 the unit earned USD 1.9 million in six months. A recovery nothing discloses is not forecast.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_offshore_projects_2030": {
-   "value": 0.065,
-   "source": "The company's own stated range of USD 100-150 million of engineering and construction revenue for 2026 after the large island project completed, then a recovery as new awards replace it. This is the least visible line in the model.",
-   "date": "2026-08-09",
+   "value": 0.0,
+   "source": "The reviewed half as reported plus a second half at the same revenue and no margin, held FLAT thereafter. The large island project completed in the fourth quarter of 2025 and NO NEW AWARD IS DISCLOSED; the two projects the company names are loss-making. The delivered edition carried USD 125 million of 2026 revenue recovering to 300 million by 2030 on a company range the half has since falsified \u2014 the unit earned USD 1.9 million in six months. A recovery nothing discloses is not forecast.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_dry_bulk_and_containers_2026": {
-   "value": 197164,
-   "source": "First-quarter revenue annualised and grown 2% a year; the container vessels sit on a fifteen-year contract and the bulk carriers earn charter rates that have been recovering.",
-   "date": "2026-08-09",
+   "value": 298076.0,
+   "source": "The reviewed half as reported plus a second half on the same terms, then a straight-line reversion of both revenue and margin to the 2025 outcome by 2030. Bulk charter rates spiked with tanker rates and the company publishes the series that shows it; the container vessels sit on a fifteen-year contract and do not.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_dry_bulk_and_containers_2026": {
-   "value": 0.184,
-   "source": "First-quarter revenue annualised and grown 2% a year; the container vessels sit on a fifteen-year contract and the bulk carriers earn charter rates that have been recovering.",
-   "date": "2026-08-09",
+   "value": 0.3546209691488077,
+   "source": "The reviewed half as reported plus a second half on the same terms, then a straight-line reversion of both revenue and margin to the 2025 outcome by 2030. Bulk charter rates spiked with tanker rates and the company publishes the series that shows it; the container vessels sit on a fifteen-year contract and do not.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_dry_bulk_and_containers_2027": {
-   "value": 201107,
-   "source": "First-quarter revenue annualised and grown 2% a year; the container vessels sit on a fifteen-year contract and the bulk carriers earn charter rates that have been recovering.",
-   "date": "2026-08-09",
+   "value": 279819.0,
+   "source": "The reviewed half as reported plus a second half on the same terms, then a straight-line reversion of both revenue and margin to the 2025 outcome by 2030. Bulk charter rates spiked with tanker rates and the company publishes the series that shows it; the container vessels sit on a fifteen-year contract and do not.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_dry_bulk_and_containers_2027": {
-   "value": 0.184,
-   "source": "First-quarter revenue annualised and grown 2% a year; the container vessels sit on a fifteen-year contract and the bulk carriers earn charter rates that have been recovering.",
-   "date": "2026-08-09",
+   "value": 0.30802564296839186,
+   "source": "The reviewed half as reported plus a second half on the same terms, then a straight-line reversion of both revenue and margin to the 2025 outcome by 2030. Bulk charter rates spiked with tanker rates and the company publishes the series that shows it; the container vessels sit on a fifteen-year contract and do not.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_dry_bulk_and_containers_2028": {
-   "value": 205129,
-   "source": "First-quarter revenue annualised and grown 2% a year; the container vessels sit on a fifteen-year contract and the bulk carriers earn charter rates that have been recovering.",
-   "date": "2026-08-09",
+   "value": 261562.0,
+   "source": "The reviewed half as reported plus a second half on the same terms, then a straight-line reversion of both revenue and margin to the 2025 outcome by 2030. Bulk charter rates spiked with tanker rates and the company publishes the series that shows it; the container vessels sit on a fifteen-year contract and do not.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_dry_bulk_and_containers_2028": {
-   "value": 0.184,
-   "source": "First-quarter revenue annualised and grown 2% a year; the container vessels sit on a fifteen-year contract and the bulk carriers earn charter rates that have been recovering.",
-   "date": "2026-08-09",
+   "value": 0.26143031678797607,
+   "source": "The reviewed half as reported plus a second half on the same terms, then a straight-line reversion of both revenue and margin to the 2025 outcome by 2030. Bulk charter rates spiked with tanker rates and the company publishes the series that shows it; the container vessels sit on a fifteen-year contract and do not.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_dry_bulk_and_containers_2029": {
-   "value": 209232,
-   "source": "First-quarter revenue annualised and grown 2% a year; the container vessels sit on a fifteen-year contract and the bulk carriers earn charter rates that have been recovering.",
-   "date": "2026-08-09",
+   "value": 243305.0,
+   "source": "The reviewed half as reported plus a second half on the same terms, then a straight-line reversion of both revenue and margin to the 2025 outcome by 2030. Bulk charter rates spiked with tanker rates and the company publishes the series that shows it; the container vessels sit on a fifteen-year contract and do not.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_dry_bulk_and_containers_2029": {
-   "value": 0.184,
-   "source": "First-quarter revenue annualised and grown 2% a year; the container vessels sit on a fifteen-year contract and the bulk carriers earn charter rates that have been recovering.",
-   "date": "2026-08-09",
+   "value": 0.21483499060756026,
+   "source": "The reviewed half as reported plus a second half on the same terms, then a straight-line reversion of both revenue and margin to the 2025 outcome by 2030. Bulk charter rates spiked with tanker rates and the company publishes the series that shows it; the container vessels sit on a fifteen-year contract and do not.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_dry_bulk_and_containers_2030": {
-   "value": 213417,
-   "source": "First-quarter revenue annualised and grown 2% a year; the container vessels sit on a fifteen-year contract and the bulk carriers earn charter rates that have been recovering.",
-   "date": "2026-08-09",
+   "value": 225048.0,
+   "source": "The reviewed half as reported plus a second half on the same terms, then a straight-line reversion of both revenue and margin to the 2025 outcome by 2030. Bulk charter rates spiked with tanker rates and the company publishes the series that shows it; the container vessels sit on a fifteen-year contract and do not.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_dry_bulk_and_containers_2030": {
-   "value": 0.184,
-   "source": "First-quarter revenue annualised and grown 2% a year; the container vessels sit on a fifteen-year contract and the bulk carriers earn charter rates that have been recovering.",
-   "date": "2026-08-09",
+   "value": 0.16823966442714444,
+   "source": "The reviewed half as reported plus a second half on the same terms, then a straight-line reversion of both revenue and margin to the 2025 outcome by 2030. Bulk charter rates spiked with tanker rates and the company publishes the series that shows it; the container vessels sit on a fifteen-year contract and do not.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_services_2026": {
-   "value": 355372,
-   "source": "First-quarter revenue annualised and grown 4% a year. The margin reflects the warehouse activity moved into this unit and the growing profit share from the bunkering associate.",
-   "date": "2026-08-09",
+   "value": 377862.0,
+   "source": "The reviewed half as reported plus a second half on the same terms, then 4% a year. The margin is the half's own and reflects the warehouse activity moved into this unit; the profit share from the bunkering associate is removed separately so it is not counted twice.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_services_2026": {
-   "value": 0.2,
-   "source": "First-quarter revenue annualised and grown 4% a year. The margin reflects the warehouse activity moved into this unit and the growing profit share from the bunkering associate.",
-   "date": "2026-08-09",
+   "value": 0.27541800974959113,
+   "source": "The reviewed half as reported plus a second half on the same terms, then 4% a year. The margin is the half's own and reflects the warehouse activity moved into this unit; the profit share from the bunkering associate is removed separately so it is not counted twice.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_services_2027": {
-   "value": 369587,
-   "source": "First-quarter revenue annualised and grown 4% a year. The margin reflects the warehouse activity moved into this unit and the growing profit share from the bunkering associate.",
-   "date": "2026-08-09",
+   "value": 392976.48000000004,
+   "source": "The reviewed half as reported plus a second half on the same terms, then 4% a year. The margin is the half's own and reflects the warehouse activity moved into this unit; the profit share from the bunkering associate is removed separately so it is not counted twice.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_services_2027": {
-   "value": 0.2,
-   "source": "First-quarter revenue annualised and grown 4% a year. The margin reflects the warehouse activity moved into this unit and the growing profit share from the bunkering associate.",
-   "date": "2026-08-09",
+   "value": 0.27541800974959113,
+   "source": "The reviewed half as reported plus a second half on the same terms, then 4% a year. The margin is the half's own and reflects the warehouse activity moved into this unit; the profit share from the bunkering associate is removed separately so it is not counted twice.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_services_2028": {
-   "value": 384370,
-   "source": "First-quarter revenue annualised and grown 4% a year. The margin reflects the warehouse activity moved into this unit and the growing profit share from the bunkering associate.",
-   "date": "2026-08-09",
+   "value": 408695.53920000006,
+   "source": "The reviewed half as reported plus a second half on the same terms, then 4% a year. The margin is the half's own and reflects the warehouse activity moved into this unit; the profit share from the bunkering associate is removed separately so it is not counted twice.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_services_2028": {
-   "value": 0.2,
-   "source": "First-quarter revenue annualised and grown 4% a year. The margin reflects the warehouse activity moved into this unit and the growing profit share from the bunkering associate.",
-   "date": "2026-08-09",
+   "value": 0.27541800974959113,
+   "source": "The reviewed half as reported plus a second half on the same terms, then 4% a year. The margin is the half's own and reflects the warehouse activity moved into this unit; the profit share from the bunkering associate is removed separately so it is not counted twice.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_services_2029": {
-   "value": 399745,
-   "source": "First-quarter revenue annualised and grown 4% a year. The margin reflects the warehouse activity moved into this unit and the growing profit share from the bunkering associate.",
-   "date": "2026-08-09",
+   "value": 425043.360768,
+   "source": "The reviewed half as reported plus a second half on the same terms, then 4% a year. The margin is the half's own and reflects the warehouse activity moved into this unit; the profit share from the bunkering associate is removed separately so it is not counted twice.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_services_2029": {
-   "value": 0.2,
-   "source": "First-quarter revenue annualised and grown 4% a year. The margin reflects the warehouse activity moved into this unit and the growing profit share from the bunkering associate.",
-   "date": "2026-08-09",
+   "value": 0.27541800974959113,
+   "source": "The reviewed half as reported plus a second half on the same terms, then 4% a year. The margin is the half's own and reflects the warehouse activity moved into this unit; the profit share from the bunkering associate is removed separately so it is not counted twice.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_rev_services_2030": {
-   "value": 415735,
-   "source": "First-quarter revenue annualised and grown 4% a year. The margin reflects the warehouse activity moved into this unit and the growing profit share from the bunkering associate.",
-   "date": "2026-08-09",
+   "value": 442045.09519872005,
+   "source": "The reviewed half as reported plus a second half on the same terms, then 4% a year. The margin is the half's own and reflects the warehouse activity moved into this unit; the profit share from the bunkering associate is removed separately so it is not counted twice.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "drv_mar_services_2030": {
-   "value": 0.2,
-   "source": "First-quarter revenue annualised and grown 4% a year. The margin reflects the warehouse activity moved into this unit and the growing profit share from the bunkering associate.",
-   "date": "2026-08-09",
+   "value": 0.27541800974959113,
+   "source": "The reviewed half as reported plus a second half on the same terms, then 4% a year. The margin is the half's own and reflects the warehouse activity moved into this unit; the profit share from the bunkering associate is removed separately so it is not counted twice.",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "seg_dna_offshore_contracting_fy25": {
@@ -4418,7 +4606,7 @@
    "layer": "Company"
   },
   "dso_days": {
-   "value": 126.4,
+   "value": 110.1,
    "source": "ADNOC L&S plc, Consolidated Financial Statements FY2025 (PwC-audited, signed 10 Feb 2026) \u2014 trade and other receivables plus amounts due from related parties over revenue, in days",
    "date": "2025-12-31",
    "layer": "Company"
@@ -4483,10 +4671,16 @@
    "date": "2025-12-31",
    "layer": "Company"
   },
+  "div_declared_q2_26": {
+   "value": 85300,
+   "source": "ADNOC L&S plc, Management Discussion and Analysis, First Half 2026 (11 Aug 2026) \u2014 interim cash dividend of USD 85.3 million, equivalent to AED 313.3 million, approved by the board for the second quarter of 2026 on a record date of 20 August 2026",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
   "nci_share": {
-   "value": 0.088,
-   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, three months ended 31 March 2026 (reviewed) \u2014 profit attributable to non-controlling interests over profit for the period in the first quarter of 2026",
-   "date": "2026-03-31",
+   "value": 0.0454,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 profit attributable to non-controlling interests over profit for the period, over the reviewed six months to 30 June 2026. The two quarters inside it read 8.8 and 3.5 per cent, so the half is used rather than either",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "ri_fade": {
@@ -5311,16 +5505,16 @@
     "name": "Navig8 Macallister",
     "klass": "lr1",
     "rate": 19750,
-    "start": "2025-07-28",
+    "start": "2025-09-28",
     "end": "2027-03-28",
-    "period_months": 20
+    "period_months": 18
    },
    {
     "name": "Navig8 Martinez",
     "klass": "lr1",
     "rate": 19750,
-    "start": "2025-07-28",
-    "end": "2028-03-28",
+    "start": "2025-11-28",
+    "end": "2028-07-28",
     "period_months": 32
    },
    {
@@ -5335,72 +5529,72 @@
     "name": "Navig8 Promise",
     "klass": "lr2",
     "rate": 32125,
-    "start": "2025-07-02",
-    "end": "2026-07-02",
+    "start": "2025-08-27",
+    "end": "2026-08-27",
     "period_months": 12
    },
    {
     "name": "Navig8 Pride",
     "klass": "lr2",
     "rate": 32125,
-    "start": "2025-07-09",
-    "end": "2026-07-09",
+    "start": "2025-10-07",
+    "end": "2026-10-07",
     "period_months": 12
    },
    {
     "name": "Navig8 Prestige",
     "klass": "lr2",
     "rate": 36850,
-    "start": "2025-10-08",
-    "end": "2026-10-08",
+    "start": "2025-12-07",
+    "end": "2026-12-07",
     "period_months": 12
    },
    {
     "name": "Navig8 Providence",
     "klass": "lr2",
     "rate": 42000,
-    "start": "2026-01-31",
-    "end": "2027-01-31",
+    "start": "2026-04-18",
+    "end": "2027-04-18",
     "period_months": 12
    },
    {
     "name": "Navig8 Passion",
     "klass": "lr2",
     "rate": 42000,
-    "start": "2026-02-06",
-    "end": "2027-02-06",
+    "start": "2026-06-20",
+    "end": "2027-06-20",
     "period_months": 12
    },
    {
     "name": "Zakum",
     "klass": "vlcc",
     "rate": 50633,
-    "start": "2025-11-02",
-    "end": "2027-09-02",
+    "start": "2026-03-02",
+    "end": "2028-01-02",
     "period_months": 22
    },
    {
     "name": "Hili",
     "klass": "vlcc",
     "rate": 50633,
-    "start": "2025-11-16",
-    "end": "2027-09-16",
+    "start": "2026-03-16",
+    "end": "2028-01-16",
     "period_months": 22
    },
    {
     "name": "Arzanah",
     "klass": "vlcc",
     "rate": 70000,
-    "start": "2026-02-01",
-    "end": "2027-02-01",
+    "start": "2026-04-20",
+    "end": "2027-04-20",
     "period_months": 12
    },
    {
     "name": "Habshan",
     "klass": "vlcc",
     "rate": 72500,
-    "start": "2026-02-21",
-    "end": "2027-02-21",
+    "start": "2026-05-21",
+    "end": "2027-05-21",
     "period_months": 12
    }
   ],
@@ -5433,18 +5627,32 @@
    "hs": 23700.0
   },
   "blend_q2_26": {
-   "mr": 44000,
-   "lr1": 55000,
-   "lr2": 95000,
-   "vlcc": 260000,
-   "hs": 34760.0
+   "mr": 36229,
+   "lr1": 80206,
+   "lr2": 129568,
+   "vlcc": 291145,
+   "hs": 28620.91
+  },
+  "blend_q3_26": {
+   "mr": 28235.475,
+   "lr1": 67854.3275,
+   "lr2": 80178.94,
+   "vlcc": 134967.23750000002,
+   "hs": 22306.02525
+  },
+  "blend_q4_26": {
+   "hs": 20688.115125,
+   "mr": 26187.4875,
+   "lr1": 50015.72625,
+   "lr2": 61026.47,
+   "vlcc": 91445.43125000001
   },
   "spot_fy25": {
    "hs": 19070.205,
    "mr": 24139.5,
-   "lr1": 24905.611236185017,
-   "lr2": 36652.8879625259,
-   "vlcc": 53737.41274238227
+   "lr1": 24509.729673659673,
+   "lr2": 36475.23946154156,
+   "vlcc": 52466.0
   },
   "spot_mid": {
    "hs": 19070.205,
@@ -5457,15 +5665,43 @@
    "hs": 23700.0,
    "mr": 30000.0,
    "lr1": 40642.857142857145,
-   "lr2": 68278.89204545454,
-   "vlcc": 199838.37104072399
+   "lr2": 65718.38461538461,
+   "vlcc": 151440.4777448071
   },
   "spot_q2_26": {
-   "hs": 34760.0,
-   "mr": 44000.0,
-   "lr1": 65071.42857142857,
-   "lr2": 121919.1567516525,
-   "vlcc": 459058.5
+   "hs": 28620.91,
+   "mr": 36229.0,
+   "lr1": 97479.14285714286,
+   "lr2": 161473.2551903114,
+   "vlcc": 449713.28868360276
+  },
+  "spot_q3_26": {
+   "hs": 22306.02525,
+   "mr": 28235.475,
+   "lr1": 81598.42107142857,
+   "lr2": 96132.6050570676,
+   "vlcc": 208992.97500000003
+  },
+  "spot_q4_26": {
+   "hs": 20688.115125,
+   "mr": 26187.4875,
+   "lr1": 58663.07660714286,
+   "lr2": 65077.04596786534,
+   "vlcc": 121949.36250000002
+  },
+  "spot_26": {
+   "hs": 23816.33897123288,
+   "mr": 30147.264520547942,
+   "lr1": 69678.12857338552,
+   "lr2": 97095.91433423776,
+   "vlcc": 232877.38991024796
+  },
+  "spot_h2_26": {
+   "hs": 21497.0701875,
+   "mr": 27211.48125,
+   "lr1": 70130.7488392857,
+   "lr2": 79538.32225674571,
+   "vlcc": 154442.48215258858
   },
   "tce_mid": {
    "hs": 19070.205,
@@ -5474,7 +5710,10 @@
    "lr2": 42581.0625,
    "vlcc": 47923.625
   },
-  "opex_day": 9163.655319203934,
+  "cost_fixed": 529987.3891354435,
+  "cost_var": 1.0486665765671859,
+  "leverage": 1.5599014167563583,
+  "grossup": 2.608567993323544,
   "gas_vessel_years": [
    12.0,
    18.0,
@@ -5484,96 +5723,133 @@
   ],
   "gas_rate_day": 61573.28767123288,
   "vessel_days_25": 19345,
-  "tce_rev_25": 628490.9121500001
+  "tce_rev_25": 629018.8460599999,
+  "tce_rev_h125": 285222.57038,
+  "tce_rev_h126": 805808.39962
  },
  "drivers": {
   "Offshore Contracting": {
    "rev": [
-    1248192,
-    1298120,
-    1350044,
-    1404046,
-    1460208
+    1334004.0,
+    1387364.1600000001,
+    1442858.7264,
+    1500573.0754560002,
+    1560595.9984742403
    ],
    "mar": [
-    0.385,
-    0.415,
-    0.43,
-    0.43,
-    0.43
+    0.38755655905079744,
+    0.38755655905079744,
+    0.38755655905079744,
+    0.38755655905079744,
+    0.38755655905079744
+   ],
+   "ebitda": [
+    469471.0,
+    537682.0800000001,
+    559189.3632,
+    581556.9377280001,
+    604819.2152371202
    ]
   },
   "Offshore Services": {
    "rev": [
-    662856,
-    696000,
-    730800,
-    767340,
-    805707
+    742314.0,
+    779429.7000000001,
+    818401.185,
+    859321.2442500001,
+    902287.3064625001
    ],
    "mar": [
-    0.287,
-    0.29,
-    0.29,
-    0.29,
-    0.29
+    0.2404966092516105,
+    0.2404966092516105,
+    0.2404966092516105,
+    0.2404966092516105,
+    0.2404966092516105
+   ],
+   "ebitda": [
+    178524.0,
+    187450.2,
+    196822.71000000002,
+    206663.84550000002,
+    216997.03777500003
    ]
   },
   "Offshore Projects": {
    "rev": [
-    125000,
-    200000,
-    250000,
-    275000,
-    300000
+    3768.0,
+    3768.0,
+    3768.0,
+    3768.0,
+    3768.0
    ],
    "mar": [
-    -0.02,
-    0.06,
-    0.065,
-    0.065,
-    0.065
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "ebitda": [
+    -16959.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
    ]
   },
   "Dry-Bulk and Containers": {
    "rev": [
-    197164,
-    201107,
-    205129,
-    209232,
-    213417
+    298076.0,
+    279819.0,
+    261562.0,
+    243305.0,
+    225048.0
    ],
    "mar": [
-    0.184,
-    0.184,
-    0.184,
-    0.184,
-    0.184
+    0.3546209691488077,
+    0.30802564296839186,
+    0.26143031678797607,
+    0.21483499060756026,
+    0.16823966442714444
+   ],
+   "ebitda": [
+    105704.0,
+    86191.42738977243,
+    68380.2365196966,
+    52270.42738977245,
+    37862.0
    ]
   },
   "Services": {
    "rev": [
-    355372,
-    369587,
-    384370,
-    399745,
-    415735
+    377862.0,
+    392976.48000000004,
+    408695.53920000006,
+    425043.360768,
+    442045.09519872005
    ],
    "mar": [
-    0.2,
-    0.2,
-    0.2,
-    0.2,
-    0.2
+    0.27541800974959113,
+    0.27541800974959113,
+    0.27541800974959113,
+    0.27541800974959113,
+    0.27541800974959113
+   ],
+   "ebitda": [
+    104070.0,
+    108232.80000000002,
+    112562.11200000002,
+    117064.59648000001,
+    121747.18033920001
    ]
   }
  },
  "driver_why": {
-  "Offshore Contracting": "First-quarter revenue annualised, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The 2026 margin is the first quarter's own margin before the one-off receivable provision, recovering toward the 2025 level as utilisation normalises.",
-  "Offshore Services": "First-quarter revenue annualised, then 5% a year on the support-vessel fleet growth already under way. Margin held at the level the first quarter delivered.",
-  "Offshore Projects": "The company's own stated range of USD 100-150 million of engineering and construction revenue for 2026 after the large island project completed, then a recovery as new awards replace it. This is the least visible line in the model.",
-  "Dry-Bulk and Containers": "First-quarter revenue annualised and grown 2% a year; the container vessels sit on a fifteen-year contract and the bulk carriers earn charter rates that have been recovering.",
-  "Services": "First-quarter revenue annualised and grown 4% a year. The margin reflects the warehouse activity moved into this unit and the growing profit share from the bunkering associate."
+  "Offshore Contracting": "The reviewed six months to 30 June 2026 as reported, plus a second half at the same revenue and at the margin the half itself delivered BEFORE the expected-credit-loss provision disclosed in the segment note, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The margin is held flat rather than recovering toward the 2025 level, because nothing disclosed measures a recovery in jack-up utilisation or pricing.",
+  "Offshore Services": "The reviewed half as reported plus a second half at the same revenue and the same margin, then 5% a year on the support-vessel fleet growth already under way. The margin is the half's own.",
+  "Offshore Projects": "The reviewed half as reported plus a second half at the same revenue and no margin, held FLAT thereafter. The large island project completed in the fourth quarter of 2025 and NO NEW AWARD IS DISCLOSED; the two projects the company names are loss-making. The delivered edition carried USD 125 million of 2026 revenue recovering to 300 million by 2030 on a company range the half has since falsified \u2014 the unit earned USD 1.9 million in six months. A recovery nothing discloses is not forecast.",
+  "Dry-Bulk and Containers": "The reviewed half as reported plus a second half on the same terms, then a straight-line reversion of both revenue and margin to the 2025 outcome by 2030. Bulk charter rates spiked with tanker rates and the company publishes the series that shows it; the container vessels sit on a fifteen-year contract and do not.",
+  "Services": "The reviewed half as reported plus a second half on the same terms, then 4% a year. The margin is the half's own and reflects the warehouse activity moved into this unit; the profit share from the bunkering associate is removed separately so it is not counted twice."
  },
  "fcst": {
   "years": [
@@ -5584,25 +5860,25 @@
    "FY2030"
   ],
   "revenue": [
-   5003932.334736678,
-   5721030.8737402735,
-   5744536.224104598,
-   5500274.282518692,
-   5174642.47032531
+   6981777.9023008505,
+   7689881.704008308,
+   7447001.967240116,
+   6715639.234495698,
+   5889617.682479125
   ],
   "ebitda": [
-   2085941.8878816736,
-   2518407.077741096,
-   2506705.3134000385,
-   2312167.295448421,
-   2058631.6763450415
+   2716144.672518616,
+   3140206.8107103673,
+   2923794.177213135,
+   2425688.609125123,
+   1880075.580621739
   ],
   "ebitda_margin": [
-   0.4168605305474104,
-   0.4402016233299264,
-   0.4363633922059146,
-   0.42037308990155137,
-   0.3978307077543124
+   0.3890333824029992,
+   0.4083556719830361,
+   0.392613590015836,
+   0.3611999579526664,
+   0.3192186117979658
   ],
   "dna": [
    587328.84023241,
@@ -5626,39 +5902,39 @@
    10535181.115338786
   ],
   "ebit": [
-   1498613.0476492636,
-   1843394.1445248455,
-   1789865.9762375182,
-   1571346.5916781172,
-   1312081.3518975442
+   2128815.832286206,
+   2465193.8774941172,
+   2206954.840050615,
+   1684867.905354819,
+   1133525.2561742417
   ],
   "ebit_margin": [
-   0.29948707284590514,
-   0.3222136333831176,
-   0.3115771067344092,
-   0.28568513331639966,
-   0.25355980812623347
+   0.3049102767340469,
+   0.3205763069422965,
+   0.2963548082515842,
+   0.25088719726043207,
+   0.19246160231186776
   ],
   "tax": [
-   49080.079991360675,
-   56208.33981380388,
-   58746.929461548025,
-   58621.3385030906,
-   58861.28470295366
+   52281.877727730105,
+   60129.91697849661,
+   58619.03953937898,
+   55218.81133267164,
+   52294.523327843744
   ],
   "tax_rate": [
-   0.03275033543071581,
-   0.030491764325470492,
-   0.03282197116514841,
-   0.03730643437517246,
-   0.04486100242018372
+   0.024559136086273307,
+   0.02439155699981658,
+   0.026561050763519292,
+   0.032773377163382446,
+   0.04613441389417547
   ],
   "nopat": [
-   1449532.967657903,
-   1787185.8047110417,
-   1731119.0467759701,
-   1512725.2531750265,
-   1253220.0671945906
+   2076533.9545584759,
+   2405063.9605156207,
+   2148335.800511236,
+   1629649.0940221474,
+   1081230.732846398
   ],
   "capex": [
    1375000,
@@ -5668,195 +5944,195 @@
    650000
   ],
   "nwc": [
-   792365.0740279537,
-   948950.4068549664,
-   945743.6473654411,
-   877186.2647504068,
-   787662.384257637
+   731879.1903189737,
+   853991.9270290055,
+   789239.4617703538,
+   643742.882915112,
+   484881.0439007906
   ],
   "dnwc": [
-   445950.07402795367,
-   156585.33282701275,
-   -3206.7594895253424,
-   -68557.38261503424,
-   -89523.88049276988
+   385464.19031897373,
+   122112.73671003175,
+   -64752.465258651646,
+   -145496.57885524188,
+   -158861.83901432133
   ],
   "fcff": [
-   215911.7338623593,
-   1060613.4051002793,
-   1206165.1434280158,
-   1622103.3395603646,
-   1439294.2721348575
+   903398.6044719121,
+   1712964.157021839,
+   1684927.6029324078,
+   1815966.3766476933,
+   1336642.8963082165
   ],
   "opcost": [
-   2917990.446855004,
-   3202623.7959991777,
-   3237830.9107045596,
-   3188106.9870702713,
-   3116010.7939802683
+   4265633.229782235,
+   4549674.8932979405,
+   4523207.79002698,
+   4289950.625370575,
+   4009542.1018573865
   ]
  },
  "fcst_seg": {
   "Offshore Contracting": {
    "rev": [
-    1248192,
-    1298120,
-    1350044,
-    1404046,
-    1460208
+    1334004.0,
+    1387364.1600000001,
+    1442858.7264,
+    1500573.0754560002,
+    1560595.9984742403
    ],
    "ebitda": [
-    480553.92,
-    538719.7999999999,
-    580518.92,
-    603739.78,
-    627889.44
+    469471.0,
+    537682.0800000001,
+    559189.3632,
+    581556.9377280001,
+    604819.2152371202
    ]
   },
   "Offshore Services": {
    "rev": [
-    662856,
-    696000,
-    730800,
-    767340,
-    805707
+    742314.0,
+    779429.7000000001,
+    818401.185,
+    859321.2442500001,
+    902287.3064625001
    ],
    "ebitda": [
-    190239.672,
-    201840.0,
-    211931.99999999997,
-    222528.59999999998,
-    233655.02999999997
+    178524.0,
+    187450.2,
+    196822.71000000002,
+    206663.84550000002,
+    216997.03777500003
    ]
   },
   "Offshore Projects": {
    "rev": [
-    125000,
-    200000,
-    250000,
-    275000,
-    300000
+    3768.0,
+    3768.0,
+    3768.0,
+    3768.0,
+    3768.0
    ],
    "ebitda": [
-    -2500.0,
-    12000.0,
-    16250.0,
-    17875.0,
-    19500.0
+    -16959.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
    ]
   },
   "Tankers": {
    "rev": [
-    2138915.059736678,
-    2533273.9629902737,
-    2195065.644363973,
-    1711528.2752781925,
-    1231524.80294
+    3870713.4325063303,
+    4423581.453258308,
+    3882588.93689949,
+    2950245.5467811967,
+    2007822.6149583557
    ],
    "ebitda": [
-    1155119.2273816736,
-    1397959.4882160958,
-    1182872.5543016014,
-    876880.829154471,
-    573022.1720852128
+    1777986.9448186574,
+    2091162.1738421442,
+    1756571.225794244,
+    1187734.151559718,
+    612643.5237934338
    ]
   },
   "Gas Carriers": {
    "rev": [
-    276433.275,
+    355040.4697945205,
     422942.9107499999,
     629127.5797406249,
     733383.0072404998,
     748050.6673853098
    ],
    "ebitda": [
-    171657.46750000003,
-    273777.29602499993,
-    417660.90948843735,
-    490185.14081174985,
-    499988.84362798487
+    150811.7276999589,
+    184021.40947844996,
+    285892.4752991943,
+    337135.0749796322,
+    343877.77647922485
    ]
   },
   "Dry-Bulk and Containers": {
    "rev": [
-    197164,
-    201107,
-    205129,
-    209232,
-    213417
+    298076.0,
+    279819.0,
+    261562.0,
+    243305.0,
+    225048.0
    ],
    "ebitda": [
-    36278.176,
-    37003.688,
-    37743.736,
-    38498.688,
-    39268.728
+    105704.0,
+    86191.42738977243,
+    68380.2365196966,
+    52270.42738977245,
+    37862.0
    ]
   },
   "Services": {
    "rev": [
-    355372,
-    369587,
-    384370,
-    399745,
-    415735
+    377862.0,
+    392976.48000000004,
+    408695.53920000006,
+    425043.360768,
+    442045.09519872005
    ],
    "ebitda": [
-    54593.42500000001,
-    57106.80550000001,
-    59727.19361,
-    62459.2574822,
-    65307.462631844
+    50606.00000000001,
+    53699.520000000026,
+    56938.16640000003,
+    60328.17196800002,
+    63876.027336960025
    ]
   }
  },
  "fcst_group": {
   "Integrated Logistics": {
    "rev": [
-    2036048,
-    2194120,
-    2330844,
-    2446386,
-    2565915
+    2080086.0,
+    2170561.8600000003,
+    2265027.9114,
+    2363662.3197060004,
+    2466651.3049367405
    ],
    "ebitda": [
-    668293.592,
-    752559.7999999999,
-    808700.92,
-    844143.38,
-    881044.47
+    631036.0,
+    725132.28,
+    756012.0732,
+    788220.7832280002,
+    821816.2530121203
    ]
   },
   "Shipping": {
    "rev": [
-    2612512.334736678,
-    3157323.8737402735,
-    3029322.2241045977,
-    2654143.2825186923,
-    2192992.47032531
+    4523829.9023008505,
+    5126343.364008307,
+    4773278.5166401155,
+    3926933.5540216966,
+    2980921.2823436656
    ],
    "ebitda": [
-    1363054.8708816736,
-    1708740.4722410957,
-    1638277.1997900386,
-    1405564.657966221,
-    1112279.7437131978
+    2034502.6725186163,
+    2361375.010710367,
+    2110843.9376131347,
+    1577139.6539291225,
+    994383.3002726587
    ]
   },
   "Services": {
    "rev": [
-    355372,
-    369587,
-    384370,
-    399745,
-    415735
+    377862.0,
+    392976.48000000004,
+    408695.53920000006,
+    425043.360768,
+    442045.09519872005
    ],
    "ebitda": [
-    54593.42500000001,
-    57106.80550000001,
-    59727.19361,
-    62459.2574822,
-    65307.462631844
+    50606.00000000001,
+    53699.520000000026,
+    56938.16640000003,
+    60328.17196800002,
+    63876.027336960025
    ]
   }
  },
@@ -5869,125 +6145,125 @@
    "FY2030"
   ],
   "revenue": [
-   5003932.334736678,
-   5807958.078300774,
-   5929099.192258997,
-   5777367.363180192,
-   5544099.91120731
+   6981777.9023008505,
+   7826142.65340199,
+   7746069.062736446,
+   7167399.322861327,
+   6491964.466966633
   ],
   "ebitda": [
-   2085941.8878816736,
-   2572736.5805914085,
-   2622057.1684965384,
-   2485350.470861858,
-   2289542.576896292
+   2716144.672518616,
+   3221689.6965511,
+   3102633.750175753,
+   2695837.289810909,
+   2240273.8215361205
   ],
   "ebit": [
-   1498613.0476492636,
-   1897723.6473751583,
-   1905217.8313340181,
-   1744529.7670915544,
-   1542992.252448795
+   2128815.832286206,
+   2546676.76333485,
+   2385794.413013233,
+   1955016.586040605,
+   1493723.4970886232
   ],
   "nopat": [
-   1449532.967657903,
-   1840972.0125328512,
-   1845317.383321505,
-   1684176.5968343294,
-   1481821.8587403288
+   2076533.9545584759,
+   2485732.017497946,
+   2325386.9777442277,
+   1897096.2879010756,
+   1437826.9913516357
   ],
   "fcff": [
-   215911.7338623593,
-   1094804.0634097941,
-   1298353.9554599288,
-   1772696.0991874486,
-   1647074.8443278843
+   903398.6044719121,
+   1770172.5468987166,
+   1833948.9006783995,
+   2057124.8443876384,
+   1667313.063902978
   ]
  },
  "fin": {
   "net_debt": [
-   2245267.253846378,
-   1828981.787538337,
-   1254975.8010728094,
-   242364.67843965982,
-   -640848.0270527308
+   1517043.8362467857,
+   360050.6627213245,
+   -817844.9035276966,
+   -2176030.631782884,
+   -3113620.053443817
   ],
   "gross_debt": [
-   2556960,
-   2940612.253846378,
-   2524326.787538337,
-   1950320.8010728094,
-   937709.6784396598
+   2404297,
+   2059725.8362467857,
+   902732.6627213245,
+   -275162.9035276966,
+   -1633348.6317828838
   ],
   "interest": [
-   202975.3196524589,
-   233430.21095300908,
-   200384.84630493188,
-   154819.39022221434,
-   74436.80062358988
+   152637.68389966787,
+   130762.45618283263,
+   57310.3168278973,
+   -17468.81865658667,
+   -103693.7417282602
   ],
   "fin_income": [
-   25380.0925,
-   25380.0925,
-   25380.0925,
-   25380.0925,
-   25380.0925
+   19807.893,
+   19807.893,
+   19807.893,
+   19807.893,
+   19807.893
   ],
   "pbt": [
-   1321017.8204968048,
-   1635344.0260718365,
-   1614861.2224325864,
-   1441907.2939559028,
-   1263024.6437739544
+   1995986.0413865382,
+   2354239.3143112846,
+   2169452.4162227176,
+   1722144.6170114055,
+   1257026.8909025018
   ],
   "tax": [
-   43263.77673122348,
-   49864.52463404851,
-   53002.92847839866,
-   53792.419837048394,
-   56660.551601095045
+   49019.692816713934,
+   57423.5624262328,
+   57622.935756331186,
+   56440.495063203605,
+   57992.19886100457
   ],
   "pat": [
-   1277754.0437655812,
-   1585479.501437788,
-   1561858.2939541878,
-   1388114.8741188543,
-   1206364.0921728592
+   1946966.3485698244,
+   2296815.751885052,
+   2111829.4804663863,
+   1665704.121948202,
+   1199034.6920414972
   ],
   "nci": [
-   112442.35585137115,
-   139522.19612652532,
-   137443.52986796852,
-   122154.10892245917,
-   106160.04011121161
+   88392.27222507003,
+   104275.43513558136,
+   95877.05841317395,
+   75622.96713644837,
+   54436.17501868398
   ],
   "npa": [
-   1165311.6879142101,
-   1445957.3053112626,
-   1424414.7640862192,
-   1265960.765196395,
-   1100204.0520616476
+   1858574.0763447543,
+   2192540.3167494703,
+   2015952.4220532123,
+   1590081.1548117534,
+   1144598.5170228132
   ],
   "eps": [
-   0.1444021809008996,
-   0.18233495974552583,
-   0.1794232148210195,
-   0.1580061673977182,
-   0.13560206645479514
+   0.2381052969713998,
+   0.2832450274839933,
+   0.2593769563618477,
+   0.20181510755629198,
+   0.14160253579016657
   ],
   "eps_pre_coupon": [
-   0.15750650572308592,
-   0.19543928456771215,
-   0.19252753964320582,
-   0.17111049221990451,
-   0.14870639127698146
+   0.25120962179358614,
+   0.2963493523061796,
+   0.2724812811840341,
+   0.21491943237847833,
+   0.1547068606123529
   ],
   "npa_ordinary": [
-   1068359.3569142101,
-   1349004.9743112626,
-   1327462.4330862192,
-   1169008.434196395,
-   1003251.7210616476
+   1761621.7453447543,
+   2095587.9857494703,
+   1919000.0910532123,
+   1493128.8238117534,
+   1047646.1860228132
   ],
   "dps": [
    341000.0,
@@ -5998,104 +6274,104 @@
   ],
   "hybrid_coupon": 96952.331,
   "nd_ebitda": [
-   1.0763805391177523,
-   0.7262454921222887,
-   0.5006475210165764,
-   0.10482142832690473,
-   -0.31129805026147866
+   0.5585283624970047,
+   0.11465826438350887,
+   -0.2797204091524799,
+   -0.8970774829040057,
+   -1.6561142996252025
   ],
   "payout": [
-   0.29262557265717937,
-   0.24762141916972072,
-   0.2639347116295712,
-   0.311818609116816,
-   0.3767370520707509
+   0.18347398919425503,
+   0.16330372457224576,
+   0.18648877616719692,
+   0.2482578475981836,
+   0.36212490675605064
   ]
  },
  "fin_sustained": {
   "net_debt": [
-   2245267.253846378,
-   1794791.1292288222,
-   1126126.4945127675,
-   -46385.09633863688,
-   -1158236.8390880493
+   1517043.8362467857,
+   302842.2728444468,
+   -1027379.6163112249,
+   -2638828.986027754,
+   -3933825.216681374
   ],
   "gross_debt": [
-   2556960,
-   2940612.253846378,
-   2490136.129228822,
-   1821471.4945127675,
-   648959.9036613631
+   2404297,
+   2059725.8362467857,
+   845524.2728444468,
+   -484697.6163112249,
+   -2096146.986027754
   ],
   "interest": [
-   202975.3196524589,
-   233430.21095300908,
-   197670.74057019147,
-   144591.1390231255,
-   51515.41044337576
+   152637.68389966787,
+   130762.45618283263,
+   53678.42104695352,
+   -30771.20736141801,
+   -133074.6663413654
   ],
   "fin_income": [
-   25380.0925,
-   25380.0925,
-   25380.0925,
-   25380.0925,
-   25380.0925
+   19807.893,
+   19807.893,
+   19807.893,
+   19807.893,
+   19807.893
   ],
   "pbt": [
-   1321017.8204968048,
-   1689673.5289221492,
-   1732927.1832638266,
-   1625318.720568429,
-   1516856.934505419
+   1995986.0413865382,
+   2435722.200152017,
+   2351923.8849662794,
+   2005595.686402023,
+   1646606.0564299885
   ],
   "tax": [
-   43263.77673122348,
-   50529.87311863612,
-   54483.59391948551,
-   56228.984632495216,
-   60134.285013976594
+   49019.692816713934,
+   58289.48241675652,
+   59549.84598161168,
+   59418.77983706619,
+   61617.51158041572
   ],
   "pat": [
-   1277754.0437655812,
-   1639143.655803513,
-   1678443.589344341,
-   1569089.7359359337,
-   1456722.6494914426
+   1946966.3485698244,
+   2377432.7177352607,
+   2292374.0389846675,
+   1946176.906564957,
+   1584988.5448495727
   ],
   "nci": [
-   112442.35585137115,
-   144244.64171070914,
-   147703.035862302,
-   138079.89676236216,
-   128191.59315524694
+   88392.27222507003,
+   107935.44538518085,
+   104073.78136990391,
+   88356.43155804905,
+   71958.47993617061
   ],
   "npa": [
-   1165311.6879142101,
-   1494899.014092804,
-   1530740.5534820391,
-   1431009.8391735714,
-   1328531.0563361957
+   1858574.0763447543,
+   2269497.27235008,
+   2188300.2576147635,
+   1857820.475006908,
+   1513030.064913402
   ],
   "eps": [
-   0.1444021809008996,
-   0.1889500461762602,
-   0.19379448023410376,
-   0.18031462202371348,
-   0.16646332784819476
+   0.2381052969713998,
+   0.2936467262684914,
+   0.2826719302557639,
+   0.2380034382887285,
+   0.19140068533954843
   ],
   "eps_pre_coupon": [
-   0.15750650572308592,
-   0.2020543709984465,
-   0.20689880505629007,
-   0.19341894684589983,
-   0.17956765267038108
+   0.25120962179358614,
+   0.30675105109067774,
+   0.29577625507795025,
+   0.25110776311091476,
+   0.20450501016173475
   ],
   "npa_ordinary": [
-   1068359.3569142101,
-   1397946.683092804,
-   1433788.2224820391,
-   1334057.5081735714,
-   1231578.7253361957
+   1761621.7453447543,
+   2172544.94135008,
+   2091347.9266147634,
+   1760868.144006908,
+   1416077.733913402
   ],
   "dps": [
    341000.0,
@@ -6106,135 +6382,143 @@
   ],
   "hybrid_coupon": 96952.331,
   "nd_ebitda": [
-   1.0763805391177523,
-   0.6976194697772922,
-   0.42948205250554367,
-   -0.018663402559298478,
-   -0.5058813279018192
+   0.5585283624970047,
+   0.09400106818749401,
+   -0.33113145122366683,
+   -0.9788532104668848,
+   -1.755957320424345
   ],
   "payout": [
-   0.29262557265717937,
-   0.2395145067489971,
-   0.24560171163219346,
-   0.27585423537547016,
-   0.3119894181420706
+   0.18347398919425503,
+   0.15776621737431604,
+   0.1718011496328143,
+   0.21248023170728175,
+   0.273945403242019
   ]
  },
  "fcst_bs": [
   {
    "ppe": 9087635.20976759,
-   "nwc": 792365.0740279537,
-   "cash": 695345,
-   "gross_debt": 2556960,
-   "net_debt": 2245267.253846378,
-   "equity_parent": 5801261.35691421,
+   "nwc": 731879.1903189737,
+   "cash": 542682,
+   "gross_debt": 2404297,
+   "net_debt": 1517043.8362467857,
+   "equity_parent": 7303687.745344754,
    "hybrid": 1978619,
    "nci": 289197,
    "jv": 522768,
-   "intangibles": 19434,
+   "intangibles": 16192,
    "goodwill": 51368,
-   "bvps": 0.7841133102761725,
-   "roe": 0.2143069763036393,
-   "invested_capital": 9950802.283795543,
-   "roic": 0.14566995969947122
+   "bvps": 0.9871851004265105,
+   "roe": 0.28188500554973606,
+   "invested_capital": 9887074.400086563,
+   "roic": 0.21002511668570992
   },
   {
    "ppe": 9775724.04755134,
-   "nwc": 948950.4068549664,
-   "cash": 695345,
-   "gross_debt": 2940612.253846378,
-   "net_debt": 1828981.787538337,
-   "equity_parent": 6792216.3312254725,
+   "nwc": 853991.9270290055,
+   "cash": 542682,
+   "gross_debt": 2059725.8362467857,
+   "net_debt": 360050.6627213245,
+   "equity_parent": 9041225.731094224,
    "hybrid": 1978619,
    "nci": 289197,
    "jv": 522768,
-   "intangibles": 19434,
+   "intangibles": 16192,
    "goodwill": 51368,
-   "bvps": 0.9180533170155264,
-   "roe": 0.22963590218975652,
-   "invested_capital": 10795476.454406306,
-   "roic": 0.16554950698647303
+   "bvps": 1.222035174904332,
+   "roe": 0.2682841141875721,
+   "invested_capital": 10697275.974580346,
+   "roic": 0.22482957027851863
   },
   {
    "ppe": 10424348.516808819,
-   "nwc": 945743.6473654411,
-   "cash": 695345,
-   "gross_debt": 2524326.787538337,
-   "net_debt": 1254975.8010728094,
-   "equity_parent": 7743726.264311692,
+   "nwc": 789239.4617703538,
+   "cash": 542682,
+   "gross_debt": 902732.6627213245,
+   "net_debt": -817844.9035276966,
+   "equity_parent": 10584273.322147436,
    "hybrid": 1978619,
    "nci": 289197,
    "jv": 522768,
-   "intangibles": 19434,
+   "intangibles": 16192,
    "goodwill": 51368,
-   "bvps": 1.0466618311800655,
-   "roe": 0.19598519390459676,
-   "invested_capital": 11440894.16417426,
-   "roic": 0.15130976844421432
+   "bvps": 1.4305974306096993,
+   "roe": 0.20544215630738064,
+   "invested_capital": 11281147.978579173,
+   "roic": 0.19043592058100212
   },
   {
    "ppe": 10506400.895586915,
-   "nwc": 877186.2647504068,
-   "cash": 695345,
-   "gross_debt": 1950320.8010728094,
-   "net_debt": 242364.67843965982,
-   "equity_parent": 8517984.573508088,
+   "nwc": 643742.882915112,
+   "cash": 542682,
+   "gross_debt": -275162.9035276966,
+   "net_debt": -2176030.631782884,
+   "equity_parent": 11682652.02095919,
    "hybrid": 1978619,
    "nci": 289197,
    "jv": 522768,
-   "intangibles": 19434,
+   "intangibles": 16192,
    "goodwill": 51368,
-   "bvps": 1.1513125628884795,
-   "roe": 0.15569834906326788,
-   "invested_capital": 11454389.160337321,
-   "roic": 0.13206511774657376
+   "bvps": 1.5790571024766868,
+   "roe": 0.14282000144254395,
+   "invested_capital": 11217703.778502027,
+   "roic": 0.14527474839773002
   },
   {
    "ppe": 10535181.115338786,
-   "nwc": 787662.384257637,
-   "cash": 695345,
-   "gross_debt": 937709.6784396598,
-   "net_debt": -640848.0270527308,
-   "equity_parent": 9106748.663319735,
+   "nwc": 484881.0439007906,
+   "cash": 542682,
+   "gross_debt": -1633348.6317828838,
+   "net_debt": -3113620.053443817,
+   "equity_parent": 12315810.575732002,
    "hybrid": 1978619,
    "nci": 289197,
    "jv": 522768,
-   "intangibles": 19434,
+   "intangibles": 16192,
    "goodwill": 51368,
-   "bvps": 1.2308914218695048,
-   "roe": 0.12484773951218876,
-   "invested_capital": 11393645.499596423,
-   "roic": 0.10999289623667695
+   "bvps": 1.6646364307930837,
+   "roe": 0.09538932024592489,
+   "invested_capital": 11087622.159239575,
+   "roic": 0.09751691727205757
   }
  ],
  "guidance_check": {
   "Integrated Logistics": {
-   "guided_revenue": 1846259.79,
-   "guided_ebitda": 605504.34,
-   "built_revenue": 2036048,
-   "built_ebitda": 668293.592,
-   "ebitda_gap": 0.10369744335771403
+   "guided_revenue": 1896842.25,
+   "guided_ebitda": 622093.5,
+   "superseded_ebitda": 605504.34,
+   "built_revenue": 2080086.0,
+   "built_ebitda": 631036.0,
+   "revenue_gap": 0.09660463330569535,
+   "ebitda_gap": 0.014374848796844919
   },
   "Shipping": {
-   "guided_revenue": 2475107.74,
-   "guided_ebitda": 958874.9500000001,
-   "built_revenue": 2612512.334736678,
-   "built_ebitda": 1363054.8708816736,
-   "ebitda_gap": 0.4215147354529114
+   "guided_revenue": 3930428.6,
+   "guided_ebitda": 1794024.0999999999,
+   "superseded_ebitda": 958874.9500000001,
+   "built_revenue": 4523829.9023008505,
+   "built_ebitda": 2034502.6725186163,
+   "revenue_gap": 0.15097623254136971,
+   "ebitda_gap": 0.134044226339332
   },
   "Services": {
-   "guided_revenue": 375118.15499999997,
-   "guided_ebitda": 62382.55499999999,
-   "built_revenue": 355372,
-   "built_ebitda": 54593.42500000001,
-   "ebitda_gap": -0.12486070825409412
+   "guided_revenue": 380554.65,
+   "guided_ebitda": 72327.59999999999,
+   "superseded_ebitda": 62382.55499999999,
+   "built_revenue": 377862.0,
+   "built_ebitda": 50606.00000000001,
+   "revenue_gap": -0.0070755934791495445,
+   "ebitda_gap": -0.30032242186938296
   },
   "Group": {
-   "guided_revenue": 4840548.08,
-   "guided_ebitda": 1613071.365,
-   "built_revenue": 5003932.334736678,
-   "built_ebitda": 2085941.8878816736,
-   "ebitda_gap": 0.29314916447089345
+   "guided_revenue": 6270140.0,
+   "guided_ebitda": 2499124.65,
+   "guided_np": 1760936.1,
+   "built_revenue": 6981777.9023008505,
+   "built_ebitda": 2716144.672518616,
+   "revenue_gap": 0.1134963337821564,
+   "ebitda_gap": 0.08683841460993791
   }
  },
  "wacc": {
@@ -6252,40 +6536,40 @@
   "ke_blume": 0.09265055999999999,
   "ke_beta1": 0.07420299999999999,
   "kd_method1": 0.0445,
-  "kd_method2": 0.07938149977021888,
+  "kd_method2": 0.06348536969420494,
   "kd_method3": 0.0733,
-  "kd": 0.07938149977021888,
-  "wacc_ex_hybrid": 0.09298811899733131,
-  "kd_balance_weighted": 0.07938149977021888,
-  "kd_retired_average": 0.06572716659007295,
+  "kd": 0.06348536969420494,
+  "wacc_ex_hybrid": 0.09230892812449136,
+  "kd_balance_weighted": 0.06348536969420494,
+  "kd_retired_average": 0.06042845656473498,
   "kd_construction": "balance-weighted across the instruments actually outstanding; the average of three constructions is retired because it reproduces from no set of facility lines",
   "kd_bank_mid": 0.0733,
   "kd_other_mid": 0.06334999999999999,
   "kd_thirdparty": 0.068325,
   "kd_lease": 0.06465748410759811,
-  "kd_after_tax": 0.07223716479089919,
+  "kd_after_tax": 0.057771686421726504,
   "tax_stat": 0.09,
-  "we": 0.81705595154195,
-  "wd": 0.05267193478718745,
-  "wacc": 0.08725769375914355,
+  "we": 0.831370711421182,
+  "wd": 0.04855053206756824,
+  "wacc": 0.08710844588946735,
   "rf_terminal": 0.039751,
   "ke_term": 0.09347684,
-  "kd_term": 0.0785324997702189,
-  "wacc_term": 0.08694683408773118,
+  "kd_term": 0.06263636969420494,
+  "wacc_term": 0.08675547853731877,
   "kh": 0.049,
   "kh_term": 0.052251000000000006,
-  "wh": 0.13027211367086255,
+  "wh": 0.12007875651124976,
   "hybrid_cap": 1978619,
   "wacc_glide": [
-   0.08719552182486108,
-   0.08713334989057861,
-   0.08707117795629613,
-   0.08700900602201365,
-   0.08694683408773118
+   0.08703785241903764,
+   0.08696725894860792,
+   0.0868966654781782,
+   0.08682607200774849,
+   0.08675547853731877
   ],
-  "mktcap": 12409735.163033357,
+  "mktcap": 13699058.296855003,
   "debt": 800000,
-  "spot_usd": 1.6773315180394828,
+  "spot_usd": 1.8515997277059224,
   "kd_evidence": [
    [
     "Parent revolving credit facility, drawn January 2026",
@@ -6320,378 +6604,384 @@
   ]
  },
  "dcf": {
-  "wacc": 0.08725769375914355,
-  "wacc_term": 0.08694683408773118,
+  "wacc": 0.08710844588946735,
+  "wacc_term": 0.08675547853731877,
   "g": 0.02,
   "glide": [
-   0.08719552182486108,
-   0.08713334989057861,
-   0.08707117795629613,
-   0.08700900602201365,
-   0.08694683408773118
+   0.08703785241903764,
+   0.08696725894860792,
+   0.0868966654781782,
+   0.08682607200774849,
+   0.08675547853731877
   ],
   "df": [
-   0.9590608712678924,
-   0.8821924848174542,
-   0.8115314826725369,
-   0.7465729153821768,
-   0.6868532038264518
+   0.9591304222382443,
+   0.8823912719928506,
+   0.8118446767012981,
+   0.7469867512485568,
+   0.6873549441443239
   ],
   "fcff": [
-   -382183.2661376407,
-   1060613.4051002793,
-   1206165.1434280158,
-   1622103.3395603646,
-   1439294.2721348575
+   305303.60447191214,
+   1712964.157021839,
+   1684927.6029324078,
+   1815966.3766476933,
+   1336642.8963082165
   ],
   "pv": [
-   -366537.0162059745,
-   935665.1752761165,
-   978840.9871940708,
-   1211018.4192667466,
-   988583.8820648878
+   292825.975068003,
+   1511504.6213926615,
+   1367899.5050677538,
+   1356502.8240686737,
+   918748.1033328414
   ],
-  "pv_explicit": 3747571.4475958473,
-  "roic_terminal": 0.10999289623667695,
-  "reinvest": 0.18182992433406833,
-  "nopat_t1": 1278284.4685384824,
-  "tv": 15622159.20436454,
-  "pv_tv": 10730130.100204676,
-  "tv_share": 0.7411487289455013,
+  "pv_explicit": 5447481.028929934,
+  "roic_terminal": 0.09751691727205757,
+  "reinvest": 0.20509261940882526,
+  "nopat_t1": 1102855.347503326,
+  "tv": 13132522.972848572,
+  "pv_tv": 9026704.59447638,
+  "tv_share": 0.6236416216660389,
   "term_life_disclosed": 25.0,
   "term_gross_base_fy25": 7595070.0,
-  "ev_ops": 14477701.547800524,
+  "ev_ops": 14474185.623406313,
   "jv": 522768,
-  "ev": 15000469.547800524,
+  "ev": 14996953.623406313,
   "net_debt": 3840234,
   "deferred": 304297,
   "hybrid": 1978619,
-  "nci": 378355.371400873,
+  "nci": 316661.7804748641,
+  "dividend_declared": 85300,
   "nci_book": 289197,
   "nci_navig8": 251985,
   "nci_other_bv": 37212,
-  "equity": 10781880.176399652,
-  "fv_usd": 1.457306478019931,
-  "fv_aed": 5.351958040528197,
-  "ic_terminal": 11393645.499596423
+  "equity": 10754757.84293145,
+  "fv_usd": 1.4536405541165336,
+  "fv_aed": 5.338494934992969,
+  "ic_terminal": 11087622.159239575
  },
  "dcf_beta_alt": {
-  "wacc": 0.07081620757521713,
-  "wacc_term": 0.07050534790380476,
+  "wacc": 0.07037890608285273,
+  "wacc_term": 0.07002593873070415,
   "g": 0.02,
   "glide": [
-   0.07075403564093466,
-   0.07069186370665219,
-   0.0706296917723697,
-   0.07056751983808723,
-   0.07050534790380476
+   0.07030831261242301,
+   0.0702377191419933,
+   0.07016712567156358,
+   0.07009653220113386,
+   0.07002593873070415
   ],
   "df": [
-   0.966396036372503,
-   0.9025902494737513,
-   0.8430461591062003,
-   0.7874759354119977,
-   0.7356113978823019
+   0.9665972401411225,
+   0.9031612536661863,
+   0.8439441205030703,
+   0.7886616722017783,
+   0.7370491159656481
   ],
   "fcff": [
-   -382183.2661376407,
-   1060613.4051002793,
-   1206165.1434280158,
-   1622103.3395603646,
-   1439294.2721348575
+   305303.60447191214,
+   1712964.157021839,
+   1684927.6029324078,
+   1815966.3766476933,
+   1336642.8963082165
   ],
   "pv": [
-   -369340.3935633134,
-   957299.317904666,
-   1016852.8914147678,
-   1277367.3446552234,
-   1058761.2714891129
+   295105.6214876871,
+   1547082.855541086,
+   1421984.7439681373,
+   1432183.0792691743,
+   985171.4650857345
   ],
-  "pv_explicit": 3940940.4319004565,
-  "roic_terminal": 0.10999289623667695,
-  "reinvest": 0.18182992433406833,
-  "nopat_t1": 1278284.4685384824,
-  "tv": 20707789.249144588,
-  "pv_tv": 15232885.796615353,
-  "tv_share": 0.7944624935611762,
+  "pv_explicit": 5681527.76535182,
+  "roic_terminal": 0.09751691727205757,
+  "reinvest": 0.20509261940882526,
+  "nopat_t1": 1102855.347503326,
+  "tv": 17524265.964783803,
+  "pv_tv": 12916244.737290798,
+  "tv_share": 0.6945049325372427,
   "term_life_disclosed": 25.0,
   "term_gross_base_fy25": 7595070.0,
-  "ev_ops": 19173826.22851581,
+  "ev_ops": 18597772.502642617,
   "jv": 522768,
-  "ev": 19696594.22851581,
+  "ev": 19120540.502642617,
   "net_debt": 3840234,
   "deferred": 304297,
   "hybrid": 1978619,
-  "nci": 431530.8637554009,
+  "nci": 340750.8614084022,
+  "dividend_declared": 85300,
   "nci_book": 289197,
   "nci_navig8": 251985,
   "nci_other_bv": 37212,
-  "equity": 15424829.36476041,
-  "fv_usd": 2.084859355497273,
-  "fv_aed": 7.6566459830637355,
-  "ic_terminal": 11393645.499596423
+  "equity": 14854255.641234215,
+  "fv_usd": 2.007739152909348,
+  "fv_aed": 7.373422039059579,
+  "ic_terminal": 11087622.159239575
  },
  "dcf_sustained": {
-  "wacc": 0.08725769375914355,
-  "wacc_term": 0.08694683408773118,
+  "wacc": 0.08710844588946735,
+  "wacc_term": 0.08675547853731877,
   "g": 0.02,
   "glide": [
-   0.08719552182486108,
-   0.08713334989057861,
-   0.08707117795629613,
-   0.08700900602201365,
-   0.08694683408773118
+   0.08703785241903764,
+   0.08696725894860792,
+   0.0868966654781782,
+   0.08682607200774849,
+   0.08675547853731877
   ],
   "df": [
-   0.9590608712678924,
-   0.8821924848174542,
-   0.8115314826725369,
-   0.7465729153821768,
-   0.6868532038264518
+   0.9591304222382443,
+   0.8823912719928506,
+   0.8118446767012981,
+   0.7469867512485568,
+   0.6873549441443239
   ],
   "fcff": [
-   -382183.2661376407,
-   1094804.0634097941,
-   1298353.9554599288,
-   1772696.0991874486,
-   1647074.8443278843
+   305303.60447191214,
+   1770172.5468987166,
+   1833948.9006783995,
+   2057124.8443876384,
+   1667313.063902978
   ],
   "pv": [
-   -366537.0162059745,
-   965827.9170877319,
-   1053655.110508149,
-   1323446.8948569861,
-   1131298.6337685615
+   292825.975068003,
+   1561984.8053047825,
+   1488881.6523579564,
+   1536645.004421815,
+   1146035.877910133
   ],
-  "pv_explicit": 4107691.5400154544,
-  "roic_terminal": 0.12911308251106857,
-  "reinvest": 0.15490297041189027,
-  "nopat_t1": 1511458.2959151354,
-  "tv": 19079750.874407265,
-  "pv_tv": 13104988.016297175,
-  "tv_share": 0.7613566483604822,
+  "pv_explicit": 6026373.3150626905,
+  "roic_terminal": 0.12847690471830067,
+  "reinvest": 0.1556700018875154,
+  "nopat_t1": 1466583.5311786684,
+  "tv": 18549495.820326444,
+  "pv_tv": 12750087.663485851,
+  "tv_share": 0.6790463697100527,
   "term_life_disclosed": 25.0,
   "term_gross_base_fy25": 7595070.0,
-  "ev_ops": 17212679.556312628,
+  "ev_ops": 18776460.97854854,
   "jv": 522768,
-  "ev": 17735447.556312628,
+  "ev": 19299228.97854854,
   "net_debt": 3840234,
   "deferred": 304297,
   "hybrid": 1978619,
-  "nci": 409324.26853826456,
+  "nci": 341794.71989472705,
+  "dividend_declared": 85300,
   "nci_book": 289197,
   "nci_navig8": 251985,
   "nci_other_bv": 37212,
-  "equity": 13485889.287774364,
-  "fv_usd": 1.822787259679586,
-  "fv_aed": 6.694186211173279,
-  "ic_terminal": 11476930.377007268
+  "equity": 15031900.258653814,
+  "fv_usd": 2.0317500533752626,
+  "fv_aed": 7.461602071020652,
+  "ic_terminal": 11191326.522881484
  },
  "dcf_bear": {
-  "wacc": 0.10786127930134369,
-  "wacc_term": 0.10755041962993132,
+  "wacc": 0.1080730047274757,
+  "wacc_term": 0.10772003737532712,
   "g": 0.02,
   "glide": [
-   0.10779910736706122,
-   0.10773693543277875,
-   0.10767476349849626,
-   0.1076125915642138,
-   0.10755041962993132
+   0.10800241125704599,
+   0.10793181778661627,
+   0.10786122431618655,
+   0.10779063084575684,
+   0.10772003737532712
   ],
   "df": [
-   0.9501003860699673,
-   0.857694959587833,
-   0.774320213705038,
-   0.6990893924485931,
-   0.6312032211429089
+   0.9500132166000482,
+   0.8574654156046789,
+   0.7739826945689329,
+   0.698672360117386,
+   0.6307300911273992
   ],
   "fcff": [
-   -519502.8017768366,
-   919532.0566630517,
-   1036382.0440392438,
-   1477827.0100635733,
-   1271542.7159929576
+   167984.0688327162,
+   1560373.94280093,
+   1486728.2606865976,
+   1626407.1930944708,
+   1107446.542465449
   ],
   "pv": [
-   -493579.81253260217,
-   788678.0101793332,
-   802491.5658205315,
-   1033133.1866094643,
-   802601.8581555579
+   159587.08556933264,
+   1337966.691362511,
+   1150701.9452979956,
+   1136325.752111207,
+   698499.8586479558
   ],
-  "pv_explicit": 2933324.8082322846,
-  "roic_terminal": 0.09455915242265989,
-  "reinvest": 0.21150781799105103,
-  "nopat_t1": 1137480.7424561137,
-  "tv": 10244321.80226529,
-  "pv_tv": 6466248.920014381,
-  "tv_share": 0.6879300175690576,
+  "pv_explicit": 4483081.332989002,
+  "roic_terminal": 0.07660322199258378,
+  "reinvest": 0.261085623812746,
+  "nopat_t1": 896774.4432716119,
+  "tv": 7554026.972144163,
+  "pv_tv": 4764552.12051932,
+  "tv_share": 0.5152185307162848,
   "term_life_disclosed": 25.0,
   "term_gross_base_fy25": 7595070.0,
-  "ev_ops": 9399573.728246666,
+  "ev_ops": 9247633.453508321,
   "jv": 522768,
-  "ev": 9922341.728246666,
+  "ev": 9770401.453508321,
   "net_debt": 3840234,
   "deferred": 304297,
   "hybrid": 1978619,
-  "nci": 320854.3539868993,
+  "nci": 289197,
+  "dividend_declared": 85300,
   "nci_book": 289197,
   "nci_navig8": 251985,
   "nci_other_bv": 37212,
-  "equity": 5761253.374259767,
-  "fv_usd": 0.7787057290991483,
-  "fv_aed": 2.8597967901166217,
-  "ic_terminal": 11793434.796261435
+  "equity": 5555670.453508321,
+  "fv_usd": 0.7509186161578334,
+  "fv_aed": 2.757748617839643,
+  "ic_terminal": 11477201.712789059
  },
  "dcf_bull": {
-  "wacc": 0.06665808727942743,
-  "wacc_term": 0.06634722760801505,
+  "wacc": 0.06614793582682364,
+  "wacc_term": 0.06579496847467503,
   "g": 0.02,
   "glide": [
-   0.06659591534514496,
-   0.06653374341086248,
-   0.06647157147658,
-   0.06640939954229752,
-   0.06634722760801505
+   0.06607734235639393,
+   0.0660067488859642,
+   0.06593615541553448,
+   0.06586556194510475,
+   0.06579496847467503
   ],
   "df": [
-   0.9682779497146289,
-   0.9078737130416489,
-   0.8512873079070032,
-   0.7982743853086585,
-   0.7486064244751813
+   0.9685134212527673,
+   0.9085434236367803,
+   0.8523431905568513,
+   0.7996723235915464,
+   0.7503059661991149
   ],
   "fcff": [
-   -313523.4983180431,
-   1139701.7438962716,
-   1314103.89613038,
-   1731889.6942155317,
-   1575115.193254064
+   373963.37229151,
+   1803561.3616015124,
+   1821282.5984918121,
+   1971035.585359289,
+   1533908.6151282904
   ],
   "pv": [
-   -303577.89013875264,
-   1034705.2539911504,
-   1118679.9680469355,
-   1382523.181072304,
-   1179141.3529584592
+   362188.5451212727,
+   1638613.8142084512,
+   1552357.820904184,
+   1576182.6064258865,
+   1150900.7855349781
   ],
-  "pv_explicit": 4411471.865930096,
-  "roic_terminal": 0.12299996297221906,
-  "reinvest": 0.16260167496568456,
-  "nopat_t1": 1406979.78842383,
-  "tv": 25421208.106512472,
-  "pv_tv": 19030479.706455797,
-  "tv_share": 0.8118129434612982,
+  "pv_explicit": 6280243.572194772,
+  "roic_terminal": 0.11644179616821004,
+  "reinvest": 0.17175963149098375,
+  "nopat_t1": 1296827.845538018,
+  "tv": 23454217.973206796,
+  "pv_tv": 17597839.67783157,
+  "tv_share": 0.736987114650928,
   "term_life_disclosed": 25.0,
   "term_gross_base_fy25": 7595070.0,
-  "ev_ops": 23441951.572385892,
+  "ev_ops": 23878083.250026345,
   "jv": 522768,
-  "ev": 23964719.572385892,
+  "ev": 24400851.250026345,
   "net_debt": 3840234,
   "deferred": 304297,
   "hybrid": 1978619,
-  "nci": 479860.0036360228,
+  "nci": 371597.2668978665,
+  "dividend_declared": 85300,
   "nci_book": 289197,
   "nci_navig8": 251985,
   "nci_other_bv": 37212,
-  "equity": 19644625.56874987,
-  "fv_usd": 2.655217794228433,
-  "fv_aed": 9.75128734930392,
-  "ic_terminal": 11214572.070616629
+  "equity": 20103719.98312848,
+  "fv_usd": 2.717270168503671,
+  "fv_aed": 9.979174693829732,
+  "ic_terminal": 10918758.473375313
  },
  "dcf_hybrid_pv": {
-  "wacc": 0.08725769375914355,
-  "wacc_term": 0.08694683408773118,
+  "wacc": 0.08710844588946735,
+  "wacc_term": 0.08675547853731877,
   "g": 0.02,
   "glide": [
-   0.08719552182486108,
-   0.08713334989057861,
-   0.08707117795629613,
-   0.08700900602201365,
-   0.08694683408773118
+   0.08703785241903764,
+   0.08696725894860792,
+   0.0868966654781782,
+   0.08682607200774849,
+   0.08675547853731877
   ],
   "df": [
-   0.9590608712678924,
-   0.8821924848174542,
-   0.8115314826725369,
-   0.7465729153821768,
-   0.6868532038264518
+   0.9591304222382443,
+   0.8823912719928506,
+   0.8118446767012981,
+   0.7469867512485568,
+   0.6873549441443239
   ],
   "fcff": [
-   -382183.2661376407,
-   1060613.4051002793,
-   1206165.1434280158,
-   1622103.3395603646,
-   1439294.2721348575
+   305303.60447191214,
+   1712964.157021839,
+   1684927.6029324078,
+   1815966.3766476933,
+   1336642.8963082165
   ],
   "pv": [
-   -366537.0162059745,
-   935665.1752761165,
-   978840.9871940708,
-   1211018.4192667466,
-   988583.8820648878
+   292825.975068003,
+   1511504.6213926615,
+   1367899.5050677538,
+   1356502.8240686737,
+   918748.1033328414
   ],
-  "pv_explicit": 3747571.4475958473,
-  "roic_terminal": 0.10999289623667695,
-  "reinvest": 0.18182992433406833,
-  "nopat_t1": 1278284.4685384824,
-  "tv": 15622159.20436454,
-  "pv_tv": 10730130.100204676,
-  "tv_share": 0.7411487289455013,
+  "pv_explicit": 5447481.028929934,
+  "roic_terminal": 0.09751691727205757,
+  "reinvest": 0.20509261940882526,
+  "nopat_t1": 1102855.347503326,
+  "tv": 13132522.972848572,
+  "pv_tv": 9026704.59447638,
+  "tv_share": 0.6236416216660389,
   "term_life_disclosed": 25.0,
   "term_gross_base_fy25": 7595070.0,
-  "ev_ops": 14477701.547800524,
+  "ev_ops": 14474185.623406313,
   "jv": 522768,
-  "ev": 15000469.547800524,
+  "ev": 14996953.623406313,
   "net_debt": 3840234,
   "deferred": 304297,
   "hybrid": 1978619,
-  "nci": 378355.371400873,
+  "nci": 316661.7804748641,
+  "dividend_declared": 85300,
   "nci_book": 289197,
   "nci_navig8": 251985,
   "nci_other_bv": 37212,
-  "equity": 11645423.141518692,
-  "fv_usd": 1.5740251519921307,
-  "fv_aed": 5.7806073706911,
-  "ic_terminal": 11393645.499596423
+  "equity": 11615841.297803946,
+  "fv_usd": 1.5700267943984676,
+  "fv_aed": 5.765923402428372,
+  "ic_terminal": 11087622.159239575
  },
  "lenses": {
   "dcf": {
-   "bear": 2.8597967901166217,
-   "base": 5.351958040528197,
-   "bull": 9.75128734930392,
-   "tv_share": 0.7411487289455013
+   "bear": 2.757748617839643,
+   "base": 5.338494934992969,
+   "bull": 9.979174693829732,
+   "tv_share": 0.6236416216660389
   },
   "dcf_beta_alt": {
-   "bear": 2.8597967901166217,
-   "base": 7.6566459830637355,
-   "bull": 9.75128734930392,
-   "tv_share": 0.7944624935611762
+   "bear": 2.757748617839643,
+   "base": 7.373422039059579,
+   "bull": 9.979174693829732,
+   "tv_share": 0.6945049325372427
   },
   "relative": {
-   "bear": 6.979027844196224,
-   "base": 8.580798609863454,
-   "bull": 10.797446542308235
+   "bear": 9.629111838165235,
+   "base": 12.207608474915896,
+   "bull": 14.628713889254586
   },
   "normalized": {
-   "bear": 7.859927910811682,
-   "base": 8.797792250126715,
-   "bull": 12.063546755286609
+   "bear": 9.212535800308261,
+   "base": 11.071993512034524,
+   "bull": 14.029977403424986
   },
   "book": {
-   "bear": 2.374942182452551,
-   "base": 3.5938958170060644,
-   "bull": 5.294196738984585
+   "bear": 2.462773181839795,
+   "base": 3.9077019807668094,
+   "bull": 5.9023494166048245
   },
   "central": {
-   "bear": 2.8597967901166217,
-   "base": 5.351958040528197,
-   "bull": 9.75128734930392
+   "bear": 2.757748617839643,
+   "base": 5.338494934992969,
+   "bull": 9.979174693829732
   },
   "central_beta_alt": {
-   "bear": 2.8597967901166217,
-   "base": 7.6566459830637355,
-   "bull": 9.75128734930392
+   "bear": 2.757748617839643,
+   "base": 7.373422039059579,
+   "bull": 9.979174693829732
   }
  },
  "lens_weights": {
@@ -6700,25 +6990,25 @@
   "normalized": 0.2,
   "book": 0.15
  },
- "retired_blend": 6.584625691253395,
- "central": 5.351958040528197,
- "central_beta_alt": 7.6566459830637355,
- "spot": 6.16,
+ "retired_blend": 7.987854092248088,
+ "central": 5.338494934992969,
+ "central_beta_alt": 7.373422039059579,
+ "spot": 6.8,
  "beta_framing": {
   "primary": {
    "beta": 1.1032,
    "label": "the published index of its own exchange",
    "ke": 0.09432584,
-   "wacc": 0.08725769375914355,
-   "fv": 5.351958040528197,
-   "central": 5.351958040528197
+   "wacc": 0.08710844588946735,
+   "fv": 5.338494934992969,
+   "central": 5.338494934992969
   },
   "alternative": {
    "beta": 0.69,
    "label": "an equal-weight composite of the same exchange's names",
    "ke": 0.07420299999999999,
-   "fv": 7.6566459830637355,
-   "central": 7.6566459830637355
+   "fv": 7.373422039059579,
+   "central": 7.373422039059579
   },
   "ci90": [
    0.5855,
@@ -6774,103 +7064,103 @@
     "asof": "2026-07-26"
    }
   ],
-  "ebitda_26": 2085941.8878816736,
-  "npa_26": 1165311.6879142101,
-  "ev": 23161672.94047174,
-  "value_ev_ebitda": 9.61373674589351,
-  "npa_ord_26": 1068359.3569142101,
-  "value_pe": 6.170609625793324,
-  "bear": 6.979027844196224,
-  "bull": 10.797446542308235,
-  "own_ev_ebitda_ttm": 9.422390263328818,
-  "own_ev_bridge": 16539166.163033357,
-  "own_ev_ebitda_26_bridge": 7.928871968638251,
-  "own_ev_ebitda_26": 6.8416815664631345,
-  "own_pe_ttm": 15.96707080090961,
-  "own_pb": 1.7596169033787148,
-  "own_dy": 0.02747842685763232,
-  "base": 8.580798609863454,
+  "ebitda_26": 2716144.672518616,
+  "npa_26": 1858574.0763447543,
+  "ev": 30159255.600244958,
+  "value_ev_ebitda": 13.078837253416886,
+  "npa_ord_26": 1761621.7453447543,
+  "value_pe": 10.174741325080252,
+  "bear": 9.629111838165235,
+  "bull": 14.628713889254586,
+  "own_ev_ebitda_ttm": 10.2736415887902,
+  "own_ev_bridge": 17828489.296855003,
+  "own_ev_ebitda_26_bridge": 6.56389531722663,
+  "own_ev_ebitda_26": 5.728955992033356,
+  "own_pe_ttm": 17.62598724775736,
+  "own_pb": 1.7425091817918172,
+  "own_dy": 0.024892221976913986,
+  "base": 12.207608474915896,
   "weight_ev_ebitda": 0.7
  },
  "norm": {
-  "norm_ebitda": 2296370.6501632542,
-  "norm_npa": 1183417.383913947,
+  "norm_ebitda": 2617181.9700377956,
+  "norm_npa": 1663396.9663964005,
   "pe": 11.6357,
-  "ev": 25498210.788217727,
-  "base": 8.797792250126715,
-  "eps": 0.15995371786399168,
-  "value_pe": 6.83515958675405,
-  "bear": 7.859927910811682,
-  "bull": 12.063546755286609
+  "ev": 29060403.44070867,
+  "base": 11.071993512034524,
+  "eps": 0.22482898483273986,
+  "value_pe": 9.607416517610247,
+  "bear": 9.212535800308261,
+  "bull": 14.029977403424986
  },
  "book": {
-  "roe_sustainable": 0.18409483219468983,
+  "roe_sustainable": 0.1987641195466315,
   "ke": 0.09432584,
   "g": 0.02,
-  "pb_fair": 1.426938348376521,
+  "pb_fair": 1.3381337224616705,
   "method": "residual income",
   "fade": 0.1,
   "roe_path": [
-   0.18415983890139517,
-   0.19861042530544237,
-   0.1714242456120977,
-   0.13724002715761494,
-   0.11016574171005249
+   0.2411962020785434,
+   0.23178140310582085,
+   0.1813067399759729,
+   0.1278073524002097,
+   0.08506514285687163
   ],
   "detail": [
    {
     "year": "FY2026",
-    "opening_book": 5073.902,
-    "roe": 0.18415983890139517,
-    "residual_income": 455.8089066937868,
+    "opening_book": 5883.066,
+    "roe": 0.2411962020785434,
+    "residual_income": 864.0480335519679,
     "discount_factor": 0.9138046123447108,
-    "pv": 416.5202812845823
+    "pv": 789.5710783471657
    },
    {
     "year": "FY2027",
-    "opening_book": 5801.26135691421,
-    "roe": 0.19861042530544237,
-    "residual_income": 604.9821348542864,
+    "opening_book": 7303.687745344754,
+    "roe": 0.23178140310582085,
+    "residual_income": 1003.9325117854463,
     "discount_factor": 0.8350388695424672,
-    "pv": 505.1835979821118
+    "pv": 838.3226697382487
    },
    {
     "year": "FY2028",
-    "opening_book": 6792.2163312254725,
-    "roe": 0.1714242456120977,
-    "residual_income": 523.6690497099357,
+    "opening_book": 9041.225731094224,
+    "roe": 0.1813067399759729,
+    "residual_income": 786.4139509764993,
     "discount_factor": 0.7630623704750198,
-    "pv": 399.5921464160645
+    "pv": 600.0828936067536
    },
    {
     "year": "FY2029",
-    "opening_book": 7743.726264311692,
-    "roe": 0.13724002715761494,
-    "residual_income": 332.31571820401035,
+    "opening_book": 10584.273322147437,
+    "roe": 0.1278073524002097,
+    "residual_income": 354.37747848268833,
     "discount_factor": 0.6972899136467615,
-    "pv": 231.7203984499359
+    "pv": 247.10384136955082
    },
    {
     "year": "FY2030",
-    "opening_book": 8517.984573508087,
-    "roe": 0.11016574171005249,
-    "residual_income": 134.9240384121115,
+    "opening_book": 11682.652020959189,
+    "roe": 0.08506514285687163,
+    "residual_income": -108.18950219465962,
     "discount_factor": 0.6371867392318558,
-    "pv": 85.97180807980699
+    "pv": -68.93691612253286
    }
   ],
-  "pv_terminal": 527.2551074918255,
+  "pv_terminal": -416.88056087149664,
   "vessel_sale_price": 111000,
   "vessel_sale_book": 83000,
   "vessel_value_to_book": 1.3373493975903614,
-  "bvps_usd": 0.6858015608097221,
-  "bvps_aed": 2.5186062320737044,
-  "equity_value": 7240.145339704327,
-  "base": 3.5938958170060644,
+  "bvps_usd": 0.7951702348895601,
+  "bvps_aed": 2.9202626876319093,
+  "equity_value": 7872.32900606769,
+  "base": 3.9077019807668094,
   "ke_bear": 0.1195427,
   "ke_bull": 0.06911385,
-  "bear": 2.374942182452551,
-  "bull": 5.294196738984585
+  "bear": 2.462773181839795,
+  "bull": 5.9023494166048245
  },
  "peers": [
   {
@@ -6917,34 +7207,35 @@
   "legs": [
    {
     "leg": "Integrated Logistics",
-    "ebitda_26": 668293.592,
+    "ebitda_26": 631036.0,
     "multiple": 12.26,
-    "ev": 8193279.4379199995,
+    "ev": 7736501.359999999,
     "basis": "a contracted-fleet multiple, because this leg earns under long-term contracts"
    },
    {
     "leg": "Shipping",
-    "ebitda_26": 1363054.8708816736,
+    "ebitda_26": 2034502.6725186163,
     "multiple": 11.1037,
-    "ev": 15134952.36980884,
+    "ev": 22590507.32484496,
     "basis": "a blend of the contracted and spot multiples, weighted by the company's own disclosed share of earnings exposed to spot rates"
    },
    {
     "leg": "Services",
-    "ebitda_26": 54593.42500000001,
+    "ebitda_26": 50606.00000000001,
     "multiple": 12.26,
-    "ev": 669315.3905000001,
+    "ev": 620429.56,
     "basis": "a contracted-fleet multiple, because this leg earns under long-term contracts"
    }
   ],
-  "ev_ops": 23997547.19822884,
+  "ev_ops": 30947438.24484496,
   "jv": 522768,
-  "ev": 24520315.19822884,
+  "ev": 31470206.24484496,
   "net_debt": 1861615,
   "hybrid": 1978619,
   "nci": 289197,
-  "equity": 20390884.19822884,
-  "fv_aed": 10.121718554901609,
+  "dividend_declared": 85300,
+  "equity": 27255475.24484496,
+  "fv_aed": 13.52919504747965,
   "contracted_multiple": 12.26,
   "spot_multiple": 8.530000000000001,
   "spot_weight": 0.31
@@ -6952,71 +7243,71 @@
  "experts": {
   "e1": {
    "method_short": "mid-cycle earnings power",
-   "ebitda": 2296370.6501632542,
+   "ebitda": 2617181.9700377956,
    "dna": 693310.4277657963,
-   "ebit": 1603060.2223974578,
-   "tax": 57143.168079710544,
-   "interest": 173209.31355124083,
-   "fin_income": 25380.0925,
-   "pat": 1398087.8332665064,
-   "ord_earnings": 1178103.7729390538,
-   "eps_usd": 0.1592355166255528,
+   "ebit": 1923871.5422719992,
+   "tax": 59416.66975575527,
+   "interest": 43909.579305110194,
+   "fin_income": 19807.893,
+   "pat": 1840353.1862111336,
+   "ord_earnings": 1659848.8205571482,
+   "eps_usd": 0.22434940837372672,
    "pe": 12.0,
-   "base": 7.0175092176881115,
+   "base": 9.887078427030136,
    "rng": [
-    5.263131913266084,
-    8.77188652211014
+    7.415308820272602,
+    12.358848033787671
    ],
    "falsifier": "Two consecutive years in which group earnings before interest, tax, depreciation and amortisation fall below USD 1.4 billion would show the mid-cycle level used here is set too high."
   },
   "e2": {
    "method_short": "owner cash earnings",
-   "fcff": 1108817.5788171752,
-   "interest_after_tax": 157620.47533162916,
+   "fcff": 1490779.9274764135,
+   "interest_after_tax": 39957.71716765028,
    "hybrid_coupon": 96952.331,
-   "fcfe": 877340.6566605461,
+   "fcfe": 1371895.0619387631,
    "ke": 0.09432584,
    "g": 0.02,
-   "value": 12040058.609411709,
-   "base": 5.97649829425105,
+   "value": 18827005.025137134,
+   "base": 9.345433196698188,
    "ke_lo": 0.1195427,
    "ke_hi": 0.06911385,
    "rng": [
-    4.015359061599026,
-    10.118947845850059
+    6.278805418053406,
+    15.822969648503081
    ],
    "falsifier": "A year in which free cash flow to the firm falls below the ordinary distribution plus the perpetual coupon, without a matching fall in capital expenditure, would break the annuity this rests on."
   },
   "e3": {
    "method_short": "cash returns against the cost of capital",
-   "ic0": 7432478,
+   "ic0": 7827165,
    "ep": [
-    581248.9093206852,
-    845197.4262684115,
-    732813.0074676799,
-    513241.6716242591,
-    259036.83739056182
+    1215286.2691733977,
+    1473240.8751191895,
+    1165652.532248098,
+    652492.3514284301,
+    115405.19794541819
    ],
    "spread": [
-    0.05841226594032767,
-    0.07829181322732948,
-    0.06405207468507076,
-    0.044807423987430206,
-    0.022735202477533398
+    0.12291667079624256,
+    0.13772112438905126,
+    0.10332747469153476,
+    0.05816630250826267,
+    0.010408471382590212
    ],
-   "pv_ep": 2458873.342260547,
-   "pv_ep_term": 2710788.1915128944,
-   "ev": 12602139.53377344,
-   "equity": 8995476.53377344,
-   "base": 4.465214988077135,
+   "pv_ep": 3978649.2006257023,
+   "pv_ep_term": 1212047.6375622142,
+   "ev": 13017861.838187916,
+   "equity": 9411198.838187916,
+   "base": 4.671573090127655,
    "rng": [
-    3.304199756413809,
-    5.369616241845866
+    3.5807763747911,
+    5.504711667694399
    ],
    "falsifier": "A return on invested capital that settles below the cost of capital for two consecutive years would remove the premium to invested capital this method rests on entirely."
   }
  },
- "panel_centre": 5.8197408333387655,
+ "panel_centre": 7.9680282379519936,
  "sens": {
   "betas": [
    0.69,
@@ -7033,62 +7324,62 @@
   ],
   "grid_beta_g": [
    [
-    7.046527665567469,
-    7.325959295814066,
-    7.6566459830637355,
-    8.05548301304577
+    6.938037692964431,
+    7.137781232079598,
+    7.373422039059579,
+    7.656918976576681
    ],
    [
-    5.956970312610694,
-    6.128503550338727,
-    6.325804810834956,
-    6.556050299904659
+    5.959600015752238,
+    6.070595937395918,
+    6.197231672373617,
+    6.343889891279893
    ],
    [
-    5.126792246613999,
-    5.232885636750486,
-    5.351958040528197,
-    5.487152236871757
+    5.215043964560241,
+    5.273778672941666,
+    5.338494934992969,
+    5.410645630801445
    ],
    [
-    4.3252920419788765,
-    4.381437927288581,
-    4.442495354149389,
-    4.50949088015338
+    4.496048415139696,
+    4.516240689244266,
+    4.53671263228333,
+    4.5575227133769864
    ],
    [
-    3.6297694060031542,
-    3.652704176771086,
-    3.6762428997524017,
-    3.7004953173716846
+    3.8710398056113786,
+    3.866770810871812,
+    3.860048052867076,
+    3.8504265795620176
    ]
   ],
   "anchor": {
-   "0.8": 4.457139260098143,
-   "0.9": 4.90454865031317,
-   "1.0": 5.351958040528197,
-   "1.1": 5.799367430743224,
-   "1.2": 6.246776820958248
+   "0.8": 3.9230901776411806,
+   "0.9": 4.630792556317077,
+   "1.0": 5.338494934992969,
+   "1.1": 6.046197313668863,
+   "1.2": 6.753899692344756
   },
   "capex": {
-   "0.9": 5.733607284924499,
-   "1.0": 5.351958040528197,
-   "1.1": 4.970308796131891,
-   "1.2": 4.5886595517355895
+   "0.9": 5.722931417958425,
+   "1.0": 5.338494934992969,
+   "1.1": 4.954058452027515,
+   "1.2": 4.5696219690620605
   },
   "tax": {
-   "0.05": 5.267765751698431,
-   "0.09": 4.868850919342003,
-   "0.15": 4.270478670807354
+   "0.05": 5.229751393214664,
+   "0.09": 4.8359232702238835,
+   "0.15": 4.24518108573771
   },
   "market_cross_check": {
    "vlcc_1y_tc": 76900,
    "vlcc_spot_broker": 102897,
    "vlcc_path": [
-    228118.16370595756,
-    183069.52902946816,
-    138020.8943529788,
-    92972.2596764894,
+    232877.38991024796,
+    186638.94868268596,
+    140400.507455124,
+    94162.066227562,
     47923.625
    ],
    "orderbook_pct": 0.27,
@@ -7695,19 +7986,19 @@
   }
  },
  "bridge": {
-  "ev": 15000469.547800524,
-  "ev_ops": 14477701.547800524,
+  "ev": 14996953.623406313,
+  "ev_ops": 14474185.623406313,
   "jv": 522768,
   "net_debt_company": 257318,
   "deferred": 304297,
   "net_debt": 1861615,
   "hybrid": 1978619,
-  "hybrid_pv_coupon": 1115076.0348809604,
+  "hybrid_pv_coupon": 1117535.545127504,
   "nci": 289197,
-  "equity": 10781880.176399652,
-  "tv_share": 0.7411487289455013,
-  "pv_explicit": 3747571.4475958473,
-  "pv_tv": 10730130.100204676
+  "equity": 10754757.84293145,
+  "tv_share": 0.6236416216660389,
+  "pv_explicit": 5447481.028929934,
+  "pv_tv": 9026704.59447638
  },
  "macro_record": {
   "market": "AE",
@@ -7791,9 +8082,9 @@
    "choice": "how the market is measured for the beta regression",
    "adopted": "the published index of the exchange this company is listed on",
    "alternative": "an equal-weight composite of the same exchange's names",
-   "fv_adopted": 5.351958040528197,
-   "fv_alternative": 7.6566459830637355,
-   "effect": 0.43062518896506224,
+   "fv_adopted": 5.338494934992969,
+   "fv_alternative": 7.373422039059579,
+   "effect": 0.3811799259615276,
    "direction": "the adopted side is LOWER",
    "note": "THE SINGLE LARGEST JUDGEMENT IN THIS STUDY, and the beta rule decides it rather than a preference: the regressor is the published index of the exchange the stock is listed on, and a constituent composite is a coverage artefact rather than a market. The two differ because a published index is weighted by size and is dominated by the same large-capitalisation group this company belongs to, while an equal-weight composite gives the exchange's smallest names the same say as its largest. The alternative is published rather than buried because a difference of this size is a fact about index construction that a reader is entitled to see."
   },
@@ -7801,9 +8092,9 @@
    "choice": "the charter-rate path through the forecast",
    "adopted": "reversion toward the mid-cycle rate",
    "alternative": "today's strength sustained, the company's own guidance path",
-   "fv_adopted": 5.351958040528197,
-   "fv_alternative": 6.694186211173279,
-   "effect": 0.25079198313606643,
+   "fv_adopted": 5.338494934992969,
+   "fv_alternative": 7.461602071020652,
+   "effect": 0.39769769605119587,
    "direction": "the adopted side is LOWER",
    "note": "an independent one-year time charter fixed in early 2026 priced a very large crude carrier well below the spot rate of the moment, and a crude tanker order book near a quarter of the trading fleet is the supply reason why. A forward market that will not pay spot for a year of time is saying it does not expect spot to hold. GUIDANCE IS SCORED AND NEVER CONSUMED, so the sustained path is published as the alternative rather than adopted."
   },
@@ -7811,9 +8102,9 @@
    "choice": "how the perpetual capital securities are deducted",
    "adopted": "at carrying value",
    "alternative": "at the present value of their perpetual coupon",
-   "fv_adopted": 5.351958040528197,
-   "fv_alternative": 5.7806073706911,
-   "effect": 0.08009205732124891,
+   "fv_adopted": 5.338494934992969,
+   "fv_alternative": 5.765923402428372,
+   "effect": 0.0800653503731321,
    "direction": "the adopted side is LOWER",
    "note": "the securities rank ahead of the ordinary shares whichever way they are classified, so they are deducted in both framings and only the AMOUNT is contested. Carrying value is what the balance sheet states; the present value of the coupon is what the claim is worth at the terminal cost of capital. Both are published and the deduction is weighted in the cost of capital in both."
   },
@@ -7821,9 +8112,9 @@
    "choice": "the tax relief on shipping earnings",
    "adopted": "the reliefs as currently legislated and disclosed",
    "alternative": "the whole group taxed at the 9 per cent statutory rate",
-   "fv_adopted": 5.351958040528197,
-   "fv_alternative": 4.868850919342003,
-   "effect": 0.09026735963320726,
+   "fv_adopted": 5.338494934992969,
+   "fv_alternative": 4.8359232702238835,
+   "effect": 0.09414107738022,
    "direction": "the adopted side is HIGHER",
    "note": "most of the shipping income is relieved under the regime as it stands. The alternative is the downside case for a global minimum tax reaching those earnings, and it is a scenario about the law rather than about the business \u2014 which is why the sensitivity centred on it does NOT reproduce the base case and says so in its own docstring."
   },
@@ -7831,28 +8122,40 @@
    "choice": "the day-rate anchor the reversion path converges to",
    "adopted": "the mid-cycle average as computed",
    "alternative": "that anchor 10 per cent lower",
-   "fv_adopted": 5.351958040528197,
-   "fv_alternative": 4.90454865031317,
-   "effect": 0.08359732771202202,
+   "fv_adopted": 5.338494934992969,
+   "fv_alternative": 4.630792556317077,
+   "effect": 0.1325658986837315,
    "direction": "the adopted side is HIGHER",
    "note": "the anchor is the single quantity the whole reversion path hangs on, and a ten per cent move in it is well inside the span the disclosed quarterly rates have printed."
   }
  ],
  "forecast_anchor": {
-  "rate_name": "EBITDA margin, operating basis",
-  "latest_reviewed_period": "FY2025, audited",
-  "latest_reviewed_date": "2025-12-31",
-  "latest_reviewed_rate": 0.2927707754531797,
-  "latest_reviewed_source": "the audited consolidated financial statements for the year ended 31 December 2025: operating EBITDA over reported revenue",
-  "first_forecast_rate": 0.4168605305474104,
+  "rate_name": "EBITDA margin, group, on the definition the company states",
+  "latest_reviewed_period": "H1 2026, reviewed",
+  "latest_reviewed_date": "2026-06-30",
+  "latest_reviewed_rate": 0.40223592280088166,
+  "latest_reviewed_source": "the reviewed condensed consolidated interim financial information for the six months ended 30 June 2026: the operating-segments note's group earnings before interest, tax, depreciation and amortisation over reported revenue, on the definition the management discussion states in its own footnote",
+  "first_forecast_rate": 0.3890333824029992,
   "forecast_path": [
-   0.4168605305474104,
-   0.4402016233299264,
-   0.4363633922059146,
-   0.42037308990155137,
-   0.3978307077543124
+   0.3890333824029992,
+   0.4083556719830361,
+   0.392613590015836,
+   0.3611999579526664,
+   0.3192186117979658
   ],
-  "note": "THE FORECAST OPENS 12.4 POINTS ABOVE THE LATEST AUDITED YEAR AND THAT IS THE LARGEST SINGLE THING A READER SHOULD INTERROGATE IN IT. FY2023-25 printed 31.29, 31.97 and 29.28 per cent; FY2026 opens at 41.69 and the path runs to 39.78 by FY2030, so every forecast year sits above every audited one. On roughly flat revenue \u2014 FY2026 at USD 5,003,932 thousand against a filed FY2025 of USD 5,016,112 \u2014 that is a claim about EARNINGS rather than about scale.\n\nWHAT DRIVES IT IS FLEET COMPOSITION AND IT IS DISCLOSED RATHER THAN ASSUMED: the model prices every vessel on its own terms \u2014 each chartered vessel at its own contracted rate for exactly the days its own contract runs, everything else at the implied spot rate for its class \u2014 against a running cost per vessel-day solved to reproduce the reported FY2025 result. The eleven vessels announced on 7 August 2026, six of them very large crude carriers, enter at USD 1,300,000 thousand of committed and funded cost and earn from 2026, and the fleet mix they shift is toward the higher-margin classes.\n\nIT IS NOT LEFT AS AN ASSERTION. The step is the single largest lever in the study after the beta, the day-rate anchor it depends on is sensitised both ways in the contested-judgement record, and the reversion path that produces it is the CONSERVATIVE of the two available \u2014 the company's own guidance path is published beside it and is worth more, not less."
+  "mechanism": {
+   "name": "contracted_price_step_down",
+   "disclosure": "the company publishes its own realised time-charter-equivalent rate by vessel class by quarter, and it has ALREADY STEPPED DOWN inside the disclosed record: a very large crude carrier earned 291,145 US dollars a day in the second quarter of 2026 and 159,518 in the third to 11 August. Eleven of the company's own vessels are additionally fixed OUT on time charters at 19,750 to 72,500 a day with disclosed expiry dates running to July 2028, so a further part of the fleet is contractually held far below the spot level for a period the filings state.",
+   "like_for_like": {
+    "period_a": "2Q2026",
+    "period_b": "3Q2026 to 11 August",
+    "value_a": 291145.0,
+    "value_b": 159518.0,
+    "higher_is_worse": false,
+    "measures": "the company's own published very large crude carrier time-charter-equivalent rate, US dollars per vessel per day"
+   }
+  },
+  "note": "THE FORECAST OPENS 38.90 PER CENT AGAINST A REVIEWED HALF THAT PRINTED 40.22, WHICH IS 3.3 PER CENT BELOW IT IN RELATIVE TERMS AND INSIDE THE MATERIALITY LINE. The delivered edition of this study anchored on the audited FY2025 year at 29.28 per cent and forecast 41.69 for 2026 \u2014 a rate that turned out to be very nearly right, because THE MARGIN WAS NOT WHAT THAT EDITION GOT WRONG. What it got wrong was SCALE: it forecast USD 5,003,932 thousand of 2026 revenue and the company earned USD 3,666,674 thousand in the first six months alone.\n\nTHE PATH FALLS FROM 38.90 PER CENT IN 2026 TO 31.92 IN 2030 AND THAT IS THE CLAIM TO INTERROGATE. It is not a margin assumption. Every rate in it is the company's own published time-charter equivalent \u2014 reported for the first and second quarters of 2026, disclosed for the third to 11 August on the share of vessel days it covers, and reverting from there to the average of the company's own 2024 and 2025 outcomes by 2030. The cost side is a fixed base escalated on the house inflation ladder plus a variable component per unit of the fleet's charter-equivalent revenue, both solved from the audited 2025 year and the reviewed 2026 half, with the reviewed 2025 half HELD OUT and reproduced to within 10.7 per cent. The margin is what those two lines leave.\n\nTHE ELEVEN VESSELS ANNOUNCED ON 7 AUGUST 2026, six of them very large crude carriers, enter at USD 1,300,000 thousand of committed and funded cost and earn from the third quarter. The reversion path is the CONSERVATIVE of the two the study publishes; the sustained path is shown beside it and is worth more, not less."
  },
  "walkforward_scope": {
   "rule": "R-FCAL-01",
@@ -7865,14 +8168,14 @@
  },
  "bridge_record": {
   "market": "AE",
-  "balance_sheet_date": "2026-03-31",
-  "latest_disclosed_date": "2026-03-31",
-  "latest_disclosed_source": "the condensed consolidated interim financial information for the three months ended 31 March 2026, from the company's own investor-relations channel and registered in this study's sweep. THE VALUATION DATE IS THAT BALANCE-SHEET DATE rather than the date of the latest traded price, so no roll-forward stands between the bridge and a filing, and the first quarter's free cash flow is inside net debt rather than discounted again.",
+  "balance_sheet_date": "2026-06-30",
+  "latest_disclosed_date": "2026-06-30",
+  "latest_disclosed_source": "the condensed consolidated interim financial information for the six months ended 30 June 2026, reviewed and signed 10 August 2026, from the company's own investor-relations channel and registered in this study's sweep. THE VALUATION DATE IS THAT BALANCE-SHEET DATE rather than the date of the latest traded price, so no roll-forward stands between the bridge and a filing, and the half's free cash flow is inside net debt rather than discounted again. The delivered edition stood on the 31 March 2026 quarter and net debt of 419,867; this sheet reports 257,318.",
   "register": "sweep_register.json",
   "lines": [
    {
     "label": "Enterprise value of the operations",
-    "value": 14477701.547800524
+    "value": 14474185.623406313
    },
    {
     "label": "plus joint ventures and associates at carrying value",
@@ -7888,12 +8191,16 @@
    },
    {
     "label": "less non-controlling interests",
-    "value": -378355.37140087225
+    "value": -316661.78047486395
+   },
+   {
+    "label": "less the interim dividend declared after the balance-sheet date",
+    "value": -85300.0
    }
   ],
-  "equity_value": 10781880.176399652,
+  "equity_value": 10754757.84293145,
   "shares_mn": 7398498.7639999995,
-  "per_share": 1.457306478019931,
+  "per_share": 1.4536405541165336,
   "units": {
    "currency": "USD",
    "scale": "thousands",
@@ -7911,8 +8218,8 @@
   "cash_note": "THE CASH IS NOT ADDED AT FACE ANYWHERE. It sits inside the net-debt figure deducted once, and the operating rate is weighted on the gross capital structure \u2014 equity, drawn debt AND the perpetual securities \u2014 so no tranche is deducted from value without also being allowed to price it. The company is net DEBT rather than net cash, so the negative-debt-weight trap does not arise here; the construction is stated anyway because a reader cannot tell from the number which way it was done.",
   "nci": {
    "basis": "value_share",
-   "value": 378355.37140087225,
-   "deduction": 378355.37140087225,
+   "value": 401961.78047486395,
+   "deduction": 401961.78047486395,
    "book": 289197.0,
    "profit_share": 289197.0,
    "proportional": 289197.0,
@@ -7933,7 +8240,7 @@
   "hybrid": {
    "treatment": "deducted_at_carrying_value_and_weighted_in_the_cost_of_capital",
    "carrying_value": 1978619.0,
-   "pv_of_coupon": 1115076.0348809604,
+   "pv_of_coupon": 1117535.545127504,
    "note": "THE TWO HALVES OF ONE TREATMENT. The perpetual capital securities rank ahead of the ordinary shares, so they are deducted here; a claim deducted from enterprise value must also be WEIGHTED in the cost of capital at its own cost, or the model subtracts a cheap tranche of capital without letting it price the value. The present value of the perpetual coupon is published beside the carrying value as the alternative deduction, because which of the two a reader prefers is a judgement and the study does not hide it inside one number."
   }
  },
@@ -7941,10 +8248,10 @@
   "class": "marine logistics and shipping, chartered fleet on global day rates",
   "primary": {
    "kind": "dcf",
-   "value": 5.351958040528197,
+   "value": 5.338494934992969,
    "range": {
-    "low": 2.8597967901166217,
-    "high": 9.75128734930392
+    "low": 2.757748617839643,
+    "high": 9.979174693829732
    },
    "range_note": "the cash-flow lens at the beta regression's OWN 90 per cent confidence bounds, with the rate anchor and capital expenditure moving with them",
    "range_basis": {
@@ -7960,12 +8267,12 @@
   "cross_checks": [
    {
     "kind": "sotp",
-    "value": 10.121718554901609,
+    "value": 13.52919504747965,
     "note": "the three legs summed on their own multiples \u2014 a contracted-fleet multiple where the leg earns under long-term contracts and a blend of contracted and spot where it does not, weighted by the company's own disclosed share of earnings exposed to spot rates. It is a cross-check rather than the answer because the legs share one balance sheet, one crew pool and one management."
    },
    {
     "kind": "relative_multiple",
-    "value": 8.580798609863454,
+    "value": 12.207608474915896,
     "present_value": false,
     "multiple": 11.1037,
     "construction": {
@@ -7979,43 +8286,43 @@
       {
        "name": "ev_ebitda",
        "weight": 0.7,
-       "value": 9.61373674589351,
+       "value": 13.078837253416886,
        "multiple": 11.1037,
-       "metric": 2085941.8878816736,
+       "metric": 2716144.672518616,
        "metric_name": "FY2026 forecast EBITDA, USD thousands",
        "basis": "enterprise value at the blended peer multiple, carried to equity through the same bridge the cash-flow lens uses \u2014 net debt, the perpetual capital securities and the minority \u2014 then divided by shares and converted at the peg"
       },
       {
        "name": "earnings",
        "weight": 0.30000000000000004,
-       "value": 6.170609625793324,
+       "value": 10.174741325080252,
        "multiple": 11.6357,
-       "metric": 1068359.3569142101,
+       "metric": 1761621.7453447543,
        "metric_name": "FY2026 forecast profit after the perpetual coupon, attributable to ordinary shares, USD thousands",
        "basis": "the earnings multiple applied to profit AFTER the hybrid coupon, because the coupon is not available to ordinary shareholders and applying a multiple before it values earnings the ordinary share does not receive"
       }
      ]
     },
     "circularity": {
-     "spot": 1.6773315180394828,
+     "spot": 1.8515997277059224,
      "shares": 7398498.7639999995,
      "net_debt": 1861615.0,
-     "metric_value": 2085941.8878816736,
+     "metric_value": 2716144.672518616,
      "basis": "USD thousands; spot is the AED close converted at the peg, shares are thousands"
     },
     "multiple_source": "a blend of 12.26x on the contracted book and 8.53x on the spot-exposed book, both taken from the listed peer set \u2014 Nakilat for long-term contracted gas shipping and the spot tanker names for the exposed half \u2014 and weighted by the company's OWN disclosed spot share of 31 per cent. It is not read off this company's price: the traded enterprise value over the same forecast EBITDA is committed beside it in the circularity block."
    },
    {
     "kind": "book_value",
-    "value": 3.5938958170060644,
+    "value": 3.9077019807668094,
     "note": "the DISCLOSED floor. Published as a floor and NEVER weighted into a central \u2014 which the retired blend did, at 15 per cent."
    }
   ],
   "envelope": {
-   "low": 2.8597967901166217,
-   "high": 9.75128734930392
+   "low": 2.757748617839643,
+   "high": 9.979174693829732
   },
-  "central": 5.351958040528197,
+  "central": 5.338494934992969,
   "retired": {
    "blend": {
     "dcf": 0.4,
@@ -8023,39 +8330,42 @@
     "normalized": 0.2,
     "book": 0.15
    },
-   "blend_value": 6.584625691253395,
-   "why": "40/25/20/15 across four reads, and two of the four weights are forbidden outright rather than merely unevidenced. BOOK VALUE carried 15 per cent and book value is a disclosed floor that is never weighted into an answer; NORMALISED EARNINGS carried 20 and the registry does not permit it for this class. The weights had cleared no out-of-sample test. Retiring the blend moves the published answer from AED 6.58 to AED 5.35, which is a LARGE move and is the point: the blend was averaging a cash-flow reading well below the market with three accounting readings well above it, and publishing the average told a reader neither thing.",
+   "blend_value": 7.987854092248088,
+   "why": "40/25/20/15 across four reads, and two of the four weights are forbidden outright rather than merely unevidenced. BOOK VALUE carried 15 per cent and book value is a disclosed floor that is never weighted into an answer; NORMALISED EARNINGS carried 20 and the registry does not permit it for this class. The weights had cleared no out-of-sample test. Retiring the blend moves the published answer from AED 7.99 to AED 5.34, which is a LARGE move and is the point: the blend was averaging a cash-flow reading well below the market with three accounting readings well above it, and publishing the average told a reader neither thing.",
    "normalised_earnings": {
-    "value": 8.797792250126715,
-    "why": "dropped as a lens for this class. Day rates are cyclical enough that a normalised year is a judgement about where the cycle sits rather than a reading of the business, and the cash-flow lens already carries that judgement explicitly in its rate path. It read AED 8.80 and carried 20 per cent of the retired blend."
+    "value": 11.071993512034524,
+    "why": "dropped as a lens for this class. Day rates are cyclical enough that a normalised year is a judgement about where the cycle sits rather than a reading of the business, and the cash-flow lens already carries that judgement explicitly in its rate path. It read AED 11.07 and carried 20 per cent of the retired blend."
    }
   }
  },
  "asset_base_record": {
   "quantity": "owned vessels",
   "unit": "vessels",
-  "value": 156,
+  "value": 172,
   "as_at": "2026-08-07",
-  "disclosure": "the 7 August 2026 announcement of the purchase of eleven vessels \u2014 six very large crude carriers and five gas carriers \u2014 which is the latest disclosure moving this fleet and is the anchor date of this study, on the owned fleet disclosed at 31 December 2025 in the 1Q2026 investor presentation, less the 2017-built very large crude carrier sold in January 2026 per the FY2025 earnings release",
+  "disclosure": "the owned shipping fleet DISCLOSED AT 30 JUNE 2026 in the first-half 2026 earnings presentation \u2014 52 tankers, 22 gas carriers, 11 dry-bulk and 3 container vessels, subtotals footing to a stated 88 \u2014 carried forward by the 7 August 2026 announcement of the purchase of eleven vessels, six very large crude carriers and five gas carriers, which is the latest disclosure moving this fleet; plus the jack-up barges and offshore support vessels disclosed for 31 December 2025, which no later filing restates",
   "components": {
-   "tankers_owned_31dec2025": 53,
-   "less_vlcc_sold_jan2026": -1,
+   "shipping_owned_30jun2026": 88,
    "jack_up_barges_owned": 33,
    "offshore_support_vessels_owned": 40,
-   "gas_carriers_owned": 20,
    "acquired_aug2026_vlcc": 6,
    "acquired_aug2026_gas": 5
   },
-  "note": "THE BASE IS NEWER THAN THE INFORMATION SET AND THAT IS THE POINT OF THE ORDERING. The statements this study reads end at 31 March 2026; the fleet is carried to 7 August 2026 because the company disclosed a movement in it after that date and the price this value is compared against already contains it. The first edition omitted that purchase, which valued a fleet the market was not pricing."
+  "note": "THE BASE IS NEWER THAN THE INFORMATION SET AND THAT IS THE POINT OF THE ORDERING. The statements this study reads end at 30 June 2026 and the fleet is carried to 7 August 2026, because the company disclosed a movement in it after that date and the price this value is compared against already contains it. The shipping count is now the company's own 30 June 2026 disclosure rather than the 31 December 2025 one the delivered edition carried, so the base and the information set move together."
  },
- "information_set_ends": "1Q2026",
+ "information_set_ends": "2Q2026",
  "anchor_ordering_reason": {
-  "reason": "the rate anchored is a MARGIN and a single quarter is not a year. This fleet earns on charters that begin and end on their own dates and on spot rates that move within a year, so one reviewed quarter is a point on a seasonal path rather than a rate the business runs at. The audited FY2025 year is the last period over which the margin is a full cycle of the company's own contract book. THE QUARTER WAS NOT SKIPPED: every line of the Q1 2026 income statement is registered and consumed, and the bridge stands on that quarter's balance sheet.",
-  "later_period": "1Q2026, reviewed",
-  "later_rate": 0.32725517814671995,
-  "anchor_rate": 0.2927707754531797,
-  "later_rate_basis": "operating profit plus depreciation of property, plant and equipment, investment property and right-of-use assets plus amortisation, over revenue \u2014 the same construction as the anchor, on the reviewed three months to 31 March 2026",
-  "direction_note": "THE GATE READS THE DIRECTION, NOT THIS SENTENCE. The later quarter is the HIGHER of the two, so the anchor adopted is the lower and the forecast is held to the stricter comparison."
+  "reason": "the anchor IS the latest reviewed period. The delivered edition anchored on the audited FY2025 year because the only later period was a single quarter, and on a fleet earning on charters that begin and end on their own dates one quarter is a point on a seasonal path rather than a rate the business runs at. The six months to 30 June 2026 are not a quarter and the objection lapses: every driver in this study is now anchored on that half, and the bridge stands on its balance sheet.",
+  "later_period": "H1 2026, reviewed",
+  "later_rate": 0.40223592280088166,
+  "anchor_rate": 0.40223592280088166,
+  "later_rate_basis": "the group earnings before interest, tax, depreciation and amortisation the operating-segments note discloses, over reported revenue, on the reviewed six months to 30 June 2026 \u2014 and it IS the anchor, so there is no later period to order against",
+  "direction_note": "THERE IS NO ORDERING LEFT TO DECLARE. The anchor and the latest reviewed period are the same period, so no rate is being adopted in preference to a later one.",
+  "superseded": {
+   "anchor": "FY2025, audited",
+   "anchor_rate": 0.2927707754531797,
+   "reason": "the delivered edition's anchor, recorded because the movement from it is the substance of this re-strike rather than a detail beside it"
+  }
  },
  "cost_of_capital_record": {
   "market": "AE",
@@ -8068,15 +8378,15 @@
   "erp_basis": "rating",
   "beta": 1.1032,
   "ke_exp": 0.09432584,
-  "kd_pretax": 0.07938149977021888,
-  "kd_aftertax": 0.07223716479089919,
-  "weight_equity": 0.81705595154195,
-  "weight_debt": 0.05267193478718745,
-  "wacc_exp": 0.08725769375914355,
+  "kd_pretax": 0.06348536969420494,
+  "kd_aftertax": 0.057771686421726504,
+  "weight_equity": 0.831370711421182,
+  "weight_debt": 0.04855053206756824,
+  "wacc_exp": 0.08710844588946735,
   "other_tranches": [
    {
     "name": "perpetual_capital_securities",
-    "weight": 0.13027211367086255,
+    "weight": 0.12007875651124976,
     "rate": 0.049,
     "basis": "placed with a third-party investor at SOFR + 1.25%, disclosed in the perpetual capital securities note; carried at its coupon because it pays a coupon rather than a taxed interest charge"
    }
@@ -8086,14 +8396,14 @@
   "erp_terminal": 0.0487,
   "ke_terminal": 0.09347684,
   "ke_terminal_construction": "same_beta",
-  "kd_terminal_pretax": 0.0785324997702189,
-  "kd_terminal_aftertax": 0.0714645747908992,
-  "weight_debt_terminal": 0.05267193478718745,
-  "wacc_terminal": 0.08694683408773118,
+  "kd_terminal_pretax": 0.06263636969420494,
+  "kd_terminal_aftertax": 0.0569990964217265,
+  "weight_debt_terminal": 0.04855053206756824,
+  "wacc_terminal": 0.08675547853731877,
   "other_tranches_terminal": [
    {
     "name": "perpetual_capital_securities",
-    "weight": 0.13027211367086255,
+    "weight": 0.12007875651124976,
     "rate": 0.052251000000000006,
     "basis": "the same tranche repriced off the terminal risk-free rate at the same disclosed margin"
    }
@@ -8106,20 +8416,20 @@
    1.0
   ],
   "forward_wacc": [
-   0.08719552182486108,
-   0.08713334989057861,
-   0.08707117795629613,
-   0.08700900602201365,
-   0.08694683408773118
+   0.08703785241903764,
+   0.08696725894860792,
+   0.0868966654781782,
+   0.08682607200774849,
+   0.08675547853731877
   ],
   "discount_factors": [
-   0.9590608712678924,
-   0.8821924848174542,
-   0.8115314826725369,
-   0.7465729153821768,
-   0.6868532038264518
+   0.9591304222382443,
+   0.8823912719928506,
+   0.8118446767012981,
+   0.7469867512485568,
+   0.6873549441443239
   ],
-  "terminal_discount_factor": 0.6868532038264518,
+  "terminal_discount_factor": 0.6873549441443239,
   "discounting_convention": {
    "kind": "stub_then_annual",
    "cumulative_years": [
@@ -8150,26 +8460,26 @@
    "contractual_anchor": [
     {
      "facility": "shareholder loan",
-     "balance": 500000,
+     "balance": 125000,
      "rate": 0.0445,
      "note": "SOFR of 3.65 per cent plus the disclosed 80 basis point margin"
     },
     {
      "facility": "third-party bank and other borrowings",
-     "balance": 402763,
+     "balance": 431353,
      "rate": 0.068325,
      "note": "the mid-point of the two disclosed ranges, 7.11-7.55 per cent on bank loans and 4.36-8.31 per cent on other borrowings"
     },
     {
      "facility": "lease liabilities",
-     "balance": 212449,
+     "balance": 243647,
      "rate": 0.06465748410759811,
      "note": "the implied borrowing rate computed independently from the audited FY2025 lease interest over the average lease liability"
     }
    ],
-   "adopted": 0.07938149977021888,
+   "adopted": 0.06348536969420494,
    "above_sovereign": true,
-   "retired_average": 0.06572716659007295,
+   "retired_average": 0.06042845656473498,
    "retired_note": "the average of the balance-weighted rate, the marginal drawdown rate and one range mid-point, which reproduces from no set of facility lines and is retired"
   },
   "sensitivity": {
@@ -8201,19 +8511,19 @@
   "ticker": "ADNOCLS",
   "lines": 7,
   "share_by_level": {
-   "unit": 0.5220918589567931,
+   "unit": 0.647948125191725,
    "derived": 0,
-   "segment": 0.47790814104320695,
+   "segment": 0.352051874808275,
    "topdown": 0
   },
-  "unit_share": 0.5220918589567931,
+  "unit_share": 0.647948125191725,
   "standard_version": "2026.09.07"
  },
  "driver_lines": [
   {
    "name": "Tankers",
    "level": "unit",
-   "share_of_revenue": 0.4274468391366116,
+   "share_of_revenue": 0.5544022578018034,
    "unit": "vessel-days by class, at the day rate each vessel actually earns",
    "unit_source": "the fleet list and charter register in the FY2025 annual report and the Q1-2026 investor presentation: every chartered vessel with its own contracted rate and the exact dates its charter runs, every other vessel on the implied spot rate for its class",
    "price_basis": "the company's own disclosed quarterly time-charter-equivalent rates by vessel class, reverting toward the mid-cycle average of the same disclosed series",
@@ -8223,7 +8533,7 @@
   {
    "name": "Gas Carriers",
    "level": "unit",
-   "share_of_revenue": 0.05524320804280955,
+   "share_of_revenue": 0.05085244399961744,
    "unit": "vessel-years in service times the day rate",
    "unit_source": "the vessel count in service through 2025 and the newbuild delivery schedule, both disclosed",
    "price_basis": "the disclosed day rate, escalated on the house inflation ladder \u2014 these vessels earn under long-term contracts rather than at spot",
@@ -8233,7 +8543,7 @@
   {
    "name": "Dry-Bulk and Containers",
    "level": "unit",
-   "share_of_revenue": 0.03940181177737196,
+   "share_of_revenue": 0.042693423390304186,
    "unit": "vessel-days at the class day rate",
    "unit_source": "the fleet list in the FY2025 annual report",
    "price_basis": "the disclosed class rate on the same reversion path as the tankers",
@@ -8243,41 +8553,41 @@
   {
    "name": "Offshore Contracting",
    "level": "segment",
-   "share_of_revenue": 0.24944222193717647,
+   "share_of_revenue": 0.1910693835678127,
    "unit": null,
    "unit_source": null,
    "price_basis": null,
-   "cost_basis": "no unit is disclosed for this leg, so no cost per unit can be built and the MARGIN is the input with cost as the residual \u2014 which the rule permits at the segment level and forbids wherever the filings support a unit. First-quarter revenue annualised, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The 2026 margin is the first quarter's own margin before the one-off receivable provision, recovering toward the 2025 level as utilisation normalises.",
+   "cost_basis": "no unit is disclosed for this leg, so no cost per unit can be built and the MARGIN is the input with cost as the residual \u2014 which the rule permits at the segment level and forbids wherever the filings support a unit. The reviewed six months to 30 June 2026 as reported, plus a second half at the same revenue and at the margin the half itself delivered BEFORE the expected-credit-loss provision disclosed in the segment note, then 4% a year as further jack-up barges and support vessels are deployed on the contracted programme. The margin is held flat rather than recovering toward the 2025 level, because nothing disclosed measures a recovery in jack-up utilisation or pricing.",
    "gap_note": "THE DISCLOSURE STOPS AT THE SEGMENT AND THE GAP IS STATED RATHER THAN FILLED. This leg earns under long-term integrated logistics contracts whose scope, duration and pricing are commercially confidential; the company discloses segment revenue and the contracted backlog but no unit \u2014 no vessel-days, no tonne-miles, no day rate. Building a unit economics on an invented unit would add an unsourced driver and no information while looking more precise, which is the offence the rule names. It is grown on the disclosed backlog and its stated run-off."
   },
   {
    "name": "Offshore Services",
    "level": "segment",
-   "share_of_revenue": 0.13246701906789105,
+   "share_of_revenue": 0.10632162901592299,
    "unit": null,
    "unit_source": null,
    "price_basis": null,
-   "cost_basis": "no unit is disclosed for this leg, so no cost per unit can be built and the MARGIN is the input with cost as the residual \u2014 which the rule permits at the segment level and forbids wherever the filings support a unit. First-quarter revenue annualised, then 5% a year on the support-vessel fleet growth already under way. Margin held at the level the first quarter delivered.",
+   "cost_basis": "no unit is disclosed for this leg, so no cost per unit can be built and the MARGIN is the input with cost as the residual \u2014 which the rule permits at the segment level and forbids wherever the filings support a unit. The reviewed half as reported plus a second half at the same revenue and the same margin, then 5% a year on the support-vessel fleet growth already under way. The margin is the half's own.",
    "gap_note": "as Offshore Contracting: segment revenue and backlog are disclosed and no physical unit is. Flagged rather than modelled at a level the filings do not support."
   },
   {
    "name": "Offshore Projects",
    "level": "segment",
-   "share_of_revenue": 0.024980353777421308,
+   "share_of_revenue": 0.000539690613584006,
    "unit": null,
    "unit_source": null,
    "price_basis": null,
-   "cost_basis": "no unit is disclosed for this leg, so no cost per unit can be built and the MARGIN is the input with cost as the residual \u2014 which the rule permits at the segment level and forbids wherever the filings support a unit. The company's own stated range of USD 100-150 million of engineering and construction revenue for 2026 after the large island project completed, then a recovery as new awards replace it. This is the least visible line in the model.",
+   "cost_basis": "no unit is disclosed for this leg, so no cost per unit can be built and the MARGIN is the input with cost as the residual \u2014 which the rule permits at the segment level and forbids wherever the filings support a unit. The reviewed half as reported plus a second half at the same revenue and no margin, held FLAT thereafter. The large island project completed in the fourth quarter of 2025 and NO NEW AWARD IS DISCLOSED; the two projects the company names are loss-making. The delivered edition carried USD 125 million of 2026 revenue recovering to 300 million by 2030 on a company range the half has since falsified \u2014 the unit earned USD 1.9 million in six months. A recovery nothing discloses is not forecast.",
    "gap_note": "as Offshore Contracting. This is the smallest leg and the least disclosed: project revenue is recognised as work completes and the project list is not published, so even the backlog run-off is coarser here than elsewhere. Stated, not smoothed over."
   },
   {
    "name": "Services",
    "level": "segment",
-   "share_of_revenue": 0.07101854626071813,
+   "share_of_revenue": 0.054121171610955324,
    "unit": null,
    "unit_source": null,
    "price_basis": null,
-   "cost_basis": "no unit is disclosed for this leg, so no cost per unit can be built and the MARGIN is the input with cost as the residual \u2014 which the rule permits at the segment level and forbids wherever the filings support a unit. First-quarter revenue annualised and grown 4% a year. The margin reflects the warehouse activity moved into this unit and the growing profit share from the bunkering associate.",
+   "cost_basis": "no unit is disclosed for this leg, so no cost per unit can be built and the MARGIN is the input with cost as the residual \u2014 which the rule permits at the segment level and forbids wherever the filings support a unit. The reviewed half as reported plus a second half on the same terms, then 4% a year. The margin is the half's own and reflects the warehouse activity moved into this unit; the profit share from the bunkering associate is removed separately so it is not counted twice.",
    "gap_note": "a portfolio of shore-based and marine support activities disclosed only in aggregate. No unit is published for any of them and none is invented; the leg is grown on the disclosed segment and its margin is held at the disclosed level."
   }
  ],
@@ -8286,6 +8596,11 @@
    "check": "four fields complete: spot_aed",
    "passed": true,
    "detail": "spot_aed"
+  },
+  {
+   "check": "four fields complete: price_close_engine",
+   "passed": true,
+   "detail": "price_close_engine"
   },
   {
    "check": "four fields complete: fx_aed_usd",
@@ -10713,6 +11028,36 @@
    "detail": "gas_owned"
   },
   {
+   "check": "four fields complete: fleet_tankers_30jun26",
+   "passed": true,
+   "detail": "fleet_tankers_30jun26"
+  },
+  {
+   "check": "four fields complete: fleet_gas_30jun26",
+   "passed": true,
+   "detail": "fleet_gas_30jun26"
+  },
+  {
+   "check": "four fields complete: fleet_dry_bulk_30jun26",
+   "passed": true,
+   "detail": "fleet_dry_bulk_30jun26"
+  },
+  {
+   "check": "four fields complete: fleet_container_30jun26",
+   "passed": true,
+   "detail": "fleet_container_30jun26"
+  },
+  {
+   "check": "four fields complete: fleet_shipping_30jun26",
+   "passed": true,
+   "detail": "fleet_shipping_30jun26"
+  },
+  {
+   "check": "four fields complete: h2_26_deliveries",
+   "passed": true,
+   "detail": "h2_26_deliveries"
+  },
+  {
    "check": "four fields complete: gas_lt_contracted",
    "passed": true,
    "detail": "gas_lt_contracted"
@@ -11308,6 +11653,21 @@
    "detail": "g26h_rev_services"
   },
   {
+   "check": "four fields complete: g26h_ebitda_il",
+   "passed": true,
+   "detail": "g26h_ebitda_il"
+  },
+  {
+   "check": "four fields complete: g26h_ebitda_shipping",
+   "passed": true,
+   "detail": "g26h_ebitda_shipping"
+  },
+  {
+   "check": "four fields complete: g26h_ebitda_services",
+   "passed": true,
+   "detail": "g26h_ebitda_services"
+  },
+  {
    "check": "four fields complete: contracted_revenue_h126",
    "passed": true,
    "detail": "contracted_revenue_h126"
@@ -11433,6 +11793,11 @@
    "detail": "rf_terminal"
   },
   {
+   "check": "four fields complete: nwc_h126",
+   "passed": true,
+   "detail": "nwc_h126"
+  },
+  {
    "check": "four fields complete: charter_navig8_macallister",
    "passed": true,
    "detail": "charter_navig8_macallister"
@@ -11518,9 +11883,49 @@
    "detail": "handysize_relative"
   },
   {
-   "check": "four fields complete: tnk_opex_day",
+   "check": "four fields complete: tce_mr_q3_26_built",
    "passed": true,
-   "detail": "tnk_opex_day"
+   "detail": "tce_mr_q3_26_built"
+  },
+  {
+   "check": "four fields complete: tce_lr1_q3_26_built",
+   "passed": true,
+   "detail": "tce_lr1_q3_26_built"
+  },
+  {
+   "check": "four fields complete: tce_lr2_q3_26_built",
+   "passed": true,
+   "detail": "tce_lr2_q3_26_built"
+  },
+  {
+   "check": "four fields complete: tce_vlcc_q3_26_built",
+   "passed": true,
+   "detail": "tce_vlcc_q3_26_built"
+  },
+  {
+   "check": "four fields complete: tnk_tce_rev_fy25",
+   "passed": true,
+   "detail": "tnk_tce_rev_fy25"
+  },
+  {
+   "check": "four fields complete: tnk_tce_rev_h126",
+   "passed": true,
+   "detail": "tnk_tce_rev_h126"
+  },
+  {
+   "check": "four fields complete: tnk_tce_rev_h125",
+   "passed": true,
+   "detail": "tnk_tce_rev_h125"
+  },
+  {
+   "check": "four fields complete: tnk_cost_fixed",
+   "passed": true,
+   "detail": "tnk_cost_fixed"
+  },
+  {
+   "check": "four fields complete: tnk_cost_var",
+   "passed": true,
+   "detail": "tnk_cost_var"
   },
   {
    "check": "four fields complete: tnk_grossup_25",
@@ -11528,9 +11933,19 @@
    "detail": "tnk_grossup_25"
   },
   {
+   "check": "four fields complete: tnk_grossup_h125",
+   "passed": true,
+   "detail": "tnk_grossup_h125"
+  },
+  {
    "check": "four fields complete: tnk_grossup_26",
    "passed": true,
    "detail": "tnk_grossup_26"
+  },
+  {
+   "check": "four fields complete: tnk_holdout_ebitda_error",
+   "passed": true,
+   "detail": "tnk_holdout_ebitda_error"
   },
   {
    "check": "four fields complete: opex_escalation",
@@ -11546,6 +11961,11 @@
    "check": "four fields complete: h2_2026_reversion",
    "passed": true,
    "detail": "h2_2026_reversion"
+  },
+  {
+   "check": "four fields complete: gas_vessel_years_h126",
+   "passed": true,
+   "detail": "gas_vessel_years_h126"
   },
   {
    "check": "four fields complete: gas_vessel_years_26",
@@ -11573,14 +11993,39 @@
    "detail": "gas_vessel_years_30"
   },
   {
+   "check": "four fields complete: gas_vessel_years_contracted_2026",
+   "passed": true,
+   "detail": "gas_vessel_years_contracted_2026"
+  },
+  {
+   "check": "four fields complete: gas_vessel_years_contracted_2027",
+   "passed": true,
+   "detail": "gas_vessel_years_contracted_2027"
+  },
+  {
+   "check": "four fields complete: gas_vessel_years_contracted_2028",
+   "passed": true,
+   "detail": "gas_vessel_years_contracted_2028"
+  },
+  {
+   "check": "four fields complete: gas_vessel_years_contracted_2029",
+   "passed": true,
+   "detail": "gas_vessel_years_contracted_2029"
+  },
+  {
+   "check": "four fields complete: gas_vessel_years_contracted_2030",
+   "passed": true,
+   "detail": "gas_vessel_years_contracted_2030"
+  },
+  {
    "check": "four fields complete: gas_vessel_years_25",
    "passed": true,
    "detail": "gas_vessel_years_25"
   },
   {
-   "check": "four fields complete: gas_rate_day",
+   "check": "four fields complete: gas_rate_day_fy25",
    "passed": true,
-   "detail": "gas_rate_day"
+   "detail": "gas_rate_day_fy25"
   },
   {
    "check": "four fields complete: jv_gas_fy25",
@@ -11596,6 +12041,26 @@
    "check": "four fields complete: gas_margin",
    "passed": true,
    "detail": "gas_margin"
+  },
+  {
+   "check": "four fields complete: jv_gas_h126",
+   "passed": true,
+   "detail": "jv_gas_h126"
+  },
+  {
+   "check": "four fields complete: jv_services_h126",
+   "passed": true,
+   "detail": "jv_services_h126"
+  },
+  {
+   "check": "four fields complete: gas_rate_day",
+   "passed": true,
+   "detail": "gas_rate_day"
+  },
+  {
+   "check": "four fields complete: gas_rate_day_h126",
+   "passed": true,
+   "detail": "gas_rate_day_h126"
   },
   {
    "check": "four fields complete: drv_rev_offshore_contracting_2026",
@@ -11988,6 +12453,11 @@
    "detail": "vessel_life_years"
   },
   {
+   "check": "four fields complete: div_declared_q2_26",
+   "passed": true,
+   "detail": "div_declared_q2_26"
+  },
+  {
    "check": "four fields complete: nci_share",
    "passed": true,
    "detail": "nci_share"
@@ -12138,14 +12608,34 @@
    "detail": ""
   },
   {
-   "check": "the tanker unit build reproduces reported segment earnings for 2025",
+   "check": "the tanker cost stack reproduces reported segment earnings for 2025",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "the tanker cost stack reproduces the reviewed first half of 2026",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "the held-out first half of 2025 is reproduced within 15 per cent and understated",
+   "passed": true,
+   "detail": "held-out error -0.1067"
+  },
+  {
+   "check": "the tanker earnings leverage on fleet charter-equivalent revenue exceeds one",
+   "passed": true,
+   "detail": "leverage 1.5599"
+  },
+  {
+   "check": "the reviewed half earned more than the owned fleet could on its own, which is why the delivered construction could not reproduce it",
    "passed": true,
    "detail": ""
   },
   {
    "check": "cost of debt sits above the local government bond yield",
    "passed": true,
-   "detail": "kd 0.0794 vs rf 0.0448"
+   "detail": "kd 0.0635 vs rf 0.0448"
   },
   {
    "check": "country risk is charged once",
@@ -12160,7 +12650,7 @@
   {
    "check": "the sensitivity grid is centred on the value it brackets",
    "passed": true,
-   "detail": "grid centre 5.3520 vs base 5.3520 \u2014 every cost-of-capital construction must carry the same three tranches"
+   "detail": "grid centre 5.3385 vs base 5.3385 \u2014 every cost-of-capital construction must carry the same three tranches"
   },
   {
    "check": "the terminal value share is computed, not asserted",
@@ -12178,14 +12668,19 @@
    "detail": ""
   },
   {
-   "check": "the price map was struck on the same close as the study",
+   "check": "the price map was struck on the close the daily series ends at",
    "passed": true,
    "detail": ""
   },
   {
-   "check": "the technical read was computed on the same close",
+   "check": "the technical read was computed on the same close as the price map",
    "passed": true,
    "detail": ""
+  },
+  {
+   "check": "the valuation is delivered against a price at least as fresh as the price map",
+   "passed": true,
+   "detail": "delivered at 6.8 on 2026-09-07, cone on 2026-08-07"
   },
   {
    "check": "the beta used is the one the regression produced",
@@ -12225,7 +12720,7 @@
   {
    "check": "the forecast is built to the finest sourced level [SIGCM clause 2]",
    "passed": true,
-   "detail": "7 revenue lines covering 100.0% of revenue; 3 built on a DISCLOSED physical unit (52.2% of revenue), 4 at the disclosed segment with the gap stated"
+   "detail": "7 revenue lines covering 100.0% of revenue; 3 built on a DISCLOSED physical unit (64.8% of revenue), 4 at the disclosed segment with the gap stated"
   },
   {
    "check": "the external-reader scrub is MEASURED on the delivered documents, not attested",
