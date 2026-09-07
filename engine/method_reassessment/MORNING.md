@@ -2172,3 +2172,28 @@ THE GENERAL LESSON: **THE DOCUMENT THAT SAYS WHEN THE WORK IS FINISHED IS THE ON
 NOBODY CHECKS.** It names instruments, sets conditions and is read aloud to decide
 what to do next — and it was the last prose in this project to get an instrument of
 its own, five days after a gate it names stopped existing.
+
+### The 52 sorted: 49 are real debt, 3 were stale and are pruned
+
+The open question was whether criterion 1's 52 entries are debt a re-issue should
+have cleared or listings nobody tidied. **Measured rather than argued**, by copying
+the tracked tree into a sandbox, running every prune-capable gate there, and
+diffing the ratchets against the real ones: **49 of 52 are real debt the gates
+still fire on.** Three were stale — `anchor` on PHDC and TMGH, `valuation_inputs`
+on TMGH — and are pruned, which a ratchet always permits. Criterion 1 now reads 49.
+
+So the answer is the unwelcome one: **this is not bookkeeping.** PHDC 14, AMOC 12,
+TMGH 10, ARCC 7, EGCH 6 — every one of them a gate that still fires on a name the
+programme has been treating as re-issued and behind it.
+
+**And the first version of this measurement reported "stale: 0", which was my own
+probe comparing the sandbox to itself.** The `cd` into the sandbox put the
+comparison's *both* sides there, so it read the pruned files as the baseline and
+found no difference — an answer that was absent rather than wrong, arriving in the
+fourth probe of the day to do it. Redone with absolute paths on both sides, and the
+real tree verified untouched before believing either number.
+
+THE GENERAL LESSON: **A BEFORE-AND-AFTER NEEDS TWO PLACES, AND A `cd` MOVES BOTH.**
+The comparison was correct in structure and read one directory twice, which returns
+exactly what a clean result looks like. Where a probe reports no difference, the
+first thing to check is that it was looking at two things.

@@ -1,6 +1,4 @@
 {
  "_": "Runs predating [R-FCAL-01 AMENDED] (03-09-2026), allowed to carry no valuation-input block. THE LIST MAY ONLY SHORTEN — --prune rewrites it from what passes and never adds [R-ENF-02].",
- "runs": {
-  "TMGH": "predates the amendment; the block is added at this name's next run"
- }
+ "runs": {}
 }
