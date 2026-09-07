@@ -1,3 +1,19 @@
+"""RUN ORDER: compute.py THEN forecast_anchor.py. RUNNING THIS FILE ALONE DELETES
+A STANDING-RULE RECORD.
+
+study_numbers.json is written whole by this script, and [R-ANCHOR-01]'s
+forecast_anchor block is appended afterwards by forecast_anchor.py in this same
+directory. So a rebuild that runs only this file silently drops that block: it
+reappears as a deletion in the diff and nothing in the code says why. Caught
+06-09-2026 by reading a diffstat that came back at 18 lines when the edit was
+one -- had the diff not been read, a rebuild would have removed the record and
+check_forecast_anchor would have gone red on a study whose forecast had not moved.
+
+This is the L-066/L-067 species one step over: those were about a CHECK that
+opens a delivered file by name and must move with the re-issue; this is about a
+GENERATOR that is one of two and must run with the other. SAVOLA carries a
+forecast_anchor.py of the same shape and has not been tested for it.
+"""
 """SWDY study — master computation. Writes study_numbers.json (single source of
 truth for every builder). Code-first rule: INPUTS are four-field records
 {value, source, date, ring}; a bare numeral cannot enter the model; the ASSERT
@@ -1792,6 +1808,13 @@ OUT = dict(
     lenses=lenses, central=central, span=[lo, hi], spot=SPOT,
     retired_blend_value=RETIRED_BLEND_VALUE,
     lens_record=dict(**{'class': 'diversified industrial with a contracting arm'},
+        # [R-LENS-03] THE RECORD DECLARES ITS CENTRAL, so the identity clause
+        # actually RUNS. assert_lens_design() wraps 'the primary's value IS the
+        # central' in `if central is not None`, so a record exposing no central
+        # skipped the one clause that catches a weighted blend -- eight studies
+        # were in that state and every blend-carrier sat among them. Computed
+        # from the same quantity the primary carries, never typed.
+        central=float(central),
         primary=dict(
             kind='dcf', two_sided=False, value=float(central),
             range={'low': float(lo), 'high': float(hi)},

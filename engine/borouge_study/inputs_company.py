@@ -499,4 +499,48 @@ INP = dict(
                     "is denominated in US dollars, which is also the Group's presentation "
                     "and functional currency. There is no foreign-currency tranche to "
                     "carry at a local-equivalent cost", "2026-06-30", CO),
+
+    # ===== THE LATEST REVIEWED PERIOD AND ITS OWN COMPARATIVE, IN FULL ======
+    # The forecast anchor is measured against the latest period the company has
+    # actually reported, on the same basis the company itself publishes: adjusted
+    # EBITDA over revenue. Adjusted EBITDA is defined in the Q2 2026 MDA as EBITDA
+    # plus the foreign exchange gain or loss and the impairment loss on property,
+    # plant and equipment; foreign exchange sits BELOW operating profit in this
+    # company's income statement, inside net finance costs, so at the EBITDA level
+    # the only adjustment is the impairment. Every line below is read off the
+    # reviewed interim statements, and the reconstruction is asserted in compute.py
+    # against the rounded figure the company publishes in its own MDA rather than
+    # accepted on trust.
+    dep_ppe_h126=I(184_569, H126 + ", statement of cash flows — depreciation on "
+                   "property, plant and equipment, six months", "2026-06-30", CO),
+    dep_rou_h126=I(3_548, H126 + ", statement of cash flows — depreciation on "
+                   "right-of-use assets, six months", "2026-06-30", CO),
+    amort_h126=I(11_902, H126 + ", statement of cash flows — amortisation of "
+                 "intangible assets, six months", "2026-06-30", CO),
+    rev_h125=I(2_724_874, H126 + " — revenue for the six-month period ended 30 June "
+               "2025, comparative column of the statement of profit or loss",
+               "2025-06-30", CO),
+    ebit_h125=I(731_680, H126 + " — operating profit for the six-month period ended "
+                "30 June 2025, comparative column", "2025-06-30", CO),
+    sd_h125=I(191_307, H126 + " — selling and distribution expenses for the six-month "
+              "period ended 30 June 2025, comparative column", "2025-06-30", CO),
+    imp_h125=I(0, H126 + " — impairment loss for the six-month period ended 30 June "
+               "2025: the comparative column reports nil", "2025-06-30", CO),
+    dep_ppe_h125=I(261_537, H126 + ", statement of cash flows — depreciation on "
+                   "property, plant and equipment, comparative six months",
+                   "2025-06-30", CO),
+    dep_rou_h125=I(1_777, H126 + ", statement of cash flows — depreciation on "
+                   "right-of-use assets, comparative six months", "2025-06-30", CO),
+    amort_h125=I(11_078, H126 + ", statement of cash flows — amortisation of "
+                 "intangible assets, comparative six months", "2025-06-30", CO),
+    ebitda_adj_h125=I(1_006, MDA26 + " — adjusted EBITDA, H1 2025 comparative, USD "
+                      "million", "2025-06-30", CO),
+    vol_tot_h125=I(2_390, MDA26 + " — total sales volume, H1 2025, kt (polyethylene "
+                   "1,365, polypropylene 1,012, ethylene and others 13)",
+                   "2025-06-30", CO),
+    asp_h125=I(1_062, MDA26 + " — average selling price, H1 2025, USD per tonne, "
+               "defined by the company as revenue over sales volumes including "
+               "commissions", "2025-06-30", CO),
+    asp_h126=I(1_240, MDA26 + " — average selling price, H1 2026, USD per tonne, up 17 "
+               "per cent year on year", "2026-06-30", CO),
 )

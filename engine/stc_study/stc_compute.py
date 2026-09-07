@@ -12,116 +12,87 @@ import sys
 
 import numpy as np
 import pandas as pd
-import primitives as m
-from wacc_builder import WaccInputs, build_wacc, RegressionBetaAttempt
+
+# The engine directory, explicitly. This file imported engine modules by bare name and
+# resolved them only when it happened to be invoked with the right PYTHONPATH — an
+# invocation dependency nothing stated and nothing checked, which every other study in
+# the repository already avoids the same way.
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+
+import income_statement as ISTMT_EARLY          # noqa: E402  (after the path insert)
+import strike_cohorts as SC                     # noqa: E402
+from wacc_builder import WaccInputs, build_wacc, RegressionBetaAttempt  # noqa: E402
 
 # Imported here rather than beside the cost-of-capital block because the LATEST KNOWN
 # price it reads is needed by the market capitalisation long before the schedule is built.
 import coc_run as COCRUN
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-OHLC = os.path.join(HERE, '..', 'raw_ohlc', 'SA', 'STC.csv')
 
-df = m.load_ohlc(OHLC)
-close = df['Price'].values
+df, STEP0 = SC.load_clean('SA', 'STC')       # Step 0.0 applied — the frame production reads
+close = df['Price'].to_numpy(dtype=float)
 spot = float(close[-1])
 spot_date = str(df['Date'].iloc[-1].date())
 N = len(df)
 
-# ---------------- Step 0 backtest (zero drift = house default for non-EGX) ---
-res, summ = m.backtest(df, horizon=60, secular_drift=False)          # adopted config
-res_sec, summ_sec = m.backtest(df, horizon=60, secular_drift=True)   # rejected diagnostic
-res21, summ21 = m.backtest(df, horizon=60, step=21, secular_drift=False)
-pit_hist = np.histogram(res['pit'], bins=10, range=(0, 1))[0].tolist()
-# block bootstrap CI on CRPS skill (n windows, resample with replacement)
-rng_bs = np.random.default_rng(7)
-sk = []
-c, cb = res['crps'].values, res['crps_bench'].values
-for _ in range(4000):
-    idx = rng_bs.integers(0, len(c), len(c))
-    sk.append(1 - c[idx].sum() / cb[idx].sum())
-sk = np.array(sk)
-boot = dict(lo90=float(np.percentile(sk, 5)), hi90=float(np.percentile(sk, 95)),
-            p_pos=float(np.mean(sk > 0)))
+# ---------------- The price cone: the PRODUCTION chain, never a study-local one ----
+# This section used to run a simulation of its own, and it was wrong in five ways at
+# once against the fit this market actually runs: Student-t innovations hardcoded at
+# five degrees of freedom against a fitted fifteen; NO width calibration at all against
+# a fitted 1.056; zero drift on a market that runs an ACTIVE momentum lean; a horizon
+# hardcoded at sixty sessions where the horizons are calendar and the session count is
+# projected at strike; and — the part that mattered most — a sixteen-factor stack of
+# nine typed jump probabilities with their typed impacts, whose own printed caption
+# conceded that none of them was calibrated.
+#
+# The consequence was not a rounding difference. IT PUBLISHED A DIFFERENT CONE FROM THE
+# ONE THE SITE PUBLISHES FOR THIS NAME ON THIS DAY: a three-month median of 45.06
+# against 45.30, a 95th percentile of 51.21 against 52.20, and a thirteen per cent
+# chance of touching SAR 50 against twenty. A reader holding both would have found two
+# answers to one question, and the one with the invented event probabilities was the one
+# wearing the study's covers.
+#
+# A study's own price map REPRODUCES the committed fit; it never re-derives one. Every
+# figure below now comes from engine/strike_cohorts.strike(), the same call the roll-
+# forward makes, and the assertions underneath hold it to the published row rather than
+# trusting that it matches.
+CONE = SC.strike('SA', 'STC')
+assert CONE['anchor_date'] == spot_date and CONE['spot'] == spot
+H1M, H3M = CONE['horizons']['1M'], CONE['horizons']['3M']
+paths20, paths60 = H1M['_paths'], H3M['_paths']
+term20, term60 = paths20[:, -1], paths60[:, -1]
 
-# ---------------- Forward run parameters ------------------------------------
-v = m.yz_variance_proxy(df)
-beta_har = m.fit_har(v, N - 1, horizon=60)
-dv = m.har_forecast_daily_var(v, N - 1, beta_har, horizon=60)
-anchor_vol = float(np.sqrt(dv * 252))
-drift_daily = 0.0   # zero-drift class: international/GCC name (Step 0-adopted)
-
-# ---------------- 16-factor stack (7 continuous + 9 discrete) ---------------
-continuous = [
-    ("SAMA/Fed policy-rate path (easing)", "+"),
-    ("Oil price / fiscal impulse (govt ICT & mega-project spend)", "+"),
-    ("Vision 2030 / non-oil GDP digital demand", "+"),
-    ("KSA mobile competition (Mobily/Zain share & price pressure)", "−"),
-    ("Data-centre / AI buildout economics (center3–HUMAIN)", "±"),
-    ("Subsidiary drag→contribution (stc bank, solutions, intl)", "±"),
-    ("TASI flows / index weight (free float 38%)", "±"),
-]
-cont_drift_q = 0.002
-discrete = [
-    ("2Q26 results (~late Jul 2026)",                  0.90, 0.004),
-    ("Special dividend announced with 2Q/3Q results",  0.20, 0.020),
-    ("SAMA/Fed cut ≥25bp (Sep/Oct)",                   0.55, 0.006),
-    ("center3/HUMAIN AI-DC milestone (toward 1GW)",    0.35, 0.010),
-    ("TAWAL/DIIC monetization event",                  0.10, 0.015),
-    ("Telefónica mark deterioration spillover",        0.25, -0.006),
-    ("KSA mobile price-war escalation / weak prints",  0.20, -0.015),
-    ("Regional geopolitical escalation",               0.25, -0.020),
-    ("PIF further sell-down / index-flow event",       0.10, -0.012),
-]
-disc_drift_q = sum(p * i for _, p, i in discrete)
-factor_drift_q = cont_drift_q + disc_drift_q
-
-# ---------------- Forward simulation (50,000 paths, seed 42) ----------------
-H = 60
-rng = np.random.default_rng(42)
-n_paths = 50000
-sd = np.sqrt(dv)
-z = rng.standard_normal((n_paths, H))
-chi = rng.chisquare(5, n_paths)
-mix = np.sqrt(3.0 / chi)[:, None]
-incr = drift_daily + cont_drift_q / H + z * mix * sd
-for name, p, imp in discrete:
-    fire = rng.random(n_paths) < p
-    day = rng.integers(0, H, n_paths)
-    size = rng.normal(imp, abs(imp) / 2, n_paths)
-    add = np.zeros((n_paths, H))
-    add[np.arange(n_paths)[fire], day[fire]] = size[fire]
-    incr += add
-logp = np.cumsum(incr, axis=1)
-paths = np.empty((n_paths, H + 1))
-paths[:, 0] = spot
-paths[:, 1:] = spot * np.exp(logp)
-
-pT20, pT60 = paths[:, 20], paths[:, 60]
 pcts = [5, 25, 50, 75, 95]
-q20 = {p: float(np.percentile(pT20, p)) for p in pcts}
-q60 = {p: float(np.percentile(pT60, p)) for p in pcts}
-run_max = paths.max(axis=1); run_min = paths.min(axis=1)
-run_max20 = paths[:, :21].max(axis=1); run_min20 = paths[:, :21].min(axis=1)
+q20 = {p: float(np.percentile(term20, p)) for p in pcts}
+q60 = {p: float(np.percentile(term60, p)) for p in pcts}
+
 levels = [50, 48, 46, 44, 42, 40, 38, 36]
-touch = {L: dict(t20=float(np.mean(run_max20 >= L) if L > spot else np.mean(run_min20 <= L)),
-                 t60=float(np.mean(run_max >= L) if L > spot else np.mean(run_min <= L)))
-         for L in levels}
+
+
+def _touch(paths, level):
+    """P(the path reaches `level` at any point before its horizon)."""
+    return float(np.mean(paths.max(axis=1) >= level) if level > spot
+                 else np.mean(paths.min(axis=1) <= level))
+
+
+touch = {L: dict(t20=_touch(paths20, L), t60=_touch(paths60, L)) for L in levels}
 prob_read = dict(
-    p_above=float(np.mean(pT60 > spot)),
-    p_up10=float(np.mean(pT60 >= spot * 1.10)),
-    p_dn10=float(np.mean(pT60 <= spot * 0.90)),
-    median=float(np.median(pT60)),
-    med_move=float(np.median(pT60) / spot - 1),
+    p_above=float(np.mean(term60 > spot)),
+    p_up10=float(np.mean(term60 >= spot * 1.10)),
+    p_dn10=float(np.mean(term60 <= spot * 0.90)),
+    median=float(np.median(term60)),
+    med_move=float(np.median(term60) / spot - 1),
     band50=(q60[25], q60[75]),
     band50_pct=((q60[25] / spot - 1), (q60[75] / spot - 1)),
-    touch_up10=float(np.mean(run_max >= spot * 1.10)),
-    touch_dn10=float(np.mean(run_min <= spot * 0.90)),
+    touch_up10=float(np.mean(paths60.max(axis=1) >= spot * 1.10)),
+    touch_dn10=float(np.mean(paths60.min(axis=1) <= spot * 0.90)),
 )
 prob_read['odds'] = prob_read['p_up10'] / prob_read['p_dn10']
 zones_edges = [0, 38, 42, 46, 50, 1e9]
-zone_probs = [float(np.mean((pT60 >= a) & (pT60 < b))) for a, b in zip(zones_edges[:-1], zones_edges[1:])]
-fan = {p: np.percentile(paths, p, axis=0).tolist() for p in pcts}
+zone_probs = [float(np.mean((term60 >= a) & (term60 < b)))
+              for a, b in zip(zones_edges[:-1], zones_edges[1:])]
+assert abs(sum(zone_probs) - 1.0) < 1e-9, 'the zones must partition the distribution'
+fan = {p: np.percentile(paths60, p, axis=0).tolist() for p in pcts}
 
 # ---------------- Technicals -------------------------------------------------
 s = pd.Series(close)
@@ -152,7 +123,22 @@ chg20 = float(close[-1]/close[-21]-1); chg60 = float(close[-1]/close[-61]-1)
 ISSUED_CAPITAL, PAR_VALUE, TREASURY_SHARES = 50_000_000.0, 10.0, 6_976.0
 SH = (ISSUED_CAPITAL / PAR_VALUE - TREASURY_SHARES) / 1000.0   # mn shares outstanding
 assert abs(SH - 4_993.024) < 1e-9
-TAX = 0.097          # normalized effective zakat+tax (FY23 9.5%, FY24 9.8%; FY25 −3.2% one-off credit)
+# THE TAX RATE IS MEASURED, ON THE BASE IT IS APPLIED TO. It was 0.097, typed, with a
+# comment reading "FY23 9.5%, FY24 9.8%; FY25 -3.2% one-off credit" — a mean of the two
+# years that looked ordinary, on a base the comment does not name. Two things were wrong
+# with it and each was found by an arithmetic check rather than by judgement.
+#
+# WHICH YEAR IS ONE-OFF IS DISCLOSED, NOT JUDGED. Note 33(a)'s movement table carries
+# "Reversal of prior years' Zakat provision during the year (1,324,787)" on its own line, so
+# the FY2025 credit does not have to be inferred from its size; the underlying charge is the
+# year's own additions and the reversal belongs to the years it corrects.
+#
+# AND THE BASE HAS TO MATCH. After-tax operating profit is EBIT times one minus a rate, so
+# the rate must be measured against EBIT — 8.03% — while the income statement's zakat line
+# sits on profit before zakat and takes 8.27%. The two differ because the lines between them
+# are a net charge on this book, and a ratio between quantities defined differently is not
+# evidence about either.
+TAX = ISTMT_EARLY.effective_zakat_rate('ebit')
 # ===== TWO CLOCKS, AND THE STUDY SAYS WHICH IS WHICH [R-GAP-01] =============
 # `spot` above is the last session in the PERSISTENT PRICE LIBRARY, and it is the anchor
 # the Monte Carlo cone is struck on, because a cone is built on a price series and has to
@@ -315,6 +301,7 @@ for i, y in enumerate(yrs):
         # measured half-to-year factor rather than a forecast.
         _target = FY26_REVENUE_ANCHOR / (1.0 + ELIM_SHARE)
         _scale = _target / sum(_lvl.values())
+        _h1_scale = _scale
         for k in list(_lvl):
             _lvl[k] *= _scale
     _gross = sum(_lvl.values())
@@ -374,7 +361,60 @@ capex_pct = [DNA_SHARE * CAPEX_TO_DNA] * 5
 # SEPARATE THEM is a disclosed replacement-cost or capacity series, which this company does
 # not publish; until one is found the rising age is the only measured evidence and it
 # supports the first reading.
-wc_out_pct = [0.008, 0.006, 0.005, 0.004, 0.004]
+# WORKING CAPITAL IS PROJECTED FROM THE ASSET-CONVERSION CYCLE, NOT PLUGGED [SIGCM clause
+# 4]. This line used to be a typed outflow of 0.8% of revenue falling to 0.4% — a number per
+# year with no balance sheet behind it, which is exactly the plug the clause forbids where
+# the drivers are disclosed. And they are disclosed, in unusual detail: receivables with an
+# ageing analysis, inventory with ITS OWN cost base stated in the note, payables with a
+# stated settlement range, and the two contract balances a telecom actually turns over.
+#
+# WHAT THE PLUG WAS HIDING. Net working capital ran 5.9%, 6.5% and 13.2% of revenue across
+# the filed years and 17.5% at the reviewed half — it MORE THAN DOUBLED in FY2025 and rose
+# again in the half — while the plug said the outflow shrank every year. Days sales
+# outstanding went from 107 to 125 on a receivable book three quarters of which is owed by
+# government and government-related entities, and days payable fell 12. None of that is a
+# view about the future; it is what the filed balance sheets did.
+#
+# THE DAYS ARE ANCHORED ON THE LATEST DISCLOSED SHEET, the reviewed interim the bridge
+# already stands on, and then held flat — the same rule every other rate in this study
+# obeys. It matters here: receivables were essentially UNCHANGED across the half (26,727,198
+# to 26,727,997, eight hundred thousand on a twenty-seven billion book) while revenue grew,
+# so days sales outstanding falls from 125 to 121 without anything being assumed.
+import working_capital as WC
+
+_wc_rev26 = FY26_REVENUE_ANCHOR * 1000.0                       # SAR thousands
+_WC_COR_SHARE = WC.COST_OF_REVENUES[2] / WC.REVENUE[2]
+_WC_INV_SHARE = WC.INVENTORY_EXPENSE[2] / WC.REVENUE[2]
+WC_DAYS = WC.anchored_days(_wc_rev26, _wc_rev26 * _WC_COR_SHARE,
+                           _wc_rev26 * _WC_INV_SHARE)
+
+
+def _nwc(rev_mn):
+    """Net working capital at a level of revenue, each line on its OWN driver."""
+    return (WC_DAYS['dso'] / 365.0 * rev_mn
+            + WC_DAYS['dio'] / 365.0 * rev_mn * _WC_INV_SHARE
+            + WC_DAYS['dco'] / 365.0 * rev_mn
+            - WC_DAYS['dpo_total'] / 365.0 * rev_mn * _WC_COR_SHARE
+            - WC_DAYS['dcl'] / 365.0 * rev_mn)
+
+
+# The opening balance is the LATEST DISCLOSED sheet's own, not a ratio applied to it.
+NWC_OPEN = (WC.H1_2026['trade_receivables'] + WC.H1_2026['inventories']
+            + WC.H1_2026['contract_assets'] - WC.H1_2026['payables_total']
+            - WC.H1_2026['contract_liabilities']) / 1000.0
+_nwc_path, _prev = [], NWC_OPEN
+for _i, _y in enumerate(yrs):
+    _n = _nwc(fc[_y]['rev'])
+    _nwc_path.append(_n)
+    fc[_y]['nwc'] = _n
+    fc[_y]['dwc'] = _n - _prev
+    _prev = _n
+# THE FIRST YEAR MOVES BY NOTHING BY CONSTRUCTION, and that is a property rather than a
+# coincidence: the days are struck on the annualised revenue of the half and the first
+# forecast year IS that annualised revenue, so the balance reproduces its own opening
+# figure. It is asserted so a later change to either cannot break the identity silently.
+assert abs(fc[yrs[0]]['dwc']) < 1e-6, fc[yrs[0]]['dwc']
+wc_out_pct = [fc[_y]['dwc'] / fc[_y]['rev'] for _y in yrs]
 payout_dps = [2.20, 2.20, 2.30, 2.40, 2.55]       # policy 0.55/q locked to Q3-27
 
 # THE TWO RATES ARE ANCHORED ON THE SAME REVIEWED HALF AND THEN HELD FLAT. The rule says
@@ -384,10 +424,38 @@ payout_dps = [2.20, 2.20, 2.30, 2.40, 2.55]       # policy 0.55/q locked to Q3-2
 _margin_shift = FY26_GROSS_MARGIN - (sum(seg_fc[yrs[0]][k] * SEG_MARGIN[k]
                                          for k in seg_fc[yrs[0]])
                                      + fc[yrs[0]]['gross'] * ELIM_GP_SHARE) / fc[yrs[0]]['rev']
+# FOUR COST LINES COME OFF THE HELD MARGIN AND ONTO THE BASES THE FILINGS NAME. The
+# standing rule is that a gross margin set as an INPUT is a fail wherever the disclosure
+# supports building cost per unit instead, and note 35 discloses all seven lines by nature
+# for three years. FOUR of them have a sourced base that is NOT group revenue: the
+# commercial service provisioning fee is levied on the Saudi operating segment, which grows
+# more slowly than the group; the licence fee is near-fixed and has its own measured rate;
+# repairs and maintenance sit on the ASSET BASE being maintained, which the model already
+# projects; and contract-cost amortisation is subscriber acquisition, on a volume path the
+# model already carries and which grows FASTER than revenue.
+#
+# THE OTHER THREE, AND THE SPECTRUM SUB-LINE, ARE LEFT HELD AND SAID TO BE — network access
+# has no disclosed unit rate, employee cost has no headcount anywhere in the filings
+# (searched, and the negative search is registered), "Others" is a residual of three
+# unrelated things, and the spectrum fee is lumpy with the first Saudi licence expiry
+# falling INSIDE the explicit window against no disclosed renewal cost. Inventing a driver
+# to complete the table is worse than the gap it closes.
+#
+# THE OFFSETS RUN BOTH WAYS, which is why this had to be built rather than argued: two
+# lines fall against a group growing faster than their own bases and two rise. It was
+# measured beside the model and consumed by nothing for a week, which is the difference
+# between pricing a construction and building it.
+import cost_decomposition as _CDEC             # the four lines' own bases, shared with
+                                               # the diagnostic that reports them
+_COST_OWN_BASE = _CDEC.net_by_year(
+    yrs, [fc[y]['rev'] for y in yrs], [2026 + i for i in range(len(yrs))],
+    seg_real0['stc'], VOLUME_REAL, [DNA_SHARE] * len(yrs), capex_pct)
+
 for i, y in enumerate(yrs):
     _gp = sum(seg_fc[y][k] * SEG_MARGIN[k] for k in seg_fc[y]) \
         + fc[y]['gross'] * ELIM_GP_SHARE
     _gp += fc[y]['rev'] * _margin_shift
+    _gp -= _COST_OWN_BASE[i]
     fc[y]['gp'] = _gp
     fc[y]['sga'] = fc[y]['rev'] * FY26_SGA_SHARE
     fc[y]['ebitda'] = _gp - fc[y]['sga']
@@ -694,7 +762,19 @@ for k, x in rel_evx.items():
 # sentence: a record that only asserts non-circularity in prose has switched the check off.
 TRADED_EVX = (COCRUN.SPOT * SH + net_debt) / hist['ebitda']['FY25']
 BOOK_PS = 84_986.806 / SH        # equity attributable, 30 June 2026 reviewed sheet
-norm_pat = 14400.0
+# NORMALISED PROFIT IS COMPUTED, AND THE ONE-OFF IT STRIPS IS THE DISCLOSED ONE. This was a
+# typed 14,400 — a round number — and the document beside it walked a reader down "FY2025
+# attributable profit 14,828 less the one-off zakat credit (466)" to reach it, which does
+# not reproduce: that arithmetic gives 14,362 and the page printed about 14,400.
+#
+# AND THE ADJUSTMENT WAS THE WRONG SIZE. The 466 is the NET zakat line for the year, not the
+# one-off inside it; what is non-recurring is the reversal of prior years' provision that
+# note 33(a) names on its own line. The honest normalisation charges the year at the rate
+# the three filed years imply on profit before zakat, which is what the underlying charge
+# would have been, and takes the minority's share off the result.
+NORM_PBZ = ISTMT_EARLY.pbz(2) / 1000.0
+NORM_ZAKAT = NORM_PBZ * ISTMT_EARLY.effective_zakat_rate('pbz')
+norm_pat = (NORM_PBZ - NORM_ZAKAT) * (1.0 - BR_NCI_SHARE)
 norm_eps = norm_pat / SH
 norm = dict(bear=(13600/SH)*13.5, base=norm_eps*15.0, bull=(15200/SH)*16.5)
 # THE RANGE IS FLEXED IN OBSERVABLE UNITS AND THE MACRO PATH STANDS STILL [R-LENS-03,
@@ -759,6 +839,34 @@ weights = None
 wacc_steps = [WACC - 0.010, WACC - 0.005, WACC, WACC + 0.005, WACC + 0.010]
 g_steps = [0.015, 0.020, 0.025, 0.030, 0.035]
 sens_wg = [[(dcf_ps_at(w, g) if w - g > 0.02 else None) for g in g_steps] for w in wacc_steps]
+# THE BETA GRID IS COMPUTED. Appendix §1.9 published one as six typed rows — a cost of
+# equity, a cost of capital and a value per share at each of six betas — and by the time
+# the study was rebuilt every row was stale, including the one labelled "regressed base",
+# which still carried the retired nine-week beta of 0.48 and a cost of capital of 7.59%
+# against the schedule's 8.13%. A grid whose base row disagrees with the model is worse
+# than no grid: it reads as the model's own arithmetic.
+# The adopted row uses the EXACT beta, not a rounded one: rounding it to four places moved
+# the reconstructed cost of capital by 1.5e-6 and the assertion below refused the grid,
+# which is the assertion doing its job on the desk that wrote it.
+beta_steps = sorted({0.30, 0.50, SCHED.beta, 0.85, 1.00, 1.20})
+sens_beta = []
+for _b in beta_steps:
+    _ke = SCHED.rf_star + _b * SCHED.erp
+    _w = WE * _ke + (1.0 - WE) * KD_AT
+    sens_beta.append(dict(beta=_b, ke=_ke, wacc=_w,
+                          ps=dcf_ps_at(_w, TG) if _w - TG > 0.02 else None,
+                          adopted=abs(_b - SCHED.beta) < 5e-5))
+assert any(r['adopted'] for r in sens_beta), 'the adopted beta must appear in its own grid'
+_adopted = next(r for r in sens_beta if r['adopted'])
+assert abs(_adopted['wacc'] - WACC) < 1e-9, (_adopted['wacc'], WACC)
+assert abs(_adopted['ps'] - dcf_ps) < 1e-6, 'the adopted row must reproduce the answer'
+
+# HOW FAR THE CAPITAL PROGRAMME CAN CARRY THE ANSWER, which is the question the crux
+# raises and does not answer. Two percentage points of revenue below the modelled
+# intensity is lighter than any of the three filed years ran, so this is a floor on what
+# the swing driver the crux names can be worth — a model output, not a price solve.
+capex_floor_2pp = dcf_ps_at(WACC, TG, capex_shift=-0.02)
+
 capex_steps = [-0.010, -0.005, 0.0, 0.005, 0.010]     # capex intensity shift (pp of revenue)
 margin_steps = [-0.010, -0.005, 0.0, 0.005, 0.010]    # EBITDA margin shift
 sens_cm = [[dcf_ps_at(WACC, TG, mm, cc) for cc in capex_steps] for mm in margin_steps]
@@ -787,7 +895,12 @@ for label, cint in [
 
 # ===== Experts ================================================================
 # Expert 1 — Hisham (cash returns / ROIC vs WACC, economic profit)
-ic = 90500.0   # invested capital ≈ equity att 83.4bn + net debt 7.1bn (FY25/Q1-26)
+# INVESTED CAPITAL IS DERIVED FROM THE BRIDGE, NOT TYPED. This read a flat 90,500.0 with
+# a comment naming its two parts approximately — "equity att 83.4bn + net debt 7.1bn" —
+# and neither part matched the study's own committed balance sheet once the bridge moved
+# onto the reviewed 30 June 2026 interim. An expert's assumption may be his own; the
+# balance sheet he stands on is the study's.
+ic = BOOK_PS * SH + net_debt        # parent equity on the latest disclosed sheet, plus net debt
 roic = rows[0]['nopat'] / ic
 ep = (roic - WACC) * ic
 FADE = 0.025   # excess returns decay 2.5%/yr toward the cost of capital (moat half-life ~25yr)
@@ -802,12 +915,156 @@ def e1_ps_at(fade, wacc_):
     return _e * (1.0 - BR_NCI_SHARE) / SH
 e1_ps = e1_ps_at(FADE, WACC)
 e1_ev = ic + ep / (WACC + FADE - TG)
-e1 = dict(base=e1_ps, rng=(e1_ps_at(0.040, WACC + 0.005), e1_ps_at(0.010, WACC - 0.005)))
+# A SINGLE SWING ASSUMPTION MEANS ONE. This range moved the fade rate AND the cost of
+# capital by 50 basis points in the same step, while the document called it "swing = the
+# fade rate" and the divergence table gave his single swing assumption as the fade alone.
+# Two levers wearing one label overstates what the named assumption is worth. The cost of
+# capital has its own grid in section 1.9; here only the fade moves.
+FADE_LO, FADE_HI = 0.010, 0.040
+e1 = dict(base=e1_ps, rng=(e1_ps_at(FADE_HI, WACC), e1_ps_at(FADE_LO, WACC)),
+          fade_lo=FADE_LO, fade_hi=FADE_HI)
 # Expert 2 — Karim (normalized earnings power)
 e2 = dict(base=norm['base'], rng=(norm['bear'], norm['bull']))
 # Expert 3 — Omar (macro-policy scenario tree on the DDM/rate path)
 scen = [(0.30, ddm_lens['bull'] * 1.02), (0.45, ddm_ps), (0.25, ddm_lens['bear'] * 0.96)]
 e3 = dict(base=sum(p * v_ for p, v_ in scen))
+
+# ---------------------------------------------------------------------------------------
+# THE FORECAST INCOME STATEMENT, DOWN TO NET PROFIT.
+#
+# The valuation never needed one — free cash flow to the firm runs off NOPAT, and NOPAT is
+# EBIT times one minus a tax rate without passing through a finance charge — so the model
+# projected EBITDA, depreciation, EBIT and stopped. Appendix A needs the rest, and building
+# it turned up something the valuation could not have seen.
+#
+# THE NET FINANCE RESULT HAS CHANGED SIGN. This company earned MORE finance income than it
+# paid in all three filed years (+414, +484, +151 million), so a model carrying FY2025
+# forward would credit itself with a net financial income in perpetuity. The reviewed half
+# to 30 June 2026 reports finance income of 604,264 against a finance cost of 710,681 — a
+# net CHARGE — because long-term borrowings went from 14,404,268 to 22,094,126 inside the
+# half, with 8,720,100 drawn. THE BOOK THAT PRODUCED THE CREDIT NO LONGER EXISTS.
+#
+# So the finance lines are anchored the way every other rate in this study is [R-ANCHOR-01]:
+# on the latest reviewed period, each leg corrected by the PRIOR YEAR'S OWN measured
+# half-to-year factor rather than by an assumed seasonality. The two legs are corrected
+# SEPARATELY and deliberately: their factors are 1.575 and 2.031, nothing like each other,
+# and a single factor on the net would be applied to a quantity that changes sign, which is
+# arithmetic without meaning.
+import income_statement as ISTMT
+
+H1_2026_FIN_INCOME, H1_2026_FIN_COST = 604_264.0, -710_681.0
+H1_2025_FIN_INCOME, H1_2025_FIN_COST = 810_438.0, -554_016.0
+SEASON_FIN_INCOME = ISTMT.FINANCE_INCOME[2] / H1_2025_FIN_INCOME
+SEASON_FIN_COST = ISTMT.FINANCE_COST[2] / H1_2025_FIN_COST
+FY26_FIN_INCOME = H1_2026_FIN_INCOME * SEASON_FIN_INCOME / 1000.0     # SAR millions
+FY26_FIN_COST = H1_2026_FIN_COST * SEASON_FIN_COST / 1000.0
+
+# THE EARLY RETIREMENT PROGRAMME IS NORMALISED, NOT DROPPED. It ran 862,842 / 2,577,256 /
+# 823,801 — a threefold swing, no year like another — and no filing calls it non-recurring,
+# which is what a company continuously restructuring its workforce looks like. Its own
+# three-year mean, escalated on the house ladder because it is a domestic wage cost.
+# THE FILED VALUES ARE ALREADY NEGATIVE — they are costs as the statement prints them — so
+# this is used AS IS. The first draft negated it, which turned a 1.4 billion charge into 1.4
+# billion of income and raised net profit by 2.8 billion; the footing assertion below passed
+# it, because a statement is internally consistent whichever way one of its lines points.
+# That is why the sign is asserted separately.
+EARLY_RET_BASE = ISTMT.early_retirement_mean() / 1000.0
+assert EARLY_RET_BASE < 0, 'the early retirement programme is a cost and must be negative'
+
+# ZAKAT AT THE RATE THE THREE YEARS TOGETHER IMPLY. FY2025's charge is a RELEASE of 466,436
+# after charges of 1,326,610 and 1,191,564, so its own-year ratio is negative; averaging
+# three ratios would give a third of the weight to a number that cannot recur, and taking
+# the latest year would forecast a permanent zakat credit.
+ZAKAT_RATE = ISTMT.effective_zakat_rate()
+
+_fin_inc, _fin_cst, _early = FY26_FIN_INCOME, FY26_FIN_COST, EARLY_RET_BASE
+for _i, _y in enumerate(yrs):
+    if _i:
+        # The financial legs and the programme all escalate on the house ladder and nothing
+        # else: no view is taken on the debt path beyond the level the reviewed half
+        # discloses, and holding it there is a STATED assumption rather than a free one.
+        _g = 1.0 + COCRUN.MACRO.inflation(FORECAST_YEARS[_i])
+        _fin_inc *= _g
+        _fin_cst *= _g
+        _early *= _g
+    _row = fc[_y]
+    _row['dna'] = _row['rev'] * DNA_SHARE
+    _row['ebit'] = _row['ebitda'] - _row['dna']
+    _row['early_retirement'] = _early
+    _row['fin_income'] = _fin_inc
+    _row['fin_cost'] = _fin_cst
+    _row['pbz'] = _row['ebit'] + _early + _fin_inc + _fin_cst
+    _row['zakat'] = -_row['pbz'] * ZAKAT_RATE
+    _row['net_profit'] = _row['pbz'] + _row['zakat']
+
+# THE STATEMENT MUST FOOT AT EVERY YEAR, and the check is the same one income_statement.py
+# runs on the filed columns: the lines above net profit sum to it.
+for _y in yrs:
+    _r = fc[_y]
+    _sum = (_r['ebitda'] - _r['dna'] + _r['early_retirement'] + _r['fin_income']
+            + _r['fin_cost'] + _r['zakat'])
+    assert abs(_sum - _r['net_profit']) < 1e-6, (_y, _sum, _r['net_profit'])
+    # A FOOTING CHECK IS NOT A SIGN CHECK and this pair is why: the statement foots
+    # whichever way its lines point, so each line's DIRECTION is asserted on its own.
+    assert _r['early_retirement'] < 0, (_y, 'the programme must be a charge')
+    assert _r['fin_income'] > 0 > _r['fin_cost'], (_y, 'the finance legs are mis-signed')
+    assert _r['zakat'] < 0, (_y, 'zakat is a charge on a profit')
+    assert _r['pbz'] < _r['ebit'], (_y, 'the lines below EBIT are a net charge on this '
+                                        'book, so profit before zakat cannot exceed it')
+
+# ONE LINE IS DELIBERATELY ABSENT FROM THE PROJECTION AND ITS ABSENCE IS THE HONEST READING.
+# The filed statement carries net other income, the share of associates, and net other gains
+# — 1,333,077 then 529,069 then 654,896 on the last of those alone, with no disclosed driver
+# behind any of them. Forecasting them would be inventing three lines; the study says so and
+# the projected net profit is therefore BELOW what the same company would report if they
+# recurred, which is stated rather than left for a reader to discover.
+FORECAST_IS_OMITS = ('net other income and expenses', 'net share in associates and joint '
+                     'ventures', 'net other gains')
+
+# THE LIKE-FOR-LIKE, so nobody has to reconstruct it. FY2025 as reported carries a net
+# margin the forecast does not reach, and almost all of the difference is the three omitted
+# lines plus a zakat CREDIT — none of which a forecast may carry. Rebuilt on the forecast's
+# own basis the filed year is directly comparable, and what remains is the finance swing.
+_fy25_like = (ISTMT.ebit(2) + ISTMT.EARLY_RETIREMENT[2] + ISTMT.net_finance(2)) / 1000.0
+_fy25_like_np = _fy25_like * (1.0 - ZAKAT_RATE)
+forecast_is_record = dict(
+    basis=('EBIT less the early retirement programme at its three-year mean, plus the net '
+           'finance result anchored on the reviewed half, less zakat at the rate the three '
+           'filed years together imply'),
+    omitted=list(FORECAST_IS_OMITS),
+    omitted_fy2025=[ISTMT.NET_OTHER[2] / 1000.0, ISTMT.ASSOCIATES[2] / 1000.0,
+                    ISTMT.OTHER_GAINS[2] / 1000.0],
+    zakat_rate=ZAKAT_RATE,
+    early_retirement_mean=EARLY_RET_BASE,
+    fy2026_finance=dict(income=FY26_FIN_INCOME, cost=FY26_FIN_COST,
+                        net=FY26_FIN_INCOME + FY26_FIN_COST,
+                        season_income=SEASON_FIN_INCOME, season_cost=SEASON_FIN_COST,
+                        fy2025_net=ISTMT.net_finance(2) / 1000.0),
+    fy2025_like_for_like_pbz=_fy25_like,
+    fy2025_like_for_like_net=_fy25_like_np,
+    fy2025_like_for_like_margin=_fy25_like_np / (ISTMT.REVENUE[2] / 1000.0),
+    fy2025_reported_net=ISTMT.NET_PROFIT_CONTINUING[2] / 1000.0,
+    fy2025_reported_margin=ISTMT.NET_PROFIT_CONTINUING[2] / ISTMT.REVENUE[2],
+    # THE BRIDGE FROM THE FILED YEAR TO THE FIRST FORECAST YEAR, on the like-for-like basis
+    # and asserted to close. Three moves, and two of them run against the first.
+    bridge_to_fy2026=dict(
+        ebit=fc[yrs[0]]['ebit'] - ISTMT.ebit(2) / 1000.0,
+        early_retirement=fc[yrs[0]]['early_retirement'] - ISTMT.EARLY_RETIREMENT[2] / 1000.0,
+        finance=(fc[yrs[0]]['fin_income'] + fc[yrs[0]]['fin_cost']
+                 - ISTMT.net_finance(2) / 1000.0),
+        total=fc[yrs[0]]['pbz'] - _fy25_like),
+    note=('The forecast opens at a net margin below the year it is anchored on, and the '
+          'reason is arithmetic rather than a view. FY2025 as REPORTED carries three lines '
+          'no forecast may project — net other income, the share of associates and net '
+          'other gains — and a zakat RELEASE rather than a charge. Rebuilt on this '
+          "forecast's own basis the filed year is directly comparable, and what is left of "
+          'the difference is the finance result, which has changed SIGN: the reviewed half '
+          'reports a net charge where every filed year reported a net credit, because '
+          'long-term borrowings went from 14,404,268 to 22,094,126 inside that half.'),
+)
+_b = forecast_is_record['bridge_to_fy2026']
+assert abs(_b['ebit'] + _b['early_retirement'] + _b['finance'] - _b['total']) < 1e-6, _b
+
 
 # ---------------------------------------------------------------------------------------
 # THE MACRO RECORD AND THE FORECAST-ANCHOR RECORD [R-MACRO-01, R-ANCHOR-01].
@@ -894,6 +1151,102 @@ forecast_anchor = dict(
 import research_protocol as _RP
 _RP.assert_macro_coherence(macro_record, market='SA', ticker='STC')
 
+# ---------------- THE THREE STANDING GATES, CALLED IN THE STUDY'S OWN CODE -------------
+# An outside audit found that assert_sigcm(), assert_model_study() and assert_ground_up()
+# NEVER EXECUTED on this study, and the repository-level check passed anyway because its
+# own clause requires at least ONE of the three and the beta call satisfied it. A study
+# that calls one gate and skips two is not a study that was checked; it is a study that
+# was checked once.
+#
+# THE GROUND-UP CLAUSE IS THE ONE THAT BITES, and it is attested on a RECORD rather than a
+# flag precisely so it cannot be claimed. Every revenue line names the level it was
+# actually built at, and any line below "unit" carries a gap note — the rule has always
+# permitted a coarser level where the disclosure stops, and has never permitted going
+# quiet about it. The lines must cover 100% of revenue, because a line left out of the
+# record is a line nobody checked.
+_base_seg = {k: v['FY25'] for k, v in seg_hist.items()}
+_seg_total = sum(_base_seg.values())
+DRIVER_LINES = [
+    _RP.DriverLine(
+        name='stc (the Saudi operating business)',
+        level='derived',
+        share_of_revenue=_base_seg['stc'] / _seg_total,
+        unit='mobile and fixed subscribers',
+        unit_source='the quarterly earnings presentations\u2019 own subscriber charts, whose '
+                    'footnote states the figures are not audited',
+        price_basis='revenue per subscriber, BACK-SOLVED against the audited segment '
+                    'revenue in note 9 rather than disclosed',
+        cost_basis='four of note 35\u2019s seven lines on the bases the filings name; '
+                   'the rest on the segment\u2019s own held gross margin',
+        gap_note='The unit is real and disclosed; the PRICE is not. Revenue per subscriber '
+                 'is derived by dividing audited segment revenue by a subscriber count the '
+                 'company publishes in a presentation and does not audit, so this is unit '
+                 'economics on a derived rate rather than on a disclosed one. THE COST SIDE '
+                 'IS PART-BUILT: note 35 discloses seven lines by nature for three years, '
+                 'and the four with a sourced base that is not group revenue are built on '
+                 'it \u2014 the commercial service provisioning fee on the Saudi operating '
+                 'segment the sub-note levies it against, the licence fee at its own '
+                 'measured rate, repairs and maintenance on the asset base being '
+                 'maintained, and contract-cost amortisation on the subscriber path. The '
+                 'other three carry no sourced driver \u2014 network access has no '
+                 'disclosed unit rate, employee cost has no headcount anywhere in the '
+                 'filings, and "Others" is a residual of three unrelated things \u2014 so '
+                 'they stay on the held margin and that is said rather than filled with an '
+                 'imported ratio. The level stays DERIVED because the price still is.'),
+]
+for _nm, _v in sorted(_base_seg.items(), key=lambda kv: -kv[1]):
+    if _nm == 'stc':
+        continue
+    DRIVER_LINES.append(_RP.DriverLine(
+        name=_nm, level='segment', share_of_revenue=_v / _seg_total,
+        cost_basis='the segment\u2019s own held gross margin, less its share of the four '
+                   'group cost lines built on their own bases',
+        gap_note='No unit is disclosed for this segment \u2014 note 9 gives revenue and no '
+                 'volume, and the earnings presentations carry no subscriber, connection '
+                 'or capacity count for it. It is grown on its own measured two-year real '
+                 'rate from the audited segment table, which is the finest sourced level '
+                 'available, and the absence of a unit is stated rather than filled.'))
+GROUND_UP = _RP.assert_ground_up(DRIVER_LINES, ticker='STC')
+
+# THE COMMITTED BETA ARTEFACT MUST BE THE BETA THIS MODEL USES. An outside audit found
+# beta_result.json recording 0.7107 on 254 observations while every delivered document
+# published 0.7078 on 252 — because coc_run calls own_stock_beta() LIVE at build time and
+# the index file lengthens, so the artefact goes stale the moment the library moves while
+# still reading as the study's own record. It is the record the repository-level gate and
+# assert_beta_provenance() both inspect, so a stale one means those gates are checking a
+# number the study does not stand on. Small in value here — 29 basis points of beta, under
+# two on the cost of equity — and the point is that nothing was watching.
+_BETA_ARTEFACT = json.load(open(os.path.join(HERE, 'beta_result.json')))
+_RP.assert_beta_provenance(_BETA_ARTEFACT)
+assert abs(_BETA_ARTEFACT['beta'] - SCHED.beta) < 1e-9, (
+    'the committed beta artefact records %.6f and this model discounts at %.6f — '
+    're-run beta_reissue.py in the same pass, because the artefact is what the gates read'
+    % (_BETA_ARTEFACT['beta'], SCHED.beta))
+
+_RP.assert_sigcm(_RP.SIGCMChecklist(
+    historicals_official_only=True,
+    forecast_ground_up=True,          # attested on DRIVER_LINES above, not on this flag
+    debt_lc_fx_split=True,
+    asset_conversion_cycle=True,
+    competitors=True,
+    beta_own_history_vs_egx30=True,
+    formula_based_model=True,
+    flags_raised_before_issue=True,
+    stop_and_inform_honoured=True,
+    na_reasons={}))
+
+_RP.assert_model_study(_RP.ModelStudyChecklist(
+    structure_matches_model=True,
+    bibliography_document=True,
+    provenance_four_field=True,
+    numeric_traceability=True,
+    external_reader_scrub=True,
+    figure_discipline=True,
+    table_discipline=True,
+    expert_appendix_max_detail=True,
+    contested_judgement_both_ways=True,
+    na_reasons={}))
+
 # The register is built and ASSERTED before the record is assembled, so a source that
 # stopped naming a company document breaks the build rather than reaching a gate.
 import inputs_register as _IR
@@ -901,6 +1254,67 @@ _INPUTS = _IR.build()
 _ir_problems, _ir_hist = _IR.check(_INPUTS)
 assert not _ir_problems, _ir_problems[:4]
 assert _ir_hist >= 100, 'the input register carries only %d dated historicals' % _ir_hist
+
+# ---------------- The published record of this name's own cone ----------------
+# [R-CAL-02]: the count is ALWAYS printed beside the percentage, the record strength
+# is stated, and a narrow/wide flag appears ONLY when the name's own history earns one
+# on a two-sided binomial test. Silence is the honest response to a cone that held
+# about as often as it promised, and this name's does. The sentences are rendered by
+# band_record itself — that module says in terms that nothing else may phrase them,
+# and six independent phrasings had already drifted apart once.
+import html as _html
+import inspect as _inspect
+
+import band_record as BR
+import mc_v3 as MC3
+
+_BREC = BR.resolve('STC', BR.by_key())
+assert _BREC.market == 'SA' and _BREC.n == _BREC.hits + (_BREC.n - _BREC.hits)
+
+
+def _plain(t):
+    """The clauses are written for a web surface; a document is not one."""
+    return _html.unescape(t).replace('\u2014', '\u2014')
+
+
+BAND = dict(
+    instrument=_BREC.instrument, market=_BREC.market, n=_BREC.n, hits=_BREC.hits,
+    cov50=_BREC.cov50, cov80=_BREC.cov80, cov90=_BREC.cov90, width=_BREC.width,
+    strength=_BREC.strength, flag=_BREC.flag, p_value=_BREC.p_value,
+    record_clause=_plain(_BREC.record_clause()),
+    width_clause=_plain(_BREC.width_clause()),
+    chip=_plain(_BREC.chip()),
+)
+
+_prof = SC.MP.PROFILES['SA']
+_dead = _inspect.signature(MC3.signal_alpha).parameters['dead'].default
+_z = H3M['signal_z']
+ENGINE = dict(
+    # The fit this cone was actually built on, read live rather than described.
+    nu=CONE['nu'], width_cal=CONE['width_cal'],
+    width_overlay_mult=CONE['width_overlay_mult'],
+    n_paths=SC.N_PATHS, seed=SC.SEED,
+    rf_live=CONE['rf_live'], q_annual=CONE['q_annual'],
+    # THE DIRECTION CALL [R-DRIFT-01]: every covered name's forecast states one — the
+    # sign of its own momentum reading — and it is printed even inside the dead zone,
+    # where it carries no tilt at all and is labelled WEAK.
+    signal_active=CONE['signal_active'], signal_type=_prof.signal_type,
+    signal_sign=_prof.signal_sign, ic_by_h=dict(_prof.ic_by_h or {}),
+    signal_z=_z, dead_zone=_dead,
+    call='up' if _z > 0 else ('down' if _z < 0 else 'flat'),
+    call_strength='weak' if abs(_z) < _dead else 'live',
+    horizons={k: dict(label=h['label'], sessions=h['h'], grade_date=h['grade_date'],
+                      basis=h['basis'], anchor_vol_ann=h['anchor_vol_ann'],
+                      sigma_h=h['sigma_h'], drift_log_h=h['drift_log_h'],
+                      signal_alpha=h['signal_alpha'])
+              for k, h in (('1M', H1M), ('3M', H3M))},
+)
+# The tilt never exceeds ic x sigma x z: beyond that a bigger number is a deliberately
+# worse forecast, not more commitment. Asserted rather than asserted-in-prose.
+for _k, _h in (('1M', H1M), ('3M', H3M)):
+    _cap = abs((_prof.ic_by_h or {}).get(_k, _prof.ic) * _h['sigma_h'] * _z)
+    assert abs(_h['signal_alpha']) <= _cap + 1e-12, (_k, _h['signal_alpha'], _cap)
+
 
 out = dict(
     # The answer and the price it is measured against, at the top level, where a reader
@@ -916,11 +1330,23 @@ out = dict(
                 'different dates because a cone must start where its own price series '
                 'ends, and the study says so rather than publishing one number for both.'),
     shares=SH, mktcap=MKTCAP,
-    step0=dict(nonoverlap=summ, monthly=summ21, secular=summ_sec,
-               pit_hist=pit_hist, n_rows=len(res), boot=boot),
-    engine=dict(anchor_vol=anchor_vol, drift_daily=drift_daily,
-                drift_q=drift_daily * 60, factor_drift_q=factor_drift_q,
-                cont_drift_q=cont_drift_q, disc_drift_q=disc_drift_q),
+    # WHAT A READER IS SHOWN IS THE BAND RECORD. What stood here was the retired
+    # skill machinery — a CRPS score against a naive benchmark, its bootstrap and a
+    # probability-integral histogram — which answers a modelling question rather than
+    # the one an investor asks, and which may no longer reach a reader at all. It is
+    # replaced by the record of how often the published bands actually held, phrased
+    # by the module that owns those sentences rather than re-worded here.
+    # THE STANDARD THIS STUDY WAS BUILT TO [R-STD-01]. Without it a book-wide
+    # re-issue is open-ended and nobody can tell which names are current.
+    standard_version=_RP.STANDARD_VERSION,
+    ground_up=GROUND_UP,
+    driver_lines=[vars(l) for l in DRIVER_LINES],
+    band_record=BAND,
+    engine=ENGINE,
+    # The one tax rate this model uses, everywhere it uses one — measured on the
+    # base each use applies it to, and exported so the page cannot type its own.
+    tax_rate=TAX,
+    tax_rate_on_pbz=ISTMT_EARLY.effective_zakat_rate('pbz'),
     mc=dict(q20=q20, q60=q60, touch=touch, prob_read=prob_read, zones=zone_probs, fan=fan),
     tech=dict(sma=sma, rsi=rsi, macd=macd, hi52=hi52, lo52=lo52, rv252=rv252,
               chg20=chg20, chg60=chg60),
@@ -1002,6 +1428,10 @@ out = dict(
     ),
     terminal_record=_t.record,
     hist=hist, seg_hist=seg_hist,
+    # THE PER-SEGMENT FORECAST, committed rather than left inside the build. The workbook's
+    # segment sheet had to reconstruct it from four business units that no longer exist;
+    # what the model actually projects is these eleven, each on its own real rate.
+    seg_forecast={k: {y: seg_fc[y][k] for y in yrs} for k in seg_fc[yrs[0]]},
     # THE FOUR-FIELD INPUT REGISTER, generated from this study's own disclosure modules
     # rather than typed beside them — a second copy of a figure is a thing that goes stale,
     # which is the defect three separate rules here were written to close. It is what
@@ -1010,11 +1440,57 @@ out = dict(
     inputs=_INPUTS,
     macro_record=macro_record,
     forecast_anchor=forecast_anchor,
+
+    # [R-FCAL-01] THE SCOPE DECISION IS DECIDED FIRST AND STATED IN THE STUDY, and no study
+    # in this book states one. The rule is explicit that the fundamental walk-forward is a
+    # standing step of every new study AND EVERY UPDATE, on the same footing as the
+    # data-quality gate and the information sweep, and that the scope decision — FULL at
+    # eight or more sourceable fiscal years, LIGHT at five to seven, SKIP below five — is
+    # recorded rather than left implicit. It is equally explicit that a first delivery is
+    # NEVER DELAYED for the run: it goes alongside, its corrections feed the next edition,
+    # and the edition carries a one-line pending note. That is what this is.
+    #
+    # THE SCOPE IS FULL AND THE COUNT IS NOT A GUESS. This study's own source catalogue
+    # records the route to the company's financial-statements archive, which carries every
+    # set back to 2010 — sixteen fiscal years — with the escaping quirk that defeats a
+    # naive scrape written down beside it. So the history is sourceable; what has not
+    # happened is the run.
+    walkforward_scope=dict(
+        rule='R-FCAL-01',
+        scope='FULL',
+        sourceable_fiscal_years=16,
+        earliest_sourceable='FY2010',
+        basis='the company\u2019s own financial-statements archive on its group site, whose '
+              'route and escaping quirk this study\u2019s source catalogue records; three '
+              'audited years and two reviewed interims are held in this study\u2019s own '
+              'source directory and the rest are reachable by the same route',
+        status='pending',
+        note='The fundamental walk-forward has NOT been run on this name. Scope is FULL on '
+             'sixteen sourceable fiscal years, and the rule forbids delaying a delivery for '
+             'the run: it goes alongside and its corrections feed the next edition. No '
+             'lesson, bias correction or calibrated range in this study rests on a '
+             'walk-forward result, because there is none.'),
+    forecast_is=forecast_is_record,
     drivers=dict(
         # Per-segment REAL growth, measured from the company's own note 9 and deflated by
         # a published price index, fading to zero real by the last explicit year. Nominal
         # recomputes on the house ladder; nothing here is a typed nominal rate.
         segment_real_growth={k: round(v, 6) for k, v in seg_real0.items()},
+        # The house Saudi ladder, published beside the real rates so every nominal in this
+        # model recomputes from two figures a reader can see rather than from one they
+        # cannot check.
+        inflation_ladder=[COCRUN.MACRO.inflation(_y) for _y in FORECAST_YEARS],
+        # THE REAL RATE FADES TO ZERO BY THE LAST EXPLICIT YEAR and the workbook has to be
+        # able to reproduce that. Publishing ONE rate per segment let the sheet compound a
+        # constant rate for five years, which reached FY2030 revenue 3.0% above the model —
+        # a disagreement no amount of clean recalculation would have shown, because the
+        # workbook recalculated perfectly to the wrong answer.
+        segment_real_growth_path={k: [round(seg_real(k, _t), 8)
+                                      for _t in range(1, len(FORECAST_YEARS) + 1)]
+                                  for k in seg_fc[yrs[0]]},
+        # The first forecast year is scaled onto the reviewed half's own annualised level,
+        # so the sheet needs the scale as its own line or it cannot reach the same number.
+        h1_anchor_scale=_h1_scale,
         unit_segment=UNIT_SEGMENT,
         unit_volume_real=VOLUME_REAL, unit_price_real=PRICE_REAL,
         unit_note=('the stc segment is built as VOLUME x PRICE from the subscriber counts '
@@ -1143,18 +1619,33 @@ out = dict(
     rel_basis=dict(ebitda26=ebitda26, np26=np26, eps26=eps26, evx=rel_evx,
                    norm_pat=norm_pat, norm_eps=norm_eps),
     sens=dict(wacc_steps=wacc_steps, g_steps=g_steps, table_wg=sens_wg,
-              margin_steps=margin_steps, capex_steps=capex_steps, table_cm=sens_cm),
+              margin_steps=margin_steps, capex_steps=capex_steps, table_cm=sens_cm,
+              beta_grid=sens_beta, capex_floor_2pp=capex_floor_2pp),
     cover=cover, div_bill=div_bill,
-    experts=dict(e1=e1, e2=e2, e3=e3, e1_roic=roic, e1_ic=ic, e1_ep=ep),
+    experts=dict(e1=e1, e2=e2, e3=e3, e1_roic=roic, e1_ic=ic, e1_ep=ep,
+                 # His fade rate is his single swing assumption and the document quotes it in
+                 # four places. It was typed in every one of them.
+                 e1_fade=FADE, e1_fade_lo=FADE_LO, e1_fade_hi=FADE_HI),
 )
 # WRITTEN BESIDE THIS FILE, NEVER BESIDE THE CALLER. These four were relative to the
 # working directory, so running the model from the repository root — which is how CI and
 # every gate runs it — dropped them at the root and left the study's own copies stale. A
 # path relative to cwd is a path that depends on who ran it.
-res.to_csv(os.path.join(HERE, 'backtest_rows.csv'), index=False)
+# THE WALK-FORWARD RECORD IS THE COMMITTED PANEL, NOT A RE-DERIVATION OF IT. This file
+# used to write its own backtest here — 60 origins from an uncleaned frame, disagreeing
+# with the production panel on the very first row (a realised close of 16.00 against the
+# panel's 16.08, because Step 0.0 had not been applied). Two records of one name's
+# history, and the study was quoting the one nobody else could see. The panel is copied
+# so the two cannot drift: 58 resolved three-month windows, the same 58 the band record
+# above is computed from and the same 58 the site publishes.
+_PANEL = os.path.join(HERE, '..', 'panels', 'SA_STC_3m.csv')
+_panel_rows = pd.read_csv(_PANEL)
+assert len(_panel_rows) == BAND['n'], (len(_panel_rows), BAND['n'])
+assert int(_panel_rows['in90'].sum()) == BAND['hits'], 'the panel and the band record disagree'
+_panel_rows.to_csv(os.path.join(HERE, 'backtest_rows.csv'), index=False)
 np.save(os.path.join(HERE, 'fan.npy'), np.array([fan[p] for p in pcts]))
-np.save(os.path.join(HERE, 'pT20.npy'), pT20[:20000])
-np.save(os.path.join(HERE, 'pT60.npy'), pT60[:20000])
+np.save(os.path.join(HERE, 'pT20.npy'), term20[:20000])
+np.save(os.path.join(HERE, 'pT60.npy'), term60[:20000])
 # A SENSITIVITY RUN NEVER WRITES. It exists to measure one lever's own worth, and an
 # answer struck on a beta this study does not adopt must not reach the committed record.
 if _SENS_BETA is None:
@@ -1179,12 +1670,14 @@ else:
                        weights=weights), f, indent=1, default=float)
     print('SENSITIVITY RUN on beta %.4f — beta_sensitivity_%s.json only'
           % (_SENS_BETA, SENS_TAG))
-print('spot', spot, spot_date, '| anchor_vol', round(anchor_vol, 4), '| factor_q', round(factor_drift_q * 100, 2), '%')
-print('Step0 zero-drift non-overlap:', {k: round(v_, 4) if isinstance(v_, float) else v_ for k, v_ in summ.items()})
-print('boot:', boot)
+print('cone anchor', spot, spot_date, '| nu', ENGINE['nu'], 'cal', ENGINE['width_cal'],
+      '| call %s (%s), z=%.4f' % (ENGINE['call'], ENGINE['call_strength'], ENGINE['signal_z']))
+print('band record: %d windows, %d inside the 90%% band (%.1f%%), strength %s, flag %s'
+      % (BAND['n'], BAND['hits'], BAND['cov90'] * 100, BAND['strength'], BAND['flag']))
 print('WACC market %.3f%% | rating %.3f%% | Ke %.3f/%.3f | Kd_at %.3f | We %.3f'
       % (WACC*100, WACC_RATING*100, KE_MARKET*100, KE_RATING*100, KD_AT*100, WE))
-print('T60:', {k: round(v_, 1) for k, v_ in q60.items()}, '| P(up)=%.3f odds=%.2f' % (prob_read['p_above'], prob_read['odds']))
+print('3 months:', {k: round(v_, 1) for k, v_ in q60.items()},
+      '| P(up)=%.3f odds=%.2f' % (prob_read['p_above'], prob_read['odds']))
 print('DCF: EV %.0f TV%% %.0f%% eq %.0f ps %.2f | DDM %.2f (TV %.0f%%) | rel %.1f | norm %.1f | central %.1f [%.1f-%.1f]' %
       (ev, 100 * pv_tv / ev, eq_dcf, dcf_ps, ddm_ps, ddm_tv_pct * 100, rel['base'], norm['base'], central, central_bear, central_bull))
 print('FCFF path:', [round(r['fcff']) for r in rows])

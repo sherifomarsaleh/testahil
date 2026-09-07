@@ -188,6 +188,20 @@ def main():
             continue
         _latest = max(_edition_key(f) for f in _docs)
         _delivered += [f for f in _docs if _edition_key(f) == _latest]
+    # A GATE MUST NEVER REPORT CLEAN HAVING EXAMINED NOTHING [R-ENF-04]. The WORKBOOK
+    # arm below refuses on zero workbooks; this one did not, so a resolver that found no
+    # delivered document -- a renamed edition, a changed date format, a glob that stopped
+    # matching -- read as clean rather than as broken. The asymmetry between the two arms
+    # of one gate was invisible because the sandbox that tests this gate stages no .docx
+    # at all, so this arm scanned ZERO documents in every one of its cases and had never
+    # been seen to fire since it was added on a real leak.
+    if not _delivered:
+        print("REFUSED - resolved ZERO delivered study documents while %d study "
+              "directories are present. An empty population is not a clean one: the "
+              "resolver is broken, or every study has stopped carrying a dated document."
+              % len(glob.glob(os.path.join(root, "engine", "*_study"))))
+        return 1
+
     for path in sorted(_delivered):
         rel = os.path.relpath(path, root)
         try:

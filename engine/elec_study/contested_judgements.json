@@ -1,0 +1,498 @@
+{
+ "ticker": "ELEC",
+ "as_of": "2026-09-06",
+ "published_central": 0.3357186228503667,
+ "published_spot": 2.19,
+ "currency": "EGP per share",
+ "why_this_file": "Any single contested choice in a valuation is defensible; what is not defensible is a study that resolves EVERY one of them the same way and never notices. Each judgement here is valued BOTH ways by re-running this study's own compute.py with one thing moved, and the sign test below counts which way they went. A study landing them all one way is FLAGGED, never failed — a company can genuinely deserve a consistent read. What it may not do is go unmeasured. Nothing here changes a driver, a forecast, a rate or the fair value.",
+ "the_basis_and_why_it_is_not_the_published_central": "THIS STUDY CANNOT BE MEASURED THROUGH ITS OWN ANSWER, and saying so is the first finding rather than a caveat. Two of its four lenses are pinned at literal floors — the cash-flow lens at EGP 0.01 and the relative lens at EGP 0.05 — because the enterprise value of EGP 3,813 mn does not cover net debt of EGP 9,805 mn. Those two carry 60% of the weight and produce 4.2% of the answer, and a floor is FLAT in the region the model sits in: 12 of the 19 judgements below move the published central by less than five per cent of it and 8 move it by EXACTLY ZERO. A sign test computed through that clamp would report an absent answer as a clean one, which is the failure [R-ENF-04] names. So every judgement except the first is valued on this study's own construction with the two clamps removed, where the model actually lives, and THE CLAMP ITSELF IS THE FIRST JUDGEMENT — its two framings are exactly the published central of EGP 0.3357 and that unclamped baseline of EGP -0.7055, so the two bases are joined by one recorded row rather than mixed silently. Every judgement's effect on the published central is reported beside its worth, and the sign test taken through the clamp is reported too, so a reader can see both and neither is hidden behind the other.",
+ "assertions_the_measurement_basis_itself_trips": {
+  "which": [
+   "central/spot -0.32 outside plausibility band [0.10, 2.5]"
+  ],
+  "note": "Recorded once here rather than on every row. Removing the two clamps makes the central negative, which trips this study's own plausibility band by construction — a fact about the basis, not about any alternative. Each judgement below carries only the assertions ITS alternative trips over and above this set, so a row naming one is naming something real: a terminal growth centre other than the standing 5%, a cost of debt outside the effective-rate bounds, a terminal debt weight that is not below today's, a reinvestment rate outside (0,1)."
+ },
+ "judgements": [
+  {
+   "name": "the limited-liability clamps on two of the four lenses",
+   "adopted": "the cash-flow lens floored at EGP 0.01 and the relative lens at EGP 0.05, both published as floors, on the ground that the equity of a listed company cannot be worth less than nothing",
+   "alternative": "the intrinsic the model itself computes, published unclamped",
+   "value_adopted": 0.3357186228503667,
+   "value_alternative": -0.7054758841866765,
+   "currency": "EGP per share",
+   "measured_on": "the published central against the study's own unclamped construction — this row IS the join between the two bases",
+   "worth_relative": 1.4758754060564485,
+   "worth_per_share": 1.0411945070370432,
+   "material_at_5pc": true,
+   "direction": "the study adopted the HIGHER-value framing",
+   "effect_on_the_published_central": {
+    "adopted": 0.3357186228503667,
+    "alternative": -0.7054758841866765,
+    "moves_by": -1.0411945070370432
+   },
+   "assertions_the_alternative_trips": [],
+   "why": "The clamps are disclosed, argued and not careless — the study prints the unfloored bridge beside them. What they do to the answer is the point: they are worth EGP 1.0412 a share, 310% of the published central, and they are why most corrections to this model reach a reader as nothing at all: sixteen of the nineteen priced in this study's own gap review move the published number by exactly zero, and so do eight of the nineteen judgements recorded below. Two of the four blended lenses return the SAME figure in the bear, base and bull columns, which is the tell: a lens giving one answer in every state of the world is reporting a bound rather than reading a value. Correcting this moves the answer AWAY from the price, which is why it is recorded as a judgement rather than a defect."
+  },
+  {
+   "name": "the central: a four-lens blend at typed weights",
+   "adopted": "40% cash flow, 20% relative, 20% normalised earnings, 20% book, averaged",
+   "alternative": "the cash-flow lens alone as the central, the other three published beside it as cross-checks",
+   "value_adopted": -0.7054758841866765,
+   "value_alternative": -1.8082074541778,
+   "currency": "EGP per share",
+   "measured_on": "this study's own construction with the two lens clamps removed, one thing moved",
+   "worth_relative": 0.6098479283686731,
+   "worth_per_share": 1.1027315699911235,
+   "material_at_5pc": true,
+   "direction": "the study adopted the HIGHER-value framing",
+   "effect_on_the_published_central": {
+    "adopted": 0.3357186228503667,
+    "alternative": 0.01,
+    "moves_by": -0.3257186228503667
+   },
+   "assertions_the_alternative_trips": [],
+   "why": "The weights were typed and have never cleared any out-of-sample test, which is the free parameter this house forbids everywhere else; the class primary for an operating manufacturer is the cash-flow lens. The direction is the interesting part and it runs against the expectation this study was picked out under: taking the class primary alone makes the answer FAR MORE negative, not less, so the blend is not a device that flatters the market — it is a device that flatters the company."
+  },
+  {
+   "name": "the conversion EBITDA per tonne, the rate that carries the valuation",
+   "adopted": "recovering to 135 thousand pounds a tonne by FY2030E, a terminal EBITDA margin of 12.30%, justified as a return to \"the pre-windfall 2022 norm\"",
+   "alternative": "the terminal rate set at the LOWEST of the three years this study reconstructs, FY2024 at 25.33%, the whole path scaled with it",
+   "value_adopted": -0.7054758841866765,
+   "value_alternative": 1.5565800255652291,
+   "currency": "EGP per share",
+   "measured_on": "this study's own construction with the two lens clamps removed, one thing moved",
+   "worth_relative": 1.4532217249354091,
+   "worth_per_share": 2.2620559097519055,
+   "material_at_5pc": true,
+   "direction": "the study adopted the LOWER-value framing",
+   "effect_on_the_published_central": {
+    "adopted": 0.3357186228503667,
+    "alternative": 1.5565800255652291,
+    "moves_by": 1.2208614027148625
+   },
+   "assertions_the_alternative_trips": [],
+   "why": "This is the single judgement carrying the study. The stated justification is a FY2022 norm of about 12% of realised price, and the study holds no FY2022 income statement anywhere — the phrase occurs in a source note and in the delivered document and nowhere in the model. Its own research file holds FY2022 revenue and net profit, from which the EBITDA margin reconstructs at 15-21%, not 12%. The alternative taken here is deliberately the most punitive of the three reconstructed years rather than the highest. Nothing about the direction is settled by the filings, because the filings are not held."
+  },
+  {
+   "name": "the copper anchor",
+   "adopted": "flat at the current tape, USD 14,000 a tonne, on the ground that a \"no house view\" forecast must anchor on the market",
+   "alternative": "flat at the USD 10,000 the study takes as the FY2025 realised average",
+   "value_adopted": -0.7054758841866765,
+   "value_alternative": 0.06385573441679424,
+   "currency": "EGP per share",
+   "measured_on": "this study's own construction with the two lens clamps removed, one thing moved",
+   "worth_relative": 12.047964456597565,
+   "worth_per_share": 0.7693316186034708,
+   "material_at_5pc": true,
+   "direction": "the study adopted the LOWER-value framing",
+   "effect_on_the_published_central": {
+    "adopted": 0.3357186228503667,
+    "alternative": 0.3514400212499389,
+    "moves_by": 0.015721398399572206
+   },
+   "assertions_the_alternative_trips": [],
+   "why": "Copper is pure value destruction in this model BY CONSTRUCTION: it sets revenue and therefore the working capital charged against free cash flow, while EBITDA is typed in pounds per tonne and does not move with it. So anchoring at the top of the tape rather than at the last realised average is a large, one-directional choice that nothing in the cost side offsets. The study's own note records the anchor being moved UP from USD 12,600 in an audit."
+  },
+  {
+   "name": "working-capital intensity",
+   "adopted": "gliding 112% of revenue to 88%, with full reversion explicitly NOT assumed",
+   "alternative": "reverting to the FY2024 intensity of about 76% over the same window",
+   "value_adopted": -0.7054758841866765,
+   "value_alternative": -0.5122628127751694,
+   "currency": "EGP per share",
+   "measured_on": "this study's own construction with the two lens clamps removed, one thing moved",
+   "worth_relative": 0.3771756734883423,
+   "worth_per_share": 0.19321307141150712,
+   "material_at_5pc": true,
+   "direction": "the study adopted the LOWER-value framing",
+   "effect_on_the_published_central": {
+    "adopted": 0.3357186228503667,
+    "alternative": 0.3357186228503667,
+    "moves_by": 0.0
+   },
+   "assertions_the_alternative_trips": [],
+   "why": "The study states the choice in terms — \"full reversion NOT assumed\" — and the level it starts from is not a disclosure either: 113% of revenue is derived from a triangulated balance sheet, not read off one. Holding intensity above the last normal year for the whole window charges the company for a copper-inflated inventory position in perpetuity."
+  },
+  {
+   "name": "the terminal growth charge",
+   "adopted": "the reinvestment identity, reinvesting 54.5% of terminal profit for ever to fund 5% nominal growth",
+   "alternative": "no growth charge at all, which is the bound rather than a construction",
+   "value_adopted": -0.7054758841866765,
+   "value_alternative": -0.2541188827682347,
+   "currency": "EGP per share",
+   "measured_on": "this study's own construction with the two lens clamps removed, one thing moved",
+   "worth_relative": 1.7761647481745588,
+   "worth_per_share": 0.4513570014184418,
+   "material_at_5pc": true,
+   "direction": "the study adopted the LOWER-value framing",
+   "effect_on_the_published_central": {
+    "adopted": 0.3357186228503667,
+    "alternative": 0.3357186228503667,
+    "moves_by": 0.0
+   },
+   "assertions_the_alternative_trips": [
+    "terminal reinvestment rate not in (0,1)",
+    "terminal g != ROIC x RR"
+   ],
+   "why": "The construction is the one [R-TERM-01] retired: the implied replacement cycle is the reciprocal of the growth rate, which is a fact about a currency and not about an asset. On this name the charge is the heaviest in the book — it reinvests more than half of terminal profit at a terminal return of 9.17% against a terminal cost of capital of 15.00%, a spread of -583 basis points, in perpetuity. The bound is used rather than the sanctioned module because this study discloses no useful life, and a life this desk chose is not a disclosed life."
+  },
+  {
+   "name": "terminal growth",
+   "adopted": "5% nominal, described as the standing convention for established Egyptian names post-disinflation",
+   "alternative": "the house terminal inflation of 7.0% with zero real growth, which is what [R-MACRO-01] returns for this market",
+   "value_adopted": -0.7054758841866765,
+   "value_alternative": -0.8451622726988733,
+   "currency": "EGP per share",
+   "measured_on": "this study's own construction with the two lens clamps removed, one thing moved",
+   "worth_relative": 0.16527759582326543,
+   "worth_per_share": 0.13968638851219684,
+   "material_at_5pc": true,
+   "direction": "the study adopted the HIGHER-value framing",
+   "effect_on_the_published_central": {
+    "adopted": 0.3357186228503667,
+    "alternative": 0.32291115401779547,
+    "moves_by": -0.012807468832571223
+   },
+   "assertions_the_alternative_trips": [
+    "terminal g center is not the standing 5%"
+   ],
+   "why": "5% nominal against a terminal discount rate embedding 7% inflation is a perpetual REAL DECLINE of about two points a year, which nothing disclosed supports and the study states nowhere. The direction is counter-intuitive and it is the reason this row matters: because the terminal return sits below the terminal cost of capital, MORE growth destroys value here, so the house-conforming figure is the lower one and the study's own number is the flattering one."
+  },
+  {
+   "name": "the terminal risk-free rate",
+   "adopted": "10.5%, built as the central bank's Q4-2028 inflation target of 5% plus a 5.5-point real convention",
+   "alternative": "the house terminal risk-free of 12.50%, derived as the terminal inflation in force plus the same real convention",
+   "value_adopted": -0.7054758841866765,
+   "value_alternative": -0.7815053354563912,
+   "currency": "EGP per share",
+   "measured_on": "this study's own construction with the two lens clamps removed, one thing moved",
+   "worth_relative": 0.09728590173388169,
+   "worth_per_share": 0.07602945126971472,
+   "material_at_5pc": true,
+   "direction": "the study adopted the HIGHER-value framing",
+   "effect_on_the_published_central": {
+    "adopted": 0.3357186228503667,
+    "alternative": 0.3101930788330034,
+    "moves_by": -0.02552554401736329
+   },
+   "assertions_the_alternative_trips": [],
+   "why": "The study carries an inflation number of its own, which [R-MACRO-01] does not permit: the 5% it builds on is a target the central bank's own August 2026 guidance has superseded, and the house path terminates at 7% with the return to the band put in the second half of 2027. The study's figure is the lower discount rate and therefore the higher value."
+  },
+  {
+   "name": "the cost of debt",
+   "adopted": "22.00% marginal, set from the policy corridor plus a 2.5-point credit margin",
+   "alternative": "25.50%, the same 2.5-point margin over the sovereign level the study's own note calls the credible band top",
+   "value_adopted": -0.7054758841866765,
+   "value_alternative": -0.718510397294788,
+   "currency": "EGP per share",
+   "measured_on": "this study's own construction with the two lens clamps removed, one thing moved",
+   "worth_relative": 0.018141022255470284,
+   "worth_per_share": 0.013034513108111545,
+   "material_at_5pc": false,
+   "direction": "the study adopted the HIGHER-value framing",
+   "effect_on_the_published_central": {
+    "adopted": 0.3357186228503667,
+    "alternative": 0.3357186228503667,
+    "moves_by": 0.0
+   },
+   "assertions_the_alternative_trips": [
+    "Kd more than 150bp from the most recent effective-rate check",
+    "Kd exceeds peak-year effective rate by more than 50bp"
+   ],
+   "why": "22.00% sits BELOW this company's own sovereign, which [R-COC-01] refuses outright — a same-currency corporate cannot borrow below the government that taxes it. The study's own effective-rate checks are 23.5% and 22.1%, both computed on a debt balance that is itself triangulated rather than disclosed. Only the weighted cost of capital input is moved here; the forward cost-of-debt path used for the equity profit and loss is a separate committed input and is left where it is."
+  },
+  {
+   "name": "the terminal capital structure",
+   "adopted": "a normalised 40% debt weight, on the ground that the steady state presupposes deleveraging and current market-value weights are circular",
+   "alternative": "today's market-value weights, 59.1% debt, carried into the terminal",
+   "value_adopted": -0.7054758841866765,
+   "value_alternative": -0.6488003745701808,
+   "currency": "EGP per share",
+   "measured_on": "this study's own construction with the two lens clamps removed, one thing moved",
+   "worth_relative": 0.08735431087573317,
+   "worth_per_share": 0.0566755096164957,
+   "material_at_5pc": true,
+   "direction": "the study adopted the LOWER-value framing",
+   "effect_on_the_published_central": {
+    "adopted": 0.3357186228503667,
+    "alternative": 0.3357186228503667,
+    "moves_by": 0.0
+   },
+   "assertions_the_alternative_trips": [
+    "terminal debt weight not below the current distress weight"
+   ],
+   "why": "The study argues this one against itself in its own comment — normalising RAISES the terminal cost of capital because it puts more weight on the dearer equity leg, and it calls that \"the conservative direction\". The alternative is not obviously wrong: a company whose enterprise value does not cover its debt has no evidenced route to a 40% structure, and assuming one is assuming the recovery the valuation is supposed to test."
+  },
+  {
+   "name": "net debt at the bridge date",
+   "adopted": "EGP 9,805 mn, triangulated three ways from a total-assets print and a rolled equity figure",
+   "alternative": "EGP 10,386 mn, the challenged reading this study itself sensitises",
+   "value_adopted": -0.7054758841866765,
+   "value_alternative": -0.8183955887566986,
+   "currency": "EGP per share",
+   "measured_on": "this study's own construction with the two lens clamps removed, one thing moved",
+   "worth_relative": 0.13797692231157915,
+   "worth_per_share": 0.1129197045700221,
+   "material_at_5pc": true,
+   "direction": "the study adopted the HIGHER-value framing",
+   "effect_on_the_published_central": {
+    "adopted": 0.3357186228503667,
+    "alternative": 0.3357186228503667,
+    "moves_by": 0.0
+   },
+   "assertions_the_alternative_trips": [],
+   "why": "Not one component of this bridge is a disclosed balance-sheet line: total assets come from an aggregator, equity from a retail data site, non-debt liabilities are scaled from the prior year on purchase value. The study's own note records that two aggregator-side readings sit AT OR ABOVE the top of its range and calls the residual risk \"SKEWED ADVERSE\", and then adopts a figure at the bottom of that skew. Net debt per share is EGP 2.96 against a price of EGP 2.08, so this line is 142% of the market capitalisation and small errors in it are large errors in the answer."
+  },
+  {
+   "name": "the equity-risk-premium basis",
+   "adopted": "the swap basis — the sovereign default spread and equity premium read from the credit-default-swap column",
+   "alternative": "the credit-rating basis, the other column of the same source, which the study publishes beside it",
+   "value_adopted": -0.7054758841866765,
+   "value_alternative": -0.7101911542463913,
+   "currency": "EGP per share",
+   "measured_on": "this study's own construction with the two lens clamps removed, one thing moved",
+   "worth_relative": 0.006639437891504543,
+   "worth_per_share": 0.004715270059714838,
+   "material_at_5pc": false,
+   "direction": "the study adopted the HIGHER-value framing",
+   "effect_on_the_published_central": {
+    "adopted": 0.3357186228503667,
+    "alternative": 0.3357186228503667,
+    "moves_by": 0.0
+   },
+   "assertions_the_alternative_trips": [],
+   "why": "Both bases are published and neither is averaged into the other, which is right. The swap basis is the market's own live pricing of the sovereign's credit against an agency judgement updated in steps, and it is also the basis that gives the lower cost of equity — 27.98% against 29.38% — and therefore the higher value. The choice is defensible and it is still a choice."
+  },
+  {
+   "name": "the beta and its regressor",
+   "adopted": "0.964, regressed against a 30-name equal-weight composite of the covered Egyptian names",
+   "alternative": "1.0334, regressed against the published index of the exchange this stock is listed on, through the sanctioned resolver",
+   "value_adopted": -0.7054758841866765,
+   "value_alternative": -0.7279172170888811,
+   "currency": "EGP per share",
+   "measured_on": "this study's own construction with the two lens clamps removed, one thing moved",
+   "worth_relative": 0.030829512443671825,
+   "worth_per_share": 0.022441332902204625,
+   "material_at_5pc": false,
+   "direction": "the study adopted the HIGHER-value framing",
+   "effect_on_the_published_central": {
+    "adopted": 0.3357186228503667,
+    "alternative": 0.3287809077638971,
+    "moves_by": -0.006937715086469565
+   },
+   "assertions_the_alternative_trips": [],
+   "why": "A constituent composite is a coverage artefact rather than a market: it changes whenever a stock is posted and it shares constituents with the panel it prices. The conforming figure is produced here rather than asserted — 1.0334 against the EGX30 series, R-squared 0.193, standard error 0.2087 on 254 weekly observations, usable and not weak-flagged. The two are 0.33 standard errors apart, so the regression cannot tell them apart; the direction is nonetheless one way, because the composite gives the lower beta and therefore the higher value."
+  },
+  {
+   "name": "the volume recovery",
+   "adopted": "10.4 kt rising to 16.0 kt by FY2030E, 64% of the stated parent capacity",
+   "alternative": "the study's own sensitised upper leg, 15% higher, reaching 18.4 kt — still far below the 24.0 kt its own uplift implies the company ran in FY2024",
+   "value_adopted": -0.7054758841866765,
+   "value_alternative": -0.7888209059690957,
+   "currency": "EGP per share",
+   "measured_on": "this study's own construction with the two lens clamps removed, one thing moved",
+   "worth_relative": 0.10565772427142604,
+   "worth_per_share": 0.0833450217824192,
+   "material_at_5pc": true,
+   "direction": "the study adopted the HIGHER-value framing",
+   "effect_on_the_published_central": {
+    "adopted": 0.3357186228503667,
+    "alternative": 0.39774730531591007,
+    "moves_by": 0.06202868246554338
+   },
+   "assertions_the_alternative_trips": [],
+   "why": "The path is a house estimate throughout; the company discloses no volume at all. The study anchors the first year on a collapsed quarter annualised and never returns to the utilisation its own calibration says the company ran two years earlier, and it says so. The capacity the ratio is struck against is parent-only, which the study also flags — so the utilisation figures are an upper bound and the recovery is understated on the study's own terms."
+  },
+  {
+   "name": "the normalised-earnings lens's mid-cycle net debt",
+   "adopted": "EGP 6,000 mn typed as a post-paydown mid-cycle level",
+   "alternative": "the EGP 16,045 mn this study's OWN debt schedule forecasts for the same year the lens takes its operating profit from",
+   "value_adopted": -0.7054758841866765,
+   "value_alternative": -1.1635974465534449,
+   "currency": "EGP per share",
+   "measured_on": "this study's own construction with the two lens clamps removed, one thing moved",
+   "worth_relative": 0.3937113850874427,
+   "worth_per_share": 0.4581215623667684,
+   "material_at_5pc": true,
+   "direction": "the study adopted the HIGHER-value framing",
+   "effect_on_the_published_central": {
+    "adopted": 0.3357186228503667,
+    "alternative": -0.12240293951640183,
+    "moves_by": -0.4581215623667685
+   },
+   "assertions_the_alternative_trips": [],
+   "why": "The lens takes FY2028E operating profit and charges it a financing cost on a debt level the same model says will be nearly three times higher in that year. The model has the number and the lens does not use it. This is the second-largest contributor to the published central and it contradicts the study's own forecast in the direction that raises the answer."
+  },
+  {
+   "name": "the book lens's equity base",
+   "adopted": "FY2025 equity of EGP 4,100 mn, itself a roll-forward rather than a disclosure",
+   "alternative": "the terminal-year equity of EGP -2,078 mn this study's own forecast produces",
+   "value_adopted": -0.7054758841866765,
+   "value_alternative": -0.9795026908490928,
+   "currency": "EGP per share",
+   "measured_on": "this study's own construction with the two lens clamps removed, one thing moved",
+   "worth_relative": 0.27976115759812065,
+   "worth_per_share": 0.2740268066624163,
+   "material_at_5pc": true,
+   "direction": "the study adopted the HIGHER-value framing",
+   "effect_on_the_published_central": {
+    "adopted": 0.3357186228503667,
+    "alternative": 0.061691816187950374,
+    "moves_by": -0.2740268066624163
+   },
+   "assertions_the_alternative_trips": [],
+   "why": "The study's own appendix says book equity \"erodes toward zero by FY29-30E\" and its committed equity path runs 4,100 to -2,078 over the window. The book lens capitalises the opening figure and carries a fifth of the weight. Under [R-LENS-03] book value is a disclosed floor published as such and never weighted at all, so both framings here are alternatives to a third position the study does not take."
+  },
+  {
+   "name": "the justified enterprise multiple",
+   "adopted": "5.5 times FY2027E EBITDA, a deliberate discount for leverage, domestic concentration and no dividend record",
+   "alternative": "7.05 times, the peer multiple this study computes itself from the peer's own filing",
+   "value_adopted": -0.7054758841866765,
+   "value_alternative": -0.6052779198868162,
+   "currency": "EGP per share",
+   "measured_on": "this study's own construction with the two lens clamps removed, one thing moved",
+   "worth_relative": 0.16554042532824717,
+   "worth_per_share": 0.10019796429986028,
+   "material_at_5pc": true,
+   "direction": "the study adopted the LOWER-value framing",
+   "effect_on_the_published_central": {
+    "adopted": 0.3357186228503667,
+    "alternative": 0.3357186228503667,
+    "moves_by": 0.0
+   },
+   "assertions_the_alternative_trips": [],
+   "why": "The discount is argued and the reasons are real. It is still a typed number against a multiple the study derives from a filing, and it moves the relative lens in only one direction. The lens is clamped at its floor in all three columns on the published construction, so this judgement is worth nothing to a reader and something to the model — which is exactly why the measurement is taken beneath the clamp."
+  },
+  {
+   "name": "the currency path",
+   "adopted": "a ~3% a year nominal crawl, 50.4 to 56.5, described as consistent with the post-float managed range",
+   "alternative": "the house path derived from the inflation ladder by relative purchasing-power parity, 55.11 to 70.11",
+   "value_adopted": -0.7054758841866765,
+   "value_alternative": -1.2022923585460827,
+   "currency": "EGP per share",
+   "measured_on": "this study's own construction with the two lens clamps removed, one thing moved",
+   "worth_relative": 0.4132243466640678,
+   "worth_per_share": 0.49681647435940623,
+   "material_at_5pc": true,
+   "direction": "the study adopted the HIGHER-value framing",
+   "effect_on_the_published_central": {
+    "adopted": 0.3357186228503667,
+    "alternative": 0.32487686734900345,
+    "moves_by": -0.010841755501363237
+   },
+   "assertions_the_alternative_trips": [],
+   "why": "A study may not carry a currency path of its own: [R-MACRO-01] derives it from the market's inflation ladder and never sets it by hand. The direction here is the same as copper's and for the same structural reason — a weaker pound raises revenue and the working capital charged against it while EBITDA is typed in nominal pounds a tonne and does not follow, so the study's stronger pound is the higher-value assumption."
+  },
+  {
+   "name": "the FY2025 finance cost",
+   "adopted": "EGP 2,150 mn, derived so the profit and loss closes to the reported net profit",
+   "alternative": "EGP 972 mn, the level the first quarter of 2026 implies on a higher debt balance — an effective rate near 10% against the 23.2% assumed",
+   "value_adopted": -0.7054758841866765,
+   "value_alternative": -0.7054758841866765,
+   "currency": "EGP per share",
+   "measured_on": "this study's own construction with the two lens clamps removed, one thing moved",
+   "worth_relative": 0.0,
+   "worth_per_share": 0.0,
+   "material_at_5pc": false,
+   "direction": "the two framings give the same value",
+   "effect_on_the_published_central": {
+    "adopted": 0.3357186228503667,
+    "alternative": 0.3357186228503667,
+    "moves_by": 0.0
+   },
+   "assertions_the_alternative_trips": [],
+   "why": "This input alone moves the FY2025 conversion rate the whole forecast is calibrated against by about 40%, from 108 to 182 thousand pounds a tonne, and the study's own flag says the quarter is unexplained without the statements. It is recorded here BECAUSE its effect on the answer is nil: the forecast consumes the conversion path as a typed input rather than reading it off the base year, so the number the calibration rests on can move 40% and the valuation does not move at all. That is a fact about the model worth writing down, not a judgement worth 5% of value."
+  },
+  {
+   "name": "the depreciation ratio",
+   "adopted": "1.3% of revenue, set above the historical rate to fund modest renewal",
+   "alternative": "0.7% of revenue, the FY2024 ratio the study's own note computes",
+   "value_adopted": -0.7054758841866765,
+   "value_alternative": -0.6415207020331408,
+   "currency": "EGP per share",
+   "measured_on": "this study's own construction with the two lens clamps removed, one thing moved",
+   "worth_relative": 0.09969309166617008,
+   "worth_per_share": 0.06395518215353568,
+   "material_at_5pc": true,
+   "direction": "the study adopted the LOWER-value framing",
+   "effect_on_the_published_central": {
+    "adopted": 0.3357186228503667,
+    "alternative": 0.36111472795736793,
+    "moves_by": 0.025396105107001243
+   },
+   "assertions_the_alternative_trips": [],
+   "why": "The FY2024 depreciation of about EGP 90 mn that both figures rest on is the DIFFERENCE OF TWO FIGURES FROM TWO DIFFERENT AGGREGATORS, each quoted to two significant figures, so under the same rounding it could be 50 or 140. That single number is the sole basis for the property estimate, the depreciation ratio, the \"light fixed-asset base\" claim and the terminal's typed 5% of revenue. It is below the bar on the answer and it is not below the bar as evidence."
+  }
+ ],
+ "unvalued": [
+  {
+   "name": "the fabrication uplift that converts copper into a cable price",
+   "adopted": "k = 1.387, copper at 72.1% of the price of a tonne of cable, called \"VALIDATION, not calibration\" because it implies FY2024 volumes at 96% of the stated capacity",
+   "alternative": "a higher uplift — at k = 2.0 the same revenue implies FY2024 volumes of 16.6 kt and 66% utilisation, and the implied non-copper cost stops being negative",
+   "why_unvalued": "Moving the uplift alone is not the alternative framing, it is half of it. The uplift sets the price per tonne, so raising it with the typed volume path held fixed raises revenue and working capital while EBITDA — which is volume times a typed conversion rate — does not move at all, and the answer collapses for an arithmetic reason rather than an economic one. Valuing it honestly means re-basing the volume path and the conversion rate on the new uplift, which is a re-strike of the whole tonnage build rather than one driver moved. It is recorded here rather than guessed at, and its importance is not in doubt: at the adopted uplift the implied non-copper cost of FY2023 is MINUS 2.78% of revenue, which is arithmetically impossible, so the uplift and the reconstructed margins cannot both be right and the model uses both."
+  },
+  {
+   "name": "the length of the explicit window",
+   "adopted": "five years, with 82% of enterprise value in the terminal",
+   "alternative": "a window run until growth converges on the terminal rate, which is what the house standard requires",
+   "why_unvalued": "Extending the window means forecasting volumes, conversion rates, working capital and the debt schedule for years the study has no drivers for, which is a new forecast rather than a re-reading of this one. What can be said without inventing anything is that the judgement is large: more than four fifths of the enterprise value is struck off a single terminal year whose conversion rate is the study's most contested number."
+  },
+  {
+   "name": "the balance-sheet and income statements the bridge stands on",
+   "adopted": "a triangulated FY2025 balance sheet and a reconstructed income statement, built from aggregator and press prints of exchange filings",
+   "alternative": "the company's own audited consolidated statements",
+   "why_unvalued": "There is nothing to value it against. The issuer's statement index lists nothing after 30 September 2025 and nothing consolidated after 31 December 2020; every consolidated file it lists sits on a host that no longer resolves, and the study models consolidated figures. The half-year 2026 statements, due in mid-August, are not in the model either. This is not a contested judgement about which reasonable people differ — it is a source condition, carried in the escalation register and re-probed rather than taken on report, and it is why this study's own gap review concludes it should not be repaired."
+  }
+ ],
+ "sign_test": {
+  "material_at_5pc": 16,
+  "resolved_upward": 9,
+  "resolved_downward": 7,
+  "two_sided_binomial_p": 0.803619384765625,
+  "flagged": false,
+  "measured_on": "the unclamped construction, one thing moved at a time",
+  "reading": "16 material contested judgements, 9 resolved toward the higher value and 7 toward the lower, two-sided p = 0.804. NO LEAN: this study does not take every fork the same way, and that is worth stating plainly about a study sitting 84% below the market — the disagreement with the price is not the residue of twenty small choices all pointing one way. Where the study is generous it is generous in the THREE LENSES THAT SURVIVE THE CLAMP, and where it is punitive it is punitive in the cash-flow model the clamp hides: of the 7 judgements resolved toward the lower value, 7 move the published answer by nothing at all or move it UP. The lean this instrument is built to find is not here; what is here is a construction in which the two halves of the study do not meet."
+ },
+ "what_the_clamp_does_to_a_judgement": {
+  "note": "The clamp does something worse to this instrument than deaden it, and it is only visible because both bases were measured. A judgement read through the clamp can point the OTHER WAY from the same judgement read beneath it, because the cash-flow lens is pinned while the normalised and relative lenses are not: raising forecast volumes by 15%, for instance, LOWERS this model's value — the working-capital build scales against a fixed opening balance while the earnings funding it are thin, so the first forecast year turns a release into a build — and RAISES the published central, because the loss happens behind a floor and the gain does not. A reader auditing the published answer would therefore get some of these directions backwards.",
+  "agree": [
+   "the central: a four-lens blend at typed weights",
+   "the conversion EBITDA per tonne, the rate that carries the valuation",
+   "the copper anchor",
+   "terminal growth",
+   "the terminal risk-free rate",
+   "the beta and its regressor",
+   "the normalised-earnings lens's mid-cycle net debt",
+   "the book lens's equity base",
+   "the currency path",
+   "the depreciation ratio"
+  ],
+  "inverted": [
+   "the volume recovery"
+  ],
+  "no_direction_through_the_clamp": [
+   "working-capital intensity",
+   "the terminal growth charge",
+   "the cost of debt",
+   "the terminal capital structure",
+   "net debt at the bridge date",
+   "the equity-risk-premium basis",
+   "the justified enterprise multiple",
+   "the FY2025 finance cost"
+  ]
+ },
+ "the_same_count_through_the_clamp": {
+  "note": "What a reader of the published answer would see. Of the 19 judgements other than the clamp itself, 8 move the published central by exactly zero, because the two lenses they act on never leave their floors.",
+  "material_at_5pc": 7,
+  "resolved_upward": 4,
+  "resolved_downward": 3,
+  "two_sided_binomial_p": 1.0
+ },
+ "below_the_bar": {
+  "count": 4,
+  "resolved_upward": 3,
+  "resolved_downward": 0,
+  "note": "Reported because a lean living entirely in small decisions is still a lean, and because one of these — the FY2025 finance cost — is worth exactly nothing to the answer while moving the rate the whole forecast is calibrated against by about 40%."
+ },
+ "runs_behind_this_record": 240
+}

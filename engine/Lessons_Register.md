@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**266 lessons**, of which 234 bind on every study, 25 on a class of company, and 7 on a single name.
+**276 lessons**, of which 244 bind on every study, 25 on a class of company, and 7 on a single name.
 
-By how they were learned: 39 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 185 found while building.
+By how they were learned: 42 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 192 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -67,9 +67,9 @@ They test different machinery on different evidence, and the first edition of th
 | | what it tests | names | resolved forecasts |
 |---|---|---|---|
 | **Fundamental** | the forecasting method — project each driver from a past origin, score revenue, cost and profit against what happened | 5 (AMOC, ARCC, EGCH, PHDC, TMGH) | 10 origins x 5 horizons |
-| **Price engine** | the probability cone — strike it at a past origin and score band coverage and a proper score against a naive rule | 20 | 377 |
+| **Price engine** | the probability cone — strike it at a past origin and score band coverage and a proper score against a naive rule | 20 | 375 |
 
-**The price engine is well tested; the fundamental method is not.** 20 names carry price-engine evidence, including DU (18 forecasts) and GBCO (17). The fundamental method has been through a full training run on AMOC and ARCC and EGCH and PHDC and TMGH alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 377 forecasts across 20 names.
+**The price engine is well tested; the fundamental method is not.** 20 names carry price-engine evidence, including DU (18 forecasts) and GBCO (17). The fundamental method has been through a full training run on AMOC and ARCC and EGCH and PHDC and TMGH alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 375 forecasts across 20 names.
 
 **Not yet acted on (2):** L-104 (Deliveries must be constrained by what has actually been sold), L-203 (Palm Hills' 2025 balance sheet and cash-flow statement disagree by 47% of revenue). These are recorded as open rather than quietly carried as done.
 
@@ -2418,6 +2418,106 @@ The retired skill verdict may reach "no page, figure, document or deck". Its gat
 > **What it cost, or how we know.** Eight verdict hits across five delivered workbooks at their latest edition, found by a sweep and by no gate; all five fixed rather than ratcheted, so the exemplar's debt did not grow.
 
 > **What would overturn it.** It is overturned where a rule's surfaces cannot be enumerated at all — then the gate is doing the best available thing and the gap is in the rule. What would NOT overturn it is the gate being correct on the surfaces it does read: it was, on all three, which is why nothing looked wrong.
+
+### L-346 · AN INSTRUMENT THAT MATCHES FIGURES AGAINST A MODEL CANNOT SEE A FIGURE USED IN THE WRONG PLACE
+
+A study's reconciliation instrument reported zero unmatched across every percentage and multiple in its delivered document, and the opening paragraph of its own valuation section was wrong in four places at once: revenue compounding at 3.0% against a committed 2.4%, a margin GLIDING UP to 32.5% where the model runs flat and slightly DOWN, a capital intensity of 16.5% fading to 15.0% which is MANAGEMENT'S GUIDANCE BAND and is the construction that study had just retired, and a tax rate of 9.7% against the 8.03% applied. THE REASON THE INSTRUMENT WAS BLIND IS STRUCTURAL AND NOT A BUG: every one of those figures exists somewhere in the committed record — a sensitivity step, a filed year, a guidance range, a forecast-year earnings figure — so a rendering set wide enough to admit the legitimate uses admits the illegitimate ones too. Being in the record is exactly what makes a misplaced figure look right. THE PRACTICAL FORM: the figure check and a CLAIM sweep are different instruments and neither is optional. The claim sweep tests assertions rather than numerals — a guidance band consumed, a glide asserted, a floor named, a lens said to sit above a price it sits below — and it is written by reading the document, which is what tells you which arithmetic to write.
+
+**Applies to:** every study  ·  *Learned from:* found while building, STC, found while rebuilding its delivered documents, 5 September 2026
+
+> **What it cost, or how we know.** Eleven defects of this class in one document after the instrument reported zero unmatched, and after a page-by-page read had already found and fixed nine others. The claim sweep that caught them tests twelve shapes and is four lines of regular expressions.
+
+> **What would overturn it.** It is overturned by a rendering set that can distinguish a figure's USE from its presence — which would mean matching each figure to the specific committed value it renders rather than to any of them. That is buildable and nobody has built it; until then the two instruments are complementary. What would NOT overturn it is a wider or narrower rendering set: narrower produces false positives on legitimate uses, wider hides more.
+
+### L-347 · FIXING A TABLE DOES NOT FIX THE SENTENCE THAT RESTATES IT
+
+A study's normalisation was rebuilt after a workbook reconciliation exposed it, and an assertion now holds the rebuilt table to its own arithmetic at every build. The paragraph three inches above it went on stating the RETIRED arithmetic in words — "~SAR 14.4 bn (reported 14.8 bn less the zakat credit), or EPS ~2.89" — which is the filed profit less the NET zakat line rather than the disclosed one-off inside it, against a rebuilt 13.2 bn and 2.65. The same shape appeared three more times in one document: a cost-of-capital table rebuilt from the record while the prose sentence restating it kept the retired beta; a cover table moved onto the filed years while its introduction still framed the guidance band; a football-field figure recomputed while its caption still described the three-lever bear case that had been replaced by a one-lever one. NO ASSERTION REACHES A SENTENCE. THE PRACTICAL FORM: when a construction changes, grep the delivered text for the OLD construction by name — not for its numbers, which is what the figure check already does — because the sentence that restates a table is written once and never rebuilt.
+
+**Applies to:** every study  ·  *Learned from:* found while building, STC, found while rebuilding its delivered documents, 5 September 2026
+
+> **What it cost, or how we know.** Four instances in one document, each surviving the rebuild of the exact table it described, and each invisible to a figure check because its figures were legitimate elsewhere.
+
+> **What would overturn it.** It is overturned where prose is generated from the same record as the table it describes, which removes the possibility rather than checking for it — several of these were fixed that way and the fix is available whenever a sentence's claim is arithmetic. It does NOT apply to genuinely narrative prose, which cannot be generated and must be swept.
+
+### L-348 · A STUDY'S OWN PRICE MAP MUST REPRODUCE THE COMMITTED FIT, AND ONE THAT RE-DERIVES IT WILL DISAGREE WITH THE SITE
+
+A delivered study's probability section ran a simulation of its own rather than calling the production chain, and it was wrong in five ways at once against the fit its market actually runs: Student-t innovations hardcoded at five degrees of freedom against a fitted fifteen, NO width calibration at all against a fitted 1.056, zero drift on a market carrying an ACTIVE momentum lean, a horizon fixed at sixty sessions where the horizons are calendar, and a sixteen-factor stack of nine typed jump probabilities with typed impacts whose own printed caption conceded that none of them was calibrated. THE CONSEQUENCE WAS NOT A ROUNDING DIFFERENCE: it published a different cone from the one the site publishes for that name on that day — a three-month median of 45.06 against 45.30, a 95th percentile of 51.21 against 52.20, and a thirteen per cent chance of touching a level against twenty. A reader holding both would have found two answers to one question, and the one with the invented event probabilities was the one wearing the study's covers. THE PRACTICAL FORM: a study REPRODUCES the committed fit by calling the same function the roll-forward calls, and asserts the reproduction rather than trusting it. Re-implementing an engine to describe it grades something other than what ships.
+
+**Applies to:** every study  ·  *Learned from:* found while building, STC, found while rebuilding its delivered documents, 5 September 2026
+
+> **What it cost, or how we know.** Re-pointed at the production strike, the study reproduces the published row to the cent at both horizons and the touch ladder to the point, across eight levels and two horizons. The study's own walk-forward artefact was the same defect one layer down: sixty origins from an uncleaned frame, disagreeing with the committed panel on the very first row because the data-quality gate had not been applied.
+
+> **What would overturn it.** It is overturned where a study legitimately needs a construction the production engine does not offer — a counterfactual, an ablation, a diagnostic. Those are internal and must be LABELLED as not the published cone; what is forbidden is a study-local construction PRESENTED as the house's price map.
+
+### L-349 · A DIRECTIONAL CLAIM IS TESTABLE FROM THE RECORD, AND THE NAIVE TEST IS NOT
+
+"X sits above the market price" is a claim a study can be held to using only its own committed values and no model at all, which makes it look like an easy gate. MEASURED ACROSS TWENTY-THREE DELIVERED STUDIES it is not: a first draft flagged 11 of 119 such sentences, a second draft — re-pointed to skip probability reads, to skip a spot compared with itself, and to take the NEAREST figure rather than the last in a window — flagged 16 of 57, WORSE at 28.1%, and inspection put almost all of it on the instrument rather than on the book. It read "30% above the market price" as a value of 3.0; it took the top of a printed range as the subject of a sentence about that range's bottom corner; it ran one table cell's figure into the next row's direction word. THE SUBJECT OF A DIRECTIONAL SENTENCE IS NOT RECOVERABLE FROM THE PAGE, which is the same residue the waterfall gate hit and has the same answer: the test moves to whoever knows, because the BUILDER knows which value the sentence is about and the page never says. WHAT THE SWEEP DID FIND, and no gate in this repository could see either, is two delivered studies whose lens-comparison prose contradicts their own committed record — every individual figure correct, the relationship between them wrong.
+
+**Applies to:** every study  ·  *Learned from:* found while building, A book-wide directional sweep run while auditing STC, 5 September 2026
+
+> **What it cost, or how we know.** ARCC's section 4 states "two of them sit ABOVE the market price" against a committed spot of 77.00 and committed lens values of 66.53, 65.57 and 45.65 — ALL THREE BELOW — then lists three names under "two" and quotes 49.64 and 55.21, neither of which is in its committed lens set: a sentence written for the values that study held before it was re-struck. GBCO's football-field caption reads "Central fair value ~EGP 35.7/share, 14% below spot" where its own stated spot is 31.25, so the magnitude is right and the direction inverted. False-positive rates measured at 9.2% and 28.1% on two drafts of the detector.
+
+> **What would overturn it.** It is overturned by a detector that resolves a sentence's SUBJECT reliably from the page — the residue here is entirely that problem and not the arithmetic, which is trivial. It would also be overturned, in the direction that matters, by studies DECLARING their directional claims the way a waterfall declares its steps: the claim becomes checkable at build time and the page-side detector stops being needed. What would NOT overturn it is a wider tolerance, which is the free parameter the promotion rule forbids.
+
+### L-350 · A DELIVERED SET IS THREE FILES AND EVERY INSTRUMENT IN THE BOOK WAS POINTED AT TWO
+
+Every study declares its own document population, and every one of the twenty-four declares the same pair: the study and the bibliography. The WORKBOOK a reader also receives was scanned by nothing — not the prose-figure instrument, not the external-reader scrub, not the shape-matching vocabulary gate. It is not an oversight anybody would notice, because a population written as a list looks complete from the inside and omits whatever nobody thought of on the day it was written. The fix is one line per study and a string-cell reader in the shared module; the finding is that a rule saying EVERY DELIVERED DOCUMENT was being read as every document somebody remembered to name.
+
+**Applies to:** every study  ·  *Learned from:* found while building, STC audit item 15a, 5 September 2026
+
+> **What it cost, or how we know.** Extending STC's two instruments to its own workbook found eleven defects in one pass, every one beside a cell computing the right answer: a spot of 43.58 against a delivered 43.86, a share count of 4,989.8mn against 4,993.024mn, a market capitalisation of 217,455 against 218,994, an equity weight of 90.6% against a cell computing 90.3%, a balance sheet named as the first quarter's when the bridge stands on the reviewed half, a caption promising a retired four-lens blend, a beta cell describing a nine-week daily regression on a vendor's index quotes that the model had replaced, a beta sensitivity grid WITHOUT THE ADOPTED BETA ON IT, a Monte Carlo caption reading "Zero drift" against a committed live momentum lean, a sovereign rate derived from a broker's note, and an average twelve-month target price. Four internal-vocabulary leaks came out of the same pass.
+
+> **What would overturn it.** It is overturned by a study whose delivered set is genuinely two files, which is a fact about that study rather than about the rule. What would NOT overturn it is a study declaring the workbook and finding nothing: an instrument that comes back clean on a population it was finally pointed at is the instrument working, not evidence the population did not matter.
+
+### L-351 · A CHECK SOMEBODY HAS TO REMEMBER TO RUN IS RUN UNTIL THE DAY IT MATTERS
+
+Depth-bar standard 3 has required an independent recalculation of the delivered workbook since the standard was written, every study's QC gate carries a row attesting it, and twenty-two of twenty-four studies carry the instrument to do it. Nothing outside a study directory ran any of them: every occurrence of the word was a sentence in a comment. The instruments are careful, correct and cheap — the whole book runs in under two minutes — and the moment a rebuild lands is exactly the moment nobody runs them, which is the moment the answer has just moved. WHERE A STUDY BUILDS ITS OWN CHECK, SOMETHING OUTSIDE THE STUDY HAS TO PULL THE TRIGGER.
+
+**Applies to:** every study  ·  *Learned from:* found while building, The workbook-values gate's first run, 5 September 2026
+
+> **What it cost, or how we know.** Running all twenty-two found two red. SWDY's delivered workbook publishes SAR 59.3132 where its delivered document publishes 55.4822, +6.9%, with ZERO formula errors: DCF!C25 still carries the g x IC terminal [R-TERM-01] retired, which the study's own compute.py computes and labels "published unused, feeds nothing" (-6.5% alone), and SOTP Bridge!C12 carries no line for the employees' statutory share of profit the model deducts at 12.19% (+14.4% alone) — with the builder's own expected-value map holding the RIGHT figure for both cells. Its recalc.py names all 27 disagreeing cells in under a second and had not been run since the rebuild. AMOC's refuses outright, still written for a nine-sheet workbook the study replaced with a sixteen-sheet one.
+
+> **What would overturn it.** It is overturned by evidence that these checks are in fact run at every rebuild without a gate — which the two red studies are direct evidence against. It would be strengthened, not overturned, by a study whose check is red for a reason the gate should not fire on: that is a re-pointing question about one instrument, not about whether the trigger is pulled.
+
+### L-352 · The gap between a company's prices and its costs barely moves; the rate they both rise at moves enormously.
+
+It is tempting to spend the work on margins — will this line squeeze, will that one improve. On the record, the gap between what a company charges and what it pays holds almost still, while the rate at which both climb runs anywhere from sixteen to forty-six per cent a year. Get the rate right first. Getting the gap right and the rate wrong is optimising the smaller of the two by a factor of about a hundred.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, the TMGH, PHDC and AMOC fundamental walk-forwards read together, method reassessment 06-09-2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** Realised escalation of revenue against cost, from each run's own filed accounts: TMGH 2011-2025, +16.0% a year against +15.5%, a drift of -0.37% a year; PHDC 2015-2023 per delivered unit, +22.7% against +23.5%, +0.61%; AMOC FY2021-FY2025 per tonne, +44.6% against +46.0%, +0.97%. Twenty-six name-years across two classes, drift inside one per cent a year and NOT one-signed — which is a flat spread rather than a slow trend. Over the same window AMOC's escalation rate was 44.6% a year and its model used zero, worth 0.52 log points of bias on its own.
+
+> **What would overturn it.** A long window — five years or more — where the cost drift exceeds two per cent a year, or a systematic difference in drift between classes. Two developers here run -0.37% and +0.61% and the one refiner +0.97%, which is no separation at all on three names, so a class split would overturn the scope rather than the finding.
+
+### L-353 · Holding a price or a cost still is the worst thing a forecast can do with it.
+
+Where a model cannot forecast something — a commodity price, an exchange rate — the cautious-looking move is to hold it where it is. That is not caution. Standing still inside an economy that is moving is a forecast too, and on the record it is the worst of the available ones, because it is the only rule that is guaranteed to be wrong by the whole of whatever happened.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, the TMGH, PHDC and AMOC fundamental walk-forwards read together, method reassessment 06-09-2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** Four rules a study could have followed at each origin, none of them fitted, scored against what the company then reported: freezing, the origin's last published consumer inflation, purchasing-power parity on the inflation differential, and the company's own trailing three-year escalation. Freezing was the WORST on every name that could be measured — mean absolute log error 0.346 on PHDC, 0.236 on AMOC, 0.364 on TMGH — and on the paired cells the trailing rule was 42% better, consumer inflation 27% and parity 23%. One of these models freezes its main driver by construction, and that alone is 0.52 log points of its bias.
+
+> **What would overturn it.** A name where freezing genuinely beats every alternative over a window of four years or more — which would most plausibly be a company on a hard peg selling a contractually fixed price, where standing still is what the contract actually says.
+
+### L-354 · A range built from a handful of past errors is not the interval it looks like.
+
+When a method publishes its far years as a range taken from how wrong it has been before, that range is the spread of four to eight observations. The chance the next outcome lands inside such a spread is around two in three, not nine in ten — and it gets worse further out, exactly where the range is doing the work. Say the count, and say what a spread of that count can mean.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, the TMGH, PHDC and AMOC fundamental walk-forwards read together, method reassessment 06-09-2026  ·  **status: provisional**
+
+> **What it cost, or how we know.** Every published far-year range tested walk-forward, with the band built only from origins before the one being tested: 259 cells, 55.6% coverage against an expected 63.5% under exchangeability, p=0.010. It degrades monotonically — -1.9 points at one year to -31.7 at five, where the band catches 29% of outcomes and sixteen of its seventeen misses are on the low side. It under-covers in BOTH regimes, by more outside the devaluation years than inside them, so it is not one bad period.
+
+> **What would overturn it.** A range built from enough observations to be an interval rather than a span, or a construction other than min-max. The finding is about the min-max span of a small sample, and a different construction is a different claim.
+
+### L-355 · A probe that guesses what something is called returns a number, not an error — which is why the guess survives.
+
+Reading a record means agreeing with it about names: the key a field is under, the spelling of a label, the way a file is dated, which direction a ratio runs. Where a reader assumes one of those and the record uses another, nothing raises. The reader finds less than is there and prints the smaller figure, and that figure is indistinguishable from a measurement. Read what the record DECLARES about itself before inferring anything from its shape, and where a reader finds nothing, treat that as evidence about the reader first.
+
+**Applies to:** every study  ·  *Learned from:* found while building, ten first-attempt measurements across one working session, 07-09-2026, every one wrong the same way
+
+> **What it cost, or how we know.** Measured on the session's own working: a directory excluded by substring swallowed .github and condemned two files that were on disk; a provenance field read under one of its two spellings reported 58% of 3,862 inputs missing something none of them lacked; an artefact grepped under one of its three names reported two breaches where there is one; a ratchet walked without distinguishing debt from its opposite inflated the programme's headline count 49 against 45; a band read for its key names rather than its own declared basis field reported an acceptance criterion MET that is NOT MET; and a document picker sorting DD-MM-YYYY strings lexicographically read superseded editions. NONE raised. Every one produced a plausible figure, and three of them were reported before being corrected.
+
+> **What would overturn it.** A session in which a first-attempt measurement is wrong for some OTHER reason — an arithmetic slip, a wrong population, a bad assumption about the world rather than about a name. The claim is about naming specifically; a different failure mode would say this one is not the dominant hazard it appeared to be.
 
 
 ---

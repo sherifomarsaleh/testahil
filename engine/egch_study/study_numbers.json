@@ -1994,6 +1994,10 @@
  },
  "spot": 14.41,
  "spot_date": "2026-09-03",
+ "superseded": {
+  "erp_cds": 0.094247,
+  "sov_spread_cds": 0.0355
+ },
  "central": null,
  "fair": {
   "bear": 0.9084436628369906,
@@ -2217,5 +2221,14 @@
    }
   },
   "note": "the audited record is FY2022/23 45.94%, FY2023/24 32.71%, FY2024/25 38.39%, and the part-year FY2025/26 estimate is 43.87%. The forecast opens ABOVE the latest audited year and is held roughly flat rather than escalated, because the dollar export price is now held FLAT in nominal dollars -- the convention this house applies to the same class of input elsewhere. The previous edition opened at the same rate and fell to 33.02% on a typed price path nothing sourced."
+ },
+ "walkforward_scope": {
+  "rule": "R-FCAL-01",
+  "scope": "FULL",
+  "sourceable_fiscal_years": 18,
+  "earliest_sourceable": "FY2008",
+  "basis": "this name's own walk-forward pre-registration, section 0: \"The archive supports eighteen sourceable fiscal years, FY2008 through FY2025\". The run built origins FY2012-FY2024 on that archive",
+  "status": "run",
+  "note": "The fundamental walk-forward HAS been run on this name (engine/egch_walkforward/, 01-09-2026): 13 origins, FY2012-FY2024, 825 scored cells on the as-known macro setting. No correction was adopted; every candidate is a watch flag, which this study's own record states."
  }
 }

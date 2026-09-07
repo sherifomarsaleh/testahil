@@ -610,6 +610,100 @@
    "note": "THE PRICE THE BLOCK USED IS THE LIBRARY'S, NOT THE SUPPLIED FILE'S, AND THAT MATTERS. engine/prices/SUPPLIED_03-09-2026.json carries SWDY at EGP 90.50 for 03-Sep-2026 while the merged library closes that same session at 130.00 — a factor of 1.4365. Every one of the other 36 EG names in that file reconciles to its library (COMI 0.9999, EMFD 1.0073, ORHD 1.0120), so the file is sound and SWDY alone is wrong in it. Three independent external checks corroborate the library: a previous close of 126.20 into 25-Aug, a 52-week low of 62.03 and a 52-week high of 133.98 all reproduce from the merged series to the cent. latest_known_price() takes the NEWER of the two by date, so the 06-Sep library superseded the bad figure and the block's -59.3% is right. It is recorded here because GAP_REVIEW_04-09-2026.md audited against that 90.50 and states AUDITED GAP -38.7%; the true gap at its own date was about -57%, so under [R-GAP-01 AMENDED]'s five-point staleness clause that review is stale and owes a re-run. On 06-09-2026 the principal instructed the correction and the re-run: the supplied row is now 130.00 with supplied_as, corrected and correction_note beside it, and GAP_REVIEW_06-09-2026.md re-audits the answer at the true gap of -59.3%. THE RE-RUN CHANGED THE VERDICT'S REASONING RATHER THAN THE ANSWER: at 90.50 the market appeared to pay 4.9x FY2027E EBITDA against a justified 6.5x, so the cash-flow lens read as the outlier and one contested parameter spanned the gap; at 136.20 the market pays 7.3x, ABOVE that justified multiple, and no published construction in the study reaches the price - the currency alternative leaves 48.9% and the study's own BULL case leaves 22.9%. This makes a MARKET_DISSENT HARDER, not easier, because a reverse read now lands on a believable multiple and [R-GAP-02] counts that as evidence AGAINST dissent. The central is unmoved at 55.48 and the study stays held. RULED ON BY THE PRINCIPAL, 6 September 2026: PUBLISH the MC cone, the technical read and the ledger — 'a MC calibration that has nothing to do with the fundamental analysis'. The ruling rests on [R-LENS-01] lens independence and on the measured fact that fair{} is BYTE-IDENTICAL to main in this change, so the quantity [R-GAP-02] holds is untouched. It covers this roll-forward for SWDY only, is not a release of the study, and is not a precedent for another name. The gate was neither weakened nor skipped: check_publish_block still refuses SWDY and still should.",
    "resolved": "2026-09-06",
    "answer_written_to": "engine/swdy_study/PUBLICATION_RULING.md"
+  },
+  {
+   "key": "EGCH-loan-drawn-amounts-by-currency-FY2019-20",
+   "opened": "2026-09-06",
+   "cls": "missing_data",
+   "question": "The two figures in note (4/11) on page 61 of EGCH_FY2019-20_Annual.pdf: the amount DRAWN in US dollars and the amount DRAWN in Egyptian pounds on the natural-gas conversion facility. They fix the currency split of EGCH's borrowings, which its walk-forward currently treats as 100% dollar — a 'stated simplification' its own module flags and the filings refute.",
+   "routes": [
+    {
+     "route": "pdftotext over all ten held filings",
+     "when": "2026-09-06",
+     "outcome": "the text layer is a broken font map on Arabic scans; an English keyword search returned nothing, which read exactly like an absence and was not one"
+    },
+    {
+     "route": "pdftoppm at 200 dpi + tesseract -l ara over every page of every filing",
+     "when": "2026-09-06",
+     "outcome": "died on a 180s per-page timeout at page 2 of the oldest filing — a PROBE FAILURE, re-run rather than believed"
+    },
+    {
+     "route": "re-pointed sweep: back 45% of each filing, 420s per page, timeouts named",
+     "when": "2026-09-06",
+     "outcome": "COMPLETED, zero pages timed out, all ten filings read. Found the note in four filings and the DRAWN-amounts sentence in FY2019-20 page 61",
+     "rerun": true
+    },
+    {
+     "route": "pdftoppm at 450 and 500 dpi + tesseract -l ara on the located page",
+     "when": "2026-09-06",
+     "outcome": "prose resolves; the two digit strings do not"
+    },
+    {
+     "route": "magnified crop (x1.6, x3), binarised, tesseract psm 6/7/11/13 with a digit-only whitelist",
+     "when": "2026-09-06",
+     "outcome": "four mutually inconsistent digit strings across four modes; none footable"
+    }
+   ],
+   "refs_searched": 239,
+   "why_only_the_principal": "Not a judgement and not an instruction — a READING. The figures are on a page held in this repository and every extraction route available here has been run and failed on Arabic-Indic digits in a low-quality scan. A person opening EGCH_FY2019-20_Annual.pdf at page 61 can read them in seconds. Nothing else in the room can.",
+   "done_meanwhile": "The finding that does not need the digits was established and committed: four filings state the facility in BOTH currencies (~117m USD and 1.887bn EGP from six named Egyptian banks, interest and instalments in both), so the 100%-dollar treatment is refuted on four filings rather than one. The FX line was also bounded without any currency assumption — the realised result sits outside every net-dollar-position construction in 9 of 12 years — so the SIGN is wrong, not the weighting, and that conclusion stands whatever the split turns out to be.",
+   "default_if_no_answer": "Leave EGCH's FX driver exactly as it is and leave the run on the frozen-escalator ratchet. Do NOT estimate a share: a dollar weight invented to make the line behave is the free parameter the promotion rule forbids, and the refutation already stands without it. Record the split as sourced-but-unread in the run's own register so the next reader finds the page reference rather than the question.",
+   "default_date": "2026-09-13",
+   "resolves_when": {
+    "file": "engine/egch_walkforward/valuation_inputs.json",
+    "must_contain": "drawn_usd"
+   },
+   "status": "open",
+   "note": "Registered under [R-IND-01] rather than asked in a message. Twice tonight a 'cannot be obtained' on this same line turned out to be wrong on closer looking — the currency note itself, then the balance split — and both times the FIRST PROBE was what failed while its failure read like an absence. That is why five routes are listed with outcomes and why the sweep that succeeded is marked as a re-run."
+  },
+  {
+   "key": "PARTE-criterion-1-ratchet-clause",
+   "opened": "2026-09-07",
+   "cls": "instruction",
+   "question": "Part E criterion 1 accepts Phase 1 when every gate is green with its negative control AND the ratchets carry 'only names not yet re-issued'. Five names HAVE been re-issued and 45 ratchet entries still name them (PHDC 13, AMOC 11, TMGH 9, ARCC 7, EGCH 5). Every entry is real debt the gates still fire on — measured 07-09-2026 by running every prune-capable gate in a sandbox and diffing against the live ratchets; three stale ones were pruned and the rest survive. So the criterion as written cannot be met by the re-issues that have happened, and EITHER THE WORK OR THE CRITERION HAS TO MOVE. That is a decision about an acceptance test, which is the principal's.",
+   "routes": [
+    {
+     "route": "read all 49 entries individually across the five names",
+     "when": "2026-09-07",
+     "outcome": "18 carry a reason, 31 are bare — a ticker and nothing else — so the split into 'a re-issue should have cleared it' and 'legitimate outstanding work' cannot be made from the register as it stands",
+     "rerun": false
+    },
+    {
+     "route": "run every prune-capable gate in a sandbox and diff against the live ratchets",
+     "when": "2026-09-07",
+     "outcome": "49 of 52 still fire; the 3 stale were pruned and their gates and negative controls are green after",
+     "rerun": true
+    },
+    {
+     "route": "re-run the same measurement with absolute paths after the first attempt reported 'stale: 0'",
+     "when": "2026-09-07",
+     "outcome": "the first run had cd'd into the sandbox and so read the pruned files as its own baseline — an absent answer, not a wrong one; redone, the real tree verified untouched first",
+     "rerun": true
+    },
+    {
+     "route": "read the plan's Part E and the acceptance instrument for a clause that already resolves this",
+     "when": "2026-09-07",
+     "outcome": "none — the criterion's wording admits neither reading, which is why it is a decision rather than a lookup",
+     "rerun": false
+    },
+    {
+     "route": "re-read acceptance.py's own counter against the ratchet files it walks",
+     "when": "2026-09-07",
+     "outcome": "the count was 49 and the debt is 45: the walker could not tell a debt list from a record of the OPPOSITE, counting two conforming_at_adoption entries and two scope_widened.added ones. Corrected in the instrument, named rather than pattern-matched, and conservatively — ambiguous keys are still counted, because understating debt is the error that matters. IT HAD A CONSEQUENCE: pruning the output ratchet the same day removed AMOC and EGCH from its real list and the count did not move, because both stayed visible through scope_widened.added.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 22,
+   "why_only_the_principal": "changing a programme's own acceptance criterion is not a judgement the plan answers, and a programme that softens its acceptance test when the test fails has no acceptance test.",
+   "done_meanwhile": "The 52 were sorted (49 real, 3 pruned), engine/method_reassessment/acceptance.py was built so criterion 1 can be read live rather than remembered, and the 18/31 split was measured and recorded. Nothing about the criterion was changed.",
+   "default_if_no_answer": "TREAT THE CLAUSE AS WRITTEN AND CLEAR THE 49 RATHER THAN AMEND IT. Clearing is work with a countable remainder; amending is a claim that the bar was wrong, which needs evidence this measurement does not supply.",
+   "default_date": "2026-09-21",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/method_reassessment/PLAN_02-09-2026.md",
+    "must_contain": "CRITERION 1 RATCHET CLAUSE RULED"
+   },
+   "note": "REWRITTEN 07-09-2026. The original entry was registered in f213fdc1 and never reached the commit: this register's own negative control wrote its fixture into the real file and the restore did not run, so thirteen live entries plus this one were replaced by a single case called NC-example. Recovered from f213fdc1^ and this entry rewritten from the routes actually run, recorded here rather than presented as the original text. The mechanism is closed — the gate now reads TESTAHIL_ESCALATIONS_REGISTER and the control asserts, every case, that engine/escalations.json is byte-identical after it runs. [07-09-2026] The figure in this question was 49 when the entry was written and is 45 on a corrected count; the DECISION is unchanged and so is the default. The number is amended here rather than left wrong, because a register carrying a figure its own author knows to be wrong is worse than one carrying none."
   }
  ]
 }

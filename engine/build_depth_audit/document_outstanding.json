@@ -2,7 +2,6 @@
  "entries": {
   "GBCO": "missing 9 section(s): B.1, B.2, B.3, C.1, C.2, C.3, C.4, C.5, C.6",
   "SCEM": "missing 17 section(s): Headline, Valuation summary, Company overview, A.1, A.2, A.3, B.1, B.2, B.3, C.1, C.2, C.3, C.4, C.5, C.6, About this series, Disclosure",
-  "STC": "no valuation study document in the directory",
   "XPT": "no valuation study document in the directory"
  },
  "note": "Studies whose delivered study document was already off the model-report section list when this gate was adopted (03-Sep-2026). Allowed to fail; the list may only ever get shorter. --prune rewrites it."

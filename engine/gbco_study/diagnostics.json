@@ -1,0 +1,41 @@
+{
+ "ticker": "GBCO",
+ "as_of": "2026-09-06",
+ "spot": 28.98,
+ "spot_date": "close 2026-09-03, the Egyptian Exchange",
+ "spot_source": "engine/prices/SUPPLIED_03-09-2026.json — GB Corp, the close supplied by the principal",
+ "published_central": 35.74687012834619,
+ "published_spot": 31.25,
+ "why_this_file": "The reverse read — what the traded price must believe — is a DIAGNOSTIC and lives outside the numbers file every builder reads. A mark, a rate or a growth solved from a price and then used anywhere in the valuation is the reverse-engineered figure the protocol prohibits outright, arriving through a side door, and the prohibition is worth nothing if the side door is open. Nothing in this file is an input to anything: no builder in this study reads it, it is COMPUTED by diagnostics_gbco.py, and that script asserts the committed numbers file is byte-identical before and after it runs.",
+ "implied": {
+  "quantity": "the whole-company valuation of MNT-Halan, in US dollars, that the traded price implies for GB Corp's 41.61% stake — the single line this study names as its crux",
+  "value": 671.2875864791196,
+  "study_value": 1400.0,
+  "units": "USD million, the valuation of MNT-Halan as a whole",
+  "value_at_the_strike_price": 915.7399178107208,
+  "value_on_the_primary_lens": 826.3756331575865,
+  "implied_stake_value_egp_mn": 13267.831324863178,
+  "implied_stake_value_usd_mn": 279.32276473396166,
+  "study_stake_value_egp_mn": 27670.650000000005,
+  "implied_as_a_share_of_the_round": 0.47949113319937114,
+  "company_disclosed": {
+   "round_valuation_usd_mn": 1400.0,
+   "stake": 0.4161,
+   "stake_source": "GB Corp's own press release, 9 June 2026, on MNT-Halan's Al Ahly Capital-led capital increase: the stake 'will be adjusted to 41.61%, compared to 42.58% prior to the transaction'",
+   "associates_carrying_value_fy25_egp_mn": 13689.5,
+   "carrying_value_source": "'Investments in associates', consolidated balance sheet as reported at FY25, GB Corp FY25 earnings release, carried in this study's own Appendix A",
+   "mnt_halan_carrying_value_egp_mn": 13299.5,
+   "whole_company_at_carrying_value_usd_mn": 672.8898670613086,
+   "carrying_value_caveat": "the carrying value is an equity-accounted book figure — cost plus the group's share of retained results, less impairment — and is not a valuation. It is quoted because it is the only other dated, company-disclosed number attached to this stake, and because a reader can check it."
+  },
+  "solved_on": "this study's own construction, rebuilt from its committed numbers file and asserted against the answer it publishes, holding the auto leg's cash flows, its cost of capital, its terminal growth, the lender's mark, the other associates, the complexity discount, the two earnings lenses and the four lens weights all at their published values, and moving only the MNT-Halan mark until the model reproduces the traded price. Solved on the PUBLISHED central — the four-lens blend — because that is the answer the study states; the same solve on the primary lens alone is carried beside it, because 45% of the blend's weight sits in two earnings lenses that do not touch this stake at all and therefore dampen the read.",
+  "second_framing": {
+   "quantity": "the single flat discount rate on the auto leg that reproduces the traded price, every other line held at its published value",
+   "value": 0.3438474209698196,
+   "study_value": 0.2294381614233093,
+   "value_at_the_strike_price": 0.28541535637889315,
+   "reading": "carried here to show what the disagreement is NOT about. Asked of the auto leg's discount rate, the price implies 34.38% against this study's 22.94% — 11.4 points of cost of capital on a business worth a quarter of the sum of the parts. That is a far less plausible reading of the same gap than the mark, and it is the reason the mark is the quantity solved."
+  },
+  "reading": "At EGP 28.98 the price values GB Corp's 41.61% stake in MNT-Halan at EGP 13268 mn, which is MNT-Halan as a whole at US$671 mn — 48% of the US$1.4 bn the June-2026 round was struck at, and a 52% discount to it. The study takes the round at face value. WHAT MAKES THIS CHECKABLE RATHER THAN RHETORICAL: GB Corp's own FY25 balance sheet carries all associates at EGP 13689.5 mn, which nets to EGP 13300 mn for MNT-Halan and implies the whole company at US$673 mn — within 0.2% of what the price is paying. The market is marking this stake at close to its book carrying value and giving the round's uplift no weight; the study marks it at the round. That one line is the whole disagreement, and it is a more useful statement than \"the study is +23.4% against the price\". IT DOES NOT SETTLE WHO IS RIGHT: an equity-accounted carrying value is a book number and not a valuation, and a cash round at US$1.4 bn is a real transaction price for an unlisted company in which a 41.61% minority holder has never had an exit."
+ }
+}

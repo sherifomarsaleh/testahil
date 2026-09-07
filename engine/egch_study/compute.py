@@ -1,3 +1,19 @@
+"""RUN ORDER: compute.py THEN lenses.py. RUNNING THIS FILE ALONE DELETES THE
+STUDY'S OWN ANSWER.
+
+study_numbers.json is written whole by this script, and lenses.py then adds EIGHT
+top-level keys to it: central, central_two_sided, spot, fair, lens_record,
+bridge_record, macro_record and forecast_anchor. So a rebuild that runs only this
+file removes the central and the spot -- the two fields check_valuation_gap reads --
+along with three standing-rule records, and every gate downstream then reports on a
+file that has silently lost them.
+
+Found 06-09-2026 while closing the same defect on SWDY, whose forecast_anchor block
+vanished the same way. It is invisible to every gate, because a gate reads the file
+that is there and cannot know what a rebuild removed. BOROUGE, DU and EMPOWER carry
+the instrument that would catch it -- read the file, import the model, restore and
+REFUSE if the bytes moved -- three studies out of twenty-four.
+"""
 """EGCH (Egyptian Chemical Industries "KIMA", EGX: EGCH) — master computation.
 
 Ground-up, product-by-product, volume x price on the revenue side and cost-per-physical-
@@ -888,6 +904,22 @@ out = dict(drivers=D, hist=H, fy2526=fy2526, years=YEARS, hist_years=HIST_YEARS,
 # OVER, and a key added by any later stage survives an import of this one without
 # anybody remembering to come back here. That is [R-ENF-01]'s "close the class, not
 # the instance" applied to a build script.
+# A SUPERSEDED FIGURE QUOTED TO SHOW WHAT CHANGED IS A NUMBER A READER SEES, so it needs a
+# counterpart in the file the prose check reads. This study's rule is deliberately stricter
+# than the book's — a registered input NOTHING CONSUMES cannot license a figure [L-018] — and
+# it is right about drivers: registering a number must not become the cheap way to clear a
+# check. But a correction note is not a driver. It is a committed fact about this study's own
+# history, it reaches a reader in the delivered workbook, and the honest counterpart is the
+# numbers file rather than the register's prose. So the pair is CARRIED into the output here,
+# where it is consumed by construction, rather than the sentence being deleted — the standing
+# discipline being that a false positive is fixed by widening the rendering set and never by
+# deleting the figure from the study. Found once the delivered workbook joined this check's
+# population, 05-09-2026.
+out['superseded'] = {
+    'erp_cds': _V('erp_cds_superseded'),
+    'sov_spread_cds': _V('sov_spread_cds_superseded'),
+}
+
 try:
     _prev = json.load(open(os.path.join(HERE, 'study_numbers.json')))
     for _k, _v in _prev.items():

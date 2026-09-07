@@ -1,0 +1,75 @@
+{
+  "_what_this_is": "A RECORD, NOT AN INPUT. No builder reads this file and nothing here moves a published number. It records the DISCLOSED useful life sourced from the company's own audited accounting-policies note under [R-TERM-01], and prices what the sanctioned terminal would give on it, so a later re-issue does not have to source it again.",
+  "published_central": 124.8948459667789,
+  "published_spot": 104.8,
+  "generated": "2026-09-06",
+  "ticker": "RIYADHCABLE",
+
+  "life_found": true,
+  "source": {
+    "filing": "Riyadh Cables Group Company, consolidated financial statements, year ended 31 December 2025, together with independent auditor's report",
+    "note": "note 7, MATERIAL ACCOUNTING POLICIES — Property, Plant and Equipment (continued)",
+    "sentence": "Depreciation is calculated using the straight-line method over the estimated lives of the assets as follows:",
+    "route": "text_layer",
+    "route_evidence": "engine/riyadhcable_study/raw_fs_text/FY2025.txt lines 673-690 (policy note) and 1782-1860 (note 9). No OCR re-read was needed because the page FOOTS: 44 of 44 arithmetic checks on note 9 reconcile to the riyal, zero mismatches. ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE."
+  },
+
+  "disclosed_ranges_verbatim": {
+    "Buildings": "20 - 25 or lease term whichever is lower",
+    "Property, plant and equipment": "20 - 30",
+    "Strategic spare parts": "10",
+    "Motor vehicles": "4",
+    "Furniture & fixtures": "4 - 10",
+    "Tools": "5",
+    "Laboratory equipment": "10",
+    "Computers": "10",
+    "_not_depreciated": "Lands and projects in progress are not depreciated.",
+    "_label_note": "FY2025 labels the second row 'Property, plant and equipment'; FY2023 and FY2024 label the identical row 'Plant and equipment', which is the class column in note 9. The prior-year cross-check settles the mapping.",
+    "_intangibles": "note 7 also discloses computer software at 15 years; an intangible, outside the PPE weighting."
+  },
+
+  "weighting": {
+    "basis": "note 9's OWN class columns at 31 December 2025. Land (SAR 222,330,595) and assets under construction (SAR 141,491,829) are excluded because the note says neither is depreciated.",
+    "method": "base-weighted HARMONIC mean. maintenance = ic_replacement / life, so the single life reproducing the class-by-class charge from the same base is the harmonic mean, not the arithmetic one. An arithmetic mean would understate maintenance (26.76 against 21.44 on the same weights).",
+    "range_ends": "each range taken at its LONGEST disclosed end, following the AIRARABIA precedent (engine/airarabia_study/compute.py asset_life_weighted), with the shortest end reported as the band. An endpoint is disclosed; a midpoint would be this desk choosing.",
+    "gross_cost_longest": 21.44,
+    "gross_cost_shortest": 16.18,
+    "net_carrying_longest": 22.04,
+    "net_carrying_shortest": 16.51,
+    "buildings_capped_at_lease_term": 20.71,
+    "adopted": 21.44,
+    "adopted_reason": "gross cost, longest ends. The life divides ic_replacement, a gross replacement-cost base, so the weights sit on that same base. The net-carrying weighting is 22.04, 2.8% away, so the choice is not load-bearing."
+  },
+
+  "cross_checks": {
+    "prior_year_identical_table": "PASS. The FY2024 filing's own note 9 and the FY2025 filing's comparative block agree figure for figure (cost 3,163,748,056; accumulated depreciation 1,827,709,112; net 1,336,038,944). The lives table is identical in FY2023, FY2024 and FY2025 — no reassessment landed.",
+    "residual_values_condition": "CLEAR. The note writes off cost 'over the estimated lives of the assets'; residual values appear only in the annual-review boilerplate, never in the depreciable amount.",
+    "business_combination_condition": "CLEAR. The FY2025 acquisition from a subsidiary added SAR 53,281,727 of COST and no accumulated depreciation — the accumulated-depreciation movement carries no acquisition line and still foots.",
+    "identity_divergence": "FAILS, and this is the finding. terminal_value.py's own cheap cross-check compares the identity-implied life against what the disclosed class rates weight to. Depreciable gross cost over the year's own charge reads 37.90 years, against 21.44 from the disclosed rates: +77%. Net of the disclosed fully-depreciated column it still reads 26.91, +26%. Stable at four consecutive year-ends (2022 +34%, 2023 +32%, 2024 +28%, 2025 +26%), so it is structural, not a timing artefact.",
+    "identity_divergence_cause": "note 9 discloses SAR 841,735,514 of cost — 25.8% of gross — as fully depreciated and still in use. Those assets carry cost and accumulated depreciation and bear NO charge, inflating the implied life and the measured age on both sides."
+  },
+
+  "what_the_study_commits_today": {
+    "useful_life_years": 35.7565,
+    "useful_life_is_derived": true,
+    "maintenance_basis": "book_dna_escalated",
+    "maintenance_age_basis": "measured",
+    "average_age_years": 21.9518,
+    "the_premise_that_is_wrong": "The committed source states that the policy note 'discloses RANGES ... and no weighting, so no single figure can be read off it'. The weighting IS disclosed: note 9 gives the carrying amount of every one of those classes, in the same filing, and its class columns map one-to-one onto the policy note's class rows. A single figure can be read off it, and it is 21.44 years.",
+    "committed_life_vs_disclosed": "35.76 against 21.44 is +67%; against the shortest ends, +121%."
+  },
+
+  "priced_through_the_sanctioned_module": {
+    "control": "TerminalInputs rebuilt from the study's own committed record reproduces its terminal exactly (tv 23,669.38, +0.00%), so the inputs below are the study's and not this desk's.",
+    "life_alone_on_the_committed_basis": "NO CHANGE. On book_dna_escalated with a measured age supplied, the life never reaches the maintenance charge — it is inert. Sourcing it moves no published number.",
+    "where_the_life_would_bite": "on the half-of-life age the module falls back to when no measured age is given: 35.76 -> +1.23%, disclosed 21.44 -> +3.17%, disclosed 22.04 -> +3.09%, shortest 16.18 -> +3.82%, all against the committed terminal.",
+    "direction": "the SHORTER disclosed life gives a HIGHER terminal here, because on this basis a shorter life means a younger base and less escalation of the book charge. Nobody may predict which way a rebuild moves a value before running it [R-TERM-01 CLAUSE TWO CORRECTED]; this is priced, not predicted.",
+    "age_flag_priced_separately": "the measured age net of the disclosed fully-depreciated column is 12.19 years against the 23.17 the note-9 figures give unadjusted; with the disclosed life that is +2.79% on the terminal. A SEPARATE input from the life, flagged rather than settled."
+  },
+
+  "what_is_owed_at_the_next_re_issue": [
+    "The disclosed life 21.44 replaces the derived 35.76, and useful_life_is_derived becomes false with note 7 named as its source.",
+    "The measured average age must not be read off the accounts on this name while the identity diverges from the disclosed class rates by +26% to +77%. terminal_value.py: 'where they diverge, the accounts are saying the charge is not cost/life and the age must not be read off it.'",
+    "This pass changes no published number. A rebuild is a re-issue and carries a rebuild ledger with an audit point declared in advance [R-REBUILD-01]."
+  ]
+}

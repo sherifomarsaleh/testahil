@@ -1,0 +1,92 @@
+{
+ "ticker": "ADNOCDIST",
+ "as_of": "2026-09-05",
+ "spot": 4.02,
+ "spot_date": "close 2026-09-03, supplied 2026-09-03 (SUPPLIED_03-09-2026.json)",
+ "published_central": 4.411292110312444,
+ "published_spot": 4.07,
+ "why_this_file": "The reverse read — what the traded price must believe — is a DIAGNOSTIC and lives outside the numbers file every builder reads. A quantity solved from a price and then used anywhere in the valuation is the reverse-engineered rate the protocol prohibits outright, arriving through a side door. Nothing in this file is an input to anything: it is COMPUTED by diagnostics_adnocdist.py, no builder reads it, and this generator asserts before writing that the solved value appears nowhere in study_numbers.json.",
+ "implied": {
+  "quantity": "the single flat discount rate that reproduces the traded price on this study's own free cash flows and terminal",
+  "value": 0.084757494366524,
+  "value_other_framing": 0.08906102240904723,
+  "study_value": 0.07437428020423498,
+  "study_value_range": [
+   0.07437428020423498,
+   0.07437428020423498
+  ],
+  "study_value_range_note": "the two ends are IDENTICAL because this study's schedule is flat: the cost-of-capital procedure returns a flat ladder in a pegged market, where today already is the terminal. It is recorded as a range anyway so the field means the same thing here as on a study that glides.",
+  "solved_on": "engine/reverse_read.py, on this study's own committed free cash flows, its own terminal cash flow recovered from its own terminal value, its own terminal growth and its own bridge — holding every driver at its published value and varying only the discount rate until the model reproduces the traded price. The discounting convention was recovered from the study's own factors, and it recovers whole years because this study discounts to year ends.",
+  "reading": "At AED 4.02 the price is paying for a flat 8.48% cost of capital on the same cash flows this study discounts at 7.44%, so the market and the study disagree by about 104 basis points on the price of time and risk rather than on the business; on the through-cycle frame the implied rate is 8.91%. The study's own flat rate reproduces to 7.4374% against a published 7.4374%, which is the check that the two numbers are one quantity measured twice. Beside what the company itself discloses: its marginal cost of debt is 5.08% on its own disclosed dirham margin and 5.33% on the dollar one, and its own committed fixed dividend yields 5.12% at this price — so the market is discounting the whole firm about 340 basis points above the rate the company itself borrows at, against this study's 236."
+ },
+ "construction": {
+  "implied_rate_at_price": 0.084757494366524,
+  "implied_rate_at_study_value": 0.07437428020423498,
+  "terminal_cash_flow": 4101.701260342536,
+  "terminal_growth": 0.015,
+  "terminal_arrives_at_year": 5.0,
+  "enterprise_value_at_spot": 54911.82199999999,
+  "enterprise_value_in_study": 64461.29529111009,
+  "bridge_delta_equity_less_ev": -4661.822,
+  "discounting_times": [
+   1.0,
+   2.0,
+   2.9999999999999973,
+   3.9999999999999973,
+   5.0
+  ],
+  "times_resolved": "recovered from the study's own factors"
+ },
+ "construction_frame_B": {
+  "implied_rate_at_price": 0.08906102240904723,
+  "implied_rate_at_study_value": 0.07437428020423498,
+  "terminal_cash_flow": 4354.536329192536,
+  "terminal_growth": 0.015,
+  "terminal_arrives_at_year": 5.0,
+  "enterprise_value_at_spot": 54911.82199999999,
+  "enterprise_value_in_study": 68420.59063584084,
+  "bridge_delta_equity_less_ev": -4661.822,
+  "discounting_times": [
+   1.0,
+   2.0,
+   2.9999999999999973,
+   3.9999999999999973,
+   5.0
+  ],
+  "times_resolved": "recovered from the study's own factors"
+ },
+ "at_the_strike": {
+  "spot": 4.07,
+  "frame_A": 0.08396816941494695,
+  "frame_B": 0.08822312823703815,
+  "why_both": "[R-GAP-01] as amended measures against the latest known close, and the study was struck a month earlier; both are solved so a reader can see how much of the disagreement is the month."
+ },
+ "cross_reads": {
+  "why": "The read above is solved on the cash-flow lens, which is the comparable construction across this book. The answer THIS study publishes is a weighted centre of four lenses, so the same question is solved again against the published answer by re-running the whole model — the study's own reverse valuation is solved through revalue(), which returns the cash-flow lens at AED 4.7840 rather than the published AED 4.4113, and therefore overstates the disagreement.",
+  "implied_terminal_growth_on_the_published_central": 0.0074578186247617265,
+  "implied_terminal_growth_on_the_published_central_frame_B": 0.003993413768620453,
+  "implied_terminal_growth_at_the_strike": 0.008524503117888362,
+  "study_terminal_growth": 0.015,
+  "house_AE_terminal_inflation": 0.02,
+  "implied_real_terminal_growth": -0.012296256250233562,
+  "study_real_terminal_growth": -0.004901960784313819,
+  "the_studys_own_published_reverse_valuation": {
+   "terminal_growth": -0.0025595825137578535,
+   "terminal_discount_rate": 0.08528680069131703,
+   "beta": 0.8579588580738686,
+   "note": "solved at the 7 August strike of AED 4.07 and against the cash-flow lens rather than the published centre, which is why these differ from the figures above"
+  },
+  "reading": "Solved against the answer a reader actually receives, AED 4.02 implies terminal growth of +0.746% nominal against this study's 1.50% — a real decline of 1.230% a year against the house terminal inflation of 2.00%, where the study's own figure is a real decline of 0.490%. Beside what the company has disclosed: retail volume grew 1.0% in the first half of 2026 and 6.7% in FY2025, the network grew 11.3%, and litres per station therefore FELL 9.3%. A market paying for a small real decline in a fuel retailer whose own throughput per site is falling is not paying for something implausible, so the disagreement is about the DEGREE of that decline rather than about whether the market has misread the business — and a reverse read landing on a believable number is evidence against a premium rather than for it."
+ },
+ "company_disclosed": {
+  "marginal_cost_of_debt_dirham_margin": 0.0508,
+  "marginal_cost_of_debt_dollar_margin": 0.0533,
+  "yield_on_the_committed_fixed_dividend_at_this_price": 0.05116915422885573,
+  "retail_volume_growth_h1_2026": 0.00976709241172058,
+  "retail_volume_growth_fy2025": 0.0669629915933907,
+  "network_growth_h1_2026": 0.11288604898828547,
+  "litres_per_station_growth_h1_2026": -0.09265904327788943,
+  "return_on_capital_fy2025_this_study_definition": 0.5438486806689132,
+  "note": "every figure here is the company's own disclosure, or an identity on two of them, taken from this study's own four-field input register — except the last, which is this study's own computation on its own definition and is labelled as such. The company's own disclosed return on capital employed of 32.7% for FY2025 and 40.1% for the first half of 2026 sits in the study's record as evidence inside an input's source rather than as a committed value of its own, so it is quoted in the judgement that turns on it and not recomputed here."
+ }
+}

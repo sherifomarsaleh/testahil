@@ -2628,6 +2628,8 @@
       "ic_replacement": null,
       "useful_life_years": 13.8,
       "useful_life_source": "Weighted useful life of the depreciable asset base, derived from the FY2024 audited consolidated statements' own composition: the estimated lives in note 3.1 \u2014 buildings and structures 50 years, production and service machines 15, means of transportation and tools 5, office furniture and equipment 10, land not depreciated \u2014 weighted by the gross cost by class in note 4.1 at 31 December 2024. Every life the company discloses is a single figure rather than a band, so the weighting is unambiguous. The depreciable base of EGP 2,701,916,171 foots to the note's stated total of 2,785,102,203 once land of 83,186,032 is excluded. Annual depreciation rates add rather than lives, so the weighted life is the reciprocal of the weighted rate.",
+      "average_age_years": null,
+      "average_age_source": "",
       "maintenance_basis": "book_dna_escalated",
       "maintenance_capex": null,
       "working_capital": 10966.738369083956,
@@ -2642,6 +2644,9 @@
      "nominal_growth": 0.07000000000000006,
      "real_growth": 0.0,
      "maintenance": 722.0382745017976,
+     "maintenance_age_years": 6.9,
+     "maintenance_age_basis": "half_of_life",
+     "maintenance_escalator": 1.594953647154412,
      "growth_capex": 0.0,
      "wc_charge": 767.671685835877,
      "dna_addback": 452.70172947659023,
@@ -2751,6 +2756,8 @@
       "ic_replacement": null,
       "useful_life_years": 13.8,
       "useful_life_source": "Weighted useful life of the depreciable asset base, derived from the FY2024 audited consolidated statements' own composition: the estimated lives in note 3.1 \u2014 buildings and structures 50 years, production and service machines 15, means of transportation and tools 5, office furniture and equipment 10, land not depreciated \u2014 weighted by the gross cost by class in note 4.1 at 31 December 2024. Every life the company discloses is a single figure rather than a band, so the weighting is unambiguous. The depreciable base of EGP 2,701,916,171 foots to the note's stated total of 2,785,102,203 once land of 83,186,032 is excluded. Annual depreciation rates add rather than lives, so the weighted life is the reciprocal of the weighted rate.",
+      "average_age_years": null,
+      "average_age_source": "",
       "maintenance_basis": "book_dna_escalated",
       "maintenance_capex": null,
       "working_capital": 10966.738369083956,
@@ -2765,6 +2772,9 @@
      "nominal_growth": 0.07000000000000006,
      "real_growth": 0.0,
      "maintenance": 722.0382745017976,
+     "maintenance_age_years": 6.9,
+     "maintenance_age_basis": "half_of_life",
+     "maintenance_escalator": 1.594953647154412,
      "growth_capex": 0.0,
      "wc_charge": 767.671685835877,
      "dna_addback": 452.70172947659023,
@@ -2891,6 +2901,33 @@
  },
  "spot": 127.3,
  "spot_date": "2026-09-03",
+ "forecast_anchor": {
+  "rate_name": "gross margin",
+  "latest_reviewed_period": "Q1-2026, reviewed interim",
+  "latest_reviewed_date": "2026-03-31",
+  "latest_reviewed_rate": 0.4239172741798317,
+  "first_forecast_rate": 0.3919194839995712,
+  "forecast_path": [
+   0.3919194839995712,
+   0.37281074173768786,
+   0.3686434684605034,
+   0.3675635924614397,
+   0.36460841955280077
+  ],
+  "mechanism": {
+   "name": "input_cost_outpacing_price",
+   "disclosure": "the audited FY2025 cost-of-sales note splits production cost by nature: raw materials 54.88%, packaging materials 24.56%, labour 9.77%, fuel, oils, electricity, water and lighting 3.42%, other consumables and services 5.71%, depreciation 1.66%. The raw-material leg is imported active pharmaceutical ingredient and part of the packaging leg is imported film, foil and closures, so on the study's registered import share of packaging 69.5% of the CASH cost stack -- those same lines excluding the depreciation shown above -- is priced abroad and reaches the income statement through the exchange rate, which the FY2025 foreign-currency note states at EGP 49.48 to the dollar on average during the period. The output price is not on the same clock: the domestic leg is administratively priced and moves in approved steps, and the export leg is set in dollars. The two legs separate visibly in the company's own filings twice over. In the reviewed first quarter of 2026 net sales rose 10.1% on the comparative quarter while cost of sales rose 16.8%. In the audited pair FY2024 to FY2025, on the pack counts the Board of Directors' report discloses, revenue per pack rose 7.17% against cost of sales per pack 8.87%, and the audited gross margin fell from 44.87% to 44.00%.",
+   "like_for_like": {
+    "measures": "cost of sales per unit of revenue, the reviewed first quarter of 2026 against the comparative quarter presented in the same filing",
+    "period_a": "Q1-2025, the comparative quarter (three months ended 31 March 2025)",
+    "value_a": 0.5429825966188163,
+    "period_b": "Q1-2026, reviewed (three months ended 31 March 2026)",
+    "value_b": 0.5760827258201683,
+    "higher_is_worse": true
+   }
+  },
+  "note": "BOTH CLAUSES FIRE AND THE RECORD SAYS SO. The forecast opens at 39.19% against a latest reviewed 42.39%, 3.20 points and 7.5% relatively below it, and then falls a further 7.0% relative from its own opening year to 36.46% in the final explicit year. The audited record is FY2023 44.64%, FY2024 44.87%, FY2025 44.00%; the reviewed first quarter of 2026 is 42.39% against a comparative quarter of 45.70%, so the company was already running below its audited years before the forecast starts. WHERE THE FALL SITS, against the audited base year: the cash cost stack goes from 55.01% of revenue to 58.55% and the production share of depreciation from 0.99% to 2.26%, so roughly three quarters of the 4.81-point fall is the cost stack and the rest is the new facility beginning to depreciate. THE COMMISSIONING STEP IS ALREADY PARTLY INSIDE THE ANCHOR and that is why it is not the mechanism named: the reviewed quarter carries depreciation and amortisation of 2.22% of revenue against 1.16% in the comparative quarter, the transfer out of construction arriving on the company's own schedule. WHAT THE FILINGS DO NOT ESTABLISH IS THE MAGNITUDE, and this record does not pretend otherwise. The direction agrees with the company's own accounts on both measured pairs, but the model opens a far wider wedge than the filings have ever shown: revenue per pack +7.30% against cost of sales per pack +16.52% in the first forecast year, against a filed FY2024-to-FY2025 pair of +7.17% and +8.87%. The domestic realised price is escalated at 5.0% in the first year against a house consumer-inflation ladder of 16.0%, and -15.9% cumulatively in real terms across the explicit window, while the domestic cost legs escalate on that same ladder and the labour and energy legs above it. The company's own filed domestic realised price per pack rose 12.59% in FY2025. A real price cut compounding for five years is a claim about the world; the filings give it a direction and they do not give it that size, and the input register's own justification for the path says price growth tracks domestic inflation with no real price gain, which these numbers are not. That is registered here rather than corrected, because this record is a measurement of what the model does and the correction is a rebuild."
+ },
  "lens_record": {
   "class": "pharmaceutical manufacturer, generic and branded",
   "primary": {
@@ -3692,6 +3729,8 @@
   "[Synthesis \u2014 one lens per frame, not a blend] the centre of each frame IS its own cash-flow read: Frame A 36.64, Frame B 54.24, against a 127.30 market price (-71.2% and -57.4%). The three lenses that do not turn on the contested judgement are published beside both and averaged into neither: Book value and sustainable return 43.91 \u00b7 Relative multiples 48.65 \u00b7 Normalised earnings power 56.78. The retired 50/20/15/15 blend read 42.92 and 51.72 \u2014 it pulled BOTH frames toward the same three shared numbers, which damps precisely the disagreement a two-sided answer exists to show, and its weights had never cleared an out-of-sample test. NORMALISED EARNINGS POWER, at 56.78, is computed and published and is NOT one of the lenses: the registry does not permit it for this class. The field across all five readings runs 36.64 to 56.78.",
   "",
   "[The crux] the base build charges the new biologicals facility's depreciation and its interest \u2014 both mechanical consequences of the company's own disclosed December-2025 licensing \u2014 but carries NO revenue line for it, because the company has published no volume, price or utilisation guidance for the plant. So the crux is not what the plant is worth; it is how much it must sell. Solving the same model for the market price: an additional EGP 7,983 million of revenue by FY2030E at a 45% contribution margin closes the gap from 36.64 to 127.30. That is 30% of FY2030E revenue, or about USD 114 million a year \u2014 1.14 times the USD 100 million the company says it invested in the plant. That number is observable: it is testable against the first year the company discloses biosimilar revenue.",
-  "  Two things that must be published for that hurdle to be auditable, and were not before. THE RAMP: the incremental revenue is not dropped into the final year, it is phased 0% / 10% / 30% / 60% / 100% across FY2026E-FY2030E, and the same total placed entirely in FY2030E would be a lower and easier hurdle. THE REINVESTMENT: the incremental revenue is charged capital expenditure at the same share of revenue as the existing business and working capital on the same day ratios, so it faces the identical reinvestment discipline. The earlier edition let it arrive free of both and published a hurdle of about USD 115 million; charged properly it is USD 114 million."
+  "  Two things that must be published for that hurdle to be auditable, and were not before. THE RAMP: the incremental revenue is not dropped into the final year, it is phased 0% / 10% / 30% / 60% / 100% across FY2026E-FY2030E, and the same total placed entirely in FY2030E would be a lower and easier hurdle. THE REINVESTMENT: the incremental revenue is charged capital expenditure at the same share of revenue as the existing business and working capital on the same day ratios, so it faces the identical reinvestment discipline. The earlier edition let it arrive free of both and published a hurdle of about USD 115 million; charged properly it is USD 114 million.",
+  "",
+  "[Forecast anchor] gross margin: latest reviewed period Q1-2026 at 42.39%, first forecast year 39.19%, -3.20 points and -7.5% relative. Path low 36.46%. Mechanism named: input cost outpacing price; measured cost per unit of revenue 0.5430 -> 0.5761 in the company's own quarter pair."
  ]
 }

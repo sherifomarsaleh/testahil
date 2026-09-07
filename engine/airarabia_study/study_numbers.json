@@ -690,6 +690,126 @@
    "date": "2026-05-13",
    "ring": "Company"
   },
+  "q126_rev": {
+   "value": 1800.435,
+   "source": "Revenue, three months ended 31 March 2026, Q1-2026 condensed consolidated interim financial information, limited review, Grant Thornton UAE, airarabia.com investor relations",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q126_dcost": {
+   "value": 1498.433,
+   "source": "Direct costs, same statement",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q126_ga": {
+   "value": 91.564,
+   "source": "Administrative and general expenses, same statement",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q126_sm": {
+   "value": 28.546,
+   "source": "Selling and marketing expenses, same statement",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q126_fininc": {
+   "value": 55.852,
+   "source": "Finance income, same statement",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q126_fincost": {
+   "value": 21.743,
+   "source": "Finance costs, same statement",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q126_assoc": {
+   "value": 13.614,
+   "source": "Share of profit on investments in associates and joint ventures, same statement",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q126_other": {
+   "value": 48.488,
+   "source": "Other income, net, same statement",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q126_pbt": {
+   "value": 278.103,
+   "source": "Profit for the period before tax, same statement",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q126_dna": {
+   "value": 166.805,
+   "source": "Depreciation and amortisation, three months ended 31 March 2026 \u2014 the interim statement of cash flows and the segment note of the same filing agree at 166,805 thousand, which is the same construction as the audited years' D&A already registered (FY2025: 621,798, segment note)",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q125_rev": {
+   "value": 1779.274,
+   "source": "Revenue, three months ended 31 March 2025 \u2014 the comparative column of Q1-2026 condensed consolidated interim financial information, limited review, Grant Thornton UAE, airarabia.com investor relations",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q125_dcost": {
+   "value": 1406.581,
+   "source": "Direct costs, same comparative column",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q125_ga": {
+   "value": 80.034,
+   "source": "Administrative and general expenses, same comparative column",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q125_sm": {
+   "value": 25.565,
+   "source": "Selling and marketing expenses, same comparative column",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q125_fininc": {
+   "value": 64.353,
+   "source": "Finance income, same comparative column",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q125_fincost": {
+   "value": 17.143,
+   "source": "Finance costs, same comparative column",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q125_assoc": {
+   "value": 6.855,
+   "source": "Share of profit on investments in associates and joint ventures, same comparative column",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q125_other": {
+   "value": 34.188,
+   "source": "Other income, net, same comparative column",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q125_pbt": {
+   "value": 355.347,
+   "source": "Profit for the period before tax, same comparative column",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q125_dna": {
+   "value": 147.84,
+   "source": "Depreciation and amortisation, same comparative column \u2014 cash-flow statement and segment note agree at 147,840 thousand",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
   "pax_hist": {
    "value": {
     "FY22": 8.36,
@@ -4676,6 +4796,33 @@
    }
   }
  },
+ "forecast_anchor": {
+  "rate_name": "EBITDA margin",
+  "latest_reviewed_period": "Q1-2026, limited review (three months ended 31 March 2026)",
+  "latest_reviewed_date": "2026-03-31",
+  "latest_reviewed_rate": 0.1936737510657147,
+  "first_forecast_rate": 0.2113056735177516,
+  "forecast_path": [
+   0.2113056735177516,
+   0.24331003054406675,
+   0.2344995653223234,
+   0.22699503859504241,
+   0.21896247403632585
+  ],
+  "mechanism": {
+   "name": "input_cost_outpacing_price",
+   "disclosure": "The forecast is built on units, so the margin is an output of two paths that are not the same rate. Revenue per passenger \u2014 the fare and the ancillary spend the company discloses \u2014 runs from AED 555.40 in FY2026 to AED 572.80 in FY2030, +3.13% over the window. The cost stack per passenger is escalated line by line on its own driver, and the disclosed non-fuel lines (staff, maintenance, landing and en-route, ground handling) run from AED 214.90 to AED 241.60, +12.42%, while the fuel line follows its own commodity path rather than any domestic index. That wedge is what carries the margin down from its FY2027 peak, and it is the same wedge the company has just printed.",
+   "like_for_like": {
+    "measures": "direct cost per unit of revenue, the two printed lines of the interim statement of profit or loss",
+    "period_a": "Q1-2025 (comparative column of the Q1-2026 interim)",
+    "value_a": 0.7905364772373451,
+    "period_b": "Q1-2026 (limited review)",
+    "value_b": 0.8322616478795403,
+    "higher_is_worse": true
+   }
+  },
+  "note": "NEITHER CLAUSE OF THIS RULE FIRES AND THE RECORD IS COMMITTED ANYWAY, so the shape is visible rather than merely not-red. The forecast opens at 21.13% against 19.37% in the three months to 31 March 2026 \u2014 +9.10% relative, ABOVE the latest reviewed period \u2014 and the path's minimum IS its opening year, so the decline clause has nothing to reach. WHAT A READER SHOULD SEE INSTEAD IS THE TWO THINGS THAT SIT EITHER SIDE OF IT. First, the same opening year is -13.00% relative BELOW the last AUDITED full year (FY2025 24.29%); the filed full-year record is FY2023 31.43%, FY2024 27.09%, FY2025 24.29%, falling every year, and the forecast opens below all three and recovers to 24.33% in FY2027 before falling again to 21.90% by FY2030. Second, a quarter is not a year: measured in this company's own filings the only pair available, Q1-2025 ran 23.32% against a FY2025 of 24.29%, i.e. -3.98% relatively below the full year it sits in, so the reviewed quarter is a slightly low-season anchor rather than a high one and the sign of the gap does not turn on it. The reviewed quarter is also where the compression is: Q1-2025 23.32% to Q1-2026 19.37%, -3.95 points in the same quarter a year apart, on passengers down 11% into the February-March 2026 regional airspace closures with revenue held +1%. THE MECHANISM BLOCK IS RECORDED VOLUNTARILY and is owed to nothing: it names and measures the wedge that carries the path down -10.01% from its FY2027 peak to FY2030, which this rule's decline clause \u2014 written against the opening year \u2014 does not test. Its like-for-like runs the way the mechanism claims: direct cost per unit of revenue rose from 79.054% to 83.226% in the same quarter a year apart, both lines printed in the same filing."
+ },
  "terminal_record": {
   "construction": "engine/terminal_value.py [R-TERM-01]",
   "retired_construction": {
@@ -5505,6 +5652,8 @@
   "[Forecast, unit build] passengers 12.85mn -> 13.95mn -> 15.15mn -> 16.35mn -> 17.55mn; revenue 7,869 -> 8,451 -> 9,257 -> 10,095 -> 10,952 (growth +1.0%, +7.4%, +9.5%, +9.0%, +8.5%)",
   "[Margins are OUTPUTS] EBITDA margin 21.1% -> 24.3% -> 23.4% -> 22.7% -> 21.9% (FY2025 actual 24.3%). The FY2026 compression is the fuel spike + flat traffic; FY2027 recovers on the EIA fuel path.",
   "[FY2026 cross-check against the print] Q1-2026 revenue 1,800.4 grossed up on Q1-2025's seasonal share of FY2025 implies 7,880; the build produces 7,869 (-0.1%).",
+  "[Latest reviewed period, footed] Q1-2026 revenue 1,800.435 less direct costs foots to the printed gross profit, and the statement foots to the printed profit before tax of 278.103; on this model's own construction the quarter's EBITDA is 348.697 and its EBITDA margin 19.3674% (Q1-2025 on the same lines: 23.3204%).",
+  "[R-ANCHOR-01] the forecast opens at 21.1306% against the reviewed quarter's 19.3674% \u2014 +1.7632%, +9.10% relative, ABOVE it, so no mechanism is owed. Against the last AUDITED year (24.2871%) the same opening year sits -13.00% relative BELOW, and the path's minimum IS its opening year, so the decline clause does not reach it either. The path falls -10.01% from its FY2027 peak, which is what the mechanism below is recorded for.",
   "[Leased-fleet charge \u2014 adopted from external critique] the forecast leased aircraft (9 of the 16 consolidated additions) are no longer acquired for free: their gross right-of-use inception value (175, 350, 350, 350, 350) is charged inside FCFF as leased capex \u2014 the 'firm buys all capacity with capital' convention, with the financing mix left to the WACC. The NPV-0-financing alternative (strip leased assets from invested capital, charge nothing) is worth ~+0.09/share and is noted, not adopted.",
   "[FCFF waterfall] NOPAT (on EBIT including the recurring fee/other-income line, at the 15% DMTT) 982, 1,255, 1,291, 1,341, 1,377; capex 2,000, 1,900, 1,900, 1,950, 2,000; working-capital release -151, +373, +516, +536, +549 -> FCFF -624, 187, 457, 557, 635.",
   "[Forecast net finance \u2014 rebuilt after critique] gross debt now ROLLS with the financing of the fleet (leases + aircraft loans - amortisation): 2,606 -> 2,586 -> 2,546 -> 2,636 -> 2,706; finance costs at the booked blended rate 84, 86, 90, 93, 99 (no hardcoded factor); finance income 213, 118, 70, 34, 4. BOTH financing legs are tax-effected in the net-debt roll; the JV/associate share sits BELOW the tax line (equity-method income arrives net of the ventures' own tax). Attributable profit 1,286, 1,511, 1,544, 1,600, 1,643; EPS 0.276, 0.324, 0.331, 0.343, 0.352; DPS floored at 30 fils throughout \u2014 the dividend ladder holds in the base case by construction, funded by net cash in the dip year.",

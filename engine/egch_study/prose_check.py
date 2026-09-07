@@ -15,6 +15,42 @@ HERE = os.path.dirname(os.path.abspath(__file__)); os.chdir(HERE)
 DOCS = ['EGCH_Valuation_Study_05-09-2026.docx', 'EGCH_Bibliography_05-09-2026.docx']
 
 
+def latest_ddmmyyyy(pat):
+    """The workbook names its edition DDMMYYYY with no separators, so the date is PARSED
+    rather than the filenames sorted as text — 03092026 sorts below 09082026 as a string and
+    a text sort silently picks a superseded edition [L-067]. Copied from the ADNOCLS resolver."""
+    c = []
+    for f in os.listdir('.'):
+        if re.match(pat, f) and not f.startswith('~$'):
+            m = re.findall(r'_(\d{2})(\d{2})(\d{4})\.', f)
+            c.append(((m[-1][2] + m[-1][1] + m[-1][0]) if m else '', f))
+    return sorted(c)[-1][1] if c else None
+
+
+# THE WORKBOOK IS A DELIVERED DOCUMENT AND WAS IN NO STUDY'S POPULATION IN THE BOOK [L-350].
+# A reader receives three files and this list named two, so the third was read by nothing.
+# Only STRING cells are read: a numeric cell is a model output the recalculation already
+# reconciles, and a numeral inside a label, caption or source note is prose that happens to
+# live in a spreadsheet — the shape this check exists for. Formulas are skipped for the same
+# reason. [EXTENDED 05-Sep-2026]
+_WB = latest_ddmmyyyy(r'^EGCH_Valuation_Model_\d{8}\.xlsx$')
+if _WB:
+    DOCS.append(_WB)
+
+
+def _xlsx_texts(path):
+    import openpyxl
+    wb = openpyxl.load_workbook(path, data_only=False, read_only=True)
+    out = []
+    for ws in wb.worksheets:
+        for row in ws.iter_rows(values_only=True):
+            for v in row:
+                if isinstance(v, str) and not v.startswith('='):
+                    out.append(v)
+    wb.close()
+    return out
+
+
 def walk(x, out):
     if isinstance(x, dict):
         for v in x.values(): walk(v, out)
@@ -97,7 +133,21 @@ for _row in (_sn.get('cases', {}).get('base', {}).get('rows') or []):
 RENDER = set()
 for v in vals:
     for x in (v, 1 - v, v - 1, -v, 100 * v, 100 * (1 - v), 100 * (v - 1), v / 100):
-        for d in (0, 1, 2, 3):
+        # FOUR DECIMALS, NOT THREE, and the reason is not this study's to discover: the
+        # SHARED instrument settled it and wrote down why — a rendering set must reach as
+        # far as the widest format any builder uses, and a three-decimal set reports a
+        # study's own correct four-decimal figure as unmatched. This set was one decimal
+        # short of the module for four days and it cost a real finding: the delivered
+        # workbook prints a superseded premium at 9.4247%, the numbers file now carries
+        # 0.094247, and the two did not meet.
+        #
+        # THIS IS THE ARGUMENT FOR THE SHARED INSTRUMENT, MADE BY THE STUDY THAT WROTE THE
+        # LOCAL ONE. This check is the book's original and every widening the module has
+        # learned since — four decimals, pairwise panel ratios, distances against the
+        # technical read's own close — was taught to the module by a false positive
+        # somewhere else, and none of them reached back here. A shared instrument beats a
+        # good local one even when the local one is better written [L-084].
+        for d in (0, 1, 2, 3, 4):
             RENDER.add(round(x, d))
 # structural constants a reader sees that are not model outputs
 for x in (0, 5, 10, 15, 20, 25, 50, 80, 90, 95, 100, 22.5, 2.4, 3.95, 4.75, 9.5, 12.5, 6.5, 7.5, 0.5, 1.0, 1.5):
@@ -107,15 +157,18 @@ for x in (0, 5, 10, 15, 20, 25, 50, 80, 90, 95, 100, 22.5, 2.4, 3.95, 4.75, 9.5,
 NUM = re.compile(r"(?<![\w.])(-?\d{1,3}(?:,\d{3})*(?:\.\d+)?|-?\d+(?:\.\d+)?)\s*(per cent|%|x\b|times)")
 problems, checked = [], 0
 for f in DOCS:
-    d = Document(f)
-    texts = [p.text for p in d.paragraphs]
-    for t in d.tables:
-        hdr = [c.text.strip() for c in t.rows[0].cells]
-        if hdr == ["Input", "Value", "Unit", "Date", "Source and construction"]:
-            continue      # the input register printed verbatim: the source of truth, not a claim about it
-        for row in t.rows:
-            for c in row.cells:
-                texts.append(c.text)
+    if f.lower().endswith(('.xlsx', '.xlsm')):
+        texts = _xlsx_texts(f)
+    else:
+        d = Document(f)
+        texts = [p.text for p in d.paragraphs]
+        for t in d.tables:
+            hdr = [c.text.strip() for c in t.rows[0].cells]
+            if hdr == ["Input", "Value", "Unit", "Date", "Source and construction"]:
+                continue      # the input register printed verbatim: the source of truth, not a claim about it
+            for row in t.rows:
+                for c in row.cells:
+                    texts.append(c.text)
     for txt in texts:
         for m in NUM.finditer(txt):
             raw = m.group(1).replace(',', '')
@@ -124,7 +177,7 @@ for f in DOCS:
             checked += 1
             if round(v, dec) not in RENDER and round(v, dec) not in {round(y, dec) for y in RENDER}:
                 problems.append(f"{f}: '{m.group(0)}' in: …{txt[max(0, m.start()-60):m.end()+40]}…")
-print(f"prose figures checked: {checked}; unmatched: {len(problems)}; register inputs consumed by a builder: "
+print(f"prose figures checked: {checked} across {len(DOCS)} document(s) {DOCS}; unmatched: {len(problems)}; register inputs consumed by a builder: "
       f"{len(_CONSUMED & set(_IR))} of {len(_IR)}; not consumed by any builder: {len(_UNCONSUMED)} (listed in prose_check_result.json)")
 for p in problems:
     print("  !", p)

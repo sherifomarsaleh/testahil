@@ -13,6 +13,13 @@ a central 28% below a market its own cash-flow lens sat within 2.2% of.
 import json, os, shutil, subprocess, sys, tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# THIS FIXTURE SUPPLIES ITS OWN POPULATION [06-09-2026]. The gate resolves the
+# book through engine/study_population.py; this control runs it against a
+# sandboxed tree holding studies it planted, which is the point of the control.
+# The escape is explicit and the gate PRINTS that it took it, so a fixture
+# population can never be mistaken for the real one.
+_FIXTURE_ENV = dict(os.environ, TESTAHIL_FIXTURE_POPULATION='1')
+
 GATE = os.path.join("scripts", "check_lens_design.py")
 
 GOOD = {
@@ -48,7 +55,7 @@ def sandbox():
     return tmp
 
 
-def put_study(tmp, ticker, record, raw=None):
+def put_study(tmp, ticker, record, raw=None, extra=None):
     d = os.path.join(tmp, "engine", "%s_study" % ticker.lower())
     os.makedirs(d, exist_ok=True)
     p = os.path.join(d, "study_numbers.json")
@@ -57,6 +64,11 @@ def put_study(tmp, ticker, record, raw=None):
     doc = {"meta": {"ticker": ticker}}
     if record is not None:
         doc["lens_record"] = record
+    # `extra` puts DOCUMENT-level keys beside the record — central_two_sided above
+    # all — because the branch-wise identity clause is the one test that needs both
+    # halves, and a fixture carrying only the record cannot express its failure.
+    if extra:
+        doc.update(extra)
     json.dump(doc, open(p, "w"), indent=1)
 
 
@@ -71,7 +83,8 @@ def case(name, build, expect_red, results):
     tmp = sandbox()
     try:
         build(tmp)
-        r = subprocess.run([sys.executable, GATE], cwd=tmp, capture_output=True, text=True)
+        r = subprocess.run([sys.executable, GATE], cwd=tmp, capture_output=True, text=True,
+                       env=_FIXTURE_ENV)
         out = (r.stdout + r.stderr).strip()
         red = r.returncode != 0
         ok = red == expect_red
@@ -201,7 +214,94 @@ def main():
         put_list(tmp, ["GHOST"])
     case("13 empty population", b_empty, True, results)
 
+    # ---- TWO-SIDED, added 06-09-2026 with the branch-wise identity clause -----
+    # The clause it replaces was firing on work that was right: a study forbidden to
+    # average its two framings has no scalar central, and demanding one demanded the
+    # midpoint the dual-framing rule prohibits. These cases exist to prove the
+    # replacement is HARDER, not looser — the flag must not become an opt-out.
+    def _two_sided(branch_a=10.0, branch_b=14.0, **over):
+        rec = json.loads(json.dumps(GOOD))
+        rec.pop("central", None)
+        rec["primary"].pop("value", None)
+        rec["primary"]["two_sided"] = True
+        rec["primary"]["branches"] = [
+            {"label": "Frame A — the charge persists", "value": branch_a},
+            {"label": "Frame B — the charge normalises", "value": branch_b}]
+        # the range and the envelope move WITH the branches, and range_basis is kept
+        # from GOOD: a fixture that drops an unrelated required field tests that field
+        # rather than the clause it was written for, and would report the clean case
+        # red for the wrong reason [R-ENF-07]
+        lo, hi = min(branch_a, branch_b), max(branch_a, branch_b)
+        rec["primary"]["range"] = {"low": lo, "high": hi}
+        # a range needs its origin declared whatever else is true of the record, so the
+        # fixture supplies one — otherwise the clean case goes red on range_basis and
+        # proves nothing about the clause it was written for
+        rec["primary"]["range_basis"] = {
+            "driver": "the provision charge, across the two framings the filings support",
+            "evidence": "the two framings are the company's own disclosed charge and its "
+                        "own five-year average; nothing between them is invented",
+            "low": lo, "high": hi, "macro_held": True}
+        if isinstance(rec.get("envelope"), dict):
+            rec["envelope"] = {"low": lo, "high": hi}
+        rec["primary"].update(over)
+        return rec
+
+    def _published(a=10.0, b=14.0):
+        return {"central_two_sided": {"branches": [
+            {"label": "Frame A — the charge persists", "value": a},
+            {"label": "Frame B — the charge normalises", "value": b}]}}
+
+    def b_ts_no_branches(tmp):
+        rec = _two_sided(); rec["primary"]["branches"] = []
+        put_study(tmp, "NCL", rec, extra=_published()); put_list(tmp, [])
+    case("14 two_sided declared with NO branches — the opt-out", b_ts_no_branches, True, results)
+
+    def b_ts_mismatch(tmp):
+        put_study(tmp, "NCL", _two_sided(10.0, 14.0),
+                  extra=_published(10.0, 19.0)); put_list(tmp, [])
+    case("15 record's branches are not the branches published", b_ts_mismatch, True, results)
+
+    def b_ts_scalar(tmp):
+        rec = _two_sided(); rec["primary"]["value"] = 10.0
+        put_study(tmp, "NCL", rec, extra=_published()); put_list(tmp, [])
+    case("16 two_sided AND a scalar value beside the branches", b_ts_scalar, True, results)
+
+    def b_ts_central(tmp):
+        rec = _two_sided(); rec["central"] = 12.0
+        put_study(tmp, "NCL", rec, extra=_published()); put_list(tmp, [])
+    case("17 two_sided AND a record central — the midpoint by the back door",
+         b_ts_central, True, results)
+
+    def b_ts_identical(tmp):
+        put_study(tmp, "NCL", _two_sided(10.0, 10.0),
+                  extra=_published(10.0, 10.0)); put_list(tmp, [])
+    case("18 two branches carrying the same value", b_ts_identical, True, results)
+
+    def b_ts_unlabelled(tmp):
+        rec = _two_sided(); rec["primary"]["branches"][1]["label"] = "  "
+        put_study(tmp, "NCL", rec, extra=_published()); put_list(tmp, [])
+    case("19 a branch with no label", b_ts_unlabelled, True, results)
+
+    def b_ts_range_excludes(tmp):
+        rec = _two_sided(10.0, 14.0)
+        rec["primary"]["range"] = {"low": 10.5, "high": 13.0}
+        put_study(tmp, "NCL", rec, extra=_published()); put_list(tmp, [])
+    case("21 the primary's range does not contain its own branches",
+         b_ts_range_excludes, True, results)
+
+    def b_pub_ts_rec_single(tmp):
+        # BOROUGE exactly as it shipped: the document publishes two branches and the
+        # record names ONE of them as the answer. Caught live, on no ratchet.
+        put_study(tmp, "NCL", GOOD, extra=_published()); put_list(tmp, [])
+    case("20 study publishes two branches, record declares a single-sided primary",
+         b_pub_ts_rec_single, True, results)
+
     # ---- clean ------------------------------------------------------------
+    def c_two_sided(tmp):
+        put_study(tmp, "NCL", _two_sided(), extra=_published()); put_list(tmp, [])
+    case("clean: a two-sided record whose branches ARE the published branches",
+         c_two_sided, False, results)
+
     def c_good(tmp):
         put_study(tmp, "NCL", GOOD); put_list(tmp, [])
     case("clean: primary central, cross-checks", c_good, False, results)

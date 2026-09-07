@@ -1,0 +1,88 @@
+{
+  "_rule": "R-TERM-01 — a terminal's maintenance capital rests on a DISCLOSED useful life. A life this desk chooses is not a disclosed life (SIGCM clause 1), and engine/terminal_value.py refuses one without a source.",
+  "_source": "EIPICO (PHAR) FY2024 audited consolidated financial statements, note 3.1 'Fixed assets and depreciation', under the sub-heading 'Depreciation': 'The depreciable fixed asset value - which is the cost of the asset minus its residual value, is depreciated according to the straight-line method over the estimated useful life of each type of fixed asset, and the depreciation is charged to the profit or loss statement (land is not depreciated) and the following is a statement of ages Estimated productivity:', followed by the table of estimated lives. Composition from note 4.1, 'The balance of fixed assets (net) as of December 31, 2024'.",
+  "_file": "engine/phar_study/source_FY2024_audited_consolidated.pdf",
+  "_route": "TEXT LAYER (pdftotext -layout), 81,062 characters over 42 pages — unlike the ARCC precedent this filing carries a usable text layer. ARITHMETIC IS THE ARBITER: the property, plant and equipment note DOES NOT FOOT in three places, so the note pages were re-read OFF THE RENDERED PIXELS — pdftoppm -r 300 -gray on pdf pages 12, 27 and 28, the PNGs then read directly at magnification. The pixels CONFIRM the text layer figure for figure, including the two cells that do not foot, so the extraction is faithful and the arithmetic defect is the filing's own. THE ROUTE IS RECORDED EXACTLY: tesseract was also run over the same PNGs and RETURNED AN EMPTY FILE at exit 0; an empty result is not a clean result [R-ENF-04], so it is recorded as attempted-and-failed and is NOT cited as corroboration. What confirms the figures is the direct read of the rendered image.",
+  "_extracted": "2026-09-06",
+
+  "disclosed_lives_years": {
+    "Administration Buildings & Structures": 50,
+    "Factory Buildings & Structures": 50,
+    "Production activity machines": 15,
+    "Service Machines & Utilities": 15,
+    "Means of Transportation": 5,
+    "Tools": 5,
+    "Office Furniture & Equipment": 10,
+    "_note": "EVERY LIFE IS A SINGLE FIGURE, not a band. That is unusual and it is what makes the weighting unambiguous — there is no range out of which this desk could pick a figure under cover of a citation."
+  },
+
+  "policy_to_note_mapping": {
+    "_why_it_is_clean": "The policy note names SEVEN classes; the property, plant and equipment note carries SIX depreciable columns plus land. The seven collapse onto the six with NO ambiguity, because each merging pair carries the SAME disclosed life: Administration and Factory buildings are BOTH 50, and Production activity machines and Service machines & utilities are BOTH 15. Had either pair disclosed different lives the split would be undisclosed and this would be a refusal.",
+    "Buildings": ["Administration Buildings & Structures", "Factory Buildings & Structures"],
+    "Machines and equipment": ["Production activity machines", "Service Machines & Utilities"],
+    "Transportation and vehicles": ["Means of Transportation"],
+    "Tools & equipment's": ["Tools"],
+    "Furniture": ["Office Furniture & Equipment"],
+    "Land": "not depreciated, excluded from the depreciable base"
+  },
+
+  "composition_note_4_1_31_12_2024": {
+    "_basis": "GROSS COST by class, which is the base book depreciation is struck on.",
+    "gross_cost_egp": {
+      "Land": 83186032,
+      "Buildings": 543426318,
+      "Machines and equipment": 1701915589,
+      "Transportation and vehicles": 107581637,
+      "Tools & equipment's": 151105707,
+      "Furniture": 197886920,
+      "Total": 2785102203
+    },
+    "net_book_value_egp": {
+      "Land": 83186032,
+      "Buildings": 260424300,
+      "Machines and equipment": 558345774,
+      "Transportation and vehicles": 12066431,
+      "Tools & equipment's": 55208264,
+      "Furniture": 75999706,
+      "Total": 1045230507
+    },
+    "depreciable_gross_cost_egp": 2701916171,
+    "foots": "2,701,916,171 + land 83,186,032 = 2,785,102,203, the note's own stated total, exactly."
+  },
+
+  "adopted_for_terminal": {
+    "years": 13.7954,
+    "rounded": 13.8,
+    "basis": "gross-cost-weighted harmonic mean of the disclosed class lives",
+    "construction": "RATES ADD, LIVES DO NOT. The straight-line charge on a class is cost/life, so the life that reproduces the accounts' own arithmetic on the whole base is the reciprocal of the weighted rate: L = SUM(cost_i) / SUM(cost_i / life_i) = 2,701,916,171 / 195,855,726 = 13.7954 years. Weighting the LIVES arithmetically instead gives 20.7158 years — 50.2% too long, which would under-charge maintenance by a third.",
+    "why_gross_cost_and_not_carrying_amount": "The same weighting on NET BOOK VALUE gives 15.1535 years, 9.8% longer, and it is NOT adopted. Net book value measures how much of an asset has already been consumed, not the rate at which it is consumed: a fully depreciated machine still in service still has to be replaced, and net-book weighting gives it zero weight. Because the short-lived classes are the most depreciated here (transportation is 89% written down), net-book weighting systematically lengthens the life and under-charges maintenance. The figure is recorded as a labelled cross-check.",
+    "cross_check_prior_year": "The FY2023 composition — from BOTH the FY2024 filing's comparative note 4.2 and the FY2023 standalone filing's own note 4, which agree class by class — weights to 14.2840 years on identical disclosed lives. Year on year the life shortens 3.5%, entirely from mix: the FY2024 additions are 89.2mn of machines (15 yrs), 44.3mn of tools (5 yrs) and 42.6mn of furniture (10 yrs) against 0.6mn of buildings (50 yrs). The FY2023 STANDALONE filing carries the IDENTICAL table of lives, so no life was reassessed between the two years.",
+    "what_would_overturn_it": "a reassessment of any disclosed life (note 3.1 states they are reviewed at each period end and adjusted if necessary, and no change was made between FY2023 and FY2024); a later filing disclosing a different class composition; or disclosure of the residual values, which would let the depreciable amount be weighted directly rather than cost."
+  },
+
+  "footing_failures_found": {
+    "_discipline": "ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE. Three checks fail. All three sit in ACCUMULATED DEPRECIATION; every COST row foots exactly and ties across years, and cost is the only base the weighting uses.",
+    "1_note_4_1_transportation_accdep_roll_forward": "92,956,988 + 2,615,683 - 57,456 = 95,515,215 against a stated 95,515,206, out by +9. The stated close is the figure the net-book row uses and the figure the column total foots to, so the defective cell is the disposals figure: 57,465 would make both the column and the row foot. A 56/65 transposition in the filing.",
+    "2_note_4_1_accdep_of_disposals_row": "57,282 + 57,456 + 342,014 + 501,160 = 957,912 against a stated 957,921, out by +9 — the SAME nine, from the same cell.",
+    "3_note_4_2_accdep_at_31_12_2023": "the columns sum to 1,645,282,546 against a stated 1,645,282,556, out by +10. THE CORRECT FIGURE IS CONFIRMED THREE WAYS: the columns' own sum; the FY2024 note's own opening balance at 1/1/2024, which reads 1,645,282,546; and the FY2023 STANDALONE filing, whose note 4 states 1,645,282,546 and foots with ZERO failures across every row and column. The +10 is a transcription error in the FY2024 comparative.",
+    "consequence_for_this_life": "NONE. The weighting reads gross cost only, and every gross-cost row foots in both filings and ties 31/12/2023 to 1/1/2024 exactly."
+  },
+
+  "measured_age_route_REFUSED": {
+    "_what_was_declined": "engine/terminal_value.py permits maintenance on `book_dna_escalated` to escalate over a MEASURED average age — accumulated depreciation over the year's own charge — instead of half the useful life. On PHAR that age computes to 1,739,871,696 / 95,547,071 = 18.21 years against a half-life of 6.90.",
+    "why_it_is_refused": "THE POLICY NOTE SETTLES IT, NOT THE ARITHMETIC. Note 3.1 states in terms that 'The depreciable fixed asset value - which is the cost of the asset minus its residual value' is what is depreciated. That is condition (i) in terminal_value.py: where assets are depreciated to a residual value the charge is (cost - residual)/life, so the same accumulated balance buys more years and the ratio OVERSTATES the age. This is the SAVOLA and EMPOWER condition exactly, and PHAR fails it on the same words.",
+    "the_arithmetic_corroborates_here": "Unlike SAVOLA, where only the note caught it, the cheap cross-check also fires: the identity-implied life (depreciable gross cost 2,701,916,171 over the year's charge of 95,547,071) is 28.28 years against the 13.7954 the disclosed class rates weight to — a divergence of +105%. The accounts are saying outright that the charge is not cost/life on this base. Residual values and a substantially fully-depreciated base (transportation 89% written down, machines 67%) both push the same way.",
+    "what_declining_it_is_worth": "At the house terminal inflation of 7% the escalator would move from 1.5947 to 3.4282 and terminal maintenance from EGP 722.0mn to 1,551.9mn, taking the terminal value DOWN 55.0% on frame A (20,109.0 -> 9,048.8) and 43.1% on frame B (25,691.4 -> 14,631.1). A material figure declined on the company's own disclosure rather than on preference.",
+    "conditions_ii_and_iii_do_not_bite": "No life was reassessed — the FY2023 and FY2024 filings carry an identical table. No business combination — the cost roll-forward carries only additions and disposals, with no acquired column."
+  },
+
+  "what_this_pass_priced": {
+    "_scope": "NO PUBLISHED NUMBER MOVES. The study's committed terminal is already built through terminal_value.py at a life of 13.8; this pass sources that life independently from the filings and prices the difference.",
+    "committed_life": 13.8,
+    "independently_sourced_life": 13.7954,
+    "terminal_at_committed_life": {"frame_A": 20108.9880, "frame_B": 25691.3655},
+    "terminal_at_sourced_life": {"frame_A": 20110.4854, "frame_B": 25692.8628},
+    "effect": "+0.0074% frame A, +0.0058% frame B — immaterial. The committed life reproduces from the filings and is confirmed.",
+    "units": "EGP millions"
+  }
+}

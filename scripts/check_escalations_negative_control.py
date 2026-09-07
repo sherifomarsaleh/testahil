@@ -44,25 +44,53 @@ GOOD = {
     "default_if_no_answer": "drop the period and shorten the window",
     "default_date": "2099-01-01",
     "status": "open",
-    "resolves_when": {"file": "engine/escalations.json",
+    # THE FIXTURE NAMES A PATH THAT DOES NOT EXIST, AND THAT IS THE POINT. It first
+    # named engine/escalations.json, so the clean cases depended on the repository's
+    # own history never containing a string this file defines — and the moment the
+    # fixture leaked into a commit (07-09-2026) the marker WAS on HEAD, the gate read
+    # the escalation as already answered, and two clean cases went red for a reason
+    # that had nothing to do with what they test. A control whose cases can be
+    # poisoned by its own fixture escaping is a control that breaks exactly when
+    # something has gone wrong. An answer not yet written down is also the honest
+    # shape of an OPEN escalation: the artefact that would carry it does not exist.
+    "resolves_when": {"file": "engine/nc_fixture_answer_not_yet_written.md",
                       "must_contain": "NC-marker-that-does-not-appear"},
 }
 
 
 def run(entries) -> tuple:
-    """Run the gate against a temporary register, restoring the real one after."""
-    backup = tempfile.mktemp(suffix=".json")
-    shutil.copy(REG, backup)
+    """Run the gate against a fixture register. THE REAL ONE IS NEVER WRITTEN.
+
+    This function used to write the fixture INTO engine/escalations.json and copy a
+    backup over it in a `finally` — a negative control that mutates the record it
+    exists to protect, and the only one in this repository shaped that way. A restore
+    in a `finally` survives an exception and does not survive a kill, a timeout or a
+    machine going away; on 07-09-2026 one did not run and the fixture was committed,
+    replacing THIRTEEN real escalations with one called NC-example. The register is
+    the artefact that stops a question being asked twice, so losing it costs exactly
+    what [R-IND-01] was adopted to prevent.
+
+    The gate now reads TESTAHIL_ESCALATIONS_REGISTER where it is set, so the fixture
+    lives in a temp file and the real file is never opened for writing at all. Its
+    git-backed ref search still runs against the real repository, which is what makes
+    the cases about answers already present on a live ref meaningful.
+    """
+    fd, path = tempfile.mkstemp(suffix=".json", prefix="esc-nc-")
+    os.close(fd)
     try:
         json.dump({"_": "negative control", "entries": entries},
-                  open(REG, "w", encoding="utf-8"), indent=1)
+                  open(path, "w", encoding="utf-8"), indent=1)
+        env = dict(os.environ, TESTAHIL_ESCALATIONS_REGISTER=path)
+        before = open(REG, "rb").read()
         r = subprocess.run([sys.executable, GATE], cwd=ROOT,
-                           capture_output=True, text=True, timeout=600)
+                           capture_output=True, text=True, timeout=600, env=env)
+        # THE CONTROL PROVES ITS OWN CONTAINMENT, every case, not once.
+        assert open(REG, "rb").read() == before, (
+            "the negative control modified engine/escalations.json")
         tail = (r.stdout + r.stderr).strip().splitlines()
         return r.returncode, (tail[-1] if tail else "")
     finally:
-        shutil.copy(backup, REG)
-        os.unlink(backup)
+        os.unlink(path)
 
 
 def case(name, entries, expect_red, results):

@@ -2917,5 +2917,162 @@
    "bull": "A daily close back above 26.29 would clear the nearest resistance and open the 27.98 zone.",
    "bear": "A close below 24.90 would break the nearest support and open the 22.59 zone."
   }
+ },
+ "forecast_anchor": {
+  "rate_name": "EBITDA margin",
+  "latest_reviewed_period": "H1-2026, six months ended 30 June 2026, reviewed interim",
+  "latest_reviewed_date": "2026-06-30",
+  "latest_reviewed_rate": 0.0941581113121442,
+  "first_forecast_rate": 0.08836891668544662,
+  "forecast_path": [
+   0.08836891668544662,
+   0.08762397924431711,
+   0.08730151074976557,
+   0.08722122134063835,
+   0.08716923346004277
+  ],
+  "mechanism": {
+   "name": "input_cost_outpacing_price",
+   "disclosure": "the Q2-2026 investor presentation states under Operating Environment: \"Despite supply-chain disruptions, timely sourcing and commercial actions supported a stronger-than-expected Q2 performance. Some replacement-cost pressure is expected to continue through Q3 and Q4, but remains manageable within the Group's ongoing pricing, procurement and cost-efficiency measures.\" The same disclosure is what the study's oil GP/tonne driver cites for setting FY2026E at 740 against an H1-2026 realised 762, and the FAO vegetable-oil index reading it names beside it. The company is an edible-oil and sugar refiner buying globally-priced soft commodities and selling into administered and competitive domestic retail, so the replacement cost of the input moves ahead of the realised output price by construction of the working-capital cycle.",
+   "like_for_like": {
+    "measures": "cost of revenues per unit of revenue, six months ended 30 June, both columns of the reviewed interim statement",
+    "period_a": "H1-2025",
+    "value_a": 0.8036334915286166,
+    "period_b": "H1-2026",
+    "value_b": 0.8067742981979441,
+    "higher_is_worse": true
+   },
+   "source": "Company Q2-2026 investor presentation, savola.com, Aug-2026 (COMPANY_IR); Reviewed interim condensed consolidated FS, three and six months ended 30-Jun-2026, savola.com/en/investors/financial-statements, interim condensed consolidated statement of profit or loss (page 4) and statement of cash flows (page 8)"
+  },
+  "note": "MEASURED, NOT ASSERTED, AND THE QUALIFICATIONS ARE PART OF THE RECORD. The rate is the group EBITDA margin on this model's own definition -- ex share of associates, ex net impairment on financial assets, D&A added back -- rebuilt for the reviewed half line by line off the interim statement, which reproduces its own results-from-operating-activities line to the riyal in both columns. On that basis the half ran 9.4158%. The company's own release quotes 9.6850% for the same half on a basis that includes the SAR 34.241mn associate share; the like-for-like figure is used because it is the one the forecast is comparable to, and because it makes the gap smaller rather than larger. The audited FY2025 year ran 9.0140%, against which the forecast opens only 1.96% relatively low and nothing would fire -- the stale full-year rate is the flattering comparison, which is the reason this rule names the reviewed one. WHERE THE CLAIM ACTUALLY SITS: the first forecast year already contains the filed half, so the step is entirely in the half not yet filed. The implied second half is 8.2530% against the company's own filed second half of 8.9499% a year earlier -- 7.79% relatively below -- while the half the study does hold came in ABOVE its own prior-year half, 9.4158% against 9.0776%. SIZE IS NOT DIRECTION AND THE RECORD SAYS SO: the measured input-cost drift is 0.3141 points of revenue over the year pair, and the forecast asks 0.5789 points off the annual margin relative to the reviewed half. The mechanism carries the sign and part of the magnitude, not all of it. AND THE MEASURE IS THE MECHANISM'S, NOT THE RATE'S: gross margin did fall year on year in the half (19.6367% to 19.3226%), which is what the mechanism claims, while the EBITDA margin ROSE over the same pair because selling and administrative costs fell on higher revenue. A reader is owed both. The disclosure is management's own forward statement and this house scores guidance rather than consuming it; it is admitted here because it warns of cost pressure rather than promising performance, and because the filings measure the same direction independently -- but the same sentence calls the pressure \"manageable\", and an implied second half 7.79% below the company's own prior second half is a stronger claim than that word supports. The path clause does not fire: the forecast falls only 1.36% relative from its opening year across the explicit window (8.8369% to 8.7169%), so the opening step is the whole of it.",
+  "basis_inputs": {
+   "definition": "rev - cogs - selling and distribution - administrative + other operating income, net + depreciation and amortisation; associates and the net impairment on financial assets excluded, matching the construction the study uses for FY2023-FY2025",
+   "h1_2026": {
+    "rev": {
+     "value": 13587592,
+     "source": "Reviewed interim condensed consolidated FS, three and six months ended 30-Jun-2026, savola.com/en/investors/financial-statements, interim condensed consolidated statement of profit or loss (page 4) and statement of cash flows (page 8): revenues, six months ended 30-Jun-2026",
+     "date": "2026-08-05",
+     "ring": "Company"
+    },
+    "cogs": {
+     "value": 10962120,
+     "source": "Reviewed interim condensed consolidated FS, three and six months ended 30-Jun-2026, savola.com/en/investors/financial-statements, interim condensed consolidated statement of profit or loss (page 4) and statement of cash flows (page 8): cost of revenues",
+     "date": "2026-08-05",
+     "ring": "Company"
+    },
+    "sda": {
+     "value": 1586123,
+     "source": "Reviewed interim condensed consolidated FS, three and six months ended 30-Jun-2026, savola.com/en/investors/financial-statements, interim condensed consolidated statement of profit or loss (page 4) and statement of cash flows (page 8): selling and distribution expenses",
+     "date": "2026-08-05",
+     "ring": "Company"
+    },
+    "adm": {
+     "value": 394059,
+     "source": "Reviewed interim condensed consolidated FS, three and six months ended 30-Jun-2026, savola.com/en/investors/financial-statements, interim condensed consolidated statement of profit or loss (page 4) and statement of cash flows (page 8): administrative expenses",
+     "date": "2026-08-05",
+     "ring": "Company"
+    },
+    "oth": {
+     "value": 26420,
+     "source": "Reviewed interim condensed consolidated FS, three and six months ended 30-Jun-2026, savola.com/en/investors/financial-statements, interim condensed consolidated statement of profit or loss (page 4) and statement of cash flows (page 8): other operating income, net",
+     "date": "2026-08-05",
+     "ring": "Company"
+    },
+    "dna": {
+     "value": 607672,
+     "source": "Reviewed interim condensed consolidated FS, three and six months ended 30-Jun-2026, savola.com/en/investors/financial-statements, interim condensed consolidated statement of profit or loss (page 4) and statement of cash flows (page 8): depreciation and amortisation, cash-flow statement (segment note 14 foots to the same figure)",
+     "date": "2026-08-05",
+     "ring": "Company"
+    },
+    "imp": {
+     "value": 9914,
+     "source": "Reviewed interim condensed consolidated FS, three and six months ended 30-Jun-2026, savola.com/en/investors/financial-statements, interim condensed consolidated statement of profit or loss (page 4) and statement of cash flows (page 8): net impairment loss on financial assets -- excluded, as in the filed years",
+     "date": "2026-08-05",
+     "ring": "Company"
+    },
+    "assoc": {
+     "value": 34241,
+     "source": "Reviewed interim condensed consolidated FS, three and six months ended 30-Jun-2026, savola.com/en/investors/financial-statements, interim condensed consolidated statement of profit or loss (page 4) and statement of cash flows (page 8): share of results in equity-accounted investees, net of zakat and tax -- excluded, as in the filed years",
+     "date": "2026-08-05",
+     "ring": "Company"
+    },
+    "rfo": {
+     "value": 696037,
+     "source": "Reviewed interim condensed consolidated FS, three and six months ended 30-Jun-2026, savola.com/en/investors/financial-statements, interim condensed consolidated statement of profit or loss (page 4) and statement of cash flows (page 8): results from operating activities (the footing target)",
+     "date": "2026-08-05",
+     "ring": "Company"
+    }
+   },
+   "h1_2025": {
+    "rev": {
+     "value": 13080036,
+     "source": "Reviewed interim condensed consolidated FS, three and six months ended 30-Jun-2026, savola.com/en/investors/financial-statements, interim condensed consolidated statement of profit or loss (page 4) and statement of cash flows (page 8): revenues, comparative six months ended 30-Jun-2025",
+     "date": "2026-08-05",
+     "ring": "Company"
+    },
+    "cogs": {
+     "value": 10511555,
+     "source": "Reviewed interim condensed consolidated FS, three and six months ended 30-Jun-2026, savola.com/en/investors/financial-statements, interim condensed consolidated statement of profit or loss (page 4) and statement of cash flows (page 8): cost of revenues, comparative",
+     "date": "2026-08-05",
+     "ring": "Company"
+    },
+    "sda": {
+     "value": 1604014,
+     "source": "Reviewed interim condensed consolidated FS, three and six months ended 30-Jun-2026, savola.com/en/investors/financial-statements, interim condensed consolidated statement of profit or loss (page 4) and statement of cash flows (page 8): selling and distribution expenses, comparative",
+     "date": "2026-08-05",
+     "ring": "Company"
+    },
+    "adm": {
+     "value": 411835,
+     "source": "Reviewed interim condensed consolidated FS, three and six months ended 30-Jun-2026, savola.com/en/investors/financial-statements, interim condensed consolidated statement of profit or loss (page 4) and statement of cash flows (page 8): administrative expenses, comparative",
+     "date": "2026-08-05",
+     "ring": "Company"
+    },
+    "oth": {
+     "value": 42242,
+     "source": "Reviewed interim condensed consolidated FS, three and six months ended 30-Jun-2026, savola.com/en/investors/financial-statements, interim condensed consolidated statement of profit or loss (page 4) and statement of cash flows (page 8): other operating income, net, comparative",
+     "date": "2026-08-05",
+     "ring": "Company"
+    },
+    "dna": {
+     "value": 592479,
+     "source": "Reviewed interim condensed consolidated FS, three and six months ended 30-Jun-2026, savola.com/en/investors/financial-statements, interim condensed consolidated statement of profit or loss (page 4) and statement of cash flows (page 8): depreciation and amortisation, comparative",
+     "date": "2026-08-05",
+     "ring": "Company"
+    },
+    "imp": {
+     "value": 12776,
+     "source": "Reviewed interim condensed consolidated FS, three and six months ended 30-Jun-2026, savola.com/en/investors/financial-statements, interim condensed consolidated statement of profit or loss (page 4) and statement of cash flows (page 8): net impairment loss on financial assets, comparative",
+     "date": "2026-08-05",
+     "ring": "Company"
+    },
+    "assoc": {
+     "value": 18394,
+     "source": "Reviewed interim condensed consolidated FS, three and six months ended 30-Jun-2026, savola.com/en/investors/financial-statements, interim condensed consolidated statement of profit or loss (page 4) and statement of cash flows (page 8): share of results in equity-accounted investees, comparative",
+     "date": "2026-08-05",
+     "ring": "Company"
+    },
+    "rfo": {
+     "value": 600492,
+     "source": "Reviewed interim condensed consolidated FS, three and six months ended 30-Jun-2026, savola.com/en/investors/financial-statements, interim condensed consolidated statement of profit or loss (page 4) and statement of cash flows (page 8): results from operating activities, comparative",
+     "date": "2026-08-05",
+     "ring": "Company"
+    }
+   },
+   "derived": {
+    "ebitda_h1_2026_sar000": 1279382.0,
+    "ebitda_h1_2025_sar000": 1187353.0,
+    "margin_h1_2026": 0.0941581113121442,
+    "margin_h1_2025": 0.0907759733994616,
+    "margin_fy2025_audited": 0.09013957373576903,
+    "margin_h1_2026_company_basis": 0.0968501619075655,
+    "cost_per_unit_revenue_h1_2025": 0.8036334915286166,
+    "cost_per_unit_revenue_h1_2026": 0.8067742981979441,
+    "implied_h2_2026_margin": 0.08253035033372418,
+    "filed_h2_2025_margin": 0.08949930609274642,
+    "gap_relative": -0.061483759030656226,
+    "path_drop_relative": -0.013575850767461426
+   }
+  }
  }
 }

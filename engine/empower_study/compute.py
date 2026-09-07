@@ -305,6 +305,89 @@ INP = dict(
                       FS25 + ", notes 5, 6 and 7: the year's own depreciation and "
                       "amortisation charge on those classes. AED mn",
                       "2026-02-09", "Company"),
+
+    # ---- H1-2026 INTERIM, THE LATEST REVIEWED PERIOD — [R-ANCHOR-01] ------
+    # Read off the interim condensed consolidated statement of comprehensive
+    # income and notes 7, 11, 19, 20 and 28 of the reviewed six-month filing this
+    # study already holds (filings/EMPOWER_H1_2026_FS.pdf, text layer; review
+    # report under ISRE 2410 signed 5 August 2026). The June-2025 column is that
+    # SAME filing's own comparative, so the pair is like-for-like by
+    # construction: same half of the year, same limited review, same
+    # presentation basis.
+    #
+    # THESE LINES FEED THE forecast_anchor RECORD AND NOTHING ELSE — no driver,
+    # rate, forecast, discount rate or value moves on them. They are registered
+    # rather than computed inline so the assembly can be footed against the
+    # filing before any of it is used: the depreciation split reconciles four
+    # ways (notes 19 + 20 against the statement of cash flows against the
+    # segment note against the class notes), and adding back the two excluded
+    # income lines and the investment-property charge reproduces the EBITDA the
+    # company itself presents for the half — ASSERTED below.
+    op_h1_26=I(580.849, "Operating profit, six months ended 30 June 2026, reviewed "
+               "interim statement of comprehensive income", "2026-08-05", "Company"),
+    dep_ppe_h1_26=I(171.637 + 11.613, "Depreciation of property, plant and equipment, "
+                    "H1-2026: note 19 (cost of sales) 171,637 + note 20 (G&A) 11,613 "
+                    "= 183,250 thousand, which is the figure the interim statement of "
+                    "cash flows and the segment note both carry", "2026-08-05",
+                    "Company"),
+    dep_rou_h1_26=I(0.151 + 0.863, "Depreciation of right-of-use assets, H1-2026: note "
+                    "19 151 + note 20 863 = 1,014 thousand, agreeing with the cash-flow "
+                    "adjustment", "2026-08-05", "Company"),
+    amort_int_h1_26=I(6.078, "Amortisation of intangible assets, H1-2026, note 7 / note "
+                      "19 / cash flow — all three carry 6,078 thousand", "2026-08-05",
+                      "Company"),
+    dep_invprop_h1_26=I(2.077, "Depreciation of investment properties, H1-2026, note 28 "
+                        "/ note 20 / cash flow. EXCLUDED from the operating basis on "
+                        "exactly the ground the audited year excludes its own 6,317 — "
+                        "the investment properties are a non-operating side pocket the "
+                        "bridge adds at book — and registered so the company's own "
+                        "presented EBITDA can be reproduced from these lines",
+                        "2026-08-05", "Company"),
+    intco_h1_26=I(28.501, "Interest income on financial asset at amortised cost, H1-2026, "
+                  "presented INSIDE gross profit on the interim statement face; excluded "
+                  "from operating EBITDA on the clean financial-asset treatment adopted "
+                  "17-Aug-2026", "2026-08-05", "Company"),
+    rental_h1_26=I(9.650, "Rental income earned on the investment properties in the six "
+                   "months to 30 June 2026, note 28 (comparative: 2,375 thousand); the "
+                   "return on the assets the bridge adds at book, so excluded from "
+                   "operating EBITDA exactly as the audited year's 18.094 is",
+                   "2026-08-05", "Company"),
+    ecl_h1_26=I(0.0, "NIL, on the disclosure rather than by estimate: the interim "
+                "statement of comprehensive income carries no expected-credit-loss line "
+                "and neither expense note (19 cost of sales, 20 general and "
+                "administrative) presents one, while note 11 shows the provision for "
+                "expected credit losses standing at 41,078 thousand at BOTH 30 June 2026 "
+                "and 31 December 2025 — no movement disclosed for the half. The audited "
+                "FY2025 year carried a 16.137 REVERSAL, which the operating basis "
+                "removes; there is nothing here to remove", "2026-08-05", "Company"),
+
+    # the same six lines from the comparative column of the same filing. Used in
+    # the anchor record's note ONLY, to show how a half of this business prints
+    # against its own full year on the identical basis.
+    op_h1_25=I(531.099, "Operating profit, six months ended 30 June 2025 — comparative "
+               "column of the H1-2026 reviewed interim", "2026-08-05", "Company"),
+    dep_ppe_h1_25=I(171.412 + 4.894, "Depreciation of PPE, H1-2025: note 19 171,412 + "
+                    "note 20 4,894 = 176,306 thousand, agreeing with the cash-flow "
+                    "comparative", "2026-08-05", "Company"),
+    dep_rou_h1_25=I(0.663 + 2.018, "Depreciation of right-of-use assets, H1-2025: note "
+                    "19 663 + note 20 2,018 = 2,681 thousand", "2026-08-05", "Company"),
+    amort_int_h1_25=I(6.078, "Amortisation of intangible assets, H1-2025, same three "
+                      "places", "2026-08-05", "Company"),
+    dep_invprop_h1_25=I(2.898, "Depreciation of investment properties, H1-2025",
+                        "2026-08-05", "Company"),
+    intco_h1_25=I(28.938, "Interest income on financial asset at amortised cost, H1-2025, "
+                  "comparative column", "2026-08-05", "Company"),
+    rental_h1_25=I(2.375, "Rental income on the investment properties, six months ended "
+                   "30 June 2025, note 28 comparative AS PRINTED — the note gives the "
+                   "same 2,375 thousand for the three-month and the six-month 2025 "
+                   "periods, and it is recorded as printed rather than reconciled",
+                   "2026-08-05", "Company"),
+    ecl_h1_25=I(0.0, "NIL on the same disclosure test: no expected-credit-loss line "
+                "appears in the H1-2025 comparative columns of the statement face or of "
+                "notes 19 and 20. WEAKER THAN THE 2026 CASE AND SAID SO — this filing "
+                "carries no 30-June-2025 receivables note, so the provision movement "
+                "across that half cannot be read here. The bound is stated in the anchor "
+                "note instead of being papered over", "2026-08-05", "Company"),
 )
 
 V = {k: v['value'] for k, v in INP.items()}
@@ -844,6 +927,117 @@ for lvl in crux_levels:
              WACC['rating_ct'], f'crux {lvl:.0%}', nwc_d=nwc_a)
     crux_rows.append(dict(level=lvl, ps=Da['ps']))
 
+# ================= [R-ANCHOR-01] THE FORECAST ANCHOR =========================
+# THE RATE THE FORECAST IS BUILT ON, AND THE BASIS IS THE WHOLE OF THE CARE HERE.
+# ebitda_build() above returns OPERATING EBITDA: the concession/receivable
+# interest income, the investment-property rental and the ECL movement are all
+# outside it, which is the treatment this study adopted on the 17-Aug-2026
+# critique. The company presents an EBITDA that includes all three plus the
+# investment-property depreciation. The two bases are points apart, so putting
+# the operating forecast against the presented interim would have manufactured a
+# decline out of a definitional gap and nothing else — the basis break
+# [R-FCAL-01] names, arriving at the one place the anchor rule looks.
+#
+# So both sides of this test are struck on the FORECAST'S basis, and the
+# assembly is footed against the filing rather than asserted: the class split
+# reconciles four ways (notes 19 + 20, the statement of cash flows, the segment
+# note, the class notes), and putting the three excluded items back reproduces
+# the EBITDA the company itself presents for each half — ASSERTED below.
+OPEB25 = (hist_is['FY25']['ebitda'] - V['intco_fy25'] - V['rental_fy25']
+          - V['ecl_fy25'])                      # FY2025 audited, operating basis
+OP_MARGIN_FY25 = OPEB25 / V['rev_fy25']
+
+def _half_operating(tag):
+    """The reviewed half on the forecast's own operating-EBITDA basis."""
+    dna = (V[f'dep_ppe_h1_{tag}'] + V[f'dep_rou_h1_{tag}']
+           + V[f'amort_int_h1_{tag}'])           # excludes investment properties
+    eb = (V[f'op_h1_{tag}'] + dna - V[f'intco_h1_{tag}'] - V[f'rental_h1_{tag}']
+          - V[f'ecl_h1_{tag}'])
+    return dict(dna=dna, ebitda=eb, margin=eb / V[f'rev_h1_{tag}'],
+                # the company's own presentation, rebuilt from the same lines
+                presented=V[f'op_h1_{tag}'] + dna + V[f'dep_invprop_h1_{tag}'])
+
+H1_26 = _half_operating('26')
+H1_25 = _half_operating('25')
+
+fa_path = [eb_b[y] / rev_b[y] for y in YRS_F]        # base branch, the lower one
+fa_path_persist = [eb_p[y] / rev_p[y] for y in YRS_F]
+# the bound on H1-2025, stated rather than papered over: this filing carries no
+# 30-June-2025 receivables note, so if the WHOLE of the audited year's ECL
+# reversal had fallen in that half, the comparative margin would read this
+_h1_25_margin_ecl_bound = (H1_25['ebitda'] - V['ecl_fy25']) / V['rev_h1_25']
+
+FORECAST_ANCHOR = dict(
+    rate_name='operating EBITDA margin',
+    latest_reviewed_period='H1-2026, reviewed interim (six months ended 30 June 2026, '
+                           'ISRE 2410 review report signed 5 August 2026)',
+    latest_reviewed_date='2026-06-30',
+    latest_reviewed_rate=float(H1_26['margin']),
+    first_forecast_rate=float(fa_path[0]),
+    forecast_path=[float(m) for m in fa_path],
+    note=(
+        'NEITHER CLAUSE OF THIS RULE FIRES AND THE RECORD IS COMMITTED ANYWAY, so the '
+        'shape is visible rather than merely not-red. THE BASIS WAS THE WHOLE OF THE WORK '
+        'HERE AND IT IS THE THING A READER SHOULD CHECK FIRST. This study forecasts '
+        'OPERATING EBITDA — the concession-receivable interest income, the '
+        'investment-property rental and the ECL movement all outside it, the treatment '
+        'adopted on the 17-Aug-2026 critique — while the company presents an EBITDA that '
+        'includes all three and the investment-property depreciation besides. On the '
+        'FY2025 audited year the two bases sit %.2f points apart (audited operating '
+        'profit plus depreciation gives %.2f%%, the operating basis %.2f%%), so '
+        'anchoring this forecast against the company-presented '
+        'interim margin would have manufactured a %.1f%% relative decline out of a '
+        'definitional gap and nothing else, and the mechanism clause would then have been '
+        'asked to explain an artefact. BOTH SIDES HERE ARE STRUCK ON THE FORECAST\'S '
+        'BASIS. The latest reviewed period is the six months to 30 June 2026: operating '
+        'EBITDA of AED %.3fmn on revenue of AED %s mn, %.2f%%. THE ASSEMBLY IS FOOTED '
+        'RATHER THAN ASSERTED — the depreciation split reconciles four ways across notes '
+        '19 and 20, the statement of cash flows, the segment note and the class notes, '
+        'and putting the three excluded items back reproduces AED %.1fmn against the AED '
+        '%.1fmn the company itself presents for the half, with the same construction on '
+        'the comparative column reproducing its H1-2025 figure at AED %.1fmn. THE TEST: '
+        'the forecast opens at %.2f%% against %.2f%%, %.2f points below it, %.2f%% '
+        'RELATIVE — inside the 5%% tolerance — and the path\'s minimum is FY2027 at '
+        '%.2f%%, %.2f%% relative from its own opening year, also inside. No mechanism is '
+        'owed and none is declared; inventing one to decorate a record that does not fire '
+        'would be the assumption wearing a mechanism, which is the thing this rule exists '
+        'to catch. WHAT SITS EITHER SIDE OF THE NUMBER, because inside a band is not the '
+        'same as needing no explanation. FIRST, the same opening year is %.2f%% relative '
+        'ABOVE the last AUDITED full year (FY2025 %.2f%% on this basis), the direction '
+        'neither clause fires on and which the two-sided valuation-gap trigger and '
+        'the sign test are what audit. '
+        'SECOND, part of the gap against the half is a CLOCK rather than a claim: a half '
+        'of this business prints above its own year on exactly this basis — H1-2025 ran '
+        '%.2f%% against a FY2025 full year of %.2f%%, %.2f points higher — and the '
+        'forecast being tested is a full year. That comparative carries a stated bound '
+        'rather than a false precision: the filing holds no 30-June-2025 receivables '
+        'note, so had the WHOLE of the audited year\'s ECL reversal fallen in that half '
+        'the figure would read %.2f%%, still above the full year, which is all the '
+        'sentence needs. THIRD, the remainder is a DISCLOSED and deliberately carried '
+        'demand shock, not a drift: the model runs consumption per connected RT %.0f%% '
+        'below its FY2025 level for the whole of FY2026, against the -9.0%% '
+        'equivalent-full-load-hours print the company discloses for H1-2026 (-42m RTh) '
+        'and the interim\'s own note on regional conflict and hospitality occupancy. '
+        'That shock is this study\'s CRUX and is published BOTH ways as two full models '
+        'rather than one sensitivity; on the persistence branch the same opening year '
+        'rises to %.2f%% by FY2030, so the branch committed here is the LOWER of the two '
+        'in every year after the first and is the one this test should be made to see.'
+        % (100 * (hist_is['FY25']['ebitda'] / V['rev_fy25'] - OP_MARGIN_FY25),
+           100 * hist_is['FY25']['ebitda'] / V['rev_fy25'], 100 * OP_MARGIN_FY25,
+           100 * (fa_path[0] / (V['ebitda_h1_26'] / V['rev_h1_26']) - 1),
+           H1_26['ebitda'], f"{V['rev_h1_26']:,.3f}", 100 * H1_26['margin'],
+           H1_26['presented'], V['ebitda_h1_26'], H1_25['presented'],
+           100 * fa_path[0], 100 * H1_26['margin'],
+           100 * (H1_26['margin'] - fa_path[0]),
+           100 * (fa_path[0] - H1_26['margin']) / abs(H1_26['margin']),
+           100 * min(fa_path), 100 * (min(fa_path) - fa_path[0]) / abs(fa_path[0]),
+           100 * (fa_path[0] - OP_MARGIN_FY25) / abs(OP_MARGIN_FY25),
+           100 * OP_MARGIN_FY25,
+           100 * H1_25['margin'], 100 * OP_MARGIN_FY25,
+           100 * (H1_25['margin'] - OP_MARGIN_FY25),
+           100 * _h1_25_margin_ecl_bound,
+           100 * CRUX_SHOCK, 100 * fa_path_persist[-1])))
+
 # ============================ ASSERT BLOCK ===================================
 LOG = []
 def chk(name, cond, detail):
@@ -878,6 +1072,21 @@ chk("FY2026E revenue consistent with H1 print (±4%)",
 chk("crux monotonic", all(crux_rows[i]['ps'] <= crux_rows[i+1]['ps'] + 1e-9
                           for i in range(len(crux_rows)-1)),
     "fair value rises with the consumption recovery level")
+chk("[R-ANCHOR-01] H1-2026 assembly reproduces the company's own presented EBITDA",
+    abs(H1_26['presented'] - V['ebitda_h1_26']) < 0.5,
+    f"rebuilt {H1_26['presented']:.3f} vs presented {V['ebitda_h1_26']:.1f} — the "
+    f"operating basis differs from it by intco {V['intco_h1_26']:.3f} + rental "
+    f"{V['rental_h1_26']:.3f} + investment-property depreciation "
+    f"{V['dep_invprop_h1_26']:.3f}")
+chk("[R-ANCHOR-01] the same construction reproduces the H1-2025 comparative",
+    abs(H1_25['presented'] - 719.0) < 0.5,
+    f"rebuilt {H1_25['presented']:.3f} vs the AED 719mn the company presents for "
+    f"H1-2025 — an independent check that the depreciation assembly is the "
+    f"company's own and not this desk's")
+chk("[R-ANCHOR-01] FY2025 operating margin is the study's own committed figure",
+    abs(OP_MARGIN_FY25 - (hist_is['FY25']['ebitda'] - V['intco_fy25']
+                          - V['rental_fy25'] - V['ecl_fy25']) / V['rev_fy25']) < 1e-12,
+    f"{OP_MARGIN_FY25:.6f} — the same expression the document figures publish")
 chk("dual-framing spread is material and DISCLOSED",
     D_base_ct['ps'] > D_base_dmtt['ps'],
     f"9% CT {D_base_ct['ps']:.3f} vs 15% DMTT {D_base_dmtt['ps']:.3f} — both "
@@ -897,6 +1106,7 @@ out = dict(
               klass='operating company — regulated district-cooling utility',
               ownership='DEWA 80% (since Feb-2026), free float ~20%'),
     inputs=INP,
+    forecast_anchor=FORECAST_ANCHOR,          # [R-ANCHOR-01]
     hist_is=hist_is,
     unit_physical=dict(
         rate_aed_per_rth=0.49 * V['rev_h1_26'] / 1174.0,

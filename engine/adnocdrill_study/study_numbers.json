@@ -3484,6 +3484,21 @@
    "bull": 5.440647430975545
   }
  },
+ "forecast_anchor": {
+  "rate_name": "EBITDA margin",
+  "latest_reviewed_period": "1H-2026, reviewed condensed interim",
+  "latest_reviewed_date": "2026-06-30",
+  "latest_reviewed_rate": 0.44068390564648613,
+  "first_forecast_rate": 0.43738855528685955,
+  "forecast_path": [
+   0.43738855528685955,
+   0.4531486666719132,
+   0.4619638439659289,
+   0.46279332581979854,
+   0.4596470233497553
+  ],
+  "note": "the forecast opens at 43.74% against 44.07% in the reviewed first half of 2026 \u2014 0.33 points, -0.75% relative, well inside the materiality line \u2014 so no mechanism is owed and none is claimed. What the record shows instead is the shape: the filed EBITDA margin has been falling, FY2023 48.51%, FY2024 49.94%, FY2025 44.83%, 1H-2026 44.07%, and the forecast opens below every one of them and recovers only to 45.96% by 2030 on the base fleet plan (48.03% on the slower one), still under FY2023. The anchor year is also the one year that is not ground-up on both sides: its revenue is calibrated to the company's own reaffirmed full-year guidance of $5.0bn while the cost stack is built from the disclosed lines, which is why the build lands at $2.187bn of EBITDA, below the guided floor of $2.2bn rather than inside the $2.2-2.3bn range. Years two to five consume no guidance. The 1H-2025 comparative EBITDA is disclosed but its revenue is not, so no half-on-half margin pair is derivable from what this study holds; none is needed, because nothing fires."
+ },
  "register": [
   {
    "value": 5.94,

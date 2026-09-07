@@ -129,7 +129,8 @@
    0.09725544265167264,
    0.09733544915118685
   ],
-  "mechanism": null
+  "mechanism": null,
+  "note": "THE FORECAST OPENS BELOW THE LATEST REVIEWED PERIOD AND NO MECHANISM IS CLAIMED, BECAUSE NONE OF THE SIX ON THE CLOSED LIST SURVIVES THIS COMPANY'S OWN FILINGS. The reviewed six months to 30-Jun-2026 carried a gross margin of 12.428% \u2014 gross profit footing exactly to net sales less cost of sales in the same statements \u2014 and the forecast opens at 9.684%, 22.08% relatively below it. The path then RISES to 9.734% by the fifth year, so the path clause does not fire and the whole of the claim sits in the opening level. WHAT THE GAP ACTUALLY IS: the base year is the twelve months to 30-Jun-2026, both halves filed, and those twelve months blend the audited transition half at 6.145% with the reviewed half at 12.428% to give 9.653%. It is a BASE-PERIOD CHOICE, and a base-period choice is not on the closed list. WHAT THE FILED RECORD DOES: cost per unit of revenue, period by period, runs the six months to 31-Dec-2024, audited comparative 93.146% \u00b7 the quarter to 31-Mar-2025, reviewed comparative 94.947% \u00b7 the six months to 31-Dec-2025, audited transition period 93.855% \u00b7 the quarter to 31-Mar-2026, reviewed 89.810% \u00b7 the six months to 30-Jun-2026, reviewed 87.572% \u2014 it FALLS \u2014 and the quarter inside the latest half that is not the first printed a gross margin of 13.925%, the highest in the record this study holds. THE CANDIDATES, TESTED RATHER THAN ASSERTED. Input cost outpacing price is refused by the same-quarter pair this rule prescribes \u2014 cost per unit of revenue 94.947% in the quarter to 31-Mar-2025 against 89.810% in the quarter to 31-Mar-2026, 5.14 points the OTHER WAY \u2014 and this model makes no such claim in any case: the gross spread per tonne is held flat in real terms and the forecast margin rises. A one-off in the latest period was drafted on 03-09-2026 and refused on that same pair; no non-recurring item is disclosed inside the reviewed statements' net sales or cost of sales, and both foot to the filed gross profit to the pound. A contracted price step-down, a subsidy or levy withdrawal and a capacity commissioning drag have no disclosure in any filing this study holds. A mix shift to lower margin has no decline to attribute, the forecast path rising rather than falling. SO THE RECORD STANDS AS A REFUSAL, AND THE REFUSAL IS THE FINDING. Anchoring on the reviewed half and holding it flat is this study's largest contested judgement, priced at EGP 17.62 a share against the adopted EGP 11.40; it is published beside the answer and left for the next edition because levers are taken one at a time and this one crosses the traded price of EGP 13.50 in a single pass."
  },
  "lens_record": {
   "class": "refiner, commodity pass-through on a thin spread",
@@ -186,6 +187,15 @@
   "diagnostics": {
    "normalised_earnings": 9.063922734908234
   }
+ },
+ "walkforward_scope": {
+  "rule": "R-FCAL-01",
+  "scope": "LIGHT",
+  "sourceable_fiscal_years": 5,
+  "earliest_sourceable": "FY2021",
+  "basis": "this name's own walk-forward pre-registration, section 0: \"The archive supports five sourceable fiscal years: FY2021 through FY2025\", all July-June. Five puts it in the LIGHT band",
+  "status": "run",
+  "note": "The fundamental walk-forward HAS been run on this name (engine/amoc_walkforward/, 01-09-2026): 4 origins, FY2021-FY2024, 189 scored cells on the as-known macro setting. NO correction was estimated from that record and the pre-registration ruled so before any error was computed \u2014 nine cells cannot support an expanding-window estimate and a confirmation sample both."
  },
  "bridge_record": {
   "market": "EG",
@@ -11962,13 +11972,6 @@
   "[Fundamental walk-forward] LIGHT scope, 9 scoreable cells over five origins FY2021-FY2025. Majority profit was under-forecast in 100% of cells and the method scored -1.128 against assuming last year's profit repeats \u2014 it did NOT beat no change. No correction was adopted. What it changed in this edition is the volume driver, and the far-year bands it licenses are carried into Appendix A rather than a point.",
   "[Gates] beta 0.9080 vs raw_indices/EG/EGX30.csv (conforming=True); ground-up record covers 100% of revenue across 8 lines, all at 'derived' with the cost-disclosure gap stated; SIGCM and the model-report bar both pass. Study stamped to STANDARD_VERSION 2026.09.01."
  ],
- "gm_required": {
-  "shift": 0.009263812711366507,
-  "level": 0.10579793896150971,
-  "base": 0.09653412625014321,
-  "filed_max_year": 0.1384,
-  "filed_max_quarter": 0.1392
- },
  "walkforward": {
   "ran": true,
   "scope": "LIGHT",

@@ -196,6 +196,13 @@ def I(value, source, date, ring):
 
 AFS25 = ("Audited consolidated financial statements for the year ended 31 December 2025, "
          "Deloitte (Wafik, Ramy & Partners), signed 25 February 2026")
+
+# THE SUPERSEDED FIGURE IS WRITTEN ONCE AND EVERY QUOTE OF IT IS COMPUTED. Revision 1's
+# inferred minority sits in two delivered artefacts — the input register's own justification
+# and the workbook's READ FIRST narrative — and the second of them typed the multiple as
+# "950 times too much" against the register's computed 949, because the workbook was in no
+# study's prose population until 05-09-2026. One study, two figures, for the same fact.
+NCI_V1 = 150.0
 AFS24 = ("Audited consolidated financial statements for the year ended 31 December 2024, "
          "Deloitte (Wafik, Ramy & Partners), signed 23 March 2025")
 IH26 = ("Reviewed condensed consolidated interim financial statements for the six months "
@@ -401,9 +408,16 @@ INP = dict(
                           "rather than typed into a builder, which is the same disposition "
                           "any superseded figure quoted to show what changed must take.",
                           "2026-08-06", "House"),
+    nci_v1=I(NCI_V1, "The non-controlling interest revision 1 of this study deducted, "
+             "inferred from the profit statements when no source document could be opened. "
+             "THIS MODEL CANNOT COMPUTE IT — a different model produced it — so it is "
+             "registered as the historical fact it is rather than typed into a builder, the "
+             "same disposition central_pre_rebuild takes. Note 24 of the audited accounts "
+             "puts the real figure at EGP 158,005.",
+             "2026-08-06", "House"),
     nci=I(0.158005, AFS25 + " — non-controlling interests, note 24: EGP 158,005. Revision 1 "
           "deducted EGP 150mn on inference from the profit statements; the audited figure "
-          "is %.0f times smaller and immaterial to the bridge" % (150.0 / 0.158005),
+          "is %.0f times smaller and immaterial to the bridge" % (NCI_V1 / 0.158005),
           "2025-12-31", "Company"),
 
     # ---- debt, note 25 ----------------------------------------------------
@@ -2683,6 +2697,13 @@ FORECAST_ANCHOR = dict(
 
 LENS_RECORD = {
     'class': 'cement and heavy industrial',
+    # [R-LENS-03] THE RECORD DECLARES ITS CENTRAL, so the identity clause
+    # actually RUNS. assert_lens_design() wraps 'the primary's value IS the
+    # central' in `if central is not None`, so a record exposing no central
+    # skipped the one clause that catches a weighted blend -- eight studies
+    # were in that state and every blend-carrier sat among them. Computed
+    # from the same quantity the primary carries, never typed.
+    'central': fv_dcf,
     'primary': dict(kind='dcf', value=fv_dcf,
                  range=dict(low=LR[PRIMARY]['bear'], high=LR[PRIMARY]['bull']),
                  range_note='the cash-flow lens with the EBITDA margin flexed across '
@@ -2815,6 +2836,22 @@ OUT = dict(
     central=fv_central, spot=V['spot'],
     macro_record=MACRO_RECORD, cost_of_capital_record=COC_RECORD,
     lens_record=LENS_RECORD, bridge_record=BRIDGE_RECORD, forecast_anchor=FORECAST_ANCHOR,
+    # [R-FCAL-01] THE SCOPE DECISION, TRANSCRIBED FROM THIS NAME'S OWN WALK-FORWARD
+    # PRE-REGISTRATION RATHER THAN RE-DECIDED HERE. The rule requires the decision to
+    # be stated in the study; the run stated it in section 0 and it was never carried
+    # across, which is [R-ENF-01]'s founding observation — the rule was not disputed
+    # and not hard, it simply was not present where the gate reads. `sourceable` is a
+    # claim about the ARCHIVE and not about the panel, so the count is the one the
+    # pre-registration established and never the number of origins the run used.
+    walkforward_scope=dict(
+        rule='R-FCAL-01',
+        scope='FULL',
+        sourceable_fiscal_years=12,
+        earliest_sourceable='FY2014',
+        basis=('this name\'s own walk-forward pre-registration, section 0: "The archive supports twelve sourceable fiscal years, FY2014 through FY2025". The run built origins FY2018-FY2024 on that archive'),
+        status='run',
+        note=("The fundamental walk-forward HAS been run on this name (engine/arcc_walkforward/, 01-09-2026): 7 origins, FY2018-FY2024, 650 scored cells on the as-known macro setting. Its one adopted correction, manufacturing depreciation, is stated in this study's own record and reconciles to that run's committed bias at half strength."),
+    ),
     # `central` and `spot` sit at the TOP of meta so the repo-level gap gate can
     # read this study's own answer. It could not before: the central lived only
     # under lenses.central, and [R-GAP-01]'s checker reported ARCC as

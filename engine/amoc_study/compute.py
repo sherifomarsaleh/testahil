@@ -2608,6 +2608,26 @@ LENS_RECORD = {
 # from it. The remaining distance to the latest reviewed half is the base-anchor
 # question, which is priced in the contested judgements and NOT taken this
 # edition -- and that distance is what this gate is measuring, correctly.
+
+# The filed record and the like-for-like pair this rule prescribes, COMPUTED from the
+# registered filings rather than typed into the note below. Every period here is already
+# read by the model body; nothing new is registered and no driver moves.
+_FA_FILED = [
+    ('the six months to 31-Dec-2024, audited comparative', V['rev_h2_24'], V['cogs_h2_24']),
+    ('the quarter to 31-Mar-2025, reviewed comparative', V['rev_q1_25'], V['cogs_q1_25']),
+    ('the six months to 31-Dec-2025, audited transition period', V['rev_h2_25'], V['cogs_h2_25']),
+    ('the quarter to 31-Mar-2026, reviewed', V['rev_q1_26'], V['cogs_q1_26']),
+    ('the six months to 30-Jun-2026, reviewed', V['rev_h1cy26'], V['cogs_h1cy26'])]
+_FA_CPR = ' \u00b7 '.join(f"{_n} {_c / _r:.3%}" for _n, _r, _c in _FA_FILED)
+_FA_LAT = V['gp_h1cy26'] / V['rev_h1cy26']
+_FA_FIRST = B['gm'][0]
+_FA_REL = _FA_FIRST / _FA_LAT - 1
+_FA_CPR_Q1_25 = V['cogs_q1_25'] / V['rev_q1_25']
+_FA_CPR_Q1_26 = V['cogs_q1_26'] / V['rev_q1_26']
+_FA_GM_H2_25 = 1 - V['cogs_h2_25'] / V['rev_h2_25']
+_FA_Q2_26 = ((V['gp_h1cy26'] - (V['rev_q1_26'] - V['cogs_q1_26']))
+             / (V['rev_h1cy26'] - V['rev_q1_26']))
+
 FORECAST_ANCHOR = dict(
     rate_name='gross margin',
     latest_reviewed_period='six months to 30 June 2026, reviewed',
@@ -2640,7 +2660,40 @@ FORECAST_ANCHOR = dict(
     # from 12.3% below the price to 35.9% above it in a single pass. AMOC is
     # therefore listed on the forecast-anchor ratchet with that reason, and comes off
     # it when the base anchor is taken at the next edition.
-    mechanism=None)
+    mechanism=None,
+    note=(
+        f"THE FORECAST OPENS BELOW THE LATEST REVIEWED PERIOD AND NO MECHANISM IS CLAIMED, "
+        f"BECAUSE NONE OF THE SIX ON THE CLOSED LIST SURVIVES THIS COMPANY'S OWN FILINGS. "
+        f"The reviewed six months to 30-Jun-2026 carried a gross margin of {_FA_LAT:.3%} \u2014 "
+        f"gross profit footing exactly to net sales less cost of sales in the same statements "
+        f"\u2014 and the forecast opens at {_FA_FIRST:.3%}, {-_FA_REL:.2%} relatively below it. "
+        f"The path then RISES to {B['gm'][-1]:.3%} by the fifth year, so the path clause does "
+        f"not fire and the whole of the claim sits in the opening level. "
+        f"WHAT THE GAP ACTUALLY IS: the base year is the {BASE_YEAR}, and those twelve months "
+        f"blend the audited transition half at {_FA_GM_H2_25:.3%} with the reviewed half at "
+        f"{_FA_LAT:.3%} to give {BASE_GM:.3%}. It is a BASE-PERIOD CHOICE, and a base-period "
+        f"choice is not on the closed list. "
+        f"WHAT THE FILED RECORD DOES: cost per unit of revenue, period by period, runs "
+        f"{_FA_CPR} \u2014 it FALLS "
+        f"\u2014 and the quarter inside the latest half that is not the first printed a gross "
+        f"margin of {_FA_Q2_26:.3%}, the highest in the record this study holds. "
+        f"THE CANDIDATES, TESTED RATHER THAN ASSERTED. Input cost outpacing price is refused by "
+        f"the same-quarter pair this rule prescribes \u2014 cost per unit of revenue "
+        f"{_FA_CPR_Q1_25:.3%} in the quarter to 31-Mar-2025 against {_FA_CPR_Q1_26:.3%} in the "
+        f"quarter to 31-Mar-2026, {100 * (_FA_CPR_Q1_25 - _FA_CPR_Q1_26):.2f} points the OTHER "
+        f"WAY \u2014 and this model makes no such claim in any case: the gross spread per tonne "
+        f"is held flat in real terms and the forecast margin rises. A one-off in the latest "
+        f"period was drafted on 03-09-2026 and refused on that same pair; no non-recurring item "
+        f"is disclosed inside the reviewed statements' net sales or cost of sales, and both foot "
+        f"to the filed gross profit to the pound. A contracted price step-down, a subsidy or "
+        f"levy withdrawal and a capacity commissioning drag have no disclosure in any filing "
+        f"this study holds. A mix shift to lower margin has no decline to attribute, the "
+        f"forecast path rising rather than falling. SO THE RECORD STANDS AS A REFUSAL, AND THE "
+        f"REFUSAL IS THE FINDING. Anchoring on the reviewed half and holding it flat is this "
+        f"study's largest contested judgement, priced at EGP {_PS_H1_ANCHOR:.2f} a share "
+        f"against the adopted EGP {dcf_ps:.2f}; it is published beside the answer and left for "
+        f"the next edition because levers are taken one at a time and this one crosses the "
+        f"traded price of EGP {SPOT:.2f} in a single pass."))
 
 BRIDGE_RECORD = dict(
     market='EG',
@@ -2713,6 +2766,28 @@ OUT = dict(
               'probabilities beside them are computed from the cone\'s own percentiles '
               'and its own anchor, never from the study spot — those are two clocks.'),
     macro_record=MACRO_RECORD, forecast_anchor=FORECAST_ANCHOR, lens_record=LENS_RECORD,
+    # [R-FCAL-01] THE SCOPE DECISION, TRANSCRIBED FROM THIS NAME'S OWN WALK-FORWARD
+    # PRE-REGISTRATION RATHER THAN RE-DECIDED HERE. The rule requires the decision to
+    # be stated in the study; the run stated it in section 0 and it was never carried
+    # across, which is [R-ENF-01]'s founding observation. `sourceable` is a claim about
+    # the ARCHIVE and not about the panel, so the count is the one the pre-registration
+    # established and never the number of origins the run happened to use.
+    walkforward_scope=dict(
+        rule='R-FCAL-01',
+        scope='LIGHT',
+        sourceable_fiscal_years=5,
+        earliest_sourceable='FY2021',
+        basis=('this name\'s own walk-forward pre-registration, section 0: "The archive '
+               'supports five sourceable fiscal years: FY2021 through FY2025", all '
+               'July-June. Five puts it in the LIGHT band'),
+        status='run',
+        note=('The fundamental walk-forward HAS been run on this name '
+              '(engine/amoc_walkforward/, 01-09-2026): 4 origins, FY2021-FY2024, 189 '
+              'scored cells on the as-known macro setting. NO correction was estimated '
+              'from that record and the pre-registration ruled so before any error was '
+              'computed — nine cells cannot support an expanding-window estimate and a '
+              'confirmation sample both.'),
+    ),
     bridge_record=BRIDGE_RECORD,
     meta=dict(ticker='AMOC', company='Alexandria Mineral Oils Company S.A.E.', market='EGX',
               currency='EGP', asof='2026-09-03', spot=SPOT, shares_mn=SH, mktcap=MKTCAP,
@@ -2972,7 +3047,19 @@ WALKFORWARD = dict(
                      'and the walk-forward measures the flat-volume rule as ALREADY '
                      'over-forecasting by 7.6% in eight of nine cells. The base path is now flat '
                      'and the bear leg reverts to the five-year mean.'))
-OUT['gm_required'] = OUT_GM_REQ
+# [R-ENF-05] THE SOLVED FIGURE LEAVES THE NUMBERS FILE, AND ONLY ITS ADDRESS CHANGES.
+# What is solved above is solved FROM THE TRADED PRICE, and the standing rule puts such a
+# quantity outside study_numbers.json -- "the numbers file builders read" -- precisely so it
+# cannot re-enter a valuation. It was committed into OUT until 06-09-2026 and
+# assert_reverse_dcf() found it there, at /gm_required/level; every use of it was DISPLAY, so
+# the rule's purpose was met and its device was broken, which is the state the ratchet
+# recorded. It now lives in its own artefact that the document and the figure read to print
+# it and that nothing computes from. THE VALUE DOES NOT MOVE: this changes where it is kept,
+# not what it is, and the solve itself is untouched a few lines above.
+# The vintage travels with it per [R-ENF-06] -- an artefact a builder reads declares the
+# answer it was built against, or a stale copy cannot be told from a current one.
+with open(os.path.join(HERE, 'reverse_read.json'), 'w') as _f:
+    json.dump(dict(OUT_GM_REQ, published_central=central, published_spot=SPOT), _f, indent=1)
 OUT['walkforward'] = WALKFORWARD
 say(f"[Fundamental walk-forward] LIGHT scope, {WALKFORWARD['cells']} scoreable cells over five "
     f"origins FY2021-FY2025. Majority profit was under-forecast in "

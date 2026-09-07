@@ -52,7 +52,31 @@ BLEND = re.compile(
     # "WEIGHTED  the four, weighted  4.93 9.91 16.73  100%  8.9%  CENTRAL" — the
     # layout splits the label around the figures, so a pattern needing "weighted
     # central" contiguous walked past the row carrying the claim.
-    r"WEIGHTED\b[^.\n]{0,120}?\bCENTRAL\b|"
+    # CENTRAL AND CENTRE ARE THE SAME WORD AND THIS PATTERN KNEW ONLY ONE OF THEM.
+    # ADNOCDIST publishes "this study publishes TWO weighted centres", a Table 1 carrying
+    # "WEIGHTED CENTRE - Frame A", a figure legend reading "weighted centre, Frame A 4.41"
+    # and a workbook cell computing =B2*D2+B3*D3+B4*D4+B5*D5 -- and this gate reported it
+    # CLEAN, because every alternative above spells the noun the American way. Measured:
+    # the document says WEIGHTED CENTRE five times and WEIGHTED CENTRAL never, and the
+    # published figure reproduces to 8.9e-16 as 0.40 cash flow + 0.25 normalised + 0.20
+    # relative + 0.15 BOOK, which [R-LENS-03] forbids twice over.
+    #
+    # A SPELLING IS NOT A LOOPHOLE AND A GATE THAT TREATS IT AS ONE IS TESTING ITS
+    # AUTHOR'S DIALECT. Every noun in this pattern now admits both spellings.
+    # THE WIDE SPAN STAYS IN CAPITALS ONLY, because that is the only shape it was built
+    # for: a TABLE ROW whose label the layout splits around its own figures, which
+    # renders "WEIGHTED  the four, weighted  4.93 ... CENTRAL" in caps. Allowing 120
+    # characters of lower-case prose between the two words flags an ordinary sentence --
+    # "a centre-weighted moving average of the data centre segment" carries both words,
+    # neither of them making any claim, and the first draft of this widening failed its
+    # own clean case on exactly that. Per [R-COC-01] the answer to a check firing on work
+    # that is right is to RE-POINT it, never to widen the tolerance.
+    r"(?-i:WEIGHTED\b[^.\n]{0,120}?\bCENTR(?:AL|E)S?\b)|"
+    # and the ordinary prose shape is ADJACENCY, which is what a claim actually looks
+    # like: "WEIGHTED CENTRE - Frame A", "publishes TWO weighted centres". A hyphen
+    # before "weighted" makes it half a compound adjective (equal-weighted,
+    # cap-weighted, centre-weighted) and never the verb this rule is about.
+    r"(?<!-)\bweighted\s+centr(?:al|e)s?\b|"
     r"\b\d{1,2}/\d{1,2}/\d{1,2}/\d{1,2}\s+weights", re.I)
 
 # The same words used to explain that the construction was retired. Not an escape

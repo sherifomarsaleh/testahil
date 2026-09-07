@@ -1,0 +1,27 @@
+{
+ "entries": {
+  "ADNOCDIST": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",
+  "ADNOCDRILL": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",
+  "AIRARABIA": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",
+  "AMOC": "a walk-forward run exists at engine/amoc_walkforward/ and the study states no scope decision. The run is the harder half and it is done; what is missing is the sentence in the study saying which scope was decided and on how many sourceable years.",
+  "AMR": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",
+  "ARCC": "a walk-forward run exists at engine/arcc_walkforward/ and the study states no scope decision. The run is the harder half and it is done; what is missing is the sentence in the study saying which scope was decided and on how many sourceable years.",
+  "BOROUGE": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",
+  "DU": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",
+  "EGCH": "a walk-forward run exists at engine/egch_walkforward/ and the study states no scope decision. The run is the harder half and it is done; what is missing is the sentence in the study saying which scope was decided and on how many sourceable years.",
+  "ELEC": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",
+  "EMPOWER": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",
+  "FERTIGLOBE": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",
+  "GBCO": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",
+  "MODON": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",
+  "PHAR": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",
+  "PHDC": "a walk-forward run exists at engine/phdc_walkforward/ and the study states no scope decision. The run is the harder half and it is done; what is missing is the sentence in the study saying which scope was decided and on how many sourceable years.",
+  "RIYADHCABLE": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",
+  "SAVOLA": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",
+  "SCEM": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",
+  "SWDY": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate.",
+  "TMGH": "a walk-forward run exists at engine/tmgh_walkforward/ and the study states no scope decision. The run is the harder half and it is done; what is missing is the sentence in the study saying which scope was decided and on how many sourceable years.",
+  "XPT": "no scope decision stated. [R-FCAL-01] has required one since 31-Aug-2026 and nothing outside a study was looking for it; this study predates the gate."
+ },
+ "note": "Studies stating no fundamental walk-forward scope decision when this gate was adopted (05-Sep-2026): 23 of 24, every one except the study being audited when somebody looked. Allowed to fail; the list may only ever get shorter. --prune rewrites it. A decision that CONTRADICTS itself or the disk is never excused by this list \u2014 the ratchet spares a study that has not written a decision, not one that has written a false one."
+}

@@ -1,0 +1,78 @@
+{
+ "ticker": "DU",
+ "as_of": "2026-09-06",
+ "spot": 11.36,
+ "spot_date": "DFM close, 3 September 2026, the price this edition is struck at",
+ "published_central": 16.577799870736467,
+ "published_spot": 11.36,
+ "why_this_file": "The reverse read — what the traded price must believe — is a DIAGNOSTIC and lives outside the numbers file every builder reads. A rate, a beta or a growth solved from a price and then used anywhere in the valuation is the reverse-engineered rate the protocol prohibits outright, arriving through a side door. Nothing in this file is an input to anything. It is COMPUTED by diagnostics_du.py, which imports the shipped model with its output redirected to scratch and asserts the committed numbers file is byte-identical before and after.",
+ "implied": {
+  "quantity": "the single flat discount rate that reproduces the traded price on this study's own free cash flows, terminal value and bridge",
+  "value": 0.08044902402409237,
+  "study_value": 0.06196210153329293,
+  "study_value_schedule": [
+   0.06400875823381369,
+   0.061740975
+  ],
+  "company_disclosed": {
+   "pre_tax_discount_rate_fy2025": 0.08839999999999999,
+   "pre_tax_discount_rate_fy2024": 0.084,
+   "terminal_growth_rate": 0.02,
+   "source": "note 9 (Goodwill), audited consolidated financial statements for the year ended 31 December 2025, KPMG Lower Gulf, unmodified opinion 9 February 2026, held at src/FS_FY2025.pdf — the key assumptions of the fixed-line cash-generating unit value-in-use calculation, quoted by the company as \"a pre-tax discount rate of 8.84% (2024: 8.40%) based on the Company's weighted-average cost of capital\" and \"terminal growth rate of 2%, determined based on management's estimate of the long-term cash flow growth rate\"",
+   "basis_warning": "THE DISCOUNT RATE IS PRE-TAX AND ON ONE CASH-GENERATING UNIT; this study discounts group cash flows at a post-tax weighted cost of capital. No conversion is made and none is derivable: the gross-up defined by the accounting standard needs the unit's own cash flows and tax profile, which the company does not publish. It is reported as disclosed. The TERMINAL GROWTH rate carries no such break — it is the same quantity this study states, and the company states the same number."
+  },
+  "solved_on": "the shared construction in engine/reverse_read.py, called rather than re-implemented, on this study's OWN committed free cash flows, its own terminal value inverted by the identity it was built with, its own discounting times recovered from its own factors (recovered from the study's own factors) and its own enterprise-to-equity bridge — holding every driver at its published value and varying only the rate. Solved by bisection, so the root does not depend on a starting guess. THE PRICE IS CARRIED BACK TO THE STUDY'S OWN VALUATION DATE FIRST: this study values at 31 December 2025 and accretes 246 days to the price anchor while deducting the AED 0.66 of dividends that went ex in between, so the traded AED 11.36 is travelled backwards down the same road to AED 11.5181 before it meets the cash flows, or the two would be dated differently and the rate would absorb the difference. The rate solved against the study's OWN enterprise value is reported beside it and sits inside the study's own glide, which is the check that the two are one quantity measured twice.",
+  "reading": "At AED 11.36 the price is paying for a flat 8.04% on this study's own cash flows, against the 6.20% flat-equivalent of the schedule the study actually discounts at (6.40% in the explicit window gliding to 6.17% in the terminal). The disagreement is 185 basis points on ONE parameter, which is a more useful statement than \"the study is +46% against the price\". BESIDE IT, WHAT THE COMPANY ITSELF PUBLISHES: du's own audited note 9 tests its goodwill at a PRE-TAX discount rate of 8.84% (2024: 8.40%), described as based on the company's weighted-average cost of capital. That is a different basis from either figure above and no conversion is made — but it bounds the company's own post-tax rate from above, and both the study's 6.20% and the price's 8.04% sit below that bound. ON DU'S OWN DISCLOSURE THE DISAGREEMENT IS NOT SETTLED EITHER WAY, and saying so is worth more than a comparison manufactured out of a gross-up the company gives no way to compute.",
+  "arithmetic": {
+   "implied_rate_at_price": 0.08044902402409237,
+   "implied_rate_at_study_value": 0.06196210153329293,
+   "terminal_cash_flow": 3424.864304062172,
+   "terminal_growth": 0.020000000000000018,
+   "terminal_arrives_at_year": 5.0,
+   "enterprise_value_at_spot": 51898.88821225288,
+   "enterprise_value_in_study": 74563.02236207029,
+   "bridge_delta_equity_less_ev": 311.4109999999928
+  }
+ },
+ "also_solved_on_the_study_s_own_chain": {
+  "why": "The headline rate is comparable across the book and has no exact company-disclosed counterpart. These two do: a beta a reader can check against a measured regression, and a terminal growth the company itself states in its audited accounts. Each is solved by moving that one quantity and nothing else until the study's own model reproduces the traded price.",
+  "beta": {
+   "quantity": "the equity beta the traded price implies",
+   "implied_by_price": 0.9575586556888922,
+   "study_value": 0.488,
+   "measured": {
+    "beta": 0.4879595874282318,
+    "r2": 0.12046293890041448,
+    "se": 0.08273082248993131,
+    "n": 256,
+    "ci90": [
+     0.3518673844322948,
+     0.6240517904241688
+    ],
+    "window": "5 years of weekly returns",
+    "carried_in_the_model_at": 0.488,
+    "note": "the register rounds the regression to three decimals and the model runs on the rounded figure; both are shown so neither stands in for the other"
+   },
+   "alternatives_the_study_holds": {
+    "dfm_general_own_listing_venue": 0.4715600357114492,
+    "equal_weight_library_composite": 0.3996691918562717
+   },
+   "solved_how": "bisection on compute.py's own audit-override harness — the whole chain re-run at each step, so the cost of equity, the weights, the glide, the terminal and the accretion are all re-derived by the study's own code rather than patched by the diagnostic. Every other input held at its published value.",
+   "standard_errors_above_measured": 5.6762286911605715,
+   "reading": "At AED 11.36 the price is paying for a beta of 0.958 against a measured 0.4880 — 5.7 standard errors above it and outside the 90% interval of 0.352 to 0.624. The company discloses no beta, so what this is put beside is a measurement: du's own weekly returns over five years, 256 observations. Both alternative regressors the study holds give a LOWER beta (0.4716 on du's own listing venue, 0.3997 on the library composite), so nothing in the regressor choice moves toward the price. A beta near one is an entirely ordinary telecom number, which is why this is recorded as a disagreement a reader can judge rather than as a defect found."
+  },
+  "terminal_growth": {
+   "quantity": "the terminal growth rate the traded price implies",
+   "implied_by_price_nominal": -0.008823603626039678,
+   "implied_by_price_real": -0.028258434927489806,
+   "study_value_nominal": 0.020000000000000018,
+   "study_value_real": 0.0,
+   "company_disclosed": 0.02,
+   "house_terminal_inflation": 0.02,
+   "lowest_buildable_growth": -0.022871904092060576,
+   "value_at_that_floor": 10.09309524518664,
+   "solved_how": "bisection on the sanctioned terminal module, called through compute.py's own _terminal_at, with the explicit window (which does not depend on the terminal rate) and the bridge held exactly as committed. The module refuses below -2.2872% nominal, where terminal free cash flow would exceed terminal profit and a going concern would distribute more than it earns for ever; the floor is stated and the solve runs inside it, and the value at the floor (AED 10.09) is below the price, so the root is real rather than a bound reported as an answer.",
+   "reading": "At AED 11.36 the price is paying for terminal growth of -0.88% nominal — against 2.0% terminal inflation, a REAL DECLINE of 2.83% a year for ever. The study assumes real growth of exactly zero, and DU'S OWN AUDITED ACCOUNTS DISCLOSE THE SAME 2% TERMINAL GROWTH the study uses, in note 9's goodwill impairment test, \"determined based on management's estimate of the long-term cash flow growth rate, consistent with the assumption that a market participant would make\". This is the one framing where the company's number and the study's number are the same quantity on the same basis, and they agree. What the price is paying for is not on that page."
+  }
+ }
+}

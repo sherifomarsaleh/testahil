@@ -676,6 +676,141 @@ print(f'    Ke_term = rf_term {V["rf_term"]*100:.1f} + beta x ERP_term {V["erp_t
 print(f'    terminal ROIC {roic_T*100:.1f}% vs WACC_term {wacc_term*100:.2f}% — spread {"NEGATIVE: growth subtracts value; the g-grid gradient inverts by construction" if roic_T < wacc_term else "positive"}')
 print(f'  central {central["base"]:.2f} [{central["bear"]:.2f}-{central["bull"]:.2f}] vs spot {SPOT} ({central["base"]/SPOT-1:+.0%})')
 
+
+# ---- [R-ANCHOR-01] THE FORECAST IS ANCHORED ON THE LATEST REVIEWED PERIOD ----
+# NEITHER CLAUSE OF THAT RULE FIRES HERE AND THE RECORD IS COMMITTED ANYWAY, which
+# is the point of printing it for every study: the forecast opens ABOVE the latest
+# reviewed period and its path RISES from its own opening year, so clause one has
+# nothing to fire on and clause two has nothing to reach. No mechanism is owed and
+# none is claimed — inventing one to decorate a record that does not fire would be
+# the assumption wearing a mechanism, which this rule exists to stop.
+#
+# WHAT THE RECORD MAKES VISIBLE IS THAT THE RULE CANNOT SEE THIS STUDY'S CLAIM.
+# The latest reviewed period is the worst quarter in the company's record, so a
+# forecast opening above it is arithmetically unavoidable; and the rate that
+# carries the answer is not the opening year but the LAST one, which is 82% of
+# enterprise value and sits half below every full year the company has reported.
+# Clause one compares the opening year with the latest reviewed period; clause two
+# compares the path's minimum with its own opening year. On a path that rises out
+# of a collapsed quarter, NEITHER COMPARISON REACHES THE TERMINAL. That is a
+# property of the rule's two comparisons rather than a defect in this record, and
+# it is written down here rather than left for somebody to discover.
+#
+# EVERY FIGURE BELOW IS DERIVED FROM THIS STUDY'S OWN COMMITTED VALUES. The
+# Q1-2026 EBITDA is recovered from the conversion rate this model already commits
+# for that quarter rather than retyped, so the depreciation add-back inside it is
+# the study's own and not a second one introduced here.
+_q1_ebitda = hist_ebitda_per_t['Q1_26'] * hist_vol['Q1_26_annualized']['vol_kt'] / 4.0
+_q1_dna_addback = _q1_ebitda - V['q1_26_op']
+_q1_mgn = _q1_ebitda / V['q1_26_rev']
+_fcst_mgn = [r['margin'] for r in rows]
+_hist_mgn = {y: hist_is[y]['ebitda'] / hist_is[y]['rev'] for y in ('FY23', 'FY24', 'FY25')}
+_mgn_filed_low = min(_hist_mgn.values())
+# the add-back the quarter would need before the forecast opened BELOW it at all:
+# the verdict is insensitive to a construction that is a house estimate, and the
+# bound says by how much rather than asserting it.
+_dna_to_close = _fcst_mgn[0] * V['q1_26_rev'] - V['q1_26_op']
+_ebit_mgn_f = [r['ebit'] / r['rev'] for r in rows]
+_ebit_mgn_q1 = V['q1_26_op'] / V['q1_26_rev']
+
+FORECAST_ANCHOR = dict(
+    rate_name='EBITDA margin',
+    latest_reviewed_period='Q1-2026 (three months ended 31 March 2026), interim filing — '
+                           'the statements themselves are not held',
+    latest_reviewed_date='2026-03-31',
+    latest_reviewed_rate=float(_q1_mgn),
+    latest_reviewed_source=(
+        'THE STUDY HOLDS NO COMPANY FINANCIAL STATEMENT, AND THIS FIELD SAYS SO RATHER '
+        'THAN NAMING A FILING. The Q1-2026 figures reach this model as press coverage of '
+        'the interim filing lodged with the exchange — revenue EGP %s mn, cost of sales '
+        'EGP %s mn, gross profit EGP %.3fmn and operating profit EGP %.3fmn — not as the '
+        'reviewed statements. EBITDA is that operating profit plus a depreciation add-back '
+        'of EGP %.1fmn, which is this study\'s own estimate for the quarter and not a '
+        'disclosed line. The issuer\'s statement index lists nothing after 30 September '
+        '2025 and nothing consolidated after 31 December 2020, every consolidated file it '
+        'does list sits on a host that no longer resolves, and this study models '
+        'consolidated figures; the position is carried in the escalation register and was '
+        're-probed on 5 September 2026 rather than taken on report. So the anchor is '
+        'recorded and its provenance is not of the class the source rule requires — a '
+        'condition of the study, not of this record.'
+        % (format(V['q1_26_rev'], ',.0f'), format(V['q1_26_cogs'], ',.0f'),
+           V['q1_26_gp'], V['q1_26_op'], _q1_dna_addback)),
+    first_forecast_rate=float(_fcst_mgn[0]),
+    forecast_path=[float(m) for m in _fcst_mgn],
+    other_framing=dict(
+        label='operating margin — no depreciation add-back on either side',
+        latest_reviewed_rate=float(_ebit_mgn_q1),
+        first_forecast_rate=float(_ebit_mgn_f[0]),
+        forecast_path=[float(m) for m in _ebit_mgn_f],
+        note='RECORDED BECAUSE THE HEADLINE RATE CARRIES A HOUSE ESTIMATE AND THE VERDICT '
+             'SHOULD BE SHOWN NOT TO TURN ON IT. Strip the add-back from both sides and the '
+             'shape is identical: %.4f%% in the quarter against %.4f%% in the first forecast '
+             'year, rising to %.2f%% by FY2030E. The bound is exact — the quarterly add-back '
+             'would have to exceed EGP %.1fmn, an annualised EGP %s mn against this study\'s '
+             'own FY2025 depreciation charge of EGP %.1fmn, before the forecast opened below '
+             'the quarter at all. No treatment of depreciation available on these numbers '
+             'reverses the sign.'
+             % (100 * _ebit_mgn_q1, 100 * _ebit_mgn_f[0], 100 * _ebit_mgn_f[-1],
+                _dna_to_close, format(4 * _dna_to_close, ',.0f'), dna_fy['FY25'])),
+    driver_rate_beside_it=dict(
+        label='conversion EBITDA per tonne (k EGP/t) — the unit rate the forecast is '
+              'actually built on, margin being an output of it',
+        latest_reviewed_rate=float(hist_ebitda_per_t['Q1_26']),
+        forecast_path=[float(x) for x in V['ebitda_per_t']],
+        filed_record={y: float(hist_ebitda_per_t[y]) for y in ('FY23', 'FY24', 'FY25')},
+        note='THE DRIVER TELLS THE SAME STORY AND IS NOT RECORDED AS THE GOVERNING RATE, '
+             'for a reason worth stating: its denominator is a volume the company does not '
+             'disclose, implied through a fabrication uplift that revenue alone does not '
+             'identify, so it cannot be read off any filing. It opens at %.1f against %.1f '
+             'in the quarter and rises to %.0f, while the filed years run %.1f (FY2023), '
+             '%.1f (FY2024) and %.1f (FY2025) — the same shape as the margin: above the '
+             'quarter, far below every year.'
+             % (V['ebitda_per_t'][0], hist_ebitda_per_t['Q1_26'], V['ebitda_per_t'][-1],
+                hist_ebitda_per_t['FY23'], hist_ebitda_per_t['FY24'],
+                hist_ebitda_per_t['FY25'])),
+    note='THE FORECAST OPENS ABOVE THE LATEST REVIEWED PERIOD AND RISES FROM THERE, SO '
+         'NEITHER CLAUSE FIRES AND NO MECHANISM IS OWED OR CLAIMED. It opens at %.2f%% '
+         'against %.2f%% in the three months to 31 March 2026 — %+.0f%% relative — and the '
+         'path\'s minimum IS its opening year, running %.2f%% / %.2f%% / %.2f%% / %.2f%% / '
+         '%.2f%%.\n\n'
+         'WHAT SITS EITHER SIDE OF THAT IS THE WHOLE OF THIS STUDY AND A READER SHOULD SEE '
+         'IT. The anchor quarter is the worst the company has reported: revenue EGP %s mn '
+         'against EGP %s mn a year earlier, gross margin %.2f%% against %.2f%%, operating '
+         'profit EGP %.3fmn against EGP %s mn, and a net loss of EGP %.1fmn against a '
+         'profit of EGP %.1fmn. A forecast opening above that is the ordinary consequence of '
+         'not projecting the worst quarter for ever, and it is not evidence of anything. The '
+         'LAST forecast year is where the answer lives: %.2f%% against a reported record of '
+         '%.2f%% (FY2023), %.2f%% (FY2024) and %.2f%% (FY2025) — %.0f%% relatively below the '
+         'lowest of the three — and %.0f%% of enterprise value sits in the terminal struck '
+         'off it. THIS RULE\'S TWO COMPARISONS CANNOT REACH THAT NUMBER: one holds the '
+         'opening year against the latest reviewed period and the other holds the path\'s '
+         'minimum against its own opening year, and on a rising path out of a collapsed '
+         'quarter both pass while the single judgement carrying the valuation goes '
+         'unexamined. It is examined instead by this study\'s own dated gap review, which '
+         'solves the traded price back through these same drivers onto a terminal margin '
+         'that sits inside the reported range in all three years — a figure that review '
+         'computes and this model does not, so it is described rather than quoted.\n\n'
+         'AND THE RECORD IS ONLY AS GOOD AS WHAT IT IS STRUCK ON. The full-year margins '
+         'quoted above are not filed rates: revenue and net profit are vendor and press '
+         'prints, and everything between them is solved or typed — the FY2025 EBITDA rests '
+         'on a finance cost derived to close the profit and loss to a reported net profit, '
+         'and this study\'s own review shows the FY2025 conversion rate the forecast is '
+         'calibrated against moving materially with that single unsourced input, which is '
+         'that review\'s arithmetic and not this model\'s. The comparison this '
+         'record draws is therefore between a forecast and a reconstruction, and it is '
+         'recorded in those terms.'
+         % (100 * _fcst_mgn[0], 100 * _q1_mgn,
+            100 * (_fcst_mgn[0] - _q1_mgn) / abs(_q1_mgn),
+            100 * _fcst_mgn[0], 100 * _fcst_mgn[1], 100 * _fcst_mgn[2],
+            100 * _fcst_mgn[3], 100 * _fcst_mgn[4],
+            format(V['q1_26_rev'], ',.0f'), format(V['q1_25_rev'], ',.0f'),
+            100 * V['q1_26_gp'] / V['q1_26_rev'], 100 * V['q1_25_gp'] / V['q1_25_rev'],
+            V['q1_26_op'], format(V['q1_25_op'], ',.0f'), -V['q1_26_np'], V['q1_25_np'],
+            100 * _fcst_mgn[-1], 100 * _hist_mgn['FY23'], 100 * _hist_mgn['FY24'],
+            100 * _hist_mgn['FY25'],
+            -100 * (_fcst_mgn[-1] - _mgn_filed_low) / _mgn_filed_low,
+            100 * tv_pct))
+
 # ============================ EMIT ===========================================
 out = dict(
     # THE ANSWER, WHERE THE SHARED READER LOOKS FOR IT. [R-GAP-01]'s gate reads a study's
@@ -740,6 +875,7 @@ out = dict(
     sens_roic=sens_roic, nd_challenge=nd_challenge,
     scenarios=dict(bear=dict(knobs=BEAR_KNOBS, **bear_detail),
                    bull=dict(knobs=BULL_KNOBS, **bull_detail)),
+    forecast_anchor=FORECAST_ANCHOR,
     step0=step0, strike=strike, tech=tech,
     mc=dict(prob_read=prob_read, zones=zones, zone_edges=zone_edges[1:-1], touch=touch,
             pct1={p: float(np.percentile(term1, p)) for p in (5, 25, 50, 75, 95)},

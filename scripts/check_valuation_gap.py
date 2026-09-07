@@ -24,7 +24,7 @@ WHY THIS EXISTS
     Every one of those is the model being wrong, not the company being cheap. The market
     price was the only thing in the room saying so.
 
-WHAT IT CHECKS, per study directory under engine/*_study/
+WHAT IT CHECKS, per covered name (the population is the book — see below)
     1. the study's own committed numbers resolve to a central fair value and the spot it
        was struck against — a study whose answer cannot be read is NOT clean [R-ENF-04]
     2. where the central sits more than GAP_LIMIT below OR GAP_LIMIT_ABOVE above that spot, a dated gap review
@@ -37,14 +37,27 @@ THE RATCHET
     with no entry either way. The list may only ever get SHORTER — --prune rewrites it.
     A permanently red check is one everyone learns to ignore.
 
-THE POPULATION IS ANCHORED ELSEWHERE  [R-ENF-04]
-    This gate globs engine/*_study, so a mis-resolved ENGINE or a bad pattern would find
-    nothing and report "no new violations" — an ABSENT answer wearing the costume of a
-    clean one. It therefore holds its own glob against a population counted somewhere
-    else: every ticker already named in gap_outstanding.json must resolve to a study
-    directory on disk. Defeating that would mean deleting the studies themselves, which is
-    a far louder failure than an empty listing. It is EXACT, never a threshold. An empty
-    outstanding list is not an escape either — a run that examined zero studies FAILS.
+THE POPULATION IS THE BOOK, NOT THE DIRECTORIES  [R-ENF-04, RE-POINTED 06-09-2026]
+    THIS GATE USED TO GLOB engine/*_study AND THAT WAS THE WRONG POPULATION. All 90
+    covered names carry a delivered valuation study under files/; 23 have a record
+    directory. So for its whole life this gate audited 23 fair values and reported
+    itself population-anchored — against gap_outstanding.json, which had itself been
+    seeded from the same glob. A population and the list that checks it, both derived
+    from one glob, agree with each other by construction and say nothing about the world.
+    Sixty-seven studies publish a fair value this gate had never once put against a price.
+
+    It now takes its population from engine/study_population.py: the covered names joined
+    to their delivered artefacts, resolved in BOTH directions and refusing rather than
+    returning a short list. Anchored both ways — a run that examined zero NAMES fails, and
+    a run that READ zero records across present names fails, which is the distinction an
+    absent answer hides behind.
+
+    TWO RATCHET GROUPS, NOT INTERCHANGEABLE, which is [R-TERM-01]'s own negative-control
+    lesson arriving again: `no_record_dir` excuses a study that commits no record for any
+    gate to read, `unreadable` excuses one whose committed numbers do not expose an
+    answer. A name in both, or moving between them, goes RED until the move is recorded —
+    otherwise a study escapes a real unreadable answer by being re-filed as merely
+    undirectoried.
 
 USAGE
     python3 scripts/check_valuation_gap.py          # gate; exit 1 on any hard fail
@@ -240,10 +253,26 @@ def _resolve_ticker(ticker):
         # the new-study gauntlet recorded on its own first run.
         import importlib.util
         here = os.path.dirname(os.path.abspath(__file__))
-        path = os.path.join(os.path.dirname(here), 'engine', 'campaign_queue.py')
+        engine_dir = os.path.join(os.path.dirname(here), 'engine')
+        path = os.path.join(engine_dir, 'campaign_queue.py')
+        # A MODULE LOADED BY PATH MUST STILL BE ABLE TO IMPORT ITS OWN NEIGHBOURS.
+        # campaign_queue imports study_aliases, which sits beside it; loading it
+        # under a sys.path that does not carry its directory raises
+        # ModuleNotFoundError five frames down, and the caller's negative control
+        # then goes red for the WRONG reason — the gauntlet's own first-run
+        # finding, and the fourth occurrence of this shape in one session. The
+        # directory of the file being loaded goes on the path for the load, and
+        # comes off afterwards so nothing else inherits it.
         spec = importlib.util.spec_from_file_location('_cq', path)
         mod = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(mod)          # a missing map is a FAILURE, never a
+        _added = engine_dir not in sys.path
+        if _added:
+            sys.path.insert(0, engine_dir)
+        try:
+            spec.loader.exec_module(mod)      # a missing map is a FAILURE, never a
+        finally:
+            if _added:
+                sys.path[:] = [x for x in sys.path if x != engine_dir]
         _ALIAS_CACHE = (mod.STUDY_ALIAS,      # silent fallback to the raw ticker:
                         mod.STUDY_NOT_IN_QUEUE)   # that is the mismatch it prevents
     alias, not_in_queue = _ALIAS_CACHE
@@ -453,33 +482,91 @@ def exemptions(d):
     return ex, bad
 
 
+def resolve_population():
+    """THE SEAM. The gate resolves its population through one call so the
+    negative control can substitute a fixture and test THIS gate's logic,
+    while engine/study_population.py is negative-controlled separately on its
+    own eight conditions. Each instrument tested on what it decides.
+
+    THE IMPORT IS LAZY, AND THAT IS NOT TIDINESS. A first draft imported
+    study_population at module level behind a sys.path insert computed from
+    __file__, which broke every OTHER gate's sandbox that copies this script
+    without engine/ beside it: check_artefact_currency's negative control went
+    red on all ten of its cases with ModuleNotFoundError, and three of them
+    were scored 'ok' — a control reporting the right verdict for the wrong
+    reason, which reads exactly like the right one [R-ENF-07]. Importing here
+    means a caller that substitutes this function never needs the module at
+    all, which is what a seam is for.
+    """
+    engine = os.path.join(ROOT, 'engine')
+    if engine not in sys.path:
+        sys.path.insert(0, engine)
+    import study_population
+    return study_population.population()
+
+
+def resolve_no_record(pop):
+    """The shared no-record ratchet, read through the same lazy seam. A second
+    seam so the negative control can supply both halves of the fixture."""
+    engine = os.path.join(ROOT, 'engine')
+    if engine not in sys.path:
+        sys.path.insert(0, engine)
+    import study_population
+    return study_population.no_record_ratchet(pop)
+
+
 def main(argv):
     prune = '--prune' in argv
-    d, known_breach, known_unreadable, known_unstated = load_outstanding()
+    (d, known_breach, known_unreadable, known_unstated) = load_outstanding()
 
-    sdirs = sorted(glob.glob(os.path.join(ENGINE, '*_study')))
+    # THE POPULATION IS THE BOOK. Every covered name carries a delivered study;
+    # what varies is whether it also commits a record this gate can read.
+    pop = resolve_population()
+    # THE NO-RECORD SET IS SHARED, NOT THIS GATE'S. It was kept here for one day
+    # and moved the moment the ten sibling gates were surveyed: ten gates keeping
+    # ten copies of the same 67 names is the twenty-three-hand-maintained-sets
+    # mistake, and it would have written one fact into the exemplar ratchet ten
+    # times over. It stays a ratchet — a name that LOSES its record goes red.
+    known_no_record, _nr_problems = resolve_no_record(pop)
     ok, breaches, unreadable, reviewed, new_fail = [], [], [], [], []
+    no_record = []
     exempt, exempt_no_reason = exemptions(d)
     exempted = []
     for k in sorted(exempt_no_reason):
         new_fail.append('%s is listed exempt with no reason. An exemption without one is '
                         'a name switched off, not a name excused.' % k)
 
-    # [R-ENF-04] the population, counted somewhere other than this gate's own glob
-    on_disk = {os.path.basename(s).replace('_study', '').upper() for s in sdirs}
-    vanished = sorted((known_breach | known_unreadable) - on_disk)
-    if not sdirs:
-        new_fail.append('this gate examined ZERO study directories. An empty result is not '
-                        'a clean result — re-run the glob before believing the absence.')
+    # [R-ENF-04] ANCHORED BOTH WAYS, against a population this gate does not own
+    if not pop:
+        new_fail.append('this gate examined ZERO covered names. An empty result is not '
+                        'a clean result — re-run the resolver before believing it.')
+    for _m in _nr_problems:
+        new_fail.append(_m)
+    vanished = sorted((known_breach | known_unreadable) - set(pop))
     if vanished:
-        new_fail.append('%d study directory(ies) named in gap_outstanding.json do not resolve '
-                        'on disk (%s). Either the glob did not run or the studies were removed '
-                        'without pruning the list; neither is a pass.'
+        new_fail.append('%d name(s) in gap_outstanding.json resolve to no covered name '
+                        '(%s). Either the resolver did not run or the names left the '
+                        'book without the list being pruned; neither is a pass.'
                         % (len(vanished), ', '.join(vanished)))
+    # THE TWO GROUPS EXCUSE TWO DIFFERENT CONDITIONS AND ARE NOT INTERCHANGEABLE
+    both = sorted(known_unreadable & known_no_record)   # noqa: E501  see note above
+    if both:
+        new_fail.append('%s listed in BOTH the shared no-record ratchet and unreadable. They excuse '
+                        'different conditions — no record to read, versus a record whose '
+                        'numbers expose no answer — and a name carrying both allowances '
+                        'escapes whichever one it actually breaches.' % ', '.join(both))
 
     price_notes, price_basis = [], []
-    for sdir in sdirs:
-        tk = os.path.basename(sdir).replace('_study', '').upper()
+    for tk in sorted(pop):
+        sdir = pop[tk]['record_dir']
+        if sdir is None:
+            # DELIVERED, AND INVISIBLE TO EVERY RECORD-READING GATE. Not skipped and
+            # not silently narrowed away: this is the state the re-pointing exists to
+            # make countable, and under [R-ENF-04] it is UNREADABLE, which is not CLEAN.
+            no_record.append((tk, len(pop[tk]['delivered'])))
+            # the shared reader above has already reported any name missing from the
+            # ratchet; reporting it again here would say one fact twice
+            continue
         central, spot, route = read_answer(sdir)
         if tk in exempt:
             exempted.append((tk, exempt[tk]))
@@ -599,10 +686,18 @@ def main(argv):
             new_fail.append('%s: central is %.1f%% %s the spot it was struck at, and %s.'
                             % (tk, abs(100 * gap), side, why))
 
-    print('study directories: %d   readable: %d   reviewed: %d   breaching: %d   '
-          'unreadable: %d   exempt: %d'
-          % (len(sdirs), len(ok) + len(reviewed) + len(breaches), len(reviewed),
-             len(breaches), len(unreadable), len(exempted)))
+    print('covered names (every one carrying a delivered study): %d' % len(pop))
+    print('  answer READ and audited : %d   reviewed: %d   breaching: %d'
+          % (len(ok) + len(reviewed) + len(breaches), len(reviewed), len(breaches)))
+    print('  record present, answer unreadable : %d' % len(unreadable))
+    print('  NO RECORD DIRECTORY AT ALL        : %d   exempt: %d'
+          % (len(no_record), len(exempted)))
+    # [R-ENF-04] BOTH WAYS: zero names fails above, and zero answers READ across
+    # present names fails here — the distinction an absent answer hides behind
+    if pop and not (ok or reviewed or breaches):
+        new_fail.append('this gate READ zero answers across %d covered names. A run that '
+                        'examined a population and resolved nothing in it is an absent '
+                        'result, not a clean one.' % len(pop))
     for tk, why in sorted(exempted):
         # printed, never silent: an exemption a reader cannot see is indistinguishable
         # from a study this gate quietly skipped
@@ -633,6 +728,13 @@ def main(argv):
               'clean one:' % len(unreadable))
         for tk, why in unreadable:
             print('   %-12s %s' % (tk, why))
+    if no_record:
+        print('\nDELIVERED, WITH NO RECORD ANY GATE CAN READ (%d) — the fair value is '
+              'published and has never been put against a price by this gate:'
+              % len(no_record))
+        names = sorted(t for t, _ in no_record)
+        for i in range(0, len(names), 6):
+            print('   ' + ', '.join(names[i:i + 6]))
 
     now_passing = sorted(({b[0] for b in breaches} ^ known_breach) & known_breach) + \
         sorted(({tk for tk, _ in unreadable} ^ known_unreadable) & known_unreadable)
@@ -644,7 +746,8 @@ def main(argv):
         d['breach_no_review'] = sorted({b[0] for b in breaches} & known_breach)
         d['unreadable'] = sorted({tk for tk, _ in unreadable} & known_unreadable)
         json.dump(d, open(OUTSTANDING, 'w'), indent=1)
-        print('\npruned; %d breach + %d unreadable remain'
+        print('\npruned; %d breach + %d unreadable remain (the no-record set is a '
+              'shared ratchet and is pruned where it lives)'
               % (len(d['breach_no_review']), len(d['unreadable'])))
         return 0
 
@@ -665,8 +768,8 @@ def main(argv):
     # comparison in silence, which is the staleness this reading was changed to end.
     if price_basis:
         print('\n  PRICE BASIS — [R-GAP-01] compares against the LATEST KNOWN price:')
-        print('    %d of %d studies compared against their own OHLC library'
-              % (len(price_basis), len(sdirs)))
+        print('    %d of %d readable studies compared against their own OHLC library'
+              % (len(price_basis), len(ok) + len(reviewed) + len(breaches)))
         for t, d in sorted(price_basis, key=lambda x: x[1])[:6]:
             print('      %-12s last close %s' % (t, d))
         print('    a library that has stopped is a stale comparison, not a passing one;'

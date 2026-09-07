@@ -1591,6 +1591,24 @@
    "layer": "L2",
    "note": ""
   },
+  "erp_cds_superseded": {
+   "key": "erp_cds_superseded",
+   "value": 0.094247,
+   "unit": "ratio",
+   "source": "The credit-default-swap equity risk premium this study carried BEFORE the correction of 9 August 2026, reconstructed at the time from a sovereign spread the source file does not carry. Registered as the historical fact it is so the correction note beside it is computed rather than typed.",
+   "date": "2026-08-08",
+   "layer": "L4",
+   "note": ""
+  },
+  "sov_spread_cds_superseded": {
+   "key": "sov_spread_cds_superseded",
+   "value": 0.0355,
+   "unit": "ratio",
+   "source": "The sovereign credit-default-swap spread the superseded premium above was reconstructed from. It appears in no source file, which is why the premium built on it was corrected; it is registered here for the same reason as the premium.",
+   "date": "2026-08-08",
+   "layer": "L4",
+   "note": ""
+  },
   "erp_cds_damodaran": {
    "key": "erp_cds_damodaran",
    "value": 0.0941,

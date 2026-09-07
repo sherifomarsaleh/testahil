@@ -3,33 +3,45 @@
  "as_of": "2026-09-03",
  "spot": 14.41,
  "spot_date": "2026-09-03",
- "why_this_file": "The reverse read — what the traded price must believe — is a DIAGNOSTIC and lives outside the numbers file every builder reads. A quantity solved from a price and then used anywhere in the valuation is the reverse-engineered rate the protocol prohibits outright, arriving through a side door. Nothing in this file is an input to anything; it is written OUT of what compute.py already committed.",
+ "published_central": 4.0395808164915605,
+ "published_spot": 14.41,
+ "why_this_file": "The reverse read — what the traded price must believe — is a DIAGNOSTIC and lives outside the numbers file every builder reads. A quantity solved from a price and then used anywhere in the valuation is the reverse-engineered rate the protocol prohibits outright, arriving through a side door. Nothing in this file is an input to anything and nothing reads it back: it is solved here, by re-running the study's own model, and written out.",
  "implied": {
-  "quantity": "the single flat nominal EGP discount rate — applied to every explicit year and to the perpetuity — that reproduces the traded price on this study's own operating cash flows",
-  "value": 0.1300292595239384,
-  "study_value": 0.25757854106089717,
+  "quantity": "the dollar export price of urea, free on board Egypt, held FLAT across the explicit window and into the terminal, that reproduces the traded price on this study's own drivers",
+  "value": 731.1216301430482,
+  "study_value": 530.0,
   "study_value_range": [
-   0.1833330573146555,
-   0.25757854106089717
+   530.0,
+   560.0
   ],
-  "solved_on": "compute.py's own implied_flat_wacc(), holding every driver at its published value and varying only the discount rate; solved on BOTH sides of the binary judgement because this study's central is two-sided and picking a side to solve on would make the choice the study declined to make",
+  "company_disclosed": 385.0,
+  "solved_on": "this study's own model through alternatives.reprice(), which re-runs compute.run_case() end to end at each trial price — the same construction the study uses to price its own contested framings — holding every other driver, the currency path, the cost-of-capital glide and the terminal at their published values and varying only the dollar export price until the model reproduces the traded price. Solved on BOTH sides of the binary judgement, because this study's answer is two-sided and picking a side to solve on would make the choice the study declined to make. The bracket is asserted, so a solve that ran off its own end raises rather than returning an endpoint that looks like an answer.",
   "both_sides": {
-   "capital programme carried through": 0.1300292595239384,
-   "capital programme stopped": 0.14264996521794682
+   "capital programme carried through": 731.1216301430482,
+   "capital programme stopped": 653.5621393640863
   },
-  "reading": "At EGP 14.41 the price implies a flat nominal discount rate of 13.0% if the ANNA programme is carried through and 14.3% if it is stopped. This study discounts at 25.8% falling to 18.3%. The sovereign's own ten-year yield is 23.0%, so on either branch the price is paying a rate BELOW what the government of Egypt pays to borrow — less than half of it on the committed-capital case. That is not a disagreement about the business; it is a statement that the equity is priced as though the cash flows this study projects were safer than the sovereign. The study's answer is 4.04 carried through and 8.04 stopped, and it publishes both rather than averaging a half-built plant nobody is proposing."
+  "reading": "At EGP 14.41 the price is paying for urea at US$731 a tonne, held there for ever, if the capital programme is carried through — and US$654 if it is stopped. This study holds US$530, the level at which its own path opens, and its upside case holds US$560. The company's own auditor puts the realised average export price for FY2024/25 at US$385 a tonne, and the front-month free-on-board Egypt settlement registered on 7 August 2026 was US$545. The market is therefore paying for a price about a third above the highest level either the market or the company has printed, held flat in perpetuity. WHAT THE DISAGREEMENT IS NOT ABOUT: solved on the discount rate instead, the same price implies a flat nominal Egyptian pound rate of 13.0% carried through and 14.3% stopped, both BELOW the 23.0% the Egyptian government pays to borrow — outside the feasible set, so that reading rules the rate out rather than measuring anything. Nor is it about the new complex: at 100% of the disclosed nameplate, twice this study's assumption, the carried-through branch is worth EGP 5.10, and reproducing the traded price on that lever alone needs 537% of nameplate. What is left is that the market disagrees about a driver on evidence this study has not read, or is paying for something this study does not model at all."
  },
  "construction": {
-  "built_wacc_path": [
-   0.25757854106089717,
-   0.2382164717061873,
-   0.2224186525920881,
-   0.21018508371859965,
-   0.20009006498947762
-  ],
-  "built_wacc_terminal": 0.1833330573146555,
-  "sovereign_ten_year": 0.23,
-  "terminal_growth": 0.07,
-  "note": "the implied rates come from compute.py's own solver, which rebuilds the whole model at each trial rate rather than re-discounting a fixed cash-flow series"
+  "value_carried_through": 4.0395808164915605,
+  "value_stopped": 8.038774888582243,
+  "export_price_study_flat": 530.0,
+  "export_price_realised_FY2425": 385.0,
+  "export_price_market_quote_2026_08_07": 545.0,
+  "anna_utilisation_implied_by_price": 5.370684973659831,
+  "anna_utilisation_study": 0.5,
+  "value_at_full_nameplate": 5.104155844397348,
+  "secondary_reading_flat_discount_rate": {
+   "carried_through": 0.1300292595239384,
+   "stopped": 0.14264996521794682,
+   "sovereign_ten_year": 0.23,
+   "note": "kept as a secondary reading rather than deleted, because it is what rules the discount rate out as the site of the disagreement: an equity cannot be priced to yield less than the sovereign that taxes it."
+  },
+  "note": "every figure here is a full re-run of compute.run_case(), never an interpolation and never a re-discounting of a fixed cash-flow series"
+ },
+ "containment": {
+  "solved_value_in_numbers_file": false,
+  "asserted_by": "diagnostics_egch.main(), which refuses to write if the solved value appears in study_numbers.json",
+  "outstanding": "The study's OTHER reverse read — the flat discount rate compute.py solves — is still committed at drivers/implied_wacc_base and drivers/implied_wacc_halt, and is quoted in the delivered document, the workbook and one figure. Every use is display and nothing computes from it, so the rule's purpose holds and its device does not. It is NOT removed in this pass and the reason is stated rather than left to be inferred: taking it out re-points three builders of delivered documents and would leave five printed figures with no committed source, which is a re-issue. It is named here so the debt is countable rather than remembered, and it is not what this record publishes."
  }
 }

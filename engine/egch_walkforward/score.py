@@ -56,6 +56,10 @@ def build_cells(**kw):
             row["sign"][d] = sign_hit(pv, av)
             row["excluded"][d] = (pv is not None and av is not None and (pv <= 0 or av <= 0))
         row["proj"], row["act"] = p, a
+        # Both benchmarks' projections are retained, not only the errors they
+        # produce: without them a per-cell file cannot reproduce a skill
+        # number, which is what a per-cell file is for.
+        row["frz"], row["trd"] = f, (tr or {})
         rows.append(row)
     return rows
 
@@ -116,6 +120,51 @@ def skill_pairs(rows, driver, key_bench, h=None):
             "skill": round(1.0 - m / b, 4)}
 
 
+
+def flatten_cells(rows, fore, fore_cpi):
+    """Per-cell error rows, the shape the pooled cuts read.
+
+    build_cells() already computes every cell and the aggregates threw them away,
+    so a question about WHICH origins carry the bias had no answer in this run.
+    A cell the log score cannot take is written with log_error null and a REASON
+    rather than omitted, because a silently shorter sample is how an apparent
+    improvement is manufactured.
+
+    TWO CORRECTIONS, 07-09-2026, both to this function. (1) The sentence above was
+    TRUE OF THE MODEL'S CELLS AND FALSE OF THE BENCHMARKS' — a freeze or trend cell
+    the log score could not take was silently skipped by the branch this docstring
+    described, a comment asserting a behaviour the code does not have. (2) The
+    reason was ASSERTED rather than derived: it is now tested, not_projected where
+    there is no projection and non_positive where there is one the logarithm
+    cannot take. The run's own `excluded` flag still records the same distinction
+    on the model's cells and the two must agree.
+    """
+    out = []
+    settings = [("asknown", rows, "e"), ("freeze", rows, "ef"), ("trend", rows, "et"),
+                ("foresight", fore, "e"), ("foresight_cpi_only", fore_cpi, "e")]
+    for name, src, key in settings:
+        for r in src:
+            for d in DRIVERS:
+                le = r[key][d]
+                src_key = {"e": "proj", "ef": "frz", "et": "trd"}[key]
+                proj = r.get(src_key, {}).get(d)
+                act = r["act"].get(d)
+                if le is not None:
+                    dropped = None
+                elif proj is None or act is None:
+                    dropped = "not_projected"
+                else:
+                    dropped = "non_positive"
+                # The two routes to the same fact must agree on the model's cells.
+                if key == "e" and r["excluded"].get(d):
+                    assert dropped == "non_positive", (r["origin"], r["h"], d)
+                out.append({"origin": r["origin"], "horizon": r["h"], "year": r["target"],
+                            "driver": d, "setting": name,
+                            "projected": proj, "actual": act, "era": r["era"],
+                            "log_error": le, "dropped": dropped})
+    return out
+
+
 def main():
     rows = build_cells()
     fore = build_cells(foresight=True)
@@ -128,6 +177,14 @@ def main():
         if a is None:
             continue
         rec = {"overall": a,
+               # n IS THE CELLS THE SCORE TOOK; n_cells IS THE CELLS THAT EXIST.
+               # A record carrying only the first cannot show a reader that a
+               # driver was scored on half its history — one driver in this book
+               # publishes a bias computed on NONE of its fifty cells — and the
+               # coverage was recoverable only by running a census by hand. The
+               # pair carries no threshold and makes no judgement; it makes the
+               # fraction visible in the record that quotes the bias.
+               "n_cells": sum(1 for r in rows if d in r.get("e", {})),
                "by_h": {h: agg(rows, "e", d, h=h) for h in B.HORIZONS},
                "by_era": {e: agg(rows, "e", d, era=e) for e in eras},
                "bootstrap": block_bootstrap(rows, d),
@@ -164,7 +221,13 @@ def main():
     for d, rec in res["drivers"].items():
         a, bs = rec["overall"], rec["bootstrap"]
         robust = all(bs.get(L) and bs[L]["same_sign"] for L in BLOCKS)
-        res["by_driver"][d] = {"n": a["n"], "bias": round(a["bias"], 4), "mae": round(a["mae"], 4),
+        res["by_driver"][d] = {"n": a["n"], "n_cells": rec.get("n_cells"),
+                               # THE PAIR GOES WHERE THE READER LOOKS. The first
+                               # cut put n_cells on the internal `drivers` block
+                               # and every census reads THIS one — the disclosure
+                               # in the working papers and not on the page, which
+                               # is the defect this field exists to close.
+                               "bias": round(a["bias"], 4), "mae": round(a["mae"], 4),
                                "over": round(a["share_over"], 3),
                                "excluded_nonpositive": a["excluded_nonpositive"],
                                "boot": {str(L): ({"lo": round(bs[L]["lo"], 4), "hi": round(bs[L]["hi"], 4)}
@@ -192,6 +255,8 @@ def main():
                                  "macro_share": round(rec["macro_share"], 3) if rec["macro_share"] is not None else None}
         res["by_era"][d] = {e: {"n": v["n"], "bias": round(v["bias"], 4)} for e, v in rec["by_era"].items() if v}
     json.dump(res, open(os.path.join(HERE, "scores.json"), "w"), indent=1, default=str)
+    json.dump(flatten_cells(rows, fore, fore_cpi),
+              open(os.path.join(HERE, "error_cells.json"), "w"), indent=1)
     return res, rows
 
 

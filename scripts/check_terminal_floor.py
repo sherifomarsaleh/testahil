@@ -109,6 +109,8 @@ def main(argv):
     print('TERMINAL CONSTRUCTION GATE  [R-TERM-01]')
     print('   the implied replacement cycle is 1/g whenever the terminal is built on the')
     print('   reinvestment identity — so the asset life is the reciprocal of the GROWTH RATE')
+    from engine.valuation_calibration.terminal_census import census as _census
+    print('   ' + _census.population_line)
     print('   %d study directories · %d readable · %d with a scoreable terminal · '
           '%d read but not scoreable'
           % (len(rows), len(read), len(scored), len(unscored)))

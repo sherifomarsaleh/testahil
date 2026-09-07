@@ -17,6 +17,41 @@ from PIL import Image
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
 DOCS = ['EGCH_Valuation_Study_05-09-2026.docx', 'EGCH_Bibliography_05-09-2026.docx']
+
+
+def latest_ddmmyyyy(pat):
+    """The workbook names its edition DDMMYYYY with no separators, so the date is PARSED
+    rather than the filenames sorted as text — 03092026 sorts below 09082026 as a string and
+    a text sort silently picks a superseded edition [L-067]. Copied from the ADNOCLS resolver."""
+    c = []
+    for f in os.listdir('.'):
+        if re.match(pat, f) and not f.startswith('~$'):
+            m = re.findall(r'_(\d{2})(\d{2})(\d{4})\.', f)
+            c.append(((m[-1][2] + m[-1][1] + m[-1][0]) if m else '', f))
+    return sorted(c)[-1][1] if c else None
+
+
+# THE WORKBOOK IS A DELIVERED DOCUMENT AND EVERY SCRUB IN THE BOOK EXCLUDED IT [L-350]. A
+# reader receives three files and DOCS names two, so the third was scanned by nothing. The
+# scrub (standard 4) reads it below; the table-discipline check (standard 6) stays on the two
+# Word documents, because column widths are a property of a Word table. [EXTENDED 05-Sep-2026]
+_WB = latest_ddmmyyyy(r'^EGCH_Valuation_Model_\d{8}\.xlsx$')
+SCRUB_DOCS = DOCS + ([_WB] if _WB else [])
+
+
+def _xlsx_strings(path):
+    import openpyxl
+    wb = openpyxl.load_workbook(path, data_only=False, read_only=True)
+    out = []
+    for ws in wb.worksheets:
+        for row in ws.iter_rows(values_only=True):
+            for v in row:
+                if isinstance(v, str) and not v.startswith('='):
+                    out.append(v)
+    wb.close()
+    return out
+
+
 fails = []
 
 # ---------------------------------------------- (4) external-reader scrub -----
@@ -61,19 +96,22 @@ PATTERNS = [
     r"\bmacro_paths\b", r"\blessons\.py\b", r"\bmacro_path\b",
 ]
 scrub_hits = []
-for f in DOCS:
-    d = Document(f)
-    text = " ".join(p.text for p in d.paragraphs)
-    for t in d.tables:
-        for row in t.rows:
-            for c in row.cells:
-                text += " " + c.text
+for f in SCRUB_DOCS:
+    if f.lower().endswith(('.xlsx', '.xlsm')):
+        text = " ".join(_xlsx_strings(f))
+    else:
+        d = Document(f)
+        text = " ".join(p.text for p in d.paragraphs)
+        for t in d.tables:
+            for row in t.rows:
+                for c in row.cells:
+                    text += " " + c.text
     low = text.lower()
     for pat in PATTERNS:
         for m in re.finditer(pat, low):
             ctx = low[max(0, m.start() - 45):m.end() + 45].replace("\n", " ")
             scrub_hits.append(f"{f}: /{pat}/ -> ...{ctx}...")
-print(f"(4) external-reader scrub : {len(PATTERNS)} patterns, {len(scrub_hits)} hits")
+print(f"(4) external-reader scrub : {len(SCRUB_DOCS)} documents {SCRUB_DOCS}, {len(PATTERNS)} patterns, {len(scrub_hits)} hits")
 for h in scrub_hits[:12]:
     print("   !", h)
 if scrub_hits:
@@ -161,7 +199,7 @@ for t in typed[:12]:
 if typed:
     fails.append("numeric_traceability")
 
-json.dump(dict(scrub_patterns=len(PATTERNS), scrub_hits=scrub_hits,
+json.dump(dict(scrub_docs=SCRUB_DOCS, scrub_patterns=len(PATTERNS), scrub_hits=scrub_hits,
                figures=len(figs), transparent=transparent,
                tables=n_tables, table_problems=problems,
                builders=BUILDERS, typed_numerals=typed, fails=fails),

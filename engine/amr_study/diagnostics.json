@@ -1,0 +1,49 @@
+{
+ "ticker": "AMR",
+ "as_of": "2026-09-06",
+ "spot": 2.39,
+ "spot_date": "close 3 September 2026, Abu Dhabi Securities Exchange",
+ "spot_source": "engine/prices/SUPPLIED_03-09-2026.json — the close on the Abu Dhabi Securities Exchange, 3 September 2026",
+ "published_central": 2.1455021608356137,
+ "published_spot": 2.23,
+ "why_this_file": "The reverse read — what the traded price must believe — is a DIAGNOSTIC and lives outside the numbers file every builder reads. A quantity solved from a price and then used anywhere in the valuation is the reverse-engineered rate the protocol prohibits outright, arriving through a side door, and the prohibition is worth nothing if the side door is open. Nothing in this file is an input to anything: no builder in this study reads it, and it is COMPUTED by diagnostics_amr.py, which re-runs the study's own compute.py with one driver moved at a time.",
+ "implied": {
+  "quantity": "like-for-like sales growth, the price half of the volume-times-price revenue build",
+  "value": 0.06879475116729736,
+  "study_value": 0.055,
+  "study_value_range": [
+   0.063,
+   0.097
+  ],
+  "value_at_the_strike_price": 0.059832582473754885,
+  "solved_on": "this study's own compute.py, on the answer the study PUBLISHES — the four-lens weighted central of AED 2.1455 — holding every other driver at its published value and moving only the like-for-like path, in parallel so its convergence shape is preserved, until the model reproduces AED 2.39.",
+  "reading": "At AED 2.39 the price is paying for like-for-like sales growth of 6.88% in FY2026 — and a path 1.38 points above the study's throughout — against this study's 5.5%. The company has filed two readings of exactly this measure: 9.7% for FY2025 and 6.3% for the first half of 2026. THE PRICE'S NUMBER SITS INSIDE THAT FILED RANGE, above the most recent half and well below the last full year, and above the mid-single-digit range management itself guides to. At the AED 2.23 the study was struck against, the same solve gives 5.98%. The disagreement is 1.38 points on one driver the company reports every half, which is a more useful statement than \"the study is -10.2% below the price\"."
+ },
+ "other_quantities": [
+  {
+   "quantity": "the wage escalator",
+   "value": 0.03004713535308838,
+   "study_value": 0.06,
+   "note": "against the study's 6.0% and a house UAE ladder terminating at 2.0%"
+  },
+  {
+   "quantity": "the equity beta",
+   "value": 0.739060674905777,
+   "study_value": 0.93,
+   "note": "against the study's 0.930, whose own regression standard error is 0.4120, so the price's figure is 0.46 standard errors away and this model cannot tell the two apart"
+  },
+  {
+   "quantity": "the EBITDA margin, moved in parallel",
+   "value": 0.017563068866729738,
+   "study_value": 0.0,
+   "note": "a parallel shift on the whole forecast margin path, which opens at 25.40 per cent"
+  },
+  {
+   "quantity": "terminal growth",
+   "value": null,
+   "study_value": 0.03,
+   "not_reachable": "On the published central the price is NOT reachable through terminal growth alone: at the model's own ceiling of 4.44 per cent — terminal growth must stay below the terminal risk-free rate of 4.45 per cent — the central reaches only AED 2.3665 against AED 2.39. On the cash-flow lens alone it IS reachable, at 3.6477 per cent, which is the figure this study's gap review published."
+  }
+ ],
+ "the_lens_the_read_is_solved_on": "This matters, and it is measured rather than asserted. Solved on the CASH-FLOW LENS ALONE (AED 2.2333) instead of on the answer the study publishes (AED 2.1455), the same quantities come back at a wage escalator of 4.8005 per cent, a beta of 0.8544 and terminal growth of 3.6477 per cent — every one of them a smaller disagreement, and every one reproducing this study's own gap review's reverse-read table to four decimals, which is how that table is shown to have been struck on a lens the study does not publish as its answer. Terminal growth is reachable there and is not reachable on the published central at all. Every figure in the record above is solved on the published answer."
+}

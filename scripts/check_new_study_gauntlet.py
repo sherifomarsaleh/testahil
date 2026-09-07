@@ -60,6 +60,10 @@ BUILDER_STUB = "import json\nd = json.load(open('diagnostics.json'))\n"
 # DIRECTORY GATES: must refuse a study directory that exists and holds nothing. These are
 # the checks a new name cannot walk past by simply not producing something.
 DIRECTORY_GATES = [
+    # An empty study directory commits no numbers file, which this gate reads as
+    # having no readable inputs register and refuses unless another list already
+    # records it as unreadable — so a new name goes red and is named.
+    'check_four_field.py',
     'check_study_provenance.py',
     'check_rebuild_ledger.py',
     'check_workbook_structure.py',
@@ -83,6 +87,22 @@ DIRECTORY_GATES = [
     # unrelated comment in it happened to mention a study path. An empty directory has no
     # numbers file, the census reports it unreadable, and the gate refuses it by name.
     'check_terminal_floor.py',
+    # ADDED 05-Sep-2026, BY THIS FILE'S OWN REFUSAL rather than by anyone remembering. Both
+    # gates were adopted the same day and neither was listed here, so the gauntlet reported
+    # 29 of 29 refusing while two study-scoped gates on disk had been tested by nothing — the
+    # failure shape this file exists to close, occurring inside it. Both are directory-scoped:
+    # an empty study directory declares no walk-forward scope and carries no recalculation
+    # instrument, neither has a ratchet entry, and each refuses BY NAME.
+    'check_walkforward_scope.py',
+    'check_workbook_values.py',
+    # ADDED 06-Sep-2026 IN THE COMMIT THAT ADOPTS THE GATE, per [R-ENF-01 EXT 04-Sep] and
+    # the precedent this file set on 5 September, when it refused two gates adopted the day
+    # before. DIRECTORY-scoped rather than artefact-scoped, and the reason is a clause the
+    # gate carries deliberately: it is anchored [R-ENF-04] BOTH ways, so a study directory
+    # for which it can find NO writer of the numbers file fails outright — a detector that
+    # cannot find a generator has not proved there is none. An empty directory is exactly
+    # that case, and the gate refuses it by name.
+    'check_numbers_generators.py',
 ]
 
 # ARTEFACT GATES: bite once the study produces the artefact they read, and are tested by
@@ -137,6 +157,42 @@ ARTEFACT_GATES = {
             ['Less increase in working capital', '440'],
             ['Free cash flow to the firm', '4,368'],
         ])}),
+    # ARTEFACT-CONDITIONAL, LISTED IN THE COMMIT THAT ADOPTS THE GATE [R-ENF-07].
+    # An empty study directory carries no numbers file and so makes no claim about a
+    # correction; this gate bites on the CLAIM, which is a study asserting one that
+    # no walk-forward run adopted. Demanding it refuse an empty directory would be a
+    # false statement about what it checks.
+    # ARTEFACT-CONDITIONAL, LISTED IN THE COMMIT THAT ADOPTS THE GATE [R-ENF-07].
+    # Eleven of twenty-four studies carry no terminal record at all and every one of
+    # them is legitimate, so an empty study directory is not a violation here and
+    # demanding that this gate refuse one would be a FALSE CLAIM about what it checks.
+    # It bites on a record that EXISTS and is short of the field set the module emits.
+    # ARTEFACT-CONDITIONAL, LISTED IN THE COMMIT THAT ADOPTS THE GATE [R-ENF-07].
+    # An empty study directory delivers no valuation document, so it has nothing to be
+    # missing a bibliography FROM — refusing it would be a FALSE CLAIM about what this
+    # gate checks. It bites on a study that DELIVERS a document and ships no
+    # bibliography-class artefact beside it.
+    # ARTEFACT-CONDITIONAL [R-ENF-07]: an empty study directory delivers no document
+    # and so embeds no figure — there is nothing that could be translucent, and
+    # refusing it would be a false claim about what this gate checks.
+    'check_figure_opacity.py': (
+        'a delivered document embedding a translucent figure',
+        lambda: {'%s_Valuation_Study_03-09-2026.docx' % TICKER: ('docx_media', None)}),
+    'check_bibliography.py': (
+        'a delivered study with no standalone bibliography document',
+        lambda: {'%s_Valuation_Study_03-09-2026.docx' % TICKER: ('docx', 'A study a '
+                 'reader receives, with no bibliography beside it.')}),
+    'check_terminal_record_shape.py': (
+        'a committed terminal record short of the field set terminal_value.py emits',
+        lambda: {'study_numbers.json': ('json', {
+            'dcf': {'terminal_record': {
+                'rule': 'R-TERM-01', 'fcff': 1.0, 'tv': 10.0,
+                'inputs': {'nopat': 1.0, 'wacc': 0.12, 'inflation': 0.05}}}})}),
+    'check_corrections_applied.py': (
+        'a committed numbers file claiming an adopted correction with no walk-forward '
+        'run behind it',
+        lambda: {'study_numbers.json': ('json', {
+            'adopted_correction': {'driver': 'a_driver_no_run_adopted', 'factor': 1.05}})}),
     'check_artefact_currency.py': (
         'a builder-read JSON carrying a central and declaring no vintage',
         lambda: {'diagnostics.json': ('json', {'central': 12.34, 'note': 'no declaration'}),
@@ -166,6 +222,17 @@ ARTEFACT_GATES = {
                                 "inp('a', 1.0, FS25, '2025-12-31', 'COMPANY')\n"
                                 'FS25 = "Annual Report 2025, note 15"\n'
                                 "inp('b', 2.0, FS25, '2025-12-31', 'COMPANY')\n")}),
+    # ADDED 06-Sep-2026 IN THE COMMIT THAT ADOPTS THE GATE, which is the whole point of
+    # [R-ENF-01 EXT 04-Sep]: the two gates adopted on 5 September appeared in none of these
+    # lists and this file reported "29 of 29 refuse a new study" while two of the gates it
+    # was counting had been tested by nothing. This one is ARTEFACT-conditional rather than
+    # directory-conditional: an empty study directory commits no strike date and no
+    # currency, so there is nothing to hold against an anchor and refusing it would be a
+    # FALSE CLAIM about what this gate checks. It bites once the study commits both.
+    'check_macro_anchor_age.py': (
+        'a study struck long after the currency anchor its own path derives from',
+        lambda: {'study_numbers.json': ('json', {
+            'meta': {'spot_date': '2026-09-03', 'currency': 'EGP'}})}),
 }
 
 # NOT IN EITHER SET, and each with the reason, because a name in a list that resolves to
@@ -177,6 +244,12 @@ ARTEFACT_GATES = {
 #                                   read, and its own population anchoring covers the case
 #                                   where the whole book has none
 EXCLUDED = {
+    'check_tree_unmodified.py': 'its subject is THE RUN rather than any study — it asks '
+                                'whether the checks that ran modified the tracked tree, '
+                                'and a planted study directory is untracked, which this '
+                                'gate deliberately says nothing about. Demanding a nonzero '
+                                'exit would make it claim a check had rewritten a '
+                                'committed file when nothing had',
     'check_valuation_inputs.py': 'anchors on walk-forward run directories, not study '
                                  'directories',
     'check_calibration_deliverables.py': "anchors on the campaign queue's calibrated names",
@@ -209,6 +282,13 @@ EXCLUDED = {
                               'does exist',
     'check_walkforward_actuation.py': 'anchors on walk-forward runs, not on study '
                                       'directories',
+    # ADDED 07-Sep-2026 IN THE COMMIT THAT ADOPTS THE GATE [R-ENF-07].
+    'check_forward_ranges.py': 'anchors on the WALK-FORWARD run directories that '
+                               'commit a band, not on study directories. A new '
+                               'empty study has no run behind it, so there is '
+                               'correctly no band whose absence from a document '
+                               'could be refused; it reads study directories only '
+                               'to find the document a run already owes',
 }
 
 
@@ -361,6 +441,20 @@ def plant(sdir, files):
                         t.cell(i, j).text = str(cell)
             else:
                 d.add_paragraph(payload)
+            d.save(path)
+        elif kind == 'docx_media':
+            # A document EMBEDDING A TRANSLUCENT IMAGE. A gate whose subject is the
+            # pixel data of a delivered figure cannot be tested by a paragraph.
+            import io as _io
+            import docx
+            from PIL import Image
+            im = Image.new('RGBA', (12, 12), (255, 255, 255, 0))   # fully transparent
+            buf = _io.BytesIO()
+            im.save(buf, format='PNG')
+            buf.seek(0)
+            d = docx.Document()
+            d.add_paragraph('A delivered study with a figure in it.')
+            d.add_picture(buf)
             d.save(path)
         elif kind == 'json':
             json.dump(payload, open(path, 'w', encoding='utf-8'))

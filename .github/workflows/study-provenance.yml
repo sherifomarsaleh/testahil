@@ -71,6 +71,14 @@ on:
       - 'scripts/check_valuation_gap.py'
       - 'scripts/check_valuation_gap_negative_control.py'
       - 'engine/build_depth_audit/gap_outstanding.json'
+      - 'engine/study_population.py'
+      - 'engine/study_aliases.py'
+      - 'engine/numbers_generators.py'
+      - 'scripts/check_numbers_generators.py'
+      - 'scripts/check_numbers_generators_negative_control.py'
+      - 'engine/build_depth_audit/generators_outstanding.json'
+      - 'engine/build_depth_audit/coverage_outstanding.json'
+      - 'scripts/check_study_population_negative_control.py'
       - 'scripts/check_workbook_structure.py'
       - 'scripts/check_workbook_structure_negative_control.py'
       - 'scripts/check_document_structure.py'
@@ -82,6 +90,10 @@ on:
       - 'engine/research_sweep.py'
       - 'scripts/check_prose_figures.py'
       - 'scripts/check_prose_figures_negative_control.py'
+      - 'scripts/check_workbook_values.py'
+      - 'scripts/check_workbook_values_negative_control.py'
+      - 'scripts/check_walkforward_scope.py'
+      - 'scripts/check_walkforward_scope_negative_control.py'
       - 'scripts/check_table_footing.py'
       - 'scripts/check_table_footing_negative_control.py'
       - 'scripts/check_waterfall_assertions.py'
@@ -190,6 +202,14 @@ on:
       - 'scripts/check_valuation_gap.py'
       - 'scripts/check_valuation_gap_negative_control.py'
       - 'engine/build_depth_audit/gap_outstanding.json'
+      - 'engine/study_population.py'
+      - 'engine/study_aliases.py'
+      - 'engine/numbers_generators.py'
+      - 'scripts/check_numbers_generators.py'
+      - 'scripts/check_numbers_generators_negative_control.py'
+      - 'engine/build_depth_audit/generators_outstanding.json'
+      - 'engine/build_depth_audit/coverage_outstanding.json'
+      - 'scripts/check_study_population_negative_control.py'
       - 'scripts/check_workbook_structure.py'
       - 'scripts/check_workbook_structure_negative_control.py'
       - 'scripts/check_document_structure.py'
@@ -201,6 +221,10 @@ on:
       - 'engine/research_sweep.py'
       - 'scripts/check_prose_figures.py'
       - 'scripts/check_prose_figures_negative_control.py'
+      - 'scripts/check_workbook_values.py'
+      - 'scripts/check_workbook_values_negative_control.py'
+      - 'scripts/check_walkforward_scope.py'
+      - 'scripts/check_walkforward_scope_negative_control.py'
       - 'scripts/check_table_footing.py'
       - 'scripts/check_table_footing_negative_control.py'
       - 'scripts/check_waterfall_assertions.py'
@@ -323,11 +347,37 @@ jobs:
       # It also cost a local run its meaning: scripts/run_ci_gates.py reported 89 green
       # against a CI that had neither tool, because the local container has both. A
       # LOCAL RUNNER INHERITS THE DEVELOPER'S ENVIRONMENT AND CI DOES NOT.
+      # NO CHECK MODIFIES THE TREE IT CHECKS [R-ENF-01]. Recorded FIRST and compared
+      # LAST: on 07-09-2026 a negative control wrote its fixture into the real
+      # engine/escalations.json and its restore did not run, so thirteen live
+      # escalations were replaced by one called NC-example and committed. Every gate
+      # here reads the tree and reports faithfully on whatever it finds, so none of
+      # them can see the SUBJECT being replaced between a write and a read.
+      - name: Record the tracked tree before any check runs
+        run: python3 scripts/check_tree_unmodified.py --record
+
       - name: Install engine deps
         run: pip install numpy pandas scipy python-docx openpyxl matplotlib
 
       - name: Install poppler-utils (pdftotext)
         run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+
+      # THE SAME LESSON, A THIRD TIME, AND THE COMMENT ABOVE PREDICTED IT WORD FOR
+      # WORD. Two studies' recalculators convert their delivered workbook through
+      # LibreOffice before reading it -- ELEC shells out to `soffice`, STC to
+      # `libreoffice`. Neither binary was on the runner, so check_workbook_values
+      # reported both as NEW failures with FileNotFoundError, which reads exactly
+      # like two delivered workbooks disagreeing with their studies and is nothing
+      # of the kind. A LOCAL RUNNER INHERITS THE DEVELOPER'S ENVIRONMENT AND CI
+      # DOES NOT: run_ci_gates.py reported 104 green on a container that happens to
+      # carry LibreOffice, against a CI that did not, and both studies recalculate
+      # CLEAN once the tool exists. Fix the environment, not the gate.
+      #
+      # libreoffice-calc rather than the full suite: it is what the conversion
+      # needs and it provides both the `soffice` and `libreoffice` entry points
+      # those two scripts invoke by different names.
+      - name: Install libreoffice-calc (workbook recalculation)
+        run: sudo apt-get install -y -qq libreoffice-calc
 
       # VERIFY BY IMPORT, NOT BY PARSE. nu=Gaussian parsed cleanly and only died at
       # import, and that bug reached main while a regex check reported the file intact.
@@ -351,6 +401,13 @@ jobs:
       # and the same revision stamp
       - name: Protocol sync gate
         run: python3 scripts/check_protocol_sync.py
+
+      # [R-DOC-01] A DOCUMENT THAT STATES TWO REVISIONS STATES NONE. The digest is
+      # a single line, so readline() returns the whole file and the opening match is
+      # satisfied by the first stamp however many follow it -- which is exactly how a
+      # union merge left two stamps in the file on 07-09-2026 with every check green.
+      - name: Protocol sync gate — negative control
+        run: python3 scripts/check_protocol_sync_negative_control.py
 
       # [R-ENF-01] the four defects that reached a reader on 23-Aug-2026, checked
       # mechanically before delivery instead of by the reader pasting the block back
@@ -433,6 +490,30 @@ jobs:
       # exists is the permanently-red check everyone learns to ignore)
       - name: Valuation-gap gate — negative control
         run: python3 scripts/check_valuation_gap_negative_control.py
+
+      # THE POPULATION RESOLVER'S OWN CONTROL [wired 06-09-2026]. The gap gate above no
+      # longer globs engine/*_study; it takes its population from engine/study_population.py,
+      # which joins the 90 covered names to their delivered studies and REFUSES rather than
+      # returning a short list. That resolver decides what every re-pointed gate examines, so
+      # its eight conditions — a short alias table, an undeclared stem, an empty files/, a
+      # register exposing no tickers, no study directories, a record for a name the site does
+      # not carry, and two clean cases including the mixed-case stems whose case-sensitive
+      # miss started all of this — belong in CI rather than in a hand-run. It shipped
+      # correct and referenced by nothing, which an outside gate-runner found the same day.
+      - name: Study-population resolver — negative control
+        run: python3 scripts/check_study_population_negative_control.py
+
+      # [R-ENF-01] A NUMBERS FILE WITH TWO GENERATORS DECLARES THEIR ORDER. Adding one
+      # line to SWDY's lens record and rebuilding it deleted that study's entire
+      # forecast_anchor record, because the file is written whole by compute.py and
+      # that block is appended afterwards by a second script with nothing saying so.
+      # It was caught by reading a diffstat: no gate can see it, because a gate reads
+      # the file that is there and cannot know what a rebuild removed.
+      - name: Numbers-file generators declare their order
+        run: python3 scripts/check_numbers_generators.py
+
+      - name: Numbers-file generators — negative control
+        run: python3 scripts/check_numbers_generators_negative_control.py
 
       # [R-ENF-01] the DELIVERED WORKBOOK's shape, read off the file itself. On
       # 01-Sep-2026 the AMOC rebuild shipped seven sheets against the model report's
@@ -552,6 +633,44 @@ jobs:
       # the file would have reported clean
       - name: Prose-figure gate — negative control
         run: python3 scripts/check_prose_figures_negative_control.py
+
+      # THE DELIVERED WORKBOOK MUST PUBLISH THE ANSWER THE STUDY PUBLISHES, and that is
+      # checked by RUNNING each study's own recalculation rather than noting that it has
+      # one. Depth-bar standard 3 has required an independent recalculation since the
+      # standard was written, twenty-two of twenty-four studies carry the instrument, and
+      # measured on 05-Sep-2026 no gate anywhere ran any of them: every mention of the
+      # word outside a study directory was a sentence in a comment. SWDY's workbook
+      # published SAR 59.31 where its document published 55.48, +6.9%, with zero formula
+      # errors — its own recalc.py names all 27 disagreeing cells in under a second and
+      # had simply not been run since the rebuild. AMOC's refuses outright, still written
+      # for a nine-sheet workbook the study replaced with a sixteen-sheet one, which is
+      # L-066/L-067 on that same study for the third time.
+      - name: Workbook-values gate
+        run: python3 scripts/check_workbook_values.py
+
+      # and the proof it can go red, on ten conditions — among them the two that matter:
+      # a study whose script EXISTS and is RED, and a red check excused by the allowance
+      # for an ABSENT one, which would let a study escape a real disagreement by being
+      # re-filed as merely unchecked
+      - name: Workbook-values gate — negative control
+        run: python3 scripts/check_workbook_values_negative_control.py
+
+      # EVERY STUDY STATES ITS FUNDAMENTAL WALK-FORWARD SCOPE DECISION. [R-FCAL-01] has
+      # required one since 31-Aug-2026 — FULL at eight or more sourceable fiscal years,
+      # LIGHT at five to seven, SKIP below five, on the same footing as the data-quality
+      # gate and the sweep — and measured 05-Sep-2026 TWENTY-THREE OF TWENTY-FOUR STUDIES
+      # STATED NONE. The rule was not disputed and was not hard; it was simply not present
+      # at the moment it bound, and nothing outside a study was looking. The gate does NOT
+      # require the run — the rule forbids delaying a delivery for one — it requires the
+      # DECISION to exist, to be internally consistent, and to be TRUE against the disk.
+      - name: Walk-forward scope gate
+        run: python3 scripts/check_walkforward_scope.py
+
+      # and the proof it can go red, on ten conditions — among them a record saying
+      # "pending" while the run sits on disk, and that same falsehood sitting on the
+      # ratchet, which the allowance must NOT excuse
+      - name: Walk-forward scope gate — negative control
+        run: python3 scripts/check_walkforward_scope_negative_control.py
 
       # EVERY TOTAL A READER SEES IS REPRODUCIBLE FROM THE ROWS PRINTED ABOVE IT.
       # Three defects were found in ARCC on 03-Sep-2026 by rendering the delivered PDF and
@@ -1087,3 +1206,113 @@ jobs:
 
       - name: Rebuild ledger — negative control
         run: python3 scripts/check_rebuild_ledger_negative_control.py
+
+      # [R-ENF-01] for L-353 — a driver wired to NOTHING must say so. Registered
+      # 06-09-2026 on three runs' own history: freezing was the worst of four
+      # knowable escalation rules on every name that could be measured, and one
+      # model freezes its main driver by construction, worth 0.52 log points of
+      # its bias alone. What is tested is CONNECTIVITY, not magnitude: every
+      # inflation rate a run carries is doubled at its source, and a line whose
+      # projection is unchanged is wired to none of them. Zero is not a threshold,
+      # so no free parameter enters.
+      # [R-ENF-01] A driver scored on half its history publishes a bias that looks
+      # exactly like one scored on all of it. Six of one run's fourteen drivers are
+      # under half — `net` and `pbt` among them — and one carries a bias computed on
+      # NONE of its cells. The gate requires the DISCLOSURE and never a level.
+      - name: Every published driver bias states its own coverage
+        run: python3 scripts/check_driver_coverage.py
+
+      - name: Driver-coverage gate — negative control
+        run: python3 scripts/check_driver_coverage_negative_control.py
+
+      # [R-ENF-01] 42 of 66 testable driver biases flip sign at some cut, so a
+      # correction adopted on a sign-stable reading at ONE boundary owes that sign
+      # at every cut the data admits. Assuming the market's boundary was every
+      # driver's break already cost one conclusion.
+      - name: A correction adopted on a sign holds it at every cut
+        run: python3 scripts/check_correction_boundary.py
+
+      - name: Correction-boundary gate — negative control
+        run: python3 scripts/check_correction_boundary_negative_control.py
+
+      # Named in the programme's own Part E acceptance criteria and never built:
+      # six of the seven gates that criterion lists were green with negative
+      # controls and this one did not exist, while criterion 2 requires in terms
+      # that "every claimed correction reconciles to its log".
+      - name: Every claimed correction reconciles to the run that produced it
+        run: python3 scripts/check_corrections_applied.py
+
+      - name: Corrections-applied gate — negative control
+        run: python3 scripts/check_corrections_applied_negative_control.py
+
+      # Found by asking whether each study's committed numbers file still reproduces
+      # from its own generators — which nothing here had ever asked. Three of
+      # twenty-four did not, all three the same way: terminal_value.py grew five
+      # record fields after they last built. The cheap static test names exactly the
+      # same three as re-running all twenty-four models.
+      - name: Every committed terminal record carries the module's current field set
+        run: python3 scripts/check_terminal_record_shape.py
+
+      - name: Terminal-record-shape gate — negative control
+        run: python3 scripts/check_terminal_record_shape_negative_control.py
+
+      # Depth-bar standard 2 was validated outside the study by a BOOLEAN the study
+      # set on itself. Measured 07-09-2026 the boolean was honest — 3,862 inputs,
+      # zero incomplete — and the fourth field is spelled `layer` in five studies
+      # and `ring` in thirteen, so a check written against one spelling would have
+      # silently condemned or excused most of the book.
+      - name: Every input carries all four provenance fields
+        run: python3 scripts/check_four_field.py
+
+      - name: Four-field gate — negative control
+        run: python3 scripts/check_four_field_negative_control.py
+
+      # Depth-bar standard 1 was enforced on the five CALIBRATED names and attested
+      # by a self-set boolean on the other nineteen — and the one breach sits in the
+      # nineteen. The artefact ships under three names in this book, and one study's
+      # file carries the company's other name rather than its ticker, so the variants
+      # are named in code rather than inferred from the obvious convention.
+      - name: Every delivered study ships a standalone bibliography
+        run: python3 scripts/check_bibliography.py
+
+      - name: Bibliography gate — negative control
+        run: python3 scripts/check_bibliography_negative_control.py
+
+      # Standard 5 says "zero transparency verified programmatically" and nothing
+      # verified it. Its sibling check_figure_axes reads the BUILDER; this reads the
+      # file a reader receives, and the two are different objects. The measurement is
+      # the MINIMUM ALPHA PRESENT, never the colour mode — matplotlib writes an opaque
+      # RGBA channel, so the mode reported 160 of 176 images as transparent when 8 are.
+      - name: Every delivered figure is opaque to the pixel
+        run: python3 scripts/check_figure_opacity.py
+
+      - name: Figure-opacity gate — negative control
+        run: python3 scripts/check_figure_opacity_negative_control.py
+
+      # [R-FCAL-01] requires every run's updated fundamental analysis to publish years
+      # three to five as RANGES from its own driver-error distribution, never as points.
+      # All five runs commit that band; nothing had ever asked whether it reaches the
+      # page. Three print it, two print points. The three renderings are read off the
+      # book rather than invented, and the evidence must sit AT a far year — a first
+      # draft asking only that the table name one fired on six studies with no run at
+      # all, every one of them work that is right.
+      - name: A run that computes a far-year band prints it
+        run: python3 scripts/check_forward_ranges.py
+
+      - name: Far-year range gate — negative control
+        run: python3 scripts/check_forward_ranges_negative_control.py
+
+      - name: A frozen escalator is declared, or it is a defect
+        run: python3 scripts/check_frozen_escalator.py
+
+      - name: Frozen-escalator gate — negative control
+        run: python3 scripts/check_frozen_escalator_negative_control.py
+
+      - name: Tree-unmodified gate — negative control
+        run: python3 scripts/check_tree_unmodified_negative_control.py
+
+      # LAST, DELIBERATELY: it asserts a property of everything that ran before it,
+      # so its result is only meaningful here. Run earlier it would pass on any
+      # repository at all.
+      - name: No check modified the tree it checks
+        run: python3 scripts/check_tree_unmodified.py

@@ -13,6 +13,22 @@ file records who supplied it and when. A figure that arrives in a conversation
 binds nothing: the container is rebuilt from the repository and a session that
 cannot see it will ask for it again [R-IND-01].
 
+AND IT SAYS WHERE THE REPOSITORY KNOWS A LATER PRICE THAN THE FILE IT READ. The
+supplied file is not the only dated close this repository holds: engine/raw_ohlc/
+carries the exchange series every cone is struck on, and after a roll-forward it
+runs AHEAD of the last hand-supplied file. An instrument that reads one source and
+calls its answer "the latest known price" is making a claim about the world it did
+not check — [R-IND-01]'s own complaint, and [R-ENF-04]'s: a probe that looked at
+one place is not a probe that found nothing elsewhere. So the report carries an
+ADVISORY naming every study whose library holds a later close, with the gap under
+each. IT SUBSTITUTES NOTHING. Which series measures [R-GAP-01]'s trigger is a
+method question, not a maintenance one, and the two sources genuinely disagree —
+measured 07-09-2026, five EGX names differ by 0.6% to 1.9% on a SHARED date, in
+both directions, and two of the supplied figures match no session in the library
+at all, so neither is simply the other one lagged. What the advisory is for is
+that the disagreement is VISIBLE rather than assumed away; on that first run no
+name changed side, which is a fact worth printing rather than a reason to skip it.
+
 WHAT IT REFUSES. A study whose numbers expose no central is REPORTED as unreadable
 rather than skipped — an unreadable answer is not a clean answer — and a name with
 no supplied price is named too, rather than dropped silently. A run that read zero
@@ -20,6 +36,8 @@ studies raises [R-ENF-04].
 """
 from __future__ import annotations
 
+import csv
+import datetime
 import glob
 import json
 import os
@@ -119,6 +137,60 @@ def read_study(sdir):
     return c, spot, note
 
 
+def library_last_close(ticker):
+    """The latest dated close in this name's OHLC library, or None.
+
+    Read BY DATE rather than by row position: the vendor exports newest-first
+    today and that is a convention, not a guarantee. A ticker resolving to more
+    than one market directory is REFUSED rather than picked between — Orascom
+    trades on two exchanges and a silently chosen series is a plausible price
+    against the wrong listing, which is the failure this whole file exists to
+    catch.
+    """
+    hits = sorted(glob.glob(os.path.join(ENGINE, "raw_ohlc", "*", ticker + ".csv")))
+    if len(hits) != 1:
+        return None if not hits else {"ambiguous": [os.path.basename(os.path.dirname(h))
+                                                    for h in hits]}
+    best = None
+    with open(hits[0], encoding="utf-8-sig") as fh:
+        for row in csv.DictReader(fh):
+            try:
+                d = datetime.datetime.strptime(row["Date"], "%m/%d/%Y").date()
+                v = float(str(row["Price"]).replace(",", ""))
+            except Exception:
+                continue
+            if best is None or d > best["date"]:
+                best = {"date": d, "close": v,
+                        "market": os.path.basename(os.path.dirname(hits[0]))}
+    return best
+
+
+def fresher_in_library(rs):
+    """Studies whose OHLC library carries a LATER close than the price used.
+
+    Returns a list of dicts; an ambiguous ticker is returned with its markets
+    named rather than dropped, because an absence here would read as agreement.
+    """
+    out = []
+    for r in rs:
+        if r["central"] is None or not r["price_date"]:
+            continue
+        lib = library_last_close(ALIAS.get(r["ticker"], r["ticker"]))
+        if not lib:
+            continue
+        if "ambiguous" in lib:
+            out.append({"ticker": r["ticker"], "ambiguous": lib["ambiguous"]})
+            continue
+        if lib["date"] <= datetime.date.fromisoformat(r["price_date"]):
+            continue
+        gap = r["central"] / lib["close"] - 1.0
+        out.append({"ticker": r["ticker"], "lib_date": lib["date"].isoformat(),
+                    "lib_close": lib["close"], "gap_lib": gap,
+                    "gap_supplied": r["gap_now"],
+                    "side_changes": (abs(gap) > TRIGGER) != (abs(r["gap_now"]) > TRIGGER)})
+    return out
+
+
 def rows():
     prices, src, when = latest_prices()
     out = []
@@ -173,6 +245,29 @@ def report():
               % (len(unread), ", ".join(unread)))
     if nopx:
         print("  no price supplied for (%d): %s" % (len(nopx), ", ".join(nopx)))
+
+    fresh = fresher_in_library(rs)
+    seen = sum(1 for r in rs if r["central"] is not None
+               and library_last_close(ALIAS.get(r["ticker"], r["ticker"])))
+    print("\n  ADVISORY — the repository holds a later close than the file above")
+    print("  (the exchange library every cone is struck on; NOTHING here is"
+          " substituted)")
+    if not seen:
+        print("    REFUSED: not one readable study resolved to an OHLC library. An"
+              " empty result is not a clean result [R-ENF-04] — the libraries are"
+              " unreadable, not in agreement.")
+    elif not fresh:
+        print("    none: %d libraries read, not one carries a close after its"
+              " supplied price" % seen)
+    for e in sorted(fresh, key=lambda x: x["ticker"]):
+        if "ambiguous" in e:
+            print("    %-12s library ambiguous across %s — not read"
+                  % (e["ticker"], "/".join(e["ambiguous"])))
+            continue
+        print("    %-12s %s close %-10.4g gap %+7.1f%% against %+7.1f%% above   %s"
+              % (e["ticker"], e["lib_date"], e["lib_close"], 100 * e["gap_lib"],
+                 100 * e["gap_supplied"],
+                 "*** SIDE CHANGES ***" if e["side_changes"] else "same side of the trigger"))
     return rs
 
 

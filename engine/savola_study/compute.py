@@ -1,3 +1,14 @@
+"""RUN ORDER: compute.py THEN forecast_anchor.py. RUNNING THIS FILE ALONE DELETES A
+STANDING-RULE RECORD.
+
+study_numbers.json is written whole by this script, and [R-ANCHOR-01]'s
+forecast_anchor block is appended afterwards by forecast_anchor.py in this same
+directory. A rebuild that runs only this file silently drops it.
+
+Found 06-09-2026 on SWDY, which carries the identical two-generator shape and lost
+the identical block. The failure is invisible to every gate, because a gate reads the
+file that is there and cannot know what a rebuild removed.
+"""
 """SAVOLA study — master computation. Writes study_numbers.json (single source of
 truth for every builder). Code-first rule: INPUTS are four-field records
 {value, source, date, ring}; a bare numeral cannot enter the model; the ASSERT

@@ -32,6 +32,13 @@ def workbook(path, sheets):
 
 def run(tree):
     env = dict(os.environ)
+    # THIS FIXTURE SUPPLIES ITS OWN POPULATION [06-09-2026]. The gate now resolves
+    # the book through engine/study_population.py; this control runs it against a
+    # sandboxed ENGINE holding studies it planted, which is the point of the
+    # control and not a shortcoming of it. The escape is explicit and the gate
+    # prints that it took it, so a fixture population can never be mistaken for
+    # the real one.
+    env['TESTAHIL_FIXTURE_POPULATION'] = '1'
     p = subprocess.run([sys.executable, os.path.join(tree, 'scripts',
                                                      'check_workbook_structure.py')],
                        capture_output=True, text=True, env=env)

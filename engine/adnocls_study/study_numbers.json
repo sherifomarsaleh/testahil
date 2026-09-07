@@ -7092,6 +7092,15 @@
   ],
   "note": "THE FORECAST OPENS 12.4 POINTS ABOVE THE LATEST AUDITED YEAR AND THAT IS THE LARGEST SINGLE THING A READER SHOULD INTERROGATE IN IT. FY2023-25 printed 31.29, 31.97 and 29.28 per cent; FY2026 opens at 41.69 and the path runs to 39.78 by FY2030, so every forecast year sits above every audited one. On roughly flat revenue \u2014 FY2026 at USD 5,003,932 thousand against a filed FY2025 of USD 5,016,112 \u2014 that is a claim about EARNINGS rather than about scale.\n\nWHAT DRIVES IT IS FLEET COMPOSITION AND IT IS DISCLOSED RATHER THAN ASSUMED: the model prices every vessel on its own terms \u2014 each chartered vessel at its own contracted rate for exactly the days its own contract runs, everything else at the implied spot rate for its class \u2014 against a running cost per vessel-day solved to reproduce the reported FY2025 result. The eleven vessels announced on 7 August 2026, six of them very large crude carriers, enter at USD 1,300,000 thousand of committed and funded cost and earn from 2026, and the fleet mix they shift is toward the higher-margin classes.\n\nIT IS NOT LEFT AS AN ASSERTION. The step is the single largest lever in the study after the beta, the day-rate anchor it depends on is sensitised both ways in the contested-judgement record, and the reversion path that produces it is the CONSERVATIVE of the two available \u2014 the company's own guidance path is published beside it and is worth more, not less."
  },
+ "walkforward_scope": {
+  "rule": "R-FCAL-01",
+  "scope": "LIGHT",
+  "sourceable_fiscal_years": 5,
+  "earliest_sourceable": "FY2021",
+  "basis": "the four audited consolidated financial statements held in this study's own directory (FY2022, FY2023, FY2024, FY2025), plus FY2021 as the comparative carried in the FY2022 accounts. The company listed in June 2023 and no pre-listing audited year was established as reachable by this study, so the count stops at five rather than being extended to the eight a FULL scope would need",
+  "status": "pending",
+  "note": "The fundamental walk-forward has NOT been run on this name. Scope is LIGHT on five sourceable fiscal years \u2014 the last five origins, horizons one to three \u2014 and the rule forbids delaying a delivery for the run: it goes alongside and its corrections feed the next edition. No lesson, bias correction or calibrated range in this study rests on a walk-forward result, because there is none."
+ },
  "bridge_record": {
   "market": "AE",
   "balance_sheet_date": "2026-03-31",

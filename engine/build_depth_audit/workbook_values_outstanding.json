@@ -1,0 +1,11 @@
+{
+ "failing": {
+  "AMOC": "recalc.py REFUSES: it was written for the NINE-sheet workbook of 06-08-2026 and the delivered file is the SIXTEEN-sheet edition of 01-09-2026. This is L-066/L-067 on the same study a third time — a check that opens a delivered file by name moves with the re-issue. Re-pointing it is a re-issue task on a delivered study, not a fix in passing; recorded here so it is counted rather than remembered.",
+  "SWDY": "recalc.py fails naming 27 formula cells: the delivered workbook publishes SAR 59.3132 where the study publishes 55.4822, +6.9%, with zero formula errors. Two builder defects pulling opposite ways — DCF!C25 still carries the g x IC terminal [R-TERM-01] retired (-6.5% alone) and SOTP Bridge!C12 carries no line for the employees' statutory share of profit the model deducts at 12.19% (+14.4% alone). The builder's own expected-value map already holds the right figure for both cells. Rebuilding a delivered study's workbook is a re-issue and is not done in passing; listed so the debt is countable."
+ },
+ "no_check": {
+  "GBCO": "no recalculation script in the study directory. Its cost of capital predates the v2 method and its re-issue is a rebuild rather than a patch, which is where the check belongs.",
+  "XPT": "no recalculation script in the study directory."
+ },
+ "note": "Studies whose delivered workbook was not reconciled against the study when this gate was adopted (05-Sep-2026). Two groups, NOT interchangeable: no_check excuses an absent instrument, failing excuses a red one, and a study moving between them goes red until the move is recorded. Allowed to fail; the lists may only ever get shorter. --prune rewrites them."
+}
