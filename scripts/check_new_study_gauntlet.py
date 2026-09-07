@@ -60,6 +60,10 @@ BUILDER_STUB = "import json\nd = json.load(open('diagnostics.json'))\n"
 # DIRECTORY GATES: must refuse a study directory that exists and holds nothing. These are
 # the checks a new name cannot walk past by simply not producing something.
 DIRECTORY_GATES = [
+    # An empty study directory commits no numbers file, which this gate reads as
+    # having no readable inputs register and refuses unless another list already
+    # records it as unreadable — so a new name goes red and is named.
+    'check_four_field.py',
     'check_study_provenance.py',
     'check_rebuild_ledger.py',
     'check_workbook_structure.py',

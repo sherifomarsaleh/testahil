@@ -1256,6 +1256,17 @@ jobs:
       - name: Terminal-record-shape gate — negative control
         run: python3 scripts/check_terminal_record_shape_negative_control.py
 
+      # Depth-bar standard 2 was validated outside the study by a BOOLEAN the study
+      # set on itself. Measured 07-09-2026 the boolean was honest — 3,862 inputs,
+      # zero incomplete — and the fourth field is spelled `layer` in five studies
+      # and `ring` in thirteen, so a check written against one spelling would have
+      # silently condemned or excused most of the book.
+      - name: Every input carries all four provenance fields
+        run: python3 scripts/check_four_field.py
+
+      - name: Four-field gate — negative control
+        run: python3 scripts/check_four_field_negative_control.py
+
       - name: A frozen escalator is declared, or it is a defect
         run: python3 scripts/check_frozen_escalator.py
 

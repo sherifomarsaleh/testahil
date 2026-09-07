@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-07a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-07c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -3857,3 +3857,100 @@ years earlier.
 Everything inside it was written at the same moment by the same hand, so any two fields in
 it will agree. The question a stamp exists to answer is about the world, and answering it
 needs something the author did not type.
+
+
+## [R-DOC-02 EXTENDED 07-09-2026] A bare filename is a claim about a file too
+
+`check_protocol_text` has verified since its adoption that these documents name nothing
+that does not exist. Its matcher required a directory prefix — so it saw every reference
+that carries one and none that does not.
+
+**Found by following a broken import rather than by reading the rule.** A study generator
+that cannot run turned out to import the retired v2 engine module, and the digest
+described that module in a sentence telling a reader it was *available for reference*. It
+is not in the tree at all, and twenty scripts import it: seventeen in the lab, where dead
+research scratch is ordinary, and **three inside a study directory** — a study that cannot
+be rebuilt from its own code.
+
+The prefixed half was never the interesting half. A path is easy to check and easy to
+write correctly; a bare name is how anyone actually refers to a module in prose, so the
+uncovered form is the one these documents use most.
+
+**The check names its exceptions rather than pattern-excluding them**, two at adoption and
+each with a reason: the harvest cache these documents themselves declare regenerable and
+never committed, whose absence is the rule working rather than a stale claim; and the tail
+of a braced template naming a shape a run writes rather than a file that should sit on
+disk. An allowance nobody has to justify is where the next stale claim hides.
+
+**Its own first measurement was wrong, in the standing way.** The probe skipped any path
+containing `/.git` and so silently dropped the `.github` directory, reporting two workflow
+files as missing when both were on disk — an absent answer in a clean answer's clothes
+[R-ENF-04]. The exclusion now names the *directory* rather than matching a substring of the
+path.
+
+Negative-controlled on seven added conditions, three red and four clean, every fixture
+asserting first that the name it names is genuinely absent from — or present in — the
+tree: the retired module's sentence exactly as it stood, a module invented in prose, and a
+delivered document that is not there; against a bare name that resolves, a prefixed path
+belonging to the other check, the declared-absent cache, and a braced template.
+
+**The general lesson, which is not about filenames: a check's scope is usually the shape
+its matcher happened to need, not the shape the rule meant.** Nobody decided that only
+prefixed references would be verified — a regex was written for the references in front of
+it, and the rule quietly inherited that boundary. Where a check has been running a long
+time, read what it *matches* and ask what the rule actually claims.
+
+
+## [R-ENF-01 EXTENDED 07-09-2026] Depth-bar standard 2 is checked from outside, and the fourth field has two spellings
+
+Standard 2 has required since the bar was written that every input be four-field
+complete — value, source, date, and the research layer it came from — "validated by
+assertion". What validated it *outside* the study was a boolean each study set on
+itself: the composite-beta shape [R-ENF-01] closes everywhere else, and the shape
+[R-ENF-02 AMENDED] already had to close once on another field of the same checklist.
+
+**Measured 07-09-2026, the boolean was honest**, and saying so is part of the finding
+rather than a reason not to check: eighteen readable registers, several thousand inputs,
+zero incomplete. A gate is not worth less for finding a book in good order. What it is
+worth is that the *next* register cannot quietly skip the field — which is what a
+ratcheted check is for, and what the new-study gauntlet [R-ENF-07] tests.
+
+### The two spellings are the real fragility
+
+Five studies write one spelling of the fourth field and thirteen write the other. None
+writes both. None writes neither. And **nothing outside a study read the field at all** —
+every occurrence in the checking scripts was a fixture inside a negative control.
+
+A check written naively against one spelling would have silently passed five studies and
+condemned thirteen, or the reverse, and *either reading would have looked authoritative*.
+This is the correction-boundary lesson in another costume: several records, several
+shapes, a reader that guesses finds nothing. Both spellings are accepted **in the gate**
+rather than renamed across the book, because renaming thousands of committed inputs in
+thirteen delivered studies is a re-issue and is not done in passing.
+
+The author's own first measurement reported most of the book missing the field, having
+read one spelling only. The registers were complete and the reader was ignorant — an
+absent answer wearing a clean one's clothes [R-ENF-04] — which is why the two spellings
+are named in code here instead of remembered.
+
+### An absent register defers rather than duplicating
+
+Six studies commit no inputs register at all, and the source-integrity ratchet already
+lists exactly those six as unreadable. This gate reads *that* list rather than opening a
+second one: two records of one fact diverge the moment somebody prunes one [R-ENF-07]. It
+therefore carries **no ratchet of its own**, deliberately — there is nothing outstanding
+that another list does not already hold, and an allowance created for nothing is an
+allowance nobody maintains.
+
+Population-anchored [R-ENF-04] both ways: a run examining zero study directories fails,
+and so does one that read zero *inputs* across present directories. Negative-controlled on
+twelve conditions, seven red and five clean — the clean half being what this turns on:
+both spellings must stay green, and the absent-register case appears twice on purpose,
+once deferred and once not, because a fixture proving only the deferral would leave the
+refusal untested.
+
+**The general lesson, which is not about provenance: a standard obeyed everywhere is
+still unenforced, and the two are not the same claim.** Finding nothing wrong is the
+ordinary outcome of a first run, and it says only that today's book is sound. What the
+gate buys is that tomorrow's entry cannot be the first exception. Ask which of the
+standards that have never failed are still running on trust.

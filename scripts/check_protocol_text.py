@@ -111,6 +111,58 @@ def check_paths(text, label, fails):
         fails.append(f'{label}: names a file that does not exist ({m})')
 
 
+# [R-DOC-02 EXTENDED 07-09-2026] A BARE FILENAME IS A CLAIM ABOUT A FILE TOO.
+# check_paths only sees a reference carrying a directory prefix, so "mc_v2.py is legacy
+# reference only, never the production default" passed every run while THE FILE HAD BEEN
+# REMOVED FROM THE REPOSITORY — a sentence telling a reader the module is available for
+# reference, about a module that is not there, and twenty scripts import it. The prefix
+# was never the thing that made a reference checkable; it was just the thing the regex
+# happened to need.
+BARE_FILE = re.compile(
+    r'\b([A-Za-z][A-Za-z0-9_.-]*\.(?:py|json|md|csv|js|docx|xlsx|yml|html|pkl))\b')
+
+# DECLARED ABSENCES, EACH WITH ITS REASON. An allowance nobody has to justify is where
+# the next stale claim hides, so these are named rather than pattern-excluded.
+BARE_ALLOWED = {
+    'claims_short.pkl': 'the documents state in their own words that this cache is '
+                        'REGENERABLE AND NEVER COMMITTED, so its absence is the rule '
+                        'working rather than a stale claim',
+    'ERROR.md': 'the tail of the template PENDING_REVIEW/{MARKET}_{date}-ERROR.md — a '
+                'shape a run writes, never a file that should exist on disk',
+}
+
+
+def _repo_basenames():
+    """Every filename in the working tree, indexed once.
+
+    THE EXCLUSION IS ON THE DIRECTORY NAME, NOT ON A SUBSTRING OF THE PATH. A first
+    measurement skipped any path containing '/.git' and so silently dropped .github,
+    reporting two workflow files as missing when both were on disk — the probe was
+    wrong, not the documents [R-ENF-04].
+    """
+    have = set()
+    for root, dirs, files in os.walk(ROOT):
+        dirs[:] = [d for d in dirs if d != '.git']
+        have.update(files)
+    return have
+
+
+def check_bare_filenames(text, label, fails, have=None):
+    have = _repo_basenames() if have is None else have
+    stripped = PATH.sub(' ', text)          # prefixed paths are check_paths' subject
+    named = {n for n in BARE_FILE.findall(stripped) if '{' not in n}
+    missing = sorted(n for n in named
+                     if n not in have and n not in BARE_ALLOWED)
+    allowed = sorted(n for n in named if n in BARE_ALLOWED and n not in have)
+    print(f'  bare filenames {len(named):3d}   missing {len(missing)}'
+          + (f'   ({len(allowed)} declared absent)' if allowed else ''))
+    for m in missing:
+        print(f'      MISSING FILE  {m}')
+        fails.append(f'{label}: names a file that is nowhere in the repository ({m}). '
+                     f'A bare filename is a claim about a file exactly as a path is.')
+    return len(named), missing
+
+
 def check_symbols(fails):
     missing = []
     for mod, names in SYMBOLS.items():
@@ -222,10 +274,12 @@ def check_status_claims(text, label, fails):
 def main():
     fails = []
     check_symbols(fails)
+    have = _repo_basenames()          # indexed once, not per document
     for label, path in DOCS.items():
         print(f'\n{label}:')
         text = open(path, encoding='utf-8').read()
         check_paths(text, label, fails)
+        check_bare_filenames(text, label, fails, have)
         check_live_counts(text, label, fails)
         check_dfm_contradiction(text, label, fails)
         check_status_claims(text, label, fails)

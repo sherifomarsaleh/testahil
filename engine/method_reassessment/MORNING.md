@@ -2436,3 +2436,91 @@ which `check_protocol_text` caught within the minute, working exactly as intende
 Everything inside it was written at the same moment by the same hand, so any two fields in
 it will agree. The question a stamp exists to answer is about the world, and answering it
 needs something the author did not type.
+
+## 07-09-2026 — a check's scope is the shape its matcher needed, not the shape the rule meant
+
+`check_protocol_text` has verified since its adoption that the governing documents "name
+nothing that does not exist". Its matcher required a directory prefix, so it saw every
+reference carrying one and none that did not.
+
+**Found by following a broken import, not by reading the rule.** XPT's generator cannot run
+because it imports the retired v2 engine module — and the digest described that module in a
+sentence telling a reader it was *available for reference*. It is not in the tree at all.
+Measured: **twenty scripts import it**, seventeen in the lab (dead research scratch is
+ordinary there) and **three inside a study directory**, which is a study that cannot be
+rebuilt from its own code.
+
+The prefixed half was never the interesting half. A path is easy to check and easy to write
+correctly; a bare name is how anyone actually refers to a module in prose, so the uncovered
+form is the one these documents use most.
+
+**My own first measurement was wrong, in the standing way.** It skipped any path containing
+`/.git` and so silently dropped `.github`, reporting two workflow files as missing when both
+sat on disk. Re-run with the exclusion naming the *directory* rather than matching a
+substring: three bare names resolve to nothing, and two of those are legitimate — a harvest
+cache the documents themselves declare never committed, and the tail of a braced template.
+**One real defect**, which is what the check now refuses.
+
+**It then caught the desk that wrote it.** My own amendment used `engine/x.py` and `x.py` as
+illustrations, and those are claims about files by the gate's own rule. Reworded rather than
+exempted.
+
+Exceptions are named with reasons rather than pattern-excluded — an allowance nobody has to
+justify is where the next stale claim hides. Negative-controlled on seven added conditions,
+three red and four clean, every fixture asserting first that the name it names is genuinely
+absent from or present in the tree. Both stamps at `2026-09-07b`.
+
+**The general lesson, which is not about filenames:** nobody decided that only prefixed
+references would be verified — a regex was written for the references in front of it, and the
+rule quietly inherited that boundary. Where a check has been running a long time, read what
+it *matches* and ask what the rule actually claims.
+
+## 07-09-2026 — a standard obeyed everywhere is still unenforced
+
+Depth-bar standard 2 requires every input to be four-field complete — value, source, date,
+research layer — "validated by assertion". What validated it *outside* a study was
+`provenance_four_field`, **a boolean each study sets on itself**: the shape [R-ENF-01]
+closes everywhere else, and the shape [R-ENF-02 AMENDED] already closed once on another
+field of the same checklist.
+
+**The boolean was honest.** Eighteen readable registers, **3,862 inputs, zero incomplete.**
+That is worth stating plainly rather than dressing up: the first run of this gate rejects
+nothing in the book.
+
+**The fragility is that the fourth field is spelled two ways.** Five studies write `layer`
+(1,622 inputs), thirteen write `ring` (2,240), none writes both, none writes neither — and
+**nothing outside a study read the field at all**; every occurrence in `scripts/` was a
+fixture inside a negative control. A check written against one spelling would have silently
+passed five studies and condemned thirteen, and either reading would have looked
+authoritative.
+
+**My own first measurement did exactly that** — read `layer` only and reported 58% of the
+book missing a field that was there all along. The registers were complete and the reader
+was ignorant. The two spellings are now named in code rather than remembered, and both are
+accepted in the gate rather than renamed across the book: renaming 2,240 committed inputs
+in thirteen delivered studies is a re-issue, not a passing edit.
+
+**An absent register defers rather than duplicating.** Six studies commit no register at
+all, and `source_outstanding.json` already lists exactly those six as unreadable — so the
+gate reads that list instead of opening a second one, and carries no ratchet of its own.
+
+Twelve conditions, seven red and five clean; the clean half is what it turns on — both
+spellings green, and the absent-register case present twice, once deferred and once not.
+Gauntlet 36/36. Stamps `2026-09-07c`.
+
+### Also today, and it corrects an earlier line of mine
+
+I hypothesised that ARCC's peer figures were a SIGCM clause 1 breach because their source
+fields name no document. **That was wrong and the gate is right not to fire**: clause 5 puts
+competitors explicitly in cross-check scope — "never a source for the subject's historicals"
+— so a peer figure is not a clause 1 historical at all. The study also discloses the
+weakness itself, in its own words: the peer set is two names and neither publishes an EBITDA
+series it could measure a multiple from.
+
+**Item 7 (peer history, not snapshots) was scoped and is blocked on data, not on method.**
+ARCC commits one year per peer. SCEM's own audited filings are held for two years plus a
+quarter; **Misr Beni Suef's own investor-relations statements page carries no documents at
+all** — verified against the raw HTML, not just a rendered fetch, and not a JavaScript
+problem. The EGX and EFSA disclosure portals both return `connect_rejected` at the proxy —
+a policy denial, not retried. Aggregators are barred for historicals. Routes run and
+recorded; this needs the filings supplied or another primary route.
