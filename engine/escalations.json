@@ -842,6 +842,43 @@
     "must_contain": "PANEL_WEDGE_RULED_"
    },
    "recommendation": "Re-point it at the measured wedge itself rather than a multiple of it. The wedge is computed from the company's own overlap year, so 'beyond what consolidation explains' is a measured line; '1.30 times what consolidation explains' is a chosen one, and the house forbids the second wherever it can have the first."
+  },
+  {
+   "key": "lens-registry-has-no-row-for-an-auto-assembler-with-a-captive-lender",
+   "opened": "2026-09-07",
+   "cls": "instruction",
+   "question": "GB Corp (EGX: GBCO) is an automotive assembler and distributor with a CAPTIVE LENDER and a large stake in a listed fintech. [R-LENS-03]'s LENS_REGISTRY is a closed enumeration of thirteen rows and GBCO maps to none. It also still publishes a FOUR-LENS WEIGHTED BLEND at typed weights (sotp 0.40, prediscount 0.15, relative 0.20, normalized 0.25) reaching EGP 44.3295 — the construction [R-LENS-03] RETIRED outright, and it is on that rule's ratchet with no lens record at all. Does the principal want a row added for this class, or GBCO mapped onto an existing one?",
+   "routes": [
+    {
+     "route": "research_protocol.LENS_REGISTRY, read by import, every one of its thirteen rows compared against GBCO's economics",
+     "when": "2026-09-07",
+     "outcome": "no row fits. 'holding company -> sotp' is the nearest by construction, since GBCO's value splits into an operating auto leg and equity stakes — but a holdco IS its stakes, and GBCO manufactures, assembles and distributes, so the auto leg is an operating business rather than a holding.",
+     "rerun": true
+    },
+    {
+     "route": "the standing protocol's own TEMPLATE section, for a lens pattern by class",
+     "when": "2026-09-07",
+     "outcome": "it carries 'operating-co + captive lender -> split legs' — a PATTERN exists and is named, and it has no registry row. So the method knows what to do with this company and the enumeration does not.",
+     "rerun": true
+    },
+    {
+     "route": "every live ref, for a prior ruling on this class or on GBCO's lens design",
+     "when": "2026-09-07",
+     "outcome": "none. The one open registry escalation concerns SAVOLA, a food and grocery group, and is a different question with a different answer.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 260,
+   "why_only_the_principal": "[R-LENS-03] states the test in terms — a class is added when a DIFFERENT LENS carries the weight, never merely when the industry differs — and applying that test to a captive lender is a method judgement rather than a lookup. Registering a class also edits a CLOSED enumeration keyed on the lessons register by import, so it changes what every future study of this shape may publish, which is not the operator's to decide.",
+   "done_meanwhile": "Nothing is blocked on it. GBCO's rebuild, its walk-forward, its corrections log, its four-field register and its diagnostics were all completed and are committed; the study is red on [R-LENS-03] and carried on that rule's ratchet, which is the sanctioned way to hold a known debt rather than a permanently red build.",
+   "default_if_no_answer": "GBCO stays on the lens ratchet with its blend, no row is invented, and the question is put again when the next captive-lender name reaches the queue — a second company of the shape is the evidence [R-LESSON-01] asks for before widening a scope, and the same argument applies to widening a registry.",
+   "default_date": "2026-12-31",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/research_protocol.py",
+    "must_contain": "captive lender"
+   },
+   "recommendation": "Add the row. The captive lender is the reason and it is a lens reason rather than an industry one: a finance book is valued on its own spread and its own loss experience, not by discounting it alongside the cash flows of the vehicles it funds, and the protocol already names 'operating-co + captive lender -> split legs' as the pattern. That is a DIFFERENT LENS carrying part of the weight, which is exactly the test [R-LENS-03] sets — and it is the test SAVOLA fails, which is why these two escalations should not be answered together."
   }
  ]
 }
