@@ -208,6 +208,11 @@ anchor_cross = next(((float(_anch[i][0]), float(_anch[i + 1][0]))
 # WHETHER IT CROSSES AT ALL IS ITSELF COMPUTED. A previous edition's sentence asserted that
 # the tested range carries fair value across the market price; on a higher market price it
 # does not, and a sentence that cannot be false is not a finding.
+ANCHOR_CROSS_FIG = (
+    f"in the rate-anchor range between the {pc(anchor_cross[0], 0)} and "
+    f"{pc(anchor_cross[1], 0)} anchors"
+    if anchor_cross else
+    "not reached anywhere in the rate-anchor range tested")
 ANCHOR_CROSS_WORDS = (
     f"wide enough to carry fair value across the market price, which it reaches between "
     f"the {pc(anchor_cross[0], 0)} and {pc(anchor_cross[1], 0)} anchors"
@@ -221,6 +226,9 @@ _bcol = SN['gs'].index(IN['g_terminal'])
 _bser = [(b, SN['grid_beta_g'][i][_bcol]) for i, b in enumerate(SN['betas'])]
 beta_cross = next(((_bser[i][0], _bser[i + 1][0]) for i in range(len(_bser) - 1)
                    if _bser[i + 1][1] <= SPOT <= _bser[i][1]), None)
+BETA_CROSS_WORDS = (
+    f"crossed in the beta grid between the {p3(beta_cross[0])} and {p3(beta_cross[1])} rows"
+    if beta_cross else "not reached anywhere in the beta grid tested")
 tax_span = list(SN['tax'].values())
 e1_pe_lo = E1['rng'][0] / E1['eps_usd'] / PEG
 e1_pe_hi = E1['rng'][1] / E1['eps_usd'] / PEG
@@ -2272,9 +2280,7 @@ H2('1.9  Sensitivity')
 figure(os.path.join(HERE, 'fig2_sens.png'), 7.0,
        f"Figure 4 — left, fair value across beta and terminal growth; right, fair value "
        f"against the mid-cycle rate the fleet reverts to. The market price of AED "
-       f"{p2(SPOT)} is crossed in the beta grid between the {p3(beta_cross[0])} and "
-       f"{p3(beta_cross[1])} rows, and in the rate-anchor range between the "
-       f"{pc(anchor_cross[0], 0)} and {pc(anchor_cross[1], 0)} anchors.")
+       f"{p2(SPOT)} is {BETA_CROSS_WORDS}, and {ANCHOR_CROSS_FIG}.")
 P("Each anchor is varied independently around its own base, so each row shows what the "
   "valuation needs that one thing to do.")
 rows = [['Beta →'] + [p3(b) for b in SN['betas']]]
@@ -2785,13 +2791,22 @@ for head, body in [
      f"unchanged — but the speed is chosen, not measured. A slower fade raises this lens "
      f"and a faster one lowers it. THE READ CARRIES NO WEIGHT IN THE ANSWER, which is "
      f"partly for this reason; an earlier edition gave it {pc(LW['book'], 0)}."),
-    ("Two unit inputs are solved rather than sourced. ",
-     f"Per-vessel running cost of USD {n0(FLT['opex_day'])} a day is solved so that the "
-     f"owned fleet's earnings reproduce the reported {HYRS[2]} result, and the gas carrier "
-     f"day rate of USD {n0(FLT['gas_rate_day'])} is solved from reported {HYRS[2]} revenue "
-     f"over consolidated vessel-years. Neither is disclosed at a finer level anywhere in "
-     f"the filings. Both are labelled as solved wherever they appear, and both are "
-     f"anchored on a reported outcome rather than assumed."),
+    ("Three unit inputs are solved rather than sourced. ",
+     f"The tanker cost stack is two of them: a fixed base of USD "
+     f"{m0(FLT['cost_fixed'])} million a year and a variable component of "
+     f"{xt(FLT['cost_var'], 2)} for every dollar of the owned fleet's charter-equivalent "
+     f"revenue, solved TOGETHER from two disclosed periods \u2014 the audited {HYRS[2]} "
+     f"year and the reviewed six months to 30 June 2026. The reviewed six months to 30 "
+     f"June 2025 are held out and the stack reproduces their earnings to within "
+     f"{pc(abs(IN['tnk_holdout_ebitda_error']), 1)}, understating them. The third is the "
+     f"gas carrier day rate of USD {n0(FLT['gas_rate_day'])}, solved from reported "
+     f"{HYRS[2]} revenue over consolidated vessel-years; the same solve on the reviewed "
+     f"half gives USD {n0(IN['gas_rate_day_h126'])} and is NOT adopted, because its "
+     f"denominator counts CONTRACTED vessels while its numerator is the whole unit's "
+     f"revenue, so between the two periods the ratio rose for a reason that is a MIX "
+     f"rather than a rate. None of the three is disclosed at a finer level anywhere in "
+     f"the filings. All are labelled as solved wherever they appear, and all are anchored "
+     f"on reported outcomes rather than assumed."),
     ("The revenue gross-up for the tanker fleet is presentational at the earnings line — "
      "and an earlier edition of this study said it could not reach the valuation, which "
      "was wrong. ",
@@ -3442,9 +3457,11 @@ for head, body in [
      f"not broken out at all. The substitutions used are stated in section 1.7 and in the "
      f"caveats."),
     ("Vessel-level running costs are not disclosed. ",
-     f"The USD {n0(FLT['opex_day'])} a day used is solved so that the owned fleet's "
-     f"charter-equivalent revenue less running cost reproduces the reported {HYRS[2]} "
-     f"result for the unit."),
+     f"The cost stack used \u2014 a fixed base of USD {m0(FLT['cost_fixed'])} million a "
+     f"year and {xt(FLT['cost_var'], 2)} of charter-equivalent revenue \u2014 is solved "
+     f"from the audited {HYRS[2]} year and the reviewed six months to 30 June 2026 "
+     f"together, and tested on the reviewed six months to 30 June 2025, which are held "
+     f"out."),
     ("The comparators' own filings were not used, and their multiples were not "
      "recomputed. ",
      f"The three comparator multiples in section 1.3 come from data-aggregator statistics "

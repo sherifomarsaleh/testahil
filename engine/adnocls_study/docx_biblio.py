@@ -337,8 +337,8 @@ IV = {k: v['value'] for k, v in INP.items()}
 # counterfactual that tests the weighting judgement
 EQ_CENTRAL = sum(L[k]['base'] for k in ('dcf', 'relative', 'normalized', 'book')) / 4.0
 HYB_PER_SHARE = IV['q1_26_hybrid'] / SHARES / 1000.0 * PEG
-ND_FOOTNOTE = IV['q1_26_shldr_loan'] + IV['q1_26_leases'] - IV['q1_26_cash']
-ND_PRINTED = IV['q1_26_netdebt']
+ND_FOOTNOTE = IV['h1_26_shldr_loan'] + IV['h1_26_leases'] - IV['h1_26_cash']
+ND_PRINTED = IV['h1_26_netdebt']
 ND_STUDY = BRG['net_debt']
 
 def idate(k):
@@ -369,9 +369,17 @@ def rd_date(period):
 
 
 def gd_date():
-    """The date the management commentary carrying the raised guidance bears."""
-    return fdate(find_one(category='strategic plans & guidance',
-                          klass='DRIVER_UNLOCK')['source_date'])
+    """The date the management commentary carrying the LATEST raised guidance bears.
+
+    Guidance was raised twice in 2026 and both raises are registered, so this resolves to
+    the later of the two rather than asserting there is only one. A resolver that demanded
+    a single match would have failed the build the moment a second raise was swept in,
+    which is the right failure — and the right fix is to say which one is meant."""
+    hits = [f for f in R['findings']
+            if f.get('category') == 'strategic plans & guidance'
+            and f.get('klass') == 'DRIVER_UNLOCK']
+    assert hits, 'no guidance finding is registered'
+    return fdate(max(hits, key=lambda f: f['source_date'])['source_date'])
 
 
 IDX = find_one(source_type='PRIMARY_MARKET_DATA')   # the index series the beta is measured on
@@ -1006,11 +1014,16 @@ JUD = [
      "A new issue at a rate outside that spread, or a refinancing that shifts the mix away "
      "from the parent facility. The three constructions are published separately so a reader "
      "can take whichever they find most representative."),
-    ('The running cost per tanker per day',
-     f"{fval('tnk_opex_day', IV['tnk_opex_day'])}, solved so that the owned fleet's disclosed "
-     f"rates less that cost reproduce reported 2025 tanker earnings exactly. That makes it a "
-     f"calibration to a disclosed outcome rather than a free assumption, but it is still not a "
-     f"disclosed figure.",
+    ('The tanker cost stack',
+     f"A fixed base of {fval('tnk_cost_fixed', IV['tnk_cost_fixed'])} a year and a variable "
+     f"component of {fval('tnk_cost_var', IV['tnk_cost_var'])} for every dollar the owned "
+     f"fleet earns on a charter-equivalent basis. The two are solved TOGETHER so that the "
+     f"same construction reproduces reported tanker earnings in the audited 2025 year AND "
+     f"in the reviewed six months to 30 June 2026; the reviewed six months to 30 June 2025 "
+     f"are HELD OUT, and it reproduces them to within "
+     f"{fval('tnk_holdout_ebitda_error', IV['tnk_holdout_ebitda_error'])}, understating "
+     f"them. That makes it a calibration to two disclosed outcomes tested on a third rather "
+     f"than a free assumption, but it is still not a disclosed figure.",
      f"A disclosed operating cost per vessel. Escalation is applied at "
      f"{fval('opex_escalation', IV['opex_escalation'])} a year as a wage and services "
      f"escalator, not a commodity index, because crew, technical management, insurance and "
@@ -1019,9 +1032,13 @@ JUD = [
     ('The gas carrier day rate',
      f"{fval('gas_rate_day', IV['gas_rate_day'])} on average, implied by 2025 gas revenue over "
      f"consolidated vessel-years read off the published contract table. Per-vessel rates are "
-     f"not disclosed, so the group average is the finest level the disclosure supports, and "
-     f"the margin is held near the 2025 outcome at "
-     f"{fval('gas_margin', IV['gas_margin'])}.",
+     f"not disclosed, so the group average is the finest level the disclosure supports. The "
+     f"same solve on the reviewed six months to 30 June 2026 gives "
+     f"{fval('gas_rate_day_h126', IV['gas_rate_day_h126'])} and is NOT adopted, because its "
+     f"denominator counts CONTRACTED vessels while its numerator is the whole unit's "
+     f"revenue. The MARGIN is re-anchored: the delivered edition held it near the 2025 "
+     f"outcome at 70%, and the reviewed half printed "
+     f"{fval('gas_margin', IV['gas_margin'])} on revenue up 128 per cent.",
      "Per-vessel or per-contract rate disclosure. Fifteen of twenty owned vessels sit on "
      "long-term contracts, so the risk in this line is smaller than in tankers — but the "
      "gap is flagged rather than smoothed."),
